@@ -1,0 +1,817 @@
+                                              Prepared for submission to JCAP
+
+
+
+
+                                              Revisiting the NVSS number count
+
+
+
+
+arXiv:1509.02532v3 [astro-ph.CO] 6 Apr 2016
+                                              dipole
+
+
+                                              Prabhakar Tiwaria and Adi Nusser a
+                                              a
+                                                  Physics Department and the Asher Space Research Institute - Technion, Haifa 32000, Israel
+                                                  E-mail: ptiwari@physics.technion.ac.il, adi@physics.technion.ac.il
+
+                                              Abstract. We present a realistic modeling of the dipole component of the projected sky distribution
+                                              of NVSS radio galaxies. The modeling relies on mock catalogs generated within the context of ΛCDM
+                                              cosmology, in the linear regime of structure formation. After removing the contribution from the
+                                              solar motion, the mocks show that the remaining observed signal is mostly (70%) due to structures
+                                              within z . 0.1. The amplitude of the model signal depends on the bias factor b of the NVSS mock
+                                              galaxies. For sources with flux density, S > 15 mJy, the bias recipe inferred from higher order
+                                              moments is consistent with the observed dipole signal at 2.12σ. Flux thresholds above 20 mJy yield
+                                              a disagreement close to the 3σ level. A constant high bias, b = 3 is needed to mitigate the tension to
+                                              the ∼ 2.3σ level.
+
+                                              Keywords: Radio galaxies: high-redshift, Galaxies: active, Cosmology: large scale structure of the
+                                              Universe,
+Contents
+1 Introduction                                                                                                          1
+
+2 Data                                                                                                                  2
+
+3 Basics                                                                                                                2
+  3.1 The dipole component                                                                                              2
+      3.1.1 The solar motion contribution to the dipole                                                                 3
+      3.1.2 Contribution from large scale structure                                                                     4
+  3.2 The redshift distribution                                                                                         4
+  3.3 Galaxy biasing                                                                                                    4
+
+4 The Mock catalogs                                                                                                     5
+
+5 Results                                                                                                               7
+
+6 Conclusion and Discussion                                                                                           10
+
+7 Acknowledgments                                                                                                     10
+
+1    Introduction
+The standard cosmological paradigm is based on the “Einstein’s Cosmological Principle” [1, 2], i.e.
+the approach to homogeneity and isotropy on the largest observable scales. Galaxies in the NRAO
+VLA Sky Survey (NVSS) [3] have been assumed to lie at redshift z ∼ 1, corresponding to a comoving
+distance of ∼ 3.3Gpc for the ΛCDM cosmological background [4]. The galaxy clustering at these
+distances should contribute very little to sky maps of NVSS galaxy and flux distributions on large
+angular scales. The observed dipole component of these maps should be almost entirely due to Doppler
+and aberration effects [5] caused by the local solar motion as measured by the Cosmic Microwave
+Background Radiation (CMBR) [6–11]1 . There have been several attempts to measure the dipole
+in radio catalogs [12–18] and somehow the dipole measured from the NVSS is puzzling with several
+independent analyses [13–18] yielding values which disagree with the CMBR velocity dipole [14, 17, 18]
+at ∼ 3σ significance.
+      The first extraction of the solar motion from the NVSS dipole was done in [13]. The authors
+[13] reported a velocity which was roughly in the same direction as CMBR but 1.5 to 2 times larger
+in amplitude. However, nine years later, using the same data, a huge solar motion, 1600± 400 km
+s−1 , was reported [14] from both the projected number density (per steradian) and brightness dipole
+measurements. This significant (> 3σ) disagreement with the observed solar motion, immediately
+attracted the attention of the community resulting in further detailed analyses of the NVSS dipole
+[15];[16]([19]);[17, 18].
+      The authors of [15] derived a dipole almost six times larger than the CMBR velocity dipole, which
+was attributed to observational biases. Another analysis by [16] yielded a dipole with an amplitude
+roughly three times larger than the prediction from the CMBR value. A more recent analysis by [17]
+found a 2.7 − 3.2σ disagreement between the NVSS number dipole and the CMBR for various flux
+density cuts. Conclusively, the present status of NVSS dipole is a disagreement with CMBR predicted
+velocity dipole at 2.7σ or more.
+      However, the contribution of the intrinsic variation of the projected number density as a result
+of the NVSS galaxy clustering remains to be properly assessed. The intrinsic dipole mainly depends
+on the following key ingredients:
+   1 The measured CMBR dipole magnitude is of order ∼ 10−3 [6–11] and the corresponding speed is found to be 369±
+
+0.9 km s−1 in the direction, l = 263.99o ± 0.14o , b = 48.26 ± 0.03o in galactic coordinates [10, 11]. In J2000 equatorial
+coordinates, the direction parameters are RA = 167.9o , DEC = −6.93o .
+
+
+
+
+                                                         –1–
+      • number density distribution N (z) as a function of redshift. This dictates the fractional contribu-
+        tion of the large scale structure from different redshifts. Available constraints on N (z) strongly
+        indicate that it peaks at redshifts lower than z ∼ 1.
+      • relation between the clustering of radio galaxies versus the underlying mass as a function of
+        redshift. This biasing relation can be parametrized in terms of the galaxy, Pg (k), and matter
+        power spectrum, P (k), as, Pg (k, z) = b2 (z)P (k, z). The bias factor, b, could be as large as
+        2 − 3 and hence produce a non-negligible boost to the dipole signal, especially if N (z) peaks at
+        redshifts lower than z ∼ 1.
+      • constraints from the Local Universe. Our cosmological neighborhood within 100 Mpc is moving
+        with ∼300 km s−1 [20] and roughly aligned with the solar motion. This motion is caused by
+        even farther structures, producing an alignment between the solar motion and intrinsic dipole.
+We aim at a realistic assessment of the NVSS dipole within the context of the ΛCDM model taking
+into account the above ingredients. In Ref. [21] (hereafter NT15), the authors approximate the
+observed redshift distribution, N obs (z) from the best available redshift catalogs Combined EIS-NVSS
+Survey of Radio Sources (CENSORS)[22, 23] and Hercules [24, 25]. They extract the biasing factor
+b(z) by matching the ΛCDM predictions to the NVSS measured angular power spectrum. The redshift
+dependent biasing and number distribution are also found to be consistent with the observed radio
+luminosity functions [23, 26, 27]. The results obtained in NT15 are based on high order multipoles
+l ≥ 4, where the analysis is fairly insensitive to complications related to the partial sky coverage. In
+this paper we focus on the dipole, l = 1, and perform the comparison via ΛCDM mock catalogs.
+     The outline for the paper is as following. In §2, we briefly describe the NVSS catalog. In §3.1 we
+review the basic formalism for describing the dipole from a projected map of galaxies. We provide our
+treatment for the number density N (z) and galaxy biasing in §3.2 & §3.3, respectively. §4 describes
+the NVSS mock catalogs. We present our results in §5 and conclude with a general discussion in §6.
+
+2      Data
+The full NVSS catalog contains ∼1.7 million sources observed at 1.4GHz with an integrated flux
+density S1.4GHz > 2.5 mJy. The full width at half maximum angular resolution is 45 arcsec and
+nearly all observations are at uniform sensitivity. Most of the sources (90%) are unresolved. The
+catalog covers the sky north of declination −40◦ (J2000), which is almost 82% of the celestial sphere.
+However, the effective sky coverage for our study here is 75% since we impose the following two
+cuts: 1) we mask out sources at latitudes |b| < 5◦ to avoid Galactic contamination and 2) we remove
+additional 22 sites around bright local extended radio galaxies identified by [13], to avoid overwhelming
+correlations which may leak to the large scales of interest. These are the only cuts we impose on the
+data. The authors of [17] have studied the robustness of the measured NVSS dipole with respect to
+additional cuts. They have demonstrated that masking out latitudes of < 10◦ , around the Galactic
+and Super-Galactic planes changes the dipole by less that 10%. The same authors have also assessed
+the effect of removing sources within 30 arcsec of known nearby galaxies listed in [28–33]. This
+procedure also resulted in small changes in the NVSS dipole.
+     As shown by Ref. [13], the NVSS suffers from significant systematic mis-calibration across the
+sky at flux densities S ∼< 15 mJy, which affects lower multipoles including the dipole. Therefore, we
+
+restrict our analysis to sources brighter than 15 mJy and consistently give the results for S > 15, 20,
+30, 40 and 50 mJy. Furthermore, for completeness and comparison to other authors [13, 16, 17], we
+give results for S > 10 mJy, for one set of mocks with most conservative parameters. We impose a
+maximum flux density cut S < 1000 mJy to remove extra bright sources.
+
+3      Basics
+3.1     The dipole component
+Let N (r̂ ) be the projected number density (per steradian) in the line-of-sight direction r̂ , and N̄ be
+the mean number density averaged over the sky. Further, let the density contrast ∆(r̂ ) ≡ N (r̂ )/N̄ −1.
+
+
+
+
+                                                    –2–
+Given the measured angular positions of galaxies, we employ the HEALPix [34] scheme to obtain N (r̂ )
+in equal area pixels. We expand ∆(r̂ ) in spherical harmonics, Ylm (r̂ ), as
+                                                ∞ X
+                                                X +l
+                                     ∆(r̂ ) =               alm Ylm (r̂ ) .                         (3.1)
+                                                l=1 m=−l
+
+For a full sky coverage, the coefficients, alm can easily be calculated by inverting equation (3.1), as
+                                               Z
+                                        alm =     dΩ∆(r̂ )Ylm (r̂ ).                                (3.2)
+                                                 4π
+
+The angular power, Cl , for multipole l is,
+
+                                              Cl = h|alm |2 i .                                     (3.3)
+
+For a partial sky coverage, we resort to an approximate scheme [35] to compute Cl ,
+
+                                                   h|a′lm |2 i    1
+                                         Clobs =               −                                    (3.4)
+                                                     Jlm         N̄
+where a′lm is obtained  from equation (3.2) but with angular integration over survey region only.
+Further, Jlm = survey |Ylm |2 dΩ is the approximated correction suggested in reference [35]. The term
+               R
+ 1
+N̄
+   describes the contribution of the Poissonian shot-noise. The Clobs is a measure of anisotropy at
+angular scale ∼ π/l.
+
+3.1.1   The solar motion contribution to the dipole
+A moving observer sees a brighter sky in the forward direction due to Doppler boosting and aberration
+effects [5]. The flux density (energy per area per frequency) of sources in NVSS data follows a power-
+law dependence on frequency ν, S ∝ ν −α , with α ≈ 0.75 [5]. Let v be speed of the observer relative
+to a source emitting radiation intrinsic frequency νrest . To lowest order in v/c, the observer sees the
+radiation at a frequency νobs = νrest δ, where
+
+                                          δ ≈ 1 + (v/c) cos θ ,                                     (3.5)
+
+and θ is the angle between v and the line of sight to the source. Therefore, the observed flux density
+is [5],
+                                          Sobs = Srest δ 1+α                                     (3.6)
+at a fixed frequency in observer’s frame. The extragalactic radio source population count above some
+flux density cut, follows a power law n(> S) ∝ S −x [5], where x ≈ 1 [17]. Therefore, the number count
+above some Sobs will change by a factor δ (1+α)x due to Doppler effect. In addition, the aberration of
+light changes the solid angle as,
+                                          dΩobs = dΩrest δ −2 .                                   (3.7)
+Using these equations, the dipole in the projected number density due to the local motion, at leading
+order in v/c, is [5, 17],
+                                       ~ = [2 + x(1 + α)](~v /c) .
+                                       D                                                         (3.8)
+                                                                                          ~ as in
+    The dipole term of the power spectrum, C1 , corresponds to to a dipole amplitude, D (|D|)
+equation (3.8), given by [15],
+                                                 4π 2
+                                         C1 =       D .                                       (3.9)
+                                                  9
+
+
+
+
+                                                      –3–
+3.1.2    Contribution from large scale structure
+In linear theory for gravitational instability, the theoretical angular power spectrum C̃l is given in
+terms of the 3D mass density power spectrum P (k) at z = 0 as [21]
+
+                                        C̃l = < |ãlm |2 >
+                                              2
+                                                Z
+                                            =       dkk 2 P (k)W 2 (k) ,                                 (3.10)
+                                              π
+               R∞
+where W (k) = 0 D(z)b(z)p(r)drjl (kr) is the window function in k-space and P (k) is the ΛCDM
+mass density power spectrum. Further, D(z) is the linear growth factor normalized to unity at z = 0
+and p(r)dr ∝ N (z)dz is the probability for finding a galaxy in the range r − (r + dr) and r is the
+comoving distance corresponding to redshift z.
+
+3.2     The redshift distribution
+We rely on the results of NT15 for biasing and the redshift distribution for radio galaxies. These
+authors modeled the redshift distribution of NVSS galaxies on the basis of the observed distribution
+N obs (z) obtained from CENSORS and Hercules surveys. The CENSORS catalog was developed to
+study the evolution of the steep-spectrum radio luminosity function and the survey is presumably
+complete for flux densities S > 7.2mJy at 1.4 GHz, containing 135 sources. Indeed, the catalog covers
+only 6deg2 of the ESO Imaging Survey Patch D (EISD). The redshift measurements of the sample
+are 73% spectroscopically complete and for the remaining sources the redshift is estimated by Kz or
+Iz magnitude-redshift relation. The Hercules redshift survey of 64 sources within 1.2 deg2 is complete
+for S > 2mJy at 1.4 GHz. We combine CENSORS+Hercules data to model NVSS source redshift
+distribution. We find 133 sources above 10 mJy flux density S. For higher flux density cuts we use
+the same as the number of sources reduces significantly and effectively there is no change in fit. We
+add that the CENSORS+Hercules combined data sets have been used to study the redshift dependent
+properties[21–23]. NT15 use the parametric model
+                                                      a3 
+                                     model    a1          z
+                                   N       ∝ z exp −               ,                            (3.11)
+                                                          a2
+where the parameters a1 , a2 and a3 have been fixed by fitting the CENSORS+Hercules redshift
+distribution as well as the NVSS angular power spectrum for l > 4. The best fit values were found to
+be a1 = 0.74 ± 0.57, a2 = 0.71 ± 0.79 and a3 = 1.06 ± 0.53. A histogram of the observed distribution,
+N obs (z), is plotted in figure 1 together with the model fit in equation (3.11) for the best fit values of ai .
+Further we have plotted 5 curves representing N (z), for ai randomly drawn from the full probability
+distribution function computed in NT15.
+
+3.3     Galaxy biasing
+To model the biasing of radio galaxies, NT15 use an elaborate model based on halo biasing [36] and
+the relationship between galaxy stellar masses and the prevalence of radio activities [37]. They provide
+the following convenient parametric fit.
+
+                                         bNT (z) = b1 z 2 + b2 z + b3 ,                                  (3.12)
+
+where the best fit values of bi are b1 = 0.33, b2 = 0.85 and b3 = 1.6. Furthermore, we shall employ
+other choices for the bias factor to fit with NVSS dipole observation. Particularly, we consider constant
+bias factors b(z) = 2 and 3. The thick red line in figure 2 is bNT (z) for the best fit parameters bi , while
+the thin black lines represent random bi drawn from the full probability function from NT15. Several
+estimates of the bias factor available in the literature are also plotted in the figure. The values from
+Allison et al. [38] and Lindsay et al. [39] have a large uncertainty and agree with the bias factors
+used in this work. However, the bias of faint galaxies (S1.4 > 90 µJy) [40] is apparently low. The bias
+measurements in [38–40] correspond to large redshift bins and the redshift for each data points is the
+median or effective redshift of the bin. The bias of NVSS galaxies obtained by Blake et al. [41] (grey
+
+
+
+
+                                                     –4–
+                                                                          HERCULES+CENSORS
+
+                                                                          input model
+            25                                                                          2
+                                                                          mock (6 deg )
+
+                                                                                        2
+                                                                          mock (6 deg )
+            20                                                            mock (6 deg )
+                                                                                        2
+
+
+                                                                                        2
+                                                                          mock (6 deg )
+
+
+    ∆N(z)   15                                                            mock (6 deg2)
+
+
+
+
+            10
+
+            5
+
+            0
+                 0       0.5           1          1.5          2          2.5               3
+                                                   z
+Figure 1. The histogram is the observed number of sources from combined CENSORS+Hercules data sets
+with flux density S > 10 mJy and per redshift bin ∆z = 0.2. Best fit model (input model) follows equation
+(3.11) with parameters a1 = 0.74, a2 = 0.71 and a3 = 1.06. The number density from mock catalogs for same
+area as observation is also shown. Note that the mocks include the ΛCDM density fluctuation, biasing b(z)
+and the Poisson shot-noise.
+
+
+band), is assumed to be constant with redshift in their analysis and does not take into account the
+                                                                                      < 0.1 where the
+dipole. Unfortunately, we do not have any radio galaxy bias observation at redshift z ∼
+dipole signal is mostly formed.
+
+4      The Mock catalogs
+The origin of the intrinsic dipole signature is fluctuations on large scales with negligible coupling to
+nonlinear evolution on small scales. Hence it suffices for our purposes to construct mock NVSS catalogs
+based on linear theory for structure formation. The mocks are extracted from a random Gaussian
+realization of linear density and velocity fields sampled on a 5123 cubic grid of 17.408 comoving Gpc on
+the side. The box is equivalent, in volume, to a sphere extending to redshift z ∼ 7. The grid spacing
+of 34 Mpc is well below the physical scales relevant for the dipole. The realization of the linear dark
+matter density, δm , in the box is generated with the GRAFIC-2 [42] package and the corresponding
+velocity field is computed using the linear theory relation between velocity and density [43]. We
+adopt the latest Planck results [4] for the cosmological parameters: Hubble constant H0 = 67.8 km
+s−1 Mpc−1 , total matter density parameter Ωm = 0.308, baryonic density parameter Ωb = 0.0486,
+linear clustering amplitude on 8 h−1 Mpc scale, σ8 = 0.815 and a spectral index ns = 0.9667. We
+use the fitting formulae from Ref.[44] for the ΛCDM power spectrum. “Observers” are placed at the
+centers of spheres of 100 Mpc in radius and having with bulk motions of ∼ 300 km s−1 . This is
+designed to match the observed bulk flow as measured in [20]. The mean number of the galaxies in a
+
+
+
+
+                                                 –5–
+                     Nusser & Tiwari (2015), b(z) = 0.33z2+0.85z+1.6
+          8          Allison et al. (2015), z
+                                                eff
+                                                      = 1.5, S > 2.5 mJy
+
+
+                     Lindsay et al. (2014a), z              , comoving clustering
+                                                                                                     FIRST-GAMA fields
+                                                      med
+
+          7          Lindsay et al. (2014a), z
+                                                      med
+                                                            , linear clustering
+
+
+                     Lindsay et al. (2014b), z              , faint radio sources
+
+          6
+                                                      med
+
+
+
+                     Blake et al. (2004)
+
+
+                                                                                    FGM-z >0.5
+          5
+   b(z)
+          4                                                  FGM
+                                                                                                         FIRST-all
+                       FGM-z < 0.5
+
+          3
+
+          2
+
+          1
+
+          0         0.2                    0.4                              0.6         0.8      1        1.2        1.4
+                                                                                        z
+Figure 2. The redshift dependent bNT (z) in equation (3.12) is plotted as the thick red curve for the best
+fit parameters. Thin curves correspond to random choices of the parameters appearing in bNT (z). For
+comparison, results from the literature are also shown, as indicated in the figure. The abbreviation FGM
+stands for ‘FIRST-GAMA-matched’.
+
+
+bin at redshift zbin , N (bin), is,
+
+                                      N (bin) = n̄(zbin ) × dv × [1 + b(zbin )D(zbin )δm ],                                (4.1)
+
+where n̄(zbin ) is the mean number density at the bin and dv is the bin volume. The number density
+n̄(zbin ) is obtained from the redshift distribution form the equation (3.11). The actual number of
+galaxies in the bin is a random integer, drawn from a Poisson distribution with mean N (bin).
+      In order to include scatter due to uncertainties in the fits of N (z) and for the biasing form bNT (z)
+in equation (3.12), we draw random realizations of the parameters ai and bi (see equations (3.11) &
+(3.12)) from the full probability distribution for the observed Clobs (l > 4) computed in NT15 (see
+figures 1 & 2). 105 NVSS mocks are generated, respectively, from these random sets rather than the
+mean values. The biasing form bNT is unsuitable for high redshifts but this is insignificant since the
+contribution to the dipole from large scale structure at z > 1 practically vanishes (see figure 3). For
+computational purposes we simply take b(z > 1.5) = b(z = 1.5). When exploring constant bias values,
+we still generate 105 mocks for random shot noise and ai . The angular orientation of the observed
+NVSS sky in relation to the direction of the observed dipole is matched exactly. We rotate the mocked
+map such as the dipole direction matches with the observed direction and then we mask the Galactic
+plane and 22 bright local extended sites as identified in [13]. These final mock NVSS galaxy maps are
+used to calculate Cl and are compared with NVSS observed dipole.
+      It is important to explore the range of redshifts and scales of structures which are mostly re-
+sponsible for the intrinsic dipole signature. In figure 3 we show the fractional contribution to C˜1 from
+
+
+
+
+                                                                                      –6–
+structure up to a certain redshift from the theoretical relation (see equation (3.10)). The dipole is
+mostly determined by low redshift structure with 60% of the power already achieved by z = 0.1.
+     In figure 4 we show the k-space window function, W (k), and the theoretical differential contri-
+bution C˜1 to per log(k) bins. Although the window function peaks around k ∼ 0.001 h Mpc−1 , the
+overall dipole signal gets most of its contribution from scales k ∼ 0.01 h Mpc−1 .
+
+
+
+                        1
+
+                      0.9
+
+                      0.8
+
+                      0.7
+
+
+    ~     ~
+                      0.6
+
+
+    C1(z)/C1(z=3.5)
+                      0.5
+
+                      0.4
+
+                      0.3
+
+                      0.2
+
+                      0.1
+
+                       0
+                        0              0.1              0.2              0.3               0.4               0.5
+                                                                  z
+
+
+                            Figure 3. The fractional contribution to C˜1 from structures below redshift z.
+
+
+
+5           Results
+The statistical assessment of the ability of the models to match the observed C1obs is done on the basis
+of counting the number of mocks with C1 exceeding the observed value. We perform this analysis
+for several lower cuts, Smin , on the flux density, S, where for each cut we use 105 random mocks.
+The observed C1obs is calculated after removing the contribution of the solar motion from the NVSS
+number density maps, according to the relation (3.8).
+     We first explore consequences of b(z) = bNT (z) in (3.12) with the parameters which yield a
+good match to Cl for l > 4 (see NT15). Figure 5 shows the distribution of C1 in the 105 mocks
+for Smin = 20 mJy. The distribution is well approximated by a χ2 distribution with 3 degrees of
+freedom corresponding to the average of common variance of three independent Gaussian variables
+(< (|a11 |2 + |a10 |2 + |a11 |2 >). The theoretical χ2 distribution is also plotted in the figure 5, as the
+red curve. The probability for the mocks to yield a C1 larger than the observed NVSS dipole C1obs is
+0.2% for bNT . This corresponds to ∼ 2.89σ significance level for a normal distribution of one variable.
+Values of C1obs for several flux thresholds, Smin , are summarised in table 1. Note that the NVSS dipole
+for Smin = 10 mJy may suffer from systematic biases [13] and we consider it unreliable. We list results
+with this cut only for the sake of completeness and comparison with other authors. According to the
+results in table 1, the ΛCDM mocks with the bias bNT are reasonably consistent at the 2.12σ level with
+
+
+
+
+                                                                –7–
+                                                                                                         ×10
+                                                                                                                -6
+
+           0.6
+                                                                                           W(k)           4
+                                                                                            ~
+                                                                                           ∆C1            3.5
+           0.5
+
+                                                                                                          3
+           0.4
+                                                                                                          2.5
+
+    W(k)
+                                                                                                                      ~
+           0.3                                                                                                       ∆C1
+                                                                                                          2
+
+                                                                                                          1.5
+           0.2
+
+                                                                                                          1
+            0.1
+                                                                                                          0.5
+
+                0                                                                                         0
+                                       10-3                          10-2                         10-1
+                                                       k [h Mpc-1]
+
+
+Figure 4. The dipole k-space window function, W (k), and the theoretical C˜1 par log(k) bins. The ∆C˜1
+integral over per log(k) is normalised to ΛCDM C˜1 . The dipole (C˜1 ) is most sensitive to k ∼ 0.01 h Mpc−1 .
+
+
+the NVSS dipole with Smin = 15 mJy. Nonetheless, there is a tension between the mocks and the data
+at higher fluxes. The biasing template bNT is inferred from high order multipoles which are sensitive
+to the galaxy distribution at redshifts z ∼> 0.2 (see figure 7 in NT15). The dipole signal, however, is
+
+largely generated at lower redshifts, z . 0.1 by fluctuations with wave numbers k ∼ 0.01hMpc−1 (cf.
+figures 3 & 4). Therefore, the choice b(z) = bNT may not be suitable for the dipole in the case of a
+redshift and scale dependent (radio) galaxy biasing. Alternatively, we generate mocks for b(z) = 2
+and 3. The results for multipoles l = 1, 2, 3 and 4 are shown in table 2. Both values of constant b are
+consistent with the dipole for Smin = 15 and, as with bNT , higher flux thresholds are in tension with
+the observed dipole for b = 2. The high value b = 3 tones down the dipole tension to an acceptable
+level. However, this value is significantly high compared to most observational estimates [21, 38–41]
+as seen in figure 2.
+
+
+ Smin (mJy)         (RA, Dec)           (l, b)       C1obs (×104 )    shot-noise (×105 )    p-value      σ- significance
+
+
+           10       (135◦ , 23◦ )    (204◦ , 38◦ )       0.82                1.8            0.02389              1.98
+
+           15        (151◦ , -6◦ )   (246◦ , 38◦ )       1.10                2.5            0.01696              2.12
+           20       (151◦ , -14◦ )   (253◦ , 32◦ )       1.96                3.3            0.00193              2.89
+           30       (160◦ , -16◦ )   (263◦ , 36◦ )       2.37                4.7            0.00262              2.79
+           40       (150◦ , -35◦ )   (268◦ , 16◦ )       2.89                6.3            0.00173              2.92
+           50       (174◦ , -36◦ )   (286◦ , 24◦ )       3.79                8.0            0.00209              2.86
+
+Table 1. The observed C1obs and shot-noise ( N̄1 ) along with dipole direction. The probability is the count of
+mocks with C1 exceeding the observed C1obs . The corresponding σ- significance is also given for the observed
+probability. The p-value is the probability (C1 > C1obs ).
+
+
+
+
+                                                         –8–
+ Smin (mJy)                  C1                          C2                          C3                         C4
+                   p-value   σ-significance   p-value    σ-significance   p-value    σ-significance   p-value   σ-significance
+
+                                                           b(z) = 2.0
+
+      15           0.01437       2.19         0.00324        2.72         0.32412        0.46         0.12362       1.16
+      20           0.00149       2.97         0.00493        2.58         0.96881         —           0.03533       1.81
+      30           0.00300       2.75         0.00765        2.43         0.69182         —           0.30641       0.51
+      40           0.00252       2.80         0.00696        2.46         0.41254        0.22         0.41076       0.23
+      50           0.00154       2.96         0.08581        1.37         0.46751        0.08         0.31316       0.49
+
+                                                           b(z) = 3.0
+
+      15           0.06170       1.54         0.02345        1.99         0.56519         —           0.34328       0.40
+      20           0.00922       2.36         0.02290        2.00         0.98633         —           0.13678       1.10
+      30           0.01011       2.32         0.02437        1.97         0.80103         —           0.49466       0.01
+      40           0.00656       2.48         0.01882        2.08         0.53594         —           0.56074        —
+      50           0.00391       2.66         0.13536        1.10         0.57366         —           0.43821       0.16
+
+Table 2. The low multipole C1 , C2 , C3 and C4 for different biasing templates. The p-value is the probability
+(Cl > Clobs ). For all p-values (< 0.5) we have given the corresponding σ-significance for a normal distribution
+of one variable.
+
+
+
+
+                                                                    mock C1
+                                                                    mock C1>Cobs 1
+                                                                             1 +
+           3
+      10
+
+                                                                    χ2(3)        N
+
+      102
+
+
+
+
+       10
+
+
+
+
+           1
+
+
+
+                                                                                                            ×10-3
+               0        0.05            0.1       0.15              0.2       0.25            0.3        0.35
+                                                           C1
+
+
+Figure 5. The mocks C1 distribution and the observation probability from 1,00,000 samples is shown for
+the flux density cut S > 20 mJy. The dotted line is mean C1 . Note that the y-axis is in log scale as the
+probability for NVSS observed dipole or a dipole with larger amplitude is extremely tiny (0.2%) and not even
+visible in linear scale. A good fit to mocks C1 distribution to χ2 (3) probability distribution is also shown.
+
+
+
+
+                                                          –9–
+6   Conclusion and Discussion
+We have presented an analysis of the NVSS dipole incorporating, for the first time, the contribution
+from the large scale inhomogeneities in the galaxy distribution. Mock catalogs mimicking the NVSS
+catalog are used to model uncertainties in the galaxy redshift distribution and incomplete angular
+coverage of the data. The bias factor obtained from l ≥ 4 by NT15 is at odds with the number
+count dipole measurement at the ∼ 2.9σ significance level for the ΛCDM cosmology. However, the
+                                            < 0.1) redshifts and on large scales (k ∼ 0.01hMpc−1 ); about
+intrinsic dipole signal is shapes at low (z ∼
+70% (45%) of the dipole (l = 4) contribution is from redshift z . 0.1. Therefore, it is prudent to
+consider a large bias factor for radio galaxies at low redshifts as an explanation to the dipole signal.
+Independent bias estimates at such low redshift are crude, as the redshift of radio galaxies is generally
+unknown and we do not have much galaxies in low redshift bins. A direct assessment of the redshift
+dependence of the bias of radio galaxies is done in wide redshift bins due to the small number of radio
+galaxies with redshift information. A summary of some bias factor determination in the literature is
+given figure 2. The radio galaxy bias at low redshift z . 0.1 is loosely constrained and if the bias
+is as high as b(z . 0.1) ≈ 3, it tones down the disagreement between the model and the data to a
+∼ 2.3σ significance level for S > 20, 30, 40 and 50 mJy. This bias value agrees, within the large error
+bars, with the estimate obtained in Ref.[39] (see figure 2). But it is substantially high with respect to
+other results [38, 40, 41], including the value obtained by NT15 for the same NVSS data from higher
+multipoles l ≥ 4. We emphasize that the bias extracted in NT15 follows the detailed halo biasing
+recipe [36] and a relation between galaxy stellar mass and radio activity [37].
+      The NVSS galaxy sky distribution may be affected by the presence of a large scale mass dis-
+tribution which generates the observed bulk motion of a sphere of radius 100h−1 Mpc around the
+observer. The modeling here incorporates the presence of this mass fluctuation by selecting “ob-
+servers” satisfying the bulk motion constraint. We also rotate the maps so that the dipole signal is
+aligned with the observation mask as in the real data. As seen in table 3, these two constraints give
+modest improvement in matching the model to the observations.
+      There are certain claims in the literature for excess of power on scales of 100s of Mpcs relative to
+the ΛCDM model [45–47]. We will refrain from a detailed assessment of these claims and we simply
+emphasize the following point. The dipole signal is matched for the ΛCDM for b = 3. Therefore, any
+such power excess must be 3 fold higher than the ΛCDM. Such large excess at z ∼ 0.1 will generate
+a bulk flow within a 100h−1 Mpc which is 3 times the predicted value of the bulk flow in the ΛCDM,
+i.e. a motion of ∼ 800 km s−1 . Such a value of the bulk flow is at odds with the highest bulk flow
+estimates in the literature.
+      There are several non-conventional explanation for the NVSS dipole. For example, the anisotropic
+mode generated before inflation may re-enter the horizon at late time and produce large scale anisotropy
+[48–50]. Alternatively, the primordial non-Gaussianities (NG) may affect the structures at large scales.
+Particularly, significant NG in inflationary cosmology scenario may potentially give an increase in bi-
+asing over large scale and produce excess dipole signal [51]. In Ref. [52] the authors argue that
+NVSS dipole anisotropy can be partially explained with a local over- or under density volume. The
+authors in Ref. [52] constrain themselves to local structures consistent with CMBR dipole and other
+observations.
+      The NVSS dipole remains puzzling within the ambit of radio galaxy biasing. The extra-large
+power required to explain dipole signal is ∼ 3 fold in comparison to the ΛCDM and very unlikely.
+The NVSS excess dipole is most likely due to a residual calibration error across the sky which also
+affects the high flux cuts. The radio galaxy dipole observation will immensely improve with the Square
+Kilometer Array.
+
+7   Acknowledgments
+We thank Ranieri Baldi for discussion and Curtis Saxton for reading the manuscript. This research
+was supported by the I-CORE Program of the Planning and Budgeting Committee, THE ISRAEL
+SCIENCE FOUNDATION (grants No. 1829/12 and No. 203/09), the Asher Space Research
+
+
+
+
+                                                 – 10 –
+                               Smin (mJy)          15          20        30
+
+                                        considering all constraints
+
+                                  p-value        0.01696    0.00193    0.00262
+                              σ- significance      2.12       2.88       2.79
+
+                                          No velocity constraint
+
+                                  p-value        0.01625    0.00175    0.00224
+                              σ- significance      2.14       2.92       2.84
+
+                                            No rotation to map
+
+                                  p-value        0.01280    0.00136    0.00238
+                              σ- significance      2.23       3.00       2.82
+
+Table 3. The dependence of C1 to different constraints used in mocks. The results are show for flux density
+cut S > 15, 20 and 30 mJy.
+
+
+Institute, and the Munich Institute for Astro and Particle Physics (MIAPP) of the DFG cluster of
+excellence Origin and Structure of the Universe. This work is also supported in part at the Technion
+by a fellowship from the Lady Davis Foundation. We have used CERN ROOT 5.34/21 [53] for
+generating our plots.
+
+References
+ [1] E. A. Milne, World-Structure and the Expansion of the Universe, Zeitschrift für Astrophysik 6 (1933) 1.
+ [2] E. A. Milne, Relativity, gravitation and world-structure. 1935.
+ [3] J. J. Condon, W. D. Cotton, E. W. Greisen, Q. F. Yin, R. A. Perley, G. B. Taylor, and J. J. Broderick,
+     The NRAO VLA Sky Survey, AJ 115 (May, 1998) 1693–1716.
+ [4] Planck Collaboration, R. Adam, P. A. R. Ade, N. Aghanim, Y. Akrami, M. I. R. Alves, M. Arnaud,
+     F. Arroja, J. Aumont, C. Baccigalupi, and et al., Planck 2015 results. I. Overview of products and
+     scientific results, ArXiv e-prints (Feb., 2015) [arXiv:1502.01582].
+ [5] G. F. R. Ellis and J. E. Baldwin, On the expected anisotropy of radio source counts, MNRAS 206 (Jan.,
+     1984) 377–381.
+ [6] E. K. Conklin, Velocity of the Earth with Respect to the Cosmic Background Radiation, Nature 222
+     (June, 1969) 971–972.
+ [7] P. S. Henry, Isotropy of the 3 K Background, Nature 231 (June, 1971) 516–518.
+ [8] B. E. Corey and D. T. Wilkinson, A Measurement of the Cosmic Microwave Background Anisotropy at
+     19 GHz, in Bulletin of the American Astronomical Society, vol. 8 of Bulletin of the American
+     Astronomical Society, p. 351, Mar., 1976.
+ [9] G. F. Smoot, M. V. Gorenstein, and R. A. Muller, Detection of anisotropy in the cosmic blackbody
+     radiation, Physical Review Letters 39 (Oct., 1977) 898–901.
+[10] A. Kogut, C. Lineweaver, G. F. Smoot, C. L. Bennett, A. Banday, et al., Dipole anisotropy in the cobe
+     differential microwave radiometers first-year sky maps, ApJ 419 (1993) 1, [astro-ph/9312056].
+[11] G. Hinshaw, J. L. Weiland, R. S. Hill, N. Odegard, C. Larson, et al., Five-Year Wilkinson Microwave
+     Anisotropy Probe Observations: Data Processing, Sky Maps, and Basic Results, ApJS 180 (2009) 225,
+     [arXiv:0803.0732].
+
+
+
+
+                                                   – 11 –
+[12] A. Baleisis, O. Lahav, A. J. Loan, and J. V. Wall, Searching for large-scale structure in deep radio
+     surveys, MNRAS 297 (June, 1998) 545–558, [astro-ph/9709205].
+[13] C. Blake and J. Wall, Detection of the velocity dipole in the radio galaxies of the nrao vla sky survey,
+     Nature 416 (2002) 150–152, [astro-ph/0203385].
+[14] A. K. Singal, Large Peculiar Motion of the Solar System from the Dipole Anisotropy in Sky Brightness
+     due to Distant Radio Sources, ApJL 742 (Dec., 2011) L23, [arXiv:1110.6260].
+[15] C. Gibelyou and D. Huterer, Dipoles in the Sky, MNRAS 427 (2012) 1994–2021, [arXiv:1205.6476].
+[16] M. Rubart and D. J. Schwarz, Cosmic radio dipole from nvss and wenss, A&A 555 (2013), no. A117
+     [arXiv:1301.5559].
+[17] P. Tiwari, R. Kothari, A. Naskar, S. Nadkarni-Ghosh, and P. Jain, Dipole anisotropy in sky brightness
+     and source count distribution in radio NVSS data, Astroparticle Physics 61 (Feb., 2015) 1–11,
+     [arXiv:1307.1947].
+[18] P. Tiwari and P. Jain, Dipole anisotropy in integrated linearly polarized flux density in NVSS data,
+     MNRAS 447 (Mar., 2015) 2658–2670, [arXiv:1308.3970].
+[19] A. K. Singal, Comment on ”Cosmic radio dipole from NVSS and WENSS”, Astron.Astrophys. 568
+     (2014) A63, [arXiv:1408.0679].
+[20] A. Nusser and M. Davis, The cosmological bulk flow: consistency with ΛCDM and z ≈ 0 constraints on
+     σ8 and γ, Astrophys.J. 736 (2011) 93, [arXiv:1101.1650].
+[21] A. Nusser and P. Tiwari, The Clustering of Radio Galaxies: Biasing and Evolution Versus Stellar
+     Mass, ApJ 812 (2015), no. 1 85, [arXiv:1505.06817].
+[22] P. N. Best, J. N. Arts, H. J. A. Röttgering, R. Rengelink, M. H. Brookes, and J. Wall, CENSORS: A
+     Combined EIS-NVSS Survey Of Radio Sources - I. Sample definition, radio data and optical
+     identifications, MNRAS 346 (Dec., 2003) 627–683, [astro-ph/0308401].
+[23] E. E. Rigby, P. N. Best, M. H. Brookes, J. a. Peacock, J. S. Dunlop, H. J. a. Röttgering, J. V. Wall,
+     and L. Ker, The luminosity-dependent high-redshift turnover in the steep spectrum radio luminosity
+     function: Clear evidence for downsizing in the radio-AGN population, Monthly Notices of the Royal
+     Astronomical Society 416 (2011), no. 3 1900–1915, [arXiv:1104.5020].
+[24] I. Waddington, R. A. Windhorst, J. S. Dunlop, D. C. Koo, and J. A. Peacock, The LBDS Hercules
+     sample of mJy radio sources at 1.4GHz - I. Multicolour photometry, MNRAS 317 (Oct., 2000) 801–824,
+     [astro-ph/0006169].
+[25] I. Waddington, J. S. Dunlop, J. A. Peacock, and R. A. Windhorst, The LBDS Hercules sample of mJy
+     radio sources at 1.4 GHz - II. Redshift distribution, radio luminosity function, and the high-redshift
+     cut-off, MNRAS 328 (Dec., 2001) 882–896, [astro-ph/0107048].
+[26] T. Mauch and E. M. Sadler, Radio sources in the 6dFGS: local luminosity functions at 1.4 GHz for
+     star-forming galaxies and radio-loud AGN, Monthly Notices of the Royal Astronomical Society 375
+     (Mar., 2007) 931–950, [0612018].
+[27] V. Smolčić, E. Schinnerer, G. Zamorani, E. F. Bell, M. Bondi, C. L. Carilli, P. Ciliegi, B. Mobasher,
+     T. Paglione, M. Scodeggio, and N. Scoville, The Dust-Unbiased Cosmic Star-Formation History from
+     the 20 CM VLA-COSMOS Survey, ApJ 690 (Jan., 2009) 610–618, [arXiv:0808.0493].
+[28] G. de Vaucouleurs, A. de Vaucouleurs, H. G. Corwin, R. J. Buta, G. Paturel, and P. Fouque, Third
+     Reference Catalogue of Bright Galaxies (RC3). Springer-Verlag, New York, 1991.
+[29] H. Corwin, Jr., R. Buta, and G. de Vaucouleurs, Corrections and additions to the third reference
+     catalogue of bright galaxies, AJ 108 (Dec., 1994) 2128–2144.
+[30] W. Saunders, W. Sutherland, S. Maddox, O. Keeble, S. Oliver, et al., The PSCz catalogue, MNRAS
+     317 (2000) 55, [astro-ph/0001117].
+[31] T. H. Jarrett, T. Chester, R. Cutri, S. E. Schneider, and J. P. Huchra, The 2MASS Large Galaxy Atlas,
+     AJ 125 (Feb., 2003) 525–554.
+[32] J. P. Huchra, L. M. Macri, K. L. Masters, T. H. Jarrett, P. Berlind, et al., The 2mass redshift
+     survey-description and data release, ApJS 199 (Apr., 2012) 26, [arXiv:1108.0669].
+
+
+
+
+                                                    – 12 –
+[33] M. Bilicki, T. H. Jarrett, J. A. Peacock, M. E. Cluver, and L. Steward, Two micron all sky survey
+     photometric redshift catalog: A comprehensive three-dimensional census of the whole sky, The
+     Astrophysical Journal Supplement Series 210 (2014), no. 1 9.
+[34] K. Goŕski, E. Hivon, A. Banday, B. Wandelt, F. Hansen, et al., Healpix - a framework for high
+     resolution discretization, and fast analysis of data distributed on the sphere, ApJ 622 (2005) 759–771,
+     [astro-ph/0409513].
+[35] P. J. E. Peebles, The large-scale structure of the universe. Princeton University Press, 1980.
+[36] R. K. Sheth, H. J. Mo, and G. Tormen, Ellipsoidal collapse and an improved model for the number and
+     spatial distribution of dark matter haloes, MNRAS 323 (2001), no. 1 1–12,
+     [http://mnras.oxfordjournals.org/content/323/1/1.full.pdf+html].
+[37] B. P. Moster, T. Naab, and S. D. M. White, Galactic star formation and accretion histories from
+     matching galaxies to dark matter haloes, MNRAS 428 (2013), no. 4 3121–3138,
+     [http://mnras.oxfordjournals.org/content/428/4/3121.full.pdf+html].
+[38] R. Allison, S. N. Lindsay, B. D. Sherwin, F. de Bernardis, J. R. Bond, E. Calabrese, M. J. Devlin,
+     J. Dunkley, P. Gallardo, S. Henderson, A. D. Hincks, R. Hlozek, M. Jarvis, A. Kosowsky, T. Louis,
+     M. Madhavacheril, J. McMahon, K. Moodley, S. Naess, L. Newburgh, M. D. Niemack, L. A. Page,
+     B. Partridge, N. Sehgal, D. N. Spergel, S. T. Staggs, A. van Engelen, and E. J. Wollack, The Atacama
+     Cosmology Telescope: measuring radio galaxy bias through cross-correlation with lensing, MNRAS 451
+     (July, 2015) 5368–5377, [arXiv:1502.06456].
+[39] S. N. Lindsay, M. J. Jarvis, M. G. Santos, M. J. I. Brown, S. M. Croom, S. P. Driver, A. M. Hopkins,
+     J. Liske, J. Loveday, P. Norberg, and A. S. G. Robotham, Galaxy and Mass Assembly: the evolution of
+     bias in the radio source population to z∼1.5, MNRAS 440 (May, 2014a) 1527–1541, [arXiv:1402.5654].
+[40] S. N. Lindsay, M. J. Jarvis, and K. McAlpine, Evolution in the bias of faint radio sources to z∼ 2.2,
+     MNRAS 440 (May, 2014b) 2322–2332, [arXiv:1403.0882].
+[41] C. Blake, P. G. Ferreira, and J. Borrill, The angular power spectrum of NVSS radio galaxies, MNRAS
+     351 (July, 2004) 923–934, [astro-ph/0404085].
+[42] E. Bertschinger, Multiscale Gaussian random fields for cosmological simulations, Astrophys.J.Suppl.
+     137 (2001) 1, [astro-ph/0103301].
+[43] P. J. E. Peebles, The large-scale structure of the universe. Princeton University Press, 1980.
+[44] D. J. Eisenstein and W. Hu, Baryonic Features in the Matter Transfer Function, ApJ 496 (Mar., 1998)
+     605–614, [astro-ph/9709112].
+[45] R. Watkins, H. A. Feldman, and M. J. Hudson, Consistently large cosmic flows on scales of 100h−1 Mpc:
+     a challenge for the standard ΛCDM cosmology, MNRAS 392 (Jan., 2009) 743–756, [arXiv:0809.4041].
+[46] E. Macaulay, H. Feldman, P. G. Ferreira, M. J. Hudson, and R. Watkins, A slight excess of large-scale
+     power from moments of the peculiar velocity field, MNRAS 414 (June, 2011) 621–626,
+     [arXiv:1010.2651].
+[47] S. A. Thomas, F. B. Abdalla, and O. Lahav, Excess clustering on large scales in the megaz dr7
+     photometric redshift survey, Physical Review Letters 106 (Jun, 2011) 241301.
+[48] P. K. Aluri and P. Jain, Large Scale Anisotropy due to Pre-Inflationary Phase of Cosmic Evolution,
+     Modern Physics Letters A 27 (2012) 50014, [arXiv:1108.3643].
+[49] P. Rath, T. Mudholkar, P. Jain, P. Aluri, and S. Panda, Direction dependence of the power spectrum
+     and its effect on the cosmic microwave background radiation, Journal of Cosmology and Astroparticle
+     Physics 4 (Apr., 2013) 7, [arXiv:1302.2706].
+[50] S. Ghosh, Generating Intrinsic Dipole Anisotropy in the Large Scale Structures, Physical Review D. 89
+     (2014) 063518, [arXiv:1309.6547].
+[51] N. Dalal, O. Doré, D. Huterer, and A. Shirokov, Imprints of primordial non-Gaussianities on
+     large-scale structure: Scale-dependent bias and abundance of virialized objects, Physical Review D. 77
+     (June, 2008) 123514, [arXiv:0710.4560].
+[52] M. Rubart, D. Bacon, and D. J. Schwarz, Impact of local structure on the cosmic radio dipole, A&A
+     565 (May, 2014) A111, [arXiv:1402.0376].
+
+
+
+
+                                                   – 13 –
+[53] R. Brun, F. Rademakers, et al., ROOT web page, http://root.cern.ch/, 2001.
+
+
+
+
+                                               – 14 –
+

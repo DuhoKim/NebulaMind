@@ -1,0 +1,1412 @@
+                                             Accepted by the Astrophysical Journal Supplement Series
+                                             Preprint typeset using LATEX style emulateapj v. 11/10/09
+
+
+
+
+                                                   SEVEN-YEAR WILKINSON MICROWAVE ANISOTROPY PROBE ( WMAP 1 ) OBSERVATIONS:
+                                                             ARE THERE COSMIC MICROWAVE BACKGROUND ANOMALIES?
+                                             C. L. Bennett2 , R. S. Hill3 , G. Hinshaw4 , D. Larson2 , K. M. Smith5 , J. Dunkley6 , B. Gold2 , M. Halpern7 , N.
+                                              Jarosik8 , A. Kogut4 , E. Komatsu9 , M. Limon10 , S. S. Meyer11 , M. R. Nolta12 , N. Odegard3 , L. Page8 , D. N.
+                                                              Spergel5,13 , G. S. Tucker14 , J. L. Weiland3 , E. Wollack4 , E. L. Wright15
+                                                                                    Accepted by the Astrophysical Journal Supplement Series
+
+                                                                                                  ABSTRACT
+
+
+
+
+arXiv:1001.4758v2 [astro-ph.CO] 3 Jan 2011
+                                                       A simple six-parameter ΛCDM model provides a successful ﬁt to WMAP data. This holds both
+                                                    when the WMAP data are analyzed alone or in combination with other cosmological data. Even so,
+                                                    it is appropriate to examine the data carefully to search for hints of deviations from the now stan-
+                                                    dard model of cosmology, which includes inﬂation, dark energy, dark matter, baryons, and neutrinos.
+                                                    The cosmological community has subjected the WMAP data to extensive and varied analyses. While
+                                                    there is widespread agreement as to the overall success of the six-parameter ΛCDM model, various
+                                                    “anomalies” have been reported relative to that model. In this paper we examine potential anoma-
+                                                    lies and present analyses and assessments of their signiﬁcance. In most cases we ﬁnd that claimed
+                                                    anomalies depend on posterior selection of some aspect or subset of the data. Compared with sky
+                                                    simulations based on the best-ﬁt model, one can select for low probability features of the WMAP data.
+                                                    Low probability features are expected, but it is not usually straightforward to determine whether any
+                                                    particular low probability feature is the result of the a posteriori selection or non-standard cosmology.
+                                                    Hypothesis testing could, of course, always reveal an alternative model that is statistically favored,
+                                                    but there is currently no model that is more compelling. We ﬁnd that two cold spots in the map are
+                                                    statistically consistent with random cosmic microwave background (CMB) ﬂuctuations. We also ﬁnd
+                                                    that the amplitude of the quadrupole is well within the expected 95% conﬁdence range and there-
+                                                    fore is not anomalously low. We ﬁnd no signiﬁcant anomaly with a lack of large angular scale CMB
+                                                    power for the best-ﬁt ΛCDM model. We examine in detail the properties of the power spectrum data
+                                                    with respect to the ΛCDM model and ﬁnd no signiﬁcant anomalies. The quadrupole and octupole
+                                                    components of the CMB sky are remarkably aligned, but we ﬁnd that this is not due to any single
+                                                    map feature; it results from the statistical combination of the full-sky anisotropy ﬂuctuations. It
+                                                    may be due, in part, to chance alignments between the primary and secondary anisotropy, but this
+                                                    only shifts the coincidence from within the last scattering surface to between it and the local matter
+                                                    density distribution. While this alignment appears to be remarkable, there was no model that pre-
+                                                    dicted it, nor has there been a model that provides a compelling retrodiction. We examine claims
+                                                    of a hemispherical or dipole power asymmetry across the sky and ﬁnd that the evidence for these
+                                                    claims is not statistically signiﬁcant. We conﬁrm the claim of a strong quadrupolar power asymmetry
+                                                    eﬀect, but there is considerable evidence that the eﬀect is not cosmological. The likely explanation
+                                                    is an insuﬃcient handling of beam asymmetries. We conclude that there is no compelling evidence
+                                                    for deviations from the ΛCDM model, which is generally an acceptable statistical ﬁt to WMAP and
+                                                    other cosmological data.
+                                                    Subject headings: cosmic background radiation – cosmological parameters – cosmology: observations
+                                                                         – dark matter – early universe – instrumentation: detectors – large-scale structure
+                                                                         of Universe – space vehicles – space vehicles: instruments – telescopes
+
+
+
+                                               1 WMAP is the result of a partnership between Princeton Uni-
+                                             versity and NASA’s Goddard Space Flight Center. Scientific
+                                             guidance is provided by the WMAP Science Team.
+                                               2 Department of Physics & Astronomy, The Johns Hopkins
+                                             University, 3400 N. Charles St., Baltimore, MD 21218-2686, USA         Speedway, RLM 15.306, Austin, TX 78712, USA
+                                               3 ADNET Systems, Inc., 7515 Mission Dr., Suite A100 Lan-               10 Columbia Astrophysics Laboratory, 550 W. 120th St., Mail
+
+                                             ham, Maryland 20706, USA                                               Code 5247, New York, NY 10027-6902, USA
+                                               4 Code 665, NASA/Goddard Space Flight Center, Greenbelt,               11 Depts. of Astrophysics and Physics, KICP and EFI, Uni-
+
+                                             MD 20771, USA                                                          versity of Chicago, Chicago, IL 60637, USA
+                                               5 Department of Astrophysical Sciences, Peyton Hall, Prince-           12 Canadian Institute for Theoretical Astrophysics, 60 St.
+
+                                             ton University, Princeton, NJ 08544-1001, USA                          George St, University of Toronto, Toronto, ON Canada M5S
+                                               6 Astrophysics, University of Oxford, Keble Road, Oxford,            3H8
+                                                                                                                      13 Princeton Center for Theoretical Physics, Princeton Uni-
+                                             OX1 3RH, UK
+                                               7 Department of Physics and Astronomy, University of British         versity, Princeton, NJ 08544, USA
+                                                                                                                      14 Department of Physics, Brown University, 182 Hope St.,
+                                             Columbia, Vancouver, BC Canada V6T 1Z1
+                                               8 Department of Physics, Jadwin Hall, Princeton University,          Providence, RI 02912-1843, USA
+                                                                                                                      15 UCLA Physics & Astronomy, PO Box 951547, Los Angeles,
+                                             Princeton, NJ 08544-0708, USA
+                                               9 University of Texas, Austin, Department of Astronomy, 2511         CA 90095-1547, USA
+2
+
+                   1. INTRODUCTION                            inﬂation, and dark energy. It is the second item that we
+   The WMAP mission (Bennett et al. 2003a) was de-            address here: are there potential deviations from ΛCDM
+signed to make precision measurements of the cosmic           within the context of the allowed parameter ranges of the
+microwave background (CMB) to place constraints on            existing WMAP observations?
+cosmology. WMAP was speciﬁcally designed to min-                A full-sky map T (n) may be decomposed into spherical
+imize systematic measurement errors so that the result-       harmonics Ylm as
+ing measurements would be highly reliable within well-                                  ∞
+                                                                                        X l
+                                                                                          X
+determined and well-speciﬁed uncertainty levels. The                         T (n) =               alm Ylm (n)       (1)
+rapidly switched and highly symmetric diﬀerential ra-                                   l=0 m=−l
+diometer system eﬀectively makes use of the sky as a
+stable reference load and renders most potential sys-         with                      Z
+tematic sources of error negligible. The spacecraft spin                      alm =                   ∗
+                                                                                            dn T (n)Ylm (n)          (2)
+and precession paths on the sky create a highly inter-
+connected set of diﬀerential data. Multiple radiometers
+                                                              where n is a unit direction vector. If the CMB anisotropy
+and multiple frequency bands enable checks for system-
+                                                              is Gaussian-distributed with random phases, then each
+atic eﬀects associated with particular radiometers and
+                                                              alm is independent, with a zero-mean halm i = 0 Gaussian
+frequency dependencies. Multiple years of observations
+                                                              distribution with
+allow for checks of time-dependent systematic errors.
+   The WMAP team has provided the raw time ordered                             halm a∗l′ m′ i = δll′ δmm′ Cl         (3)
+data to the community. It has also made full-sky maps
+from these data, and these maps are the fundamental           where Cl is the angular power spectrum and δ is the
+data product of the mission. If (and only if) the full-       Kronecker delta. Cl is the mean variance per multipole
+sky CMB anisotropy represented in a map is a realiza-         moment l that would be obtained if one could take and
+tion of an isotropic Gaussian random process, then the        average measurements from every vantage point through-
+power spectrum of that map contains all of the cosmolog-      out the universe. We have only our one sample of the
+ical information. The maps and cosmological parameter         universe, however, and its spectrum is related to the mea-
+likelihood function based on the power spectrum are the       sured alm coeﬃcients by
+products most used by the scientiﬁc community.                                                 X   l
+   The WMAP team used realistic simulated time or-                                         1
+                                                                              Clsky =            |alm |2             (4)
+dered data to test and verify the map-making process.                                   2l + 1
+                                                                                                m=−l
+The WMAP and Cosmic Background Explorer) (COBE)                      D    E
+maps, produced by independent hardware and with sub-          where Clsky = Cl if we were able to average over an
+stantially diﬀerent orbits and sky scanning patterns have
+been found to be statistically consistent. Freeman et al.     ensemble of vantage points. There is an intrinsic cosmic
+(2006) directly veriﬁed the ﬁdelity of the WMAP team’s        variance of              r
+map-making process (Hinshaw et al. 2003; Jarosik et al.                           σl         2
+                                                                                     =           .                 (5)
+2007, 2010). It was indirectly veriﬁed by Wehus et al.                            Cl      2l + 1
+(2009) as well. Finally, numerous CMB experiments have
+veriﬁed the WMAP sky maps over small patches of the           In practice, instrument noise and sky masking compli-
+sky (mainly with cross-correlation analyses), either to       cate these relations. In considering potential deviations
+extract signal or to transfer the more precise WMAP           from the ΛCDM model in this paper, we examine the
+calibration.                                                  goodness-of-ﬁt of the Cl model to the data, the Gaus-
+   WMAP data used alone are consistent with a six-            sianity of the alm derived from the map, and correlations
+parameter inﬂationary ΛCDM model that speciﬁes the            between the alm values.
+baryon density Ωb h2 , the cold dark matter density Ωc h2 ,      We recognize that some versions of ΛCDM (such as
+a cosmological constant ΩΛ , a spectral index of scalar       with multi-ﬁeld inﬂation, for example) predict a weak de-
+ﬂuctuations ns , the optical depth to reionization τ ,        viation from Gaussianity. To date, the WMAP team has
+and the scalar ﬂuctuation amplitude ∆2R (Dunkley et al.       found no such deviations from Gaussianity. This topic is
+2009; Larson et al. 2010). This ΛCDM model is ﬂat,            further examined by Komatsu et al. (2010, 2009). Statis-
+with a nearly (but not exactly) scale-invariant ﬂuctua-       tical isotropy is a key prediction of the simplest inﬂation
+tion spectrum seeded by inﬂation, with Gaussian ran-          theories so any evidence of a violation of rotational in-
+dom phases, and with statistical isotropy over the super-     variance would be a signiﬁcant challenge to the ΛCDM
+horizon sky. When WMAP data are combined with                 or any model based on standard inﬂation models.
+additional cosmological data, the ΛCDM model remains             Anomaly claims should be tested for contamination by
+a good ﬁt, with a narrower range of allowed parameter         systematic errors and foreground emission, and should be
+values (Komatsu et al. 2010). It is remarkable that such      robust to statistical methodology. Statistical analyses of
+diverse observations over a wide range of redshifts are       WMAP CMB data can be complicated, and simulations
+consistent with the standard ΛCDM model.                      of skies with known properties are usually a necessary
+   There are three major areas of future investigation: (1)   part of the analysis. Statistical analyses must account for
+further constrain allowed parameter ranges; (2) test the      a posteriori bias, which is easier said than done. With the
+standard ΛCDM model against data to seek reliable evi-        large amount of WMAP data and an enormous number
+dence for ﬂaws; and (3) seek the precise physical nature of   of possible ways to combine the data, some number of low
+the components of the ΛCDM model: cold dark matter,           probability outcomes are expected. For this reason, what
+                                                              constitutes a “signiﬁcant” deviation from ΛCDM can be
+                                                                                                                                  3
+
+diﬃcult to specify. While methods to reduce foreground
+contamination (such as sky cuts, internal linear combina-
+tions, and template-based subtractions) can be powerful,
+none is perfect. Since claimed anomalies often tend to be
+at marginal levels of signiﬁcance (e.g., 2 − 3σ), the resid-
+ual foreground level may be a signiﬁcant consideration.
+   The WMAP Science Team has searched for a num-
+ber of diﬀerent potential systematic eﬀects and placed
+quantitative upper limits on them. The WMAP team
+has extensively examined systematic measurement er-
+rors with each of its data releases: Jarosik et al. (2003)
+and Hinshaw et al. (2003) for the ﬁrst-year data re-
+lease, Hinshaw et al. (2007) and Page et al. (2007) for
+the three-year data release, Hinshaw et al. (2009) for the
+ﬁve-year data release, and Jarosik et al. (2010) for the
+current seven-year data release. Since those papers al-
+ready convey the extensive systematic error analysis ef-
+                                                               Figure 1. Top: A large colder-than-average region, highlighted
+forts of the WMAP team, this paper focuses on the con-         by the white curve, appears prominently on the raw V-band tem-
+sistency of the data with the ΛCDM model and relies on         perature map. The full-sky map is shown with the Galactic plane
+the systematic error limits placed in those papers. Some       horizontal across the center of the map with the Galactic center
+data analysis techniques compute complicated combina-          at the center of the displayed projection. Bottom: With the fore-
+                                                               ground signals strongly suppressed by the ILC technique, the high-
+tions of the data where the systematic error limits must       lighted cold spot is seen to be at least as prominent. It is offset
+be fully propagated.                                           from the Galactic center in both latitude and longitude. This fact,
+   This is one of a suite of papers presenting the seven-      combined with the fact that the clearly effective ILC foreground
+year WMAP data. Jarosik et al. (2010) provide a discus-        reduction does not diminish this feature, establishes that this is a
+                                                               CMB fluctuation and not a foreground effect. This feature is not
+sion of the sky maps, systematic errors, and basic results.    anomalous in that simulated realizations of ΛCDM model skies
+Larson et al. (2010) derive the power spectra and cosmo-       routinely produce features like this.
+logical parameters from the WMAP data. Gold et al.
+(2010) evaluate the foreground emission and place limits
+on the foreground contamination remaining in the sepa-
+rated CMB data. Komatsu et al. (2010) present a cos-
+mological interpretation of the WMAP data combined
+with other cosmological data. Weiland et al. (2010) an-
+alyze the WMAP observations of the outer planets and
+selected bright sources, which are useful both for an un-
+derstanding of the planets and for enabling these objects
+to serve as more eﬀective calibration sources for CMB
+and other millimeter-wave and microwave experiments.
+   This paper is organized as follows. In Section 2 we
+                                                               Figure 2. Visual inspection of the ILC map reveals four elon-
+comment on the prominent large cold spot, nearby but           gated valleys of cooler temperature that stretch from about the
+oﬀset from the Galactic Center region, that attracted at-      Galactic equator to nearly the south Galactic pole. Ridges of
+tention when the ﬁrst WMAP sky map was released                warmer-than-average temperature lie between the cooler fingers.
+in 2003. In Section 3 we comment on a cold spot in             These features are a consequence of large-scale power in the south-
+                                                               ern sky. It is more difficult to discern as much large-scale power
+the southern sky that has attracted attention more re-         in the northern sky. Cold Spot I is located near the northernmost
+cently. In Section 4 we assess the level of signiﬁcance of     part of one of the fingers, while Cold Spot II (within the red curve)
+the low value measured for the amplitude of the CMB            is near the southernmost part of another finger.
+quadrupole (l = 2) component. In Section 5 we discuss
+the lack of large-scale power across the sky. In Section 6     as to minimize signals with the frequency spectra of the
+we assess the goodness-of-ﬁt of the WMAP data to the           Galactic foregrounds. The seven-year raw V-band map
+ΛCDM model. In Section 7 we examine the alignment              and ILC map are shown in Figure 1. A prominent cold
+of the quadrupole and octupole. In Section 8 we assess         (blue) spot is seen near the center of these maps, roughly
+claims of a hemispherical or dipole power asymmetry,           half of which lies within the KQ85y7 Galaxy mask. For
+and in Section 9 we assess claims of a quadrupolar power       the portion within the mask, the ILC process removes
+asymmetry. We summarize our conclusions in Section             > 99% of the V-band pixel–pixel variance, while making
+10.                                                            almost no diﬀerence to the variance in the portion out-
+                                                               side the mask. In the ILC map, the variances in the two
+ 2. COLD SPOT I, GALACTIC FOREGROUND EMISSION,                 regions are nearly equal. Given its CMB-like spectrum
+                  AND THE FOUR FINGERS                         and the fact that it is not centered on the Galactic cen-
+  When WMAP data were ﬁrst released in 2003, an im-            ter, this cold spot is very unlikely to be due to galactic
+age of the full sky was presented in Galactic coordinates,     foreground emission. Several years of modeling the sep-
+centered on the Galactic center (Bennett et al. 2003b).        aration of foreground emission from the CMB emission
+Galactic emission was minimized for this image by us-          continues to support the conclusion that this cold spot
+ing an Internal Linear Combination (ILC) of WMAP               is not dominated by Galactic foreground emission, but
+data from independent frequency bands in such a way            rather is a ﬂuctuation of the CMB. Further, the proba-
+4
+
+bility that a randomly located feature of this size would     individual statistics. Zhang and Huterer then allowed
+be near the Galactic center is ∼ 5% and the probability       for a range of possibilities in disk radius, spatial ﬁlter
+of such a feature overlapping the Galactic plane, at any      shape, and the choice of non-Gaussian statistic in a “su-
+longitude, is much higher. This large central cold spot       perstatistic”. They found that 23% of simulated Gaus-
+is a statistically reasonable CMB ﬂuctuation within the       sian random skies are more unusual than the WMAP
+context of the ΛCDM model.                                    sky. Zhang & Huterer (2010) also analyzed the sky maps
+   Since people are highly eﬀective at detecting patterns,    with circular disk and Gaussian ﬁlters of varying widths.
+it is not surprising that a visual inspection of the WMAP     They found no evidence for an anomalous cold spot at
+sky map reveals interesting features. Four elongated cold     any scale when compared with random Gaussian simu-
+(blue) ﬁngers stretching from about the Galactic equator      lations. When requiring the SMHW spatial ﬁlter shape,
+to the south Galactic pole are seen in Figure 2. There        15% of simulated Gaussian random skies were more un-
+do not appear to be any similar ﬁngers or features in the     usual than the WMAP sky using the constrained super-
+northern Galactic hemisphere aside from the northern-         statistic.
+most extensions of the mostly southern ﬁngers. Cold              With 1.85% – 15% of random Gaussian skies more de-
+Spot I can be seen to be the northern part of one of the      viant than WMAP data in a wavelet analysis (depend-
+colder ﬁngers.                                                ing on the marginalization of posterior choices) poten-
+   There may be a tendency to overestimate the signif-        tial physical interpretations have been proposed for this
+icance of features like Cold Spot I or the four ﬁngers.       1.45σ – 2.35σ eﬀect. In theory, cold spots in the CMB
+It is very hard to deﬁne quantitative statistics for such     can be produced by the integrated Sachs–Wolfe (ISW)
+features due to the visual nature of their identiﬁcation.     eﬀect as CMB photons traverse cosmic voids along the
+There is also an unavoidable posterior bias when us-          line of sight. If Cold Spot II is due to a cosmic void, it
+ing narrowly deﬁned statistics targeted at particular fea-    would have profound implications because ΛCDM does
+tures seen in our sky. In any case, visual inspection of      not produce voids of suﬃcient magnitude to explain it.
+simulated ΛCDM maps often reveals large-scale features        Mota et al. (2008) examined void formation in models
+such as these, without requiring any underlying statisti-     where dark energy was allowed to cluster and concluded
+cal ﬂuctuation. Indeed, it is the lack of these features in   that voids of suﬃcient size to explain Cold Spot II were
+the Northern sky that may be the more unusual situa-          not readily produced. Rudnick et al. (2007) examined
+tion.                                                         number counts and smoothed surface brightness in the
+                                                              NRAO VLA Sky Survey (NVSS) radio source data. They
+                    3. COLD SPOT II                           claimed a 20% – 45% deﬁcit in the NVSS smoothed sur-
+   A detection of non-Gaussianity and/or phase correla-       face brightness in the direction of Cold Spot II. How-
+tions in the WMAP alm data would be of great inter-           ever, this claim was refuted by Smith & Huterer (2010),
+est. While a detection of non-Gaussianity could be in-        who found no evidence for a deﬁcit, after accounting
+dicative of an experimental systematic eﬀect or of resid-     for systematic eﬀects and posterior choices made in as-
+ual foregrounds, it could also point to new cosmologi-        sessing statistical signiﬁcance. Further, Granett et al.
+cal physics. There is no single preferred test for non-       (2010) imaged several ﬁelds within Cold Spot II on the
+Gaussianity. Rather, diﬀerent tests probe diﬀerent types      Canada–France–Hawaii Telescope and attained galaxy
+of non-Gaussianity; therefore, it is important to subject     counts that rule out a 100 Mpc radius spherical void at
+the data to a variety of tests.                               high signiﬁcance, ﬁnding no evidence for a supervoid.
+   Vielva et al. (2004) used a spherical Mexican hat             Cruz et al. (2007b) suggested that the cold spot could
+wavelet (SMHW) analysis on the ﬁrst year WMAP                 be the signature of a topological defect in the form of a
+data to claim a detection of a non-Gaussian signal on         cosmic texture rather than an adiabatic ﬂuctuation. This
+a scale of a few degrees, independent of the WMAP             suggestion was further discussed by Bridges et al. (2008)
+observing frequency. Also applying the SMHW ker-              and Cruz et al. (2008): they estimate that a texture with
+nel, Mukherjee & Wang (2004) claimed to detect non-           Gµ ≈ 1.5 × 10−6 could produce a cold spot with the ob-
+Gaussianity at ∼ 99% signiﬁcance. The signal is a pos-        served properties. Independently, CMB power spectra
+itive kurtosis in the wavelet coeﬃcients attributed to a      combined with other cosmological data can be used to
+larger than expected number of 3◦ to 5◦ cold spots in         place limits on a statistical population of topological de-
+the southern Galactic hemisphere. Mukherjee & Wang            fects. Urrestilla et al. (2008) placed a 95% conﬁdence
+(2004) found the same result for the ILC map. Following       upper limit of Gµ < 1.8 × 10−6 based on Hubble con-
+up on this, Cruz et al. (2006) reported that the kurto-       stant, nucleosynthesis, and CMB (including three-year
+sis in the wavelet distribution could be exclusively at-      WMAP ) data. Textures at this level are compatible
+tributed to a single cold spot, which we call Cold Spot       with the cold spot and are neither favored nor disfavored
+II, in the sky map at Galactic coordinates (l = 209◦ ,        by parameter ﬁts. Following the method described in
+b = −57◦ ), as indicated by the red curve in Figure 2. In     Urrestilla et al. (2008), we now place a power spectrum
+an analysis of the three-year WMAP data, Cruz et al.          based 95% conﬁdence upper limit of Gµ < 1.5 × 10−6 us-
+(2007a) reported only 1.85% of their simulations devi-        ing the seven-year WMAP data, ﬁner scale CMB data,
+ated from the WMAP data either in the skewness or in          and the Hubble constant. Since the new 95% CL upper
+the kurtosis estimator at three diﬀerent angular scales, a    limit derived from the power spectrum matches the value
+2.35σ eﬀect.                                                  needed to explain the cold spot within the simple texture
+   In replicating the SMHW approach described above,          model previously discussed in the literature, that model
+Zhang & Huterer (2010) found ∼ 2.8σ evidence of kur-          is now disfavored; however, a more sophisticated model
+tosis and ∼ 2.6σ evidence for a cold spot. These values       might still allow a texture interpretation.
+are in reasonable agreement with the earlier ﬁndings for
+                                                                                                                                        5
+
+  In conclusion, there are two possible points of view.                  A statistical analysis of the quadrupole must account
+One is that the cold spot is anomalous and might be                    for the highly non-Gaussian posterior distribution of the
+produced by a texture or other mechanism; this cannot                  low-l (l . 32) multipoles. In this paper we use Gibbs
+be ruled out with current data. The other view is that                 sampling of the low-l power spectrum to evaluate the
+the < 2.35σ (after posterior correction) statistical evi-              quadrupole (O’Dwyer et al. 2004; Dunkley et al. 2009).
+dence for a cold spot feature is not compelling, and that              The WMAP ILC data are smoothed to 5◦ resolution
+the texture explanation is disfavored. Had the anomaly                 (Gaussian, FWHM), degraded to HEALPix resolution
+been signiﬁcant at the part per million level instead of a             level 5 (Nside = 32), and masked with the KQ85y7
+part per thousand, the posterior marginalization issues                mask. The Gibbs sampling produces a likelihood that
+would be moot: the feature would be considered a real                  has been marginalized over all other multipoles. A
+anomaly. If real, a void explanation would have been in                Blackwell-Rao estimator of the form of Equation 19 of
+strong conﬂict with the ΛCDM model, but a population                   Wandelt, Larson, & Lakshminarayanan (2004) is used
+of topological defects that contribute at a low level to               to produce the WMAP quadrupole likelihood shown in
+the CMB power spectrum would not so much falsify the                   Figure 3. The peak of the likelihood is at 200 µK2 , the
+model as provide a small modiﬁcation to it. Given the                  median is at 430 µK2 , and the mean is at 1000 µK2 . The
+evidence to date, the WMAP Team is of the opinion                      68% conﬁdence range extends from 80 to 700 µK2 , and
+that there is insuﬃcient statistical support to conclude               the 95% conﬁdence range extends from 40 to 3200 µK2 .
+that the cold spot is a CMB anomaly relative to ΛCDM.                    Figure 4 shows the cumulative quadrupole distribu-
+                                                                       tion derived from 300,000 Gibbs samples. The mean
+                                                                       quadrupole predicted by the best-ﬁt ΛCDM model lies
+                                                                       at a cumulative probability of 0.824, well within the 95%
+                                                                       conﬁdence region allowed by the data. We conclude that
+                                                                       the WMAP quadrupole measurement is not anomalously
+                                                                       low. Further, while alternative models that predict a
+                                                                       lower quadrupole will better match this speciﬁc part of
+                                                                       the data, it is impossible to signiﬁcantly favor such mod-
+                                                                       els on the basis of quadrupole power alone.
+
+
+
+
+Figure 3. Curve is a Blackwell-Rao estimate of the relative likeli-
+hood of the quadrupole power l(l + 1)C2 /2π in µK2 from WMAP .
+The WMAP ILC data were smoothed to 5◦ and the KQ85y7 mask
+was used, both degraded to res 5. The Gibbs sampling produced
+a likelihood that has been marginalized over all other multipoles.
+The highly non-Gaussian likelihood distribution is characteristic of
+the lowest-l multipoles. For l > 32 the curves become nearly Gaus-
+sian. The vertical line with the label “ΛCDM” is the expected
+quadrupole from the full power spectrum ΛCDM model best fit
+to the WMAP data. The maximum likelihood of the WMAP
+measured l = 2 quadrupole is at the vertical dotted line. These
+two values are consistent to well within the 95% confidence region.    Figure 4. Cumulative distribution function of the quadrupoles
+The WMAP quadrupole is not anomalously low.                            from the Gibbs sampling based on 300,000 points. The vertical line
+                                                                       is the predicted ΛCDM model quadrupole value. The cumulative
+                                                                       probability is 0.824 where the vertical line crosses the cumulative
+                                                                       distribution function . Since the expected quadrupole from the
+         4. THE LOW QUADRUPOLE AMPLITUDE                               ΛCDM model is well within the 95% confidence range of the mea-
+                                                                       sured quadrupole, accounting for noise and cosmic variance, we
+   The CMB quadrupole is the largest observable struc-                 conclude that the measured quadrupole is not anomalously low.
+ture in our universe. The magnitude of the quadrupole
+has been known to be lower than models predict since
+it was ﬁrst measured by COBE (Bennett et al. 1992;
+Hinshaw et al. 1996). It is also the large-scale mode that                      5. THE LACK OF LARGE-SCALE POWER
+is most prone to foreground contamination, owing to the                  The angular correlation function complements the
+disk-like structure of the Milky Way; thus estimates of                power spectrum by measuring structure in real space
+the quadrupole require especially careful separation of                rather than Fourier space. It measures the covariance
+foreground and CMB emission. The ILC method of fore-                   of pixel temperatures separated by a ﬁxed angle,
+ground suppression is especially appropriate for large-
+scale foreground removal, since the ILC’s complex small-                                       C(θij ) = hTi Tj i                     (6)
+scale noise properties are unimportant in this context.
+With a sky cut applied, residual foreground contamina-                 where i and j are two pixels on the sky separated by an
+tion of the quadrupole in the ILC map is determined to                 angle θ, and the brackets indicate an ensemble average
+be insigniﬁcant (Gold et al. 2010; Jarosik et al. 2010).               over independent sky samples. Expanding the tempera-
+In this section we reassess the statistical signiﬁcance of             ture in spherical harmonics, and using the addition theo-
+the low quadrupole power in the ILC map.                               rem for spherical harmonics, it is straightforward to show
+6
+
+that C(θij ) is related to the angular power spectrum by              to the sky maps than to remove it. They quantiﬁed the
+                                                                      lack of large-angular-scale power in terms of the statistic
+                      1 X
+       hC(θij )i =          (2l + 1) hCl i Wl Pl (cos θ) (7)                                  Z 1/2
+                     4π
+                           l                                                          S1/2 ≡        C 2 (θ)d cos θ            (9)
+                                                                                                  −1
+where hCl i is the ensemble-average angular power spec-
+trum, Wl is the experimental window function, and Pl                  and found that fewer than 0.15% of simulations had lower
+are the Legendre polynomials. If the CMB is statisti-                 values of S1/2 . A low S1/2 value persists in later WMAP
+cally isotropic, C(θij ) ≡ C(θ) depends only on the sep-              sky maps.
+aration of pixels i and j, but not on their individual                  Copi et al. (2007) and Copi et al. (2009) claimed that
+directions. Since we are unable to observe an ensemble                there is evidence that the WMAP temperature ﬂuctu-
+of skies, we must devise estimates of C(θ) using the tem-             ations violate statistical isotropy. They directly com-
+perature measured in our sky. One approach is to assume               puted the angular correlation function from pixel pairs,
+that the CMB is ergodic (statistically isotropic) in which            as in Equation (8), omitting from the sum pixel pairs
+case C(θ) can be estimated by averaging all temperature               where at least one pixel was within the foreground mask.
+pairs in the sky separated by an angle θ,                             The KQ85 foreground mask (at that time) removed 18%
+                                                                      of the pixels from the full sky (now 22% for KQ85y7),
+                     C(θ) = hTi Tj i |∠ij=θ                    (8)    while KQ75 removed 29%. Copi et al. found p-values of
+where the brackets indicate an average over directions                ≈ 0.03% for their computation of S1/2 , concluding that
+i and j such that ∠ij = θ (to within a bin). Another                  the data are quite improbable given the model. The ex-
+approach is to estimate the angular power spectrum Cl                 act p-value depended on the speciﬁc choice of CMB map
+and to compute C(θ) using Equation (7).                               and foreground mask. Cayón (2010) ﬁnds no frequency
+  The angular correlation function over the full-sky ILC              dependence to the eﬀect.
+map from Equation (7) is shown in Figure 5. As can                      Efstathiou et al. (2010) ﬁnd that the value of S1/2 is
+be seen, C(θ) lies within the 95% conﬁdence range of                  sensitive to the method of computation. For example,
+the best-ﬁt ΛCDM model for all θ, as determined by                    Efstathiou et al. (2010) computed the angular correla-
+Monte Carlo simulations. This supports the conclusion                 tion function using the estimator
+that there is no statistically signiﬁcant lack of large-scale                            1 X
+power on the full sky.                                                         C(θ) =          (2l + 1)Mll−1 e
+                                                                                                           ′ Cl′ Pl (cosθ)  (10)
+                                                                                        4π ′
+                                                                                             ll
+
+                                                                      where
+                                                                                                1 X
+                                                                                    Mll′ =            |Klml′ m′ |2          (11)
+                                                                                             2l + 1 ′  mm
+
+                                                                      and Klml′ m′ is the coupling between modes (lm) and
+                                                                      (l′ m′ ) induced by the sky cut, and C  el′ is the pseudo-
+                                                                      power spectrum obtained by transforming the sky map
+                                                                      into spherical harmonics on the cut sky. This estimator
+                                                                      produced a signiﬁcantly larger value for S1/2 than the
+                                                                      estimator in Equation (6).
+                                                                         Efstathiou et al. (2010) also reconstructed the low-l
+                                                                      multipoles across the foreground sky cut region in a
+                                                                      manner that was numerically stable, without an assump-
+                                                                      tion of statistical isotropy. Their method relied on the
+                                                                      fact that the low multipole WMAP data are signal-
+Figure 5. Angular correlation function of the full-sky WMAP           dominated and that the cut size is modest. They showed
+ILC map is shown (heavy black curve). For comparison, the angu-
+lar correlation function for the best-fit ΛCDM model is also shown    that the small reconstruction errors introduce no bias
+(thin black curve), along with the associated 68% and 95% confi-      and they did not depend on assumptions of statistical
+dence ranges, as determined by Monte Carlo simulations. The an-       isotropy or Gaussianity. The reconstruction error only
+gular correlation function of the full-sky map is seen to be within   introduced a small “noise” to the angular correlation
+the 95% confidence range of the best-fit ΛCDM model. This angu-
+lar correlation function was computed from the Cl power spectrum,     function without changing its shape.
+but is nearly indistinguishable from a pixel pair computation. Ei-       The original use of a sky cut in calculating S1/2 was
+ther way, there is no evidence of a lack of large-scale power.        motivated by concern for residual foregrounds in the ILC
+                                                                      map. We now recognize that this precaution was un-
+  Spergel et al. (2003) applied the pixel-pair estimator to           necessary as the ILC foreground residuals are relatively
+the ﬁrst-year WMAP data and found an almost complete                  small. Values of S1/2 are smaller on the cut sky than on
+lack of correlated structure at angles > 60◦ for the sky,             the full sky, but since the full sky contains the superior
+but that calculation was with a Galactic foreground cut.              sample of the universe and the cut sky estimates suf-
+A foreground cut was made because of the concern that                 fer from a loss of information, cut sky estimates must
+additional power from within the Galactic cut may arise               be considered sub-optimal. It now appears that the
+from foregrounds. For regions outside the cut, it was                 Spergel et al. (2003) and Copi et al. (2007, 2009) low p-
+appreciated that systematic errors and residual Galactic              values result from both the a posteriori deﬁnition of S1/2
+foregrounds are far more likely to add correlated power               and a chance alignment of the Galactic plane with the
+                                                                                                                                        7
+
+CMB signal. The alignment involves Cold Spot I and the
+northern tips of the other ﬁngers, and can also be seen
+in the maps that will be discussed in Section 7.
+  Efstathiou et al. (2010) corrected the full-sky WMAP
+ILC map for the estimated ISW signal from redshift z <
+0.3 as estimated by Francis & Peacock (2010). The result
+was a substantial increase in the S1/2 . Yet there is no
+large-scale cosmological signiﬁcance to the orientation of
+the sky cut or the orientation of the local distribution of
+matter with respect to us; thus the result from Spergel
+et al. and Copi et al. must be inﬂuenced by a chance
+alignment of the ISW eﬀect and a posterior statistical
+bias in the choice of statistic.
+  More generally, Hajian et al. (2005) applied their bipo-
+lar power spectrum technique and found no evidence for
+a violation of statistical isotropy at 95% CL for angular
+scales corresponding to multipole moments l < 60.
+  The low value of the S1/2 integral over the large-angle
+correlation function on the cut-sky results from a poste-
+rior choice of the statistic. Further, it is a sub-optimal
+statistic in that it is not computed over the full sky.
+There is evidence for a chance alignment of the Galactic
+plane cut with the CMB signal, and there is also evidence
+of a chance alignment of the primary CMB ﬂuctuations
+with secondary ISW features from the local density dis-
+tribution. The full-sky angular correlation function lies
+within the 95% conﬁdence range. For all of these rea-
+sons, we conclude that the large-angle CMB correlation
+function is consistent with ΛCDM.
+                                                                  Figure 6.        (a) χ2 per degree of freedom of the seven-year
+                                                                  temperature-temperature power spectrum data relative to the best-
+6. THE GOODNESS OF FIT OF THE STANDARD MODEL                      fit ΛCDM model. Light gray points are from 50 simulations that
+   The power spectrum of the WMAP data alone                      used the same ΛCDM model with the appropriate noise and cosmic
+                                                                  variance included, where the error bars are driven by the number of
+places strong constraints on possible cosmological models         simulations. The data and simulations were run through the same
+(Dunkley et al. 2009; Larson et al. 2010). Plots of the χ2        data analysis pipeline. These simulations were used to help fit the
+per degree of freedom of the temperature–temperature              effective fraction of the sky, fsky to use for the data analysis. (b)
+power spectrum data relative to the best-ﬁt ΛCDM                  The χ2 per degree of freedom is compared for the three-year, five-
+                                                                  year, and seven-year maps. Small differences in the fit model have
+model are shown in Figure 6. In Figure 7 the cumulative           a negligible effect on these plots. The χ2 per degree of freedom for
+probability of the WMAP data given the ΛCDM model                 l ≈ 300 has been slightly growing with additional data, while other
+is evaluated based on simulations. All of the simulated           multipole moment ranges are more random with additional data.
+skies were calculated for the same input ΛCDM model,              (c) The χ2 per degree of freedom had the same WMAP data
+                                                                  been taken in a reverse time order. The l < 400 region appears
+but each result was ﬁt separately. The WMAP sky                   robust, while the χ2 variations for l > 400 appear more random.
+is statistically compatible with the model within 82.6%           (d) Variation of χ2 with the choice of Galactic foreground mask
+conﬁdence, with an uncertainty of ∼ 5%.                           appears random for l > 400.
+   The χ2 can be elevated because of excess scatter within                         (Cldata − Clbestfit )(Cl+∆l
+                                                                                                           data     bestfit
+                                                                                                                 − Cl+∆l    )
+each multipole relative to the experimental noise vari-                        ×       bestfit           bestfit
+                                                                                                                              .
+                                                                                    (Cl        + Nl )(Cl+∆l + Nl+∆l )
+ance. It could also be elevated because of an accumu-
+lation of systematic deviations of the model from the             When ∆l = 0, this quantity is exactly χ2 :
+data across diﬀerent multipoles, such as would happen
+if a parameter value were incorrect. Therefore, despite                                     S(∆l = 0) = χ2 .
+an acceptable overall χ2 , we examine other aspects of            For l = 300 − 349 and fsky ∼ 0.8,
+the power spectrum data relative to the model that may
+have been masked by the inclusion of all of the data into                            349
+                                                                                     X   (Cldata − Clbestfit )(Cl+∆l
+                                                                                                                data    bestfit
+                                                                                                                     − Cl+∆l    )
+a single χ2 value. We examine both of these possibilities          S(∆l) ∼ 200                                                      .
+below.                                                                              l=300
+                                                                                            (Clbestfit + Nl )(Cl+∆l
+                                                                                                               bestfit + N
+                                                                                                                           l+∆l )
+   To explore the l-to-l′ correlation properties of Cl , we
+compute:                                                          Since the data suggest S(∆l = 1) ∼ −20 for l = 300 −
+                                                                  349, we ﬁnd
+             X (Cldata − Clbestfit )(Cl+∆l
+                                      data    bestfit
+                                           − Cl+∆l    )                  (Cldata − Clbestfit )(Cl+1
+                                                                                                data      bestfit
+                                                                                                       − Cl+1     )
+  S(∆l) ≡       r                                                                                                   ∼ −0.002.
+                                            bestfit +N
+                     2(Clbestfit +Nl )2 2(Cl+∆l        l+∆l )
+                                                              2
+                                                                           (Clbestfit          bestfit
+                                                                                      + Nl )(Cl+1 + Nl+1 )
+              l
+                                 2
+                       (2l+1)fsky,l                   2
+                                        (2l+2∆l+1)fsky,l+∆l
+                                   s                          For this multipole range (Clbestfit +Nl ) ∼ 3500 µK2 ; thus,
+             X                          1            1
+         =        fsky,l fsky,l+∆l   l+     l + ∆l +                 (Cldata − Clbestfit )(Cl+1
+                                                                                            data    bestfit
+                                                                                                 − Cl+1     ) ∼ −(160 µK2 )2 .
+                                        2            2
+              l
+8
+
+                                                                        year-by-year cross spectra in the V and W bands, with
+                                                                        weighting that accounts for the noise and the beam trans-
+                                                                        fer functions.
+                                                                           Figure 9 shows that an even excess of signiﬁcance
+                                                                        ∼ 2.7σ is found for ℓ = 300 − 349. If we combine the
+                                                                        two adjacent bins between ℓ = 250 and ℓ = 349, the sig-
+                                                                        niﬁcance of Eℓ in the combined bins is ∼ 2.9σ, with a
+                                                                        probability to exceed (PTE) of 0.26% integrated directly
+                                                                        from the Monte Carlo set (Figure 10). However, it is im-
+                                                                        portant to account for the fact that this signiﬁcance level
+                                                                        is inﬂated by the posterior bias of having chosen the ℓ
+                                                                        range to give a particularly high value.
+                                                                           We attempt to minimize the posterior bias by remov-
+Figure 7. Black curve is the cumulative probability of the              ing bin selection from the Monte Carlo test. Instead of
+WMAP temperature data based on 499 simulations. All of the              focusing on one bin, the revised test is based on the distri-
+simulations were drawn from the same ΛCDM model, but χ2 was             bution of the maximum value of the signiﬁcance Eℓ /σ(Eℓ )
+evaluated with respect to the best-fit model for each realization. Of   over all bins in each Monte Carlo realization. The 11436
+these, 412 (82.6%) had a lower χ2 than the vertical line at 1224.6.
+Thus, the WMAP power spectrum is statistically compatible with          Monte Carlo realizations are split into two groups: 4000
+the model. The red curve is a χ2 distribution with 1170 degrees of      are used to compute the normalization σ(Eℓ ) for each
+freedom, shown for comparison.                                          bin, and 7436 are used to compute the distribution of
+                                                                        the maximum value of Eℓ /σ(Eℓ ), giving the histogram
+Note that the power spectrum of the Finkbeiner et al.
+                                                                        that is compared to the single observed value.
+(1999) dust map in this multipole range is < 10 µK2 in
+                                                                           The results of the de-biased test are shown in Figure
+W band, i.e., more than an order of magnitude smaller.
+                                                                        11. In addition to the avoidance of bin selection, this test
+  Figure 8 shows the results of l-to-l′ correlation calcu-
+                                                                        also incorporates negative excursions of Eℓ , which are ex-
+lations of Cl for diﬀerent values of l − l′ , calculated both
+                                                                        cesses of power at odd ℓ. The test shows that the visually
+for simulations and for the WMAP data. For the most
+                                                                        striking even excess in the ℓ = 300 − 350 bin is actually
+part the data and simulations are in good agreement.
+                                                                        of low signiﬁcance, with a PTE of 5.1% (top of Figure
+The most discrepant correlations in Cl are for ∆l = 1
+                                                                        11). However, the test also shows that large excursions
+near l ∼ 320 and ∆l = 2 near l ∼ 280.
+                                                                        in odd-ℓ power are less frequent in the observed power
+  Motivated by the outlier ∆l = 1 correlation at l ∼ 320
+                                                                        spectrum than in the Monte Carlos, such that 99.3% of
+seen in Figure 8, we further explore a possible even l
+                                                                        the Monte Carlos have a bin with greater odd-ℓ signif-
+versus odd l eﬀect in this portion of the power spectrum.
+                                                                        icance than the observed data (bottom of Figure 11).
+(Note that this is an a posteriori selection.) We deﬁne
+                                                                        Thus there appears to be a modestly signiﬁcant suppres-
+an even excess statistic, Eℓ , which compares the mean
+                                                                        sion of odd-ℓ power. This eﬀect is only slightly relieved
+power at even values of ℓ with the mean power at odd
+                                                                        by accounting for the posterior selection of the enhanced
+values of ℓ, within a given ℓ-range. It is essentially a
+                                                                        even excess, as seen in the bottom panel of Figure 11.
+measure of anticorrelation between adjacent elements of
+                                                                           We ﬁnd no evidence for a radiometer-dependence of
+the power spectrum, with a sign indicating the phase of
+                                                                        the eﬀect. We were originally suspicious that the eﬀect
+the anticorrelation:
+                                                                        could arise from an interaction of the foreground mask
+                 hCℓobs − Cℓth ieven − hCℓobs − Cℓth iodd               with large-scale power in the map, but our simulation
+          Eℓ =                                            ,             results dismissed this suspicion.
+                                   hCℓth i
+                                                                           Steps and other sharp features in the power spec-
+where Cℓ = ℓ(ℓ + 1)Cℓ/2π, the superscript “obs” refers to               trum P (k) tend to be smeared out in translation to Cl
+the observed power spectrum, and the superscript “th”                   space. For example, for the non-standard “meander-
+refers to a ﬁducial theoretical power spectrum used for                 ing” cosmological inﬂation model of Tye & Xu (2010)
+normalization. From this deﬁnition, it follows that Eℓ >                the scalar mode responsible for inﬂation meanders in a
+0 is an even excess and Eℓ < 0 is an odd excess. The                    multi-dimensional potential. This leads to a primordial
+range of ℓ is small enough that the variation in Cℓth is                CMB power spectrum with complicated small-amplitude
+also small and convenient for normalization. We choose                  variations with wavenumber k. Conversion to Cl has the
+(a posteriori) to bin Eℓ by ∆ℓ = 50.                                    eﬀect of a signiﬁcant amount of smoothing (see, for ex-
+   An apparent positive Eℓ in the WMAP power spec-                      ample, Figure 1.4 of Wright (2004)). It is not likely that
+trum in the range ℓ ∼ 200 − 400 is investigated quan-                   any cosmological scenario can cause the observed odd
+titatively using Monte Carlo simulations. Our analysis                  excess deﬁcit. Likewise, we are aware of no experimen-
+is limited to 33 ≤ ℓ < 600, which is the part of the                    tal eﬀects that could cause an odd excess deﬁcit. We
+power spectrum that is ﬂat-weighted on the sky and                      therefore conclude that this < 3σ eﬀect is most likely a
+where the Monte Carlo Apodised Spherical Transform                      statistical ﬂuke.
+EstimatoR (Hivon et al. 2002) pseudo-spectrum is used.
+Because the binning is by ∆ℓ = 50, the actual ℓ range for                     7. ALIGNED QUADRUPOLE AND OCTUPOLE
+this analysis is 50 − 599. The Monte Carlo realizations                   The alignment of the quadrupole and octupole was
+are CMB sky map simulations incorporating appropri-                     ﬁrst pointed out by Tegmark et al. (2003) and later elab-
+ate WMAP instrumental noise and beam smoothing.                         orated on by Schwarz et al. (2004), Land & Magueijo
+Each power spectrum, whether from observed data or                      (2005a), and Land & Magueijo (2005b). The fact of the
+from the Monte Carlo generator, is co-added from 861                    alignment is not in doubt, but the signiﬁcance and im-
+                                                                                                                                                                                                      9
+
+
+
+
+Figure 8. We compute ∆l = l − l′ correlation properties of Cl for nearby multipoles for the WMAP data (blue) and comparable
+simulations (red). For the most part the data and simulations are in good agreement. The most discrepant correlations in Cl are for ∆l = 1
+near l ∼ 320 and ∆l ∼ 2 near l ∼ 280.
+
+                                       0.2
+                                                                                                                                   700
+                                       0.1                                                                                         600      l = 250-349
+
+
+
+
+                                                                                                          Number of Realizations
+                                                                                                                                                                                 PTE = 0.26%
+         Even Excess
+                                 -0.0
+
+
+                                                                                                                                                                    σ = 0.0155
+                                                                                                                                   500
+                                 -0.1                                                                                              400
+                                                       Monte Carlo mean & scatter
+                                 -0.2                                                                                              300
+                                 -0.3                                                                                              200
+
+                                                                                                                                                                                 0.0446
+                                     0           100     200     300         400    500   600
+                                                               Multipole l
+                                                                                                                                   100
+                                           3                                                                                         0
+                                                                                                                                    -0.06    -0.04 -0.02 0.00       0.02    0.04               0.06
+
+
+
+
+               Significance (units of σ)
+                                           2
+                                                                                                                                                 Even Excess, Flat Weighting
+                                           1
+
+                                           0
+                                                                                                Figure 10. Even excess Eℓ in the observed power spectrum, in
+                                                                                                the ℓ range 250 − 349, compared to a histogram of the same value
+                                           -1                                                   as computed from 11,436 Monte Carlo realizations. The probabil-
+                                                                                                ity for a random realization to exceed the observed value (PTE) is
+                                           -2
+                                                                                                0.26%, interpolated directly from the Monte Carlo cumulative dis-
+                                           -3                                                   tribution. A Gaussian with the same area and standard deviation
+                                             0   100     200     300         400    500   600   as the histogram is overplotted, with ±1σ indications.
+                                                               Multipole l
+
+
+Figure 9. Top: even excess Eℓ in the observed power spectrum,
+in bins of ∆ℓ = 50, compared to the mean and scatter from 11,436                                whether this is due to residual Galactic emission or
+Monte Carlo realizations. Bottom: Eℓ as in the top plot, converted                              by simply a matter of chance. Park, Park, & Gott
+to significance units by normalizing to the Monte Carlo scatter in                              (2007) also assess the WMAP Team’s ILC map and
+each bin. Only the ℓ = 250 − 299 and ℓ = 300 − 349 bins show a                                  conclude that residual foreground emission in the ILC
+significance greater than 1σ.
+                                                                                                map does not aﬀect the estimated large-scale values
+                                                                                                signiﬁcantly. Tegmark et al. (2003) also performed their
+plications of the alignment are discussed here.                                                 own foreground analysis and conclude that their CMB
+   Do foregrounds align the quadrupole and dipole?                                              map is clean enough that the lowest multipoles can
+Chiang, Naselsky & Coles       (2007) conclude that                                             be measured without any galaxy cut at all. They also
+the lowest spherical harmonic modes in the ILC                                                  point out that much of the CMB power falls within the
+map are signiﬁcantly contaminated by foregrounds.                                               Galaxy cut region, “seemingly coincidentally.” In other
+Park, Park, & Gott (2007) ﬁnd that the residual                                                 words, they conclude that the residual foregrounds are
+foreground emission in a map resulting from their                                               subdominant to the intrinsic CMB signal even without
+own independent foreground analysis is not statis-                                              any Galaxy cut so long as a reduced foreground map is
+tically important to the large-scale modes of CMB                                               used. de Oliveira-Costa & Tegmark (2006) believe that
+anisotropy. The large-scale modes of their map show                                             it is more likely that the true alignment is degraded by
+anti-correlation with the Galactic foreground emission                                          foregrounds rather than created by foregrounds.
+in the southern hemisphere, but they are agnostic on                                               We determine the direction of the quadrupole by rotat-
+10
+
+
+
+
+                                                                      Figure 12. Probability of a greater quadrupole-octupole align-
+                                                                      ment is given as a function of the alignment angle, in degrees. The
+                                                                      probability given here does not account for the a posteriori selec-
+                                                                      tion of a multipole alignment search, nor does it take into account
+                                                                      the choice of the quadrupole and the octupole moments in partic-
+                                                                      ular.
+
+                                                                      1◦ , the total√smoothing corresponds to a Gaussian with
+                                                                                             ◦
+                                                                      FWHM = 102 + 12 = 10.◦ .05. We then create vari-
+                                                                      ous masks to probe whether the dipole-quadrupole align-
+Figure 11. Top: histogram of max (Eℓ /σ(Eℓ )) for each Monte          ment can be attributed to one or perhaps two localized
+Carlo realization. The maximum is taken over 11 bins of ∆ℓ = 50,
+for ℓ = 50 − 599. The red vertical line is the observed value of      features in the map. The edges of some of the masks
+2.65, with a probability to exceed of 5.11%. Middle: histogram of     are found from contours of the ∆T 2 map. The contours
+max(−Eℓ /σ(Eℓ )), which is the greatest significance found in any ℓ   were selected by eye, from a gray-scale Mollweide projec-
+bin having an odd excess. Although the histograms are not normal
+distributions, the observed maximum even excess is equivalent to
+                                                                      tion in an image editing program, and then converted to
+a ∼ 1.6σ result, and the observed maximum odd excess of 0.34 at       HEALPix ﬁts ﬁles. Other trial masks were chosen more
+the vertical red line is equivalent to a ∼ 2.5σ result. Bottom: the   randomly, again to probe the sensitivity of the alignment
+histogram is the same as the one above, but restricted to a pre-      to diﬀerent regions of the map.
+selection of the simulations where the maximum of the significance
+of the even excess is greater than or equal to the observed even        For each mask, we take the seven-year ILC map that
+excess.                                                               has been smoothed by 10◦ , zero the region inside the
+                                                                      mask, and take a spherical harmonic transform. From
+ing the coordinate system until |aℓ,ℓ |2 + |aℓ,−ℓ |2 is max-          the aℓm coeﬃcients, we determine the angle between the
+imized, where ℓ = 2 and where aℓ,m are the spherical                  quadrupole and octupole.
+harmonic coeﬃcients. This maximizes the power around                    Figure 13 shows the smoothed, squared temperature
+the equator of the coordinate system. The optimization                map (in color) and the eﬀect of various masks (in gray)
+is done by numerically checking the value of this quan-               on the quadrupole–octupole alignment. Masking Cold
+tity where the z vector of the coordinate system is ro-               Spot I eliminates any signiﬁcant alignment. However,
+tated to the center of each half-degree pixel in a res 7              keeping that region but masking other regions also sig-
+(Nside = 128) HEALPix pixelization. The pixel where                   niﬁcantly reduces the quadrupole–octupole alignment.
+this value is maximized is taken to be the “direction”                The posterior selection of the particular masked regions
+of the quadrupole. The pixel on the opposite side of the              is irrelevant as the point is only to demonstrate that
+sphere has the same value; we arbitrarily pick one. Using             no single region or pair of regions solely generates the
+a similar method, a “direction” is found for the octupole,            < 1◦ alignment. Rather the high degree of quadrupole–
+with ℓ = 3.                                                           octupole alignment results from the statistical distribu-
+    The probability that l = 2 and l = 3 multipoles would             tion of anisotropy power over the whole sky. This rules
+be aligned is shown in Figure 12. The < 1◦ alignment                  out single-void models, a topological defect at some sky
+in our sky appears to be quite improbable based upon                  position, or any other such explanation. The alignment
+random simulations of the best-ﬁt ΛCDM model.                         behaves as one would expect if it originates from chance
+    A resolution level 7 map has 196,608 pixels of about              random anisotropy amplitudes and phases. The align-
+0.◦ 5 diameter. The best-ﬁt alignment axis speciﬁes two               ment of the l = 2 and l = 3 multipoles is intimately con-
+pixels directly opposite each other on the sphere. The                nected with the large-scale cool ﬁngers and intervening
+probability of two axes randomly aligning in the same                 warm regions, discussed earlier, as can be seen in Fig-
+pair of pixels is then 2/196,608 = 0.001%. The probabil-              ure 14. Although the alignment is indeed remarkable,
+ity of getting an alignment within 0.◦ 25 of a given axis is          current evidence is more compatible with a statistical
+0.00095%, which is close to 0.001% above.                             combination of full-sky data than with the dominance of
+    In an attempt to gain insight into the alignment we               one or two discrete regions.
+start with the ILC full-sky temperature map. We then                    Francis & Peacock (2010) estimated the local (z < 0.3)
+produce a map of ∆T 2 , which is a map of anisotropy                  density ﬁeld from the 2MASS and SuperCOSMOS galaxy
+power. This map is constructed by smoothing the seven-                catalogs and used that ﬁeld to estimate the ISW eﬀect
+year ILC map by 10◦ , removing the mean value, and                    within this volume. Large-scale features were extrap-
+squaring. Since the ILC map is already smoothed to                    olated across the Galactic plane. The eﬀects of radial
+                                                                                                                                        11
+
+
+
+
+Figure 13. We smooth and square the ILC map, as described in the text, to make a map of (∆T )2 to roughly visualize the anisotropy
+power in a sky map (A). Cold Spot I is the highest power region at this level of resolution, but several other regions also contribute
+substantial power at this scale. For map (A), the quadrupole and octupole are aligned to within ∼ 1◦ . To evaluate what regions contribute
+to this alignment, we mask selected gray areas as shown in the sky maps (B) through (J). Each map is labeled by the degree of quadrupole-
+octupole alignment remaining after the gray mask is applied. Masking Cold Spot I in (B) or (H) eliminates any significant alignment.
+However, keeping those regions and masking other regions, also breaks the alignment to a significant degree. We conclude that no single
+region or pair of regions generates the alignment. Rather, the combined power contributions over a substantial fraction of the full-sky map
+cause the high degree of quadrupole–octupole alignment. Note that the chance alignment of CMB power with the Galactic cut region
+discussed in Section 5 is apparent in map (A).
+
+smearing from the photometric galaxy sample were re-
+duced by taking only three thick redshift shells with
+∆z = 0.1. A linear bias was used to relate galax-
+ies to density, independent of both scale and redshift
+within each of the three shells. They estimated that the
+z < 0.3 data limit contains ∼ 40% of the total ISW sig-
+nal. Francis & Peacock (2010) removed their estimate
+of the ISW eﬀect from the WMAP map. One result
+was to raise the amplitude of the quadrupole while the
+octupole amplitude was relatively unchanged. More im-
+portantly, they reported that there remains no signiﬁ-
+                                                                        Figure 14. l = 2 quadrupole and l = 3 octupole maps are added.
+cant quadrupole–octupole alignment after the ISW re-                    The combined map is then shown superposed on the ILC map
+moval. With the Francis & Peacock (2010) result, the                    from Figure 2. Note that the quadrupole and octupole components
+quadrupole–octupole alignment shifts from an early uni-                 arrange themselves to match the cool fingers and the warm regions
+verse property to a statistical ﬂuke that the secondary                 in between. The fingers and the alignment of the l = 2 and l = 3
+                                                                        multipoles are intimately connected.
+anisotropy eﬀect from the local density distribution hap-
+pens to superpose on the primordial anisotropy in such                  lated by a smooth cosine function across the sky, i.e., the
+a way as to align the quadrupole and octupole.                          CMB is assumed to be of the form
+8. HEMISPHERICAL AND DIPOLE POWER ASYMMETRY                                  T (n)modulated = (1 + w · n) T (n)unmodulated.           (12)
+  Claims of a dipole or hemispherical power asymmetry                   Previous analyses of WMAP data in the literature have
+in WMAP maps have appeared in the literature since                      ﬁt for either hemispherical or dipolar power asymme-
+the release of the ﬁrst-year WMAP data, with estimates                  try, and the results are qualitatively similar: asym-
+of statistical signiﬁcance ranging up to 3.8σ. We distin-               metry is found with similar direction and amplitude
+guish between a “hemispherical” power asymmetry, in                     in the two cases. However, analyses that use opti-
+which the power spectrum is assumed to change discon-                   mal estimators (as we do in our analysis below) have
+tinuously across a great circle on the sky, and a “dipole”              all studied the dipolar modulation (e.g., Hoftuft et al.
+power asymmetry in which the CMB is assumed modu-                       2009; Hanson & Lewis 2009). Furthermore, theoret-
+12
+
+ical attempts to obtain cosmological power asymme-            was seen between the KQ75 and KQ85 masks, and be-
+try by altering the statistics of the primordial ﬂuc-         tween raw and clean maps, suggesting that foreground
+tuations (Gordon 2007; Donogue, Dutta & Ross 2009;            contamination was not negligible.
+Erickcek, Kamionkowski & Carroll 2008; Erickcek et al.
+2009) have all found a dipolar modulation rather than
+a hemispherical modulation. Therefore, we will con-
+centrate on the dipolar modulation, deﬁned by Equa-
+tion (12), for the sake of better comparison with both
+early universe models, and with similar analyses in the
+literature. Unambiguous evidence for power asymmetry
+would have profound implications for cosmology.
+   We revisit this analysis and conclude that this claimed
+anomaly is not statistically signiﬁcant, after a posteri-
+ori choices are carefully removed from the analysis. In
+looking for a power asymmetry, the most signiﬁcant issue
+is removing an arbitrary choice of scale, either speciﬁed
+explicitly by a maximum multipole l, or implicitly by
+a sequence of operations such as smoothing and adding
+extra noise that deﬁne a weighting in l.
+   The ﬁrst claimed hemispherical power asymmetry ap-         Figure 15. Probability for a Monte Carlo simulation to have a
+peared in Eriksen et al. (2004), based on the ﬁrst-year       larger dipole modulation than the co-added V+W WMAP data,
+WMAP data, where a statistic for power asymmetry was          as measured by the statistic κ1 , is shown as a function of the
+                                                              maximum multipole moment lmod that is assumed to be modu-
+constructed, and its value on high-resolution WMAP            lated. This can be interpreted as the statistical significance of
+data was compared to an ensemble of Monte Carlo sim-          power asymmetry for a fixed value of lmod , if one does not account
+ulations in a direct frequentist approach. They quoted        for possible a posteriori bias when choosing lmod .
+a statistical signiﬁcance of 95%–99%, depending on the
+range of l selected. The details of this analysis contained     Comparing these methods, we ﬁnd that the
+many arbitrary choices. Hansen et al. (2004, 2009) also       Hanson & Lewis (2009) optimal quadratic estima-
+used a similar methodology. In Hansen et al. (2009), the      tor has signiﬁcant advantages over other analysis
+signiﬁcance of a 2 ≤ l ≤ 600 hemispherical power asym-        methods that have appeared in the literature.
+metry was quoted as 99.6%.
+   A second class of papers used a low-resolution                1. There are no arbitrary choices (such as smooth-
+pixel likelihood formalism to study power asymmetry.                ing scale) in the optimal quadratic estimator. One
+Eriksen et al. (2007) used this approach to search for              can either look for power asymmetry in a range of
+a dipole power asymmetry in low-resolution three-year               multipoles 2 ≤ l ≤ lmod , or over the entire range
+WMAP data and a statistical signiﬁcance of ∼ 99% was                of angular scales measured by WMAP , and the
+claimed. Hoftuft et al. (2009) repeated the likelihood              estimator is uniquely determined by the minimum-
+analysis at somewhat higher resolution and quoted a sta-            variance requirement in each case. None of the pre-
+tistical signiﬁcance of 3.5σ – 3.8σ for diﬀerent choices of         viously considered methods had this property.
+resolution. Although the likelihood estimator contained
+fewer arbitrary choices than the preceding class of pa-          2. There is no need to degrade the WMAP data, or
+pers, the low-resolution framework still contained an ar-           include processing steps such as adding extra noise,
+bitrary choice of angular scale, which may be tuned (in-            since the optimal quadratic estimator can be eﬃ-
+tentionally or unintentionally) to spuriously increase sta-         ciently computed at full WMAP resolution using
+tistical signiﬁcance. Hoftuft et al. (2009) introduced an           the multigrid C −1 code from Smith et al. (2007).
+explicit cutoﬀ multipole lmod and the CMB signal was as-         3. Statistical signiﬁcance can be assessed straightfor-
+sumed to be unmodulated for l > lmod and modulated for              wardly by comparing the estimator with an en-
+l ≤ lmod . Both Eriksen et al. (2007) and Hoftuft et al.            semble of Monte Carlo simulations. In particular,
+(2009) downgraded the data in resolution, smoothed with             maximum likelihood analyses in the literature have
+a Gaussian window, and added extra white noise. These               assessed signiﬁcance using Bayesian evidence, but
+processing steps implicitly deﬁned a weighting in l where           schemes for converting the evidence integral into a
+the power asymmetry is estimated, and introduced arbi-              frequentist probability are not a suﬃcient substi-
+trary choices into the analysis.                                    tute for true Monte Carlo simulations, which di-
+   A third approach to the analysis, based on op-                   rectly give the probability for a simulation to be as
+timal quadratic estimators, recently appeared in                    anomalous as the data.
+Hanson & Lewis (2009). In this approach, the WMAP
+data were kept at full resolution and a minimum-variance      For these reasons, we have studied dipole power asym-
+quadratic estimator was constructed for each of the three     metry using the optimal quadratic estimator. We in-
+vector components of the dipole modulation wi . Han-          troduce a cutoﬀ multipole lmod , and assume that the
+son and Lewis found ≈ 97% evidence for a dipole power         CMB is isotropic for l > lmod and dipole-modulated for
+asymmetry at 2 ≤ l ≤ 40, and ≈ 99.6% evidence for             2 ≤ l ≤ lmod . There is an optimal quadratic estimator
+dipole power asymmetry at 2 ≤ l ≤ 60. However, the            ŵi for each of the three components of the (vector) mod-
+result was strongly dependent on changing the l range,        ulation w (Equation (12)), and an estimator κ̂1 for the
+and quickly went away for higher l. A signiﬁcant shift        (scalar) amplitude of the modulation. Implementation
+                                                                                                                        13
+
+details of the estimators are presented in the Appendix,      by Ackerman et al. (2007) that predicts such a signal,
+where we also comment on the relation with maximum            Groeneboom & Eriksen (2009) used a Gibbs sampler to
+likelihood.                                                   claim “tentative evidence for a preferred direction” of
+   Figure 15 shows the probability that the value of the      (l, b) = (110◦ , 10◦ ) in the ﬁve-year WMAP map. A
+dipole modulation statistic κ̂1 is larger than for the        theoretical model that predicts large-scale quadrupolar
+WMAP data, when evaluated by Monte Carlo simula-              anisotropy was also proposed by Gordon et al. (2005).
+tion. There are choices of lmod where the power asymme-       A similar eﬀect could be caused by WMAP’s asymmet-
+try appears to have high signiﬁcance. For example, when       ric beams, which were not accurately represented in this
+we chose the KQ85y7 mask and lmod = 67, the probabil-         work, and an algebraic factor was missing in the analysis.
+ity for a simulation to have a value of κ̂1 that is larger    In Hanson & Lewis (2009), the missing algebraic factor
+than the data is 0.7%. This could be interpreted as 2.5σ      was corrected and the eﬀect was veriﬁed with high sta-
+evidence for a power asymmetry, but such an interpreta-       tistical signiﬁcance, using an optimal cut-sky quadratic
+tion would be inﬂating the statistical signiﬁcance since      estimator. Optimal estimators had previously been con-
+the choice of lmod is an a posteriori choice. Consider an     structed in the all-sky case by Pullen & Kamionkowski
+analogous example for the ﬁve-year Cl power spectrum.         (2007) and Dvorkin et al. (2008).
+The power in Cl=512 is high by 3.7σ, but this is not really      Recently, Groeneboom et al. (2010) returned another
+a 3.7σ anomaly. Rather, it reﬂects the fact that there are    ﬁt, this time including polarization, the factor correc-
+a large number of l values that could have been chosen.       tion, examinations of beam asymmetries, noise misesti-
+   Now we seek to assess the global statistical signiﬁcance   mation, and zodiacal dust emission. The new claim was
+of the power asymmetry without making any a posteri-          9σ evidence of the preferred direction (l, b) = (96◦ , 30◦ ),
+ori choices. Consider the probability for a Monte Carlo       which was quite far from the original alignment direc-
+simulation to have a larger value of κ̂1 than the WMAP        tion claimed. The new preferred direction was toward
+data, as a function of lmod . This can be interpreted as      the ecliptic poles, strongly suggesting that this is not
+the statistical signiﬁcance for power asymmetry in the        a cosmological eﬀect. The claimed amplitude was fre-
+range 2 ≤ l ≤ lmod , for a ﬁxed choice of lmod . Let η be     quency dependent, also inconsistent with a cosmological
+the minimum value of the probability, which we ﬁnd to         eﬀect. Zodiacal dust emission was ruled out as the source
+be η = 0.012 with the KQ75y7 mask (corresponding to           of the alignment. Hanson & Lewis (2009) found that the
+lmod = 66), or η = 0.007 with the KQ85y7 mask (cor-           beam asymmetry was a large enough eﬀect to explain
+responding to lmod = 67). We now assess whether this          the signal, although Groeneboom et al. reported the
+value of η is anomalously low. To determine this, we          opposite conclusion. The claimed statistical signiﬁcance
+compute η for an ensemble of Monte Carlo simulations          of the quadrupolar power asymmetry is so high that it
+where lmod is chosen to maximize the value of η indepen-      seems impossible for it to be a statistical ﬂuke or built up
+dently for each simulation.                                   by posterior choices, even given the number of possible
+   We perform the maximization over the range 10 ≤            anomalies that could have been searched for.
+lmod ≤ 132. (The results depend only weakly on this              We have implemented the optimal quadratic estima-
+choice of range; we have taken the upper limit of the         tor following the approach of Hanson & Lewis (2009)
+range to be twice as large as the most anomalous lmod         and conﬁrmed that the eﬀect exists with high statis-
+in the WMAP data.) We ﬁnd that the probability that           tical signiﬁcance. Rather than presenting an analy-
+a simulation has a value of η that is smaller than for        sis that is tied to a particular model (either cosmo-
+WMAP is 13% for the KQ75y7 mask, and 10% for the              logical or instrumental), we have found it convenient
+KQ85y7 mask.                                                  to parameterize the most general quadrupolar power
+   Motivated by the power asymmetry, Erickcek et al.          asymmetry using the language of the bipolar spectrum
+(2009) presented a variation of the curvaton inﬂation-        from Hajian & Souradeep (2003). This is reviewed in
+ary scenario in which the curvaton has a large-amplitude      the Appendix. The summary is that the most general
+super-horizon spatial gradient that modulates the am-         quadrupolar anomaly can be parameterized by two quan-
+plitude of CMB anisotropy, thereby generating a hemi-         tities A2M
+                                                                       ll  and A2Ml−2,l which are l-dependent and have
+spherical power asymmetry that could match the CMB            ﬁve components corresponding to the degrees of free-
+data. Hirata (2009) used high-redshift quasars to place       dom of a quadrupole. If statistical isotropy holds, then
+a limit on the gradient in the amplitude of perturbations     A2M
+                                                                ll   = A2Ml−2,l = 0. The special case where All
+                                                                                                                   2M
+                                                                                                                         ≈
+that would be caused in this scenario. Their limit ruled        2M
+                                                              Al−2,l 6= 0 corresponds to an anisotropic model in which
+out the simplest version of this curvaton spatial gradient
+scenario. Our new CMB results, presented here, largely        the local power spectrum varies across the sky (i.e., the
+remove the initial motivation for this theory.                quadrupolar analogue of the dipole modulation in Equa-
+   We conclude that there is no signiﬁcant evidence for       tion (12)). The special case where A2M  ll  ≈ −2A2Ml−2,l 6= 0
+an anomalous dipole power asymmetry in the WMAP               corresponds to an anisotropic model in which the local
+data.                                                         power spectrum is isotropic, but hot and cold spots have
+                                                              preferred ellipticity where the local magnitude and orien-
+ 9. QUADRUPOLAR DEPENDENCE OF THE TWO-POINT                   tation varies across the sky. Thus there are two indepen-
+                         FUNCTION                             dent “ﬂavors” of quadrupolar anomaly; the bipolar power
+  There is another eﬀect, related to the dipole power         spectrum distinguishes the two and also keeps track of
+asymmetry from Section 8, in which the two-point              the l dependence. A proposed model for the quadrupolar
+function of the CMB contains a component that                 eﬀect in the WMAP data can be tested by computing
+varies as a quadrupole on the sky. Motivated by               the bipolar power spectrum of the model, and comparing
+an anisotropic model of the early universe proposed           with estimates of the bipolar spectrum from data.
+14
+
+   Figure 16 shows the components of the bipolar power
+spectrum of the WMAP data that point along the eclip-
+tic axis (i.e., A20      20
+                 ll and Al−2,l in ecliptic coordinates). A
+nonzero bipolar power spectrum is seen with high sta-
+tistical signiﬁcance, even in a single bin with ∆l = 50,
+conﬁrming the existence of a quadrupolar eﬀect.
+   We implemented a number of diagnostic tests to char-
+acterize the quadrupolar eﬀect; our ﬁndings can be sum-
+marized as follows:
+   1. Only the components of the bipolar power spec-
+      trum that point in the ecliptic direction (i.e., com-
+      ponents A2Ml1 l2 with M = 0 in ecliptic coordinates)
+      contain a statistically signiﬁcant signal. The com-
+      ponents with M = 1 or M = 2 are consistent with
+      zero within their statistical errors, even if we sum     Figure 16. Quadrupolar bipolar power spectra, binned with
+                                                               ∆l = 50, are shown separately for V-band and W-band WMAP
+      over all values of l to maximize signal-to-noise.        data, using the KQ75y7 mask. Only the components of the bipo-
+                                                               lar power spectra that point along the ecliptic axis are shown (i.e.,
+   2. The eﬀect is larger in W-band than V-band, which         components with M = 0 in ecliptic coordinates). A statistically
+      is inconsistent with a cosmological origin.              significant quadrupolar effect is seen, even for a single frequency
+                                                               band in a single angular bin.
+   3. The angular dependence of the eﬀect shows a bump         the estimated power spectrum. It is reassuring (item 5
+      at the scale of the ﬁrst acoustic peak (l ≈ 220), dis-   above) that the angle-averaged power spectrum appears
+      favoring an explanation from foregrounds or noise,       to be statistically isotropic, suggesting that the power
+      which would not be expected to show acoustic             spectrum is “blind” to the eﬀect (or, less sensitive to
+      peaks.                                                   beam asymmetries, assuming that is the cause). Fur-
+   4. If we split the optimal quadratic estimator into con-    thermore, if beam asymmetry does turn out to explain
+      tributions from cross correlations between diﬀeren-      the quadrupolar eﬀect, then the analysis in Appendix B
+      tial assemblies (DA’s) in WMAP , and auto corre-         of Hinshaw et al. (2007) shows independently that the
+      lations in which each DA is correlated with itself,      power spectrum bias due to beam asymmetry is small.
+      then we ﬁnd that the amplitude of the eﬀect is           Nevertheless, it is important to follow up on the studies
+      consistent in the two cases, disfavoring instrumen-      to date, and we plan to do so in the future.
+      tal explanations that are not highly correlated be-                             10. CONCLUSIONS
+      tween channels (such as striping due to 1/f noise).
+                                                                  In the context of this paper we take an “anomaly”
+   5. The bipolar power spectrum of WMAP satisﬁes              to refer to a statistically unacceptable ﬁt of the ΛCDM
+                    20
+      A20
+        ℓℓ ≈ −2Aℓ−2,ℓ , corresponding to a model in
+                                                               model to the Cl data, a statistically signiﬁcant deviation
+      which the small-scale power spectrum is isotropic,       of the alm from Gaussian random phases, or correlations
+      but the shapes of hot and cold spots are not.            between the alm . We are not concerned here with the
+      (In fact, for this reason, we have used the term         current uncertainty range of parameter values allowed by
+      “quadrupolar eﬀect” in this section rather than          the ΛCDM model or with whether an alternative model
+      “quadrupolar power asymmetry”, which would               is also an acceptable ﬁt to the data.
+      suggest that the power spectrum is modulated. We            Numerous claims of WMAP CMB anomalies have
+      favor the label “eﬀect” over “anomaly” because it        been published. We ﬁnd that there are a few valuable
+      is only an anomaly in the absence of a plausible         principles to apply to assess the signiﬁcance of suspected
+      cause.)                                                  anomalies: (1) human eyes and brains are excellent at
+                                                               detecting visual patterns, but poor at assessing proba-
+   Given the strong ecliptic alignment and that the eclip-     bilities. Features seen in the WMAP maps, such as
+tic plane was the symmetry axis of the WMAP observa-           the large Cold Spot I near the Galactic center region,
+tions, and the non-blackbody frequency dependence, we          can stand out as unusual. However, the likelihood of
+conclude that this is not a ΛCDM anomaly. It seems very        such features cannot be discerned by visual inspection
+likely that the observed quadrupolar eﬀect is the result of    of our particular realization of the universe. (2) Monte
+incomplete handling of beam asymmetries. Beam asym-            Carlo simulations are an invaluable way to determine the
+metry generates an instrumental bipolar power spectrum         expected deviations within the ΛCDM model. Claims of
+that is consistent with all ﬁve items above, and it is diﬃ-    anomalies without Monte Carlo simulations are necessar-
+cult to think of any other instrumental contribution that      ily weak claims. (3) Some parameters are weak discrim-
+satisﬁes these properties. However, we have not yet sim-       inants of cosmology because they take on a broad range
+ulated the eﬀects of asymmetric beams to conﬁrm this           of values for multiple realizations of the same model. (4)
+explanation. A full investigation of the eﬀect of beam         A posteriori choices can have a substantial eﬀect on the
+asymmetry is underway and preliminary indications from         estimated signiﬁcance of features. For example, it is not
+our work to date are consistent with our hypothesis.           unexpected to ﬁnd a 2σ feature when analyzing a rich
+   While a detailed explanation of the quadrupolar eﬀect       data set in a number of diﬀerent ways. However, to as-
+is pending, it is important to have as much conﬁdence as       sess whether a particular 2σ feature is interesting, one is
+possible that a large anomaly in WMAP does not bias            often tempted to narrow in on it to isolate its behavior.
+                                                                                                                                   15
+
+That process involves a posteriori choices that amplify                   WMAP (and soon Planck) data. The oddities have trig-
+the apparent signiﬁcance of the feature.                                  gered proposed new observations that can further test
+  Shortly after the WMAP sky maps became avail-                           the models.
+able, one of the authors (L.P.) noted that the initials                      It is often diﬃcult to assess the statistical claims. It
+of Stephen Hawking appear in the temperature map, as                      may well be that an oddity could be found that mo-
+seen in Figure 17. Both the “S” and “H” are beautifully                   tivates a new theory, which then could be tested as a
+vertical in Galactic coordinates, spaced consistently just                hypothesis against ΛCDM. The data support these com-
+above the b = 0 line. We pose the question, what is the                   parisons. Of course, other cosmological measurements
+probability of this occurrence? It is certainly inﬁnitesi-                must also play a role in testing new hypotheses. No
+mal; in fact, much less likely than several claimed cos-                  CMB anomaly reported to date has caused the scientiﬁc
+mological anomalies. Yet, we do not take this anomaly                     community to adopt a new standard model of cosmol-
+seriously because it is silly. The Stephen Hawking ini-                   ogy, but claimed anomalies have been used to provoke
+tials highlight the problem with a posteriori statistics.                 thought and to search for improved theories.
+By looking at a rich data set in multiple diﬀerent ways,                     We ﬁnd that Cold Spot I does not result from Galactic
+unlikely events are expected. The search for statistical                  foregrounds, but rather forms the northernmost part of
+oddities must be viewed diﬀerently from tests of pre-                     one of four cool “ﬁngers” in the southern sky. Its am-
+determined hypotheses. The data have the power to                         plitude and extent are not unusual for ΛCDM. In fact,
+support hypothesis testing rooted in ideas that are in-                   structures with this nature are expected.
+dependent of the WMAP data. We can ask which of                              We ﬁnd that Cold Spot II is at the southernmost end
+two well-posed theoretical ideas is best supported by the                 of a diﬀerent one of the southern ﬁngers, and it has been
+data. Much of the WMAP analysis happens in a dif-                         shown not to be an anomalous ﬂuctuation.
+ferent context asking, “What oddities can I ﬁnd in the                       We ﬁnd that the amplitude of the l = 2 quadrupole
+data?”                                                                    component is not anomalously low, but well within the
+                                                                          95% conﬁdence range.
+                                                                             We conclude that there is no lack of large-scale CMB
+                                                                          power over the full WMAP sky. The low value of the
+                                                                          S-statistic integral over the large-angle correlation func-
+                                                                          tion on the cut sky results from a posterior choice of a
+                                                                          sub-optimal (i.e., not full sky) statistic, S1/2 , a chance
+                                                                          alignment of the Galactic plane cut with CMB signal,
+                                                                          and a chance alignment of primary CMB ﬂuctuation fea-
+                                                                          tures with secondary ISW features from the local density
+                                                                          distribution.
+                                                                             We ﬁnd that the quadrupole and octupole are aligned
+Figure 17. “SH” initials of Stephen Hawking are shown in the              to a remarkable degree, but that this alignment is not due
+ILC sky map. The “S” and “H” are in roughly the same font size            to a single feature in the map or even a pair of features.
+and style, and both letters are aligned neatly along a line of fixed      The alignment does not appear to be due to a void, for
+Galactic latitude. A calculation would show that the probability
+of this particular occurrence is vanishingly small. Yet, there is no      example. We ﬁnd that the alignment is intimately associ-
+case to made for a non-standard cosmology despite this extraordi-         ated with the ﬁngers of the large-scale anisotropy visible
+narily low probability event. It is clear that the combined selection     in the southern sky, and it results from the statistical
+of looking for initials, these particular initials, and their alignment   combination of ﬂuctuations over the full sky. There is
+and location are all a posteriori choices. For a rich data set, as is
+the case with WMAP , there are a lot of data and a lot of ways            also evidence that the alignment is due, in part, to a co-
+of analyzing the data. Low probability events are guaranteed to           incidental alignment of the primary anisotropy with the
+occur. The a posteriori assignment of a likelihood for a particular       secondary anisotropy from the local density distribution
+event detected, especially when the detection of that event is “op-       through the ISW eﬀect. At the present time the remark-
+timized” for maximum effect by analysis choices, does not result
+in a fair unbiased assessment. This is a recurrent issue with CMB         able degree of alignment appears to be no more than a
+data analysis and is often a tricky issue and one that is difficult to    chance occurrence, discovered a posteriori with no mo-
+overcome.                                                                 tivating theory. A new compelling theory could change
+                                                                          this conclusion.
+  For example, no one had predicted that low-l multi-                        There is a portion of the power spectrum where there is
+poles might be aligned. Rather, this followed from look-                  a marginally signiﬁcant lack of odd multipole power rel-
+ing into the statistical properties of the maps. Simu-                    ative to even multipole power, but overall the WMAP
+lations, both by the WMAP team and others, agree                          data are well ﬁt by the ΛCDM model. There is no sys-
+that this is a highly unusual occurrence for the standard                 tematic error that we are aware of that could cause the
+ΛCDM cosmology. Yet, a large fraction of simulated                        even power excess, nor are there any cosmological eﬀects
+skies will likely have some kind of oddity. The key is                    that would do so. We conclude that the even excess is
+whether the oddity is speciﬁed in advance.                                likely a statistical ﬂuctuation that was found a posteriori.
+  The search for oddities in the data is essential for test-              No motivating theory for this phenomenon is known.
+ing the model. The success of the model makes these                          We ﬁnd that claims of hemispherical and/or dipole
+searches even more important. A detection of any highly                   asymmetries have suﬀered from a posteriori choices. Af-
+signiﬁcant a posteriori feature could become a serious                    ter carrying out an analysis in a manner that avoids a
+challenge for the model. The less signiﬁcant features dis-                posteriori bias, we ﬁnd that the evidence for a hemispher-
+cussed in this paper provided the motivation for consid-                  ical power asymmetry is weak.
+ering alternative models and developing new analysis of                      Evidence has been reported for a signiﬁcant quadrupo-
+16
+
+lar power asymmetry that does not appear to be cos-               tipoles scales as l−2 , the low quadrupole value in our
+mological in origin, and most likely results from an in-          sky statistically reduces the amplitude stretch of hot and
+complete propagation of beam asymmetries. A careful               cold spots in the map of our sky. This should help, at
+analysis will be a subject of future work.                        least in part, to explain the results of Hou et al. (2009),
+  We have examined selected claims of CMB anomalies,              Monteserin et al. (2008), Ayaita, Weber & Wetterich
+but this paper is not a comprehensive review article and          (2010), and Larson & Wandelt (2004). Another exam-
+we have not attempted to address every anomaly pa-                ple where the results from this paper may relate to a
+per in the literature. However, we can extend our re-             claimed anomaly is our report of a quadrupolar power
+sults by recognizing that various claims of anomalies are         asymmetry. This may be the eﬀect that was detected by
+not necessarily independent from those that have been             Wiaux et al. (2006) through an analysis with a second
+examined. For example, there are smaller-scale conse-             gaussian derivative.
+quences of the fact that the value of the quadrupole
+on our sky is low (but not anomalously low) compared
+with the maximum likelihood expected value for the                  The WMAP mission is made possible by the sup-
+best-ﬁt ΛCDM model. The amplitudes of moderate                    port of the NASA Science Mission Directorate. This
+to small scale hot and cold spots are expected to be              research has made use of NASA’s Astrophysics Data Sys-
+reduced statistically relative to their predicted ampli-          tem Bibliographic Services. We thank Jon Urrestilla
+tude in the best-ﬁt ΛCDM model due to the reduced                 for sharing the texture power spectrum with us. We
+contribution from the quadrupole component. That is,              also acknowledge use of the HEALPix (Gorski et al.
+the temperature anisotropy in a speciﬁc spot has con-             2005), CAMB (Lewis et al. 2000), and CMBFAST
+tributions from a range of multipoles, including the              (Seljak & Zaldarriaga 1996) packages. We are very
+quadrupole contribution. Since the power in the mul-              grateful to Duncan Hanson for useful discussions.
+                                                         APPENDIX
+                             ESTIMATORS FOR DIPOLAR AND QUADRUPOLAR ANOMALIES
+  In this appendix, we present the detailed construction of the estimators used to study dipole power asymmetry in
+Section 8 and quadrupolar dependence of the two-point function in Section 9.
+                                                   Bipolar power spectrum
+  If statistical isotropy is assumed, then the two-point function of the CMB is parameterized by the power spectrum
+Cℓ :
+                                         haℓ1 m1 aℓ2 m2 i = (−1)m1 Cℓ1 δℓ1 ℓ2 δm1 ,−m2                         (A1)
+The bipolar power spectrum, introduced in Hajian & Souradeep (2003), is a formalism for analogously parameterizing
+the two-point function if the assumption of statistical isotropy is relaxed. If we decompose the two-point function
+haℓ1 m1 aℓ2 m2 i into a sum of terms which transform under rotations with total angular momentum L, then we arrive at
+the following expansion:
+                                                          X                                    
+                                      p                            √          ℓ1 ℓ2 L    ℓ1 ℓ2 L
+                    haℓ1 m1 aℓ2 m2 i = (2ℓ1 + 1)(2ℓ2 + 1)   ALM∗
+                                                             ℓ1 ℓ2   2L + 1   0 0 0      m1 m2 M                (A2)
+                                                        LM
+
+This equation deﬁnes the bipolar power spectrum ALM
+                                                 ℓ1 ℓ2 . (Note that our normalization and sign convention diﬀer from
+Hajian & Souradeep (2003); this will simplify some of the equations that follow.)
+ The bipolar power spectrum has the following properties:
+   1. ALM
+       ℓ1 ℓ2 vanishes unless −L ≤ M ≤ L, the triple (ℓ1 , ℓ2 , L) satisﬁes the triangle inequality, and (ℓ1 + ℓ2 + L) is even.
+
+   2. Under rotations, ALMℓ1 ℓ2 transforms as a spin-L object; under the parity operation n̂ → (−n̂), it transforms as
+      ALM
+       ℓ1 ℓ2 → (−1)L LM
+                    A ℓ1 ℓ2 .
+
+   3. Symmetry: ALM       LM
+                 ℓ2 ℓ1 = Aℓ1 ℓ2 .
+
+                            M L,−M
+   4. Reality: ALM∗
+                ℓ1 ℓ2 = (−1) Aℓ1 ℓ2 .
+
+  To get some intuition for the bipolar power spectrum, we now consider a series of increasingly complicated models
+and compute the bipolar power spectrum in each case.
+  Our ﬁrst trivial example will be an isotropic model with power spectrum Cℓ . In this case comparison with Equa-
+tion (A2) shows that the bipolar power spectrum is given by
+                                                  ALM
+                                                   ℓ1 ℓ2 = Cℓ1 δℓ1 ℓ2 δL0 δM0                                           (A3)
+In general, the L = 0 component A00  ℓℓ of the bipolar power spectrum is equal to the angle-averaged power spectrum
+Cℓ . (Note that the properties above imply that the only component of the bipolar power spectrum with L = 0 is A00
+                                                                                                                 ℓℓ .)
+Components with L > 0 will parameterize deviations from statistical isotropy.
+                                                                                                                      17
+
+  Our next example (from Section 8) is an anisotropic model which is obtained by applying a dipolar “sky” modulation
+to an isotropic CMB with power spectrum Cℓ :
+                                                      1
+                                                                      !
+                                                     X
+                                     T (n̂) = 1 +        w1M Y1M (n̂) T (n̂)iso                                (A4)
+                                                        M=−1
+
+where Tiso (n̂) is an isotropic CMB realization. To ﬁrst order in the modulation w1M , a short calculation shows that
+the bipolar power spectrum is given by
+                                                     A00
+                                                       ℓℓ = Cℓ                                                      (A5)
+                                                            w1M (Cℓ−1 + Cℓ )
+                                          A1M       1M
+                                           ℓ−1,ℓ = Aℓ,ℓ−1 =                                                         (A6)
+                                                                (4π)1/2
+with all other components zero. The modulation does not change the sky-averaged power spectrum A00
+                                                                                                ℓℓ , but the power
+spectrum in local patches near the two poles will be diﬀerent.
+  A very similar example is the quadrupolar “sky” modulation:
+                                                      2
+                                                                      !
+                                                     X
+                                     T (n̂) = 1 +         w2M Y2M (n̂) T (n̂)iso                              (A7)
+                                                        M=−2
+
+with bipolar power spectrum given by:
+                                                     A00
+                                                       ℓℓ = Cℓ                                                      (A8)
+                                                            w2M Cℓ
+                                                    A2M
+                                                      ℓℓ =                                                          (A9)
+                                                             π 1/2
+                                                            w2M (Cℓ−2 + Cℓ )
+                                          A2M       2M
+                                           ℓ−2,ℓ = Aℓ,ℓ−2 =                                                        (A10)
+                                                                 (4π)1/2
+In the quadrupolar case, the most general anisotropic two-point function is parameterized by two ℓ-dependent quantities
+(A2M          2M
+   ℓ−2,ℓ and Aℓℓ ), in contrast to the dipole case. A short calculation shows that the quadrupolar anisotropy in the
+power spectrum is proportional to 2Aℓ−2,ℓ + Aℓℓ , so that a model which satisﬁes Aℓℓ ≈ −2Aℓ−2,ℓ has a roughly
+isotropic power spectrum, even though the two-point function contains a component which transforms under rotations
+as a quadrupole.
+  Our ﬁnal example is the anisotropic early universe model from Ackerman et al. (2007), in which the initial adiabatic
+curvature ﬂuctuation ζ(k) is modulated in Fourier space as follows:
+                                               "        2
+                                                                       #
+                                                       X
+                                        ζ(k) = 1 +         w2M Y2M (k̂) ζ(k)iso                                 (A11)
+                                                        M=−2
+
+The bipolar power spectrum of this model is
+                                                             Z
+                                               iℓ1 −ℓ2           2k 2 dk
+                                   A2M
+                                    ℓ1 ℓ2 =            w2M               ∆ℓ1 (k)∆ℓ2 (k)P (k)                       (A12)
+                                              (4π)1/2               π
+where ∆ℓ (k) is the angular CMB transfer function.
+
+                                          Estimators: General Construction
+  In this appendix we will construct estimators for the bipolar power spectrum and related quantities. We will assume
+that the bipolar power spectrum of the CMB is a linear combination of N “template” shapes A1 , A2 , · · · AN .
+                                                              N
+                                                              X
+                                                   ALM
+                                                    ℓ1 ℓ2 =         ti (Ai )LM
+                                                                            ℓ1 ℓ2                                  (A13)
+                                                              i=1
+
+where the coeﬃcients ti are to be estimated from data. (The choice of template shapes will be discussed shortly.)
+We assume that our template shapes satisfy A00     ℓℓ = 0, i.e., the templates parameterize deviations from isotropy, not
+changes in the power spectrum.
+  A lengthy but straightforward calculation shows that the minimum-variance estimator t̂i for the template coeﬃcients
+which is unbiased (i.e., ht̂i i = ti ) is given by
+
+                                                  t̂i [a] = Fij−1 (Ej [a] − Nj )                                   (A14)
+18
+
+where the quantity Ej [a] is deﬁned by
+                                          X                                                            
+                                 1                                 p                            ℓ1 ℓ2 L
+                        Ej [a] =                      (Aj )LM∗
+                                                           ℓ1 ℓ2    (2ℓ1 + 1)(2ℓ2 + 1)(2L + 1) 0 0 0
+                                 2
+                                     ℓ1 m1 ℓ2 m2 LM
+                                                            
+                                            ℓ ℓ L
+                                          × m1 m2 M               (C −1 a)∗ℓ1 m1 (C −1 a)∗ℓ2 m2                  (A15)
+                                              1  2
+
+and the matrix Fij and vector Nj are deﬁned by
+                                                        Fij = Cov(Ei [a], Ej [a])                                (A16)
+                                                       Nj [a] = hEj [a]i                                         (A17)
+where the covariance and expectation value are taken over isotropic realizations of the noisy CMB aℓm .
+  The estimator in Equation (A14) can be specialized to measure diﬀerent types of statistical isotropy by making
+diﬀerent choices of template shapes (Ai ). For example, consider the dipole modulation, parameterized as in Equa-
+tion (12) by a three-vector wi . We assume that multipoles 2 ≤ ℓ ≤ ℓmod are modulated, and multipoles ℓ > ℓmod are
+unmodulated. The bipolar power spectrum is given by
+                                                                     3
+                                                                     X
+                                                        ALM
+                                                         ℓ1 ℓ2 =           wi (Ai )LM
+                                                                                   ℓ1 ℓ2                         (A18)
+                                                                     i=1
+
+where the template shapes Ai are deﬁned by
+                                  √
+                                                       ∗
+                     (Ai )ℓ1 ℓ2 = ( 4π/3)(Cℓ1 + Cℓ2 )Y1M (êi ) if |ℓ1 − ℓ2 | = 1 and ℓi ≤ ℓmod
+                          LM
+                                                                                                                 (A19)
+                                              0                 otherwise
+When specialized to these three template shapes, Equation (A14) gives the optimal quadratic estimator ŵi for the
+three components of the modulation. (A closely related estimator has also been constructed in Dvorkin et al. (2008).)
+We also construct an estimator κ1 for the total amplitude of the dipole modulation, irrespective of its direction, by
+                                                         X
+                                                    κ1 =      ŵi2                                               (A20)
+                                                                           i
+
+We have used this estimator in Section 8 to assess statistical signiﬁcance of the dipole modulation, by comparing the
+WMAP value of κ1 to an ensemble of simulations.
+  The quadrupole modulation can be treated analogously. For example, in Fig. 16 we have shown estimates of A20    ℓ−2,ℓ
+and A20
+      ℓℓ in each bin, by  taking (10N bins ) template shapes, corresponding to  the ﬁve components   of the two bipolar
+power spectra in each ℓ bin. As another example, if an optimal estimator (unbinned in ℓ) for the primordial modulation
+in Equation (A11) is desired, one would take ﬁve template shapes corresponding to the ﬁve components of w2M , given
+by Equation (A12).
+                                             Relation to likelihood formalism
+  We conclude this appendix by showing how the optimal estimator is related to the maximum likelihood formalism,
+for the dipole and quadrupole cases.
+  First consider the dipole modulation. The likelihood function L[a|w] for the modulation wi , given noisy CMB data
+aℓm , is given by:
+                                                                                                  
+                                          −1/2                             1 †                 −1
+                   L[a|w] = (const.) × Det     [M (w)SM (w) + N ] exp − a [M (w)SM (w) + N ] a                (A21)
+                                                                           2
+where M (w) is the operator which applies the modulation to a harmonic-space map, deﬁned by
+                                          Z                                               !
+                                                                      X
+                           (M (w)a)ℓm = d2 n̂ Yℓm∗
+                                                   (n̂) (1 + wi n̂i )   aℓ′ m′ Yℓ′ m′ (n̂)                       (A22)
+                                                                                           ℓ ′ m′
+
+We will show that the modulation w which maximizes the likelihood L[w|a] is equal to value of the optimal quadratic
+estimator ŵi deﬁned in the previous appendix, under two approximations that will be discussed further.
+  First suppose that the maximum likelihood modulation is small, so that the Taylor expansion of (log L) to second
+order in wi is an accurate approximation near maximum likelihood. The Taylor expansion is given by:
+                                                    1
+                                      log L[a|w] ≈ − Hij [a]wi wj + Gi [a]wi + (const.)                          (A23)
+                                                    2
+where we have deﬁned:
+                                                      
+                                              ∂2
+                          Hij [a] = −                            (log L[a|w])                                    (A24)
+                                            ∂wi ∂wj        w=0
+                                                                                                                                  19
+
+                                     = −a† C −1 Mi SMj C −1 a + a† C −1 {Mi , S}C −1 {Mj , S}C −1 a
+                                                                    1
+                                              +Tr(C −1 Mi SMj ) − Tr(C −1 {Mi , S}C −1 {Mj , S})                            (A25)
+                                        † −1        −1
+                                                               −1 2 
+                              Gi [a] = a C Mi SC a − Tr C Mi S                                                              (A26)
+and Mi = ∂M (w)/∂wi . Second, we assume that we can approximate the aℓm -dependent quantity Hij [a] by its
+expectation value:
+                                                  1
+                                Hij [a] ≈ hHij i = Tr(C −1 {Mi , S}C −1 {Mj , S})                   (A27)
+                                                  2
+Under these approximations the maximum likelihood modulation is given by
+                                                    (wi )ML = hHij i−1 Gj [a]                                               (A28)
+We would like to compare this expression to the optimal quadratic estimator ŵi deﬁned in Equation (A14), in the
+special case where the template shapes are given by Equation (A19). In this special case, a short calculation shows
+that hHij i = Fij , and Gj [a] = Ej [a] − Nj [a], which implies (wi )ML = ŵi .
+   We comment brieﬂy on the two approximations made in this appendix, namely the second-order Taylor approxima-
+tion in Equation (A23) and the approximation Hij [a] ≈ hHij i. By the central limit theorem, both approximations
+are expected to become accurate in the limit where the number of CMB modes which contribute to the estimators is
+large. The analyses in Sections 8 and 9 have taken wide ℓ bins (either the ℓ range 2 ≤ ℓ ≤ ℓmod or a series of bins with
+∆ℓ = 50) so these approximations should be very accurate and there should be little diﬀerence in practice between a
+likelihood estimator and the optimal quadratic estimator, although we have not tested this directly. In any case, the
+optimal quadratic estimator has several important advantages over a likelihood estimator, as described in Section 8.
+
+                                                          REFERENCES
+
+Ackerman, L., Carroll, S. M., & Wise, M. B. 2007, Phys. Rev. D, 75, 083502
+Ayaita, Y., Weber, M. & Wetterich, C. 2010, Phys. Rev. D, 81, 023507
+Bennett, C. L., et al. 1992, ApJ, 396, L7
+Bennett, C. L. et al. 2003a, ApJ, 583, 1
+Bennett, C. L., et al. 2003b, ApJS, 148, 1
+Bridges, M., McEwen, J. D., Cruz, M., Hobson, M. P., Lasenby, A. N., Vielva, P., & Martinez-Gonzalez, E. 2008, MNRAS, 390, 1372
+Cayón, L. 2010, MNRAS, 405, 1084
+Chiang, L.-Y., Naselsky, P. D. & Coles, P. 2007, ApJ, 664, 8
+Copi, C. J., Huterer, D., Schwarz, D. J., & Starkman, G. D. 2007, Phys. Rev. D, 75, 023507
+Copi, C. J., Huterer, D., Schwarz, D. J., & Starkman, G. D. 2009, MNRAS, 399, 295
+Cruz, M., Cayón, L., Martı́nez-González, E., Vielva, P., & Jin, J. 2007a, ApJ, 655, 11
+Cruz, M., Martı́nez-González, E., Vielva, P., Diego, J. M., Hobson, M., & Turok, N. 2008, MNRAS, 390, 913
+Cruz, M., Tucci, M., Martı́nez-González, E., & Vielva, P. 2006, MNRAS, 369, 57
+Cruz, M., Turok, N., Vielva, P., Martı́nez-González, E., & Hobson, M. 2007b, Science, 318, 1612
+de Oliveira-Costa, A. & Tegmark, M. 2006, Phys. Rev. D, 74, 023005
+Donogue, J. F., Dutta, K. & Ross, A., Phys. Rev. D, 80, 023526
+Dunkley, J., et al. 2009, ApJS, 180, 306
+Dvorkin, C., Peiris, H. V., & Hu, W. 2008, Phys. Rev. D, 77, 063008
+Efstathiou, G., Ma, Y., & Hanson, D. 2010, MNRAS, 407, 2530
+Erickcek, A. L., Hirata, C. M., & Kamionkowski, M. 2009, Phys. Rev. D, 80, 083507
+Erickcek, A. L., Kamionkowski, M. & Carroll, S. M. 2008, Phys. Rev. D, 78, 123520
+Eriksen, H. K., Banday, A. J., Górski, K. M., Hansen, F. K., & Lilje, P. B. 2007, ApJ, 660, L81
+Eriksen, H. K., Hansen, F. K., Banday, A. J., Górski, K. M., & Lilje, P. B. 2004, ApJ, 605, 14
+Finkbeiner, D. P., Davis, M., & Schlegel, D. J. 1999, ApJ, 524, 867
+Francis, C. L. & Peacock, J. A. 2010, MNRAS, 406, 14
+Freeman, P. E., Genovese, C. R., Miller, C. J., Nichol, R. C., & Wasserman, L. 2006, ApJ, 638, 1
+Gold, B. et al. 2010, arXiv:1001.4555
+Gordon, C. 2007, ApJ, 656, 636
+Gordon, C., Hu, W., Huterer, D. & Crawford, T. 2005, Phys. Rev. D, 72, 103002
+Gorski, K. M., Hivon, E., Banday, A. J., Wandelt, B. D., Hansen, F. K., Reinecke, M., & Bartlemann, M. 2005, ApJ, 622, 759
+Granett, B. R., Szapudi, I., & Neyrinck, M. C. 2010, ApJ, 714, 825
+Groeneboom, N. E., Ackerman, L., Kathrine Wehus, I., & Eriksen, H. K. 2010, ApJ, 722, 452
+Groeneboom, N. E. & Eriksen, H. K. 2009, ApJ, 690, 1807
+Hajian, A. & Souradeep, T. 2003, ApJ, 597, L5
+Hajian, A., Souradeep, T., & Cornish, N. 2005, ApJ, 618, L63
+Hansen, F. K., Banday, A. J., Górski, K. M., Eriksen, H. K., & Lilje, P. B. 2009, ApJ, 704, 1448
+Hansen, F. K., Cabella, P., Marinucci, D., & Vittorio, N. 2004, ApJ, 607, L67
+Hanson, D. & Lewis, A. 2009, Phys. Rev. D, 80, 063004
+Hinshaw, G., Banday, A. J., Bennett, C. L., Górski, K. M., Kogut, A., Smoot, G. F., & Wright, E. L. 1996, ApJ, 464, L17
+Hinshaw, G., et al. 2003, ApJS, 148, 63
+Hinshaw, G., et al. 2007, ApJS, 170, 288
+Hinshaw, G., et al. 2009, ApJS, 180, 225
+Hirata, C. M. 2009, J. Cosmol. Astropart. Phys., JCAP09(2009)011
+Hivon, E., Górski, K. M., Netterfield, C. B., Crill, B. P., Prunet, S., & Hansen, F. 2002, ApJ, 567, 2
+Hoftuft, J., Eriksen, H. K., Banday, A. J., Górski, K. M., Hansen, F. K., & Lilje, P. B. 2009, ApJ, 699, 985
+20
+
+Hou, Z., Banday, A. J., & Gorski, K. M. 2009, MNRAS, 396, 1273
+Jarosik, N., et al. 2003, ApJS, 148, 29
+Jarosik, N., et al. 2007, ApJS, 170, 263
+Jarosik, N. et al. 2010, arXiv:1001.4744
+Komatsu, E., et al. 2009, ApJS, 180, 330
+Komatsu, E. et al. 2010, arXiv:1001.4538
+Land, K. & Magueijo, J. 2005a, MNRAS, 357, 994
+Land, K. & Magueijo, J. 2005b, Phys. Rev. D, 72, 101302
+Larson, D. et al. 2010, arXiv:1001.4635
+Larson, D. L. & Wandelt, B. D. 2004, ApJ, 613, L85
+Lewis, A., Challinor, A., & Lasenby, A. 2000, ApJ, 538, 473
+Monteserin, C., Barreiro, R. B., Vielva, P., Martinez-Gonzalez, E., Hobson, M.P., & Lasenby, A. N. 2008, MNRAS, 387, 209
+Mota, D. F., Shaw, D. J., & Silk, J. 2008, ApJ, 675, 29
+Mukherjee, P. & Wang, Y. 2004, ApJ, 613, 51
+O’Dwyer, I. J. et al. 2004, ApJ, 617, L99
+Page, L. et al. 2007, ApJ, 170, 335
+Park, C.-G., Park, C. & Gott, J. R., III 2007, ApJ, 660, 959
+Pullen, A. P. & Kamionkowski,M. 2007, Phys. Rev. D, 76, 103529
+Rudnick, L., Brown, S., & Williams, L. R. 2007, ApJ, 671, 40
+Schwarz, D. J., Starkman, G. D., Huterer, D., & Copi, C. J. 2004, Phys. Rev. Lett., 93, 221301
+Seljak, U. & Zaldarriaga, M. 1996, ApJ, 469, 437
+Smith, K. M. & Huterer, D. 2010, MNRAS, 403, 2
+Smith, K. M., Zahn, O., & Doré, O. 2007, Phys. Rev. D, 76, 043510
+Spergel, D. N., et al. 2003, ApJS, 148, 175
+Tegmark, M., de Oliveira-Costa, A., & Hamilton, A. J. 2003, Phys. Rev. D, 68, 123523
+Tye, S. & Xu, J. 2010, Phys. Lett. B, 683, 326
+Urrestilla, J., Bevis, N., Hindmarsh, M., Kunz, M., & Liddle, A. R. 2008, J. Cosmol. Astropart. Phys. JCAP07(2008)010
+Vielva, P., Martı́nez-González, E., Barreiro, R. B., Sanz, J. L., & Cayón, L. 2004, ApJ, 609, 22
+Wandelt, B. D., Larson, D. L. & Lakshminarayanan, A. 2004, Phys. Rev. D, 70, 8
+Wiaux, Y., Vielva, P., Martı́nez-González, E. & Vandergheynst, P. 2006 Phys. Rev. Lett., 96, 151303
+Wehus, I. K., Ackerman, L., Eriksen, H. K., & Groeneboom, N. E. 2009, ApJ, 707, 343
+Weiland, J. L. et al. 2010, arXiv:1001.4731
+Wright, E. L. 2004, in Measuring and Modeling the Universe, ed. W. L. Freedman (Cambridge: Cambridge Univ. Press), 291
+Zhang, R. & Huterer, D. 2010, Astropart. Phys., 33, 69
+

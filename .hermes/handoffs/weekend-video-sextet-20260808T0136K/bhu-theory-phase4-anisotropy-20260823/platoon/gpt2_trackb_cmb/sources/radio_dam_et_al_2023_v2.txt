@@ -1,0 +1,1268 @@
+                                              MNRAS 000, 1–15 (2023)                                                 Preprint August 8, 2023                Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                              Testing the Cosmological Principle with CatWISE Quasars:
+                                              A Bayesian Analysis of the Number-Count Dipole
+                                              Lawrence Dam1,2 ,★ Geraint F. Lewis1 † & Brendon J. Brewer3
+                                              1 Sydney Institute for Astronomy, School of Physics, A28, The University of Sydney, NSW 2006, Australia
+                                              2 Département de Physique Théorique and Center for Astroparticle Physics, Université de Genève, 24 quai Ernest-Ansermet, 1211 Genève 4, Switzerland
+                                              3 Department of Statistics, The University of Auckland, Private Bag 92019, Auckland 1142, New Zealand
+
+
+
+
+arXiv:2212.07733v2 [astro-ph.CO] 7 Aug 2023
+                                              Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                              ABSTRACT
+                                              The Cosmological Principle, that the Universe is homogeneous and isotropic on sufficiently large scales, underpins the standard
+                                              model of cosmology. However, a recent analysis of 1.36 million infrared-selected quasars has identified a significant tension in
+                                              the amplitude of the number-count dipole compared to that derived from the CMB, thus challenging the Cosmological Principle.
+                                              Here we present a Bayesian analysis of the same quasar sample, testing various hypotheses using the Bayesian evidence. We
+                                              find unambiguous evidence for the presence of a dipole in the distribution of quasars with a direction that is consistent with the
+                                              dipole identified in the CMB. However, the amplitude of the dipole is found to be 2.7 times larger than that expected from the
+                                              conventional kinematic explanation of the CMB dipole, with a statistical significance of 5.7𝜎. To compare these results with
+                                              theoretical expectations, we sharpen the ΛCDM predictions for the probability distribution of the amplitude, taking into account
+                                              a number of observational and theoretical systematics. In particular, we show that the presence of the Galactic plane mask
+                                              causes a considerable loss of dipole signal due to a leakage of power into higher multipoles, exacerbating the discrepancy in the
+                                              amplitude. By contrast, we show using probabilistic arguments that the source evolution of quasars improves the discrepancy, but
+                                              only mildly so. These results support the original findings of an anomalously large quasar dipole, independent of the statistical
+                                              methodology used.
+                                              Key words: cosmology: large-scale structure of universe — cosmology: cosmic background radiation — cosmology: observa-
+                                              tions — quasars: general — galaxies: active
+
+
+
+                                              1 INTRODUCTION                                                                  towards
+                                              The Cosmological Principle, the idea that the Universe is spatially ho-          (𝑙, 𝑏) = (264.◦ 021 ± 0.◦ 009, 48.◦ 253 ± 0.◦ 004),                  (2)
+                                              mogeneous and isotropic when viewed at sufficiently large scales, un-           relative to the CMB rest frame.
+                                              derlies the use of Friedmann–Lemaître–Robertson–Walker (FLRW)                       To test whether the CMB dipole has a genuine kinematic origin,
+                                              world models in the standard concordance cosmology, ΛCDM. In                    Ellis & Baldwin (1984) proposed a simple consistency test using
+                                              these models there exist ideal observers for whom their view is an              the number counts of radio sources on the sky: Given an isotropic
+                                              isotropic universe, such that in this ‘cosmic rest frame’ the CMB               distribution of sources, forming a background of uniform emission,
+                                              appears maximally isotropic (Maartens 2011). Any observer moving                our putative velocity should induce in the number counts a dipole
+                                              with velocity v relative to this frame will observe a dipole anisotropy         anisotropy of the amplitude and direction expected by equation (1),
+                                              in the CMB temperature, Δ𝑇/𝑇 ≃ 𝜷 · n̂, where 𝜷 = v/𝑐 and n̂ is                  if the kinematic interpretation is correct. Supposing a population of
+                                              the direction of observation (Stewart & Sciama 1967; Peebles &                  radio sources with identical flux density spectra 𝑆 ∝ 𝜈 − 𝛼 (where 𝜈
+                                              Wilkinson 1968). The fact that the CMB dipole as observed from in               is the frequency and 𝛼 the spectral index), and integral source count
+                                              the heliocentric frame (which is about a hundred times larger than              above flux density threshold 𝑆∗ given by d𝑁 (> 𝑆∗ )/dΩ ∝ 𝑆∗− 𝑥 , Ellis
+                                              the primary anisotropies) is conventionally taken as evidence that              & Baldwin (1984) showed that the number counts across the sky
+                                              the solar system is moving with speed (Planck Collaboration et al.              exhibits a dipole anisotropy Δ𝑁/𝑁 = dk · n̂ with
+                                              2020a)
+                                                                                                                              dk = [2 + 𝑥(1 + 𝛼)] 𝜷.                                                (3)
+                                              𝑣 = (369.825 ± 0.070) km s −1                                          (1)      This is the kinematic dipole. Here 𝜷 = v/𝑐, where v is the velocity
+                                                                                                                              of the heliocentric frame relative to the ‘matter rest frame’, the frame
+                                                                                                                              in which the radio sources are observed at rest. Unless we have
+                                                                                                                              reason to expect, as in the standard model, that the matter rest frame
+                                              ★ E-mail: lawrence.dam@unige.ch                                                 coincides with the CMB rest frame, there is no a priori reason that
+                                              † E-mail: geraint.lewis@sydney.edu.au (GFL)                                     the velocity in equation (3) is the same as the velocity in equation (1).
+
+                                              © 2023 The Authors
+2      Dam, Lewis & Brewer
+Conversely, the agreement of these two velocities then provides an         methodological differences of analysis. To assess the tension with
+indirect check on the Cosmological Principle (for a recent appraisal       ΛCDM, we give a first-principles comparison between our posterior
+on its observational status, see Aluri et al. 2023).                       probability distribution and the theoretical prior, refining the a priori
+   In performing this check, one important advantage is that dk is         predictions for the CatWISE dipole. In the process, we will inves-
+independent of cosmological assumptions; in principle, dk arises           tigate a number of systematics (e.g. masking, contamination from
+from special-relativistic considerations, namely, the aberration and       clustering, shot noise, source evolution) on the likely values of the
+Doppler effects. In particular, for 𝛽 = 370 km s −1 /𝑐 ≈ 1.23 × 10 −3 ,    amplitude, and the extent to which the discrepancy can be resolved.
+and typical values 𝑥 ≃ 1, 𝛼 ≃ 1, one expects a dipole of amplitude         The layout of this paper is as follows. In Section 2 we outline the data
+𝑑k ≃ 5 × 10 −3 , that is, we expect a 0.5% enhancement in the number       sample and our approach, with the results of our analysis presented
+counts towards the boost apex. Since this is a small effect, a precise     in Section 2.4. In Section 3 we compute the ΛCDM prior for the
+measurement of it requires good sky coverage and number density.           probability distribution of the dipole’s amplitude in the realistic case
+   In practice, Ellis and Baldwin’s test will be contaminated by the       of partial-sky coverage. We present our conclusions in Section 4. A
+gravitational clustering of sources. Radio sources are tracers of large-   number of appendices present the details of the theoretical analysis
+scale structure, which, when integrated along the line of sight, pro-      undertaken in this paper.
+duces an intrinsic anisotropy in the number counts. Thus, in addition
+to the kinematic dipole (3), we also have a clustering dipole, dc .
+The observed dipole is thus the combination of the kinematic and
+clustering dipole. Unlike dk , modelling dc from first principles does     2 BAYESIAN ANALYSIS
+require cosmological assumptions. An interpretation of any dipole          2.1 CatWISE quasar sample
+measurement needs to consider the impact of source clustering, as
+the amplitude of dc may be significant if the source population is         For the purposes of this study, we employ an identical sample of
+relatively local. In any case, the expected amplitude 𝑑c and its prob-     quasars as presented by S21 (Secrest et al. 2021a). This is a flux-
+ability distribution, can be predicted from theory, as we show in this     limited, all-sky sample consisting of 1,355,352 quasars selected
+work.                                                                      from the CatWISE2020 catalogue (Marocco et al. 2021), a dataset
+   The measurement of the radio dipole (and other matter dipoles) has      derived from the infrared survey WISE (Wright et al. 2010) and
+seen a range of results from a variety of methods and data. Using ra-      NEOWISE (Mainzer et al. 2014), predominantly at 3.4 µm (W1)
+dio sources from the NRAO VLA Sky Survey (NVSS; Condon et al.              and 4.6 µm (W2). The S21 sample was obtained from a magnitude
+1998) and a low-order spherical-harmonic fit, Blake & Wall (2002)          cut 9 < W1 < 16.4, with AGN selected using the colour criterion
+reported one of the first measurements of the radio dipole, finding        W1−W2 ≥ 0.8 (Stern et al. 2012); masking was applied to the Galac-
+broad agreement with the CMB expectation (though with moder-               tic plane (|𝑏| < 30◦ ), bright sources, poor-quality photometry, and
+ately large uncertainties). More recent measurements (Singal 2011;         image artefacts. The spectral indices 𝛼 in W1 band were measured
+Gibelyou & Huterer 2012; Rubart & Schwarz 2013; Colin et al. 2017;         for each source by power-law fits using both bands. In this sample,
+Bengaly et al. 2018) have called on other surveys, including 2MASS,        99% of sources are at 𝑧 > 0.1, while 61% are at 𝑧 > 1; the mean
+2MRS, BATSE gamma-ray bursts, SUMSS (Mauch et al. 2003),                   redshift is 1.2.
+WENSS (Rengelink et al. 1997) and TGSS; a detailed summary can                In determining the presence of a dipole structure in the resultant
+be found in Siewert, Schmidt-Rubart & Schwarz (2021). These re-            quasar sample, we first binned the counts over the sky to determine
+sults provide further support for a larger-than-expected dipole broadly    their density. To achieve this, healpy (a Python implementation
+aligned with CMB. (Though see Darling (2022) who finds agree-              of HEALPix; Górski et al. 2005; Zonca et al. 2019) was used to
+ment with the CMB in both amplitude and direction using data from          determine equal area pixels over the sky. For this study, 𝑁side = 64,
+VLASS (Lacy et al. 2020) and RACS (McConnell et al. 2020) cata-            which corresponds to a total number of pixels of 49, 152, each with
+logues).                                                                   an area of 0.83 square degrees. The total number of unmasked pixels
+   Recently, Secrest et al. (2021b, hereafter S21) provided one of the     is 𝑛pix = 23, 972, and the pixelized map analysed in this work is
+strongest challenges to the kinematic interpretation. As with previous     shown in Fig. 1.
+results (with a direction consistent with the CMB) the amplitude was
+found to be discrepant by a factor of two (i.e. larger than expected).
+On the basis of simulations, the null hypothesis (kinematic origin)        2.2 Parametric model and likelihood
+was rejected at a high statistical significance of 4.9𝜎. This determi-     The expected number density of quasars in direction n̂ is given to a
+nation was enabled by a large sample of quasars selected from the          good approximation by the dipolar modulation (i.e. the sum of the
+CatWISE2020 catalogue (Marocco et al. 2021) based on the all-sky           monopole and dipole moments)
+Wide-field Infrared Survey Explorer (WISE; Wright et al. 2010).
+After applying a conservative Galactic plane cut, this sample con-         d𝑁                      
+                                                                              ( n̂) = 𝑁¯ 1 + d · n̂ ,                                           (4)
+sisted of 1.36 million quasars covering about 50% of the sky. With         dΩ
+a favourable redshift distribution mitigating against contamination        where n̂ is the direction of observation, 𝑁¯ is the mean number density
+from a clustering dipole, the CatWISE quasar sample is ideal for           on the sky, and d · n̂ is the dipole. This equation forms the basis of
+carrying out the Ellis and Baldwin test.                                   our analysis. In practice, there are a number of systematics to be
+   Given the implications of such a discrepancy that challenge the         considered. In particular, S21 identified a scanning pattern bias in
+basis of the standard model, it is worth reanalysing the sample of         the CatWISE2020 sample that varies linearly away from the ecliptic
+S21. We will however take a different statistical approach. Using a        equator, such that there is a decrease of source density of ∼7 % at
+novel likelihood for the observed counts on the sky, we will present       the ecliptic poles. To allow for this possibility we introduce a biasing
+a Bayesian analysis of the source-count map for several parametric         term of the form
+models. In brief, in reaching the same qualitative conclusions as S21
+we demonstrate that the anomalous dipole amplitude is robust to            𝑓ecl ( n̂) ≡ 1 − Υecl 𝑐 ecl |𝑏 ecl ( n̂)|,                           (5)
+
+MNRAS 000, 1–15 (2023)
+                                                                               Bayesian Analysis of the Number-Count Dipole                              3
+
+                                                                                Table 1. Marginal likelihoods for the various models considered. Note that
+                                                                                𝑍 is increasing from 𝑀0 to 𝑀8 .
+
+                                                                                 Model     Description                                       ln(𝑍 )
+                                                                                 𝑀0        Null (no dipole)                                  -87707.67
+                                                                                 𝑀1        Amplitude fixed to CMB; no bias                   -87654.43
+                                                                                 𝑀2        Amplitude and direction fixed to CMB; no bias     -87652.04
+                                                                                 𝑀3        Direction fixed to CMB; no bias                   -87625.43
+                                                                                 𝑀4        All parameters free, except no bias               -87624.18
+                                                                                 𝑀5        Amplitude fixed to CMB                            -87473.38
+                                                                                 𝑀6        Amplitude and direction fixed to CMB              -87472.77
+                                                                                 𝑀7        Direction fixed to CMB                            -87445.27
+                                                                                 𝑀8        All parameters free                               -87444.17
+                     20                  55                 90
+                                   Counts per pixel                             also retains complete information in the pixelized map, including of
+                                                                                higher multipoles.
+Figure 1. Mollweide map (𝑁side = 64) of the number-count density of the
+S21 quasar sample. Here the Galactic-plane cut removes |𝑏| < 30◦ . The
+mean number count is 57.4 per unmasked pixel, corresponding to a surface
+density of 69.2 quasars per square degree.
+                                                                                2.3 Hypotheses considered
+                                                                                For the purposes of this study, several differing hypotheses were
+                                                                                considered and compared.
+where the slope 𝑐 ecl      = 7.4 × 10 −4 was determined by S21 through a
+linear fit, and 𝑏 ecl ( n̂) is the ecliptic latitude. We introduced Υecl , a       • 𝑀0 : Taken to be the null hypothesis, this assumes that there is
+nuisance parameter which exactly recovers the S21 correction when               no dipole or ecliptic bias in the CatWISE sample, and only has a
+Υecl = 1, and corresponds to no ecliptic bias when Υecl = 0. With               single free parameter, ¯  𝑁. 𝐷 and Υecl are fixed at zero.
+the inclusion of the ecliptic bias, the expected number of quasars in              • 𝑀1 : The dipole’s amplitude is precisely that of the CMB but
+a HEALPix pixel at n̂ is given by the parametric model                          its direction may differ from that of the CMB. No ecliptic bias is
+                       d𝑁                                                       assumed, so Υecl = 0.
+𝜆( n̂) = Ωpix 𝑓ecl ( n̂)   ( n̂),                                     (6)          • 𝑀2 : This assumes that a dipole is present and has the same
+                       dΩ
+                                                                                magnitude and direction as that observed in the CMB. For this, the
+where Ωpix is the pixel area.
+                                                                                amplitude is fixed to 𝐷 CMB = 0.0072, whilst the direction is fixed at
+   The counting statistics within each pixel motivates a likelihood
+                                                                                (𝑙, 𝑏) = (264.◦ 021, 48.◦ 253). Again, 𝑁¯ is treated as a free parameter
+of Poisson form, with mean varying from pixel to pixel due to the
+                                                                                and no ecliptic bias is assumed (Υecl ).
+expected dipolar modulation. Hence, given the expected number of
+                                                                                   • 𝑀3 : Again, this assumes that a dipole is present, and is aligned
+quasars 𝜆 𝑖 = 𝜆( n̂𝑖 ) in the 𝑖th pixel, the probability of observing 𝑁𝑖
+                                                                                with the CMB. However, the amplitude of the dipole term, 𝐷 is
+quasars in that pixel is
+                                                                                treated as a free parameter, as is ¯𝑁. The direction is fixed at (𝑙, 𝑏) =
+           𝜆 𝑁𝑖 e −𝜆𝑖                                                           (264.◦ 021, 48.◦ 253), and no ecliptic bias is assumed (Υecl = 0).
+𝑝(𝑁𝑖 | 𝜃) = 𝑖         .                                                 (7)        • 𝑀4 : Here, the presence of a dipole is assumed, but its amplitude
+              𝑁𝑖 !
+                                                                                and direction, 𝐷, 𝑙 and 𝑏 are taken as as free parameters, as is 𝑁.¯ The
+The likelihood of obtaining number counts 𝑁1 , 𝑁2 , . . . , 𝑁 𝑛pix (the
+                                                                                ecliptic bias, Υecl , is again assumed to be zero.
+data 𝒟) is therefore
+              𝑛pix                                                              Models 𝑀1 , 𝑀2 , 𝑀3 , 𝑀4 were repeated (as 𝑀5 , 𝑀6 , 𝑀7 , 𝑀8 , re-
+              Ö
+L (𝜃; 𝒟) =           𝑝(𝑁𝑖 | 𝜃),                                         (8)     spectively) but with the ecliptic bias Υecl treated as a free parameter.
+              𝑖=1                                                               These models are summarised in Table 1.
+where 𝜃 is the set of free parameters, and the product is taken over
+all 𝑛pix unmasked pixels. In this work 𝜃 = { ¯𝑁, 𝐷, 𝑙, 𝑏, Υecl }, where         2.4 Posterior exploration
+𝐷 ≡ |d| is the dipole amplitude, 𝑙, 𝑏 are the Galactic coordinates of
+d (and 𝑁¯ and Υecl were described above).                                       With given model 𝑀𝑖 and data 𝒟, the posterior probability distri-
+   One advantage of our Bayesian approach over other approaches                 bution of obtaining the set of parameters 𝜃 is by Bayes’ theorem
+often used is uncertainty quantification. This is a routine task once
+the posteriors are sampled, and yields an internal measure of the
+                                                                                𝑝(𝜃 | 𝒟) = L (𝜃; 𝒟) 𝑝(𝜃)/𝑍,                                           (9)
+uncertainty (no simulations are required). Furthermore, the posterior                                               ∫
+can be directly compared with the distribution we expect from the-              where 𝑝(𝜃) is the prior and 𝑍 ≡ d𝜃 L (𝜃; 𝒟) 𝑝(𝜃) is the marginal
+ory (Section 3). Indeed, previous estimates of the dipole are largely           likelihood, or Bayesian evidence. We explored the posterior using the
+based on constructing estimators; see, e.g. Siewert et al. (2021) and           DNest4 sampler (Diffusive Nested Sampling; Brewer & Foreman-
+references therein. However, in the situation where all cells have high         Mackey 2018), allowing a determination of the posterior distribu-
+occupancy number, the Poisson likelihood converges to a Gaussian,               tions, but also providing the marginal likelihood. This allows an
+with both mean and variance equal to 𝜆𝑖 . In this limit we can derive           effective comparison of the competing hypotheses based on how
+from equation (7) the maximum-likelihood estimator of the dipole,               well they predicted the data, marginalised over the parameter space
+which is equivalent (up to some normalisation) to the quadratic esti-           of each model.
+mator commonly used. (With 𝑁side = 64 we have about 57 sources                     For the purposes of this study, the following priors were adopted.
+per pixel, so we are well within this regime.) Although we will only            For the mean number count 𝑁Ω   ¯ pix a uniform distribution between
+extract the monopole and dipole, we note that the likelihood (8)                40 and 60 was chosen. A uniform distribution was also adopted for
+
+                                                                                                                               MNRAS 000, 1–15 (2023)
+4      Dam, Lewis & Brewer
+
+
+
+
+Figure 2. Corner plot for the results of the MCMC exploration of the posterior distribution. Dashed vertical lines indicate the mean and 68% confidence limits
+(as quoted). Here 𝑁¯ 𝐴 ≡ 𝑁¯ Ωpix is the mean number count per pixel, 𝐷/𝐷CMB is the dipole amplitude normalised relative to the CMB expectation, and Υecl is
+the ecliptic bias parameter; the Galactic coordinates (𝑙, 𝑏) specify the direction of the dipole d on the sky. Note that 𝐷CMB = 0.0072, as determined from the
+CMB velocity (1) and the sample’s mean values 𝛼¯ = 1.26 and 𝑥¯ = 1.7. The contours correspond to 0.5, 1, 1.5, and 2𝜎, encompassing 11.8%, 39.3%, 67.5%,
+and 86.4% of the samples, respectively (Foreman-Mackey 2016).
+
+
+the scaled amplitude of the dipole, 𝐷/𝐷 CMB , between 0 and 10; as                plitude and direction to match the expectations of the kinematic
+noted in S21, the expected amplitude of dipole is 𝐷 CMB = 0.0072                  dipole – is highly disfavoured when compared to 𝑀7 and 𝑀8 . For
+(for the sample’s mean values 𝛼¯ = 1.26 and 𝑥¯ = 1.7). The direction              𝑀7 , where the amplitude of the dipole is free to vary, we find
+of the dipole in 𝑙 and 𝑏 were chosen to give a uniform distribution               𝐷/𝐷 CMB = 2.46 ± 0.18, demonstrating that, as with S21, the ampli-
+over the entire sphere, for 0◦ < 𝑙 < 360◦ and −90◦ < 𝑏 < 90◦ . A                  tude of the quasar dipole is significantly different to the expectation
+uniform prior was adopted for the ecliptic bias, −2 < Υecl < 2.                   from the CMB. Intriguingly, the ratio of the Bayesian evidences for
+   The resulting Bayesian evidences for the various hypotheses are                𝑀7 and 𝑀8 is only 3, in favour of 𝑀8 . Therefore, we find only mild
+presented in Table 1. There are two immediate points to take from                 evidence that the dipole direction differs from the CMB direction. For
+these. First, the null hypothesis of there being no dipole is overwhelm-          completeness, Fig. 2 presents the corner plot of the posterior distribu-
+ingly disfavoured, demonstrating that a non-homogeneous signature                 tions for 𝑀8 . As well as showing the evidence for the ecliptic biasing
+is present in the distribution of quasars. Second, the models correct-            as identified by S21, with Υecl = 1.03 ± 0.05, again a significantly
+ing for the ecliptic bias are strongly favoured over those models that            larger dipole amplitude, with 𝐷/𝐷 CMB = 2.68 ± 0.23, is identified.
+do not consider this component. Hence, in the following we will                   ∫ ∞ the posterior distribution we compute 𝑃(𝐷 > 𝐷 CMB | 𝒟) =
+                                                                                  From
+focus upon models 𝑀6 , 𝑀7 and 𝑀8 .                                                  𝐷CMB
+                                                                                          d𝐷 𝑝(𝐷 | 𝒟), the probability that the CatWISE dipole ampli-
+   It is clear that 𝑀6 – which assumes a dipole with a fixed am-                  tude exceeds the CMB value, all other parameters marginalised over.
+
+MNRAS 000, 1–15 (2023)
+                                                                                    Bayesian Analysis of the Number-Count Dipole                            5
+                                                                                     dipoles are Gaussian distributed. This is justified in the case of the
+                                                                                     clustering dipole given that it is to a large degree sourced by matter
+                                                                                     fluctuations well described by linear theory. The kinematic dipole,
+                                                                                     on the other hand, is harder to justify. The local velocity is the result
+                                                                                     of several contributions, including the motion of the Earth around
+                                                                                     the Sun; the Sun around the Milky Way; the virial motion of the
+                                                                                     Milky Way within the Local Group, etc. Assigning a distribution
+                                                                                     to each of these motions is beyond what we can hope to achieve
+                                                                                     in this comparison. Here we will take a decidedly less fine-grained
+                                                                                     approach. We will assume that the local velocity admits a decom-
+                                                                                     position into a linear and nonlinear component, as described by the
+                                                                                     halo model. The linear contribution, due to infall onto large-scale
+                                                                                     structure, can then be described by linear theory and is Gaussian in
+                                                                                     nature. The nonlinear contribution is generically ascribed to virial
+                                                                                     motions within a spherical halo described as an isothermal sphere. In
+Figure 3. The on-sky posterior distribution of the direction of the dipole           this case the motions are Gaussian for a given halo mass, in reason-
+from the MCMC exploration, with the colour-coding corresponding to a                 able agreement with simulations (Sheth & Diaferio 2001). However,
+distribution normalised to unity. The contours are derived from smoothing the
+                                                                                     it is important to note that the probability distribution, averaged over
+underlying distribution with a Gaussian kernel with smoothing scale 𝜎 = 3◦ ,
+with each contour encompassing 68%, 95.5%, 99.7% and 99.99% of the
+                                                                                     all halo masses, is not Gaussian, exhibiting larger-than-Gaussian tail
+probability. The yellow-filled circle indicates the point of the best-fit values,    probabilities due to virial motions (Cooray & Sheth 2002). We will
+whereas the red-filled circle denotes the direction of the dipole as determined      return to this point later in Section 3.4.
+by Planck Collaboration et al. (2020a). The blue-filled circle represents the            Now since the dipoles are Gaussian, the amplitude is described
+dipole direction as determined by S21.                                               by the Maxwellian. This is in general a long-tailed distribution with
+                                                                                     large values of 𝐷 not precluded. However, this is strictly only true
+                                                                                     for full-sky coverage; for partial-sky coverage the distribution is no
+We find 𝑃(𝐷 > 𝐷 CMB | 𝒟) = 0.9999999888, corresponding to a                          longer Maxwellian due to the loss of isotropy. As we will show, in the
+statistical significance of 5.7𝜎.                                                    partial-sky case there are non-trivial covariances between different
+    As for the direction of the dipole we find (𝑙, 𝑏) =                              multipole moments (e.g. in the clustering statistics), leading gener-
+             ◦. 9
+(237.◦ 2+7 −8.◦ 0
+                  , 41.◦ 8 ± 5.◦ 0). The posterior distribution of the dipole        ically to a leakage of power from higher multiples (smaller angular
+directions on the sky is presented in Fig. 3, with contours indicating               scales) into the dipole, changing the theoretical expectations of the
+the 68%, 95.5%, 99.7% and 99.99% credible regions. The yellow-                       amplitude. With 50% of the sky removed, the impact of masking is
+filled circle indicates the point of the best-fit values, whereas the                sizeable. In this section we will thus compare the posterior 𝑝(𝐷 | 𝒟)
+red-filled circle denotes the direction of the dipole as determined by               obtained in the previous section, with the theoretical prior 𝑝(𝐷), the
+Planck Collaboration et al. (2020a). The blue-filled circle represents               probability distribution of the total dipole amplitude 𝐷 = |d| accord-
+the dipole direction as determined by S21. As demonstrated by the                    ing to ΛCDM. Since the computation of 𝑝(𝐷) is somewhat involved
+ratio of the Bayesian evidences for 𝑀7 and 𝑀8 , this direction is                    we present here only the main results, relegating the technical details
+only mildly favoured over the quasar dipole being aligned with that                  to appendices.
+detected in the CMB.
+    It is important to note that Bayesian model selection calculations,
+such as those presented in this paper, can be affected by the choice
+of priors. Particularly, if we had used a narrower prior for the direc-              3.1 Dipole statistics
+tion of the quasar dipole (i.e. if we had expected it to be close to                 The dipole anisotropy has a direction and amplitude and it is conve-
+the CMB direction), we would have found stronger evidence for a                      nient to represent it as a three-dimensional Cartesian vector d such
+                                                                                                  Í
+direction difference. On the other hand, if we had used a wider prior                that d · n̂ = 1𝑚=−1 𝑎 1𝑚𝑌1𝑚 ( n̂), where 𝑌1𝑚 ( n̂) are the ℓ = 1 spher-
+for parameters like 𝑁¯ 𝐴 that have the same meaning across models,                   ical harmonics (Copi, Huterer & Starkman 2004). Since the dipole
+this would decrease the evidence values across the board, but leave                  is estimated on the masked sky, in order to compare with theoretical
+conclusions about the dipole unchanged. However, given that we                       predictions we will need to take this into account. We will therefore
+should not necessarily expect a priori the quasar and CMB dipole to                  write the number-count fluctuations as
+be aligned, we are justified in using the large prior range adopted.                                                        
+                                                                                     Δ𝑁 ( n̂)/𝑁 = W ( n̂) dk · n̂ + 𝛿Q ( n̂) = W ( n̂)(d · n̂ + · · · ), (10)
+
+                                                                                     where W ( n̂) is the mask and d = dk + dc . Here the ellipsis
+3 A PRIORI PREDICTIONS FOR THE DIPOLE                                                represent higher multipoles (ℓ ≥ 2) of the intrinsic fluctuations
+                                                                                                  Í
+  AMPLITUDE                                                                          𝛿Q ( n̂) = ℓ𝑚 𝑎 ℓ𝑚𝑌ℓ𝑚 ( n̂). For ΛCDM these multipoles are sub-
+                                                                                     dominant to the dipole and may therefore be ignored. The underlying
+In light of renewed interest in dipole anomalies it is worth revisiting
+                                                                                     kinematic and clustering dipoles (on the unmasked sky) are uniquely
+the predictions of ΛCDM (e.g. Gibelyou & Huterer 2012; Rubart
+                                                                                     given in terms of their harmonic coefficients by
+et al. 2014; Tiwari & Nusser 2016; Bengaly et al. 2019), without
+                                                                                            √︂
+invoking the stringent CMB prior (1), which assumes a purely kine-                              3    √           √               ⊺
+matic origin of the dipole. Here we are primarily interested in the                  dc =           − 2ℜ(𝑎 11 ), 2ℑ(𝑎 11 ), 𝑎 10 ,                 (11a)
+                                                                                               4𝜋
+distribution of values of the amplitude. In order to obtain this we                         √︂
+will need the probability distribution of the dipoles themselves. The                           3    √           √               ⊺
+                                                                                     dk =           − 2ℜ(𝑏 11 ), 2ℑ(𝑏 11 ), 𝑏 10 ,                 (11b)
+key assumption we will make is that the kinematic and clustering                               4𝜋
+
+                                                                                                                                    MNRAS 000, 1–15 (2023)
+6        Dam, Lewis & Brewer
+                                                                                                                                 2 ∫ 𝑥
+                                                                            where F (𝑥) ≡ 𝐹 (𝑥)/𝑥, in which 𝐹 (𝑥) ≡ e − 𝑥 0 d𝑡 e𝑡 is the
+                                                                                                                                          2
+with
+         ∫
+                    ∗                                                       Dawson function; we have introduced 𝜀 ≡ 1 − Δ2𝑧 /Δ2𝑥 , which
+𝑎 ℓ𝑚 =       d2 n̂ 𝑌ℓ𝑚 ( n̂) 𝛿Q ( n̂),                             (12a)
+                                                                            parametrises the ‘eccentricity’ between the dispersions along the
+         ∫
+                    ∗                                                       𝑧-axis and the 𝑥-axis (or, equivalently, the 𝑦-axis) as induced by our
+𝑏 ℓ𝑚 =       d2 n̂ 𝑌ℓ𝑚 ( n̂) (dk · n̂).                            (12b)    azimuthal sky cut; and 𝑓MB (𝑥) has the Maxwell–Boltzmann form,
+                                                                                            √
+                                                                            𝑓MB (𝑥)d𝑥 = 4/ 𝜋 𝑥 2 e − 𝑥 d𝑥. Here we have
+                                                                                                       2
+Note that since dk · n̂ is a pure dipole we have that only for ℓ = 1 are
+the 𝑏 ℓ𝑚 non-zero. This is not the case for 𝛿Q , however.
+                                                                            Δ2𝑥 = 𝜎k2𝑥 k 𝑥 + 2𝜎k2𝑥 c 𝑥 + 𝜎c2𝑥 c 𝑥 ,                                (16a)
+   In general, the fluctuation 𝛿Q ( n̂) results from a number of effects,
+including redshift-space distortions (Kaiser 1987), Doppler effects,        Δ2𝑧 = 𝜎k2𝑧 k𝑧 + 2𝜎k2𝑧 c𝑧 + 𝜎c2𝑧 c𝑧 ,                                   (16b)
+gravitational lensing (Turner et al. 1984; Murray 2022), gravitational
+redshift, and relativistic corrections (Yoo, Fitzpatrick & Zaldarriaga      which give the dispersions for the 𝑥- and 𝑧-components of the total
+2009; Bonvin & Durrer 2011; Challinor & Lewis 2011). The com-               dipole d = dk + dc (with the dispersion of the 𝑦-component the same
+plete expression for 𝛿Q ( n̂) can be found in, e.g. Di Dio et al. (2013,    as that of the 𝑥-component).1 Notice that this PDF (15) is similar to
+appendix A); we compute it using a modified version of class (Blas,         the Maxwellian, save for the first two factors, which depend on the
+Lesgourgues & Tram 2011). Since the distribution of the amplitude is        asymmetry of the cut. The overall effect of these factors suppresses
+largely insensitive to the bias, here we simply fix the bias at the mean    √︁ tail of the Maxwellian.
+                                                                            the                         √︁   The
+                                                                                                              √︁ modified  PDF has √︁mean ⟨𝐷⟩ =
+                                                                                                                  
+redshift using the Croom et al. (2005) quasar bias parametrisation.           2/𝜋 Δ 𝑧 + Δ 𝑥 arcsinh( |𝜀|)/ |𝜀| , and r.m.s. value ⟨𝐷 2 ⟩ = (3 −
+Here since 𝑧¯ = 1.2 we have 𝑏 Q = 2.                                        𝜀) 1/2 Δ 𝑥 .2 We find that the mean value ⟨𝐷⟩ on the cut sky is half that
+   As for the individual statistics of dk and dc these are given by         on the full sky.
+trivariate Gaussians. The joint distribution is also a Gaussian, con-
+taining non-trivial correlations between dk and dc . This is because
+the kinematic dipole is in part sourced from our being pulled by the
+surrounding matter distribution, implying that there is necessarily         3.2.1 ΛCDM considerations
+a clustering contribution. Since these two contributions arise from
+the same large-scale structure, and are linearly related to the matter      We now evaluate the probability distribution (15), plugging in the
+distribution 𝛿(x), their joint statistics must also be Gaussian. We will    detailed predictions of ΛCDM for Δ2𝑥 and Δ2𝑧 . In general, for two
+therefore take (dk , dc ) ∼ N (0, C), with the 6 × 6 covariance matrix      tracers of large-scale structure, labelled X and Y, these dispersions
+                                                                            are given in terms of the angular power spectra by
+             ⊺            ⊺ !
+        dk dk       dk dc                                                               ∫ ∞
+C=           ⊺            ⊺ .                                        (13)                    d𝑘 X
+        dk dc       dc dc                                                   𝐶ℓXY = 4𝜋            Δ (𝑘) ΔℓY (𝑘) P (𝑘),                        (17)
+                                                                                         0    𝑘 ℓ
+The structure of this covariance will depend on whether we are
+working on the full sky or the cut sky. For full-sky coverage each          where ΔℓX (𝑘) is the harmonic transfer function of X, and P (𝑘) is the
+block matrix is proportional to the identity matrix (on account of          (dimensionless) power spectrum of primordial curvature perturba-
+isotropy), but in general it is more complex.                               tions 𝜁 (k) defined by ⟨𝜁 (k) 𝜁 ∗ (k′ )⟩ = (2𝜋) 3 𝛿D (k−k′ ) 2𝜋 2 P (𝑘)/𝑘 3 .
+   Note on account of equation (11) that the harmonic coefficients are      The analytic forms of the kinematic (X = k) and clustering (Y = c)
+linearly related to the dipole vectors, so are also Gaussian distributed.   transfer functions are presented in Appendix A. Note that the clus-
+We will switch to the harmonic description (e.g. in Appendix D),            tering transfer function depends on the sample’s redshift distribution
+which is more convenient when incorporating a masked.                       𝑝 𝑧 (𝑧); this has been estimated by S21 by cross-matching a subsample
+                                                                            of their sources with those in a subregion of SDSS (Stripe 82).
+                                                                               Since dk = 𝐴k 𝜷, where 𝜷 = v𝑂 /𝑐 and 𝐴k ≡ 2 + 𝑥(1 + 𝛼),
+3.2 Probability distribution of the amplitude                               to fix the statistics of the kinematic dipole we will need a model
+We are of course interested in the amplitude of the dipole, 𝐷 =             of the local velocity. We will take this velocity to be composed of
+|dk + dc |, and in particular its distribution 𝑝(𝐷), the theoretical        a smooth part v 𝑅 and a stochastic part vvir , i.e. v𝑂 = v 𝑅 + vvir .
+ΛCDM prior. It can be computed as follows. Since the amplitude              The smooth part, coherent over large scales, can be described using
+depends on the individual dipoles, 𝐷 ≡ |dk + dc |, we have by the           linear perturbation theory; on the other hand the stochastic part, due
+chain rule                                                                  to the virial motions of clusters, is nonlinear in nature. Given that v 𝑅
+        ∫          ∫                                                        and vvir arise from different physical processes, on different length
+𝑝(𝐷) =       d3 dk   d3 dc 𝑝(𝐷 | dk , dc ) 𝑝(dk , dc ),        (14)         scales, we will take these two types of motion to be uncorrelated,
+                                                                                  ⊺
+                                                                            ⟨v 𝑅 vvir ⟩ = ⟨v 𝑅 ⟩⟨vvir ⟩ ⊺ = 0.
+i.e. we marginalise over each dipole. Here 𝑝(dk , dk ) = N (0, C),             The coherent part v 𝑅 is sourced by the matter distribution,
+whereas the relation between the amplitude
+                                            and the dipoles is fixed,      smoothed by a spherically-symmetric window function with char-
+so 𝑝(𝐷 | dk , dc ) = 𝛿D 𝐷 − |dk + dc | .
+   In the case of full-sky coverage the statistics of the dipoles
+are isotropic, and the marginalisation (14) yields the Maxwell–
+Boltzmann distribution, as is well known. In the more realistic case        1 Although dc here is not strictly a velocity, it is related to the underlying
+of partial-sky coverage the PDF is no longer Maxwellian; in general,
+                                                                            density field 𝛿 (x) (see Appendix A) so we will also consider it a ‘velocity’,
+the variances of each component are not identical. However, with the        with some associated dispersion.
+Galactic plane cut of S21 the marginalisation can still be done. We         2 In the case of full-sky coverage we recover the Maxwellian, which has
+find (see Appendix C for details)                                           identical dispersion along each axis, Δ2𝑥 = Δ2𝑦 = Δ2𝑧 ≡ Δ2 , with Δ2 =
+                       √︁                                                                                                                 √︁
+                                                                              2 +2𝜌 𝜎 𝜎 + 𝜎 2 . We then have for the r.m.s. amplitude ⟨𝐷 2 ⟩ = 3Δ,
+                                                                                                                                                     √
+                              𝐷          𝐷  d𝐷                           𝜎kk         kk cc
+𝑝(𝐷) d𝐷 = (1 − 𝜀) F |𝜀| √             𝑓MB √       √      ,        (15)                         √︁ cc         √︁
+                              2Δ 𝑧          2Δ 𝑧    2Δ 𝑧                    and mean ⟨𝐷⟩ = 8/ 𝜋 Δ ≈ 0.92 ⟨𝐷 2 ⟩.
+
+MNRAS 000, 1–15 (2023)
+                                                                               Bayesian Analysis of the Number-Count Dipole                               7
+
+Table 2. Cluster masses considered and the corresponding smoothing scales.                    1.0                                       R = 1.26 h 1Mpc
+                               2 + 𝜎 2 ) 1/2 are the one-dimensional disper-
+Here 𝜎vir , 𝜎𝑅 , and 𝜎tot = ( 𝜎vir   𝑅
+sions.
+                                                                                              0.5
+𝑀 [ℎ −1 𝑀⊙ ] 𝑅 [ℎ −1 Mpc] 𝜎vir [km s −1 ] 𝜎𝑅 [km s −1 ] 𝜎tot [km s −1 ]
+     1012           1.26             49               306        310                          0.0
+     1013           2.71            105               304        321                          1.0
+     1014           5.85            226               295        372
+                                                                                                                                        R = 2.71 h 1Mpc
+     1015           12.6            488               276        561
+                                                                                              0.5
+
+
+                                                                                p(D) / pmax
+acteristic length 𝑅, i.e.
+                                                                                              0.0
+                                                                                              1.0
+          ∫
+v 𝑅 (x) ≡     d3 x′ 𝑊 𝑅 (x − x′ ) v(x′ )                                                                                                R = 5.85 h 1Mpc
+          ∫                       
+               d3 k −ik 𝐻0 𝑓0                                                                 0.5
+        =                            𝑊 (𝑘 𝑅) 𝛿(k) e −ik·x .             (18)
+              (2𝜋) 3 𝑘        𝑘
+
+Here 𝑓0 ≈ Ω0.55 𝑚0
+                     is the present-day growth rate, and in the second                        0.0
+line we have used the linearised continuity equation to relate the                            1.0
+                                                                                                                                        R = 12.6 h 1Mpc
+velocity to the matter distribution. In this work we adopt a spherical
+top-hat filter for which 𝑊 (𝑘 𝑅) = 3 𝑗 1 (𝑘 𝑅)/(𝑘 𝑅), where 𝑅 is the                          0.5
+comoving Lagrangian radius associated with mass 𝑀 through 𝑀 =
+4𝜋𝑅 3 𝜌¯ 𝑚0 /3.
+                                                                                              0.0
+   The virial motion is assumed to be that of an isothermal sphere                               0.0   0.5   1.0   1.5   2.0    2.5    3.0     3.5     4.0
+of mass 𝑀 (Sheth & Diaferio 2001). Then, by the virial theorem,
+  2 ∝ 𝑀/𝑅
+𝜎vir            vir ∝ 𝑀
+                         2/3 , and by isotropy ⟨v v⊺ ⟩ = 𝜎 2 I . We                                            Amplitude D / DCMB
+                                                   vir vir     vir 3
+will compute the present-time velocity dispersion using the fitting
+                                                                                Figure 4. Comparison between the theoretical prior (red) and the recovered
+formula (Bryan & Norman 1998)                                                   posterior (blue; as shown in Fig. 2) of the dipole amplitude. (Note that the
+                                               1/3                            posterior is based on a uniform prior on 𝐷.) In each subplot – corresponding
+              1                        𝑀
+                                                     km s −1 ,
+                            1/6
+𝜎vir (𝑀) = √ 476𝑔 𝜎 Δvir                                             (19)       to a different smoothing length, or velocity dispersion – we show the the-
+                3                 1015 ℎ −1 𝑀⊙                                  oretical prior with contributions from clustering (solid curve) and without
+                                                                                them (dotted curve); the dashed curve indicates the distribution when both
+where 𝑔 𝜎 = 0.9, and Δvir = 18𝜋 2 + 60𝑦 − 32𝑦 2 , with 𝑦 = Ω𝑚0 − 1.
+                                                                                clustering and the maximal source-evolution correction are included (𝜌 = 1;
+  In summary, the dispersions 𝜎k2 k , 𝜎k2 c , 𝜎c2𝑥 c 𝑥 , etc, are given         see equation (25)). The vertical lines indicate the means of the respective
+                                       𝑥 𝑥      𝑥 𝑥
+                                                             2 , 𝜎2 ,
+in terms of linear combinations of the full-sky dispersions 𝜎kk                 probability densities. Here we have taken 𝑥 = 1.7 (corresponding to a mag-
+                                                                  kc
+      2
+and 𝜎cc , (see Appendix D3 for full expressions), which in terms of             nification bias of 𝑠 = 2𝑥/5 = 0.68), and adopted the Planck 2018 best-fit
+                                                                                spatially-flat ΛCDM cosmology (Planck Collaboration et al. 2020b).
+the angular power read
+       3 kk              2
+ 2
+𝜎kk =    𝐶1 + 𝐴k2 𝜎vir /𝑐 ,                                            (20a)    independent of 𝑅). However, the covariance between clustering and
+      4𝜋
+ 2     3   cc                                                                  kinematics (e.g. 𝜎k2 c ) varies depending on 𝑅, as with the purely
+𝜎cc =     𝐶 + 1/ 𝑁¯ ,                                                  (20b)                        𝑥 𝑥
+                                                                                kinematic dispersion.
+      4𝜋 1
+ 2     3 kc                                                                        Clearly our results will depend on the rather subjective value of
+𝜎kc =    𝐶 ,                                                           (20c)    𝑅 (or 𝑀). Continuing our probabilistic approach, one way around
+      4𝜋 1
+                                                                                this is to simply marginalise over this uncertainty. In order to do this
+where 𝐶1kk , 𝐶1cc , and 𝐶1kc are evaluated using equation (17) and the          we need to assign a prior 𝑝(𝑀), the distribution of masses. This
+appropriate transfer functions. For the clustering dispersion we have           is given by the halo mass function d𝑛/d𝑀, for which we use the
+also taken into account that number counts are Poisson distributed,             mass function of Sheth & Tormen (1999). Thus the distribution of
+thus generating in 𝜎cc  2 a shot-noise contribution 𝐶 shot = 1/ ¯
+                                                               𝑁, where
+                                                     1                          amplitudes, marginalised over all masses between some interval, is
+𝑁¯ = 𝑁tot /(4𝜋 𝑓sky ) is the mean number-count density. In this work                      ∫                         ∫
+                                                                                                                                       𝑀 d𝑛
+𝑁tot = 1, 355, 352 and here 𝑓sky = 0.5, giving 𝑁¯ = 215, 711 (about             𝑝(𝐷) =        d𝑀 𝑝(𝐷 | 𝑀) 𝑝(𝑀) =        d𝑀 𝑝(𝐷 | 𝑀)            , (22)
+69 sources per square degree). Note that with the kinematic trans-                                                                    𝜌 𝑚 d𝑀
+fer function (A10) the kinematic dispersion may also be written as              where 𝑝(𝐷 ∫| 𝑀) is the probability distribution given by equation (14)
+  2 = 𝐴2 (𝜎 2 + 𝜎 2 )/𝑐 2 , with the usual (one-dimensional) velocity
+𝜎kk                                                                             and 𝜌 𝑚 = d𝑀 𝑀d𝑛/d𝑀 (all matter in halos). This distribution
+         k 𝑅         vir
+dispersion                                                                      is shown in Fig. 5. Compared with equation (15), this distribution
+                                                                                exhibits a slightly heavier tail; this is also reflected in the difference
+       1 ∞ 𝑘 2 d𝑘 𝐻0 𝑓0 2 2
+         ∫                    
+  2                                                                             between the mean and mode (cf. Fig. 4).
+𝜎𝑅 =                             𝑊 (𝑘 𝑅) 𝑃(𝑘),                     (21)
+       3 0      2𝜋 2       𝑘
+where 𝑃(𝑘) is the matter power spectrum. The velocity dispersions
+                                                                                3.3 Effect of source evolution on dk
+considered in this work are given in Table 2. For each velocity dis-
+persion we show in Fig. 4 the corresponding PDF presented earlier               The kinematic dipole as given by equation (3) is idealised given that
+[equation (15)]. Note that in all PDFs the dispersions corresponding            the source population likely evolves over time (Dalang & Bonvin
+to shot noise and clustering are fixed to the same values (they are             2022). Recall that this equation is based on a uniform sample of radio
+
+                                                                                                                                 MNRAS 000, 1–15 (2023)
+8               Dam, Lewis & Brewer
+
+              1.0                                                               i.e. if 𝜌 ≠ 0. Although we do not have 𝑥(𝑧) nor 𝑝(𝑥), we do know
+
+
+
+p(D) / pmax
+                                                                                its mean, 𝑥¯ = 1.7, as obtained from the whole sample. Based on this
+                                                                                information alone we can nevertheless make progress. Continuing
+              0.5                                                               our Bayesian approach, we shall fix 𝑝(𝑥) according to the principle
+                                                                                of maximum entropy (Jaynes 2003), that is,∫ we choose for 𝑝(𝑥) that
+                                                                                which maximises the information entropy d𝑥 𝑝(𝑥) ln 𝑝(𝑥), subject
+              0.0
+                 0.0   0.5   1.0   1.5   2.0    2.5     3.0     3.5     4.0     to the constraint of known mean 𝑥¯ and the physical requirement
+                               Amplitude D / DCMB                               that 𝑥 ≥ 0. This leads us to 𝑝(𝑥) = 𝜆e −𝜆𝑥 , with 𝜆 = 1/ ¯𝑥, i.e. the
+                                                                                exponential distribution. The mean is of course ¯𝑥, and the variance
+Figure 5. Comparison between the posterior and the marginalised theoretical     𝜎𝑥2 = 𝑥¯ 2 . Separately, using the empirical distribution of 𝛼 obtained
+prior (22). Here we use 𝑀min = 1012 ℎ −1 𝑀⊙ and 𝑀max = 1015 ℎ −1 𝑀⊙ ,           by S21, we determine 𝛼¯ = 1.26 and 𝜎𝛼 = 0.597.
+and we include all contributions from clustering (which again have negligible      We can now estimate 𝐴¯ k using equation (25). Though this requires
+impact).                                                                        the unknown correlation coefficient 𝜌, we do however have an upper
+                                                                                limit on it. Thus with 𝜌 = 1 we have a maximum correction of
+                                                                                𝜌𝜎𝑥 𝜎𝛼 ≤ 1.7 × 0.597 = 1.0. It should be noted that this is not a
+sources, each with identical spectral index 𝛼, producing an integral            strict upper limit for it depends on what one assigns to the rather
+source count with constant slope 𝑥 at the flux density limit (Ellis &           uncertain 𝑝(𝑥). With this caveat in mind, we estimate 𝐴¯ k ≤ 6.7,
+Baldwin 1984). In practice, there will be some amount of population             that is, we have a correction to the standard prefactor (𝐴k = 5.8)
+variance among the measured 𝛼 (as found by S21 in their CatWISE                 of no more than 17%. The distribution corresponding to this upper
+sample). Although this may be due to some intrinsic variation in                limit is shown in Fig. 4 (see dashed curve), where we see that the
+AGN emission, it is also possible that it is in part due to 𝛼 having            improvement in the tension is modest at best. Clearly, in order to
+some dependence on redshift. Moreover, in a flux-limited survey,                fully reconcile the observed dipole amplitude in this manner we
+the magnification bias 𝑠 = 2𝑥/5 generally depends on redshift: for              would require a substantially larger correction. But even with full
+a fixed flux threshold, the number of unobserved sources grows as               knowledge of both 𝑥(𝑧) and 𝛼(𝑧), a correction of the needed size
+the luminosity threshold is increased (i.e. the slope 𝑥 is an increasing        seems unlikely, as mentioned in Dalang & Bonvin (2022).
+function of redshift).
+   Revisiting the derivation of equation (3) in a more general context,
+Dalang & Bonvin (2022) showed that when allowing 𝑥 = 𝑥(𝑧) and                   3.4 Assessing the tension
+𝛼 = 𝛼(𝑧) the kinematic dipole becomes
+                          ∫                                                     Fig. 4 gives a side-by-side comparison of the CatWISE posterior
+                                                                              together with the theoretical probability distribution of 𝐷 according
+dk = 𝐴¯ k 𝜷, with 𝐴¯ k ≡      d𝑧 𝑝 𝑧 (𝑧) 2 + 𝑥(𝑧)(1 + 𝛼(𝑧)) ,       (23)
+                                                                                to ΛCDM (evaluated using the empirical distributions of the red-
+i.e. the prefactor in the standard formula (3) is replaced by its average       shifts and measured spectral indices). The first point to note is that
+over the source redshift distribution.3 (Note that the velocity 𝜷 is still      the clustering signal is much weaker than the kinematic signal. In
+given at the observer’s position.) This integrated dipole generalises           particular, the contribution from cross-correlations between the clus-
+the standard form, which is recovered when either 𝑥 or 𝛼 are redshift           tering and kinematic dipole is roughly an order of magnitude larger
+independent, or one observes at fixed redshift.                                 than the clustering signal (but still small compared to the kinematic
+    Evaluating the integrated dipole requires knowledge of 𝑥(𝑧), which          signal). Furthermore, we have set 𝑏 Q = 2 using the Croom et al.
+we here do not have without a measurement of the quasar luminosity              (2005) quasar bias parametrisation for our mean redshift 𝑧¯ = 1.2,
+function (Wang et al. 2020; Guandalin et al. 2022). Since 𝐴¯ k is               although we note that 𝑝(𝐷) is rather insensitive to the choice of
+given as the expectation over the sample we will instead consider an            𝑏 Q and time dependence, the main contribution coming from the
+equivalent but more suggestive form:                                            kinematic terms. Indeed, the fact that the clustering signal is small is
+       ∫      ∫                                                                 not entirely surprising: the quasar sample is made up in large part of
+                                                                              sources mostly at moderate to high redshifts, with the vast majority
+𝐴¯ k =     d𝑥    d𝛼 𝑝(𝑥, 𝛼) 2 + 𝑥(1 + 𝛼) ,                           (24)
+                                                                                (99%) of sources at 𝑧 > 0.1, so that a large clustering dipole from a
+where 𝑝(𝑥, 𝛼) is the joint distribution, for which we have from S21             local population of sources is not expected. Nevertheless, this con-
+an empirical estimate of its marginal 𝑝(𝛼) (based on measurements               firms that, even with a more complete calculation of the impact of
+of 𝛼 from W1 and W2 bands). From this equation we have that                     clustering on the dipole (including magnification bias among other
+[cf. equation (3)]                                                              effects), the kinematic contribution to the CatWISE dipole remains
+                                                                              the dominant component.
+𝐴¯ k = 2 + ¯𝑥(1 + ¯𝛼) + 𝜌𝜎𝑥 𝜎𝛼 = 𝐴k + 𝜌𝜎𝑥 𝜎𝛼 ,                    (25)             A comparison with the predictions on the full sky (Appendix C1)
+              ∫                  ∫                                              shows that the masking of the Galactic plane causes a significant loss
+where 𝑥¯ = d𝑥 𝑥 𝑝(𝑥) and 𝛼¯ = d𝛼 𝛼𝑝(𝛼) denote the means; 𝜎𝑥 =
+                                                                                of dipole power, and thus a decrease in the expected dipole amplitude.
+⟨(𝑥 − ¯𝑥) 2 ⟩ 1/2 and 𝜎𝛼 = ⟨(𝛼 − ¯𝛼) 2 ⟩ 1/2 the variances; and 𝜌 ≡             This is evident if we compare 𝑝(𝐷) with the mask (Fig. 4) and
+⟨(𝑥 − ¯𝑥) (𝛼 − ¯𝛼)⟩/𝜎𝑥 𝜎𝛼 the correlation coefficient between 𝑥 and 𝛼.          without the mask (Fig. C1): the presence of the mask suppresses the
+Thus we have a correction to the standard formula if ⟨𝑥𝛼⟩ ≠ ⟨𝑥⟩⟨𝛼⟩,             tail probabilities, shifting the mean towards smaller values. While
+                                                                                the mixing of modes does result in a leakage of power from high
+3                                                                               multipoles into the dipole, it is not nearly enough to compensate the
+   Here we integrate along redshift instead of comoving distance, as done in
+Dalang & Bonvin (2022); both expressions of dk , however, are equivalent        reduction in power of the dipole itself. This is clear from the shift of
+at linear order. Alternatively, instead of 𝛼(𝑧), the integrated dipole can be   the distribution to smaller 𝐷, which makes prominent a long tail by
+expressed in terms of the evolution bias 𝑓evo (𝑧), which parametrises how a     which rather large amplitudes can still be accommodated by ΛCDM.
+tracer’s population number evolves over time (Maartens et al. 2018; Nadolny        To what extent is the ΛCDM prior compatible with the posterior
+et al. 2021; Dalang & Bonvin 2022).                                             found? One way to summarise the discrepancy seen in Fig. 4 is to
+
+MNRAS 000, 1–15 (2023)
+                                                                               Bayesian Analysis of the Number-Count Dipole                             9
+                                                                                4 CONCLUSIONS
+        150        R = 1.26 h 1Mpc
+                                                                                We have reanalysed the CatWISE quasar sample of Secrest et al.
+                   R = 2.71 h 1Mpc                                              (2021b, S21) using a Bayesian approach. By comparison of sev-
+        125        R = 5.85 h 1Mpc                                              eral hypotheses, we found that the data was best described by
+                   R = 12.6 h 1Mpc                                              a dipole with amplitude 𝐷 = (19 ± 2) × 10 −3 and direction
+                                                                                                    .◦ 9 , 41.◦ 8 ± 5.◦ 0). Several parametric models were
+        100                                                                     (𝑙, 𝑏) = (237.◦ 2+7
+                                                                                                 −8.◦ 0
+
+p( D)
+                                                                                investigated. With the dipole amplitude free to vary, this dipole di-
+        75                                                                      rection is only mildly preferred over a dipole aligned with the CMB,
+                                                                                more so than that found by S21. However, it is important to note
+        50                                                                      that the amplitude is considerably larger than expected from the con-
+                                                                                ventional kinematic interpretation: accepting that the CMB dipole is
+        25                                                                      produced entirely by our kinematic motion, our dipole converts to
+                                                                                a speed of 1002 km s −1 relative to the CMB frame, a factor of 2.7
+                                                                                larger than the putative speed of 370 km s −1 . Taking into account the
+         0
+              4            2             0               2              4       full posterior distribution (marginalising over all other parameters)
+                                      D / DCMB                                  we find a discrepancy at the 5.7𝜎 level. While our inferred amplitude
+                                                                                is somewhat larger than that found by S21 using a different estima-
+                                                                                tion technique (𝐷 = 15.54 × 10 −3 ), the qualitative conclusion of
+Figure 6. Normalised shift distribution (26) derived from the ΛCDM prior        an anomalously large amplitude (with direction in good agreement
+and posterior distributions for a range of smoothing lengths (as in Fig 4).
+                                                                                with that of the CMB dipole) appears to be robust to methodological
+Shown in dashed curves are the corresponding distributions with maximal
+                                                                                differences of analysis.
+source-evolution correction (𝜌 = 1).
+                                                                                   A comparison of the posterior with the theoretical prior indicates
+                                                                                the extent of the discrepancy for ΛCDM. In order to perform this
+                                                                                comparison we applied a mask to the underlying number-count fluc-
+compute the ‘tension statistic’ 𝑇 ≡ |𝜇1 − 𝜇2 |/(𝜎12 + 𝜎22 ) 1/2 for two         tuations, imposing the same Galactic plane cut as in the analysis. The
+distributions 𝑝 1 and 𝑝 2 , with means 𝜇1 and 𝜇2 , and variances 𝜎12            mask was found to have a considerable effect on the likely values of
+and 𝜎22 . But this is a rather crude measure when at least one of the           the dipole amplitude and its distribution. In particular, we found that
+distributions are non-Gaussian, as is the case for our prior (15). A            the full-sky distribution overestimates the likely values of the am-
+more comprehensive way to quantify the discrepancy is to consider               plitude, worsening the tension. Additionally, we have considered a
+the PDF of the differences Δ𝐷 = 𝐷 1 − 𝐷 2 (Raveri & Hu 2019):                   redshift dependence in the spectral properties of the kinematic dipole,
+           ∫ ∞                                                                  finding a slight easing of the tension – though we cannot claim with
+𝑝(Δ𝐷) =         d𝐷 𝑝 1 (𝐷 − Δ𝐷) 𝑝 2 (𝐷),                           (26)         confidence that such an effect is small, given the limitations of our
+              −∞                                                                analysis relating to the unknown CatWISE distribution (or redshift
+where 𝑝 1 (𝐷 1 ) is the theoretical prior and 𝑝 2 (𝐷 2 ) is the posterior.      dependence) of the magnification bias. But based on our present
+Note that because there is zero probability of finding a negative               findings we conclude that the CatWISE dipole remains a puzzle for
+amplitude, this is essentially a one-sided convolution. (This integral          the standard model of cosmology.
+is evaluated using a posterior smoothed by kernel density estimation.)
+The result is shown in Fig. 6. Unsurprisingly, we see that 𝑝(Δ𝐷) has
+most support when Δ𝐷 is far from zero, peaking around Δ𝐷 ≃                      NOTE ADDED
+2𝐷 CMB (corresponding roughly to the difference of the means of
+the prior and posterior distribution). Thus                                     Since this manuscript was submitted, a work by Wagenveld, Klöckner
+                                              ∫ ∞the probability of finding     & Schwarz (2023) appeared in which the radio dipole is estimated
+any Δ𝐷 > 0 is given by 𝑃(Δ𝐷 > 0) = 0 dΔ𝐷 𝑝(Δ𝐷). From this
+probability we can compute a statistical significance     using the ‘rule of    from the Rapid ASKAP Continuum Survey (RACS) and the NRAO
+                                                  √
+thumb’ that the number of sigma be equal to 2 erf −1 (𝑃(Δ𝐷 > 0)).4              VLA Sky Survey (NVSS) catalogue data, extending the Bayesian
+Depending on the choice of 𝑅, we find tensions at the level of 5.8𝜎,            method presented here to take into account systematics relevant to
+5.5𝜎, 4.3𝜎, and 2.1𝜎 (from smallest to largest 𝑅). Note that these              these catalogues. From a combined analysis of RACS and NVSS,
+tensions are only marginally reduced when including the source-                 they find a dipole with direction perfectly aligned with the CMB but
+evolution corrections described in Section 3.3.                                 with amplitude exceeding the expected value by a factor of about
+   By contrast when we marginalise over all masses between our                  three at 4.8𝜎, in good agreement with the results reported here.
+lower and upper limit, 𝑀 = 1012 ℎ −1 𝑀⊙ and 𝑀 = 1015 ℎ −1 𝑀⊙
+(corresponding to 𝑅 = 1.26ℎ −1 Mpc and 𝑅 = 12.6ℎ −1 Mpc), we find
+by equation (22) a tension of 3.8𝜎 (and 3.6𝜎 with source-evolution              ACKNOWLEDGEMENTS
+correction). This is still a considerable tension but less severe than
+                                                                                We thank Secrest et al. (2021b) for making public their data and
+suggested above. The slight easing of the tension is due to the fact
+                                                                                analysis code, and the anonymous referee for a helpful report. LD
+that the tail probabilities of this distribution are larger than that of the
+                                                                                thanks Camille Bonvin for useful discussions on the effect of source
+corresponding distribution without marginalisation. This is evident
+                                                                                evolution. LD was supported by the Australian Government Research
+in Fig. 5, which shows a small overlap of the tail with the posterior.
+                                                                                Training Program. A preliminary version of this work appeared in
+                                                                                Dam (2021). GFL received no financial support for this research.
+                                                                                This research made use of the Python packages Numpy (Harris
+4 This reduces to the aforementioned 𝑇 statistic in the case that 𝑝 (Δ𝐷) is     et al. 2020), Matplotlib (Hunter 2007), HEALPix (Górski et al.
+Gaussian.                                                                       2005; Zonca et al. 2019), corner (Foreman-Mackey 2016), and
+
+                                                                                                                               MNRAS 000, 1–15 (2023)
+10       Dam, Lewis & Brewer
+GetDist (Lewis 2019). Initial explorations of the posterior probabil-           Jaynes E. T., 2003, Probability Theory: The Logic of Science. Cambridge
+ity space were made using emcee (Foreman-Mackey et al. 2013) and                    University Press
+dynesty (Skilling 2004; Skilling 2006; Higson et al. 2019; Speagle              Kaiser N., 1987, MNRAS, 227, 1
+2020).                                                                          Lacy M., et al., 2020, PASP, 132, 035001
+                                                                                Lewis A., 2019, arXiv e-prints, p. arXiv:1910.13970
+                                                                                Maartens R., 2011, Philosophical Transactions of the Royal Society of London
+                                                                                    Series A, 369, 5115
+STATEMENT OF CONTRIBUTION                                                       Maartens R., Clarkson C., Chen S., 2018, J. Cosmology Astropart. Phys.,
+                                                                                    2018, 013
+The statistical analysis of the CatWISE quasar sample, including                Mainzer A., et al., 2014, ApJ, 792, 30
+the exploration of the posterior distributions and calculation of the           Marocco F., et al., 2021, ApJS, 253, 8
+Bayesian evidence was primarily undertaken by GFL and BJB, after                Mauch T., Murphy T., Buttery H. J., Curran J., Hunstead R. W., Piestrzynski
+preliminary analysis with LD. The calculation of the dipole’s likely                B., Robertson J. G., Sadler E. M., 2003, MNRAS, 342, 1117
+amplitude and the comparison with the posterior distributions was               McConnell D., et al., 2020, Publ. Astron. Soc. Australia, 37, e048
+undertaken by LD. All authors contributed to the interpretation of              Murray C., 2022, MNRAS, 510, 3098
+the results and the writing of the paper.                                       NIST DLMF 2023, NIST Digital Library of Mathematical Functions, https:
+                                                                                    //dlmf.nist.gov/
+                                                                                Nadolny T., Durrer R., Kunz M., Padmanabhan H., 2021, J. Cosmology
+                                                                                    Astropart. Phys., 2021, 009
+DATA AVAILABILITY                                                               Peebles P. J. E., 1980, The Large-Scale Structure of the Universe. Princeton
+                                                                                    University Press, Princeton, NJ
+The data and code used in this project will be made available upon              Peebles P. J., Wilkinson D. T., 1968, Physical Review, 174, 2168
+reasonable request to the authors.                                              Planck Collaboration et al., 2020a, A&A, 641, A3
+                                                                                Planck Collaboration et al., 2020b, A&A, 641, A6
+                                                                                Raveri M., Hu W., 2019, Phys. Rev. D, 99, 043506
+                                                                                Rengelink R. B., Tang Y., de Bruyn A. G., Miley G. K., Bremer M. N.,
+References                                                                          Roettgering H. J. A., Bremer M. A. R., 1997, A&AS, 124, 259
+Aluri P. K., et al., 2023, Class. Quant. Grav., 40, 094001                      Rubart M., Schwarz D. J., 2013, A&A, 555, A117
+Bengaly C. A. P., Maartens R., Santos M. G., 2018, J. Cosmology Astropart.      Rubart M., Bacon D., Schwarz D. J., 2014, A&A, 565, A111
+     Phys., 2018, 031                                                           Secrest N., von Hausegger S., Rameez M., Mohayaee R., Sarkar S.,
+Bengaly C. A. P., Siewert T. M., Schwarz D. J., Maartens R., 2019, MNRAS,           Colin J., 2021a, A Test of the Cosmological Principle with Quasars,
+     486, 1350                                                                      doi:10.5281/zenodo.4448512, https://doi.org/10.5281/zenodo.
+Blake C., Wall J., 2002, Nature, 416, 150                                           4448512
+Blas D., Lesgourgues J., Tram T., 2011, J. Cosmology Astropart. Phys., 2011,    Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., Colin
+     034                                                                            J., 2021b, ApJ, 908, L51
+Bonvin C., Durrer R., 2011, Phys. Rev. D, 84, 063505                            Sheth R. K., Diaferio A., 2001, MNRAS, 322, 901
+Brewer B. J., Foreman-Mackey D., 2018, Journal of Statistical Software, 86,     Sheth R. K., Tormen G., 1999, MNRAS, 308, 119
+     1–33                                                                       Siewert T. M., Schmidt-Rubart M., Schwarz D. J., 2021, A&A, 653, A9
+Bryan G. L., Norman M. L., 1998, ApJ, 495, 80                                   Singal A. K., 2011, ApJ, 742, L23
+Challinor A., Lewis A., 2011, Phys. Rev. D, 84, 043516                          Skilling J., 2004, in Fischer R., Preuss R., Toussaint U. V., eds, American
+Colin J., Mohayaee R., Rameez M., Sarkar S., 2017, MNRAS, 471, 1045                 Institute of Physics Conference Series Vol. 735, Bayesian Inference and
+Condon J. J., Cotton W. D., Greisen E. W., Yin Q. F., Perley R. A., Taylor          Maximum Entropy Methods in Science and Engineering. pp 395–405
+     G. B., Broderick J. J., 1998, AJ, 115, 1693                                Skilling J., 2006, Bayesian Analysis, 1, 833
+Cooray A., Sheth R. K., 2002, Phys. Rept., 372, 1                               Speagle J. S., 2020, MNRAS, 493, 3132
+Copi C. J., Huterer D., Starkman G. D., 2004, Phys. Rev. D, 70, 043515          Stern D., et al., 2012, ApJ, 753, 30
+Croom S. M., et al., 2005, MNRAS, 356, 415                                      Stewart J. M., Sciama D. W., 1967, Nature, 216, 748
+Dahlen F. A., Simons F. J., 2008, Geophys. J. Int., 174, 774                    Tiwari P., Nusser A., 2016, J. Cosmology Astropart. Phys., 2016, 062
+Dalang C., Bonvin C., 2022, MNRAS, 512, 3895                                    Turner M. S., 1991, Phys. Rev. D, 44, 3737
+Dam L., 2021, PhD thesis, https://hdl.handle.net/2123/27817                     Turner E. L., Ostriker J. P., Gott J. R. I., 1984, ApJ, 284, 1
+Darling J., 2022, Astrophys. J. Lett., 931, L14                                 Wagenveld J. D., Klöckner H. R., Schwarz D. J., 2023, A&A, 675, A72
+Di Dio E., Montanari F., Lesgourgues J., Durrer R., 2013, J. Cosmology          Wang M. S., Beutler F., Bacon D., 2020, MNRAS, 499, 2598
+     Astropart. Phys., 2013, 044                                                Wright E. L., et al., 2010, AJ, 140, 1868
+Domènech G., Mohayaee R., Patil S. P., Sarkar S., 2022, JCAP, 10, 019           Yoo J., Fitzpatrick A. L., Zaldarriaga M., 2009, Phys. Rev. D, 80, 083514
+Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377                            Zonca A., Singer L., Lenz D., Reinecke M., Rosset C., Hivon E., Gorski K.,
+Foreman-Mackey D., 2016, The Journal of Open Source Software, 1, 24                 2019, Journal of Open Source Software, 4, 1298
+Foreman-Mackey D., Hogg D. W., Lang D., Goodman J., 2013, Publications
+     of the Astronomical Society of the Pacific, 125, 306–312
+Gibelyou C., Huterer D., 2012, MNRAS, 427, 1994
+Górski K. M., Hivon E., Banday A. J., Wandelt B. D., Hansen F. K., Reinecke     APPENDIX A: DETAILS ON THE THEORETICAL DIPOLE
+     M., Bartelmann M., 2005, ApJ, 622, 759
+Guandalin C., Piat J., Clarkson C., Maartens R., 2022, arXiv e-prints, p.       Here we compute the kinematic and clustering dipoles in terms of
+     arXiv:2212.04925                                                           the harmonic transfer functions, Δℓk and Δℓc , respectively. First, we
+Harris C. R., et al., 2020, Nature, 585, 357                                    recall that for a general field 𝑂 ( n̂) the coefficients 𝑎 ℓ𝑚 can always
+Higson E., Handley W., Hobson M., Lasenby A., 2019, Statistics and Com-         be expressed as a k-space integral over the primordial perturbations,
+     puting, 29, 891                                                            weighted by the appropriate harmonic transfer function Δℓ (𝑘):
+Hivon E., Górski K. M., Netterfield C. B., Crill B. P., Prunet S., Hansen F.,                    ∫
+     2002, ApJ, 567, 2                                                                                d3 k ∗
+                                                                                𝑎 ℓ𝑚 = (−i) ℓ 4𝜋            𝑌 ( k̂) Δℓ (𝑘) 𝜁 (k).                   (A1)
+Hunter J. D., 2007, Computing in Science & Engineering, 9, 90                                        (2𝜋) 3 ℓ𝑚
+
+MNRAS 000, 1–15 (2023)
+                                                                                     Bayesian Analysis of the Number-Count Dipole                                  11
+Then given the transfer functions for any two observables, labelled                    we find
+𝐴 and 𝐵, the spectrum 𝐶ℓ𝐴𝐵 is given by                                                        ∫                 ∫ ∞            ∫
+                                                                                                       ∗                            d3 k
+              ∫ ∞                                                                      𝑎 ℓ𝑚 =   d2 n̂ 𝑌ℓ𝑚 ( n̂)     d𝑧 𝑝 𝑧 (𝑧)             𝛿Q (k, 𝑧)
+                       d𝑘 𝐴      𝐵                                                                               0                 (2𝜋) 3
+𝐶ℓ𝐴𝐵 = 4𝜋                 Δ (𝑘) Δℓ (𝑘) P (𝑘),                                 (A2)                              ∑︁       ′
+                                                                                                                   (−i) ℓ 4𝜋 𝑗ℓ ′ 𝑘 𝜒(𝑧) 𝑌ℓ∗′ 𝑚′ ( k̂)𝑌ℓ ′ 𝑚′ ( n̂)
+                                                                                                                                         
+               0        𝑘 ℓ                                                                                ×
+                                                                                                                ℓ ′ ,𝑚′
+where we assume a standard primordial (adiabatic) power spectrum                                         ∫      3
+                                                                                                               d k
+P (𝑘) defined by ⟨𝜁 (k)𝜁 ∗ (k′ )⟩ = (2𝜋) 3 𝛿D (k − k′ ) 2𝜋 2 P (𝑘)/𝑘 3 . In                 = (−i) ℓ 4𝜋           𝑌 ∗ ( k̂)
+principle, superhorizon isocurvature fluctuations can also be con-                                        (2𝜋) 3 ℓ𝑚
+                                                                                                     ∫ ∞                                               
+sidered, which are known to give rise to an intrinsic dipole in the                                                                             
+CMB (Turner 1991). However, it was recently shown (Domènech                                      ×        d𝑧 𝑝 𝑧 (𝑧) 𝑏 Q (𝑧) T𝛿 (𝑘, 𝑧) 𝑗ℓ 𝑘 𝜒(𝑧) + · · · 𝜁 (k),
+                                                                                                         0
+et al. 2022) that such modes cannot also induce a sizeable intrinsic
+dipole in the number counts.                                                           where in the second line we used the orthogonality of spherical
+   Now, using equations (A1) and (11), we find that the model pre-                     harmonics. Here we have inserted 𝛿Q (k, 𝑧) = 𝑏 Q (𝑧) 𝛿(k, 𝑧) + · · · =
+diction for the dipoles dX , X ∈ {k, c}, can be written as                             𝑏 Q (𝑧) T𝛿 (𝑘, 𝑧) 𝜁 (k) + · · · , where the ellipsis are corrections from
+                                                                                       redshift-space distortions, Doppler effects, and general-relativistic
+            √︂    ∫
+                3      d3 k †             X                                            corrections (see, e.g., Di Dio et al. 2013, appendix A, for complete
+dX = −4𝜋i                    U 𝒀 1 ( k̂) Δ1 (𝑘) 𝜁 (k),              (A3)               expressions). We thus have
+               4𝜋     (2𝜋) 3
+                                                                                                  ∫ ∞
+where 𝒀 1 ≡ (𝑌1−1 , 𝑌11 , 𝑌10 ) ⊺ and we have the unitary matrix
+                                                                                         c                                                    
+                                                                                       Δℓ (𝑘) =         d𝑧 𝑝 𝑧 (𝑧) 𝑏 Q (𝑧) T𝛿 (𝑘, 𝑧) 𝑗ℓ 𝑘 𝜒(𝑧) + · · · .    (A7)
+                                                                                                   0
+         √      √
+       1/ 2 i/ 2 0
+     © √        √          ª
+U = ­­−1/ 2 i/ 2 0®® ,                                           (A4)                  A2 Kinematic transfer function
+     « 0        0        1¬
+                                                                                       For the kinematic dipole recall that dk · n̂ = 𝐴k 𝜷 · n̂, with 𝐴k =
+                                                                                       2 + 𝑥(1 + 𝛼) and 𝜷 = v𝑂 /𝑐 = v(x = 0)/𝑐. In harmonics,
+with UU† = U† U = I3 . Note that U† 𝒀 1 is a vector containing the                                                            ∫
+ℓ = 1 real-valued spherical harmonics.                                                           ∑︁
+                                                       2 𝛿 K – is now                  dk · n̂ =    𝑏 𝐿 𝑀 𝑌𝐿 𝑀 ( n̂), 𝑏 𝐿 𝑀 =     d2 n̂ 𝑌𝐿∗ 𝑀 ( n̂) dk · n̂, (A8)
+  Computing the statistics of dX – i.e. ⟨𝑑X𝑖 𝑑Y 𝑗 ⟩ = 𝜎XY  𝑖𝑗                                    𝐿,𝑀
+                                            2 we can simply select
+straightforward. To obtain the dispersion 𝜎XY
+                                                                                       the calculation carries through in much the same way as with the
+the 𝑧-component, all components being statistically equivalent under
+                                                                                       previous calculation for number counts, provided that we keep x
+isotropy. Using orthogonality of spherical harmonics, we have
+                                                                                       arbitrary, setting x = 0 only at the end of the calculation. (Note that
+          ∫ ∞
+  2            d𝑘 X        Y              3 XY                                         since we are dealing with a pure dipole only 𝐿 = 1 coefficients are
+𝜎XY   =3           Δ (𝑘) Δ1 (𝑘) P (𝑘) =      𝐶 ,                (A5)
+           0    𝑘 1                      4𝜋 1                                          nonzero.) We thus write equation (11b) as
+                                                                                               ∫
+where we have used ⟨𝜁 (k) 𝜁 ∗ (k′ )⟩ = (2𝜋) 3 𝛿D (k − k′ ) 2𝜋 2 P (𝑘)/𝑘 3 .                               ∗
+                                                                                       𝑏 1𝑀 =      d2 n̂ 𝑌1𝑀 ( n̂) 𝐴k v 𝑅 (x = 0) · n̂/𝑐
+  Note that in this appendix the 𝑎 ℓ𝑚 ’s belong to the full sky. Those                         ∫                      ∫                        
+                                                                                                    2     ∗                 d3 k −ik · n̂ 𝐻0 𝑓0
+belonging to the cut sky can always be obtained in terms of the full-                        =     d n̂ 𝑌1𝑀 ( n̂) 𝐴k                              𝑊 (𝑘 𝑅) 𝛿(k)
+sky 𝑎 ℓ𝑚 ’s by geometric linear relations. The explicit expressions are                                                    (2𝜋) 3 𝑘        𝑐𝑘
+given later in Appendix D2.                                                                                                                                 (A9)
+                                                                                       and then use that with x = 𝜒n̂, where 𝜒 the comoving distance, the
+                                                                                       dipole −ik · n̂ can be expressed as −ik · n̂ = (𝜕 e −ik· 𝜒n̂ /𝜕 𝜒)| 𝜒=0 .
+A1 Clustering transfer function                                                        Now substituting the plane-wave expansion into equation (A9) we
+                                                                                       find
+Clustering gives rise to fluctuations 𝛿Q ( n̂) in the number counts. In                       ∫                       ∫                  
+                                                                                                         ∗                 d3 k 𝐻0 𝑓0
+spherical harmonics,                                                                   𝑏 1𝑀 =    d2 n̂ 𝑌1𝑀   ( n̂) 𝐴k                       𝑊 (𝑘 𝑅) 𝛿(k)
+                                                                                                                          (2𝜋) 3 𝑐 𝑘
+             ∞                                ∫                                                                     ∑︁                                       
+             ∑︁
+                                                         ∗                                                1 𝜕                               ∗
+𝛿Q ( n̂) =         𝑎 ℓ𝑚 𝑌ℓ𝑚 ( n̂),   𝑎 ℓ𝑚 =       d2 n̂ 𝑌ℓ𝑚 ( n̂) 𝛿Q ( n̂).   (A6)                     ×                (−i) ℓ 4𝜋 𝑗ℓ (𝑘 𝜒)𝑌ℓ𝑚  ( k̂)𝑌ℓ𝑚 ( n̂)
+                                                                                                           𝑘 𝜕𝜒                                                 𝜒=0
+             ℓ,𝑚                                                                                                     ℓ,𝑚
+                                                                                                         ∫                                   
+                                                            Í1
+Here we are interested in the dipole dc · n̂ = 𝑚=−1 𝑎 1𝑚 𝑌1𝑚 ( n̂).                                           d3 k                      𝐻0 𝑓0                1 𝜕 𝑗1
+                                                                                             = (−i) 4𝜋               𝑌 ∗ ( k̂) 𝐴k
+                                                                                                                    3 1𝑀
+                                                                                                                                                𝑊 (𝑘 𝑅) 𝛿(k)           ,
+                                                                                                             (2𝜋)
+                           ∫                                                                                                             𝑐𝑘                  𝑘 𝜕 𝜒 𝜒=0
+Substituting 𝛿Q ( n̂) = d𝑧 𝑝 𝑧 (𝑧) 𝛿Q ( n̂, 𝑧), with 𝑝 𝑧 the normalised
+redshift distribution, and the Fourier representation of 𝛿Q ( n̂, 𝑧), we               where in the second line we have used the orthogonality of spherical
+have                                                                                   harmonics. Since 𝑗 1 (𝑥) = 𝑥/3 + O (𝑥 3 ), the derivative with respect to
+       ∫                   ∫ ∞                                                         𝜒, at 𝜒 = 0, exactly evaluates to 𝑘/3; inserting 𝛿(k) = T𝛿 (𝑘, 𝑧) 𝜁 (k),
+                  ∗
+𝑎 ℓ𝑚 =     d2 n̂ 𝑌ℓ𝑚 ( n̂)      d𝑧 𝑝 𝑧 (𝑧) 𝛿Q ( n̂, 𝑧)                                 we finally get
+       ∫                   ∫0 ∞            ∫
+                                                 d3 k                                                  ∫                                               
+     =            ∗
+           d2 n̂ 𝑌ℓ𝑚 ( n̂)      d𝑧 𝑝 𝑧 (𝑧)             𝛿Q (k, 𝑧) e
+                                                                   −ik·𝜒 (𝑧) n̂                             d3 k ∗          1               𝐻0 𝑓0
+                                                                                ,      𝑏 1𝑀 = (−i) 4𝜋            𝑌 ( k̂) 𝐴k 𝑊 (𝑘 𝑅)                 T𝛿 (𝑘) 𝜁 (k),
+                             0                  (2𝜋) 3                                                     (2𝜋) 3 1𝑀        3                𝑐𝑘
+where in the second line we write x                        =     𝜒(𝑧) n̂.              where T𝛿 (𝑘) is evaluated at 𝑧 = 0. Note that 𝑏 Q does not appear here
+Now substituting the plane-wave expansion, e −ik·𝜒n̂                   =               because v is sourced by matter perturbations. Since this expression
+Í        ℓ             ∗
+ ℓ,𝑚 (−i) 4𝜋 𝑗 ℓ (𝑘 𝜒)𝑌ℓ𝑚 ( k̂)𝑌ℓ𝑚 ( n̂), into the foregoing expression                is in the form of equation (A1) we can immediately read off the
+
+                                                                                                                                              MNRAS 000, 1–15 (2023)
+12       Dam, Lewis & Brewer
+kinematic transfer function from the contents of the square brackets:             can be written in block matrix form (13), with each block propor-
+                                                                                                                             ⊺
+                                                                                  tional to the 3 × 3 identity matrix, ⟨dX dY ⟩ ∝ I3 , with X, Y ∈ {𝑘, 𝑐}.
+           1
+                       
+                         𝐻 𝑓
+                                                                                 In particular, we have that√the expected amplitude of the kinematic
+ k
+Δ1 (𝑘) =     𝐴k 𝑊 (𝑘 𝑅) 0 0 T𝛿 (𝑘).                                     (A10)     dipole is 𝐷 k ≡ ⟨d2k ⟩ 1/2 = 3 𝜎kk , and the expected amplitude of the
+           3              𝑐𝑘                                                                                              √
+                                                                                  clustering dipole is 𝐷 c ≡ ⟨d2c ⟩ 1/2 = 3 𝜎cc , where the root three is
+Note that because we evaluate v at x = 0 the transfer function T𝛿 (𝑘)             due to 𝜎kk and 𝜎cc being one-dimensional dispersions, while 𝐷 k and
+is simply evaluated at 𝑧 = 0 and not integrated. Further note that                𝐷 c is the total dispersion. Evaluating 𝜎kk , 𝜎cc , and 𝜎kc requires spec-
+to include source evolution, simply replace 𝐴k with its average 𝐴¯ k              ifying a cosmological model, but these are simply related to the ℓ = 1
+given by equation (25).                                                                                                                 2
+                                                                                  multipole of certain angular power spectra by 𝜎XY        = 3𝐶1XY /(4𝜋).
+                                                                                     Though C is a 6 × 6 matrix there are only three parameters needed
+                                                                                  to specify it (on account of isotropy). In analysing this matrix we find
+APPENDIX B: PIXELIZATION                                                          it convenient to therefore write it as a Kronecker product:
+                                                                                                                                      2 −1
+We can also consider the effect of the pixelization on the theoret-                                   !                                 !
+                                                                                           2
+                                                                                          𝜎kk    𝜎kc2                        2
+                                                                                                                           𝜎kk    𝜎kc
+                                                                                                                    −1
+ical power. At the field level, the pixelization of the number-count              C=        2       2
+                                                                                                        ⊗ I3 ,    C =        2        2
+                                                                                                                                            ⊗ I3 ,      (C1)
+fluctuations is given by                                                                  𝜎kc    𝜎cc                       𝜎kc    𝜎cc
+
+                                                                                  where I3 is the 3 × 3 identity matrix, and the inverse C −1 is the
+       ∫
+                  pix
+𝛿Q,𝑖 =     d2 n̂ 𝑊𝑖 ( n̂) 𝛿Q ( n̂),                             (B1)
+                                                                                  Kronecker product of the inverse of the two matrices.5 Thus we see
+           pix                                                                    that the covariances in C are essentially contained in a 2 × 2 matrix.
+where 𝑊𝑖 ( n̂) is the HEALPix pixel window function for the 𝑖th                      The square of the amplitude of the total dipole, 𝑌 ≡ 𝐷 2 = |dk +
+pixel, which is equal to zero, unless n̂ falls within the 𝑖th pixel,              dc | 2 , can be recast as the quadratic form
+                   pix
+in which case 𝑊𝑖 is equal to 1/Ωpix , with Ωpix being the pixel                                                             
+                                                                                            ⊺                  I   I3      1 1
+                                                                                                       A≡ 3
+                                                ∫        pix
+area. This window function is normalised, d2 n̂ 𝑊𝑖 ( n̂) = 1, so                  𝑌 = 𝑿 A𝑿,                            =         ⊗ I3 ,            (C2)
+                                                                                                               I3 I3       1 1
+that 𝛿Q,𝑖 is the average fluctuation in the 𝑖th pixel. Note that because
+the HEALPix pixel shape varies azimuthally there is no global pixel               where A is a 6×6 symmetric matrix. The moment generating function
+window function that applies to all pixels. Provided a large enough               𝑀𝑌 (𝑡) ≡ ⟨e𝑡𝑌 ⟩ can be written using the ‘law of the unconscious
+𝑁side is chosen this is not really a problem: the differences between             statistician’ as
+                                                                                             ∫                  ∫
+pixel window functions only becomes important when considering                                                             ⊺
+large ℓ, but this can always be remedied by choosing a larger 𝑁side .             𝑀𝑌 (𝑡) ≡       d𝑌 e𝑡𝑌 𝑝(𝑌 ) =   d6 𝑿 e𝑡 𝑿 A𝑿 𝑝( 𝑿),         (C3)
+   We will ignore the azimuthal variation in pixels, as is routinely
+                                                                                  i.e. in terms of the probability distribution of 𝑿. Before we compute
+done. Under this approximation pixelized fields are also statistically
+                                                                                  the second integral, we recall that 𝑀𝑌 (−𝑡) is the (unilateral) Laplace
+isotropic and the angular power spectrum of the pixelized field is
+  pix        pix                                                   pix            transform ℒ of the PDF 𝑝(𝑌 ):
+𝐶ℓ = ( 𝑊¯ ℓ ) 2 𝐶ℓ , where 𝐶ℓ is the unpixelized power, and 𝑊¯ ℓ is                                ∫ ∞
+the HEALPixpixel-averaged window function (Górski et al. 2005).
+         pix
+                                                                                  ℒ[ 𝑝(𝑌 )] (𝑡) ≡        d𝑌 e −𝑡𝑌 𝑝(𝑌 ) = 𝑀𝑌 (−𝑡).                   (C4)
+Since 𝑊¯ ℓ ≤ 1 there is a loss of power for all ℓ (more for larger ℓ). In                           0
+                                                    pix                           Therefore, once the moment generating function is in hand, and the
+this work 𝑁side = 64 with which we find that 𝑊¯ ℓ is equal to unity
+to within 0.5% for ℓ = 0 to ℓ = 20. As this power loss is negligible              sign of its argument is flipped, we recover the PDF by simply taking
+we have thus ignored the effects of pixelization on the theoretical               the inverse Laplace transform:
+power.                                                                                                             1
+                                                                                                                      ∫ 𝛾+i∞
+                                                                                              −1         
+                                                                                  𝑝(𝑌 ) = ℒ        𝑀𝑌 (−𝑡) (𝑌 ) ≡              d𝑡 e𝑡𝑌 𝑀𝑌 (−𝑡).    (C5)
+                                                                                                                  2𝜋i 𝛾−i∞
+
+APPENDIX C: DERIVATION OF 𝑝(𝐷)                                                    (Here 𝛾 is some large, positive constant, chosen so that the poles
+                                                                                  lie to the left of it in the complex plane.) In practice, we will not
+In this appendix we derive the probability distribution function 𝑝(𝐷)             have to perform such integrals as we can build the solution out of
+in both the full-sky and cut-sky regimes. The PDF in the former case              simpler, known transforms, by using the convolution properties of
+is well known; it is the Maxwellian. In the latter case, considering an           the Laplace transform.6
+arbitrary symmetric Galactic plane cut (the details of which will be                 To evaluate the second integral in equation (C3), we note that it has
+fixed in Appendix D1), we derive another long-tailed PDF, one that is             the basic form of a Gaussian convolution; because one ‘Gaussian’ is
+suppressed relative to the Maxwellian. The calculation comes down                 without its normalisation factor, we find after some straightforward
+to the marginalisation (14), which we evaluate through the moment                 matrix algebra
+generating function. The full-sky PDF is parametrised by 𝜎kk , 𝜎cc ,
+                                                                                                                          6
+                                                                                                                                 −1/2
+and 𝜎kc ; whilst the cut-sky PDF is parametrised by 𝜎k 𝑥 k 𝑥 , 𝜎k𝑧 k𝑧 ,                                       −1/2       Ö
+                                                                                  𝑀𝑌 (𝑡) = det I6 − 2𝑡AC              =         λ𝑗      ,              (C6)
+𝜎c 𝑥 c 𝑥 , 𝜎c𝑧 c𝑧 , 𝜎k 𝑥 c 𝑥 , and 𝜎k𝑧 c𝑧 (these are, however, linearly related
+                                                                                                                          𝑗=1
+to those of the full sky). The calculation is based on geometrical
+considerations; no cosmological model needs to be assumed.                        where in the second equality we have expressed the determinant in
+
+
+C1 Full sky                                                                       5 A −1 = (B ⊗ C) −1 = B −1 ⊗ C −1 .
+                                                                                  6 Perhaps the more obvious approach to obtain the PDF is to use the char-
+To set up the problem, construct the six-dimensional vector 𝑿 =                   acteristic function 𝜙𝑌 (𝑡 ) ≡ 𝑀𝑌 (i𝑡 ) together with the Fourier transform.
+(dk , dc ) ⊺ , with 𝑿 ∼ N (0, C). By statistical isotropy only compo-             However, this proves slightly awkward, since 𝑌 ≥ 0 forces us to consider a
+nents along the same axis can be correlated (𝑥-𝑥, 𝑦-𝑦, etc). Thus C               one-sided Fourier transform.
+
+MNRAS 000, 1–15 (2023)
+                                                                                         Bayesian Analysis of the Number-Count Dipole                                  13
+terms of the eigenvalues λ 𝑗 of I6 − 2𝑡AC. Now specialising to the                                       1.0
+case of statistical isotropy, we find that there are only two distinct                                                                              R = 1.26 h 1 Mpc
+eigenvalues, which we call λ1 and λ2 . To see this we exploit the
+properties of the Kronecker product: write I6 = I2 ⊗ I3 and AC =
+                                                                                                         0.5
+𝚺 ⊗ I3 , with
+               2       2
+                            !     2 + 𝜎2       2 + 𝜎2
+                                                        !                                                0.0
+𝚺≡
+       1 1 𝜎kk 𝜎kc
+                              =
+                                𝜎kk     kc
+                                             𝜎cc     kc                                                  1.0
+       1 1 𝜎2 𝜎2                  2 + 𝜎2
+                                𝜎kk            2 + 𝜎2
+                                             𝜎cc
+                                                          .      (C7)                                                                               R = 2.71 h 1 Mpc
+                 kc      cc             kc           kc
+Because I6 −2𝑡AC = (I2 −2𝑡𝚺)⊗I3 , there are two distinct eigenvalues                                     0.5
+(each having multiplicity three) corresponding to the 2 × 2 matrix
+
+
+                                                                                           p(D) / pmax
+I2 − 2𝑡𝚺. The eigenvalues are λ1 = 1 and λ2 = 1 − 2𝑡Δ2 , with                                            0.0
+Δ2 ≡ 𝜎kk
+      2                   2
+         + 2 𝜌 𝜎kk 𝜎cc + 𝜎cc .                                                    (C8)                   1.0
+                                                                                                                                                    R = 5.85 h 1 Mpc
+Therefore, we have simply that 𝑀𝑌            (𝑡) = (1 − 2𝑡Δ2 ) −3/2 , which
+can be seen to closely resemble the moment generating function of                                        0.5
+the generalised chi-squared distribution. As mentioned, the PDF is
+recovered by inverse Laplace transform of 𝑀𝑌 (−𝑡):7                                                      0.0
+                                        √ −𝑌 /(2Δ2 )                                                     1.0
+                                                                                                                                                    R = 12.6 h 1 Mpc
+             ∫ 𝛾+i∞
+         1                e𝑡𝑌 d𝑡           𝑌e
+𝑝(𝑌 ) =                              =      √          .           (C9)
+        2𝜋i 𝛾−i∞ 1 + 2𝑡Δ2  3/2                2𝜋 Δ3
+                                                               √
+                                                                                                         0.5
+Finally, the distribution for the amplitude 𝐷 ≡                   𝑌 is
+𝑝(𝐷) = 𝑝(𝑌 = 𝐷 2 ) | d𝑌 /d𝐷|, or, explicitly, after some algebra,                                        0.0
+                                                                                                               0         1         2           3         4             5
+                          𝐷 2 𝐷 2 d𝐷
+                             
+              4
+𝑝(𝐷) d𝐷 = √ exp − 2
+               𝜋          2Δ 2Δ2 2 Δ
+                                     √ .                          (C10)                                                        Amplitude D / DCMB
+This PDF, a chi distribution with√︁ three degrees of freedom (or                           Figure C1. As for Fig. 4 but on the full sky ( 𝑓sky = 1). The probability
+Maxwellian), has mean ⟨𝐷⟩ = 8/𝜋 Δ and variance ⟨𝐷 2 ⟩ = 3Δ2 .                              distribution is simply the Maxwellian (C10) with dispersions given by equa-
+However, the variance is larger than might be expected from a stan-                        tions (20). The main point here is that without the mask larger values of 𝐷
+dard Maxwellian due to cross terms (𝜎k2 c , 𝜎k2 c , etc).                                  are more probable compared with the case of including the mask
+                                                  𝑥 𝑥         𝑧 𝑧
+                                                                                                                                       .
+
+C2 Cut sky                                                                                 𝜎k2 c = 𝜎k2 c ≠ 𝜎k2 c . The probability distribution 𝑝(𝐷) is now
+                                                                                                  𝑥 𝑥              𝑦 𝑦   𝑧 𝑧
+The Galactic plane cut, described later in Appendix D, has the ef-                         given in terms of six independent quantities, 𝜎k2 k , 𝜎k2 k , 𝜎c2𝑥 c 𝑥 ,
+                                                                                                                                                   𝑥 𝑥       𝑧 𝑧
+fect of identifying a preferred direction, i.e. along the 𝑧-axis (where
+                                                                                           𝜎c2𝑧 c𝑧 , 𝜎k2 c , and 𝜎k2 c .
+the 𝑧-axis is orthogonal to the Galactic plane). Because of this the                                    𝑥 𝑥         𝑧 𝑧
+
+covariance now takes the form                                                                 We still have azimuthal symmetry (rotations about the 𝑧-axis),
+                                                                                           and this is reflected in the 𝑥 and 𝑦 components. This is also seen in
+    𝜎2                0          0     𝜎k2 c               0          0                    the multiplicity of the eigenvalues, which are now λ1 = 1 − 2𝑡Δ2𝑧
+  © k𝑥 k𝑥                                 𝑥 𝑥
+                  𝜎k2 k                                 𝜎k2 c
+                                                                            ª
+  ­
+  ­
+      0
+                     𝑥 𝑥
+                                 0        0
+                                                           𝑥 𝑥
+                                                                      0     ®
+                                                                            ®              (multiplicity one), λ2 = 1 − 2𝑡Δ2𝑥 (multiplicity two), and λ3 = 1
+  ­   0               0      𝜎k2 k        0                0        𝜎k2 c ®®               (multiplicity three), where Δ2𝑥 and Δ2𝑧 are given by equations (16a)
+C=­ 2
+  ­                              𝑧 𝑧                                   𝑧 𝑧
+                                                                            ®.             and (16b), respectively. With respect to the Galactic plane, we de-
+  ­ 𝜎k c              0          0     𝜎c2𝑥 c 𝑥            0          0 ®
+      𝑥 𝑥
+  ­                                                                         ®              compose into transverse (𝑥 and 𝑦) and longitudinal components (𝑧),
+  ­   0           𝜎k2 c          0        0             𝜎c2𝑥 c 𝑥       0 ®®
+  ­                  𝑥 𝑥                                                                   labelled collectively by ‘⊥’ and ‘∥’, respectively.
+  «   0               0      𝜎k2 c        0                0        𝜎c2𝑧 c𝑧 ¬                 We now have two distinct 𝑡-dependent eigenvalues (where previ-
+                                 𝑧 𝑧
+                                                                                 (C11)     ously in the full-sky case there was only one), thus producing one
+Notice now that each 3 × 3 block matrix is no longer proportional to                       additional pole in the moment generating function:
+the identity matrix, so cannot be written as a Kronecker product. In                       𝑀𝑌 (𝑡) = 𝑀𝑌⊥ (𝑡) 𝑀𝑌∥ (𝑡),                                                (C12)
+particular, we now see that the dispersions of the 𝑥- and 𝑦-components
+differ from that of the 𝑧-component. Because of this 𝜎c2𝑥 c 𝑥 = 𝜎c2𝑦 c 𝑦 ≠                 with 𝑀𝑌⊥ (𝑡) ≡ 𝑀𝑌𝑥 (𝑡) 𝑀𝑌𝑦 (𝑡), 𝑀𝑌𝑥 (𝑡) = 𝑀𝑌𝑦 (𝑡) = (1 − 2𝑡Δ2𝑥 ) −1/2 ,
+𝜎c2𝑧 c𝑧 and 𝜎k2 k = 𝜎k2 k ≠ 𝜎k2 k ; similarly, for the cross-terms                         and 𝑀𝑌∥ (𝑡) = 𝑀𝑌𝑧 (𝑡) = (1 − 2𝑡Δ2𝑧 ) −1/2 (these can be found by
+                𝑥 𝑥        𝑦 𝑦         𝑧 𝑧
+                                                                                           considering the eigenvalues of the covariance matrix (C11)). The
+                                                                                           PDFs of each of these constituent moment generating functions are
+7  The integral can be done with help of the convolution theorem, which                    obtained by the following inverse Laplace transforms:
+says that a product of moment generating functions corresponds to the
+                                                                                                                           e −𝑌 /(2Δ 𝑥 )
+                                                                                                                                           2
+                                                                       −3/2
+                                                                                           𝑝 ⊥ (𝑌 ) = ℒ −1 𝑀𝑌⊥ (−𝑡) (𝑌 ) =
+                                                                                                                  
+convolution of their individual PDFs. Thus we write (1 − 2𝑡Δ2                 =                                                          ,                         (C13a)
+Î3              2 −1/2 , and note that the chi-squared distribution with one
+                                                                                                                             2Δ2𝑥
+   𝑗=1 (1 − 2𝑡Δ
+                                                                                                                            e −𝑌 /(2Δ𝑧 )
+                                                                   −1/2                                                                   2
+degree of freedom has a moment generating function (1 − 2𝑡Δ2             . Then
+                                                                                            𝑝 ∥ (𝑌 ) = ℒ −1 𝑀𝑌∥ (−𝑡) (𝑌 ) =
+                                                                                                                   
+                                                                                                                                     1/2 .                        (C13b)
+the PDF corresponding to 𝑀𝑌 (𝑡 ) is the convolution 𝑝 (𝑌 ) = 𝑝 𝑥 ∗ 𝑝 𝑦 ∗ 𝑝𝑧
+                                                                                                                            2𝜋𝑌 Δ2𝑧
+of three such chi-squared distributions, which yields another chi-squared dis-
+tribution but with three degrees of freedom.                                               By the convolution theorem of the unilateral Laplace trans-
+
+                                                                                                                                               MNRAS 000, 1–15 (2023)
+14        Dam, Lewis & Brewer
+form, the PDF of the product of moment generating functions                  cut removes half of the sky ( 𝑓sky = 0.5). Since the additional masks
+𝑝(𝑌 ) = ℒ −1 [𝑀𝑌⊥ (−𝑡) 𝑀𝑌∥ (−𝑡)] is equal to the convolution                 (accounting for poor-quality photometry, image artefacts, etc) cov-
+ℒ −1 [𝑀𝑌⊥ (−𝑡)] ∗ ℒ −1 [𝑀𝑌∥ (−𝑡)], which evaluates to                        ers merely 1.2% of the sky we will ignore their effect on the power,
+                                                                             which principally affects the small angular scales. We will thus apply
+                                                       𝜀𝑌 e −𝑌 /(2Δ 𝑥 )
+                                                                 2
+                                                                             to the number-count field d𝑁/dΩ( n̂) the following mask:
+          ∫ 𝑌
+                                               1
+𝑝(𝑌 ) =      d𝑌 ′ 𝑝 ⊥ (𝑌 − 𝑌 ′ ) 𝑝 ∥ (𝑌 ′ ) = √ erf                     ,
+           0                                    𝜀     2Δ2𝑧   2Δ2𝑥                     (
+                                                                                        0, 𝜗− ≤ 𝜗 ≤ 𝜗+ ,
+                                                                             W (𝜗) =                                                           (D1)
+where 𝜀 ≡ 1−Δ2𝑧 /Δ2𝑥 gives the ‘eccentricity’ of the ellipsoid spanned                  1, otherwise,
+by the eigenvectors. The use of the error function in the foregoing
+equation is valid for 𝜀 > 0; for 𝜀 < 0, which is the case for the            where 𝜗± = 𝜋/2 ± 𝑏 cut . In terms of the Heaviside step function Θ,
+Galactic plane cut, we have instead                                          this can also be written as
+                                    √︁ √  −𝑌 /(2Δ2 )                       W ( n̂) = Θ( n̂ · ẑ − 𝜇 − ) + Θ(𝜇+ − n̂ · ẑ),
+           2                           |𝜀| 𝑌 e        𝑥                                                                                                       (D2)
+                e | 𝜀 |𝑌 /(2Δ𝑧 ) 𝐹 √
+                             2
+𝑝(𝑌 ) = √︁                                         2
+                                                        ,        (C14)
+           𝜋|𝜀|                         2Δ 𝑧    2Δ 𝑥                         with 𝜇± = cos 𝜗± , and where the first and second term selects
+                       2 ∫ 𝑥                                                 the northern and southern caps, respectively. Because W ( n̂) pos-
+where 𝐹 (𝑥) ≡ e − 𝑥 0 d𝑡 e𝑡 is the Dawson function (NIST DLMF
+                                   2
+                                                                             sesses azimuthal symmetry, its spherical harmonic expansion is
+2023, 7.2.5).                                               √                given purely in terms of the zonal modes (𝑚 = 0): W (𝜗) =
+  The probability distribution of the amplitude 𝐷 = 𝑌 , in the               Í
+                                                                               ℓ Wℓ0 𝑌∫ℓ0 (𝜗). Furthermore, because W ( n̂) is parity symmetric,
+presence of a Galactic plane cut, is now obtained easily from                Wℓ𝑚 = d2 n̂ W ( n̂)𝑌ℓ𝑚   ∗ ( n̂) is equal to zero for odd ℓ; for even ℓ
+𝑝(𝐷) = 𝑝(𝑌 = 𝐷 2 ) | d𝑌 /d𝐷|; it is                                          these coefficients are non-zero and are given by (Dahlen & Simons
+                              √︁                                         2008)
+              2𝐷 d𝐷               |𝜀|𝐷         𝐷2
+𝑝(𝐷) d𝐷 = √︁               𝐹 √            exp − 2 ,              (C15)                      √︂
+                𝜋|𝜀| Δ2𝑥          2Δ 𝑧         2Δ 𝑧                                      K       𝜋                              
+                                                                             Wℓ𝑚 = 2𝛿 𝑚0               L      (𝜇 ) − Lℓ+1 (𝜇 − ) (even ℓ), (D3)
+                                                                                               2ℓ + 1 ℓ −1 −
+where we have used that |𝜀| = Δ2𝑧 /Δ2𝑥 − 1 > 0, since for us 𝜀 < 0.
+We can bring equation (C15) into a form more closely resembling              where Lℓ (𝜇) is the Legendre polynomial of degree ℓ [note L −1 (𝜇) ≡
+the full-sky case (i.e. the Maxwell–Boltzmann distribution) by using         1]. With 𝑏 cut = 30◦ we have for the first five non-zero coefficients
+Δ2𝑥 = Δ2𝑧 /(1 − 𝜀) to rewrite it in terms of Δ 𝑧 and 𝜀. After some           W00 ≈ 1.77245, W20 ≈ 1.48625, W40 ≈ −0.623128, W60 ≈
+algebra, and after defining the function F (𝑥) ≡ 𝐹 (𝑥)/𝑥, we arrive at       −0.131059, and W80 ≈ 0.422182.
+our final form [cf. equation (C10)]:
+                          √︁
+                                             𝐷 2 𝐷 2 d𝐷
+                                               
+                              |𝜀|𝐷 4                                         D2 Mode coupling
+𝑝(𝐷) d𝐷 = (1 − 𝜀) F √                √ exp − 2          √     .
+                              2Δ 𝑧    𝜋      2Δ 𝑧 2Δ2𝑧 2Δ 𝑧
+                                                                             A cut on the sky breaks statistical isotropy. In harmonic space this
+                                                                (C16)
+                                                                             implies that the covariance matrix of 𝑎 ℓ𝑚 ’s can have off-diagonal
+This is equation (15) in the main text. As a consistency check, it           components, i.e. we no longer have that ⟨𝑎 ℓ𝑚 𝑏 ℓ∗ ′ 𝑚′ ⟩ = 𝐶ℓ 𝛿ℓℓ
+                                                                                                                                             K 𝛿K .
+                                                                                                                                                 ′ 𝑚𝑚′
+                                √
+is easy to verify using F (𝑎 𝜀 ) → 1, as 𝜀 → 0, that the full-sky            Now, 𝑎 ℓ𝑚 with different ℓ or 𝑚 may be correlated.
+expression (C10) derived in the previous section is recovered in the             We now apply the mask W ( n̂) to the number-count field
+limit 𝜀 → 0. This is the special case of statistical isotropy, for which     d𝑁/dΩ( n̂) → W ( n̂)d𝑁/dΩ( n̂). Denoting by 𝑎˜ ℓ𝑚 and 𝑏˜ ℓ𝑚 the
+Δ 𝑥 = Δ 𝑦 = Δ𝑧 .                                                             coefficients of the masked fields W ( n̂) 𝛿Q ( n̂) and W ( n̂) (dk · n̂),
+   The first three moments of the PDF (C16) are                              respectively, it can be shown using the properties of spherical har-
+       √︂                       √︁                                        monics that we now have a linear coupling of the underlying 𝑎 ℓ𝑚
+           2           arcsinh |𝜀|                                           and 𝑏 ℓ𝑚 (Peebles 1980):
+⟨𝐷⟩ =         Δ𝑧 + Δ 𝑥      √︁          ,                         (C17a)
+          𝜋                    |𝜀|                                                   ∑︁                                ∑︁
+                                                                             𝑎˜ ℓ𝑚 =     Aℓ𝑚ℓ ′ 𝑚′ 𝑎 ℓ ′ 𝑚′ ,  𝑏˜ ℓ𝑚 =       Bℓ𝑚ℓ ′ 𝑚′ 𝑏 ℓ ′ 𝑚′ . (D4)
+⟨𝐷 2 ⟩ = Δ2𝑧 + 2Δ2𝑥 ,                                               (C17b)           ℓ ′ 𝑚′                                            ℓ ′ 𝑚′
+
+                                                                             Here Aℓ𝑚ℓ ′ 𝑚′ is a harmonic kernel which is determined by the
+         √︂                                   √︁  
+   3        2     3         2      3 arcsinh |𝜀|
+⟨𝐷 ⟩ =         2Δ 𝑧 + 3Δ 𝑧 Δ 𝑥 + 3Δ 𝑥
+                                                                                                                                    Í
+                                          √︁          .             (C17c)   window function W ( n̂); for a general W ( n̂) = ℓ,𝑚 Wℓ𝑚𝑌ℓ𝑚 ( n̂),
+            𝜋                                |𝜀|                             it is given by (Hivon et al. 2002)
+In the limit 𝜀 → 0, these recover the√︁usual moments of the Maxwell–                                       ∫
+                                                                                                                                 ∗
+                                                                                             ∑︁
+Boltzmann distribution, i.e. ⟨𝐷⟩ = 8/𝜋Δ, ⟨𝐷 2 ⟩ = 3Δ2 , and ⟨𝐷 3 ⟩ =
+ √︁                                                                          Aℓ1 𝑚1 ℓ2 𝑚2 ≡      Wℓ3 𝑚3      d2 n̂ 𝑌ℓ1 𝑚1 ( n̂) 𝑌ℓ2 𝑚2 ( n̂) 𝑌ℓ3 𝑚3 ( n̂)
+4 8/𝜋Δ3 , with Δ = Δ 𝑥 = Δ 𝑦 = Δ 𝑧 .                                                            ℓ3 ,𝑚3
+
+                                                                                                                                  (2ℓ1 + 1)(2ℓ2 + 1)(2ℓ3 + 1) 1/2
+                                                                                                           ∑︁                                               
+                                                                                              = (−1) 𝑚2             Wℓ3 𝑚3
+                                                                                                                                              4𝜋
+APPENDIX D: DIPOLE STATISTICS ON THE CUT SKY                                                              ℓ3 ,𝑚3
+                                                                                                                                                        
+                                                                                                                    ℓ1   ℓ2       ℓ3        ℓ1    ℓ2    ℓ3
+In order to compare the dipole estimate with the theoretical value we                                       ×                                                , (D5)
+                                                                                                                    0    0        0         𝑚1   −𝑚 2   𝑚3
+will convolve the full-sky predictions with the mask.
+                                                                             where the arrays are Wigner 3 𝑗 symbols, coefficients that encode
+                                                                             selection rules for the allowed combinations of ℓ’s and 𝑚’s. Us-
+D1 Galactic plane cut
+                                                                             ing that Aℓ𝑚ℓ ′ 𝑚′ = Aℓ𝑚ℓ ′ 𝑚 𝛿K 𝑚𝑚′ (by azimuthal symmetry), and
+                                                                                ∗
+                                                                             Aℓ𝑚ℓ                                ∗
+We make a symmetric cut about the Galactic plane, excluding a cen-                  ′ 𝑚′ = A ℓ𝑚ℓ ′ 𝑚′ (because Wℓ0 = Wℓ0 ), we have for two ar-
+tral region |𝑏| ≤ 𝑏 cut . Here 𝑏 cut = 30◦ , as in S21. This conservative    bitrary fields, each with azimuthally-symmetric masks (which need
+
+MNRAS 000, 1–15 (2023)
+                                                                                                Bayesian Analysis of the Number-Count Dipole                             15
+                                                                                                                                                   Í
+not be identical),                                                                                have dispersions proportional to ⟨| 𝑎˜ 11 | 2 ⟩ = ℓ |A11ℓ1 | 2 𝐶ℓ , with
+                              ∑︁                                                                  A11ℓ1 ≠ A10ℓ0 .
+ 𝑎˜ ℓ1 𝑚1 𝑏˜ ℓ∗2 𝑚2 =                        Aℓ1 𝑚1 ℓ ′ 𝑚′ Bℓ∗ 𝑚 ℓ ′ 𝑚′ 𝑎 ℓ ′ 𝑚′ 𝑏 ℓ∗ ′ 𝑚′
+                                                     1 1      2 2 2 2      1 1       2 2             We can relate the harmonic form to the dispersions in the cut-sky
+                        ℓ1′ ,ℓ2′ ,𝑚1′ ,𝑚2′
+                                   ∑︁                                                             covariance matrix (C11) as follows. Again, because of azimuthal
+                   = 𝛿K
+                      𝑚1 𝑚2                  Aℓ1 𝑚1 ℓ𝑚1 Bℓ2 𝑚2 ℓ𝑚1 𝐶ℓ .                  (D6)     symmetry, we recall that the dispersions for the 𝑥- and 𝑦-components
+                                     ℓ                                                            are equal (though modified from before), e.g. 𝜎c2𝑥 c 𝑥 = 𝜎c2𝑦 c 𝑦 ,
+    In our case – with 𝑎˜ ℓ𝑚 corresponding to the clustering field and                            𝜎k2 c = 𝜎k2 c , etc. The new dispersions, in terms of the spectra,
+                                                                                                     𝑥 𝑥        𝑦 𝑦
+𝑏˜ ℓ𝑚 corresponding to the kinematic field – we only need to consider                             now read
+ℓ1 = ℓ2 = 1, with identical mask applied to both fields (A = B). In                                           3                               3
+                                                                                                    2                      kk        2                     kk
+terms of the underlying power spectra we have                                                     𝜎k 𝑥 k 𝑥 =     |A   | 2 𝐶1 ,      𝜎k𝑧 k𝑧 =    |A    | 2 𝐶1 ,
+                                                                                                             4𝜋 1111                         4𝜋 1010
+ 𝑎˜ 1𝑚 𝑏˜ ∗1𝑚′ = 𝛿K            2 kc
+                  𝑚𝑚′ |A 1𝑚1𝑚 | 𝐶1 ,                                                    (D7a)       2
+                                                                                                  𝜎c 𝑥 c 𝑥 =
+                                                                                                              3 ∑︁              cc   2
+                                                                                                                    |A11ℓ1 | 2 𝐶ℓ , 𝜎c𝑧 c𝑧 =
+                                                                                                                                              3 ∑︁              cc
+                                                                                                                                                    |A10ℓ0 | 2 𝐶ℓ ,
+                                                                                                             4𝜋                              4𝜋
+                       ∑︁                                                                                       ℓ odd                                 ℓ odd
+ 𝑎˜ 1𝑚 𝑎˜ ∗1𝑚′ = 𝛿K
+                                       cc
+                  𝑚𝑚′      |A1𝑚ℓ𝑚 | 2 𝐶ℓ ,                                              (D7b)      2          3           kc             2        3           kc
+                                                                                                  𝜎k 𝑥 c 𝑥 =    |A   | 2 𝐶1 ,           𝜎k𝑧 c𝑧 =    |A   | 2 𝐶1 ,
+                             ℓ odd
+                                                                                                             4𝜋 1111                             4𝜋 1010
+ 𝑏˜ 1𝑚 𝑏˜ ∗1𝑚′ = 𝛿K            2 kk
+                  𝑚𝑚′ |A 1𝑚1𝑚 | 𝐶1 ,                                                    (D7c)
+                                                                                                  where 𝐶ℓXY is given by equation (17). The dispersions related to the
+where only odd ℓ need to be considered because of the selection                                   total dipole are given in terms of these by equations (16a) and (16b).
+rules of Wigner 3 𝑗 symbols in equation (D5). Note that no off-                                   For ΛCDM, though we have 𝐶ℓcc > 𝐶1cc , for ℓ ≥ 2, the leakage of
+diagonal entries are induced in the covariance matrix in harmonic                                 power into the dipole is not enough to overcome the loss of power
+space. However, in Cartesian space the covariance matrix is no longer                             across all ℓ, e.g. 𝜎k2 k = | 𝐴1010 | 2 𝜎kk
+                                                                                                                                          2 ≈ 0.77𝜎 2 , a 23% loss of
+                                                                                                                                                      kk
+                                                                                                                        𝑧 𝑧
+proportional to the identity matrix (although it remains diagonal).                               kinematic dipole power. Because of this we find that we only need to
+Though we will no longer have spherical symmetry we still have                                    sum up the first few odd multipoles to attain convergence (here we
+azimuthal symmetry.                                                                               take ℓmax = 9).
+   For 𝑏 cut = 30◦ , the first three coupling coefficients are |A1010 | 2 ≈
+0.76563, |A1030 | 2 ≈ 0.046143, and |A1050 | 2 ≈ 0.034272. Also                                   This paper has been typeset from a TEX/LATEX file prepared by the author.
+|A1111 | 2 ≈ 0.0976563, |A1131 | 2 ≈ 0.155731, and |A1151 | 2 ≈
+0.00955939. These values indicate a substantial loss of power for
+the 𝑥- and 𝑦-components of the dipole.
+
+
+D3 Dipole dispersions
+We now need to relate the statistics in harmonic space back to the
+statistics in Cartesian space. To facilitate this it will be convenient
+to define the complex-valued vectors ˜𝒂 1 ≡ ( 𝑎˜ 1−1 , 𝑎˜ 11 , 𝑎˜ 10 ) ⊺ and
+𝒃˜ 1 ≡ ( 𝑏˜ 1−1 , 𝑏˜ 11 , 𝑏˜ 10 ) ⊺ . We then have the following linear relation
+between the Cartesian- and harmonic-space dipoles:
+      √︂                              √︂
+            3 †                           3 †˜
+dc =           U ˜𝒂 1 , dk =                U 𝒃1 ,                         (D8)
+           4𝜋                            4𝜋
+where the tilde indicates coefficients of masked fields, and U is given
+by equation (A4). With these relations we can express the covariances
+                       ⊺
+of these vectors, ⟨dX dY ⟩, in terms of the underlying power spectra:
+      ⊺        3 † ˜ ˜†
+ dk dk =         U ⟨ 𝒃 1 𝒃 1 ⟩U
+              4𝜋                                                          kk
+                                                                     3𝐶1
+           = diag |A1111 | 2 , |A1111 | 2 , |A1010 | 2                    ,             (D9a)
+                                                                       4𝜋
+      ⊺        3 † ˜ †
+ dk dc =         U ⟨ 𝒃 1 ˜𝒂 1 ⟩U
+              4𝜋                                                          kc
+                                                                     3𝐶1
+           = diag |A1111 | 2 , |A1111 | 2 , |A1010 | 2                    ,             (D9b)
+                                                                       4𝜋
+      ⊺       3 †
+ dc dc =        U ⟨ ˜𝒂 1 ˜𝒂 †1 ⟩U
+             4𝜋                                                 cc
+             ∑︁                                             3𝐶ℓ
+           =     diag |A11ℓ1 | 2 , |A11ℓ1 | 2 , |A10ℓ0 | 2         , (D9c)
+                                                              4𝜋
+              ℓ odd
+The block-matrix form of the 6 × 6 cut-sky covariance (C11)
+is constructed out of these 3 × 3 covariances. The first matrix
+         ⊺
+⟨dk dk ⟩ ∝ I3 is unchanged from before; the second and third
+matrices are diagonal but have different dispersions from before.
+For instance, the dispersion of the 𝑧-component is proportional to
+                Í
+⟨| 𝑎˜ 10 | 2 ⟩ = ℓ |A10ℓ0 | 2 𝐶ℓ , while the 𝑥- and 𝑦-components both
+
+                                                                                                                                                   MNRAS 000, 1–15 (2023)
+

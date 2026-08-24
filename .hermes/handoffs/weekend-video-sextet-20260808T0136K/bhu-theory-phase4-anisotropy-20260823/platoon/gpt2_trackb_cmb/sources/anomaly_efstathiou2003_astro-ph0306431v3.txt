@@ -1,0 +1,441 @@
+                                      Mon. Not. R. Astron. Soc. 000, 000–000 (0000)      Printed 3 November 2018    (MN LATEX style file v1.4)
+
+
+
+
+                                      The Statistical Significance of the Low CMB Mulitipoles
+
+                                      G. Efstathiou
+                                      Institute of Astronomy, Madingley Road, Cambridge, CB3 OHA.
+
+
+
+                                      3 November 2018
+
+
+
+
+arXiv:astro-ph/0306431v3 1 Mar 2004
+                                                                        ABSTRACT
+                                                                        The Wilkinson Microwave Anisotropy Probe (WMAP) has measured lower amplitudes
+                                                                        for the temperature quadrupole and octopole anisotropies than expected in the best
+                                                                        fitting (concordance) Λ-dominated cold dark matter (ΛCDM) cosmology. Some au-
+                                                                        thors have argued that this discrepancy may require new physics. Yet the statistical
+                                                                        significance of this result is not clear. Some authors have applied frequentist argu-
+                                                                        ments and claim that the discrepancy would occur by chance about 1 time in 700
+                                                                        if the concordance model is correct. Other authors have used Bayesian arguments to
+                                                                        claim that the data show marginal evidence for new physics. I investigate these con-
+                                                                        fusing and apparently conflicting claims in this paper using a frequentist analysis and
+                                                                        a simplified Bayesian analysis. On either analysis, I conclude that the WMAP results
+                                                                        are consistent with the concordance ΛCDM model.
+                                                                        Key words: cosmic microwave background, cosmology.
+
+
+                                      1    INTRODUCTION                                                  for new physics. Indeed, a number of authors have explored
+                                                                                                         various models that might reproduce the low quadrupole
+                                      The WMAP satellite (Bennett et al. 2003a; Hinshaw et al.
+                                                                                                         and octopole. For example, S03 and Tegmark, de Oliveira
+                                      2003; Spergel et al. 2003) has led to a precise measurement of
+                                                                                                         Costa and Hamilton (2003) suggest that the effect might be
+                                      the temperature anisotropy power spectrum, Cℓ , from mul-
+                                                                                                         associated with the small size of a finite universe, while Ef-
+                                      tipoles ℓ = 2 to ℓ ∼ 600. The observed temperature power
+                                                                                                         stathiou (2003a) and Contaldi et al. (2003) have proposed
+                                      spectrum is in striking agreement with the predictions of the
+                                                                                                         a cut-off in the primordial power spectrum associated with
+                                      ‘concordance’ inflationary ΛCDM cosmology with parame-
+                                                                                                         spatial curvature. Cline, Crotty and Lesgourgues (2003) and
+                                      ters consistent with those inferred from observations made
+                                                                                                         Feng and Zhang (2003) consider multi-field inflation mod-
+                                      prior to WMAP (compare, for example, Wang et al. 2002
+                                                                                                         els, while DeDeo, Caldwell and Steinhardt (2003) consider
+                                      and Spergel et al. 2003).
+                                                                                                         quintessence models with an equation of state that leads to
+                                           However, as pointed out by the WMAP team there may            a partial cancellation of the usual integrated Sachs-Wolfe ef-
+                                      be a discrepancy between the predictions of the ΛCDM mod-          fect. Evidently, theorists are not short of ideas that might
+                                      els and the observations at low multipoles. A low amplitude        account for the observations.
+                                      of the CMB quadrupole was first found by COBE (Hin-
+                                      shaw et al. 1996), but the new WMAP observations have
+                                      led to a more accurate measurement and to tighter control               But is new physics necessary? Is the probability of
+                                      of systematic errors caused by residual foreground emission        1.5 × 10−3 derived in S03 correct, or has the significance
+                                      from the Galaxy. The amplitude of the octopole measured            of the discrepancy been overestimated? Do modified models
+                                      by WMAP is also low compared to the best fitting ΛCDM              provide statistically significantly better fits to the data than
+                                      model and the temperature autocorrelation function C(θ)            the concordance ΛCDM model? Some of the recent litera-
+                                      shows an almost complete lack of signal on angular scales          ture on these points is confusing. For example, Bridle et al.
+                                       >
+                                       ∼ 60 degrees. Spergel et al. (2003, hereafter S03), quantify      (2003), Cline et al. (2003) and Contaldi et al. (2003) perform
+                                      the latter discrepancy by computing the statistic                  Bayesian analyses of the WMAP data to test whether the
+                                           Z 1/2                                                         low multipoles require a sharp break in the primordial spec-
+                                                                                                         trum. Although the data favour a break at a wavenumber
+                                      S=           [C(θ)]2 d cos θ                               (1)     kc ∼ 3 × 10−4 Mpc−1 , the concordance model with kc = 0
+                                            −1
+                                                                                                         is not strongly excluded. Is this conclusion compatible with
+                                      for a large number of simulated skies generated from the           the SO3 analysis of the S statistic? The questions raised
+                                      posterior distribution of the ΛCDM cosmology. They con-            in this paragraph are addressed in this paper. Tegmark et
+                                      clude that the probability of finding a value of S smaller than    al. (2003) comment on a possible alignment between the
+                                      that observed is about 1.5 × 10−3 . This low probability, if       quadrupole and octopole. This effect is ignored in this pa-
+                                      correct, suggests a discrepancy between the ΛCDM cosmol-           per, which focuses exclusively on the statistical significance
+                                      ogy and the observed low CMB multipoles, indicating a need         of the amplitudes of the quadrupole and octopole. For an
+
+                                      c 0000 RAS
+2     G. Efstathiou
+analysis of the statistical significance of alignments, see de
+Oliveira-Costa et al. (2003).
+
+
+
+2   OBSERVATIONS AND FIDUCIAL
+    CONCORDANCE MODEL
+It has become common to use Monte-Carlo Markov Chains
+(MCMC) to evaluate the posterior distributions of cosmo-
+logical parameters given observations of the CMB power
+spectra and their covariance matrices (see Christensen et al.
+2001; Lewis and Bridle 2002; Verde et al. 2003). As a fiducial
+model, we follow the MCMC analysis of Bridle et al. (2003)
+and adopt a spatially flat ΛCDM cosmology specified by
+6 parameters, a constant scalar spectral index ns , spectral
+amplitude As , Hubble constant h = H0 /(100kms−1 Mpc−1 ),
+baryon density ωb ≡ Ωb h2 , CDM density ωc ≡ Ωc h2 and
+redshift of reionization zeff . Tensor modes are ignored in
+this analysis. The input CMB data consists of the WMAP           Figure 1. The histogram shows the quadrupole amplitudes
+temperature and temperature-polarization cross-correlation       for a sample of MCMC chains for a six parameter ΛCDM fit
+power spectra (and associated programmes to compute the          to WMAP+CBI+ACBAR+VSA data. The vertical dashed line
+likelihood function, see Verde et al. 2003) supplemented with    shows the quadrupole amplitude observed by WMAP.
+                                             <   <
+measurements at higher multipoles (800 ∼       ℓ∼  2000) from
+CBI (Pearson et al. 2003), ACBAR (Kuo et al. 2003) and
+VSA (Grainge et al. 2003).                                       not yet been published, but it would seem to be reasonable
+      Figure 1 shows a histogram of the quadrupole ampli-        since Tegmark et al. (2003) find a quadrupole amplitude of
+tudes from a set of MCMC chains⋆ for this six parame-            202 µK2 (including the small ∼ 4µK2 contribution from the
+ter model. The peak occurs at a quadrupole amplitude of          kinematic quadrupole) from an analysis of their all-sky fore-
+∆T22 ≈ 1250 µK2 (∆Tℓ2 ≡ ℓ(ℓ + 1)Cℓ /(2π)) and the distri-        ground subtracted WMAP map. Tegmark et al. (2003) find
+bution is quite narrow; few samplings have quadrupole am-        an octopole amplitude of 866 µK2 from their all-sky map.
+plitudes smaller than 1000 µK2 or greater than 2000 µK2 .        We adopt these numbers (which for the quadrupole is at the
+As a fiducial model, we set h = 0.72, ns = 1.0, ωb = 0.024       upper end of the Bennett et al. error range) to illustrate
+and ωc = 0.12 and choose zeff so that the optical depth for      the effects of systematic uncertainties associated with con-
+Thomson scattering is τ = 0.17. These numbers are very           tamination by Galactic emission. Tegmark et al. find similar
+close to those that give the maximum likelihood to the data      numbers for an all-sky analysis of the WMAP internal linear
+used to generate Figure 1, but some have been adjusted           combination foreground subtracted CMB map (Bennett et
+slightly so that they are consistent with other data, e.g.       al. 2003b).
+the HST key project measurement of the Hubble constand
+(Freedman et al. 2001). The quadrupole and octopole am-
+plitudes for this fiducial model are ∆T22 = 1140 µK2 and         3   FREQUENTIST STATISTICS
+∆T32 = 1060 µK2 . To illustrate the sensitivity to the param-    In the absence of a sky cut and instrumental noise, the distri-
+eters of the fiducial model, we will show how various results    bution of Cℓ estimates in a theory with Gaussian amplitudes
+change if the quadrupole and octopole amplitude are low-         aℓm follows a χ2 distribution,
+ered to ∆T22 = 1000 µK2 and ∆T32 = 930 µK2 , i.e. towards
+                                                                                               2ℓ−1
+the lower end of the allowed range according to Figure 1.
+                                                                                                                              
+                                                                                        Cℓ        2
+                                                                                                                   (2ℓ + 1)Cℓ       dCℓ
+      The WMAP quadrupole and octopole amplitudes in the         dP (Cℓ )   ∝                          exp −                            ,   (2)
+                                                                                        CℓT                           2CTℓ          CT
+                                                                                                                                     ℓ
+publicly available data release are given as ∆T22 = 123 µK2
+and ∆T32 = 611 µK2 . The quadrupole amplitude in par-            where CℓT is the expectation value of Cℓ . Integrating equa-
+ticular (shown by the dashed line in Figure 1) is much           tion (2), the probability of observing a value ≤ Cℓ is given
+lower than the amplitude of the fiducial ΛCDM model. The         by
+Bennett et al. (2003a) WMAP summary paper lists the                                 
+                                                                                        2ℓ+1 2ℓ+1 Cℓ
+                                                                                                           
+quadrupole amplitude as 154 ± 70 µK2 , slightly higher than                     γ         2
+                                                                                            , 2 CT
+the value in the public data release. The error on this num-     P (≤ Cℓ ) =                  2ℓ+1
+                                                                                                      ℓ       ,                            (3)
+                                                                                         Γ      2
+ber is a 95% confidence limit on the uncertainty associated
+mainly from modelling foreground Galactic emission. (For         where γ is the incomplete Gamma function.
+comparison, the quadrupole amplitude measured by COBE                 In practice, the actual distribution depends on the es-
+is ∆T22 = 240 ±340       2
+                 124 µK , Hinshaw et al. 1996). Full details
+                                                                 timator of Cℓ , the shape of any Galactic cut and, of course,
+of how the WMAP team arrive at this error estimate have          instrumental noise and other sources of error. Figure 2 shows
+                                                                 a histogram of quadrupole amplitudes determined by apply-
+                                                                 ing a pseudo-Cℓ estimator (see e.g. Hivon et al., 2002) to a
+⋆ The chains have been made available by Antony Lewis at the     large number of simulated noise-free maps generated using
+following web site http://cosmologist.info/cosmomc/.             the power spectrum of the fiducial ΛCDM model discussed
+
+                                                                                                       c 0000 RAS, MNRAS 000, 000–000
+                                                                                            Statistics of CMB Quadrupole                     3
+
+                         Table 1a: Frequentist estimates of the Quadrupole and Octopole Discrepancy
+
+  (∆T22 )T    (∆T32 )T   P (∆T22 < 123)     P (∆T32 < 611)      P (∆T22 < 123,       P (∆T22 < 202)      P (∆T32 < 870)    P (∆T22 < 202,
+                                                                     ∆T32 < 611)                                               ∆T32 < 870)
+
+    1140       1060             0.013             0.24               0.0032               0.036               0.44              0.016
+    1000        930             0.017             0.31               0.0054               0.046               0.53              0.025
+
+
+                          Table 1b: Bayesian estimates of the Quadrupole and Octopole Discrepancy
+
+
+                 ∆T22    ∆T32      P ((∆T22 )T > 1140)   P ((∆T32 )T > 1060)       P ((∆T22 )T > 1000)    P ((∆T32 )T > 930)
+
+                  123     611             0.087                 0.45                      0.10                   0.53
+                  202     870              0.16                 0.66                      0.19                   0.73
+
+ Note: Table 1a gives the frequencies that the observed amplitudes ∆T22 and ∆T32 will be less than the specified values (expressed in
+µK2 ) if the true amplitudes are (∆T22 )T and (∆T32 )T (see Section 3). Table 1b gives the Bayesian frequencies that the observed values
+of quadrupole and octopole amplitudes are drawn for a model with true quadrupole and octopole amplitudes greater than (∆T22 )T and
+(∆T32 )T (see Section 4).
+
+
+in the previous section. The Kp2 Galactic cut imposed by
+Hinshaw et al. (2003) was used in the simulations. Figure 2
+shows the resulting distribution of quadrupole amplitudes,
+together with a χ2 distribution (see also Wandelt, Hivon,
+Górski, 2001). The effects of Galactic cuts on pseudo-Cℓ
+estimators is discussed in detail by Efstathiou (2003b, c),
+however, for the modest Galactic cuts used in the analysis of
+WMAP, the quadrupole amplitude is weakly correlated with
+higher multipoles and its distribution follows a χ2 distribu-
+tion quite accurately with a variance that is only marginally
+greater than the cosmic variance.
+     The corresponding frequentist statistics are given in Ta-
+ble 1(a) and agree with equation (2) to within about 50%.
+From this Table, we see that the probability of observing a
+quadrupole lower than 123µK2 is about 1.3% and that the
+joint probability of finding quadrupole and octopole ampli-
+tudes smaller than those observed is about 0.32% which is
+about twice the value inferred by SO3 from their analysis of
+the S statistic. In fact, SO3 compare the S statistic with sim-
+                                                                          Figure 2. Histogram of quadrupole amplitudes estimated using
+ulations generated from their MCMC chains. If we rescale
+                                                                          a pseudo-Cℓ estimator applied to 105 simulations with a Galactic
+the quadrupole and octopole amplitudes of our simulations
+                                                                          cut of ±10◦ centred on the Galactic plane. The power spectrum
+so that the amplitudes follow the MCMC distribution plot-                 of the fiducial ΛCDM model discussed in Section 2 was used to
+ted in Figure 1, the joint probability for the quadrupole and             generate the simulations. The solid line shows a χ2 distribution
+octopole amplitudes drops from 0.32% to 0.21% only slightly               (equation 2) and the dashed line shows the quadrupole amplitude
+larger than the value of 0.15% deduced by SO3 from the S                  measured by WMAP.
+statistic. Given that the integration range of the S statistic
+was chosen a posteriori, it is not suprising that SO3 find a
+slightly more significant discrepancy. The main conclusion to                  Table 1a also lists the frequentist probabilities if
+draw from this analysis is that the significance level deduced            the quadrupole and octopole amplitudes are 202µK2 and
+by SO3 from the S statistic is understandable; a similar sig-             870µK2 respectively, which we have argued in Section 2
+nificance level is deduced from the quadrupole and octopole               are within the allowed range given uncertainties in sub-
+amplitudes alone. Most of the weight in the S statistic is                tracting Galactic foregrounds. (The analysis of the WMAP
+coming from the quadrupole and octopole amplitudes and                    temperature-polarization power spectrum, C T E , shows clear
+any ‘a posteriori bias’ in the statistic is small.†                       evidence for a Galactic polarized signal (Kogut et al. 2003).
+
+
+† We note here that Gaztañaga et al., 2003, find much higher             is extremely sensitive to the size and shape of the Galactic cut;
+probabilities by applying a frequentist statistic to estimates of         (ii) their results are inconsistent with the pseudo-Cℓ estimator
+C(θ) from WMAP using a conservative Galactic cut. Their results           used by the WMAP team and the quadratic maximum likelihood
+are puzzling, however, because: (i) they find that their statistic        estimator used by Efstathiou (2003c).
+
+c 0000 RAS, MNRAS 000, 000–000
+4    G. Efstathiou
+
+
+
+
+Figure 3. Unnormalised Bayesian probability distributions for the quadrupole and octopole amplitudes given by equation (5). The
+dashed lines show the values for the fiducial ΛCDM model discussed in Section 2.
+
+
+Since the systematic errors in C T E from Galactic emission       tests described in the previous Section? In this Section we
+have not yet been quantified fully, and since the randon er-      provide an answer by applying Bayes’ theorem to an inten-
+rors are large, we ignore the WMAP C T E measurements             tionally simple model.
+in the rest of this paper.) The joint probability of find-             According to Bayes’ theorem, the posterior probability
+ing quadrupole and octopole amplitudes below these values         of hypothesis H given the data D is
+given the fiducial ΛCDM model is 1.6%, i.e. about 5 times
+greater than the value deduced for quadrupole and octopole        P (H|D) ∝ P (D|H)P (H),                                    (4)
+amplitudes of 123µK2 and 611µK2 , an order of magnitude           where P (D|H) is the probability of the data D given H
+greater than deduced by SO3 from the S statistic. If the pa-      and P (H) is the prior probability of H. Let us adopt the
+rameters of the ΛCDM model are adjusted to give values for        hypothesis that the true amplitude CℓT lies in the range CℓT ±
+the quadrupole and octopole amplitudes that lie towards the       dCℓT , then applying equation (4) and assuming a uniform
+lower end of the allowed range, the joint probability for the     prior for CℓT , the posterior probability distribution for CℓT
+quadrupole and octopole rises to 2.5%. We conclude that it        is
+is premature to rule out the ΛCDM cosmology because of                                                     
+                                                                                      1        (2ℓ + 1)Cℓ
+the low quadrupole and octopole amplitudes. The true val-         dP (CℓT ) ∝            exp −                  dCT
+                                                                                                                  ℓ ,        (5)
+ues of the quadrupole and octopole for our CMB sky have                           T
+                                                                                    2ℓ+1
+                                                                                (C ) 2            2CTℓ
+                                                                                  ℓ
+not yet been determined with a sufficiently high accuracy,
+                                                                  where Cℓ is the observed amplitude. Equation (5) is pro-
+and the theoretical expectations of the Λ cosmology are not
+                                                                  portional to the likelihood function, which has its maximum
+constrained tightly enough, to exclude the model at a high
+                                                                  value at CℓT = Cℓ . The distributions (5) are plotted for the
+significance level. The S03 analysis of the S statistic exag-
+                                                                  quadrupole and octopole in Figure 3.
+gerates the statistical significance of any discrepancy with
+                                                                       The distributions plotted in Figure 3 give the posterior
+the ΛCDM model because they did not consider errors in the
+                                                                  probabilities that the true amplitudes CℓT take on any par-
+autocorrelation function arising from innacurate subtraction
+                                                                  ticular value and so we can use these figures to test how ‘dis-
+of Galactic emission.
+                                                                  connected’ the observed values of C2 and C3 (corresponding
+                                                                  to the peaks of the probability distributions) are from those
+                                                                  of the fiducial model (indicated by the vertical dashed lines).
+                                                                  The ratio of these probabilities is p(C2 )/p((C2T )fid = 28 and
+4   BAYESIAN STATISTICS
+                                                                  p(C3 )/p((C3T )fid = 1.6; neither of these ratios is high and
+As mentioned in the Introduction, a number of papers (e.g.        so we conclude that the observed amplitudes do not provide
+Bridle et al. 2003, Contaldi et al. 2003, Cline et al. 2003)      strong evidence against the fiducial ΛCDM model.
+have applied Bayesian methods to analyse more complex                  Why do these numbers indicate a weaker rejection of
+models, for example, ΛCDM models with a sharp break or            the model than the frequentist statistics of Table 1a? Let us
+truncation in the initial power spectrum on large scales.         recast the Bayesian analysis in frequentist language. Imagine
+These papers ignore the possible systematic errors in the         that we draw values of (CℓT ) from a uniform distribution
+WMAP power spectra discussed above, yet even so they              between 0 and an upper limit (CℓT )max (the exact value of
+report no strong evidence for the introduction of any addi-       this maximum limit is unimportant as long as it extends well
+tional parameters. How is this conclusion compatible with         into the tail of the distribution (2)). For each draw, generate
+the SO3 analysis of the S statistic or the simple frequentist     a random value of Cℓ from the χ2 distribution (2) and for
+
+                                                                                             c 0000 RAS, MNRAS 000, 000–000
+                                                                                   Statistics of CMB Quadrupole                 5
+those values that lie within a narrow interval around the          5   CONCLUSIONS
+observed value of Cℓ compute the frequency with which CℓT
+exceeds a critical value (CℓT )crit . This frequency is just the   (i) Do the WMAP measurements of the quadrupole and oc-
+integral over the probability distribution (5)                     topole amplitudes conflict with the ΛCDM cosmology? Based
+                                                                   on the quadrupole and octopole amplitudes, the answer is
+                       Z ∞                                         unambiguously no. The frequentist tests discussed in Section
+P CℓT > (CℓT )crit =                 dP (CℓT ),
+                  
+                                                            (6)    3 are inconclusive because there are significant systematic
+                        (C T )crit                                 errors in the WMAP quadrupole and octopole amplitudes.
+                           ℓ
+                                                                   These errors were neglected in SO3’s analysis of the S statis-
+(where the upper limit (CℓT )max has been replaced by infin-       tic and hence their estimate of a 1 in 700 chance of reproduc-
+ity). Numerical values for these frequencies for the octopole      ing the observations according to the concordance ΛCDM
+and quadrupole (neglecting minor effects from a cut sky)           model is an overestimate of the true odds. The Bayesian
+are given in Table 1b for values of (CℓT )crit ) equal to those    analysis of Section 4 suggests that a more reasonable esti-
+of the fiducial model and for values at the low end of the         mate of the odds is more like 1 in 10 or 1 in 20. Whatever
+range found from the MCMC chains. The latter numbers are           your statistical orientation, there is no convincing evidence
+the more useful because if these frequencies turn out to be        for a discrepancy with the concordance ΛCDM model.
+low, then there is little overlap between the posterior distri-    (ii) Do the WMAP measurements of the quadrupole and
+butions of Figure 3 and the distributions of quadrupole and        octopole amplitudes require new physics? Despite point (i)
+octopole amplitudes from the MCMC chains. This would               above, the likelihood functions plotted in Figure 3 peak at
+force us to reject the concordance ΛCDM model.                     lower values than those of the fiducial ΛCDM model and
+     However, we find that the frequency with which                so will favour models which predict low quadrupole and oc-
+(∆T2 )2 > 1000µK2 , given the observed WMAP quadrupole             topole amplitudes, provided that the number of extra pa-
+of 123µK2 is only 0.10, and so again we conclude that the          rameters required to describe the models is not too large‡ As
+evidence against the ΛCDM model is marginal. Of course,            an example, consider the analysis of Bridle et al. (2003) of a
+this test is different to the frequentist test discussed in Sec-   ΛCDM model with an initial spectrum truncated sharply be-
+tion 3 (Table 1a), but it is easy to understand why the two        low a wavenumber k = kc (see their Figure 2). The WMAP
+tests give different impressions of a discrepancy. We can see      data favour a truncation at kc ∼ 3 × 10−4 Mpc−1 , thus
+from Figure 2 that the probability of finding a quadrupole         favouring new physics, but (consistent with the results of
+amplitude as low as that observed, given the fiducial model,       this paper) a model with kc = 0 is not strongly excluded.
+is not improbably small and so if we assume a uniform prior        We conclude that the WMAP data certainly warrant explo-
+for C2T , low values of C2T simply do not have enough weight       ration of models incorporating new physics, but these mod-
+to exclude the quadrupole amplitude of the fiducial model          els had better make other testable predictions if they are
+at high significance.                                              ever to be strongly preferred over the concordance ΛCDM
+     Since C2T varies from zero to infinity, should we not have    model.
+used Jeffreys’ prior (Jeffreys 1939, Jaynes 2003), dC2T /C2T ,
+                                                                   (iii) Can measurements of the low CMB multipoles be im-
+thus giving extra weight to low values of C2T ? No, be-
+                                                                   proved? As mentioned in Section 2, Bennett et al. (2003a)
+cause there is a natural scale for C2T , namely the amplitude
+                                                                   quote an error on the quadrupole amplitude of ±70µK2
+of the fiducial model (C2T )fid . In any reasonable physical
+                                                                   and state that this is caused largely by errors in subtract-
+model, it is impossible to get a quadrupole amplitude that
+                                                                   ing foreground emission. This error estimate is consistent
+is very much smaller than that of the fiducial model because
+                                                                   with the difference in the quadrupole amplitude measured
+C2 involves an integral of the perturbation spectrum over
+                                                                   by Tegmark et al. (2003), who use a different method to
+wavenumber k. Since there is strong evidence in favour of
+                                           >                       subtract Galactic emission. It may, therefore, be possible to
+the fiducial model for wavenumbers k ∼        10−3 Mpc−1 (Bri-
+                                                                   improve on the accuracy of the quadrupole, and other low
+dle et al. 2003) we should strongly disfavour models with
+                                                                   CMB multipoles, by applying better methods of foreground
+very low values of C2T . The assumption of a uniform prior
+                                                                   subtraction.
+over the range, say, ∼ 10−1 (C2T )fid to a few times (C2T )fid
+                                                                        More accurate estimates of the low multipoles can be
+is physically reasonable and relatively benign, although (as
+                                                                   obtained by applying an optimal estimator (see e.g. Tegmark
+with all of the Bayesian analyses referred to in this paper)
+                                                                   1997) rather than the pseudo-Cℓ estimator used by the
+we must recognise that there is some dependence of the pos-
+                                                                   WMAP team. In the noise-free limit (a good approxima-
+terior probabilities on the form of the prior.
+                                                                   tion for WMAP on large angular scales), an optimal estima-
+     In conclusion, the Bayesian frequencies given in Table        tor will return almost the exact values of low multipoles on
+1b provide a meaningful comparison of the fiducial ΛCDM            the cut sky, provided that the sky-cut is not too large. An
+model to the WMAP data and they indicate marginal evi-             analysis of this sort might establish whether ∆T22 is closer
+dence for any discrepancy. In the opinion of this author, the      to 100µK2 or 200µK2 , which would be useful, though as ex-
+Bayesian analysis is preferable to the frequentist analysis of     plained in Section 4, the Bayesian analysis is not particularly
+Section 3 which is, in any case, inconclusive because of sys-
+                                                                   sensitive to variations of this magnitude.§
+tematic errors in the quadrupole and octopole amplitudes.
+The Bayesian frequencies listed in Table 1b could be mis-
+leading only if there is persuasive evidence that the priors on    ‡ This condition can be quantified using Bayesian methods,
+C2T and C3T should be strongly skewed towards much smaller         e.g. by computing Occam factors (Jaynes 2003, Chapter 20) or
+values than those of the fidicual model, in which case the low     Bayesian evidence (see e.g. Saini, Weller and Bridle 2003).
+amplitudes observed by WMAP add little new information.            § Such an analysis has been completed since this paper was sub-
+
+
+c 0000 RAS, MNRAS 000, 000–000
+6     G. Efstathiou
+Acknowledgments: I thank members of the Leverhulme
+Cosmology Group in Cambridge, and particularly Sarah Bri-
+dle, for useful discussions. I thank Sarah Bridle and Antony
+Lewis for supplying the MCMC chains used in Figure 1.
+
+
+
+REFERENCES
+Bennett C.L. et al., 2003, ApJS, 148, 1.
+Bennett C.L. et al., 2003b, ApJS, 148, 97.
+Bridle S.L., Lewis A.M., Weller J., Efstathiou G., 2003, MNRAS,
+    342, L72.
+Christensen N., Meyer R., Knox L., Luey B. 2001, Classical and
+    Quantum Gravity 18, 2677.
+Cline J.M., Crotty P., Lesgourgues J., 2003, preprint. astro-
+    ph/0304558.
+Contaldi C. Peloso M., Kofman L., Linde A., 2003, astro-
+    ph/0303636.
+Dedeo S., Caldwell R.R., Steinhardt P.J. 2003, PRD, D67, 103509.
+de Oliveira-Costa A., Tegmark M., Zaldarriaga M., Hamilton A.,
+    2003, astro-ph/0307282.
+    Deo S., Caldwell R.R., Steinhardt P.J. 2003, PRD, D67,
+    103509.
+Efstathiou G., 2003a, MNRAS, 343, L95.
+Efstathiou G., 2003b, submitted to MNRAS. astro-ph/0307515.
+Efstathiou G., 2003c, submitted to MNRAS. astro-ph/0310207.
+Feng B., Zhang X., 2003, preprint. astro-ph/0305020.
+Freedman W.L. et al., 2001, ApJ., 553, 47.
+Gaztañaga E., Wagg J., Multamaki T., Montana A., Hughes D.H.,
+    2003, submitted to MNRAS. astro-ph/0304178.
+Grainge K., et al., 2003, MNRAS, in press. astro-ph/0212495.
+Hinshaw G., Banday A.J., Bennett C.L., Gorski K.M., Kogut A.,
+    Smoot G.F., Wright E.L., 1996, ApJ, 464, L17.
+Hinshaw G. et al., 2003, ApJS, 148, 135.
+Hivon E., Górski K.M., Netterfield C.B., Crill B.P., Prunet S.,
+    Hansen F., 2002, ApJ, 567, 2.
+Jaynes E.T., Probability Theory, 2003, Cambridge University
+    Press, Cambridge.
+Jeffreys H., Theory of Probability, 1939, Clarendon Press, Oxford.
+Kogut et al., 2003, ApJS, 148, 161.
+Kuo C.L., et al., 2003, ApJ, in press. astro-ph/0212289.
+Lewis A., Bridle S., 2002, PRD, 66, 103511.
+Pearson T.J., et al., 2003, ApJ, 591, 556.
+Saini T.D., Weller J., Bridle S.L., 2003, submitted to MNRAS,
+    astr-ph/0305526.
+Spergel D.N. et al., 2003, ApJS, 148, 175.
+Tegmark M., 1997, PRD , 55 , 5895.
+Tegmark M., de Oliveira-Costa A., Hamilton A., 2003, astro-
+    ph/0302496.
+Verde L., et al., 2003, ApJS, 148, 195.
+Wandelt B.D., Hivon E., Górski K.M., 2001, PRD, 64, 083003.
+Wang X., Tegmark M., Jain B., Zaldarriaga M., 2002, astro-
+    ph/0212417.
+
+
+
+
+mitted for publication (Efstathiou 2003c). The results suggest a
+quadrupole amplitude of about 200µK2 .
+
+                                                                     c 0000 RAS, MNRAS 000, 000–000
+

@@ -1,0 +1,651 @@
+                                                  D RAFT VERSION AUGUST 15, 2022
+                                                  Typeset using LATEX twocolumn style in AASTeX631
+
+
+
+
+                                                                                            A Challenge to the Standard Cosmological Model
+                                                      NATHAN J. S ECREST , 1 S EBASTIAN VON H AUSEGGER , 2 M OHAMED R AMEEZ , 3 ROYA M OHAYAEE , 2, 4 AND S UBIR S ARKAR 2
+                                                                                1 U.S. Naval Observatory, 3450 Massachusetts Ave NW, Washington, DC 20392-5420, USA
+                                                                   2 Rudolf Peierls Centre for Theoretical Physics, University of Oxford, Parks Road, Oxford, OX1 3PU, United Kingdom
+                                                                   3 Dept. of High Energy Physics, Tata Institute of Fundamental Research, Homi Bhabha Road, Mumbai 400005, India
+
+
+
+
+arXiv:2206.05624v2 [astro-ph.CO] 12 Aug 2022
+                                                                          4 Sorbonne Université, CNRS, Institut d’Astrophysique de Paris, 98bis Bld Arago, Paris 75014, France
+
+
+
+                                                                                                               ABSTRACT
+                                                            We present the first joint analysis of catalogs of radio galaxies and quasars to determine if their sky distribution
+                                                         is consistent with the standard ΛCDM model of cosmology. This model is based on the cosmological principle,
+                                                         which asserts that the universe is statistically isotropic and homogeneous on large scales, so the observed dipole
+                                                         anisotropy in the cosmic microwave background (CMB) must be attributed to our local peculiar motion. We
+                                                         test the null hypothesis that there is a dipole anisotropy in the sky distribution of radio galaxies and quasars
+                                                         consistent with the motion inferred from the CMB, as is expected for cosmologically distant sources. Our
+                                                         two samples, constructed respectively from the NRAO VLA Sky Survey and the Wide-field Infrared Survey
+                                                         Explorer, are systematically independent and have no shared objects. Using a completely general statistic that
+                                                         accounts for correlation between the found dipole amplitude and its directional offset from the CMB dipole, the
+                                                         null hypothesis is independently rejected by the radio galaxy and quasar samples with p-value of 8.9 × 10−3 and
+                                                         1.2×10−5 , respectively, corresponding to 2.6σ and 4.4σ significance. The joint significance, using sample size-
+                                                         weighted Z-scores, is 5.1σ. We show that the radio galaxy and quasar dipoles are consistent with each other and
+                                                         find no evidence for any frequency dependence of the amplitude. The consistency of the two dipoles improves
+                                                         if we boost to the CMB frame assuming its dipole to be fully kinematic, suggesting that cosmologically distant
+                                                         radio galaxies and quasars may have an intrinsic anisotropy in this frame.
+
+                                                                      1. INTRODUCTION                                               The cosmological principle has served well as a simplify-
+                                                  The ΛCDM cosmological model is based on the isotropic                          ing assumption that made quantitative cosmology possible.
+                                               and homogeneous Friedmann-Lemaı̂tre-Robertson-Walker                              The inference that the universe is dominated by a cosmolog-
+                                               (FLRW) metric, justified by the “cosmological principle”                          ical constant Λ of O(H02 ), however, rests crucially on this
+                                               that the universe on large scales must appear to be the same                      assumption (see, e.g., Sarkar 2008); hence it is essential to
+                                               to all observers, independent of their location (Milne 1937).                     rigorously test it. The most direct way of doing so is to check
+                                               According to the standard picture of the growth of structure                      if the distribution of matter on cosmological scales is indeed
+                                               through gravitational instability, the distribution of matter on                  isotropic in the CMB frame. A model-independent method
+                                               cosmological scales (larger than ∼ 100 h−1 Mpc) reflects                          for doing this was proposed by Ellis & Baldwin (1984): con-
+                                               the linear evolution of primordial adiabatic density pertur-                      sider an observer moving at velocity v  c with respect to
+                                               bations of amplitude ∼ 10−5 seen imprinted on the cosmic                          an isotropic distribution of distant sources. Within the ob-
+                                               microwave background (CMB).1 The large-scale distribution                         server’s instrumental passband, the sources have a power-law
+                                               of matter must therefore share the same “cosmic rest frame”                       spectral energy distribution of the form S ∝ ν −α , and the
+                                               as the CMB (also called the “CMB frame”) in which the                             apparent flux density S of the sources within this passband
+                                               Friedmann-Lemaı̂tre equations hold. As observed from the                          has a cumulative power-law distribution N (> S) ∝ S −x . If
+                                               solar system barycentric frame, however, the CMB exhibits                         the observer surveys the sky down to a specific flux density
+                                               a prominent dipole anisotropy with amplitude D ∼ 10−3 ,                           above which the completeness of the survey is unbiased with
+                                               which is attributed to our peculiar velocity with respect to this                 respect to direction, then relativistic aberration and Doppler
+                                               frame. This motion is routinely corrected for in, for example,                    boosting of source emission in the observer’s frame will in-
+                                               analysis of the Hubble diagram of Type Ia supernovae, and in                      duce a dipole anisotropy in the sky distribution of sources
+                                               estimation of the ΛCDM model parameters from CMB data.                            with amplitude (Ellis & Baldwin 1984):
+
+
+                                               Corresponding author: Nathan J. Secrest
+                                                                                                                                                        D = [2 + x(1 + α)] β,               (1)
+                                               nathan.j.secrest.civ@us.navy.mil
+                                                 1H                 −1 Mpc−1 is the present expansion rate, with h ≃ 0.7.
+                                                                                                                                 where β ≡ v/c. This is called the kinematic dipole, and
+                                                      0 ≡ 100 h km s
+                                                                                                                                 the null hypothesis is that the direction and amplitude of the
+2                                                                 S ECREST ET AL .
+
+dipole of distant matter matches the direction of the CMB                    sources. Third, a joint analysis may reveal a consistent, com-
+dipole and the velocity inferred from its amplitude.2                        mon amplitude and direction for the radio galaxy and quasar
+   The minimum number of sources required to perform this                    dipoles, which could be an important clue for cosmology.
+test is of O(105 ) (Ellis & Baldwin 1984), which precluded                      In this Letter, we perform the first joint analysis of the
+statistically significant constraints until the advent of the                sky distributions of distant radio galaxies and quasars, which
+1.4 GHz NRAO VLA Sky Survey (NVSS; Condon et al.                             independently provide the strongest constraints on the kine-
+1998). This enabled the creation of large samples of radio                   matic dipole of distant matter. In Section 2, we carefully ac-
+galaxies down to a completeness limit of ∼ 10 mJy, yield-                    count for survey systematics, such as declination-dependent
+ing several estimates of the radio galaxy dipole (Blake &                    sensitivity differences, as well as astrophysical systematics,
+Wall 2002; Singal 2011; Gibelyou & Huterer 2012; Rubart                      such as Galactic synchrotron emission and reddening, all of
+& Schwarz 2013; Tiwari & Jain 2015; Colin et al. 2017). All                  which can introduce dependencies of source density on po-
+of these studies found the radio dipole to be over a factor of 2             sition. We assess the overlap between the radio galaxy and
+larger than the kinematic expectation, albeit with modest sig-               quasar populations, and account for shared sources to pro-
+nificance (∼ 2 − 3σ). The anomalously large NVSS dipole                      duce completely independent samples. In order to remain
+has consequently been controversial, with some authors argu-                 conservative and account for correlation between dipole po-
+ing that it is due to unidentified systematics in the data (e.g.,            sitions and amplitudes, we also introduce a two dimensional,
+Gibelyou & Huterer 2012) or possibly a large bias factor for                 completely generalized p-value to assess the null hypothesis.
+radio galaxies at low redshift (e.g., Tiwari & Nusser 2016).                 Our results are given in Section 3, wherein we also explore
+Complicating matters further, the 150 MHz TIFR GMRT Sky                      if there is a dipole shared by the radio galaxy and quasar
+Survey (TGSS; Intema et al. 2017) appears to exhibit an even                 populations. In the Appendix, we critically address related
+larger dipole (e.g., Bengaly et al. 2018), motivating a recent               results published in the literature since the publication of Se-
+claim that the anomalous radio galaxy dipole is frequency                    crest et al. (2021), such as a possible frequency dependence
+dependent (Siewert et al. 2021).                                             of the anomalously large dipole (Siewert et al. 2021), a con-
+   Confirmation of an anomalously large dipole of distant                    siderably larger dipole found in an older catalog of active
+matter requires using data that is systematically independent                galactic nuclei (AGNs) from WISE (Singal 2021), and a re-
+— not sharing the same instruments, survey design, or cal-                   cent result (Darling 2022) claiming consistency between the
+ibration method. This was accomplished by Secrest et al.                     radio galaxy dipole and the kinematic expectation. Our con-
+(2021), who used quasars selected with mid-IR photome-                       clusions are presented in Section 4.
+try from the Wide-field Infrared Survey Explorer (WISE;
+Wright et al. 2010). The unique power of WISE data                                             2. GALAXY SAMPLES
+to reliably select large, nearly all-sky samples of quasars                     In this work, we use radio galaxies from the NVSS
+based on photometry alone was demonstrated by Secrest                        and quasars selected using mid-infrared photometry from
+et al. (2015), and the release of the CatWISE2020 catalog                    CatWISE2020. The former is composed of radio galax-
+(Marocco et al. 2021), which contains much deeper photome-                   ies detected in 1.4 GHz continuum imaging taken with the
+try than the previous AllWISE release, enabled the construc-                 Very Large Array (VLA) in New Mexico, while the lat-
+tion of a cosmology-grade quasar catalog of 1.36 million ob-                 ter is composed of quasars detected in 3.4 µm (W 1) and
+jects. These have a mean redshift of hzi = 1.2, with 99%                     4.6 µm (W 2) imaging taken with WISE, in a polar low Earth
+having z > 0.1, thus precluding a significant contribution                   orbit. Being ground based, position-dependent systemat-
+from the local clustering dipole. Secrest et al. (2021) found                ics present in the NVSS depend on declination. Specifi-
+that the quasar dipole amplitude and direction, while similar                cally, the NVSS used the compact VLA D configuration for
+to the previous results from NVSS, reject the null hypothesis                −10◦ < decl. < +78◦ and the hybrid DnC configuration
+with much higher statistical significance (p = 5 × 10−7 , or                 for −40◦ < decl. < −10◦ and decl. > +78◦ . The NVSS
+4.9σ).                                                                       images are composed of individual pointings mosaicked to-
+   To date, however, the dipoles of radio galaxies and quasars               gether on a hexagonal grid, following lines of right ascen-
+have not been jointly analyzed. There are several important                  sion, and adjusting declination spacing to account for in-
+motivations to do this. First, the methodology used to de-                   creasing overlap at high latitude. The WISE scanning pat-
+termine the significance of disagreement with the expected                   tern, on the other hand, is aligned with the ecliptic for Sun
+kinematic dipole (e.g., treatment of survey systematics and                  avoidance, scanning the sky continuously in great circles that
+estimation of errors) varies considerably in the literature,                 converge at the ecliptic poles, using a scan mirror to com-
+so a meta-analysis of published results can be misleading.                   pensate for the telescope’s motion during integrations. The
+Second, there is some overlap in the populations of radio                    single exposure images are mosaicked onto a grid of 18,240
+galaxies and quasars that introduces correlation between re-                 predefined tiles shared across the various WISE data releases,
+sults, motivating an analysis that explicitly removes shared                 with CatWISE2020 being the latest.
+                                                                                While the NVSS and WISE catalogs are independent, the
+    2 Throughout this work, we use v = 369.82±0.11 km s−1 towards (l, b) =
+                                                                             systematics present in each must nonetheless be carefully ad-
+     (264.◦ 021, 48.◦ 253) (Planck Collaboration et al. 2020).
+                                                                             dressed. This is done primarily by developing sky masks
+                                                                             to mitigate instrumental systematics such as source confu-
+                                             T HE R ADIO G ALAXY /Q UASAR D IPOLE                                                3
+
+sion, image artifacts, and survey footprint limitations, as well      With the masking complete, the next step is to determine
+as astrophysical systematics such as diffuse Galactic syn-         the flux density cut. Using simulated point sources, Con-
+chrotron that may affect the purity and uniformity of an extra-    don et al. (1998) determined the ∼ 100% source complete-
+galactic source catalog. Additionally, each catalog has an ef-     ness limit of the NVSS to be 4 mJy. Using this flux den-
+fective sensitivity limit, generally set by a position-dependent   sity cut, however, there may still be some residual declina-
+survey depth, which must be controlled for. In the follow-         tion dependence of the catalog sensitivity, although at low
+ing sections, we discuss the masks and flux density cuts de-       statistical significance (χ2 /df = 1.4). Cutting at 10 mJy re-
+veloped for the NVSS and WISE catalogs. We use the Hi-             moves this potential systematic (χ2 /df = 1.1). We see no
+erarchical Equal Area isoLatitude Pixelization (HEALPix;           evidence for source density dependence on any of the poten-
+Górski et al. 2005)3 scheme to bin dipole-subtracted source       tial systematics we tested, with χ2 /df ranging from 0.95 to
+density by declination, ecliptic latitude, Galactic synchrotron    1.3 for E(B − V ), Galactic synchrotron, or any of the princi-
+emission, and other systematics of interest to ensure that the     pal latitudes (declination and ecliptic/Galactic/supergalactic
+source density of the masked catalog does not show any             latitude). This flux cut leaves 508,144 sources in the masked
+trends with these systematics. Bin sizes are chosen to be          map. We show the NVSS sample in Figure 1, top.
+large enough to calculate the reduced χ2 and reduce the sta-
+tistical dispersion, but small enough that any trends present                           2.2. WISE Quasars
+are not under-sampled. The reduced χ2 is defined as:                  In Secrest et al. (2021), we developed a mid-IR quasar
+                                                                   sample from the CatWISE2020 catalog, which is deeper
+                                     N                             and more uniform than the AllWISE catalog because of in-
+                                1 X (ρi − fi )2
+                 χ2 /df =                                   (2)    clusion of data from the NEOWISE Reactivation mission
+                              N −k i  σρ2i /ni
+                                                                   (Mainzer et al. 2011, 2014). This catalog was built using the
+where ρi is the mean source density in bin i, fi is the value      W 1 − W 2 ≥ 0.8 cut of Stern et al. (2012) that reliably picks
+of the functional fit for that bin, σρi is the dispersion of ρ     AGN-dominated objects, and a flux cut of W 1 < 16.4 mag
+within bin i, ni is the number of sky pixels in the bin, and       for uniform sensitivity across the sky. Objects below an ab-
+k is the number of parameters corresponding to fi . For ex-        solute Galactic latitude of 30◦ were excluded because of the
+ample, the linear model fit with respect to ecliptic latitude      drop in sky pixel density due to source confusion near the
+used to de-trend the WISE sample (Section 2.2) has k = 2.          Galactic plane. A slight inverse linear trend was also ob-
+In checking the residuals of source density, ρ is replaced by      served between ecliptic latitude and sky density, which is po-
+the residuals after subtraction of the dipole and monopole, so     tentially attributable to two effects. First, deeper coverage
+fi = 0 and k = 1. We find that requiring 200 pixels per bin        near the ecliptic poles increases sensitivity to faint sources
+for Nside = 64 is a good compromise, although our results          that, while excluded by our flux cut, may cause deblending
+are not sensitive to changes in bin counts, and remain con-        issues with brighter sources and lead to a loss of complete-
+sistent if we use uniform bins and allow the number of pix-        ness. Second, shallower coverage near the ecliptic equator
+els per bin to vary. We test for systematic trends in declina-     may lead to AGNs slightly bluer than W 1 − W 2 ≥ 0.8 scat-
+tion, ecliptic latitude, Galactic dust reddening, diffuse Galac-   tering red-ward due to photometric error, increasing apparent
+tic synchrotron emission, Galactic latitude, and supergalactic     source density if bluer AGNs are more common, as is implied
+latitude. We use the Planck Collaboration et al. (2014) map        in Figure 2 of Secrest et al. (2021). A detailed characteriza-
+for dust, and the de-striped and source-subtracted version of      tion of these effects is beyond the scope of this work; for our
+the Haslam et al. (1982) 408 MHz all-sky map made by Re-           purposes it suffices that the ecliptic latitude trend is easy to
+mazeilles et al. (2015) for synchrotron emission.                  correct for.
+                                                                      We retain the |b| ≥ 30◦ Galactic plane cut used by Se-
+                                                                   crest et al. (2021), as well as the source mask, but with a
+                               2.1. NVSS
+                                                                   minor revision: we found that some of the sky areas masked
+   Using the full NVSS catalog, we identify highly localized       in Secrest et al. (2021) were either not optimally centered on
+(∼ 1◦ scales) source concentrations that we use to produce a       the region of interest (e.g., diffraction spikes around bright
+list of circular mask regions, setting the radii to fully encom-   stars), or were over-masked (i.e., with too large a radius). We
+pass the concentration. As expected, these regions are gen-        manually reevaluated every region outside the Galactic plane
+erally within a few degrees of the Galactic plane, although        cut, of which there are 48 in the updated mask. Including the
+some regions at high Galactic latitude were also identified,       Galactic plane cut, 51% of the sky was masked. Repeating
+which are likely image artifacts near particularly bright radio    the tests done on the NVSS sample, we find minimal unex-
+sources such as M87. For less distinct artifact concentrations     plained variance in source density as a function of the prin-
+near the Galactic center, we use the diffuse synchrotron map       cipal latitudes or Galactic foregrounds, with χ2 /df ranging
+and mask all pixels with a mean brightness temperature of          from 0.8 to 1.4. In performing these tests, we found that the
+50 K or higher. In total, 27% of the sky was masked.               flux density cut used in Secrest et al. (2021) can safely be
+                                                                   relaxed slightly to W 1 < 16.5 mag (S > 0.078 mJy; see
+  3 https://healpix.sourceforge.io
+                                                                   Section 2 of Secrest et al. 2021, for how W 1 magnitudes are
+                                                                   converted to flux densities).
+4                                                         S ECREST ET AL .
+
+
+
+
+               1       source deg−2         32                                       16.6      source deg−2         17.2
+
+
+
+
+               40      source deg−2         120                                      79.4      source deg−2         81.5
+
+Figure 1. Top: Density map of the NVSS-based radio galaxy sample used in this work, in Galactic coordinates, Mollweide projection. The
+right plot is the smoothed map, using a 1 rad moving average, showing the underlying dipole signal. Bottom: Corresponding maps of the
+WISE-based quasar sample used in this work. The smoothed maps are only for visual purposes and were not used in our analysis.
+   We wish to determine the significance with which the               from regions of the sky not shared by the NVSS sample in
+NVSS and WISE dipoles independently reject the null hy-               order to maintain uniformity. This results in a total of 1.6 mil-
+pothesis. These catalogs must therefore not contain the same          lion WISE quasars, shown in Figure 1, bottom.
+objects. To this end, we match the full NVSS catalog to the
+full CatWISE2020 catalog using a 4000 match tolerance, cho-                          2.3. Testing the Null Hypothesis
+sen for completeness given the astrometric uncertainties of
+                                                                         In Secrest et al. (2021), we simulated the kinematic dipole
+NVSS that imply offsets of about ∼ 500 on average. We find
+                                                                      by applying relativistic aberration and Doppler boosting to
+that 99.7% of the NVSS sources have a counterpart in the full
+                                                                      individual sources, expressed as directional vectors, which
+CatWISE2020 catalog, with 99% of matches within ∼ 2000 .
+                                                                      were then converted into HEALPix maps. In this work, we
+Nonetheless, only 1.4% of the WISE quasars are in the NVSS
+                                                                      use a method of simulating the kinematic dipole directly in
+sample, likely because radio-selected AGNs tend to have low
+                                                                      sky pixel space, which is computationally much more effi-
+accretion rates (e.g., Sikora et al. 2007) and be hosted by
+                                                                      cient and allows a wide range of statistical tests. Our method
+luminous elliptical galaxies, while mid-IR AGNs are bolo-
+                                                                      identifies the equal areas of the sky pixels as the differential
+metrically dominant, and preferentially reside in bluer, less
+                                                                      solid angle dΩ. Then, each sky pixel mi has a Doppler factor
+clustered galaxies (e.g., Hickox et al. 2009). Indeed, using a
+                                                                      δi :
+sample of AGNs selected with the same WISE color cut we
+employ here and a catalog of VLA sources from the COS-
+MOS field, Stern et al. (2012) find that only ∼ 2% of WISE-                                 δi = γ(1 + β cos θi )                  (3)
+selected AGNs are radio-loud, consistent with what we find
+                                                                      where γ ≡ (1 − β 2 )−1/2 , and θi is the angular offset of
+here. By performing a joint analysis on radio-selected and
+                                                                      sky pixel mi from the velocity vector corresponding to the
+infrared-selected AGNs, we are therefore testing two almost
+                                                                      CMB frame. The expected number count within each pixel
+entirely different populations of objects, each with its own
+                                                                      is enhanced by δ 2 times the monopole M, which is fur-
+host galaxy type and environment. We removed the small
+                                                                      ther boosted by source brightening, which goes as δ x(1+α) .
+fraction of the quasar sample that have counterparts in the
+                                                                      Putting these together, the expected value of a sky pixel mi
+NVSS sample, and further removed random WISE quasars
+                                                                      modified by relativistic aberration and Doppler boosting is:
+                                              T HE R ADIO G ALAXY /Q UASAR D IPOLE                                                   5
+
+                                                                    dimensional space in dipole amplitude and offset, allowing
+                              2+x(1+α)                              for an estimate of the joint probability distribution. The
+                     m i = δi            M                   (4)
+                                                                    found dipole exists along a contour of equal probability den-
+Simulated skies are created by using the non-masked sky pix-        sity, and the p-value is the fraction of null skies outside of this
+els mi as the expectation values for random sampling from a         contour. There will be a larger fraction of null skies meeting
+Poisson distribution (shot noise).                                  this criterion, so the p-value will be larger (less significant).
+   Because variance in pixel counts due to relativistic aberra-     Our generalized approach is therefore the most conservative.
+tion and Doppler boosting occurs at the flux limit of the cata-
+log, the value of α and x used should be the values at this flux                              3. RESULTS
+limit. As has been noted for the NVSS previously (e.g., Colin          We find an NVSS dipole amplitude of D = (1.23±0.25)×
+et al. 2017), a single value of the power-law index x is not        10−2 , exceeding the kinematic expectation by a factor of
+sufficient to describe the integral source counts, being flatter    about 3, in the direction (l, b) = (196◦ ± 13◦ , +46◦ ± 10◦ ),
+at the faint end and becoming steeper at higher flux densities.     45◦ away from the CMB dipole, with a 95% upper confi-
+We fit the faint end near the flux cut, finding x = 0.77. As        dence limit (CL) positional uncertainty of 30◦ . Testing the
+the NVSS was observed at a single frequency, we do not have         null hypothesis with 106 simulated skies, we find it is re-
+α separately for each object. However, the population mean          jected with a p-value of 8.9 × 10−3 , or 2.6σ (Figure 2, left).
+in each pixel is the relevant quantity and this is expected to      For WISE, we find D = (1.48 ± 0.16) × 10−2 , exceeding
+be very near the typical synchrotron value α ∼ 0.75. We             the kinematic expectation by a factor of about 2, in the di-
+tested the effect of allowing α to have a dispersion of 0.4, es-    rection (l, b) = (238◦ ± 7◦ , +31◦ ± 5◦ ), 26◦ away from the
+timated from a match to the lower-frequency SUMSS catalog           CMB dipole, with a 95% CL positional uncertainty of 15◦ .
+                                                           −1/2
+(Mauch et al. 2003), with each pixel varying as 0.4 mi          .   We performed 108 null sky simulations, finding a p-value of
+We find that the effect of not knowing α for each individual        1.2 × 10−5 , which corresponds to 4.4σ (Figure 2, right). We
+source is negligible. For the WISE catalog we do have α for         note that the conversion from p-value to σ is two-sided, so
+each source, with a mean value of 1.06 at the 0.078 mJy flux        that the point of highest probability density corresponds to
+density limit, and we find that x = 1.89. For this sample we        0σ.
+include the small uncertainty of the ecliptic latitude correc-         Because each sample has its own particular mask, it is not
+tion in the null sky simulations by dividing the expectation        straightforward to combine them to determine the joint sig-
+map by a permutation of the correction for each simulation,         nificance with which the null hypothesis is rejected. More-
+with each permutation being drawn from the fit covariance           over, each sample has a different expected dipole amplitude
+matrix of the correction. The best-fit correction is used in the    under the null hypothesis, further complicating a single, com-
+fit, maintaining fidelity to counting statistics.                   bined test. However, the joint significance may be estimated
+   To fit dipoles, we used a modified version of the Healpy         using the weighted Z-score:
+fit dipole function, which uses the linear algebra rou-                                              P
+tines in NumPy. Our version optimizes memory usage to en-                                              i wi Zi
+able large Monte Carlo simulations to be run efficiently. The                             Zjoint = pP        2
+                                                                                                                                (5)
+                                                                                                          i wi
+expectation value maps generated using Equation 4 have fit
+dipoles with amplitudes in agreement with Equation 1 (El-           where wi are the sample weights, in this case the square roots
+lis & Baldwin 1984), which predicts D = 0.41 × 10−2 for             of the sample sizes (0.5 million for NVSS and 1.6 million
+NVSS and D = 0.73 × 10−2 for WISE. We quote formal un-              for WISE), and Zi are the Z-scores of each sample indepen-
+certainties on dipole fit parameters by permuting the masked        dently, respectively 2.6 and 4.4. This gives Zjoint = 5.1, or
+maps with shot noise, propagating the uncertainties of any          a joint significance of 5.1σ with which the kinematic expec-
+additional terms such as the ecliptic latitude trend seen in        tation inferred from the CMB dipole in the standard cosmo-
+WISE.                                                               logical model is rejected.
+   In Secrest et al. (2021), the definition of the p-value was         We note that, unlike in Secrest et al. (2021) we have not
+the fraction of simulated skies with dipole amplitudes ex-          preserved the coupling of source fluxes and spectral indices,
+ceeding the kinematic expectation and with directions within        instead using the relevant values at the flux density limit of
+the offset between the CMB dipole and the found quasar              our catalog (α = 1.06, x = 1.89). Repeating our method-
+dipole. This was motivated by the fact that simulated dipoles       ology on the sample from Secrest et al. (2021) and defin-
+at larger offsets are more likely to have a significant contribu-   ing the p-value in the same way, we get p = 3 × 10−7 ,
+tion from the “noise” dipole, which can increase their ampli-       consistent with our previous result. This indicates that the
+tudes. However, the amplitude and offset of simulated skies         effect of any correlation between α and x, as suggested by
+are correlated, with higher amplitudes generally exhibiting         Dalang & Bonvin (2022), is inconsequential for our results.
+smaller offsets, so a found dipole with smaller amplitude but       There is likewise no evidence for a significant difference in
+larger offset could be equally as inconsistent with the null        α and x between the hemispheres pointing towards the CMB
+hypothesis as one with larger amplitude and smaller offset.         dipole and away from it, as would be expected in this sce-
+   In this work, we therefore adopt a completely general            nario. The spectral index at the flux density limit is α = 1.06
+definition of the p-value. Null sky simulations fill a 2-           for both hemispheres in WISE, with uncertainties below the
+6                                                                                  S ECREST ET AL .
+
+                                                          NVSS                                                    WISE
+                                                                                                                                                    1.0
+                                                                         −3                                                       −5
+                                  120                     p = 8.9 × 10        (2.6σ)     120                      p = 1.2 × 10         (4.4σ)
+
+
+
+
+    CMB dipole offset (degrees)
+                                                                                                                                                    0.8
+                                  100                                                    100
+
+                                   80                                                     80                                                        0.6
+
+                                   60                                                     60                                                              p-value
+                                             1σ                                                          3σ                                         0.4
+                                        2σ
+                                   40                                                     40               2σ                     4σ
+                                                                                                                       1σ                           0.2
+                                   20                                                     20
+
+                                    0                                                      0                                                        0.0
+                                    0.000         0.005         0.010            0.015     0.000          0.005           0.010           0.015
+                                                            D                                                         D
+
+Figure 2. Distribution of CMB dipole offsets and kinematic dipole amplitudes of simulated null skies for the NVSS catalog (left) and WISE
+(right). Contours of equal p-value (scale on right y-axis), translated to equivalent σ are given (where the peak of the distribution corresponds to
+0σ), with the found dipoles marked with the + symbol and their p-value in the legends.
+given precision. The values of x in the towards/away hemi-                                     with NVSS. This tantalizing result suggests that if the so-
+spheres are 0.77/0.77 for NVSS, and 1.90/1.89 for WISE.                                        lar system barycenter is indeed traveling in the direction of
+The small difference in x for WISE is consistent with fitting                                  the CMB dipole at 370 km s−1 , then the space distribution
+error, and makes a negligible difference in the expected kine-                                 of cosmologically distant radio galaxies and quasars has an
+matic dipole amplitude.                                                                        intrinsic dipole anisotropy in that frame.
+   As the dipoles in the large scale distribution of radio galax-                                 We reiterate that the two catalogs are completely indepen-
+ies and of quasars independently reject the null hypothesis,                                   dent of each other, not only systematically but also in terms
+we can ask if these two dipoles are consistent with each                                       of the objects they contain. The dipoles of radio galaxies and
+other and, if so, combine them to determine their common                                       quasars are thus both larger than the kinematic expectation
+or shared dipole. We repeated the kinematic expectation                                        from the CMB dipole, but consistent with a common dipole
+test for a given input dipole amplitude and direction to de-                                   which points 27◦ away from the direction of the CMB dipole
+termine the distribution in amplitude and offset. Using 106                                    as observed, or 48◦ away if the kinematic expectation is re-
+simulations, we find that the input dipole that is most con-                                   moved. Note that, according to Murray (2022), the effect of
+sistent with the NVSS and WISE dipoles is their vector                                         gravitational lensing by the structures responsible for the lo-
+mean: D = (1.40 ± 0.13) × 10−2 , pointed at (l, b) =                                           cal bulk flow is negligible for the dipole in cosmologically
+(233◦ ± 6◦ , +34◦ ± 5◦ ), 27◦ offset from the CMB dipole,                                      distant source counts.
+with a 14◦ positional uncertainty at the 95% CL. The corre-                                       Finally, since the NVSS and WISE samples were acquired
+sponding p-value is 0.72 for WISE and 0.09 for NVSS, indi-                                     at frequencies differing by nearly 5 orders of magnitude,
+cating that the NVSS and WISE dipoles are indeed consistent                                    their consistency disfavors any frequency dependence of the
+with each other, albeit with some tension in the NVSS sam-                                     anomalous dipole as claimed by Siewert et al. (2021). We
+ple. If we additionally assume that the CMB dipole is fully                                    discuss this claim in Appendix A.1 and show that it can be
+kinematic in origin, then the NVSS and WISE dipoles will                                       attributed to known flux calibration issues in the 150 MHz
+each have a different kinematic contribution (with amplitudes                                  TIFR GMRT Sky Survey catalog (TGSS-ADR1 Intema et al.
+D = 0.41×10−2 and D = 0.73×10−2 , respectively), which                                         2017).
+can be removed from the samples using Equation 4. Doing
+this and repeating the above test yields a residual common
+dipole with amplitude D = (0.86 ± 0.14) × 10−2 , point-                                                            4. CONCLUSIONS
+ing towards (l, b) = (217◦ ± 10◦ , +20◦ ± 7◦ ), 48◦ from the                                     We have explored the dipoles in the sky distributions
+CMB dipole direction, with a 95% CL position uncertainty of                                    of two large, independent, samples of radio galaxies and
+22◦ . The corresponding p-values are 0.94 for WISE and 0.30                                    quasars, constructed from the NVSS and WISE catalogs. Our
+for NVSS, improving consistency and alleviating the tension                                    principal conclusions are as follows:
+                                            T HE R ADIO G ALAXY /Q UASAR D IPOLE                                              7
+
+   1. Using a common methodology and a completely gen-           lite. These data will enable the matter dipole to be traced
+      eralized p-value, the large dipole anisotropies seen       as a function of redshift — from z . 0.1 where it can have
+      in radio galaxies and quasars independently reject, at     a significant “clustering dipole” contribution from structure
+      2.6σ and 4.4σ respectively, the null hypothesis that the   — out to moderate z where the kinematic dipole due to our
+      dipoles arise due to Doppler boosting and relativistic     local motion should prevail if the universe is indeed homoge-
+      aberration with velocity 370 km s−1 in the direction       neous and isotropic on large scales. Such tomographic stud-
+      of the CMB dipole. The found dipole amplitudes are         ies may reveal if and how the observed anomalously large
+      about 3 and 2 times larger than the respective kine-       matter dipole is linked to our local bulk flow, which is also
+      matic expectations, and point 45◦ and 26◦ away from        anomalous in extending deeper than is expected in the stan-
+      the CMB dipole. The joint significance of this rejec-      dard ΛCDM model of structure formation. Measurement
+      tion of the cosmological principle is 5.1σ.                of fluxes along with number counts will provide additional
+                                                                 means to differentiate contributions to the matter dipole (Ti-
+   2. These anomalously large dipoles are statistically con-     wari et al. 2015; Nadolny et al. 2021).
+      sistent with a single, shared dipole of distant galaxies
+      and quasars, with amplitude D = (1.40±0.13)×10−2           We thank the anonymous referee for their helpful review of
+      in the direction (l, b) = (233◦ ± 6◦ , +34◦ ± 5◦ ). We     our paper. SvH acknowledges support from the Carlsberg
+      find no evidence for a frequency dependence of the am-     Foundation. The authors additionally thank Camille Bon-
+      plitude.                                                   vin, Enzo Branchini, Jacques Colin, Charles Dalang, Jim
+   3. The agreement between the radio galaxy and quasar          Peebles, Jean Souchay, and Jenny Wagner for helpful dis-
+      dipoles improves if the standard kinematic expecta-        cussions. The National Radio Astronomy Observatory is a
+      tion is subtracted out, yielding a dipole of amplitude     facility of the National Science Foundation operated under
+      D = (0.86 ± 0.14) × 10−2 in the direction (l, b) =         cooperative agreement by Associated Universities, Inc. This
+      (217◦ ±10◦ , +20◦ ±7◦ ). This may be interpreted as an     publication makes use of data products from the Wide-field
+      intrinsic over-density of galaxies and quasars on very     Infrared Survey Explorer, which is a joint project of the Uni-
+      large scales, in a direction 48◦ away from the CMB         versity of California, Los Angeles, and the Jet Propulsion
+      dipole.                                                    Laboratory/California Institute of Technology, funded by the
+                                                                 National Aeronautics and Space Administration. Some of the
+  These findings present a significant challenge to the cos-     results in this paper have been derived using the healpy and
+mological principle and, by extension, the standard FLRW         HEALPix package.
+cosmological model. A better understanding of the anoma-
+lously large dipole of radio galaxies and quasars will require     Facilities: VLA, WISE
+dedicated studies using data from ongoing surveys such as          Software: Astropy (Astropy Collaboration et al. 2013,
+the Dark Energy Spectroscopic Instrument and the forthcom-       2018), dustmaps (Green 2018), healpy (Zonca et al. 2019),
+ing Rubin Observatory Legacy Survey of Space and Time,           SciPy (Virtanen et al. 2020), TOPCAT (Taylor 2005)
+as well as the Square Kilometre Array and the Euclid satel-
+
+                                                           APPENDIX
+
+   A. RELATED RESULTS FROM THE LITERATURE                           Indeed, the TGSS has two significant systematics that
+   Since the publication of Secrest et al. (2021), a number of   make this result suspect. First, it has significant, position-
+apparently discrepant results have appeared in the literature.   dependent flux calibration problems (e.g., Hurley-Walker
+For completeness, and to work towards concordance on this        2017) that are visible in sky pixel maps across a range of flux
+issue, we address the most salient findings here.                density cuts. Second, it exhibits highly variable, position-
+                                                                 dependent background RMS noise that correlates with source
+                                                                 density (see Figures 8 and B.2 in Intema et al. 2017).
+                         A.1. TGSS                                  To estimate the effect of the flux calibration systematic,
+   Several papers have examined the dipole in the TGSS, find-    we exploit the nearly full NVSS membership of TGSS above
+ing a significantly larger value than that of the NVSS. This     −40◦ declination to determine the flux calibration correction
+is the main driver for the claim by Siewert et al. (2021) that   by leveraging the large scale (∼ 10◦ − 30◦ ) nature of the
+the radio dipole has a frequency dependence. Excluding the       calibration issue, requiring that the mean value of the true
+TGSS data point in their Figure 9, the WENSS, SUMSS and          spectral index α be the typical value for radio AGNs at lower
+NVSS data points are all consistent with their weighted mean     frequencies: hαi ∼ 0.75. Then, the correction factor for each
+of hDi = 2.1 × 10−2 with χ2 /df = 0.95, an overall better        sky pixel is:
+fit than the functional dependence proposed by Siewert et al.
+(2021) which has χ2 /df = 1.23 after including the TGSS                                     
+                                                                                                 150
+                                                                                                       hαiobs. −0.75
+data point.                                                                      fcorr. =                                  (A1)
+                                                                                                1400
+8                                                          S ECREST ET AL .
+
+where hαiobs. is the observed mean spectral index in the sky                         Uncorrected TGSS density
+pixel, calculated using the TGSS and NVSS flux densities of
+each source in the pixel. We used Nside = 32 for the 0.27
+million sources with corrected flux densities above 100 mJy
+in the masked map described below. The α map created us-
+ing this method shows a clear correlation with the large-scale
+systematics visible in the TGSS sky map (Figure 3), and cor-
+rection using Equation (A1) largely mitigates them.
+   We mask the map of TGSS sources with corrected flux
+densities using the same procedure applied to the NVSS, cut-
+ting out sky pixels with a mean 408 MHz brightness tem-
+perature greater than 50 K. Without any flux calibration cor-
+rection, we find a dipole amplitude of 6.5 × 10−2 , in agree-
+ment with previous estimates. After the flux calibration cor-                     0.9       density (deg−2 )         16.7
+rection, however, the amplitude drops by a factor of ∼ 3 to                          TGSS spectral index map
+2.2 × 10−2 , much closer to our NVSS/WISE result as well as
+the WENSS, SUMSS, and NVSS results from Siewert et al.
+(2021). This demonstrates that the apparently larger dipole
+in the TGSS can almost entirely be attributed to its known
+flux calibration issues, a result that is consistent with previ-
+ous work demonstrating that position-dependent flux calibra-
+tion errors in the TGSS on ∼ 10◦ scales can induce spurious
+power in the l . 20 multipoles (Tiwari et al. 2019).
+   We quantified the effect of the RMS noise-dependent
+source density systematic by making sky pixel bins of source
+density with respect to noise, requiring 100 pixels per bin
+for Nside = 32. We find that source density and RMS noise
+show a correlation of −0.68 (p ∼ 0). Correcting the source                        0.4            αobserved            1.1
+density map for this correlation, the TGSS dipole becomes
+                                                                                      Corrected TGSS density
+D = 1.4×10−2 , completely consistent with the NVSS/WISE
+dipole. We note that dedicated studies have examined the
+mean spectral index of sources shared between the NVSS
+and TGSS, finding hαi ∼ 0.78–0.79 above the 100 mJy flux
+density cut we employ here (de Gasperin et al. 2018; Tiwari
+2019, respectively). Our result is not particularly sensitive
+to choice of fiducial mean spectral index, with these slightly
+steeper values yielding D = 1.3 × 10−2 . Moreover, varying
+the assumed value of hαi from 0.70 to 0.80 in increments of
+0.01, the value of D stays between 1.3×10−2 and 1.5×10−2 .
+   Given this result, and the consistency of the NVSS and
+WISE dipoles, which span nearly five orders of magnitude
+in frequency, we find no evidence for a frequency-dependent                       0.9       density (deg−2 )         16.7
+dipole. Indeed, the most likely scenario is that the known
+flux density calibration and noise systematics of the TGSS           Figure 3. Top: TGSS before flux calibration correction. Middle:
+are wholly responsible for its apparently much larger dipole         spectral index map. Bottom: TGSS after flux calibration correction.
+compared to the NVSS.
+
+                        A.2. AllWISE                                 activation mission. Consequently, AllWISE is considerably
+                                                                     shallower and less uniform, requiring Singal (2021) to use
+  Soon after our CatWISE2020-based result was published              a much harder magnitude cut of W 1 < 15, which greatly
+(Secrest et al. 2021), Singal (2021) published an analysis of        reduces the sample size. Nonetheless, this discrepancy war-
+0.28 million AGNs selected from the AllWISE-based AGN                rants investigation.
+catalog of Secrest et al. (2015), finding a dipole amplitude of        We first checked that the dipole estimator used in Singal
+∼ 3 × 10−2 , i.e. a factor of ∼ 2 larger than found by Se-           (2021) gives results consistent with ours by reproducing their
+crest et al. (2021) and here. The AllWISE catalog uses data          result using the Secrest et al. (2015) catalog and applying the
+exclusively from the cryogenic and post-cryogenic phases of          same cuts, 12 < W 1 < 15 and |b| ≥ 15◦ . Because of
+the WISE mission prior to the hibernation period, so does            the small sample size (0.28 million), we used Nside = 32,
+not, unlike CatWISE2020, use data from the NEOWISE Re-
+                                             T HE R ADIO G ALAXY /Q UASAR D IPOLE                                                                           9
+
+which gives a monopole of 31 sources per sky pixel. We
+find D = 3.1 × 10−2 , with a direction within 12◦ of that
+found by Singal (2021). This offset may be attributable to                                   9.5
+slight differences in the sample resulting from how the sky is
+
+
+
+                                                                          density (deg−2 )
+masked when working with sky pixels versus source vectors.
+                                                                                             9.0
+   Having obtained a consistent result, we now explore sys-
+tematics in this sample. The first is the presence of stripes of
+reduced sensitivity along certain ecliptic lines of longitude                                8.5
+evident in Figure 1 of Singal (2021). We identify 4 stripes
+at ecliptic longitudes 10◦ < λ < 14◦ , 238◦ < λ < 242◦ ,
+313◦ < λ < 317◦ , and 342◦ < λ < 346◦ . Masking these,                                       8.0
+the dipole amplitude drops to D = 2.6 × 10−2 . We also find
+that, although the sample does not exhibit the linear eclip-
+tic latitude trend of the deeper CatWISE2020-based sample,                                         0         20           40            60        80
+it does show a steep drop off in source density at the eclip-                                               absolute ecliptic latitude (deg)
+tic poles beyond |β| & 70◦ (Figure 4, top). Making this
+cut mitigates source density dependence on ecliptic latitude,                          10.0
+although it has a minor effect on the dipole, reducing it to
+D = 2.5 × 10−2 . Finally, there is a clear downward trend                                    9.5
+
+
+
+
+                                                                    density (deg−2 )
+in source density at lower Galactic latitudes in the Secrest
+et al. (2015) sample (Figure 4, bottom), which is likely due                                 9.0
+to differences in the source detection algorithms employed
+for producing the AllWISE and CatWISE2020 catalogs. The                                      8.5
+latter is based on source detections from the unWISE cata-
+log (Schlafly et al. 2019) which performs better in crowded                                  8.0
+regions such as the Galactic plane and ecliptic poles. Con-
+sequently, while a cut of |b| > 30 was sufficient to remove                                  7.5
+dependence on Galactic latitude in the CatWISE2020 sam-
+ple (χ2 /df = 1.2), a cut of |b| > 45 is required for the                                              20    30      40      50       60     70        80
+                                                                                                            absolute Galactic latitude (deg)
+AllWISE-based sample (χ2 /df = 1.8). This leaves 0.11 mil-
+lion sources with D = 1.2 × 10−2 , pointing 74◦ from the
+CMB dipole and 85◦ from the CatWISE2020 dipole.                    Figure 4. Top: drop in source density near ecliptic poles in the
+   We conclude that, once survey and source detection sys-         AllWISE-based AGN catalog used by Singal (2021). Bottom: trend
+tematics have been accounted for, the AllWISE-based AGN            with Galactic latitude. The dashed lines denote the cuts we employ
+sample employed in Singal (2021) does not exhibit a sig-           to account for these effects.
+nificantly larger dipole than the CatWISE2020-based quasar
+sample that we have used in this work, which has ∼ 15 times        possible bias in the estimator, is fully accounted for in the
+as many sources. As a check, we added the de-striping mask         null sky simulations, so the formal significance of our re-
+to the CatWISE2020 sample, but found it has a negligible           sults is unaffected. This is a major motivation for our ap-
+impact, resulting in an amplitude D = 1.5 × 10−2 and a shift       proach, as opposed to attempting to determine uncertainties
+in direction of 3◦ .                                               and bias factors on the best-fit dipole amplitudes and direc-
+                                                                   tions, and working backwards to determine agreement with
+A.3. VLA Sky Survey and Rapid ASKAP Continuum Survey               the kinematic expectation (as was done in Darling 2022, and
+   Recently, Darling (2022) presented an analysis of the radio     elsewhere). Moreover, combining radio catalogs made at dif-
+galaxy dipole in the 3 GHz VLA Sky Survey (VLASS; Lacy             ferent frequencies is inherently problematic, as for a given
+et al. 2020) combined with the 0.9 GHz Rapid ASKAP Con-            flux limit a higher frequency catalog will preferentially se-
+tinuum Survey (RACS; McConnell et al. 2020), claiming              lect flat-spectrum sources, while a lower frequency catalog
+agreement with the kinematic expectation. We examine this          will preferentially select steep-spectrum sources, so the as-
+result below but first note two issues. Darling (2022) deter-      sumption of a characteristic, aggregate spectral index in the
+mines consistency with the kinematic expectation by fitting        joint catalog may not be valid. This, and other observational
+the dipole amplitude and direction, correcting for bias where      systematics that may vary between the two catalogs, is the
+needed, and employs bootstrap resampling to determine un-          reason why we did not join the NVSS with other catalogs,
+certainties. The dipole of the joint VLASS+RACS catalog            such as SUMSS (as was done in Colin et al. 2017).
+is found to be consistent with the kinematic expectation, al-         Nonetheless, the Darling (2022) result deserves examina-
+though it is acknowledged that their result is not inconsis-       tion. Using the VLASS and RACS catalogs, we reproduced
+tent with Secrest et al. (2021) either. In the present paper,      their joint catalog of 711,450 sources. Taking α = 0.98
+the effect of counting statistics and masking, along with any      and x = 1.0 as in that work, we find a dipole amplitude
+10                                                                S ECREST ET AL .
+
+of D = 0.49 × 10−2 , in agreement with the kinematic expec-                 all sky coverage (63% vs. 56% for VLASS), we find D =
+tation. The direction is (l, b) = (284◦ , 43◦ ), offset from the            1.5×10−2 , 42◦ from the CMB dipole, and a p-value of 0.003,
+direction found by Darling (2022) using a similar estimator,                which is inconsistent with the kinematic expectation.
+but within 15◦ of the CMB dipole.                                              Thus, while the joint catalog appears to be consistent with
+   However, if the VLASS and RACS catalogs are jointly                      the kinematic interpretation of the CMB dipole, at least one
+consistent with the kinematic expectation, then they should                 of the individual catalogs is not, and it is possible that the os-
+also be individually consistent, accounting for their source                tensible overall consistency with the kinematic expectation
+counts and sky masks. The advantage of our methodology                      is a coincidence of the particular distributions of sources in
+is that it is straightforward to test this, by simulating skies             each catalog. Indeed, Darling (2022) notes that, when tested
+according to the kinematic expectation, masking them iden-                  individually, the VLASS dipole points towards the south
+tically, and then determining how consistent the found dipole               equatorial pole (∼ 75◦ from the CMB dipole) with an ampli-
+directions and offsets are with expectations. For VLASS,                    tude corresponding to 683 km s−1 , while the RACS dipole
+we find D = 1.0 × 10−2 , 80◦ from the CMB dipole, and                       is closer in direction to the CMB dipole (∼ 42◦ ) but with an
+a p-value of 0.07 using 106 simulations, in tension with the                amplitude corresponding to 644 km s−1 .
+kinematic expectation. For RACS, which has larger over-
+
+                                                                 REFERENCES
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J., et al. 2013,     Mainzer, A., Bauer, J., Grav, T., et al. 2011, ApJ, 731, 53,
+   A&A, 558, A33, doi: 10.1051/0004-6361/201322068                           doi: 10.1088/0004-637X/731/1/53
+Astropy Collaboration, Price-Whelan, A. M., Sipőcz, B. M., et al.          Mainzer, A., Bauer, J., Cutri, R. M., et al. 2014, ApJ, 792, 30,
+   2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f                         doi: 10.1088/0004-637X/792/1/30
+Bengaly, C. A. P., Maartens, R., & Santos, M. G. 2018, JCAP,                Marocco, F., Eisenhardt, P. R. M., Fowler, J. W., et al. 2021, ApJS,
+   2018, 031, doi: 10.1088/1475-7516/2018/04/031                             253, 8, doi: 10.3847/1538-4365/abd805
+Blake, C., & Wall, J. 2002, Nature, 416, 150, doi: 10.1038/416150a          Mauch, T., Murphy, T., Buttery, H. J., et al. 2003, MNRAS, 342,
+Colin, J., Mohayaee, R., Rameez, M., & Sarkar, S. 2017, MNRAS,               1117, doi: 10.1046/j.1365-8711.2003.06605.x
+   471, 1045, doi: 10.1093/mnras/stx1631                                    McConnell, D., Hale, C. L., Lenc, E., et al. 2020, PASA, 37, e048,
+Condon, J. J., Cotton, W. D., Greisen, E. W., et al. 1998, AJ, 115,          doi: 10.1017/pasa.2020.41
+   1693, doi: 10.1086/300337                                                Milne, E. A. 1937, Proc. R. Soc. Lond. Ser. A, 158, 324,
+Dalang, C., & Bonvin, C. 2022, MNRAS, 512, 3895,                             doi: 10.1098/rspa.1937.0023
+   doi: 10.1093/mnras/stac726
+                                                                            Murray, C. 2022, MNRAS, 510, 3098,
+Darling, J. 2022, ApJL, 931, L14, doi: 10.3847/2041-8213/ac6f08
+                                                                             doi: 10.1093/mnras/stab3652
+de Gasperin, F., Intema, H. T., & Frail, D. A. 2018, MNRAS, 474,
+                                                                            Nadolny, T., Durrer, R., Kunz, M., & Padmanabhan, H. 2021,
+   5008, doi: 10.1093/mnras/stx3125
+                                                                              JCAP, 2021, 009, doi: 10.1088/1475-7516/2021/11/009
+Ellis, G. F. R., & Baldwin, J. E. 1984, MNRAS, 206, 377,
+                                                                            Planck Collaboration, Abergel, A., Ade, P. A. R., et al. 2014,
+   doi: 10.1093/mnras/206.2.377
+                                                                              A&A, 571, A11, doi: 10.1051/0004-6361/201323195
+Gibelyou, C., & Huterer, D. 2012, MNRAS, 427, 1994,
+                                                                            Planck Collaboration, Aghanim, N., Akrami, Y., et al. 2020, A&A,
+   doi: 10.1111/j.1365-2966.2012.22032.x
+                                                                              641, A1, doi: 10.1051/0004-6361/201833880
+Górski, K. M., Hivon, E., Banday, A. J., et al. 2005, ApJ, 622, 759,
+                                                                            Remazeilles, M., Dickinson, C., Banday, A. J., Bigot-Sazy, M. A.,
+   doi: 10.1086/427976
+                                                                              & Ghosh, T. 2015, MNRAS, 451, 4311,
+Green, G. 2018, The Journal of Open Source Software, 3, 695,
+   doi: 10.21105/joss.00695                                                   doi: 10.1093/mnras/stv1274
+Haslam, C. G. T., Salter, C. J., Stoffel, H., & Wilson, W. E. 1982,         Rubart, M., & Schwarz, D. J. 2013, A&A, 555, A117,
+   A&AS, 47, 1                                                                doi: 10.1051/0004-6361/201321215
+Hickox, R. C., Jones, C., Forman, W. R., et al. 2009, ApJ, 696,             Sarkar, S. 2008, General Relativity and Gravitation, 40, 269,
+   891, doi: 10.1088/0004-637X/696/1/891                                      doi: 10.1007/s10714-007-0547-7
+Hurley-Walker, N. 2017, arXiv e-prints, arXiv:1703.06635.                   Schlafly, E. F., Meisner, A. M., & Green, G. M. 2019, ApJS, 240,
+   https://arxiv.org/abs/1703.06635                                           30, doi: 10.3847/1538-4365/aafbea
+Intema, H. T., Jagannathan, P., Mooley, K. P., & Frail, D. A. 2017,         Secrest, N. J., Dudik, R. P., Dorland, B. N., et al. 2015, ApJS, 221,
+   A&A, 598, A78, doi: 10.1051/0004-6361/201628536                            12, doi: 10.1088/0067-0049/221/1/12
+Lacy, M., Baum, S. A., Chandler, C. J., et al. 2020, PASP, 132,             Secrest, N. J., von Hausegger, S., Rameez, M., et al. 2021, ApJL,
+   035001, doi: 10.1088/1538-3873/ab63eb                                      908, L51, doi: 10.3847/2041-8213/abdd40
+                                                 T HE R ADIO G ALAXY /Q UASAR D IPOLE                                                   11
+
+Siewert, T. M., Schmidt-Rubart, M., & Schwarz, D. J. 2021, A&A,       Tiwari, P., Ghosh, S., & Jain, P. 2019, ApJ, 887, 175,
+  653, A9, doi: 10.1051/0004-6361/202039840                             doi: 10.3847/1538-4357/ab54c8
+Sikora, M., Stawarz, Ł., & Lasota, J.-P. 2007, ApJ, 658, 815,         Tiwari, P., & Jain, P. 2015, MNRAS, 447, 2658,
+  doi: 10.1086/511972                                                   doi: 10.1093/mnras/stu2535
+Singal, A. K. 2011, ApJL, 742, L23,                                   Tiwari, P., Kothari, R., Naskar, A., Nadkarni-Ghosh, S., & Jain, P.
+  doi: 10.1088/2041-8205/742/2/L23                                      2015, Astroparticle Physics, 61, 1,
+—. 2021, Universe, 7, 107, doi: 10.3390/universe7040107                 doi: 10.1016/j.astropartphys.2014.06.004
+Stern, D., Assef, R. J., Benford, D. J., et al. 2012, ApJ, 753, 30,   Tiwari, P., & Nusser, A. 2016, JCAP, 2016, 062,
+  doi: 10.1088/0004-637X/753/1/30                                       doi: 10.1088/1475-7516/2016/03/062
+                                                                      Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020, Nature
+Taylor, M. B. 2005, in Astronomical Society of the Pacific
+                                                                        Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+  Conference Series, Vol. 347, Astronomical Data Analysis
+                                                                      Wright, E. L., Eisenhardt, P. R. M., Mainzer, A. K., et al. 2010, AJ,
+  Software and Systems XIV, ed. P. Shopbell, M. Britton, &
+                                                                        140, 1868, doi: 10.1088/0004-6256/140/6/1868
+  R. Ebert, 29
+                                                                      Zonca, A., Singer, L., Lenz, D., et al. 2019, The Journal of Open
+Tiwari, P. 2019, Research in Astronomy and Astrophysics, 19, 096,
+                                                                        Source Software, 4, 1298, doi: 10.21105/joss.01298
+  doi: 10.1088/1674-4527/19/7/96
+

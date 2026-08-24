@@ -1,0 +1,1095 @@
+                                               Astronomy & Astrophysics manuscript no. NVSS˙dipole                                                                                 c ESO 2018
+                                               January 16, 2018
+
+
+
+
+                                                                      Cosmic radio dipole from NVSS and WENSS
+                                                                                             Matthias Rubart? , Dominik J. Schwarz??
+
+                                                    Fakultät für Physik, Universität Bielefeld, Postfach 100131, 33501 Bielefeld, Germany
+
+                                                    Preprint online version: January 16, 2018
+
+                                                                                                                ABSTRACT
+
+                                                    We use linear estimators to determine the magnitude and direction of the cosmic radio dipole from the NRAO VLA Sky Survey
+                                                    (NVSS) and the Westerbork Northern Sky Survey (WENSS). We show that special attention has to be given to the issues of bias
+                                                    due to shot noise, incomplete sky coverage and masking of the Milky Way. We compare several different estimators and show that
+                                                    conflicting claims in the literature can be attributed to the use of different estimators. We find that the NVSS and WENSS estimates
+
+
+
+
+arXiv:1301.5559v3 [astro-ph.CO] 24 Jul 2013
+                                                    of the cosmic radio dipole are consistent with each other and with the direction of the cosmic microwave background (CMB) dipole.
+                                                    We find from the NVSS a dipole amplitude of (1.8 ± 0.6) × 10−2 in direction (RA, dec) = (154◦ ± 19◦ , −2◦ ± 19◦ ). This amplitude
+                                                    exceeds the one expected from the CMB by a factor of about 4 and is inconsistent with the assumption of a pure kinetic origin of the
+                                                    radio dipole at 99.6% CL.
+                                                    Key words. observational cosmology, large scale structure, radio surveys, peculiar motion
+
+
+
+                                              1. Introduction                                                           the dipole of another cosmic probe, such as that obtained by ra-
+                                                                                                                        dio point source catalogues. In this case one expects to find
+                                              The assumed isotropy and homogeneity of the Universe at large
+                                              scales is fundamental to modern cosmology. The isotropy is best            dradio = dmotion + dstructure + dforegrounds + dnoise .           (2)
+                                              seen in the cosmic microwave background (CMB) radiation and
+                                              holds at the per cent level. The most prominent anisotropy of             Besides the signal from our proper motion, we expect a signal
+                                              the CMB temperature is a dipole signal of ∆T/T ≈ 10−3 . It is             from structure in the Universe and we expect a random dipole
+                                              commonly assumed that this dipole is largely caused by the mo-            from Poisson noise. The dipole from structure is expected to
+                                              tion of the Solar system through the Universe (Stewart & Sciama           dominate any catalogue limited to redshift z  1. Thus we are
+                                              1967). This interpretation seems to be fully consistent with the          interested in surveys with a mean redshift of order unity and a
+                                              concordance model of cosmology.                                           large enough sky coverage to be sensitive to the dipole. This
+                                                  However, the observation of the microwave sky is not enough           makes radio catalogues the preferred probe to look at. Within
+                                              to tell the difference between a motion induced CMB dipole and            the concordance model, the dipole signal induced by the large
+                                              dipole contributions form other physical phenomena, i.e.                  scale structure is then a subdominant contribution, as it is for
+                                                                                                                        the CMB. If we had a large enough catalogue, we could com-
+                                              dcmb = dmotion + dprimordial + dISW + dforegrounds + dnoise .       (1)   pare dradio to dcmb . Any statistically significant deviation would
+                                                                                                                        be exciting, while finding a match would put the concordance
+                                              In our notation a dipole vector d modulates the isotropic sky by          model on firmer grounds.
+                                              a factor (1 + d · r̂), with r̂ denoting the position on the sky.              A first attempt to measure the radio dipole was performed
+                                                  Usually it is assumed that the primordial and the integrated          by Baleisis et al. (1998) using a combination of the Green
+                                              Sachs-Wolfe (ISW) contribution to the CMB dipole are negligi-             Bank 1987 and the Parkes-MIT-NRAO catalogues. Blake & Wall
+                                              bly small and that foregrounds (the Milky Way) are under con-             (2002), Singal (2011) and Gibelyou & Huterer (2012) attempted
+                                              trol. Within the concordance model we expect a primordial con-            to determine the dipole vector in the NRAO VLA Sky Survey
+                                              tribution of dprimordial ≈ 2 × 10−5 . The ISW contribution could          (NVSS), with different conclusions. Blake & Wall (2002) found
+                                              be as large as 10−4 from the gravitational potentials induced by          a result that is in agreement with a purely kinetic origin of the
+                                              local 100 Mpc sized structures, without being in conflict with            cosmic radio dipole, but this was challenged by Singal (2011),
+                                              the concordance model (Rakic et al. 2006; Francis & Peacock               who finds a dipole amplitude four times larger than expected,
+                                              2010). The noise term can be ignored due to excellent statistics          but strangely enough pointing in a direction consistent with the
+                                              of full sky observations. Thus the measured dcmb is directly used         CMB dipole. The analysis of Gibelyou & Huterer (2012) finds
+                                              to infer the velocity of the Solar system w.r.t. the CMB to be            both a different direction and an amplitude six times as large as
+                                              v = 369 ± 0.9 km s−1 (Hinshaw et al. 2009). It is used in many            the expected one. While Blake & Wall (2002) used a quadratic
+                                              cosmological studies done in the CMB rest frame, e.g. supernova           estimator, Singal (2011) and Gibelyou & Huterer (2012) used
+                                              Hubble diagrams or measurements of large scale bulk flows.                different linear estimators to find the dipole direction.
+                                                  The effects of motion are not limited to the CMB, but should              The purpose of this work is to discuss the use of linear es-
+                                              actually be detectable at any frequency. In order to test the hy-         timators of the cosmic radio dipole and apply several versions
+                                              pothesis dcmb = dmotion , it would be very interesting to measure         of them on the NVSS (Condon et al. 2002) and the Westerbork
+                                                                                                                        Northern Sky Survey (WENSS) (Rengelink et al. 1997). We re-
+                                               ?
+                                                   matthiasr at physik dot uni-bielefeld dot de                         solve the conflicts in the literature and extend the analysis to
+                                              ??
+                                                   dschwarz at physik dot uni-bielefeld dot de                          other linear estimators.
+
+
+                                                                                                                                                                                            1
+                                      Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+    The NVSS survey covers about 10.3 sr of the sky and con-          where δ is given by
+tains about 2×105 sources per steradian. For this survey the Very
+Large Array (VLA) in New Mexico (USA) has been used mea-                       1 + v cos(θ)
+                                                                      δ(v, θ) = q c           .                                        (6)
+suring at a frequency of 1.4 GHz. The survey includes over 80                     1 − ( vc )2
+per cent of the sky, missing only areas with declination δ < −40◦ .
+The lower flux limit lies at 2.5 mJy for the 5σ detection of point    Thus the observed flux changes due to our motion, since it de-
+sources. The NVSS was conducted by means of two different             pends on the frequency
+configurations of the VLA above and below δ = −10◦ .
+    The Westerbork Synthesis Radio Telescope in the                   S obs ( fobs ) ∝ δ frest
+                                                                                           −α
+                                                                                               ∝ δ1+α fobs
+                                                                                                       −α
+                                                                                                           ∝ S rest ( fobs )δ1+α .     (7)
+Netherlands was operated at a frequency of 325 MHz to
+record the WENSS survey covering about 2.9 sr of the nothern          The first factor of δ is due to the fact that the energy of an ob-
+sky and containing about 2.3 × 105 sources in total. This survey      served photon is enhanced due to the Doppler effect.
+is made up of a main catalog for δ ∈ (28◦ , 76◦ ) and a polar             Thus, the Doppler effect will change the number of observed
+catalog for δ > 72◦ . The 5σ detection limit for this survey is 18    sources above a given flux limit like
+mJy.                                                                    dN
+                                                                           !
+                                                                                    dN
+                                                                                       !
+    In order to analyze these surveys, we focus on linear esti-                 =           δ x(1+α) .                               (8)
+mators in this work. We do so for two reasons. Firstly, recent          dΩ obs      dΩ rest
+controversial results used linear estimators for the dipole direc-         Since the velocity of light is finite, aberration will also mod-
+tion (Singal 2011; Gibelyou & Huterer 2012) and in one work           ify the number counts. The position of each source is changed to-
+also for the dipole amplitudes (Singal 2011). Secondly, linear        wards the direction of motion. The new angle θ0 (observed from
+estimators are conceptually simpler. However, it is not expected      Earth) between the position of the source and the direction of
+that they are optimal (unbiased and minimal variance). The lin-       motion is given by
+ear estimators used in our analysis are asymptotically unbiased                       q
+and their variance can be easily understood by analytic calcula-
+                                                                                sin θ 1 − vc2
+                                                                                             2
+
+tions and by Monte Carlo simulations.                                  tan θ = v
+                                                                            0
+                                                                                               .                                        (9)
+                                                                                   c + cos θ
+    The paper is organized as follows: First we discuss the ex-
+pected kinetic radio dipole. In section 3 we outline previous es-
+timates of the radio dipole. Linear estimators for full sky surveys   Therefore, at first order in v/c, dΩ transforms like
+are investigated in section 4, followed by a detailed analysis of                       v              v 2 !
+the effects of incomplete sky coverage and masking in the next        dΩ0 = dΩ(1 − 2 cos θ) + O                .                      (10)
+section. In section 6 we discuss the expected dipole amplitude                          c               c
+from a flux based estimator. Our estimate of the radio dipole can     This can be combined with the Doppler effect to give the ob-
+be found in section 7 and is followed by a comparison with pre-       served number density. After approximating δ(v, θ) to first order
+vious results. We conclude in section 9.                              in vc , the result becomes
+                                                                                        ! 
+                                                                      dN            dN                         v       
+2. Kinetic Radio Dipole                                                         =           1 + [2 + x(1 + α)]     cos(θ) .        (11)
+                                                                      dΩ obs        dΩ rest                     c
+2.1. Doppler shift and aberration
+                                                                      The amplitude of the kinetic radio dipole is then given by
+Ellis & Baldwin (1984) predicted the kinetic contribution to the                         v
+cosmic radio dipole for an isotropic and homogeneous cosmol-          d = [2 + x(1 + α)]     .                                   (12)
+ogy. At redshift of order unity and beyond, we expect this kinetic                        c
+contribution to be the dominant one.                                  The kinetic radio dipole points towards the direction of our pe-
+    The spectrum of a radio source is assumed to be described         culiar motion, which in an isotropic and homogeneous Universe
+by a power law,                                                       must also agree with the direction defined by the CMB dipole.
+S ( f ) ∝ f −α ,                                               (3)
+where S denotes the flux and f the frequency. Each radio source       2.2. Expected kinetic radio dipole
+can be described by an individual spectral index α. For simplic-      The measured CMB dipole is ∆T = 3.355 ± 0.008 mK in the
+ity we assumed a mean value of α for all radio sources in the         direction (l,b) = (263.99◦ ± 0.14◦ , 48.26◦ ± 0.03◦ ) (Hinshaw
+catalogue.                                                            et al. 2009). In equatorial coordinates (epoch J2000) its direction
+    The number of observed radio sources per steradian depends        reads (RA,dec) = (168◦ , −7◦ ). Compared to the CMB tempera-
+on the lower flux limit and can be approximated by a power law        ture of T 0 = 2.725±0.001 K (Fixsen & Mather 2002). this corre-
+dN                                                                    sponds to a relative fluctuation of ∆T/T = (1.231±0.003)×10−3
+    (> S ) ∝ S −x .                                           (4)     and thus the velocity of the Solar system has been inferred from
+dΩ
+                                                                      the CMB dipole to be v = 369.0 ± 0.9 km s−1 (Hinshaw et al.
+The value of x can be different for each survey. Typically x is
+                                                                      2009).
+assumed to be about one.
+                                                                          In order to find the expected amplitude of the kinetic radio
+    Two effects have to be taken into account. The emitted radio
+                                                                      dipole, we also need estimates for x and α. The typically as-
+frequency frest is observed at the Doppler shifted frequency fobs .
+                                                                      sumed values are x = 1 and α = 0.75, which gives together with
+The magnitude of this change depends on the angle θ between
+                                                                      v = 370 km s−1 a radio dipole amplitude of d = 0.46 × 10−2 .
+the direction to the source and the direction of our motion, with
+                                                                      However, we can improve on that as x can be measured with help
+velocity v. Observed and rest frame frequencies are related by
+                                                                      of the radio survey. Therefore we need to plot N(> S ) against S
+fobs = frest δ(v, θ),                                          (5)    like in figure 1.
+
+
+2
+                                           Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+                                                                               Flux          N        RA            dec           d       χ2red
+          107
+                                               NVSS sources                   (mJy)                    (o )          (o )      (10−2 )
+                                   best fit to NVSS sources                    > 40     125,603     149 ± 49     -45 ± 38     0.7 ± 0.5   1.02
+                                             WENSS sources                     > 35     143,524     161 ± 44     -27 ± 39     0.9 ± 0.4   0.74
+            6                     best fit to WENSS surces
+          10                                                                   > 30     166,694     156 ± 32       2 ± 33     1.1 ± 0.4   1.01
+                                                                               > 25     197,998     158 ± 30      -4 ± 34     1.1 ± 0.3   1.01
+                                                                               > 20     242,710     153 ± 27      -3 ± 29     1.1 ± 0.3   1.32
+  N(>S)   105                                                                  > 15     311,037     148 ± 29      31 ± 31     0.8 ± 0.3   1.81
+                                                                               > 10     431,990     132 ± 29      65 ± 19     0.5 ± 0.2   4.96
+                                                                          Table 1. Best-fit dipole parameters from Blake & Wall (2002).
+          104                                                             Coordinate system and amplitude definition are adjusted for
+                                                                          comparison with Singal’s results (see tables 2 and 3). N denotes
+                                                                          the number of point sources with flux above the indicated limit.
+          103
+                     10                    100                  1000
+                                  Flux in [mJy]
+                                                                          galactic plane have been removed. In order to avoid a directional
+Fig. 1. Number counts of the NVSS and WENSS surveys. A                    bias (see the more detailed discussion below) he reestablished a
+function f (S ) ∝ S −x is fitted to both data sets in the range of        north-south symmetry of the NVSS by cutting all sources with
+25 mJy < S < 200 mJy. Resulting values of x are 1.10 ± 0.02               dec > 40◦ . The results of Singal (2011) are shown in table 2. The
+for the NVSS survey and 0.80 ± 0.02 for the WENSS survey.                 errors of the directional measurements are quite small here. This
+                                                                          is an effect of an unexpectedly large amplitude, which simplifies
+                                                                          the measurement. While the direction agrees with the one found
+                                                                          by Blake & Wall (2002), the dipole amplitude seems to be a fac-
+    For the purpose of this work we find xNVSS = 1.10 ± 0.02              tor of about four higher than expected from the CMB dipole and
+and xWENSS = 0.80 ± 0.02. The mean spectral index cannot be               twice as big as found by Blake & Wall (2002).
+inferred from the catalogues, as they provide data at a single                Masking the supergalactic plane in order to reduce the con-
+frequency band only. We thus stick to α = 0.75, but include in            tribution of local structure did not resolve the discrepancy. Since
+the dipole error an uncertainty of ∆α = 0.25 (Garn et al. 2008).          unknown clustering further away from the super galactic plane
+This results in the expectations:                                         could also have contributed to the measurement, a second test
+   exp                                                                    was performed. A clustering contribution to the dipole would not
+ dNVSS = (0.48 ± 0.04) × 10−2 ,                                    (13)   give a signal proportional to cos θ. On the other hand, the differ-
+ exp
+dWENSS          = (0.42 ± 0.03) × 10 .
+                                   −2
+                                                                   (14)   ence in number counts of areas that are opposite to each other
+                                                                          should decrease with cos θ (where θ is the angle between an area
+The error is dominated by the uncertainty in the spectral index.          and the measured dipole direction), if the measured dipole is due
+                                                                          to our velocity. Singal was able to fit such a behaviour to the data.
+                                                                          Therefore he concludes that the radio dipole amplitude is not due
+3. Previous results                                                       to local clustering .
+The first measurement of the radio dipole using the NVSS cat-
+alogue was performed by Blake & Wall (2002). In order to re-                 Flux        N          RA           dec            d
+move corruption by local structure, all sources within 15◦ vicin-           (mJy)                    (◦ )        (◦ )        (10−2 )
+ity of the galactic disk have been removed. Additionally the                 ≥ 50      91, 597    171 ± 14     −18 ± 14     2.1 ± 0.5
+clustering dipole contribution was reduced by ignoring sources               ≥ 40     115, 837    158 ± 12     −19 ± 12     1.8 ± 0.4
+within 3000 of nearby known galaxies. The spherical harmonic                 ≥ 35     132, 930    157 ± 11     −12 ± 11     1.9 ± 0.4
+coefficients aobs                                                            ≥ 30     154, 996    156 ± 11     −02 ± 10     2.0 ± 0.4
+                  lm from the remaining NVSS catalogue have been
+determined up to l = 3. A model for a dipole distribution with               ≥ 25     185, 474    158 ± 10     −02 ± 10     1.8 ± 0.4
+an isotropic background has been constructed (a00 and a10 ). Due             ≥ 20     229, 365    153 ± 10     +02 ± 10     1.8 ± 0.3
+                                                                             ≥ 15     298, 048    149 ± 09     +15 ± 09     1.6 ± 0.3
+to masking, this dipole distribution also influences higher multi-
+poles. After applying the same mask as for the NVSS catalogue,            Table 2. Dipole direction and amplitude from the number count
+one finds amodel
+             lm      up to l = 3. A quadratic estimator (chi square)      estimator (15) from Singal (2011).
+was used to compare the model with the observed coefficients.
+    The resulting best-fit dipoles can be seen in table 1. The re-
+sults of Blake & Wall (2002) indicate a higher radio dipole than               Singal (2011) also used a linear estimator for the distribu-
+expected, however without statistical significance.                       tion of flux over the sky. This estimator is similar to the number
+    Singal (2011) used a linear estimator, originally proposed by         density estimator (15), but weights each radio source by its flux
+Crawford (2009),                                                          S i,
+        X
+R3D =       r̂i ,
+                                                                                   X
+                                                                (15)      Rflux =     S i r̂i .                                         (16)
+and a variation of it, which we discuss below. For a large number         Like R3D , this estimator finds the main anisotropy and the am-
+of sources the isotropic background will clear away. The remain-          plitude needs to be normalized. The brightest sources (S > 1000
+ing vector R3D will point towards the main anisotropy in the dis-         mJy) are removed, because they would dominate Rflux other-
+tribution of number density over the sky. To get the correct dipole       wise. Results of this estimator are shown in table 3. The esti-
+amplitude d one has to normalize this estimator depending on the          mated directions are in agreement with the results of Blake &
+number of sources. In Singal’s analysis sources within 10◦ of the         Wall (2002) and the number count estimator results of Singal
+
+
+                                                                                                                                                  3
+                                                Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+(2011). However, the normalized dipole amplitudes d are even                          Now the expectation value of Crawford’s estimator can be
+higher than those of the number count estimator R3D . In section                  evaluated for large N,
+6 we resolve this conflict.                                                                  N         N              Z
+                                                                                            X         X            N
+                                                                                  hR3D i = h r̂i i =      hr̂i i =      dΩ (1 + r̂ · d) r̂. (20)
+         Flux                 N            RA         dec          d                        i=1       i=1
+                                                                                                                   4π
+        (mJy)                               (◦ )      (◦ )      (10−2 )
+    1000 > S ≥ 50          90, 360       163 ± 12   −11 ± 11   2.3 ± 0.7          This calculation holds for independent, identically distributed
+    1000 > S ≥ 40          114, 600      159 ± 12   −11 ± 11   2.2 ± 0.6          positions r̂i , thus without clustering effects. Only the second term
+    1000 > S ≥ 35          131, 691      159 ± 11   −10 ± 10   2.2 ± 0.6          survives the integration and thus the expected dipole estimator is
+    1000 > S ≥ 30          153, 759      159 ± 11   −07 ± 10   2.2 ± 0.6
+                                                                                            1
+    1000 > S ≥ 25          184, 237      159 ± 10   −07 ± 09   2.2 ± 0.6          hR3D i =    N d.                                                (21)
+    1000 > S ≥ 20          228, 128      158 ± 10   −06 ± 09   2.1 ± 0.5                    3
+    1000 > S ≥ 15          296, 811      157 ± 09   −03 ± 08   2.0 ± 0.5          Naively, one could now estimate the dipole signal by d3D ≡
+                                                                                  3
+Table 3. Dipole direction and amplitude from the flux weighted                    N R3D .
+number count estimator (16) from Singal (2011).                                       We conclude that d3D provides us with an unbiased estimate
+                                                                                  of the dipole direction d̂ for a full sky sample. However the esti-
+                                                                                  mated dipole amplitude |d3D | is biased.
+                                                                                      To understand the origin of this bias let us first consider
+    Most recently, Gibelyou & Huterer (2012) measured a dipole
+amplitude (d = 2.7 ± 0.5) × 10−2 towards (RA,dec) = (117 ±
+                                                                                                      !
+                                                                                                    1 2 9
+                                                                                   < d23D >= 1 −        d + > d2 .                                (22)
+20◦ , 6 ± 14◦ ) from the NVSS. This direction is inconsistent with                                 N          N
+the studies mentioned above and the dipole amplitude is a fac-
+tor of five larger than expected. The authors used separate esti-                 The inequality holds for large N and d < 3 (in case of large
+mators for the direction and the amplitude. Their direction esti-                 dipole amplitudes [d = O(1)] our ansatz (19) should also take
+mate is based on a linear estimator, originally proposed by Hirata                many-point correlations into account). Thus d23D is definitely bi-
+(2009),                                                                           ased towards higher amplitudes. However, in order to prove that
+                                                                                  |d3D | is biased, we would need to calculate h|d3D |i. We do this by
+          ND                  RN                                                  means of the random walk/flight method.
+          X               ND X
+R3DM =            r̂i −         r̂ j .                                     (17)
+            i
+                          NR j
+                                                                                  4.1. Random flight
+    This three-dimensional estimator (3DM) is intended to be
+unbiased for arbitrary survey geometries and arbitrary masking.                   Adding up vectors for each point of a survey corresponds to a
+The idea is to achieve that with help of the second sum, which                    random walk with unit step size. To be more precise this is a
+goes over NR randomly distributed points, subject to the same                     random flight, since the problem is three dimensional. Even for a
+masking. Therefore, the authors include all sources of the NVSS                   vanishing dipole, such a random flight is unlikely to return to the
+survey, except for those within 10◦ of the galactic plane. Below                  origin after N steps. This describes the noise of any realisation
+we show that this estimator has a direction bias, which depends                   of an isotropic distribution of N sources.
+on the real dipole anisotropy.                                                         Following Crawford (2009), we determine the distance r
+    We summarize, there is no agreement on the amplitude and                      from the origin after N steps from the probability density of a
+direction of the cosmic radio dipole so far.                                      random flight process
+                                                                                                     #1/2
+                                                                                                                  3r2
+                                                                                              "                       !
+                                                                                                 54
+                                                                                  P̌N (r)dr =              2
+                                                                                                          r exp −       dr.                      (23)
+4. Linear estimators for a full sky                                                             πN 3              2N
+Let us first show that the estimator (15) provides an unbiased                        The probability of measuring a dipole signal of an amplitude
+estimate of the dipole direction.                                                 bigger than R in a random flight is
+    Starting from the distribution of the number of radio sources                                   Z ∞
+per solid angle (11), as seen by a moving observer in an oth-                     PN (R > R pCL ) =      dr P̌N (r) = 1 − pCL.                (24)
+erwise isotropic Universe, the probability to find a given radio                                        R pCL
+source within a solid angle dΩ of position r̂ is given by                         A confidence level pCL can be choosen, leading to errorbars
+                 1                                                                for a measured dipole vector R3D ± R pCL . To estimate the di-
+p(r̂)dΩ =          (1 + r̂ · d)dΩ,                                         (18)   rectional uncertainties of this method, Crawford (2009) made
+                4π
+                                                                                  the following argument: at a given confidence level the random
+where d denotes the dipole vector.                                                flight corresponds to a step of length up to R pCL . Adding R pCL
+    In order to study the bias of an estimator we calculate its ex-               perpendicular to the measured dipole R3D allows us to estimate
+pectation value with respect to an ensemble average. We do so                     the maximal offset in direction. Using trigonometry, one can re-
+below by means of Monte Carlo studies. For analytic consider-                     late R pCL to the directional uncertainties expressed as the angle
+ations, for large N we replace the ensemble average by a spatial
+average, i.e.                                                                                       R pCL
+                                                                                  δθ pCL = arcsin         .                                       (25)
+                                                                                                    R3D
+      Z Y  N
+h1i =         dΩi p(r̂i )1 = 1,                                (19)                    The expected magnitude of the random dipole contribution
+            i=1                                                                   is estimated from (23) as
+                                                                                              Z ∞ "       #1/2
+                                                                                                                       3r2            √
+                                                                                                                           !
+thus we assume ergodicity. Note that the average is a linear op-                                      54
+                                                                                  hR3D i =
+                                                                                     random
+                                                                                                   r            2
+                                                                                                               r exp −       dr ≈ 0.92 N. (26)
+erator.                                                                                         0    πN 3              2N
+
+4
+                                         Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+          0.03                                                             telescopes are limited to observe at certain declination ranges.
+                                             CMB dipole                    Additionally, the Milky Way is masking parts of the sky. Here
+                                   best fit to simulation
+         0.025                                                             we will discuss some of the effects caused by incomplete sky
+                                                                           coverage.
+          0.02                                                                 The upcoming Low Frequency Array (LOFAR) Tier-1 sur-
+                                                                           vey will cover about half of the sky (2π), thus we will first focus
+  dobs   0.015                                                             on this situation. As a second step we generalize this to an ar-
+                                                                           bitrary axisymmetric survey geometry and include the effects of
+          0.01                                                             masking.
+
+         0.005                                                             5.1. Random walk
+
+            0                                                              Let us assume a survey geometry that covers all of the Northern
+                 0   3.0*105   6.0*105       9.0*105   1.2*106   1.5*106   hemisphere and ask how the estimator of the radio dipole (15)
+                                         N                                 has to be modified. For the first two Cartesian components of
+                                                                           R3D there should be no systematic problem, but the third com-
+Fig. 2. Ampliude bias of the full sky estimator d3D . Data repre-          ponent will definitely be biased. It is necessary to remove the
+sent mean and empirical p   variance of 1000 simulations for each          effect of the incomplete sky from this z component. Consider
+N. A function dobs (N) = D2 + 9A2 /N is fitted to the simulated            the expectation value of R3D for the Northern hemisphere
+data, with best-fit values A = 0.908±0.002, D = (0.451±0.001)×
+10−2 . The expected dipole amplitude (d = 0.0046) is indicated                                 XN
+                                                                                                        N pd
+                                                                                                             Z
+by the horizontal line.                                                    hR3D ihemisphere = h r̂i i =         dΩ(1 + r̂ · d)r̂,        (28)
+                                                                                               i=1
+                                                                                                         2π δ>0
+
+                                                                           where pd ≡ 1/[1 + (d/2) cos ϑd )] accounts for the proper nor-
+    Since the random dipole has no distinguished direction, there          malisation of the probability distribution on the hemisphere in
+is no direction bias of the linear estimator for a full sky map.           presence of a dipole. 4π in (18) becomes 2π for obvious reasons.
+    Even for vanishing d, this gives rise to a non-vanishing esti-         The integral can be evaluated by hand. One finds
+mate of the dipole amplitude d3D   random
+                                          = 2.8N −1/2 and is thus the
+                                                                                                     3 d cos ϕd sin ϑd 
+                                                                                                    1
+origin of the amplitude bias.
+                                                                                                                            
+    Motivated by (22) we make the following ansatz for the                 hR3D ihemisphere = N pd  3 d sin ϕd sin ϑd  ,
+                                                                                                       1
+                                                                                                                                       (29)
+                                                                                                                            
+dipole amplitude and its bias:                                                                           1 1
+                                                                                                             +   d cos ϑ
+                                                                                                                            
+                                                                                                           2   3         d
+         r
+                  9                                                        where ϑd and ϕd denote the dipole position in spherical coordi-
+hd3D i = d2 + 2 hRrandom3D    i2 .                               (27)
+                 N                                                         nates. The z direction is strongly influenced by the incomplete
+                                                                           sky coverage. The total number of observed sources is not inde-
+In order to verify this analytic estimate of the biased amplitude,
+                                                                           pendent from the amplitude and orientation of the dipole itself.
+we simulated full sky maps including a velocity dipole (with v =
+                                                                               Nevertheless there is no problem in the evaluation of ϕd be-
+370 km s−1 ). From these simulated catalogues we extracted the
+                                                                           cause one can calculate
+observed amplitude dobs . Figure 2 shows the simulated data, the
+p value of the dipole amplitude and a fit of the form f (N) =
+true
+                                                                           ϕd = arctan
+                                                                                         Ry
+                                                                                            .                                            (30)
+  D2 + 9A2 /N.                                                                           Rx
+    The best-fit values are A = 0.908 ± 0.002 and D = (0.451 ±
+0.001) × 10−2 (statistical errors only). These numbers should be           Here N as well as sin ϑd cancel out. So the 2D estimator is un-
+compared to the factor 0.92 from (26) and the simulation input             biased with respect to ϕd . Therefore we propose a pure two di-
+of d = 0.46 × 10−2 . The reduced chi- square of the fit is 7 × 10−5 .      mensional estimator:
+Thus the Monte Carlo simulations agree with the theoretically
+                                                                                  X  cos ϕi sin ϑi 
+                                                                                   N
+                                                                                                          
+motivated ansatz (27) for the expected dipole amplitude of the
+                                                                           R2D =       sin ϕi sin ϑi  .
+                                                                                                                                     (31)
+estimator d3D .
+    We conclude that even for a perfect full sky catalogue (no                     i           0
+masking, complete in flux, perfect flux and position measure-
+                                                                           From this one can still use (R2x + R2y )−1/2 for evaluating
+ments), the amplitude of the linear estimator is biased towards
+                                                                           d sin ϑd N pd /3 and ϕd . Let us take a look at the factor sin ϑd .
+higher values. Increasing the number of radio sources will re-
+                                                                           Sources near the pole will make a smaller contribution than those
+duce the bias. The estimator d3D is asymptotically unbiased, but
+                                                                           further away. If a source near the pole is shifted by a small dis-
+this is of limited practical use for the analysis of NVSS and
+                                                                           tance, the value ϕi of this source could change dramatically. So
+WENSS data. A similar bias of the dipole amplitude is also
+                                                                           the weighting terms compensate for this artificially big errors,
+found for the other linear estimators introduced above. This find-
+                                                                           which are just a relic of the coordinate system.
+ing is in agreement with Gibelyou & Huterer (2012), who use a
+linear estimator to find the direction of the dipole.                           Let us now estimate the uncertainties of the estimator R2D .
+                                                                           The problem corresponds to an isotropic random walk process
+                                                                           with variable step size. The probability density for a displace-
+5. Linear estimators for an incomplete sky                                 ment of r for such a random walk is
+                                                                                                     3r2
+                                                                                                         !
+So far we assumed full coverage of the radio sky. More realis-                             3
+tic catalogues cover just a fraction of the sky, as all earth based        P̌N (r)2D dr = r exp −          dr.                           (32)
+                                                                                          N          2N
+
+                                                                                                                                            5
+                                       Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+Similar to the random flight we determine R pCL defined by                       0.03
+                    Z ∞                                                                                             CMB dipole
+                                                                                                          best fit to simulation
+PN (R2D > R pCL ) =      dr P̌N (r)2D = 1 − pCL.           (33)                 0.025
+                        R pCL
+
+Here again pCL is the confidence level. It is possible to solve the              0.02
+above integral analytically
+                                                                         dobs   0.015
+                                   3R2pCL 
+Z ∞                                          
+                   3r2
+                       !
+          3
+        dr r exp −       = exp −           .            (34)
+  R pCL   N        2N                 2N                                        0.01
+
+So R pCL is given by                                                            0.005
+        s                  !
+            2N        1
+R pCL =        ln           .                                  (35)                0
+             3     1 − pCL                                                              0   3.0*105   6.0*105       9.0*105   1.2*106   1.5*106
+                                                                                                                N
+Now one can use the same argument as for the random flight to
+evaluate the uncertainty of the ϕd estimation                          Fig. 3. Ampliude bias for the estimator d2D on a hemisphere.
+                  R pCL                                                Data represent mean and empirical p variance of 1000 simulations
+δϕ pCL = arcsin         .                                      (36)    for each N. A function dobs (N) = D2 + 9A2 /N is fitted to the
+                  R2D
+                                                                       simulated data, with best fit values A = 0.712 ± 0.003 and D =
+In this way one can directly determine error bars for measured         (0.444±0.002)×10−2 . The dipole amplitude (0.0046) is indicated
+results of ϕd calculated via (30). Using this two dimensional esti-    by the horizontal line, the dipole vector is assumed to lie in the
+mator one cannot measure the dipole amplitude d itself but only        equatorial plane (sin ϑd = 1).
+the combination d sin ϑd N pd /3. Therefore it can only give an
+lower limit for d.
+     Like in the case of the full three dimensional estimator, this
+version is also biased in the measurement of the amplitude. The        which clearly is not parallel to d. For small values of d we can
+expectation of the random contribution can be calculated via           expand pd and obtain
+                                                                                                  cos ϕd sin ϑd 
+             Z ∞                               √
+                               3r2
+                                   !                                                                              
+                    3                                                                     N 
+hR2D i =
+   random
+                  r r exp −          dr ≈ 0.72 N.             (37)     hR3DM ihemisphere = d  sin ϕd sin ϑd  + O(d2 ).
+                                                                                                                   
+                                                                                                                                   (40)
+               0   N           2N                                                         3         1
+                                                                                                    4 cos ϑ d
+So we expect our estimator to measure a combination of this
+random contribution and the true velocity dipole and make the          The z component of the dipole is underestimated by a factor of
+ansatz                                                                 4 for the geometry of a hemisphere. Despite cancelation of the
+        r                                                              leading term of the bias of the z direction, the dipole direction
+                       9
+hd2D i = d2 sin2 ϑd + 2 hRrandom
+                             2D   i2 ,                   (38)          remains biased. Less symmetric survey geometries lead to a bias
+                       N                                               of all dipole components for this estimator.
+where we used pd ≈ 1. Like above, we verify this via Monte                 The best strategy to avoid any directional bias for a linear es-
+Carlo simulations, shown in figure 3.                                  timator is to make the survey geometry point symmetric around
+                                                                       the observer for three dimensional estimators like R3D or point
+                                                                       symmetric around the zenith in case of two dimensional estima-
+5.2. Direction bias                                                    tors R2D . This implies for the NVSS that one has to cut sym-
+For any masked or incomplete map of the sky, we cannot                 metric in declination, such that both polar caps are missing, a
+measure the mean source density N̄/(4π), i.e. the monopole.            strategy that was used by Singal (2011).
+Therefore we always have to keep in mind that the observed
+mean density is just an approximation. Gibelyou & Huterer              5.3. Masking
+(2012) have used an estimator proposed by Hirata (2009), which
+implicitly assumes, that the monopole is known. Based on the           The use of a masked sky additionally affects the dipole measure-
+knowledge of the monopole, this estimator would compensate             ment. In general, the estimated dipole direction and amplitude
+for masking effects and incomplete sky coverage by substract-          depend on the position of the true dipole relative to the mask.
+ing a pure random isotropic map from the observed dipole term          Cutting areas with large dipole contribution will reduce the am-
+via (17). However, we cannot know N̄.                                  plitude and vice versa.
+    For the previous example of a hemisphere, the monopole                 In the following we consider masks that are point symmetric
+density is N̄/(4π) = N pd /(2π), where N = ND in (17). The ran-        with respect to the observer for all considered 3-dimensional es-
+dom map can be made up of an arbitrary number of sources NR ,          timators, respectively point symmetric with respect to the zenith
+but is reweighted by the observed number of sources ND /NR ,           for the 2-dimensional estimators. Constructed in such a way,
+instead of N̄/NR . This introduces a directional bias, in addition     masking does not introduce any directional bias. Nevertheless,
+to the previously discussed biased amplitude. One can see this         we have to consider the effects of masking on the estimated
+explicitly by applying (17) on our model of a dipole modified          dipole amplitude.
+isotropic hemisphere. We find                                              A simple method to correct for this effect was put forward
+                                                                       by Singal (2011), who introduced a masking factor k,
+                    N pd  cos ϕd sin ϑd  1  0 
+                                                            
+hR3DM ihemisphere =      d  sin ϕd sin ϑd  + N  0  , (39)              1 X
+                     3  cos ϑ                   2                       3D =
+                                                                       Rmask             ri .                                       (41)
+                                       d                pd − 1                  k3D
+
+6
+                                               Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+Such a factor is expected to be a function of shape and position of                  A similar argument holds for the two dimensional estimator.
+the mask as well as the dipole position. In most cases an analytic                Here we expect a behaviour of the form:
+calculation of this factor is impossible. For simple mask geome-                                 r
+tries some analytic results can be found in Rubart (2012). An al-                                                           9 random 2
+ternative approach is to simulate the effects by means of Monte                   hd2D imask =            2
+                                                                                                         k2D d2 sin2 ϑd +      hR   i.                        (43)
+                                                                                                                            N 2 2D
+Carlos and to compare simulations with and without masking.
+The ratio of both results after a large number of simulations pro-                Using the same assumptions about the dipole term and the same
+vides the masking factor k3D .                                                    mask as before, we obtain figure 5.
+    Doing so, we found some interesting effects. The masking
+factors depend on the number of objects in the simulated maps
+as well as on the true dipole amplitude. This can be explained as                           0.03
+follows. The masking will mainly affect the kinetic dipole contri-                                                                      BW dipole
+                                                                                                                             best fit to simulation
+bution, while the random dipole will increase due to the decrease                          0.025                                       CMB dipole
+of the number of objects in the masked catalogue. Therefore we                                                               best fit to simulation
+expect the amplitude to be                                                                  0.02
+
+                                                                                    dobs
+               r
+                                  9 random 2                                               0.015
+hd3D imask =            2
+                       k3D d2 +      hR   i.                               (42)
+                                  N 2 3D
+                                                                                            0.01
+k3D should only depend on the properties of the mask and not
+on the amplitude of the dipole. To test this, we created simulated                         0.005
+maps for two different dipole amplitudes, with values motivated
+by the CMB measurement dCMB = 0.46 × 10−2 and by the mea-                                        0
+surement of Blake & Wall (2002) at 25 mJy dBW = 1.1 × 10−2 .                                         0        1.0*105   2.0*105       3.0*105   4.0*105   5.0*105
+We used the direction RA = 158◦ , dec = −4◦ in both cases. The                                                                    N
+mask agrees with the one used by Singal (2011), i.e. we removed
+all sources with |δ| > 40◦ and |b| < 10◦ . Resulting amplitudes for               Fig. 5. Amplitude bias of the 2-dimensional estimator for the
+different numbers of sources are shown in figure 4.                               masked NVSS geometry of Singal (2011). Data represent mean
+                                                                                  and empirical variance  of 1000 simulations for each N. A func-
+                                                                                  tion dobs (N) = (KD)2 + 9A2 /N is fitted to the simulated data,
+                                                                                                   p
+
+          0.03                                                                    with best-fit values A = 0.810 ± 0.009, KD = (0.589 ± 0.008) ×
+                                                    BW dipole                     10−2 and A = 0.745±0.014, KD = (1.493±0.006)×10−2 , for the
+                                         best fit to simulation                   expected kinetic radio dipole and the dipole measured by Blake
+         0.025                                     CMB dipole
+                                         best fit to simulation                   & Wall (2002), respectively. The simulated dipole amplitudes,
+          0.02
+                                                                                  without masking, are indicated by the horizontal lines.
+
+  dobs   0.015
+                                                                                     This time, we find k2D = 1.3 for both assumed velocities.
+          0.01                                                                    The simulations support our assumption that the masking factor
+                                                                                  does not depend on the dipole magnitude d.
+         0.005
+
+               0                                                                  5.3.1. Masking correction
+                   0       1.0*105   2.0*105       3.0*105   4.0*105   5.0*105
+                                                                                  Although the masking factor k does not depend on the amplitude
+                                               N
+                                                                                  d, it may depend on the dipole direction d̂. Therefore it would be
+Fig. 4. Amplitude bias of the 3-dimensional estimator for the                     necessary to repeat the analysis of the previous section for each
+masked NVSS geometry of Singal (2011). Data represent mean                        dipole direction found. In order to reduce the simulation effort,
+and empirical variance  of 1000 simulations for each N. A func-                   we rely on the following method instead.
+tion dobs (N) = (KD)2 + 9A2 /N is fitted to the simulated data,                        For the full, as well as for the masked sky, surveys with 106
+                 p
+with best-fit values A = 0.883 ± 0.006, KD = (0.642 ± 0.005) ×                    sources were simulated. This choice guarantees that we inves-
+10−2 and A = 0.847 ± 0.016, KD = (1.59 ± 0.008) × 10−2 for                        tigate masking effects and not effects due to shot noise. The
+the expected kinetic radio dipole and the radio dipole measured                   mean dipole amplitudes are determined for 103 simulated full
+by Blake & Wall (2002), respectively. The simulated dipole am-                    and masked sky surveys, respectively. The ratio of the masked
+plitudes, without masking, are indicated by the horizontal lines.                 sky mean amplitude to the full sky mean amplitude is denoted k̃.
+                                                                                  This ratio provides a first approximation to the masking factor.
+                                                                                       q
+                                                                                        k2 d2 + N92 hRrandom i2
+   First of all we can conclude that (42) is a good fit for the                   k̃ ≡ q                        .                                             (44)
+behaviour of the simulated maps in both cases. The measured                              d2 + N92 hRrandom i2
+amplitudes are larger than those estimated from full sky maps.
+We can now calculate k3D . In both cases it turns out to be 1.4,                  The influence of the random dipole tends to bias k̃ towards 1 (as
+which could be used to correct the amplitude estimate.                            can be easily seen in the limit of a small number of sources).
+
+
+                                                                                                                                                                    7
+                                                      Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+This bias can be compensated by rewriting the above formula                          gives a reduced chi-squared value of χ2 = 122. That means that
+into                                                                                 the observed data cannot be fitted by a power law.
+     r                                                                                   Thus Singal’s assumption x̃ ≈ 1 does not hold for two rea-
+            9hRrandom i2  2                                                        sons. Firstly, for a pure power law we would expect x̃ = 1+x ≈ 2,
+k = k̃2 +       2  2
+                          k̃ − 1 .                     (45)
+               d N                                                                   which is close to what we find: x̃ ≈ 1.9. Secondly, the power-law
+                                                                                     assumption only applies to about one half of the data.
+The values of N and d are input parameters of the simulation.
+From the last section we know the values of hRrandom i for the
+three- as well as for the two-dimensional case. Therefore we can
+                                                                                                106
+transform the approximated masking factor k̃ into the unbiased                                                                    NVSS sources
+masking factor k.                                                                                                     best fit to NVSS sources
+                                                                                                105
+
+6. Dipole from a flux weighted estimator
+                                                                                                104
+                                                                                        dN/dS
+Let us now turn to a discussion of the flux weighted estimator
+(16), which was used by Singal (2011).
+                                                                                                103
+    We first take a closer look at the theoretically expected value
+of the flux dipole dflux . For simplicity we assume full sky cover-
+                                                                                                     2
+age. For a large number of sources,                                                             10
+
+       N                          Z S max
+                                                  d2 N
+                        Z
+                                                                                                101
+       X
+d̂ ·         S i ri ≈        dΩ             dS         S cos θ,               (46)                       10               100                    1000
+       i=1              4π         S min         dΩdS
+                                                                                                                     Flux in [mJy]
+where θ is the angle between a source and the dipole direction d̂.                   Fig. 6. Differential number counts of the NVSS catalogue,
+    We now determine the number of sources per flux and solid                        S min = 10 mJy, best fit values for f (s) = a · s− x̃ with 25 mJy <
+angle as a function of the observer velocity. At zeroth order in                     S < 1000 mJy are a = 2.1 × 107 and x̃ = 1.9.
+velocity, this density n(S ) is isotropic. As for the number counts,
+stellar aberration and the Doppler effect have to be taken into
+account. Stellar aberration gives rise to
+                                                                                        In conclusion, the result of unexpectedly large amplitudes in
+ d2 N              v                                                                 Singal (2011) could partly be explained by this two effects. With
+      ≈ n(S )(1 + 2 cos θ).                                                   (47)
+dΩdS               c                                                                 power law behaviour one should use x̃ = 1.9 or larger to also
+                                                                                     account for the steepening of the spectral index at high fluxes,
+The relativistic Doppler effect alters the observed fluxes. When                     which increases the expectation value by
+we observe a source in the direction of motion, we measure a
+higher flux than if we were at rest with respect to the isotropic                    hdobs i| x̃=1.9
+and homogeneous Universe. We relate the observed flux S 0 to                                         > 1.4.                                        (51)
+                                                                                      hdobs i| x=1
+the flux that is measured by an observer with vanishing peculiar
+motion,                                                                              The results of the flux weighted estimator from Singal (2011)
+                          v                                                          should be reduced by at least a factor of 1.4.
+S rest ≈ S 0 − S 0 (1 + α) cos θ.                                             (48)       Compared to the estimator of Crawford, the estimator (16)
+                          c                                                          stresses sources with high flux. To avoid the domination of
+We assume the power law n(S ) = aS − x̃ to hold for observers at                     a small number of sources, sources with S > 1000 mJy are
+rest and Taylor expand around the observed flux                                      not taken into account. Nevertheless, this estimator is stressing
+                                                                                     bright sources. These sources are, on average, nearer than the
+                                  v
+n(S rest ) ≈ n(S 0 )[1 + x̃(1 + α) cos θ].                                    (49)   rest. Hence (16) might be dominated by nearby sources and by
+                                  c                                                  atypically bright ones. This seems to be yet another weakness of
+If the assumed power law holds for all sources of a survey, then                     this estimator, since the local universe is anisotropic.
+x̃ = 1 + x, with x as defined above in (4). Combining the Doppler
+effect and the stellar aberration leads to
+                                                                                     7. Dipole estimates from NVSS and WENSS
+  d2 N                                 v            v 2 !
+        = n0 (S 0 )[1 + (2 + x̃(1 + α)) cos θ] + O          . (50)                   7.1. 3D linear estimates
+dΩdS                                   c             c
+                                                                                     We are now in a position to check the three dimensional esti-
+This result only holds under the assumption of a power law be-                       mations of the radio dipole in the NVSS catalogue. As we have
+haviour of the number counts. It is crucial to keep this in mind.                    shown above, the estimator used by Gibelyou & Huterer (2012)
+                                                                                     (17) gives rise to a biased dipole direction and thus is not fur-
+6.1. NVSS                                                                            ther considered in this work. The flux weighted estimator (16) is
+                                                                                     also of limited use, as the NVSS data cannot be described by a
+Let us now see, if we are allowed to make this assumption for                        power-law over all fluxes of interest. We thus focus here on the
+the analysis of NVSS data. The plot in figure 6 demonstrates                         simplest linear estimator (15).
+that the power law is not valid for the flux range used in the                           In order to obtain an unbiased direction estimate, the cut sky
+analysis of Singal (2011), i.e. fluxes up to 1 Jy. Actually the slope                geometry of Singal (2011) is adopted. The masking factor k is
+steepens for the larger fluxes considered. The best fit power-law                    determined for every measured dipole anisotropy direction, as
+
+
+8
+                                       Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+described in 5.3.1. The pure estimator results d3D are then cor-          Counter Galactic plane (CG). A HEALPix1 map of the remain-
+                                           cor
+rected for the masking bias and we obtain d3D  .                          ing NVSS sources can be seen in figure 7. The color of the pixels
+                                                                          encodes the number of sources per pixel.
+                                                                  cor
+  Flux       N         RA          dec        d3D       k        d3D
+ (mJy)                  (◦ )        (◦ )     (10−2 )           (10−2 )
+   50     91, 662    170 ± 23    −17 ± 23     2.78     1.38   2.0 ± 0.8
+   40     115, 917   156 ± 26    −18 ± 26     2.23     1.29   1.7 ± 0.8
+   35     133, 022   156 ± 22    −11 ± 22     2.46     1.32   1.9 ± 0.7
+   30     155, 120   156 ± 19    −2 ± 19      2.63     1.35   1.9 ± 0.7
+   25     185, 649   158 ± 19    −2 ± 19      2.38     1.34   1.8 ± 0.6
+   20     229, 557   153 ± 18     2 ± 18      2.31     1.30   1.8 ± 0.6
+   15     298, 289   149 ± 18    17 ± 18      2.02     1.28   1.6 ± 0.5
+Table 4. Dipole direction and amplitude from NVSS. The esti-
+mator (15) was used. Excluded are sources with |δ| > 40◦ and
+|b| < 10◦ (J2000).
+
+
+    All results for right ascension agree within their error bars.
+The same holds true for the dipole amplitudes. This self-
+consistency indicates the absence of significant systematic er-           Fig. 7. A map of the number counts in HEALPix pixels from
+rors. Unfortunately, we can not state the same for the declination        NVSS. The pixel size corresponds to Nside = 32. Shown are
+results. One observes an significant increase in declination with         equatorial coordinates at epoch J2000. The NVSS contains data
+respect to deceasing flux limits. This effect is very likely due to       at δ > −40◦ and the galactic plane and a “counter galaxy” are
+a relic of the NVSS survey procedure. Sources below δ = −10◦              masked (CG mask) in order to avoid galactic contamination and
+were measured by means of a different alignment of the Very               to restore point symmetry with respect to the zenith.
+Large Array. The source density is therefore smaller in this area.
+Therefore it is expected that the dipole measurement will show
+increasing values of declination at the fainter flux limits. This
+makes it hard to trust the declination results below a flux limit of            An alternative would be the mask used by Singal (2011).
+25 mJy, (note that there is no significant difference between 20          That mask is a combination of two great cycles and would there-
+mJy and 30 mJy).                                                          fore also work for R2D . However, it turns out that the mask with
+    The results of table 4 can be compared to those in table 2.           the CG removes fewer sources. Thus we decided to use the CG
+Number of sources and direction results are almost the same.              mask.
+Deviations could be explained by minor differences in the pre-                  The next step is to evaluate the masking correction k of the
+cise form of the mask. We used a different method for estimating          CG mask. As this factor depends on the right ascension and on
+uncertainties in the direction and amplitude measurement, than            the declination of the dipole anisotropy, we need some additional
+those used by Singal (2011). Since our method (described above)           information. From R2D we estimate the right ascension. As the
+is more conservative, we obtain larger errorbars. All dipole am-          declination cannot be evaluated with R2D , we use the declina-
+plitudes in this table are slightly below those from table 2. In          tion as provided by the three dimensional estimator in order to
+Singal (2011) a different method was used to obtain the dipole            determine k. These values are certainly not exact, since a differ-
+amplitude from the estimator (15), which can explain this dis-            ent mask is used now. The influence of a small change in dipole
+crepancy. In principle we can recover the results of Singal (2011)        declination on the evaluated factor k is discussed in section 7.2.2.
+and confirm an unexpectedly high dipole amplitude.                              We reduce the dipole amplitude of the 2D estimator by the
+                                                                          masking factor k and obtain the masking corrected amplitude
+                                                                            cor
+                                                                          d2D   . The results of this procedure for the NVSS catalogue and
+7.2. 2D linear estimates
+                                                                          different flux limits can be found in table 5.
+A disadvantage of the NVSS catalogue is that the sampling depth                 Obtained right ascensions and amplitudes are stable with re-
+changes at δ = −10◦ (less sensitivity at lower declinations). This        spect to different flux limits. For all flux limits ≥ 15 mJy, the esti-
+could lead to a directional bias of the NVSS data analysis and            mated right ascension of the radio dipole is in agreement with the
+thus it is interesting to also use the two dimensional estimator          CMB prediction of RA = 168◦ . Only when we include sources
+presented in this work, as this effect cannot lead to a bias in           as faint as 10 mJy, find a 3σ deviation. However, we know that
+this case. For the WENSS analysis, a three dimensional linear             the catalogue is incomplete at its faint end.
+estimator cannot avoid directional bias.                                                                                         cor
+                                                                                The masking corrected dipole amplitudes d2D          are signifi-
+                                                                          cantly above the CMB prediction. To some extent this is ex-
+                                                                          pected due to the discussed amplitude bias. A detailed discussion
+7.2.1. NVSS
+                                                                          is presented in the next section.
+A major advantage of the estimator R2D is that it does not re-
+quire a north-south symmetry of the catalogue. Therefore, the             7.2.2. WENSS
+declination limit of the NVSS catalogue is no problem.
+    As the estimator R2D requires a point symmetry around the             We finally present the first estimation of the radio dipole from the
+north pole, we cannot remove the Galactic plane only. For each            WENSS catalogue. We cannot use the three dimensional linear
+removed point we also need to subtract the point which is 180◦
+                                                                           1
+away. When we do so, a second plane occurs, which we call the                  http://healpix.jpl.nasa.gov
+
+
+                                                                                                                                               9
+                                       Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+                                                      cor
+  Flux       N         RA         d2D       k        d2D
+                                                                                 105
+ (mJy)                  (◦ )     (10−2 )           (10−2 )                                                                    WENSS sources
+   50      96, 337   171 ± 19     2.63     1.42   1.9 ± 0.7                                                       best fit to WENSS sources
+   40     121, 831   146 ± 20     2.28     1.29   1.8 ± 0.7
+   35     139, 851   152 ± 17     2.49     1.28   1.9 ± 0.6                      104
+   30     163, 208   153 ± 15     2.55     1.28   2.0 ± 0.6
+   25     195, 245   155 ± 14     2.45     1.29   1.9 ± 0.5
+                                                                         dN/dS
+   20     241, 399   150 ± 14     2.25     1.26   1.8 ± 0.5                      103
+   15     313, 724   148 ± 15     1.86     1.21   1.5 ± 0.4
+   10     447, 459   133 ± 14     1.67     1.10   1.5 ± 0.4
+Table 5. Dipole right ascension and amplitude d sin θd from                      102
+NVSS. The 2D estimator (31) is used and all sources with
+δ > −40◦ , except the galactic and counter galactic planes (CG
+mask), are included.                                                             101
+                                                                                       10                              100                           1000
+                                                                                                                  Flux in [mJy]
+estimators on this catalogue, since it only contains sources with      Fig. 9. Differential number counts of the WENSS catalogue,
+dec > 28◦ . The two dimensional estimator on the other hand can        S min = 5 mJy, best fit values for f (s) = a · s− x̃ with 25 mJy <
+be used here. Again, we need to remove the Galactic plane and          S < 1000 mJy are a = 2.6 × 106 and x̃ = 1.6.
+the Counter Galactic plane to reestablish a symmetry around the
+north pole. The remaining WENSS catalogue is shown in figure
+8.
+                                                                       is relatively small, compared to shot noise uncertainties. We as-
+                                                                       sume dec = 0◦ for the determination of k, based on the expecta-
+                                                                       tion from the CMB dipole and the NVSS radio dipole estimates.
+
+
+
+                                                                        dec        45◦          30◦       5◦       0◦     −5◦         −30◦    −45◦
+                                                                         k         0.50         0.48     0.45     0.44    0.44        0.47    0.51
+                                                                       Table 6. Masking correction k for WENSS with CG mask and a
+                                                                       dipole with RA = 120◦ .
+
+
+
+
+                                                                                                                                             cor
+Fig. 8. A map of the number counts in HEALPix pixels from                Flux               N            RA          d2D          k         d2D
+WENSS. The pixel size corresponds to Nside = 32. Shown are              (mJy)                             (◦ )      (10−2 )               (10−2 )
+equatorial coordinates at epoch B1950. The WENSS contains                 40            67, 052        124 ± 51      1.31     0.45       2.9 ± 2.3
+                                                                          35            73, 653        123 ± 46      1.36     0.47       2.9 ± 2.1
+data at δ > 30◦ and the galactic plane and a “counter galaxy” are
+                                                                          30            81, 863        122 ± 48      1.24     0.45       2.8 ± 2.1
+masked (CG mask) in order to avoid galactic contamination and             25            92, 600        117 ± 40      1.36     0.47       2.9 ± 1.9
+to restore point symmetry with respect to the zenith.
+                                                                       Table 7. Dipole estimate from WENSS based on 2D estima-
+                                                                       tor using peak flux values for all sources with δ > 30◦ , except
+                                                                       those in the galactic and counter galactic planes (CG mask). Our
+    In order to choose the best flux limit, we analyse the differ-     WENSS analysis uses positions at epoch B1950.
+ential number counts between 10 mJy and 1000 mJy. Figure 9
+shows that the WENSS catalogue seems to be incomplete be-
+low 25 mJy. In Rengelink et al. (1997) the completeness of the
+WENSS catalogue is claimed to hold only above a limit of 30
+mJy. From figure 9 we infer that a simple power law also applies
+to the source counts between 25 and 30 mJy and thus we include             The results of the WENSS analysis are presented in Table 7.
+sources down to a flux limit of 25 mJy in our analysis.                Although the WENSS catalogue covers only one fourth of the
+    We cannot obtain information on the declination of the             sky, we find that it can be used for the estimation of the radio
+dipole from the WENSS catalogue by means of the two di-                dipole. A problem is the limited number of sources that are left
+mensional estimator applied in this work. This could in prin-          after masking the galaxy and restoring the required symmetry
+ciple be a problem for the determination of the masking factor k.      of the catalogue. This leads to larger error bars, compared with
+Therefore, we further investigated the effect of different dipole      the NVSS estimates. We can conclude that the observed dipole
+declinations. Assuming the WENSS symmetry and a right as-              anisotropy in the WENSS catalogue is in agreement with the
+cension of 120◦ (close to the results given in table 7), we calcu-     measurements from NVSS, which is a nontrivial statement, as
+lated k for 7 different values of declination, see Table 6. For this   we are probing radio sources at different frequencies (325 MHz
+mask, the dependence of k on the right ascension of the dipole         vs. 1.4 GHz).
+
+
+10
+                                                                        Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+                         0.09                                                                                                  0.09
+                                                                            simulation                                                                          simulation
+                         0.08                                                                                                  0.08
+                         0.07                                                                                                  0.07
+
+
+
+
+relative occurrence                                                                                      relative occurrence
+                         0.06                                                                                                  0.06
+                         0.05                                                                                                  0.05
+                         0.04                                                                                                  0.04
+                         0.03                                                                                                  0.03
+                         0.02                                                                                                  0.02
+                         0.01                                                                                                  0.01
+                               0                                                                                                 0
+                                   0          0.005         0.01        0.015       0.02    0.025                                     0   0.005   0.01       0.015      0.02   0.025
+                                                                    d                                                                                    d
+
+Fig. 10. Histogram of dipole amplitudes for 100,000 simulations of the three dimensional (left) and two dimensional (right) esti-
+mator, assuming the CMB expectation and a slope of x = 1.1, with 185,649 (left) and 195,245 (right) sources per simulation and
+appropriate masks. The black vertical lines are the NVSS results of this work.
+
+
+8. Comparison of results                                                                                      For the amplitude of the radio dipole, the situation is more
+                                                                                                         contrived. Here we focused on the study of linear estimators and
+We summarize the various results from the literature and this                                            showed that all linear estimators under investigation returned a
+work in table 8. The results of this work are highlighted with                                           biased estimate of the amplitude. The amplitude estimators of
+bold faced letters. For comparison we focus on the flux limits of                                        Blake & Wall (2002) and Gibelyou & Huterer (2012) are un-
+25 mJy and 15 mJy.                                                                                       biased, but the latter one uses a biased direction estimate as an
+    All estimated dipole directions, both from the NVSS and                                              input and is thus of limited interest. Besides bias, we identified
+from WENSS are in good agreement with each other and with                                                another effect that reduces the dipole amplitude found by the flux
+the direction from the CMB dipole, with the exception of the re-                                         estimator used in Singal (2011). We reduced the result of this es-
+sult from Gibelyou & Huterer (2012). As explained in section                                             timator by a factor of 1.4, due to the fact that the appropriate ex-
+5.2, their estimator shows a directional bias. We did not inves-                                         ponent of the differential number count is given by x̃ = x +1 (see
+tigate any further, whether this bias invalidates their findings at                                      section 6). With this correction, the result of the flux weighted
+a rather low flux limit. Our analysis based on the three dimen-                                          estimator (denoted by SIF* in table 8) is now in agreement with
+sional estimator applied to NVSS and using the mask defined by                                           the result of Blake & Wall (2002).
+Singal (2011) gives (RA, dec) = (158◦ ± 19◦ , −2◦ ± 19◦ ).                                                    Our three dimensional estimate with the masking of Singal
+                                                                                                         (2011) gives rise to d = (1.8 ± 0.6) × 10−2 . One should keep in
+                                                                                                         mind that this is a biased result, thus one cannot naively compare
+                      Source           Flux >         N              RA           dec          d         it to the expected amplitude. In order to figure out if our result
+                                       (mJy)                         (◦ )         (◦ )       (10−2 )     is consistent with the null hypothesis that the radio sky is sta-
+        NVSS                                                                                             tistically isotropic, modified by the kinetic effects of our proper
+         BW                             25       197, 998          158 ± 30     −4 ± 34     1.1 ± 0.3    motion (measured via the CMB dipole), we performed 100,000
+         SIN                            25       185, 474          158 ± 10     −2 ± 10     1.8 ± 0.4    Monte Carlo simulations. The corresponding histogram is shown
+          SIF                           25       184, 237          159 ± 10     −7 ± 9      2.2 ± 0.6    in figure 10. We find that only 21 of those realizations contain
+         SIF*                           25       184, 237          159 ± 10     −7 ± 9      1.6 ± 0.5    a dipole higher than the measured one and thus we can exclude
+         3DS                            25       185, 649          158 ± 19     −2 ± 19     1.8 ± 0.6
+        2DCG                            25       195, 245          155 ± 14        ...      1.9 ± 0.5
+                                                                                                         that the estimated radio dipole is just due to our proper motion
+          GH                            15       211, 487          117 ± 20      6 ± 14     2.7 ± 0.5    and amplitude bias at 99.6% CL. This is actually very puzzling,
+         3DS                            15       298, 289          149 ± 18     17 ± 18     1.6 ± 0.5    as the direction of the radio dipole agrees with the direction of
+        2DCG                            15       313, 724          148 ± 15        ...      1.5 ± 0.5    the CMB dipole within the measurement error.
+       WENSS                                                                                                  We can redo this analysis with the null hypothesis that the
+        2DCG                            25        92, 600          117 ± 40       ...       2.9 ± 1.9    radio dipole was accurately measured by Blake & Wall (2002).
+       expected                                                                                          This time we find that 3402 out of 100,000 realisations are higher
+        NVSS                            ...           ...            168           −7      0.48 ± 0.04   than our measured dipole. If we increase the implemented veloc-
+       WENSS                            ...           ...            168           −7      0.42 ± 0.03   ity towards the upper one sigma bound of the dipole amplitude
+Table 8. Comparison of results. Radio dipole from NVSS: BW                                               from Blake & Wall (2002), we observe every sixth simulation to
+(Blake & Wall 2002), SIN (Singal 2011) number counts, SIF                                                be above our own measurement (16%). Therefore our result is in
+(Singal 2011) flux weighted number counts, SIF* corrects SIF                                             agreement with Blake & Wall (2002).
+for slope (this work), 3DS three-dimensional estimator, mask                                                  Before we turn to the discussion of potential explanations,
+adopted from Singal (2011) (this work), 2DCG two-dimensional                                             let us inspect the dipole amplitudes from the two dimensional
+estimator, CG mask (this work), GH (Gibelyou & Huterer 2012);                                            estimator. The dipole amplitudes estimated with the two dimen-
+Radio dipole from WENSS: 2DCG two-dimensional estimator,                                                 sional estimator are also in agreement with the results of Singal
+CG mask (this work). The expectations for a purely kinetic radio                                         (2011) and Blake & Wall (2002). We find d sin ϑd = (1.9 ± 0.5) ×
+dipole are given at the bottom of the table.                                                             10−2 for the NVSS analysis and d sin ϑd = (2.9 ± 1.9) × 10−2
+                                                                                                         for WENSS, which translate into lower limits on d. Thus, the
+
+
+                                                                                                                                                                                       11
+                                                            Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+results from the WENSS catalogue are in agreement with the                                 three dimensional estimates (αd , δd , d) and a new linear estima-
+radio dipole found in the NVSS catalogue. This is encouraging                              tor for a two dimensional estimate (αd , d cos δd ) had to tackle
+as they are prepared at different instruments and probe different                          several non-trivial issues. We investigated issues of directional
+frequencies.                                                                               bias, amplitude bias and masking. There is still room to opti-
+    In figures 10 and 11 we present the corresponding results                              mize the masking of the galaxy. We did not look into quadratic
+from 100,000 Monte Carlo simulations for the geometries of the                             estimators, as used by Blake & Wall (2002). Our studies did not
+NVSS and WENSS two dimensional estimators. In both cases                                   incorporate the uncertainties in point source positions, as we ex-
+we find that the amplitude bias is not enough to explain the dif-                          pect that they are subdominant (their magnitude is well below
+ference between the observed and the expected amplitude. In                                the effect of aberration, see e.g. Rengelink et al. (1997)). The
+the case of NVSS the null hypothesis (isotropic sky plus proper                            measurement error of the flux is also expected to be subdominant
+motion dipole) is ruled out at 99.6% CL, while for the WENSS                               as we included sources with flux above 15 mJy only. In the case
+analysis it is inconsistent at 98.1% CL.                                                   of NVSS these are a factor 6 above the 5σ point source detection
+    The two dimensional estimation (2DCG), using the NVSS                                  limit, in case of WENSS it is a factor of 1.4. The number of point
+catalogue, is also compared to simulations, assuming the results                           sources considered in our analysis is about 190, 000 for NVSS
+from Blake & Wall (2002). We observe 1141 and 7024 out of                                  and 92, 000 for WENSS. Putting all those facts together, we con-
+100,000 simulations to give a dipole above our measurement for                             sider the NVSS analysis to be more reliable. Nevertheless, the
+the assumptions of dtrue = 1.1 × 10−2 and dtrue = 1.4 × 10−2 ,                             results of the WENSS analysis are fully consistent with our re-
+respectively. Therefore, the result of our two dimensional esti-                           sults from NVSS.
+mator is not in contradiction to Blake & Wall (2002).                                           Our result (3DS) for the NVSS catalogue is (RA, dec, d) =
+                                                                                           (154◦ ± 19◦ , −2◦ ± 19◦ , (1.8 ± 0.6) × 10−2 ). Thus we conclude
+                                                                                           that the observed amplitude of the radio dipole exceeds the ex-
+                           0.06                                                            pected amplitude by about a factor of four. We could imagine
+                                                                simulation                 that this might be due to the structure that causes our proper mo-
+                           0.05                                                            tion, which in a simple model of our Hubble patch would cer-
+                                                                                           tainly be aligned with the direction of proper motion. However,
+
+
+
+
+     relative occurrence
+                           0.04                                                            all attempts to identify a “great attractor” by means of other ob-
+                                                                                           servations (optical, infra-red, X-ray) have failed so far. Of all
+                           0.03                                                            those probes, the radio surveys are definitely the deepest probe
+                                                                                           of the Universe, as the mean redshift of NVSS sources is esti-
+                           0.02                                                            mated to be 1.2 by de Zotti et al. (2010) and 1.5 by Ho et al.
+                                                                                           (2008). In order to explain the observed excess radio dipole by
+                           0.01                                                            contributions from local structure, we would need a density con-
+                                                                                           trast of order 0.05 at scales extending to about z ≈ 0.3, which
+                             0
+                                                                                           does not seem plausible. Without a detailed study of the redshift
+                                  0   0.005 0.01 0.015 0.02 0.025 0.03 0.035 0.04          distribution of the radio sources it is impossible to judge whether
+                                                        d                                  this finding is actually in agreement with the current standard
+                                                                                           model of cosmology.
+Fig. 11. Histogram of dipole amplitudes from 100,000 simula-                                    An example of such a scenario is provided by Wiltshire et al.
+tions for the dimensional estimator, assuming the CMB expecta-                             (2012). They claim that the spherically averaged Hubble law on
+tion, a slope of x = 0.8, 92,482 sources per simulation and the                            < 100/h M pc scales is significantly closer to uniform in the
+CG masking form for the WENSS catalogue. The black vertical                                Local Group frame as compared to the CMB frame and on this
+line is the WENSS result of this work.                                                     basis have suggested a non-kinematic contribution to the CMB
+                                                                                           dipole. In this case the CMB dipole could differ from the cosmic
+                                                                                           radio dipole.
+                                                                                                Another reason for the large amplitude of the radio dipole
+                                                                                           could be that the linear estimators considered in this work do
+9. Conclusion                                                                              not assume the deviation from isotropy to be a pure dipole. Thus
+                                                                                           higher multipole moments also contribute to the measured am-
+We conclude that the task to measure the cosmic radio dipole re-                           plitude.
+mains interesting and we expect that interesting information on                                 It has been found from the analysis of the CMB that
+cosmology can be extracted from this measurement. All mea-                                 quadrupole, octopole and a few more low `-multipoles seem not
+surements so far point towards a higher radio dipole amplitude                             to be orientated randomly on the sky, but show some unexpected
+than expected, when we assume that the cosmic radio dipole is                              alignments (Schwarz et al. 2004; Bennett et al. 2011; Copi et al.
+just due to our peculiar motion with respect to the rest frame de-                         2010) among themselves and with the CMB dipole direction.
+fined by the CMB. This is quite puzzling, as the orientation of                            Thus it might not be surprising that also the dominant anisotropy
+the radio dipole agrees with the orientation of the CMB dipole                             direction of the radio sky lines up.
+within measurement errors. This is the case for the NVSS and the                                It is evident that it would be crucial to repeat this investiga-
+WENSS analysis, two radio point source catalogues that cover                               tion with new and even deeper radio catalogues, which provide
+∼ 3π and ∼ π of the sky, respectively. They contain information                            more sources. In the near future there will be three large sky
+at different frequencies (1.4 GHz and 325 MHz) and have been                               surveys available (Raccanelli et al. 2012). A multi-wavelength
+put together by different instruments and thus provide a strong                            study will be possible based on the Multifrequency Snapshot
+constraint on systematic issues.                                                           Sky Survery (MSSS) of the International LOFAR Telescope and
+    Our detailed analysis of various linear dipole estimators                              with the LOFAR Tier-1 survey. The Australian Square Kilometre
+(Crawford 2009; Singal 2011; Gibelyou & Huterer 2012) for                                  Array (SKA) Pathfinder (ASKAP) will produce the Evolutionary
+
+
+12
+                                            Matthias Rubart & Dominik J. Schwarz: Radio dipole estimates
+
+Map of the Universe (EMU) and the Westerbrok Synthesis Radio                     where θ0 is the new angle between the velocity direction and
+Telescope (WSRT) equipped with the Apertif system will com-                      the radio source. Forth, the position of a radio source is trans-
+pile the Westerbrok Observations of the Deep Apertif Northern                    lated into Cartesian coordinates by assuming that it lies on a unit
+sky survey (WODAN) catalogue.                                                    sphere. Then a straight line from this point (P) to the velocity
+    The multi-wavelength surveys will also allow us to directly                  direction on the sphere (V) is constructed depending on a pa-
+measure the spectral index α, which has to be known to connect                   rameter t
+the measured amplitude to the kinetic dipole. A steepening of
+the spectral index for the lowest flux sources would increase the                r(t) = P(1 − t) + Vt.                                                    (A.4)
+expected kinetic amplitude. HI surveys will have the advantage                                                  0                           0
+                                                                                 On this line we choose a t in such a way that r(t ) points towards
+that they will also provide redshift information on top of posi-                 the new position. The value of t0 can be determined by
+tions and fluxes and we will be able to study the evolution of the
+radio dipole as a function of redshift out to redshifts of a few.                      r(t0 ) · V = r0 (t0 ) cos(θ0 )                                     (A.5)
+Beyond that SKA will increase the number of sources in such a                             r0 (t0 ) cos(θ0 ) − cos(θ)
+                                                                                 → t0 =                                                                   (A.6)
+survey by orders of magnitude. All these surveys will reduce the                                   1 − cos(θ)
+random dipole contribution, improve on systematics, and allow
+                                                                                 with r0 (t0 ) = r02 (t0 ). This equation is solved by
+                                                                                                   p
+us to settle the question: Is the radio dipole in agreement with
+the CMB dipole?                                                                               sin(θ − θ0 )                  sin(θ + θ0 )
+                                                                                 t10 =                         ∨ t20 =                         .          (A.7)
+Acknowledgements. We thank David J. Bacon, Dragan Huterer, Matt J. Jarvis,               sin(θ − θ ) + sin(θ )
+                                                                                                  0         0          sin(θ + θ0 ) − sin(θ0 )
+Huub Röttgering, Seshadri Nadathur and Ashok K. Singal for fruitful comments
+and discussions and Anne-Sophie Balleier for help with Healpy and the genera-
+                                                                                 We know that for θ = θ0 the result of t0 must always be 0.
+tion of maps of the NVSS and WENSS number counts. The CAMB code, and the         Therefore the correct solution is t0 = t10 . Now one has to trans-
+Healpy and HEALPix (Górski et al. 2005) packages have been used to estimate     form r(t0 ) back into spherical coordinates in order to find the new
+the concordance value of the CMB primordial dipole and to produce the NVSS       position of the radio source. The new declination ϑ0 is then (the
+and WENSS maps of the sky. We acknowledge financial support from Deutsche        index v stands for the velocity direction):
+Forschungsgemeinschaft (DFG) under grants IRTG 881 ‘Quantum Fields and
+Strongly Interacting Matter’ and RTG 1620 ‘Models of Gravity’, as well as from
+                                                                                                                               !
+                                                                                                1
+the Friedrich Ebert Stiftung.                                                    ϑ = arccos 0 [(1 − t ) cos(ϑ) + t cos(ϑv )]
+                                                                                   0                     0           0
+                                                                                                                                                (A.8)
+                                                                                                r
+                                                                                 and the new right ascension ϕ0 :
+Appendix A: Monte Carlo Simulations
+                                                                                            (1 − t0 ) sin(ϑ) sin(ϕ) + t0 sin(ϑv ) sin(αv )
+                                                                                                                                           !
+We used the pseudorandom number generator Mersenne Twister                       ϕ = arcsin
+                                                                                  0
+                                                                                                                                             .            (A.9)
+for all Monte Carlo simulations. One simulated source consists                                                r0 sin(ϑ0 )
+of two position coordinates and one flux value. The coordi-                      This way one obtains a simulated sky, including the effect of the
+nates will be drawn from an uniform distribution, leading to                     observers movement. Now one can feed the different estimators
+an isotropic sky for a catalogue with many sources. In order to                  with those sky simulations and obtain the resulting dipole vec-
+obtain a desired number count power law like (4) with a cer-                     tors.
+tain slope x, we calculate the flux S using a random number A
+(choosen between 0 and 1) by
+                                                                                 References
+S rest = S L (1 − A)−x ,                                               (A.1)
+                                                                                 Baleisis, A., Lahav, O., Loan, A. J., & Wall, J. V. 1998, MNRAS, 297, 545
+where S L is a flux value 20% below the simulated flux limit.                    Bennett, C. L., Hill, R. S., Hinshaw, G., et al. 2011, ApJS, 192, 17
+                                                                                 Blake, C. & Wall, J. 2002, Nature, 416, 150
+The simulation also creates sources, which only due to Doppler                   Condon, J. J., Cotton, W. D., Greisen, E. W., et al. 2002, VizieR Online Data
+shifting are counted in the final catalogue, because this value                     Catalog, 8065, 0
+of S L lies below the simulated flux limit. Lowering S L further                 Copi, C. J., Huterer, D., Schwarz, D. J., & Starkman, G. D. 2010, Advances in
+increases computational time and is not necessary, as long as the                   Astronomy, 2010
+                                                                                 Crawford, F. 2009, ApJ, 692, 887
+simulated velocity v is below 0.1c.                                              de Zotti, G., Massardi, M., Negrello, M., & Wall, J. 2010, A&A Rev., 18, 1
+     The two physical effects (Doppler shift and spherical aberra-               Ellis, G. F. R. & Baldwin, J. E. 1984, MNRAS, 206, 377
+tion) will be implemented separately. In cooperating the Doppler                 Fixsen, D. & Mather, J. 2002, Astrophys. J., 581, 817
+effect is straightforward, since it only affects the flux values of              Francis, C. & Peacock, J. 2010, Mon.Not.Roy.Astron.Soc., 406, 14
+each source depending on the angle θ between the source and                      Garn, T., Green, D. A., Riley, J. M., & Alexander, P. 2008, MNRAS, 383, 75
+                                                                                 Gibelyou, C. & Huterer, D. 2012, ArXiv e-prints
+the velocity direction, i.e.                                                     Górski, K. M., Hivon, E., Banday, A. J., et al. 2005, ApJ, 622, 759
+                                              1+α                              Hinshaw, G., Weiland, J. L., Hill, R. S., et al. 2009, ApJS, 180, 225
+                                                                                 Hirata, C. M. 2009, J. Cosmology Astropart. Phys., 9, 11
+                           1 + c cos(θ) 
+                                  v
+                                            
+                                                                                 Ho, S., Hirata, C., Padmanabhan, N., Seljak, U., & Bahcall, N. 2008,
+S obs (νobs ) = S rest  q                    .          (A.2)                 Phys. Rev. D, 78, 043519
+                                      v 2 
+                                 1 − (c) 
+                            
+                                                                                 Raccanelli, A., Zhao, G.-B., Bacon, D. J., et al. 2012, MNRAS, 424, 801
+                                                                                 Rakic, A., Rasanen, S., & Schwarz, D. J. 2006, Mon.Not.Roy.Astron.Soc., 369,
+In the simulation α is fixed to 0.75 for all sources. The velocity                  L27
+direction and amplitude can by chosen be the user.                               Rengelink, R. B., Tang, Y., de Bruyn, A. G., et al. 1997, A&AS, 124, 259
+                                                                                 Rubart, M. 2012, Master thesis: Cosmology with upcoming radio continuum
+    To model the relativistic effect of stellar aberration one has to               surveys: Analysing and modifying European Square Kilometre Array Design
+change the position of each radio source. The aberration formula                    Study Simulated Skies. (Universität Bielefeld)
+is                                                                               Schwarz, D. J., Starkman, G. D., Huterer, D., & Copi, C. J. 2004, Physical
+                  q                                                                 Review Letters, 93, 221301
+            sin(θ) 1 − ( vc )2                                                   Singal, A. K. 2011, ApJ, 742, L23
+                                                                                 Stewart, J. M. & Sciama, D. W. 1967, Nature, 216, 748
+ tan(θ0 ) =                    ,                               (A.3)
+               c + cos(θ)
+               v                                                                 Wiltshire, D. L., Smale, P. R., Mattsson, T., & Watkins, R. 2012, ArXiv e-prints
+
+
+                                                                                                                                                              13
+

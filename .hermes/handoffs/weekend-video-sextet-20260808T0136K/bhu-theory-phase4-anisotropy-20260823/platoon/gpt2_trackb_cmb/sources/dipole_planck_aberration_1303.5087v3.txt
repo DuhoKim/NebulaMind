@@ -1,0 +1,922 @@
+                                               Astronomy & Astrophysics manuscript no. planck˙boosting                                                                                           c ESO 2015
+                                               July 23, 2015
+
+
+
+
+                                                          Planck 2013 results. XXVII. Doppler boosting of the CMB:
+                                                                              Eppur si muove?
+                                              Planck Collaboration: N. Aghanim56 , C. Armitage-Caplan85 , M. Arnaud69 , M. Ashdown66,6 , F. Atrio-Barandela16 , J. Aumont56 , C. Baccigalupi79 ,
+                                              A. J. Banday87,9 , R. B. Barreiro63 , J. G. Bartlett1,64 , K. Benabed57,86 , A. Benoit-Lévy22,57,86 , J.-P. Bernard87,9 , M. Bersanelli34,47 , P. Bielewicz87,9,79 ,
+                                                J. Bobin69 , J. J. Bock64,10 , J. R. Bond8 , J. Borrill12,83 , F. R. Bouchet57,86 , M. Bridges66,6,60 , C. Burigana46,32 , R. C. Butler46 , J.-F. Cardoso70,1,57 ,
+                                                      A. Catalano71,68 , A. Challinor60,66,11 , A. Chamballu69,13,56 , H. C. Chiang26,7 , L.-Y Chiang59 , P. R. Christensen76,37 , D. L. Clements54 ,
+                                               L. P. L. Colombo21,64 , F. Couchot67 , B. P. Crill64,77 , A. Curto6,63 , F. Cuttaia46 , L. Danese79 , R. D. Davies65 , R. J. Davis65 , P. de Bernardis33 , A. de
+                                              Rosa46 , G. de Zotti42,79 , J. Delabrouille1 , J. M. Diego63 , S. Donzelli47 , O. Doré64,10 , X. Dupac39 , G. Efstathiou60 , T. A. Enßlin74 , H. K. Eriksen61 ,
+                                                    F. Finelli46,48 , O. Forni87,9 , M. Frailis44 , E. Franceschi46 , S. Galeotta44 , K. Ganga1 , M. Giard87,9 , G. Giardino40 , J. González-Nuevo63,79 ,
+                                                     K. M. Górski64,89 , S. Gratton66,60 , A. Gregorio35,44,50 , A. Gruppuso46 , F. K. Hansen61 , D. Hanson75,64,8 , D. L. Harrison60,66 , G. Helou10 ,
+                                              S. R. Hildebrandt10 , E. Hivon57,86 , M. Hobson6 , W. A. Holmes64 , W. Hovest74 , K. M. Huffenberger24 , W. C. Jones26 , M. Juvela25 , E. Keihänen25 ,
+
+
+
+
+arXiv:1303.5087v3 [astro-ph.CO] 22 Jul 2015
+                                                      R. Keskitalo19,12 , T. S. Kisner73 , J. Knoche74 , L. Knox28 , M. Kunz15,56,3 , H. Kurki-Suonio25,41 , A. Lähteenmäki2,41 , J.-M. Lamarre68 ,
+                                                         A. Lasenby6,66 , R. J. Laureijs40 , C. R. Lawrence64 , R. Leonardi39 , A. Lewis23 , M. Liguori31 , P. B. Lilje61 , M. Linden-Vørnle14 ,
+                                                           M. López-Caniego63 , P. M. Lubin29 , J. F. Macı́as-Pérez71 , N. Mandolesi46,5,32 , M. Maris44 , D. J. Marshall69 , P. G. Martin8 ,
+                                                     E. Martı́nez-González63 , S. Masi33 , M. Massardi45 , S. Matarrese31 , P. Mazzotta36 , P. R. Meinhold29 , A. Melchiorri33,49 , L. Mendes39 ,
+                                               M. Migliaccio60,66 , S. Mitra53,64 , A. Moneti57 , L. Montier87,9 , G. Morgante46 , D. Mortlock54 , A. Moss81 , D. Munshi80 , P. Naselsky76,37 , F. Nati33 ,
+                                               P. Natoli32,4,46 , H. U. Nørgaard-Nielsen14 , F. Noviello65 , D. Novikov54 , I. Novikov76 , S. Osborne84 , C. A. Oxborrow14 , L. Pagano33,49 , F. Pajot56 ,
+                                                  D. Paoletti46,48 , F. Pasian44 , G. Patanchon1 , O. Perdereau67 , F. Perrotta79 , F. Piacentini33 , E. Pierpaoli21 , D. Pietrobon64 , S. Plaszczynski67 ,
+                                                 E. Pointecouteau87,9 , G. Polenta4,43 , N. Ponthieu56,51 , L. Popa58 , G. W. Pratt69 , G. Prézeau10,64 , J.-L. Puget56 , J. P. Rachen18,74 , W. T. Reach88 ,
+                                                  M. Reinecke74 , S. Ricciardi46 , T. Riller74 , I. Ristorcelli87,9 , G. Rocha64,10 , C. Rosset1 , J. A. Rubiño-Martı́n62,38 , B. Rusholme55 , D. Santos71 ,
+                                                      G. Savini78 , D. Scott20 ?? , M. D. Seiffert64,10 , E. P. S. Shellard11 , L. D. Spencer80 , R. Sunyaev74,82 , F. Sureau69 , A.-S. Suur-Uski25,41 ,
+                                                  J.-F. Sygnet57 , J. A. Tauber40 , D. Tavagnacco44,35 , L. Terenzi46 , L. Toffolatti17,63 , M. Tomasi34,47 , M. Tristram67 , M. Tucci15,67 , M. Türler52 ,
+                                              L. Valenziano46 , J. Valiviita41,25,61 , B. Van Tent72 , P. Vielva63 , F. Villa46 , N. Vittorio36 , L. A. Wade64 , B. D. Wandelt57,86,30 , M. White27 , D. Yvon13 ,
+                                                                                                          A. Zacchei44 , J. P. Zibin20 , and A. Zonca29
+                                                                                                      (Affiliations can be found after the references)
+
+                                                                                              A&A: submitted, 23 March 2013, accepted 3 January 2014.
+
+
+                                                                                                                         ABSTRACT
+
+                                              Our velocity relative to the rest frame of the cosmic microwave background (CMB) generates a dipole temperature anisotropy on the sky which
+                                              has been well measured for more than 30 years, and has an accepted amplitude of v/c = 1.23 × 10−3 , or v = 369 km s−1 . In addition to this
+                                              signal generated by Doppler boosting of the CMB monopole, our motion also modulates and aberrates the CMB temperature fluctuations (as well
+                                              as every other source of radiation at cosmological distances). This is an order 10−3 effect applied to fluctuations which are already one part in
+                                              roughly 105 , so it is quite small. Nevertheless, it becomes detectable with the all-sky coverage, high angular resolution, and low noise levels of the
+                                              Planck satellite. Here we report a first measurement of this velocity signature using the aberration and modulation effects on the CMB temperature
+                                              anisotropies, finding a component in the known dipole direction, (l, b) = (264◦ , 48◦ ), of 384 km s−1 ± 78 km s−1 (stat.) ± 115 km s−1 (syst.). This is
+                                              a significant confirmation of the expected velocity.
+                                              Key words. Cosmology: observations – cosmic background radiation – Reference systems – Relativistic processes
+
+
+
+                                              1. Introduction                                                                     scale temperature fluctuations of the Planck cosmic microwave
+                                                                                                                                  background (CMB) maps.
+                                              This paper, one of a set associated with the 2013 release of
+                                                                                                                                      Observations of the relatively large amplitude CMB temper-
+                                              data from the Planck† mission (Planck Collaboration I 2014),
+                                                                                                                                  ature dipole are usually taken to indicate that our Solar System
+                                              presents a study of Doppler boosting effects using the small-
+                                                                                                                                  barycentre is in motion with respect to the CMB frame (de-
+                                                                                                                                  fined precisely below). Assuming that the observed tempera-
+                                               ?
+                                                   “And yet it moves,” the phrase popularly attributed to Galileo                 ture dipole is due entirely to Doppler boosting of the CMB
+                                              Galilei after being forced to recant his view that the Earth goes around            monopole, one infers a velocity v = (369 ± 0.9) km s−1 in the
+                                              the Sun.
+                                               ??
+                                                                                                                                  direction (l, b) = (263.◦ 99 ± 0.◦ 14, 48.◦ 26 ± 0.◦ 03), on the bound-
+                                                   Corresponding author: Douglas Scott, dscott@phas.ubc.ca.ca                     ary of the constellations of Crater and Leo (Kogut et al. 1993;
+                                                †
+                                                   Planck (http://www.esa.int/Planck) is a project of the                         Fixsen et al. 1996; Hinshaw et al. 2009).
+                                              European Space Agency (ESA) with instruments provided by two sci-
+                                              entific consortia funded by ESA member states (in particular the lead                   In addition to Doppler boosting of the CMB monopole, ve-
+                                              countries France and Italy), with contributions from NASA (USA) and                 locity effects also boost the order 10−5 primordial temperature
+                                              telescope reflectors provided by a collaboration between ESA and a sci-             fluctuations. There are two observable effects here, both at a
+                                              entific consortium led and funded by Denmark.                                       level of β ≡ v/c = 1.23 × 10−3 . First, there is a Doppler “mod-
+
+
+                                                                                                                                                                                                                 1
+                                    Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+ulation” effect, which amplifies the apparent temperature fluctu-           (a) T primordial
+ations in the velocity direction, and reduces them in the oppo-
+site direction. This is the same effect which converts a portion
+of the CMB monopole into the observed dipole. The effect on
+the CMB fluctuations is to increase the amplitude of the power
+spectrum by approximately 0.25% in the velocity direction, and
+decrease it correspondingly in the anti-direction. Second, there
+is an “aberration” effect, in which the apparent arrival direc-
+tion of CMB photons is pushed toward the velocity direction.
+This effect is small, but non-negligible. The expected velocity
+induces a peak deflection of β = 4.02 and a root-mean-squared
+                                                                            (b) T aberration
+(rms) deflection over the sky of 30 , comparable to the effects
+of gravitational lensing by large-scale structure, which are dis-
+cussed in Planck Collaboration XVII (2014). The aberration ef-
+fect squashes the anisotropy pattern on one side of the sky and
+stretches it on the other, effectively changing the angular scale.
+Close to the velocity direction we expect that the power spec-
+trum of the temperature anisotropies, C` , will be shifted so that,
+e.g., ` = 1000 → ` = 1001, while ` = 1000 → ` = 999 in the anti-
+direction. In Fig. 1 we plot an exaggerated illustration of the
+aberration and modulation effects. For completeness we should
+                                                                            (c) T modulation
+point out that there is a third effect, a quadrupole of amplitude
+β2 induced by the dipole (see Kamionkowski & Knox 2003).
+However, extracting this signal would require extreme levels of
+precision for foreground modelling at the quadrupole scale, and
+we do not discuss it further.
+     In this paper, we will present a measurement of β, exploiting
+the distinctive statistical signatures of the aberration and mod-
+ulation effects on the high-` CMB temperature anisotropies. In
+addition to our interest in making an independent measurement
+of the velocity signature, the effects which velocity generates on
+the CMB fluctuations provide a source of potential bias or con-        Fig. 1. Exaggerated illustration of the aberration and Doppler
+fusion for several aspects of the Planck data. In particular, ve-      modulation effects, in orthographic projection, for a velocity
+locity effects couple to measurements of: primordial “τNL ”-type       v = 260 000 km s−1 = 0.85c (approximately 700 times larger
+non-Gaussianity, as discussed in Planck Collaboration XXIV             than the expected magnitude) toward the northern pole (indi-
+(2014); statistical anisotropy of the primordial CMB fluctua-          cated by meridians in the upper half of each image on the left).
+tions, as discussed in Planck Collaboration XXIII (2014); and          The aberration component of the effect shifts the apparent posi-
+gravitational lensing, as discussed in Planck Collaboration XVII       tion of fluctuations toward the velocity direction, while the mod-
+(2014). There are also aspects of the Planck analysis for which        ulation component enhances the fluctuations in the velocity di-
+velocity effects are believed to be negligible, but only if they are   rection and suppresses them in the anti-velocity direction.
+present at the expected level. One example is measurement of
+ fNL -type non-Gaussianity, as discussed in Catena et al. (2013).
+Another example is power spectrum estimation — as discussed
+above, velocity effects change the angular scale of the acous-
+tic peaks in the CMB power spectrum. Averaged over the full
+sky this effect is strongly suppressed, as the expansion and con-
+traction of scales on opposing hemispheres cancel out. However         in hand, a logical next step is to correct for these effects by a pro-
+the application of a sky mask breaks this cancellation to some         cess of de-boosting the observed temperature (Notari & Quartin
+extent, and can potentially be important for parameter estima-         2012; Yoho et al. 2012). Indeed, an analysis of maps corrected
+tion (Pereira et al. 2010; Catena & Notari 2013). For the 143          for the modulation effect described here is performed in Planck
+and 217 GHz analysis mask used in the fiducial Planck CMB              Collaboration XXIII (2014).
+likelihood (Planck Collaboration XV 2014), the average lensing             Before proceeding to discuss the aberration and modulation
+convergence field associated with the aberration effect (on the        effects in more detail, we note that in addition to the overall pe-
+portion of the sky which is unmasked) has a value which is 13%         culiar velocity of our Solar System with respect to the CMB,
+of its peak value, corresponding to an expected average lensing        there is an additional time-dependent velocity effect from the or-
+convergence of β × 0.13 = 1.5 × 10−4 . This will shift the angular     bit of Planck (at L2, along with the Earth) about the Sun. This
+scale of the acoustic peaks by the same fraction, which is degen-      velocity has an average amplitude of approximately 30 km s−1 ,
+erate with a change in the angular size of the sound horizon at        less than one-tenth the size of the primary velocity effect. The
+last scattering, θ∗ (Burles & Rappaport 2006). A 1.5 × 10−4 shift      aberration component of the orbital velocity (more commonly
+in θ∗ is just under 25% of the Planck uncertainty on this param-       referred to in astronomy as “stellar aberration”) has a maximum
+eter, as reported in Planck Collaboration XVI (2014) — small           amplitude of 20.005 and is corrected for in the satellite pointing.
+enough to be neglected, though not dramatically so. This there-        The modulation effect for the orbital velocity switches signs be-
+fore motivates us to test that the observed aberration signal is       tween each 6-month survey, and so is suppressed when using
+not significantly larger than expected. With such a confirmation       multiple surveys to make maps (as we do here, with the nominal
+
+
+2
+                                             Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+Planck maps, based on a little more than two surveys), and so                      where the frequency dependent boost factor bν is given by
+we will not consider it further.‡
+                                                                                                           ν        ν
+                                                                                                                       !
+                                                                                                      bν =    coth       − 1,                               (8)
+                                                                                                           ν0      2ν0
+2. Aberration and modulation
+                                                                                   with ν0 ≡ kB T 0 /h ≃ 57 GHz. Integrated over the Planck band-
+Here we will present a more quantitative description of the aber-                  passes for the 143 and 217 GHz channels, these effective boost
+ration and modulation effects described above. To begin, note                      factors are given by b143 = 1.961 ± 0.015, and b217 = 3.071 ±
+that, by construction, the peculiar velocity, β, measures the ve-                  0.018, where the uncertainties represent the scatter between the
+locity of our Solar System barycentre relative to a frame, called                  individual detector bandpasses at each frequency. We will ap-
+the CMB frame, in which the temperature dipole, a1m , vanishes.                    proximate these boost factors simply as b143 = 2 and b217 = 3,
+However, in completely subtracting the dipole, this frame would                    which is sufficiently accurate for the precision of our measure-
+not coincide with a suitably-defined average CMB frame, in                         ment.
+which an observer would expect to see a dipole C1 ∼ 10−10 ,                            In the mapmaking process, the fluctuations are assumed to
+given by the Sachs-Wolfe and integrated Sachs-Wolfe effects                        satisfy only the linear term in Eq. (6). Therefore, the inferred
+(see Zibin & Scott (2008) for discussion of cosmic variance in                     temperature fluctuations will be
+the CMB monopole and dipole). The velocity difference between
+                                                                                      δIν (ν, n̂ )
+these two frames is, however, small, at the level of 1% of our ob-                                 = T 0 n̂ · β + δT 0 ( n̂ − ∇( n̂ · β))(1 + bν n̂ · β).   (9)
+served v.                                                                             dIν /dT |T0
+    If T 0 and n̂ 0 are the CMB temperature and direction as                       Notice that, compared with the actual fluctuations in Eq. (4), the
+viewed in the CMB frame, then the temperature in the observed                      modulation term in Eq. (9) has taken on a peculiar frequency de-
+frame is given by the Lorentz transformation (see, e.g., Challinor                 pendence, represented by bν . This has arisen due to the coupling
+& van Leeuwen 2002; Sollom 2010),                                                  between the fluctuations and the dipole, T 0 n̂ · β, which leads
+                                          T 0 ( n̂ 0 )                             to a second-order term in the expansion of Eq. (6). Intuitively,
+                           T ( n̂ ) =                  ,                     (1)   the CMB temperature varies from one side of the sky to the
+                                        γ(1 − n̂ · β)
+                                                                                   other at the 3 mK level. Therefore so does the calibration factor
+where the observed direction n̂ is given by                                        dIν /dT , as represented by the second derivative d2 Iν /dT 2 . We
+                                                                                   note that such a frequency-dependent modulation is not uniquely
+                           n̂ 0 + [(γ − 1) n̂ 0 · v̂ + γβ]v̂                       a velocity effect, but would have arisen in the presence of any
+                    n̂ =                                     ,               (2)   sufficiently large temperature fluctuation. Of course if we mea-
+                                   γ(1 + n̂ 0 · β)
+                                                                                   sured T ( n̂ ) directly (for example by measuring Iν (ν, n̂ ) at a large
+and γ ≡ (1 − β2 )−1/2 . Expanding to linear order in β gives                       number of frequencies), we would measure the true fluctuations,
+                                                                                   Eq. (4), i.e., we would have a boost factor of bν = 1. However,
+    T 0 ( n̂ 0 ) = T 0 ( n̂ − ∇( n̂ · β)) ≡ T 0 + δT 0 ( n̂ − ∇( n̂ · β)),   (3)   this is not what happens in practice, and hence the velocity-
+                                                                                   driven modulation has a spectrum which mixes in a d2 Iν /dT 2
+so that we can write the observed temperature fluctuations as                      dependence.
+
+        δT ( n̂ ) = T 0 n̂ · β + δT 0 ( n̂ − ∇( n̂ · β))(1 + n̂ · β).        (4)
+                                                                                   3. Methodology
+Here T 0 = (2.7255 ± 0.0006) K is the CMB mean temperature
+                                                                                   The statistical properties of the aberration-induced stretching
+(Fixsen 2009). The first term on the right-hand side of Eq. (4) is
+                                                                                   and compression of the CMB anisotropies are manifest in “sta-
+the temperature dipole. The remaining term represents the fluc-
+                                                                                   tistically anisotropic” contributions to the covariance matrix of
+tuations, aberrated by deflection ∇( n̂ · β) and modulated by the
+                                                                                   the CMB, which we can use to reconstruct the velocity vec-
+factor (1 + n̂ · β).
+                                                                                   tor (Burles & Rappaport 2006; Kosowsky & Kahniashvili 2011;
+    The Planck detectors can be modelled as measuring differ-
+                                                                                   Amendola et al. 2011). To discuss these it will be useful to in-
+ential changes in the CMB intensity at frequency ν given by
+                                                                                   troduce the harmonic transform of the peculiar velocity vector,
+                                2hν3        1                                      given by
+                Iν (ν, n̂ ) =     2
+                                                            .                (5)                              Z
+                                 c exp [hν/kB T ( n̂ )] − 1
+                                                                                                       βLM =           ∗
+                                                                                                                 d n̂ YLM ( n̂ )β · n̂ .        (10)
+We can expand the measured intensity difference according to
+                                                                                   Here βLM is only non-zero for dipole modes (with L = 1).
+                   dIν               1 d 2 Iν                                      Although most of our equations will be written in terms of βLM ,
+    δIν (ν, n̂ ) =       δT ( n̂ ) +           δT 2 ( n̂ ) + . . . .         (6)   for simplicity of interpretation we will present results in a spe-
+                   dT T0             2 dT 2 T0
+                                                                                   cific choice of basis for the three dipole modes of orthonormal
+Substituting Eq. (4) and dropping terms of order β2 and (δT 0 )2 ,                 unit vectors, labelled βk (along the expected velocity direction),
+we find                                                                            β× (perpendicular to βk and parallel to the Galactic plane, near
+                                                                                   its centre), and the remaining perpendicular mode β⊥ . The direc-
+                        dIν                                                       tions associated with these modes are plotted in Fig. 2.
+       δIν (ν, n̂ ) =         T 0 n̂ · β + δT 0 ( n̂ 0 )(1 + bν n̂ · β) ,
+                                                                       
+                                                                             (7)        In the statistics of the CMB fluctuations, peculiar velocity
+                        dT T0
+                                                                                   effects manifest themselves as a set of off-diagonal contributions
+  ‡
+     Note that in both stellar and cosmological cases, the aberration is           to the CMB covariance matrix:
+the result of local velocity differences (Eisner 1967; Phipps 1989): in
+                                                                                                                       ` `
+                                                                                                                                  !
+                                                                                                                               L
+                                                                                                                                    W`β1ν`2 L βLM , (11)
+                                                                                                              X
+the former case, between Earth’s velocity at different times of the year,             hT `1 m2 T `2 m2 icmb =   (−1) M 1 2
+and in the latter between the actual and CMB frames.                                                                   m1 m2 −M
+                                                                                                            LM
+
+
+                                                                                                                                                             3
+                                              Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+                                                                                extract β. A general quadratic estimator x̂ LM for βLM is given by
+                           + β~                             + β~                (Hanson & Lewis 2009)
+
+                                                                                                      `max     `
+                                                                                                                                   M `1 `2
+                                                                                                                 max
+                                                                                                                                                            !
+                                                                                               1 xβν X         X      X                                L
+                                                                                  x̂ LM [T̄ ] = NL                                                            W`x1 `2 L
+      −β~ ×                                 + β~×                                                                            (−1)
+                                                                                               2                                       m1 m2 −M
+                                                                                                    `1 =`min `2 =`min m1 ,m2
+                                                                                                                                                         
+                                                                                                                × T̄ `1 m1 T̄ `2 m2 − hT̄ `1 m1 T̄ `2 m2 i , (15)
+                            −β~                             −β~
+                                                                                where T̄ `m are a set of inverse-variance filtered temperature mul-
+                                                                                tipoles, W`x1 `2 L is a weight function and NLxβν is a normaliza-
+                                                                                tion. To study the total boosting effect we use Eq. (12) for the
+Fig. 2. Specific choice for the decomposition of the dipole vec-                weight function, but we will also use weight functions designed
+tor β in Galactic coordinates. The CMB dipole direction (l, b) =                to extract specifically the aberration and modulation components
+(263.◦ 99, 48.◦ 26) is given as βk , while two directions orthogonal            of the effect. The ensemble average term hi is taken over sig-
+to it (and each other) are denoted as β⊥ and β× . The vector β×                 nal+noise realizations of the CMB in the absence of velocity
+lies within the Galactic plane.                                                 effects. It corrects for the statistical anisotropy induced by ef-
+                                                                                fects like beam asymmetry, masking, and noise inhomogeneity.
+                                                                                We evaluate this term using Monte Carlo simulations of the data,
+where the weight function W βν is composed of two parts, related                as discussed in Sect. 4.
+to the aberration and modulation effects, respectively,                               We use three different quadratic estimators to measure the ef-
+                                                                                fects of boosting. The first, β̂ , simply adopts the weight function
+                        W`β1ν`2 L = W`φ1 `2 L + bν W`τ1 `2 L ,          (12)    W`β1ν`2 L , and provides a minimum-variance estimator of the total
+and the term in large parentheses is a Wigner 3- j symbol. It                   peculiar velocity effect. The two additional estimators, φ̂ and
+should be understood that in all of the expressions in this sec-                τ̂ , isolate the aberration and modulation aspects of the peculiar
+tion, we take L = 1 for our calculations. We have written the                   velocity effect, respectively. This can be useful, as they are qual-
+expressions in more general form to allow easier connection to                  itatively quite distinct effects, and suffer from different potential
+more general estimators in the literature. The aberration term,                 contaminants. The modulation effect, for example, is degenerate
+for example, is identical to that found when considering gravi-                 with a dipolar pattern of calibration errors on the sky, while the
+tational lensing of the CMB by large-scale structure (Lewis &                   aberration effect is indistinguishable from a dipolar pattern of
+Challinor 2006; Planck Collaboration XVII 2014),                                pointing errors.
+                                                                                      There is a subtlety in the construction of these estimators,
+                                                                                due to the fact that the covariances, described by W φ and W τ , are
+                  1 + (−1)`1 +`2 +L
+                                      !r
+                                 (2`1 + 1)(2`2 + 1)(2L + 1)                     not orthogonal. To truly isolate the aberration and modulation
+    W`φ1 `2 L =
+                        2                    4π                                 effects, we form orthogonalized weight matrices as
+                                  `1 `2 L
+                                            !
+                                                                                                                                       Rφτ
+        p
+       × L(L + 1)`1 (`1 + 1)C`TT              + (`1 ↔ `2 ), (13)
+                               1  1 0 −1                                                          W`φ̂1 `2 L = W`φ1 `2 L − W`τ1 `2 L    L
+                                                                                                                                                 and             (16)
+                                                                                                                                       Rττ
+                                                                                                                                        L
+while the modulation term is identical to that produced by                                                                             Rτφ
+an inhomogeneous optical depth to the last scattering surface                                     W`τ̂1 `2 L = W`τ1 `2 L − W`φ1 `2 L    L
+                                                                                                                                             ,                   (17)
+(Dvorkin & Smith 2009),                                                                                                                Rφφ
+                                                                                                                                        L
+           r                                                                    where the response function R is given by
+              (2`1 + 1)(2`2 + 1)(2L + 1) `1 `2 L  TT
+                                                    !
+   τ
+                                                                  
+W`1 `2 L =                                            C`1 + C`TT    .                                     `max `max
+                          4π               0 0 0                2
+                                                                                                  1      X     X    1 x
+                                                               (14)                   RLxz =                         W     Wz F F ,                              (18)
+Note that one might, in principle, be concerned about order β2                                 (2L + 1) ` =` ` =` 2 `1 `2 L `1 `2 L `1 `2
+                                                                                                            1   min   2   min
+corrections to the covariance matrix, particularly at high ` (see,
+e.g., Notari & Quartin 2012). However, these are small, provided                with x, z = βν , φ, τ. The construction of these estimators is analo-
+that the spectra are relatively smooth. Although the order β (≃                 gous to the construction of “bias-hardened” estimators for CMB
+10−3 ) deflections give large changes to the a`m s for ` > 103 , the            lensing (Namikawa et al. 2013). The spectra F` are diagonal ap-
+changes to the overall covariance are small (Chluba 2011), since                proximations to the inverse variance filter, which takes the sky
+the deflection effect is coherent over very large scales.                       map T → T̄ . We use the same inverse variance filter as that used
+     The basic effect of these boosting-induced correlations is to              for the baseline results in Planck Collaboration XVII (2014), and
+couple ` modes with `±1 modes. They therefore share this prop-                  the approximate filter functions are also specified there. Note
+erty with pure dipolar amplitude modulations studied in the con-                that our φ̂ estimator is slightly different from that used in Planck
+text of primordial statistical anisotropy (see, e.g, Prunet et al.              Collaboration XVII (2014), due to the fact that we have orthog-
+2005), as well as with dipolar modulations in more general phys-                onalized it with respect to τ.
+ical parameters (Moss et al. 2011). However, these other cases do                   The normalization NLxβν can be approximated analytically as
+not share the frequency dependence of the boosting modulation                                                          h     i−1
+effect, since they are not accompanied by a temperature dipole.                                                 NLxβν ≃ RLxβν .                                  (19)
+     We measure the peculiar velocity dipole using quadratic es-
+timators, essentially summing over the covariance matrix of the                 This approximation does not account for masking. On a masked
+observed CMB fluctuations, with weights designed to optimally                   sky, with this normalization, we expect to find that h x̂ LM i =
+
+
+4
+                                         Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+fLM, sky βLM , where                                                      and `2 m2 terms. Starting from the 143 and 217 GHz maps, there
+                            Z                                             are three distinct ways we may source these legs: (1) both legs
+               fLM, sky =             ∗
+                                d n̂ YLM ( n̂ )M( n̂ )βk · n̂ .    (20)   use either the individually filtered 143 GHz or 217 GHz maps,
+                                                                          which we refer to as 143 × 143 and 217 × 217, respectively; (2)
+Here M( n̂ ) is the sky mask used in our analysis. For the fiducial       we can use 143 GHz for one leg, and 217 GHz for the other, re-
+sky mask we use (plotted in Fig. 2, and which leaves approx-              ferred to as 143 × 217; and (3) we can combine both 143 and
+imately 70% of the sky unmasked), taking the dot product of               217 GHz data in our inverse-variance filtering procedure into
+ f1M, sky with our three basis vectors we find that fk, sky = 0.82,       a single minimum-variance map, which is then fed into both
+ f⊥, sky = 0.17, and f×, sky = −0.04. The large effective sky frac-       legs of the quadratic estimator. We refer to this final combina-
+tion for the βk direction reflects the fact that the peaks of the         tion schematically as “143+217.” Combinations (2) and (3) mix
+expected velocity dipole are untouched by the mask, while the             143 and 217 GHz data. When constructing the weight function
+small values of fsky for the other components reflects that fact          of Eq. (12) for these combinations we use an effective bν = 2.5.
+that the masking procedure does not leak a large amount of the            Note that this effective bν is only used to determine the weight
+dipole signal in the βk direction into other modes.                       function of the quadratic estimator; errors in the approximation
+                                                                          will make our estimator suboptimal, but will not bias our results.
+                                                                          To construct the T̄ , which are the inputs for these quadratic esti-
+4. Data and simulations                                                   mators, we use the filtering described in Appendix A of Planck
+                                                                          Collaboration XVII (2014), which optimally accounts for the
+Given the frequency-dependent nature of the velocity effects we
+                                                                          Galactic and point source masking (although not for the inho-
+are searching for (at least for the τ component), we will focus
+                                                                          mogeneity of the instrumental noise level). This filter inverse-
+for the most part on estimates of β obtained from individual fre-
+                                                                          variance weights the CMB fluctuations, and also projects out the
+quency maps, although in Sect. 6 we will also discuss the analy-
+                                                                          857 GHz Planck map as a dust template.
+sis of component-separated maps obtained from combinations of
+                                                                               To characterize our estimator and to compute the mean-field
+the entire Planck frequency range. Our analysis procedure is es-
+                                                                          term of Eq. (15), we use a large set of Monte Carlo simulations.
+sentially identical to that of Planck Collaboration XVII (2014),
+                                                                          These are generated following the same procedure as those de-
+and so we only provide a brief review of it here. We use the
+                                                                          scribed in Planck Collaboration XVII (2014); they incorporate
+143 and 217 GHz Planck maps, which contain the majority of
+                                                                          the asymmetry of the instrumental beam, gravitational lensing
+the available CMB signal probed by Planck at the high mul-
+                                                                          effects, and realistic noise realizations from the FFP6 simula-
+tipoles required to observe the velocity effects. The 143 GHz
+                                                                          tion set described in Planck Collaboration I (2014) and Planck
+map has a noise level that is reasonably well approximated by
+                                                                          Collaboration (2013). There is one missing aspect of these simu-
+45 µK arcmin white noise, while the 217 GHz map has approxi-
+                                                                          lations which we discuss briefly here: due to an oversight in their
+mately twice as much noise power, with a level of 60 µK arcmin.
+                                                                          preparation, the gravitational lensing component of our simula-
+The beam at 143 GHz is approximately 70 FWHM, while the
+                                                                          tions only included lensing power for lensing modes on scales
+217 GHz beam is 50 FWHM. This increased angular resolu-
+                                                                          L ≥ 2, which leads to a slight underestimation of our simulation-
+tion, as well as the larger size of the τ-type velocity signal at
+                                                                          based error bars for the φ component of the velocity estima-
+higher frequency, makes 217 GHz slightly more powerful than
+                                                                          tor. The lensing dipole power in the fiducial ΛCDM model is
+143 GHz for detecting velocity effects (the HFI 100 GHz and LFI
+70 GHz channels would offer very little additional constraining           C1φφ ≃ 6 × 10−8 , which represents an additional source of noise
+power). At these noise levels, for 70% sky coverage we Fisher-            for each mode of β, given by σφ,lens = 1.2 × 10−4 , or about
+forecast a 20% measurement of the component βk at 217 GHz                 one tenth the size of the expected signal. The φ part of the es-
+(or, alternatively, a 5 σ detection) or a 25% measurement of              timator contributes approximately 46% of the total β estimator
+βk at 143 GHz, consistent with the estimates of Kosowsky &                weight at 143 GHz, and 35% at 217 GHz. Our measurement er-
+Kahniashvili (2011) and Amendola et al. (2011). As we will                rors without this lensing noise on an individual mode of β are
+see, our actual statistical error bars determined from simulations        σβ ≃ 2.5 × 10−4 , while with lensing noise included we would
+                                                                                                      q
+agree well with these expectations.                                       expect this to increase to σ2β + (4/10)2 σ2φ,lens = 2.54 × 10−4 .
+     The Planck maps are generated at HEALPix (Górski et al.
+2005)§ Nside = 2048. In the process of mapmaking, time-domain             This is small enough that we have neglected it for these results
+observations are binned into pixels. This effectively generates a         (rather than include it by hand).
+pointing error, given by the distance between the pixel centre to              We generate simulations both with and without peculiar ve-
+which each observation is assigned and the true pointing direc-           locity effects, to determine the normalization of our estimator,
+tion at that time. The pixels at Nside = 2048 have a typical dimen-       which, as we will see, is reasonably consistent with the analyt-
+sion of 1.07. As this is comparable to the size of the aberration         ical expectation discussed around Eq. (20). All of our main re-
+effect we are looking for, this is a potential source of concern.         sults with frequency maps use 1000 simulations to determine the
+However, as discussed in Planck Collaboration XVII (2014), the            estimator mean field and variance, while the component separa-
+beam-convolved CMB is sufficiently smooth on these scales that            tion tests in Sect. 6 use 300 simulations.
+it is well approximated as a gradient across each pixel, and the
+errors accordingly average down with the distribution of hits in           5. Results
+each pixel. For the frequency maps that we use, the rms pix-
+elization error is on the order of 0.01, and not coherent over the         We present our results visually in Fig. 3, where we plot the to-
+large dipole scales which we are interested in, and so we neglect          tal measured dipole direction β̂ as a function of the maximum
+pixelization effects in our measurement.                                   temperature multipole `max used as input to our quadratic esti-
+     We will use several data combinations to measure β. The               mators. We can see that all four of our 143/217 GHz based es-
+quadratic estimator of Eq. (15) has two input “legs,” i.e., the `1 m1      timators converge toward the expected dipole direction at high
+                                                                           `max . At `max < 100, we recover the significantly preferred direc-
+ §
+     http://healpix.jpl.nasa.gov                                           tion of Hoftuft et al. (2009), which is identified when searching
+
+
+                                                                                                                                            5
+                                   Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+for a dipolar modulation of the CMB fluctuations (see Planck          take the 143 × 217 GHz estimator as our fiducial measurement;
+Collaboration XXIII 2014). The τ component of the velocity ef-        because it involves the cross-correlation of two maps with in-
+fect is degenerate with such a modulation (at least at fixed fre-     dependent noise realizations it should be robust to noise mod-
+quency), and φ gets little weight from ` < 100, so this is an ex-     elling. Null tests against the individual 143 and 217 GHz es-
+pected result. The significance of this preferred direction varies    timates are in tension at a level of 2 σ for this estimator. We
+as a function of smoothing scale (Hanson & Lewis 2009; Bennett        take this tension as a measure of the systematic differences be-
+et al. 2011; Planck Collaboration XXIII 2014). To minimize            tween these two channels, and conservatively choose the largest
+possible contamination of our results by this potential anomaly,      discrepancy with the 143 × 217 GHz estimate, namely 0.31,
+from here onward we restrict the temperature multipoles used          as our systematic error. We therefore report a measurement of
+in our β estimation to `min = 500. This cut removes only about        v̂ k = 384 km s−1 ± 78 km s−1 (stat.) ± 115 km s−1 (syst.), a signif-
+10% of the total number of modes measured by Planck, and so           icant confirmation of the expected velocity amplitude.
+does not significantly increase our error bars. Note also that we
+have verified that our error bars do not shrink significantly for
+`max > 2000, since almost all of the modes measured by Planck         Table 1. Significance measures for the β estimates of Fig. 4. We
+are at ` < 2000.                                                      form a χ2 for the three measured modes of β, using the mean and
+     There is a clear tendency in Fig. 3 for the measured velocity    covariance matrix measured for simulations either with or with-
+to point toward the expected direction βk . At Planck noise levels,   out velocity effects. The covariance matrices are very similar in
+we expect a 1 σ uncertainty on each component of β of better          both cases, and so the difference between these two cases is only
+than 25%. A 25% uncertainty corresponds to an arctan(1/4) =           the mean-field subtraction. The “PTE” columns give the corre-
+14◦ constraint on the direction of β. We plot this contour, as        sponding probability-to-exceed values for a χ2 distribution with
+well as the corresponding 2 σ contour arctan(2/4) = 26◦ . It is       three degrees of freedom. The measured χ2 values are extremely
+apparent that the measured velocity directions are in reasonable      unlikely under the “no velocity” hypothesis, but very compatible
+agreement with the CMB dipole.                                        for the “with velocity” case.
+     We now proceed to break the measurement of Fig. 3 into                                               β̂ significance
+its constituent parts for `max = 2000 (and truncating now at
+`min = 500). In Fig. 4 we plot our quadratic estimates of the                                    No velocity          With velocity
+three components of β, as well as the decomposition into aberra-
+tion and modulation components, for each of our four frequency                                 χ2     PTE [%]        χ2     PTE [%]
+combinations. The vertical lines in Fig. 4 give the amplitude es-            143 × 143 . . .   27.1    0.0005        1.9       58.87
+timates for each component measured from the data, while the                 217 × 217 . . .   20.7    0.0123        6.0       11.18
+coloured and grey histograms give the distribution of these quan-            143 + 217 . . .   25.1    0.0015        3.3       35.44
+tities for the 143 × 217 estimator, for simulations with and with-           143 × 217 . . .   27.6    0.0005        1.8       62.29
+out velocity effects, respectively (the other estimators are simi-
+lar). As expected, the velocity effects show up primarily in βk ;
+there is little leakage into other components with our sky mask.
+For all four estimators, we see that the presence of velocity along
+βk is strongly preferred over the null hypothesis. At 143 GHz this    Table 2. Measured velocity amplitudes along the βk direction, in
+signal comes from both φ̂ k and τ̂ k . At 217 GHz it comes primar-    units of 369 km s−1 , using combinations of the 143 and 217 GHz
+ily from τ̂ k . Additionally, there is a somewhat unexpected signal   data, as discussed in Sect. 4. The diagonal shows the results for
+at 217 GHz in the β× direction, again driven by the τ component.      the indicated reconstruction. Below the diagonal, the numbers
+Given the apparent frequency dependence, foreground contami-          given are for the difference of the two results, and the uncertainty
+nation seems a possible candidate for this anomalous signal. We       accounts for the correlation between each pair of measurements.
+will discuss this possibility further in the next section.            This lower triangle is a null test. Several of these null tests fail
+                                                                      between 143 and 217 GHz, although both channels provide ev-
+     In Table 1 we present χ2 values for the β measurements of
+                                                                      idence for βk , which is consistent with the expected amplitude
+Fig. 4 under both the null hypothesis of no velocity effects, and
+                                                                      and discrepant with zero at 4–5 σ.
+assuming the expected velocity direction and amplitude. We can
+see that all of our measurements are in significant disagreement
+with the “no velocity” hypothesis. The probability-to-exceed                                              β̂ k Amplitude
+(PTE) values for the “with velocity” case are much more rea-
+sonable. Under the velocity hypothesis, 217 × 217 has the lowest                        143 × 143     217 × 217    143 + 217      143 × 217
+PTE, of 11%, driven by the large β̂ × .                               143 × 143 . . .   1.35 ± 0.26 2.10 ± 0.41 2.27 ± 0.44 2.39 ± 0.46
+     In Table 2 we focus on our measurements of the veloc-            217 × 217 . . .   0.60 ± 0.21 0.75 ± 0.19 1.67 ± 0.38 1.79 ± 0.38
+ity amplitude along the expected direction βk , as well as per-       143 + 217 . . .   0.43 ± 0.15 −0.17 ± 0.09 0.92 ± 0.20 1.96 ± 0.40
+forming null tests among our collection of estimates. For this        143 × 217 . . .   0.31 ± 0.13 −0.29 ± 0.12 −0.12 ± 0.07 1.04 ± 0.21
+table, we have normalized the estimators, such that the aver-
+age of β̂ k on boosted simulations is equal to the input value
+of 369 km s−1 . For all four of our estimators, we find that this
+normalization factor is within 0.5% of that given by N xβν fk,sky ,   6. Potential contaminants
+as is already apparent from the triangles along the horizontal
+axis of Fig. 4. We can see here, as expected, that our estimators     There are several potential sources of contamination for our es-
+have a statistical uncertainty on βk of between 20% and 25%.          timates above which we discuss briefly here, although we have
+However, several of our null tests, obtained by taking the dif-       not attempted an exhaustive study of potential contaminants for
+ferences of pairs of βk estimates, fail at the level of 2–3 σ. We     our estimator.
+
+
+6
+                                    Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+
+
+
+                                            + β~                                                 + β~
+
+
+     −β~ ×                                                                + β~×
+
+
+                                                                                                   −β~
+                                              −β~
+
+
+
+
+                                  100                              lmax                            2000
+
+Fig. 3. Measured dipole direction β̂ in Galactic coordinates as a function of the maximum temperature multipole used in the
+analysis, `max . We plot the results for the four data combinations discussed in Sect. 4: 143 × 143 (H symbol); 217 × 217 (N symbol);
+143 × 217 (× symbol); and 143 + 217 (+ symbol). The CMB dipole direction βk has been highlighted with 14◦ and 26◦ radius
+circles, which correspond roughly to our expected uncertainty on the dipole direction. The black cross in the lower hemisphere is
+the modulation dipole anomaly direction found for WMAP at `max = 64 in Hoftuft et al. (2009), and which is discussed further in
+Planck Collaboration XXIII (2014). Note that all four estimators are significantly correlated with one another, even the 143 × 143
+and 217 × 217 results, which are based on maps with independent noise realizations. This is because a significant portion of the
+dipole measurement uncertainty is from sample variance of the CMB fluctuations, which is common between channels.
+
+
+    Galactic Foregrounds: Given the simplicity of the fore-             To construct our β estimator for the component-separated maps
+ground correction we have used (consisting only of masking the          we have used bν = 2.5, assuming that they contain roughly equal
+sky and projecting out the Planck 857 GHz map as a crude dust           contributions from 143 and 217 GHz. Note that, because the sim-
+template), foreground contamination is a clear source of con-           ulations used to determine the mean fields of the component-
+cern. The frequency dependence of the large β× signal seen at           separated map included the aberration part of the velocity effect,
+217 GHz, but not at 143 GHz, seems potentially indicative of            it will be absorbed into the mean field if uncorrected. Because
+foreground contamination, as the Galactic dust power is approx-         the aberration contribution is frequency independent (so there
+imately 10 times larger at 217 than at 143 GHz. To test the pos-        are no issues with how the different CMB channels are mixed),
+sible magnitude of residual foregrounds, we apply our veloc-            and given the good agreement between our analytical normaliza-
+ity estimators to the four component-separated CMB maps of              tion and that measured using simulations for the frequency maps,
+Planck Collaboration XII (2014), i.e., NILC, SMICA, SEVEM, and          when generating Fig. 5 we have subtracted the expected velocity
+COMMANDER-RULER. Each of these methods combines the full set            contribution from the mean field analytically. We see generally
+of nine Planck frequency maps from 30 to 857 GHz to obtain a            good agreement with the 143 × 217 estimate on which we have
+best-estimate CMB map. To characterize the scatter and mean             based our measurement of the previous section; there are no ob-
+field of each method’s map we use the set of common simula-             vious discrepancies with our measurements in the βk direction,
+tions which each method has been applied to. These simulations          although there is a somewhat large scatter between methods for
+include the effect of the aberration part of the velocity dipole,       φ̂ k . In the β× direction the component-separated map estimates
+although not the frequency-dependent modulation part. For this          agree well with the 143 × 217 estimator, and do not show the
+reason, it is difficult to accurately assess the normalization of our   significant power seen for 217 × 217, suggesting that the large
+estimators when applied to these maps, particularly as they can         power that we see there may indeed be foreground in origin.
+mix 143 and 217 GHz as a function of scale, and the modulation
+part is frequency dependent. We can, however, study them at a               Calibration errors: Position-dependent calibration errors in
+qualitative level. The results of this analysis are shown in Fig. 5.    our sky maps are completely degenerate with modulation-type
+                                                                        effects (at fixed frequency), and so are very worrisome as a
+
+
+                                                                                                                                        7
+                                   Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+
+           β̂                                       φ̂                                        τ̂
+           143 × 143
+           217 × 217
+           143 + 217
+           143 × 217
+       1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5
+          β̂                                        φ̂                                        τ̂
+
+
+
+       1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5
+          β̂ ×                                      φ̂ ×                                      τ̂ ×
+
+
+
+       1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5
+Fig. 4. Measurements of β using combinations of the 143 and 217 GHz Planck maps, normalized using Eq. (19) and then divided
+by the fiducial amplitude of β = 1.23 × 10−3 . These estimates use `min = 500 and `max = 2000. In addition to the total minimum
+variance estimate β̂ , the measurement is also broken down into its aberration-type part, φ̂ , and modulation-type part, τ̂ . Vertical
+lines give the Planck measurement for the four estimates described in the text. Grey histograms give the distribution of estimates
+for simulations of the 143 × 217 estimator, which do not contain peculiar velocity effects (the other estimators are very similar). The
+red histograms give the distribution for simulations which do contain peculiar velocity effects, simulated with the fiducial direction
+(along βk ) and amplitude. Black triangles on the x-axis indicate the relevant component of fsky given by Eq. (20), which agrees well
+with the peak of the velocity simulations.
+
+
+
+           β̂                                       φ̂                                        τ̂
+           NILC
+           SMICA
+           SEVEM
+           RULER
+
+       1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5
+          β̂                                        φ̂                                        τ̂
+
+
+
+       1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5
+          β̂ ×                                      φ̂ ×                                      τ̂ ×
+
+
+
+       1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5 1.5 1.0 0.5 0.0 0.5 1.0 1.5
+Fig. 5. Plot of velocity amplitude estimates, similar to Fig. 4, but using an array of component-separated maps, rather than specific
+combinations of frequency maps. The production and characterization of these component-separated maps is presented in Planck
+Collaboration XII (2014). Histograms of simulation results without velocity effects are overplotted in grey for each method; they are
+all very similar. Vertical coloured bars correspond to the maps indicated in the legend, using the combination of our fiducial galaxy
+mask (which removes approximately 30% of the sky), as well as the specific mask produced for each component separation method.
+We see significant departures from the null-hypothesis simulations only in the βk direction, as expected. Vertical black lines show
+the 143 × 217 measurement of Fig. 4. Note the discussion about the subtleties in the normalization of these estimates in Sect. 6.
+8
+                                   Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+potential systematic effect. We note that the Planck scan strat-      include Galactic and cosmological motions of the Solar System.
+egy strongly suppresses map calibration errors with large-scale       Because of the technical challenges, one may have thought it
+structure (such as a dipole, see Planck Collaboration VIII 2014).     very unlikely to be able to measure (or perhaps even to de-
+As the satellite spins, the detectors mounted in the focal plane      fine) the cosmological motion of the Solar System . . . and yet
+inscribe circles on the sky, with opening angles of between 83◦       it moves.
+and 85◦ (for the 143 and 217 GHz detectors we use). For a
+time-dependent calibration error to project cleanly into a dipolar    Acknowledgements. The development of Planck has been supported by:
+                                                                      ESA; CNES and CNRS/INSU-IN2P3-INP (France); ASI, CNR, and INAF
+structure on the sky, it would need to have a periodicity com-        (Italy); NASA and DoE (USA); STFC and UKSA (UK); CSIC, MICINN,
+parable to the spin frequency of the satellite (1 min−1 ). Slower     JA, and RES (Spain); Tekes, AoF, and CSC (Finland); DLR and MPG
+fluctuations in the calibration should be strongly suppressed in      (Germany); CSA (Canada); DTU Space (Denmark); SER/SSO (Switzerland);
+the maps. There are calibration errors which are not suppressed       RCN (Norway); SFI (Ireland); FCT/MCTES (Portugal); and PRACE (EU).
+by the scan strategy, however. For example, a nonlinear detector      A description of the Planck Collaboration and a list of its members,
+                                                                      including the technical or scientific activities in which they have been
+response could couple directly to the large CMB dipole temper-        involved, can be found at http://www.sciops.esa.int/index.php?
+ature. Ultimately, because position-dependent calibration errors      project=planck&page=Planck_Collaboration. Some of the results in this
+are completely degenerate with the τ component of the velocity        paper have been derived using the HEALPix package. This research used re-
+effect, the only handle which we have on them for this study is       sources of the National Energy Research Scientific Computing Center, which
+                                                                      is supported by the Office of Science of the U.S. Department of Energy under
+the consistency between φ̂ and τ̂ . From another viewpoint, the       Contract No. DE-AC02-05CH11231. We acknowledge support from the Science
+consistency of our measurement with the expected velocity mod-        and Technology Facilities Council [grant number ST/I000976/1].
+ulation provides an upper bound on dipolar calibration errors.
+    Pointing errors: In principle, errors in the pointing are per-
+fectly degenerate with the aberration-type velocity effect in the     References
+observed CMB. However the Planck pointing solution has an un-         Amendola, L., Catena, R., Masina, I., et al., Measuring our peculiar velocity on
+certainty of a few arcseconds rms in both the co- and cross-scan         the CMB with high-multipole off-diagonal correlations. 2011, JCAP, 1107,
+directions (Planck Collaboration VI 2014). The 30 rms aberra-            027, arXiv:1008.1183
+tions induced by velocity effects are simply too large to be con-     Bennett, C., Hill, R., Hinshaw, G., et al., Seven-Year Wilkinson
+taminated by any reasonable pointing errors.                             Microwave Anisotropy Probe (WMAP) Observations: Are There Cosmic
+                                                                         Microwave Background Anomalies? 2011, Astrophys. J. Suppl., 192, 17,
+                                                                         arXiv:1001.4758
+                                                                      Bilicki, M., Chodorowski, M., Jarrett, T., & Mamon, G. A., Is the Two
+7. Conclusions                                                           Micron All Sky Survey Clustering Dipole Convergent? 2011, ApJ, 741, 31,
+From Fig. 3 it is clear that small-scale CMB fluctuations ob-            arXiv:1102.4356
+                                                                      Blake, C. & Wall, J., A velocity dipole in the distribution of radio galaxies. 2002,
+served in the Planck data provide evidence for velocity effects in       Nature, 416, 150, arXiv:astro-ph/0203385
+the expected direction. This is put on more quantitative footing      Burles, S. & Rappaport, S., Detecting the Aberration of the Cosmic Microwave
+in Fig. 4 and Table 2, where we see that all four of the 143 and         Background. 2006, ApJ, 641, L1, arXiv:astro-ph/0601559
+217 GHz velocity estimators which we have considered show             Catena, R., Liguori, M., Notari, A., & Renzi, A., Non-Gaussianity and
+                                                                         CMB aberration and Doppler. 2013, J. Cosmology Astropart. Phys., 9, 36,
+evidence for velocity effects along βk at above the 4 σ level.           arXiv:1301.3777
+Detailed comparison of 143 and 217 GHz data shows some dis-           Catena, R. & Notari, A., Cosmological parameter estimation: impact of CMB
+crepancies, which we have taken as part of a systematic error            aberration. 2013, J. Cosmology Astropart. Phys., 4, 28, arXiv:1210.2731
+budget; however, tests with component-separated maps shown            Challinor, A. & van Leeuwen, F., Peculiar velocity effects in high resolu-
+in Fig. 5 provide a strong indication that our 217 GHz map               tion microwave background experiments. 2002, Phys. Rev., D65, 103001,
+                                                                         arXiv:astro-ph/0112457
+has slight residual foreground contamination. The component-          Chluba, J., Fast and accurate computation of the aberration kernel for the cosmic
+separated results are completely consistent with the 143 × 217           microwave background sky. 2011, MNRAS, 415, 3227, arXiv:1102.3415
+estimator which we quote for our fiducial result.                     Dvorkin, C. & Smith, K. M., Reconstructing Patchy Reionization from
+    Beyond our peculiar velocity’s impact on the CMB, there              the Cosmic Microwave Background. 2009, Phys. Rev., D79, 043003,
+                                                                         arXiv:0812.1566
+have been many studies of related effects at other wavelengths        Eisner, E., Aberration of Light from Binary Stars-a Paradox? 1967, Am. J. Phys.,
+(e.g., Blake & Wall 2002; Titov et al. 2011; Gibelyou & Huterer          35, 817
+2012). Closely connected are observational studies which ex-          Fixsen, D., Cheng, E., Gales, J., et al., The Cosmic Microwave Background spec-
+amine the convergence of the clustering dipole (e.g., Itoh et al.        trum from the full COBE FIRAS data set. 1996, Astrophys. J., 473, 576,
+                                                                         arXiv:astro-ph/9605054
+2010; Bilicki et al. 2011). Indications of non-convergence might      Fixsen, D. J., The Temperature of the Cosmic Microwave Background. 2009,
+be evidence for a super-Hubble isocurvature mode, which can              ApJ, 707, 916, arXiv:0911.1955
+generate a “tilt” between matter and radiation (Turner 1991),         Gibelyou, C. & Huterer, D., Dipoles in the sky. 2012, MNRAS, 427, 1994,
+leading to an extremely large-scale bulk flow. Such a long-              arXiv:1205.6476
+wavelength isocurvature mode could also contribute a signifi-         Górski, K. M., Hivon, E., Banday, A. J., et al., HEALPix: A Framework for
+                                                                         High-Resolution Discretization and Fast Analysis of Data Distributed on the
+cant “intrinsic” component to our observed temperature dipole            Sphere. 2005, ApJ, 622, 759, arXiv:astro-ph/0409513
+(Langlois & Piran 1996).√However, a peculiar velocity dipole is       Hanson, D. & Lewis, A., Estimators for CMB Statistical Anisotropy. 2009, Phys.
+expected at the level of C1 ∼ 10−3 due to structure in stan-             Rev., D80, 063004, arXiv:0908.0963
+dard ΛCDM (see, e.g., Zibin & Scott 2008), which suggests that        Hinshaw, G. et al., Five-Year Wilkinson Microwave Anisotropy Probe (WMAP)
+                                                                         Observations: Data Processing, Sky Maps, and Basic Results. 2009,
+an intrinsic component, if it exists at all, is subdominant. In ad-      Astrophys. J. Suppl., 180, 225, arXiv:0803.0732
+dition, such a bulk flow has been significantly constrained by        Hoftuft, J., Eriksen, H., Banday, A., et al., Increasing evidence for hemispherical
+Planck studies of the kinetic Sunyaev-Zeldovich effect (Planck           power asymmetry in the five-year WMAP data. 2009, Astrophys. J., 699, 985,
+Collaboration Int. XIII 2014). In this light, the observation of         arXiv:0903.1229
+aberration at the expected level reported in this paper is fully      Itoh, Y., Yahata, K., & Takada, M., Dipole anisotropy of galaxy distribution:
+                                                                         Does the CMB rest frame exist in the local universe? 2010, Phys. Rev. D, 82,
+consistent with the standard, adiabatic picture of the Universe.         043530, arXiv:0912.1460
+    The Copernican revolution taught us to see the Earth as or-       Kamionkowski, M. & Knox, L., Aspects of the cosmic microwave background
+biting a stationary Sun. That picture was eventually refined to          dipole. 2003, Phys. Rev., D67, 063001, arXiv:astro-ph/0210165
+
+
+                                                                                                                                                        9
+                                           Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+                                                                                    9
+Kogut, A., Lineweaver, C., Smoot, G. F., et al., Dipole anisotropy in the              CNRS, IRAP, 9 Av. colonel Roche, BP 44346, F-31028 Toulouse
+   COBE DMR first year sky maps. 1993, Astrophys. J., 419, 1, arXiv:astro-             cedex 4, France
+   ph/9312056                                                                       10
+                                                                                       California Institute of Technology, Pasadena, California, U.S.A.
+Kosowsky, A. & Kahniashvili, T., The Signature of Proper Motion in the              11
+                                                                                       Centre for Theoretical Cosmology, DAMTP, University of
+   Microwave Sky. 2011, Phys. Rev. Lett., 106, 191301, arXiv:1007.4539                 Cambridge, Wilberforce Road, Cambridge CB3 0WA, U.K.
+Langlois, D. & Piran, T., Cosmic microwave background dipole from an entropy        12
+   gradient. 1996, Phys. Rev. D, 53, 2908, arXiv:astro-ph/9507094                      Computational Cosmology Center, Lawrence Berkeley National
+Lewis, A. & Challinor, A., Weak gravitational lensing of the cmb. 2006, Phys.          Laboratory, Berkeley, California, U.S.A.
+                                                                                    13
+   Rept., 429, 1, arXiv:astro-ph/0601594                                               DSM/Irfu/SPP, CEA-Saclay, F-91191 Gif-sur-Yvette Cedex,
+Moss, A., Scott, D., Zibin, J. P., & Battye, R., Tilted physics: A cosmologically      France
+                                                                                    14
+   dipole-modulated sky. 2011, Phys. Rev. D, 84, 023014, arXiv:1011.2990               DTU Space, National Space Institute, Technical University of
+Namikawa, T., Hanson, D., & Takahashi, R., Bias-hardened CMB lensing. 2013,            Denmark, Elektrovej 327, DK-2800 Kgs. Lyngby, Denmark
+   MNRAS, arXiv:1209.0091                                                           15
+                                                                                       Département de Physique Théorique, Université de Genève, 24,
+Notari, A. & Quartin, M., Measuring our Peculiar Velocity by ’Pre-deboosting’          Quai E. Ansermet,1211 Genève 4, Switzerland
+   the CMB. 2012, JCAP, 1202, 026, arXiv:1112.1400                                  16
+                                                                                       Departamento de Fı́sica Fundamental, Facultad de Ciencias,
+Pereira, T. S., Yoho, A., Stuke, M., & Starkman, G. D., Effects of a Cut,
+   Lorentz-Boosted sky on the Angular Power Spectrum. 2010, ArXiv e-prints,            Universidad de Salamanca, 37008 Salamanca, Spain
+                                                                                    17
+   arXiv:1009.4937                                                                     Departamento de Fı́sica, Universidad de Oviedo, Avda. Calvo
+Phipps, T. E., Relativity and aberration. 1989, Am. J. Phys., 57, 549                  Sotelo s/n, Oviedo, Spain
+                                                                                    18
+Planck Collaboration. 2013, The Explanatory Supplement to the Planck 2013 re-          Department of Astrophysics/IMAPP, Radboud University
+   sults, http://www.sciops.esa.int/wikiSI/planckpla/index.php?title=Main Page         Nijmegen, P.O. Box 9010, 6500 GL Nijmegen, The Netherlands
+   (ESA)                                                                            19
+                                                                                       Department of Electrical Engineering and Computer Sciences,
+Planck Collaboration I, Planck 2013 results: Overview of Planck Products and           University of California, Berkeley, California, U.S.A.
+   Scientific Results. 2014, A&A, 571, A1                                           20
+                                                                                       Department of Physics & Astronomy, University of British
+Planck Collaboration VI, Planck 2013 results: High Frequency Instrument Data           Columbia, 6224 Agricultural Road, Vancouver, British Columbia,
+   Processing. 2014, A&A, 571, A6
+Planck Collaboration VIII, Planck 2013 results: HFI calibration and Map-               Canada
+                                                                                    21
+   making. 2014, A&A, 571, A8                                                          Department of Physics and Astronomy, Dana and David Dornsife
+Planck Collaboration XII, Planck 2013 results: Component separation. 2014,             College of Letter, Arts and Sciences, University of Southern
+   A&A, 571, A12                                                                       California, Los Angeles, CA 90089, U.S.A.
+                                                                                    22
+Planck Collaboration XV, Planck 2013 results: CMB power spectra and likeli-            Department of Physics and Astronomy, University College
+   hood. 2014, A&A, 571, A15                                                           London, London WC1E 6BT, U.K.
+Planck Collaboration XVI, Planck 2013 results: Cosmological parameters. 2014,       23
+                                                                                       Department of Physics and Astronomy, University of Sussex,
+   A&A, 571, A16                                                                       Brighton BN1 9QH, U.K.
+Planck Collaboration XVII, Planck 2013 results: Gravitational lensing by large-     24
+                                                                                       Department of Physics, Florida State University, Keen Physics
+   scale structure. 2014, A&A, 571, A17
+Planck Collaboration XXIII, Planck 2013 results: Isotropy and statistics of the        Building, 77 Chieftan Way, Tallahassee, Florida, U.S.A.
+                                                                                    25
+   CMB. 2014, A&A, 571, A23                                                            Department of Physics, Gustaf Hällströmin katu 2a, University of
+Planck Collaboration XXIV, Planck 2013 results: Constraints on primordial non-         Helsinki, Helsinki, Finland
+                                                                                    26
+   Gaussianity. 2014, A&A, 571, A24                                                    Department of Physics, Princeton University, Princeton, New
+Planck Collaboration Int. XIII, Planck intermediate results. XIII. Constraints on      Jersey, U.S.A.
+   peculiar velocities. 2014, A&A, 561, A97                                         27
+                                                                                       Department of Physics, University of California, Berkeley,
+Prunet, S., Uzan, J.-P., Bernardeau, F., & Brunier, T., Constraints on mode cou-       California, U.S.A.
+   plings and modulation of the CMB with WMAP data. 2005, Phys. Rev. D,             28
+                                                                                       Department of Physics, University of California, One Shields
+   71, 083508, arXiv:astro-ph/0406364                                                  Avenue, Davis, California, U.S.A.
+Sollom, I. 2010, PhD thesis, University of Cambridge, United Kingdom                29
+Titov, O., Lambert, S. B., & Gontier, A.-M., VLBI measurement of the secular           Department of Physics, University of California, Santa Barbara,
+   aberration drift. 2011, A&A, 529, A91, arXiv:1009.3698                              California, U.S.A.
+                                                                                    30
+Turner, M. S., Tilted Universe and other remnants of the preinflationary               Department of Physics, University of Illinois at
+   Universe. 1991, Phys. Rev. D, 44, 3737                                              Urbana-Champaign, 1110 West Green Street, Urbana, Illinois,
+Yoho, A., Copi, C. J., Starkman, G. D., & Pereira, T. S., Real Space Approach to       U.S.A.
+   CMB deboosting. 2012, ArXiv e-prints, arXiv:1211.6756                            31
+                                                                                       Dipartimento di Fisica e Astronomia G. Galilei, Università degli
+Zibin, J. P. & Scott, D., Gauging the cosmic microwave background. 2008,               Studi di Padova, via Marzolo 8, 35131 Padova, Italy
+   Phys. Rev. D, 78, 123529, arXiv:0808.2047                                        32
+                                                                                       Dipartimento di Fisica e Scienze della Terra, Università di Ferrara,
+                                                                                       Via Saragat 1, 44122 Ferrara, Italy
+ 1                                                                                  33
+   APC, AstroParticule et Cosmologie, Université Paris Diderot,                       Dipartimento di Fisica, Università La Sapienza, P. le A. Moro 2,
+   CNRS/IN2P3, CEA/lrfu, Observatoire de Paris, Sorbonne Paris                         Roma, Italy
+   Cité, 10, rue Alice Domon et Léonie Duquet, 75205 Paris Cedex                  34
+                                                                                       Dipartimento di Fisica, Università degli Studi di Milano, Via
+   13, France                                                                          Celoria, 16, Milano, Italy
+ 2                                                                                  35
+   Aalto University Metsähovi Radio Observatory and Dept of Radio                     Dipartimento di Fisica, Università degli Studi di Trieste, via A.
+   Science and Engineering, P.O. Box 13000, FI-00076 AALTO,                            Valerio 2, Trieste, Italy
+   Finland                                                                          36
+                                                                                       Dipartimento di Fisica, Università di Roma Tor Vergata, Via della
+ 3
+   African Institute for Mathematical Sciences, 6-8 Melrose Road,                      Ricerca Scientifica, 1, Roma, Italy
+   Muizenberg, Cape Town, South Africa                                              37
+                                                                                       Discovery Center, Niels Bohr Institute, Blegdamsvej 17,
+ 4
+   Agenzia Spaziale Italiana Science Data Center, Via del Politecnico                  Copenhagen, Denmark
+   snc, 00133, Roma, Italy                                                          38
+                                                                                       Dpto. Astrofı́sica, Universidad de La Laguna (ULL), E-38206 La
+ 5
+   Agenzia Spaziale Italiana, Viale Liegi 26, Roma, Italy                              Laguna, Tenerife, Spain
+ 6                                                                                  39
+   Astrophysics Group, Cavendish Laboratory, University of                             European Space Agency, ESAC, Planck Science Office, Camino
+   Cambridge, J J Thomson Avenue, Cambridge CB3 0HE, U.K.                              bajo del Castillo, s/n, Urbanización Villafranca del Castillo,
+ 7
+   Astrophysics & Cosmology Research Unit, School of Mathematics,                      Villanueva de la Cañada, Madrid, Spain
+   Statistics & Computer Science, University of KwaZulu-Natal,                      40
+                                                                                       European Space Agency, ESTEC, Keplerlaan 1, 2201 AZ
+   Westville Campus, Private Bag X54001, Durban 4000, South                            Noordwijk, The Netherlands
+   Africa                                                                           41
+                                                                                       Helsinki Institute of Physics, Gustaf Hällströmin katu 2, University
+ 8
+   CITA, University of Toronto, 60 St. George St., Toronto, ON M5S                     of Helsinki, Helsinki, Finland
+   3H8, Canada
+
+
+10
+                                      Planck Collaboration: Doppler boosting of the CMB: Eppur si muove
+
+42                                                                         77
+   INAF - Osservatorio Astronomico di Padova, Vicolo                          Observational Cosmology, Mail Stop 367-17, California Institute
+   dell’Osservatorio 5, Padova, Italy                                         of Technology, Pasadena, CA, 91125, U.S.A.
+43                                                                         78
+   INAF - Osservatorio Astronomico di Roma, via di Frascati 33,               Optical Science Laboratory, University College London, Gower
+   Monte Porzio Catone, Italy                                                 Street, London, U.K.
+44                                                                         79
+   INAF - Osservatorio Astronomico di Trieste, Via G.B. Tiepolo 11,           SISSA, Astrophysics Sector, via Bonomea 265, 34136, Trieste,
+   Trieste, Italy                                                             Italy
+45                                                                         80
+   INAF Istituto di Radioastronomia, Via P. Gobetti 101, 40129                School of Physics and Astronomy, Cardiff University, Queens
+   Bologna, Italy                                                             Buildings, The Parade, Cardiff, CF24 3AA, U.K.
+46                                                                         81
+   INAF/IASF Bologna, Via Gobetti 101, Bologna, Italy                         School of Physics and Astronomy, University of Nottingham,
+47
+   INAF/IASF Milano, Via E. Bassini 15, Milano, Italy                         Nottingham NG7 2RD, U.K.
+48                                                                         82
+   INFN, Sezione di Bologna, Via Irnerio 46, I-40126, Bologna, Italy          Space Research Institute (IKI), Russian Academy of Sciences,
+49
+   INFN, Sezione di Roma 1, Università di Roma Sapienza, Piazzale            Profsoyuznaya Str, 84/32, Moscow, 117997, Russia
+                                                                           83
+   Aldo Moro 2, 00185, Roma, Italy                                            Space Sciences Laboratory, University of California, Berkeley,
+50
+   INFN/National Institute for Nuclear Physics, Via Valerio 2,                California, U.S.A.
+                                                                           84
+   I-34127 Trieste, Italy                                                     Stanford University, Dept of Physics, Varian Physics Bldg, 382 Via
+51
+   IPAG: Institut de Planétologie et d’Astrophysique de Grenoble,            Pueblo Mall, Stanford, California, U.S.A.
+   Université Joseph Fourier, Grenoble 1 / CNRS-INSU, UMR 5274,           85
+                                                                              Sub-Department of Astrophysics, University of Oxford, Keble
+   Grenoble, F-38041, France                                                  Road, Oxford OX1 3RH, U.K.
+52                                                                         86
+   ISDC Data Centre for Astrophysics, University of Geneva, ch.               UPMC Univ Paris 06, UMR7095, 98 bis Boulevard Arago,
+   d’Ecogia 16, Versoix, Switzerland                                          F-75014, Paris, France
+53                                                                         87
+   IUCAA, Post Bag 4, Ganeshkhind, Pune University Campus, Pune               Université de Toulouse, UPS-OMP, IRAP, F-31028 Toulouse cedex
+   411 007, India                                                             4, France
+54                                                                         88
+   Imperial College London, Astrophysics group, Blackett                      Universities Space Research Association, Stratospheric
+   Laboratory, Prince Consort Road, London, SW7 2AZ, U.K.                     Observatory for Infrared Astronomy, MS 232-11, Moffett Field,
+55
+   Infrared Processing and Analysis Center, California Institute of           CA 94035, U.S.A.
+                                                                           89
+   Technology, Pasadena, CA 91125, U.S.A.                                     Warsaw University Observatory, Aleje Ujazdowskie 4, 00-478
+56
+   Institut d’Astrophysique Spatiale, CNRS (UMR8617) Université              Warszawa, Poland
+   Paris-Sud 11, Bâtiment 121, Orsay, France
+57
+   Institut d’Astrophysique de Paris, CNRS (UMR7095), 98 bis
+   Boulevard Arago, F-75014, Paris, France
+58
+   Institute for Space Sciences, Bucharest-Magurale, Romania
+59
+   Institute of Astronomy and Astrophysics, Academia Sinica, Taipei,
+   Taiwan
+60
+   Institute of Astronomy, University of Cambridge, Madingley Road,
+   Cambridge CB3 0HA, U.K.
+61
+   Institute of Theoretical Astrophysics, University of Oslo, Blindern,
+   Oslo, Norway
+62
+   Instituto de Astrofı́sica de Canarias, C/Vı́a Láctea s/n, La Laguna,
+   Tenerife, Spain
+63
+   Instituto de Fı́sica de Cantabria (CSIC-Universidad de Cantabria),
+   Avda. de los Castros s/n, Santander, Spain
+64
+   Jet Propulsion Laboratory, California Institute of Technology, 4800
+   Oak Grove Drive, Pasadena, California, U.S.A.
+65
+   Jodrell Bank Centre for Astrophysics, Alan Turing Building,
+   School of Physics and Astronomy, The University of Manchester,
+   Oxford Road, Manchester, M13 9PL, U.K.
+66
+   Kavli Institute for Cosmology Cambridge, Madingley Road,
+   Cambridge, CB3 0HA, U.K.
+67
+   LAL, Université Paris-Sud, CNRS/IN2P3, Orsay, France
+68
+   LERMA, CNRS, Observatoire de Paris, 61 Avenue de
+   l’Observatoire, Paris, France
+69
+   Laboratoire AIM, IRFU/Service d’Astrophysique - CEA/DSM -
+   CNRS - Université Paris Diderot, Bât. 709, CEA-Saclay, F-91191
+   Gif-sur-Yvette Cedex, France
+70
+   Laboratoire Traitement et Communication de l’Information, CNRS
+   (UMR 5141) and Télécom ParisTech, 46 rue Barrault F-75634
+   Paris Cedex 13, France
+71
+   Laboratoire de Physique Subatomique et de Cosmologie,
+   Université Joseph Fourier Grenoble I, CNRS/IN2P3, Institut
+   National Polytechnique de Grenoble, 53 rue des Martyrs, 38026
+   Grenoble cedex, France
+72
+   Laboratoire de Physique Théorique, Université Paris-Sud 11 &
+   CNRS, Bâtiment 210, 91405 Orsay, France
+73
+   Lawrence Berkeley National Laboratory, Berkeley, California,
+   U.S.A.
+74
+   Max-Planck-Institut für Astrophysik, Karl-Schwarzschild-Str. 1,
+   85741 Garching, Germany
+75
+   McGill Physics, Ernest Rutherford Physics Building, McGill
+   University, 3600 rue University, Montréal, QC, H3A 2T8, Canada
+76
+   Niels Bohr Institute, Blegdamsvej 17, Copenhagen, Denmark
+
+
+                                                                                                                                             11
+

@@ -1,0 +1,727 @@
+                                              Mon. Not. R. Astron. Soc. 000, 000–000 (0000)     Printed 10 August 2017    (MN LATEX style file v2.2)
+
+
+
+
+                                              High redshift radio galaxies and divergence from the CMB
+                                              dipole
+
+                                               Jacques Colin1,2 , Roya Mohayaee1,2 , Mohamed Rameez2 , Subir Sarkar2,3
+
+
+
+
+arXiv:1703.09376v3 [astro-ph.CO] 9 Aug 2017
+                                              1 Sorbonne Universités, UPMC Univ Paris 06, CNRS, Institut d’Astrophysique de Paris, 98bis Bld Arago, Paris 75014, France
+                                              2 Niels Bohr Institute, University of Copenhagen, Blegdamsvej 17, 2100 Copenhagen Ø, Denmark
+                                              3 Rudolf Peierls Centre for Theoretical Physics, University of Oxford, 1 Keble Road, Oxford, OX1 3NP, United Kingdom
+
+
+
+
+                                              10 August 2017
+
+
+
+                                                                                ABSTRACT
+                                                                                Previous studies have found our velocity in the rest frame of radio galaxies at high
+                                                                                redshift to be much larger than that inferred from the dipole anisotropy of the cosmic
+                                                                                microwave background. We construct a full sky catalogue, NVSUMSS, by merging the
+                                                                                NVSS and SUMSS catalogues and removing local sources by various means including
+                                                                                cross-correlating with the 2MRS catalogue. We take into account both aberration and
+                                                                                Doppler boost to deduce our velocity from the hemispheric number count asymmetry,
+                                                                                as well as via a 3-dimensional linear estimator. Both its magnitude and direction
+                                                                                depend on cuts made to the catalogue, e.g. on the lowest source flux, however these
+                                                                                effects are small. From the hemispheric number count asymmetry we obtain a velocity
+                                                                                of 1729 ± 187 km s−1 i.e. about 4 times larger than that obtained from the CMB
+                                                                                dipole, but close in direction, towards RA= 149◦ ± 2◦ , dec = −17◦ ± 12◦ . With the 3-
+                                                                                dimensional estimator, the derived velocity is 1355 ± 174 km s−1 towards RA= 141◦ ±
+                                                                                11◦ , dec=−9◦ ±10◦ . We assess the statistical significance of these results by comparison
+                                                                                with catalogues of random distributions, finding it to be 2.81σ (99.75% confidence).
+                                                                                Key words: Cosmology, Radio galaxies, Dipole anisotropy
+
+
+
+                                              1   INTRODUCTION                                                  surveys do exhibit such an anisotropy. Along the direction
+                                                                                                                of the CMB dipole lie the most massive neighbouring su-
+                                              The cosmic microwave background (CMB) exhibits a dipole           perclusters: Virgo, the Great Attractor Hydra-Centaurus,
+                                              anisotropy (Bracewell & Conklin 1968; Henry 1971; Smoot           Coma, Hercules and Shapley, and possibly yet-to-be-mapped
+                                              et al. 1977) which is a thousand times bigger than                superclusters beyond these (see Table 1). The gravitational
+                                              the primordial temperature fluctuations first detected by         attraction of these structures is evidently pulling us in the
+                                              COBE (Kogut et al. 1993). An observer moving through an           direction indicated by the CMB dipole. However detailed
+                                              isotropic radiation field would observe such a dipole (Stewart    maps of the local Universe, e.g. from the infrared 2MASS
+                                              & Sciama 1967; Peebles & Wilkinson 1968) and conversely           Redshift Survey (2MRS) or supernova catalogues, show that
+                                              the observed dipole can be used to infer the velocity of the      the full dipole cannot be attributed to these structures and
+                                              observer. Indeed the velocity of the Solar system (and our        at least 20% remains unaccounted for (Lauer & Postman
+                                              Local Group) is inferred from the CMB temperature dipole          1994; Hudson et al. 2004; Watkins et al. 2009; Lavaux et al.
+                                              assuming that the latter is entirely due to our motion.           2010; Feldman et al. 2010; Colin et al. 2011; Magoulas et
+                                                   Although a kinematic origin is the most plausible inter-     al. 2012; Feindt et al. 2013; Watkins & Feldman 2015). It is
+                                              pretation of the CMB dipole, one can consider other mecha-        thus necessary to go beyond even Shapley (at ∼ 262 Mpc) to
+                                              nisms which may be, at least partially, responsible (Paczyn-      establish if there is indeed convergence to the CMB frame
+                                              ski & Piran 1990; Langlois & Piran 1996). An independent          at larger scales — as is essential if the universe is to be
+                                              measurement of our velocity is therefore desirable. It has        described as homogeneous when averaged on such scales.
+                                              been suggested that this can be done by measuring the aber-            However, there are no full-sky optical galaxy redshift
+                                              ration of the CMB (Challinor & van Leeuwen 2002; Burles           surveys extending well beyond Shapley and previous studies
+                                              & Rappaport 2006), however the effect is too small to be de-      in this context have therefore suffered from lack of full sky
+                                              tected with > 3σ significance even using the best available       coverage (e.g. Plionis et al. (1993); Itoh et al. (2010)). Fur-
+                                              data to date (Planck Collaboration et al. 2014).                  ther complications arise when using other catalogues such
+                                                  If the dipole is due to our motion then it requires the       as of galaxy clusters to search for the expected dipole signal
+                                              Universe to be anisotropic at least locally. Indeed galaxy        (e.g. Chluba et al. (2005)). There have in fact been persistent
+2     J. Colin, R. Mohayaee, M. Rameez & S. Sarkar
+reports of an anomalous ‘dark flow’ on large scales traced        that a large part of the CMB dipole anisotropy is due to the
+by the kinematic Sunyaev-Zel’dovich effect in clusters, in        anisotropic local distribution of matter (Lavaux et al. 2010;
+roughly the same direction as the CMB dipole (Kashlinsky          Colin et al. 2011). Past studies have tried to clean NVSS
+et al. 2008; Atrio-Barandela et al. 2015).                        from such local source contamination either by removing in-
+     On the other hand, radio galaxies are extremely lumi-        dividual large local structures (Blake & Wall 2002) or by
+nous, can be observed up to high redshifts, and are unaf-         cutting out the super-Galactic plane in which the majority
+fected by dust obscuration. However early analyses of the         of local superclusters lie (Tiwari et al. 2015). However even
+dipole in the distribution of radio galaxies suffered from        after all these cuts the radio dipole extracted by all previ-
+the severe sparseness of their catalogues (Baleisis et al.        ous studies remains well above that inferred from the CMB.
+1998). Hence such studies have become feasible only after         To fully eliminate the contribution from the local struc-
+the NRAO VLA Sky Survey (NVSS). This is a catalogue of            tures, we adopt several strategies. First we cross-correlate
+nearly 2 million radio galaxies covering the sky above decli-     NVSUMSS with the catalogue (van Velzen et al. 2012) of
+nation of −40◦ . NVSS has been used extensively to search         local radio sources (LRS) and remove patches (of increas-
+for convergence to the CMB dipole and most previous stud-         ing area) around these sources from NVSUMSS catalogue.
+ies have found an interesting discrepancy with the CMB            Our results are not however significantly altered by doing
+measurement of our local velocity (Singal 2011; Gibelyou &        so. As the LRS catalogue is limited to sources brighter than
+Huterer 2012; Rubart & Schwarz 2013; Tiwari et al. 2015;          200 mJy, we go further by next removing eight dominant
+Tiwari & Jain 2015).                                              local superclusters from Virgo to Ophiuchus. Previous stud-
+     While the velocity of the Solar system barycentre in-        ies have shown that these local structures are responsible
+ferred from the CMB temperature dipole anisotropy is 369          for nearly 80% of the CMB dipole. Even so their removal
+km s−1 , the value inferred from NVSS ranges from 700             does not alter our results significantly. We then remove the
+km s−1 (Blake & Wall 2002) to over 2000 km s−1 (Gibelyou          super-Galactic plane completely by cutting out a ±10◦ strip
+& Huterer 2012). We too find a similarly large velocity and       around it. This too has little effect. Finally we cross-correlate
+demonstrate that it depends only mildly on the characteris-       NVSUMSS with the 2MRS catalogue, and remove zones of
+tics of the datasets used: e.g. the width of the Galactic and     increasingly larger areas around the 2MRS sources from the
+super-Galactic plane strips removed from the survey and the       NVSUMSS catalogue. This too has no significant impact.
+lower and upper limits on the flux. Significantly the direc-            Because of evolution, the fraction of nearby radio
+tion of the velocity is quite robust and well-aligned with the    sources is low even at large flux densities, the median red-
+direction of the CMB dipole.                                      shift of radio sources in complete samples with flux rang-
+     It is hard to understand how such a large difference         ing from mJy to Jy being z ∼ 0.8 (Condon 1989). The
+can have a physical explanation. Previous works (Paczyn-          fact that the redshift distribution of complete samples of
+ski & Piran 1990; Langlois & Piran 1996; Ghosh 2014) have         radio sources peaks at z ∼ 1 for flux-densities down to ∼ 10
+invoked horizon-scale isocurvature perturbations as an al-        mJy implies that local sources are swamped by more nu-
+ternative to the kinematic origin for the CMB dipole. Here        merous distant ones (de Zotti et al. 2010). The mean red-
+however, we are observing a dipole far larger than that in-       shift of NVSS sources is estimated to be above 1 (Ho et al.
+ferred from CMB itself, but still at high redshift. In addition   2008; de Zotti et al. 2010). Thus most of the sources in our
+local data — specifically distance and redshift catalogues —      NVSUMSS catalogue lie at high redshift and by removing lo-
+indicate that at low redshifts a good part of the CMB dipole      cal sources through cross-correlation of NVSUMSS with the
+is recovered by ∼ 250 Mpc. Although the present data does         2MRS catalogue we ensure that they constitute an uniform
+not allow us to fully explore how the convergence to CMB          background. Our motion with respect to such an uniform
+develops as we go deeper into the Universe and in redshift        background causes the aberration of light and the sources
+space, the radio data at redshift z ∼ 1 clearly indicates that    would thus be displaced in the sky by an angle that de-
+a significantly larger dipole exists in the rest frame of the     pends on our velocity. More sources would be observed in
+radio galaxies. The origin of this difference from the CMB        the direction of the motion than in the opposite direction.
+dipole is a real mystery and deserves closer examination.               Thus by measuring the aberration angle, we infer the
+     A possible explanation is systematics due to the incom-      velocity of the Solar system (or the Local Group) barycentre
+plete sky coverage of NVSS which can generate a spurious          in the rest frame of the distant radio galaxies. A catalogue
+dipole (Gibelyou & Huterer 2012; Tiwari & Nusser 2016).           with good sky coverage would exhibit a hemispherical asym-
+Various methods have been used to restore the symmetry            metry which peaks when the plane of hemisphere is perpen-
+required for a robust dipole analysis such as cutting out the     dicular to the direction of the motion. A simple formula can
+NVSS catalogue above declination of 40◦ (Singal 2011) or          be used to determine the aberration angle and hence our
+removing the Galactic and counter-Galactic plane (Rubart          velocity in the rest frame of the radio sources. Aberration
+& Schwarz 2013). Our work elaborates on previous studies          analysis is very powerful in the sense that it is independent
+in several ways. We construct a full-sky catalogue, which we      of distance so can be used in conjunction with a full-sky pho-
+call NVSUMSS, by patching the NVSS with its southern-sky          tometric galaxy survey, as long as there are no observational
+counterpart — the Sydney University Molonglo Sky Survey           biases generating spurious anisotropies. In fact the motion
+(SUMSS). This results in a catalogue with about 600,000           of the observer also results in Doppler boosting of the fre-
+radio sources with flux above 10 mJy after cutting out a          quency at which the sources are observed — as a result more
+strip of ±10◦ around the Galactic plane in NVSS to match          sources will be observed in the direction of the motion. Un-
+the corresponding cut in SUMSS.                                   like aberration, Doppler boosting depends on the flux and
+     Another possible systematic which has often been dis-        it is known that for radio sources the two effects affect the
+cussed is contamination by local sources. It is well known        number-count almost equally.
+                                         High redshift radio galaxies and divergence from the CMB dipole                       3
+
+Table 1. Local superclusters which are responsible for a large    contribute almost equally to the number count asymmetry
+part of the CMB dipole (Lavaux et al. 2010; Colin et al. 2011).   — 53% and 47% respectively.
+                                                                       As we are looking specifically for a dipole anisotropy
+                                                                  (to compare with the CMB dipole), we do not use spherical
+          Name           {RA◦ , dec◦ }                            harmonic decomposition. The simplest and most robust esti-
+                                                                  mate of the dipole is just the hemispheric asymmetry in the
+          Virgo          {186.8, 12}                              number count of sources. We calculate this as follows: first by
+    Hydra & Centaurus    {192.2, −38}                             randomly selecting a direction and counting the number of
+     (Great Attractor)                                            galaxies in that hemisphere. Secondly by regularly rotating
+                                                                  a hemisphere centred on zero declination and looking for the
+         Norma           {243, −59}                               right ascension that gives the maximum asymmetry. Third
+      Persus-Pisces       {27.5, 36}                              by scanning the sky using directions from a HEALPix map
+                                                                  (Gorski et al. 2004) with Nside = 32 (12,288 pixels) which
+          Coma           {195.0, 28.0}                            are not random directions but regularly spaced. As we shall
+         Hercules        {241.3, 17.8}                            show, all these methods give similar results in agreement
+                                                                  with each other. While the hemispheric asymmetry estima-
+         Shapley         {201.3, −30}                             tor is robust and allows the estimation of the variability of
+        Ophiuchus         {255, −8}                               the dipole around its directional maximum, its statistical
+                                                                  variability is high. Hence, we also evaluate the dipole us-
+                                                                  ing a 3-dimensional linear estimator (Crawford 2009). Other
+     This paper is organised as follows: in Section 2 we de-      estimators have been proposed in the literature (Chen &
+scribe our method, and search for dipole anisotropy in the        Schwarz 2016).
+NVSS data alone (Section 3). Then we introduce the SUMSS
+catalogue (Section 4) and patch NVSS and SUMSS together
+(Section 5), exploring different ways of doing so. In Section     3   NRAO VLA SKY SURVEY (NVSS)
+6 we perform a thorough clean up of local sources by cross-
+correlating NVSUMSS with the 2MRS catalogue. We inves-
+tigate the effects of various cuts made on the inferred dipole
+velocity and discuss the statistical significance of the result
+(Section 7). We present our conclusions in Section 9.
+
+
+2     THE METHOD
+The aberration angle, ∆θ, by which a galaxy is displaced
+due to the motion of an observer moving with velocity v is        Figure 1. The left panel is the Aitoff projection in equatorial
+(e.g. Kopeikin et al. (2011)) for small velocities v  c:         coordinates (RA and dec) of the full NVSS catalogue. The right
+                                                                  panel shows how the integral number count changes with the flux
+∆θ = (|v|/c) sinθ.                                         (1)    threshold.
+To evaluate this we simply count the number of galaxies
+in hemispheres and use the relation of the hemispherical          The NVSS is a catalogue of radio sources at 1.4 GHz which
+number count asymmetry, δN , to the aberration angle:             cover the sky north of declination −40◦ (the lowest source
+∆θ = 2(δN/N ).                                             (2)    is actually at −40.4◦ ) corresponding to 82% of the celestial
+                                                                  sphere (Condon 1989). It contains 1,773,488 sources with
+Here we have assumed a homogeneous distribution with an           flux density above 2.5 mJy. However, we restrict our analysis
+average number surface density, and not taken into account        to sources brighter than 10 mJy as the completeness of the
+any masks and cuts on the catalogue.                              survey at weaker flux levels is questionable (Overzier et al.
+     The total number asymmetry is due to both aberration         2003). We also restrict the sources to be less bright than 1000
+and Doppler boosting. The expected amplitude of the latter        mJy as a relatively small number of very powerful sources
+is (Ellis & Baldwin 1984): (v/c)[2 + x(1 + α)], where x and α     can introduce large statistical fluctuations.
+are flux indices, defined through the integral source counts           We further cut out the catalogue above dec=40◦ in or-
+                                                                  der to restore the symmetry necessary for extracting the
+dN/dΩ(> S) = kS −x ,                                       (3)
+                                                                  dipole (Singal 2011). The catalogue is shown in the left panel
+and the flux density at a fixed observing frequency               of Fig. 1. The right panel shows how the integral number
+                                                                  count changes with the threshold flux, which we use to de-
+Sobs = Srest δ 1+α .                                       (4)
+                                                                  termine the power-law index x in eq. (3) finding it to be
+It is straightforward to evaluate x for a given catalogue, e.g.   0.894 and 1.68 at the low and high end. We cut the Galac-
+as shown in Fig. 1 it varies from 0.894 at low flux to 1.68       tic plane by ±5◦ , and then by ±10◦ , and study the resulting
+at high flux for NVSS. The Doppler shift is more important        catalogues adopting flux thresholds of 10,15, 20 and 25 mJy.
+for faint galaxies, hence the value at low flux is most rel-           The results of our hemispheric asymmetry analysis are
+evant. The value of α is usually taken to be 0.75 (Ellis &        shown in Tables 2 and 3 and in Fig. 2. The results in the
+Baldwin 1984). Hence the aberration and Doppler boosting          figure were obtained by cutting out the NVSS sources above
+4     J. Colin, R. Mohayaee, M. Rameez & S. Sarkar
+
+
+
+
+Figure 2. NVSS: The left panel shows the directions of 5000 randomly selected hemispheres which are used for number counts. The
+blue dots represent hemispheres with more-than-average number of galaxies, while red dots indicate those with less-than-average number
+of galaxies. The middle panel is a density plot of the magnitude of the velocity, upon which the directions of the CMB dipole (green
+circle) and the inferred direction for the radio sources (black circle) are marked. The right panel is the plot of the derived velocities
+(black dots) against the RA, which is fitted well by a cosine curve (magenta).
+
+
+
+
+Figure 3. NVSS: The magnitude and direction of the velocity inferred from the radio dipole with various Galactic and super-Galactic
+cuts, and also with the LRS and the 2MRS sources removed and different patching schemes (black crosses). The black circles are the
+mean values at each flux and the dashed line is the fit to the mean, given by the quadratic |v| = 823 + 86S − 1.34S 2 , where S is the
+flux threshold in mJy. Dashed (magenta) lines are the least-squares fits which give a mean velocity of 1918 ± 298 km s−1 in the direction
+RA=147◦ , dec=−18.5◦ . The solid (cyan) line is the corresponding value inferred from CMB temperature dipole.
+
+
+dec= 40◦ to match the missing southern part below dec=                 5    FULL SKY CATALOGUE: NVSS PATCHED
+−40◦ , and the Galactic plane was also cut at ±10◦ . The                    WITH SUMSS (NVSUMSS)
+dipole direction in all cases is close to that of the CMB
+dipole but its magnitude is on average about 4 times larger            We fill in the missing sky in NVSS by combining it with
+than that for the CMB (see Fig. 3).                                    its southern counterpart SUMSS. To address overlapping
+                                                                       regions, we generate the composite catalogue in two ways. In
+                                                                       the first, SUMSS is cut at dec=−40◦ and joined to NVSS,
+                                                                       while in the second NVSS is cut at dec=−30◦ and joined
+4   SYDNEY UNIVERSITY MOLONGLO SKY                                     to SUMSS, as shown in Fig. 5. The right panel of Fig. 5
+    SURVEY (SUMSS)                                                     shows how the integral number count changes with the flux
+                                                                       threshold which we use to determine the power x in eq. (3).
+SUMSS is a radio imaging survey of the sky south of dec-               For NVSUMSS we find it to be 0.90 (cf. 0.894 for NVSS) and
+lination −30◦ carried out with the Molonglo Observatory                1.7 (cf. 1.68 for NVSS) at the low and high ends. To correct
+Synthesis Telescope (MOST) operating at 843 MHz (Mauch                 for the frequency difference between the SUMSS and NVSS
+et al. 2003). SUMSS contains 211,050 radio sources and is              surveys, the SUMSS fluxes are scaled down by a factor of
+similar in sensitivity and resolution to the NVSS. Analysis            (843/1400)−α ≃ 1.46, where α ≃ 0.75 is the median spectral
+of the catalogue shows that it is highly uniform and com-              index of the sources common to NVSS and SUMSS (Mauch
+plete to 8 mJy at dec ⩽ −50◦ , and to 18 mJy at −30◦ ⩾                 et al. 2003).
+dec > −50◦ . An Aitoff plot is shown in Fig. 4.                             Furthermore, NVSS and SUMSS have different source
+                                                                       densities with SUMSS being denser. This can be dealt with
+                                                                       in different ways. In the first, we randomly select galaxies
+                                                                       from the SUMSS catalogue with declination below −40◦ (or
+                                                                       below −30◦ ) to match the same number as NVSS above
+                                                                       dec=40◦ (or 30◦ ). In the second approach we evaluate the
+                                                                       source density of NVSS in the full catalogue, and also that of
+                                                                       SUMSS, and then pick randomly from SUMSS such that its
+                                                                       density matches that of NVSS. Thirdly, when evaluating the
+Figure 4. An Aitoff projection of the SUMSS catalogue (left)           3-dimensional linear estimator, we weight SUMSS sources
+and its density plot (right).                                          by a factor corresponding to the ratio between the num-
+                                                                       ber of NVSS sources above dec=40◦ (or 30◦ ) and SUMSS
+                                                                       sources below dec=−40◦ (or −30◦ ). Although in the patch-
+     For a robust dipole analysis a full-sky catalogue is re-          ing scheme we run the risk of smoothing out any dipole lying
+quired, so we combine NVSS and SUMSS. There are differ-                in the cap regions, as we shall show these different ways of
+ent ways of doing so which can potentially yield different             producing the composite catalogue in fact yield rather sim-
+results. This is discussed in the next section.                        ilar results. The radio dipole still implies a large velocity in
+                                        High redshift radio galaxies and divergence from the CMB dipole                               5
+
+
+
+
+Figure 5. NVSUMSS: The left panel shows SUMSS cut at dec=−40◦ and joined with NVSS, while the middle panel shows NVSS cut
+at dec=−30◦ and joined with SUMSS. The right panel shows the integral number of sources in NVSUMSS above a flux threshold. Also
+shown is the fit of eq. (3) at low and high flux which yields x of 0.9 and 1.7 respectively
+
+
+
+
+Figure 6. NVSUMSS catalogue (20–1000 mJy): The NVSS catalogue merged with SUMSS (cut at dec=−40◦ ) and the Galactic plane
+cut at latitude of ±10◦ off NVSS to match the cut of SUMSS. The left panel shows number counts in 5000 randomly oriented hemispheres
+with an average of 288,218 galaxies per hemisphere and maximum difference of 5672 between the most and least populated hemispheres.
+The blue dots represent hemispheres which contain more-than-average number of galaxies, while red dots indicate those with less-than-
+average number of galaxies. The middle panel is a density plot of the magnitude of the inferred velocity, upon which the directions of
+the CMB dipole (green circle) and the inferred direction for the radio sources (black circle) are marked. The right panel is the plot of
+inferred velocities (black dots) against RA, which is well fitted by a cosine (magenta) curve.
+
+
+a direction close to that of the CMB dipole, as shown in               ensure as best as we can that no nearby sources are left in
+Tables 4 and 5, and in Figs. 6 and 7.                                  our composite catalogue.
+     To ensure that the Galactic plane is not producing spu-
+rious effects on the inferred radio dipole, we also fill the
+Galactic plane with a random distribution of sources having            6.1   Cross correlation of NVSUMSS with LRS
+the same surface density as the NVSUMSS catalogue. The                 The radio sources from the NVSS and SUMSS surveys have
+results are preseneted in Table 6 and Figure 7 shows that              been matched to 2MRS galaxies using an image-level algo-
+they do not change significantly.                                      rithm that properly treats the extended structure of radio
+                                                                       sources (van Velzen et al. 2012). These bright sources consti-
+                                                                       tute the all-sky LRS catalogue containing 575 radio-emitting
+                                                                       galaxies with flux greater than 213 mJy at 1.4 GHz. How-
+                                                                       ever this means that nearby sources with flux less than 213
+6   DEALING WITH LOCAL ANISOTROPY                                      mJy are not identified and we shall address this in the fol-
+Any clustering of nearby sources can invalidate our ap-                lowing subsections. Here, we cross-correlate the LRS cata-
+proach, as both aberration and Doppler boosting analysis               logue with our composite NVSUMSS catalogue and remove
+rely on the source distribution being isotropic so the only            zones of increasingly larger area, starting at 1/10◦ then 1/4◦
+anisotropy is due to the observer’s motion. Since the NVSS             then 1/2◦ , around the LRS sources. The results of the cross-
+and SUMSS sources are mainly at redshift z ∼ 1 (de Zotti et            correlation are presented in Table 7. The dipole of the LRS,
+al. 2010; Ho et al. 2008) local anisotropies must be minimal,          using hemispherical number count, is shown in Fig. 8. This
+nevertheless we guard against them carefully as follows.               shows that the contribution of LRS sources to the large-scale
+      First we cross-correlate our composite NVSUMSS cata-             dipole observed in NVSS and NVSUMSS is insignificant.
+logue with the catalogue of nearby radio sources (van Velzen
+et al. 2012). However, the latter only contains bright radio-
+                                                                       6.2   Elimination of large superclusters up to
+galaxies. In order to make sure that our composite catalogue
+                                                                             Shapley and Ophiuchus
+is cleaned of all local sources, we go even further. We identify
+all local superclusters up to the Shapley concentration and            The origin of the CMB dipole is supposedly due to the grav-
+remove them from NVSUMSS. Next we remove the super-                    itational attraction of nearby inhomogeneities. A large part
+Galactic plane in which most dominant local structures lie.            of it can indeed be attributed to local superclusters (Lavaux
+The final removal of all local sources is achieved by cross-           et al. 2010; Colin et al. 2011). These superclusters are well
+correlating NVSUMSS with the 2MRS catalogue. We thus                   observed and their position are indicated in Table 1. (We
+6     J. Colin, R. Mohayaee, M. Rameez & S. Sarkar
+
+
+
+
+Figure 7. NVSUMSS with the Galactic plane filled with a random distribution having the same number density as the rest of the
+catalogue. The flux range is 15–1000 mJy and the details of the catalogues used in this figures are given in Table 6. The left panel shows
+the directions of hemispheres with blue corresponding to those having average count greater than mean and red to those with average
+count less than the mean. The middle panel is the magnitude of the velocity inferred from the number-count hemispherical asymmetry.
+The right panel is obtained by regularly rotating hemispheres in the RA direction at a 1◦ interval.
+
+
+
+
+Figure 8. The left panel shows the directions of 5000 randomly placed hemispheres in the LRS catalogue of 575 radio galaxies in the
+local universe, with blue corresponding to those having average count greater than the mean (of 288) and red to those with average count
+less than the mean. The middle panel shows that a meaningful dipole cannot be seen in such a sparse and inhomogeneous sample. This is
+illustrated further in the right panel which plots the fractional number count difference between the forward and backward hemispheres
+versus the RA of the chosen direction.
+
+
+note that in a previous study (Blake & Wall 2002) 22 lo-                6.4    Cross correlation of NVSUMSS with 2MRS
+cal sources were removed however it is not clear what these
+                                                                        There may still be local sources not lying on the super-
+sources were.) The results presented in Table 8 show that
+                                                                        Galactic plane, or not included in our list of prominent
+the dipole velocity is not affected by these eliminations.
+                                                                        superclusters, or with flux less than 213 mJy. In order
+                                                                        to be certain that all local sources have indeed been re-
+                                                                        moved, we cross-correlate NVSUMSS with the 2MRS cata-
+6.3   Removing the super-Galactic plane
+                                                                        logue (Huchra et al. 2012) and remove all common objects.
+The most important superclusters in our local Universe de-              This is done by identifying all NVSUMMS sources that are
+fine the super-Galactic plane which may contain a signifi-              within a chosen angular distance of 2MRS sources — we
+cant number of radio sources (Shaver & Pierre 1989). Hence              try various values: 1, 10 and 36 arc seconds. The full set of
+one way of removing local sources is to remove this plane.              results are shown in Figures 10 and 11 and all details are
+Fig. 9 shows the NVSUMSS map with both the Galactic and                 also given in Tables 9 and 10. These demonstrate that the in-
+super-Galactic planes cut out as ±10◦ strips. However this              ferred velocity from the radio dipole remains well above that
+makes little difference to either the magnitude or the direc-           from the CMB dipole, although the directions are close.
+tion of the radio dipole as seen from the results in Tables 9
+and 10.
+
+                                                                        7     STATISTICAL SIGNIFICANCE
+                                                                        To determine the statistical significance of our results, we
+                                                                        compare them with Monte Carlo simulations using randomly
+                                                                        generated isotropic catalogues, on top of which aberration
+                                                                        and Doppler boosting dipoles are added according to the null
+                                                                        hypothesis that we are traveling through the CMB with a
+                                                                        velocity of 369 km s−1 towards l=263.850 , b=48.250 . A sam-
+                                                                        ple of size N is expected √to contain random hemispherical
+                                                                        asymmetries of size ∼ 1/ N on average, the direction of
+                                                                        the dipole being random. An aberration effect correspond-
+                                                                        ing to what is expected from our velocity of 369 km s−1 with
+Figure 9. NVSUMSS with Galactic and super-Galactic planes               respect to the CMB is subsequently applied to these cata-
+removed as strips of ±10◦ each.                                         logues by shifting the angles in the direction of the CMB
+                                                                        dipole by the expected amount. A dipole due to Doppler
+                                                                        boosting can also be incorporated by adding (subtracting)
+                                          High redshift radio galaxies and divergence from the CMB dipole                                    7
+
+
+
+
+Figure 10. All results from NVSUMSS using the hemispherical number count estimator, with the Galactic and super-Galactic plane
+cut out and with LRS as well as 2MRS sources removed, and using different patching schemes (blue crosses). The black filled circles are
+the means for each flux and the dashed line is the least-squares fit to the data which yields the velocity |v| = 1121 + 41S − 0.6S 2 , where
+S is the flux threshold in mJy. The cyan line is the value inferred from CMB temperature dipole.
+
+
+
+
+Figure 11. All results from NVSUMSS using the linear 3-dimensional estimator, with the Galactic and super-Galactic plane cut out
+and with LRS as well as 2MRS sources removed, and using different patching schemes (red circles). The black filled-circles are the means
+for each flux threshold used and the dashed line is the least-squares fit to the data which yields the velocity |v| = 926.7 + 24.4S − 0.28S 2 ,
+where S is the flux threshold in mJy. The cyan line is the value inferred from CMB temperature dipole.
+
+
+the appropriate number of sources within angular rings ori-               explains why the inferred velocity with the former estima-
+ented in (opposite to) the direction of the CMB dipole. The               tor is about 1600 km s−1 while for the latter estimator it is
+hemispheric asymmetry and 3-dimensional linear estimators                 about 1200 km s−1 . The agreement between them improves
+can subsequently be applied to the resultant random cata-                 when the velocities are scaled down by the corresponding
+logues to extract the velocity.                                           bias factors.
+     In 2000 mock catalogues with about 600,000 sources                        The bias does not affect the statistical significances of
+generated as above, the hemispheric count estimator ob-                   our results as presented in the previous section, since it ap-
+served velocities larger than the inferred 1600 km s−1 for                plies equally to both the observational data as well as the
+                                                           ◦
+741 of these. The inferred dipole direction was within 15 of              null trials.
+the (simulated) CMB dipole direction for 690 of these. For
+the same 2000 catalogues, the 3-dimensional linear estima-
+tor found velocities higher than the inferred 1300 km s−1 for
+only 5 of the catalogues, all of which had dipole directions              9    CONCLUSION
+          ◦
+within 10 of the (simulated) CMB dipole direction. Conse-
+quently, the statistical significance of the latter observation           The velocity of the barycentre of our Solar system (or of
+is at the level of p ≃ 0.0025, i.e 2.81σ (99.75% confidence).             the Local Group) in the rest frame of CMB is inferred from
+                                                                          its temperature dipole anisotropy. An independent measure-
+                                                                          ment of this velocity is needed to fully establish the kine-
+                                                                          matical origin of the dipole. Although a similar anisotropy
+8   THE BIAS
+                                                                          is observed in the distribution of nearby large-scale struc-
+It has been noted previously that the 3-dimensional esti-                 ture out to the Shapley supercluster, they do not show full
+mator that we have used here is biased (Rubart & Schwarz                  convergence to the CMB dipole. To definitively address this
+2013). Using Monte Carlo simulations we therefore evaluate:               question one thus needs to go further, however there is no
+                                                                          data available from optical or infrared galaxy surveys.
+                |True dipole + Random Dipole|
+Bias factor ≈                                                   (5)             Radio surveys which sample the Universe at high red-
+                         |True dipole|                                    shift provide valuable clues to this problem. As these scales
+for both our estimators, where “true” refers to the CMB                   are certainly large enough for the Universe to be considered
+dipole. The bias depends on whether and by how much                       homogeneous and isotropic (aside from negligible statisti-
+the Galactic plane and the super-Galactic plane are cut.                  cal fluctuations), the only source of deviation from isotropy
+We consider just two cases: the Galactic plane cut of ±10◦ ,              would be due to the motion of the observer. Our motion
+and the Galactic as well as the super-Galactic plane cut of               should lead to a measurable over density of sources in the di-
+±10◦ . The results are shown in Fig. 12. As expected the                  rection of motion through aberration and Doppler boosting
+bias decreases as the sample size increases. The bias fac-                effects. By measuring these effects we can deduce our veloc-
+tor explicitly depends on the true velocity which we have                 ity in the rest frame of the radio galaxies, its expected value
+assumed to be 369 km s−1 . The bias factor for the hemi-                  being just our velocity in the CMB rest frame. NVSS is a
+spheric number-count estimator, at the catalogue size of                  radio catalogue with less-than-complete sky coverage which
+∼ 500, 000 − −600, 000relevant to NVSUMSS, is about 1.9,                  has been used extensively to extract this velocity but pre-
+while for the 3-dimensional estimator it is about 1.3. This               vious studies have generally found its value to be far larger
+8       J. Colin, R. Mohayaee, M. Rameez & S. Sarkar
+
+
+
+
+    Figure 12. Bias factor versus catalogue size for the hemispheric number-counts (left) and for the 3-dimensional estimator (right).
+
+
+than our velocity in the CMB rest frame. We confirm this                 Baleisis A., Lahav O., Loan A. J., Wall J. V., 1998, MN-
+surprising result using an all-sky catalogue.                             RAS, 297, 545
+     A possible reason for this discrepancy could be bias                Blake C., Wall J., 2002, Nature, 416, 150
+due to local structures. Of course one does not expect such              Bracewell R. N., Conklin E. K., 1968, Nature, 219, 1343
+anisotropies to produce a dipole larger than the CMB dipole.             Burles S., Rappaport S., 2006, ApJ, 641, L1
+However we know that our local Universe at least up to 260               Challinor A., van Leeuwen F., 2002, Phys. Rev. D, 65,
+Mpc (z ≃ 0.06) is anisotropic and if our radio catalogue                  103001
+is contaminated by local sources, that may invalidate the                Chen, S., & Schwarz, D. J. 2016, A&A, 591, A135
+method based on the aberration and Doppler boosting ef-                  Chluba, J., Hütsi G., Sunyaev R. A., 2005, A&A, 434, 811
+fects which rely on large-scale intrinsic isotropy. We adopt             Colin J., Mohayaee R., Sarkar S., Shafieloo A., 2011, MN-
+various measures to remove such local sources but find that               RAS, 414, 264
+this has little effect on the inferred radio dipole.                     Condon J. J., 1989, ApJ, 338, 13
+     There is a big gap in redshift between local galaxies and           Crawford F., 2009, ApJ, 692, 887
+the radio galaxies. Forthcoming galaxy surveys will progres-             de Zotti G., Massardi M., Negrello M., Wall J., 2010,
+sively fill in this gap and hopefully allow us to trace the               A&A Rev., 18, 1
+divergence from the CMB dipole. Future radio surveys with                Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377
+the Square Kilometre Array will provide excellent opportu-               Feindt U., Kerschhaggl M., Kowalski M. et al., 2013, A&A,
+nities for improving the statistical significance of the unex-            560, A90
+pectedly large radio dipole (Schwarz et al. 2015).                       Feldman H. A., Watkins R., Hudson M. J., 2010, MNRAS,
+                                                                          407, 2328
+                                                                         Ghosh S., 2014, Phys. Rev. D, 89, 063518
+                                                                         Gibelyou C., Huterer D., 2012, MNRAS, 427, 1994
+ACKNOWLEDGEMENTS                                                         Gorski K. M., Hivon E., Banday A. J. et al., 2005, ApJ,
+                                                                          622, 759
+JC and RM acknowledge support from the Nordea Foun-
+                                                                         Henry, P. S., 1971, Nature, 231, 516
+dation and hospitality at the Niels Bohr International
+                                                                         Ho S., Hirata C., Padmanabhan N., Seljak U., Bahcall N.,
+Academy. This work was supported by a DNRF Niels Bohr
+                                                                          2008, Phys. Rev. D, 78, 043519
+Professorship awarded to SS. We thank Pavel Naselsky,
+                                                                         Huchra J. P., Macri L. M., Masters K. L. et al., 2012, ApJS,
+Andy Jackson, Dominik Schwarz and Sjoert van Velzen for
+                                                                          199, 26
+helpful discussions, and especially, Prabhakar Tiwari for
+                                                                         Hudson M. J., Smith, R. J., Lucey J. R., Branchini E.,
+emphasising the need for flux rescaling in assembling the
+                                                                          2004, MNRAS, 352, 61
+NVSUMMS flux-limited catalogue and the anonymous Ref-
+                                                                         Itoh Y., Yahata K., Takada M., 2010, Phys. Rev. D, 82,
+eree who pointed out the need to estimate the bias in the
+                                                                          043530
+estimators used.
+                                                                         Kashlinsky A., Atrio-Barandela F., Kocevski D., 2008,
+                                                                          ApJ, 686, L49
+                                                                         Kogut A., Lineweaver C., Smoot G. F. et al., 1993, ApJ,
+                                                                          419, 1
+REFERENCES
+                                                                         Kopeikin S., Efroimsky M., Kaplan G. 2011, Relativistic
+ Planck Collaboration, Aghanim N., Armitage-Caplan C. et                  Celestial Mechanics of the Solar System, Wiley
+  al., 2014, A&A, 571, A27                                               Langlois D., Piran T., 1996, Phys. Rev. D, 53, 2908
+ Atrio-Barandela F., Kashlinsky A., Ebeling H., Fixsen                   Lauer T. R., Postman M., 1994, ApJ, 425, 418
+  D. J., Kocevski D., 2015, ApJ, 810, 143                                Lavaux G., Tully R. B., Mohayaee R., Colombi S., 2010,
+                                   High redshift radio galaxies and divergence from the CMB dipole   9
+ ApJ, 709, 483
+Magoulas C., Springob C., Colless M., Jones D. H., Camp-
+ bell L., Lucey J., Mould J., 2012, AAO Observer No. 122,
+ pp.10-12, ArXiv e-prints 1210.0625
+Mauch T., Murphy T., Buttery H. J., et al., 2003, MNRAS,
+ 342, 1117
+Overzier R. A., Röttgering H. J. A., Rengelink R. B.,
+ Wilman R. J., 2003, A&A, 405, 53
+Paczynski B., Piran T., 1990, ApJ, 364, 341
+Peebles P. J. E., Wilkinson David T., 1968, Phys. Rev. D,
+ 174, 2168
+Plionis M., Coles P., Catelan P., 1993, MNRAS, 262, 465
+Rubart M., Schwarz D. J., 2013, A&A, 555, A117
+Schwarz, D. J. et al., 2015, PoS AASKA, 14, 032, ArXiv
+ e-prints 1501.03820
+Shaver P. A., Pierre M., 1989, A&A, 220, 35
+Singal A. K., 2011, ApJ, 742, L23
+Smoot G. F., Gorenstein M. V., Muller R. A., 1977,
+ Phys. Rev. Lett., 39, 898
+Stewart J. M., Sciama D. W., 1967, Nature, 216, 748
+Tiwari P., Jain P., 2015, MNRAS, 447, 2658
+Tiwari P., Kothari R., Naskar A., Nadkarni-Ghosh S., Jain
+ P., 2015, Astropart. Phys., 61, 1
+Tiwari P., Nusser A., 2016, JCAP, 3, 062
+van Velzen S., Falcke H., Schellart P., Nierstenhöfer N.,
+ Kampert K.-H., 2012, A&A, 544, A18
+Watkins R., Feldman H. A., Hudson M. J., 2009, MNRAS,
+ 392, 743
+Watkins R., Feldman H. A., 2015, MNRAS, 447, 132
+10      J. Colin, R. Mohayaee, M. Rameez & S. Sarkar
+
+Table 2. Hemispheric asymmetry, NVSS (with the Northern cap removed at dec=40◦ for symmetry with the missing Southern part, uses
+5000 random hemispheres): Galactic latitude Cut (±), Flux threshold (mJy), Total number of sources left after cuts, Average numbers in each
+hemisphere N̄ , Maximum difference in number count of hemispheres ∆N , Dipole RA (deg), Dipole dec (deg), Velocity (km s−1 )
+
+
+                          b cut    Flux cut          N          N̄     ∆N       RA◦       dec◦     v (km/s)
+
+                              5          10      416389     208180     4580     100.6      77.1      1657.5
+                              5          15      299409     149704     3762     142.9      -6.1      1899.2
+                              5          20      233277     116631     3565     148.2     -10.8      2294.9
+                              5          25      189995      95012     3081     150.6     -35.1      2438.8
+                              10         10      384844     192391     4096     104.6     77.3       1644.8
+                              10         15      276524     138281     3220     148.1     -10.9      1732.6
+                              10         20      215418     107725     3018     148.9     -11.5      2119.2
+                              10         25      175383      87713     2690     143.9     - 5.9      2296.4
+
+
+
+
+Table 3. Hemispheric asymmetry, NVSS (with the Northern cap removed at dec=40◦ for symmetry with missing Southern part. Using
+HEALPix grid of Nside=32): super-Galactic latitude cut (±), Galactic latitude Cut (±), Flux threshold (mJy), Total number of sources left
+after cuts, Dipole dec (deg), Dipole RA (deg), Dipole value, Galactic b (deg), Galactic l (deg), Velocity (km s−1 )
+
+
+                      SGB cut      b cut      Flux cut      N        dec◦     RA◦        D        b◦      l◦     v (km/s)
+
+                          0          5          10        413254     76.8     105.0     0.012     26.8   137.7    1502
+                          0          5          15        297806     -17.0    150.5     0.013     29.7   255.0    1668
+                          0          5          20        232256     -32.8    153.3     0.016     19.2   268.4    2054
+                          0          5          25        189357     -32.8    153.3     0.017     19.2   268.4    2183
+                          0         10          10        381951      76.8    105.0     0.011     26.8   137.7    1447
+                          0         10          15        275168     -15.7    149.1     0.012     29.7   252.9    1530
+                          0         10          20        214643     -17.0    147.7     0.014     27.8   252.8    1859
+                          0         10          25        174881      -6.0    143.4     0.015     31.9   240.1    1992
+                          5          5          10        384647     76.8     105.0     0.012     26.8   137.7    1619
+                          5          5          15        277131     -17.0    150.5     0.013     29.7   255.0    1682
+                          5          5          20        216046     -32.8    153.3     0.015     19.2   268.4    2002
+                          5          5          25        176136     -32.8    153.3     0.016     19.2   268.4    2105
+                          5         10          10        353344      76.8    105.0     0.012     26.8   137.7    1569
+                          5         10          15        254493     -15.7    149.1     0.012     29.7   252.9    1535
+                          5         10          20        198433     -17.0    147.7     0.014     27.8   252.8    1785
+                          5         10          25        161660      -6.0    143.4     0.015     31.9   240.1    1891
+                         10          5          10        356540      58.9    139.3     0.012     41.6   156.6    1532
+                         10          5          15        256877     -17.0    150.5     0.013     29.7   255.0    1703
+                         10          5          20        200321     -32.8    153.3     0.015     19.2   268.4    2000
+                         10          5          25        163267     -32.8    153.3     0.016     19.2   268.4    2081
+                         10         10          10        325237      76.8    105.0     0.011     26.8   137.7    1432
+                         10         10          15        234239     -15.7    149.1     0.012     29.7   252.9    1546
+                         10         10          20        182708     -17.0    147.7     0.014     27.8   252.8    1765
+                         10         10          25        148791      -6.0    143.4     0.014     31.9   240.1    1846
+                                        High redshift radio galaxies and divergence from the CMB dipole                               11
+
+Table 4. Hemispheric asymmetry, NVSUMSS (using 5000 random hemispheres): Galactic latitude cut (±), NVSS-SUMSS patch declination,
+Flux threshold (mJy), Total number of sources left after cuts, Average numbers in each hemisphere N̄ , Maximum difference in number counts
+of hemsipheres ∆N , Dipole dec (deg), Dipole RA (deg), Velocity (km s−1 )
+
+
+                         b cut     patch cut     Flux cut       N         N̄     ∆N      RA◦      Dec◦     v (km/s)
+
+                          10         -40.          10         576461    288212   5880    151.3    -16.5     1570.9
+                          10         -40.          15         413838    206932   5165    148.2    -13.1     1861.6
+                          10         -40.          20         322452    161229   4422    148.0    -16.8     2056.1
+                          10         -40.          25         262617    131297   3538    149.8    -12.9     1990.5
+                          10         -30.          10         576617    288311   6468    148.8     -1.3     1673.0
+                          10         -30.          15         413564    206768   5456    152.6    -17.4     1999.9
+                          10         -30.          20         322074    161020   4304    151.3    -15.0     2017.6
+                          10         -30.          25         262332    131149   3510    149.5    -13.3     2005.9
+
+
+
+
+Table 5. Hemispheric asymmetry, NVSUMSS (using HEALPix grid of Nside=32): super-Galactic latitude cut (±), Galactic latitude Cut (±),
+NVSS-SUMSS patch declination, Flux threshold (mJy), Total number of sources left after cuts, Dipole dec (deg), Dipole RA (deg), Dipole
+value, Galactic b (deg), Galactic l (deg), Velocity (km s−1 )
+
+
+               SGB cut     b cut     patch cut     Flux cut         N     dec◦   RA◦        D        b        l       v (km/s)
+
+                  0         10          -40           10       571017    -13.2   149.1   0.0084     31.4    250.8      1094
+                  0         10          -40           15       410966    -13.2   149.1   0.0111     31.4    250.8      1436
+                  0         10          -40           20       320577    -17.0   150.5   0.0117     29.7    255.0      1520
+                  0         10          -40           25       261293    -17.0   150.5   0.0128     29.7    255.0      1656
+                  0         10          -30           10       571982    -13.2   149.1   0.0076     31.4    250.8      987
+                  0         10          -30           15       411258    -13.2   149.1   0.0109     31.4    250.8      1409
+                  0         10          -30           20       320651    -17.0   150.5   0.0118     29.7    255.0      1530
+                  0         10          -30           25       261363    -17.0   150.5   0.0113     29.7    255.0      1461
+                  5         10          -40           10       517269    -13.2   149.1   0.0090     31.4    250.8      1169
+                  5         10          -40           15       372124    -17.0   150.5   0.0113     29.7    255.0      1463
+                  5         10          -40           20       290194    -15.7   151.9   0.0116     31.5    255.1      1507
+                  5         10          -40           25       236448    -10.8   146.3   0.0124     31.0    246.5      1609
+                  5         10          -30           10       518021    -13.2   149.1   0.0088     31.4    250.8      1143
+                  5         10          -30           15       372370    -17.0   150.5   0.0108     29.7    255.0      1397
+                  5         10          -30           20       290249    -17.0   147.7   0.0111     27.8    252.8      1438
+                  5         10          -30           25       236574    -13.2   149.1   0.0115     31.4    250.8      1486
+                  10        10          -40           10       464161    -13.2   149.1   0.0100     31.4    250.8      1295
+                  10        10          -40           15       334073    -13.2   149.1   0.0129     31.4    250.8      1673
+                  10        10          -40           20       260580    -14.5   150.5   0.0118     31.5    253.0      1529
+                  10        10          -40           25       212239    -10.8   146.3   0.0120     31.0    246.5      1551
+                  10        10          -30           10       464926    -13.2   149.1   0.0098     31.4    250.8      1265
+                  10        10          -30           15       334335    -13.2   149.1   0.0127     31.4    250.8      1646
+                  10        10          -30           20       260539    -13.2   149.1   0.0118     31.4    250.8      1530
+                  10        10          -30           25       212219    -13.2   149.1   0.0116     31.4    250.8      1503
+12      J. Colin, R. Mohayaee, M. Rameez & S. Sarkar
+
+Table 6. Hemispheric asymmetry, NVSUMSS (with Galactic plane filled with a random distribution; uses 5000 random hemispheres): Galactic
+latitude cut (±), NVSS-SUMSS patch declination, Flux threshold (mJy), Total number of sources left after cuts, Average numbers in each
+hemisphere N̄ , Maximum difference in number counts of hemispheres ∆N , Dipole RA (deg), Dipole dec (deg), Velocity (km s−1 )
+
+
+                           b cut      patch cut           Flux cut           N             N̄             ∆N       RA◦          dec◦       v (km/s)
+
+                            10             -40              10             689995        345007           5743     149.0        -14.3       1306.3
+                            10             -40              15             495573        247804           5164     149.2        -13.8       1590.6
+                            10             -40              20             386549        193283           4428     150.0        -17.3       1722.6
+                            10             -40              25             314213        157107           4200     148.8        -13.3       2003.6
+                            10             -30              10             690314        345146           6954     159.0        -20.9       1512.8
+                            10             -30              15             495366        247685           5432     152.3        -16.2       1647.3
+                            10             -30              20             385862        192957           4371     152.3        -16.2       1711.2
+                            10             -30              25             313849        156947           4193     149.6        -14.5       2006.9
+
+
+
+
+Table 7. Hemispheric asymmetry, NVSUMSS (using 5000 random hemispheres): Area in degree2 around sources in LRS which is removed
+from NVSUMSS, Galactic latitude cut (±), NVSS-SUMSS patch declination, Flux threshold (mJy), Total number of sources left after cuts,
+Average numbers in each hemisphere N̄ , Maximum difference in number counts of hemsipheres ∆N , Dipole RA (deg), Dipole dec (deg),
+Velocity (km s−1 ).
+
+
+                Area cut      b cut        patch cut         flux cut            N              N̄          ∆N          RA◦        dec◦         v (km/s)
+
+                 1/10 ◦2         10          -40.                15          411828        205918           5275        150.2      -13.8         1922.4
+                  1/4◦ 2         10          -40.                15          410745        205369           5072        150.6      -17.4         1842.4
+                  1/2◦ 2         10          -40.                15          409027        204511           4745        152.5      -17.2         1768.7
+
+
+
+
+Table 8. Hemispheric asymmetry, NVSUMSS (using 5000 random hemispheres): Area in degree2 around the 8 local superclusters (see Table
+1), Galactic latitude cut (±), NVSS-SUMSS patch declination, Flux threshold (mJy), Total number of sources left after cuts, Average numbers
+in each hemisphere N̄ , Maximum difference in number counts of hemsipheres ∆N , Dipole RA (deg), Dipole dec (deg), Velocity (km s−1 ). In
+total about 5000 to 6000 sources are removed.
+
+
+                   Area cut        b cut         patch cut       flux cut            N               N̄          ∆N        RA◦          dec◦      v (km/s)
+
+                    1/10◦ 2           10            -40               15         409025         204477           4709      151.4        -16.5       1788.5
+                     1/4◦ 2           10            -40               15         409011         204488           4885      151.4        -16.4       1805.5
+                     1/2◦ 2           10            -40               15         408989         204492           4683      146.8        -12.8       1703.6
+                                         High redshift radio galaxies and divergence from the CMB dipole                              13
+
+Table 9. Hemispheric asymmetry, NVSUMSS cross-correlated with 2MRS to remove local sources (using HEALPix grid of Nside=32). Only
+a sample of results are shown (full table is available on the online version). (1) Angular tolerance within which 2MRS sources are looked
+for, (2) Number of sources removed because of 2MRS overlap, (3) super-Galactic latitude cut (±), (4) Galactic Latitude cut (±), (5)
+NVSS-SUMSS patch declination, (6) Flux threshold (mJy), (7) Total number of sources left after cuts, (8) Dipole dec (deg), (9) Dipole
+RA (deg), (10) Dipole value, (11) Galactic b (deg), (12) Galactic l (deg), (13) Velocity (km s−1 )
+
+
+                     (1)    (2)    (3)    (4)   (5)   (6)     (7)       (8)     (9)     (10)    (11)    (12)    (13)
+
+                    10"    3701    10     10    -40   10    460484     -13.2   149.1   0.009    31.4   250.8    1368
+                    10"    2510    10     10    -40   15    331552     -13.2   149.1   0.011    31.4   250.8    1792
+                    10"    1847    10     10    -40   20    258813     -13.2   149.1   0.012    31.4   250.8    1873
+                    10"    1470    10     10    -40   25    210756     -13.2   149.1   0.011    31.4   250.8    1742
+                    10"    1228    10     10    -40   30    177191     -13.2   149.1   0.012    31.4   250.8    1898
+                    10"    1036    10     10    -40   35    152561     -10.8   146.3   0.012    31.0   246.5    1809
+                    10"     897    10     10    -40   40    133018     -10.8   146.3   0.011    31.0   246.5    1784
+                    10"     788    10     10    -40   45    117685     -13.2   149.1   0.012    31.4   250.8    1811
+                    10"     710    10     10    -40   50    105184     -52.8   174.6   0.013    8.5    291.9    2025
+                    10"    3662    10     10    -30   10    461202     -13.2   149.1   0.009    31.4   250.8    1484
+                    10"    2499    10     10    -30   15    331651     -13.2   149.1   0.010    31.4   250.8    1629
+                    10"    1846    10     10    -30   20    258767     -13.2   149.1   0.011    31.4   250.8    1740
+                    10"    1456    10     10    -30   25    210719     -12.0   144.8   0.011    29.2   246.6    1679
+                    10"    1209    10     10    -30   30    177340     -13.2   149.1   0.011    31.4   250.8    1749
+                    10"    1016    10     10    -30   35    152334     -10.8   146.3   0.010    31.0   246.5    1597
+                    10"     877    10     10    -30   40    133015     -10.8   146.3   0.011    31.0   246.5    1795
+                    10"     776    10     10    -30   45    117626     -13.2   149.1   0.012    31.4   250.8    1906
+                    10"     699    10     10    -30   50    105089     -52.8   174.6   0.012    8.5    291.9    1829
+
+
+
+
+Table 10. 3-dimensional linear estimator, NVSUMSS cross-correlated with 2MRS to remove local sources. Only a sample of results are
+shown (full table is available on the online version). (1) Angular tolerance within which 2MRS sources are looked for, (2) Number of
+sources removed because of 2MRS overlap, (3) super-Galactic latitude cut (±), (4) Galactic latitude cut (±), (5) NVSS-SUMSS patch
+declination, (6) Flux threshold (mJy), (7) Total number of sources left after cuts, (8) Dipole dec (deg), (9) Dipole RA (deg), (10) Dipole
+value, (11) Galactic b (deg), (12) Galactic l (deg), (13) Velocity (km s−1 )
+
+
+                     (1)    (2)    (3)    (4)   (5)   (6)      (7)      (8)     (9)     (10)    (11)    (12)    (13)
+
+                     10"    3654    10     10   -40    10    457184     14.1   128.4    2468    28.9   211.2    1265
+                     10"    2465    10     10   -40    15    329034      5.9   128.2    1755    25.2   219.4    1250
+                     10"    1807    10     10   -40    20    256430     -1.7   126.3    1453    19.9   225.7    1328
+                     10"    1423    10     10   -40    25    208861     -4.3   127.6    1156    19.7   228.8    1297
+                     10"    1196    10     10   -40    30    175595     -4.4   134.3    1058    25.4   232.7    1412
+                     10"    1006    10     10   -40    35    150883    -11.5   136.8    840     23.3   240.7    1304
+                     10"     870    10     10   -40    40    131662    -15.6   129.6    859     15.3   239.8    1529
+                     10"     767    10     10   -40    45    116504    -15.3   143.0    751     25.7   248.0    1512
+                     10"     693    10     10   -40    50    104075    -23.1   156.3    667     28.6   264.3    1502
+                     10"    3602    10     10   -30    10    455766      1.0   126.2    2417    21.1   223.2    1243
+                     10"    2424    10     10   -30    15    327749     -0.4   125.8    1753    20.1   224.3    1253
+                     10"    1769    10     10   -30    20    255327     -4.9   123.9    1394    16.2   227.4    1280
+                     10"    1392    10     10   -30    25    208009     -8.5   122.9    1078    13.5   230.0    1215
+                     10"    1171    10     10   -30    30    174886     -6.0   130.3    1003    21.1   231.8    1344
+                     10"     989    10     10   -30    35    150122     -9.8   133.0    782     21.3   236.7    1221
+                     10"     858    10     10   -30    40    131043    -12.1   128.2    839     16.1   236.1    1501
+                     10"     753    10     10   -30    45    115919    -12.5   139.6    712     24.9   243.4    1440
+                     10"     677    10     10   -30    50    103530    -17.0   152.8    625     31.2   256.9    1415
+

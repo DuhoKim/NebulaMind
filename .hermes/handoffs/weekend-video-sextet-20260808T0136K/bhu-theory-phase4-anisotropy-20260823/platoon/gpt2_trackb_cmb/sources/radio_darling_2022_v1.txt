@@ -1,0 +1,596 @@
+                                                 Draft version May 17, 2022
+                                                 Typeset using LATEX twocolumn style in AASTeX63
+
+
+
+
+                                                The Universe is Brighter in the Direction of Our Motion: Galaxy Counts and Fluxes are Consistent
+                                                                                       with the CMB Dipole
+                                                                                                    Jeremy Darling1
+                                                                                       1 Center for Astrophysics and Space Astronomy
+
+                                                                                     Department of Astrophysical and Planetary Sciences
+
+
+
+
+arXiv:2205.06880v1 [astro-ph.CO] 13 May 2022
+                                                                                             University of Colorado, 389 UCB
+                                                                                              Boulder, CO 80309-0389, USA
+
+
+                                                                                                       ABSTRACT
+                                                           An observer moving with respect to the cosmic rest frame should observe a concentration and
+                                                        brightening of galaxies in the direction of motion and a spreading and dimming in the opposite direction.
+                                                        The velocity inferred from this dipole should match that of the cosmic microwave background (CMB)
+                                                        temperature dipole if galaxies are on average at rest with respect to the CMB rest frame. However,
+                                                        recent studies have claimed a many-fold enhancement of galaxy counts and flux in the direction of
+                                                        the solar motion compared to the CMB expectation, calling into question the standard cosmology.
+                                                        Here we show that the sky distribution and brightness of extragalactic radio sources are consistent
+                                                        with the CMB dipole in direction and velocity. We use the first epoch of the Very Large Array Sky
+                                                        Survey combined with the Rapid Australian Square Kilometer Array Pathfinder Continuum Survey
+                                                        to estimate the dipole via several different methods, and all show similar results. Typical fits find a
+                                                        331+161
+                                                            −107 km s
+                                                                       −1
+                                                                           velocity dipole with apex (`, b) = (271+55     +13
+                                                                                                                  −58 , 56−35 ) in Galactic coordinates from source
+                                                                        +264                               +30   +19
+                                                        counts and 399−199 km s−1 toward (`, b) = (301−30 , 43−17 ) from radio fluxes. These are consistent with
+                                                        the CMB-solar velocity, 370 km s−1 toward (`, b) = (264, 48), and show that galaxies are on average
+                                                        at rest with respect to the rest frame of the early universe, as predicted by the canonical cosmology.
+                                                                  1. INTRODUCTION                                 (SUMSS; Murphy et al. 2007), the 325 MHz Westerbork
+                                                  The cosmic microwave background (CMB) shows a                   Northern Sky Survey (WENSS; Rengelink et al. 1997),
+                                               3.4 mK dipole that is interpreted as a peculiar Solar              and the 147 MHz TIFR GMRT Sky Survey (TGSS-
+                                               motion with respect to the CMB rest frame (Smoot                   ADR1; Intema et al. 2017). Blake & Wall (2002) found
+                                               et al. 1977). If this interpretation is correct, then our          NVSS counts that were consistent with the CMB dipole.
+                                               canonical cosmology predicts that galaxies should show             Subsequent studies, including those based on the NVSS,
+                                               a corresponding dipole in apparent number density and              found rough agreement with the CMB dipole direction
+                                               brightness (Ellis & Baldwin 1984). Galaxies should also            but higher than expected dipole amplitude, of order
+                                               show a secular parallax dipole in their proper motions             1–6% variation rather than the canonical ∼ 0.5% am-
+                                               (Ding & Croft 2009; Paine et al. 2020; Croft 2021). De-            plitude, and therefore excluded the CMB-Solar veloc-
+                                               tection of a galaxy number, flux, or parallax dipole that          ity with high confidence (e.g., Singal 2011; Rubart &
+                                               is in agreement with the CMB dipole would confirm the              Schwarz 2013; Tiwari & Aluri 2019; Siewert et al. 2021).
+                                               usual interpretation of the CMB dipole and indicate that           Gibelyou & Huterer (2012) found significant disagree-
+                                               the galaxy sample is on average at rest with respect to            ment with the CMB in direction and amplitude. In in-
+                                               the CMB rest frame.                                                frared bands, Secrest et al. (2021) used a quasar catalog
+                                                  Previous work using radio galaxy counts and/or flux             selected from the Wide-field Infrared Survey Explorer
+                                               has produced mixed and contradictory results, often                (WISE; Wright et al. 2010) to reject the kinematic inter-
+                                               using the same data sources, including the 1.4 GHz                 pretation of the CMB dipole at 4.9σ significance. Other
+                                               NRAO VLA Sky Survey (NVSS; Condon et al. 1998),                    infrared work focused on low-redshift galaxies that may
+                                               the 843 MHz Sydney University Molonglo Sky Survey                  be significantly influenced by large scale structure (e.g.,
+                                                                                                                  Gibelyou & Huterer 2012).
+                                                                                                                     Consistency of extragalactic objects with the CMB
+                                               jeremy.darling@colorado.edu                                        dipole has been found in galaxy redshift surveys (e.g.,
+                                                                                                                  Rowan-Robinson et al. 1990; Lavaux et al. 2010), in
+2                                                                 Darling
+
+the modulation of the thermal Sunyaev-Zeldovich effect                   for an observation in direction n̂ and boost ~v (c ≡ 1).
+(tSZ; Planck Collaboration et al. 2020a) and in super-                   The observed effects are: (1) a relativistic Doppler shift,
+novae (Horstmann et al. 2021), suggesting that the dis-                  δ 1 ; (2) aberration, which alters solid angles as δ 2 ; (3)
+crepancy lies with galaxy and quasar surveys rather than                 flux modification of objects with power-law spectral en-
+with the canonical cosmology, large-scale structures, or                 ergy distributions Sν ∝ ν −α when observed at fixed fre-
+lensing, as some authors have suggested.                                 quencies, δ 1+α ; and (4) a change in the number of galax-
+   In this work, we employ two new radio continuum sur-                  ies detected using a fixed flux limit, if N (> S) ∝ S −x ,
+veys, the Karl G. Jansky Very Large Array1 Sky Sur-                      δ x(1+α) . Combining these effects to first order in v, we
+vey (VLASS; Lacy et al. 2020) in the northern hemi-                      expect the sky surface density of galaxies will be modu-
+sphere and the Rapid Australian Square Kilometer Ar-                     lated by the angular distance θ from the dipole apex
+ray Pathfinder2 Continuum Survey (RACS; McConnell
+et al. 2020) in the south, to measure the galaxy number                      dN   dN
+                                                                                =          (1 + [2 + x(1 + α)] v cos θ) .        (2)
+and flux dipoles using nearly complete (90%) sky cover-                      dΩ   dΩ θ=π/2
+age. We present the theoretical expectations for galaxy
+                                                                         The expected fractional change in a monopole-
+dipoles in number and flux in Section 2, we discuss the
+                                                                         subtracted sky would therefore be
+data sources, catalog-matching, and map-making in Sec-
+tion 3, and we describe four different dipole measure-                                ∆N
+                                                                                           = [2 + x(1 + α)] v cos θ .            (3)
+ment techniques for number and flux in Section 4. The                                 N`=0
+results of these measurements are all self-consistent and
+in good agreement with the CMB dipole (Section 5), and                   The integrated flux density per solid angle brings an
+it is not clear why this work produced such different re-                extra factor of δ 1+α , and the fractional change becomes
+sults than previous studies (Section 6). We conclude                                ∆S
+with some suggestions for future improvement on this                                     = [3 + α + x(1 + α)] v cos θ .          (4)
+                                                                                    S`=0
+analysis, both in terms of technique and looking to fu-
+ture data from ongoing and planned continuum surveys                     This is the same quantity as the flux-weighted galaxy
+(Section 7).                                                             count (Rubart & Schwarz 2013). Turning Equations 3
+   For comparison to the results in this work, we use                    and 4 around, for an observed null-centered (monopole-
+the fiducial Planck Collaboration et al. (2020b,c) CMB                   subtracted) dipole amplitude on the sky, DN or DS , the
+dipole: 3362.08 ± 0.99 µK toward galactic coordinates                    observer’s velocity with respect to a galaxy catalog can
+(`, b) = (264.◦ 021 ± 0.◦ 011, 48.◦ 253 ± 0.◦ 005) or equatorial         be calculated:
+coordinates (α, δ) = (167.◦ 942 ± 0.◦ 007, −6.◦ 944 ± 0.◦ 007)
+                                                                                        v = DN /[2 + x(1 + α)] or                (5)
+(J2000). Absent an intrinsic CMB dipole, the velocity
+of the Sun relative to the CMB is 369.82 ± 0.11 km s−1 .                                v = DS /[3 + α + x(1 + α)] .             (6)
+
+          2.   THEORETICAL EXPECTATIONS                                  If the galaxy catalog is at rest with respect to the CMB,
+   Ellis & Baldwin (1984) showed how the number den-                     then the measured velocity should match the CMB ve-
+sity of galaxies would be altered for an observer moving                 locity dipole in direction and amplitude. The direction
+with respect to the CMB rest frame (see also Gibelyou &                  of the dipole is obtained from the apex coordinates.
+Huterer 2012; Rubart & Schwarz 2013). Briefly, starting                     In principle, the flux dipole should be more sensitive
+with Lorentz-invariant quantities such as number N and                   than number because higher signal-to-noise can be ob-
+a frequency-normalized specific intensity, Iν /ν 3 , which               tained from flux measurements. But in practice, uniform
+is the photon phase space distribution, one can show                     flux calibration across a large survey (or multiple sur-
+that an observer Lorentz-boosted with respect to the                     veys) is challenging, and constraining systematics well
+average rest frame of galaxies will observe a dipole on                  below 1% is difficult. Simply counting well-detected
+the sky that depends on powers of the factor δ,                          sources is less challenging if one works above the sur-
+                                                                         vey completeness limit (although multi-component radio
+                                       1 + v cos θ
+               δ = γ(1 + n̂ · ~v ) =            1/2
+                                                      ,        (1)       sources can complicate the counting exercise).
+                                       (1 − v 2 )
+                                                                                                 3.   DATA
+    1 The National Radio Astronomy Observatory is a facility of the
+
+      National Science Foundation operated under cooperative agree-        Sky dipole measurements require all-sky coverage,
+      ment by Associated Universities, Inc.                              which can be done using space-based facilities such as
+    2 The Australian SKA Pathfinder is part of the Australia Telescope
+                                                                         WISE (Wright et al. 2010; Secrest et al. 2021), but re-
+      National Facility which is managed by CSIRO.                       quire dual-hemisphere terrestrial surveys. For this work,
+                                               The Universe is Brighter                                                          3
+
+
+
+
+Figure 1.     VLASS (left) and RACS (right) catalog sources in galactic coordinates. Darker color indicates fewer sources.
+|b| < 5◦ was excluded from the VLASS.
+
+we use two new radio continuum surveys: the VLASS                 densities4 . Peak flux densities are equivalent to inte-
+at 3 GHz in the north (Lacy et al. 2020) and the RACS             grated flux densities for unresolved radio sources and
+at 887.5 MHz in the south (McConnell et al. 2020).                mitigate somewhat the angular scale and frequency mis-
+   The VLASS is a three-epoch synoptic survey spanning            match between the VLASS and the RACS (see Fig. 9 in
+2–4 GHz at declinations δ > −40◦ with 2.500 angular               Gordon et al. 2021 for an example of the relationship
+resolution. The first epoch data release catalog includes         between peak and total flux density). The size of radio
+1.9 × 106 sources with 99.8% completeness at 3 mJy                sources is a function of observed frequency and observ-
+(Gordon et al. 2021). We select Duplicate flag < 2,               ing configuration, which complicates an all-sky analysis
+Quality flag == 0, and |b| > 5◦ from the Component                of source counts and flux using disparate surveys.
+Table (version 2) to obtain ∼1.4 million sources. The                Figure 1 shows the two survey catalogs in Galac-
+first VLASS epoch was split (epochs 1.1 and 1.2), and             tic coordinates before they are flux-selected, trimmed,
+the two sub-epochs show different noise properties and            masked, or combined. Figure 2 shows the number of
+systematic flux density offsets compared to expectations          sources in each catalog versus peak flux density prior
+(Gordon et al. 2021). Nevertheless, the 4◦ × 10◦ survey           to masking and trimming the samples. We select the
+tiling was interleaved somewhat3 on angular scales much           VLASS 3–300 mJy beam−1 flux range5 based on the
+smaller than the ` = 1 dipole scale, and our analysis             linear part of the log N –log S plot, staying well above
+does not include sources close to the detection limit or          the flux limit turnover at 1.3 mJy, which also reduces
+the portion of the survey that uses the hybrid array (see         completeness issues caused by areally- and temporally-
+below). Following the advice of Gordon et al. (2021), all         variable noise limits below the 3 mJy completeness
+flux densities are scaled by 1/0.87.                              limit, and well below the distribution turnover around
+   The RACS first data release catalog consists of ∼2.1           500 mJy. This selection also avoids stochastic contribu-
+million radio sources in declinations −80◦ < δ < +30◦             tions from from bright radio sources. Using the spec-
+and |b| > 5◦ with 95% point source completeness at                tral indices described in Sec. 3.1 below, we transfer the
+∼3 mJy (Hale et al. 2021), more than a factor of three            VLASS flux limits to the RACS catalog. The RACS
+below our adopted lower flux cutoff. This “RACS-                  limits for number counts and flux differ slightly but are
+low” release has a 288 MHz bandwidth centered at                  well above the RACS 3 mJy survey completeness limit.
+887.5 MHz. The survey shows spatially-varying median                 For the purposes of this analysis, absolute flux cali-
+rms noise structure between 0.1 and 0.6 mJy beam−1                bration is unimportant. Relative flux calibration across
+on ∼5◦ scales and shows generally increasing noise with           the sky does impact this study, but only if there are flux
+declination. The RACS survey was smoothed to a uni-               calibration systematics in on steradian scales. The two-
+form 2500 resolution.                                             sub-epoch tiling pattern of the VLASS does not align
+   All subsequent analysis uses the peak flux densities           with the CMB dipole and could not produce a spurious
+from these survey catalogs rather than integrated flux            coincidentally-aligned signal.
+
+  3 Kimball,
+           A. 2017, VLASS Project Memo #7: VLASS Tiling             4 We use the shorthand “flux” in subsequent discussion to generi-
+
+   and Sky Coverage, https://library.nrao.edu/public/memos/vla/       cally refer to summed flux densities in map pixels and the peak
+   vlass/VLASS 007.pdf                                                flux densities of individual galaxies.
+                                                                    5 An upper flux cutoff does not alter the galaxy count or combined
+
+                                                                      flux dependence on the δ factor.
+4                                                          Darling
+
+                                                                ber density analysis. For the flux analysis, we use the
+                                                                median RACS flux-weighted spectral index of α = 1.02.
+                                                                These spectral indices are steeper than, but within the
+                                                                variance of, the 3–1.4 GHz and 1.4–0.9 GHz spectral
+                                                                indices (Hale et al. 2021; Gordon et al. 2021).
+                                                                  The combined number catalog contains 711,450
+                                                                sources, with a division of 49.9% to 50.1%, VLASS
+                                                                to RACS. The combined flux catalog contains 697,753
+                                                                sources, divided 50.9–49.1. The solid angle ratio of the
+                                                                unmasked portions of VLASS to RACS is 1.0006. The
+                                                                higher resolution of VLASS compared to RACS suggests
+                                                                that the VLASS would detect more objects per solid an-
+Figure 2. VLASS (left) and RACS (right) catalog source
+                                                                gle, but perhaps surprisingly, the areal density of sources
+count versus peak flux density. The opaque color indicates
+the catalog selection regions prior to masking and trimming.    in the surveys, after scaling flux limits, is the same to
+                                                                within 0.2%, and a mismatch does not seem to obtain
+                                                                for the range shown in Figure 2.
+                 3.1. Catalog Matching
+                                                                  The source count N (> S) ∝ S −x index x can be de-
+  The VLASS shows elevated noise at δ > 80◦ and the             termined empirically from the catalog: we find x = 1.0
+RACS is incomplete at δ < −80◦ , so we mask both                for VLASS and RACS in the lower decade of the se-
+surveys to exclude sources within 10◦ of the equatorial         lected flux range, which dominates the source counts.
+poles. We cut and combine the two surveys at δ = 0◦ ,           The expected dipole amplitudes, based on the above
+which excludes each survey’s lowest-elevation declina-          α values and Equations 3 and 4, are therefore DN =
+tion range that tends to show higher noise and instru-          4.0 v = 0.0050 for number and DS = 6.1 v = 0.0075
+mental artifacts (Figure 1). We also mask the Galactic          for flux, assuming a null intrinsic CMB dipole (i.e., the
+plane for |b| < 5◦ . Excluding a larger latitude range          dipole amplitude is solely caused by the barycenter mo-
+had little impact on results, and minimal masking re-           tion with respect to the CMB rest frame). The observed
+duces systematics and enhances the sky coverage (e.g.,          dipole signals will therefore amount to less than 1% of
+Siewert et al. 2021). We did no additional masking.             the mean (monopole) count or flux value.
+The final maps cover a high sky fraction, fsky = 0.90,
+and dipole measurements are therefore not expected to                                   3.2. Map-Making
+be significantly affected in amplitude or uncertainty by          To make number and flux maps we create HEALPix6
+coupling to higher-order modes such as quadrupole or            maps using healpy7 with much finer resolution than
+octopole (Gibelyou & Huterer 2012).                             the expected signal in order to create minimal-area
+  For arbitrary flux limits, the two catalogs have differ-      masks. Mask edge pixels, which incompletely sam-
+ing source density and integrated flux density. This pro-       ple the sky, are trimmed. Using nside = 64 gives
+duces a dipole aligned with the equatorial poles. Since         49,152 pixels with solid angle of 0.84 square degrees
+the expected signal is of order 0.5%, the catalog match-        per pixel. The median unmasked pixel contains 16 ra-
+ing is crucial to the measurement and is extremely sensi-       dio sources and 202 mJy (scaled to 3 GHz on the flux-
+tive to the spectral index used to scale the RACS catalog       corrected VLASS scale). Figure 3 (top) shows the mean-
+at 887.5 MHz to the VLASS 3 GHz fluxes.                         subtracted masked HEALPix number and flux maps.
+  For any given 3 GHz flux density, the 3.0–0.9 GHz               Maps smoothed to 1 ster show structure at the 1–3%
+spectral index spans α = 1 ± 2, so any flux scaling to          level (Figure 3, middle), including a maximum in the
+equalize the two surveys is only correct in aggregate and       vicinity of the CMB apex. However, all measurements
+the total scaled flux is sensitive to the choice of spectral    described below use the unsmoothed masked maps or
+index. Incorrect scaling leads to a hemispherical dipole        the combined catalog.
+(which is, in part, the reason we chose an equal-area
+division between the two surveys). We determine the                                4.     MEASUREMENTS
+median spectral index using the overlap region between            We estimate the number and flux density dipoles us-
+the two surveys that is least affected by noise systemat-       ing four methods: (1) by computing spherical harmonics
+ics, −10◦ < δ < +10◦ and |b| > 5◦ . The median spectral
+index is α = 0.98, which we use to scale the flux limits of       6 http://healpix.sf.net; Górski et al. (2005)
+RACS to match those of the VLASS for the source num-              7 Zonca et al. (2019)
+                                                      The Universe is Brighter                                                                5
+
+(SH) components directly from the merged catalog (af-                                Table 1. Radio Galaxy Dipole Results
+ter Blake & Wall 2002); (2) by fitting SH to masked sky
+maps using the healpy.anafast algorithm; (3) using                     #          Method      Quantity           Apex              Velocity
+the dipole vector estimator employed by Secrest et al.                                                       ` (◦ )       b (◦ )   (km s−1 )
+(2021) on maps, healpy.fit dipole; and (4) using a                     1     Direct           Number       265+47
+                                                                                                              −44         59+11
+                                                                                                                            −29    225+116
+                                                                                                                                      −51
+“permissive” fit of a SH dipole model to the maps that                                         Flux        300+24
+                                                                                                              −23         45+13
+                                                                                                                            −17    422+147
+                                                                                                                                      −83
+allows for outliers (Sivia & Skilling 2006; Darling et al.             2     SH               Number       271+55         56+13    331+161
+                                                                                                              −58           −35       −107
+2018).                                                                                                                                     *
+                                                                                                Flux       301+30
+                                                                                                              −30         43+19
+                                                                                                                            −17    399+264
+                                                                                                                                      −199
+  (1) The direct method does not rely on making maps.                                                                                      *
+                                                                       3     d~               Number       271+51
+                                                                                                              −52         52+13
+                                                                                                                            −34    259+152
+                                                                                                                                      −124
+Rather, it employs the standard method to calculate SH
+                                                                                                Flux       301+25         39+15    250+320 *
+coefficients a`,m from N objects at (θi , φi ):                                                               −25           −20       −160
+
+                                                                       4     Permissive       Number       259+47         50+12    297+150 *
+                                                                                                              −41           −35       −120
+                           N
+                           X
+                                      ∗                                                        Flux        299+23         40+14    622+211 *
+                  a`,m =         fi Y`,m (θi , φi )            (7)                                            −27           −19       −200
+
+                           i=1
+                                                                             CMB            Temperature     264.0         48.3     369.8
+                                                                      ∗ Bias-corrected velocities.
+where fi = 1 for number counts, and fi = Si for flux.
+For real fi , the dipole map of a quantity becomes
+
+f (θ, φ) = a1,0 Y1,0 (θ, φ)+2 a<      <            =     =
+                                1,1 Y1,1 (θ, φ)−2 a1,1 Y1,1 (θ, φ).
+                                                                (8)    data-model residual Ri of each pixel:
+The amplitude of the dipole can be obtained by scaling                                                                    !
+                                                                                                                      2
+the number N or flux S map maximum by the monopole:                                                       1 − e−Ri /2
+                                                                                           prob(Ri ) ∝                                  (11)
+                                max
+                                     r                                                                        Ri2
+                              fN,S        4π
+                     DN,S =                   .                 (9)
+                               a0,0        3                           (Sivia & Skilling 2006; Darling et al. 2018). We use the
+Uncertainties in the dipole amplitude and direction are                Python package lmfit8 to obtain least-squared fits of
+estimated by re-calculating the dipole from a 10,000-                  SH dipole coefficients and their marginalized uncertain-
+iteration bootstrap resampling of the source catalog.                  ties. We then use a Monte Carlo realization of those
+   (2) The anafast SH method fits monopole and dipole                  error budgets to determine the dipole velocity parame-
+SH coefficients to masked maps rather than datapoints.                 ters and uncertainties (amplitude and direction).
+Masked regions are omitted from the fits, and data have                                           5. RESULTS
+been aggregated into equal-area pixels (either source
+counts or summed fluxes). Uncertainties are estimated                     To calculate velocities from dipole amplitudes using
+from a non-parametric bootstrap (bootstrap resampling                  Equations 5 and 6, we use the spectral index α = 0.98
+of fit residuals rather than datapoints). The parametric               for number, α = 1.02 for flux, and source count index
+bootstrap uncertainties agree with the non-parametric                  x = 1.0 for both (Section 3.1). Uncertainties are cal-
+implementation for the number maps but cannot be                       culated using percentiles and are not always symmetric.
+done on the flux maps.                                                 We bias-correct the results when appropriate, including
+   (3) The dipole vector estimator described by Secrest                rescaling the 1σ confidence intervals (Efron & Tibshirani
+et al. (2021) uses healpy.fit dipole to simultaneously                 1994; note that jackknife-calculated “accelerations” are
+fit a monopole µ and a Cartesian 3D dipole vector d~ to                insignificant). Dipole directions show negligible bias and
+maps. The fractional amplitude of the dipole signal is                 are not corrected, but the dipole amplitudes do show
+                                                                       bias, particularly the dipole vector and permissive fit
+                                  |d~N,S |                             methods (methods 3 and 4).
+                       DN,S =              ,                  (10)
+                                     µ                                    Table 1 shows the dipole apex and velocity of the four
+                                                                       fitting methods for number and flux. Figure 4 shows
+and d~ points in the direction of the apex. We used a                  that all values are consistent with the CMB dipole vec-
+non-parametric bootstrap to estimate uncertainties.                    tor (direction and velocity). A comparison of each dipole
+  (4) This method employs a “permissive” fit of an SH                  vector to the CMB yields p-values ≥ 0.64 for number
+dipole to maps that does not assume Gaussian error dis-                and ≥ 0.35 for flux based on a χ2 test with 3 degrees
+tributions and thus allows for data outliers (such as clus-
+tered radio sources). We maximize the likelihood asso-
+                                                                           8 Newville et al. (2021)
+ciated with a probability density function based on the
+6                                                        Darling
+
+
+
+
+Figure 3. Top: HEALPix maps of number counts (left) and integrated flux (right) for the scaled and combined surveys in
+galactic coordinates. The grey regions are masked. Middle: Number (left) and flux (right) mean-subtracted maps smoothed to
+1 ster. These maps should not be confused with fractional difference maps, which are unitless. Bottom: Spherical harmonic
+fit velocity maps for number (left) and flux (right). The blue and red points indicate the apex and nadir of the CMB dipole
+(Planck Collaboration et al. 2020b,c).
+
+of freedom. Surprisingly, the permissive fit method,            measurements, systematics are a concern, and there are
+which is intended to omit flux outliers and clustered           differences in approach and data sources to consider.
+sources, shows a higher flux dipole amplitude than the          Sky completeness is known to impose a strong bias on
+other methods (although it is consistent with these and         results (e.g., Gibelyou & Huterer 2012; Siewert et al.
+the CMB). Figure 3 (bottom) shows the velocity dipole           2021), and this work is among the most complete with
+maps for number and flux for the SH fit method.                 fsky = 0.90. The source density is comparable to pre-
+                                                                vious work (see e.g., Siewert et al. 2021), the angular
+                    6. DISCUSSION                               resolution is higher in the VLASS but not the RACS,
+                                                                and the sensitivity is better at comparable frequencies.
+  Why do these results differ from previous studies that        Our results have larger uncertainties on the dipole direc-
+reject the CMB dipole amplitude? As usual, when as-             tion than most previous work, but this is likely to be due
+tronomical observations are used to obtain sub-percent
+                                              The Universe is Brighter                                                     7
+
+
+
+
+Figure 4. Left: Dipole apex measured from radio source number counts (top) and fluxes (bottom) using the methods listed
+in Table 1. The star indicates the CMB dipole apex, and error bars are 1σ uncertainties. Right: Dipole velocity measured from
+radio source number counts (top) and fluxes (bottom). The vertical line indicates the observed CMB dipole. The envelopes
+show the error distributions in dipole amplitudes, and the vertical tick marks show 1σ and 2σ uncertainties.
+
+in part to the smaller amplitude, given the only slightly        the choice of peak versus total flux, and the fine-turning
+larger source catalog. Also, previous work uses inte-            of the spectral index used to combine the two surveys.
+grated fluxes, which are sensitive to source sizes, resolu-      Nearly all of these tests recover dipoles consistent with
+tion, and surface brightness sensitivity in a frequency-         the CMB, albeit with larger uncertainties in the dipole
+dependent manner. This was the motivation for employ-            amplitude and direction than those listed in Table 1.
+ing peak fluxes instead.
+  Intriguingly, Siewert et al. (2021) found that the mea-                           7. CONCLUSIONS
+sured dipole amplitude obtained from source counts
+                                                                    Contrary to previous studies, this work shows that
+decreases with increasing frequency, up to 1.4 GHz
+                                                                 the observed dipole in extragalactic source counts and
+(NVSS). However, an extrapolation of their fit of DN
+                                                                 fluxes is consistent with an observer-induced CMB
+vs. ν predicts a value at 3 GHz of more than twice what
+                                                                 dipole; there is no discrepancy in direction or ampli-
+we measure. Nevertheless, it could be that the Solar
+                                                                 tude between radio sources and the CMB. This aligns
+peculiar motion is best measured at higher radio fre-
+                                                                 with already CMB-consistent observations of local large
+quencies.
+                                                                 scale structure, the tSZ effect, and supernovae (Rowan-
+  While the results of this study are consistent with the
+                                                                 Robinson et al. 1990; Lavaux et al. 2010; Planck Collab-
+CMB dipole vector, they are not necessarily inconsis-
+                                                                 oration et al. 2020a; Horstmann et al. 2021). It seems
+tent with previous work because the amplitude uncer-
+                                                                 plausible that future all-sky extragalactic surveys may
+tainty distributions have large high-velocity tails (Fig-
+                                            ~ for number         achieve the depth and fidelity to either confirm that the
+ure 4). For example, the vector method (d)
+                                                                 CMB dipole is nearly all obsever-induced or to identify
+density that is most directly comparable to the Secrest
+                                                                 a contribution that is cosmological.
+et al. (2021) methods and result has a +3σ value of
+                                                                    A number of refinements in the above methods can
+740 km s−1 , which is roughly consistent with the Se-
+                                                                 be explored, including employing a broken or two-index
+crest et al. (2021) amplitude measurement.
+                                                                 power law for source counts and spectral indices fol-
+  The Appendix presents an empirical examination of
+                                                                 lowing Siewert et al. (2021), using survey depth- and
+our analysis assumptions and possible measurement sys-
+                                                                 artifact-weighted maps, or the more formal (and per-
+tematics. We assess the elevation-dependent source
+                                                                 haps more rigorous) analyses employed by previous in-
+counts in the surveys, the ability of each survey alone to
+                                                                 vestigators. With the additional VLASS epochs and the
+measure the dipole, the impact of the selected flux limit,
+                                                                 ASKAP follow-on to RACS, the surveys themselves will
+8                                                          Darling
+
+also improve soon, both in depth, calibration, and in             Software: astropy (Astropy Collaboration et al.
+processing refinement.                                          2013; Price-Whelan et al. 2018), NumPy (van der Walt
+                                                                et al. 2011), Matplotlib (Hunter 2007), TopCAT (Taylor
+                                                                2005), HealPix (Górski et al. 2005), healpy (Zonca et al.
+                ACKNOWLEDGMENTS                                 2019)
+  We thank the scientific, operations, observing, and
+computing staff at the NRAO and the ATNF who
+made this work possible and the data publicly avail-
+able. We also thank the anonymous referee for excellent
+and thoughtful feedback. This scientific work uses data
+obtained from the Murchison Radio-astronomy Obser-
+vatory, and we acknowledge the Wajarri Yamatji peo-
+ple as the traditional owners of the Observatory site.
+Some of the results in this paper have been derived using
+the HEALPix and healpy packages (Górski et al. 2005;
+Zonca et al. 2019) and TopCAT (Taylor 2005). This re-
+search made use of NumPy (van der Walt et al. 2011),
+Matplotlib (Hunter 2007), and Astropy9 , a community-
+developed core Python package for Astronomy (Astropy
+Collaboration et al. 2013; Price-Whelan et al. 2018).
+
+    Facility: VLA, ASKAP
+
+                                                       REFERENCES
+Astropy Collaboration, Robitaille, T. P., Tollerud, E. J.,      Horstmann, N., Pietschke, Y., & Schwarz, D. J. 2021, arXiv
+  et al. 2013, A&A, 558, A33,                                        e-prints, arXiv:2111.03055.
+  doi: 10.1051/0004-6361/201322068                                   https://arxiv.org/abs/2111.03055
+Blake, C., & Wall, J. 2002, Nature, 416, 150,                   Hunter, J. D. 2007, Computing in Science Engineering, 9,
+  doi: 10.1038/416150a                                               90
+Condon, J. J., Cotton, W. D., Greisen, E. W., et al. 1998,      Intema, H. T., Jagannathan, P., Mooley, K. P., & Frail,
+  AJ, 115, 1693, doi: 10.1086/300337                                 D. A. 2017, A&A, 598, A78,
+Croft, R. A. C. 2021, MNRAS, 501, 2688,                              doi: 10.1051/0004-6361/201628536
+  doi: 10.1093/mnras/staa3769                                   Lacy, M., Baum, S. A., Chandler, C. J., et al. 2020, PASP,
+Darling, J., Truebenbach, A. E., & Paine, J. 2018, ApJ,
+                                                                     132, 035001, doi: 10.1088/1538-3873/ab63eb
+  861, 113, doi: 10.3847/1538-4357/aac772
+                                                                Lavaux, G., Tully, R. B., Mohayaee, R., & Colombi, S.
+Ding, F., & Croft, R. A. C. 2009, MNRAS, 397, 1739,
+                                                                     2010, The Astrophysical Journal, 709, 483,
+  doi: 10.1111/j.1365-2966.2009.15111.x
+                                                                     doi: 10.1088/0004-637x/709/1/483
+Efron, B., & Tibshirani, R. J. 1994, An introduction to the
+                                                                McConnell, D., Hale, C. L., Lenc, E., et al. 2020,
+  bootstrap (CRC press)
+                                                                     Publications of the Astronomical Society of Australia, 37,
+Ellis, G. F. R., & Baldwin, J. E. 1984, MNRAS, 206, 377,
+                                                                     e048, doi: 10.1017/pasa.2020.41
+  doi: 10.1093/mnras/206.2.377
+                                                                Murphy, T., Mauch, T., Green, A., et al. 2007, MNRAS,
+Gibelyou, C., & Huterer, D. 2012, MNRAS, 427, 1994,
+  doi: 10.1111/j.1365-2966.2012.22032.x                              382, 382, doi: 10.1111/j.1365-2966.2007.12379.x
+Gordon, Y. A., Boyce, M. M., O’Dea, C. P., et al. 2021,         Newville, M., Otten, R., Nelson, A., et al. 2021,
+  ApJS, 255, 30, doi: 10.3847/1538-4365/ac05c0                       doi: 10.5281/zenodo.5570790
+Górski, K. M., Hivon, E., Banday, A. J., et al. 2005, ApJ,     Paine, J., Darling, J., Graziani, R., & Courtois, H. M. 2020,
+  622, 759, doi: 10.1086/427976                                      ApJ, 890, 146, doi: 10.3847/1538-4357/ab6f00
+Hale, C. L., McConnell, D., Thomson, A. J. M., et al. 2021,     Planck Collaboration, Akrami, Y., Ashdown, M., et al.
+  Publications of the Astronomical Society of Australia, 38,         2020a, A&A, 644, A100,
+  e058, doi: 10.1017/pasa.2021.47                                    doi: 10.1051/0004-6361/202038053
+                                               The Universe is Brighter                                                   9
+
+Planck Collaboration, Aghanim, N., Akrami, Y., et al.          Sivia, D. S., & Skilling, J. 2006, Data Analysis - A Bayesian
+  2020b, A&A, 641, A1, doi: 10.1051/0004-6361/201833880          Tutorial, 2nd edn., Oxford Science Publications (Oxford
+—. 2020c, A&A, 641, A3,                                          University Press)
+  doi: 10.1051/0004-6361/201832909                             Smoot, G. F., Gorenstein, M. V., & Muller, R. A. 1977,
+Price-Whelan, A. M., Sipőcz, B. M., Günther, H. M., et al.     PhRvL, 39, 898, doi: 10.1103/PhysRevLett.39.898
+  2018, AJ, 156, 123, doi: 10.3847/1538-3881/aabc4f            Taylor, M. B. 2005, in Astronomical Society of the Pacific
+Rengelink, R. B., Tang, Y., de Bruyn, A. G., et al. 1997,        Conference Series, Vol. 347, Astronomical Data Analysis
+  A&AS, 124, 259, doi: 10.1051/aas:1997358                       Software and Systems XIV, ed. P. Shopbell, M. Britton,
+Rowan-Robinson, M., Lawrence, A., Saunders, W., et al.           & R. Ebert, 29
+  1990, MNRAS, 247, 1                                          Tiwari, P., & Aluri, P. K. 2019, ApJ, 878, 32,
+Rubart, M., & Schwarz, D. J. 2013, A&A, 555, A117,               doi: 10.3847/1538-4357/ab1d58
+  doi: 10.1051/0004-6361/201321215                             van der Walt, S., Colbert, S. C., & Varoquaux, G. 2011,
+Secrest, N. J., von Hausegger, S., Rameez, M., et al. 2021,      Computing in Science Engineering, 13, 22
+  ApJL, 908, L51, doi: 10.3847/2041-8213/abdd40                Wright, E. L., Eisenhardt, P. R. M., Mainzer, A. K., et al.
+Siewert, T. M., Schmidt-Rubart, M., & Schwarz, D. J.             2010, AJ, 140, 1868, doi: 10.1088/0004-6256/140/6/1868
+  2021, A&A, 653, A9, doi: 10.1051/0004-6361/202039840         Zonca, A., Singer, L., Lenz, D., et al. 2019, Journal of Open
+Singal, A. K. 2011, ApJL, 742, L23,                              Source Software, 4, 1298, doi: 10.21105/joss.01298
+  doi: 10.1088/2041-8205/742/2/L23
+10                                                          Darling
+
+
+                                                         APPENDIX
+
+
+   Here we examine assumptions used in the data selection and analysis, particularly regarding the combination of the
+two radio surveys. The goal is twofold: (1) to build confidence in the dipole measurement methods in light of the
+disparate prior results, and (2) to explore possible reasons for discrepancies.
+   Since the dipoles obtained from galaxy counts and flux are similar for all different fitting methods (Table 1), the
+following tests focus on galaxy counts and use the permissive least-squares fitting method. Unless otherwise speci-
+fied, all selection parameters and methods are unchanged from Section 4. For example, when we examine the two
+radio continuum surveys individually, the analysis, flux limits, and other paramenters are unchanged unless explicitly
+described.
+                                             A. SINGLE-SURVEY TESTS
+  To assess the impact of combining two disparate radio surveys, we examine the source count dipole found in each
+survey alone. As seen in Figure 1, the surveys are not perfectly uniform, particularly as a function of declination. Figure
+5 shows the areal source density versus equatorial coordinates. The VLASS shows a 16% decrease from declination
+−15◦ to −40◦ , and the RACS shows a 6% decrease for δ > +25◦ . Neither survey shows trends in right ascension (the
+lowered source density in the VLASS in Figure 5 (left) is caused by the diminished source density contribution from
+δ < −15◦ regions, which affects all right ascension bins).
+
+
+
+
+Figure 5. Mean VLASS and RACS areal density versus right ascension (left) and declination (right) in 5◦ increments. The
+vertical dotted lines denote the declination cuts used for the sinlge-survey dipole fitting (δ > −15◦ for the VLASS and δ < +25◦
+for the RACS), and the horizontal dotted lines indicate the median values. The vertical black line shows the declination where
+the two surveys are cut for the joint analysis. The lower source density seen in the VLASS versus right ascension is caused
+by the falloff in source counts for δ < −15◦ . When the indicated declination cut is applied, the source density in the VLASS
+matches that of the RACS.
+
+
+   When we fit the VLASS or RACS alone without trimming the declination range, we obtain a dipole with apex
+near the apex of each survey (the equatorial poles) because the reduced galaxy density at lower elevations (lower
+declinations for the VLASS, and higher declinations for the RACS) produces a gradient. Implementing a declination-
+based correction factor to source counts does not completely correct the problem because there is spatial structure in
+the problematic declination ranges (Figure 1).
+   We also examined single-survey source count dipoles obtained by omitting the lower-density declinations indicated
+in Figure 5. If we trim the VLASS to the declinations that show no reduction in galaxy density, δ > −15◦ and
+fsky = 0.58, then the dipole nadir aligns with the missing data, directed toward the south equatorial pole: the apex
+is 683+194
+       −113 km s
+                  −1
+                      toward 93+8      +20
+                                −4 , 56−16 (degrees, Galactic coordinates). However, using the RACS only we recover a
+galaxy count dipole that is consistent with the joint analysis, albeit with substantially larger uncertainties, which is
+a combination of fewer overall sources and significantly reduced sky coverage. For the RACS catalog with δ < +25◦
+clipping, fsky = 0.66, and we obtain a dipole with amplitude 644+319−148 km s
+                                                                              −1
+                                                                                 toward 292+21       +18
+                                                                                             −23 , 13−20 (degrees).
+   If we fix the dipole direction to that obtained using the combined surveys and fit only for the amplitude, the VLASS,
+trimmed to δ > −15◦ , has a reduced and less significant amplitude of 289+251−192 km s
+                                                                                       −1
+                                                                                          compared to the joint fit. This
+                                             The Universe is Brighter                                                   11
+
+is due in part to the low-count pixel regions seen near the dipole apex (Figure 1, left). For the RACS, trimmed to
+δ < +25◦ , the amplitude is higher but has a similar uncertainty: 428+203
+                                                                     −212 km s
+                                                                               −1
+                                                                                  . Both of these single-survey values
+are consistent with the CMB dipole amplitude. Given the amplitude uncertainties, however, this result cannot address
+the dipole amplitude frequency dependence suggested by Siewert et al. (2021).
+
+                                                   B. FLUX LIMITS
+  The survey flux limits were selected to avoid the incompleteness turnover at low fluxes and the shot noise of rarer
+objects at high fluxes. Blake & Wall (2002) show a change in the observed radio galaxy dipole measurements with
+a change in lower flux limit, and we assess the impact of the lower flux limit by doubling the lower flux limit on the
+VLASS, propagating it to RACS, and following the procedures described in Sections 3 and 4. Doubling the lower flux
+limit roughly halves the source catalog to 54% or the original catalog (because the exponent on N (> S) ∝ S −x is
+x = −1), correspondingly lowering the signal-to-noise. With the reduced catalog, we recover the source count dipole,
+but with larger uncertainties (as expected): 657+429
+                                                −135 km s
+                                                          −1
+                                                             toward 309+24      +20
+                                                                        −44 , 27−27 (degrees).
+
+                                          C. PEAK VERSUS TOTAL FLUX
+   To explore the choice of using the peak flux density from the VLASS and RACS surveys rather than the more
+canonical total source flux density, we repeated the analysis using the total source flux in both catalogs. For simplicity,
+we retain the flux limits used for the VLASS and scale these to the RACS using the median spectral index obtained
+from the total flux ratio in the overlap region (Section 3). In this case, α = 0.81, the count index x is unchanged, and
+we recover the dipole: 527+195
+                            −132 km s
+                                       −1
+                                          toward 241+17      +10
+                                                     −49 , 66−19 (degrees), which is consistent with the CMB vector (a
+  2
+χ3 test p-value of 0.25). For the reasons described in Section 3, the peak flux densities are preferable, but the total
+flux densities can also be used to detect a galaxy dipole that is consistent with the CMB.
+
+                                            D. RADIO SPECTRAL INDEX
+   The fine-tuning of the spectral index α used to combine the surveys is a concern because the spectral index shows a
+large range of values among the VLASS-RACS overlap sample (Section 3). In our treatment, we employ the median
+spectral index or the flux-weighted median spectral index of the overlap sample. When the spectral index is incorrect,
+a dipole is produced that points toward the equatorial hemisphere favored by the over-weighted survey. Fine turning
+is required to equalize the two hemispheres to less than 1% in order to detect the dipole signal.
+   In order to address this fine-tuning problem and the large intrinsic dispersion in spectral indices, we use the overlap
+region between the surveys (|δ| < 10◦ ) to find the RACS flux limits that produce a match between the areal source
+densities of the two surveys given the VLASS flux limits. The upper RACS flux limit has negligible impact on the
+source counts. Adjusting the lower RACS flux limit to obtain matching source count densities in the overlap region
+between the two surveys produces a limit that agrees with the flux limit obtained from the median spectral index to
+within 1%. It is notable that the combined overlap catalog obtained from matching VLASS to RACS sources (Section
+3.1) is not identical to the individual flux-limited VLASS and RACS catalogs in the overlap region. It is reassuring
+that the selection outcomes agree between these disparate approaches to catalog matching.
+   Ultimately, choosing a median spectral index and the above count-matching approach are equivalent, but the latter
+may be more satisfying from a fine-turning perspective. The count-matching approach could be modified to a flux-
+matching approach to measure the radio flux dipole.
+

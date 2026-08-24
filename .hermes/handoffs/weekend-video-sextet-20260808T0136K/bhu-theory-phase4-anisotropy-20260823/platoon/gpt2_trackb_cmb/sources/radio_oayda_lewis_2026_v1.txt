@@ -1,0 +1,1095 @@
+                                              MNRAS 000, 1–13 (2026)                                                Preprint 6 February 2026               Compiled using MNRAS LATEX style file v3.3
+
+
+
+
+                                              Wising up to CatWISE: using simulation-based inference to interpret the
+                                              ecliptic bias and confirm the cosmic dipole excess
+                                              Oliver T. Oayda1★ and Geraint F. Lewis2
+                                              1 Sydney Institute for Astronomy, School of Physics A28, The University of Sydney, NSW 2006, Australia
+
+
+
+
+                                              Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+
+arXiv:2602.05070v1 [astro-ph.CO] 4 Feb 2026
+                                              ABSTRACT
+                                              We apply Simulation-Based Inference (‘SBI’) to the cosmic dipole problem for the first time, measuring the distribution of
+                                              quasar counts over the sky in the CatWISE2020 (‘CatWISE’) sample. We show that the quadrupole anisotropy in CatWISE
+                                              can be attributed to the correlation between WISE’s scanning law and photometric uncertainty in the 𝑊1 and 𝑊2 magnitudes,
+                                              inducing an Eddington bias which varies with sky position. After explicitly modelling this with SBI, we use a neural likelihood
+                                              estimator to find the posterior distribution for CatWISE’s dipole, confirming the presence of a dipole twice as large as the
+                                              CMB expectation but more seriously misaligned with the CMB direction (≈ 3𝜎). We also use our learned likelihood to infer
+                                              the Bayesian evidence, learning that models which increase the scale of CatWISE’s photometric errors are most favoured. This
+                                              is strong evidence that the sample’s errors are underestimated or that there is an additional, unresolved systematic producing
+                                              the same effect as Eddington bias. While our results indicate that the cosmic dipole excess is a persistent issue for ΛCDM, we
+                                              showcase that SBI can untangle the subtle and complex systematic issues affecting any sample derived from real astronomical
+                                              data.
+                                              Key words: cosmology: observations — cosmic background radiation — quasars: general — methods: statistical
+
+
+
+                                              1 INTRODUCTION                                                                  counts, this can generate a dipole and potentially high-order moments
+                                                                                                                              in the data, biasing measurement of the cosmic dipole. Accounting
+                                              The cosmic dipole excess is another serious challenge to the cos-
+                                                                                                                              for these effects is therefore paramount.
+                                              mological principle (‘CP’; Di Valentino et al. 2025). If the Uni-
+                                              verse is isotropic and homogeneous, as assumed by the CP under-
+                                              pinning the Friedmann-Lemaître-Robertson-Walker (‘FLRW’) met-
+                                              ric, then an observer positioned in the cosmic rest frame (‘CRF’)                  Recently, Secrest et al. (2021; ‘S21’) and Secrest et al. (2022;
+                                              should perceive an isotropic and homogeneous distribution of mat-               ‘S22’) measured the cosmic dipole in the CatWISE2020 (‘Cat-
+                                              ter. Since we see a temperature anisotropy in the Cosmic Mi-                    WISE’) sample of quasars (Marocco et al. 2021). Despite masking
+                                              crowave Background (‘CMB’), we conclude that we must be travel-                 out 30◦ above and below the Galactic plane and correcting for dust
+                                              ling with respect to the CRF at 𝑣 CMB = 369.82±0.11 km s−1 towards              extinction, the sample exhibits a prominent ‘ecliptic bias’. Namely,
+                                              (𝑙, 𝑏) = (264.◦ 021, 48.◦ 253) in Galactic coordinates (Planck Collab-          counts of quasars are diminished near the ecliptic poles and elevated
+                                              oration et al. 2020). This motion should imprint an analogous dipole            around the ecliptic equator. To mitigate its effect, the authors included
+                                              in the distribution of cosmological sources (Ellis & Baldwin 1984),             an ecliptic correction, using a linear fit to density versus declination
+                                              which we refer to as the ‘cosmic dipole’. However, recent studies               as a weighting function. While the CatWISE samples are slightly
+                                              measure a dipole in quasars and radio galaxies that is roughly two              different across S21 and S22, they report a similar discrepancy with
+                                              to three times as large as expected (for a recent review, see e.g. Se-          the CMB dipole, reaching a significance of ≈ 5𝜎.
+                                              crest 2025). If the cosmic dipole is genuinely inconsistent with the
+                                              CMB dipole, it means we must rethink its interpretation as due to
+                                              our motion, and more fundamentally rethink the assumption of the
+                                                                                                                                 Since CatWISE is a key piece of evidence in the cosmic dipole
+                                              cosmological principle.
+                                                                                                                              anomaly, it is important to understand its peculiarities. This is espe-
+                                                 Measuring the cosmic dipole, however, is not straightforward. The
+                                                                                                                              cially relevant given that the cosmic dipole imprints a subtle variation
+                                              implicit assumption in the test of Ellis & Baldwin (1984) is that
+                                                                                                                              in source density (≈ 0.5%), which could be obscured by instrumental
+                                              measurements are identically performed over the celestial sphere. In
+                                                                                                                              effects. The principal challenge in accounting for systematics, how-
+                                              practice, any survey — whether ground or space based — will have
+                                                                                                                              ever, is deriving its exact effect on source count. If this cannot be
+                                              instrumental systematics that can impact the probability of source
+                                                                                                                              done, then one cannot write down a likelihood function. However,
+                                              detection at different points over the sky. Since an instrumental dif-
+                                                                                                                              Simulation-Based Inference (‘SBI’), otherwise known as likelihood-
+                                              ference in the rate of source detection will diminish or elevate source
+                                                                                                                              free inference, uses a family of techniques to perform Bayesian statis-
+                                                                                                                              tical inference when a likelihood function is intractable or unknown
+                                              ★   E-mail: oliver.oayda@sydney.edu.au                                          (Cranmer et al. 2020). This solves the problem of inverse inference
+
+                                              © 2026 The Authors
+2      Oayda & Lewis
+where generative models are extremely complex and have no obvious               at least a factor of 2. If Dmeasured > DCMB , this implies our mo-
+likelihood.1                                                                    tion is faster than the 370 km s−1 derived from the CMB. We defer
+   In this work, we deploy a neural posterior estimator and a neural            the reader to Secrest (2025) for a more thorough review, though a
+likelihood estimator to infer the posterior distribution of the cosmic          handful of recent results in the radio spectrum include: Wagenveld
+dipole in CatWISE. In particular, we implicitly encode the Widefield            et al. (2023); Oayda et al. (2024); Wagenveld et al. (2025); Böhme
+Infrared Survey Explorer’s (‘WISE’; Wright et al. 2010) scanning law            et al. (2025). These all show evidence for an excessive radio dipole
+into our forward simulations, demonstrating that this reproduces the            amplitude (but see Wagenveld et al. 2024). In the near-infrared, S21
+reported ecliptic bias. Since they are part of our generative process,          and S22 reported a ≈ 5𝜎 discrepancy between the CatWISE dipole
+we do not need to ‘correct’ or ‘reduce’ the data before perform-                amplitude and the CMB amplitude, which was confirmed in Dam
+ing measurements. We then explore a family of models, using the                 et al. (2023; ‘D23’) and again in Land-Strykowski et al. (2025). This
+learned likelihood from the neural likelihood estimator to compute              discrepancy with CatWISE is the chief focus of this work. One in-
+the Bayesian evidence for each model.                                           triguing piece of the picture is that, as presented in S22 and confirmed
+   Our paper is structured as follows. In Section 2, we give the back-          with a Bayesian approach in Land-Strykowski et al. (2025), the re-
+ground surrounding measurements of the cosmic dipole and the cur-               sults from the NRAO VLA Sky Survey (NVSS; Condon et al. 1998)
+rent status of the dipole tension. In Section 3, we discuss the CatWISE         and CatWISE are remarkably consistent with each other, showing
+sample and how the original authors of S21 approached its analysis.             that this dipole excess persists across radically different wavelengths.
+For Section 4, we describe our approach to the sample, including how            Meanwhile, in the optical regime, issues owing to extinction near
+we produce forward simulations and construct our neural estimators.             the Galactic plane and low source counts mean that the question of
+We give our results in Section 5, which we discuss and conclude on              an excessive dipole amplitude is not well-decided, though it appears
+in Section 6.                                                                   the dipole direction is aligned with the CMB dipole (Mittal et al.
+                                                                                2024a,b).
+                                                                                   The dipole tension has profound implications for our cosmolog-
+2 BACKGROUND                                                                    ical understanding, since it would point against the assumption of
+                                                                                homogeneity and isotropy. Thus, verifying its authenticity is critical.
+Ellis & Baldwin (1984) originally proposed that our motion through              This motivates further inquiry into the effect of data systematics and
+the Universe induces a dipole in the counts of radio galaxies. The key          the choice of statistical framework (for recent analyses of these is-
+idea is that this movement brightens and concentrates galaxies ahead            sues, see e.g. Oayda et al. 2025; Mittal et al. 2025). In this work, we
+of us as long as we make a uniform cut in flux density. Assume that             focus specifically on the observed ecliptic systematic in CatWISE,
+we can describe the cumulative luminosity function of some galaxy               unpacking why the density of quasars diminishes at higher ecliptic
+survey with a simple power law, so 𝑁 (> 𝑆) ∝ 𝑆 − 𝑥 . Also assume that           latitudes. This ecliptic bias was discussed recently in Abghari et al.
+the spectral energy distribution of the galaxies can be approximated            (2024), where the authors state that the ‘origin of the... gradient is
+with another power law following their frequency of emission: 𝑆 𝑓 ∝             unexplained’. While S21 and S22 gave possible explanations that
+ 𝑓 − 𝛼 . Purely from the predictions of special relativity, flux densities      we explore in Section 3, simulations are essential in unravelling the
+are transformed to our moving frame according to 𝑆 ′𝑓 = 𝑆 𝑓 𝛿1+𝛼 for            potentially subtle effects at play. This is especially so since it is not
+𝛿 = 𝛾(1 + 𝛽 cos 𝜃 ) with Lorentz factor 𝛾 and 𝛽 = 𝑣 obs. /𝑐 (our speed          guaranteed that applying an ad hoc, a posteriori correction — that is,
+in units of 𝑐). Meanwhile, relativistic aberration reduces the element          weighting cell counts according to a linear relation — will remove
+of solid angle according to 𝑑Ω′ = 𝑑Ω𝛿 −2 . The net effect, to first             the effect of the ecliptic systematic and the power it could have in
+order, is a dipole in the distribution of radio galaxy counts above             the dipole mode. Nor is it guaranteed that the CatWISE ecliptic bias
+some flux density. This dipole has an amplitude                                 can be exactly parametrised by a quadrupole, as was assumed in Pan-
+D = (2 + 𝑥(1 + 𝛼)) 𝛽,                                                    (1)    war et al. (2024). However, before generating simulations, we need
+                                                                                sufficient understanding of the nuances of CatWISE.
+which we refer to as the cosmic dipole amplitude or the Ellis & Bald-
+win (EB) amplitude. The properties of the galaxies at the flux limit,
+namely 𝑥 and 𝛼,2 plus the use of 𝑣 obs. = 𝑣 CMB ≈ 370 km s−1 leads to
+an expected dipole amplitude DCMB given the kinematic hypothesis                3 THE CATWISE2020 SAMPLE
+of the CMB dipole. In principle, we need not be restricted to radio sur-        The CatWISE sample in S21 was created from the CatWISE2020
+veys and can perform this test across the EM spectrum. However, we              data release (Marocco et al. 2021), generated from observations us-
+require that the mean spectrum of the galaxies in the sample follows            ing WISE. WISE surveyed at wavelengths of 3.4 𝜇m, 4.6 𝜇m, 12 𝜇m,
+a power law within the passband used to define the flux limit, which            and 22 𝜇m, corresponding to the 𝑊1, 𝑊2, 𝑊3 and 𝑊4 photometric
+is less obviously true for, e.g., quasars. This is because quasar spec-         bands respectively. Before determining the dipole in CatWISE, S21
+tral energy distributions exhibit thermal and non-thermal continua as           made a number of cuts and selections on the raw sample with the
+well as strong emission lines, among other effects. Nonetheless, on             aim of extracting quasars and correcting for possible systematics.
+aggregate across all redshifts, the mean spectrum is smooth (Secrest            First, the colour cut 𝑊1 − 𝑊2 ≥ 0.8 is known to isolate objects with
+et al. 2025).                                                                   AGN-dominated emission (Stern et al. 2012). Second, to account for
+   Multiple studies using independent datasets have reported a cosmic           reddening from Galactic dust in this mid-infrared sample, the authors
+dipole amplitude that is inconsistent with the kinematic hypothesis.            performed a manual correction to the 𝑊1 and 𝑊2 photometric mag-
+The common element is that the reported amplitude is too large by               nitudes, employing the Planck dust map (Planck Collaboration et al.
+                                                                                2014) and extinction coefficients from Wang & Chen (2019). Third,
+1 For a list of recent studies in cosmology and astronomy that have used SBI,   the authors constructed a number of masks to mitigate poor-quality
+see https://simulation-based-inference.org.                                     photometry and image artifacts; these masks were centred around re-
+2 See e.g. von Hausegger (2024) for discussion on why these quantities are      solved nebulae and bright stars, as well as remaining spurious areas
+defined near the limiting flux density in the Ellis & Baldwin (1984) test.      identified by the authors. This, coupled with the Galactic plane mask
+
+MNRAS 000, 1–13 (2026)
+                                                                                                              Wising up to CatWISE                    3
+for latitudes between −30◦ and 30◦ , means that more than half the sky      As evidence, Fig. 1 shows how the median 𝑊1 percentage error and
+was masked. The Galactic plane mask was justified on the basis that         the median W1 coverage change in different bins over the sky. Com-
+number counts drop due to source confusion (S22). Lastly, a bright          pare this with the actual smoothed CatWISE source density map, as
+magnitude cut of 𝑊1 > 9 was used to mitigate saturation, and while          shown in Fig. 4.
+the 𝑊1 < 16.4 cut introduces the cosmic dipole, it was also chosen             Given these visual cues, we postulate that the ecliptic trend in
+to safeguard against uneven source density due to WISE’s scanning           source density can be explained by sources scattering past the Cat-
+law.                                                                        WISE cuts to a greater extent where the photometric uncertainty is
+   Despite these efforts, CatWISE still exhibits a clear systematic shift   highest, or where the coverage is lowest. This is the Eddington bias
+in source density; the count of quasars appears to diminish near the        as referenced in the previous section. The essential ingredients are
+ecliptic poles and increase along the ecliptic equator. This induces        a steep luminosity function, photometric magnitude measurements
+a strong quadrupole (ℓ = 2) signal in the density map, exhibited            with some uncertainty and a cut in magnitude (Teerikorpi 2004).
+in Fig. 4. S22 gave two possible causes. Firstly, deblending issues         With these, it becomes more probable for faint sources outside the
+between fainter and brighter sources might be heightened where the          limit to scatter into the magnitude (flux density) cut than for bright
+coverage is deeper (i.e., at the ecliptic poles), leading to a drop in      sources within the limit to scatter outside it. Then, if we have an
+completeness. Secondly, sources might be scattering into the colour         overall photometric uncertainty varying with sky position, the mag-
+cut via Eddington bias (Eddington 1913). More explicitly, where             nitude of this effect would also vary with position. Note that this bias
+the photometric uncertainty is higher, this scattering past the colour      would not only scatter sources into the 𝑊1−𝑊2 ≥ 0.8 colour cut, but
+boundary is enhanced and leads to an increase in source density.            also into the 𝑊1 < 16.4 magnitude cut. Accordingly, this complex
+Whatever the cause, S21 corrected for this systematic shift in source       effect would have magnitude, colour and spatial dependence, making
+density by making a linear fit to the binned source counts as a function    simulations essential for verifying if it can explain the ecliptic bias.
+of declination, then using the inferred slope as a weighting function          We give a sketch of the main elements of our forward simulation
+to remove the linear dependence. Thus, in S21 and S22, this linear          here, which we explain in further detail in the following sections:
+correction was assumed to reflect the ecliptic systematic.
+                                                                               (i) Generate 𝑁 2D samples from the joint empirical distribution
+   This raises a number of questions. First, is it reasonable to assume
+                                                                            for 𝑊1 and 𝑊2. These are the true source magnitudes.
+that this systematic bias — whatever its mechanism — is fully (or
+                                                                               (ii) For each sample, compute the 𝑊1 − 𝑊2 colour and lookup up
+accurately) described by a linear function? Second, is there a way to
+                                                                            the corresponding spectral index 𝛼.
+probe the exact instrumental mechanism which induces the ecliptic
+                                                                               (iii) For each sample, choose a position uniformly on the sphere.
+bias? We propose that we can address these questions by using a
+                                                                               (iv) For some heliocentric speed 𝑣 obs. and direction (𝑙 ◦ , 𝑏 ◦ ), apply
+simulation-based statistical framework. Indeed, we contend that the
+                                                                            special relativity by Doppler boosting the 𝑊1 and 𝑊2 magnitudes
+most principled approach is to embed the systematic as part of the
+                                                                            and aberrating the source positions.
+data-generating process, leveraging the power of simulations to learn
+                                                                               (v) Discard sources which fall within the masked region of the
+its effect on the data. One one hand, we can heuristically deduce some
+                                                                            sky.
+functional dependence between a nuisance parameter and the desired
+                                                                               (vi) For each boosted magnitude, add a photometric uncertainty
+measurable — like photometric uncertainty and source density. Then,
+                                                                            depending on the source magnitude itself and the coverage at the
+in a frequentist-style analysis, the data might be scaled or weighted to
+                                                                            associated point in the sky.
+correct for the effect (as in S21 and S22). Alternatively, in a Bayesian
+                                                                               (vii) Make the cuts 9 < 𝑊1 < 16.4 and 𝑊1 − 𝑊2 > 0.8 on the
+approach, this heuristic might be part of the model itself (see e.g. the
+                                                                            boosted magnitudes.
+ecliptic bias parameter 𝛾ecl in D23). This allows inference when the
+                                                                               (viii) Count the number of sources in equal-area pixels on the sky.
+explicit function relating the nuisance parameter and the measurable
+is not known. However, it forces a parametric fit that might not reflect    While this order roughly follows our simulation routine, we do not
+the physics at play. Instead, if we know the mechanism which lies           follow that order in the sections below. Also, from here on, we re-
+behind the systematic, then we can write an explicit data-generating        fer to our simulated CatWISE sample as ‘CatSIM’ while the term
+function that maps model parameters to data — i.e., a simulation.           ‘CatWISE’ refers to the empirical sample from S21.
+The power of SBI is that the posterior distribution for the model
+parameters can be learned without knowing the form of the likelihood
+function. This grants access to all the tools of Bayesian statistics.       4.1.1 Drawing photometric samples
+                                                                            We start by constructing a less conservative CatWISE2020 sample,
+                                                                            imposing the cuts 𝑊1 < 17.0 and 𝑊1 − 𝑊2 > 0.5. We refer to this as
+4 METHOD                                                                    the ‘deeper’ CatSIM. Because our ansatz is that sources outside the
+4.1 Simulation function                                                     magnitude-colour cut scatter into it due to photometric uncertainty,
+                                                                            our deeper sample needs to accommodate this possibility. To obtain
+We first have to deduce a functional mapping from the dipole param-         this sample, we proceed as in S21, querying the NASA/IPAC In-
+eters, Θ, to the simulated CatWISE data, D. We assume that there are        frared Science Archive for CatWISE2020 sources with photometric
+two essential features: the cosmic dipole and the ecliptic systematic.      uncertainty in 𝑊1 and 𝑊2 greater than 0, 𝑊12 colour greater than
+To create the latter feature, we need knowledge about the physical or       0.5 and 𝑊1 magnitude less than 17. We then apply the exact same
+instrumental mechanism inducing the change in source density. As            dust and astrometric corrections as in S21.3 From this parent sample,
+was pointed out in S22 and Abghari et al. (2024), the ecliptic trend        we create an empirical 𝑊1-𝑊2 2D histogram and use the inferred
+appears to be correlated with WISE’s coverage in the 𝑊1 and 𝑊2              probabilities per bin to generate new samples from the distribution.
+bands. Now, one expected effect of elevated coverage is a reduction
+in photometric uncertainty. In patches of sky that WISE visits more
+often, more photons are collected, decreasing the per-pixel uncer-          3 We rely on the script ‘correct_catwise.py’ from the paper’s code at https:
+tainty with the inverse square root of the coverage (Cutri et al. 2012).    //zenodo.org/records/8303800.
+
+                                                                                                                             MNRAS 000, 1–13 (2026)
+4      Oayda & Lewis
+
+
+
+
+             101                                               859                                  0.108                                               0.214
+                                 W1 Coverage                                                                              W1 Error (%)
+
+Figure 1. Visual indication of the relationship between coverage and photometric error. A higher coverage implies a lower error. Left: Median coverage per pixel
+for CatWISE in the 𝑊1 photometric band. Right: Median photometric uncertainty (percentage error) per pixel for CatWISE in the 𝑊1 band.
+
+
+The number of samples we draw, 𝑁init. , is simply a parameter we                                                       Spectral index α (zoom)
+can fit. Now, in principle this parent distribution already contains the                           0.25     0.50   0.75      1.00   1.25     1.50       1.75       2.00
+dipole signal; that is, magnitudes have been boosted and de-boosted
+due to our motion. We assume that this effect is averaged out over
+the forward and reverse hemispheres such that we can use the distri-
+bution to draw rest frame magnitudes. Further, while we anticipate
+that the distribution will be somewhat broadened by photometric un-
+certainty, since the percentage errors are typically of O (1%) or less,
+the effect will be negligible.
+   Next, for each photometric sample, we compute the 𝑊1 − 𝑊2                                 105
+colour and look up the corresponding spectral index 𝛼.4 This is based                                                                      CatSIM (true α)
+on the assumption that the spectral energy distribution of each source                                                                     CatSIM (measured α)
+                                                                                             104
+follows a power law, so 𝑆 𝑓 ∝ 𝑓 − 𝛼 . We refer to these spectral indices                                                                   CatWISE (measured α)
+as the ‘true’ spectral indices. This is because while the spectral index
+is an intrinsic property of the source explicitly determined from its                        103
+
+                                                                                     Count
+spectral energy distribution, the actual measured spectral index is a
+function of the measured colour, for which there is an uncertainty.
+Indeed, since we know that the photometric uncertainty varies over                           102
+the sky (see Fig. 1), so too will the uncertainty in colour and thereby
+the uncertainty in spectral index. We can glean the effects of this                          101
+from Fig. 2. There, we plot the ‘true’ spectral indices from CatSIM, as
+indicated by the dashed grey histogram. These are the spectral indices
+of each simulated source determined before adding any error to the                           100
+magnitudes. We also plot the ‘measured’ spectral indices in CatSIM,                                −1       0      1        2      3       4        5          6          7
+as indicated by the solid red distribution. These are the spectral                                                           Spectral index α
+indices determined after adding position-dependent uncertainty to
+the colour, as a real observer would see (see Section 4.1.4). Note
+that while both distributions are consistent for high 𝛼, below 𝛼 ≈ 2                Figure 2. The spectral indices determined from our simulation (CatSIM) and
+they diverge, with the true spectral indices being dispersed past 𝛼 ≈               the empirical data (CatWISE). The dashed grey histogram indicates the true
+                                                                                    indices in the simulated sample, while the solid red histogram indicates what
+0.5. The hard cut for the measured distribution corresponds to the
+                                                                                    an observer would measure after noise has been added to the photometric
+colour cut that is applied after introducing photometric error (see
+                                                                                    magnitudes. The blue histogram indicates the distribution of 𝛼 from the
+Section 4.1.5). In essence, the uncertainty in colour means sources                 actual CatWISE dataset. In the top panel, we zoom in on the peak of all three
+with true spectral indices below the cut ‘leech into’ the sample; thus,             histograms to highlight the difference between the simulated and empirical
+the measured indices are inconsistent with the true indices. This                   indices.
+accords with the Eddington bias ansatz — more sources below the
+colour cut (lower 𝛼) are being scattered to higher colours (higher 𝛼)
+above the cut.                                                                      2 in S21 except for there being O (104 ) less sources here due to
+   We also compare the CatSIM spectral indices to the empirical                     our slightly modified mask (see Section 4.1.5). While the measured
+distribution of 𝛼 from the real CatWISE sample, as indicated by the                 CatSIM indices are broadly consistent with the real indices, there
+solid blue histogram in Fig. 2. This is essentially identical to figure             appears to be a slight divergence for 0.5 < 𝛼 < 2, which we zoom
+                                                                                    into at the top panel. The distribution of CatWISE indices has a
+                                                                                    more significant ‘twist’ than the simulated indices, meaning that the
+4 We use the ‘alpha_colors.fits’ file from the code for S21 to infer the relation   simulated indices (red) are more numerous than the CatWISE indices
+between colour and 𝛼.                                                               (blue) for 𝛼 < 1, whereas this is flipped for 1 < 𝛼 < 2. Although
+
+MNRAS 000, 1–13 (2026)
+                                                                                                              Wising up to CatWISE                   5
+this does suggest our simulation is not fully representing the original      then in each bin record the joint distribution of W1 and W2 photo-
+sample, the effect is likely to be small. The mean for the real indices      metric errors. Thus, given a source’s simulated boosted magnitude
+is 𝛼¯ ≈ 1.26, whereas the mean for the simulated measured indices is           ′
+                                                                             𝑚 WX  and its logarithmic coverage log10 𝐶WX , where 𝑋 ∈ {1, 2}, we
+𝛼¯ ≈ 1.23. Although our simulation does not require the EB amplitude         can determine a photometric uncertainty 𝜎WX .
+(1) to be computed, for the sake of comparison, this difference in 𝛼            With 𝜎𝑊 𝑋 , we draw an error for each source assuming Gaussian
+amounts to ΔD = 6.5 × 10−5 at 𝑥 = 1.75 and 𝑣 = 𝑣 CMB , or roughly            errors in magnitude space:
+0.9% of the anticipated dipole amplitude.                                       ′             ′
+                                                                             Δ𝑚 𝑊 𝑋 ∼ G(𝜇 = 𝑚 𝑊 𝑋 , 𝜎 = 𝜎𝑊 𝑋 ).                                    (4)
+                                                                             Thus the error added onto each source is not deterministic and will
+4.1.2 Sampling sky positions                                                 vary at each function call. We will return to the assumptions in (4)
+For each W1-W2-𝛼 sample generated by the above procedure, we                 later when we consider models with different noise properties.
+choose a point uniformly over the surface of a sphere. This implicitly
+assumes that there is no dependence of either of these three variables
+on sky position (as expected under the cosmological principle), apart        4.1.5 Cuts, binning & masking
+from the ecliptic bias and cosmic dipole we introduce later. This            Now that each source has a boosted position and photometric magni-
+gives each source a position (𝑙 ◦ , 𝑏 ◦ ) in Galactic coordinates.           tude, we impose the same cuts on the simulated sample as was used
+                                                                             in S21. In particular, we select only sources with 9 < 𝑊1 < 16.4 and
+                                                                             𝑊1 − 𝑊2 > 0.8. We then bin sources into equal-area pixels using the
+4.1.3 Special relativity
+                                                                             healpix algorithm,5 as implemented in the python package healpy
+Now, we add the effect of our motion. This introduces three dipole           (Górski et al. 2005; Zonca et al. 2019), yielding a source density map.
+parameters: the observer’s speed 𝑣 obs. , the dipole direction in Galactic   Lastly, we mask out pixels using the original mask defined in S21
+longitude 𝑙 ◦ and the dipole direction in Galactic latitude 𝑏 ◦ . For each   and our own minor additions. Specifically, we mask out an additional
+source position, we apply relativistic aberration where the angle is         5◦ around the north ecliptic pole. We noticed this region has highly
+transformed as                                                               elevated coverage and introduces a discontinuity in the otherwise
+           𝛽 + cos 𝜃                                                         smooth relationship between photometric error, coverage and mag-
+cos 𝜃 ′ =             .                                                (2)   nitude we reference in Section 4.1.4. We show this in Fig. 3, where
+          𝛽 cos 𝜃 + 1
+                                                                             the orange region at the top of the upper pane is removed after mask-
+Here, 𝜃 ′ is the angle between the direction of motion (the dipole           ing the northern ecliptic pole (lower pane). Our simulation cannot
+vector) and the source in the observer’s moving frame, 𝜃 is that same        capture the typical photometric uncertainties in that region, which
+angle in the source rest frame and 𝛽 = 𝑣 obs. /𝑐. This introduces the        suggests something extrinsic to the relationship between magnitude
+𝛿2 factor from the Ellis & Baldwin (1984) equation for the integral          and coverage affects the error there. That being said, we verified
+source counts. We then boost the rest-frame magnitudes 𝑚 𝑓 directly;         that our results are substantively unaffected by including the north
+since 𝑆 ′𝑓 = 𝑆 𝑓 𝛿1+𝛼 , we can write                                         ecliptic pole. We comment on this again in Section 5.
+𝑚 ′𝑓 = 𝑚 𝑓 − 2.5(1 + 𝛼) log10 𝛿.                                      (3)
+We boost both the 𝑊1 and 𝑊2 magnitudes using (3). Altogether,                4.1.6 Comparison to CatWISE
+these two steps imprint the signal of our motion into CatSIM.
+                                                                             We compare the outputs of our simulation function (a CatSIM sam-
+                                                                             ple) to the real CatWISE sample in Fig. 4. The output density maps
+4.1.4 Adding uncertainty                                                     in both cases have been smoothed with a moving average over a scale
+                                                                             of 1 steradian. To reiterate, each call of the function is not determin-
+Next, we associate each source with a photometric uncertainty 𝜎𝑊 𝑋 .         istic since various steps of the function rely on random processes.
+To do this, we assume that a source’s uncertainty is some function           Nonetheless, the similarity between the actual and simulated data is
+of its passband magnitude 𝑚 𝑊 𝑋 and its passband coverage 𝐶𝑊 𝑋 .             striking. This illustrates that the ecliptic bias can be recreated by sim-
+We compute the coverage in either band by creating median 𝐶WX                ulating how photometric uncertainty varies with WISE’s coverage,
+sky maps using the empirical CatWISE dataset (as in the left pane            which we take as verification of our Eddington bias ansatz. There are
+of Fig. 1), ultimately allowing us to convert a source’s position to         some caveats to this, however, in particular relating to our treatment
+a coverage given WISE’s scanning law. Now, in Figure 3, we visu-             of the width of CatWISE’s photometric error distribution. This is
+alise the magnitude-coverage relationship for the W1 passband. The           elaborated on in Section 6.
+median photometric error in each cell follows a reasonably smooth               The exact parameters chosen for the CatSIM function call in Fig. 4
+relationship between magnitude and the logarithm of the coverage,            are taken from the posterior distribution of one of the models we
+apart from the region in the top right of the upper panel. We ex-            fit later, specifically the model shown in Fig. 5. We stress that the
+plain this difference in Section 4.1.5. While in Figure 3 we show            model parameters do not include the dipole amplitude. As indicated
+the relationship in W1 only, it is important to note that the W1 and         in the steps outlined above, all we require as an input is an initial
+W2 photometric uncertainties are highly correlated. It is insufficient       number of samples to draw from the W1-W2 histogram, an observer’s
+to, independently in each passband, compute a photometric error              speed as a multiple of the CMB-dipole-derived velocity, and the
+given a source’s magnitude and coverage; this should also depend             direction of the observer’s motion. Thus, whether or not we compute
+on the error in the other passband. This is especially relevant since        the mean spectral index, or find the correct slope of the luminosity
+we make a cut in W12 colour: a selection that we anticipate is the           function, or ‘correct’ for some kind of bias is irrelevant. All of the
+progenitor of CatWISE’s ecliptic bias. Accordingly, we construct a
+four-dimensional lookup using the empirical CatWISE data. We bin
+sources according to their magnitude and coverage in both passbands,         5   https://healpix.sourceforge.io/
+
+                                                                                                                            MNRAS 000, 1–13 (2026)
+6         Oayda & Lewis
+
+                                    Median W1 error                           However, CatSIM does not elicit an obvious choice of likelihood
+                    0.012         0.02        0.03   0.04   0.05 0.06         function. In previous works (see e.g. Mittal et al. 2024a; Oayda et al.
+                                                                              2024), we assume the cell counts follow a Poisson distribution, the
+                  3.7                                                         rate parameter of which varies over the sky according to a dipole.
+                                                                              While the cell counts for CatSIM are anticipated to be Poisson de-
+                                                                              viates,6 we do not a priori know what the rate parameter at each
+                  3.4
+                                                                              cell will be. Again, there are complex effects arising from WISE’s
+                                                                              scanning law that do not have an obvious mathematical relation.
+                  3.1
+
+     log10 CW 1   2.8                                                         4.2.1 Learning likelihoods with SBI
+                                                                              In the absence of a likelihood function, we can leverage the power of
+                  2.5                                                         neural networks as a density function approximator. In essence, given
+                                                                              a set of realisations of CatSIM (D) for certain model parameters (𝚯),
+                  2.2                                                         we want to learn either the likelihood function or the posterior dis-
+                                                                              tribution directly. Normalising flows can achieve this (Papamakarios
+                                                                              et al. 2019a). The essential idea is to transform a simple base dis-
+                                     W1 magnitude                             tribution to a more expressive probability distribution via a series
+                  3.4                                                         of diffeomorphisms (associated by parameters 𝜙) that are learnt by
+                                                                              the neural network. The neural network’s loss function is coded to
+                  3.1                                                         the probability of the target variable conditioned on another variable,
+
+
+     log10 CW 1
+                                                                              the exact target and conditioner depending on the architecture (see
+                                                                              below). If we denote the learnt distribution 𝑞 𝜙 (sometimes referred to
+                  2.8
+                                                                              as the surrogate posterior or surrogate likelihood), then the network’s
+                                                                              output 𝑞 𝜙 (D|𝚯, 𝑀) or 𝑞 𝜙 (𝚯|D, 𝑀) converges to the true likelihood
+                  2.5                                                         and posterior respectively with increasing simulation count (Cranmer
+                                                                              et al. 2020).
+                  2.2                                                            In this work, we focus on two main approaches to neural den-
+                                                                              sity estimation: the neural posterior estimator (‘NPE’) and the neu-
+                  1.9                                                         ral likelihood estimator (‘NLE’). The NPE, originally proposed in
+                        11   12     13   14     15          16    17          Papamakarios & Murray (2016), learns the posterior distribution:
+                                     W1 magnitude                             the probability of the model parameters as conditioned on the data.
+                                                                              While an NPE allows one to efficiently generate posterior samples
+                                                                              by calling the neural network, since we only have the learnt posterior
+Figure 3. Relationship between coverage, magnitude and median error in the    𝑃(𝚯|D, 𝑀) and our original prior 𝜋(𝚯|𝑀), by (5) we only have ac-
+W1 band. In each coverage-magnitude bin, we compute the median photo-         cess to L up to a normalising constant. Importantly, this means the
+metric error across all real CatWISE samples made from the deeper catalogue
+                                                                              evidence Z cannot be computed, rendering Bayesian model com-
+(𝑊1 < 17.0 and 𝑊1 − 𝑊2 > 0.5). Top: without the northern ecliptic pole
+                                                                              parison impossible. On the other hand, NLEs (Papamakarios et al.
+mask. Bottom: with the northern ecliptic pole mask.
+                                                                              2019b) directly learn the likelihood function. While this adds the
+                                                                              additional requirement of sampling the posterior distribution with
+physical behaviour at the heart of the Ellis & Baldwin (1984) effect          an algorithm like MCMC or nested sampling, it means that both the
+is implicitly encoded in our simulation.                                      evidence and posterior distribution are accessible, opening up the
+                                                                              full suite of Bayesian inference.
+                                                                                 The label NLE or NPE is typically associated with amortized ap-
+4.2 Simulation-Based Inference                                                proaches. The idea is to generate a number of parameter samples
+                                                                              from the prior likelihood function, use these samples in the simula-
+Having developed a data-generating function that accounts for                 tor function to generate many datasets, then use the (𝚯, D) pair to
+WISE’s scanning law, we still need to learn the relationship between          learn the target distribution. This has the advantage of generalising
+the model parameters and the data. Traditionally, we would write              across many parameter realisations from the full prior space, such
+down a likelihood function and apply Bayes’s theorem, where the               that the learned target distribution can be used to do inference on
+desired posterior distribution is                                             many actual observations 𝐷 𝑖 . In this sense, the upfront cost of train-
+                         𝜋(𝚯|𝑀)L (D|𝚯, 𝑀)                                     ing the inferer is amortized over time as many different observations
+𝑃(𝚯|D, 𝑀) =                               .                             (5)
+                             Z(D|𝑀)                                           are quickly analysed (Zammit-Mangion et al. 2025). However, this
+                                                                              is suboptimal if one is only interested in a single target observation
+Here, D is the data, 𝚯 is the set of model parameters and 𝑀 is the            𝐷 0 ; computational effort has been spread across the prior space, but
+model. Meanwhile, L, 𝜋 and Z refer to the likelihood function, prior          we only care about the single, small region of parameter space as-
+function and Bayesian evidence (marginal likelihood) respectively.            sociated with 𝐷 0 . Sequential methods (‘SNPE’/‘SNLE’) solve this
+We need the Bayesian evidence for model comparison, where, as-                issue by iteratively updating the proposal (prior) distribution over 𝐿
+suming models 𝐴 and 𝐵 have a prior odds ratio of 1, the Bayes factor
+is
+              𝑃(𝑀 𝐴 |D)   Z(D|𝑀 𝐴)                                            6 See however von Hausegger et al. (2025), in which CatWISE’s cell counts
+𝐵 𝐴𝐵 =                  =           .                                   (6)
+              𝑃(𝑀 𝐵 |D)   Z(D|𝑀 𝐵 )                                           are shown to follow an over-dispersed or ‘general’ Poisson distribution.
+
+MNRAS 000, 1–13 (2026)
+                                                                                                                       Wising up to CatWISE                     7
+
+
+
+
+            54.7                                             58                                 54.7                                             58
+                    Averaged source count (CatWISE)                                                     Averaged source count (CatSIM)
+
+Figure 4. Comparing the real CatWISE data to the outputs of our simulation. Left: The real CatWISE2020 sample (smoothed with a moving average) as similar
+to that in Secrest et al. (2021) except for minor modifications to the mask. Right: Example of a CatSIM sample (smoothed) generated from one function call.
+The particular arguments passed to the function are the median parameters from Fig. 5, which includes an observer velocity of 𝑣obs. ≈ 740 km s −1 . In this sense,
+the plot is also a posterior predictive check for that model.
+
+
+rounds of inference (Papamakarios et al. 2019b). In the first round,                to 49 152 healpixels. If one naively trains an SNLE on this data,
+we use 𝜋(𝚯|𝑀) to draw parameter samples and generate simulations.                   they must accurately model a 49 152-dimensional base distribution:
+Once we have learnt the posterior distribution 𝑞 (1)
+                                                   𝜙 , this becomes the
+                                                                                    a virtually intractable problem. This is why crafting a summary statis-
+proposal distribution for the next round of inference, and so on. Af-               tic is usually essential when applying an SNLE or SNPE to actual
+ter the final round, the distribution 𝑞 (𝜙𝐿) is the final result we use             data. However, using a summary statistic would break our use case.
+for probabilistic inference. Thus, at the same simulation count, this               To explain, suppose we apply some non-invertible, dimensionality-
+sequential approach generally has better performance than the amor-                 reducing transform 𝑓sum. such that z = 𝑓sum. (D). Then, we have
+tized approach for one observation 𝐷 0 . However, it cannot generalise              Z(D|𝑀) ≠ Z(z|𝑀).                                                          (7)
+as well across multiple observations. Since we are only interested in
+the CatWISE sample as in S21 (see Fig. 4), we use the sequential                    That is, the evidence associated with the compressed data z is not
+algorithm.                                                                          generally equal to the evidence of the original data, and there is no
+                                                                                    Jacobian we can write for the change of variables. This would prevent
+                                                                                    model comparison using the explicit probability of the data given the
+4.2.2 Estimating the Bayesian evidence                                              model.
+                                                                                       We can circumvent this by taking advantage of the hierarchical
+We note that while posterior and likelihood estimation with normal-                 nature of HEALPix data using the ‘nested’ ordering. What we want
+ising flows has seen extensive use in recent years, direct estimation of            to show is that, by performing some downscaling operation on the
+the Bayesian evidence is rarer. Spurio Mancini et al. (2023) recently               data, we do not impact the inferred posterior distribution or the
+performed an extensive profiling of the effectiveness of neural den-                relative marginal likelihoods for different models. Now, if we start at
+sity estimators, coupled with the learned harmonic mean estimator                   𝑁side = 64, then a pixel at the next coarsest resolution (𝑁side = 32)
+(McEwen et al. 2021), at computing Z. Bastide et al. (2025) sim-                    consists of a block of four interior pixels from 𝑁side = 64. Since
+ilarly compared a number of algorithms to determine Z, including                    our data describes counts of objects inside a pixel, the value of the
+harmonic-mean- and importance-sampling-based approaches. In this                    cell at the coarser resolution is just the sum of the counts of the four
+work, we instead directly use the final learned likelihood 𝑞 (𝜙𝐿) ≈ L               pixels at the finer resolution. If we assume the counts themselves
+from our SNLE coupled with a nested sampling algorithm to com-                      are Poisson deviates, then the distribution of the coarse pixel counts
+pute the final posterior and evidence. Since our implementation is                  will also be Poissonian. We only need to take care of masked pixels:
+built in the JAX ecosystem (Bradbury et al. 2018), we rely on the                   they are excluded from the sum, and a coarse pixel containing four
+Handley Lab’s fork of the blackjax python library (Cabezas et al.                   masked sub-pixels is itself masked. The net result is that we can take
+2024; Yallup et al. 2025), which implements GPU-native nested slice                 a map of arbitrary 𝑁side and downscale to a desired resolution while
+sampling.7 Now, as our SNLE yields both the posterior and evidence,                 keeping an explicit likelihood function.
+our SNPE is somewhat redundant. However, it is effective as a con-                     Concretely, denote the ‘resolution’ of the healpix map as ℓ such
+sistency check for our results as its architecture is quite distinct to             that the number of pixels at some resolution is 𝑁ℓ = 12(4ℓ ), meaning
+that of the SNLE (see Section A).                                                   𝑁side = 2ℓ . We call the resolution of the initial map ℓhigh and the
+   In fact, we found in testing that the results of the SNLE and SNPE               target low resolution ℓlow . Also, we index the low resolution pixels
+are extremely sensitive to their architecture. We highlight the salient             with 𝑖ℓlow , the pixels with the next highest resolution (i.e., twice the
+challenges here and leave a more detailed exploration for Section A.                𝑁side ) as 𝑖ℓlow +1 , and so on. Thus, we refer to the observed count of a
+A critical concern is the dimensionality of the data. The original                  pixel at some resolution ℓ as 𝑘 𝑖ℓ . We denote the set of all child pixels
+CatWISE sample in S21 was created with 𝑁side = 64, amounting                        or sub-pixels for some pixel 𝑖ℓ at resolution ℓ as 𝐶𝑖ℓ = {𝑖ℓ+1 }child, 𝑖ℓ ,
+                                                                                    since they necessarily have resolution ℓ + 1. To represent the masking
+                                                                                    procedure described in the previous paragraph, we introduce a binary
+7 https://github.com/handley-lab/blackjax;                                          mask 𝑚 𝑖ℓ ∈ {0, 1} where 1 means the pixel is unmasked and 0
+https://handley-lab.co.uk/nested-sampling-book/intro.html                           means it is masked. With this, we can define a downscaling operation
+
+                                                                                                                                      MNRAS 000, 1–13 (2026)
+8       Oayda & Lewis
+𝐷 ℓ : (kℓ , mℓ ) ↦→ (kℓ −1 , mℓ −1 ), mapping the vector of pixel counts      • CMB velocity, free direction, extra error, Gaussian
+kℓ and binary mask mℓ to the next coarsest resolution:                        • CMB velocity & direction, extra error, Gaussian
+           ∑︁                                                                 • Dipole from S21, extra error, Gaussian
+𝑘 𝑖ℓ −1 =         𝑚𝑗𝑘𝑗                                               (8)      • Dipole from D23, extra error, Gaussian
+          𝑗 ∈𝐶𝑖ℓ −1
+
+and
+          (                                                                 4.3.1 Free dipole
+          1,      if ∃ 𝑗 ∈ 𝐶𝑖ℓ −1 such that 𝑚 𝑗 = 1,
+𝑚 𝑖ℓ −1 =                                                             (9)   The label ‘free dipole’ means a model in which the dipole parameters
+          0,      otherwise.                                                (𝑣ˆ obs. , 𝑙 ◦ , 𝑏 ◦ ) are drawn from the following prior functions instead of
+This means a full downscaling operation from ℓhigh to ℓlow is just the      being constrained to a particular value:
+composition of these individual downscales:                                 𝑣ˆ obs. ∼ U [0, 8]                                                       (13)
+(kℓlow , mℓlow ) = (𝐷 ℓlow+1 ◦ · · · ◦ 𝐷 ℓhigh )(kℓhigh , mℓhigh )   (10)     𝑙 ◦ ∼ U [0, 360]                                                       (14)
+                 ≔ 𝐷 ℓhigh →ℓlow (kℓhigh , mℓhigh ).                 (11)     𝑏 ◦ ∼ P [−90, 90].                                                     (15)
+
+Then, the log likelihood is the sum of the per-pixel Poisson proba-         We introduce 𝑣ˆ obs. = 𝑣 obs. /𝑣 CMB , i.e. the observer’s speed in units
+bilities given an anticipated rate parameter 𝜆:                             of the CMB-derived velocity. U [𝑎, 𝑏] denotes a continuous uniform
+                                                                            distribution between 𝑎 and 𝑏, so, for example, we impose a prior of
+              𝑁ℓlow
+              ∑︁                                                          an observer speed between 0 and 8 times 𝑣 CMB . P denotes a ‘polar
+ln Lℓlow =            Pois 𝑘 𝑖ℓ     𝜆𝑖ℓ                              (12)   distribution’ where 𝑃(𝑏) = 12 sin 𝑏 for Galactic latitude in radians
+                              low     low
+              𝑖ℓlow                                                         [0, 𝜋].
+where 𝑘 𝑖ℓ and 𝜆𝑖ℓ are obtained using the downscale operator in                We also need a number of initial sources to populate the celestial
+           low       low
+(11).                                                                       sphere with, which we denote as 𝑁init. . This is somewhat analogous to
+   Again, our SNLE learns a likelihood, so we have no need to (and          the monopole parameter 𝑁 usually used when fitting for the cosmic
+cannot) write one down. However, the above exercise shows that we           dipole: a high 𝑁init. means more sources end up in the final density
+can downscale mock CatSIM samples and assess the accuracy of our            map. However, most sources initially drawn will be discarded by
+SNLE by benchmarking with the explicit likelihood in (12). Thus, we         the final cuts. We adopt the prior log10 𝑁init. ∼ U [7.477, 7.602],
+can be assured that downscaling the data has no substantial impact          corresponding to a log uniform prior between 30 and 40 million.
+on the results. While the exact value of the evidence will be different,
+we can verify that the posterior distributions and Bayes factors are        4.3.2 Error distribution
+identical whether or not we use the high or low dimensional map.
+We show that this is indeed the case in Section B.                          The label ‘extra error’ and ‘no extra error’ refers to how we handle
+   In the SNLE arm of our SBI pipeline, after generating CatSIMs D,         the photometric uncertainties generated for CatSIM. As mentioned,
+we apply this downscaling process to produce reduced datasets z. The        we lookup a photometric error given a source’s simulated magnitude
+neural network sees these downscaled maps, not the original CatSIM          and coverage (see Fig. 3 and Section 4.1.4). These are derived from
+maps. For the SNPE, the foregoing concerns are not relevant because         the deeper variant of the real CatWISE dataset, before the final colour
+the target variable is no longer the data but the model parameters 𝚯.       and magnitude cuts. In testing, we found that the simulated decrease
+As long as we do not use non-invertible transform on the parameters,        in source density at the ecliptic poles was too small as compared with
+the learned posterior distribution can be conditioned on summarised         what we actually observe in CatWISE. We discuss the implications
+data. Thus, we adopt a CNN-style approach, performing 1D convo-             of this later, but for now, we can choose to add an extra error term in
+lutions on the healsphere as in Krachmalnicoff & Tomasi (2019).             quadrature which enhances the photometric error:
+The CNN’s weights and biases are updated alongside that of the nor-          2             2             2
+                                                                            𝜎𝑊 𝑋, final = 𝜎𝑊 𝑋 + 𝜂extra 𝜎𝑊 𝑋 .                                       (16)
+malising flow, effectively allowing the network to learn a summary
+representation of the data while evaluating the posterior distribution.     The 𝜂extra term simply increases the width of the distribution we
+We fully unpack our choices of hyperparameters in Section A.                sample errors from. If 𝜂extra = 0, we have ‘no extra error’, and the
+   With our SNLE, we have all the tools needed for standard Bayesian        final error purely comes from the formal uncertainties quoted in
+inference. Our learned likelihood 𝑞 (𝜙𝐿) is the likelihood in Bayes’s       the empirical CatWISE data (see Fig 3). Now, we assume 𝜂extra is
+theorem (5), so we use it to compute the posterior distribution and         the same for both the W1 and W2 magnitudes; that is, 𝜂𝑊1, extra =
+the Bayesian evidence for a suite of models. Meanwhile, our SNPE            𝜂𝑊2, extra . We originally used a unique 𝜂extra for each band, though we
+produces — via very distinct architecture — another posterior dis-          later uncovered substantial degeneracy between the two parameters.
+tribution, enabling verification of our SBI pipeline.                       For this parameter, we adopt a prior 𝜂extra ∼ U [0, 8].
+                                                                               We also vary the assumed distribution for these errors. Models with
+                                                                            the label ‘Gaussian’ assume normally-distributed errors, whereas
+4.3 Models tested                                                           those with the label ‘Student’s 𝑡’ assume errors from that distribution.
+                                                                            This means the Student’s 𝑡 models need an extra term for the shape
+We computed the Bayesian evidence for the following models, the
+                                                                            parameter of the distribution, which we denote as 𝜉. At high 𝜉, the
+exact characteristics of which we explain further below.
+                                                                            distribution is approximately Gaussian; at low 𝜉, the tails of the
+    • Free dipole, extra error, Gaussian                                    distribution are dramatically enhanced, allowing more sources with
+    • Free dipole extra error, Student’s 𝑡                                  ‘anomalously’ large errors. We adopt a prior log10 𝜉 ∼ U [0.3, 3],
+    • Free dipole, no extra error, Gaussian                                 where the lower limit is predicated on the fact that the variance of
+    • Free dipole, no extra error, Student’s 𝑡                              the Student’s 𝑡 distribution is infinite for 1 < 𝜉 ≤ 2 and undefined for
+    • CMB direction, free velocity, extra error, Gaussian                   𝜉 ≤ 1.
+
+MNRAS 000, 1–13 (2026)
+                                                                                                                 Wising up to CatWISE                 9
+
+Table 1. Summary of the log Bayes factor of each model with respect to our      also observed degeneracy between the Student’s 𝑡 shape parameter 𝜉
+fiducial model (‘free dipole, extra error, Gaussian’). Thus by definition the   and the extra error term 𝜂extra , which could illustrate that this model
+log Bayes factor of that model is 0. As mentioned in Section 4.3, the Secrest   is not the most parsimonious. Thus, we are justified in selecting the
+et al. (2021) and Dam et al. (2023) models, as well as the CMB-based models,    ‘free dipole, extra error, Gaussian’ model as our fiducial model for
+assume the ‘extra error’ parameter defined in (16).                             comparison with other studies.
+         Model                                          ln 𝐵
+         Dipole from Secrest et al. (2021)             3.1 ± 1.2
+         Dipole from Dam et al. (2023)                 2.4 ± 1.0
+                                                                                6 DISCUSSION & CONCLUSIONS
+         Free dipole, extra error, Gaussian               0±0
+         Free dipole, extra error, Student’s 𝑡        −1.0 ± 0.9                A dipole consistent with the CMB dipole is overwhelmingly dis-
+         CMB direction, free velocity                 −3.6 ± 0.9                favoured (ln 𝐵 = −9.9 ± 1.2). This means there is substantially
+         CMB velocity, free direction                 −9.2 ± 1.1                stronger preference for our fiducial dipole with parameters as shown
+         CMB velocity & direction                     −9.9 ± 1.2
+                                                                                in Fig. 5. This dipole has an amplitude that is twice as large as the
+         Free dipole, no extra error, Student’s 𝑡    −35.0 ± 1.3                                                                            −1 ), and is
+         Free dipole, no extra error, Gaussian      −110.5 ± 5.2
+                                                                                CMB expectation (𝑣ˆ obs. = 2.00+0.25
+                                                                                                                  −0.26 or roughly 740 km s
+                                                                                thus consistent with the factor of two excess in S21. The direction
+                                                                                is ≈ 3𝜎 away from the CMB direction (Fig. 6), a higher level of
+4.3.3 CMB models                                                                disagreement than the just under 2𝜎 tension reported in S21 (see fig-
+For the CMB models, we fix the dipole parameters to their CMB-                  ure 4 therein). Altogether, this is substantial evidence that the dipole
+derived values. For example, ‘CMB velocity, free direction’ means               in CatWISE remains discrepant with the CMB dipole — even after
+𝑣 obs. = 𝑣 CMB , or 𝑣ˆ obs. = 1, while the direction is sampled from (14)       reproducing the ecliptic bias in our simulations.
+and (15). Therefore, the ‘CMB velocity & direction’ model is just a                 The model with the globally highest Bayesian evidence is the S21
+dipole completely consistent with the CMB dipole. Note that we also             dipole, which is mildly preferred over our fiducial model (ln 𝐵 = 3.1±
+assume Gaussian errors for the CMB models with the extra error                  1.2). The next highest evidence is yielded from a model assuming the
+term 𝜂extra , as described above. For future reference, we drop the             dipole from D23 (ln 𝐵 = 2.4 ± 1.0), although the large uncertainties
+‘extra error’ and ‘Gaussian’ descriptors for these models.                      on ln 𝐵 means this is, at best, marginally preferred. We interpret this
+                                                                                as signifying that CatSIM is still consistent with the studies that used
+                                                                                the ecliptic bias correction (although again note that these models
+4.3.4 Literature models                                                         use the extra error term 𝜂extra ). It is worth mentioning, though, that
+We also fix our dipole parameters to those inferred from S21 and                our inferred amplitude is slightly lower than S21 (they recovered
+D23, where for the latter study we use the median parameters from               𝑣ˆ obs. = 2.16), and reasonably lower than D23 (𝑣ˆ obs. = 2.68 ± 0.23).
+the posterior distribution (shown by figure 2 therein). Like the CMB            As revealed in Fig. 6, while our recovered direction is consistent with
+models, we also assume Gaussian errors with the 𝜂 term, and we                  D23, it is mildly discrepant with S21. That being said, these minor
+drop the ‘extra error’ and ‘Gaussian’ descriptors.                              differences do not tip the model odds in favour of our fiducial model.
+                                                                                    Speaking generally, Table 1 reveals that models which use the ex-
+                                                                                tra error term defined in (16) are most favoured. Indeed, the ‘free
+                                                                                dipole, no extra error, Gaussian’ model has catastrophically less evi-
+5 RESULTS
+                                                                                dence than our fiducial model; ln 𝐵 = −110.5 implies a model odds
+We show the log Bayes factors for each model in Table 1. These                  ratio of ≈ 1.0 × 10−50 ! This means that the ecliptic bias cannot be
+are written with respect to the ‘free dipole, extra error, Gaussian’            fully replicated unless one assigns additional error to the CatWISE
+model, which we set as our fiducial model. Thus, by definition, this            photometric magnitudes. Indeed, the value of 𝜂extra = 3.99+0.34
+                                                                                                                                              −0.35 from
+has a log Bayes factor of 0. We also show the corner plot for this              Fig. 5 means that the errors have to be slightly more than doubled.
+model in Fig. 5. We then project the 𝑙 ◦ -𝑏 ◦ 2D marginal distribution          There are two interpretations of this result: either the uncertainties
+onto the sky in Fig. 6, illustrating the direction of the inferred dipole.      in the published CatWISE sample are genuinely underestimated, or
+This posterior distribution was generated using our NLE, and we                 there is an additional physical process — not present in our simula-
+show it is consistent with the outputs of the NPE in Fig. C1 of                 tion — that produces the exact same effect as Eddington bias. S22
+Section C. We also verified that we reproduce the results in Fig. 5 if          speculated that heightened sensitivity to faint sources where the cov-
+we choose to leave the north ecliptic pole unmasked (see Section 4.1.5          erage is higher could also introduce deblending issues with brighter
+for discussion on this). In particular, we find 𝑣ˆ obs. = 2.05+0.24
+                                                                 −0.25 and      sources inside the cut. This would effectively drop the source counts.
+𝑙 ◦ , 𝑏 ◦ = 221+11
+               −11 , 40.8 +7.1 .
+                          −6.4                                                  Now, this very well could be part of the picture, though it is not
+     To generate the uncertainties for the log Bayes factors in Table 1,        immediately obvious it would affect the counts in the same way as
+we note that after roughly three rounds of inference, the posterior dis-        Eddington bias. For one, Eddington bias scatters sources into the cut
+tribution computed from the NLE is the same for subsequent rounds               more often where coverage is lower. Meanwhile, a deblending bias
+while the estimate of ln Z fluctuates. This is because we instantiate           would instead reduce the probability of source detection in bins with
+the neural network from scratch at each round, thereby randomly                 higher coverage. Perhaps this does induce the same drop in source
+re-initialising the weights and biases. This introduces another level           density at the ecliptic poles, though this cannot be said asserted until
+of stochasticity to the sensitive evidence estimate. We compute one             it is encoded into CatSIM.
+standard deviation on these ln Z values.                                            Speaking of CatSIM, our principal task was to investigate whether
+     Given the uncertainties in ln 𝐵, we note that the ‘free dipole, extra      Eddington bias is responsible for the ecliptic trend in CatWISE.
+error, Gaussian’ model has similar support to the ‘free dipole, extra           We have given strong evidence that it is highly relevant. However,
+error, Student’s 𝑡’ model. However, the common parameters inferred              our CatSIM could go further. In addition to the deblending issue
+in either case are virtually identical (we deduce 𝑣ˆ obs. = 2.12+0.24
+                                                                  −0.24 and     mentioned above, one might also want to apply the astrometric and
+𝑙 ◦ , 𝑏 ◦ = 218+11        +6.8
+               −11, 41.4 −5.9 for the Student’s 𝑡 variant; cf. Fig. 5). We      dust corrections as part of the simulation itself. We mention these
+
+                                                                                                                              MNRAS 000, 1–13 (2026)
+10             Oayda & Lewis
+
+                  log10 Ninit. = 7.5402+0.0024
+                                       −0.0023
+
+
+
+
+                                                     ηextra = 3.99+0.34
+                                                                  −0.35
+
+                  5
+
+
+
+
+         ηextra   4
+
+
+
+
+                  3                                                        v̂obs. = 2.00+0.25
+                                                                                        −0.26
+
+
+
+               2.5
+
+
+      v̂obs.   2.0
+
+
+               1.5
+
+                                                                                                           `◦ = 221+11
+                                                                                                                   −11
+
+               260
+
+               240
+
+     `◦        220
+
+               200
+
+               180                                                                                                                     b◦ = 44.0+7.7
+                                                                                                                                                −7.0
+
+                70
+
+                60
+
+                50
+      b◦
+                40
+
+                30
+
+
+                       7.535   7.540   7.545     3           4        5     1.5     2.0     2.5     180   200   220   240   260       30   40    50   60   70
+
+                           log10 Ninit.                    ηextra                  v̂obs.                        `◦                             b◦
+
+
+Figure 5. The inferred posterior distribution for our fiducial model: ‘free dipole, extra error, Gaussian’. This assumes a dipole with free parameters and an 𝜂extra
+term which increases the width of CatWISE’s photometric error distribution (assumed to be Gaussian). A 1𝜎 credible interval is indicated by the dashed lines
+and titles of the 1D marginals. Meanwhile, 1𝜎 and 2𝜎 intervals are shown by the filled contours in the 2D marginals.
+
+
+in Section 4.1.1, and in our case, we simply corrected the deeper                    study has as of yet considered whether the dust correction employed
+sample identically to S21 to enable a more faithful comparison with                  in S21’s CatWISE sample affects the inferred dipole.
+that study. However, a more principled way to frame this is not as a
+correction we must make before measuring the data, but an implicit                     As this paper was submitted, von Hausegger et al. (2025) released
+feature which is accounted for at the level of probabilistic inference.              a new re-analysis of CatWISE. There, the authors parametrically
+In other words, it is encoded into the data-generating process. While                modelled the dipole and higher order multipoles in the quasar sample,
+beyond the scope of this work, future studies might seek to investigate              deploying a full Bayesian framework. In their models, the ecliptic bias
+the degree to which dust contributes to a change in source density,                  was accounted for either with the linear ecliptic factor 𝛾ecl , as from
+especially considering the issues in Mittal et al. (2024a,b; though the              Dam et al. (2023), or with a quadrupole. The authors also postulated
+sample was in the optical regime, in which extinction is expected to                 that Eddington bias is responsible for the ecliptic trend, and showed
+have a much larger effect than in the infrared). To our knowledge, no                that since the inferred value for 𝛾ecl drops with brighter magnitude
+                                                                                     cuts, it is consistent with the systematic being related to the fractional
+
+MNRAS 000, 1–13 (2026)
+                                                                                                                    Wising up to CatWISE                    11
+
+                                                                      CMB          DATA AVAILABILITY
+                                                                      S21
+                                                                                   The data used in this study will be made available with a reasonable
+60◦                                                                   D23
+                                                                                   request to the authors.
+
+
+
+b = 30◦
+                                                                                   REFERENCES
+                                                                                   Abghari A., Bunn E. F., Hergt L. T., Li B., Scott D., Sullivan R. M., Wei D.,
+                                                                                        2024, arXiv e-prints, p. arXiv:2405.09762
+0◦                                                                                 Bastide P., Estoup A., Marin J.-M., Stoehr J., 2025, arXiv e-prints, p.
+            ` = 330◦      300◦         270◦        240◦        210◦
+                                                                                        arXiv:2507.08734
+                                                                                   Böhme L., et al., 2025, arXiv e-prints, p. arXiv:2509.16732
+Figure 6. Inferred dipole direction for the ‘free dipole, extra error, Gaussian’   Bradbury J., et al., 2018, JAX: composable transformations of
+model, shown in Galactic coordinates. The contours enclose 1𝜎 and 2𝜎                    Python+NumPy programs, http://github.com/jax-ml/jax
+intervals of posterior density for a 2D Gaussian. The direction of the CMB         Cabezas A., Corenflos A., Lao J., Louf R., 2024, BlackJAX: Composable
+dipole is shown by the star, while the results of Secrest et al. (2021; ‘S21’)          Bayesian inference in JAX (arXiv:2402.10797)
+and Dam et al. (2023; ‘D23’) are indicated by the plus and dot respectively.       Condon J. J., Cotton W. D., Greisen E. W., Yin Q. F., Perley R. A., Taylor
+                                                                                        G. B., Broderick J. J., 1998, AJ, 115, 1693
+                                                                                   Cranmer K., Brehmer J., Louppe G., 2020, Proceedings of the National
+photometric error, or the sample’s typical signal to noise ratio. Our                   Academy of Science, 117, 30055
+work gives direct evidence for this proposition.                                   Cutri R. M., et al., 2012, Explanatory Supplement to the WISE All-Sky Data
+   Although our result is similar to S21, S22 and D23, we empha-                        Release Products, Explanatory Supplement to the WISE All-Sky Data
+sise that understanding the data — and the instrumental systematics                     Release Products
+that complicate it — is paramount. The rise of massively-parallel                  Dam L., Lewis G. F., Brewer B. J., 2023, MNRAS, 525, 231
+                                                                                   Di Valentino E., et al., 2025, Physics of the Dark Universe, 49, 101965
+computation means that simulations are cheap. Moreover, machine
+                                                                                   Dirmeier S., 2024, Journal of Open Source Software, 9, 6188
+learning with SBI allows one to be confident that these systematics
+                                                                                   Eddington A. S., 1913, MNRAS, 73, 359
+and their potentially unforeseeable consequences are not neglected                 Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377
+when making statistical inferences. This is critical for the next era of           Germain M., Gregor K., Murray I., Larochelle H., 2015, in Bach F., Blei
+cosmological datasets, which will shed light on the cracks that may                     D., eds, Proceedings of Machine Learning Research Vol. 37, Proceed-
+be appearing in ΛCDM (Di Valentino et al. 2025).                                        ings of the 32nd International Conference on Machine Learning. PMLR,
+   In summary, our finding of an anomalous dipole in CatWISE, taken                     Lille, France, pp 881–889, https://proceedings.mlr.press/v37/
+with the radio galaxy studies, represents increasingly clear evidence                   germain15.html
+that something is amiss with our understanding of these samples, or                Górski K. M., Hivon E., Banday A. J., Wandelt B. D., Hansen F. K., Reinecke
+(more seriously) that our interpretation of the CMB dipole is wrong.                    M., Bartelmann M., 2005, ApJ, 622, 759
+To be confident of this last proposition, future studies of the cosmic             Greenberg D., Nonnenmacher M., Macke J., 2019, in Chaudhuri K., Salakhut-
+                                                                                        dinov R., eds, Proceedings of Machine Learning Research Vol. 97,
+dipole will need to carefully consider the instrumental effects that
+                                                                                        Proceedings of the 36th International Conference on Machine Learn-
+are at play. The tools we have developed and applied for the first time                 ing. PMLR, pp 2404–2414, https://proceedings.mlr.press/v97/
+to the cosmic dipole problem are easily extendible to other galaxy                      greenberg19a.html
+surveys. However, we will need to inquire deeper into the systematic               Krachmalnicoff N., Tomasi M., 2019, A&A, 628, A129
+effects that can impact the rate of source detection. We stress that               Land-Strykowski M., Lewis G. F., Murphy T., 2025, arXiv e-prints, p.
+this is not optional but a necessity.                                                   arXiv:2509.18689
+                                                                                   Lewis A., 2025, J. Cosmology Astropart. Phys., 2025, 025
+                                                                                   Marocco F., et al., 2021, ApJS, 253, 8
+                                                                                   McEwen J. D., Wallis C. G. R., Price M. A., Spurio Mancini A., 2021, arXiv
+ACKNOWLEDGEMENTS                                                                        e-prints, p. arXiv:2111.12720
+                                                                                   Mittal V., Oayda O. T., Lewis G. F., 2024a, MNRAS, 527, 8497
+We thank the anonymous referee for their insightful comments which
+                                                                                   Mittal V., Oayda O. T., Lewis G. F., 2024b, MNRAS, 530, 4763
+improved this paper’s quality. This research has made use of the                   Mittal V., Oayda O. T., Lewis G. F., 2025, The Open Journal of Astrophysics,
+NASA/IPAC Infrared Science Archive, which is funded by the Na-                          8, 143
+tional Aeronautics and Space Administration and operated by the                    Oayda O. T., Mittal V., Lewis G. F., Murphy T., 2024, MNRAS, 531, 4545
+California Institute of Technology. The corner plots in this work                  Oayda O. T., Mittal V., Lewis G. F., 2025, MNRAS, 537, 1
+were generated with the getdist library (Lewis 2025). As mentioned                 Panwar M., Jain P., Omar A., 2024, MNRAS, 535, L63
+in the text, this study made extensive use of the surjectors library               Papamakarios G., Murray I., 2016, arXiv e-prints, p. arXiv:1605.06376
+(Dirmeier 2024), as well as the Handley Lab’s fork of blackjax,                    Papamakarios G., Pavlakou T., Murray I., 2017, arXiv e-prints, p.
+available at https://github.com/handley-lab/blackjax. We                                arXiv:1705.07057
+thank the contributors of these software libraries. We also extend                 Papamakarios G., Nalisnick E., Jimenez Rezende D., Mohamed S., Lakshmi-
+                                                                                        narayanan B., 2019a, arXiv e-prints, p. arXiv:1912.02762
+our gratitude towards: the authors of Secrest et al. (2021) for making
+                                                                                   Papamakarios G., Sterratt D., Murray I., 2019b, in Chaudhuri K., Sugiyama
+their code publicly available; Brendon Brewer for helpful discus-
+                                                                                        M., eds, Proceedings of Machine Learning Research Vol. 89, Proceed-
+sions regarding modelling the photometric error distributions; and                      ings of the Twenty-Second International Conference on Artificial Intel-
+Will Handley and Harry Bevins for insightful discussions on SBI                         ligence and Statistics. PMLR, pp 837–848, https://proceedings.
+and nested sampling, as well as for hosting OTO and GFL at the                          mlr.press/v89/papamakarios19a.html
+Kavli Institute in Cambridge. OTO is supported by the University of                Planck Collaboration et al., 2014, A&A, 571, A11
+Sydney Postgraduate Award.                                                         Planck Collaboration et al., 2020, A&A, 641, A1
+
+                                                                                                                                    MNRAS 000, 1–13 (2026)
+12       Oayda & Lewis
+Secrest N. J., 2025, Philosophical Transactions of the Royal Society of London   an AffineMaskedAutoregressiveInferenceFunnel as imple-
+    Series A, 383, 20240027                                                      mented in surjectors. This uses the same masking procedure as in
+Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., Colin        the MAFs, but drops 50% of the data to a latent space using an affine
+    J., 2021, ApJ, 908, L51                                                      transform and a conditioner functions with 4 layers of 128 neurons.
+Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., 2022,        We use a Gaussian for the decoder distribution. After considering the
+    ApJ, 937, L31
+                                                                                 masked pixels, this drops out 56 data dimensions of our 112D data
+Secrest N., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., 2025,
+    arXiv e-prints, p. arXiv:2505.23526
+                                                                                 vector, leaving a 56D-vector that propagates through a final chain of
+Spurio Mancini A., Docherty M. M., Price M. A., McEwen J. D., 2023, RAS          6 MAFs.
+    Techniques and Instruments, 2, 710
+Stern D., et al., 2012, ApJ, 753, 30
+Teerikorpi P., 2004, A&A, 424, 73                                                A2 NPE
+Wagenveld J. D., Klöckner H.-R., Schwarz D. J., 2023, A&A, 675, A72              Unlike our NLE, the NPE learns a distribution with a significantly
+Wagenveld J. D., et al., 2024, arXiv e-prints, p. arXiv:2408.16619
+                                                                                 lower dimensionality. This is just the number of parameters for each
+Wagenveld J. D., von Hausegger S., Klöckner H. R., Schwarz D. J., 2025,
+    A&A, 697, A112
+                                                                                 model, far less than the input 𝑁side = 4 map for the NLE. Accordingly,
+Wang S., Chen X., 2019, ApJ, 877, 116                                            we use a smaller architecture and deploy 5 MAFs (2 layer / 64 neuron
+Wright E. L., et al., 2010, AJ, 140, 1868                                        conditioner). We also use the ‘atomic loss’ or NPE-C algorithm as
+Yallup D., Kroupa N., Handley W., 2025, in Frontiers in Probabilistic Infer-     proposed in Greenberg et al. (2019). In terms of the data, we again
+    ence: Learning meets Sampling. https://openreview.net/forum?                 𝑧-score but do this globally, computing a single mean and standard
+    id=ekbkMSuPo4                                                                deviation across all pixels. For the parameters, we use a prior bijector,
+Zammit-Mangion A., Sainsbury-Dale M., Huser R., 2025, Annual Review of           mapping from constrained prior space to unconstrained latent space
+    Statistics and Its Application, 12, 311                                      (which the normalising flow sees) via a sigmoid function.
+Zonca A., Singer L., Lenz D., Reinecke M., Rosset C., Hivon E., Gorski K.,          Further, we use a CNN embedding network as part of the training.
+    2019, Journal of Open Source Software, 4, 1298
+                                                                                 After the data is normalised, we perform a series of 1D convolutions,
+von Hausegger S., 2024, MNRAS, 535, L49
+                                                                                 reducing the high resolution CatSIM map to a lower dimensional
+von Hausegger S., Secrest N., Desmond H., Rameez M., Mohayaee R., Sarkar
+    S., 2025, Clustering properties of the CatWISE2020 quasar catalogue          representation. Because of memory constraints, we first downscale
+    and their impact on the cosmic dipole anomaly (arXiv:2510.23769),            the 𝑁side = 64 map to 𝑁side = 32. Then, we apply the convolutions as
+    https://arxiv.org/abs/2510.23769                                             described in Krachmalnicoff & Tomasi (2019), which we port to our
+                                                                                 jax implementation. This essentially uses a kernel of length 9 with
+                                                                                 a stride of 9 on an unravelled healpy map such that the convolution
+                                                                                 is performed on all the immediate neighbours of a healpixel (see
+                                                                                 figure 3 therein). After this convolution, we average pool in a nested
+APPENDIX A: SNLE/SNPE ARCHITECTURE
+                                                                                 block of four pixels, halving the 𝑁side . Thus, we perform a total of
+After extensive testing, we settled on the surjectors library                    three convolutional steps to move from 𝑁side = 32 → 𝑁side = 4.
+(Dirmeier 2024) for the implementation of our NLE and NPE. This                  In order, we use a 2, 4 and 8 filters for these convolutions. After
+library uniquely implements surjective layers, breaking the typical              this, we pass the reduced data through a multi-layer perceptron with
+invertibility requirement for normalising flow layers by ‘discarding’            two layers at 128 neurons each and a dropout rate of 0.2, which then
+the data to a decoder distribution that is learned during gradient               maps to an output vector of 32 dimensions. This output vector is what
+descent. Overall, we found that performance was improved using a                 ultimately conditions the NPE; since the embedding net is included
+surjective layer even after downscaling the CatSIM maps to 𝑁side = 4.            in the inference pipeline, its weights and biases are updated as the
+   For each arm of our SBI pipeline, we use a total of 50 000 sim-               posterior distribution is estimated.
+ulations spread over 15 sequential rounds of inference. We adopt a
+90%/10% training-validation split with a batch size of 100. We also
+use an AdamW optimiser with a learning rate of 0.0001 for the NLE                APPENDIX B: NLE ACCURACY VERIFICATION
+and 0.001 for the NPE.
+                                                                                 To ensure our NLE produces accurate estimates of the true Bayesian
+                                                                                 evidence, we of course need to benchmark against a known likeli-
+                                                                                 hood. We thus take (12) and generate downscaled pseudo-CatSIM
+A1 NLE
+                                                                                 maps according to the downscaling procedure described there. A
+Starting from the raw CatSIMS D and their associated parameters 𝚯,               pseudo-CatSIM map has an identical mask to CatWISE/CatSIM and
+we first 𝑧-score the data across the batch axis, yielding a per-healpixel        a similar source count, however is not simulated with Eddington
+mean and standard deviation. For the model parameters, we perform                bias. In some sense this is a ‘raw dipole’ map, and is generated
+a global 𝑧-score, except for the dipole direction which we transform             by drawing a Poisson deviate for cell 𝑖 assuming a rate parameter
+to Cartesian ˆ𝑥, 𝑦ˆ and 𝑧ˆ. Again, since the model parameters are the            𝜆𝑖 = 𝑁 (1 + D cos 𝜃 𝑖 ), where 𝑁 is the mean density, D is the EB
+conditioning variable in the NLE arm, there is no need to keep track             amplitude and 𝜃 𝑖 is the angle between the dipole vector and cell.
+of Jacobian terms.                                                               We start from an 𝑁side = 64 sample with a dipole described by
+   Next, we use a series of masked autoregressive flow layers (MAFs)             an observer speed of 𝑣ˆ obs. = 2 (units of CMB speed), correspond-
+as defined in Papamakarios et al. (2017). The bijector function is               ing to an EB dipole amplitude of D = 0.01, and a direction of
+simply a scalar affine transform, and our conditioner function is a              (𝑙 ◦ , 𝑏 ◦ ) = (215, 40). We then downscale the map to 𝑁side = 4.
+masked autoencoder (MADE; Germain et al. 2015) with 4 layers,                        We first compute the true Bayesian evidence of the downscaled
+each with 256 neurons and a tanh activation function. We use a total             map via (12). We then compare this to the NLE-estimated evidence
+of four MAFs, after each of which we place a permutation reversing               as a function of NLE round. The results are given in Fig. B1, where
+the data order, before a surjective later. Specifically, the surjection is       we show the scatter in estimated evidences from 25 independent
+
+MNRAS 000, 1–13 (2026)
+                                                                                                                                           Wising up to CatWISE                     13
+
+    −682                                                                                                        Analytic likelihood (Nside = 64)          NLE likelihood (Nside = 4)
+
+    −683                                                                                                   0
+
+
+
+
+                                                                                ln B versus free dipole
+    −684
+                                                                                                          −2
+    −685
+ ln Z
+    −686                                                                                                  −4
+
+    −687
+                                          NLE ln Z per round
+                                                                                                          −6
+    −688                                  NLE ln Z moving average
+                                                                                                                            e               e               tion                y
+                                          ±1σ interval                                                                dipo
+                                                                                                                           l            ipol            irec               locit
+                                                                                                               Free                   Bd             Bd                B ve
+    −689                                  True ln Z ± 1σ (known likelihood)                                                      CM                CM               CM
+
+            1   2   3    4   5   6   7     8 9     10 11 12 13 14 15
+                                         Round                                 Figure B2. Bayes factors inferred by our NLE (red; right) versus known true
+                                                                               Bayes factors (blue; left). The individual estimates across 25 independent
+                                                                               NLE runs are shown by the transparent red points, the mean and standard
+Figure B1. Learned NLE evidence as a function of inference round for a
+                                                                               deviation of which are given by the red error bar. For the NLE estimates,
+pseudo-CatSIM map with a known true ln Z (grey horizontal strip). The
+                                                                               we also apply downscaling to 𝑁side = 4 — thus the actual value of ln Z
+evidence is computed for 25 independent runs (estimates shown by the blue
+                                                                               is different for the NLE versus the analytic reference (the data is different).
+points). A moving average with a window of 2 is shown by the red line, which
+                                                                               Nonetheless, we illustrate that the Bayes factors are consistent.
+is enclosed within a 1𝜎 envelope.
+
+                                                                               This paper has been typeset from a TEX/LATEX file prepared by the author.
+runs of the NLE. At later rounds in the inference process, the NLE-
+estimated evidence appears to converge to the true evidence, with the
+true evidence sitting well within the 1𝜎 deviation on either side of
+the moving average. Also, to illustrate the accuracy of the inferred
+posterior distribution, in Fig. B3 we overlay the true posterior com-
+puted using (12) on top of that inferred from the NLE for one of the
+runs. There is excellent agreement between the two.
+   We also need to check that the downscaling process is not inter-
+fering with the Bayes factors: that is, the relative explanatory power
+(odds ratio) of each model. We take another pseudo-CatSIM map at
+𝑁side = 64 and introduce a dipole with 𝑣ˆ obs. = 1.5 (D = 0.0075)
+and (𝑙 ◦ , 𝑏 ◦ ) = (230, 40). Then we compute the true evidences for
+a model with a free dipole, a dipole fixed to the CMB direction, a
+dipole fixed to the CMB amplitude and a dipole fixed to the CMB
+direction and amplitude. We take the same map and downscale it
+to 𝑁side = 4, then use our NLE-inferred likelihood to determine the
+evidence for the same models. After computing these, we write the
+Bayes factor for all models with respect to the free dipole model.
+These true Bayes factors are the blue points in Fig. B2, appearing
+at the left of each model column. Meanwhile, the red points are the
+NLE-learned Bayes factors, appearing at the right of each model col-
+umn. While the NLE-learned ln 𝐵 estimates have significantly more
+scatter than the true Bayes factors, they are consistent given the er-
+ror bars. This, however, indicates that we have to be mindful of the
+uncertainty behind our estimates for ln 𝐵.
+
+
+
+APPENDIX C: SNLE VS SNPE RESULTS
+We verify that our inferred posterior distribution for the fiducial
+model (‘free dipole, extra error, Gaussian’) is the same when using
+either the SNLE or SNPE. Recall that Fig. 5 shows the posterior
+derived from the SNLE. We reproduce that same posterior in Fig. C1
+but also overlay the results returned from the SNPE in red. There are
+some very slight differences between the 1D marginals, but the in-
+ferences made are virtually identical, especially looking at the dipole
+parameters. We stress that this illustrates the internal consistency of
+our SBI pipeline since the SNPE and SNLE have highly disparate
+architectures (see Section A) but yield the same conclusions.
+
+                                                                                                                                                          MNRAS 000, 1–13 (2026)
+14       Oayda & Lewis
+
+                                  N̄
+                                                                            NLE-derived posterior
+                                                                            True posterior
+
+
+
+
+                                                                  v̂obs.
+
+                   2.0
+
+                   1.5
+          v̂obs.
+                   1.0
+
+                   0.5
+                                                                                                     `◦
+
+                   300
+
+
+                   200
+         `◦
+
+                   100
+
+
+                                                                                                                                       b◦
+
+                    80
+
+                    60
+          b◦
+                    40
+
+                    20
+
+
+
+                         50.8     50.9     51.0          0.5    1.0   1.5    2.0              100        200    300           20     40        60   80
+                                                                                                         ◦                                 ◦
+                                  N̄                              v̂obs.                             `                                 b
+
+
+Figure B3. Comparing the true posterior (blue) for a downscaled pseudo-CatSIM map and the NLE-inferred posterior (red). The results are virtually identical,
+verifying the accuracy of our pipeline in recovering dipole parameters. The details of the corner are the same as Fig. 5, except the credible interval titles on the
+1D marginals have been supressed.
+
+
+
+
+MNRAS 000, 1–13 (2026)
+                                                                                                                             Wising up to CatWISE                     15
+
+                                          +0.0024
+                     log10 Ninit. = 7.5402−0.0023
+                                          +0.0024
+                     log10 Ninit. = 7.5410−0.0024
+                                                                         CatSIM fiducial model posterior (NPE)
+                                                                         CatSIM fiducial model posterior (NLE)
+
+
+
+
+                                                    ηextra = 3.99+0.33
+                                                                 −0.35
+                                                    ηextra = 3.87+0.36
+                                                                 −0.34
+
+                     5
+
+
+
+
+            ηextra   4
+
+
+                                                                               v̂obs. = 2.00+0.25
+                                                                                            −0.26
+                     3
+                                                                               v̂obs. = 2.01+0.27
+                                                                                            −0.25
+                  3.0
+
+
+                  2.5
+
+         v̂obs.   2.0
+
+
+                  1.5                                                                                          `◦ = 221+11
+                                                                                                                       −11
+                                                                                                               `◦ = 224+12
+                                                                                                                       −12
+
+                  260
+
+                  240
+
+         `◦       220
+
+                  200
+                                                                                                                                            b◦ = 44.0+7.7
+                                                                                                                                                     −7.0
+                  180                                                                                                                       b◦ = 40.7+7.4
+                                                                                                                                                     −7.0
+
+
+
+                   60
+
+
+          b◦
+                   40
+
+
+
+                   20
+                         7.534     7.540    7.546   3       4        5          1.5   2.0      2.5   3.0 180   200   220   240   260   20   30   40    50   60   70
+
+                                 log10 Ninit.             ηextra                      v̂obs.                         `◦                               b◦
+
+
+Figure C1. The posterior distribution of our fiducial model ‘free dipole, extra error, Gaussian’ derived using the NLE (blue) and NPE (red). The details of the
+corner are the same as Fig. 5, but we show two sets of credible intervals for the inferred parameters for each method (top/blue is the NLE, bottom/red is the
+NPE).
+
+
+
+
+                                                                                                                                                 MNRAS 000, 1–13 (2026)
+

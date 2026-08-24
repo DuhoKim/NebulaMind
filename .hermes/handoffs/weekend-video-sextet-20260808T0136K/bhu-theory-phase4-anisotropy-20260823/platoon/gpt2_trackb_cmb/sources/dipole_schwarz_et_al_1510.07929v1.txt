@@ -1,0 +1,1949 @@
+                                               CMB anomalies after Planck
+                                                            Dominik J Schwarz1 , Craig J Copi2 , Dragan Huterer3 , and
+
+
+
+
+arXiv:1510.07929v1 [astro-ph.CO] 27 Oct 2015
+                                                            Glenn D Starkman2
+                                                            1
+                                                              Fakultät für Physik, Universität Bielefeld, Postfach 100131, 33501 Bielefeld,
+                                                            Germany
+                                                            2
+                                                              CERCA/Department of Physics/ISO, Case Western Reserve University, Cleveland,
+                                                            OH 44106-7079, USA
+                                                            3
+                                                              Department of Physics, University of Michigan, 450 Church St, Ann Arbor, MI
+                                                            48109-1040, USA
+                                                            E-mail: dschwarz@physik.uni-bielefeld.de, cjc5@cwru.edu,
+                                                            huterer@umich.edu, glenn.starkman@case.edu
+
+                                                            Abstract. Several unexpected features have been observed in the microwave sky
+                                                            at large angular scales, both by WMAP an by Planck. Among those features is a
+                                                            lack of both variance and correlation on the largest angular scales, alignment of the
+                                                            lowest multipole moments with one another and with the motion and geometry of
+                                                            the Solar System, a hemispherical power asymmetry or dipolar power modulation, a
+                                                            preference for odd parity modes and an unexpectedly large cold spot in the Southern
+                                                            hemisphere. The individual p-values of the significance of these features are in the per
+                                                            mille to per cent level, when compared to the expectations of the best-fit inflationary
+                                                            ΛCDM model. Some pairs of those features are demonstrably uncorrelated, increasing
+                                                            their combined statistical significance and indicating a significant detection of CMB
+                                                            features at angular scales larger than a few degrees on top of the standard model.
+                                                            Despite numerous detailed investigations, we still lack a clear understanding of these
+                                                            large-scale features, which seem to imply a violation of statistical isotropy and scale
+                                                            invariance of inflationary perturbations. In this contribution we present a critical
+                                                            analysis of our current understanding and discuss several ideas of how to make further
+                                                            progress.
+
+
+
+
+                                               Submitted to: Class. Quantum Grav.
+CMB anomalies after Planck                                                              2
+
+1. Introduction
+
+Among the purposes of this contribution is to summarize the evidence for unexpected
+features of the microwave sky at large angular scales, as revealed by the observation of
+temperature anisotropies by the space missions Cosmic Background Explorer (COBE),
+Wilkinson Microwave Anisotropy Probe (WMAP) and Planck. Before doing so, let
+us put those discoveries into context with the study of other aspects of the cosmic
+microwave background (CMB) radiation.
+     Half a century ago, the discovery of the CMB revealed that most of the photons in
+the Universe belong to a highly isotropic thermal radiation at a temperature of ∼ 3K [1].
+Deviations from this isotropy were first found in the form of a temperature dipole at
+the level of ∼ 3mK [2, 3]. This dipole has been interpreted as the effect of Doppler
+shift and aberration due to the proper motion of the Solar System [4] with respect to a
+cosmological rest frame.
+     The observation of an isotropic CMB, together with the proper-motion hypothesis,
+provides strong support for the cosmological principle. This states that the Universe is
+statistically isotropic and homogeneous, and restricts our attention to the Friedmann-
+Lemaı̂tre class of cosmological models. The cosmological principle itself is a logical
+consequence of the observed isotropy and the Copernican principle, the statement that
+we are typical observers and thus observers in other galaxies should also see a nearly
+isotropic CMB.
+     The proper-motion hypothesis is supported by the COBE discovery of higher
+multipole moments [5]. These higher moments turned out to be two orders of magnitude
+below the dipole signal, at a rms temperature fluctuation of ∼ 20µK at COBE resolution.
+However, a direct test of the proper-motion hypothesis had to wait until Planck was
+able to resolve the Doppler shift and aberration of hot and cold spots at the smallest
+angular scales [6, 7]. It is important to note here that the observed dipole could also
+receive contributions from effects other than the Solar System’s proper motion. These
+could be as large as 40 per cent without contradicting the Planck measurement at the
+highest multipole moments. Observations at non-CMB frequencies, e.g. in the radio or
+infra-red, hint at significant structure dipoles or bulk flows, but are still inconclusive
+[8, 9, 10, 11, 12, 13, 14, 15, 16]. Here we dwell on this aspect as the CMB dipole is
+one of the most important calibrators in modern cosmology. It defines what we call the
+CMB frame and many cosmological observations and tests refer to it.
+     The existence of structures like galaxies, voids and clusters imply that the CMB
+cannot be perfectly isotropic. The COBE discovery [5] revealed the long-expected
+temperature anisotropies and confirmed that they are consistent with an almost
+scale-invariant power spectrum of temperature fluctuations. Scale invariance of the
+temperature anisotropies means that the band power spectrum D` ≡ `(` + 1)C` /2π is
+a constant for small multipole number `. Here C` denotes the expected variance in the
+amplitude of any spherical harmonic component of the temperature fluctuations with
+CMB anomalies after Planck                                                                          3
+                                 6000
+
+                                 5000
+
+                                 4000
+
+                  D`T T [µK2 ]   3000
+
+                                 2000
+
+                                 1000
+
+                                    0
+                                  600                                                            60
+                                  300                                                            30
+                  D`T T
+                                    0                                                            0
+                                 -300                                                            -30
+                                 -600                                                            -60
+                                        2   10   30   500     1000      1500      2000       2500
+                                                             `
+
+              Figure 1. Angular band power (top) and residual angular band power (bottom) of
+              the cosmic microwave temperature anisotropies as presented in the Planck 2015 release
+              [17]. The error bars show the sum of measurement error and cosmic variance, the latter
+              being the dominant source of uncertainty at large angular scales.
+
+
+total angular-momentum `.‡
+     During the last two decades, ground-based, balloon-borne and satellite CMB
+experiments led to an improved understanding of those temperature anisotropies. The
+WMAP and Planck space missions played a special role, obtaining full-sky measurements
+that enabled us to investigate a large range of angular scales, from the dipole ` = 1 to
+` ∼ 2500, more than three decades in `. The band power spectrum as published by
+Planck is shown in Fig. 1.
+     These temperature fluctuations are believed to have been generated from quantum
+fluctuations in the very early Universe [18] by a (nearly) scale-invariant mechanism. The
+most prominent context is cosmological inflation [19, 20]. If inflation lasts long enough,
+the spatial geometry of the Universe is generally predicted to be indistinguishable from
+Euclidean, and the topology of the observable Universe is expected to be trivial (simply
+connected). Even more importantly, inflation predicts that the CMB temperature
+fluctuations should be: (i) statistically isotropic, (ii) Gaussian, and (iii) almost scale
+invariant. It also predicts: (iv) phase coherence of the fluctuations; (v) for the simplest
+models, a dominance of the so-called adiabatic mode (strictly speaking it is not only
+adiabatic but also isentropic); and (vi) the non-existence of rotational modes at large
+scales. Finally, depending on the energy scale of cosmological inflation, there might
+be (vii) a detectable stochastic background of gravitational waves [21] that also obeys
+‡ This analogy from quantum physics is useful to describe the spherical harmonic analysis of
+temperature fluctuations in terms of well-known physical concepts.
+CMB anomalies after Planck                                                                                                          4
+
+                                                                 LCDM
+                                                                     180 deg
+
+
+
+
+                  comoving scale @MpcD
+                                                                                                60 deg
+                                          104
+
+                                                                                                                       primordial
+                                                 Hubble                                         20 deg
+
+
+
+
+                                                                         fully reionized
+                                         1000
+                                                                                                1 deg
+
+
+
+
+                                                                                                          decoupling
+                                         100
+
+                                                           LSS
+                                          10
+                                                0.01      0.1    1                         10      100   1000
+                                                                     z
+              Figure 2. The comoving length of an arc on the sky with opening angle of 180, 60, 20
+              and 1 degrees is compared to the comoving Hubble distance. Angular scales larger
+              than 60(20, 1) degrees can only be affected by primordial physics or physics at redshift
+              z < 1(10, 1000), corresponding to the present (the reionized, the transparent) universe.
+              The shaded region indicates scales and redshifts on which structure formation is
+              expected to generate density contrasts of order 0.1 or larger.
+
+
+properties (i) to (iii).
+     In the process of extracting cosmological parameters from the CMB and other
+observations, properties (i) to (vi) are assumed to hold true and a stochastic gravitational
+wave background is neglected. This leads to the minimal inflationary Λ cold dark matter
+(ΛCDM) model [22].
+     Analysis of the CMB allows us not only to fit all free parameters of this model, but
+also to test its underlying assumptions. However, the more fundamental the assumption,
+the harder it appears to test. The existence of the peaks and dips shown in Fig. 1 are
+due to the phase coherence, property (iv). The almost-scale-invariance (iii) is visible in
+the smallness of the deviations from the best-fit model, although a model-independent
+reconstruction of the primordial power spectrum leaves room for deviations at the largest
+observed scales [23]. More detailed analysis also reveals that there is a strong upper
+limit of at most 4% of non-adiabatic modes (v) [23], while rotational modes would have
+produced a large B-polarization signal that is not observed. The predicted flatness and
+the expected trivial topology are consistent with all observations [24, 25].
+     It thus remains to test Gaussianity and statistical isotropy. A lot of effort has been
+put into searches for non-Gaussianity and they are described in great detail elsewhere.
+The brief summary is that there is no evidence for it so far [26]. In the following we
+focus our attention on statistical isotropy, and touch on the issue of scale invariance.
+CMB anomalies after Planck                                                                5
+
+     All mentioned predictions should hold at all observable scales. However, testing
+these primordial properties of the Universe directly is complicated by physics related
+to the evolution of the Universe after the end of cosmological inflation. In order to
+understand which phenomena can be most cleanly probed at which scales it is instructive
+to look at the comoving size corresponding to a particular angular scale as a function
+of redshift, see figure 2.
+     At the time of the formation of the first atoms, scales that today subtend more than
+about a degree (and that therefore affect ` . 180) were not much affected by details
+of photon decoupling. Thereafter, the Universe was filled with a mix of H and He gas,
+until it was reionized at a redshift of about 10. Angular scales larger than about 20
+degrees (or ` . 10) are also not much affected by the details of reionization. Finally,
+angular scales larger than ∼ 60◦ (or ` . 3) enter the Hubble scale at a redshift of one
+and thus are either of primordial or local origin. Here by local we mean from within our
+Hubble patch of the Universe. Thus it is a good idea to start with a test of statistical
+isotropy at the largest angular scales, as whatever we find must be either primordial or
+a local effect due to either foreground or local cosmic structure.
+     In this contribution we intend to give a summary of the evidence for the existence of
+features of the microwave sky that apparently violate statistical isotropy on the largest
+angular scales (section 2). Since this seems to happen only at the largest angular scales,
+it also amounts to a violation of scale invariance. We also discuss several ideas that
+have been put forward to explain those features, though we do not intend to give an
+exhaustive review. Apart from the suggestion that all of them are statistical flukes
+(the probability for which to happen is tiny, unless compensated for by huge look-
+elsewhere penalties) these ideas can be classified into foreground effects (section 3) and
+cosmological effects (section 4). In section 5 we highlight several possible tests of those
+ideas. The study of polarization at large angular scales and more detailed all-sky study
+of non-CMB wavebands seems to be particularly promising.
+
+2. A summary of the evidence
+
+Some of the unexpected features in the CMB temperature anisotropies have been
+identified in angular space, T (ê), where ê is a unit vector describing a position on
+the sky, and some in harmonic space,
+                     Z
+                         ∗
+               a`m = Y`m   (ê)T (ê)dê,                                            (1)
+
+where Y`m (ê) denote spherical harmonic functions.            Mathematically, all of the
+information in a full-sky map, T (ê), is contained in the a`m . However, as one often finds
+in transforming data, the different representations can reveal complementary features.
+Furthermore, many of the usual relationships between angular-space and harmonic
+quantities are complicated by the presence of the galactic foreground, which forces us
+to mask, weight and clean the observed maps. Thus it is advisable and fruitful to study
+both sides of the spherical-harmonic coin.
+CMB anomalies after Planck                                                                          6
+
+     For a statistically isotropic sky, the one-point expectation values are T0 = hT (ê)i
+                     √
+and ha`m i = δ`0 δm0 4πT0 , both quantities with an arbitrarily large cosmic variance,
+thus T0 cannot be predicted. It is a free parameter of the ΛCDM model and must be
+measured, which was first done by Penzias and Wilson [1] and most accurately to date
+by COBE [27, 28]. We also employ the usual hypothesis of the observed dipole being
+purely due to our proper-motion and thus only consider harmonic modes with ` ≥ 2 in
+the discussion below.
+     Harmonic techniques seem to be much better suited than angular-space methods
+for extracting ΛCDM model parameters. One reason is that for statistically isotropic
+skies the harmonic coefficients are orthogonal in a statistical sense (i.e. uncorrelated)
+                ha`m a∗`0 m0 i = δ``0 δmm0 C` .                                                   (2)
+For Gaussian harmonic coefficients, all information is encoded in the angular power
+spectrum C` .
+    In angular space, the two-point correlation function of a statistically isotropic sky
+                                           1 X
+              C(θ) ≡ hT (ê1 )T (ê2 )i =      (2` + 1)C` P` (cos θ), ê1 · ê2 = cos θ, (3)
+                                          4π `
+does not have the property that C(θ) is independent from C(θ0 ) for θ 6= θ0 . Thus it
+seems to be easier to draw inferences from the angular band power spectrum than from
+the angular two-point correlation function. On the other hand, if a feature is attached
+to a certain region of the sky, or otherwise violates statistical isotropy, it may be much
+harder to spot it in the harmonic analysis than in angular-space.
+     The issue of cosmic variance is important for the analysis of the largest cosmological
+scales. For statistically isotropic and Gaussian skies, the estimation of the angular power
+spectrum C` is limited by the fact that we can only observe one particular realization
+of the Universe. For full sky observations the estimator
+                                `
+                         1    X
+               Ĉ` =               |a`m |2                                              (4)
+                      2` + 1 m=−`
+is unbiased (hĈ` i = C` ) and minimizes variance,§
+                              2
+               Var[Ĉ` ] =       C 2.                                                 (5)
+                           2` + 1 `
+The expression in Eq. (5) is the sample variance which, in cosmology, is usually referred
+to as the cosmic variance: this is an irreducible lower bound on the error in the
+measurements of the angular power spectrum coming from the fact that we observe
+fluctuations in only one universe. The cosmic variance of the angular power spectrum
+also leads to a nonzero cosmic variance of estimates of the two-point correlation C(θ).
+The cosmic variance further increases when foreground dominated regions are masked
+in the data analysis. All results quoted below take these aspects fully into account.
+     A summary of the most important findings in angular and harmonic space is
+provided in Tab. 1.
+§ Cosmic variance is defined for ` ≥ 2. For ` = 0 it diverges. For ` = 1 it would be well defined, but
+cosmic variance does not apply if the CMB dipole is caused by the proper-motion of the Solar System.
+CMB anomalies after Planck                                                                             7
+
+          feature                                          p-value          data           reference
+          in angular space
+          low variance (Nside = 16)                        ≤ 0.5%       Planck 15        Tab. 12 [7]
+          2-pt correlation χ2 (θ > 60◦ )                   ≤ 3.2%       Planck 15        Tab. 14 [7]
+          2-pt correlation S1/2                            ≤ 0.5%       Planck 15        Tab. 13 [7]
+          2-pt correlation S1/2                            ≤ 0.3%      Planck 13 &
+                                                                       WMAP 9yr          Tab. 2 [31]
+          2-pt correlation S1/2 (larger masks)             ≤ 0.1%       Planck13         Tab. 2 [31]
+                                                           ≤ 0.1%      WMAP 9yr             [31, 32]
+          hemispherical variance asymmetry                 ≤ 0.1%       Planck 15        Tab. 20 [7]
+          cold spot                                        ≤ 1.0%       Planck 15        Tab. 19 [7]
+          in harmonic space
+          quadrupole-octopole alignment                    ≤ 0.5%       Planck 13        Tab. 7 [33]
+          ` = 1, 2, 3 alignment                            ≤ 0.2%       Planck 13        Tab. 7 [33]
+          odd parity preference `max = 28                  < 0.3%       Planck 15        Fig. 20 [7]
+          odd parity preference `max < 50 (LEE)             < 2%        Planck 15          Text [7]
+          dipolar modulation for ` = 2 – 67                ≤ 1%         Planck 15          Text [7]
+              Table 1. P-values in per cent of various unexpected features. In this table we define
+              the sense of p-values such that a small value means that it is unexpected. In some
+              cases this is different from the sense used by the Planck collaboration in their analysis.
+              The Planck analysis relies on just 1000 Monte Carlo simulations of the instrument and
+              pipeline and thus p-values below 0.2% cannot be resolved. Other groups have used
+              larger numbers of simulations, but those simulations do not include instrumental and
+              algorithmic effects of the Planck analysis. LEE stands for look elsewhere effect.
+
+
+2.1. Low variance and lack of correlation
+Historically, the first surprise, already within the COBE data, was the smallness of the
+quadrupole moment. When WMAP released its data [29], it confirmed C2 to be low,
+however it was also shown that cosmic variance allows for such a small value [30].
+      Another rediscovery in the first release of WMAP [29] was that the angular two-
+point correlation function at angular scales ∼  > 60 degrees is unexpectedly close to zero,
+where a non-zero correlation signal was to be expected. This feature had already
+been observed by COBE [34], but was forgotten by most of the community before
+its rediscovery by WMAP. The two-point correlation function as observed with Planck
+[7] is shown in Fig. 3.
+      The WMAP team suggested a very simple statistic [35] to characterize the vanishing
+correlation function –
+                      Z µ
+               Sµ ≡       d(cos θ)[C(θ)]2 ,                                             (6)
+                      −1
+
+with µ ≡ cos θ = 1/2. This measures the deviation from zero at θ > 60◦ .
+Detailed further investigations of the lack of angular correlation have been presented in
+[36, 37, 38, 32, 31]. Depending on the details of the analysis, p-values consistently below
+CMB anomalies after Planck                                                                          8
+
+
+                           1800
+                                                                                        2-pt.
+
+                           1200
+
+
+
+
+                  C(θ) [µK2]
+                           600
+
+
+
+
+                           0
+
+
+
+
+                           -6000             50                  100                 150
+                                                          θ [deg]
+
+              Figure 3. Angular two-point correlation function as observed by Planck [7]. The full
+              black line and the shaded regions are the expectation from 1000 SMICA simulations
+              based on the ΛCDM model and the 68% and 95% confidence regions. The plot also
+              shows four colored lines that fall on top of each other and represent the result of the
+              Planck analysis of the Commander, SEVEM, NILC and SMICA maps at resolution
+              Nside = 64. While the measured two-point correlation is never outside the 95%
+              confidence region, the surprising feature is that we observe essentially no correlations
+              at 70◦ < θ < 170◦ and a significant lack of correlations at θ > 60◦ .
+
+
+0.5% have been obtained, some even below 0.01%. An important question is the size of
+the mask used in the analysis. It has been shown in [37] that most of the large-angle
+correlations in reconstructed sky maps are between pairs of points at least one of which
+is in the part of the sky that is most contaminated by the Galaxy. This is in line with the
+findings of [32], where it was shown that more conservative masking makes the lack of
+correlation even more significant. This by itself already signifies a violation of isotropy.
+      Undoubtedly, S1/2 is an ad hoc and a posteriori statistic, but it captures naturally
+the observed feature originally noted in COBE. Several a posteriori “improvements”
+have been suggested [39, 7]. For example, in order to avoid the argument that µ = 1/2
+has been fixed after the fact one might let µ vary. But now the look elsewhere effect
+must be taken into account. The Planck team implemented such an analysis which (in
+our convention) returns global p-values of the order of 2%. However, this global Sµ
+statistic addresses a different question, namely how likely is it that there is a lack of
+correlation for an arbitrary µ. Thus we cannot argue that this statistic is better than
+S1/2 , all we can say is that it is different.
+CMB anomalies after Planck                                                                  9
+
+     Another critique was that the S1/2 statistic does not account for correlations among
+C(θ) at different θ [39]. Such a correlation is indeed expected in the ΛCDM model, but
+if we would use that fact, we would be injecting a model assumption into the data
+analysis. Thus the recent Planck analysis [7] tests the χ2 (θ > 60◦ ) statistics, which
+compares the data to the ΛCDM expectation, and a χ20 (θ > 60◦ ) statistics, which tests
+for the non-vanishing of C(θ) assuming the ΛCDM covariance. The p-values for both
+tests are around 3 and 2 per cent. Let us add that the recent Planck analysis is based
+on a resolution of Nside = 64 and relies on a mask that includes 67% of the sky for
+cosmological analysis. It was shown recently in [40] that enlarging that mask gives rise
+to significantly smaller p-values and increased evidence of a lack of correlation.
+     It has further been suggested [41] that the two-point correlation function calculated
+directly on a cut sky is a suboptimal estimator of the full-sky two-point correlation
+function, and that better estimators lead to less statistical significance for the observed
+anomalies. This result has been extended [42] to all anisotropic Gaussian theories with
+vanishing mean. We however think that the issue of the optimality of the full-sky
+estimator is irrelevant, since it is the cut-sky two-point correlation function which is
+observed to be strikingly anomalous, and which begs an explanation [31].
+     Another very simple statistic is to calculate variance, skewness and kurtosis of the
+unmasked pixels. In this test the Planck team found evidence for low pixel variance
+for low-resolution maps (Nside = 16), while skewness and kurtosis behave as expected
+[43, 7]. This feature seems to be consistent with a low quadrupole, a lack of power at
+large angular scales (for ` < 30, see Fig. 1) and the discussed lack of angular correlation.
+The latter cannot be explained by a lack of quadrupole power alone. All modes below
+` ≤ 5 contribute to the observed lack of angular correlation [37] – not by having low
+amplitudes, but by combining to cancel one another and the contributions of still higher
+`. This is indicative of correlations among C` not predicted by the ΛCDM model and a
+violation of both statistical isotropy and scale invariance.
+     It has been noted [31] that what is reported as the two-point angular correlation
+function C(θ) is actually the dipole (and monopole) subtracted two-point angular
+correlation function. A cosmological dipole of the size expected in the best-fit ΛCDM
+model would completely dominate S1/2 . In order not to raise S1/2 significantly above
+its dipole-subtracted value, one must have C1 . 200µK 2 , compared to the value of
+approximately 3300µK 2 that standard CMB codes return. Of course even the latter
+is orders of magnitude smaller than the dipole that we measure, which we interpret to
+be entirely due to the observer’s motion with respect to the rest frame of the CMB
+(and hence excluded from C(θ)). There is disagreement over whether the intrinsic CMB
+dipole is physical or observable. It is certainly likely to be difficult to measure the dipole
+to the necessary parts in 104 , to begin distinguishing the intrinsic dipole, in any, from
+the 3mK Doppler dipole.
+CMB anomalies after Planck                                                                                                            10
+
+
+
+
+                                            Ov                                         dipole
+                                                                                                     Ec
+                                                                                                       lipt
+                                                                                                              ic P
+                                                                                                                     lan
+                                     NEP                                                                                e
+
+                                                         Ov                      Ov
+                             Qv                                   Qv
+
+                           Ov                                                                                               Ov
+
+                                                                                  Qv                                             Qv
+                                                        Oa                              SEP
+
+                                                                                       Ov
+                                       Oa dipole
+                                                          n̂3
+                                                 Qa,n̂2
+                                                                            Oa
+                                                    n̂2 , no DQ
+
+
+
+                                      -54                              µK                       48
+
+
+
+
+              Figure 4. The combined quadrupole-octopole map from the Planck 2013 release [33].
+              The multipole vectors (v) of the quadrupole (red) and for the octopole (black), as well
+              as their corresponding area vectors (a) are shown. The effect of the correction for
+              the kinetic quadrupole is shown as well, but just for the angular momentum vector
+              n̂2 , which moves towards the corresponding octopole angular momentum vector after
+              correction for the understood kinematic effects.
+
+
+2.2. Alignments of low multipole moments
+In the standard ΛCDM model the temperature (and other) anisotropies have random
+phases. In harmonic space this means that the orientations and shapes of the multipole
+moments are uncorrelated. This was first explored in the first year WMAP data release
+using the angular momentum dispersion [44] where it was discovered that the octopole
+(` = 3) is somewhat planar (dominated by m = ±` for an appropriate choice of
+coordinate frame orientation) with a p-value of about 5%. (A quadrupole is always
+planar.) More importantly, the normal to this plane (the axis around which the angular
+momentum dispersion is maximized) was found to be surprisingly well aligned with the
+normal to the quadrupole plane at a p-value of about 1.5%.
+     Subsequently these ideas have been studied in more detail using other measures of
+planarity and alignment [45, 46, 47, 38, 33]. A convenient tool for such a study are the
+Maxwell multipole vectors [48]. They provide an alternative to the spherical harmonics
+as a means to represent angular momentum ` objects in a manifestly symmetric,
+rotationally invariant manner. Roughly speaking they represent the multipole moments
+by products of unit vectors. A dipole is a vector. A quadrupole can be constructed
+from the product of two dipoles (two vectors), an octopole from three dipoles (three
+vectors), and so on for arbitrary multipole moment `. Of course two dipoles produce
+both quadrupole and monopole moments so only particular combinations of the products
+of dipoles will produce a pure quadrupole. Mathematically they are represented by the
+CMB anomalies after Planck                                                             11
+
+trace-free product of the two dipoles. In the end this means an angular moment ` object
+can be represented by ` unit vectors and an overall amplitude (put together these contain
+the requisite 2` + 1 degrees of freedom).
+     Given the multipole vectors, v̂ (`;i) for i = 1 to `, questions about alignments can
+now be addressed. It has been found convenient to directly study not the multipole
+vectors but instead their oriented areas [48]
+              w(`;i,j) ≡ v̂ (`;i) × v̂ (`;j) ,                                        (7)
+defined for each pair of multipole vectors at a fixed `. Notice that these are not unit
+vectors, their magnitudes are the area of the parallelogram created by the two vectors.
+These oriented-area vectors can then be compared among the multipoles or to fixed
+directions. The multipole vectors for the quadrupole and octopole along with the
+oriented area vectors, their maximal angular momentum dispersion directions n̂` , and
+some special directions are shown in Fig. 4.
+     Numerous statistics can be defined to quantify alignment; here we only consider
+one. Since the multipole vectors really only define axes (both ±v̂ (`;i) are multipole
+vectors) we define the S statistic as
+                         n
+                 1X
+              S≡       |wj · ê|.                                                     (8)
+                 n j=1
+Here ê represents a fixed direction on the sky and wj represents one of the oriented-area
+vectors. The sum is over some set of oriented-area vectors. Although this can be used
+with any set of multipole vectors and/or directions here we focus on two cases. First, the
+quadrupole-octopole alignment where we use w(2;1,2) (the oriented area vector for the
+quadrupole) as the fixed direction called ê above and the wj are the three oriented-area
+vectors for the octopole, w(3;i,j) . Second, the joint alignment of the quadrupole and
+octopole with special directions such as the normals to the Ecliptic and to the Galactic
+planes or the direction of our motion with respect to the CMB (the dipole direction). In
+this latter case the wj refer to the quadrupole oriented-area vector and the three such
+vectors from the octopole (so that n = 4).
+      The most recent analysis of the latest WMAP and the Planck 2013 data releases [33]
+finds the quadrupole and octopole anomalously aligned with one another, with p-values
+ranging from about 0.2% to 2% depending on the exact map employed. It is further
+found that the quadrupole and octople are jointly perpendicular to the Ecliptic plane
+(i.e. their area vectors are nearly orthogonal to the normal to the Ecliptic) with a p-
+value of 2% to 4% and to the Galactic pole with a p-value of 0.8% to 1.6%. Even more
+strikingly they are aligned with the dipole direction with a p-value of 0.09% to 0.37%.
+      A number of issues must be considered when interpreting the p-values given above.
+Arguably, it is surprising not only that these alignments are observed at all but that
+they have persisted in the data from the original WMAP data release to the present. To
+study the alignments (phase structure of the temperature fluctuations) full-sky maps
+are required. Thus the results of [33] are based on the cleaned maps produced by
+CMB anomalies after Planck                                                                 12
+
+WMAP (the ILC maps) and from different cleaning methods employed by Planck
+(NILC, SEVEM, and SMICA). The exact phase structure of the maps are sensitive
+to many effects including the details of the cleaning algorithms, systematics effects in
+interpreting the data (such as the beam profile) which have been improved through the
+years, and the different observation strategies employed by WMAP and Planck. Despite
+the many effects that could have masked the alignments, they persist in the data and
+remain to be understood.
+     Our motion with respect to the rest frame of the CMB contributes not only to
+the dipole, as mentioned above, but also to all other higher multipole moments. The
+effect of our motion in mixing two multipole moments ` and `0 = ` + ∆` is suppressed
+by O(β |∆`| ) with β ∼ 10−3 c. The monopole therefore contaminates mostly the dipole,
+and has little effect on the power spectrum for ` > 1. Other multipoles mix only
+slightly, since they have comparable C` to begin with. (Actually, the mixing effect is
+O((β`)` ), so there is significant mixing at ` ≃ β −1 , but we will not concern ourselves here
+with such high `.) However, the so called kinematic quadrupole does affect the phase
+structure for ` = 2 [45], as seen in Fig. 4. The direction of the quadrupole oriented-area
+vector, labeled by Qa and n̂2 in the figure, shifts by about 5◦ from the “no DQ” value
+(diamond) to the corrected value (square) when the kinematic quadrupole moment due
+to our motion is removed from the full-sky temperature map prior to analysis. The
+amplitude of the kinematic quadrupole is frequency dependent and the cleaned, full-
+sky maps are constructed from linear combinations of observations in many frequency
+bands making the exact kinematic quadrupole calculation difficult to calculate. This is
+exacerbated by calibration techniques which sometimes subtract some of the frequency
+dependent kinematic quadrupole contribution. The Planck 2013 data release provided
+estimates for the required correction factor [43] beyond the simple estimate used in the
+results quoted above. Interestingly when these corrections are applied the alignment
+becomes even more anomalous. For example, the p-value for the alignment with the
+dipole direction drops to between 0.06% and 0.23% [33], or even less [49]. The angular
+momentum quadrupole-octopole alignment and the increase of the alignment due to the
+kinetic effect has also been confirmed for the Planck 2015 data set [50].
+     In summary, the octopole is unexpectedly planar; the quadrupole and octopole
+planes are unexpected aligned with each other, and unexpectedly perpendicular to the
+Ecliptic and aligned with the CMB dipole. These alignments have been robust in all full-
+sky data sets since WMAP’s first release, and are found to be exacerbated by proper
+removal of the kinematic quadrupole. No systematics and no foregrounds have been
+identified to explain these apparent violations of statistic isotropy.
+
+2.3. Hemispherical Asymmetry
+Evidence for hemispherical power asymmetry first emerged in the analysis of WMAP
+first-year data [51, 52]. It was found that the power in discs on the sky of radius
+∼ 10◦ − 20◦ , evaluated in several multipole bins, is larger in one hemisphere on the sky
+                        CMB anomalies after Planck                                                                                                                                                                                                           13
+                                                                                                                                                                         A&A proofs: manuscript no. planck_2015_iands
+
+
+ atio results
+                                                                                                                                                                                                                    CMB dipole
+ x     (θ, φ)max                                                                                                                                                         45◦
+                                                                                                                                                                                                                            ⊗
+                                                                                                                                                               NEP
+ 3       (0,0)
+                                                                                                                                                                  +
+ 7      (80,57)
+                                                                                                                                                      120 ◦                                                          300◦
+                                                                                                                                                                                                                                            ◦
+ 7      (80,57)                                                                                                                                                            60◦                  0◦                                       240
+                                                                                                                                                                    0◦
+ 9      (80,57)                                                                                                                                                                                                                             low-!
+ 2       (0,0)                                                                                                                                                                                                                                 •
+ 1      (80,95)                                                                                                                                                                                                         SEP
+                                                                                                                                                                                                                            +                      ∗
+                                                                                                                                                                                                                                               WMAP-9
+
+ o of power spec-                                                                                                                                                        -45◦
+  southern hemi-
+the WMAP co-
+he Kp2 mask.
+                                                                                                                                                          50        250         450       650        850       1050         1250     1450
+  ecliptic coordi-                                                                                                                                                                         !central
+ n of simulations                                                                                                                 Fig. 35. Dipole directions for independent 100-multipole bins of the local power spectrum distribution from ¸ = 2 to 1500 in the
+ ic axis than the         Fig. 2.— Power spectra computed from the co-added V- and W-              SMICA map with the common mask applied. We also show the preferred dipolar modulation axis (labelled as “low-¸”) derived in
+                                                                                                   Sect. 6.2, as well as the total direction for ¸   = 600 determined from WMAP-9 (Axelsson et al. 2013). The average directions
+                                                                                                                                                                             max
+                        band WMAP data. The solid line (histogram) indicates the theo-             determined from the two multipole ranges ¸ œ [2, 300] and ¸ œ [750, 1500] are shown as blue and red rings, respectively. The error
+
+                        retical best-fit WMAPFigure            Hemispherical
+                                                          5. power
+                                               running index           spectrum. Thepower
+                                                                                        dashed asymmetry. Left panel: original evidence, adopted
+                                                                                                   on the derived direction that results from masking the data is about 60 , with only small variations related to bin size.
+                                                                                                                                                                                                         ¶
+
+
+  oordinate frame       line shows the estimated power spectrum obtained by the WMAP
+ s maximized for        team for the Kp2 mask.from     Ref. crosses
+                                                 The black    [51]. andThe      three
+                                                                           gray dots      jagged been
+                                                                                      represent    lines          show
+                                                                                                         chosen for   visualizationthe          binned
+                                                                                                                                     purposes; in further analysis angular power spectrum
+                                                                                                   of the Planck data we use finer ¸-intervals. The preferred
+ es are compared        our estimates of the power   spectra on
+                                              calculated      overthe the
+                                                                      northern   and southern
+                                                                             whole      unmasked   low-¸ modulation direction determined in Sect. 6.2 is also
+                                                                                                        sky        (dashed),                     northern               hemisphere (solid line,
+                                                                                                   indicated,  along with the   WMAP-9 result determined      over
+ ve the preferred       hemispheres, respectively. Here, north and south are defined with          the range ¸ = 2 to 600 (Axelsson et al. 2013). The observed
+ bers indicate the                            with
+                        respect to the axis that      crosses),
+                                                 maximizes   the and        southern
+                                                                   asymmetry in          hemisphere
+                                                                                  the WMAP                     (dotted                line,         with
+                                                                                                   clustering of the dipole directions is similar to that shown
+                                                                                                   in figure 27 of PCIS13. Note that differences in masking,    circles).               North and south
+ try ratio for this     data for the corresponding hemispheres, such that the north pole           foreground subtraction, and residual systematic effects will
+                                              were, 57 ).
+                        is located at (θ, φ) = (80◦   defined
+                                                       ◦          withbands
+                                                            The gray       respect     to the
+                                                                                indicate   the1 best-fit         axis for WMAP1 data, and were close (but
+                                                                                                   displace the direction of a given dipole with respect to the
+                                                                                                   previous analysis. Similar behaviour is seen for all of the
+                        and 2σ confidence regions, as computed from the ensemble of 2048           Planck component-separated maps.
+ oordinate frame                              not   identical)      to  the   north
+                        Monte Carlo simulations. Formally, these error bounds differ be-and   south     ecliptic.               The histogram and the two grey areas
+                                                                                                       In PCIS13, we calculated the mean angle between all
+maximized. The          tween the hemispheres, but
+                                              around in it
+                                                        practice,
+                                                             denotethe the
+                                                                       difference is small
+                                                                               mean      andandthe possible
+                                                                                                    68%           and          95%            confidence
+                                                                                                             pairs of dipole directions determined from maps
+                                                                                                                                                                         regions from Gaussian
+                                                                                                   of the local power in multipole bins of      size ¸ = 16. Here
+ s with a higher        only the values from the northern hemisphere are shown.                    we test the possible bias arising from such a choice by con-
+                                                                                                                                                                                                    Fig. 36. Derived p-values for the angular clustering of the power
+MAP or COBE -                             random simulations. Right panel: sidering       best-fit             directions from the dipolar modulation
+                                                                                                  bin sizes between ¸ = 8 and ¸ = 32 in steps
+                                                                                        of 2. The lower limit avoids significant bin-to-bin coupling
+                                                                                                                                                                                                    distribution as a function of ¸max , determined for Commander
+                                                                                                                                                                                                    (red), NILC (orange), SEVEM (green), and SMICA (blue), based
+                                                                                        in the power spectra for smaller binnings, whilst the upper
+alue is compared                          model, applied to Planck 2015 SMICA           limit excludesmap, there
+                                                                                                        cases where   evaluated                   in multipole bins centered
+                                                                                                                           are an insufficient number
+                                                                                                                                                                                                    on 500 simulations. For SMICA, the p-values based on 2500
+                                                                                                                                                                                                    simulations are also shown (black). The p-values are based on
+                                                                                        of derived dipoles from which the mean angle can be calcu-                                                  the fraction of simulations with a higher RS, determined over
+ hat may or may                                                                         lated, this leading to poor statistics. In addition to showing                                              the ¸-range up to the given ¸max , compared to the data. The
+.                                         at 50
+                          As a useful cross  checktothat
+                                                      1450    [7]. help to
+                                                         should     Directions    corresponding
+                                                                            mitigate    results for  each  bin   to
+                                                                                                               size, we  the
+                                                                                                                         also  calculate
+                                                                                        weighted mean of the power spectra over all
+                                                                                                                                         the variance-Ecliptic Pole (NEP) and
+                                                                                                                                     North
+                                                                                                                                       Ô bin sizes (the
+                                                                                                                                                                                                    results shown here have been marginalized over bin sizes in the
+                                                                                                                                                                                                    range ¸ = 8 to ¸ = 32.
+ orth pole in the       against systematicSouth
+                                            effects Ecliptic
+                                                    as the cause                        C for a given bin size is weighted by 1/ N where N
+
+ mizes the asym-
+                                                               Poleof(SEP),
+                                                                       the observed
+                                                                                the CMB         dipole,
+                                                                                        is the bin size).            andmarginalize
+                                                                                                          In this way, we        theover bin sizes
+                                                                                                                                   ¸
+                                                                                                                                            best-fitFigure
+                                                                                        to obtain local power spectra and thereby the RS for each
+                                                                                                                                                             WMAP9                 b
+                                                                                                                                                                                   modulation   b
+
+                                                                                                                                                                  36 shows the p-values for the different
+                        structure, the same hemisphere exercise has been per-           single multipole.                                               component-separated maps, derived as described in step
+                                          direction    are  also   shown.
+                        formed for the co-added 53+90 GHz COBE -DMR map,      The  “low-l”         direction                 refers           to      constraining
+                                                                                                                                  Article number, page 40 of 61
+                                                                                                                                                                                 ` max = 600,
+                                          while the blue and brown rings show analysis in the two multipole ranges ` ∈ [2, 300]
+                        for which we consider  multipoles  in the  range  ! = 2 − 19
+                        where the signal isand
+                                             dominant.
+                                                ` ∈ [750,We    find respectively.
+                                                           1500],   that the DMR
+                        axis of maximum asymmetry lies close to that for the
+eems to be con-         WMAP data. However, for DMR the significance of the
+ the asymmetry          result is lower at about 87% confidence. Nevertheless,
+ms to be highest        given the noisier nature of the data, we consider that
+ φ) = (80◦ , 57◦ )      than
+                        this is the  other;
+                                supportive     seeasymmetry
+                                           of the   the left result.
+                                                              panel of Fig. 5.         The plane that maximizes the asymmetry
+ y argue against        is approximately the Ecliptic, though it depends somewhat on the multipole range; the
+  ound contami-                      4.2. N -point correlation functions
+  nges. It is also      variation
+                           In Figure 3,ofthe
+                                           the   normal to three-point
+                                              pseudo-collapsed   this plane  andwith
+                                                                                 1+3 multipole range is shown in the right panel
+ot simply a re-
+                         four-point
+                        of  Fig. 5.functions
+                                         Fig. 4areshows
+                                                      shown as    computed for
+                                                             that the     combinedthe quadrupole and octopole moment already
+ d octopole am-
+                         northern and southern ecliptic hemispheres. While the
+ e middle panel
+   different way.
+                        contributevalues
+                         expectation     to of
+                                             such theatwo
+                                                       power     asymmetry.
+                                                           functions are  very differ-
+                         ent, the observed behavior of the two functions is in-
+   the statistical             The
+                         ternally      study the
+                                  consistent:    of northern
+                                                     hemispherical
+                                                              hemisphere asymmetry
+                                                                          correlation   was extended to later years of WMAP
+ f the observed
+                         functions
+                        [53,        are strikingly featureless (the three-point func-
+                               54, 55] as well as Planck [55, 43, 7] by analyses that modeled the asymmetry as a
+  eference frame
+                         tion lies very close to zero, and the four-point function
+ ter of the disc.
+  at there is an        dipolar
+                         drops      modulation
+                                off very              [56,the
+                                          quickly), while   57]southern hemisphere
+                         functions show relatively strong fluctuations.
+  vicinity of the
+                           In order to quantify
+                                              T (ê)these
+                                                       =T  statements,
+                                                               (ê)[1 +we  A use    ˆ full
+                                                                              ê · the
+                                                                                   d]                                                (9)
+                         covariance matrix χ2 statistic0 including all bin-to-bin
+ ower spectrum
+                         correlations. The results from these computations are
+al northern and         where       T (ê)2. and      T0two
+                                                          (ê)rowsarefor each
+                                                                         the mask
+                                                                                modulated      and unmodulated temperature fields,
+                         shown in Table       The first                              (Kp0
+n the reference
+tween them for                               ê is an arbitrary direction on the sky, and A and dˆ are the dipolar
+                         and Kp0+|b| > 30 deg) indicate the frequency of simula-
+                        respectively,
+                         tions with a lower χ2 value than the WMAP data, and
+  also shows the
+that the north-         modulation
+                         the third         amplitude
+                                    row shows the            andofdirection.
+                                                      frequency                      This
+                                                                      simulations with   a parameterization enables a straightforward
+                         smaller χ2north /χ2south . This latter statistic merits some
+n the southern          Bayesian
+e range.                 explanation. statistical
+                                       The χ2 statistic  analysis.        The the
+                                                            in itself measures   earlier
+                                                                                     over- analyses have found statistically significant
+                         all consistency of an observed function with a
+                        evidence                                                   ˆ
+                                                                               predefined
+                                      for A ∼ 0.1, and direction d roughly in the ecliptic pole direction. The result
+     convention, thus    model relative to the standard eviation of the model.
+                        from    thea function
+                         Thus, for    Planck with  2015vanishing
+                                                            release,     using
+                                                                      mean  (suchthe    Commander map, is A = (0.066 ± 0.021) with
+                                                                                    as the
+
+                        dˆ pointing in the direction (l, b) = (230◦ , −16◦ ) ± 24◦ [7]. The modulation’s direction is
+                        remarkably consistent as a function of the multipole range used, and between WMAP
+                        and Planck, as the right panel of Fig. 5 shows. Planck also finds that the modulation,
+                        as measured by the coupling of adjacent multipoles, has most signal at relatively low
+CMB anomalies after Planck                                                                                                                             14
+
+                                                         CMB dipole                                                           CMB dipole
+                         45◦
+                                                                ⊗                                   45◦
+                                                                                                                                     ⊗
+                   +
+                  NEP
+                                                                                              +
+                                                                                             NEP
+
+                                                            ◦                                                                    ◦
+          120 ◦                                          300                         120 ◦                                    300
+                                                                          ◦                                                                   ◦
+                            60◦             0◦                         240                           60◦         0◦                        240
+                    0◦                                                                         0◦
+                                                                        low-ℓ                                                               low-ℓ
+                                                                            •                                                                  •
+                                                             SEP
+                                                                +               ∗                                               SEP
+                                                                                                                                     +             ∗
+                                                                            WMAP-9                                                             WMAP-9
+                         -45◦                                                                       -45◦
+
+
+
+
+             32        96       160   224        288   352      416   480                2          128    256          384    512       640
+                                       ℓcentral                                                                  ℓmin
+
+
+                  Figure 6. Results of bipolar spherical harmonics analysis [7]. Left: Dipolar
+                  modulation, only darkest blue spot is statistically significant (` = 2 to 64). Right:
+                  Doppler modulation at high `.
+
+
+multipoles, ` ∈ [2, 67] where it has a p-value of 1%. In Fig. 6 the dipolar directions
+found in Planck 2015 data [7] by means of a bipolar spherical harmonics analysis [58, 59]
+are shown. At low multipoles the same direction in the Southern ecliptic hemisphere is
+identified (left panel), while at much higher multipoles the Doppler boost and aberration
+dipolar modulation (due to the proper motion of the Solar System) is picked up (right
+panel).
+      A different way to measure the hemispherical asymmetry is to consider variance
+calculated on hemispheres. Refs. [55, 60] found that the northern hemisphere in WMAP
+9-year and Planck 2013 maps has an extremely low (significant at 3–4σ) variance
+evaluated on scales 4◦ –14◦ relative to what is expected in the ΛCDM model. Planck [7]
+found that the result holds at an even wider range of scales once the lowest harmonics
+(` . 5) are filtered out from the map. Moreover, configurations of the three and four-
+point correlation function, evaluated at a resolution of Nside = 64 (that is, down to
+∼ 0.5◦ on the sky) also exhibit the hemispherical asymmetry. Finally, evidence for
+hemispherical asymmetry in WMAP data was also found by measuring power in disks
+of fixed size on the sky [61].
+      The fact that the axis that maximizes the asymmetry is close to the ecliptic pole
+motivates both systematic and cosmological proposals for the hemispherical asymmetry.
+Nevertheless, there have been no convincing proposals to date about why one ecliptic
+hemisphere should have less power than the other.
+
+2.4. Parity asymmetry
+It is interesting to ask whether the CMB sky is, on average, symmetric with respect
+to reflections around the origin, ê → −ê. The standard theory does not predict any
+particular behavior with respect to this point-parity symmetry. Because Y`m (−ê) =
+(−1)` Y`m (ê), even (odd) multipoles ` have an even (odd) symmetry.
+     Tests of parity of the CMB have first been discussed in Ref. [62], who studied both
+the aforementioned point-parity symmetry, and the mirror parity (ê → ê − (ê · m̂)m̂,
+with m̂ being the axis normal to the mirror plane). The point-parity symmetry analysis
+CMB anomalies after Planck                                                                 15
+
+                   102
+
+
+
+                                                                   Figure 7. Parity asym-
+                   101
+                                                                   metry in the Planck 2015
+
+
+
+ Probability [%]
+                                                                   data [7].    Shown is the
+                                                                   p-value significance, based
+                                                                   on a power-spectrum statis-
+                   100
+                                                                   tic sensitive to parity for
+                                                                   the four foreground cleaned
+                                                                   Planck maps (Comman-
+                                                                   der, NILC, SEVEM and
+                   10−1
+                                                                   SMICA) as a function of
+                          3           10          50               the maximum multipole
+                                           `max                    used in the analysis.
+
+
+of WMAP maps was extended by [63, 64, 65] who studied the even and odd parity maps,
+                         T (ê) + T (−ê)                T (ê) − T (−ê)
+                              T + (ê) =  ,   T − (ê) =                  .             (10)
+                                 2                               2
+Using a suitably defined power spectrum statistic – the ratio of the sum over multipoles
+of D` for the even map to that for the odd map – they found a 99.7% evidence for the
+violation of parity in WMAP7 data in the multipole range 2 ≤ ` ≤ 22. The analysis
+was finally extended to Planck by [43, 7], who confirmed the results from [63] based on
+WMAP, but also found that the significance depends on the maximum multipole chosen,
+and peaks for `max ≃ 20 − 30, but is lower for other values of the maximum multipole
+used in the analysis; see Fig. 7. The corresponding p-values of the Planck 2015 analysis,
+also including the ‘look elsewhere’ effect with respect to the choice of `max , are reported
+in Tab. 1. Planck also studied the mirror symmetry, finding less anomalous results than
+those for the point-parity symmetry [7].
+     In [66] it was shown for WMAP 7-years data that the directions of maximal
+(minimal) parity asymmetry for multipole moments up to ` ∼ 20, and excluding the
+m = 0 modes from the analysis, seem to be normal (parallel) to the direction singled
+out by the CMB dipole. The direction that maximizes this parity asymmetry is also
+close to the direction of hemispherical asymmetry when including the lowest multipole
+moments. Thus parity asymmetry and hemispherical asymmetry might be linked to
+each other.
+     Whether the observed parity asymmetry is a fluke, an independent anomaly, or a
+byproduct of another anomaly, is not clear at this time. The parity asymmetry appears
+to be correlated with the missing power at large angular scales, as the wiggles in the
+lowest multipoles, seen clearly in the top panel of Fig. 7, combine to nearly perfectly
+cancel the angular two-point correlation function above 60 degrees [37].
+                                                                                                 0                                         3.33             0                                         18.4
+                                                                                                                     (a)                                                         (b)
+Advances
+     CMB in Astronomy
+              anomalies after Planck                                                                                                                                                                            16 5
+                                                                               Figure 6: Maps of HCiNpix obtained from the analysis of the QVW map derived from the WMAP data. Left panel corresponds to the study
+                                                                               of the real space case, while right panel shows the outcome of the analysis of the SMHW coefficients at R = 300 arcmin. Whereas for the
+                                                                               former there are not particular signatures in the map, the wavelet analysis shows some prominent features, being the Cold Spot the most
+                                                                               pronounced one.
+
+
+
+
+            −0.273                                                           0.304           −2.372E−02                                                                                  1.540E−02
+                                                                                                                           (a)                                             (b)
+                                              (a)                                                                                                 (b)
+                                                                               Figure 7: Image of the Cold Spot (θ = −147◦ , φ = 209◦ ) in the real (a) and wavelet (b) spaces. The homogenously filled circles correspond
+                                                                               to positions where known extragalactic point sources have been masked.
+                                      Figure 8. Cold spot in WMAP 7th year temperature maps. Left panel shows the
+Figure 3: (a) CMB cleaned map derived from the 4th release of the WMAP data, obtained via the template fitting technique described in
+[75]. (b) wavelet coefficientsmap
+                               of thewith  themap,
+                                     previous     circle.   Middle
+                                                       obtained  after the
+                                                               therefore, panel
+                                                                          quite SMHW   isto the
+                                                                                different           more
+                                                                                              convolution
+                                                                                            the typical         detailed
+                                                                                                        frequency at    scale picture
+                                                                                                                  dependence  of R    = a250
+                                                                                                                              situation:  setof              Thetestswhile
+                                                                                                                                                  thetestsspot,
+                                                                                                                                                arcmin.
+                                                                                                                                               of blind      (i.e., location
+                                                                                                                                                                        that just the
+                                                                                                                                                                                  of   the
+                                                                                                                                                                                  challenge
+Cold Spot is indicated in both  panels by theiscircle.         of the Galactic foregrounds. (The analyzed WMAP
+                                                                                                           147  ◦ frequency
+                                                                                                                  and         the ◦compatibility of the data with a given null
+                                                                                                                             210    .                                               0
+                                                                                                                                                                                hypothesis,
+                              right  panel       the The centre     of
+                                                       wavelet-filtered the    Cold     Spot
+                                                                                    version     is θof=   the    middle
+                                                               channels were in thermodynamical temperature and, there- φ  = panel       (wavelet         size      R   =    250      ).
+                                                                                                                              H , and not confronting such hypothesis with an alternative
+                                                                                                                                 H ) claim a given incompatibility of the WMAP data.
+                                      The small spots in the fore,
+                                                             right
+                                                              Notice                                              known Aone,
+                                                                    the CMB appears as a frequency independent emitter.
+                                                                         panel
+                                                                      that, since the are  regions
+                                                                                     SMHW transform          of operation,
+                                                                                                      is a linear           point       sources
+                                                                                                                               subsequent test         thattaking
+                                                                                                                                               is performed,
+                                                                                                                                                                1
+                                                                                                                                                                 have      beenthe
+                                                                                                                                                                      into account
+                                                              the same behaviour is expected for the wavelet coefficients.) previous finding and, usually, in such a way that the initial
+           ×103                       masked). All figures are adopted from            ×102the review in Ref.reported        [80].deviation is now found at higher significance. In
+                                                                                                                                                        this procedure, there are two weak points: the first one,
+           10                                                                  4. The Significance25
+                                                                                                   of the Detection:                                    already mentioned, is to assess the probability of finding a
+                                                                                  The A Posteriori Issue                                                deviation as the one claimed during the first step, taking
+               9                                                                                                                                        into account all the possible tests that were performed. The
+                                                                                                                                                        second one is the credibility of the probability for the follow-
+         2.5.
+           8
+              Special regions: the cold spot One  of the most questioned aspects of the WMAP anomalies
+                                             in general, and of the Cold Spot in particular, is the issue
+                                                                    20
+                                                                                                                                                        up test, where a particularity was studied in greater detail.
+                                                                               of the actual significance of the detection. This is a very                  As mentioned above, this is a common situation for the
+                                                                               important point that is intimately linked to the blind nature            WMAP anomalies works and, therefore, the Cold Spot is not
+                                                                                                                                                        an exception. Several tests were made in the first work by
+         Evidence for an unusually cold spot in WMAP 1st year data was first presented in [67].
+          7                                                                    of all the Gaussianity/isotropy tests that led to the report of
+                                                                               such anomalies.                                                          [28], namely, the estimation of the skewness and the kurtosis
+                                                                                   The author reviews where this problem comes from:                    at several scales of the SMHW. A particular deviation was
+           6 spot, shown in Fig. 8, is centered on angular coordinates (l, b) = (207 , −57 ), has                                                                                     ◦             ◦ scales around
+        The                                                                                             15 in a given data set, it is not
+                                                                               if many tests are performed
+                                                                               strange that some of them report some deviation from
+                                                                                                                                                        highlighted: the excess of kurtosis   at several
+                                                                                                                                                        R = 250 arcmin. After that, the Cold Spot was identified as
+        AR−ν                                                                                         AR−ν
+                                                                               the null hypothesis. It is quite usual to face the following             a prominent feature, and further tests (the MAX, the cold
+        a 5radius of approximately five degrees, is roughly circular [68], and the evidence for its
+        existence is frequency independent [67]. The
+           4                                                                              10 cold spot was originally detected using
+
+        spherical Mexican hat wavelets, which are well suited for searching for compact features
+           3
+
+        on2 the sky; tests in [67] detected a deviation                                    5 from the Gaussian expectation in the
+
+        kurtosis of the wavelet coefficients at the wavelet scale of R = 3000 . Taking into account
+           1
+
+        the0 ‘look elsewhere’ effect, that is the fact 0
+                  2          2.5          3           3.5         4          4.5
+                                                                                         that0 not all statistics 100
+                                                                                                                                  attempted
+                                                                                                                                      400
+                                                                                                                                                        with1050
+                                                                                                                                                                  the
+        wavelets returned |an                   anomalous result, [69] estimated the
+                                            ν| (in σR )                                                           statistical
+                                                                                                                         R (armin) level of anomaly of
+
+        the cold spot to be(a)1.85%.                                                                                    (b)
+
+                 These
+Figure 4: (a) cold            original
+                      area of the             detections
+                                     SMHW coefficients             were
+                                                              (at R =        followed
+                                                                        300 arcmin),  as a up,       confirmed,
+                                                                                           function of the     thresholdand       further
+                                                                                                                          (ν). (b) cold           investigated
+                                                                                                                                            area (AR−ν ) of the SMHW
+coefficients (at ν = 3σR ), as a function of the scale (R). As in Figure 2, the red, green, and magenta regions represent the 32%, 5%, and 1%
+        using
+acceptance          notrespectively.
+             intervals,     only Mexican These plotshat         wavelets
+                                                         correspond              [70, 71],
+                                                                       to the analysis done bybut [46]. also steerable [72] and directional
+        [73] wavelets, needlets [74, 75], scaling indices [76], and other estimators [77]. The
+        detection of the cold spot has also been challenged by [78] on grounds that alternative
+2.2.4. The Higher Criticism. Higher criticism (HC) is a                                the following definition for the HC associated with Npix (R)
+        statistics – say, over/under density at disks
+relatively new statistic introduced in 2004 by [80], and firstly
+                                                                                             of varying radius – does not lead to a
+                                                                                       wavelet coefficients w(θi , φi ; R), at scale R:
+        statistically
+applied to the                  significant
+                  context of probing                  detection
+                                             the Gaussianity            once
+                                                                   of the  CMBlook-elsewhere effects are taken                    !             into
+                                                                                                                                                   " account.
+only a While
+          year after     by  [81].    Although       there   is not   a  unique
+                     the lingering worries about a posteriori nature of Nthis particularN anomaly           HC      (R)  =  max      HC   i
+                                                                                                                                           pix (R)  ,         make  (11)         pix
+definition for the HC, all the forms proposed in the literature
+satisfy its    significance
+         the same key                 difficult
+                             concept: HC        is a to     quantify,of the
+                                                       measurement            the basic       existence of the cold spot seems to be
+                                                                                       where the maximization is made over the quantity HCiN (R),
+distance   between      a given    sample    of  n  elements
+        confirmed by most analyses. For comprehensive           to  a Gaussian                  overviews
+                                                                                       that provides       the     of  thebetween
+                                                                                                               difference     cold the spot, see          [79, 80].
+                                                                                                                                               experimental      proba-
+                                                                                                                                                                                                              pix
+
+
+probability density distribution, established by means of the                          bility of the wavelet coefficients w(θi , φi ; R) at scale R and the
+                 The the p-value
+difference between         intermediate              size of
+                                          pi of a given           the X
+                                                            observation   coldi — spot,      as well as its frequency independence,
+                                                                                       corresponding theoretical pvalue. Such quantity reads as
+assuming     it comes    from    a N(0,  1)—,      and  its cardinal   position
+        argue against simplest systematic and foreground explanations.$% The size
+on the sorted list (in ◦increasing order) of p-values pi (i.e.,                                                                               & of the     $ cold
+                                                                                                                     #      $                              $
+                                                                                                                            $   i/N      (R)     − p   (R) $ be a
+pi−1 <spot pi < (∼  pi+110     ) makes
+                         , forall  i = 1, . . it     too
+                                                . , n). Thelarge      to be a point source,
+                                                               HC associated                             i    yet
+                                                                                                             (R)
+                                                                                                                     typically #
+                                                                                                                                      too
+                                                                                                                                     pix       small i     to
+                                                                                                     HCN          = Npix         pix      '              ( ,        (12)
+with the    sampleforeground,
+        diffuse        is just defined as        the largest value
+                                             especially          sinceofitsuch  is found in a relatively                          pi (R)
+                                                                                                                         foreground-clean   1 − pi (R) part of
+differences.
+        the sky. And while the Sunyaev-Zeldovich where
+    This concept can be applied to the SMHW coefficients
+                                                                                         effectthe– p-value
+                                                                                                        inverseis Compton                scattering of the
+                                                                                                                       given by pi (R) = P {|N(0, 1)| >
+        CMB
+of a given         photons
+                signal    (e.g., theoff hot
+                                        QVW map) electrons  at a in    galaxy
+                                                                   given    scale  clusters
+                                                                                       | w(θi , φi–; R)|}
+                                                                                         )            could. The    principle lead
+                                                                                                                in) operator       indicatestothat thethe Ndesiredpix (R)
+R. This was the analysis proposed by [81]. Let us adopt                                SMHW coefficients at the scale R have been transformed into
+        amplitude and spatial extent of the signal, the SZ effect has a very pronounced frequency
+        dependence that is completely incompatible with the observed frequency independence
+CMB anomalies after Planck                                                               17
+
+of the cold spot signal [68].
+     Recent developments in the search for links between CMB cold spots and
+underdensities in the galaxy distribution, discussed further in Sec. 5.2, are of particular
+interest. While it is in principle possible that an underdensity in the galaxy and dark
+matter distribution be responsible for the CMB cold spot [81], such a void would have to
+be huge, and therefore fantastically unlikely in the standard ΛCDM cosmology, making
+it much less probable than the CMB cold spot itself. One could nevertheless search for
+the link between the CMB cold/hot spots and galaxy under/overdensities. The most
+general way to search for such a link is to cross-correlate the CMB temperature with
+the galaxy overdensity over the whole observed sky (for each), but such tests have not
+shown evidence for departures from the ΛCDM prediction (e.g. [82]). However, it is
+possible that the cross-correlation performed more selectively – e.g. looking for CMB
+overdensity behind clusters of galaxies or voids [83, 84] or, taken to extreme, behind the
+cold spot alone [85, 86] – would indeed show departures from ΛCDM predictions. Such
+tests performed to date have shown tantalizing, though as yet not definitive, evidence
+for a large underdensity in the distribution of galaxies in the same direction as the cold
+spot; this is further discussed in Sec. 4.2.
+     If the cold spot is indeed taken as a sign of departure from the ΛCDM model’s
+predictions, it may be possible to explain it using novel theory. A theoretical explanation
+has a challenge of generating a localized feature of a rather small size (∼ 10◦ ) in a
+non-special direction on the sky. In this regard, Bianchi cosmological models that are
+homogeneous but not isotropic are well suited and have been proposed as the explanation
+of the cold spot [87]. Another possibility that has been discussed is the presence of cosmic
+textures [88, 89], defects whose profile parameters can be chosen to explain the cold spot.
+While the texture explanation is favored by the Bayesian analysis [88] and appears viable
+in principle, it seems difficult to make further progress without independent predictions
+made by the texture model and their confirmation with future data.
+
+2.6. Special regions: loop A
+In the context of the study of a possible foreground from radio loops (see Sec. 3), a huge
+loop, named loop A, has been identified in the vicinity of the cold spot [50]. Masking
+this particular region of the sky reduces the significance of the parity asymmetry, and
+the significance of dipolar modulation, and this region might largely be responsible for
+the observed quadrupole-octopole pattern. However, a corresponding foreground has
+not yet been identified.
+
+2.7. Statistical independence of CMB anomalies
+Although most of the described features or anomalies show p-values in the per cent or
+per mille level, none of them individually reaches the 5σ detection level that is adopted
+in particle physics. Whether such a strong criterion is actually necessary or not might
+be debated. However, it is extremely hard to believe that our realization of ΛCDM just
+CMB anomalies after Planck                                                             18
+
+happens to have all of these features by chance, unless they have a common origin. It
+might be that some of the features result in other features, e.g. a low quadrupole clearly
+contributes to the low variance and vice versa. Thus in order to better characterize the
+CMB anomalies it would be useful to reduce them to a few “atoms”, i.e. a set of mutually
+independent features when analyzed in the context to the inflationary ΛCDM model.
+This study is an ongoing program, and is computationally expensive, as it requires large
+sets of Monte Carlo studies (many more than produced for the Planck Full Focal Plane
+Simulations [90]).
+     Here we propose such a set of “atoms” that are independent of each other in the
+context of the ΛCDM model. At the present time we think that there are at least
+three such “atoms”: lack of angular correlation at large angles, alignments of the lowest
+multipole moments, and hemispherical power asymmetry.
+     The first “atom”, the lack of correlation, can also cause a low quadrupole and low
+variance, while for example a low quadrupole alone, cannot cause a lack of correlation.
+Detailed studies of constrained simulations have shown that a lack of correlation does
+not increase the chances to find alignments, and aligned multipoles do not increase the
+probability to find a lack of correlation [91, 92]. It has also been investigated if an
+intrinsic alignment of quadrupole and octopole correlates with the extrinsic alignment
+with some other directions, such as the dipole, ecliptic or galactic planes. These tests
+have been inconclusive [33]. We thus conclude that the mutual alignment of the lowest
+multipole moments is the second anomaly “atom”.
+     The observed dipolar modulation seems to be also independent of the alignments
+between multipole moments. We propose that to be the third “atom”. In [93] the p-
+values for various alignment measures were compared to the predictions of ΛCDM and
+a dipolar modulated model [56]. They showed that in both cases the alignment p-values
+are of the order of 0.1%. To our knowledge an explicit test in which the lack of angular
+correlation is correlated with dipolar modulation has never been done. The Planck
+team has also shown that a high-pass filter, which suppresses the multipole moments at
+` ≤ 5 actually increases the significance of the hemispherical variance asymmetry [7].
+This shows that the quadrupole-octopole pattern alone is not responsible for most of
+the hemispherical asymmetry signal; moreover, the maximal asymmetric directions for
+` < 5 and ` > 5 do not agree, which is yet another indication that we face at least three
+independent “anomaly atoms”.
+     One of those “atoms” could certainly be an unlikely statistical fluke, however, it
+is quite unlikely that two of them, or even all three of them are statistical flukes (the
+corresponding p-values would be at most ∼ 10−5 ). This means that these anomalies
+signal a significant discovery of some new CMB features. The open question is, which
+of those features hold the key to decipher the underlying physical mechanism(s).
+CMB anomalies after Planck                                                            19
+
+3. Foregrounds
+
+If these anomalous CMB features are related to local physics, it might not be surprising
+that they appear to be a rare fluke. The reason is simple – our environment is one
+particular example of an environment for a CMB mission and every particular realization
+is somewhat special. In this section we review some of the local physical effects that
+have been suggested as explanations for CMB anomalies. We ignore speculations on
+instrumental effects, as it seems to us that the consistency of WMAP and Planck 2015
+results [17] makes such an explanation quite unlikely.
+
+3.1. Solar System
+The closest foreground to a CMB space mission is the Solar System itself. An obvious
+(subdominant) source of microwave radiation is the dust grains, and their emission
+might contribute to or modify the observed CMB anomalies [95, 96, 97]. The zodiacal
+cloud has been studied in detail for the Planck 2013 release [98] and the Planck team
+in its 2015 analysis subtracted a fit to the Kelsall model for the zodiacal cloud before
+map making [17]. The Kelsall model [99] attempts to capture the Solar System dust
+emission in the infrared and microwaves and is based on the analysis of COBE DIRBE
+observations.
+     When comparing the Kelsall model with two meteoroid engineering models (used by
+space agencies to reduce the hazard to launch a spacecraft into a shower of meteoroids),
+it has been found that those engineering models [100, 101], depending on the chemical
+composition of the dust grains, predict a much brighter zodiacal cloud at microwave
+frequencies [94]. The Divine model of the interplanetary meteoroid environment [100]
+predicts meteoroid fluxes on spacecraft anywhere in the Solar system from 0.05 to 40 AU
+from the Sun. This model uses data from micro-crater counts in lunar rocks from
+Apollo, meteor radar, and in situ measurements from Helios, Pioneer 10 & 11, Galileo
+and Ulysses. However, it does not make use of the infrared observations of COBE
+DIRBE. The Interplanetary Meteoroid Engineering Model (IMEM) [101] and the Divine
+model use the distributions in orbital elements and mass rather than the spatial density
+functions of the Kelsall model, ensuring that the dust densities and fluxes are predicted
+in accord with Keplerian dynamics of the constituent particles in heliocentric orbits.
+IMEM is constrained by the micro-crater size statistics collected from the lunar rocks,
+COBE DIRBE observations of the infrared emission from the interplanetary dust at 4.9,
+12, 25, 60, and 100 µm wavelengths, and Galileo and Ulysses in-situ flux measurements.
+     The different predictions for microwave emission from the Solar System of the three
+models is illustrated in Fig. 9.
+     To a first approximation, the zodiacal dust foreground produces a smooth band
+along the ecliptic, see Fig. 9. This does not give rise to a hemispherical asymmetry, but
+it could cause alignments of low CMB multipoles with the ecliptic plane. Additionally,
+it could contribute to a positive correlation at very large angular separations, as the
+antipode of a point close to the ecliptic is also close to the ecliptic. However, the
+CMB anomalies after Planck                                                                      20
+
+
+
+
+              Figure 9. Comparison of three contemporary models of Solar System dust [94]. The
+              plots show all-sky maps of the thermal emission from the Zodiacal cloud as seen from
+              Earth at the fall equinox time. The maps are in ecliptic coordinates and are centered
+              on the vernal equinox. A disk of radius 30◦ around the Sun is masked. The Planck
+              analysis is based on the Kelsall model (left column). Note the much higher expected
+              fluxes in the IMEM and Divine model (middle and right column), which assume here
+              that the dust grains are carboneous. The grey scale of the upper row of maps is in
+              MJy sterad−1 , the other rows are in µK of a temperature in excess of the CMB. Each
+              map has its own brightness scale.
+
+
+shape of the emission from the zodiacal cloud cannot give rise to the type of alignment
+observed in the low ` multipoles of the CMB because it looks looks like a Y`0 in ecliptic
+coordinates, not Y`` (see the zodiacal cloud images in [95]). Therefore, while the zodiacal
+dust is unlikely to cause a lack of large angle correlation, it could change the significance
+of some of the anomalies.
+     Another Solar System source of CMB foreground might be the Kuiper belt [97]
+and more Solar System related ideas have been studied in [102], proposing nearby
+CMB anomalies after Planck                                                              21
+
+interplanetary dust towards the nose of the heliosphere to be responsible of some of
+the unexpected alignments.
+
+3.2. Milky Way
+The next well-established layer of foregrounds are due to the Galaxy. At the highest
+frequencies galactic thermal dust is dominant and molecular lines from CO transitions
+contribute in various frequency bands [103].
+     Until recently it was believed that at low frequencies synchrotron and free-free
+emission are the dominant mechanisms. Interestingly enough, the Planck 2015 release
+overturned that point of view and showed that free-free and spinning dust are the
+dominant components at the lowest frequencies [104].
+     Shortly after the discovery of the low multipole alignments, one suspicion was that
+they could be caused by residual contamination due to Galactic foregrounds [105]. If
+the Galactic plane signal contributes to the large-angle CMB, multipole vectors should
+point in the direction of the plane and, more generally, alignments should be Galactic
+(and not largely ecliptic). This has been explicitly demonstrated by [106], who found
+that adding a Galactic-emission-shaped template contributing to the CMB map with an
+arbitrary weight does not lead to observed alignments. The multipole vector analysis is
+particularly effective in this case, as it easily detects the directions singled out by the
+Galaxy, i.e. the Galactic center and the Galactic poles.
+     It also seems to be hard to explain a lack of correlation at the largest angular
+scales from residual galactic contamination. The galaxy is quite close to us and thus
+highly correlated over large scales (it extends over much more than 60 degrees on the
+sky). The comparison of the two-point correlation function for different masks, as well
+as constraining the analysis to correlations for which at least one point is close to the
+Galactic plane, are in full agreement with the hypothesis that foreground cleaned full-
+sky maps do contain Galactic residuals that strongly affect the amount of correlation at
+the largest angular scales. However the fact that the most conservative masks provide
+the smallest amounts of correlation seems to indicate that it is precisely the cleanest,
+most trustworthy regions on the sky that show the strongest evidence for the vanishing
+of angular correlations in the CMB [37, 32].
+     Recently it became clear that there is another type of galactic foreground that seems
+to be more local and might have a quite complex structure. The so-called radio loops are
+believed to be relics of supernovae. They have been detected at radio frequencies long
+ago, and have been believed to be of no relevance for the CMB temperature anisotropies.
+However, it was argued, especially in the context of polarized emission, that this might
+not be true [107, 108, 109, 110, 103]. Most recently, it was shown that a loop structure
+in the vicinity of the cold spot, together with another structure called radio loop I,
+is able to almost perfectly reproduce the observed quadrupole-octopole map [50]. If
+indeed these two structures would dominate the sky at the very low multipole moments,
+then the primordial fluctuations at those scales must be completely absent. This might
+CMB anomalies after Planck                                                           22
+
+explain the alignments and maybe to some extend the dipolar modulation, but the lack
+of correlation would become more significant and would be in stark contrast to the
+ΛCDM model.
+
+3.3. Other foregrounds
+There are a number of other foregrounds that could in principle have effect on, or even
+be the cause of, the anomalies. For example, the local extragalactic environment in
+form of hot plasma and a local Sunyaev-Zeldovich effect may play a role [111, 112].
+However, these other foregrounds have not been studied in great detail in the context
+of the anomalies, partly because they are not thought to be able to generate features at
+very large angular scales.
+     The short summary of this section, therefore, is that while none of the
+aforementioned effects have been proven to cause any of the CMB anomalies, it is clear
+that these are physically well motivated foregrounds and an improved understanding of
+them will also help us to better understand the nature of the unexpected CMB features.
+     The major argument against a foreground related explanation of the CMB
+anomalies is the frequency independence of the observed anomalies. In fact, the
+anomalies show up at more or less the same statistical significance in four different
+Planck pipelines that lead to foreground cleaned maps of the full sky and in the
+corresponding WMAP pipeline. This implies that any so far unidentified foreground
+that would be responsible for one or all of the unexpected features of the CMB at large
+angular scales would have to mimic a CMB fluctuation spectrum, in order not to show up
+in the difference maps between the four foreground cleaned Planck maps (Commander,
+NILC, SEVEM, SMICA).
+
+4. Cosmology
+
+Perhaps the most exciting possibility is that some or all of the anomalies have a
+(common) cosmological origin. In this section, we consider a variety of proposed
+cosmological mechanisms whose manifestation could be the observed anomalies.
+
+4.1. Kinetic effects
+Earth’s motion through the rest frame of the CMB leads to higher-order effects on
+the observed anisotropy, which could in principle affect conclusions about the observed
+anomalies [113]. As already discussed above, these so-called kinetic effects have been
+studied for low multipole moments [45, 33, 49]) as well as for the highest multipole
+moments [6, 7] and both contribute to the final significance for the anomalies. The
+kinetic effect on the quadrupole also provides another argument against a Solar System,
+Galactic or local extragalactic foreground. When this well-understood correction to the
+data is applied, evidence for the alignments becomes even stronger. If those alignments
+were caused by, say, a Galactic foreground, the correct kinetic correction should be
+CMB anomalies after Planck                                                             23
+
+derived from the velocity of the Solar System within the Galaxy and not with respect
+to the CMB frame. In that case a “wrong” kinetic correction would have been applied,
+which would be very unlikely to increase the alignments (a random correction actually
+leads most likely to a less significant alignment). This indicates that the alignment is a
+physical effect and that it is not due to foregrounds.
+
+4.2. Local large scale structure
+Local structure – over/underdensities in the dark matter distribution within tens or
+few hundreds of megaparsecs of our location in the universe – could in principle be
+responsible for some of the alignments. This class of explanation has a nice feature of
+producing large-scale effects relatively easily, since the small distance to us implies a
+large angle on the sky (see Fig. 2).
+     One possibility is the late-time integrated Sachs-Wolfe effect (ISW), or, in the
+non-linear regime the Rees-Sciama effect. This is the additional anisotropy caused by
+the decay of gravitational potential when the universe becomes dark energy-dominated
+(redshift z . 1), and has a nice feature that it is achromatic. First estimates showed
+that the effect could give rise to the correct order of magnitude for the quadrupole
+and octopole [114, 81]. In [114] a single spherical structure was considered and it was
+argued that a single over or underdensity cannot give rise to the observed pattern. In
+[81] a more complicated configuration of voids was considered and it was shown that
+such a structure could explain the observed alignment. This idea was studied further in
+[115, 116, 117, 118].
+     An argument against explaining the observed alignments with the ISW is simply
+that it is unlikely: barring a suppression of primordial temperature fluctuations, the
+observed missing power at large angles generically requires a chance cancellation between
+the local ISW signal and the primordial CMB pattern. This is unlikely and, taken at
+face value, would imply another anomaly [33]. Nevertheless, this idea can eventually be
+tested by means of cross-correlation of the CMB maps with all-sky maps of the cosmic
+structure.
+     The idea that an unusually large void is in our vicinity has been revived repeatedly
+in the context of the cold spot anomaly. There had been a claim of an underdensity in
+the NVSS radio survey in the location of the CMB cold spot [119], but this feature was
+proven to not be statistically significant once the systematic errors in the survey, and
+in particular the known underdensity stripe in NVSS, are taken into account [120].
+More recently, there was a claimed discovery of a large (∼ 200 Mpc) underdensity
+(δρ/ρ ∼ −0.15) centered at redshift z ∼ 0.2 in the distribution of galaxies in the
+2MASS-WISE survey [121]. The underdensity lies in the direction of the CMB cold
+spot, leading to a fascinating possibility that the former is causing the latter via the
+ISW effect [122]. However, this causal explanation has been brought into question
+[123, 124], as it appears that the underdensity is not sufficiently pronounced to cause
+the observed temperature cold spot. Future tests, discussed in Sec. 5, will have a lot
+CMB anomalies after Planck                                                                   24
+
+more to say about the local structures and their relation to CMB anomalies.
+
+4.3. Primordial power spectrum — broken scale invariance
+An inflationary scenario with the minimally short period of slow-roll, say just 50 to
+60 e-folds, could accommodate breaking of the scale invariance during inflation at
+observationally accessible scales, that in turn could manifest itself as one or more of the
+CMB anomalies [125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 40]. Alternatively
+one could also consider scenarios in which inflation deviates from its generic slow-roll
+behavior just 50 to 60 e-foldings before it ends, e.g. [136, 137]. Many of those models
+find an improved quality of fit to the observations, however the improvement is typically
+not statistically significant given the additional parameters of the model. These models
+also make definite predictions on tensor modes and on the polarization of the CMB at
+the largest angular scales; thus, there are more handles that we can hope to exploit in
+the future. However, a generic problem of an explanation along these lines is that a new
+fine tuning (why do we live in the epoch when the Universe is large enough to observe
+the first pre-inflationary scales) is introduced in some of these models.
+
+4.4. Primordial power spectrum — broken isotropy
+Tests of isotropy and homogeneity of the initial conditions in the universe have seen
+tremendous activity and development over the past decade. Two facts contributed
+to this. First, several of the anomalies, particularly the parity anomaly and the
+hemispherical anomaly, can be naturally modeled (and potentially explained) using
+modulation of either the primordial temperature or primordial power spectrum. Second,
+the advent of full-sky WMAP and Planck CMB maps enables the precise measurements
+required to constrain these models, particularly the high-` couplings between the
+multipoles.
+     At the level of the CMB temperature, the modulation can most generally be written
+as [56]
+               T (ê) = T0 (ê)[1 + f (ê)],                                               (11)
+where f is some function. Ref. [56] studied both the dipolar and the quadrupolar
+temperature modulation (i.e. when f is proportional to Y1m and Y2m , respectively)
+in order to explain the missing correlations at large scales and the quadrupole-octopole
+alignment. While it is certainly possible to do so, [56] found that it is difficult to naturally
+arrange for the missing correlations, as it typically requires chance cancellations at large
+scales.
+     The discovery of hemispherical asymmetry gave much further impetus to the study
+of modulations, particularly the dipolar one written down in Eq. (9). It has become
+particularly interesting to ask what general mechanisms could produce a such a long-
+wavelength modulation. An inflationary theory could, in principle, accommodate models
+that produce hemispherical asymmetry, but such a model would have to be multi-field
+CMB anomalies after Planck                                                                 25
+
+and involve, for example, a large-amplitude superhorizon perturbation to the curvaton
+field [138]. It turns out that a long wavelength, superhorizon-scale gradient in density
+(the so called Grischuk-Zeldovich effect [139]) could not produce the dipolar asymmetry
+starting with adiabatic fluctuations because the intrinsic dipole in the CMB produced
+by the perturbation is exactly canceled by the Doppler dipole induced by our peculiar
+motion [140, 141, 142]. However, a superhorizon isocurvature perturbation could do the
+job [142]. In that case, the effects of the superhorizon fluctuation would also presumably
+be seen as the anisotropic distribution of large-scale structure on the sky, but no such
+effect has yet been detected in the distribution of quasars [143] or galaxies and other
+tracers [144, 10].
+     An equally interesting possibility is that anisotropic inflation led to a breaking of
+statistical isotropy. The best-studied model posits that the power spectrum take the
+following form [145]
+                                          ˆ 2]
+                P (k) = P (k)[1 + g∗ (k · d)                                             (12)
+where dˆ is again a special direction. Such a model would imply that inflation was
+anisotropic, which could be caused by coupling to vector fields [146], presence of
+magnetic fields [147] or models motivated in supergravity [148]. First estimates of the
+parameter g∗ found it is nonzero at the huge significance of ∼ 9σ [149], but this was soon
+found to be due to a known effect of asymmetric beams [150] which had not been taken
+into account. A later analysis based on Planck data gave the best constraint to date,
+g∗ = 0.002±0.016 at 68% C.L [151]; the Planck team gets very similar constraints [7, 23].
+     It is also interesting that the apparent breaking of statistical isotropy can actually
+be an artifact of non-Gaussianity [152, 153]. More precisely, coupling between
+a superhorizon long mode and shorter, observable modes due to primordial non-
+Gaussianity on superhorizon scales can manifest itself in observations as a preferred
+direction on the sky. Essentially, one can thus “trade” the breaking of statistical isotropy
+for the presence of primordial non-Gaussianity. These ideas have been further elaborated
+by [154, 155, 156].
+
+4.5. Topology
+A non-trivial topology of the Universe might in principal both lead to a lack of correlation
+at large angular scale and introduce alignments and/or asymmetries, while preserving a
+locally isotropic and homogeneous geometry. The idea is that the Universe might have
+a finite size which is not much larger than today’s Hubble distance. In such a universe
+there is a natural cut-off for structures at large scales [157, 158, 159] and if the different
+large but compact dimensions are not of equal size, we could even imagine that a plane
+like the quadrupole-octopole plane would be singled out [160, 161].
+     Detailed studies of non-trivial topologies however did not find any statistically
+significant signal to substantiate those ideas [162, 163, 25, 24]. These included generic
+studies based on the circles-in-the-sky signature [164], which rule out with reasonable
+confidence that there is a non-trivial closed loop in the universe with length less than
+CMB anomalies after Planck                                                              26
+
+98.5% of the diameter of the last scattering surface [25]. Searches for anomalous
+correlations in the CMB can extend these bounds for specific manifolds or classes of
+manifolds to slightly larger distances.
+      For non-trivial topology to be observable, whether or not it is behind any of
+the mysterious large-scale features in the CMB, the characteristic length scale of the
+fundamental domain would need to be comparable to the Hubble distance. We would
+then be faced with another coincidence problem – why do we live in an epoch in which
+we are able to see a non-trivial topology?
+      A short summary of the cosmological explanations offered so far is that the ideas
+mentioned here could all explain at least one “anomaly atom”, however, none of them
+has been demonstrated to be detectable at a statistically significant level. The kinetic
+effects must be taken into account, but do not seem to explain any of the new features
+of the CMB. The local large scale structure exists and must be better understood –
+especially form non-CMB observations (see below). Primordial physics might lead to
+broken scale invariance, very large non-adiabatic modes and non-trivial topologies. All
+three suffer from a coincidence problem. This problem might be most prominent for
+finite topologies, like a 3-torus. When combined with inflation such a solution requires
+a single short period of inflation. All ideas of primordial power suppression suffer from a
+regeneration of large scale power via the ISW effect at late times. This aspect is tamed
+in finite topologies, but in that case the alignment of modes is diluted via the ISW effect
+[161]. Finally the idea to break the isotropy of the primordial power spectrum seems –
+when compared to data – not to be implemented in the CMB on all scales (in particular
+there is no evidence for such an effect at ` ∼  > 60) and thus must be combined with a
+breaking of scale invariance. On top it is unclear how such a primordial breaking of
+isotropy would generate a lack of correlation at large angular scales.
+
+5. Way forward and Conclusion
+
+The origin and nature of CMB temperature anomalies can be tested with other
+observations in cosmology. The best way to proceed along those lines is to assume
+the model for the CMB temperature anomalies, and test that model with other data.
+     The simplest model that can be tested is that the anomalies are simply fluke events
+in the standard ΛCDM cosmological model. In the language of frequentist statistics, the
+anomalies in this case are realized in a very small fraction of random realizations within
+the underlying ΛCDM model. Then one could simply ask how the other observations,
+beyond CMB temperature, are affected as seen in this small subsection of anomalous
+ΛCDM realizations. One could similarly test other, non-ΛCDM models for the anomalies
+whether they are fundamental or purely phenomenological and, if desired, use Bayesian
+statistics as well.
+     We now discuss how other observations in cosmology can help understand the CMB
+temperature anomalies.
+CMB anomalies after Planck                                                            27
+
+5.1. CMB polarization
+Any given model for the CMB temperature anomalies has predictions for polarization.
+Given the increasingly precise polarization measurements, it is of great interest to make
+predictions for polarization under different models for the anomalies. The polarization
+data from WMAP and Planck are good enough to produce reliable polarization power
+spectra, but are not high enough signal-to-noise to produce maps of the polarization
+field – especially not at very large scales where foregrounds are extremely difficult to
+remove. Nevertheless, new generations of experiments, such as LiteBird [165], CORE
+[166], and CMB-S4 hold promise for accurate maps of polarization down to the lowest
+multipoles.
+      First predictions for polarization were carried out by [167] who studied how
+a dipolar modulation model that can explain the hemispherical asymmetry and a
+quadrupolar modulation model that can explain the quadrupole-octopole alignment
+can be constrained with polarization map data. For the dipolar case, they showed
+that predictions for the correlation between the first 10 multipoles of the temperature
+and polarization fields can typically be tested at better than the 98% CL; while for
+the quadrupolar case, predicted correlations between temperature and polarization
+multipoles out to ` = 5 provide tests at the 99% CL or stronger. This was followed
+up by [168] who assumed that the suppressed correlations observed in WMAP and
+Planck temperature data are just unlikely realizations in the ΛCDM model, and studied
+what that hypothesis predicted for CMB temperature-polarization cross-correlation.
+Their conclusion is that while the temperature-polarization cross-correlation cannot
+definitively be expected to be able to rule out ΛCDM, one can nevertheless construct
+statistics that have a good chance (∼ 50%) of excluding the hypothesis at a high
+statistical confidence (> 3σ). Similar results were obtained [169] for the predicted
+utility of large-angle temperature-lensing-potential correlation function measurements;
+however, in [170] the authors showed that the large-angle polarization auto-correlation
+function may be more promising. The latter also began exploring the alternative
+hypothesis that the lack of large-angle temperature auto-correlation reflects a lack
+of large-distance correlations in the metric potentials, and note that the large angle
+polarization auto-correlation appears well suited to test this hypothesis.
+
+5.2. Large-scale structure
+The distribution of galaxies, or other tracers of the large-scale structure, may be
+particularly useful to clarify the nature of at least some of the observed CMB anomalies.
+Galaxies have now been mapped over the whole sky out to z ∼ 0.2, e.g. by the 2MASS
+[171] and Wide Infrared Survey Explorer (WISE; [172]) surveys, and to a depth of
+z ∼ 0.7 by the SDSS, including a subsample of more than two million galaxies and
+quasars that have spectroscopic information [173]. In the future, a combination of the
+Dark Energy Survey (DES; [174]), Dark Energy Spectroscopic Instrument (DESI; [175]),
+Euclid [176], Large Synoptic Survey Telescope (LSST; [177]) and Wide-Field Infrared
+CMB anomalies after Planck                                                             28
+
+Survey Telescope (WFIRST; [178]) will map out the galaxy distribution over the whole
+sky out to redshift beyond one, while eROSITA [179] will carry out a complete census
+of X-ray clusters in the observable Universe. Other tracers, such as quasars and radio
+galaxies, are particularly useful since they are at redshifts of a few and probe an even
+larger volume. Eventually HI surveys, e.g. by means of the Square Kilometre Array
+(SKA; [180]), will map all galaxies containing neutral hydrogen out to a redshift of a
+few. The SKA will also allow us to eventually pin down the cosmic radio dipole at per
+cent level and thus provide a precise test of the proper motion hypothesis of the CMB
+dipole and possibly identify a significant structure dipole [180].
+     To give another example, missing power on large angular scales leads, assuming
+ΛCDM, to corresponding suppression of power on a gigaparsec scale (that is, the power
+spectrum of matter fluctuations P (k) is suppressed for k . 0.001 h Mpc−1 ). It turns
+out that a future very-large volume survey, such as LSST, could in principle measure
+power on such large scales to a sufficient accuracy to detect the purported suppression
+in power at a statistically significant level [181, 182].
+     The cold spot offers a particularly appealing target for the large-scale structure
+surveys because of its smaller angular size. While the aforementioned evidence
+for the underdensity in the large-scale structure is inconclusive (see Sec. 4.2), the
+aforementioned future wide, deep surveys will offer a fantastic opportunity to correlate
+the large-scale structure to the CMB anomalies.
+
+5.3. Foregrounds
+From the discussion in Sec. 3, it is clear that both Solar System and Galactic foregrounds
+need to be better understood. For example, we already mentioned that three different
+models for the zodiacal dust emission mutually disagree by more than an order of
+magnitude. It would be important to investigate the prospect of dedicated observations
+targeted specifically in regions where the zodiacal dust signal becomes more important
+to test those models. Similarly, the nature of spinning dust is not well understood (see
+e.g. [183, 184]). The same holds for the extrapolation of known radio loops into the
+relevant microwave bands. In both cases, a dedicated radio and microwave observations
+would be useful. The DeepSpace project in Greenland is planning to cover those
+frequency bands. More generally, other astrophysical observations in the coming 10–20
+years should be able to provide significant new information about foregrounds and their
+effects on the CMB anomalies.
+
+6. Executive summary
+
+We summarized the evidence that several CMB anomalies are real features. We identify
+three anomaly “atoms”: the lack of large angle correlation, the mutual alignment of
+the lowest multipole moments, and the hemispherical asymmetry. These three “atoms”
+seem to be orthogonal and independent of each other in the realm of the minimal
+CMB anomalies after Planck                                                                    29
+
+inflationary ΛCDM model. Any proposal to explain (or just parameterize) these new
+CMB features should address at least two of the “atoms” as one of them might, after all,
+still be a statistical fluctuation. In an effort to find a compelling explanation, several new
+theoretical ideas have been considered, covering a broad spectrum from the physics of
+dust grains to exotic theories of the very early universe. Currently, the physics behind
+the CMB anomalies is still unknown, but new observations of the CMB (especially
+of polarization) and new observations of at other wavebands, both of the large scale
+structure and of potential foregrounds, will provide significant new information and
+provide us with powerful new tools to eventually resolve the puzzle of the anomalies.
+
+Acknowledgments
+
+DJS is supported by the DFG grant RTG 1620 ‘Models of Gravity’. GDS and CJC are
+supported by the US Department of Energy grant doe-sc0009946. DH is supported by
+NSF under contract AST-0807564 and DOE under contract DE-FG02-95ER40899.
+    We acknowledge the use of the Legacy Archive for Microwave Background Data
+Analysis (LAMBDA), part of the High Energy Astrophysics Science Archive Center
+(HEASARC). HEASARC/LAMBDA is a service of the Astrophysics Science Division
+at the NASA Goddard Space Flight Center. This paper made use of observations
+obtained with Planck (www.esa.int/Planck), an ESA science mission with instruments
+and contributions directly funded by ESA Member States, NASA, and Canada.
+
+References
+
+  [1] Penzias A A and Wilson R W 1965 ApJ 142 419–421
+  [2] Conklin E K 1969 Nature 222 971–972
+  [3] Henry P S 1971 Nature 231 516–518
+  [4] Peebles P J and Wilkinson D T 1968 Physical Review 174 2168–2168
+  [5] Smoot G F, Bennett C L, Kogut A, Wright E L, Aymon J, Boggess N W, Cheng E S, de Amici
+        G, Gulkis S, Hauser M G, Hinshaw G, Jackson P D, Janssen M, Kaita E, Kelsall T, Keegstra
+        P, Lineweaver C, Loewenstein K, Lubin P, Mather J, Meyer S S, Moseley S H, Murdock T,
+        Rokke L, Silverberg R F, Tenorio L, Weiss R and Wilkinson D T 1992 ApJ 396 L1–L5
+  [6] Planck Collaboration, Aghanim N, Armitage-Caplan C, Arnaud M, Ashdown M, Atrio-Barandela
+        F, Aumont J, Baccigalupi C, Banday A J, Barreiro R B and et al 2014 A&A 571 A27 (Preprint
+        1303.5087)
+  [7] Planck Collaboration, Ade P A R, Aghanim N, Akrami Y, Aluri P K, Arnaud M, Ashdown M,
+        Aumont J, Baccigalupi C, Banday A J and et al 2015 ArXiv e-prints (Preprint 1506.07135)
+  [8] Blake C and Wall J 2002 Nature 416 150–152 (Preprint arXiv:astro-ph/0203385)
+  [9] Singal A K 2011 ApJ 742 L23 (Preprint 1110.6260)
+ [10] Gibelyou C and Huterer D 2012 MNRAS 427 1994–2021 (Preprint 1205.6476)
+ [11] Rubart M and Schwarz D J 2013 A&A 555 A117 (Preprint 1301.5559)
+ [12] Kothari R, Naskar A, Tiwari P, Nadkarni-Ghosh S and Jain P 2013 ArXiv e-prints (Preprint
+        1307.1947)
+ [13] Singal A K 2014 A&A 568 A63 (Preprint 1408.0679)
+ [14] Yoon M, Huterer D, Gibelyou C, Kovács A and Szapudi I 2014 MNRAS 445 L60–L64 (Preprint
+        1406.1187)
+CMB anomalies after Planck                                                                     30
+
+[15] Tiwari P and Jain P 2015 MNRAS 447 2658–2670 (Preprint 1308.3970)
+[16] Tiwari P and Nusser A 2015 ArXiv e-prints (Preprint 1509.02532)
+[17] Planck Collaboration, Adam R, Ade P A R, Aghanim N, Akrami Y, Alves M I R, Arnaud M,
+       Arroja F, Aumont J, Baccigalupi C and et al 2015 ArXiv e-prints (Preprint 1502.01582)
+[18] Mukhanov V F and Chibisov G V 1981 Soviet Journal of Experimental and Theoretical Physics
+       Letters 33 532
+[19] Starobinsky A A 1980 Physics Letters B 91 99–102
+[20] Guth A H 1981 Phys. Rev. D 23 347–356
+[21] Starobinskiǐ A A 1979 Soviet Journal of Experimental and Theoretical Physics Letters 30 682
+[22] Planck Collaboration, Ade P A R, Aghanim N, Arnaud M, Ashdown M, Aumont J, Baccigalupi C,
+       Banday A J, Barreiro R B, Bartlett J G and et al 2015 ArXiv e-prints (Preprint 1502.01589)
+[23] Planck Collaboration, Ade P A R, Aghanim N, Arnaud M, Arroja F, Ashdown M, Aumont J,
+       Baccigalupi C, Ballardini M, Banday A J and et al 2015 ArXiv e-prints (Preprint 1502.02114)
+[24] Planck Collaboration, Ade P A R, Aghanim N, Arnaud M, Ashdown M, Aumont J, Baccigalupi
+       C, Banday A J, Barreiro R B, Bartolo N and et al 2015 ArXiv e-prints (Preprint 1502.01593)
+[25] Vaudrevange P M, Starkman G D, Cornish N J and Spergel D N 2012 Phys. Rev. D86 083526
+       (Preprint 1206.2939)
+[26] Planck Collaboration, Ade P A R, Aghanim N, Arnaud M, Arroja F, Ashdown M, Aumont J,
+       Baccigalupi C, Ballardini M, Banday A J and et al 2015 ArXiv e-prints (Preprint 1502.01592)
+[27] Fixsen D J and Mather J C 2002 ApJ 581 817–822
+[28] Fixsen D J 2009 ApJ 707 916–920 URL http://dx.doi.org/10.1088/0004-637X/707/2/916
+[29] Bennett C L, Halpern M, Hinshaw G, Jarosik N, Kogut A, Limon M, Meyer S S, Page L, Spergel
+       D N, Tucker G S, Wollack E, Wright E L, Barnes C, Greason M R, Hill R S, Komatsu E,
+       Nolta M R, Odegard N, Peiris H V, Verde L and Weiland J L 2003 ApJS 148 1–27 (Preprint
+       astro-ph/0302207)
+[30] Efstathiou G 2003 MNRAS 346 L26–L30 (Preprint astro-ph/0306431)
+[31] Copi C J, Huterer D, Schwarz D J and Starkman G D 2015 MNRAS 451 2978–2985
+[32] Gruppuso A 2014 MNRAS 437 2076–2082 (Preprint 1310.2822)
+[33] Copi C J, Huterer D, Schwarz D J and Starkman G D 2015 MNRAS 449 3458–3470
+[34] Hinshaw G, Branday A J, Bennett C L, Gorski K M, Kogut A, Lineweaver C H, Smoot G F and
+       Wright E L 1996 ApJ 464 L25 (Preprint astro-ph/9601061)
+[35] Spergel D N, Verde L, Peiris H V, Komatsu E, Nolta M R, Bennett C L, Halpern M, Hinshaw G,
+       Jarosik N, Kogut A, Limon M, Meyer S S, Page L, Tucker G S, Weiland J L, Wollack E and
+       Wright E L (WMAP) 2003 ApJS 148 175–194 (Preprint astro-ph/0302209)
+[36] Copi C J, Huterer D, Schwarz D J and Starkman G D 2007 Phys. Rev. D 75 023507 (Preprint
+       astro-ph/0605135)
+[37] Copi C J, Huterer D, Schwarz D J and Starkman G D 2009 MNRAS 399 295–303 (Preprint
+       0808.3767)
+[38] Bennett C L, Hill R S, Hinshaw G, Larson D, Smith K M, Dunkley J, Gold B, Halpern M, Jarosik
+       N, Kogut A, Komatsu E, Limon M, Meyer S S, Nolta M R, Odegard N, Page L, Spergel D N,
+       Tucker G S, Weiland J L, Wollack E and Wright E L 2011 ApJS 192 17 (Preprint 1001.4758)
+[39] Hajian A 2007 ArXiv Astrophysics e-prints (Preprint astro-ph/0702723)
+[40] Gruppuso A, Kitazawa N, Mandolesi N, Natoli P and Sagnotti A 2015 ArXiv e-prints (Preprint
+       1508.00411)
+[41] Efstathiou G, Ma Y Z and Hanson D 2010 Mon. Not. Roy. Astron. Soc. 407 2530 (Preprint
+       0911.5399)
+[42] Pontzen A and Peiris H V 2010 Phys. Rev. D81 103008 (Preprint 1004.2706)
+[43] Planck Collaboration, Ade P A R, Aghanim N, Armitage-Caplan C, Arnaud M, Ashdown M,
+       Atrio-Barandela F, Aumont J, Baccigalupi C, Banday A J and et al 2014 A&A 571 A23
+       (Preprint 1303.5083)
+[44] de Oliveira-Costa A, Tegmark M, Zaldarriaga M and Hamilton A 2004 Phys. Rev. D 69 063516–+
+CMB anomalies after Planck                                                                   31
+
+       (Preprint arXiv:astro-ph/0307282)
+[45] Schwarz D J, Starkman G D, Huterer D and Copi C J 2004 Phys. Rev. Lett. 93 221301 (Preprint
+       astro-ph/0403353)
+[46] Land K and Magueijo J 2005 MNRAS 362 838–846 (Preprint astro-ph/0502574)
+[47] Land K and Magueijo J 2005 Phys. Rev. Lett. 95 071301 (Preprint astro-ph/0502237)
+[48] Copi C J, Huterer D and Starkman G D 2004 Phys. Rev. D 70 043515 (Preprint astro-ph/
+       0310511)
+[49] Notari A and Quartin M 2015 JCAP 1506 047 (Preprint 1504.02076)
+[50] Frejsel A M 2015 PhD thesis, Niels Bohr Institute and Discovery Center, The University of
+       Copenhagen
+[51] Eriksen H K, Hansen F K, Banday A J, Gorski K M and Lilje P B 2004 Astrophys. J. 605 14–20
+       [Erratum: Astrophys. J.609,1198(2004)] (Preprint astro-ph/0307507)
+[52] Hansen F K, Cabella P, Marinucci D and Vittorio N 2004 Astrophys. J. 607 L67–L70 (Preprint
+       astro-ph/0402396)
+[53] Eriksen H K, Banday A J, Gorski K M, Hansen F K and Lilje P B 2007 Astrophys. J. 660
+       L81–L84 (Preprint astro-ph/0701089)
+[54] Hoftuft J, Eriksen H K, Banday A J, Gorski K M, Hansen F K and Lilje P B 2009 Astrophys. J.
+       699 985–989 (Preprint 0903.1229)
+[55] Akrami Y, Fantaye Y, Shafieloo A, Eriksen H K, Hansen F K, Banday A J and Grski K M 2014
+       Astrophys. J. 784 L42 (Preprint 1402.0870)
+[56] Gordon C, Hu W, Huterer D and Crawford T 2005 Phys. Rev. D 72 103002 (Preprint
+       astro-ph/0509301)
+[57] Prunet S, Uzan J P, Bernardeau F and Brunier T 2005 Phys. Rev. D71 083508 (Preprint
+       astro-ph/0406364)
+[58] Hajian A and Souradeep T 2003 ApJ 597 L5–L8 (Preprint astro-ph/0308001)
+[59] Hajian A and Souradeep T 2005 ArXiv Astrophysics e-prints (Preprint astro-ph/0501001)
+[60] Adhikari S 2015 Mon. Not. Roy. Astron. Soc. 446 4232–4238 (Preprint 1408.5396)
+[61] Hansen F K, Banday A J, Gorski K M, Eriksen H K and Lilje P B 2009 Astrophys. J. 704
+       1448–1458 (Preprint 0812.3795)
+[62] Land K and Magueijo J 2005 Phys. Rev. D72 101302 (Preprint astro-ph/0507289)
+[63] Kim J and Naselsky P 2010 Astrophys. J. 714 L265–L267 (Preprint 1001.4613)
+[64] Kim J and Naselsky P 2010 Phys. Rev. D82 063002 (Preprint 1002.0148)
+[65] Kim J and Naselsky P 2011 ApJ 739 79 (Preprint 1011.0377)
+[66] Naselsky P, Zhao W, Kim J and Chen S 2012 Astrophys. J. 749 31 (Preprint 1108.4376)
+[67] Vielva P, Martinez-Gonzalez E, Barreiro R B, Sanz J L and Cayon L 2004 Astrophys. J. 609
+       22–34 (Preprint astro-ph/0310273)
+[68] Cruz M, Tucci M, Martinez-Gonzalez E and Vielva P 2006 Mon. Not. Roy. Astron. Soc. 369
+       57–67 (Preprint astro-ph/0601427)
+[69] Cruz M, Cayon L, Martinez-Gonzalez E, Vielva P and Jin J 2007 Astrophys. J. 655 11–20
+       (Preprint astro-ph/0603859)
+[70] Cruz M, Martinez-Gonzalez E, Vielva P and Cayon L 2005 Mon. Not. Roy. Astron. Soc. 356
+       29–40 (Preprint astro-ph/0405341)
+[71] Chiang L Y, Naselsky P D and Coles P 2007 ApJ 664 8–13 (Preprint arXiv:astro-ph/0603662)
+[72] Vielva P, Wiaux Y, Martinez-Gonzalez E and Vandergheynst P 2007 Mon. Not. Roy. Astron.
+       Soc. 381 932 (Preprint 0704.3736)
+[73] McEwen J D, Hobson M P, Lasenby A N and Mortlock D J 2005 Mon. Not. Roy. Astron. Soc.
+       359 1583–1596 (Preprint astro-ph/0406604)
+[74] Rath C, Schuecker P and Banday A J 2009 Phys. Rev. Lett. 102 131301 (Preprint astro-ph/
+       0702163)
+[75] Pietrobon D, Amblard A, Balbi A, Cabella P, Cooray A and Marinucci D 2008 Phys. Rev. D78
+       103504 (Preprint 0809.0010)
+CMB anomalies after Planck                                                                      32
+
+ [76] Rossmanith G, Raeth C, Banday A J and Morfill G 2009 Mon. Not. Roy. Astron. Soc. 399
+        1921–1933 (Preprint 0905.2854)
+ [77] Cayon L, Jin J and Treaster A 2005 Mon. Not. Roy. Astron. Soc. 362 826–832 (Preprint
+        astro-ph/0507246)
+ [78] Zhang R and Huterer D 2010 Astropart. Phys. 33 69–74 (Preprint 0908.3988)
+ [79] Cruz M, Martinez-Gonzalez E and Vielva P 2010 The WMAP cold spot Proceedings, 8th
+        Scientific Meeting of the Spanish Astronomical Society - Highlights of Spanish Astrophysics
+        V p 275 (Preprint 0901.1986) URL http://inspirehep.net/record/810973/files/arXiv:
+        0901.1986.pdf
+ [80] Vielva P 2010 Adv. Astron. 2010 592094 (Preprint 1008.3051)
+ [81] Inoue K T and Silk J 2006 ApJ 648 23–30 (Preprint astro-ph/0602478)
+ [82] Giannantonio T, Crittenden R, Nichol R and Ross A J 2012 Mon. Not. Roy. Astron. Soc. 426
+        2581–2599 (Preprint 1209.2125)
+ [83] Granett B R, Neyrinck M C and Szapudi I 2008 Astrophys. J. 683 L99–L102 (Preprint
+        0805.3695)
+ [84] Kovcs A and Granett B R 2015 Mon. Not. Roy. Astron. Soc. 452 1295–1302 (Preprint
+        1501.03376)
+ [85] Granett B R, Szapudi I and Neyrinck M C 2010 Astrophys. J. 714 825–833 (Preprint 0911.2223)
+ [86] Bremer M N, Silk J, Davies L J M and Lehnert M D 2010 Mon. Not. Roy. Astron. Soc. 404 69
+        (Preprint 1004.1178)
+ [87] Bridges M, McEwen J D, Cruz M, Hobson M P, Lasenby A N, Vielva P and Martinez-Gonzalez
+        E 2008 Mon. Not. Roy. Astron. Soc. 390 1372 (Preprint 0712.1789)
+ [88] Cruz M, Turok N, Vielva P, Martinez-Gonzalez E and Hobson M 2007 Science 318 1612–1614
+        (Preprint 0710.5737)
+ [89] Cruz M, Martinez-Gonzalez E, Vielva P, Diego J M, Hobson M and Turok N 2008 Mon. Not.
+        Roy. Astron. Soc. 390 913 (Preprint 0804.2904)
+ [90] Planck Collaboration, Ade P A R, Aghanim N, Arnaud M, Ashdown M, Aumont J, Baccigalupi C,
+        Banday A J, Barreiro R B, Bartlett J G and et al 2015 ArXiv e-prints (Preprint 1509.06348)
+ [91] Rakić A and Schwarz D J 2007 Phys. Rev. D 75 103002–+ (Preprint arXiv:astro-ph/0703266)
+ [92] Sarkar D, Huterer D, Copi C J, Starkman G D and Schwarz D J 2011 Astropart. Phys. 34 591–594
+        (Preprint 1004.3784)
+ [93] Polastri L, Gruppuso A and Natoli P 2015 JCAP 4 018 (Preprint 1503.01611)
+ [94] Dikarev V V and Schwarz D J 2015 ArXiv e-prints (Preprint 1501.04780)
+ [95] Dikarev V, Preuß O, Solanki S, Krüger H and Krivov A 2008 Earth Moon and Planets 102
+        555–561
+ [96] Dikarev V, Preuß O, Solanki S, Krüger H and Krivov A 2009 ApJ 705 670–682 (Preprint
+        0910.1317)
+ [97] Hansen M, Kim J, Frejsel A M, Ramazanov S, Naselsky P, Zhao W and Burigana C 2012 JCAP
+        10 059 (Preprint 1206.6981)
+ [98] Planck Collaboration, Ade P A R, Aghanim N, Armitage-Caplan C, Arnaud M, Ashdown M,
+        Atrio-Barandela F, Aumont J, Baccigalupi C, Banday A J and et al 2014 A&A 571 A14
+        (Preprint 1303.5074)
+ [99] Kelsall T, Weiland J L, Franz B A, Reach W T, Arendt R G, Dwek E, Freudenreich H T, Hauser
+        M G, Moseley S H, Odegard N P, Silverberg R F and Wright E L 1998 ApJ 508 44–73 (Preprint
+        astro-ph/9806250)
+[100] Divine N 1993 J. Geophys. Res. 98 17029–17048
+[101] Dikarev V, Grün E, Baggaley J, Galligan* D, Landgraf M and Jehn R 2004 Earth Moon and
+        Planets 95 109–122
+[102] Frisch P C 2005 ApJ 632 L143–L146 (Preprint astro-ph/0506293)
+[103] Planck Collaboration, Adam R, Ade P A R, Aghanim N, Alves M I R, Arnaud M, Ashdown M,
+        Aumont J, Baccigalupi C, Banday A J and et al 2015 ArXiv e-prints (Preprint 1502.01588)
+CMB anomalies after Planck                                                                      33
+
+[104] Planck Collaboration, Ade P A R, Aghanim N, Alves M I R, Arnaud M, Ashdown M, Aumont J,
+        Baccigalupi C, Banday A J, Barreiro R B and et al 2015 ArXiv e-prints (Preprint 1506.06660)
+[105] Slosar A and Seljak U 2004 Phys. Rev. D 70 083002 (Preprint astro-ph/0404567)
+[106] Copi C J, Huterer D, Schwarz D J and Starkman G D 2006 MNRAS 367 79–102 (Preprint
+        astro-ph/0508047)
+[107] Mertsch P and Sarkar S 2013 JCAP 6 041 (Preprint 1304.1078)
+[108] Liu H, Mertsch P and Sarkar S 2014 ApJ 789 L29 (Preprint 1404.1899)
+[109] Ogburn IV R W 2014 ArXiv e-prints (Preprint 1409.7354)
+[110] Vidal M, Dickinson C, Davies R D and Leahy J P 2015 MNRAS 452 656–675 (Preprint
+        1410.4438)
+[111] Abramo L R, Sodré Jr L and Wuensche C A 2006 Phys. Rev. D 74 083515 (Preprint arXiv:
+        astro-ph/0605269)
+[112] Peiris H V and Smith T L 2010 Phys. Rev. D 81 123517 (Preprint 1002.0836)
+[113] Kamionkowski M and Knox L 2003 Phys. Rev. D 67 063001 (Preprint arXiv:astro-ph/0210165)
+[114] Rakić A, Räsänen S and Schwarz D J 2006 MNRAS 369 L27–L31 (Preprint arXiv:astro-ph/
+        0601445)
+[115] Francis C L and Peacock J A 2010 MNRAS 406 14–21 (Preprint 0909.2495)
+[116] Dupé F X, Rassat A, Starck J L and Fadili M J 2011 A&A 534 A51 (Preprint 1010.2192)
+[117] Rassat A, Starck J L and Dupé F X 2013 A&A 557 A32 (Preprint 1303.4727)
+[118] Rassat A and Starck J L 2013 A&A 557 L1 (Preprint 1303.5051)
+[119] Rudnick L, Brown S and Williams L R 2007 Astrophys. J. 671 40–44 (Preprint 0704.0908)
+[120] Smith K M and Huterer D 2010 Mon. Not. Roy. Astron. Soc. 403 2 (Preprint 0805.2751)
+[121] Szapudi I et al. 2015 Mon. Not. Roy. Astron. Soc. 450 288–294 (Preprint 1405.1566)
+[122] Kovcs A et al. 2014 IAU Symp. 306 269 (Preprint 1407.1470)
+[123] Zibin J P 2014 (Preprint 1408.4442)
+[124] Nadathur S, Lavinto M, Hotchkiss S and Räsänen S 2014 Phys. Rev. D90 103510 (Preprint
+        1408.4720)
+[125] Boyanovsky D, de Vega H J and Sanchez N G 2006 Phys. Rev. D 74 123006 (Preprint
+        astro-ph/0607508)
+[126] Boyanovsky D, de Vega H J and Sanchez N G 2006 Phys. Rev. D 74 123007 (Preprint
+        astro-ph/0607487)
+[127] Powell B A and Kinney W H 2007 Phys. Rev. D 76 063512 (Preprint astro-ph/0612006)
+[128] Nicholson G and Contaldi C R 2008 JCAP 1 002 (Preprint astro-ph/0701783)
+[129] Destri C, de Vega H J and Sanchez N G 2008 Phys. Rev. D 78 023013 (Preprint 0804.2387)
+[130] Ramirez E and Schwarz D J 2009 Phys. Rev. D 80 023525 (Preprint 0903.3543)
+[131] Ramirez E and Schwarz D J 2012 Phys. Rev. D 85 103516 (Preprint 1111.7131)
+[132] Ramirez E 2012 Phys. Rev. D 85 103517 (Preprint 1202.0698)
+[133] Cicoli M, Downes S, Dutta B, Pedro F G and Westphal A 2014 JCAP 12 030 (Preprint
+        1407.1048)
+[134] Handley W J, Brechet S D, Lasenby A N and Hobson M P 2014 Phys. Rev. D 89 063505 (Preprint
+        1401.2253)
+[135] Scacco A and Albrecht A 2015 ArXiv e-prints (Preprint 1503.04872)
+[136] Contaldi C R, Peloso M, Kofman L and Linde A 2003 JCAP 7 002 (Preprint astro-ph/0303636)
+[137] Jain R K, Chingangbam P, Gong J O, Sriramkumar L and Souradeep T 2009 JCAP 1 009
+        (Preprint 0809.3915)
+[138] Erickcek A L, Kamionkowski M and Carroll S M 2008 Phys. Rev. D78 123520 (Preprint
+        0806.0377)
+[139] Grishchuk L and Zeldovich I 1978 Soviet Astronomy 22 125–129
+[140] Turner M 1991 Physical Review D 44 3737
+[141] Bruni M and Lyth D H 1994 Phys. Lett. B323 118–123 (Preprint astro-ph/9307036)
+[142] Erickcek A L, Carroll S M and Kamionkowski M 2008 Phys. Rev. D78 083012 (Preprint
+CMB anomalies after Planck                                                                    34
+
+        0808.1570)
+[143] Hirata C M 2009 JCAP 0909 011 (Preprint 0907.0703)
+[144] Pullen A R and Hirata C M 2010 JCAP 1005 027 (Preprint 1003.0673)
+[145] Ackerman L, Carroll S M and Wise M B 2007 Phys. Rev. D75 083502 [Erratum: Phys.
+        Rev.D80,069901(2009)] (Preprint astro-ph/0701357)
+[146] Soda J 2012 Class. Quant. Grav. 29 083001 (Preprint 1201.6434)
+[147] Kahniashvili T, Lavrelashvili G and Ratra B 2008 Phys. Rev. D78 063012 (Preprint 0807.4239)
+[148] Kanno S, Soda J and Watanabe M a 2010 JCAP 1012 024 (Preprint 1010.5307)
+[149] Groeneboom N E and Eriksen H K 2009 Astrophys. J. 690 1807–1819 (Preprint 0807.2242)
+[150] Hanson D, Lewis A and Challinor A 2010 Phys. Rev. D81 103003 (Preprint 1003.0198)
+[151] Kim J and Komatsu E 2013 Phys. Rev. D88 101301 (Preprint 1310.1605)
+[152] Byrnes C T, Nurmi S, Tasinato G and Wands D 2012 JCAP 1203 012 (Preprint 1111.2721)
+[153] Schmidt F and Hui L 2013 Phys. Rev. Lett. 110 011301 [Erratum:                   Phys. Rev.
+        Lett.110,059902(2013)] (Preprint 1210.2965)
+[154] Nelson E and Shandera S 2013 Phys. Rev. Lett. 110 131301 (Preprint 1212.4550)
+[155] LoVerde M, Nelson E and Shandera S 2013 JCAP 1306 024 (Preprint 1303.3549)
+[156] Adhikari S, Shandera S and Erickcek A L 2015 (Preprint 1508.06489)
+[157] Aurich R, Lustig S, Steiner F and Then H 2004 Classical and Quantum Gravity 21 4901–4925
+        (Preprint astro-ph/0403597)
+[158] Aurich R, Lustig S and Steiner F 2005 Classical and Quantum Gravity 22 2061–2083 (Preprint
+        astro-ph/0412569)
+[159] Aurich R, Janzer H S, Lustig S and Steiner F 2008 Classical and Quantum Gravity 25 125006
+        (Preprint 0708.1420)
+[160] Aurich R, Lustig S, Steiner F and Then H 2007 Classical and Quantum Gravity 24 1879–1894
+        (Preprint astro-ph/0612308)
+[161] Bielewicz P and Riazuelo A 2009 MNRAS 396 609–623 (Preprint 0804.2437)
+[162] Cornish N J, Spergel D N, Starkman G D and Komatsu E 2004 Phys. Rev. Lett. 92 201302
+        (Preprint astro-ph/0310233)
+[163] Shapiro Key J, Cornish N J, Spergel D N and Starkman G D 2007 Phys. Rev. D75 084034
+        (Preprint astro-ph/0604616)
+[164] Cornish N J, Spergel D N and Starkman G D 1998 Class. Quant. Grav. 15 2657–2670 (Preprint
+        astro-ph/9801212)
+[165] Matsumura T et al. 2013 (Preprint 1311.2847)
+[166] Bouchet F R et al. (COrE) 2011 (Preprint 1102.2181)
+[167] Dvorkin C, Peiris H V and Hu W 2008 Phys. Rev. D77 063008 (Preprint 0711.2321)
+[168] Copi C J, Huterer D, Schwarz D J and Starkman G D 2013 Mon. Not. Roy. Astron. Soc. 434
+        3590–3596 (Preprint 1303.4786)
+[169] Yoho A, Copi C J, Starkman G D and Kosowsky A 2014 Mon. Not. Roy. Astron. Soc. 442
+        2392–2397 (Preprint 1310.7603)
+[170] Yoho A, Aiola S, Copi C J, Kosowsky A and Starkman G D 2015 Phys. Rev. D91 123504 (Preprint
+        1503.05928)
+[171] Skrutskie M F et al. 2006 Astron. J. 131 1163–1183
+[172] Wright E L et al. 2010 Astron. J. 140 1868 (Preprint 1008.0031)
+[173] Alam S et al. (SDSS-III) 2015 Astrophys. J. Suppl. 219 12 (Preprint 1501.00963)
+[174] Abbott T et al. (Dark Energy Survey) 2005 (Preprint astro-ph/0510346)
+[175] Levi M et al. (DESI) 2013 (Preprint 1308.0847)
+[176] Laureijs R et al. (EUCLID) 2011 (Preprint 1110.3193)
+[177] Abell P A et al. (LSST Science, LSST Project) 2009 (Preprint 0912.0201)
+[178] Spergel D et al. 2015 (Preprint 1503.03757)
+[179] Merloni A et al. (eROSITA) 2012 (Preprint 1209.3114)
+[180] Schwarz D J, Bacon D, Chen S, Clarkson C, Huterer D, Kunz M, Maartens R, Raccanelli A,
+CMB anomalies after Planck                                                               35
+
+        Rubart M and Starck J L 2015 PoS AASKA14 032 (Preprint 1501.03820)
+[181] Gibelyou C, Huterer D and Fang W 2010 Phys. Rev. D82 123009 (Preprint 1007.0757)
+[182] Hearin A P, Gibelyou C and Zentner A R 2011 JCAP 1110 012 (Preprint 1108.2269)
+[183] Draine B T and Hensley B 2012 ApJ 757 103 (Preprint 1205.6810)
+[184] Hensley B S and Draine B T 2015 ArXiv e-prints (Preprint 1505.02157)
+

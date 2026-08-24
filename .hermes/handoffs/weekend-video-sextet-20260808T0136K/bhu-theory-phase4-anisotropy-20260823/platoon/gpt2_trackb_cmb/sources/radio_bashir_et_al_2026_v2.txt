@@ -1,0 +1,1032 @@
+                                                 Draft version April 28, 2026
+                                                 Typeset using LATEX twocolumn style in AASTeX7.0.1
+
+
+
+
+                                                           The CatWISE2020 Quasar dipole: A Reassessment of the Cosmic Dipole Anomaly
+                                                                   Masroor Bashir        ,1, 2 Pravabati Chingangbam         ,1, 2 and Stephen Appleby       3
+
+
+                                                                        1 Indian Institute of Astrophysics, Koramangala II Block, Bangalore 560 034, India
+                                                                2 Department of Physics, Pondicherry University, R.V. Nagar, Kalapet, 605 014, Puducherry, India
+                                                                          3 Asia Pacific Center for Theoretical Physics, Pohang, 37673, Republic of Korea
+
+
+
+                                                                                                          ABSTRACT
+
+
+
+
+arXiv:2511.00822v2 [astro-ph.CO] 26 Apr 2026
+                                                         The Ellis-Baldwin test probes the cosmological principle by comparing the kinematic Cosmic Mi-
+                                                       crowave Background dipole with the Doppler-driven dipole in the number counts of extragalactic radio
+                                                       sources. Recent analysis of the CatWISE2020 quasar catalog reported a number-count dipole amplitude
+                                                       exceeding the kinematic expectation at 4.9σ significance. We present a comprehensive reassessment of
+                                                       this test using the same dataset, incorporating major sources of uncertainty in the statistical inference.
+                                                       We employ a simulation framework based on the FLASK package, using lognormal realizations of the
+                                                       large-scale structure, quasar clustering bias, the survey’s radial selection function, and its exact sky
+                                                       coverage. Our simulations account for the kinematic dipole, the intrinsic clustering dipole, shot noise,
+                                                       and survey geometry effects. The analysis yields a revised significance of 3.63σ in the absence of a
+                                                       clustering dipole, and 3.44σ with a randomly oriented clustering dipole. When the clustering dipole is
+                                                       aligned with the kinematic dipole, the significance decreases further to 3.27σ. Although the anomaly is
+                                                       reduced, it cannot be explained solely by the clustering dipole or mode coupling from the survey mask.
+                                                       We further assess dipole measurement robustness by fitting models with successively higher-order mul-
+                                                       tipoles up to ℓ = 4. Partial sky coverage induces mode coupling, shifting the dipole estimate to higher
+                                                       values when the octopole is included and inflating its variance as additional modes are incorporated,
+                                                       reflected in the increasing condition number of the estimator. This behavior highlights a bias-variance
+                                                       trade-off inherent in multipole fitting on partial-sky data.
+
+
+                                                       Keywords: Cosmology: Cosmic Dipole Anomaly — Cosmology: Cosmic Microwave Background —
+                                                                 Cosmology: Large Scale Structure
+
+                                                                  1. INTRODUCTION                                      An important consequence of this kinematic interpre-
+                                                  The cosmological principle, which proposes that the                tation is that it must be observable not only in the CMB
+                                               universe is statistically homogeneous and isotropic on                but also as a corresponding Doppler-induced dipole
+                                               sufficiently large scales, forms the bedrock of modern                anisotropy in flux-limited, all-sky surveys of sources.
+                                               cosmology. This principle is directly tested through ob-              The Ellis-Baldwin test can provide a crucial verifica-
+                                               servations of the Cosmic Microwave Background (CMB)                   tion of this interpretation by searching for a Doppler-
+                                               and large-scale structure (see e.g. P. Kumar Aluri et al.             induced dipole in the number counts of distant radio
+                                               (2023)). The dipole anisotropy observed in the CMB                    sources (G. F. R. Ellis & J. E. Baldwin 1984). Given a
+                                               temperature has been conventionally interpreted as a                  population of sources with a homogeneous and isotropic
+                                               kinematic effect due to our peculiar motion relative to               sky distribution, an observer’s peculiar velocity induces
+                                               the CMB rest frame. According to the most recent                      a dipolar modulation in the flux and the number of
+                                               measurement the velocity inferred from CMB dipole                     sources per unit solid angle, from which a kinetic dipole
+                                               measurements is 369.82 ± 0.11 km/s, in the direction                  amplitude can be inferred and compared with the value
+                                               (l, b) = (264.◦ 021, 48.◦ 253) ( Planck Collaboration et al.          obtained from the CMB.
+                                               2020a).                                                                 With availability of a large number of sources in ra-
+                                                                                                                     dio and infrared frequencies it became feasible to carry
+                                                                                                                     out the Ellis-Baldwin test. The 1.4 GHz NRAO VLA
+                                               Email: masroor.bashir@iiap.res.in                                     Sky Survey (NVSS) data J. J. Condon et al. (1998), al-
+                                                                                                                     lowed astronomers to measure the dipole, providing an
+2
+
+independent check of the kinematic interpretation (C.           In this work, we perform a reassessment of the re-
+Blake & J. Wall 2002; A. K. Singal 2011; C. Gibelyou          ported dipole anomaly by implementing a comprehen-
+& D. Huterer 2012). Subsequent analysis by M. Rubart          sive treatment of uncertainties potentially underesti-
+& D. J. Schwarz (2013); C. A. P. Bengaly et al. (2018);       mated in previous analyses discussed above. We choose
+A. K. Singal (2019); T. M. Siewert et al. (2021); A. K.       to use the older CatWISE2020 quasar catalog pre-
+Singal (2023); J. D. Wagenveld et al. (2023); M. Land-        sented in N. J. Secrest et al. (2021), containing approx-
+Strykowski et al. (2025); L. Böhme et al. (2025) con-        imately 1.3 million sources, for two main reasons. First,
+sistently reported dipole amplitude exceeding the CMB         this enables a direct and consistent comparison with
+prediction, suggesting potential tensions with the stan-      earlier studies most notably N. J. Secrest et al. (2021),
+dard kinematic interpretation.                                which reports the highest dipole significance for a sin-
+   This mystery deepened with more studies. N. J.             gle quasar catalog (∼ 4.9σ) as well as with subsequent
+Secrest et al. (2021) measured a dipole in the Cat-           works that relied on the same dataset. Second, our pri-
+WISE2020 quasar catalog that was more than twice the          mary objective is to study and quantify the impact of
+CMB expectation at 4.9σ significance level and aligned        clustering-related systematics on the dipole amplitude
+at ∼27◦ with respect to the CMB dipole direction. L.          and significance when applied to quasar number-count
+Dam et al. (2023) confirmed this anomalously large sig-       surveys on a partial sky. This is a broader method-
+nal using Bayesian inference. Further analysis of the         ological question, and our conclusions extend beyond a
+same dataset was carried out by P. Tiwari et al. (2023)       specific catalog. Our analysis is facilitated by the fact
+testing the data against FLASK simulations (H. S. Xavier      that the clustering properties of this particular dataset
+et al. 2016) by incorporating quasar clustering prop-         have already been rigorously characterized by P. Tiwari
+erties. They found a clustering dipole amplitude of           et al. (2023), including its bias model, radial selection
+Dclus = 0.81 × 10−3 (C1 = 0.91 × 10−6 ). While sub-           function, and intrinsic clustering dipole, all of which di-
+stantial, this clustering component cannot fully account      rectly inform our simulations.
+for the observed amplitude excess. Notably, for an-             We systematically quantify the impact of key sys-
+gular scales corresponding to multipoles ℓ ≥ 10 (ap-          tematic effects on the significance level of the Cat-
+proximately > 18◦ ), the AGN/quasar clustering agrees         WISE2020 quasar dipole, including: shot noise contam-
+with ΛCDM expectations. A newer catalog, presented            ination, higher-order clustering contributions, the am-
+in N. J. Secrest et al. (2022), extended the WISE se-         plitude and orientation of the intrinsic clustering dipole,
+lection to include ∼ 1.6 million sources. Their analysis      mask-induced mode coupling, and the propagation of
+yielded a slightly lower but still anomalously high dipole    cosmic variance uncertainties in the clustering compo-
+significance of 4.4σ. A recent reassessment of the newer      nent. By incorporating these effects through simula-
+catalog by S. von Hausegger et al. (2025) reported a          tions, we derive an updated statistical significance that
+higher clustering dipole amplitude, Dclus = 1.25 × 10−3       reflects a more complete error budget, providing a up-
+(C1 = 2.21 × 10−6 ) suggesting that the clustering con-       dated evaluation of the dipole’s consistency with the
+tribution in the extended catalog may be larger than          kinematic interpretation.
+previously inferred, though still insufficient to fully ac-     This paper is structured as follows. Section. 2 dis-
+count for the observed dipole.                                cusses the details of the CatWISE2020 quasar catalog
+   More recent analysis by A. Abghari et al. (2024)           and the sky mask geometry used for the analysis. Sec-
+specifically demonstrate that the large sky cut (∼52.6%)      tion. 3 presents the formalism for the number count
+in the CatWISE2020 catalog induces strong mode cou-           dipole and outlines the least-square estimator employed
+pling between low-order multipoles. Consequently, if          to measure the dipole amplitude. In section 4, we an-
+low-order multipoles (in their example, ℓ = 3) have am-       alyze some sources of uncertainties and bias that affect
+plitudes comparable to the dipole, this coupling can bias     the dipole measurement. This includes a quantification
+the inferred dipole amplitude.                                of the bias introduced by mode mixing due to incomplete
+   This coupling can result in dipole amplitude errors        sky coverage and an assessment of the cosmic variance
+large enough that consistency with the CMB dipole             inherent to the clustering signal. Section 5 describes our
+cannot be ruled out, highlighting the critical challenge      procedure for generating mock quasar catalogs, which
+of disentangling true cosmological signal from mask-          are essential for statistical validation. Section 6 presents
+induced systematics. The conclusions of A. Abghari            our main results, where we quantify the statistical signif-
+et al. (2024) were challenged in N. Secrest et al. (2025),    icance of the observed dipole under a series of distinct
+with questions raised about the magnitude of the higher       astrophysical scenarios. Finally, Section 7 provides a
+ℓ-mode amplitudes adopted.
+                                                                                                                          3
+
+discussion of our findings and the implications of our
+results.
+
+      2. CATWISE2020 QUASAR CATALOG
+   The quasar sample used in this study is the cata-
+log constructed by N. J. Secrest et al. (2021) from the
+CatWISE catalog (P. R. M. Eisenhardt et al. 2020; F.
+Marocco et al. 2021). CatWISE is derived from data
+from the WISE all-sky satellite survey (E. L. Wright
+et al. 2010), which imaged the sky in four infrared bands:
+W1 (3.4 µm), W2 (4.6 µm), W3 (12 µm), and W4 (22 µm).
+The CatWISE catalogue prioritizes the W1 and W2
+bands due to their superior sensitivity and depth, being
+95% complete for sources brighter than W1 ≤ 17.4 mag
+and W2 ≤ 17.2 mag.
+   The N. J. Secrest et al. (2021) selection applies the
+mid-infrared colour cut W 1 − W 2 ≥ 0.8 to identify
+AGNs. This criterion identifies 61.9±5.4 AGNs per deg2
+to a depth of W2 ≈ 15.0 mag, with a reliability of ≤95%
+(D. Stern et al. 2012). Deeper samples can achieve den-
+sities of 130 ± 4 deg−2 for W2 ≤ 17.11 with a decreased
+reliability of ≤90% (R. J. Assef et al. 2013). To en-
+sure high-quality photometry for cosmological analysis,
+the sample also implements a strict magnitude cut of          Figure 1. Top: Sky mask for the CatWISE2020 quasar
+9.0 < W 1 < 16.4 to remove bright, saturated sources          sample which excludes the Galactic plane (|b| < 30◦ ), regions
+and faint objects affected by uneven coverage.                around bright stars, and other areas with poor photometry,
+   Ecliptic bias correction: The ecliptic bias is a system-   removing 52.6% of the sky. Bottom: Sky distribution of
+atic bias in the source count, resulting in a lower density   the CatWISE2020 quasar catalog used for dipole anisotropy
+of sources per pixel near the ecliptic poles and a lower      studies.
+density near the ecliptic equator. We correct for this
+artifact following N. J. Secrest et al. (2021), using their            3. THE NUMBER COUNT DIPOLE
+linear fit as a correction and weighting function in our        Let N (> Sν , n̂) denote the sky projected number
+calculations.                                                 count density of a given distribution of observed cos-
+   Sky mask: For our analysis, we employ the Cat-             mological ‘sources’ (e.g. CMB, number count densities
+WISE2020 mask, depicted in the top panel of Figure 1.         of quasars, galaxies, X-ray sources, etc.), in sky direc-
+This mask is constructed by first applying a galactic cut     tion n̂. Sν denotes the minimum flux above which a
+(|b| < 30◦ ) which removes 50% of the sky to avoid dust       source is detected. N (n̂, > Sν ) can be expanded as
+and stellar contamination from the Milky Way. Fur-
+                                                                      N (> Sν , n̂) = N̄ (1 + D · n̂) + O(ℓ > 1),       (1)
+thermore, 291 specific extragalactic point sources and
+extended objects are masked to eliminate contamination        where N̄ = Ntot /4πfsky is the monopole term given
+from local bright sources and nearby galaxies, removing       by the average number density, with Ntot (> Sν ) being
+an additional ≈ 2.6% of the sky. The resulting total          the total number of observed sources with the survey
+effective sky fraction is fsky ≈ 0.474 or 47.4% sky cov-      area, and O(ℓ > 1) denotes terms of higher multipoles
+erage.                                                        higher than ℓ = 1. For the CMB and binned flux limited
+   We compute the areal density of this sample by creat-      number counts averaged over a wide redshift range, the
+ing a map using the HEALPix framework (K. M. Górski          higher multipole terms are usually small. The former
+et al. 2005) with a resolution parameter Nside = 64. The      because fluctuations in the early Universe are perturba-
+resulting masked density map is shown in the bottom           tively small, and the latter because the act of smoothing
+panel of Figure 1. The spectral properties of the sample,     large scale structure along the line of sight over giga-
+characterized by a mean spectral index of ⟨α⟩ = 1.26 and      parsec scales washes out small scale clustering informa-
+a mean logarithmic flux slope of ⟨x⟩ = 1.7 are consistent     tion. Hence for these particular datasets, the monopole
+with a predominantly AGN-dominated population.                and dipole are the dominant modes.
+4
+
+  The dipole vector, D, represents the directional            the multipole hierarchy is then determined by the mask
+anisotropy in the angular distribution of cosmological        geometry and the underlying power spectrum.
+sources. It is a vector sum of three distinct contributing      For a generic random field, f (n̂), we define its over-
+vector quantities,                                            density field as
+                                                                                        (f (n̂) − f¯)
+               D = Dkin + Dclus + DSN .                (2)                       ∆f =                 ,             (5)
+                                                                                              f¯
+The physical origin of each component is distinct. The        where f¯ denotes its mean value. In the sections that
+first one, Dkin is the kinematic dipole which results from    follow, we will use harmonic coefficients of both f and
+the observer’s peculiar motion relative to an assumed         ∆f depending on the context.
+cosmological rest frame. For a population of sources
+with a homogeneous and isotropic sky distribution and               3.1. Estimator for the number count dipole
+a flux density spectral index α (where Sν ∝ ν −α ), a pe-       For the sky pixelised into Npix number of pixels, we
+culiar observer velocity ⃗v induces a dipolar modulation      use the following model for the number count density in
+in the number of sources per unit solid angle, N , and        each pixel indexed by p = 0, 1, ..., Npix − 1 (correspond-
+in their flux densities, Sν . N is commonly parameter-        ing to sky direction n̂p ) given by (N. J. Secrest et al.
+ized as a power law near the flux limit Sν of a survey,       (2021)):
+as, N (> Sν ) ∝ Sν−x . Then, the resulting amplitude of                     N (n̂p ) = N0 + D1 · n̂p + ϵp .          (6)
+the dipole in N caused by the Doppler boosting and            N0 is the parameter for the monopole N̄ , D1 =
+aberration is given by ((G. F. R. Ellis & J. E. Baldwin       (D1,x , D1,y , D1,z ) = DN0 is the dipole vector in Carte-
+1984)):                                                       sian coordinates. The last term ϵp encapsulates con-
+                                      
+                  Dkin = 2 + x(1 + α) β,                (3)   tributions to the number count density N (n̂p ) that are
+up to order β in the limit β ≪ 1, where β = v/c.              not described by the simple monopole (N0 ) and dipole
+  Dclus is the clustering dipole which originates from        (D1 · n̂p ) components. These include higher order multi-
+large-scale matter inhomogeneities whose gravitational        pole contributions mentioned in Eq. 1, and other sources
+potentials modulate tracer distributions, generating an       of error. Masked pixels are excluded from the fitting pro-
+asymmetry that is intrinsic to the large-scale matter dis-    cedure and assigned NaN values to prevent them from
+tribution. Lastly, DSN , is the shot-noise dipole which is    influencing Eq. 6 for unmasked sky.
+a statistical artifact stemming                                  We bin the source catalog to construct the random
+                           √ from finite-source Poisson       field N (n̂p ). From this we extract the monopole and
+sampling, scaling as ∼ 1/ N in magnitude.
+  ExpandingP N (n̂, Sν ) in spherical harmonics as            the dipole by performing a linear least-squares fit be-
+N (n̂, Sν ) = ℓm aℓm Yℓm , the power in each multipole        tween N (n̂p ) and the right hand side of Eq. 6, keep-
+mode is Cℓ = m |aℓm |2 /(2ℓ+1). For full sky data with
+                P                                             ing upto the dipole term. The best-fit values for the
+fsky = 1, we have |D|2 ∝ C1 .                                 monopole and dipole components, contained in the vec-
+  For each dipole component i (kin, clus or SN), we           tor θ = (N0 , D1,x , D1,y , D1,z ), are found by minimizing
+have |Di |2 ∝ C1,i , where C1,i is the power of the ℓ = 1     the function:
+                                                                                                                  2
+component of the spherical harmonic expansion. The                             X 
+total dipole amplitude as derived by C. Gibelyou & D.                χ2 (θ) =       wp N (n̂p ) − (N0 + D1 · n̂p ) , (7)
+                                                                              p
+Huterer (2012) is written as,
+                                                              where the sum is over all unmasked pixels and wp are op-
+                          2 9C1                               tional pixel weights (in this case wp = 1). We solve this
+                      |D| =     ,                      (4)
+                             4π                               system using the fit dipole routine in the HEALPy
+where C1 has contributions from all three components.         package (A. Zonca et al. 2019). The best-fit cartesian
+For observed data, survey masks are employed to ex-           dipole vector is then normalized by the monopole to
+clude regions contaminated by Galactic sources and            yield the dipole vector:
+                                                                                                 
+other unwanted objects with fsky < 1, breaking the sky’s                                     D1,x
+spherical symmetry. The asymmetry due to the sur-                                       1 
+                                                                                 D=        D1,y  .                (8)
+                                                                                                  
+vey mask leads to leakage of power from higher-order                                   N0
+                                                                                             D1,z
+multipoles (ℓ ≥ 2) into the estimated dipole through
+mode mixing. Consequently, each dipole component be-            Equivalently, the dipole amplitude D = |D| can be
+comes dependent on multipoles higher than ℓ = 1, as           described using the angular power spectrum Cℓ as ((A.
+Di ≡ Di (C1,i , C2,i , . . .). The dependence of each Di on   Abghari et al. 2024)),
+                                                                                                                        5
+
+                                    r                           The effect of the mask on the angular power spectrum
+                                        C1                      is characterized by the mode-coupling matrix Mℓℓ′ . The
+                       D=3                 .             (9)
+                                        C0                      observed power spectrum ⟨C̃ℓ ⟩ is a weighted sum of the
+This connects the parameter-based fit (N0 , D) to the           true spectrum ⟨Cℓ′ ⟩:
+harmonic-based power spectrum (C0 , C1 ).                                                  X
+   The fitting procedure outlined above, specifically min-                        ⟨C̃ℓ ⟩ =   Mℓℓ′ ⟨Cℓ′ ⟩.           (11)
+                                                                                          ℓ′
+imizing (7), ignores the ϵp term in Eq. 6. Different phys-
+ical and numerical effects will contribute to ϵp which          The mode-coupling matrix is determined by the power
+in turn add uncertainties in the measured values of N0          spectrum of the mask itself, as,
+and D1 . While the simultaneous fit helps to isolate these                                              !2
+components, it does not fully eliminate bias from higher-                  2ℓ′ + 1 X              ℓ ℓ′ L
+order moments. These uncertainties will be discussed in             Mℓℓ′ =           (2L + 1)WL            ,   (12)
+                                                                             4π                   0 0 0
+                                                                                   L
+the next section.
+   Throughout this work we make the distinction be-             where WL is the angular power spectrum of the mask
+tween ‘model’, referring to the multipoles being fit to the     given by,
+quasar data, and ‘estimator’ meaning the least squares                                1 X
+                                                                             WL =             |wLM |2 ,        (13)
+fitting procedure as described in this section.                                    2L + 1
+                                                                                               M
+
+      4. UNCERTAINTIES AND BIAS IN THE                          with wLM being the harmonic coefficients of the spher-
+       ESTIMATION OF THE NUMBER COUNT                           ical harmonic expansion of the mask.
+                   DIPOLE                                          A major focus for this study are the matrix elements
+                                                                M1ℓ′ , which quantify the leakage of power from higher-
+   In this section we examine how masking and cosmic            order multipoles ℓ′ > 1 into the measured dipole (ℓ = 1).
+variance broaden the uncertainties and potentially in-          Figure 2 demonstrates the nature of the leakage.
+troduce bias in the measured dipole. Using the pseudo-             These plots are similar in terms of information con-
+Cℓ mode-coupling matrix formalism for masked sky,               tent to Fig. 6 of A. Abghari et al. (2024). The top
+developed in E. Hivon et al. (2002), we quantify the            panel shows Mℓℓ′ as a 2D heatmap. Prominent off-
+level of leakage of power across different modes for the        diagonal elements demonstrate significant power leak-
+CatWISE2020 mask. Although a similar analysis was               age from higher multipoles (ℓ′ ) into lower multipoles
+presented in A. Abghari et al. (2024), we include it here       (ℓ). The middle panel provides a 3D representation
+for completeness of our analysis. Our goal is to clar-          of the same matrix, visually emphasizing the strength
+ify the underlying mechanism in a manner directly con-          and pattern of this leakage. Both plots highlight how
+nected to the systematics investigated in this work. The        power from a wide range of scales couples with the dipole
+insights gained here will be incorporated into the con-         (ℓ = 1), posing a significant challenge for an unbiased
+struction of realistic mock quasar number-count simula-         dipole measurement. The behavior of M1ℓ′ , plotted in
+tions in Section 5.                                             the bottom panel reveals two fundamental characteris-
+                                                                tics of this leakage for the CatWISE2020 mask:
+        4.1. Mask induced effects - mode mixing
+  While masking removes major systematic contami-                  1. Decrease with ℓ′ : The amplitude of M1ℓ′ dimin-
+nants, it simultaneously distorts the underlying sig-                 ishes with increasing ℓ′ , as the coupling to small-
+nal by breaking the sky’s isotropy and coupling power                 scale modes is low.
+between different spherical harmonic modes. Conse-
+                                                                   2. Parity Effect: The leakage is significantly
+quently, the presence of higher-order multipoles such as
+                                                                      stronger for odd-ℓ′ multipoles compared to even
+those from large-scale structure clustering and residual
+                                                                      ones. (See the inset in the bottom panel of Figure
+systematic gradients can project into the dipole mode
+                                                                      2.)
+during the fitting procedure, thereby biasing the esti-
+mated dipole vector.                                              Notably, when compared to an idealized symmetri-
+  The observed harmonic coefficients ãℓm on the cut sky        cal 50% galactic cut, the more complex CatWISE2020
+are a convolution of the true, full-sky harmonic coeffi-        mask with its additional small-scale masking produces
+cients aℓ′ m′ (of N (n̂, Sν )). This relationship is encoded    a markedly higher level of leakage from even multi-
+                             ℓ′ m ′
+in the coupling kernel Kℓm          (E. Hivon et al. (2002)):   poles. Although this effect remains at the ∼ 1% level
+                           X            ′   ′
+                                                                for quadrupole (ℓ′ = 2) and hexadecapole (ℓ′ = 4) val-
+                                     ℓm
+                  ãℓm =            Kℓm aℓ′ m′ .        (10)    ues considered here, the result highlights that even small
+                           ℓ′ m ′
+6
+
+                                                                  changes to the mask geometry can affect the statistical
+                                                                  significance of the recovered dipole, making an accurate
+                                                                  characterization of the mask critically important.
+                                                                    To quantitatively understand the contamination of the
+                                                                  dipole measurement by higher-order multipoles, we con-
+                                                                  ducted a simulation analysis involving 1000 realizations
+                                                                  of a sky map containing a dipole signal ≈ 0.007 in the
+                                                                  CMB dipole direction4 . For each realization, we system-
+                                                                  atically injected a single higher multipole power - specif-
+                                                                  ically the quadrupole (C2 ), octopole (C3 ), hexadecapole
+                                                                  (C4 ), or dotricontapole (C5 ), with progressively increas-
+                                                                  ing amplitude. The initial dipole amplitude Di (be-
+                                                                  fore injection) and the final amplitude Df (after injec-
+                                                                  tion) were measured after applying three distinct masks
+                                                                  to the simulations: a 10◦ symmetrical galactic cut, a
+                                                                  30◦ symmetrical galactic cut, and the asymmetric Cat-
+                                                                  WISE2020 mask. For each mask, we computed the
+                                                                  fractional deviation (Df −Di )/Di across all realizations,
+                                                                  and analyzed its mean and 1σ dispersion as a function
+                                                                  of the injected power. This quantifies the bias induced
+                                                                  by the mask in the recovered dipole amplitude.
+                                                                    The results for (Df − Di )/Di , summarized in Fig-
+                                                                  ure 3, exhibit striking parity-dependent behaviour. For
+                                                                  even multipoles, C2 , C4 , (panels (a) and (c)), the mean
+                                                                  fractional deviation remains consistent with zero in-
+                                                                  dicating no systematic bias. However, the scatter is
+                                                                  more pronounced for the CatWISE2020 mask, reveal-
+                                                                  ing noise enhancement due to its asymmetry. In con-
+                                                                  trast, injections of odd multipoles (C3 , C5 ) (panels (b)
+                                                                  and (d)) produce a distinct positive, linear trend in
+                                                                  ⟨(Df − Di )/Di ⟩, confirming a leakage of power that sys-
+                                                                  tematically inflates the dipole estimate and skews the
+                                                                  underlying dipole probability density function towards
+                                                                  larger values. Notably, the realistic CatWISE2020
+                                                                  mask amplifies both effects, yielding greater variance for
+                                                                  even multipoles and bias for odd ones. This underscores
+                                                                  the critical role of mask geometry in modulating spuri-
+                                                                  ous mode coupling.
+
+
+                                                                         4.2. Uncertainties due to cosmic variance
+Figure 2. Top and middle panels: The mode-coupling ma-               The angular kinematic dipole power, C1,kin , is a deter-
+trix Mℓℓ′ for the CatWISE2020 survey mask shown as a 2D           ministic quantity for a particular observer, arising from
+heatmap (top) and as a 3D representation (middle). Promi-         the observer’s peculiar motion relative to the cosmic
+nent off-diagonal elements demonstrate significant power          rest frame. In contrast, the clustering dipole, C1,clus ,
+leakage from higher multipoles (ℓ′ ) into lower multipoles (ℓ).
+                                                                  is stochastic, originating from the particular distribu-
+Bottom panel: M1ℓ′ plotted versus ℓ′ illustrating the leakage
+of power from multipole ℓ′ into the measured dipole (ℓ = 1).
+                                                                  tion of matter in the large-scale structure within our
+The plot clearly shows the decay of the coupling with in-         observable volume. As a result, its measured amplitude
+creasing ℓ′ and the enhanced leakage from odd multipoles          is inherently uncertain due to the scatter expected from
+compared to even ones (see the inset). For comparison, the
+coupling for a simple symmetrical galactic cut is also shown.
+                                                                   4 We repeated our analysis with the dipole randomly directed on
+
+                                                                    the sky, which did not alter our results.
+                                                                                                                             7
+                                 (a)                                                               (b)
+
+
+
+
+                                 (c)                                                              (d)
+
+
+
+
+Figure 3. The fractional deviation of the measured dipole amplitude, (Df − Di )/Di , as a function of injected multipole power.
+The solid lines represent the mean across 1000 realizations, while the shaded regions indicate the ±1σ uncertainty intervals.
+Results are shown for the CatWISE2020 mask (orange) and symmetrical 10◦ (green) and 30◦ (blue) galactic cuts. Panels (a)
+and (c) show the results for even multipoles (C2 , C4 ), where no systematic trend is observed. Panels (b) and (d) show the
+results for odd multipoles (C3 , C5 ), demonstrating a clear positive correlation between the injected power and the fractional
+dipole deviation. For comparison, the solid and dotted black vertical lines represent the median Cℓ , and their corresponding
+95% confidence limits, from FLASK simulations. Note that the black vertical lines shows the full-sky power spectrum (Cℓ )
+computed directly from the overdensity simulation maps via healpy.
+
+observing one finite realization of a random field, or cos-        2σ intervals are:
+mic variance.
+  The cosmic variance uncertainty for the clustering                             1σ :   C1,clus ± 1.186 C1,clus ,         (15)
+dipole is given by the formula:
+                                                                                 2σ :   C1,clus ± 2.372 C1,clus .         (16)
+                            s
+                                  2                                This large uncertainty propagates to the total observed
+               ∆C1,clus =             C1,clus .        (14)
+                                3fsky                              dipole, significantly contributing to the error budget and
+                                                                   complicating the extraction of the deterministic kine-
+                                                                   matic component. The exceptionally high cosmic vari-
+For fsky = 0.474, the relative uncertainty at 1σ is ap-            ance for limited sky coverage underscores the challenge
+proximately 118.6% of C1,clus . Consequently, the 1σ and           in achieving precise measurements of dipole anisotropies
+8
+
+and highlights the need for careful modeling which takes     relative to the CMB rest frame (G. F. R. Ellis & J. E.
+these systematic effects into account.                       Baldwin 1984). Here, N0 represents the sky-averaged
+                                                             monopole density, estimated from the total number
+              5. MOCK SIMULATIONS                            count of sources in the survey. Note that the expres-
+  The statistical significance of the dipole measured        sion on the right hand side leads to the expression for
+from an observed source catalog can be obtained by           Dkin given in Eq. 3, upto order β. The values of pa-
+comparing with the dipole probability density function       rameters x = 1.7 and α = 1.26 are taken as the mean
+obtained from mock simulations. For accurate compar-         values derived from the CatWISE2020 survey catalog,
+ison, all physical effects that contribute to the dipole     ensuring our simulations reflect the empirical charac-
+must be modeled and included in the simulations. An          teristics of the observed quasar population. This pro-
+important shortcoming of the simulations used in N. J.       cess produces a map dominated by the monopole and
+Secrest et al. (2021) is that they included the kinematic    dipole, with comparatively low power in higher multi-
+dipole and shot-noise component, but not the clustering      poles (ℓ > 1).
+dipole (deeming it negligibly small) or correlated higher-      (b) Incorporating shot noise dipole contributions: To
+order modes from large scale structures. By represent-       generate source counts, we populate each pixel by draw-
+ing fluctuations only with a white-noise field of equal      ing a random number from a Poisson distribution with
+power across all multipoles, these simulations did not       mean mi , following N. J. Secrest et al. (2022). This pro-
+account for the bias that occurs from clustering power,      cess introduces the appropriate shot noise corresponding
+especially from the odd multipoles, that leaks into the      to the discrete nature of source detection in flux-limited
+measured dipole due to incomplete sky coverage. It was       surveys. Shot noise contributes power across all multi-
+shown in P. Tiwari et al. (2023) that the angular power      poles, adding a scale-independent variance proportional
+spectrum of CatWISE2020 for intermediate and high            to 1/N̄ . This effect perturbs the initial monopole and
+ℓ agrees well with ΛCDM expectation. This underscores        dipole signal, introducing additional uncertainties in the
+the need to include these clustering properties in mock      measured dipole amplitude and direction, thereby in-
+simulations.                                                 creasing the error budget of the observed dipole.
+  Here, we extend beyond previous works by improved             From the resulting maps, we extract the exact har-
+modeling of the dipole contributions. We generate mock       monic coefficients for the monopole (a00 ) and the three
+simulations of radio source catalogs incorporating the       components of the dipole (a1,−1 , a1,0 , a1,+1 ) using a
+following: (a) kinematic dipole, (b) shot noise dipole       standard spherical harmonic transform. Here, we isolate
+systematics, (c) intrinsic higher ℓ large-scale structure    only the monopole (ℓ = 0) and dipole (ℓ = 1) modes by
+and shot-noise contributions, and (d) clustering dipole,     setting all coefficients for ℓ ≥ 2 to zero, producing a map
+in this order.                                               that contains purely the monopole, kinematic dipole sig-
+  (a) Incorporating the kinematic dipole: The kinematic      nal and its associated shot noise dipole. This is done so
+dipole component, arising from our motion relative to        as to not double count the ℓ ≥ 2 contributions of shot
+the CMB rest frame, is simulated directly in pixel space     noise which are added in step (c).
+for computational efficiency and physical clarity, follow-      (c) Incorporating higher multipole contributions: We
+ing N. J. Secrest et al. (2022). For each pixel i on the     simulate higher-order multipoles (ℓ ≥ 2) using the FLASK
+sphere, we compute the Doppler factor                        package H. S. Xavier et al. (2016), which generates log-
+                                                             normal random fields tomographically across 35 redshift
+                          (1 + β cos θi )
+                   δi =     p             ,          (17)    bins from z = 0 to z = 3.5 (∆z = 0.1). The angu-
+                              1 − β2                         lar auto (zi = zj ) and cross (zi ̸= zj ) matter power
+where θi is the angular separation between the pixel         spectrum Cℓ (zi , zj ), which quantifies matter clustering
+center and the direction of the CMB dipole. β is set         across and within redshift bins, are computed using
+to 1.23 × 10−3 , corresponding to the measured CMB           the Boltzmann code CLASS for a fiducial ΛCDM cos-
+dipole velocity of v = 369.82 km/s in the direction          mology Planck Collaboration et al. (2020b). To con-
+(l, b) ≈ (264, 48) Planck Collaboration et al. (2020a).      nect the underlying matter distribution to the observ-
+The expected number of sources in each pixel is then         able quasar clustering, we employ a redshift dependent
+given by                                                     best fit bias model b(z) = 1.54 + 0.53z + 0.50z 2 from
+                         2+x(1+α)                            P. Tiwari et al. (2023) and the redshift distribution of
+                  mi = δi         N0 ,             (18)
+                                                             the mean number of quasar sources denoted by n(z),
+which incorporates the combined effects of relativistic
+                                                             is modeled as n(z) ∝ z a1 exp[−(z/a2 )a3 ], where the pa-
+aberration and Doppler boosting, modifying the ob-
+                                                             rameters a1 = 0.86, a2 = 1.48 and a3 = 2.36 that define
+served source distribution due to our peculiar motion
+                                                                                                                            9
+
+the shape, peak and tail of the distribution are adopted       this clustering dipole as an independent map containing
+from P. Tiwari et al. (2023).
+  Let CℓSN denote the angular power spectrum of shot
+noise, and let Cℓ∆N denote the angular power spectrum
+of the overdensity field ∆N of CatWISE2020 data
+(as defined in Eq. 5). Figure 4 shows the shot-noise
+subtracted power spectrum Cℓ∆N - CℓSN . The mea-
+sured power spectrum agrees well with FLASK simula-
+tions within the 2σ confidence interval for ℓ ≥ 5. This
+agreement validates that the amplitudes of higher mul-
+tipoles considered in the simulations here are reasonable
+and representative of CatWISE2020 quasar data. This
+comparison reveals power in higher multipoles that was
+previously unaccounted for in dipole significance calcu-
+                                                               Figure 4. Shot noise-subtracted angular power spectrum
+lations, particularly the substantial clustering contribu-
+                                                               (Cℓ∆N - CℓSN ) of the CatWISE2020 quasar distribution over-
+tion at scales 3 ≤ ℓ < ℓmax that can leak into the dipole      density field (∆N ) compared with masked FLASK simulations.
+measurement through mask effects. In general we use            The red points show the measured power spectrum from the
+ℓmax = 3Nside − 1 for our calculations. For the results        real data, computed using NaMaster and averaged over 5
+that we will present in section 6 we test the consistency      multipole bins. The solid black line represents the mean from
+of our analysis against variation of ℓmax by systemati-        1000 FLASK mock realisations, while the shaded blue region
+cally decreasing it. We find that ℓmax ≃ 64 is sufficient      indicates the ±2σ uncertainty derived from the simulations.
+to capture higher multipole effects, and increasing be-        The red dotted horizontal line represents the constant con-
+                                                               tribution from shot-noise (CℓSN ) over all modes. Faint col-
+yond this value does not significantly alter our results.
+                                                               ored symbols display individual power spectra from the first
+                                                               5 FLASK realisations as generated in step (c) of section 4.
+  FLASK first produces Gaussian random fields for each         The CatWISE2020 measurements lie within the 2σ confi-
+redshift shell, then applies a log-normal transformation       dence interval for multipoles ℓ > 5, indicating consistency
+to capture non-Gaussianity. Correlations between shells        with the ΛCDM-based FLASK simulations on intermediate
+are preserved via the input power spectra. The line-of-        and small angular scales. This figure contains the same in-
+sight integration across these shells yields a full-sky map,   formation as figure 6 of P. Tiwari et al. (2023). Note that
+                                                               the overdensity field includes a normalization of 1/N̄ 2 , pro-
+which is converted into a number count map by Poisson
+                                                               ducing the ∼ 4-order-of-magnitude lower amplitude in Fig-
+sampling, the number of quasars Nq (i, j) in each pixel i      ure 4 relative to Figure 3. Shot-noise subtraction and mask-
+of the redshift shell j is given by:                           ing further reduce the amplitude. Thus the spectra satisfy
+                                                               Cℓ∆N = Cℓ /N̄ 2 , where Cℓ is the angular power spectrum of
+              Nq (i, j) = N̄q (j)[1 + δq (i, j)] ,     (19)    the CatWISE2020 number density field, even though both
+                                                               reflect the same underlying clustering.
+where N̄q (j) is the expected number of quasars per pixel
+in the redshift shell j in a homogeneous universe and          only ℓ = 1 modes with the specified amplitude, subject
+δq (i, j) is the quasar density field generated according      to cosmic variance as characterized in section 4.2.
+to input power spectra. This introduces shot noise and           Note that the value of Dclus used here is higher than
+discrete sampling effects. After generating the FLASK          that determined by N. J. Secrest et al. (2021) (Dclus =
+map, we compute its spherical harmonic coefficients and        0.24 × 10−3 ). Their value is obtained with the assump-
+explicitly set the monopole (ℓ = 0) and dipole (ℓ = 1)         tion of a constant bias (b(z) = 1).
+modes to zero, retaining only coefficients for ℓ ≥ 2. This       The final synthetic quasar number density map is a
+yields a map containing pure clustering (plus its shot         superposition of these carefully separated, independent
+noise) starting at ℓ = 2.                                      components. This construction ensures a clean sep-
+   (d) Incorporating the clustering dipole contribution:       aration of components with no double counting: the
+The clustering dipole amplitude used in our simulations        kinematic and shot-noise dipole originates exclusively
+is Dclus = 0.81 × 10−3 (C1 = 0.91 × 10−6 ) adopted from        from steps (a)+(b), the clustering dipole is added inde-
+P. Tiwari et al. (2023), who derived this value using their    pendently, and cosmological clustering and associated
+best-fit quasar redshift distribution n(z) and bias evo-       shot noise (ℓ ≥ 2) comes solely from FLASK with its
+lution b(z) mentioned in step (c) above. We generate           monopole and dipole modes explicitly set to zero.
+10
+                                  1
+                                  X                      1
+                                                         X                              1
+                                                                                        X                          ℓX
+                                                                                                                    max   ℓ
+                                                                                                                          X
+N (n̂) = a00 Y00 (n̂)     +           akin
+                                       1m Y1m (n̂)   +       aSN
+                                                              1m Y1m (n̂)     +             aclus
+                                                                                             1m Y1m (n̂)       +              aSN+clus
+                                                                                                                               ℓm      Yℓm (n̂) .
+         | {z }               m=−1                   m=−1                           m=−1                           ℓ=2 m=−ℓ
+         Monopole (N0 )       |        {z       }    |        {z          }         |        {z         }          |            {z              }
+                          CMB Kinematic Dipole (Dkin ) SN Dipole (DSN )           Clustering Dipole (Dclus )           ℓ ≥ 2 Clustering + SN
+                                                                                                                                               (20)
+
+
+The different superscripts on aℓm s indicate the different            S4: Similar to S2, but with the clustering power
+                                                                                                                         2σ
+contributions. To summarise, step (a) gives the first two                  (C1,clus ) increased to its upper 2σ limit (Dclus =
+terms, step (b) gives the third term, step (c) gives the                   1.48 × 10−3 ); its direction remains random. This
+fifth (last) term, and finally step (d) gives the fourth                   scenario is hypothetical, and tests the implications
+term. This equation captures the deterministic, signal-                    of a higher value of Dclus with random orientation.
+dominated kinematic dipole alongside the stochastic,
+                                                                      S5: In this scenario the clustering dipole direction is
+log-normal fluctuations from large-scale structure and
+                                                                           made aligned with the CMB kinematic dipole,
+shot noise systematics. The fluctuations of the simu-
+                                                                           while the amplitude is constant and the same as in
+lated N (n̂) then provide a way to determine the statis-
+                                                                           S4. This scenario is again hypothetical, and tests
+tical significance of the observed CatWISE2020 dipole
+                                                                           the implications of a higher value of Dclus with
+amplitude. In figure 6 of appendix A, we present one re-
+                                                                           orientation aligned with the CMB.
+alization of each component, along with the composite
+N (n̂).                                                               These simulation sets are designed to isolate the impact
+   In the next section, the statistical significance of               of different physical inputs on the inferred statistical sig-
+the observed CatWISE2020 dipole amplitude will be                     nificance of the observed dipole amplitude. Specifically,
+tested against different sets of simulations where we keep            S0 is used to verify consistency with N. J. Secrest et al.
+only specific contributions in Eq. 20. These are                      (2021) under the same assumptions. S1–S3 test the
+                                                                      influence of the expected clustering dipole, which is re-
+S0: Contains the monopole, CMB kinematic dipole, and                  spectively absent, randomly oriented, or aligned with
+     a shot-noise component including all 1 ≤ ℓ ≤ ℓmax                the kinematic dipole in these three cases. Finally, S4
+     modes. These mocks reproduce the assumptions                     and S5 explore the sensitivity of the measured dipole
+     of N. J. Secrest et al. (2021).                                  significance to a clustering dipole with larger amplitude,
+                                                                      that is randomly oriented or aligned with the kinematic
+S1: Includes all contributions in Eq. 20 except the clus-             dipole.
+     tering dipole (the fourth term on the right-hand
+     side). In particular, it adds higher-order (ℓ ≥ 2)                       6. RESULTS - STATISTICAL SIGNIFICANCE
+     shot-noise and clustering moments (H.O.M) gen-                      The observed CatWISE2020 dipole amplitude,
+     erated with FLASK, but omits the clustering dipole.              which we denote by Dobs , is obtained to be 15.54×10−3 ,
+                                                                      in agreement with the value reported by N. J. Secrest
+S2: Expands on S1 by adding a clustering dipole with                  et al. (2021). This value was obtained using the stan-
+     amplitude taken from P. Tiwari et al. (2023). Its                dard monopole plus dipole (M +D) model defined in sec-
+     direction is chosen randomly on the sky, reflecting              tion 3.1. To quantify the statistical significance of this
+     the assumption that large-scale structure is uncor-              observed value, we performed a hypothesis test against
+     related with our motion.                                         each suite of mock simulations prepared as described in
+                                                                      section 5. We employed the CatWISE mask on the
+S3: Identical to S2 except that the clustering and CMB                simulations to ensure consistent sky coverage with the
+     kinematic dipoles are aligned, representing the                  observed data set. Then we calculate the statistical sig-
+     possibility of a common physical origin related to               nificance for each set by counting how many simulations
+     our local motion. The amplitude of each cluster-                 have dipole amplitude values that match or exceed Dobs .
+     ing dipole realization is varied in accordance with              The results are described below.
+     cosmic variance.The alignment is also motivated                     S0 simulations: This set has the same inputs as
+     by findings such as those of O. T. Oayda et al.                  the simulations used by N. J. Secrest et al. (2021) and
+     (2024), who observed that clustering dipole direc-               serves to reproduce their results following their analy-
+     tions in data from the NRAO VLA Sky Survey                       sis pipeline. The top left panel of figure 5 shows the
+     and the Rapid ASKAP Continuum Survey appear                      PDF of the dipole amplitudes measured from the sim-
+     to be aligned with the CMB dipole direction.                     ulations. The CatWISE2020 value is marked in red.
+                                                                                                                                11
+
+
+
+
+Figure 5. Probability density functions (PDFs) of the dipole amplitude (×1000) from six simulation scenarios. Across all
+subplots, the CatWISE2020 catalog dipole amplitude (Dobs × 103 = 15.54) is indicated by the vertical red dashed line. The
+blue dashed and black dotted vertical lines represent the median and 3σ confidence level, respectively, specific to each simulation
+set.
+We find 9 out of 107 simulations have dipole values that             and clustering. Nevertheless, C3 remains approximately
+matched or exceeded Dobs giving p-value ≈ 9 × 10−7 ,                 an order of magnitude smaller than C1 .
+or a significance of 4.82σ. This confirms their reported                S2 simulations: The left panel of the middle row of
+high level of significance and verifies that our analysis            figure 5 shows the PDF of the dipole amplitudes mea-
+is consistent with their study, before we introduce other            sured from the simulations. We observe a mild shift of
+physical effects in the simulations.                                 the median relative to the S0 case, similar to S1. There
+   From these simulations, we obtain the ratio of the                is also a small broadening of the PDF due to the intro-
+median values of C1 and C3 to be ∼ 18.01. The C3 power               duction of the stochastic clustering dipole relative to the
+is contributed by shot noise alone, and it is roughly a              PDFs of S0 and S1 cases.
+factor of 18 smaller than C1 .                                          We obtain 27 out of 105 simulations matching or ex-
+   S1 simulations: The top-right panel of Fig. 5 shows               ceeding Dobs . This yields a p-value of 2.70 × 10−4 , cor-
+the PDF of the dipole amplitudes measured from the                   responding to a significance of 3.44σ.
+simulations. We observe that the PDF is broadened, ac-                  S3 simulations: The right panel of the middle row
+companied by a slight shift of the median toward higher              of figure 5 shows the PDF of the dipole amplitudes mea-
+values relative to the S0 case. This behaviour can be at-            sured from these simulations. We observe a shift of the
+tributed to the inclusion of stochastic clustering modes             median, relative to the previous cases, which can be at-
+at multipoles ℓ ≥ 2, with the dominant contribution                  tributed to the alignment between the clustering and
+arising from ℓ = 3, as discussed in Section 4.                       kinetic dipole directions.
+   Among 105 simulations, 13 exhibit dipole amplitudes                  The number of simulations matching or exceeding
+equal to or exceeding the observed value Dobs . This                 Dobs increased to 58 out of 105 , corresponding to a p-
+corresponds to a p-value of 1.30 × 10−4 , equivalent to a            value of 5.80 × 10−4 and reducing the significance to
+statistical significance of 3.63σ.                                   3.27σ.
+   The ratio of the median values of C1 and C3 is ob-                   S4 simulations: The bottom left panel of figure 5
+tained to be approximately 8.71, which is roughly dou-               shows the PDF of the dipole amplitudes measured from
+ble of the value in the S0 case. The increase of the C3              these simulations. There is a very mild broadening (not
+power results from contributions from both shot noise                easily discernible) of the PDF relative to S2. This can be
+12
+
+attributed to the enhanced clustering dipole amplitude       of higher multipoles, particularly the octopole, increases
+compared to the value used in S2.                            the fitted dipole amplitude and markedly increases the
+   In this case, 53 out of 105 simulations had dipole am-    variance of the measurement, as indicated by the condi-
+plitudes that matched or exceeded Dobs . This yields         tion number of the normal-equation matrix.
+p = 5.30×10−4 , corresponding to a significance of 3.27σ.
+   S5 simulations: The bottom-right panel of Fig. 5                  7. CONCLUSION AND DISCUSSION
+shows the PDF of the dipole amplitudes measured from
+                                                                This work presents a reassessment of the cosmic dipole
+the S5 simulations. We observe a shift of the median
+                                                             anomaly using the CatWISE2020 quasar catalog. We
+relative to all previous cases, which can be attributed
+                                                             have demonstrated the importance of accounting for sev-
+to the alignment between the clustering and kinematic
+                                                             eral sources of uncertainties including a rigorous treat-
+dipole directions, as well as the enhanced amplitude of
+                                                             ment of mode coupling introduced by the sky mask,
+the clustering dipole. Among 105 realizations, 175 yield
+                                                             which systematically biases the dipole estimate. Fur-
+dipole amplitudes equal to or exceeding the observed
+                                                             ther, we developed mock simulations that accounts for
+value Dobs (p = 1.75 × 10−3 ), corresponding to a signif-
+                                                             kinematic, clustering and shot-noise effects.
+icance of 2.93σ. This indicates that the observed dipole
+                                                                Our primary finding is a revised estimate of the sta-
+remains a statistically significant anomaly even when all
+                                                             tistical significance of the CatWISE2020 dipole, sum-
+model parameters are pushed to their most extreme, yet
+                                                             marized in Table 1. The reduction from 4.9σ to 3.63σ in
+still plausible, values.
+                                                             the case of no clustering dipole and to 3.27σ in the case
+   In the five scenarios S1–S5 analyzed here, the de-
+                                                             of CMB aligned clustering is a notable drop. However,
+crease in statistical significance relative to S0 arises
+                                                             it is clear that the observed, anomalously large dipole
+from both the broadening of the PDFs and the shift
+                                                             amplitude cannot be explained purely by the physical
+of their medians toward higher values. This behaviour
+                                                             effects (clustering) and numerical artifacts (mode cou-
+is naturally expected when the clustering dipole and
+                                                             pling) studied in this work, and it remains a challenge
+higher-order multipoles are included, since their stochas-
+                                                             to the standard cosmological model. This conclusion is
+tic nature contributes positively to the total variance
+                                                             bolstered by similarly anomalous findings in other, in-
+of the measured dipole. The extent of the broadening
+                                                             dependent data sets (J. Colin et al. 2017; N. J. Secrest
+and median shift depends on the relative amplitudes
+                                                             et al. 2022).
+of the dipole and higher multipoles. If the clustering
+                                                                Our analysis improves upon previous studies, most no-
+dipole and higher multipoles were weaker than the val-
+                                                             tably that of N. J. Secrest et al. (2021) by incorporating
+ues adopted in our analysis (P. Tiwari et al. 2023), the
+                                                             a more complete treatment of systematic effects. While
+inferred statistical significance of Dobs would be corre-
+                                                             the earlier works correctly accounted for the shot-noise
+spondingly higher.
+                                                             dipole, our study includes two missing components: the
+   The statistical significance values for the main physi-
+                                                             intrinsic clustering dipole and the influence of higher-
+cally motivated scenarios (S1, S2, S3) are summarized
+                                                             order clustering modes. This inclusion is important.
+in Table 1, and constitute the main results of this paper.
+                                                             The sky mask induces mode coupling, but without the
+The value for the case of S0 is included for comparison.
+                                                             significant power from intrinsic clustering in the sim-
+In conclusion, while the inclusion of a clustering dipole,
+                                                             ulation, the previous significance estimates were large.
+particularly one that is aligned with the CMB dipole and
+                                                             Furthermore, we have systematically studied the bias in-
+affected by cosmic variance, increases the probability of
+                                                             troduced by the mask itself on the estimated dipole value
+observing a large dipole amplitude, the CatWISE2020
+                                                             and have employed FLASK simulation package to gener-
+result remains a statistically significant outlier at ap-
+                                                             ate mock catalogs that replicates the survey’s statistical
+proximately the 3.3σ level or higher across all tested
+                                                             properties, leading to improvement of the significance
+scenarios.
+                                                             assessment. We also emphasize that if the amplitude
+   To assess the robustness of the measurement of the ob-
+                                                             of the clustering effects were lower than the values mea-
+served dipole value, we further employed a suite of alter-
+                                                             sured by P. Tiwari et al. (2023) (which is used here), the
+native models extending beyond the one defined in sec-
+                                                             inferred statistical significance of Dobs would increase,
+tion 3.1, sequentially including higher-order multipoles
+                                                             approaching the level reported by N. J. Secrest et al.
+in the least squares fitting. The full analysis, including
+                                                             (2021). Note that, for a direct comparison with the re-
+discussions of their numerical stability, and the result-
+                                                             sults of N. J. Secrest et al. (2022), we will need to repeat
+ing dipole bluevalues and their significance, is presented
+                                                             our analysis using their updated and expanded quasar
+in Appendix. B. In summary, while alternative models
+                                                             catalog. We plan to undertake this as part of a follow-up
+yield broadly consistent dipole directions, the inclusion
+                                                             study.
+                                                                                                                                              13
+           Simulations   Physical inputs                                       Clustering Dipole Direction   n      p-value     Significance (σ)
+               S0        Kinematic dipole+Shot noise (Secrest et al. (2021))               —                  9   9.00 × 10−7        4.82σ
+               S1        Baseline + Higher Order Modes, No Clustering Dipole               —                 13   1.30 × 10−4        3.63σ
+               S2        Baseline + Higher Order Modes + Clustering Dipole              Random               27   2.70 × 10−4        3.44σ
+               S3        Baseline + Higher Order Modes + Clustering Dipole     Aligned with CMB Dipole       58   5.80 × 10−4        3.27σ
+
+Table 1. Results of statistical significance tests from 105 simulations for S1-S3, and 107 realisations for the S0 case. We define
+‘Baseline’ here as the sum of the monopole (N0 ), the kinematic dipole (Dkin ), and the shot-noise dipole (DSN ) and higher order
+contributions; the first three terms on the right hand side of equation (20). n is the number of realisations that presented a
+dipole larger than the CatWISE2020 value. The S0 case replicates the original Secrest et al. 2021 analysis, confirming their
+high significance.
+
+   Finally, we systematically quantify how the statistical               such contamination either by injecting into the simu-
+inference depends on the model itself, showing that in-                  lations, or, utilize more refined observational datasets
+cluding higher multipoles in the fitting increases the con-              with robust unwanted source removal. Furthermore, a
+dition number and can obscure the true level of tension.                 future study involving a morphological-level comparison
+Crucially, we find that the choice of which low-order                    between the CatWISE2020 survey and our mock sim-
+multipoles are simultaneously fitted, constitutes a signif-              ulation can provide additional information. The large-
+icant systematic. High condition numbers that indicate                   scale behaviour of the one-point function of the data has
+mask-induced mode coupling can artificially suppress                     been studied in A. Antony et al. (2025), but more so-
+the measured significance by inflating the variance of                   phisticated techniques can be utilised to leverage more
+the dipole PDF distribution, as described in Appendix.                   information. Such validation is essential for developing
+C.                                                                       simulations that accurately replicate the higher-order
+   S. von Hausegger et al. (2025) recently carried out a                 clustering statistics of the observed quasar population.
+Bayesian inference based parametric fit and determined                   Moreover, the least square estimator used here is suscep-
+the dipole, quadrupole and octopole amplitudes using                     tible to bias from mask-induced mode coupling and con-
+the extended catalog consisting of 1.6 million sources                   fusion with the intrinsic clustering dipole. Hence there is
+from CatWISE2020. The inferred dipole amplitude                          a need for improved methodologies to disentangle these
+value varies slightly with the input model (only dipole,                 different effects (T. Nadolny et al. (2021)).
+dipole+quadrupole, or dipole+quadrupole+octopole).                         Finally, estimations of the matter dipole have been ex-
+They asked whether the anomalously large value of Dobs                   tended to sources such as galaxies and quasars identified
+can be due to ignoring the octopole term, and find that                  from optical observations. A tomographic dipole estima-
+including an octopole term slightly increases the ob-                    tor applied to SDSS spectroscopic data found to broadly
+served dipole rather then decreasing it. They also state                 agree with the CMB dipole (P. da Silveira Ferreira & V.
+that the measured octopole value is consistent with noise                Marra 2024; P. Tiwari et al. 2024). Similarly, a Bayesian
+based on a three sigma detection criteria. Our work dif-                 analysis of the Quaia quasar sample (K. Storey-Fisher
+fers from theirs in that our focus is the determination                  et al. 2024), after applying conservative sky cuts, found
+of the statistical significance of Dobs (measured using                  the dipole consistent with the CMB (V. Mittal et al.
+Eq. 7) based on a frequentist hypothesis test when the                   2024), though this consistency may be driven by the
+clustering dipole and higher order clustering modes are                  larger noise in the reduced sample. A. K. Singal (2024);
+included in mock simulations. Our results are broadly                    A. K. Singal (2025) also analysed the Quaia data using
+consistent with their analysis, the primary effect of in-                a different selection function and concluded that the pe-
+cluding the octopole is to broaden the posteriors on the                 culiar velocity of the Solar System is 4-5 times higher
+dipole, reducing its overall significance compared to the                than the value inferred from the CMB dipole, with the
+case in which only a dipole is fit to the data.                          direction pointing towards the Galactic centre within
+   A shortcoming of the present analysis is that contam-                 1σ. These results collectively highlight that conclusions
+ination from stellar and other unwanted sources in the                   drawn from matter dipole analyses remain sensitive to
+quasar catalog are not accounted for. Such contamina-                    the choice of dataset and the methodology adopted, and
+tion can potentially alter the assessed significance level.              the associated issues continue to be actively examined
+The color cut of W 1 − W 2 ≥ 0.8 produces a highly re-                   by the community (O. T. Oayda et al. 2025; V. Mit-
+liable (∼ 95%) quasar catalog (D. Stern et al. 2012),                    tal et al. 2025). It is expected that forthcoming data
+but the impact of the remaining contaminants on the                      releases with high source count densities such as from
+amplitude of CatWISE2020 dipole is yet to be ex-                         the Rubin telescope (P. A. Abell et al. 2009; R. Braun
+plored. In future work it is important to incorporate                    et al. 2019) will enable a decisive measurement of the
+14
+
+dipole, its redshift dependence, and the existence of the       The authors thank N. Secrest, S. V. Hausegger and S.
+anomaly (A. Aghamousa et al. 2016; L. Amendola et al.           Sarkar for critical comments on this work. Computa-
+2018; B. P. Crill et al. 2020). Understanding the possible      tions were performed on the Nova cluster at the Indian
+origin of such a dipole, and performing further tests of        Institute of Astrophysics, Bengaluru. This work made
+the statistical isotropy of large-scale structure, remain       use of HEALPIX5 K. M. Górski et al. (2005), Healpy A.
+outstanding challenges in cosmology.                            Zonca et al. (2019), Matplotlib J. D. Hunter (2007),
+                                                                NaMaster D. Alonso et al. (2019) and CLASS J. Lesgour-
+                                                                gues (2011). The authors thank N. Secrest et al. for
+                 ACKNOWLEDGMENTS                                making their data publicly available. P. C. and S. A.
+                                                                gratefully acknowledge the hospitality of Korea Insti-
+MB gratefully acknowledges Iqra Hamid Bhat for in-
+                                                                tute for Advanced Study, Seoul, where part of this work
+sightful discussions; Nidharssan S. and Vikranth P. for
+                                                                was carried out.
+valuable suggestions; and Sriram K. and Arav B. J.
+for discussions on source systematics and mode mixing.
+
+                                                       APPENDIX
+
+
+                                     A. VISUALIZATION OF MOCK SIMULATIONS
+  For visual clarity, figure 6 illustrates the individual components that contribute to each simulation of N (n̂) (Eq. 20).
+The left column shows the monopole component, which is uniform on the sky. The middle column displays the three
+dipole components: the CMB kinetic dipole (top), a shot noise dipole realization (middle), and a clustering dipole
+realization aligned with the CMB dipole direction (bottom). The right column shows the higher multipole contributions
+from shot noise and clustering. At the bottom, the composite number count density map, obtained by summing all
+components, is shown.
+  The complete maps N (n̂) include fluctuations arising from the shot noise and clustering dipoles, as well as higher-
+order multipoles. For full-sky data, only the kinetic, shot noise, and clustering dipole contributions would be relevant;
+however, masking induces mode coupling and makes the amplitudes of all fluctuations relevant for assessing the
+significance of the observed dipole in CatWISE2020.
+               B. ESTIMATION OF QUASAR DIPOLE WHEN INCLUDING HIGHER MULTIPOLES
+  To estimate the direction and amplitude of the apparent dipole from the CatWISE2020 quasar sample, we per-
+formed a series of sequential, low-multipole least-squares fits directly on the number density maps.
+  The spherical harmonic templates Yℓm , masked to match the survey geometry, were used to form a linear model for
+the observed map:                                      X
+                                              dmodel =     aℓm Yℓm = Xa,
+                                                          ℓ∈S
+where S is the set of multipoles included in the fit, a is the vector of corresponding spherical harmonic coefficients
+aℓm , and X is the design matrix whose columns are the mode vectors.
+  The coefficients a were obtained by minimizing the residual between the data vector d (the pixelated number density
+map) and the model:
+                                                  min ∥d − Xa∥2 .
+                                                      a
+This leads to the normal equations
+                                                     XT X a = XT d,
+with the solution
+                                                   a = (XT X)−1 XT d.
+  To monitor the stability of the inferred dipole against potential contamination from higher multipoles, particularly
+important given the partial sky coverage and the resulting mode coupling, we performed a sequence of fits with an
+increasing number of low multipoles. Specifically, we fit models containing: the monopole and dipole (M+D); the
+
+ 5 http://healpix.sourceforge.net/
+                                                                                                                              15
+      Monopole                                            Dipoles                            Higher multipoles (ℓ > 1)
+                                                                                            (Shot noise + clustering)
+
+                                                           Kinetic
+
+
+
+
+                                                          Shot noise
+
+
+
+
+                                                          Clustering
+
+
+
+
+                                             ↘                ↓                 ↙
+
+
+
+
+Figure 6. Left column: Monopole component of the number count density map. Middle column: Dipole contributions -
+kinematic (top), shot noise (middle), and clustering aligned with the CMB dipole direction (bottom). Right column: Combined
+higher multipole contributions from shot noise and clustering. Bottom: Final simulated number count density map, N (n̂), as
+defined in Eq. 20, obtained by summing all the above components.
+
+
+monopole, dipole, and quadrupole (M+D+Q); the monopole, dipole, quadrupole, and octupole (M+D+Q+O); and
+the monopole through ℓ = 4 (M+D+Q+O+ℓ = 4). For each fit, we compute the condition number6 D. A. Belsley
+et al. (1980) of the Gram matrix that is inverted to infer a : κ(XT X). The condition number increases as more modes
+are included in the fitting procedure, and we discuss the impact of this phenomenon on our results in the following
+section. We do not impose any specific threshold on the condition number as a criterion for rejecting a model. All
+
+ 6 The condition number C of a non-singular matrix A is defined as C = s /s , where s and s are the largest and smallest singular
+                                                                        1 2          1     2
+  values; large C indicates numerical ill-conditioning.
+16
+
+values of κ reported here are well below the regime of numerical ill-conditioning. Here the condition number acts as a
+diagnostic: a larger κ indicates stronger statistical correlations between the fitted multipole templates induced by the
+mask, which in turn inflates the variance of the recovered dipole amplitude and reduces its measured significance.
+  The results of this sequential fitting procedure are summarized in Table 2.
+
+                   Model                       D/M      l [deg]   b [deg]   Offset from CMB [deg]   Condition number (κ)
+                   M+D                        0.01554   238.22     28.80              27.78              5.05 × 100
+                   M+D+Q                      0.01545   237.86     29.18              27.68              3.48 × 101
+                   M+D+Q+O                    0.01971   237.22     24.04              32.15              5.66 × 101
+                   M + D + Q + O + ℓ=4        0.01970   236.57     24.38              32.20              2.28 × 102
+
+Table 2. Dipole estimates obtained from sequential low-multipole fits of the CatWISE2020 quasar map. The dipole ampli-
+tude is quoted relative to the monopole, D/M . The offset denotes the great-circle distance from the CMB dipole direction
+(l, b) = (264.0◦ , 48.3◦ ). The condition number refers to the normal-equation matrix X T X.
+
+
+   The dipole estimate remains stable when only the monopole and dipole are included. However, the inclusion of the
+octupole (ℓ = 3) shifts the amplitude by approximately 27% and the direction by roughly 5◦ , coinciding with an order
+of magnitude increase in the condition number. This indicates that the dipole estimate becomes sensitive to mask-
+induced mode coupling when higher multipoles are simultaneously fit, highlighting the importance of the multipole
+selection when fitting to the data. Consequently, the (M+D) fit, which has a low condition number, is adopted as our
+fiducial model for the CatWISE2020 dipole.
+
+                          C. SIGNIFICANCE ESTIMATES FROM DIFFERENT MODELS
+  The statistical significance of the dipole amplitude anomaly reported for the CatWISE2020 quasar catalog is highly
+sensitive to the specific mathematical model used to extract the dipole from the sky map. While our primary analysis
+(Section 6) employed a simple monopole and dipole (M+D) fit, we systematically tested the impact of including higher
+multipoles in the fitting procedure.
+
+
+
+
+Figure 7. Recovered dipole amplitudes from simulations compared to the expected CMB dipole amplitude. In both panels,
+the same sky mask is applied. Left panel: The map includes only an test input C3 ≈ 0.1C1,kin (octopole) component added
+to the kinematic dipole. Right panel: The map includes only an test input C5 ≈ 0.1C1,kin component added to the kinematic
+dipole. Each panel shows box plots comparing the M + D model (fitting only monopole and dipole) with the M + D + Q + O
+model (fitting up to octopole). This comparison demonstrates how including higher multipoles in the fit affects the recovery of
+the dipole amplitude.
+
+
+  This sensitivity is particularly pronounced for the M+D+Q+O model. This choice, characterized by a high condition
+number (Appendix B), arises from strong mask-induced coupling between the dipole and higher-order multipoles
+particularly ℓ = 5, 7 as shown in case of ℓ = 5 in Figure 7, and beyond. Consequently, stochastic variations in these
+                                                                                                                        17
+
+higher-ℓ modes within the simulated maps produce amplified variance in the estimated dipole amplitude. This inflated
+variance in the null distribution dilutes the statistical extremity of the observed CatWISE2020 dipole, thereby
+suppressing its measured significance.
+  We recomputed the p-values for the S1, S2, and S3 simulation suites using two alternative models: M+D+Q and
+M+D+Q+O. The results are presented in Table. 3
+
+                   Simulation Suite              Model                         n       p-value       Significance (σ)
+                                                 M+D (κ = 5.01)                13    1.30 × 10−4            3.63
+                 S1 (No Clust. Dipole)           M+D+Q (κ = 34.8)              20    2.00 × 10−4            3.53
+                                                 M+D+Q+O (κ = 56.6)           797    7.97 × 10−3            2.41
+                                                 M+D (κ = 5.01)                27    2.70 × 10−4            3.44
+             S2 (Random Clust. Dipole)           M+D+Q (κ = 34.8)              32    3.20 × 10−4            3.41
+                                                 M+D+Q+O (κ = 56.6)           817    8.17 × 10−3            2.40
+                                                 M+D (κ = 5.01)                58    5.80 × 10−4            3.27
+              S3 (Aligned Clust. Dipole)         M+D+Q (κ = 34.8)              71    7.10 × 10−4            3.19
+                                                 M+D+Q+O (κ = 56.6)          1125    1.13 × 10−2            2.28
+Table 3. Impact of model choice on the significance of the CatWISE2020 dipole excess. The reported p-value and significance
+(σ) are shown for three simulation suites (S1–S3) using the M+D (primary), M+D+Q, and M+D+Q+O models. n denotes
+the number of simulations (out of 100,000) with a dipole amplitude ≥ the observed value.
+
+
+  The results reveal a critical systematic: the choice of included in the fit dramatically alters the inferred
+significance. The simple M+D and the M+D+Q models yield consistent results, with significances between ∼ 3.2σ
+and ∼ 3.6σ across the physical scenarios. In contrast, the M+D+Q+O model reduces the significance to approximately
+2.3σ–2.4σ, a difference of approximately 1σ.
+  This reduction stems from a fundamental bias–variance tradeoff inherent to fitting multipoles to masked sky
+data. Including higher multipoles like the octopole in the fit reduces the bias from that specific multipole, but
+simultaneously increases the variance of the recovered dipole due to enhanced mask-induced effects. In particular
+when the M+D+Q+O model is applied to simulations containing realistic higher-order clustering modes (S1–S3), it
+yields a broader distribution of recovered dipole amplitudes. Consequently, the observed CatWISE2020 amplitude,
+while large, becomes a less extreme outlier given the inflated variance, leading to a substantially higher p-value. Future
+work should therefore focus on systematic stress tests of dipole estimators under controlled conditions, including varying
+mask geometries, noise levels, and injected higher-order multipoles, in order to identify choices that provide the most
+reliable balance between bias and variance on a partial sky.
+
+
+                                                      REFERENCES
+Abell, P. A., et al. 2009, doi: 10.2172/1156415                 Belsley, D. A., Kuh, E., & Welsch, R. E. 1980, Regression
+Abghari, A., Bunn, E. F., Hergt, L. T., et al. 2024, JCAP,        Diagnostics: Identifying Influential Data and Sources of
+  2024, 067, doi: 10.1088/1475-7516/2024/11/067                   Collinearity, Wiley Series in Probability and Statistics
+Aghamousa, A., et al. 2016,                                       (John Wiley & Sons), doi: 10.1002/0471725153
+  https://arxiv.org/abs/1611.00036                              Bengaly, C. A. P., Maartens, R., & Santos, M. G. 2018,
+Alonso, D., Sanchez, J., & Slosar, A. 2019, Mon. Not. Roy.        JCAP, 2018, 031, doi: 10.1088/1475-7516/2018/04/031
+  Astron. Soc., 484, 4127, doi: 10.1093/mnras/stz093            Blake, C., & Wall, J. 2002, Nature, 416, 150,
+Amendola, L., et al. 2018, Living Rev. Rel., 21, 2,               doi: 10.1038/416150a
+  doi: 10.1007/s41114-017-0010-3                                Böhme, L., Schwarz, D. J., Tiwari, P., et al. 2025, arXiv
+Antony, A., Appleby, S., Matthewson, W. L., & Shafieloo,          e-prints, arXiv:2509.16732,
+  A. 2025, https://arxiv.org/abs/2505.07439                       doi: 10.48550/arXiv.2509.16732
+Assef, R. J., Stern, D., Kochanek, C. S., et al. 2013, ApJ,     Braun, R., Bonaldi, A., Bourke, T., Keane, E., & Wagg, J.
+  772, 26, doi: 10.1088/0004-637X/772/1/26                        2019, https://arxiv.org/abs/1912.12699
+18
+
+Colin, J., Mohayaee, R., Rameez, M., & Sarkar, S. 2017,        Oayda, O. T., Mittal, V., Lewis, G. F., & Murphy, T. 2024,
+  Mon. Not. Roy. Astron. Soc., 471, 1045,                        MNRAS, 531, 4545, doi: 10.1093/mnras/stae1399
+  doi: 10.1093/mnras/stx1631                                   Planck Collaboration, Aghanim, N., Akrami, Y., et al.
+Condon, J. J., Cotton, W. D., Greisen, E. W., et al. 1998,       2020a, A&A, 641, A1, doi: 10.1051/0004-6361/201833880
+  AJ, 115, 1693, doi: 10.1086/300337                           Planck Collaboration, Aghanim, N., Akrami, Y., et al.
+Crill, B. P., Werner, M., Akeson, R., et al. 2020, in (SPIE)     2020b, A&A, 641, A6, doi: 10.1051/0004-6361/201833910
+  Conference Series, Vol. 11443, Space Telescopes and          Rubart, M., & Schwarz, D. J. 2013, A&A, 555, A117,
+                                                                 doi: 10.1051/0004-6361/201321215
+  Instrumentation 2020: Optical, Infrared, and Millimeter
+                                                               Secrest, N., von Hausegger, S., Rameez, M., Mohayaee, R.,
+  Wave, ed. M. Lystrup & M. D. Perrin, 114430I,
+                                                                 & Sarkar, S. 2025, https://arxiv.org/abs/2505.23526
+  doi: 10.1117/12.2567224
+                                                               Secrest, N. J., Hausegger, S. v., Rameez, M., et al. 2021,
+da Silveira Ferreira, P., & Marra, V. 2024, JCAP, 2024,
+                                                                 The Astrophysical Journal Letters, 908, L51,
+  077, doi: 10.1088/1475-7516/2024/09/077                        doi: 10.3847/2041-8213/abdd40
+Dam, L., Lewis, G. F., & Brewer, B. J. 2023, MNRAS, 525,       Secrest, N. J., von Hausegger, S., Rameez, M., Mohayaee,
+  231, doi: 10.1093/mnras/stad2322                               R., & Sarkar, S. 2022, The Astrophysical Journal Letters,
+Eisenhardt, P. R. M., Marocco, F., Fowler, J. W., et al.         937, L31, doi: 10.3847/2041-8213/ac88c0
+  2020, ApJS, 247, 69, doi: 10.3847/1538-4365/ab7f2a           Siewert, T. M., Schmidt-Rubart, M., & Schwarz, D. J.
+Ellis, G. F. R., & Baldwin, J. E. 1984, MNRAS, 206, 377,         2021, A&A, 653, A9, doi: 10.1051/0004-6361/202039840
+  doi: 10.1093/mnras/206.2.377                                 Singal, A. K. 2011, Astrophys. J. Lett., 742, L23,
+Gibelyou, C., & Huterer, D. 2012, Mon. Not. Roy. Astron.         doi: 10.1088/2041-8205/742/2/L23
+                                                               Singal, A. K. 2019, PhRvD, 100, 063501,
+  Soc., 427, 1994, doi: 10.1111/j.1365-2966.2012.22032.x
+                                                                 doi: 10.1103/PhysRevD.100.063501
+Górski, K. M., Hivon, E., Banday, A. J., et al. 2005, ApJ,
+                                                               Singal, A. K. 2023, MNRAS, 524, 3636,
+  622, 759, doi: 10.1086/427976
+                                                                 doi: 10.1093/mnras/stad2161
+Hivon, E., Górski, K. M., Netterfield, C. B., et al. 2002,
+                                                               Singal, A. K. 2024, Mon. Not. Roy. Astron. Soc., 532, L1,
+  ApJ, 567, 2, doi: 10.1086/338126                               doi: 10.1093/mnrasl/slae039
+Hunter, J. D. 2007, Computing in Science & Engineering, 9,     Singal, A. K. 2025, arXiv e-prints, arXiv:2508.20769,
+  90, doi: 10.1109/MCSE.2007.55                                  doi: 10.48550/arXiv.2508.20769
+Kumar Aluri, P., Cea, P., Chingangbam, P., et al. 2023,        Stern, D., Assef, R. J., Benford, D. J., et al. 2012, The
+  Classical and Quantum Gravity, 40, 094001,                     Astrophysical Journal, 753, 30,
+  doi: 10.1088/1361-6382/acbefc                                  doi: 10.1088/0004-637X/753/1/30
+Land-Strykowski, M., Lewis, G. F., & Murphy, T. 2025,          Storey-Fisher, K., Hogg, D. W., Rix, H.-W., et al. 2024,
+  MNRAS, 543, 3229, doi: 10.1093/mnras/staf1621                  ApJ, 964, 69, doi: 10.3847/1538-4357/ad1328
+                                                               Tiwari, P., Schwarz, D. J., Zhao, G.-B., et al. 2024, ApJ,
+Lesgourgues, J. 2011, arXiv e-prints, arXiv:1104.2932,
+                                                                 975, 279, doi: 10.3847/1538-4357/ad815b
+  doi: 10.48550/arXiv.1104.2932
+                                                               Tiwari, P., Zhao, G.-B., & Nusser, A. 2023, ApJ, 943, 116,
+Marocco, F., Eisenhardt, P. R. M., Fowler, J. W., et al.
+                                                                 doi: 10.3847/1538-4357/acacf8
+  2021, ApJS, 253, 8, doi: 10.3847/1538-4365/abd805
+                                                               von Hausegger, S., Secrest, N., Desmond, H., et al. 2025,
+Mittal, V., Oayda, O. T., & Lewis, G. F. 2024, MNRAS,            arXiv e-prints, arXiv:2510.23769.
+  527, 8497, doi: 10.1093/mnras/stad3706                         https://arxiv.org/abs/2510.23769
+Mittal, V., Oayda, O. T., & Lewis, G. F. 2025, The Open        Wagenveld, J. D., Klöckner, H.-R., & Schwarz, D. J. 2023,
+  Journal of Astrophysics, 8, 143,                               A&A, 675, A72, doi: 10.1051/0004-6361/202346210
+  doi: 10.33232/001c.144907                                    Wright, E. L., et al. 2010, Astron. J., 140, 1868,
+Nadolny, T., Durrer, R., Kunz, M., & Padmanabhan, H.             doi: 10.1088/0004-6256/140/6/1868
+  2021, JCAP, 2021, 009,                                       Xavier, H. S., Abdalla, F. B., & Joachimi, B. 2016,
+  doi: 10.1088/1475-7516/2021/11/009                             MNRAS, 459, 3693, doi: 10.1093/mnras/stw874
+                                                               Zonca, A., Singer, L., Lenz, D., et al. 2019, Journal of Open
+Oayda, O. T., Mittal, V., & Lewis, G. F. 2025, MNRAS,
+                                                                 Source Software, 4, 1298, doi: 10.21105/joss.01298
+  537, 1, doi: 10.1093/mnras/stae2776
+

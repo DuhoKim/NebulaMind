@@ -1,0 +1,443 @@
+                                                                First constraints on the intrinsic CMB dipole and our velocity
+                                                                                 with Doppler and aberration
+
+                                                                                               Pedro da Silveira Ferreira∗
+                                                        Observatório do Valongo, Universidade Federal do Rio de Janeiro, 20080-090, Rio de Janeiro, RJ, Brazil
+
+                                                                                                     Miguel Quartin∗
+                                                      Observatório do Valongo, Universidade Federal do Rio de Janeiro, 20080-090, Rio de Janeiro, RJ, Brazil and
+                                                          Instituto de Física, Universidade Federal do Rio de Janeiro, 21941-972, Rio de Janeiro, RJ, Brazil
+                                                                                                 (Dated: July 26, 2021)
+                                                               We test the usual hypothesis that the Cosmic Microwave Background (CMB) dipole, its largest
+                                                            anisotropy, is due to our peculiar velocity with respect to the Hubble flow by measuring inde-
+                                                            pendently the Doppler and aberration effects on the CMB using Planck 2018 data. We remove the
+                                                            spurious contributions from the conversion of intensity into temperature and arrive at measurements
+                                                            which are independent from the CMB dipole itself for both temperature and polarization maps and
+                                                            both SMICA and NILC component-separation methods. Combining these new measurements with
+                                                            the dipole one we get the first constraints on the intrinsic CMB dipole. Assuming a standard dipolar
+
+
+
+
+arXiv:2011.08385v2 [astro-ph.CO] 23 Jul 2021
+                                                            lensing contribution we can put an upper limit on the intrinsic amplitude: 3.7mK (95% CI). We
+                                                            estimate the peculiar velocity of the solar system without assuming a negligible intrinsic dipole con-
+                                                                                                                            ◦
+                                                            tribution: v = (300+111                                                                    +111
+                                                                                −93 ) km/s with (l, b) = (276 ± 33, 51 ± 19) [SMICA], and v = (296−88 ) km/s
+                                                                                              ◦
+                                                            with (l, b) = (280 ± 33, 50 ± 20) [NILC] with negligible systematic contributions. These values are
+                                                            consistent with the peculiar velocity hypothesis of the dipole.
+
+
+                                                  Introduction. The CMB temperature dipole is the                in the last 30 years [8–13]. These measurements have a
+                                               largest CMB anisotropy not coming from foregrounds,               number of potential systematics [14], and the reported
+                                               and has been precisely measured since a few decades               results have been inconsistent, as discussed by e.g. [15].
+                                               ago. After removal of the orbital contribution due to             High-redshift radio galaxies have also been used to test
+                                               the motion of the instrument with respect to the Sun,             the kinematic hypothesis. Their measured dipole is a few
+                                               we are left with the so-called solar dipole, with an ampli-       times higher than what would be expected from the CMB
+                                               tude of 3.36208 ± 0.00099 mK [1], which is ∼ 100 larger           dipole [16–18]. Type Ia supernovae can also be used to
+                                               than the other multipoles. It is thus fully credited to the       measure peculiar velocities both at low [19–22] and inter-
+                                               proper motion between the solar system and the CMB                mediate redshifts [23, 24], but the strong inhomogeneity
+                                               rest frame. If one assumes that the whole dipole has              of supernova data poses a challenge. A detailed review
+                                               such a kinematic origin, one infers a relative velocity of        of cosmic dipole observables is given by [25].
+                                               (369.82 ± 0.11) km/s. This velocity estimate is widely
+                                                                                                                    When dealing with cosmological perturbations one
+                                               reported and often used in astronomy in order to convert
+                                                                                                                 should keep in mind that not all variables are observ-
+                                               observed redshifts into CMB-centric (cosmological) ones.
+                                                                                                                 able, i.e., gauge independent. The definition of the CMB
+                                                  Nevertheless there exists the possibility that part of
+                                                                                                                 rest frame is likewise not univocal. It can be defined as
+                                               the dipolar effect could be due to primordial fluctuations
+                                                                                                                 the frame in which the dipole is zero, or alternatively
+                                               in the surface of last-scattering (SLS). Concrete alter-
+                                                                                                                 as the one in which aberration is zero [26, 27], but this
+                                               natives to the kinematic scenario were discussed as far
+                                                                                                                 choice is unimportant for our analysis. The crucial point
+                                               back as 30 years ago by [2], which showed that a large
+                                                                                                                 is that the degeneracy between primordial and kinematic
+                                               local void could also explain the dipole. This particu-
+                                                                                                                 effects in the CMB dipole can be broken by measuring the
+                                               lar scenario was further investigated by e.g. [3] and [4].
+                                                                                                                 Doppler-like and aberration-like couplings in the CMB
+                                               A “tilted universe scenario” composed of a superhorizon
+                                                                                                                 present in all scales [28]. In the case of a peculiar veloc-
+                                               isocurvature perturbation was proposed in [5]. An in-
+                                                                                                                 ity these couplings must be present with well-determined
+                                               flationary model which produces similar results was pro-
+                                                                                                                 coefficients, as discussed in our companion paper [29] (see
+                                               posed by [6]. This scenario can be tested as it leads to
+                                                                                                                 also [30]). In other scenarios, one of both of these cou-
+                                               a cosmic “bulk flow” of galaxies and clusters [7]. In the
+                                                                                                                 plings can differ [28], and therefore by combining the ob-
+                                               kinematic dipole hypothesis the ΛCDM model predicts
+                                                                                                                 servations of the dipole, Doppler and aberration effects
+                                               how the average peculiar motion of a sphere of galaxies
+                                                                                                                 one can independently measure our peculiar velocity and
+                                               should approach zero as the radius increases. Low red-
+                                                                                                                 the intrinsic CMB dipole in a more model-independent
+                                               shift surveys have attempted to measure this convergence
+                                                                                                                 way. This is what we pursue in the present work.
+                                                                                                                   The aberration and Doppler couplings were shown to
+                                                                                                                 be detectable by Planck by [31] and [32], and subse-
+                                               ∗ Both authors contributed equally
+                                                                                                                 quently measured by [33] following an estimator pro-
+                                                                                                                         2
+
+posed in [34]. They made use of only the 143GHz and            ters which de-correlate both estimators to good precision.
+217GHz channels and measured v ≡ βc = 384 km/s ±               This procedure was carried out for both temperature and
+78 km/s (stat)±115 km/s (syst). As explained in [33] this      polarization two point estimators used (T T and EE).
+measurement however did not distinguish from possible             This pipeline allows for measurements of aberration
+intrinsic contributions and is at least partly degenerate      (β A ) and Doppler (β D ) which are independent between
+with the standard dipole measurements. We revisit this         themselves and with the dipole. We also consider the
+issue in more detail in our companion paper [29].              more traditional case in which one assumes a priori that
+   In this letter we improve on the results of [33] in sev-    β A ≡ β D ≡ β B as in a standard boost (B) transforma-
+eral ways. First of all, we remove the couplings which         tion (i.e. assuming no additional sources of Doppler-like
+bring no new information with respect to the dipole. Sec-      or aberration-like couplings). This leads to a higher sig-
+ond, we remove biases in the estimators of aberration and      nificance detection, but it only serves as a simple cross-
+Doppler by simulating the effects using 482 combinations       check as all physical information is already encoded in
+of orientations, which ensures no a priori information on      the high-precision observation of the temperature dipole.
+the direction of either effect. Third, we rely on the fi-      The precision in both β A and β D is estimated in [29].
+nal Planck component separated maps of SMICA and                  Measuring the intrinsic dipole. Besides the stan-
+NILC instead on single frequency maps and use the 2018         dard scenario of a simple Doppler effect on the monopole,
+data release which is more robust than the 2013 one [1].       a temperature dipole ∆1 can also be due to an intrin-
+Finally, we make use also of the E polarization map.           sic dipole component ∆1,int in the SLS of either the
+These improvements result not only in better precision         temperature (τ ) or gravitational potential (φ) pertur-
+and much smaller systematic errors, but allow us to both       bations. A significant contribution from the late Inte-
+put an upper bound for the first time on the intrinsic         grated Sachs-Wolfe effect is less likely since the integrand
+CMB dipole and to make an estimate of our peculiar ve-         is non-zero only after matter-domination. On large scales
+locity with respect to the Hubble flow without assuming        both temperature or gravitational potential perturba-
+a negligible intrinsic component.                              tions are proportional, but the proportionality depends
+   Estimators and pipeline. The aberration and                 on whether the perturbations are adiabatic or isocurva-
+Doppler estimators and pipelines used here are discussed       ture (entropic). For small scales the CMB fluctuations
+in detail in our companion paper [29], and here we sim-        are known to be adiabatic, but for the dipole it could be
+ply summarize the main ideas. The first step is to remove      either or a combination of both. The nature of the dipole
+the Dipole Distortions (DD) discussed in [35]. The DD          can thus only be understood by adding new observables.
+produce an extra Doppler signal but are an artifact of the        Through a detailed investigation of second-order per-
+imperfect conversion from intensity into thermodynamic         turbations on the CMB, the effects of these different pri-
+temperature and are degenerate with the dipole. The DD         mordial scenarios on the Doppler and aberration signals
+effect depends on the particular weights assigned to each      in the CMB was discussed in [28]. An aberration effect
+frequency band in a given mapmaking procedure. We              could be mimicked by the dipolar component of gravita-
+therefore estimated the DD for the SMICA and NILC              tional lensing. Lensing is however an integrated quantity
+maps produced by the Planck collaboration [36] in mul-         and depends on fluctuations along the whole past light-
+tipole bins of ∆` = 200. For SEVEM and Commander               cone. This means that only in fine-tuned models would it
+the DD signal is highly non-trivial and we do not con-         produce an aberration signature in the same direction of
+sider these maps. In the proposed Main Pipeline (MP)           the dipole and correct amplitude. The Doppler couplings
+the DD are removed at the estimator level, but we also         on the other hand are produced by second-order per-
+tested a cross-check pipeline (CCP) in which a Doppler         turbation effects on the SLS. Surprisingly, it was found
+boost with the inverse signal is applied to the maps (this     in [28] that apart from the standard velocity coupling
+also boosts the noise). The pipeline code is available [37].   (βΘ, where Θ represent the linear temperature fluctu-
+   We then make use of the ideal estimators proposed           ations) there are also second-order contributions from
+in [32], which ignore biases introduced by the anisotropic     τ Θ and φΘ which, if Gaussian, produce a total coupling
+noise (present at high `) and mask. Since both aber-           which is given exactly by ∆1 Θ in both adiabatic and
+ration and Doppler result in `, ` + 1 couplings, there is      isocurvature case. I.e., these couplings are insensitive to
+also an inherit leakage (and thus a correlation) of sig-       the nature of ∆1 . If, on the other hand, the fluctuations
+nal between them. In order to remove these biases and          contain non-Gaussianities (NG) this degeneracy is bro-
+leakages we perform a series of 64 simulations using our       ken. In particular, for the much-studied local NG [39]
+Healpix-Boost code [38] adding either Doppler or aber-         new terms proportional to φ2 appear which result in ex-
+ration signals in each of 48 different sky directions as       tra ∆1 φ couplings. This changes the amplitude (but not
+well as the anisotropic noise, realistic beaming and mask.     the direction) of the intrinsic Doppler couplings. Thus
+For each cartesian component we calibrate the estimators       a detection of conflicting Doppler, aberration and dipole
+by a χ2 fit first of 2 nuisance parameters to account for      measurements can hint at the presence of a non-standard
+mask and noise, and then 2 additional nuisance parame-         large intrinsic dipole and allows one to test physics be-
+                                                                                                                                                             3
+
+
+         T T +EE      |v| [km/s]       l(◦ )         b(◦ )           TT+EE                                                                60
+         Aberration 300 ± 99 ± 13 276 ± 32 ± .1 51 ± 19 ± .7
+
+ SMICA
+                                                                                                                                                    30
+         Doppler    390 ± 140 ± 13 210 ± 56 ± 3 −2 ± 30 ± .5
+         Boost       321 ± 84 ± 9 234 ± 21 ± .1 43 ± 15 ± .2
+                                                                       150    120         90    60    30    0    330   300   270    240     210    180
+         Velocity    300+111
+                        −93 ± 13   276 ± 33 ± .1 51 ± 19 ± .7                                                                                            0
+
+         Aberration 296 ± 100 ± 10 280 ± 32 ± .3 50 ± 20 ± .3
+                                                                                                                                                   -30
+
+ NILC
+         Doppler    380 ± 140 ± 10 208 ± 56 ± 2 13 ± 30 ± .2
+                                                                                                                       SMICA NILC
+         Boost       332 ± 83 ± 9 250 ± 22 ± 1 50 ± 15 ± .1                                                                               Aberration
+                                                                                                                                          -60
+         Velocity    296+111
+                        −88 ± 10   280 ± 33 ± .3 50 ± 20 ± .3                                                                             Doppler
+
+                                                                             268               293         330           281              300     km/s
+                                                                             330               311         346           293              296     km/s
+                                                                             535               497         489           450              389     km/s
+TABLE I. Results in galactic coord. for each estimator and                   565               449         456           412              380     km/s
+component separation method (1σ uncertainties). The first                    1000              1200        1400         1600              1800
+error is statistical; the second is the (subdominant) simulated                                             max
+systematics due to masking, anisotropic noise and leakage         FIG. 1. Aberration and Doppler estimations as a function
+between Doppler and aberration. The velocity is estimated         of `max for the main pipeline for SMICA and NILC. The ?
+from aberration by subtracting the stochastic dipolar lensing.    represents the dipole. Solid (dashed) contours are the 1 and
+                                                                  2σ confidence levels for SMICA (NILC). The values below the
+                                                                  Mollweide plot are the amplitudes of the estimated vectors.
+yond the single-field slow-roll inflation model and modi-
+fications on recombination physics [see, e.g., 27, 40–43].
+   The 3 vector observables are ∆1 , the aberration β A              TT+EE                                                                60
+and Doppler β D estimators. Both β A and β D are the
+                                                                                                                                                    30
+same for T T and EE measurements [44]. Following [28]                 SMICA        NILC
+                                                                                           Boost
+and limiting ourselves to local NG we write                            150    120         90    60    30    0    330   300   270    240     210    180
+                                                                                                                                                         0
+                                                                             329               352         409           334              321 km/s
+                    ∆1 = β + ∆1,int ,                                        354               395         417           332              332 km/s
+                                                                             1000              1200        1400         1600              1800
+                    β D = β + (1 + αNG )∆1,int ,                                                            max
+
+                    β A = β + Ld ,                         (1)        FIG. 2. Same as Figure 1 for the boost estimator.
+              NG
+where α       = 0 in the absence of NG and Ld is the
+dipolar component of lensing. We assume a constant                   Figure 1 shows results for different values of `max for
+αNG as a simple parametrization of NG. We thus have               T T up to 1800. For EE we stop at 1150. We use always
+9 observables and 10 unknown quantities in the general            `min = 200 [29]. For aberration we draw the 1 and 2σ
+case. But for a given ∆1,int model αNG can be computed            (68.3% and 95.4%) confidence intervals (CI) for T T +EE.
+and one can directly measure ∆1,int . We leave a detailed         The figures use the standard Mollweide projection for
+study on the relation between αNG and the standard NG             galactic coordinates. Figure 2 shows the boost estimator
+bispectrum parameter fNL (predicted to be small in the            contours. As expected, since this case assumes the same
+slow-roll inflation scenario [45–47]) for future works.           direction for both aberration and Doppler, this results in
+   In standard ΛCDM |Ld | can be estimated using lin-             greater precision but is only useful as a cross-check. Both
+ear theory [48]. For Planck’s best fit cosmology we find          MP and CCP pipelines are compared in Figure 3.
+Ld = 2.06 10−4 ≃ 0.17∆1 [49] (see their Fig. A.1). We                The statistical significance of each estimator result is
+include it stochastically in our analysis below, but it rep-      quoted in two complementary ways. First, we compare
+resents only a small contribution. We remark that in al-          each estimator with the kinematic dipole hypothesis. The
+ternative cosmologies Ld could be larger, and for a more          second estimate assumes there is no Doppler or aberra-
+robust measurement of ∆1,int it would be important to             tion effects whatsoever in the data, including Doppler
+independently estimate it in future large-scale structure         due to the DD, which allows one to get the overall statis-
+surveys, as in principle it can be estimated if the inter-        tical significance of these `, ` + 1 correlations in the data.
+vening matter distribution is known. This interesting             Table II summarizes the results, which are in agreement
+subject merits future research.                                   with the kinematic hypothesis. Additionally, the correla-
+   Results. The results for the aberration, Doppler and           tions are detected at 3.5–3.9σ for aberration, 2.6–2.9σ for
+boost estimators, for both SMICA and NILC for T T +EE             Doppler, and 6.1–6.4σ for boost. We also show the com-
+case are shown in galactic coordinates in Table I. For each       bined significance of Doppler and aberration (4.1–4.6σ),
+entry we show our estimates for the statistical and sys-          which differs from the boost estimator in not assuming
+tematic uncertainties. As discussed in [29] the latter are        they point in the same direction. For these estimates
+estimated as the residual discrepancy on a given estima-          we rely on the results for the cartesian components in-
+tor after correcting for the biases due to masking, noise         stead of the results for the amplitudes and galactic co-
+and leakage of signal between Doppler and aberration.             ordinates, as the former require one less bias term and
+                                                                                                                                                           4
+
+                                            MP                              60
+                                                                                   CCP
+
+                                                                                     30
+
+
+   0     330
+         150     300
+                 120     270
+                          90    240
+                                 60   210
+                                       30   180    330   300    270   240    210    180
+                                                                                          0
+
+
+        SMICA          NILC                                                          -30
+                              Aberration
+                              Doppler
+                                                                            -60
+                              Boost
+
+
+
+       TT 359 332 412 340 326 330                 359 334 412 359 326 327 km/s
+       EE 247 279 597 621 331 360                 312 218 538 659 341 287 km/s
+
+FIG. 3. Same as Figure 1, with only eastern hemisphere,
+for the comparision between MP and CCP for T T and EE
+measurements with `max = 1800 and 1150 respectively.
+
+
+                                                       β = ∆1          β = DD = 0
+                                                     2
+  T T +EE                                          χ     σ-value χ2               σ-value
+                        Aberration                 0.3         0.1      18          3.5
+
+         SMICA
+                        Doppler                    4.6         1.3      12          2.6       FIG. 4. Histograms for β = ∆1 (transparent purple) and the
+                        Boost                      1.3         0.3      45          6.1       null hypothesis β = 0 (gray) using T T +EE centered around
+                        Aber. & Dopp.              4.9         0.6      30          4.1       the expected values. The measurements are shown as vertical
+                        Aberration                 0.3         0.1      21          3.9       lines for SMICA (red) and NILC (blue); in the solid lines we
+                                                                                              remove the uninformative DD effect, in the dashed lines it
+         NILC
+                        Doppler                    2.7         0.8      13          2.9
+                        Boost                      0.4         0.1      49          6.4       is left included. The ±2σ intervals are depicted by H. Both
+                        Aber. & Dopp.              3.0         0.2      34          4.6       cases uses `max = 1800 for T T and 1150 for EE and the MP.
+                                                                                              The solid lines are consistent with the purple diagrams, while
+                                                                                              the dashed lines and gray histograms yield a large discrepancy.
+TABLE II. Statistical significance for both component sep-
+aration methods. The β = ∆1 column assumes the dipole
+is completely due to our velocity; the β = DD = 0 column
+assumes there is no Doppler or aberration effect of any kind.                                  T T +EE                  ∆1,int               αNG
+                                                                                                               amplitude       σ-value [95% CI] σ-value
+                                                                                               SMICA      < 3.6 mK [95% CI]       0.1    1.0+3.0
+                                                                                                                                            −3.9     0.7
+has uncertainties which are Gaussian [29]. The full (T T ,
+                                                                                               NILC       < 3.7 mK [95% CI]       0.1    0.9+2.4
+                                                                                                                                            −3.3     0.9
+EE, T T +EE) cartesian tables are available [37].
+   The histograms of our aberration and Doppler simula-                                       TABLE III. Measurements and null-hypothesis test of the
+tions for each cartesian component are depicted in Fig-                                       intrinsic dipole and its non-Gaussian parameter using the full
+ure 4. These results are the base of Table II. The purple                                     T T +EE results. The total observed dipole is 3.362 mK.
+histograms are the main results, which assume that both
+Doppler and aberration signals are present (including the
+DD) and thus one can leak into the estimator of the other.                                    it follows a ratio distribution, but it is dominated by the
+We also center the histograms in the dipole values, to test                                   Doppler error. The results for ∆1,int and αNG are shown
+the kinematic hypothesis. The gray histograms assume                                          in Table III using 95% CI. In all cases the values are
+no Doppler or aberration effects are present, which means                                     consistent with zero, so we only quote limits for |∆1,int |,
+the leakage is not an issue and therefore the statistical                                     which turns out to be similar to the observed ∆1 value.
+errors are smaller, and are used to compute the overall                                          We remark that these are the first direct constraints on
+significance of Doppler and aberration in the data.                                           the intrinsic CMB dipole, the largest mode in the SLS.
+   As discussed above by measuring Doppler and aber-                                          Our results are fully consistent with the kinematic dipole
+ration separately we can constrain ∆1,int , αNG and Ld .                                      interpretation and show no sign of non-Gaussianities, as
+If we set αNG  1, β D becomes just a cross-check and                                         expected by the standard cosmological model. These
+one can only measure ∆1 − β A = ∆1,int − Ld , which                                           findings, however, exclude for instance the possibility of a
+is usually assumed to be zero. In the more general case,                                      ∼ 1000 km/s value for cβ, the raw result in many Cosmic
+αNG ∆1,int = β D −∆1 and if we now consider Ld stochas-                                       Radio dipole measurements [see e.g. 18], which otherwise
+tically with a known amplitude (see above) but unknown                                        could be fine-tuned with a large ∆1,int opposite to β such
+direction one can estimate ∆1,int . The uncertainty in                                        that the vector sum resulted in the observed ∆1 .
+∆1,int is then basically the aberration error (as Ld is                                          Perspectives. In over half a century since the discov-
+small). The uncertainty in αNG is more complicated as                                         ery of the CMB we have been able to measure tempera-
+                                                                                                                              5
+
+ture, polarization and lensing to very high `s. But only             Overview and the cosmological legacy of Planck, Astron.
+now we are finally able to put physical constraints on the           Astrophys. 641, A1 (2020), arXiv:1807.06205 [astro-
+largest possible scale, the temperature dipole.                      ph.CO].
+                                                                 [2] B. Paczynski and T. Piran, A Dipole Moment of the
+   The measurements of β and ∆1,int are limited by the
+                                                                     Microwave Background as a Cosmological Effect, Astro-
+precision of the aberration and Doppler estimators in                phys. J. 364, 341 (1990).
+Planck data. Doppler in particular has high uncertainty:         [3] K. Tomita, Bulk flows and CMB dipole anisotropy in
+after removing the uninformative DD it is detected at less           cosmological void models, Astrophys. J. 529, 26 (2000),
+than 2σ. Future high-resolution CMB experiments can                  arXiv:astro-ph/9905278.
+improve this precision by both probing higher multipoles         [4] M. Quartin and L. Amendola, Distinguishing Between
+and by measuring the E modes with higher S/N [29].                   Void Models and Dark Energy with Cosmic Parallax
+                                                                     and Redshift Drift, Phys. Rev. D 81, 043522 (2010),
+   If |∆1,int | ∼ 0.03mK as in the higher multipoles, it will        arXiv:0909.4954 [astro-ph.CO].
+remain undetectable with this method in the foreseeable          [5] M. S. Turner, A Tilted Universe (and Other Remnants
+future, but ruling out exotic scenarios with |∆1,int | ∼             of the Preinflationary Universe), Phys. Rev. D 44, 3737
+1mK will be feasible in the near future. Although such a             (1991).
+large intrinsic dipole would be inconsistent with our stan-      [6] D. Langlois, Cosmic microwave background dipole in-
+dard inflation scenario, there has been numerous claims              duced by double inflation, Phys. Rev. D 54, 2447 (1996),
+of large scale anomalies in the CMB [50], and so it is               arXiv:gr-qc/9606066.
+                                                                 [7] Y.-Z. Ma, C. Gordon, and H. A. Feldman, The pecu-
+important to also try to detect its largest possible scale.          liar velocity field: constraining the tilt of the Universe,
+   A non-negligible intrinsic dipole would mean that the             Phys. Rev. D 83, 103002 (2011), arXiv:1010.4276 [astro-
+velocity used to infer cosmological redshifts is not ≃ 370           ph.CO].
+km/s, which can be a source of bias. Supernova surveys           [8] M. A. Strauss, A. Yahil, M. Davis, J. P. Huchra, and
+are in particular sensitive to accurate redshift determi-            K. Fisher, A Redshift Survey of IRAS Galaxies. V. The
+nations [see e.g. 51]. Model-independent measurements                Acceleration on the Local Group, Astrophys. J. 397, 395
+                                                                     (1992).
+of our velocity such as the one from the aberration of the
+                                                                 [9] D. A. Dale, R. Giovanelli, M. P. Haynes, L. E. Cam-
+CMB allows for more robust redshift corrections.                     pusano, E. Hardy, and S. Borgani, Seeking the local
+   Both Doppler and aberration effects should be present             convergence depth. the abell cluster dipole flow to 200
+in all cosmological observables. The SKA telescope is                mpc/h, Astrophys. J. Lett. 510, L11 (1999), arXiv:astro-
+predicted to measure our velocity in radio continuum                 ph/9810467.
+maps with 10% precision [52]. Both secular extragalac-          [10] A. H. Maller, D. H. McIntosh, N. Katz, and M. D. Wein-
+tic parallax measurements using GAIA final release [53]              berg, The clustering dipole of the local universe from the
+                                                                     two micron all sky survey, Astrophys. J. Lett. 598, L1
+and future CMB experiments [54] are expected to pro-                 (2003), arXiv:astro-ph/0303592.
+vide a similar precision. Other proposed ways to measure        [11] P. Erdogdu et al., The Dipole anisotropy of the 2 Micron
+the intrinsic CMB dipole includes the spectral distortions           All-Sky Redshift Survey, Mon. Not. Roy. Astron. Soc.
+of the monopole and quadrupole in future spectrometric               368, 1515 (2006), arXiv:astro-ph/0507166.
+CMB instruments [55] and the induced effect on the lens-        [12] M. Bilicki, M. Chodorowski, G. A. Mamon, and T. Jar-
+ing of the CMB for ` & 3000 [27]. It remains to be seen              rett, Is the 2MASS clustering dipole convergent?, Astro-
+which observable will perform best in the future.                    phys. J. 741, 31 (2011), arXiv:1102.4356 [astro-ph.CO].
+                                                                [13] A. Nusser, M. Davis, and E. Branchini, On the recov-
+                                                                     ery of Local Group motion from galaxy redshift surveys,
+                                                                     Astrophys. J. 788, 157 (2014), arXiv:1402.6566 [astro-
+              ACKNOWLEDGEMENTS                                       ph.CO].
+                                                                [14] J. Carrick, S. J. Turnbull, G. Lavaux, and M. J. Hud-
+                                                                     son, Cosmological parameters from the comparison of
+   We would like to thank Soumen Basak, Paola Delgado,
+                                                                     peculiar velocities with predictions from the 2M++ den-
+Luiz Filipe Guimarães, Hans Kristian Eriksen, Maude Le               sity field, Mon. Not. Roy. Astron. Soc. 450, 317 (2015),
+Jeune, Alessio Notari, Omar Roldan, Douglas Scott and                arXiv:1504.04627 [astro-ph.CO].
+Suvodip Mukherjee for useful discussions. We also thank         [15] Y. Hoffman, H. M. Courtois, and R. B. Tully, Cos-
+the anonymous referees for helpful suggestions. PSF is               mic Bulk Flow and the Local Motion from Cosmicflows-
+supported by the Brazilian research agency CAPES (Co-                2, Mon. Not. Roy. Astron. Soc. 449, 4494 (2015),
+ordenação de Aperfeiçoamento de Pessoal de Nível Supe-               arXiv:1503.05422 [astro-ph.CO].
+                                                                [16] J. Colin, R. Mohayaee, M. Rameez, and S. Sarkar, High
+rior). MQ is supported by the Brazilian research agencies
+                                                                     redshift radio galaxies and divergence from the CMB
+FAPERJ and CNPq (Conselho Nacional de Desenvolvi-                    dipole, Mon. Not. Roy. Astron. Soc. 471, 1045 (2017),
+mento Científico e Tecnológico).                                     arXiv:1703.09376 [astro-ph.CO].
+                                                                [17] C. Bengaly, R. Maartens, and M. Santos, Probing the
+                                                                     Cosmological Principle in the counts of radio galaxies
+                                                                     at different frequencies, JCAP 04, 031, arXiv:1710.08804
+                                                                     [astro-ph.CO].
+ [1] Planck Collaboration I (Planck), Planck 2018 results. I.
+                                                                                                                               6
+
+[18] T. M. Siewert, M. Schmidt-Rubart, and D. J. Schwarz,        [37] P. da Silveira Ferreira and M. Quartin, cmb-aber-
+     The Cosmic Radio Dipole: Estimators and Frequency                dopp code (2020), https://github.com/pdsferreira/
+     Dependence, (2020), arXiv:2010.08366 [astro-ph.CO].              cmb-aber-dopp.
+[19] C. Bonvin, R. Durrer, and M. Kunz, The dipole of the        [38] R. Catena, A. Notari, M. Quartin, and P. d. S. Fer-
+     luminosity distance: a direct measure of H(z), Phys. Rev.        reira, HEALPix-boost code (2020), https://github.com/
+     Lett. 96, 191302 (2006), arXiv:astro-ph/0603240.                 mquartin/healpix-boost.
+[20] S. Appleby, A. Shafieloo, and A. Johnson, Probing bulk      [39] D. Wands, Local non-Gaussianity from inflation, Class.
+     flow with nearby SNe Ia data, Astrophys. J. 801, 76              Quant. Grav. 27, 124002 (2010), arXiv:1004.0818 [astro-
+     (2015), arXiv:1410.5562 [astro-ph.CO].                           ph.CO].
+[21] D. Huterer, D. L. Shafer, and F. Schmidt, No evidence       [40] A. L. Erickcek, M. Kamionkowski, and S. M. Carroll, A
+     for bulk velocity from type Ia supernovae, JCAP 12, 033,         Hemispherical Power Asymmetry from Inflation, Phys.
+     arXiv:1509.04708 [astro-ph.CO].                                  Rev. D 78, 123520 (2008), arXiv:0806.0377 [astro-ph].
+[22] T. Castro, M. Quartin, and S. Benitez-Herrera, Turn-        [41] D. H. Lyth, The CMB modulation from inflation, JCAP
+     ing noise into signal: learning from the scatter in              08, 007, arXiv:1304.1270 [astro-ph.CO].
+     the Hubble diagram, Phys. Dark Univ. 13, 66 (2016),         [42] L. Dai, D. Jeong, M. Kamionkowski, and J. Chluba,
+     arXiv:1511.08695 [astro-ph.CO].                                  The Pesky Power Asymmetry, Phys. Rev. D 87, 123005
+[23] C. Howlett, A. S. G. Robotham, C. D. P. Lagos, and               (2013), arXiv:1303.6949 [astro-ph.CO].
+     A. G. Kim, Measuring the growth rate of structure with      [43] G. Mathews, I. Suh, N. Lan, and T. Kajino, Con-
+     Type IA Supernovae from LSST, Astrophys. J. 847, 128             straints on preinflation fluctuations in a nearly flat open
+     (2017), arXiv:1708.08236 [astro-ph.CO].                          ΛCDM cosmology, Phys. Rev. D 92, 123514 (2015),
+[24] K. Garcia, M. Quartin, and B. B. Siffert, On the amount          arXiv:1406.3409 [astro-ph.CO].
+     of peculiar velocity field information in supernovae from   [44] S. Mukherjee, A. De, and T. Souradeep, Statisti-
+     LSST and beyond, Phys. Dark Univ. 29, 100519 (2020),             cal isotropy violation of CMB Polarization sky due
+     arXiv:1905.00746 [astro-ph.CO].                                  to Lorentz boost, Phys. Rev. D 89, 083005 (2014),
+[25] C. Gibelyou and D. Huterer, Dipoles in the Sky, Mon.             arXiv:1309.3800 [astro-ph.CO].
+     Not. Roy. Astron. Soc. 427, 1994 (2012), arXiv:1205.6476    [45] J. M. Maldacena, Non-Gaussian features of primordial
+     [astro-ph.CO].                                                   fluctuations in single field inflationary models, JHEP 05,
+[26] A. Lewis and A. Challinor, Weak gravitational lensing            013, arXiv:astro-ph/0210603.
+     of the CMB, Phys. Rept. 429, 1 (2006), arXiv:astro-         [46] D. H. Lyth and I. Zaballa, A Bound concerning pri-
+     ph/0601594.                                                      mordial non-Gaussianity, JCAP 10, 005, arXiv:astro-
+[27] P. D. Meerburg, J. Meyers, and A. van Engelen, Recon-            ph/0507608.
+     structing the Primary CMB Dipole, Phys. Rev. D 96,          [47] P. Creminelli and M. Zaldarriaga, Single field consis-
+     083519 (2017), arXiv:1704.00718 [astro-ph.CO].                   tency relation for the 3-point function, JCAP 10, 006,
+[28] O. Roldan, A. Notari, and M. Quartin, Interpreting the           arXiv:astro-ph/0407059.
+     CMB aberration and Doppler measurements: boost or           [48] D. Hanson, A. Challinor, and A. Lewis, Weak lens-
+     intrinsic dipole?, JCAP 1606 (06), 026, arXiv:1603.02664         ing of the CMB, Gen. Rel. Grav. 42, 2197 (2010),
+     [astro-ph.CO].                                                   arXiv:0911.0612 [astro-ph.CO].
+[29] P. da Silveira Ferreira and M. Quartin, Disentangling       [49] N. Aghanim et al. (Planck), Planck 2018 results.
+     Doppler modulation, aberration and the temperature               VIII. Gravitational lensing, Astron. Astrophys. 641, A8
+     dipole in the CMB, (2021), arXiv:2107.10846 [astro-              (2020), arXiv:1807.06210 [astro-ph.CO].
+     ph.CO].                                                     [50] D. J. Schwarz, C. J. Copi, D. Huterer, and G. D. Stark-
+[30] A. Notari and M. Quartin, Measuring our Peculiar Ve-             man, CMB Anomalies after Planck, Class. Quant. Grav.
+     locity by ’Pre-deboosting’ the CMB, JCAP 1202, 026,              33, 184001 (2016), arXiv:1510.07929 [astro-ph.CO].
+     arXiv:1112.1400 [astro-ph.CO].                              [51] J. Calcino and T. Davis, The need for accurate redshifts
+[31] A. Kosowsky and T. Kahniashvili, The Signature of                in supernova cosmology, JCAP 01, 038, arXiv:1610.07695
+     Proper Motion in the Microwave Sky, Phys. Rev. Lett.             [astro-ph.CO].
+     106, 191301 (2011), arXiv:1007.4539 [astro-ph.CO].          [52] C. A. Bengaly, T. M. Siewert, D. J. Schwarz, and
+[32] L. Amendola, R. Catena, I. Masina, A. Notari, M. Quar-           R. Maartens, Testing the standard model of cosmology
+     tin, and C. Quercellini, Measuring our peculiar velocity         with the SKA: the cosmic radio dipole, Mon. Not. Roy.
+     on the CMB with high-multipole off-diagonal correla-             Astron. Soc. 486, 1350 (2019), arXiv:1810.04960 [astro-
+     tions, JCAP 1107, 027, arXiv:1008.1183 [astro-ph.CO].            ph.CO].
+[33] Planck Collaboration XXVII (Planck), Planck 2013            [53] J. Paine, J. Darling, R. Graziani, and H. M. Courtois,
+     results. XXVII. Doppler boosting of the CMB: Ep-                 Secular Extragalactic Parallax: Measurement Methods
+     pur si muove, Astron. Astrophys. 571, A27 (2014),                and Predictions for Gaia, Astrophys. J. 890, 146 (2020),
+     arXiv:1303.5087 [astro-ph.CO].                                   arXiv:1912.11935 [astro-ph.CO].
+[34] D. Hanson and A. Lewis, Estimators for CMB Sta-             [54] C. Burigana et al. (CORE), Exploring cosmic origins
+     tistical Anisotropy, Phys. Rev. D 80, 063004 (2009),             with CORE: effects of observer peculiar motion, JCAP
+     arXiv:0908.0963 [astro-ph.CO].                                   04, 021, arXiv:1704.05764 [astro-ph.CO].
+[35] A. Notari and M. Quartin, On the proper kinetic             [55] S. Yasini and E. Pierpaoli, Beyond the Boost: Measur-
+     quadrupole CMB removal and the quadrupole anomalies,             ing the Intrinsic Dipole of the Cosmic Microwave Back-
+     JCAP 1506 (06), 047, arXiv:1504.02076 [astro-ph.CO].             ground Using the Spectral Distortions of the Monopole
+[36] Planck Collaboration IV (Planck), Planck 2018 results.           and Quadrupole, Phys. Rev. Lett. 119, 221102 (2017),
+     IV. Diffuse component separation, Astron. Astrophys.             arXiv:1610.00015 [astro-ph.CO].
+     641, A4 (2020), arXiv:1807.06208 [astro-ph.CO].
+

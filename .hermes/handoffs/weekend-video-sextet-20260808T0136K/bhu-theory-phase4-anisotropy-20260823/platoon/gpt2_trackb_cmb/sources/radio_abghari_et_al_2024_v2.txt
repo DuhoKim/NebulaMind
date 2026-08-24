@@ -1,0 +1,1037 @@
+                                               Prepared for submission to JCAP
+
+
+
+
+                                               Reassessment of the dipole in the
+                                               distribution of quasars on the sky
+
+
+
+
+arXiv:2405.09762v2 [astro-ph.CO] 19 Jan 2025
+                                               Arefe Abghari,1,2 Emory F. Bunn,3 Lukas T. Hergt,2 Boris Li,2
+                                               Douglas Scott,2 Raelyn M. Sullivan,2 Dingchen Wei2
+                                               2 University of British Columbia, Vancouver, BC V6T1Z1, Canada
+                                               3 University of Richmond, Richmond, VA 23173, U.S.A.
+
+                                                E-mail: arefeabghari@phas.ubc.ca, ebunn@richmond.edu, rsullivan@phas.ubc.ca,
+                                                lthergt@phas.ubc.ca, dscott@phas.ubc.ca
+
+                                               Abstract. We investigate recent claims by Secrest et al. of an anomalously large amplitude
+                                               of the dipole in the distribution of CatWISE-selected quasars on the sky. Two main issues
+                                               indicate that the systematic uncertainties in the derived quasar-density dipole are under-
+                                               estimated. Firstly, the spatial distribution of the quasars is not a pure dipole, possessing
+                                               low-order multipoles of comparable size to the dipole. These multipoles are unexpected and
+                                               presumably caused by unknown systematic effects; we cannot be confident that the dipole
+                                               amplitude is not also affected by the same systematics until the origin of these fluctuations is
+                                               understood. Secondly, the 50 percent sky cut associated with the quasar catalogue strongly
+                                               couples the multipoles, meaning that the power estimate at ℓ = 1 contains significant con-
+                                               tributions from ℓ > 1. In particular, the dominant quadrupole mode in the Galactic mask
+                                               strongly couples the dipole with the octupole, leading to a large uncertainty in the dipole
+                                               amplitude. Together these issues mean that the dipole in the quasar catalogue has an uncer-
+                                               tainty large enough that consistency with the cosmic microwave background (CMB) dipole
+                                               cannot be ruled out. More generally, current data sets are insufficiently clean to robustly
+                                               measure the quasar dipole and future studies will require samples that are larger (preferably
+                                               covering more of the sky) and free of systematic effects to make strong claims regarding their
+                                               consistency with the CMB dipole.
+
+
+
+
+                                                 1
+                                                     Corresponding author.
+Contents
+
+1 Introduction                                                                               1
+
+2 The quasar sample                                                                          3
+  2.1 Selecting quasars from WISE                                                            3
+  2.2 Ecliptic gradient                                                                      4
+  2.3 Stellar contamination                                                                  5
+
+3 Masking and high-order moments                                                             7
+  3.1 How mask-coupling can bias the dipole                                                  7
+  3.2 Simulating mask-induced effects                                                       11
+
+4 Estimating the quasar map power spectrum                                                  12
+  4.1 Power spectrum estimators                                                             12
+  4.2 Applying a power spectrum estimator                                                   13
+
+5 Conclusions                                                                               14
+
+A Masking and multipole mixing                                                              19
+
+
+1   Introduction
+
+The cosmological principle is the assumption that, on large enough scales, the Universe is
+homogeneous and isotropic. One consequence of this principle is that there should be no
+preferred direction or location in the Universe. The cosmological principle imposes symme-
+tries that greatly simplifies to the Friedmann–Lemaître–Robertson–Walker (FLRW) metric
+(for a historical discussion see, e.g., Section 2 of Peebles’ book [1]). According to this pic-
+ture, the dipole of the cosmic microwave background (CMB) is solely caused by the mo-
+tion of the Earth relative to the ‘rest frame’ of the CMB, in which the sky is expected to
+be statistically isotropic. The temperature gradient caused by this movement is expressed
+as ∆T /T = (v/c) cos θ [2], where θ is the angle from the direction of the motion. The
+most recent measurement of the speed of the Solar System with respect to the CMB rest
+frame comes from the Planck satellite and is v = (369.82 ± 0.11) km s−1 in the direction
+l = 264.021◦ ± 0.011◦ , b = 48.253◦ ± 0.005◦ in Galactic coordinates [3, 4]. Figure 1 shows a
+map from Planck that contains the Solar dipole; i.e., the strong ℓ = 1 mode is very obvious.
+This is what a high signal-to-noise dipole looks like when it dominates over other multipoles
+and when the map does not require a large Galactic mask; this is in contrast to the quasar
+dipole that we discuss in the rest of the paper.
+      In addition to measuring the ℓ = 1 multipole of the CMB, there are several other ways
+to measure our cosmic motion, including the following: aberration and anisotropy modulation
+effects in the CMB [e.g. 5–7]; determining the dipole in the peculiar velocity field of distant
+objects [8, 9]; or summing the effect of large-scale structure on our local acceleration [e.g.,
+10]. If any of these tests of our motion gave results that did not match the CMB dipole
+velocity, then that would point to the existence of a large-scale non-adiabatic mode [11–13]
+
+
+
+
+                                            –1–
+or some more fundamental breakdown of physics near the Hubble scale. This motivates work
+comparing different observables that depend on our velocity.
+     Another way to measure our cosmological motion is to use the anisotropy of object
+counts or brightness using distant cosmological objects such as galaxies, quasars, or radio
+sources. This was first discussed by Ellis and Baldwin [14]. The dipole anisotropy of object
+counts across the sky is predicted to be (to order v/c)
+
+                        δN/N = [2 + x(1 + α)](v/c) cos(θ) ≡ D cos(θ),                       (1.1)
+
+where α is the spectral index of the typical spectrum of an object (assuming that the sources
+have power-law spectra S ∝ ν −α ), and x is the slope of the cumulative number count as a
+function of limiting flux density, N (> S) ∝ S −x . The amplitude of the dipole in this equation
+is denoted by D.
+      There is a long history of attempts to measure the dipole of distant sources at a range
+of wavelengths [15–19]. Among the studies done using radio or quasar catalogues, some have
+found that the dipole amplitude and direction align with the CMB dipole [20–27]. On the
+other hand, some studies have indicated a rough agreement with the CMB dipole direction,
+but have reported a higher than expected dipole amplitude [28–34]. A common theme in all
+these studies has been the difficulty in controlling systematic effects; thus, various analysis
+approaches have been used in these papers.
+      In a recent study, Secrest et al. [35, 36] used the CatWISE catalogue [37] from the
+Wide-Field Infrared Survey Explorer (WISE) [38] to estimate the dipole in the distribution
+of quasars. They found that the amplitude of the quasar dipole appeared to be significantly
+larger than that expected from the CMB dipole, with a difference estimated to be at the 4.9 σ
+level (for a normal distribution, one-sided). This has led to speculation in the literature of an
+unexpected contribution to the quasar dipole from large-scale structure [18, 39, 40]; or for an
+intrinsic contribution to the CMB dipole [41–43]; or even more radically that the cosmological
+principle might be violated [44–46].
+      Several studies have explored potential sources of error in dipole estimations [47]. As an
+example, Dalang et al. [48] and Guandalin et al. [49] specifically examined the influence of
+spectral index variations with redshift on the estimate of the quasar dipole. In this paper, we
+investigate other sources of bias and uncertainty in the quasar dipole estimation. Specifically,
+we find (in section 2) that the quasar density in the sky appears to be affected by systematic
+effects that cause non-uniformities or anisotropies on large angular scales. The cause of these
+anisotropies is unknown, but since they cause fluctuations on large angular scales, one must
+assume that they affect the dipole, and hence comparison of the source dipole with the CMB
+dipole is not straightforward. Through a simple data split, we demonstrate that the data are
+most likely contaminated by non-quasar objects. In addition, we find (in section 3) that the
+applied masking significantly impacts the dipole estimator used by Secrest et al [35]. Since
+higher-order multipoles leak into the lower-order multipoles when the map is strongly masked,
+this can dramatically affect the accuracy of the dipole moment estimation. We calculate the
+impact of higher multipoles on the dipole and assess the bias that this can introduce to this
+particular dipole estimator. We demonstrate that with these systematic effects in the data,
+the p-value associated with the measurement of the aforementioned dipole magnitude will
+be notably reduced, approximately to the 2 σ significance level. We find (in section 4) that
+failure to account for masking in the analysis could lead to a biased estimation of the dipole
+amplitude and direction, and certainly an underestimate of the uncertainties. We attempt
+to estimate the quasar map dipole and its uncertainty using a correlation-function method,
+
+
+
+
+                                             –2–
+                      4000                    KCMB                   4000
+Figure 1: All-sky CMB map from Planck with the monopole subtracted. We specifically
+show the Public Release 4 data [50], employing the Commander component-separation method.
+A mask covering 22 % of the sky has been applied (fsky = 78 %), which removes much less
+of the sky than is needed for the quasar map analysis. Even though underlying anisotropies
+and Galactic contamination have not been removed here, the dipole signal is much stronger
+than higher-order multipoles and dominates the image.
+
+
+finding a lower value, and with a much larger uncertainty, than others have claimed using
+the same data. We also explore other methods for estimating the effect of the systematics
+mentioned and attempt to provide a more realistic error budget to the estimated dipole.
+
+2     The quasar sample
+2.1    Selecting quasars from WISE
+CatWISE [37] is a comprehensive catalogue of sources selected from WISE [38] data. WISE
+was a space mission that conducted an all-sky survey in four infrared bands, detecting a wide
+range of celestial objects, dominated by stars, but also including millions of extragalactic
+objects. CatWISE selected sources specifically from the W1 (3.4 µm) and W2 (4.6 µm)
+bands of WISE. Secrest et. al. [35, 36] used a cut on those bands to select a sample of objects
+with a high probability of being quasars.
+     We have followed the selection method described by Secrest et al. [35], which involves
+a single CatWISE colour cut, W1 − W2 ≥ 0.8, to obtain a sample of quasar candidates.
+For this sample, we found average values of α = 1.26 and x = 1.7. We made a correction
+using a Galactic extinction map to select quasars uniformly over the sky. Nevertheless, due
+to the high stellar density near the Galactic plane, a 30◦ cut is applied to mitigate confusion,
+as described in Secrest et al.[36]. Additionally, we exclude certain nearby sources, resulting
+in the removal of 52.6 % of the sky. The mask can be seen in grey in figure 2. Once these
+
+
+
+
+                                             –3–
+          28      Sources per pixel    92               54.5     Sources per pixel    58.1
+
+Figure 2: Left: density map of quasars selected from CatWISE, with the masked region
+shown in grey. Right: same map smoothed with a top-hat filter of area 1 steradian and with
+the colour scale chosen to show the contrast relative to the average density. The white colour
+represents the average of the map.
+
+
+steps are followed we end up with a catalogue of 1 355 352 probable quasars, matching the
+number selected by Secrest et al [35]. The number of quasars per unit of solid angle can then
+be calculated. To do so we explicitly create a map using HEALPix1 [51], with Nside = 64. In
+figure 2 we present areal density plots, with the left-hand panel showing the overall density,
+while the right-hand panel has been smoothed with a top-hat filter of area 1 steradian and
+the colour scale has been set to emphasise variations relative to the average density.
+      Looking at figure 2 we note firstly that the quasar distribution on the sky is far from
+a pure dipole, with more complicated structure being quite apparent. The highest-density
+direction is not opposite the lowest-density direction; moreover, the map does not show a
+monotonic gradient over the sky. This realisation leads to an extra correction for the quasar
+density in the Secrest et al. analysis [35], which we describe in more detail in the next section.
+This map also shows structures on smaller scales; since this structure cannot be due to our
+motion, then it is presumably due to a combination of Poisson fluctuations (see section 3.2)
+in the quasar density and selection effects in the CatWISE data or the creation of the quasar
+catalogue. We will further investigate this below.
+
+2.2     Ecliptic gradient
+One important step in the data processing described by Secrest et al. [35, 36], is the correction
+for a gradient in ecliptic latitude. This effectively changes the quasar magnitude cut as
+a function of ecliptic latitude. We have confirmed that this gradient exists and that it is
+certainly significant (see the right panel of figure 3, which we will discuss in more detail in
+section 2.3). Given the scanning pattern of WISE shown in figure 3, combined with the applied
+colour cut and potential source confusion, thorough simulations of all of those effects would
+be necessary to determine if this observed gradient is expected. For now, the origin of this
+gradient is unexplained, but nevertheless, in figure 4 we show the smoothed quasar-density
+map after performing this correction.
+      One other implicit choice made here (seen from figure 4) is that the correction for
+ecliptic gradient (as carried out by Secrest et al. [35]) adds a substantial number of quasars.
+Before the correction the total is 1 355 352, and afterwards it is 1 424 517. Even if the ecliptic
+  1
+      http://healpix.sourceforge.net
+
+
+
+
+                                              –4–
+                                                                     36
+
+                                                                     35
+
+
+
+
+                                                  Sources per deg2
+                                                                     34
+
+                                                                     33
+
+                                                                     32          faint quasars
+                                                                                 bright quasars
+                                                                     31
+                                                                                 random subsamples
+                                                                     30
+                                                                          −50           0         50
+         100          1000          10000
+                 Coverage depth                                                 Ecliptic latitude
+
+Figure 3: Left: Coverage across the whole sky in the WISE W1 band; this is a measure of the
+number of exposures that go into each pixel. There is considerably more coverage, and hence
+deeper data, in the regions around the ecliptic poles. Right: Quasar density as a function of
+ecliptic latitude for faint and bright quasars. For the bright half of the quasars, the gradient
+is almost zero and is about 5 times smaller than for the faint half of the quasars; both of these
+subsamples give ecliptic gradients that are unusual compared with the gradients for randomly
+chosen halves of the sample, as indicated by the grey bands, representing the 68 % and 95 %
+confidence intervals. This suggests that the quasar data set might be contaminated by stars.
+
+
+gradient were well understood, it seems unclear that adding quasars is the right way to make
+this correction, since it changes the monopole of the quasar-density field, complicating the
+interpretation of the results.Moreover, since the origin of the ecliptic gradient is unexplained,
+and it can affect the dipole estimate, it is unclear whether removing the gradient is the right
+thing to do. We tested the effect of subtracting various ecliptic gradients and found that
+reasonable choices can change the amplitude of the dipole by around 10 % and also shift the
+direction. While the ecliptic gradient does not dominate the uncertainty in the final dipole
+result (but see the estimates in section 4.2), it is evidence for the presence of systematic effects
+(presumably caused by the quasar selection process) that are not yet understood, and would
+have to be fully explained before having confidence in the large-scale properties of the quasar
+density map. Regardless, we apply the same ecliptic gradient correction as in Secrest et al.
+for all subsequent analyses.
+
+2.3   Stellar contamination
+The selection method described in section 2.1, and the corrections to the ecliptic gradient dis-
+cussed in section 2.2, suggest that the quasar sample may be contaminated by stars. Because
+there is already a large mask applied to the data to remove the worst of this contamination in
+the Galactic plane, we should also check that outside of the Galactic plane we have a nearly
+uncontaminated sample. To test whether the dipole result obtained in Secrest et al. [35] could
+be attributed to selection effects in constructing the quasar sample, we performed a simple
+test. We divided the quasar sample into two equal subsets based on their brightness in the
+W1 band (the cut-off magnitude between them is 15.92), and estimated the dipole, using
+the estimator used in the original study, for these two subsets. In order to determine how
+significant the bright-versus-faint split results are, we also randomly divided the data into
+half-size subsamples and analysed those results, which are shown infigures 3 and 5.
+
+
+
+
+                                               –5–
+                56.2                    Sources per pixel                    58.8
+
+Figure 4: Map of CatWISE quasar density after the correction for ecliptic gradient. This
+map has been smoothed the same way as figure 2. This map looks quite different from the
+original map shown in figure 2. The number of quasars per pixel is higher because in the
+process of removing the ecliptic gradient, a number of quasars is added to the map. The
+white colour here represents the average of the map. There certainly appears to be a dipole
+in this second map, although it is also clear that there is other (higher-multipole) structure.
+
+
+       The results for the dipole direction and amplitude are presented in figure 5. For the
+brighter subsample, the dipole is 9.5◦ away from the CMB dipole, while for the faint quasars,
+it is 44.5◦ away. As can be seen, the directions are significantly different from the random cuts
+in the data (and the size of the shift in direction between the bright and faint halves is seen
+in less than 1 % of random splits). Additionally, the dipole magnitude of the brighter quasars
+is slightly closer to the CMB dipole. These findings suggest that a selection effect, such as
+stellar contamination within the quasar sample, affects the extracted dipole. We expect that
+the brighter quasar candidates are more likely to be quasars, with less contamination from
+the much larger number of faint stars. In a similar vein, we also tested different mask sizes
+and found that the dipole direction and amplitude changed substantially, depending on how
+much of the plane of the Milky Way is removed, again suggesting contamination of the quasar
+sample by stars.
+       Additionally, as part of the data analysis procedure, we calculated the ecliptic gradient
+for both sub-samples, as shown in the right panel of figure 3. The ecliptic gradient for the
+bright quasars is significantly smaller than for the faint quasars and is essentially negligible.
+The ecliptic gradients of the bright and faint subsamples are more extreme compared to
+randomly-selected subsamples, further indicating that there is some problem with the large-
+scale properties of the quasar-candidate sample. In section 2.2 we discussed how the ecliptic
+gradient of the whole quasar sample has a surprising sign, indicating that it is a systematic
+
+
+
+
+                                             –6–
+60◦
+
+
+
+
+30◦
+                 CMB, D = 0.00700
+           all quasars, D = 0.01554
+       bright quasars, D = 0.01551
+        faint quasars, D = 0.01728
+                random subsamples
+
+                 330◦            300◦           270◦            240◦           210◦
+
+Figure 5: Dipole for the brighter and fainter halves of the quasar sample. Both the direction
+and the magnitude of the brighter subsample align better with the CMB dipole, compared
+with the fainter subsample. This suggests that the full sample is contaminated in some way.
+
+
+effect of some sort. Checking how the ecliptic gradient changes with quasar brightness further
+suggests that this is caused by stellar contamination, and not related to the scanning strategy
+at all. Until this large-scale selection effect is better understood, we cannot be confident about
+any analysis of the real large-angle distribution of the quasars. In future analyses, there may
+be an opportunity to conduct a comprehensive examination independently on various bright
+and faint cuts. However, the current sample of quasar candidates is already too limited in
+number to support such an analysis.
+
+3     Masking and high-order moments
+
+3.1    How mask-coupling can bias the dipole
+We now turn to the second major issue with the existing quasar sample, which comes from
+the difficulty of estimating the dipole when a large mask is applied to the sky. For the CMB
+dipole estimate, the mask covers a relatively small fraction of the sky and the ℓ = 1 mode is
+much larger than any other multipole. As we will see, things are much more challenging with
+the quasars.
+     The estimator employed by Secrest et al. [35, 36] in their studies is based on a linear
+regression method. It essentially involves finding the best-fit values for the coefficients of a
+monopole plus dipole template, by minimizing
+
+                                [np − (â00 Y00 + â10 Y10 + â11 Y11 )]2 .
+                             X
+                                                                                           (3.1)
+                             p
+
+Here np is the number of quasars in each pixel, Yℓm are spherical harmonics and aℓm are the
+coefficients in complex number form. Here â denotes the fitted values and a represents the
+
+
+
+
+                                              –7–
+true values. With the fitted values for âℓm we can subsequently calculate the power spectrum2
+and the dipole magnitude according to
+                                               1 X
+                                     Cℓ ≡             |âℓm |2 ;                          (3.2)
+                                            2ℓ + 1 m
+and                                               r
+                                                    C1
+                                           D=3         .                                    (3.3)
+                                                    C0
+It is important to remember that D is defined relative to the average density of quasars on
+the sky (see eq. (1.1)), and hence we need to divide C1 by the monopole in the quasar map,
+C0 , in order to interpret the amplitude of the dipole.
+      The method we describe above is the same as that used in the healpy3 fit_dipole
+function, operating under the assumption that the map is a pure dipole plus independent
+Gaussian noise. However, as discussed earlier, this assumption is not valid here, since there
+are clearly other multipole moments in the quasar-density map.
+      In general, if a regression model fails to account for variables correlated with the exist-
+ing coefficients, the estimator becomes biased. Due to the substantial masking of the sky,
+the orthogonality of the spherical harmonic coefficients is compromised, leading to coupling
+between higher multipoles and dipole coefficients, as detailed in appendix A. The coupling
+matrix M depends on the size and shape of the mask. The coupling matrix corresponding to
+the mask used in this study is depicted in figure 6, showing a checkerboard pattern. Know-
+ing the coupling between the coefficients one can show that the bias introduced by higher
+multipoles is given by
+
+                                                X     Mℓ,m,1,0
+                                â10 − a10 =                   aℓm ,
+                                                      M1,0,1,0
+                                                ℓ,m
+                                            {ℓ,m}̸={1,0}
+                                                                                               (3.4)
+                                                X     Mℓ,m,1,1
+                                â11 − a11 =                   aℓm ,
+                                                      M1,1,1,1
+                                                ℓ,m
+                                            {ℓ,m}̸={1,1}
+
+where the sum is over all coefficients other than the one being estimated.
+      Multiplying the sky by a pattern corresponding to some multipole ℓ∗ strongly couples
+modes with |∆ℓ| = ℓ∗ . Since the Galactic mask has a very strong component of Y2 0 , the
+mask will strongly couple modes with |∆ℓ| = 2 (a result familiar from quantum mechanics,
+and see Ref. [52] for the analogous behaviour with |∆ℓ| = 1 coupling for dipole modulation),
+i.e. neighbouring even modes and neighbouring odd modes will be strongly connected. The
+mask has approximate azimuthal symmetry so spherical harmonics with the same order m
+and even |∆ℓ| > 2 are also coupled with each other, as shown in figure 6. Therefore, assuming
+that the dipole is mainly mixed with the odd modes and neglecting other couplings, we can
+compute the bias introduced by other coefficients (for the particular case of the quasar mask
+shown in figure 4):
+                     â10 − a10 = 0.266 a30 − 0.209 a50 + 0.067 a70 + . . . ,
+                                                                                               (3.5)
+                     â11 − a11 = 1.296 a31 − 0.275 a51 − 0.148 a71 + . . . .
+  2
+     Note that we define Cℓ to be the power spectrum of a particular sky map, not an ensemble-average
+quantity, as is common elsewhere in the CMB literature.
+   3
+     https://healpy.readthedocs.io
+
+
+
+
+                                               –8–
+                                         M`,m,`0 ,m0
+                                                                                                   0.8
+       8
+
+       7        20
+                                                                                                   0.6
+                15
+       6   `0
+                10                                                                                 0.4
+       5         5
+
+                 0
+                                                                                                   0.2
+       4             0   5   10     15   20
+                                `
+ m0                                                                                                0.0
+       3
+
+                                                                                                   −0.2
+       2
+
+                                                                                                   −0.4
+       1
+
+                                                                                                   −0.6
+       0
+
+                                                                                                   −0.8
+             0           1          2         3        4      5       6       7     8
+                                                  m
+
+Figure 6: Coupling matrix of spherical harmonic coefficients when the quasar mask is applied.
+The ordering of the aℓm s is according to the HEALPix package ordering (grouped by m values).
+We can see that coefficients with the same m values are coupled. The inset plot is a blown-up
+region, showing the coupling matrix for m and m′ = 0. Notably, the spherical harmonic
+coefficients aℓ,m exhibit strong coupling with aℓ±2,m due to the resemblance between the
+Galactic mask and a pure m = 0 quadrupole.
+
+
+    One could use a more generalized maximum likelihood method that fits for all spherical
+harmonic coefficients up to some maximum ℓ, by minimizing
+
+    [np − (â00 Y00 + â10 Y10 + â11 Y11 + â20 Y20 + â21 Y21 + · · · + âℓmax mmax Yℓmax mmax )]2 . (3.6)
+ X
+
+   p
+
+However, in the presence of a large mask, this model becomes very unstable, leading to inflated
+coefficient estimates. This is similar to the situation of trying to estimate the quadrupole in the
+early days of analysis of Cosmic Background Explorer (COBE ) satellite data. For instance,
+Bunn et al. [53] concluded that “it is in general impossible to extract reliable information
+about particular multipoles from an incomplete data set; for example, attempts to determine
+
+
+
+
+                                                      –9–
+                                no mask                   mask=±10◦          mask=±30◦
+                                fsky = 100%               fsky = 83%         fsky = 50%
+
+
+
+
+Prob. density
+                                         Dipole only                         Dipole+Quadrupole
+
+
+
+
+Prob. density
+                                        Dipole+Octupole                      Dipole+4th multipole
+
+
+
+
+Prob. density
+                                  Dipole+5th multipole                       Dipole+6th multipole
+
+
+
+
+                0.000   0.005   0.010     0.015   0.020 0.000      0.005   0.010   0.015   0.020
+                                  D                                          D
+Figure 7: Quasar maps simulated with the null hypothesis that their dipole is equal to
+the CMB dipole, Dinput = 0.007. In each of the ℓth panels, multipole ℓ is added, with the
+same power as the dipole (i.e. Cℓ = C1input , see eq. (3.2)) and without cosmic variance. The
+histograms of estimated dipoles for these maps are shown in different colours according to
+the applied mask. The red histograms are computed after applying a mask similar to the one
+used in this study, while the green histograms show the computed dipole without applying
+any mask, and in orange, we show the results for a mask of intermediate size. As can be seen,
+the addition of higher multipoles, especially the octupole, can have large effects on the dipole
+estimation when the mask is large.
+
+
+the local quadrupole moment of the CMB anisotropy from the COBE data set will inevitably
+have large uncertainties”. The current situation with the dipole is more difficult still, given
+the very large mask that is required.
+      To see this in action and compare the current mask with smaller masks, we present a
+series of simulations in figure 7. For the sake of illustration, we choose multipoles such that
+the dipole has the CMB value and then combine with other multipoles one by one, each
+having observed Cℓ = C1 with randomly chosen orientations. Here Cℓ is the power spectrum
+estimated from a single map (without cosmic variance). We generate these simulations using
+the synalm function of healpy, and we scale the aℓm coefficients such that they produce
+the desired Cℓ exactly (i.e. without cosmic variance); after making each of these simulations
+we apply the quasar mask and determine the dipole with healpy’s fit_dipole. The first
+
+
+
+
+                                                       – 10 –
+panel shows ℓ = 1 only, the second panel adds random quadrupoles with C2 = C1 , the third
+panel adds random octupoles with C3 = C1 , etc. The green distribution illustrates the dipole
+estimate when there is no mask applied, which recovers the input dipole (D = 0.007). We
+notice from the figure that the presence of a non-negligible octupole can substantially alter
+the dipole estimate of the fit_dipole function; this is because of the strong |∆ℓ| = 2 coupling
+caused by the mask.
+
+3.2   Simulating mask-induced effects
+In Secrest et al. [35], the p-value for measuring a dipole of the quasar map that is twice as
+large as the CMB dipole within the framework of ΛCDM is computed as follows. A series
+of quasar maps with the CMB dipole as input is simulated and the p-value is defined as the
+fraction of simulated skies with dipole amplitudes exceeding the quasar dipole on the real sky.
+Here, we perform a similar analysis, only this time we want to include higher multipoles that
+are similar to those that might be in the quasar data set.
+      There is an additional effect for this type of simulation due to the Poisson nature of the
+quasar number counts, which also contributes to the uncertainty in the dipole. In order to
+take that into account, this time we do not use synalm. Instead, we simulate quasar maps in
+pixel space with the same number of quasars using a Poisson distribution. Subsequently, we
+modulate these maps by the CMB dipole. We generate two sets of these maps, each comprising
+10 000 maps. One set is intended to mimic ideal quasar maps unaffected by selection effects.
+The blue histogram in figure 8 shows the distribution of the dipole magnitude estimated from
+these maps. This is similar to figure 4 in Secrest et al. [35] Based on these mock maps, the
+null hypothesis seems to be ruled out by almost 5 σ.
+      For the other set of mock maps, we introduce higher multipoles to simulate selection
+effects in the quasar sample or other systematic effects on large scales. We adopt a simplifying
+assumption that the amplitudes of these higher multipoles are all smaller than that of the
+dipole, and we only consider moments up to ℓ = 3 for simplicity. To generate these higher
+multipoles in our quasar maps, we create random maps with quadrupoles and octupoles, where
+their magnitudes are drawn from a uniform distribution smaller than the dipole magnitude.
+We use the values on the pixels of these maps as weights for our quasar maps, modulating
+our quasar maps accordingly. The results, presented in figure 8, show the distribution of the
+measured dipole magnitude of these quasar maps. In this illustrative example, the p-value is
+0.014, corresponding to a 2.2 σ significance level for a one-tailed Gaussian distribution. This
+value is substantially higher than the initial p-value calculated under the assumption of the
+absence of quadrupole or octupole contributions. Keep in mind that this was done only for
+quadrupole and octupole modes assumed to be of smaller magnitude than the dipole; if we
+considered higher and stronger modes the p-value could decrease further.
+      This analysis underscores the importance of considering systematic effects in the spatial
+distribution of the quasars. These simulations indicate that if the amount of masked sky is
+forced to be large, then producing a robust dipole estimate requires a quasar sample with
+negligible higher-order multipoles and much better-understood selection effects. Additionally,
+a considerably larger quasar sample would enable a more detailed study of how the dipole in
+subsamples varies with mask size, quasar brightness, etc., which would hopefully lead to a
+better understanding and quantification of the systematic effects.
+
+
+
+
+                                            – 11 –
+                                                                    Without higher multipoles
+                                                                    With higher multipoles
+                                                                    CMB dipole (input)
+                                                                    CatWISE measured dipole
+
+
+
+Prob. density
+
+
+
+
+                    0.004   0.006   0.008    0.010       0.012   0.014   0.016     0.018    0.020
+                                                     D
+
+Figure 8: Dipole estimates of quasar mock maps generated with the CMB dipole (black line)
+as input, and with randomly oriented quadrupoles and octupoles. These higher multipoles
+are all constrained to be smaller than the dipole. We estimate the dipole magnitude here
+using fit_dipole after masking the maps. These normalized probability densities show how
+the inclusion of higher-order multipoles (the odd multipoles, to be more specific, see figures 6
+and 7) biases the dipole estimator. The uncertainty in the blue histogram is due to Poisson
+noise and masking, which is not enough to explain the measured quasar dipole. However, the
+presence of systematic higher multipoles would increase the probability of such measurement
+substantially.
+
+
+4               Estimating the quasar map power spectrum
+
+4.1              Power spectrum estimators
+Since we have shown that higher-order structure in the quasar-density map could affect the
+estimate of the dipole, one would naturally like to know how big the higher multipoles are in
+the quasar data. However, obtaining a robust estimate is challenging, for the same reason as
+the mask-induced coupling—the 50 % mask makes it hard to determine the power spectrum.
+      There are several different approaches that could be taken to estimate the power spec-
+trum in a masked map. In Planck CMB analyses, the masked region can be filled in using
+constrained Gaussian realizations, as part of a Gibbs-sampling approach [54, 55]. However,
+during this process, the monopole and dipole coefficients are usually estimated using template
+fitting, as described above, while there is an implicit assumption that the other modes have
+Gaussian statistics. Since the CMB monopole and dipole magnitude are significantly larger
+than other multipole moments, then severe biases can be avoided by employing template
+fitting to estimate these modes. However, for the quasar-density map, there is no reason to
+believe a priori that the ℓ = 0 and ℓ = 1 modes are orders of magnitude larger than the others
+(compare figure 1 to figure 2). Moreover, we cannot assume that the statistics are Gaussian
+for the ℓ ≥ 2 modes on the quasar sky (as they are for CMB maps), and hence it is not
+clear that one can use the same Gibbs-sampling approach that has been used for CMB power
+
+
+
+
+                                                 – 12 –
+spectrum estimation.
+      There are many other methods that are used in CMB analyses. We have tested several of
+them for application to simulated quasar samples; however, none of the methods investigated
+gives the desired accuracy for estimating the dipole when a 50 % mask is applied. Quadratic
+maximum likelihood (QML) methods are the most commonly used in CMB studies [56, 57].
+This approach is optimized to minimize the loss of information by imposing external con-
+straints on the CMB power spectrum. However, when we do not have a reliable prior model
+for the fiducial power spectrum, this method does not produce reliable results.
+      Another approach would be to perform a simultaneous estimate of a set of aℓm modes,
+including taking account of their correlations (as we did in section 3.1). When we tried
+this for the quasar map, we found that the results depend sensitively upon the maximum
+multipole ℓmax that is considered. Pseudo-Cℓ methods are another family of techniques widely
+used in CMB studies [58, 59]. They offer an approximation to the Cℓ s by employing cross-
+correlations of spherical harmonic coefficients instead of straightforward direct summation.
+However, a drawback with this method is that it does not directly estimate the dipole and
+furthermore it is usually applied to binned power-spectrum estimates and, like other methods,
+does not work well for individual multipoles when there is a large mask. It seems that perhaps
+the best strategy for large masks is to start from the position-space correlation function, an
+approach that we describe next.
+
+4.2     Applying a power spectrum estimator
+As discussed earlier in section 2.1, visual inspection of the quasar map (figures 2 and 4)
+indicates that it is contaminated with some systematic effects on large scales. However,
+as explained earlier, measuring the large-scale power in the map is challenging and most
+conventional methods do not work well.
+      Though estimating the low-order modes in the quasar density map is challenging, we
+make an attempt nevertheless, to obtain some kind of estimate of the large-scale modes,
+in order to place a more realistic uncertainty on the dipole estimate. The position-space
+correlation function is unbiased by the application of a mask and provides a well-behaved
+route to estimating the power spectrum on large scales [60]. Therefore, in an attempt to
+quantify the amplitude of the low-ℓ modes in the quasar map, we turn to PolSpice4 [60, 61],
+which uses the Legendre transform of the correlation function C(θ) to estimate the angular
+power spectrum.
+      The result is shown in figure 9. The measured dipole is about D = 0.010, with large
+statistical and systematic uncertainties. The green bands plotted in figure 9 show the 68 %
+and 95 % ranges for a set of realisations of the power spectrum given by the solid green line,
+treated the same way as the data. Explicitly, we choose random directions but do not pick
+random amplitudes from a Gaussian (i.e., there is no cosmic variance included here). For
+each of these realisations, we apply the quasar mask and run PolSpice. The green band
+gives an indication of the statistical uncertainties inherent in the quasar data, including the
+mask-induced coupling effects. The yellow bands show the 68 % and 95 % ranges when cosmic
+variance is included. The right panel in figure 9 shows the joint probability density of C1 and
+C3 , along with estimated values for the quasar map and the CMB dipole value. It also shows
+the correlation between the dipole and octupole modes.
+      In an ideal quasar density map, we would have a strong dipole plus some small additional
+higher multipoles caused by Poisson statistics, which would produce Cℓ = constant for all
+  4
+      https://www2.iap.fr/users/hivon/software/PolSpice/
+
+
+
+
+                                             – 13 –
+                          PolSpice power estimates:
+
+
+                                                              Prob. density
+         2.5                                                                                                CMB map
+                          quasar map:                                                                       D = 0.007
+                              with ecliptic correction
+         2.0                                                                                                Secrest et al.
+
+C` /C0 × 105
+                              without ecliptic correction
+                          simulations:                                                                      quasar map
+         1.5                  with cosmic variance
+                                                                                                            D = 0.01554
+                              without cosmic variance                                                       PolSpice estimate
+
+                                                            C3 /C0 × 105
+         1.0                                                                  0.50                          of quasar map
+                                                                                                            D = 0.01023
+         0.5                                                                  0.25
+                                                                                                            PolSpice estimate
+         0.0                                                                                                of simulations
+                                                                              0.00
+                 1    3         5         7          9                               0   1        2     3
+                                 `                                                       C1 /C0 × 105
+
+Figure 9: Left: Power spectrum estimate of the quasar map using PolSpice. The bands
+show the 68 % and 95 % ranges from 10 000 simulations, both without (green) and with
+(yellow) cosmic variance. The solid line is the best PolSpice estimate, while the dashed
+line is the same thing if the ecliptic gradient is not removed. Right: The green lines and
+contours (plotted using anesthetic [62]) show the joint distribution of C1 and C3 and the
+marginalised probability density of the dipole power (C1 ) estimates from simulations, with
+the quasar map estimates (green vertical line) as input. The simulations were normalised to
+exactly match the input power spectrum (removing any contribution from cosmic variance).
+The uncertainty shown here is therefore dominated by masking effects.
+
+
+ℓ > 1. However, as can be seen in figure 9, the magnitude of the power on large scales
+(2 ≤ ℓ < 10) is significantly higher than that expected just from Poisson statistics given C1 .
+The dashed line is the power spectrum before removing the ecliptic-latitude gradient, while
+the solid line shows the estimate after the removal. Since this gradient is unexplained, we
+cannot say which of the two green lines is more correct, and the difference between them
+provides some estimate of the size of the systematic uncertainties. Considering the difference
+between the solid and dashed lines, and the coloured bands in figure 9, the relative uncertainty
+in the dipole is of order unity.
+      In summary, estimating this higher-order structure in the quasar density map is chal-
+lenging and depends sensitively on what exactly is done. The results with and without the
+ecliptic-gradient removal are quite different, as shown in figure 9. The results depend to
+some extent on the maximum multipole considered, and additionally, we obtain very different
+results depending on whether or not we include the dipole in the set of multipoles to be
+estimated. This is because of the mask-induced coupling, particularly between the dipole and
+octupole, as shown in the right panel of figure 9. The outcome of these efforts to estimate the
+power spectrum in the quasar map is that the magnitude of the dipole is highly uncertain.
+
+5              Conclusions
+
+Studying the large-scale statistical properties of the Universe is certainly a worthwhile en-
+deavour, and many studies have followed the claims made by Secrest et al., suggesting that
+there might be something genuinely missing in our understanding of the source-generated
+dipole (e.g. [49, 63–65]). We believe that most of these studies have missed the most impor-
+tant issue, which is the control of systematics, particularly when one is forced to mask such
+a large fraction of the sky.
+
+
+
+
+                                                                              – 14 –
+      In our study, we aimed to replicate the results from Secrest et al. As we went through
+this process, we came across several pieces of evidence pointing to the presence of noticeable
+systematic effects in the data—the data seem to be affected by unexplained selection effects on
+large scales. These effects cause significant power at very low ℓ, so until they are thoroughly
+understood we cannot rule out the possibility that they also have power at ℓ = 1, making it
+impossible to do a straightforward comparison of the quasar dipole with the CMB dipole.
+      We performed a bright-faint split test, where we found that the dipole of the brighter
+quasars is closer to the CMB dipole. Due to the limitation of the size of the data set, we
+could not carry out a more detailed segmentation analysis of subsets of the data. A much
+larger sample of distant extragalactic sources would be needed to adequately perform such
+tests.
+      The second major factor affecting the quasar-density dipole estimate is the necessity
+of applying a very large mask, with more than 50 % of the sky removed. This leads to
+strong coupling between multipoles and makes it challenging to robustly estimate the dipole.
+This situation is very different from the case of the CMB, where the dipole is two orders of
+magnitude larger than the other multipoles, and the amount of sky removed when estimating
+the dipole can be as small as 20 %.
+      We further investigated how the systematic effects might combine with the large mask
+to bias the dipole estimates and substantially increase the uncertainties. We showed that
+the mask used introduces a non-negligible bias to the dipole, which could only be reduced by
+ensuring that the octupole was negligible (something we are currently unable to do). Assuming
+that the higher-order multipoles in the quasar distribution might be of similar amplitude to
+the dipole greatly increases the measured uncertainty. Thus, the observed dipole becomes
+much less discrepant with the expectation from the CMB dipole.
+      Lastly, we employed a pixel-space correlation function method to estimate the dipole and
+higher multipoles of the quasar map at the same time. The resulting dipole determination is
+smaller than we found when estimating the dipole on its own and has much larger uncertainty.
+Although it is hard to be confident in this result (because of the fundamental problem of the
+large mask causing mode-coupling), this at least suggests that the level of uncertainty coming
+from the simple dipole estimate has been underestimated. The uncertainty could be reduced
+if we could construct a cleaner quasar map, dominated on large scales by only the dipole.
+      Since the quasar sample investigated in this paper was selected using only a single colour
+criterion, one obvious improvement would be to include additional data to reduce stellar
+contamination. This has already been done through construction of the Quaia catalogue [66],
+where Gaia satellite data were combined with WISE to make a cleaner quasar sample. We
+looked into this new sample but found that it is not obviously cleaner (at least for the purposes
+of estimating the dipole); for example, it contains a very strong Galactic-latitude gradient,
+which will have to be carefully dealt with before estimating the source dipole. A similar
+conclusion was also reached in a recent independent study [65].
+      Moving forward, future surveys will need to address these systematic effects to ensure
+the accuracy and reliability of their results. One key aspect will be the utilization of larger
+and more comprehensive data sets to conduct thorough analyses. With a larger data set, we
+will be better equipped to identify and mitigate systematic effects, as well as perform more
+thorough tests of subsamples to understand and control such effects.
+      Things would be much simpler if one could simply make a catalogue of extragalactic
+sources over the entire sky, or at least over the vast majority of the sky. However, in the
+optical, the extinction caused by Milky Way dust, plus the dramatic increase in stellar surface
+
+
+
+
+                                             – 15 –
+density towards the Galactic plane, makes it unrealistic to expect an optical catalogue with
+a mask that is much smaller than the 50 % mask studied here. Perhaps future radio surveys
+offer more promising prospects for wider coverage of the sky. However, in all wavebands it
+will continue to be challenging to confidently measure a difference between one side of the
+sky and the other of order 10−3 that is free of systematic effects at a similar level, which is
+what is required to determine whether the dipole in source counts differs significantly from
+the CMB dipole.
+
+Acknowledgments
+
+We acknowledge financial support from the Natural Sciences and Engineering Research Coun-
+cil of Canada. We thank Secrest et al. for making their data and code available so that
+their results could be readily reproduced. We also thank Jim Zibin for helpful comments.
+LTH was supported through a Killam Postdoctoral Fellowship and a CITA National Fel-
+lowship. Some results in this paper were derived using the HEALPix (http://healpix.
+sourceforge.net), healpy (https://healpy.readthedocs.io), and anesthetic (https:
+//anesthetic.readthedocs.io) packages.
+
+References
+ [1] P.J.E. Peebles, Principles of Physical Cosmology, Princeton University Press (1993),
+     10.1515/9780691206721.
+ [2] P.J. Peebles and D.T. Wilkinson, Comment on the Anisotropy of the Primeval Fireball,
+     Physical Review 174 (1968) 2168.
+ [3] Planck Collaboration I, Planck 2018 results. I. Overview, and the cosmological legacy of
+     Planck, A&A 641 (2020) A1 [1807.06205].
+ [4] Planck Collaboration III, Planck 2018 results. III. High Frequency Instrument data processing,
+     A&A 641 (2020) A3 [1807.06207].
+ [5] Planck Collaboration XXVII, Planck 2013 results. XXVII. Doppler boosting of the CMB:
+     Eppur si muove, A&A 571 (2014) A27 [1303.5087].
+ [6] Planck Collaboration Int. LVI, Planck intermediate results. LVI. Detection of the CMB dipole
+     through modulation of the thermal Sunyaev-Zeldovich effect: Eppur si muove II, A&A 644
+     (2020) 100 [2003.12646].
+ [7] S. Saha, S. Shaikh, S. Mukherjee, T. Souradeep and B.D. Wandelt, Bayesian estimation of our
+     local motion from the Planck-2018 CMB temperature map, JCAP 2021 (2021) 072
+     [2106.07666].
+ [8] M. Rowan-Robinson, J. Sharpe, S.J. Oliver, O. Keeble, A. Canavezes, W. Saunders et al., The
+     IRAS PSCz dipole, MNRAS 314 (2000) 375 [astro-ph/9912223].
+ [9] Planck Collaboration Int. XIII, Planck intermediate results. XIII. Constraints on peculiar
+     velocities, A&A 561 (2014) A97 [1303.5090].
+[10] P. Erdoǧdu, J.P. Huchra, O. Lahav, M. Colless, R.M. Cutri, E. Falco et al., The dipole
+     anisotropy of the 2 Micron All-Sky Redshift Survey, MNRAS 368 (2006) 1515
+     [astro-ph/0507166].
+[11] M.S. Turner, A Tilted Universe (and Other Remnants of the Preinflationary Universe), Phys.
+     Rev. D 44 (1991) 3737.
+[12] M.S. Turner, The tilted universe, General Relativity and Gravitation 24 (1992) 1.
+
+
+
+
+                                              – 16 –
+[13] J.P. Zibin and D. Scott, Gauging the cosmic microwave background, Phys. Rev. D 78 (2008)
+     123529 [0808.2047].
+[14] G.F.R. Ellis and J.E. Baldwin, On the expected anisotropy of radio source counts, MNRAS 206
+     (1984) 377.
+[15] A. Meiksin and M. Davis, Anisotropy of the galaxies detected by IRAS, Astronomical Journal
+     91 (1986) 191.
+[16] O. Lahav, Optical dipole anisotropy, MNRAS 225 (1987) 213.
+[17] C.A. Scharf, K. Jahoda, M. Treyer, O. Lahav, E. Boldt and T. Piran, The 2-10 keV X-Ray
+     Background Dipole and Its Cosmological Implications, ApJ 544 (2000) 49 [astro-ph/9908187].
+[18] R. Watkins, T. Allen, C.J. Bradford, A. Ramon, A. Walker, H.A. Feldman et al., Analysing the
+     large-scale bulk flow using cosmicflows4: increasing tension with the standard cosmological
+     model, Monthly Notices of the Royal Astronomical Society 524 (2023) 1885–1892.
+[19] P. Tiwari, D.J. Schwarz, G.-B. Zhao, R. Durrer, M. Kunz and H. Padmanabhan, An
+     Independent Measure of the Kinematic Dipole from SDSS, arXiv (2024) [2409.09946].
+[20] C. Blake and J. Wall, A velocity dipole in the distribution of radio galaxies, Nature 416 (2002)
+     150 [astro-ph/0203385].
+[21] F. Crawford, Detecting the Cosmic Dipole Anisotropy in Large-Scale Radio Surveys, ApJ 692
+     (2009) 887 [0810.4520].
+[22] C. Gibelyou and D. Huterer, Dipoles in the sky, MNRAS 427 (2012) 1994 [1205.6476].
+[23] M. Rubart, D. Bacon and D.J. Schwarz, Impact of local structure on the cosmic radio dipole,
+     A&A 565 (2014) A111 [1402.0376].
+[24] P. Tiwari and A. Nusser, Revisiting the NVSS number count dipole, JCAP 2016 (2016) 062
+     [1509.02532].
+[25] J. Darling, The universe is brighter in the direction of our motion: Galaxy counts and fluxes
+     are consistent with the CMB dipole, The Astrophysical Journal Letters 931 (2022) L14.
+[26] J.D. Wagenveld, H.R. Klöckner and D.J. Schwarz, The cosmic radio dipole: Bayesian
+     estimators on new and old radio surveys, A&A 675 (2023) A72 [2305.15335].
+[27] J.D. Wagenveld et al., The MeerKAT Absorption Line Survey Data Release 2: Wideband
+     continuum catalogues and a measurement of the cosmic radio dipole, arXiv (2024)
+     [2408.16619].
+[28] A.K. Singal, Large Peculiar Motion of the Solar System from the Dipole Anisotropy in Sky
+     Brightness due to Distant Radio Sources, ApJ 742 (2011) L23 [1110.6260].
+[29] M. Rubart and D.J. Schwarz, Cosmic radio dipole from NVSS and WENSS, A&A 555 (2013)
+     A117 [1301.5559].
+[30] J. Colin, R. Mohayaee, M. Rameez and S. Sarkar, High-redshift radio galaxies and divergence
+     from the CMB dipole, MNRAS 471 (2017) 1045 [1703.09376].
+[31] P. Tiwari and P.K. Aluri, Large angular-scale multipoles at redshift ∼ 0.8, The Astrophysical
+     Journal 878 (2019) 32.
+[32] A.K. Singal, Large disparity in cosmic reference frames determined from the sky distributions of
+     radio sources and the microwave background radiation, Phys. Rev. D 100 (2019) 063501
+     [1904.11362].
+[33] T.M. Siewert, M. Schmidt-Rubart and D.J. Schwarz, Cosmic radio dipole: Estimators and
+     frequency dependence, Astron. Astrophys. 653 (2021) A9 [2010.08366].
+
+
+
+
+                                               – 17 –
+[34] O.T. Oayda, V. Mittal, G.F. Lewis and T. Murphy, A Bayesian approach to the cosmic dipole
+     in radio galaxy surveys: joint analysis of NVSS & RACS, MNRAS 531 (2024) 4545
+     [2406.01871].
+[35] N.J. Secrest, S. von Hausegger, M. Rameez, R. Mohayaee, S. Sarkar and J. Colin, A Test of the
+     Cosmological Principle with Quasars, ApJ 908 (2021) L51 [2009.14826].
+[36] N.J. Secrest, S. von Hausegger, M. Rameez, R. Mohayaee and S. Sarkar, A Challenge to the
+     Standard Cosmological Model, ApJ 937 (2022) L31 [2206.05624].
+[37] P.R.M. Eisenhardt, F. Marocco, J.W. Fowler, A.M. Meisner, J.D. Kirkpatrick, N. Garcia et al.,
+     The CatWISE Preliminary Catalog: Motions from WISE and NEOWISE Data, ApJS 247
+     (2020) 69 [1908.08902].
+[38] E.L. Wright, P.R.M. Eisenhardt, A.K. Mainzer, M.E. Ressler, R.M. Cutri, T. Jarrett et al.,
+     The Wide-field Infrared Survey Explorer (WISE): Mission Description and Initial On-orbit
+     Performance, Astronomical Journal 140 (2010) 1868 [1008.0031].
+[39] K.K. Das, K. Sankharva and P. Jain, Explaining excess dipole in NVSS data using superhorizon
+     perturbation, JCAP 2021 (2021) 035 [2101.11016].
+[40] A.M. Whitford, C. Howlett and T.M. Davis, Evaluating bulk flow estimators for cosmicflows–4
+     measurements, Monthly Notices of the Royal Astronomical Society 526 (2023) 3051–3071.
+[41] A.R. King and G.F.R. Ellis, Tilted homogeneous cosmological models, Communications in
+     Mathematical Physics 31 (1973) 209.
+[42] R.A. Matzner, On observations of the cosmic radiation background, ApJ 241 (1980) 851.
+[43] E. Ebrahimian, C. Krishnan, R. Mondol and M.M. Sheikh-Jabbari, Towards a realistic dipole
+     cosmology: the dipole ΛCDM model, Classical and Quantum Gravity 41 (2024) 145007
+     [2305.16177].
+[44] A. Allahyari, E. Ebrahimian, R. Mondol and M.M. Sheikh-Jabbari, Big Bang in Dipole
+     Cosmology, 7, 2023.
+[45] C. Krishnan, R. Mondol and M.M. Sheikh-Jabbari, A tilt instability in the cosmological
+     principle, Eur. Phys. J. C 83 (2023) 874 [2211.08093].
+[46] A. Constantin, T.R. Harvey, S. von Hausegger and A. Lukas, Spatially homogeneous universes
+     with late-time anisotropy, Classical and Quantum Gravity 40 (2023) 245015 [2212.03234].
+[47] Y.-T. Cheng, T.-C. Chang and A. Lidz, Is the Radio Source Dipole from NVSS Consistent with
+     the CMB and ΛCDM?, arXiv e-prints (2023) arXiv:2309.02490 [2309.02490].
+[48] C. Dalang and C. Bonvin, On the kinematic cosmic dipole tension, Mon. Not. Roy. Astron.
+     Soc. 512 (2022) 3895 [2111.03616].
+[49] C. Guandalin, J. Piat, C. Clarkson and R. Maartens, Theoretical Systematics in Testing the
+     Cosmological Principle with the Kinematic Quasar Dipole, ApJ 953 (2023) 144 [2212.04925].
+[50] Planck Collaboration Int. LVII, Planck intermediate results. LVII. NPIPE: Joint Planck LFI
+     and HFI data processing, A&A 643 (2020) 42 [2007.04997].
+[51] K.M. Górski, E. Hivon, A.J. Banday, B.D. Wandelt, F.K. Hansen, M. Reinecke et al.,
+     HEALPix: A Framework for High-Resolution Discretization and Fast Analysis of Data
+     Distributed on the Sphere, ApJ 622 (2005) 759 [astro-ph/0409513].
+[52] A. Moss, D. Scott, J.P. Zibin and R. Battye, Tilted physics: A cosmologically dipole-modulated
+     sky, Phys. Rev. D 84 (2011) 023014 [1011.2990].
+[53] E. Bunn, Y. Hoffman and J. Silk, The Effects of Incomplete Sky Coverage on the Analysis of
+     Large Angular Scale Microwave Background Anisotropy, ApJ 425 (1994) 359.
+
+
+
+
+                                              – 18 –
+[54] Y. Hoffman and E. Ribak, Constrained Realizations of Gaussian Fields: A Simple Algorithm,
+     ApJ 380 (1991) L5.
+[55] H.K. Eriksen, I.J. O’Dwyer, J.B. Jewell, B.D. Wandelt, D.L. Larson, K.M. Górski et al., Power
+     Spectrum Estimation from High-Resolution Maps by Gibbs Sampling, ApJS 155 (2004) 227
+     [astro-ph/0407028].
+[56] M. Tegmark, How to measure CMB power spectra without losing information, Phys. Rev. D 55
+     (1997) 5895 [astro-ph/9611174].
+[57] M. Tegmark and A. de Oliveira-Costa, How to measure cmb polarization power spectra without
+     losing information, Physical Review D 64 (2001) .
+[58] B.D. Wandelt, E. Hivon and K.M. Górski, Cosmic microwave background anisotropy power
+     spectrum statistics for high precision cosmology, Phys. Rev. D 64 (2001) 083003
+     [astro-ph/0008111].
+[59] E. Hivon, K.M. Górski, C.B. Netterfield, B.P. Crill, S. Prunet and F. Hansen, Master of the
+     cosmic microwave background anisotropy power spectrum: A fast method for statistical analysis
+     of large and complex cosmic microwave background data sets, The Astrophysical Journal 567
+     (2002) 2–17 [astro-ph/0105302].
+[60] I. Szapudi, S. Prunet, D. Pogosyan, A.S. Szalay and J.R. Bond, Fast Cosmic Microwave
+     Background Analyses via Correlation Functions, ApJ 548 (2001) L115.
+[61] G. Chon, A. Challinor, S. Prunet, E. Hivon and I. Szapudi, Fast estimation of polarization
+     power spectra using correlation functions, MNRAS 350 (2004) 914 [astro-ph/0303414].
+[62] W. Handley, anesthetic: nested sampling visualisation, The Journal of Open Source Software 4
+     (2019) 1414.
+[63] L. Dam, G.F. Lewis and B.J. Brewer, Testing the Cosmological Principle with CatWISE
+     Quasars: A Bayesian Analysis of the Number-Count Dipole, arXiv e-prints (2022)
+     arXiv:2212.07733 [2212.07733].
+[64] A.K. Singal, Resolution of the incongruency of dipole asymmetries within various large radio
+     surveys - implications for the Cosmological Principle, MNRAS 528 (2024) 5679 [2312.12785].
+[65] V. Mittal, O.T. Oayda and G.F. Lewis, The cosmic dipole in the Quaia sample of quasars: a
+     Bayesian analysis, MNRAS 527 (2024) 8497 [2311.14938].
+[66] K. Storey-Fisher, D.W. Hogg, H.-W. Rix, A.-C. Eilers, G. Fabbian, M. Blanton et al., Quaia,
+     the Gaia-unWISE Quasar Catalog: An All-Sky Spectroscopic Quasar Sample, arXiv e-prints
+     (2023) arXiv:2306.17749 [2306.17749].
+
+
+
+A    Masking and multipole mixing
+
+Here we investigate how masking causes leakage from other multipoles into the dipole, mak-
+ing dipole estimation challenging. We follow the derivation from Ref. [58]. Decomposition
+into different spherical harmonic modes is a useful technique for analysing the temperature
+anisotropies in the CMB, or indeed any all-sky data set. A spin-zero field can be decomposed
+into spherical harmonic coefficients as
+                                             X
+                                  T (θ, ϕ) =   aℓm Yℓm (θ, ϕ).                         (A.1)
+                                              ℓ,m
+
+We assume that the sky has been observed only over a region O through the application of a
+mask.
+
+
+
+
+                                              – 19 –
+     The coefficients in the spherical harmonic expansion recovered from such an incomplete
+observing region are
+                      Z                           X     Z
+                             ∗
+            âl′ m′ =   dΩYl′ m′ (θ, ϕ)T (θ, ϕ) =   alm   dΩYl∗′ m′ (θ, ϕ)Ylm (θ, ϕ). (A.2)
+                     O                         lm       O
+
+
+The notation O denotes integration over the observed region. Note that the usual orthogo-
+               R
+
+nality property of the Yℓm (θ, ϕ) does not hold any longer because we are not integrating over
+all solid angles. This becomes clearer if we define the geometric coupling matrix
+                                         Z
+                             Ml′ m′ lm ≡    dΩYl∗′ m′ (θ, ϕ)Ylm (θ, ϕ).                  (A.3)
+                                        O
+
+This coupling matrix depends solely on the shape of the mask. For the mask used in this
+study, we have calculated and shown the matrix in figure 6.
+
+
+
+
+                                            – 20 –
+

@@ -1,0 +1,2056 @@
+                                               Prepared for submission to JCAP
+
+
+
+
+                                               The anomaly of the CMB power
+                                               with the latest Planck data
+                                               M. Billia,b R.B. Barreiroa E. Martínez-Gonzáleza
+
+
+
+
+arXiv:2312.09989v2 [astro-ph.CO] 19 Aug 2024
+                                               a Instituto de Física de Cantabria, CSIC-Universidad de Cantabria, Av. de Los Castros s/n,
+
+                                                39005 Santander, Spain
+                                               b Istituto Nazionale di Astrofisica - Osservatorio di Astrofisica e Scienza dello Spazio di
+
+                                                Bologna, via Gobetti 101, I-40129 Bologna, Italy
+                                                E-mail: matteo.billi2@studio.unibo.it, barreiro@ifca.unican.es,
+                                                martinez@ifca.unican.es
+
+                                               Abstract. The lack of power anomaly is an unexpected feature observed at large angular
+                                               scales in the maps of Cosmic Microwave Background (CMB) produced by the COBE, WMAP
+                                               and Planck satellites. This signature, which consists in a missing of power with respect to
+                                               that predicted by the ΛCDM model, might hint at a new cosmological phase before the
+                                               standard inflationary era. The main point of this paper is taking into account the latest
+                                               Planck polarisation data to investigate how the CMB polarisation improves the understanding
+                                               of this feature. With this aim, we apply to the latest Planck data, both PR3 (2018) and PR4
+                                               (2020) releases, a new class of estimators capable of evaluating this anomaly by considering
+                                               temperature and polarisation data both separately and in a jointly way. This is the first time
+                                               that the PR4 dataset has been used to study this anomaly. To critically evaluate this feature,
+                                               taking into account the residuals of known systematic effects present in the Planck datasets,
+                                               we analyse the cleaned CMB maps using different combinations of sky masks, harmonic range
+                                               and binning on the CMB multipoles. Our analysis shows that the estimator based only on
+                                               temperature data confirms the presence of a lack of power with a lower-tail-probability (LTP),
+                                               depending on the component separation method, ≤ 0.33% and ≤ 1.76% for PR3 and PR4,
+                                               respectively. To our knowledge, the LTP≤ 0.33% for the PR3 dataset is the lowest one
+                                               present in the literature obtained from Planck 2018 data, considering the Planck confidence
+                                               mask. We find significant differences between these two datasets when polarisation is taken
+                                               into account most likely due to a different level of systematics. Especially, the analysis with
+                                               PR3 data, unlike that with PR4, seems to point towards a lack of power at large scales
+                                               also for polarisation. Moreover, we also show that for the PR3 dataset the inclusion of the
+                                               subdominant polarisation information provides estimates that are less likely accepted in a
+                                               ΛCDM cosmological model than the only-temperature analysis over the entire harmonic-
+                                               range considered. In particular, at ℓmax = 26, we found that no simulation has a value as low
+                                               as the data for all the pipelines.
+Contents
+
+1 Introduction                                                                               1
+
+2 Mathematical Framework                                                                     3
+  2.1 Normalised Angular Power Spectra (NAPS)                                                3
+  2.2 Variance-based estimators                                                              4
+  2.3 Implemented formalism                                                                  5
+
+3 Planck Datasets                                                                            7
+  3.1 Large angular scale maps and power spectra                                             8
+
+4 Analysis Results                                                                          11
+  4.1 NAPS with Planck dataset                                                              11
+  4.2 Variance-based estimators                                                             11
+
+5 Conclusions                                                                               13
+
+A Computation of the coefficients for the joint estimator                                   17
+
+B Transfer function for PR4 dataset                                                         18
+
+C Comparison with previous estimator                                                        19
+
+
+1   Introduction
+
+The CMB anomalies are unexpected features at large angular scales in the CMB maps, ob-
+served by the Cosmic Background Explorer (COBE), the Wilkinson Microwave Anisotropy
+Probe (WMAP) and the Planck satellites, that deviate from the ΛCDM cosmological model
+with a statistical significance typically around 2-3 σ confidence level (C.L.). These anomalies
+are not independent, showing different levels of correlation between them [1] (notice however
+that these correlations are not present in the tails of the distributions as shown by [2]). In
+particular, the maps of temperature anisotropies show low variance [3], a lack of correlation
+at the largest angular scales [4], a preference for odd parity modes [5], a hemispherical power
+asymmetry [6, 7], an alignment between several low multipole moments [8], an alignment be-
+tween these low multipole moments and the motion and geometry of the Solar System [9], and
+an unexpected large cold spot in the Southern hemisphere [10]. Historically, the first observed
+anomalous feature, already within the COBE data, was the smallness of the quadrupole mo-
+ment. It was confirmed to be low when WMAP released its data [11]. However it was also
+shown that the cosmic variance allows for such a small value. Another rediscovery in the first
+release of WMAP [11] was that the angular two-point correlation function is unexpectedly
+close to zero at angular scales larger than 60 degrees, where a significant correlation signal
+is expected. This feature had already been observed by COBE [12], and was confirmed by
+WMAP and Planck.
+
+
+
+
+                                            –1–
+      Here we focus on the lack of power anomaly1 , an intriguing feature that seems to be
+correlated with a low quadrupole, although it cannot be explained by a lack of quadrupole
+power alone. This anomaly consists in a missing of power with respect to that predicted by the
+ΛCDM model. An early fast-roll phase of the inflation could naturally explain such a lack of
+power, see e.g. [13–17]: this anomaly might then witness a new cosmological phase before the
+standard inflationary era (see e.g. [18–20]). There are three possible explanations for these
+large-scale CMB features: they could have cosmological origins [13], they could be artefacts
+of astrophysical foregrounds and instrumental systematics, or they could be statistical flukes.
+WMAP and Planck are in good agreement on this feature, so it is very hard, albeit not
+impossible, to attribute this anomaly to instrumental effects. Moreover, it is also difficult
+to believe that a lack of power could be generated by residuals of astrophysical emission,
+since the latter is not expected to be correlated with the CMB and therefore an astrophysical
+residual should increase the total power rather than decrease it. In addition, in the case of a
+positive correlation between CMB photons and extra-galactic foregrounds, as seen in [21], a
+correction for this effect would increase the discrepancy with the model, confirming the CMB
+lack of power [22]. Hence, it appears natural to accept this as a real feature present in the
+CMB pattern.
+      This effect has been studied with the variance estimator in WMAP [3, 23, 24] and
+in Planck 2013 [25], Planck 2015 [26] and Planck 2018 [27] data, measuring a lower-tail-
+probability (LTP) of the order of a few per cent. Such a percentage can be even smaller, below
+1%, if only regions at high Galactic latitude are considered [24]. However, when using only
+temperature data, this anomaly is not sufficiently significant to claim new physics beyond the
+standard cosmological model. In a previous work [28], the former statement was revisited by
+also considering polarisation data. The authors proposed a new one-dimensional estimator for
+the lack of power anomaly capable of taking both temperature and polarisation into account.
+By applying this estimator to Planck 2015 data (PR2), they found the probability that a
+random realisation is statistically accepted decreases by a factor of two when polarisation is
+taken into account. Moreover, they forecasted that future CMB polarisation data at low-ℓ
+might increase the significance of this anomaly.
+      The main point here is to deeply investigate how CMB polarisation improves the un-
+derstanding of this feature, expanding on [28]. With this aim, we apply to the latest Planck
+data, both PR3 (2018) and PR4 (2020) releases, a new class of estimators, defined starting
+by the mathematical framework assessed in [28], able to evaluate this anomaly considering
+temperature and polarisation data both separately and in a jointly way. Up to now, lack
+of power has never been studied with PR4 dataset. For other studies on the CMB anoma-
+lies using the PR3 dataset see [27], [29] and [30], and using both PR3 and PR4 see [7]. As
+described in [31], compared to the previous releases, the PR3 but especially the PR4 data
+better describe the component in polarisation of CMB: in fact PR3 and PR4 show reduced
+levels of noise and systematics at all angular scales and an improved consistency across fre-
+quencies, particularly in polarisation [31]. In order to critically evaluate this feature, taking
+into account the residuals of known systematic effects present in the Planck datasets, we con-
+sider the foreground-cleaned CMB maps (data and end-to-end simulations) studying different
+combinations of sky-masks, harmonic range and binning on the CMB multipoles.
+      The paper is structured as follows: in Section 2 we introduce our new class of estimators
+for evaluating the lack of power; in Section 3 we describe the datasets and the simulations
+   1
+   It should be noted that the lack of power anomaly and the lack of correlation, although related, are distinct
+phenomena. In general, the latter cannot be simply explained by reducing the power through different models.
+
+
+
+
+                                                    –2–
+used; in Section 4 we present the results on Planck PR3 and PR4 data; the conclusions
+are given in Section 5. In addition, in appendix A we give the full derivation of our joint
+estimator, in appendix B we discuss in more detail the transfer function affecting the PR4
+polarised signal at the largest angular scales, and in appendix C we show the application to
+latest Planck SEVEM datasets of the lack of power estimator developed in [28].
+
+2       Mathematical Framework
+
+In this section, we first briefly recall the definitions of normalised angular power spectra
+(NAPS)[28] and then show how they can be combined to derive a new class of estimators
+for the lack of power, based on the usual definition of the variance of a power spectrum in
+harmonic space.
+
+2.1        Normalised Angular Power Spectra (NAPS)
+In section 2 of [28], starting from the usual equations used to simulate temperature and E-
+mode CMB maps (Eqs. (1) and (2) in [28]), the normalised angular power spectra (henceforth
+          (TT)       (uEE)
+NAPS) xℓ       and xℓ      were defined as follows2 :
+
+
+                                   (TT)           CℓTT
+                                  xℓ       ≡              ,                                             (2.1)
+                                               CℓTT,th
+                                                                                            !2
+                                (uEE)  C EE         C TT,th                       CℓTE,th
+                               xℓ     ≡ ℓ2 CℓTT,th − ℓ 2                                         CℓTT
+                                        aℓ            aℓ            CℓTT,th
+                                                          "                 #
+                                                  CℓTE,th      CℓTE,th TT
+                                               −2           TE
+                                                           Cℓ − TT,th Cℓ      ,                         (2.2)
+                                                    a2ℓ        Cℓ
+
+where aℓ is:                                       q
+                                           aℓ ≡     CℓEE,th CℓTT,th − (CℓTE,th )2 .                     (2.3)
+                               (TT)               (uEE)
+Therefore the NAPS xℓ       and xℓ     represent a normalised version of the temperature and
+the uncorrelated E-component power spectra, respectively. One can interpret CℓTT , CℓEE and
+CℓTE as the CMB Angular Power Spectra (APS) estimated from a CMB experiment under
+realistic conditions, i.e. including noise residuals, incomplete sky fraction, finite angular
+resolution and also residuals of systematic effects. While the spectra CℓTT,th , CℓEE,th and
+CℓTE,th represent the underlying theoretical model. The expected values for NAPS are:
+                                                     (TT)              (uEE)
+                                                   ⟨xℓ        ⟩ = ⟨xℓ          ⟩ = 1,                   (2.4)
+
+for each ℓ. Therefore, the advantage of using NAPS instead of the standard CMB APS, i.e
+Cℓ , is that they are dimensionless and have similar amplitude numbers. For these reasons,
+they can be easily combined to define 1-D estimators in harmonic space that depend on
+temperature, E-mode polarisation and their cross-correlation. In [28], the authors combined
+              (TT)      (uEE)
+the NAPS xℓ        and xℓ     to define an optimal, i.e. minimum variance, estimator called P̃.
+This estimator, which can be interpreted as a dimensionless normalised mean power, jointly
+    2                      (TT)           (uEE)                 (1)        (2)
+        Note that in [28] xℓ      and xℓ          are called xℓ       and xℓ , respectively.
+
+
+
+
+                                                                 –3–
+combines the temperature and polarisation data to evaluate the lack of power. Appendix C
+shows its application to the latest Planck dataset.
+    Finally, here we define two new NAPS:
+                                                (EE)          CℓEE
+                                               xℓ      ≡               ,                                     (2.5)
+                                                             CℓEE,th
+                                                (TE)          CℓTE
+                                               xℓ      ≡               ,                                     (2.6)
+                                                             CℓTE,th
+                                                                            (EE)                 (TE)
+with the expected values equal to one. The NAPS xℓ           and xℓ , which depend only
+on the EE and TE CMB spectra respectively, allow us to define specific estimators able to
+test the lack of power by considering only the E-modes and only their cross-correlation with
+                                       (EE)
+temperature. It should be noted that xℓ     takes into account both the uncorrelated and the
+correlated E-mode components.
+
+2.2    Variance-based estimators
+The idea is to look for estimators sensitive to the variance that are linear in the observed
+NAPS and also minimum variance.
+      Starting from the usual definition of the variance of a power spectrum, we define the
+                  joint                      (TT)      (uEE)
+joint estimator EV      , based on the NAPS xℓ    and xℓ     :
+                                        ℓX
+                                         max
+                              joint            2ℓ + 1  (TT)       (uEE)
+                                                                         
+                             EV     =                  γℓ xℓ + ϵℓ xℓ       ,                                 (2.7)
+                                                 4π
+                                         ℓ=2
+where γℓ and ϵℓ are appropriate coefficients associated with each NAPS. Taking the ensemble
+average of Eq. (2.7) we obtain:
+                                          ℓX
+                                           max
+                             joint                  2ℓ + 1  (TT)       (uEE)
+                                                                              
+                           ⟨EV     ⟩=⟨                      γℓ xℓ + ϵℓ xℓ       ⟩
+                                                      4π
+                                          ℓ=2
+                                         ℓX
+                                          max
+                                                2ℓ + 1
+                                     =                 (γℓ + ϵℓ ) = const = 1 .                              (2.8)
+                                                  4π
+                                         ℓ=2
+regardless the maximum multipole considered in the analysis. It should be noted that the
+choice of the value for the constant is completely arbitrary3 .
+                                                                              (TT)       (uEE)
+      It can be shown that the signal-to-noise ratios of the two NAPS (xℓ          and xℓ      ) are
+different even in the cosmic variance limit case: one may therefore wonder which are the best
+coefficients, γℓ and ϵℓ , that make the estimator optimal, i.e. minimum variance. Applying the
+                                                                      joint
+method of the Lagrange multipliers to minimise the variance of EV           , keeping its expected
+value fixed (see appendix A for the full derivation), we find that:
+                                                    (uEE)                  (TT)      (uEE)
+                             1            var(xℓ            ) − cov(xℓ            , xℓ       )
+                    γℓ =                                                                                ,    (2.9)
+                         Γℓmax var(x(TT) )var(x(uEE) ) − [cov(x(TT) , x(uEE) )]2
+                                    ℓ          ℓ               ℓ       ℓ
+                                            (TT)          (TT) (uEE)
+                           1          var(xℓ ) − cov(xℓ , xℓ           )
+                    ϵℓ =            (TT)       (uEE)           (TT)    (uEE) 2
+                                                                                 ,                          (2.10)
+                         Γℓmax var(x     )var(xℓ     ) − [cov(xℓ , xℓ        )]
+                                    ℓ
+   3
+    It is typical to set the expectation value of an estimator whose variance is to be minimised at 1 for
+simplicity’s sake. In fact, this value does not affect the expression of the coefficients that minimise the
+variance, which can be found using Lagrange’s multiplier method.
+
+
+
+
+                                                       –4–
+            (TT)                   (uEE)                                            (TT)                (uEE)
+where var(xℓ ) and var(xℓ        ) are the variances of xℓ                                  and xℓ              respectively, and
+     (TT) (uEE)
+cov(xℓ , xℓ     ) their covariance:
+
+                        (TT)       (uEE)              (TT)         (TT)          (uEE)              (uEE)
+                   cov(xℓ      , xℓ        ) = ⟨(xℓ          − ⟨xℓ        ⟩)(xℓ            − ⟨xℓ            ⟩)⟩.           (2.11)
+
+The quantity Γℓmax is defined as:
+
+                       ℓX
+                        max                       (TT)               (uEE)                      (TT)        (uEE)
+                              2ℓ + 1 var(xℓ ) + var(xℓ     ) − 2cov(xℓ , xℓ          )
+             Γℓmax =                                                                   .                                   (2.12)
+                                4π var(x(TT) )var(x(uEE) ) − [cov(x(TT) , x(uEE) )]2
+                        ℓ=2                       ℓ              ℓ                          ℓ           ℓ
+
+
+     In addition, in order to assess the relative contribution of each NAPS, a procedure
+similar to the one used to derive the joint estimator is used to construct four analogous
+optimal estimators, which separately consider x(TT) , x(uEE) , x(EE) and x(TE) :
+
+                                                             h                  i−1
+                                           ℓX                        (TT)
+                               (TT)
+                                            max
+                                                  2ℓ + 1 var(xℓ             )
+                                                                                       (TT)
+                             EV        =                                              xℓ        ,                          (2.13)
+                                           ℓ=2
+                                                      4π         varTOT
+                                                                    (TT)
+                                                             h                i−1
+                                           ℓX                        (uEE)
+                              (uEE)
+                                            max
+                                                  2ℓ + 1 var(xℓ              )
+                                                                                           (uEE)
+                            EV         =                                              xℓ            ,                      (2.14)
+                                            ℓ=2
+                                                      4π     varTOT
+                                                                 (uEE)
+                                                                (EE) −1
+                                                        h             i
+                                           ℓXmax          var(x     )
+                               (EE)              2ℓ + 1         ℓ                      (EE)
+                              EV       =                                              xℓ        ,                          (2.15)
+                                           ℓ=2
+                                                      4π         varTOT
+                                                                    (EE)
+                                                             h                i−1
+                                           ℓX                        (T E)
+                               (TE)
+                                            max
+                                                  2ℓ + 1 var(xℓ              )
+                                                                                       (TE)
+                             EV        =                                              xℓ        ,                          (2.16)
+                                           ℓ=2
+                                                      4π         varTOT
+                                                                    (TE)
+
+
+with:
+                                                      ℓX
+                                                       max
+                                                             2ℓ + 1   1
+                                      varTOT
+                                         (k) =                               .                                             (2.17)
+                                                               4π var(x(k) )
+                                                      ℓ=2                       ℓ
+
+where k refers to TT, uEE, EE or TE. Their expected values are:
+
+                              (TT)            (uEE)              (EE)               (TE)
+                            ⟨EV       ⟩ = ⟨EV            ⟩ = ⟨EV        ⟩ = ⟨EV            ⟩ = 1,                          (2.18)
+
+regardless the maximum multipole considered in the analysis.
+
+
+2.3     Implemented formalism
+
+The final expressions of the optimal estimators, given by Eqs. (2.7), (2.13),(2.14), (2.15)
+and (2.16), are obtained starting from the NAPS at single-ℓ, Eqs. (2.1),(2.2),(2.5) and(2.6).
+However, in order to reduce any possible correlation effect between different multipoles arising
+from using a sky mask, we apply a binning to the CMB multipoles.
+
+
+
+
+                                                           –5–
+      We estimate the binned expressions of the NAPS by applying the standard operator P
+(see e.g. [32]) 4 :
+
+                                                  (TT)                                 (TT)
+                                                                   X
+                                                 xb           =             Pbℓ xℓ            ,                                   (2.19)
+                                                                       ℓ
+                                                 (uEE)                                 (uEE)
+                                                                   X
+                                             xb               =             Pbℓ xℓ                .                               (2.20)
+                                                                       ℓ
+                                                  (EE)                                 (EE)
+                                                                   X
+                                                 xb           =             Pbℓ xℓ            ,                                   (2.21)
+                                                                       ℓ
+                                                  (TE)                                 (TE)
+                                                                   X
+                                                 xb    =                    Pbℓ xℓ            .                                   (2.22)
+                                                                       ℓ
+
+
+     Now we use these modified versions of the NAPS to recompute the expressions of the
+estimators. In particular, the joint estimator becomes:
+
+
+                                joint
+                                            X 2ℓ(b) + 1                          (TT)                  (uEE)
+                                                                                                                  
+                               EV     =                 eff
+                                                                            γb xb           + ϵb xb                   ,           (2.23)
+                                                            4π
+                                             b
+
+
+with:
+
+                                                       (uEE)                           (TT)           (uEE)
+                           1                var(xb                ) − cov(xb                  , xb            )
+                  γb =                                                                                                    ,       (2.24)
+                         Γbmax var(x(TT) )var(x(uEE) ) − [cov(x(TT) , x(uEE) )]2
+                                        b       b                b      b
+                                           (TT)            (TT) (uEE)
+                          1          var(xb ) − cov(xb , xb             )
+                  ϵb =             (TT)         (uEE)            (TT)   (uEE) 2
+                                                                                 ,                                                (2.25)
+                       Γbmax var(x      )var(xb       ) − [cov(xb , xb        )]
+                                   b
+                       X 2ℓ(b) + 1 var(x(TT) ) + var(x(uEE) ) − 2cov(x(TT) , x(uEE) )
+               Γbmax =       eff           b
+                                             (TT)
+                                                           b
+                                                         (uEE)
+                                                                            b      b
+                                                                          (TT) (uEE) 2
+                                                                                        .                                         (2.26)
+                              4π      var(xb )var(xb           ) − [cov(xb , xb      )]
+                        b
+
+
+                                                                 (b)
+In Eqs. (2.23) and (2.26), for each bin b, ℓeff is defined as:
+
+                                                       (b)             1 X
+                                                      ℓeff =               (b)
+                                                                                       ℓ,                                         (2.27)
+                                                                   Nℓ            ℓ∈b
+
+
+        (b)
+with Nℓ       the number of multipoles included in the bin b.
+
+   4                                                                                                  (b)     (b)         (b+1)
+    For a set of nbins bins, indexed by b, with respective boundaries ℓlow < ℓhigh = ℓlow − 1, where ’low’ and
+’high’ mean the lower and the higher multipole in the bin b, one can define the binning operator P as follows:
+                                                                                           (b)               (b+1)
+                                          1
+                                    ℓ(b+1) −ℓ(b) ,
+                                                                      (if ℓmin ≤ ℓlow ≤ ℓ < ℓlow )
+                                       low            low
+                           Pbℓ =
+                                   
+                                       0,                          (otherwise)
+                                   
+
+
+where ℓmin stands for the minimum multipole considered, which for the CMB it is typically ℓmin = 2.
+
+
+
+
+                                                                  –6–
+                                                                         (TT)         (uEE)        (EE)        (TE)
+        Analogously the binned versions of the estimators EV                    , EV             ,EV      and EV      are:
+
+                                                          (TT) −1
+                                                    h         i
+                             (TT)
+                                         X 2ℓ(b) + 1 var(xb )                    (TT)
+                           EV        =        eff
+                                                                                xb      ,                          (2.28)
+                                          b
+                                                4π             varTOT
+                                                                  (TT)
+                                                          (uEE) −1
+                                                    h            i
+                            (uEE)
+                                         X 2ℓ(b) + 1 var(xb    )
+                                                                                     (uEE)
+                          EV         =        eff
+                                                                                xb           ,                     (2.29)
+                                          b
+                                                4π             varTOT
+                                                                  (uEE)
+                                                          (EE) −1
+                                                    h         i
+                              (EE)
+                                         X 2ℓ(b) + 1 var(xb )                    (EE)
+                           EV        =        eff
+                                                                                xb      ,                          (2.30)
+                                          b
+                                                4π             varTOT
+                                                                  (EE)
+                                                          (TE) −1
+                                                    h         i
+                             (TE)
+                                         X 2ℓ(b) + 1 var(xb )                    (TE)
+                           EV        =        eff
+                                                                                xb      ,                          (2.31)
+                                          b
+                                                4π             varTOT
+                                                                  (TE)
+
+with:
+                                                X 2ℓ(b) + 1          1
+                                     varTOT
+                                        (k) =
+                                                         eff
+                                                                          (k)
+                                                                                 .                                 (2.32)
+                                                          4π      var(xb )
+                                                    b
+where k refers to TT, uEE, EE or TE.
+     The binned versions of the estimators, defined in Eqs.(2.23), (2.28), (2.30) and (2.31), are
+actually applied to the dataset described in the following section. For the sake of brevity, the
+             (uEE)          (uEE)
+results for xℓ     and for EV     are not shown in the following, since they give qualitatively
+                    (EE)       (EE)
+similar results to xℓ    and EV , respectively. This reflects the fact that the uncorrelated
+E-component provides the dominant contribution to the EE spectra.
+
+3       Planck Datasets
+
+We make use of the foreground-cleaned CMB maps, data and end-to-end simulations, provided
+by the latest Planck releases, both PR3 (2018) [33] and PR4 (2020), also referred to as NPIPE
+[31]. To separate the sky maps into their contributing signals and to clean the CMB maps
+from foregrounds, the Planck team used for the PR3 dataset, data and simulations, all the
+four official component separation methods Commander, NILC, SEVEM and SMICA [34], while
+only the Commander and SEVEM [31] pipelines were applied to the NPIPE maps. To test the
+robustness of our analysis we perform our estimators on each of the Planck 2018 and 2020
+pipelines.
+      The PR3 Monte Carlo (MC) simulations, referred to as FFP10, see e.g. [27], are an
+updated version of the full focal plane simulations described in [35]. The FFP10 dataset
+contains the most realistic simulations produced by the Planck collaboration to characterise
+its 2018 data. They consist of 999 CMB maps extracted from the current Planck ΛCDM
+best-fit model, which are beam smoothed and include residuals of beam leakage [35]. These
+maps are complemented by 300 instrumental noise simulations for the full mission and for the
+two data splits: the odd-even (OE) rings and the two half-mission (HM) data. These noise
+simulations, which are provided for each frequency channel, also include residual systematic
+effects as beam leakage again, analogue-to-digital converter (ADC) 5 non linearities, thermal
+    5
+    The ADC non linearity is a systematic effect that affects the modulated signal of the bolometers at high
+frequency.
+
+
+
+
+                                                        –7–
+fluctuations (dubbed 4K fluctuations), band-pass mismatch and others [36]. The FFP10
+simulations are processed through the component separation algorithms in the same way as
+data.
+      The NPIPE maps represent an evolution of the PR3 dataset: compared to the latter,
+the PR4 dataset provides a better description of the CMB polarisation component, with
+reduced levels of noise and systematics at all angular scales and an improved consistency
+across frequencies [31]. In addition to the data, 400 and 600 MC simulations are provided for
+Commander 6 and SEVEM, respectively. While the NPIPE Commander team provides the signal-
+plus-noise simulations, the NPIPE SEVEM team has separately released the only-signal and
+the only-noise simulated maps for both detector-splits, referred to as detector A and detector
+B (or simply A and B). Note that in the NPIPE A and B data splits the systematic effects
+between the sets are expected to be uncorrelated [31]. However, we remark that the PR4
+polarisation data at the largest angular scale are affected by a transfer function that reduces
+the power of the polarised signal (see section 4.3 of [31]). Therefore, to ensure the fidelity of
+the scientific results, we correct for the transfer function the values of the theoretical power
+spectra TE and EE which enter in the equations of NAPS, Eqs. (2.2),(2.5) and (2.6), see
+appendix B and Figure 15 for more details.
+
+3.1    Large angular scale maps and power spectra
+In our analysis for the PR3 dataset we use the odd-even (OE) splits for both data and FFP10
+simulations for all the four Planck component separation methods. Combining the first 300
+CMB realisations with the two different OE splits of 300 noise maps we build two MC sets of
+300 signal-plus-noise simulations which also include residuals of known systematic effects. For
+the PR4 dataset we use SEVEM maps, data and 600 MC simulations, divided into detector A-B
+splits. In order to use the NPIPE Commander products, since the simulated maps for detector-
+splits are not available for this component separation method in temperature, we build a
+hybrid set, and we refer to it as hybrid. In particular, we consider the SEVEM temperature
+maps and Commander polarisation maps, split into detector A and detector B, to build the
+TQU data map with the corresponding 400 MC simulated maps.
+      The PR3 and PR4 maps, available from the Planck Legacy Archive7 (PLA), are pro-
+vided at HEALPix8 [37] resolution Nside = 2048, with a Gaussian beam with a full width at
+half maximum (FWHM) of FWHM = 5′ . Given our interest in large angular scales, the
+full resolution maps are downgraded in the harmonic space to lower resolution Nside = 16,
+according to the following equation:
+
+                                                 bout  out
+                                                  ℓ pℓ
+                                         aout
+                                          ℓm =             ain
+                                                            ℓm ,                                    (3.1)
+                                                  bin
+                                                   ℓ ℓpin
+
+
+where superscripts ’in’ and ’out’ stand for input (full resolution) and output (low resolution)
+maps, respectively; the coefficient bℓ is the Gaussian beam and pℓ the HEALPix pixel window
+functions. Once the aforementioned procedure has been completed, the harmonic coefficients
+ ℓm are used to generate maps at resolution Nside = 16 with a Gaussian beam with FWHM =
+aout
+527.69′ , that corresponds to 2.4 times the pixel size.
+   6
+     Note that in the case of Commander, 400 MC simulations are provided for the Q,U maps. For temperature
+only 100 simulated maps are produced and only for the full mission.
+   7
+     https://www.esa.int/Planck
+   8
+     https://healpix.sourceforge.net
+
+
+
+
+                                                  –8–
+      The Planck confidence mask is applied to the temperature maps, while a combination
+of the polarisation confidence mask and the 40% galactic sky mask, provided by Planck, is
+used for the polarisation maps. Figure 1 shows the T (left) and P (right) masks at resolution
+Nside = 16 which leave uncovered the 71.4% and 34.7% of the sky, respectively. These masks
+are derived from the full resolution masks 9 by applying the same downgrading procedure used
+with the CMB maps and setting a threshold of 0.8 10 . It should be noted that the larger mask
+employed for the polarisation maps is motivated by the observation that using the confidence
+mask we obtained significant differences in the EE data spectra between different pipelines,
+which is likely due to the impact of the foreground residuals. However, as can be observed in
+Figures 5 and 6, this is not the case when the mask in Figure 1 is used. Figure 2 displays the
+SEVEM maps at resolution Nside = 16 for both Planck releases.
+                   Tempetature mask                                        Polarisation mask
+
+
+
+
+             0                         1                            0                          1
+
+Figure 1. T (left) and P (right) masks at resolution Nside = 16 which leave uncovered the 71.4% and
+34.7% of the sky, respectively.
+
+      From these maps we estimate the six CMB spectra in cross-mode over the considered sky
+fraction, in the harmonic range ℓ ∈ [2, 31], with the Quadratic-Maximum-Likelihood (QML)
+estimator ECLIPSE 11 [38]. This approach allows us to reduce the residuals of systematic
+effects and noise bias in the auto-spectra. Figures 3 and 4 characterise the distributions of the
+TT, TE, EE power spectra obtained from the PR3 and PR4 MC simulations, respectively.
+In each panel√ of these figures, the upper box shows the comparison of the MC mean with
+σµ = σMC / Nsims as error bar of the mean, with respect to the theoretical power spectra.
+The lower box displays the fluctuations from the theoretical model of the mean in units of
+σµ . As theoretical model we take into account the Planck 2018 ΛCDM best-fit model[27],
+henceforth referred to as fiducial power spectrum, defined by the following parameters: Ωb h2 =
+0.022166, Ωc h2 = 0.12029, Ων h2 = 0.000645, ΩΛ = 0.68139, h = 0.67019, τ = 0.06018,
+As = 2.1196 10−9 , ns = 0.96369, where h = H0 /100 km s−1 Mpc−1 . This spectrum is the
+one used to generate the CMB component in the simulated maps. It should be noted that
+for the PR4 dataset, the TE and EE fiducial spectra have been properly corrected for the
+NPIPE transfer function (see appendix B). These figures provide insight into the systematic
+effects present in the end-to-end simulations. In particular, for TT and TE spectra the MC
+mean follows the fiducial for both releases. However, for the EE power spectrum, significant
+discrepancies are observed for the PR3 dataset, reflecting the presence of systematic effects.
+Conversely, the PR4 EE spectrum follows the fiducial model for almost the full range of
+  9
+    The masks at resolution Nside = 2048 are available from the Planck Legacy Archive (PLA).
+ 10
+    All the pixels with a value below the threshold are set to 0, while the remaining ones are set to 1
+ 11
+    https://github.com/CosmoTool/ECLIPSE
+
+
+
+
+                                                   –9–
+                  PR3 sevem T MAP                                 PR4 sevem T map
+
+
+
+
+           -100                     100                    -100                     100
+                  PR3 sevem Q MAP                                 PR4 sevem Q map
+
+
+
+
+           -1.5                     1.5                    -1.5                     1.5
+                  PR3 sevem U MAP                                 PR4 sevem U map
+
+
+
+
+           -1.5                     1.5                    -1.5                     1.5
+
+Figure 2. CMB SEVEM data maps (µK) at resolution Nside = 16. The first column shows PR3 T
+(upper panel), Q (middle panel), U (lower panel) maps for the odd split, while the second column
+displays the PR4 maps for detector A. The masks in Figure 1 have been applied to these maps.
+
+
+
+considered multipoles, which indicates the improvement in the level of systematics of the
+PR4 dataset.
+      Finally, Figures 5 and 6 present the TT (upper panel), TE (middle panel), and EE
+(lower panel) CMB power spectra obtained from the PR3 and PR4 data as a function of ℓ,
+for 2 ≤ ℓ ≤ 31. For each plot, the points in the upper box represent the values of the Dℓ , where
+Dℓ ≡ ℓ(ℓ+1)
+        2π Cℓ , obtained from the data with the standard deviation of the MC distribution as
+error bar, while the dashed horizontal lines indicate the mean of the MC simulations. Each
+panel also displays a lower box in which the distance of the estimates from the MC mean in
+units of σ is shown for each ℓ. From these figures it can be observed that the data generally
+follow the mean of the simulations, indicating that the systematics are well characterised in
+the simulations for both the datasets.
+
+
+
+
+                                             – 10 –
+4        Analysis Results
+
+4.1       NAPS with Planck dataset
+Starting from the angular spectra, computed in the previous section, we build the NAPS,
+as defined in Eqs. (2.19),(2.21) and (2.22), for each MC simulation and for the data, in the
+harmonic range ℓ ∈ [2, 31]. In order to reduce any possible correlation effect between different
+multipoles arising from the mask, we have studied different combinations of binning schemes
+on the CMB multipoles, choosing a constant bin of ∆ℓ = 5. Figures 7 and 8 show the
+                       (TT)                  (EE)                        (TE)
+values of the NAPS xℓ       (upper panel), xℓ     (middle panel) and xℓ        (lower panel) for
+the PR3 and PR4 datasets, respectively. In each panel, the upper box displays the values of
+the data along with the standard deviation of the MC distribution. Each panel also presents
+a lower box, in which the distance between the data and the MC mean is shown in units of
+the uncertainties of the estimates themselves for each ℓ. For both PR3 and PR4, the data
+follow the mean of the simulations, which is around the expected value of 1. However, it is
+                                                                         (EE)
+interesting to note that the estimated error of the binned NAPS for xℓ        – obtained as the
+dispersion of the simulations – in PR4 has decreased. This reflects the improvement in noise
+and systematics in PR4 with respect to the previous data release.
+
+4.2       Variance-based estimators
+                          joint                 (TT)                    (EE)                 (TE)
+Figures 9 and 10 show EV        (first row), EV (second row), EV (third row), EV (fourth
+row), defined in Eqs. (2.23), (2.28), (2.30) and (2.31), as a function of the maximum multipole
+considered in the analysis, when applied to the PR3 and PR4 dataset respectively. In each
+panel the upper box displays the values of the data for all the pipelines, with the standard
+deviation of the distribution of the simulations as error bars, together with the mean of the
+MC distribution (solid lines). In the lower panel for each ℓmax , the difference between the
+data and the MC mean is shown in units of standard deviation of the MC distribution. If
+the points are inside the yellow region it means that the observed power is less than that
+                                                                 joint    (TT) (EE)        (TE)
+predicted by the ΛCDM model. Note that by applying EV                  , EV , EV     and EV     to
+PR3 and PR4 datasets, all the values for the first two estimators and the majority for the
+last two ones fall within the yellow regions. Consequently, the Planck data seem to exhibit
+less power than that expected in the ΛCDM scenario.
+      In order to quantify the statistical significance of this feature we consider the lower-tail-
+probability (LTP), defined as:
+                                                             (data)
+                                                           Nsim
+                                       LTP(%) = 100 ∗                                                (4.1)
+                                                           Nsims
+            (data)
+where Nsim is the number of simulations with a value equal or smaller than the data value
+and Nsims is the total number of simulations. Consequently, Eq.(4.1) provides the probability
+to obtain a value as low as the data. However, this analysis is limited by the number of MC
+simulations we have. In particular, it is not possible to distinguish between LTP < 0.33%
+for the PR3 dataset and between LTP < 0.25% and LTP < 0.17% for the hybrid and SEVEM
+PR4 pipelines 12 . If the LTP value is below the aforementioned thresholds, it indicates that
+the data is lower than all the simulations.
+    12
+    We remark that we have 300 simulations for the PR3 pipelines and 400 and 600 simulations for the hybrid
+and SEVEM PR4 pipelines, respectively.
+
+
+
+
+                                                 – 11 –
+                                                                (TT)                 (EE)
+     Figure 11 displays the LTP(%) computed for the EV          (upper panel), EV (middle
+              (TE)
+panel) and EV      (lower panel), applied on the PR3 (dashed lines) and PR4 (solid lines)
+datasets as a function of ℓmax . From these plots it can be observed that:
+
+                                                                       (TT)
+      • with the estimator based only on temperature data, EV , we find well compatible
+        results between different pipelines and between PR3 and PR4 datasets. The minimum
+        value of the LTP is reached at ℓmax = 26: we confirm the presence of a lack of power with
+        a LTP ≤ 0.33% (PR3) and ≤ 1.76% (PR4), see table 1. To the best of our knowledge,
+        the probability for the PR3 dataset is the lowest one present in the literature obtained
+        from this dataset applying the Planck confidence mask (see Figure 1). Note that, as
+        shown in [23, 24], this anomaly tends to become less significant with increasing sky
+        coverage: in the previous works [26, 27] a LTP below the 1% was measured only when
+        high-latitude galactic regions were taken into account;
+
+      • we find significant differences between PR3 and PR4 dataset when polarisation is taken
+                                                (EE)       (TE)
+        into account through the estimators EV and EV . These differences are most likely
+        due to a combination of two factors which are out of our control: a different level of
+        systematics between the PR3 and PR4 dataset and the transfer function which impacts
+        on the PR4 dataset. Indeed, PR4 data, with respect to PR3 release, better describe the
+        component in polarisation of CMB, providing reduced levels of noise and systematics
+        at all angular scales. However, on the other hand the PR4 polarisation at the largest
+        angular scales are affected by the transfer function which cut the power of the polarised
+        signal, reducing their contribution at those scales;
+
+                                                                              (EE)
+      • note that the estimator based only on EE power spectrum, EV , at very large scales
+        may exhibit a hint of lack of power when applied to the PR3 data. In particular for the
+        Commander and SMICA pipelines the LTP is ≤ 8% for ℓmax ≤ 16, smaller than the values
+        obtained with the estimator based only on temperature data.
+
+                                                         joint
+      Figure 12 displays the LTP(%) computed for the EV        when applied to the PR3 (dashed
+lines) and PR4 (solid lines) datasets as a function of ℓmax . We find well compatible results
+between different pipelines and between PR3 and PR4 dataset. The trend of the LTP is very
+                                     (TT)
+similar to the one obtained from EV , reaching the minimun at ℓmax = 26 (see table 1).
+                                                                                          (TT)
+Furthermore, for the PR3 dataset, the LTP is smaller than the one measured with EV             at
+                                                                                    joint
+each scale, except for the NILC pipeline. In particular at ℓmax = 26, applying EV to the
+PR3 dataset, we find that no simulation has a value as low as the data for all the pipelines.
+      Figure 13 displays γb and ϵb (see equations (2.24) and (2.25)) as a function of ℓ for the
+PR3 (dashed lines) and PR4 datasets (solid lines) for the SEVEM pipeline13 . Note how ϵb for
+ℓ > 10 goes to zero because of the noise level in polarisation. Moreover this plot indicates
+that in this estimator the largest scales weight much more than small scales, for both the
+NAPS.
+                                                                                             joint
+      In order to better evaluate the impact of polarisation and temperature data on EV
+we define the following weights
+
+ 13
+      Similar results are found for all the other pipelines.
+
+
+
+
+                                                       – 12 –
+                                   LTP (%) at ℓmax = 26
+                                      PR3                                    PR4
+                         Commander NILC    SEVEM SMICA                   hybrid SEVEM
+                 joint
+                EV         < 0.33      < 0.33    < 0.33     < 0.33       1.50      1.16
+                 (TT)
+                EV         < 0.33      < 0.33     0.33      < 0.33       1.76      1.16
+                 (EE)
+                EV         12.33       32.33     32.66       5.33        19.50    68.16
+                 (TE)
+                EV          6.00       19.00      4.66       6.00        34.50    18.50
+                                                             joint         (TT)   (EE)     (TE)
+Table 1. LTP (%) computed at ℓmax = 26 for the estimators EV       , EV , EV     and EV      when
+applied to the PR3 and PR4 dataset. Note that where the LTP is < 0.33%, it indicates that the data
+value is smaller than all the simulations.
+
+
+
+                                                    X 2ℓ(b) + 1
+                                 wγ (bmax ) = 0.5         eff
+                                                                  γb ,                            (4.2)
+                                                           4π
+                                                     b
+                                                    X 2ℓ(b) + 1
+                                 wϵ (bmax ) = 0.5         eff
+                                                                  ϵb ,                            (4.3)
+                                                           4π
+                                                     b
+
+such that wγ (bmax )+wϵ (bmax ) = 1 for every bmax . For bmax = 5 14 , which contains information
+up to ℓmax = 26 where the LTP is minimum, we find that polarised PR3 data contribute at
+                                          joint
+the level of 0.1% to the building of EV         . This value increases to 0.6% for PR4 polarised
+data at the same maximum multipole. The behaviour of wγ and wϵ for each ℓmax for the
+SEVEM PR3 (dashed lines) and PR4 dataset (solid lines) is given in Figure 14. Even if the
+contribution of polarisation increases using PR4 data by a factor ∼ 6, the joint analysis is still
+limited by the noise in Planck polarisation. However, for the PR3 dataset it is interesting to
+note how the inclusion of the subdominant polarisation part in the analysis makes the LTP
+     joint                           (TT)
+of EV      smaller than the one of EV      for the whole harmonic range considered.
+
+5        Conclusions
+In this paper we evaluated the lack of power anomaly present at large angular scales of the
+CMB map considering the latest Planck data, both PR3 (2018) and PR4 (2020) releases.
+Up to now lack of power has never been studied with PR4 dataset. In particular, our aim
+was to deeply investigate how CMB polarisation improves the understanding of this anomaly,
+expanding on the previous work [28].
+      We have defined and applied on the latest Planck data releases in the harmonic range
+2 ≤ ℓ ≤ 31, a new class of optimised estimators, see Eqs. (2.7), (2.13), (2.14),(2.15) and (2.16),
+able to test this signature considering temperature and polarisation data both separately and
+in a jointly way. In order to critically evaluate this feature, taking into account the residuals of
+known systematic effects present in the Planck datasets, we have considered the cleaned CMB
+maps (data and end-to-end simulations). Moreover, with the aim of reducing any possible
+correlation effect between different multipoles arising from the sky mask, we have binned the
+CMB multipoles with ∆ℓ = 5. The main outcomes of this analysis are listed below.
+    14
+    where bmax stands for the maximum bin considered. In this analysis we consider ℓ ∈ [2, 31], with a
+constant bin of ∆ℓ = 5, therefore we have six bins and bmax ∈ [1, 6].
+
+
+
+
+                                                – 13 –
+  1. The estimator based only on temperature data has confirmed the presence of a lack of
+     power with a LTP ≤ 0.33% (PR3) and ≤ 1.76% (PR4). Note that the LTP≤ 0.33% for
+     the PR3 dataset is the lowest LTP present in the literature obtained from Planck 2018
+     data considering the confidence sky mask.
+
+  2. We found significant differences between PR3 and PR4 datasets when polarisation is
+     taken into account, most likely due to a combination of two factors: a different level
+     of systematics between the PR3 and PR4 datasets and the transfer function which
+     impacts the PR4 data. However, we have also shown that when the estimator based
+                                    (EE)
+     only on EE power spectrum, EV , is applied to the PR3 data, and in particular to the
+     Commander and SMICA pipelines, at very large scale we found a LTP ≤ 8% for ℓmax ≤ 16,
+     smaller than the probability we got with the estimator based only on temperature data.
+     Although this behaviour is not statistically significant, it is interesting to note that
+     could point in the direction of a lack of power in large scales also for polarisation.
+     Future observations, such as those from the LiteBIRD satellite, will help to shed light
+     on this result.
+
+                                         joint
+  3. Considering the joint estimator, EV       , the statement of the LTP is very similar to the
+                                               (TT)
+     one of the probability we got from EV . At ℓmax = 26, where the LTP reaches its
+     minimum, we found that the polarised PR3 data contribute at the level of 0.1% to
+     the total information budget of the estimator. This value increases to 0.6% for the
+     PR4 polarised data at the same maximum multipole, see Figure 14. Even though the
+     contribution of polarisation increases using PR4 data by factor ∼ 6, the joint analysis
+     is still limited by the noise in Planck polarisation. However, for the PR3 dataset it
+     is interesting to note that the inclusion of polarisation information through the joint
+     estimator has provided estimates which are less likely accepted in a ΛCDM model than
+     the corresponding only-temperature version of the same estimator. In particular, at
+     ℓmax = 26, we found that no simulation has a value as low as the data for all the
+     pipelines.
+
+
+Acknowledgements
+
+We thank J.D. Bilbao-Ahedo, C. Gimeno-Amo, A. Gruppuso, R. Keskitalo and P.Vielva,
+for valuable advice and comments. MB would like to thank the Angela Della Riccia Foun-
+dation for the financial support provided under the ADR fellowships 2022 and 2023. We
+acknowledge partial financial support from the grant PID2019-110610RB-C21 funded by
+MCIN/AEI/10.13039/501100011033 and from the Red de Investigación RED2022-134715-T
+funded by MCIN/AEI/10.13039/5011000011033. This research used resources of the National
+Energy Research Scientific Computing Center (NERSC), a U.S. Department of Energy Office
+of Science User Facility located at Lawrence Berkeley National Laboratory, operated under
+Contract No. DEAC02-05CH11231. This work based on observations obtained with Planck
+(https://www.esa.int/Planck), an ESA science mission with instruments and contributions
+directly funded by ESA Member States, NASA, and Canada. Some of the results in this paper
+have been derived using the HEALPix [37] package and ECLIPSE 15 code [38].
+
+ 15
+      https://github.com/CosmoTool/ECLIPSE
+
+
+
+
+                                             – 14 –
+References
+ [1] J. Muir, S. Adhikari and D. Huterer, Covariance of cmb anomalies, Phys. Rev. D 98 (2018)
+     023521.
+ [2] J. Jones, C.J. Copi, G.D. Starkman and Y. Akrami, The Universe is not statistically isotropic,
+     2310.12859.
+ [3] C. Monteserin, R.B. Barreiro, P. Vielva, E. Martinez-Gonzalez, M.P. Hobson and
+     A.N. Lasenby, A low CMB variance in the WMAP data, Mon. Not. Roy. Astron. Soc. 387
+     (2008) 209 [0706.4289].
+ [4] D.J. Schwarz, C.J. Copi, D. Huterer and G.D. Starkman, CMB Anomalies after Planck, Class.
+     Quant. Grav. 33 (2016) 184001 [1510.07929].
+ [5] K. Land and J. Magueijo, Is the Universe odd?, Phys. Rev. D 72 (2005) 101302
+     [astro-ph/0507289].
+ [6] H.K. Eriksen, F.K. Hansen, A.J. Banday, K.M. Gorski and P.B. Lilje, Asymmetries in the
+     Cosmic Microwave Background anisotropy field, Astrophys. J. 605 (2004) 14
+     [astro-ph/0307507].
+ [7] C. Gimeno-Amo, R.B. Barreiro, E. Matínez-González and A. Marcos-Caballero, Hemispherical
+     Power Asymmetry in intensity and polarization for Planck PR4 data, 2306.14880.
+ [8] A. de Oliveira-Costa, M. Tegmark, M. Zaldarriaga and A. Hamilton, The Significance of the
+     largest scale CMB fluctuations in WMAP, Phys. Rev. D 69 (2004) 063516 [astro-ph/0307282].
+ [9] C. Copi, D. Huterer, D. Schwarz and G. Starkman, The Uncorrelated Universe: Statistical
+     Anisotropy and the Vanishing Angular Correlation Function in WMAP Years 1-3, Phys. Rev.
+     D 75 (2007) 023507 [astro-ph/0605135].
+[10] P. Vielva, E. Martinez-Gonzalez, R.B. Barreiro, J.L. Sanz and L. Cayon, Detection of
+     non-Gaussianity in the WMAP 1 - year data using spherical wavelets, Astrophys. J. 609 (2004)
+     22 [astro-ph/0310273].
+[11] WMAP collaboration, First year Wilkinson Microwave Anisotropy Probe (WMAP)
+     observations: Preliminary maps and basic results, Astrophys. J. Suppl. 148 (2003) 1
+     [astro-ph/0302207].
+[12] G. Hinshaw, A.J. Banday, C.L. Bennett, K.M. Gorski, A. Kogut, C.H. Lineweaver et al.,
+     2-point correlations in the COBE DMR 4-year anisotropy maps, Astrophys. J. Lett. 464 (1996)
+     L25 [astro-ph/9601061].
+[13] C.R. Contaldi, M. Peloso, L. Kofman and A.D. Linde, Suppressing the lower multipoles in the
+     CMB anisotropies, JCAP 07 (2003) 002 [astro-ph/0303636].
+[14] J.M. Cline, P. Crotty and J. Lesgourgues, Does the small CMB quadrupole moment suggest
+     new physics?, JCAP 09 (2003) 010 [astro-ph/0304558].
+[15] C. Destri, H.J. de Vega and N.G. Sanchez, The pre-inflationary and inflationary fast-roll eras
+     and their signatures in the low CMB multipoles, Phys. Rev. D 81 (2010) 063520 [0912.2994].
+[16] M. Cicoli, S. Downes and B. Dutta, Power Suppression at Large Scales in String Inflation,
+     JCAP 12 (2013) 007 [1309.3412].
+[17] E. Dudas, N. Kitazawa, S.P. Patil and A. Sagnotti, CMB Imprints of a Pre-Inflationary
+     Climbing Phase, JCAP 05 (2012) 012 [1202.6630].
+[18] A. Gruppuso and A. Sagnotti, Observational Hints of a Pre–Inflationary Scale?, Int. J. Mod.
+     Phys. D 24 (2015) 1544008 [1506.08093].
+[19] A. Gruppuso, N. Kitazawa, N. Mandolesi, P. Natoli and A. Sagnotti, Pre-Inflationary Relics in
+     the CMB?, Phys. Dark Univ. 11 (2016) 68 [1508.00411].
+
+
+
+
+                                              – 15 –
+[20] A. Gruppuso, N. Kitazawa, M. Lattanzi, N. Mandolesi, P. Natoli and A. Sagnotti, The Evens
+     and Odds of CMB Anomalies, Phys. Dark Univ. 20 (2018) 49 [1712.03288].
+[21] H.E. Luparello, E.F. Boero, M. Lares, A.G. Sánchez and D.G. Lambas, The cosmic shallows –
+     I. Interaction of CMB photons in extended galaxy haloes, Mon. Not. Roy. Astron. Soc. 518
+     (2022) 5643 [2206.14217].
+[22] F.K. Hansen, E.F. Boero, H.E. Luparello and D.G. Lambas, A possible common explanation for
+     several cosmic microwave background (CMB) anomalies: A strong impact of nearby galaxies on
+     observed large-scale CMB fluctuations, 2305.00268.
+[23] M. Cruz, P. Vielva, E. Martinez-Gonzalez and R.B. Barreiro, Anomalous variance in the
+     WMAP data and Galactic Foreground residuals, Mon. Not. Roy. Astron. Soc. 412 (2011) 2383
+     [1005.1264].
+[24] A. Gruppuso, P. Natoli, F. Paci, F. Finelli, D. Molinari, A. De Rosa et al., Low Variance at
+     large scales of WMAP 9 year data, JCAP 07 (2013) 047 [1304.5493].
+[25] Planck collaboration, Planck 2013 results. XXIII. Isotropy and statistics of the CMB, Astron.
+     Astrophys. 571 (2014) A23 [1303.5083].
+[26] Planck collaboration, Planck 2015 results. XVI. Isotropy and statistics of the CMB, Astron.
+     Astrophys. 594 (2016) A16 [1506.07135].
+[27] Planck collaboration, Planck 2018 results. VII. Isotropy and Statistics of the CMB, Astron.
+     Astrophys. 641 (2020) A7 [1906.02552].
+[28] M. Billi, A. Gruppuso, N. Mandolesi, L. Moscardini and P. Natoli, Polarisation as a tracer of
+     CMB anomalies: Planck results and future forecasts, Phys. Dark Univ. 26 (2019) 100327
+     [1901.04762].
+[29] C. Chiocchetta, A. Gruppuso, M. Lattanzi, P. Natoli and L. Pagano, Lack-of-correlation
+     anomaly in CMB large scale polarisation maps, JCAP 08 (2021) 015 [2012.00024].
+[30] R. Shi et al., Testing Cosmic Microwave Background Anomalies in E-mode Polarization with
+     Current and Future Data, Astrophys. J. 945 (2023) 79 [2206.05920].
+[31] Planck collaboration, P lanck intermediate results. LVII. Joint Planck LFI and HFI data
+     processing, Astron. Astrophys. 643 (2020) A42 [2007.04997].
+[32] E. Hivon, K.M. Gorski, C.B. Netterfield, B.P. Crill, S. Prunet and F. Hansen, Master of the
+     cosmic microwave background anisotropy power spectrum: a fast method for statistical analysis
+     of large and complex cosmic microwave background data sets, Astrophys. J. 567 (2002) 2
+     [astro-ph/0105302].
+[33] Planck collaboration, Planck 2018 results. I. Overview and the cosmological legacy of Planck,
+     Astron. Astrophys. 641 (2020) A1 [1807.06205].
+[34] Planck collaboration, Planck 2018 results. IV. Diffuse component separation, Astron.
+     Astrophys. 641 (2020) A4 [1807.06208].
+[35] Planck collaboration, Planck 2015 results. XII. Full Focal Plane simulations, Astron.
+     Astrophys. 594 (2016) A12 [1509.06348].
+[36] Planck collaboration, Planck 2018 results. III. High Frequency Instrument data processing
+     and frequency maps, Astron. Astrophys. 641 (2020) A3 [1807.06207].
+[37] K.M. Górski, E. Hivon, A.J. Banday, B.D. Wandelt, F.K. Hansen, M. Reinecke et al.,
+     HEALPix - A Framework for high resolution discretization, and fast analysis of data distributed
+     on the sphere, Astrophys. J. 622 (2005) 759 [astro-ph/0409513].
+[38] J.D. Bilbao-Ahedo, R.B. Barreiro, P. Vielva, E. Martínez-González and D. Herranz, ECLIPSE:
+     a fast Quadratic Maximum Likelihood estimator for CMB intensity and polarization power
+     spectra, JCAP 07 (2021) 034 [2104.08528].
+
+
+
+
+                                              – 16 –
+A    Computation of the coefficients for the joint estimator
+
+The method of the Lagrange multipliers is employed to minimise the variance of the joint
+           joint
+estimator EV     , keeping fixed its expected value. This can be achieved by requiring that:
+
+                                  ℓX
+                                   max
+                                            2ℓ + 1
+                                                   (γℓ + ϵℓ ) = const = 1 .                     (A.1)
+                                              4π
+                                  ℓ=2
+
+for each maximum multipole ℓmax . It should be noted that the value selected for the constant
+                                                   joint
+is totally arbitrary. Replacing the definition of EV     , as defined in Eq. (2.7), within the
+                     joint
+expression of var(EV ), we obtain:
+                                                   2           2
+                    joint        joint       joint          joint          joint 2
+               var(EV     ) ≡ ⟨ EV     − ⟨EV       ⟩ ⟩ = ⟨ EV        ⟩ − ⟨EV    ⟩ =
+                                                 
+                                         joint
+                              X
+                            =    var EV        (ℓ) ,                                            (A.2)
+                                 ℓ
+
+                                                                                    joint
+where the cross-terms among different multipoles vanish in the full sky case. Here EV     (ℓ)
+is defined as:
+                               joint            (TT)        (uEE)
+                             EV      (ℓ) = γ̃ℓ xℓ    + ϵ̃ℓ xℓ     ,                   (A.3)
+with a variance of:
+                     
+             joint                 (TT)            (uEE)                   (TT) (uEE)
+      var EV       (ℓ) = γ̃ℓ2 var(xℓ ) + ϵ̃2ℓ var(xℓ     ) + 2γ̃ℓ ϵ̃ℓ cov(xℓ , xℓ     ).        (A.4)
+
+In Eqs. (A.3) and (A.4), the tilde quantities are defined as ã = 2ℓ+1
+                                                                   4π a.
+                                                joint                                   joint
+     Given Eq. (A.2), the minimisation of var(EV ) is equivalent to minimise each var(EV      (ℓ)).
+As is customary in the Lagrange multiplier method, for each multipole ℓ we introduce a new
+variable
+                                             2ℓ + 1
+                                       κ̃ℓ =          κ,                               (A.5)
+                                               4π
+known as the Lagrange multiplier, and we minimise the function F (γ̃ℓ , ϵ̃ℓ , κ̃ℓ ), defined as:
+                                                                 "                   !     #
+                                                       
+                                               joint
+                                                                     X
+                   F (γ̃ℓ , ϵ̃ℓ , κ̃ℓ ) = var EV     (ℓ) + κ̃ℓ           γ̃ℓ + ϵ̃ℓ       −1 .   (A.6)
+                                                                     ℓ
+
+                                                joint
+This is equivalent to minimise the variance of EV     (ℓ) on the constraint given by equation
+(A.1). Therefore, we compute the partial derivatives with respect to the coefficients γ̃ℓ , ϵ̃ℓ
+and κ̃ℓ and set them to be zero:
+
+              ∂F (γ̃ℓ , ϵ̃ℓ , κ̃ℓ )              (TT)               (TT) (uEE)
+                                    = 2γ̃ℓ var(xℓ ) + 2ϵ̃ℓ cov(xℓ , xℓ         ) + κ̃ℓ = 0,     (A.7)
+                   ∂γ̃ℓ
+              ∂F (γ̃ℓ , ϵ̃ℓ , κ̃ℓ )              (uEE)               (TT) (uEE)
+                                    = 2ϵ̃ℓ var(xℓ      ) + 2γ̃ℓ cov(xℓ , xℓ     ) + κ̃ℓ = 0,    (A.8)
+                   ∂ϵ̃ℓ
+                                                      !
+              ∂F (γ̃ℓ , ϵ̃ℓ , κ̃ℓ )     X
+                                    =        γ̃ℓ + ϵ̃ℓ − 1 = 0 .                                (A.9)
+                   ∂κ̃ℓ
+                                        ℓ
+
+
+
+
+                                                     – 17 –
+Solving the equations we get:
+
+                                             (uEE)                  (TT)   (uEE)
+                           κ̃ℓ      var(xℓ     ) − cov(xℓ , xℓ        )
+                 γ̃ℓ = −                                                        ,                  (A.10)
+                            2 var(x(TT) )var(x(uEE) ) − [cov(x(TT) , x(uEE) )]2
+                                     ℓ         ℓ                ℓ      ℓ
+                                           (TT)            (TT) (uEE)
+                          κ̃ℓ        var(xℓ ) − cov(xℓ , xℓ            )
+                 ϵ̃ℓ = −           (TT)       (uEE)             (TT)   (uEE) 2
+                                                                               ,                   (A.11)
+                           2 var(x      )var(xℓ      ) − [cov(xℓ , xℓ       )]
+                                   ℓ
+                     ℓX
+                      max          (TT)            (uEE)            (TT) (uEE)
+                          κ̃ℓ var(xℓ ) + var(xℓ          ) − 2cov(xℓ , xℓ       )
+                 −                                                                = 1.             (A.12)
+                           2 var(x(TT) )var(x(uEE) ) − [cov(x(TT) , x(uEE) )]2
+                      ℓ=2            ℓ           ℓ                ℓ      ℓ
+
+
+Substituting the definition of variable κ̃ℓ = 2ℓ+1
+                                               4π κ in Eq.(A.12), we get:
+
+                                                     2
+                     κ=−                                                         .                 (A.13)
+                              P 2ℓ+1 var(x(TT)
+                                          ℓ
+                                                      (uEE)
+                                               )+var(xℓ
+                                                                    (TT) (uEE)
+                                                            )−2cov(xℓ   ,xℓ    )
+                                 ℓ   4π        (TT)
+                                          var(xℓ
+                                                            (uEE)
+                                                      )var(xℓ
+                                                                            (TT)
+                                                                    )−[cov(xℓ
+                                                                                     (uEE)
+                                                                                   ,xℓ       )]2
+
+
+     Finally, multiplying the tilde quantities in Eqs. (A.10) and (A.11) by the factor of 2ℓ+1
+                                                                                           4π
+
+and then substituting Eq.(A.13), we get the coefficients γℓ and ϵℓ as defined in Eqs.(2.9) and
+(2.10).
+
+
+B    Transfer function for PR4 dataset
+
+The PR4 SEVEM dataset provides the simulations divided into signal and noise maps and
+therefore we are able to obtain the E-mode transfer function (TF) from the MC simulations
+as:
+                                          Cℓ,EES⊗(S+N)
+                                     TF =              ,                            (B.1)
+                                               Cℓ,EES
+
+where at the numerator we have the cross-mode EE spectra obtained from a signal map
+and a signal-plus-noise map, while at the denominator is present the EE auto-spectra of the
+signal component. The transfer function (TF) is computed for all the 600 Monte Carlo (MC)
+simulations for both the detector splits (A and B). The average over the MC simulations is
+then taken into account, resulting in the mean transfer functions for detector A (TF(A) ) and
+for detector B (TF(B) ).
+      The PR4 Commander dataset does not provide the simulations divided in signal and noise
+maps, therefore we cannot compute the transfer function by ourselves. However in [31], the
+E-mode transfer function over 60% of the sky is provided for this pipeline.
+      Figure 15 shows the comparison between the E-mode transfer function provided by
+the Commander team (blue solid line) and the TF(A) we compute from the SEVEM detector A
+maps for three different cases of sky coverage: full-sky (green dashed line), Planck polarisation
+common mask (orange solid line) and extended mask used in this work, right panel of Figure 1,
+(violet dashed line).
+      It can be observed that the Commander TF and both the SEVEM TF(A) computed consid-
+ering full-sky and the Planck common mask are highly similar. The SEVEM TF(A) obtained
+with the extended mask is very noisy but follows the behaviour of the one computed with the
+standard mask. Therefore, we apply the latter to the theoretical power spectra.
+
+
+
+
+                                                      – 18 –
+      The values of the theoretical power spectra TE and EE, which enter in the equation of
+NAPS (2.2), (2.5) and (2.6), are corrected for these transfer functions. In the NAPS computed
+for the SEVEM dataset the following correction is applied:
+                                                                 
+                         CℓEE,rescaled = CℓEE,th ∗ TF(A) ∗ TF(B) ,                      (B.2)
+                                                                    !
+                                                     TF(A) + TF(B)
+                         CℓTE,rescaled = CℓTE,th ∗                    .                 (B.3)
+                                                           2
+
+In the case of the Commander dataset the correction is:
+
+                                      CℓEE,rescaled = CℓEE,th ∗ (TF2 ) ,                                              (B.4)
+                                      CℓTE,rescaled = CℓTE,th ∗ (TF) ,                                                (B.5)
+
+where TF is the E-mode transfer function provided for Commander by the Planck team.
+
+C   Comparison with previous estimator
+
+This appendix presents the application of the joint estimator for the lack of power developed
+                                                     (TT)       (uEE)
+in [28] to latest Planck SEVEM datasets. The NAPS xℓ      and xℓ      were combined to define
+the optimal, i.e. with minimum variance, estimator P̃ as follow:
+                                                     ℓX
+                                                      max
+                                           1                     (TT)              (uEE)
+                             P̃ ≡                           (αℓ xℓ      + βℓ xℓ            ).                         (C.1)
+                                      (ℓmax − 1)
+                                                     ℓ=2
+
+with:
+                                               (uEE)                 (TT)      (uEE)
+                                        var(xℓ         ) − cov(xℓ           , xℓ       )
+                    αℓ = 2      (TT)        (uEE)           (TT) (uEE)
+                                                                                                    ,                 (C.2)
+                           var(xℓ ) + var(xℓ      ) − 2cov(xℓ , xℓ     )
+                                       (TT)          (TT) (uEE)
+                                  var(xℓ ) − cov(xℓ , xℓ        )
+                    βℓ = 2      (TT)        (uEE)           (TT) (uEE)
+                                                                         ,,                                           (C.3)
+                           var(xℓ ) + var(xℓ      ) − 2cov(xℓ , xℓ     )
+            (TT)                  (uEE)                                       (TT)               (uEE)
+where var(xℓ ) and var(xℓ         ) are the variance of xℓ                            and xℓ               respectively, and
+     (TT) (uEE)
+cov(xℓ , xℓ     ) is their covariance
+                        (TT)      (uEE)          (TT)           (TT)         (uEE)              (uEE)
+                   cov(xℓ      , xℓ       ) = ⟨(xℓ         − ⟨xℓ       ⟩)(xℓ          − ⟨xℓ             ⟩)⟩.          (C.4)
+
+The coefficients αℓ and βℓ are obtained with the method of the Lagrange multipliers by
+minimising the variance of P̃, at each ℓ, on the constraint αℓ + βℓ = const = 2. The estimator
+P̃ could be interpreted as a dimensionless normalised mean power, which jointly combines the
+temperature and polarisation data, with an expectation value of:
+
+                                                     ⟨P̃⟩ = 2 ,                                                       (C.5)
+
+regardless of the value of ℓmax .
+     The estimator is now applied to the PR3 and PR4 SEVEM dataset, MC simulations and
+data, in the harmonic range ℓ ∈ [2, 31], with a constant bin of ∆ℓ = 5. Figure 16 displays
+the LTP(%) computed for the P̃ applied to the PR3 (blue solid line) and PR4 (orange solid
+
+
+
+
+                                                       – 19 –
+                                                                                    (joint)
+line) SEVEM datasets as a function of ℓmax . Furthermore, the comparison with the EV
+computed with both PR3 (blue dashed line) and PR4 (orange dashed line) SEVEM datasets is
+presented. Both the estimators when applied to the PR3 dataset provide estimates that are
+less likely accepted in a ΛCDM model than when applied to the PR4 dataset. Moreover, it
+can be noted that the trends of these two estimators are comparable, exhibiting peaks and
+valleys at the same values of ℓmax .
+
+
+
+
+                                         – 20 –
+                     1100         CDM Fiducial                    NILC   : MC Average±
+                                 Commander : MC Average±          SMICA    : MC Average±
+                     1050
+                                 SEVEM: MC Average±
+                     1000
+
+        D TT( K 2)
+                       950
+                       900
+                       850
+                       800
+
+
+                         2
+         D TT            0
+                         2
+                                       5             10             15               20                25     30
+
+
+
+                                                  CDM Fiducial                       NILC   : MC Average±
+                       3.0                                 : MC Average±
+                                                 Commander                           SMICA    : MC Average±
+                       2.5                       SEVEM: MC Average±
+
+
+
+
+          D TE( K 2)
+                       2.0
+
+                       1.5
+
+                       1.0
+
+                       0.5
+
+                        2
+        D TE            0
+                        2
+                                       5             10             15               20                25     30
+
+
+                       0.10                       CDM Fiducial                       NILC   : MC Average±
+                       0.08                      Commander : MC Average±             SMICA    : MC Average±
+                                                 SEVEM: MC Average±
+                       0.06
+
+
+        D EE( K 2)
+                       0.04
+                       0.02
+                       0.00
+                       0.02
+                       0.04
+                        10
+
+        D EE                 0
+                        10
+                                        5             10            15                20               25     30
+
+
+
+Figure 3. The upper boxes of each panel show MC average of the DℓTT (upper panel), DℓTE (middle
+panel) and DℓEE (lower panel), where Dℓ = ℓ(ℓ+1)
+                                              2π Cℓ , as a function of ℓ ∈ [2, 31], obtained from the
+FFP10 MC set for Commander (blue), NILC (green), SEVEM (orange), SMICA (violet). The error bars
+represent the uncertainties associated with the mean. The dashed black lines represent the Planck
+ΛCDM best-fit model. Additionally, each panel displays a lower box in which the distance between
+the MC mean and the fiducial power spectrum is shown for each ℓ in units of the standard deviation
+of the mean, σµ .
+
+
+
+                                                                 – 21 –
+                     1100
+                                       CDM Fiducial              SEVEM   : MC Average±
+                     1050                  : MC Average±
+                                      hybrid
+
+                     1000
+
+
+       D TT( K 2)
+                     950
+                     900
+                     850
+                     800
+
+                        2
+        D TT            0
+                        2
+                              5         10            15           20               25               30
+
+
+
+                     2.75                              CDM Fiducial                  SEVEM   : MC Average±
+                     2.50                                  : MC Average±
+                                                      hybrid
+
+                     2.25
+
+
+        D TE( K 2)
+                     2.00
+                     1.75
+                     1.50
+                     1.25
+                     1.00
+                     0.75
+
+                       2
+        D TE           0
+                       2
+                              5         10            15           20               25               30
+
+
+                     0.035             CDM Fiducial               SEVEM   : MC Average±
+                     0.030                 : MC Average±
+                                      hybrid
+
+                     0.025
+
+
+        D EE( K 2)
+                     0.020
+                     0.015
+                     0.010
+                     0.005
+                     0.000
+                       5.0
+                       2.5
+        D EE           0.0
+                        2.5
+                                  5      10           15           20                25              30
+
+
+
+Figure 4. Same as Figure 3 but for the PR4 dataset, hybrid (blue) and SEVEM (orange). We remark
+that the hybrid set is composed by 400 simulated TQU maps built with the SEVEM temperature maps
+and the Commander polarisation maps, split in detector A and detector B, while 600 simulations are
+used for the SEVEM case.
+
+
+
+
+                                                   – 22 –
+                     1500
+
+                     1000
+
+
+        D TT( K 2)   500
+                                                                           Commander     : MC Mean        Commander  : data±
+                        0                                                  SEVEM    : MC Mean             SEVEM : data±
+                                                                           NILC   : MC Mean               NILC: data±
+                                                                           SMICA    : MC Mean             SMICA : data±
+                      500
+
+                        2
+           D TT         0
+                        2
+                                       5               10           15                20             25               30
+
+
+                      10.0
+                       7.5
+                       5.0
+
+
+        D TE( K 2)
+                       2.5
+                       0.0
+                       2.5     Commander   : MC Mean        Commander   : data±
+                       5.0     SEVEM  : MC Mean             SEVEM  : data±
+                               NILC : MC Mean               NILC : data±
+                       7.5     SMICA  : MC Mean             SMICA  : data±
+                      10.0
+
+                           2
+            D TE           0
+                           2
+                                       5               10           15                 20            25               30
+
+
+
+                     0.4
+                               Commander  : MC Mean         Commander  : data±
+                               SEVEM : MC Mean              SEVEM : data±
+                               NILC: MC Mean                NILC: data±
+                     0.2             : MC Mean              SMICA : data±
+
+        D EE( K 2)
+                               SMICA
+
+                     0.0
+
+                     0.2
+
+                     0.4
+
+
+                       2
+          D EE         0
+                       2
+                                       5               10           15                20             25               30
+
+
+
+Figure 5. The upper boxes of each panel show the DℓTT (upper panel), DℓTE (middle panel) and
+DℓEE (lower panel), where Dℓ = ℓ(ℓ+1)
+                                   2π Cℓ , as a function of ℓ (for 2 ≤ ℓ ≤ 31), obtained from the PR3
+dataset for Commander (blue), NILC (green), SEVEM (orange), SMICA (violet). The error bars represent
+the standard deviation of the estimates, i.e. σ. The solid lines represent the MC average of the spectra
+for each pipelines. Each panel also displays a lower box, which shows the distance of the estimates
+from the MC mean in units of σ, for each value of ℓ.
+
+
+
+
+                                                                – 23 –
+             1500
+             1250
+             1000
+
+
+D TT( K 2)
+              750
+              500
+              250
+                0
+              250
+                                                                      hybrid    : MC Mean        hybrid    : data±
+                                                                      SEVEM   : MC Mean          SEVEM   : data±
+              500
+
+                   2
+   D TT            0
+                   2
+                                    5        10                  15     20                  25             30
+
+
+              10       hybrid    : MC Mean        hybrid    : data±
+               8       SEVEM   : MC Mean          SEVEM   : data±
+               6
+
+
+ D TE( K 2)
+               4
+               2
+               0
+               2
+               4
+               6
+
+               2
+D TE           0
+               2
+                                5            10                  15    20                   25             30
+
+
+              0.3      hybrid    : MC Mean        hybrid    : data±
+                       SEVEM   : MC Mean          SEVEM   : data±
+              0.2
+
+
+
+D EE( K 2)
+              0.1
+
+              0.0
+
+              0.1
+
+
+               2
+  D EE         0
+               2
+                                5            10                  15     20                  25             30
+
+
+
+                           Figure 6. Same as Figure 5 but for the PR4 data.
+
+
+
+
+                                                             – 24 –
+                 1.1
+                 1.0
+                 0.9
+         x(TT)   0.8
+                                                Commander  : MC Mean           Commander   : data±
+                 0.7                            SEVEM : MC Mean                SEVEM  : data±
+                                                NILC: MC Mean                  NILC : data±
+                 0.6                            SMICA : MC Mean                SMICA  : data±
+
+                  2
+        x(TT)     0
+                  2
+                       5                  10                   15                  20                25                    30
+
+
+                 10
+                       Commander   : MC Mean            Commander  : data±
+                  8    SEVEM  : MC Mean                 SEVEM : data±
+                  6    NILC : MC Mean                   NILC: data±
+                       SMICA  : MC Mean                 SMICA : data±
+                  4
+         x(EE)    2
+                  0
+                  2
+                  4
+
+                  2
+        x(EE)     0
+                  2
+                       5                  10                   15                  20                25                    30
+
+
+
+                 2.5                                                   Commander    : MC Mean        Commander   : data±
+                                                                       SEVEM   : MC Mean             SEVEM  : data±
+                 2.0                                                   NILC  : MC Mean               NILC : data±
+                 1.5                                                   SMICA   : MC Mean             SMICA  : data±
+        x(TE)    1.0
+                 0.5
+                 0.0
+                 0.5
+
+                   2
+         x(TE)     0
+                   2
+                        5                  10                   15                 20                25                    30
+
+
+
+Figure 7. The upper boxes of each panel show the x(TT) (upper panel), x(EE) (middle panel) and
+x(TE) (lower panel), as defined in Eqs. (2.19), (2.21) and (2.22), for the PR3 data as a function of ℓ,
+for 2 ≤ ℓ ≤ 31 and a bin of ∆ℓ = 5. The error bars represent the statistical uncertainties associated
+with the estimates, computed from the MC simulations. The solid lines represent the MC average
+of the spectra for each pipeline. Each panel also displays a lower box, in which the distance of the
+estimates from the MC mean in units of the standard deviation of the estimate is shown for each ℓ.
+
+
+
+
+                                                             – 25 –
+        1.2
+        1.1
+        1.0
+        0.9
+x(TT)   0.8
+        0.7
+                                         hybrid    : MC Mean   hybrid    : data±
+        0.6                              SEVEM   : MC Mean     SEVEM   : data±
+
+         2
+x(TT)    0
+         2
+              5                     10                 15         20               25   30
+
+
+
+         5    hybrid    : MC Mean        hybrid    : data±
+              SEVEM   : MC Mean          SEVEM   : data±
+         4
+         3
+x(EE)    2
+         1
+         0
+         1
+
+         2
+x(EE)    0
+         2
+              5                     10                 15         20               25   30
+
+
+
+              hybrid    : MC Mean        hybrid    : data±
+        2.5                                      : data±
+              SEVEM   : MC Mean          SEVEM
+        2.0
+        1.5
+x(TE)
+        1.0
+        0.5
+        0.0
+
+         2
+x(TE)    0
+         2
+              5                     10                 15         20               25   30
+
+
+
+                      Figure 8. Same as Figure 7 for the PR4 dataset.
+
+
+
+
+                                                    – 26 –
+                                2.00
+                                1.75
+                                                                              Commander  : MC Mean         Commander  : data±
+                                                                              SEVEM : MC Mean              SEVEM : data±
+                                1.50                                          NILC: MC Mean                NILC: data±
+                                1.25                                          SMICA : MC Mean              SMICA : data±
+                      EVjoint   1.00
+                                0.75
+                                0.50
+                                0.25
+                                0.00
+
+                                  2
+                      EVjoint     0
+                                  2
+                                       5          10           15                20                  25                30
+                                                                          max
+
+                                1.4                                           Commander  : MC Mean         Commander  : data±
+                                                                              SEVEM : MC Mean              SEVEM : data±
+                                1.2                                           NILC: MC Mean                NILC: data±
+                                                                              SMICA : MC Mean              SMICA : data±
+                      EV(TT)    1.0
+
+                                0.8
+
+                                0.6
+
+
+                                  2
+                      EV(TT)      0
+                                  2
+                                       5          10           15                20                  25                30
+                                                                          max
+                                  6
+                                                       Commander  : MC Mean           Commander  : data±
+                                  4                    SEVEM : MC Mean                SEVEM : data±
+                                                       NILC: MC Mean                  NILC: data±
+                                  2                    SMICA : MC Mean                SMICA : data±
+                      EV(EE)
+                                  0
+
+                                  2
+
+                                  4
+
+                                  2
+                      EV(EE)      0
+                                  2
+                                       5          10           15                20                  25                30
+                                                                          max
+                                 2.0
+                                 1.5
+                                 1.0
+
+                      EV(TE)     0.5
+                                 0.0                                          Commander  : MC Mean         Commander  : data±
+                                                                              SEVEM : MC Mean              SEVEM : data±
+                                 0.5                                          NILC: MC Mean                NILC: data±
+                                                                              SMICA : MC Mean              SMICA : data±
+                                 1.0
+
+                                   2
+                       EV(TE)      0
+                                   2
+                                       5          10           15                20                  25                30
+                                                                          max
+
+
+              joint                        (TT)                               (EE)                               (TE)
+Figure 9. EV        (first row), EV   (second row), EV      (third row), EV   (fourth row), defined in
+Eqs. (2.23), (2.28), (2.30) and (2.31), when applied on the PR3 dataset as a function of ℓmax ∈ [2, 31].
+In the upper boxes of each panel the values of the data with the standard deviation of the MC
+distribution as error bars is shown for all the pipelines (Commander in blue, NILC in green, SEVEM in
+orange, SMICA in violet). The solid lines represent the mean of the MC distribution for each pipeline.
+In the lower panel the difference between the data and the mean in units of standard deviation of the
+MC distribution is shown for each ℓmax . The yellow regions represent a lack of power with respect to
+that predicted by the ΛCDM model.
+
+
+
+
+                                                                    – 27 –
+          2.00
+          1.75                                                                  hybrid    : MC Mean   hybrid    : data±
+                                                                                SEVEM   : MC Mean     SEVEM   : data±
+          1.50
+          1.25
+EVjoint   1.00
+          0.75
+          0.50
+          0.25
+          0.00
+
+               2
+ EV            0
+               2
+                       5                10          15                     20                    25             30
+                                                                     max
+
+          1.4                                                                   hybrid    : MC Mean   hybrid    : data±
+                                                                                SEVEM   : MC Mean     SEVEM   : data±
+          1.2
+
+EV(TT)    1.0
+
+          0.8
+
+          0.6
+
+
+            2
+EV(TT)      0
+            2
+                   5                    10         15                      20                    25             30
+                                                                     max
+           6
+                                                                                hybrid    : MC Mean   hybrid    : data±
+           4                                                                    SEVEM   : MC Mean     SEVEM   : data±
+
+           2
+EV(EE)
+           0
+
+           2
+
+           4
+
+           2
+EV         0
+           2
+                   5                   10          15                      20                    25            30
+                                                                     max
+           2.0
+           1.5
+           1.0
+
+EV(TE)     0.5
+           0.0
+           0.5             hybrid    : MC Mean   hybrid    : data±
+                           SEVEM   : MC Mean     SEVEM   : data±
+           1.0
+
+               2
+ EV(TT)        0
+               2
+                       5                10          15                     20                    25             30
+                                                                     max
+
+
+
+          Figure 10. Same as Figure 9 but for the PR4 data.
+
+
+
+
+                                                         – 28 –
+                       100
+                                              PR3 Commander            PR3 NILC           PR4 hybrid
+                                              PR3 SEVEM                PR3 SMICA          PR4 SEVEM
+                           80
+
+
+
+
+           LTP(%) EV(TT)
+                           60
+
+
+                           40
+
+
+                           20
+
+
+                           0
+                                5        10            15              20           25          30
+                                                                max
+
+                       100
+                                    PR3 Commander             PR3 NILC             PR4 hybrid
+                                    PR3 SEVEM                 PR3 SMICA            PR4 SEVEM
+                           80
+
+
+
+
+           LTP(%) EV(EE)
+                           60
+
+
+                           40
+
+
+                           20
+
+
+                           0
+                                5        10            15              20           25          30
+                                                                max
+
+                       100
+                                    PR3 Commander             PR3 NILC             PR4 hybrid
+                                    PR3 SEVEM                 PR3 SMICA            PR4 SEVEM
+                           80
+
+
+
+
+           LTP(%) EV(TE)
+                           60
+
+
+                           40
+
+
+                           20
+
+
+                           0
+                                5        10            15              20           25          30
+                                                                max
+                                          (TT)                         (EE)                          (TE)
+Figure 11. LTP(%) of the EV           (upper panel), EV       (middle panel) and EV       (lower panel)
+applied on the PR3 (dashed lines) and PR4 (solid lines) dataset as a function of ℓmax ∈ [2, 31]. The
+LTP is obtained as the percentage of simulations with a value smaller than that of the data. However,
+note that, in practice, due to the limited number of simulations, the maximum sensitivity that we
+can reach for the LTP is 0.33% (PR3 dataset), 0.25% (PR4, hybrid pipeline) and 0.17% (PR4, SEVEM
+pipeline). Values below those limits in the plot indicate that none of the simulations has a lower value
+than the data.
+
+
+
+                                                              – 29 –
+                  100
+                                     PR3 Commander            PR3 NILC         PR4 hybrid
+                                     PR3 SEVEM                PR3 SMICA        PR4 SEVEM
+                      80
+
+
+
+
+    LTP(%) EVjoint
+                      60
+
+
+                      40
+
+
+                      20
+
+
+                       0
+                            5   10            15              20          25        30
+                                                       max
+                                joint
+Figure 12. LT P (%) of the EV         applied to the PR3 (dashed lines) and PR4 (solid lines) dataset as
+a function of ℓmax ∈ [2, 31]. The LTP is obtained as the percentage of simulations with a value smaller
+than that of the data. However, note that, in practice, due to the limited number of simulations, the
+maximum sensitivity that we can reach for the LTP is 0.33% (PR3 dataset), 0.25% (PR4, hybrid
+pipeline) and 0.17% (PR4, SEVEM pipeline). Values below those limits in the plot indicate that none
+of the simulations has a lower value than the data.
+
+
+
+
+                      1.4
+                                                                                      b PR4
+                      1.2                                                             b PR3
+                                                                                      b PR4
+                      1.0                                                             b PR3
+
+
+
+
+       Coefficients
+                      0.8
+
+                      0.6
+
+                      0.4
+
+                      0.2
+
+                      0.0
+                            5   10            15              20          25         30
+
+
+Figure 13. The behaviour of the coefficients γb (blue lines) and ϵb (red lines), as defined in
+Eqs. (2.23),(2.24) and (2.25), as a function of ℓ ∈ [2, 31] for the SEVEM PR3 (dashed lines) and
+PR4 dataset (solid lines).
+
+
+
+
+                                                     – 30 –
+               1.0
+
+
+               0.8
+
+
+               0.6                                                                w PR4
+
+     Weights
+                                                                                  w PR3
+                                                                                  w PR4
+               0.4                                                                w PR3
+
+               0.2
+
+
+               0.0
+                     5          10           15              20         25        30
+                                                       max
+
+Figure 14. The behaviour of wγ (in blue) and wϵ (in red), defined in Eqs. (4.2) and (4.3), as a
+function of ℓmax ∈ [2, 31], for the SEVEM PR3 (dashed lines) and PR4 dataset (solid lines).
+
+
+
+
+               1.4       SEVEM FULL-SKY           SEVEM EXTENDED MASK
+                         SEVEM COMMON MASK        Commander
+               1.2
+
+               1.0
+
+     TF EE     0.8
+
+               0.6
+
+               0.4
+
+                            5         10          15              20         25   30
+
+
+Figure 15. E-mode transfer function provided for Commander (blue solid line), and the (TF(A) ) we
+compute from the SEVEM detector A maps for three different cases of sky-coverage: full-sky (green
+dashed line), Planck common polarisation mask (orange solid line) and extended mask used in this
+work(violet dashed line), as shown in Fig. 1. The E-mode transfer functions shown with solid lines
+are those used in this analysis.
+
+
+
+
+                                                  – 31 –
+              35                              EVjoint SEVEM PR3           EVjoint SEVEM PR4
+              30
+                                              P SEVEM PR3                 P SEVEM PR4
+              25
+
+
+     LTP(%)
+              20
+
+              15
+
+              10
+
+              5
+
+              0
+                   5       10            15               20         25              30
+                                                    max
+                                                      (joint)
+Figure 16. LTP(%) of the P̃ (solid lines) and the EV         (dashed lines) estimators when applied to
+the PR3 (blue lines) and PR4 (orange lines) SEVEM datasets as a function of ℓmax ∈ [2, 31]. The LTP
+is obtained as the percentage of simulations with a value smaller than that of the data. However,
+note that, in practice, due to the limited number of simulations, the maximum sensitivity that we
+can reach for the LTP is 0.33% (PR3 dataset) and 0.17% (PR4, SEVEM pipeline). Values below those
+limits in the plot indicate that none of the simulations has a lower value than the data.
+
+
+
+
+                                                 – 32 –
+

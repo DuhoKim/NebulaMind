@@ -1,0 +1,748 @@
+                                              Mon. Not. R. Astron. Soc. 000, 000–000 (0000)      Printed 6 November 2018     (MN LATEX style file v1.4)
+
+
+
+
+                                              Large-Angle Correlations in the Cosmic Microwave
+                                              Background
+
+
+
+
+arXiv:0911.5399v1 [astro-ph.CO] 28 Nov 2009
+                                              George Efstathiou, Yin-Zhe Ma and Duncan Hanson
+                                              Kavli Institute for Cosmology Cambridge and Institute of Astronomy, Madingley Road, Cambridge, CB3 OHA.
+
+
+
+                                              6 November 2018
+
+
+
+                                                                                  ABSTRACT
+                                                                                  It has been argued recently by Copi et al. (2009) that the lack of large angular corre-
+                                                                                  lations of the CMB temperature field provides strong evidence against the standard,
+                                                                                  statistically isotropic, inflationary ΛCDM cosmology. We compare various estimators
+                                                                                  of the temperature correlation function showing how they depend on assumptions
+                                                                                  of statistical isotropy and how they perform on the WMAP 5 year ILC maps with
+                                                                                  and without a sky cut. We show that the low multipole harmonics that determine the
+                                                                                  large-scale features of the temperature correlation function can be reconstructed accu-
+                                                                                  rately, independent of any assumptions concerning statistical isotropy, from the data
+                                                                                  that lie outside the sky cuts. The temperature correlation functions computed from
+                                                                                  our reconstructions are in good agreement with those computed from the whole sky.
+                                                                                  A Bayesian analysis of the large-scale correlations is presented which shows that the
+                                                                                  data cannot exclude the standard ΛCDM model. We discuss the differences between
+                                                                                  our conclusions and those of Copi et al..
+                                                                                  Key words: Methods: data analysis, statistical; Cosmology: cosmic microwave back-
+                                                                                  ground, large-scale structure of Universe
+
+
+
+                                              1   INTRODUCTION
+
+                                              Following the discovery by the COBE team of temperature anisotropies in the cosmic microwave background (CMB) radiation
+                                              (Smoot et al. 1992; Wright et al. 1992), Hinshaw et al. (1996) noticed that the temperature angular correlation function,
+                                              C(θ), measured from the COBE maps was close to zero on large angular scales. This result attracted little attention until the
+                                              publication of the first year results from WMAP (Bennett et al. 2003; Spergel et al. 2003, hereafter S03). The results from
+                                              WMAP confirmed the lack of large-scale angular correlations in the temperature maps and led S03 to introduce the statistic
+                                                       Z 1/2
+                                              S1/2 =           [C(θ)]2 d cos θ.                                                                                            (1)
+                                                        −1
+
+                                              The form of the statistic and the upper cut-off, µ = cos θ = 1/2, were chosen a posteriori by S03 ‘in response’ to the observed
+                                              shape of the temperature correlation function computed using a particular estimator and sky cut (as described in further
+                                              detail in Section 2). To assess the statistical significance of the lack of large-scale power, S03 computed a ‘p-value’, i.e. the
+                                                                                                                                  model     data
+                                              fraction of models in their Monte Carlo Markov chains which had a value of S1/2           < S1/2   , using the same estimator and
+                                              sky cut that they applied to the data. For their standard six-parameter inflationary ΛCDM cosmology, they found a p-value
+                                              of 0.15%, suggesting a significant discrepancy between the model and the data.
+                                                    This problem was revisited by Efstathiou (2004a, herafter E04). The main focus of the E04 paper was to improve on
+                                              the pseudo-harmonic power spectrum analysis used by the WMAP team (Hinshaw et al. 2003) by using quadratic maximum
+                                              likelihood (QML) estimates of the power spectrum, with particular emphasis on the statistical significance of the low amplitude
+                                              of the quadrupole anisotropy. As an aside, E04 computed angular correlation functions from the QML power spectrum
+                                              estimates and showed that they were insensitive to the presence of a sky cut. Similarly the S1/2 statistic computed from these
+                                              correlation functions was found to be insensitive to the size of the sky cut giving p-values of a few percent. E04 concluded
+                                              that the correlation function and S1/2 statistic offered no compelling evidence against the concordance inflationary ΛCDM
+                                              model. E04 did not explore in any detail the low p-value for the S1/2 statistic reported by S03 (2003), but commented that it
+2          Efstathiou, Ma and Hanson
+was probably simply an ‘unfortunate’ consequence of the particular choice of statistic, estimator and sky cut chosen by these
+authors (in other words, a result of various a posteriori choices).
+     The CMB temperature correlation function and S statistic have been reanalysed in two recent papers (Copi et al. 2007;
+Copi et al. 2009, heafter CHSS09). The arguments in the two papers are quite similar, and so for the most part we will refer
+to the later paper (since, as in this work, it analyses the 5 year WMAP temperature data, Hinshaw et al. 2009). The Copi
+et al. papers are largely motivated by evidence for a violation of statistical isotropy in the WMAP temperature maps, in
+particular evidence of alignments amongst the low order CMB multipoles (e.g. Tegmark, de Oliveira-Costa and Hamilton
+2003; Schwarz et al. 2004; Land and Magueijo 2005a, b), although the statistical significance of these alignments has been
+questioned (de Oliveira-Costa et al. 2004; Francis & Peacock 2009). Copi et al. make the valid point that statistical isotropy is
+often implicitly assumed in defining what is meant by the term ‘correlation function’ and in defining estimators. They argue
+further that different estimators contain different information. They then focus on pixel-based estimates of the correlation
+function applied to the WMAP data, including a sky cut, and find p-values for the S1/2 statistic of ∼ 0.025–0.04%, depending
+on the choice of CMB map and sky cut. If no sky cut is applied, they find p-values of ∼ 5% (similar to the p-values reported in
+E04). CHSS09 comment that the full-sky results are apparently inconsistent with the cut-sky analysis suggesting a violation
+of statistical isotropy.
+     Any analysis which claims to strongly rule out the simple inflationary ΛCDM model deserves careful scrutiny, since a
+confirmed discordance would have profound consequences for our understanding of the early Universe. The purpose of this
+paper is to investigate carefully the analysis presented in CHSS09. In Section 2 we discuss estimators of the correlation function
+and relate the pixel-based estimator used by CHSS09 to the pseudo-power spectrum computed on a cut sky. In Section 3, we
+explicitly reconstruct the individual low order multipole coefficients aℓm from cut-sky maps using a technique first applied
+by de Oliveira-Costa and Tegmark (2006). This allows us to test the sensitivity of the large-angle correlation function to
+the presence of a sky cut, independent of any assumptions concerning statistical isotropy or Gaussianity. The results of this
+analysis are compared with the QML estimates of the correlation function used in E04. Section 4 describes a Bayesian analysis
+of the S1/2 statistic and contrasts it with the frequentist analysis applied by S03 and CHSS09. Our conclusions are summarized
+in Section 5.
+
+
+
+2     ESTIMATORS OF THE CORRELATION FUNCTION
+If we assume statistical isotropy, the ensemble average of the temperature angular correlation function (ACF) measured over
+the whole sky hC(θ)i is related to the ensemble average of the angular power spectrum hCℓ i by the well known relation
+                 1 X
+hC(θ)i =            (2ℓ + 1)hCℓ iPℓ (cos θ).                                                                                         (2)
+                4π
+                      ℓ
+
+However, we have only one realization of the sky and we may further choose to impose a sky cut to reduce possible contami-
+nation from regions of high Galactic emission. If we relax the assumptions of statistical isotropy and complete sky coverage,
+there is no unique definition or estimator of the ACF. One can write down a number of estimators that, given certain as-
+sumptions concerning the underlying statistics of the fluctuations, may average to the ensemble mean when applied to data
+on an incomplete sky.
+    CHSS09 use a direct pixel based correlation function⋆ on the cut sky
+
+C pix (θ) = hxi xj i,                                                                                                                (3)
+
+where xi denotes the temperature value in pixel i and the angular brackets denote an average over all pixel pairs outside the
+sky cut with an angular separation that lies within a small interval of θ.
+     If the underlying temperature field is statistically isotropic, equation (3) provides an unbiased estimate of the correlation
+function, i.e. the average over a large number of independent realizations is unbiased, irrespective of the sky cut. However,
+if the fluctuations are statistically isotropic and Gaussian, (3) is not an optimal estimator of hC(θ)i. To see this, expand the
+temperature field in spherical harmonics
+          X
+xi =            aℓm Yℓm (θ i ),        h|aℓm |2 i = hCℓ i.                                                                           (4)
+           ℓm
+
+Then, from the rotation properties of the spherical harmonics, it is straightfoward to prove
+                                 (2ℓ + 1)C̃ℓP Pℓ (cos θij )
+                              P
+    pix
+C         (θij ) = hxi xj i = Pℓ                            ,                                                                        (5)
+                                  ℓ
+                                      (2ℓ + 1)W̃ℓ Pℓ (cos θij )
+
+⋆ More generally, one can define a bi-polar correlation function C(θ , θ ), which can be used as a test of statistical isotropy (see e.g.
+                                                                      i   j
+Basak, Hajian and Souradeep (2006).
+                                                                                                                  Correlations of the CMB            3
+
+
+
+
+Figure 1. The figure to the left shows the correlation functions computed using the pixel estimator (3) applied to the 5 year WMAP
+ILC map (degraded as described in the text) over the full sky and with the WMAP KQ85 and KQ75 masks imposed. The figure to the
+right shows the correlation functions computed from the pseudo-power spectra (5).
+
+
+where C̃ℓP is the pseudo-power spectrum (PCL) estimate on the cut sky:
+             1    X                                 X
+C̃ℓP =              |ãℓm |2 ,             ãℓm =                 ∗
+                                                          xi wi Yℓm (θ i )Ωi ,                                                                      (6)
+         (2ℓ + 1)
+                          m                          i
+
+where wi is a window function that is zero or unity depending on whether a pixel (of area Ωi ) lies inside or outside the sky
+cut. The function W̃ℓ in (5) is the pseudo-power spectrum of the window function wi :
+             1    X                                 X
+W̃ℓ =               |w̃ℓm |2 ,             w̃ℓm =                 ∗
+                                                          wi Ωi Yℓm (θ i ).                                                                         (7)
+         (2ℓ + 1)
+                       m                              i
+
+The coefficients ãℓm are related to the coefficients aℓm on the uncut sky by the coupling matrix K,
+         X
+ãℓm =           aℓ′ m′ Kℓmℓ′ m′ ,                                                                                                                  (8)
+         ℓ′ m′
+
+where
+                    X
+Kℓ1 m1 ℓ2 m2 =             wi Ωi Yℓ∗1 m1 (θ i )Yℓ2 m2 (θ i ).                                                                                       (9)
+                      i
+
+The relation (5) is an identity and does not depend on the assumption of statistical isotropy.
+    Under the assumption of statistical isotropy and Gaussianity, it is straightfoward to calculate the covariance matrix of
+the estimator (3)
+                                                                                                      !                                       !2
+                                X                                                                             X
+h∆C̃(θi )∆C̃(θj )i =                    (2ℓ1 + 1)(2ℓ2 + 1)h ˜
+                                                           ∆CℓP1 ˜
+                                                                ∆CℓP2 iPℓ1 (cos θij )Pℓ2 (cos θij )       /       (2ℓ + 1)W̃ℓ Pℓ (cos θij )        (10)
+                                ℓ1 ℓ2                                                                         ℓ
+
+where
+                              2        XX X
+h∆C̃ℓP ∆C̃ℓP′ i =                           Cℓ1 Cℓ2 Kℓmℓ1 m1 Kℓ∗′ m′ ℓ1 m1 Kℓmℓ
+                                                                            ∗
+                                                                                2 m2
+                                                                                     Kℓ′ m′ ℓ2 m2                                                  (11)
+                      (2ℓ + 1)(2ℓ + 1)
+                                 ′
+                                        ′       mm ℓ1 m1 ℓ2 m2
+
+     Figure 1(a) shows the direct pixel based estimator (3) applied to the 5 year WMAP ILC map after smoothing with a
+Gaussian filter of 10◦ FWHM and repixelising at a Healpix (Gorski et al., 2005) resolution NSIDE=16. The results of Figure
+1 are consistent with those of CHSS09. With the WMAP KQ85 and KQ75 masks† applied (retaining about 82% and 71% of
+the sky respectively, Gold et al. 2009), there is little power over the angular range 60◦ -160◦ . However, there is some non-zero
+correlation if the pixel estimator is evaluated over the full sky. Figure 1(b) shows the correlation functions determined from
+
+
+† We used degraded resolution (NSIDE=16) versions of these masks. The degraded resolution KQ75 mask is plotted in Figure 4.
+4     Efstathiou, Ma and Hanson
+
+                                                             0   20    40   60    80   100 120 140 160 180
+                                                          180
+                                                                                                             150000
+
+
+                                                          160
+                                                                                                             125000
+
+                                                          140
+                                                                                                             100000
+
+                                                          120
+
+
+
+
+                                            2 (degrees)
+                                                                                                             75000
+                                                          100
+
+                                                                                                             50000
+                                                          80
+
+                                                                                                            25000
+                                                          60
+
+
+                                                                                                             0
+                                                          40
+
+
+                                                          20                                                 25000
+
+                                                            0                                                50000
+                                                                                 1 (degrees)
+
+
+
+
+Figure 2. Covariance matrix for the pixel correlation estimator (3) computed for full sky maps. The scale on the right is in units of
+(µK)4 .
+
+
+
+the pseudo-spectra (5). This simply confirms the equivalence of the two estimators (3) and (5) (apart from minor differences
+arising from the finite angular bin widths). The covariance matrix for these estimators for the full sky is shown in Figure 2,
+using the Cℓ for the six parameter ΛCDM model that provides the best fit to the WMAP data (Komatsu et al. 2009). The
+large angle ACF for a nearly scale invariant temperature spectrum is dominated by a small number of modes leading to large
+correlations between different angular scales. The main effect of a KQ75-type sky cut on the covariance matrix is to increase
+its overall amplitude. The angular structure of the covariance matrix is insensitive to the precise size and shape of the sky
+cut.
+     The results plotted in Figure 1 are very similar to those presented by S03 and E04 using a slightly different estimator
+             1 X
+C P (θ) =        (2ℓ + 1)ĈℓP Pℓ (cos θ),                 ĈℓP = Mℓℓ
+                                                                  −1 P
+                                                                     ′ C̃ℓ′ ,                                                   (12)
+            4π
+                ℓ
+
+where the matrix M is
+           1    X
+Mℓℓ′ =              |Kℓmℓ′ m′ |2 .                                                                                              (13)
+       (2ℓ + 1)   ′ mm
+
+If we assume statistical isotropy, then both of the estimators (3) and (12) are unbiased estimators of the ensemble mean ACF
+and the power spectrum estimate ĈℓP is an unbiased estimate of the true power spectrum hCℓ i. (The matrix M−1 ‘deconvolves’
+the PCL estimates C̃ℓP correcting the bias introduced by a sky cut, Hivon et al. 2002).
+     One can see from (5) that the estimators (3) and (12) are identical for the complete sky, since then
+
+wℓm = (2π)1/2 δℓ0 δm0 ,    Mℓℓ′ = δℓℓ′ .                                                                                        (14)
+
+The estimators (3) and (12) will, however, differ if a sky cut is applied to the data. Nevertheless, since both estimators involve
+sums over pseudo-spectral coefficients, and since they are formally identical for the full sky, one would expect that they would
+return similar estimates when applied to data incorporating moderate sky cuts such as the KQ85 and KQ75 masks.
+     This is, indeed, what we find. Figure 3 shows the estimator (12) applied to the WMAP 5 year ILC map. The results are
+almost identical to those shown in Figure 1. The pixel estimator of the ACF (3) is therefore almost identical to the estimator
+of (12) and so, as expected, it contains little new information (regardless of any assumptions concerning statistical isotropy).
+     The main differences between the various ACF estimates plotted in Figures 1 and 3 come from application of the sky
+                                                                                   >
+cuts. With the sky cuts applied, the ACF’s are close to zero on angular scales ∼      60◦ . This lack of power leads to particulary
+                                                            4
+low values for the S1/2 statistic of about 1000-2000 (µK) , as listed in Table 1. If no sky cut is applied, the value of the S1/2
+statistic is substantially higher at around 8000 (µK)4 . It is worth noting that the values listed in Table 1 are very similar to
+the values obtained from the WMAP first year data (cf Table 5 in E04). The low multipole anisotropies that contribute to
+the ACF at large angular scales have remained stable as the data have improved. The low multipoles are signal dominated
+and stable to improved gain corrections, foreground separation and small perturbations to the Galactic mask.
+     As discussed in the Introduction, CHSS09 argue that the pixel estimates of the ACF computed from the masked regions of
+the sky lead to p-values with respect to the standard ΛCDM cosmology of ∼ 0.1% or less, suggesting a significant discrepancy
+                                                                                               Correlations of the CMB          5
+
+
+
+
+                          Figure 3. As in Figure 1 but using the pseudo-harmonic estimator of equation (12).
+
+
+                                Table 1: Values of the S1/2 statistic for WMAP 5 year ILC maps1
+
+
+                                                             S1/2 statistic in (µK)4
+            sky cut    Pixel ACF   Pixel ACF    PCL ACF                  Harmonic Reconstruction               QML ACF
+                        (equ 3)     (equ 5)      (equ 12)    ℓmax = 5    ℓmax = 10   ℓmax = 15   ℓmax = 20      (equ 15)
+
+            full sky     7373         8532         8532        8170         7777        7649         7606        8532
+             KQ85        1401         1781         1901        8250         6953        7612         6383        7234
+             KQ75        647          963          1010        7913         6914        8233         5139        5764
+
+                 1 For maps degraded to Healpix resolution of NSIDE= 16 and smoothed with a Gaussian of FWHM 10◦ .
+
+
+
+
+between the model and the data. However, the p-values computed for the unmasked sky are much less significant (∼ 5%).
+Various interpretations of this result have been proposed:
+(i) The interpretation put forward by CHSS09 is that either correlations have been introduced in reconstructing the full sky
+maps from the observations, or that there are highly significant departures from statistical isotropy that are correlated with
+the Galactic sky cut leading to an ACF that is very close to zero for regions outside the sky cut.
+(ii) The interpretation put forward by E04 is that the low p-values are a consequence of using a sub-optimal estimator of the
+ACF on a cut sky, combined with a posteriori choices of the form of the S1/2 statistic. On this interpretation, the low p-values
+found by S03, Copi et al. (2007) and CHSS09, are of no physical significance.
+     In support of point (ii), E04 used a quadratic maximum likelihood (QML) estimator of the power spectrum, ĈℓQ , and
+computed the ACF
+             1 X
+C Q (θ) =        (2ℓ + 1)ĈℓQ Pℓ (cos θ).                                                                                    (15)
+            4π
+                 ℓ
+
+For Gaussian temperature maps, the QML estimates ĈℓQ have a significantly smaller variance than the PCL estimates ĈℓP if
+a sky cut is applied to the data‡ . Hence the estimator C Q (θ) will generally be closer to the truth (i.e. closer to the ensemble
+mean hC(θ)i) than the estimator (12). Applied to the first year WMAP ILC map, E04 found that the ACF estimates derived
+from (15) are insensitive to a sky cut and lead to p-values for the S-statistic of ∼ 5%, i.e. no strong evidence against the
+concordance ΛCDM model.
+     The reason that the QML estimator has significantly smaller ‘estimator induced’ variance than the PCL estimator is
+easy to understand (see Efstathiou 2004b). For noise-free band limited data, it is possible to reconstruct the low multipole
+coefficients aℓm exactly from data over an incomplete sky. This is, in effect, what the QML estimator does, though it implicitly
+assumes statistical isotropy in weighting the aℓm coefficients to form the power-spectrum. For low multipoles, the assumption
+
+
+‡ For noise-free data over the full sky, the QML and PCL estimators are identical.
+6     Efstathiou, Ma and Hanson
+of statistical isotropy is unimportant, and for the noise-free data and sky cuts relevant to WMAP, the low order multipole
+coefficients and the power spectrum Cℓ can be reconstructed almost exactly from data on the incomplete sky. In this paper,
+we will extend the analysis of E04 by explicitly reconstructing the low order coefficients aℓm over the entire sky. This analysis
+will confirm that the ACF at large angular scales is insensitive to a sky cut and leads to p-values of marginal significance.
+     The ‘estimator induced’ variance of the pixel estimator of the ACF (3) is also easy to understand intuitively. (This problem
+has been discussed extensively in the literature in the context of angular clustering analysis of galaxy surveys: Groth and
+Peebles 1986; Landy and Szalay 1993; Hamilton 1993; Maddox, Efstathiou and Sutherland 1996). The ACF is a pair-weighted
+statistic. Consider the analysis of data on an incomplete sky. An overdensity, or underdensity, close to the boundary of the
+sky cut will almost certainly continue as an overdensity, or underdensity, across the cut. If the pair count is merely corrected
+by the missing area that lies within the cut region of sky (as in the estimator 3) overdense and underdense regions close to
+the boundary will be underweighted. This causes no bias to the estimator, but increases the sample variance. The analysis
+presented in the next Section shows that it is possible reduce this sampling variance by reconstructing the low multipoles
+across a sky cut in a way that is numerically stable and free of assumptions concerning statistical isotropy.
+
+
+3    RECONSTRUCTING LOW-ORDER MULTIPOLES ON A CUT SKY
+The aim of this Section is to reconstruct the large-scale features of the temperature anisotropies over the whole sky using
+only the incomplete data that lies outside a chosen sky cut. This can be done in a number of ways, for example, by Weiner or
+‘power equalization’ filtering (Bielwicz, Górski and Banday, 2004), Gibbs sampling (Wandelt, Larson and Lakshminarayanan,
+2004; Eriksen et al. 2004) or by ‘harmonic inpainting’ (Inoue, Cabella and Komatsu, 2008). Here we apply a direct inversion
+method, which is insensitive to assumptions concerning the statistical properties of the temperature field.
+     Let the vector x denote the temperature field on the sky and let the vector a denote the spherical harmonic coefficients
+aℓm . The vectors x and a are related by the spherical transform Y,
+x = Ya + n,                                                                                                                    (16)
+where n represents ‘noise’ in the data.
+    Now consider the reconstruction ae
+ae = (Y T AY)−1 Y T Ax,                                                                                                        (17)
+for any arbitrary square matrix A. The reconstruction is related to the true coefficients a by
+ae = a + (Y T AY)−1 Y T An.                                                                                                    (18)
+If the data is noise free, (17) recovers the true vector a exactly. If, further, we choose A to be the identity matrix, then
+ae = K−1 ã,                                                                                                                   (19)
+where K is the coupling matrix (9).
+     The reconstruction of (19) is closely related to the problem of defining an orthonormal basis set of functions on the cut
+sky, which has been studied extensively in the literature (see e.g. Górski 1994; Górski et al. 1994; Mortlock, Challinor and
+Hobson, 2002). If the sky cut is relatively small, and the data are noise-free and band-limited, the coupling matrix K will be
+non-singular and can be inverted to yield the full-sky harmonics a exactly. If the data are noise-free but not band-limited, the
+matrix K will become numerically singular on the incomplete sky as ℓmax → ∞. (As a rule-of-thumb the matrix will become
+singular if ℓmax exceeds the inverse of the width of the sky cut in radians.) This simply tells us that there are ‘ambiguous’
+harmonic coefficients that are unconstrained by the data outside the sky cut. For noise-free data that are not strictly band-
+limited, the solution (17) trunctated to a finite value of ℓmax will amplify some of the high frequency signal which will appear
+as ‘noise’ within the sky cut in the reconstruction xe = Yae . The amplitude of this ‘noise’ can be reduced by an appropriate
+choice of the matrix A. If we assume that the signal and noise are Gaussian, the optimal solution of (16) is the familiar
+‘map-making’ solution
+ae   =   (Y T C−1 Y)−1 Y T C−1 x,                                                                                          (20a)
+               T
+C    =   hxx i = S + N,                                                                                                    (20b)
+(de Oliviera-Costa and Tegmark 2006). If Gaussianity and statistical isotropy holds, the variance of the (20a) is
+hae aeT i = Ca = (Y T C−1 Y)−1 .                                                                                               (21)
+The statement that the estimator (20a) is ‘optimal’ and the expression for the variance (21), do of course depend on the
+assumptions of Gaussianity and statistical isotropy. However, as long as the noise term in (18) is negligible, the reconstructed
+harmonic coefficients will be indentical to the true harmonic coefficients independent of any assumptions concerning statistical
+isotropy.
+                                                                                             Correlations of the CMB               7
+
+
+
+
+Figure 4. The figure to the left in the top row shows the WMAP 5 year ILC temperature map smoothed by a Gaussian of FWHM 10◦
+and repixelized to a Healpix resolution of NSIDE=16. The figure to the right in the top panel shows the degraded resolution WMAP
+KQ75 mask used in this paper. The remaining figures to the left show the reconstructed all-sky maps computed from data outside the
+KQ85 sky cut, using the harmonic coefficients computed from equation (20a) with the coupling matrices trunctated to (from top to
+bottom) ℓmax = 5, 10, 15 and 20. The figures to the right show equivalent plots for the reconstructed all-sky maps computed from data
+outside the KQ75 sky cut.
+8     Efstathiou, Ma and Hanson
+
+
+
+
+            Figure 5. Reconstructions of the correlation function from equation (22) for various choices of ℓmax and sky cut.
+
+
+
+     Figure 4 illustrates the application of this machinery. The upper row shows the smoothed WMAP 5 year ILC map (to
+the left) and the degraded resolution KQ75 mask (to the right). The remaining figures show the reconstructed maps from the
+harmonic coefficients (20a) for the KQ85 mask (figures to the left) and for the KQ75 mask (figures to the right). The figures
+show the reconstructions with ℓmax truncated at 5, 10, 15 and 20. The maps for the two sky cuts at ℓmax = 5 and 10 are
+virtually identical, and by ℓ = 10 the reconstructions look visually similar to the ILC map over the entire sky. For ℓmax = 15
+and 20, the reconstructions for the KQ85 mask are stable and, again, look very similar to the WMAP ILC map over the whole
+sky. For the KQ75 mask, one can see ‘noise’ (i.e. reconstruction errors) beginning to appear inside the sky cut when ℓmax is
+increased to ℓmax = 15 and 20,
+     However, the high harmonics that con tribute to the ‘noise’ in Figure 4 make very little contribution to the correlation
+function at large angular scales. This is illustrated in Figure 5, which shows the dependence of the correlation functions
+               ℓmax
+             1 X                                       1    X e 2
+C e (θ) =        (2ℓ + 1)Cℓe Pℓ (cos θ),   Cℓe =             |aℓm | ,                                                           (22)
+            4π                                     (2ℓ + 1)
+               ℓ=2                                         m
+
+on ℓmax for each of the each of the sky cuts. In the case of zero sky cut, the correlation function stabilises to its final
+shape by ℓmax = 10; higher multipoles make a negligible contribution to the correlation function at large angular scales. The
+reconstructed correlation functions for the KQ85 and KQ75 masks are almost identical to the all-sky correlation function for
+ℓmax = 5, 10 and 15. For the KQ75 mask, one can begin to see the effects of reconstruction noise in C e (θ) for ℓmax = 20, but
+the correlation function for the KQ85 mask remains stable.
+     This analysis shows that it is possible to reconstruct the low order harmonic coefficients that contribute to the large
+angle correlation functions accurately from data on the cut sky. The sky cut is basically irrelevant and so the all-sky form
+                                                                                          Correlations of the CMB              9
+of the correlation function can be reconstructed from the cut sky irrespective of any assumptions concerning Gaussianity or
+statistical isotropy. Values for the S1/2 statistic for each of the cases shown in Figure 5 are listed in Table 1.
+     Notice that if we define weighted harmonic coefficients,
+
+β = Ca −1 ae = Yℓm
+                 ∗        −1
+                   (θθi )Cij xj ,                                                                                           (23)
+
+then the power spectrum computed from these weighted coefficients is
+       1X                  ℓ
+yℓ =      |βℓm |2 = xp xq Epq ,                                                                                             (24)
+       2
+         m
+
+where
+        1 −1 ∂C −1
+Eℓ =      C      C .                                                                                                        (25)
+        2    ∂Cℓ
+In other words, the power spectrum of the weighted coefficients is identically equivalent to the QML power spectrum estimator
+(Tegmark 1997, de Oliviera-Costa and Tegmark 2006). If statistical isotropy holds, and the data is noise-free, the quantity
+
+ĈQ = F−1 y,                                                                                                                (26)
+
+provides an unbiased estimate of the power spectrum, where F is the Fisher matrix,
+         1        ∂C −1 ∂C
+             h                      i
+Fℓℓ′ =     Tr C−1     C      .                                                                                              (27)
+         2        ∂Cℓ   ∂Cℓ′
+Notice that for the complete sky, and for noise-free data
+
+Ca = Cℓ δℓℓ′ δmm′ ,                                                                                                         (28)
+
+in the limit ℓmax → ∞, i.e. the variance on the aℓm is just the cosmic variance. The Fisher matrix is
+           (2ℓ + 1)
+  Fℓℓ′ =            δℓℓ′ ,                                                                                                  (29)
+             2Cℓ2
+
+and so the QML estimates ĈℓQ are identical to the PCL estimates. For relatively small sky cuts such as the KQ85 and KQ75
+masks, the Fisher matrix at low multipoles will be almost diagonal (see Efstathiou 2004b) and the recovered power spectrum
+from the cut sky will be almost identical to the true power spectrum computed from the whole sky. The QML estimator
+effectively performs the reconstruction ae of equation (20a), but uses the assumption of statistical isotropy to downweight
+‘ambiguous’ modes that are poorly constrained by the sky cut.
+     For small sky cuts, we would therefore expect the QML correlation function estimate (15) to be almost identical at
+large-angular scales to the correlation functions computed from the reconstructed coefficients ae . (They are, of course, math-
+ematically identical for zero sky cut.) C Q (θ) is expected to behave more stably than C e (θ) as the sky cut is increased, since
+the QML correlation function downweights ambiguous modes. This is exactly what we see when we apply the QML estimate
+to the WMAP ILC 5 year ILC maps (see Figure 6). The angular correlation function is almost independent of the sky cut,
+confirming the results of E04. Values of the S1/2 statistic for the QML ACF estimates are listed in the final column of Table
+1.
+     The QML power spectrum estimates are plotted in Figure 7. The power spectrum coefficients ĈℓQ are extremely stable
+to the sky cut, varying by only a few tens of (µK)2 for ℓ ≤ 10. The figure compares these estimates to the power spectrum
+estimates for the reconstructed all-sky maps using equation (20a). We plot the results for ℓmax = 10, since this value is large
+enough to determine the shape of the ACF at large angular scales, but small enough to limit the noise in the reconstructed
+maps at high multipoles. The power spectra of the reconstructed maps are very close to the QML estimates at ℓ ≤ 8, though
+one can begin to see the effects of reconstruction noise in the KQ75 case at ℓ > 8. (However, as Figure 5b shows, this
+reconstruction noise has very little effect on the shape of the ACF at large angular scales.)
+     The results of this section show that the low-order multipole coefficients that determine the behaviour of the correlation
+function at large angular scales can be reconstructed to high accuracy from data on the incomplete sky, independent of any
+assumptions concerning statistical isotropy. The usual motivation for applying a sky cut is to remove regions of the sky that
+may be contaminated by residual Galactic emission. However, for the KQ85 and KQ75 sky cuts, the missing area of sky
+leads to little loss of information at low multipoles. The low multipoles can therefore be reconstructed from the data on
+the incomplete sky. The imposition of the sky cuts does not remove foreground contamination at these low multipoles: any
+residual Galactic contribution to the low multipoles in the ILC map is, like the CMB signal, faithfully reproduced by the
+reconstructions shown in Figure 4. What a Galactic cut can do is to mask out localised Galactic emission (‘ambigous’ modes)
+that could, in principal, couple to the low multipoles in a way that depends on the estimator (e.g. via the coupling matrix
+K in the simple inversion of equation (19)). The similarities between the reconstructions of Figure 4 and the full-sky ILC
+map (and the correlation functions and power spectra plotted in Figures 5-7) show that the ILC map has removed Galactic
+10     Efstathiou, Ma and Hanson
+
+
+
+
+                               Figure 6. As Figure 1 but using the QML estimator of equation (15).
+
+
+
+
+Figure 7. The temperature power spectrum at low multipoles computed from the low resolution WMAP 5 year ILC map. The points
+(corrected for the 10◦ FWHM smoothing and slightly displaced in ℓ for clarity) show QML power spectrum estimates for three sky cuts:
+no mask; KQ85 mask; KQ75 mask. Error bars show the diagonal components of the inverse of the Fisher matrix (27). The solid red line
+shows the power spectrum computed from the all-sky ILC map (which is identical to the QML all-sky estimates). The solid green and
+blue lines show the power spectra computed for the ℓmax = 10 reconstructions of Figure 4.
+
+
+
+
+emission successfully at low Galactic latitudes, since there is no evidence of high amplitude ‘ambiguous’ modes in the ILC
+map within the region of the sky cut.
+     If suitable estimators are applied to noise-free data, a sky cut of the size of the KQ85 or KQ75 masks has little impact on
+the reconstruction of the low order multipoles or the all-sky ACF. The imposition of a sky cut does, however, lead to a loss
+of information if a poor estimator is used to estimate the ACF. This is what happens when the pixel estimator (3) is used to
+estimate the ACF on the cut sky (Copi et al. 2007; Hajian 2007; CHSS09). The analysis presented in this Section provides
+compelling evidence that the true value of the S1/2 statistic for our realization of the sky is in the region of 6000-8000(µK)4 ,
+independent of the sky cut.
+                                                                                                Correlations of the CMB                     11
+4     ANALYSIS OF THE S1/2 STATISTIC
+
+In this Section we analyse the S1/2 statistic, first from a Bayesian point of view, and then from a frequentist point of view.
+We then discuss the interpretation of the low frequentist p-values found by CHSS09.
+
+
+4.1    Approximate Bayesian analysis
+
+We begin by performing an approximate Bayesian analysis to compute the posterior distribution of the S1/2 given the data
+on the assumption that the fluctuations are Gaussian and statistically isotropic. If the data were noise-free and covered the
+entire sky then, under the assumptions of statistical isotropy and Gaussianity, the data power spectrum Cℓd provides a loss-free
+description of the data. Assuming uniform priors on each of the CℓT , the posterior distribution of the theory power spectrum
+coefficients CℓT is given by the inverse Gamma distribution
+                             2ℓ−1                              
+                       Cℓd       2
+                                              (2ℓ + 1)       Cℓd         1
+dP (CℓT |Cℓd ) ∝                      exp −                                 .                                                           (30)
+                       CℓT                        2          CℓT        CℓT
+
+Each of the CℓT is statistically independent and the mean value is
+               2ℓ + 1
+                    
+hCℓT i =              Cℓd .                                                                                                             (31)
+               2ℓ − 3
+The distribution (30) will therefore favour theory values that are larger than the observed values Cℓd .
+      The results of the previous Section (and Figure 7 in particular) show that the low multipoles are well determined and
+insensitive to the application of a sky cut. We can therefore use the measurements Cℓd computed over the whole sky to
+represent the data§ . The multipole expansion is truncated at ℓmax = 20 (although as discussed in the previous Section,
+multipoles greater than ℓ ≈ 10 make very little contribution to the ACF at large angular scales) and statistically independent
+CℓT values are generated from the inverse Gamma distribution (30). These values are then used to generate Gaussian aTℓm
+from which we synthesize real-space maps xi at a Healpix resolution of NSIDE=16 smoothed with a Gaussian of FWHM
+10◦ . We then compute S1/2 from the pixel correlation function (3). This methodology provides a test of statistically isotropic,
+Gaussian models, with no additional constraints imposed on the theory CℓT apart from uniform priors.
+                                      T
+      The posterior distributions of S1/2 is shown in Figure 8a for the analysis of all-sky maps (red histogram) and for maps
+with the KQ75 mask applied (blue histogram). The distribution for the trials with the sky cut applied is slightly broader
+than the distribution for the all-sky trials, as expected since the pixel ACF estimator is sub-optimal on a cut sky. The peaks
+                                 T                                          T
+of the distributions occur at S1/2   ≈ 6000 (µK)4 and so low values of S1/2     are clearly preferred by the data. However, the
+posterior distributions have a very long tail to high values (as expected from the inverse Gamma distribution 30). The best
+fitting six parameter ΛCDM model as determined from the 5 year WMAP analysis (Komatsu et al. 2009) has a value of
+  T
+S1/2  ∼ 49000 (µK)4 . At this value (indicated by the vertical dashed line in Figure 8a), the posterior distribution has fallen to
+                                              T
+a value of about 0.4. Such high values of S1/2    are evidently not favoured by the data, but they are not strongly disfavoured.
+                      T                   4
+Very low values of S1/2 , of ∼ 1000 (µK) are also not strongly disfavoured.
+      From the Bayesian point of view, the quantity S1/2 is a poor discriminator of theoretical models and so is relatively
+uninformative. The posterior distributions of Figure 8a are extremely broad with a long tail to high values. The data,
+                                                                                                              T
+irrespective of estimator or sky cut, clearly prefer low values of S1/2 but cannot exclude the value of S1/2      ∼ 49000 (µK)4
+expected for the concordance inflationary ΛCDM model.
+
+
+4.2    Frequentist analysis
+We now generate statistically isotropic Gaussian realizations with the CℓT constrained to those of the best fitting ΛCDM
+model. The frequency distributions of S1/2 computed from the pixel estimator are plotted in Figure 8b. The distributions of
+Figures 8a and 8b look fairly similar, but the frequentist interpretation is very different. For the all-sky analysis, the p-value
+of finding S1/2 < 7373 (µK)4 is 8% and hence is not statistically significant. However, if we apply the KQ75 mask, the p-value
+for S1/2 < 647 (µK)4 is only 0.065%. This result appears strongly significant and, at face value, inconsistent with the p-value
+for the all-sky analysis.
+      The low p-value found here and by S03 and CHSS09 come exclusively from analysing cut sky maps with ‘sub-optimal’
+(in the sense of not reproducing the ACF for the whole sky) estimators. The sky cuts, ostensibly imposed to reduce any
+effects of Galactic emission at low Galactic latitudes, lead to a loss of information and to poorer estimates of the ACF for our
+realization of the sky. But as we have demonstrated, the information on the ACF at large angles for our realization of the sky
+is contained in the data outside the sky cuts. The imposition of a sky cut therefore has nothing to do with reducing the effects
+
+
+§ It is in this sense that the analysis presented here is described as an ‘approximate’, i.e. any residual errors on the C d are ignored.
+                                                                                                                          ℓ
+12          Efstathiou, Ma and Hanson
+
+
+
+
+                                          T
+Figure 8. (a) Posterior distributions of S1/2 computed as discussed in the text. The red (solid) histogram shows the distribution of
+ T
+S1/2 from an analysis of the whole sky. The blue (dotted) hisogram shows the distribution computed with the KQ75 sky cut applied.
+                                                          T
+The vertical dashed lines in the figures shows the value S1/2 ∼ 49000 (µK)4 for the best fitting ΛCDM model as determined from the 5
+year WMAP analysis (Komatsu et al. 2009). (b) Frequency distributions of S1/2 for statistically isotropic, Gaussian, realizations of the
+(Komatsu et al. 2009) ΛCDM model. The red (solid) histogram shows the frequency distribution for the pixel ACF estimator applied
+to the whole sky. The blue (dotted) hisogram shows the distribution computed with the pixel ACF estimator with the KQ75 sky cut
+applied.
+
+
+
+
+of Galactic emission on the ACF at large angular scales. If there is any cosmological significance to the low p-values, then one
+must accept that the Galactic cut aligns with the signal, purely by coincidence, in just such a way as to remove the large-scale
+angular correlations for particular choices of estimator of the ACF. This alignment may indicate a violation of statistical
+isotropy, as argued by CHSS09, but if this is true the alignment with the Galactic plane must be purely coincidental.
+     It seems to us that a more plausible interpretation of the low p-values is that they are a consequence of the a posteriori
+selection of the S1/2 statistic by Spergel et al. (2003) for a particular choice of estimator and sky cut. It is difficult to quantify
+the effects of a posteriori choices. However, numerical tests with the more general statistic
+                      Z µ                     2/p
+                2
+Sµp =                        [C(θ)]p d cos θ          ,                                                                            (32)
+            3(1 + µ)    −1
+
+(which reduces to S1/2 for the choices µ = 1/2 and p = 2) suggest that it is possible to alter p-values by an order of magnitude
+or more by selecting the parameters in response to the data. It would be possible to raise the p-values even more by varying
+the size and orientation of a sky cut.
+     Is there any way of testing this hypothesis further ? In the ΛCDM model, the integrated Sachs-Wolfe (ISW) effect (Sachs
+and Wolfe, 1967) makes a significant contribution to the total temperature anisotropy signal at low multipoles. The ISW
+contribution from the time of last scattering (tLS ) and the present day (t0 ) is given by
+                Z t0
+∆T ISW                  dΦ
+       =2                  dt                                                                                                      (33)
+ T                tLS
+                        dt
+
+where Φ is the Newtonian gravitational potential (see e.g. Muhkanov 2005). Recently, Francis and Peacock (2009) have used
+the 2MASS near infrared all-sky survey (Jarrett 2004), together with photometric redshift estimates to compute the ISW
+contribution from local structure at redshifts z < 0.3. If a posteriori choices are responsible for the low p-values, we should
+find large changes to the pixel ACF estimates for the masked sky when the WMAP ILC maps are corrected for the local
+ISW contribution. As shown in Figure 9, this is indeed what we find when we subtract the local ISW contribution computed
+by Francis and Peacock from the 5 year WMAP ILC map. The S1/2 statistic computed from the ACFs shown in Figure
+9 are 10360 (µK)4 (all-sky), 6463 (µK)4 (KQ85 mask) and 5257 (µK)4 (KQ75 mask), all consistent with the concordance
+ΛCDM model at the few percent level. This is consistent with our hypothesis that the CHSS09 low p-values are a fluke,
+unless one is prepared to argue that there is a physical alignment of local structure with the potential fluctuations at the
+last scattering surface that conspires to remove large-angle temperature correlations in the regions outside the Galactic mask
+                                                                                        Correlations of the CMB              13
+
+
+
+
+Figure 9. Pixel based estimates ACF estimates for the WMAP ICL map corrected for the local ISW contribution for redshift z < 0.3
+as described by Francis and Peacock (2009).
+
+
+(which seems implausible). Francis and Peacock (2009) discuss how the local ISW correction affects a number of other low
+multipole statistics, in particular reducing the statistical significance of the alignment between the quadrupole and octopole.
+
+
+5   DISCUSSION AND CONCLUSIONS
+
+The low amplitude of the temperature autocorrelation function at large angular scales has led to some controversy since the
+publication of the first year results from WMAP. This paper has sought to clarify the following points:
+[1] We have compared different estimators of the ACF showing: (a) how they depend on assumptions of statistical isotropy;
+(b) how they are interrelated; (c) how they perform on the WMAP 5 year ILC maps with and without a sky cut.
+[2] The imposition of the KQ85 and KQ75 sky masks leads to little loss of information on the low multipoles that contribute to
+the large-scale angular correlation function. As demonstrated in Section 3, the low multipole harmonics can be reconstructed
+accurately, independent of any assumptions concerning statistical isotropy, from the data that lie outside the sky cuts. The
+ACFs computed from these reconstructions are in good agreement with the ACF computed from the whole sky and in good
+agreement with the maximum likelihood estimator (15). There can be little doubt that the large-scale ACF for our realization
+of the sky is very close to the all-sky results shown in Figures 1, 3 and 6, independent of any assumptions regarding statistical
+isotropy.
+                                                                                                 T
+[3] The Bayesian analysis presented in Section 4 shows that the posterior distribution of the S1/2   is broad and cannot exclude
+            T                 4
+the value S1/2 ∼ 49000 (µK) appropriate for the Komatsu et al. (2009) best fitting inflationary ΛCDM model. The breadth
+                                T
+of the posterior distribution S1/2 distribution shows that it is fairly uninformative statistic and so is not a particularly good
+discriminator of theoretical models.
+[4] Unusually low values of the S1/2 statistic are found only if ‘sub-optimal’ ACF estimators are applied to maps that include
+a Galactic mask. We have argued that the low p-values associated with these low values of S1/2 are most plausibly a result
+of a posteriori choices of statistic. This seems plausible because: (a) S-type statistics are relatively uninformative and hence
+sensitive to a posteriori choices; (b) the all-sky ACF (which is compatible with the concordance ΛCDM model) can be
+recovered from the data outside the mask and so any physical model for the low p-values requires a fortuitous alignment of the
+temperature field with the Galaxy; (b) the analysis of the local ISW corrected maps presented in Section 4 suggests that any
+physical model of the low p-values requires a precise alignment of local structure with the large-scale potential fluctuations
+at the last scattering surface.
+     In summary, the results of this paper suggest that, irrespective of the imposition of Galactic sky cuts or assumptions
+of statistical isotropy, the large-scale correlations of the CMB temperature field provide unconvincing evidence against the
+concordance inflationary ΛCDM cosmology.
+
+Acknowledgments: The authors acknowledge use of the Healpix package and the Legacy Archive for Microwave Background
+Data Analysis (LAMBDA). Support for LAMBDA is provided by the NASA Office of Space Science. We are particular grateful
+14     Efstathiou, Ma and Hanson
+to John Peacock and Caroline Francis for allowing us to use their ISW maps. Yin-Zhe Ma thanks Trinity College Cambridge
+and Cambridge Overseas Trusts for support. Duncan Hanson is grateful for the support of a Gates scholarship.
+
+
+
+REFERENCES
+Basak S., Hajian A., Souradeep T., 2006, PRD, 74, 021301.
+Bennett C.L. et al., 2003, ApJS, 148, 1.
+Bielwicz P., Górski K.M., Banday A.J., 2004, MNRAS, 355, 1283.
+Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2009, MNRAS, in press. (CHSS09)
+Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2007, PRD, 75, 3507.
+de Oliveira-Costa A., Tegmark M., Zaldarriaga M., Hamilton A., 2004, PRD, 69, 063516.
+de Oliveira-Costa A., Tegmark M., 2006, PRD, 74, 023005.
+Efstathiou G., 2004a, MNRAS, 348, 885. (E04)
+Efstathiou G., 2004b, MNRAS, 349, 603.
+Eriksen H.K., O’Dwyer I.J., Jewell J.B., Wandelt B.D., Larson D.L., Górski K.M., Levin S., Banday A.J., Lilje P.B., 2004, ApJS, 155,
+    227.
+Francis C.L., Peacock, J.A., arXIv:astro-ph/0909.2495.
+Gold B. et al., 2009, ApJS, 180, 265.
+Górski K, 1994, ApJ, 430, L85.
+Górski K, Hinshaw G., Banday A.J., Bennett C.L., Wright E.L., Kogut A., Smoot G.F., Lubin P., 1994, ApJ, 430, L89.
+Gorski K.M., Hivon E., Banday A.J., Wandelt B.D., Hansen F.K., Reinecke M., Bartlemann M., 2005, ApJ, 622, 759.
+Groth E.J., Peebles P.J.E., 1986, ApJ, 310, 499.
+Hajian A., 2007, arXIv:astro-ph/0702723.
+Hamilton A., 1993, ApJ, 417, 19.
+Hinshaw G., Banday A.J., Bennett C.L., Górski K.M., Kogut A., Smoot G.F., Wright E.L., 1996, ApJ, 464, L25.
+Hinshaw G. et al., 2003, ApJS, 148, 135.
+Hinshaw G. et al., 2009, ApJS, 180, 225.
+Hivon E., Górski K.M., Netterfield C.B., Crill B.P., Prunet S., Hansen F., 2002, ApJ, 567, 2.
+Inoue K.T., Cabella P., Komatsu E., 2008, PRD, 77, 123539.
+Jarrett T., 2004, Publications of the Astronomical Society of Australia, 21, 396.
+Komatsu E. et al., 2009, ApJS, 180, 330.
+Land K., Magueijo J., 2005a, PRL, 95, 1301.
+Land K., Magueijo J., 2005b, MNRAS, 362, 838.
+Mortlock D.J., Challinor A.D., Hobson M.P., 2002, MNRAS, 330, 405.
+Landy S.D., Szalay A., 1993, ApJ, 412, 64L.
+Maddox S.J., Efstathiou G., Sutherland W.J., 1996, MNRAS, 283, 1227.
+Mortlock D.J., Challinor A.D., Hobson M.P., 2002, MNRAS, 330, 405.
+Mukhanov V., 2005, Physical Foundations of Cosmology, Cambridge University Press..
+Sachs R.K., Wolfe A.M., 1967, ApJ, 147, 73.
+Smoot G.F. et al., 1992, ApJ, 396, L1.
+Spergel D.N. et al., 2003, ApJ, 148, 175.
+Schwarz D.J., Starkman G.D., Huterer D., Copi C.J., 2004, PRL, 93, 1301.
+Tegmark M. 1997, PRD, 55, 5985.
+Tegmark M., de Oliveira-Costa A., Hamilton A.J., 2003, PRD, 68, 13523.
+Wright E.L. et al., 1992, ApJ, 396, L13.
+Wandelt B.D., Larson D.L., Lakshminarayanan A., 2004, PRD, 70, 3511.
+

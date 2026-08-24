@@ -1,0 +1,1272 @@
+                                              MNRAS 000, 1–15 (2024)                                                     Preprint 5 June 2024            Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                              A Bayesian approach to the cosmic dipole in radio galaxy surveys:
+                                              Joint analysis of NVSS & RACS
+                                              Oliver T. Oayda,1★ Vasudev Mittal1,2 , Geraint F. Lewis1 , and Tara Murphy1
+                                              1 Sydney Institute for Astronomy, School of Physics A28, The University of Sydney, NSW 2006, Australia
+                                              2 Department of Physical Sciences, IISER Mohali, Knowledge City, Sector 81, SAS Nagar, Manauli PO 140306, Punjab, India
+
+
+
+
+arXiv:2406.01871v1 [astro-ph.CO] 4 Jun 2024
+                                              Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                              ABSTRACT
+                                              We examine the sky distribution of radio galaxies in the NRAO VLA Sky Survey (NVSS) and the Rapid ASKAP Continuum
+                                              Survey (RACS). Analyses of these samples have reported tension between their inferred dipoles and the kinematic dipole
+                                              of the Cosmic Microwave Background (CMB). This represents a challenge to the traditional assumption that the Universe is
+                                              homogeneous and isotropic on large scales: the cosmological principle. We find that NVSS and RACS contain local radio sources
+                                              which give a non-negligible contribution to the overall dipole signal. These need to be adequately accounted for since the aim is to
+                                              probe the composition of the Universe at large scales. By appropriately considering these sources, the inferred dipole amplitude
+                                              in either sample is reduced. Nonetheless, we find support for a dipole aligning with that of the CMB but larger in amplitude,
+                                              especially in the joint analysis. However, the ‘clustering dipole’ – the contribution of local sources to the net inferred dipole –
+                                              appears to align with the direction of the CMB dipole, and its magnitude increases as deeper nearby sources are considered up
+                                              to a comoving distance of ≈ 130 Mpc (ℎ = 0.7). The significance of this observation in the context of the cosmological principle
+                                              is unclear and prompts further inquiry.
+                                              Key words: radio continuum: galaxies – cosmology: observations – cosmology: theory – large-scale structure of Universe
+
+
+
+                                              1 INTRODUCTION                                                                  distant matter should exhibit a dipole (the ‘matter dipole’) aligning
+                                                                                                                              in direction and magnitude with the CMB temperature dipole. If this
+                                              A critical assumption in modern cosmology – the Lambda cold dark
+                                                                                                                              is not the case, this suggests against the applicability of the CP to
+                                              matter (ΛCDM) paradigm – is that the Universe is homogeneous and
+                                                                                                                              observational data, and hence to our prevailing understanding of the
+                                              isotropic on large scales. Such a postulate about the symmetry of
+                                                                                                                              Universe more generally.
+                                              space was initially made by Einstein, but it was later termed the ‘cos-
+                                              mological principle’ (CP) by Milne (Milne 1935; Peebles 2020).
+                                              The CP is implicitly incorporated into the Friedmann-Lemaître-                     In recent studies, especially those using large catalogues of radio
+                                              Robertson-Walker (FLRW) spacetime metric, greatly simplifying its               galaxies covering significant fractions of the sky, the matter dipole
+                                              form. Now, the CP can be supported by the smoothness of the Cos-                and CMB dipole appear to align in direction but not magnitude, with
+                                              mic Microwave Background (CMB), although one must additionally                  the matter dipole being in excess (see e.g. the reviews of Peebles
+                                              couple this empirical observation with the metaphysical assumption              2022; Kumar Aluri et al. 2023). In this work, we turn to two ra-
+                                              that all observers in the Universe perceive the same CMB.                       dio catalogues that have previously provided evidence for this mag-
+                                                 Small-scale CMB temperature fluctuations, generated from                     nitude discrepancy, namely the Rapid Australian SKA Pathfinder
+                                              matter-photon interactions before they decoupled, are of order                  Continuum Survey (RACS; McConnell et al. 2020) at 887.5 MHz
+                                              Δ𝑇/𝑇 ≈ 10 −5 . Imprinted on this smooth temperature map is a                    (RACS-low; Hale et al. 2021) and the National Radio Astronomy
+                                              dipole of order Δ𝑇/𝑇 ≈ 10 −3 (the ‘kinematic dipole’), which is                 Observatory Very Large Array Sky Survey (NVSS; Condon et al.
+                                              normally interpreted as arising from the Earth’s peculiar motion to-            1998). We examine both catalogues with a joint Bayesian methodol-
+                                              wards (𝑙, 𝑏) = (264.◦ 021, 48.◦ 253) in Galactic coordinates at a speed         ogy, probing the anisotropic distribution of their radio galaxies and
+                                              of 𝑣 CMB = 369.82 ± 0.11 km s −1 (Planck Collaboration et al. 2020).            comparing it to the CMB dipole.
+                                              But since the small-scale anisotropies are thought to be the pro-
+                                              genitors of structures in the late universe under ΛCDM, the dipole-
+                                                                                                                                This paper is structured as follows. In Section 2, we give an
+                                              subtracted frame must be one in which the cosmological principle
+                                                                                                                              overview of the state of the literature relating to tests of the CP
+                                              holds. In this frame, distributions of matter in the Universe should not
+                                                                                                                              and the matter dipole studies. In Section 3, we present the raw NVSS
+                                              have a preferred direction of higher or lower density. However, where
+                                                                                                                              and RACS-low samples and our approach to preparing them for anal-
+                                              the Earth’s peculiar motion has not been factored out, distributions of
+                                                                                                                              ysis, and in Section 4, we explain our method of statistical analysis.
+                                                                                                                              We give our results in Section 5 and discuss them in Section 6, in
+                                              ★ E-mail: oliver.oayda@sydney.edu.au                                            which we conclude with our salient finding.
+
+                                              © 2024 The Authors
+2     Oayda et al.
+2 BACKGROUND                                                              & Huterer 2012; Rubart & Schwarz 2013; Colin et al. 2017; Bengaly
+                                                                          et al. 2018; Siewert et al. 2021; Singal 2023a,b; Wagenveld et al.
+The CP forms the backbone of our cosmological framework, hence
+                                                                          2023). A number of these studies used additional radio catalogues
+its empirical verification is extremely important. If the assumption of
+                                                                          beyond NVSS (such as RACS for the later works), usually arriving
+isotropy and homogeneity is correct, then the thermal dipole of the
+                                                                          at similar conclusions. The weight of these studies has lead to the
+CMB is explained by the Earth’s peculiar motion, which imprints a
+                                                                          prevailing sentiment that the matter dipole is consistent with the CMB
+Doppler modulation on an otherwise isotropic CMB. An independent
+                                                                          dipole in direction but anomalously larger in magnitude (Abdalla
+way of verifying this claim is to search for a dipolar modulation in
+                                                                          et al. 2022; Kumar Aluri et al. 2023).
+surveys of distant sources such as radio galaxies and quasars. The
+                                                                             More recently, Secrest et al. (2021) expanded the scope of the
+Earth’s motion is anticipated to induce this dipole, and it should be
+                                                                          matter dipole studies from radio sources to quasars. Analysing the
+consistent with the CMB dipole in direction and magnitude if the
+                                                                          CatWISE2020 catalogue (Marocco et al. 2021), the authors reported
+cosmological principle holds. In this vein, Ellis & Baldwin (1984)
+                                                                          the presence of an anomalously large matter dipole at a 4.9𝜎 sta-
+proposed a number count dipole test of the CP. They assumed the
+                                                                          tistical significance. This finding was followed up in Secrest et al.
+following:
+                                                                          (2022) with a joint analysis of CatWISE2020 and NVSS, confirm-
+   (i) An observer is moving with a velocity much less than 𝑐 with re-    ing an excessive dipole amplitude at a 5.1𝜎 joint statistical signif-
+spect to a homogeneous and isotropic distribution of distant sources.     icance. However, Abghari et al. (2024) has recently questioned the
+   (ii) The apparent flux density 𝑆 can be described by a cumulative      CatWISE2020 result, pointing to peculiarities regarding the ecliptic
+power law, where 𝑁 (> 𝑆) ∝ 𝑆 − 𝑥 .                                        bias in the sample, as well as coupling between the dipole mode and
+   (iii) Within the observer’s passband, the spectral energy distribu-    higher order multipoles – which impacts the dipole estimator used in
+tion for sources has a power law dependence on frequency 𝑆 𝑓 ∝ 𝑓 − 𝛼      Secrest et al. (2021).
+for spectral index 𝛼 and frequency 𝑓 .                                       We note that, in general, the radio galaxy and quasar studies rely on
+                                                                          frequentist statistical techniques, using estimators for calculating the
+Under these assumptions, relativistic aberration and Doppler boost-
+                                                                          dipole. Estimators are sometimes characterised by an inherent bias.
+ing will modulate the distribution of sources in the observer’s frame,
+                                                                          As an example, Siewert et al. (2021) illustrate that the linear estimator
+inducing a dipole anisotropy with amplitude
+                                                                          used in earlier studies has a directional bias depending on which part
+                    𝑣                                                     of the sky is masked. In simulations, this has been shown to draw the
+D = [2 + 𝑥(1 + 𝛼)] .                                               (1)
+                    𝑐                                                     inferred dipole away from the direction of the true dipole. In contrast
+Thus, the modulation in number density observed for a patch of sky        to frequentist methods, the tools of Bayesian statistics have not been
+containing 𝑁 sources and pointing in some direction n̂ will be            used as extensively. Bayesian techniques were implemented in Dam
+                                                                          et al. (2023)’s study of CatWISE2020, which supported the findings
+Δ𝑁                          v
+   = D · n̂ = [2 + 𝑥(1 + 𝛼)] · n̂.                                 (2)    of Secrest et al. (2021). However, Mittal et al. (2024) found that an
+ 𝑁                          𝑐                                             independent catalogue – the Quaia quasar sample (Storey-Fisher et al.
+Ellis & Baldwin (1984) supposed that 𝑂 (105 ) sources would be            2023) – was consistent with the kinematic dipole, although it was
+needed to observe this modulation. It is worth mentioning that some       noted that the sample suffers from contamination near the Galactic
+of the assumptions made by the original authors have been ques-           plane which needs to be accounted for.
+tioned. For instance, Dalang & Bonvin (2022) (see also Guandalin             Apart from the matter dipole studies, many other methods to check
+et al. 2023) have claimed that the flux distribution exponent 𝑥 as well   for isotropy have been proposed. Kumar Aluri et al. (2023) gives an
+as the spectral index 𝛼 are redshift-dependent, which impacts the re-     extensive discussion on these tests, but some of them involve probing
+sulting dipole measure (although von Hausegger 2024 has suggested         Type Ia SNe (see e.g. Horstmann et al. 2022; Singal 2022; Sorrenti
+the dipole measure is robust to these effects). One other outstanding     et al. 2022) and the FLRW metric by testing spatial curvature (see
+issue is the assumption that the inferred dipole is solely contributed    e.g. Zhou & Li 2020). Recently Oayda & Lewis (2023) proposed a
+to by the Earth’s peculiar motion, which is a central theme in this       method of calculating the dipole in the time dilation of sources with
+work. In general, the inhomogeneous distribution of sources in the        intrinsic time-scales.
+Earth’s local neighbourhood can contribute to the overall dipole sig-        The final point to consider is the effect of local clustering, which
+nal. This is an undesired effect, since the aim of the Ellis & Baldwin    we alluded to earlier. Some studies make the assumption that, on
+(1984) test is to probe the distant background of sources where the       account of most sources being at high redshifts, its effects will be
+CP is expected to hold – that is, where the Universe is expected to       negligible (see e.g. Wagenveld et al. 2023 for a recent contribution
+average out to homogeneity and isotropy. For example, Tiwari &            analysing NVSS and RACS-low). Other studies have anticipated the
+Nusser (2016) suggest that the bulk of sources analysed need to be at     degree to which clustering will affect the overall dipole signal, using
+a high redshift (𝑧 ≈ 1) to avoid local source contamination. We will      theoretical arguments from ΛCDM to construct a prior likelihood
+return to this point below.                                               for a ‘clustering dipole’ term (see e.g. Tiwari & Nusser 2016; Cheng
+   The Ellis & Baldwin (1984) test has to date been widely performed      et al. 2023; Dam et al. 2023). Since the matter dipole amplitude is
+with a number of different samples. One significant first result was      consistently in excess across many independent studies, it is worth
+that of Blake & Wall (2002b), in which the authors examined NVSS          probing the fraction of the amplitude that can be explained by local
+and reported broad agreement (within uncertainties) of the NVSS           clustering, if at all. This is especially the case given the significance
+radio galaxy dipole and the kinematic dipole. However, this stands        that a genuine tension would have for the CP and modern cosmol-
+as an isolated result; many subsequent studies found a discrepancy        ogy. Thus, we revisit two of the catalogues which have seemingly
+between the matter dipole and the CMB dipole. We outline a handful        contributed to the tension: NVSS and RACS-low. Although many
+of the key results here. Singal (2011) reported that the NVSS dipole is   studies have calculated the matter dipole across a spectrum of differ-
+consistent in direction with the CMB dipole, but about 4 times larger     ent samples, their analysis is generally limited to characterising the
+than expected in magnitude. The trend of an unexpectedly large            dipole amplitude and direction and evaluating its significance with
+NVSS amplitude continued in subsequent works (see e.g. Gibelyou           respect to a null hypothesis of no dipole signature. In this work, we
+
+MNRAS 000, 1–15 (2024)
+                                                                                                                           Radio dipole: NVSS & RACS                          3
+
+
+                                                                                        2.5 mJy
+                                       5%
+                                                                                                                                                 Flux counts
+
+
+
+
+    Deviation from mean density (%)
+                                       0%
+                                      -5%                                                                              5                         Integrated flux counts
+                                                                                                                  10
+                                       5%
+                                                                                        5 mJy
+
+
+                                                                                                   Number count
+                                       0%
+                                      -5%
+                                                                                                                  104
+                                       5%
+                                       0%                                               10 mJy
+                                      -5%
+                                                                                                                  103
+                                       5%
+                                       0%                                               15 mJy
+                                      -5%
+                                            −40   −20   0        20      40   60   80                                                  102                              103
+                                                            Declination δ ◦
+                                                                                                                                Integrated flux (mJy)
+
+
+Figure 1. Deviation from NVSS(B) mean source density (%) by declination                           Figure 2. Flux density distribution of the NVSS(B) sample, shown in red, in
+angle for different flux density cuts. The declinations using the DnC config-                     which a 15 mJy flux limit has been used. Overlaid onto this in yellow is the
+uration are shown in the shaded light brown region, and the D configuration                       integrated flux density distribution i.e. the total number of sources above a
+region is left unshaded. The flux density cuts chosen are labelled on the right                   limiting flux density.
+of each panel.
+
+                                                                                                  deviation drops from ≈ 1.8% to ≈ 0.9%. We also show the resulting
+jointly analyse NVSS and RACS-low, utilising Bayesian inference                                   flux density distribution with the 15 mJy cut applied in Fig. 2. Note
+to compare the relative strengths of competing hypotheses by their                                that both Fig. 1 and Fig. 2 are generated after incorporating masking
+marginal likelihoods and to understand if the inferred matter dipole                              and source selection, described below.
+is in agreement with the CMB kinematic dipole.                                                       NVSS suffers from significant contamination near the Galactic
+                                                                                                  plane, appearing as localised regions of high source density. We
+                                                                                                  therefore choose to mask Galactic latitudes |𝑏| ≤ 10◦ . However, we
+3 RADIO GALAXY SAMPLES                                                                            also identified other regions of spuriously high source counts. Ac-
+                                                                                                  cordingly, we follow some of the masking choices identified in Cheng
+At the first stage of processing, both the NVSS and RACS-low source                               et al. (2023). First, bright, extended sources can appear as multiple
+catalogues are binned into equal-area sky pixels using the healpix1                               entries in the NVSS catalogue, so we impose an upper flux density
+procedure implemented in the python package healpy (Górski et al.                                 limit of 1 Jy, such that the flux density distribution of our NVSS sam-
+2005; Zonca et al. 2019). We set the 𝑁side parameter to 64, generating                            ple spans 15 mJy ≤ 𝑆 ≤ 1000 mJy. As an additional measure, one
+49 152 pixels with an angular size of about 55 arcminutes.                                        might choose to mask all pixels containing a bright source with flux
+                                                                                                  greater than 1 Jy, or alternatively construct a circular mask centred
+                                                                                                  around that bright source (see e.g. Blake & Wall 2002a). We tested
+3.1 NVSS
+                                                                                                  this, but ultimately found it had not effect on our results. Therefore,
+3.1.1 Flux limit and mask                                                                         we persist with the upper flux density cutoff. We then visually iden-
+                                                                                                  tify a number of localised regions with substantially higher number
+The NVSS survey was conducted using the Very Large Array (VLA)
+                                                                                                  counts and mask these regions with discs of varying radii. We show
+at 1.4 GHz, between 1993 to 1997 (Condon et al. 1998). It covers
+                                                                                                  the Galactic coordinates of these regions in the corresponding rows
+about 82% of the sky, above declination 𝛿 ≥ −40◦ ). The full source
+                                                                                                  of Table 1. A number of known bright radio sources are located in or
+catalogue consists of 1.8 million sources. In this work, we make use
+                                                                                                  at the edge of these masked discs, which we specify in the ‘A-source’
+of the integrated flux densities recorded for each source.
+                                                                                                  column of the same table. Where there is no relevant nearby source,
+   NVSS used two configurations of the VLA for different sky re-
+                                                                                                  the cell is left blank. Lastly, we mask an additional degree north
+gions. Namely, the D configuration covered declinations −10◦ ≤ 𝛿 ≤
+                                                                                                  of the NVSS declination cutoff to remove pixels with lower source
+78◦ , with the DnC configuration covering the remaining portion of
+                                                                                                  counts at the survey limit. Our continuous region includes 𝛿 > 40◦ ,
+the sky. Critically, this means that without a sufficiently bright flux
+                                                                                                  leaving a final count of 341,072 NVSS sources. The main features of
+density cut, NVSS shows a strong systematic bias in number density
+                                                                                                  the mask can be seen in the left panes of Fig. 5.
+with declination – even though NVSS is claimed to reach 100% com-
+pleteness by about 4 mJy (Condon et al. 1998). While some authors
+have chosen to mitigate this with a 10 mJy flux density cut (see e.g.                             3.1.2 Local clustering
+Secrest et al. 2022), we instead select a 15 mJy limit in line with for
+example Tiwari & Nusser (2016) and Wagenveld et al. (2023). We                                    It is conceivable that the inhomogeneous distribution of low redshift
+illustrate the effect of declination on source density in Fig. 1. Moving                          sources will contribute to the recovered dipole signal in NVSS. Since
+from lower to higher flux density cuts (top to bottom), the average                               the cosmological principle is a statement about the composition of
+source density by declination becomes increasingly clustered around                               the Universe on the largest scales, ideally any contamination from
+the mean density. From 2.5 mJy to 15 mJy, the average percentage                                  nearby clusters should be avoided. As mentioned, some studies (see
+                                                                                                  e.g. Dam et al. 2023; Cheng et al. 2023 dealing with CatWISE2020
+                                                                                                  and NVSS respectively) account for this possibility by explicitly de-
+1            https://healpix.sourceforge.io/                                                      termining prior likelihood functions for the clustering signal, taking
+
+                                                                                                                                                   MNRAS 000, 1–15 (2024)
+4      Oayda et al.
+            Sample           𝑙◦      𝑏◦      𝑟◦       A-source
+
+                                                                                                                                                                                2.5 mJy
+                                                                                                                     5%
+            NVSS           239.9   −56.6     1.1     Fornax A
+
+
+
+
+                                                                                  Deviation from mean density (%)
+                                                                                                                     0%
+                           207.8   −18.6     2.9      Orion A                                                       -5%
+                           286.2    73.2      "       Virgo A
+                            21.7    19.8     1.1         –                                                           5%
+                           291.1    64.6      "          –                                                           0%                                                         5 mJy
+                           119.1   −19.2      "          –                                                          -5%
+                           156.0    20.2      "          –
+                                                                                                                     5%
+                                                                                                                                                                                10 mJy
+            RACS-low       107.0   −43.0     3.4         –
+                                                                                                                     0%
+                            79.0   −30.0      "          –                                                          -5%
+                            25.0    26.0      "      Hercules A
+                                                                                                                     5%
+                                                                                                                                                                                15 mJy
+                           286.7    73.5      "       Virgo A
+                           280.8   −33.1      "        LMC                                                           0%
+                           184.8    −5.5      "        Crab                                                         -5%
+                                                                                                                          −80   −60    −40       −20          0        20
+Table 1. Centre position in galactic coordinates (𝑙 ◦ , 𝑏◦ ) and radius 𝑟 ◦ of
+                                                                                                                                       Declination δ ◦
+the distinct disc masks used in NVSS and RACS-low. Bright radio sources
+contained within or at the edge of the discs are indicated in the ‘A-source’
+column.
+                                                                                 Figure 3. Deviation from RACS-low(B) mean source density (%) by decli-
+                                                                                 nation angle for different flux density cuts. The flux density cuts chosen are
+into account predictions from ΛCDM. In this case, the net inferred               labelled on the right of each panel.
+dipole would include a contribution from a clustering term.
+   Here, we investigate the effect of clustering by cross-matching
+NVSS with known local radio sources, creating two variant cata-
+logues: one with local sources included, and one in which local                                                                                        Flux counts
+sources have been removed. The first is constructed as we have al-                                                                                     Integrated flux counts
+ready described above. To construct the second, similar to Cheng                                                    105
+
+
+
+
+                                                                                    Number count
+et al. (2023) we use the source catalogue from the Two Micron All
+Sky Survey Redshift Survey (2MRS; Huchra et al. 2012) and radio
+sources with redshift less than 0.01 identified on the NASA/IPAC                                                    104
+Extragalactic Database (NED).2 The positional accuracy of NVSS
+sources with flux density greater than 15 mJy is ≲ 1 arcsecond. We
+therefore adopt a cross-matching radius of 5 arcseconds to capture
+as many genuine local sources as possible while minimising spuri-                                                   103
+ous matches. Specifically, for each local source, we find all NVSS
+sources within 5 arcseconds and remove the one with the smallest
+positional offset. We apply the cross-matching regime before mask-                                                                           102                            103
+ing but after flux-limiting the sample. With the 15 mJy cut, 3049                                                                     Integrated flux (mJy)
+sources are removed from the NVSS catalogue. After masking, this
+final sample has 338,222 NVSS sources, 2850 less than the sample                 Figure 4. Flux density distribution of the RACS-low(B) sample, shown in
+with local sources included. For future reference, we refer to sample            blue, in which a 15 mJy flux limit has been used. Overlaid onto this in yellow
+with local sources removed as NVSS(B), and the sample containing                 is the integrated density flux distribution i.e. the total number of sources above
+local sources as NVSS(A).                                                        a limiting flux density.
+
+
+
+3.2 RACS-low                                                                     our references to flux with respect to RACS-low refer to the integrated
+                                                                                 flux density, as was the case for NVSS. RACS-low is asserted to be
+3.2.1 Flux limit and mask                                                        95% complete at about 3 mJy, though we note improvements in the
+The RACS-low survey (Hale et al. 2021) was conducted with ASKAP                  homogeneity of the sample with deeper flux cuts up to about 15 mJy.
+at a central frequency of 887.5 MHz. Observations took place be-                 To see this, we plot how the source density changes with declination
+tween 2019 and 2020. The survey covered declinations 𝛿 ≤ 41◦ . The               for each flux limit in Fig 3. From 2.5 mJy to 15 mJy, the average
+resolution of RACS-low changes with declination, and so in addition              percentage deviation from the mean density decreases from about
+to the main catalogue, a catalogue constructed from data convolved               4.3% to 1.1%. We ultimately use a 15 mJy cut for our final sample,
+to a common resolution of 25 arcseconds was produced. This is the                and, as for NVSS, use an upper flux density limit of 1000 mJy. We
+catalogue we used in this work. However, not all observational tiles             also show the sample flux distribution in Fig. 4. Note that both Fig. 3
+could be convolved to the common resolution, and so the effective                and Fig. 4 are made after the masking and source selection that we
+coverage of the catalogue used here is a continuous region between               describe below.
+−80◦ ≤ 𝛿 ≤ 30◦ , excluding the Galactic plane for |𝑏| < 5◦ . This                   Turning to the choice of mask, we remove under-dense pixels along
+covers about 67.9% of the sky, and the catalogue contains about 2.1              the edge of the excluded Galactic plane. We also mask the excluded
+million sources.                                                                 survey tiles at the southern pole with a disc of radius 13◦ , and mask
+   We first probe the impact of our choice of limiting flux density. All         an additional degree of declination in the northern hemisphere such
+                                                                                 that our final sample covers declinations −77◦ < 𝛿 < 29◦ . Finally, we
+                                                                                 note localised regions with a dearth of source counts which persist in
+2   https://ned.ipac.caltech.edu/                                                our sample, corresponding to under-dense tiles in the original RACS-
+
+MNRAS 000, 1–15 (2024)
+                                                                                                      Radio dipole: NVSS & RACS                       5
+Sample      Flux range (mJy) 𝛿 included  Gal. mask                  𝑁         – is used (𝛼 ≈ 0.75; see e.g. Secrest et al. 2022). Often, overlap-
+NVSS(A)      15 ≤ 𝑆 ≤ 1000   𝛿 > −40◦    |𝑏| ≤ 10◦                341 072     ping sources between radio surveys at different frequencies can be
+NVSS(B)             "             "           "                   338 222     used to infer the spectral index distribution, the median of which is
+RACS-low(A) 15 ≤ 𝑆 ≤ 1000 −77◦ < 𝛿 < 29◦ |𝑏| ≤ 5◦                 462 911     the origin of the typical value of 𝛼 ≈ 0.75. For example, Figure 8
+RACS-low(B)         "             "           "                   459 276
+                                                                              of Mauch et al. (2003) gives the distribution of spectral indices for
+                                                                              NVSS sources overlapping with the Sydney University Molonglo Sky
+Table 2. Summary of final RACS-low and NVSS samples, including flux cuts,
+masking choices and total number of sources. (A) samples are the catalogues   Survey (SUMSS), showing that the distribution is reasonably broad
+containing local sources, and (B) samples have had local sources removed.     about the median of ≈ 0.83. Although we find that the expected am-
+                                                                              plitude is not very sensitive to the choice of 𝛼, to safeguard against the
+                                                                              possibility, we can assume that the median spectral index is 0.75 but
+low merged sky catalogue. These can be seen in Figure 4 of Hale et al.        has a significant spread. We take the largest dispersion from Figure
+(2021) near the upper declination limit of the survey. Similar to our         8, being about 0.5, and assume that the distribution of NVSS spectral
+approach for NVSS, we mask these regions with discs of radius ≈ 3◦ .          indices can be described by a Gaussian G(𝜇 = 0.75, 𝜎 = 0.5). For
+The position, exact radius and any known nearby bright radio sources          RACS-low, Hale et al. (2021) found 𝛼 distributions through compari-
+are specified in the corresponding rows of Table 1. We also mask an           son with four other surveys at different frequencies, including NVSS.
+over-dense region proximate to the LMC, as shown in the same table.           The typical 𝛼 was between 0.6 and 0.9, with dispersions at most be-
+This leaves us with a sample of 462,911 RACS-low sources. The key             ing ≈ 0.5, and we therefore use the same Gaussian distribution to
+features of the mask can be seen in the right panes of Fig. 5.                describe the RACS-low spectral indices.
+
+
+                                                                              4.1.2 Source number counts
+3.2.2 Local clustering
+                                                                              While we could use the slope of the flux density distribution 𝑥 to
+We repeat the same cross-matching procedure as for NVSS (see
+                                                                              ultimately arrive at the expected amplitude, we instead follow the
+Section 3.1.2). The typical RACS-low source position is accurate
+                                                                              approach developed in Mittal et al. (2024) but with modifications
+to within about 1 to 2 arcseconds. For this reason, we keep the
+                                                                              to allow flux density measurement uncertainties to be adequately
+same cross-matching radius of 5 arcseconds as with NVSS. This
+                                                                              accounted for. Namely, we randomly regenerate either catalogue a
+identifies 3700 local objects in RACS-low between the 2MRS and
+                                                                              number of times using the recorded flux density and its associated
+NED catalogues, which we remove, leaving a final source count after
+                                                                              uncertainty, as we describe below.
+masking of 459,276. We use the same naming convention as above,
+referring to the sample with local sources removed as RACS-low(B),               (i) For each original NVSS or RACS-low source 𝑖 with flux density
+and the variant containing local sources as RACS-low(A).                      𝑆𝑖 , we generate a new flux value 𝑆𝑖∗ by drawing from a Gaussian
+                                                                              G(𝜇 = 𝑆𝑖 , 𝜎 = Δ𝑆𝑖 ) for flux density measurement uncertainty Δ𝑆𝑖 .
+                                                                                 (ii) For each source 𝑖, we draw a spectral index 𝛼𝑖 from the Gaus-
+3.3 Summary                                                                   sian G(𝜇 = 0.75, 𝜎 = 0.5).
+We give the sky projections of our final samples in the top row                  (iii) We then determine the number of new sources 𝑛𝑖 above some
+of Fig. 5. Note that there we have plotted the B variants of NVSS             limiting flux density 𝑆0 .
+and RACS-low (the cross-matched samples), since with a visual                    (iv) For each source 𝑖, we apply a Doppler shift 𝑆𝑖∗ 𝛿1+𝛼𝑖 for 𝛿 =
+inspection there are only very minor differences between the A and            𝛾(1 + 𝛽 cos 𝜃) with 𝛽 = 𝑣 CMB /𝑐 and 𝜃 = 0, as in Ellis & Baldwin
+B variants. We also show a smoothed version of the raw samples in             (1984).
+the bottom row of the same figure. Here, for each unmasked pixel,                (v) We then find the number of boosted sources 𝑛𝑏 above the
+we compute the average density across all pixels within 1 steradian.          same 𝑆0 and multiply that number by 𝛿2 , accounting for relativistic
+We also give a summary of the key choices we made in processing               aberration.
+both catalogues in Table 2 to aid the reader.                                    (vi) The expected amplitude is then determined via
+                                                                                     𝑛 − 𝑛𝑖
+                                                                              D= 𝑏          .                                                    (3)
+                                                                                       𝑛𝑖
+                                                                              For a given 𝑆0 , we can repeat (i)–(vi) a number of times to arrive
+4 APPROACH
+                                                                              at a mean and standard deviation for the expected dipole amplitude.
+4.1 Expected amplitude                                                        However, if we choose 𝑆0 to be too close to the actual flux density
+                                                                              limit we impose for NVSS and RACS-low (15 mJy), then the dipole
+The conventional approach to finding the expected matter dipole
+                                                                              amplitude is underestimated. This can be seen by the drop-off near
+amplitude is to use the spectral indices of the sources 𝛼 and the slope
+                                                                              𝑆0 = 15 mJy in Fig. 6. The drop-off in dipole amplitude is a boundary
+of the flux density distribution 𝑥 at the low flux density limit. These
+                                                                              effect caused by the manner in which we resample flux densities.
+terms are then used in the expression of Ellis & Baldwin (1984) – see
+                                                                              To see this, suppose we pick 𝑆0 = 25 mJy. A source flux density
+equation (1) – with 𝑣 ≈ 369 km s −1 , as determined from the CMB
+                                                                              slightly below this limit has a non-negligible likelihood of being
+temperature dipole.
+                                                                              resampled above the limit, owing to its measurement uncertainty.
+                                                                              This is averaged over the many runs of our procedure. But, if we
+                                                                              choose 𝑆0 ≈ 15 mJy, sources below 15 mJy cannot be resampled
+4.1.1 Spectral index
+                                                                              above the limit since, by construction, they are excluded from either
+Since both the RACS-low and NVSS catalogues list flux densities               catalogue. Meanwhile, the dipole amplitude is expected to rise with
+at a single frequency, we do not at first instance have information           𝑆0 , as seen in Fig. 6, since the NVSS and RACS-low cumulative flux
+about each source’s spectral index. Typically, the expected spectral          density distributions become steeper for larger limiting flux densities.
+index for synchrotron emission – the assumed emission mechanism                  We can circumvent this issue by extrapolating the gradient in
+
+                                                                                                                             MNRAS 000, 1–15 (2024)
+6                          Oayda et al.
+
+                                    NVSS(B) Catalogue: N = 338 222                                  RACS-low(B) Catalogue: N = 459 276
+                             60°                                                                   60°
+
+    30°                                                                                      30°
+                               120°         60°       0°      300°         240°                      120°       60°        0°        300°       240°
+0°                                                                                      0°
+
+ -30°                                                                                    -30°
+
+                             -60°                                                                  -60°
+
+
+                                     1                         10          19                             1                         14          27
+                                          Source count per healpixel                                          Source count per healpixel
+                                                  NVSS(B)                                                             RACS-low(B)
+                              60°                                                                  60°
+
+
+      30°                                                                                    30°
+
+                               120°         60°       0°       300°         240°                     120°       60°        0°        300°       240°
+0°                                                                                      0°
+
+
+    -30°                                                                                 -30°
+
+
+                             -60°                                                                  -60°
+
+
+
+                                    9.7                 10           10.2                             13.6                  14.1         14.4
+                                          Source count per healpixel                                          Source count per healpixel
+
+Figure 5. Sky projection (Mollweide) of our final cross-matched (B) samples in Galactic coordinates, binned into healpixels (𝑁side = 64; pixel angular size of
+55’). Masked regions are indicated in grey. Left: NVSS(B). Right: RACS-low(B). Top row: Number counts for each pixel. The mean source count is given by
+the middle tick of the colour bar. Bottom row: Averaged counts over a 1 steradian scale. The mean over all averaged counts is given by the middle tick of the
+colour bar.
+
+
+
+                             ×10−3                                                      DCMB versus 𝑆0 back to 15 mJy, as seen by the dashed line in
+                   4.7                                                                  Fig. 6. We do so by running our procedure (steps i–vi) 100 times
+                                                                                        for different values of 𝑆0 between 15 mJy and 35 mJy, computing
+                   4.6                                                                  the mean dipole amplitude over those runs. We then determine the
+
+
+
+ Expected amplitude DCMB
+                                                                                        gradient using a straightforward least-squares linear fit for 𝑆0 > 17
+                   4.5                                                                  mJy (NVSS) and 𝑆0 > 20 mJy (RACS-low). Extrapolating back to
+                                                                                        𝑆0 = 15 mJy, we arrive at DCMB = 4.31 × 10 −3 for NVSS and
+                   4.4                                                                  DCMB = 4.27 × 10 −3 for RACS-low. Note that in the procedure
+                                                                                        described above, the B/cross-matched sample variant is used; the
+                   4.3
+                                                                                        change in amplitude using the A variant is negligible.
+                   4.2
+                                                                           NVSS         4.2 Bayesian inference
+                   4.1
+                                                                           RACS-low
+                                                                                        4.2.1 Overview
+                   4.0
+                              15             20         25            30           35   Our statistical approach is similar to and explained in depth in Mittal
+                                                   Flux limit S0                        et al. (2024), but we recapitulate the main concepts here. The process
+                                                                                        of Bayesian inference can be discretised into two stages: the level of
+                                                                                        parameter optimisation and the level of model inference (Mackay
+Figure 6. Computed expected amplitude DCMB for NVSS and RACS-low                        2003). In the first stage, we wish to populate the terms of Bayes’s
+with different choices of 𝑆0 . The desired value of DCMB is the extrapolated            theorem and solve for the posterior distribution of a model 𝑀’s
+intercept at 𝑆0 = 15 mJy, as indicated by the dashed line.                              parameters, where
+                                                                                                          L (D|𝚯, 𝑀)𝜋(𝚯|𝑀)
+                                                                                        𝑃(𝚯|D, 𝑀) =                                                        (4)
+                                                                                                               Z(D|𝑀)
+
+MNRAS 000, 1–15 (2024)
+                                                                                                              Radio dipole: NVSS & RACS                     7
+for data D and model parameters 𝚯, as well as likelihood, prior and                   Short label                 Description
+marginal likelihood functions L, 𝜋 and Z respectively (as using the            𝑀0     Null                        Monopole i.e. uniform number density
+notation of Speagle 2020).                                                     𝑀1     Free dipole                 Dipole with free parameters D, 𝑙, 𝑏
+                                                                               𝑀2     Kinematic velocity          Dipole with D fixed and free 𝑙, 𝑏
+   At the second stage, models are ranked according to ∫the marginal
+                                                                               𝑀3     Kinematic direction         Dipole with 𝑙, 𝑏 fixed and free D
+likelihood, an integral over all parameter space: Z = Ω L (𝚯) ×
+                                                          𝚯                    𝑀4     Kinematic dipole            All parameters fixed to CMB expectation
+𝜋(𝚯) 𝑑𝚯. This works by reframing Bayes’ theorem as the posterior               𝑀5     W23                         D, 𝑙, 𝑏 from Wagenveld et al. (2023)
+probability for a model directly, such that
+                L (D|𝑀)𝜋(𝑀)                                                  Table 3. Description of the six models used in this work labelled 𝑀0 through
+𝑃(𝑀 |D) =                   .                                         (5)    𝑀5 .
+                    Z(D)
+Thus, noting that the term Z(D) cancels, the ratio of posterior prob-
+abilities for two models is                                                  for total number of pixels 𝑛pix . This is our sky probability map, the
+                                                                             form of which depends on the assumptions about the chosen signal:
+𝑃(𝑀𝑖 |D)   𝜋(𝑀𝑖 ) L (D|𝑀𝑖 )   𝜋(𝑀𝑖 )                                         a dipole, monopole, etc. The likelihood function can then be written
+         =                  =        𝐵𝑖 𝑗                             (6)
+𝑃(𝑀 𝑗 |D) 𝜋(𝑀 𝑗 ) L (D|𝑀 𝑗 ) 𝜋(𝑀 𝑗 )                                         as
+where L (D|𝑀) is identical to the marginal likelihood Z of equa-                      pix
+                                                                                      ∑︁
+tion (4) and 𝐵𝑖 𝑗 is the Bayes factor: the ratio of model marginal likeli-   ln L =         𝑁𝑖 ln 𝑓ˆ( p̂𝑖 )                                            (8)
+hoods. 𝜋(𝑀) is identified as the model prior likelihood, representing                 𝑖=1
+our beliefs about the relative strengths of each model before any            for number of sources 𝑁𝑖 in pixel 𝑖. This works because each source
+knowledge of the data (see Section 4.2.3). Accordingly, in this work         in a pixel is associated with the same function value 𝑓ˆ, and so the
+we compare models using the natural logarithm of the Bayes factor,           𝑖-th pixel contributes the value [ 𝑓ˆ( p̂𝑖 )] 𝑁𝑖 to the likelihood function.
+using the null hypothesis as a common benchmark. For example, if             With this established, we need only to consider what the functional
+models 𝑀1 and 𝑀2 have marginal likelihood Z1 and Z2 , and the null           form of 𝑓 will be for each model.
+hypothesis has marginal likelihood Z0 , we can effectively rank the
+                                                                                (i) Starting with the null hypothesis, we suppose that either sample
+explanatory power of 𝑀1 and 𝑀2 by comparing ln 𝐵10 = Z1 − Z0
+                                                                             exhibits uniform density over the sky. In this case, we need to weight
+and ln 𝐵20 = Z2 − Z0 . This is advantageous where there are many
+                                                                             all pixels equally, favouring no part of the sky over other regions.
+models and it would be cumbersome to directly write down the Bayes
+                                                                             This can be done by setting 𝑓 to 1 for all pixels, and so this model
+factors between all possible pairs of models. The degree to which
+                                                                             has zero parameters i.e. 𝚯null = ∅.
+one Bayes factor is larger than the other is a reflection of the extent to
+                                                                                (ii) Next, we introduce a dipole vector D of magnitude D and
+which a model better explains the data over others while conserving
+                                                                             pointing in some direction 𝑙, 𝑏 in Galactic coordinates. The scalar
+prior volume. A qualitative interpretation (the ‘Jeffrey’s scale’) of the
+                                                                             value for an arbitrary pixel on the sky is the sum of the monopole
+Bayes factors can be found in Kass & Raftery (1995); we use those
+                                                                             signal and the dipole signal D · p̂𝑖 . That is, we fit a monopole and
+normative categories in this work, although we caution that they use
+                                                                             dipole simultaneously. This leads to
+units of 2 ln 𝐵, whereas here all Bayes factors are presented as ln 𝐵.
+   What remains is to fill the terms of Bayes’s theorem at equation (4).     𝑓 ( p̂𝑖 ) = 1 + D cos 𝜃 𝑖                                                 (9)
+For each model, we construct a likelihood function and determine the
+prior likelihoods for its parameters, which we explain below. Then,          where 𝜃 𝑖 is the angle between the 𝑖-th pixel unit vector and the dipole
+parameter optimisation, as well as the calculation of the marginal           vector. Of course, the value of 𝜃 𝑖 depends on the direction of the
+likelihood, is handled by the python package dynesty (Koposov                dipole, which leaves the model parameters as 𝚯dipole = {D, 𝑙, 𝑏}.
+et al. 2023a).3 dynesty implements the Nested Sampling algorithm                (iii) We may also fix any of the parameters in the dipole model to
+to efficiently sample the posterior distribution in shells of increasing     constant values in order to test alternative hypotheses. Specifically,
+likelihood, also allowing the marginal likelihood to be evaluated            we fix (𝑙, 𝑏) = (264.◦ 021, 48.◦ 253) – the direction of the CMB dipole
+(Skilling 2004, 2006).                                                       – and term this the ‘kinematic direction’ model.
+                                                                                (iv) We also fix the magnitude D to either of the expectations
+                                                                             determined in Section 4.1 while leaving the direction free, terming
+4.2.2 Likelihood functions                                                   this the ‘kinematic velocity’ model.
+                                                                                (v) We additionally investigate the ‘kinematic dipole’ model in
+In Mittal et al. (2024), two types of likelihood functions were tested       which all parameters 𝐷, 𝑙 and 𝑏 are fixed to their CMB-derived
+alongside each other: the Poissonian approach and the point-by-point         values.
+approach. Both were found to give consistent results, and so in this            (vi) Finally, in our joint analysis (described below), for one of
+work we chose to use only the point-by-point case, mainly since it           our models we set the prior likelihood function for the model pa-
+is computationally less expensive. Under this approach, we consider          rameters to the posterior distribution of Wagenveld et al. (2023). We
+some arbitrary function 𝑓 = 𝑓 ( p̂𝑖 ) which gives a scalar for the 𝑖-th      approximate this distribution, as based on the information provided
+pixel on the sky as described by the unit vector p̂𝑖 pointing to that        in the study, by drawing the parameters from Gaussians with mean
+pixel. Such a function needs to be normalised where for example              and standard deviation given by the quoted median value and error.
+arbitrary sky masks are chosen. Thus, the normalised value of the            Namely, we have DNVSS = DRACS ∼ G(𝜇 = 0.0129, 𝜎 = 0.0018),
+function at pixel 𝑖 is                                                       𝑙 ∼ G(𝜇 = 269.◦ 5, 𝜎 = 8◦ ) and 𝑏 ∼ G(𝜇 = 56.◦ 2, 𝜎 = 11◦ ). This is
+               𝑓 ( p̂𝑖 )                                                     the ‘W23’ model.
+𝑓ˆ( p̂𝑖 ) = Í𝑛pix                                                     (7)
+             𝑖=1
+                    𝑓 ( p̂𝑖 )                                                We summarise the six models mentioned above in Table 3, in which
+                                                                             we have labelled each model 𝑀0 through 𝑀5 .
+                                                                               In this work, we analyse NVSS and RACS-low individually as
+3   https://pypi.org/project/dynesty/                                        well as jointly, so we consider now how our approach differs in
+
+                                                                                                                                 MNRAS 000, 1–15 (2024)
+8      Oayda et al.
+the joint case. Some studies, for example Darling (2022), combine                   Sample       Model                       Log Bayes factor
+multiple radio galaxy catalogues by scaling fluxes according to the                 NVSS(A)      𝑀0 Null                            –
+source spectral index. There is the possibility that doing so leads to a                         𝑀1 Free dipole                    5.8
+spurious dipole signal by neglecting varying systematic effects across                           𝑀2 Kinematic velocity             3.7
+                                                                                                 𝑀3 Kinematic direction            7.6
+both catalogues, as was noted in Wagenveld et al. (2023). Here, we
+                                                                                                 𝑀4 Kinematic dipole               5.9
+need not combine RACS-low and NVSS; rather, we suppose each                         NVSS(B)      𝑀0 Null                            –
+catalogue is influenced by the same dipole signal, although, since                               𝑀1 Free dipole                    3.1
+they will not have the exact same flux or spectral index distribution,                           𝑀2 Kinematic velocity             2.8
+the dipole magnitudes will be different. That is to say, this joint                              𝑀3 Kinematic direction            4.5
+model has parameters 𝚯 = {DNVSS , DRACS , 𝑙, 𝑏}. We fit a dipole                                 𝑀4 Kinematic dipole               4.8
+to either catalogue separately, but combine information across both
+                                                                             Table 4. Bayes factors by model for each NVSS sample. The highlighted
+catalogues with the joint likelihood function
+                                                                             row indicates which model has the highest Bayes factor – hence marginal
+ln L = ln LNVSS + ln LRACS                                           (10)    likelihood – for each sample.
+
+where either individual likelihood is determined through equa-
+tion (8).                                                                         Sample           Model                       Log Bayes factor
+                                                                                  RACS-low(A)      𝑀0 Null                            –
+                                                                                                   𝑀1 Free dipole                   11.9
+4.2.3 Prior likelihood functions                                                                   𝑀2 Kinematic velocity             6.5
+                                                                                                   𝑀3 Kinematic direction           11.6
+Our choice of priors for the model parameters D, 𝑙, 𝑏 is conditioned                               𝑀4 Kinematic dipole               8.1
+on the information we have before any knowledge of the data. We                   RACS-low(B)      𝑀0 Null                            –
+describe the choices for each in turn.                                                             𝑀1 Free dipole                    8.2
+                                                                                                   𝑀2 Kinematic velocity             5.4
+   (i) For all dipole amplitudes, we sample from a uniform distribu-                               𝑀3 Kinematic direction            7.5
+tion U [0, 0.1]. This reflects the spectrum of different results across                            𝑀4 Kinematic dipole               6.6
+independent studies (see e.g. Abdalla et al. 2022; Kumar Aluri et al.
+                                                                             Table 5. Bayes factors by model for each RACS-low sample. The highlighted
+2023).                                                                       row indicates which model has the highest Bayes factor – hence marginal
+   (ii) We sample 𝑙 and 𝑏 uniformly over the sky, preferring no              likelihood – for each sample.
+direction over another. To do this, since internally our calculations are
+performed in equatorial coordinates, we sample the right ascension
+in radians according to 𝜙 ∼ U [0, 2𝜋]. We then sample the co-                (𝑀3 ), since these are distinct hypotheses. We show the free dipole
+declination according to 𝜃 ∼ cos −1 (1 − 2𝑢) where 𝑢 ∼ U [0, 1]. It          fits for all subsequent samples as well.
+is important not to sample the co-declination straightforwardly from            For NVSS(B), we instead find that the kinematic dipole model
+a uniform distribution between 0 and 𝜋 since the area element of a           best explains the data, which assumes a dipole totally aligning with
+sphere is dependent on the co-latitude; doing so would lead to a bias        the CMB dipole in direction and magnitude. This is illustrated in
+in the prior likelihood function towards the poles.                          the corresponding highlighted row of Table 4. However, the differ-
+   (iii) For the prior likelihood of each model 𝜋(𝑀), we set each            ence in marginal likelihoods between this model and the next best
+model to be equiprobable; that is, 𝜋(𝑀) = 1/5 where each sample is           explanation – the kinematic direction model – is 0.3 log units. This
+analysed individually and 𝜋(𝑀) = 1/6 in the joint analysis.                  is only worth a ‘bare mention of support’ for the kinematic dipole
+                                                                             (Kass & Raftery 1995). Again, we show the corner plot for the
+                                                                             free dipole fit on NVSS(B) in the right pane of Fig. 7 (top row).
+5 RESULTS                                                                    This illustrates that the free dipole model infers an amplitude of
+                                                                             D ≈ (11 ± 6) × 10 −3 . Notably, the median dipole amplitude has
+We present the results for each of our models, including Bayes factors       diminished by ≈ 2 × 10 −3 moving from the NVSS(A) to NVSS(B)
+and posterior distributions where noted. As a quick reference for the        free dipole fit, although the uncertainties remain large. Lastly, if we
+reader, we also summarise all inferred dipole amplitudes in Table 7.         fix the direction of the NVSS(B) dipole to that of the CMB (𝑀3 ), we
+                                                                             find that D ≈ (10 ± 5) × 10 −3 .
+
+5.1 Individual catalogues
+5.1.1 NVSS                                                                   5.1.2 RACS-low
+
+We give our Bayes factors by model for both NVSS(A) and NVSS(B)              We give the Bayes factors for both RACS-low samples in Table 5.
+in Table 4. For NVSS(A), the model with the greatest explanatory             For both RACS-low(A) and RACS-low(B), the prevailing model is a
+power is the kinematic direction model, which again assumes a dipole         free dipole i.e. a dipole where D, 𝑙, and 𝑏 are free parameters (𝑀1 ).
+aligning with the CMB dipole but free in magnitude. In this case, we         We give the posterior distributions for the free dipole – shown via
+find an amplitude of D ≈ (12 ± 5) × 10 −3 with 2𝜎 uncertainties.             corner plots – for both samples in the bottom row of Fig. 7. Similar to
+Although the free dipole is not the most favoured model, we represent        the case of NVSS, the free dipole amplitude for RACS-low decreases
+its posterior distribution for the fit to NVSS(A) with a corner plot,        moving from the A to B variant by ≈ 2 × 10 −3 . For the A variant, we
+                                                                             find a free dipole amplitude of D ≈ 14 −5+4 × 10 −3 , and for the for the
+shown in the left pane of Fig. 7 (top row). This is largely for illustra-
+tion, indicating the dipole signature that is picked up at the first level   B variant, we find D ≈ (12 ± 5) × 10 .  −3
+of inference. Note that the inferred amplitude of the free dipole (𝑀1 )         A dipole fixed to the kinematic direction but with free amplitude
+is not necessarily the same as that of the kinematic direction model         (𝑀3 ) has the second-highest level of support across both variants.
+
+MNRAS 000, 1–15 (2024)
+                                                                                                                        Radio dipole: NVSS & RACS                                      9
+           D = 0.013+0.005
+                    −0.006                       Free dipole: NVSS(A)
+                                                                                                           +0.006
+                                                                                                  D = 0.011−0.006                       Free dipole: NVSS(B)
+
+
+
+
+                                            l◦ = 230+37
+                                                    −39                                                                           l◦ = 228+44
+                                                                                                                                          −49
+      0                                                                                    320
+     32
+      0                                                                                    240
+     24
+l◦    0
+                                                                                      l◦     0
+     16                                                                                    16
+     80                                                                                     80
+                                                                 b◦ = 39+24
+                                                                        −24                                                                                       b◦ = 36+28
+                                                                                                                                                                         −27
+     80                                                                                     80
+
+     40                                                                                     40
+
+b◦    0
+                                                                                      b◦     0
+
+                                                                                            40
+     40                                                                                    −
+    −
+                                                                                            80
+                                                                                           −
+             00  6     2
+                      01      8
+                             01    02 4     80    0
+                                                 16     0
+                                                       24    0
+                                                            32   40   0     40   80                 00  6      2
+                                                                                                              01   01  8      4
+                                                                                                                             02    80    0
+                                                                                                                                        16         0
+                                                                                                                                                  24    0
+                                                                                                                                                       32    80    40   0    40   80
+            0.    0.       0.     0.                             −                                  0.      0.     0.      0.                               −     −
+                 D                                l◦                   b◦                               D                                    l◦                         b◦
+                    +0.004                                                                                 +0.005
+           D = 0.014−0.005                       Free dipole: RACS-low(A)                         D = 0.012−0.005                       Free dipole: RACS-low(B)
+
+
+
+
+                                            l◦ = 316+105
+                                                    −62                                                                           l◦ = 322+117
+                                                                                                                                          −64
+      0
+     32                                                                                    32 0
+      0
+     24                                                                                     0
+                                                                                           24
+l◦                                                                                    l◦
+     160                                                                                   16 0
+     80                                                                                    80
+                                                                 b◦ = 64+21
+                                                                        −26                                                                                     b◦ = 61+22
+                                                                                                                                                                       −28
+     80
+                                                                                           60
+     60
+b◦   40
+                                                                                      b◦   30
+
+                                                                                            0
+     20
+                                                                                           30
+      0                                                                                  −
+             5       0     5      0     5   80    0     0    0
+                                                             0   20   40    60   80                  5      0      5     0        80     0        0     0     30   0    30   60
+            00   01      01     02     02        16    24   32                                      00   01      01     02              16    24       32    −
+           0.    0.   0.      0.     0.                                                            0.    0.   0.      0.
+                         D                        l◦                   b◦                                     D                          l◦                             b◦
+
+Figure 7. Corner plots for the free dipole model tested on our individual samples. The dashed lines on the 1D marginal posteriors represent a 95% credible
+interval i.e. 2𝜎 either side of the median. Quoted uncertainties above each 1D posterior also give 2𝜎 credible limits on each model parameter. The contours on
+the 2D marginal posteriors give intervals of 0.5𝜎, encompassing 11.8%, 39.4%, 67.5% and 86.4% of the distribution. Top row (red): NVSS(A) and NVSS(B)
+samples. Bottom row (blue): RACS-low(A) and RACS-low(B) samples.
+
+
+                              +4 × 10 −3 for the A variant and D ≈
+In this case, we infer D ≈ 13 −5                                                      overwhelming support for the model with prior likelihood given by
+   +4      −3
+11 −5 × 10 for the B variant.                                                         the results of Wagenveld et al. (2023) over the kinematic dipole
+                                                                                      model, as using the scale of Kass & Raftery (1995). With this prior
+                                                                                      likelihood, we infer DNVSS = (12 ± 3) × 103 and DRACS = (13 ±
+5.2 Joint analysis                                                                    3) ×103 for the sample A variants, as well as DNVSS = (12±3) ×103
+                                                                                      and DRACS = (12 ± 3) × 103 for the sample B variants.
+We give the Bayes factors for our joint analysis in Table 6. Here, the
+prevailing explanation is the W23 model (𝑀5 ), with ln 𝐵50 = 24.5                        The second-most favoured model in either case is the kinematic
+where both sample A variants are used and ln 𝐵50 = 17.1 where                         direction model. With this model, we find DNVSS = (12 ± 5) × 10 −3
+                                                                                      and DRACS = 12 −4  +5 × 10 −3 where the A variants are used, and
+both sample B variants are used. Compared to the kinematic dipole
+model, the W23 model has a log Bayes factor of ln 𝐵54 = 10.5 for                      DNVSS = (10 ± 5) × 10 −3 and DRACS = 11 −4  +5 × 10 −3 where the B
+the A variants and ln 𝐵54 = 5.7 for the B variants. This is beyond                    variants are used.
+
+                                                                                                                                                            MNRAS 000, 1–15 (2024)
+10                     Oayda et al.
+  Sample                                              Model                     Log Bayes factor
+  NVSS(A) +
+                                                      𝑀0 Null
+                                                      𝑀1 Free dipole
+                                                                                       –
+                                                                                     16.1
+                                                                                                                                                                   60◦
+  RACS-low(A)
+                                                      𝑀2 Kinematic velocity          11.1
+                                                      𝑀3 Kinematic direction         19.2
+                                                      𝑀4 Kinematic dipole
+                                                      𝑀5 W23
+                                                                                     14.0
+                                                                                     24.5
+                                                                                                                                                                                     b = 30◦
+                                                      𝑀0 Null                          –
+  NVSS(B) +
+                                                      𝑀1 Free dipole                  9.8
+                                                            ◦          ◦
+  RACS-low(B)
+                                                      𝑀2510      480
+                                                          Kinematic velocity 450◦ 8.8420◦ 390◦                     l = 0◦ 330◦            300◦       270◦      240◦       210◦
+                                                      𝑀3 Kinematic direction         12.1                                                                                                 0◦
+                                                      𝑀4 Kinematic dipole            11.4
+                                                      𝑀5 W23                         17.1
+
+Table 6. Bayes factors by model for the joint NVSS(B) + RACS-low(B)                                                Figure 9. Projection of the marginal posterior distribution (𝑙 and−30    ◦ the
+                                                                                                                                                                                       𝑏) for
+sample. The highlighted row indicates which model has the highest Bayes                                            joint analysis onto the sky (Mollweide). The contours give intervals of 0.5𝜎,
+factor – hence marginal likelihood – for each sample.                                                              encompassing 11.8%, 39.4% and 67.5% of the distribution. The black star
+                                                                                                                   indicates the direction of the CMB dipole.
+                                                                                                                                                                         ◦
+                                                                                                                                                                   −60
+
+                                                                                                                              Sample             Model                   DNVSS      DRACS
+                      DN = 0.009+0.006
+                                −0.006
+                                                              Free dipole: joint                                             NVSS(A)             𝑀3 Kin. direction       12 ± 5       –
+                                                                                                                                                 𝑀1 Free dipole          13+5
+                                                                                                                                                                           −6
+                                                                                                                                                                                      –
+                                                                                                                             NVSS(B)             𝑀3 Kin. direction       10 ± 5       –
+                                                                                                                                                 𝑀1 Free dipole          11 ± 6       –
+                                                                                                                           RACS-low(A)           𝑀3 Kin. direction         –        13+4
+                                                DR = 0.012+0.005
+                                                          −0.005
+                                                                                                                                                                                      −5
+                                                                                                                                                 𝑀1 Free dipole            –        14+4
+                                                                                                                                                                                      −5
+                                                                                                                                                                                    11+4
+       0   0   0
+                                                                                                                           RACS-low(B)           𝑀3 Kin. direction         –          −5
+
+   00 .01 .01 .02
+DR                                                                                                                                               𝑀1 Free dipole            –        12 ± 5
+                                                                                                                                                                                    12+5
+     5   0   5    0
+                                                                                                                            NVSS(A) +            𝑀3 Kin. direction       12 ± 5       −4
+   0.
+                                                                   l◦ = 280+57                                             RACS-low(A)           𝑀1 Free dipole          11 ± 6     13 ± 5
+                                                                           −125
+      32
+                                                                                                                                                 𝑀5 W23                  12 ± 3     13 ± 3
+         0
+      24
+                                                                                                                            NVSS(B) +            𝑀3 Kin. direction       10 ± 5     11+5
+                                                                                                                                                                                      −4
+         0
+l◦         0
+                                                                                                                           RACS-low(B)           𝑀1 Free dipole           9±6       12 ± 5
+      16
+
+         80
+                                                                                                                                                 𝑀5 W23                  12 ± 3     12 ± 3
+                                                                                               b◦ = 62+22
+                                                                                                      −25          Table 7. Inferred dipole amplitude by sample and model. All values are
+                                                                                                                   reported with a 95% credible interval and given in units of 10 −3 .
+         80
+
+         60
+b◦       40
+
+         20
+
+           0                                                                                                       6 DISCUSSION & CONCLUSIONS
+                        00    01    01    02         00
+                                                     015           80   16     24    32    0   20   40   60   80
+                       0. 5   0.0   0.5   0.0     0.
+                                                 0.
+                                                  0. 010
+                                                       5
+                                                      0.                  0      0     0
+                                                     020
+                               DN                       DR                l◦                        b◦             6.1 Effect of local clustering
+                                                                                                                   The results we presented in the previous section indicate that, while
+Figure 8. Corner plot for the joint NVSS(B) and RACS-low(B) analysis.
+                                                                                                                   the dipole in RACS-low and NVSS is consistent in direction with the
+Although the free dipole is not the strongest model, we show its posterior                                         CMB dipole, there is significant support for an amplitude larger than
+distribution here for illustration. The dashed lines represent a 95% credible                                      that of the CMB dipole. While the case is not decisive for NVSS(B)
+interval, and the quoted uncertainties above each 1D posterior also give 2𝜎                                        alone, with the kinematic dipole being marginally preferred over the
+credible intervals on each model parameter. The contours on the 2D marginal                                        other hypotheses, RACS-low(B) has sizeable evidential support for
+posteriors give intervals of 0.5𝜎, encompassing 11.8%, 39.4%, 67.5% and                                            a dipole larger than the CMB expectation (DCMB ≈ 4.0 × 10 −3 ).
+86.4% of the distribution. DN refers to the NVSS dipole amplitude (DNVSS ),                                        In addition, the joint analysis – either with the A or B variants –
+and DR refers to the RACS-low dipole amplitude (DRACS ).                                                           favours a larger dipole amplitude, even if we neglect the results of
+                                                                                                                   Wagenveld et al. (2023) and consider model (𝑀3 ) to be the dominant
+                                                                                                                   explanation.
+                                                                                                                      Nonetheless, one important observation is that the dipole ampli-
+                                                                                                                   tude in the individual catalogues diminishes moving from the A to B
+                                                                                                                   variants. Thus the clustering of low-redshift radio sources has a non-
+   Lastly, we show the model 𝑀1 corner plot for the joint analysis                                                 negligible impact on the dipole amplitude. In fact, even though about
+with the B variants in Fig. 8, and project the marginal distributions for                                          3000 sources were removed from NVSS and about 3700 sources
+𝑙 and 𝑏 onto the sky in Fig. 9. There, we find DNVSS = (9±6) ×10 −3                                                from RACS-low, representing only 0.9% and 0.8% of the final source
+and DRACS = (12 ± 5) × 10 −3 . In the case of the joint analysis with                                              counts of each sample respectively, the inferred dipole amplitudes
+the A variants, for the free dipole fit we find DNVSS = (11±6) ×10 −3                                              decreases by ≈10%–15% depending on the sample used. This ac-
+and DRACS = (13 ± 5) × 10 −3 .                                                                                     counts for why, in both B samples, the kinematic dipole model gains
+
+MNRAS 000, 1–15 (2024)
+                                                                                                                                       Radio dipole: NVSS & RACS                        11
+
+                           ×10−3
+
+                      15
+                      10                                                        NVSS
+                       5
+
+                           ×10−3
+
+
+                                                                                RACS-low
+                      15
+
+
+
+ Dipole amplitude D
+                      10
+                       5
+
+                           ×10−3
+
+
+
+
+                                                                                Joint (RACS-low) Joint (NVSS)
+                      15
+                      10
+                       5                                                                                               45°
+                           ×10−3
+                                                                                                                                     90°               0°            270°
+                      15                                                                                          0°
+                      10
+                       5
+                           0.00    0.02     0.04     0.06         0.08   0.10                                          -45°
+                                     Maximum redshift z removed
+
+
+Figure 10. Inferred dipole amplitude against maximum redshift removed                                                  45°
+during cross-matching. The error bars represent a 95% (2𝜎) credible interval.
+Red is NVSS, blue is RACS-low, and pink is the joint sample (the relevant
+                                                                                                                                     90°               0°            270°
+samples are also labelled to the right of each pane). The brown line indicates
+the expected dipole amplitude in each case, and the grey line shows the
+                                                                                                                  0°
+inferred amplitude with no sources removed (i.e. the amplitude at 𝑧 = 0).
+
+                                                                                                                       -45°
+a comparitively larger marginal likelihood with respect to the other
+competing models (see Tables 4 and 5).
+
+                                                                                                                Figure 11. Spatial distribution (Galactic coordinates; Mollweide projection)
+6.1.1 Clustering by redshift                                                                                    of NED and 2MRS sources (𝑧 < 0.02) and those that are cross-matched in
+                                                                                                                NVSS/RACS-low. The black star indicates the direction of the CMB dipole.
+We can further probe the effect of local clustering on the dipole                                               Some sources may reside in masked NVSS/RACS-low regions since cross-
+amplitude by noting how the amplitude changes with increasingly                                                 matching is applied before masking. Top: NED and 2MRS sources with
+deeper redshift cuts. The NED catalogue contains objects at a redshift                                          redshift less than 0.02. The graticule labels have been removed for clarity.
+of 0.01 and below, whereas 2MRS contains objects up to a redshift of                                            Middle: All 3049 cross-matched NVSS sources removed in NVSS(B). Bot-
+about 0.1. Although the homogeneity scale – the distance over which                                             tom: All 3700 cross-matched RACS-low sources removed in RACS-low(B).
+the Universe is expected to average out to FLRW – is presently
+thought to be smaller than that implied by 𝑧 ≈ 0.1 (see e.g. Sarkar
+et al. 2009; Scrimgeour et al. 2012 which place the transition to                                               the inferred dipole amplitude. However, the disagreement between
+homogeneity around 100–115 Mpc (𝑧 ≈ 0.023–0.027) assuming ℎ =                                                   the expectation and the inferred amplitude is much larger for RACS-
+0.7), there remains considerable uncertainty over its exact number                                              low, reaching ≈ 3.4𝜎 even after local sources have been identified
+(Kumar Aluri et al. 2023). It is therefore worth seeing how deeper                                              and removed from the sample.
+cuts impact any clustering bias in the dipole amplitude. To do this,                                               To visualise the local structure being caught here, we plot the
+we simply repeat our model fitting for different redshift bins. In the                                          spatial distribution of NED and 2MRS sources which have a redshift
+first case, we remove no sources, and in the second case, we only                                               lower than 0.02 in the top pane of Fig. 11. A significant band of
+remove sources with redshift ≤ 0.01. Then, we remove sources with                                               low redshift structure concentrated near the CMB dipole can be
+𝑧 ≤ 0.02, and so on.                                                                                            seen. This band of structure is being picked up in the cross-matched
+   Our results for this process are presented in Fig. 10. Immediately,                                          sources identified in NVSS and RACS-low, shown in the middle and
+it can be inferred that the dipole amplitude continues to decrease up                                           bottom panes of Fig. 11 respectively. This likely explains why the
+until 𝑧 ≈ 0.04 (comoving distance of ≈ 170 Mpc), where it starts to                                             inferred dipole amplitude decreases until the redshift bin of 𝑧 < 0.04;
+plateau off. This is broadly the case whether or not one considers the                                          this local structure is being incrementally removed until the bin is
+samples individually or the joint analysis, in which both catalogues                                            sufficiently deep to cover its spatial volume.
+are assumed to be affected by a dipole pointing in the same direction                                              With this established, it is worth mentioning the role that the
+but with different magnitudes. We note that – as mentioned earlier –                                            NED sample has in our study. Our chief aim is to remove as many
+the uncertainties on the amplitude are quite significant. None the less,                                        low-redshift sources as possible. However, since the NED database
+by the 𝑧 < 0.03 cut, the expected DNVSS (shown by the dashed brown                                              collates objects from independent studies and resources, there is the
+line in the top pane of Fig. 10) is just outside the 2𝜎 uncertainties on                                        possibility that it introduces a bias or some other unknown effect
+
+                                                                                                                                                                 MNRAS 000, 1–15 (2024)
+         12       Oayda et al.
+                                                                                           possible that the kinematic and clustering dipoles are correlated as
+                                                                                           implied in Fig. 12, since the cause of the LG’s motion with respect
+                                                                                           to the CMB is gravitational interaction with local structure. Even so,
+                                                          60◦                              it is curious that the clustering dipole seems to be well-defined with
+                                                                                           a small number of sources (< 4000) and aligns so closely with the
+                                                                                           CMB dipole. At least for this study, it explains why the removal of
+                                                                           b = 30◦         local sources is correlated with a decreasing dipole amplitude; the
+                                                                                           clustering and matter dipoles act in concert, contributing to a larger
+                                                                                           inferred amplitude. This is a 10%–15% effect, as was noted earlier.
+                                                                                               The possibility of a local void or overdensity contributing to the
+◦
+    390◦ l = 0◦ 330◦            300◦       270◦       240◦       210◦
+                                                                                 0◦
+                                                                                           NVSS net dipole amplitude was considered in, for example, Rubart
+                                                                                           et al. (2014). There, the authors simulated the effect of a perturbed
+                                                                                           region with source density below the average (𝛿 = −1/3) out to
+                                                                                           redshifts of 0.07, arriving at a similar value of Dclust. ≈ 2 × 10 −3
+                                                                                           (although their approach is totally distinct from our own). In a similar
+         Figure 12. Projection of the marginal posterior distribution (𝑙 and−30𝑏)◦ for     vein, Bengaly et al. (2019) constructed a forward-looking sample,
+         the cross-matched source dipole onto the sky (Mollweide). Blue indicates
+         the RACS-low clustering dipole and red the NVSS clustering dipole. The
+                                                                                           using predictions from ΛCDM to anticipate the radio number count
+         contours give intervals of 0.5𝜎, encompassing 11.8% and 39.4%. Additional         map that will be made available by the upcoming Square Kilometre
+                                                           star ◦indicates the direction
+                                                         −60
+         contours have been omitted for clarity. The black                                 Array (SKA). The authors found that the dipole estimate in this
+         of the CMB dipole.                                                                mock sample is contaminated by local structure, with most of the
+                                                                                           inconsistency between the true kinematic dipole and the inferred
+                                                                                           dipole caused by sources out to 𝑧 = 0.1. Thus, they expect cross-
+         in our results – especially since those studies may have different                matching radio SKA sources with optical/infrared data to be of key
+         levels of completeness and coverage. As a consistency check, we                   importance in excising low redshift sources, which is what we also
+         repeated our above analysis without the NED sample and only the                   conclude in this work. In any case, the two studies lend support to
+         2MRS sample, which, unlike the former, is constituted solely from the             our proposition that local structure contributes non-negligibly to the
+         Two Micron All Sky Survey. We find that our results are essentially               inferred dipole in NVSS and RACS-low.
+         unchanged with this modification, likely because the cross-matched
+         NED sources represent only ≈ 10% of the net cross-matched sources.
+         We can therefore say that our findings are not influenced by an                   6.1.3 Joint analysis
+         unforeseen bias in the NED objects. This supports our observation                 In our joint analysis, we give results both where the catalogue A
+         that clustering is a genuine influence on the dipole amplitude.                   variants and catalogue B variants are used (see Table 6). To reiterate,
+                                                                                           the B variants have had the local structure in Fig. 11 removed by
+                                                                                           crossmatching with both 2MRS and NED. The results with the B
+         6.1.2 Clustering dipole
+                                                                                           variants are representative of our main finding. In this case, we find
+         Another way of understanding the effect of local clustering is by                 that the model assuming the results of Wagenveld et al. (2023) as the
+         visualising the dipolar contribution of local sources to the overall              prior likelihood function yields the highest evidence by a significant
+         inferred dipole. We refer to this as the ‘clustering dipole’. More                margin. If we blind ourselves to the findings of that work and consider
+         explicitly, we take the cross-matched sources for either NVSS or                  the next-best explanation of the data, we find that fixing the dipole
+         RACS-low – as shown in the bottom two panes of Fig 11 – and                       to the CMB direction but allowing the amplitude to vary as a free
+         fit a free dipole (model 𝑀1 ) to them. For the cross-matched NVSS                 parameter offers the greatest predictive power.
+         sources, we infer a dipole amplitude of D ≈ 0.25 ± 0.06, and for                     We can understand this result by turning our attention to the
+         the cross-matched RACS-low sources, we infer an amplitude of D ≈                  marginal distributions of the dipole amplitudes, as shown in Fig. 13.
+         0.22 ± 0.05. We project the resulting marginal posterior distribution             There, one can see that by fixing 𝑙 and 𝑏 to the CMB dipole direction
+         for 𝑙 and 𝑏 onto the sky in Fig. 12 after performing this fit. Strikingly,        (top pane), a dipole with larger amplitude than the CMB expectation
+         the cross-matched sources – both for NVSS and RACS-low – have a                   (brown line) is preferred. Models which fix D to the the CMB ex-
+         well-constrained dipole signal pointing near the CMB dipole. A priori             pectation are consequently penalised; they give a poorer explanation
+         we expect that the clustering dipole might point in any direction on              of the data.
+         the sky, as it ultimately traces the net dipole component of nearby                  One interesting point is that, if we assume a free dipole (𝑀1 ), the
+         structure. Meanwhile, the overall CMB dipole includes contributions               posterior distribution of the RACS-low amplitude tends to higher
+         from, for example, the motion of our heliocentric frame of reference              values than for NVSS. This is shown in the middle pane of Fig. 13,
+         with respect to the Galaxy. This is not necessarily correlated with               although the effect is also discernible for the other models (see the
+         local structure.                                                                  other panes). This is also present in our analysis of the individual
+             However, it is worth pointing out that the CMB dipole – i.e. the              samples, as shown in Fig. 7. It could therefore be asked why, on net,
+         motion of the Sun with respect to the CMB – points in roughly the                 the RACS-low dipole tends to be larger than that NVSS – both in the
+         same direction as the motion of the Local Group (LG) with respect                 joint and individual analyses. This cannot be explained by variation in
+         to the CMB (𝑙, 𝑏 ≈ 270◦ , 30◦ ; see Table 3 in Planck Collaboration               the spectral index and/or flux distributions of each sample, since we
+         et al. 2020). Meanwhile, the motion of our heliocentric frame with                convert to an implied velocity in Fig. 13 using the dipole expectations.
+         respect to the LG is approximately oppositely-aligned with the CMB                   It is possible that this amplitude discrepancy evinces further sys-
+         dipole. Accordingly, the fact that the clustering dipole seems to align           tematic effects biasing the amplitude which we have not been able
+         with the CMB dipole means that it is also roughly aligned with the                to adequately account for in RACS-low. For example, it is reason-
+         axis defining the LG’s motion with respect to the CMB. It is therefore            able to suppose that we have not removed all possible local radio
+
+         MNRAS 000, 1–15 (2024)
+                                                                                                                                            Radio dipole: NVSS & RACS                     13
+
+                             NVSS              RACS-low               W23 (1σ)           CMB
+                                                                                                                      the samples. In doing so, we have made the additional observation
+                                                                                                                      that the RACS-low sample prefers a larger dipole amplitude. One
+                           ×10−3
+                       2                                                                                              other point of contrast is that the authors assumed that the effects of
+
+
+
+                                                                                               Kin. direction (M3 )
+                                                                                                                      clustering are negligible; we have found substantial evidence that this
+                                                                                                                      is not the case. Though accounting for clustering only slightly reduces
+                       1
+                                                                                                                      the dipole amplitude for the W23 model (𝑀5 ; D ≈ 0.013 → 0.012),
+                                                                                                                      it has a more pronounced effect on our other models. We interpret
+                       0                                                                                              this as evidence for clustering playing an important effect in the Ellis
+                           ×10−3                                                                                      & Baldwin (1984) test.
+
+
+
+
+ Probability density
+                       2
+
+
+
+
+                                                                                               Free dipole (M1 )
+                                                                                                                         Turning to a separate study, Secrest et al. (2022) also examined
+                                                                                                                      NVSS, finding an amplitude of D ≈ (12 ± 3) × 10 −3 . This result
+                       1                                                                                              is encompassed by the uncertainties on our findings, whether or not
+                                                                                                                      one turns to NVSS(A), NVSS(B) or the joint analysis. The fact that
+                                                                                                                      the authors did not account for the clustering of local sources can
+                       0
+                           ×10−3
+                                                                                                                      explain why their median amplitude is slightly larger than what we
+                       3                                                                                              inferred after cross-matching (see NVSS(B) in Table 7). We cannot
+                                                                                                                      comment on the joint case, since the authors compared the quasar
+
+                                                                                               W23 (M5 )
+                       2
+                                                                                                                      catalogue of CatWISE2020 (Marocco et al. 2021) and NVSS.
+                       1                                                                                                 Additionally, in Colin et al. (2017), the authors accounted for
+                                                                                                                      local clustering by cross-matching with 2MRS. Nonetheless, this did
+                       0                                                                                              not significantly impact their dipole amplitude estimate, which was
+                            0      250   500     750      1000   1250    1500    1750   2000
+                                                                                                                      around four times greater than the expectation. The lack of sensitivity
+                                                                 −1
+                                                 Speed (km s )                                                        of the dipole amplitude to local sources conflicts with our findings.
+                                                                                                                      Now, the authors cut and combined NVSS with SUMSS to create a
+                                                                                                                      merged catalogue with ≈ 600 000 sources, rather than considering
+Figure 13. Marginal posterior distributions for the implied velocity of our                                           both samples jointly with a likelihood function like equation (10).
+heliocentric frame with respect to the CMB in the joint analysis (B variants).                                        Thus, it may be worth revisiting their work in the future with a joint
+The distributions have been smoothed with a Gaussian kernel for the sake                                              Bayesian approach and seeing if the contribution from SUMSS still
+of visualisation. The top pane shows the inferred amplitudes assuming the
+                                                                                                                      leaves an anomalously high dipole amplitude – even when clustering
+kinematic direction model (𝑀3 ), while the middle and bottom panes assume
+the free dipole model (𝑀1 ) and the W23 model (𝑀5 ) respectively.
+                                                                                                                      is mitigated.
+
+
+sources in our cross-matching procedure. This is especially the case                                                  6.3 Future outlook
+considering the sensitivty of the amplitude to local clustering. Tiwari                                               On the basis of the above, our result raises questions about the nature
+& Nusser (2016) estimate from mock NVSS catalogues that sources                                                       of the tension between the CMB dipole and the matter dipole. It sits in
+with redshift 𝑧 < 0.1 contribute to the dipole amplitude by as much                                                   agreement with historic studies which have reported an anomalously
+as 70%. With a different methodology, the fiducial model of Cheng                                                     large radio galaxy dipole, as well the result of Secrest et al. (2021),
+et al. (2023) estimates the clustering dipole (the component of the                                                   which confirmed this with quasars in the near-IR. However, one
+inferred dipole arising from locally-clustered sources) in NVSS to be                                                 outstanding issue is why our finding is mildly in tension with that
+≈ (4 ± 1) × 10 −3 , 80% of which comes from objects below a redshift                                                  of Mittal et al. (2024). One possible explanation is that, with the
+of 0.05. This is about twice as large as the clustering component we                                                  additional dataset afforded by the joint analysis here, the statistical
+inferred in the foregoing sections. Therefore, while the top pane of                                                  power of the result increases – noting that the analysis of Mittal
+Figure 11 might be a good representation of local structure, it only                                                  et al. (2024) dealt with Quaia alone. Further, while the joint analysis
+provides a lower limit on the contribution to the clustering dipole;                                                  points towards an excessive dipole amplitude, there are still additional
+there may be more sources which have not been accounted for.                                                          questions regarding the full effect of local structure to pursue. We
+                                                                                                                      therefore do not claim that the state of the tension is unequivocal,
+                                                                                                                      clear-cut or well-understood.
+6.2 Comparison with other studies
+                                                                                                                         Importantly, we have shown that the impact of clustering in both
+Keeping the effects of clustering in mind, how does our result com-                                                   NVSS and RACS-low is significant. Contamination from local radio
+pare to other studies? Speaking broadly, the current state of the litera-                                             sources, even if they represent a small part of the sample, dispro-
+ture leans towards a matter dipole pointing in the same direction of the                                              portionately biases the inferred dipole amplitude to larger values.
+CMB dipole – which is consistent with our joint analysis – but with                                                   This necessitates a more detailed profiling of local sources in future
+a magnitude in excess of the CMB dipole amplitude (Peebles 2022;                                                      studies, possibly including calculations of the clustering dipole ex-
+Kumar Aluri et al. 2023). Now, it is important to recognise that our                                                  pectation as some authors have done previously. We are therefore of
+amplitude estimates have significant uncertainties. That being said,                                                  the view that the common assumption that clustering is negligible is
+at face value our results are consistent with prior observations of an                                                no longer tenable, and may at least in part account for a fraction of
+excessive dipole amplitude.                                                                                           the dipole excess reported in many radio galaxy studies. One corre-
+   For example, our results are evidently consistent with Wagenveld                                                   lated question is why our inferred ‘clustering dipole’ (the dipole in
+et al. (2023), the prior knowledge of which offers the best explanation                                               the cross-matched sources) appears to align with the CMB dipole. Is
+of the data. Although, we note that the authors’ approach differed                                                    this consistent with the predictions of the CP, or is it an anomaly?
+slightly from ours, since they assumed a common dipole amplitude                                                         With respect to our methodology, there are important factors to
+across NVSS and RACS-low, whereas we allowed it to vary between                                                       consider about our cross-matching, in which we pair near-infrared
+
+                                                                                                                                                                    MNRAS 000, 1–15 (2024)
+14       Oayda et al.
+(2MRS) and radio (NVSS/RACS-low) sources. Generally, cross-                   ASKAP is funded by the Australian Government with support from
+matching radio catalogues with other optical/infrared samples is a            the National Collaborative Research Infrastructure Strategy. ASKAP
+non-trivial and well-known problem. This is largely because radio             uses the resources of the Pawsey Supercomputing Research Centre.
+sources are often extended with multiple spatially distinct compo-            Establishment of ASKAP, Inyarrimanha Ilgari Bundara, the CSIRO
+nents, and it can be unclear whether the radio emission is even asso-         Murchison Radio-astronomy Observatory and the Pawsey Supercom-
+ciated with the optical/infrared counterpart source itself (Fan et al.        puting Research Centre are initiatives of the Australian Government,
+2020a; see e.g. van Velzen et al. 2012 and Fan et al. 2020b for recent        with support from the Government of Western Australia and the Sci-
+attempts at cross-matching manually and automatically respectively).          ence and Industry Endowment Fund. This research has made use of
+Roughly 10% of radio sources will have extended, spatially-separated          the NASA/IPAC Extragalactic Database (NED), which is operated
+lobes, and it can be challenging to distinguish between these struc-          by the Jet Propulsion Laboratory, California Institute of Technology,
+tures (part of the same source) and genuinely distinct sources. It is         under contract with the National Aeronautics and Space Administra-
+therefore conceivable that by cross-matching NVSS/RACS-low with               tion.
+2MRS, we occasionally only remove one of the many lobes of a radio               This work made use of the python packages dynesty (Skilling
+source and miss the extended structure. In a follow up analysis, we           2004, 2006; Koposov et al. 2023b), healpy (Górski et al. 2005;
+tried to probe this issue and remove highly-extended sources by a cut         Zonca et al. 2019), numpy (Harris et al. 2020), matplotlib (Hunter
+in the ratio of the integrated to peak flux density 𝑆int. /𝑆peak . We tried   2007), pandas (Wes McKinney 2010; The Pandas Development
+cuts from 𝑆int. /𝑆peak > 10 to as low as 𝑆int. /𝑆peak > 5, but found that     Team 2020), scipy (Virtanen et al. 2020) and astropy (Astropy
+this has a negligible impact on the inferred parameters and model             Collaboration et al. 2022).
+marginal likelihoods. It would therefore be worth exploring this in
+more depth in future analyses.
+   One additional point relates to the actual value of the cross-
+                                                                              DATA AVAILABILITY
+matching radius itself, which we set at 5 arcseconds in light of the
+positional accuracy of NVSS/RACS-low objects. A more thorough                 The ASKAP data analysed in this paper can be accessed through
+way of setting the radius would involve constructing a ‘fake’ cata-           the CSIRO ASKAP Science Data Archive (CASDA4 ) under project
+logue with random positional offsets from NVSS/RACS-low, then                 code AS110. Other data used in this study will be made available
+evaluating the fraction of genuine versus fake matches as a function          with a reasonable request to the authors.
+of radius (see e.g. Mahony et al. 2011; Chhetri et al. 2020). This
+leaves scope for future work to investigate more robust and con-
+sistent ways of removing local galaxies and handling the realities of
+                                                                              REFERENCES
+extended radio structure, beyond what we have already achieved with
+our choice of mask and cross-matching.                                        Abdalla E., et al., 2022, Journal of High Energy Astrophysics, 34, 49
+   Finally, our joint methodology invites extension with other cata-          Abghari A., Bunn E. F., Hergt L. T., Li B., Scott D., Sullivan R. M., Wei D.,
+logues. The utility of this approach is that we may add additional                 2024, arXiv e-prints, p. arXiv:2405.09762
+terms to equation (10) for each other sample, and these need not be           Astropy Collaboration et al., 2022, apj, 935, 167
+limited to radio galaxies. For example, we could include samples              Bengaly C. A., Maartens R., Santos M. G., 2018, J. Cosmology Astropart.
+                                                                                   Phys., 2018, 031
+of quasars or Type Ia supernovae. Doing so improves the statisti-
+                                                                              Bengaly C. A. P., Siewert T. M., Schwarz D. J., Maartens R., 2019, MNRAS,
+cal power of the result by analysing independent, unique objects in                486, 1350
+which different processing techniques have been used. While an un-            Blake C., Wall J., 2002a, MNRAS, 329, L37
+accounted for systematic effect could bias the result, it would have          Blake C., Wall J., 2002b, Nature, 416, 150
+comparatively less of an effect amongst the other samples in the joint        Cheng Y.-T., Chang T.-C., Lidz A., 2023, arXiv e-prints, p. arXiv:2309.02490
+analysis. In future work, this will help further understand the na-           Chhetri R., Kimball A., Ekers R. D., Mahony E. K., Sadler E. M., Jarrett T.,
+ture of the claimed tension between the CMB dipole and the matter                  2020, MNRAS, 494, 923
+dipole in the literature, robustly interrogating the role of the CP in        Colin J., Mohayaee R., Rameez M., Sarkar S., 2017, MNRAS, 471, 1045
+our cosmological paradigm.                                                    Condon J. J., Cotton W. D., Greisen E. W., Yin Q. F., Perley R. A., Taylor
+                                                                                   G. B., Broderick J. J., 1998, AJ, 115, 1693
+                                                                              Dalang C., Bonvin C., 2022, Monthly Notices of the Royal Astronomical
+                                                                                   Society, 512, 3895
+ACKNOWLEDGEMENTS                                                              Dam L., Lewis G. F., Brewer B. J., 2023, MNRAS, 525, 231
+                                                                              Darling J., 2022, ApJ, 931, L14
+We thank the anonymous refereee for their insightful comments,                Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377
+which greatly improved this paper. We also thank Harry Desmond for            Fan D., Budavári T., Norris R. P., Basu A., 2020a, MNRAS, 498, 565
+helpful discussions regarding the correlation between the kinematic           Fan D., Budavári T., Norris R. P., Basu A., 2020b, MNRAS, 498, 565
+and clustering dipoles. Additionally, we extend our gratitude to Stefan       Gibelyou C., Huterer D., 2012, MNRAS, 427, 1994
+Duchesne and Emil Lenc for useful discussions regarding the RACS              Górski K. M., Hivon E., Banday A. J., Wandelt B. D., Hansen F. K., Reinecke
+                                                                                   M., Bartelmann M., 2005, ApJ, 622, 759
+sample. VM acknowledges Prof. Kulinder Pal Singh, IISER Mohali
+                                                                              Guandalin C., Piat J., Clarkson C., Maartens R., 2023, ApJ, 953, 144
+for his support; DST, Government of India for the INSPIRE-SHE
+                                                                              Hale C. L., et al., 2021, Publ. Astron. Soc. Australia, 38, e058
+scholarship and University of Sydney’s internship program which               Harris C. R., et al., 2020, Nature, 585, 357
+made this work possible. This scientific work uses data obtained              Horstmann N., Pietschke Y., Schwarz D. J., 2022, A&A, 668, A34
+from Inyarrimanha Ilgari Bundara / the Murchison Radio-astronomy              Huchra J. P., et al., 2012, ApJS, 199, 26
+Observatory. We acknowledge the Wajarri Yamaji People as the Tra-             Hunter J. D., 2007, Computing in Science & Engineering, 9, 90
+ditional Owners and native title holders of the Observatory site.
+CSIRO’s ASKAP radio telescope is part of the Australia Telescope
+National Facility (https://ror.org/05qajvd42). Operation of                   4   https://data.csiro.au/domain/casdaObservation
+
+MNRAS 000, 1–15 (2024)
+                                                                                 Radio dipole: NVSS & RACS       15
+Kass R. E., Raftery A. E., 1995, Journal of the American Statistical Associ-
+    ation, 90, 773
+Koposov       S.,     et    al.,   2023b,      joshspeagle/dynesty:    v2.1.2,
+    doi:10.5281/zenodo.7995596, https://doi.org/10.5281/zenodo.
+    7995596
+Koposov       S.,     et    al.,   2023a,      joshspeagle/dynesty:    v2.1.3,
+    doi:10.5281/zenodo.8408702, https://doi.org/10.5281/zenodo.
+    8408702
+Kumar Aluri P., et al., 2023, Classical and Quantum Gravity, 40, 094001
+Mackay D. J. C., 2003, Information Theory, Inference and Learning Algo-
+    rithms. Cambridge University Press
+Mahony E. K., et al., 2011, MNRAS, 417, 2651
+Marocco F., et al., 2021, ApJS, 253, 8
+Mauch T., Murphy T., Buttery H. J., Curran J., Hunstead R. W., Piestrzynski
+    B., Robertson J. G., Sadler E. M., 2003, MNRAS, 342, 1117
+McConnell D., et al., 2020, Publ. Astron. Soc. Australia, 37, e048
+Milne E. A., 1935, Relativity, Gravitation and World-structure. Oxford Uni-
+    versity Press
+Mittal V., Oayda O. T., Lewis G. F., 2024, MNRAS, 527, 8497
+Oayda O. T., Lewis G. F., 2023, MNRAS, 523, 667
+Peebles P. J. E., 2020, Cosmology’s Century: An Inside History of
+    Our Modern Understanding of the Universe. Princeton Univer-
+    sity Press, doi:10.23943/princeton/9780691196022.001.0001, https:
+    //doi.org/10.23943/princeton/9780691196022.001.0001
+Peebles P., 2022, Annals of Physics, 447, 169159
+Planck Collaboration et al., 2020, A&A, 641, A1
+Rubart M., Schwarz D. J., 2013, A&A, 555, A117
+Rubart M., Bacon D., Schwarz D. J., 2014, A&A, 565, A111
+Sarkar P., Yadav J., Pandey B., Bharadwaj S., 2009, MNRAS, 399, L128
+Scrimgeour M. I., et al., 2012, MNRAS, 425, 116
+Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., Colin
+    J., 2021, ApJ, 908, L51
+Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., 2022,
+    ApJ, 937, L31
+Siewert T. M., Schmidt-Rubart M., Schwarz D. J., 2021, A&A, 653, A9
+Singal A. K., 2011, The Astrophysical Journal Letters, 742, L23
+Singal A. K., 2022, MNRAS, 515, 5969
+Singal A. K., 2023a, arXiv e-prints, p. arXiv:2312.12785
+Singal A. K., 2023b, MNRAS, 524, 3636
+Skilling J., 2004, in Fischer R., Preuss R., Toussaint U. V., eds, American
+    Institute of Physics Conference Series Vol. 735, Bayesian Inference and
+    Maximum Entropy Methods in Science and Engineering: 24th Interna-
+    tional Workshop on Bayesian Inference and Maximum Entropy Methods
+    in Science and Engineering. pp 395–405, doi:10.1063/1.1835238
+Skilling J., 2006, Bayesian Analysis, 1, 833
+Sorrenti F., Durrer R., Kunz M., 2022, arXiv e-prints, p. arXiv:2212.10328
+Speagle J. S., 2020, MNRAS, 493, 3132
+Storey-Fisher K., Hogg D. W., Rix H.-W., Eilers A.-C., Fabbian G., Blanton
+    M., Alonso D., 2023, arXiv e-prints, p. arXiv:2306.17749
+The Pandas Development Team 2020, pandas-dev/pandas: Pandas,
+    doi:10.5281/zenodo.3509134, https://doi.org/10.5281/zenodo.
+    3509134
+Tiwari P., Nusser A., 2016, Journal of Cosmology and Astroparticle Physics,
+    2016, 062
+Virtanen P., et al., 2020, Nature Methods, 17, 261
+Wagenveld J. D., Klöckner H.-R., Schwarz D. J., 2023, A&A, 675, A72
+Wes McKinney 2010, in Stéfan van der Walt Jarrod Millman eds, Pro-
+    ceedings of the 9th Python in Science Conference. pp 56 – 61,
+    doi:10.25080/Majora-92bf1922-00a
+Zhou H., Li Z., 2020, ApJ, 889, 186
+Zonca A., Singer L., Lenz D., Reinecke M., Rosset C., Hivon E., Gorski K.,
+    2019, Journal of Open Source Software, 4, 1298
+van Velzen S., Falcke H., Schellart P., Nierstenhöfer N., Kampert K.-H., 2012,
+    A&A, 544, A18
+von Hausegger S., 2024, arXiv e-prints, p. arXiv:2404.07929
+
+
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+
+
+                                                                                               MNRAS 000, 1–15 (2024)
+

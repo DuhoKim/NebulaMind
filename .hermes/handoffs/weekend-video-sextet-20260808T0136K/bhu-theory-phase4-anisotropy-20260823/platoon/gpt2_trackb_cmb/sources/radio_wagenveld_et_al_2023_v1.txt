@@ -1,0 +1,914 @@
+                                               Astronomy & Astrophysics manuscript no. main_paper                                                                                ©ESO 2023
+                                               May 25, 2023
+
+
+
+
+                                                     The cosmic radio dipole: Bayesian estimators on new and old
+                                                                            radio surveys
+                                                                                       J. D. Wagenveld1 , H-R. Klöckner1 , and D. J. Schwarz2
+
+                                                     1
+                                                         Max-Planck Institut fur Radioastronomie, Auf dem Hügel 69, 53121 Bonn, Germany
+                                                     2
+                                                         Fakultät für Physik, Universität Bielefeld, Postfach 100131, 33501 Bielefeld, Germany
+
+                                                     May 25, 2023
+
+
+
+
+arXiv:2305.15335v1 [astro-ph.CO] 24 May 2023
+                                                                                                                  ABSTRACT
+
+                                                     The cosmic radio dipole is an anisotropy in the number counts of radio sources, analogous to the dipole seen in the cosmic microwave
+                                                     background (CMB). Measurements of source counts of large radio surveys have shown that though the radio dipole is generally
+                                                     consistent in direction with the CMB dipole, the amplitudes are in tension. These observations present an intriguing puzzle as to the
+                                                     cause of this discrepancy, with a true anisotropy breaking with the assumptions of the cosmological principle, invalidating the most
+                                                     common cosmological models that are built on these assumptions. We present a novel set of Bayesian estimators to determine the
+                                                     cosmic radio dipole and compare the results with commonly used methods on the Rapid ASKAP Continuum Survey (RACS) and the
+                                                     NRAO VLA Sky Survey (NVSS) radio surveys. In addition, we adapt the Bayesian estimators to take into account systematic effects
+                                                     known to affect such large radio surveys, folding information such as the local noise floor or array configuration directly into the
+                                                     parameter estimation. The enhancement of these estimators allows us to greatly increase the amount of sources used in the parameter
+                                                     estimation, yielding tighter constraints on the cosmic radio dipole estimation than previously achieved with NVSS and RACS. We
+                                                     extend the estimators further to work on multiple catalogues simultaneously, leading to a combined parameter estimation using both
+                                                     NVSS and RACS. The result is a dipole estimate that perfectly aligns with the CMB dipole in terms of direction but with an amplitude
+                                                     that is three times as large, and a significance of 4.8σ. This new dipole measurement is made to an unprecedented level of precision
+                                                     for radio sources, which is only matched by recent results using infrared quasars.
+                                                     Key words. large scale structure of the Universe – Galaxies: statistics – Radio continuum: galaxies
+
+
+
+                                               1. Introduction                                                             the Westerbork Northern Sky Survey (WENSS, Rengelink et al.
+                                                                                                                           1997), the Tata Institute for Fundamental Research (TIFR) Gi-
+                                               The cosmic microwave background (CMB) and the structures                    ant Metrewave Radio Telescope (GMRT) Sky Surveys first al-
+                                               seen therein are a signpost for large scale structure in the                ternative data release (TGSS ADR1, Intema et al. 2017), and the
+                                               universe. Besides the well-studied low level (∆T/T ∼ 10−5 )                 Sydney University Molonglo Sky Survey (SUMSS, Mauch et al.
+                                               anisotropies, the largest anisotropy seen in the CMB presents               2003). Though depending on the survey and employed estima-
+                                               itself in the cosmic dipole (∆T/T ∼ 10−3 ), an effect attributed to         tor, the amplitude of the radio dipole is consistently larger than
+                                               the movement of the Solar system with respect to the CMB rest-              the amplitude of the CMB dipole (see Siewert et al. 2021, for an
+                                               frame. The velocity of the solar system as derived from the am-             overview), while the direction of the radio dipole remains consis-
+                                               plitude of the CMB dipole is v = 369.82±0.11 km s−1 (Aghanim                tent with that of the CMB, albeit with considerable uncertainty.
+                                               et al. 2020), assuming that the dipole is entirely caused by the
+                                               observers’ motion w.r.t. the CMB.                                                Most significant are the results from Secrest et al. (2021)
+                                                   Ellis & Baldwin (1984) first proposed measuring the dipole              and Secrest et al. (2022), which find a dipole amplitude over
+                                               in the number counts of radio sources, as the radio population              twice that of the CMB at a significance of 4.9σ using Wide-field
+                                               outside of the Galactic plane mostly consists of extragalactic              Infrared Survey Explorer (WISE, Wright et al. 2010) measure-
+                                               sources that are expected to be part of and trace large scale               ments of quasars. Secrest et al. (2022) perform a joint analysis of
+                                               structure. The first significant measurement of the cosmic ra-              NVSS radio galaxies and WISE quasars, with a resulting signif-
+                                               dio dipole1 was reported by Blake & Wall (2002) using the Na-               icance of 5.1σ. A Bayesian estimator based on Poisson statistics
+                                               tional Radio Astronomy Observatory (NRAO) Very Large Array                  was recently utilised by Dam et al. (2022) for the first time to
+                                               (VLA) Sky Survey (NVSS, Condon et al. 1998), which agreed                   measure the cosmic radio dipole with the WISE quasar sample
+                                               with the CMB dipole within uncertainties. However, subsequent               from Secrest et al. (2021), yielding a dipole amplitude 2.7 times
+                                               studies using the NVSS found the amplitude of the cosmic radio              larger than the CMB dipole with a significance of 5.7σ. Ulti-
+                                               dipole to be significantly larger than that of the CMB dipole. Sin-         mately, a discrepancy between a dipole in the CMB and other
+                                               gal (2011) found a radio dipole to be four times larger, which was          observables points to an unknown effect to the data, which is
+                                               corroborated by Rubart & Schwarz (2013), in both cases with a               increasingly unlikely to be systematic among all the different
+                                               3σ significance. Apart from to the NVSS measurement, the cos-               probes, as the NVSS and WISE samples for example are inde-
+                                               mic radio dipole was measured with other radio surveys, such as             pendent both in terms of source population as well as systematic
+                                                                                                                           effects. This points to an unexpected anisotropy in the large scale
+                                                1
+                                                  Both ‘cosmic radio dipole’ or ‘radio dipole’ are used in this paper to   structure of the Universe, something which breaks with the core
+                                               refer to the dipole observed in the number counts of radio sources.         assumptions of the Cosmological principle. If true, this poses
+                                                                                                                                                                   Article number, page 1 of 14
+                                                  A&A proofs: manuscript no. main_paper
+
+a major problem for cosmologies that are based on the Fried-            such as survey depth, angular resolution, and observing fre-
+mann–Lemaître–Robertson–Walker metric, such as Λ-CDM.                   quency, and thus are difficult to assess without a thorough anal-
+     One problem that remains persistent even with ever larger          ysis of the survey. Such an analysis is beyond the scope of this
+datasets is a lack of homogeneity caused by systematic effects to       work, but would follow a structure similar to that of Siewert et al.
+the data. Systematic effects that are unaccounted for can greatly       (2020), who demonstrate for the LOFAR Two-Metre Sky Survey
+bias dipole estimates, such that conservative cuts in the data must     first data release (LoTSS DR1, Shimwell et al. 2019) that the dis-
+be made to eliminate biases as much as possible. Already in the         tribution of source counts converges to a Poisson distribution if
+first measurement of the cosmic radio dipole using the NVSS             applying more strict flux density cuts. For the analysis presented
+(Blake & Wall 2002), a persistent systematic effect was identi-         in this work, we assume that the effects of clustering and multi-
+fied causing large differences in source density as a function of       component sources are negligible on a dipole estimate.
+declination, inducing an artificial north-south anisotropy in the            The spectral features and number count relations of typical
+data. To eliminate this effect and avoid biasing dipole estimates,      radio sources make them uniquely suitable for a dipole measure-
+conservative cuts in flux density have to be made in such cata-         ment. For most sources the dominant emission mechanism at ra-
+logues, which greatly reduces the number of usable sources.             dio wavelengths is synchrotron radiation, the spectral behaviour
+     In Wagenveld et al. (2023), a deep analysis of ten pointings       of which is well described by a power law,
+from the MeerKAT Absorption Line Survey (Gupta et al. 2016)
+was presented, with a focus on mitigating biases that could affect      S ∝ ν−α ,                                                       (2)
+a measurement of the cosmic radio dipole. Being able to account
+for systematic effects allows less strict flux density cuts, increas-   with a characteristic spectral index α. For synchrotron emission
+ing homogeneity of the catalogues and number of sources that            the typical value of α is around 0.75 (e.g. Condon 1992), and this
+can be used for a dipole estimate. This approach was made possi-        value has been assumed for most dipole studies at radio wave-
+ble by having direct access to meta data and data products within       lengths (Ellis & Baldwin 1984; Rubart & Schwarz 2013; Siewert
+the processing steps of the survey from calibration to imaging          et al. 2021). Furthermore, the number density of radio sources
+and source finding, which is commonly not the case in dipole            follows a power-law relation with respect to the flux density S
+studies. In this work we approach this problem from the out-            above which the counts are taken,
+side, and show how dipole estimates can be improved with the            dN
+information present in modern radio catalogues. We present new             (> S ) ∝ S −x .                                              (3)
+                                                                        dΩ
+dipole estimators, constructing likelihoods for estimating dipole
+parameters that can take this information into account, as well as      The value of x can differ per survey, depending on choice of
+an estimator that combines different catalogues for an improved         flux density cut and frequency of the catalogue, but usually takes
+dipole estimate. Given the proper information, these estimators         values of 0.75-1.0.
+are able to account for systematic effects on number counts in              In the frame of the moving observer, given a velocity β =
+radio surveys and remove the need to cut large amounts of data.         v/c, a systemic Doppler effect shifts the spectra of sources,
+     This paper is organised as follows. In Section 2 we describe       which affects the flux density of these sources. Additionally
+the statistics of radio source counts and the dipole effect. In Sec-    sources are Doppler boosted from the point of view of the mov-
+tion 3 we introduce the estimators that will be used to infer the       ing observer, which further affects the observed flux density of
+radio dipole parameters, using the data sets described in Sec-          sources. Depending on their angular distance from the direction
+tion 4. The results obtained are given in Section 5. The impli-         of motion θ, the flux densities are shifted by
+cations and caveats of the results are discussed in Section 6. In
+Section 7 we summarise the findings of this paper.                      S obs = (1 + β cos θ)1+α S rest .                               (4)
+                                                                        Thus given a flux limited survey of radio sources, more sources
+2. Radio source counts and the dipole                                   appear above the minimum observable flux in the direction of
+                                                                        the motion, and less will appear in the opposite direction. Finally,
+The majority of bright sources at radio wavelengths outside of          relativistic aberration caused by motion of the observer shifts the
+the Galactic plane are active galactic nuclei (AGN) and have a          positions of sources towards the direction of motion, causing a
+redshift distribution that peaks at z ∼ 0.8 (e.g. Condon & Ran-         further increase in number counts in the direction of motion,
+som 2016). As such, radio sources are expected to trace the back-
+ground, and should thus comply with isotropy and homegeneity                           sin θrest
+                                                                        tan θobs =                 .                                    (5)
+on the largest scales. Following the cosmological principle, the                     β − cos θrest
+surface density of sources should therefore be independent of
+location on the sky. The naive expectation is a distribution of ra-     As the fluxes and positions of the sources are shifted, we ob-
+dio sources that are independent, identical, and point-like, which      serve the dipole as an asymmetry in the number counts of radio
+defines a Poisson point process. By discretising the sky into re-       sources. Combining these effects to first order in β, thus assum-
+gions of finite size, the number of sources per region will follow      ing that v ≪ c, shows the expected dipole amplitude for a given
+a Poisson distribution. The probability density distribution            survey
+
+         λn e−λ                                                         d = D cos θ,                                                    (6)
+p(n) =          ,                                                (1)    D = [2 + x(1 + α)]β.                                            (7)
+          n!
+is entirely parametrised by the variable λ, which describes both        As such, we can directly infer the velocity of the observer by
+the mean and variance of the distribution. In actual radio data,        measuring the dipole effect on the number counts of sources.
+some deviations from a perfect Poisson distribution are expected        However, this necessitates the assumption that dipole is entirely
+due to clustering and the presence of sources with multiple com-        caused by the motion of the observer. Given the observed dis-
+ponents. The severity of these effects depend largely on things         crepancy between the CMB dipole and the radio dipole , it would
+Article number, page 2 of 14
+                      J. D. Wagenveld et al.: The cosmic radio dipole: Bayesian estimators on new and old radio surveys
+
+be equally appropriate to assume that part of the observed radio        3.1. Quadratic estimator
+dipole is caused by a different (and as of yet unknown) effect.
+     Given a dipole characterised by Equation (7), different dipole     To control for differences in pixelation and masking strategies
+amplitudes D are expected to be seen depending on the data set          between this and previous works, introducing a new estimator
+being used. Though aberration always has an equal effect, the           warrants a comparison with known methods of dipole estima-
+effect of Doppler shift is determined by spectral index α of the        tion. The quadratic estimator is the closest analogy to the Pois-
+sources, and both this and the Doppler boosting effect depends          son estimator which we use to produce our main results, in that
+on the flux distribution of sources, characterised by power-law         it is insensitive to gaps in the data. It’s effectiveness and results
+index x. Most often single values are assumed for these quan-           on multiple large radio surveys are presented in Siewert et al.
+tities, from which the expectation of the dipole amplitude can          (2021). The estimator is based on the Pearson’s chi-squared test,
+be derived. These quantities will differ at least between differ-       minimising
+ent surveys, so we will derive them for each survey separately.
+Although the entire flux distribution of any survey can hardly                 X (ni,obs − ni,model )2
+                                                                        χ2 =                             ,                                (8)
+be characterised with a single power-law relation, the dipole in                         ni,model
+                                                                                i
+number counts will be caused by sources near the flux density
+threshold, making the power-law fit near this threshold the most
+                                                                        where the dipole model is written as
+appropriate choice for deriving x. For the entire range of fre-
+quencies we are considering in this work, we assume a spectral
+index α = 0.75, considering the synchrotron emission of radio           ni,model = M(1 + d · n̂i ).                                       (9)
+sources which dominates the spectrum of radio sources below
+30 GHz (Condon 1992).                                                   Here the dipole amplitude on a given cell is given by the inner
+                                                                        product between the dipole vector d and the unit vector pointing
+                                                                        in the direction of the cell n̂i , with d · n̂i = D cos θi . In addi-
+3. Dipole estimators                                                    tion to the dipole vector the monopole M is a free parameter,
+For measuring the cosmic radio dipole different types of esti-          for which the mean value of all cells n is a good initial estimate.
+mators have been used that for the most part yield consistent           The χ2 test is agnostic to the actual distribution of the data, but
+results. Most commonly used are linear and quadratic estima-            a dipole model is imposed on the data. This can lead to mis-
+tors (e.g. Singal 2011; Rubart & Schwarz 2013; Siewert et al.           leading results if there are anisotropies in the data, such as those
+2021). Linear estimators essentially sum up all source positions,       caused by systematic effects, on large enough scales and with
+and thus, by design, will point towards the largest anisotropy in       large enough amplitude to influence the fit. This can generally be
+the data. However, the recovered amplitude from linear estima-          assessed with the reduced χ2 , which should take a value around
+tors is inherently biased. Furthermore, because of its sensitivity      unity if the fit is good.
+to anisotropies, any gaps or systematic effects in the data can in-
+troduce biases in the estimate of the dipole direction. To not bias     3.2. Poisson estimator
+the estimator w.r.t. dipole direction, a mask must be created such
+that the map remains point symmetric w.r.t. the observer, or a          In the dipole estimators used in previous works there has been no
+‘masking correction’ must be applied (e.g. Singal 2011; Rubart          explicit assumption on the shape of the distribution of sources.
+& Schwarz 2013). Consequently, missing data features such as            A Gaussian distribution can be a valid assumption for a source
+the Galactic plane must be mirrored to maintain symmetry, re-           distribution, it has an additional degree of freedom compared to
+moving even more data. The quadratic estimator compares ex-             Poisson and is less valid if cell counts are low. However, as we
+pected number counts with a model, providing a chi-squared test         do not know a priori how many sources we have nor commit to
+of the data with respect to a model of the dipole (e.g. Siewert         a cellsize for which we count sources, we choose to assume a
+et al. 2021). The best-fit dipole parameters are then retrieved by      Poisson distribution for our cell counts. The Poisson probabil-
+minimising χ2 . Though the cost is imposing a dipole model on           ity density function is given by Equation 1, which depends on
+the data, the estimate is not biased by the spatial gaps in the data    the mean of the distribution λ, analogous to the monopole M in
+that are ubiquitous in radio surveys.                                   the absence of any anisotropies. To account for the effect of the
+     Both aforementioned estimators are sensitive to anisotropies       dipole, we introduce a dipole model equivalent to Equation (9),
+in the data introduced by systematic effects. Most commonly,
+these systematics affect the sensitivity of the survey in different     λ(d, M) = M(1 + d · n̂).                                         (10)
+parts of the sky, making the most straightforward solution to cut
+out all sources below some flux density. Given this assessment          In order to estimate the dipole parameters, we maximise the like-
+however, we might expect that information of the sensitivity of         lihood, which is given by
+the survey in different parts of the sky can help alleviate these bi-
+ases. The new generation of radio surveys boasts catalogues with                       Y λ(d, M)ni e−λ(d,M)
+a wealth of information, including the local root-mean-square           L(n|d, M) =                           .                          (11)
+(RMS) noise, which we will exploit in this work.                                         i
+                                                                                                      ni !
+     To improve sensitivity to the dipole several attempts have
+been made to combine different radio catalogues. Both Colin             Maximising the likelihood through posterior sampling has the
+et al. (2017) and Darling (2022) worked on combining different          key advantage of immediately yielding the uncertainties on the
+radio surveys, using different techniques to deal with system-          derived parameter values. This removes the necessity for null
+atic differences between the catalogues. Here we will provide           hypothesis simulations as performed in e.g. Rubart & Schwarz
+an alternative method to combine catalogues for increased sensi-        (2013); Secrest et al. (2021, 2022). This estimator was recently
+tivity to the dipole, while accounting for systematic differences       used by Dam et al. (2022), which was shown to provide more
+between the catalogues.                                                 tight constraints on the dipole than previously used methods.
+                                                                                                                  Article number, page 3 of 14
+                                                 A&A proofs: manuscript no. main_paper
+
+3.3. Poisson-RMS estimator                                             lihood into
+                                                                                                   Y λ(d, M1 )n1,i e−λ(d,M1 )
+While a survey can be influenced by many different systematic          L(n1 , n2 |d, M1 , M2 ) =
+effects, we can assert that the net effect is different sensitivity                                 i
+                                                                                                             n1,i !
+of the survey at different parts of the sky, leading to anisotropic                                Y λ(d, M2 )n2, j e−λ(d,M2 )
+number counts. Therefore we assume that all systematics that                                  ×                                  .     (13)
+                                                                                                                n2, j !
+impact source counts in fact influence local noise, thereby caus-                                   j
+ing the source density to vary across the survey. If the survey has    This likelihood benefits if the (expected) dipole amplitudes of
+sensitivity information in each part of the sky, the impact can        both catalogues are similar. Any differences however will be ab-
+be simply modelled by introducing additional variables to the          sorbed into the overall error budget by virtue of the sampling
+model. So long as a detection threshold is consistently applied        algorithm. Once again, the likelihood can be maximised through
+to the entire survey, the lower flux density limit will be linearly    posterior sampling, yielding the best-fit dipole results as well as
+related to the local RMS noise. Consequently, taking into ac-          the monopoles M1 and M2 for both surveys.
+count the dipole and the power law describing number counts,
+we can model the mean counts in the Poisson estimator as
+                                                                       3.5. Priors and injection values
+                         !−x                                           For efficient parameter estimation through posterior sampling,
+                  σ                                                    proper priors must be set. While priors on parameters can take
+λ(d, M, σ, x) = M              (1 + d · n̂),                   (12)
+                  σ0                                                   on many shapes based on prior knowledge, we take flat priors
+                                                                       on all parameters. This only leaves us to define the extents of
+                                                                       the probed parameter space, as well as the initial guesses to
+where σ is the RMS noise of the cell, x is the power-law index         serve as a starting point for the posterior sampling. In terms of
+of the flux distribution, and σ0 is a reference RMS value which        dipole parameters, we separately infer dipole amplitude D, as
+scales the power law and explicitly ensures λ is dimensionless.        well as the right ascension and declination of the dipole direc-
+The value of σ0 does not influence any parameters except for the       tion. We expect the dipole amplitude to take values of around
+monopole M, which will take a value closest to the mean cell           10−2 , but to allow for more variation the prior on the dipole am-
+count n when taking σ0 as equal to the median RMS noise over           plitude is π(D) = U(0, 1). Any point in the sky can represent
+all cells. As the dipole amplitude depends on the the power law        the dipole direction, so logically the priors cover the entire sky;
+index of the flux distribution near the flux limit, the variation in   π(R.A.) = U(0, 360) and π(Dec.) = U(−90, 90). As an initial
+the RMS noise should be small enough that it can be adequately         guess for these parameters we inject the approximate expected
+described with a single value. Expected is a linear relation be-       dipole parameters from the CMB, D = 4.5 × 10−3 , R.A. = 168◦ ,
+tween the flux density limit and the local noise, as the detection     Dec. = −7◦ .
+threshold for most surveys is some multiple of the noise, usually            Additionally the parameters of the distribution of number
+5σ. Maximising the likelihood given by Equation 11 while in-           counts are also estimated. In the basic Poisson case this is rep-
+serting Equation 12 for λ can thus yield the best-fit dipole and       resented by the monopole M. As the dipole is not expected
+power-law parameters.                                                  to meaningfully impact this value, a good initial guess of the
+                                                                       monopole is the mean of all cell counts n. As the real monopole
+                                                                       is likely close to this value, we choose the prior π(M) =
+3.4. Multi-Poisson estimator                                           U(0, 2n). For the Poisson-RMS estimator, both a monopole M
+                                                                       and power-law index x are estimated. Before the estimation we
+Hoping to remove any systematic effects stemming from the              fit a power law to the cell counts to get initial estimates Minit and
+incomplete sky coverages of individual radio surveys, Darling          xinit , which also function as the initial guesses for these param-
+(2022) combined the Rapid Australian Square Kilometre Ar-              eters. The initial monopole estimate informs the prior as we use
+ray Pathfinder (ASKAP) Continuum Survey (RACS, McConnell               π(M) = U(0, 2Minit ). For the power-law index x a value around
+et al. 2020) and the VLA Sky Survey (VLASS, Lacy et al. 2020),         0.75-1.0 is always expected, so we take the prior π(x) = U(0, 3).
+surprisingly finding a dipole that agrees with CMB in both am-
+plitude and direction, though with large uncertainties. Secrest
+et al. (2022) note two inherent problems to this approach. Not         4. Data
+only might selecting catalogues at different frequencies select for    Given the estimators introduced in Section 3, there are a mul-
+different spectral indices invalidating the assumption of a com-       titude of available radio catalogues to possibly make use of for
+mon dipole amplitude, but combining the catalogues in such a           a dipole estimate. To keep the approach focused, we use NVSS
+way ignores systematics that can vary between catalogues. In-          and RACS, two catalogues that when combined cover the full
+deed it is most likely the second factor that plays the most im-       sky, but have been processed in very different ways given the re-
+portant role, as things like observing frequency, array configura-     spective eras in which they have been produced. Given the intro-
+tion, and calibration can all impact the number counts within a        duction of novel estimators, the NVSS is the logical choice for
+survey in ways that are difficult to predict. This is even more true   verification, providing a baseline as the most thoroughly stud-
+for independent surveys.                                               ied catalogue in terms of dipole measurements. The choice of
+    Keeping that in mind, we approach the combination of any           RACS for the second catalogue is straightforward. Not only does
+two catalogues in a different way. We will not make any attempt        it complement NVSS in terms of sky coverage, the inclusion
+to unify the catalogues by matching, smoothing or creating a           of sensitivity information in the catalogue makes it suitable for
+common map. Rather, we take both catalogues as independent             testing the Poisson-RMS estimator described in Section 3.3. The
+tracers of the same dipole, allowing both catalogues to have a         complementary sky coverage of the two catalogues also provides
+different monopole amplitude M. In the Poisson estimator we            the best testing ground for the Multi-Poisson estimator described
+thus estimate M separately for both catalogues, turning the like-      in Section 3.4.
+Article number, page 4 of 14
+                     J. D. Wagenveld et al.: The cosmic radio dipole: Bayesian estimators on new and old radio surveys
+
+
+
+
+Fig. 1: Source density of NVSS (left) and RACS (right) as a function of declination for different flux density cuts. For the NVSS
+is shown the boundaries where different array configurations are used. In both cases the catalogues are evidently inhomogenous at
+low flux densities.
+
+  Table 1: Areas in NVSS masked due to high source density.              Table 2: Areas in RACS masked due to low source density.
+
+  Region     RAmin    RAmax     Decmin     Decmax     Sky area            Region     RAmin     RAmax     Decmin      Decmax     Sky area
+                ◦        ◦          ◦          ◦                                        ◦         ◦          ◦            ◦
+                                                      sq. deg.                                                                  sq. deg.
+    1        82.0      90.0       -7.0       -1.0       47.9                1        357.0      3.0        16.0          22.0     34.0
+    2        49.0      52.0      -39.0      -36.0        7.1                2        330.0     337.0       16.0          22.0     39.7
+    3        185.0     189.0     11.0       14.0        11.7                3        252.0     261.0       3.0            9.0     53.7
+   Total                                                66.7                4        184.0     192.0       9.5           15.5     46.8
+                                                                           Total                                                 174.2
+
+
+4.1. NVSS                                                              4.2. RACS
+
+The NVSS (Condon et al. 1998) is one of the most well-studied          RACS is the first large survey carried out using the Australian
+surveys when it comes to dipole measurements, and as such is           Square Kilometre Array Pathfinder (ASKAP), covering the sky
+well suited for verifying novel dipole estimators. It covers the       south of +40◦ declination. Observations are carried out with a
+whole sky north of −40◦ declination, has a central frequency           central frequency of 887.5 MHz and images are smoothed to
+of 1.4 GHz, with an angular resolution of 45′′ . The complete          a common angular resolution of 25′′ . The first data release of
+catalogue includes the Galactic plane and contains 1,773,484           RACS in Stokes I is described in Hale et al. (2021), and the cata-
+sources.                                                               logue used in this work is the RACS catalogue with the Galactic
+                                                                       plane removed, containing 2,123,638 sources. Source finding in
+     An important feature of the NVSS catalogue is that for ob-        the images has been done with the Python Blob Detector and
+servations below a declination of −10◦ and above a declination         Source Finder (PyBDSF, Mohan & Rafferty 2015), which pro-
+78◦ , the VLA DnC array configuration was used for observa-            vides a wealth of information on each source. Most importantly,
+tions, where for the rest of the survey VLA D configuration was        the root-mean-square (RMS) noise at the position of each source
+used. This affects the number counts at those declinations. The        is present in the noise column of the catalogue, which we will
+left plot of Figure 1 shows the source density of NVSS as a func-      utilise in the Poisson-RMS estimator approach.
+tion of declination for different flux density cuts. The impact of          The right plot of Figure 1 shows the source density of RACS
+the different array configurations can be clearly seen at lower        as a function of declination for different flux density cuts. Even
+flux densities. Only around 15 mJy the source density becomes          though there is no change in array configuration as with NVSS,
+homogeneous, so for an unbiased dipole analysis we choose to           there is a clear gradient in source density, where a lot more
+exclude all sources with a flux density below 15 mJy, which is         sources are detected at lower declinations. Once again, the cata-
+a commonly applied flux density cut (e.g. Singal 2011; Siewert         logue becomes homogeneous at flux densities of around 15 mJy,
+et al. 2021). Even after this cut, some areas with significantly       so we exclude all sources below this flux density, as with NVSS.
+high source counts are present in the data. We mask these areas        Even after this cut, some areas with significantly low source
+as specified in Table 1 for the dipole estimate.                       counts are present in the data. These areas appear just above the
+    With a flux density cut at 15 mJy, we fit a power law to the       celestial equator. We mask these areas as specified in Table 2 for
+lower end of the flux distribution of sources and find a power-        the dipole estimate.
+law index of x = 0.85. Additionally taking α = 0.75 and taking              With a flux density cut at 15 mJy and the other masks ap-
+the velocity from the CMB into account (Equation 7), this sets         plied, we fit a power law to the lower end of the flux distribution
+the expectation of the dipole amplitude to D = 4.30 × 10−3 .           of sources of RACS and find a power-law index of x = 0.82. Tak-
+                                                                                                                  Article number, page 5 of 14
+                                                 A&A proofs: manuscript no. main_paper
+
+ing once again α = 0.75, this sets the expectation of the dipole           We add Gaussian noise to the flux densities of the sources,
+amplitude to D = 4.24 × 10−3 .                                         generating a larger sample of sources and simulating source ex-
+                                                                       traction by only including sources with S/N > 5 in the final cat-
+                                                                       alogue. This naturally adds the effect of Eddington bias to the
+4.3. Common masks and pixelation                                       sample, which is expected to be present in real source catalogues.
+In order to avoid biases to the data, we adopt a masking scheme        For a realistic distribution the local noise variation is taken from
+that uses the same principles for both NVSS and RACS. As men-          the RACS N side = 32 RMS map, idealising by assigning the
+tioned previously, surveys are generally not homogeneous at the        RMS of a cell to all sources in that cell. Additionally, we sim-
+lowest flux densities due to variations in the noise, so we must       ulate false detections by generating sources with the same flux
+choose a lower flux density threshold appropriate for the survey.      distribution that are not affected by the dipole. These sources
+As described before, for both NVSS and RACS we choose a flux           consist of 0.3% of the total catalogue, which is the percentage
+density threshold of 15 mJy. To avoid counting Galactic sources        reported for the RACS catalogues (Hale et al. 2021).
+or Galactic extended emission, we exclude the Galactic plane.              All sources are simulated with a spectral index of 0.75,
+Due to problems with source finding in the Galactic plane, it is       and the power law used to generate the flux distribution has
+already removed in the RACS catalogue, excluding all sources           x = 1. We apply the dipole effect assuming the direction de-
+with |b| < 5◦ . For NVSS, overdensities from the galactic plane        rived from the CMB dipole, (RA,Dec.)= (170◦ , −10◦ ), but with
+extend further out, and we exclude all sources with |b| < 7◦ . Fi-     an increased velocity of v = 1107 km/s, to ensure that similar
+nally we expect that the brightest sources in a survey push to the     sensitivity to the dipole as NVSS and RACS will be reached,
+limit of the dynamic range, which introduces artefacts around          with similar monopole values. This sets the expectation of the
+bright sources. Due to differences in source finding methods be-       dipole to D = 1.5 × 10−2 .
+tween the two catalogues, this increases counts around bright
+sources in NVSS, but decreases counts around bright sources in         5. Results
+RACS. In both cases the local source density is affected, and as
+such we remove all sources within a radius of 0.3◦ distance to         Using the described estimators, we estimate the dipole parame-
+any source brighter than 2.5 Jy.                                       ters for NVSS and RACS. The results are summarised in Table 3,
+     After masking data, we use the Hierarchical Equal Area            with dipole directions shown in Figure 3 and dipole amplitudes
+isoLatitude Pixelation (HEALPix, Górski et al. 2005)2 scheme           shown in Figure 4. To estimate the best-fit parameters, for the
+to divide the sky into equal sized cells. HEALPix allows the           quadratic estimator we minimise χ2 using lmfit (Newville et al.
+flexibility of choosing the number of cells over the whole sky,        2016). The reduced χ2 -values are reported in Table 3. For the
+with the base and minimum value being 12 pixels. The res-              Poisson estimators we use the Bayesian inference library bilby
+olution parameter N side determines the number of pixels by            (Ashton et al. 2019), which provides a convenient and user-
+N pix = 12 × N side
+               2
+                    . We choose two resolutions for our experiment,    friendly environment for parameter estimation. We maximise the
+N side = 32 and N side = 64, which have pixel sizes of 110′ and        likelihood using Markov chain Monte Carlo (MCMC) sampling
+55′ on a side, respectively. For measuring number counts, each         with emcee (Foreman-Mackey et al. 2013). The scripts used to
+cell holds the number of sources detected within the confines          obtain these results are available on GitHub3 and an immutable
+of the cell. To avoid edge effects resulting from pixels covering      copy is archived in Zenodo (Wagenveld 2023).
+data only partially, all pixels that have a neighbouring pixel with        To get an indication of how well the distribution fits a Pois-
+zero sources are also set to zero. Finally, all pixels with a value    son distribution, Pearson’s χ2 can also be used as a Poisson dis-
+of zero are masked to ensure that these pixels are not taken into      persion statistic, defined as
+account during dipole estimation. The HEALPix maps of NVSS
+                                                                              X (ni − n)2
+and RACS with N side = 32, with flux density cuts and masks ap-        χ2 =                 .                                               (15)
+plied are shown in Figure 2. For the Poisson-RMS estimator, the                i
+                                                                                      n
+local noise is determined per HEALPix cell by taking the median
+RMS of all the sources within the cell.                                As we use the mean of the distribution instead of a model ex-
+                                                                       pectation, the resulting χ2 value indicates the ratio between the
+                                                                       variance and the mean of the distribution4 , and thus for a Pois-
+4.4. Simulations                                                       son distribution the χ2 value divided by the number of degrees
+In addition to the survey data sets of NVSS and RACS, we create        of freedom (do f ), χ2 /do f , should be (close to) unity. In the case
+a catalogue of simulated sources with a dipole effect to test of the   of the Poisson-RMS estimator, number counts are corrected for
+validity of the estimators. To do this, we uniformly populate the      the derived power law before calculating χ2 .
+sky with sources, and assign a rest flux density S rest according
+to a power law                                                         5.1. Quadratic and Poisson estimators
+
+S rest = S low (1 − U)−1/x ,                                   (14)    Both the quadratic and Poisson estimators are insensitive to gaps
+                                                                       in the data, but will be sensitive to inhomogeneous source counts
+                                                                       in the data. As such, we perform the flux density cuts on all the
+where U is a uniform distribution between 0 and 1. S low is the
+                                                                       data before estimating the dipole. As specified in Section 4, we
+lower flux density limit at which sources are generated, and x the
+                                                                       choose a flux density cut of 15 mJy for all catalogues in addition
+power law index of the flux density distribution. We transform
+                                                                       to the other masks detailed. As the simulated catalogue uses the
+the rest flux densities and positions of sources by applying rela-
+                                                                       local noise information from RACS, the same masking is applied
+tivistic aberration, Doppler shift and Doppler boost as expressed
+in Equations 4 and 5.                                                  3
+                                                                          https://github.com/JonahDW/Bayesian-dipole
+                                                                       4
+                                                                          Peebles (1980) uses this measure as a clustering statistic of the large
+2
+    http://healpix.sourceforge.net                                     scale structure, used to define the number of objects per cluster.
+
+Article number, page 6 of 14
+                     J. D. Wagenveld et al.: The cosmic radio dipole: Bayesian estimators on new and old radio surveys
+
+
+
+
+Fig. 2: Number counts for NVSS (left) and RACS (right) in equatorial coordinates, in N side = 32 HEALPix maps with masks and a
+flux density cut of 15 mJy applied.
+
+Table 3: Dipole estimates using the various estimators on the NVSS and RACS catalogues, including a combined estimate using
+both catalogues.
+
+     Survey         Estimator     NSIDE     S0        N            M                x             D          R.A.           Dec.       χ2 /do f
+                                          (mJy)                counts/pixel                    (×10−2 )      (deg)          (deg)
+   Simulation       Poisson        32       1      4,205,065   489.6 ± 0.3          –         31.7 ± 0.1    202 ± 1      −78.5 ± 0.2    37.3
+                                   32       15     434,247      54.5 ± 0.1          –         1.50 ± 0.25   172 ± 10      −17 ± 13      1.01
+                                   32       50     130,150      16.3 ± 0.1          –         2.06 ± 0.60   178 ± 19       −46+17
+                                                                                                                              −14       1.02
+                  Poisson-RMS      32       5σ     4,212,472   518.9 ± 0.3    1.000 ± 0.002   1.58 ± 0.08   169 ± 4       −12 ± 4       1.10
+     RACS           Quadratic      32       15     451,003      57.4 ± 0.1          –         1.35 ± 0.26   192 ± 12       6 ± 17       1.23
+                                   64       15     458,152     14.74 ± 0.03         –         1.30 ± 0.24   195 ± 11       4 ± 16       1.11
+                    Poisson        32       15     451,003      56.8 ± 0.1          –         1.41 ± 0.24   193+11
+                                                                                                               −10          4+14
+                                                                                                                             −15        1.24
+                                   64       15     458,152     14.19 ± 0.02         –         1.42 ± 0.24   194 ± 10       6 ± 14       1.13
+                  Poisson-RMS      32       5σ     2,035,375   253.3 ± 0.2    0.778 ± 0.003   1.62 ± 0.12   210 ± 4        −12+7
+                                                                                                                              −6        2.03
+                                   64       5σ     2,068,204    63.8 ± 0.1    0.738 ± 0.003    2.0 ± 0.2    204 ± 5       −40 ± 4       1.49
+     NVSS           Quadratic      32       15     345,803      41.0 ± 0.1          –         1.35 ± 0.30   145 ± 13      −5 ± 17       1.17
+                                   64       15     352,862     10.66 ± 0.02         –         1.23 ± 0.29   150 ± 13      −10 ± 17      1.09
+                    Poisson        32       15     345,803      40.4 ± 0.1          –         1.40 ± 0.29   146 ± 12      −5 ± 15       1.26
+                                   64       15     352,862     10.11 ± 0.02         –         1.38 ± 0.29   151 ± 12      −10 ± 15      1.15
+                                                                   M1              M2
+                                                               counts/pixel    counts/pixel
+ NVSS + RACS      Multi-Poisson    32       15     796,806      40.4 ± 0.1      56.7 ± 0.1    1.30 ± 0.18   173 ± 9       −1 ± 11         –
+                                   64       15     811,014     10.11 ± 0.02    14.18 ± 0.02   1.29 ± 0.18   175 ± 8       −2 ± 11         –
+
+
+there. This leaves ∼3.5 × 105 , ∼4.5 × 105 , and ∼2.2 × 106 sources     smaller effect in right ascension is also observed. With the 15
+for NVSS, RACS, and the simulated catalogue respectively. The           mJy threshold the injected values for the dipole are retrieved
+resulting number counts for NVSS and RACS are shown in Fig-             within the uncertainties. To see how the estimator reacts to a lack
+ure 2. Along with estimating the dipole amplitude and direction,        of sources, for the 50 mJy threshold the required number counts
+we estimate the monopole M. For NVSS and RACS these pa-                 are not reached for a 3σ measurement of the dipole amplitude.
+rameters are estimated using HEALPix maps of both N side 32             This does not however introduce a bias, as values still match the
+and 64, the results of the different cell sizes are shown in Ta-        injected values, albeit with large uncertainties.
+ble 3.
+                                                                            Comparing results between the quadratic and basic Poisson
+    The best-fit parameters for the simulated data set are shown        estimators on NVSS and RACS, values match within the un-
+in Table 3, both for a low threshold of 1 mJy, the common thresh-       certainties for all estimated parameters. For NVSS, the results
+old of 15 mJy, and a high threshold of 50 mJy. As the noise             of the quadratic estimator and Poisson estimator match those of
+variation of the simulated catalogue is based on RACS, the 15           Siewert et al. (2021) for a flux density cut of 15 mJy in terms of
+mJy threshold should be appropriate to get a good estimate of           dipole amplitude, but the direction is slightly offset (∆θ ∼ 20◦ ).
+the injected dipole. The low threshold shows that the dominant          This is caused by a difference in masking strategy, as is already
+anisotropy from the RACS noise, which dominates the dipole by           seen in Siewert et al. (2021) that different masks yield different
+three orders of magnitude, is mostly a declination effect, but a        dipole parameters. The low χ2 values for the Poisson estimators
+                                                                                                                Article number, page 7 of 14
+                                                 A&A proofs: manuscript no. main_paper
+
+                                                                      tainties of the results of the Poisson estimator on NVSS and
+                                                                      RACS. In all cases, the amplitude of the dipole is 3-3.5 times
+                                                                      higher than the dipole amplitude expectation from the CMB. For
+                                                                      NVSS, the result is at 3.4σ significance and for RACS at a sig-
+                                                                      nificance of 4.1σ.
+
+
+                                                                      5.2. Poisson-RMS estimator
+
+                                                                      As described in Section 3.3, we aim to account for the varia-
+                                                                      tion in source counts across the survey by assuming these are
+                                                                      described by the RMS noise of the images. For this estimator we
+                                                                      don’t apply the flux density cut, and instead, fit a power law that
+                                                                      relates the RMS of a cell to the number counts in that cell. The
+                                                                      RMS of the survey is not available for NVSS, but is present in
+                                                                      the RACS catalogue for each source individually. We obtain the
+                                                                      RMS of a cell by taking the median RMS value of all sources
+                                                                      within it. We take the median RMS of all cells as the reference
+Fig. 3: Best-fit dipole directions for the Poisson estimator of       RMS, which is σ0 = 0.33 mJy/beam. The HEALPix maps of
+NVSS (blue), RACS (red), RACS with RMS power law (green),             source counts and median RMS per cell for RACS are shown
+and NVSS+RACS (purple), compared with the CMB dipole di-              in Figure 5, showing the variation of RMS and source counts
+rection (black star). Different transparency levels represent 1-,2-   across the survey. Along with estimating the dipole parameters,
+and 3σ uncertainties. In all cases results from the N side = 32       the monopole M and power law index x are estimated as well.
+HEALPix map are shown.                                                For RACS, these parameters are estimated using HEALPix maps
+                                                                      of both N side = 32 and N side = 64.
+                                                                          The parameters for the simulated data set are estimated and
+                                                                      shown in Table 3. The noise variation of the simulated catalogue
+                                                                      is based on the N side = 32 RACS RMS map shown in Figure 5,
+                                                                      which in this case means that the RMS map is a perfect represen-
+                                                                      tation of the noise in the catalogue. The RMS estimator retrieves
+                                                                      the injected dipole parameters, with a much higher significance
+                                                                      than the standard Poisson estimator.
+                                                                          The results for RACS are shown in Table 3, showing a rather
+                                                                      big discrepancy between the two pixel scales, and to other re-
+                                                                      sults as well. In both cases, the dipole amplitude is increased
+                                                                      w.r.t. the quadratic and basic Poisson estimators, and the direc-
+                                                                      tion is no longer agreeing with the direction of the CMB dipole.
+                                                                      The N side = 32 map seems to be less affected than the N side = 64
+                                                                      map, but in both cases the dipole direction is further away from
+                                                                      the CMB dipole direction, with ∆θ ∼ 40◦ and ∆θ ∼ 45◦ separa-
+                                                                      tion for the N side = 32 and N side = 64 maps respectively. Espe-
+                                                                      cially striking is the recovered dipole direction of the N side = 64
+                                                                      map, which is at a declination of −40 deg. This retrieved dipole
+Fig. 4: Best-fit dipole amplitudes with 3σ uncertainties for the      direction aligns towards the anisotropy retrieved in the simulated
+Poisson estimator of NVSS (blue), RACS (red), RACS with               data with the 1 mJy flux density threshold. Rather than pointing
+RMS power law (green), and NVSS+RACS (purple), compared               to an additional systematic effect that is not modeled by the local
+with an expected CMB dipole amplitude of D = 4.5 × 10−3               RMS, it is therefore more likely that the median RMS noise per
+(black line). Both results from the N side = 32 and N side = 64       cell does not adequately represent the noise variation observed
+HEALPix maps are shown.                                               in the catalogue.
+                                                                           To further investigate these results, the power law fits to the
+                                                                      cells are shown in Figure 6, indicating that both power laws are
+indicate that a Poisson assumption is in line with the expected       a good fit to the distribution. For the N side = 64 map the relation
+distribution of source counts.                                        fits less well to the lower number count cells, possibly indicat-
+    As the results indicate in Table 3 for both quadratic and Pois-   ing that the power law assumption breaks down for cells with
+son estimators, the results between N side = 32 and N side = 64       low number counts. One effect that can contribute to this is that
+pixel sizes agree with each other within the uncertainties. Fur-      at such low number counts the median RMS will be a less ro-
+thermore, the dipole amplitudes of NVSS and RACS also agree           bust measure of the local noise. As with the other RACS results,
+within the uncertainties with each other, with the dipole ampli-      there is a misalignment in right ascension that is even more pro-
+tude from RACS being slightly higher. The dipole directions be-       nounced here (see also Figure 3). As seen in Figure 4, the dipole
+tween RACS and NVSS are somewhat misaligned (∆θ ∼ 50◦ ),              amplitude is also increased. For the N side = 32 map the dipole
+though both align with the CMB dipole direction within 3σ, at         amplitude is 3.8 times higher than the CMB expectation with a
+∆θ ∼ 20◦ and ∆θ ∼ 30◦ for NVSS and RACS respectively (see             formal significance of 10σ, and for the N side = 64 map the dipole
+also Figure 3). Figure 4 shows the amplitudes including uncer-        amplitude is 4.7 times higher with a formal significance of 8σ.
+Article number, page 8 of 14
+                     J. D. Wagenveld et al.: The cosmic radio dipole: Bayesian estimators on new and old radio surveys
+
+
+
+
+Fig. 5: Number counts (left) and median RMS (right) for RACS in equatorial coordinates, in N side = 32 HEALPix maps, with no
+flux density cuts applied.
+
+
+
+
+Fig. 6: Cell counts of the N side = 32 (left) and N side = 64 (right) HEALPix maps with no flux density cuts applied, as a function
+of the median RMS of the pixels, along with the best fit power law model (black solid line). The determined σ0 is indicated by the
+dashed vertical line, it intercepts the power law at the best fit monopole value, indicated by the horizontal dashed line.
+
+
+5.3. Combining RACS and NVSS                                           is still in tension with the CMB dipole. The dipole amplitude
+                                                                       is three times higher than the CMB expectation, with a signif-
+Following the procedure laid out in Section 3.4, we do a com-          icance of 4.8σ for both the N side = 32 and N side = 64 maps.
+bined estimate of the dipole parameters of NVSS and RACS, as-          If we base our belief in a dipole result on its agreement with
+suming a common dipole amplitude but independent monopole              the CMB dipole in terms of direction, then this is the most sig-
+amplitudes. Although we have shown that slightly different             nificant and reliable result we obtain in this work. It is further-
+dipole amplitudes are to be expected between the catalogues,           more the most significant result obtained with radio sources to
+the degree of this difference depends entirely on the degree to        date, matching the significance of the dipole estimate with WISE
+which the inferred dipole is kinetic. Regardless of this, due to       AGN from Secrest et al. (2022), although less significant than the
+the nature of parameter estimation with MCMC, any differences          joint WISE+NVSS result from the same work.
+in dipole amplitude between the catalogues will be absorbed into
+the overall uncertainty of the estimated parameters. In terms of
+monopole, there is no question as to the difference between the        6. Discussion
+catalogues, as from the estimates of the individual catalogues,        The results presented here show the potential of our introduced
+even with the same cut in flux density, there are large differences    estimators and present at the very least an alternative method of
+in source density.                                                     making dipole measurements in present and future surveys. Fig-
+    Table 3 shows the results of the dipole parameters for the         ure 7 shows the results from this work compared to the most re-
+combined estimate of NVSS + RACS. Whereas the dipole di-               cent results from various surveys taken from Siewert et al. (2021)
+rections for the individual catalogues were misaligned with the        and Secrest et al. (2022) in terms of dipole amplitude. Between
+CMB dipole direction, the combined estimate favours a dipole           all works the NVSS is consistent, so too with our results. The
+direction that is perfectly aligned (∆θ = 4◦ , see Figure 3) with      results obtained here agree within uncertainties with both results
+that of the CMB dipole. Along with this, the dipole amplitude          from Secrest et al. (2022), with the exception of RACS-RMS
+is reduced w.r.t. either of the individual catalogues, however it      and the WISE result. The same goes for the results from Siewert
+                                                                                                                Article number, page 9 of 14
+                                                 A&A proofs: manuscript no. main_paper
+
+                                                                       the results in Table 3, both in the estimated parameters and χ2
+                                                                       values.
+                                                                            The value of the Poisson assumption becomes readily appar-
+                                                                       ent when extending the parameter space, as we do when taking
+                                                                       into account the RMS power-law relation. The main feature of
+                                                                       a Poisson distribution is that one parameter is necessary to de-
+                                                                       scribe it, λ, which is both the mean and variance of the distribu-
+                                                                       tion. This is a strict requirement on a distribution, allowing more
+                                                                       freedom in other parameters which would otherwise be degener-
+                                                                       ate with the parameters of the distribution. This means that fitting
+                                                                       the RMS power law does not work with i.e. a quadratic estima-
+                                                                       tor, which though minimised by a distribution with mean equal
+                                                                       to the variance, still allows for a wider Gaussian distribution. As
+                                                                       seen in Figure 8, the distribution of number counts without any
+                                                                       flux density cut applied resembles a Gaussian distribution which
+                                                                       is much wider than a Poisson distribution with the same mean.
+                                                                       The quadratic estimator does however allow such a wide distri-
+                                                                       bution, and thus will not converge on a solution that transforms
+Fig. 7: Dipole amplitudes with 3σ uncertainties compared to the        this distribution to a Poisson distribution. Herein lies the power
+amplitude expected from the CMB from this work and to re-              of the Poisson estimator, making modeling and fitting of system-
+sults from Siewert et al. (2021) and Secrest et al. (2022). The re-    atics in the data a viable alternative to cutting and masking data.
+sults from the different works are separated by horizontal dashed      On the flip side of this, it is imposing a Poisson distribution on
+lines, showing the results from this work at the bottom.               the data, which can lead to spurious results if improperly applied.
+                                                                            Table 3 lists the χ2 /do f values of the Poisson RMS estimator
+                                                                       after correction for the derived power law. The difference in dis-
+                                                                       tributions can be appreciated in Figure 8, which shows the distri-
+et al. (2021), with the exception of the TGSS result. Though the
+                                                                       butions of the cell counts of RACS without any flux density cut
+extremely high amplitude of TGSS is attributed to a frequency
+                                                                       applied, along with the same distribution corrected for the RMS
+dependence of the dipole in Siewert et al. (2021), the WISE re-
+                                                                       power law that has been fit to the data. The uncorrected counts
+sult from Secrest et al. (2022) does not follow the fitted trend.
+                                                                       have a much wider distribution which is clearly not Poisson, with
+Secrest et al. (2022) thus suggest that the TGSS result might
+                                                                       χ2 /do f = 13.28 for the N side = 32 map and χ2 /do f = 4.49 for
+deviate due to issues in flux calibration. As we have results at
+                                                                       the N side = 64 map. The corrected counts resemble a Poisson
+different frequencies we can tentatively check whether results
+                                                                       distribution more closely, with χ2 /do f = 2.03 for the N side = 32
+match up with the frequency evolution model of the dipole am-
+                                                                       map and χ2 /do f = 1.49 for the N side = 64 map, but are further
+plitude from Siewert et al. (2021), which predicts D = 2.3×10−2
+                                                                       from a Poisson distribution than the other results obtained, sig-
+at the RACS frequency of 887 MHz. Our RACS result for a flux
+                                                                       nifying that some residual effect has not been modelled by the
+cut of 15 mJy, which agrees with NVSS, does not follow the
+                                                                       estimator.
+trend predicted by the model, however the 150 mJy TGSS flux
+                                                                            As such, the performance of the Poisson-RMS estimator
+density cut made in Siewert et al. (2021) corresponds to a 40
+                                                                       still leaves some questions to be answered. The assumption that
+mJy flux cut in RACS (assuming α = 0.75). Applying this flux
+                                                                       source counts are related to sensitivity via a power law might
+density cut using the N side = 32 RACS map, the inferred dipole
+                                                                       carry a flaw, though there can be a number of possible reasons
+direction shifts by ∆θ = 8.8◦ , and the dipole amplitude increases
+                                                                       for this: (i) the median RMS is not the best representation of the
+to D = (1.94 ± 0.37) × 10−2 . As such, our results cannot rule out
+                                                                       sensitivity of the survey in a given cell, (ii) the sensitivity only
+the frequency dependence predicted by Siewert et al. (2021), but
+                                                                       properly represents source counts down to some limit, (iii) not all
+the obtained results from WISE AGN (Secrest et al. 2021, 2022;
+                                                                       systematics equally impact source counts as well as sensitivity.
+Dam et al. 2022) provide a strong argument against it. Though
+                                                                       These factors bear further examination in the future, but remark-
+results are consistent with literature, as with many works con-
+                                                                       able already are the results when comparing them to the other
+cerning the dipole, the correctness of the methods could stand
+                                                                       RACS results. It’s clear that this Poisson-RMS estimator shows
+some further examination, as do the results that we have obtained
+                                                                       promise even in it’s basic form, and can be used as an additional
+here.
+                                                                       test of the data for any survey that has information on the local
+                                                                       RMS. Furthermore, due to it’s flexibility, additional effects once
+6.1. The Poisson solution                                              characterised can easily be modelled and taken into account by
+                                                                       the estimator.
+Though we have shown here results that are both internally con-
+sistent and consistent with other dipole estimates, the choice of      6.2. Residual anisotropies in the data
+a Poisson estimator might seem like an unnecessary constraint
+on the data. After all, the quadratic estimator performs as ade-       In dipole measurements and other statistical studies that require
+quately and does not suffer any loss in precision to the Poisson       large amounts of data to retrieve a statistically significant mea-
+estimator. Table 3 lists the χ2 values for the obtained results, de-   sure, it can be difficult to visually assess whether any one fit
+fined by Equations (8) and (15) for the quadratic and Poisson          adequately describes the data. After all we impose a model on
+estimators respectively. As the quadratic estimator is minimised       the data to which the fit is restricted to. For a rudimentary visual
+for a Gaussian distribution with mean equal to the variance, it        check on whether the data follows the expected relations, we em-
+is expected that between the quadratic and basic Poisson esti-         ploy the hemisphere method used by Singal (2021). This method
+mators similar values are retrieved. This is indeed the case for       assumes that the direction of the dipole is already known, leav-
+Article number, page 10 of 14
+                       J. D. Wagenveld et al.: The cosmic radio dipole: Bayesian estimators on new and old radio surveys
+
+
+
+
+Fig. 8: Cell count distribution for N side = 32 (left) and N side = 64 (right) RACS maps without any flux density cuts applied. Raw
+counts are shown (blue histogram) alongside the counts corrected for the power-law fit (red histogram). A Poisson distribution with
+a λ equivalent to the estimated monopole amplitude is also shown (black histogram).
+
+
+                                                                         dipole direction, which show an increased anisotropy. This is
+                                                                         more pronounced in the N side = 64 map, where both θ = 0◦ and
+                                                                         θ = 10◦ hemispheres show significantly increased counts com-
+                                                                         pared to the expectation from the dipole model. In the N side = 32
+                                                                         map only the θ = 0◦ hemisphere shows increased counts, with
+                                                                         all other points following the dipole model within uncertainties.
+                                                                         This points to a residual anisotropy left in the data that hasn’t
+                                                                         influenced the overall fit.
+                                                                              For RACS, the hemisphere relations for both the basic Pois-
+                                                                         son estimator as well as the RMS Poisson estimator are shown in
+                                                                         Figure 10. It stands out immediately, especially in the results for
+                                                                         the basic Poisson estimator, that there is a residual anisotropy in
+                                                                         RACS at 40◦ − 60◦ from the dipole direction for both N side = 32
+                                                                         and N side = 64 maps. In case of the basic Poisson estimator, as
+                                                                         with NVSS, the fit is unaffected. This anisotropy however might
+                                                                         have had a significant impact on the RMS Poisson estimator for
+                                                                         the N side = 64 map, as the dipole direction estimated from that
+                                                                         map is 47◦ offset from the direction of the basic Poisson estima-
+Fig. 9: Dipole amplitude of NVSS as a function of angular dis-           tor, coinciding perfectly with the anisotropy seen at that angle.
+tance to the dipole direction, assuming a best-fit dipole direction      Indeed, the data for both N side = 32 and N side = 64 maps for
+from the basic Poisson estimator, for both N side = 32 (blue) and        the RMS Poisson estimate agree well with the exception of the
+N side = 64 (red) maps. Alongside the data the corresponding             points closest to the dipole direction, which in the case of the
+models are plotted (solid lines), as well as the expected model          N side = 64 map are dominating the fit.
+from the CMB dipole (black dashed line).                                      Finally, we investigate the possibility that residual systemat-
+                                                                         ics are present due to Galactic synchrotron. Secrest et al. (2022)
+                                                                         use the de-striped and source-subtracted Haslam et al. (1982)
+ing as the only free parameter the dipole amplitude as a function        408 MHz all-sky map from Remazeilles et al. (2015) to mask
+of angular distance from the dipole direction, Dθ = D cos θ. To          pixels bright in Galactic synchrotron. To investigate if our re-
+reach statistically significant number counts, the sky is divided        sults are impacted by Galactic synchrotron, we cross-correlate
+in two hemispheres, hemisphere N1 with all sources between θ             our number count maps with the Remazeilles et al. (2015) map.
+and θ + π/2, and hemisphere N2 with all sources between θ + π/2          In all cases, no significant correlation is found (|ρ| < 0.05), show-
+and θ + π. The dipole amplitude as a function of θ is then written       ing that Galactic synchrotron is not present as a residual system-
+as                                                                       atic in the data.
+        N1 (θ) − N2 (θ)
+Dθ = 1                    .                                      (16)
+      2 [N1 (θ) + N2 (θ)]                                                6.3. Combining and splitting catalogues
+    We determine and plot the hemisphere results for NVSS and            As shown in Section 5.3, combining catalogues as independent
+RACS assuming the results obtained from the Poisson estima-              tracers of the dipole can provide a more robust measurement of
+tors for the individual catalogues. The hemisphere relation for          the dipole, and in the case of NVSS and RACS, resulted in a
+NVSS is shown in Figure 9 showing the data following the ex-             dipole which matched the direction of the CMB dipole remark-
+pected dipole curve except for the hemispheres closest to the            ably well, with a dipole amplitude 2.5 times the CMB expec-
+                                                                                                                 Article number, page 11 of 14
+                                                 A&A proofs: manuscript no. main_paper
+
+            Table 4: Dipole estimates for NVSS using different flux density cuts, separating D and DnC configurations.
+
+                  Catalogue             S0         N           M1              M2              D            R.A.        Dec.
+                                                                                                 −2
+                                      (mJy)                counts/pixel                     (×10 )         (deg)        (deg)
+                    NVSS                15     345,803      40.4 ± 0.1          –         1.40 ± 0.29    146 ± 12     −5 ± 15
+                                        10     480,446      56.1 ± 0.1          –         1.38 ± 0.26    133 ± 11      31 ± 12
+                                         5     795,135      92.6 ± 0.1          –         1.92 ± 0.23     131 ± 9      53 ± 6
+           NVSS D + NVSS DnC            15     333,046      40.5 ± 0.1     40.4 ± 0.1     1.44 ± 0.31    148 ± 12     −9 ± 21
+                                        10     463,398      56.4 ± 0.1     55.7 ± 0.2     1.23 ± 0.27    136 ± 12       −8+22
+                                                                                                                          −20
+                                         5     767,832      93.5 ± 0.2     91.3 ± 0.2     1.18 ± 0.20     133 ± 9       −3+18
+                                                                                                                          −16
+
+
+
+
+                                                                      Fig. 11: Best-fit dipole directions with 1σ uncertainties for the
+                                                                      complete NVSS (red) and split NVSS D + DnC (blue) cata-
+                                                                      logues, for lower flux density thresholds of 5, 10, and 15 mJy.
+                                                                      The CMB dipole direction is indicated with a black star.
+
+
+                                                                      counts in a given survey. For a key example of how these fac-
+                                                                      tors can influence source counts, we need to look no further than
+                                                                      NVSS, which has been observed with two different array config-
+                                                                      urations at certain declination ranges. This is a systematic that
+                                                                      produces different source densities depending on the configura-
+                                                                      tion, something that can be plainly seen in the left plot of Fig-
+                                                                      ure 1.
+                                                                          To demonstrate the potential of the Multi-Poisson estimator
+                                                                      beyond combining independent catalogues, we redo the dipole
+                                                                      estimates for NVSS, lowering the minimum flux density in sev-
+                                                                      eral steps. We then split the NVSS D and DnC configurations
+Fig. 10: Dipole amplitude of RACS as a function of angular dis-       into separate catalogues, and repeat the experiment. The results
+tance to the dipole direction, assuming a best-fit dipole direction   are shown in Table 4 and Figure 11, showing the effect which
+from the basic Poisson estimator (top) and Poisson RMS estima-        splitting the configuration has on the dipole estimates. It stands
+tor (bottom). Results for both N side = 32 (blue) and N side = 64     out immediately that though the dipole estimate in both cases
+(red) maps are shown. Alongside the data the corresponding            stays consistent in terms of right ascension, both in terms of
+models are plotted (solid lines), as well as the expected model       dipole amplitude and declination of the dipole direction the sep-
+from the CMB dipole (black dashed line).                              aration of the catalogue produces wildly different results for flux
+                                                                      density cuts below 15 mJy. This result can be more or less ex-
+                                                                      pected, as the difference in source density between the D and
+tation. The justification for this approach is that radio data is a   DnC configuration is expected to produce an anisotropy in the
+complex product that is difficult enough to homogenise over a         north-south direction, which is largely alleviated (although not
+full survey internally, let alone between surveys. Field of view,     entirely) with the split in configurations. Not only is this reflected
+frequency, array configuration, calibration, imaging and source       in the declination of the dipole direction, but in the dipole ampli-
+finding are all factors to consider when assessing the source         tude as well, which is actually seen to decrease with more sam-
+Article number, page 12 of 14
+                      J. D. Wagenveld et al.: The cosmic radio dipole: Bayesian estimators on new and old radio surveys
+
+ples in the case of split configurations. Though the anisotropy in      The results we have obtained for NVSS and RACS also sup-
+the declination is alleviated by this, another anisotropy in right      port this interpretation, the residual dipole amplitudes being
+ascension seems to start dominating at lower flux densities, drag-      D = (0.97 ± 0.30) × 10−2 and D = (0.99 ± 0.24) × 10−2 re-
+ging the dipole direction 43◦ from the CMB dipole direction.            spectively. The expected dipoles of the catalogues are however
+    Though it seems that the different NVSS configurations              too similar to rule out other interpretations.
+produces an anisotropy that is on a similar level with other                 Furthermore, depending on which of the models presented
+anisotropies related to incompleteness of the catalogue and can-        above is true, survey design can have a profound impact on the
+not therefore be reliably used to completely account for the sys-       measured cosmic radio dipole. The largest impact will be in the
+tematic effects in the survey that appear when employing lower          detected source populations and their redshift distributions. Nat-
+flux density thresholds, these results show that were such sys-         urally, going to optical or infrared wavelengths will yield differ-
+tematic effects to dominate the catalogue, restructuring the prob-      ent source populations that possibly trace the dipole differently,
+lem to consider these as multiple independent catalogues can            but even amongst radio surveys the detected source population
+produce sensible results. It is furthermore a useful test of the        will depend on the survey details. Radio surveys must be de-
+chosen flux density threshold, as for an appropriately chosen flux      signed with a balance of depth and sky coverage, so we imagine
+density threshold the results between the full catalogue and split      a scenario where number of sources detected will stay constant
+catalogue should be consistent. The results here thus show that         over the survey due to this balance, thus not changing the signifi-
+a flux density threshold of 15 mJy is indeed appropriate for the        cance of a dipole measurement. A shallow but large sky coverage
+NVSS. Such an approach might become very relevant given that            radio survey will mostly detect AGN with a peaked redshift dis-
+VLASS also uses different array configurations, which can be            tribution, whereas a deep radio survey with limited sky coverage
+taken into account when estimating a dipole in the same man-            will probe most of the AGN population over all redshifts as well
+ner as we have done for NVSS. Even for RACS a prominent                 as star-forming galaxies, which have a different redshift distribu-
+feature is a dependence of source counts on declination, though         tion from AGN altogether. Most surveys which have been used
+the exact mechanism is unclear, one possibility is related to the       for dipole estimates fall into the first category, as proper cover-
+point-spread-function as the UV-coverage of the array evolves           age along the dipole axis is necessary. However, a survey falling
+with declination.                                                       into the second category would have the potential to differentiate
+                                                                        between the possible models of the radio dipole we have laid out.
+                                                                        The MeerKAT Absorption Line Survey (Gupta et al. 2016), con-
+6.4. Combining catalogues and cosmological considerations               sisting of sparsely spaced deep pointings homogeneously dis-
+The combined dipole estimate of RACS and NVSS makes a                   tributed across the sky, provides a good candidate for a survey
+compelling case to combine more probes of the cosmic dipole             falling into this second category, and thus might provide more
+to increase sensitivity. The approach used here ostensibly car-         insight behind the processes driving the anomalous amplitude of
+ries less caveats than previous works, foregoing source match-          the radio dipole.
+ing, frequency scaling, sub-sampling, or weighting schemes that
+can all introduce additional uncertainties. This carries with it a      7. Conclusion
+reduction in formal uncertainty, though there remain some fac-
+tors regarding the nature of the dipole that can limit the approach.    In this work we have presented a set of novel Bayesian estima-
+As the nature of the excess amplitude of the radio dipole is cur-       tors for the purpose of measuring the cosmic radio dipole with
+rently not known, the approach of combining catalogues, even if         the NVSS and RACS catalogues. Based on the assumption that
+done perfectly, carries an additional uncertainty. In Section 4 the     counts-in-cell of radio sources follow a Poisson distribution, we
+expected kinematic dipole amplitudes for both NVSS and RACS             construct estimators for the cosmic radio dipole based on Pois-
+were computed and found to be nearly identical. This in large           son statistics. As a basis of comparison we include a quadratic
+part justifies getting a combined estimate of the catalogues, how-      estimator, which has been used in a number of previous dipole
+ever if we were to combine catalogues where the expected dipole         studies. We furthermore construct two extensions of the basic
+amplitudes differed (e.g. when combining catalogues from mul-           Poisson estimator to attempt to account for systematic effects in
+tiple wavelengths), the approach cannot produce a reliable result       the respective catalogues. Firstly, we consider that if sensitiv-
+without knowing the nature of the radio dipole. As it stands, we        ity information is present in the catalogue, this can be directly
+have a kinematic expectation of the radio dipole derived from           related to the local number density assuming that systematic ef-
+the CMB. Given the velocity of the observer, this dipole is deter-      fects merely modify the local sensitivity of the catalogue. The
+mined by the spectral index and flux distribution of the ensemble       local sensitivity and number counts are assumed to be related
+of sources. However, the excess dipole as it has been measured          by power law, the parameters of which can be estimated. We
+has an unknown origin, be it either kinetic or some entirely dif-       extend the Poisson estimator to address this. Secondly, we con-
+ferent effect.                                                          struct an extension to the Poisson estimator that can be given
+    Given the results obtained so far in this work and the liter-       multiple separate catalogues, assuming that the catalogues trace
+ature, one could also assume an effect which somehow boosts             the same dipole, and produces a combined estimate.
+the observed dipole w.r.t. the CMB dipole, or an additional                  We obtain best-fit parameters for the cosmic radio dipole
+anisotropy which is simply added onto the kinematic dipole.             by using χ2 minimisation for the quadratic estimator and using
+Therefore should we wish to combine i.e. the sample of WISE             maximum likelihood estimation for the Poisson estimators. To
+AGN, which has an expected dipole amplitude of D = 7.3×10−3             discretise the sky, we use HEALPix, producing maps with both
+(Secrest et al. 2022), with for example NVSS, a combined es-            N side = 32 and N side = 64. We verify that the quadratic esti-
+timate will have to assume one of these models. In fact, Se-            mator and basic Poisson estimator yield similar results, and that
+crest et al. (2022) find that after removing the CMB dipole,            furthermore results between the pixel scales are consistent. We
+assuming it is purely kinematic, the residuals dipoles between          use the Poisson RMS estimator on RACS while not using any
+NVSS and WISE agree with each other, favouring the interpre-            cut in flux density to estimate the dipole parameters along with
+tation of an intrinsic dipole anisotropy in the CMB rest frame.         the parameters for the RMS power law. The increased number
+                                                                                                                Article number, page 13 of 14
+                                                           A&A proofs: manuscript no. main_paper
+
+counts greatly increase precision of the estimate, but the results                  McConnell, D., Hale, C. L., Lenc, E., et al. 2020, PASA, 37
+somewhat diverge from the dipole estimates produced by the ba-                      Mohan, N. & Rafferty, D. 2015, Astrophysics Source Code Library,
+sic estimators. Whether this difference is a genuine product of                        ascl:1502.007
+                                                                                    Newville, M., Stensitzki, T., Allen, D. B., et al. 2016, Astrophysics Source Code
+the data or a flaw in (assumptions of) the estimator cannot be                         Library, ascl:1606.014
+said for certain, however the initial results are still promising                   Peebles, P. J. E. 1980, The Large-Scale Structure of the Universe
+given that the entire catalogue of sources is used. We finally use                  Remazeilles, M., Dickinson, C., Banday, A. J., Bigot-Sazy, M.-A., & Ghosh, T.
+Poisson estimator for multiple catalogues on NVSS and RACS                             2015, MNRAS, 451, 4311
+                                                                                    Rengelink, R. B., Tang, Y., de Bruyn, A. G., et al. 1997, A&AS, 124, 259
+and obtain a dipole estimate that perfectly aligns with the CMB                     Rubart, M. & Schwarz, D. J. 2013, A&A, 555, 1
+dipole in terms of direction, but has an amplitude three times                      Secrest, N. J., von Hausegger, S., Rameez, M., Mohayaee, R., & Sarkar, S. 2022,
+as large with a significance of 4.8σ. Given the dipole estimates                       ApJ, 937, L31
+obtained from the individual catalogues, this result is in line of                  Secrest, N. J., von Hausegger, S., Rameez, M., et al. 2021, ApJ, 908, L51
+expectations for a combination of the two catalogues, and thus                      Shimwell, T. W., Tasse, C., Hardcastle, M. J., et al. 2019, A&A, 622, A1
+                                                                                    Siewert, T. M., Hale, C., Bhardwaj, N., et al. 2020, A&A, 643, A100
+can be seen as the most reliable and significant result obtained                    Siewert, T. M., Schmidt-Rubart, M., & Schwarz, D. J. 2021, A&A, 653, A9
+here.                                                                               Singal, A. K. 2011, ApJ, 742, L23
+    We explore the possibility of splitting up a catalogue and us-                  Singal, A. K. 2021, Universe, 7, 107
+ing the Poisson estimator for multiple catalogues to estimate the                   Taylor, M. B. 2005, 347, 29
+                                                                                    Wagenveld, J. 2023, JonahDW/Bayesian-dipole: First Release, Zenodo
+dipole as if on two independent catalogues. We use this method                      Wagenveld, J. D., Klöckner, H.-R., Gupta, N., et al. 2023, A&A, 673, A113
+on the NVSS, which has been observed with two different ar-                         Wright, E. L., Eisenhardt, P. R., Mainzer, A. K., et al. 2010, AJ, 140, 1868
+ray configurations, which introduces and artifical north-south                      Zonca, A., Singer, L. P., Lenz, D., et al. 2019, Journal of Open Source Software,
+anisotropy in the catalogue. We treat these array configurations                       4, 1298
+as separate catalogues and repeat the dipole estimate, and go
+down to lower flux density limits than with the basic Poisson es-
+timator. We see that while using the whole NVSS a north-south
+anisotropy starts dominating the estimate at lower flux densi-
+ties, separating the configuration largely mitigates this effect. As
+a result, this allows us to lower the flux density cut, increasing
+number counts and thus increasing the significance of the dipole
+estimates. This approach may serve well on catalogues such as
+VLASS, which also uses different array configurations in differ-
+ent parts of the sky. Through the presented estimator there has
+potential in combining a larger variety of catalogues, the extent
+to which this can be done depends in large part on the nature of
+the excess dipole. With ever more probes at various wavelengths,
+sky coverage, and depth reaching the necessary sensitivity to de-
+tect the dipole, these might shed light on the nature of this dipole,
+given the different populations of sources that are probed.
+Acknowledgements. We thank the anonymous referee for their useful comments
+and feedback on the text. JDW acknowledges the support from the International
+Max Planck Research School (IMPRS) for Astronomy and Astrophysics at the
+Universities of Bonn and Cologne. Some of the results in this paper have been
+derived using the healpy (Zonca et al. 2019) and HEALPix (Górski et al. 2005)
+packages. This research has made use of topcat (Taylor 2005), lmfit (Newville
+et al. 2016), bilby (Ashton et al. 2019), and emcee (Foreman-Mackey et al. 2013).
+
+
+
+References
+Aghanim, N., Akrami, Y., Arroja, F., et al. 2020, A&A, 641, A1
+Ashton, G., Hübner, M., Lasky, P. D., et al. 2019, ApJS, 241, 27
+Blake, C. & Wall, J. 2002, Nature, 416, 150
+Colin, J., Mohayaee, R., Rameez, M., & Sarkar, S. 2017, MNRAS, 471, 1045
+Condon, J. J. 1992, Annual Review of Astronomy and Astrophysics, 30, 575
+Condon, J. J., Cotton, W. D., Greisen, E. W., et al. 1998, AJ, 115, 1693
+Condon, J. J. & Ransom, S. M. 2016, Essential Radio Astronomy
+Dam, L., Lewis, G. F., & Brewer, B. J. 2022, Testing the Cosmological Principle
+   with CatWISE Quasars: A Bayesian Analysis of the Number-Count Dipole
+Darling, J. 2022, ApJ, 931, L14
+Ellis, G. F. R. & Baldwin, J. E. 1984, MNRAS, 206, 377
+Foreman-Mackey, D., Hogg, D. W., Lang, D., & Goodman, J. 2013, PASP, 125,
+   306
+Górski, K. M., Hivon, E., Banday, A. J., et al. 2005, ApJ, 622, 759
+Gupta, N., Srianand, R., Baan, W., et al. 2016, in MeerKAT Science: On the
+   Pathway to the SKA, 14
+Hale, C. L., McConnell, D., Thomson, A. J. M., et al. 2021, PASA, 38, e058
+Haslam, C. G. T., Salter, C. J., Stoffel, H., & Wilson, W. E. 1982, A&AS, 47, 1
+Intema, H. T., Jagannathan, P., Mooley, K. P., & Frail, D. A. 2017, A&A, 598,
+   A78
+Lacy, M., Baum, S. A., Chandler, C. J., et al. 2020, PASP, 132, 035001
+Mauch, T., Murphy, T., Buttery, H. J., et al. 2003, MNRAS, 342, 1117
+
+Article number, page 14 of 14
+

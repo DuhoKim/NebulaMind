@@ -1,0 +1,1719 @@
+                                              Colloquium: The Cosmic Dipole Anomaly
+                                                       Nathan Secrest,1 Sebastian von Hausegger,2 Mohamed Rameez,3 Roya Mohayaee,4 and Subir Sarkar2, ∗
+                                                       1
+                                                         U.S. Naval Observatory, 3450 Massachusetts Ave NW, Washington, DC 20392-5420, USA
+                                                       2
+                                                         Rudolf Peierls Centre for Theoretical Physics, University of Oxford, Parks Road, Oxford OX1 3PU, UK
+                                                       3
+                                                         Department of High Energy Physics, Tata Institute of Fundamental Research, Homi Bhabha Road, Mumbai 400005, India
+                                                       4
+                                                         Institut d’Astrophysique de Paris (IAP), CNRS/Sorbonne Université, 98 bis Bld Arago, Paris 75014, France
+                                                       (Dated: September 13, 2025)
+
+                                                       The Cosmological Principle, which states that the Universe is homogeneous and isotropic
+                                                       (when averaged on large scales), is the foundational assumption of Friedmann-Lemaı̂tre-
+                                                       Robertson-Walker (FLRW) cosmologies such as the current standard Lambda-Cold-
+                                                       Dark-Matter (ΛCDM) model. This simplification yields an exact solution to the Einstein
+                                                       field equations that relates space and time through a single time-dependent scale factor,
+
+
+
+
+arXiv:2505.23526v2 [astro-ph.CO] 6 Sep 2025
+                                                       which defines cosmological observables such as the Hubble parameter and the cosmo-
+                                                       logical redshift. The validity of the Cosmological Principle, which underpins modern
+                                                       cosmology, can now be rigorously tested with the advent of large, nearly all-sky cata-
+                                                       logs of radio galaxies and quasars. Surprisingly, the dipole anisotropy in the large-scale
+                                                       distribution of matter is found to be inconsistent with the expectation from kinematic
+                                                       aberration and Doppler-boosting effects in a perturbed FLRW universe, which is the
+                                                       standard interpretation of the observed dipole in the cosmic microwave background
+                                                       (CMB). Although the matter dipole agrees in direction with that of the CMB dipole,
+                                                       it is anomalously larger, demonstrating that either the rest frames in which matter and
+                                                       radiation appear isotropic are not the same or that there is an unexpected intrinsic
+                                                       anisotropy in at least one of them. This discrepancy now exceeds 5σ in significance. We
+                                                       review these recent findings, as well as the potential biases, systematic issues, and alter-
+                                                       nate interpretations that have been suggested to help alleviate the tension. We conclude
+                                                       that the cosmic dipole anomaly poses a serious challenge to FLRW cosmology, and the
+                                                       standard ΛCDM model in particular, as an adequate description of our Universe.
+
+
+
+                                              CONTENTS                                                                         3. Weighted estimators                         19
+                                                                                                                            C. Summary of theoretical issues                  20
+                                               I. The Cosmological Principle                                     1
+                                                                                                                        V. Future Galaxy Surveys                              21
+                                              II. The ΛCDM Model                                                 2         A. SPHEREx                                         21
+                                                  A. Its basis as an FLRW cosmology                              2         B. Euclid                                          21
+                                                  B. Perturbations and convergence to homogeneity and                      C. Rubin/LSST                                      22
+                                                     isotropy                                                    4         D. Square Kilometre Array                          22
+
+                                              III. The Ellis & Baldwin Test                                      6     VI. Concluding Remarks                                 23
+                                                   A. Derivation in special relativity                           6
+                                                   B. General relativistic corrections and redshift                         Acknowledgments                                   23
+                                                      dependence                                                 6
+                                                   C. Conditions for validity                                    8          References                                        23
+                                                   D. Practical considerations                                   8
+                                                      1. Determination of survey sensitivity limit               8
+                                                      2. Determination of α and x                                9
+                                                      3. Power-law approximation of spectral energy                    I. THE COSMOLOGICAL PRINCIPLE
+                                                         distributions                                          10
+                                                   E. The history of E & B tests                                10
+                                                      1. The first detection                                    11
+                                                                                                                         Between 1907 and 1915 Albert Einstein formulated the
+                                                      2. The search for independent confirmation                11     theory of General Relativity (GR), an elegant dynami-
+                                                      3. The search for an explanation of the anomaly           12     cal description of gravity as arising from the warping of
+                                                      4. The state of the art today and summary                 13     space-time by mass-energy. The first discussions of how
+                                              IV. Uncertainties and Systematics                                 14     this may apply to the universe were presented soon after-
+                                                  A. The clustering dipole                                      14     wards (Einstein, 1917; de Sitter, 1917). Alexander Fried-
+                                                     1. Quasars                                                 16     mann provided the first solution of Einstein’s equations
+                                                     2. Radio galaxies                                          16
+                                                                                                                       applied to the universe as a whole — which he predicted
+                                                  B. Biases                                                     17
+                                                     1. Flux calibration errors                                 17     should be evolving (Friedmann, 1922, 1924). However his
+                                                     2. Dipole estimators                                       18     work remained unknown, as also that of George Lemaı̂tre
+                                                                                                                       who first interpreted the redshifts that had been mea-
+                                                                                                                       sured in the spectra of distant nebulae (Slipher, 1917) in
+                                                                                                                       terms of the expansion of space itself, rather than the
+                                              ∗ Corresponding author: subir.sarkar@physics.ox.ac.uk
+                                                                                                                       Doppler effect due to their relative motion (Lemaitre,
+                                                                                                                        2
+
+1927, 1931, 1933). Although just such a relationship                The real reason, though, for our adherence
+between redshift (velocity) and distance was suggested              here to the Cosmological Principle is not that
+subsequently by Edwin Hubble (Hubble, 1929), it was                 it is surely correct, but rather, that it allows
+not recognised as confirming the previous prediction. In            us to make use of the extremely limited data
+fact Hubble attempted to interpret the data in terms of             provided to cosmology by observational as-
+the “de Sitter effect” — the dilation of time intervals             tronomy . . . If the data will not fit into this
+for signals received from distant sources in an appar-              framework, we shall be able to conclude that
+ently static universe that de Sitter had presented. Sub-            either the Cosmological Principle or the Prin-
+sequently when Hubble realised his error he wrote to de             ciple of Equivalence is wrong. Nothing could
+Sitter: “The interpretation, we feel, should be left to you         be more interesting.
+and the very few others who are competent to discuss the
+matter with authority” (see: Sharov and Novikov, 1993).        This data has taken half a century to arrive. In this
+It is de Sitter’s universe, which has in fact an accelerat-    article we describe a crucial consistency test that has
+ing rate of expansion, that is closest to today’s standard     been carried out of this foundational assumption of the
+ΛCDM cosmological model.                                       standard cosmological model — which it appears to fail.
+   The mathematical model of the expanding universe
+constructed by all the above authors implicitly assumed
+                                                               II. THE ΛCDM MODEL
+what came to be called the Cosmological Principle (CP):
+“The Universe must appear the same to all observers”
+                                                               A. Its basis as an FLRW cosmology
+(Milne, 1932). Karl Popper was unimpressed: “Because
+I dislike making of our lack of knowledge a principle of
+                                                                  The assumptions of homogeneity and isotropy embod-
+knowing something” (see: Kragh, 2013). Nevertheless
+                                                               ied in the Cosmological Principle considerably simplify
+this assumption is necessary, given that essentially all
+                                                               the mathematical description of the world model, since
+our information about the universe comes from within
+                                                               all hypersurfaces with constant cosmic standard time are
+our past light cone; we cannot move over cosmologi-
+                                                               then maximally symmetric subspaces of the whole of
+cal distances and check if the universe looks the same
+                                                               space-time, and all cosmic tensors (such as the metric
+from over there (Ellis, 1975). Given the CP, the metric
+                                                               gµν or energy-momentum Tµν ) are form-invariant with
+of space-time has the maximally symmetric Robertson-
+                                                               respect to the isometries of these surfaces (see: Wein-
+Walker form (Robertson, 1935; Walker, 1937). This is the
+                                                               berg, 1972). These assumed symmetries thus enable a
+foundational assumption that underpins today’s stan-
+                                                               simple description of the Universe and of its dynami-
+dard ΛCDM cosmological model.
+                                                               cal evolution. The complexities of general relativity al-
+   Subsequently the CP was extended further to the ‘Per-       low for many other possibilities (see: Krasinski, 2011)
+fect Cosmological Principle’ which states that we have no      but these have not been much considered since the sim-
+special location in either space or time; this was the ba-     plest solution discussed below has proved to be ade-
+sis for the ‘Steady State theory’ of the Universe (Bondi       quate to describe our Universe — at least until now.
+and Gold, 1948). The discovery of the cosmic microwave         Moreover it is hard to obtain exact solutions of Ein-
+background (CMB) by Penzias and Wilson (1965) estab-           stein’s equations, and any departure from homogeneity
+lished that the Universe was in fact different in the past     and isotropy leads to rapid proliferation of the number
+and ruled out the Perfect Cosmological Principle. Its spa-     of variables/observables.
+tial version lived on however, in a modified form which           For such a homogeneous and isotropic evolving space-
+acknowledges that the Universe is observed to be inho-         time, we may choose comoving spherical coordinates (i.e.
+mogeneous, by asserting that it is the realisation of a spa-   constant for an observer expanding with the universe) in
+tially stationary stochastic process (Neyman, 1962; Pee-       which the proper interval between two space-time events
+bles, 1980). In the standard ΛCDM cosmological model,          is given by the Friedmann-Lemaı̂tre-Robertson-Walker
+the initial fluctuations which grew via gravitational insta-   (FLRW) metric:
+bility into the observed large-scale structure are assumed
+to be a Gaussian random field, generated during a period         ds2 = gµν dxµ dxν =                                   (1)
+of primordial inflation in the early Universe. The seed                             
+                                                                                        dr 2
+                                                                                                                     
+fluctuations are tiny, of O(10−5 ), as observed via their            = dt2 − a2 (t)           + r2 (dθ2 + sin2 θdϕ2 ) .
+                                                                                      1 − kr2
+imprint on the CMB. Hence although strictly speaking
+the Universe is not exactly isotropic or homogeneous on        Here k is the 3-space curvature signature which is conven-
+any scale, observation of large-scale inhomogeneities or       tionally scaled (by transforming the comoving coordinate
+anisotropies, say a hundred times bigger would be quite        r → |k|1/2 r and a → |k|−1/2 a) to be −1, 0 or +1 cor-
+adequate to falsify the CP.                                    responding to an elliptic, euclidean or hyperbolic space.
+  As Weinberg (1972) stated in his influential textbook:       The cosmic scale-factor a(t) evolving in time describes
+                                                                                                                         3
+
+the expansion of the universe; light which has been emit-       All locally inertial observers must see the same quantum
+ted in the past and is observed today at t0 (when the           vacuum state, hence the equation of state of Λ is p = −ρ.
+scale-factor is a0 ) has its wavelength redshifted by a fac-       With the ‘equation of state’ parameter w ≡ p/ρ for all
+tor z = a0 /a − 1.                                              components, the evolution history can be constructed.
+  The energy-momentum tensor then has to be of the              For non-relativistic matter with w ≃ 0, ρm ∝ (1 + z)−3 ,
+‘perfect fluid’ form                                            while for radiation which has w = 1/3, ρr ∝ (1 +
+                                                                z)−4 , but for the Cosmological Constant, w = −1 and
+               Tµν = pgµν + (p + ρ)uµ uν ,                (2)   ρvac =constant. Thus radiation was dynamically impor-
+in terms of the pressure p, energy density ρ and 4-velocity     tant only in the early universe (for z ≳ 104 ) and for most
+uµ ≡ dxµ /ds of a comoving fluid element. The Einstein          of the expansion history only non-relativistic matter is
+field equations relate Tµν to the space-time curvature          relevant. At late times, the FL equation (4) can then be
+Rλµνκ :                                                         rewritten as:
+
+                     1         8πTµν                                 H 2 = H02 [Ωm (1 + z)3 + Ωk (1 + z)2 + ΩΛ ],     (11)
+                Rµν − gµν Rc =    2  ,                    (3)
+                     2          MPl                             where Ωm ≡ ρm /(3H02 /8πGN ), Ωk ≡ −k/H02 a20 and
+                                                                ΩΛ ≡ Λ/3H02 . Thus at the present epoch, we have the
+where Rµν ≡g λκ Rλµκν is the Ricci tensor, Rc ≡ g µν Rµν
+                                                                simple ‘cosmic sum rule’:
+is the curvature scalar; and MPl ≡ (8πGN )−1/2 ≃ 1.2 ×
+1019 GeV is the Planck mass. For the FLRW metric,                                  Ωm + Ωk + ΩΛ = 1,                  (12)
+these equations simplify vastly to yield the Friedmann-
+Lemaı̂tre (FL) equations, one for the expansion rate H,         which encapsulates the FLRW models, enabling them to
+also called the Hubble parameter,                               all be displayed on the ‘cosmic triangle’ whose sides are
+                                                                the 3 parameters above (Bahcall et al., 1999). Note that
+                      2
+                       ȧ      8πρ     k                        this can only be done by assuming isotropy and homo-
+               H2 ≡         =    2  − 2 ,             (4)       geneity — otherwise there will be additional terms and
+                       a      3MPl     a
+                                                                the above sum rule will no longer hold.
+as well as one for the acceleration:                               With its negative pressure, Λ can in principle overcome
+                          4πρ                                   the deceleration of the expansion rate due to gravitating
+                  ä = −    2 (ρ + 3p)a .                 (5)
+                         3MPl                                   matter and reverse the sign on the rhs of Eq. (5). Such
+                                                                accelerated expansion was inferred in the late 1990s from
+Further, the conservation of energy-momentum                    the Hubble diagram of Type Ia supernovae which indi-
+                        T µν;ν = 0 ,                      (6)   cated: 0.8 Ωm − 0.6 ΩΛ = −0.2 ± 0.1 (Perlmutter et al.,
+                                                                1999; Riess et al., 1998). Meanwhile, temperature fluc-
+implies                                                         tuations had been detected in the CMB and their typi-
+                     d(ρa3 )                                    cal angular scale of ∼ 1◦ indicated that Ωk ≃ 0 i.e. the
+                             = −3pa2 .                    (7)   universe is close to being spatially flat (de Bernardis
+                       da
+                                                                et al., 2000). Moreover, observations of massive clusters
+This can also be derived from Eqs. (4) and (5) since            of galaxies indicated that Ωm = 0.3 ± 0.1 (Bahcall and
+Eqs. (3) and (6) are related by the Bianchi identities:         Fan, 1998). Putting all this together in the FLRW frame-
+               
+                         1 µν
+                                                               work (12) then implies ΩΛ ≃ 0.7, Ωm ≃ 0.3, Ωκ ≃ 0 (see:
+                   µν
+                 R − g Rc            =0.               (8)      Peebles and Ratra, 2003; Sahni and Starobinsky, 2000).
+                         2        ;µ                            In the subsequent two decades this conclusion has been
+  In principle, a Cosmological Constant, λgµν , may be          strengthened with further observations of galaxy cluster-
+added to the field equation (3) reflecting its invariance       ing, baryon acoustic oscillations, weak lensing, redshift
+under general local coordinate transformations. This is         space distortions etc (see: Frieman et al., 2008; Huterer
+equivalent to the freedom granted by the conservation           and Shafer, 2018; Weinberg et al., 2013). Combined fits
+equation (6) to scale Tµν →Tµν + Λgµν , so that Λ can           to the latest datasets indicate that for the standard flat
+be related to the energy-density of the quantum vacuum          Lambda-Cold-Dark-Matter (ΛCDM) model: Ωm = 0.315
+(see: Weinberg, 1989):                                          and ΩΛ = 0.685 (see: Navas et al., 2024).
+                                                                   Although successful in matching a wide body of obser-
+   ⟨0 | Tµν | 0⟩ = −ρvac gµν ,         Λ = 8πGN ρvac .    (9)   vations, the dominant component of the ΛCDM model
+The effective Cosmological Constant, which would ap-            has no physical explanation (see: Burgess, 2025; Sarkar,
+pear as an additive term Λ/3 on the rhs of the F-L equa-        2008). The inferred value of the Cosmological Constant
+tions (4) and (5), is then the sum of two terms, which          is Λ ≃ 2H02 where H0 ≡ 100h km s−1 Mpc−1 with
+are, in a general background, quite unrelated:                  h ≃ 0.7, i.e. H0 ∼ 10−42 GeV, hence ρΛ = Λ/8πGN ∼
+                                                                (10−12 GeV)4 ∼ 10−122 MPl  4
+                                                                                             . However the present quan-
+                   Λ = λ + 8πGN ρvac .                   (10)   tum vacuum is known to violate the SU (2)L ⊗U (1)Y
+                                                                                                                            4
+
+symmetry of the electroweak interaction in the Stan-             undo the inherent anisotropy, by de-boosting all observ-
+dard Model quantum field theory. This symmetry would             ables accordingly, and restore the expectation of isotropy
+have been restored at sufficiently high temperatures of          on the sky. We must therefore measure our motion with
+O(103 ) GeV in the early universe and the energy density         respect to the ‘cosmic rest frame’ (often called the ‘CMB
+of the symmetric vacuum is at least a factor of ∼ 1060           frame’). We describe such measurements in the next sub-
+higher than the maximum value of Λ that would have               section, after first discussing the scale of homogeneity, the
+enabled the Universe to expand to a size ∼ H0−1 today.           dipole anisotropy in the CMB induced by our local pecu-
+This is the as yet unsolved Cosmological Constant prob-          liar motion, and whether the cosmological perturbations
+lem. It is further exacerbated if rather then being zero         themselves are inferred to adhere to the CP.
+due an exact cancellation in Eq.(10), it has in fact a value        Statistical analyses of the large scale structure (LSS)
+of O(H02 ) which raises the further conundrum of why it          traced by galaxies can test its adherence to the CP.
+has come to dominate today. It is worth noting in this           Of particular interest is the scaling of galaxy counts in
+context that it is just the assumption of the CP and the         spheres of increasing radius r, that, for a homogeneous
+resultant sum rule (12) that effectively forces Λ to take        point process, should go as r3 on sufficiently large scales.
+on such a value when inferred from cosmological data.            The scaling was in fact found to be ∝ r2 indicating a
+                                                                 fractal distribution up to tens of Mpc (see: Coleman and
+                                                                 Pietronero, 1992), but observed counts in the deep SDSS
+B. Perturbations and convergence to homogeneity and              (Hogg et al., 2005) and WiggleZ (Scrimgeour et al., 2012)
+isotropy                                                         surveys are said to have demonstrated homogeneity on
+                                                                 scales above r ∼ 70h−1 Mpc. However there are con-
+   The smooth background defined by the FLRW met-                cerns because such surveys have not been large enough
+ric (2) provides the underlying basis for ΛCDM cosmol-           to provide an unbiased result, e.g. in the WiggleZ Sur-
+ogy. For the model to accommodate the structure that             vey which measured redshifts for only 200,000 galaxies,
+we see in our Universe, it must be endowed with per-             the largest spheres in which galaxies were being counted
+turbations, both to gµν and to the energy-momentum               and said to be scaling as r3 extended in fact beyond the
+Tµν . These are required to have initially a nearly scale-       survey volume — so the numbers in the unobserved re-
+free power spectrum (Harrison, 1970; Zeldovich, 1972),           gions were simulated assuming a random (i.e. statistically
+which is generally believed to have arisen from quantum          homogeneous) distribution. Such circular reasoning has
+fluctuations of a slowly evolving scalar field which dom-        been adopted as a “bias correction” in subsequent work
+inated in the early universe, driving a period of infla-         which used SDSS quasars, in order to claim agreement
+tion (see: Riotto, 2003). Coupled through the Einstein           with the expectation for the homogeneity scale in ΛCDM
+field equations (3), these perturbations, which are small        (e.g. Gonçalves et al., 2021). Much bigger forthcoming
+O(10−5 ) uncorrelated Gaussian fluctuations at the time          surveys are required to definitively settle the issue.
+of decoupling, evolve as the universe expands and begin             The gravitational attraction of the Virgo cluster, at
+to grow on scales that are small enough to have entered          about 16.5 Mpc, has long been known to produce a so-
+the particle horizon. Irrespective of their evolution, they      called ‘Virgocentric infall’ in our neighbourhood. Stew-
+are expected to obey statistically the same properties as        art and Sciama (1967) observed that “If the microwave
+their background, viz. spatial isotropy and homogene-            blackbody radiation is both cosmological and isotropic,
+ity. This means that the underlying distributions of all         it will only be isotropic to an observer who is at rest in
+their statistical descriptors are independent of location        the rest frame of distant matter which last scattered the
+and orientation, however only for a comoving observer.           radiation” and thus predicted using the velocity data in
+   In the late universe, the perturbations have grown un-        the Virgocentric infall region that there must be a dipole
+der gravitational instability to create O(1) fluctuations        anisotropy in the CMB. Peebles and Wilkinson (1968)
+in the matter field that we see today as the ‘cosmic web’.       calculated that an inertial observer moving with velocity
+Along with gravitational collapse came gravitational dy-         β = v/c in an isotropic blackbody radiation bath of tem-
+namics, exhibited as so-called ‘peculiar velocities’, i.e. ve-   perature T0 will measure an effective temperature that
+locities in addition to the Hubble recession, of galaxies        varies with angle θ with respect to the direction of mo-
+and other tracers of the matter field. Therefore, as ob-         tion, as:
+servers we are unlikely to be at rest with respect to the                                        p
+                                                                                                   1 − β2
+‘cosmic reference frame’ (CRF) set by the FLRW metric;                              T (θ) = T0               .           (13)
+i.e. we are not comoving observers. Viewing the pertur-                                        (1 − β cos θ)
+bations from this vantage point brings with it an explicit       Since our peculiar velocity is a few hundred km s−1 , the
+violation of isotropy – a dipolar (to 1st order) modulation      amplitude of the dipole in the CMB temperature should
+of their underlying statistical distributions, aligned with      then be (expanding to 1st-order in β):
+the direction of our motion, and described by a (special)
+relativistic boost. Knowing our relative motion, one can                             DCMB = β ≃ 10−3 .                   (14)
+                                                                                                                       5
+
+The predicted dipole anisotropy was detected subse-            moving coordinates), must be a decreasing function of r.
+quently by Conklin (1969) (for a review of such exper-         Observation of galaxies, clusters and superclusters in the
+iments, see: Smoot, 2007). The latest measurement by           local Universe show, however, a highly anisotropic envi-
+the Planck satellite (Aghanim et al., 2020) yields an in-      ronment out of large distances. The Milky Way along
+ferred velocity of 369.82 ± 0.11 km s−1 towards Galactic       with the Local Group of neighbouring galaxies, e.g. An-
+co-ordinates l = (264.021±0.011)◦ , b = (48.243±0.005)◦ .      dromeda, all participate in a coherent ‘bulk flow’ towards
+The spectrum of the dipole component was measured by           a direction close to that of the CMB dipole hotspot. Al-
+the FIRAS instrument on the COBE satellite and is con-         though peculiar velocities are hard to measure at high
+sistent with the expected derivative of a Planck spec-         redshift, nearby we have a good estimates of them via
+trum, with an amplitude of 3.343 ± 0.016 mK (95% c.l.)         independent measures of distance. If the Universe be-
+and a temperature of 2.714 + 0.022 K (95% c.l.) (Fixsen        comes isotropic and homogeneous on large scales and the
+et al., 1994). This is consistent with the precisely mea-      rest frame of matter is the same as the rest frame of
+sured T0 = 2.72548 ± 0.00057 K temperature of the CMB          the CMB, then the bulk flow should die out on a scale
+monopole (Fixsen, 2009), lending credence to the kine-         exceeding ∼ 150h−1 Mpc where the Universe is said to
+matic interpretation of the dipole.                            become sensibly homogeneous (Gonçalves et al., 2021;
+   Small-scale anisotropies are also observed in the CMB       Hogg et al., 2005; Scrimgeour et al., 2016).
+with amplitude of O(10−5 ); statistical analyses indicate         It was realised that one has to go well beyond the
+that these are consistent with having been drawn from          Virgo cluster, to at least the Hydra-Centaurus superclus-
+an isotropic distribution (Akrami et al., 2020a), although     ter (known today as the ‘Great Attractor’), to account
+the confidence with which this can be stated depends           for the CMB dipole (Tammann and Sandage, 1985). For
+on the scales investigated, Measurements on large scales       some years, the CMB rest frame was assumed to be at
+(low multipoles ℓ) carry larger uncertainties because the      the scale of the Great Attractor, i.e. at about 50h−1 Mpc.
+2ℓ + 1 independent samples available are fewer; this is        However the work of the ‘Seven Samurai’ (Dressler et al.,
+the so-called ‘cosmic variance’. Even so there are indica-     1987) marked a turning point by firmly establishing that
+tions of deviations from statistical isotropy, collectively    the CMB dipole, if kinematic in origin and due to the
+referred to as low-ℓ anomalies, that are in mild (∼ 1−3σ)      motion of the Local group, cannot be primarily the re-
+tension with expectations (see: Schwarz et al., 2016). The     sult of gravitational attraction by structures inside the
+origin of these anomalies has so far not been established,     boundary of the Great Attractor. Subsequent studies
+nor is it clear whether these are statistical flukes, sys-     up until now have shown that even up to the Shapley
+tematic errors or true deviations from statistical isotropy.   concentration (at around 120h−1 Mpc) this bulk flow
+Either way, these anisotropies are small, constraining the     continues unabated (see e.g.: Colin et al., 2011; Feindt
+size of observable deviations from the CP at z ≃ 103 .         et al., 2013; Lavaux et al., 2010). The most recent stud-
+   Assuming statistical isotropy of the CMB fluctuations       ies using the CosmicFlows-4 survey have established that
+in the CMB frame, the compression of the angular scale         the bulk flow continues well beyond Shapley (Watkins
+— and consequent shift in the CMB power spectrum —             et al., 2023). This is in conflict with the expectation in
+in the direction of motion, yields an estimate of our veloc-   the ΛCDM model at ∼ 3 − 5σ (Duangchan et al., 2025;
+ity with respect to the CMB frame that can be checked          Watkins et al., 2023; Whitford et al., 2023).
+against the purely kinematic interpretation of the CMB            Nevertheless, there is little room to interpret the CMB
+dipole (Burles and Rappaport, 2006; Challinor and van          dipole as anything other than a kinematic effect induced
+Leeuwen, 2002). The first such measurement (Aghanim            by our peculiar motion with respect to the CMB frame,
+et al., 2014) found v = 384±78(stat.)±115(syst.) km s−1        a frame that must be shared by LSS. This is what makes
+towards the CMB dipole hotspot. Although this still al-        the test we discuss below by Ellis and Baldwin (1984) so
+lows up to about 40% of the CMB dipole to be non-              powerful: comparing the dipole apparent in the LSS at
+kinematic in origin (Schwarz et al., 2016), a subsequent       z ∼ 1 with the kinematic prediction from the z ∼ 1100
+Bayesian analysis by Saha et al. (2021) (see also: Fer-        CMB dipole is a critical consistency test of the foun-
+reira and Quartin, 2021) detected the expected standard        dational assumption, inherent in all FLRW-based cos-
+kinematic signal at ∼ 4.5σ. Planck also measured the           mologies such as ΛCDM, that the evolution of the uni-
+dipole modulation of the thermal Sunyaev-Zeldovich ef-         verse on cosmological scales is described by a direction-
+fect, again finding consistency with the kinematic inter-      independent scale factor a(t) and that the LSS, aris-
+pretation (Akrami et al., 2020b), however this effect is       ing from the O(10−5 ) inhomogeneities imprinted on the
+agnostic towards whether the CMB dipole is kinematic           CMB, must therefore share the same frame. If the El-
+in origin or intrinsic (Notari and Quartin, 2016).             lis and Baldwin test does not confirm that the dipole
+   In any case, if the CP is to hold, the rest frame of        in cosmologically distant sources is consistent with a lo-
+the CMB should coincide with the rest frame of distant         cal boost of ∼ 370 km s−1 (as inferred from the CMB
+galaxies. In other words, the mean motion of galaxies          dipole) then the assumption of homogeneity and isotropy
+(w.r.t. CMB rest frame) inside a sphere of radius r (in co-    on large scales is observationally contradicted.
+                                                                                                                                   6
+
+III. THE ELLIS & BALDWIN TEST                                           in terms of their rest-frame distribution above the same
+                                                                        threshold: S∗ , dN/dΩ0 (S > S∗ ). For this it is important
+   The key insight of Ellis and Baldwin (1984) was that                 to model the functional form in the immediate vicinity
+cosmologically distant sources should exhibit the same                  of S∗ . We can locally approximate the integral source
+dipole anisotropy due to our local motion as is evident                                                                −x(S∗ )
+                                                                        counts as a power law, dN/dΩ(S > S∗ ) ∝ S∗             with
+in the CMB. They noted that this directly tests whether                 index x, such that:
+the ‘rest frame’ of distant matter is indeed the same as                                                             
+that of the CMB, as is expected in a FLRW universe.                                              ∂        dN
+                                                                               x = x(S∗ ) ≡ −          ln    (S > S∗ ) .       (18)
+   We now discuss how the cosmic matter dipole arises,                                        ∂ ln S∗     dΩ
+first in the language of special relativity used by Ellis and
+Baldwin, and then including general relativistic effects.               Ellis and Baldwin (1984) discussed a constant, i.e. flux-
+                                                                        independent, power-law index x. This assumption need
+                                                                        only hold locally around S∗ , although this has not always
+A. Derivation in special relativity                                     been appreciated. There have been attempts to fit the
+                                                                        observed projected integral source counts with a more
+   The prescription of Ellis and Baldwin (1984) relies en-              flexible (e.g. log-normal) function over a wide range of
+tirely on observed quantities: starting with a catalog of               flux densities S (Siewert et al., 2021; Tiwari et al., 2014).
+extragalactic sources with observed spectral flux density               However this can actually mispredict the kinematic mat-
+S(ν) at frequency ν, a flux-limited sample is selected by               ter dipole, since sources far from the threshold S∗ play no
+removing sources with S < S∗ , and its projected number                 role in determining the dipole amplitude (von Hausegger,
+density dN/dΩ is investigated. If we are moving with                    2024), as explained in § III.D.
+respect to the frame in which the sources have projected                   Similarly, the source spectrum can be modelled as a
+number density dN/dΩ0 , a Lorentz boost translates from                 power law, S(ν) ∝ ν −α , so Lorentz invariance yields
+that frame to ours. With the flux density cut, two dis-
+tinct effects determine the number density observed in                     S(ν) = η 1+α S0 (ν) ≈ (1 + (1 + α)β cos θ)S0 (ν).    (19)
+our frame: Doppler boosting of frequencies and flux den-
+                                                                        The power-law assumption is appropriate for a wide
+sities, and angular aberration of the source positions on
+                                                                        range of source types, such as radio and mid-infrared ac-
+the sky with respect to our direction of motion.1
+                                                                        tive galactic nuclei (AGN) with which this test has been
+   First consider the Lorentz boost of the photon fre-
+                                                                        performed so far (e.g., Secrest et al., 2022), however care
+quency when our velocity is β ≡ v/c:
+                                                                        is needed if one is to perform similar studies with sources
+                  ν = γ(1 + β cos θ) ν0                                 whose spectra have sharp spectral features. Denoting by
+                                                                        α the average spectral index of sources in the vicinity of
+                    ≈ (1 + β cos θ) ν0 ≡ η ν0 ,                (15)
+                                                                        S∗ , we find:
+where θ is the angle between the direction of observation                  dN                        dN
+and that of the boost, and γ = (1−β 2 )−1/2 is the Lorentz                    (S > S∗ ) = η 2+x(1+α)     (S > S∗ )
+                                                                           dΩ                        dΩ0
+boost factor. Using this and photon number conservation                                                      dN
+leads to the Lorentz invariant for the source spectrum:                        ≈ [1 + (2 + x(1 + α))β cos θ]     (S > S∗ ),     (20)
+                                                                                                             dΩ0
+                        S(ν)   S0 (ν0 )
+                             =          ,                      (16)     where the second line is a linear approximation in ob-
+                         ν       ν0                                     server velocity β. The angular dependence of the sec-
+Relativistic aberration of the unit solid angle gives:                  ond term constitutes a dipolar modulation of the integral
+                                                                        source counts on the sky. It is called the ‘kinematic mat-
+            dΩ = (1 + β cos θ)−2 dΩ0 = η −2 dΩ0                         ter dipole’ and has amplitude (Ellis and Baldwin, 1984):
+                 ≈ (1 − 2β cos θ)dΩ0 .                         (17)                      Dkin = [2 + x(1 + α)] β,               (21)
+Our aim is to find an expression for the projected inte-                so is larger than the CMB dipole amplitude (14) by a
+gral source counts per unit solid angle dN/dΩ(S > S∗ )                  factor of 2 + x(1 + α).
+
+
+                                                                        B. General relativistic corrections and redshift dependence
+1 While at this point, most discussions start making assumptions
+
+  regarding source spectra S(ν), distributions of number counts
+  dN/dΩ, redshift-independence, etc (e.g., Itoh et al., 2010; Rubart
+                                                                           The derivation above of the kinematic matter dipole
+  and Schwarz, 2013; Tiwari et al., 2014), we prefer to retain the      is in terms of quantities observed in a projected sample
+  general form just a bit longer before we outline the considerations   on the sky. However, source catalogs now also contain
+  leading to the Ellis and Baldwin formula (21).                        information on their redshifts so a better understanding
+                                                                                                                               7
+
+of the kinematic matter dipole expectation is warranted       where be (z) ≡ −d log((1 + z)−3 n(z))/d log(1 + z)
+in view of the possible variation of the key observables      is the ‘evolution bias’ of the source population and
+along our past lightcone. Following Maartens et al.           Ḣ = dH/dt is the derivative of the Hubble parameter
+(2018), we repeat the special relativistic derivation         H with respect to time. Here we use dr/dz = H −1 and
+considering source redshifts before introducing an            dH/dz = −ḢH −1 (1 + z)−1 . Given the approximations
+important distinction between observed redshifts and          that are appropriate here, we can think of z0 as the
+those tracing the background metric. The perturbations        background, i.e. true cosmological redshift z. The
+to background quantities considered here involve only         distribution dN/dΩ0 dz0 (z) is moreover independent of
+those induced by the boost. For a full treatment of all       direction. We see that the amplitude of the dipolar
+first-order perturbations see Domènech et al. (2022) who     modulation per redshift interval picks up additional con-
+obtain the same final expression.                             tributions from both volume perturbations (2nd and 3rd
+                                                              terms in Eq. (27)), and from the evolution of the source
+  First recall the Doppler shift of redshifts                 counts with redshift (4th term in Eq. (27)). The latter
+                                                              arises because of the boosted observer probing source
+              1 + z = (1 − β cos θ)(1 + z0 ),                 counts at different background redshifts depending on
+                 dz = (1 − β cos θ)dz0 ,                      direction.
+             z0 − z = β cos θ(1 + z0 ),               (22)
+                                                                However, we are interested in source counts integrated
+along with the aberration effect on the solid angle (17).     above some flux density limit, viz. the integral source
+   Let us express the source counts per redshift interval     counts per redshift and unit solid angle. This can also
+and unit solid angle in terms of their rest-frame den-        be expressed in terms of source luminosity (Dalang and
+sity using number count conservation, and then expand         Bonvin, 2022)
+around their observed redshifts z as:
+                                                                                          Z ∞
+  dN          dN          dΩ0 dz0                                      dN                           dN
+      (z) =         (z0 )                                                  (z, S > S∗ ) =     dS         (z, S)
+ dΩdz       dΩ0 dz0        dΩdz                                       dΩdz                 S∗    dΩdzdS
+                                                                  Z ∞
+              dN                                                           dN               dN
+          ≈         (z0 ) (1 + 3β cos θ)                        =     dL          (z, L) =      (z, L > L∗ (z)), (28)
+            dΩ0 dz0                                                L∗    dΩdzdL            dΩdz
+                               
+                                  dN
+          ≈ (1 + 3β cos θ) ×             (z)+          (23)   where L denotes the source luminosity, whose threshold
+                                 dΩ0 dz0
+                                                             L∗ = L∗ (z) depends on redshift (and therewith direction)
+                           d     dN
+                      +                (z)(z0 − z)            for S∗ held constant (Alonso et al., 2015a).2 The deriva-
+                          dz0 dΩ0 dz0                         tion now proceeds similarly with a few re-definitions and
+              dN                                              considering angular variations in luminosity around its
+          ≈         (z) (1 + 3β cos θ) +               (24)
+            dΩ0 dz0                                           average (viz. the source luminosity L∗,0 as inferred by
+                                d         dN                  an unboosted observer), in addition to those in redshift
+                      +                        (z)β cos θ,
+                          d log(1 + z) dΩ0 dz0                as seen above:
+where we used Eqs. (17) and (22), and further dropped          dN                    dN                   dΩ0 dz0
+the explicit dependencies on direction n̂, or n̂0 as the           (z,S > S∗ ) =           (z0 , L > L∗ )
+                                                              dΩdz                 dΩ0 dz0                 dΩdz
+differences are 2nd-order in β. The last line is obtained               dN
+by further approximating the last term to be linear in β.           ≈         (z0 , L > L∗ )(1 + 3β cos θ)
+                                                                      dΩ0 dz0
+Collecting terms yields:                                                                
+                                                                                            dN
+                                                                    ≈(1 + 3β cos θ) ×              (z, L > L∗,0 )+
+      dN         dN                                                                       dΩ0 dz0
+          (z) ≡         (z) [1 + Dkin (z) cos θ] ,    (25)
+     dΩdz       dΩ0 dz0                                                        ∂     dN
+                                                                           +               (z, L > L∗,0 )(z0 − z)+
+where the redshift dipole amplitude for a catalog without                     ∂z0 dΩ0 dz0
+                                                                                                                        
+a flux limit is defined as                                                       ∂      dN
+                                                                           +                  (z, L > L∗,0 )(L∗ − L∗,0 )
+             
+                         d
+                                    
+                                       dN
+                                                                            ∂L∗,0 dΩ0 dz0
+  Dkin (z) ≡ 3 +                log           (z) β. (26)                                                           (29)
+                   d log(1 + z)       dΩ0 dz0
+Expressed in terms of the comoving number density
+n(z) ≡ (1 + z)3 Hr−2 dN/dΩ0 dz0 (z), where r is the co-
+moving distance, gives                                        2 L and S further differ in their assigned frequency which how-
+                                                                 ∗     ∗
+               "                           #                   ever does not impact the expansion below as the corresponding
+                     Ḣ  2(1 + z)                              terms are varied with the redshift held constant, which also keeps
+     Dkin (z) = 3 + 2 +            − be (z) β,     (27)
+                    H      rH                                  the relation between source and observed redshift invariant.
+                                                                                                                                   8
+                                                                                         Z ∞
+The last term, with help of the relation                                             =         dz f (z) [2 + x(z)(1 + α(z))] β   (37)
+                                                                                         0
+                                 d2L − d2L,0
+             L∗ − L∗,0 = 4π                                          In practice, x and α of Eq. (21) are computed using the
+                                (1 + z)
+                                  dL − dL,0                          projected integral source counts (20) at the flux limit as
+                          ≈ 2L∗,0                                    explained above. Hence if we define the average values
+                                     dL,0
+                                                                             Z ∞                     Z ∞
+                                  β cos θ
+                          ≈ 2L∗,0         (1 + z0 ),          (30)      x≡        dz f (z)x(z), α ≡       dz f˜(z)α(z), (38)
+                                    Hr                                           0                              0
+yields the ‘magnification bias’ x(z), defined similarly to           with
+Eq. (18):                                                                                       Z ∞
+                                                                                   dN                     dN
+                                                                       f˜(z) ≡          (z, S∗ )     dz        (z, S∗ ), (39)
+                                                    
+                ∂             dN                                                 dΩdzdS                 dΩdzdS
+ x(z0 ) ≡ −            log           (z0 , L > L∗,0 ) . (31)                                      0
+            ∂ log L∗,0       dΩ0 dz0
+                                                                     then Eq. (37) reduces exactly to the form (21), without
+Also the ‘evolution bias’ of this sample is
+                                                                     explicit reference to the (usually unknown) luminosity
+                        ∂ log[(1 + z0 )−3 N (z0 , L∗,0 )]            function (von Hausegger, 2024).
+         be (z0 ) ≡ −                                     ,   (32)
+                                ∂ log(1 + z0 )
+in terms of the comoving number density N (z0 , L∗,0 ) ≡             C. Conditions for validity
+(1 + z)3 Hr−2 dN/dΩ0 dz0 (z0 , L > L∗,0 ). Approximating
+all terms to be linear in β, this gives the kinematic red-              As discussed in § III.D.2, the prescription for the kine-
+shift dipole amplitude for a flux-limited catalog to be:             matic dipole given by Ellis and Baldwin (1984) concerns
+              "                                       #              a local effect: their prediction (21) for Dkin is thus un-
+                    Ḣ    2(1 + z)(1 − x(z))                         affected by the type, redshift, or evolutionary history of
+   Dkin (z) = 3 + 2 +                         − be (z) β             the sources that define the frame relative to which we are
+                   H              rH
+                                                                     moving, as long as the following conditions are met:
+                                                              (33)
+
+Written in this form (Maartens et al., 2018), the relation              1. Our velocity is small enough that O(β 2 ) terms in
+to the redshift-integrated kinematic matter dipole (21) is                 the full expression (28) for dN (> S)/dΩ may be
+not immediately evident. This connection was made by                       neglected.
+Nadolny et al. (2021) and Dalang and Bonvin (2022),3                    2. The mean source spectral index α is measured at
+where assumptions about the power-law nature of the                        the flux limit S∗ within the interval ∆S = 2(1 +
+source spectrum were imposed, viz. L(z) = 4πr2 S(1 +                       α)β S∗ ; in this interval, variations in the mean spec-
+z)1+α(z) . Expanding the evolution bias (32) in terms of                   tral index δα must be small enough that the corre-
+its total derivative and inserting into Eq. (33) yields                    sponding dipole amplitude variation δDkin = xδα β
+ Dkin (z) = [3 + x(z)(1 + α(z))] β+                     (34)               is negligible compared with the expected ampli-
+                                                                         tude: δDkin /Dkin ≪ 1. Since β ∼ 10−3 this means
+                     d             dN                                      in practice up to ∼ 1% shifts in the flux limit.
+            +               log           (z, S > S∗ ) β.
+               d log(1 + z)       dΩ0 dz0
+                                                                        3. The value of x is also measured at the flux limit
+We recover a recognisable expression for the kinematic                     and any deviations are negligibly small for up to
+matter dipole if the normalised integral source counts,                    ∼ 1% shifts in the flux limit (as above).
+                            Z ∞
+          dN                          dN
+ f (z) ≡        (z, S > S∗ )      dz       (z, S > S∗ ),                4. The observed mean spectral energy distribution
+         dΩdz                 0      dΩdz                                  (SED) of the sources can be described by a power
+                                                     (35)                  law within the passband that defines the flux limit
+are assumed to vanish at the boundaries, such that the                     (see § III.D.3 for specifics).
+boundary term in the second line of Eq. (34) returns −β:
+             Z ∞                                                     D. Practical considerations
+      Dkin =     dz f (z)Dkin (z) =                  (36)
+                0
+                                                                     1. Determination of survey sensitivity limit
+
+                                                                        It should be noted that the quoted sensitivity limit of
+3 See also Domènech et al. (2022); Lacasa et al. (2024) for com-
+                                                                     a catalog may have been established using small patches
+  plementary derivations.                                            of sky, in which much deeper surveys have been done to
+                                                                                                                          9
+
+estimate the reliability and completeness of the catalog.       law with index α. Fortunately, the flux limit of a survey is
+Hence, we recommend that tests of source density against        typically defined at one frequency for radio wavelengths,
+possible systematics be undertaken to ensure that these         where the SED is close to a power law, or in one (rel-
+do not affect the final results. For example, in the NVSS       atively narrow) band within which the SEDs of sources
+catalog there is a declination dependent systematic due         may be treated as a power law. There are emission lines
+to the Very Large Array D-to-DnC configuration change           that fall within the observing band for quasars at certain
+at the northernmost and southernmost limits of the sur-         redshifts, but the enormous range of observed quasar lu-
+vey. Studies of the radio galaxy dipole have generally          minosities (≳ 4 orders of magnitude) ensures that at a
+established that the NVSS uniform sensitivity limit is          given apparent magnitude (i.e., flux limit) the aggregate
+between ∼ 10 and 15 mJy, depending on how other sys-            or mean SED of quasars in a survey is smoothed by the
+tematics such as the Galactic synchrotron background            corresponding wide range of redshifts and can be treated
+are controlled for. This is several times larger than the       as a power law in most passbands (e.g., WISE W1 at
+99% completeness at 3.4 mJy figure reported in Condon           3.4 µm), as demonstrated in the next section.
+et al. (1998), probably because this figure was derived            Second, no type of astrophysical source has a single
+from a comparison to a deep radio survey of just a few          value of x at all flux levels. For example, it is well
+square degrees (Katgert-Merkelijn et al., 1985).                known that the flux distribution becomes steeper for ra-
+   An example of where checks against a priori system-          dio galaxies at high flux levels (see Figure 1 in Rubart
+atics have not been carried out is in tests of the dipole       and Schwarz, 2013). However, the relevant value of x
+amplitude and direction as a function of flux cut. While        is that very near the flux limit of the survey, because
+these tests do seek to determine the sensitivity limit of a     sources at fluxes brighter than the small range within
+survey, they typically do so by assuming that the dipole        which the kinematic modulation occurs are counted once
+should converge to a particular direction as the flux cut is    and only once, irrespective of their value of x. Thus,
+adjusted, usually the direction of the CMB dipole. Even         modification to the Ellis and Baldwin (1984) test to ac-
+if the dipole does converge to a certain direction, this does   count for x not being a simple power law for all fluxes
+not necessarily indicate that the sensitivity limit has been    is not physically justified: the dipole source count mod-
+found, as the type of sources selected at a given flux cut      ulation due to observer motion occurs only at the flux
+may preferentially align (or misalign) with a particular        limit of the survey. However, the modulation in source
+direction for astrophysical reasons. Especially in the case     counts due to Doppler boosting will cause the observer
+of the CMB dipole direction, there is no reason why a           to sample different rest-frame values of the flux density
+dipole inconsistent in amplitude with the kinematic pre-        for a given observed value. If the rest-frame value of x
+diction from the CMB should nevertheless align with it.         is not a single power law for all fluxes then there will
+Such assumptions can cause important new information            be differences in x as a function of angle with respect to
+to be overlooked, so it is prudent to focus on eliminat-        the observer’s motion. Given that the observer’s velocity
+ing a priori observational systematics and attempt to           is small (β ≪ 1), the fractional minimum-to-maximum
+physically interpret the found dipole only after such sys-      difference in observed flux densities relevant to any mis-
+tematics have been accounted for.                               estimation of x is bounded by:
+                                                                                     ∆S
+                                                                                        < 2(1 + α)β,                   (41)
+2. Determination of α and x                                                           S
+                                                                where the inequality reflects that most sources are not
+   To recapitulate, the Ellis and Baldwin (1984) test con-      observed near the direction of our motion. For a typi-
+cerns a local effect, viz. the relativistic Doppler boosting    cal spectral index near α = 1 and the CMB dipole-based
+and aberration of source counts in a flux-complete sur-         value of β = 1.23 × 10−3 , the fractional flux difference is
+vey due to the observer’s motion with respect to the rest       < 0.5%, a difference much smaller than that in which de-
+frame of the sources. The apparent change in the number         viations from a power-law parameterisation of x become
+density of sources with the angle away from the direction       noticeable. Hence the kinematic prediction by Ellis and
+of motion is a function of the power-law spectral index         Baldwin (1984) of the dipole modulation in source counts
+of the sources α, and the rate of increase in the number        is accurate so long as x is measured at the flux limit of
+of sources per unit solid angle above some flux density         the survey.
+(at that flux density value) denoted by the power-law              Third, relativistic Doppler boosting will bring sources
+exponent x:                                                     intrinsically fainter than the survey flux limit above the
+                    dN                                          detection threshold in the direction of motion, conversely
+                       (> Sν ) ∝ Sν−x .                 (40)    lowering intrinsically brighter sources in the opposite di-
+                    dΩ
+                                                                rection below the threshold. There will therefore be in-
+In practice, no astrophysical source has a spectral energy      trinsic differences in which part of the source SEDs are
+distribution described at all frequencies by a single power     observed due to the respective blue- and redshifts, as well
+                                                                                                                         10
+
+as the distance to the source. However, for the small ve-
+                                                                                    h fν i
+locities (β ∼ 10−3 ) under consideration, the fractional
+                                                                                    α = 1.06
+difference in redshift corresponds to a time difference of
+less than ∼ 10 Myr for sources at z ∼ 1, which is quite
+insignificant regarding which part of the source SED is                  0.10
+observed. A much larger (∼ 100 times bigger) effect is
+                                                              fν (mJy)
+the smoothing of source SEDs over the wide range of
+redshifts observed in quasars and radio galaxies.
+
+                                                                         0.06
+
+3. Power-law approximation of spectral energy distributions
+
+   As stated in § III.C, the Ellis and Baldwin (1984) is                                                      1014
+                                                                                8 × 1013       9 × 1013
+valid so long as the observed mean SED of the sources can                                            ν (Hz)
+be described by a power law within the passband defin-
+ing the flux limit. For radio sources at low frequency        FIG. 1 Quasar spectral flux densities at flux limit for the
+(≲ 20 GHz) observed using a configuration sensitive to        sample used by Secrest et al. (2022) within the WISE W1
+extended emission (such as the NVSS), the SEDs are            passband, shown at bottom for reference. The fainter lines
+dominated by optically thin synchrotron and can indeed        are individual quasars while the solid black line is the mean.
+be reliably described by a power law with spectral index      The dotted line shows a power law with α = 1.06 used by
+of α ≃ 0.75.                                                  Secrest et al. (2022), derived from the W 1 − W 2 color. While
+                                                              the individual quasars have varying spectral indices and some
+   Quasars, on the other hand, exhibit highly complex         show emission features, on average the flux density within the
+SEDs with both thermal and non-thermal continua,              passband is close to a power law.
+strong and often broadened emission features, and contri-
+butions from stellar populations of their host galaxies, so
+it is not a priori obvious why their SEDs in a given pass-    E. The history of E & B tests
+band should be treated as power laws. Fortunately, the
+enormous range of redshifts observed in quasars has the
+                                                                 Having presented the theoretical background as well
+effect of smearing out steeply changing or discontinuous
+                                                              as the practical considerations that immediately follow
+features such as emission lines, creating a much smoother
+                                                              therefrom, we briefly review the two decades of studies
+observed mean spectrum.
+                                                              that have implemented the Ellis and Baldwin test. It
+   To show this, we matched the sample of quasars from        is only recently that enough data has been available
+Secrest et al. (2022) to the SDSS/BOSS “specObj” table        for statistically significant measurements of the matter
+for DR17, using primary spectra and a match tolerance         dipole to be made.         Apart from statistics, careful
+of 1′′ . After removing sources with redshift warnings or     treatment of systematics and methodology is essential
+invalid measurements, as well as sources beyond z > 4         for the accuracy of this test. The lessons learnt need
+that are likely Ly-α misidentifications, we produced a        to be retained for future while we await new data from
+sample of 210,987 quasars with reliable redshifts. The        ongoing and future experiments.
+redshift distribution is comparable to that found in Se-
+crest et al. (2021). We estimated the spectral energy
+distributions for each source by choosing the linear com-
+bination of AGN and starburst SED templates from As-
+sef et al. (2010) that is closest in W 1 − W 2 color. This
+accounts for the increasing fraction of host galaxy emis-
+sion in objects at lower redshift, although on average the
+AGN makes up 91% of emission. We selected the objects
+at the flux limit (W 1 ∼ 16.5) and calculated their mean
+mid-IR spectrum, shown in Figure 1. As can be seen,
+while a few individual sources do show emission features
+and there is a considerable range in per-source spectral
+index, on average the spectrum of quasars at the flux
+limit is close to a power law and the power-law index of
+1.06 derived by Secrest et al. (2022) using the W 1 − W 2
+color accurately captures the mean SED within the W 1         FIG. 2 Citations to Ellis and Baldwin (1984) as of September
+band where the flux cut was made.                             2025, from the Astrophysics Data System.
+                                                                                                                       11
+
+   As of writing, there are 163 citations to Ellis and Bald-   considerably larger than the expectation. Hence on closer
+win (1984) indexed by ADS, nearly half of which have           examination, the first detection of the kinematic matter
+been in the last three years as seen in Figure 2. In the       dipole did not in fact confirm the standard expectation
+following we offer an explanation for this trend and for       and already posed a challenge to the CP.
+the corresponding rapid development of the field now
+known as the ‘Cosmic Dipole Anomaly’. A brief com-
+ment commemorating “Forty years of the Ellis-Baldwin           2. The search for independent confirmation
+test” has been presented by Secrest et al. (2025), and a
+broad overview of key results by Secrest (2025).                  The following years saw a noticeable increase in at-
+                                                               tempts to measure the kinematic matter dipole using
+                                                               radio sources. Understandably, the anomalously large
+1. The first detection                                         dipole amplitude found with NVSS was under much
+                                                               scrutiny and a number of techniques and data sets were
+   With the release of the 1.4 GHz NRAO VLA Sky Sur-           employed to uncover possible errors in these first anal-
+vey at the end of the 20th century (Condon et al., 1998),      yses. To this effect, cross-checks were performed by
+a predominantly extragalactic catalog with sky cover-          analysing other radio catalogs, individually, or in com-
+age and source counts sufficient to constrain the cosmic       bination, also to increase the total number of sources
+dipole finally became available. It was thus a relief to the   and the observed sky fraction. For instance, Rubart and
+cosmological community that the first such test reported       Schwarz (2013) performed measurements with a combi-
+agreement with the 370 km s−1 kinematic prediction from        nation of NVSS and the 325 MHz Westerbork North-
+the CMB at ∼ 1.5σ (Blake and Wall, 2002a), with asso-          ern Sky Survey (WENSS; Rengelink et al., 1997), while
+ciated commentary by Ellis (2002) celebrating the result.      Bengaly et al. (2018) and Singal (2019) considered the
+   The measured matter dipole direction agreed well with       150 MHz TIFR GMRT Sky Survey (TGSS; Intema et al.,
+that of the CMB dipole within uncertainties, so atten-         2017) in addition to NVSS, and Colin et al. (2017)
+tion focussed on comparing the measured dipole ampli-          combined NVSS with the 843 MHz Sydney Univer-
+tude with the predicted value (21). Despite the initial        sity Molonglo Sky Survey (SUMSS; Mauch et al., 2003).
+agreement, later publications have generally found that        In parallel, sample contamination by local sources was
+the dipole amplitude in the NVSS is not consistent with        studied, e.g. via cross-matching with low-redshift cata-
+the kinematic prediction (e.g. Rubart and Schwarz, 2013;       logs (e.g. Bengaly et al., 2019; Gibelyou and Huterer,
+Singal, 2011; Tiwari and Nusser, 2016), primarily due to       2012; Rameez et al., 2018; Rubart et al., 2014), and the
+how the significance of the result was being determined.       impact of survey systematics on dipole measurements
+While Blake and Wall (2002a) stated that their result was      were modelled such as declination-dependent flux cali-
+only 1.5σ from the kinematic expectation, this number          bration errors (e.g. Bengaly et al., 2018). Overall, these
+is an average of the per-flux density cut values in their      studies confirmed the indication for the excess dipole
+Table 1 down to 15 mJy, below which they find that a           amplitude initially found with NVSS alone, yet notice-
+dipole model is a poor fit to the data. Such an aver-          able scatter among the various results raised suspicions
+age is not well-motivated, among other reasons, due to         about the presence of unknown systematics in the respec-
+the fact that subsamples with lower flux cuts contain all      tive catalogs. Most notably, the dipole measured using
+sources of those subsamples with higher flux cuts, ren-        TGSS initially appeared a factor of 5 larger than that
+dering the various samples statistically dependent. A          of the NVSS (Bengaly et al., 2018), as discussed below.
+more principled approach would be to quote the tightest        Some scatter among the values was in fact to be expected,
+constraints on the matter dipole amplitude just from the       since there was as yet no consensus on the dipole estima-
+subsample that contains the largest number of sources          tor to be used, which led occasionally to biased results
+(lowest flux limit) while still best described by a dipole     in both its direction and amplitude, especially for low
+model. Of the results listed in Table 1 of Blake and Wall      source counts, as is the case for all aforementioned ra-
+(2002a), this is the case at a flux density cut of 25 mJy,     dio catalogs (see § IV for a discussion). Ultimately, an
+where the fit has a reduced χ2 of unity. Here they find        independent measurement was needed of the kinematic
+Dobs = (1.1 ± 0.3) × 10−2 , a value larger than the kine-      matter dipole using a different dataset.
+matic expectation of 4.6×10−3 by 2.2σ. This deviation is          The Ellis and Baldwin test is applicable more generally
+quite consistent with the significance levels found in later   than just with radio sources (cf. § III.C). A truly inde-
+works. After all, as pointed out by Crawford (2009),           pendent confirmation therefore would require a measure-
+given the number of NVSS sources above the 15 mJy              ment using a catalog of extragalactic sources detected
+minimum flux density cut employed by (Blake and Wall,          in a distinct manner, in a distinct range of frequencies.
+2002a) a 370 km s−1 dipole cannot be detected as non-          While such attempts had been undertaken already (Hi-
+zero even at 1σ, while Blake and Wall (2002a) report a 3σ      rata, 2009; Itoh et al., 2010) a catalog of sufficient size
+detection, which is possible only if the measured dipole is    and quality to guarantee a significant detection was not
+                                                                                                                         12
+
+yet available. This changed with the advent of the Wide-            7
+field Infrared Survey Explorer (WISE) satellite, which al-                                                       TGSS
+lowed for the first uniformly selected samples of quasars           6                                            WENSS
+to be produced covering most of the sky (Assef et al.,                                                           SUMSS
+2018; Secrest et al., 2015). With the NEOWISE and                   5                                            NVSS
+NEOWISE-R continuation surveys (Mainzer et al., 2014;                                                            WISE
+
+                                                               D × 10−2
+Mainzer et al., 2011) the depth and uniformity of WISE              4
+data in the quasar-sensitive W 1 and W 2 bands increased
+substantially, resulting in the unWISE (Schlafly et al.,            3
+2019) and CatWISE2020 (Marocco et al., 2021) catalogs.
+The latter was used by Secrest et al. (2021) to construct a         2
+sample of nearly 1.4 million quasars covering most of the
+                                                                    1
+sky outside of the Galactic plane. They found a dipole
+amplitude over twice as large as the kinematic expecta-
+                                                                    0
+tion, though similar in direction to the CMB dipole, and                  108   109   1010    1011    1012    1013     1014
+showed using simulated skies that this could be expected                                     ν (Hz)
+by chance only about one in 2 million times, i.e. a 4.9σ re-
+sult — the most significant at the time. An independent        FIG. 3 TGSS, WENSS, SUMSS, and NVSS dipole ampli-
+analysis using this sample confirmed and strengthened          tudes from Siewert et al. (2021), compared with the WISE
+this result (Dam et al., 2023).                                dipole amplitude from Secrest et al. (2022, 2021). The dot-
+                                                               ted line indicates the functional frequency dependence pro-
+   The fundamental strength of the WISE quasar-based
+                                                               posed by Siewert et al. (2021) using only the radio data,
+results is that they were obtained in a way that is sys-       which is however not consistent with the WISE infrared value.
+tematically independent from radio dipole studies. The         The dashed line and shaded interval show weighted arith-
+WISE data are space- rather than ground-based, at a            metic mean and standard error, excluding the TGSS data
+wavelength 5 orders of magnitude separated from the ra-        point, demonstrating that the data are otherwise generally
+dio, measured using a completely different instrument          consistent with no frequency dependence of the dipole. The
+design, and employing a scanning strategy with a dif-          grey hatching indicates the standard kinematic expectation
+                                                               for 1 < x < 2 and 0.5 < α < 1.5.
+ferent principle axis (ecliptic instead of equatorial) and
+astrophysical foregrounds. Additionally, as discussed
+in § III.E.4, WISE-selected quasars and radio-selected
+galaxies are nearly entirely separate classes of objects,      Dobs = (1.60±0.15)×10−2 , with a corresponding reduced
+allowing for a joint statistical analysis. Indeed, the first   χ2 of 1.94 (p = 0.12 given three degrees of freedom), indi-
+such analysis by Secrest et al. (2022) found consistency       cating that the data are consistent with a constant dipole
+between the radio galaxy and quasar dipoles and a com-         amplitude across 5 orders of magnitude in frequency.
+bined significance of 5.1σ for the cosmic dipole anomaly.         As shown in Secrest et al. (2022), the particularly large
+                                                               dipole amplitude of the TGSS can almost entirely be at-
+                                                               tributed to the flux calibration errors that it is known
+3. The search for an explanation of the anomaly                to have (Hurley-Walker, 2017), which when corrected
+                                                               for bring the apparent dipole amplitude from Dobs =
+   However there were also results seemingly conflicting       6.5 × 10−2 down to Dobs = 2.2 × 10−2 . Secrest et al.
+with the overall finding of excess matter dipoles in the       (2022) also found that further accounting for the depen-
+radio and mid-IR, which we first review.                       dence between rms noise and source density in the TGSS
+   Analysing the TGSS, WENSS, SUMSS, and NVSS                  reduces the dipole amplitude to Dobs = 1.4×10−2 . Singal
+Siewert et al. (2021) confirmed the anomalously large          (2023) however raised a number of objections to the pro-
+dipoles seen in radio studies. However, they suggested         cedure used by Secrest et al. (2022) and asserted that the
+that the dipole has a frequency dependence, which, if          TGSS does indeed have a particularly large dipole am-
+true, would imply an astrophysical rather than cosmo-          plitude. We address this in § IV.B.1, but emphasize that
+logical origin. They noted that this is indicated predomi-     the only datum that currently suggests a frequency de-
+nantly by the lowest frequency survey used (TGSS), how-        pendence of the cosmic matter dipole is the TGSS, which
+ever the functional form proposed by Siewert et al. (2021)     is known to have significant large-scale systematics.
+is inconsistent with the WISE quasar dipole, which has            In recent years other catalogs have become available,
+an amplitude consistent with the NVSS, and the (less           such as the 887.5 MHz Rapid ASKAP Continuum Sur-
+well constrained) SUMSS and WENSS dipoles, but not             vey (RACS; Hale et al., 2021), the 3 GHz Karl G. Jansky
+the TGSS — see Figure 3. The weighted arithmetic mean          Very Large Array Sky Survey (VLASS; Lacy et al., 2020),
+of the WENSS, SUMSS, NVSS, and WISE dipole ampli-              and a new Gaia-unWISE quasar sample (Quaia; Storey-
+tudes, using the values from Secrest et al. (2022, 2021), is   Fisher et al., 2024). Darling (2022) first combined RACS
+                                                                                                                         13
+
+and VLASS to claim a dipole measurement consistent            ments within the uncertainties would have been infor-
+with the standard expectation, although the large un-         mative, but this is not what Abghari et al. (2024) did.
+certainty on his estimate made it equally consistent with     The nature of the ecliptic latitude bias is described in Se-
+the anomalously large dipole amplitude found previously.      crest et al. (2022) as arising due to source deblending in
+More importantly, RACS and VLASS individually re-             deeper imaging at high ecliptic latitudes and somewhat
+turned dipoles that grossly disagreed in direction, thus      bluer AGNs preferentially scattering into the W 1 − W 2
+undermining their combined analysis (see Secrest et al.       color cut in shallower imaging at low ecliptic latitudes.
+(2022) for additional discussion). The Quaia sample too       As the ecliptic axis is set by our Solar System, it is un-
+promised a cross-check of the quasar dipole, and Mittal       likely that the trend is related to stellar contamination
+et al. (2024) attempted such a measurement, finding a         as claimed by Abghari et al. (2024), who also claim that
+dipole aligned with that of the CMB and consistent with       the large Galactic plane mask employed by Secrest et al.
+the standard expectation. However large uncertainties         (2021) was to mitigate stellar contamination. This is
+mainly due to low source counts in the final subsample        untrue as it was in fact to avoid a drop in source den-
+prevented a firm conclusion, which was further weakened       sity near the Galactic plane (not an increase as would be
+after they recomputed the source spectral indices (Mittal     expected from source contamination). It has long been
+et al., 2024). Eventually, their model comparison could       known that WISE-selected quasar counts decrease closer
+not distinguish decisively between the preference for or      to the Galactic plane and this effect is due to source con-
+against the standard expectation.                             fusion (e.g., Assef et al., 2018; Secrest et al., 2015). While
+   It is natural to extend studies of the matter dipole       we certainly encourage further development and char-
+to higher multipoles, especially in light of the aforemen-    acterization of the quasar samples presented in Secrest
+tioned anomalies claimed in the CMB at low-ℓ (Schwarz         et al. (2022, 2021), we do not believe any case has been
+et al., 2016). Indeed, this was a prerequisite for esti-      made for stellar contamination or unexplained higher-
+mating the trustworthiness of NVSS even prior to ini-         order multipole systematics which can significantly affect
+tial matter dipole measurement (Blake et al., 2004; Blake     the quasar dipole anomaly (von Hausegger et al., 2025).
+and Wall, 2002b,c). Within uncertainties this returned
+smaller-scale correlations that agreed well with the ex-
+pectation of a ΛCDM matter power spectrum. In con-            4. The state of the art today and summary
+trast, this was not the case for similar investigations of
+the TGSS (Tiwari et al., 2019) where issues with flux cal-       The significance of the cosmic dipole anomaly has
+ibration were found to be able to produce the anomalous       reached the 5σ level, using mid-infrared data alone (Dam
+power found on larger scales. Along these lines Tiwari        et al., 2023; Secrest et al., 2021), radio data alone (Wa-
+et al. (2023) also investigated the power spectrum of the     genveld et al., 2025, 2023b), and in a joint analysis with
+CatWISE2020 AGN sample of Secrest et al. (2021). Af-          both mid-infrared and radio data (Secrest et al., 2022).
+ter removal of the ecliptic latitude trend found in Secrest   Thus it has the same level of statistical significance as
+et al. (2021) this too returned a power spectrum in good      the much discussed ‘Hubble tension’ (Riess et al., 2022).
+agreement with the expectation from standard ΛCDM at          Nevertheless, the cosmic dipole anomaly has not received
+small scales (multipole ℓ ≳ 10), except for, however, the     commensurate attention (Peebles, 2022).
+anomalously high dipole.                                         While initial observational studies were undertaken al-
+   Despite the ecliptic being the principal observational     most exclusively with the radio source catalog of the
+axis of WISE, a recent study by Abghari et al. (2024)         NVSS, the data landscape has changed substantially
+takes issue with the ecliptic latitude correction, simul-     since, and as a result, research in this field has been
+taneously claiming that the origin of this gradient is        rapidly developing. For instance, additional radio cat-
+unexplained and that it is evidence of stellar contam-        alogs, especially those that cover southern declinations
+ination. These authors perform simulations generating         such as SUMSS, TGSS, and RACS have offered new op-
+mock quasar maps with randomly oriented quadrupoles           portunity for study. Just as importantly, systematically
+and octupoles allowed to vary in strength up to that of       independent samples of quasars were created using mid-
+the dipole, showing that the octupole in particular will      infrared data from WISE (Wright et al., 2010), especially
+sufficiently broaden the distribution of dipole amplitudes    the deep CatWISE2020 catalog (Marocco et al., 2021)
+estimated from these mocks so as to alleviate the bulk of     whose analysis propelled this field further.
+the tension with the dipole estimated using the sample of        An important aspect of having large catalogs of both
+Secrest et al. (2021). However, even without correcting       radio galaxies and quasars is that these two populations
+for the known ecliptic latitude bias, the measured power      are largely independent, corresponding to different evo-
+spectrum does not allow for the octupole to be larger         lutionary stages in the histories of galaxies and different
+than about half of the dipole, as Figure 9 in Abghari         accretion AGN accretion modes. Quasars are, by defini-
+et al. (2024) shows. Simulations constraining the higher      tion, bolometrically dominant AGNs, with intrinsic lumi-
+multipoles to have powers consistent with the measure-        nosities exceeding the entire galaxy in which they reside.
+                                                                                                                       14
+
+These luminosities are only possible through the libera-      ing an intrinsic component), as the analysis by Secrest
+tion of energy from infalling matter in an accretion disk     et al. (2022) suggested and the work of Wagenveld et al.
+around a SMBH, with matter-energy conversion efficien-        (2025) further supported, the matter dipole may be due
+cies up to ∼ 40% (Blandford and Znajek, 1977). The            to an over-density of radio galaxies and quasars in the
+direct continuum from quasars is therefore thermal, orig-     CMB frame, on scales way beyond that which can be ac-
+inating in the accretion disk, and largely uncollimated,      commodated in the standard cosmology (Peebles, 2022).
+although the presence of an optically thick, dusty torus      Redshift tomography (von Hausegger and Dalang, 2025)
+creates a viewing angle dependence of the apparent lu-        of millions of objects on near-full sky scales would illumi-
+minosity. The peak of quasar activity is at z ∼ 2, with       nate the moderate-redshift universe sufficiently to make
+the number of quasars per comoving volume declining           progress on this issue.
+rapidly at low redshift (e.g., Hopkins et al., 2007). Radio
+galaxies above a few mJy, on the other hand, are gen-
+erally powered by non-thermal emission of jets formed
+in the immediate vicinity of the SMBH and bolometri-          IV. UNCERTAINTIES AND SYSTEMATICS
+cally sub-dominant AGNs are often radio-luminous. The
+comoving density of radio sources shows strong redshift          The observed matter dipole may be described as a vec-
+evolution, declining rapidly to moderate redshift and ex-     tor dobs resulting from the vector sum of the kinematic
+hibiting a radio power-dependent peak significantly lower     dipole dkin , the clustering dipole dcls due to an imbal-
+than that of quasars for all but the most luminous sources    ance of matter in our local Galactic neighbourhood, and
+(e.g., Rigby et al., 2011).                                   a “shot noise” dipole dSN arising from a random dis-
+   These differences are accommodated by a model in           tribution of finite source counts. There may also be a
+which radio AGNs and quasars are in different evolu-          contribution to the observed dipole due to survey sys-
+tionary stages and accretion modes. Radio AGNs are            tematics that affect the calibration of the data. In this
+typically found in massive, red, evolved galaxies while       review, we consider all contributions to the dipole other
+quasars are typically hosted in bluer, less massive, and      than the kinematic one to be systematics. By carefully
+less clustered galaxies (e.g., Hickox et al., 2009). In the   accounting for or mitigating these, one can compare the
+context of the dipole anomaly, the different populations      observed dipole to the theoretical expectation, allowing
+that make up radio galaxies and quasars have two impor-       for a consistency test of the null hypothesis (i.e., that
+tant implications. Firstly, considering the observational     the Universe is exactly described by FLRW). We discuss
+systematic independence of ground-based radio surveys         these systematics below.
+and the space-based WISE infrared survey, the popula-
+tion independence of radio galaxies and infrared-selected
+quasars makes the anomalous dipole seen in both popu-
+lations hard to ignore. Indeed, this was the key result of    A. The clustering dipole
+Secrest et al. (2022), who performed the first joint dipole
+analysis of radio galaxies and quasars. The more recent          Extragalactic surveys that sample only the immediate
+analysis of Wagenveld et al. (2023a) leverages 0.8 mil-       comoving volume (r ≲ 150h−1 Mpc) due to a shallow flux
+lion radio galaxies selected using NVSS and RACS data,        limit or are biased towards more cosmologically evolved
+finding a 4.8 σ disagreement with the kinematic expecta-      objects will be dominated by local clustering, which can
+tion. Using the sample size-weighted Z-scores method, to      be described by a density field parametrized by spheri-
+combine the Wagenveld et al. (2023a) and Secrest et al.       cal harmonics with power in all multipoles, including the
+(2022) results indicates that the dipole anomaly has now      dipole (ℓ = 1). For a typical observer in the concordance
+reached ∼ 6.4 σ significance. We display these measure-       ΛCDM cosmology, this “clustering dipole” Dcls should
+ments, the most significant made to-date, in Figure 4,        follow the power spectrum of mass density perturbations,
+with the CatWISE AGN, NVSS, and RACS-low samples              and is computable given knowledge of the object redshift
+prepared as described in Secrest et al. (2022) and Wagen-     distribution dN/dz and the linear bias b of the objects
+veld et al. (2025), and the inferences performed with Pois-   with respect to the total underlying mass density (e.g.,
+son likelihoods. Note that RACS-low is a newer catalog        Gibelyou and Huterer, 2012; Rameez et al., 2018). Un-
+that deserves further scrutiny for possible systematics, as   der the null hypothesis, accurate knowledge of the object
+the CatWISE and NVSS catalogs have been subjected to.         redshift distribution and bias yields a rigorous estimate
+   Looking forward, the second result, still nascent, is      of Dcls , allowing for determination of the importance of
+characterization of the anomaly as a function of cosmo-       the clustering dipole when determining the consistency
+logical observables such as redshift, clustering, or galaxy   of the observed dipole with the kinematic prediction.
+bias. Given that the consistency between the radio               The clustering dipole Dcls in a sample of sources as
+galaxy and quasar dipoles improves by assuming the            seen by a typical observer in the concordance ΛCDM cos-
+CMB dipole to be purely kinematic (rather than hav-           mology is related to the power spectrum P (k) of (dark)
+                                                                                                                                                       15
+
+
+
+
+             78.9                         81.3
+                    #/deg2
+
+
+
+
+                    Dkin                  Dkin
+
+
+
+
+                                                                                        CMB dipole prediction
+                                                                                                                                            CatWISE
+         1                                                                                                                                  NVSS
+                                                                                                                                            RACS
+                                           CatWISE
+                     NVSS & RACS
+   PDF
+
+
+
+         0
+                                   0.005                 0.010          0.015                                   1   2                3
+                                                         Dobs                                                       Dobs/Dkin
+
+FIG. 4 Overview of the most significant matter dipole measurements to-date using the CatWISE AGN, NVSS, and RACS-low
+samples (Secrest et al., 2022; Wagenveld et al., 2025). Top panel: Contours enclosing 90% of the posterior probability of the
+inferred dipole directions plotted onto a smoothed version of the CatWISE AGN number counts. The star marks the CMB
+dipole direction. Bottom left panel: Posterior probability densities of the inferred dipole amplitudes Dobs compared against
+their standard expectations, viz. the expected kinematic matter dipole amplitudes Dkin computed for the respective samples.
+Bottom right panel: Same as left panel but scaled by the respective kinematic expectations.
+
+
+matter density perturbations via:                                                      tance r to a random object in the survey:
+
+                                                                                                                               H(z) dN
+                           r
+                              9                                                                                      f (r) =            ,             (45)
+                    Dcls =      C1 ,                                            (42)                                           H0 r0 dz
+                             4π
+                                                                                                               R∞
+where                                                                                  normalised such that 0 f (r)dr = 1 and dN/dz is the
+                                      Z ∞                                              redshift distribution of the observed objects.
+                         2                                                                The theoretical estimate of the expected clustering
+                    Cℓ =                             fℓ (k)2 P (k)k 2 dk.       (43)
+                         π                0                                            dipole amplitude for a random observer is useful to quan-
+                                                                                       tify the null hypothesis for a given catalog. Dipole mea-
+Here the filter function fℓ (k) includes the redshift-
+                                                                                       surements specifically in shallow, low-redshift catalogs
+dependent linear bias b(z) of the sources with respect
+                                                                                       can further inform this expectation (e.g. Alonso et al.,
+to the dark matter:
+                                                                                       2015b; Yoon et al., 2014). Likewise low-redshift catalogs
+                     Z ∞
+                                                                                       can assist with removing low-redshift-contamination (e.g.
+            fℓ (k) =     b(r(z))jℓ (kr)f (r)dr,   (44)                                 Bengaly et al., 2019; Cheng et al., 2024; Colin et al., 2017;
+                                      0
+                                                                                       Oayda et al., 2024; Rameez et al., 2018; Schwarz et al.,
+where jℓ is the spherical Bessel function of order ℓ and                               2018). We discuss below some astrophysical considera-
+f (r) is the probability distribution for the comoving dis-                            tions relevant for assessing the clustering dipole.
+                                                                                                                       16
+
+1. Quasars                                                     that the clustering dipole of these objects is negligibly
+                                                               small. This was confirmed by Tiwari et al. (2023) who
+   The redshift distribution of quasars, which are typi-       observed that the angular power spectrum of CatWISE
+cally detected in optical spectroscopic surveys, is known      is well-fitted by the ΛCDM expectation on small scales
+with high confidence and peaks at z ∼ 1 − 2, with al-          (multipole ℓ ≳ 10) and determined directly by extrapo-
+most no quasars found at z < 0.1 where clustering starts       lation to ℓ = 1 that Dcls = 0.81 × 10−3 . A recent study
+becoming significant. It is important to distinguish here      (von Hausegger et al., 2025) shows that the quadrupole,
+between quasars and active galactic nuclei (AGNs) more         octupole etc. too are all much smaller than the dipole and
+generally. The latter are found in much higher abun-           consistent with ΛCDM, so the anomalously high dipole
+dance in local systems because they are often detected         cannot be explained away as due to the presence of a high
+using methods that do not rely on bolometric dominance         octupole as claimed by Abghari et al. (2024).
+over the host galaxy, such as emission line ratio diagnos-
+tics or detection at hard X-ray energies (> few keV), and
+objects may be classified in the literature as AGNs based      2. Radio galaxies
+on any evidence for nuclear activity in the host galaxy,
+at any bolometric luminosity. For example, the recent             Unlike quasars, which are bolometrically dominant
+and final release of the Milliquas catalog (Flesch, 2023)      AGNs luminous at infrared wavelengths, most radio
+contains 860,100 objects identified as quasars and 47,044      galaxies are known through the detection of non-thermal
+AGNs. While 17% of the AGNs have z < 0.1, almost               synchrotron radiation produced via shocks, in either star-
+none of the quasars are below this redshift.                   forming galaxies in the nearby universe or (much more
+   While the majority of spectroscopic quasars are known       commonly above a few mJy) radio-bright AGNs at mod-
+from the SDSS/BOSS Quasar Catalog (DR16Q), which               erate redshift. Consequently, radio galaxies are often ex-
+covers 28% of the celestial sphere, producing a sample of      tremely faint at optical wavelengths where large spectro-
+quasars covering closer to ∼ 50% of the sky is feasible us-    scopic surveys are carried out. For example, the famous
+ing mid-infrared color criteria. This technique leverages      radio galaxy Messier 87, at a Virgo cluster distance of
+the fact that quasars produce strong power-law emission        16.5 Mpc, would have an apparent SDSS r-band mag-
+between ∼ 1 µm and ∼ 10 µm where inactive galaxies ei-         nitude of ∼ 21 at z = 0.5, well below the spectroscopic
+ther show a strong decline in emission along the Rayleigh-     targeting flux limit of SDSS. The situation is further com-
+Jeans tail of older stellar populations, or a notable decre-   plicated by the fact that many radio sources detected at
+ment of emission between the Rayleigh-Jeans tail and an        ∼ 1 GHz (e.g., in the NVSS, SUMSS, or RACS surveys)
+increase in emission due to star formation-heated dust         are AGN-driven radio lobes at considerable angular off-
+at longer wavelengths. The source of mid-infrared emis-        sets from their source galaxy, making counterpart identi-
+sion in quasars is generally thought to be dust heated to      fication especially difficult. Nonetheless, the CENSORS
+the sublimation limit (∼ 1500 K) by the central engine,        survey (Rigby et al., 2011) of NVSS objects contains red-
+much hotter than the characteristic dust temperature of        shift measurements for 76 objects above the 15 mJy flux
+star-forming regions, producing distinctive mid-infrared       density cut typically employed in dipole studies, of which
+color, especially notable in the [3.4] − [4.6] (W1−W2)         none have z < 0.1 where contamination by the cluster-
+color using data from the Wide-field Infrared Survey Ex-       ing dipole starts to become significant in the concordance
+plorer (WISE; Wright et al., 2010). Critically, the mid-       ΛCDM model. However, the binomial confidence inter-
+infrared color of quasars also cleanly separates quasars       val still allows for ∼ 5% of NVSS objects to have z < 0.1
+from nearly all Galactic stars, circumventing the require-     (CL = 95%), and moreover this survey was taken from
+ment for costly and currently unavailable all-sky spec-        a small, ∼ 6 deg2 , patch of the sky so cosmic variance
+troscopy (Secrest et al., 2015).                               may be significant. Nonetheless, indirect estimates (e.g.,
+   Defining a cosmologically useful sample of quasars cov-     Ho et al., 2008) suggest that there is no underestimated
+ering enough of the sky to test the dipole is therefore        population of radio sources at low redshift (although see
+possible in principle, and indeed was first carried out by     Cheng et al., 2024, for a dissenting view).
+Secrest et al. (2021). By matching to objects with both           In several investigations of the radio galaxy dipole, an
+SDSS and BOSS spectroscopic coverage along Stripe 82,          attempt was made to remove local clustering sources,
+which was included in the Dark Energy Survey footprint,        starting with Blake and Wall (2002a), who removed
+Secrest et al. (2021) obtained spectroscopic redshifts for     NVSS sources associated with the IRAS PSCz Cata-
+61% of WISE-selected quasars, with the remaining 39%           log and the Third Reference Catalog of Bright Galax-
+having optical-to-infrared color consistent with heavily       ies (RC3). By binning in redshift, they showed that
+reddened quasars, which have a similar redshift distribu-      the contribution of the clustering dipole to the radio
+tion as unobscured quasars (see, e.g., Petter et al., 2023).   galaxy dipole measurement drops to minimal levels by
+With the redshift distribution of WISE-selected quasars        z = 0.03. Tiwari et al. (2014), using a similar spher-
+confidently determined, Secrest et al. (2021) estimated        ical harmonic-based estimator, also tested the NVSS
+                                                                                                                             17
+
+dipole with the PSCz and RC3 sources removed, finding                         2.0
+                                                                 D × 10−2
+Dobs = 1.1 × 10−2 and Dobs = 1.5 × 10−2 for flux density
+                                                                              1.5
+cuts of 10 mJy and 20 mJy, respectively, about 60% larger
+than the values reported in Blake and Wall (2002a) for                        1.0
+the same cuts. Tiwari et al. (2014) further explored re-
+moving sources from the 2MASS Large Galaxy Atlas, the                      300
+
+                                                                 l (deg)
+2MASS Redshift Survey (2MRS), and the 2MASS Pho-
+tometric Redshift Catalog (2MPZ), which were not avail-
+able at the time of Blake and Wall (2002a). These cat-                     200
+alogs, especially the 2MPZ that is based largely on the
+                                                                              75
+deeper 2MASS Extended Source Catalog (XSC), increase
+completeness in the local universe and to higher red-               b (deg)   50
+shifts, further removing possible clustering dipole con-
+                                                                              25
+tamination by local sources. Tiwari et al. (2014) found                             15.6   15.8       16.0     16.2   16.4
+that the NVSS dipole is essentially unaffected by removal                                         W1 cut (mag)
+of these additional sources, yielding Dobs = 9.6 × 10−3
+and Dobs = 1.3 × 10−2 for 10 mJy and 20 mJy flux                FIG. 5 The variation with flux cut of the dipole amplitude
+density thresholds. Similarly, Colin et al. (2017) deter-       and its direction for WISE-selected quasars; the dotted lines
+mined the radio galaxy dipole using a nearly full sky sam-      show the kinematic expectation corresponding to the CMB
+ple of sources from the NVSS and SUMSS. They cross-             dipole. It is seen that the amplitude remains stable (and
+correlated their sample of radio galaxies with 2MRS and         about twice as high as the CMB-based expectation) while the
+                                                                direction remains close to that of the CMB dipole. The light
+additionally explored the effect of removing the super-
+                                                                and dark blue regions indicate the 5–95 and 16–84 percentiles
+galactic plane, which may contribute significant power          of the posteriors after marginalizing over all other parameters,
+from local clustering. For all cuts applied, however, the       while the solid black line shows the median.
+amplitude and direction of the radio galaxy dipole re-
+mained stable, with the amplitude significantly larger
+than the 370 km s−1 kinematic expectation.                      well as NVSS and RACS (Wagenveld et al., 2023a). Ad-
+   Given these results, while it should be acknowledged         ditional systematics may be due to loss of completeness
+that the exact redshift distribution of radio sources (from     near bright sources, which additionally raise the effec-
+catalogs such as NVSS) is not as well known as that of          tive flux uniformity limit of the catalog. The first step,
+quasars, it has been convincingly shown that removal of         therefore, in constructing a catalog suitable for the Ellis-
+the most important contributors to the local clustering         Baldwin test is to bin source counts as a function of the
+dipole has little effect on the radio galaxy dipole.            principal directions (declination, ecliptic latitude, Galac-
+                                                                tic latitude, and—if the clustering dipole is a concern—
+                                                                supergalactic latitude), and then test for dependencies
+B. Biases                                                       choosing the flux cut and mask employed accordingly.
+                                                                   A catalog of moderate redshift objects for which the
+1. Flux calibration errors                                      local clustering dipole is negligible should exhibit a dipole
+                                                                that is stable in both direction and amplitude with in-
+   All catalogs created from real data have position-           creasing flux cut, if it is indeed purely kinematic. In
+dependent sensitivity differences due to systematics in-        Figure 5 we show such a test on the CatWISE2020 sam-
+herent in the survey pattern or instrument setup. For           ple (marginalizing over the ecliptic latitude trend) which
+example in the case of NVSS, the switch from the Very           demonstrates the stability of its dipole amplitude and di-
+Large Array D to DnC configuration at high and low de-          rection. However, if there is an intrinsic component to
+clinations resulted in loss of sensitivity at the nominal       the dipole and the flux cut has some correlation with red-
+∼ 4 mJy flux limit of the survey. In the case of WISE,          shift, then the measured dipole may drift somewhat due
+source counts at the faint end are limited by confusion         to real astrophysical effects as the flux cut is increased.
+noise, which causes a loss of sensitivity for objects above     Hence while it disfavors unaccounted for observational
+some flux threshold in regions with higher source density,      systematics, this test should not be a strict prerequisite
+such as near the Galactic plane or regions of deeper cov-       for determining if the true dipole has been detected, given
+erage closer to the ecliptic poles. These sensitivity differ-   that the reason for the disagreement of the amplitude
+ences are effectively statistical noise and can be mitigated    with the kinematic expectation remains unknown.
+by simply raising the flux cut, typically to 10 mJy or             Although statistical error can be mitigated by raising
+higher for radio catalogs (e.g., Fig. 1 in Wagenveld et al.,    the flux cut or masking problematic regions, the same is
+2023a), or parameterizing the effect as a weighting func-       not true for systematic (position-dependent) flux calibra-
+tion as was done for WISE (Secrest et al., 2022, 2021) as       tion errors, which manifest as source counts variance that
+                                                                                                                         18
+
+persists across a wide range of flux cuts. Flux calibration      of the TGSS, and because the NVSS footprint overlaps
+errors can be either corrected in the analysis or appro-         almost completely with that of the TGSS it may be the
+priately masked. It is likely that the VLA Sky Survey            only option if the TGSS is to be used for dipole work.
+(Lacy et al., 2020), as used e.g. by Darling (2022), suf-        Allowing for the use of the NVSS as a flux reference sam-
+fers from calibration errors, at least for decl. < −15◦ .        ple, correcting TGSS can be done by requiring that the
+Darling (2022) did note this issue and masked below              average spectral across all sources be the typical value
+decl. < −15◦ , but it is likely that this is insufficient to     for optically thin synchrotron: α = 0.75. Correction is
+make VLASS suitable for the Ellis-Baldwin test, at least         done on a sky pixel by pixel basis, choosing sky pixels
+for the first epoch, as argued by Secrest et al. (2022).         large enough to contain enough sources that their mean
+   The TGSS catalog notably exhibits a dipole several            spectral index is likely to be close to the fiducial value,
+times larger than any other radio catalog employed for           but small enough to allow determination of a position-
+the Ellis-Baldwin test (Bengaly et al., 2018) and is the         dependent flux correction factor. Employing this proce-
+critical data point that justifies the claim by Siewert et al.   dure, Secrest et al. (2022) showed unambiguously that
+(2021) that the dipole has a frequency dependence. Se-           the uncorrected TGSS source density is correlated with
+crest et al. (2022), on the other hand, ascribe the large        the observed per-pixel mean α and that using the ob-
+TGSS amplitude to flux calibration errors, an effect they        served per-pixel mean α effectively corrects for artefacts
+demonstrate by recalibrating the TGSS using NVSS. Sin-           in the TGSS source density map (their Figure 3). Given
+gal (2023) argues that, contrary to the findings of Secrest      these considerations, we conclude that the balance of the
+et al. (2022), the startlingly high dipole in the TGSS cat-      evidence disfavours the much larger dipole apparent in
+alog cannot be ascribed to flux calibration errors, because      the TGSS.
+the TGSS dipole points in a direction similar to the CMB            As illustrated above, flux calibration errors can pose a
+dipole, and that correcting for flux calibration errors as       serious challenge to an unbiased measurement of large-
+Secrest et al. (2022) did artificially makes the number          scale clustering. In anticipation of future data, such ef-
+density of sources in TGSS match that in NVSS, result-           fects could be studied by simulating source catalogs with
+ing in a similar dipole amplitude.                               corresponding flux uncertainties, as was done, e.g., by
+   In fact, the TGSS is well known to have position-             Bengaly et al. (2018). Naturally such issues deserve in-
+dependent flux calibration errors ranging between ∼              dividual scrutiny for each galaxy sample.
+0.6 − 1.6 (Hurley-Walker, 2017), so a measurement of
+its dipole should prima facie not be taken as an accurate
+estimate of the radio source dipole, especially given the        2. Dipole estimators
+significant excess power between 2 < ℓ < 30 observed
+in this catalog (Dolfi et al., 2019, see also their Section         In addition to biases in the calibration of source
+3.2.1). Indeed, Siewert et al. (2021), who used the ap-          properties, signal estimation itself can be biased for a
+parently larger dipole in the TGSS to argue for a fre-           given catalog. Various estimators have been used in the
+quency dependence of the dipole amplitude, found that            literature to measure dipole amplitude and direction,
+the TGSS dipole points 39◦ away from the CMB direction           each of which comes with strengths and weaknesses.
+using a 100 mJy cut as in Singal (2023), the same offset         With increased attention to this issue many biases have
+found using the code employed by Secrest et al. (2022),4         now been accounted for.We provide a short overview
+although the directions differ by 11◦ . Correcting for flux      of the estimators employed, their potential biases, and
+calibration errors using the NVSS moves the dipole di-           modern developments.
+rection only by 16◦ despite reducing its amplitude from
+Dobs = 6.5 × 10−2 to Dobs = 2.2 × 10−2 .                            Initially, the so-called linear estimator (Crawford,
+   Second, flux calibration at very low frequencies (≲           2009), a simple vector sum over the source positions, was
+500 MHz) is notoriously difficult, due to the presence of        commonly employed due to its simplicity (e.g. Rubart
+radio frequency interference as well as the bright Galactic      and Schwarz, 2013; Singal, 2011). However, when ap-
+synchrotron foreground. Flux calibration of a 150 MHz            plied to a masked sky it required often non-trivial cor-
+survey such as the TGSS is inherently much more diffi-           rections depending on the particular shape of the survey
+cult than that of a 1.4 GHz survey such as the NVSS,             mask. It was believed that samples whose sky coverage
+and indeed despite being over 25 years old there have            was not point symmetric with respect to the zero point
+been, to our knowledge, no papers pointing out signifi-          had to be masked additionally so as to symmetrize their
+cant flux calibration issues with the NVSS. It is therefore      footprint, in order to avoid a bias in amplitude (Rubart
+not unreasonable to use the NVSS to correct the fluxes           and Schwarz, 2013). Use of the linear estimator on the
+                                                                 NVSS, for example, would require that the −40◦ declina-
+                                                                 tion limit be mirrored by cutting all sources above +40◦ ,
+                                                                 ∼ 20% of the catalog. However, even so, directional bi-
+4 https://zenodo.org/record/6784602
+                                                                 ases could not be prevented, requiring further corrections
+                                                                                                                         19
+
+which only for simple masks had analytical and there-             Nowadays, many of above issues have been settled:
+fore computationally efficient form (Rubart, 2015; Siew-       The evaluation of Poisson likelihoods including appro-
+ert et al., 2021). For these reasons, despite its compu-       priate priors on the template parameters avoid biases in
+tational efficiency, the linear estimator has since been       the recovered parameters, even for low source counts (e.g.
+replaced with other methods.                                   Dam et al., 2023; Wagenveld et al., 2023a); Frequentist
+   Alternatively, the decomposition of the sky into spher-     methods have been replaced with Bayesian inference and
+ical harmonics also allowed the estimation of the dipole,      model comparison (e.g. Mittal et al., 2024), avoiding the
+however again only if no mask was applied. To account          need to generate large numbers of mock skies for the
+for the breaking of the orthogonality of the harmonics on      evaluation of significances, trivially including templates
+a masked sky, and the concomitant bias, higher multi-          of higher multipoles (e.g. Oayda et al., 2025); joint eval-
+poles had to be considered and evaluated simultaneously,       uation of combined catalogs at different frequencies does
+involving sky simulations to estimate the harmonics’ cor-      not require density matching if their likelihoods can be
+relation (e.g. Blake and Wall, 2002a). This too appeared       treated independently (e.g. Oayda et al., 2024; Wagen-
+to prove impractical at the time although today modern         veld et al., 2023a); even complicated masks do not pre-
+methods can help alleviate some of the computational           vent the measurement of an underlying source density
+load to handle masked data (e.g. Wolz et al., 2025).           modulation (e.g. Wagenveld et al., 2023b, 2024); and
+   In light of these biases, template fits were invoked in-    while the responsibility remains to bias-test likelihoods
+stead (Hirata, 2009), so-called quadratic estimators, sim-     and inference pipelines with mocks, efficient MCMC sam-
+ple χ2 (e.g. Rubart and Schwarz, 2013) or least-squares        plers (e.g. Hoffman and Gelman, 2011) allow for compu-
+statistics (e.g. Secrest et al., 2021) over a pixelized sky,   tationally tractable analyses.
+minimised for the dipole direction and amplitude. Cor-            Lastly, correlation in source counts may occur for a va-
+relation among multipoles in the presence of a mask is         riety of reasons, including double-lobed sources in radio
+not generally circumvented with these methods either,          catalogs and, more broadly, dual AGN sources in cata-
+but the accompanying biases are negligible if the dom-         logs (e.g. Blake et al., 2004). Source counts may also be-
+inant multipoles on the sky are all included in the fit.       come correlated if the presence of other sources affects the
+For instance, if the data contained more structure than        probability of a given source being successfully extracted
+a simple dipole, a quadrupole for example, due either          from image data (e.g., the effects of source deconvolu-
+to systematics or source clustering, then a pure dipole        tion). Consequently, the within-cell source counts may
+model can lead to a bias. To account for this, some au-        more accurately be described by the negative binomial
+thors have extended their template fits to also include        (or “compound Poisson”) distribution, as in e.g., Siewert
+quadrupole terms, or even templates of particular con-         et al. (2020). Using this distribution, every model like-
+taminants, to constrain the presence of such terms. If         lihood takes on an additional parameter p that varies as
+the model is well-specified, however, these methods are        0 < p < 1, with the source counts distribution converg-
+unbiased in the limit of a large number of sources.            ing to Poissonian in the limit of p → 1. In practice, it is
+   Initial evaluations of the significance of any departure    unlikely that marginalizing over this additional param-
+from the null hypothesis were almost exclusively Fre-          eter will increase the uncertainties on the other model
+quentist, which required for millions of “null skies” to       parameters enough to meaningfully affect interpretation,
+be generated and fit, from which the p-value may be            but we recommend including it to account for the effect
+calculated. However, early minimisation methods were           of correlated source counts.5
+rather inefficient, limiting their feasibility for the eval-
+uation of p-values (e.g. Bengaly et al., 2019). For this
+                                                               3. Weighted estimators
+purpose, least-squares estimators are especially suited,
+due to their analytical solution allowing for millions of
+                                                                  The effect described by Ellis and Baldwin explains the
+mock skies to be fit (e.g. Secrest et al., 2021).
+                                                               modulation of number counts of sources across the sky
+   Nevertheless, biases may remain: if the source counts
+                                                               by a dipole, due to special relativistic aberration and
+per unit solid angle are non-Gaussian for the sky model
+                                                               Doppler boosting and depending on the source prop-
+such quadratic models may be misspecified. This is
+                                                               erties. It is possible to extend these considerations
+strictly true even for an ideal catalog of uncorrelated
+                                                               by predicting a dipole modulation of weighted number
+sources, which will have Poisson-distributed counts.
+                                                               counts, perhaps with the goal to disentangle the con-
+Therefore there will be significant departures from the
+                                                               tribution of underlying causes. For instance, Nadolny
+estimators’ Gaussian assumption if source counts are low
+                                                               et al. (2021) consider number counts weighted by com-
+or if they are correlated, leading to an overestimation of
+                                                               binations of flux, size, and redshift, to distinguish an
+the dipole amplitude. Typically, this becomes noticeable
+for source counts ≲ 600, 000, i.e. for source densities of
+≲ 15 deg2 , so this affected estimates of the NVSS dipoles
+                                                               5 We thank Lukas Böhme and Dominik Schwarz for this comment.
+slightly, but not those of the CatWISE AGN.
+                                                                                                                         20
+
+intrinsic from a kinematic contribution to the number         ing the method with which the dipole is measured.
+count dipole, as discussed in § II. But even just as a           The kinematic matter dipole amplitude (21) differs
+means of seeking a consistency with the unweighted Ellis      from the kinematic CMB dipole amplitude (14) in
+and Baldwin test, several authors (Darling, 2022; Rubart      its prefactor [2 + x(1 + α)], which contains information
+and Schwarz, 2013; Singal, 2011) had already considered       about the astrophysical properties of the sample. In
+measuring dipoles in flux-weighted number counts, with        § III.A x was defined as the power-law index of a fit to
+methods sometimes referred to as a flux weighted esti-        the (redshift-integrated) integral source counts (18), at
+mators. While such variations offer opportunities, addi-      the flux threshold S∗ . While Ellis and Baldwin assumed
+tional considerations are warranted, which we exemplify       a perfect power law to hold for any value of S∗ , this is
+by discussing flux weighting.                                 not a prerequisite for undertaking the test successfully;
+   First and foremost, when weighting by the flux, the        the power-law approximation need only hold at the ap-
+brightest few sources will dominate the measured sig-         plied flux limit of the catalog (von Hausegger (2024) and
+nal. For example, using the NVSS sample from Se-              § III.C). Modeling deviations from a perfect power law
+crest et al. (2022), the 9% of sources with flux den-         over a larger range of S∗ than is actually required accord-
+sities above S1.4 GHz > 110 mJy contribute more to            ing to Eq.(41), as proposed by Tiwari et al. (2014) and
+a simple weighted vector addition than the remaining          used by Siewert et al. (2021), can in fact mispredict Dkin .
+91% of fainter sources. For the WISE-selected quasars,           The possible influence of astrophysics on the prefactor
+the corresponding numbers are ∼ 310, 000 sources out          in Eq.(21) sparked a recent discussion about its accu-
+of 1.6 million (19%). Second, because of the enormous         racy when α and x vary with redshift along the line of
+range spanned by the luminosity distances of astronom-        sight. This was said to lead to changes in Eq.(21) which
+ical objects, objects at cosmological distances suitable      were termed “theoretical systematics” (Dalang and Bon-
+for the Ellis and Baldwin (1984) test will naturally be       vin, 2022; Guandalin et al., 2023); to calculate these ap-
+fainter, and Galactic contaminants, sources contributing      parently requires full knowledge of the sources’ luminos-
+to local clustering, or even catalog artifacts may be more    ity function. These arguments were however erroneous
+prevalent at brighter flux levels. For example, by making     in that they did not incorporate the crucial requirement
+a map of the 2MASS Extended Source Catalog (XSC)              (§ III.C) that the spectral index α describes only those
+sources, which form a flux-complete sample of galaxies        sources that are very close to the flux limit (von Hauseg-
+out to z ∼ 0.1, we find a correlation coefficient of 0.056    ger, 2024). There are thus no “theoretical systematics”
+with the S > 10 mJy NVSS sample used in Secrest et al.        in the Ellis and Baldwin formula.
+(2022), indicating that 5.6% of NVSS sources are below           Nevertheless, the redshift-dependent formulation (see
+z < 0.1. However, restricting to the 9% of sources with       § III.B) by Maartens et al. (2018) provides a good start-
+S > 110 mJy that dominated the total flux of the NVSS,        ing point to study potential corrections to Eq.(21) when
+the fraction goes up to 14%. Moreover, the theoretical        additional cuts must be made on quantities affected by
+expectation (corresponding to the CMB dipole) for the         special relativistic boosts, e.g. while performing redshift-
+dipole amplitude of flux-weighted number counts can be        tomography or to accommodate sample selection beyond
+quantified only by making further assumptions. For ex-        just a flux cut (von Hausegger and Dalang, 2025). In-
+ample, Singal (2011) requires that the same power-law         deed, future data (§ V) will offer more opportunities to
+behavior of the number counts holds for all objects in        understand the kinematic dipole signal by also including
+the survey (rarely the case for real data, see, e.g., Fig-    fluxes, redshifts, sizes etc. in extensions of Ellis and Bald-
+ure 1 of Singal (2019)), whereas Ellis and Baldwin (1984)     win’s original idea. We have briefly discussed caveats
+requires only that the power-law behaviour is applicable      regarding such approaches (§ IV.B.3), however in princi-
+very close to the flux limit of the survey.                   ple they can disentangle intrinsic contributions e.g. clus-
+   Cautious considerations of this kind are also called for   tering (see § IV.A) from kinematic contributions to the
+when constructing weights involving galaxy size or red-       measured matter dipole (cf. Nadolny et al., 2021).
+shift. Nevertheless, the large amount of upcoming data           Not all data sets, however, satisfy the requirements
+from large-scale surveys in the near future should pro-       of Ellis and Baldwin (1984); in particular spectral lines
+vide opportunity to consider studying the cosmic dipole       may prevent the straightforward application of Eq.(21)
+anomaly in such different ways.                               to observations in the optical, where the power law
+                                                              approximation of the spectrum can break down if there
+                                                              are not enough objects in the range of redshifts to
+C. Summary of theoretical issues                              adequately smooth out the observed SED. Moreover
+                                                              unforeseen selection effects may emerge in new data that
+  The Ellis and Baldwin (1984) test requires data which       may ultimately require numerical implementations of
+fulfills specific conditions (§ III.C & § III.D.1) and po-    the test, viz. forward-modeling the raw observations in
+tential deviations from these requirements must be ad-        a dedicated framework.
+dressed either prior to undertaking the test or by adjust-
+                                                                                                                          21
+
+V. FUTURE GALAXY SURVEYS                                       biased relative to the dark matter distribution. These
+                                                               surveys will however have their own systematic limita-
+   Looking ahead, we await results from several forthcom-      tions. With the enormous increase in source counts the
+ing cosmological data sets which will allow the redshift       dominant source of error will be systematic, such as error
+dependence of the cosmic matter dipole anomaly to be           from uncertainties in Galactic reddening—a significant
+determined. We provide below a brief discussion of rele-       problem for near-infrared data and especially data at vi-
+vant observables and forecasts.                                sual wavelengths. Nonetheless, these surveys are likely
+   Of the galaxy catalogs that have so far been used to        to deepen our understanding of the nature of the cos-
+measure the cosmic matter dipole, radio observations,          mic dipole anomaly. We discuss below the most relevant
+due to their robust detections of AGN at z ∼ 1, make           near future surveys of cosmologically distant sources, viz.
+up the largest fraction. Besides the NVSS, samples from        SPHEREx, Euclid, Rubin-LSST, and SKA.
+the TGSS, WENSS, and SUMSS have also been stud-
+ied, both individually and in combination. In prepara-
+tion for the Square Kilometre Array (SKA), radio cata-         A. SPHEREx
+logs by pathfinder missions have been employed as well,
+e.g. VLASS and RACS. Most recently, data from the                 SPHEREx (Spectro-Photometer for the History of the
+MeerKAT (Jonas and MeerKAT Team, 2016) absorption              Universe, Epoch of Reionization, and Ices Explorer, Doré
+line survey (MALS; Gupta et al., 2016) was prepared for        et al., 2014) which was launched this year will carry
+a dipole measurement (Wagenveld et al., 2023b).                out the first all-sky, visual to near-IR spectral survey.
+   While the CatWISE2020 (Marocco et al., 2021) quasar         SPHEREx will survey the sky with 102 photometric
+catalog (Secrest et al., 2021) is so far the only sam-         bands spanning 0.75–5 µm and achieve a 5σ depth of
+ple based on mid-IR data that has been used for mat-           ∼ 19 AB between 0.75–5 µm and ∼ 18 AB at 5 µm,6 cor-
+ter dipole measurements, combinations of various sam-          responding to WISE magnitude limits of W 1 ≲ 16 and
+ples can distil novel high-redshift catalogs via synergistic   W 2 ≲ 15 in the Vega system. With 6′′ spectral pixels,
+methods. For instance, the Gaia-unWISE quasar sam-             deeper data would be limited by confusion noise, so it is
+ple (Shu et al., 2019) combines the unWISE catalog with        unlikely that SPHEREx will achieve a significant depth
+Gaia measurements for AGN classification. Similarly, us-       improvement over current WISE data in terms of quasar
+ing the updated Gaia DR3 release it was attempted to           counts. However, the 102 channels of SPHEREx corre-
+use the Quaia catalog (Storey-Fisher et al., 2024) for a       spond to a spectral resolution of R ∼ 40, allowing for
+dipole measurement (Mittal et al., 2024).                      redshift tomography (von Hausegger and Dalang, 2025)
+                                                               of both quasars and galaxies. SPHEREx is expected to
+   Many of these studies contributed to the develop-
+                                                               provide accurate redshifts for ∼ 100 million galaxies out
+ment of new tools and understanding regarding optimal
+                                                               to z < 1 (Doré et al., 2018), so it should be possible to ac-
+dipole study design, from which future studies will ben-
+                                                               curately deconvolve the effect of local clustering from the
+efit. However, all the above named samples, except for
+                                                               kinematic dipole, with transition to moderate redshift.
+the CatWISE2020 AGN sample, have insufficient source
+counts to detect the expected kinematic dipole above the
+∼ 1σ level, as emphasized by Secrest (2025). Moreover          B. Euclid
+due to the increased uncertainties, while many works re-
+port agreement of their findings with the expected kine-          The Euclid satellite (Mellier et al., 2025) will have sur-
+matic dipole, they fail to note that there is equal or         veyed almost 15,000 deg2 of the sky at near-IR wave-
+even better agreement with the anomalously large dipole,       lengths by the time of its third data release. Up to
+as unveiled at the highest significance by Secrest et al.      25 million galaxy redshifts between 0.9 < z < 1.8 will
+(2021). Moreover the presence of systematic issues in          be measured spectroscopically during its baseline mis-
+some of the catalogs used (e.g. TGSS, VLASS) prevent           sion, in addition to roughly a billion-and-a-half photo-
+reliable measurements on large scales altogether. We           metric redshifts, across a distribution with median red-
+must await large-volume surveys in the near future, that       shift z ∼ 1 (Blanchard et al., 2020). These data will al-
+can address the cosmic dipole anomaly conclusively.            low for redshift tomography (von Hausegger and Dalang,
+   Fortunately, several upcoming surveys will almost cer-      2025) and be complementary to SPHEREx; Euclid will
+tainly reveal important new information about the cos-         probe higher redshifts and have 20 times better angular
+mic dipole anomaly, in large part due to the increase in       resolution, mitigating source confusion and allowing for
+source counts that will allow sensitivity at the level of      measurements of galaxy morphologies. Euclid will even-
+the kinematic expectation (currently only possible with        tually shed light on the redshift range where the dipole
+WISE data, as noted above) and in part due to sampling
+not just radio galaxies and quasars but normal galaxies as
+well, yielding a third, mostly independent population of
+                                                               6 https://spherex.caltech.edu/page/survey
+moderate-redshift matter that, importantly, is also less
+                                                                                                                         22
+
+anomaly arises, its structure (e.g., if it exhibits ℓ > 1       ing, viz. the variation in the total-to-selective extinction
+components), and whether it is a function of galaxy bias        ratio RV , known to systematically vary over large areas
+(dependent on source type).                                     as σRV = 0.18 with apparently no correlation with color
+   The availability of Euclid Quick Data Release (Q1;           excess E(B − V ) (Schlafly et al., 2016). Given a red-
+Aussel et al., 2025) data allows a broad forecast of the        dening coefficient Aλ /AV = 0.395 in the y band (Wang
+power of Euclid to understand the dipole anomaly. Us-           and Chen, 2019), this means that dipole studies with
+ing objects selected from the Euclid deep fields, we se-        LSST will likely be limited to E(B − V ) about ten times
+lect likely galaxies with HE < 24, the nominal complete-        smaller than when using WISE data for the same level of
+ness limit by Year 6 of the Euclid Wide Survey (EWS;            systematic error contribution. The WISE-based samples
+Scaramella et al., 2022), by removing sources with point-       used in previous studies have E(B − V ) < 0.3 for nearly
+like photometry. Using the JE − HE values for power-            all objects, given the Galactic plane mask used, so this
+law SEDs provided by Schirmer et al. (2022), we find            suggests that, without calibration of position-dependent
+α ∼ −3.6 (JE − HE ) (Sν ∝ ν −α ). For galaxies close to         RV , LSST-based studies will need to use windows with
+the completeness limit, ⟨α⟩ ∼ −1.0, and we also find            E(B − V ) < 0.03 to mitigate systematic error, only 18%
+dN (> S)/dS ∝ S −0.8 , predicting a kinematic dipole am-        of the sky, or about 3600 deg2 given LSST’s footprint.
+plitude of Dkin ∼ 2.5 × 10−3 . The p   predicted dipole am-     The usual practice of assuming a static RV = 3.1 may
+plitude due to shot noise is DSN ∼ 3 fsky /N , where fsky       thus significantly limit LSST’s usefulness in dipole stud-
+is the fraction of the sky observed and N is the number         ies, although the deep photometric redshifts from LSST
+of sources observed. Given the 14,514 deg−2 footprint by        will be valuable when working with data less impacted
+year 6 of the EWS and ∼ 131,000 galaxies per square de-         by Galactic reddening such as Euclid. Fortunately, the
+gree down to HE < 24 mag (Castander et al., 2025), there        extraordinary depth and photometric precision of the fi-
+should be 1.9 billion galaxies observed across 35% of the       nal, co-added data will allow measurement of RV to high
+sky, which implies DSN ∼ 4 × 10−5 , i.e. 60 times smaller       Galactic latitude (Abell et al., 2009, Section 7.5.2), po-
+than the kinematic prediction. The Euclid dipole error          tentially mitigating much of the systematic error due to
+is therefore likely to be dominated by systematic effects,      reddening, so an accurate measure of the dipole may in-
+such as the clustering dipole and the effects of Galactic       deed be possible. Our forecast for LSST is that, as with
+reddening.                                                      Euclid, a thorough treatment of the uncertainties due to
+   Given the depth of the EWS, the dipole due to lo-            Galactic extinction must be made if the wide sky foot-
+cal clustering should be negligible. Using the photomet-        print of LSST is to be effectively used to study the dipole
+ric redshifts from the Euclid Quick Data Release (Tucci         of moderate redshift galaxies.
+et al., 2025), we estimate that only ∼ 0.4% of galaxies
+detected by Euclid have z < 0.1, where the clustering
+dipole starts becoming significant compared to the kine-        D. Square Kilometre Array
+matic prediction. It is likely, therefore, that uncertainties
+in Galactic reddening will dominate the error. While the           The Square Kilometre Array Red Book (Bacon et al.,
+EWS footprint largely avoids the Galactic plane, careful        2020) highlights the potential of the Phase 1 of SKA data
+assessment of the effect of Galactic reddening uncertain-       to shed further light on the cosmic dipole. Covering over
+ties should nonetheless be made, as the typical practice        an order of magnitude in frequency, from 151 MHz in
+of assuming a uniform total-to-selective extinction ratio       the LOW configuration to 1.4 GHz in the MID config-
+(e.g., RV = 3.1) may not be safe, given the sensitivity of      urations, the SKA is anticipated to deliver the highest-
+dipole work.                                                    sensitivity large-volume radio measurements to date over
+                                                                3π of the sky. For instance, flux limited samples of
+                                                                around 100 million radio sources (Schwarz et al., 2015)
+C. Rubin/LSST                                                   are expected to become available with the SKA1 base-
+                                                                line design (over 1 billion with SKA2) collected at the
+   The Legacy Survey of Space & Time (LSST; Ivezić             MID frequency of NVSS, enabling the dipole to be char-
+et al., 2019) by the Vera C. Rubin Observatory is a syn-        acterised at unprecedented statistical precision, while the
+optic astronomical survey with a ∼ 20, 000 deg2 foot-           availability of HI redshifts should allow all sources at
+print. A systematic scan of the celestial sphere will be        z ≤ 0.5 to be removed (Bengaly et al., 2019) thus sup-
+performed over ten years, leading to the largest astro-         pressing the clustering dipole.
+nomical catalog ever compiled with ∼ 4 billion galaxies            SKA’s ability to detect faint sources, down to flux lev-
+out to z ≲ 3 (Abell et al., 2009). As with Euclid, the high     els of O(µJy) also affects the composition of its catalogs.
+depth and wide sky coverage of LSST means that stud-            In contrast to NVSS, which operated at flux limits of
+ies of the dipole anomaly will be limited by systematic         O(10) mJy, the SKA will detect a large number of star-
+error, and the systematic error that will likely present        forming galaxies (SFGs), which tend to lie at lower red-
+the greatest challenge is calibrating for Galactic redden-      shifts than the z ∼ 1 AGN otherwise studied. The influ-
+                                                                                                                            23
+
+ence thereof on dipole measurements is already becoming              (1991). However a detailed examination by Domènech
+apparent in pathfinder studies such as the recently com-             et al. (2022) showed that while such a perturbation can
+piled catalog of MALS sources (Wagenveld et al., 2023b,              reduce the CMB dipole amplitude, it has little effect on
+2024). It will be interesting to compare results of the              the matter dipole. Hence the good alignment of the two
+measured radio dipoles also for higher flux thresholds,              must be accidental if our real velocity corresponds to the
+effectively increasing the median redshift of the sources.           latter and the smaller amplitude of the CMB dipole is
+With threshold-dependent integral source count scaling,7             due to such a cancellation by an isocurvature mode. This
+comparison to different dipole expectations Dkin (S∗ ) will          therefore is not a satisfactory explanation of the dipole
+offer further opportunities to understand the nature of              anomaly (within the FLRW paradigm).
+the matter dipole.                                                      While more complex general relativistic models might
+                                                                     describe a Universe with a dipole anisotropy, they lack
+                                                                     clear physical motivation. Severe bounds on anisotropic
+VI. CONCLUDING REMARKS
+                                                                     expansion are also set by CMB temperature and polari-
+                                                                     sation data (Saadeh et al., 2016). Going beyond FLRW,
+   In recent years, the Cosmological Principle which has
+                                                                     the spatially closed Kantowski-Sachs Universe and the
+been an article of faith for a century and on which the
+                                                                     open axisymmetric Bianchi type III Universe have been
+standard ΛCDM model rests, has come under increas-
+                                                                     considered (Constantin et al., 2023), and more general
+ing scrutiny (see, Aluri et al., 2023). This is mainly be-
+                                                                     Thurston geometries (Awwad and Prokopec, 2024), as
+cause the data necessary to check it observationally has
+                                                                     well as the Szekeres models (Célérier, 2024), in order
+finally become available and also because cracks have be-
+                                                                     to compute observationally relevant quantities. Another
+gun appearing meanwhile in the ‘concordance’ ΛCDM
+                                                                     suggestion has been of a axially isotropic, tilted Bianchi
+model, e.g. the ‘Hubble tension’ (see, Abdalla et al.,
+                                                                     V/VIIh cosmology which accommodates a cosmic flow
+2022; Perivolaropoulos and Skara, 2022).
+                                                                     (Krishnan et al., 2023). An interesting suggestion is that
+   The cosmic dipole anomaly which strikes at the heart
+                                                                     large-scale anisotropy may emerge from the growth of
+of the CP is an even more serious problem as it applies
+                                                                     non-linear structure and be described by locally rotation-
+to all FLRW models. Whereas there are solutions to
+                                                                     ally symmetric Bianchi cosmologies that allow for both
+Einstein’s equations which do not assume any symme-
+                                                                     anisotropic expansion and large-scale bulk flow (Anton
+tries viz. the Szekeres models (e.g. Célérier, 2024), these
+                                                                     and Clifton, 2023, 2024). To establish which, if any, of
+have a much larger number of parameters and the com-
+                                                                     these ideas or others yet to be proposed, is on the right
+munity has been reluctant to consider these when the
+                                                                     track, will require further observations and serious en-
+simple FLRW-based ΛCDM model has been so success-
+                                                                     gagement with the ‘fitting problem’ in cosmology (Ellis
+ful in fitting data. However one of its ‘simple’ parameters
+                                                                     and Stoeger, 1987).
+is the Cosmological Constant Λ which, interpreted as the
+energy density of the quantum vacuum, would require
+fine-tuning of two unrelated terms to at least 60 decimal
+places to enable the Universe to exist in its present form.          ACKNOWLEDGMENTS
+It is clear that simplicity is in the eye of the beholder.
+   Nevertheless there is a natural tendency, based on the              We are grateful to many colleagues for correspon-
+premise that extraordinary claims require extraordinary              dence and discussions on this topic, in particular
+evidence, to retain prior beliefs until the weight of the            David Alonso, Reza Ansari, Chris Blake, Camille Bon-
+contrary evidence forces a change. Moreover a transition             vin, Charles Dalang, Lawrence Dam, Harry Desmond,
+to a new paradigm requires a new theoretical framework               Guillem Domenech, Ruth Durrer, George Ellis, Pedro
+and it is fair to say that no compelling explanation has             Ferreira, Geraint Lewis, Roy Maartens, Jim Peebles, Do-
+yet been presented for the cosmic dipole anomaly.                    minik Schwarz, Prabhakar Tiwari, Wilbur Venus and
+   In a prescient essay, Gunn (1988) had noted the then              Jonah Wagenveld. Jacques Colin inspired us to work
+emerging discordance between peculiar velocities and the             on this topic and participated in our first analyses. We
+mass distribution inferred from galaxy catalogs and spec-            thank the anonymous referees for their critical reading
+ulated whether the anomalous bulk flow could in fact                 and suggestions which improved this review.
+be due to a superhorizon perturbation in the curvature.
+There can be a mismatch between the reference frames in
+which radiation and matter are isotropic in such a ‘tilted
+universe’ and the idea was developed further by Turner               REFERENCES
+
+                                                                     Abdalla, E., et al. (2022), JHEAp 34, 49, arXiv:2203.06142
+                                                                       [astro-ph.CO].
+7 See Table 3 in Bacon et al. (2020), where the index x in Eq.(18)
+                                                                     Abell, P. A., et al. (LSST Science, LSST Project) (2009),
+  is denoted as αmag .                                                 arXiv:0912.0201 [astro-ph.IM].
+                                                                                                                                24
+
+Abghari, A., E. F. Bunn, L. T. Hergt, B. Li, D. Scott,                Célérier, M.-N. (2024), Phys. Rev. D 110 (12), 123526,
+  R. M. Sullivan, and D. Wei (2024), JCAP 11, 067,                       arXiv:2407.04452 [gr-qc].
+  arXiv:2405.09762 [astro-ph.CO].                                     Challinor, A., and F. van Leeuwen (2002), Phys. Rev. D 65,
+Aghanim, N., et al. (Planck) (2014), Astron. Astrophys. 571,             103001, arXiv:astro-ph/0112457.
+  A27, arXiv:1303.5087 [astro-ph.CO].                                 Cheng, Y.-T., T.-C. Chang, and A. Lidz (2024), Astrophys.
+Aghanim, N., et al. (Planck) (2020), Astron. Astrophys. 641,             J. 965 (1), 32, arXiv:2309.02490 [astro-ph.CO].
+  A1, arXiv:1807.06205 [astro-ph.CO].                                 Coleman, P. H., and L. Pietronero (1992), Phys. Rept. 213,
+Akrami, Y., et al. (Planck) (2020a), Astron. Astrophys. 641,             311.
+  A7, arXiv:1906.02552 [astro-ph.CO].                                 Colin, J., R. Mohayaee, M. Rameez,             and S. Sarkar
+Akrami, Y., et al. (Planck) (2020b), Astron. Astrophys. 644,             (2017), Mon. Not. Roy. Astron. Soc. 471 (1), 1045,
+  A100, arXiv:2003.12646 [astro-ph.CO].                                  arXiv:1703.09376 [astro-ph.CO].
+Alonso, D., P. Bull, P. G. Ferreira, R. Maartens, and M. San-         Colin, J., R. Mohayaee, S. Sarkar, and A. Shafieloo (2011),
+  tos (2015a), Astrophys. J. 814 (2), 145, arXiv:1505.07596              Mon. Not. Roy. Astron. Soc. 414, 264, arXiv:1011.6292
+  [astro-ph.CO].                                                         [astro-ph.CO].
+Alonso, D., A. I. Salvador, F. J. Sánchez, M. Bilicki, J. Garcı́a-   Condon, J. J., W. D. Cotton, E. W. Greisen, Q. F. Yin, R. A.
+  Bellido, and E. Sánchez (2015b), Mon. Not. Roy. Astron.               Perley, G. B. Taylor, and J. J. Broderick (1998), Astron.
+  Soc. 449 (1), 670, arXiv:1412.5151 [astro-ph.CO].                      J. 115, 1693.
+Aluri, P. K., et al. (2023), Class. Quant. Grav. 40 (9), 094001,      Conklin, E. K. (1969), Nature (London) 222 (5197), 971.
+  arXiv:2207.05765 [astro-ph.CO].                                     Constantin, A., T. R. Harvey, S. von Hausegger, and
+Anton, T., and T. Clifton (2023), Class. Quant. Grav.                    A. Lukas (2023), Class. Quant. Grav. 40 (24), 245015,
+  40 (14), 145004, arXiv:2302.05715 [gr-qc].                             arXiv:2212.03234 [astro-ph.CO].
+Anton, T.,        and T. Clifton (2024), JCAP 05, 120,                Crawford, F. (2009), Astrophys. J. 692, 887, arXiv:0810.4520
+  arXiv:2402.16585 [gr-qc].                                              [astro-ph].
+Assef, R. J., D. Stern, G. Noirot, H. D. Jun, R. M. Cutri, and        Dalang, C., and C. Bonvin (2022), Mon. Not. Roy. Astron.
+  P. R. M. Eisenhardt (2018), Astrophys. J. Suppl. 234 (2),              Soc. 512 (3), 3895, arXiv:2111.03616 [astro-ph.CO].
+  23, arXiv:1706.09901 [astro-ph.GA].                                 Dam, L., G. F. Lewis, and B. J. Brewer (2023), Mon. Not.
+Assef, R. J., et al. (2010), Astrophys. J. 713, 970,                     Roy. Astron. Soc. 525 (1), 231, arXiv:2212.07733 [astro-
+  arXiv:0909.3849 [astro-ph.CO].                                         ph.CO].
+Aussel, H., et al. (Euclid) (2025), arXiv:2503.15302 [astro-          Darling, J. (2022), Astrophys. J. Lett. 931 (2), L14,
+  ph.GA].                                                                arXiv:2205.06880 [astro-ph.CO].
+Awwad, Y., and T. Prokopec (2024), JCAP 01, 010,                      Dolfi, A., E. Branchini, M. Bilicki, A. Balaguera-Antolı́nez,
+  arXiv:2211.16893 [astro-ph.CO].                                        I. Prandoni, and R. Pandit (2019), A&A 623, A148,
+Bacon, D. J., et al. (SKA) (2020), Publ. Astron. Soc. Austral.           arXiv:1901.08357 [astro-ph.CO].
+  37, e007, arXiv:1811.02743 [astro-ph.CO].                           Domènech, G., R. Mohayaee, S. P. Patil, and S. Sarkar
+Bahcall, N. A., and X.-h. Fan (1998), Astrophys. J. 504, 1,              (2022), JCAP 10, 019, arXiv:2207.01569 [astro-ph.CO].
+  arXiv:astro-ph/9803277.                                             Doré, O., et al. (SPHEREx) (2014), arXiv:1412.4872 [astro-
+Bahcall, N. A., J. P. Ostriker, S. Perlmutter, and P. J. Stein-          ph.CO].
+  hardt (1999), Science 284, 1481, arXiv:astro-ph/9906463.            Doré, O., et al. (SPHEREx) (2018), arXiv:1805.05489 [astro-
+Bengaly, C. A. P., R. Maartens, and M. G. Santos (2018),                 ph.IM].
+  JCAP 04, 031, arXiv:1710.08804 [astro-ph.CO].                       Dressler, A., S. M. Faber, D. Burstein, R. L. Davies,
+Bengaly, C. A. P., T. M. Siewert, D. J. Schwarz, and                     D. Lynden-Bell, R. J. Terlevich, and G. Wegner (1987),
+  R. Maartens (2019), Mon. Not. Roy. Astron. Soc. 486 (1),               Astrophys. J. Lett. 313, L37.
+  1350, arXiv:1810.04960 [astro-ph.CO].                               Duangchan, C., A. Valade, N. I. Libeskind, and M. Steinmetz
+de Bernardis, P., et al. (Boomerang) (2000), Nature 404, 955,            (2025), arXiv:2507.22236 [astro-ph.CO].
+  arXiv:astro-ph/0004404.                                             Einstein, A. (1917), Sitzungsber. Preuss. Akad. Wiss. Berlin
+Blake, C., P. G. Ferreira, and J. Borrill (2004), Mon. Not.              (Math. Phys. ) 1917, 142.
+  Roy. Astron. Soc. 351, 923, arXiv:astro-ph/0404085.                 Ellis, G. F. R. (1975), Q. J. R. Astron. Soc. 16, 245.
+Blake, C., and J. Wall (2002a), Nature 416, 150, arXiv:astro-         Ellis, G. F. R. (2002), Nature 416 (6877), 132.
+  ph/0203385.                                                         Ellis, G. F. R., and J. E. Baldwin (1984), Mon. Not. Roy.
+Blake, C., and J. Wall (2002b), Mon. Not. Roy. Astron. Soc.              Astron. Soc. 206, 377.
+  329, L37, arXiv:astro-ph/0111328.                                   Ellis, G. F. R., and W. Stoeger (1987), Class. Quant. Grav.
+Blake, C., and J. Wall (2002c), Mon. Not. Roy. Astron. Soc.              4, 1697.
+  337, 993, arXiv:astro-ph/0208350.                                   Feindt, U., et al. (2013), Astron. Astrophys. 560, A90,
+Blanchard, A., et al. (Euclid) (2020), Astron. Astrophys. 642,           arXiv:1310.4184 [astro-ph.CO].
+  A191, arXiv:1910.09273 [astro-ph.CO].                               Ferreira, P. d. S., and M. Quartin (2021), Phys. Rev. Lett.
+Blandford, R. D., and R. L. Znajek (1977), Mon. Not. Roy.                127 (10), 101301, arXiv:2011.08385 [astro-ph.CO].
+  Astron. Soc. 179, 433.                                              Fixsen, D. J. (2009), Astrophys. J. 707, 916, arXiv:0911.1955
+Bondi, H., and T. Gold (1948), Mon. Not. Roy. Astron. Soc.               [astro-ph.CO].
+  108, 252.                                                           Fixsen, D. J., et al. (1994), Astrophys. J. 420, 445.
+Burgess, C. P. (2025), arXiv:2509.00688 [hep-th].                     Flesch, E. W. (2023), The Open Journal of Astrophysics 6,
+Burles, S., and S. Rappaport (2006), Astrophys. J. Lett. 641,            49, arXiv:2308.01505 [astro-ph.GA].
+  L1, arXiv:astro-ph/0601559.                                         Friedmann, A. (1922), Z. Phys. 10, 377.
+Castander, F. J., et al. (Euclid) (2025), Astron. Astrophys.          Friedmann, A. (1924), Z. Phys. 21, 326.
+  697, A5, arXiv:2405.13495 [astro-ph.CO].
+                                                                                                                              25
+
+Frieman, J., M. Turner, and D. Huterer (2008), Ann. Rev.          Jonas, J., and MeerKAT Team (2016), in MeerKAT Science:
+   Astron. Astrophys. 46, 385, arXiv:0803.0982 [astro-ph].          On the Pathway to the SKA, p. 1.
+Gibelyou, C., and D. Huterer (2012), Mon. Not. Roy. Astron.       Katgert-Merkelijn, J. K., J. G. Robertson, R. A. Windhorst,
+   Soc. 427, 1994, arXiv:1205.6476 [astro-ph.CO].                   and P. Katgert (1985), A&AS 61, 517.
+Gonçalves, R. S., G. C. Carvalho, U. Andrade, C. A. P. Ben-      Kragh,       H.     (2013),     Perspectives     on    Science
+   galy, J. C. Carvalho, and J. Alcaniz (2021), JCAP 03, 029,       21      (3),    325,     https://direct.mit.edu/posc/article-
+   arXiv:2010.06635 [astro-ph.CO].                                  pdf/21/3/325/1789842/posc a 00102.pdf.
+Guandalin, C., J. Piat, C. Clarkson, and R. Maartens              Krasinski, A. (2011), Inhomogeneous cosmological models
+   (2023), Astrophys. J. 953 (2), 144, arXiv:2212.04925 [astro-     (Cambridge Univ. Press, Cambridge, UK).
+   ph.CO].                                                        Krishnan, C., R. Mondol, and M. M. Sheikh-Jabbari (2023),
+Gunn, J. E. (1988), in The Extragalactic Distance Scale, As-        JCAP 07, 020, arXiv:2209.14918 [astro-ph.CO].
+   tronomical Society of the Pacific Conference Series, Vol. 4,   Lacasa, F., C. Bonvin, C. Dalang, and R. Durrer (2024),
+   edited by S. van den Bergh and C. J. Pritchet, p. 344.           JCAP 06, 045, arXiv:2402.18438 [astro-ph.CO].
+Gupta, N., R. Srianand, W. Baan, A. J. Baker, R. J. Beswick,      Lacy, M., et al. (2020), Publ. Astron. Soc. Pac. 132 (1009),
+   S. Bhatnagar, D. Bhattacharya, A. Bosma, C. Carilli,             035001, arXiv:1907.01981 [astro-ph.IM].
+   M. Cluver, F. Combes, C. Cress, R. Dutta, J. Fynbo,            Lavaux, G., R. B. Tully, R. Mohayaee, and S. Colombi (2010),
+   G. Heald, M. Hilton, T. Hussain, M. Jarvis, G. Jozsa,            Astrophys. J. 709, 483, arXiv:0810.3658 [astro-ph].
+   P. Kamphuis, A. Kembhavi, J. Kerp, H. R. Kloeckner,            Lemaitre, G. (1927), Annales Soc. Sci. Bruxelles A 47, 49.
+   J. Krogager, V. P. Kulkarni, C. Ledoux, A. Mahabal,            Lemaitre, G. (1931), Nature 127, 706.
+   T. Mauch, K. Moodley, E. Momjian, R. Morganti, P. Noter-       Lemaitre, G. (1933), Annales Soc. Sci. Bruxelles A 53, 51.
+   daeme, T. Oosterloo, P. Petitjean, A. Schroeder, P. Serra,     Maartens, R., C. Clarkson, and S. Chen (2018), JCAP 01,
+   J. Sievers, K. Spekkens, P. Vaisanen, T. van der Hulst,          013, arXiv:1709.04165 [astro-ph.CO].
+   M. Vivek, J. Wang, O. I. Wong, and A. R. Zungu (2016),         Mainzer, A., J. Bauer, R. M. Cutri, T. Grav, J. Masiero,
+   in MeerKAT Science: On the Pathway to the SKA, p. 14,            R. Beck, P. Clarkson, T. Conrow, J. Dailey, P. Eisen-
+   arXiv:1708.07371 [astro-ph.GA].                                  hardt, B. Fabinsky, S. Fajardo-Acosta, J. Fowler, C. Gelino,
+Hale, C. L., D. McConnell, A. J. M. Thomson, E. Lenc,               C. Grillmair, I. Heinrichsen, M. Kendall, J. D. Kirkpatrick,
+   G. H. Heald, A. W. Hotan, J. K. Leung, V. A. Moss,               F. Liu, F. Masci, H. McCallon, C. R. Nugent, M. Pa-
+   T. Murphy, J. Pritchard, E. M. Sadler, A. J. Stewart, and        pin, E. Rice, D. Royer, T. Ryan, P. Sevilla, S. Sonnett,
+   M. T. Whiting (2021), Pub. Astron. Soc. Aus. 38, e058,           R. Stevenson, D. B. Thompson, S. Wheelock, D. Wiemer,
+   arXiv:2109.00956 [astro-ph.GA].                                  M. Wittman, E. Wright, and L. Yan (2014), Astrophys. J.
+Harrison, E. R. (1970), Phys. Rev. D 1, 2726.                       792 (1), 30, arXiv:1406.6025 [astro-ph.EP].
+von Hausegger, S. (2024), Mon. Not. Roy. Astron. Soc.             Mainzer, A., et al. (2011), Astrophys. J. 731, 53,
+   535 (1), L49, arXiv:2404.07929 [astro-ph.CO].                    arXiv:1102.1996 [astro-ph.EP].
+von Hausegger, S., and C. Dalang (2025), Phys. Rev. D             Marocco, F., P. R. M. Eisenhardt, J. W. Fowler, J. D. Kirk-
+   111 (12), 123547, arXiv:2412.13162 [astro-ph.CO].                patrick, A. M. Meisner, E. F. Schlafly, S. A. Stanford,
+von Hausegger, S., N. Secrest, M. Rameez, H. Desmond,               N. Garcia, D. Caselden, M. C. Cushing, R. M. Cutri,
+   R. Mohayaee, and S. Sarkar (2025), in preparation.               J. K. Faherty, C. R. Gelino, A. H. Gonzalez, T. H. Jar-
+Hickox, R. C., et al. (2009), Astrophys. J. 696, 891,               rett, R. Koontz, A. Mainzer, E. J. Marchese, B. Mobasher,
+   arXiv:0901.4121 [astro-ph.GA].                                   D. J. Schlegel, D. Stern, H. I. Teplitz, and E. L. Wright
+Hirata, C. M. (2009), JCAP 09, 011, arXiv:0907.0703 [astro-         (2021), Astrophys. J. Suppl. 253 (1), 8, arXiv:2012.13084
+   ph.CO].                                                          [astro-ph.IM].
+Ho, S., C. Hirata, N. Padmanabhan, U. Seljak, and N. Bah-         Mauch, T., T. Murphy, H. J. Buttery, J. Curran, R. W. Hun-
+   call (2008), Phys. Rev. D 78, 043519, arXiv:0801.0642            stead, B. Piestrzynski, J. G. Robertson, and E. M. Sadler
+   [astro-ph].                                                      (2003), Mon. Not. Roy. Astron. Soc. 342, 1117, arXiv:astro-
+Hoffman, M. D., and A. Gelman (2011), arXiv:1111.4246               ph/0303188.
+   [stat.CO].                                                     Mellier, Y., et al. (Euclid) (2025), Astron. Astrophys. 697,
+Hogg, D. W., D. J. Eisenstein, M. R. Blanton, N. A. Bahcall,        A1, arXiv:2405.13491 [astro-ph.CO].
+   J. Brinkmann, J. E. Gunn, and D. P. Schneider (2005),          Milne, E. A. (1932), Nature 130 (3270), 9.
+   Astrophys. J. 624, 54, arXiv:astro-ph/0411197.                 Mittal, V., O. T. Oayda,           and G. F. Lewis (2024),
+Hopkins, P. F., G. T. Richards, and L. Hernquist (2007),            Mon. Not. Roy. Astron. Soc. 527 (3), 8497, [Erra-
+   Astrophys. J. 654, 731, arXiv:astro-ph/0605678.                  tum: Mon.Not.Roy.Astron.Soc. 530, 4763–4764 (2024)],
+Hubble, E. (1929), Proc. Nat. Acad. Sci. 15, 168.                   arXiv:2311.14938 [astro-ph.CO].
+Hurley-Walker,         N.    (2017),    arXiv     e-prints    ,   Nadolny, T., R. Durrer, M. Kunz, and H. Padmanabhan
+   arXiv:1703.06635arXiv:1703.06635 [astro-ph.IM].                  (2021), JCAP 11, 009, arXiv:2106.05284 [astro-ph.CO].
+Huterer, D., and D. L. Shafer (2018), Rept. Prog. Phys.           Navas, S., et al. (Particle Data Group) (2024), Phys. Rev. D
+   81 (1), 016901, arXiv:1709.01091 [astro-ph.CO].                  110 (3), 030001.
+Intema, H. T., P. Jagannathan, K. P. Mooley, and D. A. Frail      Neyman, J. (1962), in Problems of Extra-Galactic Research,
+   (2017), Astron. Astrophys. 598, A78, arXiv:1603.04368            IAU Symposium, Vol. 15, edited by G. C. McVittie, p. 294.
+   [astro-ph.CO].                                                 Notari, A., and M. Quartin (2016), Phys. Rev. D 94 (4),
+Itoh, Y., K. Yahata, and M. Takada (2010), Phys. Rev. D             043006, arXiv:1510.08793 [astro-ph.CO].
+   82, 043530, arXiv:0912.1460 [astro-ph.CO].                     Oayda, O. T., V. Mittal, and G. F. Lewis (2025), Mon.
+Ivezić, v., et al. (LSST) (2019), Astrophys. J. 873 (2), 111,      Not. Roy. Astron. Soc. 537 (1), 1, arXiv:2412.12600 [astro-
+   arXiv:0805.2366 [astro-ph].                                      ph.CO].
+                                                                                                                            26
+
+Oayda, O. T., V. Mittal, G. F. Lewis, and T. Mur-                  K. W. Hodapp, N. Kaiser, E. A. Magnier, N. F. Martin,
+  phy (2024), Mon. Not. Roy. Astron. Soc. 531 (4), 4545,           N. Metcalfe, R. J. Wainscoat, and C. Waters (2016), As-
+  arXiv:2406.01871 [astro-ph.CO].                                  trophys. J. 821 (2), 78, arXiv:1602.03928 [astro-ph.GA].
+Peebles, P. J. (1980), The Large-Scale Structure of the Uni-    Schwarz, D. J., D. Bacon, S. Chen, C. Clarkson, D. Huterer,
+  verse (Princeton University Press).                              M. Kunz, R. Maartens, A. Raccanelli, M. Rubart, and J.-
+Peebles, P. J. E. (2022), Annals Phys. 447, 169159,                L. Starck (2015), PoS AASKA14, 032, arXiv:1501.03820
+  arXiv:2208.05018 [astro-ph.CO].                                  [astro-ph.CO].
+Peebles, P. J. E., and B. Ratra (2003), Rev. Mod. Phys. 75,     Schwarz, D. J., C. A. P. Bengaly, R. Maartens, and T. M.
+  559, arXiv:astro-ph/0207347.                                     Siewert (2018), arXiv:1810.06373 [astro-ph.CO].
+Peebles, P. J. E., and D. T. Wilkinson (1968), Phys. Rev.       Schwarz, D. J., C. J. Copi, D. Huterer,           and G. D.
+  174, 2168.                                                       Starkman (2016), Class. Quant. Grav. 33 (18), 184001,
+Penzias, A. A., and R. W. Wilson (1965), Astrophys. J. 142,        arXiv:1510.07929 [astro-ph.CO].
+  419.                                                          Scrimgeour, M., et al. (2012), Mon. Not. Roy. Astron. Soc.
+Perivolaropoulos, L., and F. Skara (2022), New Astron. Rev.        425, 116, arXiv:1205.6812 [astro-ph.CO].
+  95, 101659, arXiv:2105.05208 [astro-ph.CO].                   Scrimgeour, M. I., et al. (2016), Mon. Not. Roy. Astron. Soc.
+Perlmutter, S., et al. (Supernova Cosmology Project) (1999),       455 (1), 386, arXiv:1511.06930 [astro-ph.CO].
+  Astrophys. J. 517, 565, arXiv:astro-ph/9812133.               Secrest, N., S. von Hausegger, M. Rameez, R. Mohayaee,
+Petter, G. C., R. C. Hickox, D. M. Alexander, A. D. Myers,         and S. Sarkar (2025), Nature Rev. Phys. 7 (2), 68,
+  J. E. Geach, K. E. Whalen, and C. P. Andonie (2023),             arXiv:2501.06450 [astro-ph.CO].
+  Astrophys. J. 946 (1), 27, arXiv:2302.00690 [astro-ph.GA].    Secrest, N. J. (2025), Philosophical Transactions of the Royal
+Rameez, M., R. Mohayaee, S. Sarkar,            and J. Colin        Society of London Series A 383 (2290), 20240027.
+  (2018), Mon. Not. Roy. Astron. Soc. 477 (2), 1772,            Secrest, N. J., R. P. Dudik, B. N. Dorland, N. Zacharias,
+  arXiv:1712.03444 [astro-ph.CO].                                  V. Makarov, A. Fey, J. Frouard, and C. Finch (2015),
+Rengelink, R. B., Y. Tang, A. G. de Bruyn, G. K. Miley,            Astrophys. J. Suppl. 221 (1), 12, arXiv:1509.07289 [astro-
+  M. N. Bremer, H. J. A. Roettgering, and M. A. R. Bremer          ph.GA].
+  (1997), A&AS 124, 259.                                        Secrest, N. J., S. von Hausegger, M. Rameez, R. Mohayaee,
+Riess, A. G., et al. (Supernova Search Team) (1998), Astron.       and S. Sarkar (2022), Astrophys. J. Lett. 937 (2), L31,
+  J. 116, 1009, arXiv:astro-ph/9805201.                            arXiv:2206.05624 [astro-ph.CO].
+Riess, A. G., et al. (2022), Astrophys. J. Lett. 934 (1), L7,   Secrest, N. J., S. von Hausegger, M. Rameez, R. Mohayaee,
+  arXiv:2112.04510 [astro-ph.CO].                                  S. Sarkar, and J. Colin (2021), Astrophys. J. Lett. 908 (2),
+Rigby, E. E., P. N. Best, M. H. Brookes, J. A. Peacock, J. S.      L51, arXiv:2009.14826 [astro-ph.CO].
+  Dunlop, H. J. A. Rottgering, J. V. Wall, and L. Ker (2011),   Sharov, A. S., and I. D. Novikov (1993), Edwin Hubble (Cam-
+  Mon. Not. Roy. Astron. Soc. 416, 1900, arXiv:1104.5020           bridge University Press).
+  [astro-ph.CO].                                                Shu, Y., S. E. Koposov, N. W. Evans, V. Belokurov, R. G.
+Riotto, A. (2003), ICTP Lect. Notes Ser. 14, 317, arXiv:hep-       McMahon, M. W. Auger, and C. A. Lemon (2019), Mon.
+  ph/0210162.                                                      Not. Roy. Astron. Soc. 489 (4), 4741, arXiv:1909.02010
+Robertson, H. P. (1935), Astrophys. J. 82, 284.                    [astro-ph.GA].
+Rubart, M. (2015), The cosmic radio dipole, Ph.D. thesis        Siewert, T. M., M. Schmidt-Rubart, and D. J. Schwarz
+  (University of Bielefeld, Germany).                              (2021), Astron. Astrophys. 653, A9, arXiv:2010.08366
+Rubart, M., D. Bacon, and D. J. Schwarz (2014), Astron.            [astro-ph.CO].
+  Astrophys. 565, A111, arXiv:1402.0376 [astro-ph.CO].          Siewert, T. M., et al. (2020), Astron. Astrophys. 643, A100,
+Rubart, M., and D. J. Schwarz (2013), Astron. Astrophys.           arXiv:1908.10309 [astro-ph.CO].
+  555, A117, arXiv:1301.5559 [astro-ph.CO].                     Singal, A. K. (2011), Astrophys. J. Lett. 742, L23,
+Saadeh, D., S. M. Feeney, A. Pontzen, H. V. Peiris, and            arXiv:1110.6260 [astro-ph.CO].
+  J. D. McEwen (2016), Phys. Rev. Lett. 117 (13), 131302,       Singal, A. K. (2019), Phys. Rev. D 100 (6), 063501,
+  arXiv:1605.07178 [astro-ph.CO].                                  arXiv:1904.11362 [physics.gen-ph].
+Saha, S., S. Shaikh, S. Mukherjee, T. Souradeep, and B. D.      Singal, A. K. (2023), Mon. Not. Roy. Astron. Soc. 524 (3),
+  Wandelt (2021), JCAP 10, 072, arXiv:2106.07666 [astro-           3636, arXiv:2303.05141 [astro-ph.CO].
+  ph.CO].                                                       de Sitter, W. (1917), Mon. Not. Roy. Astron. Soc. 78 (1), 3.
+Sahni, V., and A. A. Starobinsky (2000), Int. J. Mod. Phys.     Slipher, V. M. (1917), Proc. American Phil. Soc. 56, 403.
+  D 9, 373, arXiv:astro-ph/9904398.                             Smoot, G. F. (2007), Rev. Mod. Phys. 79, 1349.
+Sarkar, S. (2008), Gen. Rel. Grav. 40, 269, arXiv:0710.5307     Stewart, J. M., and D. W. Sciama (1967), Nature 216, 748.
+  [astro-ph].                                                   Storey-Fisher, K., D. W. Hogg, H.-W. Rix, A.-C. Eilers,
+Scaramella, R., et al. (Euclid) (2022), Astron. Astrophys.         G. Fabbian, M. R. Blanton, and D. Alonso (2024), As-
+  662, A112, arXiv:2108.01201 [astro-ph.CO].                       trophys. J. 964 (1), 69, arXiv:2306.17749 [astro-ph.GA].
+Schirmer, M., et al. (Euclid) (2022), Astron. Astrophys. 662,   Tammann, G. A., and A. Sandage (1985), Astrophys. J. 294,
+  A92, arXiv:2203.01650 [astro-ph.IM].                             81.
+Schlafly, E. F., A. M. Meisner, and G. M. Green (2019),         Tiwari, P., S. Ghosh, and P. Jain (2019), Astrophys. J. 887,
+  Astrophys. J. Suppl. 240 (2), 30, arXiv:1901.03337 [astro-       175, arXiv:1907.10305 [astro-ph.CO].
+  ph.IM].                                                       Tiwari, P., R. Kothari, A. Naskar, S. Nadkarni-Ghosh, and
+Schlafly, E. F., A. M. Meisner, A. M. Stutz, J. Kainu-             P. Jain (2014), Astropart. Phys. 61, 1, arXiv:1307.1947
+  lainen, J. E. G. Peek, K. Tchernyshyov, H. W. Rix, D. P.         [astro-ph.CO].
+  Finkbeiner, K. R. Covey, G. M. Green, E. F. Bell, W. S.       Tiwari, P.,      and A. Nusser (2016), JCAP 03, 062,
+  Burgett, K. C. Chambers, P. W. Draper, H. Flewelling,            arXiv:1509.02532 [astro-ph.CO].
+                                                                                                                          27
+
+Tiwari, P., G.-B. Zhao, and A. Nusser (2023), Astrophys. J.        and R. B. Tully (2023), Mon. Not. Roy. Astron. Soc.
+  943 (2), 116, arXiv:2207.09477 [astro-ph.GA].                    524 (2), 1885, arXiv:2302.02028 [astro-ph.CO].
+Tucci, M., et al. (Euclid) (2025), arXiv:2503.15306 [astro-      Weinberg, D. H., M. J. Mortonson, D. J. Eisenstein, C. Hi-
+  ph.GA].                                                          rata, A. G. Riess, and E. Rozo (2013), Phys. Rept. 530,
+Turner, M. S. (1991), Phys. Rev. D 44, 3737.                       87, arXiv:1201.2434 [astro-ph.CO].
+Wagenveld, J. D., S. von Hausegger, H.-R. Klöckner, and         Weinberg, S. (1972), Gravitation and Cosmology: Principles
+  D. J. Schwarz (2025), Astron. Astrophys. 697, A112,              and Applications of the General Theory of Relativity (John
+  arXiv:2503.02470 [astro-ph.CO].                                  Wiley and Sons, New York).
+Wagenveld, J. D., H.-R. Klöckner, and D. J. Schwarz             Weinberg, S. (1989), Rev. Mod. Phys. 61, 1.
+  (2023a), Astron. Astrophys. 675, A72, arXiv:2305.15335         Whitford, A. M., C. Howlett, and T. M. Davis (2023), Mon.
+  [astro-ph.CO].                                                   Not. Roy. Astron. Soc. 526 (2), 3051, arXiv:2306.11269
+Wagenveld, J. D., et al. (2023b), Astron. Astrophys. 673,          [astro-ph.CO].
+  A113, arXiv:2302.10696 [astro-ph.CO].                          Wolz, K., D. Alonso, and A. Nicola (2025), JCAP 01, 028,
+Wagenveld, J. D., et al. (2024), Astron. Astrophys. 690, A163,     arXiv:2407.21013 [astro-ph.CO].
+  arXiv:2408.16619 [astro-ph.CO].                                Wright, E. L., et al. (2010), Astron. J. 140, 1868,
+Walker, A. G. (1937), Proc. Lond. Math. Soc. s 2-42 (1), 90.       arXiv:1008.0031 [astro-ph.IM].
+Wang, S., and X. Chen (2019), Astrophys. J. 877 (2), 116,        Yoon, M., D. Huterer, C. Gibelyou, A. Kovács, and I. Sza-
+  arXiv:1904.04575 [astro-ph.GA].                                  pudi (2014), Mon. Not. Roy. Astron. Soc. 445, L60,
+Watkins, R., T. Allen, C. J. Bradford, A. Ramon, A. Walker,        arXiv:1406.1187 [astro-ph.CO].
+  H. A. Feldman, R. Cionitti, Y. Al-Shorman, E. Kourkchi,        Zeldovich, Y. B. (1972), Mon. Not. Roy. Astron. Soc. 160,
+                                                                   1P.
+

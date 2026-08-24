@@ -1,0 +1,640 @@
+                                             Mon. Not. R. Astron. Soc. 000, 1–8 (2013)        Printed 20 September 2018        (MN LATEX style file v2.2)
+
+
+
+
+                                             Lack of large-angle TT correlations persists in WMAP and Planck
+
+                                             Craig
+                                             1
+                                                   J. Copi1? , Dragan Huterer2 †, Dominik J. Schwarz3 ‡ and Glenn D. Starkman1,4 §
+                                                 CERCA/Department of Physics/ISO, Case Western Reserve University, Cleveland, OH 44106-7079, USA
+                                             2 Department of Physics, University of Michigan, 450 Church St, Ann Arbor, MI 48109-1040, USA
+                                             3 Fakultät für Physik, Universität Bielefeld, Postfach 100131, 33501 Bielefeld, Germany
+                                             4 Physics Department, Theory Unit, CERN, CH-1211 Genève 23, Switzerland
+
+
+
+
+                                             Accepted xxxx. Received xxxx; in original form xxxx
+
+
+
+
+arXiv:1310.3831v3 [astro-ph.CO] 3 Jun 2015
+                                                                                      ABSTRACT
+                                                                                      The lack of large-angle correlations in the observed microwave background temperature fluc-
+                                                                                      tuations persists in the final-year maps from WMAP and the first cosmological data release
+                                                                                      from Planck. We find a statistically robust and significant result: p-values for the missing cor-
+                                                                                      relations lying below 0.24 per cent (i.e. evidence at more than 3σ) for foreground cleaned
+                                                                                      maps, in complete agreement with previous analyses based upon earlier WMAP data. A cut-
+                                                                                      sky analysis of the Planck HFI 100 GHz frequency band, the ‘cleanest CMB channel’ of this
+                                                                                      instrument, returns a p-value as small as 0.03 per cent, based on the conservative mask defined
+                                                                                      by WMAP. These findings are in stark contrast to expectations from the inflationary Lambda
+                                                                                      cold dark matter model and still lack a convincing explanation. If this lack of large-angle cor-
+                                                                                      relations is a true feature of our Universe, and not just a statistical fluke, then the cosmological
+                                                                                      dipole must be considerably smaller than that predicted in the best-fitting model.
+                                                                                      Key words: cosmic background radiation – large-scale structure of Universe.
+
+
+
+                                             1     INTRODUCTION                                                                 largest angular scales, especially as they potentially probe different
+                                                                                                                                physics than the small angular scales.
+                                             The first release of cosmological data from the Planck satellite
+                                                                                                                                     Several anomalies at large angular scales discussed in the lit-
+                                             (Planck Collaboration I 2014) and the final analysis of the Wilkin-
+                                                                                                                                erature have been the source of some controversy since the first
+                                             son Microwave Anisotropy Probe (WMAP) (Bennett et al. 2013)
+                                                                                                                                release of the WMAP data (see Bennett et al. 2011; Copi et al.
+                                             confirmed that the inflationary Lambda cold dark matter (ΛCDM)
+                                                                                                                                2010 for reviews). The first of them was already seen by the Cosmic
+                                             model provides an excellent fit to the angular temperature power
+                                                                                                                                Background Explorer (COBE): the temperature two-point angular
+                                             spectrum for multipoles ranging from the quadrupole (` = 2) up
+                                                                                                                                correlation function computed as an average over the complete sky
+                                             to ` = 2500. The effect of gravitational lensing of the cosmic mi-
+                                             crowave background (CMB) has been detected with a very high                                     C(θ) = T (ê1 )T (ê2 ),   ê1 · ê2 = cos θ,        (1)
+                                             statistical significance (25σ) (Planck Collaboration XVII 2014)
+                                             and breaks some parameter degeneracies without reference to non-                   was found to be smaller than expected at large angular scales (Hin-
+                                             CMB observations. Most of the statistical power in the Planck anal-                shaw et al. 1996). Scant attention was given to this observation, due
+                                             ysis comes from high-` multipoles, thus it may not come as a sur-                  in part to the relatively low signal to noise ratio of the COBE ob-
+                                             prise that the best-fitting model traces the high-` data much better               servations, but mostly to the theory-driven shift in attention away
+                                             than those at low-`, where a lack of angular power (in the range                   from the angular correlation function and toward the angular power
+                                             ` = 2 to 32) compared to the best-fitting model is found at the                    spectrum. The lack of correlations on angular scales larger than 60
+                                             99 per cent C.L. (Planck Collaboration XV 2014). Nevertheless,                     degrees was rediscovered almost a decade later by WMAP in their
+                                             it is quite remarkable that none of the models invoking additional,                one-year analysis (Spergel et al. 2003) and analysed in greater de-
+                                             physically well motivated parameters, such as the sum of neutrino                  tail by us for the WMAP three and five-year data releases (Copi
+                                             masses, the number of effective relativistic degrees of freedom, or                et al. 2009). We have emphasized its persistence in the data (con-
+                                             a running of the spectral index, can give rise to a significant im-                trary to some claims), differentiated it from the lowness of the tem-
+                                             provement of the fit (Planck Collaboration XVI 2014). These find-                  perature quadrupole with which it is often confused, and demon-
+                                             ings indicate that some special attention should be devoted to the                 strated how it challenges the canonical theory’s fundamental pre-
+                                                                                                                                diction of Gaussian random, statistically isotropic temperature fluc-
+                                                                                                                                tuations. For related work on the missing large-angle correlations,
+                                             ?
+                                                                                                                                see also Copi et al. (2007); Hajian (2007); Sarkar et al. (2011); Kim
+                                               E-mail: cjc5@cwru.edu
+                                             † E-mail: huterer@umich.edu
+                                                                                                                                & Naselsky (2011); Zhang (2012); Gruppuso (2014).
+                                             ‡ E-mail: dschwarz@physik.uni-bielefeld.de                                               The Planck team presented an analysis of the angular two-
+                                             § E-mail: glenn.starkman@case.edu                                                  point correlation function at a low resolution (Nside = 64) for
+
+                                             c 2013 RAS
+2      C.J. Copi, D. Huterer, D.J. Schwarz and G.D. Starkman
+their four component separation methods (Commander-Ruler,                  plained in this way (Rakić et al. 2006; Francis & Peacock 2010;
+NILC, SEVEM, SMICA) after the U73 mask was used to suppress                Dupé et al. 2011; Rassat & Starck 2013). Although reconstruction
+Galactic residuals. Based on comparison with 103 realizations of           of the local gravitational potential from existing CMB and large-
+the best-fitting model, they find that the probability of obtaining        scale structure data is quite uncertain and subject to biases, such an
+a χ2 between the expected angular two-point correlation function           explanation would indeed be an attractive possibility if only there
+of the best-fitting model and the observed correlation function that       were no lack of correlations on large scales. If the observed lack of
+is at least as large as that measured is 0.883, 0.859, 0.884, and          large-angle correlations is real, then we must explain how the local
+0.855 for the Commander-Ruler, NILC, SEVEM, and SMICA                      gravitational potential manages to align with the primordial tem-
+maps respectively (Planck Collaboration XXIII 2014). However,              perature fluctuations in such a way that the resulting sky has such
+their statistic fails to capture that what is anomalous about the an-      a deficit. In the end this does not change the underlying problem; it
+gular two-point correlation function is not the extent to which it de-     merely rephrases it from one about the CMB to one about the local
+viates from the theoretical expected value of the function. Rather,        gravitational potential.
+as has been the case since the COBE-DMR observation, the perti-                  Clearly, it is important to understand the lack of correlations
+nent anomaly is that above about 60 degrees the angular correlation        at large angular scales in greater detail not just for its own sake, but
+function is very nearly zero. It is this very special way of deviating     also in order to evaluate any proposed explanation for other features
+from our expectation that deserves our attention.                          of the CMB data, especially other large-angle or low-` anomalies.
+      In this work, we analyse the two-point angular correlation
+function at large angles as seen in the final data release of WMAP
+and the first cosmology release of Planck. The anomalous align-
+                                                                           3     TEMPERATURE TWO-POINT ANGULAR
+ments of low multipole modes with each other and with directions
+                                                                                 CORRELATION FUNCTION
+defined by the geometry and motion of the Solar system are dis-
+cussed in a companion paper (Copi et al. 2015). Here we demon-             3.1     Theory
+strate that on the part of the sky outside the plane of the Galaxy the
+                                                                           In the standard CMB analysis a full-sky map of temperature fluctu-
+absence of two-point angular correlations above about 60 degrees
+                                                                           ations, T (ê), is expanded in spherical harmonics as
+remains a robust, statistically significant result, with a p-value be-
+tween about 0.03 and 0.33 per cent depending on the precise map
+                                                                                                           X
+                                                                                                  T (ê) =    a`m Y`m (ê),               (2)
+and Galaxy cut being analysed.                                                                                 `m
+
+                                                                           where the coefficients in the expansion are extracted from the full-
+                                                                           sky as
+2   PHYSICS AT LARGE ANGULAR SCALES                                                                    Z
+                                                                                                                 ∗
+                                                                                              a`m = T (ê)Y`m      (ê) dê.               (3)
+High fidelity measurements of the microwave sky reveal the im-
+prints of primary temperature, density and metric fluctuations in          From these quantities we define the angular power spectrum as
+the early Universe. By observing these fluctuations and analysing
+their statistical properties, we seek a deeper understanding of cos-                                    1 X
+                                                                                               C` ≡              |a`m |2 .               (4)
+mological inflation or any alternative mechanism that produced the                                   2` + 1 m
+initial fluctuations.
+                                                                           Note that the angular power spectrum may always be defined in this
+      Studying modes with wavelengths too large to enable causal
+                                                                           way. Only in the case of Gaussian random, statistically isotropic
+contact across the mode during the radiation and most of the matter
+                                                                           temperature fluctuations will it contain all the statistical informa-
+dominated epochs suggests that we can learn something about the
+                                                                           tion. The full-sky two-point angular correlation function (1) is re-
+physics of inflation without detailed knowledge of the recent con-
+                                                                           lated to the full-sky angular power spectrum via a Legendre series
+tent of the Universe and associated astrophysical details (e.g. reion-
+ization). This motivates us to pay special attention to the largest                                  X 2` + 1
+                                                                                              C(θ) =             C` P` (cos θ),              (5)
+angular scales. Comoving scales that cross into the Hubble radius                                           4π
+                                                                                                           `
+at z ∼ 1 and below are observed at angles larger than 60 degrees.
+Thus features observed at those scales are either of primordial na-        where the P` (cos θ) are Legendre polynomials.
+ture or stem from physics at z . 1, the epoch in the history of the              Unfortunately the full-sky cannot be observed due to fore-
+Universe that we arguably know best.                                       ground contamination. If we let W (ê) represent a mask on the sky
+      To be more precise, at z = 0.91(1.5, 7) the comoving Hubble          (in the simplest case it is zero for pixels removed and one for those
+length equals the length of a comoving arc with an opening angle           included) then cut-sky quantities can be defined in analogy to the
+of 90◦ (60◦ , 18◦ ) for the best-fitting ΛCDM model. These angular         full-sky ones from above. In particular, the cut-sky two-point angu-
+scales correspond roughly to the scales that have been shown to be         lar correlation function is defined as the sky average,
+anomalous in previous works (the quadrupole, octopole, and up to
+                                                                               C cut (θ) ≡ W (ê1 )T (ê1 )W (ê2 )T (ê2 )                          (6)
+modes ` = 10). It is possibly noteworthy that z ∼ 7 corresponds                            P
+to the moment when the Universe is fully reionized.                                          ij W (êi )T (êi )W (êj )T (êj )
+                                                                                         ≡        P                              ,   êi · êj = cos θ,
+      For better or worse, however, the large-angle CMB is also sen-                                 ij W (êi )W (êj )
+sitive to the physics that affects the microwave photons as they
+                                                                           where the sums are over all pairs of pixels separated by an angle
+propagate from their last scattering until their collection by our tele-
+                                                                           θ. This correlation function can be evaluated in harmonic space by
+scopes. The late-time integrated Sachs-Wolfe (ISW) effect could
+                                                                           first expanding the cut-sky in pseudo-a`m as
+potentially correlate the large-angle CMB with the local structure
+of the gravitational potential. Indeed, it has been proposed in the
+                                                                                                            X
+                                                                                             W (ê)T (ê) =     ã`m Y`m (ê),            (7)
+literature that some of the observed CMB anomalies could be ex-                                                     `m
+
+
+                                                                                                                         c 2013 RAS, MNRAS 000, 1–8
+                                                                              Lack of large-angle TT correlations persist                              3
+where
+                          Z                                                            1000
+                 ã`m =                     ∗
+                              W (ê)T (ê)Y`m (ê) dê.             (8)                                                        Full sky
+                                                                                           800
+                                                                                                                               U74 mask
+From these the pseudo-C` are defined by                                                    600
+                                                                                                                               KQ75y9 mask
+                             1 X
+                                                                             C(θ) (µK2 )
+                    C˜` ≡            |ã`m |2 .                     (9)                    400
+                          2` + 1 m
+                                                                                           200
+Following Chon et al. (2004) it can be shown that
+                              X                                                              0
+          C cut (θ) = 2πA(θ)      (2` + 1)C˜` P` (cos θ).          (10)
+                                                                                      −200
+                                       `
+                                                                                                                ΛCDM
+Here the normalization, A(θ), depends on the mask and may be                          −400
+calculated in harmonic space as                                                                  0   20   40   60   80 100     120   140   160   180
+                 1        X                                                                                          θ (deg)
+                    = 2π      (2` + 1)w` P` (cos θ),    (11)
+               A(θ)
+                                  `
+                                                                           Figure 1. Two-point angular correlation function from the inpainted Planck
+where                                                                      SMICA map. The black, dotted line shows the best-fitting ΛCDM model
+                                 1 X                                       from Planck. The shaded, cyan region is the 68 per cent cosmic variance
+                      w` ≡             |w`m |2                     (12)    confidence interval. Included from the SMICA map are the C(θ) calculated
+                              2` + 1 m
+                                                                           on the full-sky (black, solid line) and from two cut skies using the U74 mask
+and the w`m are coefficients from the spherical harmonic expansion         (green, dash-dotted line) and the KQ75y9 mask (red, dashed line). See the
+of the mask,                                                               text for details.
+                               X
+                   W (ê) =       w`m Y`m (ê).               (13)
+                                      `m
+                                                                           information from a map. Without assumptions regarding the prop-
+                                       √                                   erties of this information it cannot be reinserted when a full-sky
+Notice that for the full-sky w`m = 4πδ`0 δm0 so that 2πA(θ) =              map is created. Not even the statistical properties of this informa-
+1/4π and the cut-sky expansion (10) reproduces the full-sky re-            tion can be known without extra assumptions. In fact, the need for
+sult (5), as it must. Finally, since C cut (θ) is a function defined on    masking of a CMB map is precisely due to contaminations in some
+the interval −1 ⩽ cos θ ⩽ 1 it may be expanded in a Legendre               regions of the sky. These contaminated regions are excised from
+series as                                                                  the map so as to not affect deduced properties of the underlying
+                            X 2` + 1 cut                                   theory. Without assumptions a unique reconstruction of a full-sky
+                C cut (θ) =              C` P` (cos θ).            (14)    map (or any quantity relying on the properties of the masked re-
+                                   4π
+                              `                                            gions) cannot be computed sensibly. Particular assumptions may
+Note that it is common to just refer to C(θ) as a single quantity          be reasonable or expected to be valid, regardless, such assumptions
+covering both the full- and cut-sky cases. It should be remembered         are required if the full-sky is to be reconstructed and are not re-
+that whenever a cut-sky C(θ) is discussed it is defined as in Eq. (6)      quired when working solely with cut-sky quantities. For this reason
+and it may be expanded in a Legendre series using the cut-sky C`           the cut-sky two-point angular correlation function will be the sole
+as in Eq. (14).                                                            focus of this work.
+      For a statistically isotropic universe the ensemble average of             At high-`, observed deviations from Gaussianity agree with
+the pseudo-C` (9) is related to the ensemble average of C`cut through      the amount of non-Gaussianity expected from the non-linear contri-
+a mode coupling matrix (Hauser & Peebles 1973) and C`cut pro-              butions of gravitational lensing (Planck Collaboration XXIV 2014).
+vides an unbiased estimator of the theoretical (full-sky) angular          However, at low-`, there are statistically significant anomalies in
+power spectrum (4). Lacking statistical isotropy or some other             the temperature map, such as the alignments of multipoles and the
+model the cut-sky angular power spectrum, C`cut , can still be re-         hemispherical power asymmetry (Copi et al. 2015; Planck Collab-
+lated to the pseudo-C` through the same mode coupling matrix (see          oration XXIII 2014), that are evidence of correlations among the
+Pontzen & Peiris 2010 for a proof of this result) however the utility      a`m (for different values of ` and m), and thus contradict the as-
+of the C˜` or C`cut as estimators of the full-sky or theoretical angular   sumption of Gaussian-random statistically isotropic a`m . This sug-
+power spectrum would be completely unknown in that case.                   gests that the physics underlying the observed sky cannot be char-
+      It should emphasized that the mathematical connection be-            acterized solely by the C` , the statistical quantities prescribed by the
+tween cut-sky quantities, C cut and C`cut , and C˜` does not rely on       canonical model; unless these anomalies are unfortunate ‘flukes’,
+assumptions from a theory. However, when measured quantities are           other statistical tools are not just interesting but necessary. The dif-
+to be related to the properties of the ensemble predicted by a theory      ficultly comes in identifying which are the appropriate ones. The
+assumptions such as Gaussianity and statistical isotropy become            resolution clearly depends on the physics underlying the anoma-
+important and must be identified. Thus, to construct an estimator of       lies. At least until that physics is established, multiple approaches
+the theoretical angular power spectrum from cut-sky observations           will need to be explored.
+– either through the pseudo-C` or a maximum likelihood technique
+– extra assumptions are required. These assumptions may not be
+                                                                           3.2        Analysis of Observations
+valid on large-scales (or low-`) even if they work well on small-
+scales (or high-`).                                                        The two-point temperature angular correlation function for the
+      The simple point being made here is that masking removes             CMB, C T T (θ), has remained mostly unchanged since first mea-
+
+c 2013 RAS, MNRAS 000, 1–8
+4      C.J. Copi, D. Huterer, D.J. Schwarz and G.D. Starkman
+sured by the COBE-DMR (Hinshaw et al. 1996). The resulting                       contribution to better than 1%, it will be far preferable to remove
+curves from the Planck SMICA map are shown in Fig. 1. What is                    the Doppler dipole, and set ` = 1 as the lower limit of the sum
+most striking at first glance may be the difference between the best-            in expression (15). For the upper limit there is some freedom in
+fitting ΛCDM model and the observed C(θ) on both the full and cut                the choice of `max . Since C` ∼ `−2 we would expect that the
+skies (the details of the masks will be discussed below). This is a              result is independent of our choice provided that `max is ‘large
+source of considerable confusion and great care must be taken to                 enough’. However, since we will find small values of S1/2 , the ex-
+not read too much into this. The values of C(θ) at different angular             act choice does have a slight effect on the final values. We have
+separations θ (or more precisely in different angular bins) are cor-             consistently chosen `max = 100 for all calculations of S1/2 in this
+related, so the sizeable deviation between the expected ΛCDM and                 work. The effect of this choice on the value of S1/2 depends on
+the observed curves is not as significant as it may appear. Rather, it           the map and mask employed but is always less than one per cent
+is the very small value of the observed C(θ) on large angular scales             (for `max ⩾ 100). For example, using a larger value of `max with
+that is truly surprising. This is particularly true for the cut skies            the Planck SMICA full-sky map the maximum deviation in S1/2 is
+where there are essentially no correlations above about 60 degrees,              about 0.08 per cent. For this map and the U74 mask the maximum
+except for some small anti-correlation near 180 degrees.                         deviation is about 0.4 per cent. Larger variations in the S1/2 value
+      To quantify this lack of correlations on large angular scales we           occur between the maps as seen in Tables 1 and 2. For example,
+continue to use the statistic first proposed in the WMAP one-year                in Table 1 there is a 0.7 per cent change between the S1/2 value
+analysis (Spergel et al. 2003),                                                  for the Planck SMICA and NILC maps with the U74 mask, how-
+                    Z 1/2                        `X
+                                                                                 ever, even this difference only corresponds to a change in the third
+                                                  max
+                                                                                 digit in the p-value (from 0.191 to 0.195). In practice, the choice
+          S1/2 ≡            [C(θ)]2 d(cos θ) =          C` I``0 C`0 .    (15)
+                      −1                          `=2
+                                                                                 of `max should be used consistently in analysing both the data and
+                                                                                 realizations which will further mitigate its effect.
+As discussed above, this definition applies to both full-sky and cut-                  The calculation of S1/2 has therefore been reduced to finding
+sky maps. For the case of full-sky maps the full-sky C` from Eq. (4)             the angular power spectrum either over the full-sky or cut-sky for
+are used in the sum on the right-hand side, whereas for the case of              some map of the CMB temperature. However, a number of impor-
+cut-sky maps the cut-sky C`cut from Eq. (14) are used. Throughout                tant choices must be made, which we now discuss.
+we will either refer to the S1/2 statistic generically or make it clear                First, there are a number of maps available for analysis. In
+the context in which it is calculated. This statistic has not been op-           each data release, the WMAP team included individual band maps
+timized in any way, except crudely by the choice of the limits of                and a full-sky Independent Linear Combination (ILC) map de-
+integration, particularly the upper one which has been chosen to                 signed to be as close to the foreground-subtracted CMB as possible.
+be a convenient value. We consistently resist the temptation to op-              The Planck team released individual band maps and three different
+timize these limits in order to minimize the oft-repeated criticism              foreground-subtracted maps – NILC, SEVEM, SMICA – in their
+that the statistic is a posteriori. In acknowledgement and partial re-           initial 2013 release, although they had many more, including one
+sponse to that objection, we note that the statistical significance of           they called the Commander-Ruler map2 . Here we will analyse
+the absence of large-angle correlations is not particularly dependent            the seven and nine-year WMAP V and W band maps and the ILC
+either on the precise value of either limit (so long as the range of             map, the Planck High Frequency Instrument (HFI) 100 GHz and
+integration focuses on large scales) nor on the particular choice of             Low Frequency Instrument (LFI) 70 GHz maps (these two chan-
+reasonable integrand.1                                                           nels are expected to be least contaminated by foregrounds), and its
+      The sum in equation (15) shows how to quickly and easily                   NILC, SEVEM, and SMICA maps.3
+calculate S1/2 in terms of the C` or C`cut from the Legendre se-                       Once we have a map, we must also choose the resolution of the
+ries (5) or (14). The I``0 are the components of a matrix of integrals           maps to be analysed. A higher resolution will minimize resolution-
+over products of Legendre polynomials and are simply related to                  dependent effects. On the other hand, to reduce the computation
+the I``0 (1/2) calculated in Appendix A of Copi et al. (2009) by                 time, particularly when generating statistics from realizations of
+(4π)2 I``0 = (2` + 1)(2`0 + 1)I``0 (1/2). The sum in the S1/2 ex-                ΛCDM, a low resolution is preferred. As a compromise we have
+pression (15) ranges from ` = 2 to ` = `max . The lower limit is                 chosen the HEALPIX4 resolution Nside = 128 for all studies in this
+due to the monopole and dipole being removed from the map. We                    work.
+remove the monopole both because its amplitude is significantly                        To work at Nside = 128 we degrade the high resolution maps
+larger than those of the other multipoles and because we are inter-              by averaging over pixels using ud grade from HEALPIX. This
+ested in the correlations among fluctuations not in the background               process follows that used for degrading the masks discussed below.
+value. We remove the entire dipole because it is dominated by the                To gain a computational advantage from working at lower resolu-
+Doppler dipole – the (uninteresting) contribution due to our pe-                 tion, realizations are generated at Nside = 128 directly. Further,
+culiar motion through the Universe; this is approximately two or-                they are only generated including modes up to `max = 100. It has
+ders of magnitude larger than the expected underlying dipole in                  been verified that neither degrading from higher resolutions real-
+the CMB rest frame. Once it is possible to measure the Doppler                   izations nor increasing `max affects the final results. This is not
+
+
+1  In another paper, looking at the predictions for the two-point angular cor-   2  The Commander-Ruler map was subsequently released after this
+relation function of temperature with polarization, specifically the Q Stokes    study was completed.
+parameter (Copi et al. 2013), we optimized the upper and lower limits of in-     3 All CMB data is available from the Lambda site, http://lambda.
+
+tegration, and considered both [C T Q (θ)]2 and C T Q (θ) as integrands in       gsfc.nasa.gov/, including links to both WMAP and Planck results.
+the equivalent of (15). However, in that case we were a priori optimiz-          The Planck results may directly be obtained via the Planck Legacy Archive,
+ing a statistic for a specific purpose – differentiating between two models.     http://archives.esac.esa.int/pla/.
+Furthermore, it was found that replacing [C T Q (θ)]2 in the integrand with      4 The HEALPIX source code is freely available from healpix.
+
+C T Q (θ) makes no qualitative difference in the conclusions.                    sourceforge.net.
+
+                                                                                                                          c 2013 RAS, MNRAS 000, 1–8
+                                                                              Lack of large-angle TT correlations persist                      5
+                                                                          We thus do not make statements about the full-sky CMB, which
+                                                                          at any rate cannot be reliably observed, and for which a maximum-
+                                                                          likelihood estimator may be more appropriate (Efstathiou 2004; Ef-
+                                                                          stathiou et al. 2010; Pontzen & Peiris 2010). Even so, reconstruct-
+                                                                          ing the full-sky from a cut-sky requires extra assumptions and may
+                                                                          introduce its own biases (Copi et al. 2011).
+                                                                                Extracting the C` from a map, particularly from a masked map,
+                                                                          also requires some care. We use SPICE (Chon et al. 2004) for this
+                                                                          purpose since it calculates the C`cut which appear in the Legen-
+                                                                          dre series (14). For cut skies there is the added issue that, even
+                                                                          if the full-sky does not include a monopole or dipole, these modes
+                                                                          will exist in the portion of the sky included for evaluation. If we
+             both      KQ75y9          U74        neither                 knew that the full-sky map did not contain a residual monopole or
+                                                                          dipole, then we could proceed without further concern. Unfortu-
+                                                                          nately, with real data this is not known, particularly for individual
+Figure 2. Masks used in this work. A pixel may be removed by both masks   frequency band maps which definitely have Galactic contamina-
+(dark blue), only the KQ75y9 mask (light blue), only the U74 mask (yel-
+                                                                          tion. We therefore remove the average monopole and dipole from
+low), or by neither mask (red).
+                                                                          all maps prior to extracting the C` . For the monopole, we do this
+                                                                          by subtracting the average value of the temperature over the por-
+surprising given that S1/2 is only weakly dependent on small scale        tion of the sky that is being retained; for the dipole we find the
+and large-` behaviour.                                                    best-fitting dipole over the retained sky and subtract that dipole. (In
+       Even with the existence of cleaned, full-sky maps the con-         SPICE this removal is a built-in feature which we employ in our
+cern of residual contamination, particularly on the largest angular       analysis.) When analysing a cut-sky, this procedure generically in-
+scales, remains. For this reason it is desirable to remove the most       troduces a monopole and dipole (and alters the other multiples) into
+contaminated regions of the sky and only analyse the cleanest ones.       the equivalent full-sky map. Though this may seem to be a problem,
+The Planck analysis used the U73 mask which leaves a sky fraction         again recall that the cut-sky analysis is self-contained and internally
+fsky = 0.73 (Planck Collaboration XXIII 2014). This mask is not           consistent since the data and realizations are treated identically. The
+publicly available but is constructed from the union of the valid-        cut-sky statistics are not estimators of the full-sky, as again made
+ity masks provided with the full-sky maps (Planck Collaboration           clear by this monopole and dipole removal.
+XII 2014). For the NILC, SEVEM, and SMICA maps these masks                      There is also the question of the effect of our motion with re-
+are available. For the Commander-Ruler map only a minimal                 spect to the CMB rest frame on the quadrupole. Just as that motion,
+version of the mask is provided. Taking the union of these four           with velocity β ≡ v/c ∼ 10−3 , induces a dipole with amplitude
+masks produces what we call the U74 mask, a close approximation           O (β) times the monopole, it    also induces a Doppler quadrupole
+of the U73 mask but with fsky = 0.74. For WMAP we use their ex-           (DQ) with amplitude O β 2 times the monopole. The naive ex-
+tended temperature mask from their nine-year data release, named          pectation that since β 2 ∼ 10−6 the DQ will be an unimportant
+KQ75y9, which has fsky = 0.69.                                            contribution to the cosmological quadrupole is not obviously true
+       These masks are provided at high resolution; Nside = 2048          at least in part because the measured quadrupole is much smaller
+for the U74 mask and Nside = 1024 for the KQ75y9 mask. To de-             than the theoretical expectation. For each map we analyse both the
+grade the masks to our working resolution of Nside = 128 we fol-          DQ uncorrected and the DQ corrected map to gauge the importance
+low the prescription defined in Planck Collaboration XXIII (2014):        of this effect. The one exception is the Planck LFI 70 GHz map,
+first the mask is degraded to Nside = 128 using ud grade from             where (at least part of) the DQ has been accounted for in the cali-
+HEALPIX , then any pixel with a value less then 0.8 is set to zero,       bration procedure. See Planck Collaboration V (2014); Copi et al.
+otherwise it is set to one. With this prescription the Nside = 128        (2015) for a more detailed discussion of this issue.
+masks have sky fractions of fsky = 0.72 for U74 and fsky = 0.67                 The effect of the boosted black body DQ correction on S1/2 is
+for KQ75y9.                                                               shown in Tables 1 and 2 where it is found that the effect on p-values
+       Despite the KQ75y9 mask removing more pixels, the U74              is much less than the differences among the Planck maps, and is
+mask is not fully contained within it. A comparison of the two            thus not significant. The DQ correction is frequency-dependent,
+masks is given in Fig. 2. As can be seen, the two masks mostly            and subsequent to this analysis Planck Collaboration XXIII (2014)
+coincide, though there are many small regions of pixels only con-         was updated to include estimates of DQ correction factors for each
+tained in one of the two masks. In particular there are pixels that are   of their released combined maps. Since neither a complete descrip-
+excluded by the U74 mask but included by the KQ75y9 mask and              tion of how these correction factors were calculated nor all the data
+the KQ75y9 mask generally removes more of the region around the           required to calculate such correction factors were made publicly
+Galactic centre than the U74 mask. These small differences have a         available, and since the effect on S1/2 was negligible from the sim-
+noticeable effect on the calculated cut-sky S1/2 .                        ple estimate of the DQ correction, these correction factors have not
+       It is important that comparisons of data and simulations are       been included in our analysis.
+made consistently. In addition to the choices discussed above, cut-
+sky data will always be compared to cut-sky realizations, with the
+maps in all cases treated as similarly as possible. This is particu-
+                                                                          4   RESULTS
+larly important since, as noted above, for cut skies the cut-sky C`
+are employed in the calculation of S1/2 . In this work we are not in-     Histograms of S1/2 values from 106 realizations of the Planck best-
+terested in reconstructing the full-sky angular correlations. Instead,    fitting ΛCDM model (based on their temperature only data) are
+we find that angular correlations on the cut-sky are unusually low.       shown in Fig. 3. Included in the figure are the full-sky and cut-
+
+c 2013 RAS, MNRAS 000, 1–8
+6             C.J. Copi, D. Huterer, D.J. Schwarz and G.D. Starkman
+
+             45000                                                               Table 2. Same as Table 1 now with the DQ corrected maps.
+
+             40000                                              Full sky                                               U74                    KQ75y9
+                                                                U74                    Map                      S1/2 (µK)4    p (%)     S1/2 (µK)4   p (%)
+             35000                                                                WMAP ILC 7yr                    1620.3      0.208       1247.0     0.090
+             30000
+                                                                KQ75y9            WMAP ILC 9yr                    1677.5      0.232       1311.8     0.109
+                                                                                  Planck SMICA                    1606.3      0.202       1075.5     0.053
+
+    Counts
+             25000                                                                Planck NILC                     1618.6      0.208       1096.2     0.058
+             20000                                                                Planck SEVEM                    1692.4      0.239       1210.5     0.082
+
+             15000                                                                WMAP W 7yr                      1839.0      0.304       1128.5      0.064
+             10000                                                                WMAP W 9yr                      1864.2      0.317       1138.3      0.066
+                                                                                  Planck HFI 100                  1707.5      0.245        916.3      0.028
+              5000
+                 0                                                                WMAP V 7yr                      1829.2      0.300       1276.2      0.099
+                     103         104             105               106            WMAP V 9yr                      1840.4      0.304       1268.8      0.097
+                                        S1/2 (µK4 )                               Planck LFI 70                   1801.7      0.287       1282.1      0.101
+
+
+Figure 3. Distribution of S1/2 values from 106 realizations of the best-
+                                                                                                 300
+fitting ΛCDM model for full and masked skies. The shaded regions (green,
+dash-dotted for the U74 mask and red, dashed for the KQ75y9 mask) rep-                                                          WMAP 9yr W band
+resent the spread of the the observed values as given in Tables 1 and 2.                         200                            Planck HFI 100 GHz
+Masking only slightly affects the expected distributions and the observa-
+tions are in the small S1/2 tail of the distribution for both masks considered
+                                                                                                                                WMAP 9yr V band
+                                                                                                                                Planck LFI 70 GHz
+                                                                                   C(θ) (µK2 )
+in this work.                                                                                    100
+
+
+                                                                                                   0
+Table 1. Smallness of S1/2 for maps without the DQ correction. We analyse
+the cleaned maps from Planck: NILC, SEVEM, and SMICA, as well as from
+WMAP: seven and nine-year ILC. We also analyse the individual frequency                     −100
+band maps from Planck: HFI 100 GHz and LFI 70 GHz, as well as from
+WMAP: seven and nine-year W and V bands. For each map, we use both
+the U74 and KQ75y9 masks. In all cases residual monopole and dipole                         −200
+contributions have been subtracted from the map after masking. For each                                0   20    40   60     80 100     120   140   160   180
+map and mask we report the S1/2 value and the associated p-value – the                                                        θ (deg)
+fraction of realizations of ΛCDM in the Planck best-fitting ΛCDM model
+with an S1/2 no larger than the reported value.
+                                                                                 Figure 4. Cut-sky C(θ) using the KQ75y9 mask for individual frequency
+                                  U74                   KQ75y9                   band maps. Shown are correlation functions from the WMAP nine-year W
+         Map               S1/2 (µK)4    p (%)    S1/2 (µK)4   p (%)             (black, solid line) and V (red, dashed line) bands along with the Planck HFI
+                                                                                 100 GHz (green, dash-dotted line) and LFI 70 GHz (blue, dotted line)
+    WMAP ILC 7yr             1582.3      0.193      1225.8     0.085
+                                                                                 maps. The curves for the WMAP seven-year band maps are nearly identical
+    WMAP ILC 9yr             1626.0      0.211      1278.2     0.100
+                                                                                 to those from the nine-year maps and are not included for clarity. In all cases
+    Planck SMICA             1577.7      0.191      1022.3     0.044
+                                                                                 the correlation functions are in excellent agreement across the data releases
+    Planck NILC              1589.3      0.195      1038.2     0.047
+                                                                                 and frequency bands. (Note the range on y-axis has been greatly reduced as
+    Planck SEVEM             1657.7      0.225      1153.4     0.069
+                                                                                 compared to Fig. 1 to allow for any difference to be noticeable by eye.)
+    WMAP W 7yr               1863.6      0.316         1133.9        0.065
+    WMAP W 9yr               1887.1      0.329         1142.6        0.068
+    Planck HFI 100           1682.1      0.235          911.6        0.027       data maps – they are masked, then monopole and dipole are sub-
+                                                                                 tracted before S1/2 is computed. Given that the value of S1/2 on
+  WMAP V 7yr              1845.0      0.307       1290.9         0.104           masked skies is extremely low compared to the typical value, hav-
+  WMAP V 9yr              1850.0      0.309       1281.8         0.101           ing 106 is necessary to make quantitatively precise statements. For
+  Planck LFI 70a            —           —            —              —            each computed value of S1/2 reported, we also report the p-value –
+a The calibration of the Planck LFI 70 GHz channel includes the DQ cor-
+                                                                                 the fraction of realizations (expressed in per cent) that have an S1/2
+rection. See Planck Collaboration V (2014); Copi et al. (2015) for details.
+                                                                                 at least as low. This we interpret as the probability of obtaining a
+                                                                                 value of S1/2 this low by random chance in the best-fitting model
+sky S1/2 . As seen in the figure, masking has a small effect; the                of ΛCDM.
+peak of the distribution is shifted to slightly smaller values due to                  An alternative approach is to allow for variations of the best-
+masking, but this does not have a noticeable change on the tail of               fitting parameters within their error bars, for example by examining
+the distribution. Regardless, in comparing cut-sky S1/2 between the              a Monte Carlo Markov chain of the parameters rather than just per-
+data and our realizations, we always compare the one set of cut-sky              forming realizations of the best-fitting values. (Such an approach
+data to the same set of cut-sky realizations.                                    was taken for example in Copi et al. (2009).) This will affect the
+     The S1/2 values for the various map and mask combinations                   results only weakly, because varying the parameters within their
+are given in Table 1 for the case when the maps are not DQ cor-                  error bars will cause the expected low-` C` to vary by much less
+rected and in Table 2 when the DQ correction has been applied. As                than their cosmic variance.
+discussed above, the realization maps are treated precisely like the                   The cut-sky S1/2 values presented in Tables 1 and 2 show that
+
+                                                                                                                                 c 2013 RAS, MNRAS 000, 1–8
+                                                                             Lack of large-angle TT correlations persist                       7
+the region outside the masks is consistently observed and cleaned in     on these scales. In the best-fitting ΛCDM model, the expected con-
+all the data releases mostly independent of analysis procedures. In      tribution from the dipole alone is very large and generically spoils
+Fig. 4 we plot C(θ) for the WMAP nine-year V and W bands with            the vanishing of C(θ) on large angular scales. Hence, if the van-
+the KQ75y9 mask and the Planck HFI 100 GHz and LFI 70 GHz                ishing correlations are of cosmological origin, then the primordial
+bands also with the KQ75y9 mask. One can see that the cut-sky            dipole is also expected to be very suppressed.
+angular correlation functions are remarkably consistent across in-             To be concrete, the expected value of C1 in the best-fitting
+struments and wavebands. (And also across WMAP data releases.            ΛCDM model is approximately 3300 µK2 . With this value, the C12
+We have chosen not to plot the WMAP seven-year correlation func-         contribution to S1/2 in Eq. (15) alone would contribute approxi-
+tions because they are nearly indistinguishable from the nine-year       mately 2.3 × 105 µK4 to S1/2 . (In principle this could be compen-
+functions.) We can thus place great confidence in the cut-sky S1/2       sated by the cross term, C1 C` with ` 6= 1, which can be negative,
+results derived from WMAP and Planck. These results can be sum-          however, in practice this does not occur owing mainly to the small-
+marized as follows.                                                      ness of C2 .) Roughly, for the C12 contribution to not make the S1/2
+                                                                         ‘too large’ the value of C1 must also not be ‘too large’. For exam-
+   • Regardless of the maps, the cut-sky S1/2 is very low, with p-
+                                                                         ple, requiring the contribution to S1/2 to be comparable to current
+values ranging from 0.027 per cent for the Planck HFI 100 GHz
+                                                                         cut-sky values, that is a contribution of order 1000 µK4 , places a
+map with the KQ75y9 mask to 0.329 per cent for the WMAP nine-
+                                                                         limit C1 . 200 µK2 . This has a probability of occurring by chance
+year W band map with the U74 mask.
+                                                                         in a realization of the best-fitting model (due to cosmic variance) of
+   • The cleaned maps have a smaller variation in S1/2 values with
+                                                                         less than approximately 0.4 per cent. Equivalently, to the extent that
+a p-value always less than about 0.239 per cent for the U74 mask
+                                                                         C1 contributions dominate the value of S1/2 , in order to maintain a
+and less than about 0.109 per cent for the KQ75y9 mask.
+                                                                         p-value for the S1/2 less than 0.4 per cent once the cosmological
+   • The Planck maps typically have smaller S1/2 values than the
+                                                                         dipole is included requires that C1 . 200 µK2 .
+WMAP maps. (The two slight exceptions are the DQ corrected
+                                                                               To summarize, it seems unlikely that a physical mechanism
+Planck LFI 70 GHz band with the KQ75y9 mask and the Planck
+                                                                         would predict that the S1/2 calculated from a dipole-subtracted
+SEVEM map for the U74 mask.)
+                                                                         cut-sky would be small but the S1/2 calculated from a non-dipole-
+   • The only clear systematic trend is that the KQ75y9 mask con-
+                                                                         subtracted cut-sky would not be. This strongly suggests that if the
+sistently yields a lower cut-sky S1/2 than does the U74 mask. Pre-
+                                                                         lack of angular correlations is physical in nature and not a statisti-
+sumably this is due to the larger region around the Galactic centre
+                                                                         cal fluke, then a robust prediction can be made that there is a very
+excluded by the KQ75y9 mask (see Fig 2).
+                                                                         small cosmological dipole. In a future work we will develop this
+   • The DQ correction has little effect, in most cases tending to       prediction more precisely.
+slightly increase S1/2 in the Planck maps and decrease it in the
+WMAP ones. This is in contrast to the importance of applying the
+DQ correction for full-sky alignment studies (Copi et al. 2015).
+                                                                         5   CONCLUSIONS
+      Overall, the data very consistently show a lack of correlations
+on large angular scales outside the Galactic region (as defined by       The CMB shows a lack of correlations on large angular scales. This
+the two masks employed). The p-value for the S1/2 statistic has          can be quantified by the S1/2 statistics proposed by Spergel et al.
+remained small and of comparable size throughout the WMAP data           (2003) which is best calculated on the portion of the sky outside
+releases and now with the first Planck results. This is remarkable       the Galaxy. Unlike attempts to infer properties of the the full-sky
+given the improvements in statistics, cleaning, beams, masks, and        correlation function, the cut-sky S1/2 appears remarkably robust
+other systematics. Further, this is in contrast to the full-sky S1/2     and trustworthy. In our analysis we find that the p-value for the
+which vary significantly from data release to data release and from      observed cut-sky S1/2 in an ensemble of realizations of the best-
+map to map. The behaviour of the full-sky S1/2 is discussed in           fitting ΛCDM model never exceeds 0.33 per cent for any of the
+more detail in Copi et al. (2015). It suffices here to note that the     analysed combinations of maps and masks, with and without cor-
+full-sky value of S1/2 varies from a low of 3766 (µK4 ), from the        recting for the Doppler quadrupole. This has remained the case
+Planck SEVEM map, to a high of 8938 (µK4 ), calculated from the          since the WMAP three-year data release,5 for both the individual
+seven-year WMAP reported values of the angular power spectrum            (V and W ) band maps and the synthesized (ILC) map, and for the
+based on a maximum likelihood estimator.                                 first Planck data release for both the LFI and HFI band maps and
+                                                                         all the released synthesized maps (NILC, SMICA, SEVEM), when
+      We again emphasize that the two-point angular correla-
+                                                                         masked by either the WMAP KQ75y9 mask or the less conserva-
+tion function that we have calculated is monopole and dipole-
+                                                                         tive U74 mask (which is very similar to the Planck U73 mask). The
+subtracted. However, once the Doppler dipole is sufficiently well
+                                                                         HFI 100 GHz map – the presumably cleanest CMB band of HFI–
+determined, only it should be removed and the underlying cosmo-
+                                                                         with the more conservative mask that has been defined by WMAP
+logical contribution to the dipole retained in C(θ) and thus in S1/2 .
+                                                                         gives a p-value of only 0.03 per cent! As general trends we note
+      The measured lack of angular correlations in the dipole-
+                                                                         that a larger mask tends to produce smaller p-values, the Doppler
+subtracted sky has an important consequence for the primordial
+                                                                         quadrupole correction does not change the results in a significant
+dipole. If the missing correlations are not a very unlikely fluke, nor
+                                                                         way, and the Planck data yield somewhat smaller p-values than the
+(as our results indicate) due to systematic errors or map-cleaning
+                                                                         WMAP data.
+procedures, then they are caused by some as-yet unidentified phys-
+                                                                               This apparent lack of temperature correlations on large an-
+ical mechanism. It is difficult to see how such a mechanism would
+                                                                         gular scales is striking. It is a robust observation that increases in
+set C(θ) to be nearly zero on angular scales greater than 60 degrees
+when the primordial dipole is subtracted, and yet somehow not also
+do so if the dipole were included. Instead, for a physical mechanism     5 The one-year WMAP release yielded slightly higher p-values – 0.38 per
+we would expect the total angular correlation function including         cent for the V band, and 0.64 per cent for the W band (Copi et al. 2007;
+the contribution of the cosmological dipole to also be nearly zero       Copi et al. 2009).
+
+c 2013 RAS, MNRAS 000, 1–8
+8      C.J. Copi, D. Huterer, D.J. Schwarz and G.D. Starkman
+statistical significance from COBE to WMAP to Planck. The con-              ing Cluster. We acknowledge the use of the Legacy Archive for
+sistency of the lack of angular correlations greatly reduces the like-      Microwave Background Data Analysis (LAMBDA), part of the
+lihood of instrumental issues as a cause. Since all three missions          High Energy Astrophysics Science Archive Center (HEASARC).
+observed the same sky, we could be unlucky and live in a very atyp-         HEASARC/LAMBDA is a service of the Astrophysics Science
+ical realization of the Universe. A method of testing this hypothesis       Division at the NASA Goddard Space Flight Center. This paper
+has been proposed that would utilize the upcoming Planck polar-             made use of observations obtained with Planck (http://www.
+ization data (Copi et al. 2013). If it is not a statistical fluke and not   esa.int/Planck), an ESA science mission with instruments
+an instrumental issue, it still could be caused by foregrounds. This        and contributions directly funded by ESA Member States, NASA,
+appears also unlikely as the lack of correlations is consistently seen      and Canada.
+in individual bands as well as in foreground cleaned maps. Thus,
+to the best of our knowledge, the lack of angular correlations is in
+contradiction with the idea of scale invariant, isotropic and Gaus-         REFERENCES
+sian perturbations seeded by cosmological inflation.
+      Attempts to explain this lack of correlations should also ad-          Bennett C.L. et al., 2011, ApJS, 192, 17
+dress the various other anomalous aspects observed in the mi-                Bennett C.L. et al., 2013, ApJS, 208, 20
+crowave sky. It turns out that the lack of angular correlations puts         Chon G., Challinor A., Prunet S., Hivon E., Szapudi I., 2004, MN-
+very severe constraints on such models. For example, a plausible              RAS, 350, 914
+explanation for the alignments of multipole vectors or for the hemi-         Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2007, Phys.
+spherical asymmetry observed might have been contamination by                 Rev. D, 75, 023507
+unaccounted foregrounds; however, one cannot easily understand               Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2009, MN-
+how a hypothetical foreground, which presumably should be uncor-              RAS, 399, 295
+related with the primordial temperature fluctuations, could cause an         Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2010, Adv.
+almost exact cancellation of the primordial fluctuations at angular           Astron., 2010, 78
+scales above 60 degrees.                                                     Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2011, MN-
+      Several attempts have been made to explain the absence of               RAS, 418, 505
+large-angle correlations as being due to an unknown foreground               Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2013, MN-
+or, more generally, by altering the procedure by which one arrives            RAS, 434, 3590
+at the cleaned maps. Indeed, when the cleaned maps are altered               Copi C.J., Huterer D., Schwarz D.J., Starkman G.D., 2015, MN-
+in any way the microwave sky can easily be made to appear less                RAS, 449, 3458
+anomalous. This is not surprising; almost any random modification            Dupé F.X., Rassat A., Starck J.L., Fadili M.J., 2011, A&A, 534,
+of the observed maps will make them less anomalous. Though the                A51
+removal of anomalies may be a side effect of improved analysis               Efstathiou G., 2004, MNRAS, 348, 885
+procedures, using their removal as a basis for judging the effective-        Efstathiou G., Ma Y., Hanson D., 2010, MNRAS, 407, 2530
+ness of such a procedure is misguided.                                       Francis C.L., Peacock J.A., 2010, MNRAS, 406, 14
+      Finally, we emphasize that in order to be convincing, new the-         Górski K.M., Hivon E., Banday A.J., Wandelt B.D., Hansen F.K.,
+oretical models to explain the observed large-angle anomalies must            Reinecke M., Bartelmann M., 2005, ApJ, 622, 759
+be based on the statistics of realizations of that model, not just on        Gruppuso A., 2014, MNRAS, 437, 2076
+having the mean values of the model agree with observations. In              Hajian A., 2007, astro-ph/0702723
+other words, CMB map realizations based on the underlying new                Hauser M.G., Peebles P.J.E., 1973, ApJ, 185, 757
+model should have p-values for the measured statistics that are not          Hinshaw G., Branday A.J., Bennett C.L., Górski K.M., Kogut A.,
+unusually small.                                                              Lineweaver C.H., Smoot G.F., Wright E.L., 1996, ApJ, 464, L25
+      The large-angle temperature-temperature correlations in the            Kim J., Naselsky P., 2011, ApJ, 739, 79
+CMB outside the Galaxy have been anomalously low in all relevant             Planck Collaboration I, 2014, A&A, 571, A1
+maps since the days of the COBE-DMR. The final WMAP release                  Planck Collaboration V, 2014, A&A, 571, A5
+and the initial Planck release confirm that anomaly. After twenty            Planck Collaboration XII, 2014, A&A, 571, A12
+years, we still await a satisfactory explanation.                            Planck Collaboration XV, 2014, A&A, 571, A15
+                                                                             Planck Collaboration XVI, 2014, A&A, 571, A16
+                                                                             Planck Collaboration XVII, 2014, A&A, 571, A17
+                                                                             Planck Collaboration XXIII, 2014, A&A, 571, A23
+ACKNOWLEDGEMENTS                                                             Planck Collaboration XXIV, 2014, A&A, 571, A24
+                                                                             Pontzen A., Peiris H.V., 2010, Phys. Rev. D, 81, 103008
+We acknowledge valuable communications and discussions with
+                                                                             Rakić A., Räsänen S., Schwarz D.J., 2006, MNRAS, 369, L27
+F. Bouchet, C. Burigana, J. Dunkley, G. Efstathiou, K. Ganga,
+                                                                             Rassat A., Starck J.L., 2013, A&A, 557, L1
+P. Naselsky, H. Peiris, C. Räth and D. Scott. GDS and CJC are
+                                                                             Sarkar D., Huterer D., Copi C.J., Starkman G.D., Schwarz D.J.,
+supported by a grant from the US Department of Energy to the
+                                                                              2011, Astropart. Phys., 34, 591
+Particle Astrophysics Theory Group at CWRU. DH has been sup-
+                                                                             Spergel D.N. et al., 2003, ApJS, 148, 175
+ported by the DOE, NSF, and the Michigan Center for Theoretical
+                                                                             Zhang S., 2012, ApJ, 748, L20
+Physics. DJS is supported by the DFG grant RTG 1620 ‘Models of
+gravity’. DH thanks the Kavli Institute for Theoretical Physics and
+GDS thanks the Theory Unit at CERN for their respective hospital-           This paper has been typeset from a TEX/ LATEX file prepared by the
+ity. This work made extensive use of the HEALPIX package (Górski           author.
+et al. 2005). The numerical simulations were performed on the
+facilities provided by the Case ITS High Performance Comput-
+
+                                                                                                                 c 2013 RAS, MNRAS 000, 1–8
+
