@@ -17,7 +17,9 @@ counterexample must fail (it does; the genuine quote passes). Result: **50/50 PA
 manual acceptances** — 42 on the primary criterion (all tokens + ≥30% prose shingles), 7
 PASS_NUMERIC (≥2 tokens all present in the bound source, prose degraded by table/math
 rendering; source spans recorded in the ledger), 1 PASS_PHRASE (no numbers; exact 8-word span
-recorded). All 50 bound to their declared sources. Pins at freeze:
+recorded). Binding: 43/50 matched within the source files their harvest entries declare; 7
+(agy entries that declare no `sources/` path inline) fell back to the harvest's whole source
+directory — flagged `bound_to_declared: false` in the ledger, not hidden. Pins at freeze:
 - HARVEST_CMB_BOUNDS.md (gpt2) sha256 beba95a7c8f5093e1a962ccffefa465038a58b6f3c83bfaff8ba6ddbe4662714
 - HARVEST_H0_ANISOTROPY.md (agy) sha256 6d97c67900348e5569dd802478b6bb8628640cd45e58b5b6e21c243286883f5a
 - b_verify_quotes.py (v4) sha256 f1664ce081392c21a2050249eeb16c6a813adcb0981f60a1518a19105732d81c
