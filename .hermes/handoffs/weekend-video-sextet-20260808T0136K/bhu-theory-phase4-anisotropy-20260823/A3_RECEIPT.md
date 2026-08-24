@@ -27,10 +27,10 @@ on unmodeled TOV-side optics. NOT CALIBRATED; recorded as such.
 
 ## Observable (a) — CMB / sky isotropy: the surviving discriminant, now quantified.
 
-The observed sky is uniform (to the known anomalies) out to z_ls ≈ 1100, which in-model
-requires the last-scattering sphere to lie inside the shock in every direction: z_c(μ) > z_ls
-for all μ — or an unmodeled TOV-side conspiracy that mimics FRW (non-generic; recorded as the
-only escape). Three regimes in t_obs (units of t_crit; σ = 1/3 model):
+The observed sky is uniform (to the known anomalies) out to z_ls ≈ 1100. *(Wording conformed
+to Amendment 1:)* keeping every direct CMB ray inside the shock — z_c(μ) > z_ls for all μ — is
+the SUFFICIENT hiding condition; whether a boundary-crossing ray is observationally
+inconsistent is UNCALIBRATED (TOV-side optics unmodeled), so necessity is not established. Three regimes in t_obs (units of t_crit; σ = 1/3 model):
 
 1. **t_obs < t_vis = 0.27644**: the shock has never entered the past light cone. The sky is
    pure FRW, perfectly isotropic, ANY offset allowed. The model is CONSISTENT AND UNTESTABLE
@@ -39,9 +39,10 @@ only escape). Three regimes in t_obs (units of t_crit; σ = 1/3 model):
    cone but beyond last scattering. Fractional width **W = (t_1100−t_vis)/(t_crit−t_vis) =
    1.39×10⁻³**. Within it the offset is bounded: x_max/r_* runs from **1.1×10⁻³** at the
    band's bottom to 0 at its top (table in a3_window.csv). Both tunings are ~10⁻³.
-3. **t_obs > t_1100**: the boundary crosses inside z_ls somewhere on the sky; a generic
-   TOV side produces order-unity sky differences (A2's z_c tables). EXCLUDED by observed
-   isotropy, absent the conspiracy.
+3. **t_obs > t_1100**: the boundary crosses inside z_ls somewhere on the sky. *(Conformed:)*
+   the crossing GEOMETRY is order-unity anisotropic (A2's z_c tables), but what a crossing
+   direction looks like observationally is uncalibrated — this regime is CONSTRAINED ONLY IF
+   TOV-side optics are computed; it is not excluded by this track.
 
 **The geometric statement Track C inherits** *(wording conformed to Amendment 1: sufficiency, not calibration)*: the observable-scale version of this branch —
 boundary inside the past light cone — keeps all direct CMB rays interior only in a temporal band of width ~1.4×10⁻³ with
@@ -66,9 +67,11 @@ CMB bounds, and nothing here presumes the answer.
 Regime 1 above ("t_obs < t_vis: ANY offset allowed") is an OVERCLAIM, caught by A4's failed
 check: t_vis is the CENTER observer's first visibility; an offset observer's last-scattering
 sphere pokes past the shock earlier (at t = 0.99 t_vis, a 30% offset already has a 97° cap).
-Additionally, folding in opacity (crossings at z > z_ls are unobservable even inside the past
-cone), the trichotomy COLLAPSES TO A DICHOTOMY governed by one constraint surface:
-consistent ⇔ no cap ⇔ **x_off < x_max(t_obs)**, with x_max(t) the A3 formula extended to all t.
+Additionally, folding in opacity for the photon channel (crossings at z > z_ls are invisible
+to direct post-recombination photons; the z_ls screen is a sharp approximation), the trichotomy
+reduces to one GEOMETRIC surface: **x_off < x_max(t_obs)** is the sufficient no-cap hiding
+condition, with x_max(t) the A3 formula extended to all t. *(Conformed to Amendment 1: this is
+sufficiency for ray containment, not an observational iff.)*
 The corrected regime map and numbers are A4's (`a4_regime_map.csv`); the marginal "band" of
 this receipt survives only as the t-slice where x_max(t) is between 0 and its t_vis value.
 
