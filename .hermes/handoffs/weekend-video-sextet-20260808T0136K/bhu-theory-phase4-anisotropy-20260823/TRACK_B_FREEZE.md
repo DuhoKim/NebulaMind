@@ -7,14 +7,22 @@ that under gates.
 
 ## Verification receipt
 
-Verifier `b_verify_quotes.py` **v5**, rebuilt twice under codex gate pressure (HOLD →
-HOLD-residue → this version). What v5 proves for every quote:
+Verifier `b_verify_quotes.py` **v6**, rebuilt three times under codex gate pressure (HOLD →
+residue → residue → this version). What v5 proves for every quote:
 
-- **Ordered numeric relations**, not token sets: each quote's numbers (with signs and
-  range/exponent hyphens preserved as tokens) must appear IN ORDER within a bounded window of
-  one bound source. The gate's three corruption classes — absent fragments, range order swaps
-  ("5–10"→"10–5"), exponent sign flips (10⁻⁵→10⁺⁵) — are embedded as mandatory self-tests and
-  all FAIL.
+- **Ordered numeric relations with operator conflict-detection**: each quote's numbers
+  (units unglued, leading zeros canonicalized) must appear IN ORDER within a bounded window of
+  one bound source, and the source gap between consecutive numbers must not assert a relation
+  DIFFERENT from the quote's (±, ×, <, >, +, −) — a silent gap is tolerated because PDF
+  rendering loses operators, but pm cannot become times and + cannot become −. FIVE corruption
+  classes are embedded as mandatory self-tests and all FAIL: absent fragments, range order
+  swaps ("5–10"→"10–5"), exponent sign flips (10⁻⁵→10⁺⁵), glued-unit value changes
+  ("3.7mK"→"99.9mK"), and operator substitution ("3362.08 ± 0.99"→"× 0.99").
+- **Typography-honest sources**: three quotes (Darling 2022; Efstathiou 2003 ×2) cannot be
+  relation-verified against their PDF text layers, whose two-column/superscript rendering
+  scrambles reading order; their arXiv LaTeX sources were fetched at freeze
+  (radio_darling_2022_source.tex, anomaly_efstathiou2003_source.tex) and bound via the map —
+  the tex layer preserves the true order and all three verify strictly there.
 - **Per-entry source binding, zero fallbacks**: entries that declare `sources/` paths bind to
   them; agy's entries (which declare none — its tarballs unpacked to one root) bind through
   `b_binding_map.json`, an explicit per-entry map with the identification evidence recorded
@@ -27,12 +35,13 @@ HOLD-residue → this version). What v5 proves for every quote:
 
 **Result: 50/50 PASS, zero manual acceptances, zero directory fallbacks.**
 
-Pins at freeze (v5):
+Pins at freeze (v6):
 - HARVEST_CMB_BOUNDS.md (gpt2) sha256 beba95a7c8f5093e1a962ccffefa465038a58b6f3c83bfaff8ba6ddbe4662714
 - HARVEST_H0_ANISOTROPY.md (agy) sha256 6d97c67900348e5569dd802478b6bb8628640cd45e58b5b6e21c243286883f5a
-- b_verify_quotes.py (v5) sha256 2d8b1eca007d69b4724614fdecdd6b77a167151f5c6e8b30f12dad9babfb68cc
-- b_verify_ledger.json sha256 c049a98a69db800a583724778e59c40008eeb6e64f45a579fa3285931bcedb85
-- b_binding_map.json sha256 74e53f0c706ddf2c23856d17ffc090ea67d57ed7127cd0174374ef01550687ae
+- b_verify_quotes.py (v6) sha256 1c9886ea208c383339f4a0274c3197f7558a9fb126a65d85f40ba147ce35fd44
+- b_verify_ledger.json sha256 0ca5467891bd6613988a1e828bf348a742cfae73a41929eb9efed304a89da643
+- b_binding_map.json sha256 37775c9ac4f7da98ae0c44238932495b0e8b28791033a487efef910c07da53f7
+  (identification counts corrected to occurrence counts per the regate: CatWISE 18, eigenvalues 11)
 
 ## B2 — CMB dipole (the discriminant-adjacent set)
 

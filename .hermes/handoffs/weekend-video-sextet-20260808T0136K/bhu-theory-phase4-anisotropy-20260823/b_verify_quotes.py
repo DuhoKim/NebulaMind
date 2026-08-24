@@ -16,8 +16,12 @@ import re, glob, json, hashlib, unicodedata, pathlib, sys
 def norm(s):
     s = unicodedata.normalize("NFKD", s)
     for a,b in [("’","'"),("‘","'"),("“",'"'),("”",'"'),("−","-"),("–","-"),("—","-"),
-                ("≲","<"),("≃","~"),("≈","~"),("×","x"),("^","")]:
+                ("±"," pm "),("×"," times "),("≲"," lt "),("≳"," gt "),("<"," lt "),
+                (">"," gt "),("≃","~"),("≈","~"),("^","")]:
         s=s.replace(a,b)
+    s = re.sub(r"(?<=\d)\s*([+-])\s*(?=\d)", r" \1 ", s)  # 331+161-107 -> 331 + 161 - 107
+    s = re.sub(r"(?<=\d)(?=[a-zA-Z])"," ",s)   # split numbers glued to units: 3.7mK -> 3.7 mK
+    s = re.sub(r"(?<=[a-zA-Z])(?=\d)"," ",s)   # and identifiers: S03 -> S 03 (symmetric)
     s = re.sub(r"\\[a-zA-Z]+"," ",s.replace("$","").replace("{"," ").replace("}"," "))
     s = re.sub(r"(?<=\d)\s*-\s*(?=\d)", " - ", s)      # range/exponent hyphen -> token
     s = re.sub(r"(?<![a-zA-Z0-9])([+-])(?=\s*\d)", r" \1 ", s)  # sign before number -> token
@@ -25,28 +29,69 @@ def norm(s):
     s = re.sub(r"(?<!\d)\.(?!\d)"," ",s)               # bare periods out; decimals stay
     return re.sub(r"\s+"," ",s).lower().strip()
 
-def expr_seq(q):
-    """Ordered sequence of numeric/sign tokens. A +/- token is kept ONLY when the next
-    token is numeric (drops prose dashes; keeps range hyphens and exponent signs)."""
-    toks=norm(q).split(); out=[]
+REL={"pm":"pm","times":"times","x":"times","lt":"lt","gt":"gt","+":"+","-":"-"}
+RELWORDS=re.compile(r"\b(pm|times|x|lt|gt)\b|(?<![a-zA-Z0-9])[+-](?=\s*\d)")
+def parse_items(q):
+    """Quote -> ordered items: ('num',v) and ('rel',r) with relations kept only adjacent
+    to numerics (prose survives)."""
+    toks=norm(q).split(); items=[]
+    def isnum(t): return re.fullmatch(r"\d+(?:\.\d+)?", t) is not None
+    def canon(t):   # strip leading zeros ("03"->"3"), keep "0"/"0.32"
+        return re.sub(r"^0+(?=\d)","",t) if "." not in t else t
     for i,t in enumerate(toks):
-        if re.fullmatch(r"\d+(?:\.\d+)?", t): out.append(t)
-        elif t in "+-" and i+1<len(toks) and re.fullmatch(r"\d+(?:\.\d+)?", toks[i+1]): out.append(t)
+        if isnum(t): items.append(("num",canon(t)))
+        elif t in REL:
+            prevn = i>0 and isnum(toks[i-1]); nextn = i+1<len(toks) and isnum(toks[i+1])
+            if (t in "+-" and nextn) or (t not in "+-" and (prevn or nextn)):
+                items.append(("rel",REL[t]))
+    return items
+
+def expr_seq(q):
+    """Back-compat: the ordered numeric+relation token list (ledger field)."""
+    return [v for _,v in parse_items(q)]
+
+def gap_rels(text):
+    out=[]
+    for m in RELWORDS.finditer(text):
+        w=m.group(1) or m.group(0)
+        out.append(REL.get(w,w))
     return out
 
-def find_ordered(seq, ntext, gap=400):
-    """Find seq as in-order tokens in ntext, each within `gap` chars of the previous.
-       Returns (start,end) char offsets or None. Greedy with restarts."""
-    if not seq: return None
-    pats=[re.compile(r"(?<![0-9.])"+re.escape(t)+r"(?![0-9])") if t not in "+-" else
-          re.compile(r"(?<![a-zA-Z0-9])"+re.escape(t)+r"(?=\s*\d)") for t in seq]
-    for m0 in pats[0].finditer(ntext):
-        pos=m0.end(); start=m0.start(); ok=True
-        for p in pats[1:]:
-            m=p.search(ntext,pos,pos+gap)
+def find_ordered(seq_or_q, ntext, gap=400):
+    """Match the quote's numeric tokens in order; between consecutive numbers, the source
+    gap must not assert a RELATION DIFFERENT from the quote's (a silent gap is tolerated —
+    PDF rendering loses operators — but pm cannot become times, + cannot become -, etc.).
+    Accepts either a parsed item list or a raw normalized-token seq (nums+rels)."""
+    if seq_or_q and isinstance(seq_or_q[0], tuple): items=seq_or_q
+    else:
+        items=[]
+        for t in (seq_or_q or []):
+            items.append(("rel",t) if t in ("pm","times","lt","gt","+","-") else ("num",t))
+    nums=[(i,v) for i,(k,v) in enumerate(items) if k=="num"]
+    if not nums: return None
+    def npat(t): return re.compile(r"(?<![0-9.])0*"+re.escape(t)+r"(?![0-9])")
+    first=npat(nums[0][1])
+    for m0 in first.finditer(ntext):
+        pos_end=m0.end(); start=m0.start(); ok=True; last_idx=nums[0][0]
+        for idx,v in nums[1:]:
+            m=npat(v).search(ntext,pos_end,pos_end+gap)
             if not m: ok=False; break
-            pos=m.end()
-        if ok: return (start,pos)
+            g=ntext[pos_end:m.start()+1]   # +1: the digit gives +/- lookahead its context
+            want=[val for k,val in items[last_idx+1:idx] if k=="rel"]
+            have=gap_rels(g)
+            for w in want:
+                if any(h!=w for h in have): ok=False; break
+            if not ok: break
+            if not want and False: pass
+            pos_end=m.end(); last_idx=idx
+        if ok:
+            # leading relation (e.g. 'lt 40' at sequence head): check 30 chars before
+            lead=[v for k,v in items[:nums[0][0]] if k=="rel"]
+            if lead:
+                pre=ntext[max(0,start-30):start]
+                for w in lead:
+                    if any(h!=w for h in gap_rels(pre)): ok=False
+        if ok: return (start,pos_end)
     return None
 
 def shingles(q,n=6):
@@ -180,7 +225,21 @@ def selftest():
     assert find_ordered(expr_seq(e),srcx) is not None
     eflip="the dipole moment is 3.15 x 10 + 5 in these units"
     assert find_ordered(expr_seq(eflip),srcx) is None, "EXPONENT-SIGN flip must fail"
-    print("self-test: genuine passes; absent-fragment, order-swap, and exponent-sign corruptions ALL fail")
+    # regate2 counterexamples
+    fq=norm(open("platoon/gpt2_trackb_cmb/sources/dipole_ferreira_quartin_2011.08385v2.txt",
+                 encoding="utf-8",errors="replace").read())
+    gq="we can put an upper limit on the intrinsic amplitude: 3.7mK (95% CI)"
+    bq="we can put an upper limit on the intrinsic amplitude: 99.9mK (95% CI)"
+    assert find_ordered(expr_seq(gq),fq) is not None, "genuine glued-unit quote must pass"
+    assert not find_ordered(expr_seq(bq),fq), "GLUED-UNIT value corruption must fail"
+    pl=norm(open("platoon/gpt2_trackb_cmb/sources/dipole_planck2018_overview_1807.06205v2.txt",
+                 encoding="utf-8",errors="replace").read())
+    gp="Planck 2018 ... 3362.08 ± 0.99"
+    bp="Planck 2018 ... 3362.08 × 0.99"
+    assert find_ordered(expr_seq(gp),pl) is not None, "genuine pm expression must pass"
+    assert not find_ordered(expr_seq(bp),pl), "PM->TIMES operator corruption must fail"
+    print("self-test: genuine passes; absent-fragment, order-swap, exponent-sign, glued-unit,")
+    print("           and pm->times operator corruptions ALL fail")
 
 selftest()
 ledger=[]
