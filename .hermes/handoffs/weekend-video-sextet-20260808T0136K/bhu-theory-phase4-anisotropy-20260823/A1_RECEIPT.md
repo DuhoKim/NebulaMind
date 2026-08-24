@@ -43,3 +43,12 @@ The shock starts at the Big Bang at the speed of light infinitely many Hubble le
 Hubble length (N = 1) — the white-hole crossing — at t = t₀ with the TOV side gone dust-like
 (p̄, ρ̄ → 0), matching the paper's OS-limit asymptotics. t(√N) spans t/t₀ = 2.8e-11 at
 √N = 1e5 to 1 at √N = 1.
+
+## Addendum (2026-08-24 A2 opening): anchor label corrected
+
+The receipt above says the shock "reaches one Hubble length (N = 1) … at t = t₀". The anchor is
+right; the LABEL is wrong against the paper's notation: §6's t₀ is the FIRST-VISIBILITY time
+(photon from the Big Bang shock reaching the FRW center), and the N = 1 white-hole crossing is
+t_crit, with 1.8 ≤ t_crit/t₀ ≤ 4.5 (6.3). My tabulated t is in units of t_crit (as is gpt1's —
+their "N=1 horizon event has t=1"). A2 computes t_vis from the A1 solution and checks it lands
+inside (6.3)'s band; results in A2_RECEIPT.md.
