@@ -11,3 +11,4 @@
 - [ ] One line to Duho's pane with the report link (publisher does it).
 
 Division per Blanc's relay, rearrangement rights acknowledged. — Tori
+- 11:00 KST Tori: Hwao's trio-overnight-20260825/ structure is canonical; this dir's BHU_HALF_TORI.md is superseded by DRAFT_TORI_BHU_HALF.md there; my 11:09 publisher cron deleted (Hwao publishes).
