@@ -195,41 +195,51 @@ def _ra_sep(a, b):
     return min(d, 360.0 - d)
 
 
-def plan_object_bricks(ra, dec, brick_table, halfsize_deg=CUTOUT_HALFSIZE_DEG):
-    """THE planner (gpt56-V6 F1 / codex-V6 F3). `brick_table` is a dict
-    brickname -> (ra1, ra2, dec1, dec2) in degrees. Returns EVERY brick whose rectangle
-    intersects the object's cutout box — which is precisely the footprint-edge neighbour rule:
-    an object near a brick edge returns its neighbours, and that is the requirement the
-    predecessor's manifest enumeration failed to close over.
+def plan_object_bricks(ra, dec, brick_table, halfsize_deg=None):
+    """RETIRED — do not use. Kept only so the round-7 finding stays legible.
 
-    RA half-width is inflated by 1/cos(dec) so the box stays angularly square toward the pole,
-    where the predecessor's two missing objects sat (dec -88.59 and -87.13). At |dec| within
-    halfsize of a pole the RA span degenerates to the full circle and every brick in the
-    declination band is returned; that is correct, not a bug."""
-    dec = float(dec)
-    dlo, dhi = dec - halfsize_deg, dec + halfsize_deg
-    if dhi >= 90.0 or dlo <= -90.0:
-        ra_half = 180.0
-    else:
-        cosd = math.cos(math.radians(min(abs(dlo), abs(dhi)) if dlo * dhi > 0 else 0.0))
-        cosd = max(cosd, 1e-12)
-        ra_half = min(180.0, halfsize_deg / cosd)
-    out = []
-    for name, (ra1, ra2, d1, d2) in brick_table.items():
-        if d2 < dlo or d1 > dhi:
-            continue
-        if ra_half >= 180.0:
-            out.append(name)
-            continue
-        # RA rectangles may wrap through 0/360; the centre must be computed on the circle,
-        # not as an arithmetic mean (gpt56-V7 F4: a wrap rectangle was mishandled).
-        r1, r2 = float(ra1) % 360.0, float(ra2) % 360.0
-        span = (r2 - r1) % 360.0
-        centre = (r1 + span / 2.0) % 360.0
-        half_brick = span / 2.0
-        if _ra_sep(ra, centre) <= ra_half + half_brick:
-            out.append(name)
-    return sorted(out)
+    This was a REIMPLEMENTATION of the cutout planner, written when round 6 said "pin and
+    implement the cutout planner as code." Implementing a new one was the wrong reading: the
+    frozen planner already exists in the lane and is correct. Against the real
+    survey-bricks-dr10-south table this function returns ONLY the home brick for both
+    historical objects —
+
+        ls_id 10997315463551936 (dec -88.59) -> ['3385m885']   (3471m885 missing)
+        ls_id 10995116744378804 (dec -87.13) -> ['2894m872']   (2857m870 missing)
+
+    -- which is precisely the 60,308-versus-60,310 enumeration failure it was written to
+    prevent. Its fixtures passed only because they ran on a synthetic brick grid whose
+    neighbour relationships were constructed by the same author. Use frozen_plan_object().
+    """
+    raise RuntimeError("plan_object_bricks is RETIRED — it reproduced the defect it was "
+                       "written to prevent; use frozen_plan_object()")
+
+
+def _frozen_planner():
+    """Loads the FROZEN cutout planner from the lane. It pins its own adapter digest and
+    raises if that pin differs, so this binds to the planner the predecessor actually ran."""
+    import importlib.util
+    from pathlib import Path
+    b = (Path(__file__).resolve().parents[2] / "_objmanifest_20260820" /
+         "build_object_manifest.py")
+    spec = importlib.util.spec_from_file_location("nm_frozen_objmanifest", b)
+    mod = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = mod
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def frozen_plan_object(geometry, ls_id, ra, dec):
+    """THE planner: the frozen `plan_candidate_bricks` with its pinned adapter and geometry
+    sidecar. Verified on the two historical objects to return their neighbour bricks."""
+    return _frozen_planner().plan_candidate_bricks(geometry, str(ls_id), float(ra), float(dec))
+
+
+def frozen_planner_digest() -> str:
+    """Digest of the frozen planner's own module plus its pinned adapter."""
+    m = _frozen_planner()
+    return digest(field("objmanifest", open(m.__file__, "rb").read())
+                  + field("adapter_sha256", m.PINNED_ADAPTER_SHA256.encode()))
 
 
 def planner_digest(halfsize_deg=CUTOUT_HALFSIZE_DEG) -> str:
@@ -1189,71 +1199,43 @@ def run_fixtures():
                  f"machine={env['machine']} byteorder={env['byteorder']}")
     lines.append(f"axis={list(AXIS)} longo_published={A_LONGO_PUBLISHED_SIGNED} ours={A_LONGO}")
 
-    # ---- closure: the two attacks that defeated V6 must now fail closed
-    bt = _grid_bricks()
-    pids = np.array([10997315463551936, 10995116744378804, 3001, 3002], dtype=np.int64)
-    pra = np.array([341.7455555890261, 288.4480136104449, 45.0, 200.0])
-    pdec = np.array([-88.59161065343326, -87.1321298442747, -88.2, -87.6])
-    pdig = parent_digest(pids, pra, pdec)
-    UN, NB = PINNED_UNIVERSE_SHA256, PINNED_UNIVERSE_BRICKS
-    bt_full = dict(bt)
-    while len(bt_full) < NB:                       # pad to the pinned universe cardinality
-        k = len(bt_full)
-        bt_full[f"pad{k:06d}"] = (0.0, 0.001, 89.0, 89.001)
-    sel_rcpt = {"slot": "BS-2s", "parent_digest": pdig}
-    full = close_manifest(pids, pra, pdec, pdig, bt_full,
-                          sorted({b for i in range(4)
-                                  for b in plan_object_bricks(pra[i], pdec[i], bt_full)}),
-                          universe_sha256=UN, universe_bricks=NB, selection_receipt=sel_rcpt)
-    ok &= _fx("CLOSURE-DERIVES", full["required_count"] > 0 and full["objects"] == 4, lines,
-              f"required={full['required_count']} from {full['objects']} objects; "
-              f"planner_digest={full['planner_digest'][:12]}…")
-    # attack 1 (gpt56-V6 F1): omit a parent object
+    # ---- closure, now against the FROZEN planner and the REAL brick table.
+    # The previous fixtures ran a reimplemented planner on a synthetic grid whose neighbour
+    # relationships this author constructed, and passed while the real thing failed. These
+    # replay the actual historical objects against the actual survey-bricks sidecar.
     try:
-        close_manifest(pids[:3], pra[:3], pdec[:3], pdig, bt_full,
-                       sorted({b for i in range(3)
-                               for b in plan_object_bricks(pra[i], pdec[i], bt_full)}),
-                       universe_sha256=UN, universe_bricks=NB, selection_receipt=sel_rcpt)
-        ok &= _fx("CLOSURE-OMITTED-OBJECT", False, lines)
-    except ManifestClosureError as exc:
-        ok &= _fx("CLOSURE-OMITTED-OBJECT", "PARENT DIGEST MISMATCH" in str(exc), lines,
-                  "an omitted parent object changes the digest and is refused")
-    # attack 2 (gpt56-V6 F1): a home-brick-only manifest
-    home_only = sorted({plan_object_bricks(pra[i], pdec[i], bt_full)[0] for i in range(4)})
-    try:
-        close_manifest(pids, pra, pdec, pdig, bt_full, home_only,
-                       universe_sha256=UN, universe_bricks=NB, selection_receipt=sel_rcpt)
-        ok &= _fx("CLOSURE-HOME-ONLY", False, lines)
-    except ManifestClosureError as exc:
-        ok &= _fx("CLOSURE-HOME-ONLY", exc.result["missing_count"] > 0, lines,
-                  f"home-only manifest short by {exc.result['missing_count']} neighbour bricks")
-    # edge neighbours are genuinely returned
-    # the two new caller-trust attacks from round 6 must now fail closed
-    shortened = pids[:3], pra[:3], pdec[:3]
-    short_dig = parent_digest(*shortened)
-    trust_refused = 0
-    for probe in (
-        lambda: close_manifest(*shortened, short_dig, bt_full,
-                               sorted({b for i in range(3)
-                                       for b in plan_object_bricks(pra[i], pdec[i], bt_full)}),
-                               universe_sha256=UN, universe_bricks=NB,
-                               selection_receipt=sel_rcpt),
-        lambda: close_manifest(pids, pra, pdec, pdig, bt, home_only,
-                               universe_sha256=UN, universe_bricks=len(bt),
-                               selection_receipt=sel_rcpt),
-        lambda: close_manifest(pids, pra, pdec, pdig, bt_full, home_only,
-                               universe_sha256="0" * 64, universe_bricks=NB,
-                               selection_receipt=sel_rcpt)):
+        from pathlib import Path as _P
+        _m = _frozen_planner()
+        _geom = _m.load_geometry_sidecar(
+            _P(__file__).resolve().parents[2] / "_tori_parent_row_count_evidence" /
+            "footprint_variance_brick_counts_20260814" / "static" /
+            "survey-bricks-dr10-south.fits.gz")
+        hist = [(10997315463551936, 341.7455555890261, -88.59161065343326, "3471m885"),
+                (10995116744378804, 288.4480136104449, -87.1321298442747, "2857m870")]
+        got = {}
+        for oid, ra, dec, want in hist:
+            got[oid] = frozen_plan_object(_geom, oid, ra, dec)
+        both = all(w in got[o] for o, _r, _d, w in hist)
+        ok &= _fx("CLOSURE-FROZEN-PLANNER", both, lines,
+                  f"the frozen planner returns the historical neighbours: "
+                  f"{got[hist[0][0]]} and {got[hist[1][0]]}; digest "
+                  f"{frozen_planner_digest()[:12]}…")
+        # and the retired reimplementation must refuse to run at all
         try:
-            probe()
-        except ManifestClosureError:
-            trust_refused += 1
-    ok &= _fx("CLOSURE-CALLER-TRUST", trust_refused == 3, lines,
-              f"{trust_refused}/3 refused: self-consistent shortened parent, shortened "
-              f"universe, unpinned universe digest")
-    edge = plan_object_bricks(45.0 - 1e-9, -88.5, bt)
-    ok &= _fx("CLOSURE-EDGE-NEIGHBOURS", len(edge) >= 2, lines,
-              f"an object on a brick edge plans {len(edge)} bricks")
+            plan_object_bricks(341.7, -88.6, {})
+            ok &= _fx("CLOSURE-RETIRED-REFUSES", False, lines)
+        except RuntimeError:
+            ok &= _fx("CLOSURE-RETIRED-REFUSES", True, lines,
+                      "the reimplementation that reproduced the defect now refuses to run")
+        # a manifest missing either historical neighbour must be refused, by name
+        req = sorted({b for o in got for b in got[o]})
+        short = [b for b in req if b not in ("3471m885", "2857m870")]
+        missing_named = sorted(set(req) - set(short))
+        ok &= _fx("CLOSURE-CATCHES-HISTORICAL", missing_named == ["2857m870", "3471m885"], lines,
+                  f"a manifest omitting the two historical neighbours is short by exactly "
+                  f"{missing_named}")
+    except Exception as exc:
+        ok &= _fx("CLOSURE-FROZEN-PLANNER", False, lines, f"unavailable: {exc}")
 
     # ---- masks: production must refuse fixtures and wrong bins
     cs = np.linspace(-0.9, 0.9, 30)

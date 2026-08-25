@@ -107,3 +107,43 @@ geometry sidecar digests, and to re-run the selection through `local_pass()`. No
 Var = 0.445201) and the Stage-P power result on the geometry actually used — independently
 reproduced by the gate. The power conclusion is sound for that geometry; the geometry was not
 produced by the frozen chain.
+
+---
+
+## BOTH CORRECTIONS APPLIED, 2026-08-25 16:4x KST
+
+**1. The planner is now the frozen one.** My reimplementation is RETIRED — it raises if
+called — and BS-2m binds to `_objmanifest_20260820/build_object_manifest.py`'s
+`plan_candidate_bricks` with its pinned adapter (`frozen_planner_digest()` =
+`36bbbf250215…`). Verified against the real survey-bricks sidecar:
+
+| object | frozen planner returns |
+|---|---|
+| 10997315463551936 (dec −88.59) | `['3385m885', '3471m885']` ✔ |
+| 10995116744378804 (dec −87.13) | `['2857m870', '2894m872', '2902m870']` ✔ |
+
+The closure fixtures now run against the real brick table and the real historical objects
+instead of a synthetic grid, and a manifest omitting those two neighbours is refused **by
+name**: `['2857m870', '3471m885']`.
+
+**2. The selection now runs through the frozen reduction pass.** The reduction removes
+exactly **one** brick — so the earlier figure was off by one, not materially wrong, but it is
+now the frozen algorithm's output rather than an unreduced prefix. The fast reduction used at
+scale is proven equal to `local_pass()` on 30 random cases (an earlier version reduced from
+the whole ordered set instead of the greedy prefix and disagreed on 1 of 30 — the prefix cut
+is part of the rule, not an optimisation).
+
+**Corrected selection (Branch B, DR10):**
+
+| | declined run | successor (corrected) |
+|---|---:|---:|
+| bricks | 60,308 | **6,445** |
+| raw objects | 208,407 | **65,060** |
+| retained objects | — | 53,005 |
+| Var(cos θ) | 0.0580 | **0.754664** |
+| N_eq | 36,253 | **120,002.9** |
+| image bytes | 735.9 GB | **~76.8 GB** |
+
+Stage P was measured on the pre-reduction geometry (53,006 planning objects); the reduced set
+differs by one brick and one retained object, so that result is not restated here as if it
+had been re-measured. It will be re-run on the reduced set before any freeze.

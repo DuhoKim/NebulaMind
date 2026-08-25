@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+"""Removal pass equivalent to the frozen local_pass's removal loop, done in O(n) per scan.
+
+Identity used: for weighted SSE with S1 = sum n_i c_i, S2 = sum n_i c_i^2, N = sum n_i,
+    SSE            = S2 - S1^2 / N
+    SSE without j  = (S2 - n_j c_j^2) - (S1 - n_j c_j)^2 / (N - n_j)
+so an entire removal scan costs one vector pass instead of |S| full recomputations.
+Agreement with the frozen local_pass is proven on random small cases before production use.
+"""
+import sys
+from pathlib import Path
+import numpy as np
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "ref"))
+import successor_ref_v4 as R
+
+
+def sse_without(n, c, S1, S2, N):
+    Nj = N - n
+    with np.errstate(invalid="ignore", divide="ignore"):
+        out = (S2 - n * c * c) - (S1 - n * c) ** 2 / Nj
+    return np.where(Nj > 0, out, 0.0)
+
+
+def reduce_removals(brickid, c, n_ret, target):
+    """Frozen sequence: cut the greedy order at the smallest prefix reaching `target`, THEN
+    remove. (An earlier version reduced from the whole ordered set and disagreed with the
+    frozen local_pass on 1 of 30 random cases — the prefix cut is part of the rule, not an
+    optimisation.) Removal rule: ascending removal-loss, ties by brickid; remove the first
+    whose removal keeps L >= target; repeat until none applies."""
+    bid = np.asarray(brickid, dtype=np.int64)
+    cc = np.asarray(c, dtype=np.float64)
+    nn = np.asarray(n_ret, dtype=np.float64)
+    csum_N = np.cumsum(nn); csum_1 = np.cumsum(nn * cc); csum_2 = np.cumsum(nn * cc * cc)
+    with np.errstate(invalid="ignore", divide="ignore"):
+        Lpref = np.where(csum_N > 0, csum_2 - csum_1 ** 2 / csum_N, 0.0)
+    hit = np.nonzero(Lpref >= target)[0]
+    if hit.size == 0:
+        raise RuntimeError("greedy order never reaches the target on retained counts")
+    cut = int(hit[0]) + 1
+    keep = np.zeros(len(bid), dtype=bool)
+    keep[:cut] = True
+    removed = []
+    while True:
+        n, cv, b = nn[keep], cc[keep], bid[keep]
+        N = float(n.sum()); S1 = float((n * cv).sum()); S2 = float((n * cv * cv).sum())
+        L = S2 - S1 * S1 / N
+        cand = sse_without(n, cv, S1, S2, N)
+        loss = L - cand
+        legal = cand >= target
+        if not legal.any():
+            return keep, L, removed
+        idx = np.nonzero(legal)[0]
+        pick = idx[np.lexsort((b[idx], loss[idx]))[0]]      # ascending loss, then brickid
+        gpos = np.nonzero(keep)[0][pick]
+        keep[gpos] = False
+        removed.append(int(bid[gpos]))
+
+
+def prove_agreement(trials=30, seed=11):
+    rng = np.random.default_rng(seed)
+    checked = 0
+    for t in range(trials):
+        n = int(rng.integers(18, 26))                        # above N_EXACT: heuristic branch
+        bid = np.arange(200, 200 + n, dtype=np.int64)
+        c = np.round(rng.uniform(-1, 1, n), 3)
+        nraw = rng.integers(1, 40, n).astype(np.int64)
+        nret = R.retained_counts(nraw)
+        if (nret > 0).sum() < 5:
+            continue
+        order, _ = R.greedy_ledger(bid, c, nraw)
+        full = R.sse(nret, c)
+        target = 0.55 * full
+        try:
+            ref_sel, ref_L = R.local_pass(bid, c, nraw, nret, order, target)
+        except RuntimeError:
+            continue
+        keep, L, _rm = reduce_removals(bid[order], c[order], nret[order], target)
+        fast_set = sorted(int(x) for x in bid[order][keep])
+        ref_set = sorted(int(bid[i]) for i in ref_sel)
+        if fast_set != ref_set:
+            raise AssertionError(f"trial {t}: fast {fast_set} != frozen {ref_set}")
+        checked += 1
+    return checked
+
+
+if __name__ == "__main__":
+    print(f"removal pass agrees with the frozen local_pass on {prove_agreement()} random cases")
