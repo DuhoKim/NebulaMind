@@ -234,6 +234,22 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
             # re-trigger the detector that surfaced it
             if head.lstrip().startswith("# RETIRED") or "RETIRED" in f.name:
                 continue
+            # A decision that has been GIVEN must leave this list. Two shapes:
+            # the artifact records its own resolution ("EFFECTIVE BY SIGNATURE"),
+            # or a sibling *_GO_RECORD / *_RULING captures the ruling that a
+            # brief was waiting for. Without this the list showed the signed
+            # memo and an already-granted go as open items within hours of
+            # Duho deciding them — the staleness this detector exists to end.
+            if re.search(r"EFFECTIVE BY SIGNATURE|DECISION (?:GIVEN|RECORDED)|"
+                         r"RULING RECORDED", head, re.I):
+                continue
+            if re.search(r"_GO_RECORD|_RULING\b", f.name, re.I):
+                continue
+            stem = f.name.rsplit(".", 1)[0]
+            base = re.sub(r"_(BRIEF|MEMO|DRAFT)(_\d{8})?$", "", stem, flags=re.I)
+            if any(g.name != f.name and re.match(re.escape(base) + r"_(GO_RECORD|RULING)",
+                                                 g.name, re.I) for g in d.glob("*.md")):
+                continue
             m = pat.search(head)
             if m:
                 out.append({"file": f.name,
