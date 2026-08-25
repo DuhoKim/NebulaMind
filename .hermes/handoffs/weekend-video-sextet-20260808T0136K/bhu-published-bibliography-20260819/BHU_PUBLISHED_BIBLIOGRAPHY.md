@@ -413,7 +413,16 @@ deriving no observational discriminant beyond the length-scale consistency. Read
 not the text's): the anti-Copernican geometry implies in-principle radial anisotropies, but the
 paper does not compute any.
 Record: recalled by the gate's training-memory attack, missing from bibliography AND harvest; the
-programme's founding cosmology paper. The black-hole-interior version of this construction is
+programme's founding cosmology paper.
+Phase 4 (2026-08-25, gated PASS both engines): this branch's geometry now carries a
+quantified SUFFICIENCY surface — an observer offset below x_max(t_obs) keeps every direct
+post-recombination CMB ray inside the exact-FRW interior (pre-horizon epochs; other
+messengers unanalyzed). Its only near-threshold signature is a single circular cap around
+one axis, and the frozen large-angle anomalies are NOT morphology-compatible with it
+(localization and patch-character fail on all seven frozen rows; scale evidence absent).
+Class unchanged — CONSISTENCY-ONLY; the named path to a calibrated test is TOV-side optics,
+uncomputed by anyone. Receipts: `../bhu-theory-phase4-anisotropy-20260823/`.
+ The black-hole-interior version of this construction is
 entry 37 (PNAS 2003); here the shock sits outside any horizon.
 
 **37. J. Smoller & B. Temple (2003). "Shock-wave cosmology inside a black hole." PNAS 100, 11216–11218.**
@@ -442,7 +451,16 @@ use. Explicitly restricted to shocks OUTSIDE the Schwarzschild radius (A > 0), a
 is that outside that radius the solutions model explosions, not collapse. No observational
 content; the cosmological framing is one sentence (the FRW core may be "a star or the universe as
 a whole", with the big bang beginning as a shock-wave explosion per their earlier PRD paper).
-Record: kimi recall R5; the programme's method precursor, predating entry 36. The
+Record: kimi recall R5; the programme's method precursor, predating entry 36.
+Phase 4 (2026-08-25, gated PASS both engines): this branch's geometry now carries a
+quantified SUFFICIENCY surface — an observer offset below x_max(t_obs) keeps every direct
+post-recombination CMB ray inside the exact-FRW interior (pre-horizon epochs; other
+messengers unanalyzed). Its only near-threshold signature is a single circular cap around
+one axis, and the frozen large-angle anomalies are NOT morphology-compatible with it
+(localization and patch-character fail on all seven frozen rows; scale evidence absent).
+Class unchanged — CONSISTENCY-ONLY; the named path to a calibrated test is TOV-side optics,
+uncomputed by anyone. Receipts: `../bhu-theory-phase4-anisotropy-20260823/`.
+ The
 inside-the-horizon step the BHU reading cares about is entirely in later entries (36 stays
 outside horizons too; entry 37 goes inside).
 
