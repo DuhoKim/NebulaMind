@@ -201,6 +201,34 @@ def build_operator_answers(source: Dict[str, Any], septet: Dict[str, Any],
 
 
 
+
+def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
+    """Files in a campaign dir whose head contains a Duho-decision phrase.
+
+    Track C's brief said "draft for Duho's go" for two days and the cockpit
+    showed awaiting-Duho as empty, because that list only reads paper rows.
+    This claims exactly what a grep establishes — the phrase is present — and
+    no more: whether the decision has since been GIVEN lives in panes and
+    relays, so rows are labelled as candidates to confirm, not open items.
+    """
+    out: List[Dict[str, Any]] = []
+    pat = re.compile(r"(?:for|awaiting|requires)\s+Duho'?s?\s+(?:go|signature|decision|ruling)", re.I)
+    try:
+        for f in sorted(d.glob("*.md")):
+            try:
+                head = f.read_text(errors="ignore")[:600]
+            except OSError:
+                continue
+            m = pat.search(head)
+            if m:
+                out.append({"file": f.name,
+                            "phrase": m.group(0),
+                            "age_h": round((time.time() - f.stat().st_mtime) / 3600.0, 1)})
+    except OSError:
+        pass
+    return out[:5]
+
+
 def build_active_campaigns() -> List[Dict[str, Any]]:
     """The lanes that are actually RUNNING, which the paper matrix cannot show.
 
@@ -353,6 +381,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                            if parked else age_h),
             # The memo is a DRAFT that says so; the cockpit must not imply it is in
             # force. Parking the write-up does NOT decline the study.
+            "duho_items": _duho_decision_items(pre),
             "note": ("record final: mechanism unbeaten in 21 rounds, science never "
                      "contradicted; the decision memo is still an unsigned DRAFT"
                      if final_rec else
@@ -388,6 +417,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             "verdict": verdict,
             "gate_age_h": (round((time.time() - newest.stat().st_mtime) / 3600.0, 1)
                            if newest else None),
+            "duho_items": _duho_decision_items(cur),
             "note": None,
         })
     return out
@@ -2975,7 +3005,7 @@ async function load() {
         const age = c.gate_age_h != null ? `<span class="micro${stale ? ' warn' : ''}">${c.gate_age_h}h ago</span>` : '';
         return `<div class="row"><b>${esc(c.lane)}</b> <span class="micro">${esc(c.who)}</span>
           <span>${esc(c.detail || '')}</span> ${v} ${age}
-          ${trHtml}${c.note ? `<div class="micro warn">${esc(c.note)}</div>` : ''}</div>`;
+          ${(c.duho_items||[]).length ? `<div class="micro warn">decision-shaped: ${c.duho_items.map(i=>`${esc(i.file)} (“${esc(i.phrase)}”, ${i.age_h}h)`).join(' · ')} — confirm in lane whether ruled</div>` : ''}${trHtml}${c.note ? `<div class="micro warn">${esc(c.note)}</div>` : ''}</div>`;
       }).join('') : '<div class="empty">No active campaign detected — if work is running, this is a blind spot, not silence.</div>';
       const mx = (d && d.septet_matrix) || {};
       const papers = mx.papers || [];
