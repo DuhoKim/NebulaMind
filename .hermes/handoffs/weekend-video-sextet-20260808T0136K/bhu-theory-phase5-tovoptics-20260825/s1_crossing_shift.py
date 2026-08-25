@@ -41,13 +41,17 @@ def doppler(beta,mu):                 # 1+z across the junction
 # therefore tested nothing). The physical no-jump limit is the shock weakening to nothing,
 # i.e. sqrt(N) -> infinity on the gated orbit, where beta_rel must go to ZERO. Test the
 # approach to zero and its rate, not merely that beta is subluminal.
-i_far=max(range(len(S)), key=lambda i: Q[i])
-b_far=beta_rel(SP[i_far], v2_of(U[i_far],V[i_far],SP[i_far]))
-i_mid2=min(range(len(S)), key=lambda i: abs(Q[i]-10.0))
-b_mid2=beta_rel(SP[i_mid2], v2_of(U[i_mid2],V[i_mid2],SP[i_mid2]))
-chk("LC1 no-jump limit: beta_rel -> 0 as the shock weakens (sqrtN -> inf), as 1/sqrtN",
-    abs(b_far)<1e-4 and abs(b_far)<abs(b_mid2)/100,
-    f"beta(sqrtN={Q[i_far]:.0f})={b_far:.2e} vs beta(sqrtN=10)={b_mid2:.4f}")
+# Evaluated inside the resolved region: the extreme endpoint (sqrtN ~ 1e5) is where sigma-u
+# cancels against 10-digit storage, as LC5/LC6 characterise, so testing the limit there would
+# measure arithmetic rather than physics. sqrtN = 1e3 is two decades inside that.
+def _b_at(qtarget):
+    i=min(range(len(S)), key=lambda k: abs(Q[k]-qtarget))
+    return Q[i], beta_rel(SP[i], v2_of(U[i],V[i],SP[i]))
+q_far,b_far=_b_at(1e3); q_mid,b_mid2=_b_at(10.0)
+rate=abs(b_mid2/b_far)/(q_far/q_mid)      # must be 1 if beta ~ 1/sqrtN
+chk("LC1 no-jump limit: beta_rel -> 0 as the shock weakens, at exactly the 1/sqrtN rate",
+    abs(b_far)<2e-3 and abs(rate-1.0)<1e-3,
+    f"beta({q_far:.0f})={b_far:.3e}, beta({q_mid:.0f})={b_mid2:.4f}, rate ratio={rate:.6f}")
 
 # LC2 — both fluid speeds subluminal on the whole gated orbit
 bad=[]
