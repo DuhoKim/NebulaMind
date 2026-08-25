@@ -214,7 +214,13 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
     out: List[Dict[str, Any]] = []
     pat = re.compile(r"(?:for|awaiting|requires)\s+Duho'?s?\s+(?:go|signature|decision|ruling)", re.I)
     try:
-        for f in sorted(d.glob("*.md")):
+        # newest first, and superseded/refuted forms skipped — the first cut of
+        # this listed four SUPERSEDED memo revisions and capped out before the
+        # LIVE unsigned memo, which is the one that matters
+        files = sorted((f for f in d.glob("*.md")
+                        if "SUPERSEDED" not in f.name and "REFUTED" not in f.name),
+                       key=lambda f: f.stat().st_mtime, reverse=True)
+        for f in files:
             try:
                 head = f.read_text(errors="ignore")[:600]
             except OSError:
