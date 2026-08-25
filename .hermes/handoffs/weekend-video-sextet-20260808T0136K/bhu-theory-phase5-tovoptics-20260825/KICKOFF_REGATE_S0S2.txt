@@ -1,0 +1,34 @@
+RE-GATE — Phase 5 S0–S2, after the four fixes. Verify, then attack what is new.
+
+You (or the other engine) issued a HOLD on this line. Both prior verdicts are in this
+directory: GATE_S0S2_VERDICT.md (codex) and KGATE_S0S2_VERDICT.md (kimi). The four items
+kimi's §5 required are now done. Verify EACH against the files, then attack the fixes
+themselves — a fix that introduces a new error is worse than the error it replaced.
+
+The four, and where to check them:
+1. Numeric bounds on the withdrawn line are NOT CLAIMED, with dated pointers: see the
+   WITHDRAWAL POINTER sections appended to S0_RECEIPT.md, S2_RECEIPT.md, S3_RECEIPT.md.
+   The correction was ALSO applied where it bites — P2_P4_RECEIPT.md now carries a
+   monopole-NORMALISATION correction (divide by 1+monopole, not merely subtract), moving the
+   binding bound from 1.05e-3 to 1.585e-3. Check that figure independently; kimi's verdict
+   proposed 1.58e-3 and the lane's recomputation agrees, so verify it is not coincidence.
+2. s2_transfer.py: the stale 3.86e-6 printout is bannered as WITHDRAWN/NOT CLAIMED.
+3. s1_crossing_shift.py: the optics inference is labelled DERIVED, and the relativistic shock
+   relation v1v2=(p2-p1)/(e2-e1) is now DERIVED IN-LANE from the Taub junction conditions
+   instead of citing a textbook. **Check that derivation line by line** — it is new, it is
+   load-bearing for S1, and an error in it would be mine and undetected.
+4. S0_RECEIPT.md carries the withdrawal pointer.
+
+Also attack, since they are new or newly relied upon:
+5. Is the monopole normalisation itself right? An observer measures against the sky mean
+   T_FRW(1+monopole) — is that the correct normalisation for this observable, and is dividing
+   the whole monopole-subtracted pattern by (1+monopole) the right implementation?
+6. METHOD_FINDING_BLIND_DOUBLES.md claims an instructed assumption is not independently
+   validated by agreement. Is that reasoning sound, and does it under- or over-state what the
+   gpt1 S0 double actually established?
+
+NOT in scope: Phase 5b's P1 physics (separately gated later), and S1's law beta_rel=-1/sqrt(N),
+which kimi's verdict already states passes every attack.
+
+Write your verdict to the filename given in your dispatch instruction. PASS_S0S2_FIXED or
+HOLD_<reason>, concrete objections only. Do not modify other files.
