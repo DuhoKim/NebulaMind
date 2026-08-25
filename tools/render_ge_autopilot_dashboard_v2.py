@@ -229,6 +229,10 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
                 head = f.read_text(errors="ignore")[:600]
             except OSError:
                 continue
+            # a retirement note SAYS "Duho's ruling" — the ruled item must not
+            # re-trigger the detector that surfaced it
+            if head.lstrip().startswith("# RETIRED") or "RETIRED" in f.name:
+                continue
             m = pat.search(head)
             if m:
                 out.append({"file": f.name,
