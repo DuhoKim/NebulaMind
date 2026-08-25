@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import html
 import json
 import os
@@ -202,6 +203,68 @@ def build_operator_answers(source: Dict[str, Any], septet: Dict[str, Any],
 
 
 
+def _pin_mismatches(d: "Path") -> List[Dict[str, Any]]:
+    """Frozen artifacts whose bytes no longer match the hash they were frozen at.
+
+    A freeze record exists so a later reader can prove the text has not moved.
+    On 2026-08-25 Phase 5b was frozen at 51c3452a, Duho gave his go against that
+    hash, and the brief was edited three minutes later — the pin stopped
+    verifying and nothing said so. The lane's own rule is that amendments go in
+    a dated addendum and the frozen file does not change, so a mismatch is
+    either a broken rule or a stale pin; both need a human, and neither is an
+    open decision.
+
+    Computed, never asserted: read the sha out of the freeze record, hash the
+    named file, compare.
+    """
+    out: List[Dict[str, Any]] = []
+    try:
+        for g in d.glob("*.md"):
+            if not re.search(r"FREEZE|GO_RECORD", g.name, re.I):
+                continue
+            if g.name.startswith("_tmp_"):
+                continue                      # an intermediate is not a freeze record
+            # Only LIVE freezes. A pin inside an old gate table is a snapshot of
+            # a revision at a moment, not a claim of immutability, and documents
+            # legitimately advance past it: the 08-15 DESI gate pinned an
+            # amendment at Rev 2 that a later gate moved to Rev 3, and pinned a
+            # candidate that has since been promoted (it now carries the frozen
+            # file's own hash). Both verified by hand as correct-and-drifted, so
+            # reporting them would be pure noise on a closed lane.
+            if time.time() - g.stat().st_mtime > 7 * 86400:
+                continue
+            head = g.read_text(errors="ignore")[:6000]
+            # Pair each filename with the NEAREST FOLLOWING hash, not "first
+            # filename in the file" with "first hash in the file". The DESI
+            # freeze writes one file→sha row per table line while the Phase 5
+            # one wraps across two lines, and naive first-match pairing married
+            # a name on line 12 to a hash on line 41 and reported two mismatches
+            # that were purely my own parsing. A detector's false positives cost
+            # more than its misses here — every one sends a human to check.
+            names = [(m.start(), m.group(1))
+                     for m in re.finditer(r"\b([A-Za-z0-9_]+\.md)\b", head)]
+            hashes = [(m.start(), m.group(1))
+                      for m in re.finditer(r"\b([0-9a-f]{64})\b", head)]
+            seen: set = set()
+            for npos, nm in names:
+                if nm in seen or nm.startswith("_tmp_"):
+                    continue
+                nearest = next((h for hpos, h in hashes if npos < hpos <= npos + 200), None)
+                if not nearest:
+                    continue
+                seen.add(nm)
+                target = d / nm
+                if not target.exists():
+                    continue
+                actual = hashlib.sha256(target.read_bytes()).hexdigest()
+                if actual != nearest:
+                    out.append({"freeze": g.name, "file": nm,
+                                "pinned": nearest[:8], "actual": actual[:8]})
+    except OSError:
+        pass
+    return out[:4]
+
+
 def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
     """Files in a campaign dir whose head contains a Duho-decision phrase.
 
@@ -249,6 +312,26 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
             base = re.sub(r"_(BRIEF|MEMO|DRAFT)(_\d{8})?$", "", stem, flags=re.I)
             if any(g.name != f.name and re.match(re.escape(base) + r"_(GO_RECORD|RULING)",
                                                  g.name, re.I) for g in d.glob("*.md")):
+                continue
+            # Name-prefix matching is too brittle to be the only test: this lane
+            # records a go in PHASE5_FREEZE.md / PHASE5B_FREEZE.md, and
+            # PHASE5B_PLASMA_BRIEF.md does not share a prefix with its own freeze
+            # record. So both decided phases sat in the "waiting on Duho" list
+            # after he had ruled — one of them six minutes after.
+            # A resolution record that NAMES the brief is the real evidence, and
+            # it holds whatever either file is called.
+            # No mtime ordering here, deliberately. Requiring the resolution to
+            # be newer than the ask looks right and is wrong: a brief often gets
+            # touched again after it is frozen, which flipped an already-decided
+            # Phase 5b back to "waiting on Duho" three minutes after he ruled.
+            # A freeze record that names the brief resolves it whenever it was
+            # written. If the brief has drifted from the hash it was frozen at,
+            # that is a pin mismatch — surfaced separately below — not an
+            # outstanding decision, and conflating the two hides both.
+            if any(g.name != f.name
+                   and re.search(r"FREEZE|GO_RECORD|RULING|DISPOSITION", g.name, re.I)
+                   and f.name in g.read_text(errors="ignore")[:4000]
+                   for g in d.glob("*.md")):
                 continue
             m = pat.search(head)
             if m:
@@ -434,6 +517,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             # The memo is a DRAFT that says so; the cockpit must not imply it is in
             # force. Parking the write-up does NOT decline the study.
             "duho_items": _duho_decision_items(pre),
+            "pin_mismatches": _pin_mismatches(pre),
             "note": ("study declined by Duho's signature; the mechanism went unbeaten in "
                      "21 gates and the science was never contradicted — the sample could "
                      "not deliver the designed sensitivity. A successor prereg is drafting."
@@ -474,6 +558,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             "gate_age_h": (round((time.time() - newest.stat().st_mtime) / 3600.0, 1)
                            if newest else None),
             "duho_items": _duho_decision_items(cur),
+            "pin_mismatches": _pin_mismatches(cur),
             "note": None,
         })
     return out
