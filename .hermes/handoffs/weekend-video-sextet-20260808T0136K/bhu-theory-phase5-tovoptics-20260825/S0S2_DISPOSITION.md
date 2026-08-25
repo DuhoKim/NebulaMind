@@ -1,6 +1,16 @@
 # Disposition of the S0–S2 gate: K4 has fired. Stopping for a decision.
 (2026-08-25, stamped at commit. Codex verdict: HOLD_S0_OPTICAL_DEPTH_AND_S2_EXCLUSION_UNDERIVED.
-kimi gate still running.)
+kimi gate: see the correction note below.)
+
+**CORRECTION (2026-08-25, on Blanc's OPS check).** The line above originally read "kimi gate
+still running". That was an unverified assertion of mine: the kimi gate HAD been dispatched
+(tmux tori:bhu5-gate-k) but had already **died on HTTP 429, engine overloaded, after 3
+retries** — I claimed a state without checking the pane. Auth was NOT the cause: a minimal
+probe with the rotated Moonshot key returns AUTH_OK, so the rotation Blanc flagged is clean.
+Re-dispatched as tori:bhu5-gate-k2 against the CURRENT files. Convention note for watchers:
+gate seats share one kickoff file (KICKOFF_GATE_S0S2.txt) and leave no per-seat brief — only
+the blind-double seats get their own briefs — so "no kimi brief file" is expected and is not
+evidence of non-dispatch.
 
 **All seven objections accepted.** No argument is offered against any of them.
 
