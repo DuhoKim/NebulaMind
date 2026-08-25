@@ -55,3 +55,24 @@ gates, and pending S3's formal confrontation with the frozen bounds.
   EXCLUDED-regime geometry, and both implementations found it independently. The narrow
   marginal band where a true bounded cap exists is a separate configuration, not computed here.
 - σ = 1/3, pre-horizon, "rough qualitative models" — the standing caveats travel.
+
+---
+
+## AMENDMENT (2026-08-25, from S3, BEFORE the gates ruled) — the 4 ppm figure was an overclaim
+
+S2 compared the full anisotropy SPAN against the 1e-5 CMB anisotropy scale and concluded
+x_off/r_* < 3.86e-6. S3's multipole decomposition shows why that is wrong: **the pattern is
+overwhelmingly DIPOLAR** (c₂/c₁ ≈ 4×10⁻⁴). A dipole is not constrained at the 1e-5 level — the
+sky HAS an observed dipole at 1.2×10⁻³, and what the frozen record bounds is its NON-KINEMATIC
+part: B2.2, |Δ₁,int| < 3.7 mK (95% CI).
+
+Corrected binding bound, from the frozen rows: **x_off / r_* < 1.05 × 10⁻³** — about one part
+in a thousand, not four in a million. Three orders weaker than S2 claimed.
+
+**The conclusion survives, with its strength restated honestly:** a crossing sky still requires
+the observer centred to ~0.1% of the boundary radius, which is still a fine-tuning (1 in ~950)
+and still supports necessity rather than mere sufficiency. But it is not the ppm-level
+exclusion S2 asserted, and no downstream text may quote 3.86e-6.
+
+Found by my own S3 before either gate ruled; the gates were running against the uncorrected
+S2 receipt and are being told.
