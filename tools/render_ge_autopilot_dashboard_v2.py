@@ -212,7 +212,9 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
     relays, so rows are labelled as candidates to confirm, not open items.
     """
     out: List[Dict[str, Any]] = []
-    pat = re.compile(r"(?:for|awaiting|requires)\s+Duho'?s?\s+(?:go|signature|decision|ruling)", re.I)
+    # "requires a gate AND Duho's signature" defeated a verb-adjacent pattern
+    # and hid the live memo. The decision-shaped phrase is simply the possessive.
+    pat = re.compile(r"Duho'?s?\s+(?:go|signature|decision|ruling)\b", re.I)
     try:
         # newest first, and superseded/refuted forms skipped — the first cut of
         # this listed four SUPERSEDED memo revisions and capped out before the
