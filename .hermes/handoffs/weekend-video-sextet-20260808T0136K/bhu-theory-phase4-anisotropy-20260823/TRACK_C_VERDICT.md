@@ -148,3 +148,22 @@ via A3_RECEIPT.md, and that "8-corruption-proof" was defensible as "proof agains
 eight". Both disagreements are moot in effect — Amendment 1 had already adopted the
 sharper form each gate preferred (cite A3_RECEIPT; state the finite battery). Recorded
 because a split between gates is a fact of the record, not something for me to resolve.
+
+---
+
+# AMENDMENT 3 (2026-08-25 14:10 KST; kimi regate conversion condition 5)
+
+Kimi regate: HOLD_PHASE_SUMMARY_OMITS_C2_MORPHOLOGY_FINDING — all named grounds of its
+original HOLD discharged; one conversion condition unmet: the phase summary states the C1
+outcome but never names the C2 finding, and the summary is the likely quotable text.
+Accepted. The summary's final clause is replaced by:
+
+**…and this confrontation's two results: (C1) the branch stays CONSISTENCY-ONLY on today's
+record, with the path to more named (TOV-side optics) rather than implied; and (C2) the
+frozen large-angle anomalies are NOT MORPHOLOGY-COMPATIBLE with the model's near-threshold
+signature — localization and patch-character fail on all seven frozen B3 rows, and the
+scale-correspondence evidence is absent from the freeze on all seven (named as gaps, not
+passes). The C2 finding is significance-independent: it does not depend on which side of the
+frozen low-ℓ significance dispute is right.**
+
+That replacement is the operative phase summary; the earlier final clause is superseded.
