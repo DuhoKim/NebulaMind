@@ -542,13 +542,31 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
         files = sorted((f for f in cur.rglob("*.md") if f.is_file()),
                        key=lambda f: f.stat().st_mtime, reverse=True)
         newest = files[0] if files else None
+        # The verdict comes from the newest VERDICT file, not the newest file of
+        # any kind. Reading only files[0] meant a lane sitting under an
+        # unresolved HOLD showed "no verdict" the moment any receipt or note was
+        # written after it — which is exactly when a reader most needs to see
+        # the HOLD. Seats name their own gates (GATE_/KGATE_/BGATE_/CGATE_ and
+        # *VERDICT*); *_DONE markers and _tmp_ intermediates are not verdicts,
+        # and two _tmp_ files carry a full REFUTED_ body that would fool a
+        # content-only test. Name AND first line, both required.
         verdict = None
-        if newest:
-            first = next((l.strip() for l in newest.read_text(errors="ignore").splitlines()
+        verdict_file = None
+        for f in files:
+            if f.name.startswith("_tmp_") or f.name.endswith("_DONE.md"):
+                continue
+            # [A-Z]* not [A-Z]?: seats stack prefixes — REGATE_, and KREGATE2_
+            # (kimi re-gate) from earlier the same day. A single optional
+            # letter caught REGATE_S0S2_VERDICT.md only because it also
+            # said VERDICT; REGATE_S0S2.md would have been missed.
+            if not re.search(r"^[A-Z]*GATE_|VERDICT", f.name):
+                continue
+            first = next((l.strip() for l in f.read_text(errors="ignore").splitlines()
                           if l.strip()), "")
-            # only surface a first line that IS a verdict token, never prose
-            if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first):
-                verdict = first[:64]
+            if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first) and not re.search(
+                    r"_(DONE|COMPLETE|ACK)$", first):
+                verdict, verdict_file = first[:64], f
+                break
         out.append({
             "lane": f"BHU theory / audit ({cur.name.replace('bhu-theory-', '')})",
             "who": "Tori",
