@@ -175,3 +175,46 @@ total with itself — the ungrouped total must equal the **pinned release total 
 omitting the proof input is refused; and Stage P now confirms a deterministic sample of
 non-boundary successes as well as the boundary band, and measures whether the shared reference
 null is conservative against individual trials' own nulls, failing closed if it is not.
+
+---
+
+## STAGE P ON THE REDUCED SET: **FAIL** (2026-08-25 18:2x KST) — and what that retracts
+
+Run on the set the frozen chain actually produces (6,445 bricks, 53,005 planning objects,
+N_eq 120,003), under the widened audit added in round 8. Result, verbatim:
+
+    calibrated successes   : 995/1000   (rule x >= 962)
+    audited trials         : 81 (boundary band + sampled far)
+    confirmed / refuted    : 81 / 0
+    reference z*           : 3.1220
+    non-conservative nulls : 2
+       t35:  ref 3.1220  own 3.1672
+       t275: ref 3.1220  own 3.1957
+    VERDICT                : FAIL
+
+**It did not fail on power.** 995 of 1000 clears the 962 rule comfortably, and every one of
+the 81 audited successes — boundary band plus sampled far-field — was confirmed by an
+independent permutation run. Zero refutations.
+
+**It failed on the assumption underneath the method.** Stage P measures ONE reference null per
+prefix and applies it to all 1,000 trials. Round 8's referees said that had never been shown
+conservative; the check added in response now measures it, and on this geometry it is
+**false**: 2 of 8 sampled trials have their own standardized critical value ABOVE the shared
+reference (3.1672 and 3.1957 against 3.1220, up to +2.36%), while the residual margin
+`PWR_CONSERVATISM` is 1.01. For those trials the shared null sets a threshold that is too
+low, so a success could be counted that its own null would not grant.
+
+**What this retracts.** The earlier **997/1000 PASS** on the pre-reduction geometry was
+measured *before* this check existed. It reported no conservatism test because none was run.
+On the evidence here it would very likely fail the same check. **The successor's power claim
+is therefore not currently established** — not refuted either; unestablished. It should not be
+cited as 997/1000 PASS without this qualification, and this receipt's earlier sections must be
+read with this section attached.
+
+**What would establish it,** in order of preference: (a) take the reference null as an ENVELOPE
+— the maximum standardized critical value over a sampled set of trials, not trial 1's — with a
+margin above that; (b) per-trial nulls for every counted success, which is exact and
+expensive; (c) raising the deflation to cover the measured spread, which is fitting a constant
+to this geometry and is the weakest of the three. Not yet chosen, not yet implemented.
+
+The audit catching its own author's method is the reason it was built. It is working.
