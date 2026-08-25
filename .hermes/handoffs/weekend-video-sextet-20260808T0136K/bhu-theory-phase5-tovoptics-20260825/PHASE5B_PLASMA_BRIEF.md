@@ -72,3 +72,18 @@ stage; DERIVED/PINNED labels audited before each gate rather than after.
 
 Brief → Duho's go (freezes it, sha-pinned) → item-4 fixes → P1 → P2 → P3 → P4 → gates.
 Ping Duho only at a stop condition or a decision only he can make.
+
+---
+
+## Addendum A (2026-08-25, discovered in P1, BEFORE any P1 number) — a sixth assumption, A6
+
+Integrating the exterior profile away from the shock needs the TOV-side equation of state.
+The pinned system (3.2)–(3.4) has three equations for p̄, N, B with ρ̄ also unknown: it does
+not close on its own. The pinned text's statement that the TOV equation of state "is
+determined by the equations" applies ON the shock curve, not through the bulk.
+
+**A6 — bulk exterior equation of state p̄ = w ρ̄**, carried as a RANGE exactly like A1–A5:
+w from 0 (which the equations force to vacuum, the Oppenheimer–Snyder limit) up to the
+entropy-allowed maximum, with the shock value w = u/v = 0.2456 as the natural mid-case.
+No single w is adopted. This is within the authorized method (ranges, not choices), and is
+recorded here before any number exists rather than discovered inside a result.
