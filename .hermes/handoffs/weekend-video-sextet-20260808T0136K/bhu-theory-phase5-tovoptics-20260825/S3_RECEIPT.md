@@ -41,3 +41,20 @@ knife edge exclude a crossing sky at plausible offsets.** That is the necessity 
 opaque branch assumes radiation-carried exterior energy; the Doppler sign convention affects
 the mean shift's sign but not the span or the bounds; K4 (absolute brightness) remains
 uncomputed and is not needed for any bound above.
+
+---
+
+## WITHDRAWAL POINTER (2026-08-25, kimi gate KGATE_S0S2_VERDICT.md §5)
+
+**Every numeric bound in this file is NOT CLAIMED.** This work is on the line withdrawn by
+S0S2_DISPOSITION.md: the optical depth used a timelike coordinate as a spatial column length,
+and the exclusion figures predate both the monopole normalisation and the repaired geometry.
+
+**Live successors, which supersede everything numeric here:**
+- optical depth → `P1_RECEIPT.md` (invariant integral; τ ≤ 0.07 across all authorised
+  assumptions, so the exterior is optically THIN and there is no photosphere);
+- transfer, pattern, and bound → `P2_P4_RECEIPT.md` (**x_off/r_* < 1.585×10⁻³**, one part in
+  631, monopole-normalised, from the frozen B2.2 row).
+
+What survives from this line unconditionally is S1's law β_rel = −1/√N, which the kimi gate
+states passes every attack.

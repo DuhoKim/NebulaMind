@@ -71,7 +71,10 @@ def multipoles(f, tau=0.0, T_ratio=0.8098, lmax=4):
     x=f*rs_o; nodes,w=leggauss(200)
     vals=np.array([dT_with_transfer(m,x,tau,T_ratio) if tau>0 else dT_kinematic(m,x) for m in nodes])
     mono=0.5*float(np.sum(w*vals))          # l=0 coefficient
-    vals_nm = vals - mono                    # MONOPOLE REMOVED before anything is quoted
+    # MONOPOLE-NORMALISED, per the kimi gate item 1: an observer measures anisotropy against
+    # the SKY MEAN, which is T_FRW(1+mono), not against the unperturbed T_FRW. Subtracting the
+    # monopole without dividing by (1+mono) overstates every multipole by that factor.
+    vals_nm = (vals - mono)/(1.0+mono)
     out=[mono]
     for l in range(1,lmax+1):
         P=np.polynomial.legendre.Legendre.basis(l)(nodes)

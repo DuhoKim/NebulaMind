@@ -51,3 +51,20 @@ present, as the addendum's third case anticipated. Consequences for S1–S3:
   a few, not by orders of magnitude, unless the path geometry surprises us.
 - PRE-BLIND-DOUBLE. gpt1 is computing the same quantity from the stated physics without seeing
   this. If the two disagree, this receipt is wrong until reconciled.
+
+---
+
+## WITHDRAWAL POINTER (2026-08-25, kimi gate KGATE_S0S2_VERDICT.md §5)
+
+**Every numeric bound in this file is NOT CLAIMED.** This work is on the line withdrawn by
+S0S2_DISPOSITION.md: the optical depth used a timelike coordinate as a spatial column length,
+and the exclusion figures predate both the monopole normalisation and the repaired geometry.
+
+**Live successors, which supersede everything numeric here:**
+- optical depth → `P1_RECEIPT.md` (invariant integral; τ ≤ 0.07 across all authorised
+  assumptions, so the exterior is optically THIN and there is no photosphere);
+- transfer, pattern, and bound → `P2_P4_RECEIPT.md` (**x_off/r_* < 1.585×10⁻³**, one part in
+  631, monopole-normalised, from the frozen B2.2 row).
+
+What survives from this line unconditionally is S1's law β_rel = −1/√N, which the kimi gate
+states passes every attack.

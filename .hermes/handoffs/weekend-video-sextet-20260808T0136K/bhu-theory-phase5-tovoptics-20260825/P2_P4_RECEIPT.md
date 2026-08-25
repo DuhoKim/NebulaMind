@@ -64,3 +64,23 @@ instance is recorded in the scripts rather than silently repaired.
 
 Conditional on P1's blind double. σ = 1/3, pre-horizon, photon channel. Assumption ranges
 A1–A6 enter only through τ, and τ's whole authorised range moves the answer by <10%.
+
+---
+
+## CORRECTION (2026-08-25, kimi gate item 1) — monopole NORMALISATION, not just removal
+
+The kimi gate is right and my P3/P4 were wrong in the same way S2 was, one step later. Removing
+the monopole is not enough: an observer measures anisotropy against the **sky mean**, which is
+T_FRW(1+monopole), not against the unperturbed T_FRW. Dividing by (1+monopole) was missing.
+
+- dipole coefficient: 1.2963 → **0.8565** × (x_off/r_*)
+- **binding bound: 1.05×10⁻³ → 1.585×10⁻³** (one part in 631), from the frozen B2.2 row
+- the ℓ≥2 bound moves to 5.50×10⁻³; the dipole row still binds
+
+**My corrected value equals the gate's 1.58e-3 exactly** — it computed the correction
+independently and we converge on the same figure. Every downstream statement now uses
+1.585×10⁻³; nothing may quote 1.05×10⁻³ or 3.86×10⁻⁶.
+
+The physical conclusion is unchanged in kind and slightly weaker in degree: a boundary inside
+our last-scattering sphere still requires the observer centred to about a sixth of a percent of
+the boundary radius — necessity, at a 1-in-631 fine-tuning.

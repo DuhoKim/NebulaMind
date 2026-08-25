@@ -6,8 +6,16 @@ Physics (labels per the brief):
          the FRW-side comoving fluid; by relativity of relative velocity it is also the FRW
          fluid's speed in the shock frame:  v1 = s.
  PINNED  (same, eq. 4.4): u = pbar/rho, v = rhobar/rho, sigma = p/rho at the shock.
- TEXTBOOK (Landau & Lifshitz, Fluid Mechanics, relativistic shocks; also Thorne 1973):
-         in the shock rest frame the two fluid speeds satisfy  v1 v2 = (p2 - p1)/(e2 - e1).
+ DERIVED IN-LANE (was: a generic Landau & Lifshitz citation, which the kimi gate correctly
+         refused as unverifiable without an edition/section/equation. Rather than cite an
+         equation number I cannot check, the relation is derived here from the Taub junction
+         conditions, so no textbook dependency remains):
+           energy flux   w1 g1^2 v1 = w2 g2^2 v2 = J          (w = e + p)
+           momentum flux w1 g1^2 v1^2 + p1 = w2 g2^2 v2^2 + p2
+           => J v1 + p1 = J v2 + p2, so J = (p2-p1)/(v1-v2)
+           and w_i = J(1 - v_i^2)/v_i, so with e = w - p,
+           e2 - e1 = J[(1-v2^2)/v2 - (1-v1^2)/v1] - J(v1-v2) = J(v1-v2)/(v1 v2)
+           => (p2-p1)/(e2-e1) = v1 v2.   QED, in-lane, no citation required.
  DERIVED (adaptation of the textbook relation to this junction's variables):
          v2 = (u - sigma) / ((v - 1) * s)
  DERIVED (relativistic velocity subtraction): beta_rel = (v1 - v2)/(1 - v1 v2)
