@@ -337,6 +337,21 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                            key=lambda f: f.stat().st_mtime, reverse=True)
         final_rec = final_rec[0] if final_rec else None
 
+        # A SIGNED decline outranks every branch below it: CLOSED, PARKED and the
+        # last gate verdict all describe a study that is still open, and this one
+        # is over. Duho signed at ~11:20 KST 2026-08-25 and for four hours the row
+        # still read "acquisition continues ... the decision memo is still an
+        # unsigned DRAFT" — the exact opposite of the day's headline, on the
+        # surface he watches. Derived from the memo's own banner, not asserted
+        # here, so it cannot drift from the document it describes.
+        declined_on = None
+        try:
+            m = re.search(r"EFFECTIVE BY SIGNATURE\s*[—-]\s*(\d{4}-\d{2}-\d{2})",
+                          memo.read_text(errors="ignore")[:4000])
+            declined_on = m.group(1) if m else None
+        except OSError:
+            pass
+
         # The transfer heartbeat, measured not asserted. "Acquisition continues"
         # was a claim the strip repeated from the parked record with nothing
         # behind it; the heartbeat is on disk and the renderer runs every ten
@@ -394,26 +409,36 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                     "rate_per_h": round(rate) if rate else None,
                     "eta_h": round(rem / rate, 1) if rate and rate > 0 else None,
                     "heartbeat_age_s": round(hb_age),
-                    "stalled": hb_age > 7200,
+                    # A finished transfer's heartbeat is frozen by definition, so
+                    # age alone flagged the completed campaign STALLED forever.
+                    # Stalled means "should be moving and isn't".
+                    "stalled": hb_age > 7200 and acc < WORKING_SET,
                     "complete": acc >= WORKING_SET,
                 }
             except Exception:
                 transfer = None
         out.append({
             "lane": "DESI spin-parity (prereg)", "who": "Hwao",
-            "detail": ("custody record CLOSED at 21 gates by Duho — acquisition continues"
+            "detail": (f"DECLINED BY SIGNATURE {declined_on} — run halted, no strata computed"
+                       if declined_on else
+                       "custody record CLOSED at 21 gates by Duho — acquisition continues"
                        if final_rec else
                        "custody write-up PARKED by Duho — acquisition continues"
                        if parked else
                        f"custody receipt Rev {_rev(receipt) or '?'} · decision memo Rev {_rev(memo) or '?'}"),
             "latest_gate": gate.name if gate else None,
-            "verdict": ("CLOSED" if final_rec else "PARKED" if parked else verdict),
+            "verdict": ("DECLINED" if declined_on else
+                        "CLOSED" if final_rec else "PARKED" if parked else verdict),
             "gate_age_h": (round((time.time() - parked.stat().st_mtime) / 3600.0, 1)
                            if parked else age_h),
             # The memo is a DRAFT that says so; the cockpit must not imply it is in
             # force. Parking the write-up does NOT decline the study.
             "duho_items": _duho_decision_items(pre),
-            "note": ("record final: mechanism unbeaten in 21 rounds, science never "
+            "note": ("study declined by Duho's signature; the mechanism went unbeaten in "
+                     "21 gates and the science was never contradicted — the sample could "
+                     "not deliver the designed sensitivity. A successor prereg is drafting."
+                     if declined_on else
+                     "record final: mechanism unbeaten in 21 rounds, science never "
                      "contradicted; the decision memo is still an unsigned DRAFT"
                      if final_rec else
                      "write-up parked, not abandoned; the decision memo is still an "
@@ -2485,6 +2510,10 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         health = "watching"
         health_text = f"WATCHING SAFE PROMPTS · {safe_attention}"
         next_action = "Autopilot can handle safe docs/static or private-dashboard prompts; keep watching for red."
+    # Built once and reused below: this call persists the transfer-rate baseline,
+    # so a second call in the same render would shrink the interval it averages
+    # over and corrupt the rate.
+    active_campaigns = build_active_campaigns()
     events = read_events(limit=8, meaningful_only=True)
     latest_ticks = read_events(limit=1, meaningful_only=False)
     latest_event = latest_ticks[-1] if latest_ticks else events[-1] if events else None
@@ -2503,9 +2532,22 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
                 health_text = f"LIVE VIA EVENTS · status snapshot {age_label(age)} old"
                 next_action = "Events feed is fresh; the autopilot status snapshot is old. Nothing needs you unless a card below says so."
         else:
-            health = "stale"
-            health_text = "STALE · monitor may be paused"
-            next_action = "Check `ge-auto tail` or restart the Phase 1 monitor if the timestamp keeps aging."
+            # The events feed only carries PAPER lanes, and every paper lane is
+            # held by Duho's own order — so a quiet feed is the hold working, not
+            # a fault. Judge liveness by the campaigns that are actually running:
+            # on 2026-08-25 the board read STALE and told him to restart the
+            # Phase 1 monitor while Tori's gate was 1.8h old. Recommending a
+            # restart nothing supports is worse than saying nothing.
+            fresh_gate_h = min((c["gate_age_h"] for c in active_campaigns
+                                if c.get("gate_age_h") is not None), default=None)
+            if fresh_gate_h is not None and fresh_gate_h < 6:
+                health = "watching"
+                health_text = f"QUIET · paper lanes held, campaigns live ({age_label(int(fresh_gate_h * 3600))} since last gate)"
+                next_action = "Paper lanes are on your hold, so the events feed is idle by design. The running campaigns are in the strip below."
+            else:
+                health = "stale"
+                health_text = "STALE · monitor may be paused"
+                next_action = "Check `ge-auto tail` or restart the Phase 1 monitor if the timestamp keeps aging."
 
     lane_summaries = {name: lane_summary(name, groups.get(name, [])) for name in GROUP_ORDER}
     usage_snapshot = build_usage_snapshot(source)
@@ -2533,7 +2575,7 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         "lane_summaries": lane_summaries,
         "septet": build_septet(),
         "septet_matrix": build_septet_matrix(),
-        "active_campaigns": build_active_campaigns(),
+        "active_campaigns": active_campaigns,
         "writer_identity": {
             # [step 3] Kun: "add writer identity so the page can rat out a stale watcher."
             # Three correct renders were silently overwritten today by a watcher holding old code.
