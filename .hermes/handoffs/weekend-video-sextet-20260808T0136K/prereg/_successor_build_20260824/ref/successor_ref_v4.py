@@ -7,11 +7,12 @@ GATE_CODEX_SUCCESSOR_V6 (F1-F11), both REFUSED.
 
 The four structural changes:
 
-1. CLOSURE IS DERIVED, NOT SUPPLIED. The cutout planner is implemented here
-   (`plan_object_bricks`, the footprint-edge neighbour rule included). The production entry
-   point `close_manifest()` takes the frozen parent table and its digest and derives every
-   object's required bricks itself; it cannot be handed an answer. Both gate attacks (an
-   omitted parent object; a planner that returns only the home brick) are negative fixtures.
+1. CLOSURE IS DERIVED FROM THE FROZEN PLANNER. `close_manifest()` takes the parent table, its
+   digest, and the release geometry sidecar, and derives every object's required bricks by
+   calling the FROZEN `plan_candidate_bricks` in the lane. It cannot be handed an answer, and
+   it no longer uses the reimplemented planner (RETIRED: on the real brick table that one
+   returned only the home brick for both historical objects, reproducing the very defect it
+   was written to prevent).
 2. TYPES ARE NOT INTERCHANGEABLE. `SealedMask` and `FixtureMask` are distinct classes.
    Production entry points accept only `SealedMask`; its digest binds kind, schema, boundary
    digest and acceptance flags; bin labels are RECOMPUTED from the sealed boundaries and a
@@ -242,16 +243,9 @@ def frozen_planner_digest() -> str:
                   + field("adapter_sha256", m.PINNED_ADAPTER_SHA256.encode()))
 
 
-def planner_digest(halfsize_deg=CUTOUT_HALFSIZE_DEG) -> str:
-    """Binds the planner's COMPLETE transitive source and geometry into the BS-2m receipt.
-    (codex-V7 F1: hashing only plan_object_bricks.__code__.co_code omitted co_consts and the
-    _ra_sep helper, so it was not a digest of the planner's effective bytes.)"""
-    import inspect
-    body = b"".join(field(f.__name__, inspect.getsource(f).encode())
-                    for f in (_ra_sep, plan_object_bricks))
-    return digest(body + field("halfsize", canon_f8(np.array([halfsize_deg])))
-                  + field("pix", canon_i8(np.array([CUTOUT_PIX])))
-                  + field("pixscale", canon_f8(np.array([CUTOUT_PIXSCALE_ARCSEC]))))
+def planner_digest(*_a, **_k) -> str:
+    """RETIRED alias — the planner digest is the FROZEN planner's."""
+    return frozen_planner_digest()
 
 
 def parent_digest(objid, ra, dec) -> str:
@@ -265,23 +259,28 @@ class ManifestClosureError(RuntimeError):
 
 
 def close_manifest(parent_objid, parent_ra, parent_dec, expected_parent_digest,
-                   brick_table, manifest_bricknames, *, universe_sha256, universe_bricks,
+                   geometry, manifest_bricknames, *, universe_sha256, universe_bricks,
                    selection_receipt) -> dict:
     """BS-2m production entry point. Derives the required brick set ITSELF from the frozen
     parent and the planner — there is no argument through which a caller can supply the answer,
     which is the hole both V6 gates walked through. Refuses on: a parent digest mismatch (an
     omitted or altered object changes it), any object planning zero bricks, and any difference
     of even one brick between the derived closure and the candidate manifest."""
-    halfsize_deg = CUTOUT_HALFSIZE_DEG            # frozen; no caller override exists
+    # The plan comes from the FROZEN planner in the lane. (Round 8: V9 retired the
+    # reimplementation and rebound the FIXTURE, but this production entry point still
+    # called the retired routine — the fix passed its own test while the production path
+    # kept the defect. That is the third instance of that pattern in this chain.)
     if universe_sha256 != PINNED_UNIVERSE_SHA256:
         raise ManifestClosureError(
             f"BRICK UNIVERSE NOT THE PINNED ARTIFACT: {universe_sha256} != "
             f"{PINNED_UNIVERSE_SHA256} — a shortened universe cannot pass",
             {"universe_sha256": universe_sha256})
-    if int(universe_bricks) != PINNED_UNIVERSE_BRICKS or len(brick_table) != PINNED_UNIVERSE_BRICKS:
+    n_geom = len(getattr(geometry, "by_name", {}) or {})
+    if int(universe_bricks) != PINNED_UNIVERSE_BRICKS or n_geom != PINNED_UNIVERSE_BRICKS:
         raise ManifestClosureError(
-            f"BRICK UNIVERSE CARDINALITY {int(universe_bricks)}/{len(brick_table)} != "
-            f"{PINNED_UNIVERSE_BRICKS}", {"universe_bricks": int(universe_bricks)})
+            f"BRICK UNIVERSE CARDINALITY {int(universe_bricks)}/{n_geom} != "
+            f"{PINNED_UNIVERSE_BRICKS}", {"universe_bricks": int(universe_bricks),
+                                          "geometry_bricks": n_geom})
     if not isinstance(selection_receipt, dict) or selection_receipt.get("slot") != "BS-2s":
         raise ManifestClosureError("a BS-2s selection receipt is required", {})
     if selection_receipt.get("parent_digest") != expected_parent_digest:
@@ -305,7 +304,7 @@ def close_manifest(parent_objid, parent_ra, parent_dec, expected_parent_digest,
             {"parent_digest_got": got, "parent_digest_expected": expected_parent_digest})
     per_object, closed = {}, set()
     for i in range(len(objid)):
-        bs = plan_object_bricks(ra[i], dec[i], brick_table, halfsize_deg)
+        bs = frozen_plan_object(geometry, int(objid[i]), ra[i], dec[i])
         if not bs:
             raise RuntimeError(f"object {int(objid[i])} plans zero bricks — FAIL")
         per_object[int(objid[i])] = bs
@@ -321,7 +320,7 @@ def close_manifest(parent_objid, parent_ra, parent_dec, expected_parent_digest,
     extra = sorted(set(man) - set(req))
     plan_payload = b"".join(field(str(k), "\x00".join(per_object[k]).encode())
                             for k in sorted(per_object))
-    result = {"parent_digest": got, "planner_digest": planner_digest(halfsize_deg),
+    result = {"parent_digest": got, "planner_digest": frozen_planner_digest(),
               "universe_sha256": universe_sha256, "universe_bricks": int(universe_bricks),
               "plan_digest": digest(plan_payload), "objects": len(per_object),
               "required_count": len(req), "manifest_count": len(man),
@@ -1220,6 +1219,13 @@ def run_fixtures():
                   f"the frozen planner returns the historical neighbours: "
                   f"{got[hist[0][0]]} and {got[hist[1][0]]}; digest "
                   f"{frozen_planner_digest()[:12]}…")
+        # the PRODUCTION entry point must itself use the frozen planner — round 8 found the
+        # fixture rebound while close_manifest still called the retired routine
+        import inspect as _insp
+        _cm = _insp.getsource(close_manifest)
+        ok &= _fx("CLOSURE-PRODUCTION-USES-FROZEN",
+                  "frozen_plan_object(" in _cm and "plan_object_bricks(" not in _cm, lines,
+                  "close_manifest() calls frozen_plan_object and never the retired routine")
         # and the retired reimplementation must refuse to run at all
         try:
             plan_object_bricks(341.7, -88.6, {})
