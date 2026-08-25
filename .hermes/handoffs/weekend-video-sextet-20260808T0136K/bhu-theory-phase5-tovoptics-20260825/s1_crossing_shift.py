@@ -22,8 +22,12 @@ Physics (labels per the brief):
  DERIVED (Doppler factor for a photon crossing inward, mu = cos angle to the relative motion):
          1 + z_cross(mu) = gamma_rel (1 - beta_rel*mu)   [emitter=TOV fluid, receiver=FRW fluid]
 
-The metric matching is Lipschitz (PINNED, ARMA 138 / CMP 210), so the photon 4-momentum is
-continuous across the junction: ALL of the shift comes from the fluid-velocity discontinuity.
+ DERIVED (adapted optics inference — NOT pinned; kimi §5 item 3 and the codex re-gate):
+         the pinned sources state Lipschitz metric matching (ARMA 138 / CMP 210) and
+         Rankine-Hugoniot conservation. The step FROM that TO "the photon 4-momentum is
+         continuous across the junction, so ALL of the shift comes from the fluid-velocity
+         discontinuity" is OURS. It is the inference this whole section rests on, and it is
+         labelled DERIVED.
 """
 import csv, math, sys
 
