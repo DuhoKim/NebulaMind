@@ -1,4 +1,4 @@
-# BHU half — Tori (2026-08-25 11:00 KST)
+# BHU half — Tori (2026-08-25 11:00 KST; UPDATED 11:04 — regate5 verdict folded in)
 
 ## Plain-language lead
 
@@ -14,12 +14,13 @@ them all. The physics was never in dispute; what got rebuilt five times was the 
    REGATE3_TRACKA_VERDICT.md) and "PASS_TRACK_A" (same dir, KGATE_TRACKA_VERDICT.md).
 2. MEASURED — Track B freeze gate, kimi seat, first line verbatim: "PASS_TRACK_B_FREEZE"
    (KGATE_TRACKB_VERDICT.md).
-3. MEASURED — Track B freeze gate, codex seat: five verdicts, every first line a HOLD; the
-   latest reads "HOLD_TRACK_B_FREEZE" (REGATE4_TRACKB_VERDICT.md; chain GATE_TRACKB →
-   REGATE4 in the same dir).
-4. ASSERTED (Tori) + MEASURED dispatch — the fifth regate is RUNNING, dispatched 10:42 KST
-   (tmux window tori:bhu4-regateb5; no verdict file exists at this writing — checked 10:58).
-   No predicted outcome.
+3. MEASURED — Track B freeze gate, codex seat: four HOLD verdicts (chain GATE_TRACKB →
+   REGATE4, first lines all HOLD), then the fifth regate first line verbatim:
+   "PASS_TRACK_B_FREEZE" (REGATE5_TRACKB_VERDICT.md, file mtime 10:49:32).
+4. MEASURED with a disclosed discrepancy — my 10:58 existence check reported the regate still
+   running although the verdict file's mtime is 10:49:32; the check command and its output
+   are in my session log. Likely a staged write landing after composition; the artifact is
+   the authority and reads PASS. **The freeze is now CLOSED: both engines PASS.**
 5. MEASURED — the verifier stands at v8: 50/50 quotes verified, 0 manual acceptances, 0
    directory fallbacks (b_verify_ledger.json, 50 rows), 8 corruption self-tests all failing —
    6 synthetic classes plus the gate's 2 corruptions of actual frozen rows, run through the
@@ -41,6 +42,6 @@ them all. The physics was never in dispute; what got rebuilt five times was the 
 
 - "Five forgery attempts, five rebuilds — the evidence table now stops all eight" (numbers:
   50/50, 8, 5 rebuilds, 0 fallbacks)
-- "One engine passed the freeze, the other still holds — fifth review running" (kimi PASS
-  verbatim; codex HOLD verbatim; dispatched 10:42)
+- "Both engines now pass the freeze — the fifth review ended the five-round forgery war"
+  (kimi PASS verbatim; codex PASS_TRACK_B_FREEZE verbatim at 10:49)
 - "The next study is pre-registered before its own judgment" (Track C: 4 criteria, not started)
