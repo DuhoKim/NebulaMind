@@ -6,11 +6,12 @@ and what I think it means. The ruling belongs to the referee seats under
 
 ## Result
 
-Receipt `CLOSURE_PROBE_RECEIPT_20260825.json`, production path (no memoised geometry), 16 min
-29 s, `stable_sha256 f1cd1004de806c6bb6f1261e4177680bc7fdc9f28de056ca5ca1dc5a26281961`. The
-same 22 outcomes came back under two earlier `--fast-geometry` runs, which agreed with each
-other byte-for-byte (`3abf01ae…`), and they reproduce what an independent probe script written
-in the previous round returned before it could be reviewed.
+Receipt `CLOSURE_PROBE_RECEIPT_20260825.json`, production path (no memoised geometry),
+`stable_sha256 43f2a1226728b868bb29ed59914337efc6cbd7c88888bdd2ab844b1d8d37910f`. The same 22
+outcomes came back under two `--fast-geometry` runs that agreed with each other byte-for-byte,
+under an earlier production run of the suite before its run directory was made per-process
+(`f1cd1004…`), and they reproduce what an independent probe script written by the codex seat in
+the previous round returned before that seat was cut off mid-session.
 
 22 probes, 18 conforming. Four inputs that the suite expected to be refused were accepted:
 

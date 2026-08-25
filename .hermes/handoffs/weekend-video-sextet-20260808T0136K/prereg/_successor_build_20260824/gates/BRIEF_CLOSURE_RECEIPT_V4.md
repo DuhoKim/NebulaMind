@@ -62,9 +62,10 @@ printed `f1cd1004de806c6bb6f1261e4177680bc7fdc9f28de056ca5ca1dc5a26281961` in 16
 two differ only because the mode is part of the hashed block; the probe outcomes are identical
 under both.
 
-The suite writes only inside `_tmp_closure_probe_run/` in this directory and modifies nothing
-else. `--only C01,C04` runs a subset; shared inputs are built in setup, so a subset run gives
-the same inputs as a full one.
+The suite writes only inside `_tmp_closure_probe_run_<pid>/` in this directory and modifies
+nothing else. The run directory is per-process, so the other seat running the suite at the same
+time cannot disturb yours; `--run-dir DIR` overrides it. `--only C01,C04` runs a subset; shared
+inputs are built in setup, so a subset run gives the same inputs as a full one.
 
 ## Questions to answer
 

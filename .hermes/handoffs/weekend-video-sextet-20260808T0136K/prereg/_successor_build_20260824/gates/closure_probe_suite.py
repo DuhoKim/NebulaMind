@@ -22,7 +22,8 @@ It does not modify the subject, the pinned geometry sidecar, the frozen planner,
 outside its own run directory. Every probe calls the real
 `close_manifest(parent_csv, selection_npz, oracle_npz, manifest_bricknames)`; nothing is stubbed
 and no private helper is called in its place. Probes construct their inputs as ordinary files in
-`_tmp_closure_probe_run/` inside this gates directory.
+`_tmp_closure_probe_run_<pid>/` inside this gates directory — per-process, so two seats can run
+the suite at the same time.
 
 USAGE
 -----
@@ -31,12 +32,13 @@ USAGE
     python3 closure_probe_suite.py --json RECEIPT.json    # also write the JSON receipt
     python3 closure_probe_suite.py --only C01,C04         # a subset
     python3 closure_probe_suite.py --fast-geometry        # see the caveat below
+    python3 closure_probe_suite.py --run-dir DIR          # build the probe inputs elsewhere
 
 Cost: `close_manifest` re-reads and re-verifies the 366,912-brick geometry sidecar on EVERY
 call (~47 s), so a full run is dominated by that. `--fast-geometry` verifies the sidecar once
-and memoises it; that makes the run ~1 min but it is NOT the production path, so the receipt
-records the mode and the geometry-integrity probes are marked SKIPPED under it. Rulings should
-be made on a default (uncached) run.
+and memoises it; that makes the run ~1 min but it is NOT the production path — no probe then
+observes the per-call verification. The receipt records the mode and repeats that caveat in its
+`not_covered` list. Rulings should be made on a default (uncached) run.
 
 RECEIPT DISCIPLINE
 ------------------
@@ -52,6 +54,7 @@ import csv
 import hashlib
 import importlib.util
 import json
+import os
 import shutil
 import sys
 import time
@@ -62,7 +65,10 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 SUBJECT = (HERE / ".." / "ref" / "successor_ref_v4.py").resolve()
 FIXTURES = (HERE / ".." / "ref" / "FIXTURES_V4_20260825.out").resolve()
-RUNDIR = HERE / "_tmp_closure_probe_run"
+# Per-process by default, so two referee seats can run the suite at the same time without
+# clobbering each other. The `_tmp_` prefix keeps it out of git. It is never read back; the
+# receipt's `stable` block carries no path, and refusal messages are normalised to $RUN.
+DEFAULT_RUNDIR = HERE / f"_tmp_closure_probe_run_{os.getpid()}"
 
 # The two objects whose neighbour bricks the predecessor's manifest missed (60,308 vs 60,310).
 # ls_id, ra, dec, the neighbour brick that must appear in the plan.
@@ -439,6 +445,9 @@ def main(argv=None):
     ap.add_argument("--json", default="", help="write the JSON receipt to this path")
     ap.add_argument("--fast-geometry", action="store_true",
                     help="memoise the sidecar after one verification (NOT the production path)")
+    ap.add_argument("--run-dir", default="",
+                    help=f"where to build probe inputs (default {DEFAULT_RUNDIR.name}/, "
+                         f"per-process so parallel runs do not collide)")
     args = ap.parse_args(argv)
 
     selected = [p for p in PROBES
@@ -465,15 +474,16 @@ def main(argv=None):
             return cache["v"]
         mod.load_pinned_geometry = cached
 
-    if RUNDIR.exists():
-        shutil.rmtree(RUNDIR)
-    RUNDIR.mkdir(parents=True)
+    rundir = Path(args.run_dir).resolve() if args.run_dir else DEFAULT_RUNDIR
+    if rundir.exists():
+        shutil.rmtree(rundir)
+    rundir.mkdir(parents=True)
 
     t0 = time.perf_counter()
     geom, sidecar_sha = mod.load_pinned_geometry()
     setup = {"geometry_seconds": round(time.perf_counter() - t0, 3),
              "geometry_bricks": len(geom.by_name)}
-    ctx = Ctx(mod, geom, RUNDIR)
+    ctx = Ctx(mod, geom, rundir)
 
     rows = []
     for p in selected:
@@ -486,7 +496,7 @@ def main(argv=None):
                                           "dispute")},
                      "actual": out["actual"], "conforms": conforms,
                      "mentions_required": p["mentions"],
-                     "message": normalise(out["message"], RUNDIR)[:400],
+                     "message": normalise(out["message"], rundir)[:400],
                      "seconds": out["seconds"]})
 
     nonconforming = [r["id"] for r in rows if r["conforms"] is False]
@@ -514,7 +524,7 @@ def main(argv=None):
     stable_sha = hashlib.sha256(
         json.dumps(stable, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
     receipt = {"stable": stable, "stable_sha256": stable_sha,
-               "volatile": {"setup": setup, "run_dir": str(RUNDIR),
+               "volatile": {"setup": setup, "run_dir": str(rundir),
                             "seconds_per_probe": {r["id"]: r["seconds"] for r in rows},
                             "total_seconds": round(time.perf_counter() - t0, 1)}}
 
