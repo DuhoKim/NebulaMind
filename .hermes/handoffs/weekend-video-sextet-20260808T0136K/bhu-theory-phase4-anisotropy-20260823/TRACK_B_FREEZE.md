@@ -7,8 +7,11 @@ that under gates.
 
 ## Verification receipt
 
-Verifier `b_verify_quotes.py` **v7**, rebuilt four times under codex gate pressure (HOLD →
-residue → residue → residue → this version). What v5 proves for every quote:
+Verifier `b_verify_quotes.py` **v8**, rebuilt five times under codex gate pressure. Corruption
+self-test battery: EIGHT cases — the six prior classes plus regate4's two actual-frozen-row
+corruptions (sentence-end operator flip; sentence-final value change), all run through the
+same row path as the real corpus and all failing. Sentence-final numeric tokens are retained
+(the v7 hole). What v5 proves for every quote:
 
 - **Ordered numeric relations with operator conflict-detection**: each quote's numbers
   (units unglued, leading zeros canonicalized) must appear IN ORDER within a bounded window of
@@ -40,11 +43,11 @@ residue → residue → residue → this version). What v5 proves for every quot
 
 **Result: 50/50 PASS, zero manual acceptances, zero directory fallbacks.**
 
-Pins at freeze (v7):
+Pins at freeze (v8):
 - HARVEST_CMB_BOUNDS.md (gpt2) sha256 beba95a7c8f5093e1a962ccffefa465038a58b6f3c83bfaff8ba6ddbe4662714
 - HARVEST_H0_ANISOTROPY.md (agy) sha256 6d97c67900348e5569dd802478b6bb8628640cd45e58b5b6e21c243286883f5a
-- b_verify_quotes.py (v7) sha256 148d55464b1e63818a48f29feb8cdd8796d6e0b68ab9d297c0a91645cf10f3b3
-- b_verify_ledger.json sha256 1a4a397838789e55c991156f93be782aa0a4d54626e8b418e9b3e4bfc5f4cafa
+- b_verify_quotes.py (v8) sha256 ecadfb540edd84104f6c2a93ce47086dfede92912e781f2f4a9f4a4d00ae13ec
+- b_verify_ledger.json sha256 6106ab889df4a61c7484543b8c8f9c1fc1ea0bcaa3ecb71805c935f2cdf5b061
 - b_binding_map.json sha256 37775c9ac4f7da98ae0c44238932495b0e8b28791033a487efef910c07da53f7
   (identification counts corrected to occurrence counts per the regate: CatWISE 18, eigenvalues 11)
 

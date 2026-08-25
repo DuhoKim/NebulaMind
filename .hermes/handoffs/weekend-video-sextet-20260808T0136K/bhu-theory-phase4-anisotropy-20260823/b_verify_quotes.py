@@ -28,6 +28,7 @@ def norm(s):
     s = re.sub(r"(?<![a-zA-Z0-9])([+-])(?=\s*\d)", r" \1 ", s)  # sign before number -> token
     s = re.sub(r"[^a-zA-Z0-9.+\- ]"," ",s)
     s = re.sub(r"(?<!\d)\.(?!\d)"," ",s)               # bare periods out; decimals stay
+    s = re.sub(r"(?<=\d)\.(?!\d)"," ",s)               # v8: sentence-final "20." -> "20 " (regate4)
     return re.sub(r"\s+"," ",s).lower().strip()
 
 REL={"pm":"pm","times":"times","x":"times","lt":"lt","gt":"gt","+":"+","-":"-"}
@@ -164,6 +165,37 @@ def bound_files(srcdir, decl, arx):
 import json as _json
 BMAP=_json.load(open("b_binding_map.json")) if pathlib.Path("b_binding_map.json").exists() else {}
 
+def verify_quote_row(q, files):
+    """The per-quote acceptance logic used by check(), callable for row-level self-tests."""
+    segs=segments(q); seq=expr_seq(q); sh=shingles(q)
+    best=None
+    for f in files:
+        c=load_file(f)
+        if c is None: continue
+        if len(segs)>1:
+            spans=[find_ordered(expr_seq(sg),c) for sg in segs if expr_seq(sg)]
+            span=(min(a for a,_ in spans),max(b for _,b in spans)) if spans and all(spans) else None
+        else:
+            span=find_ordered(seq,c) if seq else None
+            if span is None and seq:
+                sents=[x for x in re.split(r"(?<=[.!?])\s+", q) if expr_seq(x)]
+                if len(sents)>1:
+                    sp=[find_ordered(expr_seq(x),c) for x in sents]
+                    if all(sp): span=(min(a for a,_ in sp),max(b for _,b in sp))
+        shf=sum(1 for x in sh if x in c)/len(sh)
+        cand={"f":f,"span":span,"sh":shf}
+        if best is None or ((span is not None, shf) > (best["span"] is not None, best["sh"])):
+            best=cand
+    if not best: return False
+    distinctive = any(len(t.replace(".",""))>=6 for t in seq)
+    shmin = 0.0 if (distinctive or len(segs)>1) else (0.05 if len(seq)>=5 else 0.20)
+    if seq and best["span"] and best["sh"]>=shmin: return True
+    if not seq:
+        w=norm(q).split(); c=load_file(best["f"])
+        for i in range(len(w)-6):
+            if " ".join(w[i:i+6]) in c: return True
+    return False
+
 def check(harvest, srcdir, style, ledger):
     nfail=nok=0
     hname=pathlib.Path(harvest).parent.name
@@ -261,8 +293,21 @@ def selftest():
     assert not find_ordered(expr_seq(bp),pl), "PM->TIMES operator corruption must fail"
     bd="Planck 2018 ... 3362.08  0.99"
     assert not find_ordered(expr_seq(bd),pl), "PM-DELETION corruption must fail (regate3)"
+    # regate4 mandated ROW-PATH tests: actual frozen rows, corrupted, through verify_quote_row
+    ab_files=["platoon/gpt2_trackb_cmb/sources/radio_abghari_et_al_2024_v2.txt"]
+    ab_g="Secondly, the 50 percent sky cut associated with the quasar catalogue strongly couples the multipoles, meaning that the power estimate at ℓ = 1 contains significant contributions from ℓ > 1."
+    assert "1" in expr_seq("from ℓ > 1.")[-1:], "sentence-final numeric must be retained"
+    assert verify_quote_row(ab_g, ab_files), "genuine Abghari row must pass"
+    assert not verify_quote_row(ab_g.replace("ℓ > 1.","ℓ < 1."), ab_files), "Abghari >-to-< row corruption must fail"
+    ef_files=["platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2003_source.tex",
+              "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2003_astro-ph0306431v3_pages.txt"]
+    ef_g="These errors were neglected in S03's analysis of the S statistic and hence their estimate of a 1 in 700 chance of reproducing the observations according to the concordance ΛCDM model is an overestimate of the true odds. The Bayesian analysis of Section 4 suggests that a more reasonable estimate of the odds is more like 1 in 10 or 1 in 20."
+    assert verify_quote_row(ef_g, ef_files), "genuine Efstathiou row must pass"
+    assert not verify_quote_row(ef_g.replace("1 in 20.","1 in 99."), ef_files), "Efstathiou 20-to-99 row corruption must fail"
     print("self-test: genuine passes; absent-fragment, order-swap, exponent-sign, glued-unit,")
-    print("           pm->times substitution, and pm-DELETION corruptions ALL fail")
+    print("           pm->times substitution, pm-DELETION, and the two REGATE4 actual-row")
+    print("           corruptions (operator flip at sentence end; sentence-final value change)")
+    print("           ALL fail through the row path")
 
 selftest()
 ledger=[]
