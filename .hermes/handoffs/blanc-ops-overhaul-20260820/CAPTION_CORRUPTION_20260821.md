@@ -162,6 +162,15 @@ convenience failed would trade a real cost for a cosmetic one.
 `caption_violations` is written to the ledger **even when empty**, so an auditor
 can see the check ran instead of inferring it from silence.
 
+## RATIFIED 2026-08-25 by Duho
+
+The exposure increase below was flagged to him repeatedly from 2026-08-22 and
+sat unratified in the completion brief's standing facts until today. His ruling:
+**ratified — the accurate record stands.** Correcting a caption to match its own
+audio is the removal of a falsehood, not a new disclosure; the underlying
+publication was already on the record as a §4 / condition-2 breach. The 23:12
+report remains published; he has not withdrawn it. Ledger event 101.
+
 ## This correction does not reduce the disclosure
 
 It increases it in text. The audio always spoke the full-precision values; now
