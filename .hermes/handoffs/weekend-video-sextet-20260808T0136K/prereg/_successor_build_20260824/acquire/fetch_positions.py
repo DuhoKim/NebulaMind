@@ -15,10 +15,11 @@ UWS = "{http://www.ivoa.net/xml/UWS/v1.0}"
 XLINK = "{http://www.w3.org/1999/xlink}href"
 HERE = Path(__file__).resolve().parent
 CHUNK = 500                      # brickids per query
-PACE_S = 3.0                     # between submissions
+PACE_S = 12.0                    # between submissions — the service drops jobs under load
+CHUNK_ATTEMPTS = 4               # a lost/404 job is resubmitted, not fatal
 MAX_CHUNKS = 20                  # 6,445 / 500 = 13; a hard stop well above it
 MAX_BYTES_PER_CHUNK = 20_000_000
-COLUMNS = ["ls_id", "brickid", "objid", "ra", "dec"]
+COLUMNS = ["ls_id", "brickid", "objid", "ra", "dec", "shape_e1", "shape_e2"]
 
 TEMPLATE = (HERE / "positions_query.adql").read_text()
 
@@ -27,16 +28,45 @@ def utc():
     return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
+SERVICE_PRESSURE = {429, 500, 502, 503, 504}
+MAX_RETRIES = 6
+
+
+def _with_backoff(fn, what):
+    """The service returns 502/503 under load. Back off rather than hammer it (and rather than
+    lose the run, as a first version did on chunk 3)."""
+    delay = 15.0
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            return fn()
+        except urllib.error.HTTPError as e:
+            if e.code not in SERVICE_PRESSURE or attempt == MAX_RETRIES:
+                raise
+            print(f"      service pressure HTTP {e.code} on {what}; "
+                  f"retry {attempt}/{MAX_RETRIES - 1} in {delay:.0f}s", flush=True)
+        except urllib.error.URLError as e:
+            if attempt == MAX_RETRIES:
+                raise
+            print(f"      transport error on {what}: {e.reason}; "
+                  f"retry {attempt}/{MAX_RETRIES - 1} in {delay:.0f}s", flush=True)
+        time.sleep(delay)
+        delay = min(delay * 2, 240.0)
+
+
 def post(url, data):
-    body = urllib.parse.urlencode(data).encode()
-    req = urllib.request.Request(url, data=body, method="POST")
-    with urllib.request.urlopen(req, timeout=120) as r:
-        return r.status, r.geturl(), r.read(), {k.lower(): v for k, v in r.headers.items()}
+    def _do():
+        body = urllib.parse.urlencode(data).encode()
+        req = urllib.request.Request(url, data=body, method="POST")
+        with urllib.request.urlopen(req, timeout=120) as r:
+            return r.status, r.geturl(), r.read(), {k.lower(): v for k, v in r.headers.items()}
+    return _with_backoff(_do, f"POST {url.rsplit('/', 1)[-1]}")
 
 
 def get(url):
-    with urllib.request.urlopen(urllib.request.Request(url), timeout=180) as r:
-        return r.status, r.read()
+    def _do():
+        with urllib.request.urlopen(urllib.request.Request(url), timeout=180) as r:
+            return r.status, r.read()
+    return _with_backoff(_do, f"GET {url.rsplit('/', 1)[-1]}")
 
 
 def run_chunk(bricks, idx, receipts):
@@ -49,6 +79,13 @@ def run_chunk(bricks, idx, receipts):
     job = hdrs.get("location", final).rstrip("/")
     if "/tap/async/" not in job:
         raise RuntimeError(f"chunk {idx}: unexpected job url {job}")
+    # A created job can sit at PENDING; it must be told to RUN. (The predecessor's runner does
+    # this explicitly; my first version only set phase=RUN in the create form and every job
+    # stayed PENDING until the poll gave up.)
+    _s, body0 = get(job + "/phase")
+    if body0.decode().strip() == "PENDING":
+        post(job + "/phase", {"PHASE": "RUN"})
+    phase = "PENDING"
     for _ in range(240):
         time.sleep(2.0)
         _s, body = get(job)
@@ -77,10 +114,35 @@ def main():
     if len(chunks) > MAX_CHUNKS:
         raise SystemExit(f"{len(chunks)} chunks exceeds the cap {MAX_CHUNKS}")
     print(f"{len(bricks):,} bricks in {len(chunks)} chunks of <= {CHUNK}", flush=True)
+    ckpt = HERE / "_positions_chunks"
+    ckpt.mkdir(exist_ok=True)
     all_rows, receipts = [], []
     for i, ch in enumerate(chunks, 1):
+        cf, rf = ckpt / f"chunk_{i:03d}.json", ckpt / f"receipt_{i:03d}.json"
+        if cf.exists() and rf.exists():
+            rows = json.loads(cf.read_text())
+            receipts.append(json.loads(rf.read_text()))
+            all_rows.extend(rows)
+            print(f"  chunk {i}/{len(chunks)}: {len(rows):,} rows (checkpoint, "
+                  f"total {len(all_rows):,})", flush=True)
+            continue
         t0 = time.time()
-        rows = run_chunk(ch, i, receipts)
+        rows = None
+        for attempt in range(1, CHUNK_ATTEMPTS + 1):
+            try:
+                rows = run_chunk(ch, i, receipts)
+                break
+            except Exception as exc:
+                # A 404 while polling means the service dropped the job (the predecessor's
+                # runner names this REMOTE_JOB_LOST). Resubmit rather than lose the run.
+                if attempt == CHUNK_ATTEMPTS:
+                    raise
+                wait = 60.0 * attempt
+                print(f"      chunk {i} attempt {attempt} failed ({type(exc).__name__}: "
+                      f"{str(exc)[:70]}); resubmitting in {wait:.0f}s", flush=True)
+                time.sleep(wait)
+        cf.write_text(json.dumps(rows))
+        rf.write_text(json.dumps(receipts[-1]))
         all_rows.extend(rows)
         print(f"  chunk {i}/{len(chunks)}: {len(rows):,} rows "
               f"({time.time()-t0:.0f}s, total {len(all_rows):,})", flush=True)

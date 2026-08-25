@@ -48,3 +48,43 @@ Downloading against an unconfirmed closure is repeating the mistake that ended t
 
 No cutouts, no spin measurement, no statistic, no freeze. The rulebook remains a draft under
 review.
+
+---
+
+## GATE RESULT 2026-08-25 ~19:30 KST: **NOT CLEAR — the download does not fire**
+
+Both referee seats returned **NOT CLEAR** (`gates/CLOSURE_GPT56.md`, `gates/CLOSURE_CODEX.md`),
+independently and with the same three blockers. **The queued transfer stays blocked.**
+
+**What both confirmed works.** On the honest path, against the pinned real geometry, the two
+historical objects require exactly five distinct bricks; the complete five-brick manifest
+passes; and omitting either `3471m885` or `2857m870` is refused by name. The mechanism computes
+the right answer.
+
+**Why that is not sufficient to download against.** Every one of its supposed external
+witnesses is still supplied by the caller:
+
+1. **The parent is not held by a verified receipt.** `close_manifest()` takes
+   `expected_parent_digest` and a `selection_receipt` dict from the caller and only checks that
+   the dict says `slot == "BS-2s"` and carries a matching digest. A shortened parent with a
+   regenerated digest and a hand-built dict passes. Worse, `SLOT_SCHEMA["BS-2s"]` does not even
+   contain `parent_digest`, and `receipt()` returns metadata and hashes rather than the supplied
+   fields — so the *canonical* receipt cannot be consumed by the routine that requires one,
+   while a receipt-*shaped* dict can.
+2. **The geometry is not bound to the pinned sidecar.** The object that actually determines the
+   answer is whatever the caller passes.
+3. **`frozen_planner_digest()` does not digest all the code that runs**, and no expected planner
+   digest is enforced — so the reported digest can stay identical while different planner code
+   or configuration executes.
+
+**The pattern, stated plainly:** a witness is only a witness if the code *computes* it from the
+artifact. Mine *accepts* it as an argument at every point. That is the same defect class as
+rounds 6, 7 and 8, one level further out each time.
+
+**Repair direction** (not yet implemented): recompute the sidecar digest from the file on disk
+and compare to a pinned constant; load the parent from the selection artifact on disk and
+recompute its digest there rather than accepting one; pin an expected planner digest and
+enforce it; make `receipt()` carry the fields its consumers need so canonical receipts are
+usable and ad-hoc dicts are not.
+
+**Status: the image download remains queued and unfired.** Nothing has been downloaded.
