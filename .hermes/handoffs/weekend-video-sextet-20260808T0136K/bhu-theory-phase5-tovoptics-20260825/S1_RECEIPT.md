@@ -1,5 +1,5 @@
 # S1 receipt — the crossing shift, and a third analytic law
-(2026-08-25 18:20 KST, Tori. Script s1_crossing_shift.py, run log _tmp_s1_run.txt, 6/6
+(2026-08-25 18:07:44 KST (file mtime; 18:20 was estimated, not stamped), Tori. Script s1_crossing_shift.py, run log _tmp_s1_run.txt, 6/6
 limiting-case checks. Blind double NOT yet run for S1 — the brief specifies it for S0 and S2;
 S1's central claim is instead PROVEN algebraically below, which is stronger.)
 

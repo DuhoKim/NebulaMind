@@ -1,5 +1,5 @@
 # S0 receipt — the exterior is marginally transparent at cosmological anchors
-(2026-08-25 17:40 KST, Tori. Script s0_optical_depth.py; run log _tmp_s0_run.txt;
+(2026-08-25 17:49:49 KST (file mtime; the 17:40 in the first version was estimated, not stamped), Tori. Script s0_optical_depth.py; run log _tmp_s0_run.txt;
 4/4 limiting-case checks pass. Blind double dispatched to gpt1 — this receipt is PRE-double
 and no S0 result is final until the two agree.)
 

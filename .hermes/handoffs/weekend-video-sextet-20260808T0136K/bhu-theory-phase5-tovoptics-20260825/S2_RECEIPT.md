@@ -1,5 +1,5 @@
 # S2 receipt — the crossing sky is 100,000 times too lopsided
-(2026-08-25 18:45 KST, Tori. s2_transfer.py, run log _tmp_s2_run.txt, 4/4 limiting cases.
+(2026-08-25 18:17:15 KST (file mtime; 18:45 was estimated, not stamped), Tori. s2_transfer.py, run log _tmp_s2_run.txt, 4/4 limiting cases.
 Blind double: platoon/gpt1_blind_s2/, dispatched before my numbers existed.)
 
 ## Blind double: agreement to 12 significant digits
