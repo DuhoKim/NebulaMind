@@ -56,4 +56,7 @@ A different decision the same day; these are ruled on, not paused. See
 `spin-parity-census`, `mzr-archive-census`, `c41-trackb-shape2-mzr`.
 
 Also on the shelf without provenance, awaiting Duho's ruling rather than held:
-`z7-mzr-descriptive` — see `.hermes/retired-studies/Z7_MZR_DESCRIPTIVE_NO_PROVENANCE.md`.
+`z7-mzr-descriptive` — **not an orphan**: provenance was found 2026-08-06 (lane
+`overnight-z7-mzr-20260720`, byte-identical PDF); only the Lab-side wiring is missing.
+See the corrected header on `.hermes/retired-studies/Z7_MZR_DESCRIPTIVE_NO_PROVENANCE.md`
+— the filename still says NO_PROVENANCE and is itself misleading.
