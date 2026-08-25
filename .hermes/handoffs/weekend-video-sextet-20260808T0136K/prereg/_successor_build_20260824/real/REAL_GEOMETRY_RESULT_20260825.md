@@ -65,3 +65,45 @@ reach 95%. This footprint reaches **99.7%** with about a tenth of the download.
 No image byte was fetched; no χ was read; nothing is frozen. This is Branch B (DR10) geometry;
 Branch A (DR11) would need its own counts. The prereg's remaining gate findings still stand —
 this fills the class-P inputs those findings said could not be closed by writing alone.
+
+---
+
+## CORRECTION, 2026-08-25 (round-7 gate, verified independently by me)
+
+The codex round-7 gate reproduced the Stage-P result exactly — 997/1000, 77/77 boundary
+confirmations, PASS — and then found two defects in how the geometry above was produced. I
+re-ran both checks myself; **both are confirmed, and both correct numbers reported earlier.**
+
+**1. The 6,446-brick figure is a greedy PREFIX, not the frozen selection.**
+`run_real_selection.py` stopped the greedy at the leverage target and never ran the reduction
+pass. Verified: brick **155487** is removable while the set still meets the target
+(L_ret 40,001.9 against a 40,000.0 target). The frozen `local_pass()` would reduce further, so
+**6,446 bricks and ~77 GB are upper bounds, not the frozen algorithm's output.** The direction
+is favourable — the real selection is smaller — but it is not the number I claimed it was.
+
+**2. The planner in `successor_ref_v4.py` is NOT the frozen planner, and against the real
+brick table it reproduces the very defect it claims to prevent.** Verified on the actual
+`survey-bricks-dr10-south` table (712 bricks in the dec ≤ −86.5 band):
+
+| object | my planner returns | needs |
+|---|---|---|
+| 10997315463551936 (dec −88.59) | `['3385m885']` | also **3471m885** |
+| 10995116744378804 (dec −87.13) | `['2894m872']` | also **2857m870** |
+
+It returns the home brick only — exactly the enumeration failure that produced the
+60,308-vs-60,310 gap. The closure fixtures passed only because they ran on a synthetic grid
+whose neighbour relationships I had constructed.
+
+**Why this happened, plainly:** round 6 asked me to "pin and implement the cutout planner as
+code." I implemented a *new* planner instead of pinning the *existing frozen* one. The frozen
+planner is in the lane and is correct — called directly earlier today it returned
+`['3385m885', '3471m885']` and `['2857m870', '2894m872', '2902m870']`, both complete.
+
+**The repair** is therefore to delete my reimplementation and bind BS-2m to
+`_objmanifest_20260820/build_object_manifest.py::plan_candidate_bricks` with its adapter and
+geometry sidecar digests, and to re-run the selection through `local_pass()`. Not done yet.
+
+**What survives unchanged:** the count oracle (366,912 universe, 832,393 placed,
+Var = 0.445201) and the Stage-P power result on the geometry actually used — independently
+reproduced by the gate. The power conclusion is sound for that geometry; the geometry was not
+produced by the frozen chain.
