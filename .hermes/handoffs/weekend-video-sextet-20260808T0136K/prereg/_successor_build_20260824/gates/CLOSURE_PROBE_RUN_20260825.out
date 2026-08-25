@@ -1,0 +1,73 @@
+start 2026-08-25 23:13:32 KST
+[P01] the honest baseline: complete parent, complete manifest
+[R01] manifest omitting 3471m885, the first historical neighbour brick
+[R02] manifest omitting 2857m870, the second historical neighbour brick
+[R03] manifest carrying a brick no object requires
+[R04] manifest listing the same brickname twice
+[R05] parent row sitting in a brick that is not in the selection
+[R06] parent listing the same ls_id twice
+[R07] count oracle whose total is not the pinned release total
+[R08] count oracle that has no row for one of the selected bricks
+[R09] parent with the second object's row omitted, honest oracle
+[R10] planner configuration changed in memory before the digest is taken
+[R11] selection listing the same brickid twice
+[G01] the planner digest actually reported for this run
+[C01] parent with a row omitted, plus an oracle file edited so its total still matches
+[C02] parent with a row omitted, plus a selection and oracle reduced to match it
+[C03] the C01 inputs reached through symlinks instead of by direct path
+[C04] parent whose per-brick counts are right but whose second row's contents are not
+[E01] parent path that does not exist
+[E02] selection file that is not a valid npz archive
+[E03] selection npz without the selected_brickid array
+[E04] parent whose ls_id and ra are not numeric
+[E05] manifest argument passed as None instead of a list
+
+ID    EXPECT  ACTUAL      LABEL
+P01   PASS    PASS    ok  the honest baseline: complete parent, complete manifest
+R01   REFUSE  REFUSE  ok  manifest omitting 3471m885, the first historical neighbour brick
+                        MANIFEST NOT CLOSED: manifest 4 vs required 5; missing 1 ['3471m885']; extra 0 []
+R02   REFUSE  REFUSE  ok  manifest omitting 2857m870, the second historical neighbour brick
+                        MANIFEST NOT CLOSED: manifest 4 vs required 5; missing 1 ['2857m870']; extra 0 []
+R03   REFUSE  REFUSE  ok  manifest carrying a brick no object requires
+                        MANIFEST NOT CLOSED: manifest 6 vs required 5; missing 0 []; extra 1 ['0001p000']
+R04   REFUSE  REFUSE  ok  manifest listing the same brickname twice
+                        manifest contains duplicate bricknames
+R05   REFUSE  REFUSE  ok  parent row sitting in a brick that is not in the selection
+                        parent row in brick 328928, which is not in the selection
+R06   REFUSE  REFUSE  ok  parent listing the same ls_id twice
+                        parent has duplicate ls_id
+R07   REFUSE  REFUSE  ok  count oracle whose total is not the pinned release total
+                        oracle total 832392 != pinned release total 832393
+R08   REFUSE  REFUSE  ok  count oracle that has no row for one of the selected bricks
+                        oracle covers 1 of 2 selected bricks
+R09   REFUSE  REFUSE  ok  parent with the second object's row omitted, honest oracle
+                        PARENT INCOMPLETE: 1 of 2 selected bricks have a row count differing from the count oracle (brick: expected/got) [(523, (1, 0))] — a shortened parent 
+R10   REFUSE  REFUSE  ok  planner configuration changed in memory before the digest is taken
+                        PLANNER DIGEST MISMATCH: 5603a721d4df5b0e0696234f7cb8aecfd3fbcf01c7a76efe212fe16563c72c17 != pinned 82971b8023337c350ab210af9da5078cd12e7817add028e4f9
+R11   REFUSE  REFUSE  ok  selection listing the same brickid twice
+                        selection is empty or has duplicate bricks
+G01   PASS    PASS    ok  the planner digest actually reported for this run
+C01   REFUSE  PASS    **  parent with a row omitted, plus an oracle file edited so its total still matches
+C02   REFUSE  PASS    **  parent with a row omitted, plus a selection and oracle reduced to match it
+C03   REFUSE  PASS    **  the C01 inputs reached through symlinks instead of by direct path
+C04   REFUSE  PASS    **  parent whose per-brick counts are right but whose second row's contents are not
+E01   REFUSE  REFUSE  ok  parent path that does not exist
+                        input not found: $RUN/absent.csv
+E02   REFUSE  REFUSE  ok  selection file that is not a valid npz archive
+                        closure refused: ValueError: Cannot load file containing pickled data when allow_pickle=False
+E03   REFUSE  REFUSE  ok  selection npz without the selected_brickid array
+                        closure refused: KeyError: 'selected_brickid is not a file in the archive'
+E04   REFUSE  REFUSE  ok  parent whose ls_id and ra are not numeric
+                        closure refused: ValueError: invalid literal for int() with base 10: 'not-an-int'
+E05   REFUSE  REFUSE  ok  manifest argument passed as None instead of a list
+                        closure refused: TypeError: 'NoneType' object is not iterable
+
+geometry mode : production-uncached
+conforming    : 18/22
+non-conforming: ['C01', 'C02', 'C03', 'C04']
+error-typed   : none
+VERDICT       : SUITE-NON-CONFORMING
+stable_sha256 : f1cd1004de806c6bb6f1261e4177680bc7fdc9f28de056ca5ca1dc5a26281961
+receipt       : CLOSURE_PROBE_RECEIPT_20260825.json
+exit=2
+end 2026-08-25 23:30:01 KST

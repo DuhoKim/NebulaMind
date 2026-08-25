@@ -1,0 +1,342 @@
+{
+  "stable": {
+    "fixtures": {
+      "path": "../ref/FIXTURES_V4_20260825.out",
+      "sha256": "c9a3af3787ad57fa0349821d5f382b4da2bb787b714ed3d2ce8d4ac19c3fa052"
+    },
+    "geometry_mode": "production-uncached",
+    "not_covered": [
+      "Substitution of the pinned geometry sidecar itself, or of the frozen planner's source files. Both would mean writing to pinned artifacts outside this run directory; the suite only confirms that the digests over them are checked (probes G01, R10).",
+      "Behaviour at production scale. Every probe runs on a two-object parent table. The 65,060-object closure has never been run end to end; nothing here measures its runtime or memory.",
+      "Concurrent modification of an input file between `close_manifest`'s digest read and its data read (the file digests are computed once, then the files are re-opened).",
+      "Anything about the download itself. This suite stops at the closure verdict; it does not look at DOWNLOAD_QUEUE_PLAN_20260825.md, retries, or byte integrity of fetched images."
+    ],
+    "pinned": {
+      "count_total": 832393,
+      "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+      "planner_digest": "82971b8023337c350ab210af9da5078cd12e7817add028e4f9cdfa730a76559b",
+      "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+      "universe_bricks": 366912
+    },
+    "probes": [
+      {
+        "actual": "PASS",
+        "basis": "brief: a complete manifest must clear",
+        "conforms": true,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "P01",
+        "label": "the honest baseline: complete parent, complete manifest",
+        "mentions_required": null,
+        "message": "",
+        "varies": "nothing \u2014 this is the control that the suite's own fixtures are well formed"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "brief: the 60,308-vs-60,310 failure this check exists to prevent",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R01",
+        "label": "manifest omitting 3471m885, the first historical neighbour brick",
+        "mentions_required": "3471m885",
+        "message": "MANIFEST NOT CLOSED: manifest 4 vs required 5; missing 1 ['3471m885']; extra 0 []",
+        "varies": "one required brickname removed from the candidate manifest"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "brief: the 60,308-vs-60,310 failure this check exists to prevent",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R02",
+        "label": "manifest omitting 2857m870, the second historical neighbour brick",
+        "mentions_required": "2857m870",
+        "message": "MANIFEST NOT CLOSED: manifest 4 vs required 5; missing 1 ['2857m870']; extra 0 []",
+        "varies": "one required brickname removed from the candidate manifest"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: `extra_in_manifest` is a refusal, not a warning",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R03",
+        "label": "manifest carrying a brick no object requires",
+        "mentions_required": "extra",
+        "message": "MANIFEST NOT CLOSED: manifest 6 vs required 5; missing 0 []; extra 1 ['0001p000']",
+        "varies": "one brickname added to the candidate manifest"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: explicit duplicate-brickname refusal",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R04",
+        "label": "manifest listing the same brickname twice",
+        "mentions_required": "duplicate",
+        "message": "manifest contains duplicate bricknames",
+        "varies": "a duplicate entry in the candidate manifest"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: rows must lie inside the selection",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R05",
+        "label": "parent row sitting in a brick that is not in the selection",
+        "mentions_required": "not in the selection",
+        "message": "parent row in brick 328928, which is not in the selection",
+        "varies": "one parent row's brickid changed to a real brick outside the selection"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: explicit duplicate-ls_id refusal",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R06",
+        "label": "parent listing the same ls_id twice",
+        "mentions_required": "duplicate ls_id",
+        "message": "parent has duplicate ls_id",
+        "varies": "the second row's ls_id replaced by the first row's"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest bullet 4: the oracle total must equal PINNED_COUNT_TOTAL",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R07",
+        "label": "count oracle whose total is not the pinned release total",
+        "mentions_required": "pinned release total",
+        "message": "oracle total 832392 != pinned release total 832393",
+        "varies": "one eligible count reduced by 1, so the oracle sums to 832,392"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: the oracle must cover every selected brick",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R08",
+        "label": "count oracle that has no row for one of the selected bricks",
+        "mentions_required": "oracle covers",
+        "message": "oracle covers 1 of 2 selected bricks",
+        "varies": "the second selected brick's oracle row removed, its count moved to the filler row"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest bullet 4: the completeness proof against the count oracle",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R09",
+        "label": "parent with the second object's row omitted, honest oracle",
+        "mentions_required": "PARENT INCOMPLETE",
+        "message": "PARENT INCOMPLETE: 1 of 2 selected bricks have a row count differing from the count oracle (brick: expected/got) [(523, (1, 0))] \u2014 a shortened parent cannot pass this, whatever digest accompanies it",
+        "varies": "one row removed from the parent table; oracle and selection untouched"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest bullet 2: the pinned full-transitive planner digest",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R10",
+        "label": "planner configuration changed in memory before the digest is taken",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: 5603a721d4df5b0e0696234f7cb8aecfd3fbcf01c7a76efe212fe16563c72c17 != pinned 82971b8023337c350ab210af9da5078cd12e7817add028e4f9cdfa730a76559b \u2014 the code or configuration determining the plan is not the pinned one",
+        "varies": "the frozen adapter's CANDIDATE_PREFILTER_DEG raised by 0.01, then restored"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: duplicate/empty selection refusal",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R11",
+        "label": "selection listing the same brickid twice",
+        "mentions_required": "duplicate",
+        "message": "selection is empty or has duplicate bricks",
+        "varies": "a duplicate entry in the selection array"
+      },
+      {
+        "actual": "PASS",
+        "basis": "control: makes the binding visible in the receipt rather than asserted",
+        "conforms": true,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "G01",
+        "label": "the planner digest actually reported for this run",
+        "mentions_required": null,
+        "message": "",
+        "varies": "nothing \u2014 records the digest so the reviewer can compare it to the pinned constant"
+      },
+      {
+        "actual": "PASS",
+        "basis": "close_manifest docstring bullet 4: 'a parent missing rows fails here no matter what digest accompanies it, because it cannot also shorten the oracle'",
+        "conforms": false,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "C01",
+        "label": "parent with a row omitted, plus an oracle file edited so its total still matches",
+        "mentions_required": null,
+        "message": "",
+        "varies": "the omitted brick's eligible count set to 0 and that 1 moved to the filler row, so the oracle still sums to the pinned 832,393 and the per-brick proof still balances"
+      },
+      {
+        "actual": "PASS",
+        "basis": "close_manifest docstring bullet 3/4: the selection and the completeness proof are described as bindings on the parent, which requires them to be independent of it",
+        "conforms": false,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "C02",
+        "label": "parent with a row omitted, plus a selection and oracle reduced to match it",
+        "mentions_required": null,
+        "message": "",
+        "varies": "selection cut to one brick and the oracle rebuilt around it, so all three inputs agree with each other and with the pinned total"
+      },
+      {
+        "actual": "PASS",
+        "basis": "same as C01; recorded separately so the receipt shows whether path form changes anything (it should not, either way)",
+        "conforms": false,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "C03",
+        "label": "the C01 inputs reached through symlinks instead of by direct path",
+        "mentions_required": null,
+        "message": "",
+        "varies": "identical bytes to C01, but each path argument is a symlink to the file"
+      },
+      {
+        "actual": "PASS",
+        "basis": "brief scope: the check 'computes the complete required image list from the galaxies themselves'; a row that is not a galaxy in the release understates that list",
+        "conforms": false,
+        "dispute": "A reviewer may rule this outside close_manifest's contract on the grounds that no pinned artifact fixes the parent's row CONTENTS, only its row counts. If so, the finding moves rather than disappears: something upstream must then bind the parent, and the receipt should say which artifact does it.",
+        "expect": "REFUSE",
+        "id": "C04",
+        "label": "parent whose per-brick counts are right but whose second row's contents are not",
+        "mentions_required": null,
+        "message": "",
+        "varies": "the second row keeps its brickid so every count still balances, but carries an unused ls_id and the FIRST object's coordinates \u2014 so the object it describes does not exist and the brick set the planner derives is understated"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest: input-not-found refusal",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "E01",
+        "label": "parent path that does not exist",
+        "mentions_required": "input not found",
+        "message": "input not found: $RUN/absent.csv",
+        "varies": "a missing input file"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest's trailing handler: every failure leaves as one refusal type",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "E02",
+        "label": "selection file that is not a valid npz archive",
+        "mentions_required": null,
+        "message": "closure refused: ValueError: Cannot load file containing pickled data when allow_pickle=False",
+        "varies": "16 bytes of plain text"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest's trailing handler",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "E03",
+        "label": "selection npz without the selected_brickid array",
+        "mentions_required": null,
+        "message": "closure refused: KeyError: 'selected_brickid is not a file in the archive'",
+        "varies": "the array renamed"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest's trailing handler",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "E04",
+        "label": "parent whose ls_id and ra are not numeric",
+        "mentions_required": null,
+        "message": "closure refused: ValueError: invalid literal for int() with base 10: 'not-an-int'",
+        "varies": "two fields replaced by text"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest's trailing handler",
+        "conforms": true,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "E05",
+        "label": "manifest argument passed as None instead of a list",
+        "mentions_required": null,
+        "message": "closure refused: TypeError: 'NoneType' object is not iterable",
+        "varies": "an argument of wrong type"
+      }
+    ],
+    "receipt_version": "1",
+    "subject": {
+      "path": "../ref/successor_ref_v4.py",
+      "sha256": "8191c42be1e8153e80480c0d110eb03c8f9c92f91895692e333af3fcbef50a21"
+    },
+    "suite": {
+      "path": "closure_probe_suite.py",
+      "sha256": "becdf3f59c70a193c17fb4e4988e25310d838c0a40f39fe3234f77398bda05a6"
+    },
+    "summary": {
+      "conforming": 18,
+      "non_conforming": [
+        "C01",
+        "C02",
+        "C03",
+        "C04"
+      ],
+      "run": 22,
+      "unexpected_error_type": []
+    },
+    "verdict": "SUITE-NON-CONFORMING"
+  },
+  "stable_sha256": "f1cd1004de806c6bb6f1261e4177680bc7fdc9f28de056ca5ca1dc5a26281961",
+  "volatile": {
+    "run_dir": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/_tmp_closure_probe_run",
+    "seconds_per_probe": {
+      "C01": 47.009,
+      "C02": 47.183,
+      "C03": 47.504,
+      "C04": 47.16,
+      "E01": 47.169,
+      "E02": 47.058,
+      "E03": 47.028,
+      "E04": 47.491,
+      "E05": 47.255,
+      "G01": 0.001,
+      "P01": 46.98,
+      "R01": 47.085,
+      "R02": 46.995,
+      "R03": 46.921,
+      "R04": 47.039,
+      "R05": 46.766,
+      "R06": 47.016,
+      "R07": 47.005,
+      "R08": 46.836,
+      "R09": 46.876,
+      "R10": 0.002,
+      "R11": 47.186
+    },
+    "setup": {
+      "geometry_bricks": 366912,
+      "geometry_seconds": 46.939
+    },
+    "total_seconds": 988.8
+  }
+}
