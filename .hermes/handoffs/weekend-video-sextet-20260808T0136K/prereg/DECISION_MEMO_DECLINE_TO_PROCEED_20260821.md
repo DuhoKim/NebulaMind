@@ -2,11 +2,29 @@
 
 Hwao, Revision 6, 2026-08-21.
 
-> **THIS IS A DRAFT. NOTHING IN IT IS IN FORCE.**
-> It requires an adversarial gate AND Duho's signature. It has neither. **The study has not been
-> declined.** Every statement below is what this memo *would* record if signed — read the
-> conditional mood as binding, and where a sentence slips into the indicative, that is a drafting
-> error and not a fact.
+> **EFFECTIVE BY SIGNATURE — 2026-08-25.** The study is **DECLINED**. Duho's ruling, given
+> ~12:0x KST 2026-08-25 after a plain-language walkthrough of this Revision 6 and the
+> completion brief, selected from explicit options and relayed verbatim by Blanc:
+> **"Sign the decline."** Counter-recorded by Hwao 2026-08-25 11:20 KST (relay preceded the
+> counter-record; the relay's stated ruling time is quoted as given).
+>
+> **Gate state at signing, disclosed rather than cured:** this memo's banner as drafted read
+> "THIS IS A DRAFT. NOTHING IN IT IS IN FORCE. It requires an adversarial gate AND Duho's
+> signature. It has neither. The study has not been declined." — and the memo's most recent
+> adversarial gate, `GATE_DECISION_MEMO_R6_20260821.md`, first line verbatim
+> **`REFUTED_DECISION_MEMO_R6`**, refused Revision 6 on custody-prose defects while holding
+> that the memo's central theory survives ("the preregistration creates no anti-abandonment
+> duty") and the memo's GROUNDS (the footprint power finding) were gated separately and never
+> contradicted. The signature therefore **adopts Revision 6 in its refused-but-recorded
+> state by the investigator's authority** — the same closure form Duho used for the chi
+> custody record at its 21st refusal — with this disclosure standing in the artifact itself.
+>
+> **Consequences, effective now, as written below:** the run halts with no preregistered
+> outcome claimed; no strata are ever computed (the strata decision evaporates); the 150
+> hand-check labels are never requested; the 60,308-brick verified sample and its 208,405
+> sealed χ measurements archive as successor input. The disclosure record, custody chain,
+> and lapse records stand as they are. The successor remains open and undecided — this
+> signature decides only the decline.
 
 **Correction to the retention claim.** Revision 5 said Revisions 1-4 were "retained byte-for-byte".
 For Revision 4 that was false. After `GATE_DECISION_MEMO_FINAL_20260821.md` hashed and reviewed it,
