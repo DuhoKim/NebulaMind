@@ -48,6 +48,15 @@ anti-conservative on real polar geometry, as the fixture family predicted).
 **Successes 997 / 1000** at the frozen labelling floor a = 0.85 with A = 0.0408 injected.
 Pass rule x ≥ 962. **PASS.**
 
+**Re-run under the self-verifying gate (v4), because the first run used calibrated decisions
+alone — the logic both round-6 gates called unsound.** Stage P now re-tests every
+near-boundary success against an independent 20,000-permutation run and fails closed on a
+single unconfirmed one. On this geometry: **77 boundary trials, 77 confirmed, 0 refuted,
+verdict PASS** (629 s). The headline was not wrong; it had not been audited. It has been now.
+For contrast, on a fixture sized to sit at ~50% power the same mechanism refuted 2 of 7
+boundary successes and failed the stage closed — the defect is real, this geometry simply
+does not exhibit it.
+
 The dead run's power at the same floor was ~52% and no accepted subset of its footprint could
 reach 95%. This footprint reaches **99.7%** with about a tenth of the download.
 
