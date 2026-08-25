@@ -93,7 +93,7 @@ rulings 2 and 3 were not.
 with no freeze and no data authorization; **no standing fact in the completion brief is
 unratified.**
 
-## A timestamp discrepancy, disclosed rather than resolved
+## A timestamp discrepancy — RESOLVED 2026-08-25 (appended below the original)
 
 Ruling 1's relayed time (~12:0x KST) is **later than** the time this host's `date` returned
 when I counter-recorded it on the memo (11:20:16 KST) and stopped the wrappers. Both times are
@@ -124,3 +124,27 @@ rather than incomplete — was already spoken at 11:21 (seq 68, played to comple
 and 3 are additive, and the corrected status carries in the next report. A third reading in
 one morning would cost more attention than it returns. This artifact plus the next report is
 the proportionate correction.
+
+
+---
+
+## RESOLUTION of the timestamp discrepancy (appended 2026-08-25 16:20 KST)
+
+The section above left the two signing times unreconciled and asked Blanc to compare the
+clocks. **There were never two clocks — there was one measurement and one estimate.**
+
+Blanc traced it (`blanc-ops-overhaul-20260820/SIGNING_TIME_RESOLVED_20260825.md`) and I
+verified every receipt independently:
+
+- `queue_ledger.jsonl` seq 68: `recorded_kst 11:21:01 KST`, `stamp_utc 02:21:10Z`
+  (= 11:21:10 KST), `duration_s 35.86`; its caption's first line reads *"Addendum to the Trio
+  report, 11:21. Duho has signed the decline."*
+- An addendum announcing a ruling cannot render before the ruling is relayed, so the relay
+  happened **at or before 11:21:01 KST** and "~12:0x" is impossible by ~40 minutes.
+- seq 67 (`02:11:04Z` / `11:11:04 KST`) and seq 68 agree exactly and interleave correctly with
+  the 11:20:16 `date` reading: **no host drift exists to reconcile.**
+
+**Authoritative signing time: 2026-08-25 11:20:16 KST.** The "~12:0x" figure was Blanc's
+estimate written from recollection; they identified and reported the error themselves. The
+signed memo now carries an appended correction (its banner text is unchanged; memo sha moved
+from `b4a1f1fc…` to `76cc25e5…` by that append alone). Nothing about the decision changes.

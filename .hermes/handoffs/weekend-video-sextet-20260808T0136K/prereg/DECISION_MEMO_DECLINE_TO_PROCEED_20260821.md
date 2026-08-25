@@ -215,3 +215,40 @@ frozen, and this memo makes no forward claim that anything will be.
 
 This memo therefore rests on no unbuilt artifact. Its grounds are the footprint geometry and the
 frozen text alone.
+
+---
+
+# APPENDED CORRECTION — the ruling time in the banner above is wrong (2026-08-25)
+
+**Appended, not edited.** The signature banner's original wording stands exactly as recorded
+at signing, including the time now known to be wrong. This correction is additive, in the same
+never-edit-history discipline the custody chain uses. Nothing about the decision changes: the
+study is DECLINED BY SIGNATURE and this memo remains EFFECTIVE.
+
+**What the banner says:** the ruling was given *"~12:0x KST 2026-08-25."*
+
+**What is true:** the ruling was relayed **at or before 11:21:01 KST**, and my counter-record
+of **11:20:16 KST** — read from this host's `date` — stands as the recorded signing time.
+
+**How that is established, from pipeline receipts I verified independently today:**
+
+- `queue_ledger.jsonl` seq 68 (the decline addendum): `recorded_kst 2026-08-25 11:21:01 KST`,
+  `stamp_utc 2026-08-25T02:21:10Z` (= 11:21:10 KST), `duration_s 35.86`.
+- Its caption's first line, verbatim: *"Addendum to the Trio report, 11:21. Duho has signed
+  the decline."*
+- An addendum announcing a ruling cannot be rendered before the ruling is relayed. Therefore
+  "~12:0x" is not merely uncertain — it is **impossible, by roughly forty minutes**.
+- No host drift is involved: seq 67 (`02:11:04Z` / `11:11:04 KST`) and seq 68 (`02:21:10Z` /
+  `11:21:10 KST`) agree exactly, and both interleave correctly with the 11:20:16 `date`
+  reading. There are not two clocks here — there is one measurement and one estimate.
+
+**Provenance of the error, stated plainly:** "~12:0x KST" was Blanc's estimate, written from
+recollection rather than read from a clock, and relayed to me in that form. I quoted it into a
+memo that was about to be signed, alongside my own measured counter-record, and flagged the
+inconsistency rather than resolving it before freezing. Blanc identified and traced the error
+themselves (`blanc-ops-overhaul-20260820/SIGNING_TIME_RESOLVED_20260825.md`) and left the
+correction to me. The estimate was the only figure in the pair that no clock produced, and it
+is the one that was wrong — which is precisely what the standing rule *stamp time with `date`,
+never estimate* exists to prevent, here reaching a document already in force.
+
+**Authoritative signing time for any ledger that needs one: 2026-08-25 11:20:16 KST.**
