@@ -7,17 +7,22 @@ that under gates.
 
 ## Verification receipt
 
-Verifier `b_verify_quotes.py` **v6**, rebuilt three times under codex gate pressure (HOLD →
-residue → residue → this version). What v5 proves for every quote:
+Verifier `b_verify_quotes.py` **v7**, rebuilt four times under codex gate pressure (HOLD →
+residue → residue → residue → this version). What v5 proves for every quote:
 
 - **Ordered numeric relations with operator conflict-detection**: each quote's numbers
   (units unglued, leading zeros canonicalized) must appear IN ORDER within a bounded window of
   one bound source, and the source gap between consecutive numbers must not assert a relation
   DIFFERENT from the quote's (±, ×, <, >, +, −) — a silent gap is tolerated because PDF
-  rendering loses operators, but pm cannot become times and + cannot become −. FIVE corruption
+  rendering loses operators, but pm cannot become times and + cannot become −. SIX corruption
   classes are embedded as mandatory self-tests and all FAIL: absent fragments, range order
   swaps ("5–10"→"10–5"), exponent sign flips (10⁻⁵→10⁺⁵), glued-unit value changes
-  ("3.7mK"→"99.9mK"), and operator substitution ("3362.08 ± 0.99"→"× 0.99").
+  ("3.7mK"→"99.9mK"), operator substitution ("3362.08 ± 0.99"→"× 0.99"), and operator
+  DELETION ("3362.08 0.99" against a source that tightly joins the pair with ±) — the
+  deletion rule fires only on tight operator-joined pairs, because loose gaps full of PDF
+  column-interleave noise assert nothing about the pair. Sentence-level matching handles
+  quotes whose sources interleave columns BETWEEN sentences (order and relations enforced
+  within each sentence; every number-bearing sentence must match in the same file).
 - **Typography-honest sources**: three quotes (Darling 2022; Efstathiou 2003 ×2) cannot be
   relation-verified against their PDF text layers, whose two-column/superscript rendering
   scrambles reading order; their arXiv LaTeX sources were fetched at freeze
@@ -35,11 +40,11 @@ residue → residue → this version). What v5 proves for every quote:
 
 **Result: 50/50 PASS, zero manual acceptances, zero directory fallbacks.**
 
-Pins at freeze (v6):
+Pins at freeze (v7):
 - HARVEST_CMB_BOUNDS.md (gpt2) sha256 beba95a7c8f5093e1a962ccffefa465038a58b6f3c83bfaff8ba6ddbe4662714
 - HARVEST_H0_ANISOTROPY.md (agy) sha256 6d97c67900348e5569dd802478b6bb8628640cd45e58b5b6e21c243286883f5a
-- b_verify_quotes.py (v6) sha256 1c9886ea208c383339f4a0274c3197f7558a9fb126a65d85f40ba147ce35fd44
-- b_verify_ledger.json sha256 0ca5467891bd6613988a1e828bf348a742cfae73a41929eb9efed304a89da643
+- b_verify_quotes.py (v7) sha256 148d55464b1e63818a48f29feb8cdd8796d6e0b68ab9d297c0a91645cf10f3b3
+- b_verify_ledger.json sha256 1a4a397838789e55c991156f93be782aa0a4d54626e8b418e9b3e4bfc5f4cafa
 - b_binding_map.json sha256 37775c9ac4f7da98ae0c44238932495b0e8b28791033a487efef910c07da53f7
   (identification counts corrected to occurrence counts per the regate: CatWISE 18, eigenvalues 11)
 

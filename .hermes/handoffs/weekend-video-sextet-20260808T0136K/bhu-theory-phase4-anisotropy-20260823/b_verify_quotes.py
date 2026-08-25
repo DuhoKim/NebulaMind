@@ -20,6 +20,7 @@ def norm(s):
                 (">"," gt "),("≃","~"),("≈","~"),("^","")]:
         s=s.replace(a,b)
     s = re.sub(r"(?<=\d)\s*([+-])\s*(?=\d)", r" \1 ", s)  # 331+161-107 -> 331 + 161 - 107
+    s = re.sub(r"(?<=[a-zA-Z])([+-])(?=\d)", r" \1 ", s)      # s-1 (unit superscript) -> s - 1
     s = re.sub(r"(?<=\d)(?=[a-zA-Z])"," ",s)   # split numbers glued to units: 3.7mK -> 3.7 mK
     s = re.sub(r"(?<=[a-zA-Z])(?=\d)"," ",s)   # and identifiers: S03 -> S 03 (symmetric)
     s = re.sub(r"\\[a-zA-Z]+"," ",s.replace("$","").replace("{"," ").replace("}"," "))
@@ -82,7 +83,16 @@ def find_ordered(seq_or_q, ntext, gap=400):
             for w in want:
                 if any(h!=w for h in have): ok=False; break
             if not ok: break
-            if not want and False: pass
+            # v7 change — DELETION asymmetry (regate3): the quote is born digital and never
+            # loses operators legitimately; only the source's PDF layer does. A deletion is
+            # asserted only when the source joins the two matched numbers TIGHTLY through the
+            # operator (gap is just the operator, e.g. "3362.08 pm 0.99") while the quote
+            # juxtaposes them bare. Loose gaps full of column-interleave noise do not count —
+            # they assert nothing about the pair. times/lt/gt stay assert-only (prose words).
+            if not want:
+                gtoks=g.split()
+                if len(gtoks)<=2 and any(REL.get(t,t) in ("pm","+","-") for t in gtoks if t in REL):
+                    ok=False; break
             pos_end=m.end(); last_idx=idx
         if ok:
             # leading relation (e.g. 'lt 40' at sequence head): check 30 chars before
@@ -179,6 +189,17 @@ def check(harvest, srcdir, style, ledger):
                     span=(min(a for a,_ in spans),max(b for _,b in spans)) if spans and all(spans) else None
                 else:
                     span=find_ordered(seq,c) if seq else None
+                    if span is None and seq:
+                        # Sentence-level fallback: PDF column interleaving can stretch the
+                        # gap BETWEEN sentences beyond any local window. Relations and order
+                        # are enforced WITHIN each sentence; every number-bearing sentence
+                        # must match in this same file. Cross-sentence number moves change
+                        # two sentences and fail.
+                        sents=[x for x in re.split(r"(?<=[.!?])\s+", q) if expr_seq(x)]
+                        if len(sents)>1:
+                            sp=[find_ordered(expr_seq(x),c) for x in sents]
+                            if all(sp):
+                                span=(min(a for a,_ in sp),max(b for _,b in sp))
                 shf=sum(1 for s in sh if s in c)/len(sh)
                 cand={"f":f,"span":span,"sh":shf}
                 if best is None or ((span is not None, shf) > (best["span"] is not None, best["sh"])):
@@ -238,8 +259,10 @@ def selftest():
     bp="Planck 2018 ... 3362.08 × 0.99"
     assert find_ordered(expr_seq(gp),pl) is not None, "genuine pm expression must pass"
     assert not find_ordered(expr_seq(bp),pl), "PM->TIMES operator corruption must fail"
+    bd="Planck 2018 ... 3362.08  0.99"
+    assert not find_ordered(expr_seq(bd),pl), "PM-DELETION corruption must fail (regate3)"
     print("self-test: genuine passes; absent-fragment, order-swap, exponent-sign, glued-unit,")
-    print("           and pm->times operator corruptions ALL fail")
+    print("           pm->times substitution, and pm-DELETION corruptions ALL fail")
 
 selftest()
 ledger=[]
