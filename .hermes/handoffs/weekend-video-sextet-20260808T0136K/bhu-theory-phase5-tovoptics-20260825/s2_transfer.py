@@ -3,7 +3,9 @@
 
 Combines Phase 4's cap geometry (A2/A4, gated) with S1's crossing law beta = 1/sqrt(N).
 
- PINNED   : the A1 orbit (data), r_* = eta*sqrtN, eta = 2 sqrt(t), the crossing condition.
+ DATA     : the A1 orbit (gated Phase 4 output, read as data).
+ DERIVED  : r_* = eta*sqrtN, eta = 2 sqrt(t) and the crossing condition are Phase-4 DERIVED
+            geometry, NOT pinned published equations (gate objection 6).
  DERIVED  : beta_rel = 1/sqrt(N) at the crossing (S1_RECEIPT.md, proven).
  DERIVED  : local projection mu_loc = (x_off*mu + chi)/rho_s -- the cosine between the ray and
             the shock normal at the crossing point, from vector geometry.

@@ -37,13 +37,17 @@ def doppler(beta,mu):                 # 1+z across the junction
     g=1.0/math.sqrt(1.0-beta*beta)
     return g*(1.0-beta*mu)
 
-# LC1 — no-jump limit must give zero relative velocity.
-# As S->1 the shock weakens: u->0, v->0 ... but the physical no-jump test is u->sigma, v->1.
-# Construct it directly from the relation rather than from the orbit:
-eps=1e-9
-v1_t=0.5; v2_t=v2_of(SIGMA-eps*SIGMA, 1-eps, v1_t)
-chk("LC1 no-jump (u->sigma, v->1) gives v1*v2 -> sigma/1 ratio finite; beta_rel small",
-    abs(beta_rel(v1_t,v2_t))<1.0, f"v2={v2_t:.6f} beta_rel={beta_rel(v1_t,v2_t):.6f}")
+# LC1 — REAL no-jump test (gate objection 7: the previous version passed on |beta|<1 and
+# therefore tested nothing). The physical no-jump limit is the shock weakening to nothing,
+# i.e. sqrt(N) -> infinity on the gated orbit, where beta_rel must go to ZERO. Test the
+# approach to zero and its rate, not merely that beta is subluminal.
+i_far=max(range(len(S)), key=lambda i: Q[i])
+b_far=beta_rel(SP[i_far], v2_of(U[i_far],V[i_far],SP[i_far]))
+i_mid2=min(range(len(S)), key=lambda i: abs(Q[i]-10.0))
+b_mid2=beta_rel(SP[i_mid2], v2_of(U[i_mid2],V[i_mid2],SP[i_mid2]))
+chk("LC1 no-jump limit: beta_rel -> 0 as the shock weakens (sqrtN -> inf), as 1/sqrtN",
+    abs(b_far)<1e-4 and abs(b_far)<abs(b_mid2)/100,
+    f"beta(sqrtN={Q[i_far]:.0f})={b_far:.2e} vs beta(sqrtN=10)={b_mid2:.4f}")
 
 # LC2 — both fluid speeds subluminal on the whole gated orbit
 bad=[]

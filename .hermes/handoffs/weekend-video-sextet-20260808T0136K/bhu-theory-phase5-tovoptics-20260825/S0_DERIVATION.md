@@ -13,8 +13,9 @@ source, ours, checkable only by limiting cases and blind double.
   both over ten decades of S (a1_results.csv, gated PASS, blind-double-confirmed).
 - **PINNED** (same source, §6 and A1's verified identity): r̄ = 2 c t √N, with √N the shock
   distance in Hubble lengths.
-- **PINNED** (Phase 4 A2/A3, gated): our past light cone DOES reach the shock — the crossing
-  redshift is z_c(center) = √N(η_e). Causal access is therefore not in question at S0; only
+- **DERIVED, Phase 4 (gated), NOT pinned** (gate objection 6): our past light cone reaches the
+  shock, with crossing redshift z_c(center) = √N(η_e). A prior gated derivation is not a
+  pinned published equation under this phase's contract. Causal access is therefore not in question at S0; only
   opacity is.
 
 ## The quantity
