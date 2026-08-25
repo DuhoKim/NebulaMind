@@ -324,6 +324,11 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                     st.write_text(json.dumps({"accepted": acc, "epoch": time.time()}))
                 hb_age = time.time() - newest_mtime
                 rem = max(0, WORKING_SET - acc)
+                # Post-completion, shard A's final sweep re-counts the whole
+                # consolidated destination, so the raw sum reads ~127% forever.
+                # Once complete, the truthful display is the working set itself.
+                if acc >= WORKING_SET:
+                    acc = WORKING_SET
                 transfer = {
                     "accepted": acc, "total": WORKING_SET,
                     "pct": round(acc / WORKING_SET * 100, 1),
