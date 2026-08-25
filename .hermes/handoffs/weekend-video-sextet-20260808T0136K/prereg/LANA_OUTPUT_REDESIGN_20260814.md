@@ -1,4 +1,7 @@
-# LANA — output redesign: publishing the result without a derived catalogue
+# RETIRED (settled) — LANA — output redesign: publishing the result without a derived catalogue
+
+**RETIRED from the decision list 2026-08-25 (Blanc, on Duho's review): This file records the EXECUTION of a ruling Duho had already given (its own first line: 'Per Duho's decision'), re-gated by Kun as required. Nothing here was ever awaiting him.**
+
 
 **Lana (science / claim-boundary seat), 2026-08-14.** Per Duho's decision: redesign the published
 output so derived-catalogue publication is not required, rather than seek permission; Kun's gate

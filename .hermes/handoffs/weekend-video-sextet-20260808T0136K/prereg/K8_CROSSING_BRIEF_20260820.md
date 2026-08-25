@@ -1,4 +1,7 @@
-# The K-8 crossing — what it is, and what it costs. For Duho's decision.
+# RETIRED (settled) — The K-8 crossing — what it is, and what it costs. For Duho's decision.
+
+**RETIRED from the decision list 2026-08-25 (Blanc, on Duho's review): The decision this brief asked for was given the same evening: Duho authorized the crossing at 22:20 on 2026-08-20 and the first real measurement followed 52 minutes later, as the custody record documents. Decided and executed; kept as the briefing that preceded it.**
+
 
 Hwao, 2026-08-20 evening. Nothing in this brief crosses anything; the inference runner being
 built tonight is synthetics-only and REFUSES real tensors without an authorization file.

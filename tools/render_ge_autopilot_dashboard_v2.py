@@ -216,7 +216,8 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
     # and hid the live memo. The decision-shaped phrase is simply the possessive.
     # "by Duho's decision" is retrospective — a ruling already made. The
     # negative lookbehind keeps the list to prospective asks.
-    pat = re.compile(r"(?<!by )Duho'?s?\s+(?:go|signature|decision|ruling)\b", re.I)
+    # "by Duho's decision" and "per Duho's decision" are both retrospective
+    pat = re.compile(r"(?<!by )(?<!per )Duho'?s?\s+(?:go|signature|decision|ruling)\b", re.I)
     try:
         # newest first, and superseded/refuted forms skipped — the first cut of
         # this listed four SUPERSEDED memo revisions and capped out before the
