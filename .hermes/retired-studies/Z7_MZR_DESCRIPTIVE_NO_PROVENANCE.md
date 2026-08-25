@@ -1,5 +1,28 @@
 # z7-mzr-descriptive — video SKIPPED, no recorded provenance (2026-08-06 03:22 KST)
 
+> **CORRECTED 2026-08-25 — the central claim of this record is FALSE, and the
+> title is wrong.** The investigation this record triggered
+> (`handoffs/z7-mzr-provenance-20260806T1330K`, Lana, 2026-08-06) found the
+> provenance the same day: the shelf PDF is **byte-identical**
+> (sha1 `4b2d52d4a0eec0608b5fc9b2be6fc5a0cd356096`, re-verified by Blanc today)
+> to `handoffs/galaxy-evolution/overnight-z7-mzr-20260720/draft.pdf`, and that
+> lane carries the full chain: PREREGISTRATION, MOTIVATION, DATA_AUDIT,
+> ANALYSIS_PLAN, SELECTION_MODEL + forward model, REFEREE_REPORT with raw
+> transcripts, VERDICT_MEMO, LEDGER, the analysis scripts, and the inputs
+> (Nakajima 182 rows; 26 z>7 galaxies; SDSS anchor 203,601 lines matching the
+> paper's N = 203,599).
+>
+> What is genuinely missing is **Lab-side wiring** — no `_history.json`, no
+> draft-board entry, no link from the shelf PDF back to its lane. The study is
+> not an orphan; it is documented and unlinked.
+>
+> The table below is the 2026-08-06 03:22 snapshot, kept unedited as the
+> original observation. It is retained because the record of a wrong first read
+> is worth more than a tidy file — but nothing downstream should cite it as
+> current. Corrected after it nearly caused a retirement on a stale premise
+> (Duho reviewed, 2026-08-25).
+
+
 Raised during autonomous overnight video generation. Recorded rather than worked around.
 
 `frontend/public/studies/z7-mzr-descriptive.pdf` exists, and **nothing else about it does**:
