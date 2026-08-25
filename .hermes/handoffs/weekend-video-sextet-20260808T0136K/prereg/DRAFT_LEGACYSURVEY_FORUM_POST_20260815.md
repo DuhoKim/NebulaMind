@@ -1,4 +1,15 @@
-# DRAFT — post to the decam-legacy-survey forum
+# RETIRED (overtaken by events, Duho's ruling 2026-08-25) — was: DRAFT
+
+**Never sent. Retired because the question answered itself:** the retrieval ran
+2026-08-19→24 on the survey's published brick protocol (Goru's no-permission
+finding), completed at 60,308 bricks, and the Legacy Surveys data lead, Dustin
+Lang, engaged directly on 2026-08-22 — delivering his own digest list for our
+producer cross-check (20,929/20,929 then full-sample). Asking "which route do
+you prefer" after the route was used, verified, and assisted by the producer
+would be noise. Detected by the cockpit decision-brief scan at 229h old;
+ruled by Duho in plain words: "throw both away."
+
+# retired DRAFT — post to the decam-legacy-survey forum
 
 **Status: DRAFT, NOT POSTED.** Posting is Duho's decision.
 **Channel:** `decam-legacy-survey` Google Group — the survey's own first-listed point of contact
