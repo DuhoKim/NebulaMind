@@ -65,3 +65,62 @@ gate round; none yet). Track C's amendment cycle proceeds on its own gates.
 Goru's two catches are the reason this format exists: a lane's account can be receipt-true
 at writing time and stale eleven minutes later. Both catches were state-drift, not error —
 and both were caught before publication, not after.
+
+---
+
+# CORRECTION APPENDIX — three rulings landed after publication (Hwao, 2026-08-25)
+
+Appended, not rewritten. The report above stands as published; the "Status update after
+publication" section was itself appended at ~11:2x and is absorbed into this appendix. Nothing
+in the original body text is edited, per the same never-edit-history discipline the custody
+chain uses.
+
+**What was published, and when.** The Trio report audio rendered 11:10:34 KST and played
+11:11:04–11:14:18 (playback receipt seq 67). A decline addendum rendered 11:21:01 and played
+11:21:10–11:21:47 (seq 68). So ruling 1 below was already spoken on the pipeline at 11:21;
+rulings 2 and 3 were not.
+
+## The three rulings
+
+| # | ruling | time as relayed | recorded by me at | supersedes |
+|---|---|---|---|---|
+| 1 | **Decline SIGNED** — memo EFFECTIVE BY SIGNATURE; study DECLINED, not awaiting signature | ~12:0x KST (Blanc's relay) | 11:20 KST (this host's `date`) | body §"on Duho's desk" first item; deck slide 7 bullet 1; narration's "still an unsigned draft" |
+| 2 | **Successor prereg DRAFTING authorized** — writing only, own gates before any data, Sep-5 DR11/DR10.1 fork bound inside the draft | ~12:2x KST (relay) | 13:52 KST draft pinned | body §successor "13-item build list remains" framing; deck slide 7 bullet 3; narration's "available only after a clean review round" (still true of the FREEZE signature, but drafting is now authorized and done) |
+| 3 | **Caption-repair exposure increase RATIFIED** — disclosure ledger event 101, committed | this morning (relay) | 13:4x KST, brief updated | not stated in the report body; closes the last unratified line in `DECISION_BRIEF_COMPLETION_20260823.md` standing facts |
+
+**Corrected status, one line:** the spin-parity study is **DECLINED BY SIGNATURE, effective
+2026-08-25**; the successor preregistration is **drafted (V6) and under adversarial gate**,
+with no freeze and no data authorization; **no standing fact in the completion brief is
+unratified.**
+
+## A timestamp discrepancy, disclosed rather than resolved
+
+Ruling 1's relayed time (~12:0x KST) is **later than** the time this host's `date` returned
+when I counter-recorded it on the memo (11:20:16 KST) and stopped the wrappers. Both times are
+recorded as they were produced — the relay's from Blanc's account of the interaction, mine
+from this machine's clock. I have not reconciled them and am not adjusting either. Flagged for
+Blanc: if the ledger needs one authoritative signing time, the two clocks should be compared
+directly. Nothing downstream depends on which is right — the ordering of *events* (walkthrough
+→ ruling → counter-record → wrappers stopped → git commit) is unambiguous in every record.
+
+## What this appendix does NOT soften
+
+**The manifest-versus-parent finding stands exactly as published.** The parent needed
+**60,310** bricks against a frozen **60,308**-brick manifest: ls_id **10997315463551936**
+(dec −88.59) requires brick **3471m885**, ls_id **10995116744378804** (dec −87.13) requires
+**2857m870**; both bricks exist in the DR10 release and appear in the producer's r-band
+checksum list; neither was in the manifest. The manifest was frozen from an enumeration that
+did not close over the parent's own neighbour requirements, and nothing detected it until the
+cutter stalled two objects short at the end. The cutter's refusal to guess was the system
+working; the defect is upstream of it. This is **not** cured by the decline — it is carried
+forward as inherited defect #1 in the successor draft (`PREREG_SUCCESSOR_DRAFT_V6_20260825.md`
+§2.4 and §8), where manifest closure is now a frozen property with a pre-freeze check that
+refuses on a one-brick difference and writes the counts into its receipt.
+
+## Audio judgment
+
+**No fresh audio report.** Ruling 1 — the only one that made a published statement wrong
+rather than incomplete — was already spoken at 11:21 (seq 68, played to completion). Rulings 2
+and 3 are additive, and the corrected status carries in the next report. A third reading in
+one morning would cost more attention than it returns. This artifact plus the next report is
+the proportionate correction.

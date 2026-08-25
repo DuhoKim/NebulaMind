@@ -96,3 +96,24 @@ its gating pattern and validation battery survive; its normalisation and sigma d
    have checked earlier is publishable as a methods note, and the diagnosis — that a
    count-based stopping rule on south-to-north brick IDs guarantees a cap — is transferable to
    anyone doing fixed-axis work on Legacy Surveys.
+
+---
+
+## Amendment 1 — 2026-08-24 23:19 KST (Hwao): "maximise" operationalized, not claimed
+
+Requirement 1's phrase "choose it to maximise `N * Var(cos theta)`" is operationalized, after
+two adversarial gates each produced brute-force counterexamples defeating both a descending-|c|
+rule and a forward greedy rule (see `_successor_build_20260824/gates/GATE_GPT56_SUCCESSOR_V3.md`
+finding 3 and `GATE_CODEX_SUCCESSOR_V3.md` finding 1):
+
+The selection requirement is now: **reach the frozen leverage threshold L_plan by a frozen,
+deterministic, blind-doubled procedure** (greedy order ledger → threshold cut → bounded local
+improvement), whose receipt reports achieved L, brick count, the pre-improvement baseline, and
+verification against a brute-force subset oracle on every fixture of ≤ 12 bricks including the
+gates' counterexamples. **No claim of global subset optimality is made or required.** Global
+maximization of weighted SSE over subsets is not established as tractable here, and a certified
+threshold-reaching procedure with certified small-case optimality is sufficient for the power
+requirement, which depends on L reached, not on optimality.
+
+This amendment changes the design authority openly, as the gates' minimal repairs directed,
+rather than letting a prereg claim exceed what its procedure establishes.

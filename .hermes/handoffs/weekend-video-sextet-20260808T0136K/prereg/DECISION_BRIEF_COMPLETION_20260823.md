@@ -39,4 +39,13 @@ deciding Wednesday.
 Disclosure: three chi values + a sign summary published 52 min post-authorization; breaches §4
 and condition 2; condition 1 clean in the searched scope; Blanc's ledger is authoritative.
 Custody record: closed at 21 refusals by your decision; the 28 executable claims pass;
-`zsh _evidence_20260822/verify.sh`. Caption-repair exposure increase: still unratified by you.
+`zsh _evidence_20260822/verify.sh`. Caption-repair exposure increase: **RATIFIED 2026-08-25**
+(Blanc's disclosure ledger event 101, committed; your ruling: correcting a caption to match its
+own audio removes a falsehood rather than creating a new disclosure, and the underlying
+publication was already on the record as the §4 / condition-2 breach; the 23:12 report stands
+published, not withdrawn). No standing fact in this brief is unratified.
+
+**BRIEF SUPERSEDED 2026-08-25 by signature.** Decision 1 is taken: you signed the decline
+(`DECISION_MEMO_DECLINE_TO_PROCEED_20260821.md`, EFFECTIVE, sha b4a1f1fc…). Decision 2
+(strata) evaporated with it. Decision 3 (successor) advanced: drafting the preregistration is
+authorized 2026-08-25; writing only, its own gates before any data.
