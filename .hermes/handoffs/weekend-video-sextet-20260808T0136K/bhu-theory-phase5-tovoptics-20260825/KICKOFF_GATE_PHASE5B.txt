@@ -1,0 +1,42 @@
+ADVERSARIAL GATE — Phase 5b, stages P1 through P4. Your job is to REFUTE.
+
+## What to read
+
+In this directory: PHASE5B_PLASMA_BRIEF.md (frozen, sha 51c3452a…), PHASE5B_ADDENDUM_A.md,
+PHASE5B_FREEZE.md (including the pin-restoration note), P1_RECEIPT.md, P1_CROSSCHECK.md,
+P2_P4_RECEIPT.md (including its monopole-normalisation correction), and the scripts
+p1_optical_depth.py and p2p4_transfer_confront.py. Blind double: platoon/gpt1_blind_p1/.
+Upstream, already gated, do NOT relitigate: Phase 4 (Track A PASS, Track B freeze PASS, Track C
+PASS_TRACK_C_AMENDED), and Phase 5's S0–S2 line (PASS_S0S2_FIXED on both engines) whose numeric
+content is WITHDRAWN except S1's law beta_rel = -1/sqrt(N).
+
+## Attack, at minimum
+
+1. **The P1 invariant element.** dtau = sigma n_e drbar/sqrt(N-1), derived from u^rbar =
+   sqrt(N-1) and dlambda = drbar/k^rbar with r-bar TIMELIKE (A = 1-N < 0). Re-derive it. Is the
+   photon-trajectory cancellation real or an artifact of the parametrisation? Does it hold for
+   rays that are not radial? If it fails for non-radial rays the whole P1 result is wrong.
+2. **The exterior profile integration.** Closing (3.2)-(3.3) with A6's pbar = w rhobar, and
+   integrating outward to N -> 1. Is the horizon actually reached at finite rbar? Is the
+   integral's convergence at the 1/sqrt(N-1) endpoint genuine, and is the numerical treatment
+   of that endpoint sound? Check the claim that w -> 0 forces vacuum.
+3. **Is tau <= 0.07 really an upper bound over the AUTHORISED range?** The brief carries A1-A6
+   as ranges. Has any corner of that range been omitted that could make the exterior thick —
+   e.g. larger w, pair production at the temperatures implied, or Y_e conventions?
+4. **P2's transfer.** Is the thin-regime form I_obs = e^-tau (shifted background) + (1-e^-tau)
+   (emission) adequate, and is a 9.2% correction at the tau bound consistent with it?
+5. **P3's monopole normalisation** — dividing the monopole-subtracted pattern by (1+monopole).
+   Is that the correct observable normalisation? Note this was adopted from the kimi S0-S2
+   gate; verify it rather than inherit it.
+6. **P4's bound, 1.585e-3.** Recompute from scratch. Is B2.2 the right frozen row, and is
+   using it for a non-kinematic dipole legitimate given the frozen B2.5-B2.11 dispute that
+   Track C forbade taking sides in?
+7. **Scope and labels.** Any claim exceeding the gated Track A domain (photon channel,
+   pre-horizon, sigma = 1/3); any PINNED/DERIVED mislabel; any assumption used that is not
+   declared in A1-A6.
+8. **The freeze record.** PHASE5B_FREEZE.md documents a pin that briefly pointed at bytes that
+   no longer existed, and its restoration. Verify the current brief hashes 51c3452a… and that
+   the addendum's relocation preserved its content and timing.
+
+Write your verdict to the filename in your dispatch instruction: PASS_PHASE5B or
+HOLD_<reason>, concrete objections only. Do not modify other files.
