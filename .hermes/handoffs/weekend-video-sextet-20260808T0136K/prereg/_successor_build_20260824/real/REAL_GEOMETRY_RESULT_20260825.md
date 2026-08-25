@@ -147,3 +147,31 @@ is part of the rule, not an optimisation).
 Stage P was measured on the pre-reduction geometry (53,006 planning objects); the reduced set
 differs by one brick and one retained object, so that result is not restated here as if it
 had been re-measured. It will be re-run on the reduced set before any freeze.
+
+---
+
+## ROUND-8 CORRECTION: the reduction was missing a phase (2026-08-25 17:5x KST)
+
+The codex round-8 referee reproduced this receipt's NPZ exactly and then found that the fast
+reduction implemented only `local_pass()`'s **removal** loop — it omitted the
+**swap-then-removal** phase entirely. Their counterexample (27 bricks, seed 2026082509, trial
+47) gets **six** bricks from the frozen rule and **seven** from removal-only. My "proven equal
+on 30 random cases" was insufficient: 30 cases never fired a swap.
+
+**Repaired and re-verified.** The swap phase is implemented (`_swap_then_remove`): accepted
+bricks ascending by brickid × unaccepted positive-count bricks ascending by brickid, commit the
+first swap after which a removal becomes legal. It now reproduces the referee's counterexample
+exactly (`[1003, 1015, 1017, 1018, 1021, 1022]`, L = 165.7433) and matches the frozen
+`local_pass()` on **400 cases in the referee's own seed and regime, zero mismatches**.
+
+**Effect on the real selection: none.** Re-running with the swap phase gives the same
+**6,445 bricks**, the same single removed brick `155487`, the same L_ret = 40,000.960 — the
+swap scan finds no legal improving swap on this geometry. The number did not move, but the
+equivalence claim behind it was false and is now true. `real_selection_swapped.npz` records the
+full-algorithm result.
+
+Also repaired this round: the count-oracle completeness proof no longer compares a caller's
+total with itself — the ungrouped total must equal the **pinned release total 832,393**, and
+omitting the proof input is refused; and Stage P now confirms a deterministic sample of
+non-boundary successes as well as the boundary band, and measures whether the shared reference
+null is conservative against individual trials' own nulls, failing closed if it is not.

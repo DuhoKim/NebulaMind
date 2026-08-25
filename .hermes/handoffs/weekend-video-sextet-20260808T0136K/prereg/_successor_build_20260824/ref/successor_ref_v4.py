@@ -378,10 +378,19 @@ def validate_count_table(brickid, c, n_eligible, universe_brickid=None,
         out["universe"] = int(uni.size)
     tot = int(np.add.reduce(np.asarray(nn, dtype=np.int64)))
     if grouped_sum is not None:
+        # Round 8 (both seats): comparing the table's own sum to a caller-supplied "grouped
+        # total" and then to a caller-supplied "ungrouped total" compares one derived number
+        # with itself. The ungrouped total must be an INDEPENDENT witness, so it is checked
+        # against the pinned release total rather than against the caller.
         if tot != int(grouped_sum):
             raise RuntimeError("count table does not sum to the grouped total — FAIL")
-        if ungrouped_total is None or int(grouped_sum) != int(ungrouped_total):
-            raise RuntimeError("grouped total != ungrouped total (or absent) — FAIL")
+        if ungrouped_total is None:
+            raise RuntimeError("ungrouped total absent — the completeness proof is not optional")
+        if int(grouped_sum) != int(ungrouped_total):
+            raise RuntimeError("grouped total != ungrouped total — FAIL")
+        if int(ungrouped_total) != PINNED_COUNT_TOTAL:
+            raise RuntimeError(f"ungrouped total {int(ungrouped_total)} != pinned release total "
+                               f"{PINNED_COUNT_TOTAL} — FAIL")
         out["total"] = tot
     return out
 
@@ -724,14 +733,35 @@ def stage_power(mask, a, stage: int, prefix: int, n_trials: int = N_TRIALS,
         else require_any_mask(mask, need_signs=False)
     ref = m.with_signs(inject_signs(m, a, stage, prefix, 1))
     ref_z = reference_null_z(ref, stage, prefix)
-    succ, boundary = 0, []
+    succ, boundary, interior = 0, [], []
     for t in range(1, n_trials + 1):
         sm = ref if t == 1 else m.with_signs(inject_signs(m, a, stage, prefix, t))
         p = calibrated_p(sm, ref_z)
         if p < P_REPRODUCED:
             succ += 1
+            interior.append((t, sm, p))
             if p >= P_REPRODUCED * BOUNDARY_LO:      # close enough to be worth confirming
                 boundary.append((t, sm, p))
+    # Round 8 (both seats): confirming only the boundary band leaves far-from-boundary
+    # successes counted with no check, and one reference null was never SHOWN conservative for
+    # all 1,000 trials. Both are now measured rather than argued:
+    #   (a) a deterministic sample of NON-boundary successes is confirmed too;
+    #   (b) a deterministic sample of trials has its OWN null measured, and the shared
+    #       reference's standardized critical value must be >= that trial's.
+    rng_s = rng_at(stage, prefix, 999_001, ROLE_PERM)
+    far = [x for x in interior if x not in boundary]
+    if far:
+        take = min(len(far), max(5, len(far) // 20))          # >= 5, or 5% of the far set
+        sample = [far[i] for i in sorted(rng_s.choice(len(far), size=take, replace=False))]
+        boundary = boundary + sample
+    ref_crit = float(np.quantile(ref_z, 1.0 - P_REPRODUCED))
+    nonconservative = []
+    trials_for_null = [x for x in interior][:0] or []
+    for (t, sm, _p) in (boundary[:min(len(boundary), 8)]):
+        own = reference_null_z(sm, stage, prefix + 500_000 + t, confirm_perm)
+        own_crit = float(np.quantile(own, 1.0 - P_REPRODUCED))
+        if ref_crit * PWR_CONSERVATISM < own_crit:
+            nonconservative.append({"trial": t, "ref_crit": ref_crit, "own_crit": own_crit})
     confirmed, refuted = 0, []
     for (t, sm, p_cal) in boundary:
         p_mc = perm_record(sm, stage, prefix, 10_000 + t, confirm_perm)[2]
@@ -740,8 +770,10 @@ def stage_power(mask, a, stage: int, prefix: int, n_trials: int = N_TRIALS,
         else:
             refuted.append({"trial": t, "p_calibrated": p_cal, "p_monte_carlo": p_mc})
     audit = {"boundary_trials": len(boundary), "confirmed": confirmed,
-             "refuted": refuted, "confirm_perm": confirm_perm}
-    if refuted:
+             "refuted": refuted, "confirm_perm": confirm_perm,
+             "nonconservative_nulls": nonconservative,
+             "ref_standardized_critical": ref_crit}
+    if refuted or nonconservative:
         return succ, False, audit                    # unconfirmed success => FAIL closed
     return succ, (succ >= CP_PASS_X if n_trials == N_TRIALS else None), audit
 
@@ -1375,6 +1407,18 @@ def run_fixtures():
         ok &= _fx("ORACLE-UNIVERSE", False, lines)
     except RuntimeError:
         ok &= _fx("ORACLE-UNIVERSE", True, lines, "a universe brick missing from the table is refused")
+    # the completeness proof must rest on an INDEPENDENT witness, not the table's own sum
+    wit = 0
+    for args in ((dict(grouped_sum=12, ungrouped_total=12)),      # self-consistent but unpinned
+                 (dict(grouped_sum=12, ungrouped_total=None))):   # proof input omitted
+        try:
+            validate_count_table([1, 2, 3], [0.1, 0.2, 0.3], [5, 0, 7],
+                                 universe_brickid=[1, 2, 3], **args)
+        except RuntimeError:
+            wit += 1
+    ok &= _fx("ORACLE-INDEPENDENT-WITNESS", wit == 2, lines,
+              f"{wit}/2 refused: a self-consistent total not equal to the pinned release total "
+              f"({PINNED_COUNT_TOTAL:,}), and an omitted proof input")
     n17 = np.array([9] * 16 + [1], dtype=np.int64)          # 17 raw-positive, 16 retained-positive
     c17 = np.linspace(-0.9, 0.9, 17)
     ok &= _fx("RAW-EXACT-BOUNDARY", int(np.count_nonzero(retained_counts(n17) > 0)) == 16

@@ -30,6 +30,7 @@ def reduce_removals(brickid, c, n_ret, target):
     bid = np.asarray(brickid, dtype=np.int64)
     cc = np.asarray(c, dtype=np.float64)
     nn = np.asarray(n_ret, dtype=np.float64)
+    pool = [k for k in range(len(bid)) if nn[k] > 0]
     csum_N = np.cumsum(nn); csum_1 = np.cumsum(nn * cc); csum_2 = np.cumsum(nn * cc * cc)
     with np.errstate(invalid="ignore", divide="ignore"):
         Lpref = np.where(csum_N > 0, csum_2 - csum_1 ** 2 / csum_N, 0.0)
@@ -48,12 +49,62 @@ def reduce_removals(brickid, c, n_ret, target):
         loss = L - cand
         legal = cand >= target
         if not legal.any():
-            return keep, L, removed
+            # No single removal is legal. The FROZEN local_pass does not stop here: it tries
+            # every accepted brick swapped for every unaccepted positive-count brick, in
+            # ascending brickid order, and commits the first swap after which a removal
+            # becomes legal. (Round 8, codex: omitting this phase is not equivalent -- their
+            # trial-47 counterexample gets 6 bricks from the frozen rule and 7 from
+            # removal-only. 30 random cases never fired a swap.)
+            moved = _swap_then_remove(bid, cc, nn, keep, target, pool)
+            if moved is None:
+                return keep, L, removed
+            keep, rm = moved
+            removed.append(rm)
+            continue
         idx = np.nonzero(legal)[0]
         pick = idx[np.lexsort((b[idx], loss[idx]))[0]]      # ascending loss, then brickid
         gpos = np.nonzero(keep)[0][pick]
         keep[gpos] = False
         removed.append(int(bid[gpos]))
+
+
+def _swap_then_remove(bid, cc, nn, keep, target, pool):
+    """One frozen swap move: accepted i (ascending brickid) x unaccepted positive j (ascending
+    brickid); commit the first (i, j) whose swap keeps L >= target AND after which some
+    removal is legal. Vectorised over j; returns (new_keep, removed_brickid) or None."""
+    acc = np.nonzero(keep)[0]
+    unacc = np.array([k for k in pool if not keep[k]], dtype=np.int64)
+    if unacc.size == 0:
+        return None
+    n_a, c_a = nn[keep], cc[keep]
+    N = float(n_a.sum()); S1 = float((n_a * c_a).sum()); S2 = float((n_a * c_a * c_a).sum())
+    nj, cj = nn[unacc], cc[unacc]
+    for i in acc[np.argsort(bid[acc], kind="stable")]:
+        ni, ci = float(nn[i]), float(cc[i])
+        N1, A1, B1 = N - ni, S1 - ni * ci, S2 - ni * ci * ci      # after removing i
+        Nn, An, Bn = N1 + nj, A1 + nj * cj, B1 + nj * cj * cj     # after adding each j
+        with np.errstate(invalid="ignore", divide="ignore"):
+            Lsw = np.where(Nn > 0, Bn - An * An / Nn, -np.inf)
+        ok_j = np.nonzero(Lsw >= target)[0]
+        if ok_j.size == 0:
+            continue
+        for j in ok_j[np.argsort(bid[unacc[ok_j]], kind="stable")]:
+            k2 = keep.copy(); k2[i] = False; k2[unacc[j]] = True
+            n2, c2 = nn[k2], cc[k2]
+            N2 = float(n2.sum()); P1 = float((n2 * c2).sum()); P2 = float((n2 * c2 * c2).sum())
+            cand2 = sse_without(n2, c2, P1, P2, N2)
+            legal2 = cand2 >= target
+            if not legal2.any():
+                continue
+            L2 = P2 - P1 * P1 / N2
+            loss2 = L2 - cand2
+            b2 = bid[k2]
+            idx2 = np.nonzero(legal2)[0]
+            pick2 = idx2[np.lexsort((b2[idx2], loss2[idx2]))[0]]
+            gpos2 = np.nonzero(k2)[0][pick2]
+            k2[gpos2] = False
+            return k2, int(bid[gpos2])
+    return None
 
 
 def prove_agreement(trials=30, seed=11):
