@@ -453,9 +453,17 @@ def active_counts_and_context(panes: list[dict[str, str]]) -> dict[str, Any]:
     """
     counts = {'claude_seats': 0, 'kimi_seats': 0, 'agy_seats': 0, 'gpt_seats': 0}
     hermes_context: list[float] = []
+    # tmux GROUPED sessions (blanc-view, hwao-view, tori-view mirror the primary
+    # sessions for a second screen) list the same pane once per session, so an
+    # undeduped loop counted 3 coordinators as 6 seats. One pane = one seat.
+    seen_pane_ids: set[str] = set()
     for pane in panes:
         if pane.get('dead') == '1':
             continue
+        pid = pane.get('id') or pane.get('pane_id') or pane.get('target')
+        if pid in seen_pane_ids:
+            continue
+        seen_pane_ids.add(pid)
         cmd = pane['command'].lower()
         target = pane['target'].lower()
         role = pane['role'].lower()
