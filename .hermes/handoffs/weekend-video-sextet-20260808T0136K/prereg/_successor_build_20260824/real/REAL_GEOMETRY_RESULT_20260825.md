@@ -218,3 +218,52 @@ expensive; (c) raising the deflation to cover the measured spread, which is fitt
 to this geometry and is the weakest of the three. Not yet chosen, not yet implemented.
 
 The audit catching its own author's method is the reason it was built. It is working.
+
+---
+
+## STAGE P RESTORED, EXACTLY: **PASS** (2026-08-26 18:2x KST)
+
+Duho: *"restore the power calculation first."* Done by removing the assumption rather than
+improving it. `stagep_exact.py` gives **every one of the 1,000 trials its own
+20,000-permutation null and its own p-value**, so no shared reference appears anywhere in the
+counting path and there is nothing left to be conservative or not.
+
+    geometry                     : 6,445 bricks, n=53,005, Var(c)=0.754664, N_eq=120,003
+    exact successes (own null)   : 995/1000   (rule x >= 962)
+    shared-null successes        : 995/1000   (comparison only)
+    granted by shared, not by own: 0
+    granted by own, not by shared: 0
+    VERDICT                      : PASS
+    runtime                      : 7.2 min, 20 workers (2.1 h serial)
+
+**The three recorded repairs were (a) envelope, (b) per-trial nulls, (c) larger deflation, with
+(a) preferred.** This is (b), against that preference and with the reason stated: an envelope is
+the maximum of a sample, and the maximum of 24 sampled trials does not bound the maximum of
+1,000 — it sits near the 96th percentile, so 1,000 trials would exceed it routinely. That is the
+same class of error as the one being repaired, moved further from the surface. A deflation
+constant fitted to this geometry is a constant fitted to this geometry. (b) was passed over for
+costing 2.1 hours; on 32 cores it costs 7 minutes.
+
+**What the disagreement count means.** Zero trials were granted by one null and refused by the
+other. So the audit's finding stands as a finding — 2 of 8 sampled trials genuinely had their
+own critical value above the shared one — and on this geometry it changed no verdict. The
+earlier FAIL was a real failure of the *justification*, not of the *result*. That distinction is
+only visible because the exact run was done; it could not have been argued.
+
+**Stated limits.**
+
+- 995 of the 1,000 own p-values sit at `5.00e-05`, the resolution floor of a 20,000-permutation
+  estimate. They are censored: the test is `p < 1e-3` and the floor is 20x below it, so the
+  verdict is unaffected, but these are lower bounds rather than measured values.
+- The exact run addresses each trial's permutation stream as `(stage, prefix, 10_000+t, role)` —
+  the same addressing the round-8 audit used for its confirmations. Trials confirmed then get
+  the same stream now. This is deterministic reproduction, not an independent re-sample.
+- `stagep_exact.py` is a MEASUREMENT harness. `successor_ref_v7.py` was in front of a referee as
+  the closure check while this ran and was not edited. Folding an exact Stage P into the
+  reference implementation is a v8 change and needs its own fixtures and its own gate.
+- Nobody has refereed this. It restores the claim to *measured*, not to *accepted*.
+
+**Correction carried back.** An earlier estimate in today's session put the successor's effective
+information at 147,578, computed on the 65,060-object parent. The operative figure is the
+planning mask after retention: **N_eq = 120,003**, still above the preregistered floor of
+100,000, but with less margin than that estimate implied.
