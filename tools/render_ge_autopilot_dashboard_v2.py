@@ -1597,7 +1597,19 @@ def provider_card_freshness(provider: str, source_label: str) -> Dict[str, Any]:
     source_match = _USAGE_SOURCE_TIMESTAMP_RE.search(source_label)
     observed_at = source_match.group(0) if source_match else None
     source_age = age_seconds(observed_at) if observed_at else None
-    if source_age is None:
+    # A timestamp in the label is not automatically the moment the VALUE was
+    # measured. The Claude card reads "Last visible ... values retained after
+    # approved OAuth usage read returned unavailable at <ts>" — that <ts> is
+    # when the read FAILED. Timing the failure and calling the retained number
+    # fresh is how an 85% sat on the board unchanged, badged FRESH LIVE METER,
+    # until Duho said the usage limit looked the same (2026-08-26). A retained
+    # value has no known age, and "unknown" must not round down to "fresh".
+    retained = re.search(r"last visible|retained after|returned unavailable|"
+                         r"keeping the last|last confirmed", source_label, re.I)
+    if retained:
+        classification = "RETAINED — LAST VISIBLE, AGE UNKNOWN"
+        observed_at, source_age = None, None
+    elif source_age is None:
         classification = "UNAVAILABLE / UNKNOWN"
     elif source_age <= max_age:
         classification = "FRESH LIVE METER"
@@ -1631,6 +1643,13 @@ def classification_aware_provider_headline(
         return f"{age_label(age)} ago" if isinstance(age, (int, float)) else "Last seen"
     if classification == "UNAVAILABLE / UNKNOWN":
         return "Unknown"
+    if classification == "RETAINED — LAST VISIBLE, AGE UNKNOWN":
+        # Keep the number, qualify it. Suppressing it entirely traded one wrong
+        # impression for another: the operator lost the only figure available
+        # and the card went blank. "85% (held)" says both true things at once —
+        # this is the last value seen, and it is not being measured now.
+        return (f"{percent:.0f}% (held)" if isinstance(percent, (int, float))
+                else "Held, age unknown")
     if classification == "FRESH LIVE METER" and isinstance(percent, (int, float)):
         return f"{percent:.0f}%"
     return None
