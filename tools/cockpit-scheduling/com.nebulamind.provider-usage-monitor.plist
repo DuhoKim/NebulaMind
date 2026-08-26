@@ -28,6 +28,12 @@
   commands inside agent panes, and a scheduled job should never type into a
   coordinator's session unattended.
 
+  PATH is set explicitly because launchd does not inherit a login shell's. The
+  first install failed on its very first run with FileNotFoundError: 'tmux' —
+  the monitor shells out to tmux, which lives in /opt/homebrew/bin, and launchd
+  starts with a minimal PATH that does not include it. It tested clean by hand
+  only because an interactive shell had the full PATH.
+
   To install, after review:
     cp tools/cockpit-scheduling/com.nebulamind.provider-usage-monitor.plist ~/Library/LaunchAgents/
     launchctl load ~/Library/LaunchAgents/com.nebulamind.provider-usage-monitor.plist
@@ -51,6 +57,12 @@
         <string>--interval</string>
         <string>300</string>
     </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
 
     <key>WorkingDirectory</key>
     <string>/Users/duhokim/NebulaMind/NebulaMind</string>
