@@ -106,11 +106,15 @@ def emergent_T_over_Tbg(eta_e, w_target):
     e=exterior(eta_e,w_target)
     if e is None: return None
     T_bg_local=(3.0/(32*math.pi*((eta_e/2)**2)**2)*(C*C/G)/((C*T_CRIT)**2)*C*C/A_RAD)**0.25
-    transmitted=math.exp(-e['tau_tot'])*e['Z'][-1]
+    # CORRECTED (blind double, 2026-08-26): transfer is bolometric. INTENSITIES add, not
+    # temperatures, and Liouville invariance weights an incoming beam by g^4, not g. The first
+    # version summed temperature ratios linearly with a single power of Z — a fourth-power
+    # error that made the crossing sky far darker than it is.
+    transmitted_I=math.exp(-e['tau_tot'])*(e['Z'][-1]**4)
     src=e['T_rad']/max(T_bg_local,1e-300)                    # A4 upper end: LTE at energy ceiling
-    integrand=src*e['Z']*np.exp(-e['tau'])*e['dtau']
-    emitted=float(TRAPZ(integrand,e['rr']))
-    return transmitted+emitted
+    integrand=(src**4)*(e['Z']**4)*np.exp(-e['tau'])*e['dtau']
+    emitted_I=float(TRAPZ(integrand,e['rr']))
+    return (max(transmitted_I+emitted_I,0.0))**0.25
 
 def dipole_and_bound(w_target, f=1e-3, npts=48):
     nodes,wt=leggauss(npts); vals=[]
