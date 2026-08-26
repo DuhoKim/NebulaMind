@@ -324,6 +324,37 @@ if th:
              '(> 10²²–10³⁰). Artifacts: <code>bhu-theory-phase0-20260818/</code> and '
              '<code>bhu-theory-phase1-20260819/</code> in the weekend-video-sextet handoff; videos in '
              'the registry below.</p>')
+    # --- Phases 3-5b, added 2026-08-26. Gate states are read from verdict-file FIRST LINES;
+    # nothing here may claim more than the artifact does. ---
+    P.append("<h3>Phases 3–5b — the anti-Copernican discriminant</h3>")
+    P.append('<p class=note><b>The question:</b> one published branch (Smoller–Temple) puts a '
+             'shock-wave boundary around everything we can see. If we are not at its centre, can '
+             'that be detected — or ruled out — from the sky? <b>Phase 4</b> (gated PASS both '
+             'engines, incl. <code>PASS_TRACK_C_AMENDED</code>) derived the geometry: the interior '
+             'is exactly FRW, so expansion measurements can <i>never</i> see the boundary; the only '
+             'signature is a single circular patch of altered sky. Its criteria were pre-registered '
+             'before the comparison, and the frozen 18-row bounds table is guarded by a verifier '
+             'that eight classes of quote-corruption cannot pass. Verdict: the frozen anomalies are '
+             '<b>not morphology-compatible</b> — they are whole-sky statistics, the prediction is a '
+             'bounded patch.</p>')
+    P.append('<p class=note><b>Phase 5/5b</b> computed the optics nobody had. Durable so far: the '
+             'analytic law β_rel = −1/√N for the fluid jump at the boundary (gate-confirmed, '
+             '"passes every attack"), and the invariant optical-depth element, whose photon '
+             'trajectory cancels because r̄ is timelike inside the horizon (blind-doubled to 4 '
+             'significant figures). <b>Withdrawn by me after gate pressure:</b> an early optical '
+             'depth that used a timelike coordinate as a spatial length; a "4 parts per million" '
+             'exclusion that mis-normalised a dipole-dominated pattern; and the claim that the '
+             'exterior is optically thin across all assumptions — it is thin for some admissible '
+             'closures and opaque for others.</p>')
+    P.append('<p class=note><b>Current live result — NOT yet gated or blind-doubled:</b> a joint '
+             'argument covering every opacity at once. Because the same Doppler factor multiplies '
+             'the re-emitted light as the transmitted light, an opaque boundary does not hide the '
+             'offset — it re-emits it, and the dipole saturates at a finite floor instead of '
+             'vanishing. Across the full range the observer would have to sit within one part in '
+             '453 to one part in 181 of the boundary radius. If it survives its gates, that is the '
+             '<i>necessity</i> half Phase 4 could not reach. Artifacts: '
+             '<code>bhu-theory-phase4-anisotropy-20260823/</code> and '
+             '<code>bhu-theory-phase5-tovoptics-20260825/</code>.</p>')
     P.append("<h3>Gate chain</h3>")
     P.append('<p class=note>Duho, 18 Aug: <i>"go ahead with phase 0"</i>, then <i>"go ahead with the '
              'closure note if the gate passes"</i>. All three routes scoped DEAD-ON-ARRIVAL '
