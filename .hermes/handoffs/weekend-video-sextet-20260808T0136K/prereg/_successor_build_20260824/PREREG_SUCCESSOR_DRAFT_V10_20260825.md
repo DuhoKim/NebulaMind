@@ -33,11 +33,13 @@ digest serializations — is DEFINED by the code bytes of
 > document that defines every mechanism by code bytes fails completely when the pin drifts, and
 > it drifted within hours of being written.
 >
-> The pin now names v8, which is the version currently in front of a referee. **It is provisional
-> by construction**: a freeze must pin the exact bytes that carry a completed referee verdict,
-> and re-pinning is therefore a freeze-time step, not a drafting one. v4 through v7 remain on
-> disk unchanged so that each round's referee reports stay legible against the digests they
-> pin.
+> The pin names v8, and **as of 2026-08-26 21:24 KST it is no longer provisional**: those exact
+> bytes carry a completed referee verdict (`gates/CLOSURE_V8_KIMI.md`, **CLEAR**, sha
+> `47d24f32…`) and are held read-only under `gates/FREEZE_CLOSURE_V8_20260826.md`. That verdict
+> is **one seat**: the codex and gpt56 seats were refused by their provider's safety filter, so
+> this is a narrower review than the panel intended, and the freeze record says so in its own
+> text. v4 through v7 remain on disk unchanged so each round's referee reports stay legible
+> against the digests they pin.
 
 Prose states claims, thresholds, chronology, authority and conduct. **Where prose and code
 could be read to disagree, the code is the definition and the prose is the defect.** The
@@ -396,7 +398,7 @@ a measurement receipt — a partial run is not a smaller run, it is a different 
 | BS-2o | Hwao + blind double | full traversal order + per-prefix ledger | `greedy_ledger`, `ledger_digest` | BS-5p |
 | BS-5p | Hwao | L_min_plan, L_plan, retained basis, x ≥ 962 rule, addresses | `stage_power`, `build_plan` | BS-2s |
 | BS-2s | Hwao + blind double | selected set, L_ret, L_raw, N_eq, fixtures, Stage-P re-pass | `local_pass`, `build_plan` | BS-2m |
-| BS-2m | Hwao | **manifest closure**: required set from the frozen cutout planner, counts, refusal on any difference | `manifest_closure`, `require_manifest_closure` | manifest freeze |
+| BS-2m ✅ **FILLED 2026-08-26** | Hwao | **manifest closure**: required set from the frozen cutout planner, counts, refusal on any difference. Receipt: `gates/FREEZE_CLOSURE_V8_20260826.md` — mechanism frozen at v8 (`successor_ref_v8.py` `1bec5c28…`, `closure_worker_v8.py` `245057259…`), 33/33 probes, referee `gates/CLOSURE_V8_KIMI.md` **CLEAR** (one seat; two seats refused by their provider). Derived closure: 65,060 objects → 6,445 selected → **12,117 required bricks**, `plan_digest aaeaa9f3…`, reproduced independently three times. Eight items carried open in the freeze record. | `close_manifest`, `closure_receipt` | manifest freeze |
 | BS-3 | Hwao | instrument identity: weights `83008c1c…`, τ = 4.4006456017494235, antisymmetry identity | — | BS-9 |
 | BS-9 | Hwao + gpt seat | **input-path rebinding**: branch-specific single-band HDU/plane schema, production input function (code + hash + tensor layout), full R1–R5 rerun through it, gated replacement runner. `nm_acquire_cutouts.py` remains PROHIBITED (V3-pred lines 374–386); predecessor R1–R5 receipts are historical context, never evidence for this run's path | — | BS-6 |
 | BS-4 | Hwao | synthetic absolute-sign anchor rerun under this text | `inject_signs`, `decide` | unblinding |

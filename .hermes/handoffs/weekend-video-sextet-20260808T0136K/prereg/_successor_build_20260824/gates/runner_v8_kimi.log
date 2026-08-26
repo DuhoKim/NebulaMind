@@ -1,0 +1,23 @@
+Done. The report is written and every claim in it is backed by a run I executed this round.
+
+Report: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/CLOSURE_V8_KIMI.md
+Final line: **CLEAR**
+
+What I did and found
+
+Custody. All on-disk hashes match the receipt (subject 1bec5c28…, worker 24505725… via G01, fixtures fab32ba2…, suite 382a078f…); pinned files re-verified unmodified after all runs. Per the brief's instruction I took hashes from the receipt — the brief's own Evidence lines are the v7 files' hashes.
+
+Reproduction (Q1). My full production-uncached run (2,072 s, CLOSURE_PROBE_V8_RECEIPT_KIMI.json): 33/33 conforming, hooks 12/12 ran, and stable_sha256 509071e1… identical to the shipped receipt — dictionary-equal stable objects (0 element-wise diffs), both receipts canonically self-consistent. The v6 F2 cause stays repaired by normalise_deep.
+
+The two claimed fixes hold dynamically (Q6). F1: worker now execs the verified subject bytes; W02 counts equal in both receipts (2==2), and I established the anatomy independently (both events from the single read_bytes; exec adds none). F2: isolation check first; my own poisoned-numpy run against the v8 worker produced a structured refusal, exit 1, sentinel never written.
+
+The 12,117 figure (Q8b). Re-derived independently without close_manifest: 12,117 distinct required bricks, plan result digest aaeaa9f3… unchanged since v5 (the planner pin 1617af00… is unchanged v6→v8; it last changed v5→v6 because the digest binds more). Ceiling arithmetic checks: 147.83 GB ≈ 148; ratio 1.880062.
+
+Five findings, all MINOR and fail-safe:
+- F1: the change record the brief names (CLOSURE_REPAIR_V8_20260826.md) does not exist anywhere in the tree.
+- F2: brief carries v7 hashes and cites probe B03, which was silently removed in v7 — including a note that my v7 report missed that removal.
+- F3: a real side effect of the F2 fix — the early refusal fires before provenance is built, so no v8 receipt records sys.path anywhere (0 occurrences; v7 had it in B04), while the worker docstring and not_covered both still claim it does.
+- F4: the planner's three files are still verified and consumed by distinct disk reads on every use (swap-and-revert window, inside the conceded machine-ownership class).
+- F5: the admitted carried items, each re-verified live (vacuous B06 hook, six varies strings, thin R06 payload, no timeout, ignored extra stdin keys — tested, blind spots re-demonstrated with the digest unmoved).
+
+Verdict: CLEAR. No false-acceptance path is reachable to a presenter who does not own the machine; the gate remains these referee rounds re-running the suite, and the 148 GB download stays tied to the confirmed 12,117.
