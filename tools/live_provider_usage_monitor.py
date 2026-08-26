@@ -89,6 +89,32 @@ def _oauth_cache_write(data: dict[str, Any] | None, last_error: str | None) -> N
         pass
 
 
+def oauth_failure_state() -> dict[str, Any]:
+    """What the card may truthfully say about the last read attempt.
+
+    Exists so the Claude card can distinguish "we asked and were refused" from
+    "we did not ask, because we are backing off". Those look identical from the
+    outside and the card used to report both as a fresh failure.
+    """
+    try:
+        with open(_OAUTH_USAGE_CACHE) as f:
+            c = json.load(f)
+    except Exception:
+        return {}
+    err_at = c.get('error_at') or 0
+    if not err_at:
+        return {}
+    since = time.time() - float(err_at)
+    retry_in = max(0, _OAUTH_COOLDOWN_AFTER_429 - since)
+    return {
+        'last_error': c.get('last_error'),
+        'failed_at': datetime.fromtimestamp(float(err_at), timezone.utc)
+                     .strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'cooling_down': bool(c.get('last_error') == '429' and retry_in > 0),
+        'retry_in_label': f'{int(retry_in // 60)}m' if retry_in >= 60 else f'{int(retry_in)}s',
+    }
+
+
 def fetch_claude_quota_via_oauth() -> dict[str, Any] | None:
     cached, cached_at, last_error = _oauth_cache_read()
     age = time.time() - cached_at if cached_at else None
@@ -727,14 +753,33 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
         add_model_if_missing('seven_day_sonnet', 'Sonnet')
         g['sub_gauges'] = sub_gauges
     else:
+        # Say WHEN the read actually failed and WHY we are not retrying, rather
+        # than stamping this pass's clock into a sentence about a request. The
+        # old text read "...read returned unavailable at <pass time>" on every
+        # pass, including passes that made no request at all because the backoff
+        # was holding. That implied we were still hammering a refusing endpoint
+        # once every five minutes, and gave no hint when the value might return.
+        state = oauth_failure_state()
         g['kind'] = 'Claude last-visible quota fallback'
-        g['status'] = 'Active panes live; approved OAuth usage read unavailable'
+        if state.get('cooling_down'):
+            g['status'] = (f'Active panes live; OAuth usage read backing off after HTTP '
+                           f'{state["last_error"]}, retry in {state["retry_in_label"]}')
+            attempt = (f'No request was made on this pass. The last actual attempt failed with '
+                       f'HTTP {state["last_error"]} at {state["failed_at"]}; the next attempt is '
+                       f'due in {state["retry_in_label"]}.')
+        else:
+            g['status'] = 'Active panes live; approved OAuth usage read unavailable'
+            attempt = (f'Last actual attempt failed at {state.get("failed_at") or observed_at}'
+                       f'{" with HTTP " + str(state["last_error"]) if state.get("last_error") else ""}.')
         g['detail'] = (
-            'Approved read-only Claude OAuth usage check returned unavailable. '
+            f'{attempt} '
             f'Keeping the last visible Claude usage-panel percentages while live-monitoring {counts["claude_seats"]} Claude/Hwao/Lana panes. '
+            'These percentages are NOT being measured right now and their age is unknown. '
             'No token value was emitted and no billing, payment, or account mutation occurred.'
         )
-        g['source_label'] = f'Last visible Claude usage-panel values retained after approved OAuth usage read returned unavailable at {observed_at}; active Claude panes: {counts["claude_seats"]}.'
+        g['source_label'] = (
+            f'Last visible Claude usage-panel values retained; {attempt} '
+            f'Active Claude panes: {counts["claude_seats"]}.')
     gauges[i] = g
 
     if agy:
