@@ -51,3 +51,44 @@ Mine post-correction: 4.4×10⁻⁴ to 4.1×10⁻³ (one part in 245 to 2286). T
 2.2×10⁻³. P5's single-screen: 2.2×10⁻³ to 5.5×10⁻³. **All three overlap around one part in a
 few hundred to a few thousand** — the exclusion survives every treatment; only its exact
 strength is unsettled.
+
+---
+
+## Source-term reconciliation (2026-08-26) — theirs was right, mine was inconsistent
+
+**The disagreement is resolved, and not as a range item.** I used T ∝ ρ̄^(1/4), the blackbody
+law, regardless of w. The seat used **T ∝ ρ̄^(w/(1+w))** — the adiabatic law for the equation of
+state p̄ = wρ̄ actually being imposed. Mine contradicted my own closure: it assumed the exterior
+was pure radiation while the closure said otherwise.
+
+The decisive check is a limiting case: **w/(1+w) = 1/4 exactly at w = 1/3**, so their law
+reduces to mine precisely when the exterior IS radiation, and differs elsewhere. At the junction
+closure w = 0.2456 the exponent is 0.1972, not 0.25.
+
+**Consequence for the assumption ranges:** the exterior's source temperature is therefore FIXED
+once A6's w is chosen — it is not a free A5 choice. That removes one degree of freedom from
+the authorised space, which is a small strengthening of the method.
+
+Adopted. Effect on my numbers:
+
+| w | c₁ (blackbody law) | c₁ (adiabatic law) | bound (adiabatic) |
+|---|---|---|---|
+| 0.2456 | 0.517 | 0.506 | 2.68e-3 |
+| 0.100 | 0.332 | 0.311 | 4.36e-3 |
+| 0.030 | 0.449 | **0.163** | **8.31e-3** |
+| 0.010 | 3.103 | 1.227 | 1.11e-3 |
+
+## What is reconciled and what is NOT
+
+- **Reconciled:** the source law, by a limiting-case argument rather than by preference.
+- **NOT reconciled:** at the junction closure I now get c₁ = 0.506 against their 0.627, still
+  ~20%. The source law was not the cause of that gap — it barely moved the junction row. The
+  remaining suspect is their grey-opacity parameter λ versus my w-derived τ, i.e. we are not
+  labelling the same physical opacity by the same number. **P6 remains NOT confirmed.**
+- **The bound WEAKENED and widened**: 1.1×10⁻³ to 8.3×10⁻³ — one part in 120 at worst, against
+  one part in 245 before this correction. The low-w closures drive it, and I am reporting the
+  worst case rather than the junction value.
+
+The exclusion still holds at every computed closure, but its stated strength has now moved
+three times (P5: 1 in 181; P6 uncorrected: 1 in 1107; P6 corrected: 1 in 120). No number here
+should be quoted downstream until the λ-versus-τ labelling is settled and the double agrees.

@@ -81,7 +81,14 @@ def exterior(eta_e, w_target, width=0.02, npts=4000):
     w=np.array([wfun(r) for r in rr]); rhobar=p/w
     L=C*T_CRIT; rho_cgs=rhobar*(C*C/G)/(L*L)
     n_cold=rho_cgs/M_P
-    T_rad=np.where(rho_cgs>0,(np.maximum(rho_cgs,0)*C*C/A_RAD)**0.25,0.0)
+    # SOURCE TEMPERATURE — reconciled with the blind double, 2026-08-26.
+    # I used T ~ rhobar^(1/4), the blackbody law, regardless of w. That contradicts the very
+    # closure being imposed: for pbar = w rhobar the adiabatic law is T ~ rhobar^(w/(1+w)),
+    # which reduces to 1/4 exactly at w = 1/3 (pure radiation) and differs elsewhere. The
+    # exterior's temperature is therefore FIXED by A6's w, not a free A5 choice.
+    T_rad_s0=(max(rho_cgs[0],1e-300)*C*C/A_RAD)**0.25          # anchor at the junction
+    expo=w/(1.0+w)
+    T_rad=T_rad_s0*np.power(np.maximum(rho_cgs,0.0)/max(rho_cgs[0],1e-300), expo)
     kT_gas=w*0.6*M_P*C*C
     n_pair=np.where(kT_gas>MEC2, rho_cgs*C*C/np.maximum(3*kT_gas,1e-300), 0.0)
     n_e=np.maximum(n_cold,n_pair)
