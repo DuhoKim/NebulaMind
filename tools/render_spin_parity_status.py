@@ -144,6 +144,31 @@ def successor():
     return out
 
 
+FOOTPRINT = "HWAO_FOOTPRINT_GEOMETRY_FINDING_20260821.md"
+
+def footprint():
+    """The two variance numbers whose disagreement stopped the first attempt.
+
+    The licence to proceed required var(cos theta) >= 0.15 for the sample being measured. It was
+    recorded as a PASS using 0.445201 -- a number measured on a different, much larger
+    population. The sample actually collected scores 0.057985. Both numbers are read out of the
+    finding's own table rather than repeated here, so if that document is ever corrected this
+    panel follows it.
+    """
+    fp = os.path.join(PREREG, FOOTPRINT)
+    if not os.path.exists(fp):
+        return None
+    txt = open(fp, errors="ignore").read(8000)
+    row = re.search(r"var\(cos theta\)[^|]*\|\s*\*\*`([0-9.]+)`\*\*[^|]*\|\s*\*\*`([0-9.]+)`\*\*", txt)
+    obj = re.search(r"\| objects \|[^|]*?([0-9][0-9,]+)[^|]*\|[^|]*?([0-9][0-9,]+)[^|]*\|", txt)
+    if not row:
+        return None
+    d = {"gated": float(row.group(1)), "measured": float(row.group(2)), "threshold": 0.15}
+    if obj:
+        d["objects_gated"], d["objects_measured"] = obj.group(1), obj.group(2)
+    return d
+
+
 FROZEN = [
     ("Preregistration (v3)", "PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260815_V3.md"),
     ("Route binding (successor, route B)", "TORI_ROUTE_BINDING_SUCCESSOR_20260817.md"),
@@ -159,6 +184,7 @@ PINS = [
 ]
 
 g = gates(); hv = harvest(); tr = transfer(); dc = decline(); sc = successor()
+fp = footprint()
 passes = [x for x in g if x[1].startswith("PASS")]
 holds  = [x for x in g if x[1].startswith("HOLD")]
 now = datetime.now().strftime("%d %b %Y, %H:%M KST")
@@ -184,27 +210,99 @@ th{color:#8b93a1;font-weight:500;font-size:.85em}
 .bar{height:7px;background:#1b212b;border-radius:4px;overflow:hidden;margin:.6em 0 .3em}
 .bar i{display:block;height:100%;background:#4a8f6b}
 code{background:#1b212b;padding:.1em .35em;border-radius:4px;font-size:.85em}
+.lede{font-size:1.06rem;color:#e8ecf3;border-left:3px solid #3a465c;padding-left:1em;margin:1.4em 0}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));gap:.7rem;margin:1.3em 0}
+.tile{background:#141922;border:1px solid #232833;border-radius:10px;padding:.85em .95em}
+.tile .k{color:#8b93a1;font-size:.76rem;text-transform:uppercase;letter-spacing:.05em}
+.tile .v{font-size:1.05rem;color:#fff;margin-top:.25em;line-height:1.35}
+.tile .w{font-size:.82rem;color:#8b93a1;margin-top:.35em}
+.tile.stop{border-color:#5a2020}.tile.stop .v{color:#ffc9c9}
+.tile.go{border-color:#1f5133}.tile.go .v{color:#8ee6b8}
+.tile.hold{border-color:#5a4415}.tile.hold .v{color:#f0d9a8}
+ol.story{padding-left:1.2em}ol.story li{margin:.55em 0}
+.meter{margin:1em 0}
+.meter .track{position:relative;height:26px;background:#1b212b;border-radius:5px;overflow:hidden}
+.meter .fill{height:100%;background:#7a2b2b}
+.meter .mark{position:absolute;top:0;bottom:0;width:2px;background:#e8ecf3}
+.meter .lab{display:flex;justify-content:space-between;font-size:.8rem;color:#8b93a1;margin-top:.35em}
+details{margin:1.4em 0;border-top:1px solid #232833;padding-top:1em}
+summary{cursor:pointer;color:#9db8e8;font-size:1rem}
+summary::marker{color:#4a5568}
 </style>""", "<body>",
      "<h1>Galaxy spin-parity study</h1>",
      f'<div class=sub>Generated from the lane\'s own artifacts · {now} · private review copy · '
      'nothing published, run, or accepted</div>']
 
-if dc and dc["declined"]:
-    P += [f'<div class="big bad"><div class=q>Decision</div>'
-          f'<div class=a>DECLINED by signature, {html.escape(dc["date"])} — the test halts unrun</div>'
-          '<p class=note>Duho signed the decline after a plain-language walkthrough of Revision 6. '
-          'The frozen preregistration is preserved intact and the sample is archived; no '
-          'measurement will be made under it. Everything below is the record of a study that '
-          'stopped, not one in flight.</p>'
-          f'<p class=note>Memo <code>{html.escape(DECLINE)}</code> · sha256 '
-          f'{dc["sha12"]} · mode {html.escape(str(dc["mode"]))}.</p></div>']
+# --- the plain-language layer: what this is, where it stands, what happened -------------
+declined = bool(dc and dc["declined"])
+imgs = tr.get("accepted", 0) if tr else 0
+img_gb = (tr.get("cumulative_received_bytes", 0) / 1e9) if tr else 0.0
 
-P += ["<h2>What is being tested</h2>",
-      "<p>Longo 2011's specific claim — a spin-handedness dipole of |A| &asymp; 0.0408 &plusmn; 0.011 "
-      "at (l,b) = (52&deg;, 68.5&deg;).</p>",
-      "<p class=note>Not the wider class of spin-anisotropy claims. A null result would not exclude "
-      "smaller amplitudes, would not adjudicate Shamir, and would not show the sky is isotropic. It "
-      "also would not identify black-hole-universe cosmology — that line closed separately on 11 Aug.</p>"]
+P += ['<p class=lede>Do galaxies spin one way more often than the other, depending on which '
+      'direction of the sky you look in? One 2011 paper says yes, by about 4%, along a '
+      'particular axis. This page tracks an attempt to check that — and the attempt has been '
+      'stopped.</p>']
+
+first_state = "Stopped" if declined else "Running"
+first_cls = "stop" if declined else "go"
+succ_line = "Being designed" if sc is not None else "None yet"
+succ_cls = "hold"
+if sc and sc.get("reports"):
+    clear = sum(1 for r in sc["reports"] if r[1] == "CLEAR")
+    succ_line = f"In design — {clear} of {len(sc['reports'])} referee report(s) clear"
+P += ["<div class=tiles>",
+      '<div class=tile><div class=k>The question</div>'
+      '<div class=v>Is there a preferred spin direction?</div>'
+      '<div class=w>Longo 2011: about 4%, along one axis. Not the wider family of '
+      'spin-anisotropy claims — just this one.</div></div>',
+      f'<div class="tile {first_cls}"><div class=k>First attempt</div>'
+      f'<div class=v>{first_state}{" — declined " + html.escape(dc["date"]) if declined else ""}</div>'
+      '<div class=w>Its sample could not answer the question. It halts unrun: no measurement '
+      'will be made under it.</div></div>',
+      f'<div class="tile {succ_cls}"><div class=k>Replacement</div>'
+      f'<div class=v>{html.escape(succ_line)}</div>'
+      '<div class=w>Same question, sample chosen differently. Not approved, not running, '
+      'nothing measured.</div></div>',
+      f'<div class=tile><div class=k>Answer so far</div>'
+      f'<div class=v>None</div>'
+      f'<div class=w>{imgs:,} bricks of images were downloaded, but no measurement has ever '
+      'been made on them.</div></div>',
+      "</div>"]
+
+P += ["<h2>What happened, in order</h2>", '<ol class=story>',
+      '<li><b>A sample was chosen and its images fetched.</b> '
+      f'{imgs:,} sky bricks, {img_gb:,.0f} GB, all of it downloaded and checked.</li>',
+      '<li><b>Then someone compared two numbers that had never been put side by side.</b> '
+      'The permission to proceed depended on the sample being spread out along the axis being '
+      'tested. That check had been recorded as a pass — but using a measurement of a different, '
+      'much larger population, not of the sample actually collected.</li>',
+      '<li><b>Measured properly, the sample failed that check</b> — see below. The galaxies sat '
+      'bunched near one pole, all at nearly the same angle to the axis in question. You cannot '
+      'work out which way a room slopes by measuring in one corner.</li>',
+      f'<li><b>The study was declined{" on " + html.escape(dc["date"]) if declined else ""}.</b> '
+      'Not paused or amended — a preregistration is a promise made before seeing the data, and '
+      'once the data exist you cannot edit the promise, only end it and write a new one.</li>',
+      '<li><b>A replacement is being designed</b>, testing the same claim with a sample picked '
+      'for the property the first one accidentally lacked. It has passed no gate yet.</li>',
+      "</ol>"]
+
+if fp:
+    lo, hi, thr = fp["measured"], fp["gated"], fp["threshold"]
+    scale = max(hi, thr) * 1.1
+    P += ["<h2>The number that stopped it</h2>",
+          '<p>The sample had to be spread out along the axis being tested. The measure of that '
+          f'spread had to be at least <b>{thr}</b>.</p>',
+          '<div class=meter><div class=track>'
+          f'<div class=fill style="width:{100*lo/scale:.1f}%"></div>'
+          f'<div class=mark style="left:{100*thr/scale:.1f}%"></div></div>'
+          f'<div class=lab><span>the sample actually collected: <b>{lo}</b></span>'
+          f'<span>required: {thr}</span></div></div>',
+          f'<p class=note>The pass on file cited <b>{hi}</b> — correct for the {fp.get("objects_gated","larger")}'
+          f'-object population it was measured on, and not a statement about the '
+          f'{fp.get("objects_measured","collected")}-object sample being used. Neither document '
+          'was wrong. They were never compared.</p>']
+
+P += ["<details><summary>The receipts — harvest, transfer, gate verdicts, frozen artifacts and code pins</summary>", '<p class=note>Everything below is read off disk each time this page is built. It is here for someone checking the work rather than reading the story.</p>']
 
 # --- harvest, derived -------------------------------------------------------
 if hv:
@@ -247,7 +345,13 @@ if tr:
     cap = tr.get("approved_byte_ceiling", 0) / 1e9
     st = str(tr.get("state", "?"))
     stale = tr["age_s"] is None or tr["age_s"] > 600
-    if stale:
+    if stale and st in ("COMPLETE", "COMPLETED", "DONE"):
+        # A finished job stops beating; calling that "stale" reads as a fault when it is the
+        # expected end state. Say which it is.
+        cls, q = "big ok", "Image transfer — finished"
+        a = f"{st} at its last beat, {tr['beat_kst']} — {acc:,} bricks. It has not beaten since, "
+        a += "which is what a finished transfer does."
+    elif stale:
         cls, q = "big blocked", "Image transfer — heartbeat stale"
         a = f"Last beat {tr['beat_kst']} said {st} — treat the state as unknown until it beats again."
     elif st in ("ERROR", "STOPPED", "ABORTED"):
@@ -266,7 +370,7 @@ if tr:
           f'beat {tr["beat_kst"]}.</p></div>']
 
 # --- gates, derived --------------------------------------------------------
-P += ["<h2>Independent gates</h2>",
+P += ["<h3>Independent gates</h3>",
       f'<p class=note>{len(passes)} passed, {len(holds)} held. Every verdict below is read from the '
       'first line of its own report file — this page cannot claim a gate that does not exist.</p>',
       "<table><tr><th>verdict</th><th>report</th></tr>"]
@@ -279,7 +383,7 @@ if holds:
              'evidence of anything.</p>')
 
 # --- frozen artifacts, derived ---------------------------------------------
-P += ["<h2>Frozen artifacts</h2>", "<table><tr><th>artifact</th><th>sha256</th><th>mode</th></tr>"]
+P += ["<h3>Frozen artifacts</h3>", "<table><tr><th>artifact</th><th>sha256</th><th>mode</th></tr>"]
 for label, rel in FROZEN:
     p = os.path.join(PREREG, rel)
     h, md = sha12(p), mode(p)
@@ -291,7 +395,7 @@ for label, rel in FROZEN:
                  f'<td class={locked}>{md}</td></tr>')
 P.append("</table>")
 
-P += ["<h2>Pinned code and fixtures</h2>", "<table><tr><th>what</th><th>sha256</th><th>state</th></tr>"]
+P += ["<h3>Pinned code and fixtures</h3>", "<table><tr><th>what</th><th>sha256</th><th>state</th></tr>"]
 for label, rel, expect in PINS:
     h = sha12(os.path.join(PREREG, rel))
     if h is None:
@@ -304,6 +408,9 @@ for label, rel, expect in PINS:
 P.append("</table>")
 P.append('<p class=note>The adapter hash matters: the boundary gates were passed against it, so if it '
          'moves those passes no longer cover the current code.</p>')
+
+
+P.append("</details>")
 
 if sc is not None:
     P += ["<h2>Successor — closure gate</h2>"]
