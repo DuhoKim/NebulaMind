@@ -90,6 +90,60 @@ def transfer():
         d["beat_kst"] = "unparsable beat time"
     return d
 
+DECLINE = "DECISION_MEMO_DECLINE_TO_PROCEED_20260821.md"
+SUCCESSOR = "_successor_build_20260824"
+
+def decline():
+    """The decline memo's own signature block, read rather than assumed.
+
+    The study was DECLINED by signature on 2026-08-25. A status page that still presents it as
+    in flight is the failure this page exists to avoid, so the banner is derived from the memo's
+    EFFECTIVE line and disappears by itself if that line ever changes.
+    """
+    p = os.path.join(PREREG, DECLINE)
+    if not os.path.exists(p):
+        return None
+    head = open(p, errors="ignore").read(4000)
+    m = re.search(r"\*\*EFFECTIVE BY SIGNATURE\s*[—-]\s*([0-9-]+)\.\*\*", head)
+    if not m:
+        return None
+    return {"date": m.group(1), "sha12": sha12(p), "mode": mode(p),
+            "declined": "**DECLINED**" in head or "is **DECLINED**" in head}
+
+def successor():
+    """The successor's closure gate: the verdict line of each referee report, plus the required
+    brick count from the probe receipt. Nothing here is asserted -- if the files are gone, the
+    section says so."""
+    d = os.path.join(PREREG, SUCCESSOR, "gates")
+    if not os.path.isdir(d):
+        return None
+    out = {"reports": [], "required": None, "objects": None, "selected": None}
+    for p in sorted(glob.glob(os.path.join(d, "CLOSURE_V*_*.md"))):
+        name = os.path.basename(p)
+        if "PROBE" in name or "REPAIR" in name:
+            continue
+        try:
+            last = [l.strip() for l in open(p, errors="ignore") if l.strip()][-1]
+        except (OSError, IndexError):
+            continue
+        v = last.replace("*", "").strip()
+        if v in ("CLEAR", "NOT CLEAR"):
+            out["reports"].append((name, v, os.path.getmtime(p)))
+    out["reports"].sort(key=lambda r: -r[2])
+    rec = os.path.join(d, "CLOSURE_PROBE_V6_RECEIPT_20260826.json")
+    if os.path.exists(rec):
+        try:
+            j = json.load(open(rec))
+            dm = j.get("stable", {}).get("derived_manifest", {})
+            out["required"] = dm.get("required_count")
+            out["objects"] = dm.get("objects")
+            out["selected"] = dm.get("selected_bricks")
+            out["suite"] = j.get("stable", {}).get("summary", {})
+        except Exception:
+            pass
+    return out
+
+
 FROZEN = [
     ("Preregistration (v3)", "PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260815_V3.md"),
     ("Route binding (successor, route B)", "TORI_ROUTE_BINDING_SUCCESSOR_20260817.md"),
@@ -104,7 +158,7 @@ PINS = [
     ("fixtures r5", "boundary_fixtures/make_boundary_fixtures_round5.py", "498659bf1798"),
 ]
 
-g = gates(); hv = harvest(); tr = transfer()
+g = gates(); hv = harvest(); tr = transfer(); dc = decline(); sc = successor()
 passes = [x for x in g if x[1].startswith("PASS")]
 holds  = [x for x in g if x[1].startswith("HOLD")]
 now = datetime.now().strftime("%d %b %Y, %H:%M KST")
@@ -134,6 +188,16 @@ code{background:#1b212b;padding:.1em .35em;border-radius:4px;font-size:.85em}
      "<h1>Galaxy spin-parity study</h1>",
      f'<div class=sub>Generated from the lane\'s own artifacts · {now} · private review copy · '
      'nothing published, run, or accepted</div>']
+
+if dc and dc["declined"]:
+    P += [f'<div class="big bad"><div class=q>Decision</div>'
+          f'<div class=a>DECLINED by signature, {html.escape(dc["date"])} — the test halts unrun</div>'
+          '<p class=note>Duho signed the decline after a plain-language walkthrough of Revision 6. '
+          'The frozen preregistration is preserved intact and the sample is archived; no '
+          'measurement will be made under it. Everything below is the record of a study that '
+          'stopped, not one in flight.</p>'
+          f'<p class=note>Memo <code>{html.escape(DECLINE)}</code> · sha256 '
+          f'{dc["sha12"]} · mode {html.escape(str(dc["mode"]))}.</p></div>']
 
 P += ["<h2>What is being tested</h2>",
       "<p>Longo 2011's specific claim — a spin-handedness dipole of |A| &asymp; 0.0408 &plusmn; 0.011 "
@@ -241,15 +305,50 @@ P.append("</table>")
 P.append('<p class=note>The adapter hash matters: the boundary gates were passed against it, so if it '
          'moves those passes no longer cover the current code.</p>')
 
-P += ["<h2>What has not happened</h2>",
-      "<p>No galaxy image has been fetched. No measurement has been made on the sky. Nothing has been "
-      "published and nothing accepted. The work so far touches catalogues, file listings and small "
-      "checksum files — never pixels.</p>",
+if sc is not None:
+    P += ["<h2>Successor — closure gate</h2>"]
+    if sc["required"]:
+        P += [f'<div class="big"><div class=q>Required image manifest</div>'
+              f'<div class=a>{sc["required"]:,} bricks, derived from {sc["objects"]:,} objects in '
+              f'{sc["selected"]:,} selected bricks</div>'
+              f'<p class=note>The neighbour-brick effect is {sc["required"]/sc["selected"]:.3f}x the '
+              f'selection, so the transfer this implies is about '
+              f'{sc["required"] * 12.2 / 1000:,.0f} GB at the predecessor\'s measured 12.2 MB/brick. '
+              'Duho raised the planning ceiling to match on 26 Aug. A ceiling is not an '
+              'authorization: nothing has been fetched for the successor.</p></div>']
+    if sc["reports"]:
+        P += ['<table><tr><th>verdict</th><th>report</th></tr>']
+        for name, v, _ in sc["reports"]:
+            cl = "y" if v == "CLEAR" else "n"
+            P.append(f'<tr><td class={cl}>{v}</td><td class=m>{html.escape(name)}</td></tr>')
+        P.append("</table>")
+        clears = [r for r in sc["reports"] if r[1] == "CLEAR"]
+        P.append(f'<p class=note>{len(clears)} of {len(sc["reports"])} referee report(s) CLEAR. '
+                 'The panel was designed for more than one seat and returned fewer: two seats were '
+                 'refused mid-analysis by their provider\'s safety filter on 26 Aug, so this is a '
+                 'narrower review than a full panel, not a stronger one. Whoever makes a freeze '
+                 'call downstream should know which kind they are holding.</p>')
+    else:
+        P.append('<p class=note>No referee verdict on disk yet.</p>')
+
+P += ["<h2>What has and has not happened</h2>"]
+if tr and tr.get("accepted"):
+    P += [f'<p>Images <b>have</b> been fetched: {tr["accepted"]:,} bricks, '
+          f'{tr.get("cumulative_received_bytes", 0)/1e9:,.1f} GB, under the predecessor\'s '
+          f'authorization. That transfer reported {html.escape(str(tr.get("state","?")))} at its last '
+          f'beat. This page said "never pixels" until 26 Aug, which was false from the moment the '
+          'transfer began — the panel above was derived and the sentence was not.</p>']
+else:
+    P += ["<p>No galaxy image has been fetched.</p>"]
+P += ["<p>What has <b>not</b> happened: no measurement has been made on the sky, nothing has been "
+      "published, and nothing has been accepted. The spin-parity measurement halts unrun under the "
+      "signed decline; the successor's own image transfer has not started.</p>",
       '<p class=note>The checksum harvest, the image retrieval, and the measurement are three separate '
       'decisions. Each needs its own authorization.</p>',
-      f'<p class=note>Regenerate: <code>python3 mkspinparity.py</code>. Derived from disk, so it cannot '
-      'go stale the way its hand-written predecessor did — that version still claimed the freeze was '
-      'held two days after it was granted.</p>', "</body>"]
+      f'<p class=note>Regenerate: <code>python3 tools/render_spin_parity_status.py</code> (launchd, '
+      'every 600 s). Derived from disk — but only where it is actually derived: the sentence above is '
+      'a standing reminder that a hand-written claim beside a derived panel is how this page last went '
+      'wrong.</p>', "</body>"]
 
 open(OUT, "w").write("\n".join(P))
 print(f"  wrote {os.path.basename(OUT)} — gates {len(g)} ({len(passes)} pass / {len(holds)} hold)"
