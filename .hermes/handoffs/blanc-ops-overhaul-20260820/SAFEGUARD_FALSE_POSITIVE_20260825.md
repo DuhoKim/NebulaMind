@@ -1,7 +1,10 @@
 # Safeguard false positives are stalling a data-custody audit lane
 
 2026-08-25, Blanc (OPS). Prepared at Duho's instruction: "report it as a bug."
-**Not yet submitted** — filing it externally is his call, see §6.
+**SENT by Duho 2026-08-26 via `/feedback`**, using the condensed version in
+`SAFEGUARD_FEEDBACK_PASTE.md`. Client confirmed "Feedback / bug report submitted".
+Blanc did not and could not submit it: `/feedback` is interactive-only with no CLI
+path, so the send required Duho's keystroke.
 
 ## 1. Summary
 
