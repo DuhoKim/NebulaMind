@@ -21,8 +21,23 @@ retention, manifest closure, mask typing, randomness addressing, injection, perm
 contract, estimators, sigmas, calibration, the decision function, the run guards, and all
 digest serializations — is DEFINED by the code bytes of
 
-- **`ref/successor_ref_v4.py`, sha256 `0b312c96db0b4551bcafd554b4bdd7124d3104cef4cc7f405eea3f849e08e21c`**
-- fixture output **`ref/FIXTURES_V4_20260825.out`, sha256 `6b14d8a69b606cbf5ddb6d0e82f856a08d6a5928227c3cba4956a1c02636e436`** (36 checks, ALL FIXTURES PASS)
+- **`ref/successor_ref_v8.py`, sha256 `1bec5c2831464e023f2fee472a30480761b9a9f40cc034ba092cbfc28ad7758a`**
+- the custody boundary it calls, **`ref/closure_worker_v8.py`, sha256
+  `245057259830c60e65b179bc01053d531964a7005b560e264bdefa0745c0092d`**
+- fixture output **`ref/FIXTURES_V8_20260826.out`, sha256
+  `fab32ba24cedcedf7fe601c3a8d9dbde13f57b1c9bf2e0b88963bcfebc33a8b5`** (46 checks, ALL FIXTURES PASS)
+
+> **THE PIN WAS STALE AND IS NOW PROVISIONAL (2026-08-26).** This section pinned
+> `successor_ref_v4.py` at sha `0b312c96…` from 2026-08-25 17:47. That file was rewritten the
+> same evening and four times since; the bytes named here defined nothing that existed. A
+> document that defines every mechanism by code bytes fails completely when the pin drifts, and
+> it drifted within hours of being written.
+>
+> The pin now names v8, which is the version currently in front of a referee. **It is provisional
+> by construction**: a freeze must pin the exact bytes that carry a completed referee verdict,
+> and re-pinning is therefore a freeze-time step, not a drafting one. v4 through v7 remain on
+> disk unchanged so that each round's referee reports stay legible against the digests they
+> pin.
 
 Prose states claims, thresholds, chronology, authority and conduct. **Where prose and code
 could be read to disagree, the code is the definition and the prose is the defect.** The
@@ -173,10 +188,27 @@ both inputs being already-acquired authorized artifacts. Receipt:
   **6,445 bricks**, **65,060 raw objects**,
   53,005 retained, **Var(cosθ) = 0.754664**, **N_eq = 120,002.9**, ~**76.8 GB** of images. The
   declined run used 60,308 bricks / 208,407 objects / Var 0.0580 / N_eq 36,253 / 735.9 GB.
-- **Stage P: 997/1000, all 77 boundary trials confirmed, PASS** — measured on the
-  PRE-reduction geometry (53,006 planning objects). The reduced set differs by one brick and
-  one object; that result is **not** restated as if re-measured, and will be re-run on the
-  reduced set before any freeze.
+- **Stage P on the reduced set: 995/1000 against the x ≥ 962 rule, PASS** — measured
+  2026-08-26 with **every trial judged against its own 20,000-permutation null**, so no shared
+  reference null appears in the counting path
+  (`real/stagep_exact.py`, receipt `real/STAGEP_EXACT_RECEIPT_20260826.json`, 431 s on 20
+  workers). Geometry: the 6,445-brick reduced set, n = 53,005, Var(cosθ) = 0.754664,
+  N_eq = 120,003.
+  - **The earlier 997/1000 PASS is retracted**, not restated. It was measured on the
+    PRE-reduction geometry and, decisively, before the conservatism check existed. That check,
+    added in round 8, found the shared reference null was **not** conservative on this geometry:
+    2 of 8 sampled trials had their own critical value above it (3.1672 and 3.1957 against
+    3.1220) with a residual margin of only 1%.
+  - What the exact re-run adds beyond the number: **zero trials disagree**. No trial was granted
+    by the shared null and refused by its own, or the reverse. The round-8 finding stands as a
+    finding and changed no verdict on this geometry, which means the earlier FAIL was a failure
+    of the justification rather than of the result — a distinction that could only be settled by
+    running it.
+  - **Not yet in the definitional code.** `stagep_exact.py` is a measurement harness; the
+    exact-null Stage P is not implemented in the file §0 pins. BS-5p is not fillable until it
+    is, with its own fixtures and its own gate. 995 of the 1,000 own p-values also sit at
+    `5.00e-05`, the resolution floor of a 20,000-permutation estimate — lower bounds, 20× below
+    the 1e-3 test, so the verdict is unaffected but they are not measured values.
 - Disclosed: the pinned `greedy_ledger()` and `local_pass()` are O(n²) in Python and will not
   run at 270,577 bricks. The vectorized equivalents used at scale are proven identical to them
   on 40 (order) and 30 (reduction) random cases; making the frozen implementations scale is
@@ -250,8 +282,9 @@ confirmation, which is what keeps it affordable.
 This is checked, and it bites: on a fixture sized to sit near 50% power the mechanism
 **refuted 2 of 7 boundary successes and failed the stage closed** (`PWR-SELF-VERIFYING`),
 while `PWR-CALIBRATED-ALONE-INSUFFICIENT` reproduces the round-6 finding directly (calibrated
-decisions alone confirmed in only 21 of 22 cases). **Measured on the real selected geometry
-(§2.6): 997/1000, 77 boundary trials, 77 confirmed, 0 refuted, PASS.** **Production decisions
+decisions alone confirmed in only 21 of 22 cases). **Measured on the real REDUCED geometry (§2.6): 995/1000, PASS, with every
+trial judged against its own null rather than a shared reference (2026-08-26). The earlier
+997/1000 on the pre-reduction geometry is retracted.** **Production decisions
 never use this path**: the production runner always executes the full 100,000-permutation
 record on the sealed mask.
 
@@ -425,10 +458,12 @@ findings were the same four. All four are repaired:
 transcript reproduced byte-for-byte, the frozen planner returns both historical neighbour
 bricks, and the 6,445-brick artifact reproduced exactly from the recorded inputs.
 
-**Stage P has NOT been re-measured on the reduced set.** The 997/1000 with 77/77 boundary
-confirmations was measured on the pre-reduction geometry and is not restated as if it had
-been re-run. The reduced set differs by one brick and one retained object; it will be
-re-measured before any freeze, under the widened audit above.
+**Stage P HAS been re-measured on the reduced set (2026-08-26): 995/1000, PASS**, by the exact
+route — one null per trial, no shared reference — which removes the assumption the widened audit
+falsified rather than arguing it back. The retracted 997/1000 is described in §2.6. Two things
+remain open and are not claimed closed: the exact Stage P lives in a measurement harness and not
+in the code §0 pins, so **BS-5p cannot be filled yet**; and nobody has refereed the measurement,
+so it is measured, not accepted.
 
 **Disclosed rather than claimed closed** (unchanged): the clean-room specification for the
 blind double, BS-9's input-function schema, the BS-V primary lock, and that the frozen
