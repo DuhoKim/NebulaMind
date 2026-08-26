@@ -88,3 +88,38 @@ enforce it; make `receipt()` carry the fields its consumers need so canonical re
 usable and ad-hoc dicts are not.
 
 **Status: the image download remains queued and unfired.** Nothing has been downloaded.
+
+---
+
+## CEILING RAISED — 2026-08-26 10:23:42 KST, Duho, relayed by Blanc
+
+Verbatim order: **"Approve the larger ceiling"**.
+
+The byte ceiling is raised to match the MEASURED closure, superseding the "≈6,445 bricks /
+order 77 GB" figure above:
+
+| quantity | superseded | measured 2026-08-26 |
+|---|---|---|
+| bricks to fetch | 6,445 (the selection) | **12,117** (the closure) |
+| size at 12.2 MB/brick | order 77 GB | **≈148 GB** |
+
+The 1.88× neighbour-brick effect was put to him as measured, not estimated, and accepted on
+that basis. The measurement is the first end-to-end production closure:
+65,060 objects → 6,445 selected bricks → 12,117 required bricks, `plan_digest
+aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1`, recorded in
+`../gates/CLOSURE_REPAIR_20260826.md` and `../gates/CLOSURE_PROBE_V5_RECEIPT_20260826.json`.
+
+### This is not authorization to fetch
+
+Blanc, relaying: "Raising the ceiling is NOT authorization to fetch. Nothing downloads." The
+size question has been unblocked so it does not queue behind the correctness question. The
+correctness question is open:
+
+- both referee verdicts on the closure check stand at **NOT CLEAR**;
+- the repaired v5 has not been refereed by anyone;
+- the selection's binding is a code pin with no producer receipt behind it;
+- the hash-then-reopen window both seats named is untested;
+- probe U02's dispute is unresolved on the record.
+
+**No image byte has been fetched.** The ceiling approved is tied to the 12,117 measurement. If
+a re-gate moves that number, Blanc is to be told before anything acts on the new one.

@@ -1,5 +1,15 @@
 # What the probe run shows — Hwao's reading, 2026-08-25
 
+> **SUPERSEDED IN PART, 2026-08-26.** Two referee seats have since ruled on this run
+> (`CLOSURE_RECEIPT_GPT56.md`, `CLOSURE_RECEIPT_CODEX.md`, both NOT CLEAR) and confirmed
+> C01–C04 as real. They also found a seam this document does not mention: the pinned planner
+> digest hashed source bytes, so replacing the live callable left it unchanged while different
+> code produced the answer. Separately, and importantly, the round-9 conclusion this lane
+> relayed as a strength — that a parent missing rows could not pass a completeness proof
+> without also shortening the oracle — **is refuted**: C01 keeps the total at 832,393 while a
+> parent row is gone. The repair is recorded in `CLOSURE_REPAIR_20260826.md`.
+
+
 **This is not a gate verdict.** It is the lane record of what `closure_probe_suite.py` returned
 and what I think it means. The ruling belongs to the referee seats under
 `BRIEF_CLOSURE_RECEIPT_V4.md`, and they are free to reject every line of this.
