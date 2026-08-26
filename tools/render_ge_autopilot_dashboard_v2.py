@@ -531,6 +531,66 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                      "decision memo is a DRAFT — not effective without a gate AND Duho's signature"),
             "transfer": transfer,
         })
+    # The successor build is where Hwao's work actually IS. The DESI row above
+    # describes a study Duho declined on 2026-08-25 — true, and entirely
+    # historical. Meanwhile the closure mechanism was rebuilt three times in a
+    # day, a 12,117-brick / ~148 GB finding changed a decision, and every
+    # referee seat got refused by a provider filter, none of which the board
+    # showed. I only noticed gpt56 had been refused because I happened to grep
+    # a log; the cockpit's whole job is that I should not have to.
+    sb = pre / "_successor_build_20260824"
+    if sb.is_dir():
+        gates = sb / "gates"
+        verdict = vfile = vage = None
+        if gates.is_dir():
+            def _closure_score(p):
+                """Which review stream a file belongs to, by content not name.
+
+                'v6' names both the closure mechanism and the successor prereg
+                draft, and I attributed one stream's REFUSED to the other by
+                reading a filename. Both say "manifest", so score each
+                vocabulary and take the winner.
+                """
+                h = p.read_text(errors="ignore")[:4000].lower()
+                c = sum(h.count(w) for w in ("close_manifest", "closure", "brick"))
+                d = sum(h.count(w) for w in ("preregistration", "prereg_successor",
+                                             "freeze-candidate"))
+                return c - d
+            cands = sorted((f for f in gates.glob("*.md")
+                            if not f.name.startswith(("_tmp_", "BRIEF_"))),
+                           key=lambda f: f.stat().st_mtime, reverse=True)
+            for f in cands:
+                if _closure_score(f) <= 0:
+                    continue
+                first = next((l.strip() for l in f.read_text(errors="ignore").splitlines()
+                              if l.strip()), "")
+                verdict = (first[:64] if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first)
+                           else f"{f.name} (no verdict token)")
+                vfile, vage = f.name, round((time.time() - f.stat().st_mtime) / 3600.0, 1)
+                break
+        # Referee panel: a review with seats missing is a NARROWER review, and
+        # the freeze decision downstream needs to know which kind it is holding.
+        seats: List[str] = []
+        for log in sorted(gates.glob("runner_v6_*.log")) if gates.is_dir() else []:
+            name = log.stem.replace("runner_v6_", "")
+            txt = log.read_text(errors="ignore")
+            if re.search(r"safety filter|flagged for possible", txt, re.I):
+                seats.append(f"{name}:REFUSED")
+            elif txt.strip():
+                seats.append(f"{name}:ran")
+            else:
+                seats.append(f"{name}:running")
+        out.append({
+            "lane": "DESI successor — manifest closure", "who": "Hwao",
+            "detail": (vfile or "no closure verdict yet"),
+            "latest_gate": vfile,
+            "verdict": verdict,
+            "gate_age_h": vage,
+            "duho_items": _duho_decision_items(sb / "gates") if gates.is_dir() else [],
+            "pin_mismatches": _pin_mismatches(gates) if gates.is_dir() else [],
+            "seats": seats,
+            "note": ("referee panel: " + ", ".join(seats)) if seats else None,
+        })
     # Tori's phase work lives in bhu-theory-phase* under the sextet handoff dir,
     # NOT in bhu-track — pointing at the wrong directory rendered "no artifact
     # seen" for a lane that had just closed Phase 3, which is worse than no row.
