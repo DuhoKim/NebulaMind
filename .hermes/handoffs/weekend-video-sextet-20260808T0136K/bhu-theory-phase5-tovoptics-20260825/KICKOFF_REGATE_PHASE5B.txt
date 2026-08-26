@@ -1,0 +1,54 @@
+RE-GATE — Phase 5b. Two clusters: the fixes to your prior HOLD, and one ADJUDICATION we cannot
+settle ourselves.
+
+## Cluster A — verify the four fixes, then attack them
+
+Your GATE_PHASE5B_VERDICT.md held on: (1) tau <= 0.07 not established over A1-A6; (2) A6 with
+no defined maximum and not junction-consistent; (3) P2 a single toy rather than a transfer over
+A4/A5, missing its double; (4) P1 not reproducible under unpinned dependencies. All four are
+addressed in P1B_P2B_RECEIPT.md with p1b_range_sweep.py and p2b_transfer_sweep.py.
+
+What changed, for you to check rather than accept:
+- A6 is now w(rbar) = w_s (rbar/rbar_s)^q with w_s = u/v fixed BY CONSTRUCTION at the junction,
+  and its authorised maximum DERIVED from the pinned bound 0 < w < 1 holding from shock to
+  horizon, giving q in [-0.75, 0.90]. Verify that interval independently — is the band the
+  right one, and is the family adequate, or does a junction-consistent w(rbar) exist outside
+  this one-parameter form that would push tau higher?
+- A3/A5 pairs are bounded by the ENERGY BUDGET (scatterers cannot carry more energy than
+  rhobar holds; cold-neutral ceiling rhobar/m_p, relativistic pair ceiling rhobar c^2/(3kTbar)),
+  giving 2.26x more scatterers than full baryon loading at the crossing.
+- **The swept ceiling is tau_max = 0.133, not 0.07.** Your objection was correct and the number
+  moved by 2.3x. Verify the sweep is now genuinely exhaustive over the AUTHORISED ranges, and
+  attack any corner still omitted.
+- Dependency pins are emitted at runtime (python 3.11.15, numpy 2.4.3, scipy 1.17.1).
+
+## Cluster B — ADJUDICATE: the P2b blind double DIVERGED by 2.67x
+
+Read P2B_CROSSCHECK.md and platoon/gpt1_blind_p2b/ (its README and compute_blind_p2b.py:41-54).
+Two independent implementations disagree, both causes are identified, and we are NOT asking you
+to accept our side. Rule on each:
+
+**B1 — the offset normaliser.** Tori divides x_off by r_*(eta_obs) = 2.000, the comoving shock
+radius at the observation epoch. gpt1 divides by r_*(eta_crossing) = 1.4366, the radius where
+the past light cone meets the shock. Factor 1.392. Which is the correct denominator for a
+quantity to be compared against an observational dipole limit, and why? Note the "now" surface
+is outside our past light cone.
+
+**B2 — the propagation factor, residual 1.92.** gpt1's transfer is
+`(eta_c/eta_obs) * gamma * (1 + beta*c)`; Tori's omits `eta_c/eta_obs`. Tori's argument: in the
+radiation era a ~ eta, so a comoving bath cools as 1/eta while propagation redshifts by
+eta_c/eta_obs, and the two cancel exactly — the standard reason the observed CMB temperature is
+independent of emission epoch — so including the factor without the compensating cooling
+double-counts. gpt1's README says the factor is "radiation-era propagation". **Decide which is
+right, or whether both are wrong**, and state the consequence for the bound.
+
+Until B1/B2 are ruled, P2b's bound (1.585e-3 to 1.787e-3, Tori; 5.94e-4 to 6.90e-4, gpt1) is
+marked NOT CONFIRMED and no downstream text quotes it as doubled.
+
+## Not in scope
+Phase 4; Phase 5's S0-S2 line (PASS_S0S2_FIXED both engines, numerics withdrawn except S1's
+law); P1/P1b's optical depth insofar as it was separately blind-doubled and confirmed — though
+the SWEEP that raised its ceiling to 0.133 IS in scope under Cluster A.
+
+Verdict file per your dispatch instruction: PASS_PHASE5B or HOLD_<reason>. Cluster B must be
+answered explicitly even if you PASS Cluster A.
