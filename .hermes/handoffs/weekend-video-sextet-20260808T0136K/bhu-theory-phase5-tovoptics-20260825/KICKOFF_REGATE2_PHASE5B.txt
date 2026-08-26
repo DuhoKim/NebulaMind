@@ -1,0 +1,58 @@
+RE-GATE (second) — Phase 5b. The phase's shape has CHANGED since your last verdict; read this
+before assuming continuity with it.
+
+## What changed, and it is not a defence
+
+Your REGATE_PHASE5B_VERDICT.md held on six Cluster A findings, chiefly that my A6 sweep was a
+grid outcome and tau <= 0.133 was not established. Repairing it **destroyed my own headline
+claim**, and I am telling you that up front:
+
+- My bang-bang bracket was refuted by my own optimiser in the same run (interior 0.167 exceeded
+  the "bound" 0.055) because every low-pressure run had silently failed on a 1/w singularity.
+- Reformulating to integrate pbar instead of rhobar removes the singularity. The low-pressure
+  direction then computes to **tau = 2.6 — OPAQUE**, because rhobar = pbar/w means a
+  low-pressure exterior is a DENSE one.
+- Therefore **WITHDRAWN**: "the exterior is optically thin across the authorised range"; "the
+  plasma unknowns are not load-bearing"; "there is no photosphere". All three were P1's.
+  See P1C_RECEIPT.md.
+
+The opacity is NOT resolved and, on the pinned physics, cannot be.
+
+## What replaces it — the claim you are gating now
+
+P5_JOINT_RECEIPT.md + p5_joint_exclusion.py: a single transfer covering EVERY opacity, so no
+branch needs choosing.
+
+  1 + dT/T(mu) = D(mu) * [ e^-tau + (1-e^-tau) * (Tbar/T_FRW) ]
+
+with D OUTSIDE the bracket. This corrects my own P2, which applied D only to the transmitted
+background as though the exterior's emission were unshifted; the emitter IS the moving fluid.
+Consequence: the dipole SATURATES at a finite floor (0.2461 at tau>=20, unchanged at tau=1000)
+rather than vanishing — opacity dilutes the anisotropy by a bounded 2.50x and never removes it.
+**Bound over the full opacity range: x_off/r_*(crossing) between 2.21e-3 and 5.52e-3.**
+
+Blind-doubled (P5_CROSSCHECK.md): gpt1, with the choices left open, independently concluded the
+emission is Doppler-shifted and that "opacity cannot hide an arbitrary offset", and its numbers
+map to mine through exactly your own B1 factor 1.392165 (coefficient 0.342612 vs 0.34258957;
+bound 0.00396260 vs 0.00396261).
+
+## Attack, at minimum
+
+1. **Is D outside the bracket correct?** Both terms cross the same junction, but the emission
+   originates at a range of depths within the exterior. Does using the junction-frame beta for
+   the emitted component bias the saturation floor, and in which direction?
+2. **The saturation floor itself.** Is 0.2461 a real physical limit or an artifact of holding
+   Tbar/T_FRW = v^(1/4) at the crossing epoch? What if the source samples a range of epochs?
+3. **Cluster A residue.** A1 (admissible set still located numerically, now LABELLED as such,
+   not derived), A3 (maximisation moot in its old form — say whether that is acceptable), A5
+   (requirements-pinned.txt + a trapezoid/trapz shim; verify p1c executes in YOUR environment),
+   A6 (does P5 discharge it, given it now covers the full transfer range?).
+4. **Does the joint argument actually make the opacity question moot**, or does some corner of
+   the authorised range escape the saturation bound?
+5. Any claim in P5_JOINT_RECEIPT.md exceeding what the scripts establish.
+
+## Not in scope
+Phase 4; the S0-S2 line (PASS both engines, numerics withdrawn except S1's law); B1/B2, which
+you already adjudicated and which are applied here.
+
+Verdict file per your dispatch instruction: PASS_PHASE5B or HOLD_<reason>.
