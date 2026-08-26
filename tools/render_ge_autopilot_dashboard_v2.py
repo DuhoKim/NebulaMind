@@ -2710,21 +2710,37 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
             # rendered ninety seconds earlier. Quiet is not paused, and telling
             # Duho to restart a healthy monitor is the failure this branch was
             # written to remove.
-            # There is deliberately no "monitor may be paused" branch left here.
-            # This code runs inside the renderer, so reaching it proves the
-            # renderer is alive; the message could never be true where it was
-            # written. A genuinely dead renderer shows up as an old
-            # `generated_at` on the page itself, which the reader can already
-            # see and which no self-report from a dead process could tell them.
+            # RESTORED 2026-08-26, having been wrongly deleted the same morning.
+            # I read "monitor may be paused" as the renderer talking about
+            # itself, reasoned that a live process cannot truthfully call itself
+            # paused, and removed the branch. The message was never about this
+            # process: it is about the Phase 1 monitor that writes
+            # SOURCE_STATUS, which had been dead for eight days and still was.
+            # Duho noticed because the usage panel — fed from that same file —
+            # had stopped changing. I deleted a true warning by misidentifying
+            # which monitor it named.
+            #
+            # So judge the SOURCE's age, which is the thing the message is
+            # actually about, and say what is affected rather than issuing a
+            # bare "stale": lane state is read from files directly and stays
+            # correct, while panes, usage and events all come from the snapshot
+            # and go stale with it.
             fresh_gate_h = min((c["gate_age_h"] for c in active_campaigns
                                 if c.get("gate_age_h") is not None), default=None)
-            health = "watching"
             since = (f", {age_label(int(fresh_gate_h * 3600))} since last gate"
                      if fresh_gate_h is not None else "")
-            health_text = f"QUIET · paper lanes held, no events{since}"
-            next_action = ("Paper lanes are on your hold, so the events feed is idle by "
-                           "design. This page rendered just now, so nothing is paused — "
-                           "the campaign strip below carries the live work.")
+            if age is not None and age > 6 * 3600:
+                health = "stale"
+                health_text = f"SOURCE SNAPSHOT {age_label(age)} OLD · Phase 1 monitor is not writing"
+                next_action = (
+                    "Lane state below is read from files and is current. The panes, usage and "
+                    "events panels come from autopilot-status.json and are frozen at that "
+                    f"timestamp — restart the Phase 1 monitor to revive them.")
+            else:
+                health = "watching"
+                health_text = f"QUIET · paper lanes held, no events{since}"
+                next_action = ("Paper lanes are on your hold, so the events feed is idle by "
+                               "design. The campaign strip below carries the live work.")
 
     lane_summaries = {name: lane_summary(name, groups.get(name, [])) for name in GROUP_ORDER}
     usage_snapshot = build_usage_snapshot(source)
