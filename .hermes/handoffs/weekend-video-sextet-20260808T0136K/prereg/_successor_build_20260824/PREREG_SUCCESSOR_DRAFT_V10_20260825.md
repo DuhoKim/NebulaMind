@@ -186,8 +186,20 @@ both inputs being already-acquired authorized artifacts. Receipt:
 - Selection **through the complete frozen reduction — removals AND the swap-then-removal
   phase** (round 8 found the swap phase missing; adding it leaves this result unchanged):
   **6,445 bricks**, **65,060 raw objects**,
-  53,005 retained, **Var(cosθ) = 0.754664**, **N_eq = 120,002.9**, ~**76.8 GB** of images. The
+  53,005 retained, **Var(cosθ) = 0.754664**, **N_eq = 120,002.9**. The
   declined run used 60,308 bricks / 208,407 objects / Var 0.0580 / N_eq 36,253 / 735.9 GB.
+- **The images required are NOT the selected bricks: 12,117 bricks, ≈148 GB.** This line
+  previously read "~76.8 GB of images", which was the selected 6,445 bricks priced as if they
+  were the download. They are not. Each galaxy's cutout can require neighbouring bricks outside
+  the selection, and the measured closure over the 65,060-object parent is **12,117 distinct
+  bricks — 1.880× the selection** (`plan_digest aaeaa9f3…`, reproduced independently three
+  times: by the closure itself, and twice by direct enumeration that never called it). At the
+  predecessor's measured 12.2 MB/brick that is ≈147.8 GB, and Duho raised the planning ceiling
+  to match on 2026-08-26.
+- Stating it plainly because the draft got it wrong: **assuming the manifest equals the
+  selection is the exact defect BS-2m exists to catch**, and it was sitting in this section's
+  own summary line. The predecessor died of the same confusion at a smaller scale — a manifest
+  of 60,308 against an analysis needing 60,310.
 - **Stage P on the reduced set: 995/1000 against the x ≥ 962 rule, PASS** — measured
   2026-08-26 with **every trial judged against its own 20,000-permutation null**, so no shared
   reference null appears in the counting path
