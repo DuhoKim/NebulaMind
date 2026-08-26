@@ -21,11 +21,10 @@ retention, manifest closure, mask typing, randomness addressing, injection, perm
 contract, estimators, sigmas, calibration, the decision function, the run guards, and all
 digest serializations — is DEFINED by the code bytes of
 
-- **`ref/successor_ref_v8.py`, sha256 `1bec5c2831464e023f2fee472a30480761b9a9f40cc034ba092cbfc28ad7758a`**
-- the custody boundary it calls, **`ref/closure_worker_v8.py`, sha256
-  `245057259830c60e65b179bc01053d531964a7005b560e264bdefa0745c0092d`**
-- fixture output **`ref/FIXTURES_V8_20260826.out`, sha256
-  `fab32ba24cedcedf7fe601c3a8d9dbde13f57b1c9bf2e0b88963bcfebc33a8b5`** (46 checks, ALL FIXTURES PASS)
+- **`ref/successor_ref_v9.py`, sha256 `6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148`**
+- the custody boundary it calls, **`ref/closure_worker_v9.py`, sha256
+  `28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959`**
+- fixture output **`ref/FIXTURES_V9_20260826.out`**
 
 > **THE PIN WAS STALE AND IS NOW PROVISIONAL (2026-08-26).** This section pinned
 > `successor_ref_v4.py` at sha `0b312c96…` from 2026-08-25 17:47. That file was rewritten the
@@ -33,9 +32,12 @@ digest serializations — is DEFINED by the code bytes of
 > document that defines every mechanism by code bytes fails completely when the pin drifts, and
 > it drifted within hours of being written.
 >
-> The pin names v8, and **as of 2026-08-26 21:24 KST it is no longer provisional**: those exact
-> bytes carry a completed referee verdict (`gates/CLOSURE_V8_KIMI.md`, **CLEAR**, sha
-> `47d24f32…`) and are held read-only under `gates/FREEZE_CLOSURE_V8_20260826.md`. That verdict
+> The pin names v9, and **as of 2026-08-26 23:08 KST it is not provisional**: those exact bytes
+> carry a completed referee verdict (`gates/CLOSURE_V9_KIMI.md`, **CLEAR**, sha `f2ee062b…`) and
+> are held read-only under `gates/FREEZE_CLOSURE_V9_20260826.md`, which supersedes the v8 freeze
+> without rewriting it. v9 differs from v8 by one repair: the worker's interpreter state is
+> carried into every receipt, so two claims that were false at the v8 freeze are true and
+> probe-checked. That verdict
 > is **one seat**: the codex and gpt56 seats were refused by their provider's safety filter, so
 > this is a narrower review than the panel intended, and the freeze record says so in its own
 > text. v4 through v7 remain on disk unchanged so each round's referee reports stay legible
@@ -398,7 +400,7 @@ a measurement receipt — a partial run is not a smaller run, it is a different 
 | BS-2o | Hwao + blind double | full traversal order + per-prefix ledger | `greedy_ledger`, `ledger_digest` | BS-5p |
 | BS-5p | Hwao | L_min_plan, L_plan, retained basis, x ≥ 962 rule, addresses | `stage_power`, `build_plan` | BS-2s |
 | BS-2s | Hwao + blind double | selected set, L_ret, L_raw, N_eq, fixtures, Stage-P re-pass | `local_pass`, `build_plan` | BS-2m |
-| BS-2m ✅ **FILLED 2026-08-26** | Hwao | **manifest closure**: required set from the frozen cutout planner, counts, refusal on any difference. Receipt: `gates/FREEZE_CLOSURE_V8_20260826.md` — mechanism frozen at v8 (`successor_ref_v8.py` `1bec5c28…`, `closure_worker_v8.py` `245057259…`), 33/33 probes, referee `gates/CLOSURE_V8_KIMI.md` **CLEAR** (one seat; two seats refused by their provider). Derived closure: 65,060 objects → 6,445 selected → **12,117 required bricks**, `plan_digest aaeaa9f3…`, reproduced independently three times. Eight items carried open in the freeze record. | `close_manifest`, `closure_receipt` | manifest freeze |
+| BS-2m ✅ **FILLED 2026-08-26** | Hwao | **manifest closure**: required set from the frozen cutout planner, counts, refusal on any difference. Receipt: `gates/FREEZE_CLOSURE_V9_20260826.md` — mechanism frozen at v9 (`successor_ref_v9.py` `6a9abbbd…`, `closure_worker_v9.py` `28f8e1f9…`), 34/34 probes, referee `gates/CLOSURE_V9_KIMI.md` **CLEAR** (one seat; two seats refused by their provider). Derived closure: 65,060 objects → 6,445 selected → **12,117 required bricks**, `plan_digest aaeaa9f3…`, reproduced independently three times. Nine items carried open in the freeze record. | `close_manifest`, `closure_receipt` | manifest freeze |
 | BS-3 | Hwao | instrument identity: weights `83008c1c…`, τ = 4.4006456017494235, antisymmetry identity | — | BS-9 |
 | BS-9 | Hwao + gpt seat | **input-path rebinding**: branch-specific single-band HDU/plane schema, production input function (code + hash + tensor layout), full R1–R5 rerun through it, gated replacement runner. `nm_acquire_cutouts.py` remains PROHIBITED (V3-pred lines 374–386); predecessor R1–R5 receipts are historical context, never evidence for this run's path | — | BS-6 |
 | BS-4 | Hwao | synthetic absolute-sign anchor rerun under this text | `inject_signs`, `decide` | unblinding |
