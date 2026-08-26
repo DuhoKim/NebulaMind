@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  DRAFT FOR REVIEW. Not installed, not loaded. Installing it is Duho's call.
+  Written 2026-08-26.
+
+  Note on style: flag names below are written without their leading dashes,
+  because an XML comment may not contain a double hyphen. The first draft of
+  this file spelled them normally and was malformed XML as a result; plutil
+  lint accepted it and a real parser did not.
+
+  Why it exists: the provider usage monitor had no launcher at all. It was last
+  started by hand, stopped at some point, and the cockpit usage panel sat on a
+  held-over 85 percent for two days before Duho noticed the number never moved.
+
+  Shape follows com.nebulamind.cockpit-render: StartInterval plus a single-pass
+  invocation, NOT the script's watch mode. launchd owns the cadence, so a
+  crashed or killed pass costs one interval instead of stopping updates for
+  good, and no long-lived process is left to leak. The script exits after one
+  pass when watch mode is absent, which is what makes this work.
+
+  Interval is 300 seconds deliberately, not the script's 60 second default. The
+  Claude OAuth read is cached for 15 minutes and backs off an hour on HTTP 429,
+  but Moonshot and Nous are queried on every pass. Polling once a minute is what
+  earned the 429 that broke this panel; five minutes is ample for a quota bar.
+
+  The refresh-slash option is deliberately not passed. It drives visible slash
+  commands inside agent panes, and a scheduled job should never type into a
+  coordinator's session unattended.
+
+  To install, after review:
+    cp tools/cockpit-scheduling/com.nebulamind.provider-usage-monitor.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.nebulamind.provider-usage-monitor.plist
+  To stop and remove:
+    launchctl unload ~/Library/LaunchAgents/com.nebulamind.provider-usage-monitor.plist
+    rm ~/Library/LaunchAgents/com.nebulamind.provider-usage-monitor.plist
+
+  Before loading: a hand-started watch-mode process has been running at 5 minute
+  intervals since 2026-08-26 16:24. Kill it first, or both will write and
+  contend for the stable_cockpit_guard single-writer lock.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nebulamind.provider-usage-monitor</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/duhokim/NebulaMind/NebulaMind/tools/live_provider_usage_monitor.py</string>
+        <string>--interval</string>
+        <string>300</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/duhokim/NebulaMind/NebulaMind</string>
+
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/duhokim/HermesOps/cockpit/provider-usage-launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/duhokim/HermesOps/cockpit/provider-usage-launchd.log</string>
+</dict>
+</plist>
