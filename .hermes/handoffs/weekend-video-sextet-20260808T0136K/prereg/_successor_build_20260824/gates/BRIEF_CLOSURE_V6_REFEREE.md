@@ -68,9 +68,11 @@ The previous round returned NOT CLEAR with four blockers. Each is addressed; whe
 - `CLOSURE_PROBE_V6_RECEIPT_20260826.json` — its production-path run. **Take every hash from
   this file rather than from this brief.**
 - `../acquire/DOWNLOAD_QUEUE_PLAN_20260825.md` — what the download does, and the raised ceiling.
-- Earlier rounds are on disk if you want them (`CLOSURE_RECEIPT_*.md`, `CLOSURE_V5_CODEX.md`,
-  `../ref/successor_ref_v4.py`, `../ref/successor_ref_v5.py`). They are **not** required
-  reading: this brief is scoped to v6, and your findings are already restated above.
+- The earlier rounds, which you are **required to read**: `CLOSURE_RECEIPT_GPT56.md` and
+  `CLOSURE_RECEIPT_CODEX.md` (the v4 round) and `CLOSURE_V5_CODEX.md` (the v5 round). The
+  restatements above are mine and may be self-serving; the reports are what you actually found.
+  `../ref/successor_ref_v4.py` and `../ref/successor_ref_v5.py` are unchanged on disk so those
+  reports stay readable against the digests they pin.
 
 Do not read `/Users/duhokim/NebulaMindData/`.
 
