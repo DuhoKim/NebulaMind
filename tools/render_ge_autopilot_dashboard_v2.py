@@ -2641,16 +2641,30 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
             # on 2026-08-25 the board read STALE and told him to restart the
             # Phase 1 monitor while Tori's gate was 1.8h old. Recommending a
             # restart nothing supports is worse than saying nothing.
+            # "monitor may be paused" is a claim about THIS renderer, and this
+            # renderer is the thing producing the page — so its own freshness
+            # settles the question instead of being inferred from how long the
+            # lanes have been quiet. The first version of this fix used a 6-hour
+            # gate-age window, which meant one ordinary night of nobody working
+            # brought back "restart the Phase 1 monitor" on a monitor that had
+            # rendered ninety seconds earlier. Quiet is not paused, and telling
+            # Duho to restart a healthy monitor is the failure this branch was
+            # written to remove.
+            # There is deliberately no "monitor may be paused" branch left here.
+            # This code runs inside the renderer, so reaching it proves the
+            # renderer is alive; the message could never be true where it was
+            # written. A genuinely dead renderer shows up as an old
+            # `generated_at` on the page itself, which the reader can already
+            # see and which no self-report from a dead process could tell them.
             fresh_gate_h = min((c["gate_age_h"] for c in active_campaigns
                                 if c.get("gate_age_h") is not None), default=None)
-            if fresh_gate_h is not None and fresh_gate_h < 6:
-                health = "watching"
-                health_text = f"QUIET · paper lanes held, campaigns live ({age_label(int(fresh_gate_h * 3600))} since last gate)"
-                next_action = "Paper lanes are on your hold, so the events feed is idle by design. The running campaigns are in the strip below."
-            else:
-                health = "stale"
-                health_text = "STALE · monitor may be paused"
-                next_action = "Check `ge-auto tail` or restart the Phase 1 monitor if the timestamp keeps aging."
+            health = "watching"
+            since = (f", {age_label(int(fresh_gate_h * 3600))} since last gate"
+                     if fresh_gate_h is not None else "")
+            health_text = f"QUIET · paper lanes held, no events{since}"
+            next_action = ("Paper lanes are on your hold, so the events feed is idle by "
+                           "design. This page rendered just now, so nothing is paused — "
+                           "the campaign strip below carries the live work.")
 
     lane_summaries = {name: lane_summary(name, groups.get(name, [])) for name in GROUP_ORDER}
     usage_snapshot = build_usage_snapshot(source)
