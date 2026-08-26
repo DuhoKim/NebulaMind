@@ -1,0 +1,18 @@
+Done. Report written to `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/CLOSURE_V6_KIMI.md` — verdict **CLEAR**, final line exactly `**CLEAR**`.
+
+What I did and found:
+
+Work performed
+- Read the brief, the v6 change record, and all three required prior rounds (GPT56/CODEX v4, CODEX v5).
+- Verified every named hash on disk (subject, worker, fixtures, suite, shipped receipt, v4/v5 subjects, adapter, objmanifest, runner) plus all five pinned artifacts (sidecar, counts 270,577 rows/832,393, selection 6,445 unique, parent 65,060 rows, receipts 13 chunks with matching output digest). All match.
+- Ran the 29-probe suite TWICE on the production path (~2,160 s each): both 29/29 SUITE-CONFORMING. Receipts preserved as CLOSURE_PROBE_V6_RECEIPT_KIMI_run1.json / _run2.json.
+- Independently enumerated the pinned parent through the frozen planner WITHOUT close_manifest: 12,117 distinct bricks, plan_digest aaeaa9f3… identical to the v6 and v5 receipts, histogram identical to CODEX-V5's. Ceiling arithmetic (147.83 GB ≈ 148 GB) confirmed.
+- Ran my own attack probes: python_executable forge, math.radians and tangent_plane_offsets digest probes, dict-manifest at the worker, a verify-hook sentinel suite, and a runtime R02 100-name check.
+
+Key answers to the 8 questions
+- Q1: My stable_sha256 does NOT match the shipped receipt — fully diagnosed to two path strings: F03/F04's result payloads leak the per-process run directory into the hashed stable block. All other bytes identical across three runs.
+- Q8: 12,117 confirmed independently.
+
+Findings (none blocking): F1 the verify hooks are registered but NEVER invoked by the runner (proved dynamically with a sentinel; I verified each hook's assertion by hand — all true); F2 the per-process stable hash (above); F3 python_executable lets a caller nominate the judging interpreter (forge demonstrated); F4 the planner fingerprint still can't see math.radians (C-module) or tangent_plane_offsets (class-method-only helper) — both demonstrated, digest unmoved; F5 symlink check is lstat-on-path, not O_NOFOLLOW; F6 worker accepts a JSON object as manifest; F7/F8 metadata and stated-open items.
+
+Note: GPT56's and CODEX's v6 dispatch logs contain only provider safety-filter refusals — their attack remnants exist but no completed seat report, so this appears to be the first completed v6 referee round.

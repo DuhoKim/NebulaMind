@@ -1,0 +1,22 @@
+Referee round complete. Report written to:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/CLOSURE_V7_KIMI.md
+
+Verdict: **CLEAR** (final line of the report, exact).
+
+What I did and found, in plain terms:
+
+Verification highlights
+- All four pinned hashes (subject, worker, fixtures, suite) match the brief exactly, re-verified after every run; nothing pinned was ever modified.
+- My own full production-uncached suite run (1,963.7 s): 31/31 conforming, SUITE-CONFORMING — and its stable_sha256 is 009e5bce1ac5... , byte-identical to the shipped receipt, with the stable objects dictionary-equal. The v6 reproduction defect (F2) is confirmed repaired, not lucky: the run-dir strings that broke it now read $RUN/... in the hashed structure, and a two-process subset run also reproduced exactly.
+- All five claimed fixes verified dynamically: signature refuses python_executable (TypeError); a sentinel-writing verify hook fired and was recorded (hooks really run now); symlink refused at the open; dict manifest refused at the worker; fixture battery re-executed byte-identical to the shipped file.
+- The 12,117 figure re-derived independently without close_manifest: 12,117 bricks, plan digest aaeaa9f37aab... identical to v7/v6/v5, histogram unchanged — the ≈148 GB ceiling stands on a confirmed number.
+
+Findings (all MINOR, none blocking; six numbered in the report)
+- F1 (new, demonstrated): the worker verifies the subject's bytes, then imports the path — two reads, so verified code ≠ consumed code under a swap. Repair: exec the compiled verified bytes.
+- F2 (new, demonstrated): the -I isolation check runs after the subject import; a poisoned non-isolated environment executes code before the refusal (proved with a PYTHONPATH numpy writing a sentinel). Fail-closed is preserved through closure_receipt.
+- F3: my v6 F7 (S01–S05/U01 varies under-declaring the PINNED_*_REL reassignment) persists and appears in neither the repair record's fixed nor not-fixed lists — the quiet-drop bookkeeping failure the brief warns about.
+- F4: B06's verify hook is vacuous; F05's basis claims a no-window property a static symlink cannot evidence (the fixture's source assertion is the real evidence).
+- F5 (carried): no subprocess timeout; extra stdin keys ignored.
+- F6 (stated open, re-verified): fingerprint blind spots re-demonstrated (math.radians, tangent_plane_offsets — digest unmoved), require_environment() unused, R06 payload thin, selection still without a producer receipt.
+
+Evidence preserved in the gates directory: CLOSURE_PROBE_V7_RECEIPT_KIMI.json / _RUN_KIMI.out, _tmp_KIMI_enumeration_v7.json, the subset receipts, hook-sentinel artifacts, poison-demonstration artifacts, and the fixtures re-run output. No downloader was touched; no image bytes were read; /Users/duhokim/NebulaMindData/ was not read.
