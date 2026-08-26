@@ -47,3 +47,16 @@ Process note: the seat wrote its completion marker as GPT1_P2B_DONE.md rather th
 GPT1_P5_DONE.md, because I generated its brief by substituting "P2b" and the marker line spelled
 it "P2B". My error in brief generation, not the seat's; the work itself is complete and
 correctly scoped to P5.
+
+## Verification-arithmetic correction (same day)
+
+My first verification print applied the B1 factor as a multiplication to BOTH quantities and
+reported the bound as a mismatch. That was an error in the check, not in the finding: a
+coefficient scales UP with a larger normaliser (a given fraction is a larger physical offset),
+while a bound scales DOWN, being its inverse. Applied correctly:
+
+- coefficient: 0.246100 × 1.392165 = 0.342612 vs 0.34258957 — **MATCH**
+- bound: 0.0055166 ÷ 1.392165 = 0.00396261 vs 0.00396261 — **MATCH**
+
+Both map through the single B1 factor, as the receipt body already stated. The erroneous print
+is left in the commit history rather than amended away.
