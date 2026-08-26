@@ -1,0 +1,112 @@
+start 2026-08-26 21:35:42 KST
+[setup] deriving the required manifest from the pinned artifacts
+[setup] {'objects': 65060, 'selected_bricks': 6445, 'required_count': 12117}
+[P01] the manifest the check itself derived, complete
+[R01] manifest with one required brick removed
+[R02] manifest with 100 required bricks removed
+[R03] manifest carrying a brick no object requires
+[R04] manifest listing one required brick twice, omitting nothing
+[R08] manifest that duplicates one required brick AND omits another
+[R05] empty manifest
+[R06] manifest passed as None instead of a list
+[R07] manifest of integers rather than bricknames
+[B01] the count-table pin rewritten in the presenter's own process
+[B02] the parent pin and its receipt pin rewritten in the presenter's own process
+[B06] an interpreter handed to closure_receipt as an argument
+[B07] a JSON object rather than an array as the worker's manifest
+[F05] the count table reached through a symlink whose target is the real table
+[B04] the worker started without -I
+[B05] a worker whose subject bytes do not match its pin
+[W01] the worker started without -I, in an environment carrying a poisoned import
+[W02] the subject file counted, once when only hashed and once through a full closure
+[W03] the interpreter state a receipt is claimed to carry
+[N01] the frozen planner's live plan_object replaced in memory
+[N02] the frozen planner's prefilter constant changed in memory
+[N03] an answer-determining adapter threshold changed in memory
+[N04] a helper the planner resolves by name replaced in memory
+[N05] the planner mutated AFTER verification, part-way through the plan
+[F03] the count table reached through a symlink
+[F04] the count table replaced by a FIFO rather than a regular file
+[S01] count table with a duplicate brickid
+[S02] count table with a negative count
+[S03] count table whose total is not the pinned release total
+[S04] parent receipt whose chunk rows do not sum to its stated total
+[S05] parent receipt missing a required field
+[U01] selection containing a brickid that is not in the pinned geometry universe
+[U02] parent rows whose declared brick disagrees with their own coordinates
+[G01] the digests and provenance this run actually observed, through the boundary
+
+ID    EXPECT  ACTUAL      LABEL
+P01   PASS    PASS    ok  the manifest the check itself derived, complete
+R01   REFUSE  REFUSE  ok  manifest with one required brick removed
+                        MANIFEST NOT CLOSED: 12116 distinct entries vs required 12117; duplicated 0 []; missing 1 ['0001m250']; extra 0 []
+R02   REFUSE  REFUSE  ok  manifest with 100 required bricks removed
+                        MANIFEST NOT CLOSED: 12017 distinct entries vs required 12117; duplicated 0 []; missing 100 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 
+R03   REFUSE  REFUSE  ok  manifest carrying a brick no object requires
+                        MANIFEST NOT CLOSED: 12118 distinct entries vs required 12117; duplicated 0 []; missing 0 []; extra 1 ['0001p000']
+R04   REFUSE  REFUSE  ok  manifest listing one required brick twice, omitting nothing
+                        MANIFEST NOT CLOSED: 12117 distinct entries vs required 12117; duplicated 1 ['0001m250']; missing 0 []; extra 0 []
+R08   REFUSE  REFUSE  ok  manifest that duplicates one required brick AND omits another
+                        MANIFEST NOT CLOSED: 12116 distinct entries vs required 12117; duplicated 1 ['0001m252']; missing 1 ['0001m250']; extra 0 []
+R05   REFUSE  REFUSE  ok  empty manifest
+                        MANIFEST NOT CLOSED: 0 distinct entries vs required 12117; duplicated 0 []; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []
+R06   REFUSE  REFUSE  ok  manifest passed as None instead of a list
+                        closure refused: TypeError: 'NoneType' object is not iterable
+R07   REFUSE  REFUSE  ok  manifest of integers rather than bricknames
+                        MANIFEST NOT CLOSED: 12117 distinct entries vs required 12117; duplicated 0 []; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 
+B01   PASS    PASS    ok  the count-table pin rewritten in the presenter's own process
+B02   PASS    PASS    ok  the parent pin and its receipt pin rewritten in the presenter's own process
+B06   REFUSE  REFUSE  ok  an interpreter handed to closure_receipt as an argument
+                        closure_receipt refuses to take an interpreter: closure_receipt() got an unexpected keyword argument 'python_executable'
+B07   REFUSE  REFUSE  ok  a JSON object rather than an array as the worker's manifest
+                        'manifest' must be a JSON array or null, got dict
+F05   REFUSE  REFUSE  ok  the count table reached through a symlink whose target is the real table
+                        count table is a symlink: $RUN/counts_nofollow.csv
+B04   REFUSE  REFUSE  ok  the worker started without -I
+                        worker was not started with -I; refusing before reading or importing anything
+B05   REFUSE  REFUSE  ok  a worker whose subject bytes do not match its pin
+                        SUBJECT DIGEST MISMATCH: e0237cd7a86443992aa9ec25c0ae44a54604132817cb6c86d8d09bbbde5d0e13 != pinned 6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58
+W01   REFUSE  REFUSE  ok  the worker started without -I, in an environment carrying a poisoned import
+                        worker was not started with -I; refusing before reading or importing anything
+W02   PASS    PASS    ok  the subject file counted, once when only hashed and once through a full closure
+W03   PASS    PASS    ok  the interpreter state a receipt is claimed to carry
+N01   REFUSE  REFUSE  ok  the frozen planner's live plan_object replaced in memory
+                        PLANNER DIGEST MISMATCH: 186eea68cd4931d37a318b8b2507b8edd3707ce080326d5b303557c46d7483f5 != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c12
+N02   REFUSE  REFUSE  ok  the frozen planner's prefilter constant changed in memory
+                        PLANNER DIGEST MISMATCH: ab615b3465e91577e534cf5ed1ef3bf62b70434f91257215e33fcf05f27c7d36 != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c12
+N03   REFUSE  REFUSE  ok  an answer-determining adapter threshold changed in memory
+                        PLANNER DIGEST MISMATCH: 852594f5b1453248d8604810c9b3e158db53356ce61bc855501a64e4b356fe0a != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c12
+N04   REFUSE  REFUSE  ok  a helper the planner resolves by name replaced in memory
+                        PLANNER DIGEST MISMATCH: 049904088781ab730b0d40c08f69c8f37220a0723f6975a37c3f97d009914ce4 != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c12
+N05   REFUSE  REFUSE  ok  the planner mutated AFTER verification, part-way through the plan
+                        PLANNER CHANGED DURING THE PLAN: 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4 -> 83f9abd7632d902264239127b64ea3c5b65540def4e482ab0
+F03   REFUSE  REFUSE  ok  the count table reached through a symlink
+                        count table is a symlink: $RUN/counts_link.csv
+F04   REFUSE  REFUSE  ok  the count table replaced by a FIFO rather than a regular file
+                        count table is not a regular file: $RUN/counts_fifo.csv
+S01   REFUSE  REFUSE  ok  count table with a duplicate brickid
+                        count table has duplicate brickid 12
+S02   REFUSE  REFUSE  ok  count table with a negative count
+                        count table has negative count -1 for brick 12
+S03   REFUSE  REFUSE  ok  count table whose total is not the pinned release total
+                        count table totals 832392 != pinned release total 832393
+S04   REFUSE  REFUSE  ok  parent receipt whose chunk rows do not sum to its stated total
+                        parent receipt is internally inconsistent: totals (65060 rows, 6445 bricks) != chunk sums (65059, 6445)
+S05   REFUSE  REFUSE  ok  parent receipt missing a required field
+                        parent receipt lacks 'endpoint'
+U01   REFUSE  REFUSE  ok  selection containing a brickid that is not in the pinned geometry universe
+                        selection has 1 brickid(s) absent from the pinned geometry universe, first [999999999]
+U02   REFUSE  REFUSE  ok  parent rows whose declared brick disagrees with their own coordinates
+                        PARENT ROWS INCOHERENT: 5 row(s) carry coordinates outside the brick they declare, first [(10995119242085181, 2827, '3164m827'), (10995119242086451, 2
+G01   PASS    PASS    ok  the digests and provenance this run actually observed, through the boundary
+
+geometry mode : production-uncached
+derived       : 12,117 required bricks from 65,060 objects in 6,445 selected bricks
+conforming    : 34/34
+non-conforming: none
+error-typed   : none
+VERDICT       : SUITE-CONFORMING
+stable_sha256 : 687a4543d14b48120a84d6e4fbefb41826ec2f7a9a9cc9a34e0a63c6e29e9131
+receipt       : CLOSURE_PROBE_V9_RECEIPT_20260826.json
+exit=0
+end 2026-08-26 22:12:11 KST

@@ -1,0 +1,53 @@
+env python=3.9.6 numpy=1.26.4 platform=darwin machine=arm64 byteorder=little
+axis=[-0.676971771271432, -0.509846551777774, 0.530816083537352] longo_published=-0.0408 ours=0.0408
+CLOSURE-BOUNDARY-IS-A-PROCESS: PASS closure_receipt launches the worker in an isolated interpreter
+CLOSURE-CORE-DISCLAIMS-CUSTODY: PASS close_manifest says in its own docstring that it is not the boundary
+CLOSURE-ONE-ARGUMENT: PASS close_manifest('manifest_bricknames', 'snapshot_dir') — the candidate manifest, plus a private snapshot directory the worker supplies
+CLOSURE-COMPUTES-WITNESSES: PASS geometry, planner, count table, selection and parent are all loaded inside
+CLOSURE-ONE-ADJUDICATION: PASS duplicates, omissions and extras are decided together, after the required set exists (CODEX-V5 F4)
+CLOSURE-REVERIFIES-PLANNER: PASS the planner digest is re-checked after the plan completes (CODEX-V5 F2)
+CLOSURE-SINGLE-OPEN: PASS artifacts are read once, hashed as read, and parsed from that snapshot; the symlink refusal is O_NOFOLLOW on the open, not an lstat before it (CODEX-V5 F3, KIMI-V6 F5)
+CLOSURE-NO-INTERPRETER-ARGUMENT: PASS closure_receipt takes only the candidate manifest — the interpreter cannot be nominated by its caller (KIMI-V6 F3)
+CLOSURE-PINNED-COUNTS: PASS count table verified (4e4ec45d83f1…), 270,577 bricks totalling 832,393
+CLOSURE-PINNED-SELECTION: PASS selection verified (b913939d54b6…), 6,445 bricks
+CLOSURE-PINNED-PARENT: PASS parent verified (425a42c3ea2a…) against the constant AND a receipt envelope that is itself pinned (41716d47ee0b…), 65,060 rows
+CLOSURE-PINNED-PLANNER: PASS planner digest matches the pinned value (1617af00eb73…)
+CLOSURE-PLANNER-BINDS-STATE: PASS an answer-determining adapter global moves the digest and restoring it moves the digest back (CODEX-V5 F2's exact probe)
+CLOSURE-RETIRED-REFUSES: PASS the reimplementation that reproduced the defect refuses to run
+MASK-REFUSALS: PASS 5/5 refused: fixture-to-production, bare vector, sign-length, wrong bins, non-accepted row
+MASK-KIND-IN-DIGEST: PASS identical arrays under different kinds differ by digest
+PERM-SIGMA-EXACT: PASS enum=0.8149699421707283 formula=0.8149699421707283
+PWR-CALIBRATED-ALONE-INSUFFICIENT: PASS the calibrated decision ALONE was confirmed by independent MC in only 21/22 cases — this is the round-6 finding reproduced, and it is why stage_power confirms rather than trusts
+    uniform-2000: measured z* 3.0694 (normal 3.0902); Stage-P successes 5, each confirmed by independent MC: 5
+    bimodal-1200: measured z* 3.0010 (normal 3.0902); Stage-P successes 8, each confirmed by independent MC: 8
+    skewed-1500: measured z* 3.0020 (normal 3.0902); Stage-P successes 4, each confirmed by independent MC: 3
+    polar-1000: measured z* 3.0260 (normal 3.0902); Stage-P successes 5, each confirmed by independent MC: 5
+PWR-SELF-VERIFYING: PASS stage_power audited 12 boundary trials, confirmed 10, refuted 2; a refuted trial forces passed=False
+PWR-FAILS-CLOSED: PASS the code path returns (succ, False, audit) whenever refuted is non-empty — see the early return in stage_power
+PWR-Z-STABLE: PASS tail mass beyond z=3.090 across sign multisets: ['0.00135', '0.00130', '0.00100', '0.00110'], relative spread 35.0% (measured; the conservative deflation absorbs it)
+ORACLE-STRICT: PASS 4/4 refused: duplicate key, negative, float counts, length mismatch
+ORACLE-UNIVERSE: PASS a universe brick missing from the table is refused
+ORACLE-INDEPENDENT-WITNESS: PASS 2/2 refused: a self-consistent total not equal to the pinned release total (832,393), and an omitted proof input
+RAW-EXACT-BOUNDARY: PASS fixture geometry: 17 raw-positive, 16 retained-positive
+RAW-EXACT-BRANCH: PASS 17 raw-positive takes the HEURISTIC branch (V6 wrongly took exact)
+RAW-RET: PASS selected=[1, 3] L_ret=2.140376739440442 (a raw-threshold call returns [1, 2] at L_ret 1.0611453924627055)
+HC-ESTIMATOR: PASS raw 0.9, eps 0.02 -> 0.9166666666666667 (quoted 0.9166666666666667; V6 returned 0.9)
+HC-COV-OFFDIAG: PASS shared-epsilon derivative gives a real off-diagonal 1.298e-05, path=SCALAR
+HC-STRATUM-FLOOR: PASS sparse stratum lifted to 32 >= 30 (V6 allowed 10)
+HC-STRATUM-INFEASIBLE: PASS a stratum with fewer objects than its floor fails closed, never shrinks
+CAL-TIE-REFUSAL: PASS all-tied c refuses instead of emptying bins
+CAL-PATH-PROFILE: PASS
+CAL-HALT: PASS a_lb_b min 0.683338 < 0.85
+PROD-NO-SEAMS: PASS run_production_verdict('mask', 'cal', 'authorization_path', 'authorization_sha256', 'n_receipts', 'n_parent', 'stage_c_receipt')
+PROD-CALLS-GUARDS: PASS every guard and the full permutation record are called by name in the runner
+PROD-REFUSES: PASS missing authorization stops the production path before any statistic
+BATTERY-A0: PASS A=0 -> INCONCLUSIVE
+BATTERY-SIGN: PASS A=-0.0408 -> INCONCLUSIVE (A_L=-0.04272)
+BATTERY-POS: PASS A=+0.0408 at powered N -> REPRODUCED-LONGO (A_L=0.04243, p=2.23e-21, floor=0.01431)
+BATTERY-FLOOR-EDGE: PASS A_L=0.01392 just below the evaluated floor 0.01421 with p=1e-12 -> INCONCLUSIVE (the band alone would have allowed it)
+BATTERY-NEQ: PASS N_eq 290.0 < 100000: the runner derives INCONCLUSIVE-BY-POWER from geometry, not from a caller-supplied boolean
+BRANCH-DATE-RULE: PASS early Branch-B close, late Branch-A selection, and a malformed date all refused
+BRANCH-RESOLVE: PASS A=56d40cffaf88… B=442a19a5edf1…
+BRANCH-INVARIANT: PASS the selection pipeline's output digest is identical under both configs
+RECEIPT-SCHEMA: PASS a slot receipt missing its named fields is refused
+ALL FIXTURES PASS
