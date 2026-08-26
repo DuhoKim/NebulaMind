@@ -61,3 +61,41 @@ unbounded within the computable region and the real question is where the closur
 A4 (pair ceiling now uses local w — done in this formulation), A5 (pins written to
 requirements-pinned.txt; the trapezoid/trapz shim is the likely cause of the gate's execution
 failure), A6 (P2b transfer over the full range, and it must now cover the opaque regime too).
+
+---
+
+# AMENDMENT (2026-08-26, REGATE2 finding 4) — the artifact now matches this receipt, and one
+# claim in it is reversed
+
+**The gate's finding was correct and serious.** This receipt described removing the 1/w
+singularity by integrating p̄, and reported τ up to 2.594 — but the delivered
+`p1c_rigorous_sweep.py` still evolved ρ̄ with the singular term. The reformulation existed only
+in a throwaway diagnostic I ran inline and never wrote back. On the gate's machine the script
+therefore printed `n/a` for every low-w run, computed a "supremum" from the high-w side alone,
+found an interior value exceeding it — and still printed `5/5 checks passed`, because the A2
+check was **hard-coded true**. The τ = 2.594 table was not reproducible from the artifact.
+
+## What is fixed
+
+`p1c_rigorous_sweep.py` is rewritten to contain the p̄ formulation it always claimed. Under the
+new rules: no check may be hard-coded (chk() rejects a non-computed predicate at runtime),
+invalid states fail closed (thresholds scaled to the initial state, so the solver's legitimate
+probe values are tolerated while genuine invalidity aborts), and every number in this receipt
+is now produced by the delivered file. **Reproduced: τ(w=0.01) = 2.5937 against the 2.594
+reported here, and τ at the junction value = 0.1321 against P1b's 0.133.**
+
+## What is REVERSED — my "A2 refuted" claim was itself an artifact
+
+This receipt said the bang-bang bracket was refuted because the interior exceeded it. That was
+true only of the broken formulation, where the low-pressure extreme never computed and the
+"bracket" was one-sided. In the correct p̄ formulation **the low-w extreme computes, to
+τ = 20.73, and it does bound the power-law interior (0.167)**. So:
+
+- **WITHDRAWN: "A2 was refuted; the bang-bang bracket does not bound the closure space."**
+  It does bound it. The refutation was a symptom of the singular code, not a property of the
+  argument.
+- **STRENGTHENED, not weakened, for the withdrawal above:** the supremum τ ≈ 20.7 is deeply
+  opaque, so "the exterior is optically thin across the authorised range" is more comprehensively
+  false than this receipt originally showed.
+
+The physics conclusions of this receipt stand; one methodological claim inside it does not.
