@@ -378,10 +378,10 @@ def u01(c):
 
 
 @probe("U02", "parent row whose declared brick disagrees with its own coordinates",
-       "a copy with row 2's coordinates replaced by row 1's while its brickid is left alone, "
-       "AND the pinned digest set to the copy's, AND the fetch receipt's output digest "
-       "redirected to match — so every custody binding is satisfied and only the row's internal "
-       "consistency is wrong",
+       "a copy with the FIRST row's coordinates replaced by those of a row in a different "
+       "brick, while its own brickid is left alone, AND the pinned digest set to the copy's, "
+       "AND the fetch receipt's output digest redirected to match — so every custody binding is "
+       "satisfied and only the row's internal consistency is wrong",
        "REFUSE",
        "the check derives the image list from each row's coordinates but never verifies that "
        "the row sits in the brick it claims; counts alone cannot see this",
@@ -390,7 +390,13 @@ def u01(c):
                "If so, say which producer check enforces it, because nothing downstream does.")
 def u02(c):
     def mutate(rows):
-        rows[2][3], rows[2][4] = rows[1][3], rows[1][4]
+        # The parent is grouped by brick, so borrowing from an adjacent row lands inside the
+        # SAME brick and tests nothing. The first version of this probe did exactly that and
+        # reported a pass that meant nothing. Take coordinates from the last row instead, and
+        # assert the two rows really are in different bricks before relying on the result.
+        donor = rows[-1]
+        assert donor[1] != rows[1][1], "donor row is in the same brick; probe would be vacuous"
+        rows[1][3], rows[1][4] = donor[3], donor[4]
         return rows
     out = c.parent_copy("parent_incoherent.csv", mutate)
     rec = json.loads((PREREG / c.pins["PINNED_PARENT_RECEIPTS_REL"]).read_text())

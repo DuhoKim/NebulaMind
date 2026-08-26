@@ -60,7 +60,7 @@ claim to be checked, not as evidence.
 - `../ref/FIXTURES_V5_20260826.out` — 42 checks, all pass. sha256
   `dfa8d92784ea98a4c72bba18bf160cdcd94e7fc0f20d215b9def539a7d6cc3af`.
 - `closure_probe_suite_v5.py` — 23 probes. sha256
-  `856ec71c319d0dd9dbbe784229a5ed9412a9d1aa2cf4a40c183d4eb99b9470dc`.
+  `e5a24df405c58e05f9934c71412e100968669a53a3bfb7577e3f51fb53a6d543`.
 - `CLOSURE_PROBE_V5_RECEIPT_20260826.json` — its production-path run. **Take every hash from
   this file, not from this brief.** The previous brief quoted a stale hash and both of you
   caught it; quoting fewer numbers here is the fix.

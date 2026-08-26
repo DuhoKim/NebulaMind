@@ -1,0 +1,83 @@
+start 2026-08-26 10:54:20 KST
+[setup] deriving the required manifest from the pinned artifacts
+[setup] {'objects': 65060, 'selected_bricks': 6445, 'required_count': 12117}
+[P01] the manifest the check itself derived, complete
+[R01] manifest with one required brick removed
+[R02] manifest with 100 required bricks removed
+[R03] manifest carrying a brick no object requires
+[R04] manifest listing the same brickname twice
+[R05] empty manifest
+[R06] manifest passed as None instead of a list
+[R07] manifest of integers rather than bricknames
+[D01] count table redirected to a copy with one brick's count moved to another row
+[D02] count table redirected through a symlink to that same copy
+[D03] selection redirected to a copy with one brick removed
+[D04] parent redirected to a copy with one row's identity and coordinates replaced
+[D05] parent redirected to that copy, with the pinned constant updated to match it
+[S01] count table with a duplicate brickid
+[S02] count table with a negative count
+[S03] count table whose total is not the pinned release total
+[S04] count table with a row removed
+[S05] count table with a renamed column
+[U01] selection containing a brickid that is not in the pinned geometry universe
+[U02] parent row whose declared brick disagrees with its own coordinates
+[N01] the frozen planner's live plan_object replaced in memory
+[N02] the frozen planner's prefilter constant changed in memory
+[G01] the planner digest and pinned artifact digests this run actually observed
+
+ID    EXPECT  ACTUAL      LABEL
+P01   PASS    PASS    ok  the manifest the check itself derived, complete
+R01   REFUSE  REFUSE  ok  manifest with one required brick removed
+                        MANIFEST NOT CLOSED: manifest 12116 vs required 12117; missing 1 ['0001m250']; extra 0 []
+R02   REFUSE  REFUSE  ok  manifest with 100 required bricks removed
+                        MANIFEST NOT CLOSED: manifest 12017 vs required 12117; missing 100 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []
+R03   REFUSE  REFUSE  ok  manifest carrying a brick no object requires
+                        MANIFEST NOT CLOSED: manifest 12118 vs required 12117; missing 0 []; extra 1 ['0001p000']
+R04   REFUSE  REFUSE  ok  manifest listing the same brickname twice
+                        manifest contains duplicate bricknames
+R05   REFUSE  REFUSE  ok  empty manifest
+                        MANIFEST NOT CLOSED: manifest 0 vs required 12117; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []
+R06   REFUSE  REFUSE  ok  manifest passed as None instead of a list
+                        closure refused: TypeError: 'NoneType' object is not iterable
+R07   REFUSE  REFUSE  ok  manifest of integers rather than bricknames
+                        MANIFEST NOT CLOSED: manifest 12117 vs required 12117; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 12117 ['0', '1', '10', '1
+D01   REFUSE  REFUSE  ok  count table redirected to a copy with one brick's count moved to another row
+                        COUNT TABLE DIGEST MISMATCH: e9064985934b0e9698fc1aa3c451fd085f9aca9266842f15f41f44d952fcb46d != pinned 4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd534
+D02   REFUSE  REFUSE  ok  count table redirected through a symlink to that same copy
+                        COUNT TABLE DIGEST MISMATCH: ccc405bf6affb6bb176276d8c2d8ecd6261bab91cb3faa044676d690f9d98bb5 != pinned 4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd534
+D03   REFUSE  REFUSE  ok  selection redirected to a copy with one brick removed
+                        SELECTION DIGEST MISMATCH: eeae5fa6f2517454546badc274f38a304ce990a6f911435e3acf06133e57d45e != pinned b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba
+D04   REFUSE  REFUSE  ok  parent redirected to a copy with one row's identity and coordinates replaced
+                        PARENT DIGEST MISMATCH: e7698ac93c49764eda104f1c506d3d6e367fdc7d3029d802fb9f27b604bf16f9 != pinned 425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d
+D05   REFUSE  REFUSE  ok  parent redirected to that copy, with the pinned constant updated to match it
+                        PARENT NOT THE FETCHED ARTIFACT: producer receipt records 425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831, file is 3d8ce36230402b0707
+S01   REFUSE  REFUSE  ok  count table with a duplicate brickid
+                        count table has duplicate brickid 12
+S02   REFUSE  REFUSE  ok  count table with a negative count
+                        count table has negative count -1 for brick 12
+S03   REFUSE  REFUSE  ok  count table whose total is not the pinned release total
+                        count table totals 832392 != pinned release total 832393
+S04   REFUSE  REFUSE  ok  count table with a row removed
+                        count table has 270576 rows != pinned 270577
+S05   REFUSE  REFUSE  ok  count table with a renamed column
+                        count table columns ['brickid', 'n_something_else'] != pinned ['brickid', 'n_cut6_dered']
+U01   REFUSE  REFUSE  ok  selection containing a brickid that is not in the pinned geometry universe
+                        selection has 1 brickid(s) absent from the pinned geometry universe, first [999999999]
+U02   REFUSE  REFUSE  ok  parent row whose declared brick disagrees with its own coordinates
+                        PARENT ROW INCOHERENT: 1 row(s) carry coordinates outside the brick they declare, first [(10995119242085181, 2827, '3164m827')]
+N01   REFUSE  REFUSE  ok  the frozen planner's live plan_object replaced in memory
+                        PLANNER DIGEST MISMATCH: 66834f5aa4b5444817b4df8fc03372b8ab79d8d6015a26912445c9885b3e4338 != pinned 10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd
+N02   REFUSE  REFUSE  ok  the frozen planner's prefilter constant changed in memory
+                        PLANNER DIGEST MISMATCH: 9dbf2b48a05e4b7a5be9a388178accab033c0fabdebca93799c2c435fa14195e != pinned 10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd
+G01   PASS    PASS    ok  the planner digest and pinned artifact digests this run actually observed
+
+geometry mode : production-uncached
+derived       : 12,117 required bricks from 65,060 objects in 6,445 selected bricks
+conforming    : 23/23
+non-conforming: none
+error-typed   : none
+VERDICT       : SUITE-CONFORMING
+stable_sha256 : 6213e2a054ef3dacc87f93f8ca6ab4ff681cd39e485f30b1456b0b3bc1ada566
+receipt       : CLOSURE_PROBE_V5_RECEIPT_20260826.json
+exit=0
+end 2026-08-26 11:23:24 KST

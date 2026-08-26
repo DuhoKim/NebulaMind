@@ -1,0 +1,588 @@
+{
+  "stable": {
+    "derived_manifest": {
+      "objects": 65060,
+      "required_count": 12117,
+      "selected_bricks": 6445
+    },
+    "fixtures": {
+      "path": "../ref/FIXTURES_V5_20260826.out",
+      "sha256": "dfa8d92784ea98a4c72bba18bf160cdcd94e7fc0f20d215b9def539a7d6cc3af"
+    },
+    "geometry_mode": "production-uncached",
+    "not_covered": [
+      "Modification of a pinned artifact in place. Redirection probes point a path constant at a copy; nothing here writes to the sidecar, the count table, the selection or the parent.",
+      "A change to an input file between its digest read and its data read. Each loader hashes and then re-opens; the window is real and untested.",
+      "The download itself \u2014 byte integrity, retries, the transfer manifest.",
+      "Whether the pinned selection is the selection the preregistration authorises. The suite checks that the artifact is fixed and unaltered, not that it is the right artifact; the selection carries a code pin only, with no producer receipt behind it (the parent has one).",
+      "Concurrency. One process, one closure at a time."
+    ],
+    "pinned": {
+      "count_total": 832393,
+      "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+      "parent_rows": 65060,
+      "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+      "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+      "selection_bricks": 6445,
+      "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+      "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+    },
+    "probes": [
+      {
+        "actual": "PASS",
+        "basis": "the closure must accept the brick set it computes from the pinned parent",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "P01",
+        "label": "the manifest the check itself derived, complete",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "manifest_count": 12117,
+          "objects": 65060,
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e"
+        },
+        "varies": "nothing; the control that the pinned artifacts close against each other"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the 60,308-vs-60,310 failure this check exists to prevent",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R01",
+        "label": "manifest with one required brick removed",
+        "mentions_required": "missing 1",
+        "message": "MANIFEST NOT CLOSED: manifest 12116 vs required 12117; missing 1 ['0001m250']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12116,
+          "missing_count": 1,
+          "missing_from_manifest": [
+            "0001m250"
+          ],
+          "objects": 65060,
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+        },
+        "varies": "one brickname dropped from the candidate manifest; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "GPT56-V5 I3: the message shows only four examples, so the structured result must carry the full set \u2014 this probe exists to check that it does",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R02",
+        "label": "manifest with 100 required bricks removed",
+        "mentions_required": "missing 100",
+        "message": "MANIFEST NOT CLOSED: manifest 12017 vs required 12117; missing 100 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12017,
+          "missing_count": 100,
+          "missing_from_manifest": [
+            "0001m250",
+            "0001m252",
+            "0001m282",
+            "0001m345",
+            "0001m365",
+            "0001m367",
+            "0001m370",
+            "0001m437",
+            "...92 more"
+          ],
+          "objects": 65060,
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+        },
+        "varies": "one hundred bricknames dropped from the candidate manifest; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "an over-broad manifest downloads bricks the study did not ask for",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R03",
+        "label": "manifest carrying a brick no object requires",
+        "mentions_required": "extra",
+        "message": "MANIFEST NOT CLOSED: manifest 12118 vs required 12117; missing 0 []; extra 1 ['0001p000']",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "extra_count": 1,
+          "extra_in_manifest": [
+            "0001p000"
+          ],
+          "manifest_count": 12118,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+        },
+        "varies": "one brickname added to the candidate manifest; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "close_manifest's explicit duplicate-brickname refusal",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R04",
+        "label": "manifest listing the same brickname twice",
+        "mentions_required": "duplicate",
+        "message": "manifest contains duplicate bricknames",
+        "result": {
+          "distinct": 12117,
+          "manifest_count": 12118
+        },
+        "varies": "one duplicate entry in the candidate manifest; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "an empty manifest closes nothing",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R05",
+        "label": "empty manifest",
+        "mentions_required": "missing",
+        "message": "MANIFEST NOT CLOSED: manifest 0 vs required 12117; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 0,
+          "missing_count": 12117,
+          "missing_from_manifest": [
+            "0001m250",
+            "0001m252",
+            "0001m282",
+            "0001m345",
+            "0001m365",
+            "0001m367",
+            "0001m370",
+            "0001m437",
+            "...12109 more"
+          ],
+          "objects": 65060,
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+        },
+        "varies": "the candidate manifest replaced by an empty list; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "malformed input must leave as one closure refusal",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R06",
+        "label": "manifest passed as None instead of a list",
+        "mentions_required": null,
+        "message": "closure refused: TypeError: 'NoneType' object is not iterable",
+        "result": {
+          "error": "TypeError"
+        },
+        "varies": "the candidate manifest replaced by None; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7: values are str()-converted, so wrong types must not silently pass",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R07",
+        "label": "manifest of integers rather than bricknames",
+        "mentions_required": "missing",
+        "message": "MANIFEST NOT CLOSED: manifest 12117 vs required 12117; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 12117 ['0', '1', '10', '100']",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "extra_count": 12117,
+          "extra_in_manifest": [
+            "0",
+            "1",
+            "10",
+            "100",
+            "1000",
+            "10000",
+            "10001",
+            "10002",
+            "...12109 more"
+          ],
+          "manifest_count": 12117,
+          "missing_count": 12117,
+          "missing_from_manifest": [
+            "0001m250",
+            "0001m252",
+            "0001m282",
+            "0001m345",
+            "0001m365",
+            "0001m367",
+            "0001m370",
+            "0001m437",
+            "...12109 more"
+          ],
+          "objects": 65060,
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+        },
+        "varies": "every entry replaced by its index as an int; nothing else"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "V4 C01 repaired: this is the input that passed when the table was a call argument",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "D01",
+        "label": "count table redirected to a copy with one brick's count moved to another row",
+        "mentions_required": "COUNT TABLE DIGEST MISMATCH",
+        "message": "COUNT TABLE DIGEST MISMATCH: e9064985934b0e9698fc1aa3c451fd085f9aca9266842f15f41f44d952fcb46d != pinned 4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+        "result": {
+          "counts_sha256": "e9064985934b0e9698fc1aa3c451fd085f9aca9266842f15f41f44d952fcb46d"
+        },
+        "varies": "PINNED_COUNTS_REL points at the copy; the pinned digest constant is NOT changed"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "V4 C03 repaired: path form must not change the answer",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "D02",
+        "label": "count table redirected through a symlink to that same copy",
+        "mentions_required": "COUNT TABLE DIGEST MISMATCH",
+        "message": "COUNT TABLE DIGEST MISMATCH: ccc405bf6affb6bb176276d8c2d8ecd6261bab91cb3faa044676d690f9d98bb5 != pinned 4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+        "result": {
+          "counts_sha256": "ccc405bf6affb6bb176276d8c2d8ecd6261bab91cb3faa044676d690f9d98bb5"
+        },
+        "varies": "PINNED_COUNTS_REL points at a symlink whose target is D01's file; digest unchanged"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "V4 C02 repaired: a selection reduced to match a shorter parent used to pass",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "D03",
+        "label": "selection redirected to a copy with one brick removed",
+        "mentions_required": "SELECTION DIGEST MISMATCH",
+        "message": "SELECTION DIGEST MISMATCH: eeae5fa6f2517454546badc274f38a304ce990a6f911435e3acf06133e57d45e != pinned b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+        "result": {
+          "selection_sha256": "eeae5fa6f2517454546badc274f38a304ce990a6f911435e3acf06133e57d45e"
+        },
+        "varies": "PINNED_SELECTION_REL points at the copy; the pinned digest constant is NOT changed"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "V4 C04 repaired: per-brick counts still balance, so only a digest catches it",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "D04",
+        "label": "parent redirected to a copy with one row's identity and coordinates replaced",
+        "mentions_required": "PARENT DIGEST MISMATCH",
+        "message": "PARENT DIGEST MISMATCH: e7698ac93c49764eda104f1c506d3d6e367fdc7d3029d802fb9f27b604bf16f9 != pinned 425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+        "result": {
+          "parent_sha256": "e7698ac93c49764eda104f1c506d3d6e367fdc7d3029d802fb9f27b604bf16f9"
+        },
+        "varies": "PINNED_PARENT_REL points at the copy; the pinned digest constant is NOT changed"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the parent has two independent bindings; defeating the code pin must not be enough",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "D05",
+        "label": "parent redirected to that copy, with the pinned constant updated to match it",
+        "mentions_required": "PARENT NOT THE FETCHED ARTIFACT",
+        "message": "PARENT NOT THE FETCHED ARTIFACT: producer receipt records 425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831, file is 3d8ce36230402b07074fb5929a44b152e4fba5bfc342d41f87ab46a64f9e74aa",
+        "result": {
+          "parent_sha256": "3d8ce36230402b07074fb5929a44b152e4fba5bfc342d41f87ab46a64f9e74aa",
+          "receipt_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831"
+        },
+        "varies": "PINNED_PARENT_REL points at the copy AND PINNED_PARENT_SHA256 is set to the copy's digest, leaving the fetch receipt as the only remaining witness"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7.1: duplicate keys were silently overwritten by the dict build",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S01",
+        "label": "count table with a duplicate brickid",
+        "mentions_required": "duplicate brickid",
+        "message": "count table has duplicate brickid 12",
+        "result": {
+          "duplicate_brickid": 12
+        },
+        "varies": "a copy with row 2's brickid set to row 1's, AND the pinned digest set to the copy's, so the schema validator is reached rather than the digest gate"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7.1: negative counts were accepted",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S02",
+        "label": "count table with a negative count",
+        "mentions_required": "negative",
+        "message": "count table has negative count -1 for brick 12",
+        "result": {
+          "negative_brickid": 12
+        },
+        "varies": "a copy with row 1's count set to -1, AND the pinned digest set to the copy's"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the release total is the one quantity pinned independently of the file",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S03",
+        "label": "count table whose total is not the pinned release total",
+        "mentions_required": "totals",
+        "message": "count table totals 832392 != pinned release total 832393",
+        "result": {
+          "counts_total": 832392
+        },
+        "varies": "a copy with one count reduced by 1, AND the pinned digest set to the copy's"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the row count is pinned as well as the total",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S04",
+        "label": "count table with a row removed",
+        "mentions_required": "rows",
+        "message": "count table has 270576 rows != pinned 270577",
+        "result": {
+          "counts_rows": 270576
+        },
+        "varies": "a copy without its last row, AND the pinned digest set to the copy's"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the column names are pinned; a renamed column is a different table",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S05",
+        "label": "count table with a renamed column",
+        "mentions_required": "columns",
+        "message": "count table columns ['brickid', 'n_something_else'] != pinned ['brickid', 'n_cut6_dered']",
+        "result": {
+          "columns": [
+            "brickid",
+            "n_something_else"
+          ]
+        },
+        "varies": "a copy whose second column header is changed, AND the pinned digest set to the copy's"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7.2: selection membership was never checked against geometry",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "U01",
+        "label": "selection containing a brickid that is not in the pinned geometry universe",
+        "mentions_required": "absent from the pinned geometry universe",
+        "message": "selection has 1 brickid(s) absent from the pinned geometry universe, first [999999999]",
+        "result": {
+          "examples": [
+            999999999
+          ],
+          "selection_outside_universe": 1
+        },
+        "varies": "a copy with one brickid replaced by 999999999, AND the pinned digest set to the copy's"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the check derives the image list from each row's coordinates but never verifies that the row sits in the brick it claims; counts alone cannot see this",
+        "conforms": true,
+        "direct": null,
+        "dispute": "A referee may hold that a parent which passes every custody binding is by definition authorised, and that internal consistency belongs to the producer. If so, say which producer check enforces it, because nothing downstream does.",
+        "expect": "REFUSE",
+        "id": "U02",
+        "label": "parent row whose declared brick disagrees with its own coordinates",
+        "mentions_required": null,
+        "message": "PARENT ROW INCOHERENT: 1 row(s) carry coordinates outside the brick they declare, first [(10995119242085181, 2827, '3164m827')]",
+        "result": {
+          "examples": [
+            [
+              10995119242085181,
+              2827,
+              "3164m827"
+            ]
+          ],
+          "incoherent_rows": 1
+        },
+        "varies": "a copy with the FIRST row's coordinates replaced by those of a row in a different brick, while its own brickid is left alone, AND the pinned digest set to the copy's, AND the fetch receipt's output digest redirected to match \u2014 so every custody binding is satisfied and only the row's internal consistency is wrong"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "GPT56-V5 F4, demonstrated by that seat: the digest hashes source bytes on disk, so it can still match while different code produces the answer",
+        "conforms": true,
+        "direct": "require_pinned_planner",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N01",
+        "label": "the frozen planner's live plan_object replaced in memory",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: 66834f5aa4b5444817b4df8fc03372b8ab79d8d6015a26912445c9885b3e4338 != pinned 10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1 \u2014 the code or configuration determining the plan is not the pinned one",
+        "result": {
+          "planner_digest": "66834f5aa4b5444817b4df8fc03372b8ab79d8d6015a26912445c9885b3e4338"
+        },
+        "varies": "adapter.plan_object is rebound to a function returning ['0001p000']; no file changes, and the prefilter constant is left alone"
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the prefilter is inside the pinned transitive digest",
+        "conforms": true,
+        "direct": "require_pinned_planner",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N02",
+        "label": "the frozen planner's prefilter constant changed in memory",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: 9dbf2b48a05e4b7a5be9a388178accab033c0fabdebca93799c2c435fa14195e != pinned 10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1 \u2014 the code or configuration determining the plan is not the pinned one",
+        "result": {
+          "planner_digest": "9dbf2b48a05e4b7a5be9a388178accab033c0fabdebca93799c2c435fa14195e"
+        },
+        "varies": "adapter.CANDIDATE_PREFILTER_DEG raised by 0.01, then restored"
+      },
+      {
+        "actual": "PASS",
+        "basis": "a control that puts the bindings in the receipt",
+        "conforms": true,
+        "direct": "several loaders",
+        "dispute": null,
+        "expect": "PASS",
+        "id": "G01",
+        "label": "the planner digest and pinned artifact digests this run actually observed",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "planner_digest": "10cea7a6a16458b9f0bcb3534f7afaeb1173ba98a89ac4c7cd709db98e4bb8d1",
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+        },
+        "varies": "nothing; recorded so the receipt carries the values rather than asserting them"
+      }
+    ],
+    "receipt_version": "2",
+    "subject": {
+      "path": "../ref/successor_ref_v5.py",
+      "sha256": "02237163b27be3a531676275e10dfd08c2ae6198bf383b2ffd0f63e9437c1171"
+    },
+    "suite": {
+      "path": "closure_probe_suite_v5.py",
+      "sha256": "e5a24df405c58e05f9934c71412e100968669a53a3bfb7577e3f51fb53a6d543"
+    },
+    "summary": {
+      "conforming": 23,
+      "non_conforming": [],
+      "run": 23,
+      "unexpected_error_type": []
+    },
+    "verdict": "SUITE-CONFORMING"
+  },
+  "stable_sha256": "6213e2a054ef3dacc87f93f8ca6ab4ff681cd39e485f30b1456b0b3bc1ada566",
+  "volatile": {
+    "run_dir": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/_tmp_closure_probe_run_23038",
+    "seconds_per_probe": {
+      "D01": 46.866,
+      "D02": 47.163,
+      "D03": 47.244,
+      "D04": 47.515,
+      "D05": 47.25,
+      "G01": 48.745,
+      "N01": 0.002,
+      "N02": 0.002,
+      "P01": 181.336,
+      "R01": 180.715,
+      "R02": 180.868,
+      "R03": 181.193,
+      "R04": 48.085,
+      "R05": 180.904,
+      "R06": 47.845,
+      "R07": 180.862,
+      "S01": 0.116,
+      "S02": 0.116,
+      "S03": 0.365,
+      "S04": 0.371,
+      "S05": 0.128,
+      "U01": 47.768,
+      "U02": 47.879
+    },
+    "setup": {
+      "objects": 65060,
+      "required_count": 12117,
+      "seconds": 180.984,
+      "selected_bricks": 6445
+    },
+    "total_seconds": 1744.3
+  }
+}
