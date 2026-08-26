@@ -85,3 +85,74 @@ kind of work that safety-conscious users are more likely to be doing, not less.
 
 Submission channel is `/feedback` from within Claude Code, which lives inside
 the affected session. Duho's call whether to send it.
+
+---
+
+# UPDATE 2026-08-26 — it happened again, on both providers, and nearly cost the review
+
+Duho authorised sending this on 2026-08-26 after a second day of refusals.
+
+## New refusals, on a different provider
+
+The lane spent 2026-08-26 rebuilding a manifest-closure check and putting it to
+an adversarial referee panel. Runner logs, verbatim:
+
+    ⚠️  The model provider's safety filter blocked this request
+        (not a Hermes/gateway failure).
+    Provider message: This content was flagged for possible cybersecurity risk.
+
+| seat | time (KST) | outcome |
+|---|---|---|
+| codex | 15:40 | REFUSED, provider safety filter |
+| gpt56 | 15:48 | REFUSED, provider safety filter |
+| kimi  | 16:57 | completed — **CLEAR** |
+
+**These are not Anthropic refusals.** They are a second provider, refusing the
+same material, on the same day the first provider refused it. Combined with the
+five Anthropic request IDs in §2, that is two independent providers rejecting
+one lane's defensive-integrity work.
+
+## The reversal is the diagnostic
+
+On 2026-08-25 gpt56 completed the review and codex was refused. On 2026-08-26
+the assignment inverted: codex refused, gpt56 refused. Neither provider is
+consistently stricter. Both refuse **intermittently**, which means a complete
+referee panel is a coin flip rather than something a lane can engineer around by
+choosing a seat.
+
+## What was nearly lost
+
+The review survived only because a *third* seat had been dispatched as a
+fallback after the first refusal. Had kimi not been added, the closure check
+would have had zero referees — and it is the check that decides whether a
+~148 GB acquisition is allowed to start.
+
+Its verdict, when it finally ran, was **CLEAR**: the mechanism now reports true
+digests regardless of what a calling process rebinds, and the referee
+independently reproduced the 12,117-brick closure without invoking the function
+under test. So the material three engines kept refusing to look at was correct,
+load-bearing, and defensive.
+
+## Why this class is worth distinguishing
+
+The lane's protocol *requires* attempting the tamper in order to prove the
+detector catches it. That is not incidental vocabulary — a checksum chain that
+has never been attacked is not known to be tamper-evident. Round 9 of this same
+work is the proof: an attack the lane believed it had refuted turned out to rest
+on an oracle the attacker could edit, and only an adversarial referee found it.
+
+The words that work cannot avoid — *attacker, forge, regenerated digest,
+shortened parent* — are what appear to trip the classifiers. Users doing this
+are, by construction, the ones taking data integrity most seriously.
+
+## Still not asking for safeguards to be weakened
+
+Unchanged from §6. OPS declined to advise the lane on rephrasing to evade a
+filter and that stance held all week, including when it cost a referee. The ask
+is only that **adversarial self-auditing of one's own data integrity** be
+distinguishable from offensive work.
+
+One concrete signal offered freely: Anthropic refusal #4 fired on a Bash call
+that *also* carried a shell syntax error, so the flagged payload was a garbled
+command line containing security vocabulary — plausibly a worse signal than
+either alone.
