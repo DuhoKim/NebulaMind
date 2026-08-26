@@ -61,10 +61,10 @@ The previous round returned NOT CLEAR with four blockers. Each is addressed; whe
 
 ## Evidence on disk
 
-- `../ref/successor_ref_v6.py` — the subject. sha256 `adb900564f285e4fa748b9d6a4eb078e1e3f78ceab3cc01c8ec65960ea7d77ca`.
-- `../ref/closure_worker.py` — the boundary. sha256 `dc1775421cb9f242784762ae34d42acba1e4cbaa2f667b6cdee76a387d2e383d`.
+- `../ref/successor_ref_v6.py` — the subject. sha256 `d921d7445ddfee37eb3f91340730bd53989d53ad480287e3e1f987dff0784805`.
+- `../ref/closure_worker.py` — the boundary. sha256 `88f66f63eee6d023fa899014ca61f56dfa2895391618e31c4f1fe383a9c838e9`.
 - `../ref/FIXTURES_V6_20260826.out` — fixtures, all pass. sha256 `9ff7c82df4a25a380747ac90e1d61c39690b2eb65cffc61b4b5c5beab3f00b1c`.
-- `closure_probe_suite_v6.py` — 29 probes. sha256 `5f6daaf4c8b9b57610fd6bf9ccfc1e7d5ff2a583f8d96e60e668cf050da65277`.
+- `closure_probe_suite_v6.py` — 29 probes. sha256 `08714ec1584bcffc59551c74e7403cab042ddefd6cfd7aeae3f56c01b1b65708`.
 - `CLOSURE_PROBE_V6_RECEIPT_20260826.json` — its production-path run. **Take every hash from
   this file rather than from this brief.**
 - `../acquire/DOWNLOAD_QUEUE_PLAN_20260825.md` — what the download does, and the raised ceiling.

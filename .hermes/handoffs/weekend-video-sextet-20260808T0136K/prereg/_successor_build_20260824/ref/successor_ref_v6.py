@@ -725,7 +725,12 @@ def close_manifest(manifest_bricknames, snapshot_dir=None) -> dict:
             closed.update(bs)
 
         # CODEX-V5 F2: mutation DURING the plan would otherwise never be seen.
-        after_sha = require_pinned_planner()
+        # Deliberately NOT require_pinned_planner() here: that compares against the pin and
+        # raises its own mismatch first, which left this branch unreachable and reported a
+        # during-plan mutation as though the planner had been wrong from the start. Probe N05
+        # found that. The digest is taken directly and compared with the value this call
+        # verified before planning.
+        after_sha = frozen_planner_digest()
         if after_sha != planner_sha:
             raise ManifestClosureError(
                 f"PLANNER CHANGED DURING THE PLAN: {planner_sha} -> {after_sha}",

@@ -39,6 +39,7 @@ from __future__ import annotations
 import argparse
 import csv
 import subprocess
+import threading
 import hashlib
 import importlib.util
 import json
@@ -71,6 +72,10 @@ NOT_COVERED = [
     "no producer receipt behind it; the parent now has a pinned receipt envelope, the selection "
     "does not. CODEX-V5 F6 remains open and is not claimed as closed.",
     "Concurrency. One process, one closure at a time.",
+    "Mutation of the objmanifest module instance that close_manifest itself holds. "
+    "_frozen_planner() re-executes that module on every call, so the digest inspects a fresh "
+    "instance rather than the retained one; N05 reaches the shared adapter instead, which is "
+    "the object a mid-plan mutation can actually reach.",
 ]
 
 
@@ -401,29 +406,53 @@ def n04(c):
 
 
 @probe("N05", "the planner mutated AFTER verification, part-way through the plan",
-       "a wrapper rebinds adapter.angular_separation_deg on the 100th planned object, so the "
-       "digest was correct when checked and wrong by the time the plan finished",
+       "a timer thread moves adapter.INTERSECTION_AREA_THRESHOLD_SOURCE_PIX2 from 1e-8 to 2e-8 "
+       "100 s into the call — a valid value that changes the digest without breaking the "
+       "planner — so the digest was correct when close_manifest checked it and wrong by the "
+       "time the plan finished. The probe asserts the mutation actually fired",
        "REFUSE",
-       "CODEX-V5 F2: N01 catches rebinding only before the check; the plan's own duration was "
-       "unguarded", mentions="PLANNER CHANGED DURING THE PLAN",
-       direct="close_manifest (in-process, so the mutation can be timed)")
+       "CODEX-V5 F2: N01-N04 catch mutation before the check; the plan's own duration was "
+       "unguarded, and a plan over 65,060 objects takes about 77 seconds",
+       mentions="PLANNER CHANGED DURING THE PLAN",
+       direct="close_manifest (in-process, so the mutation can be timed)",
+       verify=lambda o, r: (r.get("planner_before") != r.get("planner_after"),
+                            "the refusal reports both digests and they differ"))
 def n05(c):
-    planner = c.mod._frozen_planner()
-    adapter = planner._adapter()
-    original_plan, original_helper = planner.plan_candidate_bricks, adapter.angular_separation_deg
-    state = {"n": 0}
+    # The first version of this probe wrapped plan_candidate_bricks on the module object
+    # returned by _frozen_planner(). That call re-executes the module, so close_manifest held a
+    # DIFFERENT instance, the wrapper never ran, no mutation happened, and the probe passed
+    # while testing nothing. The adapter module is the shared one — mutate that, and time it
+    # with a clock rather than a call count.
+    # Rebinding a helper to a stub made the planner raise mid-plan, so the call was refused by
+    # the fail-closed handler and never reached the post-plan digest check — a refusal for the
+    # wrong reason. A different VALID threshold changes the digest and lets the plan finish.
+    adapter = c.mod._frozen_planner()._adapter()
+    original = adapter.INTERSECTION_AREA_THRESHOLD_SOURCE_PIX2
+    fired = {"yes": False}
 
-    def counting(*a, **k):
-        state["n"] += 1
-        if state["n"] == 100:
-            adapter.angular_separation_deg = lambda *x, **kw: 0.0
-        return original_plan(*a, **k)
+    def mutate():
+        adapter.INTERSECTION_AREA_THRESHOLD_SOURCE_PIX2 = original * 2.0
+        fired["yes"] = True
+
+    # 100 s, not 20: the call spends ~47 s verifying the sidecar and ~15 s parsing the count
+    # table, selection and parent BEFORE require_pinned_planner() runs. A mutation at 20 s
+    # landed ahead of the pre-check and was refused there, which tests N04 over again rather
+    # than the plan's own duration.
+    timer = threading.Timer(100.0, mutate)
+    timer.start()
     try:
-        planner.plan_candidate_bricks = counting
-        return c.mod.close_manifest(c.required, snapshot_dir=c.dir)
+        result = c.mod.close_manifest(c.required, snapshot_dir=c.dir)
+    except c.mod.ManifestClosureError:
+        if not fired["yes"]:
+            raise AssertionError("probe is vacuous: the timed mutation never fired, so the "
+                                 "refusal cannot be attributed to it")
+        raise
     finally:
-        planner.plan_candidate_bricks = original_plan
-        adapter.angular_separation_deg = original_helper
+        timer.cancel()
+        adapter.INTERSECTION_AREA_THRESHOLD_SOURCE_PIX2 = original
+    if not fired["yes"]:
+        raise AssertionError("probe is vacuous: the timed mutation never fired")
+    return result
 
 
 # ------------------------------------------------------------------ F3: verified bytes

@@ -51,7 +51,7 @@ SUBJECT = HERE / "successor_ref_v6.py"
 # this machine. Rather than drop isolation, the worker names the ONE directory it adds back.
 # What that does and does not buy is stated in the module docstring and recorded in the receipt.
 PINNED_SITE_DIR = "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
-SUBJECT_SHA256 = "adb900564f285e4fa748b9d6a4eb078e1e3f78ceab3cc01c8ec65960ea7d77ca"
+SUBJECT_SHA256 = "d921d7445ddfee37eb3f91340730bd53989d53ad480287e3e1f987dff0784805"
 
 
 def sha256_bytes(payload: bytes) -> str:
