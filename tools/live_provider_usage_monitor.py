@@ -25,6 +25,7 @@ import re
 import subprocess
 import sys
 import time
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone, timedelta
 import os
@@ -44,24 +45,88 @@ import nous_credits_usage  # noqa: E402
 import moonshot_balance_usage  # noqa: E402
 
 
+# Why this endpoint has a cache and a cooldown (2026-08-26)
+# ---------------------------------------------------------
+# The monitor's default --interval is 60s and this was called once per pass, so
+# api.anthropic.com/api/oauth/usage was fetched about 1,440 times a day with no
+# cache. It started returning 429, the bare `except Exception: return None`
+# swallowed it, and the Claude card silently fell back to its last visible
+# figure — which then sat on the cockpit reading 85% for two days, badged as a
+# live meter, until Duho said the usage limit looked the same. Polling harder
+# was also the thing sustaining the throttle: a 429 was answered 60 seconds
+# later by another request.
+#
+# A usage quota does not move meaningfully once a minute, so the value is
+# cached, and a refusal is respected rather than argued with. The failure is
+# also classified now — the card can say rate-limited or auth-expired instead
+# of an unfalsifiable "unavailable".
+_OAUTH_USAGE_CACHE = os.path.expanduser('~/.claude/.oauth_usage_cache.json')
+_OAUTH_USAGE_TTL = 900          # 15 min: fresh enough for a quota bar
+_OAUTH_COOLDOWN_AFTER_429 = 3600  # back off a full hour on refusal
+
+
+def _oauth_cache_read() -> tuple[dict[str, Any] | None, float, str | None]:
+    try:
+        with open(_OAUTH_USAGE_CACHE) as f:
+            c = json.load(f)
+        return c.get('data'), float(c.get('at', 0)), c.get('last_error')
+    except Exception:
+        return None, 0.0, None
+
+
+def _oauth_cache_write(data: dict[str, Any] | None, last_error: str | None) -> None:
+    try:
+        prev, prev_at, _ = _oauth_cache_read()
+        # a refusal must not destroy a good cached value
+        payload = {'data': data if data is not None else prev,
+                   'at': time.time() if data is not None else prev_at,
+                   'last_error': last_error,
+                   'error_at': time.time() if last_error else None}
+        with open(_OAUTH_USAGE_CACHE, 'w') as f:
+            json.dump(payload, f)
+        os.chmod(_OAUTH_USAGE_CACHE, 0o600)
+    except Exception:
+        pass
+
+
 def fetch_claude_quota_via_oauth() -> dict[str, Any] | None:
+    cached, cached_at, last_error = _oauth_cache_read()
+    age = time.time() - cached_at if cached_at else None
+    if cached is not None and age is not None and age < _OAUTH_USAGE_TTL:
+        return cached
+    # respect an in-force cooldown instead of re-hammering a refusing endpoint
+    try:
+        with open(_OAUTH_USAGE_CACHE) as f:
+            err_at = json.load(f).get('error_at') or 0
+        if last_error == '429' and time.time() - float(err_at) < _OAUTH_COOLDOWN_AFTER_429:
+            return cached
+    except Exception:
+        pass
     try:
         creds_path = os.path.expanduser('~/.claude/.credentials.json')
         if not os.path.exists(creds_path):
-            return None
+            _oauth_cache_write(None, 'no-credentials-file')
+            return cached
         with open(creds_path, 'r') as f:
             creds = json.load(f)
         token = creds.get('claudeAiOauth', {}).get('accessToken')
         if not token:
-            return None
+            _oauth_cache_write(None, 'no-access-token')
+            return cached
         req = urllib.request.Request('https://api.anthropic.com/api/oauth/usage')
         req.add_header('Authorization', f'Bearer {token}')
         req.add_header('anthropic-beta', 'oauth-2025-04-20')
         req.add_header('User-Agent', 'Claude/2.1.201')
         with urllib.request.urlopen(req, timeout=5) as resp:
-            return json.loads(resp.read().decode('utf-8'))
-    except Exception:
-        return None
+            data = json.loads(resp.read().decode('utf-8'))
+        _oauth_cache_write(data, None)
+        return data
+    except urllib.error.HTTPError as exc:
+        _oauth_cache_write(None, str(exc.code))
+        return cached
+    except Exception as exc:
+        _oauth_cache_write(None, type(exc).__name__)
+        return cached
 
 
 def gemini_app_gauge(observed_at: str) -> dict[str, Any]:
