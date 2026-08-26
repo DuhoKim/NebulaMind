@@ -1,0 +1,8 @@
+# Pinned execution environment for Phase 5b scripts (gate finding A5).
+# Verified: these scripts run under exactly these versions.
+python==3.11.15
+numpy==2.4.3
+scipy==1.17.1
+# Compatibility note: scripts use a trapezoid() shim so they also execute under numpy<2.0,
+# where the function is named trapz. That was the likely cause of the gate's inability to
+# execute p1b_range_sweep.py in its own environment.
