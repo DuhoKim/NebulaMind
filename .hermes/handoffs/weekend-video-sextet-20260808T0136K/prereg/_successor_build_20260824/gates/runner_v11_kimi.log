@@ -1,0 +1,14 @@
+Report delivered: PREREG_TEXT_V11_KIMI.md in the gates directory (462 lines, final line exactly `**NOT CLEAR**`).
+
+Verdict: NOT CLEAR — blocking findings F1 and F2, both one-sentence text repairs, neither touches the frozen mechanism.
+
+What I verified against the artifacts (all recomputed this round):
+- §0 pins exact: successor_ref_v9.py `6a9abbbd…`, closure_worker_v9.py `28f8e1f9…`, fixtures `fab32ba2…`, referee report `f2ee062b…`, superseded V9 `b97ba35c…`; v9 files read-only.
+- The three advertised numeric corrections are exact: 951 of 1,000 own p-values at the 4.99975e-05 floor (receipt's p_own_by_trial, counted), 2-of-12 boundary refutations (fixture PWR-SELF-VERIFYING), planner digest `1617af00eb73…` (code line 154).
+- Stage-P receipt: 995/1000 vs x ≥ 962, 431.4 s, zero own-vs-shared disagreements, harness and input digests match disk. Clopper–Pearson boundary recomputed: 961 fails (0.949366), 962 passes (0.950487). Geometry, closure (12,117, `aaeaa9f3…`, 34/34), arithmetic (1.880×, 147.8 GB, N_eq 120,002.88), Longo anchor — all verify.
+
+Blocking findings (new this round, both introduced/exposed by the repair):
+- F1: §6.1(2)'s operative sentence names the order "lock, unblinding and BS-5f" — contradicting §6.1(1) (the lock requires BS-5f's receipt), §4/§7 (BS-5f before unblinding) and §5. It licenses unblinding before the power gate.
+- F2: the header still says the predecessor's 208,405 sealed χ are "archived as successor input" while §6.2 says "it is not an input" — the round-1 F2 blocker survives in the document's second paragraph.
+
+Also found: F3 (MAJOR, new — §2.4/§10 cite closure fixtures CLOSURE-FROZEN-PLANNER / CLOSURE-CATCHES-HISTORICAL / CLOSURE-CALLER-TRUST / CLOSURE-PRODUCTION-USES-FROZEN that exist in no pinned v9 artifact; all three seats missed the identical sentence in V10); F4 (three compliant pre-lock χ paths in §6.1: key holders, unnamed producers/committee, log bypass); F5 (§7 schemas drifted: BS-2f lacks the log digest, BS-V the key roster, BS-3 the §2.7(d) threshold); F6–F9 carried majors (z* range still contradicted by the pinned fixture, v7-subject disclosure gap, unfrozen DR11 availability probe, and the thrice-requested outcome-interpretation paragraph); F10–F14 minors. Testimony section covers what I could not recompute, including the predecessor shas outside the review set.
