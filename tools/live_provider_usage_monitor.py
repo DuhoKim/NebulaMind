@@ -89,6 +89,31 @@ def _oauth_cache_write(data: dict[str, Any] | None, last_error: str | None) -> N
         pass
 
 
+_CLAUDE_PLAN_DROPFILE = ROOT / '.hermes/state/claude_plan_usage.json'
+
+
+def load_claude_plan_dropfile() -> dict[str, Any] | None:
+    """Operator-confirmed reading of claude.ai/settings/usage.
+
+    Same shape as the Gemini drop-file: a gated reader captures the page and
+    writes here; this monitor never drives Chrome itself. Added 2026-08-27 after
+    the OAuth endpoint had been 429ing for a day while the web UI served the same
+    numbers on demand — and while the card showed a retained 85% that was wrong
+    in the direction of looking safe. The page said 64% all-models and 100%
+    Fable, with usage credits already carrying the overflow.
+
+    Age is reported, never hidden: a drop-file is only as good as its capture,
+    and the reader is a person or a gated crawler, not a loop.
+    """
+    try:
+        d = json.loads(_CLAUDE_PLAN_DROPFILE.read_text())
+    except Exception:
+        return None
+    if d.get('schema') != 'NM_CLAUDE_PLAN_USAGE_V1':
+        return None
+    return d
+
+
 def oauth_failure_state() -> dict[str, Any]:
     """What the card may truthfully say about the last read attempt.
 
@@ -794,33 +819,61 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
         add_model_if_missing('seven_day_sonnet', 'Sonnet')
         g['sub_gauges'] = sub_gauges
     else:
-        # Say WHEN the read actually failed and WHY we are not retrying, rather
-        # than stamping this pass's clock into a sentence about a request. The
-        # old text read "...read returned unavailable at <pass time>" on every
-        # pass, including passes that made no request at all because the backoff
-        # was holding. That implied we were still hammering a refusing endpoint
-        # once every five minutes, and gave no hint when the value might return.
+        # Two sources, in order of trust. A dated page capture beats a retained
+        # value of unknown age: the retained figure said 85% while the page said
+        # 64% all-models and 100% Fable with credits already covering the
+        # overflow — wrong in the direction that looks safest.
         state = oauth_failure_state()
-        g['kind'] = 'Claude last-visible quota fallback'
-        if state.get('cooling_down'):
-            g['status'] = (f'Active panes live; OAuth usage read backing off after HTTP '
-                           f'{state["last_error"]}, retry in {state["retry_in_label"]}')
-            attempt = (f'No request was made on this pass. The last actual attempt failed with '
-                       f'HTTP {state["last_error"]} at {state["failed_at"]}; the next attempt is '
-                       f'due in {state["retry_in_label"]}.')
+        drop = load_claude_plan_dropfile()
+        if drop:
+            cap = drop.get('captured_at_utc')
+            aw = drop.get('all_models_weekly_used_pct')
+            fw = drop.get('fable_weekly_used_pct')
+            sw = drop.get('session_used_pct')
+            reset = drop.get('weekly_reset_label', '')
+            credits_on = bool(drop.get('usage_credits_enabled'))
+            g['kind'] = 'Claude plan usage (claude.ai settings page)'
+            g['value_label'] = f'all models {display_pct(aw)} weekly'
+            g['fill_pct'] = aw
+            g['tone'] = tone_for_used(max([v for v in (aw, fw) if v is not None], default=None))
+            g['sub_gauges'] = [
+                {'label': 'All models weekly used', 'fill_pct': aw,
+                 'value_label': f'{display_pct(aw)} · {reset}', 'tone': tone_for_used(aw)},
+                {'label': 'Fable weekly used', 'fill_pct': fw,
+                 'value_label': f'{display_pct(fw)} · {reset}', 'tone': tone_for_used(fw)},
+                {'label': 'Current session used', 'fill_pct': sw,
+                 'value_label': f"{display_pct(sw)} · {drop.get('session_reset_label','')}",
+                 'tone': tone_for_used(sw)},
+            ]
+            g['status'] = ('Plan page capture · usage credits ON — plan-limit overflow is '
+                           'being charged to credits' if credits_on
+                           else 'Plan page capture · usage credits off')
+            g['detail'] = (f"Read from {drop.get('source_url')} at {cap}. "
+                           f"Plan {drop.get('plan')}. {drop.get('promo_note','')} "
+                           "The OAuth usage endpoint is refusing (HTTP 429), so this is a page "
+                           "capture rather than an API read; its capture time is stated above.")
+            g['source_label'] = (f"claude.ai settings usage page captured {cap}; "
+                                 f"capture_method {drop.get('capture_method')}.")
         else:
-            g['status'] = 'Active panes live; approved OAuth usage read unavailable'
-            attempt = (f'Last actual attempt failed at {state.get("failed_at") or observed_at}'
-                       f'{" with HTTP " + str(state["last_error"]) if state.get("last_error") else ""}.')
-        g['detail'] = (
-            f'{attempt} '
-            f'Keeping the last visible Claude usage-panel percentages while live-monitoring {counts["claude_seats"]} Claude/Hwao/Lana panes. '
-            'These percentages are NOT being measured right now and their age is unknown. '
-            'No token value was emitted and no billing, payment, or account mutation occurred.'
-        )
-        g['source_label'] = (
-            f'Last visible Claude usage-panel values retained; {attempt} '
-            f'Active Claude panes: {counts["claude_seats"]}.')
+            g['kind'] = 'Claude last-visible quota fallback'
+            if state.get('cooling_down'):
+                g['status'] = (f'Active panes live; OAuth usage read backing off after HTTP '
+                               f'{state["last_error"]}, retry in {state["retry_in_label"]}')
+                attempt = (f'No request was made on this pass. The last actual attempt failed '
+                           f'with HTTP {state["last_error"]} at {state["failed_at"]}; the next '
+                           f'attempt is due in {state["retry_in_label"]}.')
+            else:
+                g['status'] = 'Active panes live; approved OAuth usage read unavailable'
+                attempt = (f'Last actual attempt failed at {state.get("failed_at") or observed_at}'
+                           f'{" with HTTP " + str(state["last_error"]) if state.get("last_error") else ""}.')
+            g['detail'] = (
+                f'{attempt} '
+                f'Keeping the last visible Claude usage-panel percentages while live-monitoring '
+                f'{counts["claude_seats"]} Claude panes. These percentages are NOT being measured '
+                'right now and their age is unknown. No token value was emitted and no billing, '
+                'payment, or account mutation occurred.')
+            g['source_label'] = (f'Last visible Claude usage-panel values retained; {attempt} '
+                                 f'Active Claude panes: {counts["claude_seats"]}.')
     gauges[i] = g
 
     if agy:
