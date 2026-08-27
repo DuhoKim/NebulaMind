@@ -1869,6 +1869,14 @@ def _kind_for_freshness(kind: str, freshness: Dict[str, Any]) -> str:
     return kind
 
 
+# Providers whose lane no longer exists. A meter for a retired seat cannot go
+# anywhere but stale, so it ages forever and trains the reader to discount every
+# age on the board. The Codex lane was retired 2026-08-19 (the monitor's own
+# docstring says so), there is no codex pane running, and its card had been
+# showing a 2026-08-24 fossil for three days. Duho approved retiring it.
+RETIRED_PROVIDERS = {"Codex / gpt seats (ChatGPT Pro)"}
+
+
 def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     provider = gauge.get("provider") or "Provider"
     detail = _tidy_detail(provider, gauge.get("detail") or "")
@@ -2449,6 +2457,8 @@ def build_public_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any] | None
         # (named "Tori / Hermes" before the 2026-08-19 naming reform).
         prov = (g.get("provider") or "").strip().lower()
         if "veo" in prov or "flow" in prov:
+            return False
+        if (g.get("provider") or "").strip() in RETIRED_PROVIDERS:
             return False
         return prov not in {"tori / hermes", "hermes / gpt seats (context)"}
     public_cards = [public_gauge_card(g) for g in gauges if isinstance(g, dict) and _keep_gauge(g)]
