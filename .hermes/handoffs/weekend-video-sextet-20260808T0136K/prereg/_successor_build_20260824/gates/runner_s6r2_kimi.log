@@ -1,0 +1,19 @@
+Done. The R2 revision is written to:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/SECTION6_DRAFT_KIMI_R2.md
+(638 lines, 57,861 bytes. The preregistration V15 is untouched; NebulaMindData was never read.)
+
+How I worked: read both referee reports in full, the first brief, the current V15 text, and the pinned v9 code — verifying each finding against the bytes before accepting it (receipt() lines 208-224 is hash-only with no signature; run_production_verdict() lines 1591-1605 has no recompute call and reads post-envelope fields; SLOT_SCHEMA lines 185-205 lacks BS-L/BS-2k; §0 lines 40-73 does enumerate run guards and digest serializations).
+
+Disposition of the ten findings — all accepted, none refused:
+
+1. GPT56-1 (Disclosure forbids the BS-8f export) — the Disclosure clause now exempts exactly the permitted aggregate surface, stated identically in scope, rows I/J, and C5.
+2. GPT56-2 (default forbids the covenant's own machinery) — default scoped to χ-bearing touches; new rows A (custody provisioner), B (store mediator/log writer), O (unsealing service); χ-free processes explicitly outside only because the preamble says so.
+3+6. GPT56-3/CODEX-1 (receipt boundary two-valued) — categorical exemption deleted; non-χ-bearing defined by a closed list of authenticated schemas; everything unlisted, opaque digests of χ-bearing bytes, and outcome-permitting schemas are χ-bearing by default; execution receipts and confidence stay χ-bearing; rows E/M reconciled.
+4. GPT56-4 (row C's producer) — row E names `recompute_acceptance_ledger` as a requirement binding BS-2a's receipt (not a claimed existing pin), P2-P3, with post-unblinding re-invocation and mask-digest comparison; Part 2 carries the §2.7(4)/§5 seams.
+5. GPT56-5 (BS-L "signature" undefined) — detached Ed25519 signature over the canonical body digest, key bound at BS-2k, signer identity in the outer artifact, pinned `verify_lock()` called by both unblinding and the verdict path, full refusal list.
+7. CODEX-2 ("under" self-dependent) — the receipt column is split into "authorized by" and "emits"; no row's authorization is its own emission (checked all 17 rows; the chain is acyclic).
+8. CODEX-3 (detection machinery missing) — rows B and O carry inputs/outputs/event schema/refusal behavior/checkpoints; BS-2k binds all three stores; BS-L binds the final checkpoint plus the segment proving it extends BS-2f's. For the archive I took CODEX's second option (receipted seal-state; no reader row) over wrapper-binding, recorded as C15 with the reason: I cannot verify a wrapper can attach to a store no row may read, and a seal-state receipt is checkable at every checkpoint.
+9. CODEX-4 (§0 reach denied) — the non-reach sentence is struck; clause 3(d) now states §0 reaches those mechanisms and makes the replacement + Part 2 + code items one atomic candidate revision, with prereg_lint.py and an end-to-end refusal fixture as integration-time validation (not claimed as done — no integrated candidate exists).
+10. CODEX-major (E/F label path) — one write path: row G submits only through the BS-8p interface, row H is the committee store's sole writer, intermediate persistence forbidden, label-set receipt over (label-set digest, view-log range, allocation digest, co-signatures).
+
+What was protected: the universal access ban and the survival of table-authorized acts under the void rule (clauses 1 and 5) are intact; no repair reintroduces role-scoping. Parts 2-5 are kept per the brief — Part 3 now runs C1-C16, Part 4 keeps R1-R9 updated, Part 5 maps the seven requirements and all ten findings with what I verified for each. The no-fabricated-pins discipline is kept: clause 2 names the symbols that exist in v9 today versus the future-work slots whose receipts must pin the rest.
