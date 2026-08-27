@@ -1120,6 +1120,76 @@ def group_for(pane: Dict[str, Any]) -> str:
     return "Other"
 
 
+def detect_blocked_panes() -> List[Dict[str, Any]]:
+    """Every tmux pane that is stuck, across ALL sessions.
+
+    Written 2026-08-27 after the fourth instance in a week of a blocked agent
+    being indistinguishable from an idle one:
+      - Hwao refused by a safety filter, empty prompt, 1h45m unnoticed;
+      - the Antigravity meter stale 55h, which was the only visible symptom;
+      - Goru parked on an unanswered "Allow creation of this file?" for 55h
+        while holding a finished cross-check;
+      - and my own reports calling all of them "idle".
+
+    pane_status() cannot see any of this. It reads the Phase 1 snapshot, which
+    covers three panes in ge-mastermind:Directors and has never included the
+    Fable sessions or goru-agy — the seats that actually do the work.
+
+    Discriminator is POSITION, not presence: only the last lines of a pane count,
+    because a session that merely *discusses* a refusal (as mine does constantly)
+    is not blocked by it. That mention/use distinction is the single most common
+    way my detectors have been wrong this week.
+    """
+    out: List[Dict[str, Any]] = []
+    try:
+        listing = subprocess.run(
+            ["tmux", "list-panes", "-a", "-F",
+             "#{pane_id}\t#{session_name}:#{window_name}\t#{pane_in_mode}\t#{pane_dead}"],
+            capture_output=True, text=True, timeout=10)
+        if listing.returncode != 0:
+            return out
+    except Exception:
+        return out
+    seen_sessions: set = set()
+    for line in listing.stdout.splitlines():
+        parts = line.split("\t")
+        if len(parts) < 4:
+            continue
+        pid_, where, in_mode, dead = parts[0], parts[1], parts[2], parts[3]
+        # grouped view-sessions mirror the same panes; count each pane once
+        if pid_ in seen_sessions:
+            continue
+        seen_sessions.add(pid_)
+        if dead == "1":
+            out.append({"pane": pid_, "where": where, "kind": "dead",
+                        "detail": "pane has exited"})
+            continue
+        if in_mode == "1":
+            out.append({"pane": pid_, "where": where, "kind": "copy-mode",
+                        "detail": "scrolled back — input and slash-meters are blocked"})
+            continue
+        try:
+            tail = subprocess.run(["tmux", "capture-pane", "-p", "-t", pid_, "-S", "-14"],
+                                  capture_output=True, text=True, timeout=10).stdout
+        except Exception:
+            continue
+        # Anchored on the API Error banner, for two reasons the controls caught:
+        # the pane WRAPS the message ("safeguards" / newline / "flagged this
+        # message"), so an adjacency regex missed Hwao's real refusal entirely;
+        # and without the banner any session merely DISCUSSING a refusal flags
+        # itself — mine does, constantly. The banner is the use; everything else
+        # is mention.
+        if re.search(r"api error[:\s].{0,120}?(safeguards\s+flagged|can'?t help with this|"
+                     r"safety filter blocked)", tail, re.I | re.S):
+            out.append({"pane": pid_, "where": where, "kind": "refused",
+                        "detail": "model or provider refused the last turn"})
+        elif re.search(r"allow .{0,40}\bthis file\b|do you want to (allow|proceed|create)|"
+                       r"^\s*[>\u276f]?\s*1\.\s*yes", tail, re.I | re.M):
+            out.append({"pane": pid_, "where": where, "kind": "awaiting-approval",
+                        "detail": "a permission prompt is unanswered"})
+    return out
+
+
 def pane_status(pane: Dict[str, Any]) -> str:
     cls = pane.get("classification") or {}
     if pane.get("dead"):
@@ -2851,6 +2921,7 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
     # so a second call in the same render would shrink the interval it averages
     # over and corrupt the rate.
     active_campaigns = build_active_campaigns()
+    blocked_panes = detect_blocked_panes()
     events = read_events(limit=8, meaningful_only=True)
     latest_ticks = read_events(limit=1, meaningful_only=False)
     latest_event = latest_ticks[-1] if latest_ticks else events[-1] if events else None
@@ -2916,7 +2987,18 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
                 # here whenever the feed was quiet, so the board lost the fact
                 # rather than deprioritising it. Carry it through.
                 dead_note = f" · {counts['dead']} dead pane(s)" if counts["dead"] else ""
-                health_text = f"QUIET · paper lanes held, no events{since}{dead_note}"
+                stuck = [b for b in blocked_panes if b["kind"] in ("refused", "awaiting-approval")]
+                if stuck:
+                    # A seat waiting on a human outranks a quiet board. This is the
+                    # line that would have surfaced Goru 55 hours earlier.
+                    health = "needs-review"
+                    who = ", ".join(f"{b['where']} ({b['kind']})" for b in stuck[:3])
+                    health_text = f"BLOCKED SEAT · {len(stuck)} — {who}"
+                    next_action = ("A seat is stopped waiting on a person, not working. "
+                                   "Answer the prompt or restart the seat; a blocked pane "
+                                   "looks identical to an idle one from here.")
+                else:
+                    health_text = f"QUIET · paper lanes held, no events{since}{dead_note}"
                 next_action = ("Paper lanes are on your hold, so the events feed is idle by "
                                "design. The campaign strip below carries the live work."
                                + (" A director pane has exited in ge-mastermind:Directors — "
@@ -2950,6 +3032,7 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         "septet": build_septet(),
         "septet_matrix": build_septet_matrix(),
         "active_campaigns": active_campaigns,
+        "blocked_panes": blocked_panes,
         "writer_identity": {
             # [step 3] Kun: "add writer identity so the page can rat out a stale watcher."
             # Three correct renders were silently overwritten today by a watcher holding old code.
