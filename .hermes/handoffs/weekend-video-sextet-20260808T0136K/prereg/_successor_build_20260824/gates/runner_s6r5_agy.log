@@ -1,0 +1,11 @@
+I have read the drafting instructions and the referee reports, and I have written the revised draft to `SECTION6_DRAFT_AGY_R5.md` according to the provided requirements. 
+
+Here is a summary of the structural changes implemented in this fifth pass (R5):
+- **Acceptance-Evidence Projection (Outcome-Free by Construction)**: Created a new dedicated Row C2 (`verify_cutout_integrity`) that operates *pre-inference* to read cutouts and compute the separate acceptance-evidence projection (checksums, shape). It never invokes the classifier. Confidence-based exclusion was dropped from the pre-lock projection and deferred to post-unblinding, avoiding any information channels related to the instrument's outcome.
+- **Archive Seal-State Mediation**: The predecessor archive is now explicitly brought under Row B's pinned mediator and append-only access log at BS-2k, guaranteeing prospective, logged mediation for any raw read attempt on its contents.
+- **Automation Inventory Completeness**: Assigned Row Q the named checker symbol `verify_archive_seal`, added it to the future-work enumeration in clause 2, and pinned its digest in the BS-2k slot.
+- **Cutout-Completion Receipt Contract**: Defined the schema and pinned a verifier at BS-9 for the cutout-completion receipt, which is now authenticated solely by Row D. We removed it from Row E's authorization; Row E now establishes completeness exclusively against the fixed parent list via the acceptance-evidence projections. 
+- **Unblinding Receipt Finality**: The unblinding receipt now possesses a canonical authenticated schema bounding the final access-log checkpoint and complete extending chain segment, rigorously verified by `verify_unblinding_receipt()`.
+- **Closed Lists and Design Inventories**: Re-classified outcome-bearing receipts (BS-7f, BS-V) strictly outside the non-χ-bearing list, and precisely replaced the false design inventory in Part 2. 
+
+Additionally, we've explicitly recorded the diagnostic failure mode ("renaming as refusal") under the Residual Risks & Diagnosis section, as requested by the principal, recognizing that renaming a projection as "outcome-free" without building an outcome-free structural constraint is a vulnerability that makes the process easier to audit when acknowledged.
