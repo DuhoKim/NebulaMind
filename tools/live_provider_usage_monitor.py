@@ -243,9 +243,22 @@ def is_idle_agy(text: str) -> bool:
     if not tail:
         return False
     joined = '\n'.join(tail).lower()
-    if any(bad in joined for bad in ['ctrl+end bottom', 'models & quota', 'running', 'approval']):
+    # Busy markers are UI chrome and live in the last few lines. Searching all
+    # twenty for the substring 'running' matched Goru's own prose — "the kimi
+    # regate is still running" — and ruled a genuinely idle pane ineligible,
+    # leaving the meter 56 hours stale while it correctly reported itself NOT
+    # REFRESHING. Mention is not use; scope the check to the chrome.
+    chrome = '\n'.join(tail[-5:]).lower()
+    if any(bad in chrome for bad in ['ctrl+end bottom', 'models & quota', 'running', 'approval']):
         return False
-    return any(line.strip() == '>' for line in tail) and 'gemini' in joined and '? for shortcuts' in joined
+    # Identity is NOT re-checked here. choose_pane() has already established
+    # this is an agy pane (cmd == 'agy' or a goru role/target); requiring the
+    # word 'gemini' in the tail as well conflates "is this the right pane" with
+    # "is it idle", and fails the moment the pane's own output scrolls the
+    # banner away. That is exactly what happened after Goru printed a long
+    # cross-check: a genuinely idle pane was ruled ineligible and the meter sat
+    # 56 hours stale while reporting itself NOT REFRESHING.
+    return any(line.strip() == '>' for line in tail) and '? for shortcuts' in joined
 
 
 def in_copy_mode(pane: dict[str, str]) -> bool:
