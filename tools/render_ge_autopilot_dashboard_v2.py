@@ -2727,9 +2727,29 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
     health_text = "RUNNING CLEAN"
     next_action = "Nothing needs you right now. Watch the lane cards or leave the dashboard open."
     if review_needs:
+        # Say WHICH kind. review_needs sums three unrelated things — dead panes,
+        # prompts awaiting review, and source blockers — and then reported all
+        # of them as "a hard-gate or unsafe prompt is waiting". On 2026-08-27 the
+        # whole count was one dead pane in ge-mastermind:Directors, a board whose
+        # papers are both HELD by Duho's own order, and the board told him a gate
+        # was waiting on him. A count that cannot say what it counted sends
+        # someone to look for something that is not there.
+        prompts = counts["review_prompts"] + len(review_source_blockers)
         health = "needs-review"
-        health_text = f"NEEDS YOU · {review_needs}"
-        next_action = "A hard-gate or unsafe prompt is waiting. Ask the owning coordinator or inspect the real pane; autopilot will not approve it."
+        if prompts:
+            health_text = f"NEEDS YOU · {prompts} prompt(s)" + (
+                f" · {counts['dead']} dead pane(s)" if counts["dead"] else "")
+            next_action = ("A hard-gate or unsafe prompt is waiting. Ask the owning "
+                           "coordinator or inspect the real pane; autopilot will not "
+                           "approve it.")
+        else:
+            # dead panes only — not a decision, and not urgent if the lane is held
+            held = sum(1 for p in (source.get("panes") or []) if p.get("dead"))
+            health = "watching"
+            health_text = f"{counts['dead']} DEAD PANE(S) · no prompt is waiting"
+            next_action = ("Nothing is asking for a decision. A director pane has exited "
+                           "in ge-mastermind:Directors — expected while those paper lanes "
+                           "are on your hold. Restart it only when you resume that board.")
     elif safe_attention:
         health = "watching"
         health_text = f"WATCHING SAFE PROMPTS · {safe_attention}"
@@ -2799,9 +2819,16 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
                     f"timestamp — restart the Phase 1 monitor to revive them.")
             else:
                 health = "watching"
-                health_text = f"QUIET · paper lanes held, no events{since}"
+                # A dead pane is set upstream and was then silently overwritten
+                # here whenever the feed was quiet, so the board lost the fact
+                # rather than deprioritising it. Carry it through.
+                dead_note = f" · {counts['dead']} dead pane(s)" if counts["dead"] else ""
+                health_text = f"QUIET · paper lanes held, no events{since}{dead_note}"
                 next_action = ("Paper lanes are on your hold, so the events feed is idle by "
-                               "design. The campaign strip below carries the live work.")
+                               "design. The campaign strip below carries the live work."
+                               + (" A director pane has exited in ge-mastermind:Directors — "
+                                  "expected while those lanes are held; restart it only when "
+                                  "you resume that board." if counts["dead"] else ""))
 
     lane_summaries = {name: lane_summary(name, groups.get(name, [])) for name in GROUP_ORDER}
     usage_snapshot = build_usage_snapshot(source)
