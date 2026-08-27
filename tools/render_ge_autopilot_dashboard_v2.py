@@ -221,6 +221,13 @@ def _blocking_count(text: str) -> int:
     return max(0, len(_BLOCK_TOKEN.findall(text)) - len(_BLOCK_NEGATED.findall(text)))
 
 
+def _sha(p: "Path") -> str:
+    try:
+        return hashlib.sha256(p.read_bytes()).hexdigest()
+    except OSError:
+        return ""
+
+
 def _pin_mismatches(d: "Path") -> List[Dict[str, Any]]:
     """Frozen artifacts whose bytes no longer match the hash they were frozen at.
 
@@ -704,11 +711,34 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 if verdict_t is None or token != "reported":
                     verdict_t = token
             blockers_t = sum(_blocking_count(f.read_text(errors="ignore")) for f in tg)
+            # The refereed version and the live document are not the same thing.
+            # At 23:00 on 2026-08-27 this row read "draft V14, NOT CLEAR" while
+            # the live draft was V16 with a fresh whole-document review already
+            # dispatched — true about V14, and badly misleading about the lane.
+            # A row that names only the last refereed version reads as "parked
+            # here" when the real state is "moved on, verdict pending".
+            drafts = sorted(sb.glob("PREREG_SUCCESSOR_DRAFT_V*.md"), key=_ver)
+            ahead_note = None
+            if drafts and _ver(drafts[-1]) > cur_ver:
+                live = drafts[-1]
+                ahead_note = (f"live draft is V{_ver(live)} — {_ver(live) - cur_ver} version(s) "
+                              f"past the last refereed (V{cur_ver}); its review is pending")
+                # A version bump that changes no bytes is either a working copy
+                # opened for the next round or an accident, and the difference
+                # matters: an in-place edit of an already-refereed version is
+                # how V15 was corrupted mid-fold earlier tonight.
+                same = [d for d in drafts[:-1]
+                        if d.stat().st_size == live.stat().st_size
+                        and _sha(d) == _sha(live)]
+                if same:
+                    ahead_note += (f"; V{_ver(live)} is byte-identical to "
+                                   f"V{_ver(same[-1])} (no content delta)")
             out.append({
                 "lane": "DESI successor — PREREGISTRATION TEXT", "who": "Hwao",
-                "detail": (f"draft V{cur_ver}: {blockers_t} blocking finding(s) across "
-                           f"{len(tg)} referee(s)" if blockers_t
-                           else f"draft V{cur_ver} refereed, no blockers"),
+                "detail": ((f"draft V{cur_ver}: {blockers_t} blocking finding(s) across "
+                            f"{len(tg)} referee(s)" if blockers_t
+                            else f"draft V{cur_ver} refereed, no blockers")
+                           + (f" — {ahead_note}" if ahead_note else "")),
                 "latest_gate": tg[0].name,
                 "verdict": verdict_t,
                 "gate_age_h": round((time.time() - tg[0].stat().st_mtime) / 3600.0, 1),
