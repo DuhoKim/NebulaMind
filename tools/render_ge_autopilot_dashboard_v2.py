@@ -575,8 +575,16 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
         # Referee panel: a review with seats missing is a NARROWER review, and
         # the freeze decision downstream needs to know which kind it is holding.
         seats: List[str] = []
-        for log in sorted(gates.glob("runner_v6_*.log")) if gates.is_dir() else []:
-            name = log.stem.replace("runner_v6_", "")
+        # The round was hardcoded to runner_v6_*, so this row would have shown
+        # 2026-08-26 afternoon's panel forever — reporting two REFUSED seats for
+        # a mechanism that has since been rebuilt twice and frozen at v9 after a
+        # CLEAR. Take the newest round present instead.
+        rounds = sorted({m.group(1) for f in gates.glob("runner_v*_*.log")
+                         if (m := re.match(r"runner_(v\d+)_", f.name))},
+                        key=lambda v: int(v[1:]), reverse=True) if gates.is_dir() else []
+        cur_round = rounds[0] if rounds else None
+        for log in sorted(gates.glob(f"runner_{cur_round}_*.log")) if cur_round else []:
+            name = log.stem.replace(f"runner_{cur_round}_", "")
             txt = log.read_text(errors="ignore")
             if re.search(r"safety filter|flagged for possible", txt, re.I):
                 seats.append(f"{name}:REFUSED")
@@ -637,7 +645,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                                r"\bNOT CLEAR\b", head, re.I):
                     token = "NOT CLEAR"
                 else:
-                    token = "reported"
+                    token = "reported (no token)"
                 seats_t.append(f"{seat}:{token}")
                 if verdict_t is None or token != "reported":
                     verdict_t = token
