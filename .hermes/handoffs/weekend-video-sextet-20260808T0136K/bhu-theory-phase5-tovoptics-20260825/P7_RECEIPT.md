@@ -63,3 +63,49 @@ open again; the flatness needs a different explanation, which I do not yet have.
 - REGATE3 finding 2: **conceded** — my closure was based on a misreading; withdrawn.
 - Not yet blind-doubled. The null is the kind of feature a second implementation should confirm
   or refute before it is quoted.
+
+---
+
+# CORRECTION, 2026-08-27 — REGATE4 required-repair 4
+
+## The result reproduces; the CLAIM ATTACHED TO IT does not survive
+
+REGATE4 re-ran this artifact: "exit 0, 4/4 checks. Reproduced the conditional root w=0.0407786
+and its narrow interval. **This reproduces the implementation, not the pinned model**, because
+the source closure is inherited." Accepted without argument.
+
+Re-verified today after the p6 ε-repair (p7 execs p6's prefix, so it inherits the change): the
+root is **unchanged at w = 0.0407786**, band [0.040728, 0.040816], width 8.883e-05, and the run
+is still exit 0, 4/4. The ε-termination did not move the null.
+
+## What is withdrawn
+
+The null's **existence as a property of the model**, and its **location**. Both are
+closure-dependent. REGATE4's counterexample is one line: a source held constant across crossing
+epochs has zero source-gradient, so the kinematic coefficient stays at **+0.615301** and never
+crosses zero. Reproducing a root under two assumed source maps — mine, and the blind seat's
+T ∝ ρ̄^[w/(1+w)] carried across distinct crossing events — proves robustness *within those two
+maps*, not existence over the unrestricted set of positive source fields.
+
+I built the phase headline on agreement between two closures. Two wrong closures agreeing is not
+evidence about the thing they are both approximating.
+
+**Permitted:** "the two tested closures each contain a cancellation, at different locations."
+**Not permitted:** "the pinned model contains a silent configuration whose location alone is
+unknown."
+
+## What stands
+
+The **method** finding is untouched and is the durable part of P7: p6's `dipole_and_bound()`
+took `abs()` and sampled six w values, so `min(c1)>0` proved only that six absolute samples were
+positive. Keeping the sign and root-finding every crossing is what exposed the cancellation.
+A check that agrees with itself finds nothing — that lesson survives the withdrawal of the
+result it produced.
+
+## Standing conditionality
+
+The script now carries a header banner and prints an explicit CONDITIONALITY block after its
+headline, so the run itself states the limit rather than relying on a reader having found this
+receipt. See `BHU_CLOSED_ROUTES.md` and `REGATE4_DISPOSITION.md`.
+
+**Run record.** `python3 p7_signed_sweep.py` → exit 0, **4/4 checks**.

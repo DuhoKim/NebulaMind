@@ -41,6 +41,10 @@ def chk(name, predicate, detail=""):
 
 class Invalid(Exception): pass
 
+# Terminal-event offset: integrate to N = 1+EPS_HZ, not to the singular N = 1. See the note in
+# integrate(). The eps-convergence self-check below re-establishes this empirically each run.
+EPS_HZ=1e-9
+
 def integrate(wfun):
     """pbar-state formulation (the one the receipt describes):
          pbar' = pbar (1 + 1/w)/2 * N'/(N-1);  N' = -(N/r + kappa pbar r);  rhobar = pbar/w.
@@ -55,7 +59,19 @@ def integrate(wfun):
         p=max(p,0.0)
         w=wfun(r); Np=-(N/r+KAPPA*p*r)
         return [p*(1+1.0/w)/2*Np/(N-1), Np]
-    def hz(r,y): return y[1]-1.0
+    # REPAIR 2026-08-27 (REGATE4 required-repair 4, the p1c high-w defect).
+    # The event was N = 1 exactly. At w -> 1 the solver stalls ON that singular endpoint
+    # ("Required step size is less than spacing between numbers") and the row printed n/a,
+    # while P1C_RECEIPT.md tabulated 0.037 — a number this file could not produce.
+    # tau is a CONVERGENT integral, so terminating at N = 1+eps and letting eps -> 0 recovers
+    # it without ever touching the singular point. Verified convergent over eps in
+    # [1e-4, 1e-10]: tau(w=0.999) = 0.03695822, successive deltas falling to 4.5e-11.
+    # Cross-check: p6_path_transfer.py's INDEPENDENT 3-state integrator prints 0.0370 at the
+    # same w, so the recovered value is confirmed outside this file.
+    # Rejected alternative, recorded so it is not retried: reformulating in u = ln(pbar) makes
+    # p > 0 identically, but u -> -inf AT the horizon, so the terminal event is unreachable
+    # and every row returns n/a. Log-space is the wrong transform for this endpoint.
+    def hz(r,y): return y[1]-(1.0+EPS_HZ)
     hz.terminal=True; hz.direction=-1
     try:
         s=solve_ivp(rhs,[rbar_s,400*rbar_s],[pbar_s,N_s],events=hz,rtol=1e-9,atol=1e-18,
@@ -69,7 +85,9 @@ def tau_of(wfun):
     out=integrate(wfun)
     if out is None: return None
     s,r_h=out
-    rr=np.linspace(rbar_s,r_h*(1-1e-9),8000); y=s.sol(rr)
+    # r_h is now the N = 1+EPS_HZ radius, already short of the singular endpoint, so the old
+    # extra (1-1e-9) truncation is neither needed nor applied.
+    rr=np.linspace(rbar_s,r_h,8000); y=s.sol(rr)
     L=C*T_CRIT; integ=np.empty(len(rr))
     for k,r in enumerate(rr):
         w=wfun(r); rb=y[0][k]/w
@@ -105,6 +123,23 @@ chk("the junction-value row reproduces P1b's 0.133 (two formulations agree where
     tbl[w_s] is not None and abs(tbl[w_s]-0.133)/0.133<0.05, f"computed {tbl[w_s]:.4f}")
 chk("OPAQUE closures exist inside the authorised band, so 'thin everywhere' is false",
     tbl[0.01] is not None and tbl[0.01]>1.0, f"tau={tbl[0.01]:.3f} > 1")
+chk("the high-w row COMPUTES — the defect REGATE4 found (receipt tabulated 0.037, file said n/a)",
+    tbl[0.999] is not None, f"tau(w=0.999)={tbl[0.999]:.6f}" if tbl[0.999] else "still n/a")
+chk("and it reproduces the value the receipt tabulated",
+    tbl[0.999] is not None and abs(tbl[0.999]-0.037)/0.037<0.02,
+    f"computed {tbl[0.999]:.6f} vs receipt 0.037" if tbl[0.999] else "n/a")
+
+# --- the terminal-offset is a limit, not a tuning knob: demonstrate it every run ---
+print("\nHorizon-offset convergence at w=0.999 (tau must approach a limit as eps -> 0):")
+_saved=EPS_HZ; _seq=[]
+for _e in [1e-4,1e-6,1e-8,1e-10]:
+    EPS_HZ=_e; _v=tau_of(const_after(0.999)); _seq.append(_v)
+    print(f"  eps={_e:.0e} -> {('tau=%.8f'%_v) if _v is not None else 'n/a'}")
+EPS_HZ=_saved
+_fin=[v for v in _seq if v is not None]
+chk("tau converges as the terminal offset shrinks (so 0.037 is a limit, not a solver accident)",
+    len(_fin)==len(_seq) and abs(_fin[-1]-_fin[-2])<1e-7,
+    f"|tau(1e-10)-tau(1e-8)| = {abs(_fin[-1]-_fin[-2]):.3e}" if len(_fin)>1 else "did not compute")
 
 # --- A2: the bracket claim, TESTED rather than asserted (it is expected to FAIL) ---
 hi=tau_of(const_after(0.999)); lo=tau_of(const_after(1e-3))

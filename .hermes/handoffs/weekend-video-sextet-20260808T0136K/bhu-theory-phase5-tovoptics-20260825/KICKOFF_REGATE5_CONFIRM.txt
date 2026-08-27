@@ -1,0 +1,79 @@
+REGATE5 CONFIRMATION PASS — does the p9 demotion clear the hold?
+
+Lane: .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase5-tovoptics-20260825/
+Environment: python 3.9.6, numpy 1.26.4, scipy 1.13.1. Run everything from that directory.
+
+You are a FRESH seat. A previous codex session issued the hold below; you do not share its
+context and are not bound by it. You may rule that the hold was wrong in the first place, that
+the repair is insufficient, or that I have over-corrected. Any of those is a useful answer.
+
+## The narrow question
+
+`CGATE_REGATE5_PHASE5B_VERDICT.md` ruled **HOLD_HAWKING_DEGENERACY_OVERCLAIM** and specified
+one required repair:
+
+> "Repair p9 and BHU_CLOSED_ROUTES.md by demoting the exact factor-of-two point. The defensible
+> statement is that the naive Schwarzschild Hawking calculation is not a distinctive,
+> source-pinned BHU prediction and is observationally unusable; it is not that an exact factor
+> of two is itself a no-discrimination degeneracy for an ideal horizon thermometer."
+
+I have done that. **Does it clear the hold?**
+
+## Read these
+
+- `CGATE_REGATE5_PHASE5B_VERDICT.md` — the hold, in full.
+- `KICKOFF_REGATE5_PHASE5B.txt` — what was originally gated.
+- `p9_hawking.py` — module docstring and section B, which is where the demotion lives.
+- `P9_HAWKING_RECEIPT.md` — section B (struck through in place), the reordered bottom line,
+  and the appended correction section.
+- `BHU_CLOSED_ROUTES.md` — entry C2, status line and reason 1.
+
+## What I changed, so you can check it rather than take it
+
+1. **p9 section B relabelled SUPPORTING ONLY.** Check B1 no longer says "degeneracy"; it now
+   says both temperatures sit at the same hH/kB scale and differ by exactly 2, with the detail
+   string stating explicitly that an ideal thermometer COULD tell 1.3269e-30 K from
+   2.6538e-30 K. Check B2 is now a distinctiveness claim. The run prints a note that the BHU
+   value is not well-defined and that B cannot carry the closure.
+2. **No arithmetic changed.** p9 still runs 16/16, exit 0. Verify that.
+3. **The four reasons were REORDERED.** Previously the factor of two was ranked first and
+   claimed to generalise to any black-hole cosmology at the Hubble scale — that generalisation
+   is withdrawn. The load-bearing reason is now "not defined for this model" (vacuum Killing
+   horizon assumed, TOV fluid exterior, white-hole orientation, T0 an input). The strongest
+   self-contained reason is the structural one, lambda_peak / R_H = 15.9023.
+4. **BHU_CLOSED_ROUTES.md C2** carries a boxed withdrawal of the old reason 1 and a rewritten
+   status line.
+5. `bhu-daily-20260827/script_hawking.WITHDRAWN.md` marks the published audio script as
+   carrying the withdrawn sentence. The script itself is left byte-intact because it is the
+   source of record for a published recording.
+
+## Disclosure — the two seats SPLIT on exactly this point
+
+The other REGATE5 seat (agy, Gemini 3.1 Pro, `AGATE_REGATE5_VERDICT.md`) returned
+**PASS_PHASE5B** and called the Hawking closure "solid", the factor of two "algebraically
+correct", the scale arguments "bulletproof". It did not raise the degeneracy objection at all.
+So one seat held on this and one passed it. I acted on the hold because I judged it correct on
+the merits, not because of seat authority. **You are free to conclude the other seat was right
+and the hold was never warranted** — say so if you think it.
+
+They also split on claim 4: agy said the restated form is vacuous and must be dropped; the
+codex hold said it is true but low-value and should stay only as a closure-conditional receipt
+sentence, never promoted. I adopted the codex framing as the narrower one. Rule on that too if
+you have a view.
+
+## Also worth your scrutiny, because it cuts against me
+
+Ask whether the reordering in item 3 is itself an overclaim. I now assert that the Hawking route
+and the optical route close on the SAME missing physics — the papers supply no exterior
+thermodynamics. That is a tidy story, and tidy stories are how I got the original overclaim.
+If "not defined for this model" is doing less work than I now say it is, that is worth catching.
+
+## Deliverable
+
+Write `CGATE_REGATE5_CONFIRM_VERDICT.md` in this directory. First line must be exactly one of:
+
+    CLEARED_HAWKING_DEMOTION          (the repair resolves the hold)
+    STILL_HELD_<reason>               (it does not)
+    OVERCORRECTED_<reason>            (the repair went too far, or the hold was unwarranted)
+
+Then your reasoning, and your own reproduction record for anything you ran.

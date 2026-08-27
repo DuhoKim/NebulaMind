@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 """P8: does my full transfer reduce to the seat's surface model in the optically thick limit?
 
+*** CLOSURE-CONDITIONAL EXPERIMENT — NOT A MODEL PREDICTION (REGATE4, 2026-08-27) ***
+This script executes p6's prefix and therefore inherits p6's source construction: a blackbody
+junction anchor with an adiabatic depth law T ~ rhobar^[w/(1+w)]. The epoch ruling invalidated
+that closure as a property of the pinned geometry. Every null reported below is a property of
+THAT ASSUMED SOURCE MAP, not of the Smoller-Temple solution. REGATE4 further withdrew the
+existence of a null as a model-level claim: a source held constant across crossing epochs has
+zero source-gradient and never crosses zero. Read every number here as "under this closure",
+and see BHU_CLOSED_ROUTES.md and REGATE4_DISPOSITION.md before citing any of it.
+
+
 FACTOR_OF_TWO_RESOLVED.md established that the two nulls belong to two models: theirs is
 junction-Doppler times a shock-SURFACE source carried along the crossing epoch, with no opacity
 and no depth redshift; mine integrates the whole column. If they are NESTED, then driving my
@@ -50,30 +60,85 @@ def signed_c1_K(w,K,f=1e-4,npts=24):
     P1=np.polynomial.legendre.Legendre.basis(1)(nodes)
     return 1.5*float(np.sum(wt*vn*P1))/f
 
+# REPAIR 2026-08-27 (REGATE4 required-repair 4, the p8 reporting/reproducibility defects).
+# Three defects were found and all three are fixed here:
+#   (a) MISLABEL. The convergence details read "K=1e5: <value>" while printing finite[-1] —
+#       the last FINITE root, which was K=1e2. The label was hard-coded, not read from the
+#       run. Every label below now carries the K that actually produced the number.
+#   (b) BRACKET TRUNCATION. The search ran on [0.02, 0.30] while the root was migrating
+#       right: 0.0408 -> 0.0870 -> 0.2681 -> and at K=1e3 it sits at 0.4777, OUTSIDE the old
+#       bracket. That was reported as nan, i.e. as an absent root. It is not absent.
+#   (c) SILENT UNDER-RESOLUTION. The emergent integral weights by exp(-tau), so once the
+#       tau~1 photosphere is thinner than one grid cell the result is grid noise. That is
+#       what produced the discontinuous sign flip between K=1e3 and K=1e4 (the coefficient
+#       jumps from +0.259 to -1.526 across the whole w range). Beyond the resolved range the
+#       script now reports UNRESOLVED and declines to claim anything — reporting "no root"
+#       there would be a physics claim this grid cannot support.
+def resolution_limit(w_probe):
+    """Largest opacity multiplier whose photosphere this grid still resolves (max cell dtau <= 1)."""
+    e=exterior(0.5633887, w_probe)          # was obfuscated dead arithmetic evaluating to this constant
+    if e is None: return None, None
+    step=0.5*(e['dtau'][1:]+e['dtau'][:-1])*np.diff(e['rr'])
+    return e, 1.0/float(step.max())
+
+# The gate must be evaluated at the WORST point the root-finder actually visits, which is the
+# low-w floor of the search bracket — resolution improves monotonically with w:
+#   w=0.02 -> K_MAX 18.42 | 0.05 -> 111.5 | 0.08 -> 282.4 | 0.2456 -> 2935 | 0.95 -> 5704
+# Gating on a single mid-band probe (w=0.08) would have admitted K=1e2, whose bracket runs
+# down to w=0.02 where this grid resolves only K <= 18.4. brentq would then be reading grid
+# noise at its own left endpoint. So the floor governs.
+W_FLOOR=0.02
+e_probe,_ = resolution_limit(0.08)                 # kept only for the tau-at-w=0.08 column
+_, K_MAX = resolution_limit(W_FLOOR)
+print(f"Grid resolves the photosphere up to K = {K_MAX:.4g} at the search floor w={W_FLOOR} "
+      f"(npts={len(e_probe['rr'])}).")
+print("Resolution improves with w, but the root-finder evaluates its left endpoint, so the")
+print("floor governs. Beyond that the tau~1 layer is thinner than one cell and NOTHING is claimed.\n")
+
 print("Null location as the exterior is driven optically thick (K = opacity multiplier):")
-print(f"{'K':>10} {'tau at w=0.08':>14} {'null w':>12} {'-> their 0.081500':>20}")
-locs=[]
+print(f"{'K':>10} {'tau at w=0.08':>14} {'null w':>12} {'-> their 0.081500':>20}  status")
+rows=[]   # (K, root_or_nan, resolved)
 for K in [1.0, 10.0, 1e2, 1e3, 1e4, 1e5]:
-    e=exterior(2*math.sqrt((eta_o/2)**2*0+0.0793517)*0+0.5633887, 0.08)
-    tau_at=e['tau_tot']*K if e else float('nan')
-    try:
-        root=brentq(lambda w: signed_c1_K(w,K), 0.02, 0.30, xtol=1e-9)
-    except Exception:
-        root=float('nan')
-    locs.append(root)
-    print(f"{K:10.0e} {tau_at:14.3f} {root:12.7f} {root/THEIR_NULL:20.4f}")
+    tau_at=e_probe['tau_tot']*K
+    resolved = K <= K_MAX
+    root=float('nan')
+    if resolved:
+        for lo,hi in [(W_FLOOR,0.30),(W_FLOOR,0.60),(W_FLOOR,0.95)]:   # widened; see (b)
+            try:
+                flo,fhi=signed_c1_K(lo,K),signed_c1_K(hi,K)
+                if flo is None or fhi is None: continue
+                if flo*fhi>0: continue
+                root=brentq(lambda w: signed_c1_K(w,K), lo, hi, xtol=1e-9); break
+            except Exception:
+                continue
+    rows.append((K,root,resolved))
+    status = ("resolved" if resolved else "UNRESOLVED — not reported")
+    rstr = f"{root:12.7f}" if np.isfinite(root) else f"{'n/a':>12}"
+    ratio = f"{root/THEIR_NULL:20.4f}" if np.isfinite(root) else f"{'—':>20}"
+    print(f"{K:10.0e} {tau_at:14.3f} {rstr} {ratio}  {status}")
 
-finite=[r for r in locs if np.isfinite(r)]
-chk("a null exists at every opacity (the phenomenon is not an artifact of one regime)",
-    len(finite)==len(locs), f"{len(finite)} of {len(locs)} opacities gave a root")
+res_rows=[(K,r) for K,r,ok in rows if ok]
+found=[(K,r) for K,r in res_rows if np.isfinite(r)]
+unresolved=[K for K,_,ok in rows if not ok]
+
+chk("every opacity the grid RESOLVES yields a root (the earlier nan was a bracket defect, not an absence)",
+    len(found)==len(res_rows),
+    f"{len(found)} of {len(res_rows)} resolved opacities gave a root; "
+    f"{len(unresolved)} opacities (K >= {min(unresolved):.0e}) declined as unresolved" if unresolved
+    else f"{len(found)} of {len(res_rows)}")
 chk("the null MIGRATES as opacity increases (the models are not independent)",
-    abs(finite[-1]-finite[0])>1e-3, f"K=1: {finite[0]:.7f} -> K=1e5: {finite[-1]:.7f}")
-converged=abs(finite[-1]-THEIR_NULL)/THEIR_NULL
-chk("in the THICK limit my null converges to the seat's surface-model null (models NESTED)",
-    converged<0.02, f"K=1e5 null {finite[-1]:.7f} vs theirs {THEIR_NULL:.7f} "
-    f"— {100*converged:.2f}% apart")
+    abs(found[-1][1]-found[0][1])>1e-3,
+    f"K={found[0][0]:.0e}: {found[0][1]:.7f} -> K={found[-1][0]:.0e}: {found[-1][1]:.7f}")
+converged=abs(found[-1][1]-THEIR_NULL)/THEIR_NULL
+chk("at the thickest RESOLVED opacity my null matches the seat's surface-model null (models NESTED)",
+    converged<0.02,
+    f"K={found[-1][0]:.0e} null {found[-1][1]:.7f} vs theirs {THEIR_NULL:.7f} "
+    f"— {100*converged:.2f}% apart; and it is moving AWAY, not toward")
 
-print(f"\nVERDICT: {'NESTED — my transfer reduces to their surface model as it goes thick.' if converged<0.02 else 'NOT NESTED — the thick limit does not reproduce their null; one model has an error.'}")
+print(f"\nVERDICT (at the thickest opacity this grid resolves, K={found[-1][0]:.0e}): "
+      f"{'NESTED — my transfer reduces to their surface model as it goes thick.' if converged<0.02 else 'NOT NESTED — the resolved thick limit does not reproduce their null.'}")
+print("SCOPE: the true asymptotic thick limit is NOT tested here. It needs a grid that resolves\n"
+      "       the photosphere at K >> %.4g, which this one does not." % K_MAX)
 nf=sum(1 for _,ok,_ in checks if not ok)
 print(f"\n{len(checks)-nf}/{len(checks)} checks passed")
 sys.exit(1 if nf else 0)

@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 """P6: the GENUINE path transfer — depth-resolved emission, direction-dependent opacity.
 
+*** CLOSURE-CONDITIONAL EXPERIMENT — NOT A MODEL PREDICTION (REGATE4, 2026-08-27) ***
+The source construction below (blackbody junction anchor T_s ∝ rhobar_s^(1/4) plus the
+adiabatic depth law T ∝ rhobar^[w/(1+w)], lines ~101-108) is an ADDED thermal closure. The
+epoch ruling invalidated it as a property of the pinned geometry: Smoller-Temple specify how
+the exterior pressure relates to its density and never specify its temperature. Every dipole,
+bound and null below is therefore a property of THAT ASSUMED SOURCE MAP, not of the solution
+being tested. REGATE4 also withdrew the existence of a null as a model-level claim — a source
+held constant across crossing epochs has zero source-gradient and never crosses zero.
+See BHU_CLOSED_ROUTES.md and REGATE4_DISPOSITION.md before citing anything here.
+The P6_RECEIPT.md transmitted-background/dark-sky and exclusion-strength language is withdrawn.
+
 Answers REGATE2_PHASE5B_VERDICT.md findings 1-3. P5 was a single-screen model: it put all the
 emission at the junction, held tau fixed across the sky, and carried no A4 source range. This
 integrates the transfer along the ray and lets every direction have its own exterior.
@@ -47,6 +58,10 @@ def chk(name,pred,detail=""):
     if not isinstance(pred,(bool,np.bool_)): raise TypeError("chk needs a computed predicate")
     checks.append((name,bool(pred),detail)); print(("PASS " if pred else "FAIL ")+name+("  "+detail if detail else ""))
 
+# Terminal-event offset: integrate to N = 1+EPS_HZ, not to the singular N = 1.
+# See the note inside exterior(); the convergence check below re-establishes it each run.
+EPS_HZ=1e-9
+
 def exterior(eta_e, w_target, width=0.02, npts=4000):
     """Integrate the exterior for the crossing at conformal time eta_e. State: [pbar, N, lnB].
        Returns depth grids: rbar, rhobar, N, cumulative tau, and the redshift factor Z(rbar)."""
@@ -67,7 +82,18 @@ def exterior(eta_e, w_target, width=0.02, npts=4000):
         p=max(p,0.0); N=max(N,1.0+1e-12); w=wfun(r); rb=p/w
         Np=-(N/r+KAPPA*p*r)
         return [p*(1+1.0/w)/2*Np/(N-1), Np, -(1.0/(N-1))*(N/r+KAPPA*rb)]
-    def hz(r,y): return y[1]-1.0
+    # REPAIR 2026-08-27 (REGATE4 required-repair 4, the p6 nan defect).
+    # The event was N = 1 exactly. At the centre epoch with w=0.03 the integrator failed ON
+    # that singular endpoint and exterior() returned None, so the table printed tau_tot=nan
+    # while dipole_and_bound() still reported a dipole — because the dipole averages over many
+    # epochs and only ONE of 25 failed. The presentation "across every computed opacity" then
+    # read as complete when one centre value had never computed.
+    # Same repair as p1c: tau is a convergent integral, so terminate at N = 1+EPS_HZ and never
+    # touch the singular point. Convergence at (centre epoch, w=0.03), deltas falling by one
+    # decade per decade of eps: 0.92960226 -> 0.92958804 over eps 1e-4 .. 1e-10.
+    # Cross-check outside this file: p1c_rigorous_sweep.py's INDEPENDENT 2-state integrator
+    # gives 0.928627 at the same w — 0.1% apart, the same level as the other shared rows.
+    def hz(r,y): return y[1]-(1.0+EPS_HZ)
     hz.terminal=True; hz.direction=-1
     try:
         s=solve_ivp(rhs,[rbar_s,400*rbar_s],[pbar_s,N_s,0.0],events=hz,rtol=1e-9,atol=1e-18,
@@ -76,7 +102,9 @@ def exterior(eta_e, w_target, width=0.02, npts=4000):
         return None
     if not s.success or not len(s.t_events[0]): return None
     r_h=s.t_events[0][0]
-    rr=np.linspace(rbar_s,r_h*(1-1e-9),npts); y=s.sol(rr)
+    # r_h is now the N = 1+EPS_HZ radius, already short of the singular endpoint, so the
+    # old extra (1-1e-9) truncation is neither needed nor applied.
+    rr=np.linspace(rbar_s,r_h,npts); y=s.sol(rr)
     p=np.maximum(y[0],0.0); N=y[1]; lnB=y[2]
     w=np.array([wfun(r) for r in rr]); rhobar=p/w
     L=C*T_CRIT; rho_cgs=rhobar*(C*C/G)/(L*L)
@@ -151,9 +179,22 @@ for wt_ in [0.999,0.5,0.2456,0.1,0.03,0.01]:
     out.append((wt_,e['tau_tot'] if e else float('nan'),c1,bd))
     print(f"{wt_:9.4g} {(e['tau_tot'] if e else float('nan')):9.4f} {c1:9.5f} {bd:11.4e} {mono:10.4f}")
 
-c1s=[o_[2] for o_ in out]; bds=[o_[3] for o_ in out]
+c1s=[o_[2] for o_ in out]; bds=[o_[3] for o_ in out]; taus=[o_[1] for o_ in out]
+# REGATE4's specific complaint: the w=0.03 centre tau printed nan while a dipole was still
+# reported, so "across every computed opacity" read as complete when one value had not
+# computed. This check makes that failure mode impossible to ship silently again.
+chk("every row that reports a dipole ALSO has a finite tau (no nan hiding behind a result)",
+    all(np.isfinite(t) for t in taus),
+    f"{sum(np.isfinite(t) for t in taus)}/{len(taus)} rows finite; "
+    f"tau spans {min(taus):.4f} to {max(taus):.4f}")
 chk("the dipole survives depth-resolved transfer at every computed opacity", min(c1s)>0.0,
     f"c1 spans {min(c1s):.5f} to {max(c1s):.5f}")
+
+# The eps repair does NOT rescue every epoch, and saying so is part of the repair.
+_edge=[w for w in (0.5,0.2456,0.1,0.03,0.01) if exterior(float(ETAs.min()),w) is None]
+print(f"\nSCOPE of the eps repair: the earliest epoch on the grid (eta={ETAs.min():.6f}, the "
+      f"eta -> 0 limit)\n  still fails to integrate at {len(_edge)} of 5 sampled w values. That is a "
+      f"grid-edge limit,\n  not the singular-endpoint defect repaired here, and it is not claimed to be fixed.")
 chk("the bound stays tight across the range (exclusion robust to the path treatment)",
     max(bds)<2e-2, f"worst bound {max(bds):.4e} = one part in {1/max(bds):.0f}")
 worst=max(bds)

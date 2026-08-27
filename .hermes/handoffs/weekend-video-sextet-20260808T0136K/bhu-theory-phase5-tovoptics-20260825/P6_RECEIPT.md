@@ -58,3 +58,69 @@ the exclusion by a factor of 3–6**, because a dark patch is a louder signal th
 σ = 1/3, pre-horizon, photon channel; A4 at its LTE upper end (the energy-budget ceiling);
 crossing-radius normalisation per the gate's B1 ruling; B normalised at the junction. Blind
 double owed before any of this is claimed as confirmed.
+
+---
+
+# CORRECTION, 2026-08-27 — REGATE4 required-repair 4
+
+Appended rather than edited above, so the record shows what was claimed and when.
+
+## 1. The nan defect is repaired, and this receipt's number was right
+
+REGATE4: "The w=0.03 centre tau printed `nan` while a dipole was still reported; this weakens
+the script's 'across every computed opacity' presentation." Accepted, and it is the same class
+of defect as p1c's: **the table above tabulates τ = 0.930 at w = 0.03, a number the delivered
+script could not produce.**
+
+Cause: the terminal event sat at `N = 1` exactly, and at the centre epoch with w = 0.03 the
+integrator failed *on* that singular endpoint, so `exterior()` returned None. The dipole
+survived because it averages over epochs — **24 of 25 sampled epochs integrated fine, only the
+centre one failed** — so a complete-looking result sat next to a blank.
+
+Repair: terminate at `N = 1+ε` (`EPS_HZ`), as in p1c. Convergent, one decade of Δτ per decade
+of ε: 0.92960226 → **0.92958804** across ε from 1e-4 to 1e-10. Independent confirmation:
+`p1c_rigorous_sweep.py`'s separate 2-state integrator gives **0.928627** at the same w, 0.1%
+apart — the same level of agreement as every other row the two share.
+
+A new check now makes this failure mode unshippable: *"every row that reports a dipole ALSO has
+a finite tau (no nan hiding behind a result)"* — 6/6 rows finite. Run: exit 0, **6/6 checks**
+(was 5/5).
+
+**Scope of the repair, stated because it is not total.** The earliest epoch on the grid
+(η = 0.000011, the η → 0 limit) still fails to integrate at all 5 sampled w values. That is a
+grid-edge limit, not the singular-endpoint defect fixed here, and it is **not** claimed fixed.
+
+## 2. The Result table above is STALE — do not quote it
+
+It predates the source-temperature reconciliation of 2026-08-26 (the blind double established
+T ∝ ρ̄^[w/(1+w)], not the blackbody 1/4 regardless of w). The current script prints materially
+different numbers:
+
+| w | c₁ above | c₁ now | bound above | bound now |
+|---|---|---|---|---|
+| 0.999 | 3.844 | 0.82978 | 3.53e-4 | 1.6360e-3 |
+| 0.2456 | 3.441 | 0.50616 | 3.95e-4 | 2.6820e-3 |
+| 0.03 | 1.503 | 0.16327 | 9.04e-4 | 8.3149e-3 |
+
+**The headline "one part in 1107 at worst, 2832 at best" is withdrawn.** The current figures are
+one part in 120 at worst, 904 at best — roughly a factor of 9 weaker. Any citation of the older
+bound is a citation of pre-reconciliation numbers.
+
+## 3. Withdrawn language, per REGATE4's scope audit
+
+- **"The crossing sky is DARK", with the monopole quoted at −0.93** — withdrawn as stated. The
+  monopole is a function of the added source map, not of the pinned geometry, and the current
+  run gives −0.5283 at the junction-value closure. Its *magnitude* is closure-dependent.
+- **"the proper path transfer TIGHTENS the exclusion by a factor of 3–6"** — withdrawn. See §2.
+- **"P5's transmitted-background term is WRONG … Nothing comes through"** — this one is NOT
+  withdrawn but must be quoted in its narrowed scope. REGATE4 gave Claim 1 a CONDITIONAL PASS:
+  it holds for regular sources of finite local intensity and finite relative boost, plus the
+  causal no-crossing statement for the horizon itself. The receipt's unrestricted phrasing "for
+  a source that is not comoving" was never justified.
+
+## 4. Standing conditionality
+
+The script now carries a header banner: its source construction is an **added thermal closure**
+the published papers do not supply, so every dipole, bound and null here is a property of that
+assumed source map. REGATE4 separately withdrew null existence as a model-level claim. See
+`BHU_CLOSED_ROUTES.md` and `REGATE4_DISPOSITION.md`.

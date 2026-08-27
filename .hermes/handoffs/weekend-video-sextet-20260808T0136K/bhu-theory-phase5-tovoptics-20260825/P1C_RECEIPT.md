@@ -99,3 +99,52 @@ true only of the broken formulation, where the low-pressure extreme never comput
   false than this receipt originally showed.
 
 The physics conclusions of this receipt stand; one methodological claim inside it does not.
+
+---
+
+# REPAIR, 2026-08-27 — the high-w row now computes (REGATE4 required-repair 4)
+
+**The defect, in the gate's words.** REGATE4 re-ran this artifact and found it "returned `n/a`
+at w=0.999 even though `P1C_RECEIPT.md` tabulates 0.037 and says every table number is produced
+by the file. That high-w row is not reproducible from p1c as delivered." Accepted: the table
+above claimed a number the delivered script could not produce.
+
+**Cause, diagnosed rather than guessed.** Not physics and not the pressure guard. The terminal
+event was `N = 1` exactly, and at w → 1 the integrator stalls *on* that singular endpoint —
+scipy returns "Required step size is less than spacing between numbers". Every other row
+reached the horizon normally (w=0.9 terminates at r/r̄_s = 3.3674), so the failure is isolated
+to the endpoint at high w.
+
+**Repair.** τ is a convergent integral, so the event moved to `N = 1 + ε` (`EPS_HZ`), which
+never touches the singular point. This is a limit, not a tuning knob, and the script now
+demonstrates that on every run:
+
+| ε | τ(w=0.999) |
+|---|---|
+| 1e-4 | 0.03695819 |
+| 1e-6 | 0.03695822 |
+| 1e-8 | 0.03695822 |
+| 1e-10 | 0.03695822 |
+
+Successive difference at the tight end: **1.862e-10**. The recovered value is
+**τ = 0.036958**, which is the 0.037 this receipt tabulated.
+
+**Independent confirmation, outside this file.** `p6_path_transfer.py` uses a different 3-state
+integrator (it carries the metric function B alongside) and prints **τ_tot = 0.0370** at
+w = 0.999. Two different integrators, same number. Note the failures are *complementary*:
+p1c fails at w=0.999 and computes w=0.03; p6 prints `nan` at w=0.03 and computes w=0.999. Each
+covers the other's blind row, which is how the value was confirmed rather than assumed.
+
+**Rejected repair, recorded so it is not retried.** Reformulating in u = ln p̄ keeps p̄ > 0
+identically and looked like the principled fix. It is not: u → −∞ *at* the horizon, so the
+terminal event becomes unreachable and **every** row returns n/a. Log-space is the wrong
+transform for this endpoint. (My first attempt at the ε-probe also failed for an unrelated
+reason of my own making — I added an `N < 1` guard, which rejects the very event the
+integration is designed to cross.)
+
+**No regression.** Every row that previously computed is unchanged to the printed precision:
+5.79283e-02, 1.32085e-01, 3.07638e-01, 9.28627e-01, 2.59367e+00; A2 bracket low-w extreme
+2.07256e+01 and power-law interior optimum 1.66954e-01 also unchanged.
+
+**Run record.** `python3 p1c_rigorous_sweep.py` → exit 0, **10/10 checks** (was 7/7; three new
+checks cover the repaired row and its ε-convergence).

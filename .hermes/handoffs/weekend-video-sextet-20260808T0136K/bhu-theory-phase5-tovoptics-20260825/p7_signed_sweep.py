@@ -1,6 +1,21 @@
 #!/usr/bin/env python3
 """P7: the SIGNED adaptive sweep — locating the cancellation null and measuring its width.
 
+*** CLOSURE-CONDITIONAL EXPERIMENT — NOT A MODEL PREDICTION (REGATE4, 2026-08-27) ***
+This script executes p6's prefix and inherits its ADDED thermal closure (blackbody junction
+anchor plus the adiabatic depth law T ∝ rhobar^[w/(1+w)]). The epoch ruling invalidated that
+closure as a property of the pinned geometry, so the null located below at w = 0.0407786 is a
+property of THAT ASSUMED SOURCE MAP.
+REGATE4 went further and withdrew null EXISTENCE as a model-level claim, with a one-line
+counterexample: a source held constant across crossing epochs has zero source-gradient, the
+kinematic coefficient stays at +0.615301, and nothing ever crosses zero. Reproducing a root
+under two assumed source maps proves robustness within those maps, not existence over the
+unrestricted set of positive source fields.
+PERMITTED: "the two tested closures each contain a cancellation, at different locations."
+NOT PERMITTED: "the pinned model contains a silent configuration whose location alone is
+unknown." Both existence and location are closure-dependent.
+See BHU_CLOSED_ROUTES.md and REGATE4_DISPOSITION.md before citing anything here.
+
 REGATE3 finding 1: p6's dipole_and_bound() took abs() and sampled six w values, so
 "min(c1)>0" proved only that six absolute samples were positive. The gate then found a real
 sign change at w ~ 0.04078, where the exclusion vanishes entirely.
@@ -103,6 +118,13 @@ chk("outside the null the exclusion holds with a computed envelope, not a sample
     worst<0.05, f"worst bound outside = {worst:.3e}")
 print("\nHEADLINE, corrected: the exclusion holds across the authorised range EXCEPT in a narrow")
 print(f"neighbourhood around w = {roots[0]:.5f}, where the two terms cancel and NO bound exists.")
+print("\nCONDITIONALITY (REGATE4, 2026-08-27) — this headline is NOT a statement about the model:")
+print("  Under THIS closure a cancellation sits at the w above. Whether the pinned model has any")
+print("  silent configuration is NOT ESTABLISHED and cannot be established from the published")
+print("  papers, which never specify the exterior's temperature. A source held constant across")
+print(f"  crossing epochs has zero source-gradient, leaves the kinematic term at +0.615301, and")
+print("  never crosses zero. Say 'the two tested closures each contain a cancellation, at")
+print("  different locations' — never 'the model contains a silent configuration'.")
 
 nf=sum(1 for _,ok,_ in checks if not ok)
 print(f"\n{len(checks)-nf}/{len(checks)} checks passed")

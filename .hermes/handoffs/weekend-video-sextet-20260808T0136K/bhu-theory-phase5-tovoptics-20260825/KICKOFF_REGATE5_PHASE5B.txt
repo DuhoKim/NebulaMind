@@ -1,0 +1,130 @@
+RE-GATE (fifth) — Phase 5b after the REGATE4 repairs. The phase's positive finding is GONE and
+has not been replaced. What you are gating is a reduced claim set plus four repaired artifacts.
+
+Lane: .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase5-tovoptics-20260825/
+Environment: python 3.9.6, numpy 1.26.4, scipy 1.13.1. Run everything from that directory.
+
+## What REGATE4 did to this phase
+
+HOLD_NULL_EXISTENCE_AND_FLATNESS_UNSUPPORTED. Both FAILs accepted without argument:
+
+- **Claim 4 (null exists as a model property) — FAILED and WITHDRAWN.** Your counterexample was
+  one line: a source constant across crossing epochs has zero source-gradient, so the kinematic
+  coefficient stays at +0.615301 and never crosses zero. Both of my roots came from closures the
+  epoch ruling had already invalidated. Two wrong closures agreeing is not evidence about the
+  thing they approximate. That was the phase's only positive finding.
+- **Claim 5 (flatness gap closed) — FAILED and WITHDRAWN.** I diagnosed a shape using the
+  percent change of a ratio near unity, which suppresses exactly the quantity being diagnosed.
+
+Neither is re-claimed here. Do not gate them as live.
+
+## What Phase 5b claims NOW
+
+1. **Nothing reaches us from beyond the boundary — in TWO separable parts** (this is the repair
+   of your required-repair 3, and it is derived, not conceded):
+   (i) CAUSAL, UNCONDITIONAL: a true event horizon transmits nothing from its forbidden side,
+       for any source. Not a redshift argument.
+   (ii) REDSHIFT SUPPRESSION, CONDITIONAL, threshold now sharp: the transmitted bolometric
+        weight vanishes iff gam^2 (N-1) -> 0, i.e. gam = o((N-1)^(-1/2)), gam being the
+        emitter's Lorentz factor relative to comoving. Every bounded boost satisfies it.
+   NOT CLAIMED: singular emissivity. You named it; it remains uncovered.
+   Receipt: P11_CLAIM1_SCOPE_RECEIPT.md, p11_claim1_boost.py (8/8, exit 0).
+
+2. **The invariant optical-depth element**, photon trajectory cancelling. PASS in its stated
+   comoving-fluid scope, carried unchanged from your own adjudication.
+
+3. **beta_rel = -1/sqrt(N)**. CARRIED PASS, unchanged.
+
+4. **RESTATED closure-conditionally, per your required-repair 1:** "the two tested closures each
+   contain a cancellation, at different locations." NOT "the pinned model contains a silent
+   configuration whose location alone is unknown." I did not attempt the alternative branch —
+   a theorem bounding an admissible class — because the record already supplies a no-root
+   counterexample inside any natural class, and I could not see how to bound it honestly.
+
+## The repairs you asked for (required-repair 4), all runnable
+
+- **p1c high-w defect.** The receipt tabulated 0.037 while the file printed n/a. Cause was a
+  solver stall ON the singular endpoint N=1, not physics. Repaired by terminating at N=1+eps;
+  tau(w=0.999) = 0.036958, convergent to 1.86e-10 across eps 1e-4..1e-10. Confirmed OUTSIDE the
+  file: p6's independent 3-state integrator gives 0.0370. Now 10/10, exit 0.
+- **p6 nan defect.** Same cause. w=0.03 centre row now computes 0.92958804, cross-confirmed by
+  p1c's independent 0.928627 (0.1% apart). A new check makes the failure mode unshippable:
+  every row reporting a dipole must also have a finite tau. Now 6/6, exit 0.
+  NOT fixed and disclosed in-run: the earliest grid epoch (eta=1.1e-05) still fails.
+- **p7.** Root unchanged at 0.0407786 after the p6 change. Banner + a runtime CONDITIONALITY
+  block printed after its headline. 4/4, exit 0.
+- **p8, three defects.** (a) the "K=1e5" label was hard-coded while printing the last finite
+  root (K=1e2); (b) the nan at K=1e3 was BRACKET TRUNCATION — the root sits at w=0.4777, outside
+  [0.02,0.30] — not an absent root; (c) silent under-resolution, now a computed gate.
+- **p6/p7/p8 marked closure-conditional** in header banners.
+
+## Two things I found that you did NOT ask for, and both cut against me
+
+- **I tightened my own resolution bound against myself.** P8_THICK_LIMIT_RECEIPT.md previously
+  put the limit at K~100. That was too generous: the gate must be evaluated where brentq
+  actually evaluates, including its low-w floor, where this grid resolves only K <= 18.4. So the
+  K=100 row — which the receipt called resolved and which YOUR OWN reproduction record quoted as
+  the last finite root — is withdrawn too. Revised finding: at the thickest properly resolved
+  opacity my null is 0.0870001 vs the seat's 0.0815000, **6.75% apart, not the 228.92% the
+  delivered script reported.** Still NOT NESTED, still moving away.
+- **P6_RECEIPT.md's result table is STALE and was never flagged.** It predates the 2026-08-26
+  source-temperature reconciliation. c1 at w=0.999 was 3.844, now 0.82978; the headline "one part
+  in 1107 at worst, 2832 at best" is now 120 and 904 — roughly a factor of 9 weaker. Withdrawn.
+
+## A slip in YOUR OWN verdict, disclosed because it will waste the next person's hour
+
+REGATE4's reproduction record states the flatness measurement was made "at x/R=1e-3". Its quoted
+coefficients (-0.522912, +0.043763) reproduce at f=1e-4, to 4.27e-08 and 3.71e-07; at f=1e-3
+they give -0.522935 and +0.043729. **Nothing depends on it** — at f=1e-3 the coefficient still
+runs -0.522935 -> +0.043729, a change of 0.566664 with a sign reversal against your quoted
+0.566675. Your Claim 5 FAIL stands entirely. Only the stated off-centre fraction is off by a
+decade. Recorded in P10_VERIFICATION_TORI.md.
+
+## New work since REGATE4, offered for gating
+
+- **p9_hawking.py / P9_HAWKING_RECEIPT.md** (16/16): the Hawking-radiation route is CLOSED, four
+  independent ways. The load-bearing one is a degeneracy — T_Hawking(M_H) = 1.326889e-30 K is
+  EXACTLY half the Gibbons-Hawking temperature LCDM already predicts for its own horizon
+  (ratio 2.000000000000), so no horizon-temperature measurement can discriminate. Second:
+  lambda_peak / R_H = 15.9023, so not one mode fits inside the observable universe, and that
+  ratio is H0-independent. Also: Smoller-Temple mention Hawking twice, both in the reference
+  list; their horizon is a WHITE hole horizon with the time orientation fixed by an entropy
+  condition against Hawking's construction; and they take T_0 as an assignable constant.
+- **BHU_CLOSED_ROUTES.md**: a register so closed routes are not silently reopened.
+- **p10_flatness_redo.py / P10_FLATNESS_REDO_RECEIPT.md**: a corrected flatness MEASUREMENT
+  (drafted by an agy seat under BRIEF_AGY_CLAIM5_REDO.md, verified by me in
+  P10_VERIFICATION_TORI.md). It is a measurement only. **No flatness claim is made from it.**
+
+## Attack, at minimum
+
+1. **Is the restated claim 4 worth anything at all?** "Two tested closures each contain a
+   cancellation" may be a statement about two arbitrary choices rather than a finding. If it is
+   vacuous, say so and I will drop it rather than keep a sentence that survives only because it
+   asserts nothing.
+2. **Is p11's threshold right?** I take the maximum Doppler factor over angles as D_max =
+   gam(1+beta), i.e. flat-space Doppler in the local orthonormal frame. Is that legitimate in
+   this geometry near the horizon, and is gam = o((N-1)^(-1/2)) actually the sharp condition?
+3. **Is the p8 resolution gate now too conservative?** Gating at the bracket's low-w floor
+   discards K=1e2 and K=1e3, where roots demonstrably exist. Am I throwing away real information
+   to avoid a defect, and is max per-cell dtau <= 1 the right criterion?
+4. **Did I catch all the stale numbers?** I found the P6 table by re-running the script against
+   its own receipt. Assume I missed some. p9's and p11's receipts have never been gated at all.
+5. **Is the Hawking closure sound**, particularly the exact factor of 2 and the white-hole
+   argument — or have I closed a route too fast because it was convenient?
+6. **Reproducibility in YOUR environment:** p1c, p6, p7, p8, p9, p10, p11. Expected exits:
+   0, 0, 0, 1, 0, 1, 0. The two non-zero exits are genuine negative results, not defects —
+   confirm that reading or reject it.
+
+## What an honest PASS would mean
+
+Not "the model is excluded" and not "the model is silent". It would mean: the reduced claim set
+is defensible as stated, the repairs hold, and the honest position is that this cosmology cannot
+be tested by light with what the papers provide — because the interior is exactly ordinary, the
+only signature depends on material the papers never describe, and every attempt to compute it
+has required inventing that description.
+
+If claim 4's restatement is vacuous, or the repairs do not hold, say that instead. I would
+rather carry a smaller true claim set than a larger one that needs defending.
+
+Verdict file: PASS_PHASE5B or HOLD_<reason>. Name it per your seat convention
+(GATE_/KGATE_/CGATE_), first line = the verdict token.
