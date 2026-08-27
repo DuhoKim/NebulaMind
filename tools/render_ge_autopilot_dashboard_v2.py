@@ -1721,6 +1721,25 @@ def classification_aware_provider_headline(
     return None
 
 
+def _status_for_freshness(status: str, freshness: Dict[str, Any]) -> str:
+    """Strip a Live claim from a card whose own freshness says otherwise.
+
+    Kept separate from the age headline on purpose: the headline says how old,
+    this says whether anyone is still asking. A reader takes the status line as
+    the claim and the number as the detail, so a stale value under a Live banner
+    reads as fresh no matter what the number says.
+    """
+    cls = freshness.get("freshness_classification")
+    if cls not in ("STALE HISTORICAL OBSERVATION", "RETAINED — LAST VISIBLE, AGE UNKNOWN",
+                   "UNAVAILABLE / UNKNOWN"):
+        return status
+    age = freshness.get("source_age_seconds")
+    when = f", last seen {age_label(int(age))} ago" if isinstance(age, (int, float)) else ""
+    # drop the word Live wherever the monitor asserted it
+    cleaned = re.sub(r"^Live\s+", "", status).strip()
+    return f"NOT REFRESHING — {cleaned}{when}"
+
+
 def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     provider = gauge.get("provider") or "Provider"
     detail = _tidy_detail(provider, gauge.get("detail") or "")
@@ -1757,7 +1776,17 @@ def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     card = {
         "name": provider,
         "kind": gauge.get("kind") or "public cockpit realtime feed",
-        "status": gauge.get("status") or "observed",
+        # A card must not call itself Live above a value that is days old. The
+        # monitor labels these "Live slash-command refresh" / "Live pane scan
+        # from latest visible /usage" on BOTH branches — including the branch
+        # that means "we did not refresh, this is whatever the pane last
+        # showed". So the Antigravity card read "Live slash-command refresh"
+        # over "55h 27m ago", and Codex "Live pane scan" over 70 hours.
+        # Duho reported this contradiction on 2026-08-14; that fix corrected the
+        # headline and left the status line asserting Live, which is the half
+        # that reads first. Freshness is already computed here, so the override
+        # belongs here and covers every provider rather than two call sites.
+        "status": _status_for_freshness(gauge.get("status") or "observed", freshness),
         "big": big,
         "percent": pct,
         "percent_label": head_label,
