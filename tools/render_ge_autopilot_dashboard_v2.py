@@ -1765,6 +1765,21 @@ def _status_for_freshness(status: str, freshness: Dict[str, Any]) -> str:
     return f"NOT REFRESHING — {cleaned}{when}"
 
 
+def _kind_for_freshness(kind: str, freshness: Dict[str, Any]) -> str:
+    """The word 'live' also lives in the card KIND, and I missed it once.
+
+    Fixing the status line left "NOT REFRESHING — ... · live visible Antigravity
+    /usage quota signal" on the page: one clause retracting the freshness claim
+    and the next reasserting it. Duho pasted the card back with the word still
+    there. Strip it wherever the card is not actually live.
+    """
+    cls = freshness.get("freshness_classification")
+    if cls in ("STALE HISTORICAL OBSERVATION", "RETAINED — LAST VISIBLE, AGE UNKNOWN",
+               "UNAVAILABLE / UNKNOWN"):
+        return re.sub(r"\blive\s+", "", kind, flags=re.I).strip()
+    return kind
+
+
 def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     provider = gauge.get("provider") or "Provider"
     detail = _tidy_detail(provider, gauge.get("detail") or "")
@@ -1800,7 +1815,7 @@ def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     )
     card = {
         "name": provider,
-        "kind": gauge.get("kind") or "public cockpit realtime feed",
+        "kind": _kind_for_freshness(str(gauge.get("kind") or ""), freshness) or "public cockpit realtime feed",
         # A card must not call itself Live above a value that is days old. The
         # monitor labels these "Live slash-command refresh" / "Live pane scan
         # from latest visible /usage" on BOTH branches — including the branch
