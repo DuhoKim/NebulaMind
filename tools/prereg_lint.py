@@ -51,13 +51,50 @@ def check_slots_exist(text, rows, out):
                     f"named in prose with no §7 row: {', '.join(missing)}"))
 
 
+def _is_history(line):
+    """True if this line records what an earlier version said, rather than asserting current state.
+
+    V16 folded §6 and wrote a record of the seams the referees had raised. One of those sentences
+    quotes V15's stale class-P list verbatim — and this check flagged it, reporting a defect in the
+    document's account of a defect. `check_lock_identity` already skips blockquotes for the same
+    reason; the fold record is the same kind of text wearing different punctuation.
+
+    A block is history if it cites another version by number, or sits in a blockquote.
+
+    Scoped to the BLOCK, not the line: the fold record's citation ("V15 lines 595–600 said …") and
+    the slot name it quotes land on different physical lines because the list item wraps. A
+    line-scoped check splits the two and reports the quotation as an assertion — which is how the
+    first attempt at this fix failed.
+    """
+    return line.lstrip().startswith(">") or re.search(r"\bV\d+\s+lines?\b", line) is not None
+
+
+def _blocks(text):
+    """Paragraph-ish units: consecutive non-blank lines, joined. Wrapped list items stay whole."""
+    buf, out = [], []
+    for line in text.splitlines():
+        if line.strip():
+            buf.append(line)
+        elif buf:
+            out.append("\n".join(buf))
+            buf = []
+    if buf:
+        out.append("\n".join(buf))
+    return out
+
+
 def check_class_agreement(text, rows, out):
     """A slot the prose calls a class-P prerequisite must not sit in Class E."""
-    for slot, cls in rows.items():
-        claim = re.search(rf"{re.escape(slot)}[^.\n]{{0,120}}class-P", text)
-        if claim and cls == "E":
-            out.append(("slot-class-disagreement",
-                        f"{slot} is called a class-P prerequisite in prose and sits in Class E"))
+    for block in _blocks(text):
+        if any(_is_history(l) for l in block.splitlines()):
+            continue
+        flat = " ".join(block.split())
+        for slot, cls in rows.items():
+            if cls != "E":
+                continue
+            if re.search(rf"{re.escape(slot)}[^.]{{0,120}}class-P", flat):
+                out.append(("slot-class-disagreement",
+                            f"{slot} is called a class-P prerequisite in prose and sits in Class E"))
 
 
 def check_lock_identity(text, out):
