@@ -203,6 +203,24 @@ def build_operator_answers(source: Dict[str, Any], septet: Dict[str, Any],
 
 
 
+# Referees say "BLOCKING" both to raise one and to say there is none. Counting
+# the bare token scored "NO BLOCKING FINDING" and "One LOW / NON-BLOCKING note"
+# as two blockers, and on 2026-08-27 that made a CLEAR codex report render as
+# blocking — the worst direction for this number to be wrong in, because the
+# whole point of the row is to say whether the draft can be frozen.
+#
+# Uppercase-only is deliberate and inherited: referees SHOUT the verdict token,
+# while prose says "blocking" in passing. Matching case-insensitively would
+# trade this false positive for a larger one.
+_BLOCK_TOKEN = re.compile(r"\bBLOCK(?:ING|ER)S?\b")
+_BLOCK_NEGATED = re.compile(r"\b(?:NO|NON|NOT|ZERO)\b[\s\-‐-―]*BLOCK(?:ING|ER)S?\b")
+
+
+def _blocking_count(text: str) -> int:
+    """Blocking findings actually raised, net of the negated forms."""
+    return max(0, len(_BLOCK_TOKEN.findall(text)) - len(_BLOCK_NEGATED.findall(text)))
+
+
 def _pin_mismatches(d: "Path") -> List[Dict[str, Any]]:
     """Frozen artifacts whose bytes no longer match the hash they were frozen at.
 
@@ -685,8 +703,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 seats_t.append(f"{seat}:{token}")
                 if verdict_t is None or token != "reported":
                     verdict_t = token
-            blockers_t = sum(len(re.findall(r"BLOCKING|BLOCKER", f.read_text(errors="ignore")))
-                             for f in tg)
+            blockers_t = sum(_blocking_count(f.read_text(errors="ignore")) for f in tg)
             out.append({
                 "lane": "DESI successor — PREREGISTRATION TEXT", "who": "Hwao",
                 "detail": (f"draft V{cur_ver}: {blockers_t} blocking finding(s) across "
