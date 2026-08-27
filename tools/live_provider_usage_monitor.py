@@ -305,10 +305,38 @@ def choose_pane(panes: list[dict[str, str]], kind: str) -> dict[str, str] | None
     return None
 
 
-def send_visible_command(pane_id: str, command: str, wait_seconds: float) -> str:
-    run(['tmux', 'send-keys', '-t', pane_id, command, 'C-m'])
-    time.sleep(wait_seconds)
-    text = capture_pane(pane_id, 220)
+def send_visible_command(pane_id: str, command: str, wait_seconds: float,
+                         ready: str | None = None) -> str:
+    """Send a visible slash command and wait for its OUTPUT, not for a clock.
+
+    The fixed sleep was 4s for /status. Codex takes about 8s to render it, so
+    every scheduled pass captured a half-drawn pane, parsed nothing, and left the
+    card reading three days stale — while the command itself worked perfectly
+    when run by hand. A fixed wait is wrong in both directions: too short misses
+    a slow render, too long is paid on every pass forever.
+
+    With `ready`, poll until that marker appears and return the moment it does;
+    wait_seconds becomes the deadline rather than the cost.
+    """
+    # Text and Enter must be SEPARATE sends with a pause between them. Sending
+    # them in one call left "/status" sitting unsubmitted in the input box, so
+    # the pane never rendered anything and the card sat three days stale. The
+    # timeout was never the problem — the command was never sent. -l keeps tmux
+    # from parsing the payload as key names.
+    run(['tmux', 'send-keys', '-t', pane_id, '-l', command])
+    time.sleep(0.4)
+    run(['tmux', 'send-keys', '-t', pane_id, 'Enter'])
+    text = ''
+    if ready:
+        deadline = time.time() + max(wait_seconds, 1.0)
+        while time.time() < deadline:
+            time.sleep(0.4)
+            text = capture_pane(pane_id, 220)
+            if re.search(ready, text, re.I):
+                break
+    else:
+        time.sleep(wait_seconds)
+        text = capture_pane(pane_id, 220)
     if command == '/usage':
         # Capture while the panel is visible, then return the pane to idle.
         run(['tmux', 'send-keys', '-t', pane_id, 'Escape'])
@@ -964,7 +992,24 @@ def collect(refresh_slash: bool, local_refresh_seconds: int | None, slash_refres
                 slash_sources['agy_pane'] = agy_pane['pane_id']
         codex_pane = choose_pane(panes, 'codex')
         if codex_pane:
-            text = send_visible_command(codex_pane['pane_id'], '/status', 4)
+            # Codex /status is a TWO-CALL protocol: the first call answers
+            # "Limits: refresh requested; run /status again shortly." and only
+            # the second returns numbers. Every scheduled pass made one call,
+            # got the placeholder, parsed nothing, and left the card stale for
+            # three days — while running it by hand looked fine, because by then
+            # I had always run it twice. Not a timeout and not a bad send.
+            text = send_visible_command(codex_pane['pane_id'], '/status', 20,
+                                        ready=r'weekly limit|5h limit|refresh requested')
+            # "run /status again SHORTLY" — the refresh lands server-side after
+            # a beat, so an immediate second call gets the placeholder too. Retry
+            # with a pause, a bounded number of times, and stop as soon as real
+            # numbers appear.
+            for _ in range(3):
+                if not re.search(r'refresh requested', text, re.I):
+                    break
+                time.sleep(6)
+                text = send_visible_command(codex_pane['pane_id'], '/status', 20,
+                                            ready=r'weekly limit|5h limit|refresh requested')
             codex = parse_codex_status(text)
             if codex:
                 slash_sources['codex_refreshed'] = True
