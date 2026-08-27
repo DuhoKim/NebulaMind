@@ -1,0 +1,11 @@
+I have drafted the fourth pass of Section 6 and saved it to the requested path:
+[SECTION6_DRAFT_AGY_R4.md](file:///Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/SECTION6_DRAFT_AGY_R4.md)
+
+### Key Actions Completed
+* **Finding 1 (Canonical authorization):** Repaired by explicitly defining the canonical opening-authorization body and signature envelope, along with its specific fields (BS-L digest, store identities, ceremony ID, P7 phase, signer, schema). Added verification in Row O, which emits the consumed result in an unblinding receipt.
+* **Finding 2 (Final checkpoint receipt):** Repaired by carrying the genuinely final post-unblinding checkpoint in the named unblinding receipt, linking its chain to BS-L, and defining it in `SLOT_SCHEMA`.
+* **Finding 3 (Sign-blind recompute):** Repaired by splitting Row D's emission into measurement receipts (containing signs) and a separate, authenticated acceptance-evidence projection containing no signs/amplitudes. Row E reads only the projection, establishing sign-blindness by construction.
+* **Finding 4 (Archive transition rule):** Repaired by defining the authenticated seal-state schema and an explicit allowed-transition invariant (identity and intact-state equality) spanning BS-2k → BS-2f → BS-L, verified by `verify_lock()`.
+* **Finding 5 (Cutout completion & BS-5f boundary):** Repaired by adding authenticated read paths for the cutout completion receipt in Rows D and E. Added BS-5f explicitly to the permitted aggregate surface in the Disclosure rule.
+* **Finding 6 (Void consequence):** Repaired by scoping the void consequence up to the unblinding phase (P7) across Clause 5 and Rows K, L, and M, ensuring that unauthorized pre-unblinding accesses trigger voidance consistently with the ban's duration.
+* **Part 2 Cross-Section Drift:** Fixed the class-P count from twelve to fourteen, and added the new DESIGN slots (BS-2a, BS-2k) to the text to prevent inconsistency with the table migration.
