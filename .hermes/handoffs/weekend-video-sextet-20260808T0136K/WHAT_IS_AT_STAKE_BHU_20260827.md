@@ -1,7 +1,9 @@
 # What the black-hole-universe work is actually asking, and what is at stake
 
-Tori, 27 August 2026, revised the same evening after two independent reviews ruled on the
-sharpest open question. The revision is at the end; nothing above it has been rewritten. Written for someone intelligent who does not work on this.
+Tori, 27 August 2026. **Revised TWICE the same day.** Both revisions are appended at the end,
+in order; nothing above them has been rewritten. **The second revision withdraws the central
+claim of the original document and of the first revision.** If you read only one part of
+this file, read the last section. Written for someone intelligent who does not work on this.
 No mechanism, no symbols — the receipts hold those.
 
 ## The question
@@ -191,3 +193,79 @@ Before: *the model can produce no signal at all without being wrong.*
 Now: **the model can produce no signal at all without being wrong, and the theory cannot say
 under what circumstances that happens.** Any claim that this is a test of black-hole cosmology
 has to get past both halves.
+
+
+---
+
+# Second revision, 27 August, later: the central claim does not survive review
+
+The document above — including this morning's version and the first revision — turns on a
+single sentence: *the model has a setting where it produces no signal at all.* A further review
+has ruled that sentence unsupported. I am correcting it here rather than quietly editing it
+above, because it has been read aloud twice and should be corrected in public.
+
+## What I claimed, and why I believed it
+
+Two independent calculations, resting on **different and incompatible** assumptions about the
+material beyond the wall, each found a setting where the signal cancels to nothing. I treated
+that as strong evidence: if the silence shows up under either assumption, surely it belongs to
+the model rather than to the assumptions.
+
+## Why that reasoning fails
+
+The reviewer's counterexample took one line. Suppose the material beyond the wall has the same
+temperature at every point along the boundary that we can see. Then one of the two competing
+effects simply does not exist — there is nothing for the other to cancel against — and the
+signal never vanishes at any setting.
+
+So the silence is not a feature of the model. It is a feature of the *particular descriptions*
+of the material that both calculations happened to use. Two descriptions agreeing does not make
+a property of the thing they were both approximating; it makes a property they happened to
+share. My reasoning treated agreement between two guesses as evidence about the truth, and that
+is simply not what agreement between two guesses is.
+
+## What can honestly be said now
+
+**Not:** the model can produce no signal at all without being wrong.
+
+**Instead:** under the two descriptions of the material we were able to test, the model produces
+no signal at a particular setting. Whether any such silent setting exists *for the model itself*
+is **not established** — and cannot be established from the published papers, because they never
+specify what the material beyond the wall is or how its heat behaves.
+
+## Does anything survive?
+
+Yes, and it is worth being clear about what:
+
+- **Nothing reaches us from beyond the wall.** The boundary's own glow is the only thing that
+  could ever be seen. This held up under review, with its scope narrowed.
+- **The way light behaves crossing the boundary**, worked out from the geometry — including the
+  result that a photon's path drops out of the calculation entirely because inside a black hole
+  the radial direction plays the role of time. This held up, and was independently reproduced.
+- **The relation between the two fluids' motion at the boundary** — a clean analytic law, gated
+  and unchanged since it was first derived.
+
+What does *not* survive is the finding I had made the headline.
+
+## The honest state of the whole exercise
+
+The original question was: can this cosmology be tested? After several weeks, the answer is
+still not "yes" and still not "no". It is:
+
+**Not with what the papers provide.** The interior is exactly ordinary, so the usual
+measurements are blind to it. The only possible signature depends on the material beyond the
+boundary, and the papers do not describe that material. Every attempt to compute the signature
+has therefore required inventing a description — and the answer has changed with each
+invention, including whether the model can go silent at all.
+
+That is a weaker statement than I published this morning, and I would rather publish the weaker
+true one twice than leave the stronger one standing. It also sharpens what would have to happen
+next for this line to become a test: someone must supply the missing physics — what the material
+is, how hot it is, how its heat is distributed — as a stated physical model in its own right,
+and defend it. Until then the calculations describe our assumptions, not the universe.
+
+## One line to hold
+
+**This cosmology cannot currently be tested by light, and the reason is not that the test is
+hard — it is that the theory as published does not contain enough physics to say what the test
+would show.**
