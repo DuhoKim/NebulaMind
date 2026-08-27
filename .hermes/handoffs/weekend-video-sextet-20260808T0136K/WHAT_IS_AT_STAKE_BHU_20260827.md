@@ -1,6 +1,7 @@
 # What the black-hole-universe work is actually asking, and what is at stake
 
-Tori, 27 August 2026. Written for someone intelligent who does not work on this.
+Tori, 27 August 2026, revised the same evening after two independent reviews ruled on the
+sharpest open question. The revision is at the end; nothing above it has been rewritten. Written for someone intelligent who does not work on this.
 No mechanism, no symbols — the receipts hold those.
 
 ## The question
@@ -118,3 +119,75 @@ This document reports the position as it stands, not as it might be hoped to sta
 neighbourhood where the signal vanishes turns out to be robust, the honest headline for this
 line of work is "untestable by light, and here is exactly why" — and I would write that
 headline as readily as the other one.*
+
+
+---
+
+# Revision, 27 August, evening: the hole is deeper than the document above says
+
+Everything above stands. One thing has got worse, and it is the thing the document turns on.
+
+## What I asked two reviewers
+
+The passage above says there is a setting where the two effects cancel exactly and the model
+produces no signal at all. Naturally the next question is: **which** setting? Where, exactly,
+does the model go silent? I had one answer from my own calculation and a second, different
+answer from an independent one, and I asked two reviewers to decide between them.
+
+## What they said
+
+They disagreed with each other, and the disagreement resolved against **both** answers.
+
+The first ruled that the rival construction was **geometrically forbidden**. Varying which
+direction you look sweeps across a family of *different* pieces of matter on the boundary, not
+one piece of matter evolving through time — and the rule that construction used only applies to
+a single piece of matter following its own history.
+
+The second ruled that **the published theory does not answer the question at all**. The papers
+specify how the pressure of the material beyond the wall relates to its density. They never
+specify its *temperature* — not its composition, not its heat content, none of it. And my own
+answer, it pointed out, quietly assumed the material was pure radiation, which would fix a
+property of that material to a value contradicted by the very settings where the silence
+occurs. I had been caught making that same assumption once before, fixed it in one place, and
+left it standing in another.
+
+## So the honest position, stated plainly
+
+**The model has a setting where it produces no signal at all — and the theory as published
+cannot say which setting that is.**
+
+Not "we have not calculated it yet". The information needed is absent from the source material.
+To locate the silent setting you would have to *add* physics the original papers never wrote
+down — what the material beyond the wall is made of, how hot it is, how its heat is distributed
+— and then the answer would be a property of what you added, not of the model being tested.
+
+## Why this is a result rather than a disappointment
+
+It moves the finding from "here is a gap in the test" to something sharper:
+
+**This cosmology contains a blind spot, and cannot tell you where its blind spot is.**
+
+A test you cannot perform is a nuisance. A theory that cannot specify the circumstances under
+which it becomes untestable is a different and more interesting object — and demonstrating that
+takes more work than confirming or refuting would have.
+
+## What survives, and what I have taken back
+
+- **Survives, and is stronger than before:** the silence itself. Two calculations, resting on
+  *different* and *incompatible* assumptions about the material beyond the wall, both produced
+  the cancellation. That it appears under either set of assumptions is better evidence for the
+  phenomenon than agreement on a single number would have been.
+- **Survives:** that nothing reaches us from beyond the wall, and that the wall's own glow is
+  the only thing we could ever see. Both calculations agree.
+- **Taken back:** every claim about *where* the silence falls, mine included. They were not
+  merely unreconciled; they are now unsupported.
+- **Taken back:** part of my own treatment of how the wall's temperature varies across the sky,
+  for assuming a composition the model excludes at the settings that matter.
+
+## The line to hold if anyone quotes this work
+
+Before: *the model can produce no signal at all without being wrong.*
+
+Now: **the model can produce no signal at all without being wrong, and the theory cannot say
+under what circumstances that happens.** Any claim that this is a test of black-hole cosmology
+has to get past both halves.
