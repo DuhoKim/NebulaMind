@@ -604,26 +604,50 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
     # closure lane because those reports say "brick" and "closure" often enough
     # to score as mechanism — right words, wrong artifact.
     if sb.is_dir() and (sb / "gates").is_dir():
-        tg = sorted((sb / "gates").glob("PREREG_TEXT_*.md"),
-                    key=lambda f: f.stat().st_mtime, reverse=True)
+        tg_all = sorted((sb / "gates").glob("PREREG_TEXT_*.md"),
+                        key=lambda f: f.stat().st_mtime, reverse=True)
+        # Only the CURRENT draft's reviews. The first cut summed every finding
+        # across every version ever refereed — 43 blockers spanning v10 to v14,
+        # most of them already repaired — and listed eleven seats from four
+        # drafts. That is a history, not a state, and it reads as far worse than
+        # the truth. Version comes from the filename (PREREG_TEXT_V12_CODEX);
+        # the un-versioned originals are v10.
+        def _ver(f):
+            m = re.search(r"_V(\d+)_", f.name)
+            return int(m.group(1)) if m else 10
+        tg = [f for f in tg_all if _ver(f) == max((_ver(x) for x in tg_all), default=10)] \
+            if tg_all else []
         if tg:
+            cur_ver = _ver(tg[0])
             seats_t: List[str] = []
             verdict_t = None
             for f in tg:
-                seat = f.stem.replace("PREREG_TEXT_", "").lower()
-                head = f.read_text(errors="ignore")[:1200]
+                seat = re.sub(r"^PREREG_TEXT_(V\d+_)?", "", f.stem).lower()
+                head = f.read_text(errors="ignore")[:2000]
                 m = re.search(r"\*\*(NOT CLEAR|CLEAR|REFUSED)\*\*", head)
-                token = m.group(1) if m else ("not clear" in head.lower()
-                                              and "NOT CLEAR" or "reported")
+                if m:
+                    token = m.group(1)
+                # Codex writes its refusal as prose under "Verdict basis" rather
+                # than a bold token — "not an executable freeze promise", "not
+                # yet a promise that can be frozen". Reading only the bold form
+                # left every codex row saying "reported", which is not a verdict
+                # and hides a refusal behind a shrug.
+                elif re.search(r"not (yet )?(an? )?(executable )?"
+                               r"(freeze )?promise|not (yet )?freezable|"
+                               r"\bNOT CLEAR\b", head, re.I):
+                    token = "NOT CLEAR"
+                else:
+                    token = "reported"
                 seats_t.append(f"{seat}:{token}")
-                if verdict_t is None:
+                if verdict_t is None or token != "reported":
                     verdict_t = token
             blockers_t = sum(len(re.findall(r"BLOCKING|BLOCKER", f.read_text(errors="ignore")))
                              for f in tg)
             out.append({
                 "lane": "DESI successor — PREREGISTRATION TEXT", "who": "Hwao",
-                "detail": (f"first-ever text referee; {blockers_t} blocking findings raised"
-                           if blockers_t else tg[0].name),
+                "detail": (f"draft V{cur_ver}: {blockers_t} blocking finding(s) across "
+                           f"{len(tg)} referee(s)" if blockers_t
+                           else f"draft V{cur_ver} refereed, no blockers"),
                 "latest_gate": tg[0].name,
                 "verdict": verdict_t,
                 "gate_age_h": round((time.time() - tg[0].stat().st_mtime) / 3600.0, 1),
