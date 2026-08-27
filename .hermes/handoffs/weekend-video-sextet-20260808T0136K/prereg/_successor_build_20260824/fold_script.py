@@ -1,34 +1,37 @@
-# FOLD BRIEF — produce V16: V15 with §6 replaced and Part 2's conforming edits applied.
+import sys
 
-**Assembly task, not a drafting task.** Every substantive decision has been refereed. Place it
-correctly and change nothing else.
+with open("PREREG_SUCCESSOR_DRAFT_V15_20260827.md", "r") as f:
+    v15_lines = f.readlines()
 
-## Inputs, pinned — verify both before you start and record what you read
+with open("gates/SECTION6_DRAFT_AGY_R15.md", "r") as f:
+    r15_lines = f.readlines()
 
-- **Base:** `../PREREG_SUCCESSOR_DRAFT_V15_20260827.md`, sha256
-  `efb27c619c063f8f82c36a7930cf883c43823b8d17d0b4e63eb04d841035fb28`, 699 lines.
-- **Section:** `SECTION6_DRAFT_AGY_R15.md`, sha256
-  `d2c388a451d076f880c879e888ee7901331adc62142245a285b8ff932d67f01a`.
+# Extract Part 1 of R15
+start_idx = -1
+end_idx = -1
+for i, line in enumerate(r15_lines):
+    if line.startswith("## §6 Conduct"):
+        start_idx = i
+    if line.startswith("---") and start_idx != -1 and end_idx == -1:
+        end_idx = i
 
-## The fold
+if end_idx == -1:
+    end_idx = len(r15_lines)
 
-1. **Replace V15 lines 461–590** — `## §6 Conduct` through the last line before `## §7 Binding
-   slots` — with **Part 1 of R15**: the complete §6 replacement, §6.1 through §6.3, the lifecycle
-   table, all ten clauses.
-2. **Apply every conforming edit in R15's Part 2** to the sections it names — §2.5, §2.7, §4, §5, §7,
-   §10 and the code-side inventory. Part 2 exists to enumerate exactly this. Apply it literally.
-3. **Do not carry Parts 3, 4 or 5 into the preregistration.** They are drafting apparatus and stay in
-   the gates directory.
+part1_lines = r15_lines[start_idx:end_idx]
 
-## The fold record — a new subsection at the end of §6, in the document's own text
+# Remove trailing empty lines from part1_lines
+while part1_lines and part1_lines[-1].strip() == "":
+    part1_lines.pop()
 
-Not a footnote, not a comment. Factual, no advocacy.
+fold_record = """
+### The fold record
 
 **a. What was folded.** `SECTION6_DRAFT_AGY_R15.md`, sha256
 `d2c388a451d076f880c879e888ee7901331adc62142245a285b8ff932d67f01a`, folded 2026-08-27.
 
 **b. Under what authority, and against what referee state.** Folded **on the principal's instruction,
-before R15 referee verdicts existed.** State that plainly. R15's referee round was dispatched in
+before R15 referee verdicts existed.** R15's referee round was dispatched in
 parallel with this fold and had not returned when the fold was performed.
 
 **c. What the referees had established at the moment of folding.**
@@ -69,22 +72,28 @@ required work and is **not implemented** — naming it was the repair; writing i
 **f. Known design consequence, with the principal.** Any single post-unblinding removal emits
 `INCONCLUSIVE-BY-CALIBRATION`. No attrition rate exists in the frozen record, so the probability is
 unknown; what is established is that one removal suffices.
+"""
 
-## What must not happen
+# Find replacement range in V15
+# The brief says replace V15 lines 461-590 (inclusive, 1-indexed)
+v15_start = 461 - 1
+v15_end = 590
 
-- **§6 must not stop being tracked as open.** A folded section carrying a stated exception is a
-  legitimate record; a folded section that quietly stops being tracked is the failure.
-- Do not disturb route (b), the pinned `verify_lock()` requirement, or the calibration-carrier fix.
-- Do not adjust any threshold, re-seat any decision, add or delete any branch, or alter the lifecycle
-  table.
-- Do not renumber §7's slot table or change class assignments except exactly as Part 2 directs.
+# Let's verify what those lines are just in case, but rely on finding '## §6 Conduct'
+v15_start_idx = -1
+v15_end_idx = -1
+for i, line in enumerate(v15_lines):
+    if line.startswith("## §6 Conduct") and v15_start_idx == -1:
+        v15_start_idx = i
+    if line.startswith("## §7 Binding slots") and v15_start_idx != -1 and v15_end_idx == -1:
+        v15_end_idx = i
 
-## Deliverable
+if v15_start_idx != -1 and v15_end_idx != -1:
+    # Just in case, there are empty lines before §7, we might want to preserve one.
+    new_v15_lines = v15_lines[:v15_start_idx] + part1_lines + ["\n", fold_record, "\n\n"] + v15_lines[v15_end_idx:]
+    with open("PREREG_SUCCESSOR_DRAFT_V16_20260827.md", "w") as f:
+        f.writelines(new_v15_lines)
+    print("Fold successful.")
+else:
+    print("Could not find bounds for replacement.")
 
-`../PREREG_SUCCESSOR_DRAFT_V16_20260827.md` — the complete document, single write.
-
-Do not read `/Users/duhokim/NebulaMindData/`. Nothing is authorised to fetch.
-
-**If Part 2 names an edit you cannot apply because the target text is not what Part 2 expects, stop
-and report the mismatch rather than improvising a placement.** A misplaced conforming edit is worse
-than a reported mismatch — and Part 2's completeness is exactly what is under review.
