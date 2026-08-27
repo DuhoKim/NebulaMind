@@ -556,8 +556,12 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 d = sum(h.count(w) for w in ("preregistration", "prereg_successor",
                                              "freeze-candidate"))
                 return c - d
+            # PREREG_TEXT_* is the document review, not the mechanism review.
+            # Excluded by name rather than by score: those reports discuss the
+            # closure at length, so they out-score real mechanism verdicts on
+            # vocabulary and the row reported a text verdict as its own.
             cands = sorted((f for f in gates.glob("*.md")
-                            if not f.name.startswith(("_tmp_", "BRIEF_"))),
+                            if not f.name.startswith(("_tmp_", "BRIEF_", "PREREG_TEXT_"))),
                            key=lambda f: f.stat().st_mtime, reverse=True)
             for f in cands:
                 if _closure_score(f) <= 0:
@@ -591,6 +595,44 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             "seats": seats,
             "note": ("referee panel: " + ", ".join(seats)) if seats else None,
         })
+    # The preregistration TEXT is a separate workstream from the mechanism, and
+    # conflating them hides the thing that actually gates a freeze. The closure
+    # mechanism was refereed eleven times across 2026-08-26; the document itself
+    # had never been refereed at all until 2026-08-27 11:21, and its first
+    # review returned three blocking seams that no amount of mechanism review
+    # could have surfaced. The row above kept filing PREREG_TEXT_* under the
+    # closure lane because those reports say "brick" and "closure" often enough
+    # to score as mechanism — right words, wrong artifact.
+    if sb.is_dir() and (sb / "gates").is_dir():
+        tg = sorted((sb / "gates").glob("PREREG_TEXT_*.md"),
+                    key=lambda f: f.stat().st_mtime, reverse=True)
+        if tg:
+            seats_t: List[str] = []
+            verdict_t = None
+            for f in tg:
+                seat = f.stem.replace("PREREG_TEXT_", "").lower()
+                head = f.read_text(errors="ignore")[:1200]
+                m = re.search(r"\*\*(NOT CLEAR|CLEAR|REFUSED)\*\*", head)
+                token = m.group(1) if m else ("not clear" in head.lower()
+                                              and "NOT CLEAR" or "reported")
+                seats_t.append(f"{seat}:{token}")
+                if verdict_t is None:
+                    verdict_t = token
+            blockers_t = sum(len(re.findall(r"BLOCKING|BLOCKER", f.read_text(errors="ignore")))
+                             for f in tg)
+            out.append({
+                "lane": "DESI successor — PREREGISTRATION TEXT", "who": "Hwao",
+                "detail": (f"first-ever text referee; {blockers_t} blocking findings raised"
+                           if blockers_t else tg[0].name),
+                "latest_gate": tg[0].name,
+                "verdict": verdict_t,
+                "gate_age_h": round((time.time() - tg[0].stat().st_mtime) / 3600.0, 1),
+                "duho_items": [],
+                "pin_mismatches": [],
+                "seats": seats_t,
+                "note": ("the mechanism is frozen and refereed; the TEXT is neither — "
+                         "this row is what stands between here and a freeze-candidate"),
+            })
     # Tori's phase work lives in bhu-theory-phase* under the sextet handoff dir,
     # NOT in bhu-track — pointing at the wrong directory rendered "no artifact
     # seen" for a lane that had just closed Phase 3, which is worse than no row.
