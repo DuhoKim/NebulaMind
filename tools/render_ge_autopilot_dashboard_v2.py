@@ -1869,12 +1869,18 @@ def _kind_for_freshness(kind: str, freshness: Dict[str, Any]) -> str:
     return kind
 
 
-# Providers whose lane no longer exists. A meter for a retired seat cannot go
-# anywhere but stale, so it ages forever and trains the reader to discount every
-# age on the board. The Codex lane was retired 2026-08-19 (the monitor's own
-# docstring says so), there is no codex pane running, and its card had been
-# showing a 2026-08-24 fossil for three days. Duho approved retiring it.
-RETIRED_PROVIDERS = {"Codex / gpt seats (ChatGPT Pro)"}
+# Providers whose underlying RESOURCE is gone — not merely providers whose meter
+# is hard to read. The distinction matters and I got it wrong once: I retired the
+# Codex card on 2026-08-27 reading the monitor's "Codex /status path retired
+# 2026-08-19" as the resource being retired. What was retired is the READING
+# PATH — the dedicated Codex CLI window that served as the meter. The quota
+# itself is spent daily by the gpt1-3 hermes seats on a shared OAuth credential,
+# and codex refereed the preregistration text four times that same afternoon.
+# Removing it deleted a live meter for a resource in active use.
+#
+# A stale meter is a reading problem. Only put a provider here if nothing can
+# spend against it any more.
+RETIRED_PROVIDERS: set = set()
 
 
 def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
