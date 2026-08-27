@@ -560,16 +560,35 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             # Excluded by name rather than by score: those reports discuss the
             # closure at length, so they out-score real mechanism verdicts on
             # vocabulary and the row reported a text verdict as its own.
-            cands = sorted((f for f in gates.glob("*.md")
-                            if not f.name.startswith(("_tmp_", "BRIEF_", "PREREG_TEXT_"))),
-                           key=lambda f: f.stat().st_mtime, reverse=True)
+            # A FROZEN mechanism's state is its freeze record, full stop. The
+            # previous rule — newest file that scores as closure vocabulary —
+            # meant any new artifact discussing bricks captured the row, and I
+            # excluded them one filename at a time: first PREREG_TEXT_*, then
+            # SECTION6_REVIEW_*. That is the filename-prediction game that has
+            # cost a day of wrong answers already. A freeze is a terminal state,
+            # so once one exists it IS the row until a newer freeze supersedes it.
+            freezes = sorted(gates.glob("FREEZE_CLOSURE_*.md"),
+                             key=lambda f: f.stat().st_mtime, reverse=True)
+            cands = freezes if freezes else sorted(
+                (f for f in gates.glob("*.md")
+                 if not f.name.startswith(("_tmp_", "BRIEF_", "PREREG_TEXT_"))),
+                key=lambda f: f.stat().st_mtime, reverse=True)
             for f in cands:
                 if _closure_score(f) <= 0:
                     continue
                 first = next((l.strip() for l in f.read_text(errors="ignore").splitlines()
                               if l.strip()), "")
-                verdict = (first[:64] if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first)
-                           else f"{f.name} (no verdict token)")
+                if f.name.startswith("FREEZE_CLOSURE_"):
+                    # A freeze record opens with a prose heading, so the token
+                    # test falls through to "(no verdict token)" — which reads
+                    # as a gap when it is in fact the strongest state the lane
+                    # has. Say what it is.
+                    mv = re.search(r"at v(\d+)", f.read_text(errors="ignore")[:400], re.I) \
+                        or re.search(r"_V?(\d+)_", f.name)
+                    verdict = f"FROZEN at v{mv.group(1)}" if mv else "FROZEN"
+                else:
+                    verdict = (first[:64] if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first)
+                               else f"{f.name} (no verdict token)")
                 vfile, vage = f.name, round((time.time() - f.stat().st_mtime) / 3600.0, 1)
                 break
         # Referee panel: a review with seats missing is a NARROWER review, and
