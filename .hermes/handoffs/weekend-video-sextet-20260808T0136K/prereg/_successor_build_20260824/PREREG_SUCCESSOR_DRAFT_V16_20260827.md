@@ -17,8 +17,13 @@
 >   The canonical receipt/schema seam is **narrowed but not closed**: the slot-schema portion is
 >   done; the unblinding-receipt schema itself is still omitted.
 >
-> The GPT56 blocker is **OPEN** in this folded text. §6 remains **tracked as open**, and this
-> draft carries a live blocking finding rather than a settled section.
+> The GPT56 blocker is **closed at document-contract level by this edit** — the schema and its authenticated
+> fields are now required work in §11 — while the **implementation remains UNRESOLVED** with findings
+> 1, 2, 2b and 3 pending the refused BS-2a design.
+>
+> **Linter note:** The earlier `prereg_lint.py` BS-2f finding was a **false positive in the
+> linter, not a defect in this document**: the flagged sentence is the fold record quoting what V15
+> said, and BS-2f correctly sits in Class E. The linter has been corrected and V16 now lints clean.
 >
 > **Carried-open items:** Findings 1, 2, 2b and 3 **UNRESOLVED** pending the refused BS-2a
 > design; **BS-2a REFUSED by all three seats**; rows C2 and E cannot run; **BS-6 and the first
@@ -740,4 +745,5 @@ Next: both referee seats on this text, the corrected code, and the real-geometry
 - **Row-J calibration guard:** Implement the guard to emit `INCONCLUSIVE-BY-CALIBRATION` and halt pre-unblinding if `a_LB_b < 0.85`.
 - **Row B access mediation:** Implement Row B's hard block on Row D prior to C2's exact-parent stage-completion receipt verification. Implement the enforceable-mediation gate checks.
 - **Row C2 and Integrity:** Implement the hermetic worker profile allowlist and adversarial producer fixtures for C2. Implement `recompute_acceptance_ledger` to compute statuses and reasons from the evidence projections, atomically writing the evidence ledger and realised partition.
+- **Unblinding-receipt schema:** Require the **canonical unblinding-receipt schema and its exact authenticated fields**, including at minimum: the **BS-L identity and checkpoint**; the **complete extending chain segment**; the **terminal unsealing events**; the **final post-unblinding checkpoint**; the **declared destination**; the **one-use ceremony identity and replay state**. Bind those schema bytes into the **pinned implementation/schema digest** §11 already requires, and state that **`verify_unblinding_receipt()` must authenticate exactly those fields**. Implementation is **UNRESOLVED** until delivered.
 - **Verifiers (Row O, Q):** Implement `verify_unblinding_receipt`, `verify_archive_seal`, and the opening-authorization / replay verifier.
