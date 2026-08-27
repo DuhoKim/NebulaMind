@@ -16,6 +16,13 @@ GROUPS = [
         ("ge-autopilot.html",        "Galaxy-evolution + surveys autopilot — provider usage, lanes, septet matrix"),
         ("spin-parity-status.html",  "Longo spin-parity study — gates, route, what is waiting on whom"),
         ("bhu-lane2-status.html",    "Black-hole-universe lane 2 — the chain fails by its own forgotten test"),
+        # Lives one directory over, so it carries a relative href; os.path.join
+        # resolves it for the freshness check and the browser follows the same
+        # path. Duho could not find the spoken reports from the index because
+        # nothing here pointed at them — they were only reachable if you already
+        # knew the URL.
+        ("../reports/status-audio/archive.html",
+         "Audio reports — every spoken status reading with its slides and caption, newest first"),
     ]),
     ("Current", "Static, but recent and still meaningful.", [
         ("methods-note-mittal-singal-v4.html",   "Methods note — Mittal–Singal Quaia dipole"),
@@ -95,7 +102,9 @@ for title, blurb, items in rows:
         agestr = "today" if days == 0 else ("1 day" if days == 1 else f"{days} days")
         P.append(
             f'<a class=card href="{name}">'
-            f'<span class=nm>{html.escape(name)}<span class=ds>{html.escape(desc)}</span></span>'
+            # show the basename, not the traversal — a card reading
+            # "../reports/status-audio/archive.html" is a path, not a label
+            f'<span class=nm>{html.escape(os.path.basename(name))}<span class=ds>{html.escape(desc)}</span></span>'
             f'<span class="ag {bd}">{agestr}</span></a>'
         )
 
