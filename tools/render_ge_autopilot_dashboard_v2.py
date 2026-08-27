@@ -579,12 +579,29 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
         # 2026-08-26 afternoon's panel forever — reporting two REFUSED seats for
         # a mechanism that has since been rebuilt twice and frozen at v9 after a
         # CLEAR. Take the newest round present instead.
-        rounds = sorted({m.group(1) for f in gates.glob("runner_v*_*.log")
-                         if (m := re.match(r"runner_(v\d+)_", f.name))},
-                        key=lambda v: int(v[1:]), reverse=True) if gates.is_dir() else []
-        cur_round = rounds[0] if rounds else None
-        for log in sorted(gates.glob(f"runner_{cur_round}_*.log")) if cur_round else []:
-            name = log.stem.replace(f"runner_{cur_round}_", "")
+        # Pick the round by SUBJECT, not by the highest number. Both the closure
+        # mechanism and the preregistration text name their runners
+        # runner_vN_<seat>.log, so "newest round" grabbed v14 — the text panel —
+        # and attached it to the closure row. The logs say which they are in
+        # their own text (CLOSURE vs PREREG_TEXT); that is the only reliable
+        # discriminator, and reading the name instead is what produced two wrong
+        # answers in a row here.
+        def _is_closure_log(f: Path) -> bool:
+            try:
+                h = f.read_text(errors="ignore")[:4000].upper()
+            except OSError:
+                return False
+            return "CLOSURE" in h and "PREREG_TEXT" not in h
+        closure_logs = sorted((f for f in gates.glob("runner_*.log") if _is_closure_log(f)),
+                              key=lambda f: f.stat().st_mtime, reverse=True) \
+            if gates.is_dir() else []
+        cur_round = None
+        if closure_logs:
+            m = re.match(r"runner_([a-z0-9]+)_", closure_logs[0].name)
+            cur_round = m.group(1) if m else None
+        for log in [f for f in closure_logs
+                    if cur_round and f.name.startswith(f"runner_{cur_round}_")]:
+            name = re.sub(r"^runner_[a-z0-9]+_", "", log.stem)
             txt = log.read_text(errors="ignore")
             if re.search(r"safety filter|flagged for possible", txt, re.I):
                 seats.append(f"{name}:REFUSED")
