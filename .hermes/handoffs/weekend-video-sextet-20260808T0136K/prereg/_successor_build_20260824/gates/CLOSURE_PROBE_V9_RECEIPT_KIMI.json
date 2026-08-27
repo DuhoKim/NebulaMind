@@ -1,0 +1,1358 @@
+{
+  "stable": {
+    "derived_manifest": {
+      "objects": 65060,
+      "required_count": 12117,
+      "selected_bricks": 6445
+    },
+    "fixtures": {
+      "path": "../ref/FIXTURES_V9_20260826.out",
+      "sha256": "fab32ba24cedcedf7fe601c3a8d9dbde13f57b1c9bf2e0b88963bcfebc33a8b5"
+    },
+    "geometry_mode": "production-uncached",
+    "not_covered": [
+      "A caller who can WRITE to the interpreter or to any directory on the worker's sys.path. KIMI-V6 F4 measured this wider than v6 stated it: under -I the CommandLineTools system site-packages still precedes the one pinned add-back, and astropy \u2014 which PARSES the sidecar \u2014 resolves from the same unpinned user directory as numpy. The sidecar's bytes are pinned; its parser is not. Every receipt records the full sys.path -- and so does a refusal, since the interpreter state is captured before the isolation gate -- so this is visible rather than assumed. Probes W03 and B04 assert that; this sentence does not establish it (KIMI-V8 F3: in v8 the sentence was here and the record was not).",
+      "Three classes of answer-determining state the planner fingerprint cannot see, each demonstrated by KIMI-V6 F4 rather than argued: a global that resolves to a MODULE is folded as the string '<module>' (rebinding math.radians left the digest unmoved), a pure-Python helper reachable only through a class method is not recursed into (rebinding tangent_plane_offsets left the digest unmoved), and a C callable contributes its type name only. In the worker these bite only at import time, which is the residual above \u2014 but the digest's cross-process stability and its blindness have the same root cause, and v7 does not close this.",
+      "Modification of a pinned artifact in place. Redirection probes point a constant at a copy.",
+      "A genuine race: replacing a file between the worker's verified read and its parse. V6 reads each artifact once and parses that snapshot, so the window is closed by construction, but no probe here wins a timing race to prove it \u2014 the evidence is structural (probe F03).",
+      "The download itself \u2014 byte integrity, retries, the transfer manifest.",
+      "Whether the pinned selection is the authorised BS-2s output. Its digest is a code pin with no producer receipt behind it; the parent now has a pinned receipt envelope, the selection does not. CODEX-V5 F6 remains open and is not claimed as closed.",
+      "Concurrency. One process, one closure at a time.",
+      "KIMI-V7 F3, F4 and F5, which are NOT fixed in v8 and are listed here so that this round cannot be read as having closed them: the six S0x/U01 `varies` strings still omit the PINNED_*_REL reassignment that Ctx.redirect performs (KIMI-V6 F7, twice named); B06's verify hook returns True unconditionally and asserts nothing, though its probe body does; F05's basis claims a no-window property no static-symlink probe can evidence; the worker subprocess has no timeout, so a hung worker hangs the caller; extra keys in the worker's stdin JSON are ignored; and the manifest-type refusal exits on the WORKER-ERROR channel rather than the REFUSE channel.",
+      "Mutation of the objmanifest module instance that close_manifest itself holds. _frozen_planner() re-executes that module on every call, so the digest inspects a fresh instance rather than the retained one; N05 reaches the shared adapter instead, which is the object a mid-plan mutation can actually reach."
+    ],
+    "pinned": {
+      "count_total": 832393,
+      "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+      "parent_rows": 65060,
+      "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+      "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+      "selection_bricks": 6445,
+      "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+      "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a"
+    },
+    "probes": [
+      {
+        "actual": "PASS",
+        "basis": "the closure must accept the brick set it computes from the pinned parent",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "P01",
+        "label": "the manifest the check itself derived, complete",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12117,
+          "manifest_distinct": 12117,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12117,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "nothing; the control that the pinned artifacts close against each other",
+        "verify_declared": true,
+        "verify_note": "planner digest identical before and after the plan",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the 60,308-vs-60,310 failure this check exists to prevent",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R01",
+        "label": "manifest with one required brick removed",
+        "mentions_required": "missing 1",
+        "message": "MANIFEST NOT CLOSED: 12116 distinct entries vs required 12117; duplicated 0 []; missing 1 ['0001m250']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12116,
+          "manifest_distinct": 12116,
+          "missing_count": 1,
+          "missing_from_manifest": [
+            "0001m250"
+          ],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12116,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "one brickname dropped from the candidate manifest; nothing else",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "GPT56-V5 I3: the message truncates to four examples, so the structured result must carry the whole set \u2014 and CODEX-V5 F7 noted V5 never asserted that it did",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R02",
+        "label": "manifest with 100 required bricks removed",
+        "mentions_required": "missing 100",
+        "message": "MANIFEST NOT CLOSED: 12017 distinct entries vs required 12117; duplicated 0 []; missing 100 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12017,
+          "manifest_distinct": 12017,
+          "missing_count": 100,
+          "missing_from_manifest": [
+            "0001m250",
+            "0001m252",
+            "0001m282",
+            "0001m345",
+            "0001m365",
+            "0001m367",
+            "0001m370",
+            "0001m437",
+            "...92 more"
+          ],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12017,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "one hundred bricknames dropped from the candidate manifest; nothing else",
+        "verify_declared": true,
+        "verify_note": "structured result carries 100 names",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "an over-broad manifest downloads bricks the study did not ask for",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R03",
+        "label": "manifest carrying a brick no object requires",
+        "mentions_required": "extra 1",
+        "message": "MANIFEST NOT CLOSED: 12118 distinct entries vs required 12117; duplicated 0 []; missing 0 []; extra 1 ['0001p000']",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 1,
+          "extra_in_manifest": [
+            "0001p000"
+          ],
+          "manifest_count": 12118,
+          "manifest_distinct": 12118,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12118,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "one brickname added to the candidate manifest; nothing else",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "a duplicate is a malformed manifest even when the set is complete",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R04",
+        "label": "manifest listing one required brick twice, omitting nothing",
+        "mentions_required": "duplicated 1",
+        "message": "MANIFEST NOT CLOSED: 12117 distinct entries vs required 12117; duplicated 1 ['0001m250']; missing 0 []; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [
+            "0001m250"
+          ],
+          "duplicate_count": 1,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12118,
+          "manifest_distinct": 12117,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12118,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "one duplicate entry; nothing else",
+        "verify_declared": true,
+        "verify_note": "duplicate reported, nothing falsely reported missing",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F4: V5 refused on the duplicate before the required set existed, so the omission was never named \u2014 I3 failed for exactly this candidate",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R08",
+        "label": "manifest that duplicates one required brick AND omits another",
+        "mentions_required": "missing 1",
+        "message": "MANIFEST NOT CLOSED: 12116 distinct entries vs required 12117; duplicated 1 ['0001m252']; missing 1 ['0001m250']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [
+            "0001m252"
+          ],
+          "duplicate_count": 1,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12117,
+          "manifest_distinct": 12116,
+          "missing_count": 1,
+          "missing_from_manifest": [
+            "0001m250"
+          ],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12117,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "one entry duplicated and a different required brickname dropped, so the count still looks right; nothing else",
+        "verify_declared": true,
+        "verify_note": "names both: duplicate ['0001m252'], missing ['0001m250']",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "an empty manifest closes nothing",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R05",
+        "label": "empty manifest",
+        "mentions_required": "missing",
+        "message": "MANIFEST NOT CLOSED: 0 distinct entries vs required 12117; duplicated 0 []; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 0 []",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 0,
+          "manifest_distinct": 0,
+          "missing_count": 12117,
+          "missing_from_manifest": [
+            "0001m250",
+            "0001m252",
+            "0001m282",
+            "0001m345",
+            "0001m365",
+            "0001m367",
+            "0001m370",
+            "0001m437",
+            "...12109 more"
+          ],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 0,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "the candidate manifest replaced by an empty list",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "malformed input must leave as one closure refusal",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R06",
+        "label": "manifest passed as None instead of a list",
+        "mentions_required": null,
+        "message": "closure refused: TypeError: 'NoneType' object is not iterable",
+        "result": {
+          "error": "TypeError",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": null,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "the candidate manifest replaced by None",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7: values are str()-converted, so wrong types must not silently pass",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "R07",
+        "label": "manifest of integers rather than bricknames",
+        "mentions_required": "missing",
+        "message": "MANIFEST NOT CLOSED: 12117 distinct entries vs required 12117; duplicated 0 []; missing 12117 ['0001m250', '0001m252', '0001m282', '0001m345']; extra 12117 ['0', '1', '10', '100']",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 12117,
+          "extra_in_manifest": [
+            "0",
+            "1",
+            "10",
+            "100",
+            "1000",
+            "10000",
+            "10001",
+            "10002",
+            "...12109 more"
+          ],
+          "manifest_count": 12117,
+          "manifest_distinct": 12117,
+          "missing_count": 12117,
+          "missing_from_manifest": [
+            "0001m250",
+            "0001m252",
+            "0001m282",
+            "0001m345",
+            "0001m365",
+            "0001m367",
+            "0001m370",
+            "0001m437",
+            "...12109 more"
+          ],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12117,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "every entry replaced by its index as an int",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "PASS",
+        "basis": "CODEX-V5 F1: nomination by an in-process caller. The worker runs in a different interpreter, so the receipt must report the REAL count table regardless",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "B01",
+        "label": "the count-table pin rewritten in the presenter's own process",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12117,
+          "manifest_distinct": 12117,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12117,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "PINNED_COUNTS_REL points at an edited table and PINNED_COUNTS_SHA256 is set to that table's digest \u2014 CODEX-V5 F1's exact demonstration \u2014 before going through the boundary",
+        "verify_declared": true,
+        "verify_note": "worker reported the true count-table digest",
+        "verify_ran": true
+      },
+      {
+        "actual": "PASS",
+        "basis": "CODEX-V5 F1 applied to the parent, whose two witnesses V5 could redirect together",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "B02",
+        "label": "the parent pin and its receipt pin rewritten in the presenter's own process",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12117,
+          "manifest_distinct": 12117,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12117,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "PINNED_PARENT_REL, PINNED_PARENT_SHA256, PINNED_PARENT_RECEIPTS_REL and PINNED_PARENT_RECEIPTS_SHA256 all point at doctored copies before crossing the boundary",
+        "verify_declared": true,
+        "verify_note": "worker reported the true parent digest",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "KIMI-V6 F3: that parameter existed and was forged with a three-line fake interpreter that ignored -I and the worker and printed a PASS. It is gone, so the call itself must fail rather than silently ignoring the argument",
+        "conforms": true,
+        "direct": "closure_receipt (called with a keyword it must not accept)",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "B06",
+        "label": "an interpreter handed to closure_receipt as an argument",
+        "mentions_required": null,
+        "message": "closure_receipt refuses to take an interpreter: closure_receipt() got an unexpected keyword argument 'python_executable'",
+        "result": {
+          "typeerror": "closure_receipt() got an unexpected keyword argument 'python_executable'"
+        },
+        "varies": "nothing about the artifacts; the call is attempted with a python_executable keyword",
+        "verify_declared": true,
+        "verify_note": "TypeError from the signature, not a forged receipt",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "KIMI-V6 F6: iterating a dict yields its keys, so this was accepted and reported 12,117 entries. It cannot under-cover, but an unvalidated type at the trust boundary is what R06 and R07 exist to refuse",
+        "conforms": true,
+        "direct": "closure_worker_v9.py subprocess",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "B07",
+        "label": "a JSON object rather than an array as the worker's manifest",
+        "mentions_required": "must be a JSON array",
+        "message": "'manifest' must be a JSON array or null, got dict",
+        "result": {
+          "manifest_type": "dict",
+          "message": "'manifest' must be a JSON array or null, got dict",
+          "outcome": "WORKER-ERROR"
+        },
+        "varies": "the worker is given {\"manifest\": {name: 1, ...}} over stdin, bypassing closure_receipt's list() normalisation",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "KIMI-V6 F5: the refusal is now O_NOFOLLOW on the open itself rather than an lstat before it, so there is no window between the check and the read",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "F05",
+        "label": "the count table reached through a symlink whose target is the real table",
+        "mentions_required": "symlink",
+        "message": "count table is a symlink: $RUN/counts_nofollow.csv",
+        "result": {
+          "symlink": "$RUN/counts_nofollow.csv"
+        },
+        "varies": "PINNED_COUNTS_REL points at a symlink to the genuine file, so the bytes behind it are correct and only the path form differs",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "an un-isolated interpreter can inherit state the boundary exists to exclude",
+        "conforms": true,
+        "direct": "closure_worker_v9.py subprocess",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "B04",
+        "label": "the worker started without -I",
+        "mentions_required": "-I",
+        "message": "worker was not started with -I; refusing before reading or importing anything",
+        "result": {
+          "ignore_environment": false,
+          "isolated": false,
+          "message": "worker was not started with -I; refusing before reading or importing anything",
+          "no_user_site": false,
+          "outcome": "WORKER-ERROR",
+          "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+          "python": "3.9.6",
+          "sys_path": [
+            "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/ref",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+            "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "__editable__.astro_agent-0.1.0.finder.__path_hook__",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+          ]
+        },
+        "varies": "the same worker invoked by an ordinary interpreter rather than an isolated one",
+        "verify_declared": true,
+        "verify_note": "payload records isolated=False and 7 sys.path entries \u2014 the refusal carries interpreter state (KIMI-V8 F3)",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the worker must verify the code it is about to run",
+        "conforms": true,
+        "direct": "closure_worker_v9.py subprocess",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "B05",
+        "label": "a worker whose subject bytes do not match its pin",
+        "mentions_required": "SUBJECT DIGEST MISMATCH",
+        "message": "SUBJECT DIGEST MISMATCH: e0237cd7a86443992aa9ec25c0ae44a54604132817cb6c86d8d09bbbde5d0e13 != pinned 6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+        "result": {
+          "message": "SUBJECT DIGEST MISMATCH: e0237cd7a86443992aa9ec25c0ae44a54604132817cb6c86d8d09bbbde5d0e13 != pinned 6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+          "outcome": "WORKER-ERROR",
+          "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+          "subject_sha256": "e0237cd7a86443992aa9ec25c0ae44a54604132817cb6c86d8d09bbbde5d0e13"
+        },
+        "varies": "the worker copied beside an altered copy of the subject, so its SUBJECT_SHA256 no longer describes the module it would import",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "KIMI-V7 F2: the isolation check ran after the subject import, so the untrusted environment executed first \u2014 that seat's sentinel fired and the worker then died with an uncaught traceback instead of a receipt",
+        "conforms": true,
+        "direct": "closure_worker_v9.py subprocess",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "W01",
+        "label": "the worker started without -I, in an environment carrying a poisoned import",
+        "mentions_required": "refusing before reading or importing",
+        "message": "worker was not started with -I; refusing before reading or importing anything",
+        "result": {
+          "ignore_environment": false,
+          "isolated": false,
+          "message": "worker was not started with -I; refusing before reading or importing anything",
+          "no_user_site": false,
+          "outcome": "WORKER-ERROR",
+          "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+          "python": "3.9.6",
+          "sentinel_written": false,
+          "sys_path": [
+            "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/ref",
+            "$RUN/poison",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+            "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "__editable__.astro_agent-0.1.0.finder.__path_hook__",
+            "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+          ]
+        },
+        "varies": "a fake numpy package whose module-level code writes a sentinel file is placed on PYTHONPATH and the worker is run by an ordinary interpreter; the probe requires BOTH the refusal AND that the sentinel was never written",
+        "verify_declared": true,
+        "verify_note": "the poisoned import never executed",
+        "verify_ran": true
+      },
+      {
+        "actual": "PASS",
+        "basis": "KIMI-V7 F1: the worker hashed the subject's bytes and then imported the PATH, a second read with a window between. The counts must be EQUAL \u2014 a real run may not touch the file more than a run that only hashes it",
+        "conforms": true,
+        "direct": "closure_worker_v9.py under sys.addaudithook",
+        "dispute": null,
+        "expect": "PASS",
+        "id": "W02",
+        "label": "the subject file counted, once when only hashed and once through a full closure",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "full_run_events": 2,
+          "self_check_events": 2
+        },
+        "varies": "nothing about the artifacts; the worker is run twice under a Python audit hook that counts file events naming the subject \u2014 first with --self-check, which never imports, then on a real closure",
+        "verify_declared": true,
+        "verify_note": "2 events hashing, 2 through a whole closure \u2014 equal",
+        "verify_ran": true
+      },
+      {
+        "actual": "PASS",
+        "basis": "KIMI-V8 F3: the v8 fix correctly refused before provenance existed and closure_receipt dropped it anyway, so `sys_path` appeared in zero receipts while the worker docstring and this suite's own not_covered list both said it appeared in every one. The claim is made true here rather than narrowed, and this probe is what makes it checkable",
+        "conforms": true,
+        "direct": null,
+        "dispute": null,
+        "expect": "PASS",
+        "id": "W03",
+        "label": "the interpreter state a receipt is claimed to carry",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "counts_sha256": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+          "duplicate_bricknames": [],
+          "duplicate_count": 0,
+          "extra_count": 0,
+          "extra_in_manifest": [],
+          "manifest_count": 12117,
+          "manifest_distinct": 12117,
+          "missing_count": 0,
+          "missing_from_manifest": [],
+          "objects": 65060,
+          "parent_receipts_sha256": "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701",
+          "parent_sha256": "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831",
+          "plan_digest": "aaeaa9f37aabf1da6000a6ad07890cfe010677e301583530ba1a108833e3b3f1",
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "planner_digest_after_plan": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "required_count": 12117,
+          "selected_bricks": 6445,
+          "selection_sha256": "b913939d54b66bda5a4ef05ee46d0b1321a6b490d1d232ba197c9aa0c9a3804e",
+          "sidecar_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+          "worker_provenance": {
+            "ignore_environment": true,
+            "isolated": true,
+            "manifest_entries": 12117,
+            "no_user_site": true,
+            "pinned_site_dir": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+            "python": "3.9.6",
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "sys_path": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+            ],
+            "sys_path_at_import": [
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+              "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages",
+              "/Users/duhokim/Library/Python/3.9/lib/python/site-packages"
+            ],
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "nothing about the artifacts; a normal closure through the boundary, inspected for the provenance two written claims say every receipt records",
+        "verify_declared": true,
+        "verify_note": "4 sys.path entries, isolated=True, add-back named",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "GPT56-V5 F4",
+        "conforms": true,
+        "direct": "require_pinned_planner",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N01",
+        "label": "the frozen planner's live plan_object replaced in memory",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: 186eea68cd4931d37a318b8b2507b8edd3707ce080326d5b303557c46d7483f5 != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4 \u2014 the code or configuration determining the plan is not the pinned one",
+        "result": {
+          "planner_digest": "186eea68cd4931d37a318b8b2507b8edd3707ce080326d5b303557c46d7483f5"
+        },
+        "varies": "adapter.plan_object rebound to a function returning ['0001p000']; no file changes",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the prefilter is inside the pinned digest",
+        "conforms": true,
+        "direct": "require_pinned_planner",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N02",
+        "label": "the frozen planner's prefilter constant changed in memory",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: ab615b3465e91577e534cf5ed1ef3bf62b70434f91257215e33fcf05f27c7d36 != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4 \u2014 the code or configuration determining the plan is not the pinned one",
+        "result": {
+          "planner_digest": "ab615b3465e91577e534cf5ed1ef3bf62b70434f91257215e33fcf05f27c7d36"
+        },
+        "varies": "adapter.CANDIDATE_PREFILTER_DEG raised by 0.01, then restored",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F2's exact probe: V5's digest ignored this value and stayed at 10cea7a6\u2026 while the plan changed",
+        "conforms": true,
+        "direct": "require_pinned_planner",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N03",
+        "label": "an answer-determining adapter threshold changed in memory",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: 852594f5b1453248d8604810c9b3e158db53356ce61bc855501a64e4b356fe0a != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4 \u2014 the code or configuration determining the plan is not the pinned one",
+        "result": {
+          "planner_digest": "852594f5b1453248d8604810c9b3e158db53356ce61bc855501a64e4b356fe0a"
+        },
+        "varies": "adapter.INTERSECTION_AREA_THRESHOLD_SOURCE_PIX2 set to 1e30, then restored",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F2: the fingerprint stored such names but not what they resolved to",
+        "conforms": true,
+        "direct": "require_pinned_planner",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N04",
+        "label": "a helper the planner resolves by name replaced in memory",
+        "mentions_required": "PLANNER DIGEST MISMATCH",
+        "message": "PLANNER DIGEST MISMATCH: 049904088781ab730b0d40c08f69c8f37220a0723f6975a37c3f97d009914ce4 != pinned 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4 \u2014 the code or configuration determining the plan is not the pinned one",
+        "result": {
+          "planner_digest": "049904088781ab730b0d40c08f69c8f37220a0723f6975a37c3f97d009914ce4"
+        },
+        "varies": "adapter.angular_separation_deg rebound to a function returning 0.0, then restored",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F2: N01-N04 catch mutation before the check; the plan's own duration was unguarded, and a plan over 65,060 objects takes about 77 seconds",
+        "conforms": true,
+        "direct": "close_manifest (in-process, so the mutation can be timed)",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "N05",
+        "label": "the planner mutated AFTER verification, part-way through the plan",
+        "mentions_required": "PLANNER CHANGED DURING THE PLAN",
+        "message": "PLANNER CHANGED DURING THE PLAN: 1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4 -> 83f9abd7632d902264239127b64ea3c5b65540def4e482ab0a414e4b5be70cba",
+        "result": {
+          "planner_after": "83f9abd7632d902264239127b64ea3c5b65540def4e482ab0a414e4b5be70cba",
+          "planner_before": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4"
+        },
+        "varies": "a timer thread moves adapter.INTERSECTION_AREA_THRESHOLD_SOURCE_PIX2 from 1e-8 to 2e-8 100 s into the call \u2014 a valid value that changes the digest without breaking the planner \u2014 so the digest was correct when close_manifest checked it and wrong by the time the plan finished. The probe asserts the mutation actually fired",
+        "verify_declared": true,
+        "verify_note": "the refusal reports both digests and they differ",
+        "verify_ran": true
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F3: a path that can be re-pointed between verification and use is not custody; verified_bytes refuses anything that is not a regular file opened directly",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "F03",
+        "label": "the count table reached through a symlink",
+        "mentions_required": "symlink",
+        "message": "count table is a symlink: $RUN/counts_link.csv",
+        "result": {
+          "symlink": "$RUN/counts_link.csv"
+        },
+        "varies": "PINNED_COUNTS_REL points at a symlink to the real table; the bytes behind it are the correct ones, so only the path form differs",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "a non-regular file cannot be hashed and re-read as the same bytes",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "F04",
+        "label": "the count table replaced by a FIFO rather than a regular file",
+        "mentions_required": "not a regular file",
+        "message": "count table is not a regular file: $RUN/counts_fifo.csv",
+        "result": {
+          "not_regular": "$RUN/counts_fifo.csv"
+        },
+        "varies": "PINNED_COUNTS_REL points at a named pipe",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7.1",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S01",
+        "label": "count table with a duplicate brickid",
+        "mentions_required": "duplicate brickid",
+        "message": "count table has duplicate brickid 12",
+        "result": {
+          "duplicate_brickid": 12
+        },
+        "varies": "a copy with row 2's brickid set to row 1's, AND the pinned digest set to the copy's",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7.1",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S02",
+        "label": "count table with a negative count",
+        "mentions_required": "negative",
+        "message": "count table has negative count -1 for brick 12",
+        "result": {
+          "negative_brickid": 12
+        },
+        "varies": "a copy with row 1's count set to -1, AND the pinned digest set to the copy's",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "the release total is pinned independently of the file",
+        "conforms": true,
+        "direct": "load_pinned_counts",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S03",
+        "label": "count table whose total is not the pinned release total",
+        "mentions_required": "totals",
+        "message": "count table totals 832392 != pinned release total 832393",
+        "result": {
+          "counts_total": 832392
+        },
+        "varies": "a copy with one count reduced by 1, AND the pinned digest set to the copy's",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F6: the envelope's own schema was unverified",
+        "conforms": true,
+        "direct": "load_pinned_parent",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S04",
+        "label": "parent receipt whose chunk rows do not sum to its stated total",
+        "mentions_required": "internally inconsistent",
+        "message": "parent receipt is internally inconsistent: totals (65060 rows, 6445 bricks) != chunk sums (65059, 6445)",
+        "result": {
+          "chunk_bricks": 6445,
+          "chunk_rows": 65059
+        },
+        "varies": "a copy of the receipt with one chunk's row count reduced, AND the pinned receipt digest set to the copy's, so only the internal consistency check can catch it",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F6: the envelope's schema is now part of the check",
+        "conforms": true,
+        "direct": "load_pinned_parent",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "S05",
+        "label": "parent receipt missing a required field",
+        "mentions_required": "lacks",
+        "message": "parent receipt lacks 'endpoint'",
+        "result": {
+          "missing_key": "endpoint"
+        },
+        "varies": "a copy of the receipt with 'endpoint' deleted, AND the pinned receipt digest set to the copy's",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "CODEX-V5 F7.2",
+        "conforms": true,
+        "direct": "close_manifest",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "U01",
+        "label": "selection containing a brickid that is not in the pinned geometry universe",
+        "mentions_required": "absent from the pinned geometry universe",
+        "message": "selection has 1 brickid(s) absent from the pinned geometry universe, first [999999999]",
+        "result": {
+          "examples": [
+            999999999
+          ],
+          "selection_outside_universe": 1
+        },
+        "varies": "a copy with one brickid replaced by 999999999, AND the pinned selection digest set to the copy's",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      },
+      {
+        "actual": "REFUSE",
+        "basis": "row counts prove cardinality, never that a row sits where it says it does",
+        "conforms": true,
+        "direct": "close_manifest",
+        "dispute": null,
+        "expect": "REFUSE",
+        "id": "U02",
+        "label": "parent rows whose declared brick disagrees with their own coordinates",
+        "mentions_required": "INCOHERENT",
+        "message": "PARENT ROWS INCOHERENT: 5 row(s) carry coordinates outside the brick they declare, first [(10995119242085181, 2827, '3164m827'), (10995119242086451, 2827, '3164m827'), (10995119242087003, 2827, '3164m827'), (10995119242087387, 2827, '3164m827')]",
+        "result": {
+          "examples": [
+            [
+              10995119242085181,
+              2827,
+              "3164m827"
+            ],
+            [
+              10995119242086451,
+              2827,
+              "3164m827"
+            ],
+            [
+              10995119242087003,
+              2827,
+              "3164m827"
+            ],
+            [
+              10995119242087387,
+              2827,
+              "3164m827"
+            ]
+          ],
+          "incoherent_rows": 5
+        },
+        "varies": "a copy where FIVE rows take coordinates from a row in a different brick, AND the pinned parent digest and receipt digest are both set to match, so every custody binding is satisfied and only internal consistency is wrong",
+        "verify_declared": true,
+        "verify_note": "reported 5 bad rows, not a capped example count (CODEX-V5 F5)",
+        "verify_ran": true
+      },
+      {
+        "actual": "PASS",
+        "basis": "a control that puts the bindings and the worker's sys.path in the receipt",
+        "conforms": true,
+        "direct": "closure_worker_v9.py --self-check plus one boundary call",
+        "dispute": null,
+        "expect": "PASS",
+        "id": "G01",
+        "label": "the digests and provenance this run actually observed, through the boundary",
+        "mentions_required": null,
+        "message": "",
+        "result": {
+          "planner_digest": "1617af00eb7398abd93cc2726dbfb1ecfb24d07bede4b84c128ef2442bf40cb4",
+          "self_check": {
+            "outcome": "SELF-CHECK",
+            "subject_matches_pin": true,
+            "subject_pin": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "subject_sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148",
+            "worker": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/ref/closure_worker_v9.py",
+            "worker_sha256": "28f8e1f9a8c7bd3d4cf1aabf71a7dfae5f9a1da6b92a6f09fd9c65bfc7ea5959"
+          }
+        },
+        "varies": "nothing; recorded so the receipt carries the worker's own numbers",
+        "verify_declared": false,
+        "verify_note": null,
+        "verify_ran": false
+      }
+    ],
+    "receipt_version": "2",
+    "subject": {
+      "path": "../ref/successor_ref_v9.py",
+      "sha256": "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148"
+    },
+    "suite": {
+      "path": "closure_probe_suite_v9.py",
+      "sha256": "b218aa998ac8ef97a0c4c933d73068d18ff45ce3553cb7bc80f1fe59be8c91d7"
+    },
+    "summary": {
+      "conforming": 34,
+      "non_conforming": [],
+      "run": 34,
+      "unexpected_error_type": [],
+      "verify_hooks_all_ran": true,
+      "verify_hooks_declared": 13,
+      "verify_hooks_ran": 13
+    },
+    "verdict": "SUITE-CONFORMING"
+  },
+  "stable_sha256": "687a4543d14b48120a84d6e4fbefb41826ec2f7a9a9cc9a34e0a63c6e29e9131",
+  "volatile": {
+    "run_dir": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/_tmp_closure_probe_run_3152",
+    "seconds_per_probe": {
+      "B01": 141.735,
+      "B02": 141.22,
+      "B04": 0.03,
+      "B05": 0.095,
+      "B06": 0.0,
+      "B07": 0.101,
+      "F03": 0.0,
+      "F04": 0.0,
+      "F05": 0.0,
+      "G01": 0.1,
+      "N01": 0.006,
+      "N02": 0.002,
+      "N03": 0.002,
+      "N04": 0.002,
+      "N05": 140.548,
+      "P01": 153.501,
+      "R01": 146.732,
+      "R02": 146.497,
+      "R03": 143.165,
+      "R04": 141.737,
+      "R05": 141.597,
+      "R06": 140.259,
+      "R07": 141.822,
+      "R08": 145.925,
+      "S01": 0.108,
+      "S02": 0.099,
+      "S03": 0.349,
+      "S04": 0.004,
+      "S05": 0.003,
+      "U01": 48.744,
+      "U02": 48.641,
+      "W01": 0.03,
+      "W02": 144.132,
+      "W03": 142.187
+    },
+    "setup": {
+      "objects": 65060,
+      "required_count": 12117,
+      "seconds": 144.549,
+      "selected_bricks": 6445
+    },
+    "total_seconds": 2253.9
+  }
+}

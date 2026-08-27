@@ -1,0 +1,18 @@
+Done. Report written to:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824/gates/BS2A_REVIEW_KIMI.md
+(302 lines; final line exactly `**NOT CLEAR**`)
+
+How I worked it:
+- Read BRIEF_BS2A_REVIEW.md and all 871 lines of BS2A_DESIGN_DRAFT_GPT.md, plus the drafting brief BRIEF_DRAFT_BS2A.md.
+- Verified every load-bearing claim against primary sources rather than trusting the draft: V15 §2.7/§6.1/§7 slot table, successor_ref_v9.py (run_production_verdict, require_complete_sample, SealedMask, SLOT_SCHEMA), the frozen prereg's instrument section, YUI appendix §5, CODEX-V11 finding 3 and GPT56-V11 F3 in full, and both R4 referee reports plus the R4 draft's scope/table.
+- Key verifications: the frozen acceptance rule really is |χ_net| > τ (YUI appendix line 82), so the draft's central REFUSE of "confidence = amplitude" is correct; the threshold really was in two homes (V15 §2.7(2)(d)/(7) say BS-3, §7 BS-2a row claims it); v9 really does take caller accept-flags and a two-integer completeness check.
+
+Findings (numbered, with clause/field, failure mode, smallest repair in the report):
+1. BLOCKING — execution-evidence atoms (output_present, output_finite, execution_state, attempt records) are authored by the outcome-bearing instrument process and nothing binds their truth; the mark-EXCLUDED attack survives one level down. Repair: pinned independent execution supervisor + post-unblinding flag audit + producer-side fixtures.
+2. MAJOR — the evidence schema carries cutout sha256 digests that the companion §6 R4 scope classifies as χ-bearing verification oracles; the draft never addresses the finding it was written under.
+3. MAJOR — the quality-channel boundary bans named symbols but not inputs; receiving f(x) and f(mirror(x)) reconstructs χ by one subtraction, and mirror-evenness doesn't help since |χ| is mirror-even. Repair: pin the producer's input signature and prove the information boundary.
+4. MINOR — two validator names and no stated external pin for the validated-partition digest; accepted-set binding currently rests only on the BS-5f mask-digest chain.
+5. MINOR — retry-veto channel is bounded but its closure rests on unpinned inference determinism (frozen I-4 implies it; the draft should cite and pin it).
+6. NIT — literal ellipsis in the production signature; unexplained capitalization in a binding fixture name.
+
+The brief's seven questions are answered individually, with "checks that held" (six positive verifications) and a Testimony section — including disclosure that a provenance grep incidentally surfaced a few lines of the two sibling reviews, which I did not read; all findings were formed from primary sources first.
