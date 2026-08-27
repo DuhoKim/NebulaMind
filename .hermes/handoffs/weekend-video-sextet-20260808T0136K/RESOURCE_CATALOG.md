@@ -6,7 +6,30 @@ Quota numbers rot — the **live** state is always the cockpit usage cards
 (ge-autopilot.html usage panel / live-steering feed); numbers here are seed
 readings with their capture time.
 
-Last full verification pass: **2026-08-19 16:43 KST** (Blanc).
+Last full verification pass: **2026-08-27 17:39 KST** (Blanc).
+
+> **Verified 2026-08-27 17:39 KST. The previous pass was 2026-08-19 — eight days stale, which is
+> my failure as Quartermaster and the reason this table stopped being consulted.**
+>
+> **The imbalance Duho named, in today's numbers:**
+>
+> | pool | used | state |
+> |---|---|---|
+> | Fable (all three coordinators) | **100% weekly** | EXHAUSTED — overflow on usage credits |
+> | All Claude models | 64% weekly | |
+> | Antigravity / agy (Gemini) | **1%** | a whole subscription, nearly untouched |
+> | Codex / gpt seats (ChatGPT Pro) | **3%** | |
+> | Moonshot / kimi | $154 of $199 peak | spending steadily, the one pool with real burn |
+>
+> Referee work IS distributed — codex 19, gpt56 16, kimi 10 gate artifacts on
+> 2026-08-27 alone. The imbalance is not in the gates. It is that **all three
+> coordinators think on Fable**, and the seats are only ever handed verification.
+> Design, drafting and analysis stay on the exhausted pool while two subscriptions
+> idle at 1% and 3%.
+>
+> A contributing cause worth recording: agy's only consumer (Goru) sat blocked on
+> an unanswered permission prompt for **55 hours** ending 2026-08-27 16:40. A pool
+> at 1% partly means its user could not run.
 
 ## CLI engines
 
@@ -46,3 +69,33 @@ Last full verification pass: **2026-08-19 16:43 KST** (Blanc).
   route) reports it to Blanc's pane or appends a dashboard event; Blanc folds it in.
 - Ownership boundaries and verification invariants live in SESSION_SPLIT_20260819.md
   and are NOT restated here — this file is capacity and cost, not governance.
+
+## Drafting doctrine — 2026-08-27 (Duho)
+
+**Coordinator drafting work moves to agy and the gpt seats.** Fable is at 100% of
+its weekly allowance with overflow on usage credits, while agy sits at 1% and the
+Codex/gpt pool at 3%. Two subscriptions idle while the pool all three coordinators
+think on is exhausted.
+
+**Moves to a seat:** first-draft prose, mechanical rewrites, restating a derivation
+in our notation, literature fetch and summary, candidate wordings for a clause the
+coordinator will judge, sweep bookkeeping that eats context without needing
+judgement.
+
+**Stays with the coordinator:** their own judgement, and anything needing the whole
+lane in one head.
+
+**Stays fresh-context and multi-engine — do NOT consolidate:** gate verdicts. A
+gate's value is having no prior context. On 2026-08-27 kimi cleared a closure v6
+that codex had refused, and codex found on the preregistration text what kimi
+missed. Spreading drafting across seats is a saving; spreading gates across seats
+is the method.
+
+**The standing trap:** a seat draft is a draft, not a result. Verify before
+carrying it, or you reproduce the agreed-with-itself failure the referees caught
+three times this week — REGATE3's hidden null, the probe that asserted on its own
+old wording, the brief that cited a change record which did not exist.
+
+**Brief seats self-containedly.** Hand over receipt paths, not an assumption that
+the seat can reconstruct the lane. That is also what makes the returned draft
+checkable.
