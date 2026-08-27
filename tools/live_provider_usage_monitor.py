@@ -140,7 +140,26 @@ def oauth_failure_state() -> dict[str, Any]:
     }
 
 
+# Disabled 2026-08-27 on Duho's instruction, after three consecutive refusals —
+# the last of them a properly backed-off, unattended retry fifteen seconds after
+# an hour of silence, at a poll rate already cut about a hundredfold. Meanwhile
+# claude.ai/settings/usage served the same numbers on demand, marked "Last
+# updated: just now", so this is not an account-level throttle on the data; it is
+# specific to this endpoint or to how we call it.
+#
+# Retrying was contributing nothing but requests to something that keeps saying
+# no. The drop-file path (load_claude_plan_dropfile) is now the source, and it is
+# a better one: it carries the Fable-vs-all-models split the API card never
+# showed, and it is honest about being a capture with a stated time.
+#
+# To re-enable, set NM_CLAUDE_OAUTH_USAGE=1. The code below is unchanged and
+# still correct; it is the calling that stopped.
+_OAUTH_USAGE_ENABLED = os.environ.get('NM_CLAUDE_OAUTH_USAGE') == '1'
+
+
 def fetch_claude_quota_via_oauth() -> dict[str, Any] | None:
+    if not _OAUTH_USAGE_ENABLED:
+        return _oauth_cache_read()[0]
     cached, cached_at, last_error = _oauth_cache_read()
     age = time.time() - cached_at if cached_at else None
     if cached is not None and age is not None and age < _OAUTH_USAGE_TTL:
