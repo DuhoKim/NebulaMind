@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Scheduled Phase 1 status writer. Written 2026-08-27 at Duho's instruction
+  after the source snapshot went stale twice in two days.
+
+  Note on style: flag names below are written without leading dashes, because an
+  XML comment may not contain a double hyphen. A previous plist here was
+  malformed for exactly that reason; plutil lint accepted it and a strict parser
+  did not.
+
+  Why: ge-auto status is not a daemon. It writes
+  .hermes/handoffs/galaxy-evolution/mastermind/autopilot-status.json when run,
+  and nothing ran it. It sat 8 days stale until 2026-08-26, was refreshed by
+  hand, then went 19 hours stale again by the next morning. The panes, usage and
+  events panels of the cockpit all read from that file, so they freeze with it
+  while the lane rows stay correct — a half-true board is worse than an
+  obviously dead one.
+
+  Interval 600s matches com.nebulamind.cockpit-render. There is no value in the
+  source being fresher than the renderer that consumes it.
+
+  The tail flag is passed: it captures pane tails and classifies prompts, which
+  is what populates the pane view, and it is read-only against tmux.
+
+  auto-approve-safe is deliberately NOT passed. It approves classified-safe
+  prompts without a human, and a scheduled job must never approve anything on
+  Duho's behalf while he is not watching.
+
+  PATH is explicit because launchd does not inherit a login shell's. This job
+  shells out to tmux in /opt/homebrew/bin; the provider-usage job failed on its
+  very first run with FileNotFoundError: 'tmux' for exactly this reason, having
+  tested clean by hand.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nebulamind.phase1-status</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/duhokim/NebulaMind/NebulaMind/tools/galaxy_evolution_autopilot.py</string>
+        <string>status</string>
+        <string>--tail</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    </dict>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/duhokim/NebulaMind/NebulaMind</string>
+
+    <key>StartInterval</key>
+    <integer>600</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/duhokim/HermesOps/cockpit/phase1-status-launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/duhokim/HermesOps/cockpit/phase1-status-launchd.log</string>
+</dict>
+</plist>
