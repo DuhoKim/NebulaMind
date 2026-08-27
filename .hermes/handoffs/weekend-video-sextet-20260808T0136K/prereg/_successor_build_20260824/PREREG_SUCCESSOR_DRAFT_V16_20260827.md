@@ -1,5 +1,29 @@
-# PREREGISTRATION DRAFT V13 — LONGO-AMPLITUDE TEST ON A LEVERAGE-CHOSEN FOOTPRINT
+# PREREGISTRATION DRAFT V16 — LONGO-AMPLITUDE TEST ON A LEVERAGE-CHOSEN FOOTPRINT
 
+> **V16 is a fold.** It folded `SECTION6_DRAFT_AGY_R15.md`, sha256
+> `d2c388a451d076f880c879e888ee7901331adc62142245a285b8ff932d67f01a` — independently verified.
+> Its Part 1 is byte-identical to the R14 §6 body both referee seats credited.
+>
+> Folded **on Duho's instruction at 21:48 KST on 2026-08-27, while R15's referee verdicts did
+> not yet exist.** The referee round ran in parallel with the fold. When the verdicts landed
+> during the fold:
+> - **CODEX, 21:52:33 KST — CLEAR.** No blocking finding; Part 2 completeness holds at
+>   fold-instruction level. One **LOW / NON-BLOCKING** note: Part 5 line 159 uses a stale status
+>   label for the R14 completeness finding. CODEX states this does not weaken any required edit.
+> - **GPT56, 21:53:46 KST — NOT CLEAR.** One **HIGH / BLOCKING** finding: **the canonical
+>   unblinding-receipt schema is still absent from the asserted-complete Part 2 list.**
+> - Both agree four of the five R14 seams are **CLOSED** — §7 count and DESIGN inventory, §5
+>   guard seam, §2.5 producer-checksum narrowing, and the Clause 10 / §10 repair-trace seam.
+>   The canonical receipt/schema seam is **narrowed but not closed**: the slot-schema portion is
+>   done; the unblinding-receipt schema itself is still omitted.
+>
+> The GPT56 blocker is **OPEN** in this folded text. §6 remains **tracked as open**, and this
+> draft carries a live blocking finding rather than a settled section.
+>
+> **Carried-open items:** Findings 1, 2, 2b and 3 **UNRESOLVED** pending the refused BS-2a
+> design; **BS-2a REFUSED by all three seats**; rows C2 and E cannot run; **BS-6 and the first
+> image byte remain blocked**; `verify_lock()` required work, **not implemented**.
+>
 > **V13 repairs the executable-order and slot-placement blockers of the third text review
 > (2026-08-27), and does NOT repair the Stage-P blocker, which needs a code change and a
 > decision that is not mine — see §4.** GPT56 and CODEX both ruled that V12's posture of
@@ -342,7 +366,7 @@ proceed if what remained passed.
 7. **The thresholds in (d) are pinned before any image byte**, in BS-3, with the same force as
    any other frozen constant. A threshold chosen or moved after inference exists voids the run.
 
-Until §2.7 is implemented in the code §0 pins, **BS-2f cannot be filled**, and this is a
+Until §2.7 is implemented in the code §0 pins, **BS-2a cannot be filled**, and this is a
 design-and-implementation slot rather than a value slot (see §7).
 
 ## §3 Statistics
