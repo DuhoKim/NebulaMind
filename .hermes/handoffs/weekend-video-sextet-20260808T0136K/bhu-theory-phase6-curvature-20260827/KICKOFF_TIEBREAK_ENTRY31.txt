@@ -1,0 +1,74 @@
+TIEBREAK — entry 31 (Smolin 2004 CNS). Two prior seats split. You decide.
+
+Lane: .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase6-curvature-20260827/
+Primary text: `../bhu-reading-20260823/sources/smolin_2004_cns_clean.txt` (section 4, lines ~231-310)
+
+## The single question
+
+**Does Smolin's 2.5 M_sun neutron-star falsifier remain a CALIBRATED falsifier, given that the
+Brown-Bethe 1.5 M_sun calculation it references has been observationally broken?**
+
+Nothing else is in dispute. Both prior seats agree that:
+  - the 2.5 M_sun bar is NOT reached (heaviest well-measured neutron star is
+    PSR J0952-0607 at 2.35 +- 0.11 M_sun, ~1.4 sigma short, ~8.6% posterior above the bar);
+  - Smolin's footnote 6 does NOT demote the falsifier (he disclaims ad-hoc rescues rather
+    than relying on them);
+  - CNS genuinely belongs in the black-hole-universe family.
+
+## The two readings, stated as fairly as I can put them
+
+**A. LIVE_CALIBRATED** (CGATE_ENTRY31_VERDICT.md): the broken instrument removes the 1.5
+shortcut, not the 2.5 bar. Smolin himself flags that Bethe-Brown's calculations may be
+inaccurate and then pivots to a conservative threshold that does not depend on their number.
+The surviving calibration is "a single neutron star at 2.5 M_sun would refute S" -- coarse, but
+author-stated, numerical, and tied to a specified observation.
+
+**B. DEMOTE_BROKEN_INSTRUMENT** (AGATE_ENTRY31_VERDICT.md): the 2.5 bar derives its calibration
+entirely from the Bethe-Brown kaon-condensation mechanism. If that mechanism's link between the
+strange-quark mass and the neutron-star mass limit is broken, the inference from "heavy neutron
+star" to "CNS refuted" is severed, and 2.5 becomes an unanchored round number rather than a
+calibrated threshold.
+
+## The passage both readings turn on — read it yourself, in place, before deciding
+
+From section 4, verbatim:
+
+  "Bethe, Brown and collaborators claim that calculations show that mu < mu_c [52-54]. But
+   their calculations involve approximations such as chiral dynamics and may be sufficiently
+   inaccurate that in fact mu_c > mu. However, we can be reasonably sure of the existence of
+   such a critical value mu_c. Then we may reason as follows. If mu < mu_c then, as shown by
+   calculations [52-54] the upper mass limit is low, approximately 1.5 M_sun. If mu > mu_c
+   neutron stars have the conventional equations of state and the upper mass limit is higher,
+   almost certainly above 2 [55]. Therefore a single observation of a neutron star whose mass M
+   was sufficiently high would show that mu > mu_c, refuting Bethe and Brown's claim for the
+   opposite. Sufficiently high is certainly 2.5 M_sun, although if one is completely confident
+   of Bethe and Brown's upper limit of 1.5 solar masses, any value higher than this would be
+   troubling. Furthermore, this would refute S because it would then be the case that a
+   decrease of mu would lead to a world with a lower upper mass limit for neutron stars, and
+   therefore more black holes."
+
+Reading A says the "However, we can be reasonably sure of the existence of such a critical
+value mu_c" sentence insulates the argument from Bethe-Brown being wrong.
+Reading B says the whole inference chain still runs through the Bethe-Brown mechanism.
+
+**Disclosure of my own bias:** I read this passage as favouring A, and I am the party whose
+tally claim depends on the answer. I have already been wrong once today on this entry, in the
+direction of over-claiming. Discount my reading accordingly and form your own.
+
+## Also worth your attention, if it bears
+
+Smolin says that if mu > mu_c the upper mass limit is "almost certainly above 2". Observed
+masses of 1.97, 2.08 and 2.35 M_sun all exceed 2. Does that already establish mu > mu_c on
+Smolin's own logic, independently of whether the 2.5 bar is reached? If so, the status may be
+neither A nor B. Rule on it if you think it applies; ignore it if you think it does not.
+
+## Deliverable
+
+Write `TIEBREAK_ENTRY31_VERDICT.md` in this directory. First line exactly one of:
+
+    LIVE_CALIBRATED
+    DEMOTE_BROKEN_INSTRUMENT
+    FIRED_<reason>
+    HOLD_<reason>
+
+Then your reasoning. State plainly which of A or B you are upholding and why the other fails.
