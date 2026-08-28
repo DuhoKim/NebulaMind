@@ -179,6 +179,30 @@ def render(rows, findings=None):
     return "\n".join(out)
 
 
+
+def trace_table(text):
+    """Just the §10 transition-table rows — not the whole document.
+
+    GPT56-V27-3: the presence test searched the entire document, so §6.3's prose sentence "The
+    V24→V25 mapping must..." satisfied it and masked a missing table row. The endpoint test ORed
+    both digests across the whole document, and V24's digest already appears as the *result* of the
+    preceding row. Two rows were absent; the checker reported one.
+
+    A check that passes for the wrong reason is worse than one that fails, because it certifies.
+    """
+    rows, inside = [], False
+    for line in text.splitlines():
+        st = line.strip()
+        if st.startswith("## ") and "§10" in st:
+            inside = True
+            continue
+        if inside and st.startswith("## ") and "§10" not in st:
+            break
+        if inside and st.startswith("|") and re.search(r"V\d+\s*(?:→|->)\s*V\d+", st):
+            rows.append(st)
+    return rows
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("dir")
@@ -200,19 +224,22 @@ def main():
     text = Path(args.check).read_text()
     bad = 0
     print(f"prereg trace check — {Path(args.check).name}")
+    table = trace_table(text)
     subj = DRAFT.search(Path(args.check).name)
     subj_v = int(subj.group(1)) if subj else None
     for r in rows:
         if int(r["to"]) <= 15 or (subj_v is not None and int(r["to"]) >= subj_v):
             continue
         # A written row may say anything; what it must not do is contradict a computed digest.
-        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}")
-        if not pat.search(text):
-            print(f"  MISSING: no written row for V{r['from']} → V{r['to']}")
+        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b")
+        row = next((t for t in table if pat.search(t)), None)
+        if row is None:
+            print(f"  MISSING: no §10 table row for V{r['from']} → V{r['to']}")
             bad += 1
             continue
-        if r["to_sha"][:12] not in text and r["from_sha"][:12] not in text:
-            print(f"  UNPINNED: V{r['from']} → V{r['to']} cites neither endpoint digest")
+        # The RESULT digest, in THAT row — not either endpoint anywhere in the document.
+        if r["to_sha"][:12] not in row:
+            print(f"  UNPINNED: V{r['from']} → V{r['to']} row does not carry its result digest")
             bad += 1
 
     # §6.3's obligation, enforced rather than asserted: a transition that touched a normative
@@ -235,7 +262,17 @@ def main():
         if int(r["to"]) <= HISTORIC_EXEMPT_BEFORE:
             continue                      # exempt by stated rule
         if subject_ver is not None and int(r["to"]) >= subject_ver:
-            continue                      # in-band covers predecessors only; sidecar owns the rest
+            # In-band coverage stops at the predecessor — but the sidecar OWNS this transition, so
+            # it must still be checked there. The first version skipped it entirely, which meant the
+            # one row that most needs verifying was the one guaranteed never to be examined: a guard
+            # that cannot fire, reporting clean. Both seats caught it (GPT56-V27-1 CRITICAL,
+            # CODEX-V27-1). Same shape as the blockquote exemption that silently voided the count
+            # check earlier today.
+            if (r["from"], r["to"]) not in findings:
+                print(f"  SIDECAR MISSING: V{r['from']} → V{r['to']} is the current transition and "
+                      f"is not mapped in gates/FINDINGS_MAP.md")
+                bad += 1
+            continue
         normative = [s_ for s_ in re.findall(r"(§[\d.]+|\(preamble\))", r["touched"])
                      if s_ not in BOOKKEEPING]
         if normative and (r["from"], r["to"]) not in findings:
