@@ -1,0 +1,104 @@
+GATE -- A2: is the 2pi finding against Roupas 2022 real, and is it significant?
+
+Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/
+Artifact: `a2_roupas_audit.py` (10/10, exit 0). Run it: `cd <lane>; python3 a2_roupas_audit.py`
+Pinned source: `../bhu-reading-20260823/sources/2203.13295_clean.txt` (sha256 82f0d604d5b4)
+  = Z. Roupas, "Detectable universes inside regular black holes", Eur. Phys. J. C 82, 255 (2022).
+
+You are an independent seat with no prior context. Check the arithmetic yourself. I am the
+requester and I want this broken if it is breakable.
+
+## The two claims, which have DIFFERENT strength. Rule on them SEPARATELY.
+
+### F1 -- the paper labels an ANGULAR frequency as Hz.
+
+Table 1 lists the fundamental mode n=0, l=2 as the dimensionless (2GM/c^3)*omega_R = 0.0062.
+At M = 10 Msun, c^3/(2GM) = 1.0149e4 s^-1, so omega_R = 62.9 s^-1. Section 4 prints this as
+"is 63 Hz". If omega is angular (the standard QNM convention, psi ~ e^{-i omega t}), the
+FREQUENCY is 63/2pi = 10.0 Hz.
+
+POSITIVE CONTROL, which is the part I most want attacked. Rather than argue the convention I
+tested it on a known number: the Schwarzschild l=2, n=0 mode has GM omega/c^3 = 0.37367, i.e.
+(2GM/c^3) omega = 0.74734. The SAME conversion gives 1207 Hz with the 2pi and 7585 Hz without.
+The textbook ringdown of a 10 Msun Schwarzschild hole is ~1.2 kHz. So the 2pi reading reproduces
+a known value and the other does not.
+
+### F2 -- "M >~ 10^4 Msun" is a FLOOR where the physics gives a BAND. Independent of F1.
+
+Section 4: "for M >~ 10^4 Msun the fundamental mode ... lies within the frequency detectability
+range (~10^-1 - 10^-5 Hz) of the LISA space interferometer."
+But f ~ 1/M, so large mass pushes the mode BELOW LISA's floor, not into it. The paper's own
+quoted mass range is [10, 10^9] Msun. At 10^9 the mode is ~100x below LISA's low end. This holds
+whether or not you accept F1 -- redo it in the paper's own units if you like and the top of the
+range still falls out of the band.
+
+## ATTACK 1 -- kill the positive control. This is the load-bearing piece of F1.
+
+Is 0.37367 the correct Schwarzschild l=2 n=0 value? Is ~1.2 kHz the right textbook ringdown for
+10 Msun? Could BOTH my control and my target share a common error that cancels -- e.g. if I have
+mis-transcribed Table 1, or if Roupas's dimensionless normalisation is not the same as the
+Schwarzschild one I compared against (check his Table 1 caption and Figure 4 caption: he writes
+"in dimensions c^3/2GM"). If the control is unsound, F1 collapses to a convention argument.
+
+## ATTACK 2 -- my weakest link, and I know it. The Discussion's "10 Hz".
+
+Section 5 prints "10^-6 Hz <~ omega_R <~ 10 Hz" where section 4 printed "<~ 50 Hz" and "is
+63 Hz". I inferred that section 5 silently applied the 2pi, because 63/2pi = 10.02. That is an
+INFERENCE from a numerical coincidence. Alternatives I have NOT excluded: it is a typo for 50;
+it is a rounding; it is a different quantity or a different mass range. Rule on whether my
+inference is supportable or whether I am pattern-matching. If it is not supportable, say so --
+F1's core (that 63 is rad/s) does not depend on it, but my presentation leans on it.
+
+## ATTACK 3 -- and this one may gut the SIGNIFICANCE even if F1 is arithmetically right.
+
+Is this a TYPO WITH NO CONSEQUENCE? If Roupas computed correctly and merely wrote "Hz" where he
+meant "s^-1", his own conclusions are unaffected and I have inflated a copy-editing slip into a
+defect. My script asserts it propagates: as printed, 63 Hz sits INSIDE LIGO's analysis band,
+contradicting his sentence that it "lies outside the detection range of LIGO-Virgo"; corrected
+to 10 Hz it is below the wall and the sentence is true.
+
+But that contradiction only exists for a reader who takes the printed unit literally. Decide
+which this is: a defect that changes a conclusion, or a slip that changes nothing. Say plainly
+if I am overclaiming. I would rather lose the significance now than publish a pedantry.
+
+## ATTACK 4 -- the LIGO cutoff is MY external input, not the paper's.
+
+`a2_roupas_audit.py` hard-codes LIGO_LOW = 20.0 Hz. That is the conventional low-frequency
+analysis cutoff, not a fact from Roupas. The corrected value is 10.0 Hz, which is uncomfortably
+close to it -- LIGO design sensitivity extends below 20 Hz. If the honest wall is ~10 Hz then
+the corrected mode sits ON the boundary and my "clean flip either side of the wall" weakens to
+"marginal". Rule on whether check 3 is stated at defensible precision.
+
+## ATTACK 5 -- the unexplained 50.
+
+Section 4 says the range tops out at "50 Hz" and then, in the next paragraph, that the highest
+possible fundamental is "63 Hz". Same quantity, same mass endpoint, two numbers. I have NOT
+explained this and my audit does not address it. Does it have an innocent reading that also
+explains away F1?
+
+## ATTACK 6 -- reproduce
+
+Run `python3 a2_roupas_audit.py` (expect 10/10, exit 0). Checks 5 and 6 grep the pinned text for
+the author's own amplitude deferral and for rate language. Verify those greps are honest and not
+rigged by a narrow pattern -- in particular check 6 claims ZERO rate hits; satisfy yourself the
+paper really contains no event-rate estimate rather than one my regex missed.
+
+Note: the source is an ar5iv text conversion; LaTeX comes through doubled and mangled
+("63​Hz63{\rm Hz}"). Read through it. If you believe the conversion has corrupted a number,
+say so -- that would be a clean kill.
+
+## Verdict
+
+First line EXACTLY one of:
+
+    FINDING_CONFIRMED_BOTH        -- F1 and F2 both stand, and F1 is significant
+    FINDING_CONFIRMED_F2_ONLY     -- F2 stands, F1 falls or is insignificant
+    FINDING_CONFIRMED_F1_ONLY     -- F1 stands, F2 falls
+    FINDING_REFUTED_<reason>      -- neither stands; name the attack that kills it
+    HOLD_<reason>
+
+Then, separately and explicitly: SIGNIFICANCE: DEFECT | SLIP  -- is F1 worth reporting at all?
+
+Name the file per your seat convention: CGATE_A2_VERDICT.md (codex) or AGATE_A2_VERDICT.md (agy),
+written into the lane directory above. Quote the paper and your own arithmetic; do not defer to
+mine.

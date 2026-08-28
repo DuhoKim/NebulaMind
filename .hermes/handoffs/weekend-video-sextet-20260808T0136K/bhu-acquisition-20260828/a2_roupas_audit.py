@@ -50,6 +50,25 @@ chk("both '63 Hz' and '10 Hz' really are in the pinned text",
     ("63" in T and "Hz" in T) and bool(re.search(r"10\s*Hz|10\{\\rm Hz\}", T)),
     "so this is the paper's inconsistency, not a transcription artefact")
 
+# ---- 2b. POSITIVE CONTROL -- does the conversion reproduce a KNOWN number? --------------
+# The whole finding rests on omega being ANGULAR. Rather than argue the convention, test it:
+# apply the identical conversion to the Schwarzschild fundamental mode, whose value is textbook.
+# Schwarzschild l=2, n=0:  G M omega / c^3 = 0.37367  =>  (2GM/c^3) omega = 0.74734
+W_SCHW = 0.74734
+f_schw = W_SCHW * scale(10) / (2 * 3.141592653589793)
+w_schw = W_SCHW * scale(10)
+print(f"\n2b. POSITIVE CONTROL -- the same conversion on a number we already know")
+print(f"   Schwarzschild l=2,n=0 dimensionless (2GM/c^3)w = {W_SCHW}")
+print(f"   WITH the 2pi:     f = {f_schw:8.1f} Hz")
+print(f"   WITHOUT the 2pi:  f = {w_schw:8.1f} Hz")
+print(f"   textbook ringdown of a 10 Msun Schwarzschild hole: ~1.2 kHz")
+chk("the 2pi conversion reproduces the textbook Schwarzschild ringdown; omitting it does not",
+    abs(f_schw - 1207.0) < 30.0 and abs(w_schw - 1207.0) > 1000.0,
+    f"with 2pi -> {f_schw:.0f} Hz (textbook ~1207); without -> {w_schw:.0f} Hz (6.3x too high)")
+chk("so omega in this paper is ANGULAR, and 'Hz' is the wrong unit for it",
+    abs(f_schw - 1207.0) < 30.0,
+    "settled by a known value, not by appeal to convention")
+
 # ---- 3. and the 2pi is exactly what decides the LIGO claim -------------------------------
 LIGO_LOW = 20.0                   # conventional low-frequency analysis cutoff -- EXTERNAL input,
                                   # not from Roupas; the seismic/suspension wall
