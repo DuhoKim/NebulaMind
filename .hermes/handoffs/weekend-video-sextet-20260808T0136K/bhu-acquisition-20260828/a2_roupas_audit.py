@@ -69,16 +69,28 @@ chk("so omega in this paper is ANGULAR, and 'Hz' is the wrong unit for it",
     abs(f_schw - 1207.0) < 30.0,
     "settled by a known value, not by appeal to convention")
 
-# ---- 3. and the 2pi is exactly what decides the LIGO claim -------------------------------
-LIGO_LOW = 20.0                   # conventional low-frequency analysis cutoff -- EXTERNAL input,
-                                  # not from Roupas; the seismic/suspension wall
-print(f"\n3. THE ERROR LANDS ON THE ONE CLAIM IT CAN CHANGE")
+# ---- 3. the detector consequence -- REPAIRED at CGATE_A2's insistence -------------------
+# ORIGINAL CLAIM (overstated, withdrawn): "the conclusion is FALSE as printed and TRUE only
+# after the 2pi correction", asserting a clean flip either side of a 20 Hz wall.
+# CGATE_A2: "not defensible at its stated precision. A 20 Hz lower analysis cutoff is
+# conventional for many searches, but it is not a detector-independent physical boundary and is
+# not supplied by Roupas. Advanced LIGO is described as designed for 10 Hz to 5 kHz."
+# So the corrected 10.02 Hz sits ON the nominal design edge. Only HALF the flip is defensible.
+LIGO_SEARCH_CUT = 20.0   # conventional search cutoff -- EXTERNAL, not from Roupas
+LIGO_DESIGN_LOW = 10.0   # aLIGO nominal design low edge -- EXTERNAL, not from Roupas
+print(f"\n3. THE DETECTOR CONSEQUENCE -- stated at the precision the gate allowed")
 print(f"   the paper states 63 'Hz' 'lies outside the detection range of LIGO-Virgo'")
-print(f"   literal reading  f = 63.0  Hz -> inside LIGO band (f > {LIGO_LOW:g} Hz):  {63.0 > LIGO_LOW}")
-print(f"   corrected        f = {f10:.2f} Hz -> inside LIGO band:                     {f10 > LIGO_LOW}")
-chk("the stated conclusion is FALSE as printed and TRUE only after the 2pi correction",
-    (63.0 > LIGO_LOW) and not (f10 > LIGO_LOW),
-    "the units error and the conclusion sit on opposite sides of LIGO's 20 Hz wall")
+print(f"   literal   f = 63.00 Hz : above search cutoff {LIGO_SEARCH_CUT:g} Hz -> comfortably IN band")
+print(f"   corrected f = {f10:5.2f} Hz : below search cutoff, but AT the {LIGO_DESIGN_LOW:g} Hz design edge")
+chk("the literal reading puts the mode comfortably inside the instrument band",
+    63.0 > LIGO_SEARCH_CUT * 1.5,
+    "this half is solid -- 63 Hz is near LIGO's most sensitive decade")
+chk("the corrected value is NOT cleanly outside -- it sits on the design boundary",
+    abs(f10 - LIGO_DESIGN_LOW) < 1.0,
+    "so 'outside the detection range' needs an observing run, noise curve and amplitude to settle")
+print("   => the defensible claim is that the printed unit weakens the paper's stated LIGO")
+print("      justification, NOT that it reverses detectability. Amplitude is unknown and mode")
+print("      camouflage is a separate argument; both survive this finding.")
 
 # ---- 4. the LISA mass window is a BAND, not a floor --------------------------------------
 def f_of_M(M): return W0 * scale(M) / (2 * 3.141592653589793)
@@ -105,12 +117,25 @@ chk("and pre-authorises the escape from any null result",
     bool(re.search(r"not amplitude-wise sensitive enough", T)),
     "'it is a matter of developing the appropriate technology ... provided they exist'")
 
-# ---- 6. the rate: absent -----------------------------------------------------------------
-rate_hits = re.findall(r"(?i)(event rate|merger rate|per year|yr\^?-?1|population synthesis|abundance of)", T)
+# ---- 6. the rate: absent -- REGEX BROADENED at CGATE_A2's insistence --------------------
+# CGATE_A2: "The rate regex in the script is narrow, so its assertion is stronger than that
+# regex alone proves." It then searched manually across rate/event/population/abundance/
+# number-density/formation/per-time language and confirmed the substantive conclusion.
+# Repair: separate what the regex PROVES from what a seat CONFIRMED.
+RATE_ESTIMATE = r"(?i)(event rate|merger rate|rate density|per year|per Gyr|yr\^?\{?-1|Gpc\^?\{?-3|population synthesis|number density of|expected number of|occurrence rate)"
+BROAD         = r"(?i)(\brates?\b|\bpopulation\b|\babundance\b|\bformation\b|\bmergers?\b)"
+rate_hits  = re.findall(RATE_ESTIMATE, T)
+broad_hits = re.findall(BROAD, T)
 print(f"\n6. THE EVENT RATE IS ABSENT")
-print(f"   rate-language hits in the full text: {len(rate_hits)}  {sorted(set(x.lower() for x in rate_hits))}")
-chk("no event-rate or population calculation anywhere in the paper",
-    len(rate_hits) == 0, "so 'detectable' has no expected number of events attached")
+print(f"   rate-ESTIMATE constructs (what this check proves): {len(rate_hits)}  {sorted(set(x.lower() for x in rate_hits))}")
+print(f"   broad rate-adjacent words (reported, NOT proof):   {len(broad_hits)}  {sorted(set(x.lower() for x in broad_hits))}")
+print(f"   CGATE_A2 inspected the broad hits by hand: 'The merger mentions only describe the")
+print(f"   source scenario; there is no event-rate, merger-rate, abundance, population, or")
+print(f"   expected-count estimate.' The broad hits are context, not rates.")
+chk("no rate-ESTIMATE construct appears anywhere in the paper",
+    len(rate_hits) == 0, "narrow claim, fully automated")
+chk("the broad hits are acknowledged rather than hidden by a narrow pattern",
+    len(broad_hits) > 0, f"{len(broad_hits)} rate-adjacent words exist and were adjudicated by seat, not by regex")
 
 # ---- 7. the verdict on the tier ----------------------------------------------------------
 print("""
@@ -137,6 +162,19 @@ print("""
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")
-print("\nSTATUS: UNGATED. The 2pi finding (checks 2-4) is a numerical criticism of a published\n"
-      "paper and must not be cited outside this lane until an adversarial seat has attacked it.")
+print("""
+STATUS: GATED 2026-08-28. Two independent seats, both FINDING_CONFIRMED_BOTH / SIGNIFICANCE: DEFECT.
+  CGATE_A2_VERDICT.md (codex gpt-5.5) -- also checked the ORIGINAL arXiv source, not just the
+      ar5iv conversion: it contains 63{\\rm Hz}, 50{\\rm Hz}, 10{\\rm Hz} verbatim and names the
+      Figure 5 asset omegaR_M_Hz_l-2.eps. So the mislabel is the paper's, not conversion damage.
+  AGATE_A2_VERDICT.md (agy)
+
+TWO OF MY CHECKS WERE REPAIRED BY THE GATE, NOT CONFIRMED BY IT:
+  check 3 was overstated -- withdrawn and restated above at defensible precision.
+  check 6's regex was narrower than its assertion -- broadened, with the seat's manual
+      adjudication recorded as the thing that actually closes it.
+BOTH SEATS DECLINED MY ATTACK-2 INFERENCE AS LOAD-BEARING. CGATE: the Discussion's "10 Hz" is
+"plausible but not demonstrable ... F1 does not need that inference." It is circumstantial and
+is presented as such. The finding rests on Table 1 and the positive control alone.
+""")
 sys.exit(0 if n_ok == len(checks) else 1)
