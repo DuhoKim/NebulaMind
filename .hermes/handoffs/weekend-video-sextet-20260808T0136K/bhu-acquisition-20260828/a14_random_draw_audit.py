@@ -59,8 +59,10 @@ print(f"\n2. ENTRY 24 -- 'A Peek Outside Our Universe' (tier: QUALITATIVE-DIRECT
 print(f"   QUOTED: CMB fossil-record analysis 'agrees with the black hole universe")
 print(f"   predictions but challenges our understanding...'          present: {agrees}")
 chk("QUOTED: entry 24's CMB claim is stated as AGREEMENT, not as a threshold that could fail",
-    agrees and counts[24] == 0,
-    "'agrees with' + zero numeric values = consistency language; tier CONFIRMED")
+    agrees,
+    "rests on the QUOTE alone. The retracted version also required counts[24]==0, which was "
+    "false -- entry 24 carries 12 inequalities. Removing that dependency is the substantive "
+    "point of the retraction, not just a fix to make the script run")
 
 # ---- entry 36 -- the only real candidate in the draw ----------------------------------------
 bounds = "upper and lower bounds on the shock position at the present time" in TXT[36]
@@ -83,9 +85,9 @@ print(f"\n4. ENTRY 40 -- 'Gravitational collapse of a fluid with torsion' (tier:
 print(f"   QUOTED: 'its formation and subsequent dynamics could not be observed")
 print(f"   outside the black hole because of the infinite redshift'   present: {unobs}")
 chk("QUOTED: entry 40 explicitly states its object cannot be observed from outside",
-    unobs and counts[40] == 0,
-    "like entry 8, this is CONSISTENCY-ONLY in the strong sense -- it asserts unobservability "
-    "rather than merely omitting a test")
+    unobs,
+    "like entry 8, CONSISTENCY-ONLY in the strong sense -- it asserts unobservability rather "
+    "than merely omitting a test. Count dependency removed for the same reason as entry 24")
 
 print("""
 5. RESULT OF THE CONTROL

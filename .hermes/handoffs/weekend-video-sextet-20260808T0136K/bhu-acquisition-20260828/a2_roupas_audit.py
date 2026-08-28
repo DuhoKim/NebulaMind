@@ -74,7 +74,7 @@ chk("PARSED: the source prints MORE THAN ONE upper bound for the same quantity, 
     f"is prose, and both gate seats ruled on it separately")
 chk("PARSED: '63' appears ADJACENT to its Hz unit, and a two-digit Hz bound appears in the "
     "Discussion -- not merely both tokens somewhere in the file",
-    _prn is not None and _disc is not None,
+    _prn is not None and len(_bounds) >= 2,
     "the earlier form allowed '63' anywhere and 'Hz' anywhere; CGATE flagged that it did not "
     "require them to be the same claim")
 

@@ -119,6 +119,35 @@ another divided by 2π — and names its limit, that this shows the numbers diff
 **This is the clearest evidence in the register that hard-coding hides errors rather than merely
 overclaiming.** The same check, reading instead of asserting, failed on its first run.
 
+## 1g. I COMMITTED TWO BROKEN SCRIPTS AND CLAIMED THEY PASSED — 05:50
+
+Correcting `247d613f2`, whose message said *"a2 now 12/12"*. It did not run. It raised a
+`NameError` at check 3 and exited 1.
+
+Both of my last two repairs broke their scripts the same way — I removed a variable
+(`_disc` in a2, `counts` in a14) and left a later check referencing it — **and I committed both
+without running them to completion.** I checked `a2 exit=$?` only afterwards, from the wrong
+directory, got a path error, and misread that as the script passing.
+
+| script | what I claimed | what it did |
+|---|---|---|
+| `a2` | "now 12/12" | `NameError: _disc` — aborted after 2 checks |
+| `a14` | retraction applied and passing | `NameError: counts` — aborted after 1 check |
+
+Both fixed; whole battery now runs clean, 15/15 scripts exit 0.
+
+**The substantive point is that the a14 fix was not merely mechanical.** The broken reference was
+`agrees and counts[24] == 0` — the tier check still *depended on the count I had just retracted*.
+Removing that dependency is what the retraction actually required. So the crash exposed an
+incomplete retraction: I had rewritten the count check and left the conclusion still resting on
+it.
+
+**And the meta-point, which belongs in this register more than the fix does:** tonight's entire
+defect class is claims made without executing the thing that would falsify them. I spent the
+night documenting that in my checks, and then did it twice in an hour with commit messages. The
+gap between "I edited it" and "I ran it" is the same gap as between a check's name and its
+predicate.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
