@@ -37,18 +37,40 @@ Last full verification pass: **2026-08-27 17:39 KST** (Blanc).
 ## CORRECTION — 2026-08-28, the coordinators are NOT on Fable
 
 **The table above and the sentence "all three coordinators think on Fable" are wrong, and the
-drafting doctrine below rests on them.** Corrected by Hwao on Duho's instruction ("fix
-RESOURCE_CATALOG.md"), in Blanc's artifact, announced rather than made quietly.
+drafting doctrine below rests on them.** Written by Hwao on Duho's instruction ("fix
+RESOURCE_CATALOG.md", then "leave it with her"); Blanc stood down as writer to avoid two writers and
+verifies after rather than during. Meter figures below are Blanc's captures, carried verbatim.
+
+### Models
 
 | coordinator | model | how established |
 |---|---|---|
 | **Hwao** | `claude-opus-5[1m]` | self-reported from its own system prompt — authoritative for itself |
-| **Blanc** | `claude-opus-5[1m]` | Blanc verified its own session, 2026-08-28 |
-| **Tori** | **UNVERIFIED** | *not* inferred from the other two — read it directly before relying on it |
+| **Blanc** | `claude-opus-5[1m]` | Blanc verified from its own system prompt, 2026-08-28 |
+| **Tori** | **UNVERIFIED — do not infer** | Blanc asked at **14:04 KST 2026-08-28**; Tori was mid-task and has not answered. Two confirmed members of a three-member set are not the set. Blanc will supply hers when it lands. |
 
-**Consequence for the meters.** If the coordinators run on Opus they are not drawing on the Fable
-weekly at all. The governing meter is **all-models, 69% used** — not **Fable weekly, 100% exhausted**.
-Both reset Saturday 2 PM. Blanc reported the opposite to Duho on 2026-08-28 and has corrected it.
+### Meters — captured 2026-08-28T05:00:52Z from claude.ai/settings/usage, page reading "Last updated: just now"
+
+| meter | reading |
+|---|---|
+| **All models, weekly** | **69% used** ← the meter that governs the coordinators |
+| Fable, weekly | 100% used |
+| Current session | 4% |
+| Reset | both weeklies **Saturday 2:00 PM** |
+| Usage credits | **ON** |
+| Plan | **Max (20×)**, limits promo-boosted through **Aug 31** |
+
+**These supersede the 2026-08-27 17:39 table above**, which is kept as the dated reading it was.
+Note the all-models figure moved 64% → 69% between captures; the Fable figure did not move because
+the coordinators are not spending against it.
+
+**Why the cockpit card read NOT REFRESHING:** the prior capture in
+`.hermes/state/claude_plan_usage.json` was **20.5 hours stale**. Refreshed at the capture above. A
+stale meter reading as a live one is how the exhausted-pool premise survived a full day.
+
+**Consequence.** If the coordinators run on Opus they are not drawing on the Fable weekly at all, so
+**all-models at 69% governs, not Fable weekly at 100%.** Blanc reported the opposite to Duho earlier
+on 2026-08-28 and corrected it within the hour.
 
 **Consequence for the drafting doctrine below.** The doctrine still stands, but **not for the reason
 it gives.** Its stated premise — that coordinators burn an exhausted pool — is false. The reasons that
