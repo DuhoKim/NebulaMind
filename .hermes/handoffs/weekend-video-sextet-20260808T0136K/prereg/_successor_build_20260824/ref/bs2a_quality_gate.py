@@ -129,6 +129,8 @@ CODES = {
     "E22": "n_retained is not the frozen retained count for this contract",
     "E23": "the evidence is not the frozen authenticated evidence",
     "E24": "an evidence row has a non-string join key",
+    "E25": "receipt is not an object",
+    "E26": "evidence is not a list of rows",
 }
 
 
@@ -297,6 +299,25 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
 
     def refuse(code: str, msg: str) -> None:
         bad.append(f"[{code}] {msg}")
+
+    # The CONTAINERS first. Rounds 3 and 4 both found this class one level lower: a check guarded
+    # its rows but not the thing holding them, so `set(receipt)` and `enumerate(evidence)` raised on
+    # JSON-native null/number/bool input. The dict case is the sharp one — iterating a dict yields
+    # its keys, so `off_schema` correctly flagged index 0, and then the line written to REPORT that
+    # refusal did `evidence[i]` with i=0 and raised KeyError. The detector fired; the reporter
+    # crashed. Nothing below may assume its container shape without this.
+    receipt_ok = type(receipt) is dict
+    evidence_ok = type(evidence) is list
+    if not receipt_ok:
+        refuse("E25", f"receipt is not an object: {type(receipt).__name__}")
+    if not evidence_ok:
+        refuse("E26", f"evidence is not a list of rows: {type(evidence).__name__}")
+    # Keyed off the STRUCTURAL condition, not off `bad`. My first version of this guard returned on
+    # `bad`, so deleting either refusal let execution fall through and the deletion was caught by a
+    # traceback instead of by its control — the identical defect this module already fixed at the
+    # receipt-field level, reintroduced by the repair for it. A control should catch, not a crash.
+    if not (receipt_ok and evidence_ok):
+        return bad
 
     extra = set(receipt) - set(RECEIPT_FIELDS)
     missing = set(RECEIPT_FIELDS) - set(receipt)
@@ -642,6 +663,21 @@ def _c_huge_value(rec, ev):
     return rec, ev
 
 
+def _c_receipt_not_dict(rec, ev):
+    """JSON null in the receipt slot. `set(receipt)` raised TypeError (CODEX round 4)."""
+    return None, ev
+
+
+def _c_evidence_not_list(rec, ev):
+    """JSON number in the evidence slot. `enumerate(evidence)` raised TypeError."""
+    return rec, 42
+
+
+def _c_evidence_is_dict(rec, ev):
+    """The sharp one: off_schema flagged it, then the reporting line raised KeyError: 0."""
+    return rec, {"a": 1}
+
+
 def _c_all_pass(rec, ev):
     """GPT56's stronger round-2 forgery: a wholly foreign all-pass partition, internally consistent
     and honestly re-digested, which the verifier accepted while printing MISMATCH."""
@@ -681,6 +717,9 @@ CONTROLS = (
     ("lying __eq__ threshold",     _c_liar_threshold,     {"E07"}),
     ("lying __eq__ digest",        _c_liar_digest,        {"E19"}),
     ("value overflows float",      _c_huge_value,         {"E10", "E23"}),
+    ("receipt is not an object",   _c_receipt_not_dict,   {"E25"}),
+    ("evidence is not a list",     _c_evidence_not_list,  {"E26"}),
+    ("evidence is a dict",         _c_evidence_is_dict,   {"E26"}),
     ("row contradicts predicate",  _c_row_disagrees,      {"E12", "E22", "E23"}),
     # No E23: the digest encodes quality_pass by truthiness, so int 1 and True are the same bytes.
     # E11 is what catches it, and E16 follows because the recount excludes the non-bool row.
