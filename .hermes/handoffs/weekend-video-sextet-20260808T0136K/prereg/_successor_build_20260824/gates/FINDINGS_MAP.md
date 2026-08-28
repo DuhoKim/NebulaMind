@@ -22,3 +22,4 @@ V27→V28: GPT56-V27-1, GPT56-V27-2, GPT56-V27-3, CODEX-V27-1
 V28→V29: CODEX-V28-1 (current-transition scope rule)
 V29→V30: PRINCIPAL-20260828-LAND-NULL (human direction: "add the land 2008 null to the prereg motivation"; no referee finding — the change answers an instruction, and inventing a finding ID for it would be a lie)
 V30→V31: GPT56-V30-1, GPT56-V30-2, GPT56-V30-3, CODEX-V30-1, CODEX-V30-2
+V31→V32: GPT56-V31-1, CODEX-V31-1
