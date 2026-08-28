@@ -180,6 +180,41 @@ of my own proposed changes, which is the direction that does not inflate the cor
 It does not. The corroboration is the gates and the quotations. Anyone reading this in the morning
 should treat the check batteries as working notes, not as verification.
 
+## 1i. a4 CLOSED OUT — two strengthened, one restated as a smoke test
+
+CGATE's three remaining a4 defects, worked 06:45. a4 matters because its output IS the pinned
+source for entries 25 and 26.
+
+**#10 identity — strengthened.** Was "two splice attempts returned non-None", which a different
+overlapping document would pass. Now also requires each assembled text to carry **its own DOI and
+its exact published title**. Limit named in the check: this authenticates the identifiers, not the
+content behind them. Full authentication needs an independent copy, and MDPI blocks scripted
+access — which is why the document was browser-assembled to begin with.
+
+**#11 landmarks — strengthened, and the strict version FAILED first.** That failure is the useful
+part. Offsets for entry 25 came back `[569, 1895, 848, 43612, 6699, …]` — out of order. The
+documents are fine: **"junction conditions" occurs in the abstract**, before the Introduction, and
+**"Appendix D" occurs as a cross-reference** thousands of characters before the appendix itself.
+`str.find` returns the first hit.
+
+So my landmark list was never an ordering probe, and the stricter check is what revealed it.
+**The fix was not to retune the landmarks until it passed** — that would be fitting the test to
+the data. Each landmark is now used for what it can support: *all* of them for presence, and only
+those occurring **exactly once** for ordering (5 of 7 in entry 25, 3 of 5 in entry 26). The
+exclusion is by construction, not by tuning.
+
+**#12 the 95% check — restated, not strengthened.** It cannot be strengthened honestly. It
+tolerates 5% loss by construction, its denominator's basis was never verified, and duplication
+compensating for loss would also pass. Worse, it is apples-to-oranges in a direction worth naming:
+the numerator has trailing furniture cut, the denominator does not, so the ratio **understates**
+recovery. Renamed `SMOKE TEST ONLY` with all of that in the check.
+
+**#13 seam duplication** was already answered independently by a15's shingling (longest duplicate
+run 25 in stitched files vs 2 in never-stitched controls).
+
+Completeness evidence for these two documents is now a15's equation-citation probe — zero orphaned
+citations in either — not any check in a4.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:

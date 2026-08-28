@@ -121,16 +121,64 @@ for entry, r in results.items():
     if miss: print(f"        MISSING LANDMARKS: {miss}")
 
 good = [r for r in results.values() if r]
-chk("both papers reassembled from overlapping captures", len(good) == 2, f"{len(good)}/2")
-chk("every landmark from the START, MIDDLE and END of each paper is present",
-    all(not [m for m in P["landmarks"] if m not in doc] for _, doc, P in good),
-    "this is the check a3 lacked -- an end-landmark cannot survive truncation")
+# REPAIRED. CGATE: this "means only that two splice attempts returned non-None. Neither the
+# captures nor the emitted header authenticate publisher identity/content; a different
+# overlapping document can pass." Identity cannot be fully authenticated without an independent
+# copy, but the DOI and the exact PUBLISHED title can be required in the body we assembled.
+_ident = {}
+for _, doc, P in good:
+    _ident[P["slug"]] = (P["doi"] in doc or P["doi"] in open(f"{SRC}/{P['slug']}_clean.txt").read()[:4096]) \
+                        and P["title"] in doc
+    print(f"   {P['slug']}: DOI and exact published title present in the assembled text: {_ident[P['slug']]}")
+chk("MEASURED: both papers reassembled AND each carries its own DOI and exact published title in "
+    "the assembled text -- not merely two splices that returned non-None",
+    len(good) == 2 and all(_ident.values()),
+    "LIMIT: this authenticates the identifiers, not the content behind them. Full authentication "
+    "needs an independent copy, and MDPI blocks scripted access -- which is why this document "
+    "was assembled from browser captures in the first place")
+# REPAIRED. CGATE: this "does not establish completeness between landmarks, correct order,
+# uniqueness, or correct paper identity. A source can lose arbitrary blocks and pass." Presence
+# alone cannot reach those, but ORDER and UNIQUENESS can be tested, so they now are. The
+# landmarks are listed in document order.
+# The first strict version of this check FAILED, and the diagnosis is worth keeping: not because
+# the documents are wrong, but because MY LANDMARK LIST WAS NEVER AN ORDERING PROBE. "junction
+# conditions" occurs in entry 25's abstract, before the Introduction; "Appendix D" occurs as a
+# cross-reference thousands of characters before the appendix itself. str.find returns the first
+# hit, so the order test read those as out of order.
+#
+# The fix is NOT to retune the landmarks until it passes -- that would be fitting the test to the
+# data. It is to use each landmark for what it can support: ALL of them for presence, and only
+# the ones that occur EXACTLY ONCE for ordering, reporting how many qualify.
+_present, _ord, _nuniq = {}, {}, {}
+for _, doc, P in good:
+    lms   = P["landmarks"]
+    uniq  = [m for m in lms if doc.count(m) == 1]
+    pos   = [doc.find(m) for m in uniq]
+    _present[P["slug"]] = all(m in doc for m in lms)
+    _ord[P["slug"]]     = all(a < b for a, b in zip(pos, pos[1:]))
+    _nuniq[P["slug"]]   = (len(uniq), len(lms))
+    print(f"   {P['slug']}: {len(lms)} landmarks present={_present[P['slug']]}; "
+          f"{len(uniq)} occur exactly once and those are in document order={_ord[P['slug']]}")
+chk("MEASURED: every landmark is present, and every landmark that occurs EXACTLY ONCE occurs in "
+    "document order -- a re-emitted or transposed capture fails this where presence alone would not",
+    all(_present.values()) and all(_ord.values()) and all(u >= 3 for u, _ in _nuniq.values()),
+    "the non-unique landmarks are excluded from the ordering test by construction, not by tuning: "
+    "they are phrases that legitimately recur (abstract mentions, cross-references). "
+    "STILL does not establish completeness BETWEEN landmarks -- that is a15's citation probe")
 chk("no harness artefact survives in either file",
     all(not re.search(r"output truncated at|Tab Context:|Source element:", doc) for _, doc, P in good),
     "a3 wrote the truncation notice and tab footer into the source as if they were prose")
-chk("each file recovers >=95% of the character count the page itself reported",
+# RESTATED, not strengthened. CGATE: this "explicitly permits a 5% truncation and compares
+# against a browser-reported character count whose normalization/furniture basis is not checked."
+# Both true. The comparison is also apples-to-oranges in a direction worth naming: the numerator
+# has had trailing page furniture deliberately cut, the denominator has not, so the ratio
+# UNDERSTATES recovery by construction. It is a smoke test, not a completeness proof.
+chk("SMOKE TEST ONLY: each file reaches >=95% of the page's self-reported character count, with "
+    "furniture cut from the numerator but not the denominator",
     all(len(doc) / P["reported_total"] >= 0.95 for _, doc, P in good),
-    "guards against a splice that silently drops a middle segment")
+    "does NOT prove completeness: it tolerates a 5% loss by construction, its denominator's "
+    "basis was never verified, and duplication compensating for loss would also pass. "
+    "Completeness evidence is a15's citation probe, not this")
 chk("the seams did not duplicate text",
     all(doc.count("Publisher’s Note: MDPI stays neutral") == 1 for _, doc, P in good),
     "a bad overlap splice would repeat the end block")
