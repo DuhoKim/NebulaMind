@@ -26,21 +26,32 @@ Lane root: `.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_success
 When stopping for a human: write the question to `OPEN_QUESTION_<topic>.md` in the lane with the
 options and what each costs, and say so plainly in the last line.
 
-## PRIORITY: VOID reverse reachability
+## PRIORITY: VOID reverse reachability — **BLOCKED, 2026-08-29 07:45 KST. Do not spend a tick on it.**
 
-It is the single item gating clause 10 executability, and therefore BS-6 and the first image byte.
-Everything else is specification quality. Progress so far:
+It was the priority because it gates clause 10 executability, and therefore BS-6. It is now blocked
+on a human, and a tick that opens it will burn a cycle rediscovering that. I did exactly that at
+07:41 before writing this.
 
-- `tools/void_registry.py` — extracts §7.1, canonicalises, digests, checks completeness.
-  On V34: **52 antecedents, 20 §6.1 rows, all covered, `registry_digest bd55490e…`**, self-test
-  6 controls / 0 failures.
-- **The BS-2v row's stated reason for UNRESOLVED does not hold.** It says "the registry cannot be
-  pinned before the converter exists". But §7.1's content comes from the document's own normative
-  clauses (§5, §6.1's row table, §6.3, §2.7) — the converter *handles* those IDs, it does not author
-  them. The real self-reference risk is only digesting §7.1 *into* the document, avoided the same way
-  §10 already avoids it: digest the rows, store the digest outside them.
-- **Not yet established:** whether pinning the registry is *sufficient* to move BS-2v off UNRESOLVED.
-  That is a gate question for the seats, not a claim to make alone.
+**What is settled — do not re-derive:**
+
+- **The circularity claim in the BS-2v row is false.** Both seats. §7.1's content comes from the
+  document's own normative clauses; the converter handles those IDs, it does not author them.
+- **Pinning is necessary, not sufficient.** CODEX: the converter, receipt schema, verifier/gate
+  behaviour and fixtures still have to be delivered and gated. This is no longer an open question.
+- **Name reachability is closed in both directions.** `void_registry.py` proves V01 section present,
+  V02 no duplicate ID, V03 phase in the closed vocabulary, V04 effect is VOID, **V05 every §6.1 row
+  is named by some antecedent, V06 no antecedent names an undefined row.** 52 antecedents, 20 rows,
+  digest `bd55490e…`, identical on V34/V35/V36.
+
+**What blocks it:** the three verified §7.1 content gaps — `degenerate`, `digest`, `chosen` — in
+`OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md`. Amending §7.1 changes what the study normatively
+enumerates as voiding a run, which is a hard stop.
+
+**Do not add another registry check to make progress feel available.** I looked for a sound one this
+tick and there is none: what V05/V06 cannot prove is *semantic* coverage — that an antecedent naming
+row S actually covers row S's forbidden column — and recovering that by pattern-matching is precisely
+the move that got the citation check quarantined after three failed rounds. A narrow pattern is safe
+for presence and dangerous for absence. Read the tool's output as **name-coverage only**.
 
 ## BOUNDS
 
