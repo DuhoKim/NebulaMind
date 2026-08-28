@@ -109,9 +109,11 @@ def build(d: Path):
     for prev, cur in zip(ds, ds[1:]):
         pt, ct = prev.read_text(), cur.read_text()
         stats = changed_sections(pt, ct)
-        touched = ", ".join(
-            f"{s} (+{a}/−{r})" for s, (a, r) in sorted(stats.items(), key=lambda kv: -sum(kv[1]))[:6]
-        )
+        # NO SILENT CAP. The first version showed the six largest and dropped the rest without
+        # saying so, and CODEX found it: "sections changed silently truncates". A table that omits
+        # what it omits reads as complete. Emit every changed section; if that is long, it is long.
+        ordered = sorted(stats.items(), key=lambda kv: -sum(kv[1]))
+        touched = ", ".join(f"{s} (+{a}/−{r})" for s, (a, r) in ordered)
         rows.append({
             "from": DRAFT.search(prev.name).group(1),
             "to": DRAFT.search(cur.name).group(1),
@@ -198,7 +200,11 @@ def main():
     text = Path(args.check).read_text()
     bad = 0
     print(f"prereg trace check — {Path(args.check).name}")
+    subj = DRAFT.search(Path(args.check).name)
+    subj_v = int(subj.group(1)) if subj else None
     for r in rows:
+        if int(r["to"]) <= 15 or (subj_v is not None and int(r["to"]) >= subj_v):
+            continue
         # A written row may say anything; what it must not do is contradict a computed digest.
         pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}")
         if not pat.search(text):
@@ -213,7 +219,23 @@ def main():
     # section must name the finding it answers. Sections whose whole purpose is bookkeeping are
     # exempt — §10 is the trace itself, and the preamble carries banners.
     BOOKKEEPING = {"§10", "(preamble)"}
+    # COVERAGE CONTRACT, encoded here rather than asserted in prose (GPT56-V26-4):
+    #   * in-band  — the draft's own table covers transitions up to its PREDECESSOR only. A draft
+    #                cannot describe the transition that created it; that row would change its bytes
+    #                and therefore its own digest.
+    #   * sidecar  — the current transition is mapped in gates/FINDINGS_MAP.md, outside the draft.
+    #   * historic — V1→V15 predate this lane's referee record and are exempt by rule, not by
+    #                silence. Naming the exemption is the difference between a gap and an omission.
+    HISTORIC_EXEMPT_BEFORE = 15
+    subject_ver = None
+    m = DRAFT.search(Path(args.check).name)
+    if m:
+        subject_ver = int(m.group(1))
     for r in rows:
+        if int(r["to"]) <= HISTORIC_EXEMPT_BEFORE:
+            continue                      # exempt by stated rule
+        if subject_ver is not None and int(r["to"]) >= subject_ver:
+            continue                      # in-band covers predecessors only; sidecar owns the rest
         normative = [s_ for s_ in re.findall(r"(§[\d.]+|\(preamble\))", r["touched"])
                      if s_ not in BOOKKEEPING]
         if normative and (r["from"], r["to"]) not in findings:
