@@ -234,8 +234,23 @@ def check_repair_citations(text, gates, out):
     checking there. V12's blockquote claimed the unanimous round-1 blinding finding repaired
     while half of it stood.
     """
+    # ── QUARANTINED 2026-08-29 05:45 after three consecutive two-seat NOT CLEARs. ──────────────
+    # This check is UNRELIABLE IN BOTH DIRECTIONS and its findings must not be acted on:
+    #   * it calls a REAL citation fabricated - CODEX-V4 F9 lives in GATE_CODEX_SUCCESSOR_V4.md,
+    #     but _reports_for demands "REVIEW" in the filename, so it judged against the unrelated
+    #     GAIN_V4_REVIEW_CODEX.md and returned FABRICATED. Acting on that would mean "fixing" a
+    #     correct document, which is worse than not checking at all;
+    #   * its canary does NOT detect deletion of the positive VERIFIED branch - the self-test stays
+    #     green with that branch removed, contrary to what I claimed when shipping it;
+    #   * it diverges from CITATION_CHECK_SPEC.md, which requires mixed-grammar verification while
+    #     the code rejects every mixed grammar.
+    # Findings are therefore emitted as ADVISORY and do not fail the lint. Emitting a
+    # known-wrong verdict with authority is the failure this tool exists to prevent.
+    # Decision required: see OPEN_QUESTION_CITATION_CHECK.md.
+    ADVISORY = "ADVISORY (check quarantined, unreliable in both directions): "
     if not gates or not gates.is_dir():
-        out.append(("repair-citations", "gates directory not readable; citations unchecked"))
+        out.append(("repair-citations-advisory",
+                    ADVISORY + "gates directory not readable; citations unchecked"))
         return
     corpus = "\n".join(p.read_text(errors="ignore") for p in gates.glob("PREREG_TEXT*.md"))
     if not corpus:
@@ -253,15 +268,15 @@ def check_repair_citations(text, gates, out):
             k = int(fid.lstrip("Ff"))
             outcome, nums = citation_outcome(gates, seat, ver, k)
             if outcome == "NO-REPORT":
-                out.append(("repair-citations",
+                out.append(("repair-citations-advisory", ADVISORY +
                             f"cites {seat}-V{ver} {fid} but no report for {seat} V{ver} exists"))
             elif outcome == "FABRICATED":
-                out.append(("repair-citations",
+                out.append(("repair-citations-advisory", ADVISORY +
                             f"cites {seat}-V{ver} {fid} but that report declares findings "
                             f"{', '.join(str(n) for n in sorted(nums))}"))
             elif outcome == "UNVERIFIABLE":
                 # NOT reported as clean and NOT as a document defect. The parse failed; say so.
-                out.append(("repair-citations",
+                out.append(("repair-citations-advisory", ADVISORY +
                             f"cites {seat}-V{ver} {fid} but that report's finding grammar is not "
                             f"recognisable — citation UNVERIFIABLE, not disproved"))
 
@@ -395,9 +410,9 @@ def _mut_repair_citations(text):
 
 
 CONTROLS = [
-    ("check_repair_citations", _mut_repair_citations, "repair-citations"),
-    ("citation fabricated", _mut_citation_fabricated, "repair-citations", "declares findings"),
-    ("citation unverifiable", _mut_citation_unverifiable, "repair-citations", "UNVERIFIABLE"),
+    ("check_repair_citations", _mut_repair_citations, "repair-citations-advisory"),
+    ("citation fabricated", _mut_citation_fabricated, "repair-citations-advisory", "declares findings"),
+    ("citation unverifiable", _mut_citation_unverifiable, "repair-citations-advisory", "UNVERIFIABLE"),
     ("check_prose_counts",    _mut_prose_count,     "prose-count-disagreement"),
     ("check_class_agreement", _mut_class_agreement, "slot-class-disagreement"),
     ("check_lock_identity",   _mut_lock_identity,   "lock-identity"),
