@@ -1,62 +1,81 @@
-# BS-2a CODE GATE — GPT56 referee report
+# BS-2a CODE GATE — GPT56, round 2
 
-Subject: `../ref/bs2a_quality_gate.py`
-Digest check: `shasum -a 256` computed by me = `4e205c67d7efc72a0432b8ac4d7ddeb0f6514d01c21f791011eb6427ab2d2c62` — **byte-identical to the digest pinned in the brief**. The file reviewed is the file named.
-Standing constraints honored: `successor_ref_v9.py` was not modified (post-hoc `git status` clean on it; its sha unchanged across my work, `6a9abbbd…e148`). `/Users/duhokim/NebulaMindData/` was never read. All fixtures were built in `tempfile` dirs or as `_tmp_*` scripts inside the gates dir. No image byte fetched.
+Verdict: **NOT CLEAR**. The pinned subject reproduces the real 49,211/65,060 result, the rebuilt battery reports 17 controls with zero failures, and the requested parent-digest deletion probe now fails by naming the intended silent control. However, isolated deletion probes show that three closure checks can still be deleted while the battery stays green for a surviving check's reason. Independently, the verifier accepts evidence with a forged parent member, accepts an entirely foreign all-pass partition, and still accepts χ in the nested thresholds object.
 
-## Executed claims (reproduced by me, not taken from the brief)
+## Identity and required executions
 
-- `python3 ref/bs2a_quality_gate.py --self-test` → 7 controls, 0 failures, baseline clean. Confirmed.
-- `python3 ref/bs2a_quality_gate.py --acquire acquire` → receipt with `n_parent 65060, n_joined 65060, n_retained 49211, n_excluded 15849`, printed `retained 49,211 of 65,060 (expected 49,211) — MATCH`, exit 0. Confirmed.
-- Constants in the file (`T_FLUX_IVAR_R_GT = 8.4000532`, `T_PSFSIZE_R_LT = 1.5699703`, `T_NOBS_R_GE = 3.0`, `QUALITY_SHA256 61214b59…`, `PARENT_SHA256 425a42c3…`, `PARENT_ROWS 65_060`, `EXPECTED_RETAINED 49_211`) were checked against **the V29 document** (PREREG_SUCCESSOR_DRAFT_V29_20260827.md §2.7(7) lines 372–376, Row E line 539, §3 line 464, §6.1): all match. No constant was taken from the brief.
+- Subject reviewed: `../ref/bs2a_quality_gate.py`.
+- Brief-pinned sha256: `d7da1568dc294595640b603368135df288ac4bbc0cc54003a1fc906e237e650c`.
+- Independently computed sha256: `d7da1568dc294595640b603368135df288ac4bbc0cc54003a1fc906e237e650c`.
+- Comparison: **MATCH** — the reviewed bytes are the bytes pinned by the brief.
+- `python3 ref/bs2a_quality_gate.py --self-test` exited 0 and independently printed `self-test: 17 controls, 0 failure(s)`.
+- `python3 ref/bs2a_quality_gate.py --acquire acquire` exited 0 and independently produced `n_parent=65060`, `n_joined=65060`, `n_retained=49211`, `n_excluded=15849`, evidence sha256 `0afba44f99a49802713d357c6684315551ddcd3681ad87457fe0c96118fe32ca`, and `retained 49,211 of 65,060 (expected 49,211) — MATCH`.
 
-## Findings (numbered, severity, file:line, why it fails, smallest sufficient repair)
+## Numbered findings
 
-**1. MAJOR — `quality_pass` content is never verified, so a receipt passes with χ (or any payload) onboard.**
-File: `ref/bs2a_quality_gate.py:250-259` (recompute uses only the three float columns; nothing compares `e["quality_pass"]` to the recomputed value or requires it to be a bool), and `:203` (`evidence_digest` reduces the field to `"1" if e["quality_pass"] else "0"` — truthiness, not content).
-Demonstrated: I replaced a passing row's `quality_pass` with a custom truthy object carrying a χ payload (`class Chi: __bool__ → True`). `evidence_digest` over the poisoned evidence is **byte-identical** to the clean digest, and `verify_receipt(untouched receipt, poisoned evidence)` returned `[]` — **ACCEPTED**. Same result with `quality_pass = 1` and with `quality_pass = {"chi": 0.7}` plus an honestly recomputed digest. This is exactly the brief's attack 1: a field that leaks χ and still passes. The `_c_evidence_shape` control only tests χ as an **extra key**; χ smuggled *inside* an existing field is invisible to the whole battery.
-Repair: in `verify_receipt`, require `e["quality_pass"] is True or is False` and assert `e["quality_pass"] == quality_pass(e["flux_ivar_r"], e["psfsize_r"], e["nobs_r"])` per row; add a control mutating `quality_pass` content with key-set unchanged.
+### 1. BLOCKER — the verifier does not establish parent membership or bind evidence to the asserted source
 
-**2. MAJOR — `verify_receipt` never checks `receipt["n_parent"]` against `PARENT_ROWS`.**
-File: `ref/bs2a_quality_gate.py:211-261` (the field is in `RECEIPT_FIELDS` at line 75 but no line of the verifier reads it).
-Demonstrated: receipt with `n_parent = 999` (contract parent is 65,060) returned `[]` — **ACCEPTED**. A receipt can assert any parent cardinality it likes; the 65,060 identity is enforced only in `build_evidence` (line 143), not at verification time, so a foreign/short partition's receipt is conforming. The partition the evidence does support is checked (`n_joined`, `n_retained`, sum, digest) — the partition's *parent identity* is not.
-Repair: `if receipt["n_parent"] != PARENT_ROWS: bad.append(...)`; add a negative control.
+- File/lines: `../ref/bs2a_quality_gate.py:231-234, 283-304`.
+- Executed refusal attack: starting from `_sample_evidence()`, I changed one unique evidence key to `FORGED_PARENT_KEY_NOT_IN_SOURCE`, recomputed `evidence_sha256`, and changed nothing else. `verify_receipt()` returned `[]`: **ACCEPTED**.
+- Stronger executed calibration: I changed every evidence row to predicate-passing values, set all `quality_pass` bits true, set `n_retained=65060` and `n_excluded=0`, and recomputed the evidence digest. The receipt continued to assert the frozen parent and quality source digests. `verify_receipt()` again returned `[]`: **ACCEPTED**.
+- Why it fails: the verifier checks that `parent_source_sha256` contains the expected literal, that the list has 65,060 unique keys, and that counts close. It never consumes authenticated parent bytes or an authenticated parent-key-set commitment, so it cannot tell the real parent set from an equally sized foreign set. Likewise, the quality-source digest in a hand-made receipt is an assertion, not a binding from source rows to evidence values. This contradicts the module-level claim that the verifier can reject a non-conforming authenticated receipt/evidence pair.
+- Smallest sufficient repair: make standalone verification consume the already-authenticated parent and quality bytes (or separately frozen canonical key/value commitments), derive their key/value maps, and require exact key-set equality plus per-key equality to the evidence before accepting. Add a control that replaces one unique parent key while preserving size, uniqueness, counts, predicate agreement, and digest.
 
-**3. MINOR — malformed evidence rows (missing/renamed column) crash the verifier with `KeyError` instead of producing a refusal.**
-File: `ref/bs2a_quality_gate.py:245-251`. The shape loop (245-248) appends a reason but does not `return`; the recompute at 250 then indexes `e["nobs_r"]` and raises. Demonstrated both with a 5-key row and a renamed 6-key row: unhandled `KeyError: 'nobs_r'` regardless of row position. A verifier whose stated contract is "refusals name what failed" (line 82) dies nameless on the most obvious malformed-input class. Not exploitable into an accept (crash ≠ pass), so MINOR not MAJOR.
-Repair: `bad.append(...); continue` is not enough — restructure so the recompute only runs on rows that passed the shape check, or `return bad` immediately when any row is malformed.
+### 2. HIGH — the closed receipt schema still accepts χ in a nested field
 
-**4. MINOR — the "exact" join silently canonicalizes keys (`str.strip()`), so byte-distinct keys are equated.**
-File: `ref/bs2a_quality_gate.py:128-129` (`tuple(str(row[k]).strip() ...)`).
-Demonstrated: parent key `"1"` joined to quality key `" 1 "` and the evidence emitted key `"1"` — the join succeeded where a byte-exact join must refuse or flag. The digest binds the *canonicalized* key, not the source key, so key whitespace mutations in the source CSV are laundered through custody. Low blast radius here because both source files are sha-pinned (a whitespace-mutated source fails `verified_bytes` first), but the join's claimed exactness ("exact set equality", line 136) is not what the code does, and any future un-pinned source inherits the looseness.
-Repair: drop `.strip()` (or refuse on `str(row[k]) != str(row[k]).strip()`); add a control with a whitespace-carrying key.
+- File/lines: `../ref/bs2a_quality_gate.py:66-77, 220-241`.
+- Executed attack: inserted `receipt["thresholds"]["chi_net"] = 0.731` into an otherwise conforming fixture. `verify_receipt()` returned `[]`: **ACCEPTED**.
+- Why it fails: top-level receipt keys are closed, but `thresholds` is checked only by three `.get()` calls. Extra nested keys are never rejected. Thus the claimed closed schema can carry the very outcome field it is intended to exclude. None of the 17 controls exercises recursive receipt closure.
+- Smallest sufficient repair: require `type(thresholds) is dict` and exact nested key equality with `{"flux_ivar_r_gt", "psfsize_r_lt", "nobs_r_ge"}` before comparing values; type-check `join_keys` similarly; add a nested-χ control whose expected refusal identifies nested schema closure.
 
-**5. MINOR — negative-control battery covers 7 of the 13 verifier branches; five checks have no proof they can fail.**
-File: `ref/bs2a_quality_gate.py:326-334` (`CONTROLS`). Demonstrated by direct mutation: `schema_version`, `parent_source_sha256`, `join_keys`, `n_joined`, and `n_excluded`-only mutations are all rejected by the verifier (they work today), but **no control exercises them** — exactly the vacuity pattern the module's own docstring (lines 34-40) says this file exists to prevent. If any of those branches is ever deleted or no-oped, `self_test()` stays green. The `quality_pass`-content hole (finding 1) survived precisely because no control mutates content at a fixed key-set.
-Repair: add the five controls (one line each); add the missing-field crash case from finding 3 as a control asserting a *named refusal* rather than an exception.
+### 3. HIGH — three check deletions are still masked by surviving guards
 
-## Failed attacks (what I tried that held)
+- File/lines: `../ref/bs2a_quality_gate.py:285-300, 376-395, 454-501`.
+- Intact-control isolation audit:
+  - `parent identity wrong` produces **two** refusals: the frozen-parent check and the unrelated join-totality check.
+  - `joined count wrong` produces **two** refusals: joined-vs-parent and joined-vs-evidence-length.
+  - `non-boolean quality_pass` also produces two refusals: non-boolean plus retained-count mismatch.
+- Executed deletion probes on temporary copies:
+  1. Deleted only `n_parent != PARENT_ROWS`. The battery exited 0 with `17 controls, 0 failure(s)`; `parent identity wrong` remained `OK` on `n_joined 65060 != n_parent 65059`.
+  2. Deleted only joined-vs-parent totality. The battery exited 0; `joined count wrong` remained `OK` on `n_joined 65061 but evidence holds 65060`.
+  3. Deleted only joined-vs-evidence length. The battery exited 0; `joined count wrong` remained `OK` on `n_joined 65061 != n_parent 65060`.
+- Why it fails: expected substrings are not unique refusal identities. `n_parent` and `n_joined` occur in multiple branches, and the mutators violate multiple invariants. The rebuilt battery therefore still allows a control to pass for the wrong reason — the exact round-1 defect it claims to eliminate.
+- Smallest sufficient repair: assign stable, unique refusal codes to individual invariants and make every control require exactly its one code and no other refusal. Isolate parent identity by constructing a 65,059-row closed evidence/receipt pair before applying only the frozen-size mismatch; split the two joined invariants into separate controls with unrelated invariants preserved; repair the non-boolean mutator so its count remains consistent under the verifier's recomputation policy.
 
-- Real invocation reproduces the contract numbers exactly: 65,060 joined / 49,211 retained / 15,849 excluded, digest-pinned sources, MATCH (see above).
-- Join refuses all four constructed violations: duplicate quality row, duplicate parent row (via the parent-count refusal), orphan quality row, orphan parent row — each a named `QualityGateError`, none a silent drop.
-- `verified_bytes()` is a real custody boundary: single `os.open` with `O_NOFOLLOW`, `fstat` regular-file check, hash-as-read of the same bytes it returns. Symlink target refused (`OSError` from O_NOFOLLOW), directory refused ("not a regular file"). The read-once pattern matches the v9 custody rule; there is no verify-then-reopen.
-- `evidence_digest()` moves on a 1-ulp float mutation, is invariant under row reorder (sorted lines), and binds key whitespace in the evidence. (It does not bind `quality_pass` content — that is finding 1, not a digest defect per se.)
-- `n_retained` inflation, evidence-digest forgery, threshold mutation, source-digest swap, extra receipt field, partition non-sum: all rejected, each with a working control.
-- The file does not touch `successor_ref_v9.py`: one docstring mention, no import, no open.
-- Docstring honesty check (brief attack 6): the docstring claims outcome-blindness w.r.t. unobserved χ and **explicitly disclaims** statistical independence from handedness, including the conditional-on-position question. I found no code path or comment implying the stronger claim. The stronger-claim hunt failed — good.
+### 4. HIGH — the frozen expected retained count is display-only, not a gate invariant
 
-## Testimony (asserted but not executed)
+- File/lines: `../ref/bs2a_quality_gate.py:61, 295-304, 523-532`.
+- Executed attack: the all-pass 65,060-row evidence described in finding 1 had exact per-row predicate agreement, closed counts, and a recomputed evidence digest. Despite `EXPECTED_RETAINED = 49_211`, `verify_receipt()` returned `[]` with `n_retained=65060`.
+- Why it fails: the verifier checks only evidence self-consistency. `main()` prints `MATCH` or `MISMATCH`, but a mismatch is not added to `bad` and does not cause a nonzero exit. The 17 controls contain no expected-retained control. A gate process can therefore succeed while explicitly printing `MISMATCH`.
+- Smallest sufficient repair: require `receipt["n_retained"] == EXPECTED_RETAINED` (and therefore the corresponding expected exclusion count) for this frozen production contract, make `main()` return nonzero on `MISMATCH`, and add an isolated control that changes an evidence row and its bit/counts/digest consistently while leaving all other invariants valid.
 
-None. Every claim above was executed; transcripts are from `gates/_tmp_bs2a_battery_gpt56.py`, `_tmp_bs2a_battery2_gpt56.py`, `_tmp_bs2a_battery3_gpt56.py`, and inline probes, all run under the successor-build tree with the pinned-digest file.
+## Deletion-probe results that held
 
-## Uncertainties / not inspected
+All deletions below were made only in temporary copies under the assigned gates directory.
 
-- `evidence_digest()`'s `"|".join(...)` admits a theoretical separator-injection collision on crafted keys (demonstrated: `("1|2","1")` vs `("1","2|1")` digests equal); with the sources sha-pinned this is not reachable from the real inputs, so I record it as an observation, not a finding.
-- The `nobs_r >= 3.0` comparison on a `NaN` evidence value fails the predicate (NaN comparisons are False) and the verifier stays consistent; I did not count this as a finding because a NaN row can only bias toward exclusion, but a real schema would refuse non-finite floats explicitly.
-- I did not review the acquire CSVs' provenance beyond their pinned digests (out of scope; the digests matched the document).
+- Requested parent-digest deletion: exit 1; exact control line was `FAIL parent digest wrong: ACCEPTED, control is silent`; summary `17 controls, 1 failure(s)`. This confirms the rebuilt battery names the specific silent control.
+- Retained-count comparison deletion: exit 1; `FAIL retained count inflated: ACCEPTED, control is silent`.
+- Duplicate-key comparison deletion: exit 1; `FAIL duplicate evidence key: ACCEPTED, control is silent`.
+- Off-schema comparison deletion: exit 1; `FAIL late row carries χ: ACCEPTED, control is silent`.
 
-## Verdict rationale
+These successful calibrations make finding 3 narrower, not weaker: most repaired controls identify their deleted branch, but the parent-identity and joined-count controls do not.
 
-Findings 1 and 2 are each independently disqualifying for a gate whose entire purpose is "a verifier that can reject a non-conforming receipt": 1 lets χ cross the boundary the receipt schema exists to seal, and 2 lets a receipt assert a parent identity the evidence does not support. Both are demonstrated accepts, not arguments. Repairs are small (each is a few lines plus a control). BS-2a stays UNFILLED; the first image byte stays blocked.
+## Fixture and production-path assessment
+
+- `_sample_evidence()` creates exactly 65,060 rows; its intact receipt passes cleanly.
+- `self_test()` and production `main()` both call the same `verify_receipt()` function. There is no fixture flag, fixture exception, alternate threshold, or weakened parent-size branch. The requested concern about relaxing parent identity for fixtures therefore held under attack.
+- The fixture does bypass `verified_bytes()` and `build_evidence()` by construction, so it is a verifier fixture rather than an end-to-end acquisition fixture. The separate real `--acquire acquire` execution exercised those production stages and reproduced the frozen counts.
+
+## Other failed attacks / boundaries that held
+
+- Each of the 17 intact controls produced its named expected substring; 14 produced a single refusal. The three multi-refusal exceptions are identified in finding 3.
+- Schema version, both source-digest literals, thresholds, join-key declaration, partition sum, evidence digest, extra/missing top-level receipt fields, late-row off-schema evidence, per-row predicate disagreement, non-finite values, and duplicate evidence keys all refused under their intact controls.
+- The length-prefixed field encoding repaired the round-1 `|` field-boundary collision.
+- The module consistently limits its claim to outcome-blindness with respect to this study's unobserved χ and expressly disclaims statistical independence from handedness and conditional-on-position independence (`lines 21-32`). I found no stronger claim in code or comments.
+- `successor_ref_v9.py` is mentioned only in explanatory text; the reviewed module does not import, open, call, or write it. Its sha256 was unchanged before and after the review/report write: `6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148`.
+
+## Testimony, scope, and custody
+
+No verdict-bearing assertion above is testimony: the digest, required invocations, acceptance attacks, refusal sets, and deletion probes were executed. I did not read `/Users/duhokim/NebulaMindData/`. Temporary deletion copies were confined to the assigned gates directory. This review does not fill BS-2a, authorise a fetch, or resolve conditional independence. BS-2a remains UNFILLED; BS-6 and the first image byte remain blocked.
 
 **NOT CLEAR**
