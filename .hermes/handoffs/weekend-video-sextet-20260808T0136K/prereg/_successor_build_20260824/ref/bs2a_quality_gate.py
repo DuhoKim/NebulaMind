@@ -262,9 +262,14 @@ def _enc(*parts) -> str:
 def evidence_digest(evidence: list[dict]) -> str:
     """Canonical digest over the evidence, order-independent by construction."""
     def enc(e):
-        return _enc(e["brickid"], e["objid"],
-                    repr(float(e["flux_ivar_r"])), repr(float(e["psfsize_r"])),
-                    repr(float(e["nobs_r"])), "1" if e["quality_pass"] else "0")
+        def num(k):
+            try:
+                return repr(float(e.get(k)))
+            except (TypeError, ValueError, OverflowError):
+                return "\x00missing"
+        return _enc(e.get("brickid"), e.get("objid"),
+                    num("flux_ivar_r"), num("psfsize_r"), num("nobs_r"),
+                    "1" if e.get("quality_pass") else "0")
     return hashlib.sha256("\n".join(sorted(enc(e) for e in evidence)).encode("utf-8")).hexdigest()
 
 
@@ -306,11 +311,11 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
     if missing or extra:
         return bad
 
-    if receipt["schema_version"] != SCHEMA_VERSION:
+    if type(receipt["schema_version"]) is not str or receipt["schema_version"] != SCHEMA_VERSION:
         refuse("E03", f"schema_version {receipt['schema_version']!r} != {SCHEMA_VERSION!r}")
-    if receipt["quality_source_sha256"] != QUALITY_SHA256:
+    if type(receipt["quality_source_sha256"]) is not str or receipt["quality_source_sha256"] != QUALITY_SHA256:
         refuse("E04", "quality_source_sha256 does not match the frozen source digest")
-    if receipt["parent_source_sha256"] != PARENT_SHA256:
+    if type(receipt["parent_source_sha256"]) is not str or receipt["parent_source_sha256"] != PARENT_SHA256:
         refuse("E05", "parent_source_sha256 does not match the frozen parent digest")
 
     # The schema is closed RECURSIVELY. Closing only the outer keys let a receipt carry chi_net
@@ -321,10 +326,12 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
                       f"{sorted(t) if type(t) is dict else type(t).__name__}")
     else:
         for name, want in zip(THRESHOLD_FIELDS, (T_FLUX_IVAR_R_GT, T_PSFSIZE_R_LT, T_NOBS_R_GE)):
-            if t[name] != want:
+            if type(t[name]) not in (int, float) or t[name] != want:
                 refuse("E07", f"threshold {name}={t[name]!r} != frozen {want!r}")
 
-    if type(receipt["join_keys"]) is not list or receipt["join_keys"] != list(JOIN_KEYS):
+    if (type(receipt["join_keys"]) is not list
+            or any(type(k) is not str for k in receipt["join_keys"])
+            or receipt["join_keys"] != list(JOIN_KEYS)):
         refuse("E08", f"join_keys {receipt['join_keys']!r} != {list(JOIN_KEYS)!r}")
 
     # A count field is a cardinality. `65060.0 == 65060` and `True == 1` in Python, so equality
@@ -339,11 +346,19 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
     # let a later row carry chi_net straight through the schema that exists to stop it
     # (CODEX-BS2A-1). A check that inspects one element of a collection has not checked the
     # collection.
-    off_schema = [i for i, e in enumerate(evidence) if set(e) != set(EVIDENCE_FIELDS)]
+    off_schema = [i for i, e in enumerate(evidence)
+                  if not isinstance(e, dict) or set(e) != set(EVIDENCE_FIELDS)]
     if off_schema:
         i = off_schema[0]
-        refuse("E09", f"{len(off_schema)} evidence row(s) off-schema; first at index {i}: "
-                      f"{sorted(set(evidence[i]) ^ set(EVIDENCE_FIELDS))}")
+        shape = (sorted(set(evidence[i]) ^ set(EVIDENCE_FIELDS)) if isinstance(evidence[i], dict)
+                 else type(evidence[i]).__name__)
+        refuse("E09", f"{len(off_schema)} evidence row(s) off-schema; first at index {i}: {shape}")
+        # Return on the STRUCTURAL condition, not on `bad`. A row that is not a well-formed dict
+        # cannot be digested, and everything below assumes it can be: CODEX round 3 deleted one
+        # required key from one row and `evidence_digest()` raised KeyError instead of refusing.
+        # A verifier that raises has not refused. Keying this off `bad` would also make it vanish
+        # if E09 were ever deleted — the same coupling already fixed at the receipt level.
+        return bad
 
     # PER ROW, not in aggregate. Totals can agree while individual rows lie in compensating
     # directions (CODEX-BS2A-2).
@@ -351,7 +366,7 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
     for i, e in enumerate(evidence):
         try:
             f, ps, nb = float(e["flux_ivar_r"]), float(e["psfsize_r"]), float(e["nobs_r"])
-        except (KeyError, TypeError, ValueError):
+        except (KeyError, TypeError, ValueError, OverflowError):
             nonfinite.append(i)
             continue
         if not all(v == v and v not in (float("inf"), float("-inf")) for v in (f, ps, nb)):
@@ -399,7 +414,7 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
     if receipt["n_retained"] + receipt["n_excluded"] != receipt["n_joined"]:
         refuse("E18", "n_retained + n_excluded != n_joined")
     ed = evidence_digest(evidence)
-    if receipt["evidence_sha256"] != ed:
+    if type(receipt["evidence_sha256"]) is not str or receipt["evidence_sha256"] != ed:
         refuse("E19", "evidence_sha256 does not match the evidence it accompanies")
 
     # Membership and identity against the frozen commitments. Everything above this point is
@@ -581,6 +596,52 @@ def _c_nonstring_key(rec, ev):
     return rec, ev
 
 
+def _c_missing_row_key(rec, ev):
+    """CODEX round 3: deleting one required key from one row raised KeyError out of
+    evidence_digest() instead of refusing."""
+    ev[0] = dict(ev[0])
+    del ev[0]["flux_ivar_r"]
+    return rec, ev
+
+
+def _c_nondict_row(rec, ev):
+    """A row that is not a dict at all — `set(e)` raised TypeError before E09 could record it."""
+    ev[0] = None
+    return rec, ev
+
+
+class _LiarEq:
+    """Compares equal to everything. GPT56 round 3 used this to bypass E03/E07/E19 and get an
+    ACCEPT — worse than a raise, because it is silent."""
+    def __eq__(self, other): return True
+    def __ne__(self, other): return False
+    def __hash__(self): return 0
+    def __repr__(self): return "<LiarEq>"
+
+
+def _c_liar_schema(rec, ev):
+    rec["schema_version"] = _LiarEq()
+    return rec, ev
+
+
+def _c_liar_threshold(rec, ev):
+    rec["thresholds"]["psfsize_r_lt"] = _LiarEq()
+    return rec, ev
+
+
+def _c_liar_digest(rec, ev):
+    rec["evidence_sha256"] = _LiarEq()
+    return rec, ev
+
+
+def _c_huge_value(rec, ev):
+    """float(10**400) raises OverflowError, which was not in the caught tuple."""
+    ev[0] = dict(ev[0])
+    ev[0]["flux_ivar_r"] = 10 ** 400
+    rec["evidence_sha256"] = evidence_digest(ev)   # isolate: E19 is not what this tests
+    return rec, ev
+
+
 def _c_all_pass(rec, ev):
     """GPT56's stronger round-2 forgery: a wholly foreign all-pass partition, internally consistent
     and honestly re-digested, which the verifier accepted while printing MISMATCH."""
@@ -614,6 +675,12 @@ CONTROLS = (
     ("extra receipt field",        _c_extra_field,        {"E02"}),
     ("missing receipt field",      _c_missing_field,      {"E01"}),
     ("late row carries χ",         _c_evidence_shape,     {"E09"}),
+    ("row missing a key",          _c_missing_row_key,    {"E09"}),
+    ("row is not a dict",          _c_nondict_row,        {"E09"}),
+    ("lying __eq__ schema",        _c_liar_schema,        {"E03"}),
+    ("lying __eq__ threshold",     _c_liar_threshold,     {"E07"}),
+    ("lying __eq__ digest",        _c_liar_digest,        {"E19"}),
+    ("value overflows float",      _c_huge_value,         {"E10", "E23"}),
     ("row contradicts predicate",  _c_row_disagrees,      {"E12", "E22", "E23"}),
     # No E23: the digest encodes quality_pass by truthiness, so int 1 and True are the same bytes.
     # E11 is what catches it, and E16 follows because the recount excludes the non-bool row.
