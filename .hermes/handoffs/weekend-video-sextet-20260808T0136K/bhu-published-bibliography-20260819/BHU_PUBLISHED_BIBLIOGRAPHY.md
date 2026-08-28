@@ -135,8 +135,22 @@ DOI 10.1103/PhysRevLett.101.091101 — VERIFIED (Crossref: PRL, v101, 091101, 20
 Claim: the Brown–Bethe kaon-condensate EoS gives M_max ≈ 1.5 M☉; a neutron star with M ≳ 2 M☉
 "would put in serious doubt or simply falsify" the chain including CNS.
 Testability: **CALIBRATED-FALSIFIER** — the family's clean number + threshold.
-Record: **already adjudicated in our record — falsified via limb 2** (the "simply falsify" limb of
-the source's own disjunction), per the brief; the packet Rev 4 carries the measurement facts:
+Record: **FIRED as to the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉;
+for CNS the source supports "serious doubt" / "serious obstacle" / "put in doubt", NOT simple
+falsification.** *(Corrected 2026-08-28 by two-seat audit — `CGATE_ENTRY7_VERDICT.md` and
+`AGATE_ENTRY7_VERDICT.md` in `bhu-theory-phase6-curvature-20260827`, both UPHOLD_WEAK, each reading
+the pinned APS version of record. The prior wording — "already adjudicated in our record — falsified
+via limb 2" — assigned the disjunction's strong limb to CNS. The authors distribute the two limbs
+deliberately and do not: the body's falsifiable prediction attaches "falsifies" to VM of HLS and
+kaon condensation only, and CNS is not the object of that verb; the conclusion, in the authors' own
+voice, gives BB and CNS a "serious obstacle"; the CCS/gravitational-wave passage again says
+"falsify the BB scenario" but only "put in doubt the CNS theory". Reproduced: `c5_entry7_audit.py`
+5/5, exit 0. Consequence for the record's coherence: because entry 7 did NOT kill CNS at ≳2 M☉,
+entry 31's `2.5 M☉` bar is not moot, and its LIVE_CALIBRATED ruling stands — both seats declined to
+overturn it. Both seats also noted that this tier conflates the NATURE of a claim with its STATUS:
+entry 7 is CALIBRATED-FALSIFIER / FIRED, entry 31 is CALIBRATED-FALSIFIER / LIVE, and the record
+carries no status axis to say so. That schema change is NOT made here.)* The packet Rev 4 carries
+the measurement facts:
 PSR J1614−2230 at 1.97 ± 0.04 M☉ (Demorest et al. 2010, Nature 467, 1081–1083,
 DOI 10.1038/nature09466 — VERIFIED) and PSR J0740+6620 at 2.08 ± 0.07 M☉ (Fonseca et al. 2021,
 ApJL 915, L12, DOI 10.3847/2041-8213/ac03b8 — VERIFIED); PSR J0952−0607 (~2.35 M☉) remains
