@@ -58,6 +58,37 @@ the check counts VERIFIED acquisitions (`6/6 verified out of 6/6 attempted`). Th
 `ok_all` control-flow flag — which both seats independently flagged as unreadable — is gone,
 replaced by the same explicit list.
 
+## 1d. GENERAL FINDING — narrow patterns are safe for presence, dangerous for absence
+
+Promoted out of the per-check notes because it is the generating defect behind every false claim
+in this register, and because **it reproduced independently in another lane within the hour**.
+
+> A tight pattern that FINDS something proves the thing is there. The same pattern failing to
+> find something proves nothing at all. Every absence claim is only as strong as its pattern's
+> blind spots, and those must be named in the check itself.
+
+Three false "zero" claims tonight — entry 8, entry 24, entry 40 — all came from one regex used
+in the second mode. Blanc relayed this to Hwao's lane, where the dispositive object was a
+citation parser **unsound in both directions at once**, too permissive and too narrow
+simultaneously, whose canary tests only reported ABSENCE and so could detect neither defect.
+Two lanes, two frameworks, one defect class, found independently.
+
+## 1e. WHICH OF THE THREE DRAWN ENTRIES DEPEND ON A CONDEMNED CHECK
+
+Blanc: *"from outside the lane those two cases look identical and someone reading this in the
+morning cannot tell them apart."* Stated plainly:
+
+| entry | tier verdict rests on | depends on a condemned check? |
+|---|---|---|
+| 24 | quoted: CMB analysis *"agrees with the black hole universe predictions"* — agreement language, not a threshold | **NO.** The withdrawn count was corroboration only. |
+| 36 | quoted: derived bounds `36h₀/H₀ ≤ r ≤ …` place the shock at/beyond the Hubble distance, and the upper bound carries free parameter **R\*** | **NO.** Rests on reading the bounds, not on counting them. |
+| 40 | quoted: *"could not be observed outside the black hole because of the infinite redshift at the horizon"* | **NO.** |
+
+All three rest on quoted text. **None depends on the condemned count.** What the count was doing
+was screening — deciding which of the three deserved a deep read — and it pointed at 36, which
+was correct. So the draw's *conclusion* stands; its *screening step* was unreliable and could
+have sent me past a paper that mattered.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
@@ -74,8 +105,33 @@ replaced by the same explicit list.
   misses expanded membership tests, and treats `len` as generic evidence.
 - The lone remaining TAUTOLOGY (`a1`'s `ok_all`) is a third control-flow artefact.
 
-**Consequence: the 21/52 figure I reported is not a measurement.** It should be read as "a rough
-triage that found five real gaps", nothing more.
+### MEASURED against ground truth, 05:25 — it fails on the category it exists to detect
+
+I never validated the classifier when I built it. Done now: eight synthetic checks of known form
+(`_classifier_control/`), classified and compared.
+
+| check | ground truth | classifier said | |
+|---|---|---|---|
+| tautology | TAUTOLOGY | **COMPUTED** | ✗ |
+| literal | LITERAL | LITERAL | ✓ |
+| string, direct | STRING | STRING | ✓ |
+| string, via variable | STRING | **COMPUTED** | ✗ |
+| regex, via variable | STRING | STRING | ✓ |
+| computed from a parsed value | COMPUTED | **MIXED** | ✗ |
+| count vs threshold | MIXED | MIXED | ✓ |
+| loop flag from membership | STRING | **TAUTOLOGY** | ✗ |
+
+**4 of 8 — and 0 of 1 on tautologies, which is the whole point of the tool.** The cause: `abs` is
+in the data-driven call set, so *any tautology written with `abs()` is classified COMPUTED*. The
+one real tautology this battery ever contained was `abs(w_implied + 1.0) < 1e-12` in a6 — **my
+classifier would have cleared it.** It was found by a gate seat, not by the tool built to find it.
+
+**Consequence, and it answers Blanc's question about reach: every "COMPUTED" reassurance in this
+sweep is unreliable, including the ones that cleared.** The 21/52 figure is not a measurement. The
+five gaps I "found" were found while reading the output by hand; the classifier's contribution was
+to put the list in front of me. The real defects — 5 from agy, 29 from codex — came from the
+seats. A tool that cannot detect a tautology cannot certify a battery, and I offered it as if it
+could.
 
 ## 3. THE FIVE RENAMES — only one was honest
 
