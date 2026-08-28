@@ -106,3 +106,29 @@ the field was added to catch. Asking a model to check something is not checking 
 The census this was built to support is **parked**. This note stands alone. Nothing in it
 depends on the census being completed, and the underlying run data — five JSON files, three run
 logs, and the gate verdicts that supply ground truth — is committed alongside.
+
+---
+
+## Correction, 2026-08-29 — the entry-52 example is imprecise
+
+Above, under "Self-report failed in the confident direction", this note says the
+`threshold_is_observable` field returned `true` for entry 52, "whose threshold is `C > 1.9×10⁴⁸`,
+an inequality on a model parameter rather than an observable".
+
+**The finding stands; the reasoning given for it does not.** A full read of entry 52
+(`a9_entry52_threshold.py`, 4/4) shows `C` is not a free model parameter. The paper defines it as
+"the product of the scale factor and temperature" — that is `aT`, which is conserved and
+measurable — normalised by bounce-scale quantities (`a_cr`, `T_cr`) that the Einstein–Cartan
+torsion theory supplies.
+
+So the correct objection is **not** that `C` is unobservable. It is that `C` is **not
+independently checkable**: the numerator is measurable, the denominator comes from the very
+theory under test.
+
+That distinction matters for the method this note is about. "No observable here" licenses
+skipping such entries. "Observable numerator, theory-supplied denominator" instead names exactly
+what an independent test would have to pin down first — which is more useful and is what the
+seat should have been asked for.
+
+The self-report failure it was cited to illustrate is unaffected: the model still returned
+`threshold_is_observable: true` for a quantity that is not independently checkable.
