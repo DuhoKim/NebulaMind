@@ -21,11 +21,25 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+Class tally over the 51 BHU papers: 2 CALIBRATED-FALSIFIER, 9 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
 33 CONSISTENCY-ONLY, 4 UNREAD (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
 Batch-9 correction: entry 6 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL — the 1992
 text contains no mass-threshold falsifier; that class had been inherited from the entry-7 chain
-at triage. The branch's calibrated falsifiers are entries 7 and 31. CORRECTION to
+at triage. The branch's calibrated falsifiers are entries 7 and 31.
+**2026-08-28 correction: entry 54 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL**,
+by gate `bhu-theory-phase6-curvature-20260827/BRIEF_ENTRY54_RETIER_GATE.md`; both seats returned
+DEMOTE independently (`GATE_ENTRY54_RETIER.md` GPT56, `KGATE_ENTRY54_RETIER.md` KIMI), each
+reading the pinned source rather than this record. Same shape as the batch-9 correction, one step
+worse: entry 6's numeric threshold was absent from the text, whereas entry 54's is present but
+conditional AND its falsification condition was recorded pointing at the wrong side of zero — the
+entry claimed a confirmed flat universe refutes the model, when flatness at any achievable
+precision is exactly where the model is comfortable. The error entered by copying the abstract's
+compact bracket without the qualification four sentences below Eq. 27. Tori filed the finding
+against her own 2026-08-23 classification and declined to self-adjudicate. The seats split only on
+whether *exactly* Ω_k = 0 refutes: GPT56 yes on the strict inequality, KIMI no because exact
+flatness is not confirmable at finite precision — KIMI's reading governs the operational
+annotation now carried on the entry. The tally line above is updated accordingly; the branch's
+calibrated falsifiers remain entries 7 and 31. CORRECTION to
 the earlier floor claim: "8 unread, unobtainable on every free route, 16% irreducible" was
 overstated — a second sweep on 2026-08-23 evening found free copies of 31 (VU Amsterdam academic
 mirror), 36 (arXiv astro-ph/9812063, missed under API throttling), and 57 (author's UC Davis
@@ -374,7 +388,7 @@ Record: triage pick #1; completes the published Gaztañaga series in this branch
 **54. "Gravitational bounce from the quantum exclusion principle." Phys. Rev. D 111, 103537 (2025).**
 DOI 10.1103/physrevd.111.103537 — VERIFIED (Crossref: PRD, v111, 103537, 2025). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **CALIBRATED-FALSIFIER**. READ 2026-08-23 (Tori). The family's only LIVE numeric falsifier: predicted closed curvature −0.07 ± 0.02 ≤ Ω_k < 0; a confirmed flat universe refutes it. Cites Planck PR3's 3σ preference for Ω_k ≈ −0.04 and same-direction ACT/DESI trends. NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
+Testability: **QUALITATIVE-DIRECTIONAL** (re-tiered 2026-08-28; was CALIBRATED-FALSIFIER). READ 2026-08-23 (Tori), RE-READ 2026-08-27 (Tori, phase 6). The surviving hard prediction is a **direction**: closed curvature, Ω_k < 0 — source line 336, "Inflation preceded by a bounce requires Ω_k < 0." Eq. 27 (`Ω_k = −(0.07 ± 0.02)(χ_*/χ_k)²`) is not a predicted window: the paper requires χ_k > χ_* (line 306), so the factor is strictly below 1 and Ω_k may approach 0 from below without limit; line 336 further conditions the magnitude on attributing the homogeneity scale to χ_* alone. **Operational annotation — falsifiable only from the open side:** a confirmed Ω_k > 0 refutes; **flatness at any finite precision does not** — the paper itself concedes "the current uncertainties remain too large to decisively rule out a flat universe" (line 480); a confirmed Ω_k ≲ −0.09 refutes only under the authors' own conditional χ_* identification. Exactly Ω_k = 0 would contradict the model, but exact flatness is not confirmable by any finite-precision observation, so that reading is operationally empty. Cites Planck PR3's 3σ preference for Ω_k ≈ −0.04 and same-direction ACT/DESI trends. NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
 Record: triage pick #27; the newest published bounce mechanism in the family.
 
 ## 7. Holographic interior cosmology
