@@ -93,9 +93,16 @@ print(f"   textbook ringdown of a 10 Msun Schwarzschild hole: ~1.2 kHz")
 chk("the 2pi conversion reproduces the textbook Schwarzschild ringdown; omitting it does not",
     abs(f_schw - 1207.0) < 30.0 and abs(w_schw - 1207.0) > 1000.0,
     f"with 2pi -> {f_schw:.0f} Hz (textbook ~1207); without -> {w_schw:.0f} Hz (6.3x too high)")
-chk("so omega in this paper is ANGULAR, and 'Hz' is the wrong unit for it",
-    abs(f_schw - 1207.0) < 30.0,
-    "settled by a known value, not by appeal to convention")
+# REPAIRED. CGATE: this check "tests only an external Schwarzschild control assembled from
+# hard-coded constants. It never tests the paper's definition/convention for omega. A different
+# paper passes." True. The paper states its own convention and it is parseable.
+_ansatz = re.search(r"e−iωt|e\^\{-i\\omega t\}", CLEAN)
+print(f"   the paper's OWN perturbation ansatz, parsed: {_ansatz.group(0) if _ansatz else 'NOT FOUND'}")
+chk("PARSED: the paper's own perturbation ansatz is e^(-i omega t), which makes omega ANGULAR by "
+    "its own definition -- and the external control independently agrees",
+    _ansatz is not None and abs(f_schw - 1207.0) < 30.0,
+    "the earlier form tested ONLY the external Schwarzschild control and would have passed on a "
+    "different paper; it now requires the convention to be stated in THIS source")
 
 # ---- 3. the detector consequence -- REPAIRED at CGATE_A2's insistence -------------------
 # ORIGINAL CLAIM (overstated, withdrawn): "the conclusion is FALSE as printed and TRUE only
@@ -122,7 +129,16 @@ print("      camouflage is a separate argument; both survive this finding.")
 
 # ---- 4. the LISA mass window is a BAND, not a floor --------------------------------------
 def f_of_M(M): return W0 * scale(M) / (2 * 3.141592653589793)
-LISA_HI, LISA_LO = 1e-1, 1e-5     # the paper's OWN quoted LISA range
+# REPAIRED. CGATE: this check "hard-codes the mass range, LISA band, and mode coefficient. It
+# does not verify that this paper states any of them." All three are in the source; parse them.
+_mr = re.search(r"\[(\d+),10\^\{(\d+)\}\]", CLEAN)
+_lb = re.search(r"10\^\{(-\d+)\}-10\^\{(-\d+)\}\{?\\?rm\s*Hz", CLEAN)
+if not _mr or not _lb:
+    print("PARSE FAILED on mass range or LISA band -- refusing hard-coded fallback"); sys.exit(3)
+M_LO, M_HI = float(_mr.group(1)), 10.0 ** float(_mr.group(2))
+LISA_HI, LISA_LO = 10.0 ** float(_lb.group(1)), 10.0 ** float(_lb.group(2))
+print(f"   parsed from source: mass range [{M_LO:.0f}, {M_HI:.0e}] Msun | "
+      f"LISA band {LISA_LO:.0e}-{LISA_HI:.0e} Hz")
 M_lo = 10 * (f_of_M(10) / LISA_HI)
 M_hi = 10 * (f_of_M(10) / LISA_LO)
 print(f"\n4. 'M >~ 10^4 Msun' IS UNBOUNDED ABOVE, AND THE PAPER'S OWN MASS RANGE EXCEEDS IT")
@@ -131,9 +147,12 @@ for M in (1e3, 1e4, 1e6, 1e7, 1e9):
     inband = LISA_LO <= f_of_M(M) <= LISA_HI
     print(f"   M = {M:8.0e} Msun -> f = {f_of_M(M):10.3e} Hz   in LISA band: {inband}")
 print(f"   => LISA-visible window: {M_lo:.2e} <~ M/Msun <~ {M_hi:.2e}")
-chk("the top of the paper's own mass range [10,1e9] is OUTSIDE the LISA band it claims",
-    not (LISA_LO <= f_of_M(1e9) <= LISA_HI),
-    f"f(1e9 Msun) = {f_of_M(1e9):.2e} Hz, ~{LISA_LO/f_of_M(1e9):.0f}x below LISA's floor")
+chk("PARSED: the top of the paper's own stated mass range falls OUTSIDE the LISA band the paper "
+    "itself quotes -- both parsed from the source, neither typed in",
+    not (LISA_LO <= f_of_M(M_HI) <= LISA_HI),
+    f"f({M_HI:.0e} Msun) = {f_of_M(M_HI):.2e} Hz, ~{LISA_LO/f_of_M(M_HI):.0f}x below the parsed "
+    f"floor {LISA_LO:.0e} Hz. The earlier form hard-coded all three numbers and passed on an "
+    f"empty file")
 
 # ---- 5. the amplitude: absent, and the AUTHOR says so ------------------------------------
 defer = re.search(r"excitation factors[^.]*?have to be calculated[^.]*\.\s*This is an involved task[^.]*\.", T, re.S)

@@ -148,6 +148,38 @@ night documenting that in my checks, and then did it twice in an hour with commi
 gap between "I edited it" and "I ran it" is the same gap as between a check's name and its
 predicate.
 
+## 1h. WHICH TIER CONCLUSIONS REST ON A CONDEMNED CHECK — read this first
+
+Blanc: *"From outside the lane a sound verdict and a lucky one look identical, and Duho reads this
+cold in the morning."* So, per entry, stated exactly.
+
+**The load-bearing fact: every tier conclusion in this sweep rests on QUOTED SOURCE TEXT, not on a
+harness check.** The checks were corroboration. Six of the fifteen were additionally attacked by
+two adversarial seats who read the papers themselves. No tier verdict has been shown wrong by any
+defect found tonight.
+
+| entry | tier outcome | what the conclusion rests on | condemned check in its support? |
+|---|---|---|---|
+| 21 | PROSPECT confirmed | author's own amplitude deferral, quoted; rate absence | **was** — rate regex is a narrow-pattern absence claim. Codex re-verified it by hand at the gate and the script now records that the seat, not the regex, closes it. Re-derived. |
+| 25 | promotion REFUSED | the "not solely" qualifier, quoted; both seats | rigidity check is presence tests; codex called the rename cosmetic. **Not re-derived** — but the refusal rests on the quote, and a refusal is the conservative direction. |
+| 26 | QUALITATIVE-DIRECTIONAL confirmed | Eq.11's modal envelope read from the paper; both seats | a5's Λ_O identity check never touches the source (agy). **Not re-derived.** The tier rests on the envelope reading, which both seats performed independently. |
+| 22 | category error found | theorem/proposition statements, quoted; both seats | not individually audited. **Unknown.** |
+| 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing, quoted | direction-of-inference check is presence tests; rename called cosmetic. **Not re-derived.** |
+| 23 | promotion REFUSED | the reverse-inference sentence, quoted; both seats | two renames called cosmetic by codex. **Not re-derived** — again a refusal, the conservative direction. |
+| 8 | CONSISTENCY-ONLY confirmed | the indistinguishability sentence, quoted | count check was **FALSE**. Repaired; conclusion no longer reads it. Re-derived. |
+| 24, 36, 40 | tiers confirmed (random draw) | agreement language / the bounds and R\* / unobservability statement — all quoted | count check was **FALSE**. Repaired; the three conclusions no longer read it. Re-derived. |
+
+### The honest residual
+
+Four entries — **25, 26, 52, 23** — still have a condemned-but-not-re-derived check somewhere in
+their support. In every case the check is a presence test dressed as a semantic claim, the tier
+conclusion rests on a quotation the seats read independently, and two of the four are *refusals*
+of my own proposed changes, which is the direction that does not inflate the corpus.
+
+**What I would not yet certify:** that the harness independently corroborates any of the fifteen.
+It does not. The corroboration is the gates and the quotations. Anyone reading this in the morning
+should treat the check batteries as working notes, not as verification.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
