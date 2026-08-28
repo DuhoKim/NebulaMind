@@ -341,13 +341,51 @@ def run_controls(text, gates):
     return vacuous
 
 
+
+def self_test(draft, gates):
+    """CODEX-V29-1's regression assertion: breaking a check must produce VACUOUS and exit 1.
+
+    Manual verification is not a regression test. This disables each check in turn — by feeding the
+    controls a run where that check's category can never appear — and asserts the canary notices.
+    Run it in CI or by hand: `python3 tools/prereg_lint.py <draft> --self-test`.
+    """
+    text = Path(draft).read_text()
+    failures = []
+    for name, mutate, category in CONTROLS:
+        broken = mutate(text)
+        rows = slot_rows(broken)
+        out = []
+        check_slots_exist(broken, rows, out)
+        check_class_agreement(broken, rows, out)
+        check_prose_counts(broken, rows, out)
+        check_lock_identity(broken, out)
+        check_list_numbering(broken, out)
+        check_repair_citations(broken, gates, out)
+        fired = any(k == category for k, _ in out)
+        print(f"  {'OK  ' if fired else 'FAIL'} {name}: control {'fires' if fired else 'SILENT'}")
+        if not fired:
+            failures.append(name)
+    unc = uncontrolled()
+    if unc:
+        print(f"  FAIL uncontrolled checks executed: {', '.join(unc)}")
+        failures.extend(unc)
+    print(f"  self-test: {len(CONTROLS)} controls, {len(failures)} failure(s)")
+    return 1 if failures else 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("draft")
     ap.add_argument("--gates", default="")
+    ap.add_argument("--self-test", action="store_true",
+                    help="assert every control fires and no executed check is uncontrolled")
     args = ap.parse_args()
     text = Path(args.draft).read_text()
     gates = Path(args.gates) if args.gates else Path(args.draft).parent / "gates"
+
+    if args.self_test:
+        print(f"prereg lint self-test — {Path(args.draft).name}")
+        return self_test(args.draft, gates)
 
     rows = slot_rows(text)
     out = []
