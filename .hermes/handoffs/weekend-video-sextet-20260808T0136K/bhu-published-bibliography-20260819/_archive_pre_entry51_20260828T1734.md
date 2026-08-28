@@ -21,27 +21,11 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: **3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT,
+Class tally over the 51 BHU papers: 2 CALIBRATED-FALSIFIER, 9 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
 33 CONSISTENCY-ONLY, 4 UNREAD (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
 Batch-9 correction: entry 6 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL — the 1992
 text contains no mass-threshold falsifier; that class had been inherited from the entry-7 chain
 at triage. The branch's calibrated falsifiers are entries 7 and 31.
-
-**TIER COUNT IS NOT LIVE-FALSIFIER COUNT. Read both lines before quoting either.** Added
-2026-08-28 (Tori) because I have now mis-stated this tally twice in one day, in both directions.
-The tier describes the CLAIM; a separate axis describes its STANDING:
-
-| entry | tier | standing | what it fires |
-|---|---|---|---|
-| 7 | CALIBRATED-FALSIFIER | **FIRED** | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
-| 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
-| 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
-
-So: **3 calibrated, 2 live — but only ONE (entry 31) bears directly on a black-hole-universe
-theory.** Entry 51 constrains BHU only where a model inherits its ECKS premise, and entry 7 fired
-an instrument rather than a cosmology. Any sentence of the form "the family has N live
-falsifiers" must say which N it means. The honest short answer to "can this family still be
-killed by observation?" is: **one route, entry 31, and it is drifting away from firing.**
 **2026-08-28 correction: entry 54 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL**,
 by gate `bhu-theory-phase6-curvature-20260827/BRIEF_ENTRY54_RETIER_GATE.md`; both seats returned
 DEMOTE independently (`GATE_ENTRY54_RETIER.md` GPT56, `KGATE_ENTRY54_RETIER.md` KIMI), each
@@ -270,11 +254,7 @@ Record: harvest #11; parentage construction beyond isotropy.
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
 DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALITATIVE-DIRECTIONAL by a blind re-classification, upheld by two independent gates (`bhu-theory-phase6-curvature-20260827/`: CGATE_ENTRY51_VERDICT.md, codex gpt-5.5; AGATE2_ENTRY51_VERDICT.md, hermes gpt-5.6-sol). READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg (~10⁴³ GeV).
-**The author's stated test is the LHC route**, verbatim: "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ~10⁴ GeV, cannot produce micro black holes … if the four-dimensional ECKS theory is a correct theory of gravity." One-sided and positive-detection only: a confirmed black hole far below the ~10¹⁶ kg floor fires it; a null LHC search fires nothing. LIVE/unfired — CMS reports no evidence for microscopic black holes as of 2025-12.
-**Reachability, ruled on by both gates:** the ~10³⁹ gap between LHC reach and the floor does NOT empty the threshold, because the collider operates on the *forbidden* side already — a detection far below the floor is a counterexample and cannot be rescued by shrinking the effect. Unlike entry 54, whose magnitude could retreat toward zero. Calibration is coarse: the source says "expect", "approximately", "conjecture", and gives no uncertainty interval or cross-section.
-**WHAT IT FALSIFIES — scope, and it is not BHU.** The target is the four-dimensional ECKS density/minimum-mass chain. Entry 51 constrains a black-hole-universe model only where that model inherits the same ECKS premise. Not a direct BHU falsifier from this source.
-**CORRECTION 2026-08-28 (Tori, against my own 2026-08-23 entry):** the sub-10¹⁶-kg primordial-black-hole discriminator is **mine, not Popławski's** — the second gate grepped the full text and found no occurrence of "primordial", "PBH", or "black-hole universe". My further claim that standard physics permits such a PBH is also not established by this paper. It may be recorded as a reader-derived route; it must not be attributed to the author. My original entry also called this "a numbered falsifiable consequence" while filing it QUALITATIVE-DIRECTIONAL — the evidence was in hand and mis-tiered anyway.
+Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg — a numbered falsifiable consequence. Reader's inference, marked as such: the clean discriminator is a sub-10¹⁶-kg primordial black hole, which standard physics permits and this forbids.
 Record: kimi recall R6; the singularity-avoidance mechanism paper under the torsion-bounce line.
 
 **52. "Big Bounce and Closed Universe from Spin and Torsion." ApJ 870, 78 (2019).**
