@@ -80,7 +80,15 @@ print(f"\n2. IT HAS AN ERROR BAR")
 print(f"   'we roughly estimate theta_S ~= 60 +/- 3 deg'  present: {bool(err)}")
 # REPAIRED: the +/-3 belongs to the REVERSE inference. Test the direction, not the presence.
 reverse = "We can also predict" in T and "to find (using Eq.22)" in T.replace("Eq.22","Eq.22")
-fwd_err = re.search(r"θ§\s*=\s*[0-9.]+\s*±", T) is not None
+# REPAIRED. CGATE: "fwd_err is one narrow theta glyph/spacing regex. It misses prose
+# uncertainties, asymmetric errors, intervals, tables, figures, \pm renderings." Broadened to any
+# uncertainty language near theta_S, then INSPECTED. One hit: "θ§≃60±3", which is the REVERSE
+# read-off this audit is about -- not a forward uncertainty. So the absence holds.
+_U = r"θ§?[^.]{0,40}?(?:±|\\pm|uncertain\w+|error|interval)[^.]{0,80}"
+_uhits = re.findall(_U, T)
+fwd_err = any("60±3" not in h.replace(" ", "") for h in _uhits)
+print(f"   broadened uncertainty-near-theta_S hits: {len(_uhits)}; "
+      f"any that is NOT the 60+/-3 read-off: {fwd_err}")
 print(f"   direction: 'predict Omega_Lambda FROM the lack of CMB correlations' .. {reverse}")
 print(f"   any propagated FORWARD uncertainty on theta_S ................. {fwd_err}")
 chk("QUOTED: the source says 'predict Omega_Lambda FROM the lack of CMB correlations ... to "

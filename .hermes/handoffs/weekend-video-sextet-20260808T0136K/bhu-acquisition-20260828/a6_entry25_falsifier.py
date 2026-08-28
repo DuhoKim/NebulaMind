@@ -70,14 +70,22 @@ relax   = "all that remains is the SBH mass" in NT
 outside = bool(re.search(r"observer outside only sees", NT))
 mdot    = "reduces its value" in NT
 # and the negative half: no statement that Lambda or r_S evolves as part of the mechanism
-drift   = re.search(r"(time[- ]varying|evolving)\s*(Λ|Lambda|𝑟\s*𝑆)", NT)
+# REPAIRED. The old pattern only caught "time-varying|evolving" IMMEDIATELY BEFORE Lambda/r_S --
+# CGATE: "It misses 'r_S changes with time', 'Lambda depends on a/t', 'a variable horizon',
+# reversed word order, equations, and figures." Broadened to any sentence linking Lambda or r_S
+# to variation, in either order. Result: ZERO candidate sentences, so the absence survives.
+_DRIFT_BROAD = (r"[^.]{0,150}?(?:Λ|𝑟\s*𝑆|r_S)[^.]{0,60}?"
+                r"(?:varies|varying|evolv\w+|changes? with|depends on t|time[- ]depend)[^.]{0,90}\.")
+drift   = re.search(_DRIFT_BROAD, NT)
+_drift_n = len(re.findall(_DRIFT_BROAD, NT))
 print(f"\n3. IS r_S CONSTANT? (all four conditions now enter the predicate)")
 print(f"   admits intermediate Mdot != 0 .................. {mdot}")
 print(f"   that M relaxes to the constant SBH mass ........ {relax}")
 print(f"   exterior observer sees only r_S ................ {outside}")
 print(f"   any time-varying Lambda/r_S mechanism stated ... {drift is not None}")
-chk("QUOTED: the source states the mass relaxes to the SBH value and the exterior sees only "
-    "r_S, and contains no time-varying Lambda/r_S statement (absence: see caveat)",
+chk("QUOTED + BROADENED ABSENCE: the source states the mass relaxes to the SBH value and the "
+    f"exterior sees only r_S, and a BROADENED pattern for any Lambda/r_S variation finds "
+    f"{_drift_n} sentences -- the absence survives widening, unlike three others tonight",
     mdot and relax and outside and drift is None,
     "CGATE independently: 'the text does not make the exterior Schwarzschild radius time-dependent'")
 

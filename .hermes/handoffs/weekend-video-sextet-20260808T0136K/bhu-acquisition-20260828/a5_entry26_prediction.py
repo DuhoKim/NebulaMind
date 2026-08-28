@@ -68,9 +68,27 @@ chk("the mass->time UNIT conversion reproduces the textbook solar mass in time u
     "CGATE: this control validates the conversion ONLY, not the formula -- so both are checked")
 
 # ---- 1. the paper's algebra is internally consistent --------------------------------------
+# REPAIRED. AGATE: "The predicate evaluates a mathematical identity inside Python using a
+# hardcoded tau_sym = 7.0. It never touches the source text T. It asserts nothing about the paper
+# itself and would falsely pass on an entirely different paper or a blank file." Correct. The two
+# relations the identity rests on are BOTH stated in the source, so require them there first.
+# The first version of this repair FAILED, and the failure is a finding: Lambda = 3/r_S^2 is NOT
+# in entry 26. It is established in PART I (entry 25) and merely USED by Part II. So the algebra
+# this audit rests on SPANS TWO PAPERS, which the check must reflect -- and my earlier
+# parseability probe searched entry 26, fell back to entry 25, and I read the hit as entry 26's.
+P1 = " ".join(open("../bhu-reading-20260823/sources/sym14091849_clean.txt").read().split())
+_rel1 = re.search(r"Λ\s*=\s*3\s*/?\s*𝑟\s*𝑆", P1)         # Lambda = 3/r_S^2  -- stated in PART I
+_rel2 = re.search(r"𝑟\s*𝑆\s*≃\s*3\s*𝜏\s*𝑂\s*/?\s*2", T) # r_S ~= 3 tau_O/2 -- stated in PART II
 tau_sym = 7.0
-chk("Lambda_O = 4/(3 tau_O^2) follows exactly from Lambda = 3/r_S^2 and r_S = 3 tau_O/2",
-    abs(3.0/(1.5*tau_sym)**2 - 4.0/(3.0*tau_sym**2)) < 1e-12, "the derivation is not where this fails")
+_algebra_holds = abs(3.0/(1.5*tau_sym)**2 - 4.0/(3.0*tau_sym**2)) < 1e-12
+print(f"\n1b. THE TWO RELATIONS THE IDENTITY RESTS ON, located in the source")
+print(f"   'Lambda = 3/r_S^2'   in entry 25 (Part I) : {bool(_rel1)}")
+print(f"   'r_S ~= 3 tau_O / 2' in entry 26 (Part II): {bool(_rel2)}")
+chk("PARSED + COMPUTED: Part I states Lambda = 3/r_S^2, Part II states r_S = 3 tau_O/2, and those "
+    "two algebraically give Lambda_O = 4/(3 tau_O^2) -- the identity SPANS BOTH PAPERS",
+    _rel1 is not None and _rel2 is not None and _algebra_holds,
+    "the earlier form evaluated the algebra on a hardcoded symbol and never opened the paper -- "
+    "it would have passed on a blank file")
 
 # ---- 2. F1: the paper's two stated numbers, at one significant figure ----------------------
 M_paper = 6e22

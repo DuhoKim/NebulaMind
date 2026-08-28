@@ -165,17 +165,25 @@ defect found tonight.
 | 24 | QUAL-DIRECTIONAL confirmed | "agrees with" quote + **"carries zero numeric content"** — **FALSE**, 12 inequalities | the "agrees with" quote alone | **re-derived** |
 | 36 | CONSISTENCY-ONLY confirmed | the derived bounds + free parameter R\*, read from the paper | unchanged — the bounds were always read, never counted | **re-derived** |
 | 40 | CONSISTENCY-ONLY confirmed | unobservability quote + **"carries zero numeric content"** — **FALSE**, 17 inequalities | the unobservability quote alone | **re-derived** |
-| 25 | promotion **REFUSED** | the "not solely" qualifier, quoted; both seats | unchanged | rigidity check is a presence test; codex called the rename cosmetic. **NOT re-derived** |
-| 26 | QUAL-DIRECTIONAL confirmed | Eq.11's modal envelope, read by both seats | unchanged | a5's Λ_O identity check never touches the source. **NOT re-derived** |
+| 25 | promotion **REFUSED** | the "not solely" qualifier + a **narrow** no-drift pattern | the same quote + that absence **re-tested with a broadened pattern**: 0 sentences link Λ or r_S to any variation, in either word order | **re-derived** |
+| 26 | QUAL-DIRECTIONAL confirmed | Eq.11's modal envelope + an identity check **on a hardcoded symbol that never opened the paper** | the envelope + both relations **located in the sources** — and the identity turns out to **span two papers** (Λ=3/r_S² is Part I's, r_S=3τ_O/2 is Part II's) | **re-derived** |
 | 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing, quoted | unchanged | direction-of-inference check is a presence test. **NOT re-derived** |
-| 23 | promotion **REFUSED** | the reverse-inference sentence, quoted; both seats | unchanged | two renames called cosmetic. **NOT re-derived** |
+| 23 | promotion **REFUSED** | the reverse-inference sentence + a **narrow** no-forward-uncertainty pattern | the same quote + that absence **re-tested broadly**: exactly 1 uncertainty near θ_S in the paper, and it is the 60±3 backward read-off itself | **re-derived** |
 | 22 | category error found | theorem/proposition statements + a **narrow-pattern absence claim** ("no observational prediction") | the same quotes + that absence **re-tested with a broadened pattern and every hit inspected** | **re-derived** |
 
-**How to read this cold.** Six rows say *re-derived*: something in their support was condemned,
+**How to read this cold.** Nine rows say *re-derived*: something in their support was condemned,
 and the conclusion has since been rebuilt without it — in three cases because the condemned thing
-was outright **false**. Four say *not re-derived*: a weak check remains in their support, but the
-conclusion itself rests on a quotation two independent seats read, and two of those four are
-*refusals* of my own proposed changes. **No row is unknown any more.**
+was outright **false**. **One** says *not re-derived* — entry 52, whose direction-of-inference check remains a presence
+test. Its conclusion rests on the paper's own conditional phrasing, quoted. **No row is unknown.**
+
+### The three absence claims that HELD
+
+Entries 22, 25 and 23 each had a narrow-pattern absence claim in their support — the shape that
+was **false** for entries 8, 24 and 40. All three were re-tested with patterns broad enough to
+catch what the narrow ones missed, and **all three held**: 3 hits in entry 22 (two of them the
+author denying a prediction), **0** in entry 25, and **1** in entry 23 (the known backward
+read-off). Six absence claims tested tonight, three false and three true — and nothing but running
+the broader pattern separates them. That is the finding, not the score.
 
 ### Entry 22, the last unknown — and its absence claim HELD
 
