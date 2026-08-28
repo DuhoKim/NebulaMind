@@ -91,10 +91,10 @@ for entry, aid, label, why in TARGETS:
 
 print("\n" + "=" * 96); print("VERIFICATION -- a fetch is not an acquisition"); print("=" * 96)
 print(f"{'entry':>5} {'arxiv':<12} {'bytes':>10} {'id in head':>11} {'not a stub':>11}  sha256(12)")
-ok_all = True
+verified = []          # rows that actually produced a usable file -- NOT rows that merely exist
 for entry, aid, p, n, skipped in results:
     if not os.path.exists(p):
-        print(f"{entry:>5} {aid:<12} {'MISSING':>10}"); ok_all = False; continue
+        print(f"{entry:>5} {aid:<12} {'MISSING':>10}"); verified.append(False); continue
     b = open(p, "rb").read()
     head4k = b[:4096].decode("utf-8", "replace")
     in_head = aid in head4k
@@ -102,15 +102,27 @@ for entry, aid, p, n, skipped in results:
     not_stub = len(b) > 20000 and bool(re.search(r"(?i)\b(introduction|abstract)\b", head4k + b[:60000].decode("utf-8", "replace")))
     sha = hashlib.sha256(b).hexdigest()[:12]
     print(f"{entry:>5} {aid:<12} {len(b):>10,} {str(in_head):>11} {str(not_stub):>11}  {sha}")
-    if not (in_head and not_stub): ok_all = False
+    verified.append(bool(in_head and not_stub))
 
 chk("every target produced a file with its own arXiv id in the header region",
     all(os.path.exists(p) and aid in open(p, 'rb').read()[:4096].decode('utf-8', 'replace')
         for _, aid, p, _, _ in results),
     "same header-region constraint that cut the source-map sweep 27 -> 5")
-chk("no file is an ar5iv stub or conversion-failure page", ok_all,
-    ">20 kB and carries abstract/introduction structure")
-chk("all six ranked targets accounted for", len(results) == 6, f"{len(results)}/6")
+chk("MEASURED: every row verified independently -- no file is an ar5iv stub or "
+    "conversion-failure page", len(verified) > 0 and all(verified),
+    f"{sum(verified)}/{len(verified)} rows carry their own id in the header AND >20 kB of "
+    f"abstract/introduction structure. Was a control-flow flag both harness seats flagged "
+    f"as unreadable by the classifier; now an explicit per-row list")
+# REPAIRED after the harness gate. CGATE: "'all six ranked targets accounted for' is
+# len(results) == 6. The loop appends a row on fetch failure, so six total failures still pass
+# this check." That is an accumulator certifying FAILURES as successes -- the only harness defect
+# in this battery that could corrupt the CORPUS rather than a reading. Now counts acquisitions.
+n_ok_rows = sum(verified)
+chk("MEASURED: all six ranked targets produced a VERIFIED file, not merely a row in the results "
+    "list -- a fetch failure appends a row too and would have passed the old check",
+    n_ok_rows == 6 and len(results) == 6,
+    f"{n_ok_rows}/6 verified out of {len(results)}/6 attempted; the old form tested only the "
+    f"second number and would certify six consecutive fetch failures as six acquisitions")
 
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"\nSELF-CHECKS: {n_ok}/{len(checks)} passed")

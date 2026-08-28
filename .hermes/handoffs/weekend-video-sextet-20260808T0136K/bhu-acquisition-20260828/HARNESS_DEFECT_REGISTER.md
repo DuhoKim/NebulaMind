@@ -22,6 +22,42 @@ needed the count: it rests on a quoted indistinguishability sentence. But the co
 as evidence and it was wrong. Patterns repaired; the check now counts, inspects, and states that
 the inequalities are coordinate-domain conditions rather than magnitude thresholds.
 
+## 1b. THE SAME FALSE-ZERO REACHED THE RANDOM-DRAW AUDIT — retracted 05:15
+
+Blanc asked how far the false-count defect reached. Traced: the narrow pattern appears in three
+files. `a9` uses it to FIND a specific value (safe — a narrow pattern is safe for presence). The
+other two used it for ABSENCE, and both were wrong.
+
+`a14` check 1 claimed *"only entry 36 carries substantial numeric content; 24 and 40 carry none"*.
+Rechecked with repaired patterns:
+
+| entry | narrow (reported) | broader sci | inequalities of any form |
+|---|---|---|---|
+| 24 | 0 | 1 | **12** — `r < √(3/Λ)`, density comparisons |
+| 36 | 21 | 21 | 72 |
+| 40 | 0 | 0 | **17** — `f > 0`, `0 ≤ R` |
+
+**"Carry none" was false for both, and I reported it upward as part of the draw result.**
+WITHDRAWN. The tier conclusions for 24 and 40 are unaffected — they rest on quoted
+agreement-language and an explicit unobservability statement respectively, not on the count —
+but the count was offered as support and it was wrong.
+
+**The general rule this yields:** a narrow pattern is safe for PRESENCE and dangerous for
+ABSENCE. Finding a thing with a tight regex proves it is there; failing to find it proves
+nothing. Every absence claim in this battery needs its pattern's blind spots named in the check.
+
+## 1c. THE ACCUMULATOR — fixed 05:20, the only defect that could corrupt the CORPUS
+
+`a1` check *"all six ranked targets accounted for"* was `len(results) == 6`, and the fetch loop
+appends a row on failure (`results.append((entry, aid, txt_p, 0, False)); continue`). **Six
+consecutive fetch failures would have passed it as six acquisitions.**
+
+Every other defect in this register overclaims about a paper. This one could have certified an
+empty corpus. Repaired: the verification loop now records an explicit per-row outcome list and
+the check counts VERIFIED acquisitions (`6/6 verified out of 6/6 attempted`). The companion
+`ok_all` control-flow flag — which both seats independently flagged as unreadable — is gone,
+replaced by the same explicit list.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:

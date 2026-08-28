@@ -24,13 +24,34 @@ print("=" * 96); print("A14 -- the three randomly drawn entries"); print("=" * 9
 d = json.load(open("_random_draw.json"))
 print(f"\nseed {d['seed_hex'][:16]}...  pool {len(d['pool'])}  drawn {d['drawn']}")
 
-# ---- COUNTED: numeric content across the three ---------------------------------------------
-SCI = r"\d+(?:\.\d+)?\s*×\s*10\s*[−-]?\s*\d+|\d(?:\.\d+)?\s*\\times\s*10\^?\{?-?\d"
-counts = {e: len(re.findall(SCI, T)) for e, T in TXT.items()}
-print(f"\n1. COUNTED: scientific-notation values per entry   {counts}")
-chk("COUNTED: only entry 36 carries substantial numeric content; 24 and 40 carry none",
-    counts[24] == 0 and counts[40] == 0 and counts[36] > 15,
-    "so 36 is the only one of the three that could hide a calibrated threshold")
+# ---- WITHDRAWN AND REPLACED -- same false-zero defect as a12 --------------------------------
+# This check originally read "COUNTED: only entry 36 carries substantial numeric content; 24 and
+# 40 carry none", on a regex recognising only two renderings of scientific notation. It was the
+# SAME pattern that CGATE proved false on entry 8. Rechecked with repaired patterns:
+#
+#     entry 24   narrow 0  ->  broader sci 1,  inequalities of any form 12  (r < sqrt(3/Lambda) ...)
+#     entry 36   narrow 21 ->  broader sci 21, inequalities of any form 72
+#     entry 40   narrow 0  ->  broader sci 0,  inequalities of any form 17  (f > 0, 0 <= R ...)
+#
+# "Carry none" was FALSE for both. WITHDRAWN. What replaces it distinguishes the two things the
+# original conflated: how much numeric content a paper has, and whether any of it is a threshold
+# on an OBSERVABLE. The second is the question the sweep is actually asking, and it needs reading.
+SCI  = r"\d+(?:\.\d+)?\s*×\s*10\s*[−-]?\s*\d+|\d(?:\.\d+)?\s*\\times\s*10\^?\{?-?\d|10\^\{?-?\d|\d[eE][+-]?\d\d"
+INEQ = r"[0-9a-zA-Zξ_{}\\]+\s*[<>≤≥≪≫]\s*[0-9a-zA-Zξ_{}\\∞]+"
+sci  = {e: len(re.findall(SCI, T))  for e, T in TXT.items()}
+ineq = {e: len(re.findall(INEQ, T)) for e, T in TXT.items()}
+print(f"\n1. COUNTED, with patterns REPAIRED after the harness gate")
+print(f"   scientific-notation values   {sci}")
+print(f"   inequalities of any form     {ineq}")
+print(f"   INSPECTED: 24's are the event-horizon relation r < sqrt(3/Lambda) and density")
+print(f"   comparisons; 40's are sign and domain conditions (f > 0, 0 <= R). Neither set is a")
+print(f"   numeric threshold on an observable. 36's 21 values ARE substantive -- see check 3.")
+chk("COUNTED and INSPECTED: all three carry inequalities; only entry 36 carries numeric values "
+    "that could constitute a threshold. The earlier form of this check reported 24 and 40 as "
+    "carrying ZERO and was false",
+    ineq[24] > 0 and ineq[40] > 0 and sci[36] > 15 and sci[40] == 0,
+    "withdrawn and restated: presence of inequalities is not presence of a threshold, and the "
+    "distinction is made here by reading them, not by a pattern that could not see them")
 
 # ---- entry 24 --------------------------------------------------------------------------------
 agrees = "agrees with the black hole universe predictions" in TXT[24]
@@ -70,6 +91,13 @@ print("""
 5. RESULT OF THE CONTROL
 
    THREE DRAWN AT RANDOM, THREE TIERS UNCHANGED. The pattern did not break.
+
+   RETRACTION, 2026-08-29 ~05:15. Check 1 originally asserted entries 24 and 40 "carry none" --
+   zero numeric content -- and I reported that upward. It was FALSE: 24 carries 12 inequalities
+   and 40 carries 17. Same narrow regex CGATE proved false on entry 8. The tier conclusions for
+   24 and 40 are unaffected because they rest on quoted agreement-language and an explicit
+   unobservability statement respectively, NOT on the count. But the count was offered as
+   support and it was wrong.
 
    Running total: 12 hand-picked + 3 random = 15 entries examined, 15 tiers unchanged, across
    three author lines (Gaztanaga, Poplawski, Smoller-Temple) and three frameworks.
