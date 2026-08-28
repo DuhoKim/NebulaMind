@@ -45,14 +45,23 @@ verifies after rather than during. Meter figures below are Blanc's captures, car
 
 | coordinator | model | how established |
 |---|---|---|
-| **Hwao** | `claude-opus-5[1m]` | self-reported from its own system prompt — authoritative for itself |
-| **Blanc** | `claude-opus-5[1m]` | Blanc verified from its own system prompt, 2026-08-28 |
+| **Hwao** | `claude-opus-5` (variant unconfirmed) | **Changed by Duho 2026-08-29** — "i changed to opus for them too". OPERATOR TESTIMONY about a setting, not a session self-report. Supersedes the pre-reboot `claude-opus-5[1m]` row, which was self-reported from its own system prompt and is now out of date rather than wrong. |
+| **Blanc** | `claude-opus-5` (variant unconfirmed) | **Changed by Duho 2026-08-29**, same testimony as Hwao's row. Supersedes Blanc's own 2026-08-28 verification from its system prompt. |
 | **Tori** | `claude-opus-5` — **variant changed at the reboot** | Was `claude-opus-5[1m]`, verified from her own system prompt **17:16 KST 2026-08-28** (asked three times; the first two buried under the corpus sweep). After the 2026-08-29 Studio reboot `/model` reports **"Opus 5"** with no 1M-context qualifier, twice, where the pre-reboot session self-identified as **"Opus 5 (1M context)"**. Family unchanged; the `[1m]` variant is no longer indicated. |
 
 **All three verified, each from its own system prompt — none inferred from the others.** The row above
 stood UNVERIFIED for three hours rather than being closed from two confirmations, and holding it open
 cost nothing while closing it early would have made a three-member claim from two members. That is the
 standard this table should keep.
+
+**EVIDENCE GRADES, since all three rows now rest on different ones.** Tori's is an observation
+of the `/model` picker string in her own live session. Hwao's and Blanc's are Duho's testimony
+about a setting he applied — stronger than any peer inference, and the reason neither row was
+guessed, but it is a statement about what was *set*, not about what those sessions *report*. The
+`[1m]` variant is unconfirmed on all three: the picker shows "Opus 5" where the pre-reboot
+sessions showed "Opus 5 (1M context)", and that display string is the whole of the evidence.
+`TORI_TO_HWAO_BLANC_REMODEL_ASK_20260829.md` stays open for the self-reports, which would upgrade
+two rows from testimony to first-hand.
 
 **BUT MODEL ID IS A PROPERTY OF A SESSION, NOT OF A COORDINATOR.** Added 2026-08-29 (Tori) after
 the reboot changed hers underneath this table. The three rows above were each true when written
