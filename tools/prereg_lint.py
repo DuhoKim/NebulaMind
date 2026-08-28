@@ -236,7 +236,9 @@ def check_repair_citations(text, gates, out):
         return
     for m in re.finditer(r"\((?:KIMI|GPT56|CODEX)[^)]{0,80}\)", text):
         cite = m.group(0)
-        for seat, ver, fid in re.findall(r"(KIMI|GPT56|CODEX)-V(\d+)\s*(F?\d+)", cite):
+        # \b after the version digits, or "V24-1" parses as version 2 finding 4 and reports a
+        # citation nobody wrote. That false positive fired on every draft from V25 on.
+        for seat, ver, fid in re.findall(r"(KIMI|GPT56|CODEX)-V(\d+)\b\s*[-–]?\s*(F?\d+)", cite):
             if f"PREREG_TEXT_V{ver}_{seat}.md" not in [p.name for p in gates.glob("*.md")]:
                 out.append(("repair-citations",
                             f"cites {seat}-V{ver} {fid} but no PREREG_TEXT_V{ver}_{seat}.md exists"))
