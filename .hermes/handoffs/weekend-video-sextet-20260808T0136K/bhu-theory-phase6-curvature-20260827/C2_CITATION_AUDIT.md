@@ -182,3 +182,47 @@ combination that its own collaboration attributes to a known anomaly.
 **Still not a refutation**, for the reason in `OPENING_FINDING_FALSIFIER_MISREAD.md`: the hard
 prediction is `Ω_k < 0` with no floor, so the model retreats toward `0⁻` where no measurement
 reaches it.
+
+---
+
+# CLOSED, 2026-08-28 — the ACT figure-pointer caveat resolves against the target
+
+Open item 3 of this audit is discharged. I had written:
+
+> "In the version available to me (draft dated 25 June 2025), **Figure 9 is the ACT EB/TB power
+> spectra and polarization-angle rotation ψ** — cosmic birefringence, not curvature. […] *However*,
+> the BHU paper was posted in May 2025 and would have cited an earlier version, and figure
+> numbering can shift between arXiv versions. **I have not checked v1, so I do not claim the
+> pointer was wrong when written.**"
+
+**Now checked.** `arXiv:2503.14452v1`, retrieved and extracted locally — header reads
+*"Draft version March 19, 2025"* and *"arXiv:2503.14452v1 [astro-ph.CO] 18 Mar 2025"*, i.e. the
+version in existence when the BHU paper was posted in May 2025.
+
+**The numbering did not shift.** In v1:
+
+- **Figure 9 is the same birefringence figure**, verbatim: *"ACT EB (top) and TB (middle) power
+  spectra for the baseline cut with optimal weighting. […] one corresponding to an overall
+  rotation of 0.2° of the polarization angles."*
+- **Curvature sits where it sits in the later draft** — *"As shown in Figures 2 and 19, the ACT
+  power spectra prefer a flat geometry"*, and Figure 20 on background cosmological parameters
+  including non-zero spatial curvature.
+- The characterisation is identical too: v1 already says the ACT spectra **prefer a flat
+  geometry**, and already notes the Planck PR3 preference is *"disfavored with the inclusion of
+  large-scale structure data."*
+
+**So the caveat is withdrawn and the finding hardens.** The target's *"see their Fig. 9"* points
+at a cosmic-birefringence figure in **both** versions. There is no version of ACT DR6 in which
+Figure 9 concerns curvature.
+
+**Scope, kept narrow.** This is a misdirected pointer, not a fabricated one — the ACT paper does
+discuss curvature, just at Figures 2/19/20 and Eq. 46. Finding 2 never depended on the pointer;
+it rests on the mischaracterisation, which v1 confirms independently by using the same
+"prefer a flat geometry" language the target's sentence contradicts.
+
+**All four open items from this audit are now discharged:**
+
+1. DESI companion — PARTIAL (three other DESI-based analyses read; the named companion still unread)
+2. Planck §7.3 — DONE, and it exonerated the target on its Planck number
+3. ACT v1 figure numbering — **DONE, this section**
+4. χ_* provenance — DONE, gated `PASS_C3` by two seats (`c3_chistar_provenance.py`)
