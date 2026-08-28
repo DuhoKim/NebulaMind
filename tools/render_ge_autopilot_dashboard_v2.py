@@ -673,16 +673,24 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
     # closure lane because those reports say "brick" and "closure" often enough
     # to score as mechanism — right words, wrong artifact.
     if sb.is_dir() and (sb / "gates").is_dir():
-        tg_all = sorted((sb / "gates").glob("PREREG_TEXT_*.md"),
+        # Two naming families, one workstream. The per-section reviews are
+        # PREREG_TEXT_V12_CODEX; from V16 the lane switched to whole-document
+        # rounds named V16_WHOLE_REVIEW_CODEX. Globbing only the first family
+        # froze this row on V14 while five further rounds ran — it read
+        # "18 blocking findings" at a moment when the live answer was 4, which
+        # is the worst way for this number to be wrong. Match both families.
+        tg_all = sorted([p for pat in ("PREREG_TEXT_*.md", "V*_WHOLE_REVIEW_*.md")
+                         for p in (sb / "gates").glob(pat)],
                         key=lambda f: f.stat().st_mtime, reverse=True)
         # Only the CURRENT draft's reviews. The first cut summed every finding
         # across every version ever refereed — 43 blockers spanning v10 to v14,
         # most of them already repaired — and listed eleven seats from four
         # drafts. That is a history, not a state, and it reads as far worse than
-        # the truth. Version comes from the filename (PREREG_TEXT_V12_CODEX);
-        # the un-versioned originals are v10.
+        # the truth. The version anchor must allow a LEADING V too: `_V(\d+)_`
+        # cannot match V20_WHOLE_REVIEW_CODEX, so every whole-document round
+        # silently scored as the v10 default.
         def _ver(f):
-            m = re.search(r"_V(\d+)_", f.name)
+            m = re.search(r"(?:^|_)V(\d+)_", f.name)
             return int(m.group(1)) if m else 10
         tg = [f for f in tg_all if _ver(f) == max((_ver(x) for x in tg_all), default=10)] \
             if tg_all else []
@@ -691,7 +699,12 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             seats_t: List[str] = []
             verdict_t = None
             for f in tg:
-                seat = re.sub(r"^PREREG_TEXT_(V\d+_)?", "", f.stem).lower()
+                # Name the seat, not the filename. Stripping a fixed prefix
+                # turned V20_WHOLE_REVIEW_CODEX into "v20_whole_review_codex"
+                # and made the panel unreadable the moment the naming changed.
+                _s = re.search(r"(codex|gpt56|kimi|agy)", f.stem, re.I)
+                seat = _s.group(1).lower() if _s else \
+                    re.sub(r"^(PREREG_TEXT|V\d+_WHOLE_REVIEW)_(V\d+_)?", "", f.stem).lower()
                 head = f.read_text(errors="ignore")[:2000]
                 m = re.search(r"\*\*(NOT CLEAR|CLEAR|REFUSED)\*\*", head)
                 if m:
