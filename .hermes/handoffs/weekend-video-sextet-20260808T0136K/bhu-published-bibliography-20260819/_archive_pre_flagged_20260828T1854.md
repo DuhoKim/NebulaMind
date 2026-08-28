@@ -27,23 +27,6 @@ Batch-9 correction: entry 6 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIREC
 text contains no mass-threshold falsifier; that class had been inherited from the entry-7 chain
 at triage. The branch's calibrated falsifiers are entries 7 and 31.
 
-**BLIND-SWEEP FLAGS ARE NOT FINDINGS (entries 36, 37, 38, 40, 41).** Added 2026-08-28
-(Tori), Duho ruling. A blind re-classification of the 19 entries with pinned full text proposed
-six promotions. One (entry 51) was gated twice and applied. **The other five are recorded as
-BLIND-FLAGGED, NOT ADJUDICATED, and their tiers are unchanged.**
-
-They were not gated on purpose. The sweep **failed its own control**: of three entries seeded
-with known gated answers, entry 54 came back CALIBRATED-FALSIFIER quoting the abstract bracket —
-reproducing, independently, the exact error two seats had corrected that morning. A single-pass
-blind read carries the same overclaim bias as the method that built this bibliography, so it
-cannot audit it. All six proposals ran in that direction, and five came from the engine that
-promoted 5 of 10 while the other promoted 1 of 5 and twice found numbers and declined.
-
-Gating five candidates from an instrument demonstrated biased in exactly that direction would
-cost five rounds to return noise. A better-designed sweep can revisit them cheaply now that
-`../bhu-theory-phase6-curvature-20260827/ENTRY_SOURCE_MAP.md` exists. Working artefacts and both
-gate verdicts for entry 51 are in that lane.
-
 **TIER COUNT IS NOT LIVE-FALSIFIER COUNT. Read both lines before quoting either.** Added
 2026-08-28 (Tori) because I have now mis-stated this tally twice in one day, in both directions.
 The tier describes the CLAIM; a separate axis describes its STANDING:
@@ -275,13 +258,13 @@ Record: recalled by the gate with its DOI remembered EXACTLY (verified digit-for
 **40. N. Popławski (2021). "Gravitational collapse of a fluid with torsion into a universe in a black hole." J. Exp. Theor. Phys. 132, 374 (Zh. Eksp. Teor. Fiz. 159, 448).**
 DOI 10.31857/S0044451021030068 — VERIFIED (Crossref: ZhETF, v159, p448-456, 2021). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). Tolman-metric homogeneous collapse; the no-singularity result holds for the SHEAR-FREE case by construction, with inhomogeneous/rotating collapse expressly open. The R₀→π cycle asymptotics is the uncompressed lineage of the audited 2025 paper's B-14 defect.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Tolman-metric homogeneous collapse; the no-singularity result holds for the SHEAR-FREE case by construction, with inhomogeneous/rotating collapse expressly open. The R₀→π cycle asymptotics is the uncompressed lineage of the audited 2025 paper's B-14 defect.
 Record: harvest #10; the mechanism's direct collapse continuation, published in JETP.
 
 **41. N. Popławski (2021). "A nonsingular, anisotropic universe in a black hole with torsion and particle production." Gen. Relativ. Gravit. 53, 18.**
 DOI 10.1007/s10714-021-02790-7 — VERIFIED (Crossref: GRG, v53, 2021-02). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). Proves torsion alone loses to shear (σ² grows faster than a⁻⁶) and patches it with phenomenological βH⁴ particle production — the explicit form of the step the A2 audit marked heuristic (B-13), conceded in the mathematics and repaired with a free parameter.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Proves torsion alone loses to shear (σ² grows faster than a⁻⁶) and patches it with phenomenological βH⁴ particle production — the explicit form of the step the A2 audit marked heuristic (B-13), conceded in the mathematics and repaired with a free parameter.
 Record: harvest #11; parentage construction beyond isotropy.
 
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
@@ -466,7 +449,7 @@ DOI 10.1007/s002200050780 — VERIFIED (Crossref: CMP, v210, p275-308, 2000-03).
 campaign-time checks missed under arXiv throttling); pinned as
 `bhu-reading-20260823/sources/smoller_temple_2000_shockwave_astroph9812063.pdf` (sha256
 ef904904…, 66 pp, title verified).
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.] — READ 2026-08-23 (Tori). Constructs the simplest exact
+Testability: **CONSISTENCY-ONLY** — READ 2026-08-23 (Tori). Constructs the simplest exact
 Einstein solution with a true shock wave at the leading edge of a k=0 FRW expansion inside a
 static TOV exterior, matched to the observed H₀ and CMB temperature; derives bounds putting the
 shock position at present time comparable to the Hubble length. The paper is explicit that the
@@ -493,13 +476,13 @@ entry 37 (PNAS 2003); here the shock sits outside any horizon.
 **37. J. Smoller & B. Temple (2003). "Shock-wave cosmology inside a black hole." PNAS 100, 11216–11218.**
 DOI 10.1073/pnas.1833875100 — VERIFIED (Crossref: PNAS, v100, p11216-11218, 2003-09). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). Theorem-grade exact GR: big bang as a localized explosion inside a Schwarzschild black hole, subluminous shock beyond the Hubble length, white-hole exit; σ=1/3 uniquely selected. The only paper read so far with no underived ingredient — and no stated falsifier.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Theorem-grade exact GR: big bang as a localized explosion inside a Schwarzschild black hole, subluminous shock beyond the Hubble length, white-hole exit; σ=1/3 uniquely selected. The only paper read so far with no underived ingredient — and no stated falsifier.
 Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Crossref says 2003 — the verified year is used.)
 
 **38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**
 DOI 10.4310/maa.2004.v11.n1.a7 — VERIFIED (Crossref: MAA, v11, p77-132, 2004). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). The theorems behind entry 37. The authors' own caveat: 'only rough qualitative models' — the TOV-side equation of state cannot be imposed, only bounded. Rigor about the mathematics and equal rigor about its limits.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). The theorems behind entry 37. The authors' own caveat: 'only rough qualitative models' — the TOV-side equation of state cannot be imposed, only bounded. Rigor about the mathematics and equal rigor about its limits.
 Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
 
 **57. J. Smoller & B. Temple (1997). "General relativistic shock waves that extend the Oppenheimer–Snyder model." Arch. Rational Mech. Anal. 138, 239–277.**
