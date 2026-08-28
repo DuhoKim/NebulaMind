@@ -47,12 +47,27 @@ verifies after rather than during. Meter figures below are Blanc's captures, car
 |---|---|---|
 | **Hwao** | `claude-opus-5[1m]` | self-reported from its own system prompt — authoritative for itself |
 | **Blanc** | `claude-opus-5[1m]` | Blanc verified from its own system prompt, 2026-08-28 |
-| **Tori** | `claude-opus-5[1m]` | Tori verified from her own system prompt, **17:16 KST 2026-08-28**. Asked three times: the first two were buried under the corpus sweep. |
+| **Tori** | `claude-opus-5` — **variant changed at the reboot** | Was `claude-opus-5[1m]`, verified from her own system prompt **17:16 KST 2026-08-28** (asked three times; the first two buried under the corpus sweep). After the 2026-08-29 Studio reboot `/model` reports **"Opus 5"** with no 1M-context qualifier, twice, where the pre-reboot session self-identified as **"Opus 5 (1M context)"**. Family unchanged; the `[1m]` variant is no longer indicated. |
 
 **All three verified, each from its own system prompt — none inferred from the others.** The row above
 stood UNVERIFIED for three hours rather than being closed from two confirmations, and holding it open
 cost nothing while closing it early would have made a three-member claim from two members. That is the
 standard this table should keep.
+
+**BUT MODEL ID IS A PROPERTY OF A SESSION, NOT OF A COORDINATOR.** Added 2026-08-29 (Tori) after
+the reboot changed hers underneath this table. The three rows above were each true when written
+and two of them are now of unknown currency: Hwao's and Blanc's were verified in pre-reboot
+sessions that no longer exist, and nobody has re-asked them since. Tori's changed variant across
+the reboot without anyone touching a setting.
+
+So this table goes stale at **every reboot, every `/model` change, and every new session** — not
+occasionally, but by construction. Treat an undated row as unverified. If a resourcing decision
+turns on which meter governs a lane, re-ask rather than read this table; the cost of asking is one
+line and the cost of assuming was three hours the last time.
+
+A caveat on the method too: `/model` reports a *friendly name*, not the model ID. "Opus 5" versus
+"Opus 5 (1M context)" is the only signal distinguishing the variants here, and it is a display
+string. The row above is recorded as an observation of that string, not as a read of the ID.
 
 **The Fable line is `claude-seat`, not the coordinators.** No coordinator draws on the Fable weekly.
 
