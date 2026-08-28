@@ -53,6 +53,19 @@ def phase_ok(phase: str) -> bool:
         return False
     return all(STAGE_RE.match(x) or x in NAMED_PHASES for x in parts)
 
+# The normative sentences that DEFINE VOID triggers. Frozen here because they are few and stable;
+# the check below is over their compound structure, not over free prose.
+# (section, line marker, regex isolating the TRIGGER PHRASE within that line). Taking the whole
+# line drowned the signal 20:3 in unrelated prose; the phrase is what carries the conditions.
+TRIGGER_CLAUSES = (
+    ("§5", "- **VOID:** triggered by", r"triggered by (.+?)\.\s"),
+    ("§2.7", "voids the run.", r"(?:^|\. )([^.]*?) voids the run\."),
+)
+# Words that are structure, not conditions.
+_STOP = {"a", "an", "the", "or", "and", "of", "after", "any", "by", "acts", "act", "failures",
+         "failure", "deviation", "exists", "run", "voids", "threshold", "triggered", "this",
+         "category", "is", "not", "yet", "executable", "inference"}
+
 CODES = {
     "V01": "the §7.1 registry section is absent or holds no rows",
     "V02": "an antecedent ID is duplicated",
@@ -95,6 +108,43 @@ def canonical(rows) -> str:
 
 def digest(rows) -> str:
     return hashlib.sha256(canonical(rows).encode("utf-8")).hexdigest()
+
+
+def compound_gaps(text: str):
+    """HEURISTIC. Flag compound VOID triggers whose branches have no matching antecedent ID.
+
+    This is how GPT56 found three real gaps that the row-table check could not see: the prose says
+    "protocol/digest deviation" and "non-finite/degenerate failures" and "chosen or moved", and the
+    registry carries ONE id per compound - PROTOCOL, NONFINITE, MOVED. Each unmatched branch is a
+    condition the document voids on and the registry does not name.
+
+    It CANNOT prove completeness: it only inspects the frozen trigger clauses, and only their
+    slash/or structure. A clean result here is not evidence the registry is complete. It exists so
+    that this particular class of gap is caught by a check rather than by a careful reader.
+    """
+    rows = extract(text)
+    out = []
+    for section, needle, phrase_re in TRIGGER_CLAUSES:
+        # Match IDs for THIS source only. Matching globally let "digest" be absorbed by an
+        # unrelated §6.1 row's VOID-6.1H-EXPORT-DIGEST, hiding a real §5 gap.
+        ids = " ".join(r[0].lower() for r in rows if r[1].startswith(section))
+        for line in text.splitlines():
+            if needle not in line:
+                continue
+            m = re.search(phrase_re, re.sub(r"\*\*|`|\[|\]", " ", line))
+            if not m:
+                continue
+            frag = m.group(1)
+            for token in re.split(r"[,;.]| or ", frag):
+                for branch in token.split("/"):
+                    w = re.sub(r"[^a-z\- ]", " ", branch.lower()).split()
+                    w = [x for x in w if x not in _STOP and len(x) > 3]
+                    for word in w:
+                        stem = word[:6]
+                        if stem not in ids and word.replace("-", "") not in ids.replace("-", ""):
+                            out.append((section, word, line.strip()[:70]))
+            break
+    return out
 
 
 def check(text: str):
@@ -194,6 +244,25 @@ def self_test(text: str) -> int:
         fails.append("coverage")
     else:
         print(f"  OK   every code has a control (V01 is covered by the empty-document case)")
+    # The compound-gap heuristic must find the three a seat found by reading, and must go quiet
+    # when the branch is named. Without the second half it could "find" gaps by always firing.
+    gaps = {w for _, w, _ in compound_gaps(text)}
+    want = {"degenerate", "digest", "chosen"}
+    ok = want <= gaps
+    print(f"  {'OK  ' if ok else 'FAIL'} compound-gap heuristic finds GPT56's three: "
+          f"{sorted(want & gaps)}{'' if ok else f' — missed {sorted(want - gaps)}'}")
+    if not ok:
+        fails.append("compound heuristic")
+    covered = text.replace("| `VOID-5-NONFINITE` | §5 | Post-unblinding | VOID |",
+                           "| `VOID-5-NONFINITE` | §5 | Post-unblinding | VOID |\n"
+                           "| `VOID-5-DEGENERATE` | §5 | Post-unblinding | VOID |", 1)
+    quiet = {w for _, w, _ in compound_gaps(covered)}
+    ok2 = "degenerate" not in quiet
+    print(f"  {'OK  ' if ok2 else 'FAIL'} and goes quiet once the branch is named: "
+          f"{'degenerate no longer flagged' if ok2 else 'still flagged'}")
+    if not ok2:
+        fails.append("compound heuristic silence")
+
     _, b01 = check("no registry here")
     if _codes(b01) != {"V01"}:
         print(f"  FAIL empty-document case gave {sorted(_codes(b01))}")
@@ -219,6 +288,12 @@ def main() -> int:
     print(f"  antecedents      {len(rows)}")
     print(f"  §6.1 rows defined {len(defined_rows(text))}")
     print(f"  registry_digest  {digest(rows)}")
+    gaps = compound_gaps(text)
+    if gaps:
+        print(f"  ADVISORY — {len(gaps)} compound-branch candidate(s) with no antecedent for that "
+              f"source. Heuristic: not a refusal, and NOT proof of completeness either way.")
+        for s, w, _ in gaps:
+            print(f"    {s:<6} {w}")
     for b in bad:
         print(f"  REFUSED: {b}")
     return 1 if bad else 0
