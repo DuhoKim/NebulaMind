@@ -187,6 +187,7 @@ that raises has not refused.** Probe deletions strictly — a crash must never c
   place. Check mtime and heading, not just the filename.
 - Never modify a subject while a seat is reviewing it. The POST-CHECK exists for exactly this, and
   doing it once already cost GPT56's round-4 findings.
+- **The shell here is zsh, which does NOT word-split an unquoted parameter.** `for c in "prog --flag"; do python3 $c; done` passes the whole string as one filename. Worse, it produced a *false green*: the probe printed `exit=0` beside every failure, because `$?` was read after an intervening command. All seven self-tests above were re-run explicitly and pass on V36 — that is the checked claim; the first run was a broken harness, not broken code.
 - A sibling lane commits with repo-wide `git add -A` and has swept DESI files into BHU commits.
   Check `git log -- <path>` before assuming your commit carried your files.
 
