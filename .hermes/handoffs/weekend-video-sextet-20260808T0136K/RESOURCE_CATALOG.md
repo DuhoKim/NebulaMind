@@ -27,6 +27,11 @@ Last full verification pass: **2026-08-27 17:39 KST** (Blanc).
 > Design, drafting and analysis stay on the exhausted pool while two subscriptions
 > idle at 1% and 3%.
 
+>
+> A contributing cause worth recording: agy's only consumer (Goru) sat blocked on
+> an unanswered permission prompt for **55 hours** ending 2026-08-27 16:40. A pool
+> at 1% partly means its user could not run.
+
 ---
 
 ## CORRECTION — 2026-08-28, the coordinators are NOT on Fable
@@ -56,10 +61,7 @@ survive are independent of cost:
 **Do not cite the 100%-exhausted figure as justification for anything.** Two of three coordinators
 are verifiably on Opus; the third has not been checked, and two confirmed members of a three-member
 set are not the set.
->
-> A contributing cause worth recording: agy's only consumer (Goru) sat blocked on
-> an unanswered permission prompt for **55 hours** ending 2026-08-27 16:40. A pool
-> at 1% partly means its user could not run.
+
 
 ## CLI engines
 
