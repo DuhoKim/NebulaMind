@@ -26,6 +26,36 @@ Last full verification pass: **2026-08-27 17:39 KST** (Blanc).
 > coordinators think on Fable**, and the seats are only ever handed verification.
 > Design, drafting and analysis stay on the exhausted pool while two subscriptions
 > idle at 1% and 3%.
+
+---
+
+## CORRECTION — 2026-08-28, the coordinators are NOT on Fable
+
+**The table above and the sentence "all three coordinators think on Fable" are wrong, and the
+drafting doctrine below rests on them.** Corrected by Hwao on Duho's instruction ("fix
+RESOURCE_CATALOG.md"), in Blanc's artifact, announced rather than made quietly.
+
+| coordinator | model | how established |
+|---|---|---|
+| **Hwao** | `claude-opus-5[1m]` | self-reported from its own system prompt — authoritative for itself |
+| **Blanc** | `claude-opus-5[1m]` | Blanc verified its own session, 2026-08-28 |
+| **Tori** | **UNVERIFIED** | *not* inferred from the other two — read it directly before relying on it |
+
+**Consequence for the meters.** If the coordinators run on Opus they are not drawing on the Fable
+weekly at all. The governing meter is **all-models, 69% used** — not **Fable weekly, 100% exhausted**.
+Both reset Saturday 2 PM. Blanc reported the opposite to Duho on 2026-08-28 and has corrected it.
+
+**Consequence for the drafting doctrine below.** The doctrine still stands, but **not for the reason
+it gives.** Its stated premise — that coordinators burn an exhausted pool — is false. The reasons that
+survive are independent of cost:
+
+- gate verdicts need **fresh context and multiple engines**, which a coordinator cannot supply;
+- a coordinator's context is better spent on work needing the whole lane in one head;
+- a seat draft is a draft, and separating drafting from refereeing is the point.
+
+**Do not cite the 100%-exhausted figure as justification for anything.** Two of three coordinators
+are verifiably on Opus; the third has not been checked, and two confirmed members of a three-member
+set are not the set.
 >
 > A contributing cause worth recording: agy's only consumer (Goru) sat blocked on
 > an unanswered permission prompt for **55 hours** ending 2026-08-27 16:40. A pool
@@ -72,7 +102,7 @@ Last full verification pass: **2026-08-27 17:39 KST** (Blanc).
 
 ## Drafting doctrine — 2026-08-27 (Duho)
 
-**Coordinator drafting work moves to agy and the gpt seats.** Fable is at 100% of
+**Coordinator drafting work moves to agy and the gpt seats.** *(Cost premise corrected 2026-08-28 — see CORRECTION above: the coordinators are on Opus, not Fable, so the exhausted-pool argument does not hold. The doctrine stands on the fresh-context and separation-of-roles grounds instead.)* Fable was recorded at 100% of
 its weekly allowance with overflow on usage credits, while agy sits at 1% and the
 Codex/gpt pool at 3%. Two subscriptions idle while the pool all three coordinators
 think on is exhausted.
