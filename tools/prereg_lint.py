@@ -68,7 +68,12 @@ def count_rows(text):
         if re.match(r"\*\*Class [PE]", s):
             cls = "P" if "Class P" in s else "E"
             continue
-        if s.startswith("## "):
+        if s.startswith("#"):
+            # ANY heading closes the class block, not just level two. V23 added
+            # `### §7.1 Canonical VOID Antecedent Registry` immediately after the Class-E table;
+            # a `## `-only reset left the block open and counted the registry's ~54 antecedent rows
+            # as class-E slots, reporting 62. Third counter bug tonight, same shape as the first two:
+            # correct for the structure in front of me, blind to the next one that appears.
             cls = None
         if cls and s.startswith("|"):
             if re.match(r"^\|[\s:|-]*\|?$", s):          # separator row
