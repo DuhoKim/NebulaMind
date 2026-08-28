@@ -36,3 +36,45 @@ reference material, not a BHU bibliography entry.
 The bibliography records DOIs, not arXiv IDs, so no string search links an entry to its
 own pinned text — entry 54's record never contains `2505.23877`. This map is the missing
 join. It should be maintained alongside the bibliography, or the next sweep rebuilds it.
+
+
+---
+
+## EXTENSION 2026-08-29 — repo-wide sweep, +5 entries
+
+The original map covered only `bhu-reading-20260823/sources/`. Sweeping the whole repo found
+five more entries whose full text was already on disk, in three different directories:
+
+| entry | pinned file | sha256 (12) |
+|---|---|---|
+| 7 | `../brown-prl.txt` | `648812d88b6a` |
+| 9 | `../bhu-podcasts-20260820/arxiv_1007.0587.txt` | `16b8cae74b44` |
+| 10 | `../bhu-podcasts-20260820/arxiv_1111.4595.txt` | `752f2f8f55e5` |
+| 11 | `../bhu-podcasts-20260820/arxiv_1410.3881.txt` | `71a27bfab91f` |
+| 12 | `../reviews/bhu-citation-custody-evidence-20260811/arxiv-2509.11468v2.txt` | `8297f879829f` |
+
+**Auditable corpus: 19 -> 24 of 51 classified entries.** Three of the five sat in
+`bhu-podcasts-20260820/` — a directory nobody would search for paper sources. Entry 7's text
+(`brown-prl.txt`) was in the handoff root; I had found it by hand during the entry-7 audit and it
+was never indexed here.
+
+### Method note — the first attempt produced 27 false positives
+
+Searching for each entry's **DOI anywhere in a file** returned 27 "hits" and every one worth
+checking was wrong. Eleven pointed at the same file, `gaztanaga_mass_mnras.pdf`, because its
+REFERENCE LIST contains those DOIs. Others matched our own audit notes, gate verdicts and
+`LIBRARY_REQUEST_20260825.md` — files that mention a DOI are not that paper.
+
+The fix is a constraint, not a better pattern: **the identifier must appear in the document's
+header region** (first ~4 kB), and the file must be a full text rather than an abstract stub or
+one of our own notes. That drops 27 to 5, and the 5 survive inspection.
+
+Recorded because the failure mode is generic: a citation-shaped string proves the paper was
+*cited*, not that it is *present*. Any future acquisition sweep will hit this.
+
+### Still unpinned: 27 of 51
+
+Entries 2, 3, 4, 5, 8, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 42, 46,
+47, 48, 50, 56. The bibliography names an arXiv id for only two of them; the rest carry a DOI and
+nothing else, so acquisition means a per-paper lookup with real paywall risk (Elsevier, Springer,
+APS). `LIBRARY_REQUEST_20260825.md` already exists and covers part of this set.
