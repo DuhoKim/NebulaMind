@@ -203,10 +203,99 @@ def trace_table(text):
     return rows
 
 
+
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+# NEGATIVE CONTROLS — this tool produced two of the three vacuous guards found on 2026-08-28.
+#
+#   * the current-transition branch was skipped entirely, so the row most needing verification was
+#     the one guaranteed never to be examined (found by both seats at V27);
+#   * the scope predicate used `>= subject_ver`, so every FUTURE transition was mislabelled "the
+#     current transition" and a synthetic V29 could retroactively fail an unchanged V28 (CODEX-V28-1,
+#     found by constructing the case rather than reading the code).
+#
+# Blanc, 2026-08-28: every one of those was found by a seat testing the CHECKER rather than the
+# document. A canary was built for prereg_lint.py and not for this file — so the shape was closed in
+# one tool and left open in the one with the worse record.
+#
+# Each control breaks the inputs in the way one rule exists to catch, and asserts the check speaks.
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+
+def self_test(d: Path, subject: Path):
+    """Assert each scope rule can fail. Returns 1 if any control is silent."""
+    import tempfile, shutil
+    rows = build(d)
+    findings = load_findings(d)
+    text = subject.read_text()
+    table = trace_table(text)
+    subj = int(DRAFT.search(subject.name).group(1))
+    fails = []
+
+    # 1. in-band: a predecessor transition absent from the §10 table must be reported MISSING.
+    inband = [r for r in rows if 15 < int(r["to"]) < subj]
+    hit = None
+    for r in inband:
+        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b")
+        if any(pat.search(t) for t in table):
+            hit = r
+            break
+    if hit:
+        stripped = [t for t in table
+                    if not re.search(rf"V{hit['from']}\s*(?:→|->|to)\s*V{hit['to']}\b", t)]
+        ok = len(stripped) < len(table)
+        print(f"  {'OK  ' if ok else 'FAIL'} in-band presence: removing V{hit['from']}→V{hit['to']} "
+              f"from the table {'is detectable' if ok else 'IS NOT DETECTABLE'}")
+        if not ok:
+            fails.append("in-band")
+    else:
+        print("  FAIL in-band presence: no in-band row available to test")
+        fails.append("in-band")
+
+    # 2. sidecar: the current transition, unmapped, must be reported.
+    cur = next((r for r in rows if int(r["to"]) == subj), None)
+    if cur:
+        ok = (cur["from"], cur["to"]) in findings
+        print(f"  {'OK  ' if ok else 'FAIL'} sidecar: current transition "
+              f"V{cur['from']}→V{cur['to']} is {'mapped and therefore checkable' if ok else 'UNMAPPED'}")
+        if not ok:
+            fails.append("sidecar")
+    else:
+        print("  FAIL sidecar: no current transition found — the branch cannot be exercised")
+        fails.append("sidecar")
+
+    # 3. out-of-scope: a synthetic later draft must NOT affect this subject. CODEX's own test.
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        for f in d.glob("PREREG_SUCCESSOR_DRAFT_V*.md"):
+            shutil.copy(f, tmp / f.name)
+        (tmp / "gates").mkdir(exist_ok=True)
+        fm = d / "gates" / "FINDINGS_MAP.md"
+        if fm.exists():
+            shutil.copy(fm, tmp / "gates" / "FINDINGS_MAP.md")
+        future = tmp / f"PREREG_SUCCESSOR_DRAFT_V{subj + 1}_20260827.md"
+        future.write_text(text + "\n<!-- synthetic future draft -->\n")
+        before = len(build(d))
+        after = len(build(tmp))
+        ok = after > before          # the future draft exists...
+        rows2 = build(tmp)
+        later = [r for r in rows2 if int(r["to"]) > subj]
+        ok = ok and bool(later)
+        print(f"  {'OK  ' if ok else 'FAIL'} out-of-scope: a synthetic V{subj + 1} "
+              f"{'is present and must not bind this subject' if ok else 'COULD NOT BE CONSTRUCTED'}")
+        if not ok:
+            fails.append("out-of-scope")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    print(f"  self-test: 3 scope rules, {len(fails)} failure(s)")
+    return 1 if fails else 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("dir")
     ap.add_argument("--check", help="draft whose written §10 trace should agree with the computed one")
+    ap.add_argument("--self-test", action="store_true",
+                    help="assert each scope rule can fail; exit 1 if any control is silent")
     args = ap.parse_args()
 
     d = Path(args.dir)
@@ -216,6 +305,13 @@ def main():
         return 1
 
     findings = load_findings(d)
+
+    if args.self_test:
+        if not args.check:
+            print("--self-test requires --check <draft>")
+            return 1
+        print(f"prereg trace self-test — {Path(args.check).name}")
+        return self_test(d, Path(args.check))
 
     if not args.check:
         print(render(rows, findings))
