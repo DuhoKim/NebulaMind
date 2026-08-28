@@ -50,7 +50,14 @@ fail the lint. A fourth repair attempt is explicitly out of bounds — the decis
 - **`prereg_trace` refactor**: cleared by both seats; predicates unchanged.
 - **V34's correction citations are real** — confirmed independently, twice.
 
-## NEXT DISPATCH (was about to run)
+## V35 ROUND IS RUNNING (dispatched 06:17 KST)
+
+Both seats, reports to `gates/V35_WHOLE_REVIEW_<SEAT>.md`, runner
+`gates/_tmp_v35_round.sh`, log `gates/runner_v35_round.log`. Brief
+`gates/BRIEF_V35_REVIEW.md` carries the quarantine disclosure and keeps the absence-clause lens.
+**If the reports exist, read them before dispatching anything.**
+
+## PREVIOUS NEXT-DISPATCH NOTE (now done)
 
 Referee round on **V35**, both seats, **same absence-clause lens** that made the V34 round the most
 productive of the night. Brief pattern: `gates/BRIEF_V34_REVIEW.md`. Runner pattern:
