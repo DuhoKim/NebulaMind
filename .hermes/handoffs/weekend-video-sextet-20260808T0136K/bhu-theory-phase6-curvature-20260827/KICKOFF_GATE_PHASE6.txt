@@ -1,0 +1,82 @@
+GATE — Phase 6 opening findings (BHU curvature falsifier). First gate of a new phase.
+
+Lane: .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase6-curvature-20260827/
+Environment: python 3.9.6, numpy 1.26.4, scipy 1.13.1. Run from that directory.
+
+You are an independent seat with no prior context on this lane. Form your own view from the
+artifacts. Do not defer to my framing — three of the four claims below are corrections to my own
+earlier work, so my judgement here has already been wrong once.
+
+## The target
+
+Gaztanaga, Kumar, Pradhan & Gabler, "Gravitational bounce from the quantum exclusion principle",
+Phys. Rev. D 111, 103537 (2025), arXiv 2505.23877. Pinned clean text at
+`../bhu-reading-20260823/sources/2505.23877_clean.txt`. It is the only paper in our BHU
+bibliography carrying a live calibrated falsifier: it predicts closed spatial curvature.
+
+## What I claim, and where it is
+
+1. **Our own record had the falsification condition backwards.**
+   `OPENING_FINDING_FALSIFIER_MISREAD.md`. Our bibliography and a note I sent another lane both
+   say "a confirmed flat universe refutes it." I now say that is wrong: Eq. 27 is
+   `Omega_k = -(0.07 +- 0.02)(chi_*/chi_k)^2` with `chi_k > chi_*` strictly, so the bracket is a
+   magnitude CEILING, not a predicted value, and the paper itself withdraws insistence on the
+   magnitude ("could be smaller"). The hard content is a SIGN: `Omega_k < 0`. Therefore the model
+   is refuted by a confirmed OPEN universe, not by flatness.
+
+2. **Sign conventions, computed rather than asserted.** `c1_curvature_constraints.py` (7/7,
+   exit 0). Omega_k > 0 = OPEN = negative spatial curvature. This is the trap in this phase: a
+   summarising read of Chen & Zaldarriaga already mislabelled their open result as closed. I
+   convert from their printed `R_k = 21 H_0^-1` rather than trusting any label.
+
+3. **Citation audit.** `C2_CITATION_AUDIT.md`. Of the target's three observational citations:
+   Planck's number is ACCURATE (verified against Planck Eq. 46b) but the target omits Planck's
+   own reading of it; the ACT characterisation is contradicted by ACT's own summary sentence; the
+   DESI citation points at a paper that assumes `Omega_K = 0` and derives no constraint.
+
+4. **Constraint ledger.** `c2_constraint_ledger.py` (6/6, exit 0). Eleven constraints, every one
+   first-hand, with a provenance code on each.
+
+## Attack these, at minimum
+
+1. **AM I DOING THE THING I ACCUSE THE TARGET OF?** This is the one I most want ruled on. My
+   ledger sets aside the three CMB-alone rows — the only strongly-closed values — on the grounds
+   that Planck itself attributes them to the A_L anomaly. But setting aside the datasets that
+   disagree with my conclusion is *structurally identical* to the dataset-selection I charge the
+   target with. Is my exclusion principled, or is it the mirror image of the fault I am alleging?
+   If it is the mirror image, say so and the audit's central pattern claim falls.
+
+2. **Is the "hard prediction is a sign" reading of Eq. 27 right?** Or am I over-reading one
+   hedging sentence in section VI into a wholesale demotion of the paper's stated bracket? The
+   abstract does state the bracket compactly. A fair reading might be that the authors intend the
+   bracket and merely note a caveat. If so, claim 1 is wrong and the falsifier is calibrated after
+   all.
+
+3. **Is "omission" the right charge on the Planck citation** — or am I still being unfair? The
+   target is a theory paper; how much of a source's internal caveats is a theory paper obliged to
+   carry? Rule on whether my revised, weaker charge is now too weak, too harsh, or right.
+
+4. **Check the sign handling everywhere.** If I have inverted a convention anywhere in c1, c2 or
+   the audit, everything downstream is wrong. "Negative spatial curvature" vs "negative Omega_k"
+   mean opposite universes and I rely on that distinction repeatedly.
+
+5. **Reproduce both scripts.** Expected: `c1` exit 0 (7/7), `c2` exit 0 (6/6).
+
+6. **What I have NOT done, and whether it is load-bearing:** I never obtained the actual DESI
+   companion paper (`DESI Collaboration et al. 2025c`) that DR2 II defers curvature to; I used
+   three other DESI-based analyses instead. I have not checked ACT v1 for the Figure 9 numbering.
+   I have not examined whether the model's `chi_*` rests on the same lead author's own prior
+   homogeneity measurement. Does any of that undercut the findings as stated?
+
+## What an honest PASS would mean
+
+Not "the model is refuted" — it is not, and the artifacts say so repeatedly. It would mean: our
+record's falsification condition was wrong and is now right; the sign handling is sound; and the
+citation audit is fair as revised.
+
+Verdict file in this directory, first line one of:
+
+    PASS_PHASE6_OPENING
+    HOLD_<reason>
+
+Name it per your seat convention (GATE_/KGATE_/CGATE_/AGATE_).
