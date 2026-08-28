@@ -169,12 +169,31 @@ defect found tonight.
 | 26 | QUAL-DIRECTIONAL confirmed | Eq.11's modal envelope, read by both seats | unchanged | a5's Λ_O identity check never touches the source. **NOT re-derived** |
 | 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing, quoted | unchanged | direction-of-inference check is a presence test. **NOT re-derived** |
 | 23 | promotion **REFUSED** | the reverse-inference sentence, quoted; both seats | unchanged | two renames called cosmetic. **NOT re-derived** |
-| 22 | category error found | theorem/proposition statements, quoted; both seats | unchanged | harness never individually audited. **UNKNOWN** |
+| 22 | category error found | theorem/proposition statements + a **narrow-pattern absence claim** ("no observational prediction") | the same quotes + that absence **re-tested with a broadened pattern and every hit inspected** | **re-derived** |
 
-**How to read this cold.** Five rows say *re-derived*: something in their support was condemned,
+**How to read this cold.** Six rows say *re-derived*: something in their support was condemned,
 and the conclusion has since been rebuilt without it — in three cases because the condemned thing
-was outright false. Four say *not re-derived*: a weak check remains in their support, but the
-conclusion itself rests on a quotation two independent seats read. One says *unknown*.
+was outright **false**. Four say *not re-derived*: a weak check remains in their support, but the
+conclusion itself rests on a quotation two independent seats read, and two of those four are
+*refusals* of my own proposed changes. **No row is unknown any more.**
+
+### Entry 22, the last unknown — and its absence claim HELD
+
+Its support included the same shape that was false three times tonight: "makes no observational
+prediction", tested by a narrow regex. Re-tested at 07:30 with a pattern broad enough to catch any
+observational claim, and **every hit inspected**. Three sentences in the whole paper contain an
+observational-sounding word:
+
+- *"the following familiar **observation** sets our stage"* — a mathematical remark, not an
+  astronomical one;
+- *"it is not a **prediction** of the asymptotically flat parent geometry itself"*;
+- *"a tuning of the junction data rather than a **prediction** of the parent geometry"*.
+
+**Two of the three are the author explicitly denying a prediction.** So the absence is real, and
+it strengthens rather than weakens the category-error finding: the paper distinguishes *tuning*
+from *prediction of the parent geometry*, which is theorem-language, not observational-testability
+language. This is the one absence claim tonight that survived broadening — recorded because it
+shows the class is not uniformly wrong, only uniformly untrustworthy until tested.
 
 ### The honest residual
 

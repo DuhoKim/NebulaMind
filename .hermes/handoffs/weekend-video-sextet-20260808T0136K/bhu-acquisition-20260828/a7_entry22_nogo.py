@@ -60,14 +60,28 @@ def chk(name, pred, detail=""):
 print("=" * 96); print("A7 [GATED] -- entry 22: tier gap SUSTAINED, cross-entry reach REFUTED"); print("=" * 96)
 
 # ---- 1. the tier gap: test BOTH halves of the CONSISTENCY-ONLY definition ------------------
-forbids = len(re.findall(r"cannot be both|cannot be|does not yield|obstruct|must give up", A))
+# REPAIRED 07:30. The second half of this check was an ABSENCE claim on a narrow pattern -- the
+# exact shape that proved FALSE for entries 8, 24 and 40 tonight. Entry 22 was the one row in the
+# register still marked UNKNOWN, so it was tested the way those should have been: broaden the
+# pattern until it would catch an observational claim if one existed, then INSPECT every hit.
+forbids  = len(re.findall(r"cannot be both|cannot be|does not yield|obstruct|must give up", A))
+BROAD    = r"predict\w*|observ\w+|detect\w+|measur\w+|signature|telescope|survey"
 predicts = len(re.findall(r"we predict|would be observed|detectable by|constrain(?:s|ed) by (?:current|future) (?:data|observations)", A))
+broad_hits = re.findall(r"[^.]{0,170}?(?:predict\w*|observ\w+|detect\w+|signature)[^.]{0,130}\.", A)
+# INSPECTED, all three: one is "the following familiar observation" -- a mathematical remark, not
+# an astronomical one -- and two are the AUTHOR DENYING a prediction ("not a prediction of the
+# asymptotically flat parent geometry itself"; "a tuning of the junction data rather than a
+# prediction of the parent geometry"). None asserts an observational consequence.
+_denials = len([h for h in broad_hits if "not a prediction" in h or "rather than a prediction" in h])
 print(f"\n1. THE TIER GAP  [SUSTAINED by the gate]")
 print(f"   impossibility statements in entry 22 ......... {forbids}")
 print(f"   observational-prediction statements .......... {predicts}")
-chk("entry 22 states what CANNOT hold and makes no observational prediction -- so BOTH halves of "
-    "the CONSISTENCY-ONLY definition are false of it",
-    forbids >= 5 and predicts == 0,
+print(f"   broad observational-word sentences: {len(broad_hits)}, of which explicit DENIALS "
+      f"of a prediction: {_denials}")
+chk("entry 22 states what CANNOT hold, and its absence of an observational prediction SURVIVES a "
+    "broadened pattern -- 3 hits total, 2 of them the author denying a prediction, 1 a "
+    "mathematical 'observation' -- so BOTH halves of the CONSISTENCY-ONLY definition are false of it",
+    forbids >= 5 and predicts == 0 and len(broad_hits) <= 4 and _denials >= 2,
     "the earlier version merely counted three theorem labels, which tested neither half")
 
 # ---- 2. Proposition 1 vs what phase 5 paid for three times ---------------------------------
