@@ -46,6 +46,10 @@ V9_SHA256 = "6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148"
 PRECUT_CORR = 0.3659
 RETAINED_CORR = 0.4188
 K_PSFSIZE = 0.483014
+# Vector kernel: the acceptance statistic is gamma = beta^T K over ALL THREE quality variables.
+# A univariate psfsize slope cannot stand in for them - flux_ivar_r and nobs_r correlate at
+# +0.7176 on the retained sample (GPT56-V32-3).
+K_VECTOR = {"flux_ivar_r": -0.270181, "psfsize_r": +0.483014, "nobs_r": -0.317419}
 RETAINED_N = 49_211
 TOL = 5e-5
 
@@ -94,6 +98,7 @@ def report(acquire: Path) -> int:
     q_all, ct_all = columns(ev, pos, retained_only=False)
     q_ret, ct_ret = columns(ev, pos, retained_only=True)
 
+    bad_vec = []
     pre = float(np.corrcoef(q_all, ct_all)[0, 1])
     ret = float(np.corrcoef(q_ret, ct_ret)[0, 1])
     K = kernel(q_ret, ct_ret)
@@ -106,11 +111,19 @@ def report(acquire: Path) -> int:
     print(f"  corr retained         {ret:+.4f}   (expected {RETAINED_CORR:+.4f})")
     print(f"  Var(cos theta)        {ct_ret.var(ddof=1):.6f}")
     print(f"  K (psfsize_r)         {K:+.6f}   (expected {K_PSFSIZE:+.6f})")
+    print("  vector kernel K_j (gamma = beta^T K):")
+    for name, want in K_VECTOR.items():
+        qj = np.array([e[name] for e in ev if e["quality_pass"]])
+        kj = kernel(qj, ct_ret)
+        flag = "" if abs(kj - want) <= TOL else f"  <-- MISMATCH, frozen {want:+.6f}"
+        print(f"    K[{name:<12}] = {kj:+.6f}{flag}")
+        if abs(kj - want) > TOL:
+            bad_vec.append(f"K[{name}] {kj:.6f} != frozen {want}")
     print(f"  hemisphere delta      {s[north].mean() - s[~north].mean():+.4f} sigma "
           f"(n+ {int(north.sum()):,}, n- {int((~north).sum()):,})")
     print(f"  cut RAISED the coupling: {pre:+.4f} -> {ret:+.4f}")
 
-    bad = []
+    bad = list(bad_vec)
     if len(q_ret) != RETAINED_N:
         bad.append(f"retained N {len(q_ret)} != {RETAINED_N}")
     if abs(pre - PRECUT_CORR) > 1e-4:
