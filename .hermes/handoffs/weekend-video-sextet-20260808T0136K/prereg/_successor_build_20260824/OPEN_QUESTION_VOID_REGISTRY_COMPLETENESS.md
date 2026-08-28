@@ -89,6 +89,22 @@ and the registry's whole value is that it is complete. But the §2.7 phase recon
 I would not want to write unsupervised — "after inference exists" versus `Post-first-real-χ` is a
 question about when the study's own clock starts.
 
+## Audit 03:20 — what `void_registry.py` proves is weaker than its name claimed
+
+Prompted by a carry-over from Tori's lane: both her seats found a check whose NAME asserted more
+than its PREDICATE evaluated. Mine had the same defect.
+
+`V05`/`V06` were named "a §6.1 row … has no antecedent in the registry". The predicate matches the
+`VOID-6.1<ROW>-` **prefix convention**. It proves a row is *named* by some antecedent; it does not
+prove that antecedent semantically covers the row's forbidden column. An antecedent could name row S
+and describe something else, and the check would still report row S covered.
+
+**The check is unchanged — only its name was wrong, and the name was the overclaiming part.** It now
+reads "no antecedent ID names it", and the tool says "NAME-complete" rather than "complete". This
+does not change the three verified gaps below, but it does mean **"20 of 20 rows covered" is a
+weaker statement than it looked**, and whoever decides the options below should read it as
+name-coverage only.
+
 ## State
 
 - `tools/void_registry.py` — mechanism sound; both seats verified the digest placement creates no

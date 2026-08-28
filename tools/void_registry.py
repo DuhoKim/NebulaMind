@@ -20,9 +20,19 @@ slot row). Digesting the table and storing the result elsewhere has no fixed poi
 
 WHAT THIS DOES AND DOES NOT ESTABLISH
 -------------------------------------
-It establishes that the registry is **well-formed and complete against the row table**: every §6.1
-row that the document defines has at least one antecedent, IDs are unique, every source names a real
-section, every phase is from the closed vocabulary, and every effect is VOID.
+It establishes that the registry is **well-formed and NAME-complete against the row table**: every
+§6.1 row the document defines is NAMED by at least one antecedent ID, IDs are unique, every phase
+satisfies the derived rule, and every effect is VOID.
+
+"Name-complete" is deliberately weaker than "complete" and the difference matters. V05/V06 match on
+the `VOID-6.1<ROW>-` prefix convention: they prove a row is NAMED, not that the antecedent
+semantically covers that row's forbidden column. An antecedent could name row S and describe
+something else, and this check would still call row S covered. Semantic coverage is not computable
+here and is not claimed.
+
+This was found by auditing whether any control NAME asserted more than its PREDICATE evaluated -
+the describe-vs-compute law landing inside a harness rather than inside a document. The check did
+not change; only its name, which had been the overclaiming part.
 
 It does **not** write the converter, does not execute a VOID conversion, and does not by itself make
 clause 10 executable. It removes the stated obstacle to pinning the registry. Whether that is
@@ -71,8 +81,11 @@ CODES = {
     "V02": "an antecedent ID is duplicated",
     "V03": "an antecedent names a phase outside the closed vocabulary",
     "V04": "an antecedent's failure effect is not VOID",
-    "V05": "a §6.1 row is defined in the table but has no antecedent in the registry",
-    "V06": "an antecedent references a §6.1 row the table does not define",
+    # NAMED for what the predicate actually evaluates, not for what would be nicer to claim.
+    # V05/V06 match the ID prefix convention VOID-6.1<ROW>-. They establish that a row is NAMED by
+    # some antecedent, NOT that the antecedent semantically covers that row's forbidden column.
+    "V05": "a §6.1 row is defined in the table but no antecedent ID names it",
+    "V06": "an antecedent ID names a §6.1 row the table does not define",
 }
 
 
@@ -179,9 +192,9 @@ def check(text: str):
     defined = defined_rows(text)
     covered = {m.group(1) for m in (re.match(r"VOID-6\.1([A-Z][0-9]?)-", i) for i in ids) if m}
     for missing in sorted(defined - covered):
-        refuse("V05", f"§6.1 row {missing} is defined but has no VOID antecedent")
+        refuse("V05", f"§6.1 row {missing} is defined but no antecedent ID names it")
     for extra in sorted(covered - defined):
-        refuse("V06", f"antecedent references §6.1 row {extra}, which the table does not define")
+        refuse("V06", f"antecedent ID names §6.1 row {extra}, which the table does not define")
     return rows, bad
 
 
