@@ -83,8 +83,8 @@ reverse = "We can also predict" in T and "to find (using Eq.22)" in T.replace("E
 fwd_err = re.search(r"θ§\s*=\s*[0-9.]+\s*±", T) is not None
 print(f"   direction: 'predict Omega_Lambda FROM the lack of CMB correlations' .. {reverse}")
 print(f"   any propagated FORWARD uncertainty on theta_S ................. {fwd_err}")
-chk("the +/-3 is an OBSERVATIONAL read-off feeding the reverse inference, not a forward "
-    "prediction uncertainty -- so the claim is NOT calibrated",
+chk("QUOTED: the source says 'predict Omega_Lambda FROM the lack of CMB correlations ... to "
+    "find (using Eq.22)', and no forward uncertainty on theta_S appears anywhere",
     reverse and not fwd_err,
     "my original check tested that an uncertainty EXISTS; it never tested which inference "
     "it belonged to, and both seats killed the promotion on exactly that")
@@ -95,8 +95,8 @@ from_ol = re.search(r"for\s*ΩΛ\s*=\s*Ω§\s*≃?\s*0", T) is not None or "for 
 print(f"\n3. IS THE SCALE FITTED FROM THE ANOMALY, OR DERIVED FROM Omega_Lambda?")
 print(f"   angular scale defined as theta_S = chi_S / chi_CMB ......... {chain}")
 print(f"   evaluated 'for Omega_Lambda = Omega_S ~= 0.7' .............. {from_ol}")
-chk("the causal scale is set by the MEASURED Omega_Lambda and the angle follows -- one "
-    "observable in, a different observable out",
+chk("QUOTED: the source defines theta_S = chi_S/chi_CMB and evaluates it at the measured "
+    "Omega_Lambda -- direction of inference read from the text, not computed here",
     chain and from_ol,
     "so the bibliography's post-hoc-fitting worry is not borne out for the DERIVATION; the "
     "anomaly is an independent check, not the input")

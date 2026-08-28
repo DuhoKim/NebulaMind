@@ -76,7 +76,8 @@ print(f"   admits intermediate Mdot != 0 .................. {mdot}")
 print(f"   that M relaxes to the constant SBH mass ........ {relax}")
 print(f"   exterior observer sees only r_S ................ {outside}")
 print(f"   any time-varying Lambda/r_S mechanism stated ... {drift is not None}")
-chk("r_S is a fixed asymptote, not an evolving quantity -- so the horizon term's Lambda is constant",
+chk("QUOTED: the source states the mass relaxes to the SBH value and the exterior sees only "
+    "r_S, and contains no time-varying Lambda/r_S statement (absence: see caveat)",
     mdot and relax and outside and drift is None,
     "CGATE independently: 'the text does not make the exterior Schwarzschild radius time-dependent'")
 

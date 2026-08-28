@@ -49,7 +49,8 @@ must_reach = "must reach the threshold" in T
 print(f"\n3. WHICH WAY DOES THE INFERENCE RUN?")
 print(f"   lambda fixed at 5.0e-124 from the OBSERVED Lambda ........ {bool(lam) and from_obs}")
 print(f"   and C 'must reach the threshold' so the model matches ..... {must_reach}")
-chk("observation constrains the model parameter, not the reverse -- the definition of CONSISTENCY-ONLY",
+chk("QUOTED: the source fixes lambda from the observed Lambda and says C 'must reach the "
+    "threshold' -- direction of inference read from the text, not computed here",
     bool(lam) and from_obs and must_reach,
     "'must reach the threshold (51) so that the Universe could start the observed current "
     "acceleration' -- a requirement on the model, not a prediction that could fail")

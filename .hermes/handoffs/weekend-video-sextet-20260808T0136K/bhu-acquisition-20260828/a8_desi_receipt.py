@@ -55,7 +55,8 @@ chk("the significance is combination-dependent, spanning well below and above 3 
 has_threshold = re.search(r"(?:rule out|reject|exclude|falsif\w*)[^.]{0,60}(?:at|to)\s*\d(?:\.\d)?\s*(?:\\sigma|σ)", G)
 print(f"\n4. DOES ENTRY 25 STATE A REJECTION THRESHOLD?")
 print(f"   search for a sigma-level rejection rule in entry 25: {'FOUND' if has_threshold else 'none'}")
-chk("entry 25 states NO statistical rejection rule, so the paper itself cannot say when it fires",
+chk("ABSENCE CLAIM (weakest form): no sigma-level rejection rule matches in entry 25. The "
+    "pattern would miss a rule stated in words, in a figure, or via a Bayes factor",
     has_threshold is None,
     "CGATE's UNDETERMINED was right, and this is now grounded in the source rather than inferred")
 
