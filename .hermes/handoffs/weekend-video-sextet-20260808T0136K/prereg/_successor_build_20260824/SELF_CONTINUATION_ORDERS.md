@@ -65,13 +65,6 @@ re-dispatched a round on a superseded draft, or missed half the open questions.
 Two files describing one state is the same defect this lane has been finding all night in other
 forms: a second copy that can silently disagree with the thing it describes. One source now.
 
-## PRIORITY, unchanged: VOID reverse reachability
-
-It is the single item gating clause 10 executability and therefore BS-6. `tools/void_registry.py`
-extracts, canonicalises, digests and checks §7.1. The mechanism is cleared by both seats — the
-BS-2v row's stated circularity is false — and the *content* is blocked on a human: three verified
-gaps (`degenerate`, `digest`, `chosen`). See `OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md`.
-
 ## Operating notes that cost time tonight
 
 - `hermes` is NOT on PATH: use `/Users/duhokim/.hermes/hermes-agent/venv/bin/hermes`. A bare `hermes`
