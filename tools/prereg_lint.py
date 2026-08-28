@@ -295,13 +295,32 @@ def _mut_slots_exist(text):
     return text + "\n\nSlot BS-77 governs the freeze.\n"
 
 
+def _mut_repair_citations(text):
+    """Cite a referee finding whose report does not exist."""
+    return text + "\n\nV99 CORRECTION (CODEX-V98 7): repaired per that finding.\n"
+
+
 CONTROLS = [
+    ("check_repair_citations", _mut_repair_citations, "repair-citations"),
     ("check_prose_counts",    _mut_prose_count,     "prose-count-disagreement"),
     ("check_class_agreement", _mut_class_agreement, "slot-class-disagreement"),
     ("check_lock_identity",   _mut_lock_identity,   "lock-identity"),
     ("check_list_numbering",  _mut_list_numbering,  "list-numbering"),
     ("check_slots_exist",     _mut_slots_exist,     "slots-referenced-but-not-in-table"),
 ]
+
+
+# Every check main() runs. If a check is here and not in CONTROLS, the run says so rather than
+# claiming coverage it does not have — CODEX-V29-1: the clean line said "all checks demonstrated
+# they can fail" while CONTROLS covered five of the six checks executed. An uncontrolled check is
+# not a failure, but reporting it as controlled is.
+CHECKS_RUN = ["check_slots_exist", "check_class_agreement", "check_prose_counts",
+              "check_lock_identity", "check_list_numbering", "check_repair_citations"]
+
+
+def uncontrolled():
+    covered = {n for n, _, _ in CONTROLS}
+    return [c for c in CHECKS_RUN if c not in covered]
 
 
 def run_controls(text, gates):
@@ -316,6 +335,7 @@ def run_controls(text, gates):
         check_prose_counts(broken, rows, out)
         check_lock_identity(broken, out)
         check_list_numbering(broken, out)
+        check_repair_citations(broken, gates, out)
         if not any(k == category for k, _ in out):
             vacuous.append((name, category))
     return vacuous
@@ -350,7 +370,12 @@ def main():
         print(f"  {len(vacuous)} check(s) could not fire; a clean result cannot be reported")
         return 1
     if not out:
-        print("  no inconsistencies found (all checks demonstrated they can fail)")
+        unc = uncontrolled()
+        cov = len(CHECKS_RUN) - len(unc)
+        note = (f"all {len(CHECKS_RUN)} checks demonstrated they can fail" if not unc
+                else f"{cov} of {len(CHECKS_RUN)} checks demonstrated they can fail; "
+                     f"UNCONTROLLED: {', '.join(unc)}")
+        print(f"  no inconsistencies found ({note})")
         return 0
     for kind, msg in out:
         print(f"  [{kind}] {msg}")
