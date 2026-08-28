@@ -250,29 +250,93 @@ def check_repair_citations(text, gates, out):
             # review's subject changed. Hard-coding one pattern made the check report missing
             # citations for reports sitting next to it under a newer name — the same staleness this
             # tool exists to catch, in the tool.
-            hits = [p for p in gates.glob("*.md")
-                    if (seat in p.name and f"V{ver}" in p.name and "REVIEW" in p.name.upper())
-                    or p.name == f"PREREG_TEXT_V{ver}_{seat}.md"]
+            hits = _reports_for(gates, seat, ver)
             if not hits:
                 out.append(("repair-citations",
                             f"cites {seat}-V{ver} {fid} but no report for {seat} V{ver} exists"))
                 continue
-            # The finding NUMBER must actually be in that report. Reports number findings as
-            # "### 3." headings or as explicit SEAT-Vn-3 ids; accept either.
-            k = fid.lstrip("Ff")
-            body = "\n".join(h.read_text(errors="ignore") for h in hits)
-            # Accept every heading shape the reports have actually used: "### F3 — ...",
-            # "### 3. ...", and the explicit SEAT-Vn-3 id. My first version accepted only "### 3."
-            # and reported a REAL citation missing against a report whose findings are "### F3" -
-            # a pattern narrower than the data, which is the third time tonight.
-            found = (re.search(rf"^#+\s*F?{re.escape(k)}\b", body, re.M)
-                     or re.search(rf"{seat}-V{ver}-{re.escape(k)}\b", body))
-            if not found:
-                nums = sorted({n for n in re.findall(r"^#+\s*F?(\d+)\b", body, re.M)}, key=int)
+            k = int(fid.lstrip("Ff"))
+            declared = set()
+            for h in hits:
+                declared |= _declared_findings(h.read_text(errors="ignore"))
+            if k not in declared:
                 out.append(("repair-citations",
-                            f"cites {seat}-V{ver} {fid} but that report has no finding {k}"
-                            + (f" (it has {', '.join(nums)})" if nums else
-                               " and no parseable numbered findings")))
+                            f"cites {seat}-V{ver} {fid} but that report declares no finding {k}"
+                            + (f" (it declares {', '.join(str(n) for n in sorted(declared))})"
+                               if declared else " and declares no parseable findings")))
+
+# ── Citation support. Split out because the naive version was wrong in BOTH directions: it
+# accepted generic numbered section headings as findings (CODEX-HARNESS-1 got F4/F7/F8 accepted on
+# a three-finding report), matched versions by substring so V1 borrowed V11's reports, and rejected
+# real list-form findings. Reports have used four declaration shapes across the night's rounds.
+
+_VER_RE = None
+
+
+def _reports_for(gates, seat, ver):
+    """Reports for exactly this seat and version. The version needs a NUMERIC BOUNDARY: `f"V{ver}"
+    in name` let a citation to V1 be satisfied by V11_... files."""
+    out = []
+    for p in gates.glob("*.md"):
+        n = p.name
+        if seat not in n:
+            continue
+        if not re.search(rf"V{ver}(?!\d)", n):
+            continue
+        if "REVIEW" in n.upper() or n == f"PREREG_TEXT_V{ver}_{seat}.md":
+            out.append(p)
+    return out
+
+
+def _declared_findings(body: str) -> set:
+    """Finding numbers DECLARED by a report, in the grammars reports actually use.
+
+    Supported, because all four appear in this gates directory:
+        ### F3 — ...            ### Finding 3 ...
+        ### 3. HIGH — ...       1. **BLOCKING ...**   (top-level numbered list)
+
+    A generic `## 8. Evidence` heading is NOT a finding. Bare `### N.` therefore only counts inside
+    a findings section, which is what stopped the naive version certifying F4/F7/F8.
+    """
+    found = set()
+    for m in re.finditer(r"^#+\s*(?:F|Finding\s+)(\d+)\b", body, re.M):
+        found.add(int(m.group(1)))
+    lines = body.splitlines()
+    in_findings = False
+    for line in lines:
+        h = re.match(r"^(#+)\s*(.*)", line)
+        if h:
+            in_findings = "finding" in h.group(2).lower()
+            m = re.match(r"^#+\s*(\d+)\.", line)
+            if m and in_findings is False and found:
+                pass
+            continue
+        if in_findings:
+            m = re.match(r"^\s{0,3}(\d+)\.\s+\*\*", line)
+            if m:
+                found.add(int(m.group(1)))
+    # `### N.` counts only after a findings-section heading, and only at the depth of the FIRST
+    # such heading, so a generic `## 8. Evidence` at another level is not a finding.
+    #
+    # Do NOT re.split on headings containing "finding": V24_WHOLE_REVIEW_GPT56 has two of them, so
+    # taking sec[1] truncated the scan after finding 1 and reported a REAL citation missing. Anchor
+    # once and scan to the end instead.
+    if not found:
+        anchor = None
+        for m in re.finditer(r"^#+\s*.*finding.*$", body, re.M | re.I):
+            anchor = m.end()
+            break
+        if anchor is not None:
+            depth = None
+            for m in re.finditer(r"^(#+)\s*(\d+)\.", body[anchor:], re.M):
+                d = len(m.group(1))
+                if depth is None:
+                    depth = d
+                if d == depth:
+                    found.add(int(m.group(2)))
+        for m in re.finditer(r"^\s{0,3}(\d+)\.\s+\*\*", body, re.M):
+            found.add(int(m.group(1)))
+    return found
 
 
 
