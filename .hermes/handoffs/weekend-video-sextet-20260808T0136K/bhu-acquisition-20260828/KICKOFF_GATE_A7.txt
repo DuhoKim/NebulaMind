@@ -1,0 +1,110 @@
+GATE -- A7: entry 22 (Easson 2026). Two questions: is its TIER a category error, and does its
+Theorem 1 actually REACH entry 25?
+
+Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/
+Artifact: `a7_entry22_nogo.py` (5/5, exit 0). Run: `cd <lane>; python3 a7_entry22_nogo.py`
+Sources (both pinned):
+  entry 22  ../bhu-reading-20260823/sources/2606.25023_clean.txt   sha256 14e2200090a9
+            = D. A. Easson, "Obstructions to Minimal Regular Black Hole Cosmologies" (2026).
+  entry 25  ../bhu-reading-20260823/sources/sym14091849_clean.txt  sha256 391a2510c8be
+            = E. Gaztanaga, "The Black Hole Universe, Part I", Symmetry 14, 1849 (2022).
+
+You are an independent seat with no prior context. I am the requester. Break this if it breaks.
+
+## PROVENANCE WARNING
+
+The entry-25 file is my own reassembly from three overlapping browser captures (MDPI blocks
+scripted access), and an earlier attempt of mine at pinning it was silently truncated without my
+noticing. It now passes start/middle/end landmark checks at 96.1% of the page's self-reported
+character count. Entry 22 came from ar5iv. If any quotation is mangled or an equation is missing,
+say so -- that alone is a clean kill.
+
+## CLAIM A -- the TIER is a category error
+
+Entry 22 is tiered CONSISTENCY-ONLY, defined in this programme as "shows compatibility with
+observation; states no prediction that could fail." Easson's paper does neither: it proves a
+class of constructions CANNOT work (Proposition 1, Proposition 2, Theorem 1). All four tiers rank
+OBSERVATIONAL testability; a no-go theorem constrains models by mathematics instead. I claim the
+taxonomy has no slot for it, so the record cannot express the one thing the paper is for --
+constraining other entries in our own corpus.
+
+Rule on whether that is a real gap or me over-reading a deliberately coarse catch-all tier.
+
+## CLAIM B -- Theorem 1's hypotheses are satisfied by entry 25. THIS IS THE LOAD-BEARING ONE.
+
+Theorem 1 requires: static, spherically symmetric, ASYMPTOTICALLY FLAT parent; one-function class
+g_tt g_rr = -1; finite ADM mass M>0; FRW daughter across a nondegenerate comoving spherical
+Darmois boundary; NO-SHELL matching; daughter fixed by the parent profile with no additional
+late-time bulk component, modified asymptotics, or independent shell stress tensor.
+
+I check: Schwarzschild satisfies g_tt g_rr = -1 identically (computed); Gaztanaga's exterior is
+asymptotically flat; his daughter is FLAT k=0 ("the same flat FLRW metric", entry 25 line 307);
+and he claims "no defects or discontinuities in the junction".
+
+## ATTACK 1 -- DOES THE THEOREM COVER A SINGULAR PARENT? My whole cross-entry reading turns on it.
+
+The paper's TITLE and framing are about REGULAR black holes. Theorem 1's stated hypotheses do NOT
+mention regularity. Gaztanaga's exterior is ordinary SCHWARZSCHILD, which is singular at r=0
+(though his interior replaces it).
+
+Is the omission deliberate generality, or an assumption carried implicitly from the framing?
+Read Sections II and V and decide. If regularity is required, CLAIM B collapses and with it
+everything I say about entry 25.
+
+## ATTACK 2 -- is Gaztanaga's junction "no-shell" IN EASSON'S SENSE?
+
+"No defects or discontinuities" is Gaztanaga's prose. Easson's no-shell is a technical Darmois
+condition on the second fundamental form. Worse: Gaztanaga's boundary sits AT the horizon
+(R -> r_S asymptotically), and Theorem 1 requires a NONDEGENERATE boundary. A null or degenerate
+boundary may put his construction outside the theorem entirely. Check this properly -- it is the
+second way CLAIM B dies.
+
+## ATTACK 3 -- which branch, and does it actually bite?
+
+Entry 25 is flat (k=0), so the flat/open branch applies: a non-static curvature-regular FRW with
+k=0 and regular affine ends "cannot be both null geodesically complete and ANEC-consistent".
+Entry 26 proposes a nonsingular bounce from NEUTRON DEGENERACY PRESSURE -- ordinary ANEC-respecting
+matter. I read that as the forbidden combination. Verify, and check whether a bounce of that type
+is actually claimed to be geodesically complete, or whether Gaztanaga concedes incompleteness
+somewhere (which would make him consistent with Easson rather than obstructed by him).
+
+## ATTACK 4 -- check 5 is a cross-paper claim and my last one was demoted
+
+I note that Easson's named escape route ("an additional smooth bulk component whose density
+redshifts no faster than A^-2. A positive vacuum-energy component is the simplest example") is
+the SAME ingredient that entry 25's own sentence licenses ("not solely caused by the BHU event
+horizon"). Two hours ago a gate demoted a cross-paper claim of mine to TIDY_STORY at n=2.
+
+Is this a genuine technical correspondence of one named ingredient, or am I doing it again?
+
+## ATTACK 5 -- publication status
+
+Our bibliography records entry 22 as "Phys. Rev. D, published online 2026" with "one
+publication-metadata caveat pending Miru's spot-check". Miru is a RETIRED seat; that check never
+happened. If you can reach the record, say whether arXiv:2606.25023 is actually published in PRD.
+An unrefereed preprint constraining five other corpus entries is a weaker instrument than a
+published theorem, and I have marked this UNVERIFIED rather than assuming either way.
+
+## ATTACK 6 -- reproduce, and audit names against predicates
+
+Run it. Expect 5/5, exit 0. Report any check whose NAME claims more than its PREDICATE tests. A
+seat has caught that in my scripts four times running, once as an outright tautology, so assume
+it is there until you have checked each one.
+
+## Verdict
+
+First line EXACTLY one of:
+
+    A7_CONFIRMED_BOTH             -- tier is a category error AND Theorem 1 reaches entry 25
+    A7_CONFIRMED_TIER_ONLY        -- the tier gap is real; the cross-entry reach fails
+    A7_CONFIRMED_REACH_ONLY       -- the reach holds; the tier claim is over-read
+    A7_REFUTED_<reason>
+    HOLD_<reason>
+
+Then, each on its own line:
+    REACHES_E25:  YES | NO | UNDETERMINED   -- attacks 1 and 2
+    AUXILIARY:    REAL | TIDY_STORY         -- attack 4
+    PUBLISHED:    YES | NO | UNVERIFIED     -- attack 5
+
+Name the file CGATE_A7_VERDICT.md (codex) or AGATE_A7_VERDICT.md (agy) in the lane directory.
+Quote the papers. Do your own reasoning. Do not defer to mine.
