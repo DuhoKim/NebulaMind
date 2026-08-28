@@ -32,6 +32,10 @@ VOID registry digest is identical across V34/V35/V36; §5 line 493, §5 lines 51
 are byte- and position-identical; §1 line 120 still ends "must be bound before BS-6" and V35's repair
 to that line did not touch the clause; counts are 15/8 on V36. **No open question is stale.**
 
+**`DECISIONS_FOR_DUHO.md` states all four in plain language** — the ask, the options, the cost and a
+recommendation for each, pointing back at these files for evidence. It is an index, not a source; if
+it and one of these files disagree, the file is right.
+
 **Decisions 1 and 4 are seat-raised HIGH findings that I declared out of scope for a round. They
 were parked, not resolved. V36 clearing does not retire them.**
 
