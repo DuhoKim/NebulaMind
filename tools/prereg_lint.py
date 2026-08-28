@@ -251,6 +251,76 @@ def check_repair_citations(text, gates, out):
                             f"cites {seat}-V{ver} {fid} but no PREREG_TEXT_V{ver}_{seat}.md exists"))
 
 
+
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+# NEGATIVE CONTROLS — every check must prove it can fail, on every run.
+#
+# Twice in one day a guard here reported "clean" because it could not fire at all. The blockquote
+# exemption made check_prose_counts vacuous: §7 states its live count inside a blockquote, the
+# history predicate skipped every blockquote, and the check silently examined nothing while
+# printing no inconsistencies. In prereg_trace.py the current-transition branch was skipped
+# entirely, so the row most needing verification was the one guaranteed never to be examined.
+# Both were found by referees, not by me, and both looked exactly like success.
+#
+# Blanc, 2026-08-28: "a check that passes because it never ran ... worth a canary in the checker
+# itself, since it has now happened twice in one day in two different guards."
+#
+# So: each check ships a mutator that breaks the document in the specific way that check exists to
+# catch. Before any clean report, every check is run against its own mutated copy and MUST produce
+# a finding. A check that stays silent on its own negative control is reported VACUOUS — which is a
+# failure, not a pass. Silence is only evidence when the check has shown it can speak.
+# ─────────────────────────────────────────────────────────────────────────────────────────────
+
+def _mut_prose_count(text):
+    """Make the prose count disagree with the table."""
+    return re.sub(r"(are )(\d+)( class-E slots)",
+                  lambda m: f"{m.group(1)}{int(m.group(2)) + 3}{m.group(3)}", text, count=1)
+
+
+def _mut_class_agreement(text):
+    """Assert, in live text, that a Class-E slot is a class-P prerequisite."""
+    e = [k for k, v in slot_rows(text).items() if v == "E"]
+    return text + f"\n\n{e[0] if e else 'BS-2f'} is a class-P prerequisite for the freeze.\n"
+
+
+def _mut_lock_identity(text):
+    return text + "\n\nBS-V is the lock for this run.\n"
+
+
+def _mut_list_numbering(text):
+    return text + "\n\n1. **a**\n2. **b**\n7. **c**\n"
+
+
+def _mut_slots_exist(text):
+    return text + "\n\nSlot BS-77 governs the freeze.\n"
+
+
+CONTROLS = [
+    ("check_prose_counts",    _mut_prose_count,     "prose-count-disagreement"),
+    ("check_class_agreement", _mut_class_agreement, "slot-class-disagreement"),
+    ("check_lock_identity",   _mut_lock_identity,   "lock-identity"),
+    ("check_list_numbering",  _mut_list_numbering,  "list-numbering"),
+    ("check_slots_exist",     _mut_slots_exist,     "slots-referenced-but-not-in-table"),
+]
+
+
+def run_controls(text, gates):
+    """Return a list of check names that FAILED to fire on their own negative control."""
+    vacuous = []
+    for name, mutate, category in CONTROLS:
+        broken = mutate(text)
+        rows = slot_rows(broken)
+        out = []
+        check_slots_exist(broken, rows, out)
+        check_class_agreement(broken, rows, out)
+        check_prose_counts(broken, rows, out)
+        check_lock_identity(broken, out)
+        check_list_numbering(broken, out)
+        if not any(k == category for k, _ in out):
+            vacuous.append((name, category))
+    return vacuous
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("draft")
@@ -268,12 +338,19 @@ def main():
     check_list_numbering(text, out)
     check_repair_citations(text, gates, out)
 
+    vacuous = run_controls(text, gates)
     print(f"prereg lint — {Path(args.draft).name}")
+    for name, cat in vacuous:
+        print(f"  VACUOUS: {name} did not fire on its own negative control ({cat}) — "
+              f"its silence on the real document proves nothing")
     n = count_rows(text)
     print(f"  §7 data rows: {n['P'] + n['E']} ({n['P']} class P, {n['E']} class E) "
           f"— {len(rows)} carry a BS- identifier")
+    if vacuous:
+        print(f"  {len(vacuous)} check(s) could not fire; a clean result cannot be reported")
+        return 1
     if not out:
-        print("  no inconsistencies found")
+        print("  no inconsistencies found (all checks demonstrated they can fail)")
         return 0
     for kind, msg in out:
         print(f"  [{kind}] {msg}")
