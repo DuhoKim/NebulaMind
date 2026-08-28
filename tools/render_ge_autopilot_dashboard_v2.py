@@ -706,7 +706,14 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 seat = _s.group(1).lower() if _s else \
                     re.sub(r"^(PREREG_TEXT|V\d+_WHOLE_REVIEW)_(V\d+_)?", "", f.stem).lower()
                 head = f.read_text(errors="ignore")[:2000]
-                m = re.search(r"\*\*(NOT CLEAR|CLEAR|REFUSED)\*\*", head)
+                # Seats write the verdict two ways: a bare "**CLEAR**" at the
+                # end, and "**CLEAR.**" as the opening sentence with the period
+                # INSIDE the bold. Requiring the token flush against the
+                # asterisks missed the second form, so on 2026-08-28 the row
+                # read "reported (no token)" for a V29 that both seats had
+                # cleared — the one result the whole lane exists to produce,
+                # shown as an absence.
+                m = re.search(r"\*\*(NOT CLEAR|CLEAR|REFUSED)\.?\*\*", head)
                 if m:
                     token = m.group(1)
                 # Codex writes its refusal as prose under "Verdict basis" rather
