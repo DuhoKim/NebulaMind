@@ -1,0 +1,41 @@
+{
+  "status": "PASS_V13_PRE_RENDER_THREE_SEAT_EXACT_HASH_GATE",
+  "render_authorized_from_exact_bytes": true,
+  "upload_authorized_by_this_receipt": false,
+  "publication_authorized_by_this_receipt": false,
+  "any_hold_blocks": true,
+  "frozen_packet": {
+    "STORYBOARD_DRAFT_V13.json": "4df53ed7d5f0e38dfe54570f7761bb9e6affe4dd3a686e66f3da852074fad817",
+    "V13_VISUAL_TEXT_CONTRACT.json": "c7557b98853655355a5ce96daf27e1d385c561db5657309dfa3bbc696e551361",
+    "NARRATION_DRAFT_V12.md": "178ffe4ada125668c8ff84bc156adee7820954591f9781adb7101aac562d80da",
+    "V13_CONTRACT_REPAIR_RECEIPT.json": "2ae7114a45f5dd9a5aeecc45719a2c2ab25d5637df049b6f3fcc6dd30228d339",
+    "V13_REPAIR_A_EXACT_AUTHORITY.md": "35e5fa1e90f8d4e5544b3aab4172e6a894b3c5a5df31d9e954a741991484056b"
+  },
+  "invalidated_storyboard_sha256": "8ee969eaff4ea0eb4dc8c06934c4109185767e061be8d19b00afac9fddb10097",
+  "seats": {
+    "lana": {
+      "verdict": "PASS",
+      "marker": "LANA_V13_EXACT_HASH_PASS",
+      "receipt": "LANA_GATE_V13.md",
+      "sha256": "f4e1c44dc180d5c4864feaa970437b5100c0da2836ce051ad4c014bd70474892"
+    },
+    "goru": {
+      "verdict": "PASS",
+      "marker": "GORU_V13_EXACT_HASH_PASS",
+      "receipt": "GORU_GATE_V13.md",
+      "sha256": "5a2abe3fd56baab274dde4f9beb7f70481e467e8c7a92e3ead8ae2030b855623"
+    },
+    "kun": {
+      "verdict": "PASS",
+      "marker": "KUN_V13_EXACT_HASH_PASS",
+      "receipt": "KUN_GATE_V13.md",
+      "sha256": "897aa8f98d3440f0cfa488a9c12d1061f2e09c691a3f12f388c7859e87b05d85"
+    }
+  },
+  "gate_brief": {
+    "path": "V13_PRE_RENDER_THREE_SEAT_GATE_BRIEF.md",
+    "sha256": "561aef5d168fe6cd3424ee9a2f27064ea066a65f8c81b0117641a89b59a0414c"
+  },
+  "local_contract_test": "PASS_V13_TWO_EXACT_CONTRACT_REPAIRS",
+  "note": "All three receipts were read back from disk and independently compared with freshly recomputed hashes. Render may proceed only from this exact frozen packet."
+}

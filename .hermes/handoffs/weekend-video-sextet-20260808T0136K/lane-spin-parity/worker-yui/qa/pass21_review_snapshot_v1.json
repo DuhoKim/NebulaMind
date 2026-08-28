@@ -1,0 +1,138 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass21-review-v1-20260808T124534K",
+  "created_at": "2026-08-08T12:45:34+09:00",
+  "deepening_pass": 21,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "authority": {
+    "hwao_weekend_order": {
+      "path": "../../HWAO_WEEKEND_ORDER.md",
+      "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710"
+    },
+    "coordination_update": {
+      "path": "../../COORDINATION_UPDATE.md",
+      "sha256": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"
+    },
+    "lane_brief": {
+      "path": "../../lanes/spin/BRIEF.md",
+      "sha256": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec"
+    }
+  },
+  "custody": {
+    "source_freeze": {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+      "modified": false
+    },
+    "storyboard_proposal": {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "iteration": "v8",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+      "modified": false
+    },
+    "sealed_v8_render_receipt": {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+      "modified": false
+    },
+    "prior_pass_snapshot": {
+      "path": "qa/pass20_review_snapshot_v1.json",
+      "sha256": "63ff67da70a52b3175bb8ddb5803c07c2121d5b9a5e5bfeb247a5f03518fddea"
+    },
+    "preserved_failed_candidate": {
+      "name": "spin-parity-census-20260808T0149",
+      "media_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+      "receipt_sha256": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+      "qa_sha256": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+      "hashes_sha256": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3",
+      "modified": false,
+      "re_dispatched": false
+    }
+  },
+  "pass21": {
+    "focus": "native centered horizontal directional smear followed by minimum-scale 640x360 interaction",
+    "fresh_cut_reproduction": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS20",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "reference_variant": "downscale_360p",
+    "operational_variant": "smear_w07_then_360p",
+    "characterization_variants": ["smear_w13_then_360p", "smear_w21_then_360p"],
+    "candidate_structural_gate_scenes_smear_w07_then_360p": "0/16",
+    "candidate_critical_structural_gates_smear_w07_then_360p": "0/5",
+    "sealed_v8_smear_w07_then_360p_result_held_badges": "7/7",
+    "sealed_v8_smear_w07_then_360p_major_status_boundaries": "7/7",
+    "pass7_smear_w07_then_360p_exact_top_gates_visual": "7/7",
+    "pass12_smear_w07_then_360p_exact_top_gates_visual": "7/7",
+    "pass12_smear_w07_then_360p_mapped_gate_threshold_passes": "6/7",
+    "pass12_smear_w07_then_360p_gate_similarity_mean": 0.945953,
+    "pass12_scene4_smear_w07_then_360p_mapped_similarity": 0.780488,
+    "pass12_scene4_smear_w07_then_360p_direct_visual_exact_copy_readable": true,
+    "pass12_smear_w07_then_360p_result_held_badges": "7/7",
+    "pass12_smear_w07_then_360p_exact_transform": "7/7",
+    "pass12_smear_w13_then_360p_mapped_gate_threshold_passes": "0/7_CHARACTERIZATION",
+    "pass12_smear_w21_then_360p_mapped_gate_threshold_passes": "0/7_CHARACTERIZATION",
+    "action": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "video_reportable_now": false
+  },
+  "evidence": {
+    "extractor": {
+      "path": "qa/extract_pass21_minimum_scale_directional_smear_frames.py",
+      "sha256": "31ba12ba16307beb3caf562de10b81adde2295769f6bc042fc3fc750e370170b"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass21_minimum_scale_directional_smear_audit/extraction_receipt.json",
+      "sha256": "f3ff4685628992ab053b77da384e5745a2b3145c53831bba40bf9c92c2d0bd0b"
+    },
+    "method_builder": {
+      "path": "qa/build_pass21_v8_minimum_scale_directional_smear.py",
+      "sha256": "34ae1b1d9f21864ad756f76da5d638e46564c5e023d8cdcea2973165a4f3e129"
+    },
+    "method_receipt": {
+      "path": "qa/pass21_v8_minimum_scale_directional_smear/receipt.json",
+      "sha256": "17ea19ddbfe73c124c7cf986defafd2279862e002f6d8305914be055f3a5d067"
+    },
+    "quantitative_auditor": {
+      "path": "qa/audit_pass21_minimum_scale_directional_smear.py",
+      "sha256": "a3c03d6ef7fc3de95b933e9ec61e2b46ec34bc6c9cc70f599271070db899cef9"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass21_minimum_scale_directional_smear_quantitative_audit.json",
+      "sha256": "bcb93036c352ed316a53b85151f161ad976a8bfed25f42cf9a7708d7bc4c162d"
+    },
+    "integration_guard": {
+      "path": "MINIMUM_SCALE_DIRECTIONAL_SMEAR_GUARD_PASS21.json",
+      "sha256": "b783db9895c548539cde4209048253f39bb8363b7f35f90415dd6746b9e80543"
+    },
+    "encoded_frame_audit": {
+      "path": "PASS21_ENCODED_FRAME_AUDIT.md",
+      "sha256": "37b2317c53effab7a6b7bbdbebd9f00162f12efb5b65b4bbb4d09d2cd10f4dba"
+    },
+    "blocker_packet": {
+      "path": "BLOCKER_PACKET_PASS21.json",
+      "sha256": "c4b6ef2e36e7192c4cfc71cc779c9508dae29403966cc3fa0df1574726a0156d"
+    }
+  },
+  "blockers": {
+    "post_run_independent_review": "MISSING_FOR_EXACT_FROZEN_T4_209_FILE_ARTIFACT",
+    "archive_storage_frame": "FRAME_REVIEW_AGREES_FRAME_UNSTATED",
+    "candidate_representation": "RESULT_BEARING_WITHOUT_STRUCTURAL_HELD_GATE",
+    "video_reportable_now": false
+  },
+  "representation_boundary": {
+    "required_header": "GALAXY SPIN",
+    "forbidden_audience_topics_absent_from_method_frames": true,
+    "method_only": true,
+    "science_adjudicated": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

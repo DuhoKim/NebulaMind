@@ -1,0 +1,998 @@
+\section{Details on the theoretical dipole}\label{app:b-1M-derivation}
+Here we compute the kinematic and clustering dipoles
+in terms of the harmonic transfer functions,
+$\Delta\Zu{\kin}_\ell$ and $\Delta\Zu{\clu}_\ell$, respectively.
+First, we recall that for a general field $O(\n)$ the coefficients
+$a_{\ell m}$ can always be expressed as a $\bk$-space integral over the primordial perturbations,
+weighted by the appropriate harmonic transfer function $\Delta_\ell(k)$:
+\be
+    a\Z{\ell m}
+        =(-\im)^\ell\sp4\pi\int\frac{\dif^3\bk}{(2\pi)^3}\:
+            Y^*_{\ell m}(\hat\bk)\sp \Delta_\ell(k)\sp {\zeta}(\bk).
+    \label{eqn:a-1M}
+    \ee
+Then given the transfer functions for any two observables, labelled $A$ and $B$,
+the spectrum $C_\ell^{AB}$ is given by
+\be
+    C_\ell^{AB}
+        = 4\pi\int^\infty_0\frac{\dif k}{k}\:
+        	\Delta\Zu{A}_\ell(k)\sp \Delta\Zu{B}_\ell(k)\sp\PR(k),
+    \label{eqn:C-ell-ab}
+\ee
+where we assume a standard primordial (adiabatic) power spectrum $\PR(k)$ defined by
+$\langle{\zeta}(\bk){\zeta}^*(\bk')\rangle=(2\pi)^3\delta_{\rm D}(\bk-\bk')\sp 2\pi^2\PR(k)/k^3$. In principle, superhorizon isocurvature fluctuations can also be considered, which are known to give rise to an
+intrinsic dipole in the CMB~\citep{Turner:1991dn}. However, it was
+recently shown~\citep{Domenech:2022mvt} that such modes cannot also
+induce a sizeable intrinsic dipole in the number counts.
+
+Now, using equations~\eqref{eqn:a-1M} and \eqref{eqn:dipole-vecs}, we find that the model
+prediction for the dipoles $\mbf{d}_\mrm{X}$, $\mrm{X}\in\{\kin,\clu\}$, can be written as
+\be
+    \mbf{d}_\mrm{X}
+        = -\ssp4\pi\im\sqrt{\frac{3}{4\pi}}
+          \int\frac{\dif^3\bk}{(2\pi)^3}\, \mat{U}^\dagger\ssp\bm{Y}_1(\hat\bk)\ssp\Delta\Zu{\mrm{X}}_1(k)\ssp {\zeta}(\bk),
+\ee
+where $\bm{Y}_1\equiv(Y_{1-1},Y_{11},Y_{10})\Zu\T$ and
+we have the unitary matrix
+\be\label{eq:U}
+    \mathbf{U}
+    =
+    \begin{pmatrix}
+        \!\phantom{-}1/\sqrt{\ssp2}    &   \im/\sqrt{\ssp2}  &   0   \\[2pt]
+        \!          -1/\sqrt{\ssp2}    &   \im/\sqrt{\ssp2}  &   0   \\[2pt]
+        \!0           &       0        &   1
+    \end{pmatrix},
+\ee
+with $\mat{U}\mat{U}^\dagger=\mat{U}^\dagger\mat{U}=\mat{I}_3$.
+Note that $\mat{U}^\dagger\ssp\bm{Y}_1$ is a vector containing
+the $\ell=1$ real-valued spherical harmonics.
+
+Computing the statistics of
+$\mbf{d}_\mrm{X}$ -- i.e.~$\langle{d}_{\mrm{X}i}{d}_{\mrm{Y}j}\rangle=\sigma^2\Z{\mrm{XY}}\sp \delta_{ij}^\mrm{K}$ -- is now straightforward.
+To obtain the dispersion $\sigma^2\Z{\mrm{XY}}$ we can
+simply select the $z$-component, all components being statistically equivalent
+under isotropy. Using orthogonality of spherical harmonics,
+we have
+%% $\sigma\Z{\mrm{XY}}^2
+%% =\langle d\Z{\mrm{X}}^{\sp x}\sp d\Z{\mrm{Y}}^{\sp x}\rangle
+%% =\langle d\Z{\mrm{X}}^{\sp y}\sp d\Z{\mrm{Y}}^{\sp y}\rangle
+%% =\langle d\Z{\mrm{X}}^{\sp z}\sp d\Z{\mrm{Y}}^{\sp z}\rangle$
+\bea
+    \sigma\Z{\mrm{XY}}^2
+        % &=(4\pi)^2\ssp\frac{3}{4\pi}\int\frac{\dif^2\hat\bk}{4\pi}\
+        %     Y_{10}(\hat\bk)\ssp Y_{10}\Zu{*}(\hat\bk) \nonumber\\
+        % &\quad\times\int^\infty_0\frac{k^2\dif k}{2\pi^2}\,
+        % \Delta\Zu{\mrm{X}}_1(k)\ssp\Delta\Zu{\mrm{Y}}_1(k) \ssp \frac{2\pi^2}{k^3}\ssp\PR(k) \nonumber\\[2pt]
+        &=3\int^\infty_0\frac{\dif k}{k}\ \Delta_1\Zu{\mrm{X}}(k)\ssp \Delta_1\Zu{\mrm{Y}}(k)\ssp \PR(k)
+        =\frac{3}{4\pi}\ssp C\Zu{\mrm{XY}}\Z1,
+    %% \qquad
+    %% \mrm{X},\mrm{Y} \in \{\kin,\clu\}.
+    \label{eqn:sig-ab}
+\eea
+where we have used
+$\langle{\zeta}(\bk)\ssp{\zeta}^*(\bk')\rangle=(2\pi)^3\delta_{\rm D}(\bk-\bk')\sp 2\pi^2\PR(k)/k^3$.
+
+Note that in this appendix the $a_{\ell m}$'s belong to the full sky.
+Those belonging to the cut sky can always be obtained
+in terms of the full-sky $a_{\ell m}$'s by geometric 
+linear relations.
+The explicit expressions are given later
+in Appendix~\ref{app:mode-coupling}.
+
+
+\subsection{Clustering transfer function} 
+Clustering gives rise to fluctuations $\delta_\qso(\n)$ in the number counts. In spherical harmonics,
+\be
+	\delta_\qso(\n)
+	=\sum_{\ell,m}^\infty a\Z{\ell m}\, Y_{\ell m}(\n),
+\quad
+	a\Z{\ell m}=\int\dif^2\n~Y_{\ell m}^*(\n)\ssp\delta_\qso(\n).
+\ee
+Here we are interested in the dipole $\dint\cdot\n=\sum_{m=-1}^1 a_{1m}\sp Y_{1m}(\n)$.
+Substituting $\delta_\qso(\n)=\int\dif z\,p_z(z)\ssp\delta_\qso(\n,z)$, with $p_z$ the
+normalised redshift distribution, and the Fourier
+representation of $\delta_\qso(\n,z)$, we have
+\begin{align*}
+a\Z{\ell m}
+&=\int\dif^2\n~Y_{\ell m}^*(\n)\int^\infty_0\dif z~p_z(z)\ssp\delta_\qso(\n,z) \nonumber\\[-2pt]
+&=\int\dif^2\n~Y_{\ell m}^*(\n)\int^\infty_0\dif z~p_z(z)\int\frac{\dif^3\bk}{(2\pi)^3}~
+	{\delta_\qso}(\bk,z)\ssp \rme\Zu{-\im\bk\cdot\chi(z)\n},
+\end{align*}
+where in the second line we write $\x=\chi(z)\n$.
+Now substituting the plane-wave expansion,
+$\rme^{-\im\bk\cdot\chi\n}
+=\sum_{\ell,m}(-\im)^{\ell}4\pi\sp j_{\ell}(k\chi)\sp
+Y^*_{\ell m}(\hat\bk)\sp Y^{\phantom*}\Z{\ell m}(\n)$,
+%\be\label{eqn:plane-wave-exp}
+%	\rme\Zu{-\im\bk\cdot\chi(z)\n}
+%        =\sum_{\ell,m}(-\im)^{\ell}4\pi\sp j_{\ell}\big(k\chi(z)\big)\sp
+%         Y^*_{\ell m}(\hat\bk)\sp Y^{\phantom*}\Z{\ell m}(\n)
+%\ee
+into the foregoing expression we find
+\begin{align*}
+a\Z{\ell m}
+&=\int\dif^2\n~Y_{\ell m}^*(\n)
+	\int^\infty_0\dif z~p_z(z)\int\frac{\dif^3\bk}{(2\pi)^3}~{\delta_\qso}(\bk,z) \nonumber\\
+	&\qquad\qquad\qquad\times\sum_{\ell',m'}(-\im)^{\ell'}4\pi\ssp j_{\ell'}\big(k\chi(z)\big)\ssp
+	Y^*_{\ell'm'}(\hat{\bk})\ssp Y_{\ell'm'}(\n) \nonumber\\
+&=(-\im)^\ell\sp 4\pi\int\frac{\dif^3\bk}{(2\pi)^3}\ Y^*_{\ell m}(\hat{\bk}) \nonumber\\
+	&\qquad\:\times\bigg[\int^\infty_0\dif z~p_z(z)\ssp \bqso(z)\ssp\mathcal{T}_\delta(k,z)\ssp
+			j_\ell\big(k\chi(z)\big)+\cdots\bigg]\zeta(\bk),
+\end{align*}
+where in the second line we used the
+orthogonality of spherical harmonics.
+Here we have inserted
+$\delta_\qso(\bk,z)=\bqso(z)\ssp\delta(\bk,z)+\cdots=\bqso(z)\ssp\mathcal{T}_\delta(k,z)\ssp\zeta(\bk)+\cdots$,
+where the ellipsis are corrections from 
+redshift-space distortions, Doppler effects, and general-relativistic
+corrections 
+\citep[see, e.g.,][appendix A, for complete expressions]{CLASSgal}.
+We thus have
+\be
+	\Delta\Zu{\clu}_\ell(k)
+	=\int^\infty_0\dif z~p_z(z)\ssp\bqso(z)\ssp\mathcal{T}_\delta(k,z)\ssp
+			j_\ell\big(k\chi(z)\big)
+   +\cdots.
+\ee
+% In this work we use the \citet{2005MNRAS.356..415C}
+% quasar bias parametrisation, $\bqso(z)=0.53+0.289(1+z)^2$.
+
+
+\subsection{Kinematic transfer function}\label{app:calc-b1m}
+For the kinematic dipole recall that $\dkin\cdot\n=\ckin\,\bm\beta\cdot\n$, with
+$\ckin=2+x(1+\alpha)$ and $\bm\beta=\v_O/c=\v(\x\!=\!0)/c$. In harmonics,
+\be
+	\dkin\cdot\n
+	=\sum_{L,M} b\Z{LM}\, Y_{LM}(\n),
+\quad
+	b\Z{LM}=\int\dif^2\n~Y_{LM}^*(\n)\ssp\dkin\cdot\n,
+\ee
+the calculation carries through in much the same way as with the previous calculation for number
+counts, {provided} that we keep $\x$ arbitrary, setting $\x=0$ only at the end of the
+calculation. (Note that since we are dealing with a pure dipole only
+$L=1$ coefficients are nonzero.) We thus write equation~\eqref{eqn:b-LM} as
+\bea
+    b_{1M}
+        &=\int\dif^2\n\ Y_{1M}^*(\n)\ssp\ckin\,\v\Z{R}(\x\!=\!0)\cdot\n/c \nonumber\\[-2pt]
+        &=\int\dif^2\n\ Y_{1M}^*(\n)\ssp\ckin
+            \int\frac{\dif^3\bk}{(2\pi)^3}
+            \frac{-\im\bk\cdot\n}{k}\bigg(\frac{H_0 f_0}{c\sp k}\bigg)\sp W(kR)\sp\delta(\bk)
+    \label{eqn:b-1M-w1}
+\eea
+and then use that with $\x=\chi\n$, where $\chi$ the comoving distance, the dipole 
+$-\im\sp\bk\cdot\n$ can be expressed as 
+$-\im\sp\bk\cdot\n=(\partial\sp\rme^{-\im\bk\cdot\chi\n}/\partial\chi)|_{\chi=0}$.
+Now substituting the plane-wave expansion
+%\be
+%    -\im\k\cdot\n/k=\frac1k\frac{\partial}{\partial\chi}\rme^{-\im\bk\cdot\chi\n}
+%        =\frac1k\frac{\partial}{\partial\chi}
+%         \bigg[\sum_{\ell,m}(-\im)^{\ell}4\pi\sp j_{\ell}(k\chi)\sp
+%         Y^*_{\ell m}(\hat\bk)\sp Y^{\phantom*}\Z{\ell m}(\n)\bigg]_{\chi=0},
+%\ee
+into equation~\eqref{eqn:b-1M-w1} we find
+\begin{align*}
+    b_{1M}
+        &=\int\dif^2\n\ Y_{1M}^*(\n)\sp\ckin
+            \int\frac{\dif^3\bk}{(2\pi)^3}
+            \bigg(\frac{H_0f_0}{c\sp k}\bigg) W(kR)\sp\delta(\bk) \nonumber\\
+        &\qquad\qquad\times
+            \frac1k\frac{\partial}{\partial\chi}
+            \bigg[\sum_{\ell,m}(-\im)^{\ell}4\pi\sp j_\ell(k\chi)\sp
+                    Y^*_{\ell m}(\hat\bk)\sp Y\Z{\ell m}(\n)\bigg]_{\chi=0} \nonumber\\[2pt]
+        &=(-\im)\sp4\pi\int\frac{\dif^3\bk}{(2\pi)^3}\:
+            Y^*_{1M}(\hat\bk)\sp \ckin\bigg(\frac{H_0f_0}{c\sp k}\bigg)W(kR)\sp\delta(\bk)
+                \frac1k\frac{\partial j_1}{\partial\chi}\bigg|_{\chi=0},
+\end{align*}
+where in the second line we have used the orthogonality of spherical
+harmonics.
+Since $j_1(x)=x/3+\mathcal{O}(x^3)$, the derivative with respect to $\chi$, at $\chi=0$,
+exactly evaluates to $k/3$; inserting $\delta(\bk)=\mathcal{T}_\delta(k,z)\sp{\zeta}(\bk)$, we finally get
+\be\nonumber
+    b_{1M}
+        =(-\im)\sp4\pi\int\frac{\dif^3\bk}{(2\pi)^3}\:
+            Y_{1M}^*(\hat\bk)
+                \bigg[\frac13\sp\ckin\sp W(kR)\bigg(\frac{H_0f_0}{c\sp k}\bigg)\sp \mathcal{T}_\delta(k)\bigg]\sp{\zeta}(\bk),
+\ee
+where $\mathcal{T}_\delta(k)$ is evaluated at $z=0$. Note that
+$\bqso$ does not appear here because $\v$ is sourced by
+matter perturbations. Since this expression is in the form of equation~\eqref{eqn:a-1M} we can immediately
+read off the kinematic transfer function from
+the contents of the square brackets:
+\be
+    \Delta\Zu{\kin}_1(k)
+        =\frac13\sp\ckin\sp W(kR)\sp\bigg(\frac{H_0f_0}{c\sp k}\bigg)\sp\mathcal{T}_\delta(k).
+        %% =-\ckin\sp W(kR)\sp\frac{\mathcal{T}_\theta(k)}{3\sp c\sp k}
+    \label{eqn:Delta-kin-1}
+\ee
+Note that because we evaluate $\v$ at $\x=0$ the 
+transfer function $\mathcal{T}_\delta(k)$ is simply evaluated
+at $z=0$ and not integrated. Further note that to
+include source evolution,
+simply replace $\ckin$ with its average $\bar{A}_\kin$ 
+given by equation~\eqref{eqn:d-kin-corr}.
+
+
+
+
+
+
+
+\section{Pixelization}
+We can also consider the effect of the pixelization on the theoretical power.
+At the field level, the pixelization of the number-count fluctuations is given by
+\be
+    \delta\Z{\qso,i} = \int\dif^2\n\: W^\mrm{pix}_i(\n)\ssp \dqso(\n),
+\ee
+where $W^\mrm{pix}_i(\n)$ is the \healpix\ pixel window function for the $i$th pixel,
+which is equal to zero, unless $\n$ falls within the $i$th pixel, in which case
+$W^\mrm{pix}_i$ is equal to $1/\Omega_{\rm pix}$, with $\Omega_{\rm pix}$ being the
+pixel area. This window function is normalised,$\int\dif^2\n\,W^\mrm{pix}_i(\n)=1$,
+so that $\delta\Z{\qso,i}$ is the average fluctuation in the $i$th pixel.
+Note that because the \healpix\ pixel shape varies azimuthally there is no global pixel window function
+that applies to all pixels. Provided a large enough $N_\mrm{side}$ is chosen this is not really a problem: the differences between pixel window functions
+only becomes important when considering large $\ell$, but this can always be remedied by choosing
+a larger $N_\mrm{side}$.
+
+We will ignore the azimuthal variation in pixels,
+as is routinely done. Under this
+approximation pixelized fields are also statistically isotropic and the angular power spectrum
+of the pixelized field is
+$
+    C^\mrm{\ssp pix}_\ell = (\sp\bar{W}^\mrm{\ssp pix}_\ell\sp)^2 C_\ell
+$,
+where $C_\ell$ is the unpixelized power, and $\bar{W}^\mrm{\sp pix}_\ell$ is the \healpix
+pixel-averaged window function~\citep{2005ApJ...622..759G}. Since $\bar{W}^\mrm{\sp pix}_\ell\leq1$ there is a loss of power for all
+$\ell$ (more for larger $\ell$).
+In this work $N_\mrm{side}=64$ with which we find that
+$\bar{W}^\mrm{\ssp pix}_\ell$ is equal to unity to
+within $0.5\%$ for $\ell=0$ to $\ell=20$. As this power loss is negligible we have thus
+ignored the effects of pixelization on the theoretical power.
+% taking $C^\mrm{\ssp pix}_\ell=C_\ell$.
+
+
+% First thirty W_ell for nside=64
+%% [1.        , 0.99997725, 0.99993174, 0.99986349, 0.9997725 ,
+%%  0.99965876, 0.99952229, 0.9993631 , 0.99918118, 0.99897657,
+%%  0.99874926, 0.99849926, 0.9982266 , 0.99793129, 0.99761334,
+%%  0.99727278, 0.99690962, 0.99652388, 0.99611559, 0.99568476,
+%%  0.99523142, 0.99475561, 0.99425734, 0.99373664, 0.99319354,
+%%  0.99262808, 0.99204028, 0.99143018, 0.99079781, 0.99014322]
+
+
+
+\section{Derivation of $\Pr(\Dtot)$}\label{app:pD_derivation}
+In this appendix we derive the probability distribution function $p(\Dtot)$ in both the full-sky and cut-sky regimes. The PDF in the former case is well known; it is the Maxwellian. In the latter case, considering an arbitrary symmetric Galactic
+plane cut (the details of which will be fixed in Appendix~\ref{app:gal-cut}),
+we derive another long-tailed PDF, one that is suppressed relative to the Maxwellian.
+The calculation comes down to the marginalisation~\eqref{eqn:p-Dtot-int}, which we evaluate through the moment generating function. The full-sky PDF is parametrised by $\sigkin$,
+$\sigint$, and $\sigkinint$; whilst the cut-sky PDF is parametrised by
+$\sigma_{\kin_x\kin_x}$, $\sigma_{\kin_z\kin_z}$,
+$\sigma_{\clu_x\clu_x}$, $\sigma_{\clu_z\clu_z}$, $\sigma_{\kin_x\clu_x}$, and
+$\sigma_{\kin_z\clu_z}$ (these are, however, linearly related to those of the full sky).
+The calculation is based on geometrical considerations;
+no cosmological model needs to be assumed.
+
+\subsection{Full sky}\label{app:Dtot-details}
+To set up the problem, construct the six-dimensional vector $\bm{X}=(\dkin,\dint)\Zu\T$,
+with $\bm{X}\sim\calN(\mbf{0},\cov)$.
+By statistical isotropy only components along the same axis can
+be correlated ($x$-$x$, $y$-$y$, etc).
+Thus $\cov$ can be written in block matrix form~\eqref{eqn:cov-6x6}, with each block 
+proportional to the $3\times3$ identity matrix,
+$\langle\mathbf{d}_\mrm{X}\Zu{\phantom\T} \mathbf{d}_\mrm{Y}\Zu\T\rangle\propto\mathbf{I}_3$,
+with $\mrm{X},\mrm{Y}\in\{k,c\}$.
+In particular, we have that the expected amplitude of the kinematic dipole is
+$\Dkin\equiv\langle\dkin^2\rangle^{1/2}=\sqrt{\sp3}\ssp\sigkin$,
+and the expected amplitude of the clustering dipole is
+$\Dint\equiv\langle\dint^2\rangle^{1/2}=\sqrt{\sp3}\ssp\sigint$,
+where the root three is due to $\sigkin$ and $\sigint$ being
+one-dimensional dispersions, while $\Dkin$ and $\Dint$ is the total dispersion. Evaluating $\sigkin$, $\sigint$,
+and $\sigkinint$ requires specifying a cosmological model, but these are simply related
+to the $\ell=1$ multipole of certain angular power spectra by $\sigma\Z{\mrm{XY}}\Zu2=3C^\mrm{XY}_1/(4\pi)$.
+
+
+Though $\cov$ is a $6\times6$ matrix there are only three parameters needed to specify it (on
+account of isotropy). In analysing this matrix we find it convenient to therefore
+write it as a Kronecker product:
+\be
+    \cov
+        =
+        \begin{pmatrix}
+            \,\sigkin^2 & \sigkinint^2\, \\[3pt]
+            \,\sigkinint^2 & \sigint^2\,
+        \end{pmatrix}
+        \otimes \mathbf{I}_3,
+    \qquad
+    \cov^{-1}
+        =
+        \begin{pmatrix}
+            \,\sigkin^2 & \sigkinint^2\, \\[3pt]
+            \,\sigkinint^2 & \sigint^2\,
+        \end{pmatrix}^{-1}
+        \otimes \mathbf{I}_3,
+\ee
+where $\mathbf{I}_3$ is the $3\times3$ identity matrix, and the inverse $\cov^{-1}$ is
+the Kronecker product of the inverse of the two matrices.%
+\footnote{$\mat{A}^{-1}=(\mat{B}\otimes\mat{C})^{-1}=\mat{B}^{-1}\otimes\mat{C}^{-1}$.}
+Thus we see that the covariances in $\cov$ are essentially contained in a $2\times2$ matrix.
+
+
+The square of the amplitude of the total dipole, $Y\equiv\Dtot^2=|\dkin+\dint|^2$, can be
+recast as the quadratic form
+\be
+    Y=\bm{X}\Zu\T\mathbf{A}\bm{X},
+    \qquad
+    \mathbf{A}
+    \equiv
+        \begin{pmatrix}
+            \,\mathbf{I}_3 & \mathbf{I}_3\, \\
+            \,\mathbf{I}_3 & \mathbf{I}_3\,
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \sp1 & 1\, \\
+            \sp1 & 1\,
+        \end{pmatrix}
+        \otimes\mathbf{I}_3,
+        % \begin{pmatrix}
+        %     1 & 0 & 0 & 2 & 0 & 0 \\[2pt]
+        %     0 & 1 & 0 & 0 & 2 & 0 \\[2pt]
+        %     0 & 0 & 1 & 0 & 0 & 2 \\[2pt]
+        %     2 & 0 & 0 & 1 & 0 & 0 \\[2pt]
+        %     0 & 2 & 0 & 0 & 1 & 0 \\[2pt]
+        %     0 & 0 & 2 & 0 & 0 & 1
+        % \end{pmatrix},
+\ee
+where $\mathbf{A}$ is a $6\times6$ symmetric matrix.
+The moment generating function
+${M}\Z{Y}(t)\equiv\langle \rme^{tY}\rangle$ can be written using the
+`law of the unconscious statistician' as
+\be
+    {M}\Z{Y}(t)
+        \equiv\int\dif Y\, \rme^{tY} p(Y)
+        =\int\dif^6\bm{X}\, \rme^{t\bm{X}\Zu\T\mathbf{A}\bm{X}} p(\bm{X}),
+    \label{eqn:M-Y}
+\ee
+i.e.~in terms of the probability distribution of $\bm{X}$.
+Before we compute the second integral, we recall that ${M}_Y(-t)$ is the
+(unilateral) Laplace transform
+$\mathscr{L}$ of the PDF $p(Y)$:
+\be
+        \mathscr{L}[p(Y)](t)
+        \equiv\int^\infty_0 \dif Y\, \rme^{-tY} p(Y)
+        ={M}\Z{Y}(-t).
+\ee
+Therefore, once the moment generating function is in hand, and the sign of its argument
+is flipped, we recover the PDF by simply taking the inverse Laplace transform:
+\be
+    p(Y)
+        =\mathscr{L}^{-1}\big[{M}\Z{Y}(-t)\big](Y)
+        \equiv\frac{1}{2\pi\im}\int^{\gamma+\im\infty}_{\gamma-\im\infty}\dif t\,
+            \rme^{tY}{M}\Z{Y}(-t).
+\ee
+(Here $\gamma$ is some large, positive constant, chosen
+so that the poles lie to the
+left of it in the complex plane.)
+In practice, we will not have to perform such integrals as we can build the solution
+out of simpler, known transforms, by using the convolution properties of the Laplace transform.%
+\footnote{Perhaps the more obvious approach to obtain the PDF is to use the characteristic function
+$\phi\Z{Y}(t)\equiv{M}\Z{Y}(\im t)$ together with the Fourier transform.
+However, this proves slightly awkward, since $Y\geq0$ forces us to consider a
+one-sided Fourier transform.}
+
+
+To evaluate the second integral in equation~\eqref{eqn:M-Y}, we note that it has the basic form
+of a Gaussian convolution; because one `Gaussian' is without its normalisation factor, 
+we find after some straightforward matrix algebra
+\be
+    {M}\Z{Y}(t)
+        =\det\big(\mathbf{I}_6 - 2\sp t\mathbf{A}\cov\big)^{-1/2}
+        =\prod_{j=1}^6 \lambdaup\Z{j}^{-1/2},
+\ee
+where in the second equality we have expressed the determinant in terms of the
+eigenvalues $\lambdaup_j$ of $\mathbf{I}_6-2\sp t\mathbf{A}\cov$. Now specialising to
+the case of statistical isotropy, we find that there are only two
+distinct eigenvalues, which we call $\lambdaup_1$ and $\lambdaup_2$.
+To see this we exploit the properties of the Kronecker product: write
+$\mathbf{I}_6=\mathbf{I}_2\otimes\mathbf{I}_3$ and
+$\mathbf{A}\cov=\bm\Sigma\otimes\mathbf{I}_3$, with
+\be
+    \bm\Sigma
+        \equiv
+        %% \begingroup % keep the change local
+        %% \setlength\arraycolsep{2.5pt}
+        \begin{pmatrix}
+            \sp1 & 1\, \\
+            \sp1 & 1\,
+        \end{pmatrix}
+        \begin{pmatrix}
+            \sp\sigkin^2 & \sigkinint^2\, \\[3pt]
+            \sp\sigkinint^2 & \sigint^2\,
+        \end{pmatrix}
+        %% \endgroup
+        =
+        \begin{pmatrix}
+            \,\sigkin^2+\sigkinint^2 & \sigint^2+\sigkinint^2\, \\[4pt]
+            \,\sigkin^2+\sigkinint^2 & \sigint^2+\sigkinint^2\,
+        \end{pmatrix}.
+\ee
+Because
+$\mathbf{I}_6-2\sp t\mathbf{A}\cov
+    =(\mathbf{I}_2-2\sp t\bm\Sigma)\otimes\mathbf{I}_3$, there are two distinct eigenvalues
+(each having multiplicity three) corresponding to the $2\times2$ matrix $\mathbf{I}_2-2\sp t\bm\Sigma$.
+The eigenvalues are $\lambdaup_1=1$ and $\lambdaup_2=1-2\sp t\Delta^2$,
+with
+\be
+    \Delta^2
+        \equiv\sigkin^2 + 2\sp\rho\sp\sigkin\sp\sigint + \sigint^2.
+\ee
+% Note that $\Delta^2$ is bounded below when rho=-1 and so $\Delta^2\geq(\sigkin-\sigint)^2$.
+Therefore, we have simply that ${M}_Y(t)=(1-2\sp t\Delta^2)^{-3/2}$, which
+can be seen to closely resemble the moment generating function of the generalised
+chi-squared distribution.
+As mentioned, the PDF is recovered by inverse Laplace transform of ${M}_Y(-t)$:%
+\footnote{The integral can be done with help of the convolution theorem, which
+says that a product of moment generating functions corresponds to the convolution of their
+individual PDFs.
+Thus we write $(1-2\sp t\Delta^2\big)^{-3/2}=\prod_{j=1}^3(1-2\sp t\Delta^2\big)^{-1/2}$,
+and note that the chi-squared distribution with one degree of freedom has a moment
+generating function $(1-2\sp t\Delta^2\big)^{-1/2}$. Then the PDF
+corresponding to ${M}_Y(t)$ is the convolution $p(Y)=p_x\ast p_y\ast p_z$ of
+three such chi-squared distributions, which yields another chi-squared distribution
+but with three degrees of freedom.}
+\be
+    p(Y)
+        =\frac{1}{2\pi\im}\int^{\gamma+\im\infty}_{\gamma-\im\infty}
+            \frac{\rme^{tY}\dif t}{\big(1+2\sp t\Delta^2\big)^{3/2}}
+        = \frac{\sqrt{\sp Y}\sp \rme^{-Y/(2\Delta^2)}}{\sqrt{\sp2\pi}\ssp\Delta^3}.
+\ee
+Finally, the distribution for the amplitude $\Dtot\equiv\sqrt{\sp Y}$ is
+${p(\Dtot)=p(Y\!=\!\Dtot^2)\ssp|\sp\dif Y/\dif\Dtot|}$, or, explicitly, after some algebra,
+\be
+    p(\Dtot)\ssp\dif\Dtot
+        =\frac{4}{\sqrt\pi}\ssp\exp\bigg(-\frac{\Dtot^2}{2\Delta^2}\bigg)\ssp
+        \frac{\Dtot\Zu2}{2\sp\Delta\Zu2}\sp\frac{\dif \Dtot}{\sqrt2\sp\sp\Delta}.
+    \label{eqn:p-X}
+\ee
+This PDF, a chi distribution with three degrees of freedom (or Maxwellian), 
+has mean $\langle\Dtot\rangle=\sqrt{\sp8/\pi\sp}\sp\Delta$ and
+variance $\langle\Dtot^2\rangle=3\Delta^2$. However, the variance
+is larger than might be expected from a standard Maxwellian due to cross terms
+($\sigma^2_{\kin_x\clu_x}$, $\sigma^2_{\kin_z\clu_z}$, etc).
+
+\begin{figure}
+\centering
+    \begin{subfigure}{\columnwidth}
+        \centering
+	    \includegraphics[width=\textwidth]{figures/Figure7} % p_fullsky_with_source_evoln.pdf
+    \end{subfigure}
+    \caption{As for Fig.~\ref{fig:p-Dtot-cutsky} but on the full sky ($f_\mrm{sky}=1$).
+    The probability distribution is simply the Maxwellian~\eqref{eqn:p-X}
+    with dispersions
+    given by equations~\eqref{eq:fullsky_dispersions}. The main point here is
+    that without the mask larger values of $\Dtot$ are more probable compared
+    with the case of including the mask}.
+    \label{fig:p-Dtot}
+\end{figure}
+
+
+\subsection{Cut sky}\label{app:p-Dtot-cutsky}
+The Galactic plane cut, described later in Appendix~\ref{app:galactic-cut}, has the effect of identifying a preferred direction, i.e.~along the $z$-axis (where the $z$-axis is orthogonal to the Galactic plane).
+Because of this the covariance now
+takes the form
+\bea\label{eqn:cov-6x6-cutsky}
+    \cov
+    % &=
+    %     \left(
+    %     \begin{array}{cc}
+    %         \big\langle\dkin\Zu{\phantom\T}\dkin\Zu\T\big\rangle &
+    %         \big\langle\dkin\Zu{\phantom\T}\dint\Zu\T\big\rangle \\[7pt]
+    %         \big\langle\dkin\Zu{\phantom\T}\dint\Zu\T\big\rangle &
+    %         \big\langle\dint\Zu{\phantom\T}\dint\Zu\T\big\rangle
+    %     \end{array}\right) \nonumber\\[5pt]
+    &=
+        \left(
+        \begin{array}{cccccc}
+            \sigma^2_{\kin_x\kin_x} & 0 & 0 & \,\sigma^2_{\kin_x\clu_x} & 0 & 0 \\
+            0 & \sigma^2_{\kin_x\kin_x} & 0  & \,0 & \sigma^2_{\kin_x\clu_x} & 0 \\
+            0 & 0 & \sigma^2_{\kin_z\kin_z} & \,0 & 0 & \sigma^2_{\kin_z\clu_z} \\
+            \sigma^2_{\kin_x\clu_x} & 0 & 0\ & \sigma^2_{\clu_x\clu_x} & 0 & 0 \\
+            0 & \sigma^2_{\kin_x\clu_x} & 0\ & 0 & \sigma^2_{\clu_x\clu_x} & 0 \\
+            0 & 0 & \sigma^2_{\kin_z\clu_z} & 0 & 0 & \sigma^2_{\clu_z\clu_z}
+        \end{array}\right).
+\eea
+Notice now that each $3\times3$ block matrix is no longer proportional to the identity matrix,
+so cannot be written as a Kronecker product.
+In particular, we now see that the dispersions of the $x$- and
+$y$-components differ from that of the $z$-component. Because of this
+$\sigma^2_{\clu_x\clu_x}=\sigma^2_{\clu_y\clu_y}\neq\sigma^2_{\clu_z\clu_z}$ and
+$\sigma^2_{\kin_x\kin_x}=\sigma^2_{\kin_y\kin_y}\neq\sigma^2_{\kin_z\kin_z}$; similarly,
+for the cross-terms
+$\sigma^2_{\kin_x\clu_x}=\sigma^2_{\kin_y\clu_y}\neq\sigma^2_{\kin_z\clu_z}$.
+The probability distribution $p(\Dtot)$ is now given in terms of six independent quantities,
+$\sigma^2_{\kin_x\kin_x}$, $\sigma^2_{\kin_z\kin_z}$,
+$\sigma^2_{\clu_x\clu_x}$, $\sigma^2_{\clu_z\clu_z}$, $\sigma^2_{\kin_x\clu_x}$, and $\sigma^2_{\kin_z\clu_z}$.
+
+
+We still have azimuthal
+symmetry (rotations about the $z$-axis), and this is reflected in the $x$
+and $y$ components. This is also seen in the multiplicity of the eigenvalues,
+which are now $\lambdaup_1=1-2\sp t\Delta^2_z$ (multiplicity one),
+$\lambdaup_2=1-2\sp t\Delta^2_x$ (multiplicity two), and $\lambdaup_3=1$ (multiplicity three),
+where $\Delta_x^2$ and $\Delta_z^2$ are given by equations~\eqref{eqn:Delta_x} and \eqref{eqn:Delta_z},
+respectively. With respect to the Galactic plane, we decompose into transverse ($x$ and $y$)
+and longitudinal components ($z$), labelled collectively by
+`$\perp$' and `$\|$', respectively.
+
+We now have two distinct $t$-dependent eigenvalues (where previously in the full-sky
+case there was only one), thus producing one additional pole in the
+moment generating function:
+\be
+    {M}_{Y}(t)={M}_{Y_\perp}(t)\ssp{M}_{Y_\|}(t),
+\ee
+with ${M}_{Y_\perp}(t)\equiv{M}_{Y_x}(t)\ssp{M}_{Y_y}(t)$,
+${M}_{Y_x}(t)={M}_{Y_y}(t)=(1-2\sp t\Delta^2_x)^{-1/2}$,
+and ${M}_{Y_\|}(t)={M}_{Y_z}(t)=(1-2\sp t\Delta^2_z)^{-1/2}$ (these can be found by considering the
+eigenvalues of the covariance matrix~\eqref{eqn:cov-6x6-cutsky}).
+The PDFs of each of these constituent moment generating functions are obtained by
+the following inverse Laplace transforms:
+%% \bea
+%%     p_\perp(Y)
+%%         &\equiv\frac{1}{2\pi\im}\int^{\gamma+\im\infty}_{\gamma-\im\infty} \frac{\rme^{tY}\dif t}{1+2\sp t\Delta^2_x}
+%%         =\frac{\rme^{-Y/(2\Delta^2_x)}}{2\Delta^2_x}, \\[3.5pt]
+%%     p_z(Y)
+%%         &\equiv\frac{1}{2\pi\im}\int^{\gamma+\im\infty}_{\gamma-\im\infty} \frac{\rme^{tY}\dif t}{\big(1+2\sp t\Delta^2_z\big)^{1/2}}
+%%         =\frac{\rme^{-Y/(2\Delta^2_z)}}{\big(2\pi\sp Y\Delta^2_z\big)^{1/2}}.
+%% \eea
+\begin{subequations}
+\bea
+    p_\perp(Y)
+        &=\mathscr{L}^{-1}\big[{M}_{Y_\perp}(-t)\big](Y)=\frac{\rme^{-Y/(2\Delta^2_x)}}{2\sp\Delta^2_x}, \\
+    p\Z{\|}(Y)
+        &=\mathscr{L}^{-1}\big[{M}_{Y_\|}(-t)\big](Y)=\frac{\rme^{-Y/(2\Delta^2_z)}}{\big(2\sp\pi\sp Y\Delta^2_z\big)^{1/2}}.
+\eea
+\end{subequations}
+By the convolution theorem of the unilateral Laplace transform, the PDF of the product
+of moment generating functions $p(Y)=\mathscr{L}^{-1}[M_{Y_\perp}(-t)\ssp M_{Y_\|}(-t)]$ is
+equal to the convolution $\mathscr{L}^{-1}[M_{Y_\perp}(-t)]\sp*\sp\mathscr{L}^{-1}[M_{Y_\|}(-t)]$,
+which evaluates to
+\bea
+    p(Y)
+        &=\int^Y_0\dif Y' p_\perp(Y-Y')\sp p\Z{\|}(Y') %\nonumber\\[-2pt]
+        =\frac{1}{\sqrt{\sp\varepsilon}}\, {\rm erf}
+            \bigg(\frac{\varepsilon Y}{2\Delta^2_z}\bigg)
+            \frac{\rme^{-Y/(2\Delta^2_x)}}{2\Delta^2_x}, \nonumber
+    % \label{eqn:p-Y-mask-lt0}
+\eea
+where $\varepsilon\equiv1-\Delta^2_z/\Delta^2_x$ gives the `eccentricity' of the ellipsoid spanned by the eigenvectors. The use of the error function in
+the foregoing equation is valid for $\varepsilon>0$; for $\varepsilon<0$, which is the
+case for the Galactic plane cut, we have instead
+\bea
+    p(Y)
+        % &=\frac{1}{\sqrt{|\varepsilon|}}\ssp {\rm erfi}\bigg[\sqrt{|\varepsilon|}\sp\Big(\frac{Y}{2\Delta^2_z}\Big)^{1/2}\bigg]
+        %     \frac{\rme^{-Y/(2\Delta^2_x)}}{2\Delta^2_x} \nonumber\\
+        &=\frac{2}{\sqrt{\pi|\varepsilon|}}\ssp \rme^{|\varepsilon|Y/(2\Delta^2_z)}\sp
+            F\bigg(\frac{\sqrt{|\varepsilon|}\sqrt{Y}}{\sqrt2\Delta_z}\bigg)\sp
+            \frac{\rme^{-Y/(2\Delta^2_x)}}{2\Delta^2_x},
+\eea
+where $F(x)\equiv\rme^{-x^2}\int^x_0\dif t\,\rme^{t^2}$ is the Dawson function~\citep[][\href{https://dlmf.nist.gov/7.2.5}{7.2.5}]{DLMF}.
+
+The probability distribution of the amplitude $\Dtot=\sqrt{\sp Y}$,
+in the presence of a Galactic plane cut, is now obtained easily from ${p(\Dtot)=p(Y\!=\!\Dtot^2)\ssp|\sp\dif Y/\dif\Dtot|}$;
+it is
+%% \be
+%%     p(X)
+%%         =\frac{2X}{\sqrt{\pi|\varepsilon|}\sp\Delta^2_x}\ssp
+%%             F\bigg(\sqrt{\frac{|\varepsilon|X^2}{2\Delta^2_z}}\bigg)\ssp
+%%             \rme^{-X^2/(2\Delta^2_x)+|\varepsilon|X^2/(2\Delta^2_z)}.
+%% \ee
+\be\label{eqn:pD-cutsky-pre}
+    p(\Dtot)\ssp\dif\Dtot
+        =\frac{2\Dtot\ssp\dif\Dtot}{\sqrt{\pi|\varepsilon|}\sp\Delta^2_x}\ssp
+            F\bigg(\frac{\sqrt{|\varepsilon|}\Dtot}{\sqrt2\Delta_z}\bigg)
+            \exp\bigg(-\frac{\Dtot^2}{2\Delta^2_z}\bigg),
+\ee
+where we have used that $|\varepsilon|=\Delta^2_z/\Delta^2_x-1>0$, since for us $\varepsilon<0$.
+We can bring equation~\eqref{eqn:pD-cutsky-pre} into a form
+more closely resembling the full-sky case
+(i.e.~the Maxwell--Boltzmann distribution)
+by using $\Delta_x^2=\Delta_z^2/(1-\varepsilon)$ to rewrite it
+in terms of $\Delta_z$ and $\varepsilon$.
+After some algebra, and after defining the function
+$\mathcal{F}(x)\equiv F(x)/x$, we arrive at our final form
+[cf.~equation~\eqref{eqn:p-X}]:
+\be\label{eqn:pD-cutsky}
+\begin{split}
+    p(\Dtot)\ssp\dif\Dtot
+    &=(1-\varepsilon)\ssp     \mathcal{F}\bigg(\frac{\sqrt{|\varepsilon|}\Dtot}{\sqrt2\sp\Delta_z}\bigg)
+     % &\quad\quad\times
+     \frac{4}{\sqrt\pi}\sp\exp\bigg(\!-\frac{\Dtot^2}{2\Delta_z^2}\bigg)
+     \frac{\Dtot\Zu2}{2\sp\Delta_z^2}\ssp\frac{\dif\Dtot}{\sqrt2\sp\Delta_z}.
+\end{split}
+\ee
+This is equation~\eqref{eqn:p-Dtot-cutsky} in the main text.
+As a consistency check, it is easy to verify using $\mathcal{F}(a\sqrt{\sp\varepsilon}\ssp)\to1$, as $\varepsilon\to0$, that the full-sky expression~\eqref{eqn:p-X}
+derived in the previous section is recovered in the limit $\varepsilon\to0$.
+This is the special case of statistical isotropy, for which $\Delta_x=\Delta_y=\Delta_z$.
+
+The first three moments of the PDF~\eqref{eqn:pD-cutsky} are
+\begin{subequations}
+\bea
+    &\langle\Dtot\rangle
+        =\sqrt\frac{2}{\pi}
+            \bigg[\Delta_z + \Delta_x\frac{{\rm arcsinh}\big(\sqrt{|\varepsilon|}\sp\big)}{\sqrt{|\varepsilon|}}\bigg], \\[2pt]
+    &\langle\Dtot^2\rangle
+        =\Delta^2_z + 2\Delta^2_x, \\[3pt]
+        %% =(3-\varepsilon)\Delta^2_x, \\[3pt]
+    &\langle\Dtot^3\rangle
+        =\sqrt\frac{2}{\pi}\bigg[2\Delta^3_z+3\Delta_z\Delta^2_x
+            +3\Delta^3_x\frac{{\rm arcsinh}\big(\sqrt{|\varepsilon|}\sp\big)}{\sqrt{|\varepsilon|}}\bigg].
+\eea
+\end{subequations}
+In the limit $\varepsilon\to0$, these recover the usual moments of the Maxwell--Boltzmann distribution, i.e.\
+$\langle\Dtot\rangle=\sqrt{\sp8/\pi}\sp\Delta$, $\langle\Dtot^2\rangle=3\Delta^2$, and
+$\langle\Dtot^3\rangle=4\sqrt{\sp8/\pi}\sp\Delta^3$, with $\Delta=\Delta_x=\Delta_y=\Delta_z$.
+
+
+
+
+
+
+
+
+
+\section{Dipole statistics on the cut sky}\label{app:galactic-cut}
+In order to compare the dipole estimate with the theoretical value we will
+convolve the full-sky predictions with the mask.
+
+\subsection{Galactic plane cut\label{app:gal-cut}}
+We make a {symmetric} cut about the Galactic plane, excluding a central region $|b|\leq b_{\rm cut}$.
+Here $b_{\rm cut}=\ang{30}$, as in S21. This conservative cut removes half of the sky ($f_\mrm{sky}=0.5$). Since the
+additional masks (accounting for poor-quality photometry, image artefacts, etc) covers merely $1.2\%$ of
+the sky we will ignore their effect on the power, which principally affects the small angular
+scales.
+We will thus apply to the number-count field $\dif N/\dif\Omega(\n)$
+the following mask:
+\be
+    \mathcal{W}(\vartheta)
+        =
+        \begin{cases}
+            0, & \vartheta_-\leq\vartheta\leq\vartheta_+, \\
+            1, & \text{otherwise},
+        \end{cases}
+\ee
+where $\vartheta_\pm=\pi/2\pm b_{\rm cut}$. % and  $\vartheta_b=\pi/2+b_{\rm cut}=\pi-\vartheta_a$.
+In terms of the Heaviside step function $\Theta$, this can also be written as
+\be
+    \mathcal{W}(\n)
+        =\Theta(\n\cdot\hat{\mathbf{z}}-\mu\Z-)
+        +\Theta(\mu\Z+-\n\cdot\hat{\mathbf{z}}),
+\ee
+with $\mu_{\pm}=\cos\vartheta_{\pm}$, and where
+the first and second term selects the northern and southern caps, respectively.
+Because $\mathcal{W}(\n)$ possesses azimuthal symmetry, its spherical harmonic expansion
+is given purely in terms of the zonal modes ($m=0$):
+$\mathcal{W}(\vartheta)=\sum_{\ell} \mathcal{W}_{\ell 0}\ssp Y_{\ell0}(\vartheta)$.
+Furthermore, because $\mathcal{W}(\n)$ is parity symmetric,
+$\mathcal{W}_{\ell m}=\int\dif^2\n~\mathcal{W}(\n)\sp Y^*_{\ell m}(\n)$ is equal to zero
+for odd $\ell$;  for even $\ell$ these coefficients are non-zero and are
+given by~\citep{Dahlen:2007sv}
+\bea
+    \mathcal{W}_{\ell m}
+        % &\equiv\int\sin\vartheta\ssp\dif\vartheta\ssp\dif\phi\
+        %     \mathcal{W}(\vartheta)\sp Y_{\ell m}^*(\vartheta,\phi) \nonumber\\
+        &=2\sp\delta\Zu{\mrm{K}}_{m0}\ssp\sqrt{\frac{\pi}{2\ell+1}}\ssp
+            \big[\mathcal{L}\Z{\ell-1}(\mu\Z-)-\mathcal{L}\Z{\ell+1}(\mu\Z-)\big]
+         \quad\text{(even $\ell$)},
+\eea
+where $\calL_\ell(\mu)$ is the Legendre polynomial of degree $\ell$ [note $\mathcal{L}\Z{-1}(\mu)\equiv1$].
+% (For the southern polar cap, $\mathcal{W}_{\ell m}\to -\mathcal{W}_{\ell m}$; for a double polar
+% cap $\mathcal{W}_{\ell m}\to 2\mathcal{W}_{\ell m}$, and, because it is parity symmetric,
+% $\mathcal{W}(\vartheta)=\mathcal{W}(\pi-\vartheta)$, only coefficients with even $\ell$ are non-zero.)
+With $b_\mrm{cut}=\ang{30}$ we have for the first five non-zero coefficients
+$\mathcal{W}_{00}\approx 1.77245$,
+$\mathcal{W}_{20}\approx 1.48625$,
+$\mathcal{W}_{40}\approx-0.623128$,
+$\mathcal{W}_{60}\approx-0.131059$, and
+$\mathcal{W}_{80}\approx 0.422182$. % Mathematica
+
+\subsection{Mode coupling}\label{app:mode-coupling}
+A cut on the sky breaks statistical
+isotropy. In harmonic space this implies that the covariance
+matrix of $a\Z{\ell m}$'s can have off-diagonal components, i.e.~we no longer have that
+$\langle{a}\Z{\ell m}\sp {b}_{\ell'm'}^* \rangle=C_\ell\ssp\delta^\mrm{K}_{\ell\ell'}\sp\delta^\mrm{K}_{mm'}$.
+Now, $a_{\ell m}$ with different $\ell$
+or $m$ may be correlated.
+
+We now apply the mask $\mathcal{W}(\n)$ to the number-count
+field
+$\dif N/\dif\Omega(\n)\to\mathcal{W}(\n)\dif N/\dif\Omega(\n)$.
+Denoting by $\tilde{a}_{\ell m}$
+and $\tilde{b}_{\ell m}$ the coefficients of the masked fields
+$\mathcal{W}(\n)\sp\dqso(\n)$ and $\mathcal{W}(\n)(\dkin\cdot\n)$,
+respectively, it can be shown using the properties of spherical
+harmonics that we now have a linear coupling of the
+underlying $a_{\ell m}$ and $b_{\ell m}$~\citep{1980lssu.book.....P}:
+\be
+    \tilde{a}\Z{\ell m}
+        =\sum_{\ell' m'} \mathcal{A}\Z{\ell m\ell'm'}\,\sp a\Z{\ell'm'},\qquad
+    \tilde{b}\Z{\ell m}
+        =\sum_{\ell' m'} \mathcal{B}\Z{\ell m\ell'm'}\,\sp b\Z{\ell'm'}.
+\ee
+Here $\mathcal{A}_{\ell m\ell' m'}$ is a harmonic kernel which is
+determined by the window function $\mathcal{W}(\n)$; for a general
+$\mathcal{W}(\n)=\sum_{\ell,m} \mathcal{W}_{\ell m}Y_{\ell m}(\n)$, it
+is given by~\citep{Hivon:2002jp}
+\bea
+    \mathcal{A}_{\ell_1 m_1 \ell_2 m_2}
+        &\equiv\sum_{\ell_3,m_3}\mathcal{W}_{\ell_3 m_3}\int\dif^2\n\ Y_{\ell_1 m_1}(\n)\, Y\Zu{*}_{\ell_2m_2}(\n)\, Y_{\ell_3m_3}(\n) \nonumber\\
+        &=(-1)^{m_2}\sum_{\ell_3,m_3}\sp \mathcal{W}\Z{\ell_3 m_3}
+            \bigg[\frac{(2\ell_1+1)(2\ell_2+1)(2\ell_3+1)}{4\pi}\bigg]^{1/2}\! \nonumber\\[2pt]
+        &\qquad\qquad\quad
+            \times
+            \begin{pmatrix}
+                \ell_1 & \ell_2 & \ell_3 \\
+                0 & 0 & 0
+            \end{pmatrix}
+            \begin{pmatrix}
+                \ell_1 & \ell_2 & \ell_3 \\
+                m_1 & -m_2 & m_3
+            \end{pmatrix},
+       \label{eqn:A-wigner}
+\eea
+where the arrays are Wigner $3j$ symbols,
+% \footnote{\url{https://dlmf.nist.gov/34.3}; see also \citet*{Varshalovich_book}.}
+coefficients that encode selection rules for the allowed combinations of $\ell$'s and $m$'s.
+Using that $\mathcal{A}_{\ell m\ell'm'}=\mathcal{A}_{\ell m\ell'm}\ssp\delta^\mrm{K}_{mm'}$ (by azimuthal symmetry), and
+$\mathcal{A}_{\ell m\ell'm'}^*=\mathcal{A}_{\ell m\ell'm'}$ (because $\mathcal{W}^*_{\ell0}=\mathcal{W}_{\ell0}$),
+we have
+% \bea
+%     \big\langle\tilde{a}^{\phantom{*}}\Z{\ell_1m_1}\tilde{a}\Z{\ell_2m_2}^*\big\rangle
+%         &=\sum_{\ell_1' \ell_2' m_1' m_2'} \mathcal{A}_{\ell_1m_1\ell_1'm_1'}\ssp \mathcal{A}_{\ell_2m_2\ell_2'm_2'}^*\ssp
+%             \langle a_{\ell_1'm_1'}\sp a^*_{\ell_2'm_2'}\rangle \nonumber\\
+%         &=\sum_{\ell_1' \ell_2' m_1' m_2'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{A}_{\ell_2m_2\ell_2'm_2}\ssp
+%             \delta_{m_1m_1'}\sp\delta_{m_2m_2'} \nonumber\\[-2pt]
+%             &\qquad\qquad\quad \times C_{\ell_1'}\sp\delta_{\ell_1'\ell_2'}\sp\delta_{m_1'm_2'} \nonumber\\
+%         &=\sum_{\ell_1' \ell_2' m_1'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{A}_{\ell_2m_2\ell_2'm_2}\ssp
+%             \delta_{m_1m_1'}\sp\delta_{m_2m_1'}\sp
+%             C_{\ell_1'}\sp\delta_{\ell_1'\ell_2'} \nonumber\\
+%         &=\sum_{\ell_1' m_1'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{A}_{\ell_2m_2\ell_1'm_2}\ssp
+%             \delta_{m_1m_1'}\sp\delta_{m_2m_1'}\sp
+%             C_{\ell_1'} \nonumber\\
+%         &=\sum_{\ell_1'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{A}_{\ell_2m_2\ell_1'm_2}\ssp
+%             \delta_{m_1m_2}\sp
+%             C_{\ell_1'} \nonumber\\
+%         &=\delta_{m_1m_2}\sum_{\ell} \mathcal{A}_{\ell_1m_1\ell m_1}\ssp \mathcal{A}_{\ell_2m_2\ell m_1}\sp C_{\ell}
+% \eea
+for two arbitrary fields, each with azimuthally-symmetric masks (which need not be identical),
+\bea
+    \big\langle\tilde{a}^{\phantom{*}}\Z{\ell_1m_1}\tilde{b}\Z{\ell_2m_2}^*\big\rangle
+        &=\sum_{\ell_1',\ell_2',m_1',m_2'} \mathcal{A}_{\ell_1m_1\ell_1'm_1'}\ssp \mathcal{B}_{\ell_2m_2\ell_2'm_2'}^*\ssp
+            \big\langle a_{\ell_1'm_1'}\sp b^*_{\ell_2'm_2'}\big\rangle \nonumber\\
+        % &=\sum_{\ell_1' \ell_2' m_1' m_2'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{B}_{\ell_2m_2\ell_2'm_2}\ssp
+        %     \delta_{m_1m_1'}\sp\delta_{m_2m_2'} \nonumber\\[-2pt]
+        %     &\qquad\qquad\quad \times C^{ab}_{\ell_1'}\sp\delta_{\ell_1'\ell_2'}\sp\delta_{m_1'm_2'} \nonumber\\
+        % &=\sum_{\ell_1' \ell_2' m_1'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{B}_{\ell_2m_2\ell_2'm_2}\ssp
+        %     \delta_{m_1m_1'}\sp\delta_{m_2m_1'}\sp
+        %     C^{ab}_{\ell_1'}\sp\delta_{\ell_1'\ell_2'} \nonumber\\
+        % &=\sum_{\ell_1' m_1'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{B}_{\ell_2m_2\ell_1'm_2}\ssp
+        %     \delta_{m_1m_1'}\sp\delta_{m_2m_1'}\sp
+        %     C^{ab}_{\ell_1'} \nonumber\\
+        % &=\sum_{\ell_1'} \mathcal{A}_{\ell_1m_1\ell_1'm_1}\ssp \mathcal{B}_{\ell_2m_2\ell_1'm_2}\ssp
+        %     \delta_{m_1m_2}\sp
+        %     C^{ab}_{\ell_1'} \nonumber\\
+        &=\delta^\mrm{K}_{m_1m_2}\sum_{\ell} \mathcal{A}_{\ell_1m_1\ell m_1}\ssp
+            \mathcal{B}_{\ell_2m_2\ell m_1}\sp C_{\ell}.
+\eea
+
+In our case -- with $\tilde{a}_{\ell m}$ corresponding to the clustering field and $\tilde{b}_{\ell m}$
+corresponding to the kinematic field -- we only need to consider $\ell_1=\ell_2=1$, with identical mask 
+applied to both fields ($\mathcal{A}=\mathcal{B}$).
+In terms of the underlying power spectra we have
+\begin{subequations}\label{eqn:power-masked}
+\bea
+    \big\langle\tilde{a}^{\phantom{*}}\Z{1m}\tilde{b}\Z{1m'}^*\big\rangle
+        &=\delta^\mrm{K}_{mm'}\sp|\mathcal{A}_{1m1m}|^2\sp C\Zu{\ssp\kin\clu}_1, \\[5pt]
+    \big\langle\tilde{a}^{\phantom{*}}\Z{1m}\tilde{a}\Z{1m'}^*\big\rangle
+        &=\delta^\mrm{K}_{mm'}\sum_{\ell\ \text{odd}} |\mathcal{A}_{1m\ell m}|^2 C\Zu{\ssp\clu\clu}_{\ell}, \\
+    \big\langle\tilde{b}^{\phantom{*}}\Z{1m}\tilde{b}\Z{1m'}^*\big\rangle
+        &=\delta^\mrm{K}_{mm'}\sp|\mathcal{A}_{1m1m}|^2\sp C\Zu{\ssp\kin\kin}_1,
+\eea
+\end{subequations}
+where only odd $\ell$ need to be considered because of the selection rules of Wigner $3j$ symbols in equation~\eqref{eqn:A-wigner}.
+Note that no off-diagonal entries are induced in the
+covariance matrix in harmonic space. However, in Cartesian space the covariance matrix
+is no longer proportional to the identity matrix (although it remains diagonal).
+Though we will no longer have spherical symmetry we still have azimuthal symmetry.
+
+
+For $b_\mrm{cut}=\ang{30}$, the first three coupling coefficients are
+$|\mathcal{A}_{1010}|^2\approx 0.76563$,
+$|\mathcal{A}_{1030}|^2\approx 0.046143$, and
+$|\mathcal{A}_{1050}|^2\approx 0.034272$.
+% $|\mathcal{A}_{1070}|^2\approx 0.0050754$, and
+% $|\mathcal{A}_{1090}|^2\approx 0.0016420$.
+Also
+$|\mathcal{A}_{1111}|^2\approx 0.0976563$,
+$|\mathcal{A}_{1131}|^2\approx 0.155731$, and
+$|\mathcal{A}_{1151}|^2\approx 0.00955939$.
+% $|\mathcal{A}_{1171}|^2\approx 0.00857833$, and
+% $|\mathcal{A}_{1191}|^2\approx 0.0141864$.
+These values indicate a substantial loss of power for the $x$- and $y$-components of the dipole.
+
+
+
+% \begin{table}
+% \centering
+% \caption{Harmonic mode-coupling coefficients $\mathcal{A}_{1m\ell m}$ for galactic plane cuts of
+% two different sizes. Note that for even $\ell$, $\mathcal{A}_{1m\ell m}=0$.}
+% \setlength{\tabcolsep}{8pt}
+% \begin{tabular}{ cllll }
+% %% \begin{tabular}{ |c|l|l|l|l| }
+% %% \hline
+% %% \hline
+% \toprule
+% & \multicolumn{2}{c}{$b_\mrm{cut}=\ang{25}$} & \multicolumn{2}{c}{$b_\mrm{cut}=\ang{30}$} \\
+% \cmidrule(lr){2-3}
+% \cmidrule(lr){4-5}
+% $\ell$ & \quad$m=0$ & \quad$m=\pm1$ & \quad$m=0$ & \quad$m=\pm1$ \\
+% \midrule
+% 1 & $\phantom{-}0.92452$ & $\phantom{-}0.40381$ & $\phantom{-}0.875$ & $\phantom{-}0.3125$ \\
+% 3 & $\phantom{-}0.14206$ & $\phantom{-}0.40008$  & $\phantom{-}0.21481$ & $\phantom{-}0.39463$ \\
+% 5 & $-0.15104$ & $-0.18404$ & $-0.18513$ & $-0.097772$ \\
+% 7 & $\phantom{-}0.10447$ & $-0.0022393$ & $\phantom{-}0.071242$ & $-0.092619$ \\
+% 9 & $-0.030757$ & $\phantom{-}0.10174$ & $\phantom{-}0.040522$ & $\phantom{-}0.11911$ \\
+% 11& $-0.032269$ & $-0.10274$ & $-0.080434$ & $-0.034391$ \\
+% 13& $\phantom{-}0.057766$ & $\phantom{-}0.039514$ & $\phantom{-}0.042809$ & $-0.054173$ \\
+% %% \hline
+% %% \hline
+% \bottomrule
+% \end{tabular}
+% % and that because $\mathcal{A}_{1-1\ell-1}=\mathcal{A}_{11\ell1}$ we do not report the $m=-1$ values.}
+% % Here we report five sig figs
+% \end{table}
+
+
+
+
+
+% The particular kernel for our mask is
+% \bea
+%     \mathcal{A}_{1 m \ell m}
+%         &=(-1)^{m}\sum_{\ell'=\ell\pm1}\sp \mathcal{W}\Z{\ell'0}
+%             \bigg[\frac{3(2\ell+1)(2\ell'+1)}{4\pi}\bigg]^{1/2} \nonumber\\[-1pt]
+%             &\qquad\qquad\qquad
+%             \times
+%             \begin{pmatrix}
+%                 1 & \ell & \ell' \\
+%                 0 & 0 & 0
+%             \end{pmatrix}
+%             \begin{pmatrix}
+%                 1 & \ell & \ell' \\
+%                 m & -m & 0
+%             \end{pmatrix}.
+% \eea
+% For a double polar cap window function we have $W_{\ell m}=0$ if $m\neq0$, and 
+% \cite{Dahlen:2007sv}
+% \bea
+%     \mathcal{W}_{\ell 0}
+%         &=\int\dif^2\n\ \mathcal{W}(\n)\sp Y_{\ell m}^*(\n) \nonumber\\
+%         &=2
+%         \begin{cases}
+%             \sqrt{\dfrac{\pi}{2\ell+1}}\,
+%             \big[\mathcal{L}\Z{\ell-1}(\mu_{\rm cut})
+%                 -\mathcal{L}\Z{\ell+1}(\mu_{\rm cut})\big], & \text{$\ell$ is even}, \\[7pt]
+%             0, & \text{$\ell$ is odd},
+%         \end{cases}
+% \eea
+% with $\mathcal{L}\Z{-1}(\mu)\equiv1$ and
+% $\mu_{\rm cut}=\cos(\pi/2-|b_{\rm cut}|)$. (The factor of two is because $\mathcal{W}(\n)$
+% is boxcar function, i.e.~it consists of two Heaviside step functions; the odd moments
+% are zero because of azimuthal symmetry in $\mathcal{W}(\n)$.)
+
+
+\subsection{Dipole dispersions}\label{app:stats-cut}
+We now need to relate the statistics in harmonic space back to the statistics
+in Cartesian space. To facilitate this it will be
+convenient to define the complex-valued vectors
+$\bm{\tilde{a}}\Z1\equiv(\tilde{a}_{1-1},\tilde{a}_{11},\tilde{a}_{10})\Zu\T$
+and $\bm{\tilde{b}}\Z1\equiv(\tilde{b}_{1-1},\tilde{b}_{11},\tilde{b}_{10})\Zu\T$.
+We then have the following linear relation between the Cartesian- and harmonic-space dipoles:
+\be
+    \dint=\sqrt{\frac{3}{4\pi}}\,\mat{U}^\dagger\ssp\bm{\tilde{a}}\Z1, \quad
+    \dkin=\sqrt{\frac{3}{4\pi}}\,\mat{U}^\dagger\ssp\bm{\tilde{b}}\Z1,
+    %% \bm{\tilde{a}}\Z1=\sqrt{\frac{4\pi}{3}}\, \mat{U}\ssp\dint\,, \quad
+    %% \bm{b}\Z1=\sqrt{\frac{4\pi}{3}}\, \mat{U}\ssp\dkin\,, \quad
+    %% \mathbf{U}
+    %% =
+    %% \begin{pmatrix}
+    %%     \!\phantom{-}1/\sqrt{\ssp2}    &   \im/\sqrt{\ssp2}  &   0   \\[2pt]
+    %%     \!          -1/\sqrt{\ssp2}    &   \im/\sqrt{\ssp2}  &   0   \\[2pt]
+    %%     \!0           &       0        &   1
+    %% \end{pmatrix},
+\ee
+where the tilde indicates coefficients of masked fields, and $\mat{U}$ is given by equation~\eqref{eq:U}.
+With these relations we can express the covariances of these vectors,
+$\langle\mbf{d}_\mrm{X}^{\phantom\T}\mbf{d}_\mrm{Y}^\T\rangle$, in terms of the
+underlying power spectra:
+%% How does the analysis leading to equation~\eqref{eqn:p-Dtot-nocut} for $p(\Dtot)$ change with the
+%% inclusion of this mask? This is best understood in terms of the covariance matrix, which
+%% we recall can be written in block-matrix form with the $3\times3$ matrices
+\begin{subequations}
+\bea
+    \big\langle\dkin\Zu{\phantom\T}\dkin\Zu\T\big\rangle
+        %% &=\frac{3}{4\pi}\,\big\langle(\mathbf{U}^\dagger\bm{b}_1)(\mathbf{U}^\dagger\bm{b}_1)\Zu\dagger\big\rangle 
+        &=\frac{3}{4\pi}\,\mathbf{U}^\dagger\langle\bm{\tilde{b}}_1^{\phantom\dagger}\bm{\tilde{b}}_1^\dagger\rangle\mathbf{U} \nonumber\\[-6pt]
+        %% =\frac{3}{4\pi}\,{\rm diag}\big(\sp C^{bb}_1,\sp\,C^{bb}_1,\sp\,C^{bb}_1\big), \\[4pt]
+        %% =\frac{3}{4\pi}\,C\Zu{\ssp\kin\kin}_1\,\mat{I}_3, \\[4pt]
+        &={\rm diag}\big(\sp|\mathcal{A}_{1111}|^2,\sp\,|\mathcal{A}_{1111}|^2,\sp\,|\mathcal{A}_{1010}|^2\big)\sp\frac{3C_1\Zu{\ssp\kin\kin}}{4\pi}, \\
+    \big\langle\dkin\Zu{\phantom\T}\dint\Zu\T\big\rangle
+        %% &=\frac{3}{4\pi}\,\big\langle(\mathbf{U}^\dagger\bm{b}_1)(\mathbf{U}^\dagger\bm{\tilde{a}}_1)\Zu\dagger\big\rangle
+        &=\frac{3}{4\pi}\,\mathbf{U}^\dagger\langle\bm{\tilde{b}}_1^{\phantom\dagger}\bm{\tilde{a}}_1^\dagger\rangle\mathbf{U} \nonumber\\[-6pt]
+        &={\rm diag}\big(\sp|\mathcal{A}_{1111}|^2,\sp\,|\mathcal{A}_{1111}|^2,\sp\,|\mathcal{A}_{1010}|^2\big)\sp\frac{3C_1\Zu{\ssp\kin\clu}}{4\pi}, \\
+    \big\langle\dint\Zu{\phantom\T}\dint\Zu\T\big\rangle
+        %% &=\frac{3}{4\pi}\,\big\langle(\mathbf{U}^\dagger\bm{\tilde{a}}_1)(\mathbf{U}^\dagger\bm{\tilde{a}}_1)\Zu\dagger\big\rangle
+        &=\frac{3}{4\pi}\,\mat{U}^\dagger\langle\bm{\tilde{a}}_1^{\phantom\dagger}\bm{\tilde{a}}_1^\dagger\rangle\mat{U} \nonumber\\[-4pt]
+        &=\sum_{\ell\ \text{odd}}
+         {\rm diag}\big(\sp|\mathcal{A}_{11\ell1}|^2,\sp\,|\mathcal{A}_{11\ell1}|^2,\sp\,|\mathcal{A}_{10\ell0}|^2\big)\sp\frac{3C_\ell\Zu{\ssp\clu\clu}}{4\pi},
+\eea
+\end{subequations}
+The block-matrix form of the $6\times6$ cut-sky covariance~\eqref{eqn:cov-6x6-cutsky} is constructed
+out of these $3\times3$ covariances.
+The first matrix $\langle\dkin\Zu{\phantom\T}\dkin\Zu\T\rangle\propto\mathbf{I}_3$ is unchanged from
+before; the second and third matrices are diagonal but have different dispersions from before. For instance,
+the dispersion of the $z$-component is proportional to
+$\langle|\tilde{a}\Z{10}|^2\rangle=\sum_\ell|\mathcal{A}_{10\ell0}|^2\sp C^{}_\ell$, while the $x$- and
+$y$-components both have dispersions proportional to $\langle|\tilde{a}\Z{11}|^2\rangle=\sum_\ell|\mathcal{A}_{11\ell1}|^2\sp C^{}_\ell$,
+with $\mathcal{A}_{11\ell1}\neq \mathcal{A}_{10\ell0}$.
+
+We can relate the harmonic form to the dispersions in the cut-sky covariance matrix~\eqref{eqn:cov-6x6-cutsky}
+as follows. Again, because of azimuthal symmetry, we recall that the dispersions for the $x$- and
+$y$-components are equal (though modified from before),
+e.g.~$\sigma^2_{\clu_x\clu_x}=\sigma^2_{\clu_y\clu_y}$, $\sigma^2_{\kin_x\clu_x}=\sigma^2_{\kin_y\clu_y}$, etc.
+The new dispersions, in terms of the spectra, now read
+% \begin{subequations}
+% \bea
+%     \sigma\Zu2\Z{\kin_x\kin_x}
+%         &=\frac{3}{4\pi}\ssp|\mathcal{A}_{1111}|^2\ssp C\Zu{\ssp\kin\kin}_1,\quad\:
+%     \sigma\Zu2\Z{\clu_x\clu_x}
+%         =\frac{3}{4\pi}\sum_{\ell\ \text{odd}}|\mathcal{A}_{11\ell1}|^2\ssp C\Zu{\ssp\clu\clu}_\ell,\quad\:
+%     \sigma\Zu2\Z{\kin_x\clu_x}
+%         =\frac{3}{4\pi}\ssp|\mathcal{A}_{1111}|^2\ssp C\Zu{\ssp\kin\clu}_1, \\
+%         %% =\mathcal{A}_{1111}\,\sigkinint^2, \\
+%     \sigma\Zu2\Z{\kin_z\kin_z}
+%         &=\frac{3}{4\pi}\ssp|\mathcal{A}_{1010}|^2\ssp C\Zu{\ssp\kin\kin}_1,\quad\:
+%     \sigma\Zu2\Z{\clu_z\clu_z}
+%         =\frac{3}{4\pi}\sum_{\ell\ \text{odd}}|\mathcal{A}_{10\ell0}|^2\ssp C\Zu{\ssp\clu\clu}_\ell,\quad\:
+%     \sigma\Zu2\Z{\kin_z\clu_z}
+%         =\frac{3}{4\pi}\ssp|\mathcal{A}_{1010}|^2\ssp C\Zu{\ssp\kin\clu}_1,
+%         %% =\mathcal{A}_{1010}\,\sigkinint^2, 
+% \eea
+% \end{subequations}
+\bea
+    \sigma\Zu2\Z{\kin_x\kin_x}
+        &=\frac{3}{4\pi}\ssp|\mathcal{A}_{1111}|^2\ssp C\Zu{\ssp\kin\kin}_1,
+    &&\sigma\Zu2\Z{\kin_z\kin_z}
+        =\frac{3}{4\pi}\ssp|\mathcal{A}_{1010}|^2\ssp C\Zu{\ssp\kin\kin}_1, \nonumber\\
+    \sigma\Zu2\Z{\clu_x\clu_x}
+        &=\frac{3}{4\pi}\sum_{\ell\ \text{odd}}|\mathcal{A}_{11\ell1}|^2\ssp C\Zu{\ssp\clu\clu}_\ell,
+    &&\sigma\Zu2\Z{\clu_z\clu_z}
+        =\frac{3}{4\pi}\sum_{\ell\ \text{odd}}|\mathcal{A}_{10\ell0}|^2\ssp C\Zu{\ssp\clu\clu}_\ell, \nonumber\\
+    \sigma\Zu2\Z{\kin_x\clu_x}
+        &=\frac{3}{4\pi}\ssp|\mathcal{A}_{1111}|^2\ssp C\Zu{\ssp\kin\clu}_1,
+    &&\sigma\Zu2\Z{\kin_z\clu_z}
+        =\frac{3}{4\pi}\ssp|\mathcal{A}_{1010}|^2\ssp C\Zu{\ssp\kin\clu}_1, \nonumber
+\eea
+where $C\Zu{\mrm{XY}}_\ell$ is given by equation~\eqref{eqn:Cab-ell}.
+The dispersions related to the total dipole are given in terms of these by
+equations~\eqref{eqn:Delta_x} and \eqref{eqn:Delta_z}.
+For \LCDM, though we have $C\Zu{\ssp\clu\clu}_\ell>C\Zu{\ssp\clu\clu}_1$, for $\ell\geq2$, the
+leakage of power into the dipole is not enough to overcome the loss of power
+across all $\ell$, e.g.~$\sigma^2_{\kin_z\kin_z}=|A_{1010}|^2\sigkin^2\approx0.77\sigkin^2$, a
+$23\%$ loss of kinematic dipole power.
+Because of this we find that we only need to sum up the first few odd multipoles to attain
+convergence (here we take $\ell_\mrm{max}=9$).
+
+
+
+

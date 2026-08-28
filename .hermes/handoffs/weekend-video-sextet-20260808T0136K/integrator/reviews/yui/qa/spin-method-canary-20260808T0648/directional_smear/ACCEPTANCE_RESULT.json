@@ -1,0 +1,16 @@
+{
+  "test": "directional-smear acceptance (spin pass-13 guard; operational transform = horizontal box smear width 7)",
+  "guard_source": "lane-spin-parity/worker-yui/DIRECTIONAL_SMEAR_GUARD_PASS13.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T09:14:00+09:00",
+  "method": "width-7 horizontal box convolution (width-13 characterization) on the 11 encoded state frames; human full-sheet review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 RESULT HELD capsule readable on 11/11 smeared states (3px border + bold text survive)",
+    "boundaries_primary": "PASS \u2014 headline boundary copy + capsule legible",
+    "no_distinction_in_thin_edges": "PASS \u2014 boxes use 2px+ borders, spirals 3.2px strokes; no 1px separators or narrow-glyph-spacing distinctions exist",
+    "labels_arrows_positions": "PASS \u2014 readout branches, arrows, and stable positions remain distinct",
+    "characterization_w13": "generated, reviewed as characterization only"
+  },
+  "verdict": "PASS",
+  "evidence": "directional_smear/contact_sheet_smear_w7.png, contact_sheet_smear_w13.png"
+}

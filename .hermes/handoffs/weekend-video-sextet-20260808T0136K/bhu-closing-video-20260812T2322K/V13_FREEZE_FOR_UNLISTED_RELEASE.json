@@ -1,0 +1,710 @@
+{
+  "status": "FROZEN_V13_READY_FOR_GATED_UNLISTED_RELEASE",
+  "created_at_utc": "2026-08-13T09:41:41.321864+00:00",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v13-local-20260813T0932Z.mp4",
+    "sha256": "060764c04ba095637cb484237064d501e097b1c326d7bf8b389a22292f96d9c2",
+    "bytes": 14795951,
+    "duration_seconds": 402.0,
+    "frame_count": 12060,
+    "resolution": "1920x1080",
+    "fps": 30,
+    "streams": [
+      "h264 video",
+      "aac mono audio",
+      "mov_text eng default subtitle"
+    ],
+    "byte_identical_to_v12_local_candidate": true
+  },
+  "pre_render_three_seat_gate": {
+    "status": "PASS_V13_PRE_RENDER_THREE_SEAT_EXACT_HASH_GATE",
+    "receipt_sha256": "bc67fc5b6c4dbe7c015cea4e6c00d2e973f42bf36dd478b84e115b288e697bea",
+    "seats": {
+      "lana": {
+        "verdict": "PASS",
+        "marker": "LANA_V13_EXACT_HASH_PASS",
+        "receipt": "LANA_GATE_V13.md",
+        "sha256": "f4e1c44dc180d5c4864feaa970437b5100c0da2836ce051ad4c014bd70474892"
+      },
+      "goru": {
+        "verdict": "PASS",
+        "marker": "GORU_V13_EXACT_HASH_PASS",
+        "receipt": "GORU_GATE_V13.md",
+        "sha256": "5a2abe3fd56baab274dde4f9beb7f70481e467e8c7a92e3ead8ae2030b855623"
+      },
+      "kun": {
+        "verdict": "PASS",
+        "marker": "KUN_V13_EXACT_HASH_PASS",
+        "receipt": "KUN_GATE_V13.md",
+        "sha256": "897aa8f98d3440f0cfa488a9c12d1061f2e09c691a3f12f388c7859e87b05d85"
+      }
+    },
+    "any_hold_blocks": true,
+    "prior_version_verdicts_carried_forward": false
+  },
+  "local_qa": {
+    "encoded_qa_status": "PASS_V13_ENCODED_QA_READY_FOR_FREEZE",
+    "checks": "45/45",
+    "encoded_qa_sha256": "051fb8c2643902a87d5e493fbd31eb13753f93b87bfb594cc5b4e5aef24c466f",
+    "rendered_text_projection": "PASS_EXACT_CLOSED_WORLD_RENDERED_TEXT_PROJECTION",
+    "decoded_visual_preflight": "PASS_V13_DECODED_FRAME_VISUAL_PREFLIGHT",
+    "full_mp4_decode": "PASS"
+  },
+  "decoded_delivered_audio_wpm": {
+    "method": {
+      "audio_source": "AAC stream decoded from exact delivered MP4 to 48 kHz mono signed 16-bit PCM",
+      "card_slice_boundaries": "master_start_seconds/master_end_seconds locate each card only; planned duration is not the WPM denominator",
+      "window_seconds": 0.01,
+      "active_threshold_dbfs_rms": -50.0,
+      "speech_span": "first active 10 ms window start through last active 10 ms window end, including internal spoken pauses",
+      "word_count": "frozen narration Unicode word count with dash compounds split, matching the audio builder",
+      "pass_band_wpm": [
+        135.0,
+        150.0
+      ]
+    },
+    "per_card": [
+      {
+        "card_id": "01",
+        "word_count_from_frozen_narration": 80,
+        "card_slice_master_seconds": [
+          0.0,
+          36.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 33.87,
+        "decoded_speech_envelope_span_seconds": 33.77,
+        "decoded_audio_wpm": 142.13799230085874,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "02",
+        "word_count_from_frozen_narration": 82,
+        "card_slice_master_seconds": [
+          36.0,
+          74.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 34.73,
+        "decoded_speech_envelope_span_seconds": 34.63,
+        "decoded_audio_wpm": 142.073346809125,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "03",
+        "word_count_from_frozen_narration": 88,
+        "card_slice_master_seconds": [
+          74.0,
+          116.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 37.27,
+        "decoded_speech_envelope_span_seconds": 37.17,
+        "decoded_audio_wpm": 142.0500403551251,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "04",
+        "word_count_from_frozen_narration": 101,
+        "card_slice_master_seconds": [
+          116.0,
+          163.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 42.75,
+        "decoded_speech_envelope_span_seconds": 42.65,
+        "decoded_audio_wpm": 142.08675263774913,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "05",
+        "word_count_from_frozen_narration": 85,
+        "card_slice_master_seconds": [
+          163.0,
+          207.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 35.98,
+        "decoded_speech_envelope_span_seconds": 35.88,
+        "decoded_audio_wpm": 142.14046822742475,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "06",
+        "word_count_from_frozen_narration": 60,
+        "card_slice_master_seconds": [
+          207.0,
+          236.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 25.42,
+        "decoded_speech_envelope_span_seconds": 25.32,
+        "decoded_audio_wpm": 142.18009478672985,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "07",
+        "word_count_from_frozen_narration": 68,
+        "card_slice_master_seconds": [
+          236.0,
+          268.0
+        ],
+        "first_active_card_seconds": 0.11,
+        "last_active_end_card_seconds": 28.76,
+        "decoded_speech_envelope_span_seconds": 28.65,
+        "decoded_audio_wpm": 142.4083769633508,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "08",
+        "word_count_from_frozen_narration": 71,
+        "card_slice_master_seconds": [
+          268.0,
+          302.0
+        ],
+        "first_active_card_seconds": 0.11,
+        "last_active_end_card_seconds": 30.06,
+        "decoded_speech_envelope_span_seconds": 29.95,
+        "decoded_audio_wpm": 142.23706176961602,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "09",
+        "word_count_from_frozen_narration": 61,
+        "card_slice_master_seconds": [
+          302.0,
+          332.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 25.81,
+        "decoded_speech_envelope_span_seconds": 25.71,
+        "decoded_audio_wpm": 142.35705950991832,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "10",
+        "word_count_from_frozen_narration": 66,
+        "card_slice_master_seconds": [
+          332.0,
+          365.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 27.98,
+        "decoded_speech_envelope_span_seconds": 27.88,
+        "decoded_audio_wpm": 142.03730272596843,
+        "inside_135_150_band": true
+      },
+      {
+        "card_id": "11",
+        "word_count_from_frozen_narration": 69,
+        "card_slice_master_seconds": [
+          365.0,
+          402.0
+        ],
+        "first_active_card_seconds": 0.1,
+        "last_active_end_card_seconds": 29.21,
+        "decoded_speech_envelope_span_seconds": 29.11,
+        "decoded_audio_wpm": 142.21916867055995,
+        "inside_135_150_band": true
+      }
+    ],
+    "minimum_wpm": 142.03730272596843,
+    "maximum_wpm": 142.4083769633508,
+    "all_inside_135_150": true
+  },
+  "caption_gate": {
+    "embedded_stream_present": true,
+    "embedded_stream_codec": "mov_text",
+    "embedded_stream_default_english": true,
+    "embedded_stream_extracted": true,
+    "cue_count": 64,
+    "exact_source_payloads_and_timings": true,
+    "srt_sidecar_sha256": "8966f66a3d74c9b0e0c80c7d1aff9651bf6a5ee7267d72347f75f86d3ad7d8d5",
+    "vtt_sidecar_sha256": "e893244f46e9bd377defc81d4afeb37a32a211adafee776103baa32790874f13",
+    "youtube_serving_state": "NOT_YET_APPLICABLE_AND_MUST_BE_VERIFIED_AFTER_CAPTIONS_INSERT"
+  },
+  "repair_a": {
+    "exact_value": "no 95.4% endpoint, arrow, tick, bracket, marker, whisker, shaded boundary, axis-aligned glyph, or scaled terminus",
+    "scaled_terminus_literal_present": true,
+    "decoded_card_05_visual_preflight": "PASS_OPEN_FADE_NO_FORBIDDEN_95_4_TERMINUS"
+  },
+  "repair_b": {
+    "conditional_role_exact": {
+      "role": "illustration_tag",
+      "text": "ILLUSTRATION",
+      "permitted_when": "QA judges a generated asset could be read as an observation"
+    },
+    "condition_triggered": false,
+    "judgment": "Used generated layers are stylized non-quantitative metaphor/illustration and are not mistakable for observations."
+  },
+  "generation": {
+    "call_count": 10,
+    "generated_video_calls": 0,
+    "monetary_cost": {
+      "amount": null,
+      "currency": null,
+      "status": "NOT_REPORTED_BY_TOOL_DO_NOT_INVENT"
+    },
+    "final_asset_usage_by_card": {
+      "01": [],
+      "02": [
+        "card02_nested.png",
+        "card02_family.png",
+        "card02_fingerprints.png",
+        "card02_bounce.png",
+        "card02_parent_top.png",
+        "card02_child_top.png"
+      ],
+      "03": [],
+      "04": [],
+      "05": [],
+      "06": [
+        "card06_fork_background.png"
+      ],
+      "07": [
+        "card07_galaxies.png"
+      ],
+      "08": [
+        "card08_photos.png",
+        "card08_bubble.png"
+      ],
+      "09": [
+        "card09_final.png"
+      ],
+      "10": [],
+      "11": []
+    },
+    "quantitative_cards_with_generated_assets": [],
+    "generation_closed": true
+  },
+  "frozen_files": [
+    {
+      "role": "redesign_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/LANA_VISUAL_REDESIGN_SPEC.md",
+      "bytes": 17269,
+      "sha256": "cf9cefe8a0c07f8cc960388004a20d4518a7cf7fbcea5ff688825ffdc47bfd22"
+    },
+    {
+      "role": "no_terminus_semantic_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/DETERMINISTIC_DIAGRAM_SPEC_V8.md",
+      "bytes": 5049,
+      "sha256": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+    },
+    {
+      "role": "nine_term_enumeration_supporting_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/KUN_GATE_V8.md",
+      "bytes": 5078,
+      "sha256": "c58c0a70a96f0363cf47f36cff6a5bd0541391bbe3621113b9fa4dd3b1aaaa9a"
+    },
+    {
+      "role": "direct_exact_repair_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/V13_REPAIR_A_EXACT_AUTHORITY.md",
+      "bytes": 869,
+      "sha256": "35e5fa1e90f8d4e5544b3aab4172e6a894b3c5a5df31d9e954a741991484056b"
+    },
+    {
+      "role": "base_frozen_narration_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/NARRATION_DRAFT_V11.md",
+      "bytes": 7318,
+      "sha256": "027a6e17fcb3c7d3708177b8fa30078735c11cc4157f6b44edfacceef7bb8535"
+    },
+    {
+      "role": "base_frozen_storyboard_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/STORYBOARD_DRAFT_V11.json",
+      "bytes": 18354,
+      "sha256": "b0ec6a53061ccea4196df3036bd0ad59e34ef50814b92dd3ec16cf0e4794f7c4"
+    },
+    {
+      "role": "v13_exact_reused_narration",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/NARRATION_DRAFT_V12.md",
+      "bytes": 6372,
+      "sha256": "178ffe4ada125668c8ff84bc156adee7820954591f9781adb7101aac562d80da"
+    },
+    {
+      "role": "v12_predecessor_storyboard",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/STORYBOARD_DRAFT_V12.json",
+      "bytes": 26017,
+      "sha256": "9d55257fe62c7a82d2fe32f424e896ce079393219c08aed6663b6c90c3539399"
+    },
+    {
+      "role": "v12_predecessor_text_contract",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/V12_VISUAL_TEXT_CONTRACT.json",
+      "bytes": 7332,
+      "sha256": "c91662e15de095161e84d128683dd69150c8a73b4cbb6f303dda8f79c943999c"
+    },
+    {
+      "role": "v13_exact_storyboard_and_render_contract",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/STORYBOARD_DRAFT_V13.json",
+      "bytes": 26168,
+      "sha256": "4df53ed7d5f0e38dfe54570f7761bb9e6affe4dd3a686e66f3da852074fad817"
+    },
+    {
+      "role": "v13_closed_world_viewer_text_contract",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/V13_VISUAL_TEXT_CONTRACT.json",
+      "bytes": 7550,
+      "sha256": "c7557b98853655355a5ce96daf27e1d385c561db5657309dfa3bbc696e551361"
+    },
+    {
+      "role": "v13_source_materialization_receipt",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/V13_CONTRACT_REPAIR_RECEIPT.json",
+      "bytes": 5171,
+      "sha256": "2ae7114a45f5dd9a5aeecc45719a2c2ab25d5637df049b6f3fcc6dd30228d339"
+    },
+    {
+      "role": "v13_pre_render_gate_brief",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/V13_PRE_RENDER_THREE_SEAT_GATE_BRIEF.md",
+      "bytes": 4443,
+      "sha256": "561aef5d168fe6cd3424ee9a2f27064ea066a65f8c81b0117641a89b59a0414c"
+    },
+    {
+      "role": "lana_exact_current_pre_render_pass",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/LANA_GATE_V13.md",
+      "bytes": 4811,
+      "sha256": "f4e1c44dc180d5c4864feaa970437b5100c0da2836ce051ad4c014bd70474892"
+    },
+    {
+      "role": "goru_exact_current_pre_render_pass",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/GORU_GATE_V13.md",
+      "bytes": 2089,
+      "sha256": "5a2abe3fd56baab274dde4f9beb7f70481e467e8c7a92e3ead8ae2030b855623"
+    },
+    {
+      "role": "kun_exact_current_pre_render_pass",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/KUN_GATE_V13.md",
+      "bytes": 4114,
+      "sha256": "897aa8f98d3440f0cfa488a9c12d1061f2e09c691a3f12f388c7859e87b05d85"
+    },
+    {
+      "role": "three_seat_pre_render_gate_receipt",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-closing-video-20260812T2322K/V13_PRE_RENDER_GATE_RECEIPT.json",
+      "bytes": 1920,
+      "sha256": "bc67fc5b6c4dbe7c015cea4e6c00d2e973f42bf36dd478b84e115b288e697bea"
+    },
+    {
+      "role": "v13_source_builder",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/build_v13_contract_sources.py",
+      "bytes": 8261,
+      "sha256": "6e9057619a3c430cbe16deebc35d4efd206b2fc67037ed74e71b99afed9bb1ca"
+    },
+    {
+      "role": "v13_contract_regression_test",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/test_v13_contract_repairs.py",
+      "bytes": 1782,
+      "sha256": "4324e9078bc8009f5499d683f89ec6d616cef73b3163b6536a3e7087e9b015aa"
+    },
+    {
+      "role": "v13_renderer",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/render_v13.py",
+      "bytes": 43174,
+      "sha256": "d085c547833bb370eb48dd009467131c39ab30a53e1e619291bb90cd3448310b"
+    },
+    {
+      "role": "v13_encoded_qa_program",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa_v13.py",
+      "bytes": 23994,
+      "sha256": "8e2c127a447f84e542199c3688f264894cd1a6532e665837e311402fbc94e480"
+    },
+    {
+      "role": "v13_closed_world_projection_program",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/audit_v13_rendered_text_projection.py",
+      "bytes": 4714,
+      "sha256": "2d1615a645ae4fda431f0469287519ca62495c0ded7511cbdf0ea6f800949d5d"
+    },
+    {
+      "role": "v13_closed_world_projection_result",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/V13_RENDERED_TEXT_PROJECTION_AUDIT.json",
+      "bytes": 7323,
+      "sha256": "ae5a5b62f735a959766f6ef005aeefedad184635b9f18fd4c983182d9d80fb06"
+    },
+    {
+      "role": "v13_decoded_visual_preflight",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/V13_DECODED_FRAME_VISUAL_PREFLIGHT.json",
+      "bytes": 2581,
+      "sha256": "93330e834836d8cd715219cb74cfc999f87eefcad8ab0d5b1b17d9ec97a8d1e2"
+    },
+    {
+      "role": "audio_timing_and_cue_authority",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/audio/timeline.json",
+      "bytes": 225516,
+      "sha256": "c30c93419f7f09402524444d4107a74f9be59e1299dec2c99f3b2d3e3950f6fe"
+    },
+    {
+      "role": "audio_master",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/audio/narration_master.wav",
+      "bytes": 38592044,
+      "sha256": "b65dd6bedfb4dd460ae386b1d4b0caecbcf8531be6501ea2496465efab56be0a"
+    },
+    {
+      "role": "exact_reused_source_srt",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/captions_v12.srt",
+      "bytes": 7012,
+      "sha256": "8966f66a3d74c9b0e0c80c7d1aff9651bf6a5ee7267d72347f75f86d3ad7d8d5"
+    },
+    {
+      "role": "exact_reused_source_vtt",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/captions_v12.vtt",
+      "bytes": 7020,
+      "sha256": "e893244f46e9bd377defc81d4afeb37a32a211adafee776103baa32790874f13"
+    },
+    {
+      "role": "closed_generation_attempt_and_spend_ledger",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/V12_GENERATION_SPEND_LEDGER.json",
+      "bytes": 18368,
+      "sha256": "65b465fcb225c8d0bdb3e7214324aaa08e800a9133abac2095670fdb24ec4489"
+    },
+    {
+      "role": "v13_render_manifest",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/render_manifest.json",
+      "bytes": 4565,
+      "sha256": "b09bf625a856e17ef3e849c895253752b93033cde6cd2b66a8ee5ac4e453b19a"
+    },
+    {
+      "role": "v13_encoded_qa_receipt_json",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa/V13_ENCODED_QA.json",
+      "bytes": 31071,
+      "sha256": "051fb8c2643902a87d5e493fbd31eb13753f93b87bfb594cc5b4e5aef24c466f"
+    },
+    {
+      "role": "v13_encoded_qa_receipt_md",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa/V13_ENCODED_QA.md",
+      "bytes": 2734,
+      "sha256": "a34f84eb8643b40e86f7b33a52a4bd2c3f7929c8af72aacd018f7198f99ead7a"
+    },
+    {
+      "role": "subtitle_extracted_from_v13_mp4_srt",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa/embedded_subtitle_extracted.srt",
+      "bytes": 7013,
+      "sha256": "fd1c690898683c0d2db20ce5de8cbfe51af8e279b8fcc9924352c8c494f8f887"
+    },
+    {
+      "role": "subtitle_extracted_from_v13_mp4_vtt",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa/embedded_subtitle_extracted.vtt",
+      "bytes": 6453,
+      "sha256": "a34ea6a4bfc00f538a069c23d9cb23add53ab0ae0ea246416d5f5eaee6698599"
+    },
+    {
+      "role": "audio_decoded_from_v13_mp4_pcm",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa/encoded_audio.wav",
+      "bytes": 38592590,
+      "sha256": "2d0b8f42ded5bf3d481f982c3313d1c0cd436e2350278b6c7be415fc59f22ae8"
+    },
+    {
+      "role": "decoded_v13_reviewer_contact_sheet",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/encoded_qa/encoded-contact-all11.png",
+      "bytes": 634232,
+      "sha256": "d0843c5b528d30aff87ee7cfff8f494e5392a01147cc16d8f12f6b2f2b429a46"
+    },
+    {
+      "role": "exact_v13_candidate_for_unlisted_release",
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v13-local-20260813T0932Z.mp4",
+      "bytes": 14795951,
+      "sha256": "060764c04ba095637cb484237064d501e097b1c326d7bf8b389a22292f96d9c2"
+    },
+    {
+      "role": "v13_delivery_srt_sidecar",
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v13-captions-20260813T0932Z.srt",
+      "bytes": 7012,
+      "sha256": "8966f66a3d74c9b0e0c80c7d1aff9651bf6a5ee7267d72347f75f86d3ad7d8d5"
+    },
+    {
+      "role": "v13_delivery_vtt_sidecar",
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v13-captions-20260813T0932Z.vtt",
+      "bytes": 7020,
+      "sha256": "e893244f46e9bd377defc81d4afeb37a32a211adafee776103baa32790874f13"
+    }
+  ],
+  "raw_generated_attempts": [
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card01-road-gate-r2-raw.png",
+      "bytes": 939402,
+      "sha256": "48e7a5433c552379a96a109a10be997755c736b4bf7b093254f66c813dd11d32"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card01-road-gate-raw.png",
+      "bytes": 901644,
+      "sha256": "be59af10e0a12d7705624d1cb8078b078aa2be9dfa22b0bac23c721b346059f9"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card02-bounce-spin-r2-raw.png",
+      "bytes": 455095,
+      "sha256": "00f5cfe6cb66b7065783699de280a1fe233662d2994e526cdcc8175740120b62"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card02-five-ideas-raw.png",
+      "bytes": 886375,
+      "sha256": "64f38318c307f156ca5601c1e8dae5412c75d6b21a675888e67c432977ebdc43"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card03-dartboard-raw.png",
+      "bytes": 877617,
+      "sha256": "a8d9ccb89c1f99578a42ea5f77487456a946e11677e976f7fae2c055401a93d3"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card06-fork-raw.png",
+      "bytes": 1015569,
+      "sha256": "f625d6d0f2ccd32a5a8de4d23b33a919a6bc59ad4a895c82ec7e8c263f4b63e2"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card07-08-props-raw.png",
+      "bytes": 680664,
+      "sha256": "3f642ad4c4f0ed9a8bd6caa38974d0625d2d05434e44275b4df14da564195fd6"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card08-timeline-props-raw.png",
+      "bytes": 576927,
+      "sha256": "94c4ea62c3c76e2f75750e40f60db4a11fbc04ef13bc231144807186664c524b"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card09-footprint-raw.png",
+      "bytes": 845732,
+      "sha256": "94c834cd336d85af42b8e271f837a6b51ccc375986585940bbd8fe91c8cf7b51"
+    },
+    {
+      "role": "raw_generated_attempt_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/generated_assets/card11-keys-raw.png",
+      "bytes": 389487,
+      "sha256": "9280d98425e20184fc44221dca5c55e901e70f060c615a6c59460c91822eeeeb"
+    }
+  ],
+  "prepared_generated_regions": [
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card01_final.png",
+      "bytes": 782677,
+      "sha256": "1278e15e286ca75a0a06c209b98b3576c348ec5dd8779965e05cffb5c4ea22e4"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card02_bounce.png",
+      "bytes": 175380,
+      "sha256": "7d2e0bf16ebd51dbeeade00c5f47ba0d377fc588a5b39cf66eb8d11b7104b66c"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card02_child_top.png",
+      "bytes": 39022,
+      "sha256": "94441a10582647c12b674f4afd4b1509dfb38dd6c59f0243cdcb857b20097275"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card02_family.png",
+      "bytes": 136861,
+      "sha256": "02270d34308c450ed5c56d67e6fec30749238d66e7fccaa9c38047c43528a217"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card02_fingerprints.png",
+      "bytes": 234019,
+      "sha256": "6343c5e9d0f0758929ca49f31474a26efacf1db1375272a61601c07609515dbd"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card02_nested.png",
+      "bytes": 124176,
+      "sha256": "4799327cd6b59d90c12d5962f370df76931e92fe10360c1ef17752b910c25fba"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card02_parent_top.png",
+      "bytes": 81780,
+      "sha256": "e27b87278e5ce155991a3d601bba82ac4e62738353695187469d76f01d112abf"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card06_fork_background.png",
+      "bytes": 866023,
+      "sha256": "2b0a816ca4a603d22e373b7226112faba06fa40abaf75042b0e4d2ebd28b53b1"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card07_galaxies.png",
+      "bytes": 360826,
+      "sha256": "4f42d15417ba1261a1997724f1ce96feda6ed93355cf42cef901e0393358a962"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card08_bubble.png",
+      "bytes": 88704,
+      "sha256": "47eb5d6611e3771daa609c9037dae11440c659854aa884799b1dde06aff51797"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card08_photos.png",
+      "bytes": 95843,
+      "sha256": "a7660917cb814e4b04374163b9b5d3aa0a25308b460624eb1c84c907258db881"
+    },
+    {
+      "role": "prepared_generated_region_retained_for_audit",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v13-render-20260813T1657K/assets/generated_prepared/card09_final.png",
+      "bytes": 703189,
+      "sha256": "1ffb72b5aca2bf810519ca39a2244ac39c23c4cb0da54b72b8a70ff06d5ef185"
+    }
+  ],
+  "prepared_regions_used_in_final": [
+    "card02_bounce.png",
+    "card02_child_top.png",
+    "card02_family.png",
+    "card02_fingerprints.png",
+    "card02_nested.png",
+    "card02_parent_top.png",
+    "card06_fork_background.png",
+    "card07_galaxies.png",
+    "card08_bubble.png",
+    "card08_photos.png",
+    "card09_final.png"
+  ],
+  "prepared_regions_not_used_in_final_retained_for_audit": [
+    "card01_final.png"
+  ],
+  "predecessor_custody": {
+    "v11": {
+      "role": "currently_uploaded_unlisted_predecessor_to_retire_only_after_v13_upload_and_caption_serving",
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v11-local-20260813T1526K.mp4",
+      "bytes": 13867729,
+      "sha256": "8e6a4e564ddc25959ecb17c57fe19d898b9f92850b5c83da234ef3d2295f40fb"
+    },
+    "v12": {
+      "role": "local_contract_predecessor_byte_identical_to_v13_candidate",
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v12-local-20260813T1657K.mp4",
+      "bytes": 14795951,
+      "sha256": "060764c04ba095637cb484237064d501e097b1c326d7bf8b389a22292f96d9c2"
+    }
+  },
+  "release_boundary": {
+    "authorized_next_action": "unlisted upload only using the mandated uploader, exact gated title, and exact gated description, followed by captions.insert and serving verification",
+    "public_visibility_authorized": false,
+    "predecessor_privacy_mutation_before_v13_caption_serving": false,
+    "required_post_upload": [
+      "verify NebulaMind channel identity",
+      "verify privacyStatus=unlisted",
+      "captions.insert",
+      "verify caption track serving",
+      "update published.json full provenance",
+      "retire V11 to private",
+      "record supersession",
+      "repoint bhu-video.html"
+    ]
+  },
+  "not_authorized": [
+    "V13 source edit",
+    "re-render",
+    "audio rebuild",
+    "caption rebuild",
+    "new generation",
+    "public visibility",
+    "git commit",
+    "git push",
+    "DB write",
+    "deploy",
+    "restart"
+  ]
+}

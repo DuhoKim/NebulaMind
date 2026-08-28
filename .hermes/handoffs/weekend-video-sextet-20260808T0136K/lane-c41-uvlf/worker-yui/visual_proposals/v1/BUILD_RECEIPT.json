@@ -1,0 +1,28 @@
+{
+  "status": "PASS_VISUAL_PROPOSAL_BUILD_ONLY",
+  "official_candidate": false,
+  "tts_invoked": false,
+  "inputs": {
+    "T1_CATALOG_MANIFEST.json": "50a7a5e81330ba2c251cb84b5e1bb0740a11aa5242e57ba47c96192c6d94b432",
+    "T3_CENSUS_RESULTS.json": "4b21d432524a55bf5746fb3685e89360eaa33f143f68c042975f7259dd645ed7",
+    "T3_CENSUS_SAMPLE.jsonl": "1cdb3de8738ecf1b80328c147a0dd25a159b147c1b76a1e7dd6473a16eddf5c5"
+  },
+  "assertions": {
+    "candidate_tables": 112,
+    "name_reachable": 20,
+    "ucd_only": 92,
+    "counted_catalogues": 67,
+    "raw_rows_all_slices": 6417,
+    "slice_10_11_5_rows": 453,
+    "slice_10_11_5_bright_muv_le_minus20": 176
+  },
+  "outputs": [
+    "state_01_name_channel.png",
+    "state_02_ucd_partition.png",
+    "state_03_eligibility_funnel.png",
+    "state_04_slice_plane_rows.png",
+    "state_05_slice_plane_threshold.png",
+    "state_06_slice_plane_boundary.png"
+  ],
+  "boundary": "Worker-Yui proposal only; Hwao remains sole integrator/candidate/shared-tool/TTS writer."
+}

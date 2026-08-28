@@ -1,0 +1,141 @@
+{
+  "marker": "C41_UVLF_WORKER_YUI_SOURCE_FREEZE_V1",
+  "frozen_at_utc": "2026-08-07T16:55:09Z",
+  "scope": "Local evidence, visual, storyboard, QA, and integrator-request proposals only",
+  "video_reportable_now": {
+    "decision": "YES_FOR_LOCAL_SCIENTIFIC_PRESENTATION_PROPOSAL_ONLY",
+    "reasoning": [
+      "The public referee log states that Duho read the study and cleared it to land on 2026-08-05.",
+      "The lane history records the direct instructions to approve the measurement start and land the gap paper.",
+      "The canonical public PDF is byte-identical to the lane GAP_PAPER.pdf.",
+      "The referee verdict remains ESTABLISHED after the 176-versus-453 qualifier correction.",
+      "The current scientific claims used here reproduce from the frozen manifest, results, and 6,417-row sample."
+    ],
+    "allowed_status_wording": "Descriptive archive census; human-cleared for Lab landing; not journal-refereed, not independently validated, and not published as a journal result.",
+    "release_blockers": [
+      "frontend/src/app/lab/FlagshipStudies.tsx still carries generic copy saying no flagship has human clearance and renders 'not accepted', while the paper-specific review/history records Duho's clearance; no public representation should be changed or release claim made until Hwao reconciles that stale copy.",
+      "The same public metadata says 30 disqualified while the frozen final census says 34; Hwao must reconcile the count before approved integration or public representation.",
+      "The 453 denominator and six-table row geometry require a Hwao-verified audience-reachable supplement before public use; the worker supplement remains an unpublished proposal.",
+      "The exact v10/storyboard snapshot has not received an independent final review.",
+      "Hwao has not delegated candidate/shared-tool/TTS writing to this worker lane.",
+      "Upload, public replacement, website wiring, publication, Git writes, DB/SQL, deploy/restart, browser automation, provider/config, and secret access remain closed."
+    ]
+  },
+  "canonical_inputs": [
+    {
+      "role": "current_encoded_target",
+      "path": "frontend/public/videos/c41-brightend-uvlf-archival-gap.mp4",
+      "sha256": "1d84b8755e0baf726c86625baac6335fb9ca91f3356786b5b363976aa26c76d2",
+      "bytes": 736251,
+      "facts": "83.0 s; 1920x1080; 30 fps; H.264 video only; 10 static cards; no audio stream"
+    },
+    {
+      "role": "canonical_public_pdf",
+      "path": "frontend/public/studies/c41-brightend-uvlf-archival-gap.pdf",
+      "sha256": "7b4e31a41815c755ad9fbad80c4a3714817e82524c8cf5776924f16208452aba",
+      "bytes": 173975,
+      "identity_check": "Byte-identical to .hermes/handoffs/c41-trackb-shape1-uvlf-20260804/GAP_PAPER.pdf"
+    },
+    {
+      "role": "storyboard_of_record_read_only",
+      "path": ".hermes/handoffs/c41-trackb-shape1-uvlf-20260804/storyboard_c41_gap.json",
+      "sha256": "f29b8cb4b5790773c516f264d8c449125645c3027c8b6bcb24b6909bc1524482",
+      "bytes": 4247,
+      "facts": "16 cards; 99.5 planned seconds; 5 full-screen section cards; 1 faint-end-slope figure reference"
+    },
+    {
+      "role": "shared_renderer_read_only",
+      "path": "tools/nm_paper_video.py",
+      "sha256": "919af6b18057309bfa5ecc2dd0fa44536dabaa4ba02aba960cabd3d791099f5c",
+      "bytes": 15653
+    },
+    {
+      "role": "candidate_manifest",
+      "path": ".hermes/handoffs/c41-trackb-shape1-uvlf-20260804/T1_CATALOG_MANIFEST.json",
+      "sha256": "50a7a5e81330ba2c251cb84b5e1bb0740a11aa5242e57ba47c96192c6d94b432",
+      "bytes": 307750,
+      "verified_facts": {
+        "candidate_tables": 112,
+        "name_reachable": 20,
+        "ucd_only": 92,
+        "search_universe": "Frozen two-channel VizieR manifest; other repositories were not exhaustively searched"
+      }
+    },
+    {
+      "role": "census_results",
+      "path": ".hermes/handoffs/c41-trackb-shape1-uvlf-20260804/T3_CENSUS_RESULTS.json",
+      "sha256": "4b21d432524a55bf5746fb3685e89360eaa33f143f68c042975f7259dd645ed7",
+      "bytes": 83078,
+      "verified_facts": {
+        "status": "CENSUS_COMPLETED",
+        "counted_catalogues": 67,
+        "counted_catalogues_with_nonzero_rows": 27,
+        "counted_catalogues_with_zero_rows": 40,
+        "raw_rows_in_four_slices": 6417,
+        "headline_boundary": "RAW UNCORRECTED COUNTS; no completeness correction, cosmic-variance interpretation, or cross-catalog merging"
+      }
+    },
+    {
+      "role": "row_level_evidence",
+      "path": ".hermes/handoffs/c41-trackb-shape1-uvlf-20260804/T3_CENSUS_SAMPLE.jsonl",
+      "sha256": "1cdb3de8738ecf1b80328c147a0dd25a159b147c1b76a1e7dd6473a16eddf5c5",
+      "bytes": 414988,
+      "verified_facts": {
+        "physical_rows": 6417,
+        "uniform_keys": ["table", "muv", "z"],
+        "rows_10_le_z_lt_11_5": 453,
+        "rows_10_le_z_lt_11_5_and_muv_le_minus20": 176,
+        "rows_10_le_z_lt_11_5_and_muv_le_minus21": 56,
+        "source_tables_10_le_z_lt_11_5": 6,
+        "dominant_source_table": "J/A+A/704/A339/lephare",
+        "dominant_source_table_rows_10_le_z_lt_11_5": 420,
+        "dominant_source_table_rows_10_le_z_lt_11_5_and_muv_le_minus20": 161,
+        "dominant_source_table_magnitude_column": "NUVMAG",
+        "dominant_source_table_band_mismatch_restNUV": true
+      }
+    },
+    {
+      "role": "available_figure_asset_rejected_as_central_evidence",
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/plots/lit_uvlf_alpha.png",
+      "sha256": "016e7df8149103f6db60cea98cdc03ae48951443c5358dbefcfa18d6155827f5",
+      "bytes": 51358,
+      "disposition": "Do not use as the archival-gap evidence spine: it plots literature UV faint-end slope alpha against redshift and does not demonstrate search reach, eligibility, row geometry, the M_UV=-20 bright threshold, or the 10<=z<11.5 census/published-LF boundary."
+    }
+  ],
+  "claim_freeze": [
+    {
+      "claim": "20 of 112 candidate tables are reachable by the completed name-pattern channel; 92 are UCD-only.",
+      "status": "VERIFIED"
+    },
+    {
+      "claim": "The eligibility layer yields 67 counted catalogues and 6,417 raw rows in the four frozen slices.",
+      "status": "VERIFIED_WITH_RAW_UNCORRECTED_BOUNDARY"
+    },
+    {
+      "claim": "In 10 <= z < 11.5, the row sample contains 453 rows at any stored magnitude and 176 with stored muv <= -20; these are heterogeneous catalogue-native UV-like values without bandpass homogenization.",
+      "status": "VERIFIED_FROM_ROW_LEVEL_SAMPLE"
+    },
+    {
+      "claim": "The target slice is provenance-dominated: J/A+A/704/A339/lephare supplies 420 of 453 rows and 161 of 176 bright rows; five other tables supply 33 rows.",
+      "status": "VERIFIED_FROM_ROW_LEVEL_SAMPLE"
+    },
+    {
+      "claim": "No predefined-roster published-LF table met the machine-readable data requirements for 10 <= z < 11.5; this means missing extractable data, not zero galaxies or zero published LFs.",
+      "status": "VERIFIED_AS_ROSTER_STATUS_NOT_A_CENSUS_ZERO"
+    }
+  ],
+  "prohibited_implications": [
+    "Do not call the 6,417 rows confirmed galaxies.",
+    "Do not imply that all 67 counted catalogues contribute rows; 27 contribute and 40 contribute zero in the frozen slices.",
+    "Do not present the 453 slice rows or 176 bright rows as independent across catalogues; one source table supplies 420 and 161 respectively.",
+    "Do not present the stored magnitude fields as a bandpass-homogenized 1500-angstrom M_UV measurement; the census is raw and the dominant table uses a UV-like catalogue field.",
+    "Do not imply that the frozen two-channel VizieR manifest exhaustively searches every public astronomy repository.",
+    "Do not call the row counts a luminosity function or density measurement.",
+    "Do not infer completeness, cosmic variance, survey disagreement, or catalogue selection from point density.",
+    "Do not say the census has only 176 rows in the slice; 176 is the M_UV <= -20 subset of 453 total rows.",
+    "Do not use the 453 denominator or six-table geometry in a public integration until Hwao independently verifies and publishes an audience-reachable supplement.",
+    "Do not describe missing machine-readable LF data as zero galaxies or zero published luminosity functions.",
+    "Do not use the faint-end alpha plot as evidence for the archival-gap result.",
+    "Do not imply journal acceptance, peer review, validation, or publication."
+  ]
+}

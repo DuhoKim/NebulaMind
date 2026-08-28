@@ -1,0 +1,1385 @@
+[2606.25023] [2606.25023] Obstructions to Minimal Regular Black Hole Cosmologies
+
+[2606.25023] Obstructions to Minimal Regular Black Hole Cosmologies
+
+Obstructions to Minimal Regular Black Hole Cosmologies
+
+Damien A. Easson
+
+Email: easson@asu.edu
+
+Affiliation: Department of Physics, Arizona State University, Tempe, AZ 85287, USA
+
+Affiliation: Beyond Center for Fundamental Concepts in Science, Arizona State University, Tempe, AZ 85287, USA
+
+Abstract
+ 
+We derive an obstruction to FRW daughter cosmologies from
+static, asymptotically flat regular black holes. The trapped region of such a
+parent is Kantowski–Sachs rather than FRW, so the daughter must be introduced
+as a separate matched region. For closed daughters, the angular Darmois
+condition is controlled by the Misner–Sharp mass: asymptotic flatness and
+finite ADM mass force the induced density to decay as A−3A^{-3}, while the
+k=+1k=+1 curvature term scales as A−2A^{-2}. The minimal closed branch is
+therefore bounded rather than indefinitely expanding. Flat and open daughters
+avoid this boundedness mechanism, but the general flat/open FRW completeness
+theorem prevents non-static curvature-regular, ANEC-consistent flat/open
+daughters from being geodesically complete. For Bardeen, the parent source
+does not naturally supply the late-time support needed for an unbounded closed
+daughter. A viable FRW daughter therefore requires additional structure, such as modified
+asymptotics, nonminimal matching, non-FRW evolution, or an additional
+stress-energy component.
+
+ 
+
+I Introduction
+
+A recurring idea in gravitational physics is that black-hole interiors may
+admit a cosmological interpretation. In singular examples such as
+Schwarzschild, the trapped region can be rewritten as a Kantowski–Sachs
+spacetime, while in regular black holes the singularity is replaced by a
+nonsingular core, often locally de Sitter-like near the center. This raises a
+simple question: can a regular black-hole interior furnish a genuine daughter
+cosmology, or does such an interpretation require additional global structure
+or a new stress-energy component?
+
+To address this question, we consider static, spherically symmetric,
+asymptotically flat regular black holes with trapped interiors, using the
+Bardeen black hole as a representative example. By a minimal daughter construction we mean a no-shell FRW matching
+whose evolution is fixed by the parent metric, with no added late-time bulk
+sector, modified asymptotics, or independent shell stress tensor. The FRW daughter is
+therefore a separate homogeneous and isotropic matched continuation rather than
+a coordinate rewriting of the Kantowski–Sachs trapped region. We impose the averaged null energy condition (ANEC) as a minimal
+non-exoticity criterion: it allows controlled local violations of the
+pointwise null energy condition while constraining the averaged null energy
+along complete null geodesics Wall:2009wi; Curiel:2014zba. The completeness theorem used below is formulated under the same assumption
+Burwig:2025hrr; Burwig:2026fsy.
+
+Throughout, an indefinitely expanding daughter means an unbounded branch with
+scale factor A⁡(τ)→∞A(\tau)\to\infty, rather than a long-lived finite expansion between turning
+points. The main flat/open/closed dichotomy is formulated for the one-function
+static spherical class gt​t​gr​r=−1g_{tt}g_{rr}=-1; the closed-branch boundedness is
+extended to redshifted static parents in Sec. IV.2.11
+ 1
+ 
+ 
+ 
+ We take c=G=1c=G=1, except when GG is restored for clarity in the
+effective FRW density and pressure.
+
+Historically, the broad idea that black-hole interiors may be related to
+cosmological regions appears in black-hole-universe proposals
+Pathria:1972; Easson:2001qf, limiting-curvature and
+baby-universe constructions
+Blau:1986cw; Frolov:1989; Frolov:1990; FarhiGuthGuven:1990; Trodden:1993xh; Easson:2017pfe; Frolov:2021kcv,
+and regular de Sitter-core scenarios
+Bardeen:1968; Hayward:2006; Dymnikova:2001; AyonBeatoGarcia:2000; Dymnikova:2019. A complementary line of work concerns
+the geodesic completeness of nonsingular cosmologies
+Borde:1994; BordeGuthVilenkin:2003; LesnefskyEassonDavies:2023; Easson:2024fzn; Easson:2024uxe; Easson:2026ret.
+More recently, Oppenheimer–Snyder-type and generalized constructions have
+been developed for regular black holes and nonsingular cosmologies with
+Hayward, Bardeen, and Minkowski-type cores Shojai:2022; Bobula:2024; Bueno:2025; LiWuGe:2025; Bobula:2026zlq.
+
+We show that a regular core is not by itself enough to produce an FRW daughter
+having the full list of desired properties: indefinite expansion, curvature
+regularity, geodesic completeness, and ANEC consistency. The result separates
+into two logically distinct obstructions. For closed daughters, boundedness is
+controlled by asymptotic flatness and finite ADM mass through the no-shell
+matching equation. For flat and open daughters, the obstruction is more
+general: it follows from the flat/open FRW completeness theorem, independently
+of the black-hole matching construction.
+
+The rest of the paper is organized as follows. In Sec. II
+we review the trapped-region geometry of the parent spacetime. In
+Sec. III we show that the trapped interior is not
+itself an FRW cosmology. In Sec. IV we derive the
+no-shell FRW daughter equations and discuss a redshift-function extension.
+In Sec. V we prove the closed-branch boundedness theorem,
+explain how the flat/open branches fall under the general FRW completeness
+obstruction, and analyze the lifetime and tuning of the closed Bardeen branch. In
+Sec. VI we discuss core type and source limitations.
+
+II Trapped interiors of regular black holes
+
+We begin by considering static,
+spherically symmetric metrics of the form
+
+d​s2=−f⁡(r)​d​t2+f​(r)−1​d​r2+r2​d​Ω22,ds^{2}=-f(r)\,dt^{2}+f(r)^{-1}dr^{2}+r^{2}d\Omega_{2}^{2},
+
+(1)
+
+with an asymptotically flat exterior and a regular core
+Bardeen:1968; AyonBeatoGarcia:2000; Hayward:2006; Ansoldi:2008; BalartVagenas:2014; Fan:2016rih. On any trapped
+interval f⁡(r)<0f(r)<0, defining
+
+T≡r,χ≡t,d​τ=d​T|f⁡(T)|,T\equiv r,\qquad\chi\equiv t,\qquad d\tau=\frac{dT}{\sqrt{|f(T)|}},
+
+(2)
+
+recasts the metric as
+
+d​s2\displaystyle ds^{2}
+=−d​τ2+a​(τ)2​d​χ2+b​(τ)2​d​Ω22,\displaystyle=-d\tau^{2}+a(\tau)^{2}d\chi^{2}+b(\tau)^{2}d\Omega_{2}^{2},
+
+a⁡(τ)\displaystyle a(\tau)
+=|f⁡(T⁡(τ))|,b⁡(τ)=T⁡(τ).\displaystyle=\sqrt{|f(T(\tau))|},\qquad b(\tau)=T(\tau).
+
+(3)
+
+For this one-function class, one has b˙=a\dot{b}=a with the orientation chosen
+so that TT increases with τ\tau; equivalently, |b˙|=a|\dot{b}|=a independent
+of orientation.
+
+We choose to work with the Bardeen geometry
+Bardeen:1968; AyonBeatoGarcia:2000,
+
+f⁡(r)=1−2​M​r2(r2+g2)3/2.f(r)=1-\frac{2Mr^{2}}{(r^{2}+g^{2})^{3/2}}.
+
+(4)
+
+For M/g>3​3/4M/g>3\sqrt{3}/4, this solution has two horizons. Its causal structure
+then consists of a static exterior, a finite trapped nonstatic band
+r−<r<r+r_{-}<r<r_{+}, and a regular static core 0≤r<r−0\leq r<r_{-}. Near the center,
+
+f⁡(r)=1−2​Mg3​r2+O⁡(r4),Λeff=6​Mg3,f(r)=1-\frac{2M}{g^{3}}r^{2}+O(r^{4}),\qquad\Lambda_{\rm eff}=\frac{6M}{g^{3}},
+
+(5)
+
+so the core is locally de Sitter-like. The effective source may be written as
+
+Tμ=νdiag(−ρ(r),pr(r),pT(r),pT(r)),T^{\mu}{}_{\nu}=\mathrm{diag}\bigl(-\rho(r),p_{r}(r),p_{T}(r),p_{T}(r)\bigr),
+
+(6)
+
+with
+
+ρ⁡(r)\displaystyle\rho(r)
+=3​M​g24​π​(r2+g2)5/2,\displaystyle=\frac{3Mg^{2}}{4\pi(r^{2}+g^{2})^{5/2}},
+
+pr​(r)\displaystyle p_{r}(r)
+=−ρ⁡(r),\displaystyle=-\rho(r),
+
+pT​(r)\displaystyle p_{T}(r)
+=3​M​g2​(3​r2−2​g2)8​π​(r2+g2)7/2.\displaystyle=\frac{3Mg^{2}(3r^{2}-2g^{2})}{8\pi(r^{2}+g^{2})^{7/2}}.
+
+(7)
+
+Thus the source is anisotropic away from the center and isotropizes only in the
+r→0r\to 0 limit. 22
+ 2
+ 
+ 
+ 
+ The same trapped-region geometry can also be used in
+time-dependent classical double-copy constructions
+Easson:2020esh; Easson:2026wex. Here we use only the geometric and
+source-side ingredients needed for the cosmological obstruction.
+
+III The trapped interior is not FRW
+
+The following familiar observation sets our stage: the trapped
+region of a static spherical black hole is Kantowski–Sachs rather than FRW.
+Thus the FRW daughter considered below is a separate matched region, and not simply a
+coordinate reinterpretation of the trapped band.
+
+Proposition 1 (Static trapped-region obstruction).
+
+Consider a one-function static, spherically symmetric parent spacetime of the
+form (1) with a trapped interval f⁡(r)<0f(r)<0. In the
+induced Kantowski–Sachs description (3), the trapped
+interior is not an exact FRW cosmology in its natural slicing.
+
+Moreover, defining
+
+H∥:=a˙a,H⟂:=b˙b,H_{\parallel}:=\frac{\dot{a}}{a},\qquad H_{\perp}:=\frac{\dot{b}}{b},
+
+(8)
+
+isotropic expansion on a connected open interval, H∥=H⟂H_{\parallel}=H_{\perp}, is
+equivalent to
+
+a⁡(τ)=C​b​(τ),a(\tau)=C\,b(\tau),
+
+(9)
+
+for some constant C>0C>0, and hence to
+
+|f⁡(T)|=C2​T2.|f(T)|=C^{2}T^{2}.
+
+(10)
+
+Thus isotropic expansion can occur only in this highly special case and is
+nongeneric within the one-function static class. This is a necessary condition
+for isotropic expansion, not a sufficient condition for an exact FRW geometry.
+
+Proof.
+
+At fixed τ\tau, the induced spatial metric is
+
+hi​j​d​xi​d​xj=a​(τ)2​d​χ2+b​(τ)2​d​Ω22.h_{ij}dx^{i}dx^{j}=a(\tau)^{2}d\chi^{2}+b(\tau)^{2}d\Omega_{2}^{2}.
+
+(11)
+
+Thus each spatial slice has the direct-product geometry
+ℝχ×Sb⁡(τ)2\mathbb{R}_{\chi}\times S^{2}_{\,b(\tau)}, lacking constant
+sectional curvature: two-planes containing the χ\chi-direction have zero
+sectional curvature, while two-planes tangent to the sphere have sectional
+curvature 1/b​(τ)21/b(\tau)^{2}. Therefore the trapped interior is not an exact FRW
+cosmology in its natural slicing.
+
+In the one-function case, one has b˙=a\dot{b}=a. A necessary condition for exact
+FRW behavior on an open interval is isotropic expansion,
+H∥=H⟂H_{\parallel}=H_{\perp}, or equivalently
+
+a˙a=b˙b.\frac{\dot{a}}{a}=\frac{\dot{b}}{b}.
+
+(12)
+
+On a connected open interval this integrates to a⁡(τ)=C​b​(τ)a(\tau)=C\,b(\tau) for some
+constant C>0C>0, and the converse is immediate. Since b=Tb=T and
+a=|f⁡(T)|a=\sqrt{|f(T)|}, the condition becomes
+
+|f⁡(T)|=C2​T2.|f(T)|=C^{2}T^{2}.
+
+(13)
+
+This is a highly special condition, and it still does not make the geometry
+FRW. Even when it holds, it only equalizes the directional Hubble rates; it
+does not alter the intrinsic product geometry of the τ=const\tau=\mathrm{const}
+slices. The natural spatial slices remain ℝ×S2\mathbb{R}\times S^{2} rather than
+constant-curvature three-spaces.
+∎
+
+For the Bardeen metric (4), one has on the trapped
+interval
+
+|f⁡(T)|=2​M​T2(T2+g2)3/2−1,|f(T)|=\frac{2MT^{2}}{(T^{2}+g^{2})^{3/2}}-1,
+
+(14)
+
+which is not of the form C2​T2C^{2}T^{2} on any open interval. Hence the Bardeen
+trapped region does not admit isotropic expansion over any finite portion of
+its interior evolution. More importantly, the trapped region is only the finite
+band r−<r<r+r_{-}<r<r_{+}: it terminates at the inner horizon and is followed by a
+regular static core. Thus even though the core becomes locally de Sitter-like
+as r→0r\to 0, the trapped Kantowski–Sachs phase itself does not evolve into a
+daughter FRW branch.
+
+Hence, Proposition 1 rules out the simplest possibility:
+the trapped region of the static parent is not already the daughter universe.
+For the Bardeen trapped band this conclusion is corroborated by the invariants.
+FRW spacetimes are conformally flat, whereas for a one-function spherical
+metric written as F⁡(r)=1−2​m​(r)/rF(r)=1-2m(r)/r,
+
+Ca​b​c​d​Ca​b​c​d=48r6​(m−r​m′3)2.C_{abcd}C^{abcd}=\frac{48}{r^{6}}\left(m-\frac{rm^{\prime}}{3}\right)^{2}.
+
+(15)
+
+For Bardeen, m⁡(r)=M​r3/(r2+g2)3/2m(r)=Mr^{3}/(r^{2}+g^{2})^{3/2}, so
+
+Ca​b​c​d​Ca​b​c​d=48​M2​r4(r2+g2)5.C_{abcd}C^{abcd}=\frac{48M^{2}r^{4}}{(r^{2}+g^{2})^{5}}.
+
+(16)
+
+This invariant vanishes at r=0r=0, as expected for the limiting de
+Sitter-like core, but it is nonzero for every r>0r>0, in particular on the
+finite trapped band r−<r<r+r_{-}<r<r_{+}. So the Bardeen trapped band is not an
+FRW spacetime.
+
+IV No-shell FRW daughters from static parents
+
+Having shown the Kantowski–Sachs trapped interior of the parent is not itself the daughter cosmology, we now turn to the simplest global continuation one might
+try: a no-shell matching to an FRW daughter region. In this matching,
+the FRW daughter is a separate spacetime region attached across a spherical
+hypersurface and constrained by the Darmois–Israel no-shell conditions
+OppenheimerSnyder:1939; Israel:1966. This is the standard spherical
+FRW/static matching structure we use as a minimal control problem rather
+than as a full collapse model.
+
+The use of an FRW daughter is not arbitrary, since for regular
+black-holes such as Bardeen, the source isotropizes and the geometry
+approaches a de Sitter-like core near r=0r=0. Since de Sitter space admits
+homogeneous and isotropic slicings, an FRW daughter is the natural optimistic
+continuation to test. The question now is whether the most
+symmetric no-shell daughter ansatz suggested by the regular core can support
+an indefinitely expanding cosmology without additional global structure or some
+new matter content.
+
+IV.1 General junction equation
+
+We consider a static parent geometry, written in curvature coordinates as
+
+d​s+2=−F⁡(R)​d​T2+d​R2F⁡(R)+R2​d​Ω22,ds_{+}^{2}=-F(R)\,dT^{2}+\frac{dR^{2}}{F(R)}+R^{2}d\Omega_{2}^{2},
+
+(17)
+
+and an FRW daughter region
+
+ds−2=−dτ2+A(τ)2[d​χ21−k​χ2+χ2dΩ22],k=0,±1.ds_{-}^{2}=-d\tau^{2}+A(\tau)^{2}\left[\frac{d\chi^{2}}{1-k\chi^{2}}+\chi^{2}d\Omega_{2}^{2}\right],\qquad k=0,\pm 1.
+
+(18)
+
+We define
+
+H:=A˙A.H:=\frac{\dot{A}}{A}.
+
+(19)
+
+For the flat or open cases, the matching hypersurface is at fixed comoving
+radius
+
+χ=χb=const,Rb​(τ)=A⁡(τ)​χb.\chi=\chi_{b}=\text{const},\qquad R_{b}(\tau)=A(\tau)\chi_{b}.
+
+(20)
+
+On the FRW side, the induced metric on the hypersurface is
+
+d​sΣ2=−d​τ2+Rb​(τ)2​d​Ω22.ds^{2}_{\Sigma}=-d\tau^{2}+R_{b}(\tau)^{2}d\Omega_{2}^{2}.
+
+(21)
+
+On the exterior side, parameterizing the hypersurface by
+x+μ​(τ,θ,φ)=(T⁡(τ),Rb​(τ),θ,φ)x_{+}^{\mu}(\tau,\theta,\varphi)=(T(\tau),R_{b}(\tau),\theta,\varphi), one finds
+
+d​sΣ2=−(F⁡(Rb)​T˙ 2−R˙b 2F⁡(Rb))​d​τ2+Rb2​d​Ω22,ds^{2}_{\Sigma}=-\left(F(R_{b})\dot{T}^{\,2}-\frac{\dot{R}_{b}^{\,2}}{F(R_{b})}\right)d\tau^{2}+R_{b}^{2}d\Omega_{2}^{2},
+
+(22)
+
+so matching the first fundamental form gives
+
+F⁡(Rb)​T˙ 2−R˙b 2F⁡(Rb)=1.F(R_{b})\dot{T}^{\,2}-\frac{\dot{R}_{b}^{\,2}}{F(R_{b})}=1.
+
+(23)
+
+With the standard orientation choice for the outward normal, the angular
+extrinsic-curvature condition gives
+
+R˙b 2+F⁡(Rb)=1−k​χb2.\dot{R}_{b}^{\,2}+F(R_{b})=1-k\chi_{b}^{2}.
+
+(24)
+
+The remaining τ​τ\tau\tau component is consistent with the same comoving
+no-shell construction; for completeness we derive both components in
+Appendix A.
+Using Rb=A​χbR_{b}=A\chi_{b} and dividing by A2​χb2A^{2}\chi_{b}^{2}, one obtains
+
+H2+kA2=1−F⁡(A​χb)A2​χb2.H^{2}+\frac{k}{A^{2}}=\frac{1-F(A\chi_{b})}{A^{2}\chi_{b}^{2}}.
+
+(25)
+
+Equation (25) is the key point of the
+minimal construction: with no shell stress tensor, the daughter Friedmann
+equation is inherited directly from the parent metric function F⁡(R)F(R).
+Equivalently, defining the Misner–Sharp mass function of the static parent geometry
+MisnerSharp:1964 by
+
+m​(R):=R2​[1−F​(R)],m(R):=\frac{R}{2}\bigl[1-F(R)\bigr],
+
+(26)
+
+Eq. (25) becomes the invariant relation
+
+H2+kA2=2​m​(A​χb)A3​χb3(k=0,−1),H^{2}+\frac{k}{A^{2}}=\frac{2m(A\chi_{b})}{A^{3}\chi_{b}^{3}}\qquad(k=0,-1),
+
+(27)
+
+and, for the closed parametrization introduced below,
+
+H2+1A2=2m(Asinψb)A3​sin3⁡ψb.H^{2}+\frac{1}{A^{2}}=\frac{2m(A\sin\psi_{b})}{A^{3}\sin^{3}\psi_{b}}.
+
+(28)
+
+This form makes clear that the matching equation is controlled by the parent
+mass profile rather than by a coordinate artifact. It also shows that the
+final no-shell evolution equation extends across simple zeros of FF by
+continuity, even though the preceding derivation was written in static
+coordinates away from coordinate horizons.
+
+IV.2 Redshift functions do not rescue the closed branch
+
+A natural question is whether the closed-branch obstruction is an artifact of the
+special choice gT​T​gR​R=−1g_{TT}g_{RR}=-1. To test this, we allow a nontrivial
+static redshift function. Under the same comoving no-shell assumptions, the
+angular Darmois condition remains controlled by the Misner–Sharp mass
+profile, while the redshift function enters only through the
+Kτ​τK_{\tau\tau} condition. The large-AA argument leading to closed-branch
+boundedness therefore survives unchanged.
+
+To see this, consider the more general static spherical
+metric
+
+d​s+2=−e2​Φ​(R)​F​(R)​d​T2+d​R2F⁡(R)+R2​d​Ω22,ds_{+}^{2}=-e^{2\Phi(R)}F(R)dT^{2}+\frac{dR^{2}}{F(R)}+R^{2}d\Omega_{2}^{2}\,,
+
+(29)
+
+where Φ⁡(R)\Phi(R) is the redshift function.
+For a comoving FRW boundary, the angular Darmois condition is unchanged:
+
+R˙b 2+F⁡(Rb)=β2,\dot{R}_{b}^{\,2}+F(R_{b})=\beta^{2},
+
+(30)
+
+where
+
+β2={1−k​χb2,k=0,−1,cos2⁡ψb,k=+1.\beta^{2}=\begin{cases}1-k\chi_{b}^{2},&k=0,-1,\\
+\cos^{2}\psi_{b},&k=+1.\end{cases}
+
+(31)
+
+Thus, for closed daughters, the Friedmann equation and its large-AA
+asymptotics are controlled by F⁡(R)F(R), equivalently by the Misner–Sharp mass,
+and not by the redshift function Φ\Phi. If
+F⁡(R)=1−2​M/R+o⁡(R−1)F(R)=1-2M/R+o(R^{-1}), the same asymptotic obstruction to unbounded closed
+expansion follows.
+
+The τ​τ\tau\tau condition is more restrictive: because the FRW boundary is
+comoving, Kτ​τ−=0K^{-}_{\tau\tau}=0, and hence the parent-side trajectory must be
+geodesic. For Eq. (29), the radial geodesic
+equation is
+
+R¨b=−12​F′​(Rb)−Φ′​(Rb)​(R˙b 2+F⁡(Rb)).\ddot{R}_{b}=-\frac{1}{2}F^{\prime}(R_{b})-\Phi^{\prime}(R_{b})\bigl(\dot{R}_{b}^{\,2}+F(R_{b})\bigr).
+
+(32)
+
+On the other hand, differentiating Eq. (30)
+gives
+
+R¨b=−12​F′​(Rb),\ddot{R}_{b}=-\frac{1}{2}F^{\prime}(R_{b}),
+
+(33)
+
+with the equality understood by continuity at turning points. Combining
+Eqs. (32) and
+(33) gives
+
+Φ′​(Rb)​(R˙b 2+F⁡(Rb))=0.\Phi^{\prime}(R_{b})\bigl(\dot{R}_{b}^{\,2}+F(R_{b})\bigr)=0.
+
+(34)
+
+Using Eq. (30), this becomes
+
+Φ′​(Rb)​β2=0.\Phi^{\prime}(R_{b})\,\beta^{2}=0.
+
+(35)
+
+Therefore a static redshift function is not capable of saving the closed branch. Under
+the same comoving no-shell assumptions, full Darmois matching requires either
+Φ′​(Rb)=0\Phi^{\prime}(R_{b})=0 along the swept portion of the trajectory, or a degenerate
+static limit in which the condition is imposed only at the matched point.
+
+For flat/open boundaries and for non-equatorial closed boundaries,
+β2>0\beta^{2}>0, so full Darmois matching requires Φ′​(Rb)=0\Phi^{\prime}(R_{b})=0 throughout the
+swept trajectory. In the equatorial closed case β2=0\beta^{2}=0, but the angular
+condition itself gives R˙b 2+F⁡(Rb)=0\dot{R}_{b}^{\,2}+F(R_{b})=0, which forbids unbounded
+expansion when F→1F\to 1. Thus the closed-branch boundedness is controlled by the invariant mass
+profile rather than by the redshift function.
+
+IV.3 Closed daughter universes
+
+For the closed case k=+1k=+1, it is convenient to write the daughter metric as
+
+d​s−2=−d​τ2+A​(τ)2​(d​ψ2+sin2⁡ψ​d​Ω22),ds_{-}^{2}=-d\tau^{2}+A(\tau)^{2}\left(d\psi^{2}+\sin^{2}\psi\,d\Omega_{2}^{2}\right),
+
+(36)
+
+with the boundary at fixed
+
+ψ=ψb=const,Rb(τ)=A(τ)sinψb.\psi=\psi_{b}=\text{const},\qquad R_{b}(\tau)=A(\tau)\sin\psi_{b}.
+
+(37)
+
+Since the areal radius depends on sin⁡ψb\sin\psi_{b}, we take
+0<ψb≤π/20<\psi_{b}\leq\pi/2 without loss of generality for the nondegenerate
+branch considered below.
+The matching equation becomes
+
+H2+1A2=1−F(Asinψb)A2​sin2⁡ψb.H^{2}+\frac{1}{A^{2}}=\frac{1-F(A\sin\psi_{b})}{A^{2}\sin^{2}\psi_{b}}.
+
+(38)
+
+For the Bardeen exterior, this gives
+
+H2=2​M(A2​sin2⁡ψb+g2)3/2−1A2,H^{2}=\frac{2M}{\bigl(A^{2}\sin^{2}\psi_{b}+g^{2}\bigr)^{3/2}}-\frac{1}{A^{2}},
+
+(39)
+
+which clearly displays the competition between the finite-mass contribution and the
+k=+1k=+1 positive-curvature term. At large AA, the positive contribution falls
+as A−3A^{-3}, whereas the curvature term falls as A−2A^{-2} and therefore
+dominates. In the next section we show that this obstruction is not special to
+Bardeen, but follows from asymptotic flatness and finite ADM mass. As shown in
+Sec. IV.2, adding a static redshift function does
+not change the large-radius conclusion.
+
+We may express the same result as an effective closed-FRW source. Below, the
+density ρeff\rho_{\rm eff} is the homogeneous density inferred from the daughter
+Friedmann equation and not the unchanged anisotropic Bardeen
+nonlinear-electrodynamics stress tensor. Writing
+
+H2+1A2=8​π​G3​ρeff​(A),H^{2}+\frac{1}{A^{2}}=\frac{8\pi G}{3}\rho_{\rm eff}(A),
+
+(40)
+
+one obtains
+
+ρeff​(A)=3​M4​π​G​(A2​sin2⁡ψb+g2)3/2.\rho_{\rm eff}(A)=\frac{3M}{4\pi G\,\bigl(A^{2}\sin^{2}\psi_{b}+g^{2}\bigr)^{3/2}}.
+
+(41)
+
+This effective source is vacuum-like near the emergence region and falls as
+A−3A^{-3} at large AA.
+
+The corresponding effective pressure is fixed by the
+conservation equation,
+
+d​ρeffd​τ+3​H​(ρeff+peff)=0,\frac{d\rho_{\rm eff}}{d\tau}+3H(\rho_{\rm eff}+p_{\rm eff})=0,
+
+or, equivalently,
+
+peff​(A)=−ρeff​(A)−A3​d​ρeffd​A.p_{\rm eff}(A)=-\rho_{\rm eff}(A)-\frac{A}{3}\frac{d\rho_{\rm eff}}{dA}.
+
+For Bardeen this gives (with
+s=sin⁡ψbs=\sin\psi_{b} for the closed branch),
+
+peff​(A)=−3​M​g24​π​G​(A2​s2+g2)5/2,p_{\rm eff}(A)=-\frac{3Mg^{2}}{4\pi G\bigl(A^{2}s^{2}+g^{2}\bigr)^{5/2}},
+
+and hence
+
+weff​(A)=peffρeff=−g2A2​s2+g2.w_{\rm eff}(A)=\frac{p_{\rm eff}}{\rho_{\rm eff}}=-\frac{g^{2}}{A^{2}s^{2}+g^{2}}.
+
+Thus the matched daughter source interpolates from vacuum-like behavior
+weff→−1w_{\rm eff}\to-1 near the regular core to dust-like behavior
+weff→0w_{\rm eff}\to 0 at large AA. It supplies acceleration only for
+A2​s2<2​g2A^{2}s^{2}<2g^{2}, and therefore cannot provide the persistent
+w≤−1/3w\leq-1/3 support needed for an unbounded closed daughter.
+
+IV.4 Flat daughter universes
+
+For the flat case k=0k=0, Eq. (25) reduces to
+
+H2=1−F⁡(A​χb)A2​χb2.H^{2}=\frac{1-F(A\chi_{b})}{A^{2}\chi_{b}^{2}}.
+
+(42)
+
+For Bardeen,
+
+H2=2​M(A2​χb2+g2)3/2.H^{2}=\frac{2M}{\bigl(A^{2}\chi_{b}^{2}+g^{2}\bigr)^{3/2}}.
+
+(43)
+
+Unlike the closed case, there is no positive-curvature term forcing a turning
+point, so the flat daughter branch is monotonic. Near A→0A\to 0,
+
+H2→2​Mg3,H^{2}\to\frac{2M}{g^{3}},
+
+(44)
+
+and the early-time behavior is asymptotically de Sitter-like,
+
+A⁡(τ)∼eH0​τ,H02=2​Mg3.A(\tau)\sim e^{H_{0}\tau},\qquad H_{0}^{2}=\frac{2M}{g^{3}}.
+
+(45)
+
+At large AA,
+
+H2∼2​Mχb3​A3,H^{2}\sim\frac{2M}{\chi_{b}^{3}A^{3}},
+
+(46)
+
+so
+
+A⁡(τ)∝τ2/3.A(\tau)\propto\tau^{2/3}.
+
+(47)
+
+Thus the flat daughter branch is nonsingular in cosmic time and evolves from
+an asymptotically de Sitter-like past into a dust-like late phase. As we will
+emphasize below, however, this does not furnish a geodesically complete
+nonsingular cosmology.
+
+IV.5 Open daughter universes
+
+For the open case k=−1k=-1, Eq. (25) gives
+
+H2−1A2=1−F⁡(A​χb)A2​χb2.H^{2}-\frac{1}{A^{2}}=\frac{1-F(A\chi_{b})}{A^{2}\chi_{b}^{2}}.
+
+(48)
+
+For an asymptotically flat finite-mass parent,
+
+H2=1A2+2​MA3​χb3+o⁡(A−3).H^{2}=\frac{1}{A^{2}}+\frac{2M}{A^{3}\chi_{b}^{3}}+o(A^{-3}).
+
+(49)
+
+Thus the open branch, like the flat branch, avoids the closed-universe
+recollapse argument. Its obstruction is instead the shared flat/open
+completeness theorem used in Sec. V.
+
+If the parent has a de Sitter-like core,
+F⁡(R)=1−H02​R2+O⁡(R4)F(R)=1-H_{0}^{2}R^{2}+O(R^{4}), then the open matching equation gives
+
+H2−1A2→H02,A˙2=1+H02​A2+O⁡(A4).H^{2}-\frac{1}{A^{2}}\to H_{0}^{2},\qquad\dot{A}^{2}=1+H_{0}^{2}A^{2}+O(A^{4}).
+
+Locally, the leading-order solution is the open de Sitter slicing,
+
+A⁡(τ)=H0−1​sinh⁡[H0​(τ−τ0)]+O⁡(A3).A(\tau)=H_{0}^{-1}\sinh\!\bigl[H_{0}(\tau-\tau_{0})\bigr]+O(A^{3}).
+
+The endpoint A=0A=0 is not a curvature singularity, but the open slicing
+covers only a geodesically incomplete patch of de Sitter space. This provides
+the local model for the flat/open incompleteness obstruction discussed in
+Sec. V.
+
+V Obstruction mechanisms
+
+The preceding matching equations give the closed-branch obstruction, while the
+flat/open branches are controlled by the general FRW completeness theorem.
+
+Theorem 1 (Minimal asymptotically flat FRW daughters).
+
+Consider a static, spherically symmetric, asymptotically flat parent spacetime
+in the one-function class gt​t​gr​r=−1g_{tt}g_{rr}=-1, with finite ADM mass M>0M>0.
+Attach an FRW daughter across a nondegenerate comoving spherical Darmois
+boundary. Assume that the matching is no-shell and that the daughter evolution
+is fixed by the parent metric profile, with no additional late-time bulk
+component, modified asymptotics, or independent shell stress tensor. Then the
+closed daughter branch is bounded at finite scale factor and therefore does
+not yield an indefinitely expanding FRW cosmology.
+
+For flat and open daughters, the obstruction is more general. Independently of
+the black-hole matching construction, a non-static curvature-regular FRW
+spacetime with k=0k=0 or k=−1k=-1 and regular affine ends cannot be both null
+geodesically complete and ANEC-consistent. Therefore the minimal
+asymptotically flat no-shell construction does not produce any FRW daughter
+satisfying all desired properties: indefinite expansion, curvature regularity,
+geodesic completeness, and ANEC consistency.
+
+The proof separates into two logically distinct ingredients. The closed branch
+is bounded by the finite-ADM matching equation. The flat/open theorem
+obstructs null completeness; since geodesic completeness requires null
+completeness, this already excludes full geodesic completeness. 33
+ 3
+ 
+ 
+ 
+ The regular-affine-end assumption excludes irregular null-end behavior for which the affine ANEC identity is not controlled. The matched finite-ADM daughters considered here have ordinary asymptotic ends, so they either lie in this regular endpoint class or are explicitly null incomplete. As shown in
+Sec. IV.2, the closed-branch boundedness also
+extends to redshifted static parents in the same comoving no-shell setup.
+
+V.1 Closed daughters from asymptotically flat parents are bounded
+
+We now assume only that the parent geometry is asymptotically flat with finite
+ADM mass,
+
+F⁡(R)=1−2​MR+o⁡(R−1),M>0.F(R)=1-\frac{2M}{R}+o(R^{-1}),\qquad M>0.
+
+(50)
+
+The closed matching equation admits two especially transparent forms. First,
+in terms of the parent mass function, Eq. (28)
+shows directly that finite ADM mass induces a dust-like late-time density. The
+same obstruction also appears in mechanical form:
+
+R˙b 2=E−F⁡(Rb),E=cos2⁡ψb.\dot{R}_{b}^{\,2}=E-F(R_{b}),\qquad E=\cos^{2}\psi_{b}.
+
+(51)
+
+For a nondegenerate closed matching surface, 0<ψb≤π/20<\psi_{b}\leq\pi/2, one has
+E<1E<1. Since asymptotic flatness implies F⁡(R)→1F(R)\to 1 as
+R→∞R\to\infty,
+
+E−F⁡(R)⟶−sin2⁡ψb<0.E-F(R)\longrightarrow-\sin^{2}\psi_{b}<0.
+
+(52)
+
+Thus the daughter trajectory cannot reach arbitrarily large areal radius. The
+same conclusion can be expressed in Friedmann language. Since finite ADM mass
+means
+
+m⁡(R)→M(R→∞),m(R)\to M\qquad(R\to\infty),
+
+(53)
+
+Eq. (28) gives
+
+2m(Asinψb)A3​sin3⁡ψb=2​MA3​sin3⁡ψb+o⁡(A−3).\frac{2m(A\sin\psi_{b})}{A^{3}\sin^{3}\psi_{b}}=\frac{2M}{A^{3}\sin^{3}\psi_{b}}+o(A^{-3}).
+
+(54)
+
+Therefore
+
+H2=−1A2+2​MA3​sin3⁡ψb+o⁡(A−3).H^{2}=-\frac{1}{A^{2}}+\frac{2M}{A^{3}\sin^{3}\psi_{b}}+o(A^{-3}).
+
+(55)
+
+The A−2A^{-2} curvature term dominates over the A−3A^{-3} matter term for
+sufficiently large AA, so H2<0H^{2}<0 at large scale factor. Hence a closed
+no-shell daughter is unable to expand to arbitrarily large radius. If an
+allowed nondegenerate branch emerges from a finite bounce, it encounters a
+finite outer turning point and generically recollapses; degenerate endpoints
+are tuned limiting cases rather than indefinitely expanding solutions.
+
+This mechanism is illustrated in
+Fig. 1 for a representative
+asymptotically flat Bardeen daughter. The important point is that the
+obstruction is not the absence of a bounce or the formation of a singular big
+crunch. The branch is bounded between finite turning points. The obstruction is
+instead that the minimal closed branch does not yield an indefinitely expanding
+daughter universe.
+
+Figure 1: Closed Bardeen daughter evolution in the asymptotically flat case.
+The plotted quantity is
+(d​x/d​η)2=2​μ​x2/(1+x2)3/2−sin2⁡ψb(dx/d\eta)^{2}=2\mu x^{2}/(1+x^{2})^{3/2}-\sin^{2}\psi_{b}, with
+x=Rb/g=Asinψb/gx=R_{b}/g=A\sin\psi_{b}/g, η=τ/g\eta=\tau/g, μ=M/g\mu=M/g, and representative
+parameters (μ,ψb)=(1.35,0.80)(\mu,\psi_{b})=(1.35,0.80). The shaded region is the dynamically
+allowed interval (d​x/d​η)2≥0(dx/d\eta)^{2}\geq 0. The two zeros x−x_{-} and x+x_{+} are
+finite turning points: a nondegenerate expanding branch can emerge from the
+inner turning point and reaches an outer turnaround before recollapsing. The obstruction is the boundedness of the closed branch in the asymptotically
+flat minimal construction, with evolution between finite turning points rather
+than a singular big crunch.
+
+Proposition 2 (Closed daughter boundedness).
+
+For any no-shell closed FRW daughter universe with nondegenerate matching
+surface 0<ψb≤π/20<\psi_{b}\leq\pi/2, matched to a static asymptotically flat parent
+geometry with finite ADM mass and curvature-coordinate function
+F⁡(R)=1−2​M/R+o⁡(R−1)F(R)=1-2M/R+o(R^{-1}), the daughter branch cannot extend to arbitrarily
+large AA. If the allowed interval has a simple finite outer zero, the expanding branch
+reaches a finite turning point and recollapses. Degenerate endpoints are tuned
+limiting cases corresponding to static or asymptotically static behavior.
+
+Proof.
+
+Eq. (51) gives
+
+R˙b 2=E−F⁡(Rb),E=cos2⁡ψb.\dot{R}_{b}^{\,2}=E-F(R_{b}),\qquad E=\cos^{2}\psi_{b}.
+
+For 0<ψb≤π/20<\psi_{b}\leq\pi/2, one has E<1E<1, while asymptotic flatness gives
+F⁡(R)→1F(R)\to 1. Hence
+
+E−F⁡(R)⟶−sin2⁡ψb<0,E-F(R)\longrightarrow-\sin^{2}\psi_{b}<0,
+
+so the physical region R˙b 2≥0\dot{R}_{b}^{\,2}\geq 0 cannot extend to arbitrarily large
+RbR_{b}. Since Rb=AsinψbR_{b}=A\sin\psi_{b} and sin⁡ψb>0\sin\psi_{b}>0, the daughter branch cannot
+extend to arbitrarily large AA.
+
+Equivalently, Eq. (55) gives
+
+H2=−1A2+2​MA3​sin3⁡ψb+o⁡(A−3)(A→∞).H^{2}=-\frac{1}{A^{2}}+\frac{2M}{A^{3}\sin^{3}\psi_{b}}+o(A^{-3})\qquad(A\to\infty).
+
+Thus the A−2A^{-2} curvature term eventually dominates the induced A−3A^{-3}
+matter term, and H2<0H^{2}<0 at sufficiently large scale factor. Along a physical
+daughter solution one must have H2≥0H^{2}\geq 0. Therefore an expanding branch cannot
+be unbounded.
+
+If the upper endpoint of an allowed connected component is a simple zero of
+E−F⁡(Rb)E-F(R_{b}), the expanding solution reaches a finite outer turning point
+AmaxA_{\max} with H⁡(Amax)=0H(A_{\max})=0 and then recollapses. Degenerate zeros are tuned
+limiting cases and give static or asymptotically static behavior rather than
+an indefinitely expanding daughter universe.
+∎
+
+This is a class statement depending only on the angular junction equation
+and the asymptotic Schwarzschild falloff of the parent geometry, not on whether
+the regular core is of de Sitter type, Minkowski type, or some other
+nonsingular form. In mass-function language, the obstruction is simply the
+finite-ADM limit m⁡(R)→Mm(R)\to M.
+
+V.2 Lifetime and tuning of the closed branch
+
+The closed Bardeen branch illustrates that boundedness means finite lifetime,
+not necessarily singular collapse.
+Define
+
+x:=Rbg=Asinψbg,η:=τg,μ:=Mg.x:=\frac{R_{b}}{g}=\frac{A\sin\psi_{b}}{g},\qquad\eta:=\frac{\tau}{g},\qquad\mu:=\frac{M}{g}.
+
+(56)
+
+Equation (39) becomes
+
+(d​xd​η)2=2​μ​x2(1+x2)3/2−sin2⁡ψb.\left(\frac{dx}{d\eta}\right)^{2}=\frac{2\mu x^{2}}{(1+x^{2})^{3/2}}-\sin^{2}\psi_{b}.
+
+(57)
+
+The first term on the right-hand side has maximum at x=2x=\sqrt{2}, with
+value 4​μ/(3​3)4\mu/(3\sqrt{3}). Thus an allowed nondegenerate closed Bardeen branch
+exists when
+
+sin2⁡ψb<4​μ3​3,\sin^{2}\psi_{b}<\frac{4\mu}{3\sqrt{3}},
+
+(58)
+
+while equality gives a tuned static limiting case. For a nonextremal Bardeen
+black hole, μ>3​3/4\mu>3\sqrt{3}/4, this condition is automatically satisfied for
+0<ψb≤π/20<\psi_{b}\leq\pi/2. The allowed region is therefore the finite interval
+between the two positive roots x−x_{-} and x+x_{+} of the right-hand side.
+
+The expansion time from the inner to the outer turning point is
+
+Δ​τexp=g​∫x−x+d​x2​μ​x2(1+x2)3/2−sin2⁡ψb.\Delta\tau_{\rm exp}=g\int_{x_{-}}^{x_{+}}\frac{dx}{\sqrt{\dfrac{2\mu x^{2}}{(1+x^{2})^{3/2}}-\sin^{2}\psi_{b}}}.
+
+(59)
+
+For order-one matching data this time is of order the black-hole scale. It can
+be made parametrically large by taking ψb≪1\psi_{b}\ll 1. In that limit
+x+∼2​μ/sin2⁡ψbx_{+}\sim 2\mu/\sin^{2}\psi_{b}, and the large-xx part of the integral gives
+
+Δ​τexp∼π​Msin3⁡ψb(ψb≪1).\Delta\tau_{\rm exp}\sim\frac{\pi M}{\sin^{3}\psi_{b}}\qquad(\psi_{b}\ll 1).
+
+(60)
+
+This long-lived limit is a tuning of the matched branch rather than a way to circumvent the result. The parameter ψb\psi_{b} is global junction data fixing the
+comoving angular location of the FRW boundary. Thus a long-lived closed branch
+can be engineered by tuning the matching construction, but it is not a
+prediction of the asymptotically flat parent geometry itself.
+
+There is also a second long-lived limit near the tuned static endpoint. As
+sin2⁡ψb\sin^{2}\psi_{b} approaches the maximum value 4​μ/(3​3)4\mu/(3\sqrt{3}), the two
+turning points coalesce near x=2x=\sqrt{2}, and the effective potential develops
+a double root. The expansion time becomes parametrically large because
+the trajectory spends a long interval near the quasi-static point. Once again, this is a tuning of the junction data rather than a prediction of the parent
+geometry, and fails to produce an indefinitely expanding branch.
+
+V.3 Flat and open daughters avoid boundedness but fail completeness
+
+For the flat daughter branch, the large-AA asymptotic from
+Eqs. (42) and (50) is
+
+H2∼2​MA3​χb3,A⁡(τ)∝τ2/3.H^{2}\sim\frac{2M}{A^{3}\chi_{b}^{3}},\qquad A(\tau)\propto\tau^{2/3}.
+
+(61)
+
+Thus the specific boundedness mechanism of the closed branch is absent. In
+applying the flat/open completeness condition, the object being tested is the
+maximal FRW daughter spacetime determined by the matched scale-factor law
+A⁡(τ)A(\tau), not merely the finite comoving ball bounded by the junction
+surface.
+
+If the parent also has a de Sitter-like regular core,
+
+F⁡(R)=1−H02​R2+O⁡(R4)(R→0),F(R)=1-H_{0}^{2}R^{2}+O(R^{4})\qquad(R\to 0),
+
+(62)
+
+then Eq. (42) implies
+
+H2→H02(A→0),H^{2}\to H_{0}^{2}\qquad(A\to 0),
+
+(63)
+
+so the early-time branch is asymptotically de Sitter-like,
+
+A⁡(τ)∼eH0​τ(τ→−∞).A(\tau)\sim e^{H_{0}\tau}\qquad(\tau\to-\infty).
+
+(64)
+
+This makes the incompleteness mechanism explicit. For a radial null geodesic
+in the flat FRW metric, the conserved comoving momentum gives
+d​λ∝A⁡(τ)​d​τd\lambda\propto A(\tau)d\tau, where λ\lambda is an affine parameter.
+Thus the past affine length of the asymptotic de Sitter branch is finite:
+
+Δ​λ∝∫−∞τ0A⁡(τ)​𝑑τ∼∫−∞τ0eH0​τ​𝑑τ<∞.\Delta\lambda\propto\int_{-\infty}^{\tau_{0}}A(\tau)\,d\tau\sim\int_{-\infty}^{\tau_{0}}e^{H_{0}\tau}\,d\tau<\infty.
+
+(65)
+
+Thus the flat daughter model is nonsingular in cosmic time and monotonic, but
+it is past null incomplete via the general
+flat/open FRW completeness obstruction. More generally, non-static
+curvature-regular flat/open FRW spacetimes with regular affine ends cannot be
+both null geodesically complete and ANEC-consistent
+Burwig:2025hrr; Burwig:2026fsy. Hence the flat daughter branch avoids
+the closed-universe boundedness mechanism, but it does not satisfy our full
+desired set of properties.
+
+The open branch is in the same completeness class. As discussed in
+Sec. IV.5, it avoids the closed-branch boundedness
+mechanism, but the local open de Sitter behavior is only a curvature-regular
+FRW patch and is not geodesically complete as an FRW spacetime. Combining this
+flat/open completeness obstruction with
+Proposition 2 proves
+Theorem 1: the closed branch is bounded by finite
+ADM mass, while flat and open branches fail the regular-complete-ANEC conditions
+by the general FRW completeness theorem.
+
+V.4 Escape routes
+
+The assumptions enter the closed and flat/open models differently. In the
+closed model, the large-AA failure follows from the finite-ADM limit
+m⁡(R)→Mm(R)\to M, which makes the induced no-shell density scale as A−3A^{-3}. An
+unbounded closed daughter therefore requires an ingredient that changes this
+late-time balance: modified asymptotics for which the effective mass function
+does not approach a constant, an independent shell stress tensor, a non-FRW or
+non-comoving daughter geometry, or an additional smooth bulk component whose
+density redshifts no faster than A−2A^{-2}. A positive vacuum-energy component
+is the simplest example, but adding it lies outside the asymptotically flat
+minimal construction considered here.
+
+A flat/open evasion must give up at least one of the desired conditions:
+curvature regularity, null completeness, ANEC consistency, the FRW ansatz, or
+the flat/open curvature class.
+
+VI Core type and source limitations
+
+The preceding theorem is a structural statement about
+asymptotically flat constructions, but does not apply to all
+black-hole-universe models. Two possible escape attempts are especially
+natural: changing the core type and using the parent matter source as the
+daughter source.
+
+VI.1 De Sitter cores versus Minkowski cores
+
+The Bardeen geometry has a locally de Sitter-like core, which is often one of
+the motivations for viewing regular black-hole interiors as cosmological
+seeds. This local behavior is compatible with recent convergence-condition
+analyses: de Sitter-core regular black holes can preserve the null condition
+while evading singularity theorems through strong-energy-condition violation
+Borissova:2025hmj. In our case, however, the core type
+does not control the large-AA fate of the daughter.
+
+Minkowski-core parents provide a useful comparison. Their early-time daughter
+patch can approach a Minkowski-like nonsingular regime rather than an
+asymptotically de Sitter-like one, as illustrated in
+Ref. LiWuGe:2025. This changes the early-time patch but not the
+closed-branch obstruction: for k=+1k=+1, boundedness follows from asymptotic
+flatness and finite ADM mass. For k=0k=0 and k=−1k=-1, changing the core type
+likewise does not by itself evade the general flat/open completeness theorem.
+
+VI.2 Can the parent matter source rescue the daughter universe?
+
+One might also ask whether the matter source associated with the parent
+regular black hole can stabilize the daughter cosmology. We do not prove a
+general no-go theorem, but the minimal Bardeen/nonlinear-electrodynamics route
+is disfavored for two simple reasons.
+
+First, the unchanged static source remains anisotropic away from the center and
+decays too rapidly at large areal radius. For Bardeen, the static density falls
+as r−5r^{-5}, while the no-shell Friedmann density induced by the exterior mass
+profile falls as A−3A^{-3}. Neither behavior supplies the persistent
+A−2A^{-2}-or-slower support required to evade the closed-branch obstruction.
+
+Second, promoting the same broad matter class to a homogeneous or coarse-grained
+cosmological source is not automatic. A homogeneous magnetic sector must be
+isotropized or averaged, and in an ordinary Maxwellian weak-field completion
+the late-time behavior is radiation-like rather than dark-energy-like. The
+original Ayón-Beato–García realization of Bardeen is not itself a standard
+Maxwell weak-field model, so this should not be read as a no-go theorem for all
+nonlinear-electrodynamics cosmologies. Our point is that neither the unchanged anisotropic parent source nor ordinary
+weak-field homogeneous continuations naturally provide the persistent
+w≤−1/3w\leq-1/3 support needed for an unbounded closed daughter.
+
+VII Conclusions
+
+We have examined whether asymptotically flat regular black holes can admit
+minimal FRW daughter cosmologies. We identify a structural obstruction. The
+trapped interior of the parent spacetime is not itself an FRW cosmology, so an
+FRW daughter must be introduced as a separate matched region. In the minimal
+no-shell construction, closed daughters are bounded rather than indefinitely
+expanding. Flat and open daughters can avoid this boundedness mechanism, but
+the general flat/open FRW completeness theorem prevents non-static,
+curvature-regular, ANEC-consistent flat/open daughters from being null
+geodesically complete.
+
+These conclusions are not tied to one special metric. The closed-branch result
+follows from asymptotic flatness and finite ADM mass, while the flat/open
+obstruction follows from general completeness constraints on non-static FRW
+cosmologies. Changing the detailed core structure from de Sitter-like to
+Minkowski-like modifies the early-time daughter patch but does not evade this
+dichotomy. Likewise, the parent matter source does not naturally provide the
+late-time support required to evade the closed-branch obstruction.
+
+Our result does not exclude more elaborate black-hole-universe constructions
+with shells, modified asymptotics, non-FRW daughters, or additional smooth bulk
+components. Rather, it identifies which ingredients must be changed. Closed
+FRW daughters require additional late-time support absent from finite-ADM
+no-shell matching, while flat/open FRW daughters must somehow leave the hypotheses of
+the flat/open completeness theorem. The main lesson is that a regular core, even a de Sitter-like one, is not by
+itself sufficient to produce a viable FRW daughter cosmology in the sense
+considered here.
+
+Acknowledgements.DAE was supported in part by the U.S. Department of Energy,
+Office of High Energy Physics, under Award Number DE-SC0019470.
+
+Appendix A Darmois conditions for the comoving no-shell boundary
+
+Here we present the full no-shell matching conditions used in
+Sec. IV.1. For the FRW daughter metric
+(18), a boundary at fixed χ=χb\chi=\chi_{b} has areal
+radius Rb=A​χbR_{b}=A\chi_{b}. The outward unit normal on the FRW side is
+
+n−μ∂μ=1−k​χb2A∂χ,n_{-}^{\mu}\partial_{\mu}=\frac{\sqrt{1-k\chi_{b}^{2}}}{A}\,\partial_{\chi},
+
+(66)
+
+and therefore
+
+Kθ​θ−=Rb​n−μ​∂μR=Rb​1−k​χb2.K_{\theta\theta}^{-}=R_{b}\,n_{-}^{\mu}\partial_{\mu}R=R_{b}\sqrt{1-k\chi_{b}^{2}}.
+
+(67)
+
+On the parent side, with trajectory
+x+μ=(T⁡(τ),Rb​(τ),θ,φ)x_{+}^{\mu}=(T(\tau),R_{b}(\tau),\theta,\varphi), the induced-metric condition is
+
+F⁡(Rb)​T˙ 2−R˙b 2F⁡(Rb)=1.F(R_{b})\dot{T}^{\,2}-\frac{\dot{R}_{b}^{\,2}}{F(R_{b})}=1.
+
+(68)
+
+Choosing the outward normal consistently with the orientation in the main text
+gives
+
+Kθ​θ+=Rb​F​(Rb)​T˙=Rb​F⁡(Rb)+R˙b 2.K_{\theta\theta}^{+}=R_{b}F(R_{b})\dot{T}=R_{b}\sqrt{F(R_{b})+\dot{R}_{b}^{\,2}}.
+
+(69)
+
+Equating Eqs. (67) and
+(69) yields
+
+R˙b 2+F⁡(Rb)=1−k​χb2,\dot{R}_{b}^{\,2}+F(R_{b})=1-k\chi_{b}^{2},
+
+(70)
+
+which is Eq. (24). For the closed parametrization
+Rb=AsinψbR_{b}=A\sin\psi_{b}, the same calculation gives
+
+Kθ​θ−=Rbcosψb,R˙b 2+F(Rb)=cos2ψb.K_{\theta\theta}^{-}=R_{b}\cos\psi_{b},\qquad\dot{R}_{b}^{\,2}+F(R_{b})=\cos^{2}\psi_{b}.
+
+(71)
+
+The remaining τ​τ\tau\tau condition is also satisfied. On the FRW side the
+boundary is comoving and geodesic, hence Kτ​τ−=0K_{\tau\tau}^{-}=0. On the parent
+side, differentiating the first integral away from a turning point gives
+
+R¨b=−12​F′​(Rb),\ddot{R}_{b}=-\frac{1}{2}F^{\prime}(R_{b}),
+
+(72)
+
+which is precisely the radial geodesic equation for the trajectory in the
+one-function parent metric. Thus Kτ​τ+=0K_{\tau\tau}^{+}=0. At a turning point this
+relation is understood by continuity, or equivalently by using the local
+second-order geodesic equation rather than dividing by R˙b\dot{R}_{b}. Hence the
+angular condition together with induced-metric matching gives the full
+Darmois no-shell matching for the comoving construction. For the redshifted metric
+(29), the angular condition is unchanged, while
+the τ​τ\tau\tau condition gives the additional constraint discussed in
+Sec. IV.2.
+
+References
+
+ 
+(1)
+
+A. C. Wall,
+“Proving the Achronal Averaged Null Energy Condition from the Generalized Second Law,”
+Phys. Rev. D 81, 024038 (2010)
+doi:10.1103/PhysRevD.81.024038
+[arXiv:0910.5751 [gr-qc]].
+
+ 
+(2)
+
+E. Curiel,
+“A Primer on Energy Conditions,”
+Einstein Stud. 13, 43–104 (2017)
+doi:10.1007/978-1-4939-3210-8_3
+[arXiv:1405.0403 [physics.hist-ph]].
+
+ 
+(3)
+
+N. L. Burwig and D. A. Easson,
+“Open case for a closed universe,”
+Phys. Rev. D 113, no.8, 083530 (2026)
+doi:10.1103/mn3v-myzc
+[arXiv:2510.13971 [hep-th]].
+
+ 
+(4)
+
+N. L. Burwig and D. A. Easson,
+“Affine ANEC selects the closed FRW branch for geodesically complete cosmology,”
+[arXiv:2605.18965 [gr-qc]].
+
+ 
+(5)
+
+R. K. Pathria,
+“The Universe as a Black Hole,”
+Nature 240, 298 (1972).
+
+ 
+(6)
+
+D. A. Easson and R. H. Brandenberger,
+“Universe generation from black hole interiors,”
+JHEP 06, 024 (2001)
+doi:10.1088/1126-6708/2001/06/024
+[arXiv:hep-th/0103019 [hep-th]].
+
+ 
+(7)
+
+S. K. Blau, E. I. Guendelman and A. H. Guth,
+“The Dynamics of False Vacuum Bubbles,”
+Phys. Rev. D 35, 1747 (1987)
+doi:10.1103/PhysRevD.35.1747
+
+ 
+(8)
+
+V. P. Frolov, M. A. Markov, and V. F. Mukhanov,
+“Through a black hole into a new universe?”
+Phys. Lett. B 216, 272 (1989).
+
+ 
+(9)
+
+V. P. Frolov, M. A. Markov, and V. F. Mukhanov,
+“Black holes as possible sources of closed and semiclosed worlds,”
+Phys. Rev. D 41, 383 (1990).
+
+ 
+(10)
+
+E. Farhi, A. H. Guth, and J. Guven,
+“Is it possible to create a universe in the laboratory by quantum tunneling?”
+Nucl. Phys. B 339, 417 (1990).
+
+ 
+(11)
+
+M. Trodden, V. F. Mukhanov and R. H. Brandenberger,
+“A nonsingular two dimensional black hole,”
+Phys. Lett. B 316, 483 (1993)
+[arXiv:hep-th/9305111].
+
+ 
+(12)
+
+D. A. Easson,
+“Nonsingular Schwarzschild–de Sitter black hole,”
+Class. Quant. Grav. 35, no.23, 235005 (2018)
+doi:10.1088/1361-6382/aae85f
+[arXiv:1712.09455 [hep-th]].
+
+ 
+(13)
+
+V. P. Frolov and A. Zelnikov,
+“Two-dimensional black holes in the limiting curvature theory of gravity,”
+JHEP 08, 154 (2021)
+doi:10.1007/JHEP08(2021)154
+[arXiv:2105.12808 [hep-th]].
+
+ 
+(14)
+
+I. G. Dymnikova, A. Dobosz, M. L. Fil’chenkov, and A. Gromov,
+“Universes inside a Λ\Lambda black hole,”
+Phys. Lett. B 506, 351 (2001)
+[arXiv:gr-qc/0102032].
+
+ 
+(15)
+
+I. Dymnikova,
+“Universes Inside a Black Hole with the de Sitter Interior,”
+Universe 5, 111 (2019).
+
+ 
+(16)
+
+J. M. Bardeen,
+“Non-singular general-relativistic gravitational collapse,”
+in Proceedings of the International Conference GR5,
+Tbilisi, U.S.S.R. (1968).
+
+ 
+(17)
+
+E. Ayón-Beato and A. García,
+“The Bardeen model as a nonlinear magnetic monopole,”
+Phys. Lett. B 493, 149 (2000)
+[arXiv:gr-qc/0009077].
+
+ 
+(18)
+
+S. A. Hayward,
+“Formation and evaporation of regular black holes,”
+Phys. Rev. Lett. 96, 031103 (2006)
+[arXiv:gr-qc/0506126].
+
+ 
+(19)
+
+S. Ansoldi,
+“Spherical black holes with regular center: A review of existing models including a recent realization with Gaussian sources,”
+[arXiv:0802.0330 [gr-qc]].
+
+ 
+(20)
+
+L. Balart and E. C. Vagenas,
+“Regular black hole metrics and the weak energy condition,”
+Phys. Lett. B 730, 14 (2014)
+[arXiv:1401.2136 [gr-qc]].
+
+ 
+(21)
+
+Z.-Y. Fan and X. Wang,
+“Construction of regular black holes in general relativity,”
+Phys. Rev. D 94, no.12, 124027 (2016)
+doi:10.1103/PhysRevD.94.124027
+[arXiv:1610.02636 [gr-qc]].
+
+ 
+(22)
+
+A. Borde and A. Vilenkin,
+“Eternal inflation and the initial singularity,”
+Phys. Rev. Lett. 72, 3305 (1994)
+doi:10.1103/PhysRevLett.72.3305
+[arXiv:gr-qc/9312022].
+
+ 
+(23)
+
+A. Borde, A. H. Guth and A. Vilenkin,
+“Inflationary spacetimes are incomplete in past directions,”
+Phys. Rev. Lett. 90, 151301 (2003)
+doi:10.1103/PhysRevLett.90.151301
+[arXiv:gr-qc/0110012].
+
+ 
+(24)
+
+J. E. Lesnefsky, D. A. Easson, and P. C. W. Davies,
+“On the past-completeness of inflationary spacetimes,”
+Phys. Rev. D 107, 044024 (2023)
+[arXiv:2207.00955 [gr-qc]].
+
+ 
+(25)
+
+D. A. Easson and J. E. Lesnefsky,
+“Inflationary resolution of the initial singularity,”
+Phys. Lett. B 875, 140370 (2026)
+doi:10.1016/j.physletb.2026.140370
+[arXiv:2402.13031 [hep-th]].
+
+ 
+(26)
+
+D. A. Easson and J. E. Lesnefsky,
+“Eternal universes,”
+Phys. Rev. D 112, no.6, 063545 (2025)
+doi:10.1103/5mhz-m8bg
+[arXiv:2404.03016 [hep-th]].
+
+ 
+(27)
+
+D. A. Easson,
+“Geodesically Complete Curvature-Bounce Inflation,”
+[arXiv:2604.27103 [astro-ph.CO]].
+
+ 
+(28)
+
+J. R. Oppenheimer and H. Snyder,
+“On Continued Gravitational Contraction,”
+Phys. Rev. 56, 455 (1939).
+
+ 
+(29)
+
+W. Israel,
+“Singular hypersurfaces and thin shells in general relativity,”
+Nuovo Cim. B 44, 1 (1966).
+
+ 
+(30)
+
+C. W. Misner and D. H. Sharp,
+“Relativistic equations for adiabatic, spherically symmetric gravitational collapse,”
+Phys. Rev. 136, B571 (1964).
+
+ 
+(31)
+
+F. Shojai, A. Sadeghi, and R. Hassannejad,
+“Generalized Oppenheimer-Snyder Gravitational Collapse into Regular Black holes,”
+Class. Quantum Grav. 39, 085003 (2022)
+[arXiv:2202.14024 [gr-qc]].
+
+ 
+(32)
+
+M. Bobula,
+“Cosmic inflation prevents singularity formation in collapse into a Hayward black hole,”
+Class. Quantum Grav. 42, 065027 (2025)
+[arXiv:2404.12243 [gr-qc]].
+
+ 
+(33)
+
+P. Bueno, P. A. Cano, R. A. Hennigar, Á. J. Murcia and A. Vicente-Cano,
+“Regular black holes from Oppenheimer-Snyder collapse,”
+Phys. Rev. D 112, no.6, 064039 (2025)
+doi:10.1103/qrbb-mdvm
+[arXiv:2505.09680 [gr-qc]].
+
+ 
+(34)
+
+S. Li, J.-P. Wu, and X.-H. Ge,
+“Non-singular cosmologies matching regular black holes,”
+[arXiv:2512.00926 [gr-qc]].
+
+ 
+(35)
+
+M. Bobula and F. Fazzini,
+“Quantum gravitational stellar evolution beyond shell-crossing singularities,”
+Phys. Rev. D 113, no.10, 106016 (2026)
+doi:10.1103/165q-lwmd
+[arXiv:2601.18618 [gr-qc]].
+
+ 
+(36)
+
+J. Borissova, S. Liberati and M. Visser,
+“Timelike convergence condition in regular black-hole spacetimes with (anti-)de Sitter core,”
+Phys. Rev. D 112, no.10, 104072 (2025)
+doi:10.1103/rrc9-g1sv
+[arXiv:2509.08590 [gr-qc]].
+
+ 
+(37)
+
+D. A. Easson, C. Keeler and T. Manton,
+“Classical double copy of nonsingular black holes,”
+Phys. Rev. D 102, no.8, 086015 (2020)
+doi:10.1103/PhysRevD.102.086015
+[arXiv:2007.16186 [gr-qc]].
+
+ 
+(38)
+
+D. A. Easson and T. Manton,
+“Black Hole Interiors as a Laboratory for Time-Dependent Classical Double Copy,”
+[arXiv:2604.19920 [hep-th]].
+
+ 
+
+◄
+ 
+ Feelinglucky?
+ 
+ Conversionreport
+ Reportan issue
+ View originalon arXiv►
+
+Copyright
+Privacy Policy
+
+Generated by LaTeXML oxide

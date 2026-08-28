@@ -1,0 +1,93 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass27-review-v1-20260808T151015K",
+  "created_at": "2026-08-08T15:10:15+09:00",
+  "deepening_pass": 27,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "authority": {
+    "hwao_weekend_order": {"path": "../../HWAO_WEEKEND_ORDER.md", "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710"},
+    "coordination_update": {"path": "../../COORDINATION_UPDATE.md", "sha256": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"},
+    "lane_brief": {"path": "../../lanes/spin/BRIEF.md", "sha256": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec"}
+  },
+  "custody": {
+    "source_freeze": {"path": "SOURCE_STATUS_FREEZE.json", "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1", "modified": false},
+    "storyboard_proposal": {"path": "STORYBOARD_PROPOSAL.json", "iteration": "v8", "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce", "modified": false},
+    "sealed_v8_render_receipt": {"path": "proposal_frames/v8/render_receipt.json", "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3", "modified": false},
+    "prior_pass_snapshot": {"path": "qa/pass26_review_snapshot_v1.json", "sha256": "826d418a55b315fb66a7b2c93015aed6c0eeee20f4c00950cd1ec74507075243"},
+    "preserved_failed_candidate": {
+      "name": "spin-parity-census-20260808T0149",
+      "media_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+      "receipt_sha256": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+      "qa_sha256": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+      "hashes_sha256": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3",
+      "modified": false,
+      "re_dispatched": false
+    }
+  },
+  "pass27": {
+    "focus": "native color/monochrome transform followed by minimum-scale 640x360 and represented-pixel Gaussian defocus radius 0.5",
+    "fresh_cut_reproduction": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS26",
+    "candidate_pass23_baseline_reproduction": "80/80_PIXEL_EXACT",
+    "method_pass23_baseline_reproduction": "105/105_PIXEL_EXACT",
+    "candidate_frames": 80,
+    "method_frames": 105,
+    "candidate_exact_blur_recomputation": "80/80",
+    "method_exact_blur_recomputation": "105/105",
+    "candidate_structural_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_critical_structural_gates": "0/5_ALL_FIVE_VARIANTS",
+    "candidate_color_headline_recall": 0.986207,
+    "candidate_color_full_text_recall": 0.943368,
+    "candidate_color_lower_support_recall": 0.845070,
+    "candidate_color_rgb_psnr_db": 34.630136,
+    "candidate_color_gradient_energy_ratio": 0.751821,
+    "candidate_grayscale_headline_recall": 0.986301,
+    "candidate_grayscale_full_text_recall": 0.943485,
+    "candidate_grayscale_lower_support_recall": 0.752475,
+    "candidate_tritanopia_full_text_recall": 0.911504,
+    "sealed_v8_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates_visual": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates_visual": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_gate_threshold_passes": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mean_mapped_gate_similarity_range": "0.972100_TO_0.987949",
+    "pass12_minimum_mapped_gate_score": 0.923077,
+    "method_hue_only_required_meaning": 0,
+    "action": "ADD_NON_PIXEL_COMPOUND_SHARPNESS_COLOR_GUARD_NOT_NEW_PIXEL_CORRECTION",
+    "video_reportable_now": false
+  },
+  "evidence": {
+    "extractor": {"path": "qa/extract_pass27_color_minimum_scale_represented_defocus_frames.py", "sha256": "efd1aea63ecfc0355c01dd0ca01d7bbbf7a4587ae03a465a93f3d29e04ad6405"},
+    "candidate_extraction_receipt": {"path": "qa/pass27_color_minimum_scale_represented_defocus_audit/extraction_receipt.json", "sha256": "0ef8b2eb158366f9edffa4c34a1710400b6a5e1f9d5ea4c483f536f00f547327"},
+    "method_builder": {"path": "qa/build_pass27_v8_color_minimum_scale_represented_defocus.py", "sha256": "860e53f9a577f5d8a584b4dbc00aec1743b9eaf3ed5bb12931afeada55cae6e0"},
+    "method_receipt": {"path": "qa/pass27_v8_color_minimum_scale_represented_defocus/receipt.json", "sha256": "0c3570d7bf1c56e8550db55052bde3141326bca6fdc14e2f8484d44f64b4155f"},
+    "quantitative_auditor": {"path": "qa/audit_pass27_color_minimum_scale_represented_defocus.py", "sha256": "f2e6eab3b5ac53af8cd0d68f1f4fbf10e8387cbf331d58596668625b752c0a3b"},
+    "quantitative_audit": {"path": "qa/pass27_color_minimum_scale_represented_defocus_quantitative_audit.json", "sha256": "315c1719f07f7aeb87b11a5c7728818897d97094311987251179fecf39403f97"},
+    "integration_guard": {"path": "COLOR_MINIMUM_SCALE_REPRESENTED_DEFOCUS_GUARD_PASS27.json", "sha256": "96760aa01605396bf29d5d8712a089e54b3cda1b848074d01bf98b2488cce20b"},
+    "encoded_frame_audit": {"path": "PASS27_ENCODED_FRAME_AUDIT.md", "sha256": "fc53ce20310389441122ec69593e88c1210f1e8c793cf2401b2221734168099c"},
+    "blocker_packet": {"path": "BLOCKER_PACKET_PASS27.json", "sha256": "6e73ce13dad670740ab58f55967e37b892daff899d917385cc7fd03f8c661783"}
+  },
+  "blockers": {
+    "post_run_independent_review": "MISSING_FOR_EXACT_FROZEN_T4_209_FILE_ARTIFACT",
+    "archive_storage_frame": "FRAME_REVIEW_AGREES_FRAME_UNSTATED",
+    "candidate_representation": "RESULT_BEARING_WITHOUT_STRUCTURAL_HELD_GATE",
+    "video_reportable_now": false
+  },
+  "representation_boundary": {
+    "required_header": "GALAXY SPIN",
+    "forbidden_audience_topics_absent_from_method_frames": true,
+    "method_only": true,
+    "science_adjudicated": false,
+    "presentation_stress_not_clinical_or_named_optical_display_standard": true
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

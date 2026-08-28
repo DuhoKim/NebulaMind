@@ -1,0 +1,44 @@
+{
+  "review_round": 17,
+  "pass": 7,
+  "snapshot": "pass7-complete-audience-static-v11",
+  "snapshot_manifest_sha256": "6af439440736040f9a136376bfc68055322b6ec05c012cf9546f01e2dad34566",
+  "manifest_entries_verified_start_end": "93/93",
+  "files_0444": true,
+  "directories_0555": true,
+  "frozen_sources_verified": "8/8",
+  "frames_verified": "43/43",
+  "candidate_sha256_start_end": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_mode_start_end": "0644",
+  "passing_exact_checks": [
+    "scientific storyboard and topology",
+    "complete audience payload 10 narration plus 62 screen leaves plus 10 citations",
+    "45 distinct states, 21 clauses, three-second maximum gap",
+    "static visual v9 exact hash, search labels, topology, and full-resolution layout",
+    "snapshot-local renderer byte-identical no-write replay",
+    "93-entry custody, eight sources, 43 frames, and no writes"
+  ],
+  "material_defects": [
+    {
+      "class": "expected_manifest_trust_anchor_not_enforced",
+      "evidence": "validator ignored the expected manifest environment value, accepted all-zero digest, and accepted a fully re-signed dangerous scope mutation"
+    },
+    {
+      "class": "granular_semantic_resistance_masked_by_rotatable_hashes",
+      "evidence": "fully re-signed decorative state, Unicode overclaim, citation swap, clause-map swap, and 61-leaf projection mutations passed standalone validation"
+    },
+    {
+      "class": "narration_preparer_visual_authentication_missing",
+      "evidence": "prepare_narration_manifest.py trusted visual_proposal_qa fields and passed with visual_proposal_v9.png absent or replaced by fake bytes"
+    },
+    {
+      "class": "numeric_source_traceability_stale",
+      "evidence": "all nine NUMERIC_SOURCE_AUDIT used_in links named absent visual_proposal_v7.png rather than current visual v9"
+    }
+  ],
+  "files_modified": [],
+  "external_candidate_disposition": "FAIL_PRESERVED",
+  "release_gates": "candidate/integration/TTS/publication/shared/public/Git closed",
+  "verdict": "FAIL",
+  "scope": "exact pass-7 v11 only; preserved historical failure and cannot clear later versions"
+}

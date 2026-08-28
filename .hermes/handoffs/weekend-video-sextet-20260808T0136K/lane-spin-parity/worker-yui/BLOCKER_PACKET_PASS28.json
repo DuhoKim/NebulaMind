@@ -1,0 +1,64 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass28-blockers-20260808T153230K",
+  "checked_at": "2026-08-08T15:32:30+09:00",
+  "deepening_pass": 28,
+  "lane": "spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "video_reportable_now": false,
+  "candidate_0149": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "status": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "preserved": true,
+    "modified": false,
+    "promoted": false
+  },
+  "source_status_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "video_reportable_now": false,
+    "semantic_decision": "BLOCK_SUBSTANTIVE_RESULT_RENDER; ALLOW_METHOD_ONLY_CANARY"
+  },
+  "blocking_facts": [
+    {
+      "id": "A3_8_POST_RUN_RECORD_MISSING",
+      "status": "UNCHANGED_BLOCKER",
+      "exact_requirement": "A valid independent post-run A3.8 verdict record bound to the exact frozen all-209-file T4 artifact.",
+      "current_state": "No qualifying record located in the frozen lane evidence.",
+      "not_a_video_task": true
+    },
+    {
+      "id": "FRAME_UNSTATED",
+      "status": "UNCHANGED_BLOCKER",
+      "exact_requirement": "Resolve the archive mirrored-direction storage convention.",
+      "current_state": "KUN_FRAME_REVIEW.md remains FRAME REVIEW: AGREES FRAME_UNSTATED.",
+      "not_a_video_task": true
+    },
+    {
+      "id": "VIDEO_REPORTABLE_FALSE",
+      "status": "UNCHANGED_BLOCKER",
+      "exact_requirement": "A fresh authoritative source/status decision must set video_reportable_now true before substantive result rendering.",
+      "current_state": "SOURCE_STATUS_FREEZE.json remains false.",
+      "not_a_video_task": true
+    }
+  ],
+  "pass28_representation_finding": {
+    "stress": "native color/monochrome -> 640x360 -> represented-pixel centered horizontal width-3 box smear",
+    "candidate_structural_gate_count": "0/16 under all five variants",
+    "candidate_held_critical_gate_count": "0/5 under all five variants",
+    "method_visual_gate_count": "7/7 under all five variants",
+    "ocr_aid_minimum": "4/7 at inherited 0.80 heuristic; retained as OCR-aid undercount, not semantic adjudication",
+    "changes_blocker_state": false,
+    "repairs_or_authorizes_candidate": false
+  },
+  "allowed_next_step": "Hwao/Fable may review the unchanged sealed v8 method-only proof and pass-28 representation guard. Any candidate creation, TTS, rendering, publication, shared-tool mutation, deployment, or Git action remains a separate explicit gate.",
+  "sealed_v8_modified": false,
+  "v9_created": false,
+  "new_candidate_created": false,
+  "shared_assets_modified": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "tts_invoked": false,
+  "git_action": false
+}

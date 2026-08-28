@@ -1,0 +1,4464 @@
+{
+  "audio_generated": false,
+  "candidate": {
+    "aggregates": {
+      "clean": {
+        "mean_combined_backprojected_edge_recall": 1.0,
+        "mean_combined_backprojected_rgb_psnr_db": 99.0,
+        "mean_encoded_jpeg_bytes": null,
+        "mean_full_token_recall_vs_native_clean": 1.0,
+        "mean_headline_token_recall_vs_native_clean": 1.0,
+        "mean_lower_support_token_recall_vs_native_clean": 1.0,
+        "mean_numeric_token_recall_vs_native_clean": 1.0,
+        "result_held_scene_count": 0,
+        "scene_specific_gate_count": 0,
+        "structural_gate_scene_count": 0
+      },
+      "downscale_360p": {
+        "mean_combined_backprojected_edge_recall": 0.883053,
+        "mean_combined_backprojected_rgb_psnr_db": 29.305042,
+        "mean_encoded_jpeg_bytes": null,
+        "mean_full_token_recall_vs_native_clean": 0.76231,
+        "mean_headline_token_recall_vs_native_clean": 0.957977,
+        "mean_lower_support_token_recall_vs_native_clean": 0.355206,
+        "mean_numeric_token_recall_vs_native_clean": 0.508145,
+        "result_held_scene_count": 0,
+        "scene_specific_gate_count": 0,
+        "structural_gate_scene_count": 0
+      },
+      "jpeg_q20_420_360p": {
+        "mean_combined_backprojected_edge_recall": 0.756817,
+        "mean_combined_backprojected_rgb_psnr_db": 26.410241,
+        "mean_encoded_jpeg_bytes": 10138,
+        "mean_full_token_recall_vs_native_clean": 0.680946,
+        "mean_headline_token_recall_vs_native_clean": 0.944572,
+        "mean_lower_support_token_recall_vs_native_clean": 0.290992,
+        "mean_numeric_token_recall_vs_native_clean": 0.458181,
+        "mean_recompression_only_edge_recall_vs_lossless_360p": 0.96532,
+        "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 29.828619,
+        "result_held_scene_count": 0,
+        "scene_specific_gate_count": 0,
+        "structural_gate_scene_count": 0
+      },
+      "jpeg_q35_420_360p": {
+        "mean_combined_backprojected_edge_recall": 0.831509,
+        "mean_combined_backprojected_rgb_psnr_db": 27.491145,
+        "mean_encoded_jpeg_bytes": 12998,
+        "mean_full_token_recall_vs_native_clean": 0.733435,
+        "mean_headline_token_recall_vs_native_clean": 0.936728,
+        "mean_lower_support_token_recall_vs_native_clean": 0.332694,
+        "mean_numeric_token_recall_vs_native_clean": 0.458181,
+        "mean_recompression_only_edge_recall_vs_lossless_360p": 0.979034,
+        "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 32.297957,
+        "result_held_scene_count": 0,
+        "scene_specific_gate_count": 0,
+        "structural_gate_scene_count": 0
+      },
+      "jpeg_q60_420_360p": {
+        "mean_combined_backprojected_edge_recall": 0.858432,
+        "mean_combined_backprojected_rgb_psnr_db": 28.174973,
+        "mean_encoded_jpeg_bytes": 16983,
+        "mean_full_token_recall_vs_native_clean": 0.7522,
+        "mean_headline_token_recall_vs_native_clean": 0.936728,
+        "mean_lower_support_token_recall_vs_native_clean": 0.340235,
+        "mean_numeric_token_recall_vs_native_clean": 0.480409,
+        "mean_recompression_only_edge_recall_vs_lossless_360p": 0.99172,
+        "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 34.59188,
+        "result_held_scene_count": 0,
+        "scene_specific_gate_count": 0,
+        "structural_gate_scene_count": 0
+      }
+    },
+    "clean_midpoints_byte_identical_to_pass16": 16,
+    "cut_times_exact_pass16": true,
+    "frame_count": 80,
+    "held_critical_aggregates": {
+      "clean": {
+        "mean_full_token_recall_vs_native_clean": 1.0,
+        "mean_headline_token_recall_vs_native_clean": 1.0,
+        "mean_lower_support_token_recall_vs_native_clean": 1.0,
+        "mean_numeric_token_recall_vs_native_clean": 1.0,
+        "scenes": [
+          7,
+          9,
+          10,
+          11,
+          16
+        ],
+        "structural_gate_scene_count": 0
+      },
+      "downscale_360p": {
+        "mean_full_token_recall_vs_native_clean": 0.533821,
+        "mean_headline_token_recall_vs_native_clean": 0.913804,
+        "mean_lower_support_token_recall_vs_native_clean": 0.533146,
+        "mean_numeric_token_recall_vs_native_clean": 0.466065,
+        "scenes": [
+          7,
+          9,
+          10,
+          11,
+          16
+        ],
+        "structural_gate_scene_count": 0
+      },
+      "jpeg_q20_420_360p": {
+        "mean_full_token_recall_vs_native_clean": 0.435024,
+        "mean_headline_token_recall_vs_native_clean": 0.877804,
+        "mean_lower_support_token_recall_vs_native_clean": 0.44169,
+        "mean_numeric_token_recall_vs_native_clean": 0.372846,
+        "scenes": [
+          7,
+          9,
+          10,
+          11,
+          16
+        ],
+        "structural_gate_scene_count": 0
+      },
+      "jpeg_q35_420_360p": {
+        "mean_full_token_recall_vs_native_clean": 0.486906,
+        "mean_headline_token_recall_vs_native_clean": 0.879137,
+        "mean_lower_support_token_recall_vs_native_clean": 0.505251,
+        "mean_numeric_token_recall_vs_native_clean": 0.372846,
+        "scenes": [
+          7,
+          9,
+          10,
+          11,
+          16
+        ],
+        "structural_gate_scene_count": 0
+      },
+      "jpeg_q60_420_360p": {
+        "mean_full_token_recall_vs_native_clean": 0.515556,
+        "mean_headline_token_recall_vs_native_clean": 0.879137,
+        "mean_lower_support_token_recall_vs_native_clean": 0.523977,
+        "mean_numeric_token_recall_vs_native_clean": 0.417308,
+        "scenes": [
+          7,
+          9,
+          10,
+          11,
+          16
+        ],
+        "structural_gate_scene_count": 0
+      }
+    },
+    "scene_count": 16,
+    "scenes": [
+      {
+        "clean_ocr_token_count": 32,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 32,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 1.980697,
+              "rgb_psnr_db": 29.997458,
+              "tolerant_luma_edge_recall": 0.975021
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.96875,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 31,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.013963,
+              "rgb_psnr_db": 27.145185,
+              "tolerant_luma_edge_recall": 0.92169
+            },
+            "encoded_jpeg_bytes": 9925,
+            "full_token_recall_vs_native_clean": 0.8125,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.785714,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 31,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.191969,
+              "rgb_psnr_db": 30.49432,
+              "tolerant_luma_edge_recall": 0.986013
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.890152,
+              "rgb_psnr_db": 28.293293,
+              "tolerant_luma_edge_recall": 0.95682
+            },
+            "encoded_jpeg_bytes": 12653,
+            "full_token_recall_vs_native_clean": 0.96875,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 31,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.938346,
+              "rgb_psnr_db": 33.083368,
+              "tolerant_luma_edge_recall": 0.98727
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.257645,
+              "rgb_psnr_db": 28.985228,
+              "tolerant_luma_edge_recall": 0.969351
+            },
+            "encoded_jpeg_bytes": 16531,
+            "full_token_recall_vs_native_clean": 0.96875,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 32,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.166759,
+              "rgb_psnr_db": 35.559225,
+              "tolerant_luma_edge_recall": 0.990034
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 1
+      },
+      {
+        "clean_ocr_token_count": 46,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 46,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.110641,
+              "rgb_psnr_db": 29.497199,
+              "tolerant_luma_edge_recall": 0.960945
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.869565,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 40,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.089223,
+              "rgb_psnr_db": 26.712502,
+              "tolerant_luma_edge_recall": 0.859313
+            },
+            "encoded_jpeg_bytes": 9625,
+            "full_token_recall_vs_native_clean": 0.76087,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 38,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.134654,
+              "rgb_psnr_db": 30.20928,
+              "tolerant_luma_edge_recall": 0.986583
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.990861,
+              "rgb_psnr_db": 27.781312,
+              "tolerant_luma_edge_recall": 0.916813
+            },
+            "encoded_jpeg_bytes": 12048,
+            "full_token_recall_vs_native_clean": 0.826087,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 39,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.904881,
+              "rgb_psnr_db": 32.761867,
+              "tolerant_luma_edge_recall": 0.990643
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.351103,
+              "rgb_psnr_db": 28.434666,
+              "tolerant_luma_edge_recall": 0.940293
+            },
+            "encoded_jpeg_bytes": 15684,
+            "full_token_recall_vs_native_clean": 0.869565,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 40,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.146535,
+              "rgb_psnr_db": 35.040207,
+              "tolerant_luma_edge_recall": 0.995321
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 2
+      },
+      {
+        "clean_ocr_token_count": 75,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 75,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.689119,
+              "rgb_psnr_db": 28.398583,
+              "tolerant_luma_edge_recall": 0.969931
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.88,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 69,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.905026,
+              "rgb_psnr_db": 25.650106,
+              "tolerant_luma_edge_recall": 0.862569
+            },
+            "encoded_jpeg_bytes": 11058,
+            "full_token_recall_vs_native_clean": 0.866667,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 69,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.663843,
+              "rgb_psnr_db": 29.163964,
+              "tolerant_luma_edge_recall": 0.989631
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.745228,
+              "rgb_psnr_db": 26.66104,
+              "tolerant_luma_edge_recall": 0.926383
+            },
+            "encoded_jpeg_bytes": 14096,
+            "full_token_recall_vs_native_clean": 0.866667,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 68,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.345618,
+              "rgb_psnr_db": 31.593715,
+              "tolerant_luma_edge_recall": 0.991747
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.049376,
+              "rgb_psnr_db": 27.353085,
+              "tolerant_luma_edge_recall": 0.952647
+            },
+            "encoded_jpeg_bytes": 18539,
+            "full_token_recall_vs_native_clean": 0.893333,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 69,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.487601,
+              "rgb_psnr_db": 33.983367,
+              "tolerant_luma_edge_recall": 0.996085
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 3
+      },
+      {
+        "clean_ocr_token_count": 30,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 30,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 1.455313,
+              "rgb_psnr_db": 32.085711,
+              "tolerant_luma_edge_recall": 0.962032
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.9,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.5,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 30,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.541004,
+              "rgb_psnr_db": 28.095675,
+              "tolerant_luma_edge_recall": 0.839341
+            },
+            "encoded_jpeg_bytes": 8612,
+            "full_token_recall_vs_native_clean": 0.8,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.5,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 26,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.991432,
+              "rgb_psnr_db": 30.484718,
+              "tolerant_luma_edge_recall": 0.982833
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.420526,
+              "rgb_psnr_db": 29.472797,
+              "tolerant_luma_edge_recall": 0.925373
+            },
+            "encoded_jpeg_bytes": 10705,
+            "full_token_recall_vs_native_clean": 0.866667,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.5,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 26,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.78843,
+              "rgb_psnr_db": 33.032477,
+              "tolerant_luma_edge_recall": 0.987964
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.795672,
+              "rgb_psnr_db": 30.330842,
+              "tolerant_luma_edge_recall": 0.94667
+            },
+            "encoded_jpeg_bytes": 13881,
+            "full_token_recall_vs_native_clean": 0.866667,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.5,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 26,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.078479,
+              "rgb_psnr_db": 35.164491,
+              "tolerant_luma_edge_recall": 0.993982
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 4
+      },
+      {
+        "clean_ocr_token_count": 74,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 74,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.365019,
+              "rgb_psnr_db": 28.409622,
+              "tolerant_luma_edge_recall": 0.809221
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.554054,
+            "headline_token_recall_vs_native_clean": 0.758621,
+            "lower_support_token_recall_vs_native_clean": 0.567568,
+            "numeric_token_recall_vs_native_clean": 0.466667,
+            "ocr_token_count": 55,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.631055,
+              "rgb_psnr_db": 25.859249,
+              "tolerant_luma_edge_recall": 0.645162
+            },
+            "encoded_jpeg_bytes": 10427,
+            "full_token_recall_vs_native_clean": 0.418919,
+            "headline_token_recall_vs_native_clean": 0.724138,
+            "lower_support_token_recall_vs_native_clean": 0.378378,
+            "numeric_token_recall_vs_native_clean": 0.133333,
+            "ocr_token_count": 49,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.457047,
+              "rgb_psnr_db": 29.692319,
+              "tolerant_luma_edge_recall": 0.969544
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.66118,
+              "rgb_psnr_db": 26.863957,
+              "tolerant_luma_edge_recall": 0.734219
+            },
+            "encoded_jpeg_bytes": 13399,
+            "full_token_recall_vs_native_clean": 0.5,
+            "headline_token_recall_vs_native_clean": 0.758621,
+            "lower_support_token_recall_vs_native_clean": 0.513514,
+            "numeric_token_recall_vs_native_clean": 0.133333,
+            "ocr_token_count": 53,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.334557,
+              "rgb_psnr_db": 32.237222,
+              "tolerant_luma_edge_recall": 0.981222
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.890579,
+              "rgb_psnr_db": 27.461151,
+              "tolerant_luma_edge_recall": 0.77084
+            },
+            "encoded_jpeg_bytes": 17104,
+            "full_token_recall_vs_native_clean": 0.527027,
+            "headline_token_recall_vs_native_clean": 0.758621,
+            "lower_support_token_recall_vs_native_clean": 0.540541,
+            "numeric_token_recall_vs_native_clean": 0.266667,
+            "ocr_token_count": 50,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.404055,
+              "rgb_psnr_db": 34.519458,
+              "tolerant_luma_edge_recall": 0.993166
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 5
+      },
+      {
+        "clean_ocr_token_count": 40,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 40,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 1.824598,
+              "rgb_psnr_db": 30.121541,
+              "tolerant_luma_edge_recall": 0.9479
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.875,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 35,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.709774,
+              "rgb_psnr_db": 27.326228,
+              "tolerant_luma_edge_recall": 0.846234
+            },
+            "encoded_jpeg_bytes": 8930,
+            "full_token_recall_vs_native_clean": 0.825,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 35,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.876244,
+              "rgb_psnr_db": 30.832718,
+              "tolerant_luma_edge_recall": 0.985525
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.631067,
+              "rgb_psnr_db": 28.414188,
+              "tolerant_luma_edge_recall": 0.904889
+            },
+            "encoded_jpeg_bytes": 11037,
+            "full_token_recall_vs_native_clean": 0.825,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 35,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.696808,
+              "rgb_psnr_db": 33.422069,
+              "tolerant_luma_edge_recall": 0.992846
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.017156,
+              "rgb_psnr_db": 29.065579,
+              "tolerant_luma_edge_recall": 0.926303
+            },
+            "encoded_jpeg_bytes": 14266,
+            "full_token_recall_vs_native_clean": 0.875,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.666667,
+            "ocr_token_count": 35,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 1.977844,
+              "rgb_psnr_db": 35.711609,
+              "tolerant_luma_edge_recall": 0.995674
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 6
+      },
+      {
+        "clean_ocr_token_count": 164,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 164,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.816631,
+              "rgb_psnr_db": 27.556856,
+              "tolerant_luma_edge_recall": 0.64513
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.323171,
+            "headline_token_recall_vs_native_clean": 0.833333,
+            "lower_support_token_recall_vs_native_clean": 0.344828,
+            "numeric_token_recall_vs_native_clean": 0.065217,
+            "ocr_token_count": 60,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 6.087087,
+              "rgb_psnr_db": 25.199253,
+              "tolerant_luma_edge_recall": 0.456065
+            },
+            "encoded_jpeg_bytes": 10499,
+            "full_token_recall_vs_native_clean": 0.219512,
+            "headline_token_recall_vs_native_clean": 0.8,
+            "lower_support_token_recall_vs_native_clean": 0.206897,
+            "numeric_token_recall_vs_native_clean": 0.021739,
+            "ocr_token_count": 53,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.653032,
+              "rgb_psnr_db": 29.328069,
+              "tolerant_luma_edge_recall": 0.91975
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.152689,
+              "rgb_psnr_db": 26.122702,
+              "tolerant_luma_edge_recall": 0.591022
+            },
+            "encoded_jpeg_bytes": 13816,
+            "full_token_recall_vs_native_clean": 0.317073,
+            "headline_token_recall_vs_native_clean": 0.833333,
+            "lower_support_token_recall_vs_native_clean": 0.344828,
+            "numeric_token_recall_vs_native_clean": 0.021739,
+            "ocr_token_count": 55,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.545191,
+              "rgb_psnr_db": 31.754256,
+              "tolerant_luma_edge_recall": 0.950483
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.336727,
+              "rgb_psnr_db": 26.695569,
+              "tolerant_luma_edge_recall": 0.608112
+            },
+            "encoded_jpeg_bytes": 17945,
+            "full_token_recall_vs_native_clean": 0.317073,
+            "headline_token_recall_vs_native_clean": 0.833333,
+            "lower_support_token_recall_vs_native_clean": 0.344828,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 59,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.50322,
+              "rgb_psnr_db": 34.196971,
+              "tolerant_luma_edge_recall": 0.97932
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 7
+      },
+      {
+        "clean_ocr_token_count": 47,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 47,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 1.926804,
+              "rgb_psnr_db": 30.305783,
+              "tolerant_luma_edge_recall": 0.946333
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.893617,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.25,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 43,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.982711,
+              "rgb_psnr_db": 27.265762,
+              "tolerant_luma_edge_recall": 0.838534
+            },
+            "encoded_jpeg_bytes": 9517,
+            "full_token_recall_vs_native_clean": 0.808511,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.25,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 41,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.168294,
+              "rgb_psnr_db": 30.466284,
+              "tolerant_luma_edge_recall": 0.975416
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.877869,
+              "rgb_psnr_db": 28.357198,
+              "tolerant_luma_edge_recall": 0.897233
+            },
+            "encoded_jpeg_bytes": 12105,
+            "full_token_recall_vs_native_clean": 0.914894,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.25,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 43,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.946933,
+              "rgb_psnr_db": 32.925734,
+              "tolerant_luma_edge_recall": 0.984615
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.260153,
+              "rgb_psnr_db": 29.093581,
+              "tolerant_luma_edge_recall": 0.925638
+            },
+            "encoded_jpeg_bytes": 16028,
+            "full_token_recall_vs_native_clean": 0.893617,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.25,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 42,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.223407,
+              "rgb_psnr_db": 35.170889,
+              "tolerant_luma_edge_recall": 0.989691
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 8
+      },
+      {
+        "clean_ocr_token_count": 152,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 152,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.439257,
+              "rgb_psnr_db": 26.995567,
+              "tolerant_luma_edge_recall": 0.725896
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.5,
+            "headline_token_recall_vs_native_clean": 0.933333,
+            "lower_support_token_recall_vs_native_clean": 0.393939,
+            "numeric_token_recall_vs_native_clean": 0.678571,
+            "ocr_token_count": 602,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 7.28722,
+              "rgb_psnr_db": 24.191176,
+              "tolerant_luma_edge_recall": 0.553826
+            },
+            "encoded_jpeg_bytes": 12894,
+            "full_token_recall_vs_native_clean": 0.355263,
+            "headline_token_recall_vs_native_clean": 0.866667,
+            "lower_support_token_recall_vs_native_clean": 0.333333,
+            "numeric_token_recall_vs_native_clean": 0.214286,
+            "ocr_token_count": 71,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 5.623076,
+              "rgb_psnr_db": 27.785206,
+              "tolerant_luma_edge_recall": 0.912859
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 6.204057,
+              "rgb_psnr_db": 25.151888,
+              "tolerant_luma_edge_recall": 0.651456
+            },
+            "encoded_jpeg_bytes": 17395,
+            "full_token_recall_vs_native_clean": 0.375,
+            "headline_token_recall_vs_native_clean": 0.8,
+            "lower_support_token_recall_vs_native_clean": 0.363636,
+            "numeric_token_recall_vs_native_clean": 0.214286,
+            "ocr_token_count": 76,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.350606,
+              "rgb_psnr_db": 29.915972,
+              "tolerant_luma_edge_recall": 0.962442
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.374264,
+              "rgb_psnr_db": 25.790898,
+              "tolerant_luma_edge_recall": 0.686608
+            },
+            "encoded_jpeg_bytes": 22928,
+            "full_token_recall_vs_native_clean": 0.421053,
+            "headline_token_recall_vs_native_clean": 0.8,
+            "lower_support_token_recall_vs_native_clean": 0.393939,
+            "numeric_token_recall_vs_native_clean": 0.25,
+            "ocr_token_count": 84,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.27217,
+              "rgb_psnr_db": 32.026737,
+              "tolerant_luma_edge_recall": 0.987889
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 9
+      },
+      {
+        "clean_ocr_token_count": 124,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 124,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.376059,
+              "rgb_psnr_db": 28.541044,
+              "tolerant_luma_edge_recall": 0.67286
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.475806,
+            "headline_token_recall_vs_native_clean": 0.882353,
+            "lower_support_token_recall_vs_native_clean": 0.512821,
+            "numeric_token_recall_vs_native_clean": 0.461538,
+            "ocr_token_count": 64,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.707506,
+              "rgb_psnr_db": 25.820662,
+              "tolerant_luma_edge_recall": 0.503749
+            },
+            "encoded_jpeg_bytes": 9586,
+            "full_token_recall_vs_native_clean": 0.387097,
+            "headline_token_recall_vs_native_clean": 0.882353,
+            "lower_support_token_recall_vs_native_clean": 0.435897,
+            "numeric_token_recall_vs_native_clean": 0.461538,
+            "ocr_token_count": 59,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.504226,
+              "rgb_psnr_db": 29.522701,
+              "tolerant_luma_edge_recall": 0.908101
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.729334,
+              "rgb_psnr_db": 26.813428,
+              "tolerant_luma_edge_recall": 0.597247
+            },
+            "encoded_jpeg_bytes": 12388,
+            "full_token_recall_vs_native_clean": 0.41129,
+            "headline_token_recall_vs_native_clean": 0.882353,
+            "lower_support_token_recall_vs_native_clean": 0.474359,
+            "numeric_token_recall_vs_native_clean": 0.461538,
+            "ocr_token_count": 60,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.404732,
+              "rgb_psnr_db": 31.865954,
+              "tolerant_luma_edge_recall": 0.933475
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.911655,
+              "rgb_psnr_db": 27.484637,
+              "tolerant_luma_edge_recall": 0.642719
+            },
+            "encoded_jpeg_bytes": 16104,
+            "full_token_recall_vs_native_clean": 0.443548,
+            "headline_token_recall_vs_native_clean": 0.882353,
+            "lower_support_token_recall_vs_native_clean": 0.487179,
+            "numeric_token_recall_vs_native_clean": 0.461538,
+            "ocr_token_count": 58,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.4314,
+              "rgb_psnr_db": 34.198727,
+              "tolerant_luma_edge_recall": 0.985703
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 10
+      },
+      {
+        "clean_ocr_token_count": 154,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 154,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.202293,
+              "rgb_psnr_db": 27.541364,
+              "tolerant_luma_edge_recall": 0.714544
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.37013,
+            "headline_token_recall_vs_native_clean": 0.92,
+            "lower_support_token_recall_vs_native_clean": 0.414141,
+            "numeric_token_recall_vs_native_clean": 0.125,
+            "ocr_token_count": 73,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 6.894668,
+              "rgb_psnr_db": 24.797594,
+              "tolerant_luma_edge_recall": 0.509721
+            },
+            "encoded_jpeg_bytes": 12292,
+            "full_token_recall_vs_native_clean": 0.253247,
+            "headline_token_recall_vs_native_clean": 0.84,
+            "lower_support_token_recall_vs_native_clean": 0.232323,
+            "numeric_token_recall_vs_native_clean": 0.166667,
+            "ocr_token_count": 64,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 5.373098,
+              "rgb_psnr_db": 28.424913,
+              "tolerant_luma_edge_recall": 0.903731
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.845828,
+              "rgb_psnr_db": 25.786232,
+              "tolerant_luma_edge_recall": 0.613098
+            },
+            "encoded_jpeg_bytes": 16546,
+            "full_token_recall_vs_native_clean": 0.331169,
+            "headline_token_recall_vs_native_clean": 0.88,
+            "lower_support_token_recall_vs_native_clean": 0.343434,
+            "numeric_token_recall_vs_native_clean": 0.166667,
+            "ocr_token_count": 72,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.115574,
+              "rgb_psnr_db": 30.757803,
+              "tolerant_luma_edge_recall": 0.951487
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.99792,
+              "rgb_psnr_db": 26.442677,
+              "tolerant_luma_edge_recall": 0.661865
+            },
+            "encoded_jpeg_bytes": 21723,
+            "full_token_recall_vs_native_clean": 0.396104,
+            "headline_token_recall_vs_native_clean": 0.88,
+            "lower_support_token_recall_vs_native_clean": 0.393939,
+            "numeric_token_recall_vs_native_clean": 0.375,
+            "ocr_token_count": 74,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.036832,
+              "rgb_psnr_db": 32.99444,
+              "tolerant_luma_edge_recall": 0.996309
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 11
+      },
+      {
+        "clean_ocr_token_count": 61,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 61,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.272959,
+              "rgb_psnr_db": 29.245278,
+              "tolerant_luma_edge_recall": 0.965176
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.918033,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 56,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.400234,
+              "rgb_psnr_db": 26.332412,
+              "tolerant_luma_edge_recall": 0.847123
+            },
+            "encoded_jpeg_bytes": 10147,
+            "full_token_recall_vs_native_clean": 0.868852,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 56,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.385878,
+              "rgb_psnr_db": 29.669691,
+              "tolerant_luma_edge_recall": 0.990353
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.262834,
+              "rgb_psnr_db": 27.406398,
+              "tolerant_luma_edge_recall": 0.915144
+            },
+            "encoded_jpeg_bytes": 12859,
+            "full_token_recall_vs_native_clean": 0.901639,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 56,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.113427,
+              "rgb_psnr_db": 32.11393,
+              "tolerant_luma_edge_recall": 0.994675
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.594386,
+              "rgb_psnr_db": 28.120745,
+              "tolerant_luma_edge_recall": 0.937919
+            },
+            "encoded_jpeg_bytes": 16790,
+            "full_token_recall_vs_native_clean": 0.918033,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 56,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.304368,
+              "rgb_psnr_db": 34.477372,
+              "tolerant_luma_edge_recall": 0.997056
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 12
+      },
+      {
+        "clean_ocr_token_count": 53,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 53,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.426683,
+              "rgb_psnr_db": 29.083961,
+              "tolerant_luma_edge_recall": 0.954553
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.867925,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.2,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 47,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.664043,
+              "rgb_psnr_db": 26.199858,
+              "tolerant_luma_edge_recall": 0.856867
+            },
+            "encoded_jpeg_bytes": 10722,
+            "full_token_recall_vs_native_clean": 0.830189,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.2,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 47,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.576509,
+              "rgb_psnr_db": 29.555666,
+              "tolerant_luma_edge_recall": 0.982799
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.502519,
+              "rgb_psnr_db": 27.259452,
+              "tolerant_luma_edge_recall": 0.915842
+            },
+            "encoded_jpeg_bytes": 13822,
+            "full_token_recall_vs_native_clean": 0.849057,
+            "headline_token_recall_vs_native_clean": 0.833333,
+            "lower_support_token_recall_vs_native_clean": 0.2,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 47,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.290697,
+              "rgb_psnr_db": 31.963561,
+              "tolerant_luma_edge_recall": 0.988817
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.832816,
+              "rgb_psnr_db": 27.972133,
+              "tolerant_luma_edge_recall": 0.93813
+            },
+            "encoded_jpeg_bytes": 18316,
+            "full_token_recall_vs_native_clean": 0.849057,
+            "headline_token_recall_vs_native_clean": 0.833333,
+            "lower_support_token_recall_vs_native_clean": 0.2,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 48,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.476856,
+              "rgb_psnr_db": 34.297752,
+              "tolerant_luma_edge_recall": 0.993375
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 13
+      },
+      {
+        "clean_ocr_token_count": 52,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 52,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.123909,
+              "rgb_psnr_db": 29.565843,
+              "tolerant_luma_edge_recall": 0.953229
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.903846,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.333333,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 52,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.199143,
+              "rgb_psnr_db": 26.644287,
+              "tolerant_luma_edge_recall": 0.831653
+            },
+            "encoded_jpeg_bytes": 9704,
+            "full_token_recall_vs_native_clean": 0.846154,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 46,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.235185,
+              "rgb_psnr_db": 30.001716,
+              "tolerant_luma_edge_recall": 0.987567
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.061804,
+              "rgb_psnr_db": 27.715203,
+              "tolerant_luma_edge_recall": 0.905899
+            },
+            "encoded_jpeg_bytes": 12242,
+            "full_token_recall_vs_native_clean": 0.884615,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 47,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.002827,
+              "rgb_psnr_db": 32.409382,
+              "tolerant_luma_edge_recall": 0.994399
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.432692,
+              "rgb_psnr_db": 28.424728,
+              "tolerant_luma_edge_recall": 0.927555
+            },
+            "encoded_jpeg_bytes": 16002,
+            "full_token_recall_vs_native_clean": 0.884615,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.166667,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 48,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.238047,
+              "rgb_psnr_db": 34.719587,
+              "tolerant_luma_edge_recall": 0.996038
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 14
+      },
+      {
+        "clean_ocr_token_count": 68,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 68,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.5361,
+              "rgb_psnr_db": 28.671102,
+              "tolerant_luma_edge_recall": 0.968601
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 0.897059,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 62,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 5.76115,
+              "rgb_psnr_db": 25.822892,
+              "tolerant_luma_edge_recall": 0.851712
+            },
+            "encoded_jpeg_bytes": 10708,
+            "full_token_recall_vs_native_clean": 0.882353,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 62,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 4.608247,
+              "rgb_psnr_db": 29.247967,
+              "tolerant_luma_edge_recall": 0.989142
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 4.562532,
+              "rgb_psnr_db": 26.894919,
+              "tolerant_luma_edge_recall": 0.918955
+            },
+            "encoded_jpeg_bytes": 13601,
+            "full_token_recall_vs_native_clean": 0.897059,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 62,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.265722,
+              "rgb_psnr_db": 31.710731,
+              "tolerant_luma_edge_recall": 0.99278
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.888673,
+              "rgb_psnr_db": 27.603967,
+              "tolerant_luma_edge_recall": 0.949482
+            },
+            "encoded_jpeg_bytes": 17941,
+            "full_token_recall_vs_native_clean": 0.911765,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 0.0,
+            "numeric_token_recall_vs_native_clean": 0.0,
+            "ocr_token_count": 63,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.433906,
+              "rgb_psnr_db": 34.101788,
+              "tolerant_luma_edge_recall": 0.996922
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 15
+      },
+      {
+        "clean_ocr_token_count": 25,
+        "metrics": {
+          "clean": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 0.0,
+              "rgb_psnr_db": 99.0,
+              "tolerant_luma_edge_recall": 1.0
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 25,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "downscale_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 1.209053,
+              "rgb_psnr_db": 32.863767,
+              "tolerant_luma_edge_recall": 0.957473
+            },
+            "encoded_jpeg_bytes": null,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 25,
+            "recompression_only_pixels_vs_lossless_360p": null,
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q20_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 3.955521,
+              "rgb_psnr_db": 29.501011,
+              "tolerant_luma_edge_recall": 0.885509
+            },
+            "encoded_jpeg_bytes": 7562,
+            "full_token_recall_vs_native_clean": 0.96,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 25,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 3.488533,
+              "rgb_psnr_db": 32.37837,
+              "tolerant_luma_edge_recall": 0.975274
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q35_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.897846,
+              "rgb_psnr_db": 30.864308,
+              "tolerant_luma_edge_recall": 0.933753
+            },
+            "encoded_jpeg_bytes": 9259,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 26,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 2.364038,
+              "rgb_psnr_db": 35.219277,
+              "tolerant_luma_edge_recall": 0.979679
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          },
+          "jpeg_q60_420_360p": {
+            "combined_backprojected_pixels": {
+              "mean_absolute_rgb_error": 2.35495,
+              "rgb_psnr_db": 31.540081,
+              "tolerant_luma_edge_recall": 0.950773
+            },
+            "encoded_jpeg_bytes": 11947,
+            "full_token_recall_vs_native_clean": 1.0,
+            "headline_token_recall_vs_native_clean": 1.0,
+            "lower_support_token_recall_vs_native_clean": 1.0,
+            "numeric_token_recall_vs_native_clean": 1.0,
+            "ocr_token_count": 25,
+            "recompression_only_pixels_vs_lossless_360p": {
+              "mean_absolute_rgb_error": 1.761898,
+              "rgb_psnr_db": 37.307454,
+              "tolerant_luma_edge_recall": 0.980958
+            },
+            "result_held_detected": false,
+            "scene_specific_gate_detected": false,
+            "structural_gate_detected": false
+          }
+        },
+        "scene": 16
+      }
+    ],
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431"
+  },
+  "deepening_pass": 17,
+  "git_action": false,
+  "human_visual_review": {
+    "candidate_dominant_result_hierarchy_visible_through_q20_at_360p": true,
+    "candidate_major_headlines_numbers_plots_survive_longer_than_fine_support": true,
+    "candidate_small_axes_error_bars_caveats_citations_and_provenance_not_uniformly_acceptance_readable_at_q60_360p": true,
+    "candidate_structural_hold_visible_any_variant": false,
+    "global_full_frame_ocr_is_acceptance_oracle_at_360p": false,
+    "pass12_overlap_clipping_or_semantic_ambiguity_any_variant": false,
+    "pass12_result_held_badges_q20_360p_characterization": "7/7",
+    "pass12_result_held_badges_q60_360p": "7/7",
+    "pass12_specific_gate_lines_q20_360p_characterization": "7/7_VISUALLY_RECOGNIZABLE_AND_EXACT_COPY_READABLE_AT_CONTACT_SHEET_SCALE",
+    "pass12_specific_gate_lines_q60_360p": "7/7",
+    "pass7_result_held_badges_q60_360p": "7/7",
+    "pass7_specific_gate_lines_q60_360p": "7/7",
+    "sealed_v8_major_status_boundaries_q60_360p": "7/7",
+    "sealed_v8_result_held_badges_q60_360p": "7/7"
+  },
+  "method_groups": {
+    "pass12_sharpness_safe": {
+      "aggregates": {
+        "clean": {
+          "mean_combined_backprojected_edge_recall": 1.0,
+          "mean_combined_backprojected_rgb_psnr_db": 99.0,
+          "mean_encoded_jpeg_bytes": null,
+          "mean_full_token_recall_vs_native_clean": 1.0,
+          "mean_headline_token_recall_vs_native_clean": 1.0,
+          "mean_lower_support_token_recall_vs_native_clean": 1.0,
+          "mean_numeric_token_recall_vs_native_clean": 1.0,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 4,
+          "structural_gate_scene_count": 3
+        },
+        "downscale_360p": {
+          "mean_combined_backprojected_edge_recall": 0.966773,
+          "mean_combined_backprojected_rgb_psnr_db": 23.829864,
+          "mean_encoded_jpeg_bytes": null,
+          "mean_full_token_recall_vs_native_clean": 0.543526,
+          "mean_headline_token_recall_vs_native_clean": 0.843876,
+          "mean_lower_support_token_recall_vs_native_clean": 0.508976,
+          "mean_numeric_token_recall_vs_native_clean": 0.474552,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 4,
+          "structural_gate_scene_count": 2
+        },
+        "jpeg_q20_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.880212,
+          "mean_combined_backprojected_rgb_psnr_db": 21.594192,
+          "mean_encoded_jpeg_bytes": 16911,
+          "mean_full_token_recall_vs_native_clean": 0.339235,
+          "mean_headline_token_recall_vs_native_clean": 0.585646,
+          "mean_lower_support_token_recall_vs_native_clean": 0.302003,
+          "mean_numeric_token_recall_vs_native_clean": 0.19547,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.999162,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 25.656218,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 2,
+          "structural_gate_scene_count": 2
+        },
+        "jpeg_q35_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.930928,
+          "mean_combined_backprojected_rgb_psnr_db": 22.209186,
+          "mean_encoded_jpeg_bytes": 22083,
+          "mean_full_token_recall_vs_native_clean": 0.429819,
+          "mean_headline_token_recall_vs_native_clean": 0.697029,
+          "mean_lower_support_token_recall_vs_native_clean": 0.338201,
+          "mean_numeric_token_recall_vs_native_clean": 0.241682,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.996433,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 27.465543,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 1,
+          "structural_gate_scene_count": 3
+        },
+        "jpeg_q60_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.953471,
+          "mean_combined_backprojected_rgb_psnr_db": 22.654697,
+          "mean_encoded_jpeg_bytes": 28824,
+          "mean_full_token_recall_vs_native_clean": 0.499212,
+          "mean_headline_token_recall_vs_native_clean": 0.797682,
+          "mean_lower_support_token_recall_vs_native_clean": 0.483376,
+          "mean_numeric_token_recall_vs_native_clean": 0.451608,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.999887,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 29.012337,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 2,
+          "structural_gate_scene_count": 3
+        }
+      },
+      "scenes": [
+        {
+          "clean_ocr_token_count": 63,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 63,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.776167,
+                "rgb_psnr_db": 24.284649,
+                "tolerant_luma_edge_recall": 0.929641
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.555556,
+              "headline_token_recall_vs_native_clean": 0.95,
+              "lower_support_token_recall_vs_native_clean": 0.363636,
+              "numeric_token_recall_vs_native_clean": 0.285714,
+              "ocr_token_count": 1877,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.310395,
+                "rgb_psnr_db": 22.241253,
+                "tolerant_luma_edge_recall": 0.81378
+              },
+              "encoded_jpeg_bytes": 14474,
+              "full_token_recall_vs_native_clean": 0.349206,
+              "headline_token_recall_vs_native_clean": 0.7,
+              "lower_support_token_recall_vs_native_clean": 0.0,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 59,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.744003,
+                "rgb_psnr_db": 26.594107,
+                "tolerant_luma_edge_recall": 0.998541
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.610901,
+                "rgb_psnr_db": 22.826821,
+                "tolerant_luma_edge_recall": 0.85803
+              },
+              "encoded_jpeg_bytes": 18634,
+              "full_token_recall_vs_native_clean": 0.460317,
+              "headline_token_recall_vs_native_clean": 0.8,
+              "lower_support_token_recall_vs_native_clean": 0.0,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 60,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.756147,
+                "rgb_psnr_db": 28.481029,
+                "tolerant_luma_edge_recall": 0.99566
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.090994,
+                "rgb_psnr_db": 23.209952,
+                "tolerant_luma_edge_recall": 0.893553
+              },
+              "encoded_jpeg_bytes": 23965,
+              "full_token_recall_vs_native_clean": 0.47619,
+              "headline_token_recall_vs_native_clean": 0.95,
+              "lower_support_token_recall_vs_native_clean": 0.272727,
+              "numeric_token_recall_vs_native_clean": 0.142857,
+              "ocr_token_count": 67,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 3.997358,
+                "rgb_psnr_db": 29.977606,
+                "tolerant_luma_edge_recall": 0.999888
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 1
+        },
+        {
+          "clean_ocr_token_count": 94,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 94,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.514372,
+                "rgb_psnr_db": 23.955295,
+                "tolerant_luma_edge_recall": 0.978217
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.648936,
+              "headline_token_recall_vs_native_clean": 0.892857,
+              "lower_support_token_recall_vs_native_clean": 0.533333,
+              "numeric_token_recall_vs_native_clean": 0.666667,
+              "ocr_token_count": 90,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.351412,
+                "rgb_psnr_db": 21.581891,
+                "tolerant_luma_edge_recall": 0.88563
+              },
+              "encoded_jpeg_bytes": 17158,
+              "full_token_recall_vs_native_clean": 0.425532,
+              "headline_token_recall_vs_native_clean": 0.571429,
+              "lower_support_token_recall_vs_native_clean": 0.366667,
+              "numeric_token_recall_vs_native_clean": 0.466667,
+              "ocr_token_count": 84,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.652422,
+                "rgb_psnr_db": 25.380245,
+                "tolerant_luma_edge_recall": 0.999366
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.92953,
+                "rgb_psnr_db": 22.255613,
+                "tolerant_luma_edge_recall": 0.942429
+              },
+              "encoded_jpeg_bytes": 22837,
+              "full_token_recall_vs_native_clean": 0.56383,
+              "headline_token_recall_vs_native_clean": 0.75,
+              "lower_support_token_recall_vs_native_clean": 0.466667,
+              "numeric_token_recall_vs_native_clean": 0.633333,
+              "ocr_token_count": 84,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.812012,
+                "rgb_psnr_db": 27.273817,
+                "tolerant_luma_edge_recall": 0.996742
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.142757,
+                "rgb_psnr_db": 22.699307,
+                "tolerant_luma_edge_recall": 0.965472
+              },
+              "encoded_jpeg_bytes": 29917,
+              "full_token_recall_vs_native_clean": 0.648936,
+              "headline_token_recall_vs_native_clean": 0.928571,
+              "lower_support_token_recall_vs_native_clean": 0.533333,
+              "numeric_token_recall_vs_native_clean": 0.633333,
+              "ocr_token_count": 81,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.783041,
+                "rgb_psnr_db": 28.738274,
+                "tolerant_luma_edge_recall": 0.99994
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 2
+        },
+        {
+          "clean_ocr_token_count": 93,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 93,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.507027,
+                "rgb_psnr_db": 23.700639,
+                "tolerant_luma_edge_recall": 0.972221
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.602151,
+              "headline_token_recall_vs_native_clean": 0.92,
+              "lower_support_token_recall_vs_native_clean": 0.533333,
+              "numeric_token_recall_vs_native_clean": 0.428571,
+              "ocr_token_count": 90,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.281093,
+                "rgb_psnr_db": 21.587589,
+                "tolerant_luma_edge_recall": 0.889633
+              },
+              "encoded_jpeg_bytes": 17274,
+              "full_token_recall_vs_native_clean": 0.408602,
+              "headline_token_recall_vs_native_clean": 0.6,
+              "lower_support_token_recall_vs_native_clean": 0.355556,
+              "numeric_token_recall_vs_native_clean": 0.285714,
+              "ocr_token_count": 81,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.428495,
+                "rgb_psnr_db": 25.842347,
+                "tolerant_luma_edge_recall": 0.999486
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.731029,
+                "rgb_psnr_db": 22.14902,
+                "tolerant_luma_edge_recall": 0.943275
+              },
+              "encoded_jpeg_bytes": 22283,
+              "full_token_recall_vs_native_clean": 0.494624,
+              "headline_token_recall_vs_native_clean": 0.76,
+              "lower_support_token_recall_vs_native_clean": 0.422222,
+              "numeric_token_recall_vs_native_clean": 0.285714,
+              "ocr_token_count": 83,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.497255,
+                "rgb_psnr_db": 27.630674,
+                "tolerant_luma_edge_recall": 0.996502
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.038655,
+                "rgb_psnr_db": 22.574667,
+                "tolerant_luma_edge_recall": 0.962082
+              },
+              "encoded_jpeg_bytes": 29027,
+              "full_token_recall_vs_native_clean": 0.580645,
+              "headline_token_recall_vs_native_clean": 0.8,
+              "lower_support_token_recall_vs_native_clean": 0.555556,
+              "numeric_token_recall_vs_native_clean": 0.571429,
+              "ocr_token_count": 86,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.594578,
+                "rgb_psnr_db": 29.154641,
+                "tolerant_luma_edge_recall": 0.999936
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 3
+        },
+        {
+          "clean_ocr_token_count": 77,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 77,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.023247,
+                "rgb_psnr_db": 24.075797,
+                "tolerant_luma_edge_recall": 0.967736
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.493506,
+              "headline_token_recall_vs_native_clean": 0.84,
+              "lower_support_token_recall_vs_native_clean": 0.428571,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 57,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.041892,
+                "rgb_psnr_db": 21.847804,
+                "tolerant_luma_edge_recall": 0.894475
+              },
+              "encoded_jpeg_bytes": 16175,
+              "full_token_recall_vs_native_clean": 0.272727,
+              "headline_token_recall_vs_native_clean": 0.56,
+              "lower_support_token_recall_vs_native_clean": 0.257143,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 51,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.368516,
+                "rgb_psnr_db": 25.982406,
+                "tolerant_luma_edge_recall": 0.999292
+              },
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.330104,
+                "rgb_psnr_db": 22.481511,
+                "tolerant_luma_edge_recall": 0.942015
+              },
+              "encoded_jpeg_bytes": 21117,
+              "full_token_recall_vs_native_clean": 0.285714,
+              "headline_token_recall_vs_native_clean": 0.64,
+              "lower_support_token_recall_vs_native_clean": 0.228571,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 38,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.376872,
+                "rgb_psnr_db": 27.79532,
+                "tolerant_luma_edge_recall": 0.996395
+              },
+              "result_held_detected": true,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.707031,
+                "rgb_psnr_db": 22.90842,
+                "tolerant_luma_edge_recall": 0.963593
+              },
+              "encoded_jpeg_bytes": 27686,
+              "full_token_recall_vs_native_clean": 0.428571,
+              "headline_token_recall_vs_native_clean": 0.8,
+              "lower_support_token_recall_vs_native_clean": 0.371429,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 52,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.513675,
+                "rgb_psnr_db": 29.345881,
+                "tolerant_luma_edge_recall": 0.999933
+              },
+              "result_held_detected": true,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 4
+        },
+        {
+          "clean_ocr_token_count": 107,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 107,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.941897,
+                "rgb_psnr_db": 23.63481,
+                "tolerant_luma_edge_recall": 0.964504
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.364486,
+              "headline_token_recall_vs_native_clean": 0.8,
+              "lower_support_token_recall_vs_native_clean": 0.454545,
+              "numeric_token_recall_vs_native_clean": 0.090909,
+              "ocr_token_count": 72,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 11.18871,
+                "rgb_psnr_db": 21.391524,
+                "tolerant_luma_edge_recall": 0.870788
+              },
+              "encoded_jpeg_bytes": 18699,
+              "full_token_recall_vs_native_clean": 0.186916,
+              "headline_token_recall_vs_native_clean": 0.5,
+              "lower_support_token_recall_vs_native_clean": 0.318182,
+              "numeric_token_recall_vs_native_clean": 0.090909,
+              "ocr_token_count": 50,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 8.172895,
+                "rgb_psnr_db": 25.433614,
+                "tolerant_luma_edge_recall": 0.998716
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.453837,
+                "rgb_psnr_db": 22.030041,
+                "tolerant_luma_edge_recall": 0.930009
+              },
+              "encoded_jpeg_bytes": 24689,
+              "full_token_recall_vs_native_clean": 0.28972,
+              "headline_token_recall_vs_native_clean": 0.65,
+              "lower_support_token_recall_vs_native_clean": 0.318182,
+              "numeric_token_recall_vs_native_clean": 0.272727,
+              "ocr_token_count": 74,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.053736,
+                "rgb_psnr_db": 27.341553,
+                "tolerant_luma_edge_recall": 0.996777
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.68508,
+                "rgb_psnr_db": 22.502114,
+                "tolerant_luma_edge_recall": 0.949157
+              },
+              "encoded_jpeg_bytes": 32245,
+              "full_token_recall_vs_native_clean": 0.299065,
+              "headline_token_recall_vs_native_clean": 0.675,
+              "lower_support_token_recall_vs_native_clean": 0.5,
+              "numeric_token_recall_vs_native_clean": 0.363636,
+              "ocr_token_count": 58,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.023834,
+                "rgb_psnr_db": 28.963905,
+                "tolerant_luma_edge_recall": 0.9998
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 5
+        },
+        {
+          "clean_ocr_token_count": 77,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 77,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.820374,
+                "rgb_psnr_db": 23.492147,
+                "tolerant_luma_edge_recall": 0.975923
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.545455,
+              "headline_token_recall_vs_native_clean": 0.888889,
+              "lower_support_token_recall_vs_native_clean": 0.529412,
+              "numeric_token_recall_vs_native_clean": 0.75,
+              "ocr_token_count": 61,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 11.17172,
+                "rgb_psnr_db": 21.211904,
+                "tolerant_luma_edge_recall": 0.891194
+              },
+              "encoded_jpeg_bytes": 18343,
+              "full_token_recall_vs_native_clean": 0.285714,
+              "headline_token_recall_vs_native_clean": 0.62963,
+              "lower_support_token_recall_vs_native_clean": 0.176471,
+              "numeric_token_recall_vs_native_clean": 0.125,
+              "ocr_token_count": 66,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 8.194123,
+                "rgb_psnr_db": 25.177889,
+                "tolerant_luma_edge_recall": 0.999379
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.604851,
+                "rgb_psnr_db": 21.783125,
+                "tolerant_luma_edge_recall": 0.943501
+              },
+              "encoded_jpeg_bytes": 23739,
+              "full_token_recall_vs_native_clean": 0.441558,
+              "headline_token_recall_vs_native_clean": 0.740741,
+              "lower_support_token_recall_vs_native_clean": 0.411765,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 69,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.215512,
+                "rgb_psnr_db": 26.89243,
+                "tolerant_luma_edge_recall": 0.996572
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.796192,
+                "rgb_psnr_db": 22.247016,
+                "tolerant_luma_edge_recall": 0.965447
+              },
+              "encoded_jpeg_bytes": 31108,
+              "full_token_recall_vs_native_clean": 0.493506,
+              "headline_token_recall_vs_native_clean": 0.814815,
+              "lower_support_token_recall_vs_native_clean": 0.470588,
+              "numeric_token_recall_vs_native_clean": 0.75,
+              "ocr_token_count": 64,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.195178,
+                "rgb_psnr_db": 28.406748,
+                "tolerant_luma_edge_recall": 0.999941
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 6
+        },
+        {
+          "clean_ocr_token_count": 74,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 74,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.330669,
+                "rgb_psnr_db": 23.665709,
+                "tolerant_luma_edge_recall": 0.979167
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.594595,
+              "headline_token_recall_vs_native_clean": 0.615385,
+              "lower_support_token_recall_vs_native_clean": 0.72,
+              "numeric_token_recall_vs_native_clean": 0.6,
+              "ocr_token_count": 72,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.820816,
+                "rgb_psnr_db": 21.297382,
+                "tolerant_luma_edge_recall": 0.915983
+              },
+              "encoded_jpeg_bytes": 16254,
+              "full_token_recall_vs_native_clean": 0.445946,
+              "headline_token_recall_vs_native_clean": 0.538462,
+              "lower_support_token_recall_vs_native_clean": 0.64,
+              "numeric_token_recall_vs_native_clean": 0.4,
+              "ocr_token_count": 1552,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 8.115598,
+                "rgb_psnr_db": 25.182919,
+                "tolerant_luma_edge_recall": 0.999354
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.171867,
+                "rgb_psnr_db": 21.938174,
+                "tolerant_luma_edge_recall": 0.957238
+              },
+              "encoded_jpeg_bytes": 21280,
+              "full_token_recall_vs_native_clean": 0.472973,
+              "headline_token_recall_vs_native_clean": 0.538462,
+              "lower_support_token_recall_vs_native_clean": 0.52,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 71,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.152216,
+                "rgb_psnr_db": 26.843977,
+                "tolerant_luma_edge_recall": 0.996381
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.287081,
+                "rgb_psnr_db": 22.441403,
+                "tolerant_luma_edge_recall": 0.974992
+              },
+              "encoded_jpeg_bytes": 27818,
+              "full_token_recall_vs_native_clean": 0.567568,
+              "headline_token_recall_vs_native_clean": 0.615385,
+              "lower_support_token_recall_vs_native_clean": 0.68,
+              "numeric_token_recall_vs_native_clean": 0.2,
+              "ocr_token_count": 72,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.008665,
+                "rgb_psnr_db": 28.499307,
+                "tolerant_luma_edge_recall": 0.999774
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 7
+        }
+      ]
+    },
+    "pass7_caption_safe": {
+      "aggregates": {
+        "clean": {
+          "mean_combined_backprojected_edge_recall": 1.0,
+          "mean_combined_backprojected_rgb_psnr_db": 99.0,
+          "mean_encoded_jpeg_bytes": null,
+          "mean_full_token_recall_vs_native_clean": 1.0,
+          "mean_headline_token_recall_vs_native_clean": 1.0,
+          "mean_lower_support_token_recall_vs_native_clean": 1.0,
+          "mean_numeric_token_recall_vs_native_clean": 1.0,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 7,
+          "structural_gate_scene_count": 3
+        },
+        "downscale_360p": {
+          "mean_combined_backprojected_edge_recall": 0.97054,
+          "mean_combined_backprojected_rgb_psnr_db": 23.547098,
+          "mean_encoded_jpeg_bytes": null,
+          "mean_full_token_recall_vs_native_clean": 0.560932,
+          "mean_headline_token_recall_vs_native_clean": 0.892505,
+          "mean_lower_support_token_recall_vs_native_clean": 0.52407,
+          "mean_numeric_token_recall_vs_native_clean": 0.416048,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 6,
+          "structural_gate_scene_count": 3
+        },
+        "jpeg_q20_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.881484,
+          "mean_combined_backprojected_rgb_psnr_db": 21.504115,
+          "mean_encoded_jpeg_bytes": 16461,
+          "mean_full_token_recall_vs_native_clean": 0.335435,
+          "mean_headline_token_recall_vs_native_clean": 0.596084,
+          "mean_lower_support_token_recall_vs_native_clean": 0.324906,
+          "mean_numeric_token_recall_vs_native_clean": 0.215878,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.99931,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 25.890563,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 1,
+          "structural_gate_scene_count": 2
+        },
+        "jpeg_q35_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.902334,
+          "mean_combined_backprojected_rgb_psnr_db": 22.101397,
+          "mean_encoded_jpeg_bytes": 21418,
+          "mean_full_token_recall_vs_native_clean": 0.444166,
+          "mean_headline_token_recall_vs_native_clean": 0.73834,
+          "mean_lower_support_token_recall_vs_native_clean": 0.404135,
+          "mean_numeric_token_recall_vs_native_clean": 0.319233,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.999784,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 27.787633,
+          "result_held_scene_count": 0,
+          "scene_specific_gate_count": 3,
+          "structural_gate_scene_count": 3
+        },
+        "jpeg_q60_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.952598,
+          "mean_combined_backprojected_rgb_psnr_db": 22.521368,
+          "mean_encoded_jpeg_bytes": 27780,
+          "mean_full_token_recall_vs_native_clean": 0.513093,
+          "mean_headline_token_recall_vs_native_clean": 0.85485,
+          "mean_lower_support_token_recall_vs_native_clean": 0.485966,
+          "mean_numeric_token_recall_vs_native_clean": 0.425634,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.99995,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 29.418123,
+          "result_held_scene_count": 1,
+          "scene_specific_gate_count": 4,
+          "structural_gate_scene_count": 3
+        }
+      },
+      "scenes": [
+        {
+          "clean_ocr_token_count": 70,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 70,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.930452,
+                "rgb_psnr_db": 24.00727,
+                "tolerant_luma_edge_recall": 0.93426
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.514286,
+              "headline_token_recall_vs_native_clean": 0.962963,
+              "lower_support_token_recall_vs_native_clean": 0.181818,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 63,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.321803,
+                "rgb_psnr_db": 22.165749,
+                "tolerant_luma_edge_recall": 0.816673
+              },
+              "encoded_jpeg_bytes": 14000,
+              "full_token_recall_vs_native_clean": 0.357143,
+              "headline_token_recall_vs_native_clean": 0.666667,
+              "lower_support_token_recall_vs_native_clean": 0.181818,
+              "numeric_token_recall_vs_native_clean": 0.285714,
+              "ocr_token_count": 1721,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.601032,
+                "rgb_psnr_db": 26.885817,
+                "tolerant_luma_edge_recall": 0.998693
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.643692,
+                "rgb_psnr_db": 22.726487,
+                "tolerant_luma_edge_recall": 0.82555
+              },
+              "encoded_jpeg_bytes": 17913,
+              "full_token_recall_vs_native_clean": 0.428571,
+              "headline_token_recall_vs_native_clean": 0.814815,
+              "lower_support_token_recall_vs_native_clean": 0.090909,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 61,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.630301,
+                "rgb_psnr_db": 28.921164,
+                "tolerant_luma_edge_recall": 0.999577
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.125257,
+                "rgb_psnr_db": 23.095984,
+                "tolerant_luma_edge_recall": 0.891349
+              },
+              "encoded_jpeg_bytes": 22962,
+              "full_token_recall_vs_native_clean": 0.5,
+              "headline_token_recall_vs_native_clean": 0.888889,
+              "lower_support_token_recall_vs_native_clean": 0.272727,
+              "numeric_token_recall_vs_native_clean": 0.142857,
+              "ocr_token_count": 64,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 3.873811,
+                "rgb_psnr_db": 30.546519,
+                "tolerant_luma_edge_recall": 0.999962
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 1
+        },
+        {
+          "clean_ocr_token_count": 99,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 99,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.721,
+                "rgb_psnr_db": 23.638107,
+                "tolerant_luma_edge_recall": 0.981846
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.616162,
+              "headline_token_recall_vs_native_clean": 0.909091,
+              "lower_support_token_recall_vs_native_clean": 0.533333,
+              "numeric_token_recall_vs_native_clean": 0.6,
+              "ocr_token_count": 87,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.402264,
+                "rgb_psnr_db": 21.468274,
+                "tolerant_luma_edge_recall": 0.887768
+              },
+              "encoded_jpeg_bytes": 16748,
+              "full_token_recall_vs_native_clean": 0.393939,
+              "headline_token_recall_vs_native_clean": 0.575758,
+              "lower_support_token_recall_vs_native_clean": 0.333333,
+              "numeric_token_recall_vs_native_clean": 0.466667,
+              "ocr_token_count": 85,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.508018,
+                "rgb_psnr_db": 25.587888,
+                "tolerant_luma_edge_recall": 0.999508
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.01796,
+                "rgb_psnr_db": 22.124481,
+                "tolerant_luma_edge_recall": 0.916382
+              },
+              "encoded_jpeg_bytes": 22175,
+              "full_token_recall_vs_native_clean": 0.565657,
+              "headline_token_recall_vs_native_clean": 0.787879,
+              "lower_support_token_recall_vs_native_clean": 0.5,
+              "numeric_token_recall_vs_native_clean": 0.633333,
+              "ocr_token_count": 83,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.715171,
+                "rgb_psnr_db": 27.555817,
+                "tolerant_luma_edge_recall": 0.999908
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.234443,
+                "rgb_psnr_db": 22.538159,
+                "tolerant_luma_edge_recall": 0.965885
+              },
+              "encoded_jpeg_bytes": 28856,
+              "full_token_recall_vs_native_clean": 0.616162,
+              "headline_token_recall_vs_native_clean": 0.909091,
+              "lower_support_token_recall_vs_native_clean": 0.5,
+              "numeric_token_recall_vs_native_clean": 0.633333,
+              "ocr_token_count": 82,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.687554,
+                "rgb_psnr_db": 29.084317,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 2
+        },
+        {
+          "clean_ocr_token_count": 99,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 99,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.673948,
+                "rgb_psnr_db": 23.437512,
+                "tolerant_luma_edge_recall": 0.975855
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.636364,
+              "headline_token_recall_vs_native_clean": 0.935484,
+              "lower_support_token_recall_vs_native_clean": 0.644444,
+              "numeric_token_recall_vs_native_clean": 0.571429,
+              "ocr_token_count": 93,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.301872,
+                "rgb_psnr_db": 21.504525,
+                "tolerant_luma_edge_recall": 0.892139
+              },
+              "encoded_jpeg_bytes": 16838,
+              "full_token_recall_vs_native_clean": 0.424242,
+              "headline_token_recall_vs_native_clean": 0.645161,
+              "lower_support_token_recall_vs_native_clean": 0.4,
+              "numeric_token_recall_vs_native_clean": 0.142857,
+              "ocr_token_count": 84,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.283643,
+                "rgb_psnr_db": 26.088279,
+                "tolerant_luma_edge_recall": 0.999636
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.777222,
+                "rgb_psnr_db": 22.051663,
+                "tolerant_luma_edge_recall": 0.914942
+              },
+              "encoded_jpeg_bytes": 21617,
+              "full_token_recall_vs_native_clean": 0.515152,
+              "headline_token_recall_vs_native_clean": 0.741935,
+              "lower_support_token_recall_vs_native_clean": 0.466667,
+              "numeric_token_recall_vs_native_clean": 0.428571,
+              "ocr_token_count": 90,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.390117,
+                "rgb_psnr_db": 27.950724,
+                "tolerant_luma_edge_recall": 0.999868
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.085852,
+                "rgb_psnr_db": 22.456958,
+                "tolerant_luma_edge_recall": 0.960196
+              },
+              "encoded_jpeg_bytes": 27928,
+              "full_token_recall_vs_native_clean": 0.616162,
+              "headline_token_recall_vs_native_clean": 0.870968,
+              "lower_support_token_recall_vs_native_clean": 0.622222,
+              "numeric_token_recall_vs_native_clean": 0.571429,
+              "ocr_token_count": 92,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.475817,
+                "rgb_psnr_db": 29.596242,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 3
+        },
+        {
+          "clean_ocr_token_count": 77,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 77,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.222552,
+                "rgb_psnr_db": 23.760275,
+                "tolerant_luma_edge_recall": 0.971701
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.480519,
+              "headline_token_recall_vs_native_clean": 0.84,
+              "lower_support_token_recall_vs_native_clean": 0.428571,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 58,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.090824,
+                "rgb_psnr_db": 21.731186,
+                "tolerant_luma_edge_recall": 0.895458
+              },
+              "encoded_jpeg_bytes": 15745,
+              "full_token_recall_vs_native_clean": 0.285714,
+              "headline_token_recall_vs_native_clean": 0.56,
+              "lower_support_token_recall_vs_native_clean": 0.285714,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 52,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.232703,
+                "rgb_psnr_db": 26.212336,
+                "tolerant_luma_edge_recall": 0.999451
+              },
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.415479,
+                "rgb_psnr_db": 22.349443,
+                "tolerant_luma_edge_recall": 0.911469
+              },
+              "encoded_jpeg_bytes": 20504,
+              "full_token_recall_vs_native_clean": 0.324675,
+              "headline_token_recall_vs_native_clean": 0.68,
+              "lower_support_token_recall_vs_native_clean": 0.257143,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 42,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.283465,
+                "rgb_psnr_db": 28.113079,
+                "tolerant_luma_edge_recall": 0.999931
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.792357,
+                "rgb_psnr_db": 22.745701,
+                "tolerant_luma_edge_recall": 0.963536
+              },
+              "encoded_jpeg_bytes": 26668,
+              "full_token_recall_vs_native_clean": 0.415584,
+              "headline_token_recall_vs_native_clean": 0.84,
+              "lower_support_token_recall_vs_native_clean": 0.342857,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 44,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.415598,
+                "rgb_psnr_db": 29.751012,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": true,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 4
+        },
+        {
+          "clean_ocr_token_count": 107,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 107,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 6.118333,
+                "rgb_psnr_db": 23.363819,
+                "tolerant_luma_edge_recall": 0.968006
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.401869,
+              "headline_token_recall_vs_native_clean": 0.775,
+              "lower_support_token_recall_vs_native_clean": 0.590909,
+              "numeric_token_recall_vs_native_clean": 0.090909,
+              "ocr_token_count": 79,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 11.225524,
+                "rgb_psnr_db": 21.304972,
+                "tolerant_luma_edge_recall": 0.873183
+              },
+              "encoded_jpeg_bytes": 18234,
+              "full_token_recall_vs_native_clean": 0.186916,
+              "headline_token_recall_vs_native_clean": 0.5,
+              "lower_support_token_recall_vs_native_clean": 0.318182,
+              "numeric_token_recall_vs_native_clean": 0.090909,
+              "ocr_token_count": 50,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 8.029534,
+                "rgb_psnr_db": 25.658651,
+                "tolerant_luma_edge_recall": 0.998859
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.507901,
+                "rgb_psnr_db": 21.927742,
+                "tolerant_luma_edge_recall": 0.903893
+              },
+              "encoded_jpeg_bytes": 24002,
+              "full_token_recall_vs_native_clean": 0.280374,
+              "headline_token_recall_vs_native_clean": 0.625,
+              "lower_support_token_recall_vs_native_clean": 0.363636,
+              "numeric_token_recall_vs_native_clean": 0.272727,
+              "ocr_token_count": 70,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.947069,
+                "rgb_psnr_db": 27.640223,
+                "tolerant_luma_edge_recall": 0.999766
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.750174,
+                "rgb_psnr_db": 22.374038,
+                "tolerant_luma_edge_recall": 0.949486
+              },
+              "encoded_jpeg_bytes": 31169,
+              "full_token_recall_vs_native_clean": 0.28972,
+              "headline_token_recall_vs_native_clean": 0.65,
+              "lower_support_token_recall_vs_native_clean": 0.454545,
+              "numeric_token_recall_vs_native_clean": 0.181818,
+              "ocr_token_count": 66,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.915398,
+                "rgb_psnr_db": 29.356844,
+                "tolerant_luma_edge_recall": 0.999854
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 5
+        },
+        {
+          "clean_ocr_token_count": 82,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 82,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 6.008141,
+                "rgb_psnr_db": 23.221074,
+                "tolerant_luma_edge_recall": 0.979493
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.536585,
+              "headline_token_recall_vs_native_clean": 0.875,
+              "lower_support_token_recall_vs_native_clean": 0.529412,
+              "numeric_token_recall_vs_native_clean": 0.75,
+              "ocr_token_count": 70,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 11.218007,
+                "rgb_psnr_db": 21.113291,
+                "tolerant_luma_edge_recall": 0.893177
+              },
+              "encoded_jpeg_bytes": 17815,
+              "full_token_recall_vs_native_clean": 0.292683,
+              "headline_token_recall_vs_native_clean": 0.625,
+              "lower_support_token_recall_vs_native_clean": 0.235294,
+              "numeric_token_recall_vs_native_clean": 0.125,
+              "ocr_token_count": 69,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 8.058578,
+                "rgb_psnr_db": 25.362153,
+                "tolerant_luma_edge_recall": 0.999516
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.675252,
+                "rgb_psnr_db": 21.67952,
+                "tolerant_luma_edge_recall": 0.917379
+              },
+              "encoded_jpeg_bytes": 23118,
+              "full_token_recall_vs_native_clean": 0.426829,
+              "headline_token_recall_vs_native_clean": 0.71875,
+              "lower_support_token_recall_vs_native_clean": 0.470588,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 70,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.119045,
+                "rgb_psnr_db": 27.152644,
+                "tolerant_luma_edge_recall": 0.999667
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.871402,
+                "rgb_psnr_db": 22.114916,
+                "tolerant_luma_edge_recall": 0.965555
+              },
+              "encoded_jpeg_bytes": 30056,
+              "full_token_recall_vs_native_clean": 0.52439,
+              "headline_token_recall_vs_native_clean": 0.875,
+              "lower_support_token_recall_vs_native_clean": 0.529412,
+              "numeric_token_recall_vs_native_clean": 0.75,
+              "ocr_token_count": 74,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.095187,
+                "rgb_psnr_db": 28.730142,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 6
+        },
+        {
+          "clean_ocr_token_count": 81,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 81,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.502694,
+                "rgb_psnr_db": 23.401627,
+                "tolerant_luma_edge_recall": 0.982622
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.740741,
+              "headline_token_recall_vs_native_clean": 0.95,
+              "lower_support_token_recall_vs_native_clean": 0.76,
+              "numeric_token_recall_vs_native_clean": 0.4,
+              "ocr_token_count": 79,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.818153,
+                "rgb_psnr_db": 21.240806,
+                "tolerant_luma_edge_recall": 0.911992
+              },
+              "encoded_jpeg_bytes": 15848,
+              "full_token_recall_vs_native_clean": 0.407407,
+              "headline_token_recall_vs_native_clean": 0.6,
+              "lower_support_token_recall_vs_native_clean": 0.52,
+              "numeric_token_recall_vs_native_clean": 0.4,
+              "ocr_token_count": 1473,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.938192,
+                "rgb_psnr_db": 25.438817,
+                "tolerant_luma_edge_recall": 0.999504
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.194438,
+                "rgb_psnr_db": 21.850446,
+                "tolerant_luma_edge_recall": 0.926721
+              },
+              "encoded_jpeg_bytes": 20595,
+              "full_token_recall_vs_native_clean": 0.567901,
+              "headline_token_recall_vs_native_clean": 0.8,
+              "lower_support_token_recall_vs_native_clean": 0.68,
+              "numeric_token_recall_vs_native_clean": 0.4,
+              "ocr_token_count": 1556,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.003601,
+                "rgb_psnr_db": 27.179783,
+                "tolerant_luma_edge_recall": 0.999768
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.333262,
+                "rgb_psnr_db": 22.323821,
+                "tolerant_luma_edge_recall": 0.97218
+              },
+              "encoded_jpeg_bytes": 26823,
+              "full_token_recall_vs_native_clean": 0.62963,
+              "headline_token_recall_vs_native_clean": 0.95,
+              "lower_support_token_recall_vs_native_clean": 0.68,
+              "numeric_token_recall_vs_native_clean": 0.2,
+              "ocr_token_count": 78,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.891343,
+                "rgb_psnr_db": 28.861783,
+                "tolerant_luma_edge_recall": 0.999835
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": true,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 7
+        }
+      ]
+    },
+    "sealed_v8": {
+      "aggregates": {
+        "clean": {
+          "mean_combined_backprojected_edge_recall": 1.0,
+          "mean_combined_backprojected_rgb_psnr_db": 99.0,
+          "mean_encoded_jpeg_bytes": null,
+          "mean_full_token_recall_vs_native_clean": 1.0,
+          "mean_headline_token_recall_vs_native_clean": 1.0,
+          "mean_lower_support_token_recall_vs_native_clean": 1.0,
+          "mean_numeric_token_recall_vs_native_clean": 1.0,
+          "result_held_scene_count": 0,
+          "scene_specific_gate_count": 0,
+          "structural_gate_scene_count": 3
+        },
+        "downscale_360p": {
+          "mean_combined_backprojected_edge_recall": 0.930168,
+          "mean_combined_backprojected_rgb_psnr_db": 24.454759,
+          "mean_encoded_jpeg_bytes": null,
+          "mean_full_token_recall_vs_native_clean": 0.524,
+          "mean_headline_token_recall_vs_native_clean": 0.877347,
+          "mean_lower_support_token_recall_vs_native_clean": 0.456375,
+          "mean_numeric_token_recall_vs_native_clean": 0.405164,
+          "result_held_scene_count": 0,
+          "scene_specific_gate_count": 0,
+          "structural_gate_scene_count": 3
+        },
+        "jpeg_q20_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.836751,
+          "mean_combined_backprojected_rgb_psnr_db": 22.259472,
+          "mean_encoded_jpeg_bytes": 15426,
+          "mean_full_token_recall_vs_native_clean": 0.301574,
+          "mean_headline_token_recall_vs_native_clean": 0.590187,
+          "mean_lower_support_token_recall_vs_native_clean": 0.248099,
+          "mean_numeric_token_recall_vs_native_clean": 0.138327,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.999159,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 26.441183,
+          "result_held_scene_count": 0,
+          "scene_specific_gate_count": 0,
+          "structural_gate_scene_count": 2
+        },
+        "jpeg_q35_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.890961,
+          "mean_combined_backprojected_rgb_psnr_db": 22.944932,
+          "mean_encoded_jpeg_bytes": 20169,
+          "mean_full_token_recall_vs_native_clean": 0.414851,
+          "mean_headline_token_recall_vs_native_clean": 0.723056,
+          "mean_lower_support_token_recall_vs_native_clean": 0.352604,
+          "mean_numeric_token_recall_vs_native_clean": 0.241682,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.977989,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 28.478775,
+          "result_held_scene_count": 0,
+          "scene_specific_gate_count": 0,
+          "structural_gate_scene_count": 1
+        },
+        "jpeg_q60_420_360p": {
+          "mean_combined_backprojected_edge_recall": 0.915398,
+          "mean_combined_backprojected_rgb_psnr_db": 23.406779,
+          "mean_encoded_jpeg_bytes": 26334,
+          "mean_full_token_recall_vs_native_clean": 0.480959,
+          "mean_headline_token_recall_vs_native_clean": 0.839808,
+          "mean_lower_support_token_recall_vs_native_clean": 0.445258,
+          "mean_numeric_token_recall_vs_native_clean": 0.425634,
+          "mean_recompression_only_edge_recall_vs_lossless_360p": 0.999943,
+          "mean_recompression_only_rgb_psnr_db_vs_lossless_360p": 30.218028,
+          "result_held_scene_count": 0,
+          "scene_specific_gate_count": 0,
+          "structural_gate_scene_count": 2
+        }
+      },
+      "scenes": [
+        {
+          "clean_ocr_token_count": 63,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 63,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.068738,
+                "rgb_psnr_db": 25.088548,
+                "tolerant_luma_edge_recall": 0.881346
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.460317,
+              "headline_token_recall_vs_native_clean": 0.95,
+              "lower_support_token_recall_vs_native_clean": 0.181818,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 55,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.229092,
+                "rgb_psnr_db": 23.137684,
+                "tolerant_luma_edge_recall": 0.752157
+              },
+              "encoded_jpeg_bytes": 12895,
+              "full_token_recall_vs_native_clean": 0.31746,
+              "headline_token_recall_vs_native_clean": 0.7,
+              "lower_support_token_recall_vs_native_clean": 0.0,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 52,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.028695,
+                "rgb_psnr_db": 27.71219,
+                "tolerant_luma_edge_recall": 0.998481
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 6.531378,
+                "rgb_psnr_db": 23.791795,
+                "tolerant_luma_edge_recall": 0.800853
+              },
+              "encoded_jpeg_bytes": 16524,
+              "full_token_recall_vs_native_clean": 0.412698,
+              "headline_token_recall_vs_native_clean": 0.85,
+              "lower_support_token_recall_vs_native_clean": 0.090909,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 57,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.077808,
+                "rgb_psnr_db": 29.970916,
+                "tolerant_luma_edge_recall": 0.973007
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 6.047361,
+                "rgb_psnr_db": 24.195554,
+                "tolerant_luma_edge_recall": 0.840704
+              },
+              "encoded_jpeg_bytes": 21319,
+              "full_token_recall_vs_native_clean": 0.460317,
+              "headline_token_recall_vs_native_clean": 0.95,
+              "lower_support_token_recall_vs_native_clean": 0.272727,
+              "numeric_token_recall_vs_native_clean": 0.142857,
+              "ocr_token_count": 58,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 3.39805,
+                "rgb_psnr_db": 31.739804,
+                "tolerant_luma_edge_recall": 0.999955
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 1
+        },
+        {
+          "clean_ocr_token_count": 94,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 94,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.961975,
+                "rgb_psnr_db": 24.51329,
+                "tolerant_luma_edge_recall": 0.945667
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.606383,
+              "headline_token_recall_vs_native_clean": 0.892857,
+              "lower_support_token_recall_vs_native_clean": 0.433333,
+              "numeric_token_recall_vs_native_clean": 0.666667,
+              "ocr_token_count": 85,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.453989,
+                "rgb_psnr_db": 22.156544,
+                "tolerant_luma_edge_recall": 0.846967
+              },
+              "encoded_jpeg_bytes": 15700,
+              "full_token_recall_vs_native_clean": 0.393617,
+              "headline_token_recall_vs_native_clean": 0.607143,
+              "lower_support_token_recall_vs_native_clean": 0.3,
+              "numeric_token_recall_vs_native_clean": 0.466667,
+              "ocr_token_count": 78,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.036075,
+                "rgb_psnr_db": 26.026555,
+                "tolerant_luma_edge_recall": 0.999461
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.027235,
+                "rgb_psnr_db": 22.912388,
+                "tolerant_luma_edge_recall": 0.907357
+              },
+              "encoded_jpeg_bytes": 21074,
+              "full_token_recall_vs_native_clean": 0.531915,
+              "headline_token_recall_vs_native_clean": 0.75,
+              "lower_support_token_recall_vs_native_clean": 0.4,
+              "numeric_token_recall_vs_native_clean": 0.633333,
+              "ocr_token_count": 77,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.23354,
+                "rgb_psnr_db": 28.121139,
+                "tolerant_luma_edge_recall": 0.979917
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.274658,
+                "rgb_psnr_db": 23.368162,
+                "tolerant_luma_edge_recall": 0.931795
+              },
+              "encoded_jpeg_bytes": 27547,
+              "full_token_recall_vs_native_clean": 0.595745,
+              "headline_token_recall_vs_native_clean": 0.857143,
+              "lower_support_token_recall_vs_native_clean": 0.433333,
+              "numeric_token_recall_vs_native_clean": 0.633333,
+              "ocr_token_count": 77,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.26339,
+                "rgb_psnr_db": 29.739206,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 2
+        },
+        {
+          "clean_ocr_token_count": 93,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 93,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.849064,
+                "rgb_psnr_db": 24.332974,
+                "tolerant_luma_edge_recall": 0.936737
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.580645,
+              "headline_token_recall_vs_native_clean": 0.92,
+              "lower_support_token_recall_vs_native_clean": 0.488889,
+              "numeric_token_recall_vs_native_clean": 0.428571,
+              "ocr_token_count": 82,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.269702,
+                "rgb_psnr_db": 22.276775,
+                "tolerant_luma_edge_recall": 0.847919
+              },
+              "encoded_jpeg_bytes": 15748,
+              "full_token_recall_vs_native_clean": 0.397849,
+              "headline_token_recall_vs_native_clean": 0.64,
+              "lower_support_token_recall_vs_native_clean": 0.333333,
+              "numeric_token_recall_vs_native_clean": 0.285714,
+              "ocr_token_count": 78,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.754674,
+                "rgb_psnr_db": 26.693731,
+                "tolerant_luma_edge_recall": 0.999591
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.708148,
+                "rgb_psnr_db": 22.903811,
+                "tolerant_luma_edge_recall": 0.905163
+              },
+              "encoded_jpeg_bytes": 20317,
+              "full_token_recall_vs_native_clean": 0.505376,
+              "headline_token_recall_vs_native_clean": 0.8,
+              "lower_support_token_recall_vs_native_clean": 0.422222,
+              "numeric_token_recall_vs_native_clean": 0.285714,
+              "ocr_token_count": 81,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.860385,
+                "rgb_psnr_db": 28.703402,
+                "tolerant_luma_edge_recall": 0.977797
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.053076,
+                "rgb_psnr_db": 23.344063,
+                "tolerant_luma_edge_recall": 0.925627
+              },
+              "encoded_jpeg_bytes": 26387,
+              "full_token_recall_vs_native_clean": 0.569892,
+              "headline_token_recall_vs_native_clean": 0.84,
+              "lower_support_token_recall_vs_native_clean": 0.511111,
+              "numeric_token_recall_vs_native_clean": 0.571429,
+              "ocr_token_count": 83,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.019444,
+                "rgb_psnr_db": 30.453619,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 3
+        },
+        {
+          "clean_ocr_token_count": 73,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 73,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.486292,
+                "rgb_psnr_db": 24.643427,
+                "tolerant_luma_edge_recall": 0.929914
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.465753,
+              "headline_token_recall_vs_native_clean": 0.809524,
+              "lower_support_token_recall_vs_native_clean": 0.4,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 54,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.183519,
+                "rgb_psnr_db": 22.440895,
+                "tolerant_luma_edge_recall": 0.852356
+              },
+              "encoded_jpeg_bytes": 14854,
+              "full_token_recall_vs_native_clean": 0.260274,
+              "headline_token_recall_vs_native_clean": 0.47619,
+              "lower_support_token_recall_vs_native_clean": 0.285714,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 45,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 6.789747,
+                "rgb_psnr_db": 26.687458,
+                "tolerant_luma_edge_recall": 0.999394
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.464341,
+                "rgb_psnr_db": 23.15567,
+                "tolerant_luma_edge_recall": 0.902324
+              },
+              "encoded_jpeg_bytes": 19412,
+              "full_token_recall_vs_native_clean": 0.30137,
+              "headline_token_recall_vs_native_clean": 0.666667,
+              "lower_support_token_recall_vs_native_clean": 0.2,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 40,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.829653,
+                "rgb_psnr_db": 28.709505,
+                "tolerant_luma_edge_recall": 0.977477
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 6.865698,
+                "rgb_psnr_db": 23.597538,
+                "tolerant_luma_edge_recall": 0.925715
+              },
+              "encoded_jpeg_bytes": 25496,
+              "full_token_recall_vs_native_clean": 0.383562,
+              "headline_token_recall_vs_native_clean": 0.809524,
+              "lower_support_token_recall_vs_native_clean": 0.285714,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 41,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.013971,
+                "rgb_psnr_db": 30.478695,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 4
+        },
+        {
+          "clean_ocr_token_count": 92,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 92,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.307833,
+                "rgb_psnr_db": 24.231952,
+                "tolerant_luma_edge_recall": 0.931399
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.358696,
+              "headline_token_recall_vs_native_clean": 0.794118,
+              "lower_support_token_recall_vs_native_clean": 0.5,
+              "numeric_token_recall_vs_native_clean": 0.090909,
+              "ocr_token_count": 66,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.205616,
+                "rgb_psnr_db": 22.025074,
+                "tolerant_luma_edge_recall": 0.830976
+              },
+              "encoded_jpeg_bytes": 17203,
+              "full_token_recall_vs_native_clean": 0.184783,
+              "headline_token_recall_vs_native_clean": 0.5,
+              "lower_support_token_recall_vs_native_clean": 0.5,
+              "numeric_token_recall_vs_native_clean": 0.090909,
+              "ocr_token_count": 46,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.508251,
+                "rgb_psnr_db": 26.18048,
+                "tolerant_luma_edge_recall": 0.99874
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.456262,
+                "rgb_psnr_db": 22.738255,
+                "tolerant_luma_edge_recall": 0.894228
+              },
+              "encoded_jpeg_bytes": 22729,
+              "full_token_recall_vs_native_clean": 0.25,
+              "headline_token_recall_vs_native_clean": 0.558824,
+              "lower_support_token_recall_vs_native_clean": 0.583333,
+              "numeric_token_recall_vs_native_clean": 0.272727,
+              "ocr_token_count": 52,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.427632,
+                "rgb_psnr_db": 28.310077,
+                "tolerant_luma_edge_recall": 0.980581
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.73067,
+                "rgb_psnr_db": 23.227196,
+                "tolerant_luma_edge_recall": 0.914376
+              },
+              "encoded_jpeg_bytes": 29716,
+              "full_token_recall_vs_native_clean": 0.282609,
+              "headline_token_recall_vs_native_clean": 0.647059,
+              "lower_support_token_recall_vs_native_clean": 0.583333,
+              "numeric_token_recall_vs_native_clean": 0.181818,
+              "ocr_token_count": 68,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.468928,
+                "rgb_psnr_db": 30.141898,
+                "tolerant_luma_edge_recall": 0.999838
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 5
+        },
+        {
+          "clean_ocr_token_count": 77,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 77,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 5.224185,
+                "rgb_psnr_db": 24.032487,
+                "tolerant_luma_edge_recall": 0.943385
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.493506,
+              "headline_token_recall_vs_native_clean": 0.851852,
+              "lower_support_token_recall_vs_native_clean": 0.470588,
+              "numeric_token_recall_vs_native_clean": 0.75,
+              "ocr_token_count": 65,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 10.232455,
+                "rgb_psnr_db": 21.773936,
+                "tolerant_luma_edge_recall": 0.852987
+              },
+              "encoded_jpeg_bytes": 16799,
+              "full_token_recall_vs_native_clean": 0.25974,
+              "headline_token_recall_vs_native_clean": 0.592593,
+              "lower_support_token_recall_vs_native_clean": 0.117647,
+              "numeric_token_recall_vs_native_clean": 0.125,
+              "ocr_token_count": 62,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.561159,
+                "rgb_psnr_db": 25.814965,
+                "tolerant_luma_edge_recall": 0.999467
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.65687,
+                "rgb_psnr_db": 22.409613,
+                "tolerant_luma_edge_recall": 0.908242
+              },
+              "encoded_jpeg_bytes": 21869,
+              "full_token_recall_vs_native_clean": 0.402597,
+              "headline_token_recall_vs_native_clean": 0.666667,
+              "lower_support_token_recall_vs_native_clean": 0.411765,
+              "numeric_token_recall_vs_native_clean": 0.5,
+              "ocr_token_count": 68,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.619518,
+                "rgb_psnr_db": 27.705443,
+                "tolerant_luma_edge_recall": 0.979875
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.8839,
+                "rgb_psnr_db": 22.887015,
+                "tolerant_luma_edge_recall": 0.931603
+              },
+              "encoded_jpeg_bytes": 28659,
+              "full_token_recall_vs_native_clean": 0.493506,
+              "headline_token_recall_vs_native_clean": 0.851852,
+              "lower_support_token_recall_vs_native_clean": 0.470588,
+              "numeric_token_recall_vs_native_clean": 0.75,
+              "ocr_token_count": 66,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.660441,
+                "rgb_psnr_db": 29.363961,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": true
+            }
+          },
+          "scene": 6
+        },
+        {
+          "clean_ocr_token_count": 74,
+          "metrics": {
+            "clean": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 0.0,
+                "rgb_psnr_db": 99.0,
+                "tolerant_luma_edge_recall": 1.0
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 1.0,
+              "headline_token_recall_vs_native_clean": 1.0,
+              "lower_support_token_recall_vs_native_clean": 1.0,
+              "numeric_token_recall_vs_native_clean": 1.0,
+              "ocr_token_count": 74,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "downscale_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 4.622977,
+                "rgb_psnr_db": 24.340637,
+                "tolerant_luma_edge_recall": 0.942731
+              },
+              "encoded_jpeg_bytes": null,
+              "full_token_recall_vs_native_clean": 0.702703,
+              "headline_token_recall_vs_native_clean": 0.923077,
+              "lower_support_token_recall_vs_native_clean": 0.72,
+              "numeric_token_recall_vs_native_clean": 0.4,
+              "ocr_token_count": 72,
+              "recompression_only_pixels_vs_lossless_360p": null,
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q20_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 9.754655,
+                "rgb_psnr_db": 22.005395,
+                "tolerant_luma_edge_recall": 0.873895
+              },
+              "encoded_jpeg_bytes": 14785,
+              "full_token_recall_vs_native_clean": 0.297297,
+              "headline_token_recall_vs_native_clean": 0.615385,
+              "lower_support_token_recall_vs_native_clean": 0.2,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 64,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 7.406943,
+                "rgb_psnr_db": 25.972903,
+                "tolerant_luma_edge_recall": 0.998977
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q35_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 8.105871,
+                "rgb_psnr_db": 22.702993,
+                "tolerant_luma_edge_recall": 0.918558
+              },
+              "encoded_jpeg_bytes": 19256,
+              "full_token_recall_vs_native_clean": 0.5,
+              "headline_token_recall_vs_native_clean": 0.769231,
+              "lower_support_token_recall_vs_native_clean": 0.36,
+              "numeric_token_recall_vs_native_clean": 0.0,
+              "ocr_token_count": 69,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 5.486853,
+                "rgb_psnr_db": 27.83094,
+                "tolerant_luma_edge_recall": 0.977271
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            },
+            "jpeg_q60_420_360p": {
+              "combined_backprojected_pixels": {
+                "mean_absolute_rgb_error": 7.275539,
+                "rgb_psnr_db": 23.227927,
+                "tolerant_luma_edge_recall": 0.937963
+              },
+              "encoded_jpeg_bytes": 25213,
+              "full_token_recall_vs_native_clean": 0.581081,
+              "headline_token_recall_vs_native_clean": 0.923077,
+              "lower_support_token_recall_vs_native_clean": 0.56,
+              "numeric_token_recall_vs_native_clean": 0.2,
+              "ocr_token_count": 72,
+              "recompression_only_pixels_vs_lossless_360p": {
+                "mean_absolute_rgb_error": 4.445641,
+                "rgb_psnr_db": 29.609016,
+                "tolerant_luma_edge_recall": 0.999811
+              },
+              "result_held_detected": false,
+              "scene_specific_gate_detected": false,
+              "structural_gate_detected": false
+            }
+          },
+          "scene": 7
+        }
+      ]
+    }
+  },
+  "pass12_mapped_gate_crop_character_similarity": {
+    "clean": {
+      "mean_best_similarity": 1.0,
+      "passing_gate_count": 7,
+      "rows": [
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 1
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 2
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 3
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 4
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 5
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 6
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 7
+        }
+      ],
+      "scene_count": 7,
+      "threshold": 0.8
+    },
+    "downscale_360p": {
+      "mean_best_similarity": 1.0,
+      "passing_gate_count": 7,
+      "rows": [
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 1
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 2
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 3
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 4
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 5
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 6
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 7
+        }
+      ],
+      "scene_count": 7,
+      "threshold": 0.8
+    },
+    "jpeg_q20_420_360p": {
+      "mean_best_similarity": 0.988874,
+      "passing_gate_count": 7,
+      "rows": [
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 1
+        },
+        {
+          "best_psm": 13,
+          "best_similarity": 0.943396,
+          "passes_threshold": true,
+          "scene": 2
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 3
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 0.978723,
+          "passes_threshold": true,
+          "scene": 4
+        },
+        {
+          "best_psm": 13,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 5
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 6
+        },
+        {
+          "best_psm": 7,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 7
+        }
+      ],
+      "scene_count": 7,
+      "threshold": 0.8
+    },
+    "jpeg_q35_420_360p": {
+      "mean_best_similarity": 1.0,
+      "passing_gate_count": 7,
+      "rows": [
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 1
+        },
+        {
+          "best_psm": 13,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 2
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 3
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 4
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 5
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 6
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 7
+        }
+      ],
+      "scene_count": 7,
+      "threshold": 0.8
+    },
+    "jpeg_q60_420_360p": {
+      "mean_best_similarity": 1.0,
+      "passing_gate_count": 7,
+      "rows": [
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 1
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 2
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 3
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 4
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 5
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 6
+        },
+        {
+          "best_psm": 6,
+          "best_similarity": 1.0,
+          "passes_threshold": true,
+          "scene": 7
+        }
+      ],
+      "scene_count": 7,
+      "threshold": 0.8
+    }
+  },
+  "raw_ocr_text_stored": false,
+  "shared_or_public_assets_modified": false,
+  "simulation_limit": "Packet-specific native-to-640x360 LANCZOS downscale followed by Pillow JPEG 4:2:0 encode/decode. Quality values are library parameters, not claims about a named codec ladder, display, player, browser, platform, upload route, delivery service, room, viewer, or universal standard.",
+  "status": "QA_ONLY_NOT_A_CANDIDATE_NOT_SCIENCE_ADJUDICATION",
+  "tts_invoked": false,
+  "variant_order": [
+    "clean",
+    "downscale_360p",
+    "jpeg_q60_420_360p",
+    "jpeg_q35_420_360p",
+    "jpeg_q20_420_360p"
+  ],
+  "video_encoded": false
+}

@@ -1,0 +1,27 @@
+{
+  "packet_version": "pass7-single-current-local-receipt-v22",
+  "status": "HISTORICAL_LOCAL_RECEIPTS_EXCLUDED_FROM_EXACT_PACKET",
+  "excluded_live_lane_receipts": [
+    "qa/PASS7_V1_LOCAL_CHECKS.json",
+    "qa/PASS7_V2_LOCAL_CHECKS.json",
+    "qa/PASS7_V3_LOCAL_CHECKS.json",
+    "qa/PASS7_V4_LOCAL_CHECKS.json",
+    "qa/PASS7_V5_LOCAL_CHECKS.json",
+    "qa/PASS7_V6_LOCAL_CHECKS.json",
+    "qa/PASS7_V7_LOCAL_CHECKS.json",
+    "qa/PASS7_V8_LOCAL_CHECKS.json",
+    "qa/PASS7_V11_LOCAL_CHECKS.json",
+    "qa/PASS7_V12_LOCAL_CHECKS.json",
+    "qa/PASS7_V13_LOCAL_CHECKS.json",
+    "qa/PASS7_V14_LOCAL_CHECKS.json",
+    "qa/PASS7_V16_LOCAL_CHECKS.json",
+    "qa/PASS7_V17_LOCAL_CHECKS.json",
+    "qa/PASS7_V18_LOCAL_CHECKS.json",
+    "qa/PASS7_V19_LOCAL_CHECKS.json",
+    "qa/PASS7_V20_LOCAL_CHECKS.json",
+    "qa/PASS7_V21_LOCAL_CHECKS.json"
+  ],
+  "authority": "Historical local receipts remain preserved in the live worker lane and prior immutable snapshots, but have no current-gate authority and are deliberately excluded from the exact v22 packet.",
+  "current_receipt": "qa/PASS7_V22_LOCAL_CHECKS.json",
+  "current_receipt_rule": "The exact packet contains exactly one PASS7_*_LOCAL_CHECKS.json file, and it must identify packet v22, storyboard v18, and all current artifact hashes."
+}

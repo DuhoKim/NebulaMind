@@ -1,0 +1,1236 @@
+                                                 Draft version March 19, 2024
+                                                 Typeset using LATEX twocolumn style in AASTeX631
+
+
+
+
+                                                          Quaia, the Gaia–unWISE Quasar Catalog: An All-Sky Spectroscopic Quasar Sample
+                                                        Kate Storey-Fisher ,1 David W. Hogg ,1, 2, 3 Hans-Walter Rix ,3 Anna-Christina Eilers                         ,4
+                                                                    Giulio Fabbian ,2, 5 Michael R. Blanton ,1 and David Alonso 6
+                                               1 Center for Cosmology and Particle Physics, Department of Physics, New York University, 726 Broadway, New York, NY 10003, USA
+                                                            2 Center for Computational Astrophysics, Flatiron Institute, 162 Fifth Avenue, New York, NY, 10010, USA
+
+
+
+
+arXiv:2306.17749v2 [astro-ph.GA] 18 Mar 2024
+                                                                       3 Max Planck Institute for Astronomy, Königstuhl 17, D-69117 Heidelberg, Germany
+                                                   4 MIT Kavli Institute for Astrophysics and Space Research, 77 Massachusetts Avenue, Cambridge, 02139, Massachusetts, USA
+                                                         5 School of Physics and Astronomy, Cardiff University, The Parade, Cardiff, Wales CF24 3AA, United Kingdom
+                                                     6 Department of Physics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford OX1 3RH, United Kingdom
+
+
+
+                                                                                                    ABSTRACT
+                                                          We present a new, all-sky quasar catalog, Quaia, that samples the largest comoving volume of any
+                                                       existing spectroscopic quasar sample. The catalog draws on the 6,649,162 quasar candidates identified
+                                                       by the Gaia mission that have redshift estimates from the space observatory’s low-resolution blue
+                                                       photometer/red photometer spectra. This initial sample is highly homogeneous and complete, but
+                                                       has low purity, and 18% of even the bright (G < 20.0) confirmed quasars have discrepant redshift
+                                                       estimates (|∆z/(1 + z)| > 0.2) compared to those from the Sloan Digital Sky Survey (SDSS). In this
+                                                       work, we combine the Gaia candidates with unWISE infrared data (based on the Wide-field Infrared
+                                                       Survey Explorer survey) to construct a catalog useful for cosmological and astrophysical quasar studies.
+                                                       We apply cuts based on proper motions and colors, reducing the number of contaminants by ∼4×.
+                                                       We improve the redshifts by training a k-Nearest Neighbors model on SDSS redshifts, and achieve
+                                                       estimates on the G < 20.0 sample with only 6% (10%) catastrophic errors with |∆z/(1 + z)| > 0.2
+                                                       (0.1), a reduction of ∼3× (∼2×) compared to the Gaia redshifts. The final catalog has 1,295,502
+                                                       quasars with G < 20.5, and 755,850 candidates in an even cleaner G < 20.0 sample, with accompanying
+                                                       rigorous selection function models. We compare Quaia to existing quasar catalogs, showing that its large
+                                                       effective volume makes it a highly competitive sample for cosmological large-scale structure analyses.
+                                                       The catalog is publicly available at https://doi.org/10.5281/zenodo.10403370.
+
+                                                                 1. INTRODUCTION                                     Quasars are key tracers for large-scale structure cos-
+                                                 Quasars are powerful tools for many fields of astro-              mology. They reside in peaks of the dark matter dis-
+                                               physics. They are key probes of accretion physics (e.g.             tribution and their clustering can be used to measure
+                                               Sunyaev & Zeldovich 1970; Yu et al. 2020), which in-                cosmological parameters, including the growth rate of
+                                               forms the evolution of active galactic nuclei (AGNs).               structure f σ8 (e.g. Garcı́a-Garcı́a et al. 2021; Alonso
+                                               The evolution of quasars and their host galaxies are in-            et al. 2023), the Hubble distance DH (e.g. Hou et al.
+                                               tertwined, giving insight into supermassive black hole              2020), primordial non-Gaussianity (e.g. Leistedt et al.
+                                               growth (e.g. Hopkins et al. 2006) as well as massive                2014; Castorina et al. 2019; Krolewski et al. 2023), and
+                                               galaxy formation (e.g. Kormendy & Ho 2013). Stud-                   the baryon density Ωb (e.g. Yahata et al. 2005). Cross-
+                                               ies of the quasar distribution can also be used to un-              correlations between quasars and other tracers provide
+                                               derstand black hole evolution (e.g. Powell et al. 2020)             measurements of key cosmological quantities, such as
+                                               and halo masses and environmental effects (e.g. DiPom-              with photometric galaxy samples to measure the baryon
+                                               peo et al. 2017). Quasars can also be utilized as back-             acoustic feature (e.g. Ata et al. 2018), with cosmic mi-
+                                               ground sources for cosmic phenomena such as grav-                   crowave background (CMB) lensing to constrain quasar
+                                               itational lenses (e.g. Claeskens & Surdej 2002), and                bias and the growth of structure (e.g. Sherwin et al.
+                                               quasar spectra encode the properties of the intergalactic           2012), and with foreground galaxies as a probe of weak
+                                               medium via the Lyα forest (e.g. Rauch 1998).                        lensing (e.g. Ménard & Bartelmann 2002; Scranton et al.
+                                                                                                                   2005; Zarrouk et al. 2021). They can also be used as
+                                                                                                                   standardizable candles to measure the expansion rate of
+                                               Corresponding author: Kate Storey-Fisher                            the universe (e.g. Setti & Woltjer 1973; Risaliti & Lusso
+                                               k.sf@nyu.edu                                                        2015; Lusso et al. 2020). Finally, given the large volume
+                                                                                                                   typically covered by quasar samples, the quasar distri-
+2
+
+bution provides a test of the cosmological principle of       purity (∼95%) subcatalog of ∼1.9 million quasars. Over-
+isotropy and homogeneity (e.g. Secrest et al. 2021; Dam       all, the sample presents an unprecedented resource for
+et al. 2022; Hogg et al. 2024).                               quasar science and cosmology.
+   Many surveys have observed and cataloged quasars,             There are two main issues with this raw Gaia sample.
+with around 1 million spectroscopically identified and        First, the sample contains a large number of non-quasar
+several million when including photometric samples.           contaminants. Second, a significant fraction of the red-
+The Sloan Digital Sky Survey (SDSS) Data Release 16           shift estimates are catastrophic errors, due to emission
+includes a highly complete catalog of 750,414 quasars         line misidentification given the limitations of the low-
+with spectroscopic redshifts (Lyke et al. 2020). Photo-       resolution spectra. Understanding and eliminating sam-
+metric surveys observe a much larger number of quasars,       ple contaminants matters greatly in identifying the most
+at the expense of low redshift accuracy; nearly 3 mil-        extreme (e.g. brightest or most luminous) quasars, which
+lion quasars with reliable photometric redshifts have         has been addressed in the AllBRICQS catalog (Onken
+been cataloged (Kunsági-Máté et al. 2022), including       et al. 2023) that draws on Gaia quasar candidates. In
+with the Wide-field Infrared Survey Explorer (WISE;           this work, we construct a clean quasar catalog across
+Wright et al. 2010), which imaged the entire sky and          the full magnitude range with lower contamination and
+Pan-STARRS, (Chambers et al. 2019) which observed             improved redshift estimates, with the particular goal of
+three-quarters of the sky. Shu et al. (2019) combined         building a catalog appropriate for large-scale structure
+photometry from Gaia DR2 and unWISE (Lang 2014)               analyses as well as other quasar science. For both of
+to identify 2.7 million AGN candidates and estimate           these, we rely on crossmatches with WISE observations
+their photometric redshifts. Upcoming surveys will ob-        of the quasars (Wright et al. 2010), which adds key in-
+serve even more quasars: the Dark Energy Spectroscopic        frared (IR) information. To filter out contaminants, we
+Instrument (DESI; Aghamousa et al. 2016) expects to           apply color cuts based on the Gaia and WISE photom-
+obtain spectra for 3 million quasars, and the Rubin Ob-       etry, as well as a proper motion cut. To improve the
+servatory’s LSST will photometrically observe upward          redshifts, we identify quasars that are also observed by
+of 10 million quasars (Ivezić 2016). However, none of        SDSS, for which we have highly precise spectroscopic
+these quasar catalogs is both all-sky and contains precise    redshifts, and train a k-Nearest-Neighbors (kNN) model
+redshift information. The recently released Gaia DR3          based on their photometry and Gaia redshift estimates.
+quasar candidates (Gaia Collaboration et al. 2023a) con-      Further, the Gaia quasar candidate sample has strong
+stitute a new sample that promises to fill this gap.          systematic imprints from various observational effects,
+   The Gaia quasar sample presents a new opportunity to       such as Galactic dust. To model these systematics so
+explore these science topics. While the Gaia satellite was    that their effects can be mitigated in analyses of the
+designed to map stars in the Milky Way (Gaia Collab-          catalog, we fit a model for the selection function based
+oration et al. 2016), it broadly observes bright objects      on observational templates using a Gaussian process. We
+in the sky, which includes many extragalactic sources.        release both the catalog and selection function as pub-
+Previous work identified a small number of quasars in         licly accessible data products.
+earlier Gaia data releases, including identification based       This paper is organized as follows. In §2, we describe
+solely on their astrometric properties (Heintz et al. 2018,   the initial data sets used in the construction of the cat-
+2020). In DR3, the Gaia collaboration released a sample       alog. The construction of the catalog is detailed in §3.
+of 6,649,162 quasar candidates that were incidentally ob-     In §4, we present the final catalog and perform verifica-
+served during the survey (Delchambre et al. 2023; Gaia        tion and comparisons to other samples, and outline the
+Collaboration et al. 2023a,b). The sources cover the en-      data format. We summarize the catalog and describe the
+tire sky and have Gaia blue photometer (BP)/red pho-          access to the data in §5.
+tometer (RP) spectra, low-resolution spectra covering
+                                                                             2. INITIAL DATA SETS
+the wavelength range of 330–1050 nm. These spectra al-
+low for redshift estimates of the sources, with 86% hav-             2.1. Gaia DR3 quasar candidate sample
+ing a precision of |∆z/(1 + z)| < 0.01 compared to SDSS         While performing its all-sky survey of the Milky
+redshifts when no processing issues affect the redshift es-   Way, the Gaia satellite (Gaia Collaboration et al.
+timation (flags qsoc = 0 or flags qsoc = 16), which is        2016) also observed millions of extragalactic objects.
+the case for 20% of the sample; for the full sample includ-   These sources—both quasar and galaxy candidates—
+ing sources with redshift warning flags set, this percent-    were first released in Gaia DR3 (Gaia Collaboration
+age of high-precision redshifts decreases to 53%. While       et al. 2023a,b). Gaia obtained BP/RP spectra of the
+not as precise as high-resolution spectroscopic redshifts,    sources, which are low-resolution spectra with relatively
+they are significantly better than photometric redshifts.     narrow wavelength ranges; BP covers 330–680 nm and
+The median redshift of the sample is z = 1.67. The Gaia       has 30 ≤ R ≤ 100 and RP covers 640–1050 nm (Car-
+quasar candidate sample was constructed for complete-         rasco et al. 2021) with 70 ≤ R ≤ 100. The raw spectra
+ness over purity, and has an estimated purity of 52%;         are not released by Gaia (besides a small subsample—
+the Gaia Collaboration also suggests criteria for a higher    the rest will be released in Gaia DR4), but redshift es-
+                                    Quaia: the Gaia–unWISE Quasar Catalog                                                   3
+
+                                                              and outputs a class label trained on SDSS spectroscopic
+                                                              classifications. Given these SDSS labels, the results of
+                                                              this module will inherit many of the same selection ef-
+                                                              fects as SDSS. DSC is estimated to have a completeness
+                                                              of over 90% and a purity of around g24% for quasars.
+                                                              Another machine learning model selected over 1 million
+                                                              sources based on their variability, as active nuclei have
+                                                              time-variable accretion; the model inputs were statistics
+                                                              of time series data in all Gaia bands as well as photo-
+                                                              metric and astrometric quantities, as detailed in Rimol-
+                                                              dini et al. (2023). Additionally, a set of nearly 1 million
+                                                              sources was selected based on their surface brightness
+                                                              profile; this selection used existing major quasar cata-
+                                                              logs to compile an initial list of sources, which were then
+                                                              processed by the Gaia surface brightness profile module
+                                                              (Ducourant et al. 2023). This module included quasars
+                                                              in the candidates catalog which passed certain crite-
+                                                              ria, including having Gaia observations covering > 86%
+                                                              of the source’s surface area and a confident assessment
+                                                              (positive or negative) of host galaxy presence. Finally,
+                                                              the 1.6 million sources used to define the Gaia-CRF3
+                                                              celestial reference frame were contributed, which are
+                                                              based on crossmatches of Gaia to external quasar cata-
+Figure 1. A summary of the overlaps between the various
+                                                              logs. A large fraction of sources are identified as quasars
+data sets and subsamples used in this work. The values de-
+                                                              by multiple of these methods; the overlapping contri-
+scribe the fraction of objects in each column’s sample that
+                                                              butions are shown in Figure 3 of Gaia Collaboration
+are in each row’s sample. Note that we only list unWISE as    et al. (2023a). The full quasar candidate sample contains
+a row because the inverse is not relevant to this work.       6,649,162 sources1 , selected for high completeness, but
+                                                              with a low purity estimated to be around 52% (Gaia Col-
+                                                              laboration et al. 2023a). We show the overlaps between
+                                                              this Gaia quasar candidate sample and other samples
+                                                              and subsamples used and constructed in this work in
+                                                              Figure 1.
+                                                                 Most of the quasar candidates (6,375,063) are assigned
+                                                              redshifts using the Quasar Classifier (QSOC) module,
+                                                              which uses a chi-squared approach on the quasars’
+                                                              BP/RP spectra compared to composite spectra from
+                                                              SDSS DR12Q (Delchambre et al. 2023). We refer to
+                                                              these Gaia redshift estimates as zGaia . Many of these
+                                                              redshifts are determined by a single line due to the
+                                                              narrow spectral range, resulting in aliasing issues when
+                                                              lines are misidentified (see Figure 15 in Delchambre
+                                                              et al. 2023). An estimated 63.7% of the redshifts have
+Figure 2. Sky distribution of the quasar candidates in the    |∆z| < 0.1, increasing to 97.6% for quasar candidates
+Gaia DR3 ‘Purer’ quasar sample, in Galactic coordinates and   with no redshift warning flags (this is the case for nearly
+displayed using a Mollweide projection.                       80% of quasars with G < 18.5, but decreases to less than
+                                                              20% for G > 19.5).
+timates and other derived information are contained in           Gaia Collaboration et al. (2023a) provide a query
+the catalogs.                                                 to select a purer subsample of the quasar candidates.
+  The quasar candidates were selected based on multiple       It requires higher quasar probability thresholds from
+classifiers and criteria, described in detail in Gaia Col-    the various classifiers and excludes surface-brightness-
+laboration et al. (2023a). The majority (5.5 million) of      selected galaxies that have close neighbors. This results
+the quasar candidates were identified with the Discrete
+Source Classifier (DSC) module (detailed in Delcham-            1 The Gaia DR3 quasar candidates sample (and all other Gaia
+bre et al. (2023), a machine-learning model that takes           data) can be downloaded at https://gea.esac.esa.int/archive with
+as input the source’s BP/RP spectrum, G-band magni-              table name gaiadr3.qso candidates.
+tude, G-band variability, parallax, and proper motion,
+4
+
+in 1,942,825 sources with an estimated purity of 95%;                  case of redshift estimates from narrow-range BP/RP
+1.7 million of these have Gaia redshifts. The sky dis-                 spectra, we expect IR photometry to add information
+tribution of this sample, which we call the Gaia DR3                   that can break line identification degeneracies in order
+‘Purer’ sample, is shown in Figure 2. The Gaia DR3                     to improve estimates. We incorporate the W 1 and W 2
+‘Purer’ sample has a low density in the Galactic plane;                bands into both our quasar selection (§3.1) and redshift
+we speculate that this is largely due to dust extinction               estimation (§3.2) procedures.
+making sources too faint to observe at low Galactic lat-
+itudes. Gaia DR3 ‘Purer’ also has significant overden-                             2.3. SDSS DR16 quasar sample
+sities around the LMC and SMC, as the sample still                        The Sloan Digital Sky Survey released the largest
+contains stellar contaminants.                                         spectroscopic quasar catalog in DR163 (Lyke et al.
+   For our analysis, we start with the full quasar candi-              2020). It combines new sources from the extended
+date sample, rather than the Gaia DR3 ‘Purer’ sam-                     Baryon Oscillation Spectroscopic Survey (eBOSS), part
+ple or cutting on other Gaia pipeline flags, to allow                  of SDSS-IV, with previously observed sources from ear-
+greater completeness and minimize reproducing biases;                  lier SDSS campaigns. The catalog contains 750,414
+we compare our catalog with the Gaia Collaboration                     quasars, with an estimated 99.8% completeness (com-
+et al. (2023a) Gaia DR3 ‘Purer’ subsample in §4.3. We                  pared to the SDSS-III/SEQUELS sample of Myers et al.
+construct a superset of our catalog (which is a sub-                   2015, which has higher signal-to-noise spectra) and 98.7–
+set of the Gaia quasar candidates sample) that con-                    99.7% purity. We remove sources with redshift warnings,
+tains all the information needed for catalog construc-                 ZWARNING!=0, as well as a handful of sources with un-
+tion: we require that sources are in the Gaia quasar                   reasonably low or negative redshift estimates (z < 0.01).
+candidates table, have Gaia G, BP , and RP measure-                    This results in 638,083 sources, which is the sample
+ments, unWISE W 1 and W 2 observations (described in                   shown in Figure 1. We crossmatch these with the Gaia
+§2.2), Gaia-estimated QSOC redshifts, and a maximum                    catalog, as well as unWISE (§2.2), using a maximum
+G magnitude of G < 20.6. This magnitude cut was cho-                   separation of 1′′ on the sky. We remove sources with
+sen to be slightly deeper than our desired catalog mag-                fewer than five observations in BP (phot bp n obs) or
+nitude limit of G < 20.5, in order to provide a buffer                 RP (phot rp n obs), following Bailer-Jones (2021), as
+for redshift estimation. This results in a superset with               well as sources that are duplicated in the SDSS star or
+1,518,782 sources. We call our final catalog Quaia, so we              galaxy samples (§2.4). This results in 343,074 sources
+refer to this as the Quaia superset.                                   with both Gaia and unWISE observations that pass
+                                                                       these criteria.
+                2.2. unWISE Quasar Sample                                 We use these to calibrate the cuts to decontaminate
+   We use the unWISE reprocessing (Lang 2014; Meisner                  our sample (§3.1); for this purpose, we only keep sources
+et al. 2019) of WISE (Wright et al. 2010) to contribute                that are also in the Quaia superset (sources that are
+IR photometry to Gaia sources. The unWISE coadds                       in the Gaia quasar candidates table, have all necessary
+combine data from NEOWISE (Mainzer et al. 2011)                        Gaia and unWISE photometry, Gaia-estimated QSOC
+with the original WISE survey, providing a time baseline               redshifts, and G < 20.6). This sample contains 246,122
+15 times longer. Compared to the original AllWISE cat-                 quasars. We also use this sample (after applying the cuts
+alog, unWISE has deeper imaging and improved mod-                      described in §3.1) to train our redshift estimation model
+eling of crowded fields. The unWISE catalog (Schlafly                  (§3.2). While this spectroscopic sample has quite high
+et al. 2019) contains measurements in the W 1 (3.4 µm)                 completeness and accurate redshift information, we note
+and W 2 (4.6 µm) bands for over 2 billion sources. We                  that it is still imperfect, contains selection effects, and
+do not use the W 3 and W 4 bands as these do not go as                 represents only a particular definition of a quasar; these
+deep as we need. We perform a crossmatch of the Gaia                   issues will propagate to our catalog.
+quasar candidate sample to unWISE sources within 1′′2 .
+We also crossmatch the SDSS training and validation                         2.4. Contaminant samples: galaxies and stars
+samples (§2.3, §2.4) to unWISE.                                          To guide the decontamination of our catalog (§3.1),
+   When combined with optical photometry, unWISE                       we compile known contaminant samples, namely galax-
+IR color information is very useful to identify quasars                ies and stars. For the galaxy sample, we use SDSS spec-
+and distinguish them from contaminants. This photom-                   troscopic galaxies from DR184 . Following Bailer-Jones
+etry also contains useful redshift information; recent ap-             (2021), we include all galaxies with class label GALAXY in
+proaches to estimate redshifts from photometry with                    the SpecObj table, exclude galaxies with subclass labels
+neural networks achieve a mean |∆z| ∼ 0.22 (Yang et al.
+2017; Jin et al. 2019; Kunsági-Máté et al. 2022). In our
+                                                                         3 The SDSS DR16Q quasar catalog is publicly available at https:
+                                                                          //www.sdss.org/dr16/algorithms/qso catalog.
+    2 We use NOIRLab’s crossmatch service to perform this operation,     4 SDSS DR18 data can be accessed at https://skyserver.sdss.org/
+     available at https://datalab.noirlab.edu/xmatch.php.                 CasJobs/jobdetails.
+                                   Quaia: the Gaia–unWISE Quasar Catalog                                               5
+
+AGN or AGN BROADLINE, and exclude sources with red-
+shift warnings, zWarning=0. We crossmatch these with
+Gaia DR3 and unWISE with a 1′′ radius, and remove
+sources with fewer than five observations in BP or RP ,
+as for the SDSS quasars. We also remove apparent stel-
+lar contaminants from the galaxies sample with the cut
+in G–RP and BP –G from equation (1) of Bailer-Jones
+et al. (2019), and additionally remove sources duplicated
+in the SDSS quasar or star samples. This leaves 600,897
+crossmatched SDSS galaxies in our sample; 1,316 of
+these are in the Quaia superset.
+  For the star sample, we also use SDSS DR18 sources,
+selecting objects with class label STAR in the SpecObj
+table. As for the quasars and galaxies, we crossmatch
+these with Gaia DR3 with a 1′′ radius and remove sources
+with fewer than 5 observations in BP or RP, and remove
+sources duplicated in the other samples. This results in
+a stellar sample with 482,080 crossmatched SDSS-Gaia
+stars, with 2,276 of these in the superset.
+  For the decontamination procedure, we also compile a
+sample of sources in or near the LMC or SMC, as most
+of these will be stellar contaminants but have different
+properties than the SDSS star sample. To do this, we
+select all sources in the Gaia quasar candidates table
+that are within 3° of the center of the LMC or 1.5° from
+the center of the SMC. While this may include stars
+not actually in the LMC or SMC, we have chosen these
+fairly narrow radii in order to capture mostly LMC and
+SMC stars and few potential quasars. Additionally re-
+quiring that these have unWISE photometry, this gives
+11,770 LMC- and SMC- adjacent stars; 9,927 are in the
+superset.
+          3. CATALOG CONSTRUCTION
+    3.1. Decontamination with proper motions and
+                     unWISE colors
+  The full Gaia quasar candidate sample is known to
+contain a significant fraction of contaminants (stars and
+other non-quasars, such as galaxies). The stellar con-
+taminants might include sources such as brown dwarfs,
+which have similar colors as high-redshift quasars, and
+potentially blue horizontal branch stars, blue strag-
+glers, and white dwarfs, which are UV bright like lower-
+redshift quasars. To remove stellar contaminants, we
+make an initial cut on proper motion µ, as quasars          Figure 3. Proper motion µ vs. G magnitude for two differ-
+should have negligible proper motions due to their large    ent sets of sources. The black line shows the cut we make;
+distances. The value of µ has a dependence on G, so         the shaded gray region is excluded from the catalog. Top:
+we make a cut in this space. To guide this cut, we use      the sources for which we have labels (SDSS data as well as
+labeled sources: SDSS quasars, SDSS galaxies, SDSS          sources near the LMC and SMC in the Gaia quasar candi-
+stars, and Gaia LMC- and SMC-adjacent stars, as de-         dates sample) that are also in the Quaia superset (Gaia DR3
+scribed in §2.3 and §2.4. The G–µ distributions of these    quasar candidates that have all necessary photometry, Gaia
+sources are shown in the top panel of Figure 3. In          redshift estimates, and G < 20.6). Middle: sources in the top
+the middle panel, we show the intersection of these la-     row that are also in the Quaia superset. Bottom: the superset
+beled sources with our Quaia superset, which consists of    of quasar candidates from which Quaia is constructed. The
+sources in the Gaia quasar candidates table that have       proper motion cut includes nearly all SDSS quasars in the
+Gaia redshift estimates, complete Gaia and unWISE
+                                                            superset while excluding a large number of stars.
+photometry, and are below G < 20.6. We see that the
+6
+
+SDSS quasars tend to have much smaller proper motions        to mitigate the propagation of SDSS selection effects,
+than the other types of sources, with a very linear edge     which may include color- and magnitude-dependent ef-
+to the G dependence at the high proper motion side of        fects. We choose four cuts based on the distribution of
+the distribution. Based on this, we choose the cut           sources in color-color space. The first is in W 1–W 2,
+                                                             which has been shown to be useful for distinguishing
+              µ < 100.4 (G−18.25) mas/yr .            (1)    quasars; for instance, Nikutta et al. (2014) demonstrated
+At G = 18.25, this corresponds to µ ≲ 2.5 mas yr−1 , and     that a small crossmatched SDSS quasar sample has
+allows for less severe cuts at deeper magnitudes given       very red W 1–W 2 = 1.2 ± 0.16, while other types of
+the typically less precise astrometry. This is related to    objects—namely star-forming and AGN galaxies, lumi-
+the proper motion uncertainty as a function of G, which      nous red galaxies and stars—have bluer W 1–W 2. Stars
+has been quantified by Gaia (Gaia Collaboration et al.       tend to have the bluest W 1–W 2, with a mean of W 1–
+2021). We show this cut overlaid on the Quaia superset       W 2 = −0.04 ± 0.03, so a cut in W 1–W 2 is a reliable
+in the lower panel of Figure 3; based on the labeled data,   way to filter out stellar contaminants. We add a cut in
+we can clearly pick out the populations. The proper mo-      G–W 1 to filter out the bulk of the stars (including the
+tion cut excludes 39470 sources, 2.6% of the superset.       LMC and SMC), and another in BP − G to cut out the
+  Next, we determine the color cuts based on Gaia and        galaxy contaminants. Finally, we find that these single
+unWISE photometry. Generally, stars and galaxies are         color cuts were not sufficient to remove all of the LMC
+dim in redder, IR wavelengths compared to AGN. For           and SMC, so we add an additional diagonal cut in W 1–
+instance, the eBOSS quasar target selection (Myers et al.    W 2 and G–W 1, choosing a reasonable slope.
+2015) involved linear cuts in the optical-IR, involving        We optimize the values (intercepts) of these four cuts
+the SDSS g, r, and i bands and the WISE W 1 and W 2          with a grid search, trying values spaced out by 0.1 mag.
+bands.                                                       We note that while we show the full samples in Fig-
+  In Figure 4, we show color-color distributions for the     ure 4, in practice we make the proper motion cut before
+same samples as in Figure 3. The left panel shows W 1–       optimizing the color cuts. We choose the color cuts that
+W 2 vs. G–W 1 color, and the right column shows G–RP         maximize our objective function L,
+vs. BP –G color. The top row, with the full labeled sam-
+ples, shows that different types of sources tend to be                 L = Nq − λs Ns − λg Ng − λm Nm ,           (2)
+localized to different areas of this parameter space (we
+show only a subset of each type for clarity). In partic-     where Nq is the number of true quasars that make it
+ular, the colors involving unWISE (left panel) separate      into the catalog, Ns SDSS stars, Ng SDSS galaxies, and
+out the source types relatively clearly, demonstrating the   Nm LMC and SMC stars, and the λ parameters balance
+importance of the unWISE crossmatch: SDSS quasars            the relative ratios of each. We choose λs = 3, λm = 5,
+have very red W 1–W 2, and intermediate G–W 1 color,         and λg = 1.
+while galaxies have bluer W 1–W 2 and redder G–W 1             The optimal cuts for the objects to keep in the catalog
+compared to quasars, and stars (both SDSS stars and          are
+stars near the LMC and SMC) are bluer in both colors.                                   (G − W 1) > 2.15
+In Gaia color-color space, galaxies tend to have bluer
+BP –G and redder G–RP colors than the other types                                      (W 1 − W 2) > 0.4
+                                                                                                                  (3)
+of sources. In the middle row of Figure 4, showing the                                  (BP − G) > −0.3
+intersection of the labeled sources with the Quaia super-              (G − W 1) + 1.2 (W 1 − W 2) > 3.4
+set, we see that the superset restrictions have eliminated
+many of the sources, especially SDSS galaxies and stars,     These are shown as the black lines in all panels of Fig-
+though a significant number remain. (We note that it is      ure 4, with the gray shading indicating exclusion re-
+possible that some of these SDSS galaxies do host AGN        gions. These cuts, as well as the proper motion cuts
+though they were not classified as such by SDSS.) The        described above, exclude ∼7% of the superset, result-
+Quaia superset is shown in the bottom panel; we can          ing in 1,414,385 quasars in our decontaminated sample.
+see clear populations of quasars, stars, and galaxies lin-   We apply an additional magnitude cut of G < 20.5 to
+ing up with the labeled sources. Importantly, we can see     reduce edge effects in our redshift estimation; this con-
+the effect of the stricter SDSS color selection in the red   stitutes our deep sample, with 1,295,502 sources. We
+(high G–W 1) region of parameter space into which the        refer to this as Quaia in the rest of this work. How-
+Gaia quasar candidates extend, but are not represented       ever, the catalog becomes less clean and reliable as we
+in the SDSS sample in the above panels.                      push to deeper magnitudes—due to less precise measure-
+  We choose to apply linear cuts in these colors to de-      ments and stronger systematics, notably the Gaia scan-
+contaminate the sample. While other works (e.g. Hughes       ning pattern—so we produce a version of the catalog
+et al. 2022) train classifiers to determine which objects    with G < 20.0 to ensure a cleaner sample. This brighter
+are true quasars using SDSS-classified quasars as labels,    catalog has 755,850 sources, and we report most of our
+we opt for simpler cuts for ease of reproducibility and      results on this sample throughout the rest of this work.
+                                      Quaia: the Gaia–unWISE Quasar Catalog                                                     7
+
+
+
+
+Figure 4. Color–color plots of three different sets of sources. The left column shows W 1–W 2 vs. G–W 1 color, and the right
+column shows G–RP vs. BP –G color. The black lines show the cuts we make; the shaded gray region is excluded from the
+catalog. The rows have the same samples as in Figure 3, except that in the top row, only 20,000 of each type of SDSS source
+is shown for clarity. In both color-color projections, the labeled sources are mostly localized in particular regions of parameter
+space, and we can see these populations somewhat clearly in the Quaia superset.
+8
+
+    3.2. Spectrophotometric redshifts with unWISE and              bors. We use the validation set to tune K, and choose
+                             SDSS                                  the value that maximizes the fraction of predicted red-
+  We use unWISE and SDSS data to improve the red-                  shifts with |∆z/(1 + z)| < 0.1, which is K = 27; we
+shift estimation of the sources. Figure 5a shows the red-          note that this value only varies at the ∼1% level for
+shifts estimated by the Gaia QSOC pipeline zGaia com-              values 15 < K < 50, and is similar for other choices
+pared to the SDSS redshifts zSDSS for a test sample of             of |∆z/(1 + z)|. Finally, we apply the model to the full
+sources from Quaia with G < 20.5; note that the 2D                 Quaia and output kNN redshift estimates, zkNN , for each
+histogram is plotted in log-space to show the outliers             source.
+more clearly. We find that of the Gaia redshifts zGaia ,              The results are shown in Figure 6, which shows the
+82% (81%) agree to |∆z/(1 + z)| < 0.2 (0.1). A sig-                cumulative distribution of errors |∆z/(1 + z)| for zkNN
+nificant fraction of zGaia are highly precise: 75% agree           compared to that of zGaia (with zSDSS as the truth) for
+with SDSS to |∆z/(1 + z)| < 0.01. We also clearly see              the test set with G < 20.0. (The shapes are similar for
+bands of incorrect estimation due to line aliasing issues.         G < 20.5, just shifted to somewhat lower accuracy.)
+Additionally, in the crossmatched sample, nearly all of            We find that the zkNN estimates have far fewer out-
+the very high zGaia estimates (z > 4.5) are shown to               liers than zGaia . However, the zGaia estimates tend to be
+be incorrect in comparison to SDSS. We note that the               more precise, as they use the full spectral information,
+redshift estimation is much more accurate for sources              while the kNN is essentially smoothing over the likeli-
+that have no redshift warning flags set (flags qsoc=0),            est neighboring sources in feature space. We thus choose
+as discussed in §2.1, but this is only true for 21% of the         to combine the properties of both of these redshift esti-
+sources in Quaia (G < 20.5), and even including sources            mates to obtain our final spectrophotometric (SPZ) red-
+with flags qsoc=16 this leaves only 39% of sources.                shifts zQuaia in the following way. For sources for which
+  We train a kNN model on Quaia sources to estimate                zQuaia and zGaia agree to |∆z/(1 + z)| < 0.05, we as-
+improved redshifts. (We also tested other models includ-           sign zQuaia = zGaia to preserve the precision of the Gaia
+ing XGBoost and a multilayer perceptron, and found                 estimate. For sources for which zQuaia and zGaia differ
+that the kNN outperformed both by a small margin.)                 by |∆z/(1 + z)| > 0.1, we assign zQuaia = zkNN to pre-
+We include all sources in our decontaminated catalog               serve accuracy. In between these thresholds, we apply a
+(§3.1) which goes out to G < 20.6, in order to have a              smooth, linear transition to avoid hard features in our
+buffer beyond our desired G < 20.5 sample to reduce                estimates. These zQuaia estimates are also shown in Fig-
+edge effects from the training set. (We find that includ-          ure 6 compared to the “true” (spectroscopic, taken as
+ing the rest of the photometry does not make a differ-             truth for our purposes) SDSS redshifts, and we can see
+ence in the results.) The reddening is determined with             that these achieve nearly as high precision as zGaia while
+the Corrected Schlegel, Finkbeiner, & Davis (SFD) dust             maintaining the high accuracy of zkNN .
+map introduced by Chiang (2023), which corrects the                   Our zQuaia results for the test set are shown in Fig-
+standard Schlegel et al. (1998) dust map by subtracting            ure 5b compared to zSDSS , shown here for the full catalog
+off the contribution from the cosmic infrared background           depth G < 20.5. We find that 91% (84%) of our SPZ red-
+(CIB). (We also include the appropriate correction fac-            shifts agree to |∆z/(1 + z)| < 0.2 (0.1), and 62% highly
+tor given by Schlafly & Finkbeiner (2011).)5 . The labels          agree to |∆z/(1+z)| < 0.01. We also give the bias (mean
+are the SDSS redshifts, zSDSS .                                    redshift error) and scatter (σ68 , the symmetrized inner
+  We use as our labeled data sources from the cross-               68% region of the redshift errors) of |∆z/(1 + z)| in the
+matched SDSS DR16Q sample (§2.3) that are also in                  figure; our SPZ redshifts significantly decrease the bias
+our decontaminated catalog Quaia, so that we train on              and scatter. The SPZ estimation corrected all of the very
+sources drawn from the same distribution to which we               high-z Gaia estimates, and some of the intermediate-
+will apply the model; this is 243,206 sources. We apply            outlying aliasing effects. We still have some catastrophic
+a 70%/15%/15% train/validation/test split. We build a              outliers due to line aliasing, but with our SPZ redshifts,
+k-d tree on the training set features using the KDTree             we find a reduction in the number of |∆z/(1 + z)| > 0.2
+implementation of sklearn. At the prediction stage, we             (0.1) outliers by ∼3× (∼2×) compared to the Gaia red-
+access the K nearest neighbors of each input feature               shift estimates.
+vector, first excluding neighbors with zero distance in               We investigate the dependence of the redshift error on
+feature space (i.e. neighbors that are in the training             the G-band magnitude in Figure 7. The fraction of red-
+set). We assign the predicted label to be the median               shifts with an error above various thresholds is shown as
+zSDSS of the K nearest neighbors, and the uncertainty              a function of samples with the given cut on G. The er-
+to be the symmetrized inner 68% error of those neigh-              rors are lowest at a bright magnitude cut of G <∼19.0;
+                                                                   in this sample, sources with SPZ redshift estimates inac-
+                                                                   curate to |∆z/(1+z)| > 0.2 (0.1) comprise only 3% (4%)
+    5 The dust map was accessed with the Python package https://   of the sample, and to the more stringent requirement of
+     dustmaps.readthedocs.io                                       |∆z/(1 + z)| > 0.01, 12%. This outlier fraction increases
+                                                                   steadily as fainter sources are included. For G < 20.0,
+                                     Quaia: the Gaia–unWISE Quasar Catalog                                                      9
+
+
+
+
+                               (a)                                                             (b)
+Figure 5. (a) Gaia redshift estimate zGaia vs. SDSS (“true”) redshift zSDSS for a test set of sources in our quasar catalog Quaia
+with G < 20.5. (b) Our estimated spectrophotometric (SPZ) redshifts zQuaia , which are based on a kNN model, vs. zSDSS for
+the same sample. The bias (mean redshift error) and scatter (σ68 , the symmetrized inner 68% region of the redshift errors)
+of the redshift estimates compared to zSDSS are shown in the panels. The zQuaia redshifts significantly decrease both the bias
+and scatter, as well as catastrophic outliers and unreasonably high redshift estimates. The one-to-one line (perfect accuracy) is
+shown in gray; note that the color bar is on a log scale, and that a majority of the sources in both cases lie along this line.
+
+
+
+
+                                                                    Figure 7. The fraction of outlying redshifts with |∆z/(1 +
+                                                                    z)| > (0.01, 0.1, 0.2), as a function of G magnitude, for our
+Figure 6. The cumulative distribution of redshift errors for
+                                                                    redshift estimation test set. The SPZ redshifts are shown
+Quaia test set sources with G < 20.0, considering SDSS spec-
+                                                                    in black, and the Gaia redshifts in purple. The fraction of
+troscopic redshifts zSDSS as the ground truth, for estimates
+                                                                    outliers increases steeply with increasing G for G > 19.5 for
+directly from our kNN model (gray), the original zGaia red-
+                                                                    both zQuaia and zGaia , though the fraction of catastrophic
+shifts (purple), and our final zQuaia estimates (black) based
+                                                                    outliers for zQuaia is significantly lower (and the dependence
+on a combination of the other two. Our SPZ redshifts have
+                                                                    less steep) compared to zGaia .
+far fewer outliers and similar precision compared to the Gaia
+estimates.
+                                                                    will depend on the nature of the analysis and its sensi-
+                                                                    tivity to outliers.
+6% (10%) are inaccurate to |∆z/(1 + z)| > 0.2 (0.1),
+                                                                      We note that our finding that the unWISE IR infor-
+and 25% for |∆z/(1 + z)| > 0.01. Compared to the Gaia
+                                                                    mation significantly improves redshift estimates, com-
+redshift estimates, the SPZ estimates zQuaia reduce the
+                                                                    pared to only the optical information used in the Gaia
+number of |∆z/(1 + z)| > 0.2 (0.1) outliers by ∼3×
+                                                                    QSOC estimates, is consistent with other photomet-
+(∼2×). The choice of G cut to use in a given analysis
+10
+
+ric redshift work. For instance, DiPompeo et al. (2015)            The systematics maps (templates) we use are shown
+showed that including WISE mid-IR photometry in the             in Figure 8. We use the dust map of Chiang (2023), and
+redshift estimation of SDSS-imaged quasars results in           convert it to a healpix map of NSIDE = 64. To do this,
+a significant improvement on the estimates, even more           we evaluate the reddening E(B − V ) at the centers of
+so than including both GALEX near- and far-UV data              pixels of a high-resolution NSIDE = 2048 healpixeliza-
+and UKIDSS near-IR data. More recently, Yang & Shen             tion of the sphere, and apply the 0.86 correction factor
+(2023) compiled a photometric quasar catalog from the           proposed by Schlafly & Finkbeiner (2011). We convert
+Dark Energy Survey (DES) DR2, combining DES op-                 these to extinction values by multiplying by RV = 3.1,
+tical photometry with near-IR photometry as well as             and then take the mean of all of these values within
+unWISE mid-IR photometry; they obtained photo-zs                each healpixel target NSIDE = 64 map. This produces
+with 92% having |∆z/(1 + z)| < 0.1 when all IR bands            a smoothed dust extinction map on the desired scale.
+are used compared to 72% with only optical data. Ad-            The result is shown in Figure 8a; the extinction is high-
+ditional photometric information at other wavelengths           est around the Galactic plane, with structure extending
+could further improve our estimates (as well as cata-           outward.
+log decontamination), but is not currently available for           For the stellar distribution, we randomly select ∼10.6
+enough sources in our Quaia catalog to be worthwhile.           million Gaia sources with 18.5 < G < 20, the magni-
+For instance, for the UV all-sky survey GALEX (Mar-             tude range of most of our quasar sample. The vast ma-
+tin et al. 2005), crossmatches to Quaia sources are only        jority of these will be true stars. (While this sample will
+available for 32% of the Quaia objects for near-UV ob-          contain some other types of objects, including possibly
+servations, and when including far-UV only 16 %; this           some quasars and other extragalactic sources, these will
+significant discrepancy is largely due to the faint end of      be orders of magnitude less numerous than stars.) We
+Quaia, where GALEX observations do not reach deep               count the number of stars per NSIDE = 64 healpixel;
+enough. The Pan-STARRS1 survey (Chambers et al.                 this is shown in Figure 8b. We also include a template
+2019) covers only three quarters of the sky, with cross-        of the unWISE source distribution, for which we ran-
+matches to 75% of Quaia sources. We tested adding               domly selected ∼10.6 million unWISE sources (1% of
+Pan-STARRS1 data to the redshift estimation feature             the catalog) that have flux in both W 1 and W 2, and
+set and found only a small improvement, and thus chose          have primary status (Prim=1). We count the number of
+to prioritize keeping the full sky span of Quaia, though        these sources per NSIDE = 64 healpixel, as shown in
+we make note that incorporating Pan-STARRS1 may be              Figure 8c.
+useful for certain applications.                                   In initial fits we found that the regions of the LMC
+                                                                and SMC are particularly poorly modeled, and that the
+                                                                fit is improved by including separate templates of just
+            3.3. Selection Function Modeling                    the LMC and SMC source density for both the Gaia
+   Observational and astrophysical effects impact which         and unWISE sources; this gives the model the freedom
+sources we observe and their properties; this is known as       to assign different coefficients to these regions than to
+the selection function. As Gaia is a space-based mission,       the overall survey source density. (The need for differ-
+it avoids many of the observational issues of ground-           ent coefficients could be for a number of reasons, such
+based surveys, such as seeing and airmass. However,             as a difference in stellar density, contamination, or mag-
+there are still significant selection effects: for our model,   nitude distribution; we leave a deeper investigation of
+we consider dust, the source density of the parent sur-         this to future work and just use this empirical finding to
+veys, and the scan patterns of the parent surveys.              improve our model.) For the LMC/SMC templates, we
+   We fit a selection function model to a particular ver-       cut out a wide region around the LMC and SMC (9° in
+sion of the catalog, namely, a particular maximum G.            radius around the LMC and 5° around the SMC), and
+For the fiducial selection function we work only in terms       subtract the background, which we approximate using
+of sky position. We make a healpix map of the catalog           the region at the same latitude but opposite longitude
+with NSIDE = 64 and count the number of observed                (mirrored across the l = 0° line) of the given source dis-
+catalog sources in each healpix pixel. We choose this           tribution map. We don’t show these maps here as they
+NSIDE, which results in 49,152 pixels each with an area         are visually similar to the stellar and unWISE source
+of ∼0.84 deg2 , to balance constructing a map with rea-         density maps in the LMC and SMC regions (though with
+sonably high resolution with ensuring a sufficient num-         the background subtracted).
+ber of sources in the pixels for stable fits, as well as           For the Gaia completeness, we use the quantity M10
+fitting within memory limitations for the Gaussian pro-         introduced by Cantat-Gaudin et al. (2023)6 . M10 is the
+cess fit. In the case of no selection effects (and under the    median magnitude in a given sky patch of the Gaia
+assumption of isotropy), we would expect each pixel to
+contain roughly the same number of sources. Our goal is           6 This map can be accessed with the gaiaunlimited package, https:
+to model the dependence between the number of sources              //gaiaunlimited.readthedocs.io
+per pixel and the various systematics.
+                                     Quaia: the Gaia–unWISE Quasar Catalog                                                     11
+
+
+
+
+                                                               (a)
+
+
+
+
+                               (b)                                                             (c)
+
+
+
+
+                               (d)                                                             (e)
+Figure 8. The systematics maps used in the selection function model: (a) dust extinction from Chiang (2023); (b) the stellar
+distribution based on ∼10.6 million randomly selected Gaia sources with 18.5 < G < 20; (c) the unWISE source distribution
+based on ∼10.6 million randomly selected unWISE sources; (d) the quantity M10 , the median magnitude of sources with ≤ 10
+Gaia transits, which encodes the Gaia scanning law and source crowding; and (e) the unWISE scan pattern given by the mean
+number of single-exposure images of the sky region in the coadd. Note that the color bar on the M10 and unWISE scanning law
+maps are reversed, as high values indicate a cleaner region, the inverse of the other maps. We also include separate templates for
+only sources in the LMC and SMC regions for both the stellar and unWISE source densities, with the background subtracted.
+All templates are discussed in more detail in the text.
+12
+
+sources with ≤ 10 transits across the Gaia field of view;     coadds (> 150); this results in 479 pixels. We take the
+it incorporates the effects of both the scanning law and      mean predicted number of quasars in these clean pix-
+source crowding. The actual completeness map derived          els, and add two times the standard deviation in these
+by Cantat-Gaudin et al. (2023) depends on both M10            pixels to encompass the scatter. We then normalize the
+and G-band magnitude; this completeness is very close         predicted source numbers by this value, which ensures
+to 1 for nearly all of the sky for G = 20.0, with some        that all final values end up being less than 1 for clarity.
+non-negligible incompleteness for G = 20.5. However,          The result is a selection function map in terms of the
+this completeness model is based on the full Gaia source      relative probability of a source at a given location be-
+catalog, while we expect the selection function of our        ing included in the catalog. We emphasize that this is
+quasar sample to be different. We thus use the M10            relative; we have not normalized it to an absolute prob-
+map directly in our fit to capture the effects of the Gaia    ability so as not to make the selection function map ex-
+scanning law and source crowding specific to Quaia. We        tremely sensitive to the maximum value. We also note
+downsample the map to NSIDE = 64; this is shown in            that this fit must be redone for each version of the cata-
+Figure 8d.                                                    log because it depends on the particular number density
+   For the unWISE scanning law, using the ∼10.6 mil-          and distribution of sources.
+lion unWISE sources described above, we take the mean           There will be a dependence of the selection function
+number of single-exposure images in the coadd in W 1          on the G-band magnitude, as well as other quantities
+for the sources in each NSIDE = 64 healpixel. This is         such as redshift. While we do not include these in our
+shown in Figure 8e; we can see that the scan is in strips     modeling or fiducial selection function map, we do re-
+of constant ecliptic latitude, and that there is a signifi-   lease selection functions for a redshift split version of
+cant increase in observations at the ecliptic poles.          the catalog, using two redshift bins, which is important
+   To model the selection function we use a Gaussian          for certain cosmological analyses. The code to generate
+process, a flexible machine-learning method for regres-       the selection function for any input catalog is also pro-
+sion; for a detailed treatment, see Rasmussen & Williams      vided so that users can construct maps that meet their
+(2005). (We first tried a linear model and found that         needs.
+it gave a very poor fit, because there are significant
+                                                                4. CATALOG: RESULTS AND VERIFICATION
+nonlinearities between the systematics and the catalog
+number density.) We first scale the data: for the labels                   4.1. Properties of the catalog
+(number of Quaia sources per pixel) we work in their            Quaia, the Gaia–unWISE Quasar Catalog, consists of
+logarithm, and only fit for the pixels with a nonzero         755,850 (1,295,502) quasar candidates with G < 20.0
+number of sources. For the Gaia stellar distribution, the     (20.5). The sky distribution of Quaia for each of these
+unWISE source distribution, the unWISE scan pattern,          magnitude limits is shown in Figure 9. The catalog cov-
+and LMC/SMC map templates, we also take the log               ers the full sky, besides the Galactic plane, including
+of the number of quasars per pixel; for the LMC/SMC           the southern sky—most of which is not well covered by
+map, we first replace zeros with a very small value.          other surveys (discussed further in §4.3). The sky distri-
+For all of the input feature maps, we take the mean-          bution is remarkably uniform, and the nonuniform im-
+subtracted systematics values. We assume a Poisson er-        prints visually follow the selection effects that we incor-
+ror on the labels (and apply the appropriate log trans-       porated into our selection function map, most notably
+formation). For the Gaussian process, we use the george       the dust distribution (Figure 8a). Quaia also does not
+software package (Ambikasaran et al. 2016). We use an         show an obvious overdensity around the LMC and SMC
+exponential squared kernel k of the form                      (as the Gaia DR3 ‘Purer’ sample does) because we have
+                                 2
+                                  −r                          removed these with our decontamination procedure. In
+                   k(r2 ) = exp         ,              (4)    fact, there is now a slight underdensity of sources near
+                                   2
+                                                              the LMC; this makes sense because some quasars in that
+where r is the distance between points in feature space.      sky region are obscured by dust and confusion in the
+We train the Gaussian process on all of the data, op-         LMC, though it is possible we have also somewhat over-
+timizing the parameter vector using the BFGS solver           corrected for this and removed some true quasars.
+(Fletcher 1987); this includes fitting for the mean of          The dearth of quasars in the Galactic plane is due
+the labels. We finally evaluate the predicted number of       largely to dust extinction and stellar crowding, as well
+sources in each pixel. Where there were no Quaia sources      as the fact that the SDSS training set quasars (for both
+in the label map, we fix the prediction to zero.              the original Gaia DR3 quasar candidates sample and
+  To convert this to a selection function in terms of         our decontamination procedure) are not representative
+the relative completeness, we first identify “clean” pix-     of quasars in this dust-reddened region. If we exclude
+els in the map having low dust extinction (AV < 0.03          the regions with very high extinction AV > 0.5 mag, the
+mag), low star counts (Nstars < 15), low unWISE source        quasars nearly uniformly cover the remaining sky area,
+counts (< 150), no stars or unWISE sources in the LMC         which comprises 30277.52 deg2 (fsky = 0.73). Based on
+or SMC, and high M10 (M10 > 21 mag) and unWISE                this area we can also compute the effective volume Veff
+                                    Quaia: the Gaia–unWISE Quasar Catalog                                                  13
+
+
+
+
+                                                             (a)
+
+
+
+
+                                                             (b)
+Figure 9. Sky distribution of the Quaia quasar catalog, in Galactic coordinates and displayed using a Mollweide projection.
+Panel (a) shows sources with G < 20.0, the cleaner version with more reliable redshifts, and (b) shows the catalog down to its
+magnitude limit of G < 20.5.
+covered by the quasars, which depends on the number                  We show a 3D map of the Quaia catalog in Figure 10,
+density as a function of redshift and the power spec-              using our zQuaia redshift estimates converted to spatial
+trum value P (k), integrated over the physical volume.             coordinates with a fiducial Planck cosmology. We also
+We assume a P (k) of 4 × 104 (h−1 Mpc)3 , based on the             show a 3D map of the full SDSS quasar sample for com-
+value for the eBOSS clustering catalog of quasars at               parison; Quaia spans a much larger volume than SDSS.
+around k ∼ 0.01 (Mueller et al. 2021). This gives an               We note that for SDSS large-scale structure analyses,
+effective volume of 7.67 (h−1 Gpc)3 (3.19 (h−1 Gpc)3 )             the eBOSS quasar clustering catalog is used, which con-
+for the G < 20.5 (G < 20.0) sample.                                tains fewer sources than the full SDSS catalog as it spans
+                                                                   only the intermediate (UV-excess) redshift range and is
+14
+
+
+
+
+Figure 10. Left: a projection of the 3D map of the full Quaia catalog (G < 20.5). Right: the same projection for the quasars
+in SDSS DR16Q, the largest spectroscopic quasar catalog (note that it is a superset of SDSS quasars from multiple campaigns
+and as such is not intended to be uniform). The color bar shows the redshifts of the quasars (zQuaia for Quaia, zSDSS for SDSS),
+which have been converted to distances with a fiducial cosmology. Quaia spans a significantly larger volume than the SDSS
+sample. A rotating animation of this image is available in the online journal, and at the link in arXiv comment field.
+designed to be uniform across the sky (described in more           ness of our redshift estimation, we reconstruct the sam-
+detail in §4.3).                                                   ple and retrain the redshifts using the eBOSS quasar
+  We show the redshift distribution of Quaia in Fig-               clustering catalog (Ross et al. 2020). This is the sample
+ure 11. The distribution of our Gaia–unWISE–SDSS                   used for large-scale structure clustering analyses (e.g.
+spectrophotometric redshift estimates, zQuaia , for the            Mueller et al. 2021; Rezaie et al. 2021), which has a
+full G < 20.5 catalog is shown in black. We compare                smooth redshift distribution peaked around z = 1.5. It
+this to other samples, cut to the same G limit where               does still have a slight step around z ∼ 2.3. We find that
+relevant: the Gaia redshifts zGaia for the same sam-               the zQuaia redshift distribution does not change signifi-
+ple; zGaia for sources in the full Gaia quasar candidates          cantly when trained on this sample, and that the feature
+sample with G < 20.5 (that have redshift estimates);               at z ∼ 2.3 remains. We hypothesize that this feature is
+zGaia for sources in the Gaia DR3 ‘Purer’ sample with              thus a real feature of Gaia-selected quasars, rather than
+G < 20.5 (that have redshift estimates); and zSDSS for             an imprint from the training set, likely related to details
+the SDSS DR16Q sources that have Gaia crossmatches,                of the optical color selection around that redshift. We
+with G < 20.5. We see that the Quaia SPZ redshifts have            also find that compared to the full SDSS-trained sam-
+a smoother distribution than the others, with a clear              ple, the sample trained on the eBOSS quasar cluster-
+peak around z = 1.5; the median value is 1.47. These               ing catalog produces a redshift distribution that is less
+SPZ estimates have also greatly reduced the high-z tail            smooth at low redshifts, possibly because of the lower
+present in the Gaia redshifts. There are still a significant       number of low-z eBOSS quasars; similarly, the high-z
+amount of intermediate-z objects; 10% (N = 132, 417)               tail is shorter. For these reasons, we choose to use the
+of the sources in the full G < 20.5 Quaia catalog have             full SDSS sample (as described in §2.3) for the spec-
+z > 2.5 (for the G < 20.0 catalog, this is also 10%                troscopic quasar training sample for our fiducial Quaia
+(N = 77, 337) of sources). We note that the zGaia red-             catalog, but confirm that the redshift distribution (and
+shift distribution for the Gaia DR3 ‘Purer’ sample is              the source selection) is broadly robust to this choice.
+very similar to those same redshift estimates for Quaia;             We show the G-band magnitude distribution of Quaia
+this is partially because a very high fraction of the ob-          in Figure 12, in comparison to the other Gaia and SDSS
+jects in Quaia are also in the larger Gaia DR3 ‘Purer’             quasar samples described above. We see that our catalog
+sample (see Figure 1).                                             (as well as the Gaia DR3 ‘Purer’ sample) has removed
+  We see a slight bump in the zQuaia distribution around           all of the sources with excessively bright (for quasars)
+z ∼ 2.3, the same location as the peak in the SDSS                 magnitudes G < 12.5 that are present in the full Gaia
+DR16Q quasar distribution. In the SDSS distribution                sample, as well as many sources with 12.5 < G < 16.
+this feature is most prominent in the SDSS-III cam-                For the Gaia DR3 and SDSS samples, the number of
+paign quasars (see Figure 6 of Lyke et al. 2020), which            quasars drops off sharply after G ∼ 20.75; to avoid the
+targeted higher-redshift sources. To check the robust-             complicated selection effects at these depths, we limit
+                                    Quaia: the Gaia–unWISE Quasar Catalog                                                   15
+
+
+
+
+Figure 11. Redshift distribution of Quaia for our spectrophotometric redshift estimates zQuaia (black), normalized to the total
+number of objects. For comparison, we also show the normalized distributions of other samples, cut to the G < 20.5 limiting
+magnitude of Quaia where relevant: the Gaia redshift estimates zGaia for the same Quaia sources (purple); zGaia for the sources
+in the full Gaia quasar candidate sample with G < 20.5 (gray); zGaia for the Gaia DR3 ‘Purer’ subsample with G < 20.5 (green);
+and the SDSS redshifts zSDSS for the SDSS DR16Q quasar sample that have Gaia crossmatches, with G < 20.5 (blue). The
+median redshift of each distribution is shown by the diamond and vertical line in the respective color.
+                                                                      We note that some of the Quaia sources may techni-
+                                                                   cally be considered lower-luminosity AGNs, or Seyfert-
+                                                                   like galaxies, rather than quasars. We estimate the frac-
+                                                                   tion of these sources using the criterion of Schneider
+                                                                   et al. (2010): sources are considered true quasars if
+                                                                   they have SDSS i-band luminosity Mi brighter than
+                                                                   Mi = −22.0. To estimate the i-band magnitude for our
+                                                                   Gaia sources, we compute the median G − i color for
+                                                                   the subset of Quaia sources with SDSS crossmatches,
+                                                                   where G is the Gaia G band, and then subtract this
+                                                                   value from the G-band magnitudes to obtain an effec-
+                                                                   tive i-band magnitude for all Quaia sources. We convert
+                                                                   these to absolute magnitudes Mi assuming a flat ΛCDM
+                                                                   cosmology with H0 = 70 km s−1 Mpc−1 , Ωm = 0.3, and
+                                                                   ΩΛ = 0.7, following Schneider et al. (2010), and assum-
+                                                                   ing a value of dust reddening of Av /E(B − V ) = 1.698
+Figure 12. Distribution of G magnitudes of Quaia (black),          corresponding to the SDSS i band and Rv = 3.1. We
+compared to the full Gaia candidates sample (gray), the Gaia       find that a small fraction, 8%, of Quaia sources have ef-
+DR3 ‘Purer’ sample (green), and the SDSS DR16Q quasar              fective Mi < −22.0 and thus do not meet this standard
+sample (blue).                                                     luminosity criterion for being true quasars. This distinc-
+                                                                   tion may be important for certain studies, though may
+                                                                   not be relevant for others, and should be kept in mind
+our catalog to G < 20.5 as shown. We also note that the            for analyses of Quaia.
+SDSS DR16 quasars do not extend as bright as Quaia,
+and this extrapolation past the training set could bias                          4.2. Selection function model
+the results in this regime, though in practice this affects
+very few sources.                                                    We show the results of our selection function model-
+                                                                   ing (§3.3) for the G < 20.0 catalog in Figure 13. The
+16
+
+                                                                   largely limited to the region around the Galactic plane,
+                                                                   the issue could be circumvented by applying a latitude
+                                                                   cut for sensitive analyses. The underdensity around the
+                                                                   LMC is well modeled by the selection function, with
+                                                                   no clear residual in that region. The selection function
+                                                                   map for the G < 20.5 catalog (not shown) is similar
+                                                                   with some moderate differences, and is also provided as
+                                                                   a data product.
+                                                                     The selection function may change more significantly
+                                                                   for different subsets of the catalog, such as redshift bins.
+                                                                   The selection function should be re-fit for a given sam-
+                                                                   ple to be analyzed; we provide code to fit the selection
+                                                                   function for any other subset of the catalog. We note
+                                                                   that depending on the subsample, certain regions may
+                              (a)
+                                                                   be more poorly modeled, and in particular, the regions
+                                                                   around the LMC and SMC; users should check the resid-
+                                                                   uals and may choose to mask the regions around the
+                                                                   LMC and SMC to be more conservative.
+
+                                                                         4.3. Comparison to existing quasar catalogs
+                                                                     We compare Quaia to other existing quasar catalogs:
+                                                                   Projections of these catalogs are shown in Figure 14. We
+                                                                   show the Gaia DR3 ‘Purer’ sample (Figure 14a); a cross-
+                                                                   matched catalog of WISE and Pan-STARRS (WISE-
+                                                                   PS1), a current leading large-area photometric redshift
+                                                                   quasar sample (Figure 14b); the SDSS DR16Q catalog,
+                                                                   the current best spectroscopic sample of quasars (Fig-
+                                                                   ure 14c); the eBOSS quasar clustering catalog, the sub-
+                                                                   sample of SDSS DR16Q intended for clustering analyses
+                              (b)                                  (Figure 14d); and Milliquas, a meta-catalog compiling
+Figure 13. (a) The selection function map for the G < 20.0         confirmed quasars from the literature (Figure 14e).
+subset of Quaia, based on a Gaussian process model of the            The Gaia DR3 ‘Purer’ sample is described in §2.1; here
+dust, stellar distribution, and M10 . (b) The fractional residu-   we include only sources with QSOC redshift estimates
+als between a random catalog downsampled by the modeled
+                                                                   (zGaia ). The WISE-PS1 sample was constructed by Beck
+                                                                   et al. (2022), based on the Source Types and Redshifts
+selection function and the true Quaia G < 20.0 catalog.
+                                                                   with Machine learning (STRM) algorithm by Beck et al.
+                                                                   (2020). The quasar catalog with updated photometric
+selection function map is shown in Figure 13a , where              redshifts is presented by Kunsági-Máté et al. (2022);
+the values are the relative completeness; note that these          here we include only those quasars with redshifts la-
+should not be interpreted as a probability, and users              beled “reliable”, which is 59% of the sample. The SDSS
+may choose to normalize these values in different ways.            DR16Q quasar catalog is the one described in §2.3, from
+The relationship of the selection function model to the            Lyke et al. (2020), which compiles sources from eBOSS
+dust and source density maps is clear visually. In Fig-            as well as previous SDSS campaigns (and is intended as
+ure 13b, we show the fractional residuals between a ran-           a superset of SDSS quasars rather than a uniform sam-
+dom catalog downsampled by this selection function and             ple). The eBOSS quasar clustering catalog is detailed in
+the true quasar catalog. The residuals generally look like         Ross et al. (2020); it is a subsample of SDSS DR16Q se-
+homogeneous noise, indicating a good fit; the root mean            lected for large-scale structure clustering analyses, and
+squared fractional error is 0.49.                                  as such is much more homogeneous than the full cata-
+  Around the edges of the Galactic plane the residuals             log. For the eBOSS clustering catalog, we have included
+show a slight bias to positive values (meaning the com-            both eBOSS and legacy SDSS quasars (IMATCH=1 or 2)
+pleteness there was predicted to be higher than it actu-           and applied the clustering cuts of requiring sectors to
+ally is); in the region around zero Galactic longitude just        have > 0.5 completeness (COMP BOSS) and redshift suc-
+above the Galactic plane, the residuals are slightly bi-           cess rate (sector SSR); we have additionally removed
+ased to negative values (meaning the completeness there            sources with ZWARNING!=0. The Milliquas catalog was
+was predicted to be lower than it is). These discrepan-            compiled by Flesch (2021); a significant portion of the
+cies indicate that our templates are not fully captur-             sources are from SDSS and AllWISE. For each of these
+ing the selection effects in these regions. As these are           samples, we have shown quasars brighter than a limit-
+                                    Quaia: the Gaia–unWISE Quasar Catalog                                                  17
+
+
+
+
+                              (a)                                                           (b)
+
+
+
+
+                              (c)                                                           (d)
+
+
+
+
+                                                             (e)
+Figure 14. Other current quasar catalogs for comparison with Quaia. All are shown for sources with G < 20.5 or the equivalent
+converted from another band, in Galactic coordinates and displayed using a Mollweide projection. The catalogs are (a) the Gaia
+DR3 ‘Purer’ sample, (b) the WISE-PS1-STRM catalog, (c) the SDSS DR16Q catalog, (d) the eBOSS quasar clustering catalog,
+and (e) the Milliquas catalog. Note that the color bars have different scales in each panel.
+18
+
+ing magnitude of G ∼ 20.5; for the non-Gaia catalogs we        is over twice as large, and 7× for the magnitude-limited
+convert to G from the survey’s r-band magnitude using          sample.
+the conversion in equation (2) of Proft & Wambsganss              The catalogs all have a similar median redshift, of
+(2015), which is based on the SDSS r′ band. While this         around 1.4 < z < 1.7, extending to 1.77 for SDSS
+should give a reasonable estimate for the SDSS sample          DR16Q when including faint sources. However, they
+(using rSDSS ) and the WISE-PS1 sample (using rPS1             have significantly different redshift precision; in Table 1
+which is very similar to rSDSS ), it may not be as reliable    we show outlier fractions estimated from comparisons
+for Milliquas which catalogs “red” magnitudes from var-        to spectroscopic redshifts. We see that both of the Gaia
+ious sources, as well as for sources with z > 3 which were     catalogs have a similar fraction of high-precision red-
+not included in the Proft & Wambsganss (2015) fit.             shifts (|∆z/(1 + z)| < 0.01), but Quaia has a much
+   A summary of the catalogs is shown in Table 1, for          higher fraction of redshifts that are not strong outliers
+the full catalogs (limited to sources with reliable red-       (|∆z/(1 + z)| < 0.1) compared to Gaia DR3 ‘Purer’.
+shifts) as well as the Geff < 20.5 subsamples. We exclude      WISE-PS1 falls between Quaia and Gaia DR3 ‘Purer’
+Milliquas from this comparison given its very heteroge-        in terms of strong outliers, but has an extremely low
+neous nature ; we do include SDSS DR16Q, though it is          fraction of high-precision redshifts as it is a photomet-
+also not intended to be uniform, to show the comparison        ric survey. We note that for both Gaia DR3 ‘Purer’ and
+of Quaia to this large spectroscopic catalog of quasars.       WISE-PS1, the redshift precision is significantly lower
+For these quantifications, we exclude areas that have          when considering the full catalog compared to samples
+AV > 0.5 mag, as well as healpixels with no quasars.           limited to Geff < 20.5 like Quaia; we show both for
+For the sky fraction fsky , we see that Quaia and Gaia         a fair comparison. The SDSS DR16Q catalog and the
+DR3 ‘Purer’ are limited only by the dusty regions, and         eBOSS quasar clustering catalog have spectroscopic red-
+cover over 30% more area than WISE-PS1 (which is lim-          shifts, so these are almost all very high precision; Lyke
+ited by Pan-STARRS), nearly 3× that of SDSS DR16Q,             et al. (2020) estimated from a visual inspection that less
+and over 5× that of the eBOSS quasar clustering cata-          than 1% of the SDSS DR16Q redshifts are outliers with
+log. Compared to the Gaia DR3 ‘Purer’ sample, Quaia            ∆v > 3000 km s−1 (|∆z| > 0.01), independent of red-
+has a slightly smaller number of sources, but due to its       shift; note that this is a slightly different sample than
+redshift distribution gives a slightly higher effective vol-   the eBOSS clustering catalog, but we can expect it to
+ume. The on-sky number density is similar for all of the       be similar. The SDSS DR16Q quasar sample has typical
+catalogs when limiting them to similar magnitudes, with        statistical redshift errors of |∆z| ∼ 0.001.
+WISE-PS1 slightly higher because it has a similar num-            To give more of an idea of the redshift precision of
+ber of objects to the Gaia catalogs but over a smaller         Quaia, we compare it to existing all-sky photometric
+area, and SDSS DR16Q and the eBOSS clustering cat-             galaxy catalogs. A common statistic to summarize pho-
+alog slightly lower. When including faint sources for the      tometric redshift uncertainty robust to outliers is the
+catalogs, WISE-PS1 has 2.5× the on-sky number density          SMAD, scaled median absolute deviation, defined as
+as Quaia, and SDSS DR16Q and the eBOSS clustering              1.4826×med(|∆z −med(∆z)|), where ∆z = zphot −zspec
+catalog have 1.5 − 2×.                                         (the scaling factor adjusts the MAD such that SMAD
+   For the volume comparison, we compute two differ-           is approximately equal to the standard deviation for
+ent volumes. The first is a simple “spanning” volume,          normalized data). The SMAD of the full Quaia cata-
+Vspan , which is just the comoving volume in the sky           log (G < 20.5) is SMAD(∆z) = 0.023, and the nor-
+area of the survey (as given by fsky of the full sky area)     malized SMAD of the redshift errors with the (1 + z)
+in a redshift range 0.8 < z < 2.2, a typical redshift          factor divided out is SMAD(∆z/(1 + z)) = 0.008. For
+range for clustering analyses (taken from the range of         comparison, the WISE × SuperCOSMOS catalog of 20
+the eBOSS quasar clustering catalog). Thus it compares         million galaxies with zmed = 0.2 (Bilicki et al. 2016) has
+in the same way as the survey areas, but gives an idea         an SMAD(∆z) of ∼ 0.04 and an SMAD(∆z/(1 + z)) of
+of the physical volume the catalogs span. The second           ∼ 0.035. The Two Micron All Sky Survey Photometric
+is the effective volume, described in §4.1; we use that        Redshift (2MPZ) catalog has around 1 million galax-
+same P (k) = 4 × 104 (h−1 Mpc)3 for the volume cal-            ies with a similar median redshift (Bilicki et al. 2013),
+culation for all catalogs. We see that the effective vol-      which have an SMAD(∆z) of ∼ 0.015. Quaia thus falls
+ume of WISE-PS1 is much larger (nearly 3×) than that           in between these common photometric galaxy samples
+of Quaia as a result of its larger number of sources,          in terms of overall redshift precision; however, we note
+though when considering samples with the same lim-             that it is difficult to capture the redshift error of Quaia in
+iting magnitude, WISE-PS1 and Quaia have compara-              a single statistic, given both its large number of highly
+ble effective volumes. The effective volume of Quaia is        precise redshifts and non-insignificant number of out-
+nearly twice as large as that of SDSS DR16Q, and 6× for        liers.
+the magnitude-limited sample; compared to the eBOSS               We also note that the ongoing DESI survey
+quasar clustering catalog, the effective volume of Quaia       (Aghamousa et al. 2016; DESI Collaboration et al. 2023)
+                                                               will observe a high density of quasars over a large sky
+                                     Quaia: the Gaia–unWISE Quasar Catalog                                                    19
+
+
+
+
+Table 1. Comparison between Quaia and Other Existing Quasar Catalogs, Detailed in the Text. We show the quantities for the
+full catalogs (for sources with reliable redshifts) as well as the catalogs limited to G < 20.5 or the rough equivalent converted
+from another band. For all quantities and catalogs shown, we exclude areas with high dust extinction (AV > 0.5 mag); this
+excludes ∼5% of sources for Quaia and Gaia DR3 ‘Purer’, ∼18% of the full WISE-PS1 sample, and a negligible number of
+sources for SDSS DR16Q and the eBOSS clustering catalog. We note that the SDSS DR16Q catalog is a superset of quasars
+from many SDSS campaigns and is not intended to be uniform, which should be considered in particular for the sky fraction
+and spanning volume quantities. We show the number of sources N , the fraction of sky area covered fsky , the mean number
+density per square degree n̄, the spanning volume between 0.8 < z < 2.2 Vspan , the effective volume Veff , the median redshift
+zmed , and the fraction of objects with |δz| ≡ |∆z/(1 + z)| < 0.01 and < 0.1 (where applicable).
+
+
+                        N             fsky   n̄,      Vspan ,    Veff ,     zmed       f (|δz| < 0.01)    f (|δz| < 0.1)
+                                             deg−2    (h−1 Gpc)3 (h−1 Gpc)3
+   Quaia                1,234,715     0.73   40.78    143.78       7.08         1.48   0.63               0.84
+   Gaia Purer           1,647,311     0.73   54.42    143.76       9.24         1.63   0.53               0.62
+       G < 20.5         1,286,788     0.73   42.51    143.76       6.50         1.61   0.62               0.70
+   WISE-PS1             2,386,121     0.56   103.89 109.08         20.88        1.38   0.11               0.71
+       Geff < 20.5      1,130,925     0.56   49.25    109.06       7.32         1.41   0.12               0.76
+   SDSS DR16Q           637,371       0.26   60.18    50.30        4.16         1.77   ∼1                 ∼1
+       Geff < 20.5      297,940       0.26   28.17    50.23        1.18         1.67   ∼1                 ∼1
+   eBOSS Clustering     409,286       0.14   72.52    26.80        3.21         1.60   ∼1                 ∼1
+       Geff < 20.5      190,263       0.14   33.96    26.61        1.01         1.49   ∼1                 ∼1
+20
+
+area (Chaussidon et al. 2023), which will be competitive     proach, which may be less robust and more sensitive to
+with and complementary to Quaia.                             modeling choices. Given this, it is possible that we are
+                                                             overfitting the selection function. Finally, the selection
+                  4.4. Catalog format                        function depends on the assumption of isotropy, which
+   The complete Quaia catalog contains our decontam-         we know to be broken to some extent by the kinematic
+inated quasar sample with computed redshift informa-         dipole (Stewart & Sciama 1967; Secrest et al. 2021); we
+tion, relevant Gaia properties, and crossmatched cata-       will explore and measure this in an upcoming work (see
+log information. The complete catalog format with col-       §4.6). Users employing the selection maps or generat-
+umn names, units, column descriptions, and an exam-          ing their own selection function for some subset of the
+ple entry is shown in Table 2. Additional information        catalog should take note of these potential issues.
+for the sources can be obtained by joining the catalog          Generally, Quaia has relatively low number density
+with the relevant data source with the associated iden-      (e.g. compared to the SDSS sample). This means that it
+tifier (Gaia or unWISE). We include only sources with        may not be ideal for certain cosmological measurements,
+G < 20.5 in the catalog; we also publish a version limited   which may be shot noise dominated.
+to G < 20.0, along with the selection function models fit       Finally, we note that this catalog is based on the Gaia
+to each (§4.2) and “random” catalogs generated from the      quasar candidates sample, and it will inherit many of
+selection functions. The catalog includes our SPZ red-       the limitations of that sample (Gaia Collaboration et al.
+shifts zGaia along with 1σ redshift errors, sky position,    2023a). We are also limited to the Gaia-derived proper-
+Gaia photometry, unWISE photometry, and proper mo-           ties (e.g. the Gaia redshifts that are a feature for our
+tion information. The catalog is in FITS format (Wells       estimates). In upcoming Gaia data releases, the collabo-
+et al. 1981), and units and descriptions are provided for    ration will release more BP/RP spectra and we will have
+each column.                                                 the opportunity to work directly from the spectral data
+                                                             to improve the catalog.
+                    4.5. Limitations
+   While the Quaia catalog presents a highly useful                         4.6. Potential applications
+quasar sample, it does have various limitations. We re-         Quasars are highly biased tracers of the cosmic web
+iterate and discuss the main ones here.                      that trace the matter distribution at higher redshift
+   We estimate spectrophotometric redshifts for the          than galaxies and in the mildly nonlinear regime. Given
+quasars, which are generally more accurate than the          the Quaia catalog’s sampling of quasars to deep magni-
+Gaia estimates, but are still low precision compared to      tudes and across a large volume, and its reduced system-
+spectroscopic redshifts. The uncertainties on these red-     atic contamination allowed by space-based observations,
+shifts should be taken into account for any measure-         Quaia lends itself to large-scale structure analyses, many
+ments, and the rate of catastrophic redshift errors (not     of which are currently ongoing.
+necessarily captured by the redshift uncertainty) should        Thanks to its large volume and well-characterized se-
+be considered when thinking about possible uses of the       lection function, Quaia is perhaps the best current sam-
+catalog.                                                     ple for testing homogeneity and isotropy in the Uni-
+   The selection function model has multiple potential       verse (Hogg et al. 2024), and relatedly for measuring the
+limitations. While it broadly captures the selection ef-     dipole in the quasar distribution (Williams et al. 2024),
+fects that affect the quasar sample, it has significantly    which recent measurements have consistently found to
+lower accuracy around the galactic plane; precision mea-     be in mild tension with the kinematic interpretation in
+surements may require masking this region. The regions       the ΛCDM model. Quaia’s volume also makes it a good
+around the LMC and SMC are also more poorly mod-             sample for a measurement of the matter-radiation equal-
+eled; users may want to mask this area. We also note         ity scale, keq (e.g. Bahr-Kalus et al. 2023).
+that we are not fitting the healpixels with zero quasars,       The catalog is particularly well suited for cross-
+which may result in a slight bias toward populated re-       correlations with other all-sky observations of projected
+gions, and fixes the zero-probability region of the selec-   tracers of the large-scale structure, which are less sen-
+tion function. Our selection function map depends only       sitive to redshift errors compared to 3D ones. Exam-
+on sky position and not other properties such as mag-        ples of this are the CMB, the CIB, or maps of the ther-
+nitude or redshift (besides fitting it to the appropriate    mal Sunyaev–Zel’dovich effect. Alonso et al. (2023) used
+subsample); a treatment incorporating these dependen-        the cross-correlation between CMB lensing and Quaia to
+cies may be important for certain uses. The gold stan-       constrain the growth of matter fluctuations via the pa-
+dard for completeness estimation is data injection and       rameter S8, achieving competitive constraints as well as
+recovery tests. Unfortunately, the Gaia instrumentation      showing that Quaia can break the degeneracy between
+has black-box elements, such as onboard image segmen-        Ωm and σ8 . An analysis of primordial non-Gaussianity
+tation, onboard object detection, and onboard downlink       (parameterized by fN L ) from this cross-correlation with
+prioritization, that make it impossible to perform end-      CMB lensing is also underway. Analyses of the cross-
+to-end injection tests, so we rely on a data-driven ap-      correlation with CMB temperature to measure the In-
+                                   Quaia: the Gaia–unWISE Quasar Catalog                                                      21
+
+Table 2. Format and Column Descriptions of Quaia, Published as a FITS Data File (Wells et al. 1981). For the example entry,
+we show the first catalog row.
+
+
+ column name           symbol    units      description                                                 example entry value
+ source id                                  Gaia DR3 source identifier                                  6459630980096
+ unwise objid                               unWISE DR1 source identifier                                0453p000o0014479
+ redshift quaia        zQuaia               spectrophotometric redshift estimate                        0.416867
+ redshift quaia err                         1σ uncertainty on spectrophotometric redshift estimate      0.060812
+ ra                              deg        barycentric right ascension of the source in ICRS at        44.910498
+                                            2016.0
+ dec                             deg        barycentric declination δ of the source in ICRS at 2016.0   0.189649
+ l                               deg        galactic longitude                                          176.659434
+ b                               deg        galactic latitude                                           -48.835164
+ phot g mean mag       G         mag        Gaia G-band mean magnitude                                  20.173105
+ phot bp mean mag      BP        mag        Gaia integrated BP mean magnitude                           20.200150
+ phot rp mean mag      RP        mag        Gaia integrated RP mean magnitude                           18.871586
+ mag w1 vg             W1        mag        unWISE W 1 magnitude                                        14.774343
+ mag w2 vg             W2        mag        unWISE W 2 magnitude                                        13.923867
+ pm                    µ         mas / yr   total proper motion                                         0.383797
+ pmra                  µα∗       mas / yr   proper motion in right ascension µα∗ ≡ µα cos δ of the      0.217806
+                                            source in ICRS at 2016.0
+ pmdec                 µδ        mas / yr   proper motion in declination µδ of the source in ICRS       -0.316007
+                                            at 2016.0
+ pmra error            σµα∗      mas / yr   standard error of proper motion in right ascension di-      0.679419
+                                            rection
+ pmdec error           σµδ       mas / yr   standard error of proper motion in declination direction    0.608799
+
+
+tegrated Sachs–Wolfe effect, and with the CIB to con-             Finally, while a 3D clustering analysis of Quaia may be
+strain the star formation history at high redshifts (e.g.         limited by the catalog’s relatively low number density
+Jego et al. 2023), are currently under investigation. An-         and moderate redshift precision, a careful analysis may
+other measurement enabled by the catalog is the cross-            yield useful constraints, especially using techniques tar-
+correlation of quasar proper motions with the large-              geted at wide-field surveys (e.g. Lanusse et al. 2015).
+scale structure, which gives a direct estimate of the cos-          The latter is comparable or better than other state-
+mological quantity Hf σ8 (Duncan et al. 2023). Addi-              of-the-art galaxy and quasar samples used in large-scale
+tionally, cross-correlations of Quaia with galaxy surveys         structure analyses, but not enough to necessarily allow
+may allow for measurements of the baryon acoustic fea-            an accurate interpretation.
+ture (Patej & Eisenstein 2018; Zarrouk et al. 2021) and
+quasar environments (Padmanabhan et al. 2009; Shen                          5. SUMMARY AND DATA ACCESS
+et al. 2013).                                                       We have constructed a new quasar catalog, Quaia, the
+  Quaia is also useful for void studies, including con-           Gaia–unWISE Quasar Catalog, designed for cosmolog-
+straining core cosmological parameters with the void size         ical studies, derived from the Gaia DR3 quasar candi-
+distribution; this investigation is underway (Arsenov             dates sample and using unWISE photometry to remove
+et al. 2024). The catalog is additionally relevant to as-         contaminants and derive precise redshifts. Our key con-
+trophysical analyses of quasar properties, given its large        tributions and the features of the catalog are as follows:
+sky coverage and multiband photometry, such as the role
+of galaxy interactions on AGN activity. Quaia sources                 • We have decontaminated the Gaia DR3 quasar
+may also be used to study the potential of quasars as                   candidates sample with proper motion cuts and
+standard candles. Further, Quaia provides perhaps the                   optimized color cuts based on Gaia and unWISE
+best quasar coverage of the southern sky, which may be                  photometry. This reduced the number of known
+important for a variety of applications such as identify-               contaminants by ∼4×, while only excluding 1.2%
+ing interesting sources there, adding new information to                of known quasars with respect to the superset of
+known sources, or calibrating surveys in that sky region.               Gaia quasar candidates (that have unWISE pho-
+22
+
+       tometry, Gaia redshifts, and a G-magnitude cut of          thors also thank Lyuba Slavcheva-Mihova, Nestor Ar-
+       G < 20.6).                                                 senov, Andras Kovacs, Anže Slosar, Giulia Piccirilli, Iain
+                                                                  Duncan, Abby Williams, Dustin Lang, Mehdi Rezaie,
+     • The catalog extends to a limiting magnitude of             Alex Malz, Lehmann Garrison, and Nathan Secrest
+       G < 20.5 and contains 1,295,502 sources; we                for very helpful discussions. Additionally, the authors
+       also release a brighter, cleaner sample limited to         thank the members of the Astronomical Data group
+       G < 20.0, which includes 755,850 sources.                  at the Center for Computational Astrophysics for use-
+                                                                  ful feedback. The authors are grateful to the anony-
+     • Quaia covers the entire sky, only limited by se-
+                                                                  mous referee, whose feedback has significantly strength-
+       lection effects near the Galactic plane; excluding
+                                                                  ened this work. This project was developed in part
+       highly dust-extincted regions (AV > 0.5 mag), this
+                                                                  at the Gaia Fête, hosted by the Flatiron Institute
+       results in an area of 30277.52 deg2 (fsky = 0.73).
+                                                                  Center for Computational Astrophysics in 2022 June.
+     • We have improved the Gaia redshift estimates us-           This work has made use of data from the European
+       ing a kNN model trained on these redshifts and             Space Agency mission Gaia (https://www.cosmos.esa.
+       Gaia and unWISE colors with SDSS spectroscopic             int/gaia), processed by the Gaia Data Processing and
+       redshift labels, producing spectrophotometric red-         Analysis Consortium (DPAC; https://www.cosmos.esa.
+       shifts. The median redshift of the G < 20.0 catalog        int/web/gaia/dpac/consortium). Funding for the DPAC
+       is zmed = 1.45, with 94% (75%) of redshifts within         has been provided by national institutions, in particular,
+       |∆z/(1 + z)| < 0.2 (0.01) of SDSS redshifts. This          the institutions participating in the Gaia Multilateral
+       is a reduction in the number of catastrophic out-          Agreement. This publication makes use of data prod-
+       liers by ∼3× (∼2×) compared to the Gaia redshift           ucts from WISE, which is a joint project of the Univer-
+       estimates.                                                 sity of California, Los Angeles, and the Jet Propulsion
+                                                                  Laboratory/California Institute of Technology, funded
+     • We produced a data-driven model of the selection           by the National Aeronautics and Space Administra-
+       function, which includes the systematic effects of         tion. We specifically use the unWISE coadds, produced
+       dust, the source density of the parent surveys Gaia        by D. Lang, A.M. Meisner, and D.J. Schlegel. K.S.F.
+       and unWISE, and the scanning laws of the parent            is supported by the NASA FINESST program under
+       surveys. We used this to generate random catalogs          award No. 80NSSC20K1545. G.F. acknowledges the sup-
+       of Poisson-distributed points with similar selection       port of the European Research Council under the Marie
+       effects to Quaia.                                          Sklodowska Curie actions through the Individual Global
+                                                                  Fellowship No. 892401 PiCOGAMBAS. D.A. acknowl-
+  The catalog, selection function, and related data prod-         edges support from the Beecroft Trust, and from the
+ucts are publicly available at https://doi.org/10.5281/           John O’Connor Research Fund, at St. Peter’s College,
+zenodo.10403370, along with documentation. The code               Oxford. This research made use of computational re-
+used to generate this catalog is open source and available        sources at New York University (NYU); the authors
+at https://github.com/kstoreyf/gaia-quasars-lss.                  thank the NYU high-performance computing team.
+                                                                    Software: Astropy (The Astropy Collaboration et al.
+                                                                  2013; Collaboration et al. 2018, 2022), NumPy (Harris
+  The authors are grateful to the members of the Gaia             et al. 2020), IPython (Perez & Granger 2007), SciPy
+collaboration, in particular Coryn Bailer-Jones, Mor-             (Virtanen et al. 2020), matplotlib (Hunter 2007), healpy
+gan Fouesneau, Anthony Brown, Ludovic Delchambre,                 (Gorski et al. 2005; Zonca et al. 2019), george (Am-
+Tristan Cantat-Gaudin, and Arvind Hughes. The au-                 bikasaran et al. 2016)
+
+                                                           REFERENCES
+Aghamousa, A., Aguilar, J., Ahlen, S., et al. 2016, The           Ambikasaran, S., Foreman-Mackey, D., Greengard, L.,
+
+  DESI Experiment Part I: Science,Targeting, and Survey             Hogg, D. W., & O’Neil, M. 2016, IEEE Transactions on
+                                                                    Pattern Analysis and Machine Intelligence, 38, 252,
+  Design, Tech. rep., The Dark Energy Spectroscopic
+                                                                    doi: 10.1109/TPAMI.2015.2448083
+  Survey. https://arxiv.org/abs/1611.00036
+                                                                  Arsenov, N., Kovács, A., et al. 2024, in prep.
+Alonso, D., Fabbian, G., Storey-Fisher, K., et al. 2023,
+                                                                  Ata, M., Baumgarten, F., Bautista, J., et al. 2018, Monthly
+  Journal of Cosmology and Astroparticle Physics, 2023,
+                                                                    Notices of the Royal Astronomical Society, 473, 4773,
+  043, doi: 10.1088/1475-7516/2023/11/043                           doi: 10.1093/mnras/stx2630
+                                      Quaia: the Gaia–unWISE Quasar Catalog                                                   23
+
+Bahr-Kalus, B., Parkinson, D., & Mueller, E.-M. 2023,           Dam, L., Lewis, G. F., & Brewer, B. J. 2022, Testing the
+  Monthly Notices of the Royal Astronomical Society, 524,        Cosmological Principle with CatWISE Quasars: A
+  2463, doi: 10.1093/mnras/stad1867                              Bayesian Analysis of the Number-Count Dipole, arXiv.
+Bailer-Jones, C. A. L. 2021, DSC ApsisOps3.2 Validation          http://arxiv.org/abs/2212.07733
+  Report, Tech. rep., ESA Gaia. https://dms.cosmos.esa.         Delchambre, L., Bailer-Jones, C. A. L., Bellas-Velidis, I.,
+  int/COSMOS/doc fetch.php?id=1445248                             et al. 2023, Astronomy & Astrophysics, 674, A31,
+Bailer-Jones, C. A. L., Fouesneau, M., & Andrae, R. 2019,         doi: 10.1051/0004-6361/202243423
+  Monthly Notices of the Royal Astronomical Society, 490,       DESI Collaboration, Adame, A. G., Aguilar, J., et al. 2023,
+  5615, doi: 10.1093/mnras/stz2947                               Validation of the Scientific Program for the Dark Energy
+Beck, R., Dodds, S. C., & Szapudi, I. 2022, Monthly              Spectroscopic Instrument,
+  Notices of the Royal Astronomical Society, 515, 4711,          doi: 10.48550/arXiv.2306.06307
+  doi: 10.1093/mnras/stac1714                                   DiPompeo, M. A., Bovy, J., Myers, A. D., & Lang, D. 2015,
+Beck, R., Szapudi, I., Flewelling, H., et al. 2020, Monthly       Monthly Notices of the Royal Astronomical Society, 452,
+  Notices of the Royal Astronomical Society, 500, 1633,           3124, doi: 10.1093/mnras/stv1562
+  doi: 10.1093/mnras/staa2587                                   DiPompeo, M. A., Hickox, R. C., Eftekharzadeh, S., &
+Bilicki, M., Jarrett, T. H., Peacock, J. A., Cluver, M. E., &     Myers, A. D. 2017, Monthly Notices of the Royal
+                                                                  Astronomical Society, 469, 4630,
+  Steward, L. 2013, The Astrophysical Journal Supplement
+                                                                  doi: 10.1093/mnras/stx1215
+  Series, 210, 9, doi: 10.1088/0067-0049/210/1/9
+                                                                Ducourant, C., Krone-Martins, A., Galluccio, L., et al.
+Bilicki, M., Peacock, J. A., Jarrett, T. H., et al. 2016, The
+                                                                 2023, Astronomy & Astrophysics, 674, A11,
+  Astrophysical Journal Supplement Series, 225, 5,
+                                                                 doi: 10.1051/0004-6361/202243798
+  doi: 10.3847/0067-0049/225/1/5
+                                                                Duncan, I., Alonso, D., Slosar, A., & Storey-Fisher, K.
+Cantat-Gaudin, T., Fouesneau, M., Rix, H.-W., et al. 2023,
+                                                                 2023, Can we constrain structure growth from galaxy
+  Astronomy & Astrophysics, 669, A55,
+                                                                 proper motions?, arXiv.
+  doi: 10.1051/0004-6361/202244784
+                                                                 http://arxiv.org/abs/2305.15893
+Carrasco, J. M., Weiler, M., Jordi, C., et al. 2021,
+                                                                Flesch, E. W. 2021, The Million Quasars (Milliquas) v7.2
+  Astronomy & Astrophysics, 652, A86,
+                                                                  Catalogue, now with VLASS associations. The inclusion
+  doi: 10.1051/0004-6361/202141249
+                                                                  of SDSS-DR16Q quasars is detailed, arXiv.
+Castorina, E., Hand, N., Seljak, U., et al. 2019, Journal of
+                                                                  http://arxiv.org/abs/2105.12985
+  Cosmology and Astroparticle Physics, 2019, 010,
+                                                                Fletcher, R. R. 1987, Practical methods of optimization
+  doi: 10.1088/1475-7516/2019/09/010
+                                                                  (Chichester ; New York : Wiley).
+Chambers, K. C., Magnier, E. A., Metcalfe, N., et al. 2019,       http://archive.org/details/practicalmethods0000flet
+  The Pan-STARRS1 Surveys, arXiv.
+                                                                Gaia Collaboration, Prusti, T., de Bruijne, J. H. J., et al.
+  http://arxiv.org/abs/1612.05560                                2016, Astronomy & Astrophysics, 595, A1,
+Chaussidon, E., Yèche, C., Palanque-Delabrouille, N., et al.    doi: 10.1051/0004-6361/201629272
+  2023, The Astrophysical Journal, 944, 107,                    Gaia Collaboration, Brown, A. G. A., Vallenari, A., et al.
+  doi: 10.3847/1538-4357/acb3c2                                  2021, Astronomy and Astrophysics, 649, A1,
+Chiang, Y.-K. 2023, Corrected SFD: A More Accurate               doi: 10.1051/0004-6361/202039657
+  Galactic Dust Map with Minimal Extragalactic                  Gaia Collaboration, Bailer-Jones, C. a. L., Teyssier, D.,
+  Contamination, arXiv. http://arxiv.org/abs/2306.03926          et al. 2023a, Astronomy & Astrophysics, 674, A41,
+Claeskens, J.-F., & Surdej, J. 2002, The Astronomy and           doi: 10.1051/0004-6361/202243232
+  Astrophysics Review, 10, 263,                                 Gaia Collaboration, Vallenari, A., Brown, A. G. A., et al.
+  doi: 10.1007/s001590000010                                     2023b, Astronomy & Astrophysics, 674, A1,
+Collaboration, T. A., Price-Whelan, A. M., Sipőcz, B. M.,       doi: 10.1051/0004-6361/202243940
+  et al. 2018, The Astronomical Journal, 156, 123,              Garcı́a-Garcı́a, C., Ruiz-Zapatero, J., Alonso, D., et al.
+  doi: 10.3847/1538-3881/aabc4f                                  2021, Journal of Cosmology and Astroparticle Physics,
+Collaboration, T. A., Price-Whelan, A. M., Lim, P. L.,           2021, 030, doi: 10.1088/1475-7516/2021/10/030
+  et al. 2022, The Astrophysical Journal, 935, 167,             Gorski, K. M., Hivon, E., Banday, A. J., et al. 2005, The
+  doi: 10.3847/1538-4357/ac7c74                                  Astrophysical Journal, 622, 759, doi: 10.1086/427976
+24
+
+Harris, C. R., Millman, K. J., van der Walt, S. J., et al.       Lusso, E., Risaliti, G., Nardini, E., et al. 2020, Astronomy
+  2020, Nature, 585, 357, doi: 10.1038/s41586-020-2649-2           & Astrophysics, 642, A150,
+Heintz, K. E., Fynbo, J. P. U., Høg, E., et al. 2018,              doi: 10.1051/0004-6361/202038899
+  Astronomy and Astrophysics, 615, L8,                           Lyke, B. W., Higley, A. N., McLane, J. N., et al. 2020, The
+  doi: 10.1051/0004-6361/201833396                                 Astrophysical Journal Supplement Series, 250, 8,
+Heintz, K. E., Fynbo, J. P. U., Geier, S. J., et al. 2020,         doi: 10.3847/1538-4365/aba623
+  Astronomy and Astrophysics, 644, A17,                          Mainzer, A., Bauer, J., Grav, T., et al. 2011, The
+  doi: 10.1051/0004-6361/202039262                                 Astrophysical Journal, 731, 53,
+Hogg, D. W., et al. 2024, in prep.                                 doi: 10.1088/0004-637X/731/1/53
+Hopkins, P. F., Hernquist, L., Cox, T. J., et al. 2006, The      Martin, D. C., Fanson, J., Schiminovich, D., et al. 2005,
+  Astrophysical Journal Supplement Series, 163, 1,                 The Astrophysical Journal, 619, L1, doi: 10.1086/426387
+  doi: 10.1086/499298                                            Meisner, A. M., Lang, D., Schlafly, E. F., & Schlegel, D. J.
+Hou, J., Sánchez, A. G., Ross, A. J., et al. 2020, Monthly        2019, Publications of the Astronomical Society of the
+  Notices of the Royal Astronomical Society, 500, 1201,            Pacific, 131, 124504, doi: 10.1088/1538-3873/ab3df4
+  doi: 10.1093/mnras/staa3234                                    Mueller, E.-M., Rezaie, M., Percival, W. J., et al. 2021, The
+Hughes, A. C. N., Bailer-Jones, C. A. L., & Jamal, S. 2022,        clustering of galaxies in the completed SDSS-IV extended
+  Astronomy & Astrophysics, 668, A99,                              Baryon Oscillation Spectroscopic Survey: Primordial
+  doi: 10.1051/0004-6361/202244859                                 non-Gaussianity in Fourier Space, arXiv.
+Hunter, J. D. 2007, Computing in Science & Engineering, 9,         http://arxiv.org/abs/2106.13725
+  90, doi: 10.1109/MCSE.2007.55                                  Myers, A. D., Palanque-Delabrouille, N., Prakash, A., et al.
+Ivezić, Z. 2016, Proceedings of the International                 2015, The Astrophysical Journal Supplement Series, 221,
+  Astronomical Union, 12, 330,                                     27, doi: 10.1088/0067-0049/221/2/27
+  doi: 10.1017/S1743921316012424                                 Ménard, B., & Bartelmann, M. 2002, Astronomy &
+Jego, B., Ruiz-Zapatero, J., Garcı́a-Garcı́a, C.,                  Astrophysics, 386, 784, doi: 10.1051/0004-6361:20020274
+  Koukoufilippas, N., & Alonso, D. 2023, Monthly Notices         Nikutta, R., Hunt-Walker, N., Nenkova, M., Ivezic, Z., &
+  of the Royal Astronomical Society, 520, 1895,                    Elitzur, M. 2014, Monthly Notices of the Royal
+  doi: 10.1093/mnras/stad213                                       Astronomical Society, 442, 3361,
+Jin, X., Zhang, Y., Zhang, J., et al. 2019, Monthly Notices        doi: 10.1093/mnras/stu1087
+  of the Royal Astronomical Society, 485, 4539,                  Onken, C. A., Wolf, C., Hon, W. J., et al. 2023,
+  doi: 10.1093/mnras/stz680                                        Publications of the Astronomical Society of Australia, 40,
+Kormendy, J., & Ho, L. C. 2013, Annual Review of                   e010, doi: 10.1017/pasa.2023.7
+  Astronomy and Astrophysics, 51, 511,                           Padmanabhan, N., White, M., Norberg, P., & Porciani, C.
+  doi: 10.1146/annurev-astro-082708-101811                         2009, Monthly Notices of the Royal Astronomical
+Krolewski, A., Percival, W. J., Ferraro, S., et al. 2023,          Society, 397, 1862, doi: 10.1111/j.1365-2966.2008.14071.x
+  Constraining primordial non-Gaussianity from DESI              Patej, A., & Eisenstein, D. J. 2018, Monthly Notices of the
+  quasar targets and Planck CMB lensing, arXiv.                    Royal Astronomical Society, 477, 5090,
+  http://arxiv.org/abs/2305.07650                                  doi: 10.1093/mnras/sty870
+Kunsági-Máté, S., Beck, R., Szapudi, I., & Csabai, I. 2022,   Perez, F., & Granger, B. E. 2007, Computing in Science &
+  Monthly Notices of the Royal Astronomical Society, 516,          Engineering, 9, 21, doi: 10.1109/MCSE.2007.53
+  2662, doi: 10.1093/mnras/stac2411                              Powell, M. C., Urry, C. M., Cappelluti, N., et al. 2020, The
+Lang, D. 2014, The Astronomical Journal, 147, 108,                 Astrophysical Journal, 891, 41,
+  doi: 10.1088/0004-6256/147/5/108                                 doi: 10.3847/1538-4357/ab6e65
+Lanusse, F., Rassat, A., & Starck, J. L. 2015, Astronomy         Proft, S., & Wambsganss, J. 2015, Astronomy &
+  and Astrophysics, 578, A10,                                      Astrophysics, 574, A46,
+  doi: 10.1051/0004-6361/201424456                                 doi: 10.1051/0004-6361/201323280
+Leistedt, B., Peiris, H. V., & Roth, N. 2014, Physical           Rasmussen, C. E., & Williams, C. K. 2005, Gaussian
+  Review Letters, 113, 221301,                                     processes for machine learning (Cambridge: MIT Press),
+  doi: 10.1103/PhysRevLett.113.221301                              doi: 10.1142/S0129065704001899
+                                      Quaia: the Gaia–unWISE Quasar Catalog                                              25
+
+Rauch, M. 1998, Annual Review of Astronomy and                 Sherwin, B. D., Das, S., Hajian, A., et al. 2012, Physical
+  Astrophysics, 36, 267,                                         Review D, 86, 083006, doi: 10.1103/PhysRevD.86.083006
+  doi: 10.1146/annurev.astro.36.1.267                          Shu, Y., Koposov, S. E., Evans, N. W., et al. 2019, Monthly
+Rezaie, M., Ross, A. J., Seo, H.-J., et al. 2021, Monthly        Notices of the Royal Astronomical Society, 489, 4741,
+                                                                 doi: 10.1093/mnras/stz2487
+  Notices of the Royal Astronomical Society, 506, 3439,
+                                                               Stewart, J. M., & Sciama, D. W. 1967, Nature, 216, 748,
+  doi: 10.1093/mnras/stab1730
+                                                                 doi: 10.1038/216748a0
+Rimoldini, L., Holl, B., Gavras, P., et al. 2023, Astronomy
+                                                               Sunyaev, R., & Zeldovich, Y. 1970, Astrophysics and Space
+  & Astrophysics, 674, A14,                                      Science, 7, 3
+  doi: 10.1051/0004-6361/202245591                             The Astropy Collaboration, Robitaille, T. P., Tollerud,
+Risaliti, G., & Lusso, E. 2015, The Astrophysical Journal,       E. J., et al. 2013, Astronomy & Astrophysics, 558, A33,
+  815, 33, doi: 10.1088/0004-637X/815/1/33                       doi: 10.1051/0004-6361/201322068
+Ross, A. J., Bautista, J., Tojeiro, R., et al. 2020, Monthly   Virtanen, P., Gommers, R., Oliphant, T. E., et al. 2020,
+  Notices of the Royal Astronomical Society, 498, 2354,          Nature Methods, 17, 261, doi: 10.1038/s41592-019-0686-2
+  doi: 10.1093/mnras/staa2416                                  Wells, D. C., Greisen, E. W., & Harten, R. H. 1981,
+                                                                 Astronomy and Astrophysics Supplement Series, 44, 363.
+Schlafly, E. F., & Finkbeiner, D. P. 2011, The Astrophysical
+                                                                 https:
+  Journal, 737, 103, doi: 10.1088/0004-637X/737/2/103
+                                                                 //ui.adsabs.harvard.edu/abs/1981A&AS...44..363W
+Schlafly, E. F., Meisner, A. M., & Green, G. M. 2019, The
+                                                               Williams, A., et al. 2024, in prep.
+  Astrophysical Journal Supplement Series, 240, 30,            Wright, E. L., Eisenhardt, P. R. M., Mainzer, A. K., et al.
+  doi: 10.3847/1538-4365/aafbea                                  2010, The Astronomical Journal, 140, 1868,
+Schlegel, D. J., Finkbeiner, D. P., & Davis, M. 1998, The        doi: 10.1088/0004-6256/140/6/1868
+  Astrophysical Journal, 500, 525, doi: 10.1086/305772         Yahata, K., Suto, Y., Kayo, I., et al. 2005, Publications of
+Schneider, D. P., Richards, G. T., Hall, P. B., et al. 2010,     the Astronomical Society of Japan, 57, 529,
+  The Astronomical Journal, 139, 2360,                           doi: 10.1093/pasj/57.4.529
+  doi: 10.1088/0004-6256/139/6/2360                            Yang, Q., & Shen, Y. 2023, The Astrophysical Journal
+                                                                 Supplement Series, 264, 9, doi: 10.3847/1538-4365/ac9ea8
+Scranton, R., Menard, B., Richards, G. T., et al. 2005, The
+                                                               Yang, Q., Wu, X.-B., Fan, X., et al. 2017, The Astronomical
+  Astrophysical Journal, 633, 589, doi: 10.1086/431358
+                                                                 Journal, 154, 269, doi: 10.3847/1538-3881/aa943c
+Secrest, N., von Hausegger, S., Rameez, M., et al. 2021,       Yu, Z., Martini, P., Davis, T. M., et al. 2020, The
+  The Astrophysical Journal Letters, 908, L51,                   Astrophysical Journal Supplement Series, 246, 16,
+  doi: 10.3847/2041-8213/abdd40                                  doi: 10.3847/1538-4365/ab5e7a
+Setti, G., & Woltjer, L. 1973, ApJ, 181, L61,                  Zarrouk, P., Rezaie, M., Raichoor, A., et al. 2021, Monthly
+  doi: doi:10.1086/181185                                        Notices of the Royal Astronomical Society, 503, 2562,
+Shen, Y., McBride, C. K., White, M., et al. 2013, The            doi: 10.1093/mnras/stab298
+  Astrophysical Journal, 778, 98,                              Zonca, A., Singer, L., Lenz, D., et al. 2019, Journal of Open
+                                                                 Source Software, 4, 1298, doi: 10.21105/joss.01298
+  doi: 10.1088/0004-637X/778/2/98
+

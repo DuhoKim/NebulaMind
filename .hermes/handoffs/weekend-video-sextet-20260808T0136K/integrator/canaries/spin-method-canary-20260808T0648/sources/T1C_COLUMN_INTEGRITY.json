@@ -1,0 +1,28 @@
+{
+ "verdict": "ALIGNED",
+ "reason": "every decisive object maps P_CW->pcS, P_ACW->paS",
+ "sources": {
+  "A": "data.galaxyzoo.org GalaxyZoo1_DR_table2.csv.gz (P_CW/P_ACW)",
+  "B": "VizieR J/MNRAS/410/166/galaxies (pcS/paS)"
+ },
+ "probe": {
+  "per_stratum": 12,
+  "seed": 20260805,
+  "tolerance": 0.011,
+  "strata_sizes": {
+   "cw_dominant": 12,
+   "acw_dominant": 12,
+   "mixed": 12
+  },
+  "probed": 36,
+  "matched_in_B": 36
+ },
+ "counts": {
+  "aligned": 36,
+  "crossed": 0,
+  "ambiguous": 0,
+  "unmatched": 0
+ },
+ "examples": [],
+ "scope": "instrument verdict only; no asymmetry computed, no rung applied"
+}

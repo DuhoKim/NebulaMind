@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "provider_route": "Hermes managed OpenAI audio gateway",
+  "model": "whisper-1",
+  "records": [
+    {
+      "id": "i05a",
+      "expected": "Early data from JWST have revealed a bevy of high-redshift galaxy candidates with unexpectedly high stellar masses.",
+      "transcript": "Early data from JWST have revealed a bevy of high-redshift galaxy candidates with unexpectedly high stellar masses.",
+      "normalized_expected": "early data from jwst have revealed a bevy of high redshift galaxy candidates with unexpectedly high stellar masses",
+      "normalized_transcript": "early data from jwst have revealed a bevy of high redshift galaxy candidates with unexpectedly high stellar masses",
+      "similarity": 1.0,
+      "threshold": 0.9,
+      "semantic_guard": true,
+      "status": "PASS"
+    },
+    {
+      "id": "i05b",
+      "expected": "the most massive galaxy candidates in JWST observations at z∼7-10 lie at the very edge of these limits, indicating an important unresolved issue with the properties of galaxies derived from the observations, how galaxies form at early times in ΛCDM, or within this standard cosmology itself.",
+      "transcript": "The most massive galaxy candidates in JWST observations at z approximately 7 to 10 lie at the very edge of these limits, indicating an important unresolved issue with the properties of galaxies derived from the observations, how galaxies form at early times in Lambda CDM or within this standard cosmology itself.",
+      "normalized_expected": "the most massive galaxy candidates in jwst observations at z approximately seven to ten lie at the very edge of these limits indicating an important unresolved issue with the properties of galaxies derived from the observations how galaxies form at early times in lambda c d m or within this standard cosmology itself",
+      "normalized_transcript": "the most massive galaxy candidates in jwst observations at z approximately seven to ten lie at the very edge of these limits indicating an important unresolved issue with the properties of galaxies derived from the observations how galaxies form at early times in lambda c d m or within this standard cosmology itself",
+      "similarity": 1.0,
+      "threshold": 0.86,
+      "semantic_guard": true,
+      "status": "PASS"
+    },
+    {
+      "id": "i05u",
+      "expected": "Boylan-Kolchin reported these claims and left the issue unresolved; the field remains contested, and this video adopts neither claim nor explanation as its finding.",
+      "transcript": "Boylan Colchin reported these claims and left the issue unresolved. The field remains contested, and this video adopts neither claim nor explanation as its finding.",
+      "normalized_expected": "boylan kolchin reported these claims and left the issue unresolved the field remains contested and this video adopts neither claim nor explanation as its finding",
+      "normalized_transcript": "boylan colchin reported these claims and left the issue unresolved the field remains contested and this video adopts neither claim nor explanation as its finding",
+      "similarity": 0.9937888198757764,
+      "threshold": 0.9,
+      "semantic_guard": true,
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "rule": "Every displayed or narrated number is tied to a snapshot-local frozen role and the current static visual; internal paths stay in receipts, not audience frames.",
+  "claims": [
+    {
+      "claim": "UCD abundance reach 5,393; UCD plus name 5,568; gain 175",
+      "source": "frozen_sources/pass7/T1_FINDINGS.md",
+      "source_role": "exact retrieval-channel counts after successful live enumeration",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b03", "visual_proposal_v9.png:abundance card"],
+      "verdict": "SUPPORTED"
+    },
+    {
+      "claim": "UCD mass reach 6,118; UCD plus name 6,206; gain 88",
+      "source": "frozen_sources/pass7/T1_FINDINGS.md",
+      "source_role": "exact retrieval-channel counts after successful live enumeration",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b03", "visual_proposal_v9.png:MASS SEARCH card"],
+      "verdict": "SUPPORTED"
+    },
+    {
+      "claim": "UCD redshift reach 6,667; UCD plus name 6,687; gain 20",
+      "source": "frozen_sources/pass7/T1_FINDINGS.md",
+      "source_role": "exact retrieval-channel counts after successful live enumeration",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b03", "visual_proposal_v9.png:redshift card"],
+      "verdict": "SUPPORTED"
+    },
+    {
+      "claim": "178 three-axis candidates before modifier filtering",
+      "source": "frozen_sources/pass7/T1_MZR_MANIFEST.json:n_candidates_pre_filter",
+      "source_role": "exact distinct single-table intersection count",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b04", "visual_proposal_v9.png:direct single-table funnel"],
+      "verdict": "SUPPORTED"
+    },
+    {
+      "claim": "21 dropped, split as 19 redshift-axis and 2 abundance-axis losses, leaving 157",
+      "source": "frozen_sources/pass7/T1_MZR_MANIFEST.json:dropped_candidates,n_candidates",
+      "source_role": "exact conservation and per-axis modifier-filter accounting",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b05", "visual_proposal_v9.png:funnel and grouped modifier examples"],
+      "verdict": "SUPPORTED"
+    },
+    {
+      "claim": "62 of 157 recorded descriptions contain gas-phase vocabulary",
+      "source": "frozen_sources/pass7/T1E_GASPHASE_COUNT.json:count,of_candidates",
+      "source_role": "deterministic description-term presence count only",
+      "independent_recount": "provenance-only prior receipt; not a source dependency of this exact packet",
+      "boundary": "The source explicitly says vocabulary presence is not an E1-E4 verdict and T2 rules eligibility.",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b06", "visual_proposal_v9.png:62-of-157 side inset; not on the T2 input path"],
+      "verdict": "SUPPORTED_WITH_EXPLICIT_NON_ELIGIBILITY_BOUNDARY"
+    },
+    {
+      "claim": "Recall 7/7; controls appearing 0/3",
+      "source": "frozen_sources/pass7/T1_MZR_MANIFEST.json:recall_members_returned,controls_appearing",
+      "source_role": "exact frozen retrieval-instrument checks",
+      "boundary": "These controls did not cover the dominant precision contamination.",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b07-b08", "visual_proposal_v9.png:scorecards and precision boundary"],
+      "verdict": "SUPPORTED_WITH_PRECISION_LIMIT"
+    },
+    {
+      "claim": "Recorded precision-failure examples separate symbol/meaning collisions (Galactic height; stellar-grid metal fraction/model Z) from target-domain mismatches for galaxy-MZR work (stellar gravitational redshift; gravitational-redshift velocity)",
+      "source": "frozen_sources/pass7/T1_FINDINGS.md:25-45",
+      "source_role": "recorded UCD plus verbatim semantic characterization of four distinct quantities",
+      "boundary": "These are characterization examples, not T2 eligibility rulings. T2 makes actual E1-E4 rulings.",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b09", "visual_proposal_v9.png:two-group precision taxonomy"],
+      "verdict": "SUPPORTED_WITH_EXPLICIT_NOT_T2_RULINGS_BOUNDARY"
+    },
+    {
+      "claim": "T2 eligibility rules frozen but not applied to all 157 tables; no eligible-table count or metallicity measurement reportable",
+      "source": "frozen_sources/pass7/FREEZE_RECORD_T2.md; frozen_sources/pass7/WORKFLOW_CHECKLIST.json; storyboard boundary approved by the exact contract",
+      "source_role": "workflow and scientific-status gate",
+      "used_in": ["STORYBOARD_CANDIDATE.json:b10", "visual_proposal_v9.png:qualified T2 gate reached directly from 157"],
+      "verdict": "SUPPORTED"
+    }
+  ]
+}

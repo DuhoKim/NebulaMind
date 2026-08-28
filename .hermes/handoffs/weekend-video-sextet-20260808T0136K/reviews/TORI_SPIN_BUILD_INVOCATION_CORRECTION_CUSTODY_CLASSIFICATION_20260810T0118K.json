@@ -1,0 +1,45 @@
+{
+  "receipt_id": "TORI_SPIN_BUILD_INVOCATION_CORRECTION_CUSTODY_CLASSIFICATION_20260810T0118K",
+  "created_at_kst": "2026-08-10T01:18:46+09:00",
+  "reviewer": "Tori",
+  "workspace": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K",
+  "yui_receipt": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K/BUILD_INVOCATION_CORRECTION_RECEIPT_V1.json",
+    "sha256": "86104eee4f9aa1352bb4850810c1e7bdc946b2555768a68837d347f99ec611e0",
+    "json_parse": "PASS",
+    "declared_status": "PASS_INVOCATION_CORRECTED_REPRODUCIBILITY_COPY_NOT_CANDIDATE"
+  },
+  "observations": {
+    "watcher_mid_write_observation": {
+      "observed_at_kst": "2026-08-10T01:13:54.890669+09:00",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K/spin-method-overhaul-canary-20260809T2340K.mp4",
+      "bytes_at_observation": 7340080,
+      "sha256_at_observation": "50c50233c8e6a175e41fe7f8c0b299de0a04ab046b870c9b5f1b39229d09c650",
+      "classification": "TRANSIENT_INCOMPLETE_FILE_WHILE_RENDER_PROCESS_WAS_WRITING",
+      "basis": "The observation fell between the receipt-bound render start 01:13:35 KST and final output mtime 01:14:56.598573 KST. It was never frozen, requested, or declared a candidate. The path continued changing and reached the receipt-bound final bytes."
+    },
+    "final_at_rest_output": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K/spin-method-overhaul-canary-20260809T2340K.mp4",
+      "bytes": 25486290,
+      "sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+      "matches_yui_receipt": true,
+      "byte_identical_to_passing_spin_candidate": true,
+      "byte_identical_to_live_private_cockpit_copy": true
+    }
+  },
+  "verdict": "PASS_REPRODUCIBILITY_COPY_NOT_A_NEW_CANDIDATE",
+  "regate_disposition": {
+    "new_candidate": false,
+    "exact_hash_video_regate_triggered": false,
+    "reason": "The final at-rest output is byte-identical to the already adjudicated spin candidate, and the versioned receipt explicitly classifies it as a reproducibility copy only. The transient mid-write bytes are not an artifact or candidate.",
+    "may_replace_any_passing_candidate": false,
+    "may_replace_any_cockpit_copy": false
+  },
+  "gate_state": {
+    "five_current_candidate_hashes_unchanged": true,
+    "five_current_cockpit_hashes_unchanged": true,
+    "publication_or_upload_gate_opened": false,
+    "sibling_rollout_gate_opened": false,
+    "accepted_by_duho": false
+  }
+}

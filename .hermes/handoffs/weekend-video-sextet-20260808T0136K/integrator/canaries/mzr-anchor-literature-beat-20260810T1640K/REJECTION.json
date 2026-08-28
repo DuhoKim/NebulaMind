@@ -1,0 +1,18 @@
+{
+  "rejection_id": "MZR_ANCHOR_LITERATURE_BEAT_STATIC_CARD_MOTION_HOLD_20260810T1705K",
+  "state": "REJECTED_NOT_A_CANDIDATE",
+  "video": "mzr-anchor-literature-beat-canary-20260810T1640K.mp4",
+  "video_sha256": "95a64c8c7f51cf1394edcbd7c03ae1aece8e0b11ba7b4a83fd21a2c0793183ed",
+  "failed_checks": {
+    "no_eight_second_freeze": {
+      "measured_longest_near_unchanged_seconds": 13.5,
+      "limit_seconds": 8.0,
+      "cause": "The safe literature closing card remained nearly unchanged through its post-sentence seam pause after the global rail sweep had correctly been removed."
+    },
+    "encoded_opening_transcription_pass": {
+      "measured_similarity": 0.7704918032786885,
+      "note": "Combined-clip Whisper rendered the visually and raw-ASR-confirmed name Kewley as the homophone Cooley; the semantic content was otherwise intact. This QA formulation is over-brittle and will be replaced by encoded per-sentence semantic checks, not waived."
+    }
+  },
+  "disposition": "Preserve this exact attempt. Create a new versioned visual-motion correction with animation localized inside the literature cards so the rail remains fixed. Re-run encoded per-sentence ASR and all gates. Never promote or overwrite these bytes."
+}

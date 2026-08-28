@@ -1,0 +1,1601 @@
+{
+  "anisotropic_resampler": "Pillow LANCZOS",
+  "audio_generated": false,
+  "characterization_variants": [
+    "x80_360p",
+    "y80_360p"
+  ],
+  "deepening_pass": 16,
+  "frame_count": 105,
+  "git_action": false,
+  "group_count": 3,
+  "groups": {
+    "pass12_sharpness_safe": {
+      "contact_sheets": {
+        "clean": {
+          "height": 1528,
+          "path": "contact_sheet_clean.png",
+          "sha256": "0c953b7d7a209fdf5270196b2cd33e663858dd2caeb4b8dad514c9721790963c",
+          "width": 1180
+        },
+        "x80_360p": {
+          "height": 1528,
+          "path": "contact_sheet_x80_360p.png",
+          "sha256": "1288c9784e0ed2a96882c1b2efe7223060fabe1b930d1db9e8bf05c2acb58cc7",
+          "width": 1180
+        },
+        "x90_360p": {
+          "height": 1528,
+          "path": "contact_sheet_x90_360p.png",
+          "sha256": "44a6f18c4403f69491372407836f3a283b476215bafe744399c7159454331b2b",
+          "width": 1180
+        },
+        "y80_360p": {
+          "height": 1528,
+          "path": "contact_sheet_y80_360p.png",
+          "sha256": "becead4700c5bae6c3f94544941e460598ff9dbc567728d910a27ff912c73aa3",
+          "width": 1180
+        },
+        "y90_360p": {
+          "height": 1528,
+          "path": "contact_sheet_y90_360p.png",
+          "sha256": "3c82ce894a0425ede92211c4d99e48c8a49324bebc0d5ba44d5691ea34070b3d",
+          "width": 1180
+        }
+      },
+      "frame_count": 35,
+      "geometry": {
+        "x80_360p": {
+          "anisotropic_resampled_size": [
+            1536,
+            1080
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            192,
+            0
+          ],
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "x90_360p": {
+          "anisotropic_resampled_size": [
+            1728,
+            1080
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            96,
+            0
+          ],
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "y80_360p": {
+          "anisotropic_resampled_size": [
+            1920,
+            864
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            0,
+            108
+          ],
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "y90_360p": {
+          "anisotropic_resampled_size": [
+            1920,
+            972
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            0,
+            54
+          ],
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        }
+      },
+      "scene_count": 7,
+      "scenes": [
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_01_clean.png",
+              "frame_sha256": "10339ef244eabe1b6351b7402bc1d38fe810ff712b0e0976ec9893504055e35a",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_01_x90_360p.png",
+              "frame_sha256": "9f2b13c20d1ff63ff72da61461d0f4ef2d3775f267e0c250e34f07d6eb07d1ce",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_y90_360p.png",
+              "frame_sha256": "1a8bde4f2a1be17f6c7127e94b9920d026f7e12c6ab5358f7bd5dbc1b32cd7cb",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_x80_360p.png",
+              "frame_sha256": "1cadaf8e9eb195e5ed7a80d20fed7bea197ace2adecdd242f7c44e7630051e09",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_y80_360p.png",
+              "frame_sha256": "b4aa3308ac64c80ae41eb4ac2ab099266b0ecf775c5d164c4b04fcb352a7538c",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 1,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_01_clean.png",
+          "source_sha256": "10339ef244eabe1b6351b7402bc1d38fe810ff712b0e0976ec9893504055e35a"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_02_clean.png",
+              "frame_sha256": "bc18c887fdfceac3b14fa1848b4d468ba1ff7726f64f6c3ab48c663808f7f641",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_02_x90_360p.png",
+              "frame_sha256": "d36b6aa76663a9dbb98b1086d85bd58579989a2203edc77c25d4891da72c5d76",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_y90_360p.png",
+              "frame_sha256": "28b5fde0ee9112e858a5a0d2fb0aa6940f5a0f34a98788c64dc7ced20ef65343",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_x80_360p.png",
+              "frame_sha256": "582532a724188031d96f4a3b4611973fcb0d55b24997ec3a229c6ba289e27af6",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_y80_360p.png",
+              "frame_sha256": "31ed774c2e820152ffe0f81995c2291ff6c6c48051cfcbd0e3b2c3f4f4053c4a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 2,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_02_clean.png",
+          "source_sha256": "bc18c887fdfceac3b14fa1848b4d468ba1ff7726f64f6c3ab48c663808f7f641"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_03_clean.png",
+              "frame_sha256": "03509f48e19acf49854c60bc4af390e023fb3fc73dcb582ddd3610e22d8c1721",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_03_x90_360p.png",
+              "frame_sha256": "7ba671db7951d4bb6d0f584d8b675011c0b8a187302e00a123b90d5c23a2c5ba",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_y90_360p.png",
+              "frame_sha256": "47334881acfe43052d5114461b8cb508a4f1d675c5aba876fecb5eaf55b7debd",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_x80_360p.png",
+              "frame_sha256": "3516c989d7dc51e89037287f115c0a2a2c89ed056a0d644b4f54f02f7ddbe654",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_y80_360p.png",
+              "frame_sha256": "33d1fca13acaa333e75250322c28eef25ad2bb2dd919ae95fc0df150d1ebe7dc",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 3,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_03_clean.png",
+          "source_sha256": "03509f48e19acf49854c60bc4af390e023fb3fc73dcb582ddd3610e22d8c1721"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_04_clean.png",
+              "frame_sha256": "f1d5e97124161a75d596494526e5010f126b84e79f6f83aa6534a4339e7825d5",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_04_x90_360p.png",
+              "frame_sha256": "49515127a4debd5f0863d07382594e9d88cb04a13f60e5d382601142416b4067",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_y90_360p.png",
+              "frame_sha256": "350168355dd18d34b2a6785c1a80a8918d25af205416fc0341946231d7088967",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_x80_360p.png",
+              "frame_sha256": "b0ca459c2491b7ea821383c63384977cde31d58c9923e47951686112a89a1088",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_y80_360p.png",
+              "frame_sha256": "bdc031a5485920c78f70af0816bba5a7d028b07576b53cb114fd7f781ab2a37c",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 4,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_04_clean.png",
+          "source_sha256": "f1d5e97124161a75d596494526e5010f126b84e79f6f83aa6534a4339e7825d5"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_05_clean.png",
+              "frame_sha256": "36e155620da4c3935c4cb4037458fa34f5b4446afbee06c54e422bbf7c7bd892",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_05_x90_360p.png",
+              "frame_sha256": "5d6d9740cde79a354acb613a453d8a6daa1b4fc3ac7b48725814b6a41bffb2c6",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_y90_360p.png",
+              "frame_sha256": "e937fce602ee5ff087c6e83d2412b5df090cc4f75313a5b7c988a6d3fa814838",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_x80_360p.png",
+              "frame_sha256": "544673af0aaba75ecac97dc6a7019320f280d934ebe268090d94e51b666e2e0c",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_y80_360p.png",
+              "frame_sha256": "98732b26584f1c086c01760b6f9952ce83dbbc8015e231114b57371d359d9a40",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 5,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_05_clean.png",
+          "source_sha256": "36e155620da4c3935c4cb4037458fa34f5b4446afbee06c54e422bbf7c7bd892"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_06_clean.png",
+              "frame_sha256": "f65335293bc31091bb280ba21b7aa5ed2cdf2eca7f8f174e766383969e370f4c",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_06_x90_360p.png",
+              "frame_sha256": "2385cf03c01fc209141ba594029ff729372498a7b56f4d8af0e9ca67234c5202",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_y90_360p.png",
+              "frame_sha256": "07c07ffff5a478b33bc598b3f14abd7acf533b747603f12310515b40ab888174",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_x80_360p.png",
+              "frame_sha256": "0cbcbd8a30139d850948c6beb7e51565be2ce4c405cb05e18e76eff729dc681d",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_y80_360p.png",
+              "frame_sha256": "8f7eb4b4c8eb586ffc42ca661373257c2180c92acfd504a170a57d09981b66fe",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 6,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_06_clean.png",
+          "source_sha256": "f65335293bc31091bb280ba21b7aa5ed2cdf2eca7f8f174e766383969e370f4c"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_07_clean.png",
+              "frame_sha256": "a6e89a71e1ebe3659d936d4c8030e47acbcc8a6bd93f45b6edb459763d0c6243",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_07_x90_360p.png",
+              "frame_sha256": "8fbca8e2d20a00ecaad1d77b105aa2dcb5e7bf71ec9aa40cd9a745bf089ed71d",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_y90_360p.png",
+              "frame_sha256": "4e924e741b2cf09038425eb0250630c07f61f771705ae91ec6260e906495781e",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_x80_360p.png",
+              "frame_sha256": "639484b3ee509043fcda92294ada449002df497358cf52259a963145fefb1b50",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_y80_360p.png",
+              "frame_sha256": "ab34506630492e06a2d3ea4764dac4b8512ae0a6a66ae32d16d0a10197f0923a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 7,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_07_clean.png",
+          "source_sha256": "a6e89a71e1ebe3659d936d4c8030e47acbcc8a6bd93f45b6edb459763d0c6243"
+        }
+      ]
+    },
+    "pass7_caption_safe": {
+      "contact_sheets": {
+        "clean": {
+          "height": 1528,
+          "path": "contact_sheet_clean.png",
+          "sha256": "eccf9fd588a26981e001549bb5df5cbc7a7724c20b334adb83e7149dffb1f674",
+          "width": 1180
+        },
+        "x80_360p": {
+          "height": 1528,
+          "path": "contact_sheet_x80_360p.png",
+          "sha256": "0fccc879eef3ae3e5c20645d5fc14c06161dccf6eed38240bdca0bb8114427af",
+          "width": 1180
+        },
+        "x90_360p": {
+          "height": 1528,
+          "path": "contact_sheet_x90_360p.png",
+          "sha256": "6d33c29bf1441b95a8a07a823541abcfd8f453e9ae54a9e02271077a15be1b98",
+          "width": 1180
+        },
+        "y80_360p": {
+          "height": 1528,
+          "path": "contact_sheet_y80_360p.png",
+          "sha256": "0da43312dc5f6759dda6ea2cc64c0e8eae606526b6aa02a772f9e90749eda8b5",
+          "width": 1180
+        },
+        "y90_360p": {
+          "height": 1528,
+          "path": "contact_sheet_y90_360p.png",
+          "sha256": "0220b3aaef17016b9bedf8d6ba62e4e7147f23b48f73f5217e017eb9b952ab82",
+          "width": 1180
+        }
+      },
+      "frame_count": 35,
+      "geometry": {
+        "x80_360p": {
+          "anisotropic_resampled_size": [
+            1536,
+            1080
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            192,
+            0
+          ],
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "x90_360p": {
+          "anisotropic_resampled_size": [
+            1728,
+            1080
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            96,
+            0
+          ],
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "y80_360p": {
+          "anisotropic_resampled_size": [
+            1920,
+            864
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            0,
+            108
+          ],
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "y90_360p": {
+          "anisotropic_resampled_size": [
+            1920,
+            972
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            0,
+            54
+          ],
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        }
+      },
+      "scene_count": 7,
+      "scenes": [
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_01_clean.png",
+              "frame_sha256": "9a99bfe1c80c1472a027c7066e67e87abcb1f5b3b7800f52851261b69d415c63",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_01_x90_360p.png",
+              "frame_sha256": "bf233f97514142872362e459d4142c16bcfa60d45a889d9ac9e517766e08e975",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_y90_360p.png",
+              "frame_sha256": "7a447af73c3fd460da6c90ba1f0376b2cd21d312f77585c5047b1a7ee2a7aa67",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_x80_360p.png",
+              "frame_sha256": "5cc7395d3e51e7b430a971ce3211c795440e22255aa522de6e4dcc73bc6bb131",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_y80_360p.png",
+              "frame_sha256": "adf606df0802915101d338664c0d1b3339be1343b1fdd40286d6b4f4b8f63fc4",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 1,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_01_caption_safe.png",
+          "source_sha256": "9a99bfe1c80c1472a027c7066e67e87abcb1f5b3b7800f52851261b69d415c63"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_02_clean.png",
+              "frame_sha256": "e32b8531fdeee6a7d9511c600c00b246373883b8cbbf6b0dcae87c6be13674fb",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_02_x90_360p.png",
+              "frame_sha256": "b82355d3bc396bdc95f702e6185fa9a27adcbb9f6c4c026265f63519ac0ebda9",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_y90_360p.png",
+              "frame_sha256": "e4c84655aa2b3c2567d43d6a4ffb56292fd36a591ebfea29a1fe4a1cdddd2611",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_x80_360p.png",
+              "frame_sha256": "f8e948efabd7c93ada3009cd55957bcca33ba2ae7b5aad33ca75625643dcf8f1",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_y80_360p.png",
+              "frame_sha256": "b65673a0fab58f25ce22cdc794cf581464d4abaa74f57af34f9b6b6b020326b1",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 2,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_02_caption_safe.png",
+          "source_sha256": "e32b8531fdeee6a7d9511c600c00b246373883b8cbbf6b0dcae87c6be13674fb"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_03_clean.png",
+              "frame_sha256": "f306e00e9dc424f063ad79dca05ca0ce272457cba4494893466737efce83f09b",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_03_x90_360p.png",
+              "frame_sha256": "b42b486bd67f606ef240c34dbd1df5dc08a2299437cb568c5505ad0d6b2ea7ef",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_y90_360p.png",
+              "frame_sha256": "616184b3fc32713c947e346b53ebf10ca4c58c81cdfa9cdb57343cb233124628",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_x80_360p.png",
+              "frame_sha256": "0513990ef0b12cb98ea7e5d9d386f945456e2db49a9cf6df8af600272a73e8d8",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_y80_360p.png",
+              "frame_sha256": "5b1159128195cd60653c25131484ee9680d7e38b9968085aaed1cc280e86908c",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 3,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_03_caption_safe.png",
+          "source_sha256": "f306e00e9dc424f063ad79dca05ca0ce272457cba4494893466737efce83f09b"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_04_clean.png",
+              "frame_sha256": "96f52407a01505298c74b8cb6bdb202b0aafd440319cdfe5da93db6ce2eff761",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_04_x90_360p.png",
+              "frame_sha256": "d6bf1a4c467ae90b64cf136779bbd5a46875b8029a6c16fa1286b2baa7c2feb2",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_y90_360p.png",
+              "frame_sha256": "a4497468709ac0cacf9ada22860967cea9912f43deb85f3092b07283ebf405f6",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_x80_360p.png",
+              "frame_sha256": "305cc1f8bd8e104a973657cac5e3c7bb893328c76570b110aae58608dc721e7a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_y80_360p.png",
+              "frame_sha256": "bea4b98e12dfead1abcc12c326849229332bca0895e032b1a96a3d8a16a7bac8",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 4,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_04_caption_safe.png",
+          "source_sha256": "96f52407a01505298c74b8cb6bdb202b0aafd440319cdfe5da93db6ce2eff761"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_05_clean.png",
+              "frame_sha256": "a89b8ac817126c1bf63b33dcb3dd041e305678211d3e0f29a232f4095c3fa320",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_05_x90_360p.png",
+              "frame_sha256": "6745eda17689a6a624760ddb70f48cc371dc5942b4a39b5ddf7e8b602dbdffc0",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_y90_360p.png",
+              "frame_sha256": "b2a5514d2773c6a0949388cafe3b8f4c49d450417feedd4a6fd1584dfa30efc6",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_x80_360p.png",
+              "frame_sha256": "c2b324cde9c6d6544130e9c382aaeb0333cd3b1884099f47252bf4c32d36b971",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_y80_360p.png",
+              "frame_sha256": "c2595fdf941c30e2236ef16852c75f28a24d654fb1e1f76b34c2610f8f353626",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 5,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_05_caption_safe.png",
+          "source_sha256": "a89b8ac817126c1bf63b33dcb3dd041e305678211d3e0f29a232f4095c3fa320"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_06_clean.png",
+              "frame_sha256": "5b451b0ed9c25a2132adafed5bd16de720ba9c030cc5ece1d985f75d03d565ae",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_06_x90_360p.png",
+              "frame_sha256": "126c499eac5bd17884777c06280c1c301fe455d569310e30885dc580477b215a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_y90_360p.png",
+              "frame_sha256": "e81ce5eeabe394154c944ecfa8d5998f0cc933dd847bf0778d39b315a84083f5",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_x80_360p.png",
+              "frame_sha256": "0d6165bba885abe051de4e78a84adb86a8fbd59bf3aaa075c79435917351cd8a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_y80_360p.png",
+              "frame_sha256": "d961beb5bc067851e05814d877ce02eb9876e27a89c69bbe6575d1200eac8959",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 6,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_06_caption_safe.png",
+          "source_sha256": "5b451b0ed9c25a2132adafed5bd16de720ba9c030cc5ece1d985f75d03d565ae"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_07_clean.png",
+              "frame_sha256": "997b69c3ba10f36177907b62d760019490910533514af3328dc50ac6e9aaacd6",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_07_x90_360p.png",
+              "frame_sha256": "8ae088c17078bbdce3df1bc00dae25fa9624ffd40af4bd12928fc3d4229d5066",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_y90_360p.png",
+              "frame_sha256": "f9666c5be505c7422fdff9740f6f612f4b11c0ac74bd67c919219cff93d7bb88",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_x80_360p.png",
+              "frame_sha256": "cc623f64f8c23053afe974270822478dc564a2fcaed6e5c0eab3e94380a079b8",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_y80_360p.png",
+              "frame_sha256": "b934b5c238b0341311c79aa3dda571b6caefe6fd28b84b7e98b21d6263dde5c8",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 7,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_07_caption_safe.png",
+          "source_sha256": "997b69c3ba10f36177907b62d760019490910533514af3328dc50ac6e9aaacd6"
+        }
+      ]
+    },
+    "sealed_v8": {
+      "contact_sheets": {
+        "clean": {
+          "height": 1528,
+          "path": "contact_sheet_clean.png",
+          "sha256": "e858887643e2360db1504934d5f48503312cd13b385e2f2c7507a8796fb11304",
+          "width": 1180
+        },
+        "x80_360p": {
+          "height": 1528,
+          "path": "contact_sheet_x80_360p.png",
+          "sha256": "10b8e372d78b33cc24f7241df7f7bd2ad6628c57cba4f5e06d12f9d25764d72e",
+          "width": 1180
+        },
+        "x90_360p": {
+          "height": 1528,
+          "path": "contact_sheet_x90_360p.png",
+          "sha256": "a6874784a574ae86a7bbf0c7dbe57ae7e6c5be8278979d565fc279f2922bea57",
+          "width": 1180
+        },
+        "y80_360p": {
+          "height": 1528,
+          "path": "contact_sheet_y80_360p.png",
+          "sha256": "f03c788f50b700bbd1d474abc349e74bdc54790e19e86f4e2f0da19e5469286e",
+          "width": 1180
+        },
+        "y90_360p": {
+          "height": 1528,
+          "path": "contact_sheet_y90_360p.png",
+          "sha256": "69bd56b7157cb5c33fc5ed1ff53b3800bf6694de5301c42bc8488a3b8fa2ca6c",
+          "width": 1180
+        }
+      },
+      "frame_count": 35,
+      "geometry": {
+        "x80_360p": {
+          "anisotropic_resampled_size": [
+            1536,
+            1080
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            192,
+            0
+          ],
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "x90_360p": {
+          "anisotropic_resampled_size": [
+            1728,
+            1080
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            96,
+            0
+          ],
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "y80_360p": {
+          "anisotropic_resampled_size": [
+            1920,
+            864
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            0,
+            108
+          ],
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        },
+        "y90_360p": {
+          "anisotropic_resampled_size": [
+            1920,
+            972
+          ],
+          "minimum_scale_output_size": [
+            640,
+            360
+          ],
+          "native_offset": [
+            0,
+            54
+          ],
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "source_size": [
+            1920,
+            1080
+          ],
+          "transform_order": "native anisotropic LANCZOS -> centered black padding -> full-canvas LANCZOS downscale to 640x360"
+        }
+      },
+      "scene_count": 7,
+      "scenes": [
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_01_clean.png",
+              "frame_sha256": "e9759ce1bc350dceb17f4fc28c82570b447eec0487ce75b5d3550f05263a75be",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_01_x90_360p.png",
+              "frame_sha256": "706e72b9e8561bbf37c2f9e68fbeb27f1a53d7ba40b730b711f6909b5e1a71fa",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_y90_360p.png",
+              "frame_sha256": "6747826ed0dc94ab82888da7adae71010facc50321d129fb106872a33e28f836",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_x80_360p.png",
+              "frame_sha256": "6f61461a9047a646c92b0f4b26ba6b5c0a54ce6e3985e95c8f17fc359f9ff82a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_01_y80_360p.png",
+              "frame_sha256": "2cb8a78b39f7e2e7194d768a80e6e1c18d50ea97ab5ee0c5d44283c97446ccca",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 1,
+          "source": "proposal_frames/v8/scene_01_s1.png",
+          "source_sha256": "e9759ce1bc350dceb17f4fc28c82570b447eec0487ce75b5d3550f05263a75be"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_02_clean.png",
+              "frame_sha256": "95710fc5afbec50a6ca26639822a5a4e719e395668e6add46333cb1321007f0b",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_02_x90_360p.png",
+              "frame_sha256": "425ec17cdd69f5b5ce00419cde7cdcaf7116cad545d9d108e0c96eca24caabf0",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_y90_360p.png",
+              "frame_sha256": "8beca9e3eb416873095be696ae647cd4976c3d8a5ab803ceb687642f9c50712c",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_x80_360p.png",
+              "frame_sha256": "d8fbeef7efc981efdbd35bf3ada0f724b5497e75c175f40084123ccc4bc6ea82",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_02_y80_360p.png",
+              "frame_sha256": "25b54d06bcc90828334d5e83f9aa042dc1a2c668bc9a26215047e05654e2fdcf",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 2,
+          "source": "proposal_frames/v8/scene_02_s2.png",
+          "source_sha256": "95710fc5afbec50a6ca26639822a5a4e719e395668e6add46333cb1321007f0b"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_03_clean.png",
+              "frame_sha256": "07fb50c7e245b5ccaab213f8b4bb30f0bc5d472526f8cd3453d964d97e39823a",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_03_x90_360p.png",
+              "frame_sha256": "775b4af591cdc41da6f6503ccfed5c2c5ebe5e56297dc83a1815eaf4fa55d602",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_y90_360p.png",
+              "frame_sha256": "046bec30a211f665c0b87aaea98322a7686c8238ec51b924846e5683cd1d4dfb",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_x80_360p.png",
+              "frame_sha256": "16199c49d47ab0aa667a7e8012f5b47297c9d6646819ae5dce3dd28316570753",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_03_y80_360p.png",
+              "frame_sha256": "96cd41c91a128bd49432891bab39df83ebaec62d483c5c43ee58d77d55e8ebbb",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 3,
+          "source": "proposal_frames/v8/scene_03_s3.png",
+          "source_sha256": "07fb50c7e245b5ccaab213f8b4bb30f0bc5d472526f8cd3453d964d97e39823a"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_04_clean.png",
+              "frame_sha256": "62993b4e3c4a1ade2ee9cd38cc8eddff3522bc3dd7153917020daff8ef8c4357",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_04_x90_360p.png",
+              "frame_sha256": "6f92cdee14c3165095b54cfa4df225284d46c72613bedf3d9f46c2e6bc07ddc3",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_y90_360p.png",
+              "frame_sha256": "fbdf4ad5211696606c3dd86a804a1b5eaab41c8aa116841f30154b5b14e645ed",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_x80_360p.png",
+              "frame_sha256": "9389bd36600b7e4f447f90f0321a33b133787ce9d9d21444e994bce0b756804d",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_04_y80_360p.png",
+              "frame_sha256": "a711f387a8071a30445e5c4072635b86ad7452e49b5c7bea324fca2ab0021dd8",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 4,
+          "source": "proposal_frames/v8/scene_04_s4.png",
+          "source_sha256": "62993b4e3c4a1ade2ee9cd38cc8eddff3522bc3dd7153917020daff8ef8c4357"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_05_clean.png",
+              "frame_sha256": "5041e358f9e7ec2dcb76d2a3b32de02a613cd29b5f0da87fad9574351dc8f4bf",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_05_x90_360p.png",
+              "frame_sha256": "1fa646c1308b3ff611aedfb925b4beb31411ad56936011a381bac9170c7de15a",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_y90_360p.png",
+              "frame_sha256": "343fc978ab8ac810eaf2fb4960658096b518a90fa8c3ad1b83d0b4f116b8e1a9",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_x80_360p.png",
+              "frame_sha256": "21fa16c2383f400a5b10b1113193121cb425f8ac1811cf0a315f848649e1f61f",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_05_y80_360p.png",
+              "frame_sha256": "e53a16d9e869f71ca93626ea33608eb52413838acca2c5a6fe63780412959ff0",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 5,
+          "source": "proposal_frames/v8/scene_05_s5.png",
+          "source_sha256": "5041e358f9e7ec2dcb76d2a3b32de02a613cd29b5f0da87fad9574351dc8f4bf"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_06_clean.png",
+              "frame_sha256": "db3f9efc18404767d36ddb1221f2ada2668161547afefcee5ebba55e8afe6121",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_06_x90_360p.png",
+              "frame_sha256": "b945e713f82a7f79f8c1f529e0f01b754ce38dcae122e0e7f30c2e968f51ffbb",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_y90_360p.png",
+              "frame_sha256": "7889f94439794786eb16b371421eee81fc0292d09eedebe1017d26f13a21c5a9",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_x80_360p.png",
+              "frame_sha256": "bf8e5525874a1ddd3b78d94702952a1a4355477ead5e4b974e03c2b8819368a1",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_06_y80_360p.png",
+              "frame_sha256": "b28dfec8c0e34c91be9185cee1e9484438cd23e312192c0a9b0e985a36477dec",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 6,
+          "source": "proposal_frames/v8/scene_06_s6.png",
+          "source_sha256": "db3f9efc18404767d36ddb1221f2ada2668161547afefcee5ebba55e8afe6121"
+        },
+        {
+          "samples": [
+            {
+              "frame": "frames/scene_07_clean.png",
+              "frame_sha256": "2b411aea73ea486959c1cb8af565bb3dbde7650f814ed42ede6573d56ac2bf56",
+              "height": 1080,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 1.0,
+              "variant": "clean",
+              "width": 1920
+            },
+            {
+              "frame": "frames/scene_07_x90_360p.png",
+              "frame_sha256": "feeb74eb49c6cd5c8a753d32c4dd7989feb4ef83576c350d2ddf686914c90f7f",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.9,
+              "scale_y": 1.0,
+              "variant": "x90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_y90_360p.png",
+              "frame_sha256": "d54ebdfa11e5343c733bec319a9289105d82c54ca97b0e67c7d8d84e8872015f",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.9,
+              "variant": "y90_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_x80_360p.png",
+              "frame_sha256": "e159e1ee882e981f5648b298ec29c8a05a37f70f0753896b335cbea6cc891c7b",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 0.8,
+              "scale_y": 1.0,
+              "variant": "x80_360p",
+              "width": 640
+            },
+            {
+              "frame": "frames/scene_07_y80_360p.png",
+              "frame_sha256": "08f3a8c62383db4bf158c545b298b02b4eb36117caf2f8dd900403c627be1b41",
+              "height": 360,
+              "mode": "RGB",
+              "scale_x": 1.0,
+              "scale_y": 0.8,
+              "variant": "y80_360p",
+              "width": 640
+            }
+          ],
+          "scene": 7,
+          "source": "proposal_frames/v8/scene_07_s7.png",
+          "source_sha256": "2b411aea73ea486959c1cb8af565bb3dbde7650f814ed42ede6573d56ac2bf56"
+        }
+      ]
+    }
+  },
+  "minimum_scale_output": "640x360 RGB",
+  "minimum_scale_resampler": "Pillow LANCZOS",
+  "operational_variants": [
+    "x90_360p",
+    "y90_360p"
+  ],
+  "padding": "centered black RGB",
+  "scene_count": 21,
+  "status": "QA_ONLY_NOT_A_CANDIDATE",
+  "tts_invoked": false,
+  "variants": [
+    "clean",
+    "x90_360p",
+    "y90_360p",
+    "x80_360p",
+    "y80_360p"
+  ],
+  "video_encoded": false
+}

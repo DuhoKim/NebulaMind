@@ -1,0 +1,46 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-live-receipt-identity-census-v28",
+  "storyboard_version": "pass7-distinct-state-custody-v23",
+  "storyboard_sha256": "48e9962bdd24b860b7398eb405d8e7b590dce47c72427f34ef3601dfe25b35b8",
+  "approved_contract_sha256": "4525cb9c1c5533ce41097105e8fdfa4b65a0a3c5a9624e71b48c97f101a04414",
+  "visual": {
+    "path": "visual_proposal_v9.png",
+    "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "pixels_changed_from_v8": true,
+    "pixels_changed_from_v27": false,
+    "current_exact_regate": "PENDING"
+  },
+  "artifact_hashes": {
+    "qa/visual_proposal_qa.json": "875f934b95e1907b44bc33fd3de56074474d46e2a1c5a94fafdf25cd7d261883",
+    "SOURCE_FREEZE.json": "59317f7d33d4c4c3d307843932229eadb24a0ccbe97123002daa28ca6f210ec7",
+    "SNAPSHOT_SCOPE.md": "9b62dc859414e58c86f84a22585e5d963b5c94372795380c36df4c6986d7c439",
+    "PAPER_NAIVE_PACKET.md": "580e7379f7c975ff2cb79fa5987858b36ac8636c4817928c9a8fe0cb912429bf",
+    "qa/PAPER_NAIVE_PACKET_PROJECTION.json": "2d159619f6bd3ff833c5e602700ca3a2495ec68483e751cefe4801949902c520",
+    "NUMERIC_SOURCE_AUDIT.json": "2be79738450d5314c78fb25dbad586e956f725950a68862708ad32b6687a517c",
+    "qa/proposal_validation.json": "699ab710e6cb8768b311f8ee1636221090a6dcdb2d122b3be60604b1b63724a7",
+    "qa/PASS7_VALIDATOR_MUTATION_TESTS.json": "46e0c3d191553d4d4541c16efabd66b58899cbd759dd41d08e4373ad7028a646",
+    "CANDIDATE_NOTES.md": "5045363a3284653e3ba3464af8ab56221d4d7ee21d4059eb5a07b5c3dfb04070",
+    "INTEGRATOR_REQUEST.md": "3ddb327e909d43c4a7f54b858d368b99bebcaf6cb33e2934328c914be55f188a",
+    "qa/HISTORICAL_LOCAL_RECEIPT_INDEX_V28.json": "706c2d684f39d39ce836a36cd34c5c1209064f4dfba267cafe83051eecb988e7"
+  },
+  "checks": {
+    "validator": "PASS; exact content receipt matches",
+    "narration_preparer": "PASS_NO_WRITE",
+    "paper_naive_preparer": "PASS_NO_WRITE",
+    "deterministic_renderer": "PASS_NO_WRITE; exact visual-v9 bytes",
+    "mutation_suite": "PASS; 37 cases = baseline plus 36/36 expected failures",
+    "mutation_receipt_determinism": "live and sealed full-suite receipts must be byte-identical",
+    "question_contract": "exact SHA-256 eae490f5e1b4b7e7d3334e1805cf2eebf66fcfd15eddae0ddb6cf2dcc078b9ec; no numerical, answer-bearing, or avoidable structural premises",
+    "filesystem_custody": "regular listed files, 0444 file modes, 0555 directory modes, no symlinks, hashes, sizes, exact inventory, external MANIFEST digest",
+    "live_receipt_identity_census": "present historical local receipts v2-v6 and v8-v27 exactly match index; v1/v7 currently absent; no index-only or live-only paths",
+    "receipt_like_census": "seven retained historical QA fixtures denied current authority; five current nonlocal receipt-like objects classified",
+    "literal_handoff": "packet v28 named; coordinator-supplied external non-circular manifest anchor mandatory before exact five-command replay",
+    "distinct_state_contract": "45/45 exact approved states; maximum declared semantic gap 3.0 seconds"
+  },
+  "candidate_clearance": "NOT_GRANTED",
+  "integration_gate": "CLOSED",
+  "tts_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "shared_public_git_gate": "CLOSED"
+}

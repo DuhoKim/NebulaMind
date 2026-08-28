@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Methods note — Mittal–Singal Quaia dipole</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{color-scheme:dark light}
+*{box-sizing:border-box}
+body{font:17px/1.75 -apple-system,BlinkMacSystemFont,system-ui,sans-serif;max-width:44rem;margin:0 auto;
+padding:2rem 1.2rem 5rem;background:#0f1115;color:#dfe3ea;-webkit-text-size-adjust:100%}
+h1{font-size:1.6rem;line-height:1.25;margin:.3em 0 .7em;color:#fff;letter-spacing:-.01em}
+h2{font-size:1.06rem;margin:2.4em 0 .6em;padding-top:.9em;border-top:1px solid #232833;color:#9db8e8;
+letter-spacing:.01em;scroll-margin-top:1rem}
+p{margin:1.05em 0}
+code{background:#1a1f28;padding:.12em .38em;border-radius:4px;font:.86em/1.4 ui-monospace,Menlo,monospace;
+color:#9ecbff;white-space:nowrap}
+strong{color:#fff;font-weight:640} em{color:#c8d2e2}
+blockquote{border-left:3px solid #3d4a5f;margin:1.4em 0;padding:.7em 0 .7em 1.1em;color:#a9b3c4;
+background:#141922;border-radius:0 8px 8px 0;font-size:.96em}
+ul,ol{padding-left:1.35em;margin:1.05em 0} li{margin:.5em 0}
+.tablewrap{overflow-x:auto;margin:1.5em 0;border:1px solid #262c38;border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.86em;min-width:620px;margin:0}
+th,td{border-bottom:1px solid #262c38;border-right:1px solid #262c38;padding:.65em .8em;text-align:left;vertical-align:top;line-height:1.6}
+th{background:#171c25;color:#cfd6e4;font-weight:620;position:sticky;top:0}
+tr:last-child td{border-bottom:none} td:last-child,th:last-child{border-right:none}
+.banner{background:#2a1f0e;border:1px solid #5a4415;border-radius:8px;padding:.85em 1.05em;margin:0 0 1.4rem;
+color:#f0d9a8;font-size:.92rem;line-height:1.6}
+nav{background:#141922;border:1px solid #232833;border-radius:8px;padding:.9em 1.05em;margin:0 0 2.2rem;font-size:.9rem}
+nav b{display:block;color:#8b93a1;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5em}
+nav a{display:block;color:#9db8e8;text-decoration:none;padding:.2em 0;border-bottom:1px solid transparent}
+nav a:hover{border-bottom-color:#9db8e8}
+.meta{color:#78818f;font-size:.78rem;margin-top:3rem;border-top:1px solid #232833;padding-top:1.2em;word-break:break-all;line-height:1.7}
+@media(prefers-color-scheme:light){body{background:#fbfbfd;color:#1c1f26}h1{color:#000}h2{color:#2a5599;border-top-color:#e3e6ec}
+code{background:#eef1f6;color:#0b4a8f}strong{color:#000}em{color:#3a414d}
+blockquote{background:#f2f4f8;border-left-color:#b6c2d6;color:#3a414d}
+th{background:#f0f2f7;color:#1c1f26}th,td{border-color:#e3e6ec}.tablewrap{border-color:#e3e6ec}
+nav{background:#f4f6fa;border-color:#e3e6ec}.meta{border-top-color:#e3e6ec;color:#6b7280}}
+</style>
+</head><body><div class="banner"><strong>Private review copy — draft, not published.</strong> Gated by Kun
+(<code>PASS_EXTERNAL_METHODS_NOTE_NO_OVERCLAIM</code>), source-bound by Tori. Not accepted; Duho decides.
+Text below is the gated source, unaltered — formatting only.</div>
+<nav><b>Sections</b><a href="#s-summary-the-finding">Summary (the finding)</a><a href="#s-the-inputs-are-strongly-supported-to-be-the-same-release-but-not-byte-verified-on-mittals-side">1. The inputs are strongly supported to be the same release — but not byte-verified on Mittal's side</a><a href="#s-the-principal-method-fork-is-openly-stated-not-hidden-in-the-papers-themselves">2. The principal method fork is openly stated, not hidden — in the papers themselves</a><a href="#s-why-the-factor-of-three-cannot-be-attributed-from-the-record">3. Why the factor of three cannot be attributed from the record</a><a href="#s-what-would-settle-it-and-what-that-would-require">4. What would settle it — and what that would require</a><a href="#s-limitation-and-claim-boundary-binding">5. Limitation and claim boundary (binding)</a><a href="#s-provenance-every-factual-claim-published-source-or-this-notes-own-stated-check">Provenance (every factual claim → published source, or this note's own stated check)</a></nav>
+<h1 id="s-methods-note-the-mittalsingal-quaia-dipole-disagreement-is-not-attributable-from-the-published-record">Methods note — the Mittal–Singal Quaia-dipole disagreement is not attributable from the published record</h1>
+<p><strong>Draft methods note, 2026-08-11. Not published.</strong> Every factual claim below is traced (§Provenance) to a published source or to a check this note itself performed and states. <strong>We did not re-run either analysis and do not claim to.</strong></p>
+<h2 id="s-summary-the-finding">Summary (the finding)</h2>
+<p>Two peer-reviewed analyses — <strong>Mittal et al. 2024</strong> (MNRAS <strong>527</strong>, 8497) and <strong>Singal 2024</strong> (MNRAS <strong>532</strong>, L1) — measure the cosmic number-count dipole in <strong>what is strongly supported to be the same Quaia v0.1.0 release</strong> and reach conclusions that differ by a <strong>factor of three to four</strong> in amplitude (the direction is undisputed in both). We find that this disagreement <strong>cannot be attributed to any single analysis choice from the published record.</strong> The inputs are <strong>strongly supported to be the same Quaia v0.1.0 release, but Mittal does not self-bind exact input bytes, so a release mismatch is not <em>supported</em> as the explanation</strong> (see §1 — it is not byte-verified identical on Mittal's side); the principal method fork is openly stated; <strong>but the analyses couple their choices, leave order-unity corrections unstated, and estimate different quantities</strong>, so no one changed choice can be isolated as <em>the</em> cause without re-deriving both pipelines under a single controlled convention — which is <strong>not available from the published record as-is</strong> (§4). <strong>This note reports only what can and cannot be established from the published record; it adjudicates nothing and makes no cosmological claim.</strong></p>
+<h2 id="s-the-inputs-are-strongly-supported-to-be-the-same-release-but-not-byte-verified-on-mittals-side">1. The inputs are strongly supported to be the same release — but not byte-verified on Mittal's side</h2>
+<p>What the published record and this note's own product check establish, stated exactly:</p>
+<ul>
+<li><p><strong>Singal 2024</strong> self-binds the catalogue: <strong>Quaia v0.1.0, DOI <code>10.5281/zenodo.8060755</code></strong>, and <strong>states this is the release Mittal et al. used</strong>.</p></li>
+<li><p><strong>Mittal 2024 self-binds no record</strong> but <strong>predates the public v1.0.0 release</strong>.</p></li>
+<li><p><strong>For this note, the v0.1.0 catalogues and selection maps were downloaded and checked against the published MD5 checksums and byte counts; they match</strong> — i.e. the v0.1.0 <em>products</em> are verified, and Singal's binding to them is verified.</p></li>
+<li><p><strong>What is NOT verified:</strong> Mittal's <em>exact input bytes</em>. Mittal does not self-bind a record, so the identity of his inputs rests on Singal's statement and on Mittal predating v1.0.0, <strong>not</strong> on byte-level verification of Mittal's own data.</p></li>
+<li><p><strong>Therefore, precisely:</strong> the two analyses are <strong>strongly supported as the same Quaia v0.1.0 release, but Mittal does not self-bind exact input bytes; a release mismatch is not <em>supported</em> as the explanation</strong> — it is neither byte-verified identical nor is a mismatch evidenced. This is a <em>strongly-supported</em>, not a <em>verified-identical</em>, claim, and the distinction is deliberate.</p>
+<blockquote>
+<p><em>The product check above is this note's own. Checking the public products against their published checksums verifies the products and Singal's binding to them — it does not, and cannot, upgrade the identity of Mittal's inputs beyond supported, not byte-verified on Mittal's side.</em></p>
+</blockquote></li>
+</ul>
+<h2 id="s-the-principal-method-fork-is-openly-stated-not-hidden-in-the-papers-themselves">2. The principal method fork is openly stated, not hidden — in the papers themselves</h2>
+<p>The papers differ, first and explicitly, on <strong>whether the Quaia selection function is applied</strong>:</p>
+<ul>
+<li><strong>Mittal</strong> writes the selection function into the likelihood — multiplicatively in the Poisson rate (<code>λᵢ·sᵢ</code>) and as a <code>1/sᵢ</code> scaling of pixel counts in the point-by-point construction.</li>
+<li><strong>Singal</strong>, verbatim: <em>"We did not incorporate the selection function provided by [Storey-Fisher et al.]. The reason being that their procedure seems to obliterate any dipole asymmetries across the sky,"</em> and <em>"the dipoles will get suppressed in this procedure and that might be the reason why results of Mittal et al. (2024) differ from ours."</em> This fork is real and acknowledged by both sides. <strong>It is the obvious candidate — but candidate is not cause.</strong> The fork is the <em>stated difference</em> between the papers; the <strong>magnitude</strong> of its effect is not attributable from them, because the choices are coupled, Singal's side carries its own unstated order-unity correction, and the two papers estimate different quantities (§3). The selection-function fork therefore remains the leading stated difference, <strong>not</strong> the demonstrated explanation of the amplitude gap.</li>
+</ul>
+<h2 id="s-why-the-factor-of-three-cannot-be-attributed-from-the-record">3. Why the factor of three cannot be attributed from the record</h2>
+<p>This note's reading of the two papers finds the published record does not permit isolating the cause, for three compounding reasons:</p>
+<ol type="1">
+<li><strong>Coupled choices, never varied one-at-a-time.</strong> Mittal's Galactic-plane masking (<code>|b|&lt;40°</code> plus a <code>30∗</code> composite capping the central 4 sr) and selection-function scaling act <strong>together</strong>; the paper does not report the dipole with one changed and the other held fixed, so their individual contributions are not separable from the text.</li>
+<li><strong>An unstated order-unity correction on the other side.</strong> Singal's amplitude comes from a <strong>direct count dipole</strong> (vector sum + hemisphere <code>2(N₁−N₂)/(N₁+N₂)</code>) on a <strong>cut sky</strong>, which requires a <strong>mask correction of order unity whose implementation is not stated</strong> — so even his own number is not fully reconstructable from the paper.</li>
+<li><strong>Different estimands.</strong> Mittal reports a <strong>Bayesian model comparison</strong> (nested sampling, Bayes factors) over <strong>masked, selection-treated HEALPix <code>Nside=64</code> pixel counts</strong>; Singal reports a <strong>direct count-dipole amplitude</strong> on masked counts <strong>without</strong> selection treatment. These are <strong>not the same quantity</strong>, so a numerical ratio between them does not measure the effect of any one choice. Some simple single-factor explanations are <strong>not sufficient by themselves to explain the disagreement from the published tables</strong> — but this rules nothing out and promotes no factor: Singal reports <code>D≈3.3×10⁻²</code> under Mittal's own <code>|b|&lt;40°</code> mask and across magnitude cuts (<code>mG&lt;20.5</code>, <code>mG&lt;20.0</code>, <code>20&lt;mG&lt;20.5</code>) and latitudes (<code>|b|&gt;30°, 35°, 40°</code>), which <em>weakens</em> a pure magnitude- or latitude-cut explanation without excluding estimator or masking effects, whose implementations differ and are not varied one-at-a-time.</li>
+</ol>
+<p><strong>The kinematic-null constructions also differ.</strong> The two do <strong>not</strong> adopt the same null:</p>
+<ul>
+<li><strong>Singal</strong> uses the closed-form Ellis–Baldwin prediction <code>D=[2+x(1+α)]·β</code> with <code>x=1.3</code>, <code>α≈2.4</code> → prefactor ≈6.4, <code>v≈370 km s⁻¹</code>.</li>
+<li><strong>Mittal</strong> does <strong>not</strong> use that closed form: he <strong>forward-models Doppler boosting of the actual source counts</strong> (<code>Sⱼ → Sⱼ·δ^{1+α}</code>) with a <strong>per-source spectral index <code>αᵢ</code></strong> from Gaia colours, Monte-Carlo over the observed <code>α</code> distribution, at <code>v=369.82 km s⁻¹</code>. <strong>With the spectral-index correction published in Mittal's current paper, the expected amplitudes are <code>D̄≈0.0048</code> (Quaia low) / <code>0.0043</code> (high)</strong> (that published correction also increases prior sensitivity and makes amplitude consistency less decisive; <strong>Singal uses the uncorrected input</strong>). The original-analysis values <code>0.0080/0.0068</code> are <strong>superseded by that published correction</strong> and are quoted here only so the historical numbers carry their superseded label rather than circulating unlabelled. The two null constructions are different, <strong>and this note draws no inference — of attribution or exclusion — from any numerical relation between their expected amplitudes.</strong> The differing null constructions are one more reason the two numbers are not the same estimand.</li>
+</ul>
+<h2 id="s-what-would-settle-it-and-what-that-would-require">4. What would settle it — and what that would require</h2>
+<p>The disagreement would be resolved only by <strong>re-deriving both pipelines under one frozen convention</strong> — a single mask, one selection treatment, one estimator, one kinematic null — so that exactly one choice varies at a time. That controlled re-derivation is <strong>not available from the published record as-is</strong>: neither paper releases analysis code or exact mask memberships, and Singal's O(1) mask correction is not published to reconstruct (§3). <strong>A separate reconstruction effort would first need to verify which exact artifacts are recoverable, or record each missing implementation choice as an explicit replacement convention.</strong> This note does not attempt it.</p>
+<h2 id="s-limitation-and-claim-boundary-binding">5. Limitation and claim boundary (binding)</h2>
+<ul>
+<li><strong>We did not re-run either analysis.</strong> No statistic here is ours; all measured values are quoted from the papers themselves or from this note's own check of the public data products.</li>
+<li>This note <strong>does not adjudicate</strong> the dispute, <strong>does not endorse</strong> either amplitude, and <strong>states nothing</strong> about whether the universe is anisotropic or isotropic, or whether the cosmological principle holds. <strong>Neither paper's conclusion becomes ours to assert.</strong> The permitted claim is exactly and only: <em>from the published record, the factor-of-three disagreement between two analyses of what is strongly supported to be the same Quaia v0.1.0 release (Mittal not byte-self-binding) cannot be attributed to any single isolated analysis choice, because the choices are coupled, an order-unity correction is unstated, and the two estimate different quantities.</em> That is the whole scope, and it is a genuine contribution to a contested literature.</li>
+</ul>
+<h2 id="s-provenance-every-factual-claim-published-source-or-this-notes-own-stated-check">Provenance (every factual claim → published source, or this note's own stated check)</h2>
+<table>
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Singal self-binds Quaia v0.1.0 (DOI 10.5281/zenodo.8060755) and states it is Mittal's release; Mittal self-binds no record and predates public v1.0.0</td>
+<td><strong>Singal 2024</strong> (MNRAS 532, L1); <strong>Mittal et al. 2024</strong> (MNRAS 527, 8497) — absence of a self-bound record in the latter</td>
+</tr>
+<tr>
+<td>The v0.1.0 products match the published MD5 checksums and byte counts; <strong>Mittal's exact input bytes are NOT byte-verified</strong> — "strongly supported same release," not "verified identical"</td>
+<td><strong>This note's own check</strong>: v0.1.0 catalogues and selection maps downloaded and compared against the checksums and byte counts published with DOI 10.5281/zenodo.8060755</td>
+</tr>
+<tr>
+<td>Selection-function fork; Mittal <code>λᵢ·sᵢ</code>, <code>1/sᵢ</code>; Singal verbatim omission quotes</td>
+<td><strong>Mittal et al. 2024</strong> (likelihood construction); <strong>Singal 2024</strong> (quoted verbatim)</td>
+</tr>
+<tr>
+<td>Coupled masking+selection; unstated O(1) mask correction; different estimands (Bayesian model comparison vs direct count dipole)</td>
+<td><strong>This note's own reading</strong> of both papers (§3) — analysis, not citation</td>
+</tr>
+<tr>
+<td>Singal cuts (<code>mG&lt;20.5/20.0/20&lt;mG&lt;20.5</code>; <code>|b|&gt;30/35/40</code>); Mittal <code>Nside=64</code>, <code>|b|&lt;40°</code>+<code>30∗</code></td>
+<td><strong>Singal 2024</strong>; <strong>Mittal et al. 2024</strong> (stated in the papers)</td>
+</tr>
+<tr>
+<td>Kinematic-null constructions <strong>differ</strong>: Singal closed-form <code>[2+x(1+α)]</code>, <code>x=1.3, α≈2.4</code>→≈6.4, <code>v≈370</code>; Mittal forward Doppler-boost of actual counts, per-source <code>αᵢ</code>, <code>v=369.82</code></td>
+<td><strong>Mittal et al. 2024</strong>; <strong>Singal 2024</strong></td>
+</tr>
+<tr>
+<td>Corrected Mittal expected amplitudes <code>D̄≈0.0048/0.0043</code> (published spectral-index correction; original <code>0.0080/0.0068</code> superseded; Singal uses the uncorrected input)</td>
+<td><strong>Mittal et al. 2024, current version</strong> (the correction is published there)</td>
+</tr>
+<tr>
+<td>Controlled re-derivation <strong>not available from the published record as-is</strong>; a reconstruction effort needs verified recoverable artifacts or recorded replacement conventions</td>
+<td><strong>This note's own analysis</strong> (§4), from what both published packages omit: analysis code, exact mask memberships, the exact O(1) correction implementation</td>
+</tr>
+</tbody>
+</table>
+
+<div class="meta">Source: <code>LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md</code><br>
+SHA-256 <code>a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b</code> · 11,473 bytes · converted with <code>pandoc -f markdown-smart+lists_without_preceding_blankline-blank_before_blockquote</code>.<br>
+Verified before publishing: narrative emphasis 61/61 identical set; provenance table 9/9 rows exact per-cell;
+0 smart-quote substitutions; 14/14 list items; blockquote intact; 0 literal markers. Independent
+verification by Tori pending.</div></body></html>

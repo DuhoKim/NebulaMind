@@ -1,0 +1,183 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass11-review-v1-20260808T073740K",
+  "created_at": "2026-08-08T07:37:40+09:00",
+  "scope": "isolated worker-Yui pass-11 fresh JPEG 4:2:0 recompression encoded-frame audit, packet-specific q60 guard, and sealed-v8/pass-7-proof custody",
+  "supersedes": {
+    "path": "qa/pass10_review_snapshot_v1.json",
+    "sha256": "9539d6ec4364eef14f2a4ff6566a8779d6f3dfa22cc315958c46f919baef46ab",
+    "snapshot_id": "spin-worker-yui-pass10-review-v1-20260808T070805K"
+  },
+  "supersession_reason": "Pass 11 adds fresh exact midpoint decoding, deterministic Pillow JPEG q85/q60/q35/q20 4:2:0 recompression/decode evidence, and a cumulative packet-specific q60 acceptance floor without changing v8 or the pass-7 proof.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS11_ENCODED_FRAME_AUDIT.md",
+      "sha256": "477a43bbbdfac8e42d8e4fe69baa56ea102d777d70530def1c3dc43a59b1890b"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS11.json",
+      "sha256": "3b3ba4d889bf736730a8bf7f30c79ed4810b1ef464c81ff3954352c0490dd36b"
+    },
+    {
+      "path": "RECOMPRESSION_RESILIENCE_GUARD_PASS11.json",
+      "sha256": "876d6969e1f60ed1acdef44d5be29ef8316900542f045598b679a4229c4859d0"
+    },
+    {
+      "path": "qa/pass11_recompression_audit/extract_recompression_frames.py",
+      "sha256": "ad099cdf12b8d5f531b01f03a67cf2a0c763a5a12237c7f419cb3719642794c5"
+    },
+    {
+      "path": "qa/pass11_recompression_audit/extraction_receipt.json",
+      "sha256": "78f8616bca4365dfb25e733444b01b8cb57d329bddf8fa6247fbefd462d717ea"
+    },
+    {
+      "path": "qa/build_pass11_v8_recompression.py",
+      "sha256": "f80efdd6473ed6f332b3bc15491b54befcfa7165eb2328d21df8475525184402"
+    },
+    {
+      "path": "qa/pass11_v8_recompression/receipt.json",
+      "sha256": "ddd37746c2587fad44e26d791d031ebffc7f1544ea291a7ca7a1a561d94e45c9"
+    },
+    {
+      "path": "qa/audit_pass11_recompression.py",
+      "sha256": "bdf212dd1258ad92941c34455aaa81ff42b70314da5aef0030d377bd64e082d9"
+    },
+    {
+      "path": "qa/pass11_recompression_quantitative_audit.json",
+      "sha256": "d83c6d93c0a0d4e06d6f9531ce01c2d3de28abb8c3d4aac073f8215a2ff62684"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+      "sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f"
+    },
+    {
+      "path": "REDUNDANT_ENCODING_GUARD_PASS8.json",
+      "sha256": "597b591da0f32325d8b764df23b7a5c9a088c666bac433a2ccd2e9a7b31d53da"
+    },
+    {
+      "path": "TITLE_SAFE_STORYBOARD_CORRECTION_PASS9.json",
+      "sha256": "7ef8c7e4f8a16b26b9b833cc19a9f5b5424e8afbb3d866892be8b1d869e92a11"
+    },
+    {
+      "path": "AMBIENT_CONTRAST_GUARD_PASS10.json",
+      "sha256": "e97a98b3b889ee68249c97f75eb8616713f98888b5432b84a3ff8d37adf338d0"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass11_encoded_evidence": {
+    "scene_count": 16,
+    "variant_count": 5,
+    "frame_count": 80,
+    "variants": ["clean", "jpeg_q85_420", "jpeg_q60_420", "jpeg_q35_420", "jpeg_q20_420"],
+    "fresh_cut_detection": "15/15_EXACT_PASS10_TIMESTAMPS",
+    "clean_midpoint_reproduction": "16/16_PASS10_CLEAN_BYTE_IDENTICAL",
+    "contact_sheet_sha256": {
+      "clean": "04e52ee1f9fbe1e60a68d79ff844dfb25403380e76dff6bcda6a6119eb75204e",
+      "jpeg_q85_420": "11b8fd2decc147ee9ca969833d94e187f680bad38fcf33abb28e35451fb0a252",
+      "jpeg_q60_420": "ceb70d9476f0404fdc6904417f3e18f8852217eedcab7e714e4a63772f6c85ab",
+      "jpeg_q35_420": "0d827578c3aca671f1a5a4ebaeada126f2e31de417613e031249cd9b4de519f1",
+      "jpeg_q20_420": "83deb573867ceee8a77919287a1d13905d8439b220fbca14b84d5bf49c450f7a"
+    },
+    "operational_q60_420": {
+      "mean_encoded_jpeg_bytes": 91712,
+      "headline_token_recall": 0.99569,
+      "full_token_recall": 0.970333,
+      "lower_support_token_recall": 0.976472,
+      "numeric_token_recall": 0.958996,
+      "mean_rgb_psnr_db": 38.545696,
+      "mean_tolerant_luma_edge_recall": 0.993255,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_q60_420": {
+      "scenes": [7, 9, 10, 11, 16],
+      "headline_token_recall": 1.0,
+      "full_token_recall": 0.942037,
+      "lower_support_token_recall": 0.946331,
+      "numeric_token_recall": 0.882119,
+      "structural_gate_scene_count": 0
+    },
+    "severe_q20_characterization": {
+      "headline_token_recall": 0.99569,
+      "full_token_recall": 0.954311,
+      "critical_full_token_recall": 0.892398,
+      "mean_rgb_psnr_db": 33.716193,
+      "mean_tolerant_luma_edge_recall": 0.989097,
+      "structural_gate_scene_count": 0
+    }
+  },
+  "pass11_method_only_evidence": {
+    "derived_frame_count": 70,
+    "operational_variant": "jpeg_q60_420",
+    "sealed_v8": {
+      "full_token_recall": 0.973906,
+      "headline_token_recall": 0.979692,
+      "lower_support_token_recall": 1.0,
+      "numeric_token_recall": 1.0,
+      "mean_rgb_psnr_db": 33.368965,
+      "mean_tolerant_luma_edge_recall": 1.0,
+      "result_held_text_visual": "7/7",
+      "large_status_boundaries_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe": {
+      "full_token_recall": 0.964362,
+      "headline_token_recall": 0.982814,
+      "lower_support_token_recall": 0.954545,
+      "numeric_token_recall": 1.0,
+      "scene_specific_gate_lines_visual_and_ocr": "7/7",
+      "result_held_text_visual": "7/7"
+    },
+    "severe_q20": {
+      "sealed_v8_full_token_recall": 0.963908,
+      "sealed_v8_result_held_text_visual": "7/7",
+      "pass7_full_token_recall": 0.955538,
+      "pass7_scene_specific_gate_lines_visual_and_ocr": "7/7",
+      "pass7_result_held_text_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "contact_sheet_sha256": {
+      "sealed_v8_clean": "bfebc1dcb04b6569f20bac45b56ff4a3eb3292b1749f2e9ec494c6cc6eec1597",
+      "sealed_v8_q85": "c86fe481067594f0c2f8f3129a5385956d80fcd9564904abaeafbe98e1d03a78",
+      "sealed_v8_q60": "5c72222846441a7771a48ee343894d81e602a9c57df3700d70b3ce87aa0b9ebb",
+      "sealed_v8_q35": "51f64dff6c65b207d878383c934153924331218e673e87d179148d6c5f8d695d",
+      "sealed_v8_q20": "74c39c938b030f6c9d958068f1492000b6859d585dcd66d8dc8bcfcfeb701e68",
+      "pass7_clean": "8a90e01ced6f4687c3b111c819a88787540fc5d7d99fa53e7721fb7c3703b28c",
+      "pass7_q85": "3e4e2cd094cb16eb97be44f1cfe30b30c4da951f99bfbc4d0e511e071a1dd9b0",
+      "pass7_q60": "06cbc522bb32c076f4aa9c92c1decbe65a31c1a41b9cad1fa580cdd0eb592871",
+      "pass7_q35": "6433703e262503c6331444ed4c85993758f96d760e939e6e905f4626d5b35291",
+      "pass7_q20": "98598beb3ae789d8a8294f59390bd8150d9d6e3d0837ae22e7bce7b8ab7c5081"
+    }
+  },
+  "representation_guard": "OPERATIONAL_PILLOW_JPEG_Q60_420__7_OF_7_COMPLETE_RESULT_HELD_AND_SCENE_SPECIFIC_GATES__NO_FINE_DETAIL_ONLY_SCIENCE_BOUNDARY",
+  "new_pixel_change_requested": false,
+  "worker_pixel_change_performed": false,
+  "sealed_v8_modified": false,
+  "pass7_proof_modified": false,
+  "v9_created": false,
+  "science_blockers": "UNCHANGED__NO_VALID_POST_RUN_A3_8_REVIEW__FRAME_UNSTATED",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

@@ -1,0 +1,16 @@
+{
+  "method": "Pillow RGB absolute difference between adjacent 1920x1080 v3 states; changed fraction counts pixels with any post-conversion difference above 8 intensity levels",
+  "state_count": 8,
+  "minimum_changed_fraction_gate": 0.005,
+  "adjacent_pairs": [
+    {"from":"S01_question_preview.png","to":"S02_required_vs_inferred.png","mean_absolute_channel_delta":4.3732,"fraction_pixels_changed_gt8":0.131229},
+    {"from":"S02_required_vs_inferred.png","to":"S03_delta_definition.png","mean_absolute_channel_delta":5.3597,"fraction_pixels_changed_gt8":0.131153},
+    {"from":"S03_delta_definition.png","to":"S04_closure_crossing.png","mean_absolute_channel_delta":3.2222,"fraction_pixels_changed_gt8":0.025250},
+    {"from":"S04_closure_crossing.png","to":"S05_keyed_probabilities.png","mean_absolute_channel_delta":3.1743,"fraction_pixels_changed_gt8":0.022530},
+    {"from":"S05_keyed_probabilities.png","to":"S06_no_tail_scenario.png","mean_absolute_channel_delta":4.5191,"fraction_pixels_changed_gt8":0.079225},
+    {"from":"S06_no_tail_scenario.png","to":"S07_model_boundary.png","mean_absolute_channel_delta":6.2314,"fraction_pixels_changed_gt8":0.129078},
+    {"from":"S07_model_boundary.png","to":"S08_summary.png","mean_absolute_channel_delta":5.4269,"fraction_pixels_changed_gt8":0.117354}
+  ],
+  "all_adjacent_states_unique": true,
+  "interpretation": "This proves visible state changes, not temporal motion quality or semantic correctness. Full-resolution semantic review remains separate."
+}

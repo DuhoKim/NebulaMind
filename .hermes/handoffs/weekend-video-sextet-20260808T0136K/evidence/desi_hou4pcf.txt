@@ -1,0 +1,1354 @@
+                                               Parity-odd Four-Point Correlation Function from DESI Data Release 1 Luminous Red Galaxy
+                                                                                        Sample
+                                                      J. Hou1,2,3,4 ∗ , R. N. Cahn5 , J. Aguilar5 , S. Ahlen6 , D. Bianchi7,8 , D. Brooks9 , T. Claybaugh5 , P. Doel9 ,
+                                                   J. E. Forero-Romero11,12 , E. Gaztañaga13,14,15 , L. Le Guillou23 , G. Gutierrez16 , C. Howlett17 , D. Huterer18,19 ,
+                                                  M. Ishak20 , R. Joyce21 , A. Kremin5 , O. Lahav9 , C. Lamman22 , M. Landriau5 , A. de la Macorra10 , R. Miquel24,25 ,
+                                                      S. Nadathur14 , G. Niz26,27 , W. J. Percival28,29,30 , F. Prada31 , I. Pérez-Ràfols32 , G. Rossi33 , E. Sanchez34 ,
+                                                    D. Schlegel5 , M. Schubnell18,19 , H. Seo35 , J. Silber5 , D. Sprayberry21 , G. Tarlé19 , B. A. Weaver21 , H. Zou36
+                                                                1 Faculty of Physics, Ludwig-Maximilians-Universität, Scheinerstr. 1, 81679 Munich, Germany
+                                                                  2 Institute of Astronomy, University of Cambridge, Madingley Rd, Cambridge CB3 0HA, UK
+                                                                     3 Kavli Institute for Cosmology Cambridge, Madingley Road, Cambridge CB3 0HA, UK
+                                                       4 Max-Planck-Institut für Extraterrestrische Physik, Postfach 1312, Giessenbachstrasse, 85748 Garching, Germany
+                                                                   5 Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, USA
+
+
+
+
+arXiv:2512.20132v2 [astro-ph.CO] 6 Jun 2026
+                                                               6 Department of Physics, Boston University, 590 Commonwealth Avenue, Boston, MA 02215 USA
+                                                      7 Dipartimento di Fisica “Aldo Pontremoli”, Università degli Studi di Milano, Via Celoria 16, I-20133 Milano, Italy
+                                                                        8 INAF-Osservatorio Astronomico di Brera, Via Brera 28, 20122 Milano, Italy
+                                                           9 Department of Physics & Astronomy, University College London, Gower Street, London, WC1E 6BT, UK
+                                                                               10 Instituto de Física, Universidad Nacional Autónoma de México,
+                                                                    Circuito de la Investigación Científica, Ciudad Universitaria, Cd. de México C. P. 04510, México
+                                                                                               11 Departamento de Física, Universidad de los Andes,
+                                                                                       Cra. 1 No. 18A-10, Edificio Ip, CP 111711, Bogotá, Colombia
+                                                                                              12 Observatorio Astronómico, Universidad de los Andes,
+                                                                                        Cra. 1 No. 18A-10, Edificio H, CP 111711 Bogotá, Colombia
+                                                                                  13 Institut d’Estudis Espacials de Catalunya (IEEC), c/ Esteve Terradas 1,
+                                                                                          Edifici RDIT, Campus PMT-UPC, 08860 Castelldefels, Spain
+                                                      14 Institute of Cosmology and Gravitation, University of Portsmouth, Dennis Sciama Building, Portsmouth, PO1 3FX, UK
+                                                                                              15 Institute of Space Sciences, ICE-CSIC, Campus UAB,
+                                                                                       Carrer de Can Magrans s/n, 08913 Bellaterra, Barcelona, Spain
+                                                                              16 Fermi National Accelerator Laboratory, PO Box 500, Batavia, IL 60510, USA
+                                                                     17 School of Mathematics and Physics, University of Queensland, Brisbane, QLD 4072, Australia
+                                                                    18 Department of Physics, University of Michigan, 450 Church Street, Ann Arbor, MI 48109, USA
+                                                                                  19 University of Michigan, 500 S. State Street, Ann Arbor, MI 48109, USA
+                                                           20 Department of Physics, The University of Texas at Dallas, 800 W. Campbell Rd., Richardson, TX 75080, USA
+                                                                                         21 NSF NOIRLab, 950 N. Cherry Ave., Tucson, AZ 85719, USA
+                                                                                             22 The Ohio State University, Columbus, 43210 OH, USA
+                                                 23 Sorbonne Université, CNRS/IN2P3, Laboratoire de Physique Nucléaire et de Hautes Energies (LPNHE), FR-75005 Paris, France
+                                                            24 Institució Catalana de Recerca i Estudis Avançats, Passeig de Lluís Companys, 23, 08010 Barcelona, Spain
+                                                                     25 Institut de Física d’Altes Energies (IFAE), The Barcelona Institute of Science and Technology,
+                                                                                         Edifici Cn, Campus UAB, 08193, Bellaterra (Barcelona), Spain
+                                                                                 26 Departamento de Física, DCI-Campus León, Universidad de Guanajuato,
+                                                                                         Loma del Bosque 103, León, Guanajuato C. P. 37150, México
+                                              27 Instituto Avanzado de Cosmología A. C., San Marcos 11 - Atenas 202. Magdalena Contreras. Ciudad de México C. P. 10720, México
+                                                                                        28 Department of Physics and Astronomy, University of Waterloo,
+                                                                                              200 University Ave W, Waterloo, ON N2L 3G1, Canada
+                                                                 29 Perimeter Institute for Theoretical Physics, 31 Caroline St. North, Waterloo, ON N2L 2Y5, Canada
+                                                                                            30 Waterloo Centre for Astrophysics, University of Waterloo,
+                                                                                              200 University Ave W, Waterloo, ON N2L 3G1, Canada
+                                                                31 Instituto de Astrofísica de Andalucía (CSIC), Glorieta de la Astronomía, s/n, E-18008 Granada, Spain
+                                                       32 Departament de Física, EEBE, Universitat Politècnica de Catalunya, c/Eduard Maristany 10, 08930 Barcelona, Spain
+                                                                                           33 Department of Physics and Astronomy, Sejong University,
+                                                                                       209 Neungdong-ro, Gwangjin-gu, Seoul 05006, Republic of Korea
+                                                                                          34 CIEMAT, Avenida Complutense 40, E-28040 Madrid, Spain
+                                                                                              35 Department of Physics & Astronomy, Ohio University,
+                                                                                               139 University Terrace, Athens, OH 45701, USA and
+                                                                                    36 National Astronomical Observatories, Chinese Academy of Sciences,
+                                                                                      A20 Datun Road, Chaoyang District, Beĳing, 100101, P. R. China∗
+
+                                                           The parity-odd four-point function provides a unique probe of fundamental symmetries and potential new
+                                                         physics in the large-scale structure of the Universe. We present measurements of the parity-odd four-point
+                                                         function using the DESI DR1 LRG sample and assess its detection significance. Our analysis considers both
+                                                         auto- and cross-correlations, using two complementary approaches to the covariance: (i) the full analytic
+                                                         covariance matrix applied to the uncompressed data vector, and (ii) a compressed data vector combined with
+                                                                                                                                       2
+
+              a hybrid covariance matrix constructed from simulations and analytic estimates. When using the full analytic
+              covariance matrix without corrections, we observe apparent auto-correlation signals with significance up to
+              4𝜎. However, this excess is also consistent with a mismatch between the statistical fluctuations estimated from
+              the simulations and those present in the real data. Our findings therefore suggest that the parity-odd signal in
+              the current DESI DR1 LRG sample is consistent with zero. We note, however, that the low completeness of
+              this sample may have a non-negligible impact on the detection sensitivity. Future data releases with improved
+              completeness will be crucial for further investigation.
+
+
+                     I.   INTRODUCTION                                  the Luminous Red Galaxy (LRG) sample from the Dark En-
+                                                                        ergy Spectroscopic Instrument (DESI) survey [22–28]. In our
+   Parity violation on cosmological scales offers a unique win-         companion paper [29], we analyzed the parity-even 4PCF us-
+dow into fundamental physics, with the potential to reveal new          ing these data and here we will present the measurement for
+aspects of inflationary dynamics, the properties of dark energy         the parity-odd component. The DESI DR1 sample, with an
+and dark matter, and the mechanisms underlying the matter-              average completeness of only about 50%, is notably more sus-
+antimatter asymmetry in the universe. In recent years, various          ceptible to observational systematics, particularly the effects
+observational tests have been applied to cosmological data to           of fiber assignment, the procedure of assigning target galaxies
+search for signatures of parity violation [1–7]. These efforts          to the observation sequence, which inevitably leads to incom-
+motivate developments of theoretical models, data analysis              pleteness, especially during the early stage of the experiment.
+methods, and cosmological observables.                                  That the signal-to-noise ratio associated with the parity-odd
+   For scalar fields, the lowest-order correlation function that is     4PCF further is likely to be very small complicates the anal-
+sensitive to parity violation is the four-point correlation func-       ysis. Additionally, the limited volume of currently available
+tion (4PCF) in position space, or its Fourier-space counterpart,        𝑁-body simulations introduces challenges in estimating the
+the trispectrum. Under the assumption of statistical isotropy,          covariance matrix and increases the impact of sample vari-
+two-point correlation functions depend only on the separation           ance.
+between points and are therefore necessarily parity-even. For              Here, we build upon the methods introduced in [2] by imple-
+three-point functions, while it is possible to construct triple         menting further calibration and correction for both the mocks
+products of vectors, homogeneity and translational symmetry             and the data. We conduct a range of tests to quantify the detec-
+require the wave vector to be coplanar, which causes such terms         tion significance and consistently find results consistent with
+to vanish. Despite this, it is possible to construct lower-order        zero. Unlike [30], we do not observe any significant discrepan-
+parity-sensitive statistics by forming composite fields from            cies among the different methods used to assess the detection
+scalar quantities [8–11], or by considering correlators of cos-         significance. We find that neglecting the relevant calibrations
+mological observables that are intrinsically higher-rank tensors        and corrections can lead to biased results.
+in nature [12, 13]. From this perspective, different cosmolog-             The paper is structured as follows: in §II we provide an
+ical probes and parity-sensitive statistics offer complementary         overview of the DESI DR1, the LRG sample, the simulations,
+insights, as they can be sensitive to distinct parity-violating         and the evaluation of systematics, particularly those arising
+mechanisms and probe different physical regimes.                        from sample incompleteness in the first-year data of the five-
+   Ref.[14] proposed using the four-point correlation function          year survey program. In §III we discuss the methodology used
+(4PCF) of galaxy clustering as a probe of parity violation              in this paper. In §IV we discuss the detection significance for
+on cosmological scales. Subsequent analyses [2, 3] reported             the DR1 result. Finally, we conclude in §V. In the appendix,
+intriguing hints of potential parity-violating signals. How-            we present a series of robustness tests, as well as normalization
+ever, as discussed in [2], a key challenge remains the accu-            definitions, and the correlation in the mocks.
+rate estimation of the underlying statistical fluctuations, which       ∫ Our Fourier transform convention         ∫        is 𝑓˜(k)    =
+can manifest as discrepancies between the observed data and                𝑑 3 𝑥 𝑒 −𝑖k·x 𝑓 (x) and 𝑓 (x) =          k
+                                                                                                                      𝑒 𝑖k·x 𝑓˜(k), where
+                                                                        ∫      ∫
+mock catalogs [15]. This challenge is a combination of the               k
+                                                                           ≡ 𝑑 3 k/(2𝜋) 3 .
+likely low-signal-noise of the parity violation signal, the high
+dimensionality of the data vector, and the choice of model-
+independent search.                                                             II.   DESI DR1 LRG SAMPLE AND THE 4PCF
+   Efforts to address these challenges have taken several direc-                              MEASUREMENT
+tions, including reducing the dimensionality of the data vector
+with new estimators [9, 11], incorporating theoretical insights                       A.   Brief Overview of the LRG Sample
+from specific parity-violating models or templates [16–18],
+and developing simulations that enable forward modeling and                The DESI LRG sample is selected from two steps, including
+enable simulation-based studies [19–21].                                an imaging stage for target selection and a spectroscopic stage
+   In this work, we take a data-driven approach and focus on            for redshift measurement [31–34]. For the imaging selection,
+                                                                        most details can be found in [35] and in our companion pa-
+                                                                        per [29]. In the spectroscopic stage, each target is assigned
+                                                                        a fiber that directs its light to one of the DESI spectrographs.
+∗ Email: jiamin.hou@ast.cam.ac.uk
+                                                                        The fiberassign algorithm allocates fibers to targets listed in
+                                                                                                                                                                            3
+
+the merged-target-ledger (MTL) file [36]. Fiber assignment in-              arguments by [38]
+troduces two limitations: each fiber covers only a small patrol                                                                                                       
+                                                                                                                    ∑︁                               ℓ1 ℓ2 ℓ3
+area, so dense regions may contain more targets than available                                                                      ℓ1 +ℓ2 +ℓ3
+                                                                                Pℓ1 ℓ2 ℓ3 (𝑟ˆ1 , 𝑟ˆ2 , 𝑟ˆ3 ) =               (−1)
+fibers, and closely spaced targets cannot both be observed due                                                                                       𝑚1 𝑚2 𝑚3
+                                                                                                                 𝑚1 𝑚2 𝑚3
+to “fiber collisions”. Because of the high density of targets,
+                                                                                                                  × 𝑌ℓ1 𝑚1 (𝑟ˆ1 )𝑌ℓ2 𝑚2 (𝑟ˆ2 )𝑌ℓ3 𝑚3 (𝑟ˆ3 ),               (2)
+only about 20% objects in the focal plane can be obtained in
+each exposure. These effects cause incompleteness early in the              where 𝑟ˆ1 , 𝑟ˆ2 , and 𝑟ˆ3 are unit vectors in the directions of r1 , r2 ,
+survey, which is reduced as multiple passes over the surveyed               and r3 . The isotropic functions are complete and orthonormal:
+region accumulate over the five-year program.                               ⟨PΛ′ |PΛ ⟩ = 𝛿Λ    k , with 𝛿 k
+                                                                                                ′Λ         Λ′ Λ being the Kronecker delta and the
+   The completeness, the distribution of the number density                 collection of angular momenta Λ ≡ ∫{ℓ1 , ℓ2 , ℓ3 }. Here the
+𝑛(𝑧), and the fiber assignment effect motivate the sample                   angular differential is normalized so 𝑑 𝑟ˆ = 4𝜋. The four-
+selection in this paper. For the analysis in this paper, we                 point correlation function can be factorized into a radially
+use the default clustering catalog covering the redshift range              dependent part and an angle-dependent part:
+0.4 < 𝑧 < 1.1. To account for variations in completeness
+and redshift evolution, we further divide the LRG sample into                                         ∑︁
+three subregions. In the NGC, we focus on areas with higher                   𝜁 (r1 , r2 , r3 ) =               𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ) Pℓ1 ℓ2 ℓ3 (𝑟ˆ1 , 𝑟ˆ2 , 𝑟ˆ3 ). (3)
+completeness and define two subregions: NGC-1, with an-                                              ℓ1 ℓ2 ℓ3
+gular cuts in right ascension (RA) and declination (DEC) of
+                                                                            Since the angular basis functions are constructed from prod-
+110 < RA < 260, −10 < DEC < 8, and a redshift range of
+                                                                            ucts of spherical harmonics and possess interchange symmetry
+0.4 < 𝑧 < 0.8; and NGC-2, defined by 180 < RA < 260,
+                                                                            among their arguments, the basis is overcomplete if all per-
+30 < DEC < 40, with the same redshift limits. For the SGC,
+                                                                            mutations are included. To avoid this overcompleteness, we
+we define a single subregion, SGC-3, applying only the red-
+                                                                            impose an ordering convention and restrict to configurations
+shift cut 0.4 < 𝑧 < 0.8, as completeness is relatively uniform
+                                                                            satisfying 𝑟 1 < 𝑟 2 < 𝑟 3 . The ordering convention uniquely
+in comparison to the NGC, and this choice preserves statistical
+                                                                            defines the correspondence between each angular momentum
+constraining power. Fig. 1 shows the DESI survey footprint,
+                                                                            index ℓ𝑖 and and its associated radial bin 𝑟 𝑖 .
+with colors indicating the number of tiles as a proxy of relative
+                                                                               Thus 𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ) is defined only for 𝑟 1 < 𝑟 2 < 𝑟 3 . It
+completeness. The geometric selections, galaxy counts, and
+                                                                            follows that
+corresponding volumes for all regions are listed in Table I [37].
+                                                                                       𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ) =                                                      (4)
+                                                                                       ∫
+                                                                                            𝑑 𝑟ˆ1 𝑑 𝑟ˆ2 𝑑 𝑟ˆ3 𝜁 (r1 , r2 , r3 ) Pℓ∗1 ℓ2 ℓ3 (𝑟ˆ1 , 𝑟ˆ2 , 𝑟ˆ3 ),
+    B.   Measurement of the Parity-Odd 4-Point Correlation
+                          Functions
+                                                                            where ℓ𝑖 , for 𝑖 = 1, 2, 3 are the “angular momenta” associated
+                                                                            with the three direction vectors r𝑖 , and star denotes a complex
+   The parity-odd scalar observables incorporate a pseu-                    conjugate. The sum ℓ1 + ℓ2 + ℓ3 determines the parity of the
+doscalar, which is essential to isolating the parity information.           component: if the sum is even, its parity is even, and similarly
+Spherical harmonics are the natural choice when analyzing                   for the odd sum. The parity-even isotropic functions are purely
+the angular dependence of the four-point function, as they                  real and the parity-odd ones are purely imaginary.
+provide a particularly suitable basis for such decompositions.                 Since the real survey has non-trivial geometry, we further
+Given the cosmological principle, which asserts the statisti-               need to correct for the geometry using a random catalog. To do
+cal isotropy of the universe, it is advantageous to decompose               so, we use a generalized extended Landy-Szalay estimator [39,
+physical quantities into a basis that has rotational symmetry.              40]. The survey geometry also leads to mixing among different
+Each set of spherical harmonics spans a (2ℓ + 1)-dimensional                angular modes of 𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ). Further details about the
+vector space, and the tensor product of multiple such spaces                survey geometry correction can be found in [29].
+can be decomposed into a direct sum of irreducible repre-                      We apply this harmonic-based estimator to measure the
+sentations characterized by total angular momentum 𝐿, with                  4PCF from the DESI DR1 LRG sample [41]. For each
+|ℓ𝑖 − ℓ 𝑗 | ≤ 𝐿 ≤ ℓ𝑖 + ℓ 𝑗 . Of particular interest is the singlet          galaxy, we apply default weights following [29, 35], which
+state (𝐿 = 0), which is rotationally invariant. Moreover, each              include the completeness weight, systematic weights, and red-
+spherical harmonic transforms under parity operation as                     shift failure weights. For fiber-assignment incompleteness,
+                                                                            we use the fiducial DESI DR1 completeness scheme, namely
+                     P̂[𝑌ℓ𝑚 ] → (−1) ℓ 𝑌ℓ𝑚 ,                         (1)    𝑤 comp = 1/ 𝑓TLID for the data and an 𝑓tile correction applied to
+                                                                            the random catalog. Fig. 2 and Fig. 3 show the measurement of
+                                                                            the parity-odd 4PCF coefficients 𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ) using DESI-
+which naturally separates the parity-even and odd information.              DR1 LRG sample in the NGC and SGC, respectively. We use
+  In practice, we are interested in the coefficient of the four-            radial scales between 20 ℎ −1 Mpc < 𝑟 < 160 ℎ −1 Mpc, divided
+point correlation function, which has six degrees of freedom                into ten bins. The top two panels show the 4PCF coeffi-
+with three angular momenta and three radial variables.                      cients 𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ), weighted by the product of 𝑟 1 𝑟 2 𝑟 3 , as
+  We define the isotropic functions Pℓ1 ℓ2 ℓ3 (𝑟ˆ1 , 𝑟ˆ2 , 𝑟ˆ3 ) of three   a function of tetrahedron index. Points with error bars are
+                                                                                                                                               4
+
+
+
+
+FIG. 1: Footprint of DESI-DR1 LRG. The color map shows the number of targets sharing the same unique identifier, which
+combines the tile ID and fiber location. This quantity is closely correlated with the sample completeness: higher values of
+NTILE indicate higher completeness. For this paper, we specifically studied two regions, the NGC1 and NGC2 , which have the
+highest numbers of targets sharing the same identifier (also see Table I).
+
+TABLE I: Statistics for the full DR1 LRG sample and subsamples under different geometric selections. Here we include the
+number of galaxies 𝑁g , the number density 𝑛¯ g , and fiducial volume 𝑉fid . The number density and fiducial volume are obtained
+from fitting the analytic covariance matrix to the EZmocks. The effective volume 𝑉eff is computed from the trace of the product
+of the inverse of the analytic covariance corresponding to the full NGC and the covariance for the sky patch of interest (c.f. §III).
+The difference between 𝑉fid and 𝑉eff arises from variations in number density. The effective volume for Abacus 𝑉eff abcs , in the
+
+presence of the volume replication effect, is derived from the ratio between the analytic covariance and the Abacus-FFA.
+
+ Region                 Selection              𝑁gal        𝑛¯ g [ℎ −1 Mpc] −3   𝑉fid [ℎ −1 Gpc] 3     𝑉eff [ℎ −1 Gpc] 3    abcs [ℎ −1 Gpc] 3
+                                                                                                                          𝑉eff
+ Full-NGC             0.4 < 𝑧 < 1.1         1,476,135         2.0 × 10 −4             3.24                  3.24                2.76
+
+                    110 < RA < 260,
+    NGC-1           −10 < DEC < 8,           434,054          3.1 × 10 −4             0.64                  1.13                0.97
+                    0.4 < 𝑧 < 0.8
+
+                    180 < RA < 260,
+    NGC-2           30 < DEC < 40,           119,034          2.7 × 10 −4             0.14                  0.22                0.20
+                    0.4 < 𝑧 < 0.8
+ Full-SGC             0.4 < 𝑧 < 1.1          662,492          1.3 × 10 −4             1.91                  0.96                0.88
+
+    SGC-3             0.4 < 𝑧 < 0.8          398,089          1.6 × 10 −4             0.82                  0.59                0.54
+
+
+the measurement from the data; the black curves with shaded                                  C.     Simulations for DR1
+gray regions indicate the 1𝜎 standard deviation from the Aba-
+cus simulations with altMTL fiber assignment scheme (see
+§II C). The simulations and fiber assignment schemes are de-               Two types of simulations are used for DESI DR1: a suite
+scribed below. The bottom panel shows the arrangement of                of 1000 fast simulations, EZmock, which employs approxi-
+the three radial bins. The radial bin index can be expressed            mate methods for nonlinear gravitational evolution and galaxy
+as 𝑖 = 𝑖1 (𝑛 − 𝑖2 + 1) + (𝑖2 − 1), with 𝑖1 and 𝑖 2 being the first      bias [42, 43]; and a suite of 25 𝑁-body simulations, Aba-
+and second bin indices, and 𝑛 being the total number of radial          cus [44, 45], in which galaxies are populated via a halo occu-
+bins.                                                                   pation distribution model that describes the galaxy–halo con-
+                                                                        nection [46]. The EZmock simulations have a box size of
+                                                                        𝐿 box = 6 ℎ −1 Gpc, which is large enough to be directly post-
+                                                                        processed to match the DESI DR1 geometry. In contrast, the
+                                                                        Abacus mocks have a smaller box size of 𝐿 box = 2 ℎ −1 Gpc,
+                                                                                                                                                                                                                    5
+
+                      ×102                                                                      ×102                                                               ×102
+                                                        Abacus-altMTL
+                  4                                     DESI-DR1, NGC                       2                                                                  4
+
+
+     r1r2r3 111                                                                r1r2r3 122                                                         r1r2r3 133
+                  2                                                                                                                                            2
+                                                                                            0
+                  0                                                                                                                                            0
+                  2                                                                         2
+                                                                                                                                                               2
+                  4 ×102                                                                    4 ×102                                                             4 ×10
+                                                                                                                                                                        2
+
+                  4 0        20     40        60    80         100   120                    4 0        20     40        60    80   100   120                      0         20     40        60    80   100   120
+                                                                                                                                                               2
+                  2                                                                         2
+
+     r1r2r3 144                                                                r1r2r3 212                                                         r1r2r3 221
+                                                                                                                                                               0
+                  0                                                                         0
+                                                                                                                                                               2
+                  2                                                                         2
+                  4                                                                         4                                                                  4
+
+                       0     20     40        60    80         100   120                         0     20     40        60    80   100   120                        0       20     40        60    80   100   120
+           100                                                                       100                                                                100
+ r                                                                          r                                                                  r
+                  0                           r1          r2         r3                     0                                                                  0
+                       0      25         50        75          100    125                        0      25         50        75    100   125                        0        25         50        75    100   125
+                                  Radial Bin Index                                                          Radial Bin Index                                                     Radial Bin Index
+FIG. 2: Measurement of the parity-odd 4PCFs using the DESI-DR1 LRG sample in NGC. The top two panels show a subset of
+the angular channels (ℓ1 , ℓ2 , ℓ3 ) for the coefficients of the connected 4PCF, weighted by 𝑟 1 𝑟 2 𝑟 3 . Points with error bars (red) are
+the measurement from the data; the black curves with shaded gray regions indicate the 1𝜎 standard deviation from the Abacus
+simulations with altMTL fiber assignment scheme. The bottom panel shows the arrangement of the three radial bins.
+
+                      ×102                                                                      ×102                                                        7.5
+                                                                                                                                                                   ×102
+                                                        Abacus-altMTL
+                  5                                     DESI-DR1, SGC                                                                                       5.0
+                                                                                            5
+
+     r1r2r3 111                                                                r1r2r3 122                                                      r1r2r3 133
+                                                                                                                                                            2.5
+                  0                                                                                                                                         0.0
+                                                                                            0
+                                                                                                                                                            2.5
+                  5
+                                                                                            5 ×103                                                          5.0
+                      ×102                                                                                                                                         ×102
+                       0     20     40        60    80         100   120                         0     20     40        60    80   100   120                        0       20     40        60    80   100   120
+               5.0                                                                       0.5                                                                   5
+
+
+  r1r2r3 144                                                                r1r2r3 212                                                            r1r2r3 221
+               2.5
+                                                                                         0.0                                                                   0
+               0.0
+               2.5                                                                       0.5
+                                                                                                                                                               5
+               5.0
+                                                                                         1.0
+                       0     20     40        60    80         100   120                         0     20     40        60    80   100   120                        0       20     40        60    80   100   120
+           100                                                                       100                                                                100
+ r                                                                          r                                                                  r
+                  0                           r1          r2         r3                     0                                                                  0
+                       0      25         50        75          100    125                        0      25         50        75    100   125                        0        25         50        75    100   125
+                                  Radial Bin Index                                                          Radial Bin Index                                                     Radial Bin Index
+FIG. 3: Simlar to Fig. 2, this figure shows the measurement of the parity-odd 4PCFs using the DESI-DR1 LRG sample in SGC.
+The top two panels show a subset of the angular channels (ℓ1 , ℓ2 , ℓ3 ) for the coefficients of the connected 4PCF, weighted by
+𝑟 1 𝑟 2 𝑟 3 . Points with error bars (blue) are the measurement from the data; the black curves with shaded gray regions indicate the
+1𝜎 standard deviation from the Abacus simulations with altMTL fiber assignment scheme. The bottom panel shows the
+arrangement of the three radial bins.
+
+
+which is insufficient to cover the entire DESI DR1 LRG vol-                                                             vey procedure, since they are generated by running the DESI
+ume. To compensate, the Abacus boxes are tiled to fill the                                                              fiberassign code [36] on tiles in the same ordering and ca-
+survey footprint. However, this tiling does not introduce new                                                           dence as the data, including the feedback loop to the target
+independent modes, resulting in an overestimation of the cos-                                                           list. The “fast fiber assignment” (FFA) mocks emulate the
+mic variance. We later refer this to as the volume effect.                                                              fiber assignment process, which necessarily results in incom-
+                                                                                                                        pleteness, by repeatedly sampling from the average targeting
+   Both EZmock and Abacus simulations are post-processed                                                                probability of galaxies. This probability is learned from the
+into three variants that differ in their fiber-assignment imple-                                                        data as a function of the number of overlapping tiles and the
+mentation. The “complete” mocks represent the parent sam-                                                               local angular clustering. We later refer this to as the fiber
+ple, i.e. all galaxies that could have been targeted [47]. The                                                          assignment effect.
+“alternative MTL” (altMTL) mocks are the closest to the sur-
+                                                                                                                                          6
+
+TABLE II: A brief overview of the available simulations. For              A.   Defining Auto-correlation and Cross-correlation
+Abacus, both fiber assignment schemes are available, while
+EZmock is only implemented with FFA. In addition, Abacus              The conventional way to proceed is to map the 4PCF to the
+is subject to the volume replication effect and requires            scalar quantity 𝜒2 , what we refer to as the auto-correlation test
+additional volume correction, whereas EZmock uses a
+sufficiently large simulation box and does not require such a                                  𝜒2 = 𝜁ˆ𝑖 Ĉ𝑖−1 ˆ𝑗
+                                                                                                            𝑗 𝜁 ,                       (5)
+correction.
+                                                                    where Ĉ is an estimate of the true covariance matrix. It can
+                             Fiber             Volume               be either derived from simulation or analytic calculation (c.f.
+   Mock       𝑁sim
+                             Assign           Replication           §IV A). 𝜁ˆ is the measured 4PCF from the data, which po-
+  Abacus       25        FFA & altMTL             Yes               tentially has the underlying parity-violating signal, 𝜁pv . The
+                                                                    components of the data vector, 𝜁ℓ1 ℓ2 ℓ3 (𝑟 1 , 𝑟 2 , 𝑟 3 ), are labeled
+  EZmock     1000             FFA                 No                𝜁 𝑖 . Throughout the paper, we use ˆ to denote an estimated
+                                                                    or measured quantity that includes statistical fluctuations, in
+                                                                    contrast to a deterministic term such as a hypothesized signal.
+                                                                         The signal-sensitive Type-I cross-statistic 𝜒×2 is an average
+   Both the volume effect and the fiber assignment effect are       over N× pairs, follows [15] and was also used in [29]:
+crucial for obtaining a reliable detection significance, and re-                                1 ∑︁ ˆ 𝜇,𝑖 −1 ˆ𝜈, 𝑗
+quire additional calibration when computing both the auto-                             𝜒×2 =          𝜁 Ĉ𝑖 𝑗 𝜁 ,                       (6)
+correlation and cross-correlation statistics. We will return to                                N× 𝜇<𝜈
+the details of these calibrations when presenting our results in
+§IV. In Table II we provide a brief summary of the mocks.           where 𝜇 and 𝜈 indicate patches, that is subregions, of the sky
+                                                                    with the normalization factor
+
+                                                                                          N× ≡ 𝑁 𝑝 (𝑁 𝑝 − 1)/2,                         (7)
+
+                                                                    with 𝑁 𝑝 being the number of patches. The normalization
+             III.    ANALYSIS METHODOLOGY                           is given by the combinatorial factor. We expect the Type-I
+                                                                    cross-statistic to have contributions only from signal: the noise
+                                                                    should be uncorrelated between spatially separated patches,
+Motivation To quantify the parity-odd signal, we apply the          whereas the signal is common to all patches [48].
+null hypothesis by assuming the signal is absent from the data,        In addition, we also consider the noise-sensitive Type-II
+then measure the test statistics from the data to determine to      cross-statistic [15], where the potential common signal is re-
+what extent we can reject this null hypothesis.                     moved by taking the difference of two patches
+   As previously discussed in [2], this test is highly sensitive                        1 ∑︁ ˆ 𝜇 ˆ𝜈 𝑖 −1 ˆ 𝜇 ˆ𝜈 𝑗
+to the covariance estimation for two related reasons. For a                    𝜒Δ2 =          ( 𝜁 − 𝜁 ) Ĉ𝑖 𝑗 ( 𝜁 − 𝜁 ) ,               (8)
+𝜒2 statistic, the contributions are quadratic and that both co-                        NΔ 𝜇<𝜈
+variance underestimation and coherent systematic biases can
+add to the total 𝜒2 . Their impact can accumulate across a          with NΔ being the normalization factor, which is defined such
+high-dimensional data vector. Moreover, since we make no            that the expectation value of the Type-II cross statistics equals
+assumptions about the configuration dependence of the sig-          the number of degrees of freedom [15, 29],
+nal, we may include redundant or un-informative degrees of                                                  ∑︁ 𝑉eff
+freedom but increase the dimensionality of the test statistic,                           NΔ ≡ (𝑁 𝑝 − 1)             𝜇 .                 (9)
+further amplifying the cumulative impact of small mismod-                                                    𝜇   𝑉eff
+elling. Moreover, the simulations used for DESI DR1 are not
+tuned to match higher-order clustering, which may cause them        with the effective volume being
+to underestimate nonlinear gravitational effects. This, in turn,                                     𝑉fid 𝑁dof
+can produce a data–simulation mismatch in the covariance,                                𝑉eff ≡      −1        ,                     (10)
+including in the parity-odd sector.                                                               Tr Cth Ĉmock
+
+   To mitigate these issues, we incorporate two additional tests.   where 𝑉fid is the fiducial volume of the survey, obtained by
+In the first approach, before computing 𝜒2 , we reduce the di-      fitting the analytic covariance to the EZmock. 𝑁dof is the
+mensionality of the 4PCF by selecting from among the 2760           number of degrees of freedom for the data vector. Cth is the
+eigenvectors of the analytic covariance matrix those with the       analytic covariance [49]. For each patch, we define the ef-
+lowest noise, that is, with the lowest eigenvalues. In the sec-
+                                                                                         𝜇                  −1 Ĉ 𝜇
+                                                                    fective volume as 𝑉eff ≡ 𝑉fid 𝑁dof /Tr Cth
+                                                                                                                               𝜇
+                                                                                                                      , with Ĉmock
+                                                                                                                 mock
+ond approach, following [15], we perform two types of cross-        being the covariance for the patch 𝜇. If the analytic covari-
+correlation tests, hereafter referred to as Type-I and Type-II,     ance accurately approximates the mock covariance Ĉmock , then
+which isolate the deterministic and stochastic components of        𝑉eff ≈ 𝑉fid . However, differences in number density between
+the measured statistics, respectively.                              patches can lead to deviations.
+                                                                                                                                           7
+
+       B.    Statistical Properties of the Correlation Tests           systematics, or from a mismatch between data and mocks at
+                                                                       the noise level. These contributions map onto the two types of
+   Since our goal is to perform a null-hypothesis test, we focus       cross-correlations, which allow us to isolate the signal and the
+on comparing the data with the distribution obtained from the          noise-level data–mock mismatch.
+mocks. When an analytic prediction for the mocks’ distribution            Under the assumption that the different sky patches are
+is available, we also compare the data against this theoretical        statistically independent,
+                                                                                          D       Ethe expectation value of the signal-
+expectation. To enable these comparisons, we compute the                                    2
+                                                                       sensitive statistic 𝜒×,data is
+mean and variance of the relevant statistics. Below, we briefly
+review the main results as previously derived in [2, 15].                   D
+                                                                                 2
+                                                                                        E
+   We assume that the observed parity-odd 4PCF is composed                      𝜒×,data
+of the following terms                                                          1 ∑︁ D                           E
+                                                                        =                   𝜁ˆ 𝜇,𝑖 Ĉ𝑖−1 ˆ𝜈, 𝑗
+                                                                                                       𝑗 𝜁                               (16)
+                         𝜁ˆ = 𝜁pv + 𝜁ˆs + ˆ𝜖,                  (11)         N× 𝜇<𝜈
+                                                                               (                                                       )
+                                                                                                   1 ∑︁  𝜇,𝑖 𝜈, 𝑗                   
+where 𝜁pv represents the parity-violating signal, and 𝜖ˆ corre-             Ĉ𝑖−1     𝑖    𝑗                       𝜇,𝑖 𝜈, 𝑗 𝜇,𝑖 𝜈, 𝑗
+                                                                        =            𝜁pv 𝜁pv +           𝜁 𝜁 + 𝜁s 𝜁pv + 𝜁s 𝜁s            .
+sponds to statistical fluctuations arising from cosmic variance.                𝑗
+                                                                                                  N× 𝜇<𝜈 pv s
+𝜁ˆs accounts for systematic effects. Thus the covariance due to
+cosmic variance is given by 𝜖ˆ𝑖 𝜖ˆ 𝑗 . While in [2], we discussed      Here we presume that the parity-violating signal is identical
+various scenarios and concluded most systematics do not con-           across different sky regions, while allowing the systematics in
+taminate parity-odd 4PCF at the signal level, there could still        the 𝜇-th and 𝜈-th patches to differ in general [50]. Compared
+be residual systematics. Moreover, the stochastic component            to the derivation in [15], the additional systematics-induced
+of the systematics does not necessarily vanish. The expectation        term can potentially contaminate the cross-statistic. Notably,
+                    2
+value of the data 𝜒data  thus reads                                    the cross-correlation between the signal and the systematics,
+                                                                       or between the systematics in different subregions, may lead
+                D               E                                      to a negative correlation.
+    2
+   𝜒data    =   𝜁ˆ𝑖 Ĉ𝑖−1
+                        𝑗
+                            ˆ
+                            𝜁 𝑗
+                                                           (12)
+                                                                          The expectation value of the signal-sensitive statistic for
+                                            
+                                                                       mocks reads
+            = Ĉ𝑖−1       𝑖    𝑗  𝑖 𝑗    𝑖 𝑗
+                                                   −1     
+                  𝑗 𝜁pv 𝜁pv + 2𝜁s 𝜁pv + 𝜁s 𝜁s + Tr Ĉ Cdata ,
+
+
+where Ĉ𝑖−1
+                    𝑗  −1 𝑖      𝑗
+          𝑗 𝜁s 𝜁pv = Ĉ𝑖 𝑗 𝜁pv 𝜁s , given that the covariance matrix
+             𝑖                                                              D             E       1 ∑︁ D ˆ 𝜇,𝑖 −1 ˆ𝜈, 𝑗 E
+                                                                                 2
+                                                                                𝜒×,mock       =            𝜁 Ĉ𝑖 𝑗 𝜁                   (17)
+is symmetric C𝑖 𝑗 = C 𝑗𝑖 . The data covariance Cdata represents                                 N× 𝜇<𝜈
+the fluctuations arising from cosmic variance and statistical                                         (                            )
+noise. While a parity-violating signal could in principle con-                                    −1     1 ∑︁ 𝜇,𝑖 𝜈, 𝑗    𝜇,𝑖 𝜈, 𝑗
+                                                                                              = Ĉ𝑖 𝑗         𝜁 𝜁 + 𝜖ˆ 𝜖ˆ            .
+tribute to the data covariance, it is not expected to appear at                                         N× 𝜇<𝜈 s s
+leading order when the parity-odd signal has low signal-to-
+noise ratio.                                                           The Type-I cross-correlation can in principle be non-zero in
+   The mocks do not have parity violation and the 𝜁pv -related         presence of systematics, but as we will show later we did not
+terms drop:                                                            find clear evidence of contributions from systematics due to
+                          D               E                            fiber assignment at the signal level. By contrast, the second
+              2
+            𝜒mock    = 𝜁ˆ𝑖 Ĉ𝑖−1  𝑗  𝜁ˆ 𝑗
+                                                               (13)    term arises from correlations in the the cosmic variance 𝜖
+                                                                     across different sky patches in mocks. In typical situations,
+                     = Ĉ𝑖−1                     −1
+                                    𝑖 𝑗
+                                                        
+                             𝑗 𝜁s 𝜁s + Tr Ĉ Cmock .                   the cosmic variance across patches is uncorrelated and one
+                                                                       does not expect this term, i.e. 𝜖ˆ 𝜇,𝑖 𝜖ˆ𝜈, 𝑗 = 0 for 𝜇 ≠ 𝜈. While
+The difference between the 𝜒2 from the data and the mocks is           it is generally reasonable to assume statistical independence
+given by                                                               between different sky patches in the data, this assumption does
+      𝜒2              2
+                − 𝜒mock                                       (14)     not always hold for the mocks. In such cases, both types of
+    D data                    E D                           E          cross-correlation tests may be affected, as we will demonstrate
+            ( Ĉ−1 )𝑖 𝑗 𝜁ˆdata − 𝜁ˆmock  ( Ĉ−1 )𝑖 𝑗 𝜁ˆmock
+        𝑖                  𝑗       𝑖                   𝑗
+  = 𝜁ˆdata                                                             in §IV.
+                                               −1                      Comparing the difference between 𝜒×2 for data and mocks,
+  ≡ Ĉ𝑖−1     𝑖   𝑗          𝑖 𝑗    𝑖𝑗                          
+        𝑗 𝜁pv 𝜁pv + 2𝜁s 𝜁pv + Δss + Tr Ĉ (Cdata − Cmock ) ,           we arrive at the following:
+                                                                                    D         E D         E
+with the residual difference in cross-correlation products be-                         2
+                                                                                      𝜒×,data      2
+                                                                                               − 𝜒×,mock
+                                 𝑖𝑗
+tween data and mock catalogs Δab defined as
+                                                                                    ≡ Ĉ𝑖−1  𝑖             𝑗         𝑖𝑗
+                                                                                          𝑗 𝜁pv,data 𝜁pv,data + Δ̃ss
+              𝑖𝑗             data, 𝑗             mock, 𝑗
+             Δss ≡ 𝜁sdata,𝑖 𝜁s       − 𝜁smock,𝑖 𝜁s       .     (15)                                                                  !
+From Eq. (14), the difference between 𝜒2 evaluated on data                                 1 ∑︁  𝜇,𝑖     𝜈, 𝑗      𝜇,𝑖     𝜈, 𝑗
+                                                                                                                                   
+                                                                                        +        𝜁      𝜁       + 𝜁 𝑠,data 𝜁pv,data ,    (18)
+and on the mocks can arise from a parity-violating signal, from                           N× 𝜇<𝜈 pv,data 𝑠,data
+                                                                                                                                             8
+
+where the difference between the mean in the data and mocks            which quantifies the mismatch between the statistical fluctua-
+of the deterministic-component-sensitive cross-correlation in-         tion of the data and mocks, as well as the potential contribution
+dicates the parity-violating signal. We have defined the patch-        due to the systematics.
+wise residual difference in cross-correlation products between            As discussed above, the auto correlation is sensitive to data-
+                           𝑖𝑗
+data and mock catalogs Δ̃ss by                                         mock covariance mismatch. To isolate the potential parity-
+                                                                       violating signal from the auto correlation, we introduce a cor-
+         𝑖𝑗    1 ∑︁ data, 𝜇 data,𝜈      mock, 𝜇 mock,𝜈                                            2
+                                                                       rected auto correlation 𝜒data,c by subtracting the data-mock
+       Δ̃ss ≡          𝜁      𝜁s     − 𝜁s      𝜁s      .   (19)
+              N× 𝜇<𝜈 s                                                                         2
+                                                                       covariance mismatch 𝜒Δ0 introduced in Eq. (20) from the auto
+                                                                                                       2
+                                                                       correlation for the 𝜇-th patch 𝜒data,𝜇 . The corrected auto cor-
+When different sky patches share the identical systematics,
+Eq. (18) reduces to the first term of Eq. (14). However, with          relation reads
+position-dependent systematics, auto- and cross-statistics will                             𝑁𝑝                                          
+                                                                                            ∑︁
+yield different results, since auto-correlation statistics compute             2
+                                                                              𝜒data,c   ≡         2
+                                                                                                 𝜒data,𝜇 − 𝑁 𝑝 𝜒Δ2 0 ,data − 𝜒Δ2 0 ,mock
+the 4PCF with systematics applied globally across the entire                                𝜇
+survey volume, whereas cross-statistics compute the 4PCF                                    𝑁𝑝
+with systematics applied separately to each individual patch                                ∑︁                         2N× 2
+                                                                                                 2            2
+                                                                                        =      𝜒data,𝜇 − 𝑁 𝑝 𝜒Δ,data +       𝜒     (23)
+before combining results. Finally, the expectation value of the
+                                                                                            𝜇
+                                                                                                                         NΔ ×,data
+noise-sensitive statistic is given as                                                           D        E 2N D              E
+                                                                                                   2            ×     2
+                                                                                              − 𝜒Δ,mock    −         𝜒×,mock    ,
+                                                                                                              NΔ
+                 1 ∑︁ D ˆ 𝜇 ˆ𝜈  𝑖 −1 ˆ 𝜇 ˆ𝜈  𝑗 E
+        𝜒Δ2   =          𝜁 −𝜁        Ĉ𝑖 𝑗 𝜁 − 𝜁
+                NΔ 𝜇<𝜈                                                 where the auto-correlation in the first term can be a summed
+                                                                       contribution from 𝑁 𝑝 sky patches. Accordingly, when sub-
+                 1 −1 ∑︁ ˆ 𝜇,𝑖 ˆ 𝜇, 𝑗                                  tracting the data–mock covariance mismatch, we also account
+              =     Ĉ       𝜁 𝜁        + 𝜁ˆ𝜈,𝑖 𝜁ˆ𝜈, 𝑗
+                NΔ 𝑖 𝑗 𝜇<𝜈                                             for this 𝑁 𝑝 prefactor.
+                                                                         In the following §IV, we will perform analyses using both
+                         − 𝜁ˆ 𝜇,𝑖 𝜁ˆ𝜈, 𝑗 + 𝜁ˆ𝜈,𝑖 𝜁ˆ 𝜇, 𝑗
+                D E 2N                                                 auto correlation 𝜒2 and two types of cross correlation 𝜒×2 and
+              = 𝜒Δ2 0 −
+                           ×
+                              𝜒×2 ,                             (20)   𝜒Δ2 . Since the auto-correlation can be sensitive to data–mock
+                        NΔ                                             covariance mismatch, the cross-correlations provide a com-
+                                                                       plementary diagnostic: 𝜒×2 isolates deterministic contribu-
+where first term 𝜒Δ2 0 captures the covariance mismatch between        tions such as a parity signal, whereas 𝜒Δ2 isolates stochastic
+the data and the mocks with the expectation value given by             components such as noise, allowing us to disentangle their
+          D E
+                           (                                           contributions to the overall significance.
+                        1              ∑︁ 
+                                           Tr Ĉ−1 C 𝜇
+              2
+                                                       
+            𝜒Δ0 =            (𝑁 𝑝 − 1)
+                       NΔ               𝜇
+                                                  )                                                IV.    RESULTS
+                          ∑︁
+                                  𝜇𝜈,𝑖 −1   𝜇𝜈, 𝑗
+                        +     Δ𝜁 𝑠 Ĉ𝑖 𝑗 Δ𝜁 𝑠       ,       (21)
+                         𝜇<𝜈                                              In this section, we present the detection significance based
+                                                                       on the full auto-correlation statistic 𝜒2 , as defined in Eq. (5)
+where C 𝜇 is the covariance for the 𝜇-th subpatch. We keep             as well as the two types of cross correlations. We first present
+the potential difference in the systematics-induced bias across        results based on the analytic covariance for all three statistics,
+                           𝜇𝜈,𝑖       𝜇,𝑖
+different patches Δ𝜁s           ≡ 𝜁s − 𝜁s𝜈,𝑖 [51]. We typically        then repeat the analysis with the hybrid covariance. With
+do not expect the second term in Eq. (20) involving 𝜒×2 to             the analytic covariance, we additionally test sensitivity to sky
+contribute under the null hypothesis. For the mocks, in the            dependence. With the hybrid covariance, we assess scale
+absence of parity-violating signals and assuming that different        dependence.
+sky patches are statistically independent, the expected Type-I            Unless otherwise stated, as a default choice, we consider 23
+cross-correlation is zero. For the data, if we adopt the prior that    combinations of ℓ1 , ℓ2 , and ℓ3 , and 120 combinations of 𝑟 1 , 𝑟 2 ,
+the signal should be positively correlated and that systematics        and 𝑟 3 , yielding a data vector of dimensionality 2760.
+are negligible, the Type-I cross-correlation should be non-
+negative within the statistical uncertainty.
+   The difference in the pure data-mock between 𝜒Δ2 0 in statis-                             A.    Analytic Covariance
+tical fluctuation is given as follows:
+        D            E D            E                                    The analytic covariance used in this paper is computed fol-
+          𝜒Δ2 0 ,data − 𝜒Δ2 0 ,mock                                    lowing [49]. We fit the analytic covariance for the number
+         𝑁 𝑝 − 1 ∑︁  −1 𝜇                𝜇                           density and the volume for each sky patch to EZmock. A
+    =                   Tr Ĉ (Cdata − Cmock )                (22)     summary of the fitted fiducial volume 𝑉fid and effective num-
+           NΔ         𝜇                                                ber density 𝑛¯ 𝑔 can be found in Table I.
+                  ∑︁ h                                        i
+         +Ĉ𝑖−1
+                           𝜇𝜈,𝑖    𝜇𝜈, 𝑗       𝜇𝜈,𝑖 𝜇𝜈, 𝑗
+               𝑗        Δ𝜁 𝑠 Δ𝜁 𝑠         − Δ𝜁 𝑠 Δ𝜁 𝑠           ,
+              𝜇<𝜈
+                                   data                  mock          Auto-Correlation with Canalyt We start the discussion with the
+                                                                                                                                      9
+
+             ×10 3                                                   the 𝜒2 obtained with the altMTL fiber assignment needs to be
+                                                DESI, = 4.3          rescaled by 𝑅 to account for the difference in fluctuations be-
+          3.5                                   DESI, c = 1.2
+                                                                     tween the two fiber-assignment schemes. The ratio is around
+                                                Abacus-FFA
+          3.0                                   Abacus-altMTL        0.93 for NGC and 0.81 for SGC (see also Fig. 12 in Appendix
+                                                EZmock-FFA           C).
+          2.5                                    2 prediction
+                                                                        The volume effect applies only to the Abacus mocks. While
+    PDF   2.0                                                        the replication scheme allows covering the full DESI DR1
+          1.5                                                        geometry, it does not introduce new, independent 𝑘-modes, so
+                                                                     it leads to an overestimation of the fluctuations. We correct
+          1.0                                                        for this by rescaling with the ratio of the effective volume of
+          0.5                                                        the Abacus-FFA covariance to that of the analytic covariance
+                                                                     tuned to match the EZmock-FFA, 𝑉eff   abcs /𝑉 , where 𝑉 abcs and
+          0.0                                                                                                      eff         eff
+            5000 5250 5500 5750 6000 6250 6500 6750                  𝑉eff are given in Table I.
+                       2( odd(N + S| r = 0), Canalyt)                   For the data measurement, as discussed in §III, the auto-
+                                                                     correlation receives deterministic contributions from underly-
+FIG. 4: Distribution of the auto-correlation 𝜒2 for the              ing signals or systematics, as well as stochastic contributions
+parity-odd connected 4PCF, using the full DESI DR1 LRG               arising from mismatches in the statistical fluctuations between
+sample and combining the NGC and SGC, with each using                the data and the mocks. In particular, the latter could be mis-
+the corresponding covariance. The panel shows a comparison           interpreted as a genuine detection. Therefore, here we apply
+between simulations and data, as well as the detection               the correction derived from the cross statistic to correct for the
+significance of the parity-odd 4PCF using the analytic               auto correlation given in Eq. (23). The width of the shaded
+covariance matrix. We used the range                                 region around the dashed vertical line in Fig. 4 is derived
+20 ℎ −1 Mpc < 𝑟 < 160 ℎ −1 Mpc without additional radial cuts        from the EZmock. We compare the data to the Abacus-
+(Δ𝑟 = 0). The vertical lines indicate the statistics for the         altMTL Dmock to quantify
+                                                                                       E D the data-mock  E      covariance mismatch
+                                                                                 2              2
+                                                                     and set 𝜒×,mock = 𝜒×,abcs−altmtl . Here we also consider
+DESI data. The dashed line represents the correction derived
+from the cross-statistics in Eq. (23), with the uncertainty          the volume replication effect and absorb it into the normal-
+shown as the shaded region, estimated from the EZmock.                                             Í            𝜇,abcs
+                                                                     ization coefficient NΔ,abcs = 𝜇 𝑉eff /𝑉eff        (see Table I). If
+The filled colored histograms correspond to Abacus-FFA;              the mocks accurately described the intrinsic fluctuations in the
+the circled histogram corresponds to Abacus-altMTL; the              data, the second term in Eq. (23) vanishes. In the presence of
+hashed histogram corresponds to EZmock-FFA. The black                a data–mock covariance mismatch, we find that the inferred
+curves show the theoretical 𝜒2 distribution. Additionally, the       auto-correlation amplitude is reduced.
+distribution of the altMTL mocks and the data have been
+calibrated by multiplying by the ratios deriving from the fiber
+implementations in the FFA and altMTL mocks, whereas the             Cross Correlation Canalyt Fig. 5 shows the two types of cross
+Abacus mocks are rescaled for the volume effect.                     correlations for the DESI DR1 LRG sample between NGC and
+                                                                     SGC. Vertical line indicates the 𝜒×2 value obtained from the
+                                                                     DESI data and the histograms shows the distributions from the
+                                                                     mocks. In the left panel, the filled grey histograms correspond
+auto correlation tests. Fig. 4 presents 𝜒2 for the full DESI DR1     to the EZmock-FFA mocks, the filled purple histograms to the
+LRG sample, combining both the NGC and SGC regions. Here             Abacus-Complete mocks, and the hatched histogram to the
+we use the analytic covariance matrix tuned to EZmock with           Abacus-altMTL mocks.
+the range 20 ℎ −1 Mpc < 𝑟 < 160 ℎ −1 Mpc using ten equally              The theoretically predicted distribution of the signal-
+spaced radial bins. This range and spacing is used in all the        sensitive cross statistic is shown as the black curve, with a
+following analyses [52]. The histograms represent the distri-        zero center with the variance predicted as (for the derivation
+butions from the EZmock (hatched grey), Abacus-FFA (filled           see [15, 29]):
+purple), and Abacus-altMTL (circled purple). The solid ver-
+tical line shows the measurement from the DESI data. The
+dashed line represents the correction derived from the cross-                         2             1 ∑︁  −1 𝜇 −1 𝜈 
+                                                                                Var( 𝜒×,null ) =           Tr Ĉ C Ĉ C
+statistics in Eq. (23), with the uncertainty shown by the shaded                                   N×2 𝜇<𝜈
+region, estimated from the 1𝜎 deviation of the EZmock.                                                          2
+                                                                                                   𝑁dof ∑︁ 𝑉fid
+   For the mocks, there are two major effects to consider: the                                ≈              𝜇       ,             (24)
+fiber assignment effect and the volume effect. As we dis-                                          N×2 𝜇<𝜈 𝑉eff 𝑉eff
+                                                                                                                  𝜈
+
+cussed in §II C, the FFA fiber assignment scheme used in the
+                                                                            𝜇
+EZmock mocks tends to underestimate the covariance matrix.           with 𝑉eff being the effective volume for each patch, defined in
+To address this, we compute the ratio of the traces of the co-       Eq. (10). Here, we choose 𝑉fid to correspond to the patch with
+variance matrices from the Abacus mocks with two different           the larger volume between the 𝜇 and 𝜈 patches.
+fiber assignment schemes, and use
+                                  this ratio to correct the co-      In the left panel of Fig. 5, we show the Type-I cross correla-
+variance estimate, 𝑅 = Tr ĈFFA /Tr ĈaltMTL . Accordingly,          tion. The EZmock-FFA distribution is centered around zero,
+                                                                                                                                                                                            10
+
+                   ×10 3                                                       ×10 3
+             4.0                                    DESI, = 2.6                        Abacus-Complete                                 ×10 3
+                                                    EZmock-FFA             5           Abacus-altMTL                                                                    DESI
+             3.5                                                                                                                                                        Abacus-altMTL
+                                                                                        ×, prediction
+                                                                                        2
+                                                     ×, prediction
+                                                     2
+                                                                                                                                   4                                    Abacus-altMTL
+             3.0                                                           4                                                                                            (corrected)
+                                                                                                                                                                        EZmock-FFA
+             2.5                                                                                                                   3
+                                                                           3
+       PDF   2.0                                                     PDF                                                     PDF
+             1.5                                                           2                                                       2
+             1.0
+                                                                           1                                                       1
+             0.5
+             0.0                                                           0                                                       0
+                       400      200     0    200    400     600                    400       200     0    200   400    600         2500          3000       3500        4000        4500
+                           ×( odd(NGC × SGC| r = 0), Canalyt)                          ×( odd(NGC × SGC| r = 0), Canalyt)
+                           2                                                           2                                                       2( odd(NGC × SGC| r = 0), Canalyt)
+
+
+
+FIG. 5: Distribution of both types of cross-correlation statistics (𝜒×2 (left and middle) and 𝜒Δ2 (right)) for the parity-odd 4PCF
+between the NGC and SGC of the DESI DR1 LRG sample. This figure compares simulations with data using the analytic
+covariance matrix. For all the panels, the filled grey histograms are for the EZmock-FFA, the purple histograms are for the
+Abacus mocks, and the black solid or dashed curves denote the theoretical 𝜒×2 distribution, modeled as a Gaussian centered at
+zero with the width predicted by Eq. (24). Left: The Vertical line indicates the DESI data statistics, which is consistent with
+zero with a negative value. Middle: filled purple histograms correspond to the Abacus-Complete mocks, and the hatched
+histogram represents the Abacus-altMTL mocks. We find that the Abacus mocks do not center around zero due to the limited
+volume effect (for more discussion see below). Right: The Vertical line again indicates the DESI data statistics. The filled grey
+histograms correspond to the EZmock-FFA, while the purple histograms show the Abacus mocks. The dark hatched histogram
+is for Abacus-altMTL without applying correction. The light dashed histogram is for the corrected Abacus-altMTL using
+Eq. (20) given the shifted Abacus center in the Type-I cross correlation shown in the middle panel.
+
+
+with its width reasonably well described by the black theoret-                                           rable to the approximately 10% mismatch previously found in
+ical curve. The data are also consistent with zero, albeit with                                          the parity-even sector [29].
+a negative value.
+   The Abacus mocks exhibit a non-zero mean as shown in the                                              Sky Dependence As a further consistency check, we further
+middle panel of Fig. 5. This offset arises because the NGC and                                           show the Type-I cross statistics for the three patches: NGC-1,
+SGC patches are built from the same underlying density real-                                             NGC-2, and SGC-3 in Fig. 6. In each panel, the vertical lines
+ization and therefore not fully statistically independent. This                                          represent the statistic derived from the DESI data, while the
+is the scenario where we discussed in Eq. (17) that the correla-                                         filled grey histograms show the distribution obtained from the
+tion in the cosmic variance do not vanish, leading to a biased                                           EZmock-FFA simulations. The black curves correspond to
+contribution with non-zero expectation value of the Type-II                                              the theoretical prediction for the 𝜒×2 distribution, modeled as a
+correlation for the Abacus mocks. Although this correlation                                              Gaussian centered at zero with variance given by Eq. (24). For
+is visible in Fig. 5, it is small in practice: it is negligible in                                       different combination of sky patches, we also find that the data
+the parity-even sector, where the signal dominates, and only                                             to be consistent with zeros. While we do not show them here,
+yields a variance discrepancy in the noise-dominated parity-                                             we also find the correlation between the NGC and SGC for
+odd sector [29]. Finally, because the Complete and altMTL                                                the Abacus-altMTL mocks, in particular in the NGC1-SGC3
+samples share the same central value, the systematic contribu-                                           combination.
+tion in Eq. (17) is consistent with zero and cannot account for
+the offset.
+   The right panel of Fig. 5 shows the Type-II cross-correlation.                                                            B.        Hybrid Covariance
+The filled gray histogram is the EZmock-FFA baseline; the
+darker and lighter purple histograms are the Abacus-altMTL                                                  One potential source of contamination in detection signifi-
+results before and after correction, respectively. As noted                                              cance estimates is the mismatch in covariance between mocks
+above, the Abacus NGC and SGC are not statistically inde-                                                and data, an effect that can be amplified by the large dimen-
+pendent, and they lead to biases in the Type-II 𝜒Δ2 . To isolate                                         sionality of the data vector. In addition to performing cross-
+the data-mock covariance mismatch term 𝜒Δ2 0 in Eq. (20), we                                             correlation tests, an effective way to mitigate this issue is to
+subtract the total Type-II correlation by the Type-I correlation                                         reduce the size of the data vector. To this end, we use the
+for the Abacus-altMTL, with the normalization NΔ,abcs . This                                             analytic covariance matrix to define a compression scheme
+normalization absorbs the volume effect of the Abacus mocks                                              for the data vector. The analytic covariance matrix can be
+listed in Table I. Since the effective volume and the resulting                                          decomposed as
+NΔ are estimated from the EZmock, we apply an additional
+                                                                                                                                   Cth = 𝑈Λ𝑈 T ,                                           (25)
+2% normalization to the Abacus-altMTL [53].
+   We additionally note that the data–mock covariance mis-                                               with Λ being the diagonal matrix of eigenvalues with the diag-
+match in the parity-odd sector is approximately 16%, compa-                                              onal entries 𝜆𝑖 , and 𝑈 the orthogonal matrix of eigenvectors.
+                                                                                                                                                                                                                11
+
+             ×10 3                                                                  ×10 3                                                                  ×10 3
+                                                  DESI, = 0.7                                                                DESI, = 0.6                                                      DESI, = 0.3
+      3.0                                         EZmock-FFA                    5                                            EZmock-FFA
+                                                                                                                                                       4                                      EZmock-FFA
+                                                                                                                              ×, prediction
+                                                                                                                              2
+                                                   ×, prediction
+                                                   2                                                                                                                                           2 , prediction
+      2.5                                                                                                                                                                                      ×
+                                                                                4
+      2.0                                                                                                                                              3
+                                                                                3
+PDF   1.5                                                                 PDF                                                                 PDF
+                                                                                                                                                       2
+                                                                                2
+      1.0
+                                                                                1                                                                      1
+      0.5
+      0.0                                                                       0                                                                      0
+                400          200       0        200       400                       400          200         0       200          400                            200       0         200       400         600
+                    ×( odd(NGC1 × NGC2| r = 0), Canalyt)                                   ×( odd(NGC1 × SGC3| r = 0), Canalyt)                                  ×( odd(NGC2 × SGC3| r = 0), Canalyt)
+                    2                                                                      2                                                                     2
+
+
+FIG. 6: Distribution of the Type-I cross-correlation for the parity-odd 4PCF, using the full DESI DR1 LRG sample for three
+patches: NGC-1, NGC-2, and SGC-3, with the full analytic covariance matrix. Vertical lines indicate the DESI data statistics,
+and the filled grey histograms show the EZmock-FFA distribution. The black curves denote the theoretical 𝜒×2 distribution,
+modeled as a Gaussian centered at zero with the width predicted by Eq. (24).
+
+            ×10 2                  Neig = 50                                   ×10 2                   Neig = 100                                2.5 ×10
+                                                                                                                                                             2             Neig = 200
+      5                                         DESI, = 0.6
+                                                                         2.5                                             DESI, = 1.2                                                       DESI, = 0.9
+                                                DESI, c = 0.7                                                            DESI, c = 2.2                                                     DESI, c = 1.5
+      4                                         EZmock-FFA               2.0                                             EZmock-FFA              2.0                                       EZmock-FFA
+                                                Abacus-Complete                                                          Abacus-Complete                                                   Abacus-Complete
+                                                Abacus-altMTL                                                            Abacus-altMTL                                                     Abacus-altMTL
+      3                                          2 prediction            1.5                                              2 prediction           1.5                                        2 prediction
+
+PDF                                                                PDF                                                                     PDF
+      2                                                                  1.0                                                                     1.0
+
+      1                                                                  0.5                                                                     0.5
+
+      0                                                                  0.0                                                                     0.0
+               60       80     100      120     140      160                              150          200         250           300                   250 300 350 400 450 500 550 600
+                       2( odd(N + S| r = 0), Chybrid)                                           2( odd(N + S| r = 0), Chybrid)                                      2( odd(N + S| r = 0), Chybrid)
+
+
+FIG. 7: Distribution of the auto-correlation 𝜒2 statistic for the parity-odd 4PCF measured from the full DESI DR1 LRG sample,
+combining the NGC and SGC. Each sub-panel corresponds to a different number of eigenvalues used in the data compression:
+𝑁eig = 50, 100, 200. The analysis covers the range 20 ℎ −1 Mpc < 𝑟 < 160 ℎ −1 Mpc without additional radial cuts (Δ𝑟 = 0), with
+both the data vector and the corresponding EZmock-FFA-based covariance matrix compressed by selecting the eigenvectors
+associated with the lowest noise. The dashed line represents the correction derived from the cross-statistics in Eq. (23), with the
+uncertainty shown as the shaded region, estimated from the EZmock; filled purple histograms show the distribution from the
+Abacus-Complete mocks; circled histograms correspond to the Abacus-altMTL mocks; hatched histograms correspond to the
+EZmock-FFA mocks; and black curves present the theoretical predictions for a 𝜒2 distribution. All distributions are rescaled by
+the ratio of the fiber implementations in the FFA and altMTL, reducing the 𝜒2 values by 15%–20%. Overall, the DESI data are
+found to be consistent with zero signal.
+
+
+The 4PCF coefficients can be projected onto the eigenbasis of                                                    Auto-Correlation with Chybrid Fig. 7 shows the distribution
+the analytic covariance as                                                                                       of the auto-correlation 𝜒2 statistic for the parity-odd 4PCF,
+                                                                                                                 measured using the combined NGC and SGC from the full
+                                           𝜁˜ = 𝑈 T 𝜁,                                            (26)
+                                                                                                                 DESI DR1 LRG sample. Each panel here corresponds to a
+we then select the 𝑁eig components that have the lowest statis-                                                  different number of eigenvalues (𝑁eig = 50, 100, 200) used for
+tical noise 𝜆𝑖−1/2 .                                                                                             data compression. The analysis is performed over the range
+   This compression method enables us to construct a hybrid                                                      20 ℎ −1 Mpc < 𝑟 < 160 ℎ −1 Mpc. In each panel, the vertical
+covariance matrix by decomposing the 4PCFs measured from                                                         line marks the value obtained from the DESI data. The filled
+simulations into the eigenbasis of the analytic covariance ma-                                                   purple histograms depict the 𝜒2 distribution from the Abacus-
+trix. We select the top 𝑁eig eigenmodes with the lowest noise                                                    Complete mocks, while the hatched histograms show results
+and use the corresponding rotated data vectors 𝜁˜ to build a co-                                                 from the Abacus-altMTL mocks. The black curves indicate
+variance matrix in the compressed basis Ĉhybrid,𝑖 𝑗 = 𝜁˜𝑖 , 𝜁˜ 𝑗 .                                              the theoretical predictions for a 𝜒2 distribution.
+Using 1000 EZmock-FFA mocks, this procedure allows us to                                                            Since we applied the data compression scheme, the covari-
+generate hybrid covariance matrices with up to 200 degrees of                                                    ance matrix is primarily based on the EZmock-FFA realiza-
+freedom.                                                                                                         tions. As discussed in §C, the FFA fiber assignment implemen-
+                                                                                                                                                                                        12
+
+            ×10 2             Neig = 50                                   ×10 2             Neig = 100                                   ×10 2               Neig = 200
+      3.0                                   DESI, = 1.4             2.5                                   DESI, = 1.5                                                     DESI, = 2.0
+                                            Abacus-Complete                                               Abacus-Complete          1.6                                    Abacus-Complete
+      2.5                                   Abacus-altMTL                                                 Abacus-altMTL            1.4                                    Abacus-altMTL
+                                            EZmock-FFA              2.0                                   EZmock-FFA                                                      EZmock-FFA
+                                             ×, prediction
+                                             2
+                                                                                                           ×, prediction
+                                                                                                           2                       1.2                                     ×, prediction
+                                                                                                                                                                           2
+      2.0
+                                                                    1.5                                                            1.0
+PDF   1.5                                                     PDF                                                            PDF   0.8
+                                                                    1.0
+      1.0                                                                                                                          0.6
+                                                                    0.5                                                            0.4
+      0.5
+                                                                                                                                   0.2
+      0.0                                                           0.0                                                            0.0
+               40      20    0     20     40     60      80                       50       0        50       100       150                  100          0         100         200
+                    ×( odd(NGC × SGC| r = 0), Chybrid)                            ×( odd(NGC × SGC| r = 0), Chybrid)                             ×( odd(NGC × SGC| r = 0), Chybrid)
+                    2                                                             2                                                              2
+
+
+FIG. 8: Distribution of the cross-correlation 𝜒×2 statistic for the parity-odd 4PCF, measured from the full DESI DR1 LRG
+sample using the hybrid covariance, combining the NGC and SGC. Each sub-panel corresponds to a different number of
+eigenvalues used in the data compression: 𝑁eig = 50, 100, 200. Vertical lines indicate the value measured from the DESI data;
+filled grey histograms show the distribution from the Abacus-Complete mocks; circled histograms correspond to the
+Abacus-altMTL mocks. The black curves show the theoretical predictions for the cross statistic under the null hypothesis,
+assuming a Gaussian distribution centered at zero with a variance given by Eq. (24). Overall, we find the measurement to be
+consistent with zeros from the DR1 sample.
+
+
+tation leads to an underestimation of the covariance compared                                    correlation 𝜒Δ2 for the DESI DR1 LRG sample between NGC
+to the altMTL implementation. To account for this, we rescale                                    and SGC as shown in Fig. 9. As before, each plot here cor-
+all distributions by the ratio of the covariance estimates from                                  responds to the number of eigenvalues 𝑁eig = {50, 100, 200}.
+the FFA to the altMTL samples, which results in a 15%–20%                                        Both the data vector and the corresponding EZmock-FFA-
+reduction in the 𝜒2 values.                                                                      based covariance matrix are compressed accordingly. The
+   Additionally, we apply the Hartlap factor 𝑀 ≡ (𝑁m − 𝑁b −                                      vertical lines represent the statistics for the DESI data, the
+2)/(𝑁m − 1) to de-bias the inverse of the sample covariance,                                     filled gray histograms correspond to the Abacus-Complete
+following [54]. Overall, we find that the results from the DESI                                  mocks, the histogram marked with circles corresponds to the
+DR1 sample are all consistent with zero and agree with the                                       Abacus-altMTL mocks. Here, we also apply the fiber correc-
+expected data-mock covariance mismatch.                                                          tion factor and the correction factor found in the correlation in
+                                                                                                 the Abacus mocks (see Eq. 23).
+                                                                                                     After applying the correction to the Type-II cross statistics,
+Cross Correlation with Chybrid Fig.8 presents the distribution
+                                                                                                 the agreement between the data and the mocks improves, al-
+of the cross-correlation 𝜒×2 statistic for the parity-odd 4PCF,                                  though some residual discrepancy remains, especially as 𝑁eig
+measured from the combined NGC and SGC regions of the                                            increases. To account for this, we still to include this effect
+full DESI DR1 LRG sample using the hybrid covariance. Each                                       when computing the auto-correlation, as shown in Fig. 7.
+panel of the figure corresponds to a different number of eigen-
+values (𝑁eig = 50, 100, 200) used in the data compression. In
+each panel, the vertical line marks the 𝜒×2 value measured from                                  Scale Dependence Fig. 10 summarizes the detection signif-
+the DESI data. The filled grey histograms represent the distri-                                  icance of the Type-I cross-correlation in the DESI DR1 LRG
+bution obtained from the Abacus-Complete mocks, while the                                        sample. Colored error bars denote different combinations of
+circled histograms correspond to the Abacus-altMTL mocks.                                        sky regions, and each panel corresponds to a choice of the
+For reference, the black curves show the expected distribution                                   number of eigenmodes, 𝑁eig = {50, 100, 200}. We impose an
+of the cross statistic under the null hypothesis, assuming a                                     additional radial cut of Δ𝑟 = 14, ℎ −1 Mpc to enforce a min-
+Gaussian distribution centered at zero with variance given by                                    imum separation between radial bins, ensuring that galaxies
+Eq. (24).                                                                                        contributing to the measurement do not populate adjacent bins.
+   Compared to the case using the analytic covariance matrix,
+where the full dimensionality of the data vector is retained, the
+excess observed in the Abacus mocks is significantly reduced.                                                                       V.     SUMMARY
+This 10% effect only begins to appear when 𝑁eig = 200, at
+which point we also start to see a shift in the center of the Aba-                                  In this paper, we presented measurements of the parity-odd
+cus-altMTL mock distributions. These findings reinforce the                                      4PCF on the DESI DR1 LRG sample and quantified its detec-
+interpretation that the excess around the center of the Abacus                                   tion significance. We carried out analyses using both the full
+distribution in Fig. 5, obtained with the analytic covariance,                                   analytic covariance matrix with the uncompressed data vector,
+mainly arises from the cumulative effect of statistical noise per                                as well as a compressed data vector in combination with a hy-
+degree of freedom.                                                                               brid covariance matrix derived from both simulations and an-
+   To complete the analysis, we perform the Type-II cross-                                       alytic calculations. We found that, when using the full analytic
+                                                                                                                                                                                        13
+
+          ×10 2                  Neig = 50                                  ×10 2                Neig = 100                                ×10 2             Neig = 200
+      5                                       DESI                                                               DESI                                            DESI
+                                              Abacus-altMTL            4                                         Abacus-altMTL
+                                                                                                                                       2.00                      Abacus-altMTL
+      4                                       Abacus-altMTL                                                      Abacus-altMTL         1.75                      Abacus-altMTL
+                                              (corrected)                                                        (corrected)                                     (corrected)
+                                              EZmock-FFA               3                                         EZmock-FFA            1.50                      EZmock-FFA
+      3                                                                                                                                1.25
+PDF                                                              PDF   2                                                         PDF   1.00
+      2
+                                                                                                                                       0.75
+      1                                                                1                                                               0.50
+                                                                                                                                       0.25
+      0                                                                0                                                               0.00
+                  40        60         80         100    120               50     75     100 125 150 175 200 225                           100 150 200 250 300 350 400 450
+                   2( odd(NGC × SGC| r = 0), Chybrid)                                  2( odd(NGC × SGC| r = 0), Chybrid)                          2( odd(NGC × SGC| r = 0), Chybrid)
+
+
+FIG. 9: Distribution of the 𝜒Δ2 statistic for the parity-odd 4PCF, using the full DESI DR1 LRG sample, combining the NGC and
+SGC. Each plot corresponds to the number of eigenvalues 𝑁eig = {50, 100, 200}. Both the data vector and the corresponding
+EZmock-FFA-based covariance matrix are compressed accordingly. The vertical lines represent the statistics for the DESI data;
+the filled gray histograms correspond to the Abacus-Complete mocks. The histogram marked by circles corresponds to the
+Abacus-altMTL mocks.
+
+
+
+           100                   NGC-1 x NGC-2                 NGC-2 x SGC-3                              In addition, we tested various analysis setups, including
+                                 NGC-1 x SGC-3                 NGC-full x SGC-full                     scale dependence by imposing additional radial bin cuts, parti-
+                                                                                                       tioning the sky into different patches and testing various com-
+            50                                                                                         binations, and performing both auto- and cross-correlation
+                                                                                                       tests. In particular, the two cross statistics allow us to isolate
+ 2
+ ×            0                                                                                        the impact of general systematics by comparing the data to
+                                                                                                       the Abacus-complete mocks. We find that systematics have
+            50                                                                                         subdominant impact on the signal.
+                                                                                                          In the following, we highlight several additional points that
+           100                                                                                         are important for the interpretation of our results:
+                       50                          0
+                                                  10                             20 0                     (i). Several key factors play a role in the DESI DR1 sam-
+                  ig =                        ig =                              ig =                           ple in contrast to the SDSS BOSS sample [55]. The
+            Ne                               Ne                        Ne                                      BOSS sample achieved a completeness exceeding 90%,
+                                                                                                               the DR1 sample has an average completeness of only
+FIG. 10: Type-I cross correlation 𝜒×2 with hybrid covariance.                                                  about 50%. Combined with the low signal-to-noise ra-
+Here we apply additional radial cuts Δ𝑟 = 14 ℎ −1 Mpc to                                                       tio anticipated in the parity-odd 4PCF, this lower com-
+enforce a minimum separation between the radial bins.                                                          pleteness increases the sample’s susceptibility to fiber
+Different colored error bars denote the combination of sky                                                     assignment effects. Furthermore, the limited volume of
+regions, whereas the size of the errorbars are derived from                                                    the Abacus simulation presents additional challenges.
+the EZmock. They are grouped into different choices of                                                         Together, these factors make the calibration and correc-
+eigenvalues 𝑁eig = {50, 100, 200}.                                                                             tion of the mocks and covariance matrix particularly
+                                              .                                                                difficult but also essential.
+                                                                                                         (ii). In our analysis we observe a negative Type-I cross-
+covariance without corrections, the auto-correlation could ex-                                                 correlation. The value remains consistent with zero at
+hibit significance levels as high as 4𝜎. However, this apparent                                                the 3𝜎 level, indicating that it is compatible with statis-
+excess is reduced after correcting for the expected data-mock                                                  tical fluctuations. In addition to statistical uncertainty,
+covariance mismatch derived from the cross-correlations be-                                                    deterministic contributions from observational system-
+tween different sky patches. Overall, our results indicate that                                                atics may also play a role. While our tests suggest that
+the signal is consistent with zero.                                                                            fiber assignment is unlikely to be the dominant factor,
+                                                                                                               other residual effects, such as spatial variations in the
+   In our analysis, we identified two main effects: the volume                                                 number density across sky patches, cannot be excluded.
+effect and the fiber assignment effect. Moreover, the limited                                                  It will therefore be important to revisit this test in future
+volume of the Abacus mocks leads to additional artifacts in                                                    data releases as number-density uniformity and system-
+the cross-correlation calculations among different sky patches,                                                atic control improve.
+which ultimately require an extra correction to the significance
+derived from the auto-correlation test. As a result, in contrast                                        (iii). The cross-correlation test further assumes that the sig-
+to [30], we do not find any tension when comparing different                                                   nal is shared across different patches. If a large-scale
+analyses methods.                                                                                              modulation exists beyond the coherence length of the
+                                                                                                                                            14
+
+      sky patches considered in this work (> 500, ℎ −1 Mpc),        (CONAHCYT); the Ministry of Science, Innovation and Uni-
+      neither type of cross-correlation test necessarily applies.   versities of Spain (MICIU/AEI/10.13039/501100011033), and
+      In particular, the data–mock mismatch observed in the         by the DESI Member Institutions: https://www.desi.lbl.
+      Type-II statistic can arise from this large-scale modu-       gov/collaborating-institutions. Any opinions, find-
+      lation, and our analysis cannot rule out this scenario.       ings, and conclusions or recommendations expressed in this
+      However, verifying the impact of this large-scale mod-        material are those of the author(s) and do not necessarily re-
+      ulation requires rigorous testing, such as verifying that     flect the views of the U. S. National Science Foundation, the U.
+      the Type-II statistic is not contaminated by e.g. position-   S. Department of Energy, or any of the listed funding agencies.
+      dependent systematics.                                            The authors are honored to be permitted to conduct scien-
+                                                                    tific research on I’oligam Du’ag (Kitt Peak), a mountain with
+ (iv). Compared to [30], there are two main differences: the        particular significance to the Tohono O’odham Nation.
+       choice of radial binning and the inclusion of the Type-II
+       cross-correlation. Despite the different binning choices,
+       we find broadly consistent results for the uncorrected
+                                                                                        VI.    DATA AVAILABILITY
+       auto-correlation and the Type-I cross-correlation. How-
+       ever, [30] did not report the Type-II cross-correlation.
+       By contrast, in our analysis, including the Type-II cross      Data from the plots in this paper is available on Zenodo as
+       correlation alleviates the previously reported “tension”.    part of DESI’s Data Management Plan [58].
+
+   These insights may inform analyses of future DESI data
+releases, as well as other ongoing or upcoming galaxy surveys,       Appendix A: Spherical Harmonics, Helicity Basis, and Scalar
+such as Euclid [56] and Roman [57].                                                        Triple Product
+
+                                                                       The parity-odd scalar observables requires a pseudoscalar,
+                   ACKNOWLEDGMENTS                                  which is the essential quantity in isolating the parity informa-
+                                                                    tion. This quantity can be expressed in the harmonic space, but
+   We thank Drew Jamieson and Eiichiro Komatsu for insight-         very often, we also see it arises when performing the polariza-
+ful discussions. We thank DESI internal referees for their com-     tion decomposition. Here we make the connection explicitly
+ments on the manuscript as well as all the feedback we received     by expressing the scalar triple product in the harmonic basis.
+during the collaboration wide review. JH thanks Will Hand-             The four-point function of density field in 𝑘-space, the
+ley and his group for their continued support. JH thanks Jue        trispectrum, can be decomposed into a parity-odd part 𝑇+ and
+Fox for his office support. JH has received funding from the        a parity-odd part 𝑇− , where both 𝑇 (k) and 𝑇 (−k) are well
+European Union’s Horizon 2020 research and innovation pro-          defined
+gram under the Marie Skłodowska-Curie grant agreement No.
+101025187 and was funded by Deutsche Forschungsgemein-                    𝑇 (k1 , k2 , k3 ) = 𝑇+ (k1 , k2 , k3 ) + 𝑖 𝑇− (k1 , k2 , k3 ),   (A1)
+schaft (DFG) – Project number 554476934. We acknowledge
+the organizers and participants of Parity Violation from Home       where 𝑇+ and 𝑇− are real functions. Due to the translational
+2025 for helpful feedback. We acknowledge UFIT Research             symmetry and the momentum
+                                                                                           Í         conservation, the sum of the
+Computing for providing computational resources and support         four momenta is zero 4𝑖=1 k𝑖 = 0.
+that have contributed to the research results reported in this        A direct measurement of the four-point correlation function
+publication. The work of RNC was supported in part by the           does not inherently distinguish between parity-even and parity-
+Director, Office of Science, Office of High Energy Physics, of      odd contributions. To isolate parity-specific information, it is
+the U.S. Department of Energy under contract No. DE-AC02-           necessary to express the four-point function in a basis that
+05CH11231.                                                          explicitly separates the two components. In Fourier space, the
+   This material is based upon work supported by the U.S. De-       parity-odd part can be parametrized as
+partment of Energy (DOE), Office of Science, Office of High-
+Energy Physics, under Contract No. DE–AC02–05CH11231,               𝑇− (k1 , k2 , k3 ) = k1 · (k2 × k3 ) 𝜏− (𝑘 1 , 𝑘 2 , 𝑘 3 , 𝑘 4 , 𝐾, ˜
+                                                                                                                                       𝐾), (A2)
+and by the National Energy Research Scientific Computing
+Center, a DOE Office of Science User Facility under the same        with the scalar triple product k1 ·(k2 ×k3 ) being a pseudoscalar,
+contract. Additional support for DESI was provided by the           constructed from a polar vector and a pseudovector. 𝐾 =
+U.S. National Science Foundation (NSF), Division of Astro-          |k1 +k2 | and 𝐾˜ = |k1 +k3 | are two diagonals of the tetrahedra.𝜏−
+nomical Sciences under Contract No. AST-0950945 to the              is a parity-even function that in the most general case can have
+NSF’s National Optical-Infrared Astronomy Research Labo-            six degrees of freedom.
+ratory; the Science and Technology Facilities Council of the           Now we consider a rank-𝑛 quantity 𝐹𝑖1 ..𝑖𝑛 , this quantity can
+United Kingdom; the Gordon and Betty Moore Foundation;              be decomposed as [59]
+the Heising-Simons Foundation; the French Alternative En-                                ∑︁ ∑︁
+                                                                                                     𝜆
+ergies and Atomic Energy Commission (CEA); the National                   𝐹𝑖1 ..𝑖𝑛 (k) =           𝐹ℓ𝑚 (𝑘) 𝜆𝑌ℓ𝑚 ( ˆ𝑘) 𝜖ˆ𝑖𝜆1 ..𝑖𝑛 ( ˆ𝑘), (A3)
+Council of Humanities, Science and Technology of Mexico                                  ℓ,𝑚 𝜆=0,±1
+                                                                                                                                               15
+
+where 𝜆 denotes the helicity state, 𝜆𝑌ℓ𝑚 ( 𝑘)     ˆ is the spin-                            ×10 3
+                                         𝜆
+weighted spherical harmonics, and 𝜖ˆ𝑖1 ..𝑖𝑛 is the rank-𝑛 po-                                            Abacus-FFA            EZmock-FFA
+                                                                                        4                Abacus-altMTL          2 prediction
+larization state,
+                      ∑︁
+         𝜖ˆ𝑖𝜆1 ..𝑖𝑛 =     C𝑖𝜆1 ..𝑖𝑛 ê𝑖1 ⊗ . . . ⊗ ê𝑖𝑛 ,  (A4)
+                                                                                        3
+                      𝑖1 ,..,𝑖𝑛 ∈ {0,±1}
+        Í
+where 𝑛 𝑖 𝑛 = 𝜆, and C 𝑗𝜆1 .. 𝑗𝑛 is the Clebsch Gordan coefficient,               PDF
+                                                                                        2
+ê𝑖𝑛 is the helicity basis. Here we make a global coordinate
+choice for the helicity basis
+                                                                                        1
+                        𝑥ˆ ± 𝑖 𝑦ˆ
+                  ê±1 = √ ,       ê0 = 𝑧ˆ,            (A5)
+                            2                                                           0
+                                                                                             5000 5500 6000 6500 7000 7500
+with the longitudinal mode align with the quantization axis                                         2( odd(N + S| r = 0), Canalyt)
+used to define the spherical harmonics. Alternatively, we can
+explicitly write the Cartesian components as
+                                                                           FIG. 11: Distribution of the auto correlation 𝜒2 for different
+          ê±1 = √1 , ± √𝑖 , 0 ,    ê0 = (0, 0, 1).    (A6)                 mocks without calibration. In contrast to Fig. 4, the centers of
+                          2          2
+                                                                             the distributions can shift significantly if calibration is not
+For rank-1 tensor, the polarization state is simply 𝜖ˆ𝜆 = ê𝜆 with           properly applied. This plot demonstrates the importance of
+the Clebsch Gordan coefficient being one. In particular, when                proper calibrations of the mocks.
+𝐹𝑖 = 𝑘 𝑖 ≡ k as a rank-1 tensor, we have ℓ = 1. Since we
+made a global choice of the coordinate for the helicity basis
+and the spherical harmonics, and chose them to be aligned
+with each other, the helicity state 𝜆 becomes degenerate with                                  Appendix B: Mock Calibration
+the 𝑚 label in the spherical coordinate, and we are free to set
+𝜆 = 𝑚. Therefore, the wave vector can be expressed as
+                      ∑︁                                                        As discussed in §IV, there are two major effects in the
+                             𝑚
+              k =          𝐹1𝑚  (𝑘) 𝑌1𝑚 ( ˆ𝑘) ê𝑚 ( ˆ𝑘)                      mocks: the volume effect and the fiber assignment effect. In
+                              𝑚=0,±1                                         this section, we demonstrate the consequences in the mocks
+                              √︂                                             when correction or calibration is not properly applied. We
+                                   4𝜋 ∑︁
+                      =                      𝑘 𝑌1𝑚 ( ˆ𝑘) ê𝑚 ( ˆ𝑘)    (A7)   highlight what biases or discrepancies may arise, thereby em-
+                                    3 𝑚=0,±1                                 phasizing the importance of accurate calibration and correc-
+in the second line above we normalize the coefficient 𝐹1𝑚 𝑚 such             tion.
+that | 𝑘ˆ | = 1. The scalar triple product can thus be written as
+           2                                                                    Fig. 11 shows the distribution of different mocks, analo-
+                                                                             gous to Fig. 4, but without applying calibrations to the mocks.
+              k1 · (k2 × k3 )                                                The EZmock distribution (grey histogram) remains centered
+                       3
+                ∑︁ Ö
+                                                         𝑗                   around the number of degrees of freedom expected for a 𝜒2
+            =             k𝑎𝑌1𝑚𝑎 ( 𝑘ˆ 𝑎 ) 𝜖𝑖 𝑗 𝑘 ê𝑖𝑚1 ê𝑚2 ê𝑚
+                                                              𝑘
+                                                                3
+                                                                      (A8)   distribution (black curve). This is not surprising, as the ana-
+                𝑚1 𝑚2 𝑚3 𝑎=1                                                 lytic covariance matrix was calibrated using the EZmock as
+                  𝑗          𝑘 = ⟨0, 0|1, 𝑚 ; 1, 𝑚 ; 1, 𝑚 ⟩ is an invari-    reference.
+where 𝜖 𝑖 𝑗 𝑘 ê𝑖𝑚1 ê𝑚2 ê𝑚    3             1   2       3
+ant scalar and is proportional to the 3- 𝑗 symbol                               In contrast, we find that the Abacus mocks are centered at
+                              𝑗
+                                           
+                                             1 1 1
+                                                                            higher values than the expected 𝜒2 distribution. This is be-
+               𝜖𝑖 𝑗 𝑘 ê𝑖𝑚1 ê𝑚2 ê𝑚
+                                   𝑘
+                                       = 𝐶                ,         (A9)     cause the Abacus mocks are generated by replicating the same
+                                     3       𝑚1 𝑚2 𝑚3
+                                                                             mock volume multiple times, resulting in a lack of indepen-
+letting 𝑚 1 = 1, 𝑚 2 = 0, 𝑚 3 = −1, we have                                  dent 𝑘-modes and an inaccurate estimate of the true covariance.
+                                            𝑗
+                               𝜖𝑖 𝑗 𝑘 ê𝑖+1 ê0 ê−1
+                                                  𝑘
+                                                     = 𝑖.            (A10)   Consequently, the variance is overestimated. In the absence
+                                                                             of a true signal, the center of the distribution is entirely dom-
+Meanwhile the Wigner 3- 𝑗 for that choice is                                 inated by this inflated variance and shifts the center to higher
+                                        √                                    values.
+                              
+                      1 1 1
+                                 = −1/ 6,                  (A11)
+                      1 0 −1                                                    To correct for these effects, we first apply the fiber assign-
+                                         √         √                         ment correction by multiplying the distribution by the ratio
+therefore, the coefficient 𝐶 = 𝑖/(−1/ 6) = −𝑖 6. Inserting                   Tr[CFFA ]/Tr[CaltMTL ] from the covariance matrix of the FFA-
+this coefficient into Eq. (A8), the triple product can be simpli-            based mocks to those of the altMTL mocks. Next, we apply the
+fied as                                                                      volume correction by computing the ratio between the covari-
+       k1 · (k2 × k3 )                                                       ance matrix derived from the Abacus and the EZmock-derived
+                                                                             analytic covariance matrix. After these calibration steps, we
+         √ 4𝜋 3/2 3                        ∑︁  1 1 1 
+               Ö
+     = −𝑖 6                𝑘 𝑎𝑌1𝑚𝑎 ( 𝑘 𝑎 )
+                                     ˆ                                       find all the mock distributions center around the expected 𝜒2
+                3                               𝑚1 𝑚2 𝑚3                     distribution.
+                       𝑎=1                 𝑚′ 𝑠
+                                                                                                                                                                        16
+
+
+                                                            altMTL/ comp = 1.21                                 4                        altMTL/ comp = 1.43
+                                           3.0
+
+
+             Abacus, fiber/ Abacus, comp                                          Abacus, fiber/ Abacus, comp
+                                                            ffa/ comp = 1.09                                                             ffa/ comp = 1.16
+                                           2.5
+                                                                                                                3
+                                           2.0
+
+
+             ii             ii                                                    ii             ii
+                                           1.5                                                                  2
+                                           1.0                                                                  1
+                                           0.5
+                                                 0   1000        2000                                                0           1000         2000
+                                                       Index                                                                         Index
+FIG. 12: The figure compares statistical fluctuations in Abacus mocks under different fiber-assignment schemes by plotting the
+ratio of diagonal covariance elements for fiber-assigned mocks to those from complete mocks. In the left panel (NGC), the
+ratios show that fiber assignment increases the diagonal covariance by about 9% for FFA (orange) and 30% for altMTL (black).
+The right panel presents the same ratio for the SGC, where the increases are larger: about 16% for FFA and 43% for altMTL.
+
+
+   Appendix C: Impact of Incompleteness due to Statistical                               need to be accounted for by applying an additional correction
+                       Fluctuations                                                      factor to our significance, and leaving impact on the detection
+                                                                                         significance as well as in the mock calibration (see discussions
+   As seen in Fig. 1, there is a large variation in the galaxy                           in §IV and Appendix B).
+number density in the DR1 sample. This is essentially due
+to the limited number of fibers and during the early stage of
+the survey, not every galaxy gets the chance to be assigned                                                         Appendix D: Testing Gaussianity of the Likelihood
+with a fiber, therefore, the sample exhibits low completeness
+and is therefore sensitive to the details of fiber assignment                               In this section, we test the validity of the Gaussian likelihood
+implementation. When constructing the DESI mocks, two                                    assumption for the 4PCF. This assumption is generally moti-
+fiber assignment implementation schemes were applied: the                                vated by the central limit theorem, since each element of the
+fast fiber assignment (FFA) and the alternate Merged Target                              binned data vector represents an average over many Fourier-
+Ledger (altMTL). We described the implementation of fiber                                or position-space modes, their joint distribution is expected to
+assignment in [29]. Further details can be found in [36, 60, 61].                        approach Gaussianity. However, it is important to explicitly
+As a brief summary: altMTL is close to the realistic fiber                               verify this assumption, particularly for higher-order statistics.
+assignment run on the data, while FFA is an emulator-based                                  Following [63], we repeat the same test as in our compan-
+algorithm that learns the mapping between an input and a                                 ion parity-even paper [29], but now for the parity-odd 4PCF.
+fiberassign-processed galaxy catalog.                                                    We transform the data vector into an uncorrelated basis us-
+   For the parity-even 4PCF, we previously found that FFA                                ing the Cholesky decomposition of the covariance matrix,
+underestimates the covariance relative to a more realistic algo-                         Ĉ = 𝐿𝐿 ⊤ . This “whitening” procedure removes linear cor-
+rithm; Fig. 12 extends this comparison to the parity-odd sector.                         relations, such that the transformed components should follow
+The left panel shows, for the NGC, the ratio of diagonal co-                             independent standard normal distributions if the Gaussian as-
+variance elements in Abacus mocks with fiber assignment to                               sumption holds. Any systematic deviation from this behavior
+those in the complete sample. We find the average ratio be-                              indicates the presence of non-Gaussianity either in the data or
+tween the Abacus altMTL to the complete sample (black) to                                in the estimated covariance.
+be Tr[CaltMTL ]/Tr[Ccomp ] ≈ 1.21, whereas the average ratio                                Fig. 13 shows the distribution of the normalized components
+between the Abacus FFA to the complete sample (orange) to                                across all eigenmodes and simulations for different numbers
+be Tr[CFFA ]/Tr[Ccomp ] ≈ 1.09. The right panel presents the                             of degrees of freedom. The black dashed line denotes the
+same comparison for the SGC and shows an even stronger devi-                             standard normal distribution N (0, 𝜎std ). In the left plot, The
+ation from the complete mocks, with Tr[CaltMTL ]/Tr[Ccomp ] ≈                            mode-space normalization uses the inverse Cholesky factor
+1.43 and Tr[CFFA ]/Tr[Ccomp ] ≈ 1.16, potentially due to the                             𝐿 −1 of the hybrid covariance matrix Ĉhybrid = 𝐿𝐿 ⊤ , based on
+lower completeness in the SGC.                                                           the EZmock. In the left panel, 800 mocks are used for covari-
+   An under-estimated covariance in the FFA mocks was also                               ance estimation and 200 for testing. We find that when not
+found for the two-point functions [35, 62]. Since the analytic                           sufficiently large enough of simulation for covariance estima-
+covariance was fit with respect to the FFA-based EZmock,                                 tion such that 𝑁cov ≫ 𝑁eig is not well satisfied, as in the case
+the under-estimated covariance due to the fiber assignment                               of 𝑁eig = 500, the normalized data vector shows a slight devia-
+                                                                      17
+
+tion from Gaussianity, indicating a breakdown of the Gaussian
+likelihood assumption in this regime. In the right panel, we re-
+peat the test with the analytic covariance matrix Ĉanalyt = 𝐿𝐿 ⊤ ,
+and use the Cholesky factor 𝐿 to normalise the data vectors
+in the mode space. Despite the simplified treatment of survey
+geometry and sample incompleteness, the analytic covariance
+still shows good agreement with a Gaussian likelihood.
+                                                                                                                                  18
+
+
+
+
+           100              hybrid, Nsim = 800                               100                  analyt
+                                                      Gaussian                                                     Gaussian
+                                                      Neig = 50                                                    EZmock
+                                                      Neig = 100
+           10 1                                       Neig = 200             10 1
+                                                      Neig = 500
+
+     PDF   10 2                                                        PDF   10 2
+
+
+           10 3                                                              10 3
+
+
+           10 4                                                              10 4
+                  6    4       2          0       2    4           6                6   4   2         0        2   4          6
+                                L 1   (       )                                             L 1   (        )
+
+
+
+
+FIG. 13: The histograms show the distribution of the normalized components of the data vector in mode space. The black
+dashed line denotes the standard normal distribution N (0, 1). In the left, the mode space normalization is performed using the
+inverse Cholesky decomposition 𝐿 −1 of the hybrid covariance matrix Ĉhybrid = 𝐿𝐿 ⊤ , where Ĉhybrid is obtained from the
+EZmock. Here, we split the mock into two sets: one subset is used to estimate the covariance matrix, and the other to generate
+the test data vectors. We use 800 mocks for covariance estimation and 200 as test data. We vary different choices of 𝑁eig
+(indicated by color). When the condition 𝑁cov ≫ 𝑁eig is not well satisfied, the normalized data vector shows deviations from
+Gaussianity, indicating that the Gaussian likelihood assumption breaks down in this regime. In the right panel, we apply a
+Cholesky decomposition to the analytic covariance matrix and use the resulting Cholesky factor to normalize the unprojected
+data vector from the EZmock. Despite various simplified assumptions in the analytic covariance, we find good agreement with
+the Gaussian likelihood.
+                                                                                                                                             19
+
+
+
+
+ [1] Y. Minami and E. Komatsu, Phys. Rev. Lett. 125, 221301 (2020),           arXiv:1611.00037 [astro-ph.IM].
+     arXiv:2011.11254 [astro-ph.CO].                                     [25] DESI Collaboration, B. Abareshi, J. Aguilar, S. Ahlen, S. Alam,
+ [2] J. Hou, Z. Slepian, and R. N. Cahn, Mon. Not. R. Astron. Soc.            D. M. Alexander, R. Alfarsy, L. Allen, C. Allende Prieto,
+     522, 5701 (2023), arXiv:2206.03625 [astro-ph.CO].                        O. Alves, J. Ameel, E. Armengaud, J. Asorey, A. Aviles, S. Bai-
+ [3] O. H. E. Philcox, Phys. Rev. D 106, 063501 (2022),                       ley, and others, Astron. J. 164, 207 (2022), arXiv:2205.10939
+     arXiv:2206.04227 [astro-ph.CO].                                          [astro-ph.IM].
+ [4] O. H. E. Philcox, arXiv e-prints , arXiv:2303.12106 (2023),         [26] DESI Collaboration, M. Abdul-Karim, A. G. Adame,
+     arXiv:2303.12106 [astro-ph.CO].                                          D. Aguado, J. Aguilar, S. Ahlen, S. Alam, G. Aldering,
+ [5] O. H. E. Philcox and M. Shiraishi, Phys. Rev. D 109, 083514              D. M. Alexander, R. Alfarsy, L. Allen, C. Allende Prieto,
+     (2024), arXiv:2308.03831 [astro-ph.CO].                                  O. Alves, A. Anand, U. Andrade, and others, arXiv e-prints
+ [6] T. C. K. Ng, M. Isi, K. W. K. Wong, and W. M. Farr, Phys. Rev.           , arXiv:2503.14745 (2025), arXiv:2503.14745 [astro-ph.CO].
+     D 108, 084068 (2023), arXiv:2305.05844 [gr-qc].                     [27] DESI Collaboration, A. G. Adame, J. Aguilar, S. Ahlen,
+ [7] S. Jaraba, S. Kuroyanagi, Q. Liang, M.-X. Lin, and M. Trodden,           S. Alam, D. M. Alexander, C. Allende Prieto, M. Al-
+     J. Cosmol. Astropart. Phys. 2025, 057 (2025), arXiv:2505.18085           varez, O. Alves, A. Anand, U. Andrade, E. Armengaud,
+     [astro-ph.CO].                                                           S. Avila, A. Aviles, H. Awan, and others, arXiv e-prints ,
+ [8] D. Jeong and M. Kamionkowski, Phys. Rev. Lett. 108, 251301               arXiv:2411.12022 (2024), arXiv:2411.12022 [astro-ph.CO].
+     (2012), arXiv:1203.0302 [astro-ph.CO].                              [28] DESI Collaboration, M. Abdul-Karim, J. Aguilar, S. Ahlen,
+ [9] D. Jamieson, A. Caravano, J. Hou, Z. Slepian, and E. Komatsu,            S. Alam, L. Allen, C. Allende Prieto, O. Alves, A. Anand,
+     Mon. Not. R. Astron. Soc. 533, 2582 (2024), arXiv:2406.15683             U. Andrade, E. Armengaud, A. Aviles, S. Bailey, C. Baltay,
+     [astro-ph.CO].                                                           P. Bansal, and others, arXiv e-prints , arXiv:2503.14738 (2025),
+[10] T. Kurita, D. Jamieson, E. Komatsu, and F. Schmidt, arXiv                arXiv:2503.14738 [astro-ph.CO].
+     e-prints , arXiv:2509.08787 (2025), arXiv:2509.08787 [astro-        [29] J. Hou, R. N. Cahn, J. Aguilar, S. Ahlen, D. Bianchi, D. Brooks,
+     ph.CO].                                                                  T. Claybaugh, P. Doel, S. Ferraro, J. E. Forero-Romero,
+[11] Z. Gao, A. Moradinezhad Dizgah, and Z. Vlah, arXiv e-prints ,            E. Gaztañaga, L. Le Guillou, G. Gutierrez, K. Honscheid,
+     arXiv:2509.13207 (2025), arXiv:2509.13207 [astro-ph.CO].                 D. Huterer, and others, arXiv e-prints , arXiv:2508.09070
+[12] K. Inomata, M. Kamionkowski, C. M. Toral, and S. R. Taylor,              (2025), arXiv:2508.09070 [astro-ph.CO].
+     Phys. Rev. D 110, 063547 (2024), arXiv:2406.00096 [astro-           [30] Z. Slepian, A. Krolewski, A. Greco, S. May, W. Ortola
+     ph.CO].                                                                  Leonard, F. Kamalinejad, J. Chellino, M. Reinhard, E. Fernan-
+[13] L. Jenks, L. Choi, M. Lagos, and N. Yunes, Phys. Rev. D 108,             dez, F. Prada, S. Ahlen, D. Bianchi, D. Brooks, T. Claybaugh,
+     044023 (2023), arXiv:2305.10478 [gr-qc].                                 A. de la Macorra, and others, arXiv e-prints , arXiv:2508.09133
+[14] R. N. Cahn, Z. Slepian, and J. Hou, Phys. Rev. Lett. 130, 201002         (2025), arXiv:2508.09133 [astro-ph.CO].
+     (2023).                                                             [31] E. F. Schlafly, D. Kirkby, D. J. Schlegel, A. D. Myers, A. Rai-
+[15] A. Krolewski, S. May, K. Smith, and H. Hopkins, arXiv e-prints           choor, K. Dawson, J. Aguilar, C. Allende Prieto, S. Bailey,
+     , arXiv:2407.03397 (2024), arXiv:2407.03397 [astro-ph.CO].               S. BenZvi, J. Bermejo-Climent, D. Brooks, A. de la Ma-
+[16] M. Reinhard, Z. Slepian, J. Hou, and A. Greco, arXiv e-prints ,          corra, A. Dey, P. Doel, and others, Astron. J. 166, 259 (2023),
+     arXiv:2412.16037 (2024), arXiv:2412.16037 [astro-ph.CO].                 arXiv:2306.06309 [astro-ph.CO].
+[17] Y. Bao, L.-T. Wang, Z.-Z. Xianyu, and Y.-M. Zhong, arXiv            [32] J. Guy, S. Bailey, A. Kremin, S. Alam, D. M. Alexander, C. Al-
+     e-prints , arXiv:2504.02931 (2025), arXiv:2504.02931 [astro-             lende Prieto, S. BenZvi, A. S. Bolton, D. Brooks, E. Chaussidon,
+     ph.CO].                                                                  A. P. Cooper, K. Dawson, A. de la Macorra, A. Dey, B. Dey,
+[18] H.-T. Cho and K.-W. Ng, arXiv e-prints , arXiv:2506.02331                and others, Astron. J. 165, 144 (2023), arXiv:2209.14482 [astro-
+     (2025), arXiv:2506.02331 [hep-ph].                                       ph.IM].
+[19] H.-M. Zhu and U.-L. Pen, Phys. Rev. Lett. 135, 111003 (2025),       [33] C. Poppett, L. Tyas, J. Aguilar, C. Bebek, D. Bramall, T. Clay-
+     arXiv:2409.11400 [astro-ph.CO].                                          baugh, J. Edelstein, P. Fagrelius, H. Heetderks, P. Jelinsky,
+[20] J. Shim, U.-L. Pen, H.-R. Yu, and T. Okumura, Phys. Rev. Lett.           S. Jelinsky, R. Lafever, A. Lambert, M. Lampton, M. E. Levi,
+     135, 141002 (2025), arXiv:2406.06080 [astro-ph.CO].                      and others, Astron. J. 168, 245 (2024).
+[21] D. Jamieson, A. Caravano, and E. Komatsu, arXiv e-prints ,          [34] T. N. Miller, P. Doel, G. Gutierrez, R. Besuner, D. Brooks,
+     arXiv:2507.22285 (2025), arXiv:2507.22285 [astro-ph.CO].                 G. Gallo, H. Heetderks, P. Jelinsky, S. M. Kent, M. Lampton,
+[22] M. Levi, C. Bebek, T. Beers, R. Blum, R. Cahn, D. Eisenstein,            M. E. Levi, M. Liang, A. Meisner, M. J. Sholl, J. H. Silber,
+     B. Flaugher, K. Honscheid, R. Kron, O. Lahav, P. McDon-                  and others, Astron. J. 168, 95 (2024), arXiv:2306.06310 [astro-
+     ald, N. Roe, D. Schlegel, and representing the DESI collabora-           ph.IM].
+     tion, arXiv e-prints , arXiv:1308.0847 (2013), arXiv:1308.0847      [35] DESI Collaboration, A. G. Adame, J. Aguilar, S. Ahlen,
+     [astro-ph.CO].                                                           S. Alam, D. M. Alexander, M. Alvarez, O. Alves, A. Anand,
+[23] DESI Collaboration, A. Aghamousa, J. Aguilar, S. Ahlen,                  U. Andrade, E. Armengaud, S. Avila, A. Aviles, H. Awan,
+     S. Alam, L. E. Allen, C. Allende Prieto, J. Annis, S. Bailey,            S. Bailey, and others, arXiv e-prints , arXiv:2411.12020 (2024),
+     C. Balland, O. Ballester, C. Baltay, L. Beaufore, C. Bebek, T. C.        arXiv:2411.12020 [astro-ph.CO].
+     Beers, and others, arXiv e-prints , arXiv:1611.00036 (2016),        [36] J. Lasker, A. Carnero Rosell, A. D. Myers, A. J. Ross,
+     arXiv:1611.00036 [astro-ph.IM].                                          D. Bianchi, M. M. S. Hanif, R. Kehoe, A. de Mattia, L. Napoli-
+[24] DESI Collaboration, A. Aghamousa, J. Aguilar, S. Ahlen,                  tano, W. J. Percival, R. Staten, J. Aguilar, S. Ahlen, L. Bigwood,
+     S. Alam, L. E. Allen, C. Allende Prieto, J. Annis, S. Bailey,            D. Brooks, and others, J. Cosmol. Astropart. Phys. 2025, 127
+     C. Balland, O. Ballester, C. Baltay, L. Beaufore, C. Bebek, T. C.        (2025), arXiv:2404.03006 [astro-ph.CO].
+     Beers, and others, arXiv e-prints , arXiv:1611.00037 (2016),        [37] The fiducial volume 𝑉fid and the effective number density 𝑛¯ 𝑔
+                                                                                                                                                    20
+
+     are free parameters of the analytic covariance [49]. They are             [52] We use scipy.linalg.inv for matrix inversion, which relies
+     obtained by calibrating the analytic covariance to the simulation              on LAPACK Fortran library. For symmetric positive-definite
+     covariance. Compared to the parity-even 4PCF analysis [29], the                matrices, it uses Cholesky-based algorithm and is generally
+     fitted number density here is lower, which is compensated by the               backward-stable for a O (103 ) × O (103 ) matrix. Numerically,
+     fiducial volumes are higher. The results are overall consistent.               we found the condition number defined by the ratio of the max-
+[38] R. N. Cahn and Z. Slepian, J. Phys. A 56, 325204 (2023),                       imum to the mininum eigenvalues to be 𝜆 max /𝜆min ≈ O (104 )
+     arXiv:2010.14418 [astro-ph.CO].                                                and the relative matrix reconstruction error ∥C −1 C − I∥/∥I∥ ≈
+[39] Z. Slepian and D. J. Eisenstein, Mon. Not. R. Astron. Soc. 454,                O (10 −14 ). For readers interested in the structure of the normal-
+     4142 (2015), arXiv:1506.02040 [astro-ph.CO].                                   ized correlation matrix, we note that it is visually identical to
+[40] O. H. E. Philcox, Z. Slepian, J. Hou, C. Warner, R. N. Cahn, and               Figs. 7 and 8 of [2].
+     D. J. Eisenstein, MNRAS 509, 2457 (2021), arXiv:2105.08722                [53] This 2% correction directly propagates into the corrected 𝜒c2 .
+     [astro-ph.IM].                                                                 However, it has only a marginal impact on the final conclusion
+[41] We use the GPU version of the public code https://github.                      and would simply reduce the 𝜒c2 value slightly further to -2.4𝜎.
+     com/oliverphilcox/encore with extensions including ℓmax                   [54] J. Hartlap, P. Simon, and P. Schneider, Astron. Astrophys. 464,
+     for the 4PCF measurement.                                                      399 (2007), arXiv:astro-ph/0608064 [astro-ph].
+[42] C.-H. Chuang, F.-S. Kitaura, F. Prada, C. Zhao, and G. Yepes,             [55] K. S. Dawson, D. J. Schlegel, C. P. Ahn, S. F. Anderson,
+     Mon. Not. R. Astron. Soc. 446, 2621 (2015), arXiv:1409.1124                    É. Aubourg, S. Bailey, R. H. Barkhouser, J. E. Bautista,
+     [astro-ph.CO].                                                                 A. Beifiori, A. A. Berlind, V. Bhardwaj, D. Bizyaev, C. H.
+[43] C. Zhao, C.-H. Chuang, J. Bautista, A. de Mattia, A. Raichoor,                 Blake, M. R. Blanton, M. Blomqvist, and others, Astron. J. 145,
+     A. J. Ross, J. Hou, R. Neveux, C. Tao, E. Burtin, K. S. Daw-                   10 (2013), arXiv:1208.0022.
+     son, S. de la Torre, H. Gil-Marín, J.-P. Kneib, W. J. Perci-              [56] R. Laureĳs, J. Amiaux, S. Arduini, J. L. Auguères, J. Brinch-
+     val, and others, Mon. Not. R. Astron. Soc. 503, 1149 (2021),                   mann, R. Cole, M. Cropper, C. Dabin, L. Duvet, A. Ealet,
+     arXiv:2007.08997 [astro-ph.CO].                                                B. Garilli, P. Gondoin, L. Guzzo, J. Hoar, H. Hoekstra, and oth-
+[44] L. H. Garrison, D. J. Eisenstein, and P. A. Pinto, Mon. Not.                   ers, arXiv e-prints , arXiv:1110.3193 (2011), arXiv:1110.3193
+     R. Astron. Soc. 485, 3370 (2019), arXiv:1810.02916 [astro-                     [astro-ph.CO].
+     ph.CO].                                                                   [57] Y. Wang, Z. Zhai, A. Alavi, E. Massara, A. Pisani, A. Benson,
+[45] N. A. Maksimova, L. H. Garrison, D. J. Eisenstein,                             C. M. Hirata, L. Samushia, D. H. Weinberg, J. Colbert, O. Doré,
+     B. Hadzhiyska, S. Bose, and T. P. Satterthwaite, Mon. Not.                     T. Eifler, C. Heinrich, S. Ho, E. Krause, and others, Astrophys.
+     R. Astron. Soc. 508, 4017 (2021), arXiv:2110.11398 [astro-                     J. 928, 1 (2022), arXiv:2110.01829 [astro-ph.CO].
+     ph.CO].                                                                   [58] https://doi.org/10.5281/zenodo.17753485.
+[46] S. Yuan, H. Zhang, A. J. Ross, J. Donald-McCann,                          [59] L. Dai, M. Kamionkowski, and D. Jeong, Phys. Rev. D 86,
+     B. Hadzhiyska, R. H. Wechsler, Z. Zheng, S. Alam, V. Gonzalez-                 125013 (2012), arXiv:1209.0761 [astro-ph.CO].
+     Perez, J. N. Aguilar, S. Ahlen, D. Bianchi, D. Brooks, A. de la           [60] A. D. Myers, J. Moustakas, S. Bailey, B. A. Weaver, A. P.
+     Macorra, K. Fanning, and others, Mon. Not. R. Astron. Soc.                     Cooper, J. E. Forero-Romero, B. Abolfathi, D. M. Alexander,
+     530, 947 (2024), arXiv:2306.06314 [astro-ph.CO].                               D. Brooks, E. Chaussidon, C.-H. Chuang, K. Dawson, A. Dey,
+[47] For the Abacus-Complete mocks, we additionally downsample                      B. Dey, G. Dhungana, and others, Astron. J. 165, 50 (2023),
+     it to match the number density of the altMTL mocks, so that                    arXiv:2208.08518 [astro-ph.IM].
+     their statistical fluctuations are comparable as those in the real        [61] D. Bianchi, M. M. S. Hanif, A. Carnero Rosell, J. Lasker,
+     data.                                                                          A. J. Ross, M. Pinon, A. de Mattia, M. White, S. Ahlen,
+[48] For the cross-correlation test, we assume that the signal is shared            S. Bailey, D. Brooks, E. Burtin, E. Chaussidon, T. Claybaugh,
+     across different patches. However, if the signal peaks in the                  S. Cole, and others, arXiv e-prints , arXiv:2411.12025 (2024),
+     squeezed limit on large scales, it may extend beyond the coher-                arXiv:2411.12025 [astro-ph.CO].
+     ence length (> 500ℎ −1 Mpc) of the sky patches considered in              [62] D. Forero-Sánchez, M. Rashkovetskyi, O. Alves, A. de Mattia,
+     this work, in which case the cross-correlation test may not apply.             N. Padmanabhan, H. Seo, S. Nadathur, A. J. Ross, H. Gil-Marín,
+[49] J. Hou, R. N. Cahn, O. H. E. Philcox, and Z. Slepian, Phys. Rev.               P. Zarrouk, J. Yu, Z. Ding, U. Andrade, X. Chen, C. Garcia-
+     D 106, 043515 (2022), arXiv:2108.01714 [astro-ph.CO].                          Quintero, and others, J. Cosmol. Astropart. Phys. 2025, 055
+[50] For parity-violating models with squeezed signal leading to local              (2025), arXiv:2411.12027 [astro-ph.CO].
+     modulation, the assumption that 𝜁 𝜇 = 𝜁 𝜈 may not hold.                   [63] O. H. E. Philcox, J. Hou, and Z. Slepian, arXiv e-prints (2021),
+[51] To obtain the second lineÍofEq. (21),
+                                             we used
+                                                 Í the definition         of        arXiv:2108.01670 [astro-ph.CO].
+     the trace Tr Ĉ −1 Ĉ 𝜇 = 𝑖 Ĉ −1 Ĉ 𝜇 𝑖𝑖 = 𝑖 𝑗 ( Ĉ −1 )𝑖 𝑗 Ĉ𝑖 𝑗 .
+                                                                    𝜇
+

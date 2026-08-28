@@ -1,0 +1,43 @@
+{
+  "audit_version": "isolated-deepening-pass5",
+  "audit_timestamp": "2026-08-08T04:13:35+09:00",
+  "candidate": {
+    "file": "mzr-archive-census-narrated-20260808T0155.mp4",
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "bytes": 13989937,
+    "duration_seconds": 128.4,
+    "unchanged": true
+  },
+  "sampling": {
+    "formula_seconds": "1 + 4n, n=0..31",
+    "frame_count": 32,
+    "contact_sheet_sha256": "278a6c6f76c0e7c8977cff0aa91bd7c044f4f4c2c64c92bdad1abc3babc8459a",
+    "frame_hash_manifest_sha256": "092b168b8e47921fe41f0ced29c1717c05d12682d4866f0e12a4430e68c02974",
+    "full_stream_decode": "PASS"
+  },
+  "verdict": "FAIL_FOR_SCIENTIFIC_REPRESENTATION_ALL_AXIS_SEARCH_SCOPE_ASYMMETRIC_T2_CONTROL_PROVENANCE_AND_PRIOR_BOUNDARIES",
+  "fresh_findings": [
+    {
+      "id": "all_axis_target_vs_search_scope",
+      "severity": "material",
+      "evidence": "At 5 seconds the opening says catalogues carry gas-phase metallicity, stellar mass, and redshift together; T1 makes no eligibility ruling on any axis.",
+      "safe_correction": "Use abundance-search, mass-search, and redshift-search metadata-axis wording before T2."
+    },
+    {
+      "id": "asymmetric_t2_control_provenance",
+      "severity": "material",
+      "evidence": "The T2 card reports 7 rounds and 12 decoys but omits 3 anchors and does not label these as contract-design controls rather than eligibility results.",
+      "safe_correction": "Omit counts or show T2 CONTRACT DESIGN / 12 DECOYS + 3 ANCHORS / NOT ELIGIBILITY RESULTS, while stating application to all 157 is not completed."
+    },
+    {
+      "id": "audience_reachable_denominator_provenance",
+      "severity": "release_blocker",
+      "evidence": "Derived-count cards expose internal filenames; the close gives only a generic recorded-artifact claim.",
+      "safe_correction": "Require an audience-reachable methods/count ledger before publication; publication remains closed."
+    }
+  ],
+  "known_blockers_reconfirmed": true,
+  "audio_semantics_audited": false,
+  "candidate_modified": false,
+  "new_science_added": false
+}

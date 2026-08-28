@@ -1,0 +1,74 @@
+{
+  "timestamp_kst": "2026-08-09T16:24:01+09:00",
+  "authority": "HWAO_TWO_HOUR_SIBLING_ORDER_20260809T1620K.md",
+  "custody_set": [
+    {
+      "lane": "mzr-census",
+      "candidate_dir": "mzr-census-method-overhaul-canary-20260809T0320K",
+      "sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+      "bytes": 9539823,
+      "disk_freeze_build_receipt_match": true,
+      "freeze_receipt_matches_RECEIPT_json": true,
+      "method_only_frame_verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+      "STATUS_phase": "INITIALIZED",
+      "STATUS_verdict": "PENDING_SOURCE_AND_STATUS_FREEZE",
+      "STATUS_last_verified": "2026-08-08T01:49:37+09:00",
+      "SOURCE_FREEZE_present": false
+    },
+    {
+      "lane": "brightend",
+      "candidate_dir": "brightend-method-overhaul-canary-20260809T1345K",
+      "sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+      "bytes": 9812969,
+      "disk_freeze_build_receipt_match": true,
+      "freeze_receipt_matches_RECEIPT_json": true,
+      "method_only_frame_verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+      "STATUS_phase": "source_status_freeze",
+      "STATUS_verdict": "IN_PROGRESS",
+      "STATUS_last_verified": "2026-08-07T16:49:48Z",
+      "SOURCE_FREEZE_present": false
+    },
+    {
+      "lane": "mzr-anchor",
+      "candidate_dir": "mzr-anchor-method-overhaul-canary-20260809T1406K",
+      "sha256": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+      "bytes": 9722369,
+      "disk_freeze_build_receipt_match": true,
+      "freeze_receipt_matches_RECEIPT_json": true,
+      "method_only_frame_verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+      "STATUS_phase": "source_freeze_in_progress",
+      "STATUS_verdict": "PENDING",
+      "STATUS_last_verified": "2026-08-07T16:49:56Z",
+      "SOURCE_FREEZE_present": false
+    },
+    {
+      "lane": "fesc",
+      "candidate_dir": "fesc-method-overhaul-canary-20260809T1501K",
+      "sha256": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+      "bytes": 10605559,
+      "disk_freeze_build_receipt_match": true,
+      "freeze_receipt_matches_RECEIPT_json": true,
+      "method_only_frame_verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+      "STATUS_phase": "source_and_current_artifact_freeze",
+      "STATUS_verdict": "IN_PROGRESS",
+      "STATUS_last_verified": "2026-08-07T16:49:46Z",
+      "SOURCE_FREEZE_present": false
+    }
+  ],
+  "protected_gate_baseline": {
+    "cockpit_mp4_count": 29,
+    "cockpit_mp4_manifest_sha256": "3d7bbfbc8022cbc7db3ee474c2c1eddfa50bb187df6e303ee14fc647ef8f49f6",
+    "working_public_mp4_count": 5,
+    "working_public_mp4_manifest_sha256": "8d1b0386e3172ee40e68009cb7bc88ed28148a38781156adb3b50ab087de239c",
+    "live_public_mp4_count": 0,
+    "live_public_mp4_manifest_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "paperVideos_ts_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_HEAD": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "TORI_SIBLING_ROLLOUT_sha256": "d849df0827133ff81cf0c446f472b2158d3c5ab780fae4a0e328b34617e44fb5"
+  },
+  "gates_closed": true,
+  "scientific_result_authorized": false,
+  "accepted_by_duho_label_applied": false
+}

@@ -1,0 +1,46 @@
+{
+  "receipt_id": "TORI_YUI_CROSS_LANE_SERIES_DECISIONS_V1_SUPERSESSION_BLOCKER_20260810T0134K",
+  "created_at_kst": "2026-08-10T01:34:43+09:00",
+  "reviewer": "Tori",
+  "artifact": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/overnight-video-quality-20260810T0129K/CROSS_LANE_SERIES_DECISIONS_V1.md",
+    "sha256": "b05d31d327cc3c1e56963a9a98851cbfd17ac5e6318ef20f4ecd6f7e4c4dbd31",
+    "bytes": 5341,
+    "created_before_latest_hwao_bound": true
+  },
+  "verdict": "HOLD_SUPERSEDED_PLAN_NOT_CANDIDATE_AUTHORITY",
+  "latest_hwao_bound": "One MZR-census audio-only versioned A/B against d6014ac0: normalize toward the series and cap routine seam silence; never reduce any card's on-screen time. No other candidate is authorized from this dispatch.",
+  "blocking_conflicts": [
+    {
+      "code": "IMPLEMENTATION_SCOPE_CONFLICT",
+      "detail": "V1 orders Brightend, FESC, MZR-anchor, MZR-census, and Spin candidates, with Brightend first. Hwao's later active instruction authorizes one MZR-census audio-only A/B. The five-lane implementation order is superseded."
+    },
+    {
+      "code": "INVALID_GORU_V2_LEAD_REUSED",
+      "detail": "V1 says Goru V2 per-card ledger measurements remain reproducible leads and sets a 200-WPM reading-time floor. Tori's later V2/V3 receipt checks found that V2 counted renderer instruction/internal strings and V3 then counted full-frame persistent chrome/captions/OCR noise while failing all 29 spin extractions. No reading-load magnitude from Goru V1/V2/V3 may drive a candidate tonight."
+    },
+    {
+      "code": "VISUAL_CHANGE_OUTSIDE_AUDIO_ONLY_BOUND",
+      "detail": "V1 prescribes boundary preroll, caption suppression, card-first beats, rail/card grammar, and five-lane pacing changes. The current Yui renderer diff implements visual display-state and caption changes. Those are not an audio-only A/B and require separate authority and meaning-drift review."
+    },
+    {
+      "code": "AUDIO_POLICY_DRIFT",
+      "detail": "V1 changes Kun's LRA tolerance from 6.5-7.8 LU to 5-8 LU and changes the stated true-peak criterion from <= -2.3 dBFS to a -2.0 dBTP ceiling with -2.3 encode target. Yui cannot silently widen or reinterpret the adopted audit target."
+    },
+    {
+      "code": "UNRECEIPTED_UNIFORM_PAUSE_POLICY",
+      "detail": "The 0.75-second intra-section and 1.4-second boundary pause policy is not derived from exact candidate-local card semantics or reading evidence. Applying it series-wide risks changing dwell and sentence/card alignment, precisely the surface Hwao held as unmeasured."
+    }
+  ],
+  "custody_disposition": {
+    "existing_five_candidates_unchanged": true,
+    "existing_five_cockpit_links_unchanged": true,
+    "new_candidate_declared": false,
+    "new_candidate_regate_triggered": false,
+    "yui_v1_may_be_used_as_authority": false,
+    "only_permitted_writer_scope": "MZR-census audio-only A/B under Hwao's later dispatch",
+    "why_study_rollout_held": true,
+    "accepted_by_duho": false
+  },
+  "required_before_candidate": "Yui must bind a new versioned request to the later MZR-census-only instruction, preserve visual/card/semantic bytes or explicitly disclose every necessary visual timing delta, bind exact source audio and timeline, derive each silence edit, and freeze the candidate before requesting Tori exact-hash review."
+}

@@ -1,0 +1,71 @@
+{
+  "timestamp_kst": "2026-08-09T02:02:01+09:00",
+  "order": "HWAO_SIBLING_ROLLOUT_ORDER.md",
+  "review_order": [
+    "mzr-census",
+    "fesc",
+    "brightend",
+    "mzr-anchor"
+  ],
+  "lanes": {
+    "mzr-census": {
+      "status_sha256": "862d984d8868722824ce025d7e02b5578cd479ec3c65a0854ec64e798dfe8c55",
+      "verdict": "PENDING_SOURCE_AND_STATUS_FREEZE",
+      "current_candidate": null,
+      "source_freeze_exists": false
+    },
+    "fesc": {
+      "status_sha256": "5a0da96135a1c4299c2025fc9d832553edfe24d3bb372ceffee0d310889e220c",
+      "verdict": "IN_PROGRESS",
+      "current_candidate": null,
+      "source_freeze_exists": false
+    },
+    "brightend": {
+      "status_sha256": "e161dc52aaf75729df84e39f04c2517df1cff4fc5d947f875bb4fd350eb0ea11",
+      "verdict": "IN_PROGRESS",
+      "current_candidate": null,
+      "source_freeze_exists": false
+    },
+    "mzr-anchor": {
+      "status_sha256": "095ea7da852a4fee379fd63f3d564aa5a29c9b94d653e97bd654487fe9beb8c1",
+      "verdict": "PENDING",
+      "current_candidate": null,
+      "source_freeze_exists": false
+    }
+  },
+  "protected_mp4_baseline": {
+    "hermesops_cockpit_videos": {
+      "count": 29,
+      "manifest_sha256": "7d588687078f416f8f33c716a4a493b1f94d4595711adefff2e493f5d5c3c57c"
+    },
+    "working_frontend_public": {
+      "count": 5,
+      "manifest_sha256": "cf2613fcf612533c294dd17fa2176933a9e704d3ea40cb22c59064959db16f2f"
+    },
+    "live_frontend_public": {
+      "count": 0,
+      "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "integrator_canaries": {
+      "count": 12,
+      "manifest_sha256": "e2282727da13e3c58440fa432110995ce8e122d0c07ae23e61b8ac747c4451b9"
+    }
+  },
+  "public_registry": {
+    "paperVideos_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "public_spin_sha256": "dfc8be91c47bf55b34c0040d1b6572b5960e31942c9a0cec1465d8bcf4f44585"
+  },
+  "git": {
+    "head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "branch": "feat/paper-workflow-v2",
+    "index_sha256": "2b79ff47d5b9f8f0845f29246b877db512c4bc1b786b01c5c7d778afe57fffad",
+    "cached_diff_bytes": 0
+  },
+  "candidate_state": {
+    "mzr-census": "NO_NEW_ROLLOUT_CANDIDATE; legacy 1254 only",
+    "fesc": "NO_CANDIDATE",
+    "brightend": "NO_CANDIDATE",
+    "mzr-anchor": "NO_CANDIDATE"
+  },
+  "no_freeze_rule": "Absent SOURCE_FREEZE is not permission. Any substantive result, selected result direction/sign, significance, or asserted scientific outcome is HOLD. Only lane-grounded method design may render."
+}

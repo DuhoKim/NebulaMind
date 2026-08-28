@@ -1,0 +1,42 @@
+{
+  "packet": "PAPER_NAIVE_REVIEW_PACKET_V3.md",
+  "reviewer_must_not_read": true,
+  "grading": {
+    "q1": {
+      "required": ["whether galaxies can leak enough ionizing photons to maintain reionization", "required versus proxy-inferred escape fraction"],
+      "mandatory": true
+    },
+    "q2": {
+      "required": ["two-panel redshift sweep", "required/inferred top panel", "Delta envelope bottom panel"]
+    },
+    "q3": {
+      "required": ["16th-percentile or lower Delta edge reaches zero", "16-84 interval stops spanning zero", "not median-curve crossing"],
+      "mandatory": true
+    },
+    "q4": {
+      "required": ["conditional fraction or mass with Delta greater than zero", "66 at z=7", "83 at z=8", "93 at z=9", "not real-world probability"],
+      "mandatory": true
+    },
+    "q5": {
+      "required": ["only the JWST-motivated star-formation-rate-density tail is removed", "closure crossing moves earlier to 7.615"]
+    },
+    "q6": {
+      "required": ["conditional model result", "no new measurement"],
+      "mandatory": true
+    },
+    "q7": {
+      "required": ["whether low-redshift proxy calibrations transport to high redshift or above z=6"]
+    },
+    "q8": {
+      "required": ["measure how escape-fraction proxies evolve or transport at high redshift"]
+    },
+    "q9": {
+      "open_ended": true,
+      "likely_minor_terms": ["escape fraction", "proxy-inferred", "closure", "bootstrap", "SFRD", "Monte Carlo"]
+    },
+    "q10": {
+      "allowed": ["PASS", "MINOR", "BLOCK"],
+      "adjudication": "PASS requires q1, q3, q4, q6 and at least 7 of q1-q8 substantively correct. MINOR is appropriate for jargon that does not alter the central causal chain. BLOCK is required if crossing meaning, conditional/model status, or scenario scope is misunderstood."
+    }
+  }
+}

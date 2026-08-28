@@ -1,0 +1,1175 @@
+                                                    Under consideration for publication in J. Plasma Phys.                                       1
+
+
+
+
+arXiv:2008.07662v1 [physics.plasm-ph] 17 Aug 2020
+                                                     Turbulent impurity transport simulations in
+                                                             Wendelstein 7-X plasmas
+                                                           J. M. Garcı́a-Regaña1 †, M. Barnes2 , I. Calvo1 , F. I. Parra2 ,
+                                                            J. Alcusón3 , R. Davies4 , A. González-Jerez1 , A. Mollén5 ,
+                                                                      E. Sánchez1 , J. L. Velasco1 , A. Zocco3
+                                                              1
+                                                               Laboratorio Nacional de Fusión, CIEMAT, Av. Complutense 28040, Spain
+                                                     2
+                                                       Rudolf Peierls Centre for Theoretical Physics, University of Oxford, Oxford OX1 3PU, UK
+                                                            3
+                                                              Max-Planck Institut für Plasmaphysik, Wendelsteinstrasse 1, 17491, Germany
+                                                     4
+                                                       York Plasma Institute, Department of Physics, University of York, Heslington, York YO10
+                                                                                               5DD, UK
+                                                               5
+                                                                 Princeton Plasma Physics Laboratory, Princeton, NJ 08543-0451, USA
+
+                                                                                 (Received xx; revised xx; accepted xx)
+
+                                                    A study of turbulent impurity transport by means of quasilinear and nonlinear gyroki-
+                                                    netic simulations is presented for Wendelstein 7-X (W7-X). The calculations have been
+                                                    carried out with the recently developed gyrokinetic code stella. Different impurity
+                                                    species are considered in the presence of various types of background instabilities:
+                                                    ITG, TEM and ETG modes for the quasilinear part of the work; ITG and TEM for
+                                                    the nonlinear results. While the quasilinear approach allows one to draw qualitative
+                                                    conclusions about the sign or relative importance of the various contributions to the flux,
+                                                    the nonlinear simulations quantitatively determine the size of the turbulent flux and check
+                                                    the extent to which the quasilinear conclusions hold. Although the bulk of the nonlinear
+                                                    simulations are performed at trace impurity concentration, nonlinear simulations are
+                                                    also carried out at realistic effective charge values, in order to know to what degree the
+                                                    conclusions based on the simulations performed for trace impurities can be extrapolated
+                                                    to realistic impurity concentrations. The presented results conclude that the turbulent
+                                                    radial impurity transport in W7-X is mainly dominated by ordinary diffusion, which
+                                                    is close to that measured during the recent W7-X experimental campaigns. It is also
+                                                    confirmed that thermo-diffusion adds a weak inward flux contribution and that, in the
+                                                    absence of impurity temperature and density gradients, ITG- and TEM-driven turbulence
+                                                    push the impurities inwards and outwards, respectively.
+
+
+                                                    1. Introduction
+                                                       Impurity sources are inherent to the operation of present day fusion devices and will
+                                                    also be present in future reactors. Erosion from the first wall can release impurities
+                                                    to the plasma core, which can lead to the radiative collapse of the plasma if the
+                                                    impurity concentration becomes sufficiently high. Impurities can also be intentionally
+                                                    introduced in the plasma to access the density and radiative conditions for divertor
+                                                    detachment, reducing the heat loads over the divertor surface to tolerable levels. In
+                                                    reactors, thermalized alpha particles will constitute the main impurity in the plasma core,
+                                                    and its removal will be critical to avoid the dilution of the D-T fuel. Impurities are also on
+                                                    the design basis of different diagnostics of bulk plasma properties, like spectroscopy-based
+                                                    measurements of plasma flows, main ion temperature or radial electric fields. For these
+                                                                      † Email address for correspondence: jose.regana@ciemat.es
+2             J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+reasons, substantial efforts have been devoted, in stellarator and tokamak experiments,
+theory and numerical simulations, to the identification of the mechanisms that control
+impurity transport.
+   In stellarators, the concern for impurity accumulation arises from its observation in
+experiments (Burhenn et al. 2009; Hirsch et al. 2008), more severe in ion root conditions
+(negative radial electric field) that standard neoclassical theory predicts when the main
+ion and electron temperatures are comparable. However, some scenarios have been
+identified too, that contradict that tendency, like the high-density H-mode (HDH) W7-
+AS plasmas (McCormick et al. 2002) and the impurity hole LHD scenarios (Ida et al.
+2009). The existence of these scenarios has been the drive of a recent intense revision
+of neoclassical theory and numerical modeling, starting with the impact on impurity
+transport of the full neoclassical electric field, not only radial but also tangential to
+the flux surfaces (Garcı́a-Regaña et al. 2013, 2017; Calvo et al. 2018b); the role of the
+tangential components of the magnetic drift and the electric field has been rigorously
+formulated (Calvo et al. 2017) and numerically implemented in the recently released
+code KNOSOS (Velasco et al. 2018, 2020); these advances have gone along with more
+accurate treatments of collisions in self-consistent multispecies radially local simulations
+(Mollén et al. 2018); the so-called mixed-collisionality-regime (low collisional main ions
+and highly collisional impurity ions) has been uncovered with important implications re-
+garding ion temperature screening (Helander et al. 2017; Calvo et al. 2018a; Buller et al.
+2018); the importance of the classical transport for highly charged impurities has been
+reinvigorated in optimized stellarators (Buller et al. 2019); finally, the first radially
+global neoclassical simulations including all these new neoclassical ingredients have been
+recently released (Fujita et al. 2020). The outcome of these works has made evident
+that this broader neoclassical framework can introduce corrections of order unity in
+the impurity fluxes respect to the predictions of standard neoclassical theory, like those
+based on the drift kinetic equation solver DKES (Hirshman et al. 1986). However, such
+corrections can difficultly explain the order-of-magnitude discrepancy found in W7-X
+between the experimentally measured diffusion coefficient of LBO-injected iron and that
+obtained with DKES (Geiger et al. 2019). Impurity confinement time scaling studies
+(Langenberg et al. 2020) have also supported the hypothesis that the drive of impurity
+transport in W7-X plasmas has a significant turbulent component, resulting in the
+absence of impurity accumulation in most scenarios of the first operation phase, including
+those of high density with high likeliness of developing large ion-root electric fields
+(Klinger et al. 2019).
+   With regard to impurity transport driven by gyrokinetic microturbulence, little work
+has been done for stellarator geometry. Among the few examples that have attempted to
+model it, the quasilinear analysis performed with the code GS2 in Mikkelsen et al. (2014)
+is one of the first examples available in the literature. Only very recently, nonlinear impu-
+rity transport simulations have also been carried out with the code GKV and reported in
+Nunami et al. (2020). In both cases, the motivation was to capture the above-mentioned
+hollow impurity density profiles observed in LHD. Apart from these numerical examples,
+some basic features of the quasilinear flux of impurities from gyrokinetic instabilities
+with k⊥ ρi . 1 have been analytically estimated in the collisionless electrostatic limit
+in Helander & Zocco (2018) like, for example, the relative size of the different diffusive
+and convective contributions to the flux or their signs. This work has been generalized
+including the effect of collisions (Buller & Helander 2020), which are not considered in
+the present work.
+Therefore, the aim of the present work is building, by means of linear and nonlin-
+ear gyrokinetic simulations, a first numerical characterization of the radial turbulent
+                          Turbulent impurity transport in W7-X                              3
+transport of impurities in W7-X plasmas. By doing this, we pursue to alleviate the
+lack of numerical results for stellarators and to shed light on the interpretation of
+W7-X experimental measurements. The analyses that follow consider a set of selected
+impurities and bulk species gradients such that the triggered background instabilities
+are representative of ITG, TEM and ETG modes. All the numerical work is presented
+in section 2, which is divided into three subsections. In the first of them, section 2.1,
+the results presented are quasilinear and, through fast simulations that include ions,
+electrons and a single impurity at a trace concentration level, provide an overview of
+the relative weight, sign, mass, charge dependence, etc. of each diffusive or convective
+contribution to the turbulent particle transport spectra for the selected impurities.
+Section 2.2 presents nonlinear simulations that, considering similar parameters than those
+employed for the quasilinear calculations, provide a quantitative evaluation of the actual
+size of diffusion and convection coefficients. Finally, the experimentally relevant situation
+of non-trace impurity content is briefly discussed in section 2.3. All the calculations
+performed have been obtained with the newly developed stellarator gyrokinetic code
+stella (Barnes et al. 2019). Finally, the conclusions are summarized in section 3.
+
+
+2. Numerical results
+   In the present section, the numerical results of turbulent impurity transport with the
+code stella are presented and discussed. A complete description of the code can be found
+in (Barnes et al. 2019) but, for convenience, its main features are concisely summarized
+below.
+   stella is a recently developed δf code whose current version solves, in the flux tube
+approximation, the gyrokinetic Vlasov and Poisson equations for an arbitrary number of
+species. The magnetic geometry can be specified either by the set of Miller’s parameters
+for a local tokamak equilibrium or by a 3D equilibrium generated with VMEC, which
+has been the option considered for the simulations carried out in this paper. The
+spatial coordinates
+             √       that the code uses for stellarator simulations are: the flux surface
+label x = a s (commonly denoted by r), with a the minor radius of the device and
+s = ψt /ψt,LCFS the toroidal magnetic flux normalized to its value at the last closed
+                                                   √
+flux surface; the magnetic field line label y = a s0 α, a rescaled version of the Clebsch
+angle α = θ∗ − ιζ, with θ∗ and ζ the poloidal and toroidal, respectively, PEST flux
+coordinates (Grimm et al. 1983), ι the rotational transform and s0 the value of the flux
+surface label around which the flux tube is centered; the parallel coordinate z = ζ.
+The velocity coordinates are the magnetic moment µ and the parallel velocity vk . The
+crucial feature of the algorithm employed by stella to solve the gyrokinetic equation
+is the mixed implicit-explicit treatment of its different terms. In particular, a splitting
+of the Vlasov operator is applied, and the pieces containing the parallel streaming and
+acceleration
+p            are treated implicitly. For electrons, these pieces scale up to a factor of order
+   mi /me (with mi and me the main ion and electron mass, respectively) respect to all
+other terms in the gyrokinetic equation, imposing in fully explicit time-advance schemes
+a severe restriction to the time step size, tighter at lower perpendicular wavenumber
+k⊥ . The mixed implicit-explicit algorithm employed by stella relaxes this constraint on
+the time-step and allows on to include kinetic electrons in multispecies simulations with
+practically no increase of computational cost apart from the required to loop over more
+species.
+   Returning to the impurity transport problem, the possibility of including kinetic
+electrons with practically no need of decreasing the time step, has made it possible
+to address with multiple nonlinear simulations the quantitative characterization of the
+4             J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+transport of impurities under both ion- and electron-driven background turbulence in
+W7-X geometry. This is the raison d’être of the present work, and the obtained results,
+discussed in detail in section 2.2, its main achievement. However, given the very few
+stellarator references addressing this problem even on a quasilinear fashion, section 2.1 is
+dedicated to a quasilinear analysis that precedes the nonlinear treatment of section 2.2.
+To what extent the conclusions drawn from the presented quasilinear calculations follow
+analytical quasilinear theory predictions (Helander & Zocco 2018) and hold in light of
+nonlinear results will be briefly commented.
+  Sections 2.1 and 2.2 consider impurities at trace concentration, which allows us to as-
+sume that transport coefficients are independent of the impurity density and temperature
+gradients and to express the turbulent radial impurity flux as:
+                                                                    
+                                        d ln nZ         d ln TZ
+                      ΓZ = −nZ DZ1              + DZ2           + CZ                   (2.1)
+                                           dr              dr
+with DZ1 the impurity diffusion coefficient, DZ2 the thermo-diffusion coefficient, and CZ
+the flux in the absence of impurity density and temperature gradients, which includes
+the contribution from the curvature pinch and the flux arising from the accelleration of
+impurities due to the turbulent parallel electric field†. In expression (2.1) nZ and TZ are
+the impurity density and temperature, respectively. Finally, in section 2.3 the question
+about the dependence that the transport coefficients develop at non-trace impurity
+concentration is addressed. In particular, the impurity flux scaling with the impurity
+density gradient at Zeff = 2 is investigated by means of nonlinear simulations, in order to
+determine whether the conclusions drawn assuming the trace limit can be extrapolated
+to more realistic plasma conditions.
+   All simulations, linear and nonlinear, at trace and non-trace impurity content, have
+in common: the magnetic geometry, which is the standard W7-X configuration (see
+Geiger et al. (2015) for an overview of the W7-X configuration space); the flux tube
+chosen, α = 0 , as it is usually found to be the most unstable flux tube in W7-X (see
+Helander et al. (2012) for a discussion about the localization of the turbulent fluctuations
+of the electrostatic potential along this flux tube); the main ion species, hydrogen, and
+                         √
+the chosen flux surface, s0 = 0.49. Other parameters, specific of the type of simulations
+performed, are given in the corresponding section.
+
+             2.1. Linear stability and quasilinear impurity transport analysis
+   How the impurity transport is affected by the driven gyrokinetic electrostatic instabil-
+ities of a set of specific LHD impurity hole discharges can be found in Mikkelsen et al.
+(2014). However, a similar analysis is not reported, to our knowledge, for W7-X geometry,
+which motivates us to perform a quasilinear characterization of the turbulent impurity
+transport in this device prior to turning to the fully nonlinear treatment in section 2.2.
+In addition, recent work by Helander & Zocco (2018) has analytically deduced some
+qualitative features of the quasilinear transport coefficient of impurities, which can be
+contrasted with the presented quasilinear numerical estimations.
+   The selected parameters and impurity species for the quasilinear study are summarized
+in table 1. The gradients of the bulk species have been set such that hybrid instabilies
+  † Note that, regardless the terminology, only the coefficient multiplying the impurity density
+gradient, DZ1 , is a diffusive term and the rest are convective terms. In other words, following
+the widely employed expression ΓZ /nz = −Dd ln nZ /dr + V , see e.g. Burhenn et al. (2009),
+V = −(DZ2 d ln TZ /dr + CZ ) corresponds to the commonly named as convection velocity and
+D = DZ1 to the so-called diffusion coefficient.
+                                     Turbulent impurity transport in W7-X                                                           5
+
+
+                                          a/LTi a/LTe               a/Lni = a/Lne              Te /Ti
+
+                                ITG        4.0     0.0                           0.0            1.0
+                                TEM        0.0     0.0                           4.0            1.0
+                                ETG        0.0     4.0                           0.0            1.0
+
+                                Species Ar16+ , Mo16+ , W16+ , W30+ , W44+
+
+
+  Table 1. Normalized gradients, electron to ion temperature ratio, and selected impurities
+                      considered for the quasilinear transport study.
+
+
+                0.4                                     4                        2                                  10
+                          TEM                    ETG                                     ITG                 ETG
+                          ITG                                                            TEM
+
+                0.3                                     3                        1                                  5
+
+
+
+     γa/vth,i   0.2                                     2γa/vth,i    ωa/vth,i    0                                  0    ωa/vth,i
+
+
+                0.1                                     1                       −1                                  −5
+
+
+                0.0                                      0                      −2                                   −10
+                      0    5       10      15          20                            0   5      10      15         20
+                                  ky ρi                                                        ky ρi
+
+
+Figure 1. Normalized growth rate (left) and frequency (right) as a function of the normalized
+binormal wavenumber ky for the three sets of background unstable conditions considered for
+the quasilinear impurity transport study, namely, ITG driven by a/LTi = 4.0 (circles), TEM
+driven by a/Lne = a/Lni = 4.0 (squares) and ETG driven a/LTe = 4.0 with (diamonds). Here,
+the normalization uses the ion Larmor radius, ρi , the ion thermal speed, vth,i , and the effective
+minor radius, a.
+
+were discarded. That is, {a/LTi , a/LTe , a/Lne } = {4, 0, 0} has been set for the ITG
+driven instability, {a/LTi , a/LTe , a/Lne } = {0, 0, 4} for density gradient driven TEMs,
+and {a/LTi , a/LTe , a/Lne } = {0, 4, 0} for ETG modes‡. For all cases the flux tube has
+been extended three turns poloidally, the wavenumber along the radial direction has been
+set to kx = 0, and the wavenumber along the binormal direction, ky , has been scanned. All
+simulations have been performed with kinetic main ions, electrons and a single impurity
+species at a trace concentration. The set of selected impurities have included Ar16+ ,
+Mo16+ , W16+ , W30+ and W44+ .
+  The spectra of the growth rate, γ, and frequency, ω, for the three different linear
+instabilities simulated are represented in fig. 1 (left) and fig. 1 (right), respectively. It is
+observed that the ITG-driven instability features a double peak structure and extends
+over a considerably broad ky range up to ky ρi ≈ 12. However, the fastest growing mode
+  ‡ Note that the label of the instability driven solely by the electron temperature gradient as
+ETG has been taken for practical purposes, in order to ease the discussion about the impurity
+particle transport produced by types of turbulence driven each by the gradient of one single
+plasma parameter. This labeling obviates the fact that trappped electron modes can also be
+driven by the electron temperature gradient, see (Proll et al. 2013) for a discussion about the
+characteristics of TEMs in stellarators.
+6                                             J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+                              0.06                                                                             0.000                                                           0.06
+                                                                    Ar16+                                                                                                                                            Ar16+
+                              0.05                                  Mo16+                                     −0.001                                                           0.05                                  Mo16+
+
+
+
+
+ DZ1 [ΓgB,ivth,ia2e2/niTi2]                                                      DZ2 [ΓgB,ivth,ia2e2/niTi2]
+                                                                    W16+                                                                                                                                             W16+
+
+
+
+
+                                                                                                                                                    CZ [ΓgB,ivth,iae2/niTi2]
+                              0.04                                                                            −0.002                                                           0.04
+
+                              0.03                                                                            −0.003                                                           0.03
+
+                              0.02                                                                            −0.004                                                           0.02
+                                                                                                                           Ar16+
+                              0.01                                                                            −0.005       Mo16+                                               0.01
+                                                                                                                           W16+
+                              0.00                                                                            −0.006                                                           0.00
+                                 0.0   2.5   5.0           7.5   10.0     12.5                                         0           5           10                                 0.0   2.5   5.0           7.5   10.0     12.5
+                                                   ky ρi                                                                               ky ρi                                                        ky ρi
+
+
+                              0.06                                                                             0.000                                                           0.06
+                                                                        W16+                                                                                                                                             W16+
+                              0.05                                      W30+                                  −0.001                                                           0.05                                      W30+
+
+
+
+
+ DZ1 [ΓgB,ivth,ia2e2/niTi2]                                                      DZ2 [ΓgB,ivth,ia2e2/niTi2]
+                                                                        W44+                                                                                                                                             W44+
+
+
+
+
+                                                                                                                                                    CZ [ΓgB,ivth,iae2/niTi2]
+                              0.04                                                                            −0.002                                                           0.04
+
+                              0.03                                                                            −0.003                                                           0.03
+
+                              0.02                                                                            −0.004                                                           0.02
+                                                                                                                           W16+
+                              0.01                                                                            −0.005       W30+                                                0.01
+                                                                                                                           W44+
+                              0.00                                                                            −0.006                                                           0.00
+                                 0.0   2.5   5.0           7.5   10.0     12.5                                         0           5           10                                 0.0   2.5   5.0           7.5   10.0     12.5
+                                                   ky ρi                                                                               ky ρi                                                        ky ρi
+
+
+
+Figure 2. For the ITG case (see table 1), ky -spectra of the diffusion coefficient DZ1 (left),
+thermo-diffusion coefficient DZ2 (center) and pinch in the absence of gradients CZ (right) for
+the different impurities, for a mass (top row) and charge (bottom row) scan. The values are
+given in normalized units, with ΓgB,i the gyro-Bohm ion particle flux, vth,i the ion thermal
+speed, e the unit charge, a is the effective minor radius and ni and Ti the main ion density and
+temperature, respectively.
+
+
+
+
+is located at ky ρi ≈ 1. Changes in the dominant eigenmode can be inferred from the
+discontinuous spectrum of the frequency. The sign of the frequency indicates that the
+modes rotate in the ion diamagnetic direction for all ky . On the other hand, the density
+gradient driven TEM is found to be more unstable that the ITG, with the fastest growing
+mode of the former featuring a factor two larger growth rate than that of the latter.
+The fastest growing mode is located at ky ρi ≈ 7.5, although the instability extends
+beyond ky ρi = 20. The sign of the frequency indicates that the mode can rotate both
+in the ion-diamagnetic direction for the low ky part of the spectrum, and in electron
+diamagnetic direction at moderate and high ky . Finally, the ETG-driven instability shows
+a monotonically increase of the growth rate towards electron Larmor scales, not covered
+on the simulated range of ky , where the most unstable ky is expected to be located.
+Note, though, the large value of the growth rate (referred to the right y-axis) that the
+ETG-driven instability develops at scales of a few ion Larmor radius. The frequency, in
+this case, shows that the mode rotates in the electron diamagnetic direction and that
+different branches, presumably dominated by a different eigenmode, are encountered, as
+the discontinuous frequency pattern points out.
+   Returning to the question about the impurity transport driven by the above-mentioned
+instabilities, we have followed the same approach as in Mikkelsen et al. (2014). Given
+a mode with wavenumbers kx and ky , the linear Vlasov-Poisson gyrokinetic system
+of equations is solved for each simulated time step, and the gyroaveraged impurity
+distribution gZ (kx , ky , z, vk , µ, t) and electrostatic potential ϕ(kx , ky , z, t) are obtained.
+From these two quantities, the flux surface averaged impurity flux, ΓZ (kx , ky , t), is
+computed. Note that, once the instability has been triggered the electrostatic potential ϕ
+and, consequently, ΓZ grows exponentially. However, a quasilinear mixing-length estimate
+                                                                     Turbulent impurity transport in W7-X                                                                                                                            7
+                              0.20                                                                          0.00                                                                      0.20
+                                                              Ar16+                                                                        Ar16+                                                                     Ar16+
+                                                              Mo16+                                                                        Mo16+                                                                     Mo16+
+
+
+
+
+ DZ1 [ΓgB,ivth,ia2e2/niTi2]                                                   DZ2 [ΓgB,ivth,ia2e2/niTi2]
+                                                              W16+                                                                         W16+                                                                      W16+
+
+
+
+
+                                                                                                                                                           CZ [ΓgB,ivth,iae2/niTi2]
+                              0.15                                                                         −0.05                                                                      0.15
+
+
+                              0.10                                                                         −0.10                                                                      0.10
+
+
+                              0.05                                                                         −0.15                                                                      0.05
+
+
+                              0.00                                                                         −0.20                                                                      0.00
+                                     0   2   4           6    8          10                                        0   2   4           6   8          10                                     0   2   4           6   8          10
+                                                 ky ρi                                                                         ky ρi                                                                     ky ρi
+
+
+                              0.20                                                                          0.00                                                                      0.20
+                                                                  W16+                                                                         W16+                                                                      W16+
+                                                                  W30+                                                                         W30+                                                                      W30+
+
+
+
+
+ DZ1 [ΓgB,ivth,ia2e2/niTi2]                                                   DZ2 [ΓgB,ivth,ia2e2/niTi2]
+                                                                  W44+                                                                         W44+                                                                      W44+
+
+
+
+
+                                                                                                                                                           CZ [ΓgB,ivth,iae2/niTi2]
+                              0.15                                                                         −0.05                                                                      0.15
+
+
+                              0.10                                                                         −0.10                                                                      0.10
+
+
+                              0.05                                                                         −0.15                                                                      0.05
+
+
+                              0.00                                                                         −0.20                                                                      0.00
+                                     0   2   4           6    8          10                                        0   2   4           6   8          10                                     0   2   4           6   8          10
+                                                 ky ρi                                                                         ky ρi                                                                     ky ρi
+
+
+
+Figure 3. For the TEM case, see table 1, ky-spectra of the diffusion coefficient DZ1 (left),
+thermo-diffusion coefficient DZ2 (center) and pinch in the absence of gradients CZ (right) for
+the different impurities, for a mass (top row) and charge (bottom row) scan.
+
+
+of the flux,
+                                            ΓZ (kx , ky , t)γ(kx , ky , t)
+                                                             ΓZql (kx , ky , t) =
+                                                                  2 (k , k ) ,         (2.2)
+                                       nZ hϕ2 (kx , ky , z, t)i k⊥     x y
+can be defined, so that a well converged quantity is obtained once the growth rate is
+stabilized. In this expression h...i denotes the flux surface average operator and k⊥ =
+kx ∇x + ky ∇y. Considering kx = 0 for all simulations, for each impurity species in the
+presence of a background instability, the ky -spectrum of the quasilinear flux has been
+extracted at the last simulated time step. This process has been repeated with three
+different pairs of impurity density and temperature gradients, in order to obtain from
+each impurity species embedded in a different type of instabilies the spectra of the three
+transport coefficients.
+   For the ITG instability, the spectra of the diffusion coefficient, DZ1 , thermo-diffusion
+coefficient, DZ2 , and the impurity flux in the absence of impurity density and temperature
+gradients, CZ , are displayed on the left, center and right columns of fig. 2, respectively.
+While the top row shows the results for the selected impurities with different mass, the
+bottom row does the same for the impurities with different charges. In first place, DZ1
+results to be roughly one order of magnitude larger than DZ2 , each having a different sign.
+That is, while diffusion drives impurities downhill the density gradient, thermo-diffusion
+would add an inward convection contribution, assuming peaked impurity temperature
+profile. In any case, this contribution seems very weak. Another inward contribution to
+the flux arises at vanishing impurity density and temperature gradients, which, however,
+also seems comparatively small compared to the size of DZ1 . The spectra of the three
+transport coefficients show that most contributions to the total flux comes from the
+lowest part of the spectrum, from ky ρi . 1.5. Finally, no significant dependence on the
+impurity charge or mass is observed for DZ1 and CZ . On the other had, the size of the
+weak DZ2 is larger with increasing mass and decreasing charge.
+   For the impurity transport coefficient driven by TEM instability, the corresponding
+results are shown in fig.3. In general, the transport coefficients follow the same trends as
+8                                              J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+                              0.0150                                                                         0.0000                                                         0.010
+                                                                      Ar16+                                                                                                                               Ar16+
+                              0.0125                                  Mo16+                                 −0.0025                                                                                       Mo16+
+
+
+
+
+ DZ1 [ΓgB,ivth,ia2e2/niTi2]                                                    DZ2 [ΓgB,ivth,ia2e2/niTi2]
+                                                                      W16+                                                                                                                                W16+
+
+
+
+
+                                                                                                                                                CZ [ΓgB,ivth,iae2/niTi2]
+                                                                                                                                                                            0.005
+                              0.0100                                                                        −0.0050
+
+                              0.0075                                                                        −0.0075                                                         0.000
+
+                              0.0050                                                                        −0.0100
+                                                                                                                          Ar16+                                            −0.005
+                              0.0025                                                                        −0.0125       Mo16+
+                                                                                                                          W16+
+                              0.0000                                                                        −0.0150                                                        −0.010
+                                       0   5   10           15   20       25                                          0       10           20                                       0   10           20
+                                                    ky ρi                                                                          ky ρi                                                     ky ρi
+
+
+                              0.0150                                                                         0.0000                                                         0.010
+                                                                      W16+                                                                                                                                W16+
+                              0.0125                                  W30+                                  −0.0025                                                                                       W30+
+
+
+
+
+ DZ1 [ΓgB,ivth,ia2e2/niTi2]                                                    DZ2 [ΓgB,ivth,ia2e2/niTi2]
+                                                                      W44+                                                                                                                                W44+
+
+
+
+
+                                                                                                                                                CZ [ΓgB,ivth,iae2/niTi2]
+                                                                                                                                                                            0.005
+                              0.0100                                                                        −0.0050
+
+                              0.0075                                                                        −0.0075                                                         0.000
+
+                              0.0050                                                                        −0.0100
+                                                                                                                          W16+                                             −0.005
+                              0.0025                                                                        −0.0125       W30+
+                                                                                                                          W44+
+                              0.0000                                                                        −0.0150                                                        −0.010
+                                       0   5   10           15   20       25                                          0       10           20                                       0   10           20
+                                                    ky ρi                                                                          ky ρi                                                     ky ρi
+
+
+
+Figure 4. For the ETG case, see table 1, ky-spectra of the diffusion coefficient DZ1 (left),
+thermo-diffusion coefficient DZ2 (center) and pinch in the absence of gradients CZ (right) for
+the different impurities, for a mass (top row) and charge (bottom row) scan.
+
+
+
+those observed in the ITG case. The diffusion coefficient is in absolute value larger than
+the thermo-diffusion, and the sign of each of them is the same as for the ITG instability.
+However, the difference between DZ1 and DZ2 is a factor of three while in the ITG case
+they differed by roughly one order of magnitude. Furthermore, the strength of DZ1 in
+this case is enhanced with respect to the ITG mode, possibly due to the more unstable
+character of this TEM, see fig. 1. Furthermore, the three coefficients exhibit broader ky -
+spectra than in the ITG case. Regarding the dependence of the coefficients on the mass
+or the charge, it is observed that DZ1 somewhat depends on the charge and that CZ also
+depends on the charge and the mass.
+   Finally, the results concerning the ETG instability are represented in fig. 4. In contrast
+to the ITG and TEM cases, DZ1 is not particularly larger than DZ2 in absolute value, and
+both are, in any case, considerably smaller than in the previous two cases. In addition,
+CZ is practically zero, which indicates that ETG driven impurity transport should be
+substantially smaller compared to that driven by the ITG mode or the TEM.
+   In summary, the quasilinear approach to the problem has delivered the following
+conclusions. ITG and TEM should drive most of the impurity transport by ordinary
+diffusion. The ITG mode seems to be prone to develop slightly peaked impurity density
+profiles, as CZ and DZ2 are considerably smaller than the dominant DZ1 and both
+add inward convective contributions to the total flux. The TEM case follows roughly
+the same characteristics, although CZ and DZ2 are not as small compared to the
+diffusion coefficient DZ1 , which point out the tendency to develop peaked impurity
+density profiles with larger gradients than in the ITG case. In general, the sign and
+size of the transport coefficient are in reasonably good agreement with the analytical
+predictions (Helander & Zocco 2018). The main difference resides on the mass or charge
+dependence of our results, which arises from the fact that all terms, including the parallel
+streaming neglected on the analytical treatment of (Helander & Zocco 2018), are retained
+in our simulations.
+                                                Turbulent impurity transport in W7-X                                                                   9
+
+
+                                                            a/LTi a/LTe a/Lni = a/Lne Te /Ti
+
+                                               ITG              4.0         0.0                           0.0      1.0
+                                               TEM              0.0         0.0                           4.0      1.0
+
+                                             Species                  Ar16+ , W16+ , W44+
+
+
+  Table 2. Normalized gradients, electron to ion temperature ratio, and selected impurities
+                     considered for the nonlinear transport analysis.
+
+
+
+                            25                                                                           25
+                                                                                                                             (a/LnZ , a/LTZ )=(0, 0)
+                                                                                                                             (a/LnZ , a/LTZ )=(5, 0)
+                            20                                                                           20                  (a/LnZ , a/LTZ )=(0, 5)
+
+
+
+
+     (ΓZ /ΓgB,i)/(nZ /ni)                                                         (ΓZ /ΓgB,i)/(nZ /ni)
+                            15                                                                           15
+                                                  (a/LnZ , a/LTZ )=(0, 0)
+                            10                    (a/LnZ , a/LTZ )=(5, 0)                                10
+                                                  (a/LnZ , a/LTZ )=(0, 5)
+
+                             5                                                                            5
+
+                             0                                                                            0
+
+                            −5                                                                           −5
+                                 0    200                 400               600                               0   50            100             150
+                                            t (a/vth,i)                                                                t (a/vth,i)
+
+
+Figure 5. Normalized Ar16+ particle flux as function of time in the presence of ITG-driven
+(left) and TEM-driven (right) background turbulence. The result is represented for three
+different pairs of Ar16+ density and temperature gradients, (a/LnZ , a/LTZ ) = (0, 0) (squares),
+(a/LnZ , a/LTZ ) = (5, 0) (circles), (a/LnZ , a/LTZ ) = (0, 5) (diamonds).
+
+
+                                     2.2. Nonlinear turbulent transport of trace impurities
+   Quasilinear analyses allow us to extract qualitative information about the more or
+less prominent role of an instability in the turbulent impurity flux, the relative size of
+the different diffusive and convective terms, the direction, inward or outward, of the
+flux driven through each transport coefficient, and its wavenumber spectra. However,
+quasilinear calculations cannot provide a quantitative estimation of the flux, as non-
+linear simulations do, since no saturated state is reached. While nonlinear multispecies
+gyrokinetic simulations have been employed with remarkable success for tokamaks, see
+for instance Barnes et al. (2012) for a comprehensive study of the scaling of the impurity
+transport of particles, momentum and energy, in stellarators they are anecdotical. In the
+present section, the question about the size of the turbulent impurity transport driven
+by ITG- and TEM-driven microturbulence and the respective transport coefficients is
+addressed by means of nonlinear simulations. Three of the impurities considered in the
+previous section, Ar16+ , W16+ and W 44+ , have been selected. Each simulation includes
+hydrogen nuclei, electrons and one single impurity species, all three kinetically treated.
+For the ITG case the resolution has been set to Nz ×Nx ×Ny ×Nvk ×Nµ = 96×76×151×
+24 × 12, while for the TEM turbulence Nz × Nx × Ny × Nvk × Nµ = 96 × 76 × 256 × 48 × 12
+has been taken. The width of the box along the binormal and radial directions have been
+set to Ly = 125ρi and Lx = 180ρi , respectively, and the flux tube has been extended
+10                                  J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+                                                                                                      ITG, Ar16+, (a/LnZ , a/LTZ )=(5, 0)
+                            2.5                     (a/LnZ , a/LTZ )=(0, 0)
+                                                    (a/LnZ , a/LTZ )=(5, 0)
+                            2.0                     (a/LnZ , a/LTZ )=(0, 5)
+                                                                                                                                            10−1
+
+
+
+     (ΓZ /ΓgB,i)/(nZ /ni)
+                                                                                            0.5
+
+
+
+                                                                                                                                               (ΓZ /ΓgB,i)/(nZ /ni)
+                            1.5
+
+                            1.0                                                     kxρi    0.0
+                                                                                                                                            10−2
+                            0.5
+                                                                                           −0.5
+                            0.0
+
+                                                                                                                                            10−3
+                              0.0    0.5   1.0           1.5    2.0           2.5                 0               1               2
+                                                 ky ρi                                                                ky ρi
+
+
+Figure 6. For ITG microturbulence: (left) ky -spectrum of the normalized turbulent flux
+of Ar16+ considering (a/LnZ , a/LTZ ) = (0, 0) (squares), (a/LnZ , a/LTZ ) = (5, 0) (circles),
+(a/LnZ , a/LTZ ) = (0, 5) (diamonds); (right) (kx , ky )-spectrum of the normalized turbulent flux
+of Ar16+ when (a/LnZ , a/LTZ ) = (5, 0).
+
+
+
+one turn poloidally. Standard twist-and-shift boundary conditions (Beer et al. 1995) have
+been considered. In table 2 the parameters considered for the background turbulence of
+interest in each case is indicated, together with the selected impurities.
+In order to obtain the transport coefficients, DZ1 , DZ2 and CZ , for each impurity and type
+of background turbulence, three simulations have been performed with different values of
+impurity normalized density and temperature gradients, a/LnZ and a/LTZ , respectively.
+As an example, the three time traces of the turbulent flux of Ar16+ are illustrated for
+the ITG case in fig. 5 (left) and for TEM turbulence in fig. 5 (right). For each of them,
+the mean value of the flux during the saturated phase is represented by a dashed line.
+Looking at the flux evolution when the impurity density and temperature gradients are
+zero (open squares linked by the purple solid line), it is immediately observed that each
+type of turbulence drives, in the absence of impurity density and temperature gradients,
+flux contributions with opposite sign. While ITG drives an inward (pinch) contribution,
+TEM turbulence drives outward transport (anti-pinch). Note that this first observation
+contradicts the quasilinear results, where in both cases CZ was positive, thus it drove
+negative flux for all ky . However, that contribution is weak, and comparable to that
+arising when the temperature gradient is non-zero (open diamonds connected by the red
+solid line). On the other hand, the flux driven when only the density gradient is applied
+(open circles connected by the black solid line) is by far the largest, no matter if the
+background turbulence is ITG- or TEM-driven, which anticipates that ordinary diffusion
+will be the dominant contribution to the turbulent particle flux of impurities, as it will
+be quantitatively confirmed below for the other two impurity species considered.
+   Given the width of the linear growth rate spectra of the simulated ITG and TEM
+modes, see fig. 1, one might wonder if the turbulent flux spectra are that broad or if
+the chosen resolution does not leave important flux contributions out of the selected
+range of wavenumbers. For the case of Ar16+ embedded in ITG microturbulence the
+binormal wavenumber spectrum is represented for the three simulated pairs of impurity
+density and temperature gradients in fig. 6 (left). It can be seen that most of the flux
+contribution arises from large scales with ky . 1, although finite contributions can also
+be observed for the remaining part of the spectrum. This is particularly visible when
+the impurity density gradient is the only gradient applied (open circles connected by the
+                                           Turbulent impurity transport in W7-X                                                                           11
+                                                                                          TEM, Ar16+, (a/LnZ , a/LTZ )=(5, 0)
+                                              (a/LnZ , a/LTZ )=(0, 0)
+                            0.8               (a/LnZ , a/LTZ )=(5, 0)
+                                              (a/LnZ , a/LTZ )=(0, 5)                                                           10−1
+
+
+
+
+     (ΓZ /ΓgB,i)/(nZ /ni)
+                                                                                0.5
+
+
+
+                                                                                                                                   (ΓZ /ΓgB,i)/(nZ /ni)
+                            0.6
+
+
+                            0.4                                         kxρi    0.0
+                                                                                                                                10−2
+                            0.2
+                                                                               −0.5
+
+                            0.0
+                                                                                                                                10−3
+                                  0   1   2           3            4                  0                  2                 4
+                                          ky ρi                                                          ky ρi
+
+
+Figure 7. For TEM microturbulence: (left) ky -spectrum of the turbulent particle flux of
+Ar16+ considering (a/LnZ , a/LTZ ) = (0, 0) (squares), (a/LnZ , a/LTZ ) = (5, 0) (circles),
+(a/LnZ , a/LTZ ) = (0, 5) (diamonds); (right) (kx , ky )-spectrum of the turbulent particle flux
+of Ar16+ when (a/LnZ , a/LTZ ) = (5, 0).
+
+
+
+black solid line). Regarding the radial wavenumber spectrum, fig. 6 (right) shows the
+spectrum kx and ky of the Ar16+ converged flux. As for the ITG-driven turbulence, the
+largest contributions to the flux arise from a narrow region of large radial scales, with
+maximum contribution along kx = 0. Although not shown here, these features are found
+with little variations for the rest of estimated fluxes under ITG conditions, independently
+of the impurity species.
+   The equivalent two plots for the three simulations performed for Ar16+ in the presence
+of TEM microturbulence are shown in fig. 7. The subfigure on the left, representing the
+binormal flux spectrum, reveals qualitative differences compared to the corresponding
+figure of the ITG case discussed in the previous paragraph, fig. 6 (left). Looking at the
+ky -spectrum of the flux when a/LnZ = 5, it is obvious that TEM turbulence leads to a
+noticeably broader flux spectrum. Although the flux of Ar16+ finds its largest contribution
+at scales with ky ρi ≈ 1, the spectrum decays for increasing wavenumber less abruptly
+than in the ITG example. This yields appreciable flux contributions even at the largest ky
+represented. Concerning the radial direction, fig. 7 (right) depicts, for the case a/LnZ = 5,
+the flux spectrum in kx and ky , that exhibits a wider kx range with noticeable flux
+contributions than in the ITG case as well. Finally, regarding the much weaker flux
+driven in the absence of impurity density and temperature gradients, although difficult
+to appreciate due to the much smaller amplitude, no significant contributions to the flux
+are present for ky & 2. In contrast, when impurity temperature gradient is set to a finite
+value, the flux spectrum slightly diverges as ky increases. It is worth noting that in that
+case two small contributions, connected to the thermo-diffusion driven pinch and the
+anti-pinch in absence of gradients, are opposing to each other (see discussion about fig. 5
+(right)), which may require a finer resolution than the one considered.
+   Despite the better delimitation of the ITG-driven impurity flux spectra within the
+considered wavenumber window in comparison with the TEM case, it is important
+to emphasize that other properties of interest of the background turbulence are more
+solidly captured by the TEM simulations. Such is the case of the electrostatic fluctuation
+spectrum, which is represented, for the two types of turbulence considered throughout
+this section, in fig. 8. It can be immediately appreciated how TEM turbulent electrostatic
+fluctuations (open red squares) tightly follow a power law with exponent -7/3. For the
+12                                           J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+
+                                                                                      101
+
+
+
+
+                                                         ϕ2 (kx, ky ) [(ρiTi/ae)2]
+                                                                                      100
+
+
+                                                                                     10−1
+
+                                                                                            ITG (Ny = 151)
+                                                                      kx
+                                                                                     10−2   TEM (Ny = 256)
+                                                                                            ITG (Ny = 256)
+                                                           P
+                                                                                            (ky ρi)−7/3
+                                                                                     10−3
+                                                                                            10−1                                           100
+                                                                                                       ky ρi
+
+
+Figure 8. Electrostatic fluctuation spectrum for the ITG and TEM turbulence considered
+for the nonlinear impurity transport calculations. Note the selected resolution choices for the
+transport simulations considered Ny = 151 and Ny = 256 for the ITG (open black circles) and
+TEM (open red square), respectively. A third case is considered here, an ITG run with Ny = 256
+(open orange diamonds) for comparison. The dashed line indicated the power law (ky ρi )−7/3 .
+
+
+                                    15                                                                                                15
+                                                                                            DZ1                                                         DZ1
+                                                                                            DZ2                                                         DZ2
+
+
+
+
+     DZ1, DZ2 [m2s−1], CZ [m s−1]                                                                      DZ1, DZ2 [m2s−1], CZ [m s−1]
+                                                                                            CZ                                                          CZ
+
+                                    10                                                                                                10
+
+
+
+                                    5                                                                                                 5
+
+
+
+                                    0                                                                                                 0
+
+
+                                     Ar16+             W16+                                 W44+                                       Ar16+     W16+   W44+
+
+
+Figure 9. Diffusion coefficient, DZ1 , thermo-diffusion coefficient, DZ2 and flux at vanishing
+TZ′ and n′Z , CZ , for Ar16+ , W16+ and W44+ in the presence of ITG (left) and TEM (right)
+microturbulence. Reference density and temperature values of ne = 1019 m−3 and Ti = TZ = 1
+have been considered.
+
+
+ITG turbulence, the same power law is followed up to ky ρi ≈ 1, and deviates for larger
+values of ky ρi . Note that this deviation is just a matter of resolution, as it shows up at
+lower ky values for the choice Ny = 151 (open black circles) than for the finer resolution
+of Ny = 256 (open orange diamonds). A specific investigation about why the ITG-driven
+particle flux spectra seem to be better bound by our mode window than for the TEM
+case, while the energy cascade is better converged for the TEM than for the ITG case,
+is out of the scope of the present paper. But, in any case, this parenthetical remark
+leaves us the important conclusion that both ITG and TEM microturbulence in W7-X
+are intrinsically three-dimensional, as demonstrated in Barnes et al. (2011).
+   Returning to the question about the size of the transport coefficients of different
+impurities under the influence of different type of turbulence, fig. 9 represents the ordinary
+diffusion coefficient, the thermo-diffusion coefficient and the flux in the absence of impu-
+rity and density gradient of Ar16+ , W16+ and W44+ embedded in ITG microturbulence,
+                            Turbulent impurity transport in W7-X                                 13
+fig. 9 (left), and in TEM microturbulence, fig. 9 (right). The reference electron density
+and ion temperature values considered are ne = 1019 m−3 and Ti = TZ = 1 keV,
+respectively. Some features common to both cases are: the dominance of the diffusion
+coefficient, DZ1 , above the other two coefficients, reaching values of around 10 m2 s−1
+and 6 − 7 m2 s−1 for ITG and TEM turbulence, respectively; DZ2 is substantially smaller
+than DZ1 and adds a pinch contribution (assuming peaked TZ profiles) to the radial
+transport of the three species under investigation; ordinary diffusion and thermo-diffusion
+are practically independent on the mass and the charge state; however, the absolute value
+of CZ is reduced appreciably for W16+ , possibly related to its appreciably smaller charge
+to mass ratio compared to that for other two impurities. The only features that are
+clearly different for the ITG and the TEM cases are related to CZ : the positive sign of
+CZ adds a pinch contribution in the ITG case, while the negative sign of CZ for the TEM
+case contributes to expulse impurities (see expression (2.1)); the absolute value of CZ is
+noticeably larger for ITG than for TEM. Of all these features, it is worth mentioning that
+the large relative size of DZ1 or the low size and sign of DZ2 are qualitative characteristics
+advanced by the quasilinear analysis. On the other hand, the relative strength between
+the ITG- and TEM-driven DZ1 as well as the sign and size of CZ for the TEM turbulence
+are not captured by the quasilinear simulations.
+   Finally, it is important to recall that the equilibrium impurity density gradient is
+determined by the value of the peaking factor, which is expressed as the ratio of the total
+convection velocity, V , and the diffusion coefficient D. In terms of the three coefficients
+under discussion, the peaking factor reads as:
+
+                                 V    DZ2 d ln TZ /dr + CZ
+                                   =−                      .                                  (2.3)
+                                 D             DZ1
+   In practical terms, the numerical demonstration of the large diffusion coefficient just
+shown yields the conclusion that microturbulence, of ITG and TEM kind, should tend to
+form impurity density profiles close to flatness†. For instance, for the values shown in fig. 9
+(left) the resulting peaking factor in equilibrium, although negative for ITG background
+conditions, would difficultly reach large absolute values, unless the impurity temperature
+gradient were unrealistically strong. The peaking factor would be even weaker in the
+presence of TEM turbulence, since it exhibits a rather weak anti-pinch at vanishing TZ′
+and n′Z together with a pinch contribution of comparable size driven by thermo-diffusive
+processes, which would in the end lead to a peaking factor fairly close to zero. On the
+other hand, the fact that CZ results in an outward contribution to the flux opens the
+possibility that TEM drives hollow impurity density profiles, and motivates a deeper
+investigation of the properties of this pinch on the magnetic configuration space of W7-X
+(Alcusón et al. 2020).
+
+
+   † Note that the value of the diffusion coefficients obtained are in qualitative agreement with
+the experimentally measured and far above the neoclassically estimated, see Geiger et al. (2019),
+where the diffusion coefficient of LBO-injected iron impurities is found to be up to approximately
+3 m2 s−1 in the radial position we are simulating. The larger values of the numerically calculated
+diffusion coefficient, in particular for the ITG turbulence, can be due mainly to the two following
+reasons: the simulations consider a pure ITG case with a value of a/LTi = 4.0 comparable to the
+experimental profiles but with a/Lni = 0, while in the experiment a/Lni ≈ 1, which is known
+to play a stabilizaing role, at least linearly (Alcusón et al. 2020); the simulations are performed
+for a limited region in α (for the most unstable flux tube) which might lead to interpret the
+numerical value more as an upper bound than as actual estimation for a specific flux surface,
+over which the impurities are actually distributed in real experiments.
+14                                     J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+
+                            60          w/ W44+ at Zeff = 2.0                                                  w/ W44+ at Zeff = 2.0
+                                        w/ W44+ at Zeff = 1.0                                       30         w/ W44+ at Zeff = 1.0
+                            50
+
+
+
+
+     (ΓZ /ΓgB,i)/(nZ /ni)                                                    (ΓZ /ΓgB,i)/(nZ /ni)
+                            40
+                                                                                                    20
+                            30
+
+                            20
+                                                                                                    10
+                            10
+
+                            0
+                                                                                                    0
+                                 0.0       2.5        5.0       7.5   10.0                               0.0      2.5        5.0       7.5   10.0
+                                                     a/LnZ                                                                  a/LnZ
+
+
+Figure 10. Normalized radial particle flux of W44+ as a function of its normalized density
+gradient at trace concentration (open squares) and at a concentration that makes Zeff = 2.0
+(open circles), for ITG (left) and TEM (right) microturbulence.
+
+
+                                        2.3. Nonlinear turbulent transport of non-trace impurities
+   All the calculations up to this section have considered impurities at trace concentration,
+so that they responded to the background turbulence driven by the bulk species gradients
+without affecting that turbulence. In that situation, the flux of the impurities scales
+linearly with their density and temperature gradients, the impurity transport coefficients
+are constant as long as the background turbulence is not altered, and they can be obtained
+employing expression (2.1). Nonetheless, in laboratory plasmas impurities are frequently
+present at non-trace concentration levels, and the assumption of impurity turbulent
+fluxes scaling proportionally to the impurity density and temperature gradients does
+not necessarily hold. For this reason, the present subsection touches the question of
+how much the tendency of the impurity flux deviates from linear when the impurity
+concentration is no longer negligible. It is not the intention of the present section to
+provide a detailed study including several species and different background turbulence,
+as done in section 2.2 for the nonlinear analysis for trace impurities. The purpose is rather
+to shed some light that indicates to what degree the conclusions drawn in section 2.2 can
+be extrapolated for realistic impurity content. We have performed a series of simulations
+considering W44+ at a concentration such that the effective charge is Zeff = 2. Only the
+impurity density gradient has been scanned, keeping a/LTZ = 0, as we have seen that
+density gradient drives the dominant contribution to the turbulent flux of impurities.
+The resulting normalized turbulent fluxes of W44+ are represented in fig. 10 (left) for the
+ITG-driven background turbulence and in fig. 10 (right) for the TEM case. For the curves
+representing the flux of W44+ at Zeff = 2, it can be observed that the deviation from the
+linear trend is only noticeable at rather large normalized density gradient values, larger
+than a/LnZ ≈ 5. This deviation is more obvious for the ITG case that for the TEM,
+and each of them points to opposite effects: while the TEM-driven turbulent transport
+of tungsten tends to be weakened with respect to the linear behaviour, the ITG-driven
+flux is enhanced. Apart from that, the presence of non-trace tungsten introduces an
+offset respect to the linear trend in the ITG case, that is not found for the TEM. In
+other words, the presence of tungsten at non-trace concentration is altering the value
+of the ITG-driven pinch in the absence of tungsten density and temperature gradients
+towards making it nearly zero, as can be noted looking at the two points represented
+for a/LnZ = 0. In any case, a closing remark from these simulations is that, unless Zeff
+                         Turbulent impurity transport in W7-X                           15
+is much larger than 2, the dependence of the impurity fluxes on the impurity density
+gradient seems close enough to linear so that the conclusions drawn in section 2.2 can be
+extrapolated to moderately realistic values of Zeff .
+
+
+3. Conclusions
+   In the present work, the transport of impurities driven by gyrokinetic microturbulence
+has been investigated for W7-X geometry. Quasilinear calculations and nonlinear simu-
+lations have been performed in the flux tube and electrostatic approximations with the
+recently developed code stella . The transport coefficients of several trace impurities in
+the presence of ITG, TEM and ETG unstable conditions have been analyzed. The ETG,
+only considered in the quasilinear analysis, has shown substantially smaller impurity
+transport coefficients compared to the ITG and TEM cases. The conclusions drawn from
+the nonlinear results for ITG and TEM microturbulence indicate that, independently on
+the charge and the mass of the impurity, the turbulent transport is dominated by ordinary
+diffusion, and that thermo-diffusion contributes very weakly to push the impurities
+radially inward. The estimated diffusion coefficient has been found to be in qualitative
+agreement with the experimentally reported for W7-X plasmas. The contribution driven
+in absence of gradients, CZ , has been found to be a pinch in the presence of ITG
+microturbulence and an anti-pinch under the influence of the TEM conditions. These
+features, some of them qualitatively anticipated by the quasilinear calculations, translate
+into an optimistic picture of the transport of impurities in W7-X, where the large
+microturbulence driven diffusion would contribute to produce nearly flat equilibrium
+impurity density profiles, free of strong radial localization of impurities. The possible
+extrapolation of these conclusions to realistic non-trace concentration of impurities has
+been partially confirmed by simulations at Zeff = 2, that have demonstrated that the
+diffusion coefficient does not deviates substantially from a linear dependence on the
+impurity density gradient.
+
+
+Acknowledgements
+   This work has been carried out within the framework of the EUROfusion Consortium
+and has received funding from the Euratom research and training programme 2014-2018
+and 2019-2020 under grant agreement No. 633053. The views and opinions expressed
+herein do not necessarily reflect those of the European Commission. This research was
+supported in part by grant PGC2018-095307-B-I00, Ministerio de Ciencia, Innovación y
+Universidades, Spain. The simulations were carried out in the clusters Marconi (Cineca,
+Italy) and Xula (Ciemat, Spain). J. M. Garcı́a-Regaña is grateful to A. Bañón-Navarro
+for helpful discussions.
+
+
+References
+
+
+                                    REFERENCES
+Alcusón, J., Garcı́a-Regaña, J. M., Reynolds-Barredo, J. M., Grulke, O., Helander,
+     P., Xanthopoulos, P. & Zocco, A. 2020 Turbulent curvature pinch flip the sign for
+     heavy inmpurities in w7-x. In preparation .
+Alcusón, J. A., Xanthopoulos, P., Plunk, G. G., Helander, P., Wilms, F., Turkin, Y.,
+     von Stechow, A. & Grulke, O. 2020 Suppression of electrostatic micro-instabilities in
+     maximum-j stellarators. Plasma Physics and Controlled Fusion 62 (3), 035005.
+16             J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+Barnes, M., Parra, F. & Landreman, M. 2019 stella: An operator-split, implicitexplicit
+     δf-gyrokinetic code for general magnetic field configurations. Journal of Computational
+     Physics 391.
+Barnes, M., Parra, F. I. & Dorland, W. 2012 Turbulent transport and heating of trace
+     heavy ions in hot magnetized plasmas. Phys. Rev. Lett. 109, 185003.
+Barnes, M., Parra, F. I. & Schekochihin, A. A. 2011 Critically balanced ion temperature
+     gradient turbulence in fusion plasmas. Physical Review Letters 107 (11).
+Beer, M. A., Cowley, S. C. & Hammett, G. W. 1995 Field-aligned coordinates for nonlinear
+     simulations of tokamak turbulence. Physics of Plasmas 2 (7), 2687–2700.
+Buller, S. & Helander, P. 2020 Effects of collisions on impurity transport driven by
+     electrostatic modes. Journal of Plasma Physics 86 (3).
+Buller, S., Mollén, A., Newton, S. L., Smith, H. M. & Pusztai, I. 2019 The importance
+     of the classical channel in the impurity transport of optimized stellarators. Journal of
+     Plasma Physics 85 (4).
+Buller, S., Smith, H. M., Helander, P., Mollén, A., Newton, S. L. & Pusztai, I. 2018
+     Collisional transport of impurities with flux-surface varying density in stellarators. Journal
+     of Plasma Physics 84 (4), 905840409.
+Burhenn, R., Feng, Y., Ida, K., Maaßberg, H., McCarthy, K., Kalinina, D.,
+     Kobayashi, M., Morita, S., Nakamura, Y., Nozato, H., Okamura, S., Sudo,
+     S., Suzuki, C., Tamura, N., Weller, A., Yoshinuma, M. & Zurro, B. 2009 On
+     impurity handling in high performance stellarator/heliotron plasmas. Nuclear Fusion
+     49 (6), 065005.
+Calvo, I., Parra, F. I., Velasco, J. L. & Alonso, J. A. 2017 The effect of tangential
+     drifts on neoclassical transport in stellarators close to omnigeneity. Plasma Physics and
+     Controlled Fusion 59 (5), 055014.
+Calvo, I., Parra, F. I., Velasco, J. L., Alonso, J. A. & Garcı́a-Regaña, J. 2018a
+     Stellarator impurity flux driven by electric fields tangent to magnetic surfaces. Nuclear
+     Fusion 58 (12), 124005.
+Calvo, I., Velasco, J. L., Parra, F. I., Alonso, J. A. & Garca-Regaa, J. M. 2018b
+     Electrostatic potential variations on stellarator magnetic surfaces in low collisionality
+     regimes. Journal of Plasma Physics 84 (4), 905840407.
+Fujita, K., Satake, S., Kanno, R., Nunami, M., Nakata, M., Garcı́a-Regaña, J. M.,
+     Velasco, J. L. & Calvo, I. 2020 Global calculation of neoclassical impurity transport
+     including the variation of electrostatic potential. Journal of Plasma Physics 86 (3).
+Garcı́a-Regaña, J. M., Beidler, C. D., Kleiber, R., Helander, P., Mollén, A., Alonso,
+     J. A., Landreman, M., Maaßberg, H., Smith, H. M., Turkin, Y. & Velasco, J. L.
+     2017 Electrostatic potential variation on the flux surface and its impact on impurity
+     transport. Nuclear Fusion 57 (5), 056004.
+Garcı́a-Regaña, J. M., Kleiber, R., Beidler, C. D., Turkin, Y., Maaßberg, H. &
+     Helander, P. 2013 On neoclassical impurity transport in stellarator geometry. Plasma
+     Physics and Controlled Fusion 55 (7), 074008.
+Geiger, B., Wegner, T., Beidler, C., Burhenn, R., Buttenschn, B., Dux, R.,
+     Langenberg, A., Pablant, N., Ptterich, T., Turkin, Y., Windisch, T., Winters,
+     V., Beurskens, M., Biedermann, C., Brunner, K., Cseh, G., Damm, H.,
+     Effenberg, F., Fuchert, G., Grulke, O., Harris, J., Killer, C., Knauer, J.,
+     Kocsis, G., Krmer-Flecken, A., Kremeyer, T., Krychowiak, M., Marchuk,
+     O., Nicolai, D., Rahbarnia, K., Satheeswaran, G., Schilling, J., Schmitz, O.,
+     Schrder, T., Szepesi, T., Thomsen, H., Mora, H. T., Traverso, P. & and, D. Z.
+     2019 Observation of anomalous impurity transport during low-density experiments in w7-x
+     with laser blow-off injections of iron. Nuclear Fusion 59 (4), 046009.
+Geiger, J., Beidler, C. D., Feng, Y., Maaberg, H., Marushchenko, N. B. & Turkin, Y.
+     2015 Physics in the magnetic configuration space of W7–X. Plasma Physics and Controlled
+     Fusion 57 (1), 014004.
+Grimm, R. C., Dewar, R. L. & Manickam, J. 1983 Ideal MHD stability calculations in
+     axisymmetric toroidal coordinate systems. Journal of Computational Physics 49, 94.
+Helander, P., Beidler, C. D., Bird, T. M., Drevlak, M., Feng, Y., Hatzky, R., Jenko,
+     F., Kleiber, R., Proll, J. H. E., Turkin, Y. & Xanthopoulos, P. 2012 Stellarator
+                         Turbulent impurity transport in W7-X                            17
+     and tokamak plasmas: a comparison. Plasma Physics and Controlled Fusion 54 (12),
+     124009.
+Helander, P., Newton, S. L., Mollén, A. & Smith, H. M. 2017 Impurity transport in a
+     mixed-collisionality stellarator plasma. Phys. Rev. Lett. 118, 155002.
+Helander, P. & Zocco, A. 2018 Quasilinear particle transport from gyrokinetic instabilities
+     in general magnetic geometry. Plasma Physics and Controlled Fusion 60 (8), 084006.
+Hirsch, M., Baldzuhn, J., Beidler, C., Brakel, R., Burhenn, R., Dinklage, A.,
+     Ehmler, H., Endler, M., Erckmann, V., Feng, Y., Geiger, J., Giannone, L.,
+     Grieger, G., Grigull, P., Hartfuß, H.-J., Hartmann, D., Jaenicke, R., König,
+     R., Laqua, H. P., Maaßberg, H., McCormick, K., Sardei, F., Speth, E., Stroth,
+     U., Wagner, F., Weller, A., Werner, A., Wobig, H. & and, S. Z. 2008 Major results
+     from the stellarator wendelstein 7-AS. Plasma Physics and Controlled Fusion 50 (5),
+     053001.
+Hirshman, S. P., Shaing, K. C., van Rij, W. I., Jr., C. O. B., & Jr., E. C. C. 1986 Plasma
+     transport coefficients for nonsymmetric toroidal confinement systems. Physics of Fluids
+     29, 2951.
+Ida, K., Yoshinuma, M., Osakabe, M., Nagaoka, K., Yokoyama, M., Funaba, H.,
+     Suzuki, C., Ido, T., Shimizu, A., Murakami, I., Tamura, N., Kasahara, H.,
+     Takeiri, Y., Ikeda, K., Tsumori, K., Kaneko, O., Morita, S., Goto, M., Tanaka,
+     K., Narihara, K., Minami, T., Yamada, I. & Group, L. E. 2009 Observation of an
+     impurity hole in a plasma with an ion internal transport barrier in the Large Helical
+     Device. Physics of Plasmas 16, 056111.
+Klinger, T., Andreeva, T., Bozhenkov, S., Brandt, C., Burhenn, R., Buttenschn, B.,
+     Fuchert, G., Geiger, B., Grulke, O., Laqua, H., Pablant, N., Rahbarnia, K.,
+     Stange, T., von Stechow, A., Tamura, N., Thomsen, H., Turkin, Y., Wegner,
+     T., Abramovic, I., kslompolo, S., Alcuson, J., Aleynikov, P., Aleynikova, K.,
+     Ali, A., Alonso, A., Anda, G., Ascasibar, E., Bhner, J., Baek, S., Balden, M.,
+     Baldzuhn, J., Banduch, M., Barbui, T., Behr, W., Beidler, C., Benndorf, A.,
+     Biedermann, C., Biel, W., Blackwell, B., Blanco, E., Blatzheim, M., Ballinger,
+     S., Bluhm, T., Bckenhoff, D., Bswirth, B., Bttger, L.-G., Borchardt, M.,
+     Borsuk, V., Boscary, J., Bosch, H.-S., Beurskens, M., Brakel, R., Brand, H.,
+     Bruer, T., Braune, H., Brezinsek, S., Brunner, K.-J., Bussiahn, R., Bykov, V.,
+     Cai, J., Calvo, I., Cannas, B., Cappa, A., Carls, A., Carralero, D., Carraro,
+     L., Carvalho, B., Castejon, F., Charl, A., Chaudhary, N., Chauvin, D.,
+     Chernyshev, F., Cianciosa, M., Citarella, R., Claps, G., Coenen, J., Cole, M.,
+     Cole, M., Cordella, F., Cseh, G., Czarnecka, A., Czerski, K., Czerwinski, M.,
+     Czymek, G., da Molin, A., da Silva, A., Damm, H., de la Pena, A., Degenkolbe,
+     S., Dhard, C., Dibon, M., Dinklage, A., Dittmar, T., Drevlak, M., Drewelow,
+     P., Drews, P., Durodie, F., Edlund, E., van Eeten, P., Effenberg, F., Ehrke, G.,
+     Elgeti, S., Endler, M., Ennis, D., Esteban, H., Estrada, T., Fellinger, J., Feng,
+     Y., Flom, E., Fernandes, H., Fietz, W., Figacz, W., Fontdecaba, J., Ford, O.,
+     Fornal, T., Frerichs, H., Freund, A., Funaba, T., Galkowski, A., Gantenbein,
+     G., Gao, Y., Regaña, J. G., Gates, D., Geiger, J., Giannella, V., Gogoleva,
+     A., Goncalves, B., Goriaev, A., Gradic, D., Grahl, M., Green, J., Greuner, H.,
+     Grosman, A., Grote, H., Gruca, M., Guerard, C., Hacker, P., Han, X., Harris,
+     J., Hartmann, D., Hathiramani, D., Hein, B., Heinemann, B., Helander, P.,
+     Henneberg, S., Henkel, M., Sanchez, J. H., Hidalgo, C., Hirsch, M., Hollfeld,
+     K., Hfel, U., Hlting, A., Hschen, D., Houry, M., Howard, J., Huang, X.,
+     Huang, Z., Hubeny, M., Huber, M., Hunger, H., Ida, K., Ilkei, T., Illy, S.,
+     Israeli, B., Jablonski, S., Jakubowski, M., Jelonnek, J., Jenzsch, H., Jesche,
+     T., Jia, M., Junghanns, P., Kacmarczyk, J., Kallmeyer, J.-P., Kamionka, U.,
+     Kasahara, H., Kasparek, W., Kazakov, Y., Kenmochi, N., Killer, C., Kirschner,
+     A., Kleiber, R., Knauer, J., Knaup, M., Knieps, A., Kobarg, T., Kocsis, G.,
+     Kchl, F., Kolesnichenko, Y., Knies, A., Knig, R., Kornejew, P., Koschinsky,
+     J.-P., Kster, F., Krmer, M., Krampitz, R., Krmer-Flecken, A., Krawczyk, N.,
+     Kremeyer, T., Krom, J., Krychowiak, M., Ksiazek, I., Kubkowska, M., Khner,
+     G., Kurki-Suonio, T., Kurz, P., Kwak, S., Landreman, M., Lang, P., Lang,
+     R., Langenberg, A., Langish, S., Laqua, H., Laube, R., Lazerson, S., Lechte,
+     C., Lennartz, M., Leonhardt, W., Li, C., Li, C., Li, Y., Liang, Y., Linsmeier,
+18            J. M. Garcı́a-Regaña, M. Barnes, I. Calvo, F. I. Parra et al.
+     C., Liu, S., Lobsien, J.-F., Loesser, D., Cisquella, J. L., Lore, J., Lorenz, A.,
+     Losert, M., Lcke, A., Lumsdaine, A., Lutsenko, V., Maaßberg, H., Marchuk,
+     O., Matthew, J., Marsen, S., Marushchenko, M., Masuzaki, S., Maurer, D.,
+     Mayer, M., McCarthy, K., McNeely, P., Meier, A., Mellein, D., Mendelevitch,
+     B., Mertens, P., Mikkelsen, D., Mishchenko, A., Missal, B., Mittelstaedt, J.,
+     Mizuuchi, T., Mollen, A., Moncada, V., Mnnich, T., Morisaki, T., Moseev,
+     D., Murakami, S., Náfrádi, G., Nagel, M., Naujoks, D., Neilson, H., Neu,
+     R., Neubauer, O., Neuner, U., Ngo, T., Nicolai, D., Nielsen, S., Niemann, H.,
+     Nishizawa, T., Nocentini, R., Nhrenberg, C., Nhrenberg, J., Obermayer, S.,
+     Offermanns, G., Ogawa, K., lmanns, J., Ongena, J., Oosterbeek, J., Orozco,
+     G., Otte, M., Rodriguez, L. P., Panadero, N., Alvarez, N. P., Papenfuß, D.,
+     Paqay, S., Pasch, E., Pavone, A., Pawelec, E., Pedersen, T., Pelka, G., Perseo,
+     V., Peterson, B., Pilopp, D., Pingel, S., Pisano, F., Plaum, B., Plunk, G., Plskei,
+     P., Porkolab, M., Proll, J., Puiatti, M.-E., Sitjes, A. P., Purps, F., Rack, M.,
+     Récsei, S., Reiman, A., Reimold, F., Reiter, D., Remppel, F., Renard, S., Riedl,
+     R., Riemann, J., Risse, K., Rohde, V., Rhlinger, H., Romé, M., Rondeshagen,
+     D., Rong, P., Roth, B., Rudischhauser, L., Rummel, K., Rummel, T., Runov,
+     A., Rust, N., Ryc, L., Ryosuke, S., Sakamoto, R., Salewski, M., Samartsev, A.,
+     Sanchez, E., Sano, F., Satake, S., Schacht, J., Satheeswaran, G., Schauer, F.,
+     Scherer, T., Schilling, J., Schlaich, A., Schlisio, G., Schluck, F., Schlter, K.-
+     H., Schmitt, J., Schmitz, H., Schmitz, O., Schmuck, S., Schneider, M., Schneider,
+     W., Scholz, P., Schrittwieser, R., Schrder, M., Schrder, T., Schroeder, R.,
+     Schumacher, H., Schweer, B., Scott, E., Sereda, S., Shanahan, B., Sibilia,
+     M., Sinha, P., Sipli, S., Slaby, C., Sleczka, M., Smith, H., Spiess, W., Spong,
+     D., Spring, A., Stadler, R., Stejner, M., Stephey, L., Stridde, U., Suzuki, C.,
+     Svensson, J., Szabó, V., Szabolics, T., Szepesi, T., Szkefalvi-Nagy, Z., Tancetti,
+     A., Terry, J., Thomas, J., Thumm, M., Travere, J., Traverso, P., Tretter,
+     J., Mora, H. T., Tsuchiya, H., Tsujimura, T., Tulipán, S., Unterberg, B.,
+     Vakulchyk, I., Valet, S., Vano, L., van Milligen, B., van Vuuren, A., Vela, L.,
+     Velasco, J.-L., Vergote, M., Vervier, M., Vianello, N., Viebke, H., Vilbrandt,
+     R., Vorkper, A., Wadle, S., Wagner, F., Wang, E., Wang, N., Wang, Z., Warmer,
+     F., Wauters, T., Wegener, L., Weggen, J., Wei, Y., Weir, G., Wendorf, J.,
+     Wenzel, U., Werner, A., White, A., Wiegel, B., Wilde, F., Windisch, T.,
+     Winkler, M., Winter, A., Winters, V., Wolf, S., Wolf, R., Wright, A., Wurden,
+     G., Xanthopoulos, P., Yamada, H., Yamada, I., Yasuhara, R., Yokoyama, M.,
+     Zanini, M., Zarnstorff, M., Zeitler, A., Zhang, D., Zhang, H., Zhu, J., Zilker,
+     M., Zocco, A., Zoletnik, S. & Zuin, M. 2019 Overview of first wendelstein 7-x high-
+     performance operation. Nuclear Fusion 59 (11), 112004.
+Langenberg, A., Wegner, T., Pablant, N. A., Marchuk, O., Geiger, B., Tamura, N.,
+     Bussiahn, R., Kubkowska, M., Mollén, A., Traverso, P., Smith, H. M., Fuchert,
+     G., Bozhenkov, S., Damm, H., Pasch, E., Brunner, K.-J., Knauer, J., Beurskens,
+     M., Burhenn, R. & and, R. C. W. 2020 Charge-state independent anomalous transport
+     for a wide range of different impurity species observed at wendelstein 7-x. Physics of
+     Plasmas 27 (5), 052510.
+McCormick, K., Grigull, P., Burhenn, R., Brakel, R., Ehmler, H., Feng, Y.,
+     Gadelmeier, F., Giannone, L., Hildebrandt, D., Hirsch, M., Jaenicke, R.,
+     Kisslinger, J., Klinger, T., Klose, S., Knauer, J. P., König, R., Kühner, G.,
+     Laqua, H. P., Naujoks, D., Niedermeyer, H., Pasch, E., Ramasubramanian, N.,
+     Rust, N., Sardei, F., Wagner, F., Weller, A., Wenzel, U. & Werner, A. 2002
+     New advanced operational regime on the W7–AS stellarator. Phys. Rev. Lett. 89, 015001.
+Mikkelsen, D. R., Tanaka, K., Nunami, M., Watanabe, T.-H., Sugama, H., Yoshinuma,
+     M., Ida, K., Suzuki, Y., Goto, M., Morita, S., Wieland, B., Yamada, I.,
+     Yasuhara, R., Tokuzawa, T., Akiyama, T. & Pablant, N. A. 2014 Quasilinear
+     carbon transport in an impurity hole plasma in lhd. Physics of Plasmas 21, 082302.
+Mollén, A., Landreman, M., Smith, H. M., Garcı́a-Regaña, J. M. & Nunami, M.
+     2018 Flux-surface variations of the electrostatic potential in stellarators: Impact on the
+     radial electric field and neoclassical impurity transport. Plasma Phys. Control. Fusion 60,
+     084001.
+Nunami, M., Nakata, M., Toda, S. & Sugama, H. 2020 Gyrokinetic simulations for turbulent
+                          Turbulent impurity transport in W7-X                             19
+     transport of multi-ion-species plasmas in helical systems. Physics of Plasmas 27 (5),
+     052501.
+Proll, J. H. E., Xanthopoulos, P. & Helander, P. 2013 Collisionless microinstabilities in
+     stellarators. II. numerical simulations. Physics of Plasmas 20 (12), 122506.
+Velasco, J., Calvo, I., Parra, F. & Garcı́a-Regaña, J. 2020 KNOSOS: a fast orbit-
+     averaging neoclassical code for stellarator geometry. Journal of Computational Physics p.
+     109512.
+Velasco, J. L., Calvo, I., Garcı́a-Regaña, J. M., Parra, F. I., Satake, S. & and, J.
+     A. A. 2018 Large tangential electric fields in plasmas close to temperature screening.
+     Plasma Physics and Controlled Fusion 60 (7), 074004.
+

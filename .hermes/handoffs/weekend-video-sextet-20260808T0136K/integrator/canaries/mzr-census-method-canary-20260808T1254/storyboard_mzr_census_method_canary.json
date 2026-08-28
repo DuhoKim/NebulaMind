@@ -1,0 +1,96 @@
+{
+ "title": "The metallicity-archive census — the method, before any measurement",
+ "slug": "mzr-census-method-canary",
+ "cards": [
+  {
+   "kind": "title",
+   "heading": "The metallicity-archive census — the method, before any measurement",
+   "character": true,
+   "status_badge": "RESULT HELD",
+   "seconds": 8,
+   "body": "The question: which of the archive's tables could even support a mass–metallicity relation? This cut shows only how that census was built. The result is deliberately not in this video. NebulaMind Lab."
+  },
+  {
+   "kind": "point",
+   "heading": "No result is authorized — this cut shows only the method",
+   "source": "sources/WORKFLOW_CHECKLIST.json",
+   "display_citation": "NebulaMind census workflow checklist · frozen record",
+   "character": true,
+   "status_badge": "RESULT HELD",
+   "seconds": 10,
+   "body": "This lane has no source-and-status freeze, so no measurement may be stated. The eligibility rules exist and are frozen, but they have not yet been applied — no eligible-table count exists to report. What can be shown is how the census was built."
+  },
+  {
+   "kind": "point",
+   "heading": "The eligibility rules were frozen before they touched a table",
+   "source": "sources/FREEZE_RECORD_T2.md",
+   "display_citation": "NebulaMind T2 eligibility freeze record · 2026-08-06",
+   "status_badge": "RESULT HELD",
+   "seconds": 10,
+   "body": "The eligibility contract was frozen on Duho's instruction before being applied to any candidate. A census that decides its rules after seeing the tables could steer its own outcome; this one cannot."
+  },
+  {
+   "kind": "data",
+   "heading": "157",
+   "source": "sources/T1_MZR_MANIFEST.json",
+   "display_citation": "NebulaMind MZR archive census · frozen T1 run · 2026-08-05",
+   "status_badge": "RESULT HELD",
+   "seconds": 7,
+   "body": "single-table candidates recorded by the frozen census — tables where all three quantities are reachable together."
+  },
+  {
+   "kind": "figure",
+   "heading": "Three search axes, one intersection — the spine is arithmetic, not judgment",
+   "figure": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/mzr-census-method-canary-20260808T1254/figures/census_spine.png",
+   "source": "sources/T1_MZR_MANIFEST.json",
+   "status_badge": "RESULT HELD",
+   "seconds": 13,
+   "body": "Each axis is searched separately; a candidate must be reachable on all three in the same table. 178 tables intersect; 21 drop when error-modifier columns empty an axis — 19 on redshift and the rest on abundance — leaving 157 recorded candidates."
+  },
+  {
+   "kind": "point",
+   "heading": "One table must carry all three — joins are not assessed",
+   "source": "sources/T1_MZR_MANIFEST.json",
+   "display_citation": "NebulaMind MZR archive census · frozen T1 run · 2026-08-05",
+   "status_badge": "RESULT HELD",
+   "seconds": 11,
+   "body": "The frozen rule: a candidate is a single table where abundance, mass, and redshift are each metadata-reachable. Cross-table joins and crossmatches are not assessed, and nothing here claims a table's values are adjudicated measurements."
+  },
+  {
+   "kind": "point",
+   "heading": "The search was tested before it was trusted",
+   "source": "sources/T1_MZR_MANIFEST.json",
+   "display_citation": "NebulaMind MZR archive census · frozen T1 run · 2026-08-05",
+   "status_badge": "RESULT HELD",
+   "seconds": 12,
+   "body": "Seven known member tables were planted, and all seven were returned; three decoy controls were planted, and none appeared. That certifies retrieval, not precision — the recorded misses split into symbol collisions and target-domain mismatches, and none of those examples is an eligibility ruling."
+  },
+  {
+   "kind": "point",
+   "heading": "A vocabulary scan is a side check, not evidence",
+   "source": "sources/T1E_GASPHASE_COUNT.json",
+   "display_citation": "NebulaMind T1E gas-phase vocabulary scan · frozen pattern",
+   "status_badge": "RESULT HELD",
+   "seconds": 11,
+   "body": "62 of the 157 recorded descriptions match a frozen gas-phase term pattern. That is vocabulary presence only — an internal side check. The frozen eligibility rules still apply to all 157 candidates; none has been ruled in or out."
+  },
+  {
+   "kind": "limit",
+   "heading": "Why there is no measurement in this video",
+   "source": "sources/WORKFLOW_CHECKLIST.json",
+   "display_citation": "NebulaMind census workflow checklist · frozen record",
+   "character": true,
+   "status_badge": "RESULT HELD",
+   "seconds": 13,
+   "body": "Open gates: the eligibility contract is frozen but its application is not completed, so no eligible-table count exists; the census reads archive metadata, not adjudicated measurements; and no lane freeze authorizes any result. Until those close, this lane states what could be measured — not what was."
+  },
+  {
+   "kind": "close",
+   "heading": "nebulamind.net",
+   "character": true,
+   "status_badge": "RESULT HELD",
+   "seconds": 6,
+   "body": "A census of what could be measured. The measuring ships only after its gates close."
+  }
+ ]
+}

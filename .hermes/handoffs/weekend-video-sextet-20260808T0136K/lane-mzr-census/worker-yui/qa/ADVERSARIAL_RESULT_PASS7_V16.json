@@ -1,0 +1,35 @@
+{
+  "review_round": 22,
+  "pass": 7,
+  "snapshot": "pass7-sealed-receipt-current-identifiers-v16",
+  "snapshot_manifest_sha256": "089b9695b818fe07b8852c99a5978379a6459bf3ba445de89bdef879f26e1c21",
+  "manifest_entry_count": 93,
+  "result": "FAIL",
+  "material_defects": [
+    "visual_proposal_qa contained an unversioned independent PASS citing deliberately excluded receipts while current visual-v9 review remained pending",
+    "CANDIDATE_NOTES was an active current-facing guidance surface that named visual v9 but omitted storyboard v13 and packet v16 despite a local consistency claim"
+  ],
+  "passed_checks": {
+    "external_manifest_start_end": true,
+    "manifest_entries_hash_size_mode": "93/93; 94/94 files 0444; 5/5 directories 0555",
+    "exact_inventory": true,
+    "sources": "8/8",
+    "frames": "43/43 plus contact sheets byte/pixel exact",
+    "anchored_validator_both_preparers_renderer": "PASS",
+    "stored_content_receipt_contract": "PASS; content-only preseal plus runtime authentication avoids self-reference",
+    "mutation_suite": "byte-identical baseline plus 31/31 expected failures",
+    "hostile_attacks": "all listed-byte, inventory, re-sign, numeric, visual, output, receipt, and title probes rejected",
+    "complete_audience_projection": "10 narration + 62 screen leaves + 10 citations",
+    "timing_contract": "45 states; 21 clauses; <=3.0 seconds",
+    "static_visual": "PASS for static proposal",
+    "no_operative_four_second_guidance": true,
+    "no_write": true
+  },
+  "external_candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "external_candidate_mode": "0644",
+  "external_candidate_policy_read_only": "FAIL",
+  "files_modified": [],
+  "whole_packet_cleared": false,
+  "encoded_timing_assessed": false,
+  "release_gates": "CLOSED"
+}

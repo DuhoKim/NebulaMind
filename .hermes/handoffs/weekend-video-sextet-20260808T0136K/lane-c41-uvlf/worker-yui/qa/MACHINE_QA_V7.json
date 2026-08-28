@@ -1,0 +1,96 @@
+{
+  "marker": "C41_UVLF_WORKER_YUI_MACHINE_QA_V7",
+  "artifact_class": "WORKER_VISUAL_PROPOSAL_ONLY",
+  "status": "PASS_FOR_HWAO_HANDOFF_NOT_PUBLICATION",
+  "official_candidate_rendered": false,
+  "tts_invoked": false,
+  "determinism": {
+    "status": "PASS",
+    "method": "Built visual_proposals/v7 twice from frozen source hashes and compared every state/contact-sheet SHA-256.",
+    "hashes_equal_across_rerun": true
+  },
+  "source_assertions": {
+    "candidate_tables": 112,
+    "name_reachable": 20,
+    "ucd_only": 92,
+    "counted_catalogues": 67,
+    "counted_catalogues_with_rows": 27,
+    "counted_catalogues_with_zero_rows": 40,
+    "raw_rows_all_slices": 6417,
+    "slice_rows": 453,
+    "bright_rows_reported_magnitude_le_minus20": 176,
+    "slice_source_tables": 6,
+    "dominant_table_rows": 420,
+    "dominant_table_bright_rows": 161,
+    "status": "PASS"
+  },
+  "storyboard_audio_proposal_consistency": {
+    "status": "PASS",
+    "scenes": 7,
+    "narration_words": 233,
+    "target_seconds": 84,
+    "average_words_per_minute": 166.4,
+    "maximum_scene_words_per_minute": 172.5,
+    "visual_assets_exist": true,
+    "alloy_segment_text_and_duration_match_storyboard": true,
+    "tts_invoked": false
+  },
+  "visual_output_hashes": {
+    "state_01_name_channel.png": "67910fab7b84c8c9508f5a4297b96511a368fc4dd4e75ae7c1b97fe2ee75837a",
+    "state_02_ucd_partition.png": "7dd349bfa0d18f55b47b8010b5012597678ca3e6eef0409f888dd10e035c3a25",
+    "state_03_eligibility_funnel.png": "1dd3454b3133a886ac5cd68b4b5f2076ebaf4353ce05be27a667162e6916e7de",
+    "state_04_slice_plane_rows.png": "a61a86de544ca1ec50ac7b39f52f1a5df2da01947f8e37be2e4edc2aa1683938",
+    "state_05_slice_plane_threshold.png": "f0d32245a52107a961f0c6dfe3a7c4cd01ab8ec1767f77290b11f4b0aa7cf782",
+    "state_06_slice_plane_boundary.png": "02b46b2692b58bcf4f92c6730c544b10506d06de820a33fa8d1a329fee361251",
+    "state_07_reproducibility_packet.png": "b758aad81330a9152478541155fa921f4c3fd0490517e708eceecef060403afc",
+    "contact_sheet.png": "ac2762f1be4c8bb4640eaca32ab53da6a733f3223d19456b70376bd94128bee5"
+  },
+  "dimensions": {
+    "state_frames": "1920x1080",
+    "state_frame_count": 7,
+    "contact_sheet": "1280x1440"
+  },
+  "visual_checks": {
+    "full_resolution_frame_review": "PASS",
+    "contact_sheet_sequence_review": "PASS",
+    "clipping_or_overlap": false,
+    "axis_and_units_visible": true,
+    "half_open_redshift_slice_visible": true,
+    "reported_magnitude_cut_visible": true,
+    "denominator_visible_with_176": true,
+    "row_contribution_status_visible": true,
+    "dominant_table_provenance_visible": true,
+    "bandpass_homogenization_denied": true,
+    "raw_row_caveat_visible": true,
+    "census_and_published_lf_planes_separate": true,
+    "audience_citations_use_scholarly_names_not_internal_paths": true,
+    "proposal_not_candidate_marker_visible": true
+  },
+  "ocr_path_scan": {
+    "status": "PASS",
+    "ocr_characters_scanned": 5042,
+    "internal_path_tokens_found": []
+  },
+  "contrast_ratios": {
+    "background_to_primary_text": 16.65,
+    "background_to_dim_text": 9.2,
+    "background_to_blue": 8.21,
+    "background_to_teal": 9.63,
+    "background_to_amber": 10.45,
+    "background_to_red": 6.91,
+    "status": "PASS"
+  },
+  "iteration_disposition": [
+    {"version": "v1", "disposition": "REJECTED", "reason": "title and final-status clipping"},
+    {"version": "v2", "disposition": "REJECTED", "reason": "published-LF heading/body overlap"},
+    {"version": "v3", "disposition": "PASSED_SIX_STATE_CORE"},
+    {"version": "v4", "disposition": "REJECTED", "reason": "closing title/body clipping"},
+    {"version": "v5", "disposition": "SUPERSEDED", "reason": "missing row-contribution and source-table dominance"},
+    {"version": "v6", "disposition": "SUPERSEDED", "reason": "source dominance fixed; uniform-bandpass implication remained"},
+    {"version": "v7", "disposition": "PASS_WORKER_VISUAL_PROPOSAL"}
+  ],
+  "encoded_candidate_qa": {
+    "status": "NOT_RUN_BY_DESIGN",
+    "reason": "C41 is non-canary behind lane-c31-sed; Hwao is sole candidate/shared-tool/TTS writer. No worker MP4 exists."
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "marker": "C41_UVLF_NARRATION_SEMANTIC_AUDIT_V1",
+  "status": "PASS_WORKER_PROPOSAL",
+  "scope": "STORYBOARD_CANDIDATE.json narration only; no TTS or encoded candidate",
+  "scenes": [
+    {
+      "id": "01_archive_question",
+      "verdict": "PASS",
+      "evidence": "Canonical paper abstract and §§1,3 distinguish published bright-end UVLF results from machine reconstruction using public per-object records.",
+      "boundary": "Question framing, not a claim that every printed LF is irreproducible; the searched universe is explicitly the frozen two-channel VizieR manifest."
+    },
+    {
+      "id": "02_search_channels",
+      "verdict": "PASS",
+      "evidence": "Frozen T1 manifest has 112 candidates; 20 have at least one name:* discovery channel; 92 have exactly the ucd:magAbs channel.",
+      "boundary": "Narration says 92 additional/UCD-only tables, not 92 total UCD matches, defines UCD as physical-meaning metadata, and states that other repositories were not exhaustively searched."
+    },
+    {
+      "id": "03_eligibility_layer",
+      "verdict": "PASS",
+      "evidence": "Frozen census partition is 67 counted + 34 disqualified + 1 pending + 10 skipped = 112; 27 counted catalogues contribute rows, 40 contribute zero in the frozen slices, and T3 results report 6,417 total rows.",
+      "boundary": "Narration says catalogues/candidates/rows with distinct units, discloses non-contributing counted catalogues, and calls the rows raw."
+    },
+    {
+      "id": "04_slice_plane",
+      "verdict": "PASS",
+      "evidence": "Independent row-level filter gives 453 records with 10 <= z < 11.5; plotted coordinates are source z and M_UV values; 420 rows come from J/A+A/704/A339/lephare and 33 from five other tables.",
+      "boundary": "Half-open interval and dominant-table provenance are spoken; the quantity is called catalogued UV-like magnitude rather than a homogenized 1500-angstrom measurement; each point is a row, not a confirmed unique galaxy or an independent catalogue."
+    },
+    {
+      "id": "05_bright_subset",
+      "verdict": "PASS",
+      "evidence": "Independent row-level filter gives 176 of the 453 slice rows with M_UV <= -20; 161 of those 176 come from the dominant table.",
+      "boundary": "Reported-value cut, slice context, denominator, dominant-table qualifier, and no-bandpass-homogenization caveat remain together."
+    },
+    {
+      "id": "06_source_boundary",
+      "verdict": "PASS",
+      "evidence": "Canonical paper Table 1 and §§5–6 describe the frozen published-LF roster as unpopulated in the slice while the separate census contains raw rows.",
+      "boundary": "Narration says no predefined-roster LF table met the machine-readable data requirements for the slice, explicitly interprets this as missing extractable data rather than zero galaxies or zero published LFs, and denies LF-measurement, completeness, and density interpretations."
+    },
+    {
+      "id": "07_reproducibility_packet",
+      "verdict": "PASS",
+      "evidence": "Canonical paper §6 lists the required machine-readable values, uncertainty, bin geometry, redshift support, conventions, and transformations; the paper-specific review record confirms Lab-landing clearance without journal review.",
+      "boundary": "Narration defines the repair as procedural, does not claim the packet already exists, and separates Lab clearance from journal peer review, independent validation, and a journal result."
+    }
+  ],
+  "global_checks": {
+    "internal_paths_in_display_citations": false,
+    "journal_acceptance_claim": false,
+    "validation_claim": false,
+    "publication_claim": false,
+    "confirmed_galaxy_claim_for_6417_rows": false,
+    "density_or_completeness_inference": false,
+    "uniform_1500_angstrom_bandpass_claim": false,
+    "all_public_archives_exhaustively_searched_claim": false,
+    "lab_clearance_misrepresented_as_journal_review": false,
+    "roster_absence_misrepresented_as_zero_published_lfs": false,
+    "census_and_published_lf_planes_conflated": false,
+    "threshold_without_denominator": false,
+    "tts_invoked": false
+  }
+}

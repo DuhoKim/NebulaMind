@@ -1,0 +1,101 @@
+{
+  "verdict": "PASS",
+  "cases": [
+    {
+      "name": "baseline",
+      "expected_pass": true,
+      "actual_pass": true,
+      "diagnostic_ok": true,
+      "errors": [],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_funnel",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "source-to-render binding failed: ['b05_funnel_exactly_source_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_axis_counts",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "source-to-render binding failed: ['b03_axis_cards_exactly_source_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "partial_axis_dequalification",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "visual semantics failed: ['all_target_concepts_are_search_axes']",
+        "source-to-render binding failed: ['b01_all_axes_exhaustively_qualified']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "standalone_divider",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b02']; global=[]",
+        "visual semantics failed: ['scientific_presentation_motion_contract']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "semantic_hold_false_change",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b07']; global=[]",
+        "visual semantics failed: ['scientific_presentation_motion_contract']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "reordered_final_sequence",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b10']; global=['global_times_strictly_increasing', 'maximum_semantic_gap_pass']",
+        "visual semantics failed: ['scientific_presentation_motion_contract', 'final_reportable_pending_reveal_sequence']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_citation",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "citation identity checks failed: ['all_display_citations_registered_exactly']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "unmapped_narration_clause",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b10']; global=['all_declared_clauses_mapped']",
+        "visual semantics failed: ['scientific_presentation_motion_contract']"
+      ],
+      "test_pass": true
+    }
+  ],
+  "baseline_receipt_hash_before": "abff1da599a97ea4b501c57391dfdf95f28f896a6951fa29ee43410fa3a6d20d",
+  "baseline_receipt_hash_after": "abff1da599a97ea4b501c57391dfdf95f28f896a6951fa29ee43410fa3a6d20d",
+  "check_mode_did_not_write": true
+}

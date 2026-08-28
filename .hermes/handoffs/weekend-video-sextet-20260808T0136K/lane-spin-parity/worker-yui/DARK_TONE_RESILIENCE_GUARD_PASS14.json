@@ -1,0 +1,178 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass14-dark-tone-20260808T092829K",
+  "created_at": "2026-08-08T09:28:29+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "dark-tone-floor resilience for any future Hwao-authored method-only iteration",
+  "simulation_limit": "The transform is a deterministic integer-luma-preserving dark-tone floor followed by full-range remapping. Code-value floors are packet parameters, not claims about a named display, transfer function, codec, player, platform, service, room, projector, viewer, camera, or perception standard.",
+  "base": {
+    "sealed_iteration": "v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "render_receipt": "proposal_frames/v8/render_receipt.json",
+    "render_receipt_sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+    "pass12_correction": "SHARPNESS_RESILIENCE_STORYBOARD_CORRECTION_PASS12.json",
+    "pass12_correction_sha256": "1312ea54aa860473ff57e3c47e8305ecca8630ba1f6a998a6e02d9aea9999422",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "transform_contract": {
+    "source_mode": "RGB",
+    "canvas": "1920x1080",
+    "integer_luma_weights_over_256": [54, 183, 19],
+    "luma_rounding": "add 128 then floor-divide by 256",
+    "remap": "Y2=max(Y-floor,0)*255/(255-floor), integer round-half-up; RGB2=RGB*Y2/Y, integer round-half-up",
+    "floor_code_values": [8, 16, 32, 48],
+    "operational_floor_code_value": 16,
+    "characterization_floor_code_values": [32, 48],
+    "canvas_change": false
+  },
+  "fresh_candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "extraction_script": "qa/extract_pass14_shadow_floor_frames.py",
+    "extraction_script_sha256": "78ec23b1ecdb591b6d5b49b12c7946bdd20ca33760b1a157991c7f7759d0ffb0",
+    "extraction_receipt": "qa/pass14_shadow_floor_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "b5d897cfbff6153204f8efa71540afdd6b1cee94c0c03050386309b4e35e8c36",
+    "quantitative_audit": "qa/pass14_shadow_floor_quantitative_audit.json",
+    "quantitative_audit_sha256": "2917cafd30a68a2c7fa89f13911721867b64949ee6b7f27be9cf2b5659c5c022",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS13_CUT_TIMES",
+    "fresh_clean_midpoint_reproduction": "16/16_PASS13_CLEAN_BYTE_IDENTICAL",
+    "variant_count": 5,
+    "frame_count": 80,
+    "operational_floor_16": {
+      "headline_token_recall_vs_clean": 0.997845,
+      "full_token_recall_vs_clean": 0.978241,
+      "lower_support_token_recall_vs_clean": 0.974119,
+      "numeric_token_recall_vs_clean": 0.967361,
+      "mean_rgb_psnr_db": 23.322732,
+      "mean_luma_retention": 0.393058,
+      "additional_black_pixel_fraction": 0.689215,
+      "nonzero_dark_pixel_survival_below_64": 0.26762,
+      "low_tone_tolerant_edge_recall": 0.998334,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_scenes_7_9_10_11_16_at_floor_16": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.961609,
+      "lower_support_token_recall_vs_clean": 0.952503,
+      "numeric_token_recall_vs_clean": 0.895556,
+      "additional_black_pixel_fraction": 0.796146,
+      "nonzero_dark_pixel_survival_below_64": 0.134594,
+      "structural_gate_scene_count": 0
+    },
+    "severe_floor_48_characterization": {
+      "headline_token_recall_vs_clean": 0.99569,
+      "full_token_recall_vs_clean": 0.900701,
+      "lower_support_token_recall_vs_clean": 0.879442,
+      "numeric_token_recall_vs_clean": 0.644551,
+      "additional_black_pixel_fraction": 0.942483,
+      "nonzero_dark_pixel_survival_below_64": 0.003571,
+      "low_tone_tolerant_edge_recall": 0.866807,
+      "structural_gate_scene_count": 0,
+      "human_visual_finding": "Major result headlines, large numbers, bright bars, matrices, plot silhouettes, and conclusion hierarchy remain primary while dark background texture, gridlines, axes, error bars, legends, caveats, citations, provenance, and low-luminance context are heavily suppressed."
+    },
+    "finding": "The failed candidate's bright assertion hierarchy remains almost fully readable after most dark context is mapped to black. No structural held boundary appears. Dark-tone loss neither repairs nor authorizes the candidate."
+  },
+  "method_only_evidence": {
+    "derivative_builder": "qa/build_pass14_v8_shadow_floor.py",
+    "derivative_builder_sha256": "41241146794720b6619364e5e4a73f73c185bcba29f3ad277c229cbc08e4bf52",
+    "derivative_receipt": "qa/pass14_v8_shadow_floor/receipt.json",
+    "derivative_receipt_sha256": "5e1b5c2ced02c2e081ecf7c49c9cdc4946844cbe6fd9e674288dfd3e913cd0f4",
+    "group_count": 3,
+    "derived_scene_count": 21,
+    "derived_frame_count": 105,
+    "sealed_v8_at_floor_16": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.98062,
+      "lower_support_token_recall_vs_clean": 0.972143,
+      "numeric_token_recall_vs_clean": 1.0,
+      "result_held_badges_visual": "7/7",
+      "large_status_boundaries_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe_at_floor_16": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.973567,
+      "scene_specific_gate_lines_visual": "7/7_EXACT",
+      "scene_specific_gate_lines_single_pass_regex_ocr": "6/7",
+      "result_held_badges_visual": "7/7"
+    },
+    "pass12_sharpness_safe_at_floor_16": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.97321,
+      "scene_specific_gate_lines_visual": "7/7_EXACT",
+      "scene_specific_gate_lines_character_similarity_at_least_0_85": "7/7",
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+      "result_held_badges_visual": "7/7",
+      "overlap_clipping_or_semantic_ambiguity": false
+    },
+    "severe_floor_48": {
+      "sealed_v8_headline_token_recall": 1.0,
+      "sealed_v8_full_token_recall": 0.961706,
+      "pass12_gate_lines_visual": "7/7_EXACT",
+      "pass12_gate_character_similarity_at_least_0_85": "7/7",
+      "pass12_mean_gate_character_similarity": 1.0,
+      "pass12_result_held_badges_visual": "7/7",
+      "required_method_or_status_meaning_ambiguous": false,
+      "characterization_note": "Dark card fills and background texture collapse toward black; required labels, borders, arrows, connectors, rails, status columns, gates, badges, and qualifiers remain distinct. Tiny citation/provenance copy is not a required carrier."
+    },
+    "finding": "The pass-12 strengthened proof already passes the floor-16 operational review and retains all required meaning even at the floor-48 characterization. No additional worker-side pixel or copy correction is evidence-justified."
+  },
+  "operational_acceptance_floor": {
+    "variant": "integer-luma-preserving dark-tone floor 16/255 followed by full-range remap, native 1920x1080 RGB",
+    "role": "packet-specific integration review floor, not a universal display, transfer, player, room, platform, service, or viewer standard",
+    "requirements": [
+      "Seven of seven exact strengthened scene-specific gate lines remain visually readable and reach at least 0.85 normalized character similarity under the recorded cropped multi-PSM aid.",
+      "Seven of seven complete RESULT HELD capsules remain visually readable.",
+      "Large RESULT LOCKED, FRAME UNSTATED, OUTCOMES WITHHELD, and RESULT STATUS HELD boundaries remain primary.",
+      "Header, gate, badge, headline, cards, and diagrams remain separated with no clipping or semantic ambiguity.",
+      "Arrows, borders, connectors, condition rails, and status columns remain distinguishable through direct labels plus geometry.",
+      "No required scientific qualifier, unresolved boundary, unavailable rung, interpretation limit, branch distinction, axis, error bar, or provenance fact is carried only by pixels whose source luma is at or below code value 16.",
+      "Dark fill and background texture may be decorative only; required boundaries require a readable label and a surviving border, connector, capsule, or stable position.",
+      "Human full-sheet and full-resolution review remains decisive; OCR and pixel metrics are aids only."
+    ]
+  },
+  "characterization_only": {
+    "floor_code_values": [32, 48],
+    "role": "diagnostic failure-order characterization; not mandatory acceptance thresholds",
+    "reason": "These arbitrary code-value floors reveal dependence on dark pixels but represent no named display, transfer function, room, player, platform, service, or viewer."
+  },
+  "cumulative_regression_requirements": [
+    "Keep the pass-7 scene-specific gates above the bottom-quarter obstruction zone.",
+    "Keep pass-8 direct-label and non-hue redundancy.",
+    "Keep complete semantic containers inside the pass-9 inner-five-percent title-safe rectangle.",
+    "Meet the pass-10 operational 20-percent black-lift floor.",
+    "Meet the pass-11 operational Pillow JPEG q60 4:2:0 floor.",
+    "Meet the pass-12 operational Pillow GaussianBlur radius-1.5 floor and strengthened title-safe gate geometry.",
+    "Meet the pass-13 centered horizontal width-7 directional-smear floor.",
+    "Rerun dark-tone floor, directional smear, spatial defocus, recompression, black lift, crop, color/monochrome, obstruction, and 360p reviews after an authorized layout change."
+  ],
+  "disposition": {
+    "new_pixel_change_requested": false,
+    "new_copy_change_requested": false,
+    "non_pixel_integration_guard_added": true,
+    "reason": "The pass-12 strengthened proof preserves all seven exact gates, all seven badges, and every required method/status distinction at floor 16; a further worker-side visual change would be cosmetic rather than evidence-backed.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may apply this non-pixel dark-tone guard cumulatively with passes 7 through 13. Any actual layout change remains a separately reviewed integrator action. This guard is not v9 and changes no sealed or proof pixel.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

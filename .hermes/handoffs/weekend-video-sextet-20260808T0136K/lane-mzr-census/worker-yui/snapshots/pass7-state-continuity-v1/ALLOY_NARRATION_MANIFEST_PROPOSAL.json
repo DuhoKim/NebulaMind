@@ -1,0 +1,484 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_EXECUTED",
+  "writer": "Hwao only",
+  "provider_route": "Nous-managed OpenAI text-to-speech route",
+  "voice": "Alloy",
+  "speed": 1.18,
+  "speed_source": "authoritative HWAO_WEEKEND_ORDER.md; do not re-derive per segment",
+  "source_storyboard": "STORYBOARD_CANDIDATE.json",
+  "source_storyboard_version": "pass7-state-continuity-v1",
+  "source_storyboard_sha256": "3154a8f939fbf927776a969a0abdd53cac07d5e010a4c86e53d97a9c3751faf8",
+  "audience_copy_status": "STATIC_STORYBOARD_PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "visual_qa_gate": {
+    "artifact": "visual_proposal_v8.png",
+    "sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "verdict": "PASS_FOR_STATIC_VISUAL_PROPOSAL_ONLY_PASS7_LOCAL_GATE_PENDING_INDEPENDENT_REGATE"
+  },
+  "planned_total_words": 207,
+  "planned_visual_floor_seconds": 105.0,
+  "planned_delivered_wpm": 118.3,
+  "pronunciation_guidance": {
+    "VizieR": "VEE-zee-air",
+    "UCD": "U-C-D",
+    "MZR": "M-Z-R",
+    "T2": "T two",
+    "src.redshift": "source dot redshift",
+    "symbol Z": "symbol zee"
+  },
+  "segments": [
+    {
+      "segment_id": "b01",
+      "text": "This VizieR metadata census asks which single tables intersect the abundance-search, mass-search, and redshift-search axes.",
+      "word_count": 15,
+      "visual_floor_seconds": 9.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Show one VizieR single-table icon and T1 ENUMERATION stage label."
+        },
+        {
+          "at_seconds": 2.0,
+          "visible_change": "Reveal ABUNDANCE SEARCH metadata rail."
+        },
+        {
+          "at_seconds": 4.0,
+          "visible_change": "Reveal MASS SEARCH metadata rail."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Reveal REDSHIFT SEARCH metadata rail and merge all three into the single-table intersection."
+        },
+        {
+          "at_seconds": 8.0,
+          "visible_change": "Lock the persistent not-an-MZR and single-table/no-crossmatch badges."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "root_start",
+        "exit_state_id": "search_axis_scope",
+        "persistent_layers": [
+          "single-table archive icon",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": []
+      },
+      "proposed_start_seconds": 0.0,
+      "proposed_end_seconds": 9.0,
+      "output_basename_proposal": "b01-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b02",
+      "text": "The search combined semantic UCD tags with column-name variants, and each frozen query returned exactly its pre-counted rows.",
+      "word_count": 18,
+      "visual_floor_seconds": 8.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Reveal the SEMANTIC UCD TAGS rail."
+        },
+        {
+          "at_seconds": 2.5,
+          "visible_change": "Reveal the COLUMN-NAME VARIANTS rail beside it."
+        },
+        {
+          "at_seconds": 5.0,
+          "visible_change": "Join the rails and reveal FROZEN QUERIES."
+        },
+        {
+          "at_seconds": 7.0,
+          "visible_change": "Reveal ZERO CHANNEL FAILURES as a status badge."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "search_axis_scope",
+        "exit_state_id": "retrieval_channels",
+        "persistent_layers": [
+          "three search-axis rails",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "opening question"
+        ]
+      },
+      "proposed_start_seconds": 9.0,
+      "proposed_end_seconds": 17.0,
+      "output_basename_proposal": "b02-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b03",
+      "text": "UCD plus name matching reached 5,568 tables on the abundance-search axis, 6,206 on mass-search, and 6,687 on redshift-search; name matching added 175, 88, and 20.",
+      "word_count": 28,
+      "visual_floor_seconds": 12.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Reveal the ABUNDANCE SEARCH card with UCD and UCD-plus-name counts."
+        },
+        {
+          "at_seconds": 3.0,
+          "visible_change": "Reveal the MASS SEARCH card with UCD and UCD-plus-name counts."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Reveal the REDSHIFT SEARCH card with UCD and UCD-plus-name counts."
+        },
+        {
+          "at_seconds": 9.0,
+          "visible_change": "Reveal +175, +88, and +20 gains on a common baseline."
+        },
+        {
+          "at_seconds": 11.0,
+          "visible_change": "Lock COUNTS \u00b7 AREA NOT ENCODED."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "retrieval_channels",
+        "exit_state_id": "axis_reach_counts",
+        "persistent_layers": [
+          "UCD channel",
+          "name-variant channel",
+          "three search-axis labels",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "zero channel failures badge"
+        ]
+      },
+      "proposed_start_seconds": 17.0,
+      "proposed_end_seconds": 29.0,
+      "output_basename_proposal": "b03-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b04",
+      "text": "The three axis lists intersected at 178 candidate tables.",
+      "word_count": 9,
+      "visual_floor_seconds": 7.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Carry the three labeled search-axis rails forward."
+        },
+        {
+          "at_seconds": 2.0,
+          "visible_change": "Animate the three-list intersection."
+        },
+        {
+          "at_seconds": 4.0,
+          "visible_change": "Reveal 178 SINGLE TABLES."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Lock RECORDED METADATA CANDIDATES \u00b7 NOT ELIGIBILITY RULINGS."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "axis_reach_counts",
+        "exit_state_id": "intersection_178",
+        "persistent_layers": [
+          "three search-axis cards",
+          "channel labels",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "per-axis gain annotations after merge completes"
+        ]
+      },
+      "proposed_start_seconds": 29.0,
+      "proposed_end_seconds": 36.0,
+      "output_basename_proposal": "b04-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b05",
+      "text": "Modifier columns then emptied a required axis in 21 tables: 19 on redshift and 2 on abundance, leaving 157 recorded candidates.",
+      "word_count": 21,
+      "visual_floor_seconds": 12.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Start from the visible 178 node."
+        },
+        {
+          "at_seconds": 2.5,
+          "visible_change": "Branch \u221221 MODIFIER-FILTER DROPS from the main path."
+        },
+        {
+          "at_seconds": 5.0,
+          "visible_change": "Split the dropped branch into 19 REDSHIFT and 2 ABUNDANCE bins."
+        },
+        {
+          "at_seconds": 7.5,
+          "visible_change": "Reveal the recorded modifier examples under their bins."
+        },
+        {
+          "at_seconds": 10.0,
+          "visible_change": "Reveal 157 RECORDED CANDIDATE TABLES and keep its direct path to T2 visible."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "intersection_178",
+        "exit_state_id": "funnel_178_21_157_t2",
+        "persistent_layers": [
+          "178 parent node",
+          "three-axis intersection label",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "individual search-axis cards after their merged parent remains visible"
+        ]
+      },
+      "proposed_start_seconds": 36.0,
+      "proposed_end_seconds": 48.0,
+      "output_basename_proposal": "b05-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b06",
+      "text": "As a side check, a frozen term regex matched 62 of those 157 recorded descriptions; it is not an eligibility filter, and T2 still applies to all 157.",
+      "word_count": 28,
+      "visual_floor_seconds": 12.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Show the direct 157-to-T2 path first."
+        },
+        {
+          "at_seconds": 3.0,
+          "visible_change": "Branch 62 OF 157 downward without interrupting the main path."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Reveal FROZEN VOCABULARY REGEX PRESENCE \u00b7 NOT ADJUDICATED GAS-PHASE EVIDENCE."
+        },
+        {
+          "at_seconds": 9.0,
+          "visible_change": "Lock SIDE CHECK ONLY \u00b7 T2 STILL APPLIES TO ALL 157."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_178_21_157_t2",
+        "exit_state_id": "funnel_plus_62_side",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "19/2 drop bins",
+          "157 parent",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "modifier-column examples after 19/2 bins remain labeled"
+        ]
+      },
+      "proposed_start_seconds": 48.0,
+      "proposed_end_seconds": 60.0,
+      "output_basename_proposal": "b06-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b07",
+      "text": "All seven pinned recall members returned, while none of the three controls appeared.",
+      "word_count": 13,
+      "visual_floor_seconds": 8.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Reveal T1 RETRIEVAL-INSTRUMENT CHECK stage label."
+        },
+        {
+          "at_seconds": 2.0,
+          "visible_change": "Reveal RECALL 7/7 with seven checks."
+        },
+        {
+          "at_seconds": 4.0,
+          "visible_change": "Reveal CONTROLS APPEARING 0/3 with three absences."
+        },
+        {
+          "at_seconds": 6.5,
+          "visible_change": "Hold both scorecards on the same baseline."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_62_side",
+        "exit_state_id": "funnel_plus_T1_metrics",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch",
+          "side-check-only boundary",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "description-term detail while 62 parent and boundary persist"
+        ]
+      },
+      "proposed_start_seconds": 60.0,
+      "proposed_end_seconds": 68.0,
+      "output_basename_proposal": "b07-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b08",
+      "text": "Those checks validate retrieval, not precision: the frozen controls did not cover the dominant precision-contamination mode.",
+      "word_count": 16,
+      "visual_floor_seconds": 13.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Retain the 7/7 and 0/3 scorecards."
+        },
+        {
+          "at_seconds": 3.0,
+          "visible_change": "Reveal RETRIEVAL CHECK PASSED."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Reveal the contrasting PRECISION NOT CERTIFIED panel."
+        },
+        {
+          "at_seconds": 9.0,
+          "visible_change": "Reveal the frozen-control coverage limitation."
+        },
+        {
+          "at_seconds": 12.0,
+          "visible_change": "Open two empty characterization-group shells for the next beat."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_T1_metrics",
+        "exit_state_id": "funnel_plus_precision_limit",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch with side-check boundary",
+          "T1 stage label",
+          "7/7 and 0/3 scorecards",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": []
+      },
+      "proposed_start_seconds": 68.0,
+      "proposed_end_seconds": 81.0,
+      "output_basename_proposal": "b08-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b09",
+      "text": "Recorded examples separate symbol-and-meaning collisions\u2014Galactic height and model-grid metal fraction\u2014from target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity. They are not T2 rulings.",
+      "word_count": 25,
+      "visual_floor_seconds": 15.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Reveal T1 RECORDED CHARACTERIZATION \u00b7 NOT T2 RULINGS."
+        },
+        {
+          "at_seconds": 3.0,
+          "visible_change": "Reveal SYMBOL / MEANING COLLISION."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Reveal Galactic height and model-grid metal fraction inside that group."
+        },
+        {
+          "at_seconds": 9.0,
+          "visible_change": "Reveal TARGET-DOMAIN MISMATCH."
+        },
+        {
+          "at_seconds": 12.0,
+          "visible_change": "Reveal the two gravitational-redshift examples and lock NOT T2 RULINGS."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_precision_limit",
+        "exit_state_id": "funnel_plus_characterization",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch with side-check boundary",
+          "precision-not-certified status",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "individual 7/7 and 0/3 icons after their precision limitation remains visible"
+        ]
+      },
+      "proposed_start_seconds": 81.0,
+      "proposed_end_seconds": 96.0,
+      "output_basename_proposal": "b09-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b10",
+      "text": "The T2 rule contract was frozen after seven gate rounds over twelve decoys and three anchors, but the 157-table eligibility application is not completed, so no eligible-table count or metallicity measurement is reportable yet.",
+      "word_count": 34,
+      "visual_floor_seconds": 9.0,
+      "timed_reveal_states": [
+        {
+          "at_seconds": 0.0,
+          "visible_change": "Reveal REPORTABLE NOW with the frozen T1 facts and complete T2 contract-design control provenance."
+        },
+        {
+          "at_seconds": 3.0,
+          "visible_change": "Reveal PENDING with T2 application, eligible-table count, and any metallicity/MZR measurement."
+        },
+        {
+          "at_seconds": 6.0,
+          "visible_change": "Lock APPLICATION NOT COMPLETED \u00b7 NO ELIGIBLE-TABLE COUNT across the direct 157-to-T2 gate."
+        },
+        {
+          "at_seconds": 8.0,
+          "visible_change": "Hold the combined qualified summary with SINGLE-TABLE METADATA CENSUS \u00b7 NOT AN MZR MEASUREMENT."
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_characterization",
+        "exit_state_id": "qualified_close",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch with side-check boundary",
+          "T1/T2 stage history",
+          "application-not-completed/no-count gate",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "individual contamination examples after both category headings remain in reportable history"
+        ]
+      },
+      "proposed_start_seconds": 96.0,
+      "proposed_end_seconds": 105.0,
+      "output_basename_proposal": "b10-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    }
+  ],
+  "audio_artifacts": [],
+  "tts_invoked": false,
+  "integration_constraints": [
+    "Visual card durations are floors; narration duration may expand a card but must not compress below the visual floor.",
+    "No worker-lane audio synthesis is authorized.",
+    "No narration may call 62 eligible or describe the census as an MZR measurement.",
+    "No narration may call abundance-search-, mass-search-, or redshift-search-axis metadata reach an adjudicated physical measurement.",
+    "T1 retrieval controls and T2 contract-design controls are distinct workflow stages and must remain labeled separately.",
+    "If T2 control counts are spoken or shown, include all 12 decoys plus 3 anchors and call them contract-design controls, not eligibility results.",
+    "Public release requires an audience-reachable methods and count ledger for internally derived denominators.",
+    "No substantive scientific evidence state may remain unchanged for more than four seconds; every substantive narration clause must trigger a visible reveal.",
+    "Do not create standalone section-divider holds; persist section identity with the evidence surface.",
+    "Reveal REPORTABLE NOW, then PENDING, then hold the combined qualified summary.",
+    "After mux, re-run hard-cut/evidence-state timing and sentence/action alignment on the exact candidate.",
+    "Do not use full-frame scientific resets between beats; each exit_state_id must match the next entry_state_id.",
+    "Keep the 178-to-minus-21-to-157-to-T2 main spine visible after it is constructed through the final qualified close.",
+    "Whenever 62 is visible, preserve its 157 parent, side-check boundary, and the all-157-to-T2 main path.",
+    "Persist T1/T2 stage identity across handoffs and re-run exact cut-boundary continuity after mux.",
+    "Use the final spoken script corresponding to the final Hwao storyboard, then run waveform and mux checks in the integrator lane.",
+    "Listening approval is a separate gate after synthesis and mux."
+  ],
+  "publication_gate": "CLOSED"
+}

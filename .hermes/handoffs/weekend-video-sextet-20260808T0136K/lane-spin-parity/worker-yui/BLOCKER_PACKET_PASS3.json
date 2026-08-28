@@ -1,0 +1,107 @@
+{
+  "packet_id": "spin-worker-yui-pass3-blockers-20260808T041927K",
+  "checked_at": "2026-08-08T04:19:27+09:00",
+  "scope": "isolated pass-3 encoded-frame audit and recursive blocker deepening; no scientific adjudication",
+  "video_reportable_now": false,
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "freeze_match": true,
+    "verdict": "HELD_PRESERVE_FAILED_CANDIDATE",
+    "modified_by_worker": false
+  },
+  "encoded_frame_audit": {
+    "path": "PASS3_ENCODED_FRAME_AUDIT.md",
+    "sha256": "b8a36aa015a7ae327d9380383700c76da5a4eda2b5a0c72b97c42e28d7db6edd",
+    "extraction_receipt": "qa/pass3_encoded_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "daf9d4fa0b0356b303ee00f8b9cd0977b5ff503768d1d8cf9f85554894d6c79f",
+    "extraction_completed_at": "2026-08-07T19:13:36.059503+00:00",
+    "scene_count": 16,
+    "cut_count": 15,
+    "pass2_frame_hashes_reproduced": 16,
+    "pass2_contact_sheet_byte_identical": true,
+    "verdict": "FAIL_SCIENTIFIC_PRESENTATION_AND_HELD_SOURCE_GATE",
+    "bounded_copy_defect": "scene 9 provenance is internally truncated after LANA_T3_REDERIV by layout/text width; it is not clipped at the physical frame edge",
+    "candidate_changed": false
+  },
+  "blocker_1_post_run_independent_verdict": {
+    "state": "OPEN",
+    "result_artifact": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "embedded_review_or_verdict_keys": []
+    },
+    "review_contract": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0",
+      "status_anchor": "lines 6-8: FROZEN, IN FORCE",
+      "rule_anchors": "sections 2-4: independent review precedes branch; reviewer selection; first-opened ledger; byte/rule hashes; direct quotations; independent branch before comparison; REVIEW_INCOMPLETE on silence"
+    },
+    "recursive_absence_proof": {
+      "inventory_path": "qa/pass3_source_inventory.json",
+      "inventory_sha256": "432932edc20120de25cb6f624c3fd8ca50e7a664184a60347cc9e17c9e5fec21",
+      "inventory_rows_sha256": "8680ad1f60433e5ba9f62a6c7f0d0fefcf55654650f64437bf894c37b94bdb98",
+      "scope": "all non-symlink regular files recursively under the source handoff",
+      "regular_file_count": 209,
+      "utf8_decodable_count": 203,
+      "non_utf8_count": 6,
+      "symlink_count": 0,
+      "casefold_verdict_filename_count": 5,
+      "all_verdict_filename_files_predate_t4": true,
+      "post_t4_utf8_files_identifying_t4_by_name_or_hash_count": 4,
+      "all_post_t4_t4_identifiers_use_exact_filename_not_hash": true,
+      "all_post_t4_t4_identifiers_have_zero_a3_8_name_and_hash_mentions": true,
+      "post_t4_candidate_a3_8_independent_review_record_count": 0,
+      "verdict_filename_paths": [
+        "KUN_VERDICT_REVIEW.md",
+        "RUN_kun_verdict.txt",
+        "VERDICT_RECORD_COLUMNS_DRAFT.md",
+        "VERDICT_RECORD_FRAME_DRAFT.md",
+        "_KUN_VERDICT_REVIEW_BRIEF.md"
+      ],
+      "post_t4_t4_mention_paths": [
+        "LANA_ZERO_CONCORDANCE.md",
+        "_LANA_ZEROCONC_BRIEF.md",
+        "storyboard_spin_parity.json",
+        "storyboard_spin_parity.json.pre-intro.bak"
+      ]
+    },
+    "minimum_unblock_record_fields": [
+      "reviewer selected by the frozen role rule or named by Duho, not chosen by the drafter",
+      "first-opened ledger showing the result artifact was read before the drafted record or coordinator summary",
+      "exact T4_PAIRED_FLIP.json sha256 and exact frozen A3.8 sha256",
+      "verbatim result-artifact lines or fields supporting the branch",
+      "independent branch stated before comparison with the drafter or coordinator reading",
+      "explicit disagreement handling; silence or refusal remains REVIEW_INCOMPLETE and clears no branch"
+    ],
+    "worker_action": "none; result remains quarantined"
+  },
+  "blocker_2_archive_frame": {
+    "state": "OPEN",
+    "review_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+    "review_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+    "verdict_anchor": "line 173: FRAME REVIEW: AGREES FRAME_UNSTATED",
+    "why_result_values_cannot_close_it": "Data-level behavior is not an authoritative statement of whether stored labels are as displayed or de-mirrored.",
+    "exact_unblock_evidence": "An authoritative, source-grounded statement establishing the recording or archival convention for mirrored-direction fields, followed by the required review path",
+    "worker_action": "none; no inference from result values"
+  },
+  "safe_current_output": {
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "renderer": "render_proposal_frames.py",
+    "renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+    "proposal_iteration": "v8",
+    "status": "PASS_STATIC_PROPOSAL_HANDOFF_ONLY",
+    "visual_correction_warranted_in_pass3": false,
+    "reason": "fresh candidate audit reproduced prior failure mechanisms; fresh v8 review found no live evidence-backed defect; sealed v8 bytes remain authoritative",
+    "result_values_allowed": false,
+    "candidate_or_tts_authorized": false
+  },
+  "worker_side_effects": {
+    "candidate_written": false,
+    "audio_or_tts_created": false,
+    "shared_or_public_asset_written": false,
+    "git_write_performed": false,
+    "worker_media_files_allowed": false
+  }
+}

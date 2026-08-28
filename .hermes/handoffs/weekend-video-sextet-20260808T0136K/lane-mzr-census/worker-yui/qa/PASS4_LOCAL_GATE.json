@@ -1,0 +1,51 @@
+{
+  "gate": "PASS4_LOCAL_DETERMINISTIC_AND_PIXEL_QA",
+  "timestamp": "2026-08-08T03:47:54+09:00",
+  "candidate": {
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "linear_decode": "PASS",
+    "encoded_verdict": "FAIL_FOR_SCIENTIFIC_REPRESENTATION_TARGET_VS_AXIS_EVIDENCE_CLASS_CONTROL_STAGE_AND_PRIOR_BOUNDARIES",
+    "candidate_modified": false
+  },
+  "proposal": {
+    "storyboard_version": "pass4-retrieval-axis-provenance-v2",
+    "storyboard_sha256": "24b862c8f305551d711b8dafbf95752efc33ce80c1b9614e87a6e359ebca2584",
+    "audience_copy_projection_sha256": "ff3dbd44815bf3f91f34d471348adb444c241b8ded95aaa99f2b99ef1d40517e",
+    "beat_count": 10,
+    "word_count": 197,
+    "visual_floor_seconds": 105,
+    "planned_wpm": 112.6,
+    "visual_artifact": "visual_proposal_v7.png",
+    "visual_sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+    "visual_pixels_changed": false
+  },
+  "checks": {
+    "fresh_pass4_frames": 32,
+    "fresh_frame_hashes_match": "32/32",
+    "contact_sheet_sha256": "f2f1ab19f1b38f6a5a8c813077d57a3e61e4f22290289f2a50b415c0f39d8c4c",
+    "proposal_validation": "PASS",
+    "target_concept_distinct_from_search_axis": true,
+    "62_is_vocabulary_presence_not_adjudicated_evidence": true,
+    "T1_retrieval_controls_distinct_from_T2_contract_decoys": true,
+    "T1_T2_stage_labels_explicit": true,
+    "direct_157_to_T2_and_62_side_branch": true,
+    "qualified_T2_status": true,
+    "taxonomy_and_not_T2_rulings_boundary": true,
+    "taxonomy_headings_explicit_visible_values": true,
+    "validator_checks_taxonomy_in_audience_projection": true,
+    "reportable_now_pending_close": true,
+    "display_citations_internal_path_free": true,
+    "citation_ledger_drives_visual_footer": true,
+    "citation_gate": "PASS; failed hard-coded-citation checker preserved then corrected without pixel change",
+    "visual_full_resolution_static_compatibility": "PASS",
+    "visual_deterministic_rerender": "MATCH",
+    "immutable_snapshot_hashes": "9/9",
+    "worker_media_count": 0,
+    "tts_invoked": false,
+    "publication_gate": "CLOSED"
+  },
+  "preserved_v1_exact_regate": "FAIL: taxonomy category headings absent from flattened audience-copy values",
+  "independent_exact_v2_snapshot_regate": "PASS; paper-naive 8/8 high confidence; adversarial no material defects; 9/9 snapshot entries stable",
+  "verdict": "PASS_EXACT_V2_STATIC_PROPOSAL_ONLY",
+  "scope": "Worker static proposal, audience-copy, evidence, and QA only; not an encoded candidate or execution authorization."
+}

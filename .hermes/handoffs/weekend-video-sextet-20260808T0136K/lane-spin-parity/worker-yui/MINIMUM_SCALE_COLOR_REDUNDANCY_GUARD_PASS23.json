@@ -1,0 +1,141 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass23-minimum-scale-color-redundancy-20260808T133615K",
+  "created_at": "2026-08-08T13:36:15+09:00",
+  "deepening_pass": 23,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "integrator": "Hwao/Fable",
+  "focus": "native monochrome and fixed color-vision presentation transforms followed by minimum-scale 640x360",
+  "disposition": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+  "science_adjudicated": false,
+  "video_reportable_now": false,
+  "simulation_scope": "presentation stress test only; not a clinical diagnostic and not a claim about a named display, transfer function, codec, projector, player, browser, platform, service, room, viewer, or universal standard",
+  "transform_contract": {
+    "reference": "native RGB to Pillow LANCZOS 640x360",
+    "grayscale_bt709_then_360p": "native sRGB decode to float64 linear light; BT.709 luminance 0.2126R+0.7152G+0.0722B copied to all channels; sRGB encode; clip; NumPy rint uint8; Pillow LANCZOS 640x360",
+    "protanopia_machado100_then_360p": "native sRGB decode to float64 linear light; fixed Machado severity-100 protanopia matrix; clip; sRGB encode; NumPy rint uint8; Pillow LANCZOS 640x360",
+    "deuteranopia_machado100_then_360p": "native sRGB decode to float64 linear light; fixed Machado severity-100 deuteranopia matrix; clip; sRGB encode; NumPy rint uint8; Pillow LANCZOS 640x360",
+    "tritanopia_machado100_then_360p": "native sRGB decode to float64 linear light; fixed Machado severity-100 tritanopia matrix; clip; sRGB encode; NumPy rint uint8; Pillow LANCZOS 640x360",
+    "classification": "all four transforms are packet-specific operational presentation stresses; color_360p is the represented-pixel reference"
+  },
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "fresh_cut_detection": "15/15 exact pass22 timestamps",
+    "fresh_clean_midpoints": "16/16 byte-identical to pass22",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "candidate": {
+      "grayscale_bt709_then_360p": {
+        "headline_recall_vs_color_360p": 0.988533,
+        "full_text_recall_vs_color_360p": 0.930353,
+        "lower_support_recall_vs_color_360p": 0.732388,
+        "numeric_recall_vs_color_360p": 0.828125,
+        "tolerant_luma_edge_recall_vs_color_360p": 0.999991,
+        "chroma_retention_on_saturated_reference_pixels": 0.0,
+        "exact_transform_recomputed_scenes": "16/16",
+        "structural_gate_scenes": "0/16",
+        "held_critical_structural_gates": "0/5"
+      },
+      "protanopia_machado100_then_360p": {
+        "headline_recall_vs_color_360p": 0.988533,
+        "full_text_recall_vs_color_360p": 0.939875,
+        "lower_support_recall_vs_color_360p": 0.759153,
+        "numeric_recall_vs_color_360p": 0.848958,
+        "chroma_retention_on_saturated_reference_pixels": 0.818706,
+        "exact_transform_recomputed_scenes": "16/16",
+        "structural_gate_scenes": "0/16"
+      },
+      "deuteranopia_machado100_then_360p": {
+        "headline_recall_vs_color_360p": 0.985408,
+        "full_text_recall_vs_color_360p": 0.954081,
+        "lower_support_recall_vs_color_360p": 0.851875,
+        "numeric_recall_vs_color_360p": 0.880208,
+        "chroma_retention_on_saturated_reference_pixels": 0.907247,
+        "exact_transform_recomputed_scenes": "16/16",
+        "structural_gate_scenes": "0/16"
+      },
+      "tritanopia_machado100_then_360p": {
+        "headline_recall_vs_color_360p": 0.988533,
+        "full_text_recall_vs_color_360p": 0.94753,
+        "lower_support_recall_vs_color_360p": 0.787202,
+        "numeric_recall_vs_color_360p": 0.854167,
+        "chroma_retention_on_saturated_reference_pixels": 1.065977,
+        "exact_transform_recomputed_scenes": "16/16",
+        "structural_gate_scenes": "0/16"
+      },
+      "represented_pixel_finding": "Large result headlines, numbers, plots, bars, matrices, and conclusions remain primary. Fine axes, error bars, legends, caveats, citations, provenance, and small support are less uniformly reliable. Missing structural hold is not repaired by removing or remapping color."
+    },
+    "method": {
+      "sealed_v8": {
+        "complete_result_held_badges": "7/7 all five represented variants",
+        "major_method_status_boundaries": "7/7 all five represented variants",
+        "hue_only_required_meaning": 0,
+        "direct_label_plus_non_color_redundancy": "PASS 7/7 all five represented variants"
+      },
+      "pass7_caption_safe": {
+        "exact_top_gates_visual": "7/7 all five represented variants",
+        "complete_result_held_badges": "7/7 all five represented variants",
+        "hue_only_required_meaning": 0,
+        "overlap_clipping_or_ambiguity": false
+      },
+      "pass12_sharpness_safe": {
+        "exact_top_gates_visual": "7/7 all five represented variants",
+        "mapped_gate_threshold_passes": "7/7 all five represented variants",
+        "mean_mapped_gate_similarity": "1.000000 all five represented variants",
+        "complete_result_held_badges": "7/7 all five represented variants",
+        "exact_transform_recomputed_scenes": "7/7 per variant",
+        "hue_only_required_meaning": 0,
+        "direct_label_plus_border_connector_marker_rail_position_redundancy": true,
+        "overlap_clipping_or_ambiguity": false
+      }
+    }
+  },
+  "acceptance_guard_for_future_hwao_authored_layouts": [
+    "After each declared native grayscale or fixed color-vision presentation transform followed by Pillow LANCZOS 640x360, all seven exact scene-specific gates and all seven complete RESULT HELD capsules must remain directly readable at represented pixels.",
+    "Every required status, branch, comparison, equation term, axis, unit, value, error bar, threshold, unavailable rung, uncertainty, qualifier, provenance fact, and interpretation boundary must use a direct label plus at least one non-color channel such as shape, line style, marker, border, connector, stable position, pattern, or status column.",
+    "Hue may reinforce meaning but may not be the sole carrier of scientific category, sign, direction, threshold crossing, availability, unresolved state, result status, or authorization boundary.",
+    "Plot legends and matrix labels must name each category directly; matched geometry alone or color similarity under a transform is not sufficient.",
+    "Human review of represented pixels, complete containers, clipping, overlap, and ambiguity remains decisive; global OCR and simulated color matrices are reproducible aids only.",
+    "The exact compound transform must be independently recomputed from each native source; matching hashes or receipts alone cannot certify it."
+  ],
+  "cumulative_requirements": [
+    "pass22 native floor16 dark-tone before 640x360",
+    "pass21 native width7 horizontal smear before 640x360",
+    "pass20 native radius1.5 Gaussian defocus before 640x360",
+    "pass19 20 percent represented-pixel black lift after 640x360",
+    "pass18 bottom15 and bottom25 obstruction after 640x360",
+    "pass17 q60 4:2:0 after 640x360",
+    "pass16 compound minimum-scale geometry",
+    "pass15 native geometry",
+    "pass14 native floor16 dark-tone",
+    "pass13 native centered horizontal width7 smear",
+    "pass12 native radius1.5 defocus and strengthened gate",
+    "pass11 native q60 4:2:0 recompression",
+    "pass10 native 20 percent black lift",
+    "pass9 inner-five-percent title-safe review",
+    "pass8 direct-label plus non-color redundancy",
+    "pass7 obstruction-safe exact gates",
+    "pass6 standalone 360p",
+    "pass5 hard-cut continuity",
+    "pass4 temporal persistence"
+  ],
+  "pixel_action": {
+    "new_pixel_or_copy_correction_requested": false,
+    "reason": "The latest pass12 proof retains 7/7 exact gates, 7/7 complete RESULT HELD capsules, and direct-label plus non-color geometry under all four compound stresses with no clipping, overlap, ambiguity, or hue-only required meaning.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

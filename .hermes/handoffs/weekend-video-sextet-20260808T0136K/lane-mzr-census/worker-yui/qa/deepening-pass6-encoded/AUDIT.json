@@ -1,0 +1,51 @@
+{
+  "audit_version": "isolated-deepening-pass6",
+  "audit_timestamp": "2026-08-08T04:36:18+09:00",
+  "candidate": {
+    "file": "mzr-archive-census-narrated-20260808T0155.mp4",
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "duration_seconds": 128.4,
+    "bytes": 13989937,
+    "candidate_modified": false
+  },
+  "sampling": {
+    "schedule": "3 + 4n seconds, n=0..31",
+    "frame_count": 32,
+    "contact_sheet_sha256": "08539f7b3e535cde8811352f62ec6968dfe7db7982a4c5f6b781c451932f0bd4",
+    "frame_manifest_sha256": "4252d9f8b404924d4ccf67025abb5138c8adf47c20a6bb67ec348b0752eb1e3c",
+    "full_stream_decode": "PASS"
+  },
+  "scene_audit": {
+    "detector": "ffmpeg select=gt(scene,0.02),showinfo",
+    "log_sha256": "ebcf356c265d784f312982a303fba9dd949efd804f1caa037268539a5bd6cf08",
+    "detected_cuts": 14,
+    "evidence_state_holds": 15,
+    "holds_over_6_seconds": 10,
+    "maximum_hold_seconds": 16.133,
+    "qualification": "These are unchanged scientific evidence states between hard cuts, not a claim of pixel identity; subtle background motion may remain."
+  },
+  "verdict": "FAIL_FOR_SCIENTIFIC_REPRESENTATION_STATIC_EVIDENCE_STATE_CAUSALITY_AND_PRIOR_BOUNDARIES",
+  "fresh_findings": [
+    "Ten scientific-evidence states exceed six seconds, with a maximum 16.133-second contamination/limitation paragraph hold.",
+    "Substantive claims are generally exposed as one static prose, giant-number, or plot state rather than clause-aligned progressive reveals.",
+    "Four 2.5-second section-divider states displace evidence rather than carrying section identity alongside it."
+  ],
+  "reconfirmed_boundaries": [
+    "metadata-search reach is not adjudicated abundance, mass, or redshift measurement",
+    "62 of 157 is frozen description-vocabulary presence, not gas-phase evidence or an eligibility subset",
+    "T1 retrieval controls and the complete T2 12-decoy plus 3-anchor contract-design controls are distinct and are not eligibility application",
+    "symbol/meaning collision and target-domain mismatch are separate recorded-characterization mechanisms, not T2 rulings",
+    "T2 application is not completed; no eligible-table count or MZR measurement exists",
+    "internal paths are custody evidence, not audience-reachable publication provenance"
+  ],
+  "safe_correction": {
+    "motion_contract": "maximum four seconds per unchanged substantive evidence state; at least two visible reveal states per beat; every substantive narration clause maps to a visible state",
+    "section_dividers": "remove standalone divider holds; persist section identity with evidence",
+    "final_state": "reveal REPORTABLE NOW and PENDING columns separately, then hold the combined summary",
+    "future_encoded_gate": "hard-cut/evidence-state timing plus sentence/action alignment must be re-audited",
+    "visual_v8_pixels_changed": false
+  },
+  "candidate_disposition": "PRESERVED_READ_ONLY_FAIL",
+  "tts_invoked": false,
+  "publication_gate": "CLOSED"
+}

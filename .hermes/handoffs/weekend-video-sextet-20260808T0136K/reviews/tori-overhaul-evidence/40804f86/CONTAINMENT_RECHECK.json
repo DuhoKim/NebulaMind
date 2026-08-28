@@ -1,0 +1,92 @@
+{
+  "recheck_timestamp_kst": "2026-08-08T14:18:38+09:00",
+  "recheck_timestamp_utc": "2026-08-08T05:18:38Z",
+  "historical_incident_verdict_preserved": "HOLD",
+  "current_candidate_verdict": "PASS_WITH_INCIDENT",
+  "authoritative_candidate": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260808T1312K/spin-method-overhaul-canary-20260808T1312K.mp4",
+    "bytes": 13697038,
+    "sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9"
+  },
+  "contained_payloads": [
+    {
+      "name": "spin-method-overhaul-canary-20260808T1312K.mp4",
+      "bytes": 13697038,
+      "sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+      "byte_identical_to_authoritative_source": true
+    },
+    {
+      "name": "overhaul-1312K-contact-sheet.jpg",
+      "bytes": 158523,
+      "sha256": "e1f1e9c4e8a6b74065d77ddf701bde11cf40ef37a4e26dfe3bee65a9b6834522",
+      "byte_identical_to_authoritative_source": true
+    },
+    {
+      "name": "spin-method-canary-20260808T0648.mp4",
+      "bytes": 2308085,
+      "sha256": "6d81e1830febe5260df9093a84c4670c7e86179398125a8a64e6953897db6271",
+      "byte_identical_to_authoritative_source": true
+    },
+    {
+      "name": "spin-method-canary-20260808T0648-contact-sheet.jpg",
+      "bytes": 285047,
+      "sha256": "b9724f423b87adac7dad498596399617b7a4ff0c6d89e30f8df9ac1bc505674e",
+      "byte_identical_to_authoritative_source": true
+    }
+  ],
+  "containment": {
+    "payload_directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/tori-overhaul-evidence/hwao-gate-containment-20260808T1405",
+    "payload_entries": 4,
+    "all_regular_files": true,
+    "all_byte_identical_to_sources": true,
+    "old_cockpit_directory_exists": false,
+    "candidate_hash_hits_under_HermesOps": 0,
+    "candidate_hash_hits_under_frontend_public": 0,
+    "candidate_hash_hits_under_origin_live_frontend_public": 0,
+    "all_four_staged_payload_hash_hits_under_HermesOps": 0,
+    "all_four_staged_payload_hash_hits_under_frontend_public": 0,
+    "all_four_staged_payload_hash_hits_under_origin_live_frontend_public": 0,
+    "cockpit_video_mp4_count_after_containment": 29,
+    "old_local_cockpit_route_http_status": 404
+  },
+  "private_direct_route": {
+    "url": "http://100.84.12.101:8765/spin-method-overhaul-canary-20260808T1312K.mp4",
+    "http_status": 200,
+    "content_type": "video/mp4",
+    "content_length": 13697038,
+    "downloaded_bytes": 13697038,
+    "downloaded_sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+    "address_in_cgnat_100_64_0_0_10": true,
+    "address_is_global": false,
+    "listener": "100.84.12.101:8765",
+    "process_root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260808T1312K",
+    "process_root_is_isolated_authoritative_canary_directory": true,
+    "protected_root_copy_created": false
+  },
+  "queued_retry_single_route_recheck": {
+    "timestamp_kst": "2026-08-08T14:23:10+09:00",
+    "port_8765_http_status": 200,
+    "port_8765_bytes": 13697038,
+    "port_8765_sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+    "port_8765_is_only_matching_listener": true,
+    "port_8098_listener_present": false,
+    "port_8098_connection_result": "connection_failed_http_000",
+    "old_cockpit_backend_status": 404,
+    "all_four_payloads_still_exact": true,
+    "all_four_staged_hashes_absent_from_checked_served_roots": true,
+    "verdict_changed": false
+  },
+  "continuity": {
+    "source_freeze_sha256": "f7204bd7aa9a96830e22b76456cd2e24b1fda4d543f2d0333c4f72cad8c98183",
+    "freeze_bound_match": "17/17",
+    "status_sha256": "38b0c676925c95456882f9a672dc5a78f8d5100ba728223ef61ae8bc4a5bd2fe",
+    "video_reportable_now": false,
+    "prior_attempt_manifests_preserved": "11/11",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_sha256": "2b79ff47d5b9f8f0845f29246b877db512c4bc1b786b01c5c7d778afe57fffad",
+    "cached_diff_empty": true,
+    "paperVideos_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "public_spin_sha256": "dfc8be91c47bf55b34c0040d1b6572b5960e31942c9a0cec1465d8bcf4f44585"
+  },
+  "reason": "The protected cockpit-route copy was a real incident and remains in the permanent report history. Containment is now independently verified: all four staged payloads survive byte-identically under the lane evidence root, the old protected route is absent and returns 404, no candidate bytes remain under served/shared roots, and the user-directed private tailnet route serves the authoritative canary bytes directly from the isolated canary directory. No current custody blocker remains, but the incident prevents a clean historical PASS."
+}

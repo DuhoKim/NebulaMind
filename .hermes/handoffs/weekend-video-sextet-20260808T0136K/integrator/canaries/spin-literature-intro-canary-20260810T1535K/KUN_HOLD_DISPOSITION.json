@@ -1,0 +1,24 @@
+{
+  "disposition_id": "SPIN_LITERATURE_INTRO_KUN_HOLD_DISPOSITION_20260810T1535K",
+  "superseded_frozen_candidate": {
+    "directory": "../../canaries/spin-literature-intro-canary-20260810T1434K",
+    "mp4_sha256": "cfb9b1fabb7d4fb46009319d45d33931bf108917f317a184e4074e6f471d968d",
+    "status": "PRESERVED_HOLD_NOT_A_REVIEWABLE_SUCCESSOR"
+  },
+  "kun_report": {
+    "path": "../../../reviews/KUN_SPIN_LITERATURE_INTRO_GUARDRAIL_REVIEW_20260810T1507K.md",
+    "sha256": "00670f4a67c0afaf4975779fab0b5d59492e89eaec5504aa05d0c438b93d3714",
+    "verdict": "HOLD_GUARDRAILS_EXACT_HASH"
+  },
+  "defects": [
+    "Arial Unicode rendered U+207B minus visually like a baseline hyphen before superscript digits on the encoded Longo and Shamir cards/captions",
+    "build receipt and authority mislabeled 8417 raw frames submitted as encoded frame count; independent decode is 8416"
+  ],
+  "correction_scope": [
+    "render scientific quote/card/caption text with STIX Two Text, which positions U+207B at superscript height",
+    "record raw_frames_submitted=8417 and encoded_video_frames=8416 separately from independent ffprobe -count_frames",
+    "add fail-closed QA for ceil(audio duration × fps), independent encoded count, and sub-one-frame -shortest delta"
+  ],
+  "audio_script_timing_change": false,
+  "acceptance_conferred": false
+}

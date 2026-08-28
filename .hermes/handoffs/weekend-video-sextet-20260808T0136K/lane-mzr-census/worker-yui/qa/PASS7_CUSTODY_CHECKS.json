@@ -1,0 +1,29 @@
+{
+  "verdict": "PASS",
+  "checks": {
+    "candidate_hash_match": true,
+    "all_43_frame_hashes_match": true,
+    "contact_sheet_hashes_match": true,
+    "full_decode_error_log_empty": true,
+    "boundary_manifest_match": true,
+    "ocr_density_match": true,
+    "candidate_preserved_fail": true
+  },
+  "frame_mismatches": [],
+  "contacts": [
+    {
+      "file": "contact_sheet_cut_boundaries_28frames.jpg",
+      "expected": "215834598ff62a28afb00b0c435b6dfec7f69e9417214abb9f1345f845617f5c",
+      "actual": "215834598ff62a28afb00b0c435b6dfec7f69e9417214abb9f1345f845617f5c",
+      "match": true
+    },
+    {
+      "file": "contact_sheet_hold_midpoints_15frames.jpg",
+      "expected": "fa9388349ff37de815769e57ae4593df7adae1996fd7fbb5f467ef7cf53af309",
+      "actual": "fa9388349ff37de815769e57ae4593df7adae1996fd7fbb5f467ef7cf53af309",
+      "match": true
+    }
+  ],
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "scope": "read-only custody; candidate not modified"
+}

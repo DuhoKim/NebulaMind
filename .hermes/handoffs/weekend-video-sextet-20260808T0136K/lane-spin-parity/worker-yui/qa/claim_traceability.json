@@ -1,0 +1,74 @@
+{
+  "verdict": "PASS",
+  "scope": "method-only proposal claims; T3 result fields excluded",
+  "checks": [
+    {
+      "claim": "source has 667,944 zooSpec rows",
+      "source": "T1_FUNNEL.json files.zooSpec.rows_parsed",
+      "ok": true
+    },
+    {
+      "claim": "release flag has 190,225 pass, 161,172 classified, 29,053 ties",
+      "source": "T1_FUNNEL.json funnel.zooSpec.SPIRAL_FLAG",
+      "ok": true
+    },
+    {
+      "claim": "0.80 has 30,412 classified and zero ties",
+      "source": "T1_FUNNEL.json funnel.zooSpec.0.80",
+      "ok": true
+    },
+    {
+      "claim": "0.60 has 51,157 classified and zero ties",
+      "source": "T1_FUNNEL.json funnel.zooSpec.0.60",
+      "ok": true
+    },
+    {
+      "claim": "A is predeclared and computed separately for each sensitivity readout",
+      "source": "SPIN_PARITY_CONTRACT_V1.md §2, lines 47–55",
+      "ok": true
+    },
+    {
+      "claim": "bounded 36-object normal-column probe: 36 same-column, zero crossed/ambiguous",
+      "source": "T1C_COLUMN_INTEGRITY.json counts",
+      "ok": true
+    },
+    {
+      "claim": "mirror procedures are vertical and diagonal",
+      "source": "KUN_FRAME_REVIEW.md \u00a71 quoting Lintott Table 5",
+      "ok": true
+    },
+    {
+      "claim": "archive frame remains unstated",
+      "source": "KUN_FRAME_REVIEW.md verdict",
+      "ok": true
+    },
+    {
+      "claim": "bias payload lacks SPIRAL flag while retaining 0.80/0.60",
+      "source": "T3_READING.json ladder_note and rungs_read only",
+      "ok": true
+    },
+    {
+      "claim": "paired method matches by objID",
+      "source": "AMENDMENT_A4_DRAFT.md \u00a72",
+      "ok": true
+    },
+    {
+      "claim": "A4 cannot resolve FRAME_UNSTATED",
+      "source": "AMENDMENT_A4_DRAFT.md \u00a73",
+      "ok": true
+    },
+    {
+      "claim": "post-run independent verdict review required",
+      "source": "AMENDMENT_A4_DRAFT.md \u00a75",
+      "ok": true
+    }
+  ],
+  "source_hashes": {
+    "contract": "dc2ace678322c57b1c801f12feac6774564f5c39da74990c0fd7089afffa400e",
+    "t1": "ed97758ac1b991488d4d15da3ecb8dca229e8ec4ab547086468b81c9e64e281d",
+    "t1c": "fc73061fa76cbd873d6648069621e141322b05d7b651e5584f45275ef0576237",
+    "frame": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+    "t3": "207450354be3eacd505c8c18438dcfe2964427b8e443bdb97e6d0b5c78823495",
+    "a4": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974"
+  }
+}

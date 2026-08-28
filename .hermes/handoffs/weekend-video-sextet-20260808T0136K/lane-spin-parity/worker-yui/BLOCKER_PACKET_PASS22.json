@@ -1,0 +1,94 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass22-blockers-20260808T130921K",
+  "checked_at": "2026-08-08T13:09:21+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 22,
+  "scope": "exact science/source blockers after native dark-tone-floor plus minimum-scale presentation audit",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD — NOT AUTHORIZED FOR RELEASE OR ACCEPTANCE",
+    "modified": false,
+    "preserved_as_failed_evidence": true
+  },
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "video_reportable_now": false,
+    "semantic_decision": "SUBSTANTIVE_RESULT_DECK_HELD; METHOD_ONLY_VISUAL_PROPOSAL_ALLOWED"
+  },
+  "blockers": [
+    {
+      "blocker_id": "MISSING_POST_RUN_INDEPENDENT_A3_8_VERDICT_FOR_EXACT_T4",
+      "status": "OPEN",
+      "frozen_artifact": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+        "sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873"
+      },
+      "requirement_source": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A4_DRAFT.md",
+        "sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+        "anchor": "section 5 required A3.8 verdict-record review after the run"
+      },
+      "exact_missing_record": "An independent post-run A3.8 verdict record that explicitly identifies and reviews the exact T4_PAIRED_FLIP.json SHA-256 above under the frozen all-209-file artifact inventory.",
+      "presentation_audit_cannot_substitute": true
+    },
+    {
+      "blocker_id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "status": "OPEN",
+      "authority": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+        "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+        "terminal_status": "FRAME REVIEW: AGREES FRAME_UNSTATED"
+      },
+      "exact_missing_resolution": "A source-authorized resolution of whether stored mirrored-direction labels follow displayed winding or are mapped back before storage.",
+      "presentation_audit_cannot_substitute": true
+    },
+    {
+      "blocker_id": "VIDEO_REPORTABILITY_CLOSED",
+      "status": "OPEN",
+      "terminal_status": "video_reportable_now=false",
+      "blocked_scope": "Substantive T3/T4 result values, figures, directions, interpretations, and excluded broader pointers remain unavailable to this method-only lane.",
+      "presentation_audit_cannot_substitute": true
+    }
+  ],
+  "pass22_representation_findings": {
+    "audit": "PASS22_ENCODED_FRAME_AUDIT.md",
+    "audit_sha256": "05e3c5663344c1e21a89cabc2c63bfdf9d8872552e5948983e78a6692f8a377c",
+    "integration_guard": "MINIMUM_SCALE_DARK_TONE_GUARD_PASS22.json",
+    "integration_guard_sha256": "0ab14f9dc005b573cd637465a4ca7b04e301d0a4fa895f4be891cfc4172af6d8",
+    "quantitative_audit": "qa/pass22_minimum_scale_dark_tone_quantitative_audit.json",
+    "quantitative_audit_sha256": "119e08e5c91d02f8dc4adf8041ed62bcb24f25090151dc07de80955db237f07d",
+    "candidate_floor16_then_360p_structural_gate_scenes": "0/16",
+    "held_critical_structural_gates": "0/5",
+    "pass12_floor16_then_360p_exact_gates": "7/7 visual and mapped-crop aid",
+    "pixel_correction_requested": false,
+    "science_adjudicated": false
+  },
+  "unblock_packet_required": {
+    "records": [
+      "Independent post-run A3.8 verdict bound to exact T4 SHA-256 and frozen all-209-file inventory",
+      "Source-authorized archive storage-frame resolution",
+      "Fresh source-status decision setting video_reportable_now=true for any substantive result scope"
+    ],
+    "must_not_be_replaced_by": [
+      "encoded-frame legibility or presentation QA",
+      "OCR, pixel, edge, luma, or dark-tone resilience metrics",
+      "machine-valid narration, mux, numeric-source guard, or candidate playback",
+      "worker inference or visual interpretation"
+    ]
+  },
+  "safety": {
+    "quarantined_result_values_copied": false,
+    "science_invented": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "marker": "TORI_METHODS_NOTE_PRIVATE_COPY_SEMANTIC_AUDIT_20260811T1517K",
+  "timestamp": "2026-08-11T15:17:04+09:00",
+  "scoped_result": "FAIL_VISIBLE_EQUIVALENCE__SOURCE_UNCHANGED__AUTHORIZED_PRIVATE_COPY_ACTION",
+  "source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md",
+    "bytes": 11473,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "rendered_copy": {
+    "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal.html",
+    "bytes": 15388,
+    "sha256": "5a5bf634ab20984536e52bb37ce924f65e2794ae714fe67e1a1dd36f77806557"
+  },
+  "comparison_scope": "Visible note body after excluding the disclosed private-review banner and source/hash footer; table checked separately against the intended two-column source row.",
+  "narrative_body_excluding_provenance_table": {
+    "exact_visible_text_match": false,
+    "source_render_word_count": 1387,
+    "target_visible_word_count": 1386,
+    "prose_word_or_negation_added_removed_reworded": false,
+    "literal_double_asterisk_tokens_visible": 4,
+    "intended_strong_elements": 61,
+    "target_strong_elements": 59,
+    "intended_em_elements": 13,
+    "target_em_elements": 13,
+    "intended_code_elements": 24,
+    "target_code_elements": 24,
+    "intended_h2_elements": 7,
+    "target_h2_elements": 7,
+    "intended_list_items": 14,
+    "target_list_items": 14,
+    "intended_blockquotes": 1,
+    "target_blockquotes": 1,
+    "visible_marker_defects": [
+      "Summary begins one intended bold span with the literal token **strongly.",
+      "Summary ends another intended bold span with the literal token quantities**.",
+      "Section 1 begins one intended bold span with the literal token **strongly.",
+      "Section 1 ends that intended bold span with the literal token explanation**."
+    ],
+    "emphasis_drift": [
+      "The summary's intended bold same-release limitation is not bold.",
+      "The summary's intended bold coupled-choices/different-quantities clause is not bold.",
+      "The interstitial parenthetical and principal-method-fork clause is incorrectly bolded instead.",
+      "Section 1's intended bold same-release limitation is not bold."
+    ]
+  },
+  "provenance_table": {
+    "expected_rows_including_header": 9,
+    "target_rows_including_header": 9,
+    "expected_cells_per_row": [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    "target_cells_per_row": [2, 2, 2, 2, 2, 6, 2, 2, 2],
+    "matching_rows": 8,
+    "mangled_row_index_including_header_zero_based": 5,
+    "intended_claim_cell": "Singal cuts (`mG<20.5/20.0/20<mG<20.5`; `|b|>30/35/40`); Mittal `Nside=64`, `|b|<40°`+`30∗`",
+    "intended_source_cell": "Singal 2024; Mittal et al. 2024 (stated in the papers)",
+    "target_visible_cells_normalized": [
+      "Singal cuts ( mG<20.5/20.0/20<mG<20.5 ; `",
+      "b",
+      ">30/35/40 ); Mittal Nside=64 ,",
+      "b",
+      "<40° + 30∗`",
+      "Singal 2024 ; Mittal et al. 2024 (stated in the papers)"
+    ],
+    "semantic_damage": "The |b| absolute-latitude expressions lose their visible vertical bars and split the intended Claim cell into five cells; the Source is displaced into a sixth cell. Backticks remain visible."
+  },
+  "visibility_checks": {
+    "script_elements": 0,
+    "display_none_rules": 0,
+    "visibility_hidden_rules": 0,
+    "opacity_zero_rules": 0,
+    "font_size_zero_rules": 0,
+    "banner_readable": true,
+    "title_readable": true,
+    "source_footer_filename_matches": true,
+    "source_footer_sha256_matches": true,
+    "footer_claim_rendered_verbatim_no_content_altered_is_accurate": false
+  },
+  "governance_classification": {
+    "duho_order": "publish it to the cockpit so i can read it",
+    "authorization_breach": false,
+    "reason": "The action was disclosed as a new private review copy created under Duho's direct order, with no acceptance/publication/deploy clearance conferred.",
+    "rendering_gate": "HOLD",
+    "recommended_custody_action": "Do not remove or overwrite the failed copy. Freeze it by hash as evidence; produce a corrected no-overwrite sibling and re-verify visible equivalence before Duho relies on it."
+  }
+}

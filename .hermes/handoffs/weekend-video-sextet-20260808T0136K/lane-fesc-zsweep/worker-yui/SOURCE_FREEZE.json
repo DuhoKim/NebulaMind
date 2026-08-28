@@ -1,0 +1,82 @@
+{
+  "freeze_timestamp_utc": "2026-08-07T16:55:14Z",
+  "lane": "lane-fesc-zsweep/worker-yui",
+  "decision": {
+    "paper_source_reportable_for_local_visual_proposal": true,
+    "storyboard_of_record_renderable_now": false,
+    "video_reportable_now": false,
+    "public_or_release_ready": false,
+    "reason": "The post-R1-R4 source packet supports a local graphics-first proposal, but the storyboard of record and current video plot misstate the closure-crossing geometry and overdescribe the no-tail scenario. Under the lane contract, those semantic mismatches block an official candidate until Hwao integrates a corrected proposal.",
+    "human_disposition": "Duho directed the merged z-sweep paper and then directed continued local video improvement. No human rejection marker was found in the frozen packet. This does not authorize publication.",
+    "review_state": "KUN_MERGED_REFEREE=MINOR; LANA_MINOR_FIXES records R1-R4 applied; MERIT_PANEL_MERGED evaluates the post-fix packet and recommends advancing it as a bounded sweep note. The panel is advisory, not peer review."
+  },
+  "hard_semantic_findings": [
+    {
+      "id": "FESC-CROSSING-SEMANTICS",
+      "severity": "BLOCKS_RENDER_AS_IS",
+      "finding": "z_c=8.045 is where the 16th percentile of Delta(required-inferred) crosses zero, so the 16-84% interval stops spanning zero. It is not where the required and inferred median curves first cross; that median crossing is z_m=6.328.",
+      "storyboard_conflict": "The storyboard says required and inferred escape fractions 'part company' at z=8.045.",
+      "current_plot_conflict": "The current video plot title says 'Where the two curves cross is the result' and places the z=8.045 line on the required/inferred median-curve panel.",
+      "required_correction": "Show Delta and its 16-84% envelope; label z_c=8.045 as the lower (16th-percentile) envelope edge touching zero. If median curves are discussed, key their crossing separately as z_m=6.328."
+    },
+    {
+      "id": "FESC-NOTAIL-SCOPE",
+      "severity": "BLOCKS_RENDER_AS_IS",
+      "finding": "z_c=7.615 is from the boost=none corner: the JWST-motivated SFRD-tail term is removed while the other frozen assumptions remain. It is not a corner where every assumption is set against the result.",
+      "storyboard_conflict": "The storyboard calls 7.615 the least-favourable corner 'where every assumption is set against the result.'",
+      "required_correction": "Label it 'no SFRD-tail scenario' or 'JWST-motivated boost removed'; show bootstrap 7.602-7.631 if uncertainty is displayed."
+    }
+  ],
+  "verified_values": {
+    "fiducial_closure_crossing_z_c": 8.045284271240234,
+    "fiducial_closure_crossing_bootstrap_16_50_84": [8.03008071899414, 8.045955657958984, 8.059269256591797],
+    "median_crossing_z_m": 6.327877044677734,
+    "no_tail_closure_crossing_z_c": 7.615345001220703,
+    "no_tail_bootstrap_16_50_84": [7.601756134033203, 7.61572265625, 7.631122589111328],
+    "keyed_shortfall_percent": {"z=7": 66, "z=8": 83, "z=9": 93},
+    "exact_shortfall_fractions": {"z=7": 0.659525, "z=8": 0.833525, "z=9": 0.927475},
+    "shortfall_fraction_monotone_on_z_6_to_10_grid": true,
+    "delta_16th_percentile_at_z_8": -0.003416859650904198
+  },
+  "artifacts": [
+    {"role":"current_public_mp4_read_only","path":"frontend/public/videos/fesc-zsweep-photon-budget.mp4","sha256":"840ced2b52c2007bc5387fc69b49527c548daca6f6d81b3f14bc9a43b7e9b5af","bytes":893604,"mtime":"2026-08-06T04:52:31+0900"},
+    {"role":"storyboard_of_record_read_only","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/storyboard_fesc_zsweep.json","sha256":"e470ca87d630d797acd235b3f4927139971e655805ec36efac81282e5b0bac55","bytes":4528,"mtime":"2026-08-06T23:11:47+0900"},
+    {"role":"numeric_source","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/TREND_RESULTS.json","sha256":"8df9f25b5f8acaf22825d6ece958867562c7e37a73fe69aa8e8175fe0b7aa242","bytes":10742,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"grid_source","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/TREND_DATA.json","sha256":"879b1e63de21caccddc952fe15113207f8785c6ca2932c8bb0844b992238dcb3","bytes":6667,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"canonical_manuscript_tex","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/MERGED_FESC_ZSWEEP.tex","sha256":"22f5950b8bc35f70700df86a130ba7634bd74a88693e88496ae342caff9fbc5c","bytes":20796,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"canonical_manuscript_pdf","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/MERGED_FESC_ZSWEEP.pdf","sha256":"49d7d03ff8991197b39173192c9d66de2a4e6c6a4b51c96e69b5159b49f367a6","bytes":151441,"mtime":"2026-08-04T21:37:31+0900"},
+    {"role":"canonical_trend_figure_png","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/fesc_zsweep_trend.png","sha256":"10269f5f89b3d9a11365d5cb11f09f3dc62152d71fd26418affcb8c1db4f6b3c","bytes":169796,"mtime":"2026-08-04T11:15:27+0900"},
+    {"role":"canonical_trend_figure_pdf","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/fesc_zsweep_trend.pdf","sha256":"5f53b139ce545dc6bffec2a67640ae9093f43ef64c4f088808ae62403c4b4ac0","bytes":41907,"mtime":"2026-08-04T11:15:28+0900"},
+    {"role":"trend_figure_builder_read_only","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/make_trend_figure.py","sha256":"1b45b671e6080adfec0997a8725ac790eb5ead81dae1eae677d404892de771d2","bytes":12631,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"model_code_read_only","path":"tools/nm_ionizing_budget.py","sha256":"73fc81161dac0b4762da9a9102455a5861d3b7a70eeb2d80accd65978f69ae49","bytes":10138,"mtime":"2026-07-23T13:02:33+0900"},
+    {"role":"shared_renderer_read_only","path":"tools/nm_paper_video.py","sha256":"919af6b18057309bfa5ecc2dd0fa44536dabaa4ba02aba960cabd3d791099f5c","bytes":15653,"mtime":"2026-08-06T20:56:46+0900"},
+    {"role":"shared_plot_builder_read_only","path":"tools/nm_paper_plot.py","sha256":"6acc8ba13e0393b60950ab78b1dbdf053c48459b0449581211ecc0eff021c43d","bytes":24755,"mtime":"2026-08-07T14:31:52+0900"},
+    {"role":"current_video_plot_asset","path":"/Users/duhokim/HermesOps/cockpit/videos/plots/fesc-zsweep-photon-budget_trend.png","sha256":"5950a2c50588330c524461d32a35c285a91092d31315d2e253b75d09baeeeded","bytes":88294,"mtime":"2026-08-07T14:31:53+0900"},
+    {"role":"literature_context_plot_asset","path":"/Users/duhokim/HermesOps/cockpit/videos/plots/lit_fesc.png","sha256":"c8e867a10a16cc6b26005b0ed4d681c3a8720cbd9ac6ca32ea8c22baeaaec8e9","bytes":52811,"mtime":"2026-08-06T18:07:42+0900"},
+    {"role":"literature_context_numeric_source","path":".hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/dispersion_v2.json","sha256":"8e1cacefe5c621f962042f24c1f76f94514a5694674ae096edf576009559e34a","bytes":360749,"mtime":"2026-08-03T20:49:10+0900"},
+    {"role":"post_minor_referee","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/KUN_MERGED_REFEREE.md","sha256":"67d934f590832b0d2cde3bb38c46a1fdcab6e6a064b9635b475419d182a177f5","bytes":12306,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"minor_fix_receipt","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/LANA_MINOR_FIXES.md","sha256":"fb4d5a72dce36bb83e1bab50727994df08f1c276740bf4f66f5d70331d3d9c89","bytes":3878,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"post_fix_merit_panel","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/MERIT_PANEL_MERGED.md","sha256":"885f734cdc46cdb10d790a1bac6f8af1bea47142f78c1773da1d1da6ccaab82c","bytes":9280,"mtime":"2026-08-04T21:48:59+0900"},
+    {"role":"human_direction_history","path":".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/fesc-zsweep-photon-budget_history.json","sha256":"25ba51e6d49b43b09da7fe37bc1046bb528b3386e2088ffbc7afe48c8af016a5","bytes":738,"mtime":"2026-08-04T21:48:59+0900"}
+  ],
+  "coordination_hashes": {
+    "HWAO_WEEKEND_ORDER.md":"ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710",
+    "COORDINATION_UPDATE.md":"2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"
+  },
+  "pre_order_artifacts_preserved": {
+    "root":".hermes/handoffs/weekend-video-sextet-20260808T0136K/lanes/fesc/",
+    "status_sha256":"5a0da96135a1c4299c2025fc9d832553edfe24d3bb372ceffee0d310889e220c",
+    "frame_inventory_sha256":"17a6a9dc86c13e65fef498aff05a7ed2868a22934fe2eec56765452fd51852de",
+    "contact_sheet_sha256":"0f54ac3cc891fc082b8e22abfe51ed17bede6615ad90c97a8bf512e2f65ee07f"
+  },
+  "closed_gates": [
+    "shared tool edits",
+    "storyboard-of-record edits",
+    "TTS invocation",
+    "official candidate bundle rendering",
+    "public video mutation",
+    "upload/publication",
+    "website/cockpit/DB/deploy changes",
+    "Git writes"
+  ]
+}

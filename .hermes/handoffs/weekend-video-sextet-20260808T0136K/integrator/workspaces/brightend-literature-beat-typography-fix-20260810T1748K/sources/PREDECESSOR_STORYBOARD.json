@@ -1,0 +1,125 @@
+{
+ "title": "The Machine-Readable Bright End",
+ "slug": "c41-brightend-uvlf-archival-gap",
+ "cards": [
+  {
+   "kind": "section",
+   "section": "Introduction",
+   "heading": "Introduction",
+   "body": "",
+   "seconds": 2.5
+  },
+  {
+   "kind": "title",
+   "heading": "The Machine-Readable Bright End",
+   "body": "The bright end of the high-redshift UV luminosity function is published. Whether a reader can re-derive it from archived per-object data is a different question. NebulaMind Lab.",
+   "seconds": 7,
+   "character": true,
+   "section": "Introduction"
+  },
+  {
+   "kind": "figure",
+   "heading": "The spread this work is about",
+   "figure": "lit_uvlf_alpha.png",
+   "source": "../galaxy-evolution/corpus-ga-co-2009-2026-20260718/dispersion_v2.json",
+   "seconds": 10,
+   "body": "Published UV faint-end slopes against redshift, with their quoted uncertainties.",
+   "section": "Introduction"
+  },
+  {
+   "kind": "point",
+   "heading": "Why ask this at all",
+   "body": "A luminosity function is a summary. Reproducing it, testing it, or combining it with another survey needs the objects underneath \u2014 magnitudes and redshifts, table by table. This study asks what an archive actually hands you.",
+   "seconds": 8,
+   "section": "Introduction"
+  },
+  {
+   "kind": "section",
+   "section": "Data",
+   "heading": "Data",
+   "body": "",
+   "seconds": 2.5
+  },
+  {
+   "kind": "point",
+   "heading": "How the archive was searched",
+   "body": "Two channels over VizieR: semantic UCD tags, which survive arbitrary column naming, and column names issued in every case variant, because the service matches case-sensitively.",
+   "seconds": 7,
+   "section": "Data"
+  },
+  {
+   "kind": "data",
+   "heading": "92 of 112",
+   "source": "T1_CATALOG_MANIFEST.json",
+   "body": "eligible catalogues were reachable ONLY through their UCD tags. A name-based search finds 20. Most of the relevant archive is invisible to the obvious query.",
+   "seconds": 8,
+   "section": "Data"
+  },
+  {
+   "kind": "data",
+   "heading": "6,417",
+   "source": "T3_CENSUS_RESULTS.json",
+   "body": "per-object rows survived the eligibility layer across 67 catalogues \u2014 the machine-readable bright end, as it actually exists today.",
+   "seconds": 7,
+   "section": "Data"
+  },
+  {
+   "kind": "section",
+   "section": "Analysis",
+   "heading": "Analysis",
+   "body": "",
+   "seconds": 2.5
+  },
+  {
+   "kind": "point",
+   "heading": "The gap, stated precisely",
+   "body": "Published luminosity functions cover redshift slices where the archived per-object record is thin or empty. The summary exists; the data behind it, in machine-readable form, often does not.",
+   "seconds": 8,
+   "section": "Analysis"
+  },
+  {
+   "kind": "data",
+   "heading": "176",
+   "source": "../../../frontend/public/studies/c41-brightend-uvlf-archival-gap_review_loop.md",
+   "body": "objects at M_UV brighter than -20 sit in the slice a published LF reports as empty \u2014 while 453 rows sit there at any magnitude. The qualifier matters, and the referee caught it twice.",
+   "seconds": 9,
+   "section": "Analysis"
+  },
+  {
+   "kind": "point",
+   "heading": "Refereed by a second engine, unedited",
+   "body": "An independent reviewer seat logged three overclaim findings and three binding mismatches in round one, then caught a new slip introduced by one of the fixes. The referee log ships with the paper.",
+   "seconds": 8,
+   "section": "Analysis"
+  },
+  {
+   "kind": "section",
+   "section": "Discussion",
+   "heading": "Discussion",
+   "body": "",
+   "seconds": 2.5
+  },
+  {
+   "kind": "limit",
+   "heading": "What this study does NOT establish",
+   "body": "It is a census, not a measurement. It computes no luminosity function, corrects nothing for completeness, and settles no disagreement between surveys. It is descriptive and has had no journal referee.",
+   "seconds": 9,
+   "section": "Discussion"
+  },
+  {
+   "kind": "section",
+   "section": "Summary",
+   "heading": "Summary",
+   "body": "",
+   "seconds": 2.5
+  },
+  {
+   "kind": "close",
+   "heading": "nebulamind.net",
+   "body": "Contract frozen before measurement. Every number on these cards read from a recorded artifact, not from memory.",
+   "seconds": 6,
+   "character": true,
+   "section": "Summary"
+  }
+ ]
+}

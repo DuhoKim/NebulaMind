@@ -1,0 +1,48 @@
+{
+  "review_round": 5,
+  "review_name": "isolated_deepening_pass4_v1_exact_snapshot",
+  "artifact_under_review": "snapshots/pass4-retrieval-axis-provenance-v1 immutable static-proposal/storyboard packet",
+  "completed_at": "2026-08-08T03:40:35+09:00",
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "id": "VISIBLE_TAXONOMY_LABELS_ABSENT",
+      "finding": "In b09, SYMBOL / MEANING COLLISION and TARGET-DOMAIN MISMATCH exist only as JSON field names and visual_action text; flattened on_screen_copy values omit both category headings.",
+      "consequence": "A renderer conforming to the audience-copy contract could flatten all four examples into one list and lose the scientific taxonomy.",
+      "validator_defect": "precision_taxonomy_split checked visual_action, which is never-render-verbatim, instead of the visible audience projection.",
+      "required_correction": "Make both taxonomy headings explicit values inside on_screen_copy and validate them in the audience projection."
+    }
+  ],
+  "custody": {
+    "manifest_entries_matched_initial_and_final": "9/9",
+    "snapshot_drift": false,
+    "storyboard_sha256": "ec35df6bb7815ee700f24b2a2ba72f71d62032cfa318522af8de2a5f4b13b34b",
+    "source_freeze_sha256_reviewed": "edeb11c54f2e76aa4c972c4323899a579fad92662bae178368dfcd93da269ee7",
+    "visual_sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+    "upstream_inputs_matched": "13/13",
+    "audience_projection_sha256": "4c0c989104f44782b5e4a811e3e2c97acba9acf672dd0f430d91a51c9b10b61f",
+    "paper_naive_key_content_inspected": false
+  },
+  "passed_boundaries": [
+    "target concept distinct from search-axis reach",
+    "62 is vocabulary presence, not adjudicated evidence",
+    "178-21=157 and 19/2 topology exact",
+    "157 direct to T2 and 62 side branch",
+    "T1 controls distinct from T2 design decoys",
+    "T2 application incomplete and no eligible-table count",
+    "no internal audience paths, TTS, media, publication, or new science"
+  ],
+  "visual_reconciliation": {
+    "v7_byte_and_pixel_identical_to_pass3": true,
+    "scientifically_compatible_with_pass4": true,
+    "no_clipping_or_overlap": true,
+    "small_text_and_bottom_safe_area_future_risk": true
+  },
+  "non_material_notes": [
+    "The v7 overview has no literal T1 labels but does not contradict the beat-level stage-label requirement.",
+    "Internally derived census denominators lack an audience-reachable supplement; acceptable only while publication remains closed."
+  ],
+  "disposition": "PRESERVED_EXACT_V1_FAIL; corrected current packet requires a new exact-version independent regate",
+  "files_modified_by_reviewer": [],
+  "issues": []
+}

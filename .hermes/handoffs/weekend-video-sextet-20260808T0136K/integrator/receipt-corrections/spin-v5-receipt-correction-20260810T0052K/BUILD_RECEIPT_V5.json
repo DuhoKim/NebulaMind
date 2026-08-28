@@ -1,0 +1,96 @@
+{
+  "receipt_id": "SPIN_BUILD_RECEIPT_V5_SELF_DESCRIPTION_CORRECTION_20260810T0054K",
+  "created_at_kst": "2026-08-10T00:54:06+09:00",
+  "receipt_version": "v5-receipt-correction-no-reencode",
+  "status": "CORRECTED_PROVENANCE_PACKET_PENDING_BOUNDED_TORI_PACKET_RECHECK",
+  "scope": "Receipt self-description only. This packet does not replace, rebuild, re-render, re-encode, or mutate the V4 candidate MP4.",
+  "exact_candidate": {
+    "candidate": "spin-method-overhaul-canary-20260809T2340K",
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "bytes": 25486290,
+    "codec": "h264",
+    "resolution": [1920, 1080],
+    "fps": 30,
+    "encoded_video_stream_duration_seconds": 224.2,
+    "container_duration_seconds": 224.217,
+    "encoded_video_frames": 6726,
+    "encoded_video_frames_operation": "ffmpeg encoded the RGB24 input with libx264 and applied -shortest; V5 measured the resulting stream using ffprobe -count_frames and an independent full H.264 decode.",
+    "encoded_video_frames_operation_time": {
+      "original_operation_interval_kst_from_filesystem_evidence": "2026-08-10T00:14:06.339051+09:00 through 2026-08-10T00:15:26.315130+09:00",
+      "ffprobe_measurement_interval_kst": "2026-08-10T00:52:06.132413+09:00 through 2026-08-10T00:52:13.419553+09:00",
+      "full_decode_measurement_interval_kst": "2026-08-10T00:52:13.419605+09:00 through 2026-08-10T00:52:15.182363+09:00"
+    }
+  },
+  "render_submission": {
+    "raw_frames_submitted_to_ffmpeg": 6727,
+    "raw_pixel_format": "rgb24",
+    "raw_resolution": [1920, 1080],
+    "raw_frame_rate": 30,
+    "producing_operation": "math.ceil(224.21739583333334 * 30) followed by 6727 iterations of process.stdin.write(draw_frame(frame_index / 30).tobytes()) into ffmpeg rawvideo stdin.",
+    "producing_operation_time": {
+      "original_operation_interval_kst_from_filesystem_evidence": "2026-08-10T00:14:06.339051+09:00 through 2026-08-10T00:15:26.315130+09:00",
+      "v5_static_rederivation_executed_at_kst": "2026-08-10T00:52:06.119379+09:00"
+    },
+    "duration_input_seconds": 224.21739583333334,
+    "calculation": "ceil(duration_input_seconds * raw_frame_rate) = 6727"
+  },
+  "frame_count_self_description": {
+    "raw_frames_submitted_to_ffmpeg": 6727,
+    "encoded_video_frames": 6726,
+    "difference": 1,
+    "why_both_are_true": "The renderer submitted ceil(PCM duration times fps) raw frames. ffmpeg -shortest ended the encoded video stream with the shorter muxed duration, yielding 6726 H.264 frames.",
+    "media_effect": "No corruption or visible EOF defect. The encoded video stream is 0.01739583333335304 seconds shorter than the PCM master, below one 30 fps frame period of 0.03333333333333333 seconds; Tori found the final frame complete and gated.",
+    "legacy_v4_field_disposition": "The original unqualified frame_count=6727 remains preserved in the immutable V4 receipt. V5 identifies it as raw_frames_submitted_to_ffmpeg and separately records encoded_video_frames=6726."
+  },
+  "derivation_receipt": {
+    "path": "FRAME_COUNT_DERIVATION_V5.json",
+    "sha256": "000b1ea713ec090c9aa660893f970ee37621672f247bac0df2f0ef8a07645869"
+  },
+  "preserved_v4_receipt": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/build_receipt.json",
+    "sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22",
+    "mutated": false,
+    "unqualified_field_preserved_for_history": {
+      "frame_count": 6727
+    }
+  },
+  "preserved_v4_freeze": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/POST_ENCODE_FREEZE_V4.json",
+    "sha256": "a8949ffb9bb994b066f4fcde7cf58b607045ad789ed58fe5eddfb253ef776405",
+    "candidate_tree_file_count": 210,
+    "candidate_tree_sha256": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb",
+    "mutated": false
+  },
+  "tori_v4_adjudication": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/TORI_SPIN_WHY_STUDY_V4_EXACT_HASH_ADJUDICATION_20260810T0041K.json",
+    "sha256": "4a8acaaf91722eed6e9f833f641d33789d79c31add6d755f3928a6f1362cfb2f",
+    "presentation_on_exact_bytes": "PASS",
+    "science_and_claim_boundary_on_exact_bytes": "PASS_METHOD_ONLY_NO_RESULT",
+    "media_integrity_on_exact_bytes": "PASS",
+    "sole_block": "BUILD_RECEIPT_FRAME_COUNT_IS_NOT_THE_ENCODED_FRAME_COUNT"
+  },
+  "unchanged_build_inputs_bound_by_v4_receipt": {
+    "renderer_sha256": "639f9e477904ab0117144d5722831ada0a58a9a1d43c5fca13bd8d54a4a96864",
+    "narration_script_sha256": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1",
+    "timeline_sha256": "8d6fe95efd9f68ef0034f9bf69f41ab59461a2bebd07aa514e60f7c83f4ebf0a",
+    "audio_master_sha256": "e35b5ca002c88a0b84d6bdf5bb5be7508564021c037295e9114ec9d299378bc6",
+    "pcm_duration_seconds": 224.21739583333334,
+    "word_count": 424,
+    "delivered_wpm": 114.99999764560407,
+    "audio_visual_start_max_delta_seconds": 0.016062500000003865,
+    "music": false
+  },
+  "closed_gates": {
+    "render_performed_in_v5": false,
+    "encode_performed_in_v5": false,
+    "candidate_mp4_mutated": false,
+    "candidate_tree_mutated": false,
+    "upload_or_publication": false,
+    "public_or_frontend_mutation": false,
+    "cockpit_mutation_by_yui_v5_correction": false,
+    "database_or_deploy_or_git_or_billing_or_config_mutation": false,
+    "human_acceptance_conferred": false
+  },
+  "next_gate": "Bounded Tori recheck of the V5 packet only, while rehashing the exact unchanged MP4 before and after. Duho's watch/listen gate remains final."
+}

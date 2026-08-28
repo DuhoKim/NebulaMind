@@ -1,0 +1,65 @@
+{
+  "review_round": 8,
+  "snapshot": "snapshots/pass6-evidence-state-causality-v1",
+  "snapshot_manifest_sha256": "8b5fdb14a5d83a27956ec0fce527f1ff1a0960ad5a4917fca1beb4bdb07e4d01",
+  "review_kind": "adversarial exact-version scientific representation, motion, validator, packet, citation, and custody audit",
+  "verdict": "FAIL",
+  "manifest_start": "16/16",
+  "manifest_end": "16/16",
+  "snapshot_changed": false,
+  "custody": "PASS",
+  "scientific_copy_quantitative_topology": "PASS",
+  "static_v8_pixel_compatibility": "PASS_SCOPED_ONE_FRAME_OVERVIEW",
+  "material_defects": [
+    {
+      "id": "semantic_motion_gap_crosses_beat_boundary",
+      "evidence": "b07 last substantive reveal at global 64 s; b07 hold and b08 retain are not changes; next new status at global 71 s",
+      "impact": "7-second unchanged evidence state violates 4-second ceiling"
+    },
+    {
+      "id": "clause_to_visible_change_unproven",
+      "evidence": "no clause IDs, phrase timestamps, clause-to-state mapping, or audio alignment",
+      "impact": "causality contract asserted but not encoded"
+    },
+    {
+      "id": "validator_false_pass_paths",
+      "evidence": [
+        "fabricated funnel and axis numbers still PASS",
+        "partial axis dequalification still PASS",
+        "standalone divider state still PASS",
+        "final order mutation still PASS",
+        "fabricated citation still PASS"
+      ],
+      "impact": "validator cannot clear integration"
+    },
+    {
+      "id": "paper_naive_packet_not_exact_projection",
+      "evidence": [
+        "10/10 display citations omitted",
+        "non-audience visual-action sentence added at 62 topology",
+        "answer key adjacent"
+      ],
+      "impact": "closed-book result is scientifically correct but packet cannot establish exact audience-projection comprehension"
+    },
+    {
+      "id": "snapshot_helper_reproducibility",
+      "evidence": [
+        "prepare helper expected qa/visual_proposal_qa.json absent in pass6 package",
+        "validator output path differed from manifested receipt location"
+      ],
+      "impact": "packaging/custody defect"
+    }
+  ],
+  "non_material_notes": [
+    "snapshot bytes remained owner-writable 0644; two-ended hashes proved review stability",
+    "audience-reachable methods/count ledger remains a publication precondition"
+  ],
+  "motion_contract": "FAIL",
+  "validator_reliability": "FAIL",
+  "paper_naive_packet_custody": "FAIL",
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "files_modified": []
+}

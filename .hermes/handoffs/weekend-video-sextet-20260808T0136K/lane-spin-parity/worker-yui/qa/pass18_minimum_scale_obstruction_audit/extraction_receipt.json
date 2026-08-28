@@ -1,0 +1,1432 @@
+{
+  "audio_generated": false,
+  "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "characterization_variants": [
+    "heavy35_360p"
+  ],
+  "contact_sheets": {
+    "caption15_360p": {
+      "height": 1276,
+      "path": "contact_sheet_caption15_360p.png",
+      "sha256": "6196fbad97f1fc0815ae701d9b5f72b911cc819684290c8ec971a1352897d752",
+      "width": 1892
+    },
+    "clean": {
+      "height": 1276,
+      "path": "contact_sheet_clean.png",
+      "sha256": "d004b20c78d9356007dc1984646e0978bdafe75d4037dacfe30c0f8c91c4cfb2",
+      "width": 1892
+    },
+    "downscale_360p": {
+      "height": 1276,
+      "path": "contact_sheet_downscale_360p.png",
+      "sha256": "da5fc7f1f7728cc1f08cf5019ec91507d39723e2ea49bb559be01934af8ac2ec",
+      "width": 1892
+    },
+    "heavy35_360p": {
+      "height": 1276,
+      "path": "contact_sheet_heavy35_360p.png",
+      "sha256": "2b55e365a62a4262bf5757bd404b0e5a12d6ff2d109109cab911959978a553f7",
+      "width": 1892
+    },
+    "player_ui25_360p": {
+      "height": 1276,
+      "path": "contact_sheet_player_ui25_360p.png",
+      "sha256": "062b7a3515f0f0694cda037eb9a85392e4c0dcd7f146179e590dced181704306",
+      "width": 1892
+    }
+  },
+  "created_at": "2026-08-08T11:21:16.305131+09:00",
+  "cut_detection": {
+    "cuts": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "detector": "ffmpeg 160x90 grayscale scene-score threshold strictly greater than 0.03 with showinfo",
+    "threshold": 0.03
+  },
+  "cut_times_seconds": [
+    12.133333,
+    26.366667,
+    47.266667,
+    60.466667,
+    74.666667,
+    88.066667,
+    102.333333,
+    116.333333,
+    131.033333,
+    148.033333,
+    162.033333,
+    179.733333,
+    196.8,
+    213.433333,
+    233.866667
+  ],
+  "deepening_pass": 18,
+  "frame_count": 80,
+  "fresh_clean_match": "16/16_BYTE_IDENTICAL_TO_PASS17",
+  "git_action": false,
+  "implementation": {
+    "downscale_resampler": "Pillow LANCZOS",
+    "mask_application": "opaque RGB black rectangle applied after downscale",
+    "mask_top_rows": {
+      "caption15_360p": 306,
+      "heavy35_360p": 234,
+      "player_ui25_360p": 270
+    },
+    "minimum_scale_output": "640x360 RGB",
+    "pillow": "12.3.0",
+    "python": "3.11.15",
+    "storage": "non-optimized RGB PNG",
+    "transform_order": "native RGB -> LANCZOS 640x360 -> opaque bottom mask",
+    "unobstructed_pixel_contract": "all RGB pixels above mask_top_y are byte-identical to downscale_360p"
+  },
+  "midpoint_times_seconds": [
+    6.066667,
+    19.25,
+    36.816667,
+    53.866667,
+    67.566667,
+    81.366667,
+    95.2,
+    109.333333,
+    123.683333,
+    139.533333,
+    155.033333,
+    170.883333,
+    188.266666,
+    205.116667,
+    223.65,
+    238.583334
+  ],
+  "operational_variants": [
+    "caption15_360p",
+    "player_ui25_360p"
+  ],
+  "records": [
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_01_clean.png",
+      "prior_pass17_clean_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "sample_time_seconds": 6.066667,
+      "samples": [
+        {
+          "frame": "frames/scene_01_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_01_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "be71a55708906bbcc3c704f5953ff2d8e5ba212061cf9254e02e9aba6fb6b94c",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_01_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "9e25b50d06e993cf732166c793b9d6a572eab2e31097202d52a7c1698ac848f5",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_01_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "95975bcd824f8f85eee38258033365a993977326bfd7956bd4fbeba8e1127c3d",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_01_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "9e86426ba7ef9881b132fde01cc91250582abee875886ed0d20f34a079b3663c",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 1
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_02_clean.png",
+      "prior_pass17_clean_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "sample_time_seconds": 19.25,
+      "samples": [
+        {
+          "frame": "frames/scene_02_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_02_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "6068b07a66074a579165f383a552618e4f8b4c4747d3b9f102e88dcba646451b",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_02_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "6f87f2dcfd35c5b037c1cf9abda4e82d7f8771cf69cc418560cbd9158b87798b",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_02_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "c3c528c46e3a09d403253e2060e4b22c9ad5b402b8b0ccff42161f2f5e842da5",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_02_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "451da93dd162e3835a891c10d709fdd3670b917f37dc87f7655221917820fe8e",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 2
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_03_clean.png",
+      "prior_pass17_clean_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "sample_time_seconds": 36.816667,
+      "samples": [
+        {
+          "frame": "frames/scene_03_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_03_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "1a47623cef544b4d04316843120053e3a6b31e9dcdb2fcfe4075bf351b106154",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_03_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "1366f04b8d4e2b0c8a1efa5b1f9017632636c93a84693a658bc3eef2e2f59fdb",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_03_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "25f5e2f41a6481eee4dc1fe099d07f40a098c3aefb6d34f0d5ea58f159108710",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_03_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "aeff7301abd01652fe2a3ce08ac4cb395cdc1b23fa8e8ab24c9677ada60c4bd5",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 3
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_04_clean.png",
+      "prior_pass17_clean_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "sample_time_seconds": 53.866667,
+      "samples": [
+        {
+          "frame": "frames/scene_04_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_04_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "1fc19ebd40cee447fe715267984ffda3a90b1f4a8880c54cac8e4188bf8e280c",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_04_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "b3fd34da604dbe6c3ba92e9d882b6a0f4888902de52711cc9674488b166cbe27",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_04_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "ceadfe7b92ffb9fea26cf858d0ae67ddd959ccb31a6e9dc057fbeefab0d91f1f",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_04_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "361c9a1131c092c663b6399d5ead485542cae8025588113051e5baa098688c17",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 4
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_05_clean.png",
+      "prior_pass17_clean_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "sample_time_seconds": 67.566667,
+      "samples": [
+        {
+          "frame": "frames/scene_05_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_05_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "b8839772a7b83d49297f386e940f501b60f451cf0d538591be9bcbbe09c1bc18",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_05_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "faba53c1ec8a6e894ff7770bf0faed3b3c0b2637b2e6f0a762cef110a7408e2e",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_05_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "d6414da83ce1fcfbbdc1d9d5112dce5fcf667f9d0d7bc926e1a688aeb6f0928d",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_05_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "f528d9aa95941815cb0ecc4117d9c82f2b011dae8392c689ff4b874328690ed6",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 5
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_06_clean.png",
+      "prior_pass17_clean_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "sample_time_seconds": 81.366667,
+      "samples": [
+        {
+          "frame": "frames/scene_06_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_06_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "dfaa258631d91ce69985e418b1010ce9fb4b37d61fd5378ae8d5fa2dc3ad5ef9",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_06_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "7476b391990ddfa657d8d5e004e7833b6f9969c9f666d1b57e7dd27667c5aaef",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_06_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "d906ea3601e7529504d02ad880eb7d5cfaf5768c81084baa175a7fd33ff6fefe",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_06_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "62411474cf57977cdd0a12a0e11bdf7d59512e57173784101a9eabdf93cc473a",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 6
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_07_clean.png",
+      "prior_pass17_clean_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "sample_time_seconds": 95.2,
+      "samples": [
+        {
+          "frame": "frames/scene_07_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_07_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "d12591247847849f4de8470e48124eee79e3360690a611f8f71bc83a9b1a193b",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_07_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "a829683469dfd524ec82b0e99ff52cb3b53455b230bf2138ab5a81265f95f047",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_07_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "c113e760144b82a99646f0093039de9a4b11bd1b892a2d54371bfc433ab66c40",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_07_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "98d475e7cd04e56862cd413856f22f19e6826ad38f1c82dd4b32258d7c994e7b",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 7
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_08_clean.png",
+      "prior_pass17_clean_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "sample_time_seconds": 109.333333,
+      "samples": [
+        {
+          "frame": "frames/scene_08_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_08_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "0e62a38a29856ae4c4374b1289f67a298b6bdbd23172ef6f1247fc85b8f907bd",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_08_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "f71cd0ef21c40a192a7da4ff7a721a1e9b4904fe5b03441d0b00727ba1f4ea60",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_08_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "007636bd80f95d0bbf84b5d0ad2febd5e9ef8452e9574650636c26c5f3032813",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_08_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "3ba57f15edf26b7b4f68b0b06c80d86930fe467a00a66e63c32dea37e65fbed4",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 8
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_09_clean.png",
+      "prior_pass17_clean_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "sample_time_seconds": 123.683333,
+      "samples": [
+        {
+          "frame": "frames/scene_09_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_09_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "1965e20e210a35c842c29bc7af2652fc723929d279da0f0d4749b08a9d845bcb",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_09_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "d29b5fbca6a4ae85db2f67352bba397da1e290a7452016c8c15003818231606f",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_09_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "a3ec2bfce5c36f64605a58caeb71d22b1cedbf8e330911ec55b1085b3429d16a",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_09_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "9205d11bff487639141717bee7e8948409c50e0dbe6550714b281a170a962276",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 9
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_10_clean.png",
+      "prior_pass17_clean_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "sample_time_seconds": 139.533333,
+      "samples": [
+        {
+          "frame": "frames/scene_10_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_10_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "2f15520c736b2878669f42e9eafa5452a030807972b879c92156ca3eda5ccef7",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_10_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "d4ba552912dc075dc5d2ee53b55fb1aabec93aad015dd871033a26000a92fc32",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_10_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "0371fa0dfacf95c3fcf7eff6eb2ceebcf90828496579fb8291999b30485b81b0",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_10_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "2db474f7482ea47e3d2f7ac674d986aa985bfedb99f72e3e50c68b553df4c923",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 10
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_11_clean.png",
+      "prior_pass17_clean_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "sample_time_seconds": 155.033333,
+      "samples": [
+        {
+          "frame": "frames/scene_11_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_11_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "a64c0076a092d64f716f502f41b44a99615ecdaf76cdc8325f2bc38ab8bbf851",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_11_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "644dd9b1bd83c8a564d73c0f135441549fa6e08dd08ddc78ee2bc0d32e82396d",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_11_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "45b67cf69e1c251a49799771c51b107d570b888241105edb083708a270ee43dd",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_11_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "866912bf5c15e87e0368880f7d4ae37f1afffbcbc5722b7ca2f3a7cc9896ae86",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 11
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_12_clean.png",
+      "prior_pass17_clean_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "sample_time_seconds": 170.883333,
+      "samples": [
+        {
+          "frame": "frames/scene_12_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_12_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "f69f17576cb243d27a44b3cd2f63c17f82fe1c277047a19f0c6ce85146bb45b7",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_12_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "f38b2cf34b26e383f459845d2dd00bfe76893754064646df86259e9ad5ae22b9",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_12_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "364e96ebf8627d4effc9b1c5245f2f264c3d3a51d06b5ebcf7c888444bcdc454",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_12_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "d71f8c9f06cef8c6f3e5a0ea11a523a5cb7f8208a19a81cbb6b79b197d296a37",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 12
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_13_clean.png",
+      "prior_pass17_clean_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "sample_time_seconds": 188.266666,
+      "samples": [
+        {
+          "frame": "frames/scene_13_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_13_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "8c44e3ec5e29cc078bfbd204203cc9a6c8ce4548912156b56526624afc4e3a0d",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_13_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "2deb18ea5350fab6eb7810535e88c47c05228acf25364750e8a7ca4eb45ce320",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_13_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "b5ed425b17791999bb1eabdc5c75c39e94e3e89131fe64c880c2dfbe4ab179f9",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_13_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "4a82175c94f4789d65685eeba842ee6aef688f56d205d961fa1eed0a5adecf57",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 13
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_14_clean.png",
+      "prior_pass17_clean_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "sample_time_seconds": 205.116667,
+      "samples": [
+        {
+          "frame": "frames/scene_14_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_14_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "92b6cd660113daff58db9beed05e3bf6f48b3b7ed3ad04a16e1f51c49319facf",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_14_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "d0206a6003ed858309da28621d892a3d8ba3f76e9cf4ba26a30007e56a50a418",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_14_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "eeae4f06f3e74cf73ed2e6c204a1b5e84b0ce1508f18349d86736ed1551c187b",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_14_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "347916d2610d536aeb6d9ca9197b367bd7e7e5e1d97f3654749ef90a88318eaf",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 14
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_15_clean.png",
+      "prior_pass17_clean_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "sample_time_seconds": 223.65,
+      "samples": [
+        {
+          "frame": "frames/scene_15_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_15_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "a82d659a2e40a5b88b59a9132b696b555ec0f7a56c8ba7a3f3600bea1f84e4f5",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_15_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "5db96e895537ad473c345b625194668a5874bb749b0df71cca12a80b54b73644",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_15_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "8fca3d3cb6a5ab04437d1ad31035511849f3cb1dadd8ddb8f7d1ad51efb4be32",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_15_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "8914b82064e87b3f1fb94ceccfcca776cffd49581dd36673783fd05a926ebc68",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 15
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass17_clean_path": "qa/pass17_minimum_scale_recompression_audit/frames/scene_16_clean.png",
+      "prior_pass17_clean_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "sample_time_seconds": 238.583334,
+      "samples": [
+        {
+          "frame": "frames/scene_16_clean.png",
+          "height": 1080,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_16_downscale_360p.png",
+          "height": 360,
+          "mask_color_rgb": null,
+          "mask_top_y": null,
+          "mode": "RGB",
+          "obstruction_fraction": null,
+          "sha256": "dd8661f9337c4e0e03319b04c6c25ccfd8d9ed64da81ec5fa8a90726cda05f3e",
+          "unobstructed_pixels_identical_to_downscale": null,
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_16_caption15_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 306,
+          "mode": "RGB",
+          "obstruction_fraction": 0.15,
+          "sha256": "f8e7e21183bd126f3878276e89e67608cde2ac63c3447935813076e32f5871ba",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "caption15_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_16_player_ui25_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 270,
+          "mode": "RGB",
+          "obstruction_fraction": 0.25,
+          "sha256": "31ab322c42c22c86b7573e690b34c02fcf213703aa476d8efe3e807ed82a621d",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "player_ui25_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_16_heavy35_360p.png",
+          "height": 360,
+          "mask_color_rgb": [
+            0,
+            0,
+            0
+          ],
+          "mask_top_y": 234,
+          "mode": "RGB",
+          "obstruction_fraction": 0.35,
+          "sha256": "cb07e8fe1d0d808bcfdc12dcd6915ee3c7c741e07c0ef9f789995165889dd36d",
+          "unobstructed_pixels_identical_to_downscale": true,
+          "variant": "heavy35_360p",
+          "width": 640
+        }
+      ],
+      "scene": 16
+    }
+  ],
+  "reference_variant": "downscale_360p",
+  "scene_count": 16,
+  "simulation_limit": "Packet-specific minimum-scale plus opaque bottom-obstruction stress only; masks are not a claim about a named caption renderer, player, browser, platform, service, display, room, viewer, or universal standard.",
+  "status": "QA_ONLY_NOT_A_CANDIDATE",
+  "tts_invoked": false,
+  "variant_count": 5,
+  "variant_order": [
+    "clean",
+    "downscale_360p",
+    "caption15_360p",
+    "player_ui25_360p",
+    "heavy35_360p"
+  ],
+  "video_encoded": false
+}

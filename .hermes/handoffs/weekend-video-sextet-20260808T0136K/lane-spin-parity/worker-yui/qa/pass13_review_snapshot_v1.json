@@ -1,0 +1,207 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass13-review-v1-20260808T084634K",
+  "created_at": "2026-08-08T08:46:34+09:00",
+  "deepening_pass": 13,
+  "scope": "isolated worker-Yui pass-13 directional-smear presentation audit and non-pixel integration guard",
+  "authority": {
+    "coordinator": "Hwao/Fable",
+    "lane_owner": "worker-yui",
+    "coordination_update_read": true,
+    "write_boundary": "lane-spin-parity/worker-yui only",
+    "candidate_writes_allowed": false,
+    "tts_allowed": false,
+    "shared_or_public_writes_allowed": false,
+    "git_writes_allowed": false
+  },
+  "supersedes": {
+    "snapshot": "qa/pass12_review_snapshot_v1.json",
+    "snapshot_sha256": "6471fcd37c2e854119557727d62edfe3025b8cc277e3ae25686070c7cc23fb13",
+    "mutation": false
+  },
+  "custody": {
+    "source_freeze": "SOURCE_STATUS_FREEZE.json",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "render_receipt": "proposal_frames/v8/render_receipt.json",
+    "render_receipt_sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+    "sealed_contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "sealed_contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "pass12_correction": "SHARPNESS_RESILIENCE_STORYBOARD_CORRECTION_PASS12.json",
+    "pass12_correction_sha256": "1312ea54aa860473ff57e3c47e8305ecca8630ba1f6a998a6e02d9aea9999422",
+    "pass12_proof_receipt": "qa/pass12_sharpness_safe_mockup/receipt.json",
+    "pass12_proof_receipt_sha256": "35f526a60b053f8c203278b3c205c1e0145f9a6dcd6da309541eb57b6399e92c",
+    "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "candidate_disposition": "preserved_failed_candidate_read_only",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "fresh_candidate_extraction": {
+    "script": "qa/pass13_directional_smear_audit/extract_directional_smear_frames.py",
+    "script_sha256": "da76b1fa9292c3a76a1ec401c47ce034e6fff39e0d4a0221a3c43865e3713d68",
+    "receipt": "qa/pass13_directional_smear_audit/extraction_receipt.json",
+    "receipt_sha256": "a5dfc83d95cbfac3ef9b6959be07ae34733684a1339dfda760c6e67569dfc94a",
+    "created_at": "2026-08-08T08:28:29.947267+09:00",
+    "detector": "30-fps 160x90 grayscale mean-absolute frame difference; fixed 30-frame nonmaximum separation",
+    "cut_times_seconds": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "cuts_reproduced": "15/15_EXACT_PASS12",
+    "scene_count": 16,
+    "fresh_clean_midpoint_count": 16,
+    "fresh_clean_vs_pass12_byte_identical": "16/16",
+    "variant_count": 5,
+    "variants": ["clean", "smear_w03", "smear_w07", "smear_w13", "smear_w21"],
+    "frame_count": 80,
+    "contact_sheet_operational": "qa/pass13_directional_smear_audit/contact_sheet_smear_w07.png",
+    "contact_sheet_operational_sha256": "4d47a18fc1478aa7e63fe898d63149f835525a3d18230d140ae9706779eecf93",
+    "contact_sheet_w13_sha256": "7e7bc3bfd049bb15ea29e590a2d6caf348afecae140d962af53f0f6735ed2ac2",
+    "contact_sheet_w21_sha256": "7fe8ecc694890a06126789f850472a6eb4d2f9d38a58946ebbb979676d1fc11e"
+  },
+  "transform_contract": {
+    "type": "centered_horizontal_box_smear",
+    "implementation": "edge replication; uint64 channel sum; round-half-up integer division",
+    "canvas": "1920x1080",
+    "mode": "RGB",
+    "kernel_widths_pixels": [3, 7, 13, 21],
+    "operational_width_pixels": 7,
+    "characterization_widths_pixels": [13, 21],
+    "simulation_limit": "Packet parameters only; no named camera, lens, display, player, motion path, viewer, codec, platform, or service is represented or claimed."
+  },
+  "method_derivatives": {
+    "builder": "qa/build_pass13_v8_directional_smear.py",
+    "builder_sha256": "4d96b58df62af08c631a37eff33f97e7deb58a873fbcfba17516046a45a223fd",
+    "receipt": "qa/pass13_v8_directional_smear/receipt.json",
+    "receipt_sha256": "3742a8a7a75f142de1d4fa0525bade9cc0b10e5f9c8e2da40194ec8ad216cd9e",
+    "groups": ["sealed_v8", "pass7_caption_safe", "pass12_sharpness_safe"],
+    "group_count": 3,
+    "scene_count": 21,
+    "frame_count": 105,
+    "byte_identical_rerun": true
+  },
+  "quantitative_audit": {
+    "script": "qa/audit_pass13_directional_smear.py",
+    "script_sha256": "2e00955d003d04e33b4c0fabb950ed993b070db5b3ffb0b44c61f4b87ed8673f",
+    "result": "qa/pass13_directional_smear_quantitative_audit.json",
+    "result_sha256": "d4bac9f7182b00732d1bb142cc66a5113a00a2dd274fd2271db2cfb8b3da28d4",
+    "byte_identical_rerun": true,
+    "candidate_w07": {
+      "headline_token_recall": 0.938201,
+      "full_token_recall": 0.66952,
+      "lower_support_token_recall": 0.623122,
+      "numeric_token_recall": 0.467254,
+      "rgb_psnr_db": 27.208633,
+      "tolerant_luma_edge_recall": 0.914601,
+      "x_gradient_energy_ratio": 0.566164,
+      "y_gradient_energy_ratio": 0.87837,
+      "structural_gate_scene_count": 0
+    },
+    "candidate_held_critical_w07": {
+      "scenes": [7, 9, 10, 11, 16],
+      "headline_token_recall": 0.871209,
+      "full_token_recall": 0.375481,
+      "lower_support_token_recall": 0.281031,
+      "numeric_token_recall": 0.397778,
+      "structural_gate_scene_count": 0
+    },
+    "candidate_w21": {
+      "headline_token_recall": 0.18527,
+      "full_token_recall": 0.046657,
+      "lower_support_token_recall": 0.037348,
+      "x_gradient_energy_ratio": 0.221454,
+      "y_gradient_energy_ratio": 0.778613,
+      "structural_gate_scene_count": 0,
+      "visual_result_hierarchy_remains_primary": true,
+      "exact_small_copy_acceptance_reliable": false
+    },
+    "sealed_v8_w07": {
+      "headline_token_recall": 0.728767,
+      "full_token_recall": 0.550579,
+      "lower_support_token_recall": 0.471187,
+      "tolerant_luma_edge_recall": 0.950304,
+      "result_held_badges_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_w07": {
+      "headline_token_recall": 0.767133,
+      "full_token_recall": 0.583573,
+      "specific_gate_lines_visual": "7/7_EXACT",
+      "specific_gate_lines_single_pass_ocr": "6/7",
+      "result_held_badges_visual": "7/7"
+    },
+    "pass12_w07": {
+      "headline_token_recall": 0.672214,
+      "full_token_recall": 0.517288,
+      "specific_gate_lines_visual": "7/7_EXACT",
+      "specific_gate_lines_character_similarity_at_least_0_85": "7/7",
+      "mean_gate_character_similarity": 0.987813,
+      "result_held_badges_visual": "7/7",
+      "overlap_clipping_or_semantic_ambiguity": false
+    }
+  },
+  "review_finding": {
+    "candidate": "Horizontal smear damages thin vertical structure and support before the failed candidate's dominant result hierarchy; no held boundary appears.",
+    "method": "The pass-12 strengthened proof already preserves every exact scene gate, badge, and large status boundary at operational width 7.",
+    "action": "Add a non-pixel directional-smear integration guard; make no sealed or proof pixel/copy change.",
+    "severe_characterization": "Widths 13 and 21 reveal failure order only and are not acceptance thresholds."
+  },
+  "action_artifacts": {
+    "guard": "DIRECTIONAL_SMEAR_GUARD_PASS13.json",
+    "guard_sha256": "84235eaa229f529453c5551100882f30afb80cbee1be2f2dd75301bb09d5bf53",
+    "audit": "PASS13_ENCODED_FRAME_AUDIT.md",
+    "audit_sha256": "5ea0e5bf48b668457946e085ffebf7fc28040bc8e94a4c43558ff9b1bd9f2edb",
+    "blocker_packet": "BLOCKER_PACKET_PASS13.json",
+    "blocker_packet_sha256": "3a87280c808d9d583b740799f96cd68c671e44519b7a139bbfd3cae276d7ee1f"
+  },
+  "science_blockers": {
+    "a3_8_post_run_independent_review_for_exact_frozen_t4": "missing",
+    "frame_review": "AGREES_FRAME_UNSTATED",
+    "video_reportable_now": false,
+    "science_adjudication_performed": false,
+    "measured_values_added": false
+  },
+  "representation_boundary": {
+    "audience_visible_header_required": "GALAXY SPIN",
+    "method_only": true,
+    "prohibited_topics_present_in_method_frames": false,
+    "raw_ocr_text_stored": false
+  },
+  "negative_actions": {
+    "candidate_written": false,
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "shared_or_public_assets_modified": false,
+    "runtime_action": false,
+    "browser_action": false,
+    "publication_action": false,
+    "git_action": false
+  },
+  "chronology": {
+    "extraction_created_at": "2026-08-08T08:28:29.947267+09:00",
+    "packet_completed_at": "2026-08-08T08:40:49+09:00",
+    "snapshot_created_at": "2026-08-08T08:46:34+09:00"
+  }
+}

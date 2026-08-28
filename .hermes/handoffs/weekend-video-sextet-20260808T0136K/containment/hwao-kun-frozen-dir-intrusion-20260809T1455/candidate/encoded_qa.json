@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "candidate": "mzr-anchor-method-overhaul-canary-20260809T1406K",
+  "video": "mzr-anchor-method-overhaul-canary-20260809T1406K.mp4",
+  "video_sha256": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "duration": "219.533333",
+        "nb_read_frames": "6586"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "avg_frame_rate": "0/0",
+        "duration": "219.522000",
+        "nb_read_frames": "10291"
+      }
+    ],
+    "format": {
+      "duration": "219.533333",
+      "size": "9722369",
+      "bit_rate": "354292"
+    }
+  },
+  "timeline_summary": {
+    "sentence_count": 22,
+    "word_count": 415,
+    "delivered_wpm": 115.00000529200159,
+    "master_duration_seconds": 219.52172916666666,
+    "max_abs_audio_visual_start_delta_seconds": 0.01624999999998522,
+    "section_intervals_seconds": {
+      "motivation": 28.31675,
+      "estimator": 16.718916666666658,
+      "sample": 20.462916666666658,
+      "peak": 47.45966666666667,
+      "difficulty": 18.038916666666665,
+      "controls": 16.982916666666654,
+      "discipline": 18.374916666666678,
+      "boundary": 9.50399999999999,
+      "payoff": 14.726895833333316
+    }
+  },
+  "loudness": {
+    "input_i": "-20.92",
+    "input_tp": "-2.30",
+    "input_lra": "7.30",
+    "input_thresh": "-31.30",
+    "output_i": "-20.31",
+    "output_tp": "-2.30",
+    "output_lra": "6.70",
+    "output_thresh": "-30.68",
+    "normalization_type": "dynamic",
+    "target_offset": "0.01"
+  },
+  "motion": {
+    "sample_rate_fps": 2,
+    "sampled_frames": 439,
+    "mean_absolute_frame_difference": 0.4397513952308473,
+    "max_absolute_frame_difference": 11.900347222222223,
+    "longest_near_unchanged_seconds": 0.0,
+    "threshold": 0.08,
+    "expected_duration": 219.533333
+  },
+  "introduction_transcription": {
+    "status": "PASS",
+    "provider_route": "Hermes managed OpenAI audio gateway",
+    "model": "whisper-1",
+    "start_seconds": 0.35,
+    "end_seconds": 29.266750000000002,
+    "expected": "At high redshift, metallicity relations can disagree because galaxies evolved, or because calibrations changed the measuring scale. If the relation genuinely evolved, that would be a fact about the enrichment history of young galaxies. But an apparent offset could instead be a fact about strong-line recipes, reference frames, or scale conversions rather than galaxies. How do we tell evolution from calibration?",
+    "transcript": "At high redshift, metallicity relations can disagree because galaxies evolved or because calibrations changed the measuring scale. If the relation genuinely evolved, that would be a fact about the enrichment history of young galaxies. But an apparent offset could instead be a fact about strongline recipes, reference frames or scale conversions, rather than galaxies. How do we tell evolution from calibration?",
+    "normalized_expected": "at high redshift metallicity relations can disagree because galaxies evolved or because calibrations changed the measuring scale if the relation genuinely evolved that would be a fact about the enrichment history of young galaxies but an apparent offset could instead be a fact about strong line recipes reference frames or scale conversions rather than galaxies how do we tell evolution from calibration",
+    "normalized_transcript": "at high redshift metallicity relations can disagree because galaxies evolved or because calibrations changed the measuring scale if the relation genuinely evolved that would be a fact about the enrichment history of young galaxies but an apparent offset could instead be a fact about strongline recipes reference frames or scale conversions rather than galaxies how do we tell evolution from calibration",
+    "similarity": 0.9987608426270136,
+    "audio_sha256": "07ee2ae76a88db4477aeb98b451f2c53a1e55fdee7497a96af8a06ef819e3fa1"
+  },
+  "ocr": {
+    "engine": "tesseract",
+    "frame_count": 27,
+    "forbidden_terms": [
+      "/users/",
+      ".json",
+      ".md",
+      "source_freeze",
+      "status.json",
+      "t1_",
+      "t2_",
+      "t3_",
+      "internal path"
+    ],
+    "forbidden_hits": [],
+    "status": "PASS"
+  },
+  "caption_lines": {
+    "i01": 2,
+    "i02": 1,
+    "i03": 2,
+    "i04": 1,
+    "d01": 2,
+    "d02": 2,
+    "p01": 2,
+    "p02": 2,
+    "p03": 2,
+    "p04": 2,
+    "p05": 2,
+    "f01": 2,
+    "f02": 2,
+    "e01": 2,
+    "e02": 2,
+    "c01": 2,
+    "c02": 2,
+    "g01": 2,
+    "g02": 2,
+    "b01": 2,
+    "x01": 2,
+    "x02": 2
+  },
+  "numeric_guard": {
+    "status": "PASS",
+    "problems": [],
+    "evidence": []
+  },
+  "contact_sheet": "encoded-contact-sheet.jpg",
+  "checks": {
+    "video_stream_h264": true,
+    "audio_stream_aac": true,
+    "resolution_1920x1080": true,
+    "fps_30": true,
+    "duration_within_one_frame": true,
+    "delivered_wpm_in_range": true,
+    "av_alignment_under_one_frame": true,
+    "all_sentence_states_extracted": true,
+    "encoded_intro_transcription_pass": true,
+    "motivation_first_four": true,
+    "peak_is_longest_section": true,
+    "five_distinct_peak_frames": true,
+    "no_eight_second_freeze": true,
+    "positive_motion": true,
+    "loudness_in_target_band": true,
+    "true_peak_safe": true,
+    "spec_hash_matches_build": true,
+    "timeline_hash_matches_build": true,
+    "audio_hash_matches_build": true,
+    "encoded_hash_matches_build": true,
+    "renderer_snapshot_matches_build": true,
+    "numeric_guard_pass": true,
+    "source_grounded_runtime_at_least_75_percent": true,
+    "ocr_internal_terms_clean": true,
+    "captions_at_most_two_lines": true,
+    "method_only_gate_closed": true,
+    "no_source_freeze_in_candidate": true,
+    "full_decode_pass": true
+  },
+  "passed": 28,
+  "total": 28
+}

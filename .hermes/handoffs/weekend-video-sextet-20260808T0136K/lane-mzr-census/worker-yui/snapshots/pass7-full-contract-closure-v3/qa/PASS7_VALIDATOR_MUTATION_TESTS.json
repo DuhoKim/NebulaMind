@@ -1,0 +1,152 @@
+{
+  "verdict": "PASS",
+  "cases": [
+    {
+      "name": "baseline",
+      "expected_pass": true,
+      "actual_pass": true,
+      "diagnostic_ok": true,
+      "errors": [],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_funnel",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact']",
+        "source-to-render binding failed: ['b05_funnel_exactly_source_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_axis_counts",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact']",
+        "source-to-render binding failed: ['b03_axis_cards_exactly_source_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "partial_axis_dequalification",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact']",
+        "visual semantics failed: ['all_target_concepts_are_search_axes']",
+        "source-to-render binding failed: ['b01_all_axes_exhaustively_qualified']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "standalone_divider",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b02']; global=[]",
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_build_semantics_exact']",
+        "visual semantics failed: ['scientific_presentation_motion_contract']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "semantic_hold_false_change",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b07']; global=[]",
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_build_semantics_exact']",
+        "visual semantics failed: ['scientific_presentation_motion_contract']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "reordered_final_sequence",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b10']; global=['global_times_strictly_increasing', 'maximum_semantic_gap_pass']",
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_build_semantics_exact']",
+        "visual semantics failed: ['scientific_presentation_motion_contract', 'final_reportable_pending_reveal_sequence']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_citation",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "citation identity checks failed: ['all_display_citations_registered_exactly']",
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "unmapped_narration_clause",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "scientific-presentation motion contract failed: beats=['b10']; global=['all_declared_clauses_mapped']",
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_build_semantics_exact']",
+        "visual semantics failed: ['scientific_presentation_motion_contract']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_unbound_narration",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact', 'canonical_build_semantics_exact', 'contract_counts_exact']",
+        "source-to-render binding failed: ['b02_retrieval_channels_exactly_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_precision_screen",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact']",
+        "source-to-render binding failed: ['b08_precision_limit_exactly_source_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "fabricated_precision_example",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_audience_semantics_exact']",
+        "source-to-render binding failed: ['b09_precision_examples_exactly_source_bound']"
+      ],
+      "test_pass": true
+    },
+    {
+      "name": "contradictory_static_build_direction",
+      "expected_pass": false,
+      "actual_pass": false,
+      "diagnostic_ok": true,
+      "errors": [
+        "approved storyboard contract failed: ['canonical_storyboard_exact', 'canonical_build_semantics_exact', 'build_directions_prohibit_static_hold_language']"
+      ],
+      "test_pass": true
+    }
+  ],
+  "baseline_receipt_hash_before": "d5c34c0ae3baf991a9365ab98e221fd90a31f449973435fbd0241676714354c0",
+  "baseline_receipt_hash_after": "d5c34c0ae3baf991a9365ab98e221fd90a31f449973435fbd0241676714354c0",
+  "check_mode_did_not_write": true
+}

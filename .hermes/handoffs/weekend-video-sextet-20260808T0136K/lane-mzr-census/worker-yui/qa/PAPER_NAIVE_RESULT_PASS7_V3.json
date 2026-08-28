@@ -1,0 +1,43 @@
+{
+  "review_round": 11,
+  "pass": 7,
+  "snapshot": "pass7-full-contract-closure-v3",
+  "snapshot_manifest_sha256": "0a8c390ed9ee20c389f13994bd1997d7a5d167aaf3a256a75d991a01b942748a",
+  "manifest_entries": 36,
+  "start_hashes_verified": "36/36",
+  "end_hashes_verified": "36/36",
+  "start_end_aggregate_sha256": "c77421a09d913393236cfdf71d52343173b428cf2ff858dab3818b84e506c394",
+  "file_modes": "0444",
+  "directory_modes": "0555",
+  "snapshot_changed": false,
+  "packet_reads": 1,
+  "answer_key_present": false,
+  "score": 8,
+  "maximum_score": 8,
+  "threshold": 7,
+  "mandatory_questions": [4, 8],
+  "mandatory_questions_passed": true,
+  "display_citations_visible_in_packet": "10/10 beats",
+  "verdict": "PASS",
+  "answers_summary": {
+    "q1": "Single-table VizieR metadata-search reach on abundance-search, mass-search, and redshift-search axes; not physical adjudication, eligibility, joins/crossmatches, metallicity, or MZR measurement.",
+    "q2": "Semantic UCD tags and column-name variants.",
+    "q3": "5393→5568 (+175), 6118→6206 (+88), 6667→6687 (+20), intersection 178, minus 21 (19 redshift emptied + 2 abundance emptied), leaves 157; 62/157 is a vocabulary-only side branch and all 157 proceed to T2.",
+    "q4": "62 is frozen description-term-regex vocabulary presence only; not adjudicated gas-phase evidence, eligible tables, a T2 ruling, or a metallicity/MZR measurement.",
+    "q5": "7/7 recall and 0/3 controls appearing are T1 retrieval-instrument results; T2 uses 12 decoys plus 3 anchors across seven contract-design rounds, not eligibility results.",
+    "q6": "Precision and the dominant precision-contamination mode were not certified; the packet identifies symbol/meaning collisions and target-domain mismatches as the recorded forms.",
+    "q7": "Symbol/meaning collisions: Galactic Cartesian height and stellar-grid/model metal fraction; target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity; recorded characterization, not T2 rulings.",
+    "q8": "T1 counts, 178−21=157, 62/157 side check, T1 retrieval result with precision uncertified, and the frozen T2 contract are reportable; applying T2, an eligible-table count, and any metallicity/MZR measurement remain pending."
+  },
+  "ambiguities": [
+    "Q6 names the uncovered mode generically; the following taxonomy supplies its two recorded forms."
+  ],
+  "reviewer_checker_issue": "The initial close checker had a manually transcribed one-character expected-hash typo for FRAME_HASHES.json. The start aggregate already matched; a corrected byte-only rerun passed 36/36. This was a checker transcription issue, not artifact drift.",
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "release_disposition": "HOLD",
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "adversarial_result_status": "PENDING_OR_SEPARATELY_DISPATCHED; no v3 whole-gate verdict inferred from this comprehension receipt",
+  "current_gate_note": "V3 comprehension PASS is preserved as an exact-version scoped result but cannot clear v5 or the encoded candidate."
+}

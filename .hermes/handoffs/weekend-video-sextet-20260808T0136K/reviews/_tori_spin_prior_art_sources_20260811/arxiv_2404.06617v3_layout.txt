@@ -1,0 +1,718 @@
+                                               MNRAS 000, 1–8 (2024)                              Preprint 3 March 2025             Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                               No evidence for anisotropy in galaxy spin directions
+                                                   Dhruva Patel1⋆ and Harry Desmond1 †
+                                               1 Institute of Cosmology & Gravitation, University of Portsmouth, Dennis Sciama Building, Portsmouth, PO1 3FX, UK
+
+
+
+
+                                               3 March 2025
+
+
+
+
+arXiv:2404.06617v3 [astro-ph.GA] 28 Feb 2025
+                                               ABSTRACT
+                                               Modern cosmology rests on the cosmological principle, that on large enough scales the Universe is both homogeneous
+                                               and isotropic. A corollary is that galaxies’ spin vectors should be isotropically distributed on the sky. This has been
+                                               challenged by multiple authors for over a decade, with claims to have detected a statistically significant dipole pattern
+                                               of spins. We collect all publicly available datasets with spin classifications (binary Z-wise/S-wise), and analyse them
+                                               for large-angle anisotropies (ℓ ≤ 2). We perform each inference in both a Bayesian and frequentist fashion, the former
+                                               establishing posterior probabilities on the multipole parameters and the latter calculating p-values for rejection of the
+                                               null hypothesis of isotropy (i.e. no power at ℓ > 0). All analysis indicate consistency with isotropy to within 3σ. We
+                                               similarly identify no evidence for a “hemisphere anisotropy” that neglects the angular dependence of the dipole. We
+                                               isolate the differences with contrary claims in the ad hoc or biased statistics that they employ. Our code is publicly
+                                               available ©.
+                                               Key words: galaxies: formation – galaxies: fundamental parameters – galaxies: statistics – large-scale structure of
+                                               Universe
+
+
+
+                                               1 INTRODUCTION                                                    test with few possible systematics: one uses images of low-
+                                                                                                                 inclination late-type galaxies to determine (e.g. from the di-
+                                               When averaged over sufficiently large scales, the Universe
+                                                                                                                 rection of spiral arm winding) whether they are spinning to-
+                                               is believed to be described by General Relativity and the
+                                                                                                                 wards or away from us, and then ask whether this binary-
+                                               Friedmann–Robertson–Walker metric in which all regions of
+                                                                                                                 valued field projected onto the sky has significant power in
+                                               space and all lines of sight from any observer are equivalent.
+                                                                                                                 multipoles beyond ℓ = 0 (the monopole). In galaxies, we
+                                               The homogeneity scale may already be reached at ∼70 Mpc,
+                                                                                                                 designate clockwise rotation as Z-wise and counterclockwise
+                                               in agreement with concordance Λ Cold Dark Matter (ΛCDM)
+                                                                                                                 rotation as S-wise. A Z-wise galaxy rotates clockwise, with
+                                               cosmology (Ntelis et al. 2017; Gonçalves et al. 2017, 2018;
+                                                                                                                 its angular momentum pointing away from us, while an S-
+                                               Dias et al. 2023). The observational evidence for isotropy is
+                                                                                                                 wise galaxy rotates counterclockwise, with its angular mo-
+                                               somewhat weaker, and in fact several observations suggest
+                                                                                                                 mentum vector pointing towards us. Provided the galaxies
+                                               that preferred directions do exist in the Universe. These in-
+                                                                                                                 are at cosmological distance, power should not be generated
+                                               clude anomalies in the Cosmic Microwave Background (CMB;
+                                                                                                                 at low ℓ from tidal torque-like interactions (Barnes & Efs-
+                                               most recently Jones et al. 2023, although see Gaztañaga &
+                                                                                                                 tathiou 1987). If true, this finding would therefore force a
+                                               Sravan Kumar 2024), non-negligible multipoles in the large-
+                                                                                                                 rethink of basic cosmology, and may imply that the Universe
+                                               scale velocity field traced by supernovae (Kalbouneh et al.
+                                                                                                                 possessed a net angular momentum in its initial conditions
+                                               2023; Hu et al. 2024), strong bulk flows extending to 100s
+                                                                                                                 (e.g. Schneider & Célérier 1999; Rodrigues 2008; Battisti &
+                                               of Mpc (Watkins et al. 2023) and non-convergence of the
+                                                                                                                 Marcianò 2010).
+                                               rest frames of the CMB and distant matter (Rameez et al.
+                                                                                                                    Over the past ∼15 years (although see MacGillivray &
+                                               2018; Migkas et al. 2020; Secrest et al. 2022; Dam et al.
+                                                                                                                 Dodd 1985; Iye & Sugai 1991; Sugai & Iye 1995 for earlier
+                                               2023; Horstmann et al. 2022; Sorrenti et al. 2023). For a re-
+                                                                                                                 related attempts) this test has been performed with various
+                                               view of the observational status of the cosmological principle,
+                                                                                                                 datasets, methods for determining spin direction and statis-
+                                               see Aluri et al. (2023). We must assess carefully whether the
+                                                                                                                 tics for quantifying the anisotropy. Although dominated by
+                                               fundamental tenets of ΛCDM hold before we can settle into
+                                                                                                                 a few authors, most studies claim to find a significant dipole
+                                               an era of “precision cosmology”.
+                                                                                                                 (MacGillivray & Dodd 1985; Longo 2007, 2011; Shamir 2017,
+                                                  We investigate here a subset of the claims for anisotropy,
+                                                                                                                 2020a,b,c,d, 2021a,b, 2022a,c,d; McAdam & Shamir 2023b;
+                                               namely the putative presence of a dipole in galaxies’ spin di-
+                                                                                                                 Shamir 2024). On the other hand, Iye & Sugai (1991), Land
+                                               rections when viewed from the Milky Way. This is a clean
+                                                                                                                 et al. (2008), Hayes et al. (2017), Tadaki et al. (2020) and
+                                                                                                                 Iye et al. (2021a) do not. Hence this important issue remains
+                                               ⋆ zx970439@ou.ac.uk                                               controversial.
+                                               † harry.desmond@port.ac.uk                                           We collect all publicly available catalogues for which galaxy
+
+                                               © 2024 The Authors
+2     Patel & Desmond
+spin directions have been estimated, a procedure called            Table 1. The observational datasets we use to search for
+“annotation”. We assume these are correct, and question            galaxy spin anisotropy. The third column gives the significance of
+merely the statistics with which this data is interrogated for     anisotropy reported by the creators of each dataset, where such an
+anisotropy. If we find a dipole we may wonder whether the          analysis was performed. M denotes (partial) mirroring of the data,
+annotation method suffers from a systematic that causes this,      while the final column gives the annotation algorithm. In order,
+but if we do not find a dipole it is highly unlikely that an ex-   the references are Longo (2011); Iye et al. (2021b); Shamir (2022b);
+isting dipole is hidden by such a systematic. Unlike almost        McAdam & Shamir (2023a,b); Shamir (2021a, 2017). Note, GAN M
+                                                                   and GAN NM are cited from the same paper (McAdam & Shamir
+all previous authors we do not use χ2 to avoid assumptions of
+                                                                   2023b).
+Gaussianity. Instead we define a likelihood for each galaxy’s
+spin as a function of low-ℓ multipole parameters (monopole,
+                                                                     Name        # gals       σ      M       Annotation method
+dipole, quadrupole) and the angle between the galaxy di-
+rection and multipole axes. We derive posterior probability           Longo        15158    3.16    Yes       Human scanners
+distributions on these parameters in a Bayesian analysis and           Iye         72888    2.10    No          Ganalyzer
+use mock data generated under the assumption of isotropy            SDSS DR7        6103     —      No          Ganalyzer
+to test that null hypothesis in a frequentist fashion.                GAN M       139852    3.97    Yes    SpArcFiRe, Ganalyzer
+   In Sec. 2 we describe the annotated galaxy catalogues that        GAN NM       138940    2.33    No     SpArcFiRe, Ganalyzer
+                                                                     Shamir        77840    2.56    No          Ganalyzer
+we employ. In Sec. 3 we detail our methods, separately for
+                                                                     PS DR1        28731     —      No          Ganalyzer
+the Bayesian and frequentist approach. Sec. 4 presents our
+results and Sec. 5 concludes.
+                                                                   “scanners”, to manually annotate randomly assigned redshift
+                                                                   slices of the data. The author states that any proclivity for
+2 OBSERVATIONAL DATA                                               the scanners to prefer a particular spin direction was miti-
+                                                                   gated by mirroring half of the objects at random to disfavour
+We collate all publicly available image data that has been         a particular handedness. The remaining datasets were an-
+used in the literature to test the isotropy of galaxy spins.       notated either by SpArcFiRe (“Scalable Automated Detec-
+Beyond the raw data, this test requires an algorithm to cal-       tion of Spiral Galaxy Arm Segments; Davis & Hayes 2014),
+culate the spin direction of each galaxy (annotation). Any         an algorithm which extracts the structural features of spiral
+difference in results for fixed data could arise either from the   galaxies, or Ganalyzer (“Galaxy Analyzer”), a modelling
+annotation method or the statistics with which the annotated       tool for automated galaxy classification (Shamir 2011). We
+data is tested for anisotropy. Here we accept at face value        investigate the consistency of different annotation methods
+the annotation of the utilised datasets by other authors, and      by cross-matching galaxies with identical IDs between the
+ask merely whether the statistics of the annotated datasets        SDSS-based datasets, finding agreement in spin direction for
+provide compelling evidence for anisotropy. While the anno-        91.81% of galaxies matched between Longo and GAN M. As the
+tations themselves may of course be biased (we refer to the        latter dataset is fully mirrored, this implies that the former
+relevant papers for arguments that they are unlikely to be), if    is also. This is corroborated by an 8.27% agreement between
+they imply isotropy it seems highly unlikely that such biases      Longo and GAN NM, and a 93.36% agreement between GAN NM
+would hide an underlying anisotropy, which one would expect        and SDSS DR7. The level of mirroring is however not impor-
+them if anything to increase.                                      tant for our analysis, which aims simply to investigate the
+   The datasets we use are summarised in Table 1. Most of the      statistical significance for anisotropy from a given set of spin
+datasets (Longo, Iye, SDSS DR7, GAN M, GAN NM and Shamir)          values.
+come from data releases 6-8 of the Sloan Digital Sky Survey           We visualise the datasets in Fig. 1 by plotting the number
+(SDSS; York et al. 2000; Aihara et al. 2011). PS DR1 derives       of galaxies per pixel under a healpix scheme with nside=
+instead from the Panoramic Survey Telescope and Rapid Re-          16. We see a significant overlap in area between most of the
+sponse System (Pan-STARRS1) data release 1 (Chambers               datasets in the SDSS region. It is clearly imperative for the
+et al. 2016). This was obtained by cross-matching galax-           statistical method used to assess anisotropy to be robust to
+ies with identical IDs between two Pan-STARRS datasets,            a highly incomplete sky coverage.
+Shamir (2017) and Goddard & Shamir (2020). Thus, this
+dataset is to our knowledge unique, and no isotropy analysis
+has previously been conducted on it (although it was anno-         3 METHOD
+tated in Shamir 2017). The SDSS datasets differ in sky cov-
+erage and galaxy density as seen in Figure 1. GAN M is almost      To ensure that our results are robust to choice of
+identical to GAN NM except the galaxy images were mirrored         methodology—and suit the taste of the reader—we perform
+before being fed into the annotation algorithm, in order to        both a Bayesian and frequentist analysis. Each of these relies
+quantify the level of asymmetry in this algorithm. The quoted      on a function that describes the likelihood of the data given
+sigma values in Table 1 were taken from the cited papers, ex-      the model parameters. These parameters, which we denote
+cept in the case of (Longo 2011) where it was calculated from      ⃗ are (some subset of) monopole magnitude M , dipole mag-
+                                                                   θ,
+the p-value quoted in the abstract of that paper assuming a        nitude D and unit vector direction on the sky d⃗ = {dα , dδ },
+Gaussian distribution and the sigma value given for Iye was        and quadrupole magnitude Q with corresponding unit sky
+taken from (Shamir 2022b) as it is the more significant result     vectors q⃗1 = {q1,α , q1,δ } and q⃗2 = {q2,α , q2,δ }. These are mul-
+in the analysis of this dataset.                                   tipoles of the on-sky probability field for spins to be Z-wise as
+   Various annotation methods were used. Longo (2011) em-          seen from the Milky Way: a monopole describes a direction-
+ployed a group of undergraduate students, referred to as           independent preference for a particular spin direction (most
+
+MNRAS 000, 1–8 (2024)
+                                                                                               Galaxies spin isotropically                3
+
+
+
+
+Figure 1. The number of galaxies per pixel for each of the datasets we investigate. These are Mollweide projections in equatorial
+coordinates using healpix with nside = 16, rotated to centre on (RA, Dec)= ( π2 , 0) and RA increases towards the left.
+
+
+
+likely due to a bias in the annotation method), a dipole de-           Table 2. Table of free parameters, descriptions and their prior
+scribes a preference for Z-wise spins in one direction and S-                            +π/2
+                                                                       ranges. [cos(dδ )]−π/2 denotes a prior proportional to cos(dδ )
+wise in the opposite, and a quadrupole describes a pattern             within the range −π/2 ≤ dδ ≤ π/2. Below the horizontal line
+with two hotspots and corresponding coldspots. We work in              we show the parameters (besides M ) of the alternative hemisphere
+equatorial coordinates, where α denotes right ascension (RA)           anisotropy analysis (see final paragraph of Sec. 3.1), which replace
+and δ declination (Dec). We adopt the range of [0, 2π) for RA          D, dα and dδ .
+and (− π2 , π2 ) for Dec throughout. We denote a galaxy’s spin
+value as s, which we assign the value 0 if the spin is S-wise           Parameter                  Description                    Prior
+as seen from the Milky Way, and 1 if it is Z-wise. Isotropy
+therefore corresponds to D = Q = 0, and an equal number                 M                     Monopole magnitude               U (0.3, 0.7)
+of Z-wise and S-wise spins to M = 0.5.
+   For galaxy i, the likelihood of Z-wise spin is                       D                       Dipole magnitude                U (0, 0.3)
+                                                                      Q                    Quadrupole magnitude               U (0, 0.3)
+      ⃗ = M + D d⃗ · ⃗ni + Q q⃗1 · ⃗ni q⃗2 · ⃗ni − 1 q⃗1 · q⃗2 , (1)
+L(si |θ)
+                                                   3                    dα                 Unit dipole RA component              U (0, 2π)
+                                                                                                                                       +π/2
+where ⃗n is the unit vector pointing in the direction of the            dδ                 Unit dipole Dec component          [cos(dδ )]−π/2
+galaxy. The likelihood of S-wise spin is 1 − L, and thus it             q1,α              Unit quadrupole 1st axis RA            U (0, 2π)
+is properly normalised by construction provided 0 ≤ L ≤ 1.                                                                              +π/2
+                                                                        q1,δ              Unit quadrupole 1st axis Dec       [cos(q1,δ) ]−π/2
+We impose this by requiring 0 ≤ |M | + |D| + |Q| ≤ 1, but
+find that this never comes into play because the best-fit M             q2,α              Unit quadrupole 2nd axis RA            U (0, 2π)
+values are ∼0.5 while the best-fit D and Q values are small.            q2,δ             Unit quadrupole 2nd axis Dec
+                                                                                                                                        +π/2
+                                                                                                                             [cos(q2,δ) ]−π/2
+This matches the model of Land et al. (2008). We assume
+that all galaxies in a dataset are independent, so that the             A                    Asymmetry magnitude                U (0, 0.3)
+likelihood of the dataset is the product of the likelihood of
+                                                                        aα              Unit asymmetry RA component              U (0, 2π)
+its constituent galaxies. To investigate how the results are
+                                                                                                                                       +π/2
+affected by the inclusion of the ℓ = 0, ℓ = 1 and ℓ = 2 terms           aδ              Unit asymmetry Dec component          [cos(aδ )]−π/2
+we perform separate analyses modelling i) monopole only, ii)
+dipole only at M = 0.5, iii) monopole and dipole, and iv)
+monopole, dipole and quadrupole.
+                                                                       length for each parameter every 100 iterations, terminating
+                                                                       when the chain is at least 100 autocorrelation lengths in each
+3.1 Bayesian analysis
+                                                                       parameter and the change in autocorrelation length between
+The goal of a Bayesian analysis is to establish posterior prob-        iterations is less than 1 per cent.
+abilities on the model parameters. We adopt uniform priors                This produces corner plots describing the posteriors on
+on M , D ≥ 0 and Q ≥ 0, and a uniform prior on area element            the parameters and their degeneracies. We summarise each
+         ⃗ q⃗1 and q⃗2 vectors across the full sky. This corre-
+for the d,                                                             marginal posterior using its mode θ̄ and 68 per cent confi-
+sponds to a prior uniform in the vector’s RA components                dence interval, unless θ̄−2std(θ) < 0 in which case we instead
+and in the sine of their Dec components. See Table 2 for a             quote only the 68 per cent upper limit. The mode is calcu-
+description of the free parameters used in the analysis, and           lated by emcee as the location of the bin containing the most
+their priors for the Bayesian analysis. We initially choose the        samples. The use of a 68% confidence interval corresponds to
+prior ranges in Table 2, with the intention of expanding the           1σ for a Gaussian distribution. For any parameter required
+ranges if necessary, but find that the posteriors are already          to be ≥ 0 by the prior, if it is consistent with 0 (estimated
+contained within these bounds in all cases. To expedite sam-           by θ̄ − 2 std(θ) < 0) we quote an upper limit, while if it is not
+pling and eliminate multimodality, we break the symmetry               we quote the mode of the distribution and 68% confidence
+between the two quadrupole vectors by requiring q2,α ≥ q1,α .          interval. This approach ensures that the reported values ap-
+   We perform a Markov Chain Monte Carlo (MCMC) analy-                 propriately reflect the characteristics of the posterior distri-
+sis with the affine-invariant sampler emcee (Foreman-Mackey            bution and the constraints imposed by the prior. We assess
+et al. 2013), using 22 walkers with initial positions randomly         the goodness-of-fit of each model using the Bayesian infor-
+sampled from the prior. We calculate the autocorrelation               mation criterion (BIC) as an approximation to the Bayesian
+
+                                                                                                                 MNRAS 000, 1–8 (2024)
+4     Patel & Desmond
+evidence. This is given by Schwarz (1978):                              Table 3. Table of parameter constraints when inferring M alone.
+                                                                        Limits are at 1σ.
+BIC ≡ k ln(N ) − 2 ln(L̂)                                        (2)
+where k is the number of free parameters, N the number of                                       Dataset        M
+data points and L̂ the maximum-likelihood value. The BIC
+shows whether the addition of parameters is warranted by the                                    Longo      0.512+0.004
+                                                                                                                −0.004
+data: an extra parameter must increase the maximum likeli-
+                                                                                                Iye        0.503+0.002
+                                                                                                                −0.002
+hood by at least ln(N )/2. As the absolute value is unimpor-
+tant, we show only differences (∆BIC) relative to the baseline                                  SDSS DR7   0.501+0.006
+                                                                                                                −0.006
+model inferring M only.                                                                         GAN M      0.505+0.001
+                                                                                                                −0.001
+  Finally, we run a separate analysis with a model that in-
+                                                                                                GAN NM     0.497+0.001
+vestigates the preference for observing a particular spin di-                                                   −0.001
+
+rection in a given hemisphere, without any variation in pre-                                    Shamir     0.503+0.002
+                                                                                                                −0.002
+dicted spin within the hemisphere. We dub this a “hemisphere                                    PS DR1     0.510+0.003
+                                                                                                                −0.003
+anisotropy” to distinguish it from a dipole. In this model, a
+galaxy with unit direction ⃗n on the sky has a likelihood of
+Z-wise spin given by
+          (
+            M + A if ⃗n · ⃗a > 0
+L(s|⃗θ) =                                                  (3)          spin directions to each galaxy to create a baseline distribution
+            M − A otherwise                                             of dipole amplitude for an isotropic distribution. By compar-
+where ⃗a is the unit hemisphere axis, A is the strength of the          ison, the observed dipole amplitude was calculated by taking
+anisotropy and M is the monopole as before. The likelihood              the vector sum of spin directions weighted by their positions
+of S-wise spin is 1−L, ensuring proper normalisation provided           on the sky and a 3D random walk model was used to repre-
+0 ≤ L ≤ 1. We impose this by requiring 0 ≤ |M | + |A| ≤ 1.              sent the isotropic distribution of galaxy spins, with each spin
+We adopt uniform priors on M and A ≥ 0, and a uniform                   direction considered as a step in the walk.
+prior on area element for vector ⃗a (see Table 2). We perform
+a similar Bayesian analysis for this model, running MCMC
+and calculating ∆BIC relative to the same baseline model
+inferring M only (the identical isotropic model to the dipole
+analysis). This is designed to mimic the type of anisotropy             3.3 Validation
+studied in Shamir (2024).                                               Before applying our method to the real data we validate it
+                                                                        on mock data to ensure that it returns unbiased parameter
+3.2 Frequentist analysis                                                values. Each mock dataset has the same number of galaxies
+                                                                        as Iye (72888), but we generate mock spin values and op-
+The goal of a frequentist analysis is to calculate a p-value for        tionally randomise the positions of the galaxies on the sky.
+rejection of a null hypothesis, in this case that the Universe          The mock spin values are generated stochastically according
+is isotropic. First we calculate the maximum-likelihood val-            to the probabilities corresponding to some true, generating ⃗
+                                                                                                                                    θ.
+ues of θ⃗ for each dataset using the Nelder–Mead algorithm              We calculate a bias value for each parameter and each dataset
+(Nelder & Mead 1965; Gao & Han 2012). Then, for each sam-               as
+ple of Table 1, we create 50,000 mock datasets1 with galaxies
+in the same positions as in the real data but the spins ran-                     (⟨θ⟩ − θ̃)
+domised. As we are interested in testing isotropy and not a             bias ≡              ,                                          (4)
+                                                                                  std(θ)
+direction-independent preference for Z-wise or S-wise spins
+(which is what a bias in annotation method would naturally              following the Bayesian setup, where angular brackets denote
+produce), the mock data is generated using the maximum-                 the mean and tilde the true, generating value. This may be
+likelihood M value, Mc, from the monopole plus dipole model,            interpreted as a discrepancy in σ between the input param-
+but D = Q = 0. We refit each mock data set to calculate                 eter value and that recovered by the inference. We find that
+the maximum-likelihood ⃗   θ, and then calculate the p-value            the distribution of bias values in all cases follows closely the
+of the null hypothesis as the fraction of mock datasets with                                                                      ⃗
+                                                                        expected standard normal distribution regardless of θ̃ or the
+more extreme {M, D} values than the real data. This is done             positions of the galaxies on the sky. This is illustrated in Fig. 2
+by binning the mock data in the {M, D} plane and calcu-                 for the case M̃ = 0.6, D̃ = 0.2, d˜α = π, d˜δ = −π/4 without
+lating contour levels minimally enclosing fixed fractions of            randomising galaxy positions, over 300 mock datasets.
+the mock datasets; the contour passing through the real-data               Note that both of our methods account for the “look-
+point determines the p-value. In this case we do not consider           elsewhere effect” that comes into play when testing multiple
+a quadrupole. Iye et al. (2021a) utilised mock data by per-             hypotheses (in this case many possible dipole directions). In
+forming 50,000 Monte Carlo simulations, randomly assigning              the frequentist approach this is accounted for by calculat-
+                                                                        ing significance with respect to mock data that has the same
+1  We find the p-values to converge quite slowly with number of         properties as the real data and has been processed identically,
+mock datasets, hence the large number required for near-stability       while in the Bayesian approach it is accounted for by the pri-
+at two significant figures. The conclusion that the anisotropy is in-   ors, which appropriately weight the probability that an axis
+significant is readily apparent using fewer mock datasets, however.     should point in any particular direction.
+
+MNRAS 000, 1–8 (2024)
+                                                                                                                        Galaxies spin isotropically                     5
+
+                                                                                             Table 6. Results inferring M , D and Q simultaneously.
+                     0.40                                                   M
+                                                                            D
+                     0.35                                                   d                 Dataset             M                 D                 Q          ∆BIC
+                                                                            d
+                     0.30
+
+
+
+Relative frequency
+                                                                            Std. norm.        Longo          0.499+0.009
+                                                                                                                  −0.012        < 0.023          0.070+0.025
+                                                                                                                                                      −0.026     76.4
+                     0.25                                                                     Iye            0.504+0.002
+                                                                                                                  −0.002        < 0.005           < 0.009        87.3
+
+                     0.20                                                                     SDSS DR7       0.500+0.038
+                                                                                                                  −0.039        < 0.066           < 0.090        67.2
+                                                                                              GAN M          0.505+0.002        < 0.006           < 0.010        94.9
+                     0.15                                                                                         −0.003
+
+                                                                                              GAN NM         0.497+0.002        < 0.004           < 0.011        93.7
+                     0.10
+                                                                                                                  −0.002
+
+                                                                                              Shamir         0.503+0.002
+                                                                                                                  −0.002        < 0.006           < 0.011        87.3
+                     0.05                                                                     PS DR1         0.510+0.004       0.017+0.007        < 0.021        77.9
+                                                                                                                  −0.004            −0.007
+                     0.00
+                            4    3        2    1        0    1          2      3         4
+                                                    Bias /
+                                                                                             Table 7. Hemispherical anisotropy results, inferring M and A si-
+                                                                                             multaneously.
+ Figure 2. Distribution of bias values (Eq. 4) from MCMC analyses
+ of 300 mock datasets generated by M̃ = 0.6, D̃ = 0.2, d˜α = π,                                        Dataset             M                 A            ∆BIC
+ d˜δ = −π/4. The values are expected to follow a standard normal
+ distribution, shown in dashed black.                                                                  Longo          0.494+0.006       0.013+0.006       28.9
+                                                                                                                           −0.005            −0.006
+
+                                                                                                       Iye            0.503+0.002
+                                                                                                                           −0.002        < 0.004          33.6
+ Table 4. Table of parameter constraints when inferring D alone                                        SDSS DR7       0.502+0.124        < 0.125          24.6
+                                                                                                                           −0.128
+ (with M fixed to 0.5). ∆BIC is relative to the monopole-only
+ model; the positive values indicate that the inclusion of dipole                                      GAN M          0.505+0.002
+                                                                                                                           −0.002        < 0.003          35.5
+ parameters is not warranted by the data.                                                              GAN NM         0.497+0.002        < 0.002          34.2
+                                                                                                                           −0.002
+
+                                                                                                       Shamir         0.503+0.002
+                                                                                                                           −0.002        < 0.004          33.2
+                                Dataset             D        ∆BIC
+                                                                                                       PS DR1         0.510+0.003
+                                                                                                                           −0.003       0.009+0.003
+                                                                                                                                             −0.004       30.7
+                                Longo         0.020+0.006
+                                                   −0.006    14.5
+                                Iye            < 0.006       21.7
+                                                                                             4 RESULTS
+                                SDSS DR7       < 0.019       17.5
+                                GAN M          < 0.008       39.6                            4.1 Bayesian analysis
+
+                                GAN NM         < 0.005       24.4                            Our results are presented in Tables 3–7. We see that M is con-
+                                                                                             sistent with 0.5 within ∼3σ regardless of whether or not one
+                                Shamir         < 0.007       26.2
+                                                                                             infers D or Q, indicating no significant direction-independent
+                                PS DR1        0.020+0.006
+                                                   −0.006    31.7                            bias in the assignment of Z-wise versus S-wise spins. (To more
+                                                                                             decimal places, the GAN M result is 0.50532 ± 0.00135, a 3.9σ
+                                                                                             difference from 0.5.) Such biases in annotation methods are
+ Table 5. Results inferring M and D simultaneously.                                          well documented, for example for visual assessment by citi-
+                                                                                             zen scientists in Land et al. (2008); Slosar et al. (2009); Hayes
+               Dataset                M              D       ∆BIC           p-value          et al. (2017). This may be at play to a minor degree in the
+                                                                                             Longo, GAN M and PS DR1 datasets.
+               Longo                 +0.027
+                                0.500−0.027        < 0.016       28.9         0.44              When inferring D alone, we see a detection of a dipole at
+                                     +0.002
+                                                                                             just over 3σ in the Longo and PS DR1 datasets, with direc-
+               Iye              0.503−0.002        < 0.005       33.6         0.92           tion dα = 3.62+0.48              +0.46                 +0.30
+                                                                                                             −0.52 , dδ = 0.51−0.46 and dα = 4.57−0.38 , dδ =
+                                     +0.025                                                       +0.29
+               SDSS DR7         0.501−0.028        < 0.046       24.7         0.32           0.74−0.31 respectively. The remainder have D consistent with
+               GAN M                 +0.002
+                                0.505−0.002        < 0.006       35.0         0.29
+                                                                                             0 at 2σ, such that we present only upper limits (and hence
+                                                                                             there are no meaningful constraints on the dipole direction).
+                                     +0.002
+               GAN NM           0.497−0.002        < 0.004       35.5         0.91           These constraints are fairly tight, indicating that a sizeable
+                                     +0.002
+               Shamir           0.503−0.002        < 0.006       30.6         0.84           dipole can be ruled out at high confidence. The positive ∆BIC
+                                     +0.003                                                  for all datasets relative to the monopole-only case indicates
+               PS DR1           0.509−0.003    0.016+0.006
+                                                    −0.007       20.2         0.054
+                                                                                             a worse-fitting model. The significance of ∆BIC can be in-
+                                                                                             terpreted on the Jeffreys scale (Jeffreys 1939), which rates
+                                                                                             the evidence for the better-fitting model as “decisive” if the
+                                                                                             Bayes factor (ratio of evidences) exceeds 100. Since evidence
+                                                                                             ≈ exp(−BIC/2), this corresponds to ∆BIC>9.2. Thus in all
+                                                                                             cases the evidence in favour of the monopole-only model is
+                                                                                             decisive.
+
+                                                                                                                                             MNRAS 000, 1–8 (2024)
+6                     Patel & Desmond
+
+
+
+
+                                                                                      0 0 0 0 0
+                                                                        1.5 3.0 4.5 6.0 .002.004.006.008.010
+                                                                      D
+
+
+
+
+                    0 0 0 0 0
+                                                                      d
+
+
+
+
+    1.5 3.0 4.5 6.0 .003 .006 .009 .012 .015
+ D
+
+                                                                                      0 0 0 0 0
+                                                                      d
+
+
+                                                                        1.5 3.0 4.5 6.0 .004.008.012.016.020 0.8 0.0 0.8
+                                                                      Q
+
+ d                                                                    q1,
+
+
+                                                                                    1.5 3.0 4.5 6.0 0.8 0.0 0.8
+                                                                      q1,
+
+              0.8 0.0 0.8
+ d                                                                    q2,
+
+                                                                      q2,           0.8 0.0 0.8
+                                               0.5 0
+                                               0.5 0
+                                                   0
+                                               0.5 5
+                                                   1
+                                               0.5 0
+                                                   1
+                                               0.0 5
+                                               0.003
+                                               0.006       0.8
+                                                           0.0
+                                                           0.8
+                                               0.009
+                                               0.012
+                                                   15
+                                                  1.5
+                                                  3.0                                                              0.5
+                                                                                                                   0.500
+                                                                                                                   0.504
+                                                                                                                   0.508
+                                                                                                                   0.012
+                                                                                                                   0.002
+                                                                                                                   0.004                   0.0
+                                                                                                                                           0.004
+                                                                                                                                           0.008
+                                                                                                                                           0.012
+                                                                                                                                           0.016
+                                                                                                                                               2
+                                                                                                                                              1.05          1.5
+                                                                                                                                                            3.0
+                                                                                                                                                            4.5
+                                                                                                                                                            6.0
+                                                                                                                                                            0
+                                                                                                                                                            0..08
+                                               M   D
+                                                                                                                   0.006
+                                                       d    d
+                                                  4.5
+                                                  6.0                                                              0.008
+                                                                                                                       1
+                                                                                                                      1.05
+                                                                                                                      3.0                     3.0
+                                                                                                                                              4.5
+                                                                                                                                              6.0           0.8
+                                                                                                                                                q1,   q1,   q2,   q2,
+                                                                                                                      4.5
+                                                                                                                           M   D   d   d    Q
+                                                                                                                      6.0
+                                                                                                                      0
+                                                                                                                      0..08
+                                                                                                                      0.8                     0
+                                                                                                                                              0..08
+                                                                                                                                              0.8
+
+
+
+Figure 3. Left panel: The monopole plus dipole inference on GAN M. Right panel: Also inferring the quadrupole. The blue vertical lines
+indicate M = 0.5.
+
+
+   From Table 5 we see that it is no coincidence that Longo                        centred on π for RA and 0 for Dec. However, this is also the
+and PS DR1 have separate monopole and dipole detections:                           case for the Longo dataset, where there is a > 2σ detection of
+when inferring both M and D, both Longo anomalies disap-                           Q. This indicates that the two quadrupole axes are roughly
+pear, while those of PS DR1 are reduced in significance, the                       anti-aligned, creating angular variation like a dipole with a
+dipole to almost 2σ. This illustrates the argument of Land                         cosine-squared as opposed to cosine angular variation.
+et al. (2008) that degeneracies between M and D require                               To investigate any potential redshift-dependence of the re-
+them to be inferred jointly. The small remaining PS DR1                            sults, we repeat the inference of M and D for Longo (the only
+dipole points towards dα = 4.03+0.28                +0.42
+                                   −0.34 , dδ = 0.28−0.44 . Even                   one that provides redshift information) separately for galax-
+for PS DR1 the ∆BIC of the monopole+dipole model is > 0,                           ies in the ranges 0.000064 < z < 0.04183, 0.04183 < z <
+indicating that the inclusion of a dipole is not warranted by                      0.063036 and 0.063045 < z < 0.084998. This puts an equal
+the Bayesian evidence. The amount by which any additional                          number of galaxies into each tomographic bin. In all cases we
+parameter must increase the likelihood to be warranted is                          find constraints consistent with the full Longo dataset (and
+fairly high due to the large sizes of the datasets.                                the others) that M ≈ 0.5 and D ≈ 0, and that the posteriors
+   Moving onto Table 6, we see that only Longo has a non-                          are very similar to the results with the spins randomised.
+zero quadrupole at 2σ, with direction q1,α = 1.63+0.78                                Finally, in Table 7 we see that in all datasets except two A
+                                                     −0.78 , q1,δ =
+0.15+0.46               +0.75               +0.48                                  is consistent with 0 within 2σ, and hence present only upper
+     −0.48 , q2,α = 4.72−0.81 , q2,δ = −0.14−0.47 . This is how-
+ever not significant at the 3σ level. For the other samples                        limits. The exceptions (at very slightly over 2σ) are PS DR1,
+the Q bounds are tight, leading to no significant inflation of                     which has a minor preference for hemispherical anisotropy in
+the D bounds. The ∆BIC values are even larger than for                             the direction aα = 4.99+0.19                  +0.69
+                                                                                                             −0.96 , aδ = −0.038−0.33 , and Longo,
+
+the monopole+dipole model due to the inclusion of a further                        which has a preference in the direction aα = 0.92+0.76
+                                                                                                                                        −0.16 , aδ =
+
+five unwarranted parameters. We show the full corner plots                         −0.050+0.29
+                                                                                           −0.51 . However, the ∆BIC values of the anisotropic
+
+for GAN M, which had the highest claimed dipole significance                       relative to isotropic models are similar to those in Table 5,
+(Table 1), for the M +D and M +D+Q analyses in Fig. 3.                             indicating that this form of asymmetry is not warranted by
+                                                                                   the Bayesian evidence either.
+   The preference for q1,α near 0 and q2,α near 2π is a vol-
+ume effect due to the flat priors, which occurs because Q ≈ 0
+so the quadrupole angles are not constrained by the likeli-
+                                                                                   4.2 Frequentist analysis
+hood. Having q1,α near 0 allows q2,α to take any value in
+[0,2π), while conversely have q2,α near 2π allows q1,α to take                     In the final column of Table 5 we show the p-value of the
+any value in [0,2π), due to the requirement that they are or-                      null hypothesis of isotropy, calculated using mock data gen-
+dered. This also explains why the q1,α and q2,α posteriors are                     erated according to M = M    c, D = Q = 0 (see Sec. 3.2).
+not symmetric as RA wraps around 2π back to 0: when this                           PS DR1 nears the 2σ level of p = 0.05, although the BIC still
+happens, q1,α and q2,α interchange. The priors also account                        clearly indicates that the monopole-only model is preferred.
+for the fact that the sums of the average q1,α , q2,α values are                   The frequentist analysis therefore corroborates the Bayesian
+typically near 2π, and q1,δ , q2,δ near 0. When Q is constrained                   one that there is no significant evidence for anisotropy. The
+to be near 0, the axis directions follow their priors which are                    method is illustrated for GAN M in Fig. 4, in which the distri-
+
+MNRAS 000, 1–8 (2024)
+                                                                                                                 Galaxies spin isotropically             7
+                                                                                       4.3 Comparison to the literature
+                                                                 p = 0.290    0.0224
+    0.010
+                                                                                       Our clear findings in support of galaxy spin isotropy raise the
+                                                                              0.0192   question of why others have reached diametrically opposite
+    0.008                                                95.4%                         conclusions. To investigate this, we attempt to implement the
+                                                                              0.0160
+                                                                                       methods of some such authors on their respective datasets.
+                                     68.3
+    0.006                                   %
+                                                                              0.0128      The only available mention of a dipole statistic in studies
+                                                71.0%
+D                                                                                      claiming a dipole is eq. 1 of McAdam & Shamir (2023b),
+                                                                              0.0096   which in our notation reads
+    0.004                                                                                                                           2
+                                                                              0.0064           X     si |d⃗α,δ · ⃗ni | − d⃗α,δ · ⃗ni
+    0.002                                                                              χ2α,δ =                                          .          (5)
+                                                                              0.0032            i               d⃗α,δ · ⃗ni
+
+    0.000                                                                     0.0000   d⃗α,δ is the unit dipole axis in the α, δ direction. This χ2 is
+            0.495   0.500      0.505                    0.510         0.515
+                                 M                                                     evaluated on a grid of α, δ for the real data (yielding χ2α,δ,data )
+                                                                                       and also of 1000 mock data sets in which the spin directions
+                                                                                       are randomised (yielding χ2α,δ,mock,i for the ith mock data
+Figure 4. The heatmap shows the distribution of maximum-                               set). The significance of the dipole in the direction of α, δ is
+likelihood M and D values for 50,000 mock datasets with the                            then calculated as
+same galaxy positions as in GAN M, but with spins selected from
+                                                                                                |χ2α,δ,data − ⟨χ2α,δ,mock,i ⟩|
+the model with M = 0.505, D = Q = 0. The maximum-likelihood                            σα,δ =                                                          (6)
+value in the real data is shown by the red plus symbol. 26.6 per                                      std(χ2α,δ,mock,i )
+cent of the isotropic mock datasets are more extreme than this.
+                                                                                       where angled brackets denote a mean over the mock data
+                                                                                       sets. Eq. 5 appears to be Pearson’s χ2 statistic, in which one
+                                                                                       replaces the squared uncertainty in the denominator of the
+                                                                                       regular Gaussian χ2 by the expected value, in this case (some-
+    0.14                                                         p = 0.324    0.0315   thing proportional to) d⃗ · ⃗ni . However, the observed value is
+    0.12                                                                               si , not si |d⃗ · ⃗ni | which mixes the observation with the ex-
+                                                                              0.0270
+                                                                                       pectation. This effectively projects si onto the dipole axis,
+    0.10                                                                      0.0225   which amounts to modelling the expected value as 1 every-
+                                                                                       where in the hemisphere aligned with the dipole direction,
+D   0.08                                                                      0.0180   neglecting the fact that the likelihood of s = 1 is lower the
+                                                                                       further one is from the dipole axis, even if the expected value
+    0.06                                                                      0.0135   is > 0.5. Larger discrepancies from the dipole axis may con-
+    0.04                                                                      0.0090   tribute more to the overall chi-squared statistic. Even besides
+                                                                                       this, we do not consider Eq. 5 a useful statistic because it
+    0.02                                                                      0.0045   does not capture the sampling distribution of the observable
+                                                                                       as do both our Bayesian and frequentist methods. Further-
+    0.00                                                                      0.0000   more, our attempt at using this equation on the McAdam
+       0.30 0.35 0.40 0.45 0.50 0.55 0.60 0.65
+                                                                                       & Shamir (2023b) dataset did not yield the results quoted in
+                                M
+                                                                                       that paper, so we were unable to reproduce their analysis. An
+                                                                                       attempt to reproduce the results of Longo (2011) using Eq. 5
+Figure 5. As Fig. 4, but for SDSS DR7. In this case the mock                           (a shot in the dark, since Longo 2011 do not define their χ2
+data are generated according to the maximum-likelihood value of                        statistic) similarly failed.
+M , 0.486, and D = Q = 0. The contour lines are suppressed for
+clarity.
+                                                                                       5 CONCLUSION
+                                                                                       We have analysed seven datasets of galaxy sky positions and
+bution of recovered M and D values on the mock datasets                                spin directions to assess the evidence for anisotropy in galax-
+are compared to those of the real data.                                                ies’ angular momenta. Four of these datasets have literature
+   It is worth emphasising that the patchy sky coverage of                             claims of a >2σ dipole in the spin directions, with two at >3σ.
+some of our datasets lead to significant parameter degenera-                           However, we find clear consistency with statistical isotropy
+cies, which both of our analysis methods naturally account                             in all datasets using either a Bayesian or frequentist method,
+for. In particular, SDSS DR7 consists of a relatively small num-                       both of which account for the look-elsewhere effect and ac-
+ber of galaxies with poor sky coverage (see Fig. 1), and hence                         count fully for parameter degeneracies. Due to the incomplete
+cannot distinguish between a modified monopole and a dipole                            sky coverage spherical harmonics are not orthogonal, leading
+aligned or antialigned with the observed region. To illustrate                         us to explore the possibility of a quadrupole as well as a dipole
+the effect of this, we show in Fig. 5 the counterpart of Fig. 4                        and monopole, but this too is small and does not affect our
+for this dataset. Our analysis would correctly recover no sig-                         ℓ = 0 or ℓ = 1 results. The evidence for anisotropy does not
+nificant anisotropy even if the best-fit M and D values in real                        increase if the cosine dependence of the dipole is removed. We
+data were far from 0.5 and 0 in the degeneracy direction.                              trace the difference with literature results claiming a dipole
+
+                                                                                                                                 MNRAS 000, 1–8 (2024)
+ 8     Patel & Desmond
+ to the unmotivated statistics that they employ, and do not          Gonçalves R. S., Carvalho G. C., Bengaly Jr C. A. P., Carvalho
+ find their results to be reproducible.                                  J. C., Bernui A., Alcaniz J. S., Maartens R., 2017, MNRAS,
+    In conclusion, galaxy spins exhibit large-scale isotropy in          475, L20
+ adherence to the cosmological principle. Our work highlights        Gonçalves R. S., Carvalho G. C., Bengaly C. A. P., Carvalho J. C.,
+                                                                         Alcaniz J. S., 2018, MNRAS, 481, 5270
+ the vital importance of careful statistics in analysing funda-
+                                                                     Hayes W. B., Davis D., Silva P., 2017, MNRAS, 466, 3928
+ mental properties of the Universe.
+                                                                     Horstmann N., Pietschke Y., Schwarz D. J., 2022, A&A, 668, A34
+                                                                     Hu J. P., Wang Y. Y., Hu J., Wang F. Y., 2024, A&A, 681, A88
+                                                                     Iye M., Sugai H., 1991, ApJ, 374, 112
+ DATA AVAILABILITY                                                   Iye M., Yagi M., Fukumoto H., 2021a, ApJ, 907, 123
+                                                                     Iye M., Yagi M., Fukumoto H., 2021b, ApJ, 907, 123
+ The annotated galaxy catalogues are available online at the         Jeffreys H., 1939, Theory of Probability. Oxford Univ. Press, Ox-
+ following URLs:                                                         ford
+                                                                     Jones J., Copi C. J., Starkman G. D., Akrami Y., 2023, arXiv
+• Longo: https://ars.els-cdn.com/content/image/1-s2.                     e-prints, p. arXiv:2310.12859
+ 0-S0370269311003947-mmc1.txt                                        Kalbouneh B., Marinoni C., Bel J., 2023, Phys. Rev. D, 107, 023507
+• Iye:    https://people.cs.ksu.edu/~lshamir/data/iye_               Land K., et al., 2008, MNRAS, 388, 1686
+ et_al/                                                              Longo M. J., 2007, arXiv e-prints, pp astro–ph/0703694
+• SDSS DR7: https://people.cs.ksu.edu/~lshamir/data/                 Longo M. J., 2011, Physics Letters B, 699, 224
+ sdss_phot/                                                          MacGillivray H. T., Dodd R. J., 1985, A&A, 145, 269
+• GAN M/NM: https://people.cs.ksu.edu/~lshamir/data/                 McAdam D., Shamir L., 2023a, Symmetry, 15, 1190
+ SpArcFiRe/                                                          McAdam D., Shamir L., 2023b, Advances in Astronomy, 2023, 1
+                                                                     Migkas K., Schellenberger G., Reiprich T. H., Pacaud F., Ramos-
+• Shamir:     https://people.cs.ksu.edu/~lshamir/data/
+                                                                         Ceja M. E., Lovisari L., 2020, A&A, 636, A15
+ assymdup/
+                                                                     Nelder J. A., Mead R., 1965, The computer journal, 7, 308
+• PS DR1:     https://people.cs.ksu.edu/~lshamir/data/               Ntelis P., et al., 2017, J. Cosmology Astropart. Phys., 2017, 019
+ assym3/;       https://figshare.com/articles/dataset/               Rameez M., Mohayaee R., Sarkar S., Colin J., 2018, MNRAS, 477,
+ PanSTARRS_DR1_Broad_Morphology_Catalog/12081144                         1772
+                                                                     Rodrigues D. C., 2008, Phys. Rev. D, 77, 023534
+ Our code is available on github ©. Any other data underlying
+                                                                     Schneider J., Célérier M. N., 1999, A&A, 348, 25
+ the article will be made available on reasonable request to the     Schwarz G., 1978, The Annals of Statistics, 6, 461
+ authors.                                                            Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar
+                                                                         S., 2022, ApJ, 937, L31
+                                                                     Shamir L., 2011, ApJ, 736, 141
+ ACKNOWLEDGEMENTS                                                    Shamir L., 2017, Publ. Astron. Soc. Australia, 34, e044
+                                                                     Shamir L., 2020a, Open Astronomy, 29, 15
+ We thank Pedro Ferreira, Kazuya Koyama and Sebastian von            Shamir L., 2020b, Publ. Astron. Soc. Australia, 37, e053
+ Hausegger for useful discussions.                                   Shamir L., 2020c, Astronomische Nachrichten, 341, 324
+   DP was supported by a SEPnet Summer Placement at                  Shamir L., 2020d, Ap&SS, 365, 136
+ the Institute of Cosmology and Gravitation, University of           Shamir L., 2021a, Particles, 4, 11
+                                                                     Shamir L., 2021b, Publ. Astron. Soc. Australia, 38, e037
+ Portsmouth. HD is supported by a Royal Society University
+                                                                     Shamir L., 2022a, Journal of Astrophysics and Astronomy, 43, 24
+ Research Fellowship (grant no. 211046).
+                                                                     Shamir L., 2022b, PASJ, 74, 1114
+   This project has received funding from the European Re-           Shamir L., 2022c, MNRAS, 516, 2281
+ search Council (ERC) under the European Union’s Horizon             Shamir L., 2022d, Advances in Astronomy, 2022, 8462363
+ 2020 research and innovation programme (grant agreement             Shamir L., 2024, Publ. Astron. Soc. Australia, 41, e038
+ No 693024). For the purpose of open access, we have applied         Slosar A., et al., 2009, MNRAS, 392, 1225
+ a Creative Commons Attribution (CC BY) licence to any               Sorrenti F., Durrer R., Kunz M., 2023, J. Cosmology Astropart.
+ Author Accepted Manuscript version arising.                             Phys., 2023, 054
+                                                                     Sugai H., Iye M., 1995, MNRAS, 276, 327
+                                                                     Tadaki K.-i., Iye M., Fukumoto H., Hayashi M., Rusu C. E., Shi-
+                                                                         makawa R., Tosaki T., 2020, MNRAS, 496, 4276
+ REFERENCES                                                          Watkins R., et al., 2023, MNRAS, 524, 1885
+ Aihara H., et al., 2011, ApJS, 193, 29                              York D. G., et al., 2000, AJ, 120, 1579
+ Aluri P. K., et al., 2023, Class. Quant. Grav., 40, 094001
+ Barnes J., Efstathiou G., 1987, ApJ, 319, 575
+ Battisti M. V., Marcianò A., 2010, Phys. Rev. D, 82, 124060
+ Chambers K. C., et al., 2016, arXiv e-prints, p. arXiv:1612.05560
+ Dam L., Lewis G. F., Brewer B. J., 2023, MNRAS, 525, 231
+ Davis D. R., Hayes W. B., 2014, ApJ, 790, 87
+ Dias B. L., Avila F., Bernui A., 2023, MNRAS, 526, 3219
+ Foreman-Mackey D., Hogg D. W., Lang D., Goodman J., 2013,
+    PASP, 125, 306
+ Gao F., Han L., 2012, Computational Optimization and Applica-
+    tions, 51, 259
+ Gaztañaga E., Sravan Kumar K., 2024, J. Cosmology Astropart.
+    Phys., 2024, 001
+ Goddard H., Shamir L., 2020, ApJS, 251, 28
+
+ MNRAS 000, 1–8 (2024)
+

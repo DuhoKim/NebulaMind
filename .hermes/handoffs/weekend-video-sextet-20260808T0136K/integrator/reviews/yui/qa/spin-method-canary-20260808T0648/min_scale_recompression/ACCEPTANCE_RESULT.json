@@ -1,0 +1,15 @@
+{
+  "test": "minimum-scale recompression compound acceptance (spin pass-17 guard; operational = LANCZOS 640x360 then JPEG q60 4:2:0)",
+  "guard_source": "lane-spin-parity/worker-yui/MINIMUM_SCALE_RECOMPRESSION_GUARD_PASS17.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T11:14:00+09:00",
+  "method": "exact operational compound (native RGB -> LANCZOS 640x360 -> JPEG q60 subsampling=2 -> decode) on the 11 encoded state frames; 360p+q35 characterization; human review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 RESULT HELD capsule readable on 11/11 compound-transformed states",
+    "boundaries_direct_text": "PASS \u2014 headline boundary copy legible at 360p+q60",
+    "labels_at_represented_pixels": "PASS \u2014 readout counts, equation terms, branch labels directly readable",
+    "characterization_360p_q35": "generated, reviewed as characterization only"
+  },
+  "verdict": "PASS",
+  "evidence": "min_scale_recompression/contact_sheet_360p_q60.png, contact_sheet_360p_q35.png"
+}

@@ -1,0 +1,46 @@
+{
+  "artifact": "current public c41-highz-mzr-calibration-anchored.mp4",
+  "artifact_sha256": "02a26fa3449dd5dfc070b21988430ec51bd8d69d40adcc883a4ff2cba7831ed8",
+  "verified_utc": "2026-08-07T17:05:44Z",
+  "verdict": "FAIL_AS_CURRENT_CANDIDATE__ARTIFACT_LINEAGE_AND_REPRESENTATION_BOUNDARY",
+  "probe": {
+    "duration_seconds": 81.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "video_codec": "h264",
+    "audio_stream_present": false
+  },
+  "scene_cut_times_seconds": [9.0, 18.0, 26.0, 33.0, 41.0, 50.0, 60.0, 69.0],
+  "observed_scene_count": 9,
+  "current_source_storyboard": {
+    "cards": 16,
+    "duration_floor_seconds": 107.5,
+    "lineage_match": false
+  },
+  "passes": [
+    "1920x1080 H.264 decodes cleanly",
+    "no observed full-frame clipping",
+    "opening question and final non-claim boundary are understandable",
+    "79 is explicitly paired with the unit tables"
+  ],
+  "failures": [
+    "The encoded MP4 is 81 seconds with nine observed scene states, while the current source storyboard has sixteen cards totaling 107.5 seconds.",
+    "The encoded MP4 contains no scientific figure or chart despite the current storyboard's figure cards.",
+    "The 95 and 5 cards use a giant unqualified number; rows and anchors appear only in subordinate body copy.",
+    "The 79-table card says that 8 were reachable at run time, but the frozen run evidence is 11 fetched tables across 8 catalogs. The rendered 8 is therefore unit-ambiguous and visually suggests a table count.",
+    "The mass-bin null is prose-only: no common N=3 threshold, no bars 2/1/0, and no separate +2 below-floor pool are visible.",
+    "Footers expose internal source filenames instead of author/year/journal or a public paper citation.",
+    "There is no audio stream; narration and visual timing cannot be assessed on this artifact."
+  ],
+  "required_integrator_corrections": [
+    "rebuild from a unit-preserving 79 tables -> 23 candidate tables -> 11 fetched tables across 8 catalogs -> 95 rows -> 5 anchors sequence",
+    "show 12 unreachable candidate tables as a table branch, not a galaxy loss",
+    "use a same-unit 95-row accounting visual for 64/12/6/8 exclusions plus 5 survivors",
+    "show mass-bin bars 2/1/0 against one shared N=3 baseline and keep +2 below log10(M*/M_sun)=8 outside the bins",
+    "render scholarly display citations and keep internal paths in QA manifests only",
+    "hold the final archive-census-not-galaxy-relation boundary",
+    "after Hwao-authorized Alloy narration, recut all affected cards from actual clip durations"
+  ],
+  "authority": "diagnostic only; Hwao remains sole integrator and candidate/TTS writer"
+}

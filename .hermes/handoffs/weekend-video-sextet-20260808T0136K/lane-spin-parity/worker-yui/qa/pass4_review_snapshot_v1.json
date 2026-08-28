@@ -1,0 +1,106 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass4-review-v1-20260808T044638K",
+  "created_at": "2026-08-08T04:46:38+09:00",
+  "scope": "isolated worker-Yui pass-4 temporal encoded-frame audit, exact unblock-contract deepening, and sealed-v8 no-change decision",
+  "supersedes": {
+    "path": "qa/pass3_review_snapshot_v1.json",
+    "sha256": "510469ca4fea639dc0c438bdbbd6c1a9bd725b54011c196b04a7ae64f6a2e73c",
+    "snapshot_id": "spin-worker-yui-pass3-review-v1-20260808T042255K"
+  },
+  "supersession_reason": "Pass 4 adds independent early/mid/late frame evidence, temporal OCR/pixel stability measurements, binary-file coverage, and an exact A3.8 hash-pair absence gate while preserving sealed v8 and the held candidate.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS4_ENCODED_FRAME_AUDIT.md",
+      "sha256": "5cc2566929a81cdfe89c6a23837f90002674a31336faf4d6fc55c0949049713e"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS4.json",
+      "sha256": "c411a722afeca023961cf913bb2c215bcbd3e64cb48c282a99a3377d0706967a"
+    },
+    {
+      "path": "qa/pass4_encoded_audit/extract_fresh_frames.py",
+      "sha256": "77bb8403b239d4c434dcecdf47f29384cb27405bfb94e6a9da3aa57146d9f72a"
+    },
+    {
+      "path": "qa/pass4_encoded_audit/extraction_receipt.json",
+      "sha256": "163f3d94294a9e17cabac678398a9fd6d8cdacc454ce262eb308d4fa4cef7fa9"
+    },
+    {
+      "path": "qa/audit_pass4_temporal_content.py",
+      "sha256": "8b04a0a33178a0776fa9a4632d78d9747c207bc81e291b790593ace1817e766f"
+    },
+    {
+      "path": "qa/pass4_temporal_content_audit.json",
+      "sha256": "a439cedf61800247335a236d38d9685ae2963f7a0e77d3983111d9f9865b5e6e"
+    },
+    {
+      "path": "qa/build_pass4_unblock_contract_scan.py",
+      "sha256": "c3dc73f3a630c48692c5bd41bc964e7ef9b3d3c031a226f7498c261550fa8bab"
+    },
+    {
+      "path": "qa/pass4_unblock_contract_scan.json",
+      "sha256": "5873af98fec7c7c18aa438441850d7ae35e431da05d86455acd02a11151c509d"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "render_proposal_frames.py",
+      "sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "qa/static_proposal_validation.json",
+      "sha256": "2b39d1f0779c436b7b38112f23409006a13f06fa7f8e59f54ecbaf6b51cf1e96"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass4_temporal_evidence": {
+    "scene_count": 16,
+    "sample_count": 48,
+    "contact_sheet_sha256": {
+      "early": "042578bb1468b53cf5a994f2a5626793ccceec9a38cd56aedc5873fab43cd086",
+      "mid": "e15ad98e688217b0c585adacb0c803222a68218c1c9bbcf4b29cde9ced67e716",
+      "late": "568374db1cfaca84bd871bf1cc85b9c46fc09e709ecf9cc5042e965457c89d9d"
+    },
+    "frame_hashes_pinned_by_extraction_receipt": 48,
+    "unique_frame_hash_count": 47,
+    "semantic_content_transition_found": false,
+    "byte_static_scene_count": 0,
+    "exact_ocr_signature_stable_scene_count": 8,
+    "minimum_token_multiset_similarity": 0.888889,
+    "minimum_similarity_scene": 7
+  },
+  "pass4_unblock_scan": {
+    "regular_file_count": 209,
+    "utf8_decodable_count": 203,
+    "non_utf8_count": 6,
+    "post_t4_utf8_count": 9,
+    "post_t4_non_utf8_count": 0,
+    "post_t4_t4_identifier_count": 4,
+    "post_t4_exact_t4_and_a3_8_hash_pair_count": 0,
+    "post_t4_complete_minimum_marker_candidate_count": 0
+  },
+  "v8_disposition": "SEALED_AUTHORITATIVE_PROPOSAL_NO_PIXEL_CHANGE",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

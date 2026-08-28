@@ -1,0 +1,48 @@
+TORI one-cutout verification receipt
+Checked: 2026-08-12 KST
+
+Scope
+- One unique DR10 FITS cutout specification; format/WCS test only.
+- No bulk retrieval.
+
+Request URL
+https://www.legacysurvey.org/viewer/fits-cutout?ra=190.1086&dec=1.2005&layer=ls-dr10&pixscale=0.262&bands=r&size=16
+
+Local file
+reviews/.tori_spin_access_evidence/legacy_dr10_one_test_cutout_r_16px.fits
+
+File inspection
+- FITS image data
+- 32-bit, floating point, single precision
+- 5,760 bytes
+- SHA-256: 601c309771ed5da0a15defc0b4ccfc1063ee8422a89fbc969d916bba6c1f257a
+- HDUs: 1
+- Primary data shape: 16 x 16
+- BITPIX: -32
+
+Header excerpt
+SIMPLE  = True
+BITPIX  = -32
+NAXIS   = 2
+NAXIS1  = 16
+NAXIS2  = 16
+CTYPE1  = 'RA---TAN'
+CTYPE2  = 'DEC--TAN'
+CRVAL1  = 190.1086
+CRVAL2  = 1.2005
+CRPIX1  = 8.5
+CRPIX2  = 8.5
+CD1_1   = -7.27777777777778e-05
+CD1_2   = 0.0
+CD2_1   = 0.0
+CD2_2   = 7.27777777777778e-05
+BANDS   = 'r'
+BAND0   = 'r'
+
+Astropy WCS check
+- WCS(header).has_celestial: True
+- pixel_scale_matrix: [[-7.27777777777778e-05, 0.0], [0.0, 7.27777777777778e-05]]
+
+Observed caveat
+- RADESYS was not present in this generated header.
+- This was the default FITS cutout route, not a no-resampling subimage request.

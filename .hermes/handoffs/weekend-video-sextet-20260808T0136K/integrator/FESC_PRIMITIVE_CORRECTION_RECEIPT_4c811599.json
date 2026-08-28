@@ -1,0 +1,105 @@
+{
+  "created_at": "2026-08-09T14:38:01+0900",
+  "status": "LOCAL_SELF_QA_PASS_FROZEN_PENDING_INDEPENDENT_EXACT_HASH_REVIEW",
+  "lane": "fesc",
+  "candidate": {
+    "directory": "integrator/canaries/fesc-method-overhaul-canary-20260809T1420K",
+    "video": "fesc-method-overhaul-canary-20260809T1420K.mp4",
+    "video_sha256": "4c8115997e21689508f31587672a3dd7da9c902803427c43490603bad08309b9",
+    "spec_sha256": "7a138e2d9b5a0c7e6025533d455599a9ce683bce12d14e688a78c12d198cbad5",
+    "timeline_sha256": "5718fe71b41fb9c99fd74925d2670c3c96163eaaf6fcdd088ce8f1576067fcd4",
+    "audio_master_sha256": "8e40e71229fc3e0bf2f21e7f02f8c3370e1042a62ffadb03fb2ff10f96adf156",
+    "renderer_sha256": "c42037c73c9703dead42d2a8c1752ced74bf8b6cad42877d7b8dffecf8f1810a",
+    "qa_renderer_sha256": "8228a5c029ff7b0584b528a1ff4b0b197da742ac1d6768f98abfa329d5020817",
+    "correction_sha256": "baacd4ecae723d8e58d0e18783b62ba4b3937e91b6848d4d2a2a8dafc93cf74b",
+    "receipt_sha256": "5c72fc7b1a6bf4de0ac479b62806e5ca806d08dcf296c8160a5fb4f3bafc081a",
+    "post_encode_freeze_sha256": "e0cad67c217ddbd89ecd514a66966ca2670bfcf39da767523995930c06df45cd"
+  },
+  "predecessor": {
+    "candidate": "integrator/canaries/fesc-method-overhaul-canary-20260809T1345K",
+    "video_sha256": "acfb7fee70d5a131d4a44e8962cfe3fe3cd22104bf9cf8fa00bbbd6c2c00cbc0",
+    "disposition": "HOLD_CURVE_ICON_PRIMITIVE_ASSERTS_READABLE_CROSSINGS",
+    "preserved_untouched": true
+  },
+  "primitive_level_correction": {
+    "root_cause": "Eight timed FESC records selected params.icon='curve', and the shared icon renderer exposed an elif kind=='curve' branch that drew intersecting rising/falling geometry.",
+    "record_count_corrected": 8,
+    "new_icon_kind": "paired_strokes",
+    "icon_form": "two separated equal-length horizontal strokes; no axes, slope, order, relative response, intersection, or crossing",
+    "curve_icon_parameter_absent": true,
+    "curve_icon_render_branch_absent": true,
+    "renderer_rejects_curve_icon_kind": true,
+    "unknown_icon_kinds_rejected": true,
+    "peak_fix_preserved": true,
+    "persistent_title_preserved": "An apparent photon-budget mismatch has two explanations"
+  },
+  "actual_frame_review": {
+    "frame_index_sha256": "4f6c15059a57cb1c94879026b0a94a77eb2809e408f4fd4a03ed58ff66acd19b",
+    "sampling_fps": 2,
+    "decoded_frames": 473,
+    "full_contact_sheets": 10,
+    "all_full_sheets_visually_inspected": true,
+    "reported_times_seconds": [5.052, 15.013, 24.243, 31.816, 42.05, 51.592, 222.41, 231.051],
+    "exact_reported_times_sheet_sha256": "da3d9fe3a2b6b0627168484ccdafffb384059468d366702c5bfe3a53f8584d91",
+    "exact_reported_times_visually_inspected": true,
+    "readable_order_or_crossing_found": false,
+    "result_bearing_geometry_found": false,
+    "clipping_or_internal_or_sibling_content_found": false,
+    "status": "PASS"
+  },
+  "encoded_qa": {
+    "encoded_qa_sha256": "cd61c96c990d067eab7667361568ca64a3ca7ea8d86d1170682fb8282fdac2ba",
+    "status": "PASS",
+    "checks_passed": 30,
+    "checks_total": 30,
+    "full_h264_aac_decode": true,
+    "resolution": [1920, 1080],
+    "fps": 30,
+    "duration_seconds": 236.739,
+    "delivered_wpm": 115.0000026739212,
+    "max_abs_av_start_delta_seconds": 0.015333333333330756,
+    "loudness_lufs": -20.24,
+    "true_peak_dbtp": -2.30,
+    "encoded_introduction_similarity": 1.0,
+    "curve_icon_parameter_absent": true,
+    "curve_icon_primitive_unavailable": true,
+    "video_reportable_now": false
+  },
+  "audio": {
+    "disposition": "byte-identical reuse for visual-only correction",
+    "provider_route": "Hermes managed OpenAI audio gateway",
+    "model": "gpt-4o-mini-tts",
+    "voice": "alloy",
+    "speed": 1.18,
+    "sentence_calls": 22,
+    "music": false
+  },
+  "rejected_attempts": {
+    "candidate_local_qa_false_positive_preserved": "rejected-attempts/qa-false-positive-curve-validation-hold",
+    "cause": "initial QA predicate matched the renderer's validation-rejection string rather than an available rendering branch",
+    "candidate_bytes_changed_after_render": false,
+    "predecessor_and_earlier_rejected_attempts_preserved": true
+  },
+  "other_lanes": {
+    "mzr_census_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "brightend_sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+    "rebuilt_or_mutated": false
+  },
+  "repository_gate": {
+    "head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "frontend_public_tracked_diff": false,
+    "pipeline_process_active": false
+  },
+  "gates": {
+    "independent_review_complete": false,
+    "promoted": false,
+    "video_reportable_now": false,
+    "upload": false,
+    "frontend_public_copy": false,
+    "paperVideos_copy": false,
+    "cockpit": false,
+    "database": false,
+    "deploy_or_restart": false,
+    "git_commit_push_merge": false
+  }
+}

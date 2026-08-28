@@ -1,0 +1,71 @@
+{
+  "title": "Append-only correction — three stale raw-MP3 records in audio_v3/synthesis_receipt.json",
+  "recorded_at_kst": "2026-08-09T02:12+0900",
+  "recorded_by": "Claude-macbook seat (Directors board, pane %30)",
+  "instruction": "Duho, 2026-08-09: \"fix the stale raw-TTS hashes\"",
+  "raised_by": "reviews/TORI_OVERHAUL.md §22 — nonblocking raw-TTS receipt caveat",
+  "candidate": "spin-method-overhaul-canary-20260808T1959K",
+  "candidate_mp4_sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240",
+
+  "method": "APPEND_ONLY_CORRECTION — the frozen receipt is deliberately NOT modified",
+  "why_not_edited": [
+    "audio_v3/synthesis_receipt.json is pinned in POST_ENCODE_FREEZE_V3.json at sha256 129b2e37f29d6e5b7a41678924adb897082b16574fd18b30518ed63c3a2153a3",
+    "the freeze policy reads: never rewrite this MP4 or its build inputs after reviewer pickup",
+    "all four seat packets plus the Hwao ACCEPT were filed against the candidate as frozen",
+    "Tori's prescribed remedy is an append-only correction, not a rewrite",
+    "the candidate directory is the integrator seat's exclusive write area under the single-writer rule"
+  ],
+
+  "authoritative_values": [
+    {
+      "id": "s21",
+      "file": "audio_v3/raw/s21-7356873d828a.mp3",
+      "receipt_records": {"sha256_prefix": "a7d7ff2e", "size_bytes": 119808, "duration_seconds": 7.488},
+      "actual_on_disk":  {"sha256": "522c975e", "size_bytes": 129024, "duration_seconds": 8.064}
+    },
+    {
+      "id": "s22",
+      "file": "audio_v3/raw/s22-c6ceeafd1436.mp3",
+      "receipt_records": {"sha256_prefix": "886b6a28", "size_bytes": 63360, "duration_seconds": 3.960},
+      "actual_on_disk":  {"sha256": "64a93399", "size_bytes": 67200, "duration_seconds": 4.200}
+    },
+    {
+      "id": "s23",
+      "file": "audio_v3/raw/s23-4d2b901e7477.mp3",
+      "receipt_records": {"sha256_prefix": "0370903d", "size_bytes": 67968, "duration_seconds": 4.248},
+      "actual_on_disk":  {"sha256": "822cabda", "size_bytes": 71424, "duration_seconds": 4.464}
+    }
+  ],
+
+  "which_audio_reached_the_video": {
+    "answer": "the actual_on_disk files — the receipt values are the stale ones",
+    "independent_proof": "timeline span, decoded WAV duration, and current raw MP3 duration agree exactly for all three (8.064 / 4.200 / 4.464); only the receipt differs",
+    "control_sentences_s20_s24": "all four sources agree (9.600 / 5.112), so the discrepancy is confined to s21-s23",
+    "byte_deltas_consistent": "size deltas 9216 / 3840 / 3456 bytes map exactly to the duration deltas at 128 kbps"
+  },
+
+  "unaffected": {
+    "mp4_sha256_unchanged": true,
+    "narration_master_unchanged": true,
+    "timeline_unchanged": true,
+    "build_receipt_unchanged": true,
+    "other_24_raw_records_match": true,
+    "rerender_required": false
+  },
+
+  "cause": {
+    "determined": false,
+    "most_plausible": "a second synthesis process overlapping this seat's run on three consecutive sentences, overwriting them after their records were captured but before the receipt was serialized at 00:04:32",
+    "honest_caveat": "raw-file mtimes (s21 00:04:19, s22 00:04:22, s23 00:04:26) are sequential and consistent with a single run, so the overlap hypothesis is not proven by the filesystem evidence alone",
+    "accountability": "this seat executed the synthesis run that produced this receipt (see SYNTHESIS_PROVENANCE_20260809T0015K.md), and flagged the concurrent-write risk before running; the defect is attributable to that run either way"
+  },
+
+  "status": "CORRECTION_RECORDED_NO_ARTIFACT_CHANGE",
+  "gates": {
+    "video_reportable_now": false,
+    "frozen_candidate_modified": false,
+    "protected_root_written": false,
+    "git_action": false,
+    "uploaded": false
+  }
+}

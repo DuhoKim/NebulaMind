@@ -1,0 +1,1121 @@
+{
+  "audio_generated": false,
+  "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "characterization_variants": [
+    "squeeze_x80",
+    "squeeze_y80"
+  ],
+  "contact_sheets": {
+    "clean": {
+      "height": 1276,
+      "path": "contact_sheet_clean.png",
+      "sha256": "d004b20c78d9356007dc1984646e0978bdafe75d4037dacfe30c0f8c91c4cfb2",
+      "width": 1892
+    },
+    "squeeze_x80": {
+      "height": 1276,
+      "path": "contact_sheet_squeeze_x80.png",
+      "sha256": "f7b9bf6be89541210d3d9446242f50c100f7a4664fbefb7cc458edd63be6b4df",
+      "width": 1892
+    },
+    "squeeze_x90": {
+      "height": 1276,
+      "path": "contact_sheet_squeeze_x90.png",
+      "sha256": "ecceab207595bffe83f94eeed70f20a7e507f2d1c7597e17cc44dc738bd527b4",
+      "width": 1892
+    },
+    "squeeze_y80": {
+      "height": 1276,
+      "path": "contact_sheet_squeeze_y80.png",
+      "sha256": "d36921f97d8fa7f90233471700d6f52336258175eb58414e4ea6e6e5dc2fd3c8",
+      "width": 1892
+    },
+    "squeeze_y90": {
+      "height": 1276,
+      "path": "contact_sheet_squeeze_y90.png",
+      "sha256": "9190d3eff8d3d44e15cb450150f7a9ddb60d1b50a78160cbff464bcfd0a5b89a",
+      "width": 1892
+    }
+  },
+  "created_at": "2026-08-08T10:02:23.676042+09:00",
+  "cut_detection": {
+    "cuts": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "detector": "ffmpeg 160x90 grayscale scene-score threshold strictly greater than 0.03 with showinfo",
+    "threshold": 0.03
+  },
+  "cut_times_seconds": [
+    12.133333,
+    26.366667,
+    47.266667,
+    60.466667,
+    74.666667,
+    88.066667,
+    102.333333,
+    116.333333,
+    131.033333,
+    148.033333,
+    162.033333,
+    179.733333,
+    196.8,
+    213.433333,
+    233.866667
+  ],
+  "deepening_pass": 15,
+  "frame_count": 80,
+  "fresh_clean_match": "16/16_BYTE_IDENTICAL_TO_PASS14",
+  "geometry": {
+    "squeeze_x80": {
+      "offset": [
+        192,
+        0
+      ],
+      "resampled_size": [
+        1536,
+        1080
+      ],
+      "scale_x": 0.8,
+      "scale_y": 1.0,
+      "source_size": [
+        1920,
+        1080
+      ]
+    },
+    "squeeze_x90": {
+      "offset": [
+        96,
+        0
+      ],
+      "resampled_size": [
+        1728,
+        1080
+      ],
+      "scale_x": 0.9,
+      "scale_y": 1.0,
+      "source_size": [
+        1920,
+        1080
+      ]
+    },
+    "squeeze_y80": {
+      "offset": [
+        0,
+        108
+      ],
+      "resampled_size": [
+        1920,
+        864
+      ],
+      "scale_x": 1.0,
+      "scale_y": 0.8,
+      "source_size": [
+        1920,
+        1080
+      ]
+    },
+    "squeeze_y90": {
+      "offset": [
+        0,
+        54
+      ],
+      "resampled_size": [
+        1920,
+        972
+      ],
+      "scale_x": 1.0,
+      "scale_y": 0.9,
+      "source_size": [
+        1920,
+        1080
+      ]
+    }
+  },
+  "git_action": false,
+  "implementation": {
+    "padding": "centered black RGB",
+    "pillow": "12.3.0",
+    "python": "3.11.15",
+    "resampler": "Pillow LANCZOS"
+  },
+  "midpoint_times_seconds": [
+    6.066667,
+    19.25,
+    36.816667,
+    53.866667,
+    67.566667,
+    81.366667,
+    95.2,
+    109.333333,
+    123.683333,
+    139.533333,
+    155.033333,
+    170.883333,
+    188.266666,
+    205.116667,
+    223.65,
+    238.583334
+  ],
+  "operational_variants": [
+    "squeeze_x90",
+    "squeeze_y90"
+  ],
+  "records": [
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "sample_time_seconds": 6.066667,
+      "samples": [
+        {
+          "frame": "frames/scene_01_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_01_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "7144eb2f7de237dcdfa7dca49a51064c79cf1522b8d8939a07641bad0fbc7201",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_01_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "c5eced9b23887a31763de23f961db1941a85d7f3aff466de7ae15a385bf1e73d",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_01_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "7fbc46cd8d853f873019b7f79117ea0a81e53bed02c2b4b8281b6c90ecb3b250",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_01_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "9756430b5f4e5c259dcbdc0b3444ccf982706f1f7c528c6277db9e9afe08a252",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 1
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "sample_time_seconds": 19.25,
+      "samples": [
+        {
+          "frame": "frames/scene_02_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_02_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "04d90eba9a35fcff5626e890d714bd14a045f9553e8e5b860560c13dafba2cdd",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_02_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "a1cfabe54230c2eeca3524e86110f2676241480b87273eec9e7795544e59a167",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_02_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "24ddfb68ea95337cc22e22e691fbfc4af714bd63a7e4939ba0e9229f59374df7",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_02_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "f3ae433c75265c7bf15bbe041bd46eb4d85c2e62869802f0b1b6408cefdd1a24",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 2
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "sample_time_seconds": 36.816667,
+      "samples": [
+        {
+          "frame": "frames/scene_03_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_03_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "c75d6cb7b270df671d81e6e4281b59e4f4d4e2a7c385c67f1be606905ea4c030",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_03_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "1edd30d2575f80ec204b7b8a61d849726a35654202bb294ef621deaeb3f15273",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_03_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "3a285a49253ee293e0948dd3355124cdcadc265d584fbed260dceaec7d4b33ad",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_03_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "dfe4e162ad4f5e218316d554133ee90cc2d6cb713be92fac4670d55a22ec53b0",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 3
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "sample_time_seconds": 53.866667,
+      "samples": [
+        {
+          "frame": "frames/scene_04_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_04_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "4163d0e43e14d2645718305fb8be7af72584019489367cb37ed710aad037c628",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_04_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "bef534de8b1f06a90738ad0ad6f883fd8f29512cd891b01cdb4c1e44178f59d3",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_04_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "540215a53fca8a9acb79cf1cd2f4788c9ef0edd85f2b608c464d295346e1669c",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_04_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "394ea199e7940d588a045d1d2fbc342608f4db63b44ac32d817551fe9f490ada",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 4
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "sample_time_seconds": 67.566667,
+      "samples": [
+        {
+          "frame": "frames/scene_05_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_05_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "5505751c09e88e9ac15d7787dfc69ac0d0002c4981d8d184f5f9e5050c7dd0ea",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_05_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "25b4c3594563c11ab8ff12cea800907873237475bff4316b2657ba09499a8073",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_05_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "1310152d20e696cf7fc13ff41a951ca92f3491cf5e86a7cfba695447050db32a",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_05_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "b84d1b73b054b6499cd640697a7193a0e3cbc1aba31b2985ce7448182e5b34ea",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 5
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "sample_time_seconds": 81.366667,
+      "samples": [
+        {
+          "frame": "frames/scene_06_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_06_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "626259565ee71833234e65bc4f93f6d1ff9af4ebc0859b702e8a4715be32f6ef",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_06_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "54b66824c9c4ac1b832be0176989a533ee16a52bcadf83e325d42918b433c49b",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_06_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "3f8b45925b049f8be361b9d910cce518fffa76334ab285689f6ddc618e0c28d6",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_06_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "cc0775b8b29857db29ad159ae4c21d9ff0a9a5891096462152763cacb526d1b4",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 6
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "sample_time_seconds": 95.2,
+      "samples": [
+        {
+          "frame": "frames/scene_07_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_07_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "3cdfa48504a1609bdfeb0ed21d50b987ac03ff44db8e4a57c285f5302cb77ac3",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_07_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "9eca825651e7e6ebc6e5421bd09a8b1ff0ff54ae533899976e54de6af919fdb1",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_07_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "f9caa1476c0a49883dde753c37d69beb0bdfb5262b086940256f2592fe4d3a04",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_07_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "59bf1cf2046fa151db780edc4abe7cd0132bc9ae400bda2b6733897d5b14ed07",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 7
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "sample_time_seconds": 109.333333,
+      "samples": [
+        {
+          "frame": "frames/scene_08_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_08_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "0bd2eca2a704bfbf20c888bbfa08e5d8bd0309d1f8a5737157fdc0f4354f544a",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_08_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "a321297dc7da23a1df9b58a7c1449c51238da0e881009d84855e9f64a92ccd34",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_08_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "b7a06c433b254dcf2574aff890bc2e7e8992afe443b2feef942f69782acffd44",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_08_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "a01e5f1e966f0959bcfb20172d543e45a197f13b0b888553796fe61adbdd2fd0",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 8
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "sample_time_seconds": 123.683333,
+      "samples": [
+        {
+          "frame": "frames/scene_09_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_09_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "df7bb59eb6749841235f5ddb62667e1a677a4715b8ad44c2e8f0b5bac3f052ec",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_09_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "27cc6087ad4459ec71aaa7cdec10d64f875a895212b23057cda7a43f6d342467",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_09_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "ea32d1e9647c16fdf4df6ea8c30b491671035c40ff1cbfcda093354d11eec8aa",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_09_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "d5223157080699a27d5c7c04ebdb1e72632d4f3bd8813c9c3e1181c73fa32c0c",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 9
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "sample_time_seconds": 139.533333,
+      "samples": [
+        {
+          "frame": "frames/scene_10_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_10_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "0e48c28cb8cc35acf8edc427b02842c9d5aa00873a1eba94bfbf984a09d87f60",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_10_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "5deee535af99e538b648a9ad875dd0da72d004f7e582e25e79e0fab2ff28dcea",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_10_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "fe6b81e3fd90ade05a4164704bf006f27831c00374e41f84202b5376774b3e59",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_10_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "cb63d3730d0f97c548782e8f3dc9e2db985b5d6fb13b72a0964e159dee1a7fe5",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 10
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "sample_time_seconds": 155.033333,
+      "samples": [
+        {
+          "frame": "frames/scene_11_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_11_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "a2b774de39cb66899d74526a4e08bcaca63deee2b337a9f1d12f36b4530325c4",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_11_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "78e3ea5459be1a0dd7ea402e1b1d79fbaf20820b052f4d661230c067acd4304c",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_11_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "097540e342b40fc4459e8a6ddb9fb1fa23eb05eea21efac141565023d208805c",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_11_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "ed577f31b877f835b5238d0c2479fc7e382328d91b7bc4882a94dd6c0a10a61c",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 11
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "sample_time_seconds": 170.883333,
+      "samples": [
+        {
+          "frame": "frames/scene_12_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_12_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "6452110c773d9184ddc00c29ba4bb3a1c40f3730eec1fd594b0d44dbc02afb9f",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_12_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "31f1677adc0e381b620a07ed20a2e92c9c6ffb20a3ac23887b2b5f4c9115dd47",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_12_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "ff82b05e23a3b3873e92512c41a879ddc14ad04705b3ca6622f194588ce648d1",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_12_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "09c8e591d3f9609461032fc84a968fb696cb5daedb42b720517611a8c76ed268",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 12
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "sample_time_seconds": 188.266666,
+      "samples": [
+        {
+          "frame": "frames/scene_13_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_13_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "ac6730aee65fdc7fe7ab7a645504070a4144e8d3e38831c98e72392475085823",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_13_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "6e30332efa74a70e1290208222105395c7c72de40e4ebe85e167c902216b0709",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_13_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "bcb73f0e68591cc75d65ad9d42f6a8631bacb30ae58c1975519915bc6416de00",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_13_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "aa613ac1f9229658aa88a2ccac4c4499e9459b3bcacde4e6626ffa99af39b663",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 13
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "sample_time_seconds": 205.116667,
+      "samples": [
+        {
+          "frame": "frames/scene_14_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_14_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "e2590bb28cc75cb74e06cb72b6b540ec96bf88a3a74ef02ea236f7614dab95aa",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_14_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "327bcab40bb023967aed5a98fb44098107083b39b1f2c15fc9dd5a4f2a42067e",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_14_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "a8446084402bbaf9b1584385b439e7435a601f8308cafaacefc7b6e4e5e2f349",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_14_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "e9791c2d65d98eaf0848aa11461e02ebbdb05d8c554994fe7a627e9354559b26",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 14
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "sample_time_seconds": 223.65,
+      "samples": [
+        {
+          "frame": "frames/scene_15_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_15_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "2868835d352aedc328a90b312086c860ede7d93f7e9f98f1777c1cc50d11893b",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_15_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "ae038ffc8872aa8b814ce12064e0333e5a1e72d9a77bad8ea5f4e02901da90db",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_15_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "77130b664c510188ee63017b82bae358cc6a918fd34db5c96c8c69286af61785",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_15_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "48fdb3d585d7d7cc8dc8e1b1950191ab99df6372bb6624d4f767809a1842688b",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 15
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass14_clean_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "sample_time_seconds": 238.583334,
+      "samples": [
+        {
+          "frame": "frames/scene_16_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 1.0,
+          "sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_16_squeeze_x90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.9,
+          "scale_y": 1.0,
+          "sha256": "cfc0ced339ca5b31af21affa94dc0a5d8322aaa91ab51e9f8db60cc2c4b78dfe",
+          "variant": "squeeze_x90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_16_squeeze_y90.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.9,
+          "sha256": "5897aebef94bcab8bdffa93a677aa3659608eeeb3cb93c055feab25a8e1566ed",
+          "variant": "squeeze_y90",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_16_squeeze_x80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 0.8,
+          "scale_y": 1.0,
+          "sha256": "dcc9420f131062070748059468f2c62cb57cf3da73a57cbbfd4f165df387c678",
+          "variant": "squeeze_x80",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_16_squeeze_y80.png",
+          "height": 1080,
+          "mode": "RGB",
+          "scale_x": 1.0,
+          "scale_y": 0.8,
+          "sha256": "6cd29c439d4fbea25f4ad52807dff6b9b739e3c85cbd36a2102275422af6778d",
+          "variant": "squeeze_y80",
+          "width": 1920
+        }
+      ],
+      "scene": 16
+    }
+  ],
+  "scene_count": 16,
+  "simulation_limit": "Packet-specific anisotropic resampling only; not a named display, player, projector, codec, browser, delivery platform, or pixel-aspect standard.",
+  "status": "QA_ONLY_NOT_A_CANDIDATE",
+  "tts_invoked": false,
+  "variant_count": 5,
+  "variants": [
+    "clean",
+    "squeeze_x90",
+    "squeeze_y90",
+    "squeeze_x80",
+    "squeeze_y80"
+  ],
+  "video_encoded": false
+}

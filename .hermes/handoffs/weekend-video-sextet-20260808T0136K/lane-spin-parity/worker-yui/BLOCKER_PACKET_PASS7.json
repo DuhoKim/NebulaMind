@@ -1,0 +1,137 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass7-blockers-20260808T054548K",
+  "checked_at": "2026-08-08T05:45:48+09:00",
+  "scope": "isolated pass-7 caption/player-UI encoded-frame audit and caption-safe storyboard correction; no science adjudication, narration, candidate write, or publication",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "expected_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "hash_match": true,
+    "preserved_failed_candidate": true,
+    "modified": false
+  },
+  "video_reportable_now": false,
+  "worker_verdict": "FAIL_SCIENTIFIC_PRESENTATION_AND_HELD_SOURCE_GATE",
+  "science_blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_REVIEW",
+      "state": "BLOCKING",
+      "t4_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "t4_sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "review_contract_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "review_contract_sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0",
+      "exact_absence_proof": {
+        "regular_files_content_covered": 209,
+        "utf8_files": 203,
+        "decoded_gzip_files": 4,
+        "text_extracted_pdf_files": 2,
+        "files_with_exact_t4_and_a3_8_hash_pair": 0,
+        "valid_post_run_independent_review_records": 0,
+        "pass5_binary_content_scan": "qa/pass5_binary_content_scan.json",
+        "pass5_binary_content_scan_sha256": "092cba9cbf432555573206e4afef48d30d89a8172a58c453c48970cc5a5ba21e"
+      }
+    },
+    {
+      "id": "ARCHIVE_FRAME_UNSTATED",
+      "state": "BLOCKING",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+      "source_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "required_exact_status": "FRAME REVIEW: AGREES FRAME_UNSTATED"
+    }
+  ],
+  "fresh_obstruction_audit": {
+    "receipt": "qa/pass7_obstruction_audit/extraction_receipt.json",
+    "receipt_sha256": "e5face289309bf6a3b91a6553c0f92f00bcd494de5fc33415b6e9b24f457f146",
+    "ocr_audit": "qa/pass7_obstruction_ocr_audit.json",
+    "ocr_audit_sha256": "4d7e6ad087d420dad145d2fdd4bc5303c15ca4b8e040b4fe242c7c5578721e1e",
+    "scene_count": 16,
+    "frame_count": 48,
+    "variants": ["clean", "caption_15pct", "player_ui_25pct"],
+    "fresh_cut_detection": "15_CUTS__EXACT_PASS6_TIMESTAMPS",
+    "clean_midpoint_hash_reproduction": "16/16_PASS6_BYTE_IDENTICAL",
+    "unobstructed_top_pixel_identity": "16/16_BOTH_MASKS",
+    "caption_15pct": {
+      "mean_full_retention": 0.866911,
+      "mean_headline_retention": 0.96625,
+      "mean_lower_support_retention": 0.295149,
+      "occupied_masked_scenes": 14,
+      "reference_zone_tokens": 161,
+      "surviving_zone_tokens": 0,
+      "structural_gate_scenes": 0
+    },
+    "player_ui_25pct": {
+      "mean_full_retention": 0.756673,
+      "mean_headline_retention": 0.946477,
+      "mean_lower_support_retention": 0.164207,
+      "occupied_masked_scenes": 14,
+      "reference_zone_tokens": 335,
+      "surviving_zone_tokens": 0,
+      "structural_gate_scenes": 0
+    },
+    "critical_player_ui_25pct": {
+      "scenes": [7, 9, 10, 11, 16],
+      "mean_full_retention": 0.454035,
+      "mean_headline_retention": 0.856,
+      "mean_lower_support_retention": 0.325462,
+      "structural_gate_scenes": 0
+    },
+    "finding": "Bottom caption/UI obstruction preserves the dominant assertion region while removing the occupied lower qualification region. It worsens, rather than repairs, the held candidate's representation failure."
+  },
+  "sealed_v8_disposition": {
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "renderer": "render_proposal_frames.py",
+    "renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+    "obstruction_audit": "qa/pass7_v8_obstruction_audit.json",
+    "obstruction_audit_sha256": "ca07df898082b2238f102edffc7b74f198e1ad3c070ef8198fdb01e7ab32d2f9",
+    "visual_result_held_badge_readability": "7/7_CLEAN__7/7_CAPTION15__7/7_PLAYER_UI25",
+    "generic_hold_survives": true,
+    "exact_scene_specific_boundaries_survive": false,
+    "sealed_v8_modified": false,
+    "v9_created": false,
+    "reason": "S2/S3/S5/S6/S7 lose exact scope or authorization copy and S4 is partly obscured under a bottom-quarter overlay. The generic top badge remains but is not a semantic substitute."
+  },
+  "caption_safe_correction": {
+    "path": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+    "sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f",
+    "type": "SCENE_SPECIFIC_GATE_LINE_ABOVE_BOTTOM_QUARTER",
+    "qa_mockup_builder": "qa/build_pass7_caption_safe_mockup.py",
+    "qa_mockup_builder_sha256": "296cf0d54ed3c9ba28c1bb4b51b471cc9e37136fd4513cd612fc8e1f4ccb8b91",
+    "qa_mockup_receipt": "qa/pass7_caption_safe_mockup/receipt.json",
+    "qa_mockup_receipt_sha256": "bd614040a75908473a916babc0dc337fccc37748c66b065c2ddd8d929a421e81",
+    "clean_contact_sheet_sha256": "7d3652264517b67a9fd62a8bb1221cabc706426c95c8657fe67a89305f6bc0cf",
+    "player_ui_25pct_contact_sheet_sha256": "efa563015cf58cb49286cf9c9bfe4e005a7d935b39c7aacbafbe8ef3bfff316f",
+    "human_visual_result": "PASS_7/7_SPECIFIC_GATE_LINES__7/7_RESULT_HELD_BADGES",
+    "top_75pct_pixel_identity_clean_to_masked": "7/7",
+    "changes_sealed_v8_bytes": false,
+    "authorizes_v9_or_render": false
+  },
+  "pass7_artifacts": {
+    "audit": {
+      "path": "PASS7_ENCODED_FRAME_AUDIT.md",
+      "sha256": "95fb9c0598b143f51bd9bef01206d1d0b212a3397ee8be81e30a572c80385f47"
+    },
+    "extraction_script": {
+      "path": "qa/pass7_obstruction_audit/extract_obstruction_frames.py",
+      "sha256": "d97cb765ea333c49696006ceda983f25ca270d3fedbcef452c8e9c9408ea9b68"
+    },
+    "ocr_script": {
+      "path": "qa/audit_pass7_obstruction_ocr.py",
+      "sha256": "ddc6c0d17d5ba061eb4056bbc9e3833e1315cb02e7cb87d71a7697df73015345"
+    },
+    "v8_obstruction_builder": {
+      "path": "qa/build_pass7_v8_obstruction.py",
+      "sha256": "7acde8575d85ea7851f43fe7ec29399b98502d1dd9e94a53f1fd6e0171a3114b"
+    }
+  },
+  "prohibitions": [
+    "Do not infer scientific status from obstruction persistence or text retention.",
+    "Do not promote the held candidate or any pass-7 QA PNG to a candidate.",
+    "Do not treat the generic RESULT HELD capsule as a substitute for scene-specific boundary copy.",
+    "Do not create v9, render, narrate, publish, wire, deploy, restart, or mutate shared/public assets from this worker seat."
+  ],
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

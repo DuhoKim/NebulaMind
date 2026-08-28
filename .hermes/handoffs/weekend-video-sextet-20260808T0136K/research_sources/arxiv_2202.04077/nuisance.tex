@@ -1,0 +1,38 @@
+
+\begin{table}
+\vspace{3mm}
+\caption{Standardization Parameters and Results}
+% % \makebox[.5\textwidth]{%
+% % \resizebox{.5\textwidth}{!}{
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{lcccccc}
+\toprule
+ \multicolumn{1}{|c}{}& \multicolumn{4}{|c|}{BBC Fit} & \multicolumn{2}{c|}{CosmoSIS Fit}\\ 
+\hline
+ Model & $\alpha$ & $\beta$ & $\sigma_{\rm gray}$ & $\gamma$ & RMS & $ln(\mathcal{L})$\\ 
+\hline
+\vspace{-.2cm}
+\\
+
+BS21 & 0.148(4)& 3.09(4) & 0.00 & $-0.003$(7) & 0.171 & $-1635$\\
+P21 & 0.145(5) & 3.00(5) & 0.00 & 0.019(10) & 0.171 & $-1674$\\
+G10 & 0.153(4) & 2.98(5) & 0.10 & 0.054(7) & 0.173 & $-1676$ \\
+C11 & 0.153(4) & 3.44(6) & 0.12 & 0.053(8) & 0.173 & $-1681$ \\
+
+
+    
+\hline
+\label{tab:nuisance}
+
+
+\end{tabular}
+{\raggedright
+\ \\
+% $^*$~$ln(\mathcal{L}) = \chi^2/2- ln(|\sigma_\mu|)/2$\\
+\textbf{Notes}:~The nuisance parameters, as defined in Eq.~\ref{eq:Tripp} and~\ref{eq:TrippErr} are given here for different assumptions about the intrinsic scatter model, as described in Sec.~\ref{sec:Inputs} (Intrinsic Scatter Model).  That $\sigma_{\rm int}\sim0$ and $\gamma\sim0$ for the BS21 and P21 models are due to modeling the scatter and mass-step as part of the BBC process, which is discussed in further detail in Appendix~\ref{appendix:biascor}.  The BS21 is the baseline choice for intrinsic scatter.  The RMS is given in units of mag. The Hubble diagram likelihood values for each model ($\mathcal{L}$) include an uncertainty normalization term.\\}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% }}
+\end{table}
+

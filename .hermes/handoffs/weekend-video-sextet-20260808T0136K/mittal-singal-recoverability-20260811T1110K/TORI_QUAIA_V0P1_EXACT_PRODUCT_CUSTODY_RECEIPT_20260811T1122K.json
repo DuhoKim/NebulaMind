@@ -1,0 +1,73 @@
+{
+  "scope": "Public Quaia product custody verification for the Mittal-Singal reading assessment only; no scientific estimator or statistic was run.",
+  "zenodo_record": 8060755,
+  "version": "0.1.0",
+  "downloaded_and_verified": {
+    "quaia_G20.0.fits": {
+      "bytes": 99786240,
+      "md5": "42cec6519d139ac5fdcf4f891a68b5d4",
+      "sha256": "87b03f9dc9bd5105c9df85574a890a269a7d404392b3907d15c790082bbf2ef1",
+      "record_byte_match": true,
+      "record_md5_match": true,
+      "table_rows": 755850,
+      "coordinate_columns": ["ra", "dec", "l", "b"]
+    },
+    "quaia_G20.5.fits": {
+      "bytes": 171020160,
+      "md5": "8b816b719e8c8ccd1c0a648b53557ddd",
+      "sha256": "918fbac2aa6303ff627ad356a1663c3401f8326240fbd75c22b29c38ea915a6d",
+      "record_byte_match": true,
+      "record_md5_match": true,
+      "table_rows": 1295502,
+      "coordinate_columns": ["ra", "dec", "l", "b"]
+    },
+    "selection_function_NSIDE64_G20.0.fits": {
+      "bytes": 400320,
+      "md5": "e62df7437156763ee59210976a808e45",
+      "sha256": "f51b40b4ec42bec91f0e8972515247ea6cb06c0c77b6d9af4b97beddb71aa887",
+      "record_byte_match": true,
+      "record_md5_match": true,
+      "healpixels": 49152,
+      "header": {
+        "PIXTYPE": "HEALPIX",
+        "ORDERING": "RING",
+        "NSIDE": 64,
+        "COORDSYS": null,
+        "TFORM1": "1024D"
+      }
+    },
+    "selection_function_NSIDE64_G20.5.fits": {
+      "bytes": 400320,
+      "md5": "d327cafb2011ac4a4ceafb57e7b553f3",
+      "sha256": "24e24bab959806c95ec8330993e4a6a33af053ad8615f7950341a2ea57814cd4",
+      "record_byte_match": true,
+      "record_md5_match": true,
+      "healpixels": 49152,
+      "header": {
+        "PIXTYPE": "HEALPIX",
+        "ORDERING": "RING",
+        "NSIDE": 64,
+        "COORDSYS": null,
+        "TFORM1": "1024D"
+      }
+    }
+  },
+  "public_but_not_used_by_either_paper": {
+    "random_G20.0_10x.fits": {
+      "bytes": 151122240,
+      "md5": "c5d5240d8bf72dbf1d19eebee9dddf2",
+      "content_url_exposed_by_record": true
+    },
+    "random_G20.5_10x.fits": {
+      "bytes": 259113600,
+      "md5": "ba9f7f1428ab27cb28b13e8b4b488457",
+      "content_url_exposed_by_record": true
+    }
+  },
+  "custody_notes": [
+    "Singal explicitly binds Quaia v0.1.0 and DOI 10.5281/zenodo.8060755.",
+    "Mittal does not bind a Zenodo record, filename, checksum, or byte count in the paper; the v0.1.0 linkage is asserted by Singal and supported chronologically, but is not self-bound by Mittal.",
+    "Neither inferential pipeline uses the released random catalogues.",
+    "The selection-map FITS headers do not declare a coordinate system."
+  ]
+}

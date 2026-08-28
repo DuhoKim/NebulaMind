@@ -1,0 +1,59 @@
+{
+  "receipt_id": "TORI_GORU_OVERNIGHT_QUALITY_SWEEP_V3_STOP_VERDICT_20260810T0128K",
+  "created_at_kst": "2026-08-10T01:28:19+09:00",
+  "reviewer": "Tori",
+  "artifact": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/GORU_OVERNIGHT_QUALITY_SWEEP_LEDGER_V3_20260810T0124K.json",
+    "sha256": "c8ac8bd17e08ceacfc3e957e40ac670fb65c065228cb347177f9083d4c8bbe67",
+    "bytes": 116366,
+    "json_parse": "PASS",
+    "top_level_keys": [
+      "receipt_id",
+      "operation_timestamp",
+      "extraction_code",
+      "lanes"
+    ]
+  },
+  "verdict": "PARK_GORU_READING_TIME_LEAD_UNPROVEN_AFTER_V3",
+  "stop_rule": "Hwao set a stop after V3: if V3 was not clean, park i04 as a precisely described unproven lead for morning rather than run a fourth overnight correction.",
+  "passing_checks": [
+    "All five candidate hashes match current custody.",
+    "All ten named timeline/OCR source files exist and their SHA-256 hashes match V3.",
+    "V3 no longer counts visual_action or arbitrary params strings as visible text.",
+    "The sibling rows are linked to actual OCR frame text and frame times."
+  ],
+  "blocking_findings": [
+    {
+      "code": "SPIN_OCR_EXTRACTION_TOTAL_FAILURE",
+      "detail": "All 29 spin cards report measured_visible_word_count=0, ocr_frame_time_seconds=0.0, and empty text. The bound OCR source has 448 nonempty 2-fps frame records; its first records visibly contain many words. Its records name frames such as 0001.jpg rather than carrying the timestamp field V3 expected. The parser failed to derive frame time from the frame index but emitted zeros as measurements instead of a failure state."
+    },
+    {
+      "code": "FULL_FRAME_OCR_IS_NOT_CARD_READING_LOAD",
+      "detail": "For each sibling card, V3 takes the maximum whitespace-token count from the entire 1920x1080 frame. The count includes persistent series chrome, header, method-status banner, navigation rail, subtitles/narration captions, repeated prior state, and OCR noise. It does not isolate newly introduced card copy or distinguish text a viewer has already read and does not need to reread."
+    },
+    {
+      "code": "MAX_OCR_TOKEN_COUNT_SELECTS_NOISE",
+      "detail": "Maximizing raw OCR token count can select the frame with the most OCR fragmentation or hallucinated glyphs rather than the frame with the most readable copy. Stored examples contain corrupted fragments and decorative glyphs counted as words. No OCR-confidence, de-duplication, renderer allowlist, or manual exact-copy cross-check is applied."
+    },
+    {
+      "code": "EXTRACTION_CODE_NOT_RECEIPTED",
+      "detail": "The extraction_code field is a prose sentence, not executable code, command, hash, runtime, or output manifest. The operation cannot be independently replayed from V3."
+    },
+    {
+      "code": "REQUESTED_DECISIONS_AND_POLICY_ABSENT",
+      "detail": "V3 has no seven-surface consistency matrix, no gate-safe decisions, no reading-rate policy, no derived reading-time or defect fields, no motion sample series/run boundaries, and no packet manifest. It is a partial OCR ledger, not the requested overnight quality packet."
+    }
+  ],
+  "overnight_disposition": {
+    "run_v4_or_more_iterations_tonight": false,
+    "i04_and_36_card_leads": "PARKED_UNPROVEN_FOR_MORNING",
+    "yui_may_act_from_v1_v2_or_v3": false,
+    "new_quality_candidate_authorized": false,
+    "exact_hash_regate_triggered": false,
+    "current_passing_candidates_may_be_overwritten": false,
+    "current_cockpit_links_may_change": false,
+    "sibling_why_study_rollout_remains_held": true,
+    "accepted_by_duho": false
+  },
+  "safe_morning_next_step": "Define card reading load before measuring it: separate persistent series chrome, text newly introduced on the card, subtitles, and prior-state labels; bind renderer draw calls to exact frame/OCR evidence; then choose and disclose a reading-rate policy. Do not reuse the V1/V2/V3 defect magnitudes."
+}

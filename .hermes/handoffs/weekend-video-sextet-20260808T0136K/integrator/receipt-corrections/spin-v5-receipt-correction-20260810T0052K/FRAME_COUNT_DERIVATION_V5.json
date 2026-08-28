@@ -1,0 +1,165 @@
+{
+  "derivation_receipt_id": "SPIN_V5_FRAME_COUNT_DERIVATION_20260810T0052K",
+  "created_at_kst": "2026-08-10T00:52:24+09:00",
+  "purpose": "Correct the self-description defect in the V4 build receipt without changing or rebuilding the encoded candidate.",
+  "exact_candidate": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "bytes": 25486290,
+    "sha256_before_v5_measurement": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "sha256_after_v5_measurement": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "unchanged": true,
+    "reencode_or_render_performed": false
+  },
+  "governing_blocker": {
+    "tori_adjudication": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/TORI_SPIN_WHY_STUDY_V4_EXACT_HASH_ADJUDICATION_20260810T0041K.json",
+    "tori_adjudication_sha256": "4a8acaaf91722eed6e9f833f641d33789d79c31add6d755f3928a6f1362cfb2f",
+    "code": "BUILD_RECEIPT_FRAME_COUNT_IS_NOT_THE_ENCODED_FRAME_COUNT",
+    "original_build_receipt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/build_receipt.json",
+    "original_build_receipt_sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22",
+    "original_unqualified_field": {
+      "name": "frame_count",
+      "value": 6727,
+      "defect": "The scalar names the number of generated raw frames submitted to ffmpeg but is unqualified, so it can be misread as the encoded artifact frame count."
+    }
+  },
+  "raw_frames_submitted_to_ffmpeg": {
+    "value": 6727,
+    "semantic_scope": "Generated RGB24 raw frames written to ffmpeg stdin; not the encoded H.264 stream frame count.",
+    "producing_operation": "frame_count = math.ceil(DURATION * FPS); for frame_index in range(frame_count): process.stdin.write(draw_frame(frame_index / FPS).tobytes())",
+    "inputs": {
+      "pcm_derived_audio_duration_seconds": 224.21739583333334,
+      "fps": 30,
+      "calculation": "ceil(224.21739583333334 * 30)",
+      "calculated_value": 6727
+    },
+    "source": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/build.py",
+      "sha256": "639f9e477904ab0117144d5722831ada0a58a9a1d43c5fca13bd8d54a4a96864",
+      "relevant_lines": {
+        "frame_count_calculation": 869,
+        "ffmpeg_shortest_option": 912,
+        "submission_loop": [918, 923],
+        "legacy_unqualified_receipt_assignment": 959
+      },
+      "readback_checks": {
+        "ceil_expression_present": true,
+        "range_submits_exact_count": true,
+        "raw_rgb_write_present": true,
+        "ffmpeg_shortest_present": true,
+        "unqualified_v4_receipt_assignment_present": true
+      }
+    },
+    "original_producing_operation_time": {
+      "time_basis": "Filesystem evidence because the V4 receipt omitted an explicit operation timestamp.",
+      "workspace_output_file_birth_kst": "2026-08-10T00:14:06.339051+09:00",
+      "workspace_output_file_mtime_kst": "2026-08-10T00:15:26.233361+09:00",
+      "workspace_build_receipt_mtime_kst": "2026-08-10T00:15:26.315130+09:00",
+      "bounded_operation_interval_kst": "2026-08-10T00:14:06.339051+09:00 through 2026-08-10T00:15:26.315130+09:00",
+      "interpretation": "The output file birth marks encoder-output creation; output and receipt mtimes bound render/encode completion. This is explicit evidence, not a fabricated original start timestamp."
+    },
+    "v5_rederivation_operation": {
+      "executed_at_kst": "2026-08-10T00:52:06.119379+09:00",
+      "operation": "Read final PCM-derived timeline duration and fps, evaluate math.ceil(duration * fps), and statically verify the submission loop in exact build.py bytes.",
+      "result": 6727
+    }
+  },
+  "encoded_video_frames": {
+    "value": 6726,
+    "semantic_scope": "Frames present in the final H.264 video stream of the exact MP4.",
+    "producing_operation": "ffmpeg consumed 6727 RGB24 frames and the final PCM audio, encoded H.264/AAC, and applied -shortest; the encoded video stream contains 6726 frames.",
+    "original_producing_operation_time": {
+      "time_basis": "Same filesystem-bounded original render/encode interval as the raw submission operation.",
+      "bounded_operation_interval_kst": "2026-08-10T00:14:06.339051+09:00 through 2026-08-10T00:15:26.315130+09:00"
+    },
+    "ffprobe_count_frames_measurement": {
+      "started_at_kst": "2026-08-10T00:52:06.132413+09:00",
+      "ended_at_kst": "2026-08-10T00:52:13.419553+09:00",
+      "operation": "ffprobe -count_frames on video stream 0, requesting nb_frames and nb_read_frames.",
+      "command_argv": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-count_frames",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "stream=index,codec_name,r_frame_rate,duration,nb_frames,nb_read_frames:format=duration,size",
+        "-of",
+        "json",
+        "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4"
+      ],
+      "results": {
+        "nb_frames": 6726,
+        "nb_read_frames": 6726,
+        "video_stream_duration_seconds": 224.2,
+        "container_duration_seconds": 224.217,
+        "container_size_bytes": 25486290
+      }
+    },
+    "independent_full_decode_measurement": {
+      "started_at_kst": "2026-08-10T00:52:13.419605+09:00",
+      "ended_at_kst": "2026-08-10T00:52:15.182363+09:00",
+      "operation": "Decode the full H.264 stream, scale each decoded frame to one 8-bit grayscale pixel, disable frame duplication/drop with -vsync 0, and count output bytes; one byte equals one decoded frame.",
+      "command_argv": [
+        "ffmpeg",
+        "-hide_banner",
+        "-loglevel",
+        "error",
+        "-i",
+        "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+        "-map",
+        "0:v:0",
+        "-vf",
+        "scale=1:1,format=gray",
+        "-vsync",
+        "0",
+        "-f",
+        "rawvideo",
+        "pipe:1"
+      ],
+      "decoded_output_bytes": 6726,
+      "decoded_video_frames": 6726,
+      "decoder_stderr": "",
+      "result": "PASS"
+    }
+  },
+  "tool_identity": {
+    "measured_at_kst": "2026-08-10T00:52:24+09:00",
+    "ffprobe": {
+      "path": "/opt/homebrew/bin/ffprobe",
+      "sha256": "4322275c1c2ac6ba15c695b288788bc1204e75211b3d5c030e5812c82a6dff73",
+      "version": "8.1.2"
+    },
+    "ffmpeg": {
+      "path": "/opt/homebrew/bin/ffmpeg",
+      "sha256": "1332dc2de372bade9a8a63da0d6cdfab9de97fcefbae707bcc0b0506e1203327",
+      "version": "8.1.2"
+    }
+  },
+  "duration_readback": {
+    "encoded_video_stream_seconds": 224.2,
+    "container_seconds": 224.217,
+    "pcm_master_seconds": 224.21739583333334,
+    "pcm_minus_video_seconds": 0.01739583333335304,
+    "frame_period_at_30fps_seconds": 0.03333333333333333,
+    "media_impact": "No corruption. The delta is less than one frame period, and Tori independently confirmed the final encoded frame is complete and gated."
+  },
+  "self_description_correction": {
+    "incorrect_or_ambiguous": "frame_count = 6727",
+    "correct_qualified_pair": {
+      "raw_frames_submitted_to_ffmpeg": 6727,
+      "encoded_video_frames": 6726
+    },
+    "explanation": "Both scalars are true about different operations. V5 preserves both and qualifies each rather than silently replacing 6727 with 6726."
+  },
+  "closed_gates": {
+    "candidate_rebuilt": false,
+    "candidate_reencoded": false,
+    "candidate_mp4_mutated": false,
+    "upload_or_publication": false,
+    "public_or_frontend_mutation": false,
+    "cockpit_mutation_by_yui_v5_correction": false,
+    "database_or_deploy_or_git_or_config_mutation": false,
+    "human_acceptance_conferred": false
+  }
+}

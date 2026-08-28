@@ -1,0 +1,402 @@
+{
+  "status": "V12_GENERATION_CLOSED_TEN_STILL_CALLS_AUDITED_FAIL_CLOSED",
+  "created_at_utc": "2026-08-13T08:33:48.042932+00:00",
+  "provider_route": "Nous-managed image_generate; active model reported by tool surface as FLUX 2 Klein 9B",
+  "generation_call_count": 10,
+  "generated_video_call_count": 0,
+  "monetary_cost": {
+    "amount": null,
+    "currency": null,
+    "status": "NOT_REPORTED_BY_TOOL_DO_NOT_INVENT"
+  },
+  "new_calls_permitted_after_ledger": false,
+  "boundary": {
+    "generated_quantitative_pixels": false,
+    "generated_on_screen_text": false,
+    "real_people_or_facilities": false,
+    "observation_or_survey_like_images": false,
+    "all_semantic_motion_local": true,
+    "cards_04_05_generated_pixels": false
+  },
+  "calls": [
+    {
+      "id": "g01",
+      "purpose": "Card 01 book/roads/gate world, first attempt",
+      "file": "card01-road-gate-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa625d9/PaJQvfYW4TjK3B0Rwn2ng_R8py5njU.png",
+      "prompt": "Stylized painterly open book, two diverging roads, checkable star, galaxy fog, intact gate; no people, facilities, observation-like imagery, charts, axes, scales, numbers, letters, words, labels, logos, or watermark.",
+      "disposition": "REJECTED_FULL_FRAME",
+      "reason": "Safe illustration boundary, but the book did not visibly produce two roads; blur-test claim failed.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card01-road-gate-raw.png",
+      "sha256": "be59af10e0a12d7705624d1cb8078b078aa2be9dfa22b0bac23c721b346059f9",
+      "bytes": 901644,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g02",
+      "purpose": "Card 02 five-proposal icon sheet, first attempt",
+      "file": "card02-five-ideas-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa625d9/3VT4y4tuWYU1rQMvNPQ04_U4ei785X.png",
+      "prompt": "Five isolated painterly metaphors: nested universe, collapse bounce, handed-down spin, universe family tree, unlike fingerprints; no text, data, facilities, observations, or quantitative geometry.",
+      "disposition": "PARTIAL_ACCEPT_CROPS_ONLY",
+      "reason": "Nested universe, family tree, and fingerprint regions passed; bounce resembled a meteor and single top failed inheritance.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card02-five-ideas-raw.png",
+      "sha256": "64f38318c307f156ca5601c1e8dae5412c75d6b21a675888e67c432977ebdc43",
+      "bytes": 886375,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g03",
+      "purpose": "Card 03 dartboard/orb prop tableau",
+      "file": "card03-dartboard-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa625d9/faV4286NJvPMOVTv2SkqK_BBdZG5YU.png",
+      "prompt": "Painterly dartboard, darts, two glowing orbs with negative space; no humans, text, numbers, labels, charts, scales, data, facilities, or observations.",
+      "disposition": "REJECTED_FULL_FRAME",
+      "reason": "Model invented a visible M on the dartboard. V12 dartboard and orbs are rebuilt locally.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card03-dartboard-raw.png",
+      "sha256": "a8d9ccb89c1f99578a42ea5f77487456a946e11677e976f7fae2c055401a93d3",
+      "bytes": 877617,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g04",
+      "purpose": "Card 01 book/two-road/gate world, replacement",
+      "file": "card01-road-gate-r2-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa625e1/bE-bez_gGUZHU4UlnRyfX_asv7K1oM.png",
+      "prompt": "Open book as common origin of exactly two Y-forking roads: open star road and galaxy-fog road spanned by intact gate; no people, facilities, observations, charts, numbers, letters, text, labels, or watermark.",
+      "disposition": "RETAINED_NOT_USED_IN_FINAL",
+      "reason": "The still passed the static boundary, but its already-closed gate conflicted with verdict-time reveal chronology. A local mask produced visible blobs, so the final Card 01 is entirely local deterministic art.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card01-road-gate-r2-raw.png",
+      "sha256": "48e7a5433c552379a96a109a10be997755c736b4bf7b093254f66c813dd11d32",
+      "bytes": 939402,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g05",
+      "purpose": "Card 02 bounce and inherited-spin replacement props",
+      "file": "card02-bounce-spin-r2-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa625e1/cxrH936FOedOjofkx1d5t_QqISe48G.png",
+      "prompt": "Two isolated painterly icons: squash-and-rebound ball; parent and child spinning tops; no humans, text, numbers, data, facilities, observations, or charts.",
+      "disposition": "PARTIAL_ACCEPT_CROPS_ONLY",
+      "reason": "Bounce and both top props passed. Painted handoff arrow is excluded; handoff motion is drawn locally.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card02-bounce-spin-r2-raw.png",
+      "sha256": "00f5cfe6cb66b7065783699de280a1fe233662d2994e526cdcc8175740120b62",
+      "bytes": 455095,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g06",
+      "purpose": "Card 06 fork-road atmosphere",
+      "file": "card06-fork-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa62636/UcmvhGBTIV_SIK9meQoxQ_3G9YUrmP.png",
+      "prompt": "Illustrative fork road, blank signpost, stopped abstract marker; no person, text, numbers, data, axes, facilities, observations, or watermark.",
+      "disposition": "PARTIAL_ACCEPT_BACKGROUND_ONLY",
+      "reason": "Road fork and atmosphere passed. Generated rectangular sign is covered; local two-arm sign and quotations carry semantics.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card06-fork-raw.png",
+      "sha256": "f625d6d0f2ccd32a5a8de4d23b33a919a6bc59ad4a895c82ec7e8c263f4b63e2",
+      "bytes": 1015569,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g07",
+      "purpose": "Cards 07/08 galaxy and empty-prop sheet",
+      "file": "card07-08-props-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa62648/SzyWaMKQjebIy9pz-ZmKl_H4V9cBca.png",
+      "prompt": "Six stylized galaxy icons and blank ruler/map/needleless compass/needleless meter props; no text, numbers, marks, observations, or facilities.",
+      "disposition": "PARTIAL_ACCEPT_GALAXIES_ONLY",
+      "reason": "Six galaxy icons passed. Ruler ticks, compass letters/needle, meter ticks/needle and PASS text violated prompt and are excluded.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card07-08-props-raw.png",
+      "sha256": "3f642ad4c4f0ed9a8bd6caa38974d0625d2d05434e44275b4df14da564195fd6",
+      "bytes": 680664,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g08",
+      "purpose": "Card 09 footprint and three possible makers",
+      "file": "card09-footprint-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa62636/_Ljt0QU1WKqTi3Ox-AN6L_bOWBCEha.png",
+      "prompt": "One footprint with exactly three different unlabeled fictional animal silhouettes; no text, numbers, charts, facilities, observations, or watermark.",
+      "disposition": "ACCEPTED_WHOLE",
+      "reason": "Exactly one trace and three visibly distinct possible makers; sound-off underdetermination reads without text.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card09-footprint-raw.png",
+      "sha256": "94c834cd336d85af42b8e271f837a6b51ccc375986585940bbd8fe91c8cf7b51",
+      "bytes": 845732,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g09",
+      "purpose": "Card 11 keys and unequal-stack token",
+      "file": "card11-keys-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa62636/vZcyF0YO4Eo7qRLluQPCD_r9fiR6EV.png",
+      "prompt": "Ruler-range key without ticks, fingerprint key, unequal galaxy-stack token; no text, numbers, scales, data, facilities, observations, or watermark.",
+      "disposition": "REJECTED_FULL_FRAME",
+      "reason": "Ruler received generated ticks and was not a key; stack did not encode the intended unequal callback. Card 11 is local deterministic art.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card11-keys-raw.png",
+      "sha256": "9280d98425e20184fc44221dca5c55e901e70f060c615a6c59460c91822eeeeb",
+      "bytes": 389487,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    },
+    {
+      "id": "g10",
+      "purpose": "Card 08 timeline and empty-slot props",
+      "file": "card08-timeline-props-raw.png",
+      "url": "https://v3b.fal.media/files/b/0aa62649/7YOs4UrvwXDhjpb8v6DIM_hRpaAWny.png",
+      "prompt": "Blank photo-frame icons, later paper/speech bubble, four empty props; no text, numbers, ticks, needles, facilities, observations, or watermark.",
+      "disposition": "PARTIAL_ACCEPT_TOP_PROPS_ONLY",
+      "reason": "Blank photo icons and speech bubble passed. Bottom ruler/map/compass/meter contain marks, needles, letters, PASS, and Local Year text; all excluded.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/generated_assets/card08-timeline-props-raw.png",
+      "sha256": "94c4ea62c3c76e2f75750e40f60db4a11fbc04ef13bc231144807186664c524b",
+      "bytes": 576927,
+      "pixel_size": [
+        1024,
+        576
+      ]
+    }
+  ],
+  "prepared_assets": [
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card01_final.png",
+      "sha256": "1278e15e286ca75a0a06c209b98b3576c348ec5dd8779965e05cffb5c4ea22e4",
+      "bytes": 782677,
+      "source_raw": "card01-road-gate-r2-raw.png",
+      "source_raw_sha256": "48e7a5433c552379a96a109a10be997755c736b4bf7b093254f66c813dd11d32",
+      "crop_box": [
+        0,
+        0,
+        1024,
+        576
+      ],
+      "pixel_size": [
+        1024,
+        576
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card02_nested.png",
+      "sha256": "4799327cd6b59d90c12d5962f370df76931e92fe10360c1ef17752b910c25fba",
+      "bytes": 124176,
+      "source_raw": "card02-five-ideas-raw.png",
+      "source_raw_sha256": "64f38318c307f156ca5601c1e8dae5412c75d6b21a675888e67c432977ebdc43",
+      "crop_box": [
+        35,
+        20,
+        350,
+        300
+      ],
+      "pixel_size": [
+        315,
+        280
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card02_family.png",
+      "sha256": "02270d34308c450ed5c56d67e6fec30749238d66e7fccaa9c38047c43528a217",
+      "bytes": 136861,
+      "source_raw": "card02-five-ideas-raw.png",
+      "source_raw_sha256": "64f38318c307f156ca5601c1e8dae5412c75d6b21a675888e67c432977ebdc43",
+      "crop_box": [
+        25,
+        260,
+        395,
+        576
+      ],
+      "pixel_size": [
+        370,
+        316
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card02_fingerprints.png",
+      "sha256": "6343c5e9d0f0758929ca49f31474a26efacf1db1375272a61601c07609515dbd",
+      "bytes": 234019,
+      "source_raw": "card02-five-ideas-raw.png",
+      "source_raw_sha256": "64f38318c307f156ca5601c1e8dae5412c75d6b21a675888e67c432977ebdc43",
+      "crop_box": [
+        500,
+        270,
+        1024,
+        576
+      ],
+      "pixel_size": [
+        524,
+        306
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card02_bounce.png",
+      "sha256": "7d2e0bf16ebd51dbeeade00c5f47ba0d377fc588a5b39cf66eb8d11b7104b66c",
+      "bytes": 175380,
+      "source_raw": "card02-bounce-spin-r2-raw.png",
+      "source_raw_sha256": "00f5cfe6cb66b7065783699de280a1fe233662d2994e526cdcc8175740120b62",
+      "crop_box": [
+        0,
+        35,
+        500,
+        560
+      ],
+      "pixel_size": [
+        500,
+        525
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card02_parent_top.png",
+      "sha256": "e27b87278e5ce155991a3d601bba82ac4e62738353695187469d76f01d112abf",
+      "bytes": 81780,
+      "source_raw": "card02-bounce-spin-r2-raw.png",
+      "source_raw_sha256": "00f5cfe6cb66b7065783699de280a1fe233662d2994e526cdcc8175740120b62",
+      "crop_box": [
+        520,
+        140,
+        810,
+        480
+      ],
+      "pixel_size": [
+        290,
+        340
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card02_child_top.png",
+      "sha256": "94441a10582647c12b674f4afd4b1509dfb38dd6c59f0243cdcb857b20097275",
+      "bytes": 39022,
+      "source_raw": "card02-bounce-spin-r2-raw.png",
+      "source_raw_sha256": "00f5cfe6cb66b7065783699de280a1fe233662d2994e526cdcc8175740120b62",
+      "crop_box": [
+        800,
+        215,
+        1024,
+        465
+      ],
+      "pixel_size": [
+        224,
+        250
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card06_fork_background.png",
+      "sha256": "2b0a816ca4a603d22e373b7226112faba06fa40abaf75042b0e4d2ebd28b53b1",
+      "bytes": 866023,
+      "source_raw": "card06-fork-raw.png",
+      "source_raw_sha256": "f625d6d0f2ccd32a5a8de4d23b33a919a6bc59ad4a895c82ec7e8c263f4b63e2",
+      "crop_box": [
+        0,
+        0,
+        1024,
+        576
+      ],
+      "pixel_size": [
+        1024,
+        576
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card07_galaxies.png",
+      "sha256": "4f42d15417ba1261a1997724f1ce96feda6ed93355cf42cef901e0393358a962",
+      "bytes": 360826,
+      "source_raw": "card07-08-props-raw.png",
+      "source_raw_sha256": "3f642ad4c4f0ed9a8bd6caa38974d0625d2d05434e44275b4df14da564195fd6",
+      "crop_box": [
+        0,
+        0,
+        520,
+        576
+      ],
+      "pixel_size": [
+        520,
+        576
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card08_photos.png",
+      "sha256": "a7660917cb814e4b04374163b9b5d3aa0a25308b460624eb1c84c907258db881",
+      "bytes": 95843,
+      "source_raw": "card08-timeline-props-raw.png",
+      "source_raw_sha256": "94c4ea62c3c76e2f75750e40f60db4a11fbc04ef13bc231144807186664c524b",
+      "crop_box": [
+        0,
+        0,
+        520,
+        325
+      ],
+      "pixel_size": [
+        520,
+        325
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card08_bubble.png",
+      "sha256": "47eb5d6611e3771daa609c9037dae11440c659854aa884799b1dde06aff51797",
+      "bytes": 88704,
+      "source_raw": "card08-timeline-props-raw.png",
+      "source_raw_sha256": "94c4ea62c3c76e2f75750e40f60db4a11fbc04ef13bc231144807186664c524b",
+      "crop_box": [
+        520,
+        0,
+        1024,
+        325
+      ],
+      "pixel_size": [
+        504,
+        325
+      ],
+      "semantic_motion_or_text_authority": false
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/bhu-v12-render-20260813T1657K/assets/generated_prepared/card09_final.png",
+      "sha256": "1ffb72b5aca2bf810519ca39a2244ac39c23c4cb0da54b72b8a70ff06d5ef185",
+      "bytes": 703189,
+      "source_raw": "card09-footprint-raw.png",
+      "source_raw_sha256": "94c834cd336d85af42b8e271f837a6b51ccc375986585940bbd8fe91c8cf7b51",
+      "crop_box": [
+        0,
+        0,
+        1024,
+        576
+      ],
+      "pixel_size": [
+        1024,
+        576
+      ],
+      "semantic_motion_or_text_authority": false
+    }
+  ],
+  "excluded_raw_files_retained_for_audit": true
+}

@@ -1,0 +1,188 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass15-geometry-20260808T100524K",
+  "created_at": "2026-08-08T10:05:24+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "anisotropic-geometry resilience for any future Hwao-authored method-only iteration",
+  "simulation_limit": "Centered anisotropic Pillow LANCZOS resampling with black padding. Scale factors are packet parameters, not claims about a named display, player, projector, codec, browser, delivery platform, service, room, viewer, or pixel-aspect standard.",
+  "base": {
+    "sealed_iteration": "v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "render_receipt": "proposal_frames/v8/render_receipt.json",
+    "render_receipt_sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+    "pass12_correction": "SHARPNESS_RESILIENCE_STORYBOARD_CORRECTION_PASS12.json",
+    "pass12_correction_sha256": "1312ea54aa860473ff57e3c47e8305ecca8630ba1f6a998a6e02d9aea9999422",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "transform_contract": {
+    "source_mode": "RGB",
+    "canvas": "1920x1080",
+    "resampler": "Pillow LANCZOS",
+    "padding": "centered black RGB",
+    "variants": {
+      "squeeze_x90": {"scale_x": 0.9, "scale_y": 1.0, "offset_x": 96, "offset_y": 0, "apparent_circle_width_to_height_ratio": 0.9, "apparent_slope_multiplier": 1.111111},
+      "squeeze_y90": {"scale_x": 1.0, "scale_y": 0.9, "offset_x": 0, "offset_y": 54, "apparent_circle_width_to_height_ratio": 1.111111, "apparent_slope_multiplier": 0.9},
+      "squeeze_x80": {"scale_x": 0.8, "scale_y": 1.0, "offset_x": 192, "offset_y": 0, "apparent_circle_width_to_height_ratio": 0.8, "apparent_slope_multiplier": 1.25},
+      "squeeze_y80": {"scale_x": 1.0, "scale_y": 0.8, "offset_x": 0, "offset_y": 108, "apparent_circle_width_to_height_ratio": 1.25, "apparent_slope_multiplier": 0.8}
+    },
+    "operational_variants": ["squeeze_x90", "squeeze_y90"],
+    "characterization_variants": ["squeeze_x80", "squeeze_y80"],
+    "canvas_change": false
+  },
+  "fresh_candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "extraction_script": "qa/extract_pass15_geometry_frames.py",
+    "extraction_script_sha256": "219c74e68249259b852481e4032b4f8947d1d2568b91f1040f359139d4cbf46a",
+    "extraction_receipt": "qa/pass15_geometry_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "358630f299fbb985273f4ecfd77bb2a8783fa341716be3a97d53edba12e4bb39",
+    "quantitative_audit": "qa/pass15_geometry_quantitative_audit.json",
+    "quantitative_audit_sha256": "ed0637fc1e262bfebad89efc36178f6f9e2c5d51c774f2bd745d4052edabf621",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS14_CUT_TIMES",
+    "fresh_clean_midpoint_reproduction": "16/16_PASS14_CLEAN_BYTE_IDENTICAL",
+    "variant_count": 5,
+    "frame_count": 80,
+    "operational_x90": {
+      "headline_token_recall_vs_clean": 0.993606,
+      "full_token_recall_vs_clean": 0.974214,
+      "lower_support_token_recall_vs_clean": 0.969307,
+      "numeric_token_recall_vs_clean": 0.948665,
+      "backprojected_rgb_psnr_db": 42.617802,
+      "backprojected_tolerant_luma_edge_recall": 0.998501,
+      "structural_gate_scene_count": 0
+    },
+    "operational_y90": {
+      "headline_token_recall_vs_clean": 0.940701,
+      "full_token_recall_vs_clean": 0.974387,
+      "lower_support_token_recall_vs_clean": 0.971565,
+      "numeric_token_recall_vs_clean": 0.948665,
+      "backprojected_rgb_psnr_db": 42.957942,
+      "backprojected_tolerant_luma_edge_recall": 0.997947,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_scenes_7_9_10_11_16": {
+      "x90_headline_token_recall": 0.993333,
+      "x90_full_token_recall": 0.937731,
+      "y90_headline_token_recall": 0.903137,
+      "y90_full_token_recall": 0.943786,
+      "x90_structural_gate_scene_count": 0,
+      "y90_structural_gate_scene_count": 0
+    },
+    "characterization_x80_y80": {
+      "x80_headline_token_recall": 0.991523,
+      "x80_full_token_recall": 0.963045,
+      "y80_headline_token_recall": 0.90948,
+      "y80_full_token_recall": 0.963474,
+      "x80_structural_gate_scene_count": 0,
+      "y80_structural_gate_scene_count": 0,
+      "human_visual_finding": "Large result headlines, numbers, bars, matrices, plots, and conclusion hierarchy remain primary. Shape ratios, slopes, bar widths, circle/spiral aspect, spacing, arrows, axes, error bars, and small caption/provenance geometry are distorted and cannot be sole scientific carriers."
+    },
+    "finding": "The failed candidate remains visually assertive and acquires no held/status gate under either operational transform. Anisotropic deformation cannot repair or authorize it."
+  },
+  "method_only_evidence": {
+    "derivative_builder": "qa/build_pass15_v8_geometry.py",
+    "derivative_builder_sha256": "d7798af275492da421ffab92c8c03b554b19020cf8877c5166d1b1a12d86de00",
+    "derivative_receipt": "qa/pass15_v8_geometry/receipt.json",
+    "derivative_receipt_sha256": "6cba852331bb78caeb043176e2795637eb55cfcf9366fe18614fd9ca73577ffc",
+    "group_count": 3,
+    "derived_scene_count": 21,
+    "derived_frame_count": 105,
+    "sealed_v8_operational": {
+      "x90_headline_token_recall": 0.97835,
+      "x90_full_token_recall": 0.961629,
+      "y90_headline_token_recall": 0.915323,
+      "y90_full_token_recall": 0.943667,
+      "x90_result_held_badges_visual": "7/7",
+      "y90_result_held_badges_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe_operational": {
+      "x90_scene_specific_gate_lines_visual": "7/7_EXACT",
+      "y90_scene_specific_gate_lines_visual": "7/7_EXACT",
+      "x90_scene_specific_gate_lines_single_pass_regex_ocr": "6/7",
+      "y90_scene_specific_gate_lines_single_pass_regex_ocr": "6/7",
+      "result_held_badges_visual": "7/7_BOTH_VARIANTS"
+    },
+    "pass12_sharpness_safe_operational": {
+      "x90_scene_specific_gate_lines_visual": "7/7_EXACT",
+      "y90_scene_specific_gate_lines_visual": "7/7_EXACT",
+      "x90_gate_character_similarity_at_least_0_85": "7/7",
+      "y90_gate_character_similarity_at_least_0_85": "7/7",
+      "x90_mean_gate_character_similarity": 1.0,
+      "y90_mean_gate_character_similarity": 1.0,
+      "result_held_badges_visual": "7/7_BOTH_VARIANTS",
+      "overlap_clipping_or_semantic_ambiguity": false
+    },
+    "characterization_x80_y80": {
+      "pass12_x80_gate_lines_visual": "7/7_EXACT",
+      "pass12_y80_gate_lines_visual": "7/7_EXACT",
+      "pass12_x80_gate_character_similarity_at_least_0_85": "7/7",
+      "pass12_y80_gate_character_similarity_at_least_0_85": "7/7",
+      "pass12_x80_mean_gate_character_similarity": 1.0,
+      "pass12_y80_mean_gate_character_similarity": 1.0,
+      "pass12_result_held_badges_visual": "7/7_BOTH_VARIANTS",
+      "required_method_or_status_meaning_ambiguous": false,
+      "note": "Exact text and direct labels survive. Geometric ratios, apparent slope, shape aspect, spacing, line angle, and area are characterization-only and not acceptance-reliable without numerical/direct labels."
+    },
+    "finding": "The pass-12 strengthened proof already preserves every exact gate, badge, and required method/status distinction under both operational and both characterization transforms."
+  },
+  "operational_acceptance_floor": {
+    "variants": "centered x90 and y90 anisotropic Pillow LANCZOS resampling on a native 1920x1080 RGB canvas",
+    "role": "packet-specific integration review floor, not a universal delivery, display, player, browser, projector, room, service, or pixel-aspect standard",
+    "requirements": [
+      "Seven of seven exact strengthened scene-specific gate lines remain visually readable and reach at least 0.85 normalized character similarity under the mapped cropped multi-PSM aid.",
+      "Seven of seven complete RESULT HELD capsules remain visually readable under both x90 and y90.",
+      "Large RESULT LOCKED, FRAME UNSTATED, OUTCOMES WITHHELD, and RESULT STATUS HELD boundaries remain primary.",
+      "Header, gate, badge, headline, cards, and diagrams remain separated with no clipping or semantic ambiguity.",
+      "Branches, arrows, borders, connectors, condition rails, status columns, equation terms, and qualifiers retain direct text labels.",
+      "No required scientific comparison, interpretation, ordering, uncertainty, branch distinction, or status boundary is carried only by apparent slope, angle, circle or spiral aspect, bar width or length, area, spacing, proximity, line thickness, or geometric ratio.",
+      "Plot axes, units, values, error bars, and comparison thresholds require direct readable labels; the geometry may reinforce but may not replace those labels.",
+      "Human full-sheet and full-resolution review remains decisive; OCR, inverse-resampling, and geometry metrics are aids only."
+    ]
+  },
+  "characterization_only": {
+    "variants": ["squeeze_x80", "squeeze_y80"],
+    "role": "diagnostic geometry-dependence characterization; not mandatory acceptance thresholds",
+    "reason": "The arbitrary 0.80 axis factors reveal reliance on shape and proportion but represent no named delivery or viewing system."
+  },
+  "cumulative_regression_requirements": [
+    "Keep the pass-7 scene-specific gates above the bottom-quarter obstruction zone.",
+    "Keep pass-8 direct-label and non-hue redundancy.",
+    "Keep complete semantic containers inside the pass-9 inner-five-percent title-safe rectangle.",
+    "Meet the pass-10 operational 20-percent black-lift floor.",
+    "Meet the pass-11 operational Pillow JPEG q60 4:2:0 floor.",
+    "Meet the pass-12 operational GaussianBlur radius-1.5 floor and strengthened title-safe gate geometry.",
+    "Meet the pass-13 centered horizontal width-7 directional-smear floor.",
+    "Meet the pass-14 integer-luma dark-tone floor-16 review.",
+    "Rerun geometry, dark-tone, directional-smear, defocus, recompression, black-lift, crop, color/monochrome, obstruction, and 360p reviews after an authorized layout change."
+  ],
+  "disposition": {
+    "new_pixel_change_requested": false,
+    "new_copy_change_requested": false,
+    "non_pixel_integration_guard_added": true,
+    "reason": "The pass-12 strengthened proof preserves all seven exact gates, all seven badges, and every required method/status distinction under both operational and severe characterization geometry transforms; further worker-side visual change would be cosmetic rather than evidence-backed.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may apply this non-pixel geometry guard cumulatively with passes 7 through 14. Any actual layout change remains a separately reviewed integrator action. This guard is not v9 and changes no sealed or proof pixel.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

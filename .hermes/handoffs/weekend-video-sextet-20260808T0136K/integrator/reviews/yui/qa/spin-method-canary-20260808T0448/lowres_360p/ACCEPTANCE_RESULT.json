@@ -1,0 +1,16 @@
+{
+  "test": "360p representation-boundary acceptance test",
+  "guard_source": "lane-spin-parity/worker-yui/LOW_RESOLUTION_REPRESENTATION_GUARD_PASS6.json (guard_id spin-worker-yui-pass6-low-resolution-representation-guard-20260808T052140K)",
+  "target": "integrator/canaries/spin-method-canary-20260808T0448 (canary v8, sha 7baaa40e\u2026)",
+  "run_at": "2026-08-08T05:28:00+09:00",
+  "method": "11 state-midpoint frames extracted from the encoded MP4 at 640x360; tiled contact sheet; human visual review (OCR auxiliary per the guard's own finding)",
+  "checks": {
+    "badge_readable_all_states": "PASS \u2014 RESULT HELD capsule legible on 11/11 states",
+    "hold_in_headline_scale_or_capsule": "PASS \u2014 boundary carried by the persistent capsule plus card-2/card-10 headline copy",
+    "gate_not_carried_by_small_copy": "PASS \u2014 figure captions/citations blur at 360p but carry provenance, not the gate",
+    "result_content_downscale_asymmetry": "PASS trivially \u2014 no result values, plots, or silhouettes exist in the deck",
+    "blank_or_badge_free_transition_frames": "PASS \u2014 hard cuts between fully-badged static cards; no transition frames exist"
+  },
+  "verdict": "PASS",
+  "evidence": "lowres_360p/state_01..11_360p.png + contact_sheet_360p.png"
+}

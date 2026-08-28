@@ -1,0 +1,113 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass16-blockers-20260808T103416K",
+  "checked_at": "2026-08-08T10:34:16+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 16,
+  "candidate_custody": {
+    "candidate_name": "spin-parity-census-20260808T0149",
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true,
+    "candidate_modified": false,
+    "candidate_re_dispatched": false,
+    "new_candidate_created": false
+  },
+  "source_custody": {
+    "worker_source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "source_freeze_modified": false,
+    "sealed_storyboard_iteration": "v8",
+    "sealed_v8_modified": false,
+    "v9_created": false
+  },
+  "blockers": [
+    {
+      "id": "A3.8_POST_RUN_INDEPENDENT_REVIEW_MISSING",
+      "status": "BLOCKING",
+      "required": "A valid independent post-run review of the exact frozen T4 artifact covering all 209 files and the archive frame required by the lane acceptance contract.",
+      "present": "No qualifying post-run independent review receipt for that exact frozen artifact is present in the authority, lane, candidate, status, or receipt materials re-read for pass 16.",
+      "must_not_substitute": [
+        "pre-run review",
+        "review of a different artifact or hash",
+        "worker self-review",
+        "presentation QA",
+        "encoded-frame transform QA",
+        "source prose",
+        "a visual similarity assertion"
+      ],
+      "resolution_authority": "HWAO_COORDINATED_INDEPENDENT_REVIEWER",
+      "worker_action": "NONE_WITHOUT_REDISPATCH"
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "status": "BLOCKING",
+      "required": "A source-grounded archive storage-frame determination sufficient to interpret the recorded labels without changing the frozen analysis contract.",
+      "present": "KUN_FRAME_REVIEW.md ends FRAME REVIEW: AGREES FRAME_UNSTATED.",
+      "must_not_substitute": [
+        "visual intuition",
+        "diagram orientation",
+        "displayed spiral direction",
+        "worker inference",
+        "audience-facing caveat wording",
+        "a new scientific claim"
+      ],
+      "resolution_authority": "HWAO_COORDINATED_SOURCE_OR_DOMAIN_REVIEW",
+      "worker_action": "KEEP_RESULT_HELD"
+    },
+    {
+      "id": "FAILED_CANDIDATE_RESULT_HIERARCHY_WITHOUT_STRUCTURAL_GATE",
+      "status": "BLOCKING_CANDIDATE",
+      "required": "A result-bearing candidate must not advance while unresolved blockers lack a direct, persistent, acceptance-readable result-held boundary.",
+      "present": {
+        "fresh_cut_reproduction": "15/15",
+        "fresh_clean_midpoints": "16/16_BYTE_IDENTICAL_TO_PASS15",
+        "x90_360p_structural_gate_scenes": "0/16",
+        "y90_360p_structural_gate_scenes": "0/16",
+        "held_critical_x90_360p_structural_gate_scenes": "0/5",
+        "held_critical_y90_360p_structural_gate_scenes": "0/5",
+        "visual_hierarchy": "Large result headlines, numbers, bars, matrices, plots, and conclusions remain primary while small support, caveats, citations, and provenance become less readable."
+      },
+      "resolution": "Preserve candidate as failed. Do not patch or re-dispatch it from the worker lane.",
+      "candidate_integration_authority": "HWAO_ONLY"
+    },
+    {
+      "id": "COMPOUND_MINIMUM_SCALE_GEOMETRY_ACCEPTANCE_BOUNDARY",
+      "status": "GUARD_FOR_FUTURE_LAYOUTS",
+      "required": "Future Hwao-authored method-only layouts must keep exact direct status boundaries readable after both x90_360p and y90_360p packet transforms and must not rely on tiny axes, citations, provenance, error bars, geometry, or global OCR alone.",
+      "present": {
+        "sealed_v8_result_held_badges_visual": "7/7_EACH_OPERATIONAL_VARIANT",
+        "sealed_v8_major_status_boundaries_visual": "7/7_EACH_OPERATIONAL_VARIANT",
+        "pass7_exact_gate_lines_visual": "7/7_EACH_OPERATIONAL_VARIANT",
+        "pass12_exact_gate_lines_visual": "7/7_EACH_OPERATIONAL_AND_CHARACTERIZATION_VARIANT",
+        "pass12_exact_gate_similarity_mean_x90_360p": 1.0,
+        "pass12_exact_gate_similarity_mean_y90_360p": 0.973463,
+        "pass12_exact_gate_similarity_mean_x80_360p": 1.0,
+        "pass12_exact_gate_similarity_mean_y80_360p": 0.979486,
+        "overlap_clipping_or_semantic_ambiguity": false
+      },
+      "disposition": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION"
+    }
+  ],
+  "presentation_action": {
+    "artifact": "MINIMUM_SCALE_GEOMETRY_GUARD_PASS16.json",
+    "artifact_sha256": "290f738abc390a5fb1b43354819c032b9a8446d559d0c5fcb783330196d90e5d",
+    "audit": "PASS16_ENCODED_FRAME_AUDIT.md",
+    "audit_sha256": "474e720480c3ac3f48260fea698476dfc18b44c464ee726bf21776bd326bae28",
+    "action": "ADD_COMPOUND_MINIMUM_SCALE_GEOMETRY_INTEGRATION_GUARD",
+    "why_no_new_correction": "The pass-12 proof retains all seven exact gates and RESULT HELD badges across the operational pair and severe characterization pair without clipping, overlap, or ambiguity."
+  },
+  "next_exact_action": {
+    "worker": "No science adjudication, candidate patch, redispatch, TTS, publication, runtime action, shared/public write, or Git action.",
+    "hwao": "If a future layout is authored, integrate the pass-16 guard with the cumulative representation gates. Keep the candidate blocked until both scientific blockers resolve under their own receipts."
+  },
+  "video_reportable_now": false,
+  "safety": {
+    "science_invented": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "review_round": 16,
+  "pass": 7,
+  "snapshot": "pass7-distinct-example-clock-v8",
+  "snapshot_manifest_sha256": "910c1ba2b9a131dbc59e3be40b8c3c7fd983d6a5959c2c590932f39ef9f8f1b0",
+  "manifest_entries_verified_start_end": "93/93",
+  "files_0444": true,
+  "directories_0555": true,
+  "frozen_sources_verified": "8/8",
+  "frames_verified": "43/43",
+  "candidate_sha256_start_end": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_mode_start_end": "0644",
+  "shipped_checks": {
+    "validator": "PASS",
+    "narration_preparer_check": "PASS",
+    "paper_naive_preparer_check": "PASS",
+    "mutation_suite": "PASS_28_OF_28"
+  },
+  "semantic_replay": {
+    "distinct_states": "45/45",
+    "mapped_clauses": "21/21",
+    "maximum_unchanged_interval_seconds": 3.0,
+    "b08_b09_taxonomy_and_four_examples": "PASS"
+  },
+  "material_defects": [
+    {
+      "class": "external_manifest_digest_not_tool_enforced",
+      "evidence": "validate_proposal.py ignored MZR_EXPECTED_MANIFEST_SHA256, passed an all-zero supplied digest, authenticated only three selected entries, and allowed fully re-signed scope/status/audience/build/citation/source mutations"
+    },
+    {
+      "class": "renderer_and_verification_source_packet_not_self_contained",
+      "evidence": "renderer read mutable absolute-path evidence and lacked write-free --check; storyboard named absent LANA_MZR_SCIENCE_RULING.md"
+    },
+    {
+      "class": "closed_book_mechanical_guard_under_scoped",
+      "evidence": "complete audience hash omitted narration and phrase-list premise guard accepted a deliberately answer-bearing question after regeneration"
+    },
+    {
+      "class": "stale_exact_version_contracts",
+      "evidence": "integrator request mixed v6/v8; four-second guidance contradicted the three-second contract; all numeric-source mappings named absent visual_proposal_v7.png"
+    }
+  ],
+  "passed_findings": [
+    "45/45 semantic states, 21/21 clauses, and three-second ceiling",
+    "scientific topology, search qualification, 62 boundary, T1/T2 provenance, taxonomy, status, and exact supplied eight questions",
+    "custody remained byte-stable and no files were modified"
+  ],
+  "files_modified": [],
+  "external_candidate_disposition": "FAIL_PRESERVED",
+  "release_gates": "candidate/integration/TTS/publication/shared/public/Git closed",
+  "verdict": "FAIL",
+  "scope": "exact pass-7 v8 only; preserved historical failure and cannot clear later versions"
+}

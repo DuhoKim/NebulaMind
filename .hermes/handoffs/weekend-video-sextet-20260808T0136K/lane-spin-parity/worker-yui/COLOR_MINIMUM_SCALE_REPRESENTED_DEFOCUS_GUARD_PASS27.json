@@ -1,0 +1,73 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass27-color-minimum-scale-represented-defocus-20260808T151015K",
+  "created_at": "2026-08-08T15:10:15+09:00",
+  "deepening_pass": 27,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "integrator": "Hwao/Fable",
+  "focus": "native color/monochrome presentation followed by minimum-scale reduction and represented-pixel Gaussian softness",
+  "transform_contract": {
+    "order": [
+      "preserve native full color or apply pinned linear-light BT.709 grayscale / fixed Machado severity-100 matrix",
+      "sRGB encode with float64 plus NumPy rint",
+      "Pillow LANCZOS full-canvas downscale to 640x360",
+      "Pillow GaussianBlur radius 0.5 on the represented RGB pixels"
+    ],
+    "operational_radius_pixels_at_640x360": 0.5,
+    "pillow_version": "12.3.0",
+    "output": "non-optimized RGB PNG only",
+    "scope": "packet-specific presentation stress; not a clinical diagnostic or named lens, projector, display, player, browser, platform, service, room, viewer, or universal standard"
+  },
+  "acceptance_requirements": [
+    "Every variant retains 7/7 directly readable exact scene-specific gates and 7/7 complete RESULT HELD capsules.",
+    "Every required status, qualifier, uncertainty, branch, equation term, axis, unit, value, error bar, threshold, unavailable rung, provenance fact, and interpretation boundary remains directly labelled.",
+    "Each required distinction has a complete non-color shape, border, line style, marker, connector, stable position, pattern, rail, or status-column channel.",
+    "No required meaning is carried solely by hue, blur-fragile fine print, tiny axes or error bars, one-pixel lines or connectors, narrow glyph spacing, fine legends, caveats, citations, provenance footers, subtle texture, or global OCR.",
+    "Human review of represented pixels, exact wording, complete containers, clipping, overlap, and ambiguity is the semantic acceptance oracle.",
+    "The verifier independently recreates all three stages from pinned native sources and exact pass-23 represented baselines."
+  ],
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "candidate_pass23_baseline_reproduction": "80/80_PIXEL_EXACT",
+    "method_pass23_baseline_reproduction": "105/105_PIXEL_EXACT",
+    "candidate_exact_blur_recomputation": "80/80",
+    "method_exact_blur_recomputation": "105/105",
+    "candidate_structural_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "held_critical_structural_gates": "0/5_ALL_FIVE_VARIANTS",
+    "sealed_v8_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_method_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_gate_threshold_passes": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mean_mapped_gate_similarity_range": "0.972100_TO_0.987949",
+    "method_hue_only_required_meaning": 0,
+    "clipping_overlap_or_ambiguity": false
+  },
+  "disposition": {
+    "action": "ADD_NON_PIXEL_COMPOUND_SHARPNESS_COLOR_GUARD",
+    "new_pixel_or_copy_correction_requested": false,
+    "reason": "The existing pass-7 and pass-12 proofs retain exact gates, complete badges, direct labels, and complete non-color geometry under every operational compound variant.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false,
+    "candidate_created_or_modified": false
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_adjudicated": false,
+    "result_content_authorized": false,
+    "blockers_unchanged": true
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

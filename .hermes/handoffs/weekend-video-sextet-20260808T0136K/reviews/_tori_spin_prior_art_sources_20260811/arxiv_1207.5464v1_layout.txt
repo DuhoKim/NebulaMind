@@ -1,0 +1,409 @@
+                                              Handedness asymmetry of spiral galaxies with z<0.3 shows cosmic
+                                                             parity violation and a dipole axis
+
+
+
+
+arXiv:1207.5464v1 [astro-ph.CO] 23 Jul 2012
+                                                                                         Lior Shamir
+                                                                               Lawrence Technological University
+                                                                                    21000 W Ten Mile Rd.
+                                                                                     Southfield, MI 48075
+                                                                                     Phone:248-204-3512
+                                                                                   Email: lshamir@mtu.edu
+
+
+                                              Abstract                                                    1    Introduction
+                                                                                                          Assuming that the universe is isotropic, it is ex-
+                                                                                                          pected that in a sufficiently large sector of the uni-
+                                                                                                          verse the number of galaxies that rotate clockwise
+                                              A dataset of 126,501 spiral galaxies taken from Sloan       will be roughly equal to the number of galaxies that
+                                              Digital Sky Survey was used to analyze the large-           rotate counterclockwise. However, recent evidence
+                                              scale galaxy handedness in different regions of the         suggests that the local universe does not follow that
+                                              local universe. The analysis was automated by using         expected balance, and show that the ratio between
+                                              a transformation of the galaxy images to their ra-          clockwise and counterclockwise galaxies in some re-
+                                              dial intensity plots, which allows automatic analysis       gions is significantly different than 1:1, introducing
+                                              of the galaxy spin and can therefore be used to an-         galaxy handedness asymmetry.
+                                              alyze a large galaxy dataset. The results show that            Longo [1] analyzed the sense of rotation of 15,158
+                                              the local universe (z<0.3) is not isotropic in terms        spiral galaxies imaged by Sloan Digital Sky Survey
+                                              of galaxy spin, with probability P <∼ 5.8 · 10−6 of         (SDSS) and showed cosmic parity violation and a pos-
+                                              such asymmetry to occur by chance. The handed-              sible cosmic dipole axis. The analysis was based on a
+                                              ness asymmetries exhibit an approximate cosine de-          relatively small dataset of galaxies classified manually
+                                              pendence, and the most likely dipole axis was found         by four undergraduate students, so that the number
+                                              at RA=132o, DEC=32o with 1σ error range of 107o             of galaxies in each 30o Right Ascension (RA) slice
+                                              to 179o for the RA. The probability of such axis to         ranged between 0 to 3512 galaxies. Redshift of the
+                                              occur by chance is P < 1.95 · 10−5 . The amplitude
+                                                                                                          galaxies was smaller than 0.085. The experiment was
+                                              of the handedness asymmetry reported in this paper          done using a web-based user interface that mirrored
+                                              is generally in agreement with Longo, but the statis-       half of the galaxy images, so that the analysis was
+                                              tical significance is improved by a factor of 40, and       not biased by certain preferences of the human read-
+                                              the direction of the axis disagrees somewhat.               ers who classified them. A dipole axis was detected
+                                                                                                          with RA=217o, DEC=32o with a probability of oc-
+                                                 Keywords: Cosmic parity, Galaxies, Cosmolog-             curring by chance of 7.9·10−4 [1].
+                                              ical Principle, Computational Astrophysics, Dipole             Asymmetry of clockwise and counterclockwise
+                                              Axis                                                        galaxies was also observed in the Galaxy Zoo dataset
+                                                                                                          [2]. However, since the classification was done man-
+
+                                                                                                      1
+ually by a static graphical user interface, the asym-         The Galaxy Zoo dataset is available on-line through
+metry could be attributed to certain preferences of           the Galaxy Zoo Data Release [2], and the SpecObj
+the Galaxy Zoo participants who used the web-based            view is available through SDSS CAS server.
+system.
+   The sense of rotation of a galaxy is a gross metrics
+that is relatively easy to measure, and it is not af-         3     Image analysis method
+fected by atmospheric effects or hardware inaccuracy.
+However, analyzing large datasets of spiral galaxies          The handedness of each spiral galaxy was determined
+manually requires significant labor, and might be bi-         by transformation of the images to their radial inten-
+ased by human errors or reader preferences. In this           sity plots, as done by the Ganalyzer method [5, 6].
+study a computer analysis was used to determine the           To transform the galaxy image to its radial inten-
+handedness of spiral SDSS galaxies, and the results           sity plot, first the foreground pixels of the galaxy
+were analyzed in the light of the Cosmological Prin-          are separated from the background using the Otsu
+ciple and the cosmological isotropy assumption.               global threshold [7]. Then, the center of the galaxy
+                                                              is detected, and the radius is determined by the max-
+                                                              imal distance between the object center and any fore-
+2    Image dataset                                            ground pixel [5].
+                                                                 The radial intensity plot is a 360×35 image, such
+The data used in the experiment are galaxy images             that the value of the pixel (x, y) is the median value
+collected by SDSS [3], and classified by Galaxy Zoo           of the 5×5 windows around the pixel at image coor-
+[4]. The first full Galaxy Zoo data release contained         dinates (Ox + sin(θ) · r, Oy − cos(θ) · r) in the galaxy
+891,552 galaxies with redshift, classified manually by        image, where θ is the polar angle (in degrees) and r is
+Galaxy Zoo participants. The galaxies that were               a radial distance. Intuitively, the radial intensity plot
+classified manually as spiral galaxies were selected,         is an image of the radial intensities at different dis-
+and the Ganalyzer method described in Section 3               tances from the galaxy center. Each horizontal line
+was used to reject the edge-on galaxies to provide            in the radial intensity plot is then smoothed using a
+a dataset that contains only spiral galaxies that their       median filter with a span of 50 pixels.
+handedness can be determined. That provided a                    Figure 1 shows the original galaxy image and a
+dataset of 352,705 spiral galaxies with identifiable          transformation of the radial intensity plot such that
+sense of rotation. It should be noted that the galaxy         the Y axis is the intensity and the X axis is the polar
+population is not uniformly distributed in the night          angle. As the figure shows, in an image of a spiral
+sky covered by SDSS, and some RA ranges have little           galaxy the peaks are expected to shift due to the spi-
+or no galaxies.                                               rality of the arms, while in galaxies that are not spiral
+   The galaxy dataset of Galaxy Zoo was determined            the peaks are expected to align in a near-straight line.
+based on the human perception, and using a static             The radial intensity plot transformation of galaxy im-
+user interface. Therefore, while the results of Galaxy        ages is described more thoroughly in [5].
+Zoo provide a “super-clean” galaxy dataset, they                 Once the radial intensity plot is generated, the
+might be biased by human behavior and preferences.            peaks of each curve displayed in Figure 1 are detected
+To avoid possible human bias, another dataset that            using a peak detection algorithm [8], and the slope
+was used in the experiment was the SpecObj view of            of the line created by the peaks can indicate whether
+SDSS DR7, which is based on the SpecObjAll table,             the galaxy rotates clockwise or counterclockwise [5].
+but excludes bad and duplicate data. The galaxies             The slope is measured by first finding the peaks in the
+in the SpecObj view were classified automatically us-         radial intensity curves displayed in Figure 1, and sep-
+ing the Ganalyzer method [5], providing a dataset of          arating the peaks into groups such that each group
+345,599 spiral galaxies that are not edge-on. Declina-        contains peaks of the same arm of the spiral galaxy
+tion of the galaxies was between ∼-11.2o to ∼70.3o.           [5]. Figure 2 shows the peaks detected in the radial
+
+                                                          2
+                                                        described above of l > 3r and r > 3l to determine the
+                                                        handedness, the handedness of 42.5% of the galaxies
+                                                        was in agreement with the manual classification
+                                                        performed by the author, while the remaining 57.5%
+                                                        of the galaxies had undetermined handedness. When
+                                                        using l > 2r and r > 2l as criteria the percentage
+                                                        of galaxies with determined handedness increased
+                                                        to ∼68.3%, but with the sacrifice of ∼6.7% error
+                                                        rate among those galaxies that their handedness was
+                                                        determined by the algorithm. When using l > r
+                                                        and r > l as criteria the determined handedness
+Figure 1: Galaxy images (left) and the transforma- increased to 96%, but the error rate also increased
+tion of the radial intensity plots such that the Y axis to 15%.
+is the intensity and the X axis is the polar angle         Once the handedness of the galaxies is determined,
+                                                        the handedness asymmetry of a certain population of
+intensity plots of Figure 1.                            galaxies can be determined by A = R−L     R+L , where A
+                                                        is the asymmetry value, L is the number of galaxies
+                                                        rotating clockwise, and R is the number of galaxies
+                                                        rotating counterclockwise.
+                                                           The accuracy of the Ganalyzer method is sensi-
+                                                        tive to redshift and magnitude when compared to
+                                                        human classification. However, Galaxy Zoo and the
+Figure 2: The peaks detected in the radial intensity SpecObj view are not random samples, and contain
+plots of the elliptical galaxies of Figure 1            bright objects that can be processed by Ganalyzer
+                                                        as described and analyzed in [5]. In lower redshift
+   For each group of peaks, the peaks are ordered by of <0.07 Ganayzer was able to determine the hand-
+their Y coordinate in the radial intensity plot. Then, edness (l > 3r or r > 3l) of ∼42% of the galaxies
+each peak at X coordinate x in the radial intensity in the SpecObj view that were classified as spirals,
+plot is compared to the X coordinate of its next peak. while in the redshift ranges of 0.07-0.14 and 0.14-
+If the X coordinate of the next peak is smaller than 0.21 the detection rate was ∼38% and ∼36%, respec-
+x then the counter l is incremented. If the X coordi- tively. While the rate of the detection of the hand-
+nate of the next peak is greater than x, the counter edness is different at different redshift ranges, it is
+r is incremented. If after searching through all peaks expected that in each redshift range the detection
+l > 3r, it is determined that the galaxy rotates clock- rate of clockwise rotating galaxies will be equal to
+wise. If r > 3l then the galaxy rotates counterclock- counterclockwise rotating galaxies. The dependence
+wise. All other cases are considered undetermined on redshift can also be compared to manual classifica-
+handedness, and are excluded from the rest of the tion of galaxies. While at redshift of 0.05 Ganalyzer
+analysis.                                               classification into spiral and elliptical galaxies was in
+   Using a set of 120 spiral galaxies taken from agreement with the manual classification in ∼89% of
+Galaxy Zoo and used in [9, 5], and available for the cases, at redshift 0.1 it was ∼87%, and ∼82%
+download at                                             and ∼74% at redshifts 0.15 and 0.25, respectively [5].
+                                                        This, however, can be also attributed to the classifi-
+http://vfacstaff.ltu.edu/lshamir/downloads/ganalyzer/GalaxyImages.zip,
+the method was tested for its accuracy and error rate. cation accuracy of the Galaxy Zoo citizen scientists,
+All galaxies had clear spirality, and the handedness, which drops as the redshift gets higher [2]. The red-
+of each galaxy was classified manually by the author. shift dependence of Ganalyzer accuracy [5, 10] can
+The results showed that when using the criteria affect the magnitude of the signal of the asymmetry,
+
+                                                       3
+but any inaccuracy is expected to be equal to both            4          Results
+clockwise and counterclockwise directions, and there-
+fore the direction of the asymmetry should not be af-         The method described in Section 3 was applied to the
+fected. The Pearson correlation between the degree            two galaxy datasets described in Section 2. The anal-
+of spirality measured by Ganalyzer [5] and the ap-            ysis was based on galaxies that met the handedness
+parent magnitude computed using ∼60,000 galaxies              criteria described in Section 3, so that Galaxy Zoo
+with redshift <0.3 provided a weak Pearson correla-           and the SpecObj view provided 126,501 and 121,414
+tion of -0.036 [10], with P< 10−8 . That experiment           spiral galaxies with determined directionality, respec-
+showed that in the datasets of Galaxy Zoo and the             tively.
+SpecObj view, which contain brighter galaxies com-               Figure 3 shows the handedness asymmetry of the
+pared to the galaxies of SDSS DR7, there was merely           SpecObj galaxies defined in different RA ranges and
+a weak dependence between magnitude and the abil-             three redshift ranges, which are <0.085 [1], 0.085-
+ity of Ganalyzer to detect spirality. Galaxies in which       0.17, and 0.17-0.3. The standard error was
+                                                                                                      √ computed
+spirality was not detected were rejected and therefore        based on normal distribution using 1/ N , where N
+did not have an effect on the analysis.                       is the total number of galaxies in the region and red-
+   To test the response of Ganalyzer to changes in            shift range. The RA ranges [60,90] and [270,300] are
+the brightness of the galaxies the experiment was re-         empty due to the very low number of galaxies (70 and
+peated such that the l > 3r and r > 3l criteria were          0, respectively) in these RA slices.
+used, and the intensity of the foreground pixels of
+the galaxies was scaled down by different factors. As          Handedness asymmetry
+                                                                                       < 0.085     0.17-0.255   0.17-0.3
+Table 1 shows, the percentage of galaxies with deter-              0.1
+                                                                  0.08
+mined handedness remains stable until the intensities
+                                                                  0.06
+of the foreground pixels are scaled down by more than
+                                                                  0.04
+0.25. However, even when Ganalyzer has difficulties               0.02
+in determining the handedness, it does not missclas-                0
+sify left handed and right handed galaxies. The sig-           -0.02
+nal of the radial intensity plots weakens as the galaxy        -0.04
+
+gets dimmer compared to its background, and there-             -0.06
+
+fore less peaks are detected when the galaxy is dim-           -0.08
+                                                                                        RA (degrees)
+                                                                  -0.1
+mer. However, the slope of the peaks determined by
+Ganalyzer [5] cannot be inverted because less peaks
+are found.                                                    Figure 3: Galaxy handedness asymmetry in different
+                                                              RA ranges and redshift ranges using SpecObj galax-
+ Intensity     Correct   Incorrect    Undetermined            ies. The dotted line shows the cosine curve multiplied
+ downscale      (%)         (%)           (%)                 by -0.04 and starts at 132o, to show cosine depen-
+ 1              42.5         0            57.5                dence as will be discussed later in the paper
+ 0.75           42.5         0            57.5
+ 0.5            42.5         0            57.5            As the figure shows, different RA and redshift
+ 0.25           42.5         0            57.5         ranges show different galaxy handedness asymme-
+ 0.15           28.3         0            71.7         tries, suggesting that the local universe is not
+ 0.1            17.5         0            82.5         isotropic. Partial correlation can be observed be-
+ 0.05            0           0            100          tween the redshift ranges in some of the RA re-
+                                                       gions, but the high standard errors in the different
+Table 1: Classification accuracy when the intensity of RA/redshift bins do not allow statistically signifi-
+the foreground pixels of the galaxies is scaled down cant conclusions about such correlation. Also, as de-
+                                                       scribed in Section 3 there is dependence between the
+
+                                                          4
+redshift of the galaxies and the ability of Ganalyzer        RA ranges in the SpecObj and Galaxy Zoo data were
+to detect their spirality and determine their handed-        smaller compared to the original data, and in all RA
+ness.                                                        ranges the asymmetry was within the standard er-
+  Figure 4 shows the galaxies handedness asymmetry           ror, indicating that no systematic error was present.
+defined in different regions using both Galaxy Zoo           The largest handedness asymmetry measured with
+dataset and the galaxies from SpecObj.                       the mirrored data was 0.009±0.01683.
+                                                                 A real spiral spin preference would present itself
+Handedness asymmetry   Galaxy Zoo   SpecObj View             as a dipole with a cos φ dependence, where φ is the
+  0.1                                                        space angle between the position of the galaxy and
+ 0.08
+                                                             the preferred axis [1]. The RA, DEC and asymmetry
+ 0.06
+ 0.04
+                                                             values of each galaxy were used to find the most likely
+ 0.02                                                        dipole axis using cosine dependence [1]. Each galaxy
+   0                                                         i in the dataset was assigned with {−1, 1} handedness
+-0.02
+                                                             di , and the φ angle was computed for each galaxy as
+-0.04
+-0.06
+                                                             the difference between the angle of the galaxy and
+-0.08                                                        the angle of the candidate dipole axis. The d · | cos φ|
+ -0.1                                                        was then fitted to cos φ for all possible RA, DEC
+                                                             combinations in an exhaustive grid search such that
+                                                             the declination range was [-10o ,70o ], within the sky
+Figure 4: Galaxy handedness asymmetry in different           covered by SDSS, to find the most likely dipole axis
+RA ranges                                                    with which the galaxy handedness asymmetries have
+                                                             cosine dependence.
+   The differences between Galaxy Zoo and SpecObj                To deduce the most likely dipole axis, random
+can be explained by the perceptional bias of the             handedness values were assigned to the galaxies, and
+Galaxy Zoo dataset, in which the human-based clas-           the random handedness were fitted to cos φ for each
+sifications are biased towards left-handed spirals by        right ascension and declination axis, and repeated
+∼10%. However, it is clear that the two datasets             1000 times for each axis to compute its mean and
+provide the same profile of galaxy handedness asym-          standard deviation of the χ2 computed with random
+metry. The strongest asymmetry of the SpecObj                galaxy handedness. Then, the χ2 computed for the
+data was 0.028±0.00683, found in the RA range                same axis with the observed galaxy handedness de-
+[120o ,150o]. Assuming that the probability of a             termined by the Ganalyzer method as described in
+galaxy in that RA range to rotate clockwise is equal         Section 3 was compared with the mean and σ of the
+to its probability to rotate counterclockwise, given         χ2 computed for that axis using the 1000 runs of ran-
+the standard error the probability to observe asym-          dom galaxy handedness values. The axis that had the
+metry of 0.028 by chance is ∼ 4.3 · 10−5 . Considering       highest difference between the random and observed
+just the four RA slices with more than 20,000 galax-         galaxy handedness in terms of σ was found around
+ies in them (the fifth most populated RA slice has           RA=132o , and DEC=32o. Figure 5 shows the dif-
+just 9907), the probability that one or more of them         ference in terms of σ between the observed χ2 and
+have asymmetry equal or greater than 0.028 and one           the mean χ2 of 1000 attempt of fitting randomized
+or more other slice have asymmetry of 0.16 (as ob-           handedness values to dipole axes with varying RA
+served in 180o -210o) or greater given the standard          and declination 32o .
+errors in these RA slices is ∼ 5.8 · 10−6 .                      As the figure shows, the most likely dipole axis is
+   As a test for bias, the analyses were repeated with       at RA=132o , and the 1σ error range for the dipole
+the dataset described in Section 2 such that ran-            is between RA 107o and 179o. With ∼ 4.27σ the
+domly selected half of the galaxies were mirrored.           probability to have such axis by chance is P < 1.95 ·
+The handedness asymmetry values in the different             10−5 , showing that it is likely that galaxy handedness
+
+                                                         5
+  σ                  z<0.085          0.085<z<0.3    0<z<0.3
+                                                               tion range, respectively. The asymmetry values at
+ 4.5                                                           different declination ranges and RA slices are dis-
+   4                                                           played in Figure 6.
+ 3.5
+   3                                                            Handedness asymmetry          -10-10     10-30     30-50
+ 2.5
+                                                                 0.1
+   2
+                                                                0.08
+ 1.5
+                                                                0.06
+   1
+                                                                0.04
+ 0.5                                                            0.02
+   0    71
+        79                                                         0
+        87
+        95
+       103
+       111
+       119
+       127
+       135
+       143
+       151
+       159
+       167
+                                                                -0.02
+       175
+       183
+       191
+       199
+       207
+       215
+       223
+       231
+       239
+                       RA (degrees)                             -0.04
+                                                                -0.06
+Figure 5: σ between the mean χ2 computed with                   -0.08
+                                                                 -0.1
+1000 attempts of fitting all galaxies with randomized
+                                                                                         RA (degrees)
+handedness values to dipole axes with varying RA
+and declination 32o
+                                                              Figure 6: Galaxy handedness asymmetry in differ-
+                                                              ent RA and DEC ranges. DEC ranges are [-10o ,10o ],
+asymmetry form a dipole axis in the local universe [10o ,30o ], [30o ,50o ]
+(z < 0.3). Handedness asymmetry in the 30o RA
+range around the most likely dipole [117o ,147o] is ∼-           The limited declination ranges covered by SDSS
+0.017, and the asymmetry is ∼-0.027 in the same RA            do  not allow comparison of declination ranges in op-
+range where z<0.085. The declination of the most              posite  hemispheres, and not all declination and RA
+likely dipole axis is in agreement with the most likely       ranges  of SDSS have galaxies in them. The highest
+dipole axis proposed by [1], but the RA of 132 is       o     number    of galaxies in these declination ranges are in
+                              o
+different from the RA=217 [1]. However, the error             the  RA   range    of [150o ,210o], which contained 69,986
+range of the most likely dipole was ±35o [1], within galaxies. As Figure 6 shows, the galaxy handedness
+the 1σ statistical error range reported here.                 asymmetry in that RA range increases with the dec-
+   As the graph also shows, cosine dependence was lination,           o
+                                                                         while the asymmetry in other RA slices such
+                                                                             o
+observed in low (z<0.085) and higher (0.085<z<0.3)            as [210   ,240   ] the galaxies in the higher declination
+redshift ranges, and the dipole axis is consistent in         are  biased  toward     counterclockwise rotation.
+both ranges. The signal for the dipole is far stronger
+for z<0.085. The weaker signal at the higher red- 5                  Conclusion
+shifts can be attributed to the ability of Ganalyzer
+to accurately detect spirality, which decreases as the The results of the experiment show that galaxy hand-
+redshift of the galaxies gets higher [5, 10]. The most edness asymmetry is different in different RA ranges
+likely dipole axis in z<0.085 is at RA=136o , with within z<0.3, and the asymmetries exhibit a cosmo-
+probability of ∼ 7.19 · 10−5 of having such cosine de- logical dipole axis. According to these observations,
+pendency by chance.                                           the local universe is not isotropic, meaning that the
+   The handedness asymmetry was also analyzed for observed physical characteristics of the universe are
+different declination ranges. The declination ranges different in different directions of observation. These
+that were used are [-10o ,10o ], [10o ,30o ], and [30o ,50o ] results are in agreement with [1]. The most likely
+of the SpecObj view galaxy dataset, which have dipole axis was found at RA=132o, DEC=32o . This
+31,943, 46,482, and 33,006 galaxies in each declina- axis is somewhat different from the most likely dipole
+
+                                                           6
+axis reported by [1] at RA=217o , DEC=32o with an 6             Acknowledgments
+uncertainty of ∼35o, but the difference is within the
+error ranges.                                            I would like to thank John Wallin for his assistance
+                                                         in obtaining the redshift data for Galaxy Zoo galax-
+                                                         ies, and the reviewer for insightful comments that
+   The limited range of declination in the SDSS
+                                                         significantly improved the paper. Funding for the
+dataset as well as the absence of data in certain right
+                                                         SDSS and SDSS-II has been provided by the Alfred
+ascension ranges did not allow comparing all opposite
+                                                         P. Sloan Foundation, the Participating Institutions,
+hemispheres for handedness asymmetry for the pur-
+                                                         the National Science Foundation, the US Depart-
+pose of fully profiling the characteristics of the hand-
+                                                         ment of Energy, the National Aeronautics and Space
+edness asymmetry in the local universe. It should be
+                                                         Administration, the Japanese Monbukagakusho, the
+noted that the experiment is limited to the local uni-
+                                                         Max Planck Society, and the Higher Education Fund-
+verse, although the range of z<0.3 exceeds far beyond
+                                                         ing Council for England. The SDSS Web Site is
+the scale of a galaxy supercluster. Higher-resolution
+                                                         http://www.sdss.org/. The SDSS is managed by the
+analysis of the cosmic parity violation in the more
+                                                         Astrophysical Research Consortium for the Partici-
+distant universe will be possible when the Large Syn-
+                                                         pating Institutions. The Participating Institutions
+optic Sky Survey (LSST) starts operating, providing
+                                                         are the American Museum of Natural History, As-
+a much larger galaxy dataset and seeing deeper space.
+                                                         trophysical Institute Potsdam, University of Basel,
+                                                         University of Cambridge, Case Western Reserve Uni-
+   The experiment is based solely on data acquired by versity, University of Chicago, Drexel University, Fer-
+Sloan Digital Sky Survey, and under the assumption milab, the Institute for Advanced Study, the Japan
+that these raw data are not biased. A possible source Participation Group, Johns Hopkins University, the
+of bias might be the automatic galaxy detection al- Joint Institute for Nuclear Astrophysics, the Kavli In-
+gorithm that is part of the SDSS pipeline, that might stitute for Particle Astrophysics and Cosmology, the
+have a preference to galaxies of some certain direc- Korean Scientist Group, the Chinese Academy of Sci-
+tionality. This, however, conflicts with the observa- ences (LAMOST), Los Alamos National Laboratory,
+tion that some of the opposite hemispheres have op- the Max Planck Institute for Astronomy (MPIA),
+posite asymmetries. In any case, even in the case that the Max Planck Institute for Astrophysics (MPA),
+such bias exists, it is expected to be consistent for New Mexico State University, Ohio State University,
+all SDSS data, so that the asymmetry values might University of Pittsburgh, University of Portsmouth,
+be shifted, but the asymmetry profile itself should Princeton University, the United States Naval Obser-
+not change. Another possible weakness is that galax- vatory and the University of Washington.
+ies from different RA were taken at different times,
+and any change made to SDSS or its processing al-
+gorithms during that time could potentially lead to References
+a biased dataset, and different galaxy asymmetries
+at different redshifts. It should also be noted that       [1] M. Longo, Phys. Lett. B, 699 (2011) 224–229.
+the SpecObj view and the Galaxy Zoo dataset con- [2] C. J. Lintott, et al., MNRAS, 410 (2010) 166.
+tain bright objects, and are not random samples of
+the galaxies in DR7. A bias in the selection of these      [3] D.G. York, et al., Astron. J., 120 (2000) 1579.
+objects can also affect the results.                       [4] C. J. Lintott, C. J., et al., MNRAS, 389 (2008)
+                                                                1179.
+  Clearly, this study does not offer explanations nei-
+                                                             [5] L. Shamir, Astrophys. J., 736 (2011a) 141.
+ther to the nature of asymmetry at the cosmologi-
+cal scale, nor to the observation that the asymmetry         [6] L. Shamir, Astrophysics Source Code Library
+changes at different regions.                                    (2011b) 1105.011.
+
+                                                         7
+ [7] N. Otsu, IEEE Trans. Sys. Man. Cyber. 9 (1979)
+     62.
+ [8] M. Morhac, et al., Methods in Research Physics
+     A, 443 (2003) 108.
+ [9] L. Shamir, MNRAS, 399 (2009) 1367.
+[10] L. Dojcsak, L. Shamir, “Quantitative analysis of
+     spirality in elliptical galaxies”, submitted.
+
+
+
+
+                                                        8
+

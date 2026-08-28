@@ -1,0 +1,517 @@
+{
+  "title": "Bright-end archive test: missing data versus missed data",
+  "short_title": "An apparent archival gap has two explanations",
+  "series_label": "NEBULAMIND · BRIGHT-END ARCHIVE METHOD",
+  "slug": "brightend",
+  "candidate_filename": "brightend-quality-canary-20260810T0136K.mp4",
+  "revision": "overnight-quality-v1-reading-audio-boundary-method-only",
+  "peak_section": "peak",
+  "video_reportable_now": false,
+  "quality_profile": {
+    "policy_id": "OVERNIGHT_SERIES_QUALITY_V1_20260810T0129K",
+    "integrated_lufs_target": -20.5,
+    "lra_target_lu": 7.0,
+    "true_peak_target_dbtp": -2.3,
+    "delivered_wpm_range": [
+      105.0,
+      125.0
+    ],
+    "visible_reading_wpm": 200.0,
+    "reading_guard_seconds": 0.1,
+    "lead_seconds": 0.6,
+    "tail_seconds": 3.0,
+    "routine_pause_seconds": 0.75,
+    "section_boundary_pause_seconds": 1.4,
+    "boundary_preroll_seconds": 3.5,
+    "special_pause_after_seconds": {
+      "g02": 4.0
+    },
+    "minimum_card_dwell_seconds": {
+      "i01": 15.7,
+      "i02": 14.5,
+      "i03": 14.8,
+      "i04": 16.0,
+      "d01": 11.5,
+      "d02": 9.7,
+      "p01": 11.5,
+      "p02": 10.9,
+      "p03": 12.4,
+      "p04": 11.2,
+      "p05": 9.7,
+      "f01": 6.1,
+      "f02": 5.8,
+      "e01": 5.5,
+      "e02": 4.9,
+      "c01": 3.4,
+      "c02": 3.1,
+      "g01": 4.3,
+      "g02": 2.5,
+      "b01": 17.5,
+      "x01": 7.6,
+      "x02": 9.1
+    },
+    "boundary_word_count_method": "independent renderer-visible count; title + column heads + all nine list items + boundary footer + exact spoken caption",
+    "source_findings": [
+      "GORU_OVERNIGHT_QUALITY_SWEEP_LEDGER_V2_20260810T0116K.json",
+      "KUN_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md"
+    ]
+  },
+  "forbidden_terms": [
+    "significance",
+    "dipole",
+    "parity",
+    "cosmology",
+    "gap is proven",
+    "archive is empty",
+    "pace declines"
+  ],
+  "tts_instructions": "Measured scientific-conference narration in Alloy. Calm, precise, and authoritative. Motivate the first four sentences warmly and conditionally, with no result cadence. Give the dual-channel retrieval into the magnitude-redshift evidence plane the strongest emphasis. Do not imply any catalogue count, archival gap, bright-end count, or pace result has been revealed.",
+  "sentences": [
+    {
+      "id": "i01",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "A published bright-end summary can lack a reconstructible object record because the data are missing, or because the search missed them.",
+      "grounding": "sources/GAP_PAPER.tex",
+      "display_citation": "Public-record reproducibility question",
+      "params": {
+        "subtitle": "WHY THE ARCHIVE NEEDS A RETRIEVAL TEST",
+        "icon": "plane",
+        "pair_label": "ONE APPARENT GAP · TWO EXPLANATIONS",
+        "left_title": "MISSING DATA",
+        "left_if": "IF GENUINE",
+        "left_body": "the public record lacks the object rows needed for reanalysis",
+        "right_title": "MISSED DATA",
+        "right_if": "IF APPARENT",
+        "right_body": "tagging and naming hide usable object tables from the query",
+        "question": "HOW DO WE TELL MISSING FROM MISSED?"
+      }
+    },
+    {
+      "id": "i02",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "If the underlying object rows were genuinely absent from public archives, that would limit independent reconstruction of the bright end.",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Object-level reconstruction requirement",
+      "params": {
+        "subtitle": "THE REPRODUCIBILITY POSSIBILITY",
+        "icon": "plane",
+        "pair_label": "ONE APPARENT GAP · TWO EXPLANATIONS",
+        "left_title": "MISSING DATA",
+        "left_if": "IF GENUINE",
+        "left_body": "the public record lacks the object rows needed for reanalysis",
+        "right_title": "MISSED DATA",
+        "right_if": "IF APPARENT",
+        "right_body": "tagging and naming hide usable object tables from the query",
+        "question": "HOW DO WE TELL MISSING FROM MISSED?"
+      }
+    },
+    {
+      "id": "i03",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "But an apparent archival gap could instead be a fact about case-sensitive names, metadata tags, or unrecognized column aliases.",
+      "grounding": "sources/T1_CATALOG_MANIFEST.json",
+      "display_citation": "Name-channel and metadata-channel design",
+      "params": {
+        "subtitle": "THE RETRIEVAL POSSIBILITY",
+        "icon": "plane",
+        "pair_label": "ONE APPARENT GAP · TWO EXPLANATIONS",
+        "left_title": "MISSING DATA",
+        "left_if": "IF GENUINE",
+        "left_body": "the public record lacks the object rows needed for reanalysis",
+        "right_title": "MISSED DATA",
+        "right_if": "IF APPARENT",
+        "right_body": "tagging and naming hide usable object tables from the query",
+        "question": "HOW DO WE TELL MISSING FROM MISSED?"
+      }
+    },
+    {
+      "id": "i04",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "How do we tell missing data from missed data?",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Question fixed before archive enumeration",
+      "params": {
+        "subtitle": "THE QUESTION THAT DRIVES THE METHOD",
+        "icon": "plane",
+        "pair_label": "ONE APPARENT GAP · TWO EXPLANATIONS",
+        "left_title": "MISSING DATA",
+        "left_if": "IF GENUINE",
+        "left_body": "the public record lacks the object rows needed for reanalysis",
+        "right_title": "MISSED DATA",
+        "right_if": "IF APPARENT",
+        "right_body": "tagging and naming hide usable object tables from the query",
+        "question": "HOW DO WE TELL MISSING FROM MISSED?"
+      }
+    },
+    {
+      "id": "d01",
+      "section": "difficulty",
+      "visual": "difficulty",
+      "text": "Counting catalogues cannot settle that question, because a useful object record needs rest-ultraviolet magnitude and redshift in the same eligible table.",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Same-table magnitude-redshift requirement",
+      "params": {
+        "heading": "WHY A CATALOGUE COUNT CANNOT SETTLE IT",
+        "icon": "plane",
+        "object_label": "ONE SEARCH HIT",
+        "left": "REST-UV MAGNITUDE AND REDSHIFT IN ONE TABLE",
+        "right": "A NAME OR TAG WITHOUT A USABLE OBJECT PAIR",
+        "bottom": "REACHABILITY ALONE DOES NOT CREATE AN EVIDENCE PLANE"
+      }
+    },
+    {
+      "id": "d02",
+      "section": "difficulty",
+      "visual": "difficulty",
+      "text": "Even a same-table pair can fail if the band convention, object class, completeness record, or provenance does not support the frozen frame.",
+      "grounding": "sources/PACE_STATISTIC_CONTRACT_V1.md",
+      "display_citation": "Frozen frame and chain-disclosure clauses",
+      "params": {
+        "heading": "THE AMBIGUITY CONTINUES AFTER RETRIEVAL",
+        "icon": "plane",
+        "object_label": "ONE MAGNITUDE-REDSHIFT PAIR",
+        "left": "FRAME, OBJECT CLASS, AND PROVENANCE AGREE",
+        "right": "WRONG BAND, WRONG OBJECT, OR UNKNOWN CHAIN",
+        "bottom": "ELIGIBILITY PRECEDES ANY BRIGHT-END COUNT"
+      }
+    },
+    {
+      "id": "p01",
+      "section": "peak",
+      "visual": "peak",
+      "text": "The discriminating move begins with two independent retrieval channels: physical metadata descriptors and exhaustive, case-aware name patterns.",
+      "grounding": "sources/T1_CATALOG_MANIFEST.json",
+      "display_citation": "Dual-channel global archive enumeration",
+      "params": {
+        "mode": "plane",
+        "heading": "THE DISCRIMINANT: TWO CHANNELS INTO ONE PLANE",
+        "channel_a": "PHYSICAL METADATA TAGS",
+        "channel_b": "CASE-AWARE COLUMN NAMES",
+        "same_table": "SAME-TABLE MAGNITUDE + REDSHIFT",
+        "x_label": "REDSHIFT SLICE",
+        "y_label": "REST-UV MAGNITUDE",
+        "data_geometry": "forbidden",
+        "display_form": "empty evidence plane with symbolic boundaries and provenance flow outside axes"
+      }
+    },
+    {
+      "id": "p02",
+      "section": "peak",
+      "visual": "peak",
+      "text": "Their union enters a fail-closed eligibility layer that reads the public table description before any science row is allowed through.",
+      "grounding": "sources/T2A_CHAIN_DISCLOSURE.json",
+      "display_citation": "Per-table eligibility and evidence trail",
+      "params": {
+        "mode": "plane",
+        "heading": "UNION THE CHANNELS, THEN ADJUDICATE",
+        "channel_a": "METADATA DISCOVERY",
+        "channel_b": "NAME DISCOVERY",
+        "same_table": "PUBLIC DESCRIPTION + ELIGIBILITY VERDICT",
+        "x_label": "REDSHIFT SLICE",
+        "y_label": "REST-UV MAGNITUDE",
+        "data_geometry": "forbidden",
+        "display_form": "empty evidence plane with symbolic boundaries and provenance flow outside axes"
+      }
+    },
+    {
+      "id": "p03",
+      "section": "peak",
+      "visual": "peak",
+      "text": "Only records with a defensible magnitude convention and a usable redshift are projected into the same magnitude-redshift evidence plane.",
+      "grounding": "sources/PACE_STATISTIC_CONTRACT_V1.md",
+      "display_citation": "Frozen magnitude frame · same-table rule",
+      "params": {
+        "mode": "plane",
+        "heading": "PROJECT ONLY CONTRACT-GRADE RECORDS",
+        "channel_a": "ELIGIBLE MAGNITUDE",
+        "channel_b": "ELIGIBLE REDSHIFT",
+        "same_table": "SAME OBJECT · SAME TABLE · RECORDED FRAME",
+        "x_label": "FROZEN REDSHIFT SLICE",
+        "y_label": "FROZEN BRIGHT THRESHOLD",
+        "data_geometry": "forbidden",
+        "display_form": "empty evidence plane with symbolic boundaries and provenance flow outside axes"
+      }
+    },
+    {
+      "id": "p04",
+      "section": "peak",
+      "visual": "peak",
+      "text": "A visible bright threshold and slice boundary are applied there, while completeness and contamination labels remain attached to every contributing record.",
+      "grounding": "sources/PACE_STATISTIC_CONTRACT_V1.md",
+      "display_citation": "Frozen threshold, slices, and provenance",
+      "params": {
+        "mode": "plane",
+        "heading": "APPLY THE BOUNDARIES WITHOUT DROPPING PROVENANCE",
+        "channel_a": "OBJECT RECORD",
+        "channel_b": "CHAIN DISCLOSURE",
+        "same_table": "THRESHOLD + SLICE + PROVENANCE",
+        "x_label": "REDSHIFT SLICE",
+        "y_label": "BRIGHT THRESHOLD",
+        "data_geometry": "forbidden",
+        "display_form": "empty evidence plane with symbolic boundaries and provenance flow outside axes"
+      }
+    },
+    {
+      "id": "p05",
+      "section": "peak",
+      "visual": "peak",
+      "text": "That evidence plane distinguishes data that are absent from data that were merely invisible to one retrieval instrument, without showing either outcome here.",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Retrieval-versus-record discriminant",
+      "params": {
+        "mode": "plane",
+        "heading": "THE EVIDENCE PLANE EARNS THE DISTINCTION",
+        "channel_a": "DISCOVERY RECEIPT",
+        "channel_b": "ELIGIBILITY RECEIPT",
+        "same_table": "AUDITABLE OBJECT-LEVEL EVIDENCE",
+        "x_label": "MISSING DATA?",
+        "y_label": "MISSED DATA?",
+        "data_geometry": "forbidden",
+        "display_form": "empty evidence plane with symbolic boundaries and provenance flow outside axes"
+      }
+    },
+    {
+      "id": "f01",
+      "section": "sample",
+      "visual": "funnel",
+      "text": "The source ledger preserves discovery, eligibility, object-level projection, and slice accounting as changing units, with every result count removed from this canary.",
+      "grounding": "sources/T1_CATALOG_MANIFEST.json",
+      "display_citation": "Archive workflow · result counts not displayed",
+      "params": {
+        "heading": "KEEP THE UNIT ATTACHED TO EACH STAGE",
+        "stages": [
+          {
+            "label": "DISCOVERY HITS",
+            "count": "",
+            "unit": "tables"
+          },
+          {
+            "label": "ELIGIBILITY VERDICTS",
+            "count": "",
+            "unit": "tables"
+          },
+          {
+            "label": "OBJECT RECORDS",
+            "count": "",
+            "unit": "rows"
+          },
+          {
+            "label": "SLICE ACCOUNTING",
+            "count": "",
+            "unit": "objects"
+          }
+        ],
+        "banner": "CHANGING UNITS · NO RESULT COUNTS"
+      }
+    },
+    {
+      "id": "f02",
+      "section": "sample",
+      "visual": "funnel",
+      "text": "Because no sibling source freeze exists, the method retains the stage labels but drops catalogue totals, row totals, and bright-end counts.",
+      "grounding": "sources/HWAO_SIBLING_ROLLOUT_ORDER.md",
+      "display_citation": "Sibling rollout authority · method only",
+      "params": {
+        "heading": "DROP UNSAFE VALUES, KEEP THE PIPELINE",
+        "stages": [
+          {
+            "label": "SEARCH",
+            "count": "",
+            "unit": "retrieval"
+          },
+          {
+            "label": "ADJUDICATE",
+            "count": "",
+            "unit": "eligibility"
+          },
+          {
+            "label": "PROJECT",
+            "count": "",
+            "unit": "evidence plane"
+          },
+          {
+            "label": "COUNT",
+            "count": "",
+            "unit": "value withheld"
+          }
+        ],
+        "banner": "NO SOURCE FREEZE · NO NUMBER CARD"
+      }
+    },
+    {
+      "id": "e01",
+      "section": "estimator",
+      "visual": "estimator",
+      "text": "The estimator is a raw slice count of eligible objects brighter than the frozen threshold, written symbolically and left unevaluated.",
+      "grounding": "sources/PACE_STATISTIC_CONTRACT_V1.md",
+      "display_citation": "Frozen cumulative-count estimator",
+      "params": {
+        "heading": "BUILD THE ESTIMATOR WITHOUT REVEALING IT",
+        "layout": "expression",
+        "symbol": "N_slice",
+        "expression": "sum I(M_UV < M_cut, z in slice)",
+        "signs": []
+      }
+    },
+    {
+      "id": "e02",
+      "section": "estimator",
+      "visual": "estimator",
+      "text": "Completeness correction, cross-catalog merging, and pace inference remain separate gates; the raw count cannot silently become any of them.",
+      "grounding": "sources/PACE_STATISTIC_CONTRACT_V1.md",
+      "display_citation": "Census-only and pace boundaries",
+      "params": {
+        "heading": "THE ESTIMATOR CANNOT CHANGE ITS CLAIM",
+        "layout": "expression",
+        "symbol": "N_slice",
+        "expression": "raw eligible object count",
+        "signs": []
+      }
+    },
+    {
+      "id": "c01",
+      "section": "controls",
+      "visual": "controls",
+      "text": "The metadata-versus-name control tests query blindness, while the same-table rule tests accidental joins between unrelated columns.",
+      "grounding": "sources/T1_CATALOG_MANIFEST.json",
+      "display_citation": "Retrieval and join controls · design only",
+      "params": {
+        "heading": "CONTROL RETRIEVAL BEFORE COUNTING",
+        "rows": [
+          [
+            "METADATA VS NAME",
+            "query-channel blindness"
+          ],
+          [
+            "SAME-TABLE PAIR",
+            "cross-table join artifact"
+          ],
+          [
+            "UV EVIDENCE",
+            "wrong-band magnitude"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "c02",
+      "section": "controls",
+      "visual": "controls",
+      "text": "Object class, band convention, completeness, and provenance controls prevent a visually plausible point from becoming an unsupported bright-end record.",
+      "grounding": "sources/T2A_CHAIN_DISCLOSURE.json",
+      "display_citation": "Eligibility and chain-disclosure controls",
+      "params": {
+        "heading": "A POINT NEEDS AN AUDIT TRAIL",
+        "rows": [
+          [
+            "OBJECT CLASS",
+            "stars, models, or summaries"
+          ],
+          [
+            "BAND CONVENTION",
+            "wrong rest-frame quantity"
+          ],
+          [
+            "PROVENANCE",
+            "duplicate or unsupported record"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "g01",
+      "section": "discipline",
+      "visual": "discipline",
+      "text": "We tied our own hands by freezing the frame, thresholds, slices, and eligibility clauses before fetching any object rows.",
+      "grounding": "sources/PACE_STATISTIC_CONTRACT_V1.md",
+      "display_citation": "Pace-statistic contract frozen before data",
+      "params": {
+        "locks": [
+          "MAGNITUDE FRAME",
+          "BRIGHT THRESHOLD",
+          "REDSHIFT SLICES",
+          "ELIGIBILITY CLAUSES"
+        ],
+        "bottom": "THE FRAME CANNOT MOVE AFTER THE OBJECTS ARE SEEN"
+      }
+    },
+    {
+      "id": "g02",
+      "section": "discipline",
+      "visual": "discipline",
+      "text": "The gates are scientific discipline: missing metadata stays missing, and no inferred convention can be chosen later to rescue a record.",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Fail-closed reviewed-script protocol",
+      "params": {
+        "locks": [
+          "DISCOVERY",
+          "ELIGIBILITY",
+          "PROJECTION",
+          "ESTIMATOR"
+        ],
+        "bottom": "NO INFERENCE FROM UNSTATED CONVENTIONS"
+      }
+    },
+    {
+      "id": "b01",
+      "section": "boundary",
+      "visual": "boundary",
+      "text": "What is known is the retrieval and eligibility design; catalogue totals, object counts, an archival gap, and any luminosity-function pace remain outside this canary.",
+      "grounding": "sources/LANE_STATUS.json",
+      "display_citation": "Lane status · method-only boundary",
+      "params": {
+        "known": [
+          "dual-channel retrieval",
+          "eligibility contract",
+          "evidence-plane design"
+        ],
+        "held": [
+          "catalogue or row totals",
+          "bright-end counts",
+          "luminosity-function pace"
+        ],
+        "next": [
+          "independent source freeze",
+          "numeric verification",
+          "explicit result gate"
+        ]
+      }
+    },
+    {
+      "id": "x01",
+      "section": "payoff",
+      "visual": "payoff",
+      "text": "Ask the opening question again: are object records genuinely absent, or were they invisible to the retrieval instrument?",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Opening question re-posed",
+      "params": {
+        "heading": "MISSING OR MISSED?",
+        "icon": "plane",
+        "left": "GENUINELY ABSENT OBJECT RECORD",
+        "right": "RETRIEVAL-BLIND OBJECT RECORD",
+        "discriminant": "DUAL-CHANNEL SEARCH + SAME-TABLE EVIDENCE PLANE",
+        "banner": "METHOD DESIGNED · COUNTS WITHHELD"
+      }
+    },
+    {
+      "id": "x02",
+      "section": "payoff",
+      "visual": "payoff",
+      "text": "Now we have a method that can tell those explanations apart without manufacturing a catalogue count or an archival result.",
+      "grounding": "sources/HWAO_SIBLING_ROLLOUT_ORDER.md",
+      "display_citation": "Sibling rollout authority · method only",
+      "params": {
+        "heading": "THE METHOD EARNS THE ANSWER",
+        "icon": "plane",
+        "left": "MISSING DATA EXPLANATION",
+        "right": "MISSED DATA EXPLANATION",
+        "discriminant": "DISCOVERY RECEIPTS + ELIGIBILITY + PROVENANCE",
+        "banner": "NO RESULT CLAIM IN THIS CANARY"
+      }
+    }
+  ]
+}

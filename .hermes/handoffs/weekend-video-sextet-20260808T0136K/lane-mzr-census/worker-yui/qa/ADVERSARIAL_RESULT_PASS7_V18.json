@@ -1,0 +1,35 @@
+{
+  "review_round": 24,
+  "pass": 7,
+  "snapshot": "pass7-qualified-precision-version-v18",
+  "snapshot_manifest_sha256": "0e8abe6201634ca9bdbe1765e2195fb75b2f78c7fb3bd47184b0b525f373e978",
+  "manifest_entry_count": 93,
+  "result": "FAIL",
+  "material_defects": [
+    "operative integration request still named storyboard external-anchor-contract-v13 rather than qualified-precision-version-v18",
+    "manifest-listed PASS7_V17_LOCAL_CHECKS receipt remained current-facing and stale while snapshot scope claimed a v18 local-check receipt"
+  ],
+  "passed_checks": {
+    "external_manifest_start_end": true,
+    "manifest_entries_hash_size_mode": "93/93; 94 files 0444; 5 directories 0555",
+    "exact_inventory": true,
+    "sources": "8/8",
+    "frames": "43/43",
+    "anchored_validator_both_preparers_renderer": "PASS",
+    "stored_content_receipt_contract": "PASS",
+    "mutation_suite": "byte-identical baseline plus 31/31 expected failures",
+    "hostile_attacks": "anchor, all listed bytes, inventory, re-sign, numeric, visual, output, title and narration-field attacks rejected",
+    "complete_audience_projection": "10 narration + 62 screen leaves + 10 citations",
+    "timing_contract": "45 states; 21 clauses; <=3.0 seconds",
+    "precision_wording": "source-bound src.redshift qualifier without ranking or rate",
+    "static_visual": "PASS for static surface",
+    "no_write_to_snapshot_or_candidate": true
+  },
+  "external_candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "external_candidate_mode": "0644",
+  "external_candidate_policy_read_only": "FAIL",
+  "files_modified": [],
+  "whole_packet_cleared": false,
+  "encoded_timing_assessed": false,
+  "release_gates": "CLOSED"
+}

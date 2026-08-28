@@ -1,0 +1,63 @@
+{
+  "closed_at": "2026-08-09T04:20:50+0900",
+  "status": "SUPERSEDED_BY_HWAO_FESC_PRESENTATION_FIX_ORDER_NO_NEW_PROMOTION",
+  "superseded_by": "HWAO_FESC_PRESENTATION_FIX_ORDER.md",
+  "supersession_reason": "Later authority required renderer-level FESC rail and badge corrections plus a fresh exact-hash encoded-frame sweep",
+  "scope": "Exact sibling method-only correction set; local rollout promotion only",
+  "candidates": {
+    "mzr-census": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "fesc": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+    "brightend": "6e0f4b098d6c5386d08ab7fb670b8b6564e257edeac5dc1c6fec2cc6b97bc7b4",
+    "mzr-anchor": "973daba3a6b8ef66409d3bbd2588fc2db2459f4fb3c5d474a731a93b8c2e1970"
+  },
+  "independent_reviews": {
+    "lana": {
+      "verdict": "PASS_4_OF_4_PROMOTE_WITHIN_LOCAL_ROLLOUT",
+      "packet": "reviews/LANA_SIBLING_CORRECTION_REREVIEW.md",
+      "sha256": "0a38a0ae406c5726a6fa09f0d168bc69c8299e912065debffecac6a1909b01cc"
+    },
+    "goru": {
+      "verdict": "PASS_4_OF_4_EXACT_FAILURES_NONE",
+      "packet": "reviews/GORU_SIBLING_CORRECTION_REREVIEW.md",
+      "sha256": "dcd281421071e018e60f84227299658779eb4158efaa336aaa6d814783e8b580"
+    },
+    "kun": {
+      "verdict": "PASS_WITH_RENDERER_PORTABILITY_CAVEATS",
+      "packet": "reviews/KUN_SIBLING_CORRECTION_REREVIEW.md",
+      "sha256": "25b6a76c678fbfc500dae2f205a202dcda06cce03b45b752b8d5e022a382f8b4",
+      "caveats_blocking": false,
+      "caveats": [
+        "Exact deterministic replay is proven on the recorded current-host environment, not arbitrary hosts",
+        "Renderers depend on absolute macOS Avenir Next and Menlo paths and version/hash environment capture rather than embedded binaries or a dependency lock",
+        "MZR-anchor renderer custody is handoff-local rather than candidate-local",
+        "MZR-anchor legacy encoded QA omits STT provider/model, mitigated by fresh local ASR"
+      ]
+    },
+    "tori_fesc_presentation": {
+      "verdict": "PASS_473_ENCODED_FRAMES_AND_THREE_FULL_RESOLUTION_REPORTED_TIMES",
+      "packet": "integrator/canaries/fesc-method-overhaul-canary-20260809T1501K/TORI_FRAME_SWEEP_QA.md",
+      "sha256": "41c8ebe117e4627b334804a3d80f47626803e0bb4439c56f12b7087decc60ffb",
+      "rail_mechanical_audit": "PASS_ZERO_STAGE_MISMATCHES_ZERO_INTERSTAGE_FILL_FRAMES",
+      "promotion_authorized": false
+    }
+  },
+  "audit": {
+    "status": "PASS",
+    "path": "integrator/CORRECTION_ROUND_AUDIT.json",
+    "sha256": "f26c13b1416ece1e3b99c2a52e4c88b5e07e42075e997577b5b52c6da8b6d1cb"
+  },
+  "promotion": {
+    "local_rollout": false,
+    "publication": false,
+    "upload": false,
+    "cockpit_or_video_root_copy": false,
+    "frontend_public": false,
+    "paperVideos": false,
+    "database": false,
+    "deploy_or_restart": false,
+    "git": false,
+    "scientific_result_claim": false,
+    "video_reportable_now": false
+  },
+  "byte_change_requires_new_review": true
+}

@@ -1,0 +1,138 @@
+#!/usr/bin/env python3
+"""Render exact audience payload plus explicitly declared closed-book review scaffolding."""
+from pathlib import Path
+import hashlib
+import json
+import re
+import sys
+
+HERE = Path(__file__).resolve().parent
+STORY_PATH = HERE / "STORYBOARD_CANDIDATE.json"
+PACKET_PATH = HERE / "PAPER_NAIVE_PACKET.md"
+RECEIPT_PATH = HERE / "qa/PAPER_NAIVE_PACKET_PROJECTION.json"
+story = json.loads(STORY_PATH.read_text())
+packet_version = "pass7-self-contained-mutation-custody-v24"
+
+
+def visible_strings(value):
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        return [text for item in value for text in visible_strings(item)]
+    if isinstance(value, dict):
+        return [text for item in value.values() for text in visible_strings(item)]
+    return []
+
+
+questions = [
+    "State the work's scope and non-scope.",
+    "Describe the retrieval method.",
+    "Reconstruct the quantitative progression and its relationship to the next workflow stage.",
+    "Explain the highlighted side-check result and its non-implications.",
+    "Compare the evidence available across workflow stages, including design and current status.",
+    "Explain what the recorded checks established and left unresolved.",
+    "Describe how the recorded examples are grouped and name the members of each group.",
+    "Separate what the packet supports reporting now from what remains pending.",
+]
+approved_questions_sha256 = "d2cc5d3eb238cecebed22c407d1697fdb12c1518d97694177afc90247783eac7"
+questions_sha256 = hashlib.sha256(
+    json.dumps(questions, ensure_ascii=False, separators=(",", ":")).encode()
+).hexdigest()
+assert questions_sha256 == approved_questions_sha256
+numeric_premise_pattern = re.compile(r"\b(?:\d+|zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\b", re.IGNORECASE)
+question_numerical_premise_hits = {
+    question: numeric_premise_pattern.findall(question)
+    for question in questions
+}
+assert all(not hits for hits in question_numerical_premise_hits.values())
+answer_premise_fragments = [
+    "not themselves adjudicated physical measurements",
+    "not eligibility results",
+    "failure mode did those checks not certify",
+    "precision-failure categories are shown",
+]
+question_answer_premise_hits = {
+    fragment: [question for question in questions if fragment.lower() in question.lower()]
+    for fragment in answer_premise_fragments
+}
+assert all(not hits for hits in question_answer_premise_hits.values())
+lines = [
+    f"# Paper-naive closed-book packet — packet {packet_version}; storyboard {story['storyboard_version']}",
+    "",
+    "Read this packet once. Then answer the eight questions from memory without reopening it, browsing, or reading any other file.",
+    "",
+    "## Deterministic projection boundary",
+    "",
+    "Each beat below contains the exact `narration`, every leaf string under `on_screen_copy`, and the exact `display_citation`, in storyboard order. Outside the audience projection, review scaffolding consists only of the title, procedural directions, section headings, field labels (`Narration`, `On-screen copy`, `Display citation`), bullet/list formatting, and eight questions. The audience strings displayed in bullets remain inside the projection. Scaffolding asks neutral prompts but supplies no answers, numerical premises, or new declarative scientific claims. No visual action, timed state, handoff, clause map, verification source, prior verdict, or answer key is included.",
+    "",
+]
+projected_records = []
+for beat in story["beats"]:
+    screen = visible_strings(beat["on_screen_copy"])
+    record = {
+        "beat_id": beat["id"],
+        "narration": beat["narration"],
+        "on_screen_copy_leaf_strings": screen,
+        "display_citation": beat["display_citation"],
+    }
+    projected_records.append(record)
+    lines.extend([
+        f"## Beat {beat['id']}",
+        "",
+        f"Narration: {beat['narration']}",
+        "",
+        "On-screen copy:",
+    ])
+    lines.extend(f"- `{text}`" for text in screen)
+    lines.extend(["", f"Display citation: `{beat['display_citation']}`", ""])
+lines.extend(["## Questions", ""])
+lines.extend(f"{index}. {question}" for index, question in enumerate(questions, 1))
+packet = "\n".join(lines) + "\n"
+audience_projection = "\n".join(
+    text
+    for beat in story["beats"]
+    for text in visible_strings({"narration": beat["narration"], "on_screen_copy": beat["on_screen_copy"], "display_citation": beat["display_citation"]})
+)
+receipt = {
+    "verdict": "PASS",
+    "contract": "EXACT_AUDIENCE_PAYLOAD_PLUS_DECLARED_REVIEW_SCAFFOLDING",
+    "packet_version": packet_version,
+    "storyboard_version": story["storyboard_version"],
+    "storyboard_sha256": hashlib.sha256(STORY_PATH.read_bytes()).hexdigest(),
+    "packet_sha256": hashlib.sha256(packet.encode()).hexdigest(),
+    "audience_projection_sha256": hashlib.sha256(audience_projection.encode()).hexdigest(),
+    "audience_projection_fields": ["narration", "on_screen_copy", "display_citation"],
+    "beat_count": len(projected_records),
+    "narration_count": len(projected_records),
+    "display_citation_count": len(projected_records),
+    "on_screen_leaf_string_count": sum(len(record["on_screen_copy_leaf_strings"]) for record in projected_records),
+    "question_count": len(questions),
+    "review_scaffolding": {
+        "outside_audience_projection": True,
+        "elements": ["title", "procedural directions", "section headings", "field labels", "bullet/list formatting", "eight questions"],
+        "audience_strings_in_bullets_are_projected": True,
+        "questions_supply_answers": False,
+        "questions_supply_numerical_premises": False,
+        "numerical_premise_pattern": numeric_premise_pattern.pattern,
+        "numerical_premise_hits": question_numerical_premise_hits,
+        "new_declarative_scientific_claims": False,
+        "approved_neutral_questions_sha256": approved_questions_sha256,
+        "questions_sha256": questions_sha256,
+        "exact_reviewed_questions_match": questions_sha256 == approved_questions_sha256,
+        "answer_premise_guard": "PASS",
+        "answer_premise_hits": question_answer_premise_hits,
+    },
+    "excluded_fields": ["visual_action", "timed_reveal_states", "state_handoff", "narration_clauses", "verification_sources", "visual_rejections"],
+    "records": projected_records,
+}
+receipt_payload = json.dumps(receipt, indent=2, ensure_ascii=False) + "\n"
+if "--check" in sys.argv:
+    assert PACKET_PATH.exists() and PACKET_PATH.read_text() == packet
+    assert RECEIPT_PATH.exists() and RECEIPT_PATH.read_text() == receipt_payload
+    print(f"PASS {PACKET_PATH} {RECEIPT_PATH}")
+else:
+    PACKET_PATH.write_text(packet)
+    RECEIPT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    RECEIPT_PATH.write_text(receipt_payload)
+    print(PACKET_PATH)
+    print(RECEIPT_PATH)

@@ -1,0 +1,80 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass25-color-minimum-scale-black-lift-20260808T142621K",
+  "created_at": "2026-08-08T14:26:21+09:00",
+  "deepening_pass": 25,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+  "video_reportable_now": false,
+  "audit_scope": {
+    "order": "native RGB -> color or linear-light BT.709 grayscale/fixed Machado severity-100 protanopia, deuteranopia, or tritanopia presentation transform -> sRGB np.rint uint8 -> Pillow LANCZOS 640x360 -> represented-pixel linear-light black lift 0.20 -> sRGB np.rint uint8",
+    "operational_black_lift_fraction": 0.2,
+    "ideal_white_to_black_ratio": 4.2,
+    "representation_only": true,
+    "clinical_diagnostic": false,
+    "named_viewing_or_delivery_standard": false
+  },
+  "evidence": {
+    "fresh_scene_detection": "15/15_EXACT_PASS24_TIMESTAMPS",
+    "fresh_native_midpoints": "16/16_BYTE_IDENTICAL_TO_PASS24",
+    "candidate_pass23_baselines": "80/80_PIXEL_EXACT",
+    "method_pass23_baselines": "105/105_PIXEL_EXACT",
+    "candidate_derivatives": "80/80_EXACT_BLACK_LIFT_RECOMPUTATION",
+    "method_derivatives": "105/105_EXACT_BLACK_LIFT_RECOMPUTATION",
+    "candidate_structural_held_gates": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_held_critical_structural_gates": "0/5_ALL_FIVE_VARIANTS",
+    "sealed_v8_complete_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_method_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_gate_ocr_aid": "7/7_ALL_FIVE_VARIANTS__SIMILARITY_1.0",
+    "hue_only_required_meaning": 0,
+    "overlap_clipping_or_ambiguity": 0
+  },
+  "acceptance_guard": {
+    "required": [
+      "Preserve all seven exact scene-specific gates as directly readable represented-pixel text after the complete declared transform chain.",
+      "Preserve all seven complete RESULT HELD badges and every major method/status boundary after the complete chain.",
+      "Pair every required category, branch, comparison, equation term, axis, unit, value, threshold, unavailable rung, qualifier, provenance fact, interpretation boundary, and release status with direct text plus at least one complete non-color geometry channel.",
+      "Use complete shapes, borders, connectors, markers, line styles, patterns, rails, status columns, or stable position as the redundant channel.",
+      "Keep the header, exact gate, badge, headline, diagrams, and support copy visually separated without clipping, overlap, or ambiguous layering.",
+      "Independently recompute the native color/monochrome transform, 640x360 reduction, and float64 represented-pixel black lift from pinned sources; matching receipts alone are insufficient.",
+      "Use human review of represented pixels and complete containers as the semantic acceptance oracle; OCR remains a reproducible aid."
+    ],
+    "prohibited_sole_channels": [
+      "hue or chroma",
+      "dark fill or subtle background texture",
+      "low-contrast body text",
+      "tiny axes, ticks, units, error bars, legends, or thresholds",
+      "one-pixel lines, dividers, or connectors",
+      "small caveats, citations, or provenance footers",
+      "global OCR recognition"
+    ],
+    "interpretation": "If a bright assertion remains primary while qualification or provenance becomes unreliable, record increased assertion-versus-support imbalance. Never treat wash or color remapping as repair, scientific authorization, or evidence adjudication."
+  },
+  "disposition": {
+    "pixel_or_copy_correction_requested": false,
+    "reason": "Direct represented-pixel review retains 7/7 exact top gates, 7/7 complete badges, all major status boundaries, direct labels, and non-color geometry across all five variants.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "blockers_unchanged": [
+    "No valid independent post-run A3.8 verdict record exists for the exact frozen all-209-file T4 artifact.",
+    "KUN_FRAME_REVIEW.md remains FRAME REVIEW: AGREES FRAME_UNSTATED.",
+    "video_reportable_now remains false."
+  ],
+  "safety": {
+    "science_adjudicated": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

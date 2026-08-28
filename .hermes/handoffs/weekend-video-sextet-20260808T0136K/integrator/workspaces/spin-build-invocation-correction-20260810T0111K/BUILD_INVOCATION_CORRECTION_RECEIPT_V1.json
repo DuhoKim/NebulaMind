@@ -1,0 +1,120 @@
+{
+  "receipt_id": "SPIN_BUILD_INVOCATION_CORRECTION_V1_20260810T0116K",
+  "created_at_kst": "2026-08-10T01:16:22.328605+09:00",
+  "status": "PASS_INVOCATION_CORRECTED_REPRODUCIBILITY_COPY_NOT_CANDIDATE",
+  "authority": "Duho direct order: correct the build invocation in a new versioned workspace only; preserve all passing candidates and cockpit copies.",
+  "workspace": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K",
+    "created_from": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-why-study-intro-20260809T2340K",
+    "copied_file_count_before_build": 104,
+    "mp4_count_before_build": 0,
+    "copy_exclusions": [
+      "*.mp4",
+      "build_receipt.json",
+      "qa_frames/",
+      "encoded_qa/",
+      "encoded_qa.json",
+      "encoded-contact-sheet-v4.jpg",
+      "final-timing-contact-sheet-v4.jpg"
+    ]
+  },
+  "failed_command_disposition": {
+    "process_id": "proc_5fe74cc5966a",
+    "command": "/Users/duhokim/.hermes/hermes-agent/venv/bin/python build.py",
+    "exit_code": 2,
+    "cause": "The CLI requires exactly one of --preview or --render.",
+    "mp4_produced": false,
+    "candidate_or_regate_created": false,
+    "reused_as_build_authority": false
+  },
+  "corrected_invocations": [
+    {
+      "command": "/Users/duhokim/.hermes/hermes-agent/venv/bin/python build.py --preview",
+      "working_directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K",
+      "exit_code": 0,
+      "completion_time_basis": "Preview output filesystem mtime.",
+      "completed_at_kst": "2026-08-10T01:13:19.135944+09:00",
+      "output": "final-timing-contact-sheet-v4.jpg",
+      "output_bytes": 1430219,
+      "output_sha256": "28fa31b83f3ef8d5e14cea21642230f54bdc9e1aa7cc3d2fa8c176acc25b4d98",
+      "visual_pre_render_check": "PASS: populated contact sheet; five why-study beats remain distinct and ordered before the method handoff; no obvious blank, corrupt, missing, clipped, or overlapping panel blocking render. No acceptance inferred."
+    },
+    {
+      "process_id": "proc_4200f24ebf30",
+      "command": "/Users/duhokim/.hermes/hermes-agent/venv/bin/python build.py --render",
+      "working_directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K",
+      "started_at_kst": "2026-08-10T01:13:35+09:00",
+      "completed_at_kst": "2026-08-10T01:14:56.671937+09:00",
+      "exit_code": 0,
+      "output": "spin-method-overhaul-canary-20260809T2340K.mp4",
+      "output_birth_kst": "2026-08-10T01:13:36.600645+09:00",
+      "output_mtime_kst": "2026-08-10T01:14:56.598573+09:00",
+      "output_bytes": 25486290,
+      "output_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+      "full_audio_video_decode": "PASS",
+      "byte_compare_to_passing_spin_candidate": "IDENTICAL"
+    }
+  ],
+  "input_identity": {
+    "build_py_sha256": "639f9e477904ab0117144d5722831ada0a58a9a1d43c5fca13bd8d54a4a96864",
+    "timeline_sha256": "8d6fe95efd9f68ef0034f9bf69f41ab59461a2bebd07aa514e60f7c83f4ebf0a",
+    "audio_master_sha256": "e35b5ca002c88a0b84d6bdf5bb5be7508564021c037295e9114ec9d299378bc6",
+    "narration_script_sha256": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1"
+  },
+  "frame_self_description": {
+    "raw_frames_submitted_to_ffmpeg": 6727,
+    "encoded_video_frames": 6726,
+    "ffprobe_nb_frames": 6726,
+    "ffprobe_nb_read_frames": 6726,
+    "video_stream_duration_seconds": 224.2,
+    "container_duration_seconds": 224.217,
+    "legacy_generated_build_receipt": {
+      "path": "build_receipt.json",
+      "sha256": "539bb151a076120d95d32ad335b28dac792d228695ba381ed3989f164be7eb96",
+      "unqualified_field": {
+        "frame_count": 6727
+      },
+      "qualification": "The generated scalar is the raw-frame submission count, not the encoded stream count. It remains preserved and is not treated as final self-description authority."
+    },
+    "governing_class_correction": {
+      "packet_manifest_v5_sha256": "9a554227aa73a53390f4f62ed6c8fc2b07c0b3ecde10beb31c8621c018bdf22a",
+      "tori_verdict": "PASS_PROVENANCE_RECEIPT_CORRECTION"
+    }
+  },
+  "output_disposition": {
+    "classification": "BYTE_IDENTICAL_REPRODUCIBILITY_COPY_IN_VERSIONED_WORKSPACE",
+    "new_candidate": false,
+    "regate_triggered": false,
+    "may_replace_passing_candidate": false,
+    "may_replace_cockpit_copy": false,
+    "human_acceptance_conferred": false
+  },
+  "passing_candidate_custody": {
+    "spin": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "fesc": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+    "brightend": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+    "mzr-anchor": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+    "mzr-census": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "all_rehashed_after_corrected_invocation": true,
+    "all_preserved": true
+  },
+  "after_0105_mp4_scan": {
+    "new_or_modified_mp4_count": 1,
+    "only_path": "integrator/workspaces/spin-build-invocation-correction-20260810T0111K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "only_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078"
+  },
+  "held_work": {
+    "goru_overnight_quality_report_consumed_or_acted_on": false,
+    "brightend_quality_correction_started": false,
+    "four_sibling_why_study_rollout_started": false,
+    "reason": "Wait for the disk report and Duho's own spin watch as explicitly ordered."
+  },
+  "closed_actions": {
+    "passing_candidate_overwrite": false,
+    "cockpit_copy_overwrite": false,
+    "upload_or_publication": false,
+    "public_or_frontend_mutation": false,
+    "database_deploy_restart_git_billing_provider_config_or_secrets_mutation": false,
+    "acceptance_label": false
+  }
+}

@@ -1,0 +1,2018 @@
+                                                                                               Colliding Ghosts:
+                                                            Constraining Inflation with the Parity-Odd Galaxy Four-Point Function
+                                                                    Giovanni Cabass,1, ∗ Mikhail M. Ivanov,1, 2, † and Oliver H. E. Philcox3, 4, 5, 1, ‡
+                                                        1
+                                                            School of Natural Sciences, Institute for Advanced Study, 1 Einstein Drive, Princeton, NJ 08540, USA
+                                                                              2
+                                                                                NASA Hubble Fellowship Program Einstein Postdoctoral Fellow
+                                                                                  3
+                                                                                    Center for Theoretical Physics, Department of Physics,
+                                                                                     Columbia University, New York, NY 10027, USA
+                                                                        4
+                                                                          Simons Society of Fellows, Simons Foundation, New York, NY 10010, USA
+                                                                  5
+                                                                    Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08540, USA
+                                                              Could new physics break the mirror symmetry of the Universe? Utilizing recent measurements of
+
+
+
+
+arXiv:2210.16320v3 [astro-ph.CO] 15 Mar 2023
+                                                              the parity-odd four-point correlation function of BOSS galaxies, we probe the physics of inflation
+                                                              by placing constraints on the amplitude of a number of parity-violating models. Within canonical
+                                                              models of (single-field, slow-roll) inflation, no parity-asymmetry can occur; however, it has recently
+                                                              been shown that breaking of the standard assumptions can lead to parity violation within the
+                                                              Effective Field Theory of Inflation (EFTI). In particular, we consider the Ghost Condensate and
+                                                              Cosmological Collider scenarios – the former for the leading and subleading operators in the EFTI
+                                                              and the latter for different values of mass and speed of an exchanged spin-1 particle – for a total
+                                                              of 18 models. Each instance yields a definite prediction for the inflationary trispectrum, which we
+                                                              convert to a late-time galaxy correlator prediction (through a highly non-trivial calculation) and
+                                                              constrain using the observed data. We find no evidence for inflationary parity-violation (with each of
+                                                              the 18 models having significances below 2σ), and place the first constraints on the relevant coupling
+                                                              strengths, at a level comparable with the theoretical perturbativity bounds. This is also the first time
+                                                              Cosmological Collider signatures have directly been searched for in observational data. We further
+                                                              show that possible secondary parity-violating signatures in galaxy clustering can be systematically
+                                                              described within the Effective Field Theory of Large-Scale Structure. We argue that these late-time
+                                                              contributions are subdominant compared to the primordial parity-odd signal for a vast region of
+                                                              parameter space. In summary, the results of this paper disfavor the notion that the recent hints of
+                                                              parity-violation observed in the distribution of galaxies are due to new physics.
+
+
+
+
+                                                                                                    I.   INTRODUCTION
+
+                                               Cosmic inflation probes physics at energy scales vastly above those of terrestrial experiments, providing a unique
+                                               window into fundamental physics. Whilst the inflationary period cannot be observed directly, quantum fluctuations
+                                               produced therein source perturbations in the metric, which manifest themselves in the distribution of matter and
+                                               gravitational waves today. As such, careful analysis of late-time observables, such as the cosmic microwave background
+                                               (CMB) and large-scale structure (LSS), can be used to shed light on primordial physics.
+                                                  The simplest models of inflation predict a Gaussian spectrum of primordial perturbations [1–3], and thus a Gaussian
+                                               distribution for the CMB (neglecting secondary effects), and LSS (within the linear regime). In this scenario, the early
+                                               Universe is controlled by a single scalar field, known as the inflaton, whose dynamics are set by a quadratic action on a
+                                               (nearly) de-Sitter background [e.g., 4, 5]. A wide variety of extensions to this exist, involving, for example, additional
+                                               fields (either massive or massless, and of varying spin [e.g., 6]), modified kinetic terms (such as those motivated by
+                                               UV completions involving extra dimensions [e.g., 7]), and non-standard vacua. In recent years, a particularly useful
+                                               framework to categorize this landscape has emerged, in the form of the Effective Field Theory of Inflation (hereafter
+                                               EFTI) [8] (see [9] for a recent review). In the vein of other effective field theories, this systematically predicts the
+                                               various operators that can appear in the low-energy action, consistent with various symmetry principles. To probe
+                                               inflation, we can thus search for the late-time signatures of these terms.
+                                                  A generic prediction of many non-standard inflationary theories is a modification of the primordial spectrum of
+                                               density perturbations, for example by introducing skewness to the initially Gaussian distribution (see [10, 11] for
+                                               a review). In its simplest form, this sources a three-point correlator (or bispectrum) of the primordial curvature
+                                               perturbation, the shape of which is fixed by the inflationary Lagrangian. By winding forward the cosmological clock,
+                                               one can calculate the impact on late-time statistics, which takes the form of a non-trivial CMB and LSS three-point
+
+                                               ∗ gcabass@ias.edu
+                                               † ivanov@ias.edu
+                                               ‡ ohep2@cantab.ac.uk
+                                                                                                                         2
+
+
+
+
+                                             FIG. 1. Outline of this work [? ].
+
+
+
+function. Since the early 2000s, various attempts have been made to constrain such models using both the CMB, and,
+more recently, spectroscopic surveys, usually by measuring a set of characteristic non-Gaussian amplitudes, fNL , which
+can be related to couplings in the EFTI [e.g., 12–20]. Whilst no detections have been yet made, bounds will continue
+to tighten with upcoming experiments such as the Simons Observatory [21] and the Dark Energy Spectroscopic
+Instrument (DESI) [22], and there is some hope of probing interesting regimes such as the fNL ≈ 1 limit in the future
+(which is a natural boundary for many models of multi-field inflation).
+   The rich landscape of inflationary physics source much more than just primordial three-point functions. At next
+order, one may consider kurtosis, i.e. the primordial four-point correlator (or trispectrum). This can be generated via
+a number of physical channels, such as particle exchange during inflation [e.g. 6, 23]. As before, the EFTI predicts
+specific correlator templates with accompanying amplitudes. Some work has been performed to constrain these with
+the CMB (usually via the gNL and τNL amplitude parameters) [e.g., 24–27], but the field is still in its infancy, and is
+hampered by the comparably low signal-to-noise of higher-point statistics in nature.
+   An intriguing feature of scalar four-point functions (such as the primordial curvature perturbation) is that they are
+chiral, i.e. one can define a handedness to the shapes which flips under mirror-reflection. This was first pointed out in
+the galaxy-survey context in [31] (see also [28–30]). If the primordial Universe preserves parity symmetry, there should
+be no difference between left- and right-handed shapes, thus the parity-odd part of the four-point function should
+vanish. In the late Universe, large-scale physics is set by gravity and hydrodynamics, which (at least in conventional
+theories) conserve parity, but interesting violations could occur during inflation. Indeed, the creation of the known
+baryon-antibaryon imbalance requires some form of primordial charge-parity asymmetry [e.g., 32–35].
+   To understand inflationary parity-violation, we can once again look to the EFTI. Assuming a scale-invariant Universe
+with a Bunch-Davies vacuum, populated by a set of arbitrary scalar fields (with interactions that fall off sufficiently
+fast as the modes are stretched outside the horizon during inflation), the parity-odd primordial trispectrum vanishes at
+tree level [30, 36]. Any significant detection would thus indicate violation of one of the above assumptions, and could
+hint at a variety of non-standard inflationary scenarios. Intriguing examples of this include non-standard vacua such
+as ghost condensation [37, 38], (strong) violation of scale invariance, or the exchange of massive spinning particles
+[30, 36]. As for the bispectrum, each scenario arises from specific terms in the EFTI Lagrangian, whose signatures can
+be searched for in late-time observables.
+   If we wish to probe the inflationary peculiarities described above, we require parity-sensitive observables. In
+general, late-time observables fall into two categories: those sensitive to tensor perturbations (i.e. gravitational waves)
+and those sensitive to scalar perturbations (i.e. gravitational potentials). Quantities in the first class include CMB
+polarization (including V modes) [e.g., 39–49], galaxy shapes [50], galaxy spins [51, 52], and directly-observed stochastic
+gravitational waves [53]. Through their dependence on chiral gravitational waves, these can have parity-sensitive power
+                                                                                                                         3
+
+spectra, for instance, the CMB T B correlator [54–56]. In contrast, the second class of observables, including CMB
+T - and E-modes and LSS density fields, depend only on inflationary scalars, thus parity-sensitivity appears only in
+the trispectrum and beyond (since a parity transformation is equivalent to a rotation for the power spectrum and
+bispectrum) [28, 36, 57, 58]. In this work, we consider the latter case, noting that the physical origins of scalar- and
+tensor-type parity violation can be distinct, and there has been no robust detection of gravitational wave signatures to
+date.
+   In this work, our primary observable is the galaxy four-point correlation function, which is the configuration-space
+analog of the galaxy trispectrum. The parity-even and parity-odd contributions to this (as defined in [31]) were
+measured for the BOSS galaxy survey in [59] and [60, 61] respectively, and, intriguingly, there are some hints of a
+non-zero signal in the latter, roughly at the 3σ level. Naı̈vely interpreted, this could be a smoking gun of non-standard
+inflationary physics, sourced by models such as those considered above. We caution that this is not the only possible
+explanation. Though conventional post-reheating physics is thought to be parity-conserving (at least on the large
+scales relevant to galaxy clustering, r ≥ 20h−1 Mpc here), more esoteric suggestions such as Chern-Simons modified
+gravity [62] could lead to a late-time signal. Furthermore, the measurements themselves are wrought with complexity,
+as is their interpretation. Little work has been devoted to the impact of data systematics (such as window functions
+and galactic dust) on the higher-point functions, and modeling the noise properties of the data is no mean feat. In the
+latter case, knowledge of the (connected) eight-point function is strictly required, and the detection significance varies
+wildly with different approaches to its estimation [60, 61].
+   Potential hints of cosmic parity-breaking motivate careful study of its possible origins. In [60], a single inflationary
+model was considered, involving a non-decaying U (1) gauge field coupled to the inflaton via a Chern-Simons interaction,
+as proposed in [46, 57]. This has a number of theoretical problems, in particular, the (admittedly small) anisotropy
+imprinted in the two-point function, and the inherent tachyonic instability, which leads to the exponential amplification
+of higher-point functions. Indeed, no evidence was found for this model in the former work. Here, we consider two
+types of parity-breaking motivated by the EFTI and for which the theoretical prediction is under perturbative control:
+Ghost Inflation [37] and the exchange of a spin-1 particle (part of the Cosmological Collider setup, [e.g., 6, 63, 64]),
+following the derivations of [36]. In particular, we will place constraints on the corresponding inflationary couplings,
+and additionally assess whether these scenarios could be responsible for the observed parity-excess. Further, we will
+compare our constraints to the rough magnitudes expected from the EFTI via perturbativity bounds, allowing us to
+assess whether such our constraints are parametrically relevant. This paper provides the first bounds on such models
+of inflation; however, the constraining power will only grow in the future with the advent of new surveys and new
+datasets.
+   Whilst not the main focus of this paper, it is interesting to note that modern EFT techniques in cosmology – namely
+the Effective Field Theory of Large-Scale Structure (EFTofLSS; [65, 66], see [9] for a recent review and [67–70] for
+applications to data) – allow one to parameterize any late-time sources of parity-violation in a model-independent way,
+giving rise to templates that are compatible with all the symmetries of the large-scale structure barring point reflection
+(assuming the equivalence principle). The measurement of [60, 61] could be used to put constraints on the amplitude
+of these templates, which may then be translated to bounds on the “microphysical” parameters of any late-time model.
+The power of such EFT techniques is that they allow us, again in a model-independent manner, to estimate the size of
+parity violation. The final result of this work is to show that these would-be signatures are much smaller than the
+parity-even contributions from gravitational collapse to the galaxy four-point function if the spatial nonlocality scale
+associated with them is of the same order as the non-linear scale of structure formation. With the same assumptions,
+we also show that they would be subdominant to primordial contributions if we are in the regime of mild primordial
+non-Gaussianity. Again, we stress that these conclusions hold regardless of the fact that these signatures would require
+some form of parity-violating gravity (or hydrodynamics) operating at late times. In summary, the results of this
+paper yield three possible explanations for the results of [60, 61]: (1) inflationary physics uncorrelated with the models
+tested herein; (2) late-time physics with a huge correlation length; (3) systematics in the data or analysis procedure.
+  The remainder of this paper is structured as follows. In §II, we discuss parity-violating inflation, and introduce the
+models considered in this work and their corresponding primordial trispectra. §III discusses the observable utilized
+herein (the galaxy four-point correlation function), before we present theoretical predictions for its form in §IV.
+Our main results, including amplitude constraints, are given in §V. §VI discusses the parametrization of late-time
+parity violation within the EFTofLSS, before we conclude in §VII. Gory details of the calculations are presented in
+Appendix A.
+
+
+                                   II.   INFLATIONARY PARITY VIOLATION
+
+In this section we introduce two candidate models for parity-violating inflation: the Ghost Condensate [37, 38] and the
+Cosmological Collider [6, 30, 63, 64, 71–78]. This follows from [36], which studied these two scenarios as examples
+                                                                                                                           4
+
+of models that evade general theorems about parity violation in the scalar sector, and can give rise to a parity-odd
+trispectrum for the comoving curvature perturbation ζ.
+   The first case can be seen as a limit of the Effective Field Theory of Inflation (EFTI) [e.g., 8, 9] in which the quantum
+fluctuations, π, of the clock (which on superhorizon scales are simply proportional to ζ) have a dispersion relation
+ω 2 ∝ k 4 . An example of UV completion is a scalar field φ with a Lagrangian that is a function P of X ≡ −(∂µ φ)2
+such that excitations π about the “trivial” background φ = 0 are unstable, but those around the background φ = µt
+are not. If dP/dX vanishes on the background, π will have a nonrelativistic dispersion relation [37, 38]. Note that
+ghost condensation naturally arises as a low energy limit of models with Lorentz invariance violation in the inflaton
+sector [79].
+  In the second instance, one considers the impact of massive spinning particles, σ ij··· , coupled to the clock. Even if
+these particles decay on superhorizon scales, they can be created from the vacuum and exchanged by π fluctuations in
+the bulk of de Sitter spacetime, and leave an impact on the statistics of the curvature perturbation ζ that are not
+degenerate with local operators in the EFTI if their mass, mσ , is comparable to the Hubble scale, H.
+   Below, we briefly recapitulate the interactions studied in [36], summarize the corresponding templates for the
+parity-odd trispectrum (which will be used to predict the parity-odd galaxy correlator in §IV), and discuss bounds on
+their size from requirements of perturbativity. In all cases, we assume the standard EFTI symmetries, and work in the
+close-to-de-Sitter limit, in which templates are scale invariant, with any deviations slow-roll suppressed.
+
+
+
+
+                             A.   The Inflationary Lagrangian and Inflaton Interactions
+
+
+In the case of Ghost Inflation, the primordial Universe is described by a single clock π (hereafter known as the
+Goldstone mode), which obeys the quadratic action
+
+
+                                                         √ Λ4 2 Λ̃2 (∂ 2 π)2
+                                                Z                                       
+                                                     4
+                                        Sππ =       d x −g   π̇ −                            ,                           (1)
+                                                           2      2   a4
+
+
+where a is the scale factor, and the scales Λ and Λ̃ control the normalization of the power spectrum (using ζ = −Hπ
+on superhorizon scales):
+
+                                                                            1
+                                                                 H 2 (H Λ̃) 2 Γ( 34 )2
+                                            k 3 Pζ (k) ≡ ∆2ζ =                                                           (2)
+                                                                       πΛΛ̃2
+
+for a scale-invariant power spectrum ∆2ζ . On subhorizon scales, π follows the dispersion relation ω = Λ̃k 2 /Λ2 ; it is this
+non-linear relation that results in the different phenomenology of the theory to standard single-field inflation.
+  At tree level, the only contribution to a parity-odd trispectrum of the Goldstone mode (i.e. the part of hππππi
+antisymmetric under reflections) can come from contact diagrams. [36] studied the following two interactions, appearing
+at leading- and subleading-order in the effective field theory expansion respectively
+
+                                             √
+                                       Z
+                                    1
+                              (LO)
+                             Sππππ =     d4 x −g a−9 ijk ∂m ∂n π∂n ∂i π∂m ∂l ∂j π∂l ∂k π ,                              (3)
+                                   MPO
+                                             √
+                                       Z
+                                    1
+                             (NLO)
+                            Sππππ = 2    d4 x −g a−9 π̇ijk ∂i ∂l π∂l ∂j ∂ 2 π∂k ∂ 2 π ,                                 (4)
+                                   ΛPO
+
+where ijk is the antisymmetric tensor, which gives rise to the parity-violation. It is important to keep in mind that
+these two operators fully exhaust only the subset of quartic operators that in the flat-space limit of the EFTI are
+invariant under the non-linear part δπ = λi xi of the spontaneously broken Lorentz boosts. A full classification including
+Wess-Zumino terms is left for future work: in this analysis we focus on (3) and (4) as the simplest trispectrum-inducing
+couplings that arise due to deviations from a Bunch-Davies vacuum with a linear dispersion relation.
+  Regarding the Cosmological Collider, in this work we focus on the same setup studied in [36], i.e. the parity-odd
+                                                                                                                                   5
+
+four-point function arising from the exchange of a massive spin-1 field σ i . This has the Feynman diagram
+
+                                       k1     k2                                 k3         k4
+
+
+
+                                         ⇡         ⇡                         ⇡          ⇡
+                                                                                                                                 (5)
+
+
+                                                          s = |k1 + k2 |
+
+
+
+
+for the s-channel exchange. The parity-even and parity-odd vertices are, respectively:
+                                                    √
+                                              Z
+                                   Sππσ = λ1 d4 x −g a−3 ∂i π̇∂i ∂j πσ j ,
+                                     PE
+                                                                                                                                 (6)
+                                                    √
+                                              Z
+                                     PO
+                                   Sππσ  = λ3 d4 x −g a−4 ijk ∂i ∂l π∂j ∂l π̇σ k ,                                              (7)
+
+where λ1 has dimensions of energy and λ3 is dimensionless.1 The quadratic actions for π and σ i , instead, are given by
+                           H4           √ 
+                                 Z
+                                    d4 x −g π̇ 2 − c2s a−2 (∂i π)2 ,
+                                                                     
+                  Sππ = 3 2                                                                                         (8)
+                         4cs ∆ζ
+                                   √ 
+                            Z
+                         1
+                              d4 x −g (σ̇ i )2 − c21 a−2 (∂i σ j )2 − (c20 − c21 )a−2 (∂i σ i )2 − m2σ (σ i )2 ,
+                                                                                                              
+                  Sσσ =                                                                                             (9)
+                         2
+where all indices are raised and lowered with δij , c0,1 are the speeds of sound of the longitudinal and transverse
+components of σ i and mσ is the mass of the spin-1 field. In the exchange diagram of (5) only the ±1 helicities are
+exchanged. Without loss of generality we can then set c1 = 1, so that cs > 1 (cs < 1) means that the π fluctuations
+are moving faster (slower) than the spinning particle.
+  It is important to keep in mind that the operators of (6) and (7) do not exhaust all the possible signatures of parity
+violation in the Cosmological Collider:
+   • here we are considering only operators that the non-linear realization of boosts does not tie to quadratic mixings
+     between π and the helicity-0 mode of σ i . The space of interactions between two π fluctuations and one σ i is
+     larger than this;
+   • even with this restriction there are two other operators at leading order in the effective field theory expansion:
+     λ2 a−1 π̈∂i π̇σ i and λ4 a−2 ijk ∂i π̈∂j π̇σ k . Hence the space of signatures of parity violation involves the λ1 λ3 , λ2 λ3 ,
+     λ1 λ4 and λ2 λ4 exchanges, in principle;
+   • parity violation can also arise if there is a split of the ±1 helicities of σ i exchanged in the diagram of (5) [30].
+     This can happen for example via the dimension-3 operator a−1 ijk σ i ∂j σ k at leading order in the effective field
+     theory expansion (or, in a UV-complete framework, a Chern-Simons-like interaction, [e.g. 28]).
+As discussed in the introduction, the purpose of this work is to show how already with current surveys we can put
+constraints on the presence and interactions of massive particles during inflation. Since we expect that BOSS data will
+not give parametrically different constraints if we consider the scenarios in the three bullet points above (for example if
+we had considered the λ2 λ3 , λ1 λ4 or λ2 λ4 exchanges), focusing on this example will suffice for our purpose until data
+from future surveys like DESI and Euclid are available (and indeed the various templates are likely highly correlated).
+Another reason why we focus on the λ1 λ3 exchange is that it is only interaction the among the four that has been
+explicitly bootstrapped in [9], leading to a closed-form expression for the resulting ζ trispectrum. We further note that
+other templates are possible if one loosens the symmetries imposed on the EFTI, e.g., allows for strong departures
+from scale invariance.
+
+
+1 Notice that here we assume that σ i transforms as a vector under parity.
+                                                                                                                                                   6
+
+   In this regard, let us also discuss our choice of spin and mass of the exchanged particle. Spin-s particles must satisfy
+the Higuchi bound m2σ > s(s − 1)H 2 [80], implying that the signature in ζ correlators of very massive particles with
+high spin that is not degenerate with EFTI operators is exponentially suppressed (in addition to the suppression in
+the squeezed limit due to their fast decay as the universe expands) [6]. In this work we focus on spin-1 particles since,
+in this case, any mass is allowed. It would be interesting to study the signature of higher-spin particles in the setup
+of [71]: there the authors invoke strong couplings with the clock in order to evade the Higuchi bound, turning the
+Cosmological Collider into “Cosmological Condensed Matter”.2 In keeping with the exploratory nature of our paper,
+we leave also this to future work.
+
+
+                                                             B.        Trispectrum templates
+
+We now summarize the trispectrum templates of the above models, i.e. the predictions for
+
+   hζ(k1 )ζ(k2 )ζ(k3 )ζ(k4 )ic ≡ (2π)3 δD (k1234 ) T (k1 , k2 , k3 , k4 ) ≡ (2π)3 δD (k1234 ) T̃ (k1 , k2 , k3 , k4 ) + 23 perms. ,              (10)
+
+where the second definition is explicitly symmetrized. Before doing so, we emphasize that we follow the recent inflationary
+analyses of BOSS data [15–17] and consider only scale-invariant templates for primordial non-Gaussianities.
+
+
+                                                                   1.        Ghost Condensate
+
+The pre-symmetrized trispectra from the operators of (3) and (4), which we will denote with a subscript MPO and
+Λ2PO respectively, are given by
+
+                                 128iπ 3 Λ5 (H Λ̃)1/2 2 3 (k1 · k2 × k3 )(k2 · k4 )(k1 · k4 )(k2 · k3 )      (11)
+ T̃MPO (k1 , k2 , k3 , k4 ) =                        (∆ζ )                3   3  3   3                  Im T0,0,0,0 (k1 , k2 , k3 , k4 ) ,
+                                   MPO Λ̃5 Γ( 34 )2                      k k k k
+                                                                          2   2  2   2
+                                                                                        1       2   3   4
+                                                                                                                                                 (11)
+                                512iπ 3 Λ5 (H Λ̃)3/2 2 3                            −3 1 1 1          (13)
+  T̃Λ2PO (k1 , k2 , k3 , k4 ) =     2        3 2
+                                                    (∆ζ ) (k1 · k2 × k3 )(k1 · k2 )k1 2 k22 k32 k42 T0,0,0,1 (k1 , k2 , k3 , k4 ) ,
+                                         6
+                                  ΛPO Λ̃ Γ( 4 )
+
+where the function T is defined as
+                                                   Z +∞
+                                                                       (1)                  (1)             (1)                  (1)
+          Tν(n)
+            1 ,ν2 ,ν3 ,ν4
+                          (k1 , k2 , k3 , k4 ) =          dλ λn H 3 −ν (2ik12 λ2 )H 3 −ν (2ik22 λ2 )H 3 −ν (2ik32 λ2 )H 3 −ν (2ik42 λ2 ) .       (12)
+                                                                       4     1              4       2       4     3              4     4
+                                                   0
+                                                                                                                                           (n)
+The Hankel functions in the two integrals are exponentially convergent at large λ. We notice that T0,0,0,0 (k1 , k2 , k3 , k4 )
+                            (n)
+is purely imaginary and T0,0,0,1 (k1 , k2 , k3 , k4 ) is purely real, in keeping with the imaginary nature of parity-odd
+trispectra. We also see that there is no dependence of the trispectra on the Mandelstam-like variables
+
+                        s = k1 + k2 ,                                      t = k1 + k3 ,                              u = k2 + k3 ,              (13)
+                        s = |k1 + k2 | ,                                   t = |k1 + k3 | ,                           u = |k2 + k3 | ,
+
+given that the trispectrum arises from contact diagrams (i.e. without particle exchange). Finally, we notice that both
+templates contain the ubiquitous k1 · k2 × k3 factor, which is the only parity-violating structure possible for scale- and
+rotation-invariant trispectra.
+
+
+                                                                  2.       Cosmological Collider
+
+To parametrize the mass of the spin-1 particle σ, we introduce the variable
+                                                       r
+                                                         9 m2σ
+                                                  ν≡       −     ,                                                                               (14)
+                                                         4 H2
+
+
+2 See also [81–89] for other ways of having light spinning particles during inflation (more precisely particles belonging to unitary
+
+  representations of the de Sitter group different than the “principal series” m2σ ≥ (s − 1/2)2 , a strong breaking of the shift symmetry of
+  the clock, and symmetry breaking patterns different than that of the EFTI).
+                                                                                                                                                   7
+
+which is real for mσ ≤ 3H/2. In this case, the trispectrum arising from the diagram of (5) can be bootstrapped for
+arbitrary cs using the tools developed in [90] and is given by
+                                " 4          #
+                                               c4s λ1 λ3
+                                                                    
+                                 Y                                 1
+  Tλ1 λ3 (k1 , k2 , k3 , k4 ) =      Pζ (ka )         3
+                                                         sin π ν +     (s2 − k12 − k22 )(s2 − k32 − k42 )(k1 − k2 )(k3 − k4 )
+                                 a=1
+                                                 2H                2
+                               × (k3 · k2 × k4 )[k12 I3 (cs k12 , s) + ics k1 k2 I4 (cs k12 , s)][k34 I4 (cs k34 , s) + ics k3 k4 I5 (cs k34 , s)]
+                             + [(1, 2) ↔ (3, 4)] + t + u ,
+                                                                                                                                               (15)
+where Pζ (k) = ∆2ζ /k 3 , we have defined kab ≡ ka + kb . The 6 permutations in the above trispectrum are
+     {1, 2, 3, 4, 1+2} + {3, 4, 1, 2, 3+4} + {1, 3, 2, 4, 1+3} + {2, 4, 1, 3, 2+4} + {1, 4, 2, 3, 2+3} + {2, 3, 1, 4, 1+4} , (16)
+and we require the functions In , defined as
+                                                                    n
+                                               n+1    H          i        Γ (α) Γ (β)                   1  a
+                            In (a, b) = (−1)         √                                × 2 F1 α, β; 1 + n; −                                    (17)
+                                                       2b       2b         Γ(1 + n)                      2 2b
+with α = 12 + n − ν and β = 21 + n + ν. These are such that Tλ1 λ3 is purely imaginary,        √               as required for a parity-odd
+trispectrum. Notably, the trigonometric prefactor vanishes if mσ = 0 or mσ = 2H, i.e. there is no contribution if the
+exchanged particle is massless or conformally coupled.
+   For later use, we re-express (15) in fully symmetrized form:
+                                                              
+                                        λ1 λ3 2 4            1
+   T̃λ1 λ3 (k1 , k2 , k3 , k4 ) = −ic4s      (∆ζ ) sin π ν +     k1−2 k2−1 k3−1 k4−1 (k̂1 · k̂2 )(k̂3 · k̂4 )(k1 − k2 )(k3 − k4 )
+                                         2H                  2
+                              × (k̂2 · k̂3 × k̂4 )[k12 J3 (cs k12 , s) + cs k1 k2 J4 (cs k12 , s)][k34 J4 (cs k34 , s) + cs k3 k4 J5 (cs k34 , s)] ,
+                                                                                                                                                 (18)
+noting that Tλ1 λ3 is fully symmetric by definition, and introducing the rescaled integrals
+                                           n+1/2
+                                           1         Γ (α) Γ (β)                  1   a
+                              Jn (a, b) =                        2 F1 α, β; 1 + n;   −    .                                                    (19)
+                                           2b         Γ(1 + n)                     2 2b
+   In the following we will restrict our analysis to the range of masses 0 ≤ mσ ≤ 3H/2, though it would be interesting
+to extend the study of [36] to masses above 3H/2 and see whether BOSS data are sensitive to the resulting oscillatory
+features in the trispectrum. We will also consider three choices for the (relative) speed of sound: cs = 0.1, 1, 10. At
+fixed λ1 and λ3 , the overall size of the trispectrum scales as 1/cs for cs  1, and c4s for cs  1, thus we expect our
+constraints to be the strongest in the case where the Goldstone mode π and the spinning particle move approximately
+with the same speed.
+
+
+                                                      C.        Perturbativity Bounds
+
+A priori, it is not certain whether the BOSS data considered below will be able to place strong constraints on the
+above coupling amplitudes, nor what one even means by “strong”. In this light, it is worth discussing the theoretical
+bounds on our trispectra that come from perturbativity, i.e. the constraint that perturbation theory during inflation
+should be convergent.
+
+
+                                                            1.       Ghost Condensate
+
+To enforce perturbativity, we require that the probability distribution functional of ζ is only weakly non-Gaussian.3
+We estimate the overall size, which we will call τNL , of the kurtosis as
+                                                                              T
+                                                                     τNL ∼        .                                                            (20)
+                                                                              Pζ3
+
+
+3 An equivalent way to derive these constraints is requiring that at horizon crossing we are below the EFT cutoff as determined by the two
+
+  operators (3) & (4).
+                                                                                                                     8
+
+The requirement of perturbative non-Gaussianities can then be recast as [e.g., 36]
+                                                           τNL ∆2ζ . 1 .                                          (21)
+   In these definitions we are cavalier with overall numerical factors and the shape dependence: forgetting the former
+will not lead to a parametric underestimation or overestimation of τNL , and we do not expect wild variations in the
+size of the trispectrum depending on the shape of the tetrahedron. From (3) & (4) we then find
+
+                                     (M   )        Λ5 H 1/2           (Λ2 )      Λ5 H 3/2
+                                   τNL PO ∼                  ,       τNLPO ∼                .                     (22)
+                                                   MPO Λ̃9/2                     Λ2PO Λ̃9/2
+In §V we will put bounds on the combinations on the right-hand sides of these equations, and check whether BOSS
+data have a constraining power parametrically close to the perturbativity bound
+                                              (M     )                (Λ2 )
+                                          τNL PO . 108 ,             τNLPO . 108 .                                (23)
+  Before proceeding, it is interesting to point out that using (2) we can express the Hubble rate in terms of the
+measured amplitude of the power spectrum, and find an expression for τNL only in terms of the “microphysical” scales
+Λ, Λ̃, MPO and Λ2PO . More precisely we find the scalings
+                                                 s                        s
+                                             1     Λ 26                1       28
+                                                                           5 Λ
+                                                                2
+                                  (M )           5            (Λ  )
+                                 τNL PO ∼               ,    τNLPO ∼ 2            ,                             (24)
+                                           MPO Λ̃21                   ΛPO Λ̃18
+
+where we have neglected overall numerical factors. It is then important to emphasize that the non-linear realization
+of boosts imposes cubic interactions of π, which lead to a bispectrum for ζ. This bispectrum can be decomposed
+into the equilateral and orthogonal templates [14] and the contribution coming from the least irrelevant operator, i.e.
+π̇(∂i π)/a2 , has fNL of order Λ2 /(H Λ̃) ∼ (Λ4 /(∆2ζ Λ̃4 ))2/5 .
+   It is also instructive to compare the parity-odd trispectrum contributions to the parity-even ones. The leading
+parity-even trispectrum in the Ghost Condensate is given by [91]
+                                                                  √
+                                                        Z
+                                          (PE)
+                                        Sππππ      4
+                                               = MPE        d4 x −g a−4 (∂i π)2 (∂j π)2 .                        (25)
+
+Let us compare this to (3). If we assume that all scales are of the same order, MPE ∼ MPO ∼ Λ̃ ∼ Λ, and using that
+∂i ∼ (HΛ)1/2 at horizon crossing due to the modified dispersion relation, we get
+
+                                     hπ 4 iPO                     1    (HΛ)9/2
+                                                           ∼    4 M             ∼ ∆2ζ ,                           (26)
+                                     hπ 4 iPE                  MPE  PO (HΛ)
+                                                                            4/2
+                                                crossing
+
+meaning that in this case the parity-even trispectrum would dominate over the parity-odd one. Requiring that
+these non-Gaussianities are compatible with current bispectrum and parity-even trispectrum bounds would put a
+constraint on the combination Λ/Λ̃ (from the bispectrum) and on a combination of Λ, Λ̃ and MPE (from the parity-even
+trispectrum). However, given that we are free to choose MPO and Λ2PO this does not affect our conclusions about the
+parity-odd trispectrum. Things would be different if one could tie, via naturalness arguments, the scales MPE , MPO
+and Λ2PO to Λ and Λ̃: in this case via the constraints from the bispectrum and the (even and odd) trispectrum we
+could put a bound directly on all the energy scales scales in our model. We leave the exploration of naturalness in
+Ghost Inflation to future work.
+
+
+                                                    2.   Cosmological Collider
+
+As discussed at the end of §II B, the size of non-Gaussianity from the diagram of (5) depends on cs . More precisely we
+have
+                                                     4 2
+                                                      cs ∆ζ λ1 λ3
+                                                                   for cs  1 ,
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                         H
+                                                     ∆2 λ λ
+                                                    
+                                            (λ λ )      ζ 1 3
+                                           τNL1 3 ∼                for cs = 1 ,                                    (27)
+                                                    
+                                                    
+                                                        H
+                                                      ∆2 λ λ
+                                                    
+                                                     ζ 1 3
+                                                    
+                                                    
+                                                                  for cs  1 .
+                                                        Hcs
+                                                                                                                              9
+
+Thanks to scale invariance this holds for any value of ν. In §V we will quote constraints on the combination λ1 λ3 /H
+for cs = 0.1, 1, 10 at different values of ν. Given that the dependence on cs is particularly strong only for cs  1,
+perturbativity then requires that, at each ν value,
+                             λ1 λ3 /H . 1020 (cs = 0.1) ,            or      λ1 λ3 /H . 1016 (cs ≥ 1) .                    (28)
+  Before concluding this section and shifting our attention to the computation of the parity-odd galaxy four-point
+function, we wish to comment on the fact that additional constraints on λ1 and λ3 come from the requirement of not
+having strong coupling at horizon crossing. It is straightforward to estimate this requirement by computing the EFT
+cutoffs associated with the interactions (6) & (7) if cs = 1 and ν is close to 3/2. These are [36]
+                                       Λ1 ∼ H 4/3 /(∆2ζ λ1 )1/3 ,         Λ3 ∼ H/(∆2ζ λ3 )1/4 ,                            (29)
+                                                                                                  (λ λ )
+hence the requirement that H/Λ1 . 1, H/Λ3 . 1 is equivalent to requiring that τNL1 3 ∆2ζ . 1. We expect that for
+cs 6= 1 and generic ν the same will apply, hence we do not discuss these constraints further.
+   An important constraint, instead, would come from the fact that accompanying the parity-odd contribution ∝ λ1 λ3
+there will be two parity-even contributions ∝ λ21 and ∝ λ23 . One should in principle put bounds on these three
+contributions simultaneously: however, we expect the contribution from gravitational non-linearities at late times will
+make the parity-even pieces harder to constrain. We will return to this point in §VII.
+
+
+                                     III.    GALAXY CORRELATION FUNCTIONS
+
+As demonstrated in §II, non-standard physics in inflation can source parity-violating signatures in the primordial
+curvature perturbation ζ. As observers, however, we do not have direct access to correlators of ζ, but must infer them
+through their late-time manifestations. For the models considered in this work, a crucial question therefore is which
+physical observables are sensitive to inflationary parity-violation. The usual suspects are the CMB and LSS: to capture
+large-scale scalar signatures like the above we require a four-point function, such as that of the CMB temperature,
+ T 4 , or the galaxy overdensity, δg4 .
+   In this work, we probe inflationary signatures using the four-point function of spectroscopic galaxy surveys. In
+general, one can work either in Fourier-space (via the galaxy trispectrum) or configuration-space (via the four-point
+correlation function, hereafter 4PCF). From a modeling perspective, the trispectrum is preferred since there is a simple
+relation between the curvature perturbation and δg ; however, the 4PCF can and has been straightforwardly measured,
+thus it will be the focus of our attention in this work.
+   The galaxy 4PCF is defined as the configuration-space average of the overdensity field:
+                                    ζ(r1 , r2 , r3 ) = hδg (x)δg (x + r1 )δg (x + r2 )δg (x + r3 )ic ,                     (30)
+assuming homogeneity. For efficient measurement, it is useful to restrict to the isotropic component of the 4PCF (i.e.
+that averaged over rotations), and project the statistic into a basis of spherical harmonics, defined by [92, 93]:
+                                                       X
+                               ζ iso (r1 , r2 , r3 ) =   ζ`1 `2 `3 (r1 , r2 , r3 )P`1 `2 `3 (r̂1 , r̂2 , r̂3 ) ,   (31)
+                                                       `1 `2 `3
+
+where the basis functions (related to the tripolar spherical harmonic functions introduced in [94]) are given by
+                                                                                !
+                                                   `1 +`2 +`3
+                                                                X      `1 `2 `3
+               P`1 `2 `3 (r̂1 , r̂2 , r̂3 ) = (−1)                                Y`1 m1 (r̂1 )Y`2 m2 (r̂2 )Y`3 m3 (r̂3 ) , (32)
+                                                              m1 m2 m3
+                                                                       m1 m2 m3
+
+involving spherical harmonics and the Wigner 3j symbol. The 4PCF multiplets ζ`1 `2 `3 (r1 , r2 , r3 ) can be directly
+estimated from data (using the encore code [93]),4 and are related to the full field via
+                                                     Z
+                          ζ`1 `2 `3 (r1 , r2 , r3 ) = dr̂1 dr̂2 dr̂3 ζ(r1 , r2 , r3 )P`∗1 `2 `3 (r̂1 , r̂2 , r̂3 ) . (33)
+
+These coefficients depend on three angular momentum indices, `i (which satisfy triangle conditions), and three radial
+bins, ri . Further, the basis functions are rotationally invariant, and, for even (odd) `1 + `2 + `3 are parity-even
+
+
+
+4 github.com/oliverphilcox/encore
+                                                                                                                                             10
+
+(parity-odd). Henceforth, we will analyze the parity-odd multiplets ζ`1 `2 `3 (r1 , r2 , r3 ); in the absence of parity-violating
+physics in the early- or late-Universe, these are expected to be zero.
+  Our primary dataset will be the observed SDSS-III BOSS DR12 galaxies [95–97], comprising approximately 8 × 105
+galaxies at redshift z ≈ 0.57, split across the Northern and Southern galactic cap. We additionally make use of a set of
+2048 MultiDark-Patchy (hereafter Patchy) mock catalogs [98, 99], created in order to model the noise properties of
+the BOSS sample, and 84 Nseries mocks [100], which were introduced for BOSS pipeline validation. In all cases, we
+use the measured multiplets with `i ≤ 4 (satisfying the triangle conditions) and ten radial bins in [20, 160]h−1 Mpc,
+giving a total of 1288 elements in the data-vector. The 4PCF measurements and corresponding analysis pipeline has
+been made publicly available on GitHub5 and further details of the dataset (including details of systematic weights
+and survey geometry correction) are presented in [60] (see also [61]), building on the results of [59, 93].
+
+
+                 IV.    FROM INFLATION TO GALAXY SURVEYS: THEORETICAL MODELING
+
+  One ingredient remains in our recipe for constraining inflation with galaxy surveys; analytic predictions for the
+galaxy 4PCF depending on the EFTI coupling amplitudes. In this section, we will consider the relation of inflationary
+and late-time physics and summarize the key theoretical templates (analogously to §VII of [60]). We caution that a
+byproduct of working in configuration-space (and in a somewhat unintuitive basis) is that the theoretical predictions
+are quite grotesque: as such, we relegate the finer details to Appendix A.
+
+
+                                                                A.   Relating δg4 and ζ 4
+
+At lowest order in gravitational evolution, the galaxy density at some redshift z is related to the curvature perturbation
+via
+                                                           δg (k, z) = Z1 (k̂, z)M (k, z)ζ(k)                                               (34)
+where M (k) is the transfer function (including the D+ (z) growth factor) and Z1 (k̂, z) is the perturbative (Kaiser) kernel
+b1 (z) + f (z)(k̂ · n̂)2 , for linear bias b1 , growth rate f , and line of sight n̂. We suppress the z argument henceforth.6
+The galaxy trispectrum is straightforwardly obtained in terms of the primordial trispectrum:
+             * 4             +     " 4                  #
+               Y                    Y
+                    δg (ki ) =          Z1 (k̂i )M (ki ) (2π)3 δD (k1 + k2 + k3 + k4 ) T̃ (k1 , k2 , k3 , k4 ) + 23 perms. , (35)
+                i=1            c       i=1
+
+using the definition (10), and, via a Fourier-transform, the (unprojected) 4PCF
+                                     " 4 Z                #
+                                             Z (k̂ )M (k ) ei(k1 · r1 +k2 · r2 +k3 · r3 )
+                                      Y
+                     ζ(r , r , r ) =
+                              1    2   3                    1    i      i
+                                                i=1   ki
+
+                                                × (2π)3 δD (k1 + k2 + k3 + k4 ) T̃ (k1 , k2 , k3 , k4 ) + 23 perms.
+Finally, we can project this onto the basis functions defined in (32), yielding
+                                       Z                                            " 4 Z                 #
+                                                                                          Z1 (k̂i )M (ki ) ei(k1 · r1 +k2 · r2 +k3 · r3 )
+                                                                                     Y
+                                                        ∗
+            ζ`1 `2 `3 (r1 , r2 , r3 ) = dr̂1 dr̂2 dr̂3 P`1 `2 `3 (r̂1 , r̂2 , r̂3 )
+                                                                                 i=1   ki
+                                                      3
+                                             × (2π) δD (k1 + k2 + k3 + k4 ) T̃ (k1 , k2 , k3 , k4 ) + 23 perms. ,
+where we restrict to odd `1 + `2 + `3 to ensure parity antisymmetry.
+  In principle, (36) contains all the details needed to compute a theoretical template for the observed galaxy 4PCF
+using the inflationary correlators of §II. In practice, this is highly non-trivial, due to the 18-dimensional coupled
+integrals. A number of tricks can be used to simplify this, as detailed in Appendix A 1. In brief: (a) the r̂ integrals
+can be performed analytically using spherical harmonic orthogonality, (b) we can rewrite the Dirac delta function
+
+
+5 github.com/oliverphilcox/Parity-Odd-4PCF
+6 We neglect higher-order gravitational effects in this work. Alone, these cannot generate a parity-violating signature (without some flavor
+
+  of modified gravity, e.g. [62]), though they can serve to complicate any existing LSS templates on small scales. We discuss these effects in
+  more detail in §VI.
+                                                                                                                                                                   11
+
+as a one- or two-dimensional integral, and (c) Z1 (k̂) can be expressed as a spherical harmonic series. Computation
+then reduces to a set of radial integrals with an associated angular piece depending only on spherical harmonics in k̂,
+which can be expressed in terms of Wigner 3j and 9j symbols, aided by writing the expanding the various terms in a
+rotationally-invariant basis. All in all, we will arrive at an expression for the relevant template written in terms only
+of low-dimensional integrals and angular momentum couplings. We summarize the corresponding templates for the
+Ghost Inflation and Cosmological Collider models below.
+
+
+                                                                      B.          Ghost Inflation
+
+Inserting the templates of (11) into the late-time definition (36), we can obtain the 4PCF templates for the two Ghost
+Inflation correlators considered in §II. Following the simplifications outlined in Appendix A 2, these can be written
+                                                                                                               !          !
+     (MPO )                           11/2
+                                                     5
+                                               `123 Λ (H Λ̃)
+                                                             1/2
+                                                                      2 3
+                                                                          X       X
+                                                                                                L1234 L1 L2 L0   L0 L3 L4
+    ζ`1 `2 `3 (r1 , r2 , r3 ) = 2(4π)      (−i)                     (∆ζ )   ΦH             (−i)
+                                                   MPO Λ̃5 Γ( 34 )2       H    L1 ···L4 L0
+                                                                                                      0 0 0      0 0 0
+                                                       `        `   (`0 )`    `
+                           × CL1 L2 L3 L4 L0 MLH1  H2
+                                                      0
+                                                          H3 H4
+                                               1 L2 (L )L3 L4
+                                                                                                                                                               (36)
+                                Z ∞          Z ∞
+                           × Im        x2 dx      λ11 dλ I3/4,1/2,`H1 ,L1 (x, λ; rH1 )I3/4,3/2,`H2 ,L2 (x, λ; rH2 )
+                                      0                0
+                                                           × I3/4,1/2,`H3 ,L3 (x, λ; rH3 )I3/4,1/2,`H4 ,L4 (x, λ; rH4 ) ,
+
+and
+                          √                                                                                                                     !              !
+   (Λ2 )                     8 2                                Λ5 (H Λ̃)3/2            X        X                                   L1 L2 L0       L0 L3 L4
+  ζ`1 `PO
+       2 `3
+            (r1 , r2 , r3 ) = √ (4π)11/2 (−i)`123                                (∆ 2 3
+                                                                                    ζ )   Φ H             (−i)L1234
+                         3 5                                   Λ2PO Λ̃6 Γ( 43 )2        H     L1 ···L4 L0                            0 0 0          0 0 0
+                                                   `       `     (`0 )`   `
+                         × CL1 L2 L3 L4 L0 NLH1  H2
+                                                    0
+                                                         H3 H4
+                                             1 L2 (L )L3 L4
+                                                                                                                                                               (37)
+                           Z ∞          Z ∞
+                         ×      x2 dx        λ13 dλ I3/4,1/2,`H1 ,L1 (x, λ; rH1 )I3/4,5/2,`H2 ,L2 (x, λ; rH2 )
+                              0                0
+                                          × I3/4,3/2,`H3 ,L3 (x, λ; rH3 )I−1/4,1/2,`H4 ,L4 (x, λ; rH4 ) ,
+                                                                                                    p
+involving the I integrals (over the transfer and Hankel functions, see A14), CL1 ···Ln ≡ (2L1 + 1) · · · (2Ln + 1), a
+permutation factor ΦH ∈ {±1}, and the coupling matrices M and N of (A17), which can be expressed in terms of
+Wigner 9j symbols.
+  To facilitate efficient computation of the above templates, we employ a number of tricks. Firstly, for the k integrals,
+we can assess their convergence via the asymptotic limits of the component functions, i.e.
+                                                   sin(x − `π/2)                                            (−i)1+α −2x2
+                                      j` (x) ∼                   ,                        Hα(1) (2ix2 ) ∼    √     e                                           (38)
+                                                         x                                                     πx
+for x  1. The integrand of the I functions thus behaves as
+
+         k 2+β                                           1+α k
+                                                               β−1
+                                                                   M (k)                                     2 2
+               M (k)j` (kr)jL (kx)H (1)
+                                    α   (2ik 2 2
+                                              λ  ) ∼ (−i)                sin (kr + `π/2) sin (kx + Lπ/2) e−2k λ ,                                              (39)
+          2π 2                                               2π 5/2 xrλ
+for kx, kr  `, which is exponentially convergent. In this vein, it is useful change variables in the k integral to q ≡ kλ:
+thence, from (A14),
+                                                   Z ∞ 2+β
+                                                      q    dq
+                        Iα,β,`,L (x, λ; r) = λ−3−β            M (q/λ)j` (qr/λ)jL (qy)Hα(1) (2iq 2 ) ,                  (40)
+                                                    0   2π 2
+defining also y = x/λ, which ensures that an appropriate range of x values can be used for any λ. Additionally, we note
+that the y-integrals can be rewritten as (infinite) discrete summations, if one imposes some maximum q of interest, i.e.
+                              Z ∞              4                                            ∞
+                                                                                          3 X              4                       
+                                               Y                                    π                       Y                qj πm
+                                      y 2 dy           jLj (qj y) =                                m2 Em          j `j                   ,                     (41)
+                                  0            j=1
+                                                                                  2qmax      m=0            j=1
+                                                                                                                             2qmax
+
+where Em is 1/2 if m = 0 and unity else [101]. In practice, this was not found to significantly expedite computation.
+                                                                                                                                             12
+
+  When evaluating the 4PCF, we additionally integrate the radial components over finite bins, matching that of the
+data. This is achieved via the replacement:
+                                                       Z rmax
+                                                    1
+                                         j` (kr) →            r2 dr j` (kr) ,                                 (42)
+                                                   Vbin rmin
+
+where the radial bin is specified by [rmin , rmax ] with volume Vbin . The bin-integrated Bessel functions are analytic and
+can be found in [102].
+   To evaluate the theoretical model, we assume an integration grid of 200, 500 and 500 points in q, y, and λ respectively,
+with maximum values of 5, 100 and 250, verified by initial testing. To match the data, we use 10 radial bins in r,
+linearly spaced in [20, 160]h−1 Mpc, and all odd multiplets up to `max = 4, with `max = 8 used for all internal (Li )
+summations. The full computation required ≈ 48 hours on a 24-core machine.
+
+
+                                                       C.    Cosmological Collider
+
+The particle-exchange 4PCF can be obtained in a similar manner, inserting the trispectrum definition (18) into (36)
+and simplifying. The full calculation, outlined in Appendix A 3, yields
+                                                                                                                                   !            !
+                                               4
+                                                                            X                                                  0     0
+ (λ1 λ3 )                                     c  λ 1 λ 3                   1                 X                       L 1 L 2   L      L  L3 L 4
+ζ`1 `2 `3 (r1 , r2 , r3 ) = (4π)7/2 (−i)`123 s √         (∆2ζ )4 sin π ν +           ΦH                (−i)L1234
+                                             18 5H                         2                         0                0 0 0           0 0 0
+                                                                                 H        L1 ...L4 L
+                                                                 Z 2
+                                            ` `H2 (`0 )`H3 `H4       s ds `H1 `H2 ,A                     `H3 `H4 ,B
+                            × CL1 ...L4 L0 OLH1      0                   Q       0   (s; rH1 , rH2 )QL           0  (s; rH3 , rH4 ) ,        (43)
+                                             1 L2 (L )L3 L4          2π 2 L1 L2 L                         3 L4 L
+
+
+
+where the Q integrals are defined in (A22), and the coupling matrix, O, is given in (A24).
+  Naı̈ve computation of §IV B is difficult since the Q functions involve integrals of three sets of spherical Bessel
+functions, which are highly oscillatory, and each must be then integrated over two momentum variables. These can be
+simplified using the relation of [103]:
+            !Z                                                                       L0 L   0
+  L1 L2 L0                                            πβ(∆) L1 +L2 −L0                k1    X 2L0 1/2  k2 λ
+                   2                                                      0     1/2
+                  x dx jL1 (k1 x)jL2 (k2 x)jL0 (sx) =          i       (2L + 1)                                      (44)
+   0 0 0                                              4k1 k2 s                        s          2λ       k1
+                                                                                            λ=0
+                                                                                    !           !(             )
+                                                        X             L1 L0 − λ `       L2 λ `    L1 L2 L0
+                                                      ×      (2` + 1)                                            L` (∆) ,
+                                                          `
+                                                                       0    0     0      0 0 0     λ L0 − λ `
+
+where the curly braces indicate Wigner 6j symbols, ∆ = (k12 + k22 − s2 )/(2k1 k2 ), and β(∆) is unity if |∆| < 1 and zero
+else. This reduces the Q integrals to the form:
+                                                         Z 2                          Z 2                        
+                                                            k1 dk1                         k2 dk2
+      Q`L11`L2 ,X
+               2L
+                  0 (s; r ,
+                         1 2r ) = f L1 L2 L0 (k ,
+                                               1 2k , s)           M (k  )j̄ (k
+                                                                        1 `1 1 1; r )             M (k ) j̄ (k
+                                                                                                      2 `2 2 2 ; r )  tX (k1 , k2 , s), (45)
+                                                             2π 2                           2π 2
+where fL1 L2 L0 (k1 , k2 , s) is the result of the above Bessel function integral, and we have additionally replaced the Bessel
+functions in ki ri by their bin-integrated forms, as in §IV B. This may be computed numerically as a two-dimensional
+integral in (k1 , k2 ) for a grid of values of s and all radial and angular bins of interest. In practice, we utilize an integration
+grid of 100 points in ki and 100 points in s with maximal values of kmax = 0.5h Mpc−1 and smax = 1.0h Mpc−1 (noting
+that the Bessel functions have support for k . 1/Rmin and s ≤ 2kmax from the triangle condition). Computation
+requires ≈ 36 hours on a 24-core machine for each choice of sound-speed and mass parameter.
+
+
+                              V.    FROM GALAXY SURVEYS TO INFLATION: RESULTS
+
+Our primary goal in this work is to use the measured parity-odd four-point correlation function to search for signatures
+of new inflationary physics, such as massive particle exchange. In brief, our approach is to constrain the amplitude, A,
+of a given model by comparing the measured and theoretical four-point functions (denoted Aζth and ζobs ) via the
+following likelihood:
+                                                                                     
+                                              1                 T  −1
+                               L(A) ∝ exp − [APζth − Pζobs ] C [APζth − Pζobs ] ,                                   (46)
+                                              2
+                                                                                                                         13
+
+where P is a projection matrix used to reduce the dimensionality of the 4PCF, and C = (Pζ)(Pζ)T is the covariance,
+measured from simulations. Via posterior sampling, we can compute the constraints on A, and thus evaluate the
+viability of a given theoretical model.
+   In more detail, we project the 4PCF onto a low-dimensional basis defined by first computing the eigendecomposition
+of the theoretical covariance matrix [104], then selecting the basis vectors which maximize the signal-to-noise of the
+theoretical model ζth . In general, we will assume Neig = 100 basis vectors, following [60], in order to avoid any potential
+loss-of-information (at low Neig ) with non-Gaussianity of the likelihood (at high Neig ), due to highly correlated data.
+   For the covariance, we utilize measurements of the 4PCF from the Nmocks = 2048 Patchy mocks, defined as
+                                                           NX
+                                                            mocks                      T
+                                                   1                           
+                                        C=                            Pζ (a)     Pζ (a)    ,                           (47)
+                                             Nmocks − 1     a=1
+
+where (a) indicates the measurement from mock a. To account for the presence of noise in the covariance matrix, we
+use the following likelihood, instead of the Gaussian (46) (which applies in the Nmocks → ∞ limit):
+                                                                                 !−Nmocks /2
+                                                          T
+                                          [APζth − Pζobs ] C −1 [APζth − Pζobs ]
+                           L(A) ∝ 1 +                                                        ,                (48)
+                                                       Nmocks − 1
+
+as discussed in [105]. All posterior sampling is performed using emcee [106] in the one-dimensional parameter space.
+
+
+                                                   A.     Ghost Inflation
+
+For the Ghost Inflation scenario, we constrain the following amplitudes, extracted from the prefactors of (11):
+
+                                       Λ5 H 1/2   (∆2ζ )3                 2         Λ5 H 3/2     (∆2ζ )3
+                           A(MPO ) ≡             × 3 2 ,          A(ΛPO ) ≡                    ×          ,            (49)
+                                       MPO Λ̃9/2  Γ( 4 )                            Λ2PO Λ̃9/2   Γ( 34 )2
+where we separate out terms appearing in the τNL definitions of (22).
+   In Fig. 2, we plot a comparison of the observed galaxy 4PCF (from [60]) and the 4PCF Ghost Inflation prediction,
+                                       2
+utilizing values of A(MPO ) = 100A(ΛPO ) = 10−10 for visibility. Notably, the theoretical models have strong dependence
+on both the radial and angular parameters (ri and `i ), and the fiducial values are clearly inconsistent with the data.
+Enhanced signals are seen particularly for small multiplets (corresponding to wide angles) and the smaller radial bins,
+though we see features also at high r.
+   To explore the feasibility of the general Ghost Inflation models, we perform an MCMC analysis to find constraints
+                 2
+on A(MPO ) , A(ΛPO ) , as described above. Since the two operators arise at different orders in the EFTI, we will consider
+the templates separately rather than performing a joint analysis. The results are shown in Fig. 3 and Tab. I. Analyzing
+the mean 4PCF of the Patchy and Nseries mock catalogs, we find a ghost amplitude highly consistent with zero;
+this is a good consistency test of our analysis, particularly since the Nseries catalogs are high-resolution mocks and
+include various physical effects such as redshift-space distortions, survey windows, and fiber collision artefacts. For the
+                                                                                            2
+BOSS data, we find the 68% confidence intervals A(MPO ) = (1.4 ± 1.0) × 10−12 and A(ΛPO ) = (−0.7 ± 3.7) × 10−14 , or
+                                      −1 −9/2
+the physical constraints Λ5 H 1/2 MPO    Λ̃   = (3.1 ± 2.1) × 1010 and Λ5 H 3/2 Λ−2
+                                                                                  PO Λ̃
+                                                                                       −9/2
+                                                                                            = (−1.5 ± 8.1) × 108 assuming
+  2            −8
+∆ζ = 4.1 × 10 [107], giving no evidence for a parity-violating Ghost Condensate.
+   Finally, we can compare the above results to the perturbativity bounds discussed in §II C, through the limits
+      (M )          (Λ2 )                                   −1 −9/2
+on τNL PO , and τNLPO , which correspond to Λ5 H 1/2 MPO      Λ̃      and Λ5 H 3/2 Λ−2
+                                                                                    PO Λ̃
+                                                                                         −9/2
+                                                                                              , up to numerical constants.
+                                    8
+Perturbativity requires τNL . 10 , which is of the same order as the constraints above. Precise statements involving
+these bounds are difficult, given that they are derived only up to numerical factors; however, this indicates that we
+are working in the weakly non-Gaussian regime, where the EFTI expansion is valid. Furthermore, this implies that
+the BOSS constraints on the Lagrangian amplitudes are parametrically relevant with regards to the values predicted
+within the EFTI.
+
+
+                                              B.       Cosmological Collider
+
+When analyzing the Cosmological Collider 4PCF, we instead constrain the amplitude
+                                                                                  
+                                  (λ1 λ3 )            λ1 λ3    4   2 4           1
+                                A          (cs , ν) ≡       × cs (∆ζ ) sin π ν +                                       (50)
+                                                       H                         2
+                                                                                                                                      14
+
+
+                           140
+                           120
+
+
+             ri [hMpc 1]
+                           100
+                            80
+                                                                                                                          Bin 1
+                            60                                                                                            Bin 2
+                            40                                                                                            Bin 3
+
+            ]
+                                                                     (1, 1, 1)
+
+      (r1, r2, r3)
+                     2000
+                     1000
+            123
+                        0
+            [        1000
+
+      r1r2r3 Im
+                     2000
+                     3000
+
+            ]
+                                                                     (1, 2, 2)
+
+      (r1, r2, r3)
+                     15000
+
+                     10000
+            123
+                     5000
+            [
+
+
+
+
+      r1r2r3 Im
+                            0
+
+                      5000
+            ]
+                                                                     (2, 3, 4)
+                     1000
+      (r1, r2, r3)      0
+                     1000
+            123
+                     2000
+            [
+
+                     3000                                                                                  Ghost: MPO
+      r1r2r3 Im
+                     4000                                                                                  Ghost: 2PO
+                     5000                                                                                  Collider: 0.1, 0.25
+                                                                                                           Collider: 0.1, 0.75
+            ]
+                                                                     (4, 4, 3)                             Collider: 0.1, 1.25
+                                                                                                           Collider: 1, 0.25
+      (r1, r2, r3)
+                       250
+                                                                                                           Collider: 1, 0.75
+                         0                                                                                 Collider: 1, 1.25
+            123        250                                                                                 Collider: 10, 0.25
+            [
+                       500                                                                                 Collider: 10, 0.75
+                                                                                                           Collider: 10, 1.25
+      r1r2r3 Im
+                       750
+                                                                                                           BOSS Data
+                      1000
+                                 0   10                  20                  30                  40                  50
+                                                                Radial Bin Index
+
+FIG. 2. Comparison of the observed galaxy four-point correlation function, ζ`1 `2 `3 (r1 , r2 , r3 ) (black points), with two models of
+the theoretical 4PCF, assuming Ghost Condensate (black lines) and Cosmological Collider (colored lines) inflation. We assume
+                                      2
+fiducial values of A(MPO ) = 100A(ΛPO ) = 10−10 and A(λ1 λ3 ) = 1019 (∆2ζ )4 c4s sin π ν + 12 for visibility and consider a variety of
+                                                                                                 
+values of the sound speed cs and mass ν in the latter case, indicated by the captions. The second through fifth panels show the
+correlators for a selection of values of `1 , `2 , `3 (indicated by the title), with the x-axis giving the radial bins, collapsed into one
+dimension. The first panel shows the values of the radial bin centers corresponding to each one-dimensional bin center. Here, we
+utilize data from the BOSS CMASS NGC region, and with error-bars obtained from the Patchy simulations (noting that the
+data is highly correlated). Notably, the theoretical models have strong (and different) dependence on the multiplet, which the
+MCMC analysis shows to be broadly inconsistent with the data. Constraints on the model amplitudes are given in Tab. I & II.
+                                                                                                                                                                                                         15
+
+                                                    5H 1/2M 1 9/2 × 10 10                                                                               5H 3/2        2   9/2 × 10 8
+                                    10.0     7.5     5.0 2.5PO 0.0 2.5 5.0 7.5              10.0                                         20      15     10       5 PO 0      5     10     15     20
+                           1000
+                                             Patchy-Mean                                                                     1200                                                  Patchy-Mean
+                                             BOSS                                                                                                                                  BOSS
+
+
+
+
+   PDF [Arbitrary Units]                                                                             PDF [Arbitrary Units]
+                           800                                                                                               1000
+
+                           600                                                                                               800
+
+                                                                                                                             600
+                           400
+                                                                                                                             400
+                           200                                                                                               200
+
+                             0                                                                                                    0
+                                  1.00     0.75    0.50   0.25 0.00   0.25    0.50   0.75     1.00                                    1.00    0.75    0.50    0.25 0.00     0.25   0.50   0.75    1.00
+                                                          A (MPO) × 1011                                                                                      A ( 2PO) × 1013
+FIG. 3. Constraints on the amplitude of parity-violation in the Ghost Condensate inflationary model, from the leading (left) and
+subleading (right) EFTI diagrams. We show results both from the mean of 2048 Patchy mocks (blue) and the BOSS data (red),
+                               2
+constraining both A(MPO ) , A(ΛPO ) and the corresponding physical parameters, as shown in the title. The 1σ constraints are shown
+                                                         −1 −9/2
+in Tab. I, and correspond to the combinations Λ5 H 1/2 MPO Λ̃     = (3.1 ± 2.1) × 1010 and Λ5 H 3/2 Λ−2
+                                                                                                     PO Λ̃
+                                                                                                          −9/2
+                                                                                                               = (−1.5 ± 8.1) × 108 .
+
+                                                                                                                              2
+                                                             Dataset         1012 A(MPO )          1014 A(ΛPO )                               1013 A(λ1 λ3 ) (1, 1)
+                                                             BOSS            1.4 ± 1.0             −0.8 ± 3.8                                   −3.1 ± 4.1
+                                                             Patchy          0.0 ± 0.9             0.0 ± 3.9                                      0.1 ± 4.0
+                                                             Nseries         0.2 ± 1.1             0.3 ± 4.7                                      0.4 ± 4.4
+
+TABLE I. Constraints on the amplitudes of parity-violating inflationary models using the observational 4PCF data. The left
+panels show results for Ghost Inflation, whilst the right give those for the Cosmological Collider using a single value of particle
+mass and sound speed. In all cases, we quote 68% confidence intervals. For the collider model, we assume the parameters
+ν = cs = 1; constraints on the amplitude for a range of parameter values are given in Tab. II. We give results from BOSS, the
+mean of 2048 Patchy mocks, and the mean of 84 Nseries mocks, with the former two being shown in Fig. 3 (for the Ghost
+Condensate) and Fig. 4 (for the Cosmological Collider). We find no detection of any parity-violating model.
+
+
+given some values of cs and ν, again separating out the part appearing in τNL . As noted in §II, this vanishes for
+massless and conformally coupled particles (at ν = 3/2, 1/2) which do not yield a parity-violating signature. In Fig. 2,
+we plot the collider model alongside the BOSS data with a fiducial value λ1 λ3 /H = 1 × 1019 . Interestingly, the models
+exhibit significantly different scale-dependence to Ghost Inflation, with a particular enhancement seen in the higher
+multiplets with respect to ζ111 , though we once again see enhanced signals on large scales.7 Furthermore, the templates
+vary considerably with cs , both in sign, amplitude, and scale-dependence. As predicted (see the discussion in §II C),
+the signatures are largest when both fields have the same sound speed (cs = 1), indicating that the constraints will be
+tightest on such models. Purely from visual inspection, none appear to be consistent with the data.
+   More rigorously, we may again perform parameter inference to constrain the amplitude of the parity-breaking
+Cosmological Collider coupling. In this case, the model strictly depends on three parameters: the coupling strength,
+λ1 λ3 /H, the sound speed of the heavy particle, cs , and the mass, parametrized by ν. Rather than scan over all three,
+we here constrain only the amplitude for a variety of fixed values of cs and ν, noting that the latter parameters do not
+enter the model linearly, thus are difficult to scan over efficiently.                                √
+   First, we consider the constraints from a single model with ν = cs = 1 (corresponding to a mσ = 5H/2 spin-1 field
+with the same sound-speed as the inflaton). The resulting bounds on A(λ1 λ3 ) (cs , ν) are shown in Fig. 4 and Tab. I.
+As for Ghost Inflation, the amplitude is consistent with zero for the BOSS data. Moreover, inference on the mean
+of Patchy and Nseries simulations also returns a null result, implying that a spurious inflationary signal is not
+generated in our modeling, analysis pipeline, or systematic treatment at any detectable level. In this case, the BOSS
+data constraints the coupling λ1 λ3 /H = (1.1 ± 1.4) × 1017 at 68% confidence.
+
+
+7 It would be interesting, though beyond the scope of this work, to study how much this difference is due to the fact that the collider
+
+  trispectrum arises from an exchange diagram, rather than a contact diagram.
+                                                                                                                                                           16
+
+
+                                                                                          1 3/H × 10 17
+                                                             8         6         4         2      0        2          4     6         8
+                                                                                                                      Patchy-Mean
+                                                 1000                                                                 BOSS
+
+
+
+
+                         PDF [Arbitrary Units]
+                                                 800
+
+                                                 600
+
+                                                 400
+
+                                                 200
+
+                                                   0
+                                                                  2                  1            0               1              2
+                                                                                         A ( 1 3) × 1012
+FIG. 4. As Fig. 3, but constraining the amplitude of parity-violation in the √
+                                                                             Cosmological Collider inflationary model, for a
+massive spin-1 particle. Here, we use parameters cs = 1 and ν = 1, i.e. mσ = 5H/2. The 1σ constraints are shown in Tab. I,
+and correspond to the combination λ1 λ3 /H = (1.1 ± 1.4) × 1017 .
+
+
+
+
+   Tab. II gives the analogous constraints on λ1 λ3 /H for a range of values of ν and cs consistent with the physical
+bounds. Whilst we display results only for BOSS, we have repeated the analysis also for the two simulation suites and
+find null detections in all cases. Constraints on the coupling strength vary both as a function of cs and ν: as expected,
+we observe somewhat stronger constraints for cs = 1 and the bounds tighten slightly as ν increases (or the mass
+decreases). Of course, for massless and conformally coupled particles, our bounds are infinite since no parity-violating
+inflationary trispectrum is generated. In all cases, our constraints are below 2σ, indicating no significant evidence for
+any model. Furthermore, the significance of any detection is reduced due to the look-elsewhere effect due to analyzing
+a large number of models [e.g. 108], and we note that each analysis is far from independent. Overall, we conclude that
+the inflationary exchange of a massive spin-1 particle does not seem to source parity-violation in the galaxy correlator
+at any currently-detectable level.
+
+   As before, these results may be compared to the perturbativity constraints discussed in §II C. In general, this, and
+the restriction that there is no strong coupling at horizon crossing, demands that λ1 λ3 /H . 1020 (for cs = 0.1) or 1016
+(for cs ≥ 1). The values reported in Tab. II are roughly consistent with this (noting that we have neglected powers of
+π 4 , et cetera), particularly for cs = 1. As for Ghost Inflation, this implies that our constraints are consistent with the
+EFTI framework, and that constraints from future surveys are expected to be phenomenologically relevant.
+
+
+
+                                       ν=0                            ν = 0.25                 ν = 0.75                   ν=1               ν = 1.25
+             cs = 0.1 (−5 ± 7) × 1017 (−0.7 ± 1) × 1018                                   (3 ± 8) × 1017         (6 ± 5) × 1017           (5 ± 5) × 1017
+                                                        17                       17                       17                    17
+              cs = 1   (0.8 ± 5) × 10                            (1 ± 7) × 10             (0.8 ± 4) × 10        (0.2 ± 2) × 10        (−0.7 ± 2) × 1017
+                                                        19                       20                        19                    18
+              cs = 10 (−7 ± 9) × 10                              (−1 ± 1) × 10           (−0.3 ± 3) × 10        (−0.8 ± 7) × 10       (0.5 ± 2) × 1018
+
+TABLE II. Constraints on the coupling strength λ1 λ3 /H of spin-1 p  massive particles inflation using the parity-violating 4PCF
+from BOSS galaxies. We give results for a variety of values of ν ≡ 9/4 − (mσ /H)2 and the massive particle sound-speed, cs .
+Here, results are given only for the BOSS data; a representative result for the Patchy and Nseries simulations is shown in
+Tab. I. We omit ν = 1/2, 3/2 which do not give parity-violating signatures. We find no significant detection of parity-violation in
+any case (with all values under 1.4σ), though note that the various templates are highly correlated.
+                                                                                                                        17
+
+        VI.   LATE-TIME PARITY-VIOLATION AND THE EFT OF LARGE SCALE STRUCTURE
+
+Until now, we have considered only early-Universe sources of parity-violation. One may also ask the following question:
+how large can parity-violating signatures be in the late Universe? The EFTofLSS, which allows for the description
+of structure formation on large scales in terms of a weakly-coupled theory even when the details of complicated
+baryonic physics governing galaxy formation are unknown, naturally provides an answer to this question. Below, we
+will examine the various ways late-time parity-violation could enter the picture within this framework. One caveat
+should be highlighted: the terms below require a parity-violating mechanism for their production (such as some flavor
+of chiral gravity). In the absence of this, the bias coefficients accompanying each parity-violating term will be exactly
+zero, thus there will be no late-time effects.
+
+
+                                              A.   Density Contributions
+
+Within the EFTofLSS, the galaxy overdensity, δg , is represented in terms of operators built out of the matter density,
+tidal fields, and their derivatives. Assuming statistical homogeneity, statistical isotropy, and the equivalence principle,
+we can construct a complete basis at any order in perturbations. This expansion is perturbative and controlled by
+several different length scales: in the galaxy rest frame, these are kNL , the scale at which the gravitational collapse of
+matter becomes fully non-linear, and R∗ , which depends both on the details of the host halo formation and baryonic
+physics that affects galaxy formation. After factoring out the relevant length scales, the bias expansion depends on a
+number of free coefficients (bias parameters), which have to be determined experimentally, i.e. fitted from data.
+   Let us discuss how parity-violating four-point function may arise in the EFTofLSS. We first work in the galaxy rest
+frame, whereupon the bias expansion takes the form
+                                                         X X (n)
+                                              δg (x) =      bO O(n) (x) ,                                             (51)
+                                                         n=1 O
+
+where {O} are various bias operators and the index n means that a given operator starts at order n in the (non-linear)
+matter density field. Non-linearities in the bias expansion can generate non-trivial four-point functions, even if none
+are present in the primordial density field. These, in full generality, may include some parity-odd terms. Physically,
+they can appear in models where the star formation physics is coupled to a parity odd sector, e.g. models with an
+axion-photon coupling, or via some chiral gravity phenomena. As noted above, the coefficients of all parity-odd terms
+will be exactly zero in the absence of such effects.
+  As is standard in the EFTofLSS, let us discuss various parity-violating terms in terms of their order in the loop
+expansion. Note that, unlike the parity-even operators, the loop expansion here does not match the derivative
+expansion, i.e. the tree-level diagrams will actually be more suppressed than the loop ones in the gradient expansion.
+This happens because of additional constraints on the parity-odd terms due to the appearance of the Levi-Civita
+symbol, necessary for parity antisymmetry.
+  At the tree level we have the following diagrams
+
+
+
+
+                                                                 and                                                  (52)
+                                                                                                                          18
+
+which, in principle, may contribute to the parity-odd trispectrum. Here, the empty circle denotes a parity-even vertex
+and the filled circle a parity-odd one. The first of these two diagrams is zero at all orders in spatial derivatives since we
+have only the matter field δ to construct our operators, which is a scalar under rotations; as such, we cannot contract
+all the indices of the Levi-Civita symbol with only two powers of δ at our disposal. The second diagram is also zero
+unless one works at very high order in spatial derivatives: the leading operator with n = 3 is given by
+                                                  (3)
+                                                   9
+                                          δg ⊃ b9 RPO ijk (∂i δ)(∂j ∂ 2 δ)(∂k ∂ 4 δ) .                                 (53)
+                                      9                                (3)
+Here we have factored out an overall RPO to make the bias coefficient b9 dimensionless (as indicated by the subscript).
+The scale RPO denotes the nonlocality scale of the new physics that generates these operators: given that it is related
+to parity-violating physics, this can be different to R∗ (which is usually taken to be of order of the Lagrangian radius
+of the halo, but see, e.g., [109, 110] for discussions of scenarios where this is not the case). Below we will demonstrate
+that this contribution is highly suppressed in the power counting of the EFTofLSS, given the large number of spatial
+derivatives. This will imply that the leading contribution must come at one-loop order.
+   Rotational invariance places strong constraints on one-loop diagrams, limiting us to
+
+
+
+
+                                                                     and                                           .    (54)
+
+
+
+
+Let us focus on the first diagram. What is the form of the operator O(4) giving rise to the filled-circle vertex? At
+leading-order, this takes the form
+                                                    (4)           [1]     [2]
+                                            δg ⊃ b1 RPO ijk (Πil )(Πlj )(∂k δ) ,                                       (55)
+while some examples of subleading operators are
+                              (4)
+                                3           [1]    [2]              (4)             [1]
+                       δg ⊃ b3 RPO ijk (Πil )(Πlj )(∂k ∂ 2 δ) + b5 RPO
+                                                                     5
+                                                                        δijk (Πil )(∂j ∂l ∂ 2 δ)(∂k δ) .               (56)
+                                 [1]                        [2]
+Here we follow [111] and define Πij ≡ (∂i ∂j /∂ 2 )δ, with Πij being the element of the complete Eulerian basis of bias
+operators that starts at second order in perturbation theory, defined by (2.63) of [111]. It is important to stress that,
+to generate a parity-violating signal, we must go beyond leading order in the expansion in spatial derivatives. This is
+                                                             (4)
+clear from the expressions above. Indeed, the coefficient bO for the operator of (55) has dimension of RPO , while for
+                                                            3         5
+the first and second operators of (56) it has dimension RPO and RPO        respectively. We have again made this manifest
+                                                                                            (4)  (4)      (4)
+by factoring out the powers of RPO and defining the three dimensionless coefficients b1 , b3 and b5 .
+                                                                                   −1
+   In absence of an hierarchy between relevant scales (i.e. assuming RPO ∼ kNL ), we expect: (1) that the first of the
+three operators listed above gives the largest signal, and (2) that this signal is smaller than even the (parity-preserving)
+gravitational trispectrum from the non-linear gravitational evolution at one loop order (which appears at zeroth order
+in RPO ). Notice that the second diagram of (54) enters at the same order in the power counting as we are always
+forced to have at least a spatial derivative RPO ∂i to contract the free index of the Levi-Civita symbol.
+
+
+                                                  B.      Scaling Arguments
+
+                                                                                          (4)
+We are now in the position to confirm that the one-loop diagram proportional to b1 is indeed the leading contribution.
+We can compare its size to the tree-level diagram coming from the higher-derivative operator of (53). Focusing on
+                                                                                                                                      19
+
+the trispectrum in a configuration where the modes have all roughly the same size k and approximating the linear
+matter power spectrum as a power law (k/kNL )nδ /kNL   3
+                                                          (where a spectral index nδ close to −1.5 describes well the
+power spectrum at the scales used in our analysis) we find
+                                                      (3)                 −(3+nδ )
+                                 Thigher-derivative  b9                 k
+                                                    ∼ (4) × (RPO k)8                 .                           (57)
+                                    Tone-loop        b1                kNL
+If we now assume a scaling universe [112] we expect the nonlocality scale RPO and the non-linear scale to be equal:
+then, we see that the tree-level diagram is strongly suppressed by ∼ (k/kNL )6.5 , assuming similar magnitudes for the
+two bias coefficients.
+   What can we instead conclude about the relative magnitude of the supposed parity-violating physics affecting galaxy
+formation and that from inflationary signals? We see that, unless the former has a spatial scale RPO much shorter than
+the nonlinear scale or the halo Lagrangian radius R∗ , its contributions to the galaxy four-point function is dominant
+with respect to inflationary signals. More precisely, we can estimate
+                                                     3nδ         3+nδ                          2(3+nδ )
+                                             1    k              k                               k
+                          (4) (R PO k)  ×    9             ×                  (4)   (RPO k) ×
+            TLSS        b                  kNL   kNL            kNL         b1                  kNL
+                     ∼ 1 ×                                     2(3+nδ )
+                                                                          ∼       ×             2             ,   (58)
+          Tinflation   τNL                 1      1
+                                                       
+                                                          k
+                                                                           τNL               ∆ ζ
+                                   (∆2ζ )3 9 ×
+                                          k     (∆2ζ )2 kNL
+where we have assumed a scale-invariant (∝ k −9 ) trispectrum of the comoving curvature perturbation ζ and the
+factor of (k/kNL )2(3+nδ ) /(∆2ζ )2 at the denominator comes from four powers of the transfer function relating ζ to the
+linear matter density. The strong suppression in loops (scaling as (k/kNL )3 for nδ close to −1.5) and the additional
+suppression in spatial derivatives must be overcome for the late-time trispectrum to be larger than the inflationary
+contribution. Assuming again a scaling universe [112] the suppression becomes ∼ (k/kNL )4 . Taking kNL = 0.5h−1 Mpc
+at the redshift z ≃ 0.5 typical of our analysis, and taking a maximum momentum k ≃ 0.1h−1 Mpc, we see that
+                                                                               (4)
+                                                         TLSS                 b1
+                                                                    ∼ 105 ×       .                                                (59)
+                                                       Tinflation             τNL
+                                                                                                       (4)
+Hence, for large values of τNL & 105 (and assuming a dimensionless bias coefficient b1 of order unity), but still
+compatible with weak primordial non-Gaussianity τNL ∆2ζ  1,8 we expect the inflationary parity violation to be
+dominant with respect to (possible) late-time contributions, even before cautioning that new physics at low redshifts is
+needed to source such effects.
+  Before proceeding, let us also emphasize that so far we have focused on the EFTofLSS with Gaussian initial
+conditions. In presence of some primordial (and parity-violating) non-Gaussianity one expects that additional operators
+are needed, in order to renormalize the contribution of short-wavevelength modes [113], akin to what happens for the
+scale-dependent bias in the case of local primordial non-Gaussianity.9 We leave the identification of these terms, and
+the estimation of their size, to future work.
+
+
+                               C.    Velocity Contributions and Redshift-Space Distortions
+
+What happens once we consider the propagation of light from the galaxy rest frame to the observer? Parity-violating
+physics can affect the photon geodesics. However, in the non-relativistic regime k/aH  1 typical of present and
+upcoming surveys, the only relevant projection effect is given by redshift-space distortions. These are the Doppler shift
+in the photon frequency due to the peculiar velocities of galaxies and only depend on the total intensity of photons
+emitted in the rest frame. Unless we include parity-violating operators in the bias expansion for the galaxy peculiar
+velocity, redshift-space distortions cannot lead to new contributions to the parity-odd trispectrum.
+   In a similar manner to the above, one can ask what form the leading parity-odd operator in the EFTofLSS expansion
+of the galaxy velocity field vg should take. In this case, we need to construct an axial vector out of ∂i δ, the tidal
+                                               [n]
+field, and its higher-order generalizations Πij (we cannot use ∂i φ, where φ is the Newtonian potential, due to the
+equivalence principle). The leading non-vanishing operator consistent with symmetries of the EFTofLSS is then
+                                                                        [1]   [2]
+                                                         vg ⊃ bv ijk Πjl Πlk ,                                                    (60)
+
+
+8 We remind the reader that in terms of the amplitudes A(MPO ) and A(Λ2                                              2
+                                                                      PO ) of §V, this constraint reads A(MPO ) , A(ΛPO ) & 10−18 .
+9 Given that the Newtonian potential φ at the initial Lagrangian position and its derivatives would now be allowed in the bias expansion,
+
+  we expect to be able to write operators that start at lower order in perturbations.
+                                                                                                                                         20
+
+which we emphasize does not break the equivalence principle, since it is built out of local observables for an observer
+freely falling with the galaxies.10 The mapping from the rest-frame galaxy overdensity δg to the redshift-space one δ̃g
+(following the notation of [111]) contains the Kaiser term [114]
+                                                           δ̃g ⊃ n̂i ∂ i (n̂j vgj ) ,                                                  (61)
+                                                                                                                 11
+where n̂ is the line of sight. The contribution where vg is given by (60) is a cubic operator, and one without a
+suppression in spatial derivatives (indeed, bv is a dimensionless coefficient). Hence we expect that (60) will contribute
+                                                                                                            (4)
+to the multipoles of the tree-level trispectrum, provided there exists a mechanism to generate it. Unless b1 and bv are
+parametrically different, this ought to be the leading contribution from late-time parity violation in galaxy clustering
+in terms of the power counting of the EFTofLSS. However, it is important to keep in mind that higher-order multipoles
+of correlation functions are suppressed with respect to lower-order ones by powers of the growth rate f divided by the
+linear bias b1 . It would be interesting to develop a pipeline to measure the multipoles of the redshift-space parity-odd
+                                               (4)
+galaxy trispectrum and put constraints on b1 and bv : we leave this to future work.
+
+
+                                                      VII.     CONCLUSIONS
+
+Does the early Universe conserve parity? In general, this is a difficult question to answer. Until we observe inflationary
+gravitational waves, we have no direct probe of parity-violation, thus must search instead for its signatures in scalar
+correlators, which appear only in the four-point function and beyond. Though the simplest models of inflation cannot
+source such a signal [36], many non-standard theories can, involving, for example, a non-linear dispersion relation for
+the inflaton, the introduction of massive spinning fields, or time dependence of the couplings in the Lagrangian. In
+this work, we have considered several such models, using recent measurements of the galaxy 4PCF to place the first
+constraints on their amplitudes.
+   In particular, we have considered Ghost Inflation, comprising a single field with a quadratic (ω ∝ k 2 ) dispersion
+relation, and the Cosmological Collider, whereupon the inflaton correlators are modulated due to the exchange of
+a massive spin-1 particle (for various choices of mass and sound speed). For each scenario, we forward-modeled the
+primordial correlator to obtain a late-time prediction for the 4PCF, and compared its form to the measurements
+presented in [60]. This yielded constraints on the couplings in the EFTI, all of which are consistent with zero (within
+2σ). Furthermore, these constraints were found to be parametrically relevant, in the context of the perturbativity
+bounds coming from the EFTI framework.
+   The inflationary models considered herein are by no means exhaustive. For example, whilst Ghost Inflation provides
+a useful example of a non-linear dispersion relation, it suffers from a number of theoretical difficulties, as discussed in
+[36].12 If a prominent signal had been seen for this model, it would promote further investigation into other inflationary
+scenarios with similar dispersion relations. Secondly, we have considered only a single model for the Cosmological
+Collider; other couplings can exist (again see [36]), as well as models generated by an imbalance of the two helical
+exchange modes. One could further consider higher-order models, an example being the U (1) gauge field couplings
+discussed in [57] and constrained in [60], or the exchange of chiral gravitational waves, produced via a Chern-Simons
+coupling. Given a primordial template, any model can be constrained following an (admittedly difficult) calculation
+similar to those in Appendix A. It may additionally prove useful to define some general parametrization akin to
+   loc    eq    orth
+{fNL   , fNL , fNL   }, onto which any primordial model can be projected.
+   The future will yield a vast increase in the volume of primordial modes surveyed. For LSS, the next generation
+of surveys will map out the distribution of around a hundred million galaxies, which should improve constraints
+on physical models such as the above by around an order of magnitude; these will strengthen still with proposed
+experiments such as MegaMapper [120]. We additionally can make use of CMB data; the large-scale modes contained
+therein are predicted to be of great use in constraining primordial parity-violation (see, e.g., the forecasts of [57]).
+However, the CMB is a two-dimensional field, and thus only parity sensitive on large scales, with statistically isotropic
+signals vanishing in the flat-sky regime (due to the identification of parity-reversal with a 3D rotation of the 2D CMB
+plane). In this sense, LSS data seems a more promising future avenue, though we caution that an experimental CMB
+parity-odd trispectrum study has yet to be performed. Finally, we note that many parity-odd inflationary models
+generate also a parity-even signature (such as in the Cosmological Collider). Often, the amplitudes of the two are
+related, and it is interesting to ask whether the physical models can be best constrained by parity-odd or parity-even
+
+
+10 An equivalent way to see this is that both Π[1] and Π[2] are invariant under a shift of the Newtonian potential by a gradient mode.
+                                                ij       ij
+11 Indeed, unlike ∂ v i (which could appear in the galaxy density expansion), n̂ v i starts at cubic order in perturbations.
+                   i g                                                          i g
+12 More precisely, ghost condensation could conflict with black hole thermodynamics and the de Sitter entropy bound [115, 116]. However,
+
+  it is also important to keep in mind that in Refs. [117–119] it was shown that the subclass of Ghost inflation that is consistent with our
+  Universe is not excluded by these theoretical constraints. We thank Shinji Mukohyama for discussions about this point.
+                                                                                                                                      21
+
+measurements. For the CMB, the parity-even form is likely simpler (as it does not vanish in the small-scale limit),
+but for LSS, this observable is highly complex, due to the additional gravitational contributions (cf. [121, 122] for the
+bispectrum) which do not contribute source parity-odd trispectra.
+  We close by commenting on the recent claims of a detection of parity-violation in LSS [60, 61]. In this work, we have
+found that no evidence for inflationary parity-violation. Though our constraints are derived in the context of specific
+models, these templates are fairly generic, in that they are scale-independent, and span both exchange and contact
+diagrams, with a variety of microphysical parameters. Other models likely have significant cosines with the templates
+discussed herein, thus, to an extent, are already constrained. This lack of detection implies that the proposed signal
+of [60, 61] contains a very different scale-dependence to that of inflation, which hints at a different resolution. As
+discussed in §VI, we can predict the form of late-time parity-violation using the EFTofLSS. Such contributions could
+arise from non-standard models of gravity (e.g., Chern-Simons gravity [62]) or hydrodynamics, and we find that they
+are generically suppressed on large scales, arising only from loop corrections or derivative operators. Again, this seems
+an unlikely explanation, given that the analysis was restricted to comparatively large scales (r & 20h−1 Mpc). As
+such, systematic effects, or poor understanding of the measurements’ noise properties seems to be the most likely
+cause of the aforementioned detection, though we note that the space of possible cosmological explanations is large.
+Whilst better data will help to understand the above, we stress that, if the signal is some unknown, and unsubtracted,
+systematic, its detection significance will only grow with the survey volume. Caution is warranted!
+
+
+                                                     ACKNOWLEDGMENTS
+
+We thank Matias Zaldarriaga for enlightening conversations. We are additionally grateful to Matteo Biagetti, Stephen
+Chen, Cyril Creque-Sarbinowski, Sadra Jazayeri, Marc Kamionkowski, Giorgio Orlando, Enrico Pajer, Ue-Li Pen,
+Fabian Schmidt, David Stefanyszyn, and Yi Wang for insightful discussions. We also thank Fabian Schmidt for
+careful reading of the draft. GC acknowledges support from the Institute for Advanced Study. The work of MMI
+has been supported by NASA through the NASA Hubble Fellowship grant #HST-HF2-51483.001-A awarded by the
+Space Telescope Science Institute, which is operated by the Association of Universities for Research in Astronomy,
+Incorporated, under NASA contract NAS5-26555. OHEP is a Junior Fellow of the Simons Society of Fellows and
+thanks the Institute for Advanced Study for their hospitality and abundance of baked goods. Part of this work was
+performed at the Aspen Center for Physics, which is supported by National Science Foundation grant PHY-1607611.
+
+
+                                         Appendix A: Computing 4PCF Templates
+
+In this appendix, we sketch the derivation of the galaxy 4PCF templates presented in §IV. First, we note a number of
+general simplifications, before presenting specific results for the Ghost Inflation and Cosmological Collider templates.
+
+
+                                                        1.    General Strategy
+
+Starting from (36), we can simplify the 4PCF by shifting the permutation sum into the exponential term. This yields
+                                          Z                                             " 4 Z                   #
+                                                                                         Y
+               ζ`1 `2 `3 (r1 , r2 , r3 ) = dr̂1 dr̂2 dr̂3 P`∗1 `2 `3 (r̂1 , r̂2 , r̂3 )         Z1 (k̂i )M (ki ) (2π)3 δD (k1234 )
+                                                                                             ki
+                                                                                         i=1                                       (A1)
+                                                                           ei(k1 · rH1 +k2 · rH2 +k3 · rH3 +k4 · rH4 ) ,
+                                                                    X
+                                          × T̃ (k1 , k2 , k3 , k4 )
+                                                                 H
+
+where {H1, H2, H3, H4} is one of the 24 permutations of {1, 2, 3, 4}, k1234 ≡ k1 + k2 + k3 + k4 and we have introduced
+r4 = 0 for symmetry. Next, the integral over r̂i can be performed analytically, using the standard relation
+                                       Z
+                                          dr̂ eik · r Y`m (r̂) = 4πi` j` (kr)Y`m (k̂)                             (A2)
+
+for the spherical Bessel function j` (x). This allows us to write
+                                                               " 4 Z                                               #
+                                                          X     Y
+                                                7/2  `123
+                ζ`1 `2 `3 (r1 , r2 , r3 ) = (4π) (−i)       ΦH                    Z1 (k̂i )M (ki )j`Hi (ki rHi )
+                                                             H         i=1   ki                                                     (A3)
+                                                                                                                3
+                                        × P`H1 `H2 (`0 )`H3 `H4 (k̂1 , k̂2 , k̂3 , k̂4 )T̃ (k1 , k2 , k3 , k4 )(2π) δD (k1234 ) ,
+                                                                                                                                                             22
+                                                                         R                   √
+notating `123 ≡ `1 + `2 + `3 and additionally inserting 1 = dr̂4 Y`4 m4 (r̂4 )/ 4π with `4 = m4 = 0. (A3) introduces a
+symmetry factor ΦH ∈ {±1} (defined in [60]) and the four-coordinate basis function in k̂ [92]:
+                                                                                                         !           !
+                                                          √        X       0   0     X         `1 `2  `0
+                                                                                                           `0
+                                                                                                              `3 ` 4
+    P`1 `2 (`0 )`3 `4 (k̂1 , k̂2 , k̂3 , k̂4 ) = (−1)`1234 2`0 + 1    (−1)` −m
+                                                                   m0            m1 m2 m3 m4
+                                                                                               m1 m2 −m0   m0 m3 m4    (A4)
+                                            × Y`1 m1 (k̂1 )Y`2 m2 (k̂2 )Y`3 m3 (k̂3 )Y`4 m4 (k̂4 ) ;
+
+this is invariant under global rotations of k̂i .
+  Another simplification concerns the perturbative kernels Z1 . Noting that
+                                X           f
+                                                            
+                                                       K 2f
+                                                                                     X
+                                     K                                   ∗                          ∗
+                   Z1 (k̂) = 4π     δ`0  b+         + δ`2      Y`m (k̂)Y`m (n̂) ≡ 4π   Z` Y`m (k̂)Y`m (n̂) ,                                               (A5)
+                                               3          15
+                                       `m                                                                      `m
+
+for line-of-sight n̂, we can average over n̂ by isotropy, which leads to
+                                                                                      !            !
+                                                                                    0     0
+                                                               X           j 1 j2 j     j   j3 j 4
+              Z1 (k̂1 )Z1 (k̂2 )Z1 (k̂3 )Z1 (k̂4 ) → (4π)2                                           Zj1 Zj2 Zj3 Zj4 Cj1 j2 j3 j4 j 0
+                                                           j1 j2 j3 j4 j 0
+                                                                           0 0 0        0 0 0                                                              (A6)
+                                                           × Pj1 j2 (j 0 )j3 j4 (k̂1 , k̂2 , k̂3 , k̂4 )
+                          p
+[60], where Cj1 ···jn = (2j1 + 1) · · · (2jn + 1), and ji ∈ {0, 2}.
+  Finally, the Dirac delta may be simplified in one of two ways. In the case of a contact trispectrum (e.g., in Ghost
+Inflation), we may write
+                               Z
+            (2π) δD (k1234 ) = dx eik1234 · x
+                  3
+
+
+                                                            Z       Z  " 4                                     #
+                                            X                           YX
+                                    4                 L1234    2                                    ∗
+                             = (4π)                  i        x dx dx̂      jLi (ki x)YLi Mi (k̂i )YLi Mi (x̂)
+                                              L1 ···L4 M1 ···M4                                     i=1 Mi
+                                                X                     Z
+                                  = (4π)3                (−i)L1234        x2 dx jL1 (k1 x)jL2 (k2 x)jL3 (k3 x)jL4 (k4 x)                                   (A7)
+                                              L1 ···L4
+                                                                  !                     !
+                                        X L1 L2 L0                        L0 L3 L4
+                                      ×                                                     CL1 L2 L3 L4 L0 PL1 L2 (L0 )L3 L4 (k̂1 , k̂2 , k̂3 , k̂4 ) ,
+                                        L0
+                                           0 0 0                          0 0 0
+utilizing the plane-wave expansion in the second line, and the Gaunt integral and definitions of the four-particle
+basis function (A4) in the third. For exchange trispectra, it is useful to instead introduce an internal (Mandelstam)
+momentum, s ≡ k1 + k2 . In this case;
+                             Z                                                Z
+          (2π) δD (k1234 ) = (2π) δD (k12 + s) (2π) δD (k34 − s) = dx dx0 ei(k12 −s) · x ei(k34 +s) · x
+                                                                                                                       0
+              3                     3                     3
+                              s                                                 s
+                                                                                              !                  !
+                                 5
+                                     X
+                                             L1234 −L5 +L6                      L 1 L2 L5          L3 L4 L6
+                           = (4π)           i              CL1 L2 L3 L4 L5 L6
+                                   L1 ···L6
+                                                                                 0 0 0              0 0 0
+                                      Z
+                                  × PL1 L2 L5 (k̂1 , k̂2 , ŝ)PL3 L4 L6 (k̂3 , k̂4 , ŝ)
+                                      Zs ∞                                        Z ∞
+                                  ×           2
+                                            x dx jL1 (k1 x)jL2 (k2 x)jL5 (sx)            x02 dx0 jL3 (k3 x0 )jL4 (k4 x0 )jL6 (sx0 ) . (A8)
+                                               0                                                      0
+
+This can be simplified by integrating out ŝ (but retaining s, which appears also in the primordial trispectrum), leading
+to:
+                                                                             !              !
+      3                  4
+                              X
+                                           L1234                  L1 L2 L0        L3 L4 L0
+  (2π) δD (k1234 ) = (4π)              (−i)      CL1 L2 L3 L4 L0                                                                       (A9)
+                           L1 ···L4 L0
+                                                                   0 0 0           0 0 0
+                             Z ∞ 2 Z ∞                                               Z ∞                                             
+                                     s ds           2                                         02    0          0          0          0
+                          ×                       x   dx j   (k
+                                                          L1 1   x)j  (k
+                                                                    L2 2 x)j L0 (sx)        x    dx   j   (k
+                                                                                                        L3 3 x   )j  (k
+                                                                                                                   L4 4 x   )j L0 (sx  )
+                                0    2π 2    0                                           0
+                                × PL1 L2 (L0 )L3 L4 (k̂1 , k̂2 , k̂3 , k̂4 ) .
+                                                                                                                                                  23
+
+   Though the above manipulations may seem only to add complexity, their benefit is that all the angular dependence
+is expressed purely in terms of basis functions, which (when a similar manipulation is performed for the inflationary
+trispectrum itself), can be straightforwardly combined and integrated over, leaving just a set of discrete summations
+and separable integrals in the radial components.
+
+
+                                                              2.   Ghost Inflation
+
+The primordial trispectra given in (11) can be separated into radial and angular coefficients. For the angular components,
+simplification is achieved utilizing the Cartesian forms of the isotropic basis functions [cf. 60, 92]. In particular, for the
+Λ2PO term we have
+                                                                 √
+                                                                 2
+                               k̂1 · k̂2 × k̂3 (k̂1 · k̂2 ) = −i √ (4π)3 P111 (k̂1 , k̂2 , k̂3 )P110 (k̂1 , k̂2 , k̂3 )
+                                                                 3 3
+                                                                  r                                                                          (A10)
+                                                                i 2
+                                                            =−       (4π)2 P22(1)10 (k̂1 , k̂2 , k̂3 , k̂4 ) ,
+                                                               3 5
+
+contracting the two basis functions via [92, §6] to reach the second expression, which is written in terms of isotropic
+basis functions of four coordinates (A4). For the MPO contribution the situation is less straightforward due to the
+large number of angles, but we eventually find
+                                                                 √
+                                                                  2
+       k̂1 · k̂2 × k̂3 (k̂2 · k̂4 )(k̂1 · k̂4 )(k̂2 · k̂3 ) = −i √ (4π)8 P11(1)10 P01(1)01 P10(1)01 P01(1)10 (k̂1 , k̂2 , k̂3 , k̂4 )
+                                                                                                                                 
+                                                                 9 3
+                                                                 √           "                                        √
+                                                                   10      2                                        4 2
+                                                            = −i      (4π) P01(1)22 − 2P03(3)22 +                           P21(1)22 + P21(2)20
+                                                                 225                                                  5
+                                                                     r                       √                       √
+                                                                        14                 2 7                           3
+                                                                  −        P21(2)22 +             P21(3)22 +               P23(1)22 − 2P23(2)20 (A11)
+                                                                         5                    5                        5
+                                                                      r                      √                                           #
+                                                                         2                 2 3                         6
+                                                                   −       P23(2)22 −             P23(3)22 + √ P23(4)22 (k̂1 , k̂2 , k̂3 , k̂4 )
+                                                                        35                    5                          7
+                                                                          X
+                                                            ≡ −i(4π)2          cl1 l2 (l0 )l3 l4 Pl1 l2 (l0 )l3 l4 (k̂1 , k̂2 , k̂3 , k̂4 ) ,
+                                                                      l1 l2 l3 l4 l0
+
+defining coefficients cl1 l2 (l0 )l3 l4 in the final line for brevity.
+  The radial piece is obtained by integrating the k̂-independent part of the trispectrum with respect to ki , as in (A3).
+This is simplest to perform by switching the order of integration, placing the λ integral (contained within T function
+                                                                       −1
+of (12)) on the outside. For the operator proportional to MPO             , we find
+  " 4 Z                                            #
+    Y k 2 dki                                          1/2 3/2 1/2 1/2      (11)
+           i
+              2
+                 M (ki )j`Hi (ki rHi )jLi (ki x) k1 k2 k3 k4 ImT0,0,0,0 (k1 , k2 , k3 , k4 )                                         (A12)
+    i=1
+           2π
+        Z ∞
+  = Im       dλ λ11 I3/4,1/2,`H1 ,L1 (x, λ; rH1 )I3/4,3/2,`H2 ,L2 (x, λ; rH2 )I3/4,1/2,`H3 ,L3 (x, λ; rH3 )I3/4,1/2,`H4 ,L4 (x, λ; rH4 ) ,
+            0
+
+and for that involving Λ−2PO :
+  " 4 Z                                         #
+    Y k 2 dki                                      1/2 5/2 3/2 1/2 (13)
+            i
+              2
+                M (ki )j`Hi (ki rHi )jLi (ki x) k1 k2 k3 k4 T0,0,0,1 (k1 , k2 , k3 , k4 )                                           (A13)
+    i=1
+           2π
+     Z ∞
+  =       dλ λ13 I3/4,1/2,`H1 ,L1 (x, λ; rH1 )I3/4,5/2,`H2 ,L2 (x, λ; rH2 )I3/4,3/2,`H3 ,L3 (x, λ; rH3 )I−1/4,1/2,`H4 ,L4 (x, λ; rH4 ) ,
+        0
+
+defining
+
+                                                              k 2+β dk
+                                                          Z
+                                   Iα,β,`,L (x, λ; r) ≡                M (k)j` (kr)jL (kx)Hα(1) (2ik 2 λ2 ) .                                (A14)
+                                                                 2π 2
+                                                                                                                                                                24
+
+  In combination with the results of §A 1 we find the following forms for the ghost 4PCF:
+
+
+
+
+                                                                                                                               !          !
+                                                                                                                             0    0
+   (M )                                             Λ5 (H Λ̃)1/2           X            X                    L  1   L  2    L    L  L3 L4
+  ζ`1 `2PO
+         `3 (r1 , r2 , r3 ) = 2(4π)
+                                    19/2
+                                         (−i)`123                  (∆2ζ )3      ΦH               (−i)L1234
+                                                  MPO Λ̃5 Γ( 34 )2           H       L1 ···L4 L0              0 0 0              0 0 0
+                                                                        !              !
+                                                  X           j1 j2 j 0    j 0 j3 j4
+                            × CL1 L2 L3 L4 L0                                              Zj1 Zj2 Zj3 Zj4 Cj1 j2 j3 j4 j 0                (A15)
+                                              j1 j2 j3 j4 j 0
+                                                              0 0 0         0 0 0
+                                 Z ∞            Z ∞
+                            × Im         2
+                                        x dx            dλ λ11 I3/4,1/2,`H1 ,L1 (x, λ; rH1 )I3/4,3/2,`H2 ,L2 (x, λ; rH2 )
+                                       0                 0
+                                × I3/4,1/2,`H3 ,L3 (x, λ; rH3 )I3/4,1/2,`H4 ,L4 (x, λ; rH4 )
+                              X                  Z
+                                                                     
+                            ×   cl1 l2 (l0 )l3 l4 dk̂1 dk̂2 dk̂3 dk̂4 Pl1 l2 (l0 )l3 l4 PL1 L2 (L0 )L3 L4
+                                l1 ···l4 l0
+                                                                                         
+                                               × Pj1 j2 (j 0 )j3 j4 P`H1 `H2 (`0 )`H3 `H4 (k̂1 , k̂2 , k̂3 , k̂4 ) ,
+                             √                                                                                                         !                    !
+   (Λ2 )                     8 2                         Λ5 (H Λ̃)3/2            X         X                      L1 L2 L0                   L0 L3 L4
+  ζ`1 `PO
+       2 `3
+            (r1 , r2 , r3 ) = √ (4π)19/2 (−i)`123                        (∆2 3
+                                                                           ζ )      Φ H             (−i) L1234
+                           3 5                         Λ2PO Λ̃6 Γ( 43 )2         H      L1 ···L4 L0
+                                                                                                                   0 0 0                     0 0 0
+                                                                         !             !
+                                                 X           j1 j2 j 0       j 0 j3 j4
+                           × CL1 L2 L3 L4 L0                                             Zj1 Zj2 Zj3 Zj4 C j1 j2 j3 j4 j 0                                 (A16)
+                                             j1 j2 j3 j4 j 0
+                                                             0 0 0           0 0 0
+                             Z ∞          Z ∞
+                           ×      x2 dx          dλ λ13 I3/4,1/2,`H1 ,L1 (x, λ; rH1 )I3/4,5/2,`H2 ,L2 (x, λ; rH2 )
+                                  0                  0
+                                                       × I3/4,3/2,`H3 ,L3 (x, λ; rH3 )I−1/4,1/2,`H4 ,L4 (x, λ; rH4 )
+                                Z
+                                                                                                                            
+                            ×         dk̂1 dk̂2 dk̂3 dk̂4 P22(1)10 PL1 L2 (L0 )L3 L4 Pj1 j2 (j 0 )j3 j4 P`H1 `H2 (`0 )`H3 `H4 (k̂1 , k̂2 , k̂3 , k̂4 ) .
+
+
+
+
+The final line of each expression involves the integral over four sets of basis functions; these can be evaluated in terms
+of 9j symbols [92], and written in terms of angular coupling matrices, given by
+
+
+
+
+   `   `   (`0 )`   `
+                                                                          X
+MLH1 H2
+         0
+             H3 H4
+  1 L2 (L )L3 L4
+                   = C`H1 `H2 `0 `H3 `H4 CL1 L2 L0 L3 L4                                cl1 l2 (l0 )l3 l4 Cl1 l2 (l0 )l3 l4                                (A17)
+                                                                       l1 l2 l3 l4 l0
+                                                               !                        !
+                                      X            j1 j2 j 0         j 0 j3 j4
+                           ×                                                                Zj1 Zj2 Zj3 Zj4 Cj21 j2 j3 j4 j 0
+                                j1 j2 j3 j4   j0
+                                                   0 0 0             0 0 0
+                                                                                             !              !             !           !
+                                      X                                        l 1  L 1   λ1     l 2 L 2 λ2    l 3 L3 λ 3   l4 L4 λ 4
+                           ×              (−1)λ1 +λ2 +λ3 +λ4 Cλ21 λ2 λ12 λ3 λ4
+                             λ1 λ2 λ12 λ3
+                                                                               0 0 0              0 0 0        0 0 0        0 0 0
+                                              !                !                   !                 !
+                               j1 `H1 λ1          j2 `H2 λ2          j3 `H3 λ3           j4 `H4 L4
+                           ×
+                                0 0 0             0 0 0               0 0 0              0 0 0
+                                                                                                      
+                                            0        0                                 0        0
+                              l1 l2 l 
+                                               l     l3 l4     j1 j2 j           j       j3 j4  
+                           × L1 L2 L0               L0 L3 L4            `H1 `H2 `0             `0 `H3 `H4
+                                             
+                                                                 
+                                                                                        
+                                                                                                           
+                                λ1 λ2 λ12          λ12 λ3 L4             λ1 λ2 λ12            λ12 λ3 L4
+                                                                                                         
+                                                                                                                                                       25
+
+and
+                                                                                                                      !             !
+       ` `H2 (`0 )`H3 `H4
+                                                                                p                X          j1 j2 j 0     j 0 j3 j4
+      NLH1     0
+        1 L2 (L )L3 L4
+                          = 15C`H1 `H2 `0 `H3 `H4 CL1 L2 L0 L3 L4                2L4 + 1                                              Zj1 Zj2 Zj3 Zj4
+                                                                                         j1 j2 j3 j4 j 0
+                                                                                                            0 0 0         0 0 0
+                                                                                                                  !              !              !
+                                        2
+                                                            X
+                                                                          λ1 +λ2 +λ3 2                 2 L1 λ1         2 L2 λ2        1 L3 λ3
+                                     × Cj1 j2 j3 j4 j 0              (−1)           Cλ1 λ2 λ12 λ3
+                                                        λ1 λ2 λ12 λ3
+                                                                                                       0 0 0           0 0 0          0 0 0
+                                                            !                  !                   !                    !
+                                         j1 `H1 λ1                j2 `H2 λ2         j3 `H3 λ3              j4 `H4 L4
+                                     ×
+                                          0 0 0                    0 0 0            0 0 0                  0 0 0
+                                                                                                                         
+                                                                                                         0        0
+                                       2 2 1 
+                                                               1 1 0          j1 j2 j              j       j3 j4   
+                                     × L1 L2 L0                      L0 L3 L4         `H1 `H2 `0                 `0 `H3 `H4 ,                        (A18)
+                                                            
+                                                                                
+                                                                                                          
+                                                                                                                              
+                                          λ1 λ2 λ12                 λ12 λ3 L4          λ1 λ2 λ12                λ12 λ3 L4
+                                                                                                                            
+
+
+where the curly parentheses are 9j symbols. We additionally note that L1 + L2 + L3 + L4 is even (from the 3j symbols)
+and `1 + `2 + `3 is odd, thus the expression is purely imaginary (using the properties of Hankel functions). Inserting
+these into (A15) leads to the final expressions given in (36) & (37).
+
+
+
+                                                                   3.    Cosmological Collider
+
+
+To evaluate the Cosmological Collider template, it is convenient to first split the primordial correlator of (18) into two
+pieces joined by an angular factor:
+                                                                                                       
+                                                                        λ1 λ3 2 4                     1 A
+                            T̃λ1 λ3 (k1 , k2 , k3 , k4 ) = −ic4s             (∆ζ ) sin π ν +              t (k1 , k2 , s)tB (k3 , k4 , s)         (A19)
+                                                                         2H                           2
+                                                                                                                         
+                                                                             × (k̂1 · k̂2 )(k̂3 · k̂4 ) k̂2 · (k̂3 × k̂4 ) ,
+
+
+using the definitions
+
+                                  tA (k1 , k2 , s) = k1−2 k2−1 (k1 − k2 )[k12 J3 (cs k12 , s) + cs k1 k2 J4 (cs k12 , s)]                         (A20)
+                                  tB (k3 , k4 , s) = k3−1 k4−1 (k3 − k4 )[k34 J4 (cs k34 , s) + cs k3 k4 J5 (cs k34 , s)] .
+
+As before, this contains a cross-product and is purely imaginary. Unlike for Ghost Inflation, this is an exchange
+diagram, thus has dependence on the exchange momentum s.
+  To simplify the angular component, we use the basis functions of (A4), writing:
+                                                               √
+                                                            2
+           k̂2 · (k̂3 × k̂4 ) (k̂1 · k̂2 )(k̂3 · k̂4 ) = i      (4π)7/2 P111 (k̂2 , k̂3 , k̂4 )P11(0)11 (k̂1 , k̂2 , k̂3 , k̂4 )
+                                                             9
+                                                                                                         √                                        (A21)
+                                                            (4π)2 h                                                                          i
+                                                          =i √      2 P12(1)22 (k̂1 , k̂2 , k̂3 , k̂4 ) − 2 P10(1)22 (k̂1 , k̂2 , k̂3 , k̂4 ) .
+                                                             9 5
+
+For the radial integrals, we first rewrite the momentum-conserving delta function in terms of (A9); this will lead to
+radial integrals of the form:
+
+                                                    Z ∞                      2
+                                                                             Y Z      ki2 dki
+                                                                                                                            
+                    Q`L11`L2 ,X
+                             2L
+                                0 (s; r1 , r2 ) =
+                                                           2
+                                                          x dx jL0 (sx)                        M (ki )j`i (ki ri )jLi (ki x) tX (k1 , k2 , s) ,   (A22)
+                                                    0                        i=1
+                                                                                        2π 2
+
+
+for X ∈ {A, B}.
+                                                                                                                                                 26
+
+   Utilizing the results of Appendix A 1, we find that the 4PCF can be written
+                                                                                                                                         !          !
+                                                     4                                                                          L1 L2 L0   L0 L3 L4
+                                                                                        
+ (λ1 λ3 )                                   `123 cs λ1 λ3                              1 X             X
+                                 15/2                             2 4                                               L1234
+ζ`1 `2 `3 (r1 , r2 , r3 ) = (4π)      (−i)             √        (∆ζ ) sin π ν +                ΦH               (−i)
+                                                  18 5H                                2                                         0 0 0     0 0 0
+                                                                                            H       L1 ...L4 L0
+                                                                        !                 !
+                                               X              j1 j2 j 0      j 0 j3 j4
+                            × CL1 ...L4 L0                                                  Zj1 Zj2 Zj3 Zj4 Cj1 j2 j3 j4 j 0                    (A23)
+                                           j1 j2 j3 j4 j 0
+                                                              0 0 0          0 0 0
+                               Z 2
+                                   s ds `H1 `H2 ,A                          `H3 `H4 ,B
+                            ×            Q            0    (s; rH1 , rH2 )QL         0   (s; rH3 , rH4 )
+                                   2π 2 L1 L2 L                                3 L4 L
+                               Z                            h                √
+                            ×     dk̂1 dk̂2 dk̂3 dk̂4 (2 P12(1)22 − 2 P10(1)22 )Pj1 j2 (j 0 )j3 j4
+                                                                                                          
+                                                               × PL1 L2 (L0 )L3 L4 P`H1 `H2 (`0 )`H3 `H4 (k̂1 , k̂2 , k̂3 , k̂4 ) .
+This may be further decomposed by defining the coupling matrix (integrating over basis functions to obtain Wigner 9j
+symbols, as before):
+                                                                                             !             !
+  `H1 `H2 (`0 )`H3 `H4
+                                                                       X           j1 j2 j 0     j 0 j3 j4
+OL1 L2 (L0 )L3 L4      = 15 C`H1 `H2 `0 `H3 `H4 CL1 L2 L0 L3 L4                                              Zj1 Zj2 Zj3 Zj4             (A24)
+                                                                   j1 j2 j3 j4 j 0
+                                                                                   0 0 0         0 0 0
+                                                                                                     !            !             !
+                             2
+                                                 X
+                                                                λ1234 2                  1 L1 λ1         2 L3 λ3       2 L4 λ4
+                         × Cj1 j2 j3 j4 j 0                 (−1)       Cλ1 λ2 λ12 λ3 λ4
+                                            λ1 λ2 λ12 λ3 λ4
+                                                                                         0 0 0           0 0 0         0 0 0
+                                                                                                                                          
+                                                !                  !                    !                !  j1 j2 j 0   j 0 j3 j4 
+                              j1 `H1 λ1               j2 `H2 λ2           j3 `H3 λ3          j4 `H4 λ4                                    
+                         ×                                                                                   `H1 `H2 `0           `0 `H3 `H4
+                               0 0 0                   0 0 0               0 0 0             0 0 0                          
+                                                                                                                                            
+                                                                                                              λ1 λ2 λ12          λ12 λ3 λ4
+                                                                                                                                           
+                                                                                                                               
+                                                       ! 1 2 1                                    ! 1 0 1   1 2 2 
+                             √ 2 L2 λ2
+                                                                                 √ 0 L2 λ2                                       
+                         × 2 5                              L1 L2 L0 − 2                               L1 L2 L0  L0 L3 L4 ,
+                                                                                                                      
+                                         0 0 0                                        0 0 0                       
+                                                                                                                                     
+                                                             λ1 λ2 λ12                                  λ1 λ2 λ12          λ12 λ3 λ4
+                                                                                                                                  
+
+yielding the final expression given in (43).
+
+
+
+
+  [1] A. H. Guth, Phys. Rev. D 23, 347 (1981).
+  [2] A. A. Starobinsky, Phys. Lett. B 91, 99 (1980).
+  [3] A. D. Linde, Phys. Lett. B 108, 389 (1982).
+  [4] V. F. Mukhanov and G. V. Chibisov, JETP Lett. 33, 532 (1981).
+  [5] A. A. Starobinsky, Phys. Lett. B 117, 175 (1982).
+  [6] N. Arkani-Hamed and J. Maldacena, (2015), arXiv:1503.08043 [hep-th].
+  [7] E. Silverstein and D. Tong, Phys. Rev. D 70, 103505 (2004), arXiv:hep-th/0310221.
+  [8] C. Cheung, P. Creminelli, A. L. Fitzpatrick, J. Kaplan, and L. Senatore, JHEP 03, 014 (2008), arXiv:0709.0293 [hep-th].
+  [9] G. Cabass, M. M. Ivanov, M. Lewandowski, M. Mirbabayi, and M. Simonović, in 2022 Snowmass Summer Study (2022)
+      arXiv:2203.08232 [astro-ph.CO].
+ [10] N. Bartolo, E. Komatsu, S. Matarrese, and A. Riotto, Phys. Rept. 402, 103 (2004), arXiv:astro-ph/0406398.
+ [11] P. D. Meerburg et al., (2019), arXiv:1903.04409 [astro-ph.CO].
+ [12] Planck Collaboration, P. A. R. Ade, N. Aghanim, M. Arnaud, F. Arroja, M. Ashdown, J. Aumont, C. Baccigalupi,
+      M. Ballardini, A. J. Banday, et al., A&A 594, A17 (2016), arXiv:1502.01592 [astro-ph.CO].
+ [13] Planck Collaboration, Y. Akrami, F. Arroja, M. Ashdown, J. Aumont, C. Baccigalupi, M. Ballardini, A. J. Banday, R. B.
+      Barreiro, N. Bartolo, et al., A&A 641, A10 (2020), arXiv:1807.06211 [astro-ph.CO].
+ [14] L. Senatore, K. M. Smith, and M. Zaldarriaga, JCAP 01, 028 (2010), arXiv:0905.3746 [astro-ph.CO].
+ [15] G. Cabass, M. M. Ivanov, O. H. E. Philcox, M. Simonović, and M. Zaldarriaga, Phys. Rev. Lett. 129, 021301 (2022),
+      arXiv:2201.07238 [astro-ph.CO].
+ [16] G. Cabass, M. M. Ivanov, O. H. E. Philcox, M. Simonović, and M. Zaldarriaga, Phys. Rev. D 106, 043506 (2022),
+      arXiv:2204.01781 [astro-ph.CO].
+ [17] G. D’Amico, M. Lewandowski, L. Senatore, and P. Zhang, (2022), arXiv:2201.11518 [astro-ph.CO].
+ [18] E.-M. Mueller et al., (2021), arXiv:2106.13725 [astro-ph.CO].
+ [19] M. Alvarez et al., (2014), arXiv:1412.4671 [astro-ph.CO].
+                                                                                                                           27
+
+[20] A. J. Duivenvoorden, P. D. Meerburg, and K. Freese, Phys. Rev. D 102, 023521 (2020), arXiv:1911.11349 [astro-ph.CO].
+[21] Simons Observatory Collaboration, P. Ade, J. Aguirre, Z. Ahmed, S. Aiola, A. Ali, D. Alonso, M. A. Alvarez, K. Arnold,
+     P. Ashton, et al., JCAP 2019, 056 (2019), arXiv:1808.07445 [astro-ph.CO].
+[22] DESI Collaboration, A. Aghamousa, J. Aguilar, S. Ahlen, S. Alam, L. E. Allen, C. Allende Prieto, J. Annis, S. Bailey,
+     et al., arXiv e-prints , arXiv:1611.00036 (2016), arXiv:1611.00036 [astro-ph.IM].
+[23] N. Bartolo, M. Fasiello, S. Matarrese, and A. Riotto, JCAP 09, 035 (2010), arXiv:1006.5411 [astro-ph.CO].
+[24] K. M. Smith, L. Senatore, and M. Zaldarriaga, arXiv e-prints , arXiv:1502.00635 (2015), arXiv:1502.00635 [astro-ph.CO].
+[25] Planck Collaboration, Y. Akrami, F. Arroja, M. Ashdown, J. Aumont, C. Baccigalupi, M. Ballardini, A. J. Banday, R. B.
+     Barreiro, N. Bartolo, et al., A&A 641, A9 (2020), arXiv:1905.05697 [astro-ph.CO].
+[26] P. Vielva and J. L. Sanz, Mon. Not. Roy. Astron. Soc. 404, 895 (2010), arXiv:0910.3196 [astro-ph.CO].
+[27] T. Sekiguchi and N. Sugiyama, JCAP 09, 002 (2013), arXiv:1303.4626 [astro-ph.CO].
+[28] A. Lue, L. Wang, and M. Kamionkowski, Phys. Rev. Lett. 83, 1506 (1999), arXiv:astro-ph/9812088 [astro-ph].
+[29] V. Gluscevic and M. Kamionkowski, Phys. Rev. D 81, 123529 (2010), arXiv:1002.1308 [astro-ph.CO].
+[30] T. Liu, X. Tong, Y. Wang, and Z.-Z. Xianyu, Journal of High Energy Physics 2020, 189 (2020), arXiv:1909.01819 [hep-ph].
+[31] R. N. Cahn, Z. Slepian, and J. Hou, arXiv e-prints , arXiv:2110.12004 (2021), arXiv:2110.12004 [astro-ph.CO].
+[32] A. D. Sakharov, Soviet Journal of Experimental and Theoretical Physics Letters 5, 24 (1967).
+[33] H. Davoudiasl, R. Kitano, G. D. Kribs, H. Murayama, and P. J. Steinhardt, Phys. Rev. Lett. 93, 201301 (2004),
+     arXiv:hep-ph/0403019 [hep-ph].
+[34] S. Alexander, A. Marcianò, and D. Spergel, JCAP 2013, 046 (2013).
+[35] S. Alexander, International Journal of Modern Physics D 25, 1640013 (2016), arXiv:1604.00703 [hep-th].
+[36] G. Cabass, S. Jazayeri, E. Pajer, and D. Stefanyszyn, (2022), arXiv:2210.02907 [hep-th].
+[37] N. Arkani-Hamed, P. Creminelli, S. Mukohyama, and M. Zaldarriaga, JCAP 04, 001 (2004), arXiv:hep-th/0312100.
+[38] N. Arkani-Hamed, H.-C. Cheng, M. A. Luty, and S. Mukohyama, JHEP 05, 074 (2004), arXiv:hep-th/0312099.
+[39] M. Kamionkowski and T. Souradeep, Phys. Rev. D 83, 027301 (2011), arXiv:1010.4304 [astro-ph.CO].
+[40] S. H. S. Alexander, Physics Letters B 660, 444 (2008), arXiv:hep-th/0601034 [hep-th].
+[41] K. W. Masui, U.-L. Pen, and N. Turok, Phys. Rev. Lett. 118, 221301 (2017), arXiv:1702.06552 [astro-ph.CO].
+[42] N. Bartolo and G. Orlando, JCAP 2017, 034 (2017), arXiv:1706.04627 [astro-ph.CO].
+[43] N. Aghanim et al. (Planck), Astron. Astrophys. 596, A110 (2016), arXiv:1605.08633 [astro-ph.CO].
+[44] M. Gerbino, A. Gruppuso, P. Natoli, M. Shiraishi, and A. Melchiorri, JCAP 07, 044 (2016), arXiv:1605.09357 [astro-ph.CO].
+[45] N. Bartolo, S. Matarrese, M. Peloso, and M. Shiraishi, JCAP 2015, 027 (2015), arXiv:1411.2521 [astro-ph.CO].
+[46] N. Bartolo, S. Matarrese, M. Peloso, and M. Shiraishi, JCAP 2015, 039 (2015), arXiv:1505.02193 [astro-ph.CO].
+[47] G. Franciolini, A. Kehagias, A. Riotto, and M. Shiraishi, Phys. Rev. D 98, 043533 (2018), arXiv:1803.03814 [astro-ph.CO].
+[48] N. Bartolo, G. Orlando, and M. Shiraishi, JCAP 01, 050 (2019), arXiv:1809.11170 [astro-ph.CO].
+[49] G. Orlando, (2022), arXiv:2206.14173 [astro-ph.CO].
+[50] M. Biagetti and G. Orlando, JCAP 07, 005 (2020), arXiv:2001.05930 [astro-ph.CO].
+[51] H.-R. Yu, P. Motloch, U.-L. Pen, Y. Yu, H. Wang, H. Mo, X. Yang, and Y. Jing, Phys. Rev. Lett. 124, 101302 (2020),
+     arXiv:1904.01029 [astro-ph.CO].
+[52] P. Motloch, U.-L. Pen, and H.-R. Yu, Phys. Rev. D 105, 083512 (2022), arXiv:2111.12590 [astro-ph.CO].
+[53] G. Orlando, M. Pieroni, and A. Ricciardone, JCAP 03, 069 (2021), arXiv:2011.07059 [astro-ph.CO].
+[54] L. Bordin and G. Cabass, JCAP 07, 014 (2020), arXiv:2004.00619 [astro-ph.CO].
+[55] N. Bartolo, L. Caloni, G. Orlando, and A. Ricciardone, JCAP 03, 073 (2021), arXiv:2008.01715 [astro-ph.CO].
+[56] G. Cabass, D. Stefanyszyn, J. Supel, and A. Thavanesan, JHEP 10, 154 (2022), arXiv:2209.00677 [hep-th].
+[57] M. Shiraishi, Phys. Rev. D 94, 083503 (2016), arXiv:1608.00368 [astro-ph.CO].
+[58] E. Dimastrogiovanni, M. Fasiello, D. Jeong, and M. Kamionkowski, JCAP 2014, 050 (2014), arXiv:1407.8204 [astro-ph.CO].
+[59] O. H. E. Philcox, J. Hou, and Z. Slepian, arXiv e-prints , arXiv:2108.01670 (2021), arXiv:2108.01670 [astro-ph.CO].
+[60] O. H. E. Philcox, Phys. Rev. D 106, 063501 (2022), arXiv:2206.04227 [astro-ph.CO].
+[61] J. Hou, Z. Slepian, and R. N. Cahn, (2022), arXiv:2206.03625 [astro-ph.CO].
+[62] S. Alexander and N. Yunes, Phys. Rep. 480, 1 (2009), arXiv:0907.2562 [hep-th].
+[63] X. Chen and Y. Wang, JCAP 04, 027 (2010), arXiv:0911.3380 [hep-th].
+[64] D. Baumann and D. Green, Phys. Rev. D 85, 103520 (2012), arXiv:1109.0292 [hep-th].
+[65] D. Baumann, A. Nicolis, L. Senatore, and M. Zaldarriaga, JCAP 07, 051 (2012), arXiv:1004.2488 [astro-ph.CO].
+[66] J. J. M. Carrasco, M. P. Hertzberg, and L. Senatore, JHEP 09, 082 (2012), arXiv:1206.2926 [astro-ph.CO].
+[67] M. M. Ivanov, M. Simonović, and M. Zaldarriaga, JCAP 2020, 042 (2020), arXiv:1909.05277 [astro-ph.CO].
+[68] O. H. E. Philcox, M. M. Ivanov, M. Simonović, and M. Zaldarriaga, JCAP 2020, 032 (2020), arXiv:2002.04035 [astro-
+     ph.CO].
+[69] G. d’Amico, J. Gleyzes, N. Kokron, K. Markovic, L. Senatore, P. Zhang, F. Beutler, and H. Gil-Marı́n, JCAP 2020, 005
+     (2020), arXiv:1909.05271 [astro-ph.CO].
+[70] S.-F. Chen, Z. Vlah, and M. White, JCAP 02, 008 (2022), arXiv:2110.05530 [astro-ph.CO].
+[71] L. Bordin, P. Creminelli, A. Khmelnitsky, and L. Senatore, JCAP 10, 013 (2018), arXiv:1806.10587 [hep-th].
+[72] N. Arkani-Hamed, D. Baumann, H. Lee, and G. L. Pimentel, JHEP 04, 105 (2020), arXiv:1811.00024 [hep-th].
+[73] D. Baumann, C. Duaso Pueyo, A. Joyce, H. Lee, and G. L. Pimentel, JHEP 12, 204 (2020), arXiv:1910.14051 [hep-th].
+[74] D. Baumann, D. Green, A. Joyce, E. Pajer, G. L. Pimentel, C. Sleight, and M. Taronna, in 2022 Snowmass Summer
+     Study (2022) arXiv:2203.08121 [hep-th].
+[75] H. Goodhew, S. Jazayeri, and E. Pajer, JCAP 04, 021 (2021), arXiv:2009.02898 [hep-th].
+                                                                                                                               28
+
+ [76] S. Jazayeri, E. Pajer, and D. Stefanyszyn, JHEP 10, 065 (2021), arXiv:2103.08649 [hep-th].
+ [77] E. Pajer, JCAP 01, 023 (2021), arXiv:2010.12818 [hep-th].
+ [78] Z. Qin and Z.-Z. Xianyu, (2022), arXiv:2208.13790 [hep-th].
+ [79] M. M. Ivanov and S. Sibiryakov, JCAP 05, 045 (2014), arXiv:1402.4964 [astro-ph.CO].
+ [80] A. Higuchi, Nucl. Phys. B 282, 397 (1987).
+ [81] S. Deser and A. Waldron, Nucl. Phys. B 662, 379 (2003), arXiv:hep-th/0301068.
+ [82] D. Baumann, G. Goon, H. Lee, and G. L. Pimentel, JHEP 04, 140 (2018), arXiv:1712.06624 [hep-th].
+ [83] G. Franciolini, A. Kehagias, and A. Riotto, JCAP 02, 023 (2018), arXiv:1712.06626 [hep-th].
+ [84] A. Kehagias and A. Riotto, JCAP 07, 046 (2017), arXiv:1705.05834 [hep-th].
+ [85] A. Maleknejad and M. M. Sheikh-Jabbari, Phys. Rev. D 84, 043515 (2011), arXiv:1102.1932 [hep-ph].
+ [86] A. Maleknejad and M. M. Sheikh-Jabbari, Phys. Lett. B 723, 224 (2013), arXiv:1102.1513 [hep-ph].
+ [87] P. Adshead, E. Martinec, and M. Wyman, JHEP 09, 087 (2013), arXiv:1305.2930 [hep-th].
+ [88] A. Agrawal, T. Fujita, and E. Komatsu, Phys. Rev. D 97, 103526 (2018), arXiv:1707.03023 [astro-ph.CO].
+ [89] F. Piazza, D. Pirtskhalava, R. Rattazzi, and O. Simon, JCAP 11, 041 (2017), arXiv:1706.03402 [hep-th].
+ [90] S. Jazayeri and S. Renaux-Petel, (2022), arXiv:2205.10340 [hep-th].
+ [91] K. Izumi and S. Mukohyama, JCAP 06, 016 (2010), arXiv:1004.1776 [hep-th].
+ [92] R. N. Cahn and Z. Slepian, arXiv e-prints , arXiv:2010.14418 (2020), arXiv:2010.14418 [astro-ph.CO].
+ [93] O. H. E. Philcox, Z. Slepian, J. Hou, C. Warner, R. N. Cahn, and D. J. Eisenstein, MNRAS 509, 2457 (2022),
+      arXiv:2105.08722 [astro-ph.IM].
+ [94] D. A. Varshalovich, A. N. Moskalev, and V. K. Khersonskii, Quantum Theory of Angular Momentum (1988).
+ [95] K. S. Dawson, D. J. Schlegel, C. P. Ahn, S. F. Anderson, É. Aubourg, S. Bailey, R. H. Barkhouser, J. E. Bautista,
+      A. Beifiori, A. A. Berlind, et al., AJ 145, 10 (2013), arXiv:1208.0022 [astro-ph.CO].
+ [96] D. J. Eisenstein, D. H. Weinberg, E. Agol, H. Aihara, C. Allende Prieto, S. F. Anderson, J. A. Arns, É. Aubourg, S. Bailey,
+      E. Balbinot, et al., AJ 142, 72 (2011), arXiv:1101.1529 [astro-ph.IM].
+ [97] S. Alam, F. D. Albareti, C. Allende Prieto, F. Anders, S. F. Anderson, T. Anderton, B. H. Andrews, E. Armengaud,
+      É. Aubourg, S. Bailey, et al., ApJS 219, 12 (2015), arXiv:1501.00963 [astro-ph.IM].
+ [98] F.-S. Kitaura, S. Rodrı́guez-Torres, C.-H. Chuang, C. Zhao, F. Prada, H. Gil-Marı́n, H. Guo, G. Yepes, A. Klypin, C. G.
+      Scóccola, J. Tinker, C. McBride, B. Reid, A. G. Sánchez, S. Salazar-Albornoz, J. N. Grieb, M. Vargas-Magana, A. J.
+      Cuesta, M. Neyrinck, F. Beutler, J. Comparat, W. J. Percival, and A. Ross, MNRAS 456, 4156 (2016), arXiv:1509.06400
+      [astro-ph.CO].
+ [99] S. A. Rodrı́guez-Torres, C.-H. Chuang, F. Prada, H. Guo, A. Klypin, P. Behroozi, C. H. Hahn, J. Comparat, G. Yepes,
+      A. D. Montero-Dorta, J. R. Brownstein, C. Maraston, C. K. McBride, J. Tinker, S. Gottlöber, G. Favole, Y. Shu, F.-S.
+      Kitaura, A. Bolton, R. Scoccimarro, L. Samushia, D. Schlegel, D. P. Schneider, and D. Thomas, MNRAS 460, 1173
+      (2016), arXiv:1509.06404 [astro-ph.CO].
+[100] S. Alam, M. Ata, S. Bailey, F. Beutler, D. Bizyaev, J. A. Blazek, A. S. Bolton, J. R. Brownstein, A. Burden, C.-H. Chuang,
+      et al., MNRAS 470, 2617 (2017), arXiv:1607.03155 [astro-ph.CO].
+[101] O. H. E. Philcox and Z. Slepian, Proceedings of the Royal Society of London Series A 477, 20210376 (2021), arXiv:2104.10169
+      [math.CA].
+[102] O. H. E. Philcox and D. J. Eisenstein, MNRAS 492, 1214 (2020), arXiv:1912.01010 [astro-ph.CO].
+[103] R. Mehrem, J. T. Londergan, and M. H. Macfarlane, Journal of Physics A Mathematical General 24, 1435 (1991).
+[104] J. Hou, R. N. Cahn, O. H. E. Philcox, and Z. Slepian, arXiv e-prints , arXiv:2108.01714 (2021), arXiv:2108.01714
+      [astro-ph.CO].
+[105] E. Sellentin and A. F. Heavens, MNRAS 456, L132 (2016), arXiv:1511.05969 [astro-ph.CO].
+[106] D. Foreman-Mackey, D. W. Hogg, D. Lang, and J. Goodman, Publ. Astron. Soc. Pac. 125, 306 (2013), arXiv:1202.3665
+      [astro-ph.IM].
+[107] Planck Collaboration, N. Aghanim, Y. Akrami, M. Ashdown, J. Aumont, C. Baccigalupi, M. Ballardini, A. J. Banday,
+      R. B. Barreiro, N. Bartolo, et al., A&A 641, A6 (2020), arXiv:1807.06209 [astro-ph.CO].
+[108] A. E. Bayer and U. Seljak, JCAP 10, 009 (2020), arXiv:2007.13821 [physics.data-an].
+[109] F. Schmidt and F. Beutler, Phys. Rev. D 96, 083533 (2017), arXiv:1705.07843 [astro-ph.CO].
+[110] G. Cabass and F. Schmidt, JCAP 05, 031 (2019), arXiv:1812.02731 [astro-ph.CO].
+[111] V. Desjacques, D. Jeong, and F. Schmidt, Phys. Rept. 733, 1 (2018), arXiv:1611.09787 [astro-ph.CO].
+[112] E. Pajer and M. Zaldarriaga, JCAP 08, 037 (2013), arXiv:1301.7182 [astro-ph.CO].
+[113] V. Assassi, D. Baumann, and F. Schmidt, JCAP 12, 043 (2015), arXiv:1510.03723 [astro-ph.CO].
+[114] N. Kaiser, MNRAS 227, 1 (1987).
+[115] S. L. Dubovsky and S. M. Sibiryakov, Phys. Lett. B 638, 509 (2006), arXiv:hep-th/0603158.
+[116] N. Arkani-Hamed, S. Dubovsky, A. Nicolis, E. Trincherini, and G. Villadoro, JHEP 05, 055 (2007), arXiv:0704.1814
+      [hep-th].
+[117] S. Mukohyama, JHEP 09, 070 (2009), arXiv:0901.3595 [hep-th].
+[118] S. Mukohyama, Open Astron. J. 3, 30 (2010), arXiv:0908.4123 [hep-th].
+[119] S. Jazayeri, S. Mukohyama, R. Saitou, and Y. Watanabe, JCAP 08, 002 (2016), arXiv:1602.06511 [hep-th].
+[120] D. J. Schlegel et al., (2022), arXiv:2209.04322 [astro-ph.IM].
+[121] M. M. Ivanov, O. H. E. Philcox, T. Nishimichi, M. Simonović, M. Takada, and M. Zaldarriaga, Phys. Rev. D 105, 063512
+      (2022), arXiv:2110.10161 [astro-ph.CO].
+                                                                                                                        29
+
+[122] O. H. E. Philcox, M. M. Ivanov, G. Cabass, M. Simonović, M. Zaldarriaga, and T. Nishimichi, Phys. Rev. D 106, 043530
+      (2022), arXiv:2206.02800 [astro-ph.CO].
+

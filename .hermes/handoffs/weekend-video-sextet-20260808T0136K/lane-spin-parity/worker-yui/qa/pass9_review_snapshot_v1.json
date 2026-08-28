@@ -1,0 +1,167 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass9-review-v1-20260808T064214K",
+  "created_at": "2026-08-08T06:42:14+09:00",
+  "scope": "isolated worker-Yui pass-9 fresh title-safe crop encoded-frame audit, exact safe-area correction, and sealed-v8/pass-7-proof custody",
+  "supersedes": {
+    "path": "qa/pass8_review_snapshot_v1.json",
+    "sha256": "df24ff22039314ae019bd4833afd8e97413151d5f96b26972706c78287cbc997",
+    "snapshot_id": "spin-worker-yui-pass8-review-v1-20260808T061653K"
+  },
+  "supersession_reason": "Pass 9 adds fresh exact midpoint decoding, deterministic three/five-percent crop evidence, a demonstrated strict-five-percent edge-custody defect, and an exact future title-safe layout contract without changing v8 or the pass-7 proof.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS9_ENCODED_FRAME_AUDIT.md",
+      "sha256": "fc14ad7bd79ac7cbe039fa0ab4a92fb689fdb8b3710b1fe8a701c01d04f47ffe"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS9.json",
+      "sha256": "18de8cc3f33cea24d1fa91128bfdd0d6659fdda7308ce08ed64d766109582b60"
+    },
+    {
+      "path": "TITLE_SAFE_STORYBOARD_CORRECTION_PASS9.json",
+      "sha256": "7ef8c7e4f8a16b26b9b833cc19a9f5b5424e8afbb3d866892be8b1d869e92a11"
+    },
+    {
+      "path": "qa/pass9_safe_area_audit/extract_safe_area_frames.py",
+      "sha256": "faf20bfa4bfb50c3d2132ff2c88c0e9d7916bfa556a1fc030e6c6f634ec3b542"
+    },
+    {
+      "path": "qa/pass9_safe_area_audit/extraction_receipt.json",
+      "sha256": "1326e6689288368393d5af7e485a5190bba544f12037d8bcef79448810be281b"
+    },
+    {
+      "path": "qa/build_pass9_v8_safe_area.py",
+      "sha256": "7190932d564c636b0e8bf8f6a06309c3b2f9694369c2367c570a9bb5e30d25b6"
+    },
+    {
+      "path": "qa/pass9_v8_safe_area/receipt.json",
+      "sha256": "2c94388def5b6decb32ddc8916db249f0a81e98bdccd8691e056ddc904c0fd33"
+    },
+    {
+      "path": "qa/audit_pass9_safe_area.py",
+      "sha256": "afebb22a4096971f87a8bb5517d303d31c3e11d9c208754071dc467a838f127c"
+    },
+    {
+      "path": "qa/pass9_safe_area_quantitative_audit.json",
+      "sha256": "b6fc7ff69b52da49ccc0f9705a45f08fdea2b4bedeb1c6d77ee9f2f4a755a279"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+      "sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f"
+    },
+    {
+      "path": "REDUNDANT_ENCODING_GUARD_PASS8.json",
+      "sha256": "597b591da0f32325d8b764df23b7a5c9a088c666bac433a2ccd2e9a7b31d53da"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass9_encoded_evidence": {
+    "scene_count": 16,
+    "variant_count": 5,
+    "frame_count": 80,
+    "variants": [
+      "clean",
+      "symmetric_crop_3pct",
+      "symmetric_crop_5pct",
+      "horizontal_crop_5pct",
+      "vertical_crop_5pct"
+    ],
+    "fresh_cut_detection": "15/15_EXACT_PASS8_TIMESTAMPS",
+    "clean_midpoint_reproduction": "16/16_PASS8_COLOR_BYTE_IDENTICAL",
+    "contact_sheet_sha256": {
+      "clean": "66f244362c54d64e54632284050c718c57b3290dd8c50f2e91eb4126045c90ea",
+      "symmetric_crop_3pct": "af8e8db8f03b6aea2ae6cf2ab0a8b911771d008b61e0dd26ffc9d35c11539bd6",
+      "symmetric_crop_5pct": "47399aca1027dd1c433b476a28d14168025adb0b915038b84b286f4eda5c4376",
+      "horizontal_crop_5pct": "2fea4273cae3d01342d1fe284e7e6b50c9f4300881fc05e7300f723bb529b167",
+      "vertical_crop_5pct": "70712c4b1301f569f26c5c0c5d685869a0cb8a97086c03498b8a6c2f7a6d9ca4"
+    },
+    "symmetric_crop_3pct": {
+      "headline_token_recall": 1.0,
+      "full_token_recall": 0.980399,
+      "numeric_token_recall": 0.972159,
+      "structural_gate_scene_count": 0
+    },
+    "symmetric_crop_5pct": {
+      "headline_token_recall": 0.99569,
+      "full_token_recall": 0.981884,
+      "numeric_token_recall": 0.973861,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_symmetric_crop_5pct": {
+      "scenes": [7, 9, 10, 11, 16],
+      "headline_token_recall": 1.0,
+      "full_token_recall": 0.965485,
+      "numeric_token_recall": 0.916356,
+      "structural_gate_scene_count": 0
+    }
+  },
+  "pass9_method_only_evidence": {
+    "derived_frame_count": 70,
+    "sealed_v8": {
+      "three_percent_semantic_loss_scene_count": 0,
+      "three_percent_result_held_text": "7/7",
+      "five_percent_result_held_text": "7/7",
+      "five_percent_badge_capsules_clipped": "7/7",
+      "five_percent_left_headers_clipped": "7/7",
+      "five_percent_edge_content_clipped_scenes": [1, 5, 7],
+      "five_percent_clean_tokens_outside_safe_rectangle": 44,
+      "five_percent_full_token_recall": 0.899783
+    },
+    "pass7_caption_safe": {
+      "three_percent_specific_gate_lines": "7/7",
+      "five_percent_specific_gate_lines_visual_and_ocr": "7/7",
+      "five_percent_result_held_text": "7/7",
+      "five_percent_badge_capsules_clipped": "7/7",
+      "five_percent_left_headers_clipped": "7/7",
+      "five_percent_edge_content_clipped_scenes": [1, 5, 7],
+      "five_percent_clean_tokens_outside_safe_rectangle": 44,
+      "five_percent_full_token_recall": 0.89602
+    },
+    "contact_sheet_sha256": {
+      "sealed_v8_clean": "bfebc1dcb04b6569f20bac45b56ff4a3eb3292b1749f2e9ec494c6cc6eec1597",
+      "sealed_v8_symmetric_3pct": "c17b85593c98e379c2f84cb5bbcbe0c9db7767b644ecc393c47fad1a16a59191",
+      "sealed_v8_symmetric_5pct": "1ac58ac8eeff13f8edf85ad52e88490018a2e924f902339894d82b81f2f48e38",
+      "sealed_v8_horizontal_5pct": "bb0aaeef3671352d3114ea7c4a321a054c00d107f73bf8b7999182670e47c6ca",
+      "sealed_v8_vertical_5pct": "ef65e03b8ab9dcff82ec2803b564fe4e539d02155ce7cfde8ab74b39a835e14b",
+      "pass7_clean": "8a90e01ced6f4687c3b111c819a88787540fc5d7d99fa53e7721fb7c3703b28c",
+      "pass7_symmetric_3pct": "62d60b9510a730816e83d6786ae4d5bae1a935f698ab7779415b524a5287bb0c",
+      "pass7_symmetric_5pct": "7eb0e83f2810764598f3f8e47b8ff244595e254234f27b482fd633f55b50fbdc",
+      "pass7_horizontal_5pct": "f428a331a95c6f3bc065471a2e8fd42760b0165cc09be029d0e24191fc2fc607",
+      "pass7_vertical_5pct": "c7744143cafe611aa3bdfbaec3a239444385a730d6563ea3da881016662429d1"
+    }
+  },
+  "representation_correction": "INNER_5PCT_TITLE_SAFE__COMPLETE_HEADERS_BADGES_GATES_CONTENT_AND_CITATIONS__OUTER_BAND_DECORATIVE_ONLY",
+  "safe_rectangle_1920x1080": [96, 54, 1824, 1026],
+  "future_pixel_layout_change_requested": true,
+  "worker_pixel_change_performed": false,
+  "sealed_v8_modified": false,
+  "pass7_proof_modified": false,
+  "v9_created": false,
+  "science_blockers": "UNCHANGED__NO_VALID_POST_RUN_A3_8_REVIEW__FRAME_UNSTATED",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

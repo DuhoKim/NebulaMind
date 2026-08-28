@@ -1,0 +1,52 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-self-contained-mutation-custody-v24",
+  "storyboard_version": "pass7-distinct-state-custody-v23",
+  "storyboard_sha256": "48e9962bdd24b860b7398eb405d8e7b590dce47c72427f34ef3601dfe25b35b8",
+  "approved_contract_sha256": "4525cb9c1c5533ce41097105e8fdfa4b65a0a3c5a9624e71b48c97f101a04414",
+  "visual": {
+    "path": "visual_proposal_v9.png",
+    "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "pixels_changed_from_v22": false,
+    "current_exact_regate": "PENDING"
+  },
+  "artifact_hashes": {
+    "qa/visual_proposal_qa.json": "a0a117729ff520a0f2859079666353c4039c6db768d023e22c9032baed1002d7",
+    "SOURCE_FREEZE.json": "c78150802cec115af85d7d16b1d4693524f9577b8446ef6f324624aa7f9499a8",
+    "SNAPSHOT_SCOPE.md": "5b093abb4b362ad9aca85bab296e953e638f0852d205902486d0f12b543b6d59",
+    "PAPER_NAIVE_PACKET.md": "3d3bdf4c5b7ff1a138b695ae8fdb7793c9821dd9b75ddeb80257a747782a3a6e",
+    "qa/PAPER_NAIVE_PACKET_PROJECTION.json": "16252d00b77ebcb8de48d44969ad3a496e95e72c3dc2729f771a1ea9ec3264f2",
+    "ALLOY_NARRATION_MANIFEST_PROPOSAL.json": "9a40aaedd95cf1a4d89362d9f617957b5fdc088c5b2832558e907b9237d55ee3",
+    "qa/proposal_validation.json": "3fd9818543255e664c46b3cf14fcde1b136265e36c7b3193708894ec93419a96",
+    "qa/PASS7_VALIDATOR_MUTATION_TESTS.json": "cff7e6b9be992a0adc4d81826e4facf944ca657b03a149f88473bacc1a47dea7",
+    "validate_proposal.py": "70e8ceaf43e2cd570423b4463a7695c175553364e84210fe8e01493e299f051b",
+    "qa/test_validate_proposal_mutations.py": "a44ba38aef1dfcd4fc6cdaba132ce8cea7b8ba1a207a60bdcd692bbe31060bdf",
+    "FRAME_DIAGNOSIS.md": "320b3c6b5f5c2259a650e1a76dac17eddc7938e2ecad69e7ee7789a01e8d5774",
+    "CANDIDATE_NOTES.md": "f23a3c0f7371f3f5d3a794c8822d161419f3bd7dc883de7fd05db2f84a7cd3b0",
+    "INTEGRATOR_REQUEST.md": "08f75a901f4593ba5a0e01db7684a28d7378fa3e015f910e8a2263454d2f67d4",
+    "qa/HISTORICAL_LOCAL_RECEIPT_INDEX_V24.json": "6a6809df25ccf693eecc13cb4f56d4a5c1f235b275f0f6be3a300dfe2f137226"
+  },
+  "checks": {
+    "validator": "PASS; exact content receipt matches",
+    "narration_preparer": "PASS_NO_WRITE",
+    "paper_naive_preparer": "PASS_NO_WRITE",
+    "deterministic_renderer": "PASS_NO_WRITE; exact visual-v9 bytes",
+    "mutation_suite": "PASS; 37 cases = baseline plus 36/36 expected failures; receipt byte-identical",
+    "self_contained_mutation_harness": "sealed execution selects the containing exact snapshot as the custody fixture; live execution selects preserved exact v22 only as a regression fixture",
+    "question_contract": "validator-owned and preparer-owned exact SHA-256 d2cc5d3eb238cecebed22c407d1697fdb12c1518d97694177afc90247783eac7; eight prompts; no numerical/answer premises",
+    "filesystem_custody": "sealed validator requires regular listed files, 0444 file modes, 0555 directory modes, no symlinks, hashes, sizes, exact inventory, and external MANIFEST digest",
+    "structured_failure": "whole-beat reorder emits JSON FAIL with validator execution exception diagnostic",
+    "distinct_state_contract": "45/45 exact approved states; b08 starts with retrieval-passed versus precision-not-certified comparison, then coverage limitation, two separately revealed taxonomy groups, and boundary; maximum declared semantic gap 3.0 seconds",
+    "operative_guidance": "current packet v24/storyboard v23; search-qualified 19/2; no dominant-mode ranking; current pass7 status; handoff discloses compound mutation case"
+  },
+  "tdd_evidence": {
+    "red": "/tmp/mzr_pass7_v23_regression_red.json and terminal receipt: five new regressions failed before validator hardening",
+    "green": "/tmp/mzr_pass7_v24_mutations_live.json: PASS 37 cases, zero failures, no write"
+  },
+  "historical_receipts": "All v1-v23 local receipts excluded from the exact packet, preserved in live lane, and denied current authority by HISTORICAL_LOCAL_RECEIPT_INDEX_V24.json.",
+  "candidate_clearance": "NOT_GRANTED",
+  "integration_gate": "CLOSED",
+  "tts_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "shared_public_git_gate": "CLOSED"
+}

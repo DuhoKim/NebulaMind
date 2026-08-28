@@ -1,0 +1,44 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/Users/duhokim/HermesOps/cockpit/videos/mzr-archive-census-narrated-20260808T0155.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.102
+  Duration: 00:02:08.40, start: 0.000000, bitrate: 871 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 782 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc62.28.102 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 24000 Hz, mono, fltp, 83 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+[Parsed_volumedetect_0 @ 0xb49009ec0] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'pipe:':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.102
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(progressive), 1920x1080, q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      encoder         : Lavc62.28.102 wrapped_avframe
+      handler_name    : VideoHandler
+  Stream #0:1(und): Audio: pcm_s16le, 24000 Hz, mono, s16, 384 kb/s (default)
+    Metadata:
+      encoder         : Lavc62.28.102 pcm_s16le
+      handler_name    : SoundHandler
+[Parsed_volumedetect_0 @ 0xb4900a640] n_samples: 3052544
+[Parsed_volumedetect_0 @ 0xb4900a640] mean_volume: -21.3 dB
+[Parsed_volumedetect_0 @ 0xb4900a640] max_volume: -1.6 dB
+[Parsed_volumedetect_0 @ 0xb4900a640] histogram_1db: 13
+[Parsed_volumedetect_0 @ 0xb4900a640] histogram_2db: 77
+[Parsed_volumedetect_0 @ 0xb4900a640] histogram_3db: 188
+[Parsed_volumedetect_0 @ 0xb4900a640] histogram_4db: 784
+[Parsed_volumedetect_0 @ 0xb4900a640] histogram_5db: 1451
+[Parsed_volumedetect_0 @ 0xb4900a640] histogram_6db: 2757
+[out#0/null @ 0xb49008a80] video:1595KiB audio:5962KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame= 3852 fps=0.0 q=-0.0 Lsize=N/A time=00:02:07.18 bitrate=N/A speed= 151x elapsed=0:00:00.84    

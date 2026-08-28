@@ -1,0 +1,37 @@
+{
+  "recorded_at": "2026-08-08T20:09:29+0900",
+  "resolved_at": "2026-08-09T00:11:29+0900",
+  "status": "RESOLVED_STUDIO_AUTH_STORE_RESTORED",
+  "classification": "machine-local logged-out/entitlement failure; not a balance question",
+  "root_cause": "Earlier authentication was completed on the MacBook Pro, while synthesis runs on the Mac Studio; the two machines use separate authentication stores.",
+  "initial_reported_gateway_state": {
+    "resolver": "resolve_managed_tool_gateway('openai-audio')",
+    "result": null,
+    "repeated_attempts": true,
+    "logged_in": false,
+    "is_paid": false,
+    "tool_gateway_entitled": false,
+    "tool_access": null
+  },
+  "restored_reported_gateway_state": {
+    "logged_in": true,
+    "is_paid": true,
+    "tool_gateway_entitled": true
+  },
+  "execution_proof": {
+    "fresh_sentence_syntheses": 27,
+    "model": "gpt-4o-mini-tts",
+    "voice": "alloy",
+    "speed": 1.18,
+    "real_audio_bytes_validated_by_ffprobe": true,
+    "encoded_introduction_transcription_exact_match": true
+  },
+  "fallback": {
+    "permitted": false,
+    "edge_tts_used": false,
+    "other_voice_used": false
+  },
+  "audio_v3_created": true,
+  "mp4_created": true,
+  "candidate_sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240"
+}

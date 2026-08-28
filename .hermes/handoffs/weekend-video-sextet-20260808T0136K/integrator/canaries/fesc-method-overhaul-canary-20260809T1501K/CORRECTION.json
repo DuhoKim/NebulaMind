@@ -1,0 +1,50 @@
+{
+  "status": "PRESENTATION_CORRECTION_CANDIDATE",
+  "candidate": "fesc-method-overhaul-canary-20260809T1501K",
+  "authority": "HWAO_FESC_PRESENTATION_FIX_ORDER.md",
+  "authority_sha256": "ec4561df5a270fc4318fbd5ccf83b2c73c3df16880c8b6c09031266cd1789e3b",
+  "replaces_candidate": "fesc-method-overhaul-canary-20260809T1420K",
+  "replaces_sha256": "4c8115997e21689508f31587672a3dd7da9c902803427c43490603bad08309b9",
+  "accepted_primitive_fix_preserved": {
+    "icon_record_count": 8,
+    "icon_kind": "paired_strokes",
+    "curve_icon_kind_available": false,
+    "readable_order_or_intersection": false
+  },
+  "presentation_corrections": {
+    "progress_rail": {
+      "root_cause": "an independent time-looped cyan fill traversed the rail without reference to the active semantic section",
+      "primitive_fix": "remove the independent fill; the active dot and matching label are the sole stage-position cue",
+      "per_card_patch": false
+    },
+    "badge_collision": {
+      "root_cause": "badge text was centered at the requested size without a width constraint, so long text escaped the pill and overlaid nearby graphics",
+      "primitive_fix": "fit every badge label to the pill's padded inner width and fail closed if even the minimum size cannot fit",
+      "per_card_patch": false
+    }
+  },
+  "narration": {
+    "changed": false,
+    "disposition": "byte-identical reuse",
+    "voice": "alloy",
+    "speed": 1.18,
+    "music": false
+  },
+  "scratch_policy": {
+    "candidate_contains_scratch": false,
+    "durable_non_frozen_workspace": "integrator/workspaces/fesc-presentation-fix-20260809T1501K",
+    "system_tmp_used": false
+  },
+  "gates": {
+    "upload": false,
+    "publication": false,
+    "public_or_shared_mp4": false,
+    "frontend_public": false,
+    "paperVideos": false,
+    "cockpit": false,
+    "database": false,
+    "deploy_or_restart": false,
+    "git": false,
+    "video_reportable_now": false
+  }
+}

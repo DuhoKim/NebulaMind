@@ -1,0 +1,70 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass6-low-resolution-representation-guard-20260808T052140K",
+  "created_at": "2026-08-08T05:21:40+09:00",
+  "scope": "future Hwao-authorized integration of sealed v8; no storyboard-of-record, shared-tool, candidate, audio, or public-asset mutation",
+  "evidence": {
+    "held_candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "multires_extraction_receipt": {
+      "path": "qa/pass6_resolution_audit/extraction_receipt.json",
+      "sha256": "f9eea0da50f2ae257a4fb0a2c74f59b2fa5d867093c73fac8220e3a736e5e9a9"
+    },
+    "multires_ocr_audit": {
+      "path": "qa/pass6_multires_ocr_audit.json",
+      "sha256": "396a698c64d56960863432a524e2cc74d1ab0c1c6d66fe1ea255f6cb06dbab6e"
+    },
+    "sealed_v8_legibility_audit": {
+      "path": "qa/pass6_v8_legibility_audit.json",
+      "sha256": "45211233a2e3fb0a542c4c35d0a7b00d8e549474ab2f258e6f4c842854967de9"
+    }
+  },
+  "encoded_candidate_finding": {
+    "fresh_midpoint_frames": 64,
+    "scenes": 16,
+    "resolutions": ["1080p", "720p", "540p", "360p"],
+    "native_1080p_midpoint_reproduction": "16/16_PASS4_HASHES_BYTE_IDENTICAL",
+    "360p_mean_full_token_retention_vs_1080p": 0.728766,
+    "360p_mean_headline_token_retention_vs_1080p": 0.961206,
+    "360p_mean_support_token_retention_vs_1080p": 0.230643,
+    "critical_scenes": [7, 9, 10, 11, 16],
+    "critical_360p_mean_full_token_retention_vs_1080p": 0.380218,
+    "critical_360p_mean_headline_token_retention_vs_1080p": 0.90313,
+    "critical_360p_mean_support_token_retention_vs_1080p": 0.416629,
+    "critical_structural_gate_scene_count_at_all_resolutions": 0,
+    "interpretation": "Downscale preserves dominant headlines and plot silhouettes far better than lower support, caveat, citation, and provenance text. The held candidate therefore becomes less qualified, not safer, at common low-resolution playback."
+  },
+  "sealed_v8_finding": {
+    "sealed_pixels_modified": false,
+    "visual_result_held_badge_readability": "7/7_AT_1080P_720P_540P_360P",
+    "badge_ocr_detection": "5/7_AT_EACH_RESOLUTION",
+    "ocr_miss_scenes": [1, 5],
+    "ocr_miss_interpretation": "The same two badge crops miss at every scale while full visual review reads both badges; this is a stable OCR-layout miss, not downscale loss.",
+    "large_structural_boundaries": {
+      "scene_1": "RESULT LOCKED",
+      "scene_4": "FRAME UNSTATED",
+      "scene_6": "OUTCOMES WITHHELD",
+      "scene_7": "RESULT STATUS · HELD"
+    },
+    "v9_warranted": false,
+    "reason": "The sealed v8 hold remains visually structural at 360p; changing pixels would add custody risk without evidence."
+  },
+  "required_integration_guard": [
+    "Treat 360p downscale as a representation-boundary acceptance test, not an optional cosmetic preview.",
+    "Put every semantic hold in headline-scale text or a persistent high-contrast RESULT HELD capsule; never rely on footer, citation, provenance, or caveat copy to carry the gate.",
+    "Keep RESULT HELD visually readable on all seven scenes at 360p after any authorized render, crop, or compression.",
+    "Use the pass-5 clean hard-cut contract so the gate remains visible on both sides of every transition.",
+    "Reject any integration where result-bearing headlines, numbers, or plot silhouettes survive downscale but their hold does not.",
+    "Use human visual review as the decisive 360p badge check; OCR is auxiliary because its misses are scale-invariant on scenes 1 and 5."
+  ],
+  "acceptance_tests": {
+    "sealed_v8_source_hashes_unchanged": true,
+    "seven_of_seven_360p_frames_visually_show_result_held": true,
+    "zero_result_values_or_result_plots_in_v8": true,
+    "zero_blank_or_badge_free_transition_frames": true,
+    "human_visual_review_required": true,
+    "ocr_is_not_sole_gate": true
+  },
+  "authorizes_render_or_narration": false,
+  "changes_sealed_v8_bytes": false,
+  "video_reportable_now": false
+}

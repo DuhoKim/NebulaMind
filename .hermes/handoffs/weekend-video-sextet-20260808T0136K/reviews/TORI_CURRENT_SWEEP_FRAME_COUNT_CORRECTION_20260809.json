@@ -1,0 +1,46 @@
+{
+  "timestamp_kst": "2026-08-09T14:31:23+09:00",
+  "purpose": "Append-only correction of current-sweep frame-count metadata; no candidate bytes, prior evidence file, or verdict was changed.",
+  "verification_command_semantics": "ffprobe -count_frames; require nb_read_frames == nb_frames for video stream 0",
+  "candidates": {
+    "mzr-census": {
+      "sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+      "duration_seconds": 229.966667,
+      "nb_frames": 6899,
+      "nb_read_frames": 6899,
+      "prior_packet_value_was_correct": true
+    },
+    "fesc": {
+      "sha256": "acfb7fee70d5a131d4a44e8962cfe3fe3cd22104bf9cf8fa00bbbd6c2c00cbc0",
+      "duration_seconds": 236.733333,
+      "nb_frames": 7102,
+      "nb_read_frames": 7102,
+      "supersedes_prior_current_sweep_metadata": {
+        "duration_seconds": 236.75,
+        "video_frames": 7100
+      }
+    },
+    "brightend": {
+      "sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+      "duration_seconds": 227.866667,
+      "nb_frames": 6836,
+      "nb_read_frames": 6836,
+      "supersedes_prior_current_sweep_metadata": {
+        "duration_seconds": 227.9,
+        "video_frames": 6837
+      }
+    },
+    "mzr-anchor": {
+      "sha256": "973daba3a6b8ef66409d3bbd2588fc2db2459f4fb3c5d474a731a93b8c2e1970",
+      "duration_seconds": 219.533333,
+      "nb_frames": 6586,
+      "nb_read_frames": 6586,
+      "supersedes_prior_current_sweep_packet_video_frames": 6584,
+      "existing_exact_hash_evidence_directory_mutated": false
+    }
+  },
+  "corrected_total_video_frames": 27423,
+  "verdicts_changed": false,
+  "actual_frame_findings_changed": false,
+  "prior_evidence_mutated": false
+}

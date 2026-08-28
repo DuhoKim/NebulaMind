@@ -1,0 +1,52 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass31-blockers-20260808T163239K",
+  "checked_at": "2026-08-08T16:32:39+09:00",
+  "deepening_pass": 31,
+  "lane": "spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "candidate": {
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "status": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "preserved": true,
+    "modified": false
+  },
+  "source_status_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+  "video_reportable_now": false,
+  "blocking_facts": [
+    {
+      "id": "A",
+      "status": "OPEN_UNCHANGED",
+      "fact": "No valid independent post-run A3.8 verdict record is bound to the exact frozen all-209-file T4 artifact.",
+      "exact_unblock": "A valid independent post-run A3.8 verdict record whose artifact identity and hash bind to the exact frozen T4_PAIRED_FLIP.json."
+    },
+    {
+      "id": "B",
+      "status": "OPEN_UNCHANGED",
+      "fact": "KUN_FRAME_REVIEW.md remains FRAME REVIEW: AGREES FRAME_UNSTATED.",
+      "exact_unblock": "A separately authorized source-grounded resolution of the archive mirrored-direction storage frame."
+    },
+    {
+      "id": "C",
+      "status": "OPEN_UNCHANGED",
+      "fact": "video_reportable_now remains false.",
+      "exact_unblock": "Hwao/Fable may change this only after the science blockers resolve and a separate integration gate is authorized."
+    }
+  ],
+  "pass31_deepening": {
+    "fresh_stress": "native color/monochrome presentation -> Pillow LANCZOS 640x360 -> represented-pixel centered main-diagonal NW-SE width-3 box smear",
+    "fresh_vs_prior": "Pass 31 uses a three-sample centered main-diagonal kernel with offsets (-1,-1), (0,0), and (+1,+1). Pass 30 used an isotropic bilinear resampling round trip, pass 29 vertical width-3 smear, pass 28 horizontal width-3 smear, pass 27 Gaussian radius-0.5 defocus, pass 26 bottom-quarter obstruction, pass 25 black lift, pass 24 JPEG q60 4:2:0 recompression, and pass 23 no additional represented-pixel stress.",
+    "evidence": "Candidate structural held gates remain absent; sealed-v8, pass-7, and pass-12 required method/status boundaries remain directly readable 7/7 under every tested color/monochrome variant.",
+    "ocr_aid_boundary": "The unchanged 0.80 crop-similarity aid passes 1/7 in every variant and has a minimum individual score of 0.307692. Direct represented-pixel review confirms 7/7 in all variants; the severe segmentation undercount is preserved and disclosed, not used to invent a semantic defect or alter the inherited threshold.",
+    "effect_on_blockers": "none"
+  },
+  "authority_boundary": "Hwao/Fable remains sole integrator. This packet does not adjudicate science, authorize T4, resolve FRAME_UNSTATED, release candidate 0149, or authorize narration, encoding, publication, shared/public writes, or Git actions.",
+  "sealed_v8_modified": false,
+  "v9_created": false,
+  "candidate_created_or_promoted": false,
+  "shared_assets_modified": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "tts_invoked": false,
+  "git_action": false
+}

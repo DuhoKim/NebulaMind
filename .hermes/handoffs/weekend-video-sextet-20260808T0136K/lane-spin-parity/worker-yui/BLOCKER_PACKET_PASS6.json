@@ -1,0 +1,124 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass6-blockers-20260808T052140K",
+  "checked_at": "2026-08-08T05:21:40+09:00",
+  "scope": "isolated pass-6 multi-resolution encoded-frame audit and low-resolution representation guard; no science adjudication, result rendering, narration, candidate write, or publication",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "expected_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "hash_match": true,
+    "preserved_failed_candidate": true,
+    "modified": false
+  },
+  "video_reportable_now": false,
+  "worker_verdict": "FAIL_SCIENTIFIC_PRESENTATION_AND_HELD_SOURCE_GATE",
+  "science_blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_REVIEW",
+      "state": "BLOCKING",
+      "t4_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "t4_sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "review_contract_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "review_contract_sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0",
+      "exact_absence_proof": {
+        "regular_files_content_covered": 209,
+        "utf8_files": 203,
+        "decoded_gzip_files": 4,
+        "text_extracted_pdf_files": 2,
+        "files_with_exact_t4_and_a3_8_hash_pair": 0,
+        "valid_post_run_independent_review_records": 0,
+        "pass5_binary_content_scan": "qa/pass5_binary_content_scan.json",
+        "pass5_binary_content_scan_sha256": "092cba9cbf432555573206e4afef48d30d89a8172a58c453c48970cc5a5ba21e"
+      }
+    },
+    {
+      "id": "ARCHIVE_FRAME_UNSTATED",
+      "state": "BLOCKING",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+      "source_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "required_exact_status": "FRAME REVIEW: AGREES FRAME_UNSTATED"
+    }
+  ],
+  "fresh_multi_resolution_audit": {
+    "receipt": "qa/pass6_resolution_audit/extraction_receipt.json",
+    "receipt_sha256": "f9eea0da50f2ae257a4fb0a2c74f59b2fa5d867093c73fac8220e3a736e5e9a9",
+    "ocr_audit": "qa/pass6_multires_ocr_audit.json",
+    "ocr_audit_sha256": "396a698c64d56960863432a524e2cc74d1ab0c1c6d66fe1ea255f6cb06dbab6e",
+    "scene_count": 16,
+    "frame_count": 64,
+    "resolutions": ["1080p", "720p", "540p", "360p"],
+    "native_midpoint_hash_reproduction": "16/16_PASS4_BYTE_IDENTICAL",
+    "360p": {
+      "mean_full_token_retention": 0.728766,
+      "mean_headline_token_retention": 0.961206,
+      "mean_lower_support_token_retention": 0.230643,
+      "structural_gate_scenes": 0
+    },
+    "critical_held_scenes": {
+      "scenes": [7, 9, 10, 11, 16],
+      "mean_full_token_retention_at_360p": 0.380218,
+      "mean_headline_token_retention_at_360p": 0.90313,
+      "mean_lower_support_token_retention_at_360p": 0.416629,
+      "structural_gate_scenes_at_all_resolutions": 0
+    },
+    "finding": "Dominant assertion headlines and figure silhouettes survive low-resolution playback much better than qualifying support, provenance, citation, axis, and caveat text. Downscale amplifies the representation failure."
+  },
+  "sealed_v8_disposition": {
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "renderer": "render_proposal_frames.py",
+    "renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+    "contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "legibility_audit": "qa/pass6_v8_legibility_audit.json",
+    "legibility_audit_sha256": "45211233a2e3fb0a542c4c35d0a7b00d8e549474ab2f258e6f4c842854967de9",
+    "visual_result_held_badge_readability": "7/7_AT_ALL_FOUR_RESOLUTIONS",
+    "badge_ocr_detection": "5/7_SCALE_INVARIANT__SCENES_1_AND_5_VISUALLY_READABLE",
+    "result_values_or_plots": 0,
+    "pixel_change_warranted": false,
+    "v9_warranted": false,
+    "reason": "The structural hold survives 360p; OCR misses are unchanged from native 1080p and do not represent downscale failure."
+  },
+  "low_resolution_guard": {
+    "path": "LOW_RESOLUTION_REPRESENTATION_GUARD_PASS6.json",
+    "sha256": "2b33c5cb1746e6b334546b77446dd1a7f064ffa848817f7b755712625199cf63",
+    "requirements": [
+      "Treat 360p as a representation-boundary acceptance test.",
+      "Carry every semantic hold in headline-scale text or a persistent high-contrast RESULT HELD capsule.",
+      "Never rely on footer, citation, provenance, caveat, or small axis copy to carry the gate.",
+      "Keep RESULT HELD visually readable on seven of seven scenes after authorized render, crop, and compression.",
+      "Retain pass 5 clean hard cuts and reject blank or badge-free transition frames.",
+      "Use human visual review as the decisive badge test; use OCR only as auxiliary evidence."
+    ],
+    "changes_sealed_v8_bytes": false,
+    "authorizes_render_or_narration": false
+  },
+  "pass6_artifacts": {
+    "audit": {
+      "path": "PASS6_ENCODED_FRAME_AUDIT.md",
+      "sha256": "2399dac116dc5a84eefc2140f1b84ea350f59eba68ec798c78544cda97426628"
+    },
+    "extraction_script": {
+      "path": "qa/pass6_resolution_audit/extract_multires_frames.py",
+      "sha256": "936520be974aca5f34404d6b751cf6199a41c7ef4790658fd800372c5790d4a6"
+    },
+    "ocr_script": {
+      "path": "qa/audit_pass6_multires_ocr.py",
+      "sha256": "d7aa1177464c0cebf95c12c060c965589d0147161ac7c98b3fa2e700f32c706f"
+    },
+    "v8_legibility_script": {
+      "path": "qa/build_pass6_v8_legibility.py",
+      "sha256": "1a27b7515ed64e166bc9c6ba3192319fbbbab6e053582b3dd6b627a6f9359bba"
+    }
+  },
+  "prohibitions": [
+    "Do not infer scientific status from low-resolution visual persistence.",
+    "Do not promote the held candidate or any pass-6 PNG to a candidate.",
+    "Do not use a caveat, citation, or provenance line as a substitute for resolving the source gates.",
+    "Do not render, narrate, publish, wire, deploy, restart, or mutate shared/public assets from this worker seat."
+  ],
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

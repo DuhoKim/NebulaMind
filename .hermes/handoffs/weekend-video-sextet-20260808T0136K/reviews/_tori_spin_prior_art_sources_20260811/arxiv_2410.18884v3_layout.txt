@@ -1,0 +1,191 @@
+                                                Draft version November 11, 2024
+                                                Typeset using LATEX default style in AASTeX631
+
+
+
+
+                                                                           Symmetry in Hyper Suprime-Cam galaxy spin directions
+                                                                                                             1                         2
+                                                                                    Richard Stiskalek            and Harry Desmond
+                                                               1 Astrophysics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford, OX1 3RH, UK
+                                                     2 Institute of Cosmology & Gravitation, University of Portsmouth, Dennis Sciama Building, Portsmouth, PO1 3FX, UK
+
+
+
+
+arXiv:2410.18884v3 [astro-ph.GA] 7 Nov 2024
+                                                                                                         ABSTRACT
+                                                         We perform a Bayesian analysis of anisotropy in binary galaxy spin directions in the Hyper-Suprime
+                                                      Cam Data Release 3 catalogue, in response to a recent claim that it exhibits a dipole (Shamir 2024).
+                                                      We find no significant evidence for anisotropy, or for a direction-independent spin probability that
+                                                      differs from 0.5. These results are unchanged allowing for a quadrupole or simply searching for a
+                                                      fixed anisotropy between any two hemispheres, and the Bayes factor indicates decisive evidence for
+                                                      the isotropic model. Our principled method contrasts with the statistic employed by Shamir (2024),
+                                                      which lacks a strong theoretical foundation. Our code is available at ©.
+
+
+                                                      Keywords: Galaxies (573) — Large-scale structure of the universe (902) — Bayesian statistics (1900)
+                                                                — Astrostatistics (1882)
+
+                                                                                                    1. INTRODUCTION
+                                                The Universe is thought to be homogeneous and isotropic on large scales, in accordance with the cosmological
+                                              principle. However, several observations such as the cosmic microwave background anomalies, bulk flows, and dis-
+                                              crepancies between the cosmic microwave background and distant matter rest frames, point to possible anisotropies
+                                              (e.g., Watkins et al. 2023; Secrest et al. 2022). There have been claims for anisotropy in the directions of galaxy spins,
+                                              forming a dipole axis that would violate large-scale anisotropy (e.g., Longo 2011; McAdam & Shamir 2023). Most
+                                              recently, Shamir (2024) claims a more than 3σ detection of such a dipole in spins derived from Hyper Suprime-Cam
+                                              Data Release 3 (HSC DR3; Aihara et al. 2022). Shamir (2024) also claims a monopole in spin probability that is in-
+                                              consistent with 0.5, with galaxies rotating opposite to the Milky Way (as seen from Earth) significantly more common
+                                              than those rotating in the same direction.
+                                                The claims of anisotropy prior to Shamir (2024) were recently revisited by Patel & Desmond (2024) who found no
+                                              significant evidence for a dipole or a monopole differing from 0.5 in any dataset publicly available at that time. This
+                                              was shown through both a standard Bayesian and frequentist analysis. The discrepancy with previous analyses was
+                                              found to be the poorly motivated statistics that they employed. Here we adapt the framework of Patel & Desmond to
+                                              the new HSC data to show that this also does not indicate an anomalous monopole, dipole or quadrupole.
+
+                                                                                                    2. METHODOLOGY
+                                                We take the HSC DR3 data which matches that used by Shamir (2024). We assume that these spin assignments are
+                                              correct; a direction-dependent bias in the assignment would be much more likely to introduce a spurious dipole than
+                                              spuriously remove a true one. The catalogue is illustrated in the left panel of Figure 1. We follow the methodology
+                                              of Patel & Desmond. We denote the spin direction of the ith galaxy relative to the Milky Way as si , which can be
+                                              either Z-wise or S-wise. The likelihood of Z-wise spin is
+                                                                                                                                                      
+                                                                                 ˆ
+                                                                                                          
+                                                                                                            ˆ
+                                                                                                                                           1
+                                                                     L(si |M, D, d, Q, q̂1 , q̂2 ) = M + D d · n̂i + Q q̂1 · n̂i q̂2 · n̂i − q̂1 · q̂2         (1)
+                                                                                                                                            3
+
+                                              Corresponding author: Richard Stiskalek, Harry Desmond
+                                              richard.stiskalek@physics.ox.ac.uk, harry.desmond@port.ac.uk
+2
+
+where M is the monopole, D the dipole magnitude and dˆ is a unit vector pointing in the direction of the dipole. Q is
+the strength of a possible quadrupole with unit axes q̂1 and q̂2 . n̂i is the unit vector in the direction of the galaxy.
+We use uniform priors on M , D and Q and on the area element of all unit vectors. TheQlikelihood of S-wise spin is
+1 − L, and we assume that all galaxies are independent such that the dataset likelihood is i Li . Isotropy corresponds
+to D = 0 and Q = 0, and an overall balance between Z-wise and S-wise spins corresponds to M = 0.5.
+  We upgrade the code of Patel & Desmond to JAX1 , sampling the posterior using the No U-Turns Sampler (Hoffman
+& Gelman 2011) method of Hamiltonian Monte Carlo algorithm (HMC) implemented in NumPyro (Phan et al. 2019).
+We remove burn-in and use sufficient steps for the Gelman–Rubin statistic to be 1 to within 10−3 (Gelman & Rubin
+1992).
+
+                                              3. RESULTS AND DISCUSSION
+  We first allow a monopole and dipole, showing the posterior in the right panel of Figure 1. We find that M is
+consistent with 0.5, indicating no preference for one spin direction over the other, and that D is consistent with 0 to
+within 2σ, indicating no significant dipole. That M ≈ 0.5 is unsurprising given that the average spin in the sample is
+0.499, and that D ≈ 0 is unsurprising given the poor sky coverage of the HSC data. This makes the constraints on D
+a few times weaker than those of the other datasets studied in Patel & Desmond. We then run the monopole–dipole–
+quadrupole inference, finding the same results and that Q is consistent with 0. Following Shamir (2024) we also try
+splitting the data into the redshift ranges 0 < z < 0.1 and 0.1 < z < 0.2, finding near-identical results in both cases.
+We also investigate the “hemisphere anisotropy” model of Patel & Desmond which neglects the cos θ dependence of
+the dipole, finding the anisotropy parameter A to be consistent with 0 within 2σ.
+  Finally, we compute the Bayes factor describing the relative probability of the monopole–only and monopole–dipole
+models, i.e. the preference for adding a dipole. As the Bayesian evidence is prior-dependent we try two ranges for
+the uniform prior on D: 0 to 0.1 and 0 to 0.5 (both fully enclosing the posterior in all cases). We use the harmonic
+package (Polanska et al. 2024) to compute it directly from the HMC chain. We find log10 evidence ratios in favour
+of the monopole-only model of 5.71 and 4.61 for the looser and tighter D priors, respectively. Even in the latter case
+this corresponds to a Bayes factor of 40, 738 in favour of the monopole-only model, which is “decisive” on the Jeffreys’
+scale.
+  We conclude that there is no evidence for an anisotropy of any kind in the spin directions of the HSC DR3 dataset,
+just as there is not in any other. That the opposite is found in Shamir (2024) is attributable to the use of an off-χ2
+statistic which relies on assumptions that may not be fully justified, as detailed in Sec. 4.3 of Patel & Desmond.
+
+                                                 DATA AVAILABILITY
+  Our analysis code is available at © and Zenodo (Desmond & Patel 2024). The HSC DR3 data is available at
+https://people.cs.ksu.edu/∼lshamir/data/asymmetry hsc/.
+
+                                                ACKNOWLEDGEMENTS
+  We thank Dhruva Patel for contributions to the paper on which our analysis is based. RS acknowledges financial
+support from STFC Grant No. ST/X508664/1 and the Snell Exhibition of Balliol College, Oxford. HD is supported
+by a Royal Society University Research Fellowship (grant no. 211046). For the purpose of open access, we have applied
+a Creative Commons Attribution (CC BY) licence to any Author Accepted Manuscript version arising.
+
+
+                                                     REFERENCES
+Aihara, H., AlSayyad, Y., Ando, M., et al. 2022, PASJ, 74,     Gelman, A., & Rubin, D. B. 1992, Statistical Science, 7,
+  247, doi: 10.1093/pasj/psab122                                  457 , doi: 10.1214/ss/1177011136
+Desmond, H., & Patel, D. 2024,                                 Hoffman, M. D., & Gelman, A. 2011, arXiv e-prints,
+  harrydesmond/GalaxySpinAnisotropy:                              arXiv:1111.4246, doi: 10.48550/arXiv.1111.4246
+  GalaxySpinAnisotropy v1.0, 1.0, Zenodo,                      Longo, M. J. 2011, Physics Letters B, 699, 224,
+  doi: 10.5281/zenodo.14036930
+                                                                  doi: 10.1016/j.physletb.2011.04.008
+                                                               McAdam, D., & Shamir, L. 2023, Advances in Astronomy,
+    1 https://jax.readthedocs.io/en/latest/
+                                                                  2023, 1, doi: 10.1155/2023/4114004
+                                                                                                                                                                                        3
+                                                                                                      M = 0.502+0.005
+                                                                                                               −0.005
+
+
+
+
+                                              90°                                                                           D = 0.032+0.024
+                                                                                                                                     −0.018
+
+                            60°
+                                                                                           D
+
+
+
+
+Declination (Dec)
+                     30°
+                                                                                       0 0 0
+                                                                                    02 .04 .06 .08
+                           30° 60° 90° 120° 150° 180° 210° 240° 270° 300° 330° 0°
+                    0°                                                                       0.
+                                                                                                                                                Dec = −0.781+0.679
+                                                                                                                                                            −0.332
+
+
+                                                                                              8
+                    -30°                                                                     0.
+                                                                                    Dec       0
+                                                                                             0.
+                           -60°                                                               8
+                                                                                         −   0.
+                                                                                                                                                                     RA + π = 1.922+0.456
+                                      Right Ascension (RA)                                    0
+                                                                                             6.
+                                                                                                                                                                                   −0.241
+
+
+
+                                                                                              5
+
+                                                                                    RA + π
+                                                                                             4.
+                                                                                              0
+                                                                                             3.
+                                                                                              5
+                                                                                             1.
+
+                                                                                                      8
+                                                                                                     48    6
+                                                                                                          49   50  4   2
+                                                                                                                       51   02   04   06   08      8
+                                                                                                                                                  0.   0
+                                                                                                                                                       0.    8
+                                                                                                                                                             0.         5
+                                                                                                                                                                       1.    0
+                                                                                                                                                                            3.    5
+                                                                                                                                                                                 4.   0
+                                                                                                                                                                                      6.
+                                                                                                     0.   0.   0.   0.      0.   0.   0.   0.    −
+                                                                                                               M                      D                Dec                  RA + π
+
+Figure 1. Left: Sky distribution of the HSC DR3 galaxies in equatorial Mollweide projection, with galaxies spinning S-wise in
+blue and Z-wise in red. Right: Corner plot from the monopole-plus-dipole inference, indicating a dipole magnitude D consistent
+with 0 and a monopole M consistent with 0.5.
+
+Patel, D., & Desmond, H. 2024, MNRAS, 534, 1553,                                             Secrest, N. J., von Hausegger, S., Rameez, M., Mohayaee,
+  doi: 10.1093/mnras/stae2158                                                                  R., & Sarkar, S. 2022, ApJL, 937, L31,
+Phan, D., Pradhan, N., & Jankowiak, M. 2019, arXiv                                             doi: 10.3847/2041-8213/ac88c0
+  e-prints, arXiv:1912.11554,                                                                Shamir, L. 2024, arXiv e-prints, arXiv:2410.15269.
+  doi: 10.48550/arXiv.1912.11554                                                               https://arxiv.org/abs/2410.15269
+Polanska, A., Price, M. A., Piras, D., Spurio Mancini, A., &                                 Watkins, R., Allen, T., Bradford, C. J., et al. 2023,
+  McEwen, J. D. 2024, arXiv e-prints, arXiv:2405.05969,                                       MNRAS, 524, 1885, doi: 10.1093/mnras/stad1984
+  doi: 10.48550/arXiv.2405.05969
+

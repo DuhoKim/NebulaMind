@@ -1,0 +1,87 @@
+{
+  "timestamp_kst": "2026-08-09T17:26:51+09:00",
+  "authority": [
+    "HWAO_TWO_HOUR_SIBLING_ORDER_20260809T1620K.md",
+    "HWAO_DEEPENING_ORDER_HISTORICAL_FREEZES_20260809T1628K.md"
+  ],
+  "proposal_set_observed": "2026-08-09T17:25:44-17:25:45+09:00",
+  "overall_verdict": "PASS_CURRENT_PATH_HASH_REVERIFICATION_ONLY__BLOCK_ACTIVE_FREEZE_INSTALLATION_ALL_FOUR",
+  "lanes": [
+    {
+      "lane": "fesc",
+      "proposal_sha256": "d38c1433e230dc1493ab595f33cab6ed8fcf48f6fc06e0348348a5ca130caa64",
+      "source_artifacts": 19,
+      "paths_exist": 19,
+      "hashes_match": 19,
+      "immutable_frozen_copy_directory_present": false,
+      "blockers": [
+        "The proposal references mutable original/public/cockpit paths only; it has no versioned immutable copy bundle, path+size+hash manifest, or manifest digest.",
+        "Lana's science block remains: deficit/crossing claims are circular absent a fully primary-quoted conditional assumption set.",
+        "The proposal forbids any substantive claim and cannot authorize a result-bearing candidate."
+      ],
+      "custody_verdict": "BLOCK_INSTALLATION",
+      "SOURCE_FREEZE_present": false,
+      "video_reportable_now": false
+    },
+    {
+      "lane": "brightend",
+      "proposal_sha256": "c8ceea30d5ddc7171c3909dc4de172e73d733ab0e1db5c466dd709ddeee157de",
+      "source_artifacts": 8,
+      "paths_exist": 8,
+      "hashes_match": 8,
+      "immutable_frozen_copy_directory_present": false,
+      "blockers": [
+        "The proposal references mutable original/public/cockpit paths only; it has no versioned immutable copy bundle, path+size+hash manifest, or manifest digest.",
+        "The 30-versus-34 semantic mismatch and 453-row provenance/bandpass boundary remain unresolved.",
+        "The proposal forbids any substantive claim and cannot authorize a result-bearing candidate."
+      ],
+      "custody_verdict": "BLOCK_INSTALLATION",
+      "SOURCE_FREEZE_present": false,
+      "video_reportable_now": false
+    },
+    {
+      "lane": "mzr-anchor",
+      "proposal_sha256": "c0719566552a7f2450e05419661352c19071a9a6fcb139d22e6376b20df5595e",
+      "source_artifacts": 12,
+      "paths_exist": 12,
+      "hashes_match": 12,
+      "immutable_frozen_copies": 11,
+      "immutable_copy_hashes_match": 11,
+      "COPY_HASHES_digest_matches_proposal": true,
+      "blockers": [
+        "SOURCE_BYTES_INITIAL.txt is malformed: it is one physical line containing literal backslash-n sequences; wc reports zero newline-terminated entries, not a valid 12-entry manifest.",
+        "The proposal calls COPY_HASHES.txt a path+size+hash manifest, but every embedded entry contains only hash+path; frozen-copy sizes are absent.",
+        "The proposal remains non-reportable and explicitly forbids table counts, anchor yield, mass-bin occupancy, offset sign, evolution verdict, and any substantive claim."
+      ],
+      "timestamp_check": "PASS: frozen_at is the actual UTC second and precedes file mtime by less than one second",
+      "custody_verdict": "BLOCK_INSTALLATION",
+      "SOURCE_FREEZE_present": false,
+      "video_reportable_now": false
+    },
+    {
+      "lane": "mzr-census",
+      "proposal_sha256": "f200748ccb183f870d4ae312ff0c73397a186f3d2fbebfd4a9b557ce790c4369",
+      "source_artifacts": 15,
+      "paths_exist": 15,
+      "hashes_match": 15,
+      "immutable_frozen_copy_directory_present": false,
+      "blockers": [
+        "The proposal references mutable original/public/cockpit paths only; it has no versioned immutable copy bundle, path+size+hash manifest, or manifest digest.",
+        "Fresh path hashing does not re-derive or authorize 178−21=157, eligibility, recall/control, or any result boundary.",
+        "The proposal forbids any substantive claim and cannot authorize a result-bearing candidate."
+      ],
+      "custody_verdict": "BLOCK_INSTALLATION",
+      "SOURCE_FREEZE_present": false,
+      "video_reportable_now": false
+    }
+  ],
+  "historical_field_rule": {
+    "decisions_verdicts_boundaries_or_reportability_imported": false,
+    "source_paths_and_hashes_reverified_today": true,
+    "provenance_is_permission": false
+  },
+  "exact_next_action": "Do not install any proposal. Goru must create new versioned, self-contained immutable copy bundles with complete path+size+hash manifests and bound manifest digests; repair mzr-anchor SOURCE_BYTES_INITIAL with real newline-delimited entries and add frozen-copy sizes. Then Lana, Kun, and Tori re-adjudicate independently. Science blockers remain separate and unchanged.",
+  "new_result_bearing_Yui_candidate_authorized": false,
+  "new_result_bearing_Yui_candidate_present": false,
+  "gates_closed": true
+}

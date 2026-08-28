@@ -1,0 +1,49 @@
+{
+  "verdict": "PASS",
+  "storyboard_version": "pass7-distinct-example-clock-v8",
+  "storyboard_sha256": "4fb15c927f5d567c402b4c4f933fabe64a492fdb275311991491aa777cd95b71",
+  "validator_verdict": "PASS",
+  "approved_contract_all_pass": true,
+  "b09_semantic_replay": {
+    "persistent_inputs": [
+      "SYMBOL / MEANING COLLISION taxonomy label",
+      "TARGET-DOMAIN MISMATCH taxonomy label",
+      "RECORDED EXAMPLES ONLY · NOT T2 RULINGS boundary"
+    ],
+    "new_reveals": [
+      "Galactic Cartesian height",
+      "stellar-grid metal fraction (model Z)",
+      "stellar gravitational redshift",
+      "gravitational-redshift velocity"
+    ],
+    "distinct_states": "5/5 including the b09 stage transition",
+    "duplicate_label_reveals": 0
+  },
+  "global_semantic_replay": {
+    "structured_states": 45,
+    "distinct_scientific_reveals_or_transforms": "45/45",
+    "declared_clauses_mapped": "21/21",
+    "maximum_unchanged_evidence_state_seconds": 3.0
+  },
+  "closed_book_packet": {
+    "narration_strings": 10,
+    "on_screen_leaf_strings": 62,
+    "display_citations": 10,
+    "questions": 8,
+    "answer_premise_guard": "PASS",
+    "answer_premise_hits": 0,
+    "answer_key_included": false
+  },
+  "manifest_authentication_design": "EXTERNAL_IMMUTABLE_MANIFEST_DIGEST_REQUIRED",
+  "mutation_verdict": "PASS",
+  "mutation_cases": 28,
+  "expected_failures": 27,
+  "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+  "visual_pixels_changed": false,
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL_READ_ONLY_BY_WORKER_POLICY",
+  "external_candidate_mode": "0644",
+  "integration_publication": "CLOSED",
+  "tts_invoked": false,
+  "note": "V8 closes the v5 duplicate-label semantic-clock and closed-book answer-premise classes while retaining v6 external-manifest authentication and v7 explicit custody/inventory. Exact immutable-snapshot review remains mandatory."
+}

@@ -1,0 +1,119 @@
+{
+  "marker": "C41_UVLF_WORKER_YUI_MACHINE_QA_V5",
+  "artifact_class": "WORKER_VISUAL_PROPOSAL_ONLY",
+  "status": "PASS_FOR_HWAO_HANDOFF_NOT_PUBLICATION",
+  "official_candidate_rendered": false,
+  "tts_invoked": false,
+  "determinism": {
+    "status": "PASS",
+    "method": "Built visual_proposals/v5 twice from the frozen source hashes and compared every state/contact-sheet SHA-256.",
+    "hashes_equal_across_rerun": true
+  },
+  "source_assertions": {
+    "candidate_tables": 112,
+    "name_reachable": 20,
+    "ucd_only": 92,
+    "counted_catalogues": 67,
+    "raw_rows_all_slices": 6417,
+    "slice_10_le_z_lt_11_5_rows": 453,
+    "slice_10_le_z_lt_11_5_bright_muv_le_minus20": 176,
+    "all_assertions_passed_in_builder": true
+  },
+  "storyboard_validation": {
+    "status": "PASS",
+    "scenes": 7,
+    "target_seconds": 68,
+    "narration_words": 188,
+    "average_words_per_minute": 165.9,
+    "maximum_scene_words_per_minute": 180.0,
+    "all_visual_assets_exist": true,
+    "narration_status": "PREPARED_NOT_EXECUTED"
+  },
+  "visual_outputs": [
+    {
+      "file": "state_01_name_channel.png",
+      "sha256": "67910fab7b84c8c9508f5a4297b96511a368fc4dd4e75ae7c1b97fe2ee75837a",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "state_02_ucd_partition.png",
+      "sha256": "7dd349bfa0d18f55b47b8010b5012597678ca3e6eef0409f888dd10e035c3a25",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "state_03_eligibility_funnel.png",
+      "sha256": "1a9612d5376f282cf7f83cbfc9021d3a3962b714418e0130ca4fdbe6f7b85a92",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "state_04_slice_plane_rows.png",
+      "sha256": "e3c54062ec4cafb9418fad9a4daebf74955e37e71874d4509a77e2613e7300ea",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "state_05_slice_plane_threshold.png",
+      "sha256": "a7534cdaeccc98034a6b6ceb0ebbd7bc8a9c6ea2a372743db563d8e495c8b350",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "state_06_slice_plane_boundary.png",
+      "sha256": "acd716864de8035c77ddc7da813926b8d13aed88b9313fb8b4ad5fc0a5700b95",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "state_07_reproducibility_packet.png",
+      "sha256": "fdf606741faa8bef34cdc15e37d4c68df74e45761f9ebd06d24653649175cb5b",
+      "dimensions": [1920, 1080]
+    },
+    {
+      "file": "contact_sheet.png",
+      "sha256": "2d6f284048732daa64e7c28bc811ba38c9401d21300c9a6d93bd4d61f13d9a51",
+      "dimensions": [1280, 1440]
+    }
+  ],
+  "visual_review_iterations": [
+    {
+      "version": "v1",
+      "disposition": "PRESERVED_FAILED_REVIEW",
+      "defects": ["Eligibility-funnel title clipped", "Published-LF sidebar clipped", "Threshold label crowded the point cloud"]
+    },
+    {
+      "version": "v2",
+      "disposition": "PRESERVED_FAILED_REVIEW",
+      "defects": ["Published-LF heading and body overlapped"]
+    },
+    {
+      "version": "v3",
+      "disposition": "PASS_SIX_STATE_CORE",
+      "defects": []
+    },
+    {
+      "version": "v4",
+      "disposition": "PRESERVED_FAILED_CLOSING_FRAME",
+      "defects": ["New closing-frame title and transformation body clipped"]
+    },
+    {
+      "version": "v5",
+      "disposition": "PASS_WORKER_VISUAL_PROPOSAL",
+      "defects": []
+    }
+  ],
+  "ocr_path_scan": {
+    "status": "PASS",
+    "engine": "tesseract",
+    "ocr_characters_scanned": 4218,
+    "forbidden_tokens": [".json", ".md", "/Users/", ".hermes/", "frontend/"],
+    "forbidden_tokens_found": []
+  },
+  "contrast_scan": {
+    "status": "PASS",
+    "method": "WCAG relative-luminance contrast for every configured text/accent color against both frame and panel backgrounds",
+    "minimum_ratio": 7.07,
+    "threshold": 4.5
+  },
+  "encoded_candidate_qa": {
+    "status": "NOT_RUN_BY_DESIGN",
+    "reason": "C41 is a non-canary lane waiting behind acceptance of lane-c31-sed/worker-tori, and Hwao is the sole official candidate/shared-tool/TTS writer; worker-Yui did not render or mux a candidate."
+  },
+  "closed_gates_preserved": true
+}

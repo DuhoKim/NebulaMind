@@ -1,0 +1,57 @@
+{
+  "review_round": 15,
+  "pass": 7,
+  "snapshot": "pass7-explicit-custody-inventory-v7",
+  "snapshot_manifest_sha256": "c06b0f0882ceb8b9eee75900cbfb6f4c6787e5380e891bf8c5d8a6c77a87b79f",
+  "manifest_entries": 92,
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "class": "duplicate cross-beat semantic states",
+      "evidence": "b08_s04 reveals both taxonomy labels and retires neither; b09_s02 and b09_s04 re-reveal them",
+      "effect": "43/45 distinct states and two six-second unchanged-evidence gaps"
+    },
+    {
+      "class": "renderer not packet-local or replay-sealed",
+      "evidence": "render_visual_proposal.py reads an absolute external live-lane source path and has no write-free check mode",
+      "effect": "snapshot cannot independently prove its static artifact from sealed evidence"
+    },
+    {
+      "class": "closed-book answer-premise leakage",
+      "evidence": "questions 1, 5, and 6 disclose measurement, eligibility-result, or certification premises",
+      "effect": "questions_supply_answers=false is contradicted"
+    },
+    {
+      "class": "stale numeric-source artifact linkage",
+      "evidence": "NUMERIC_SOURCE_AUDIT.json used_in fields name absent visual_proposal_v7.png rather than current visual_proposal_v8.png",
+      "effect": "exact current-artifact traceability is broken"
+    }
+  ],
+  "passing_controls": {
+    "science_recomputation": "PASS",
+    "citations": "PASS",
+    "manifest_authentication": "PASS",
+    "self_resigned_classes_blocked_by_external_digest": "13/13",
+    "custody_inventory": "PASS",
+    "external_candidate_mode_policy_wording": "PASS",
+    "numeric_values_source_correct": true,
+    "static_visual_scope": "static-only PASS; not motion evidence"
+  },
+  "custody": {
+    "entries_verified_start_end": "92/92",
+    "sources_verified_start_end": "8/8",
+    "frames_verified_start_end": "43/43",
+    "frame_reextraction": "43/43 byte-identical and pixel-identical",
+    "file_mode": "0444",
+    "directory_mode": "0555",
+    "external_candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "external_candidate_mode": "0644",
+    "filesystem_read_only_enforced": false,
+    "handling_authorization": "READ_ONLY_BY_WORKER_POLICY"
+  },
+  "required_checks": "validator, both preparers, and 28-case mutation suite returned 0 without writes",
+  "files_modified": [],
+  "candidate_disposition": "FAIL preserved",
+  "release_disposition": "integration, TTS, media, shared, public, Git, and publication gates remain closed",
+  "scope_note": "V7 exact FAIL is preserved as prior-version evidence. V12 must close all four classes before any exact pass-7 seal."
+}

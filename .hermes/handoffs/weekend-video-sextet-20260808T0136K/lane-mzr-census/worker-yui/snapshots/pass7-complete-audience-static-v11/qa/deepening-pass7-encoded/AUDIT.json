@@ -1,0 +1,59 @@
+{
+  "audit_version": "isolated-deepening-pass7",
+  "audit_timestamp": "2026-08-08T04:54:41+09:00",
+  "candidate": {
+    "file": "mzr-archive-census-narrated-20260808T0155.mp4",
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "bytes": 13989937,
+    "duration_seconds": 128.4,
+    "candidate_modified": false
+  },
+  "sampling": {
+    "method": "14 detected hard cuts sampled at -0.25 and +0.25 seconds, plus midpoint of all 15 resulting holds",
+    "boundary_frames": 28,
+    "hold_midpoint_frames": 15,
+    "fresh_encoded_frames": 43,
+    "boundary_contact_sheet_sha256": "215834598ff62a28afb00b0c435b6dfec7f69e9417214abb9f1345f845617f5c",
+    "hold_midpoint_contact_sheet_sha256": "fa9388349ff37de815769e57ae4593df7adae1996fd7fbb5f467ef7cf53af309",
+    "frame_hash_manifest_sha256": "04f0c4c1733d71b512248e3006e1d6761a0b6635b162321537f991a312be96ba",
+    "frames_pinned": "43/43",
+    "full_decode_errors": 0
+  },
+  "reproducible_aids": {
+    "boundary_continuity_sha256": "6ebb20cc8d5f246afc571bc6f534a8564c1def347ff8e7dbc13a2e0bc487193b",
+    "cuts_with_zero_declared_anchor_preservation": 11,
+    "nonzero_preserved_anchors": {
+      "cut_2": ["redshift"],
+      "cut_6": ["157"],
+      "cut_7": ["62"]
+    },
+    "ocr_density_sha256": "29844ae161f976a5bae00f3ef2ee11222da7c486c220bd9ff94adacdb3b239fd",
+    "holds_over_25_ocr_tokens": 6,
+    "maximum_ocr_tokens": 96,
+    "qualification": "OCR density and declared-anchor preservation are reproducible aids, not semantic verdicts or audio transcripts."
+  },
+  "verdict": "FAIL_FOR_SCIENTIFIC_REPRESENTATION_STATE_CONTINUITY_AND_PRIOR_BOUNDARIES",
+  "fresh_findings": [
+    "11 of 14 hard-cut pairs preserve zero declared scientific anchors; the candidate is a sequence of full-frame resets rather than one evolving evidence surface",
+    "cut 7 isolates 62 while its 157 parent, side-check geometry, and all-157-to-T2 requirement disappear",
+    "cut 10 resets T1 retrieval checks to T2 contract prose without persistent stage identity",
+    "section dividers erase active evidence at four boundaries",
+    "dense plot/prose states alternate with empty dividers instead of pacing evidence through persistent layers"
+  ],
+  "safe_correction": {
+    "storyboard_version": "pass7-state-continuity-v1",
+    "visual_pixels_changed": false,
+    "requirements": [
+      "declare entry, persist, retire, and exit state for every beat",
+      "prohibit full-frame scientific resets and standalone divider holds",
+      "persist 178 to minus 21 to 157 to T2 spine through the qualified close",
+      "never show 62 without its 157 parent and side-check boundary",
+      "persist T1/T2 stage identity across their handoff",
+      "carry application-not-completed, no-count, single-table, and not-an-MZR scope into the final state",
+      "regate future muxed candidates for cut-boundary continuity, evidence-state timing, and sentence/action alignment"
+    ]
+  },
+  "publication_gate": "CLOSED",
+  "tts_invoked": false,
+  "shared_or_public_assets_modified": false
+}

@@ -1,0 +1,25 @@
+{
+  "packet_type": "WORKER_YUI_LATE_REVIEW_NUMERIC_REPLAY",
+  "source": "TREND_RESULTS.json",
+  "source_sha256": "8df9f25b5f8acaf22825d6ece958867562c7e37a73fe69aa8e8175fe0b7aa242",
+  "method": "Linear interpolation of the frozen z=0.5 grid arrays exactly as displayed by the static renderer, compared with separately stored fine-root values.",
+  "coarse_polyline_roots": {
+    "fiducial_delta_16": 8.042556197154934,
+    "fiducial_delta_50": 6.309638840012097,
+    "no_tail_delta_16": 7.606093371079405
+  },
+  "stored_fine_roots": {
+    "fiducial_delta_16": 8.045284271240234,
+    "fiducial_delta_50": 6.327877044677734,
+    "no_tail_delta_16": 7.615345001220703
+  },
+  "required_fraction_upper_84": {
+    "z_9_5": 1.0449176823203323,
+    "z_10_0": 1.374700649461748
+  },
+  "verdict": "REPRODUCED__REPRESENTATION_AND_DISCLOSURE_MINOR",
+  "integrator_actions": [
+    "Use identical geometry for rendered curves and root finding.",
+    "Draw and explain the physical f_esc=1 boundary."
+  ]
+}

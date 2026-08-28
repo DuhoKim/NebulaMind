@@ -1,0 +1,52 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-exhaustive-receipt-and-neutral-scaffolding-v27",
+  "storyboard_version": "pass7-distinct-state-custody-v23",
+  "storyboard_sha256": "48e9962bdd24b860b7398eb405d8e7b590dce47c72427f34ef3601dfe25b35b8",
+  "approved_contract_sha256": "4525cb9c1c5533ce41097105e8fdfa4b65a0a3c5a9624e71b48c97f101a04414",
+  "visual": {
+    "path": "visual_proposal_v9.png",
+    "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "pixels_changed_from_v8": true,
+    "pixels_changed_from_v26": false,
+    "current_exact_regate": "PENDING"
+  },
+  "artifact_hashes": {
+    "qa/visual_proposal_qa.json": "fe7a1e8ddfb8542dd91b264206e92929926639f26381f18f1716e93f57878169",
+    "SOURCE_FREEZE.json": "7ca01cddbc6b24b00122b624d5382086d7a7ef3e2a7f744fd18255994e41cb43",
+    "SNAPSHOT_SCOPE.md": "fb9b037d7a78f65b0b777280a02ac5d619d98e2fb542849f7a16c291b9cf55ca",
+    "PAPER_NAIVE_PACKET.md": "f352eb43c0384fcf1e5e0fba651cba6c5f780136f63fa3e059f755a8c8982d1f",
+    "qa/PAPER_NAIVE_PACKET_PROJECTION.json": "28cacc11f9e14a441611ea425b74cd84ab8d9812d234d71ceeb67a2178e98dd7",
+    "NUMERIC_SOURCE_AUDIT.json": "2be79738450d5314c78fb25dbad586e956f725950a68862708ad32b6687a517c",
+    "ALLOY_NARRATION_MANIFEST_PROPOSAL.json": "9a40aaedd95cf1a4d89362d9f617957b5fdc088c5b2832558e907b9237d55ee3",
+    "qa/proposal_validation.json": "699ab710e6cb8768b311f8ee1636221090a6dcdb2d122b3be60604b1b63724a7",
+    "qa/PASS7_VALIDATOR_MUTATION_TESTS.json": "46e0c3d191553d4d4541c16efabd66b58899cbd759dd41d08e4373ad7028a646",
+    "validate_proposal.py": "8ce9ad309b41bac2ff442ad0b49d73e6129b1233892bc8e4d7adb90887152da4",
+    "qa/test_validate_proposal_mutations.py": "8422bba4a52420f90ddd33e5e6e33adf90657d8ad1b4b4feeb6059be6ac483da",
+    "FRAME_DIAGNOSIS.md": "67df961e70f37dfea01b1bd4a79803facfc53bb1d0d9efea2be2518a5591d93a",
+    "CANDIDATE_NOTES.md": "7f7fb701b80a007acaf7929ba05245577a6788fcb009f7f1f32d03d68f7d6c1f",
+    "INTEGRATOR_REQUEST.md": "9ca14893fffc9d58f8b70cdc6ba8f03fa4d1bf593eef4f298f1ceadfe00660b5",
+    "qa/HISTORICAL_LOCAL_RECEIPT_INDEX_V27.json": "e0ee08c68ea536a5d60cfe6cca6c0d53a5b98a906b2afe3e2307595dc4f79a51"
+  },
+  "checks": {
+    "validator": "PASS; exact content receipt matches",
+    "narration_preparer": "PASS_NO_WRITE",
+    "paper_naive_preparer": "PASS_NO_WRITE",
+    "deterministic_renderer": "PASS_NO_WRITE; exact visual-v9 bytes",
+    "mutation_suite": "PASS; 37 cases = baseline plus 36/36 expected failures",
+    "mutation_receipt_determinism": "live and sealed full-suite receipts must be byte-identical",
+    "question_contract": "validator-owned and preparer-owned exact SHA-256 eae490f5e1b4b7e7d3334e1805cf2eebf66fcfd15eddae0ddb6cf2dcc078b9ec; eight prompts; no numerical, answer-bearing, or avoidable next-stage/stages/each-group premises",
+    "filesystem_custody": "sealed validator requires regular listed files, 0444 file modes, 0555 directory modes, no symlinks, hashes, sizes, exact inventory, and external MANIFEST digest",
+    "receipt_like_census": "all prior local receipts excluded; v9/v10 explicit nonexistence; seven retained historical QA fixtures denied current authority; five current nonlocal receipt-like objects classified",
+    "literal_handoff": "packet v27 named; coordinator-supplied external non-circular manifest anchor mandatory before exact five-command replay; no packet-derived trust anchor",
+    "current_wording": "numeric audit and current correction target are search-qualified and rank-free; top-level source-freeze status is current",
+    "semantic_false_paths": "decorative state, clause swap, full-frame reset, route-only-62, citation swap, filesystem custody, validator-owned question hash, and structured reorder all rejected in the 37-case suite",
+    "distinct_state_contract": "45/45 exact approved states; maximum declared semantic gap 3.0 seconds"
+  },
+  "historical_receipts": "All v1-v26 local receipts are excluded from the exact packet; retained historical receipt-like QA fixtures are named and denied current authority by HISTORICAL_LOCAL_RECEIPT_INDEX_V27.json.",
+  "candidate_clearance": "NOT_GRANTED",
+  "integration_gate": "CLOSED",
+  "tts_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "shared_public_git_gate": "CLOSED"
+}

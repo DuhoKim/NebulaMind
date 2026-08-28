@@ -1,0 +1,48 @@
+{
+  "artifact_class": "proposal_only_stills",
+  "authority": "worker-Yui paper-lane visual proposal; Hwao integration required",
+  "iteration_1": {
+    "path": "proposals/stills-v1/contact_sheet.png",
+    "verdict": "FAIL_RETAINED_FOR_AUDIT",
+    "issues": [
+      "pipeline title collided with the proposal badge",
+      "mass-bin y-axis title overlapped the plotting area",
+      "Unicode subscript and solar-mass glyphs did not render reliably"
+    ]
+  },
+  "iteration_2": {
+    "path": "proposals/stills-v2/contact_sheet.png",
+    "verdict": "PASS_AS_PROPOSAL_ONLY",
+    "full_resolution_checked": [
+      "proposals/stills-v2/01_unit_pipeline.png",
+      "proposals/stills-v2/03_mass_bin_threshold.png"
+    ],
+    "checks": {
+      "all_primary_stills_1920x1080": true,
+      "pipeline_units_explicit": true,
+      "pipeline_geometry_disclosed_non_proportional": true,
+      "row_accounting_geometry_same_unit": true,
+      "mass_bin_axes_and_units_legible": true,
+      "bars_2_1_0_present": true,
+      "shared_N3_threshold_present": true,
+      "below_floor_plus_2_separate_from_bins": true,
+      "scholarly_display_citation_present": true,
+      "internal_paths_rendered": false,
+      "scientific_boundary_present": true,
+      "clipping_or_overlap_material": false
+    },
+    "sha256": {
+      "01_unit_pipeline.png": "69e3f590a49ce999f6047e469d5423273f0ceed5ddf557635606a7df6a34e747",
+      "02_row_accounting.png": "721c5965112bebd15559f024ad7c379c39b19dcfececc34954a1bac147568cca",
+      "03_mass_bin_threshold.png": "bbbdffb962e5c78b133318e6505e1eb3e72f6e2082ecccf2ae02895436afb086",
+      "04_scientific_boundary.png": "25bf28fd778fe8f01747fedf4b337cc41c3ed61fb9307c00d4d1037841217f68",
+      "contact_sheet.png": "182207aee4b4b66ccf7df6b8b1f1530d3632215e4115a4dc7d2b50e4e2b9477c"
+    }
+  },
+  "closed_gates": {
+    "candidate_video_rendered": false,
+    "audio_or_tts_created": false,
+    "shared_tool_modified": false,
+    "public_artifact_modified": false
+  }
+}

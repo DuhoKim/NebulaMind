@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Galaxy Evolution + Surveys Autopilot Dashboard V3</title>
+  <style>
+    :root { --bg:#030712; --panel:#081827; --panel2:#0d2238; --panel3:#102b47; --line:#244662; --text:#eef7ff; --muted:#8fa9c8; --soft:#c7dcf4; --green:#3ee28f; --yellow:#ffd166; --red:#ff5d73; --blue:#76d7ff; --violet:#c7a6ff; --shadow:0 24px 80px rgba(0,0,0,.38); }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; background:radial-gradient(circle at 10% -5%,rgba(118,215,255,.28),transparent 30%),radial-gradient(circle at 95% 4%,rgba(62,226,143,.16),transparent 28%),linear-gradient(180deg,#071423 0%,#030712 62%,#02050b 100%); min-height:100vh; }
+    header { position:sticky; top:0; z-index:5; padding:24px clamp(16px,4vw,48px) 16px; background:rgba(3,7,18,.82); backdrop-filter:blur(20px); border-bottom:1px solid rgba(118,215,255,.18); }
+    h1 { margin:0; font-size:clamp(30px,4.8vw,64px); line-height:.92; letter-spacing:-.06em; }
+    h2 { margin:0 0 12px; font-size:20px; letter-spacing:-.02em; }
+    h3 { margin:0; color:var(--muted); text-transform:uppercase; letter-spacing:.11em; font-size:12px; }
+    p { color:var(--muted); line-height:1.55; } a { color:#ace4ff; } code { color:#bdeaff; }
+    main { padding:22px clamp(16px,4vw,48px) 56px; }
+    .subtitle { margin:10px 0 0; max-width:1080px; color:var(--soft); }
+    .topline { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center; }
+    .pill { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); background:rgba(8,24,39,.78); border-radius:999px; padding:8px 12px; color:var(--soft); font-size:13px; }
+    .dot { width:10px; height:10px; border-radius:50%; background:var(--blue); box-shadow:0 0 20px currentColor; }
+    .healthy .dot { background:var(--green); } .watching .dot,.stale .dot,.active .dot { background:var(--yellow); } .needs-review .dot,.review .dot,.dead .dot { background:var(--red); }
+    .grid { display:grid; gap:16px; }
+    .hero { grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr); align-items:stretch; }
+    .panel,.metric,.lane,.gate,.flowbox,.summary-card,.event { border:1px solid rgba(118,215,255,.20); background:linear-gradient(180deg,rgba(16,43,71,.9),rgba(8,24,39,.93)); border-radius:24px; box-shadow:var(--shadow); }
+    .panel { padding:20px; } .room { min-height:250px; display:flex; flex-direction:column; justify-content:space-between; }
+    .state-word { font-size:clamp(44px,7.6vw,96px); letter-spacing:-.08em; line-height:.86; margin:8px 0 14px; }
+    .state-word.healthy { color:var(--green); } .state-word.watching,.state-word.stale { color:var(--yellow); } .state-word.needs-review { color:var(--red); }
+    .answer { font-size:18px; color:var(--soft); max-width:760px; }
+    .quota-glance-wrap { margin-top:18px; padding-top:14px; box-shadow:inset 0 1px rgba(118,215,255,.18); }
+    .quota-glance-head { display:flex; justify-content:space-between; gap:12px; align-items:baseline; margin-bottom:9px; }
+    .quota-glance-head strong { color:var(--soft); }
+    .quota-glance-head a { color:#ace4ff; font-size:12px; text-decoration:none; }
+    .quota-glance { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+    .quota-glance-card { border:1px solid rgba(118,215,255,.20); border-radius:14px; padding:10px; background:rgba(6,18,31,.66); min-width:0; }
+    .quota-glance-card b { display:block; color:var(--soft); font-size:22px; letter-spacing:-.04em; overflow-wrap:anywhere; }
+    .quota-glance-card span { display:block; color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+    .quota-glance-card small { color:var(--muted); font-size:10px; line-height:1.3; }
+    .micro { font-size:12px; color:var(--muted); }
+    .metrics { grid-template-columns:repeat(6,minmax(0,1fr)); margin:18px 0; }
+    .metric { padding:16px; min-height:105px; box-shadow:none; } .metric b { display:block; font-size:34px; letter-spacing:-.045em; } .metric span { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.11em; }
+    .flow { grid-template-columns:repeat(5,minmax(0,1fr)); margin-top:14px; }
+    .flowbox { padding:14px; min-height:108px; position:relative; overflow:hidden; box-shadow:none; } .flowbox strong { display:block; font-size:18px; } .flowbox small { color:var(--muted); }
+    .flowbox:after { content:""; position:absolute; right:-25px; bottom:-30px; width:100px; height:100px; border-radius:50%; background:rgba(118,215,255,.10); }
+    .gates-strip { margin-bottom:18px; } .gate-list { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; } .gate { padding:10px 12px; box-shadow:none; color:var(--soft); font-size:13px; } .lock { color:var(--green); font-weight:900; }
+    .summaries { grid-template-columns:repeat(5,minmax(0,1fr)); margin:18px 0; } .summary-card { padding:15px; box-shadow:none; } .summary-card b { display:block; font-size:24px; margin-top:6px; } .summary-card small { color:var(--muted); }
+    .summary-card.needs-review { border-color:rgba(255,93,115,.65); } .summary-card.watching { border-color:rgba(255,209,102,.65); } .summary-card.active { border-color:rgba(118,215,255,.65); }
+    .directors-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; } .methods-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin-top:18px; } .wide { display:grid; grid-template-columns:1.15fr .85fr; gap:16px; margin-top:18px; }
+    .lane { padding:14px; margin:10px 0; background:rgba(6,18,31,.72); box-shadow:none; } .lane.review,.lane.dead { border-color:rgba(255,93,115,.72); } .lane.safe-prompt,.lane.copy-mode { border-color:rgba(255,209,102,.72); } .lane.active { border-color:rgba(118,215,255,.7); }
+    .lane-head { display:flex; justify-content:space-between; gap:10px; align-items:baseline; } .lane-role { font-weight:800; word-break:break-word; } .pane-id { color:#bdeaff; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+    .meta { color:var(--muted); font-size:12px; line-height:1.45; margin-top:7px; word-break:break-word; } .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+    .chip { font-size:11px; border-radius:999px; padding:5px 8px; border:1px solid var(--line); color:var(--muted); background:#071423; } .chip.active { background:var(--blue); color:#02101a; border-color:var(--blue); } .chip.healthy { background:var(--green); color:#03170d; border-color:var(--green); } .chip.review,.chip.stale { background:var(--yellow); color:#1a1000; border-color:var(--yellow); } .chip.dead { background:var(--red); color:white; border-color:var(--red); }
+    .tail { margin-top:9px; color:#b9cce4; font-size:11px; opacity:.86; border-left:2px solid rgba(118,215,255,.25); padding-left:8px; overflow-wrap:anywhere; word-break:break-word; }
+    .events { display:grid; gap:8px; } .event { padding:11px 12px; box-shadow:none; } .event strong { color:var(--soft); } .event small { color:var(--muted); display:block; margin-top:4px; }
+    .usage-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:12px; }
+    .overnight-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:12px; }
+    .usage-card { border:1px solid rgba(118,215,255,.22); background:rgba(6,18,31,.72); border-radius:20px; padding:14px; box-shadow:none; min-height:210px; }
+    .usage-card h3 { margin-bottom:7px; } .usage-big { font-size:34px; letter-spacing:-.06em; color:var(--soft); margin:6px 0 3px; overflow-wrap:anywhere; word-break:break-word; }
+    .usage-bar { height:10px; border-radius:999px; border:1px solid var(--line); background:#071423; overflow:hidden; margin:10px 0; }
+    .usage-bar span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--green),var(--yellow)); }
+    .usage-card.unknown .usage-bar span { width:100%; background:repeating-linear-gradient(45deg,rgba(143,169,200,.25),rgba(143,169,200,.25) 8px,rgba(143,169,200,.10) 8px,rgba(143,169,200,.10) 16px); }
+    .usage-status { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:4px 8px; color:var(--muted); font-size:11px; margin:6px 0; }
+    .usage-note { color:var(--muted); font-size:12px; line-height:1.45; }
+    .usage-subs { display:grid; gap:6px; margin:10px 0; }
+    .usage-sub { padding-top:6px; }
+    .usage-sub-line { display:flex; justify-content:space-between; gap:8px; color:var(--soft); font-size:12px; align-items:center; } .reset-time { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 13px; font-weight: 800; color: #ffb86c; background: rgba(255,184,108,0.15); border: 1px solid rgba(255,184,108,0.3); border-radius: 6px; padding: 2px 8px; letter-spacing: 0.5px; white-space: nowrap; }
+    .reset-time.reset-red { color: #ff5555; background: rgba(255,85,85,0.15); border-color: rgba(255,85,85,0.4); }
+    .reset-time.reset-orange { color: #ffb86c; background: rgba(255,184,108,0.15); border-color: rgba(255,184,108,0.4); }
+    .reset-time.reset-blue { color: #8be9fd; background: rgba(139,233,253,0.15); border-color: rgba(139,233,253,0.4); }
+    .usage-sub-bar { height:5px; border-radius:999px; background:#071423; overflow:hidden; margin-top:5px; }
+    .usage-sub-bar span { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--green),var(--yellow)); }
+    .usage-sub-bar span.unknown { width:100%; background:repeating-linear-gradient(45deg,rgba(143,169,200,.24),rgba(143,169,200,.24) 6px,rgba(143,169,200,.08) 6px,rgba(143,169,200,.08) 12px); }
+    .empty { color:var(--muted); border:1px dashed var(--line); border-radius:16px; padding:14px; }
+    .incident-resolved { border-color:rgba(62,226,143,.52); }
+    .urlbox { user-select:all; border:1px solid var(--line); background:#071423; border-radius:14px; padding:12px; overflow-wrap:anywhere; color:#bdeaff; }
+    .policy-list { margin:0; padding-left:18px; color:var(--muted); } .policy-list li { margin:7px 0; }
+    footer { color:var(--muted); padding:10px clamp(16px,4vw,48px) 36px; }
+    @media (max-width:1240px) { .metrics { grid-template-columns:repeat(3,minmax(0,1fr)); } .summaries,.flow,.gate-list,.usage-grid,.overnight-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .hero,.wide { grid-template-columns:1fr; } .directors-grid,.methods-grid { grid-template-columns:1fr; } }
+    @media (max-width:720px) { header { position:static; } .metrics,.summaries,.flow,.gate-list,.usage-grid,.overnight-grid,.quota-glance { grid-template-columns:1fr; } .state-word { font-size:44px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Galaxy Evolution + Surveys Autopilot</h1>
+    <p class="subtitle">PRIVATE TAILNET MIRROR · READ-ONLY · this page takes no actions. V3 adds run-time estimates, a usage-limit monitor, a local outcome DB card, and a Survey Autopilot card for the frontend <code>/surveys</code> Atlas IA surface.</p>
+    <div class="topline">
+      <span id="health-pill" class="pill"><span class="dot"></span><span id="health-text">Loading…</span></span>
+      <span class="pill"><span class="dot"></span><span id="updated-text">Waiting for JSON</span></span>
+      <span class="pill"><span class="dot"></span><span>GE_AUTOPILOT_PRIVATE_DASHBOARD_V3</span></span>
+    </div>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Running now</h2>
+      <p>Seats working a dispatched job. What each paper is waiting on — and which of those need YOU — is on its row in the sextet matrix below.</p>
+      <div id="op-running" class="events"><div class="empty">Loading…</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>Sextet — paper research seats</h2>
+      <p>Who is working a dispatched job right now. IDLE beside a blocked lane is the failure shape from 2026-08-06: an amendment sat applied-but-unresubmitted for eleven hours because nothing joined "lane stuck" to "nobody working it".</p>
+      <div id="septet-warning" class="topline"></div>
+      <div id="septet-matrix"><div class="empty">Loading sextet matrix…</div></div>
+      <div id="septet" class="usage-grid" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel" id="usage-monitor-panel">
+      <h2>Usage limit monitor</h2>
+      <p>Live quota comes first. This mirrors the public live steering cockpit’s provider gauges and adds the official YouTube Data API daily limits from a local checkpoint; the private browser polls every 5s while the shared safe monitor refreshes public status and idle quota panels on their reported cadence.</p>
+      <div id="usage-summary" class="topline"></div>
+      <div id="usage-cards" class="usage-grid"><div class="empty">Loading usage monitor…</div></div>
+      <p class="micro" id="usage-notes"></p>
+    </section>
+    <section class="panel gates-strip">
+      <h2>Hard gates closed</h2>
+      <p>Hard gates closed — no product DB/API/page writes · no live wiki/publish · no deploy · no git · no public cockpit/global · no cloud/billing/OAuth · no browser · no cron. The only DB-like write is the local append-only outcome ledger under .hermes.</p>
+      <div id="gates-top" class="gate-list"></div>
+    </section>
+
+    <section class="grid hero">
+      <div class="panel room">
+        <div>
+          <h3>Room-glance answer</h3>
+          <div id="state-word" class="state-word healthy">Loading</div>
+          <div id="next-action" class="answer">Waiting for the autopilot status snapshot.</div>
+          <div class="quota-glance-wrap">
+            <div class="quota-glance-head"><strong>Live quota snapshot</strong><a href="#usage-monitor-panel">See all quota cards ↓</a></div>
+            <div id="quota-glance" class="quota-glance"><div class="empty">Loading quota…</div></div>
+          </div>
+        </div>
+        <div class="topline">
+          <span class="pill"><span class="dot"></span><span id="phase-text">phase…</span></span>
+          <span class="pill"><span class="dot"></span><span id="event-text">events…</span></span>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Open from MacBook</h2>
+        <p class="urlbox"><a href="https://duho-macstudio.taila27502.ts.net/cockpit/ge-autopilot.html">https://duho-macstudio.taila27502.ts.net/cockpit/ge-autopilot.html</a></p>
+        <p class="micro">Requires Tailscale on the MacBook. The browser only fetches <code>ge-autopilot-status.json</code>; it does not approve, run, publish, deploy, or write anything.</p>
+        <h2>What this monitors</h2>
+        <div class="flow grid">
+          <div class="flowbox"><strong>Directors</strong><small>Hwao, Tori, Goru live-view.</small></div>
+          <div class="flowbox"><strong>Sextet seats</strong><small>Hwao, Lana, Goru, Kun, Tori, Yui — who owes work.</small></div>
+          <div class="flowbox"><strong>Survey Autopilot</strong><small>Frontend /surveys files, smoke-test custody, and safe next work.</small></div>
+          <div class="flowbox"><strong>Prompts</strong><small>Safe vs needs-you permission states.</small></div>
+          <div class="flowbox"><strong>Events</strong><small>Latest autopilot ticks/actions/blockers.</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics grid" id="metrics"></section>
+    <section class="summaries grid" id="summaries"></section>
+
+    <section class="panel">
+      <h2>Autopilot run time estimates</h2>
+      <p>Shows active/unresolved autopilot orders only. Completed historical packets are summarized and kept out of the visible board so stale messages do not crowd the current operator view.</p>
+      <div id="run-estimate-summary" class="topline"></div>
+      <div id="run-estimates" class="usage-grid"><div class="empty">Loading run estimates…</div></div>
+    </section>
+
+
+    <section class="panel">
+      <h2>Survey Autopilot</h2>
+      <p>Tracks the Survey Atlas frontend surface on this private dashboard: route, required files, latest recorded smoke-test result, and safe next action. This is not a DB/apply/deploy control.</p>
+      <div id="survey-summary" class="topline"></div>
+      <div id="survey-cards" class="usage-grid"><div class="empty">Loading Survey autopilot…</div></div>
+      <div id="survey-files" class="events" style="margin-top:12px;"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Directors</h2>
+      <p>Hwao sets direction; Tori verifies and relays; Goru provides mechanical crosschecks. Red here means stop and ask.</p>
+      <div id="directors" class="directors-grid"></div>
+    </section>
+    <section class="methods-grid" id="methods"></section>
+
+    <section class="wide">
+      <div class="panel">
+        <h2>Current blockers / prompts</h2>
+        <div id="blockers" class="empty">Loading…</div>
+      </div>
+
+    <section class="wide">
+      <div class="panel">
+        <h2>Safety policy legend</h2>
+        <ul class="policy-list" id="policy"></ul>
+      </div>
+      <div class="panel">
+        <h2>Provenance</h2>
+      <div id="writer-identity" class="topline"></div>
+      <div id="outcome-line" class="micro"></div>
+        <p class="micro">Source status: <code id="source-status"></code></p>
+        <p class="micro">Source events: <code id="source-events"></code></p>
+        <p class="micro">Rendered JSON: <code id="web-status"></code></p>
+        <div id="other"></div>
+      </div>
+    </section>
+
+      <div class="panel">
+        <h2>Latest autopilot events</h2>
+        <div id="events" class="events"><div class="empty">Loading…</div></div>
+      </div>
+    </section>
+  </main>
+  <footer>Dashboard marker: <code>GE_AUTOPILOT_PRIVATE_DASHBOARD_V3</code>. Overnight report marker: <code>GE_AUTOPILOT_C41_STEP2_FULLTEXT_20260804_COMPLETE</code>. Paper sprint marker: <code>RP1_QUALITY_SPRINT_DASHBOARD_FEED_V1</code>. Wiki sprint marker: <code>WIKI_QUALITY_SPRINT_DASHBOARD_FEED_V1</code>. Usage feed marker: <code>GE_AUTOPILOT_PROVIDER_USAGE_REALTIME_FEED_V1</code>. Survey marker: <code>SURVEY_AUTOPILOT_DASHBOARD_FEED_V1</code>. Local outcome DB marker: <code>GE_AUTOPILOT_LOCAL_OUTCOME_LEDGER_V1</code>. Run-time estimate marker: <code>GE_AUTOPILOT_RUN_TIME_ESTIMATES_V1</code>. Compatibility markers retained for dashboard probes: <code>GE_AUTOPILOT_PRIVATE_DASHBOARD_V2, GE_AUTOPILOT_PRIVATE_DASHBOARD_V1</code>.</footer>
+<script>
+const STATUS_URL = "ge-autopilot-status.json";
+const GROUP_ORDER = ["Directors", "Review", "Lanes", "Other"];
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function shortenPath(value) {
+  if (value === null || value === undefined) return '';
+  const filename = raw => {
+    const suffix = (raw.match(/[.,;:]+$/) || [''])[0];
+    let path = suffix ? raw.slice(0, -suffix.length) : raw;
+    path = path.replace(/\/+$/, '');
+    return `${path.split('/').filter(Boolean).pop() || ''}${suffix}`;
+  };
+  return String(value)
+    .replace(/\/Users\/[^/]+\/[^\s<>"']+/g, filename)
+    .replace(/(^|[\s:])((?:\.hermes|frontend|backend|tools|mcp|…|~)\/[^\s<>"']+)/g, (_, prefix, path) => `${prefix}${filename(path)}`);
+}
+function metric(label, value) { return `<div class="metric"><b>${esc(value)}</b><span>${esc(label)}</span></div>`; }
+function chip(text, cls='') { return `<span class="chip ${cls}">${esc(text)}</span>`; }
+function paneFlags(p) { const out=[]; if(p.status==='dead') out.push(chip('dead','dead')); if(p.status==='review') out.push(chip('needs you','dead')); if(p.status==='safe-prompt') out.push(chip('safe prompt','review')); if(p.status==='copy-mode') out.push(chip('copy-mode','review')); if(p.active) out.push(chip('active','active')); if(!out.length) out.push(chip('observed')); return out.join(''); }
+function paneCard(p) { return `<div class="lane ${esc(p.status||'idle')}"><div class="lane-head"><span class="lane-role">${esc(p.role)}</span><span class="pane-id">${esc(p.pane_id)}</span></div><div class="meta">${esc(p.command)} · ${esc(p.size)}<br>${esc(shortenPath(p.reason || p.target || ''))}</div><div class="chips">${paneFlags(p)}</div>${p.tail_excerpt ? `<div class="tail">${esc(shortenPath(p.tail_excerpt))}</div>` : ''}</div>`; }
+function groupCard(name, panes, summary) { return `<section class="panel"><h3>${esc(name)}</h3><h2>${esc(summary?.text || '')} · ${panes.length} panes</h2>${panes.length ? panes.map(paneCard).join('') : '<div class="empty">No panes seen</div>'}</section>`; }
+function summaryCard(s) { const c=s.counts||{}; return `<div class="summary-card ${esc(s.state)}"><h3>${esc(s.name)}</h3><b>${esc(s.text)}</b><small>${esc(s.panes)} panes · active ${c.active||0} · blocked ${(c.review||0)+(c.dead||0)} · safe ${c['safe-prompt']||0}</small></div>`; }
+function blockerCard(b) { return `<div class="lane ${b.safe_to_approve ? 'safe-prompt' : 'review'}"><div class="lane-head"><span class="lane-role">${esc(b.role || 'unknown')}</span><span class="pane-id">${esc(b.pane_id || '')}</span></div><div class="meta">${b.safe_to_approve ? 'auto-safe prompt' : 'needs user'} · ${esc(shortenPath(b.reason || ''))}</div></div>`; }
+function eventCard(e) { const details=[...(e.actions||[]), ...(e.blockers||[])].slice(0,4); return `<div class="event"><strong>${esc(e.ts)}</strong><small>actions ${esc(e.actions_count ?? (e.actions||[]).length)} · blockers ${esc(e.blockers_count ?? (e.blockers||[]).length)}${details.length ? ' · '+esc(details.join(' · ')) : ''}</small></div>`; }
+function quotaPercentText(value) {
+  if (value > 0 && value < 0.1) return `${value.toFixed(2)}%`;
+  if (value > 0 && value < 1) return `${value.toFixed(1)}%`;
+  return `${value.toFixed(0)}%`;
+}
+function quotaGlanceCard(name, value, detail) { return `<div class="quota-glance-card"><span>${esc(name)}</span><b>${esc(value)}</b><small>${esc(detail)}</small></div>`; }
+function renderQuotaGlance(u) {
+  const target = document.getElementById('quota-glance');
+  if (!target) return;
+  const cards = u?.cards || [];
+  const preferred = ['Claude / Fable / Lana', 'Codex / Kun', 'Gemini / Goru', 'Kimi / Moonshot direct API'];
+  const primary = preferred.map(name => cards.find(card => card.name === name)).filter(Boolean);
+  const rendered = primary.map(card => {
+    const pct = typeof card.percent === 'number' && Number.isFinite(card.percent) ? card.percent : null;
+    const value = card.big || (pct === null ? 'Unknown' : quotaPercentText(pct));
+    return quotaGlanceCard(card.name, value, card.percent_label || card.status || 'not observed');
+  });
+  target.innerHTML = rendered.length ? rendered.join('') : '<div class="empty">No live quota data.</div>';
+}
+function ageIsStale(label) {
+  // [step 3] A 20-hour-old card sat beside 17-minute data with no visual distinction. For an
+  // operations glance, anything measured in hours or days is stale.
+  return /\d+\s*(h|hr|hour|d|day)/i.test(String(label || ''));
+}
+function usageCard(u) {
+  const __stale = ageIsStale(u && (u.age_label || u.cache_age_label || u.updated_label));
+  const hasPct = typeof u.percent === 'number' && Number.isFinite(u.percent);
+  const pct = hasPct ? Math.max(0, Math.min(100, u.percent)) : null;
+  const cls = hasPct ? '' : 'unknown';
+  const big = u.big || (hasPct ? quotaPercentText(pct) : '—%');
+  const width = hasPct ? `style="width:${pct}%"` : '';
+  const subs = (u.sub_gauges || []).map(s => {
+    const sp = typeof s.percent === 'number' && Number.isFinite(s.percent) ? Math.max(0, Math.min(100, s.percent)) : null;
+    const swidth = sp === null ? '' : `style="width:${sp}%"`;
+    const scls = sp === null ? 'unknown' : '';
+    let valStr = esc(s.value_label || (sp === null ? 'not observed' : sp.toFixed(0)+'%'));
+    if (valStr.includes('remained ')) {
+      const parts = valStr.split('remained ');
+      const remainStr = parts.slice(1).join('remained ');
+      let days = 0;
+      const dayMatch = remainStr.match(/(\d+)\s*day/);
+      if (dayMatch) {
+        days = parseInt(dayMatch[1], 10);
+      }
+      let colorClass = 'reset-blue';
+      if (days < 2) colorClass = 'reset-red';
+      else if (days < 4) colorClass = 'reset-orange';
+      valStr = parts[0] + `<span class="reset-time ${colorClass}">remained ` + remainStr + '</span>';
+    } else if ((s.label || '').toLowerCase().includes('week') && valStr.includes(' · ')) {
+      const parts = valStr.split(' · ');
+      valStr = parts[0] + ' · <span class="reset-time">' + parts.slice(1).join(' · ') + '</span>';
+    }
+    return `<div class="usage-sub"><div class="usage-sub-line"><span>${esc(s.label)}</span><strong>${valStr}</strong></div><div class="usage-sub-bar"><span class="${scls}" ${swidth}></span></div></div>`;
+  }).join('');
+  return `<div class="usage-card ${cls}"><h3>${esc(u.name)}</h3><div class="usage-status">${esc(u.status)} · ${esc(u.kind)}</div><div class="usage-big">${esc(big)}</div><div class="usage-note">${esc(u.percent_label || '')}</div><div class="usage-bar"><span ${width}></span></div>${subs ? `<div class="usage-subs">${subs}</div>` : ''}<p><strong>${esc(u.activity || '')}</strong></p><p class="usage-note">${esc(u.detail || '')}</p><p class="usage-note">Source: ${esc(shortenPath(u.source))}</p></div>`;
+}
+function renderUsage(u) {
+  if (!u) return;
+  const cards = u.cards || [];
+  const staleHidden = u.cache_state === 'stale-source-hidden';
+  const usageSummary = [
+    `<span class="pill"><span class="dot"></span><span>${esc(u.marker || 'usage monitor')}</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>Exact percent sources ${esc(u.exact_limit_percent_sources ?? 0)}/${esc(cards.length)}</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>${esc(u.cache_state || 'fresh')} · source age ${esc(u.cache_age_label || '0s')}</span></span>`
+  ];
+  if (!staleHidden) {
+    usageSummary.push(`<span class="pill healthy"><span class="dot"></span><span>${esc(u.provider_monitor_status || 'unknown')} · guard relocked</span></span>`);
+    usageSummary.push(`<span class="pill"><span class="dot"></span><span>Refresh ${esc(u.local_refresh_seconds ?? '—')}s local · ${esc(u.slash_refresh_seconds ?? '—')}s idle quota panels</span></span>`);
+    usageSummary.push(`<span class="pill"><span class="dot"></span><span>Observed ${esc(u.observed_at_utc || u.generated_at || 'unknown')}</span></span>`);
+    usageSummary.push(`<span class="pill"><span class="dot"></span><span>Public source ${esc(u.provider_monitor_marker || u.public_status_url || '')}</span></span>`);
+  }
+  document.getElementById('usage-summary').innerHTML = usageSummary.join('');
+  document.getElementById('usage-cards').innerHTML = cards.length ? cards.map(usageCard).join('') : '<div class="empty">No usage monitor data.</div>';
+  document.getElementById('usage-notes').textContent = shortenPath((u.notes || []).join(' '));
+}
+function overnightCard(card) {
+  return `<div class="usage-card ${esc(card.tone || '')}"><h3>${esc(card.title || '')}</h3><div class="usage-status">${esc(card.status || 'observed')}</div><div class="usage-big">${esc(card.big || '')}</div><p class="usage-note">${esc(card.detail || '')}</p></div>`;
+}
+// [step 5] renderOvernightReport removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+// [step 5] renderCorpusScaleup removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+function runStateClass(state) {
+  if (state === 'blocked' || state === 'over-estimate') return 'needs-review';
+  if (state === 'complete') return 'healthy';
+  return 'watching';
+}
+function runCard(r) {
+  const pct = typeof r.progress_percent === 'number' && Number.isFinite(r.progress_percent) ? Math.max(0, Math.min(100, r.progress_percent)) : 0;
+  const cls = runStateClass(r.state || 'running');
+  return `<div class="usage-card ${cls}"><h3>${esc(r.marker || 'autopilot run')}</h3><div class="usage-status">${esc(r.state || 'running')} · ${esc(r.dispatch_count ?? 0)}/${esc(r.expected_dispatches ?? 0)} dispatches</div><div class="usage-big">${esc(r.elapsed_label || 'unknown')}</div><div class="usage-note">elapsed runtime</div><div class="usage-bar"><span style="width:${pct}%"></span></div><p><strong>Estimate ${esc(r.estimated_total_label || 'unknown')}</strong></p><p class="usage-note">ETA ${esc(r.eta_at_utc || 'unknown')} · ${esc(r.remaining_label || 'unknown')}</p><p class="usage-note">started ${esc(r.started_at_utc || 'unknown')} · updated ${esc(r.updated_at_utc || 'unknown')}</p></div>`;
+}
+function renderRunEstimates(re) {
+  if (!re) return;
+  const runs = re.runs || [];
+  const active = re.active_runs_count ?? runs.filter(r => !['complete'].includes(r.state || '')).length;
+  const latest = re.latest_completed || {};
+  const completedText = latest.completed_at_utc ? `last completion recorded at ${latest.completed_at_utc}` : 'no completed run summary yet';
+  document.getElementById('run-estimate-summary').innerHTML = [
+    `<span class="pill"><span class="dot"></span><span>${esc(re.marker || 'run estimates')}</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>${esc(runs.length)} visible run card(s)</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>${esc(active)} active/unfinished</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>${esc(re.archived_runs_count ?? 0)} completed archived</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>default estimate ${esc(re.default_estimated_label || 'unknown')}</span></span>`
+  ].join('');
+  document.getElementById('run-estimates').innerHTML = runs.length ? runs.map(runCard).join('') : `<div class="empty">No active autopilot orders right now. ${esc(completedText)}. Completed packet cards are archived from the visible board.</div>`;
+}
+// [step 5] renderQualitySprint removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+// [step 5] renderWikiQualitySprint removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+function renderOutcomeLedger(led) {
+  // [step 5] Demoted from a full panel to one provenance line, per Kun's audit: it is a
+  // receipt, not something an operator acts on.
+  const el = document.getElementById('outcome-line');
+  if (!el) return;
+  led = led || {};
+  const n = led.rows_total ?? led.count ?? null;
+  el.textContent = n === null ? 'Local outcome DB: no rows recorded'
+                              : `Local outcome DB: ${n} row(s), ${led.marker || 'unmarked'}`;
+}
+
+function infoCard(title, big, detail, status='observed') {
+  return `<div class="usage-card"><h3>${esc(title)}</h3><div class="usage-status">${esc(status)}</div><div class="usage-big">${esc(shortenPath(big))}</div><p class="usage-note">${esc(shortenPath(detail))}</p></div>`;
+}
+// [step 5] renderIncident removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+function surveyFileCard(f) {
+  const status = f.exists ? 'present' : 'missing';
+  return `<div class="event"><strong>${esc(f.label)} · ${esc(status)}</strong><small>${esc(shortenPath(f.path))}${f.modified_at_utc ? ' · modified '+esc(f.modified_at_utc) : ''}</small></div>`;
+}
+function renderSurvey(s) {
+  if (!s) return;
+  const smoke = s.latest_smoke || {};
+  const stateCls = s.state === 'needs-review' ? 'needs-review' : (s.state === 'healthy' ? 'healthy' : 'watching');
+  document.getElementById('survey-summary').innerHTML = [
+    `<span class="pill ${stateCls}"><span class="dot"></span><span>${esc(s.text || s.state || 'unknown')}</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>${esc(s.marker || 'survey marker')}</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>Route ${esc(s.route || '/surveys')}</span></span>`,
+    `<span class="pill"><span class="dot"></span><span>Files ${esc(s.required_files_present ?? 0)}/${esc(s.required_files_total ?? 0)}</span></span>`
+  ].join('');
+  document.getElementById('survey-cards').innerHTML = [
+    infoCard('Current state', s.text || 'unknown', s.next_action || '', s.state || 'unknown'),
+    infoCard('Route', s.route || '/surveys', s.scope || 'Survey frontend surface', 'read-only monitor'),
+    infoCard('Latest smoke', smoke.status || 'unknown', `${smoke.command || 'npm run test:surveys-atlas-ia'}${smoke.verified_at_utc ? ' · '+smoke.verified_at_utc : ''}${typeof smoke.exit_code === 'number' ? ' · exit '+smoke.exit_code : ''}`, smoke.known ? 'recorded' : 'not recorded'),
+    infoCard('Safety boundary', 'No writes', (s.safe_boundaries || []).join(' '), 'locked')
+  ].join('');
+  document.getElementById('survey-files').innerHTML = (s.files || []).map(surveyFileCard).join('');
+}
+async function load() {
+  try {
+    const res = await fetch(`${STATUS_URL}?t=${Date.now()}`, {cache:'no-store'});
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const d = await res.json(); const c=d.counts||{}; const groups=d.groups||{}; const summaries=d.lane_summaries||{};
+    const pill=document.getElementById('health-pill'); pill.className=`pill ${d.health||'healthy'}`;
+    document.getElementById('health-text').textContent=d.health_text||d.health||'unknown';
+    document.getElementById('state-word').className=`state-word ${d.health||'healthy'}`;
+    document.getElementById('state-word').textContent=d.health_text||'UNKNOWN';
+    document.getElementById('next-action').textContent=d.next_action||'';
+    document.getElementById('updated-text').textContent=`Updated ${d.source_ts||d.generated_at||'unknown'} · age ${d.source_age_label||'unknown'}`;
+    document.getElementById('phase-text').textContent=d.phase||'phase1-bounded-controller';
+    document.getElementById('event-text').textContent=d.latest_event ? `last tick ${d.latest_event.ts}` : 'no event log yet';
+    document.getElementById('metrics').innerHTML=[metric('Targets OK',`${c.targets_ok??0}/${c.targets_total??0}`),metric('Panes',c.panes??0),metric('Active',c.active??0),metric('Idle',c.idle??0),metric('Needs-you issues',c.blockers??0),metric('Safe auto-prompts',c.safe_autoprompts??c.safe_prompts??0)].join('');
+    document.getElementById('summaries').innerHTML=GROUP_ORDER.map(g=>summaryCard(summaries[g]||{name:g,state:'idle',text:'No data',counts:{},panes:0})).join('');
+    function renderOperatorAnswers(oa) {
+      oa = oa || {};
+      const dec = oa.decisions || [], run = oa.running || [];
+      // [reorder] The decisions list now renders per paper in the septet matrix, where a
+      // decision belongs to the thing it is about. This element no longer exists.
+      document.getElementById('op-running').innerHTML = run.length
+        ? run.map(x=>`<div class="event">${esc(x.what||'')} <span class="muted">${esc(x.detail||'')}</span></div>`).join('')
+        : '<div class="empty">no seat is working a dispatched job</div>';
+    }
+    // [overhaul step 1] Isolation. Every render call below used to run bare inside load()'s one
+    // big try: a single throw killed every call after it and flipped the whole page to NO DATA,
+    // making a fetch failure and a render bug indistinguishable. `guard` runs one panel, and on
+    // failure writes a visible error into that panel's own element and carries on.
+    function guard(label, elId, fn) {
+      try { fn(); }
+      catch (e) {
+        const el = elId && document.getElementById(elId);
+        if (el) el.innerHTML = `<div class="empty">${esc(label)} failed: ${esc(String(e && e.message || e))}</div>`;
+        if (window.__panelErrors) window.__panelErrors.push(label);
+      }
+    }
+    window.__panelErrors = [];
+    guard('septet matrix','septet-matrix',()=>{
+      // [redesign] The dot matrix was compact but cryptic — ●/◇/· told you nothing without the
+      // legend, and the row that mattered (a paper waiting on Duho) looked like every other row.
+      // One readable block per paper instead: seats named, the ask stated in words, and the
+      // papers that need a human decision sorted to the top.
+      const mx = (d && d.septet_matrix) || {};
+      const papers = mx.papers || [];
+      if (!papers.length) {
+        document.getElementById('septet-matrix').innerHTML =
+          `<div class="empty">${esc(mx.error || 'no lanes with recorded gate activity')}</div>`;
+        return;
+      }
+      const sorted = papers.slice().sort((a,b)=>{
+        const rank = p => p.who==='DUHO' ? 0 : (p.engaged===0 ? 1 : 2);
+        return rank(a)-rank(b);
+      });
+      const blocks = sorted.map(function(p){
+        const mine = p.who === 'DUHO';
+        const engagedSeats = p.cells.filter(c=>c.state==='engaged').map(c=>c.seat);
+        const globalSeats  = p.cells.filter(c=>c.state==='engaged-global').map(c=>c.seat);
+        const emptySeats   = p.cells.filter(c=>c.state==='empty').map(c=>c.seat);
+        const border = mine ? '#d69a66' : (p.engaged===0 ? '#a8622f' : '#1e2637');
+        const chips = c => c.map(x=>`<span style="display:inline-block;border-radius:4px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px;background:#17202f">${esc(x)}</span>`).join('');
+        const askLine = mine
+          ? `<div style="margin-top:8px;font-size:14px;color:#e9eef7"><span class="pill needs-review"><span class="dot"></span><span>NEEDS YOU</span></span> <b>${esc(p.waiting||'')}</b></div>`
+          : `<div style="margin-top:8px;font-size:13px;color:#a9b6cc">waiting on the crew — ${esc(p.waiting||'—')}</div>`;
+        // The update time answers "is this cut current?" — and when the lane has moved since the
+        // render, say so outright rather than leaving Duho to subtract two timestamps.
+        const vstale = p.video && p.video.stale_by_h
+          ? `<span style="color:#d69a66"> · lane moved ${esc(p.video.stale_by_h)}h after this cut</span>` : '';
+        // The published chip states the PRIVACY, not just that a link exists. "unlisted" and
+        // "public" are different facts about who can see it, and a chip that hides the
+        // difference is how an unlisted link gets treated as if it were still private.
+        const pub = p.video && p.video.published_url
+          ? `<a href="${esc(p.video.published_url)}" target="_blank" rel="noopener"
+                style="font-size:12px;color:#d69a66"> · ▶ YouTube (${esc(p.video.published_privacy||'?')})</a>`
+            + `<span class="muted" style="font-size:11px"> ${esc(p.video.published_at_kst||'')}</span>`
+          : '<span class="muted" style="font-size:12px"> · unpublished</span>';
+        // a published link that points at an older cut than the one on disk is worth saying
+        const pstale = (p.video && p.video.published_url && p.video.published_file &&
+                        !p.video.href.endsWith(p.video.published_file))
+          ? `<span style="color:#d69a66;font-size:11px"> · published cut is not the newest</span>` : '';
+        const vid = p.video
+          ? `<a href="${esc(p.video.href)}" style="font-size:12px">▶ watch ${p.video.audio?'🔊':'(silent)'} (${esc(p.video.mb)} MB)</a>`
+            + `<span class="muted" style="font-size:12px"> · updated ${esc(p.video.updated_kst)}</span>${vstale}${pub}${pstale}`
+          : '<span class="muted" style="font-size:12px">no video</span>';
+        return `<div style="border:1px solid ${border};border-radius:10px;padding:14px 16px;margin-bottom:10px;background:${mine?'#1a1206':'#0e1420'}">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
+            <div style="font-weight:600;font-size:15px">${esc(p.lane)}</div>
+            <div class="muted" style="font-size:12px">${esc(p.state)}${p.stages?` · stage ${esc(p.stages)}`:''} · ${vid}</div>
+          </div>
+          ${askLine}
+          <div style="margin-top:10px;font-size:12px">
+            <div><span class="muted">working this paper (${p.engaged}/${p.of}):</span> ${engagedSeats.length?chips(engagedSeats):'<span style="color:#d69a66">nobody</span>'}</div>
+            ${globalSeats.length?`<div style="margin-top:4px"><span class="muted">working across all papers:</span> ${chips(globalSeats)}</div>`:''}
+            <div style="margin-top:4px"><span class="muted">no one in seat:</span> ${emptySeats.length?chips(emptySeats):'<span style="color:#7fb27f">all seats filled</span>'}</div>
+          </div>
+        </div>`;
+      }).join('');
+      const mineList = mx.awaiting_duho || [];
+      const banner = mineList.length
+        ? `<div style="margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#2a1c09;font-size:14px"><b>${mineList.length} paper(s) waiting on your decision.</b> They are first below.</div>`
+        : '<div style="margin-bottom:12px" class="muted">nothing is waiting on your decision.</div>';
+      const foot = `<div class="muted" style="font-size:11px;margin-top:2px">A seat counts as working a paper when it has produced an artifact in that lane. Live processes are global — currently: ${esc((mx.live_seats||[]).join(', ') || 'none')}. Videos are served from this host only; none is published.</div>`;
+      document.getElementById('septet-matrix').innerHTML = banner + blocks + foot;
+    });
+    guard('writer identity','writer-identity',()=>{
+      const w=(d && d.writer_identity)||{};
+      const note = w.watcher_mode ? ' · live watcher' : ' · one-shot render (page is static until next render)';
+      document.getElementById('writer-identity').innerHTML =
+        `<span class="pill"><span class="dot"></span><span>rendered by pid ${esc(w.pid||'?')} at ${esc(w.rendered_at_utc||'?')}${esc(note)}</span></span>`;
+    });
+    guard('running now','op-running',()=>{ renderOperatorAnswers(d.operator_answers); });
+    guard('run estimates','run-estimates',()=>{ renderRunEstimates(d.run_estimates); });
+    guard('quota glance','quota-glance',()=>{ renderQuotaGlance(d.usage_monitor); });
+    guard('usage monitor','usage-cards',()=>{ renderUsage(d.usage_monitor); });
+    guard('outcome ledger','outcome-ledger',()=>{ renderOutcomeLedger(d.local_outcome_ledger); });
+    guard('survey autopilot','survey-cards',()=>{ renderSurvey(d.survey_autopilot); });
+    // NOTE: the status object in this scope is `d`, not `data`. Using `data` here threw a
+    // ReferenceError that killed every render call BELOW this line — the septet box appeared
+    // empty and the sections after it silently stopped painting. Wrapped so a future mistake
+    // in this block cannot take the rest of the dashboard down with it.
+    try {
+    const sx = (d && d.septet) || {};
+    const sxSeats = sx.seats || [];
+    document.getElementById('septet').innerHTML = sxSeats.length ? sxSeats.map(function(s){
+      const col = s.state==='WORKING' ? '#2f6fa8' : (s.owes ? '#a8622f' : '#39414f');
+      return `<div style="border:1px solid ${col};border-radius:8px;padding:10px 12px;background:#0e1420"><div style="font-weight:600">${esc(s.name)}`
+        + `<span style="float:right;font-size:11px;color:${col}">${esc(s.state)}</span></div>`
+        + `<div class="muted" style="font-size:12px;margin-top:4px">${esc(s.role)}</div>`
+        + (s.detail ? `<div style="font-size:12px;margin-top:6px">${esc(s.detail)}</div>` : '')
+        + `</div>`;
+    }).join('') : `<div class="empty">${esc(sx.error || 'no septet state')}</div>`;
+    document.getElementById('septet-warning').innerHTML = sx.warning
+      ? `<span class="pill"><span class="dot"></span><span>${esc(sx.warning)}</span></span>` : '';
+    } catch (e) { document.getElementById('septet').innerHTML =
+      `<div class="empty">septet render failed: ${esc(String(e))}</div>`; }
+    // [step 4] The septet lesson generalised to this block, as Kun required. These calls were
+    // bare: one null element — exactly what deleting a panel creates — threw and took out
+    // everything after it. One guard around the block keeps a deletion from silently blanking
+    // directors, methods, blockers, events, gates and provenance.
+    // [step 5] Group sections used to render their headings even with zero panes, which is
+    // most of what made the page look full of dead boxes. Empty groups now render nothing.
+    guard('lower panels', 'directors', () => {
+    document.getElementById('directors').innerHTML=(groups['Directors']||[]).length ? (groups['Directors']||[]).map(paneCard).join('') : '<div class="empty">No director panes seen</div>';
+    document.getElementById('methods').innerHTML=['Review','Lanes'].filter(g=>(groups[g]||[]).length).map(g=>groupCard(g,groups[g]||[],summaries[g])).join('');
+    const blockers=d.blockers||[]; const safePrompts=d.safe_autoprompts||[]; document.getElementById('blockers').className=(blockers.length||safePrompts.length)?'':'empty'; document.getElementById('blockers').innerHTML=blockers.length?blockers.map(blockerCard).join(''):(safePrompts.length?`<div class="empty">No user-needed blockers. ${esc(safePrompts.length)} safe prompt(s) are being handled by autopilot.</div>${safePrompts.map(blockerCard).join('')}`:'No current blockers or permission prompts.');
+    const events=d.events||[]; document.getElementById('events').innerHTML=events.length?events.slice().reverse().map(eventCard).join(''):'<div class="empty">No recent actions or blockers. Heartbeat is live in the room-glance tick above.</div>';
+    const gateHtml=(d.hard_gates_closed||[]).map(x=>`<div class="gate"><span class="lock">🔒</span> ${esc(x)}</div>`).join(''); document.getElementById('gates-top').innerHTML=gateHtml;
+    // [step 4] policy legend panel deleted; its content merged into the gates strip.
+    document.getElementById('source-status').textContent=shortenPath(d.source_status_path); document.getElementById('source-events').textContent=shortenPath(d.source_events_path); document.getElementById('web-status').textContent=shortenPath(d.web_status_path);
+    const other=groups['Other']||[]; document.getElementById('other').innerHTML=other.length ? `<h2>Standalone / helpers</h2>${other.map(paneCard).join('')}` : '';
+    });
+  } catch (err) { const pill=document.getElementById('health-pill'); pill.className='pill needs-review'; document.getElementById('health-text').textContent=`Dashboard data unavailable: ${err.message}`; document.getElementById('state-word').className='state-word needs-review'; document.getElementById('state-word').textContent='NO DATA'; document.getElementById('next-action').textContent='The dashboard could not read its JSON snapshot.'; }
+}
+load(); setInterval(load, 5000);
+</script>
+</body>
+</html>

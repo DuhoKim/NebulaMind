@@ -1,0 +1,160 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass11-recompression-20260808T073428K",
+  "created_at": "2026-08-08T07:34:28+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "JPEG 4:2:0 recompression/decode resilience for any future Hwao-authored method-only proposal iteration",
+  "simulation_limit": "The transforms are deterministic Pillow JPEG presentation stress tests. Quality values are library parameters, not claims about a named platform, codec ladder, upload path, or delivery system.",
+  "base": {
+    "sealed_iteration": "v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "render_receipt": "proposal_frames/v8/render_receipt.json",
+    "render_receipt_sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+    "pass7_caption_safe_correction": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+    "pass7_caption_safe_correction_sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f",
+    "pass8_redundant_encoding_guard": "REDUNDANT_ENCODING_GUARD_PASS8.json",
+    "pass8_redundant_encoding_guard_sha256": "597b591da0f32325d8b764df23b7a5c9a088c666bac433a2ccd2e9a7b31d53da",
+    "pass9_title_safe_correction": "TITLE_SAFE_STORYBOARD_CORRECTION_PASS9.json",
+    "pass9_title_safe_correction_sha256": "7ef8c7e4f8a16b26b9b833cc19a9f5b5424e8afbb3d866892be8b1d869e92a11",
+    "pass10_ambient_contrast_guard": "AMBIENT_CONTRAST_GUARD_PASS10.json",
+    "pass10_ambient_contrast_guard_sha256": "e97a98b3b889ee68249c97f75eb8616713f98888b5432b84a3ff8d37adf338d0",
+    "sealed_v8_modified": false,
+    "pass7_mockup_modified": false,
+    "v9_created": false
+  },
+  "transform_contract": {
+    "encoder": "Pillow JPEG",
+    "pillow_quality_values": [85, 60, 35, 20],
+    "color_mode": "RGB",
+    "subsampling": "4:2:0 (Pillow subsampling=2)",
+    "optimize": false,
+    "progressive": false,
+    "decode": "Pillow JPEG decode to RGB",
+    "qa_storage": "decoded pixels saved as non-optimized RGB PNG",
+    "verification": "Each verifier recomputes the JPEG byte stream and decoded RGB pixels from the clean source."
+  },
+  "candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "extraction_receipt": "qa/pass11_recompression_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "78f8616bca4365dfb25e733444b01b8cb57d329bddf8fa6247fbefd462d717ea",
+    "quantitative_audit": "qa/pass11_recompression_quantitative_audit.json",
+    "quantitative_audit_sha256": "d83c6d93c0a0d4e06d6f9531ce01c2d3de28abb8c3d4aac073f8215a2ff62684",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS10_CUT_TIMES",
+    "fresh_clean_midpoint_reproduction": "16/16_PASS10_CLEAN_BYTE_IDENTICAL",
+    "variant_count": 5,
+    "frame_count": 80,
+    "operational_q60_420": {
+      "mean_encoded_jpeg_bytes": 91712,
+      "headline_token_recall_vs_clean": 0.99569,
+      "full_token_recall_vs_clean": 0.970333,
+      "lower_support_token_recall_vs_clean": 0.976472,
+      "numeric_token_recall_vs_clean": 0.958996,
+      "mean_rgb_psnr_db": 38.545696,
+      "mean_tolerant_luma_edge_recall": 0.993255,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_scenes_7_9_10_11_16_at_q60": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.942037,
+      "lower_support_token_recall_vs_clean": 0.946331,
+      "numeric_token_recall_vs_clean": 0.882119,
+      "structural_gate_scene_count": 0
+    },
+    "severe_q20_characterization": {
+      "headline_token_recall_vs_clean": 0.99569,
+      "full_token_recall_vs_clean": 0.954311,
+      "lower_support_token_recall_vs_clean": 0.954819,
+      "numeric_token_recall_vs_clean": 0.951323,
+      "mean_rgb_psnr_db": 33.716193,
+      "mean_tolerant_luma_edge_recall": 0.989097,
+      "structural_gate_scene_count": 0,
+      "critical_full_token_recall_vs_clean": 0.892398
+    },
+    "finding": "Large result headlines, result numbers, plots, matrices, and conclusion prose remain dominant through severe recompression. Fine axes, legends, citations, provenance, and small qualifiers soften first. No structural held gate appears. Recompression does not repair or authorize the failed candidate."
+  },
+  "method_only_evidence": {
+    "derivative_receipt": "qa/pass11_v8_recompression/receipt.json",
+    "derivative_receipt_sha256": "ddd37746c2587fad44e26d791d031ebffc7f1544ea291a7ca7a1a561d94e45c9",
+    "derived_frame_count": 70,
+    "sealed_v8_operational_q60_420": {
+      "full_token_recall_vs_clean": 0.973906,
+      "headline_token_recall_vs_clean": 0.979692,
+      "lower_support_token_recall_vs_clean": 1.0,
+      "numeric_token_recall_vs_clean": 1.0,
+      "mean_rgb_psnr_db": 33.368965,
+      "mean_tolerant_luma_edge_recall": 1.0,
+      "result_held_text_visual": "7/7",
+      "large_status_boundaries_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe_operational_q60_420": {
+      "full_token_recall_vs_clean": 0.964362,
+      "headline_token_recall_vs_clean": 0.982814,
+      "lower_support_token_recall_vs_clean": 0.954545,
+      "numeric_token_recall_vs_clean": 1.0,
+      "mean_rgb_psnr_db": 32.195655,
+      "mean_tolerant_luma_edge_recall": 1.0,
+      "scene_specific_gate_lines_visual_and_ocr": "7/7",
+      "result_held_text_visual": "7/7"
+    },
+    "severe_q20_characterization": {
+      "sealed_v8_full_token_recall_vs_clean": 0.963908,
+      "sealed_v8_result_held_text_visual": "7/7",
+      "pass7_full_token_recall_vs_clean": 0.955538,
+      "pass7_scene_specific_gate_lines_visual_and_ocr": "7/7",
+      "pass7_result_held_text_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "finding": "Sealed v8 and the pass-7 caption-safe proof retain every visually reviewed held gate and primary method label at the operational q60 stress. The same status hierarchy remains recoverable in the q20 characterization. No new pixel correction is evidenced."
+  },
+  "operational_acceptance_floor": {
+    "variant": "jpeg_q60_420",
+    "role": "packet-specific integration review floor, not a universal delivery standard",
+    "requirements": [
+      "Every complete RESULT HELD capsule and its words remain visually readable on 7/7 method scenes.",
+      "Every pass-7 scene-specific gate line remains visually readable and OCR-detectable on 7/7 scenes.",
+      "Large RESULT LOCKED, FRAME UNSTATED, OUTCOMES WITHHELD, and RESULT STATUS HELD boundaries remain primary or are paired with the scene-specific top gate.",
+      "No scientific qualifier, unresolved boundary, unavailable rung, or interpretation limit is carried only by fine chroma detail, a one-pixel line, a tiny axis label, a citation, or a footer.",
+      "Direct labels, card borders, arrows, line styles, markers, and status columns remain distinguishable after recompression.",
+      "Human full-sheet and full-resolution review remains decisive because OCR behavior across JPEG quality values is not guaranteed to be monotonic."
+    ]
+  },
+  "severe_stress_characterization": {
+    "variants": ["jpeg_q35_420", "jpeg_q20_420"],
+    "role": "diagnostic characterization only; not a mandatory acceptance threshold",
+    "reason": "These library quality values reveal which hierarchy layers fail first but do not represent a named service or prescribed delivery ladder."
+  },
+  "cumulative_regression_requirements": [
+    "Keep the pass-7 scene-specific gate lines above the bottom-quarter obstruction zone.",
+    "Keep pass-8 direct-label and non-hue redundancy.",
+    "Keep every semantic container inside the pass-9 inner-five-percent title-safe rectangle.",
+    "Meet the pass-10 operational 20-percent black-lift floor.",
+    "Rerun clean, recompressed, black-lift, grayscale/color-vision, obstruction, crop, and 360p full-sheet plus full-resolution review after any authorized layout change.",
+    "Do not satisfy recompression resilience by deleting qualifiers or making the result/status hierarchy less explicit."
+  ],
+  "disposition": {
+    "new_pixel_change_requested": false,
+    "reason": "Current sealed-v8 semantics and pass-7 scene-specific gates pass the operational q60 4:2:0 stress. The narrow evidence-backed action is a non-pixel recompression-resilience guard, not a cosmetic iteration.",
+    "worker_pixel_change_performed": false,
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "v9_created": false
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may apply this packet-specific q60 4:2:0 recompression floor cumulatively with the pass-7 caption-safe, pass-8 redundant-encoding, pass-9 title-safe, and pass-10 ambient-contrast contracts. This guard is not v9 and changes no sealed pixel.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

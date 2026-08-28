@@ -1,0 +1,130 @@
+{
+  "packet_id": "spin-worker-yui-pass2-blockers-20260808T032214K",
+  "checked_at": "2026-08-08T04:00:42+09:00",
+  "initial_packet_draft_at": "2026-08-08T03:22:14+09:00",
+  "extraction_receipt_replay_at": "2026-08-07T18:25:55.383330+00:00",
+  "chronology_note": "The extraction receipt was overwritten by a later deterministic replay after the initial audit draft. The exact-current packet was reverified after that replay; checked_at is the binding custody time.",
+  "scope": "read-only blocker deepening; no scientific result adjudication",
+  "video_reportable_now": false,
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "freeze_match": true,
+    "verdict": "HELD_PRESERVE_FAILED_CANDIDATE"
+  },
+  "blocker_1_post_run_independent_verdict": {
+    "state": "OPEN",
+    "result_artifact": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "bytes": 5530,
+      "mtime_utc": "2026-08-07T05:04:50.960787+00:00",
+      "embedded_independent_review_or_verdict_fields": []
+    },
+    "requirement_source": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A4_DRAFT.md",
+      "sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+      "anchor": "section 5, lines 139-147: A3.8 verdict-record review applies after the run"
+    },
+    "inherited_review_contract_source": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0",
+      "anchors": "sections 2-4: independent review before branch application, reviewer selection, first-opened ledger, byte/rule hashes, direct quotation, independent branch before comparison, REVIEW_INCOMPLETE on silence"
+    },
+    "verdict_named_file_census": {
+      "count": 5,
+      "matching_rule": "case-insensitive filename contains verdict",
+      "all_predate_result_artifact": true,
+      "files": [
+        {
+          "name": "KUN_VERDICT_REVIEW.md",
+          "sha256": "cede95f49611be5fe9cd7c6d2b65953171b18e084eb02c847e598f46a1772380",
+          "mtime_utc": "2026-08-06T15:10:44.175803+00:00"
+        },
+        {
+          "name": "RUN_kun_verdict.txt",
+          "sha256": "98ec787e6ce0d123e533b7b27b525d3551c895cbaf169d996e1b85601dfcbf4b",
+          "mtime_utc": "2026-08-06T15:11:10.927281+00:00",
+          "disposition": "pre-T4 transcript, not a post-run verdict record"
+        },
+        {
+          "name": "VERDICT_RECORD_COLUMNS_DRAFT.md",
+          "sha256": "10cea9a5e32acd721c029fc88abfb78534b3b16b94d559fe0958403e198184a4",
+          "mtime_utc": "2026-08-06T15:01:18.758593+00:00"
+        },
+        {
+          "name": "VERDICT_RECORD_FRAME_DRAFT.md",
+          "sha256": "d4357b1496bd3b7b0ab0c4a0745129d145d2f485936638117d208c86eb411032",
+          "mtime_utc": "2026-08-06T16:11:22.006427+00:00"
+        },
+        {
+          "name": "_KUN_VERDICT_REVIEW_BRIEF.md",
+          "sha256": "2e5219bbc835b46aa5d121eff3330f1435cb83774157aa5a2a0a303528249a2a",
+          "mtime_utc": "2026-08-06T15:01:57.247511+00:00"
+        }
+      ]
+    },
+    "post_result_documents_that_name_t4": [
+      {
+        "name": "_LANA_ZEROCONC_BRIEF.md",
+        "sha256": "eb7014ede1a8abe3535baefed5c118be44c4366cb0cd84f172e128dafd6aa61a",
+        "a3_8_mentions": 0,
+        "disposition": "science-pressure brief, not an independent verdict record"
+      },
+      {
+        "name": "LANA_ZERO_CONCORDANCE.md",
+        "sha256": "4ddac5f965d5fa4279b9590eaab831c48036146f35972cff319c23c54d187bcc",
+        "a3_8_mentions": 0,
+        "disposition": "science pressure, not the required independent verdict record"
+      },
+      {
+        "name": "storyboard_spin_parity.json",
+        "sha256": "7764d847e24dabb542504a8839e7016ae558587aea7786210c02b3220ef8f9f0",
+        "a3_8_mentions": 0,
+        "disposition": "presentation artifact, not an independent verdict record"
+      },
+      {
+        "name": "storyboard_spin_parity.json.pre-intro.bak",
+        "sha256": "2323505b9280cb9f3d26e22b01028d911230d4b9e2e0933834e455313b13e1ce",
+        "a3_8_mentions": 0,
+        "disposition": "presentation backup, not an independent verdict record"
+      }
+    ],
+    "exact_unblock_artifact": "A hash-bound post-run independent A3.8 verdict record that explicitly reviews T4_PAIRED_FLIP.json under the required opening-order and branch rules",
+    "minimum_unblock_record_fields": [
+      "reviewer selected by the frozen role rule or named by Duho, not chosen by the drafter",
+      "first-opened ledger showing the result artifact was read before the drafted record or coordinator summary",
+      "exact T4_PAIRED_FLIP.json sha256 and exact frozen A3.8 sha256",
+      "verbatim result-artifact lines or fields supporting the branch",
+      "independent branch stated before comparison with the drafter or coordinator reading",
+      "explicit disagreement handling; silence or refusal remains REVIEW_INCOMPLETE and clears no branch"
+    ],
+    "worker_action": "none; result remains quarantined"
+  },
+  "blocker_2_archive_frame": {
+    "state": "OPEN",
+    "review_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+    "review_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+    "verdict_anchor": "line 173: FRAME REVIEW: AGREES FRAME_UNSTATED",
+    "why_numbers_cannot_close_it": "The review states that data-level behavior is not a verbatim establishment of whether stored labels are as displayed or de-mirrored.",
+    "exact_unblock_evidence": "An authoritative, source-grounded statement establishing the recording or archival convention for the mirrored-direction fields, followed by the required review path",
+    "worker_action": "none; no inference from result values"
+  },
+  "workflow_holds": {
+    "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/WORKFLOW_CHECKLIST.json",
+    "stage_1b_prediction_freeze": "pending",
+    "stage_1_5_evidence_freeze": "pending",
+    "stage_5b_measurement": "pending",
+    "stage_6_receipts": "pending",
+    "stage_8_referee": "pending",
+    "stage_9_video": "pending",
+    "stage_10_landing": "pending"
+  },
+  "safe_current_output": {
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "frames": "proposal_frames/v8",
+    "status": "PASS_STATIC_PROPOSAL_HANDOFF_ONLY",
+    "result_values_allowed": false,
+    "candidate_or_tts_authorized": false
+  }
+}

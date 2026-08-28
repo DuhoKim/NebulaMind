@@ -1,0 +1,49 @@
+# V12 encoded QA — PASS_V12_ENCODED_QA_READY_FOR_THREE_SEAT_VISUAL_GATE
+
+- Candidate: `/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v12-local-20260813T1657K.mp4`
+- SHA-256: `060764c04ba095637cb484237064d501e097b1c326d7bf8b389a22292f96d9c2`
+- Checks: 38/38 PASS
+- Embedded subtitle stream: asserted, extracted, and payload/timing checked
+- Three-seat gate: not run here
+- YouTube caption serving: separate post-upload gate; not inferred
+
+## Checks
+
+- PASS — frozen_sha256_video
+- PASS — frozen_sha256_story
+- PASS — frozen_sha256_narration
+- PASS — frozen_sha256_text_contract
+- PASS — frozen_sha256_spec
+- PASS — frozen_sha256_timeline
+- PASS — frozen_sha256_srt
+- PASS — frozen_sha256_vtt
+- PASS — frozen_sha256_ledger
+- PASS — frozen_sha256_renderer
+- PASS — stream_topology_exactly_video_audio_subtitle
+- PASS — subtitle_stream_presence
+- PASS — subtitle_stream_codec_language_default
+- PASS — encoded_geometry_frames_duration
+- PASS — audio_stream_contract
+- PASS — caption_contract_source_srt
+- PASS — caption_contract_sidecar_srt
+- PASS — caption_contract_embedded_srt
+- PASS — caption_contract_source_vtt
+- PASS — caption_contract_sidecar_vtt
+- PASS — caption_contract_embedded_vtt
+- PASS — embedded_srt_exactly_matches_source_and_sidecar
+- PASS — embedded_vtt_exactly_matches_source_and_sidecar
+- PASS — srt_vtt_cross_format_payload_timing_identity
+- PASS — encoded_audio_duration_matches_candidate
+- PASS — lana_wpm_band_and_design_point
+- PASS — card01_verdict_by_approximately_29s
+- PASS — assertion_heading_rule_retired
+- PASS — closed_world_keep_lists
+- PASS — banned_v11_viewer_text_absent_from_renderer
+- PASS — generated_asset_usage_empty_for_quantitative_cards
+- PASS — generation_closed_and_spend_not_invented
+- PASS — card01_discarded_generated_still_not_used
+- PASS — no_95_4_endpoint_geometry_code
+- PASS — open_ended_95_4_gradient_named_and_used
+- PASS — subtitle_gate_present_in_story
+- PASS — no_upload_or_publication_authorization
+- PASS — encoded_reviewer_frame_set_complete

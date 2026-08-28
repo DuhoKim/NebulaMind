@@ -1,0 +1,89 @@
+{
+ "grid": {
+  "parities": [
+   1,
+   -1
+  ],
+  "pitches_deg": [
+   10.0,
+   17.5,
+   25.0,
+   32.5,
+   40.0
+  ],
+  "incls_deg": [
+   0.0,
+   25.0,
+   45.0,
+   60.0
+  ],
+  "snrs": [
+   2.0,
+   5.0,
+   10.0,
+   25.0,
+   50.0
+  ],
+  "seeds": [
+   0,
+   1,
+   2,
+   3,
+   4
+  ],
+  "n_images": 1000,
+  "image_side": 128
+ },
+ "A_identity": {
+  "bit_exact_count": 1000,
+  "of": 1000,
+  "value_equal_count": 1000,
+  "max_abs_chi_m_plus_chi": 0.0,
+  "mirror_mirror_bit_identical_all": true,
+  "w_deterministic_on_repeat": true
+ },
+ "B_signed_zero": {
+  "chi_symmetric_image": 0.0,
+  "chi_of_its_mirror": 0.0,
+  "neg_chi_bits": "0x8000000000000000",
+  "chi_mirror_bits": "0x0",
+  "bit_exact": false,
+  "value_equal": true
+ },
+ "C_broken_mirror": {
+  "transform": "affine reflection displaced 0.25 px from the grid centreline, bilinear interpolation (order=1)",
+  "abs_violation_min": 0.05824387708111445,
+  "abs_violation_max": 0.9439057500325632,
+  "n_cases": 4
+ },
+ "E_calibration": {
+  "tau_frozen_from": "99.5th percentile of |chi| on 240 armless-disk nulls (synthetic only)",
+  "tau": 4.198004717066903,
+  "overall_abstention_spirals": 0.922,
+  "overall_sign_accuracy_accepted": 0.9487179487179487,
+  "by_snr": {
+   "2.0": {
+    "abstention": 0.935,
+    "sign_accuracy_accepted": 0.6923076923076923
+   },
+   "5.0": {
+    "abstention": 0.945,
+    "sign_accuracy_accepted": 1.0
+   },
+   "10.0": {
+    "abstention": 0.92,
+    "sign_accuracy_accepted": 1.0
+   },
+   "25.0": {
+    "abstention": 0.905,
+    "sign_accuracy_accepted": 1.0
+   },
+   "50.0": {
+    "abstention": 0.905,
+    "sign_accuracy_accepted": 1.0
+   }
+  },
+  "dA_raw_mean": 0.0,
+  "dA_raw_note": "mean(sign(w(x))+sign(w(mirror(x))))/2 over all synthetic spirals \u2014 the raw estimator's own flip-imbalance before antisymmetrization"
+ }
+}

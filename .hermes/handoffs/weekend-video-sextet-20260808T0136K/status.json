@@ -1,0 +1,548 @@
+{
+ "marker": "WEEKEND_VIDEO_SEXTET_V1",
+ "coordinator": "Hwao/Fable",
+ "opened_kst": "2026-08-08T01:36+0900",
+ "window_ends_kst": "2026-08-10T07:00+0900",
+ "updated_kst": "2026-08-10T01:46+0900",
+ "direction": "USER_DIRECTION.md",
+ "order": "HWAO_WEEKEND_ORDER.md",
+ "narration": {
+  "engine": "nous",
+  "model": "gpt-4o-mini-tts",
+  "voice": "alloy",
+  "speed": 1.18,
+  "gateway_verified_kst": "2026-08-08T01:44+0900",
+  "gateway_probe": "HTTP 200",
+  "fallback": {
+   "engine": "edge",
+   "voice": "en-US-AndrewMultilingualNeural",
+   "rate": "+25%",
+   "use": "only if the nous gateway 403s; record the reason"
+  },
+  "calibration": "speed 1.18 reproduces the channel's shipped alloy pacing (15.59s reference); speed 1.0 reads ~19% long"
+ },
+ "single_writer": {
+  "seat": "integrator",
+  "owns": [
+   "tools/nm_paper_tts.py",
+   "tools/nm_paper_video.py",
+   "tools/nm_paper_narrate.py",
+   "tools/nm_paper_plot.py"
+  ],
+  "request_path": "integrator/requests/"
+ },
+ "lanes": [
+  {
+   "lane": "lane-spin-parity",
+   "paper": "spin-parity-census-20260805T1922K",
+   "state": "HELD_SOURCE_GATE",
+   "candidate": "lane-spin-parity/candidates/spin-parity-census-20260808T0149",
+   "qa": "HELD",
+   "note": "BLOCK_SUBSTANTIVE_RESULT_RENDER per lanes/spin/SOURCE_FREEZE.json; alloy MP4 preserved, not accepted"
+  },
+  {
+   "lane": "lane-mzr-census",
+   "paper": "mzr-archive-census-20260805T1857K",
+   "state": "UNPAUSED",
+   "candidate": "lane-mzr-census/candidates/mzr-archive-census-20260808T0155",
+   "qa": "PASS_MACHINE_ONLY",
+   "note": "siblings released — canary passed review AND Duho watch gate; inherit the accepted grammar; each lane needs its own SOURCE_FREEZE.json"
+  },
+  {
+   "lane": "lane-c41-uvlf",
+   "paper": "c41-trackb-shape1-uvlf-20260804",
+   "state": "UNPAUSED",
+   "candidate": "lane-c41-uvlf/candidates/c41-brightend-uvlf-archival-gap-20260808T0157",
+   "qa": "PASS_MACHINE_ONLY",
+   "note": "siblings released — canary passed review AND Duho watch gate; inherit the accepted grammar; each lane needs its own SOURCE_FREEZE.json"
+  },
+  {
+   "lane": "lane-c41-mzr",
+   "paper": "c41-trackb-shape2-mzr-20260804T1452K",
+   "state": "UNPAUSED",
+   "candidate": "lane-c41-mzr/candidates/c41-highz-mzr-calibration-anchored-20260808T0158",
+   "qa": "PASS_MACHINE_ONLY",
+   "note": "siblings released — canary passed review AND Duho watch gate; inherit the accepted grammar; each lane needs its own SOURCE_FREEZE.json"
+  },
+  {
+   "lane": "lane-fesc-zsweep",
+   "paper": "fesc-zsweep-merged-paper-20260804T1040K",
+   "state": "UNPAUSED",
+   "candidate": "lane-fesc-zsweep/candidates/fesc-zsweep-photon-budget-20260808T0200",
+   "qa": "PASS_MACHINE_ONLY",
+   "note": "siblings released — canary passed review AND Duho watch gate; inherit the accepted grammar; each lane needs its own SOURCE_FREEZE.json"
+  }
+ ],
+ "gates_closed": [
+  "upload",
+  "youtube visibility",
+  "public replacement",
+  "frontend/public/videos",
+  "paperVideos.ts",
+  "cockpit mutation",
+  "DB/SQL",
+  "deploy/restart",
+  "git commit/push/merge",
+  "browser automation",
+  "billing/provider",
+  "secrets",
+  "publication"
+ ],
+ "uncommitted_by_design": [
+  "tools/nm_paper_tts.py — alloy engine + speed calibration; git is a closed gate"
+ ],
+ "open_for_duho": [
+  "watch/listen the canary: /Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "three freeze decisions still block 3 of 5 papers (see WEEKEND_RUN_PLAN_20260808.md)"
+ ],
+ "recorded_not_acted": [
+  "USER_NOTE_GALAXY_SPIN_20260808T0145K.md — research pointers; new contract, not a video change"
+ ],
+ "hard_gates_raised": [
+  {
+   "lane": "lane-spin-parity",
+   "freeze_id": "spin-method-canary-pass1-20260808T0153K",
+   "video_reportable_now": false,
+   "decision": "BLOCK_SUBSTANTIVE_RESULT_RENDER; ALLOW_METHOD_ONLY_CANARY",
+   "blockers": [
+    "STATUS_RESULT_MISMATCH — no post-run independent A3.8 verdict record for T4_PAIRED_FLIP.json",
+    "FRAME_UNSTATED — KUN_FRAME_REVIEW independently agrees; no sky/dipole/parity/cosmological representation",
+    "WORKFLOW_STATUS_NOT_RELEASE_READY",
+    "LATER_FREEZE_EXCLUDES_NEW_POINTERS"
+   ],
+   "consequence": "numeric-guard PASS is NOT semantic authorization; my earlier PASS was corrected to HELD",
+   "audio_contract": "silent; narration/TTS not authorized for this lane"
+  }
+ ],
+ "correction": "A numeric-source-guard PASS was initially reported as a QA PASS 'cleared for watch/listen'. That conflated machine verification with semantic authorization and has been corrected in the candidate's QA.md; the superseded verdict is retained alongside it.",
+ "standing_note": "Narration-only recuts do not answer Duho's scientific-presentation complaint. The integrator stays alive to consume paper-Yui visual requests and build only source-authorized visual canaries.",
+ "integrator": {
+  "seat": "yui-video-integration",
+  "tmux_session": "yui-video-integration",
+  "delegation": "integrator/DELEGATION.md",
+  "workspace": "integrator/candidate-workspace",
+  "may": [
+   "edit candidate-workspace COPIES of renderer/storyboards",
+   "consume paper-Yui requests",
+   "produce silent versioned visual canaries"
+  ],
+  "may_not": [
+   "edit repo tools/",
+   "invoke TTS",
+   "touch public/shared MP4 aliases",
+   "Git",
+   "publish"
+  ],
+  "first_task": "method-only silent visual canary for spin-parity, strictly inside allowed_scope",
+  "launched_kst": "2026-08-08T02:02+0900"
+ },
+ "narration_pass": {
+  "state": "COMPLETE",
+  "note": "4 lanes recut to alloy; spin held by source gate. Narration-only recuts do NOT answer the scientific-presentation complaint — that is the integrator's work."
+ },
+ "writer_ownership": {
+  "record": "WRITER_OWNERSHIP.md",
+  "sustainer": {
+   "session": "yui-video-sustainer",
+   "manages": [
+    "spin",
+    "mzr-census",
+    "brightend",
+    "mzr-anchor",
+    "fesc"
+   ],
+   "integration_removed": true,
+   "reason": "Duho delegated that seat to Hwao; two directors were pasting into one composer"
+  },
+  "integrator": {
+   "session": "yui-video-integration",
+   "director": "Hwao",
+   "scope": "integrator/ only"
+  },
+  "controller_py": "ran once 01:53-02:00 and exited; not a live writer"
+ },
+ "overhaul": {
+  "order": "HWAO_OVERHAUL_ORDER.md",
+  "direction": "USER_DIRECTION_OVERHAUL_20260808T1258K.md",
+  "trigger": "Duho watched spin-method-canary-20260808T0204 (SHA-256 2b1db497…, 114.0s, video-only): 'no audio?' then 'still without audio, it looks almost same as before'. PROVENANCE CORRECTED 13:25 KST — earlier records wrongly named 0648, which is a later supplemental iteration.",
+  "state": "FROZEN — siblings paused, spin overhaul canary is the only active build",
+  "audio": "Alloy narration AUTHORIZED for method-only claims; reportability unchanged (false)",
+  "preserved_baselines": [
+   "spin-method-canary-20260808T0648",
+   "mzr-census-method-canary-20260808T1254",
+   "fesc-method-canary-20260808T1259"
+  ],
+  "siblings": "PAUSED until the overhaul canary passes Sextet review AND Duho watch/listen",
+  "writer": {
+   "session": "yui-overhaul-integrator",
+   "route": "~/.local/bin/yui (openai-codex)",
+   "transferred_from": "yui-video-integration (Fable limit reached; revoked, idle, read-only)"
+  },
+  "blocker_closed": "Tori preflight: DELEGATION.md still forbade all TTS, contradicting the order and lanes/spin/STATUS.json. Reconciled before the build; narration authorized for spin method-only ONLY.",
+  "primary_rejected_artifact": "spin-method-canary-20260808T0204",
+  "supplemental_evidence": "spin-method-canary-20260808T0648"
+ },
+ "seat_availability": "SEAT_AVAILABILITY.md",
+ "post_render_review": {
+  "order": "reviews/POST_RENDER_REVIEW_ORDER.md",
+  "trigger": "stable MP4 in integrator/canaries/spin-method-overhaul-canary-* (size unchanged across >=20s recheck)",
+  "seats": {
+   "kun": "kun-codex-overhaul",
+   "tori": "tori-overhaul"
+  },
+  "mode": "APPEND a labelled second section; preserve the existing packets (both correctly describe the rejected baseline)",
+  "must_remeasure": "delivered wpm from the NEW encode - the 110.2 figure belongs to the superseded, discarded master",
+  "judge_against": "HWAO_NARRATIVE_CORRECTION.md as well as the original order: mirror as PEAK, gates as discipline not tickets, close re-poses the question",
+  "dispatch": "Hwao dispatches on the watcher signal after confirming each seat is idle; no automated paste into a live pane"
+ },
+ "gate_breach": {
+  "raised_by": "Tori post-encoded audit",
+  "at_kst": "2026-08-08T13:57:59+0900",
+  "what": "Hwao copied candidate + 3 other files into cockpit/videos/_weekend-canaries to serve over tailnet",
+  "gate": "public/shared MP4 + cockpit mutation (HWAO_OVERHAUL_ORDER §7)",
+  "contained_kst": "2026-08-08T14:05+0900",
+  "method": "moved (not deleted) to reviews/tori-overhaul-evidence/hwao-gate-containment-20260808T1405/",
+  "record": "reviews/HWAO_GATE_BREACH_CONTAINMENT.md",
+  "authoritative_candidate": "untouched, hash re-verified",
+  "status": "CONTAINED - Tori to recheck; accept/hold still blocked",
+  "tori_final": "PASS WITH INCIDENT; idempotent retry appended a 14:23 single-route confirmation, no duplicate verdict"
+ },
+ "amendments_40804f86": {
+  "lana": "mirror-as-PEAK DELIVERED; 115 delivered wpm; narrative diagnosis survives provenance correction",
+  "goru": "visual-state timeline delivered; state 11 close-card hold noted",
+  "kun": "PASS WITH CAVEAT — audio decodes, no clipping (~2.3 dB headroom), 115.0 wpm delivered-span (112.8 full-container), A/V delta +0.001s, longest near-unchanged run 6.5s (<8s), mirror is genuine animation not crossfades; Hwao's 101.5 wpm not reproducible (wrong word count AND denominator)",
+  "tori": "PASS (frames) 318/318 OCR zero forbidden hits + PASS WITH INCIDENT (containment): staged payloads byte-identical, _weekend-canaries absent, 0 hits under HermesOps/working+live frontend/public, old cockpit route 404, 11/11 manifests and 17/17 freeze files match, single private route on 8765",
+  "all_four_landed": true
+ },
+ "board_position": {
+  "candidate": "40804f86…",
+  "verdict": "ACCEPTED WITH INCIDENT (artifact)",
+  "science": "UNCHANGED"
+ },
+ "final_verdict": {
+  "file": "HWAO_FINAL_VERDICT_c5e7deed.md",
+  "issued_kst": "2026-08-09T01:20+0900",
+  "candidate": "spin-method-overhaul-canary-20260808T1959K",
+  "sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240",
+  "verdict": "ACCEPTED (Duho: 'accept it')",
+  "seats": {
+   "lana": "PASS (decisive boundary)",
+   "goru": "PASS 100% graphics",
+   "kun": "PASS 115 wpm, -20.31 LUFS",
+   "tori": "PASS 62 cells, no forbidden content",
+   "yui": "self-QA"
+  },
+  "closes": "Duho's original first request — introduction + scientific presentation structure",
+  "predecessor": "40804f86 ACCEPTED WITH INCIDENT, preserved with its incident record"
+ },
+ "video_reportable_now": false,
+ "run_state": {
+  "phase": "SPIN_CANARY_ACCEPTED",
+  "siblings": "UNPAUSED",
+  "science": "unchanged — video_reportable_now false"
+ },
+ "blocker": {
+  "status": "CLEARED 2026-08-08T23:58 KST",
+  "root_cause": "login was run on Duhoui-MacBookPro-6; the work runs on Duhoui-MacStudio. Two hosts, two separate ~/.hermes/auth.json. Website login also does not reach the CLI grant.",
+  "verified": "logged_in=True, is_paid=True, tool_gateway_entitled=True, $99.37 usable, live alloy probe HTTP 200 with audio bytes",
+  "note": "`hermes portal login` exits 0 and prints 'Portal setup complete' even when the login fails — trust only the auth.json timestamp"
+ },
+ "sibling_board": {
+  "as_of_kst": "2026-08-09T14:23+0900",
+  "gate": "Tori actual-frame geometry sweep (decisive)",
+  "lanes": {
+   "mzr-census": {
+    "hash": "d6014ac0",
+    "dir": "20260809T0320K",
+    "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+    "frames_counted": 6899
+   },
+   "brightend": {
+    "hash": "c772e643",
+    "dir": "20260809T1345K",
+    "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+    "frames_counted": 6836
+   },
+   "mzr-anchor": {
+    "hash": "c892f3fa",
+    "dir": "20260809T1406K",
+    "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+    "reason": "current frozen candidate, supersedes 973daba3; disk==freeze; 0 curve icons (text-level only)",
+    "superseded": {
+     "hash": "973daba3",
+     "dir": "20260809T0245K",
+     "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY"
+    },
+    "note": "1300K was this same build (c892f3fa) mid-write, not a separate candidate",
+    "frames_counted": 6586,
+    "tori_packet_sha": "d0fd3bb2f61d1644f135e8025e2e362ff1b339e73641c2bc8292ea26b6cb0f1b",
+    "geometry": "global PASS — no readable order/crossing; anchor glyphs are non-result object icons; chain arrows are declared method sequence only",
+    "audio": "-20.9 LUFS / -2.3 dBFS; spec.json sentences 22/415 match timeline",
+    "still_unauthorized": "STATUS PENDING/source_freeze_in_progress; SOURCE_FREEZE absent — no result authorized",
+    "directory_caveat": "post-freeze _tmp_kun_rebuild_20260809T1452K written INSIDE the frozen dir by Hwao's defective instruction; MP4 re-hashes exact; moved to containment/, see HWAO_INCIDENT_FROZEN_DIR_INTRUSION.md"
+   },
+   "fesc": {
+    "hash": "01a4249b",
+    "dir": "20260809T1501K",
+    "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+    "integrity": "disk == POST_ENCODE_FREEZE == Tori's bound target; duration 236.739s; 0 curve icons",
+    "supersedes": [
+     "acfb7fee (HOLD, 8 crossing curves)",
+     "4c811599 (curves fixed, 2 presentation defects)"
+    ],
+    "hwao_independent_frame_check": {
+     "rail": "FIXED — contradictory floating fill removed entirely; active stage now marked by a pill on the stage itself (MOTIVATION at 5.052s, SOURCE at 118.0s). Contradiction is no longer representable.",
+     "collision": "FIXED — pill resized and centred between the stroke groups; no text over graphics",
+     "caveat": "2 frames of ~7,100; Tori's full decode is decisive"
+    },
+    "tori_brief": "TORI_FESC_01A4249_SWEEP_BRIEF_20260809T1538K (coordinator authority: HWAO_FESC_PRESENTATION_FIX_ORDER.md; user continuation: USER_GO_NEXT_AUTO_SEQ_20260809T1530K)",
+    "frames_counted": 7102,
+    "tori_packet_sha": "d849df0827133ff81cf0c446f472b2158d3c5ab780fae4a0e328b34617e44fb5",
+    "rail_audit": "473/473 uniform 2-fps frames: one truthful dot+label+focus cue, zero second positions, zero inter-stage fill",
+    "collision": "PASS — 5.052 pill clears each glyph by 103 px",
+    "geometry": "8 paired-stroke occurrences + 24 animation-phase frames all equal-height/separated/nonintersecting/nonordering",
+    "audio": "113.545 WPM (in 105-125 band), max A/V delta 0.015333s, -20.2 LUFS/-2.3 dBFS",
+    "nonblocking": "synthesis receipt retains old 0327K label/spec/path; all 22 current text hashes and rebased audio byte hashes match and exact encoded audio/sync verify"
+   }
+  },
+  "coverage": "27,423 frames decoded through EOF (ffprobe -count_frames, nb_read_frames==nb_frames); 1,828 OCR @2fps; 88 sentence midpoints + 36 section ends; 124 vision-inspected; 4/4 playbacks exit 0",
+  "integrity": "all four disk==freeze==build receipt; served routes exact; protected/public/Git gates closed",
+  "excluded": "none — the 1300K exclusion was resolved: it is 1406K/c892f3fa, now frozen",
+  "tori_packet_sha": "e31551ddd74489b97aaa88720683459324035b8f09d8c2269f44846facb3d389",
+  "frame_count_correction": {
+   "kst": "2026-08-09T14:3x+0900",
+   "was": "27,420 (fesc 7,100 / brightend 6,837 / mzr-anchor 6,584)",
+   "now": "27,423 (fesc 7,102 / brightend 6,836 / mzr-anchor 6,586)",
+   "effect": "none on verdicts or geometry findings",
+   "ledger": "reviews/TORI_CURRENT_SWEEP_FRAME_COUNT_CORRECTION_20260809.json"
+  },
+  "tori_packet_sha_superseded": "09f0418492de095d1ca1e737c5746e1b486b041cdf1b739020016e182c2b85e3",
+  "stale_verdict_amendment": {
+   "kst": "2026-08-09T14:36+0900",
+   "found_by": "Lana (relay was unsent in her pane)",
+   "lesson": "re-read freeze status at verdict time; an exclusion for 'mid-build' expires in minutes"
+  },
+  "hwao_incident": {
+   "kst": "2026-08-09T14:56+0900",
+   "what": "instructed Kun to use '<lane-dir>/_tmp_*' without excluding the frozen candidate dir",
+   "found_by": "Tori freshness check",
+   "effect": "directory immutability qualified; MP4 byte-exact; verdict intact",
+   "containment": "moved never deleted"
+  },
+  "watcher_defect": {
+   "what": "watch_fesc baselined the 14:20 candidate as pre-existing because it armed at ~14:25",
+   "effect": "would never have fired; found by direct check",
+   "fixed": "watcher retired"
+  },
+  "watcher_lesson": {
+   "what": "1501K emitted 5 distinct hashes in 17 min (bd4f723d, d0dd0327, 8e4ee9ee, b7802f8e, 01a4249b)",
+   "wrong_signal": "60s byte-stability — my watch_fesc2 hashed the 2nd, found no freeze, and exited",
+   "right_signal": "POST_ENCODE_FREEZE.json presence is the done-marker; absent freeze means NOT READY, not FAILED",
+   "consequence": "a hold must keep watching, never exit"
+  },
+  "all_four_siblings_pass": {
+   "kst": "2026-08-09T15:55+0900",
+   "note": "method-only local canaries; NOT publishable and NOT result-bearing"
+  },
+  "still_gated": [
+   "SOURCE_FREEZE.json absent on all four siblings — no lane may state a result",
+   "video_reportable_now=false on every lane",
+   "no upload/publication/public MP4/paperVideos.ts/cockpit/DB/deploy/Git"
+  ]
+ },
+ "two_hour_track": {
+  "order": "HWAO_TWO_HOUR_SIBLING_ORDER_20260809T1620K.md",
+  "sha16": "8a062877a34d8e99",
+  "window": "16:18 start / snapshots 16:38,17:18,17:58,18:18 / earliest finalization 18:18 / hard stop 18:33",
+  "seats": {
+   "Goru": "authors proposed freezes",
+   "Lana": "science adjudication",
+   "Kun": "adversarial/BLOCK by default",
+   "Tori": "custody+receipts+frame sweeps",
+   "Yui": "sole candidate writer — building NOTHING until a lane clears"
+  },
+  "clearance_rule": "freeze flips video_reportable_now only with 3 independent passes (Lana science, Kun adversarial, Tori provenance); author Goru cannot self-clear; Hwao cannot clear alone",
+  "default_outcome": "fail-closed is a SUCCESS — absent freeze + precise account of what is missing",
+  "detector_gap": "goru-agy renders a braille spinner, not 'esc to interrupt'; my busy-check read him as idle while working — patched, would otherwise paste into a live pane",
+  "snapshot_1638": {
+   "active_source_freeze_count": 0,
+   "outcome": "FAIL-CLOSED HOLDING — the designed successful outcome",
+   "hwao_independent_snapshot": "agrees with Tori: 4/4 freezes ABSENT, 4/4 passing candidates byte-exact, gates closed, protected manifests == baseline",
+   "lanes": {
+    "fesc": "blocker: no active source bundle/primary quotes; deficit/crossing framing circular unless fully conditional",
+    "brightend": "blocker: no active bundle/quotes; stale historical reportability + FlagshipStudies/public-metadata clearance and count mismatches",
+    "mzr-anchor": "PROPOSED then BLOCKED by Tori custody — see block_reasons",
+    "mzr-census": "blocker: no active bundle/quotes; strict-scope historical flag and 178-21=157 eligibility boundary under fresh adjudication"
+   },
+   "mzr_anchor_block": {
+    "verdict": "BLOCK_INSTALLATION_PENDING_CORRECTED_IMMUTABLE_BYTE_MANIFEST",
+    "positives": "all 12 named originals exist and re-hash to recorded values today; all 11 unique frozen copies re-hash; duplicate PDF byte-identical; NO historical reportability/verdict/frozen-claim/disposition field imported; proposal stayed video_reportable_now=false",
+    "defects": [
+     "SOURCE_BYTES_INITIAL inventories only 4 of 12 source paths",
+     "proposal pre-filled a FUTURE frozen_at=16:38 — a freeze asserting it was frozen at a time that had not happened",
+     "references mutable originals without binding the immutable 11-copy path+size+hash manifest"
+    ],
+    "why_it_could_not_have_unlocked_a_result": "its own forbidden scope excludes counts/yield/bins/sign/evolution"
+   }
+  },
+  "final": {
+   "stamped_kst": "2026-08-09T18:18",
+   "outcome": "FAIL_CLOSED_SUCCESS_ALL_FOUR_NO_RESULT_AUTHORIZATION",
+   "active_source_freeze_count": 0,
+   "result_bearing_candidates_built": 0,
+   "proposal_generations": 4,
+   "final_v4_hashes": {
+    "fesc": "0426d482",
+    "brightend": "0849f37b",
+    "mzr-anchor": "44b676fd",
+    "mzr-census": "2962340b"
+   },
+   "v4_passes": "scalar wrappers 0 violations; version consistency; 54/54 original hashes; manifest+copy hash and size; real 0444/0555 seal, zero symlinks (Hwao independently corroborated: read-only counts 20/9/13/16 = copies+manifest)",
+   "v4_remaining_blocks": [
+    "no receipt-bearing seal operation",
+    "08:33:48 manifest creation not related to 09:01:26 seal/freeze in JSON",
+    "source-path receipts still historical-or-initial boilerplate"
+   ],
+   "import_boundary": "HELD — only 54 re-verified source path/hash facts crossed; no historical decision/verdict/boundary/permissive-reportability/claim crossed, including mzr-anchor's true",
+   "gates_at_close": "git HEAD ebe9c7f == baseline, cached diff empty, paperVideos e80eb764 == baseline, no accepted_by_duho, nothing uploaded/published/replaced/deployed",
+   "tori_final_packet": "TORI_SIBLING_ROLLOUT.md:302, SHA 2b8f2c6082ddaba788c4178ce52015141305931fb631c25be089673c6eb8ae81 (Hwao verified)",
+   "hwao_finalization": "HWAO_TWO_HOUR_FINALIZATION_20260809T1818K.md (ef1134c48648eb25)",
+   "helpers_stood_down_kst": "18:25",
+   "owed_to_duho": [
+    "30-vs-34: digest partitions 112=67+31+4+10; neither number appears; both authors must declare categories",
+    "FlagshipStudies.tsx says no flagship has human clearance while record shows Duho cleared 2026-08-05 — gated, prepared not applied",
+    "four method-only candidates servable in place for private watch/listen"
+   ],
+   "next_if_continued": "V5: seal receipt, manifest_created_at->sealed_at relation, per-path exact provenance; then fresh Lana+Kun+Tori review"
+  }
+ },
+ "why_study_intro_track": {
+  "reopened_by": "Duho after watching c5e7deed: 'it still lacks introduction about why we study this subject'",
+  "diagnosis": "every prior rewrite answered 'why is this measurement hard' (lane corpus = method); Duho asks 'why does this question matter' (stakes live in the literature)",
+  "spin": {
+   "order": "HWAO_SPIN_WHY_INTRO_ORDER_20260809T2125K.md",
+   "sha16": "0be10a174076b9b1",
+   "status": "IN FLIGHT — Lana source-grounding first, nobody scripts before her packet",
+   "gate": "earlier ACCEPTED verdict on c5e7deed is NOT authority that the intro works",
+   "trap": "black-hole-universe cosmology is Duho's PERSONAL interest, not a corpus frontier — never a mainstream driver; label it if used"
+  },
+  "four_lanes": {
+   "order": "HWAO_WHY_STUDY_INTRO_FOUR_LANES_20260809T2131K.md",
+   "sha16": "2cdc44db6710c106",
+   "decision": "DUHO CONFIRMED 2026-08-09: validate spin first, hold the four",
+   "lana_research": "proceeding in parallel — useful regardless, blocks nothing",
+   "yui": "HOLD — no build until spin is validated by Duho",
+   "trap": "for all four the natural motivation IS a result claim (fesc shortfall / brightend JWST excess / mzr-anchor evolution / mzr-census inadequacy); must be conditional throughout",
+   "mzr_census_note": "data-informatics lane, not physics — do not force a physics motivation"
+  },
+  "unchanged": "four siblings fail-closed, SOURCE_FREEZE absent; current private cockpit links stay live until replacements pass"
+ },
+ "cockpit_copy_0034_incident": {
+  "what": "Hwao copied exact candidate 4d230cc0 to cockpit/videos/spin-parity-census-narrated-20260810T0034.mp4 at 00:34 KST",
+  "authority": "Duho direct verbatim: 'publish it to the cockpit so i can watch' — final watch/listen gate",
+  "tori_detection": "correctly flagged as a fail-closed gate breach at 00:39 under a charter declaring the cockpit root closed",
+  "tori_correction": "self-corrected after pane read-back; reclassified as a concurrent Duho-directed scope override for Hwao, not a Tori action and not evidence of Tori clearance",
+  "hwao_error": "NOT the copy — the failure was not telling Tori at the moment of acting. An authorization Hwao holds is not one the auditing seat can see; she had to reconstruct it from pane history.",
+  "verified": "exact-byte both ends; cockpit 34->35 (+1); nothing overwritten; published.json untouched (4abe62fb, 08-08 00:24); no Git/frontend/Baseline/upload/accepted_by_duho; reversible by deleting one file",
+  "standing": "Tori exact-hash regate remains fail-closed HOLD on its own merits; no acceptance conferred; verdict turns on provenance/presentation findings, not the authorized copy",
+  "disclosure": "HWAO_DISCLOSURE_COCKPIT_COPY_0034_20260810T0041K.md (1891068f5960486d)"
+ },
+ "overnight_quality_track": {
+  "order": "HWAO_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md (4f10d11ffb9696f7)",
+  "spin_v5": {
+   "verdict": "PASS_PROVENANCE_RECEIPT_CORRECTION — sole self-description HOLD CLOSED",
+   "how": "packet-only recheck; MP4 rehashed unchanged 4d230cc0 before and after; V4 tree 210 files byte-preserved",
+   "key": "V4 scalar PRESERVED not silently replaced — raw_frames_submitted_to_ffmpeg=ceil(224.21739583333334*30)=6727 vs encoded 6726, both true about different operations",
+   "opens": "NOTHING — no rollout, release or acceptance gate; Duho watch remains final"
+  },
+  "blocker_goru": {
+   "what": "overnight sweep rendered as an Artifact, never written under the handoff root — confirmed genuinely absent",
+   "why_it_matters": "unreceiptable; Yui may not act on it; same failure mode as Lana's typed-but-unsent relay — real work invisible to the pipeline",
+   "finding_at_risk": "brightend i04: 15.9s reading time vs 6.9s dwell — viewer gets under half the time needed to read the card",
+   "fix": "dispatched 01:10 — export to reviews/GORU_OVERNIGHT_QUALITY_SWEEP_20260810T0055K.md with full-SHA candidate bindings, divergence table with per-divergence recommendation, dwell-vs-reading table, max unchanged run"
+  },
+  "failure_yui": {
+   "what": "build.py invoked without --preview/--render after V5 closure; exit 2, no MP4",
+   "verified": "zero new MP4s since 01:05 baseline; failed command, not a candidate; no regate triggered",
+   "fix": "dispatched 01:10 — re-run correctly in a NEW versioned workspace, never overwrite passing candidates"
+  },
+  "custody": "five source and five cockpit hashes match; cockpit count 35; published.json 4abe62fb; paperVideos.ts e80eb764; Git HEAD/index unchanged, zero cached diff",
+  "held": "sibling why-study intro rollout remains held pending Duho's own watch of the spin intro",
+  "determinism_proven": {
+   "what": "Yui's corrected build.py --render re-rendered spin into a versioned workspace and produced BYTE-IDENTICAL output",
+   "hash": "4d230cc0 / 25,486,290 B — identical to the passing source and the live cockpit copy",
+   "why_it_matters": "deterministic reproducibility of the spin pipeline, proven rather than assumed; nobody had established this",
+   "verdict": "Tori PASS_REPRODUCIBILITY_COPY_NOT_A_NEW_CANDIDATE — no regate, no replacement, no gate change",
+   "receipt": "Yui BUILD_INVOCATION_CORRECTION_RECEIPT_V1.json 86104eee, self-declared reproducibility copy not a candidate"
+  },
+  "midwrite_handled_correctly": {
+   "what": "a watcher saw transient 7,340,080 B / 50c50233 at 01:13:54 while --render was still writing (start 01:13:35, final mtime 01:14:56)",
+   "classification": "never frozen or requested; not an artifact",
+   "significance": "FOURTH mid-write hashing incident today (Hwao on mzr-census, Hwao's fesc watcher across 5 hashes in 17 min, Tori on Goru's proposals) and the FIRST caught and classified correctly by design rather than after a false report"
+  },
+  "goru_sweep_parked": {
+   "decision": "broad sweep STOPPED after 3 rounds; one narrow verifiable task offered instead",
+   "rounds": [
+    "V1 HOLD receipt-incomplete",
+    "V2 HOLD self-description-incomplete",
+    "V2 addendum: five motion-evidence hashes stated as 'receipted in JSON' are all false vs both JSON and at-rest values"
+   ],
+   "why_stopped": "a report carrying hashes that correspond to nothing cannot be trusted without independent recomputation, which costs more than redoing the measurement",
+   "tori_self_correction": "retracted her own 'matrix/WPM policy wholly absent' claim after finding the unmanifested companion Markdown; amended not replaced — hold unchanged and stronger",
+   "hwao_contribution": "my 'bring the siblings up to spin' framing, given when correcting Goru's inverted majority rule, pulled toward the HELD rollout even though I flagged the hold in the same message; Tori caught the drift",
+   "narrow_task": "actual PAINTED word count of card i04 in the four siblings, from OCR of encoded frames, extraction command recorded, hashes computed at citation time"
+  },
+  "i04_status": "UNPROVEN LEAD — pattern across all four siblings is suggestive (dwell near half the apparent reading need) but magnitudes derive from counts that included visual_action instruction prose and internal tokens; not actionable",
+  "held_unchanged": "sibling why-study intro rollout remains HELD pending Duho's own watch; no crew verdict converts into his validation",
+  "kun_audit": {
+   "file": "reviews/KUN_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md (01:01)",
+   "audio": "LUFS brightend -20.0 / fesc -20.2 / mzr-anchor -20.9 / spin -21.3 / mzr-census -21.6 — 1.6 LU spread, audible across a series; no clipping, all peak ~-2.3 dBFS; mono AAC 48kHz from 0",
+   "gaps": "routine card-seam silences; mzr-census main offender; fesc ~4.6-5.0s at 33.369/54.678/111.179/134.094/201.270 — recommend capping routine seams at 3.5-4.0s, keeping deliberate breath pauses",
+   "legibility": "PASS basic readability; HOLD for polish on status/boundary cards; contact sheets generated per lane",
+   "spin_guardrails": "PASS on the six stop conditions against the ENCODED frames — conditional stakes, no asserted axis/direction/value/significance, Longo conditional, Land not settled"
+  },
+  "spin_two_seat_validation": "Tori presentation PASS + Kun encoded-guardrail PASS — two independent seats on the encoded artifact; still NOT Duho validation",
+  "v3_stop": {
+   "verdict": "PARK_GORU_READING_TIME_LEAD_UNPROVEN_AFTER_V3",
+   "deepest_defect": "all 29 spin cards emitted 0 words / 0.0s / empty text from a NONEMPTY 448-record OCR source — the parser could not map frame names like 0001.jpg to 2fps times and EMITTED ZEROS INSTEAD OF FAILURE",
+   "why_that_matters": "a failed measurement reported as a result; zero is a plausible-looking number that actually means 'could not measure'",
+   "second_defect": "sibling rows counted FULL-FRAME OCR including persistent chrome, header, banner, nav rail, captions, repeated state and OCR gibberish — total on-screen text, not NEW reading load",
+   "hwao_underspecification": "my order said 'dwell time per card against actual reading time' without ever defining reading load; Tori's morning step defines persistent vs newly-introduced vs caption/prior-state first",
+   "morning_next": "define card reading load, bind renderer draw calls to exact frame/OCR, then apply a disclosed reading policy"
+  },
+  "night_action": "mzr-census audio-only pass dispatched 01:31 — normalise loudness toward the series, cap routine card-seam silence, NEVER reduce any card's on-screen time (reading time is unproven); new versioned candidate as a concrete A/B against d6014ac0",
+  "yui_scope_block": {
+   "what": "CROSS_LANE_SERIES_DECISIONS_V1.md (b05d31d3) ordered all five candidates, used parked Goru V2 reading leads, introduced visual boundary preroll / caption suppression / series-wide 0.75-1.4s pauses, and widened Kun's LRA/peak targets; renderer diff already contained display_state/caption/preroll changes",
+   "root_cause": "HWAO SEQUENCING ERROR — I issued a broad five-lane order at 00:56, narrowed to census-audio-only at 01:31, and never said the second revoked the first; Yui was mid-plan on a scope she had no way to know was withdrawn",
+   "fix": "explicit supersession dispatched 01:37; cross-lane doc PARKED not deleted; visual changes to be reverted out of the census work; audio-only means audio-only",
+   "stop_condition": "if it drifts again, build work stops for the night and the audio question goes to morning with Kun's measurements intact"
+  },
+  "night_scorecard": {
+   "delivered": [
+    "spin V5 provenance hold CLOSED (Tori)",
+    "spin pipeline determinism PROVEN — byte-identical re-render at 4d230cc0",
+    "Kun encoded-guardrail PASS on spin's six stop conditions — second independent seat on the encoded artifact",
+    "Kun audio audit: 1.6 LU spread measured across the series, no clipping, per-lane seam-gap timings",
+    "Kun legibility: PASS basic readability, HOLD for status/boundary-card polish",
+    "mid-write transient correctly classified as not-an-artifact — first time by design"
+   ],
+   "parked": [
+    "Goru reading-time sweep after 3 rounds — receipts, then self-description, then a parser emitting zeros instead of failing",
+    "i04 / 36-card magnitudes: UNPROVEN LEADS, pattern suggestive, numbers not evidence"
+   ],
+   "blocked": [
+    "Yui build invocation (harmless, exit 2, no MP4)",
+    "Yui cross-lane scope drift"
+   ],
+   "unchanged": "five cockpit links exact, cockpit 35 mp4s, published.json 4abe62fb, no candidate overwritten, no gate/rollout/acceptance"
+  },
+  "closed": {
+   "kst": "2026-08-10T01:44",
+   "verdict": "FAIL_CLOSED_WITH_ACTIONABLE_AUDIT_RESULTS_NO_NEW_QUALITY_CANDIDATE",
+   "handoff": "reviews/TORI_OVERNIGHT_VIDEO_QUALITY_MAJOR_HANDOFF_20260810T0144K.json (1ea844e4)",
+   "new_quality_candidate": "NONE",
+   "build_work": "STOPPED — custody-only checks continue, no restart",
+   "waiting_on_duho": "his own watch of the spin why-study intro — sole gate on the sibling rollout"
+  }
+ }
+}

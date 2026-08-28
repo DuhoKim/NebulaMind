@@ -1,0 +1,96 @@
+{
+  "timestamp_kst": "2026-08-09T17:43:37+09:00",
+  "authority": [
+    "HWAO_DEEPENING_ORDER_HISTORICAL_FREEZES_20260809T1628K.md",
+    "HWAO_RULING_DERIVATION_RECEIPTS_20260809T1736K.md"
+  ],
+  "proposal_set": "proposal_v3",
+  "stable_proposal_hashes": {
+    "fesc": "ae227f8396892ffbb68d5570bdfa07e812a99681857a9256492f0a03af9100c6",
+    "brightend": "5e8643dd39940cd3bf8efe404159c99ccb7e1d7c87d7cb52e3e9709f7c0f6763",
+    "mzr-anchor": "76147901d5ff6dc41da39d3c44040587fa42a3edfe7993a75cbd184b72bca464",
+    "mzr-census": "ffb876dd8e76ebb090d2cdef7d88f0a045831ebcbfe81cc1fe85a920b0c08676"
+  },
+  "positive_custody_findings": {
+    "two_sample_proposal_hash_stability_seconds": 3,
+    "proposal_hashes_stable": true,
+    "semantic_scalar_wrapper_violations": {
+      "fesc": 0,
+      "brightend": 0,
+      "mzr-anchor": 0,
+      "mzr-census": 0
+    },
+    "receipt_metadata_exemption": "derived_from and timestamp_utc are the terminal metadata of each derivation receipt; semantic freeze scalars are the audited receipt-bearing values",
+    "original_source_hashes": {
+      "fesc": "19/19",
+      "brightend": "8/8",
+      "mzr-anchor": "12/12",
+      "mzr-census": "15/15"
+    },
+    "manifest_digest_match": {
+      "fesc": true,
+      "brightend": true,
+      "mzr-anchor": true,
+      "mzr-census": true
+    },
+    "embedded_entries_equal_manifest_file": {
+      "fesc": true,
+      "brightend": true,
+      "mzr-anchor": true,
+      "mzr-census": true
+    },
+    "frozen_copy_hash_and_size_checks": {
+      "fesc": "19/19",
+      "brightend": "8/8",
+      "mzr-anchor": "12/12",
+      "mzr-census": "15/15"
+    },
+    "original_to_copy_hash_size_multiset_match": {
+      "fesc": true,
+      "brightend": true,
+      "mzr-anchor": true,
+      "mzr-census": true
+    },
+    "mzr_anchor_SOURCE_BYTES_INITIAL_physical_lines": 12,
+    "mzr_anchor_literal_backslash_n_defect_repaired": true,
+    "all_video_reportable_now_values": false,
+    "active_SOURCE_FREEZE_count": 0
+  },
+  "blocking_findings": [
+    {
+      "id": "V3-VERSION-SEMANTIC-MISMATCH",
+      "scope": "all four proposals",
+      "finding": "freeze_id.value and file/title identify V3, while decision.value says PROPOSED_SOURCE_FREEZE_V2; PENDING_ADJUDICATION.",
+      "effect": "BLOCK_INSTALLATION; semantic/status mismatch escalated to Hwao rather than visually resolved"
+    },
+    {
+      "id": "V3-FROZEN-AT-DERIVATION-TIME-MISMATCH",
+      "scope": "all four proposals",
+      "finding": "frozen_at.value is 2026-08-09T08:33:48Z and matches COPY_HASHES_v2 manifest creation time, but frozen_at.derivation_receipt.timestamp_utc is 2026-08-09T08:37:05Z while claiming the value came from date -u invoked at script execution time. The receipt records a later receipt-generation time, not when the scalar was derived, and therefore does not unambiguously name when derivation occurred.",
+      "effect": "BLOCK_INSTALLATION; v4 must distinguish derived_at from receipt_issued_at or use one internally consistent timestamp"
+    },
+    {
+      "id": "V3-MANIFEST-PATH-DERIVATION-MISSTATEMENT",
+      "scope": "all four proposals",
+      "finding": "immutable_copies_manifest.path.derivation_receipt says the new source_freeze_v2/COPY_HASHES_v2.txt path was originally sourced from a historical freeze or SOURCE_HASHES_INITIAL. It was newly generated in this run; the generic receipt text does not accurately name its derivation.",
+      "effect": "BLOCK_INSTALLATION; receipt must identify the bundle-generation action and exact generating inputs"
+    },
+    {
+      "id": "V3-IMMUTABILITY-CLAIM-NOT-ENFORCED",
+      "scope": "all four source_freeze_v2 bundles",
+      "finding": "Bundles are called immutable, but directories are mode 0755 and 57 of 58 bundle files are writable mode 0644 (one census file is 0444). No seal/mode/cold-manifest immutability receipt is present.",
+      "effect": "BLOCK_INSTALLATION; either enforce and receipt a read-only seal or state procedural snapshot custody without claiming physical immutability"
+    }
+  ],
+  "per_lane_bundle_modes": {
+    "fesc": {"files": 20, "writable_files": 20, "directory_mode": "0755"},
+    "brightend": {"files": 9, "writable_files": 9, "directory_mode": "0755"},
+    "mzr-anchor": {"files": 13, "writable_files": 13, "directory_mode": "0755"},
+    "mzr-census": {"files": 16, "writable_files": 15, "directory_mode": "0755"}
+  },
+  "tori_custody_verdict": "PASS_BYTE_CUSTODY_AND_RECEIPT_COVERAGE_SHAPE__BLOCK_EXACT_V3_INSTALLATION",
+  "result_authorization": false,
+  "new_result_bearing_Yui_candidate_authorized": false,
+  "exact_next_action": "Goru must create versioned V4 proposals with V4-consistent decision labels, derivation timestamps that identify the actual derivation time, accurate bundle-manifest path receipts, and an explicit immutability/seal receipt or a truthful non-immutable custody statement. Then Lana, Kun, and Tori independently adjudicate the exact V4 hashes. SOURCE_FREEZE.json remains absent.",
+  "gates_closed": true
+}

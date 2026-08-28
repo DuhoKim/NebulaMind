@@ -1,0 +1,34 @@
+{
+  "review_round": 27,
+  "pass": 7,
+  "snapshot": "pass7-single-current-local-receipt-v22",
+  "snapshot_manifest_sha256": "7db814620b15785bc89f2e8d92fad73ddce2a84cd74870d066003cc59853e20e",
+  "manifest_entries": 93,
+  "custody": {
+    "manifest_start_match": true,
+    "manifest_end_match": true,
+    "entry_hash_size_checks": "93/93",
+    "exact_inventory": "94 regular files including non-self-listed MANIFEST",
+    "file_modes": "94/94 files 0444",
+    "directory_modes": "5/5 directories 0555",
+    "symlinks": 0,
+    "source_freeze": "8/8",
+    "encoded_frames": "43/43; 28 cut-boundary plus 15 hold-midpoint",
+    "files_modified": []
+  },
+  "packet_read_count": 1,
+  "score": "8/8",
+  "threshold": "PASS; at least 7/8",
+  "mandatory_questions": {
+    "q4": "PASS; 62/157 vocabulary presence only, not eligibility; all 157 proceed to T2",
+    "q8": "PASS; reportable T1 counts/status separated from incomplete T2 and absent eligible-table/MZR results"
+  },
+  "scope_recovered": "single-table VizieR metadata census; no joins/crossmatches, eligibility, metallicity, or MZR measurement",
+  "retrieval_recovered": "semantic UCD tags plus column-name variants",
+  "quantitative_recovery": "5393->5568 (+175); 6118->6206 (+88); 6667->6687 (+20); 178-21=157; 19 redshift-search plus 2 abundance-search; 62 vocabulary-only; T1 7/7 and 0/3; T2 design 12 decoys plus 3 anchors; no eligible-table count",
+  "precision_boundary": "frozen controls did not cover recorded src.redshift-qualifier contamination; examples are characterization, not T2 rulings",
+  "packet_scaffolding": "PASS; packet-v22/storyboard-v18 title, one-read directions, projection/bullet boundary, exact question hash, no added science",
+  "candidate_or_packet_clearance": "NOT_GRANTED",
+  "closed_gates": ["candidate", "whole packet", "precision", "encoded timing", "T2 application", "eligible count", "MZR measurement", "integration", "TTS", "publication", "shared/public/Git"],
+  "verdict": "PAPER_NAIVE_PASS_ONLY"
+}

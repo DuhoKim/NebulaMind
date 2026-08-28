@@ -1,0 +1,76 @@
+{
+  "request_id": "TORI_SPIN_LITERATURE_INTRO_EXACT_HASH_REGATE_REQUEST_20260810T1602K",
+  "state": "LIVE_EXACT_HASH_REGATE_AFTER_KUN_PASS",
+  "candidate": {
+    "directory": "integrator/canaries/spin-literature-intro-canary-20260810T1535K",
+    "mp4": "integrator/canaries/spin-literature-intro-canary-20260810T1535K/spin-literature-intro-canary-20260810T1535K.mp4",
+    "sha256_expected": "fe04bed4605c8ee75b0641ff44c12d61990f388858f97f78103fef3c073678ed",
+    "bytes_expected": 30442013,
+    "freeze": "integrator/canaries/spin-literature-intro-canary-20260810T1535K/CANDIDATE_FREEZE.json",
+    "freeze_sha256_expected": "44a8a5167a0c630495beb6fcd02082048db442a034cbd4b0c8456434868f05ee",
+    "manifest": "integrator/canaries/spin-literature-intro-canary-20260810T1535K/FILE_MANIFEST.json",
+    "manifest_sha256_expected": "43ffcd00b0a16d90e263ca58f9b20732f1d7c5b6266f1998294a1357a547f57b",
+    "manifest_payload_file_count": 139,
+    "manifest_payload_bytes": 120930574,
+    "directory_file_count_before_tori": 141,
+    "candidate_authority_sha256_expected": "f9f06e1687e5afc064ec7cfc9fd07db9efa7988389ea8de7d83ae523cb4dfe6c",
+    "predecessor_receipt_sha256_expected": "f7d04bf2b347395e53e3b9b845ef7363b159693d594453cf56e2d3b01f1b6d27"
+  },
+  "predecessor": {
+    "mp4": "integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "sha256_expected": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "script": "integrator/canaries/spin-method-overhaul-canary-20260809T2340K/narration_script_v4.json",
+    "script_sha256_expected": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1",
+    "replacement_authorized": false
+  },
+  "review_chain": {
+    "initial_kun_hold": {
+      "path": "reviews/KUN_SPIN_LITERATURE_INTRO_GUARDRAIL_REVIEW_20260810T1507K.md",
+      "sha256": "00670f4a67c0afaf4975779fab0b5d59492e89eaec5504aa05d0c438b93d3714",
+      "bound_held_mp4_sha256": "cfb9b1fabb7d4fb46009319d45d33931bf108917f317a184e4074e6f471d968d",
+      "verdict": "HOLD_GUARDRAILS_EXACT_HASH"
+    },
+    "hold_disposition": {
+      "path": "integrator/canaries/spin-literature-intro-canary-20260810T1535K/KUN_HOLD_DISPOSITION.json",
+      "sha256": "1a9a2fe79310cabb0b3700f05bdfc4d2223b7f0f5d2064338ef55c255174be87"
+    },
+    "kun_corrected_pass": {
+      "path": "reviews/KUN_SPIN_LITERATURE_INTRO_GUARDRAIL_REREVIEW_20260810T1548K.md",
+      "sha256": "7e1ca7fd697abb2cdbe5790ea5240111327ac3e935e5c367d7b6fee49c530ae4",
+      "verdict": "PASS_GUARDRAILS_EXACT_HASH",
+      "bound_mp4_sha256": "fe04bed4605c8ee75b0641ff44c12d61990f388858f97f78103fef3c073678ed"
+    }
+  },
+  "required_independent_regate": [
+    "Recompute candidate, freeze, manifest, authority, predecessor receipt, predecessor MP4/script, Kun reports, and every one of the 139 manifest entry hashes and sizes; candidate hash again at close; zero Tori writes inside candidate directory.",
+    "Independently confirm corrected scientific typography in encoded Longo and Shamir frames and captions: true superscript U+207B minus at the same superscript height as 4/6 for 7.9×10⁻⁴ and P<5.8×10⁻⁶, plus clean −0.0408±0.011 and z<0.3; no tofu, baseline-hyphen appearance, clipping, or illegibility; STIX Two Text binding.",
+    "Independently confirm frame custody: raw_frames_submitted=ceil(280.5652083333333×30)=8417; ffprobe nb_read_frames=8416; full decode=8416; encoded video duration 280.533333s; audio-minus-video approximately 0.031875s under one frame; build receipt legacy frame_count=8416 and no corruption.",
+    "Verify exact verbatim Longo/Shamir/Land quote suffixes against Lana Part 1 and primary anchors; every claim explicitly attributed to another study; claimed/disputed/unsettled; no winner; Land null not settled; no result claim by this video.",
+    "Verify no superseded alternate-cosmology subject in MP4 narration, SRT, storyboard, OCR-visible text, cards, captions, beat structure, or delivery filename. Evidence/authority may name it only to prove exclusion. Do not inspect or use the superseded draft.",
+    "Verify five-beat arc, stakes before method, unchanged conditional Longo sentence, active WHY IT MATTERS rail ahead of MIRROR TEST, NO ANSWER SELECTED, coherent seam, method narration s02-s24 unchanged, rail focus fix, forbidden_icon_primitives [curve], and no generic curve dispatch.",
+    "Independently verify alloy 1.18 provenance, 115 WPM timing, max A/V start delta, loudness, true peak/no clipping, and encoded ASR pronunciation of less-than signs and exponents without equality substitution.",
+    "Verify all machine/local QA status claims against current bytes; predecessor and five cockpit copies unchanged; no public/frontend/cockpit/upload/DB/deploy/Git/publication/acceptance writes."
+  ],
+  "output": {
+    "write_only": "reviews/TORI_SPIN_LITERATURE_INTRO_EXACT_HASH_REGATE_20260810T1602K.json",
+    "allowed_verdicts": [
+      "PASS_EXACT_HASH_REGATE",
+      "HOLD_EXACT_HASH_REGATE"
+    ],
+    "required_standalone_marker": "TORI_SPIN_LITERATURE_INTRO_EXACT_HASH_REGATE_DONE",
+    "acceptance_conferred_on_pass": false,
+    "video_reportable_now_on_pass": false
+  },
+  "closed_gates": [
+    "candidate mutation",
+    "predecessor replacement",
+    "cockpit copy",
+    "public/frontend",
+    "upload",
+    "database",
+    "deploy/restart",
+    "git write",
+    "publication",
+    "accepted_by_duho"
+  ]
+}

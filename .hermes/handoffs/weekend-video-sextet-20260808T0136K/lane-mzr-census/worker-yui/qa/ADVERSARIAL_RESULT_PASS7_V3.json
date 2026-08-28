@@ -1,0 +1,51 @@
+{
+  "review_round": 11,
+  "pass": 7,
+  "snapshot": "pass7-full-contract-closure-v3",
+  "snapshot_manifest_sha256": "0a8c390ed9ee20c389f13994bd1997d7a5d167aaf3a256a75d991a01b942748a",
+  "manifest_entries": 36,
+  "start_hashes_verified": "36/36",
+  "end_hashes_verified": "36/36",
+  "regular_file_census": "37 total: 36 listed entries plus MANIFEST.json",
+  "file_modes": "0444",
+  "directory_modes": "0555",
+  "frozen_source_and_encoded_pins_verified": "15/15",
+  "snapshot_changed": false,
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "id": "semantic-global-gap-false-pass",
+      "evidence": "Hostile semantic replay excluded duplicate or empty-shell rows: b05_s05→b06_s02 is 5.0 s because b06_s01 re-reveals the already-persistent direct 157→T2 path; b08_s01→b08_s03 is 6.0 s because b08_s02 restyles the existing precision status; b08_s03→b08_s05 is 6.0 s because b08_s04 reveals empty shells. The validator accepted any reveal/transform with nonempty text and therefore falsely reported a 3.0 s maximum."
+    },
+    {
+      "id": "visual-action-state-contradiction",
+      "evidence": "b01.visual_action says to open on three labeled metadata columns, while b01_s01 begins with only an archive-table icon and the three rails appear progressively at 2, 4, and 6 seconds. The canonical build hash pins both contradictory directions."
+    },
+    {
+      "id": "rotatable-approved-contract-not-independent",
+      "evidence": "In temporary copies, dangerous top-level scope and b01 build mutations passed after rotating the co-located approved-contract canonical hashes. The validator did not authenticate qa/APPROVED_STORYBOARD_CONTRACT.json against MANIFEST.json. The externally supplied immutable MANIFEST digest remained the real trust anchor and would detect such rotation."
+    }
+  ],
+  "verified_passes": {
+    "required_helper_commands": "PASS directly from read-only snapshot without writes",
+    "supplied_mutation_suite": "PASS baseline plus 12/12 expected failures",
+    "additional_temporary_mutations": "9/9 rejected overall; two subtle build/state no-ops were rejected only by canonical identity",
+    "source_reconstruction": "PASS",
+    "search_axis_qualification": "PASS for v3 retrieval claims",
+    "topology_control_provenance_scope_status": "PASS",
+    "closure_order": "PASS",
+    "citation_identity": "PASS 10/10; audience count-ledger publication prerequisite remains unsatisfied",
+    "packet_projection": "PASS 10 narration, 58 on-screen leaves, 10 citations; no answer key",
+    "static_v8": "compatible unclipped one-frame overview only; cannot prove temporal implementation"
+  },
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_mode": "0644; read-only handling was an authorization boundary rather than filesystem enforcement",
+  "candidate_disposition": "FAIL preserved",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "tts_invoked": false,
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "carry_forward_to_current": "The b05→b06 duplicate reveal, b01 visual_action/state contradiction, and approved-contract rotation mechanism remained applicable to v5 and require a higher exact version; b08 duplicate/empty-shell states were already corrected in v5.",
+  "current_gate_note": "V3 exact FAIL is preserved. It cannot clear v5, the encoded candidate, or any downstream gate."
+}

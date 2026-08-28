@@ -1,0 +1,42 @@
+{
+  "status": "CORRECTION_CANDIDATE",
+  "candidate": "fesc-method-overhaul-canary-20260809T1420K",
+  "replaces_sha256": "acfb7fee70d5a131d4a44e8962cfe3fe3cd22104bf9cf8fa00bbbd6c2c00cbc0",
+  "authority": "Duho/Hwao confirmed encoded-frame HOLD: decorative curve icons assert a readable crossing outside the repaired peak",
+  "root_cause": "Eight records declared params.icon='curve'; the shared renderer exposed kind=='curve' as an icon primitive that drew a thick rising curve intersecting a thin falling line",
+  "primitive_level_fix": {
+    "spec_and_timeline": "All eight FESC icon declarations changed from curve to paired_strokes",
+    "renderer": "The curve icon branch was removed; paired_strokes draws two separated equal-length horizontal strokes with no axes, slope, order, intersection, or crossing",
+    "validation": "Renderer rejects curve as an icon kind and rejects unknown icon primitives",
+    "qa": "Encoded QA requires both the curve icon parameter and the curve icon renderer branch to be absent"
+  },
+  "passing_content_preserved": [
+    "short_title: An apparent photon-budget mismatch has two explanations",
+    "lane-specific conditional introduction",
+    "equal-height declared calculation arm peak",
+    "MATCHED SWEEP DESIGN - NO RESULT GEOMETRY peak banner",
+    "discipline framing and payoff close",
+    "symbolic D(z) with value and sign withheld",
+    "method-only boundary and video_reportable_now=false"
+  ],
+  "narration_unchanged": true,
+  "audio_reused_from_predecessor": {
+    "policy": "byte-identical visual-only correction; no resynthesis",
+    "audio_master_sha256": "8e40e71229fc3e0bf2f21e7f02f8c3370e1042a62ffadb03fb2ff10f96adf156",
+    "voice": "alloy",
+    "speed": 1.18,
+    "music": false
+  },
+  "other_lanes_touched": false,
+  "video_reportable_now": false,
+  "gates": {
+    "upload": false,
+    "publication": false,
+    "frontend_public": false,
+    "paperVideos": false,
+    "cockpit": false,
+    "database": false,
+    "deploy_or_restart": false,
+    "git": false
+  }
+}

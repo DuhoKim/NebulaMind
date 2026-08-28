@@ -1,0 +1,133 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass18-minimum-scale-obstruction-20260808T112707K",
+  "created_at": "2026-08-08T11:27:07+09:00",
+  "deepening_pass": 18,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "integrator": "Hwao/Fable",
+  "focus": "minimum-scale 640x360 plus opaque bottom-obstruction interaction",
+  "disposition": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+  "science_adjudicated": false,
+  "video_reportable_now": false,
+  "transform_contract": {
+    "input": "native 1920x1080 RGB",
+    "step_1": "Pillow LANCZOS full-canvas downscale to 640x360 RGB",
+    "step_2": "opaque RGB(0,0,0) bottom rectangle applied after downscale",
+    "caption15_360p": {
+      "mask_top_y": 306,
+      "masked_rows": "306..359",
+      "obstruction_fraction": 0.15,
+      "classification": "operational"
+    },
+    "player_ui25_360p": {
+      "mask_top_y": 270,
+      "masked_rows": "270..359",
+      "obstruction_fraction": 0.25,
+      "classification": "operational"
+    },
+    "heavy35_360p": {
+      "mask_top_y": 234,
+      "masked_rows": "234..359",
+      "obstruction_fraction": 0.35,
+      "classification": "characterization only"
+    },
+    "unobstructed_pixels": "all RGB pixels above mask_top_y byte-identical to lossless 640x360 downscale",
+    "simulation_limit": "packet-specific stress only; not a claim about a named caption renderer, player, browser, platform, service, display, room, viewer, or universal standard"
+  },
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "fresh_cut_detection": "15/15 exact pass17 timestamps",
+    "fresh_clean_midpoints": "16/16 byte-identical to pass17",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "candidate_player_ui25_360p": {
+      "headline_recall_vs_native_clean": 0.894444,
+      "full_text_recall_vs_native_clean": 0.548479,
+      "lower_support_recall_vs_native_clean": 0.049438,
+      "numeric_recall_vs_native_clean": 0.233333,
+      "structural_gate_scenes": "0/16",
+      "held_critical_structural_gates": "0/5"
+    },
+    "candidate_caption15_360p": {
+      "headline_recall_vs_native_clean": 0.894444,
+      "full_text_recall_vs_native_clean": 0.565589,
+      "lower_support_recall_vs_native_clean": 0.089888,
+      "numeric_recall_vs_native_clean": 0.244444,
+      "structural_gate_scenes": "0/16"
+    },
+    "candidate_obstruction_zone_tokens": {
+      "caption15_360p": "124 baseline tokens; 0 after mask",
+      "player_ui25_360p": "148 baseline tokens; 0 after mask",
+      "heavy35_360p": "188 baseline tokens; 0 after mask"
+    },
+    "sealed_v8_player_ui25_360p": {
+      "generic_result_held_badges": "7/7",
+      "scene_specific_lower_boundaries_occluded": ["S2", "S3", "S4", "S5", "S6"],
+      "scene_specific_status_complete": false
+    },
+    "pass7_caption_safe_player_ui25_360p": {
+      "exact_top_gates": "7/7",
+      "result_held_badges": "7/7",
+      "overlap_clipping_or_ambiguity": false
+    },
+    "pass12_sharpness_safe_player_ui25_360p": {
+      "exact_top_gates": "7/7",
+      "mean_mapped_gate_similarity": 0.985159,
+      "result_held_badges": "7/7",
+      "unobstructed_pixel_identity": "7/7",
+      "masked_pixels_all_black": "7/7",
+      "overlap_clipping_or_ambiguity": false
+    },
+    "pass12_sharpness_safe_heavy35_360p": {
+      "exact_top_gates": "7/7 characterization",
+      "mean_mapped_gate_similarity": 0.985159,
+      "result_held_badges": "7/7",
+      "lower_support_occluded": true
+    }
+  },
+  "acceptance_guard_for_future_hwao_authored_layouts": [
+    "At represented 640x360 pixels, every scene-specific result/status gate and complete RESULT HELD capsule must remain fully above the bottom 25 percent obstruction boundary.",
+    "All seven exact scene-specific gate sentences must remain readable under both the 15 percent and 25 percent operational masks.",
+    "A generic RESULT HELD badge alone does not replace the scene-specific scope: locked inputs, archive-frame uncertainty, outcomes withheld, unavailable rungs, and separate-authorization conditions must remain direct readable text outside the obstructed zone.",
+    "No required qualifier, caveat, uncertainty, branch distinction, axis, unit, value, error bar, threshold, equation term, provenance fact, or interpretation limit may be carried only in the lower 25 percent of the represented frame.",
+    "Required scientific content should not be placed under a known obstruction merely to pass the guard; it must be duplicated or reflowed into an unobstructed readable hierarchy without deleting qualifiers.",
+    "All pixels above the declared obstruction boundary must remain unchanged by the mask transform; a mask receipt alone cannot certify this.",
+    "Global OCR is a diagnostic only. Mapped gate crops, complete-container review, and human review of represented pixels decide acceptance.",
+    "The 35 percent mask remains characterization only and is not an acceptance threshold."
+  ],
+  "cumulative_requirements": [
+    "pass17 q60 4:2:0 after 640x360",
+    "pass16 compound minimum-scale geometry",
+    "pass15 native geometry",
+    "pass14 floor16 dark-tone",
+    "pass13 centered horizontal width7 smear",
+    "pass12 radius1.5 defocus and strengthened gate",
+    "pass11 native q60 4:2:0 recompression",
+    "pass10 20 percent black lift",
+    "pass9 inner-five-percent title-safe review",
+    "pass8 direct-label plus non-color redundancy",
+    "pass7 obstruction-safe exact gates",
+    "pass6 standalone 360p",
+    "pass5 hard-cut continuity",
+    "pass4 temporal persistence"
+  ],
+  "pixel_action": {
+    "new_pixel_or_copy_correction_requested": false,
+    "reason": "The latest pass12 proof retains 7/7 exact top gates and 7/7 complete RESULT HELD capsules under both operational masks at 640x360, with no clipping, overlap, or ambiguity.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

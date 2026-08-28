@@ -1,0 +1,18 @@
+{
+  "test": "redundant-encoding / color-vision acceptance (spin pass-8 guard)",
+  "guard_source": "lane-spin-parity/worker-yui/REDUNDANT_ENCODING_GUARD_PASS8.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0448 (canary v8, sha 7baaa40e\u2026)",
+  "run_at": "2026-08-08T06:20:00+09:00",
+  "method": "audit_cvd.py \u2014 11 encoded state frames rendered as contact sheets in color, grayscale BT.709, and Machado-2009 severity-1.0 protanopia/deuteranopia/tritanopia (matrices applied on sRGB); human review of all five sheets (decisive per the guard; OCR auxiliary)",
+  "checks": {
+    "no_distinction_by_hue_alone": "PASS \u2014 every method/status/scope distinction is carried by words, borders, geometry, or position; amber and blue accents are emphasis only",
+    "gate_carried_by_text_and_border": "PASS \u2014 RESULT HELD capsule (bordered pill + text) legible on 11/11 states in all five modes, including full grayscale",
+    "branch_condition_labels": "PASS \u2014 readouts and schematic branches carry direct text labels and distinct geometry, no color legend exists",
+    "unavailable_rails": "N/A \u2014 no unavailable rail is drawn in this deck",
+    "result_figures": "N/A trivially \u2014 no result figures exist",
+    "human_five_mode_review": "PASS \u2014 all five contact sheets reviewed",
+    "prior_tests_retained": "360p acceptance PASS (pass 21) and machine QA remain on record"
+  },
+  "verdict": "PASS",
+  "evidence": "color_vision/contact_sheet_{color,grayscale_bt709,protanopia_machado100,deuteranopia_machado100,tritanopia_machado100}.png"
+}

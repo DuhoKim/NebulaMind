@@ -1,0 +1,894 @@
+{
+  "created_at_utc": "2026-08-10T08:09:42.950449+00:00",
+  "revision": "literature-beat-20260810T1705K-motion-fix",
+  "sample_rate": 48000,
+  "video_fps": 30,
+  "sentence_count": 24,
+  "word_count": 453,
+  "target_delivered_wpm": 115.0,
+  "delivered_wpm": 114.99999647412324,
+  "raw_speech_seconds": 182.184,
+  "inter_sentence_pause_seconds": 54.163833333333336,
+  "occupied_seconds_first_start_to_last_end": 236.34783333333334,
+  "lead_seconds": 0.6,
+  "tail_seconds": 2.4,
+  "master_duration_seconds": 239.34783333333334,
+  "max_abs_audio_visual_start_delta_seconds": 0.014708333333331325,
+  "loudness_measurement_before_gain": {
+    "input_i": "-21.11",
+    "input_tp": "-2.85",
+    "input_lra": "5.80",
+    "input_thresh": "-31.44",
+    "output_i": "-20.21",
+    "output_tp": "-2.30",
+    "output_lra": "5.50",
+    "output_thresh": "-30.53",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.09"
+  },
+  "scalar_gain_db": 0.5500000000000003,
+  "section_intervals_seconds": {
+    "motivation": 26.753999999999998,
+    "literature": 15.101999999999997,
+    "difficulty": 16.589999999999996,
+    "peak": 42.0,
+    "sample": 20.597999999999985,
+    "estimator": 15.149999999999977,
+    "controls": 16.373999999999995,
+    "discipline": 17.789999999999992,
+    "boundary": 8.951999999999998,
+    "payoff": 13.373999999999995
+  },
+  "master_raw": "audio/narration_raw.wav",
+  "master_raw_sha256": "dd01ab70b8f7403f6e1e94207d7bcf93b0360709a81b1a89df8e82f962c4c487",
+  "master": "audio/narration_master.wav",
+  "master_sha256": "fee180a5e855ad145bc8f834f66b9d9a80e43ed053c2d1ca70409b54e325d33b",
+  "records": [
+    {
+      "id": "i01",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "At high redshift, metallicity relations can disagree because galaxies evolved, or because calibrations changed the measuring scale.",
+      "grounding": "sources/ANCHOR_GAP_PAPER.tex",
+      "display_citation": "High-redshift calibration-validity question",
+      "params": {
+        "subtitle": "WHY THE OFFSET NEEDS A DIRECT ANCHOR",
+        "icon": "anchor",
+        "pair_label": "ONE APPARENT OFFSET \u00b7 TWO EXPLANATIONS",
+        "left_title": "GALAXY EVOLUTION",
+        "left_if": "IF GENUINE",
+        "left_body": "young galaxies occupy a different physical relation",
+        "right_title": "CALIBRATION OFFSET",
+        "right_if": "IF APPARENT",
+        "right_body": "incompatible abundance scales manufacture the disagreement",
+        "question": "HOW DO WE TELL EVOLUTION FROM CALIBRATION?"
+      },
+      "word_count": 17,
+      "raw_file": "audio/raw/i01-98576329a813.mp3",
+      "raw_file_sha256": "4e1da273f189d6d99941a98f398f85d9287f6cca892506c0523a3308e8733ef6",
+      "decoded_file": "audio/decoded/i01.wav",
+      "decoded_file_sha256": "7016272acde290e36add88eaafd43132201f3c59b4f35c7681f7138624dad876",
+      "audio_start_sample": 28800,
+      "audio_end_sample": 388224,
+      "audio_start_seconds": 0.6,
+      "audio_end_seconds": 8.088,
+      "visual_action_start_frame": 18,
+      "visual_action_start_seconds": 0.6,
+      "alignment_delta_seconds": 0.0,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "i02",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "If the relation genuinely evolved, that would be a fact about the enrichment history of young galaxies.",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Physical-evolution possibility",
+      "params": {
+        "subtitle": "THE PHYSICAL POSSIBILITY",
+        "icon": "anchor",
+        "pair_label": "ONE APPARENT OFFSET \u00b7 TWO EXPLANATIONS",
+        "left_title": "GALAXY EVOLUTION",
+        "left_if": "IF GENUINE",
+        "left_body": "young galaxies occupy a different physical relation",
+        "right_title": "CALIBRATION OFFSET",
+        "right_if": "IF APPARENT",
+        "right_body": "incompatible abundance scales manufacture the disagreement",
+        "question": "HOW DO WE TELL EVOLUTION FROM CALIBRATION?"
+      },
+      "word_count": 17,
+      "raw_file": "audio/raw/i02-d2dfb907ea6d.mp3",
+      "raw_file_sha256": "b5c2b5f916eb1dfa87ab0724ce3b7f6639f6da7a291aed8248449cb7bb9f2943",
+      "decoded_file": "audio/decoded/i02.wav",
+      "decoded_file_sha256": "67344fb5edf4fa93b0954cadb227c1da4b12150af46319b7259ecbead1f4de2a",
+      "audio_start_sample": 424224,
+      "audio_end_sample": 707616,
+      "audio_start_seconds": 8.838,
+      "audio_end_seconds": 14.742,
+      "visual_action_start_frame": 265,
+      "visual_action_start_seconds": 8.833333333333334,
+      "alignment_delta_seconds": -0.0046666666666652645,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "i03",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "But an apparent offset could instead be a fact about strong-line recipes, reference frames, or scale conversions rather than galaxies.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Declared-scale contract",
+      "params": {
+        "subtitle": "THE CALIBRATION POSSIBILITY",
+        "icon": "anchor",
+        "pair_label": "ONE APPARENT OFFSET \u00b7 TWO EXPLANATIONS",
+        "left_title": "GALAXY EVOLUTION",
+        "left_if": "IF GENUINE",
+        "left_body": "young galaxies occupy a different physical relation",
+        "right_title": "CALIBRATION OFFSET",
+        "right_if": "IF APPARENT",
+        "right_body": "incompatible abundance scales manufacture the disagreement",
+        "question": "HOW DO WE TELL EVOLUTION FROM CALIBRATION?"
+      },
+      "word_count": 20,
+      "raw_file": "audio/raw/i03-9080d8241dd3.mp3",
+      "raw_file_sha256": "88a2e7f0358f3780bd35dd77cf387bb7db19d98c9f5ba575d7c95c17ff886ac6",
+      "decoded_file": "audio/decoded/i03.wav",
+      "decoded_file_sha256": "f890a6f3bc9e85e065b4c0485ec95bc6b628378bde13a19a37212c2096a07ca0",
+      "audio_start_sample": 743616,
+      "audio_end_sample": 1126080,
+      "audio_start_seconds": 15.492,
+      "audio_end_seconds": 23.46,
+      "visual_action_start_frame": 465,
+      "visual_action_start_seconds": 15.5,
+      "alignment_delta_seconds": 0.007999999999999119,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "i04",
+      "section": "motivation",
+      "visual": "intro",
+      "text": "How do we tell evolution from calibration?",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Question fixed before anchor assembly",
+      "params": {
+        "subtitle": "THE QUESTION THAT DRIVES THE METHOD",
+        "icon": "anchor",
+        "pair_label": "ONE APPARENT OFFSET \u00b7 TWO EXPLANATIONS",
+        "left_title": "GALAXY EVOLUTION",
+        "left_if": "IF GENUINE",
+        "left_body": "young galaxies occupy a different physical relation",
+        "right_title": "CALIBRATION OFFSET",
+        "right_if": "IF APPARENT",
+        "right_body": "incompatible abundance scales manufacture the disagreement",
+        "question": "HOW DO WE TELL EVOLUTION FROM CALIBRATION?"
+      },
+      "word_count": 7,
+      "raw_file": "audio/raw/i04-99dc49654f8e.mp3",
+      "raw_file_sha256": "7481b148e1c7c5680ff4a6f57cebc3311388e3fd14460878826dd63b5f173cab",
+      "decoded_file": "audio/decoded/i04.wav",
+      "decoded_file_sha256": "20704e789b474b5bfbd7a37a2ae0e12fd5bb21de95455a199d1e95710aeb6a9a",
+      "audio_start_sample": 1162080,
+      "audio_end_sample": 1312992,
+      "audio_start_seconds": 24.21,
+      "audio_end_seconds": 27.354,
+      "visual_action_start_frame": 726,
+      "visual_action_start_seconds": 24.2,
+      "alignment_delta_seconds": -0.010000000000001563,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "i05q",
+      "section": "literature",
+      "visual": "literature",
+      "text": "The absolute metallicity scale (y-int) varies up to 0.7 dex, depending on the calibration used.",
+      "grounding": "sources/ARXIV_0801.1849V1_EXACT_ABSTRACT.txt",
+      "source": "sources/ARXIV_0801.1849V1_EXACT_ABSTRACT.txt",
+      "display_citation": "arXiv:0801.1849v1 \u00b7 exact abstract sentence",
+      "params": {
+        "heading": "WHAT ANOTHER STUDY REPORTED",
+        "study_header": "KEWLEY & ELLISON 2008 \u00b7 REPORTED CALIBRATION DISAGREEMENT",
+        "source_line": "arXiv:0801.1849v1 \u00b7 exact abstract sentence",
+        "color": "blue",
+        "quote_font_size": 38
+      },
+      "word_count": 16,
+      "raw_file": "audio/raw/i05q-d472f503f7d9.mp3",
+      "raw_file_sha256": "37251ef34e1b36a13c0b71ff3c85f592cc1e507670d920130fa1a64572ecdf08",
+      "decoded_file": "audio/decoded/i05q.wav",
+      "decoded_file_sha256": "3f58cf606370a3e7d40b0f704b99f679bb9b47a8cded277819530f1b4e8794fc",
+      "audio_start_sample": 1545866,
+      "audio_end_sample": 1858058,
+      "audio_start_seconds": 32.20554166666667,
+      "audio_end_seconds": 38.70954166666667,
+      "visual_action_start_frame": 966,
+      "visual_action_start_seconds": 32.2,
+      "alignment_delta_seconds": -0.00554166666666589,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "i05u",
+      "section": "literature",
+      "visual": "literature",
+      "text": "Kewley and Ellison reported disagreement among the measurement rulers; the interpretation remains disputed, and this video adopts no answer as its finding.",
+      "grounding": "sources/LANA_FOUR_LANE_LITERATURE_BEAT_20260810.md",
+      "display_citation": "Lana lane ruling \u00b7 claimed and disputed \u00b7 no winner",
+      "params": {
+        "heading": "WHAT THE LITERATURE BEAT DOES NOT DECIDE",
+        "summary_cards": [
+          {
+            "author": "KEWLEY & ELLISON 2008",
+            "report": "REPORTED CALIBRATION DISAGREEMENT",
+            "color": "blue"
+          }
+        ],
+        "closing": true
+      },
+      "source": "sources/LANA_FOUR_LANE_LITERATURE_BEAT_20260810.md",
+      "word_count": 22,
+      "raw_file": "audio/raw/i05u-c09c1634ad87.mp3",
+      "raw_file_sha256": "c83b34ae0c63ec581500c9e7e9d9bb5683bc4910dfa6350daa7d132bc7765c95",
+      "decoded_file": "audio/decoded/i05u.wav",
+      "decoded_file_sha256": "0e6fa3ef50172e2f3596c599ba98460f21e95773ade38173ee727fb3bcbeede9",
+      "audio_start_sample": 1894058,
+      "audio_end_sample": 2270762,
+      "audio_start_seconds": 39.45954166666667,
+      "audio_end_seconds": 47.307541666666665,
+      "visual_action_start_frame": 1184,
+      "visual_action_start_seconds": 39.46666666666667,
+      "alignment_delta_seconds": 0.007125000000002046,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "d01",
+      "section": "difficulty",
+      "visual": "difficulty",
+      "text": "Counting metallicity rows cannot settle that question, because a table entry is not yet a direct-temperature anchor on a common scale.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Anchor-class and declared-scale rules",
+      "params": {
+        "heading": "WHY A ROW COUNT CANNOT SETTLE IT",
+        "icon": "anchor",
+        "object_label": "ONE METALLICITY ROW",
+        "left": "DIRECT-TEMPERATURE EVIDENCE + LINKED MASS",
+        "right": "STRONG-LINE VALUE OR UNDECLARED SCALE",
+        "bottom": "A NUMBER BECOMES AN ANCHOR ONLY THROUGH ITS EVIDENCE CHAIN"
+      },
+      "word_count": 21,
+      "raw_file": "audio/raw/d01-d93c5467415c.mp3",
+      "raw_file_sha256": "76c53b5561dcb6cda4dad1cca303adc1498c44068719954080dbc9f55dbd4038",
+      "decoded_file": "audio/decoded/d01.wav",
+      "decoded_file_sha256": "8caaeb28629978fd7093e1697dc0a5fc6d30e7493e07612d134cbe8365b472fb",
+      "audio_start_sample": 2503636,
+      "audio_end_sample": 2829652,
+      "audio_start_seconds": 52.159083333333335,
+      "audio_end_seconds": 58.95108333333334,
+      "visual_action_start_frame": 1565,
+      "visual_action_start_seconds": 52.166666666666664,
+      "alignment_delta_seconds": 0.0075833333333292785,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "d02",
+      "section": "difficulty",
+      "visual": "difficulty",
+      "text": "Even an auroral-line label is insufficient without flux uncertainty, abundance-capable companion lines, stellar mass, and provenance that can reproduce the derivation.",
+      "grounding": "sources/APRIME_PIPELINE_FROZEN.md",
+      "display_citation": "Frozen direct-temperature derivation pipeline",
+      "params": {
+        "heading": "THE AMBIGUITY CONTINUES AFTER LINE DISCOVERY",
+        "icon": "anchor",
+        "object_label": "ONE AURORAL-LINE HIT",
+        "left": "FLUX + ERROR + LINE SET + MASS + PROVENANCE",
+        "right": "A LABEL WITHOUT A REPRODUCIBLE ABUNDANCE CHAIN",
+        "bottom": "THE CHAIN, NOT THE COLUMN NAME, DEFINES THE ANCHOR"
+      },
+      "word_count": 21,
+      "raw_file": "audio/raw/d02-c9330eee26b7.mp3",
+      "raw_file_sha256": "14932e9a13ddbe3a1187a606bee89f4436eeeab728c23fc03ee29d0f8fbce2fa",
+      "decoded_file": "audio/decoded/d02.wav",
+      "decoded_file_sha256": "f73883fa8791a592bf5dcf22fe263412f3542d2ca1798a827ed549641bf31e99",
+      "audio_start_sample": 2865652,
+      "audio_end_sample": 3299956,
+      "audio_start_seconds": 59.70108333333334,
+      "audio_end_seconds": 68.74908333333333,
+      "visual_action_start_frame": 1791,
+      "visual_action_start_seconds": 59.7,
+      "alignment_delta_seconds": -0.0010833333333337691,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "p01",
+      "section": "peak",
+      "visual": "peak",
+      "text": "The discriminating chain begins with a source-published auroral flux and uncertainty, judged under one predeclared quality rule.",
+      "grounding": "sources/APRIME_PIPELINE_FROZEN.md",
+      "display_citation": "Uniform auroral-flux eligibility rule",
+      "params": {
+        "mode": "anchor",
+        "heading": "THE DISCRIMINANT: ONE REPRODUCIBLE CHAIN",
+        "stages": [
+          "AURORAL FLUX + ERROR",
+          "ELECTRON TEMPERATURE",
+          "DIRECT ABUNDANCE",
+          "LINKED STELLAR MASS",
+          "COMMON DIRECT SCALE"
+        ],
+        "outcomes": [
+          "PHYSICAL EVOLUTION",
+          "CALIBRATION OFFSET"
+        ]
+      },
+      "word_count": 17,
+      "raw_file": "audio/raw/p01-a885e3699cb8.mp3",
+      "raw_file_sha256": "ed544479bf76a63e40d5fa7e605adf9a9ef6301d9aa11fc60a947463a8e371a3",
+      "decoded_file": "audio/decoded/p01.wav",
+      "decoded_file_sha256": "52fc5295cdf8869922fc125a1de6dd731aeb122ca55d10c7ef4449aa9c7987a8",
+      "audio_start_sample": 3532830,
+      "audio_end_sample": 3909534,
+      "audio_start_seconds": 73.600625,
+      "audio_end_seconds": 81.448625,
+      "visual_action_start_frame": 2208,
+      "visual_action_start_seconds": 73.6,
+      "alignment_delta_seconds": -0.0006249999999994316,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "p02",
+      "section": "peak",
+      "visual": "peak",
+      "text": "A frozen line-ratio pipeline then carries the accepted fluxes into electron temperature without selecting a convenient recipe after inspection.",
+      "grounding": "sources/APRIME_PIPELINE_FROZEN.md",
+      "display_citation": "Frozen line-ratio to temperature map",
+      "params": {
+        "mode": "anchor",
+        "heading": "FLUX RATIOS BECOME TEMPERATURE UNDER ONE PIPELINE",
+        "stages": [
+          "SOURCE FLUXES",
+          "LINE-RATIO SOLVER",
+          "ELECTRON TEMPERATURE",
+          "PROVENANCE RECEIPT",
+          "REPRODUCIBLE STATE"
+        ],
+        "outcomes": [
+          "PHYSICAL EVOLUTION",
+          "CALIBRATION OFFSET"
+        ]
+      },
+      "word_count": 19,
+      "raw_file": "audio/raw/p02-2ef810334c5f.mp3",
+      "raw_file_sha256": "de86a6e713b428c35d9dc67b656d62e569fdb7de2cad9ab80b06657f5cc64afd",
+      "decoded_file": "audio/decoded/p02.wav",
+      "decoded_file_sha256": "a09e313715054a8caed189649fa44bbe513e59953ff1421d4632194fe4206506",
+      "audio_start_sample": 3945534,
+      "audio_end_sample": 4340670,
+      "audio_start_seconds": 82.198625,
+      "audio_end_seconds": 90.430625,
+      "visual_action_start_frame": 2466,
+      "visual_action_start_seconds": 82.2,
+      "alignment_delta_seconds": 0.0013749999999959073,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "p03",
+      "section": "peak",
+      "visual": "peak",
+      "text": "That temperature becomes a direct oxygen abundance only when the required ionic channels survive, while every refusal stays explicit.",
+      "grounding": "sources/APRIME_PIPELINE_FROZEN.md",
+      "display_citation": "Direct-abundance derivation and fail-closed refusals",
+      "params": {
+        "mode": "anchor",
+        "heading": "TEMPERATURE BECOMES A DIRECT ABUNDANCE",
+        "stages": [
+          "ELECTRON TEMPERATURE",
+          "IONIC CHANNELS",
+          "DIRECT OXYGEN ABUNDANCE",
+          "EXPLICIT REFUSALS",
+          "PROVENANCE-COMPLETE ROW"
+        ],
+        "outcomes": [
+          "PHYSICAL EVOLUTION",
+          "CALIBRATION OFFSET"
+        ]
+      },
+      "word_count": 19,
+      "raw_file": "audio/raw/p03-615e148ab527.mp3",
+      "raw_file_sha256": "4b81a99a9d00368254c9ee672478911e71ae46b292a1a62fca6fe93a9c2a3082",
+      "decoded_file": "audio/decoded/p03.wav",
+      "decoded_file_sha256": "92edd8a21fdbda2a3f407aa1f3a02049f4fafba8f9f3929f60ade42b59977ee1",
+      "audio_start_sample": 4376670,
+      "audio_end_sample": 4736094,
+      "audio_start_seconds": 91.180625,
+      "audio_end_seconds": 98.668625,
+      "visual_action_start_frame": 2735,
+      "visual_action_start_seconds": 91.16666666666667,
+      "alignment_delta_seconds": -0.01395833333333485,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "p04",
+      "section": "peak",
+      "visual": "peak",
+      "text": "The direct abundance is joined to the same object's stellar mass and projected onto one declared direct-temperature reference scale.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Same-object mass join \u00b7 declared anchor frame",
+      "params": {
+        "mode": "anchor",
+        "heading": "JOIN THE SAME OBJECT, THEN DECLARE THE SCALE",
+        "stages": [
+          "DIRECT ABUNDANCE",
+          "SAME-OBJECT ID",
+          "STELLAR MASS",
+          "DECLARED REFERENCE",
+          "COMMON DIRECT SCALE"
+        ],
+        "outcomes": [
+          "PHYSICAL EVOLUTION",
+          "CALIBRATION OFFSET"
+        ]
+      },
+      "word_count": 19,
+      "raw_file": "audio/raw/p04-c119e0c4dfd0.mp3",
+      "raw_file_sha256": "cc37f327fffcac79416e3ea9c17767b3fb355c1edef9987995dda56c0975225e",
+      "decoded_file": "audio/decoded/p04.wav",
+      "decoded_file_sha256": "69c63144f31595f942f7c709f82877db75bc8895c3ad8113a1033818f93fd125",
+      "audio_start_sample": 4772094,
+      "audio_end_sample": 5102718,
+      "audio_start_seconds": 99.418625,
+      "audio_end_seconds": 106.306625,
+      "visual_action_start_frame": 2983,
+      "visual_action_start_seconds": 99.43333333333334,
+      "alignment_delta_seconds": 0.014708333333331325,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "p05",
+      "section": "peak",
+      "visual": "peak",
+      "text": "Only after seam, lensing, and scale controls pass can the common-scale comparison ask which explanation fits, without answering it in this canary.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Seam, lensing, and scale controls",
+      "params": {
+        "mode": "anchor",
+        "heading": "THE CHAIN EARNS THE COMPARISON",
+        "stages": [
+          "ANCHOR CLASS",
+          "SEAM TEST",
+          "LENSING RULE",
+          "SCALE CONTROL",
+          "MATCHED-MASS COMPARISON"
+        ],
+        "outcomes": [
+          "GALAXY EVOLUTION?",
+          "CALIBRATION OFFSET?"
+        ]
+      },
+      "word_count": 22,
+      "raw_file": "audio/raw/p05-87f84b154c29.mp3",
+      "raw_file_sha256": "355afef5a14989a102375b6420988d293f2cdf58a07a052a532faf768b2502c2",
+      "decoded_file": "audio/decoded/p05.wav",
+      "decoded_file_sha256": "1cd286f3208342e611b575000fdfe6fd12efda3fa0c88504c56271e4755ec0ac",
+      "audio_start_sample": 5138718,
+      "audio_end_sample": 5548830,
+      "audio_start_seconds": 107.056625,
+      "audio_end_seconds": 115.600625,
+      "visual_action_start_frame": 3212,
+      "visual_action_start_seconds": 107.06666666666666,
+      "alignment_delta_seconds": 0.01004166666666606,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "f01",
+      "section": "sample",
+      "visual": "funnel",
+      "text": "The source ledger preserves enumeration, candidate rows, contract-grade anchors, and matched-mass bins as changing units, with every result count removed here.",
+      "grounding": "sources/T3_REAL_RESULTS.json",
+      "display_citation": "Anchor workflow \u00b7 result counts not displayed",
+      "params": {
+        "heading": "KEEP THE UNIT ATTACHED TO EACH STAGE",
+        "stages": [
+          {
+            "label": "ENUMERATED TABLES",
+            "count": "",
+            "unit": "tables"
+          },
+          {
+            "label": "AURORAL CANDIDATES",
+            "count": "",
+            "unit": "rows"
+          },
+          {
+            "label": "DIRECT ANCHORS",
+            "count": "",
+            "unit": "galaxies"
+          },
+          {
+            "label": "MATCHED-MASS TEST",
+            "count": "",
+            "unit": "bins"
+          }
+        ],
+        "banner": "CHANGING UNITS \u00b7 NO RESULT COUNTS"
+      },
+      "word_count": 21,
+      "raw_file": "audio/raw/f01-1d6b39093b43.mp3",
+      "raw_file_sha256": "c513f3b5b960d96420e20d32e69c6b90775a1bb77c5c0f667253ba61ea4561df",
+      "decoded_file": "audio/decoded/f01.wav",
+      "decoded_file_sha256": "c30f50829020a74fcc99b6268fa72e3ef828595e61d68d774b0a8dac4e5c53ec",
+      "audio_start_sample": 5781704,
+      "audio_end_sample": 6262088,
+      "audio_start_seconds": 120.45216666666667,
+      "audio_end_seconds": 130.46016666666668,
+      "visual_action_start_frame": 3614,
+      "visual_action_start_seconds": 120.46666666666667,
+      "alignment_delta_seconds": 0.014499999999998181,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "f02",
+      "section": "sample",
+      "visual": "funnel",
+      "text": "Because no sibling source freeze exists, the method keeps the pipeline stages but drops table totals, anchor totals, mass-bin occupancy, and every derived value.",
+      "grounding": "sources/HWAO_SIBLING_ROLLOUT_ORDER.md",
+      "display_citation": "Sibling rollout authority \u00b7 method only",
+      "params": {
+        "heading": "DROP UNSAFE VALUES, KEEP THE METHOD",
+        "stages": [
+          {
+            "label": "DISCOVER",
+            "count": "",
+            "unit": "tables"
+          },
+          {
+            "label": "DERIVE",
+            "count": "",
+            "unit": "anchors"
+          },
+          {
+            "label": "JOIN",
+            "count": "",
+            "unit": "masses"
+          },
+          {
+            "label": "COMPARE",
+            "count": "",
+            "unit": "value withheld"
+          }
+        ],
+        "banner": "NO SOURCE FREEZE \u00b7 NO NUMBER CARD"
+      },
+      "word_count": 24,
+      "raw_file": "audio/raw/f02-bb927a4f74bf.mp3",
+      "raw_file_sha256": "e4e43ec8024fffd9d142d90d2a048cbf3b9f092cd15db3adc4d3ea1633d022d6",
+      "decoded_file": "audio/decoded/f02.wav",
+      "decoded_file_sha256": "7870633bfc056d4a1f55d488047534d87bdc9b15a9ed88c3209d4ce1e4d52ead",
+      "audio_start_sample": 6298088,
+      "audio_end_sample": 6770408,
+      "audio_start_seconds": 131.21016666666668,
+      "audio_end_seconds": 141.05016666666666,
+      "visual_action_start_frame": 3936,
+      "visual_action_start_seconds": 131.2,
+      "alignment_delta_seconds": -0.010166666666691526,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "e01",
+      "section": "estimator",
+      "visual": "estimator",
+      "text": "The estimator is a common-scale direct-abundance difference at matched stellar mass, built symbolically and left unevaluated.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Declared-scale matched-mass estimator",
+      "params": {
+        "heading": "BUILD THE ESTIMATOR WITHOUT REVEALING IT",
+        "layout": "expression",
+        "symbol": "Delta_Z(M*)",
+        "expression": "Z_high, direct - Z_reference, direct",
+        "signs": [
+          "HIGH-Z LOWER",
+          "SCALES OVERLAP",
+          "HIGH-Z HIGHER"
+        ]
+      },
+      "word_count": 16,
+      "raw_file": "audio/raw/e01-2e71a7145231.mp3",
+      "raw_file_sha256": "2075d911b536d3a99a85bc7bdd6f2d92f56cea63a9f486ebb2f88d0f2162e2a0",
+      "decoded_file": "audio/decoded/e01.wav",
+      "decoded_file_sha256": "46e23cb44f9a6557319fccab15ed5ad58076bcf72557e8d56a5f1c8ae8ef3c67",
+      "audio_start_sample": 7003282,
+      "audio_end_sample": 7331602,
+      "audio_start_seconds": 145.90170833333335,
+      "audio_end_seconds": 152.74170833333332,
+      "visual_action_start_frame": 4377,
+      "visual_action_start_seconds": 145.9,
+      "alignment_delta_seconds": -0.0017083333333403061,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "e02",
+      "section": "estimator",
+      "visual": "estimator",
+      "text": "Scale uncertainty travels beside statistical uncertainty, so a visual offset cannot silently become a physical-evolution claim.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Scale-limited decision rule",
+      "params": {
+        "heading": "THE SCALE TERM DEFINES THE CLAIM",
+        "layout": "expression",
+        "symbol": "Delta_Z(M*)",
+        "expression": "matched direct-scale difference",
+        "signs": [
+          "HIGH-Z LOWER",
+          "SCALES OVERLAP",
+          "HIGH-Z HIGHER"
+        ]
+      },
+      "word_count": 16,
+      "raw_file": "audio/raw/e02-e20a6f7e3847.mp3",
+      "raw_file_sha256": "3b4f24d62997e405880b1f1cdd53f4bb48ba5fe89875541d0d01a283355cdc9f",
+      "decoded_file": "audio/decoded/e02.wav",
+      "decoded_file_sha256": "f1fd03070140fdee2e0b10d185f05edf3431f4da84ec6f6b620ed13e0a285576",
+      "audio_start_sample": 7367602,
+      "audio_end_sample": 7730482,
+      "audio_start_seconds": 153.49170833333332,
+      "audio_end_seconds": 161.05170833333332,
+      "visual_action_start_frame": 4605,
+      "visual_action_start_seconds": 153.5,
+      "alignment_delta_seconds": 0.00829166666667902,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "c01",
+      "section": "controls",
+      "visual": "controls",
+      "text": "The auroral-quality control tests noise and blending, while the line-completeness control tests whether a temperature can become an abundance.",
+      "grounding": "sources/APRIME_PIPELINE_FROZEN.md",
+      "display_citation": "Quality and line-completeness controls",
+      "params": {
+        "heading": "CONTROL THE PHYSICS OF THE ANCHOR",
+        "rows": [
+          [
+            "AURORAL QUALITY",
+            "noise or line blending"
+          ],
+          [
+            "LINE COMPLETENESS",
+            "undefined ionic abundance"
+          ],
+          [
+            "DIRECT PIPELINE",
+            "recipe-switching artifact"
+          ]
+        ]
+      },
+      "word_count": 19,
+      "raw_file": "audio/raw/c01-56081cf40aee.mp3",
+      "raw_file_sha256": "8478ab57f5b82dac5784f82a9261d72ff3420599c4df9e0d9f3ea8ec3e6fd240",
+      "decoded_file": "audio/decoded/c01.wav",
+      "decoded_file_sha256": "6d46d9cd65a48da77c952f2a2886a1b92d8662fdf0fd22e839ee8ab2b8ea5a8f",
+      "audio_start_sample": 7963356,
+      "audio_end_sample": 8320476,
+      "audio_start_seconds": 165.90325,
+      "audio_end_seconds": 173.34325,
+      "visual_action_start_frame": 4977,
+      "visual_action_start_seconds": 165.9,
+      "alignment_delta_seconds": -0.003250000000008413,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "c02",
+      "section": "controls",
+      "visual": "controls",
+      "text": "The mass-join, lensing, and scale controls prevent the same derived abundance from supporting incompatible physical interpretations.",
+      "grounding": "sources/T2B_CONTRACT_SEMANTICS.md",
+      "display_citation": "Mass, lensing, and declared-scale controls",
+      "params": {
+        "heading": "CONTROL THE COMPARISON FRAME",
+        "rows": [
+          [
+            "SAME-OBJECT MASS",
+            "cross-object join"
+          ],
+          [
+            "LENSING RULE",
+            "unbounded intrinsic mass"
+          ],
+          [
+            "DECLARED SCALE",
+            "calibration-frame mismatch"
+          ]
+        ]
+      },
+      "word_count": 16,
+      "raw_file": "audio/raw/c02-b705d7edf847.mp3",
+      "raw_file_sha256": "585e9deb5528ee683af24e6d48c785fa9923c0e23bd0044d04ee13b3c8293819",
+      "decoded_file": "audio/decoded/c02.wav",
+      "decoded_file_sha256": "69c86c28f462a538a5001af281041ef96f703a92802a306a357a1374f6e6c84c",
+      "audio_start_sample": 8356476,
+      "audio_end_sample": 8749308,
+      "audio_start_seconds": 174.09325,
+      "audio_end_seconds": 182.27725,
+      "visual_action_start_frame": 5223,
+      "visual_action_start_seconds": 174.1,
+      "alignment_delta_seconds": 0.006749999999982492,
+      "pause_after_samples": 232874,
+      "pause_after_seconds": 4.851541666666667
+    },
+    {
+      "id": "g01",
+      "section": "discipline",
+      "visual": "discipline",
+      "text": "We tied our own hands by freezing anchor classes, quality rules, derivation physics, and the declared reference scale before computing any abundance.",
+      "grounding": "sources/APRIME_PIPELINE_FROZEN.md",
+      "display_citation": "Direct-anchor pipeline frozen before derivation",
+      "params": {
+        "locks": [
+          "ANCHOR CLASSES",
+          "QUALITY RULE",
+          "DERIVATION PIPELINE",
+          "REFERENCE SCALE"
+        ],
+        "bottom": "THE METHOD CANNOT MOVE AFTER ABUNDANCES ARE SEEN"
+      },
+      "word_count": 22,
+      "raw_file": "audio/raw/g01-8e2fce54dbf5.mp3",
+      "raw_file_sha256": "45a685576209943e9c88e102d6320323d8df3be4a5c51e3dc6c89fbaf32bd51e",
+      "decoded_file": "audio/decoded/g01.wav",
+      "decoded_file_sha256": "90077e6ae2d80583685c36e2fbaa396b05d6ed8719a101d0fe193a1de80421ce",
+      "audio_start_sample": 8982182,
+      "audio_end_sample": 9402662,
+      "audio_start_seconds": 187.12879166666667,
+      "audio_end_seconds": 195.88879166666666,
+      "visual_action_start_frame": 5614,
+      "visual_action_start_seconds": 187.13333333333333,
+      "alignment_delta_seconds": 0.0045416666666540095,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "g02",
+      "section": "discipline",
+      "visual": "discipline",
+      "text": "The gates are scientific discipline: no missing flux, mass, magnification, or uncertainty can be repaired with an assumption chosen after inspection.",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Fail-closed reviewed-script protocol",
+      "params": {
+        "locks": [
+          "FLUX EVIDENCE",
+          "MASS JOIN",
+          "LENSING DATA",
+          "UNCERTAINTY"
+        ],
+        "bottom": "AN ABSENT INPUT REMAINS AN EXCLUSION"
+      },
+      "word_count": 21,
+      "raw_file": "audio/raw/g02-dac546a7822e.mp3",
+      "raw_file_sha256": "1ccb449d4e9d096698ec4d7eeeac60dc6a023811c23cef7962fe2c1be094a5d5",
+      "decoded_file": "audio/decoded/g02.wav",
+      "decoded_file_sha256": "c38677c5e4c63b55ba50f3c8dd3e5d8708e86c60efe07593ff2c8a0975680ea8",
+      "audio_start_sample": 9438662,
+      "audio_end_sample": 9836102,
+      "audio_start_seconds": 196.63879166666666,
+      "audio_end_seconds": 204.91879166666666,
+      "visual_action_start_frame": 5899,
+      "visual_action_start_seconds": 196.63333333333333,
+      "alignment_delta_seconds": -0.0054583333333368955,
+      "pause_after_samples": 232873,
+      "pause_after_seconds": 4.851520833333334
+    },
+    {
+      "id": "b01",
+      "section": "boundary",
+      "visual": "boundary",
+      "text": "What is known is the anchor-building method; table counts, anchor yield, mass-bin occupancy, offset sign, and any evolution verdict remain outside this canary.",
+      "grounding": "sources/LANE_STATUS.json",
+      "display_citation": "Lane status \u00b7 method-only boundary",
+      "params": {
+        "known": [
+          "direct-anchor chain",
+          "declared-scale contract",
+          "matched-mass design"
+        ],
+        "held": [
+          "table or anchor totals",
+          "offset value or sign",
+          "evolution verdict"
+        ],
+        "next": [
+          "independent source freeze",
+          "numeric verification",
+          "explicit result gate"
+        ]
+      },
+      "word_count": 23,
+      "raw_file": "audio/raw/b01-69a27abde6cf.mp3",
+      "raw_file_sha256": "f2bab11486afc56c1fa1146e494f4751a2e93dc2be7e66f678654eba2c2812c5",
+      "decoded_file": "audio/decoded/b01.wav",
+      "decoded_file_sha256": "1c0f03ba8ea0d4d635182148868c6015db6288a5d00bc21c73f0b2f52b567abf",
+      "audio_start_sample": 10068975,
+      "audio_end_sample": 10498671,
+      "audio_start_seconds": 209.7703125,
+      "audio_end_seconds": 218.7223125,
+      "visual_action_start_frame": 6293,
+      "visual_action_start_seconds": 209.76666666666668,
+      "alignment_delta_seconds": -0.003645833333308701,
+      "pause_after_samples": 232873,
+      "pause_after_seconds": 4.851520833333334
+    },
+    {
+      "id": "x01",
+      "section": "payoff",
+      "visual": "payoff",
+      "text": "Ask the opening question again: would a common-scale offset belong to young galaxies, or to the calibration process?",
+      "grounding": "sources/MEASUREMENT_DESIGN_V1.md",
+      "display_citation": "Opening question re-posed",
+      "params": {
+        "heading": "EVOLUTION OR CALIBRATION?",
+        "icon": "anchor",
+        "left": "PHYSICAL EVOLUTION EXPLANATION",
+        "right": "CALIBRATION-OFFSET EXPLANATION",
+        "discriminant": "DIRECT-TEMPERATURE CHAIN + COMMON SCALE + MATCHED MASS",
+        "banner": "METHOD DESIGNED \u00b7 VALUE AND SIGN WITHHELD"
+      },
+      "word_count": 18,
+      "raw_file": "audio/raw/x01-fe0e38356eff.mp3",
+      "raw_file_sha256": "c5117470cca7d809f2fd10dada3da008525fdb2500bc945dbad2f35101f8b98d",
+      "decoded_file": "audio/decoded/x01.wav",
+      "decoded_file_sha256": "cd8901531ed61a70baa3bb07eb8c603a98070497493b266d5b607662d6063e5e",
+      "audio_start_sample": 10731544,
+      "audio_end_sample": 11033368,
+      "audio_start_seconds": 223.57383333333334,
+      "audio_end_seconds": 229.86183333333332,
+      "visual_action_start_frame": 6707,
+      "visual_action_start_seconds": 223.56666666666666,
+      "alignment_delta_seconds": -0.007166666666677202,
+      "pause_after_samples": 36000,
+      "pause_after_seconds": 0.75
+    },
+    {
+      "id": "x02",
+      "section": "payoff",
+      "visual": "payoff",
+      "text": "Now we have a method that can separate those explanations without manufacturing an anchor count, an offset, or a result.",
+      "grounding": "sources/HWAO_SIBLING_ROLLOUT_ORDER.md",
+      "display_citation": "Sibling rollout authority \u00b7 method only",
+      "params": {
+        "heading": "THE METHOD EARNS THE ANSWER",
+        "icon": "anchor",
+        "left": "GALAXY EVOLUTION",
+        "right": "CALIBRATION OFFSET",
+        "discriminant": "REPRODUCIBLE ANCHORS + DECLARED SCALE + CONTROLS",
+        "banner": "NO RESULT CLAIM IN THIS CANARY"
+      },
+      "word_count": 20,
+      "raw_file": "audio/raw/x02-e940facf0a88.mp3",
+      "raw_file_sha256": "466d00aa3265a402f3ae680669b8056130a29d5ca8a5e0950802c0c3016ce68b",
+      "decoded_file": "audio/decoded/x02.wav",
+      "decoded_file_sha256": "b27a3ac55cd341dc529a93c72d70ad4695f8dbe6b71bcfd023f09811bf6714b9",
+      "audio_start_sample": 11069368,
+      "audio_end_sample": 11373496,
+      "audio_start_seconds": 230.61183333333332,
+      "audio_end_seconds": 236.94783333333334,
+      "visual_action_start_frame": 6918,
+      "visual_action_start_seconds": 230.6,
+      "alignment_delta_seconds": -0.011833333333328255,
+      "pause_after_samples": 0,
+      "pause_after_seconds": 0
+    }
+  ]
+}

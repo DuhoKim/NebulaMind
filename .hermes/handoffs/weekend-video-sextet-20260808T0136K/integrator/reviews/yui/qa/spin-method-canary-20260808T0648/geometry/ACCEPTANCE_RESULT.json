@@ -1,0 +1,15 @@
+{
+  "test": "geometry-resilience acceptance (spin pass-15 guard; operational transforms = x90 and y90 aspect squeezes)",
+  "guard_source": "lane-spin-parity/worker-yui/GEOMETRY_RESILIENCE_GUARD_PASS15.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T10:15:00+09:00",
+  "method": "90% horizontal and 90% vertical squeezes of the 11 encoded state frames (x80/y80 characterization per guard clause 8); human review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 RESULT HELD capsule readable on 11/11 squeezed states in both axes",
+    "no_meaning_by_geometry_alone": "PASS \u2014 every count/claim carries a direct text or numeric label; the deck contains no bar-length, slope, area, or spacing-encoded meaning (parallel-readout boxes carry explicit numbers; spirals reinforce a text-stated mirroring claim; equation is text)",
+    "labels_primary": "PASS \u2014 geometry reinforces, never replaces, direct labels",
+    "characterization_x80_y80": "not required for a deck with no geometry-encoded meaning; operational transforms reviewed in both axes"
+  },
+  "verdict": "PASS",
+  "evidence": "geometry/contact_sheet_squeeze_x90.png, contact_sheet_squeeze_y90.png"
+}

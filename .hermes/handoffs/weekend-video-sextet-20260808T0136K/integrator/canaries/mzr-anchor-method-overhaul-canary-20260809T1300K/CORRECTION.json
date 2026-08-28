@@ -1,0 +1,23 @@
+{
+  "status": "CORRECTION_CANDIDATE",
+  "replaces_sha256": "973daba3a6b8ef66409d3bbd2588fc2db2459f4fb3c5d474a731a93b8c2e1970",
+  "built_by": "Claude-macbook seat (Directors board, pane %30)",
+  "instruction": "Duho, 2026-08-09: \"fix the title card and rebuild\"",
+  "blockers_addressed": {
+    "KUN-MZR-ANCHOR-CLAIM-DRIFT": "persistent visual short_title changed from 'A metallicity offset has two explanations' to 'An apparent metallicity offset has two explanations'; the presupposition that an offset exists is removed and the wording now matches the narration register both Lana and Kun accepted in speech ('an apparent offset could instead be a fact about strong-line recipes')"
+  },
+  "change_scope": "spec.json short_title and candidate_filename ONLY",
+  "narration_unchanged": true,
+  "audio_reused_from_predecessor": "audio/ copied byte-identical; no re-synthesis, no new TTS spend",
+  "renderer": {
+    "sha256": "7d42ea801d6f72648403227728bd771844f3c35ea464bcf99e1eb5dc7d49ca53",
+    "note": "the exact renderer that produced the predecessor, taken from integrator/renderer-archive/, so this rebuild is a minimal diff rather than a re-render under newer renderer code",
+    "environment_recorded": "python 3.11.15 / pillow 12.3.0 / ffmpeg 8.1.2 — matches the predecessor build environment"
+  },
+  "output_sha256": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+  "encoded_verification": "OCR of 5 frames sampled across the runtime (20/70/120/170/210 s) shows the corrected title on every one; the presupposing form appears in none",
+  "method_only": true,
+  "video_reportable_now": false,
+  "not_yet_reviewed": "no seat has reviewed this hash. Lana, Goru, Kun and Tori packets all describe the predecessor.",
+  "predecessor_untouched": true
+}

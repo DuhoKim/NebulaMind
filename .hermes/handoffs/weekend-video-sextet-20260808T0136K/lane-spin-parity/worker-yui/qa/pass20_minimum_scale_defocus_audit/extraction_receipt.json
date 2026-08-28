@@ -1,0 +1,999 @@
+{
+  "audio_generated": false,
+  "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "characterization_variants": [
+    "defocus_r2_50_then_360p",
+    "defocus_r4_00_then_360p"
+  ],
+  "contact_sheets": {
+    "clean": {
+      "height": 1276,
+      "path": "contact_sheet_clean.png",
+      "sha256": "d004b20c78d9356007dc1984646e0978bdafe75d4037dacfe30c0f8c91c4cfb2",
+      "width": 1892
+    },
+    "defocus_r1_50_then_360p": {
+      "height": 1276,
+      "path": "contact_sheet_defocus_r1_50_then_360p.png",
+      "sha256": "704179d97e63114fc9dfd606af461cea598397aafbcd3725345c61d302a1653d",
+      "width": 1892
+    },
+    "defocus_r2_50_then_360p": {
+      "height": 1276,
+      "path": "contact_sheet_defocus_r2_50_then_360p.png",
+      "sha256": "ae24b244d26e69e658fd8b08140e4ba0a11105c9d9fd79714797527c52d11a33",
+      "width": 1892
+    },
+    "defocus_r4_00_then_360p": {
+      "height": 1276,
+      "path": "contact_sheet_defocus_r4_00_then_360p.png",
+      "sha256": "5f6b972460db5819466378a978fc67d1c1a837ffbc2297e497b446566c12381b",
+      "width": 1892
+    },
+    "downscale_360p": {
+      "height": 1276,
+      "path": "contact_sheet_downscale_360p.png",
+      "sha256": "da5fc7f1f7728cc1f08cf5019ec91507d39723e2ea49bb559be01934af8ac2ec",
+      "width": 1892
+    }
+  },
+  "created_at": "2026-08-08T12:12:58+09:00",
+  "cut_detection": {
+    "cuts": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "detector": "ffmpeg 160x90 grayscale scene-score threshold strictly greater than 0.03 with showinfo",
+    "threshold": 0.03
+  },
+  "cut_times_seconds": [
+    12.133333,
+    26.366667,
+    47.266667,
+    60.466667,
+    74.666667,
+    88.066667,
+    102.333333,
+    116.333333,
+    131.033333,
+    148.033333,
+    162.033333,
+    179.733333,
+    196.8,
+    213.433333,
+    233.866667
+  ],
+  "deepening_pass": 20,
+  "frame_count": 80,
+  "fresh_clean_match": "16/16_BYTE_IDENTICAL_TO_PASS19",
+  "git_action": false,
+  "implementation": {
+    "downscale_resampler": "Pillow LANCZOS",
+    "minimum_scale_output": "640x360 RGB",
+    "native_defocus": "Pillow ImageFilter.GaussianBlur on RGB at 1920x1080",
+    "native_radius_pixels": [
+      1.5,
+      2.5,
+      4.0
+    ],
+    "pillow": "12.3.0",
+    "python": "3.11.15",
+    "storage": "non-optimized RGB PNG",
+    "transform_order": "native RGB -> native-canvas GaussianBlur -> full-canvas LANCZOS 640x360"
+  },
+  "midpoint_times_seconds": [
+    6.066667,
+    19.25,
+    36.816667,
+    53.866667,
+    67.566667,
+    81.366667,
+    95.2,
+    109.333333,
+    123.683333,
+    139.533333,
+    155.033333,
+    170.883333,
+    188.266666,
+    205.116667,
+    223.65,
+    238.583334
+  ],
+  "operational_variants": [
+    "defocus_r1_50_then_360p"
+  ],
+  "records": [
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_01_clean.png",
+      "prior_pass19_clean_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "sample_time_seconds": 6.066667,
+      "samples": [
+        {
+          "frame": "frames/scene_01_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_01_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "be71a55708906bbcc3c704f5953ff2d8e5ba212061cf9254e02e9aba6fb6b94c",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_01_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "c229337d81d2767a52239ed511a441f2493c4708bb220c31a326003f65bab8a4",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_01_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "cc803b2fce21207a2e886181a27f5da300103f5242c3b0bbfef7a665c28f5c67",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_01_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "ba44d801ccc61f498f55523dc4376cbcee5d079a13b91e78867fbfd9be5fc439",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 1
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_02_clean.png",
+      "prior_pass19_clean_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "sample_time_seconds": 19.25,
+      "samples": [
+        {
+          "frame": "frames/scene_02_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_02_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "6068b07a66074a579165f383a552618e4f8b4c4747d3b9f102e88dcba646451b",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_02_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "91b0e7bc7bc8df16ce33196443b67453f75a72d5ac9830f36ba1ce4f5d8bb172",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_02_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "c90c516054571be35932be212e4e8ab6bae8916e4d6220561caed176083505a7",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_02_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "b5b8d22fdfc334de7bc9c537158e15b22bba6fe69ccea16f5734e370d5245c88",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 2
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_03_clean.png",
+      "prior_pass19_clean_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "sample_time_seconds": 36.816667,
+      "samples": [
+        {
+          "frame": "frames/scene_03_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_03_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "1a47623cef544b4d04316843120053e3a6b31e9dcdb2fcfe4075bf351b106154",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_03_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "311c48845b3f64e28922154ad1bef18ea65451a91dc17028ceccfdfbbbb0a452",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_03_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "31ab248aa86b9f26b5b0ed5f9df7e8081337630d1168cbadc5e1815c4ba3cd84",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_03_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "a491ac21d0102bca567a7188cb506614270e903b7b47ae5733b707cdccb1b4e6",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 3
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_04_clean.png",
+      "prior_pass19_clean_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "sample_time_seconds": 53.866667,
+      "samples": [
+        {
+          "frame": "frames/scene_04_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_04_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "1fc19ebd40cee447fe715267984ffda3a90b1f4a8880c54cac8e4188bf8e280c",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_04_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "3d46a4bf1269000fd12721ca731de8bf9157d48fe49a20d0836eed3d0220c630",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_04_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "1f7f8e95fb141beaa7e839d68e064cf6d8591629f5e5edbd7e04729ad2bf0f16",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_04_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "a9d23c8df7bf63eaae50a0334613bf41f0b6535daed3b46c5d9fdcd99f25d2f4",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 4
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_05_clean.png",
+      "prior_pass19_clean_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "sample_time_seconds": 67.566667,
+      "samples": [
+        {
+          "frame": "frames/scene_05_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_05_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "b8839772a7b83d49297f386e940f501b60f451cf0d538591be9bcbbe09c1bc18",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_05_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "fe47a4e28269c2f0c7115b18b7fd85a8886c7a271f3535d83e43e5907d049cb0",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_05_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "d85d2bff828c7ffacbf0ffadc92040b613cf5a7f09faa53ca7e0f754fa8e6c7b",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_05_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "d062b2e750f788fbf240450eaaeaaf3b3e3d983bdc533489b7ebad7678fd87ea",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 5
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_06_clean.png",
+      "prior_pass19_clean_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "sample_time_seconds": 81.366667,
+      "samples": [
+        {
+          "frame": "frames/scene_06_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_06_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "dfaa258631d91ce69985e418b1010ce9fb4b37d61fd5378ae8d5fa2dc3ad5ef9",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_06_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "ccb0f75eb05b00b5892666b3ad48582b25e174f73b3861510e63a05cb6960cda",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_06_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "36c06fb3a65f4bb555e35850ce4cfc7ad5746d46da358a32d67bba50bb639e21",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_06_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "4ed0a3db6757b90874bd908e1c6271679a609c513101955cbf09ab37e1573011",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 6
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_07_clean.png",
+      "prior_pass19_clean_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "sample_time_seconds": 95.2,
+      "samples": [
+        {
+          "frame": "frames/scene_07_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_07_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "d12591247847849f4de8470e48124eee79e3360690a611f8f71bc83a9b1a193b",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_07_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "253d8c8288c9b4852ae76d6b1b98a7313a85e834bad7513e816e2176c51484fa",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_07_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "19427f22ad2759de1e3339ff14248cfe9c65b7dc2c6425089808c61f61906804",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_07_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "c9788dc8860fb3c1d8c4dcf516a70f46eaa7f57ee378027d3df26680f05aed48",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 7
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_08_clean.png",
+      "prior_pass19_clean_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "sample_time_seconds": 109.333333,
+      "samples": [
+        {
+          "frame": "frames/scene_08_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_08_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "0e62a38a29856ae4c4374b1289f67a298b6bdbd23172ef6f1247fc85b8f907bd",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_08_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "d9a3cd288b6605515a194b4da7a5ad7c58b80e46de5738d5f9f36d6b4d36763c",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_08_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "07f06d3306eda6adae5d449d2b0df15a99bf97df6898b18ad757fac2e297e080",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_08_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "9e56f6b09567603f1a5fa4938209827e5ff79700370f633ec26423cb41d2bc1c",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 8
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_09_clean.png",
+      "prior_pass19_clean_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "sample_time_seconds": 123.683333,
+      "samples": [
+        {
+          "frame": "frames/scene_09_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_09_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "1965e20e210a35c842c29bc7af2652fc723929d279da0f0d4749b08a9d845bcb",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_09_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "bbf583dc89f1d8f4c799bb98b3b085196e230a28a26ac819df4995b686a3a821",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_09_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "bb6dcbd9e0d7ce46ef8afcc50c66fec573ac54b3c5123fbc306df73e7ec41bbb",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_09_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "f8c772535a293888ecffaf48b5b7641d3795a10d9d4a0290a8ff790c2c483dab",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 9
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_10_clean.png",
+      "prior_pass19_clean_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "sample_time_seconds": 139.533333,
+      "samples": [
+        {
+          "frame": "frames/scene_10_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_10_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "2f15520c736b2878669f42e9eafa5452a030807972b879c92156ca3eda5ccef7",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_10_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "b9b249ff85bb343d9aecc140f0fffc4051545148616de84329c2aa1e2a3bb3b9",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_10_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "fbed420415bf0e34cd7f6eda4c847ffd6db8d6fcb8445264d9710ab97635d359",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_10_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "fffcaa7c58941521097a371eaa8f6f4fbffb3be3b2f0ef157b1a315646d0aabf",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 10
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_11_clean.png",
+      "prior_pass19_clean_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "sample_time_seconds": 155.033333,
+      "samples": [
+        {
+          "frame": "frames/scene_11_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_11_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "a64c0076a092d64f716f502f41b44a99615ecdaf76cdc8325f2bc38ab8bbf851",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_11_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "d1eaa03efe3094baccdc299ef33c7240d258fd016ff96433ecc6f23734d9d648",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_11_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "b077d167e9823b4240768ef10522710143b302e603586366bcd81910195906e4",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_11_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "fd25d228ea30b98335729c49a5a167912ec2ffbcd470fbe1657e7cdd9025d5f0",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 11
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_12_clean.png",
+      "prior_pass19_clean_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "sample_time_seconds": 170.883333,
+      "samples": [
+        {
+          "frame": "frames/scene_12_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_12_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "f69f17576cb243d27a44b3cd2f63c17f82fe1c277047a19f0c6ce85146bb45b7",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_12_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "1345291e266235dd252575da1104cc4b54a5ec888f2635ab6ffe969060c3c0c6",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_12_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "06d1f36fe8a90a234836cfb7fa34e432b73ba1ba0ae1b30f740f1181ce9008a7",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_12_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "3b286b2d9f57bafcf36475e3e4193c450fd32c7ebb541002a3c06cfbfe1c9000",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 12
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_13_clean.png",
+      "prior_pass19_clean_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "sample_time_seconds": 188.266666,
+      "samples": [
+        {
+          "frame": "frames/scene_13_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_13_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "8c44e3ec5e29cc078bfbd204203cc9a6c8ce4548912156b56526624afc4e3a0d",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_13_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "f1b95693c551d28c2054a987e78685e3d08c1366492a561db655c4fac7dc4f88",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_13_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "532592eb10d9b500b5103da32ec73a9a7230dd14c4e55f70ca14a80e84cda39b",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_13_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "44657a89bb61f193dffc507eaf3ea996281029be74c97c594ca21a3717596e83",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 13
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_14_clean.png",
+      "prior_pass19_clean_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "sample_time_seconds": 205.116667,
+      "samples": [
+        {
+          "frame": "frames/scene_14_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_14_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "92b6cd660113daff58db9beed05e3bf6f48b3b7ed3ad04a16e1f51c49319facf",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_14_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "f54dcc83451a5b091b92bf666c39033753cdadbdaa2c162f97dc3f6cb949d3fb",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_14_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "cfb18c9da847a1b41a390e8cedc79bf9f7d5c2f11965f2bc32b9b16a23ec5037",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_14_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "dc6a8613cb5b5ebc8635500225abf78fb8ec9c7c02c5a8c0431599485fc4e055",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 14
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_15_clean.png",
+      "prior_pass19_clean_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "sample_time_seconds": 223.65,
+      "samples": [
+        {
+          "frame": "frames/scene_15_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_15_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "a82d659a2e40a5b88b59a9132b696b555ec0f7a56c8ba7a3f3600bea1f84e4f5",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_15_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "5535152b48069be3e008b60ad3d6508ef81dfbb86880df2f3e53451ad817951c",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_15_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "091233888d2539449132451171cb558799c1ddc5765889d9cdb3dc6351e1089d",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_15_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "07566e52d407a3acf45eafe74a3e5379d19d49f7b542dbdc1e2d4c35250e5d5f",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 15
+    },
+    {
+      "fresh_clean_byte_identical": true,
+      "prior_pass19_clean_path": "qa/pass19_minimum_scale_black_lift_audit/frames/scene_16_clean.png",
+      "prior_pass19_clean_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "sample_time_seconds": 238.583334,
+      "samples": [
+        {
+          "frame": "frames/scene_16_clean.png",
+          "height": 1080,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+          "variant": "clean",
+          "width": 1920
+        },
+        {
+          "frame": "frames/scene_16_downscale_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": null,
+          "sha256": "dd8661f9337c4e0e03319b04c6c25ccfd8d9ed64da81ec5fa8a90726cda05f3e",
+          "variant": "downscale_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_16_defocus_r1_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 1.5,
+          "sha256": "d90f1b714d95d0193e72e9eee48efe1c40dcc3d91e9d4a0f34e85fbda748973f",
+          "variant": "defocus_r1_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_16_defocus_r2_50_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 2.5,
+          "sha256": "667fc50c3a2a3c1b99413e363f212cc05973adadd7b66a67c602c3dfe6d5ab1d",
+          "variant": "defocus_r2_50_then_360p",
+          "width": 640
+        },
+        {
+          "frame": "frames/scene_16_defocus_r4_00_then_360p.png",
+          "height": 360,
+          "mode": "RGB",
+          "native_gaussian_radius_pixels": 4.0,
+          "sha256": "d8af8ab79c8e59f4d46a31c4e67a7d67f368371433a9b9dfc980ed2709351fe0",
+          "variant": "defocus_r4_00_then_360p",
+          "width": 640
+        }
+      ],
+      "scene": 16
+    }
+  ],
+  "reference_variant": "downscale_360p",
+  "scene_count": 16,
+  "simulation_limit": "Packet-specific native defocus plus minimum-scale stress only; not a claim about a named lens, projector, display, player, browser, platform, service, room, viewer, or universal standard.",
+  "status": "QA_ONLY_NOT_A_CANDIDATE",
+  "tts_invoked": false,
+  "variant_count": 5,
+  "variant_order": [
+    "clean",
+    "downscale_360p",
+    "defocus_r1_50_then_360p",
+    "defocus_r2_50_then_360p",
+    "defocus_r4_00_then_360p"
+  ],
+  "video_encoded": false
+}

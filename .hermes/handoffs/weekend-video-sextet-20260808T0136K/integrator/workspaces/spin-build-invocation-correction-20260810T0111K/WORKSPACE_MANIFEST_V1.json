@@ -1,0 +1,83 @@
+{
+  "manifest_id": "SPIN_BUILD_INVOCATION_CORRECTION_WORKSPACE_V1_20260810T0117K",
+  "created_at_kst": "2026-08-10T01:17:30+09:00",
+  "workspace": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/spin-build-invocation-correction-20260810T0111K",
+  "status": "FROZEN_REPRODUCIBILITY_COPY_NOT_CANDIDATE",
+  "build_invocations": [
+    {
+      "argv": [
+        "/Users/duhokim/.hermes/hermes-agent/venv/bin/python",
+        "build.py",
+        "--preview"
+      ],
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "/Users/duhokim/.hermes/hermes-agent/venv/bin/python",
+        "build.py",
+        "--render"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "pre_manifest_tree": {
+    "definition": "sha256 over sorted relative-path NUL file-sha256 lines, excluding WORKSPACE_MANIFEST_V1.json",
+    "file_count": 142,
+    "sha256": "e557787381395d0aa72dd5829af0ea94de35243f34dc2b55c5adb20e6bef4941"
+  },
+  "important_files": {
+    "build.py": {
+      "bytes": 45297,
+      "sha256": "639f9e477904ab0117144d5722831ada0a58a9a1d43c5fca13bd8d54a4a96864"
+    },
+    "audio_v4/timeline.json": {
+      "bytes": 26373,
+      "sha256": "8d6fe95efd9f68ef0034f9bf69f41ab59461a2bebd07aa514e60f7c83f4ebf0a"
+    },
+    "audio_v4/narration_master.wav": {
+      "bytes": 21524948,
+      "sha256": "e35b5ca002c88a0b84d6bdf5bb5be7508564021c037295e9114ec9d299378bc6"
+    },
+    "narration_script_v4.json": {
+      "bytes": 11302,
+      "sha256": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1"
+    },
+    "final-timing-contact-sheet-v4.jpg": {
+      "bytes": 1430219,
+      "sha256": "28fa31b83f3ef8d5e14cea21642230f54bdc9e1aa7cc3d2fa8c176acc25b4d98"
+    },
+    "spin-method-overhaul-canary-20260809T2340K.mp4": {
+      "bytes": 25486290,
+      "sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078"
+    },
+    "build_receipt.json": {
+      "bytes": 1786,
+      "sha256": "539bb151a076120d95d32ad335b28dac792d228695ba381ed3989f164be7eb96",
+      "frame_count_semantics": "raw_frames_submitted_to_ffmpeg=6727; not encoded_video_frames"
+    },
+    "BUILD_INVOCATION_CORRECTION_RECEIPT_V1.json": {
+      "bytes": 6162,
+      "sha256": "86104eee4f9aa1352bb4850810c1e7bdc946b2555768a68837d347f99ec611e0"
+    }
+  },
+  "encoded_readback": {
+    "raw_frames_submitted_to_ffmpeg": 6727,
+    "encoded_video_frames": 6726,
+    "ffprobe_nb_frames": 6726,
+    "ffprobe_nb_read_frames": 6726,
+    "full_decode": "PASS",
+    "byte_compare_to_passing_spin_candidate": "IDENTICAL"
+  },
+  "disposition": {
+    "new_candidate": false,
+    "regate_triggered": false,
+    "passing_candidate_or_cockpit_replacement_authorized": false,
+    "human_acceptance_conferred": false
+  },
+  "held_work": {
+    "goru_overnight_quality_report_consumed_or_acted_on": false,
+    "brightend_correction_started": false,
+    "sibling_why_study_rollout_started": false
+  }
+}

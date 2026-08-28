@@ -123,7 +123,7 @@ same absence in the same source.
 
 ### C3 — Tolman–Ehrenfest as the missing caloric equation of state
 
-**Status: CLOSED. Refuted by two independent gates, on the geometry.**
+**Status: CLOSED 2026-08-28. Refuted by two independent gates, on the geometry.**
 
 Phase 5b closed because Smoller–Temple supply a mechanical equation of state `p(ρ)` and never a
 caloric one, so every computed signature was a property of an added closure. REGATE4 sharpened

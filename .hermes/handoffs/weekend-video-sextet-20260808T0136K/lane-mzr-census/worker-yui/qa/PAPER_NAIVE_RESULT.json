@@ -1,0 +1,27 @@
+{
+  "review_round": 3,
+  "artifact_under_review": "PAPER_NAIVE_PACKET.md corresponding to visual_proposal_v7 semantics",
+  "packet_sha256": "ac82eade44c68dfdde96c9ae6abe0791b0f210d5558345fa99235353c2d876b3",
+  "method": "read exactly once, answer all eight questions from memory without reopening or inspecting neighboring files",
+  "verdict": "PASS",
+  "score": "8/8",
+  "mandatory_questions_passed": true,
+  "confidence": "HIGH",
+  "findings": {
+    "counted_object": "single VizieR catalogue-metadata tables in which gas-phase abundance, stellar mass, and redshift are jointly reachable; not an MZR, metallicity value, or physical-trend measurement",
+    "retrieval_channels": ["semantic UCD tags", "column-name variants"],
+    "count_sequence": "5568 (+175), 6206 (+88), 6687 (+20), then 178 minus 21 split 19 redshift and 2 abundance, leaving 157",
+    "term_check": "62 of 157 recorded descriptions matched; side branch only; all 157 reach T2",
+    "instrument_check": "7/7 pinned recall and 0/3 controls support retrieval behavior but do not certify precision",
+    "precision_taxonomy": {
+      "symbol_or_meaning_collision": ["Galactic height", "model-grid metal fraction"],
+      "target_domain_mismatch": ["stellar gravitational redshift", "gravitational-redshift velocity"]
+    },
+    "ruling_status": "all four are recorded examples and none is a T2 ruling",
+    "pending": "apply T2 to all 157; no eligible-table count or metallicity/MZR measurement",
+    "scope": "single-table metadata intersection; cross-table joins and crossmatches not assessed"
+  },
+  "confusion_points": "No substantive confusion. Reviewer correctly noted that axis totals are reached counts while 175/88/20 are name-channel gains, not extra stages.",
+  "files_modified_by_reviewer": [],
+  "issues": []
+}

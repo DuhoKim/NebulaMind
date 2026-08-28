@@ -1,0 +1,71 @@
+{
+  "freeze_timestamp": "2026-08-08T01:55:15+09:00",
+  "status_reverified_timestamp": "2026-08-08T02:27:59+09:00",
+  "video_reportable_now": {
+    "decision": "YES_WITH_STRICT_SCOPE",
+    "allowed": [
+      "T1 metadata-enumeration counts",
+      "modifier-filter conservation 178 - 21 = 157",
+      "gas-phase vocabulary presence in 62 of 157 recorded descriptions, explicitly not an eligibility ruling",
+      "retrieval check 7/7 recall and 0/3 controls",
+      "recorded precision-contamination examples, split as symbol/meaning collisions and target-domain mismatches; characterization only, not T2 rulings",
+      "T2 contract frozen and eligibility still pending"
+    ],
+    "forbidden": [
+      "an eligible-table count",
+      "a metallicity or mass-metallicity measurement",
+      "a claim that 62 tables are scientifically eligible",
+      "a claim that the three recall controls certify precision against the dominant contamination mode",
+      "a claim that every recorded src.redshift example is a symbol-Z meaning collision",
+      "a claim about total archive capability beyond the single-table intersection"
+    ]
+  },
+  "status_freeze": {
+    "T1_enumeration": "DONE",
+    "T2_contract": "V1.8 FROZEN; document states no ruling logic is in force",
+    "T2_eligibility": "NOT_COMPLETED",
+    "measurement": "NOT_RUN",
+    "receipts_gate": "PENDING",
+    "video_stage": "PENDING_IN_WORKFLOW_LEDGER",
+    "scientific_class": "archive infrastructure / informatics census, not galaxy-evolution measurement"
+  },
+  "inputs": [
+    {"role":"source_storyboard_of_record","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/storyboard_mzr_census.json","sha256":"7484dbcdb7cc31d703fc2f4e43ed3054bb634fe47e02d74357156c33da9e913c","cards":15,"nominal_seconds":103.5},
+    {"role":"T1_findings","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T1_FINDINGS.md","sha256":"e2c26155e891b175aeb047c0e1acc7393975f5bfc15a2500b269bb959ba8b964"},
+    {"role":"T1_manifest","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T1_MZR_MANIFEST.json","sha256":"b883b3a6f602cfb2f5ae147ea027c0203d0fe66fdd95eece2bc903722012b1e5"},
+    {"role":"gas_phase_vocabulary_count","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T1E_GASPHASE_COUNT.json","sha256":"fc2a9a01d4e6bac609a6bf198a132fc03f0c3e72cf87796c41e1dab7c22ff6c2"},
+    {"role":"T2_freeze_record","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/FREEZE_RECORD_T2.md","sha256":"80e4376c58d29e506a49bbeb5866cb7c8d8d65e32f689a321b3185d8ddf3d978"},
+    {"role":"T2_frozen_contract","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T2_ELIGIBILITY_CONTRACT_V1_DRAFT.md","sha256":"f40e37240c1728dd1a4aedcb7ee47b39230dad8191e8ef73f54ad2500218f383","status":"frozen contract; eligibility ruling logic not in force"},
+    {"role":"independent_T2_numeric_recount","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/GORU_T2_RECOUNT.md","sha256":"abcd03f4a46b18f398f2e517d680a3f8afaa9059344bc5bc27ad8eac47f6ea06","result":"reproduced 178/21/157, 62, 7/7, and 0/3"},
+    {"role":"historical_T2_structure_gate","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/KUN_T2_STRUCTURE_GATE.md","sha256":"8b88323f8cd90b36e452029a24cb250f46e5ebea5723c283a671be3d4f6c9b4b","result":"PASS_WITH_EDITS before later re-gates; not evidence of an eligibility run"},
+    {"role":"final_T2_evidence_regate","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/KUN_T2_REGATE7.md","sha256":"674ebb343ee5539f5cbcce7cb38380ab2792bee95b8eef49879145162a6e63b7","result":"PASS on contract evidence; explicitly states T2 ruling logic not written"},
+    {"role":"science_ruling","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/LANA_MZR_SCIENCE_RULING.md","sha256":"90eb797c20bd782ceb97338b07580e524776d7bedb7f78b65c74c00384387e73"},
+    {"role":"workflow_status","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/WORKFLOW_CHECKLIST.json","sha256":"e7700c976fff7c83a2c163519b2497525c6c64cdd765cfe73f1c89cc6ecd6686"},
+    {"role":"shared_renderer_read_only","path":"tools/nm_paper_video.py","sha256":"919af6b18057309bfa5ecc2dd0fa44536dabaa4ba02aba960cabd3d791099f5c"},
+    {"role":"shared_plot_renderer_read_only","path":"tools/nm_paper_plot.py","sha256":"6acc8ba13e0393b60950ab78b1dbdf053c48459b0449581211ecc0eff021c43d"}
+  ],
+  "encoded_artifacts": [
+    {"role":"exact_current_public_target","path":"frontend/public/videos/mzr-archive-census.mp4","sha256":"dc2f32a24e5418cb2cf1781401e877e70682dfcf17e4514407cc6cc48d08fcc0","bytes":442463,"duration_seconds":53.0,"streams":["H.264 video 1920x1080 30fps"],"audio":false},
+    {"role":"latest_hwao_integrated_candidate_read_only","path":"/Users/duhokim/HermesOps/cockpit/videos/mzr-archive-census-narrated-20260808T0155.mp4","sha256":"0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d","bytes":13989937,"duration_seconds":128.4,"streams":["H.264 video 1920x1080 30fps","AAC mono 24000Hz"],"publication_state":"local only","last_reverified_timestamp":"2026-08-08T02:27:59+09:00","pass2_contact_sheet_sha256":"5ac85b0f20ac582edb9ff9b52633170675a7f2b69ff9f0530e9fcadcc52ff563"}
+  ],
+  "representation_boundary_deepening_pass2": {
+    "source_fact": "T1 records four semantically distinct quantities entering candidacy under src.redshift and leaves actual E1-E4 rulings to T2.",
+    "safe_taxonomy": {
+      "symbol_or_meaning_collision": ["Galactic Cartesian height", "stellar-grid metal fraction (model Z)"],
+      "target_domain_mismatch_for_galaxy_MZR": ["stellar gravitational redshift", "gravitational-redshift velocity"]
+    },
+    "hard_boundary": "Recorded characterization examples only; not T2 eligibility rulings. Do not paraphrase every example as 'symbol Z, not the concept'."
+  },
+  "expected_figures": [
+    {"name":"mzr-archive-census_evidence.png","sha256":"3885f9407b537f93811347e397e9beb892ac7519afe544f22b4d4dd345d4fa89","disposition":"REVISE_LABELS: vocabulary presence, not eligibility"},
+    {"name":"mzr-archive-census_recall.png","sha256":"c7d61e1e00236a6cd46e5488f0e52bac95b9d1a0989c36226716a12e5339a82e","disposition":"REVISE: add 7/7, 0/3 and precision-control limitation"},
+    {"name":"lit_metallicity.png","sha256":"58d8dbf53a51f6b76e4d46ca82b4b319f49d01cb1f014f3b518e86703764c4a3","disposition":"REJECT_FOR_THIS_CENSUS: visually implies a metallicity measurement and the card says the census exists to measure the spread"}
+  ],
+  "display_sources": [
+    "Ochsenbein, Bauer & Marcout 2000, A&AS 143, 23, doi:10.1051/aas:2000169",
+    "IVOA UCD1+ controlled vocabulary v1.5 (2022)",
+    "NebulaMind pre-registered VizieR metadata census, snapshot 2026-08-05"
+  ],
+  "rights": "Proposed graphics are deterministic redraws from frozen metadata counts; no publisher figure crop is required.",
+  "writer_boundary": "No candidate, TTS, shared-tool, or storyboard-of-record write is authorized in this lane."
+}

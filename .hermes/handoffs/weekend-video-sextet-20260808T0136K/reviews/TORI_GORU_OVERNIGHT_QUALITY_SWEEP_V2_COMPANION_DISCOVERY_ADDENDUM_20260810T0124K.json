@@ -1,0 +1,53 @@
+{
+  "addendum_id": "TORI_GORU_OVERNIGHT_QUALITY_SWEEP_V2_COMPANION_DISCOVERY_ADDENDUM_20260810T0124K",
+  "created_at_kst": "2026-08-10T01:24:59+09:00",
+  "reviewer": "Tori",
+  "amends_without_replacing": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/TORI_GORU_OVERNIGHT_QUALITY_SWEEP_V2_RECEIPT_BLOCKER_20260810T0122K.json",
+  "discovered_companion": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/GORU_OVERNIGHT_QUALITY_SWEEP_V2_20260810T0116K.md",
+    "sha256": "d6d1fb4eeda6241d0e14114fa8cf7813ad750a73f318c1d5339b359faa8e5424",
+    "bytes": 4571,
+    "links_to_json_ledger": true,
+    "bound_by_json_ledger_or_packet_manifest": false
+  },
+  "correction": {
+    "retracted_statement": "The V2 correction packet contains no consistency matrix or 200-WPM policy.",
+    "corrected_statement": "Those items are absent from the JSON ledger but present in an unmanifested companion Markdown file. The packet-level absence claim is retracted; the missing manifest/bidirectional binding remains a provenance defect.",
+    "verdict_changed": false
+  },
+  "verdict": "HOLD_GORU_QUALITY_SWEEP_V2_SELF_DESCRIPTION_INCOMPLETE",
+  "surviving_and_deepened_blockers": [
+    {
+      "code": "VISIBLE_TEXT_SELF_DESCRIPTION_FALSE",
+      "detail": "The JSON still counts visual_action and all string params as audience-visible words. This includes renderer instructions and internal schema values. Therefore the companion's 36-defect and i04 reading-time claims are not established by actual on-screen text."
+    },
+    {
+      "code": "MOTION_HASHES_FALSE_IN_COMPANION",
+      "detail": "All five displayed encoded_qa evidence prefixes in the Markdown disagree with the exact JSON hashes and at-rest files: Markdown spin 0228d7a12b vs JSON c8192c837f; fesc 1d6f1a8e22 vs 3450727a1e; brightend 5e9b8f2c3d vs 3d7745f75c; mzr-anchor 8a4f6d1e4c vs df39826e0e; mzr-census 3b2a1e4d5f vs d42b845ec6. The phrase 'receipted in JSON' is false for the displayed prefixes."
+    },
+    {
+      "code": "SEVEN_SURFACE_MATRIX_HAS_SIX_ROWS",
+      "detail": "The section titled Seven-Surface Cross-Lane Consistency Matrix has six surface rows: Section Naming, Headers, Rails (Card Grammar), Banner Wording, Colour Roles, End Cards. Rails and Card Grammar were collapsed, so the seven requested surfaces were not independently audited."
+    },
+    {
+      "code": "OUT_OF_SCOPE_SIBLING_ROLLOUT_RECOMMENDATION",
+      "detail": "The Markdown calls spin 'the only approved why-study intro' and recommends adopting Spin's taxonomy across the four siblings. Duho explicitly held the sibling why-study rollout pending his own watch and said crew presentation PASS is not his validation. Calling the intro approved and using it to direct sibling adoption converts crew validation into the sleeping human gate. That recommendation is out of scope and cannot authorize work tonight."
+    },
+    {
+      "code": "DEFECT_LEDGER_NOT_PRESENT",
+      "detail": "The companion claims the JSON contains the complete per-card breakdown across all 36 defective cards. The JSON contains 117 cards, no reading-rate field, no derived reading-time field, and no defect flag/list. The 36-row selection cannot be reproduced from the ledger alone without importing the policy and operation from the unbound Markdown."
+    },
+    {
+      "code": "PACKET_NOT_MANIFESTED",
+      "detail": "The Markdown links to the JSON, but the JSON does not bind the Markdown and no packet manifest binds both files, extraction code, or operation. A two-file packet cannot be treated as frozen from a one-way prose link."
+    }
+  ],
+  "effect": {
+    "v2_authorizes_yui_edits": false,
+    "sibling_why_study_rollout_remains_held": true,
+    "new_quality_candidate_authorized": false,
+    "current_passing_candidates_or_cockpit_links_may_change": false,
+    "gate_opened": false,
+    "accepted_by_duho": false
+  }
+}

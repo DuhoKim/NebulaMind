@@ -1,0 +1,1800 @@
+{
+  "status": "FAIL_ENCODED_ARTIFACT_QA_DO_NOT_RERENDER",
+  "created_at_utc": "2026-08-13T06:57:13.617981+00:00",
+  "candidate": "/Users/duhokim/HermesOps/cockpit/videos/bhu-closing-record-v11-local-20260813T1526K.mp4",
+  "candidate_sha256": "8e6a4e564ddc25959ecb17c57fe19d898b9f92850b5c83da234ef3d2295f40fb",
+  "source_hashes": {
+    "STORYBOARD_DRAFT_V11.json": "b0ec6a53061ccea4196df3036bd0ad59e34ef50814b92dd3ec16cf0e4794f7c4",
+    "NARRATION_DRAFT_V11.md": "027a6e17fcb3c7d3708177b8fa30078735c11cc4157f6b44edfacceef7bb8535"
+  },
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "nb_frames": "12450"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "r_frame_rate": "0/0",
+        "nb_frames": "19455"
+      }
+    ],
+    "format": {
+      "duration": "415.000000",
+      "size": "13867729"
+    }
+  },
+  "checks": {
+    "source_hashes": true,
+    "geometry_duration_frames": true,
+    "decoded_real_wpm_all_cards_120_135": true,
+    "asr_all_11_cards": false,
+    "captions_word_for_word_all_11_cards": true,
+    "compact_reveals_frame_proven": false,
+    "card04_heading_after_spoken_full_name": true,
+    "all_assertion_headings_match": true,
+    "card01_boundary_badge_held": false,
+    "card01_audio_boundary_markers": true,
+    "card01_verdict_near_32_and_by_35": true,
+    "card01_verdict_visual": true,
+    "no_crew_or_personal_names_in_frames": true,
+    "no_crew_or_personal_names_in_asr": true,
+    "no_cns_in_frames": true,
+    "card05_non_scaled_callout": true,
+    "card05_gradient_continuous_through_2_00": true,
+    "card05_no_forbidden_terminus_primitives": true
+  },
+  "real_audio_wpm": [
+    {
+      "card_id": "01",
+      "spoken_compound_count": 80,
+      "planned_seconds": 38.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-01.wav",
+      "decoded_audio_sha256": "4cbb908fbaf72378aa059986f0df526493f9c59b6673028887f761a58f79a8dc",
+      "sample_rate": 16000,
+      "sample_count": 608000,
+      "duration_seconds": 38.0,
+      "peak_rms": 9782.899566973996,
+      "threshold_rms": 120.0,
+      "speech_start_seconds": 0.11,
+      "speech_end_seconds": 37.57,
+      "speech_span_seconds": 37.46,
+      "decoded_delivered_wpm": 128.13667912439936,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 0.4216027874564503,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "02",
+      "spoken_compound_count": 82,
+      "planned_seconds": 40.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-02.wav",
+      "decoded_audio_sha256": "de570b14264729beff80c54db466c67d31b234b0caa3b5ba1ff7d839b2c7e0df",
+      "sample_rate": 16000,
+      "sample_count": 640000,
+      "duration_seconds": 40.0,
+      "peak_rms": 10041.525299350693,
+      "threshold_rms": 120.49830359220832,
+      "speech_start_seconds": 0.1,
+      "speech_end_seconds": 38.52,
+      "speech_span_seconds": 38.42,
+      "decoded_delivered_wpm": 128.05830296720458,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 1.4961330935251738,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "03",
+      "spoken_compound_count": 88,
+      "planned_seconds": 42.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-03.wav",
+      "decoded_audio_sha256": "d3b78fc575f4e8694826018f3a10641b5a0ca6aafab5dc5b667de9c009154d0e",
+      "sample_rate": 16000,
+      "sample_count": 672000,
+      "duration_seconds": 42.0,
+      "peak_rms": 10734.005157966434,
+      "threshold_rms": 128.8080618955972,
+      "speech_start_seconds": 0.12,
+      "speech_end_seconds": 41.33,
+      "speech_span_seconds": 41.21,
+      "decoded_delivered_wpm": 128.12424168891044,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 0.6669114561477087,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "04",
+      "spoken_compound_count": 101,
+      "planned_seconds": 48.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-04.wav",
+      "decoded_audio_sha256": "cce8e66944909de64d5dde2fa0f03239d53fafc45e9dafab359a8c54a3ceea37",
+      "sample_rate": 16000,
+      "sample_count": 768000,
+      "duration_seconds": 48.0,
+      "peak_rms": 9685.087217921686,
+      "threshold_rms": 120.0,
+      "speech_start_seconds": 0.1,
+      "speech_end_seconds": 47.43,
+      "speech_span_seconds": 47.33,
+      "decoded_delivered_wpm": 128.03718571730403,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 0.5820580313418233,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "05",
+      "spoken_compound_count": 85,
+      "planned_seconds": 51.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-05.wav",
+      "decoded_audio_sha256": "8307213a34d0f63418ac62b4de70e9e45b9352fdf97e405a4514398c7b121b53",
+      "sample_rate": 16000,
+      "sample_count": 816000,
+      "duration_seconds": 51.0,
+      "peak_rms": 9127.321238663073,
+      "threshold_rms": 120.0,
+      "speech_start_seconds": 0.12,
+      "speech_end_seconds": 39.92,
+      "speech_span_seconds": 39.800000000000004,
+      "decoded_delivered_wpm": 128.14070351758792,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 11.081191130298272,
+      "authority_disposition": "INTENTIONAL_LOW_CARD_OCCUPANCY_WITH_DECODED_SPEECH_IN_BAND"
+    },
+    {
+      "card_id": "06",
+      "spoken_compound_count": 60,
+      "planned_seconds": 29.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-06.wav",
+      "decoded_audio_sha256": "ba63f7f9e43c2d88d8b5c11ebccd064a54307ff7ff3b145cd534c62970f90909",
+      "sample_rate": 16000,
+      "sample_count": 464000,
+      "duration_seconds": 29.0,
+      "peak_rms": 9964.10136345722,
+      "threshold_rms": 120.0,
+      "speech_start_seconds": 0.11,
+      "speech_end_seconds": 28.19,
+      "speech_span_seconds": 28.080000000000002,
+      "decoded_delivered_wpm": 128.2051282051282,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 0.8001662971175136,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "07",
+      "spoken_compound_count": 68,
+      "planned_seconds": 33.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-07.wav",
+      "decoded_audio_sha256": "235878eb058e3e6eb94e7414cd3b8ca7d2235f0c59479623d86825f26b5524ed",
+      "sample_rate": 16000,
+      "sample_count": 528000,
+      "duration_seconds": 33.0,
+      "peak_rms": 9537.134706307235,
+      "threshold_rms": 120.0,
+      "speech_start_seconds": 0.12,
+      "speech_end_seconds": 31.9,
+      "speech_span_seconds": 31.779999999999998,
+      "decoded_delivered_wpm": 128.38263058527377,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 1.0501467710371841,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "08",
+      "spoken_compound_count": 71,
+      "planned_seconds": 35.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-08.wav",
+      "decoded_audio_sha256": "4fb7df720fec10d9901920b1453b24a54bbe8ef28c0ad7d9a6a2d1d96b9c6774",
+      "sample_rate": 16000,
+      "sample_count": 560000,
+      "duration_seconds": 35.0,
+      "peak_rms": 9210.958834453664,
+      "threshold_rms": 120.0,
+      "speech_start_seconds": 0.12,
+      "speech_end_seconds": 33.34,
+      "speech_span_seconds": 33.220000000000006,
+      "decoded_delivered_wpm": 128.23600240818783,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 1.6408991228070136,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "09",
+      "spoken_compound_count": 61,
+      "planned_seconds": 29.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-09.wav",
+      "decoded_audio_sha256": "fe59f25632de290f247cf04511dc310eeb5653c8d27b369486b5be293216814a",
+      "sample_rate": 16000,
+      "sample_count": 464000,
+      "duration_seconds": 29.0,
+      "peak_rms": 11975.133211158864,
+      "threshold_rms": 143.70159853390638,
+      "speech_start_seconds": 0.11,
+      "speech_end_seconds": 28.59,
+      "speech_span_seconds": 28.48,
+      "decoded_delivered_wpm": 128.51123595505618,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 0.33568444730076763,
+      "authority_disposition": null
+    },
+    {
+      "card_id": "10",
+      "spoken_compound_count": 66,
+      "planned_seconds": 36.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-10.wav",
+      "decoded_audio_sha256": "96e0f7a59add86de20f2b656022e854378206d09d044381dbe59343c585128fc",
+      "sample_rate": 16000,
+      "sample_count": 576000,
+      "duration_seconds": 36.0,
+      "peak_rms": 11599.54183577955,
+      "threshold_rms": 139.1945020293546,
+      "speech_start_seconds": 0.12,
+      "speech_end_seconds": 31.03,
+      "speech_span_seconds": 30.91,
+      "decoded_delivered_wpm": 128.1138790035587,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 4.981837316675719,
+      "authority_disposition": "INTENTIONAL_LOW_CARD_OCCUPANCY_WITH_DECODED_SPEECH_IN_BAND"
+    },
+    {
+      "card_id": "11",
+      "spoken_compound_count": 69,
+      "planned_seconds": 34.0,
+      "decoded_audio": "encoded_qa/audio_cards/card-11.wav",
+      "decoded_audio_sha256": "d74840c45fd374a76bec8636cd4e02726d4658aca11631ebcedc039db71e9729",
+      "sample_rate": 16000,
+      "sample_count": 544000,
+      "duration_seconds": 34.0,
+      "peak_rms": 10926.203403401385,
+      "threshold_rms": 131.11444084081663,
+      "speech_start_seconds": 0.1,
+      "speech_end_seconds": 32.38,
+      "speech_span_seconds": 32.28,
+      "decoded_delivered_wpm": 128.2527881040892,
+      "band_status": "PASS",
+      "planned_dwell_after_source_timed_speech_seconds": 1.5825670384432868,
+      "authority_disposition": null
+    }
+  ],
+  "asr_model": "Systran/faster-whisper-small",
+  "asr": [
+    {
+      "card_id": "01",
+      "expected": "Could our universe be inside a black hole? It's a personal side-interest — not part of the lab's research programme. We read the original papers to see what they actually predict. One idea gives us a number to check against real stars. For galaxy spin, the sources give no expected size for the effect — and even a perfect measurement couldn't tell us a black hole was the cause. So this route closes. The idea is not declared true or false.",
+      "transcript": "Could our universe be inside a black hole? It's a personal side interest, not part of the lab's research program. We read the original papers to see what they actually predict. One idea gives us a number to check against real stars. For galaxy spin, the sources give no expected size for the effect, And even a perfect measurement couldn't tell us a black hole was the cause. So this route closes. The idea is not declared true or false.",
+      "normalized_similarity": 0.9976635514018691,
+      "token_recall": 0.9879518072289156,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 3.76,
+          "text": "Could our universe be inside a black hole?",
+          "avg_logprob": -0.12397139151891072,
+          "no_speech_prob": 0.011826658621430397
+        },
+        {
+          "start": 3.76,
+          "end": 9.52,
+          "text": "It's a personal side interest, not part of the lab's research program.",
+          "avg_logprob": -0.12397139151891072,
+          "no_speech_prob": 0.011826658621430397
+        },
+        {
+          "start": 9.52,
+          "end": 13.6,
+          "text": "We read the original papers to see what they actually predict.",
+          "avg_logprob": -0.12397139151891072,
+          "no_speech_prob": 0.011826658621430397
+        },
+        {
+          "start": 14.24,
+          "end": 18.56,
+          "text": "One idea gives us a number to check against real stars.",
+          "avg_logprob": -0.12397139151891072,
+          "no_speech_prob": 0.011826658621430397
+        },
+        {
+          "start": 19.28,
+          "end": 25.2,
+          "text": "For galaxy spin, the sources give no expected size for the effect,",
+          "avg_logprob": -0.12397139151891072,
+          "no_speech_prob": 0.011826658621430397
+        },
+        {
+          "start": 25.2,
+          "end": 31.2,
+          "text": "And even a perfect measurement couldn't tell us a black hole was the cause.",
+          "avg_logprob": -0.17194420439856392,
+          "no_speech_prob": 0.05321832001209259
+        },
+        {
+          "start": 31.2,
+          "end": 37.2,
+          "text": "So this route closes. The idea is not declared true or false.",
+          "avg_logprob": -0.17194420439856392,
+          "no_speech_prob": 0.05321832001209259
+        }
+      ]
+    },
+    {
+      "card_id": "02",
+      "expected": "Here's the first surprise. We found at least five different proposals under this label — black-hole universe, or BHU for short. A closed universe inside a black hole. A collapse that bounces instead of crushing to a point. A universe that inherits its parent's spin. Universes that reproduce, tuning the numbers built into physics. And baby universes with entirely different fingerprints. Five ideas — and no shared prediction. We wrote what we found into a closing record — the document this video reports from.",
+      "transcript": "Here's the first surprise. We found at least five different proposals under this label, Black Hole Universe, or BHU for short. A closed universe inside a black hole. A collapse that bounces instead of crushing to a point. A universe that inherits its parent's spin. Universes that reproduce, tuning the numbers built into physics. And baby universes with entirely different fingerprints. five ideas and no shared prediction. We wrote what we found into a closing record. The document this video reports from.",
+      "normalized_similarity": 1.0,
+      "token_recall": 1.0,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 1.72,
+          "text": "Here's the first surprise.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 1.72,
+          "end": 4.12,
+          "text": "We found at least five different proposals",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 4.12,
+          "end": 7.36,
+          "text": "under this label, Black Hole Universe,",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 7.36,
+          "end": 9.24,
+          "text": "or BHU for short.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 9.24,
+          "end": 12.92,
+          "text": "A closed universe inside a black hole.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 12.92,
+          "end": 17.04,
+          "text": "A collapse that bounces instead of crushing to a point.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 17.04,
+          "end": 20.52,
+          "text": "A universe that inherits its parent's spin.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 20.52,
+          "end": 22.8,
+          "text": "Universes that reproduce,",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 22.8,
+          "end": 25.6,
+          "text": "tuning the numbers built into physics.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 25.6,
+          "end": 29.92,
+          "text": "And baby universes with entirely different fingerprints.",
+          "avg_logprob": -0.1676085005913462,
+          "no_speech_prob": 0.029583027586340904
+        },
+        {
+          "start": 29.92,
+          "end": 36.08,
+          "text": "five ideas and no shared prediction. We wrote what we found into a closing record.",
+          "avg_logprob": -0.25783576636478817,
+          "no_speech_prob": 0.002955211326479912
+        },
+        {
+          "start": 36.08,
+          "end": 39.92,
+          "text": "The document this video reports from.",
+          "avg_logprob": -0.25783576636478817,
+          "no_speech_prob": 0.002955211326479912
+        }
+      ]
+    },
+    {
+      "card_id": "03",
+      "expected": "To test an idea, the model has to risk being wrong. It needs a number, a range, or a distinctive pattern that a measurement can miss. And if you find it, it has to point back at that one idea — not at three different ones. In the whole family we surveyed, the closing record found one clean numerical test. It uses neutron stars—the ultra-dense collapsed cores of exploded stars. The ones we can time as they spin are called pulsars, and their mass can be measured.",
+      "transcript": "To test an idea, the model has to risk being wrong. It needs a number, a range, or a distinctive pattern that a measurement can miss. And if you find it, it has to point back at that one idea, not at three different ones. In the whole family we surveyed, the closing record found one clean numerical test. It uses neutron stars, the ultra-dense collapsed cores of exploded stars. The ones we can time as they spin are called pulsars, and their mass can be measured.",
+      "normalized_similarity": 1.0,
+      "token_recall": 1.0,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 9.2,
+          "text": "To test an idea, the model has to risk being wrong. It needs a number, a range, or a distinctive",
+          "avg_logprob": -0.08834044247457426,
+          "no_speech_prob": 0.009935067966580391
+        },
+        {
+          "start": 9.2,
+          "end": 16.32,
+          "text": "pattern that a measurement can miss. And if you find it, it has to point back at that one idea,",
+          "avg_logprob": -0.08834044247457426,
+          "no_speech_prob": 0.009935067966580391
+        },
+        {
+          "start": 17.2,
+          "end": 24.32,
+          "text": "not at three different ones. In the whole family we surveyed, the closing record found",
+          "avg_logprob": -0.08834044247457426,
+          "no_speech_prob": 0.009935067966580391
+        },
+        {
+          "start": 24.32,
+          "end": 33.12,
+          "text": "one clean numerical test. It uses neutron stars, the ultra-dense collapsed cores of",
+          "avg_logprob": -0.22329029991574909,
+          "no_speech_prob": 0.030839953571558
+        },
+        {
+          "start": 33.12,
+          "end": 41.76,
+          "text": "exploded stars. The ones we can time as they spin are called pulsars, and their mass can be measured.",
+          "avg_logprob": -0.22329029991574909,
+          "no_speech_prob": 0.030839953571558
+        }
+      ]
+    },
+    {
+      "card_id": "04",
+      "expected": "One proposal — called cosmological natural selection — says universes have children: every black hole buds off a new universe with slightly different physics. Over many generations, that would tune physics toward making black holes. In the Brown–Lee–Rho chain our record surveyed, the Brown–Bethe maximum neutron-star mass is about one and a half times the mass of our Sun—one point five solar masses. Their paper says a neutron star at approximately two solar masses or above would put that chain in ‘serious doubt or simply falsify’ it. That's a real test — a number that could be proven wrong.",
+      "transcript": "One proposal, called Cosmological Natural Selection, says universes have children. Every black hole buds off a new universe with slightly different physics over many generations that would tune physics toward making black holes. In the Brown-Lee, RoeChain, our record surveyed, the brown beta of the maximum neutron star mass is about one and a half times the mass of our sun, 1.5 solar masses. Their paper says a neutron star at approximately two solar masses or above would put that chain in serious doubt or simply falsify it. That's a real test. A number that could be proven wrong.",
+      "normalized_similarity": 0.9098786828422877,
+      "token_recall": 0.9411764705882353,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 7.6,
+          "text": "One proposal, called Cosmological Natural Selection, says universes have children.",
+          "avg_logprob": -0.26275952603365926,
+          "no_speech_prob": 0.014207623898983002
+        },
+        {
+          "start": 7.6,
+          "end": 15.84,
+          "text": "Every black hole buds off a new universe with slightly different physics over many generations",
+          "avg_logprob": -0.26275952603365926,
+          "no_speech_prob": 0.014207623898983002
+        },
+        {
+          "start": 15.84,
+          "end": 19.64,
+          "text": "that would tune physics toward making black holes.",
+          "avg_logprob": -0.26275952603365926,
+          "no_speech_prob": 0.014207623898983002
+        },
+        {
+          "start": 19.64,
+          "end": 25.96,
+          "text": "In the Brown-Lee, RoeChain, our record surveyed, the brown beta of the maximum neutron star",
+          "avg_logprob": -0.26275952603365926,
+          "no_speech_prob": 0.014207623898983002
+        },
+        {
+          "start": 25.96,
+          "end": 32.84,
+          "text": "mass is about one and a half times the mass of our sun, 1.5 solar masses.",
+          "avg_logprob": -0.16831680276879557,
+          "no_speech_prob": 0.025006309151649475
+        },
+        {
+          "start": 32.84,
+          "end": 40.04,
+          "text": "Their paper says a neutron star at approximately two solar masses or above would put that chain",
+          "avg_logprob": -0.16831680276879557,
+          "no_speech_prob": 0.025006309151649475
+        },
+        {
+          "start": 40.04,
+          "end": 43.68,
+          "text": "in serious doubt or simply falsify it.",
+          "avg_logprob": -0.16831680276879557,
+          "no_speech_prob": 0.025006309151649475
+        },
+        {
+          "start": 43.68,
+          "end": 47.68,
+          "text": "That's a real test. A number that could be proven wrong.",
+          "avg_logprob": -0.24815845489501953,
+          "no_speech_prob": 0.013065585866570473
+        }
+      ]
+    },
+    {
+      "card_id": "05",
+      "expected": "Weighing a star thousands of light-years away is hard, so every measurement comes with an uncertainty range. Two heavy pulsars matter here. One weighs in at one point nine seven Suns, give or take point zero four — just under two. The other: two point zero eight, give or take point zero seven. At the sixty-eight point three percent level the paper quotes, that one clears two Suns. At the stricter ninety-five point four percent level, the closing record says it does not.",
+      "transcript": "Weighing a star thousands of light years away is hard, so every measurement comes with an uncertainty range. Two heavy pulsars matter here. One weighs in at 1.97 suns. Give or take 0.04, just under two. The other, 2.08. Give or take 0.07. At the 68.3% level the paper quotes, that one clears two sons. At the stricter 95.4% level, the closing record says it does not.",
+      "normalized_similarity": 0.46551724137931033,
+      "token_recall": 0.7058823529411765,
+      "status": "FAIL",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 8.0,
+          "text": "Weighing a star thousands of light years away is hard, so every measurement comes with an uncertainty",
+          "avg_logprob": -0.16639933174039112,
+          "no_speech_prob": 0.03718719258904457
+        },
+        {
+          "start": 8.0,
+          "end": 18.32,
+          "text": "range. Two heavy pulsars matter here. One weighs in at 1.97 suns. Give or take 0.04,",
+          "avg_logprob": -0.16639933174039112,
+          "no_speech_prob": 0.03718719258904457
+        },
+        {
+          "start": 18.32,
+          "end": 29.52,
+          "text": "just under two. The other, 2.08. Give or take 0.07. At the 68.3% level the paper quotes,",
+          "avg_logprob": -0.16639933174039112,
+          "no_speech_prob": 0.03718719258904457
+        },
+        {
+          "start": 30.0,
+          "end": 40.0,
+          "text": "that one clears two sons. At the stricter 95.4% level, the closing record says it does not.",
+          "avg_logprob": -0.24661601441247122,
+          "no_speech_prob": 0.008404850028455257
+        }
+      ]
+    },
+    {
+      "card_id": "06",
+      "expected": "Here we have to be careful. Brown, Lee, and Rho gave two possible readings, joined by an ‘or’: a heavy neutron star would put the chain in serious doubt, or simply falsify it. The closing record does not decide which side applies — and neither does this video. The finding is narrower: observations have entered the regime named by the source.",
+      "transcript": "Here we have to be careful. Brown, Lee, and Rowe gave two possible readings. Joined by an or a heavy neutron star would put the chain in serious doubt or simply falsified. The closing record does not decide which side applies and neither does this video. The finding is narrower. Observations have entered the regime named by the source.",
+      "normalized_similarity": 0.49240121580547114,
+      "token_recall": 0.95,
+      "status": "FAIL",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 1.76,
+          "text": "Here we have to be careful.",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 1.76,
+          "end": 6.8,
+          "text": "Brown, Lee, and Rowe gave two possible readings.",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 6.8,
+          "end": 9.6,
+          "text": "Joined by an or a heavy neutron star",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 9.6,
+          "end": 14.44,
+          "text": "would put the chain in serious doubt or simply falsified.",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 14.44,
+          "end": 19.2,
+          "text": "The closing record does not decide which side applies",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 19.2,
+          "end": 21.32,
+          "text": "and neither does this video.",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 21.32,
+          "end": 24.12,
+          "text": "The finding is narrower.",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        },
+        {
+          "start": 24.12,
+          "end": 28.32,
+          "text": "Observations have entered the regime named by the source.",
+          "avg_logprob": -0.17834968966516582,
+          "no_speech_prob": 0.007595077622681856
+        }
+      ]
+    },
+    {
+      "card_id": "07",
+      "expected": "A different proposal led to our sky work. If the parent black hole rotates, the child universe inherits its axis. The source says galaxies should tend to align with that axis. It then says clockwise- and counterclockwise-spinning galaxy counts should be different. Our search wasn't chasing a phantom. The claim really is there in the paper — in words. What's missing is any number to go with it.",
+      "transcript": "A different proposal led to our skywork. If the parent black hole rotates, the child universe inherits its axis. The source says galaxies should tend to align with that axis. It then says clockwise and counterclockwise spinning galaxy count should be different. Our search wasn't chasing a phantom. The claim really is there in the paper, in words. What's missing is any number to go with it.",
+      "normalized_similarity": 0.9973958333333334,
+      "token_recall": 0.9571428571428572,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 6.96,
+          "text": "A different proposal led to our skywork. If the parent black hole rotates,",
+          "avg_logprob": -0.10811381869845921,
+          "no_speech_prob": 0.012105962261557579
+        },
+        {
+          "start": 6.96,
+          "end": 14.96,
+          "text": "the child universe inherits its axis. The source says galaxies should tend to align with that axis.",
+          "avg_logprob": -0.10811381869845921,
+          "no_speech_prob": 0.012105962261557579
+        },
+        {
+          "start": 15.6,
+          "end": 22.88,
+          "text": "It then says clockwise and counterclockwise spinning galaxy count should be different.",
+          "avg_logprob": -0.10811381869845921,
+          "no_speech_prob": 0.012105962261557579
+        },
+        {
+          "start": 22.88,
+          "end": 28.8,
+          "text": "Our search wasn't chasing a phantom. The claim really is there in the paper, in words.",
+          "avg_logprob": -0.10811381869845921,
+          "no_speech_prob": 0.012105962261557579
+        },
+        {
+          "start": 28.8,
+          "end": 31.8,
+          "text": "What's missing is any number to go with it.",
+          "avg_logprob": -0.2921206206083298,
+          "no_speech_prob": 0.08005577325820923
+        }
+      ]
+    },
+    {
+      "card_id": "08",
+      "expected": "But that sentence was added in 2025, after the galaxy studies cited as support. It was not a prediction made before the data—this one came after. The paper gives equations for spinning systems, but not a numerical forecast for galaxy handedness: no expected size, no rule for where or when it should be stronger, no independently predicted direction, and no range that would count as a hit or a miss.",
+      "transcript": "But that sentence was added in 2025 after the Galaxy study cited a support. It was not a prediction made before the data. This one came after. The paper gives equations for spinning systems, but not a numerical forecast for Galaxy handedness. No expected size, no rule for where or when it should be stronger, no independently predicted direction and no range that would count as a hit or miss.",
+      "normalized_similarity": 0.9601029601029601,
+      "token_recall": 0.9577464788732394,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 6.64,
+          "text": "But that sentence was added in 2025 after the Galaxy study cited a support.",
+          "avg_logprob": -0.12813143207602304,
+          "no_speech_prob": 0.003824449609965086
+        },
+        {
+          "start": 7.2,
+          "end": 12.0,
+          "text": "It was not a prediction made before the data. This one came after.",
+          "avg_logprob": -0.12813143207602304,
+          "no_speech_prob": 0.003824449609965086
+        },
+        {
+          "start": 12.64,
+          "end": 19.76,
+          "text": "The paper gives equations for spinning systems, but not a numerical forecast for Galaxy handedness.",
+          "avg_logprob": -0.12813143207602304,
+          "no_speech_prob": 0.003824449609965086
+        },
+        {
+          "start": 20.56,
+          "end": 26.16,
+          "text": "No expected size, no rule for where or when it should be stronger,",
+          "avg_logprob": -0.12813143207602304,
+          "no_speech_prob": 0.003824449609965086
+        },
+        {
+          "start": 26.16,
+          "end": 33.16,
+          "text": "no independently predicted direction and no range that would count as a hit or miss.",
+          "avg_logprob": -0.2531492866967854,
+          "no_speech_prob": 0.04577221721410751
+        }
+      ]
+    },
+    {
+      "card_id": "09",
+      "expected": "Suppose a controlled survey found a real spin-handedness difference. That would be interesting. But that broad observation would not identify BHU by itself. The same lopsided sky could come from several different causes. Without a fingerprint only a black-hole birth would leave, the measurement can't pick one. A successful measurement is not automatically a successful test of this model.",
+      "transcript": "Suppose a controlled survey found a real spin-handedness difference. That would be interesting, but that broad observation would not identify BHU by itself. The same lopsided sky could come from several different causes. Without a fingerprint only a black hole berth would leave the measurement can't pick one. A successful measurement is not automatically a successful test of this model.",
+      "normalized_similarity": 0.9973890339425587,
+      "token_recall": 0.9838709677419355,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 6.96,
+          "text": "Suppose a controlled survey found a real spin-handedness difference. That would be interesting,",
+          "avg_logprob": -0.09442327054868262,
+          "no_speech_prob": 0.0012314394116401672
+        },
+        {
+          "start": 6.96,
+          "end": 15.44,
+          "text": "but that broad observation would not identify BHU by itself. The same lopsided sky could come from",
+          "avg_logprob": -0.09442327054868262,
+          "no_speech_prob": 0.0012314394116401672
+        },
+        {
+          "start": 15.44,
+          "end": 22.0,
+          "text": "several different causes. Without a fingerprint only a black hole berth would leave the measurement",
+          "avg_logprob": -0.09442327054868262,
+          "no_speech_prob": 0.0012314394116401672
+        },
+        {
+          "start": 22.0,
+          "end": 28.56,
+          "text": "can't pick one. A successful measurement is not automatically a successful test of this model.",
+          "avg_logprob": -0.09442327054868262,
+          "no_speech_prob": 0.0012314394116401672
+        }
+      ]
+    },
+    {
+      "card_id": "10",
+      "expected": "The route therefore fails in two independent ways. There's no pass-or-fail range to grade a measurement against — the idea never says how big the effect should be. And without a unique signature, a positive result cannot identify BHU. We could build a trustworthy measurement and still be unable to answer the BHU question. The hunt had a source. It did not have a target.",
+      "transcript": "The route therefore fails in two independent ways. There's no pass or fail range to grade a measurement against. The idea never says how big the effect should be. And without a unique signature, a positive result cannot identify BHU. We could build a trustworthy measurement and still be unable to answer the BHU question. The hunt had a source. It did not have a target.",
+      "normalized_similarity": 1.0,
+      "token_recall": 1.0,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 4.24,
+          "text": "The route therefore fails in two independent ways.",
+          "avg_logprob": -0.1345805109311373,
+          "no_speech_prob": 0.016113990917801857
+        },
+        {
+          "start": 4.24,
+          "end": 9.2,
+          "text": "There's no pass or fail range to grade a measurement against.",
+          "avg_logprob": -0.1345805109311373,
+          "no_speech_prob": 0.016113990917801857
+        },
+        {
+          "start": 9.2,
+          "end": 13.84,
+          "text": "The idea never says how big the effect should be.",
+          "avg_logprob": -0.1345805109311373,
+          "no_speech_prob": 0.016113990917801857
+        },
+        {
+          "start": 13.84,
+          "end": 18.24,
+          "text": "And without a unique signature, a positive result",
+          "avg_logprob": -0.1345805109311373,
+          "no_speech_prob": 0.016113990917801857
+        },
+        {
+          "start": 18.24,
+          "end": 23.76,
+          "text": "cannot identify BHU. We could build a trustworthy measurement",
+          "avg_logprob": -0.1345805109311373,
+          "no_speech_prob": 0.016113990917801857
+        },
+        {
+          "start": 23.76,
+          "end": 27.6,
+          "text": "and still be unable to answer the BHU question.",
+          "avg_logprob": -0.1345805109311373,
+          "no_speech_prob": 0.016113990917801857
+        },
+        {
+          "start": 27.6,
+          "end": 31.6,
+          "text": "The hunt had a source. It did not have a target.",
+          "avg_logprob": -0.27004980482161045,
+          "no_speech_prob": 0.00612297048792243
+        }
+      ]
+    },
+    {
+      "card_id": "11",
+      "expected": "What would change the verdict? First, a published calculation that says how big the spin difference should be — with a pass-or-fail range. Or second, a fingerprint only a black-hole birth would leave—not merely the broad fact of spin asymmetry. A confirmed spin asymmetry alone would still not test BHU. This route reopens only when a BHU model supplies a calibrated target or a unique signature.",
+      "transcript": "What would change the verdict? First, a published calculation that says how big the spin difference should be with a pass or fail range. Or second, a fingerprint only a black hole berth would leave not merely the broad fact of spin asymmetry. A confirmed spin asymmetry alone would still not test BHU. This route reopens only when a BHU model supplies a calibrated target or unique signature.",
+      "normalized_similarity": 0.9948186528497409,
+      "token_recall": 0.9710144927536232,
+      "status": "PASS",
+      "segments": [
+        {
+          "start": 0.0,
+          "end": 7.04,
+          "text": "What would change the verdict? First, a published calculation that says how big the spin difference",
+          "avg_logprob": -0.11628171259706671,
+          "no_speech_prob": 0.00518095213919878
+        },
+        {
+          "start": 7.04,
+          "end": 14.8,
+          "text": "should be with a pass or fail range. Or second, a fingerprint only a black hole berth would leave",
+          "avg_logprob": -0.11628171259706671,
+          "no_speech_prob": 0.00518095213919878
+        },
+        {
+          "start": 15.52,
+          "end": 23.28,
+          "text": "not merely the broad fact of spin asymmetry. A confirmed spin asymmetry alone would still",
+          "avg_logprob": -0.11628171259706671,
+          "no_speech_prob": 0.00518095213919878
+        },
+        {
+          "start": 23.28,
+          "end": 31.08,
+          "text": "not test BHU. This route reopens only when a BHU model supplies a calibrated target or",
+          "avg_logprob": -0.18411234946086488,
+          "no_speech_prob": 0.017978090792894363
+        },
+        {
+          "start": 31.08,
+          "end": 32.48,
+          "text": "unique signature.",
+          "avg_logprob": -0.18411234946086488,
+          "no_speech_prob": 0.017978090792894363
+        }
+      ]
+    }
+  ],
+  "reveal_evidence": [
+    {
+      "card_id": "01",
+      "name": "primary_sources",
+      "witness_phrase": "We read the original papers",
+      "witness_edge": "start",
+      "witness_master_seconds": 9.6330574912892,
+      "before_master_seconds": 9.566390824622534,
+      "after_master_seconds": 9.699724157955867,
+      "before_frame": "encoded_qa/frames/card-01-primary_sources-before.png",
+      "after_frame": "encoded_qa/frames/card-01-primary_sources-after.png",
+      "before_frame_sha256": "02800ab905f55b9bf0eb97caf2f82e912e7a8a841dd5caf351466b5a4186e0c6",
+      "after_frame_sha256": "ef549c560d86e0b69d55451606d7d6317ae5950efb76c704c0973d091d7ee037",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nTHE LAB'S RESEARCH PROGRAMME\n\nae\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nTHE LAB'S RESEARCH PROGRAMME\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nWe read the original papers to see what they actually predict.\n"
+    },
+    {
+      "card_id": "01",
+      "name": "number_we_can_check",
+      "witness_phrase": "One idea gives us a number",
+      "witness_edge": "start",
+      "witness_master_seconds": 14.271559233449477,
+      "before_master_seconds": 14.20489256678281,
+      "after_master_seconds": 14.338225900116143,
+      "before_frame": "encoded_qa/frames/card-01-number_we_can_check-before.png",
+      "after_frame": "encoded_qa/frames/card-01-number_we_can_check-after.png",
+      "before_frame_sha256": "9a258efdc4a8e14e5f10c4b94314b18e5fd4259f05682318d266f7a73eca7a03",
+      "after_frame_sha256": "cfcf3aa94d08d36e5228d2b9bc84ce5ffd5c5b17464be7240f22de24f5cd3a57",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nTHE LAB'S RESEARCH PROGRAMME\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nOne idea gives us a number to check against real stars.\n"
+    },
+    {
+      "card_id": "01",
+      "name": "galaxy_spin_limits",
+      "witness_phrase": "For galaxy spin",
+      "witness_edge": "start",
+      "witness_master_seconds": 19.38371080139373,
+      "before_master_seconds": 19.317044134727062,
+      "after_master_seconds": 19.450377468060395,
+      "before_frame": "encoded_qa/frames/card-01-galaxy_spin_limits-before.png",
+      "after_frame": "encoded_qa/frames/card-01-galaxy_spin_limits-after.png",
+      "before_frame_sha256": "92f9af8d2d03b2a533f89f4de553b10d55cbbbabe536333cffac9cf6487c0d70",
+      "after_frame_sha256": "24349b04070d2959a8322ad42f5889f4574170ed2ff24dbfc53bda1d46e52b00",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nTHE LAB'S RESEARCH PROGRAMME\n\nA NUMBER WE CAN\n\nCHECK\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nTHE LAB'S RESEARCH PROGRAMME\n\nA NUMBER WE CAN\n\nCHECK\n\nPRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\n( NOT IDENTIFYING BY ITSELF\n\nFor galaxy spin, the sources give no expected size for the effect — and even a perfect measurement couldn't tell us a\n\nblack hole was the cause.\n"
+    },
+    {
+      "card_id": "01",
+      "name": "route_verdict",
+      "witness_phrase": "So this route closes",
+      "witness_edge": "start",
+      "witness_master_seconds": 31.535278745644604,
+      "before_master_seconds": 31.468612078977937,
+      "after_master_seconds": 31.60194541231127,
+      "before_frame": "encoded_qa/frames/card-01-route_verdict-before.png",
+      "after_frame": "encoded_qa/frames/card-01-route_verdict-after.png",
+      "before_frame_sha256": "2dd98992774b26745ba09b6de9e25eea18b2dc44d817ccdfcfbd7aea895894ee",
+      "after_frame_sha256": "8d2fd3a87bdb3c8ac92dff71b6d044bca1453dde67e5cc910a657484fc1e4e53",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n\nROUTE CLOSED\n\nSo this route closes.\n"
+    },
+    {
+      "card_id": "01",
+      "name": "true_false_boundary",
+      "witness_phrase": "The idea is not declared true or false",
+      "witness_edge": "start",
+      "witness_master_seconds": 33.90352787456446,
+      "before_master_seconds": 33.83686120789779,
+      "after_master_seconds": 33.97019454123113,
+      "before_frame": "encoded_qa/frames/card-01-true_false_boundary-before.png",
+      "after_frame": "encoded_qa/frames/card-01-true_false_boundary-after.png",
+      "before_frame_sha256": "9ee6c3e12d0dc81e5b4c4f0cd3bfbda3be359cffad559002eecfb164cde0406b",
+      "after_frame_sha256": "b3c38c59ac235da909f536a5f55460e306205082ae821be2d13cebc2952ec6ba",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n\nROUTE CLOSED\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\nPRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n\nROUTE CLOSED - IDEA NOT DECLARED TRUE OR FALSE\n\nThe idea is not declared true or false.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "bhu",
+      "witness_phrase": "black-hole universe, or BHU for short",
+      "witness_edge": "end",
+      "witness_master_seconds": 46.84615557553957,
+      "before_master_seconds": 46.7794889088729,
+      "after_master_seconds": 46.91282224220624,
+      "before_frame": "encoded_qa/frames/card-02-bhu-before.png",
+      "after_frame": "encoded_qa/frames/card-02-bhu-after.png",
+      "before_frame_sha256": "d02a9f596cae623ebb9582d9e56a00cfe6dea1b71be179648f3bf69046034830",
+      "after_frame_sha256": "9b2847503329cb36a6924bd162452b0d62eedbc8fa1e05b3d0d1780d9d543305",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\n|\n\nONE LABEL\n\n|\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\n|\n\nONE LABEL\n\n|\n"
+    },
+    {
+      "card_id": "02",
+      "name": "proposal_1",
+      "witness_phrase": "A closed universe inside a black hole",
+      "witness_edge": "start",
+      "witness_master_seconds": 47.28860161870504,
+      "before_master_seconds": 47.22193495203837,
+      "after_master_seconds": 47.35526828537171,
+      "before_frame": "encoded_qa/frames/card-02-proposal_1-before.png",
+      "after_frame": "encoded_qa/frames/card-02-proposal_1-after.png",
+      "before_frame_sha256": "dc13249d389116ad7f111f5eaf2c9a8bc55a052c27f4af0e3ffdbb2106a41034",
+      "after_frame_sha256": "1d04f16e6971d8e61179f8cfa85bddf699a3c281bf209074c724521886a017be",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\n|\n\nONE LABEL\n\n|\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nONE LABEL\n\nINSIDE A BLACK HOLE\n\n_\n\nA closed universe inside a black hole.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "proposal_2",
+      "witness_phrase": "A collapse that bounces",
+      "witness_edge": "start",
+      "witness_master_seconds": 50.95260791366907,
+      "before_master_seconds": 50.8859412470024,
+      "after_master_seconds": 51.01927458033574,
+      "before_frame": "encoded_qa/frames/card-02-proposal_2-before.png",
+      "after_frame": "encoded_qa/frames/card-02-proposal_2-after.png",
+      "before_frame_sha256": "5370c6ef0de6c6ed6bd02a078968d3eb7b899d184d34f20fe90564a55bddc547",
+      "after_frame_sha256": "9b668a99f500af3179b5dafea8b375b2980b8c23ae652ad8fb679ad15d91b92e",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nONE LABEL\n\nINSIDE A BLACK HOLE\n\n4\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\n|\n\nONE LABEL\n\n|\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nSd\n\nA collapse that bounces instead of crushing to a point.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "proposal_3",
+      "witness_phrase": "A universe that inherits its parent's spin",
+      "witness_edge": "start",
+      "witness_master_seconds": 55.07288669064748,
+      "before_master_seconds": 55.00622002398081,
+      "after_master_seconds": 55.13955335731415,
+      "before_frame": "encoded_qa/frames/card-02-proposal_3-before.png",
+      "after_frame": "encoded_qa/frames/card-02-proposal_3-after.png",
+      "before_frame_sha256": "42711608cd249a893baedbb6ef9e9e2afe0e1803b87981eaebff55b0fbd445cc",
+      "after_frame_sha256": "2340c3955f7f3c70b018c4e3498a4258af70c458dc301f426e483e244e9f95e3",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\n|\n\nONE LABEL\n\n|\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nSs”\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nA universe that inherits its parent's spin.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "proposal_4",
+      "witness_phrase": "Universes that reproduce",
+      "witness_edge": "start",
+      "witness_master_seconds": 58.57097571942446,
+      "before_master_seconds": 58.50430905275779,
+      "after_master_seconds": 58.63764238609113,
+      "before_frame": "encoded_qa/frames/card-02-proposal_4-before.png",
+      "after_frame": "encoded_qa/frames/card-02-proposal_4-after.png",
+      "before_frame_sha256": "379d21db9948fc29c8fcde741883adf4193168e931e2fe4bd7ff261b6a6f21a1",
+      "after_frame_sha256": "71f35c9013e2da0da6e038441fa0720884e11e5bf77359d748da313856949597",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE\n\nAND TUNE PHYSICS\n\nUniverses that reproduce, tuning the numbers built into physics.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "proposal_5",
+      "witness_phrase": "And baby universes",
+      "witness_edge": "start",
+      "witness_master_seconds": 63.617625899280576,
+      "before_master_seconds": 63.550959232613906,
+      "after_master_seconds": 63.684292565947246,
+      "before_frame": "encoded_qa/frames/card-02-proposal_5-before.png",
+      "after_frame": "encoded_qa/frames/card-02-proposal_5-after.png",
+      "before_frame_sha256": "9559d58950df4beb27f78e2bcfcc2dafd4407e6eac6d53e0a160c33eee2babd0",
+      "after_frame_sha256": "6b34c5a219544d801fdbae83da15da11a96f83a33023ab281d01962076a82d2a",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nUNIVERSES REPRODUCE\n\nAND TUNE PHYSICS\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE |\n\nBABY UNIVERSES WITH\n\nAND TUNE PHYSICS\n\nDIFFERENT FINGERPRINTS\n\nAnd baby universes with entirely different fingerprints.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "no_shared_forecast",
+      "witness_phrase": "Five ideas",
+      "witness_edge": "start",
+      "witness_master_seconds": 67.97295413669065,
+      "before_master_seconds": 67.90628747002398,
+      "after_master_seconds": 68.03962080335731,
+      "before_frame": "encoded_qa/frames/card-02-no_shared_forecast-before.png",
+      "after_frame": "encoded_qa/frames/card-02-no_shared_forecast-after.png",
+      "before_frame_sha256": "8508b41b45348793cb5306c3fd0e77a5a6062cda1ef81e6a92be7d60489827df",
+      "after_frame_sha256": "60915f560a25aafc8ce57d4e4de4c41f12cd200b0fca492d1b2b9dc0ea021927",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE |\n\nBABY UNIVERSES WITH\n\nAND TUNE PHYSICS\n\nDIFFERENT FINGERPRINTS\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nONE LABEL\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE |\n\nBABY UNIVERSES WITH\n\nAND TUNE PHYSICS\n\nDIFFERENT FINGERPRINTS\n\nAT LEAST FIVE PROPOSALS IN THIS SURVEY - NO SINGLE SHARED FORECAST\n\nFive ideas — and no shared prediction.\n"
+    },
+    {
+      "card_id": "02",
+      "name": "closing_record",
+      "witness_phrase": "We wrote what we found into a closing record",
+      "witness_edge": "start",
+      "witness_master_seconds": 71.20834082733813,
+      "before_master_seconds": 71.14167416067147,
+      "after_master_seconds": 71.2750074940048,
+      "before_frame": "encoded_qa/frames/card-02-closing_record-before.png",
+      "after_frame": "encoded_qa/frames/card-02-closing_record-after.png",
+      "before_frame_sha256": "9e87b489e207fe9532e5dcb7753138acaf68ad6f200e00dbb1cba15bc31da149",
+      "after_frame_sha256": "893b96f392c0f5dbc56bb9ccf95fd888ee47317551d93b1310f1367aa56bf996",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nONE LABEL\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE |\n\nBABY UNIVERSES WITH\n\nAND TUNE PHYSICS\n\nDIFFERENT FINGERPRINTS\n\nAT LEAST FIVE PROPOSALS IN THIS SURVEY - NO SINGLE SHARED FORECAST\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nONE LABEL\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE |\n\nBABY UNIVERSES WITH\n\nAND TUNE PHYSICS\n\nDIFFERENT FINGERPRINTS\n\n| AT LEAST FIVE PROPOSALS IN THIS SURVEY - NO SINGLE SHARED FORECAST |\n\nCLOSING RECORD - THE DOCUMENT THIS VIDEO REPORTS FROM\n\n|\n\nWe wrote what we found into a closing record — the document this video reports from.\n"
+    },
+    {
+      "card_id": "03",
+      "name": "target",
+      "witness_phrase": "It needs a number",
+      "witness_edge": "start",
+      "witness_master_seconds": 83.01647083508183,
+      "before_master_seconds": 82.94980416841517,
+      "after_master_seconds": 83.0831375017485,
+      "before_frame": "encoded_qa/frames/card-03-target-before.png",
+      "after_frame": "encoded_qa/frames/card-03-target-after.png",
+      "before_frame_sha256": "07143f4c40d697ef16edeb5e4b75cb94af1a29e04e576cd79a5bcbb49a4671ec",
+      "after_frame_sha256": "9efccc777bc29422ad803a489ec8b7814c4963b40ea6a44522ef6424e2cdb6a4",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\nTARGET\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\nIt needs a number, a range, or a distinctive pattern that a measurement can miss.\n"
+    },
+    {
+      "card_id": "03",
+      "name": "identify",
+      "witness_phrase": "And if you find it",
+      "witness_edge": "start",
+      "witness_master_seconds": 90.00975660931599,
+      "before_master_seconds": 89.94308994264932,
+      "after_master_seconds": 90.07642327598265,
+      "before_frame": "encoded_qa/frames/card-03-identify-before.png",
+      "after_frame": "encoded_qa/frames/card-03-identify-after.png",
+      "before_frame_sha256": "99ccd1cdbad0564aa867746bd39dcfc0a58a6c2d1f76f69ae0f87056b4c82641",
+      "after_frame_sha256": "ab26d87e5ac5987c22188b151f99d5a59a4f1198a542b9d7615fae0e1612d0ef",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\n2- CAN IDENTIFY THE IDEA\n\nAnd if you find it, it has to point back at that one idea — not at three different ones.\n"
+    },
+    {
+      "card_id": "03",
+      "name": "neutron_stars",
+      "witness_phrase": "It uses neutron stars",
+      "witness_edge": "start",
+      "witness_master_seconds": 105.2080360889635,
+      "before_master_seconds": 105.14136942229683,
+      "after_master_seconds": 105.27470275563016,
+      "before_frame": "encoded_qa/frames/card-03-neutron_stars-before.png",
+      "after_frame": "encoded_qa/frames/card-03-neutron_stars-after.png",
+      "before_frame_sha256": "735cdc6e1852760dbf43266dfea3ef998672e345efc85c829ff1882f23942b2c",
+      "after_frame_sha256": "e2d693d9eb764f7f29a8a7be5a54a9d79c379721b5213626e26806f54ba8f8cb",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\n2- CAN IDENTIFY THE IDEA\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\n2- CAN IDENTIFY THE IDEA\n\nNEUTRON STARS: ULTRA-DENSE COLLAPSED CORES\n\nIt uses neutron stars—the ultra-dense collapsed cores of exploded stars.\n"
+    },
+    {
+      "card_id": "03",
+      "name": "pulsars",
+      "witness_phrase": "The ones we can time as they spin",
+      "witness_edge": "start",
+      "witness_master_seconds": 113.18799832144356,
+      "before_master_seconds": 113.1213316547769,
+      "after_master_seconds": 113.25466498811022,
+      "before_frame": "encoded_qa/frames/card-03-pulsars-before.png",
+      "after_frame": "encoded_qa/frames/card-03-pulsars-after.png",
+      "before_frame_sha256": "81feb091bed4570c3a6ea4444157a92bf277a6ec106693f616ddf5703104d719",
+      "after_frame_sha256": "5179515a3a7f7a26624833aff74f668ce43eeaa5629192a2d1d6f29a4a6aa5f7",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\n2- CAN IDENTIFY THE IDEA\n\nNEUTRON STARS: ULTRA-DENSE COLLAPSED CORES\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\n2- CAN IDENTIFY THE IDEA\n\n|\n\n|\n\nNEUTRON STARS: ULTRA-DENSE COLLAPSED CORES\n\nSPINNING, TIMED NEUTRON STARS ARE PULSARS\n\n} |\n\nThe ones we can time as they spin are called pulsars, and their mass can be measured.\n"
+    },
+    {
+      "card_id": "04",
+      "name": "family_tree",
+      "witness_phrase": "One proposal",
+      "witness_edge": "start",
+      "witness_master_seconds": 120.07419196865818,
+      "before_master_seconds": 120.00752530199152,
+      "after_master_seconds": 120.14085863532485,
+      "before_frame": "encoded_qa/frames/card-04-family_tree-before.png",
+      "after_frame": "encoded_qa/frames/card-04-family_tree-after.png",
+      "before_frame_sha256": "29348ef5169833e2593a24c9c4cc4e90defb89b0f4e9d6fffb9f5e8432a5ee5c",
+      "after_frame_sha256": "b5d0b2e87ada68e1331d22f707d9e48749062bd72ffc43f193076bdbf49ab152",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nLISTENING FOR THE PROPOSAL'S FULL NAME...\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nLISTENING FOR THE PROPOSAL'S FULL NAME...\n\nUNIVERSE\n\nre\n\nBLACK HOLES\n\n——\n\nCHILD UNIVERSES O O O\n\nOne proposal — called\n"
+    },
+    {
+      "card_id": "04",
+      "name": "mass_1_5",
+      "witness_phrase": "one point five solar masses",
+      "witness_edge": "end",
+      "witness_master_seconds": 152.17767507345738,
+      "before_master_seconds": 152.11100840679072,
+      "after_master_seconds": 152.24434174012404,
+      "before_frame": "encoded_qa/frames/card-04-mass_1_5-before.png",
+      "after_frame": "encoded_qa/frames/card-04-mass_1_5-after.png",
+      "before_frame_sha256": "77534364e41ee34e4651400bc3d14c3a786eb3e76631a6250998fc7668b61528",
+      "after_frame_sha256": "e6c704e8c1d7bb85387b9e42deffc5c3fcd9e56f9359a07d0ea2db5d041e79f6",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n1.4\n\n1.6\n\ndbef3}\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (MO)\n"
+    },
+    {
+      "card_id": "04",
+      "name": "mass_2",
+      "witness_phrase": "approximately two solar masses or above",
+      "witness_edge": "end",
+      "witness_master_seconds": 158.74675563173358,
+      "before_master_seconds": 158.68008896506691,
+      "after_master_seconds": 158.81342229840024,
+      "before_frame": "encoded_qa/frames/card-04-mass_2-before.png",
+      "after_frame": "encoded_qa/frames/card-04-mass_2-after.png",
+      "before_frame_sha256": "aa1b0f364271073670f1a67ee374053733cb484869e548a5264cee4d073d2235",
+      "after_frame_sha256": "261222bb608c5fb9120eae6c354d4a4fc6dceb8bc41423264c74423cb519aec2",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (MO)\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\nM22MoO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (MO)\n\nTheir paper says a neutron star at approximately two solar masses or above would put that chain in ‘serious doubt or\n\nsimply falsify’ it.\n"
+    },
+    {
+      "card_id": "04",
+      "name": "source_quote",
+      "witness_phrase": "serious doubt or simply falsify",
+      "witness_edge": "end",
+      "witness_master_seconds": 163.1519037708129,
+      "before_master_seconds": 163.08523710414624,
+      "after_master_seconds": 163.21857043747957,
+      "before_frame": "encoded_qa/frames/card-04-source_quote-before.png",
+      "after_frame": "encoded_qa/frames/card-04-source_quote-after.png",
+      "before_frame_sha256": "ec28ad285036e6e814923cffc4025abb97aa2011d901d986e3ad7b5179918333",
+      "after_frame_sha256": "aac157fbb10c20446499fa7fbc8d0a390512e740fb2fa6d0d998636e0c07f2f7",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\nM22MoO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (MO)\n\nTheir paper says a neutron star at approximately two solar masses or above would put that chain in ‘serious doubt or\n\nsimply falsify’ it.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\nM22MoO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (MO)\n\n“SERIOUS DOUBT OR SIMPLY FALSIFY” — BROWN, LEE & RHO\n\nTheir paper says a neutron star at approximately two solar masses or above would put that chain in ‘serious doubt or\n\nsimply falsify’ it.\n"
+    },
+    {
+      "card_id": "05",
+      "name": "demorest_uncertainty",
+      "witness_phrase": "give or take point zero four",
+      "witness_edge": "end",
+      "witness_master_seconds": 186.19864844976453,
+      "before_master_seconds": 186.13198178309787,
+      "after_master_seconds": 186.2653151164312,
+      "before_frame": "encoded_qa/frames/card-05-demorest_uncertainty-before.png",
+      "after_frame": "encoded_qa/frames/card-05-demorest_uncertainty-after.png",
+      "before_frame_sha256": "31e707296ecc4036c24ec7574ddece7a9773fb6553345de08647831133c7b1ef",
+      "after_frame_sha256": "58eea3f828ca7c297b9caef006a5589d5f95d274e78d4fdaa6e16f34ca98d3e2",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (Mo)\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\nF 1.97 + 0.04 MO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (Mo)\n\nOne weighs in at one point nine seven Suns, give or take point zero four — just under two.\n"
+    },
+    {
+      "card_id": "05",
+      "name": "fonseca_uncertainty",
+      "witness_phrase": "give or take point zero seven",
+      "witness_edge": "end",
+      "witness_master_seconds": 193.2510547488226,
+      "before_master_seconds": 193.18438808215595,
+      "after_master_seconds": 193.31772141548927,
+      "before_frame": "encoded_qa/frames/card-05-fonseca_uncertainty-before.png",
+      "after_frame": "encoded_qa/frames/card-05-fonseca_uncertainty-after.png",
+      "before_frame_sha256": "421d85db9762ad32b60b2c5fec98aa1b41cee24b8364a067ee4b33f19bf64d92",
+      "after_frame_sha256": "174108256fe8158fe41363519a354e82dbdfe9d0a81c426dc285ee94ad597731",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES Tf 1.97 + 0.04 MO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (M\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES Tf 1.97 + 0.04 MO\n\nFONSE@A: 2.08 + 0.07 MO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (M\n"
+    },
+    {
+      "card_id": "05",
+      "name": "percent_68_3",
+      "witness_phrase": "sixty-eight point three percent",
+      "witness_edge": "end",
+      "witness_master_seconds": 196.05012509811615,
+      "before_master_seconds": 195.9834584314495,
+      "after_master_seconds": 196.11679176478282,
+      "before_frame": "encoded_qa/frames/card-05-percent_68_3-before.png",
+      "after_frame": "encoded_qa/frames/card-05-percent_68_3-after.png",
+      "before_frame_sha256": "63dc54fc8c62bd8264e6e3fc0b43dac52d0cb399a28916e45fceb76dce3fe990",
+      "after_frame_sha256": "d7eb54fa5c303c6bebc20c073ea0fee8a31969d1013d06ccc07b70d559e4ea9d",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\n: 1.97 + 0.04 MO\n\nFONSE@A: 2.08 + 0.07 MO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (Mo)\n\nAt the sixty-eight point three percent level the paper quotes, that one clears two Suns.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\n: 1.97 + 0.04 MO\n\nFONSECA:\n\n.08 + 0.07 MO - 68.3%\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (Mo)\n\nAt the sixty-eight point three percent level the paper quotes, that one clears two Suns.\n"
+    },
+    {
+      "card_id": "05",
+      "name": "percent_95_4",
+      "witness_phrase": "ninety-five point four percent",
+      "witness_edge": "end",
+      "witness_master_seconds": 204.30660076530611,
+      "before_master_seconds": 204.23993409863945,
+      "after_master_seconds": 204.37326743197278,
+      "before_frame": "encoded_qa/frames/card-05-percent_95_4-before.png",
+      "after_frame": "encoded_qa/frames/card-05-percent_95_4-after.png",
+      "before_frame_sha256": "4fdc7afc42375fb98130027f875810783a7c41f5b3b971d86e7484466918debf",
+      "after_frame_sha256": "582be064d0b2f6988774ecb51351b0ef3cf500ce9cd5f09f483aac151c81d3a5",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\n: 1.97 + 0.04 MO\n\nFONSECA:\n\n.08 + 0.07 MO - 68.3%\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (Mo)\n\nAt the stricter ninety-five point four percent level, the closing record says it does not.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\n: 1.97 + 0.04 MO\n\nFONSECA:\n\n.08 + 0.07 MO - 68.3%\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nAT 95.4% CREDIBILITY, THE CLOSING RECORD STATES ONLY THAT THE RESULT DOES NOT CLEAR 2.00\n\nNO 95.4% LOWER-BOUND VALUE IS QUOTED OR PLOTTED HERE\n\nAt the stricter ninety-five point four percent level, the closing record says it does not.\n"
+    },
+    {
+      "card_id": "06",
+      "name": "source_disjunction",
+      "witness_phrase": "serious doubt, or simply falsify",
+      "witness_edge": "end",
+      "witness_master_seconds": 232.79434589800442,
+      "before_master_seconds": 232.72767923133776,
+      "after_master_seconds": 232.86101256467109,
+      "before_frame": "encoded_qa/frames/card-06-source_disjunction-before.png",
+      "after_frame": "encoded_qa/frames/card-06-source_disjunction-after.png",
+      "before_frame_sha256": "20133ea6e5007a9208419bd759f79cd460bb986fb37135c519ff7102a397d77d",
+      "after_frame_sha256": "ebc893dd4ac6aba4a558a97844d4f454657c4a4257971c9c24040fdcb5699068",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n\nSERIOUS DOUBT\n\nOR\n\nSIMPLY FALSIFY\n\nBrown, Lee, and Rho gave two possible readings, joined by an ‘or’: a heavy neutron star would put the chain in serious\n\ndoubt, or simply falsify it.\n"
+    },
+    {
+      "card_id": "06",
+      "name": "not_adjudicated",
+      "witness_phrase": "does not decide which side applies",
+      "witness_edge": "end",
+      "witness_master_seconds": 237.64294623059868,
+      "before_master_seconds": 237.57627956393202,
+      "after_master_seconds": 237.70961289726534,
+      "before_frame": "encoded_qa/frames/card-06-not_adjudicated-before.png",
+      "after_frame": "encoded_qa/frames/card-06-not_adjudicated-after.png",
+      "before_frame_sha256": "bf2e55a3e964c0fb87d8dcc36ca080d2a943cae11a88b8e5f721d79eb06542c2",
+      "after_frame_sha256": "a5a38a1881df05181fc2b18e28f6b23ed6d122dec759afc32b20b77af2f49895",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n\nSERIOUS DOUBT\n\nOR\n\nSIMPLY FALSIFY\n\nThe closing record does not decide which side applies — and neither does this video.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n\nSERIOUS DOUBT\n\nOR\n\nSIMPLY FALSIFY\n\nNOT ADJUDICATED HERE\n\nThe closing record does not decide which side applies — and neither does this video.\n"
+    },
+    {
+      "card_id": "06",
+      "name": "named_regime",
+      "witness_phrase": "entered the regime named by the source",
+      "witness_edge": "end",
+      "witness_master_seconds": 247.19983370288247,
+      "before_master_seconds": 247.1331670362158,
+      "after_master_seconds": 247.26650036954914,
+      "before_frame": "encoded_qa/frames/card-06-named_regime-before.png",
+      "after_frame": "encoded_qa/frames/card-06-named_regime-after.png",
+      "before_frame_sha256": "fae41aee222e2509b673af4343ed756b0691dfb90fd20ca814abb1c8dce4eb07",
+      "after_frame_sha256": "673820cfd2e4d7c61ea44df740e7c86ec947d123450daf02b7bc08b657f85686",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n\nSERIOUS DOUBT\n\nOR\n\nSIMPLY FALSIFY\n\nNOT ADJUDICATED HERE\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n\nSERIOUS DOUBT\n\nOR\n\nSIMPLY FALSIFY\n\nNOT ADJUDICATED HERE\n\nOBSERVATIONS ENTER THE SOURCE-NAMED REGIME\n"
+    },
+    {
+      "card_id": "07",
+      "name": "inherited_axis",
+      "witness_phrase": "inherits its axis",
+      "witness_edge": "end",
+      "witness_master_seconds": 258.7414383561644,
+      "before_master_seconds": 258.67477168949773,
+      "after_master_seconds": 258.80810502283106,
+      "before_frame": "encoded_qa/frames/card-07-inherited_axis-before.png",
+      "after_frame": "encoded_qa/frames/card-07-inherited_axis-after.png",
+      "before_frame_sha256": "8c9cd8709c8378918809d9022c46595227256fd022dfeb3737f2fa5c4559ecdc",
+      "after_frame_sha256": "40228d8a0744c0ca4d835cbf1c3b6d32588c982f28f054e000bdc31d0ee56971",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\nNN\n\nIf the parent black hole rotates, the child universe inherits its axis.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\n@\n\nid\n\n@\n\ne\n\n.\n\neo\n\noe\n\n@e\n\ntd\n\nINHERITED PREFERRED AXIS\n\nSe\n"
+    },
+    {
+      "card_id": "07",
+      "name": "cw_ccw",
+      "witness_phrase": "clockwise- and counterclockwise-spinning galaxy counts should be different",
+      "witness_edge": "end",
+      "witness_master_seconds": 270.4684442270059,
+      "before_master_seconds": 270.4017775603392,
+      "after_master_seconds": 270.53511089367254,
+      "before_frame": "encoded_qa/frames/card-07-cw_ccw-before.png",
+      "after_frame": "encoded_qa/frames/card-07-cw_ccw-after.png",
+      "before_frame_sha256": "f387377395c0a153e0caea1659703f61a2a9ff71a5ba034d756ce041fb828898",
+      "after_frame_sha256": "de534a415bc225644bf68cf5f6f0458f4babdf0c71a54d7ce0a868f9fcd664b0",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\n@\n\nid\n\n@\n\ne\n\n.\n\neo\n\noe\n\n@e\n\ntd\n\nINHERITED PREFERRED AXIS\n\nSe\n\nIt then says clockwise- and counterclockwise-spinning galaxy counts should be different.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\n@\n\nid\n\n@\n\ne\n\n#\n\n.\n\neo\n\noe\n\n@e\n\ntd\n\nINHERITED PREFERRED AXIS\n\nSe\n"
+    },
+    {
+      "card_id": "07",
+      "name": "no_amplitude",
+      "witness_phrase": "What's missing is any number",
+      "witness_edge": "start",
+      "witness_master_seconds": 277.57950097847356,
+      "before_master_seconds": 277.5128343118069,
+      "after_master_seconds": 277.6461676451402,
+      "before_frame": "encoded_qa/frames/card-07-no_amplitude-before.png",
+      "after_frame": "encoded_qa/frames/card-07-no_amplitude-after.png",
+      "before_frame_sha256": "59e7dcbf0bcb336d1d9b50fcbaa5b181ab9eb6cecb3cfcf4135f708d741348e3",
+      "after_frame_sha256": "055764b84eb9b129fedf5bf6174c8ce285d393a113a37e406937a6cc07da3e0a",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\ne\n\ntd\n\neo\n\ne\n\nES\n\neo\n\neo\n\noe\n\ne\n\nid\n\nINHERITED PREFERRED AXIS\n\nSe\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\ne\n\ntd\n\neo\n\ne\n\nES\n\neo\n\neo\n\noe\n\ne\n\nid\n\nINHERITED PREFERRED AXIS\n\n=\n\ntl\n\nEXPLICIT QUALITATIVE CLAIM - NO AMPLITUDE SHOWN\n\nWhat's missing is any number to go with it.\n"
+    },
+    {
+      "card_id": "08",
+      "name": "timeline",
+      "witness_phrase": "after the galaxy studies",
+      "witness_edge": "end",
+      "witness_master_seconds": 286.38144188596493,
+      "before_master_seconds": 286.31477521929827,
+      "after_master_seconds": 286.4481085526316,
+      "before_frame": "encoded_qa/frames/card-08-timeline-before.png",
+      "after_frame": "encoded_qa/frames/card-08-timeline-after.png",
+      "before_frame_sha256": "511807bc0bb0aa3388a7212c9ff4753b34536794378802916fc574d73ee68713",
+      "after_frame_sha256": "f2caf5e3216c0310c2aac9ba985374d3c7581d66e9010989f4dcc013d27d7a8c",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nEQUATIONS PRESENT\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nOBSERVATIONS CITED FIRST\n\nHANDEDNESS CLAIM ADDED IN 2025\n\n®\n\n@\n\nEQUATIONS PRESENT\n\nBut that sentence was added in 2025, after the galaxy studies cited as support.\n"
+    },
+    {
+      "card_id": "08",
+      "name": "post_data",
+      "witness_phrase": "not a prediction made before the data",
+      "witness_edge": "end",
+      "witness_master_seconds": 291.08493238304095,
+      "before_master_seconds": 291.0182657163743,
+      "after_master_seconds": 291.1515990497076,
+      "before_frame": "encoded_qa/frames/card-08-post_data-before.png",
+      "after_frame": "encoded_qa/frames/card-08-post_data-after.png",
+      "before_frame_sha256": "291972f14877bf50fb3d97b1ad4b3ac0970bc5abec45c468d1c94fc74deadc74",
+      "after_frame_sha256": "36784d0fb85970b8ad0e8c6069bd07aac72426d141315dd45e871063180e4134",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nOBSERVATIONS CITED FIRST\n\nHANDEDNESS CLAIM ADDED IN 2025\n\n@\n\n@\n\nEQUATIONS PRESENT\n\nIt was not a prediction made before the data—this one came after.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nOBSERVATIONS CITED FIRST\n\nHANDEDNESS CLAIM ADDED IN 2025\n\n@\n\n@\n\nEQUATIONS PRESENT\n\nNOT A PREDICTION MADE BEFORE THE DATA\n\nIt was not a prediction made before the data—this one came after.\n"
+    },
+    {
+      "card_id": "08",
+      "name": "forecast_blanks",
+      "witness_phrase": "not a numerical forecast",
+      "witness_edge": "end",
+      "witness_master_seconds": 299.3890259502924,
+      "before_master_seconds": 299.32235928362576,
+      "after_master_seconds": 299.4556926169591,
+      "before_frame": "encoded_qa/frames/card-08-forecast_blanks-before.png",
+      "after_frame": "encoded_qa/frames/card-08-forecast_blanks-after.png",
+      "before_frame_sha256": "f28edd7125381b0835e9fe47bf997b801ab2d2533ad830f437af2b8537920c05",
+      "after_frame_sha256": "8e0706a5d5eaedd9c41bdc6afd00088d6430dee710f29eda36470d22793db9c1",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nOBSERVATIONS CITED FIRST\n\nHANDEDNESS CLAIM ADDED IN 2025\n\n@\n\n@\n\nEQUATIONS PRESENT\n\nNOT A PREDICTION MADE BEFORE THE DATA\n\nThe paper gives equations for spinning systems, but not a numerical forecast for galaxy handedness: no expected size,\n\nno rule for where or when it should be stronger, no independently predicted direction, and no range that would count\n\nas a hit or a miss.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nOBSERVATIONS CITED FIRST\n\nHANDEDNESS CLAIM ADDED IN 2025\n\n@\n\n@\n\nEQUATIONS PRESENT\n\nPASS-OR-FAIL RANGE?\n\nNOT A PREDICTION MADE BEFORE THE DATA\n\nThe paper gives equations for spinning systems, but not a numerical forecast for galaxy handedness: no expected size,\n\nno rule for where or when it should be stronger, no independently predicted direction, and no range that would count\n\nas a hit or a miss.\n"
+    },
+    {
+      "card_id": "09",
+      "name": "observed_difference",
+      "witness_phrase": "spin-handedness difference",
+      "witness_edge": "end",
+      "witness_master_seconds": 321.260073907455,
+      "before_master_seconds": 321.19340724078836,
+      "after_master_seconds": 321.3267405741217,
+      "before_frame": "encoded_qa/frames/card-09-observed_difference-before.png",
+      "after_frame": "encoded_qa/frames/card-09-observed_difference-after.png",
+      "before_frame_sha256": "55ab12789c0e0f69821bbc26ec2a965ce6944b83eddbf7eef75215a60f34b04e",
+      "after_frame_sha256": "aaab7f429241d7cc518fa49ef3a8d89c6a75e84696154deab2975dbc9bc5a99d",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n"
+    },
+    {
+      "card_id": "09",
+      "name": "not_identify",
+      "witness_phrase": "would not identify BHU by itself",
+      "witness_edge": "end",
+      "witness_master_seconds": 328.2431233933162,
+      "before_master_seconds": 328.1764567266495,
+      "after_master_seconds": 328.30979005998284,
+      "before_frame": "encoded_qa/frames/card-09-not_identify-before.png",
+      "after_frame": "encoded_qa/frames/card-09-not_identify-after.png",
+      "before_frame_sha256": "5a452a41e9ef9e969cebaf78d9e06841ae53b7e9a646c63caea3cbb87d400a4a",
+      "after_frame_sha256": "3551be61a23f4f892251c9616f93fb1d7b52dd3d24cf45edb68b9a9c211c9200",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n\nBHU?\n"
+    },
+    {
+      "card_id": "09",
+      "name": "other_causes",
+      "witness_phrase": "several different causes",
+      "witness_edge": "end",
+      "witness_master_seconds": 332.87398778920306,
+      "before_master_seconds": 332.8073211225364,
+      "after_master_seconds": 332.9406544558697,
+      "before_frame": "encoded_qa/frames/card-09-other_causes-before.png",
+      "after_frame": "encoded_qa/frames/card-09-other_causes-after.png",
+      "before_frame_sha256": "73bfc1cf66498ef42a621a58db5367ebf619501a7487fbd03fdb7dd9a62a498b",
+      "after_frame_sha256": "5cddf788635c7933fc35c60a4899ac36dc2513a9aaeaa359f9bd5c989c1f028a",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n\nBHU?\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n\na\n\n~~\n\nNOT BHU-SPECIFIC BY ITSELF\n\nSS\n\nBHU?\n\n| OTHER POSSIBLE CAUSES\n"
+    },
+    {
+      "card_id": "09",
+      "name": "measurement_not_identification",
+      "witness_phrase": "not automatically a successful test",
+      "witness_edge": "end",
+      "witness_master_seconds": 343.8704530848329,
+      "before_master_seconds": 343.8037864181662,
+      "after_master_seconds": 343.93711975149955,
+      "before_frame": "encoded_qa/frames/card-09-measurement_not_identification-before.png",
+      "after_frame": "encoded_qa/frames/card-09-measurement_not_identification-after.png",
+      "before_frame_sha256": "af4debea8b07c3f5ebd732e1e6e14422586179ee54720ae297638459863f97c7",
+      "after_frame_sha256": "32605a58cba79adb6c1d1eaac71f7fddc3d33677145abb6d6bcd2be30b965fae",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n\na\n\n~~\n\nNOT BHU-SPECIFIC BY ITSELF\n\nSS\n\nBHU?\n\n| OTHER POSSIBLE CAUSES\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n\na\n\n~~\n\nNOT BHU-SPECIFIC BY ITSELF\n\nSS\n\nBHU?\n\n| OTHER POSSIBLE CAUSES\n\nMEASUREMENT = IDENTIFICATION\n\nA successful measurement is not automatically a successful test of this model.\n"
+    },
+    {
+      "card_id": "10",
+      "name": "no_range",
+      "witness_phrase": "no pass-or-fail range",
+      "witness_edge": "end",
+      "witness_master_seconds": 351.6177009777295,
+      "before_master_seconds": 351.55103431106284,
+      "after_master_seconds": 351.68436764439616,
+      "before_frame": "encoded_qa/frames/card-10-no_range-before.png",
+      "after_frame": "encoded_qa/frames/card-10-no_range-after.png",
+      "before_frame_sha256": "ed3a9ea598d7c061429c5073a3f95671721228d940c32b708c8c31b3685d8c51",
+      "after_frame_sha256": "9a2063ed45afd91c8a0cc4cfbeb2b02a8d97e26312afafc507345f1bd09a421e",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\na\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\nFINITE-PRECISION RESULT\n\nNO PREDICTED SIZE\n\nThere's no pass-or-fail range to grade a measurement against — the idea never says how big the effect should be.\n"
+    },
+    {
+      "card_id": "10",
+      "name": "no_signature",
+      "witness_phrase": "without a unique signature",
+      "witness_edge": "end",
+      "witness_master_seconds": 361.0787615426399,
+      "before_master_seconds": 361.0120948759732,
+      "after_master_seconds": 361.14542820930654,
+      "before_frame": "encoded_qa/frames/card-10-no_signature-before.png",
+      "after_frame": "encoded_qa/frames/card-10-no_signature-after.png",
+      "before_frame_sha256": "a7103ec6b4532791c9cbcc44aba453ddeed8f38f6bcdc11e5d7b454258616f28",
+      "after_frame_sha256": "b5736ca0f9aab890a4996f8d52ca16605ea870bea8f85b18df193ca00dee6935",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\nFINITE-PRECISION RESULT\n\nNO PREDICTED SIZE\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\n2 -NO UNIQUE SIGNATURE\n\nFINITE-PRECISION RESULT\n\nPOSITIVE RESULT\n\n4 ™\n\nNO PREDICTED SIZE\n\nA POSITIVE RESULT DOES NOT IDENTIFY BHU\n\nAnd without a unique signature, a positive result cannot identify BHU.\n"
+    },
+    {
+      "card_id": "10",
+      "name": "trustworthy_measurement",
+      "witness_phrase": "trustworthy measurement",
+      "witness_edge": "end",
+      "witness_master_seconds": 368.2543794133623,
+      "before_master_seconds": 368.18771274669564,
+      "after_master_seconds": 368.32104608002896,
+      "before_frame": "encoded_qa/frames/card-10-trustworthy_measurement-before.png",
+      "after_frame": "encoded_qa/frames/card-10-trustworthy_measurement-after.png",
+      "before_frame_sha256": "b8e49a4f5b1b5c2077439802cf1d3f84da48ba4b93f054ddaddc4139b048490e",
+      "after_frame_sha256": "2b56057be016fe29e92323cc041feed930715f73b6711126ae68ff3d220e6b7b",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\n2 - NO UNIQUE SIGNATURE\n\nFINITE-PRECISION RESULT\n\nPOSITIVE RESULT\n\nZS\n\nNO PREDICTED SIZE\n\nA POSITIVE RESULT DOES NOT IDENTIFY BHU\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\n2 - NO UNIQUE SIGNATURE\n\nFINITE-PRECISION RESULT\n\nPOSITIVE RESULT\n\n4 ™\n\nNO PREDICTED SIZE\n\nA POSITIVE RESULT DOES NOT IDENTIFY BHU\n\nMEASUREMENT MAY STILL BE TRUSTWORTHY\n\nWe could build a trustworthy measurement and still be unable to answer the BHU question.\n"
+    },
+    {
+      "card_id": "10",
+      "name": "closing_line",
+      "witness_phrase": "The hunt had a source",
+      "witness_edge": "start",
+      "witness_master_seconds": 372.75804589896796,
+      "before_master_seconds": 372.6913792323013,
+      "after_master_seconds": 372.8247125656346,
+      "before_frame": "encoded_qa/frames/card-10-closing_line-before.png",
+      "after_frame": "encoded_qa/frames/card-10-closing_line-after.png",
+      "before_frame_sha256": "f27189085546da08eec53aa215bea6fc5f4fcad051e4f31164e92a7acbd52d04",
+      "after_frame_sha256": "9822b0057887b10b14fd1189407b740734f396e2fb0c3535679f3132fb646d07",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\n2 - NO UNIQUE SIGNATURE\n\nFINITE-PRECISION RESULT\n\nPOSITIVE RESULT\n\n4 ™\n\nNO PREDICTED SIZE\n\nA POSITIVE RESULT DOES NOT IDENTIFY BHU\n\nMEASUREMENT MAY STILL BE TRUSTWORTHY\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\n2 - NO UNIQUE SIGNATURE\n\nFINITE-PRECISION RESULT\n\nPOSITIVE RESULT\n\n4 ™\n\nNO PREDICTED SIZE\n\nA POSITIVE RESULT DOES NOT IDENTIFY BHU\n\nMEASUREMENT MAY STILL BE TRUSTWORTHY\n\nTHE HUNT HAD A SOURCE - IT DID NOT HAVE A TARGET\n\nThe hunt had a source.\n"
+    },
+    {
+      "card_id": "11",
+      "name": "target_gate",
+      "witness_phrase": "a published calculation",
+      "witness_edge": "start",
+      "witness_master_seconds": 384.09775450878027,
+      "before_master_seconds": 384.0310878421136,
+      "after_master_seconds": 384.16442117544693,
+      "before_frame": "encoded_qa/frames/card-11-target_gate-before.png",
+      "after_frame": "encoded_qa/frames/card-11-target_gate-after.png",
+      "before_frame_sha256": "616f52695c003ab4f4b7cf3acec6e09803a8451ae8880ea87d6bdf271e3c3af4",
+      "after_frame_sha256": "69010969626583123f72cb81a8c9f1e8f4bcbdd64b4aadf8fdfd971eaca2eaf0",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nCALIBRATED TARGET\n\nFirst, a published calculation that says how big the spin difference should be — with a pass-or-fail range.\n"
+    },
+    {
+      "card_id": "11",
+      "name": "signature_gate",
+      "witness_phrase": "a fingerprint only a black-hole birth would leave",
+      "witness_edge": "start",
+      "witness_master_seconds": 392.8169049596583,
+      "before_master_seconds": 392.75023829299164,
+      "after_master_seconds": 392.88357162632497,
+      "before_frame": "encoded_qa/frames/card-11-signature_gate-before.png",
+      "after_frame": "encoded_qa/frames/card-11-signature_gate-after.png",
+      "before_frame_sha256": "e449568c50b641239d00964e877e1ee617e95d29d58b98aec2468b97dfbda834",
+      "after_frame_sha256": "a9ffc891d07a20e368031bffedc5b4bf2cce0ebfeeaa10571a522a1373055446",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nCALIBRATED TARGET\n\nOr second, a fingerprint only a black-hole birth would leave—not merely the broad fact of spin asymmetry.\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nREOPEN CONDITION 2:\n\nCALIBRATED TARGET\n\nUNIQUE SIGNATURE\n\nOr second, a fingerprint only a black-hole birth would leave—not merely the broad fact of spin asymmetry.\n"
+    },
+    {
+      "card_id": "11",
+      "name": "asymmetry_alone",
+      "witness_phrase": "A confirmed spin asymmetry alone",
+      "witness_edge": "start",
+      "witness_master_seconds": 400.906680113906,
+      "before_master_seconds": 400.84001344723936,
+      "after_master_seconds": 400.9733467805727,
+      "before_frame": "encoded_qa/frames/card-11-asymmetry_alone-before.png",
+      "after_frame": "encoded_qa/frames/card-11-asymmetry_alone-after.png",
+      "before_frame_sha256": "3ba558e3f77a2a1873f2860a8f2437bdcb7c86a9c9c5a75229c142b9a3eb35ed",
+      "after_frame_sha256": "97555294c35d07f3dd160cacc88a28ab9a2004a0f0c3c03a75e04fa1f9835890",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nREOPEN CONDITION 2:\n\nCALIBRATED TARGET\n\nUNIQUE SIGNATURE\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nSPIN ASYMMETRY ALONE IS NOT\n\nREOPEN CONDITION 2:\n\nA BHU TEST\n\nCALIBRATED TARGET\n\nUNIQUE SIGNATURE\n\nA confirmed spin asymmetry alone would still not test BHU.\n"
+    },
+    {
+      "card_id": "11",
+      "name": "reopen",
+      "witness_phrase": "This route reopens only",
+      "witness_edge": "start",
+      "witness_master_seconds": 406.187292358804,
+      "before_master_seconds": 406.1206256921373,
+      "after_master_seconds": 406.25395902547064,
+      "before_frame": "encoded_qa/frames/card-11-reopen-before.png",
+      "after_frame": "encoded_qa/frames/card-11-reopen-after.png",
+      "before_frame_sha256": "b0870e1ede81517cd4ab3f9a7ddd1aba5bb455cce443f12c6d0267899d41b40b",
+      "after_frame_sha256": "881ee39103da01ccdb830f6df606ebc705fdbb111c989d2d7412717646eb5888",
+      "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nSPIN ASYMMETRY ALONE IS NOT\n\nREOPEN CONDITION 1 -\n\nA BHU TEST\n\nREOPEN CONDITION 2:\n\nCALIBRATED TARGET\n\nUNIQUE SIGNATURE\n",
+      "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nSPIN ASYMMETRY ALONE IS NOT\n\nREOPEN CONDITION 2:\n\nA BHU TEST\n\nCALIBRATED TARGET\n\nUNIQUE SIGNATURE\n\nREOPEN ONLY FOR A CALIBRATED TARGET OR A UNIQUE SIGNATURE\n\nThis route reopens only when a BHU model supplies a calibrated target or a unique signature.\n"
+    }
+  ],
+  "reveal_assertions": [
+    {
+      "card_id": "02",
+      "name": "bhu",
+      "token": "BHU",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": false,
+      "status": "FAIL"
+    },
+    {
+      "card_id": "04",
+      "name": "mass_1_5",
+      "token": "1.5",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": true,
+      "status": "PASS"
+    },
+    {
+      "card_id": "04",
+      "name": "mass_2",
+      "token": "M",
+      "before_ocr_has_token": true,
+      "after_ocr_has_token": true,
+      "status": "PASS"
+    },
+    {
+      "card_id": "05",
+      "name": "demorest_uncertainty",
+      "token": "0.04",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": true,
+      "status": "PASS"
+    },
+    {
+      "card_id": "05",
+      "name": "fonseca_uncertainty",
+      "token": "0.07",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": true,
+      "status": "PASS"
+    },
+    {
+      "card_id": "05",
+      "name": "percent_68_3",
+      "token": "68.3",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": true,
+      "status": "PASS"
+    },
+    {
+      "card_id": "05",
+      "name": "percent_95_4",
+      "token": "95.4",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": true,
+      "status": "PASS"
+    },
+    {
+      "card_id": "07",
+      "name": "cw_ccw",
+      "token": "CW",
+      "before_ocr_has_token": false,
+      "after_ocr_has_token": false,
+      "status": "FAIL"
+    }
+  ],
+  "card04_heading_reveal": {
+    "witness_master_seconds": 123.96927032321254,
+    "before_frame": "encoded_qa/frames/card-04-heading-before.png",
+    "after_frame": "encoded_qa/frames/card-04-heading-after.png",
+    "before_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nLISTENING FOR THE PROPOSAL'S FULL NAME...\n\nUNIVERSE\n\nes\n\nBLACK HOLES\n\n——\n\nCHILD UNIVERSES O O O\n\nselection —\n",
+    "after_ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n——\n\nBLACK HOLES\n\n——__\n\nCHILD UNIVERSES O @ O\n",
+    "status": "PASS"
+  },
+  "assertion_headings": [
+    {
+      "card_id": "01",
+      "heading": "This route closed because it had no calibrated, identifying target",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\nPRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n\nROUTE CLOSED - IDEA NOT DECLARED TRUE OR FALSE\n\nThe idea is not declared true or false.\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-01-late-heading.png",
+      "frame_sha256": "673cd760e376ef6f2834f59e22ef8f5a8da3c20716e7f0231a89df1774796e17"
+    },
+    {
+      "card_id": "02",
+      "heading": "“Black-hole universe” names different proposals, not one model",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n2/11\n\n“Black-hole universe” names different proposals, not one model\n\nCLOSED UNIVERSE\n\nCOLLAPSE\n\nINHERITS\n\nONE LABEL\n\nINSIDE A BLACK HOLE\n\nBOUNCES\n\nPARENT'S SPIN\n\nSS\n\nBLACK-HOLE\n\nUNIVERSE\n\nUNIVERSES REPRODUCE |\n\nBABY UNIVERSES WITH\n\nAND TUNE PHYSICS\n\nDIFFERENT FINGERPRINTS\n\nAT LEAST FIVE PROPOSALS IN THIS SURVEY - NO SINGLE SHARED FORECAST |\n\nCLOSING RECORD - THE DOCUMENT THIS VIDEO REPORTS FROM\n\n|\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-02-late-heading.png",
+      "frame_sha256": "474ba86c6809b34b650895df691b1ffc402f76cf146495aeb44e4f6204d079d2"
+    },
+    {
+      "card_id": "03",
+      "heading": "A test needs a target that can be wrong—and identify the idea",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n3/11\n\nA test needs a target that can be wrong—and identify the idea\n\n1-CAN BE WRONG\n\n2- CAN IDENTIFY THE IDEA\n\n|\n\n|\n\nNEUTRON STARS: ULTRA-DENSE COLLAPSED CORES\n\nSPINNING, TIMED NEUTRON STARS ARE PULSARS\n\n} |\n\nThe ones we can time as they spin are called pulsars, and their mass can be measured.\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-03-late-heading.png",
+      "frame_sha256": "11f31bb7a0cb55e0073fe3c4271911261288d570a3b54936e384227dadbbe82b"
+    },
+    {
+      "card_id": "04",
+      "heading": "One cosmological-natural-selection chain puts a low ceiling on neutron-star mass",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n4/11\n\nOne cosmological-natural-selection chain puts a low ceiling on neutron-star\n\nmass\n\nUNIVERSE\n\n———\n\nBLACK HOLES\n\n—___\n\nCHILD UNIVERSES O O O\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\nM22MoO\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nNEUTRON-STAR MASS (MO)\n\n“SERIOUS DOUBT OR SIMPLY FALSIFY” — BROWN, LEE & RHO\n\nThat's a real test — a number that could be proven wrong.\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-04-late-heading.png",
+      "frame_sha256": "c83cdc2758a335169f6887010176fb3f9d1bc6d21167d57882ce840b0dac00b3"
+    },
+    {
+      "card_id": "05",
+      "heading": "Measured pulsars have entered the source’s approximately two-solar-mass regime",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\n: 1.97 + 0.04 MO\n\nFONSECA:\n\n.08 + 0.07 MO - 68.3%\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nAT 95.4% CREDIBILITY, THE CLOSING RECORD STATES ONLY THAT THE RESULT DOES NOT CLEAR 2.00\n\nNO 95.4% LOWER-BOUND VALUE IS QUOTED OR PLOTTED HERE\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-05-late-heading.png",
+      "frame_sha256": "78e8f0c4cf71d41fcd9bc5fc7c728598add219a364708fad98ba60405b54ab60"
+    },
+    {
+      "card_id": "06",
+      "heading": "The evidence enters the test regime; the closing record does not call it falsification",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n6/11\n\nThe evidence enters the test regime; the closing record does not call it\n\nfalsification\n\nSERIOUS DOUBT\n\nOR\n\nSIMPLY FALSIFY\n\nNOT ADJUDICATED HERE\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-06-late-heading.png",
+      "frame_sha256": "850010cd2abaece4434244fc39d3abc9228380c714241052ac8c74211e8603e4"
+    },
+    {
+      "card_id": "07",
+      "heading": "The rotating-parent source explicitly says the two handedness counts should differ",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n7/11\n\nThe rotating-parent source explicitly says the two handedness counts\n\nshould differ\n\nPARENT ROTATION AXIS\n\nCHILD UNIVERSE\n\ne\n\ntd\n\neo\n\ne\n\nES\n\neo\n\neo\n\noe\n\ne\n\nid\n\nINHERITED PREFERRED AXIS\n\n=\n\nll\n\nEXPLICIT QUALITATIVE CLAIM - NO AMPLITUDE SHOWN\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-07-late-heading.png",
+      "frame_sha256": "f6e2afa526cb132bcb46aff230edc0f389b2d2bb1c94ab2332231672f02ac23d"
+    },
+    {
+      "card_id": "08",
+      "heading": "The handedness claim came after the cited data and never became a numerical forecast",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n8/11\n\nThe handedness claim came after the cited data and never became a\n\nnumerical forecast\n\nOBSERVATIONS CITED FIRST\n\nHANDEDNESS CLAIM ADDED IN 2025\n\n@\n\n@\n\nEQUATIONS PRESENT\n\nNOT A PREDICTION MADE BEFORE THE DATA\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-08-late-heading.png",
+      "frame_sha256": "adea7e7cd9aec807d5851f95873ec27633da7ef468a08d341b180651bcc0da24"
+    },
+    {
+      "card_id": "09",
+      "heading": "A real spin difference would still not identify a black-hole origin",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n9/11\n\nA real spin difference would still not identify a black-hole origin\n\nOBSERVED CW/CCW\n\nDIFFERENCE\n\na\n\n~~\n\nNOT BHU-SPECIFIC BY ITSELF\n\nSS\n\nBHU?\n\n| OTHER POSSIBLE CAUSES\n\nMEASUREMENT = IDENTIFICATION\n\nA successful measurement is not automatically a successful test of this model.\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-09-late-heading.png",
+      "frame_sha256": "834ee129381e25c25466d02342f92e1766a191372184b997c4ef0690d4e09668"
+    },
+    {
+      "card_id": "10",
+      "heading": "The spin route fails twice: no numerical target, and no unique signature",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n10/11\n\nThe spin route fails twice: no numerical target, and no unique signature\n\n1-NO SOURCE-DEFINED PASS-OR-FAIL RANGE\n\n2 - NO UNIQUE SIGNATURE\n\nFINITE-PRECISION RESULT\n\nPOSITIVE RESULT\n\n4 ™\n\nNO PREDICTED SIZE\n\nA POSITIVE RESULT DOES NOT IDENTIFY BHU\n\nMEASUREMENT MAY STILL BE TRUSTWORTHY\n\nTHE HUNT HAD A SOURCE - IT DID NOT HAVE A TARGET\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-10-late-heading.png",
+      "frame_sha256": "25968f2667e7cf56d24ba83314c3f7bb522ffa5a12c3502fab7291fea26bd6c1"
+    },
+    {
+      "card_id": "11",
+      "heading": "Reopen this route only for a calibrated target or a unique signature",
+      "ocr": "NEBULAMIND - CLOSING RECORD\n\n11/11\n\nReopen this route only for a calibrated target or a unique signature\n\nMODEL\n\nTARGET\n\nMEASUREMENT\n\nJ—|\n\nJ—|\n\n|\n\nREOPEN CONDITION 1 -\n\nSPIN ASYMMETRY ALONE IS NOT\n\nREOPEN CONDITION 2:\n\nA BHU TEST\n\nCALIBRATED TARGET\n\nUNIQUE SIGNATURE\n\nREOPEN ONLY FOR A CALIBRATED TARGET OR A UNIQUE SIGNATURE\n",
+      "token_recall": 1.0,
+      "status": "PASS",
+      "frame": "encoded_qa/frames/card-11-late-heading.png",
+      "frame_sha256": "6eb83354a3e7e3e6288e895bded0e478af3aa138917bf39a35437abb5afb375f"
+    }
+  ],
+  "card01": {
+    "boundary_frames": [
+      {
+        "label": "early",
+        "time": 0.5,
+        "ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nTHE LAB'S RESEARCH PROGRAMME\n\nae\n",
+        "frame": "encoded_qa/frames/card-01-boundary-early.png",
+        "frame_sha256": "988200115f5b687b8b8cf3b4044c3790dfe7fe59be381c836d0814344802f974",
+        "badge_pass": true
+      },
+      {
+        "label": "late",
+        "time": 37.0,
+        "ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\nPRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n\nROUTE CLOSED - IDEA NOT DECLARED TRUE OR FALSE\n\nThe idea is not declared true or false.\n",
+        "frame": "encoded_qa/frames/card-01-boundary-late.png",
+        "frame_sha256": "673cd760e376ef6f2834f59e22ef8f5a8da3c20716e7f0231a89df1774796e17",
+        "badge_pass": false
+      }
+    ],
+    "both_boundary_markers_in_audio": true,
+    "badge_held_full_card": false,
+    "verdict_card_seconds": 31.535278745644604,
+    "verdict_near_32_and_by_35": true,
+    "verdict_frame": "encoded_qa/frames/card-01-verdict-after.png",
+    "verdict_frame_sha256": "8d2fd3a87bdb3c8ac92dff71b6d044bca1453dde67e5cc910a657484fc1e4e53",
+    "verdict_ocr": "NEBULAMIND - CLOSING RECORD\n\n1/11\n\nThis route closed because it had no calibrated, identifying target\n\nA PERSONAL SIDE-QUESTION - NOT PART OF\n\nA NUMBER WE CAN\n\nTHE LAB'S RESEARCH PROGRAMME\n\nCHECK\n\n| PRIMARY SOURCES\n\nWE READ THE PRIMARY\n\nSOURCES\n\nae\n\nGALAXY SPIN\n\nTHE SOURCES GIVE NO EXPECTED SIZE FOR\n\nTHE EFFECT\n\nNOT IDENTIFYING BY ITSELF\n\nROUTE CLOSED\n\nSo this route closes.\n",
+    "verdict_visual_pass": true
+  },
+  "card05": {
+    "frame": "encoded_qa/frames/card-05-95-4-late.png",
+    "frame_sha256": "8f5aa72e27a288a4d1942fdc0fd5874b07560d8f447089d8b686d678b1c2c447",
+    "ocr": "NEBULAMIND - CLOSING RECORD\n\n5/11\n\nMeasured pulsars have entered the source’s approximately two-solar-mass\n\nregime\n\nEVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE\n\nBROWN-BETHE MAXIMUM ~1.5 MO\n\n2.00\n\nM22MO\n\nDEMORES\n\n: 1.97 + 0.04 MO\n\nFONSECA:\n\n.08 + 0.07 MO - 68.3%\n\n1.4\n\n1.6\n\n1.8\n\n2.0\n\n2.2\n\nAT 95.4% CREDIBILITY, THE CLOSING RECORD STATES ONLY THAT THE RESULT DOES NOT CLEAR 2.00\n\nNO 95.4% LOWER-BOUND VALUE IS QUOTED OR PLOTTED HERE\n\nAt the stricter ninety-five point four percent level, the closing record says it does not.\n",
+    "scaled_95_4_text_absent": true,
+    "non_scaled_callout_present": true,
+    "gradient_visible_through_2_00": true,
+    "pixels_near_2_00": {
+      "left": [
+        49,
+        77,
+        75
+      ],
+      "right": [
+        73,
+        94,
+        80
+      ],
+      "background_reference": [
+        9,
+        14,
+        24
+      ]
+    },
+    "forbidden_95_4_position_bearing_primitives_drawn_by_renderer": [],
+    "no_terminus_visual_review_required": true
+  },
+  "crew_name_hits_frames": [],
+  "crew_name_hits_asr": [],
+  "cns_frame_hits": [],
+  "upload_authorized": false,
+  "publication_authorized": false,
+  "rerender_on_failure_authorized": false
+}

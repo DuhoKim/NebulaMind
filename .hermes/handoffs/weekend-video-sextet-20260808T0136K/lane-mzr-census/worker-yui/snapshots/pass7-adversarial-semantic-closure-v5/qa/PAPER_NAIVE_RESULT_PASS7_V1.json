@@ -1,0 +1,38 @@
+{
+  "review_round": 9,
+  "pass": 7,
+  "snapshot": "pass7-state-continuity-v1",
+  "snapshot_manifest_sha256": "2890a2a633289b250f7b875cfb191787cf5cd042686df7e516b5452d5d054720",
+  "manifest_entries": 22,
+  "start_hashes_verified": "22/22",
+  "end_hashes_verified": "22/22",
+  "snapshot_changed": false,
+  "packet_reads": 1,
+  "answer_key_read": false,
+  "score": 8,
+  "maximum_score": 8,
+  "threshold": 7,
+  "mandatory_questions": [4, 8],
+  "mandatory_questions_passed": true,
+  "verdict": "PASS",
+  "answers_summary": {
+    "q1": "Single-table VizieR metadata-search reach on abundance-search, mass-search, and redshift-search axes; not adjudicated physical measurements, joins/crossmatches, metallicity, or MZR measurement.",
+    "q2": "Semantic UCD tags and column-name variants.",
+    "q3": "5393→5568 (+175), 6118→6206 (+88), 6667→6687 (+20), intersection 178, minus 21 (19 redshift + 2 abundance), leaves 157; 62/157 is a side branch and all 157 go to T2.",
+    "q4": "62 is frozen vocabulary-regex presence in 62 of 157 recorded descriptions only; not eligibility, gas-phase adjudication, or measurement.",
+    "q5": "7/7 and 0/3 are T1 retrieval-instrument checks; T2 uses 12 decoys plus 3 anchors as contract-design controls, not eligibility results.",
+    "q6": "Precision and the dominant precision-contamination mode were not certified.",
+    "q7": "Symbol/meaning collisions: Galactic Cartesian height and stellar-grid/model metal fraction; target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity; not T2 rulings.",
+    "q8": "T1 counts, 178−21=157, 62/157 side check, 7/7 and 0/3 with precision not certified, and frozen T2 contract are reportable; T2 application, eligible-table count, and metallicity/MZR measurement remain pending."
+  },
+  "ambiguities": [
+    "Packet did not name which displayed precision-failure category was the dominant contamination mode; reviewer did not infer one.",
+    "Top-level candidate_reference is not one of the defined 22 manifest file entries; verification used the correct files array."
+  ],
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "release_disposition": "HOLD",
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "current_gate_note": "This v1 comprehension PASS cannot clear v4 or the encoded candidate."
+}

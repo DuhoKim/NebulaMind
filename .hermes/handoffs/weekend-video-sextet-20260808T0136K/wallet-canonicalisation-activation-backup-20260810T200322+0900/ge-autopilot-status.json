@@ -1,0 +1,1222 @@
+{
+  "blockers": [],
+  "browser_executes_actions": false,
+  "compat_markers": [
+    "GE_AUTOPILOT_PRIVATE_DASHBOARD_V2",
+    "GE_AUTOPILOT_PRIVATE_DASHBOARD_V1"
+  ],
+  "corpus_scaleup": {
+    "cards": [
+      {
+        "big": "120,676 papers",
+        "detail": "astro-ph.GA + astro-ph.CO, refereed, 2009-2026 - 10x the old 12k; rich ADS metadata + abstracts.",
+        "status": "DONE",
+        "title": "Corpus pulled",
+        "tone": "healthy"
+      },
+      {
+        "big": "qwen3-embedding-4b",
+        "detail": "won 10-model citation eval: recall@10 0.691 vs current nomic 0.5886",
+        "status": "SELECTED",
+        "title": "Embedding model",
+        "tone": "healthy"
+      },
+      {
+        "big": "120,676 embedded",
+        "detail": "qwen3-embedding-4b vectors complete (clean text)",
+        "status": "DONE",
+        "title": "Embedding run",
+        "tone": "healthy"
+      },
+      {
+        "big": "8,868,720 edges",
+        "detail": "120,554 papers with references (~99.9% coverage)",
+        "status": "DONE",
+        "title": "Citation graph",
+        "tone": "healthy"
+      },
+      {
+        "big": "MAST 12,404",
+        "detail": "JWST 1418, SDSS 1698, IllustrisTNG 512",
+        "status": "DONE",
+        "title": "Dataset-usage index",
+        "tone": "healthy"
+      },
+      {
+        "big": "on-demand",
+        "detail": "research pipeline deep-reads each study's papers (arXiv HTML-first) so drafts cite real, full-text-verified passages -- not the model's memory.",
+        "status": "WIRED",
+        "title": "Full-text grounding",
+        "tone": "healthy"
+      },
+      {
+        "big": "5,149/5,000 papers",
+        "detail": "HTML-first full text (ar5iv 80, arXiv 42, pdf 307); top most-cited canonical deep layer",
+        "status": "DONE",
+        "title": "Canonical deep layer",
+        "tone": "healthy"
+      },
+      {
+        "big": "57 topics",
+        "detail": "emergent from 120k, no inherited topics (43% noise). Top frontiers: formation metallicity; dark energy; gaia chemical.",
+        "status": "DONE",
+        "title": "Topic derivation",
+        "tone": "healthy"
+      },
+      {
+        "big": "novelty / expected-value / citation",
+        "detail": "grounded gates in the research pipeline: novelty aborts already-done work, expected-value kills physically-impossible/contradicting results (astrosage sanity), citation-entailment catches fabricated cites. Validated.",
+        "status": "BUILT + WIRED",
+        "title": "Quality gates",
+        "tone": "healthy"
+      }
+    ],
+    "headline": "AI-Scientist corpus: 120,676 papers (astro-ph.GA + CO, 2009-2026) embedded with qwen3-embedding-4b; full-text grounding now feeds the research pipeline.",
+    "marker": "GE_CORPUS_SCALEUP_20260718",
+    "next_action": "Cluster the 120k so fresh topics emerge from scratch (no inherited topics); canonical full-text deep layer pre-warming; then swap paper-selection to the local semantic index.",
+    "reported_at_utc": "2026-08-10T11:02:40Z"
+  },
+  "counts": {
+    "active": 1,
+    "blockers": 0,
+    "copy_mode": 2,
+    "dead": 0,
+    "idle": 2,
+    "panes": 5,
+    "raw_blockers": 0,
+    "review_prompts": 0,
+    "safe_autoprompts": 0,
+    "safe_prompts": 0,
+    "targets_ok": 1,
+    "targets_total": 1
+  },
+  "events": [],
+  "generated_at": "2026-08-10T11:02:02Z",
+  "groups": {
+    "Directors": [
+      {
+        "active": false,
+        "command": "tmux",
+        "copy_mode": true,
+        "dead": false,
+        "pane_id": "%4",
+        "permission_prompt": false,
+        "reason": "Tori/Hermes or nested live-view pane ignored for tmux permission approval",
+        "role": "Goru-director-live-view",
+        "safe_to_approve": false,
+        "size": "57x13",
+        "status": "copy-mode",
+        "tail_excerpt": "\u2022 Immutable Byte Integrity: The actual source_freeze_v2 \u00b7 [goru-agy]0:agy* [0,0] \"Duhoui-MacStudio.loca\" 20:01 10-",
+        "target": "ge-mastermind:Directors"
+      },
+      {
+        "active": false,
+        "command": "claude.exe",
+        "copy_mode": true,
+        "dead": false,
+        "pane_id": "%30",
+        "permission_prompt": false,
+        "reason": "no permission prompt detected",
+        "role": "\u2733 Claude Code orientation and role assignment",
+        "safe_to_approve": false,
+        "size": "57x30",
+        "status": "copy-mode",
+        "tail_excerpt": "\u23f5\u23f5 bypass permissions on \u00b7 1 monitor \u00b7 \u2190 for agents \u2026 \u00b7 new task? /clear to save 739.6k tokens",
+        "target": "ge-mastermind:Directors"
+      },
+      {
+        "active": true,
+        "command": "claude.exe",
+        "copy_mode": false,
+        "dead": false,
+        "pane_id": "%0",
+        "permission_prompt": false,
+        "reason": "no permission prompt detected",
+        "role": "Hwao-director",
+        "safe_to_approve": false,
+        "size": "53x44",
+        "status": "active",
+        "tail_excerpt": "\u276f ping me when the wallet apply lands \u00b7 \u23f5\u23f5 accept edits on \u00b7 install gh for PR status \u00b7 \u2026",
+        "target": "ge-mastermind:Directors"
+      },
+      {
+        "active": false,
+        "command": "python3.11",
+        "copy_mode": false,
+        "dead": false,
+        "pane_id": "%1",
+        "permission_prompt": false,
+        "reason": "Tori/Hermes or nested live-view pane ignored for tmux permission approval",
+        "role": "Tori-director",
+        "safe_to_approve": false,
+        "size": "59x18",
+        "status": "idle",
+        "tail_excerpt": "\u2695 gpt-5.6-sol \u00b7 49% \u00b7 \ud83d\udddc\ufe0f 4 \u00b7 3.1d \u00b7 \u276f",
+        "target": "ge-mastermind:Directors"
+      },
+      {
+        "active": false,
+        "command": "python3.11",
+        "copy_mode": false,
+        "dead": false,
+        "pane_id": "%7",
+        "permission_prompt": false,
+        "reason": "no permission prompt detected",
+        "role": "Yui-director",
+        "safe_to_approve": false,
+        "size": "59x25",
+        "status": "idle",
+        "tail_excerpt": "\u2695 gpt-5.6-sol \u00b7 57% \u00b7 \ud83d\udddc\ufe0f 7 \u00b7 287d \u00b7 yui \u276f",
+        "target": "ge-mastermind:Directors"
+      }
+    ],
+    "Lanes": [],
+    "Other": [],
+    "Review": []
+  },
+  "hard_gates_closed": [
+    "product DB/SQL and pane-initiated SQL",
+    "/api/pages/page_versions/live wiki publish",
+    "deploy/restart",
+    "git commit/push/merge",
+    "cockpit/global/shared-parent",
+    "cloud/GCP/API/billing/OAuth/token/secrets",
+    "browser automation",
+    "cron"
+  ],
+  "health": "watching",
+  "health_text": "WATCHING SAFE PROMPTS \u00b7 2",
+  "lane_summaries": {
+    "Directors": {
+      "counts": {
+        "active": 1,
+        "copy-mode": 2,
+        "dead": 0,
+        "idle": 2,
+        "review": 0,
+        "safe-prompt": 0
+      },
+      "name": "Directors",
+      "panes": 5,
+      "state": "watching",
+      "text": "Autopilot watching"
+    },
+    "Lanes": {
+      "counts": {
+        "active": 0,
+        "copy-mode": 0,
+        "dead": 0,
+        "idle": 0,
+        "review": 0,
+        "safe-prompt": 0
+      },
+      "name": "Lanes",
+      "panes": 0,
+      "state": "idle",
+      "text": "Idle / ready"
+    },
+    "Other": {
+      "counts": {
+        "active": 0,
+        "copy-mode": 0,
+        "dead": 0,
+        "idle": 0,
+        "review": 0,
+        "safe-prompt": 0
+      },
+      "name": "Other",
+      "panes": 0,
+      "state": "idle",
+      "text": "Idle / ready"
+    },
+    "Review": {
+      "counts": {
+        "active": 0,
+        "copy-mode": 0,
+        "dead": 0,
+        "idle": 0,
+        "review": 0,
+        "safe-prompt": 0
+      },
+      "name": "Review",
+      "panes": 0,
+      "state": "idle",
+      "text": "Idle / ready"
+    }
+  },
+  "last_incident": {
+    "change_note": "hard stop applied",
+    "component": "Goru browser lane",
+    "detected_utc": "2026-07-12T01:56:30Z",
+    "id": "goru-browser-custody-20260712",
+    "resolved_utc": "2026-07-12T01:57:02Z",
+    "scope": "Private lane custody only; no revert, deletion, approved Gemini launch, product write, deploy, git, or cron action.",
+    "status": "contained",
+    "summary": "An unauthorized Gemini Web permission prompt appeared after Chrome/AppleScript experiments and edits to the local driver. Tori denied it and held the lane.",
+    "title": "Goru browser custody incident \u2014 contained",
+    "verification": "Prompt denied; no matching driver, AppleScript, or R15 process remained; no durable result or receipt exists; exact prior browser effect is unknown.",
+    "verification_headline": "permission denied; lane held",
+    "verification_note": "read-only custody check"
+  },
+  "latest_event": {
+    "actions": [],
+    "actions_count": 0,
+    "blockers": [],
+    "blockers_count": 0,
+    "ts": "2026-08-10T11:01:42Z"
+  },
+  "legacy_marker": "GE_AUTOPILOT_PRIVATE_DASHBOARD_V1",
+  "local_outcome_ledger": {
+    "enabled": true,
+    "events_total": 134821,
+    "latest_event_ts": "2026-08-10T11:01:22Z",
+    "latest_status": {
+      "blockers": 0,
+      "panes": 5,
+      "phase": "phase1-bounded-controller",
+      "review_blockers": 0,
+      "safe_blockers": 0,
+      "targets_ok": 1,
+      "targets_total": 1,
+      "ts": "2026-08-10T11:01:42Z"
+    },
+    "latest_status_ts": "2026-08-10T11:01:42Z",
+    "marker": "GE_AUTOPILOT_LOCAL_OUTCOME_LEDGER_V1",
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/autopilot-outcomes.sqlite3",
+    "product_db_writes_enabled": false,
+    "scope": "local append-only outcome ledger only; product DB/API/page writes remain closed",
+    "snapshots_total": 134062
+  },
+  "marker": "GE_AUTOPILOT_PRIVATE_DASHBOARD_V3",
+  "next_action": "Autopilot can handle safe docs/static or private-dashboard prompts; keep watching for red.",
+  "operator_answers": {
+    "counts": {
+      "decisions": 1,
+      "running": 1
+    },
+    "decisions": [
+      {
+        "what": "1 stale unresolved run(s) \u2014 counted but never shown",
+        "where": "run estimates"
+      }
+    ],
+    "failed": [],
+    "note": "empty here means genuinely nothing pending \u2014 this panel is sourced from blockers, safe autoprompts, septet lane state and next_action",
+    "running": [
+      {
+        "detail": "- elapsed",
+        "what": "Tori \u2014 relay, receipts, queue ledger"
+      }
+    ]
+  },
+  "overnight_report": {
+    "approval_phrase": "NO ACTIVE EXECUTION PHRASE",
+    "cards": [
+      {
+        "big": "9 live cards",
+        "detail": "public-realtime-feed; monitor LIVE_SAFE_MONITOR_ACTIVE; observed 2026-08-10T10:57:59Z (4m 3s old).",
+        "status": "RESOLVED / LIVE",
+        "title": "Usage quota",
+        "tone": "healthy"
+      },
+      {
+        "big": "180 / 180",
+        "detail": "Processed exactly the sealed C41 selection. No excluded records were readmitted and no new science-selection decision was made.",
+        "status": "EXACT SET PRESERVED",
+        "title": "Sealed corpus",
+        "tone": "healthy"
+      },
+      {
+        "big": "180 full text",
+        "detail": "All 180 records extracted successfully. Abstract-only: 0. Metadata-only: 0. Failed: 0.",
+        "status": "COMPLETE",
+        "title": "Full-text access",
+        "tone": "healthy"
+      },
+      {
+        "big": "42 hits \u00b7 138 fetched",
+        "detail": "23.33% cache-hit rate. New arXiv PDF requests used the lane's polite interval and completed without a three-failure hard stop.",
+        "status": "POLITE / VERIFIED",
+        "title": "Cache-first acquisition",
+        "tone": "healthy"
+      },
+      {
+        "big": "180 paths checked",
+        "detail": "Input and module hashes matched; record identities, cache paths, byte counts, access labels, and extraction thresholds all passed verification. Runtime: 691.565 seconds.",
+        "status": "PASS",
+        "title": "Independent verification",
+        "tone": "healthy"
+      },
+      {
+        "big": "Stale",
+        "detail": "Last confirmed 25,050 / 25,050 credits left \u00b7 resets 25,000 monthly + 50 daily bonus; daily bonus resets daily through Aug 31; monthly reset date not shown in Flow UI Last operator-confirmed Flow UI balance, captured 2026-08-04T02:09:46Z (152h 52m old). Shown as the most recent known reading; refresh with `flow-credits <remaining>` after a glance at the Flow UI.",
+        "status": "stale \u2014 captured 152h 52m ago",
+        "title": "Flow / Veo credits",
+        "tone": "needs-review"
+      },
+      {
+        "big": "0 risky actions",
+        "detail": "No DB or SQL writes, product or wiki changes, deploys, restarts, git actions, Deep Research runs, browser actions, cron jobs, or credit-spending actions.",
+        "status": "PRESERVED",
+        "title": "Safety boundary",
+        "tone": "healthy"
+      }
+    ],
+    "headline": "C41 Step 2 complete: full text acquired and extracted for all 180 sealed papers.",
+    "marker": "GE_AUTOPILOT_C41_STEP2_FULLTEXT_20260804_COMPLETE",
+    "next_action": "The sealed 180 now has a verified full-text manifest and source-strength labels. Hwao decides the next Baseline step; no later-stage execution is active.",
+    "reported_at_utc": "2026-08-10T11:02:40Z"
+  },
+  "paper_quality_sprint": {
+    "board": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_WEEKEND_48H_20260710T110009Z/SPRINT_BOARD.md",
+    "candidate": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_24_package",
+    "cycle": 24,
+    "cycles_completed": 24,
+    "generated_at": "2026-08-10T11:02:40Z",
+    "lanes": [
+      "Hwao-style director review: AGY Gemini 3.1 Pro Low",
+      "Gemini/Goru deep-review critique: AGY Gemini 3.5 Flash Low",
+      "Codex/Kun reproducibility and TeX/prose review: Codex gpt-5.4-mini",
+      "Goru mechanical checks: local Python",
+      "Integrator: candidate-copy edits, compile, audit only"
+    ],
+    "latest_audit": {
+      "compile_ok": [
+        true,
+        true
+      ],
+      "cycle": 24,
+      "fatal_failures": 1,
+      "figures": 2,
+      "marker": "WEEKEND_JOURNAL_QUALITY_AUDIT_V1"
+    },
+    "ledger": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_WEEKEND_48H_20260710T110009Z/SPRINT_LEDGER.md",
+    "ledger_tail": [
+      "- 2026-07-11T23:56:55Z cycle 19: integrity fatal; next cycle will restart from last clean candidate",
+      "- 2026-07-12T01:57:09Z cycle 20 phase=coherence integrity=0 quality=8",
+      "- 2026-07-12T03:58:57Z cycle 21 phase=reanalysis integrity=0 quality=8",
+      "- 2026-07-12T05:56:38Z cycle 22 phase=referee 2 integrity=0 quality=8",
+      "- 2026-07-12T07:56:48Z cycle 23 phase=final revision integrity=0 quality=8",
+      "- 2026-07-12T09:54:36Z cycle 24 phase=final dossier integrity=1 quality=8",
+      "- 2026-07-12T09:54:36Z cycle 24: integrity fatal; next cycle will restart from last clean candidate",
+      "- 2026-07-12T11:46:31Z sprint completed"
+    ],
+    "marker": "RP1_QUALITY_SPRINT_DASHBOARD_FEED_V1",
+    "pid": 45665,
+    "process_running": false,
+    "progress_percent": 100.0,
+    "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_WEEKEND_48H_20260710T110009Z",
+    "safe_boundaries": [
+      "Local sprint/candidate artifacts only; original package and public pages are not replaced.",
+      "No product DB/API/page writes, live wiki publish, deploy/restart, git write, cron, billing/OAuth/API-key/account changes, credential reads, or external submission."
+    ],
+    "started_utc": "2026-07-10T11:46:31Z",
+    "state": "needs-review",
+    "status": "completed",
+    "target_end_utc": "2026-07-12T11:46:31Z",
+    "text": "Quality sprint needs review",
+    "updated_utc": "2026-07-12T11:46:31Z"
+  },
+  "phase": "phase1-bounded-controller",
+  "policy_lines": [
+    "This page is a read-only mirror of local status JSON.",
+    "Green means nothing needs you; red means a real human decision is needed.",
+    "Goru permission prompts are handled by the autopilot when they match safe private-dashboard or docs/static scope.",
+    "Hard gates stay closed: no DB, live publish, deploy, git, cloud/secrets, browser automation, or cron."
+  ],
+  "repo": "/Users/duhokim/NebulaMind/NebulaMind",
+  "run_estimates": {
+    "active_runs_count": 1,
+    "archived_runs_count": 10,
+    "completed_runs_count": 9,
+    "default_estimated_label": "8h",
+    "default_estimated_seconds": 28800,
+    "generated_at": "2026-08-10T11:01:42Z",
+    "latest_completed": {
+      "completed_at_utc": "2026-07-08T11:07:57Z",
+      "elapsed_label": "8m"
+    },
+    "marker": "GE_AUTOPILOT_RUN_TIME_ESTIMATES_V1",
+    "runs": [
+      {
+        "completed_at_utc": null,
+        "digest": "f818be0cb69b0ea5863d43df51d29506304e6a55e0d854b94a2f38c0e4b3dd16",
+        "dispatch_count": 0,
+        "elapsed_label": "2d 19h",
+        "elapsed_seconds": 243455,
+        "estimate_basis": "configured default NEBULAMIND_GE_AUTOPILOT_ESTIMATED_RUN_SECONDS; override per order with estimated_total_seconds",
+        "estimated_total_label": "8h",
+        "estimated_total_seconds": 28800,
+        "eta_at_utc": "2026-08-07T23:24:07Z",
+        "expected_dispatches": 1,
+        "marker": "Tori_Staffing_Packet",
+        "progress_percent": 100,
+        "remaining_label": "over by 2d 11h",
+        "remaining_seconds": -214655,
+        "started_at_utc": "2026-08-07T15:24:07Z",
+        "state": "partial-dispatch",
+        "updated_at_utc": "2026-08-07T15:24:07Z"
+      }
+    ],
+    "runs_total": 11,
+    "stale_unresolved_runs_count": 1
+  },
+  "safe_autoprompts": [],
+  "septet": {
+    "lanes_blocked": [],
+    "lanes_total": 5,
+    "ok": true,
+    "seats": [
+      {
+        "detail": "",
+        "name": "Hwao",
+        "owes": false,
+        "role": "coordinates; no content work",
+        "state": "COORDINATING"
+      },
+      {
+        "detail": "",
+        "name": "Lana",
+        "owes": false,
+        "role": "science pressure",
+        "state": "IDLE"
+      },
+      {
+        "detail": "",
+        "name": "Goru",
+        "owes": false,
+        "role": "mechanical counts",
+        "state": "IDLE"
+      },
+      {
+        "detail": "",
+        "name": "Kun",
+        "owes": false,
+        "role": "reproducibility / adversarial gate",
+        "state": "IDLE"
+      },
+      {
+        "detail": "- elapsed",
+        "name": "Tori",
+        "owes": false,
+        "role": "relay, receipts, queue ledger",
+        "state": "WORKING"
+      },
+      {
+        "detail": "",
+        "name": "Yui",
+        "owes": false,
+        "role": "video; nothing unpublished",
+        "state": "IDLE"
+      }
+    ],
+    "warning": "interactive sessions that are NOT staffed work: Goru pid 71640, Lana pid 90368, Lana pid 29913, Lana pid 27551, Kun pid -, Yui pid -"
+  },
+  "septet_matrix": {
+    "awaiting_duho": [
+      "spin-parity-census-20260805T1922K",
+      "mzr-archive-census-20260805T1857K",
+      "c41-trackb-shape2-mzr-20260804T1452K"
+    ],
+    "live_seats": [
+      "Tori"
+    ],
+    "note": "engaged = that seat has produced an artifact in that lane; live process state is global and shown separately, never guessed per paper",
+    "ok": true,
+    "papers": [
+      {
+        "cells": [
+          {
+            "seat": "Hwao",
+            "state": "coord"
+          },
+          {
+            "seat": "Lana",
+            "state": "engaged"
+          },
+          {
+            "seat": "Goru",
+            "state": "engaged"
+          },
+          {
+            "seat": "Kun",
+            "state": "engaged"
+          },
+          {
+            "seat": "Tori",
+            "state": "engaged-global"
+          },
+          {
+            "seat": "Yui",
+            "state": "engaged-global"
+          }
+        ],
+        "engaged": 3,
+        "fail_closed": [],
+        "lane": "spin-parity-census-20260805T1922K",
+        "of": 5,
+        "stages": "6/17",
+        "state": "AWAITING HUMAN",
+        "verdict": "GATE: PASS",
+        "video": {
+          "age_h": 3.6,
+          "audio": true,
+          "href": "videos/spin-parity-census-narrated-20260810T1627.mp4",
+          "mb": 29.0,
+          "published": true,
+          "published_at_kst": "2026-08-10 16:47 KST",
+          "published_file": "spin-parity-census-narrated-20260810T1627.mp4",
+          "published_privacy": "unlisted",
+          "published_url": "https://youtu.be/TtFrvaGBCjU",
+          "slug": "spin-parity-census",
+          "updated_kst": "08-10 16:27 KST",
+          "updated_utc": "2026-08-10T07:27:27+00:00"
+        },
+        "waiting": "gates clear \u2014 freeze decision pending",
+        "who": "DUHO"
+      },
+      {
+        "cells": [
+          {
+            "seat": "Hwao",
+            "state": "coord"
+          },
+          {
+            "seat": "Lana",
+            "state": "engaged"
+          },
+          {
+            "seat": "Goru",
+            "state": "engaged"
+          },
+          {
+            "seat": "Kun",
+            "state": "engaged"
+          },
+          {
+            "seat": "Tori",
+            "state": "engaged-global"
+          },
+          {
+            "seat": "Yui",
+            "state": "engaged-global"
+          }
+        ],
+        "engaged": 3,
+        "fail_closed": [],
+        "lane": "mzr-archive-census-20260805T1857K",
+        "of": 5,
+        "stages": "5/17",
+        "state": "AWAITING HUMAN",
+        "verdict": "GATE: PASS",
+        "video": {
+          "age_h": 24.9,
+          "audio": true,
+          "href": "videos/mzr-archive-census-narrated-20260809T1905.mp4",
+          "mb": 9.1,
+          "published": false,
+          "published_at_kst": null,
+          "published_file": null,
+          "published_privacy": null,
+          "published_url": null,
+          "slug": "mzr-archive-census",
+          "updated_kst": "08-09 19:05 KST",
+          "updated_utc": "2026-08-09T10:05:35+00:00"
+        },
+        "waiting": "gates clear \u2014 freeze decision pending",
+        "who": "DUHO"
+      },
+      {
+        "cells": [
+          {
+            "seat": "Hwao",
+            "state": "coord"
+          },
+          {
+            "seat": "Lana",
+            "state": "engaged"
+          },
+          {
+            "seat": "Goru",
+            "state": "engaged"
+          },
+          {
+            "seat": "Kun",
+            "state": "engaged"
+          },
+          {
+            "seat": "Tori",
+            "state": "engaged"
+          },
+          {
+            "seat": "Yui",
+            "state": "engaged-global"
+          }
+        ],
+        "engaged": 4,
+        "fail_closed": [],
+        "lane": "c41-trackb-shape1-uvlf-20260804",
+        "of": 5,
+        "stages": "",
+        "state": "AWAITING HUMAN",
+        "verdict": "GATE: ESTABLISHED",
+        "video": {
+          "age_h": 24.9,
+          "audio": true,
+          "href": "videos/c41-brightend-uvlf-archival-gap-narrated-20260809T1905.mp4",
+          "mb": 9.4,
+          "published": false,
+          "published_at_kst": null,
+          "published_file": null,
+          "published_privacy": null,
+          "published_url": null,
+          "slug": "c41-brightend-uvlf-archival-gap",
+          "updated_kst": "08-09 19:05 KST",
+          "updated_utc": "2026-08-09T10:05:35+00:00"
+        },
+        "waiting": "GATE: ESTABLISHED",
+        "who": "crew"
+      },
+      {
+        "cells": [
+          {
+            "seat": "Hwao",
+            "state": "coord"
+          },
+          {
+            "seat": "Lana",
+            "state": "engaged"
+          },
+          {
+            "seat": "Goru",
+            "state": "engaged"
+          },
+          {
+            "seat": "Kun",
+            "state": "engaged"
+          },
+          {
+            "seat": "Tori",
+            "state": "engaged-global"
+          },
+          {
+            "seat": "Yui",
+            "state": "engaged-global"
+          }
+        ],
+        "engaged": 3,
+        "fail_closed": [],
+        "lane": "fesc-zsweep-merged-paper-20260804T1040K",
+        "of": 5,
+        "stages": "",
+        "state": "AWAITING HUMAN",
+        "verdict": "GATE: MINOR",
+        "video": {
+          "age_h": 24.9,
+          "audio": true,
+          "href": "videos/fesc-zsweep-photon-budget-narrated-20260809T1905.mp4",
+          "mb": 10.1,
+          "published": false,
+          "published_at_kst": null,
+          "published_file": null,
+          "published_privacy": null,
+          "published_url": null,
+          "slug": "fesc-zsweep-photon-budget",
+          "updated_kst": "08-09 19:05 KST",
+          "updated_utc": "2026-08-09T10:05:35+00:00"
+        },
+        "waiting": "GATE: MINOR",
+        "who": "crew"
+      },
+      {
+        "cells": [
+          {
+            "seat": "Hwao",
+            "state": "coord"
+          },
+          {
+            "seat": "Lana",
+            "state": "engaged"
+          },
+          {
+            "seat": "Goru",
+            "state": "engaged"
+          },
+          {
+            "seat": "Kun",
+            "state": "engaged"
+          },
+          {
+            "seat": "Tori",
+            "state": "engaged"
+          },
+          {
+            "seat": "Yui",
+            "state": "engaged-global"
+          }
+        ],
+        "engaged": 4,
+        "fail_closed": [],
+        "lane": "c41-trackb-shape2-mzr-20260804T1452K",
+        "of": 5,
+        "stages": "",
+        "state": "AWAITING HUMAN",
+        "verdict": "GATE: APPROVED",
+        "video": {
+          "age_h": 24.9,
+          "audio": true,
+          "href": "videos/c41-highz-mzr-calibration-anchored-narrated-20260809T1905.mp4",
+          "mb": 9.3,
+          "published": false,
+          "published_at_kst": null,
+          "published_file": null,
+          "published_privacy": null,
+          "published_url": null,
+          "slug": "c41-highz-mzr-calibration-anchored",
+          "updated_kst": "08-09 19:05 KST",
+          "updated_utc": "2026-08-09T10:05:35+00:00"
+        },
+        "waiting": "gates clear \u2014 freeze decision pending",
+        "who": "DUHO"
+      }
+    ],
+    "seats": [
+      "Hwao",
+      "Lana",
+      "Goru",
+      "Kun",
+      "Tori",
+      "Yui"
+    ],
+    "starved": []
+  },
+  "source_age_label": "20s",
+  "source_age_seconds": 20,
+  "source_events_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/autopilot-events.jsonl",
+  "source_status_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/autopilot-status.json",
+  "source_ts": "2026-08-10T11:01:42Z",
+  "survey_autopilot": {
+    "files": [
+      {
+        "bytes": 3582,
+        "exists": true,
+        "label": "Route",
+        "modified_at_utc": "2026-06-26T13:38:48Z",
+        "path": "frontend/src/app/surveys/page.tsx"
+      },
+      {
+        "bytes": 36964,
+        "exists": true,
+        "label": "Detail route",
+        "modified_at_utc": "2026-07-22T12:37:56Z",
+        "path": "frontend/src/app/surveys/[slug]/SurveyDetailClient.tsx"
+      },
+      {
+        "bytes": 11765,
+        "exists": true,
+        "label": "Explorer",
+        "modified_at_utc": "2026-07-22T12:37:56Z",
+        "path": "frontend/src/components/surveys/SurveysView.tsx"
+      },
+      {
+        "bytes": 4485,
+        "exists": true,
+        "label": "Chart",
+        "modified_at_utc": "2026-07-22T12:37:56Z",
+        "path": "frontend/src/components/surveys/ChartView.tsx"
+      },
+      {
+        "bytes": 11146,
+        "exists": true,
+        "label": "Plot A",
+        "modified_at_utc": "2026-07-22T12:37:56Z",
+        "path": "frontend/src/components/surveys/PlotA.tsx"
+      },
+      {
+        "bytes": 10670,
+        "exists": true,
+        "label": "Plot B",
+        "modified_at_utc": "2026-07-22T12:37:56Z",
+        "path": "frontend/src/components/surveys/PlotB.tsx"
+      },
+      {
+        "bytes": 2328,
+        "exists": true,
+        "label": "Shared plotting helpers",
+        "modified_at_utc": "2026-06-26T15:13:30Z",
+        "path": "frontend/src/components/surveys/plotting.ts"
+      },
+      {
+        "bytes": 33973,
+        "exists": true,
+        "label": "Atlas IA smoke",
+        "modified_at_utc": "2026-07-22T12:37:56Z",
+        "path": "frontend/scripts/test-surveys-atlas-ia.mjs"
+      }
+    ],
+    "generated_at": "2026-08-10T11:02:40Z",
+    "latest_smoke": {
+      "command": "npm run test:surveys-atlas-ia",
+      "exit_code": 0,
+      "known": true,
+      "output": "> nebulamind-frontend@0.1.0 test:surveys-atlas-ia\n> node scripts/test-surveys-atlas-ia.mjs\n\nsurveys atlas IA smoke checks passed",
+      "status": "passed",
+      "verified_at_utc": "2026-07-07T15:13:31Z"
+    },
+    "marker": "SURVEY_AUTOPILOT_DASHBOARD_FEED_V1",
+    "missing_files": [],
+    "next_action": "Survey frontend surface is present and the latest recorded Atlas IA smoke passed. Safe next work: read-only/static audits or separately approved UI edits.",
+    "required_files_present": 8,
+    "required_files_total": 8,
+    "route": "/surveys",
+    "safe_boundaries": [
+      "Dashboard is read-only; browser fetches JSON only.",
+      "No DB/SQL, live wiki publish, deploy/restart, git write, cloud/account/OAuth/secrets, browser automation, or cron.",
+      "Survey autopilot work should produce local reports or separately approved frontend patches; helper reports are advisory until Tori verifies files/tests."
+    ],
+    "scope": "Survey frontend /surveys Atlas IA surface; separate from Galaxy Evolution method panes and product DB writes.",
+    "state": "healthy",
+    "status_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/survey-autopilot-status.json",
+    "text": "Smoke PASS"
+  },
+  "tailnet_only": true,
+  "targets": [
+    {
+      "exists": true,
+      "target": "ge-mastermind:Directors"
+    }
+  ],
+  "url": "https://duho-macstudio.taila27502.ts.net/cockpit/ge-autopilot.html",
+  "usage_monitor": {
+    "active_pane_counts": {
+      "claude_fable_lana": 5,
+      "codex_kun": 1,
+      "gemini_goru": 2,
+      "tori_hermes": 4
+    },
+    "browser_poll_seconds": 5,
+    "cache_age_label": "4m 3s",
+    "cache_state": "public-realtime-feed",
+    "cards": [
+      {
+        "activity": "1%  \u00b7 remained 4 day 18 hours",
+        "big": null,
+        "detail": "Claude OAuth usage endpoint reports the 5h limit at 0% used (remained 0 day 3 hours), the Fable weekly cap at 1% used (remained 4 day 18 hours), and all models combined at 11% used (remained 4 day 18 hours). The binding constraint is the highest of these, not the combined total.",
+        "kind": "Claude OAuth usage monitor",
+        "name": "Claude / Fable / Lana",
+        "percent": 1.0,
+        "percent_label": "1%  \u00b7 remained 4 day 18 hours",
+        "source": "OAuth /api/oauth/usage fetched 2026-08-10T10:57:59Z; active Claude panes: 5.",
+        "status": "Active panes live; quota fetched via approved read-only OAuth usage check",
+        "sub_gauges": [
+          {
+            "label": "Fable weekly used",
+            "percent": 1.0,
+            "tone": "ok",
+            "value_label": "1%  \u00b7 remained 4 day 18 hours"
+          },
+          {
+            "label": "All models weekly used",
+            "percent": 11.0,
+            "tone": "ok",
+            "value_label": "11%  \u00b7 remained 4 day 18 hours"
+          },
+          {
+            "label": "Opus weekly used",
+            "percent": null,
+            "tone": "warn",
+            "value_label": "not observed"
+          },
+          {
+            "label": "Sonnet weekly used",
+            "percent": null,
+            "tone": "warn",
+            "value_label": "not observed"
+          }
+        ],
+        "tone": "ok"
+      },
+      {
+        "activity": "1% used \u00b7 remained 0 day 14 hours",
+        "big": null,
+        "detail": "AI Ultra: 0% current-window used, 100% current-window headroom. 1% weekly used (remained 0 day 14 hours). 100% app headroom. Push wide, cheap, long-context work here and keep Claude/Codex reserved for reasoning-heavy lanes. This reading came from the separately gated Chrome usage-page crawler; the extractor stores only trusted page-scoped signals and abstains rather than overwriting the prior reading when confidence is weak. This is the consumer Gemini app weekly compute meter. It is a different quota pool from Antigravity agent requests shown under Gemini / Goru: spending one does not draw down the other. gemini.google.com/usage exposes no API.",
+        "kind": "high-confidence unattended DOM capture of gemini.google.com/usage",
+        "name": "Gemini app / consumer",
+        "percent": 1.0,
+        "percent_label": "1% used \u00b7 remained 0 day 14 hours",
+        "source": "Captured from https://gemini.google.com/usage at 2026-08-10T10:50:41Z via chrome-auto; checked 2026-08-10T10:57:59Z.",
+        "status": "Unattended Chrome scrape, 7m ago",
+        "sub_gauges": [
+          {
+            "label": "Current-window used",
+            "percent": 0.0,
+            "tone": "ok",
+            "value_label": "0% used \u00b7 remained 0 day 3 hours"
+          },
+          {
+            "label": "Weekly used",
+            "percent": 1.0,
+            "tone": "ok",
+            "value_label": "1% used \u00b7 remained 0 day 14 hours"
+          },
+          {
+            "label": "Burn lane",
+            "percent": null,
+            "tone": "ok",
+            "value_label": "burn \u00b7 100% headroom"
+          }
+        ],
+        "tone": "ok"
+      },
+      {
+        "activity": "$98.66 total usable \u00b7 $0.00 of $0.10 plan left",
+        "big": "$98.66",
+        "detail": "Free subscription allowance is $0.10; $0.00 remains in the current plan pool. Purchased top-up balance is $98.66, so total usable Hermes/Nous balance is $98.66. Renews Aug 24, 2026. Balances are USD amounts despite legacy internal field names; purchased top-up has no fixed denominator, so no percentage is invented for it.",
+        "kind": "Nous Portal dollar balance (subscription + purchased top-up)",
+        "name": "Hermes / Nous credits",
+        "percent": null,
+        "percent_label": "$98.66 total usable \u00b7 $0.00 of $0.10 plan left",
+        "source": "Read-only GET /api/oauth/account captured 2026-08-10T10:58:00Z (0s before render) during monitor pass 2026-08-10T10:57:59Z.",
+        "status": "Free plan exhausted \u00b7 top-up balance active",
+        "sub_gauges": [
+          {
+            "label": "Monthly plan used",
+            "percent": 100.0,
+            "tone": "danger",
+            "value_label": "100% used \u00b7 $0.00 / $0.10 left"
+          },
+          {
+            "label": "Top-up balance",
+            "percent": null,
+            "tone": "ok",
+            "value_label": "$98.66 remaining \u00b7 purchased balance"
+          },
+          {
+            "label": "Total usable",
+            "percent": null,
+            "tone": "ok",
+            "value_label": "$98.66 available"
+          }
+        ],
+        "tone": "warn"
+      },
+      {
+        "activity": "$33.30 available \u00b7 64.8% of peak used",
+        "big": null,
+        "detail": "Moonshot balance: $33.30 available (cash $33.30, voucher $0.00); peak observed $94.66. Kimi K3 pricing $3/M in \u00b7 $15/M out \u00b7 $0.30/M cache-hit. Kun's review one-shots run on this key; Nous route retired for Kun.",
+        "kind": "Moonshot direct-key dollar balance (read-only)",
+        "name": "Moonshot / Kun (Kimi K3)",
+        "percent": 64.8,
+        "percent_label": "$33.30 available \u00b7 64.8% of peak used",
+        "source": "api.moonshot.ai/v1/users/me/balance fetched 2026-08-10T10:57:59Z.",
+        "status": "Live official balance endpoint (key never emitted)",
+        "sub_gauges": [],
+        "tone": "ok"
+      },
+      {
+        "activity": "1% used \u00b7 remained 3 day 12 hours",
+        "big": null,
+        "detail": "Antigravity /usage reports Gemini weekly 99% remaining and 5h Quota available. This is the Antigravity agent-request quota pool, which is billed separately from the consumer Gemini app compute meter shown under Gemini app / consumer: spending one does not draw down the other. Visible app quota panel only; no Gemini/GCP/API/billing/credits surface was used.",
+        "kind": "live visible Antigravity /usage quota signal (agent-request pool)",
+        "name": "Antigravity / Gemini",
+        "percent": 1.0,
+        "percent_label": "1% used \u00b7 remained 3 day 12 hours",
+        "source": "Idle Antigravity pane visible pane /usage observed 2026-08-08T10:58:53Z; active Goru/Gemini panes: 2.",
+        "status": "Live pane scan from latest visible /usage",
+        "sub_gauges": [
+          {
+            "label": "Gemini weekly used",
+            "percent": 1.0,
+            "tone": "ok",
+            "value_label": "1% used \u00b7 remained 3 day 12 hours"
+          },
+          {
+            "label": "Antigravity Claude/GPT weekly used",
+            "percent": null,
+            "tone": "warn",
+            "value_label": "Not observed"
+          }
+        ],
+        "tone": "ok"
+      },
+      {
+        "activity": "55% used \u00b7 unknown",
+        "big": null,
+        "detail": "Codex /status reports gpt-5.5 5h not observed (unknown) and weekly 45% left (unknown). Codex itself warns these limits may be stale; this monitor refreshes only via visible idle-pane /status, not the web billing/settings page.",
+        "kind": "live visible Codex /status used percent",
+        "name": "Codex (seat unassigned)",
+        "percent": 55.0,
+        "percent_label": "55% used \u00b7 unknown",
+        "source": "Idle Codex pane visible pane /status observed 2026-08-09T03:47:20Z; active Kun/Codex panes: 1.",
+        "status": "Live pane scan from latest visible /status",
+        "sub_gauges": [
+          {
+            "label": "gpt-5.6 weekly used",
+            "percent": 55.0,
+            "tone": "warn",
+            "value_label": "55% used \u00b7 unknown"
+          },
+          {
+            "label": "Codex Spark weekly used",
+            "percent": 0.0,
+            "tone": "ok",
+            "value_label": "0% used \u00b7 unknown"
+          }
+        ],
+        "tone": "warn"
+      },
+      {
+        "activity": "$80.41 cash \u00b7 $0.00 voucher",
+        "big": "$80.41",
+        "detail": "Direct Kimi Open Platform credit purchased from Kimi, separate from Nous Portal. No percentage is inferred because the wallet has no fixed maximum.",
+        "kind": "Kimi Open Platform USD API balance",
+        "name": "Kimi / Moonshot direct API",
+        "percent": null,
+        "percent_label": "$80.41 available \u00b7 no fixed denominator",
+        "source": "Official read-only GET https://api.moonshot.ai/v1/users/me/balance observed 2026-08-05T09:32:53Z; API key not stored in dashboard data.",
+        "status": "Last read-only balance \u00b7 refresh unavailable",
+        "sub_gauges": [
+          {
+            "label": "Cash balance",
+            "percent": null,
+            "value_label": "$80.41"
+          },
+          {
+            "label": "Voucher balance",
+            "percent": null,
+            "value_label": "$0.00"
+          }
+        ],
+        "tone": "warn"
+      },
+      {
+        "activity": "Last confirmed 25,050 / 25,050 credits left \u00b7 resets 25,000 monthly + 50 daily bonus; daily bonus resets daily through Aug 31; monthly reset date not shown in Flow UI",
+        "big": "Stale",
+        "detail": "Last operator-confirmed Flow UI balance, captured 2026-08-04T02:09:46Z (152h 52m old). Shown as the most recent known reading; refresh with `flow-credits <remaining>` after a glance at the Flow UI.",
+        "kind": "monthly Flow credit pool (separate from Gemini-app limits)",
+        "name": "Flow / Veo credits (Ultra)",
+        "percent": null,
+        "percent_label": "Last confirmed 25,050 / 25,050 credits left \u00b7 resets 25,000 monthly + 50 daily bonus; daily bonus resets daily through Aug 31; monthly reset date not shown in Flow UI",
+        "source": "Last Flow UI balance capture in flow_credits.json at 2026-08-04T02:09:46Z.",
+        "status": "stale \u2014 captured 152h 52m ago",
+        "sub_gauges": [],
+        "tone": "warn"
+      },
+      {
+        "activity": "100 video uploads/day \u00b7 100 searches/day \u00b7 resets midnight Pacific",
+        "big": "10,000",
+        "checkpoint_status": "V8_PUBLIC_V6_UNLISTED_NO_DELETIONS",
+        "detail": "The reset time has passed, but remaining quota is not exposed and no fresh API verification is recorded. Costs: videos.list 1 \u00b7 videos.update 50 \u00b7 captions.list 50 \u00b7 captions.insert 400. Prepared V8 review packet: 4 upload calls + about 63 shared units; four manual captions later add 1,600 shared units.",
+        "kind": "Google Cloud project daily quota",
+        "name": "YouTube Data API",
+        "official_url": "https://developers.google.com/youtube/v3/determine_quota_cost",
+        "percent": null,
+        "percent_label": "shared units/day \u00b7 exact remaining amount not exposed by YouTube API",
+        "source": "Official YouTube quota calculator (updated 2026-06-01) + local checkpoint youtube_review_checkpoint.json",
+        "status": "reset expected \u00b7 not API-verified",
+        "sub_gauges": [
+          {
+            "label": "Shared API pool",
+            "percent": null,
+            "value_label": "10,000 units/day"
+          },
+          {
+            "label": "Video upload calls",
+            "percent": null,
+            "value_label": "100/day"
+          },
+          {
+            "label": "Search calls",
+            "percent": null,
+            "value_label": "100/day"
+          },
+          {
+            "label": "V8 review packet",
+            "percent": null,
+            "value_label": "4 uploads \u00b7 ~63 shared"
+          },
+          {
+            "label": "Four manual captions",
+            "percent": null,
+            "value_label": "+1,600 shared"
+          }
+        ],
+        "tone": "warn"
+      }
+    ],
+    "exact_limit_percent_sources": 5,
+    "generated_at": "2026-08-10T11:02:02Z",
+    "local_refresh_seconds": 300,
+    "marker": "GE_AUTOPILOT_PROVIDER_USAGE_REALTIME_FEED_V1",
+    "notes": [
+      "Provider quota cards mirror the public live steering feed. The direct Kimi wallet is the only private supplement and comes from Kimi's official read-only balance endpoint.",
+      "Browser refreshes this private JSON every 5s; local public usage monitor refreshes status files every 60s and safe visible slash panels every 300s when panes are idle.",
+      "Visible pane/CLI status, plus one validated local gemini.google.com/usage drop-file. The drop-file may be operator-confirmed, accessibility-verified, or produced by the separately gated high-confidence Chrome usage-page crawler. Claude usage comes from its OAuth usage API. Hermes/Nous dollar balances come from read-only GET /api/oauth/account through Hermes' normalized account reader; no token value enters this monitor. No billing mutation, purchase, payment, GCP, or provider-account write occurs.",
+      "Claude/Fable exact subscription usage is retained from the last visible usage-panel reading because safe local Claude CLI does not expose a non-interactive fresh percent.",
+      "Codex /status warns limits may be stale; this monitor refreshes through an idle visible pane when possible.",
+      "Gemini/Goru comes from Antigravity /usage only, not Gemini/GCP billing or API calls. It tracks the Antigravity agent-request pool.",
+      "Gemini app / consumer tracks the separate consumer app compute meter. It has no API, so it is refreshed by an operator capture or the high-confidence Chrome usage-page crawler; the crawler abstains on weak signals, and readings older than 24h are reported as unknown rather than shown as current.",
+      "Hermes / Nous credits is a live USD balance from read-only Portal account metadata. Monthly plan dollars and purchased top-up dollars stay separate; no denominator is invented for top-up balance."
+    ],
+    "observed_at_utc": "2026-08-10T10:57:59Z",
+    "provider_monitor_marker": "PROVIDER_USAGE_REALTIME_MONITOR_V1",
+    "provider_monitor_status": "LIVE_SAFE_MONITOR_ACTIVE",
+    "public_status_path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/live-steering-status.json",
+    "public_status_url": "https://nebulamind.net/agent-reports/live-steering-status.json",
+    "slash_refresh_seconds": 0,
+    "sources": {
+      "provider_gauge_count": 9,
+      "public_monitor_age_seconds": 243,
+      "public_monitor_observed_at_utc": "2026-08-10T10:57:59Z",
+      "public_status_path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/live-steering-status.json",
+      "public_status_url": "https://nebulamind.net/agent-reports/live-steering-status.json"
+    }
+  },
+  "web_status_path": "/Users/duhokim/HermesOps/cockpit/ge-autopilot-status.json",
+  "wiki_quality_sprint": {
+    "board": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/wiki-quality-sprints/WIKI_QUALITY_SPRINT_CONTINUATION_20260709T043339Z/WIKI_SPRINT_BOARD.md",
+    "candidate": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/wiki-quality-sprints/WIKI_QUALITY_SPRINT_CONTINUATION_20260709T043339Z/candidates/cycle_10",
+    "cycle": 10,
+    "cycles_completed": 10,
+    "generated_at": "2026-08-10T11:02:40Z",
+    "lanes": [
+      "agy Gemini 3.1 Pro Low",
+      "agy Gemini 3.5 Flash Low",
+      "codex gpt-5.4-mini review",
+      "codex gpt-5.4-mini integrator"
+    ],
+    "latest_audit": {
+      "cite_count": 5,
+      "claim_markers_balanced": true,
+      "fatal_failures": 0,
+      "forbidden_contract_tokens": [],
+      "overclaim_pattern_hits": []
+    },
+    "ledger": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/wiki-quality-sprints/WIKI_QUALITY_SPRINT_CONTINUATION_20260709T043339Z/WIKI_SPRINT_LEDGER.md",
+    "ledger_tail": [
+      "Final clean wiki candidate: cycle_10 \u00b7 fatal_failures=0 \u00b7 claim_markers_balanced=True \u00b7 cites=5.",
+      "Final handoff: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/wiki-quality-sprints/WIKI_QUALITY_SPRINT_CONTINUATION_20260709T043339Z/FINAL_HANDOFF.md",
+      "Full archived wiki sprint ledger remains at /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/wiki-quality-sprints/WIKI_QUALITY_SPRINT_CONTINUATION_20260709T043339Z/WIKI_SPRINT_LEDGER.md."
+    ],
+    "marker": "WIKI_QUALITY_SPRINT_DASHBOARD_FEED_V1",
+    "pid": 81918,
+    "process_running": false,
+    "progress_percent": 100.0,
+    "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/wiki-quality-sprints/WIKI_QUALITY_SPRINT_CONTINUATION_20260709T043339Z",
+    "safe_boundaries": [
+      "Local wiki candidate/report artifacts only; no live wiki publish or product DB write.",
+      "No public static replacement, deploy/restart, git write, cron, billing/OAuth/API-key/account changes, credential reads, browser automation, or external submission."
+    ],
+    "started_utc": "2026-07-09T04:35:21Z",
+    "state": "healthy",
+    "status": "completed",
+    "target_end_utc": "2026-07-09T06:49:42Z",
+    "text": "Wiki-quality sprint complete",
+    "updated_utc": "2026-07-09T06:47:56Z"
+  },
+  "writer_identity": {
+    "pid": 31235,
+    "rendered_at_utc": "2026-08-10T11:02:27Z",
+    "watcher_mode": true
+  }
+}

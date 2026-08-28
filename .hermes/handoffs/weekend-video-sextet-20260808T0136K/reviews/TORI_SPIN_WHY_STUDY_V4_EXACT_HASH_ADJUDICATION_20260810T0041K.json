@@ -1,0 +1,225 @@
+{
+  "adjudication_id": "TORI_SPIN_WHY_STUDY_V4_EXACT_HASH_ADJUDICATION_20260810T0041K",
+  "created_at_kst": "2026-08-10T00:41:37+09:00",
+  "reviewer": "Tori",
+  "authority": "DUHO DIRECT ORDER — SPIN V4 EXACT-HASH REGATE",
+  "request_packet": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/YUI_SPIN_WHY_STUDY_V4_TORI_EXACT_HASH_REGATE_REQUEST_20260810T0021K.json",
+    "sha256": "0396c086bfa2f84d02096f406e028b15fb6e715e6f937a97cf6b22077677efcc"
+  },
+  "exact_candidate": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "sha256_required": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "sha256_before_review": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "sha256_after_review": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "bytes": 25486290,
+    "verdict_scope": "Only these exact MP4 bytes. No other cut inherits any finding."
+  },
+  "verdict": {
+    "overall": "HOLD_PROVENANCE_RECEIPT_CORRECTION",
+    "presentation_on_exact_bytes": "PASS",
+    "science_and_claim_boundary_on_exact_bytes": "PASS_METHOD_ONLY_NO_RESULT",
+    "media_integrity_on_exact_bytes": "PASS",
+    "provenance_packet": "BLOCKED_BY_ONE_SELF_DESCRIPTION_DEFECT",
+    "private_or_public_release_clearance_conferred_by_tori": false,
+    "human_gate": "PENDING_DUHO_WATCH_LISTEN; NO AGENT ACCEPTANCE CONFERRED"
+  },
+  "blocking_finding": {
+    "code": "BUILD_RECEIPT_FRAME_COUNT_IS_NOT_THE_ENCODED_FRAME_COUNT",
+    "receipt_path": "integrator/canaries/spin-method-overhaul-canary-20260809T2340K/build_receipt.json",
+    "receipt_sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22",
+    "receipt_field": "frame_count",
+    "receipt_value": 6727,
+    "actual_encoded_video_frames": 6726,
+    "actual_measurements": {
+      "ffprobe_count_frames_nb_read_frames": 6726,
+      "ffprobe_nb_frames": 6726,
+      "full_decoded_frames": 6726,
+      "video_stream_duration_seconds": 224.2,
+      "container_duration_seconds": 224.217,
+      "pcm_master_duration_seconds": 224.21739583333334
+    },
+    "derivation_readback": "build.py computes ceil(DURATION * FPS) = 6727 and writes that many raw RGB frames to ffmpeg, then muxes with -shortest. The resulting encoded stream contains 6726 frames. The value is therefore the number of raw frames submitted to the encoder, not the encoded output frame count, but the receipt labels it only as frame_count.",
+    "media_impact": "No corruption or visible EOF defect. The encoded video ends 0.01739583333334 seconds before the PCM master, which is less than one 30 fps frame, and the final encoded frame is complete and coherent.",
+    "why_blocking": "The frozen packet hashes build_receipt.json as a provenance artifact. Under the governing self-description and derivation-receipt rule, an output receipt may not present an unqualified generated-input count as though it described the encoded artifact. Actual encoded-frame inspection, not receipt self-description, is authoritative.",
+    "exact_next_action": "Preserve V4 and the MP4. Produce a versioned V5 receipt/request/freeze packet that explicitly records raw_frames_submitted_to_ffmpeg=6727 and encoded_video_frames=6726, names ceil(audio_duration*fps) and ffprobe -count_frames/full decode as the producing operations, records their execution times, and regenerates the packet/tree hashes. Then request a fresh bounded Tori provenance recheck. The MP4 need not be rebuilt if its exact bytes remain 4d230cc0... ."
+  },
+  "provenance_checks": {
+    "post_encode_freeze": {
+      "path": "POST_ENCODE_FREEZE_V4.json",
+      "sha256": "a8949ffb9bb994b066f4fcde7cf58b607045ad789ed58fe5eddfb253ef776405",
+      "request_hash_matches": true
+    },
+    "source_manifest": {
+      "path": "source_manifest_v4.json",
+      "sha256": "faf0bdb21aaa575b78b357ada745937f3eadbef795a2f4f946a992e8bb087c1a",
+      "request_hash_matches": true
+    },
+    "pre_freeze_tree": {
+      "file_count": 210,
+      "sha256": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb",
+      "recomputed_before_review": true,
+      "recomputed_after_review": true
+    },
+    "frozen_artifact_hashes": {
+      "checked": 15,
+      "hash_and_size_matches": 15
+    },
+    "authority_origin_and_frozen_copy_pairs": {
+      "checked": 6,
+      "origin_hash_matches_record": 6,
+      "frozen_copy_hash_matches_record": 6,
+      "origin_equals_frozen_copy": 6
+    },
+    "candidate_inputs": {
+      "checked": 5,
+      "hash_and_size_matches": 5
+    },
+    "predecessor": {
+      "mp4_sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240",
+      "mp4_preserved": true,
+      "script_v3_preserved": true
+    }
+  },
+  "primary_source_anchor_checks": {
+    "local_anchor_hashes": {
+      "Longo_2011": "09a4ff864dec99b6daf372d4b1623870d782ebe84b70ea5fd9b5535bcdebfcf3",
+      "Land_et_al_2008": "3acd2534a4cdb5426b86b0bf7809402e93edeaf085acbb07ced4a100f883e8ee",
+      "White_1984": "f63be0604f177c544192657fd49be4d2b70c9071f8e0df713f4c513623685b87"
+    },
+    "live_primary_pages_rechecked": [
+      "https://arxiv.org/abs/1104.2815v1",
+      "https://arxiv.org/abs/0803.3247v4",
+      "https://ui.adsabs.harvard.edu/abs/1984ApJ...286...38W/abstract"
+    ],
+    "finding": "Local abstract anchors match the live primary abstract text used by the candidate. The Longo sentence is verbatim and remains conditional. Land's null is presented only as one side of a contested literature. White is used for angular-momentum growth, not for a detected handedness result."
+  },
+  "script_and_claim_boundary": {
+    "sentences": 29,
+    "words": 424,
+    "script_timeline_synthesis_ids_exact": true,
+    "script_timeline_synthesis_text_exact": true,
+    "five_opening_beats_in_order": [
+      "isotropy expectation and no preferred direction",
+      "angular-momentum origin with both handednesses possible and no branch selected",
+      "strictly conditional mirror-symmetry/preferred-axis stakes",
+      "claimed-versus-challenged open question with no winner or adopted answer",
+      "sorting-bias catch and mirror-control handoff"
+    ],
+    "broad_stakes_precede_narrow_method": true,
+    "long_source_quote_verbatim": true,
+    "Longo_claim_adopted_as_true": false,
+    "Land_null_adopted_as_settled": false,
+    "this_study_result_asserted": false,
+    "forbidden_context_present": false,
+    "forbidden_context_checked": [
+      "black-hole-universe cosmology",
+      "GRB",
+      "SN Ia",
+      "dark energy",
+      "quasar",
+      "DESI",
+      "Ganalyzer",
+      "observed asymmetry",
+      "significance",
+      "selected direction or axis"
+    ]
+  },
+  "audio_pcm_timeline_and_asr": {
+    "full_encoded_audio_decode_through_eof": "PASS",
+    "streams": "one H.264 video stream plus one mono 48 kHz AAC audio stream",
+    "music": false,
+    "sentence_audio_hash_format_and_sample_checks": "29/29 PASS",
+    "raw_pcm_sha256": "084ecd2f4b417537d183e5065f2af5b407d86cd4b842fc310eaeee9cfaf5e21d",
+    "master_pcm_sha256": "e35b5ca002c88a0b84d6bdf5bb5be7508564021c037295e9114ec9d299378bc6",
+    "master_pcm_samples": 10762435,
+    "master_pcm_duration_seconds": 224.21739583333334,
+    "speech_seconds": 167.208,
+    "pause_sample_accounting_exact": true,
+    "word_count_derived": 424,
+    "delivered_wpm_derived": 114.99999764560407,
+    "max_timeline_visual_start_delta_seconds": 0.016062500000003865,
+    "encoded_audio_and_video_start_time_seconds": 0.0,
+    "encoded_aac_to_master_best_lag_samples": 0,
+    "encoded_aac_to_master_correlation_20s_window": 0.9999937890911418,
+    "encoded_integrated_loudness_lufs": -21.31,
+    "encoded_true_peak_dbfs": -2.32,
+    "encoded_loudness_range_lu": 7.1,
+    "opening_asr_artifact_status": "PASS",
+    "opening_asr_normalized_similarity_recomputed": 1.0,
+    "opening_asr_semantic_finding": "The transcript says the universe should look the same in every direction, then covers angular momentum, conditional parity/preferred-axis stakes, no adopted answer, sorting bias, and mirror control in the required order."
+  },
+  "actual_encoded_frame_audit": {
+    "full_video_decode_through_eof": "PASS; zero decoder errors",
+    "actual_encoded_frames": 6726,
+    "resolution": "1920x1080",
+    "fps": 30,
+    "independent_uniform_2fps_frames": 448,
+    "uniform_range_seconds": "0.0 through 223.5",
+    "independent_intro_start_mid_end_frames": 18,
+    "independent_sentence_midpoint_frames": 29,
+    "independent_section_end_frames": 11,
+    "independent_final_frame": "frame 6725",
+    "midpoint_reextraction_matches_frozen_QA_hashes": "29/29",
+    "full_frame_pixel_scan": {
+      "frames_scanned": 6726,
+      "black_frames_mean_luma_under_5": 0,
+      "white_frames_mean_luma_over_250": 0,
+      "minimum_frame_mean_luma": 23.007916666666667,
+      "final_frame_mean_luma": 29.73125,
+      "longest_near_exact_run_at_mean_absolute_delta_under_0.001_seconds": 0.06666666666666667
+    },
+    "visual_findings": {
+      "opening_is_scientific_storytelling_not_title_or_disclaimer": true,
+      "five_beats_are_visually_distinct_and_ordered": true,
+      "all_frames_readable_unclipped_nonoverlapping": true,
+      "mirror_flip_is_continuous_and_geometrically_coherent": true,
+      "funnel_is_parallel_not_sequential": true,
+      "funnel_counts_match_frozen_T1_FUNNEL": true,
+      "equation_has_value_withheld_and_no_sign_selected": true,
+      "controls_are_design_only_with_no_outcomes": true,
+      "no_result_direction_axis_significance_or_acceptance_selected": true,
+      "final_frame_preserves_images_vs_labeling_process_and_mirror_discriminant": true,
+      "final_frame_explicitly_says_gate_cleared_answer_not_yet_reportable": true,
+      "frame_level_presentation_defects": []
+    },
+    "uniform_OCR": {
+      "frames": 448,
+      "tesseract_errors": 0,
+      "characters": 189961,
+      "exact_forbidden_token_or_phrase_hits": 0,
+      "high_risk_occurrence_disposition": "preferred axis and parity violating appear only inside the exact conditional Longo framing; result/measured/value occurrences are negated or explicitly withheld/not reportable."
+    }
+  },
+  "independent_evidence": {
+    "directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/tori-spin-v4-exact-hash-regate-20260810T0033K",
+    "file_count": 517,
+    "tree_sha256": "391cd851dc630e8c27f60ec44b169dbe3700cd07ee83324b9ebd8a0488b80c57",
+    "final_frame_jpeg_sha256": "c1f8789cb33bf0cacc95fa4d20e73cc9b3fd7aacddab3de2e2504757238e7abb"
+  },
+  "concurrent_private_cockpit_event": {
+    "tori_baseline": "Exact candidate absent from cockpit and public roots; private cockpit contained 34 MP4 files.",
+    "observed_during_review": "At 2026-08-10T00:34:28+09:00 an exact-byte copy appeared at /Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260810T0034.mp4.",
+    "destination_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "provenance_readback": "Hwao pane history records Duho directly ordering Hwao to publish it to the cockpit so Duho could watch, followed by Hwao's exact-byte copy and HTTP verification.",
+    "classification": "Concurrent Duho-directed scope override executed by Hwao; not a Tori mutation, not evidence of Tori clearance, and not an acceptance event.",
+    "working_frontend_exact_candidate_present": false,
+    "live_public_frontend_exact_candidate_present": false,
+    "private_cockpit_exact_candidate_present_after_override": true
+  },
+  "closed_scope_receipt": {
+    "tori_public_or_cockpit_copy": false,
+    "tori_frontend_mutation": false,
+    "tori_upload_or_publication": false,
+    "tori_database_or_SQL_write": false,
+    "tori_deploy_or_restart": false,
+    "tori_git_commit_push_merge_or_index_write": false,
+    "tori_cron_billing_provider_or_config_mutation": false,
+    "paperVideos_ts_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_HEAD": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_tree": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "candidate_tree_mutated_by_tori": false,
+    "review_outputs_written": "This versioned adjudication and the independent evidence directory under reviews only."
+  }
+}

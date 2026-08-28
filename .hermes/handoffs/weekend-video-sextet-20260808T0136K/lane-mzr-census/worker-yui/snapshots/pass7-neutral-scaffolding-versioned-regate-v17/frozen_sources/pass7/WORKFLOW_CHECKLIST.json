@@ -1,0 +1,204 @@
+{
+ "workflow": "PAPER_WORKFLOW_V2",
+ "spec": ".hermes/workflows/PAPER_WORKFLOW_V2.md",
+ "slug": "mzr-archive-census",
+ "question": "What does the public archive actually hold for the mass-metallicity relation?",
+ "retrofitted": "2026-08-05 21:42 KST",
+ "retrofit_note": "lane opened before v2; stages mapped to what actually happened, not to what v2 would have prescribed",
+ "stages": [
+  {
+   "stage": "0 global map",
+   "seat": "Goru",
+   "kimi_gate": false,
+   "done_means": "archive holdings AND corpus for this question held in ONE context (Goru: capacity is for unbroken context, not clerical bulk)",
+   "state": "done",
+   "note": "data survey: 174 tables carry mass+abundance+z together"
+  },
+  {
+   "stage": "1 framing",
+   "seat": "Goru→Lana",
+   "kimi_gate": false,
+   "done_means": "what is contested, what would settle it",
+   "state": "done",
+   "note": "anchor-gap searched only the auroral slice (79 tables, 5 anchors)"
+  },
+  {
+   "stage": "1b prediction freeze",
+   "seat": "Lana",
+   "kimi_gate": false,
+   "done_means": "what the literature predicts, receipted verbatim spans, sha-pinned BEFORE any data; scarcity recorded honestly",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "1.5 evidence freeze",
+   "seat": "Yui",
+   "kimi_gate": false,
+   "done_means": "which figures/claims carry the story; source identity and rights; co-designed with video NOW, not after landing",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "2 contract freeze",
+   "seat": "Lana/Hwao",
+   "kimi_gate": true,
+   "done_means": "frame/cuts/statistic/honest-outcomes frozen, sha256 + chmod 444 BEFORE any science row",
+   "state": "done",
+   "note": "v1.2 re-frozen sha 84e1d9b6 after Kun's FREEZE-NO blocker",
+   "evidence": {
+    "frozen": [
+     "MZR_CENSUS_CONTRACT_V1.md"
+    ],
+    "files": [
+     "CENSUS_APPENDIX_RECALL_SET.md"
+    ]
+   },
+   "evidence_seen": [
+    "exists CENSUS_APPENDIX_RECALL_SET.md (2857B)",
+    "frozen MZR_CENSUS_CONTRACT_V1.md (mode 0o444)"
+   ]
+  },
+  {
+   "stage": "2b amendment path",
+   "seat": "Lana",
+   "kimi_gate": null,
+   "done_means": "ONLY if invoked: pre-result amendment, pre-result property itself receipted, gated by the author of the amended clause",
+   "state": "pending",
+   "note": "",
+   "evidence": {
+    "glob": "AMENDMENT_*.md"
+   },
+   "evidence_seen": []
+  },
+  {
+   "stage": "3 eligibility",
+   "seat": "Hwao",
+   "kimi_gate": false,
+   "done_means": "two-channel enumeration; per-table verdicts with verbatim receipts; quote-verification by script, not by a frontier model",
+   "state": "running",
+   "note": "enumerator written; recall set read FROM the pinned appendix",
+   "evidence": {
+    "files": [
+     "T2_ELIGIBILITY_CONTRACT_V1_DRAFT.md"
+    ],
+    "verdict": {
+     "glob": "KUN_T2_*GATE*.md",
+     "pattern": "GATE:\\s*(PASS|FREEZE APPROVED)"
+    },
+    "blocked_if": {
+     "glob": "KUN_T2_*GATE*.md",
+     "pattern": "GATE:\\s*(FAIL|REJECTED)"
+    }
+   }
+  },
+  {
+   "stage": "4 reviewed script",
+   "seat": "Hwao",
+   "kimi_gate": true,
+   "done_means": "the only artifact allowed to produce numbers (demotable ONLY where stage 6 enforces funnel conservation by a non-author seat)",
+   "state": "done",
+   "note": "AT KUN'S GATE now (bundled with the re-freeze)",
+   "evidence": {
+    "verdict": {
+     "glob": "KUN_T1_MICRODELTA.md",
+     "pattern": "MICRO-DELTA VERDICT:\\s*APPROVED"
+    },
+    "blocked_if": {
+     "glob": "KUN_T1_MICRODELTA.md",
+     "pattern": "MICRO-DELTA VERDICT:\\s*REJECTED"
+    }
+   },
+   "evidence_seen": [
+    "KUN_T1_MICRODELTA.md says MICRO-DELTA VERDICT: APPROVED"
+   ],
+   "advanced_by": "nm_workflow_advance"
+  },
+  {
+   "stage": "5 execute + funnel",
+   "seat": "Hwao",
+   "kimi_gate": false,
+   "done_means": "counts and terminal states; every zero diagnosed with direct evidence",
+   "state": "done",
+   "note": "blocked on the gate",
+   "evidence": {
+    "contains": {
+     "file": "T1_MZR_MANIFEST.json",
+     "pattern": "\"status\":\\s*\"DONE\""
+    },
+    "files": [
+     "T1_FINDINGS.md"
+    ]
+   },
+   "evidence_seen": [
+    "exists T1_FINDINGS.md (4191B)",
+    "T1_MZR_MANIFEST.json matches /\"status\":\\s*\"DONE\"/"
+   ],
+   "advanced_by": "nm_workflow_advance"
+  },
+  {
+   "stage": "5.5 data sanity",
+   "seat": "Goru",
+   "kimi_gate": false,
+   "done_means": "does the output make physical sense; automated diff vs expected bounds (Goru: static review cannot see live data shape)",
+   "state": "pending",
+   "note": "Goru's stage, not yet briefed"
+  },
+  {
+   "stage": "5b measurement",
+   "seat": "Hwao",
+   "kimi_gate": false,
+   "done_means": "the contracted statistic + uncertainty decomposition + forecast-vs-realized + sensitivity + negative controls. NO prose (Tori: v1 had no stage computing the result)",
+   "state": "pending",
+   "note": "the census statistic per contract §3"
+  },
+  {
+   "stage": "6 receipts",
+   "seat": "Tori",
+   "kimi_gate": false,
+   "done_means": "totals re-added from raw artifacts; FUNNEL CONSERVATION: every input row reaches exactly one terminal state and they re-add to the input count",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "7 draft",
+   "seat": "Lana",
+   "kimi_gate": false,
+   "done_means": "prose from receipted artifacts only; provenance block with hashes",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "7b contradiction",
+   "seat": "Lana",
+   "kimi_gate": false,
+   "done_means": "enumerate what this contradicts and engage it",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "8 referee",
+   "seat": "-",
+   "kimi_gate": true,
+   "done_means": "overclaim hunt + claim-to-artifact binding; established / overstated / understated",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "9 video",
+   "seat": "Yui",
+   "kimi_gate": false,
+   "done_means": "9A story → 9B evidence graphics → 9C audio gate → 9D paper-naive comprehension gate → 9E render → 9F upload (UNLISTED; the current uploader defaults to PUBLIC and must be replaced)",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "10 landing",
+   "seat": "Duho",
+   "kimi_gate": false,
+   "done_means": "human gate",
+   "state": "pending",
+   "note": ""
+  }
+ ],
+ "evidence_note": "Stage detectors added 2026-08-06. A stage advances only when an artifact on disk proves it; nm_workflow_advance.py records which artifact. Stages without a detector are never assumed done."
+}

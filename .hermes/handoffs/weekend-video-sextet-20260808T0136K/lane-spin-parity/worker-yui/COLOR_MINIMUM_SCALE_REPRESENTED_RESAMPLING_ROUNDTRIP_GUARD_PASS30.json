@@ -1,0 +1,78 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass30-color-minimum-scale-represented-resampling-roundtrip-20260808T161354K",
+  "created_at": "2026-08-08T16:13:54+09:00",
+  "deepening_pass": 30,
+  "lane": "spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "transform": {
+    "ordered_steps": [
+      "native full color, native linear-light BT.709 grayscale, or fixed packet-specific Machado severity-100 presentation transform",
+      "Pillow LANCZOS full-canvas reduction to 640x360",
+      "represented-pixel Pillow BILINEAR reduction to 512x288",
+      "represented-pixel Pillow BILINEAR restoration to 640x360"
+    ],
+    "intermediate_resolution": [512, 288],
+    "restored_resolution": [640, 360],
+    "resampler_down": "Pillow BILINEAR",
+    "resampler_up": "Pillow BILINEAR",
+    "pillow_version": "12.3.0",
+    "claim_boundary": "packet-specific ordered presentation stress only; not a named display, player, browser, projector, platform, service, room, viewer, scaling policy, delivery route, or universal standard"
+  },
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_status_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "fresh_scene_cuts": "15/15",
+    "native_midpoint_byte_matches_to_pass29": "16/16",
+    "candidate_pass23_baseline_pixel_matches": "80/80",
+    "method_pass23_baseline_pixel_matches": "105/105",
+    "exact_resampling_roundtrip_recomputations": "185/185",
+    "candidate_structural_held_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_held_critical_gate_scenes": "0/5_ALL_FIVE_VARIANTS",
+    "candidate_headline_recall_range": "0.952055_TO_0.979021",
+    "candidate_full_text_recall_range": "0.835165_TO_0.880065",
+    "candidate_lower_support_recall_range": "0.267327_TO_0.459854",
+    "candidate_horizontal_gradient_energy_ratio_range": "0.568743_TO_0.569618",
+    "candidate_vertical_gradient_energy_ratio_range": "0.579697_TO_0.580992",
+    "sealed_v8_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_method_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_ocr_aid_threshold_passes": "4/7_COLOR__4/7_GRAYSCALE__5/7_PROTANOPIA__4/7_DEUTERANOPIA__4/7_TRITANOPIA",
+    "pass12_minimum_ocr_aid_score": 0.285714,
+    "hue_only_required_meaning": 0,
+    "clipping_overlap_or_meaning_changing_ambiguity": false
+  },
+  "guard": {
+    "required": [
+      "Keep each exact scene-specific status gate directly readable in represented pixels under all five ordered presentation variants.",
+      "Keep every RESULT HELD capsule complete and distinct from the header, gate, and headline layers.",
+      "Keep GALAXY SPIN visible in every method-proof frame header.",
+      "Pair direct labels with complete non-color geometry for categories, signs, directions, thresholds, availability, unresolved status, and authorization boundaries.",
+      "Keep one-pixel rules and connectors, small glyph counters and narrow spacing, fine axes and grid rules, error bars, units, legends, caveats, citations, provenance, and small qualifiers non-load-bearing unless repeated in larger direct text and complete geometry.",
+      "Treat OCR as a corroborative aid only; direct represented-pixel review controls visual acceptance."
+    ],
+    "forbidden_as_sole_carrier_of_required_meaning": [
+      "hue",
+      "one-pixel rules, dividers, connectors, or markers",
+      "small glyph counters, apertures, or narrow spacing",
+      "fine axes, ticks, grids, or error bars",
+      "small units or legends",
+      "fine caveats, citations, or provenance footers",
+      "low-contrast support copy",
+      "global OCR success"
+    ],
+    "inherited_corrections": "Pass-7 and pass-12 top-gate corrections remain sufficient under direct represented-pixel review; do not mutate sealed v8 or create v9 in this worker lane."
+  },
+  "evidence_backed_action": "ADOPT_GUARD_ONLY_NO_NEW_PIXEL_OR_COPY_CORRECTION",
+  "reason": "Direct represented-pixel review retains all required method/status boundaries, exact gates, complete badges, headers, and non-color geometry under every tested variant. The unchanged OCR aid undercounts two to three of seven gates and has one low segmentation score, but visual review shows no semantic loss; changing copy or pixels would not be evidence-backed.",
+  "sealed_v8_modified": false,
+  "v9_created": false,
+  "candidate_created_or_promoted": false,
+  "video_reportable_now": false,
+  "shared_assets_modified": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "tts_invoked": false,
+  "git_action": false
+}

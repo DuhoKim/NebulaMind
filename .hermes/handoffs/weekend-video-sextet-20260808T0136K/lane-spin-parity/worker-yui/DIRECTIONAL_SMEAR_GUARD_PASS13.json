@@ -1,0 +1,161 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass13-directional-smear-20260808T084049K",
+  "created_at": "2026-08-08T08:40:49+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "directional-smear resilience for any future Hwao-authored method-only iteration",
+  "simulation_limit": "The transform is a deterministic centered horizontal box smear with edge replication and integer round-half-up division. Kernel widths are packet parameters, not claims about a named camera, lens, display, player, motion path, viewer, codec, platform, or service.",
+  "base": {
+    "sealed_iteration": "v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "render_receipt": "proposal_frames/v8/render_receipt.json",
+    "render_receipt_sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+    "pass12_correction": "SHARPNESS_RESILIENCE_STORYBOARD_CORRECTION_PASS12.json",
+    "pass12_correction_sha256": "1312ea54aa860473ff57e3c47e8305ecca8630ba1f6a998a6e02d9aea9999422",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "fresh_candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "extraction_receipt": "qa/pass13_directional_smear_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "a5dfc83d95cbfac3ef9b6959be07ae34733684a1339dfda760c6e67569dfc94a",
+    "quantitative_audit": "qa/pass13_directional_smear_quantitative_audit.json",
+    "quantitative_audit_sha256": "d4bac9f7182b00732d1bb142cc66a5113a00a2dd274fd2271db2cfb8b3da28d4",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS12_CUT_TIMES",
+    "fresh_clean_midpoint_reproduction": "16/16_PASS12_CLEAN_BYTE_IDENTICAL",
+    "variant_count": 5,
+    "frame_count": 80,
+    "operational_smear_width_7_pixels": {
+      "headline_token_recall_vs_clean": 0.938201,
+      "full_token_recall_vs_clean": 0.66952,
+      "lower_support_token_recall_vs_clean": 0.623122,
+      "numeric_token_recall_vs_clean": 0.467254,
+      "mean_rgb_psnr_db": 27.208633,
+      "mean_tolerant_luma_edge_recall": 0.914601,
+      "mean_x_gradient_energy_ratio": 0.566164,
+      "mean_y_gradient_energy_ratio": 0.87837,
+      "mean_x_to_y_gradient_retention_ratio": 0.643538,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_scenes_7_9_10_11_16_at_w07": {
+      "headline_token_recall_vs_clean": 0.871209,
+      "full_token_recall_vs_clean": 0.375481,
+      "lower_support_token_recall_vs_clean": 0.281031,
+      "numeric_token_recall_vs_clean": 0.397778,
+      "mean_x_gradient_energy_ratio": 0.489162,
+      "mean_y_gradient_energy_ratio": 0.856135,
+      "structural_gate_scene_count": 0
+    },
+    "severe_w21_characterization": {
+      "headline_token_recall_vs_clean": 0.18527,
+      "full_token_recall_vs_clean": 0.046657,
+      "lower_support_token_recall_vs_clean": 0.037348,
+      "numeric_token_recall_vs_clean": 0.370486,
+      "mean_x_gradient_energy_ratio": 0.221454,
+      "mean_y_gradient_energy_ratio": 0.778613,
+      "structural_gate_scene_count": 0,
+      "human_visual_finding": "Major headlines, large numbers, chart and matrix silhouettes, and conclusion hierarchy remain visually primary even when the OCR aid collapses; fine axes, legends, caveats, citations, provenance, and thin vertical boundaries are no longer acceptance-reliable."
+    },
+    "finding": "Horizontal smear selectively suppresses x-gradient energy and thin vertical structure. The failed candidate's dominant result layer remains visible longer than its support and carries no structural held gate. Directional smear neither repairs nor authorizes the candidate."
+  },
+  "method_only_evidence": {
+    "derivative_receipt": "qa/pass13_v8_directional_smear/receipt.json",
+    "derivative_receipt_sha256": "3742a8a7a75f142de1d4fa0525bade9cc0b10e5f9c8e2da40194ec8ad216cd9e",
+    "group_count": 3,
+    "derived_scene_count": 21,
+    "derived_frame_count": 105,
+    "sealed_v8_at_w07": {
+      "full_token_recall_vs_clean": 0.550579,
+      "headline_token_recall_vs_clean": 0.728767,
+      "lower_support_token_recall_vs_clean": 0.471187,
+      "numeric_token_recall_vs_clean": 0.236111,
+      "mean_tolerant_luma_edge_recall": 0.950304,
+      "mean_x_gradient_energy_ratio": 0.514001,
+      "mean_y_gradient_energy_ratio": 0.941538,
+      "result_held_badges_visual": "7/7",
+      "large_status_boundaries_visual": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe_at_w07": {
+      "full_token_recall_vs_clean": 0.583573,
+      "headline_token_recall_vs_clean": 0.767133,
+      "lower_support_token_recall_vs_clean": 0.476388,
+      "numeric_token_recall_vs_clean": 0.299603,
+      "scene_specific_gate_lines_visual": "7/7_EXACT",
+      "scene_specific_gate_lines_single_pass_regex_ocr": "6/7",
+      "result_held_badges_visual": "7/7"
+    },
+    "pass12_sharpness_safe_at_w07": {
+      "full_token_recall_vs_clean": 0.517288,
+      "headline_token_recall_vs_clean": 0.672214,
+      "lower_support_token_recall_vs_clean": 0.439722,
+      "numeric_token_recall_vs_clean": 0.242064,
+      "scene_specific_gate_lines_visual": "7/7_EXACT",
+      "scene_specific_gate_lines_character_similarity_at_least_0_85": "7/7",
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 0.987813,
+      "result_held_badges_visual": "7/7",
+      "overlap_clipping_or_semantic_ambiguity": false
+    },
+    "characterization": {
+      "w13": "All seven strengthened gate lines remain visually exact, but the recorded OCR character aid does not remain monotonic or dependable; use human review and do not treat w13 as an acceptance threshold.",
+      "w21": "Seven gate containers, badges, and large status boundaries remain recognizable, but exact gate wording, small direct labels, citations, provenance, and thin vertical separators are not acceptance-reliable."
+    },
+    "finding": "The pass-12 strengthened title-safe gate proof already passes the packet-specific w07 floor. No additional pixel or copy correction is justified from this axis."
+  },
+  "operational_acceptance_floor": {
+    "variant": "centered horizontal box smear, width 7 pixels, edge replication, uint64 sum, round-half-up integer division, native 1920x1080 RGB",
+    "role": "packet-specific integration review floor, not a universal camera, display, player, viewer, or motion standard",
+    "requirements": [
+      "Seven of seven exact strengthened scene-specific gate lines remain visually readable and reach at least 0.85 normalized character similarity under the recorded cropped multi-PSM aid.",
+      "Seven of seven complete RESULT HELD capsules remain visually readable.",
+      "Large RESULT LOCKED, FRAME UNSTATED, OUTCOMES WITHHELD, and RESULT STATUS HELD boundaries remain primary.",
+      "Header, gate, badge, headline, cards, and diagrams remain separated with no clipping or ambiguity.",
+      "Arrows, borders, connectors, condition rails, and status columns remain distinguishable by direct labels plus geometry; no required distinction depends only on a thin vertical edge or one-pixel separator.",
+      "No scientific qualifier, unresolved boundary, unavailable rung, or interpretation limit lives only in small copy, a citation, provenance footer, fine axis, narrow glyph spacing, or low-horizontal-sharpness detail.",
+      "Human full-sheet and full-resolution review remains decisive; OCR is an aid only."
+    ]
+  },
+  "severe_stress_characterization": {
+    "variants": ["smear_w13", "smear_w21"],
+    "role": "diagnostic characterization only; not mandatory acceptance thresholds",
+    "reason": "These widths reveal anisotropic failure order but do not represent a named camera, lens, display, player, motion path, viewer, platform, or service."
+  },
+  "cumulative_regression_requirements": [
+    "Keep the pass-7 scene-specific gates above the bottom-quarter obstruction zone.",
+    "Keep pass-8 direct-label and non-hue redundancy.",
+    "Keep complete semantic containers inside the pass-9 inner-five-percent title-safe rectangle.",
+    "Meet the pass-10 operational 20-percent black-lift floor.",
+    "Meet the pass-11 operational Pillow JPEG q60 4:2:0 floor.",
+    "Meet the pass-12 operational Pillow GaussianBlur radius-1.5 floor and strengthened title-safe gate geometry.",
+    "Rerun directional smear, spatial defocus, recompression, black lift, crop, color/monochrome, obstruction, and 360p full-sheet plus full-resolution review after an authorized layout change."
+  ],
+  "disposition": {
+    "new_pixel_change_requested": false,
+    "new_copy_change_requested": false,
+    "non_pixel_integration_guard_added": true,
+    "reason": "The pass-12 strengthened proof already preserves all seven exact gate lines, all seven badges, and the required status hierarchy at operational w07. A further worker-side visual change would be cosmetic and is not evidence-justified.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may apply this non-pixel directional-smear guard cumulatively with passes 7 through 12. Any actual layout change remains a separately reviewed integrator action. This guard is not v9 and changes no sealed or proof pixel.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

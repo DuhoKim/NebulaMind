@@ -1,0 +1,43 @@
+{
+  "status": "V9_TIGHT_DELTA_BUILT_AWAITING_THREE_SEAT_EXACT_HASH_CONFIRMATION_NO_RENDER",
+  "render_authority": false,
+  "base_review_targets": {
+    "NARRATION_DRAFT_V8.md": "6dc0ca1984e9fa262a28c39cc23b6559dac0cc1c4ebb6026693fb7b5b004f35c",
+    "STORYBOARD_DRAFT_V8.json": "56bcf195a871ae4f60f822b3e8cc3c5bd90f262a1a8325ca7b18a42b0917ddcb",
+    "CLAIM_LINE_LEDGER_V8.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V8.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "base_verdict_receipts": {
+    "LANA_GATE_V8.md": "4240e33df939a5a0b7bd3cadf7ec54ef5efde04b6066717071e29e9e1d67fb35",
+    "GORU_GATE_V8.md": "d3eb719e7176e9c976bba15134ecc293d42157bb0239ff16d4de2b7b6216c805",
+    "KUN_GATE_V8.md": "c58c0a70a96f0363cf47f36cff6a5bd0541391bbe3621113b9fa4dd3b1aaaa9a"
+  },
+  "authority": {
+    "receipt": "LANA_GATE_V8.md",
+    "receipt_sha256": "4240e33df939a5a0b7bd3cadf7ec54ef5efde04b6066717071e29e9e1d67fb35",
+    "verdict": "PASS WITH ONE REPAIR",
+    "repair_scope": "Card 04 narration sentence 1; both canonical storyboard and derived narration channels"
+  },
+  "canonical_changed_paths": [
+    "cards[3].narration"
+  ],
+  "derived_changed_files": [
+    "NARRATION_DRAFT_V9.md"
+  ],
+  "old_sentence": "One proposal says universes have children: every black hole buds off a new universe with slightly different physics.",
+  "new_sentence": "One proposal — called cosmological natural selection — says universes have children: every black hole buds off a new universe with slightly different physics.",
+  "unchanged_byte_copies": {
+    "CLAIM_LINE_LEDGER_V9.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V9.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "explicitly_unchanged": [
+    "all assertion headings",
+    "all card timing and planned-duration values",
+    "all diagrams and printable labels",
+    "all on-screen support",
+    "all claim IDs and packet-line mappings",
+    "all scientific numbers, dates, and published-author citations",
+    "all Card 05 no-terminus constraints",
+    "all V8 internal H1/status/scaffolding labels under the one-sentence-only order"
+  ]
+}

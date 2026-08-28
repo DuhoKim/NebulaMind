@@ -1,0 +1,804 @@
+# URL: https://raw.githubusercontent.com/dstndstn/tractor/3fd2e80eafb9cc092e203ba50a95557eb8543878/tractor/galaxy.py
+
+"""
+This file is part of the Tractor project.
+Copyright 2011, 2012, 2013 Dustin Lang and David W. Hogg.
+Licensed under the GPLv2; see the file COPYING for details.
+
+`galaxy.py`
+================
+
+Exponential and deVaucouleurs galaxy model classes.
+
+These use the slightly modified versions of the exp and dev profiles
+from the SDSS /Photo/ software; we use multi-Gaussian approximations
+of these.
+"""
+import numpy as np
+import warnings
+
+from tractor import mixture_profiles as mp
+from tractor.utils import ParamList, MultiParams, ScalarParam, BaseParams
+from tractor.patch import Patch, add_patches, ModelMask
+from tractor.basics import SingleProfileSource, BasicSource
+
+debug_ps = None
+
+def get_galaxy_cache():
+    return None
+
+def set_galaxy_cache_size(N=10000):
+    # Ugh, dealing with caching + extents / modelMasks was too much
+    pass
+
+enable_galaxy_cache = set_galaxy_cache_size
+
+def disable_galaxy_cache():
+    pass
+
+class GalaxyShape(ParamList):
+    '''
+    A naive representation of an ellipse (describing a galaxy shape),
+    using effective radius (in arcsec), axis ratio, and position angle.
+
+    For better ellipse parameterizations, see ellipses.py
+    '''
+    @staticmethod
+    def getName():
+        return "Galaxy Shape"
+
+    @staticmethod
+    def getNamedParams():
+        '''
+        re: arcsec
+        ab: axis ratio, dimensionless, in [0,1]
+        phi: deg, "E of N", 0=direction of increasing Dec,
+        90=direction of increasing RA
+        '''
+        return dict(re=0, ab=1, phi=2)
+
+    def __repr__(self):
+        return 're=%g, ab=%g, phi=%g' % (self.re, self.ab, self.phi)
+
+    def __str__(self):
+        return ('%s: re=%.2f, ab=%.2f, phi=%.1f' %
+                (self.getName(), self.re, self.ab, self.phi))
+
+    def getTensor(self, cd):
+        # G takes unit vectors (in r_e) to degrees (~intermediate world coords)
+        G = self.getRaDecBasis()
+        # "cd" takes pixels to degrees (intermediate world coords)
+        # T takes pixels to unit vectors.
+        T = np.dot(np.linalg.inv(G), cd)
+        return T
+
+    def getRaDecBasis(self):
+        '''
+        Returns a transformation matrix that takes vectors in r_e
+        to delta-RA, delta-Dec vectors.
+        '''
+        # # convert re, ab, phi into a transformation matrix
+        phi = np.deg2rad(90 - self.phi)
+        # # convert re to degrees
+        # # HACK -- bring up to a minimum size to prevent singular
+        # # matrix inversions
+        re_deg = max(1. / 30, self.re) / 3600.
+        cp = np.cos(phi)
+        sp = np.sin(phi)
+        # Squish, rotate, and scale into degrees.
+        # resulting G takes unit vectors (in r_e) to degrees
+        # (~intermediate world coords)
+        return re_deg * np.array([[cp, sp * self.ab], [-sp, cp * self.ab]])
+
+
+class Galaxy(MultiParams, SingleProfileSource):
+    '''
+    Generic Galaxy profile with position, brightness, and shape.
+    '''
+
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.name = self.getName()
+        self.dname = self.getDName()
+
+    @staticmethod
+    def getNamedParams():
+        return dict(pos=0, brightness=1, shape=2)
+
+    def getName(self):
+        return 'Galaxy'
+
+    def getDName(self):
+        '''
+        Name used in labeling the derivative images d(Dname)/dx, eg
+        '''
+        return 'gal'
+
+    def getSourceType(self):
+        return self.name
+
+    def getShape(self):
+        return self.shape
+
+    def __str__(self):
+        return (self.name + ' at ' + str(self.pos)
+                + ' with ' + str(self.brightness)
+                + ' and ' + str(self.shape))
+
+    def __repr__(self):
+        return (self.name + '(pos=' + repr(self.pos) +
+                ', brightness=' + repr(self.brightness) +
+                ', shape=' + repr(self.shape) + ')')
+
+    def getUnitFluxModelPatch(self, img, **kwargs):
+        raise RuntimeError('getUnitFluxModelPatch unimplemented in' +
+                           self.getName())
+
+    # returns [ Patch, Patch, ... ] of length numberOfParams().
+    # Galaxy.
+    def getParamDerivatives(self, img, modelMask=None, get_patch0=False, **kwargs):
+        pos0 = self.getPosition()
+        wcs = img.getWcs()
+        (px0, py0) = wcs.positionToPixel(pos0, self)
+        counts = img.getPhotoCal().brightnessToCounts(self.brightness)
+
+        minsb = img.modelMinval
+        if counts > 0:
+            minval = minsb / counts
+        else:
+            minval = None
+
+        patch0 = self.getUnitFluxModelPatch(img, px=px0, py=py0, minval=minval,
+                                            modelMask=modelMask, **kwargs)
+        derivs = []
+        if get_patch0:
+            derivs.append(patch0)
+        if patch0 is None:
+            derivs.extend([None] * self.numberOfParams())
+            return derivs
+
+        if modelMask is None:
+            x0,x1,y0,y1 = patch0.getExtent()
+            modelMask = ModelMask.fromExtent(x0,x1,y0,y1)
+        assert(modelMask is not None)
+
+        # derivatives wrt position
+        if self.isParamThawed('pos') and (self.pos.numberOfParams() > 0):
+            if counts == 0:
+                derivs.extend([None] * len(pos0.getParams()))
+            else:
+                p0 = patch0.patch
+                dx = np.zeros_like(p0)
+                dx[1:-1, 1:-1] = (p0[1:-1, :-2] - p0[1:-1, 2:]) / 2.
+                dy = np.zeros_like(p0)
+                dy[1:-1, 1:-1] = (p0[:-2, 1:-1] - p0[2:, 1:-1]) / 2.
+                patchdx = Patch(patch0.x0, patch0.y0, dx)
+                patchdy = Patch(patch0.x0, patch0.y0, dy)
+                del dx, dy
+                dradec = wcs.pixelDerivsToPositionDerivs(pos0, self, counts,
+                                                         patch0, patchdx, patchdy)
+                derivs.extend(dradec)
+                del patchdx, patchdy
+
+        # derivatives wrt brightness
+        if not self.isParamFrozen('brightness'):
+            bsteps = self.brightness.getStepSizes()
+            params = self.brightness.getParams()
+            for i, bstep in enumerate(bsteps):
+                oldval = self.brightness.setParam(i, params[i] + bstep)
+                countsi = img.getPhotoCal().brightnessToCounts(self.brightness)
+                self.brightness.setParam(i, oldval)
+                if countsi == counts:
+                    df = None
+                else:
+                    df = patch0 * ((countsi - counts) / bstep)
+                    df.setName('d(%s)/d(bright%i)' % (self.dname, i))
+                derivs.append(df)
+
+        # derivatives wrt shape
+        if not self.isParamFrozen('shape'):
+            gsteps = self.shape.getStepSizes()
+            gnames = self.shape.getParamNames()
+            oldvals = self.shape.getParams()
+            if counts == 0:
+                derivs.extend([None] * len(oldvals))
+                gsteps = []
+            for i, gstep in enumerate(gsteps):
+                oldval = self.shape.setParam(i, oldvals[i] + gstep)
+                patchx = self.getUnitFluxModelPatch(
+                    img, px=px0, py=py0, minval=minval, modelMask=modelMask,
+                    force_sourceOut=True,
+                    **kwargs)
+                self.shape.setParam(i, oldval)
+                if patchx is None:
+                    print('patchx is None:')
+                    print('  ', self)
+                    print('  stepping galaxy shape',
+                          self.shape.getParamNames()[i])
+                    print('  stepped', gsteps[i])
+                    print('  to', self.shape.getParams()[i])
+                    derivs.append(None)
+                    continue
+                dx = (patchx - patch0) * (counts / gstep)
+                dx.setName('d(%s)/d(%s)' % (self.dname, gnames[i]))
+                derivs.append(dx)
+        return derivs
+
+class ProfileGalaxy(object):
+    '''
+    A mix-in class that renders itself based on a Mixture-of-Gaussians
+    profile.
+    '''
+    def getName(self):
+        return 'ProfileGalaxy'
+
+    def getProfile(self):
+        return None
+
+    # Here are the two main methods to override;
+    def _getAffineProfile(self, img, px, py):
+        ''' Returns a MixtureOfGaussians profile that has been
+        affine-transformed into the pixel space of the image.
+        '''
+        return None
+
+    def _getShearedProfile(self, img, px, py):
+        ''' Returns a MixtureOfGaussians profile that has been
+        shear-transformed into the pixel space of the image.
+        At px,py (but not offset to px,py).
+        '''
+        return None
+
+    def _getUnitFluxDeps(self, img, px, py):
+        return None
+
+    def _getUnitFluxPatchSize(self, img, **kwargs):
+        return 0
+
+    def getUnitFluxModelPatch(self, img, px=None, py=None, minval=0.0,
+                              modelMask=None, **kwargs):
+        if px is None or py is None:
+            (px, py) = img.getWcs().positionToPixel(self.getPosition(), self)
+        patch = self._realGetUnitFluxModelPatch(
+            img, px, py, minval, modelMask=modelMask, **kwargs)
+        if patch is not None and modelMask is not None:
+            assert(patch.shape == modelMask.shape)
+        return patch
+
+    def _realGetUnitFluxModelPatch(self, img, px, py, minval, modelMask=None,
+                                   inner_real_nsigma = 3.,
+                                   outer_real_nsigma = 4.,
+                                   force_halfsize=None,
+                                   force_sourceOut=False,
+                                   **kwargs):
+        from astrometry.util.miscutils import get_overlapping_region
+        if modelMask is not None:
+            x0, y0 = modelMask.x0, modelMask.y0
+        else:
+            # choose the patch size
+            halfsize = self._getUnitFluxPatchSize(img, px=px, py=py, minval=minval)
+            H,W = img.shape
+            # find overlapping pixels to render
+            (outx, inx) = get_overlapping_region(
+                int(np.floor(px - halfsize)), int(np.ceil(px + halfsize + 1)),
+                0, W-1)
+            (outy, iny) = get_overlapping_region(
+                int(np.floor(py - halfsize)), int(np.ceil(py + halfsize + 1)),
+                0, H-1)
+            if inx == [] or iny == []:
+                # no overlap
+                return None
+            x0, x1 = outx.start, outx.stop
+            y0, y1 = outy.start, outy.stop
+
+        psf = img.getPsf()
+
+        # We have two methods of rendering profile galaxies: If the
+        # PSF can be represented as a mixture of Gaussians, then we do
+        # the analytic Gaussian convolution, producing a larger
+        # mixture of Gaussians, and we render that.  Otherwise
+        # (pixelized PSFs), we FFT the PSF, multiply by the analytic
+        # FFT of the galaxy, and IFFT back to get the rendered
+        # profile.
+
+        # The "HybridPSF" class is just a marker to indicate whether this
+        # code should treat the PSF as a hybrid.
+        from tractor.psf import HybridPSF
+        hybrid = isinstance(psf, HybridPSF)
+
+        def run_mog(amix=None, mm=None):
+            ''' This runs the mixture-of-Gaussians convolution method.
+            '''
+            if amix is None:
+                amix = self._getAffineProfile(img, px, py)
+            #print('Evaluating MoG mixture:', len(amix.amp))
+            #print('amps:', amix.amp)
+            if mm is None:
+                mm = modelMask
+            # now convolve with the PSF, analytically
+            # (note that the psf's center is *not* set to px,py; that's just
+            #  the position to use for spatially-varying PSFs)
+            psfmix = psf.getMixtureOfGaussians(px=px, py=py)
+            cmix = amix.convolve(psfmix)
+            if mm is None:
+                #print('Mixture to patch: amix', amix, 'psfmix', psfmix, 'cmix', cmix)
+                return mp.mixture_to_patch(cmix, x0, x1, y0, y1, minval)
+            # The convolved mixture *already* has the px,py offset added
+            # (via px,py to amix) so set px,py=0,0 in this call.
+            if mm.mask is not None:
+                p = cmix.evaluate_grid_masked(mm.x0, mm.y0, mm.mask, 0., 0.)
+            else:
+                p = cmix.evaluate_grid(mm.x0, mm.x1, mm.y0, mm.y1, 0., 0.)
+            assert(p.shape == mm.shape)
+            return p
+
+        if hasattr(psf, 'getMixtureOfGaussians') and not hybrid:
+            return run_mog(mm=modelMask)
+
+        # Otherwise, FFT:
+        if modelMask is not None:
+            # ModelMask sets the sizes.
+            mh, mw = modelMask.shape
+            x1 = x0 + mw
+            y1 = y0 + mh
+
+            halfsize = max(mh / 2., mw / 2.)
+            # How far from the source center to furthest modelMask edge?
+            halfsize = max(halfsize, max(max(1 + px - x0, 1 + x1 - px),
+                                         max(1 + py - y0, 1 + y1 - py)))
+            psfh, psfw = psf.shape
+            halfsize = max(halfsize, max(psfw / 2., psfh / 2.))
+            if force_halfsize is not None:
+                halfsize = force_halfsize
+            halfsize = int(np.ceil(halfsize))
+
+            # is the source center outside the modelMask?
+            sourceOut = (px < x0 or px > x1 - 1 or py < y0 or py > y1 - 1)
+            if sourceOut:
+                # What is the closest point in the modelMask?
+                neardx, neardy = 0., 0.
+                if px < x0:
+                    neardx = x0 - px
+                if px > x1:
+                    neardx = px - x1
+                if py < y0:
+                    neardy = y0 - py
+                if py > y1:
+                    neardy = py - y1
+                nearest = np.hypot(neardx, neardy)
+                pixscale = img.wcs.pixscale_at((x0+x1)/2., (y0+y1)/2.)
+                if nearest > (self.getRadius() / pixscale) and not force_sourceOut:
+                    return None
+
+                if hybrid:
+                    return run_mog(mm=modelMask)
+                else:
+                    raise RuntimeError('sourceOut, not hybrid')
+
+        if halfsize > 4096:
+            warnings.warn('Giant galaxy model (halfsize=%i); proceeding anyway' % halfsize)
+        P, (cx, cy), (pH, pW), (v, w) = psf.getFourierTransform(px, py, halfsize)
+
+        dx = px - cx
+        dy = py - cy
+        if modelMask is not None:
+            # the Patch we return *must* have this origin.
+            ix0 = x0
+            iy0 = y0
+            # the difference that we have to handle by shifting the model image
+            mux = dx - ix0
+            muy = dy - iy0
+            # we will handle the integer portion by computing a shifted image
+            # and copying it into the result
+            sx = int(np.round(mux))
+            sy = int(np.round(muy))
+            # the subpixel portion will be handled with a Lanczos interpolation
+            mux -= sx
+            muy -= sy
+        else:
+            # Put the integer portion of the offset into Patch x0,y0
+            ix0 = int(np.round(dx))
+            iy0 = int(np.round(dy))
+            # the subpixel portion will be handled with a Lanczos interpolation
+            mux = dx - ix0
+            muy = dy - iy0
+
+        # At this point, mux,muy are both in [-0.5, 0.5]
+        assert(np.abs(mux) <= 0.5)
+        assert(np.abs(muy) <= 0.5)
+
+        amix = self._getShearedProfile(img, px, py)
+        fftmix = amix
+        mogmix = None
+
+        if hybrid and inner_real_nsigma is not None and outer_real_nsigma is not None:
+            # Split "amix" into terms that we will evaluate using MoG
+            # vs FFT.
+            vv = amix.var[:, 0, 0] + amix.var[:, 1, 1]
+            # Ramp between:
+            nsigma1 = inner_real_nsigma
+            nsigma2 = outer_real_nsigma
+            # Terms that will wrap-around significantly if evaluated
+            # with FFT...  We want to know: at the outer edge of this
+            # patch, how many sigmas out are we?  If small (ie, the
+            # edge still has a significant fraction of the flux),
+            # render w/ MoG.
+            IM = ((pW/2)**2 < (nsigma2**2 * vv))
+            IF = ((pW/2)**2 > (nsigma1**2 * vv))
+            ramp = np.any(IM*IF)
+
+            Nmog = 0
+            Nfft = 0
+
+            if np.any(IM):
+                amps = amix.amp[IM]
+                if ramp:
+                    ns = (pW/2) / np.maximum(1e-6, np.sqrt(vv))
+                    mogweights = np.minimum(1., (nsigma2 - ns[IM]) / (nsigma2 - nsigma1))
+                    fftweights = np.minimum(1., (ns[IF] - nsigma1) / (nsigma2 - nsigma1))
+                    assert(np.all(mogweights > 0.))
+                    assert(np.all(mogweights <= 1.))
+                    assert(np.all(fftweights > 0.))
+                    assert(np.all(fftweights <= 1.))
+                    amps *= mogweights
+                mogmix = mp.MixtureOfGaussians(amps,
+                                               amix.mean[IM, :] + np.array([px, py])[np.newaxis, :],
+                                               amix.var[IM, :, :], quick=True)
+                Nmog = np.sum(amps != 0)
+
+            if np.any(IF):
+                amps = amix.amp[IF]
+                if ramp:
+                    amps *= fftweights
+                fftmix = mp.MixtureOfGaussians(amps, amix.mean[IF, :], amix.var[IF, :, :],
+                                                quick=True)
+                Nfft = np.sum(amps != 0)
+            else:
+                fftmix = None
+
+        if fftmix is not None:
+            Fsum = fftmix.getFourierTransform(v, w, zero_mean=True)
+            # In Intel's mkl_fft library, the irfftn code path is faster than irfft2
+            # (the irfft2 version sets args (to their default values) which triggers padding
+            #  behavior, changing the FFT size and copying behavior)
+            #G = np.fft.irfft2(Fsum * P, s=(pH, pW))
+            G = np.fft.irfftn(Fsum * P)
+
+            assert(G.shape == (pH,pW))
+
+            # Lanczos-3 interpolation in ~the same way we do for
+            # pixelized PSFs.
+            from tractor.psf import lanczos_shift_image
+            G = G.astype(np.float32)
+            if mux != 0.0 or muy != 0.0:
+                lanczos_shift_image(G, mux, muy, inplace=True)
+        else:
+            G = np.zeros((pH, pW), np.float32)
+
+        if modelMask is not None:
+            gh, gw = G.shape
+            assert((gw == pW) and (gh == pH))
+            if sx != 0 or sy != 0:
+                yi, yo = get_overlapping_region(-sy, -sy + mh - 1, 0, gh - 1)
+                xi, xo = get_overlapping_region(-sx, -sx + mw - 1, 0, gw - 1)
+                # shifted
+                # FIXME -- are yo,xo always the whole image?  If so, optimize
+                shG = np.zeros((mh, mw), G.dtype)
+                shG[yo, xo] = G[yi, xi]
+
+                if debug_ps is not None:
+                    _fourier_galaxy_debug_plots(G, shG, xi, yi, xo, yo, P, Fsum,
+                                                pW, pH, psf)
+
+                G = shG
+            if gh > mh or gw > mw:
+                G = G[:mh, :mw]
+            assert(G.shape == modelMask.shape)
+
+        else:
+            # Clip down to suggested "halfsize"
+            if x0 > ix0:
+                G = G[:, x0 - ix0:]
+                ix0 = x0
+            if y0 > iy0:
+                G = G[y0 - iy0:, :]
+                iy0 = y0
+            gh, gw = G.shape
+            if gw + ix0 > x1:
+                G = G[:, :x1 - ix0]
+            if gh + iy0 > y1:
+                G = G[:y1 - iy0, :]
+
+        if mogmix is not None:
+            if modelMask is not None:
+                mogpatch = run_mog(amix=mogmix, mm=modelMask)
+            else:
+                gh, gw = G.shape
+                mogpatch = run_mog(amix=mogmix, mm=ModelMask(ix0, iy0, gw, gh))
+            assert(mogpatch.patch.shape == G.shape)
+            G += mogpatch.patch
+
+        return Patch(ix0, iy0, G)
+
+def _fourier_galaxy_debug_plots(G, shG, xi, yi, xo, yo, P, Fsum,
+                                pW, pH, psf):
+    import pylab as plt
+    mx = G.max()
+    ima = dict(vmin=np.log10(mx) - 6,
+               vmax=np.log10(mx),
+               interpolation='nearest', origin='lower')
+    plt.clf()
+    plt.subplot(1, 2, 1)
+    #plt.imshow(shG, interpolation='nearest', origin='lower')
+    plt.imshow(np.log10(shG), **ima)
+    ax = plt.axis()
+    plt.plot([xo.start, xo.start, xo.stop - 1, xo.stop - 1, xo.start],
+             [yo.start, yo.stop - 1, yo.stop - 1, yo.start, yo.start],
+             'r-')
+    plt.axis(ax)
+    plt.title('shG')
+    plt.subplot(1, 2, 2)
+    #plt.imshow(G, interpolation='nearest', origin='lower')
+    plt.imshow(np.log10(G), **ima)
+    ax = plt.axis()
+    plt.plot([xi.start, xi.start, xi.stop - 1, xi.stop - 1, xi.start],
+             [yi.start, yi.stop - 1, yi.stop - 1, yi.start, yi.start],
+             'r-')
+    plt.axis(ax)
+    plt.title('G')
+    debug_ps.savefig()
+
+    def plot_real_imag(F, name):
+        plt.clf()
+        plt.subplot(2, 2, 1)
+        print(name, 'real range', F.real.min(), F.real.max())
+        plt.imshow(np.log10(np.abs(F.real)),
+                   interpolation='nearest', origin='lower')
+        plt.xticks([])
+        plt.yticks([])
+        plt.colorbar()
+        plt.title('log(abs(%s.real))' % name)
+        plt.subplot(2, 2, 3)
+        plt.imshow(np.sign(F.real),
+                   vmin=-1, vmax=1,
+                   interpolation='nearest', origin='lower', cmap='RdBu')
+        plt.xticks([])
+        plt.yticks([])
+        plt.title('sign(%s.real)' % name)
+        print(name, 'imag range', F.imag.min(), F.imag.max())
+        plt.subplot(2, 2, 2)
+        mx = np.abs(F.imag).max()
+        plt.imshow(np.log10(np.abs(F.imag)),
+                   interpolation='nearest', origin='lower')
+        plt.xticks([])
+        plt.yticks([])
+        plt.colorbar()
+        plt.title('log(abs(%s.imag))' % name)
+        plt.subplot(2, 2, 4)
+        plt.imshow(np.sign(F.imag),
+                   vmin=-1, vmax=1,
+                   interpolation='nearest', origin='lower', cmap='RdBu')
+        plt.xticks([])
+        plt.yticks([])
+        plt.title('sign(%s.imag)' % name)
+
+    plot_real_imag(P, 'PSF')
+    debug_ps.savefig()
+    plot_real_imag(Fsum, 'FFT(Galaxy)')
+    debug_ps.savefig()
+    plot_real_imag(P * Fsum, 'FFT(PSF * Galaxy)')
+    debug_ps.savefig()
+
+    plt.clf()
+    p = np.fft.irfft2(P, s=(pH, pW))
+    ax = plt.axis([pW // 2 - 7, pW // 2 + 7, pH // 2 - 7, pH // 2 + 7])
+    plt.subplot(1, 3, 1)
+    plt.imshow(p, interpolation='nearest', origin='lower')
+    plt.axis(ax)
+    plt.title('psf (real space)')
+    # This is in the corners...
+
+[... middle omitted — see footer ...]
+
+            e.freezeParam('shape')
+        if self.isParamFrozen('shapeDev'):
+            d.freezeParam('shape')
+
+        if hasattr(self, 'halfsize'):
+            e.halfsize = self.halfsize
+            d.halfsize = self.halfsize
+
+        dexp = e.getParamDerivatives(img, modelMask=modelMask, **kwargs)
+        ddev = d.getParamDerivatives(img, modelMask=modelMask, **kwargs)
+
+        # print('FixedCompositeGalaxy.getParamDerivatives.')
+        # print('tim shape', img.shape)
+        # print('exp deriv extents:')
+        # for deriv in dexp + ddev:
+        #     print('  ', deriv.name, deriv.getExtent())
+
+        # fracDev scaling
+        f = self.fracDev.clipped()
+        for deriv in dexp:
+            if deriv is not None:
+                deriv *= (1. - f)
+        for deriv in ddev:
+            if deriv is not None:
+                deriv *= f
+
+        derivs = []
+        i0 = 0
+        if not self.isParamFrozen('pos'):
+            # "pos" is shared between the models, so add the derivs.
+            npos = self.pos.numberOfParams()
+            for i in range(npos):
+                ii = i0 + i
+                dsum = add_patches(dexp[ii], ddev[ii])
+                if dsum is not None:
+                    dsum.setName('d(fcomp)/d(pos%i)' % i)
+                derivs.append(dsum)
+            i0 += npos
+
+        if not self.isParamFrozen('brightness'):
+            # shared between the models, so add the derivs.
+            nb = self.brightness.numberOfParams()
+            for i in range(nb):
+                ii = i0 + i
+                dsum = add_patches(dexp[ii], ddev[ii])
+                if dsum is not None:
+                    dsum.setName('d(fcomp)/d(bright%i)' % i)
+                derivs.append(dsum)
+            i0 += nb
+
+        if not self.isParamFrozen('fracDev'):
+            counts = img.getPhotoCal().brightnessToCounts(self.brightness)
+            if counts == 0.:
+                derivs.append(None)
+            else:
+                # FIXME -- should be possible to avoid recomputing these...
+                ue = e.getUnitFluxModelPatch(img, modelMask=modelMask, **kwargs)
+                ud = d.getUnitFluxModelPatch(img, modelMask=modelMask, **kwargs)
+
+                df = self.fracDev.derivative()
+
+                if ue is not None:
+                    ue *= -df
+                if ud is not None:
+                    ud *= +df
+                df = add_patches(ud, ue)
+                if df is None:
+                    derivs.append(None)
+                else:
+                    df *= counts
+                    df.setName('d(fcomp)/d(fracDev)')
+                    derivs.append(df)
+
+        if not self.isParamFrozen('shapeExp'):
+            derivs.extend(dexp[i0:])
+        if not self.isParamFrozen('shapeDev'):
+            derivs.extend(ddev[i0:])
+        return derivs
+
+
+class CompositeGalaxy(MultiParams, BasicSource):
+    '''
+    A galaxy with Exponential and deVaucouleurs components.
+
+    The two components share a position (ie the centers are the same),
+    but have different brightnesses and shapes.
+    '''
+
+    def __init__(self, pos, brightnessExp, shapeExp, brightnessDev, shapeDev):
+        MultiParams.__init__(self, pos, brightnessExp, shapeExp,
+                             brightnessDev, shapeDev)
+        self.name = self.getName()
+
+    @staticmethod
+    def getNamedParams():
+        return dict(pos=0, brightnessExp=1, shapeExp=2,
+                    brightnessDev=3, shapeDev=4)
+
+    def getName(self):
+        return 'CompositeGalaxy'
+
+    def __str__(self):
+        return (self.name + ' at ' + str(self.pos)
+                + ' with Exp ' + str(self.brightnessExp) + ' '
+                + str(self.shapeExp)
+                + ' and deV ' + str(self.brightnessDev) + ' '
+                + str(self.shapeDev))
+
+    def __repr__(self):
+        return (self.name + '(pos=' + repr(self.pos) +
+                ', brightnessExp=' + repr(self.brightnessExp) +
+                ', shapeExp=' + repr(self.shapeExp) +
+                ', brightnessDev=' + repr(self.brightnessDev) +
+                ', shapeDev=' + repr(self.shapeDev))
+
+    def getBrightness(self):
+        ''' This makes some assumptions about the
+        ``Brightness`` / ``PhotoCal`` and should be treated as
+        approximate.'''
+        return self.brightnessExp + self.brightnessDev
+
+    def getBrightnesses(self):
+        return [self.brightnessExp, self.brightnessDev]
+
+    def _getModelPatches(self, img, minsb=0., modelMask=None, **kwargs):
+        e = ExpGalaxy(self.pos, self.brightnessExp, self.shapeExp)
+        d = DevGalaxy(self.pos, self.brightnessDev, self.shapeDev)
+        kw = kwargs.copy()
+        if minsb:
+            kw.update(minsb=minsb / 2.)
+        if hasattr(self, 'halfsize'):
+            e.halfsize = d.halfsize = self.halfsize
+        pe = e.getModelPatch(img, modelMask=modelMask, **kw)
+        pd = d.getModelPatch(img, modelMask=modelMask, **kw)
+        return (pe, pd)
+
+    def getModelPatch(self, img, minsb=0., modelMask=None, **kwargs):
+        pe, pd = self._getModelPatches(img, minsb=minsb, modelMask=modelMask,
+                                       **kwargs)
+        return add_patches(pe, pd)
+
+    def getUnitFluxModelPatches(self, img, minval=0., modelMask=None, **kwargs):
+        # Needed for forced photometry
+        if minval > 0:
+            # allow each component half the error
+            minval = minval * 0.5
+        e = ExpGalaxy(self.pos, self.brightnessExp, self.shapeExp)
+        d = DevGalaxy(self.pos, self.brightnessDev, self.shapeDev)
+        if hasattr(self, 'halfsize'):
+            e.halfsize = d.halfsize = self.halfsize
+        return (e.getUnitFluxModelPatches(img, minval=minval,
+                                          modelMask=modelMask, **kwargs) +
+                d.getUnitFluxModelPatches(img, minval=minval,
+                                          modelMask=modelMask, **kwargs))
+
+    # MAGIC: ORDERING OF EXP AND DEV PARAMETERS
+    # MAGIC: ASSUMES EXP AND DEV SHAPES SAME LENGTH
+    # CompositeGalaxy.
+    def getParamDerivatives(self, img, modelMask=None, **kwargs):
+        e = ExpGalaxy(self.pos, self.brightnessExp, self.shapeExp)
+        d = DevGalaxy(self.pos, self.brightnessDev, self.shapeDev)
+        if hasattr(self, 'halfsize'):
+            e.halfsize = d.halfsize = self.halfsize
+        e.dname = 'comp.exp'
+        d.dname = 'comp.dev'
+        if self.isParamFrozen('pos'):
+            e.freezeParam('pos')
+            d.freezeParam('pos')
+        if self.isParamFrozen('brightnessExp'):
+            e.freezeParam('brightness')
+        if self.isParamFrozen('shapeExp'):
+            e.freezeParam('shape')
+        if self.isParamFrozen('brightnessDev'):
+            d.freezeParam('brightness')
+        if self.isParamFrozen('shapeDev'):
+            d.freezeParam('shape')
+
+        de = e.getParamDerivatives(img, modelMask=modelMask, **kwargs)
+        dd = d.getParamDerivatives(img, modelMask=modelMask, **kwargs)
+
+        if self.isParamFrozen('pos'):
+            derivs = de + dd
+        else:
+            derivs = []
+            # "pos" is shared between the models, so add the derivs.
+            npos = len(self.pos.getStepSizes())
+            for i in range(npos):
+                dp = add_patches(de[i], dd[i])
+                if dp is not None:
+                    dp.setName('d(comp)/d(pos%i)' % i)
+                derivs.append(dp)
+            derivs.extend(de[npos:])
+            derivs.extend(dd[npos:])
+
+        return derivs
+
+
+──────── [TRUNCATED] ────────
+Showing 22,485 chars (head) + 7,471 chars (tail) of 42,051 total clean characters.
+Full text saved to: /Users/duhokim/.hermes/profiles/tori2/cache/web/raw.githubusercontent.com-3d3d675e93.md
+To read the omitted middle: read_file path="/Users/duhokim/.hermes/profiles/tori2/cache/web/raw.githubusercontent.com-3d3d675e93.md" offset=598 limit=200  (the file is the complete page; raise/lower offset to page through it).
+─────────────────────────────

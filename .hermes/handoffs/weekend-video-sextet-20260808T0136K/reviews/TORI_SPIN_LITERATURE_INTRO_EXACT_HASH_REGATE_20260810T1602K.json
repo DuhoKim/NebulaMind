@@ -1,0 +1,534 @@
+{
+  "review_id": "TORI_SPIN_LITERATURE_INTRO_EXACT_HASH_REGATE_V1_20260810T1602K",
+  "created_at_kst": "2026-08-10T16:10:36+09:00",
+  "reviewer": "Tori",
+  "review_mode": "independent read-only exact-hash media regate",
+  "governing_request": {
+    "path": "reviews/TORI_SPIN_LITERATURE_INTRO_EXACT_HASH_REGATE_REQUEST_20260810T1602K.json",
+    "expected_sha256": "031c8d89d44cc3ae321a39a5fc0cc1d97329f2cc741ab595c618266a1417c69b",
+    "actual_sha256": "031c8d89d44cc3ae321a39a5fc0cc1d97329f2cc741ab595c618266a1417c69b",
+    "match": true
+  },
+  "binding": {
+    "only_corrected_candidate_bound": true,
+    "candidate_path": "integrator/canaries/spin-literature-intro-canary-20260810T1535K/spin-literature-intro-canary-20260810T1535K.mp4",
+    "candidate_expected_sha256": "fe04bed4605c8ee75b0641ff44c12d61990f388858f97f78103fef3c073678ed",
+    "candidate_actual_sha256": "fe04bed4605c8ee75b0641ff44c12d61990f388858f97f78103fef3c073678ed",
+    "candidate_bytes": 30442013,
+    "candidate_match": true,
+    "candidate_mtime_at_regate_start": "2026-08-10T15:46:13.956611+09:00",
+    "only_kun_pass_bound": true,
+    "kun_pass_path": "reviews/KUN_SPIN_LITERATURE_INTRO_GUARDRAIL_REREVIEW_20260810T1548K.md",
+    "kun_pass_expected_sha256": "7e1ca7fd697abb2cdbe5790ea5240111327ac3e935e5c367d7b6fee49c530ae4",
+    "kun_pass_actual_sha256": "7e1ca7fd697abb2cdbe5790ea5240111327ac3e935e5c367d7b6fee49c530ae4",
+    "kun_pass_match": true,
+    "superseded_malformed_candidate_bound": false,
+    "superseded_alternate_cosmology_draft_inspected": false
+  },
+  "historical_chain_nonbinding": {
+    "initial_kun_hold_path": "reviews/KUN_SPIN_LITERATURE_INTRO_GUARDRAIL_REVIEW_20260810T1507K.md",
+    "initial_kun_hold_expected_sha256": "00670f4a67c0afaf4975779fab0b5d59492e89eaec5504aa05d0c438b93d3714",
+    "initial_kun_hold_actual_sha256": "00670f4a67c0afaf4975779fab0b5d59492e89eaec5504aa05d0c438b93d3714",
+    "hash_match": true,
+    "verdict_binding": false,
+    "reason": "custody history only; this regate binds the corrected fe04bed4 candidate and Kun PASS 7e1ca7fd only"
+  },
+  "frozen_packet_custody": {
+    "candidate_directory": "integrator/canaries/spin-literature-intro-canary-20260810T1535K/",
+    "candidate_directory_writes": 0,
+    "candidate_directory_total_file_count": 141,
+    "freeze": {
+      "path": "CANDIDATE_FREEZE.json",
+      "expected_sha256": "44a8a5167a0c630495beb6fcd02082048db442a034cbd4b0c8456434868f05ee",
+      "actual_sha256": "44a8a5167a0c630495beb6fcd02082048db442a034cbd4b0c8456434868f05ee",
+      "match": true
+    },
+    "manifest": {
+      "path": "FILE_MANIFEST.json",
+      "expected_sha256": "43ffcd00b0a16d90e263ca58f9b20732f1d7c5b6266f1998294a1357a547f57b",
+      "actual_sha256": "43ffcd00b0a16d90e263ca58f9b20732f1d7c5b6266f1998294a1357a547f57b",
+      "match": true,
+      "declared_payload_file_count": 139,
+      "independently_rehashed_file_count": 139,
+      "declared_payload_bytes": 120930574,
+      "independently_summed_payload_bytes": 120930574,
+      "hash_or_size_mismatches": [],
+      "undeclared_payload_files": [],
+      "all_declared_hashes_and_sizes_match": true,
+      "independent_payload_tree_sha256": "1e82d5e4dd5c4797b496fc5f9b252bb9c30b10d04252ac8cbcb11bb0da3a582c"
+    },
+    "authority": {
+      "path": "CANDIDATE_AUTHORITY.json",
+      "expected_sha256": "f9f06e1687e5afc064ec7cfc9fd07db9efa7988389ea8de7d83ae523cb4dfe6c",
+      "actual_sha256": "f9f06e1687e5afc064ec7cfc9fd07db9efa7988389ea8de7d83ae523cb4dfe6c",
+      "match": true
+    },
+    "predecessor_receipt": {
+      "path": "PREDECESSOR.json",
+      "expected_sha256": "f7d04bf2b347395e53e3b9b845ef7363b159693d594453cf56e2d3b01f1b6d27",
+      "actual_sha256": "f7d04bf2b347395e53e3b9b845ef7363b159693d594453cf56e2d3b01f1b6d27",
+      "match": true
+    },
+    "candidate_at_rest_stable_before_review_write": true
+  },
+  "predecessor_custody": {
+    "predecessor_mp4_path": "integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "predecessor_mp4_expected_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "predecessor_mp4_actual_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "predecessor_mp4_match": true,
+    "predecessor_script_path": "integrator/canaries/spin-method-overhaul-canary-20260809T2340K/narration_script_v4.json",
+    "predecessor_script_expected_sha256": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1",
+    "predecessor_script_actual_sha256": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1",
+    "predecessor_script_match": true
+  },
+  "primary_authority_custody": {
+    "lana_part1": {
+      "external_path": "reviews/LANA_SPIN_BEAT4_AND_BHU_ASSESSMENT_20260810.md",
+      "frozen_copy_path": "sources/LANA_SPIN_BEAT4_AND_BHU_ASSESSMENT_20260810.md",
+      "expected_sha256": "88d02d4df045df8249be5ea0d0d817633aa27476265a65ae20bdfec0b4fd40f2",
+      "external_actual_sha256": "88d02d4df045df8249be5ea0d0d817633aa27476265a65ae20bdfec0b4fd40f2",
+      "frozen_copy_actual_sha256": "88d02d4df045df8249be5ea0d0d817633aa27476265a65ae20bdfec0b4fd40f2",
+      "both_match": true,
+      "part1_only_used_for_scientific_review": true,
+      "part2_draft_inspected": false
+    },
+    "frozen_primary_anchors": [
+      {
+        "path": "sources/LONGO_2011_ABSTRACT_EXACT.md",
+        "sha256": "09a4ff864dec99b6daf372d4b1623870d782ebe84b70ea5fd9b5535bcdebfcf3",
+        "match_manifest": true
+      },
+      {
+        "path": "sources/SHAMIR_2012_ABSTRACT_EXACT.md",
+        "sha256": "e9cee7e9fd30632c7dc335026f85d11ce4b976ca0e9d73ebdf4252d560f64dea",
+        "match_manifest": true
+      },
+      {
+        "path": "sources/LAND_2008_ABSTRACT_EXACT.md",
+        "sha256": "3acd2534a4cdb5426b86b0bf7809402e93edeaf085acbb07ced4a100f883e8ee",
+        "match_manifest": true
+      },
+      {
+        "path": "sources/WHITE_1984_ABSTRACT_EXACT.md",
+        "sha256": "f63be0604f177c544192657fd49be4d2b70c9071f8e0df713f4c513623685b87",
+        "match_manifest": true
+      }
+    ],
+    "source_manifest": {
+      "path": "source_manifest_v5.json",
+      "sha256": "b47843e7d40b506a85489713f2a7eb6cc217d1e137338c0948a9829c71529e8e",
+      "match_manifest": true
+    },
+    "fresh_primary_page_checks": [
+      {
+        "url": "https://arxiv.org/abs/1104.2815v1",
+        "retrieved": true,
+        "candidate_quote_matches_primary_abstract_wording": true,
+        "allowed_typographic_normalization": "ASCII minus/x/exponent converted to U+2212, multiplication sign, and superscript minus/digit"
+      },
+      {
+        "url": "https://arxiv.org/abs/1207.5464v1",
+        "retrieved": true,
+        "candidate_quote_matches_primary_abstract_wording": true,
+        "allowed_typographic_normalization": "ASCII x/exponent converted to multiplication sign and superscript minus/digit"
+      },
+      {
+        "url": "https://arxiv.org/abs/0803.3247v4",
+        "retrieved": true,
+        "candidate_quote_matches_primary_abstract_wording": true
+      },
+      {
+        "url": "https://ui.adsabs.harvard.edu/abs/1984ApJ...286...38W/abstract",
+        "retrieved": true,
+        "candidate_tidal_torque_motivation_is_supported": true
+      }
+    ]
+  },
+  "exact_script_and_caption_checks": {
+    "narration_script_sha256": "6e6b3e98779b5e5125a656d14aec7f6bd37612e9ea2f634aed5243e712bbe377",
+    "storyboard_sha256": "3c5c84ce63869891680dff233a39d9291eff8357766d0196b911b2713313bddf",
+    "srt_sha256": "574d4872b786bf0b3b093ac7ec8f75475a3c8585be26a5a458cd37c5f348f9bc",
+    "sentence_count": 32,
+    "srt_cue_count": 32,
+    "srt_text_exact_to_script": true,
+    "quote_suffix_checks": {
+      "i05l_longo": {
+        "required_attribution_prefix": "Longo reported: ",
+        "prefix_exact": true,
+        "verbatim_suffix_exact_to_lana_part1": true,
+        "verbatim_suffix_exact_to_primary_anchor_after_typographic_normalization": true,
+        "timeline_text_exact": true,
+        "storyboard_text_exact": true
+      },
+      "i05s_shamir": {
+        "required_attribution_prefix": "Shamir reported: ",
+        "prefix_exact": true,
+        "verbatim_suffix_exact_to_lana_part1": true,
+        "verbatim_suffix_exact_to_primary_anchor_after_typographic_normalization": true,
+        "timeline_text_exact": true,
+        "storyboard_text_exact": true
+      },
+      "i05d_land": {
+        "required_attribution_prefix": "Land and colleagues reported: ",
+        "prefix_exact": true,
+        "verbatim_suffix_exact_to_lana_part1": true,
+        "verbatim_suffix_exact_to_primary_anchor": true,
+        "timeline_text_exact": true,
+        "storyboard_text_exact": true
+      }
+    },
+    "i04_conditional_sentence_unchanged_from_predecessor": true,
+    "method_s02_through_s24": {
+      "records_compared": 23,
+      "fields_compared_per_record": [
+        "section",
+        "text",
+        "visual_action"
+      ],
+      "mismatch_count": 0,
+      "unchanged": true
+    }
+  },
+  "scientific_guardrails": {
+    "five_beat_sequence_recomputed": [
+      "expectation",
+      "tidal-torque",
+      "conditional-stakes",
+      "open-question",
+      "catch-and-handoff"
+    ],
+    "five_beat_arc_exact": true,
+    "stakes_before_method": true,
+    "conditional_stakes_explicit": true,
+    "conditional_stakes_frame_language": [
+      "THE STAKES ARE CONDITIONAL",
+      "IF A PREFERENCE WERE GENUINE",
+      "PREFERRED AXIS?",
+      "NO DIRECTION SELECTED"
+    ],
+    "all_literature_numbers_attributed_to_other_studies": true,
+    "land_null_presented_as_one_side_not_settled_answer": true,
+    "synthesis_frame_language": [
+      "CLAIMED · DISPUTED · UNSETTLED",
+      "NO ANSWER SELECTED",
+      "no winner"
+    ],
+    "video_adopts_no_literature_claim": true,
+    "no_result_value_direction_or_interpretation_claimed": true,
+    "alternate_cosmology_subject_absent_from_rendered_or_narrated_content": true,
+    "rendered_surfaces_scanned": [
+      "narration sentences",
+      "narration visual actions",
+      "storyboard",
+      "SRT captions",
+      "encoded OCR output",
+      "renderer literals",
+      "delivery filename",
+      "fresh independent ASR transcript"
+    ],
+    "forbidden_rendered_hits": [],
+    "superseded_alternate_cosmology_draft_inspected": false
+  },
+  "encoded_typography_and_visual_review": {
+    "reviewed_encoded_frames": [
+      "i04-032.730.jpg",
+      "i05l-050.928.jpg",
+      "i05s-067.938.jpg",
+      "i05u-090.834.jpg",
+      "i06-101.868.jpg",
+      "s02-112.794.jpg"
+    ],
+    "frozen_jpeg_binding_method": {
+      "description": "independently decode the corrected MP4 at each declared timestamp, compare full 1920x1080 RGB pixels against the frozen lossy JPEG",
+      "pass_thresholds": {
+        "minimum_pixel_correlation": 0.997,
+        "minimum_psnr_db": 39.5,
+        "maximum_rgb_mean_absolute_error": 1.5
+      },
+      "results": [
+        {
+          "frame": "i05l",
+          "pixel_correlation": 0.9980101856896092,
+          "psnr_db": 40.447558705107795,
+          "rgb_mean_absolute_error": 1.3019417524337769,
+          "bound_to_corrected_mp4": true
+        },
+        {
+          "frame": "i05s",
+          "pixel_correlation": 0.9979148304481024,
+          "psnr_db": 40.52501637713782,
+          "rgb_mean_absolute_error": 1.2973445653915405,
+          "bound_to_corrected_mp4": true
+        },
+        {
+          "frame": "i05u",
+          "pixel_correlation": 0.9981665449742222,
+          "psnr_db": 40.0607265693327,
+          "rgb_mean_absolute_error": 1.2789984941482544,
+          "bound_to_corrected_mp4": true
+        },
+        {
+          "frame": "i04",
+          "pixel_correlation": 0.9983216475738061,
+          "psnr_db": 40.54788423487036,
+          "rgb_mean_absolute_error": 1.3477121591567993,
+          "bound_to_corrected_mp4": true
+        },
+        {
+          "frame": "i06",
+          "pixel_correlation": 0.9979491161695314,
+          "psnr_db": 39.751644609947135,
+          "rgb_mean_absolute_error": 1.3537429571151733,
+          "bound_to_corrected_mp4": true
+        },
+        {
+          "frame": "s02",
+          "pixel_correlation": 0.9985994386774975,
+          "psnr_db": 42.308866736655055,
+          "rgb_mean_absolute_error": 1.0972776412963867,
+          "bound_to_corrected_mp4": true
+        }
+      ],
+      "all_bound": true
+    },
+    "stix_font_binding": {
+      "path": "/System/Library/Fonts/Supplemental/STIXTwoText.ttf",
+      "sha256": "7962b8b7811e6a896c9a91a0bccbb5241047770eb24d4997c5cb5fe21d5c0df2",
+      "renderer_uses_font_for_i05l_and_i05s_cards": true,
+      "renderer_uses_font_for_i05l_and_i05s_captions": true,
+      "u207b_superscript_minus_present": true,
+      "u2074_and_u2076_superscript_digits_present": true,
+      "64px_glyph_bbox_bottoms": {
+        "U+207B": 49,
+        "U+2074": 49,
+        "U+2076": 49
+      },
+      "same_superscript_baseline": true,
+      "superscript_minus_higher_than_baseline_hyphen": true
+    },
+    "longo_card_and_caption": {
+      "minus_0p0408_plusminus_0p011_clean": true,
+      "7p9_times_10_superscript_minus_4_clean": true,
+      "true_superscript_minus_not_baseline_hyphen": true,
+      "card_attribution_visible": "LONGO 2011 · REPORTED CLAIM",
+      "other_study_disclaimer_visible": true,
+      "tofu_or_missing_glyph": false,
+      "clipping_overlap_or_illegibility": false
+    },
+    "shamir_card_and_caption": {
+      "z_less_than_0p3_clean": true,
+      "p_less_than_5p8_times_10_superscript_minus_6_clean": true,
+      "less_than_not_equality": true,
+      "true_superscript_minus_not_baseline_hyphen": true,
+      "card_attribution_visible": "SHAMIR 2012 · REPORTED CLAIM",
+      "other_study_disclaimer_visible": true,
+      "tofu_or_missing_glyph": false,
+      "clipping_overlap_or_illegibility": false
+    },
+    "progress_rail": {
+      "why_it_matters_active_through_i06": true,
+      "mirror_test_next": true,
+      "mirror_test_active_at_s02": true,
+      "local_active_capsule_only": true,
+      "seam_coherent": true
+    },
+    "generic_curve_icon_dispatch": {
+      "found": false,
+      "renderer_dispatch_hits": [],
+      "pillow_joint_curve_occurrences": 1,
+      "pillow_joint_curve_classification": "stroke-join style only, not a generic curve icon",
+      "scientifically_meaningful_spiral_glyphs_not_misclassified_as_generic_curve": true
+    },
+    "no_answer_selected_visible_in_opening": true,
+    "no_obvious_seam_overlap_clipping_or_legibility_defect": true
+  },
+  "fresh_independent_asr": {
+    "input": "audio decoded directly from corrected frozen MP4 into in-memory WAV; no candidate or temporary artifact write",
+    "provider": "current Hermes managed OpenAI audio gateway",
+    "model": "whisper-1",
+    "fresh_calls_by_tori": true,
+    "intro_segment_end_seconds": 109.14570833333333,
+    "intro_similarity_to_exact_script": 0.9667761956918584,
+    "intro_attributions_detected": [
+      "Longo reported",
+      "Shamir reported",
+      "Land and colleagues reported"
+    ],
+    "open_dispute_language_detected": true,
+    "no_adoption_language_detected": true,
+    "longo_transcript": "Longo reported, an unbinned analysis for a dipole component that made no prior assumptions for the dipole axis gives a dipole asymmetry of minus 0.0408 plus or minus 0.011 with a probability of occurring by chance of 7.9 times 10 to the minus fourth.",
+    "longo_checks": {
+      "minus_0p0408": true,
+      "plus_or_minus_0p011": true,
+      "ten_to_minus_fourth": true
+    },
+    "shamir_transcript": "Shamir reported, the results show that the local universe, Z less than 0.3, is not isotropic in terms of galaxy spin, with probability p less than 5.8 times 10 to the minus sixth of such asymmetry to occur by chance.",
+    "shamir_checks": {
+      "z_less_than_0p3": true,
+      "p_less_than_5p8": true,
+      "ten_to_minus_sixth": true,
+      "equality_substitution": false
+    },
+    "all_required_pronunciation_checks_pass": true
+  },
+  "audio_provenance_and_quality": {
+    "narration_script_voice": "alloy",
+    "narration_script_speed": 1.18,
+    "synthesis_receipt": {
+      "path": "audio_v5/synthesis_receipt.json",
+      "sha256": "017192c8e8b8f7df7abf2005a620ad36b7a2b3aa2a6f15b0593d2ecd81be6cc6",
+      "provider_route": "Hermes managed OpenAI audio gateway",
+      "model": "gpt-4o-mini-tts",
+      "voice": "alloy",
+      "speed": 1.18,
+      "one_exact_sentence_per_call": true
+    },
+    "narration_master": {
+      "path": "audio_v5/narration_master.wav",
+      "sha256": "ff6b367c1ea5387ebee2e51b13741442128981ae574d801ca267b3268d1a1cb6",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "sample_width_bytes": 2,
+      "sample_frames": 13467130,
+      "duration_seconds": 280.5652083333333
+    },
+    "encoded_audio_probe": {
+      "codec": "aac",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "start_time_seconds": 0.0,
+      "duration_seconds": 280.565
+    },
+    "fresh_ffmpeg_ebur128": {
+      "integrated_lufs": -20.8,
+      "lra_lu": 6.7,
+      "true_peak_dbtp": -2.3,
+      "within_target_minus_20p5_plusminus_0p5_lu": true,
+      "true_peak_at_or_below_minus_2p3_dbtp": true
+    },
+    "fresh_ffmpeg_astats": {
+      "peak_level_db": -2.316897,
+      "rms_level_db": -21.955134,
+      "number_of_nans": 0,
+      "number_of_infs": 0,
+      "clipping_absent": true
+    },
+    "timing": {
+      "sentence_count": 32,
+      "word_count_independent": 532,
+      "occupied_first_start_to_last_end_seconds": 277.5652083333333,
+      "delivered_wpm_independent": 115.00000375287189,
+      "target_wpm_min": 105,
+      "target_wpm_max": 125,
+      "wpm_pass": true,
+      "maximum_absolute_audio_visual_start_delta_seconds": 0.015333333333333421,
+      "required_maximum_seconds": 0.3,
+      "timing_pass": true
+    }
+  },
+  "frame_and_duration_custody": {
+    "fps": 30,
+    "master_duration_seconds": 280.5652083333333,
+    "raw_frames_submitted_recomputed_as_ceil_duration_times_fps": 8417,
+    "encoded_frames_ffprobe_count_frames": 8416,
+    "legacy_build_receipt_frame_count": 8416,
+    "encoded_video_duration_seconds": 280.533333,
+    "master_minus_encoded_video_seconds": 0.03187533333328929,
+    "one_frame_seconds": 0.03333333333333333,
+    "nonnegative_under_one_frame": true,
+    "full_decode_returncode": 0,
+    "full_decode_final_frame": 8416,
+    "full_decode_progress": "end",
+    "decode_stderr": "",
+    "no_corruption": true,
+    "reconciliation": "8417 raw frames were submitted by the ceil-duration render loop; H.264 encoded 8416 frames; the master exceeds the encoded video by less than one 30-fps frame; the encoded file decodes cleanly through frame 8416 and EOF"
+  },
+  "tool_custody": {
+    "ffmpeg": {
+      "path": "/opt/homebrew/Cellar/ffmpeg/8.1.2_1/bin/ffmpeg",
+      "sha256": "1332dc2de372bade9a8a63da0d6cdfab9de97fcefbae707bcc0b0506e1203327",
+      "version": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffprobe": {
+      "path": "/opt/homebrew/Cellar/ffmpeg/8.1.2_1/bin/ffprobe",
+      "sha256": "4322275c1c2ac6ba15c695b288788bc1204e75211b3d5c030e5812c82a6dff73",
+      "version": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  },
+  "protected_external_state": {
+    "candidate_exact_hash_present_in_cockpit_or_frontend_public": false,
+    "candidate_exact_hash_shared_paths": [],
+    "cockpit_mp4_count": 35,
+    "five_cockpit_copies_match_prior_exact_hashes": true,
+    "cockpit_hashes": {
+      "spin": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+      "fesc": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+      "brightend": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+      "mzr_anchor": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+      "mzr_census": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b"
+    },
+    "published_json_sha256": "4abe62fbf2b9bf7a6e9f694a3fcbbe8313747a00184075fba8c5c49a190548e0",
+    "paperVideos_ts_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_tree": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "candidate_writes": 0,
+    "cockpit_writes": 0,
+    "public_or_frontend_writes": 0,
+    "database_writes": 0,
+    "deploy_or_restart_actions": 0,
+    "git_writes": 0,
+    "published_json_writes": 0,
+    "rollout_actions": 0,
+    "acceptance_conferred": false,
+    "acceptance_label_written": false
+  },
+  "nonblocking_disclosures": [
+    {
+      "item": "encoded loudness presentation rounding",
+      "detail": "The freeze's compact snapshot says approximately -20.7 LUFS; fresh Tori measurement of the corrected encoded MP4 is -20.8 LUFS, matching Kun PASS and remaining inside the -20.5 +/- 0.5 LU target.",
+      "blocking": false
+    },
+    {
+      "item": "raw-to-encoded frame count",
+      "detail": "8417 raw frames submitted versus 8416 encoded frames, with a 0.03187533333328929-second tail under one 30-fps frame and a clean full decode through EOF.",
+      "blocking": false
+    },
+    {
+      "item": "frozen review frames are lossy JPEG derivatives",
+      "detail": "They were independently bound to MP4-decoded frames using full-frame correlation, PSNR, and mean-absolute-error criteria before visual review.",
+      "blocking": false
+    }
+  ],
+  "independent_check_results": {
+    "request_hash_pass": true,
+    "corrected_candidate_hash_pass": true,
+    "kun_pass_hash_pass": true,
+    "frozen_manifest_pass": true,
+    "predecessor_custody_pass": true,
+    "primary_quote_pass": true,
+    "five_beat_arc_pass": true,
+    "conditional_stakes_pass": true,
+    "open_dispute_no_winner_pass": true,
+    "alternate_cosmology_absence_pass": true,
+    "method_spine_unchanged_pass": true,
+    "typography_pass": true,
+    "fresh_asr_pronunciation_pass": true,
+    "audio_provenance_pass": true,
+    "audio_quality_pass": true,
+    "timing_and_wpm_pass": true,
+    "frame_custody_pass": true,
+    "full_decode_pass": true,
+    "progress_rail_and_seam_pass": true,
+    "generic_curve_absence_pass": true,
+    "external_gates_closed_pass": true,
+    "all_required_checks_pass": true
+  },
+  "verdict": "PASS",
+  "verdict_detail": "PASS_EXACT_HASH_REGATE",
+  "video_reportable_now": true,
+  "technical_regate_only": true,
+  "no_acceptance_conferred": true,
+  "no_rollout_authority_conferred": true,
+  "standalone_final_marker": "TORI_SPIN_LITERATURE_INTRO_EXACT_HASH_REGATE_DONE"
+}

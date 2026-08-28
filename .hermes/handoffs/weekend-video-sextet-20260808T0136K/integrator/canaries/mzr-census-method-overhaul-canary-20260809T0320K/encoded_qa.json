@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "candidate": "mzr-census-method-overhaul-canary-20260809T0320K",
+  "video": "mzr-census-method-overhaul-canary-20260809T0320K.mp4",
+  "video_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "duration": "229.966667",
+        "nb_read_frames": "6899"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "avg_frame_rate": "0/0",
+        "duration": "229.956000",
+        "nb_read_frames": "10780"
+      }
+    ],
+    "format": {
+      "duration": "229.966667",
+      "size": "9539823",
+      "bit_rate": "331868"
+    }
+  },
+  "timeline_summary": {
+    "sentence_count": 22,
+    "word_count": 435,
+    "delivered_wpm": 115.00000045897191,
+    "master_duration_seconds": 229.95652083333334,
+    "max_abs_audio_visual_start_delta_seconds": 0.016291666666688798,
+    "section_intervals_seconds": {
+      "controls": 15.156770833333326,
+      "estimator": 16.54877083333335,
+      "peak": 50.043083333333335,
+      "sample": 18.036770833333335,
+      "boundary": 8.544000000000011,
+      "motivation": 32.4863125,
+      "payoff": 14.964770833333347,
+      "difficulty": 17.220770833333333,
+      "discipline": 17.580770833333332
+    }
+  },
+  "loudness": {
+    "input_i": "-21.65",
+    "input_tp": "-2.32",
+    "input_lra": "9.50",
+    "input_thresh": "-31.99",
+    "output_i": "-20.09",
+    "output_tp": "-2.30",
+    "output_lra": "8.20",
+    "output_thresh": "-30.42",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.21"
+  },
+  "motion": {
+    "sample_rate_fps": 2,
+    "sampled_frames": 460,
+    "mean_absolute_frame_difference": 0.44057159283466474,
+    "max_absolute_frame_difference": 11.750555555555556,
+    "longest_near_unchanged_seconds": 0.0,
+    "threshold": 0.08,
+    "expected_duration": 229.966667
+  },
+  "introduction_transcription": {
+    "status": "PASS",
+    "provider_route": "Hermes managed OpenAI audio gateway",
+    "model": "whisper-1",
+    "start_seconds": 0.35,
+    "end_seconds": 33.4363125,
+    "expected": "Archive metadata can make a table look ready for a mass-metallicity census in two very different ways. If mass, gas-phase abundance, and redshift were genuinely joined within one galaxy sample, that would let us test how enrichment changes with galaxy mass across cosmic time. But an apparent three-axis match could instead be a fact about archive symbols and metadata, not about a galaxy sample. How do we tell a reachable table from an eligible one?",
+    "transcript": "Archive metadata can make a table look ready for a mass metallicity census in two very different ways. If mass, gas phase abundance, and redshift were genuinely joined within one galaxy sample, that would let us test how enrichment changes with galaxy mass across cosmic time. But an apparent three-axis match could instead be a fact about archive symbols and metadata, not about a galaxy sample. How do we tell a reachable table from an eligible one?",
+    "normalized_expected": "archive metadata can make a table look ready for a mass metallicity census in two very different ways if mass gas phase abundance and redshift were genuinely joined within one galaxy sample that would let us test how enrichment changes with galaxy mass across cosmic time but an apparent three axis match could instead be a fact about archive symbols and metadata not about a galaxy sample how do we tell a reachable table from an eligible one",
+    "normalized_transcript": "archive metadata can make a table look ready for a mass metallicity census in two very different ways if mass gas phase abundance and redshift were genuinely joined within one galaxy sample that would let us test how enrichment changes with galaxy mass across cosmic time but an apparent three axis match could instead be a fact about archive symbols and metadata not about a galaxy sample how do we tell a reachable table from an eligible one",
+    "similarity": 1.0,
+    "audio_sha256": "0e37b5f25706bbc2eae3facb24b06c09fa4d9b8921652a4ead19164fc45e13b7"
+  },
+  "ocr": {
+    "engine": "tesseract",
+    "frame_count": 27,
+    "forbidden_terms": [
+      "/users/",
+      ".json",
+      ".md",
+      "source_freeze",
+      "status.json",
+      "t1_",
+      "t2_",
+      "t3_",
+      "internal path"
+    ],
+    "forbidden_hits": [],
+    "status": "PASS"
+  },
+  "caption_lines": {
+    "i01": 1,
+    "i02": 2,
+    "i03": 2,
+    "i04": 1,
+    "d01": 2,
+    "d02": 2,
+    "p01": 2,
+    "p02": 2,
+    "p03": 2,
+    "p04": 2,
+    "p05": 2,
+    "f01": 2,
+    "f02": 2,
+    "e01": 2,
+    "e02": 2,
+    "c01": 2,
+    "c02": 2,
+    "g01": 2,
+    "g02": 2,
+    "b01": 2,
+    "x01": 2,
+    "x02": 2
+  },
+  "numeric_guard": {
+    "status": "PASS",
+    "problems": [],
+    "evidence": []
+  },
+  "contact_sheet": "encoded-contact-sheet.jpg",
+  "checks": {
+    "video_stream_h264": true,
+    "audio_stream_aac": true,
+    "resolution_1920x1080": true,
+    "fps_30": true,
+    "duration_within_one_frame": true,
+    "delivered_wpm_in_range": true,
+    "av_alignment_under_one_frame": true,
+    "all_sentence_states_extracted": true,
+    "encoded_intro_transcription_pass": true,
+    "motivation_first_four": true,
+    "peak_is_longest_section": true,
+    "five_distinct_peak_frames": true,
+    "no_eight_second_freeze": true,
+    "positive_motion": true,
+    "loudness_in_target_band": true,
+    "true_peak_safe": true,
+    "spec_hash_matches_build": true,
+    "timeline_hash_matches_build": true,
+    "audio_hash_matches_build": true,
+    "encoded_hash_matches_build": true,
+    "renderer_snapshot_matches_build": true,
+    "numeric_guard_pass": true,
+    "source_grounded_runtime_at_least_75_percent": true,
+    "ocr_internal_terms_clean": true,
+    "captions_at_most_two_lines": true,
+    "method_only_gate_closed": true,
+    "no_source_freeze_in_candidate": true,
+    "full_decode_pass": true
+  },
+  "passed": 28,
+  "total": 28
+}

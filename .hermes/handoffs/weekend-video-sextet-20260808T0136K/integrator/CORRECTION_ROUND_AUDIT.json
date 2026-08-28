@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "cases": {
+    "mzr-census": {
+      "candidate": "mzr-census-method-overhaul-canary-20260809T0320K",
+      "sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+      "encoded_checks": "28/28",
+      "duration_seconds": 229.966667,
+      "delivered_wpm": 115.00000045897191,
+      "introduction_similarity": 1.0,
+      "source_grounded_runtime_percent": 99.73908111071357,
+      "renderer_sha256": "2174ff9fec9fcfbc81e078f8ca43df807206eb6b7dffdb6ab210a499d07d9981",
+      "blockers_addressed": [
+        "LANA-MZR-CENSUS-01",
+        "LANA-MZR-CENSUS-02"
+      ],
+      "video_reportable_now": false
+    },
+    "fesc": {
+      "candidate": "fesc-method-overhaul-canary-20260809T0327K",
+      "sha256": "47eb0d0b151b51667a4b29a39da74b947086c925dda7ce7e819240ffde25e42d",
+      "encoded_checks": "28/28",
+      "duration_seconds": 236.739,
+      "delivered_wpm": 115.0000026739212,
+      "introduction_similarity": 1.0,
+      "source_grounded_runtime_percent": 99.74655646801095,
+      "renderer_sha256": "71953059e2555cae36bf056aa80bdc7440170eb82c106606136dcc4daa74c884",
+      "blockers_addressed": [
+        "LANA-FESC-01"
+      ],
+      "video_reportable_now": false
+    },
+    "brightend": {
+      "candidate": "brightend-method-overhaul-canary-20260809T0337K",
+      "sha256": "6e0f4b098d6c5386d08ab7fb670b8b6564e257edeac5dc1c6fec2cc6b97bc7b4",
+      "encoded_checks": "28/28",
+      "duration_seconds": 227.869,
+      "delivered_wpm": 115.00000138969452,
+      "introduction_similarity": 0.9977220956719818,
+      "source_grounded_runtime_percent": 99.73669146795329,
+      "renderer_sha256": "71953059e2555cae36bf056aa80bdc7440170eb82c106606136dcc4daa74c884",
+      "blockers_addressed": [
+        "LANA-BRIGHTEND-01"
+      ],
+      "video_reportable_now": false
+    },
+    "mzr-anchor": {
+      "candidate": "mzr-anchor-method-overhaul-canary-20260809T0245K",
+      "sha256": "973daba3a6b8ef66409d3bbd2588fc2db2459f4fb3c5d474a731a93b8c2e1970",
+      "encoded_checks": "27/27",
+      "duration_seconds": 219.533333,
+      "delivered_wpm": 115.00000529200159,
+      "introduction_similarity": 0.9987608426270136,
+      "source_grounded_runtime_percent": 99.7266785378023,
+      "renderer_sha256": "7d42ea801d6f72648403227728bd771844f3c35ea464bcf99e1eb5dc7d49ca53",
+      "blockers_addressed": [
+        "KUN-RENDERER-PRESERVATION-CAVEAT"
+      ],
+      "video_reportable_now": false
+    }
+  },
+  "global_checks": {
+    "all_exact_hashes_bound": true,
+    "all_encoded_checks_pass": true,
+    "all_method_only": true,
+    "all_video_reportable_now_false": true,
+    "all_new_candidate_tool_snapshots_preserved": true,
+    "mzr_anchor_exact_renderer_archived": true,
+    "reviewed_predecessors_preserved": true,
+    "rejected_correction_attempts_preserved": true,
+    "accepted_v3_hash_unchanged": true,
+    "no_correction_hash_in_public_video_root": true
+  }
+}

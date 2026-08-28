@@ -1,0 +1,235 @@
+\begin{abstract}
+We present the first survey of radio frequency interference (RFI) at the future site of the low frequency Square Kilometre Array (SKA), the Murchison Radio-astronomy Observatory (MRO), that both temporally and spatially resolves the RFI.  The survey is conducted in a 1 MHz frequency range within the FM band, designed to encompass the closest and strongest FM transmitters to the MRO (located in Geraldton, approximately 300 km distant).  Conducted over approximately three days using the second iteration of the Engineering Development Array in an all-sky imaging mode, we find a range of RFI signals.  We are able to categorise the signals into: those received directly from the transmitters, from their horizon locations; reflections from aircraft (occupying approximately 13\% of the observation duration); reflections from objects in Earth orbit; and reflections from meteor ionisation trails.  In total we analyse 33,994 images at 7.92 s time resolution in both polarisations with angular resolution of approximately 3.5$^{\circ}$, detecting approximately forty thousand RFI events.  This detailed breakdown of RFI in the MRO environment will enable future detailed analyses of the likely impacts of RFI on key science at low radio frequencies with the SKA.
+\end{abstract}
+
+\section{INTRODUCTION }
+\label{sec:int}
+
+The next generation of radio telescopes, built to explore the evolution of the Universe to very high redshift, during the so-called Epoch of Reionisation (EoR; \citet{2006PhR...433..181F}), will be located at sites selected to have very low levels of human-made Radio Frequency Interference (RFI).
+
+For example, the low frequency component of the Square Kilometre Array (SKA\footnote{www.skatelescope.org}) will be built at the Murchison Radio-astronomy Observatory (MRO), located in the Mid West of Western Australia.  The MRO is also home to two SKA Precursor telescopes, CSIRO's ASKAP \citep{2008ExA....22..151J} and the Murchison Widefield Array (MWA) \citep{2018PASA...35...33W,2013PASA...30....7T}.  The MWA remains the only fully operational Precursor for the low frequency SKA and has been an operational facility since 2013.
+
+With a frequency range of approximately 70 - 300 MHz, the MWA spans a number of Earth and space-based broadcast bands, including the ubiquitous FM band (approximately 88 - 108 MHz in Australia), constituting a primary source of RFI at the MRO.  Likewise, the frequency range for SKA\_low is 50 - 350 MHz, also encompassing the FM band.
+
+The effect of RFI on key science programs at low frequencies, including EoR experiments, is very significant.  Aside from locating telescopes such as the MWA at the best sites, such as the MRO, substantial general effort has been put into the identification and removal of RFI from radio telescope data (RFI mitigation).  An excellent assessment of the effects of RFI on EoR measurements, plus a review of the general considerations for RFI mitigation, can be found in \citet{2020arXiv200407819W}; they place limits on the tolerable RFI budget before EoR measurements are adversely affected.  
+However, the practical realistion of an allowable RFI budget is complex.  \citet{2020arXiv200407819W} find that a detailed knowledge of the spatial and temporal distribution of the RFI, the duration of observations, the characteristics of the telescope in question, and the detailed scheduling of the telescope (where it is pointing and when) are required.  Measurements that attempt to characterise the RFI environment in which a telescope operates are therefore very important in order to understand the overall performance of key science observations, such as for the EoR experiment.
+
+Previously, a study of the RFI environment of the MRO, utilising the MWA over 10 nights of observations in the frequency range 72 - 231 MHz, was conducted by \citet{2015PASA...32....8O}.  Using their methods of RFI detection and excision, they found that 1.1\% of data required excision, but that all frequency ranges remained highly usable, including in the FM and digital TV bands.
+
+More recently, \citet{2016arXiv161004696S} and \citet{2017rfi..confE...1S} examined RFI statistics for the MRO in the frequency range 70 - 300 MHz using the BIGHORNS global EoR signal experiment \citep{2015PASA...32....4S}.  They find examples of ducting events caused by atmospheric conditions that propagate signals from distant transmitters to the MRO.  A similar, highly comprehensive survey of the LOFAR RFI environment was conducted by \citet{2013A&A...549A..11O}.
+
+These previous studies of the RFI environment of the MRO at low frequencies have collected information as a function of frequency and of time, but not as a function of location on the celestial sphere.  The previous studies have obtained information that has been integrated spatially prior to analysis.  In this paper, we examine the RFI characteristics of the MRO for one frequency within the FM band, resolved both temporally and spatially.  A range of RFI signals are expected at low radio frequencies, with the FM band one of the most prominent in the SKA\_low frequency range.  At these frequencies, as well as ducted propagation from distant transmitters, multi-path reception of RFI is expected due to reflections off objects within the environment.  For example, reflections off aircraft \citep{2020arXiv200407819W}, ionised meteor trails \citep{2018MNRAS.477.5167Z}, and satellites \citep{2020PASA...37...10P, 2018MNRAS.477.5167Z, Tingay2013OnFeasibility} are expected.  Such signals are ubiquitous and have been studied in detail for other low frequency radio telescopes such as the Owens Valley Long Wavelength Array \citep{https://doi.org/10.7907/25dp-j474}.  These reflected signals are expected to be localised in time and direction and contribute at different levels to the total RFI budget.  We aim to assess and characterise these different contributions here, presenting the information required for a range of future quantitative studies of the impact of RFI on key low frequency science for the SKA.
+
+We obtain temporally and spatially resolved RFI measurements by using the second realisation of the so-called Engineering Development Array (EDA2: Wayth et al. 2020, in preparation), an SKA\_low station configuration composed of 256 individual MWA antennas on a 35 m station footprint.
+
+In \S \ref{subsec:obs}, we describe the EDA2 instrument, its characteristics, and the observations undertaken for this work.  In \S \ref{subsec:imcal}, we describe the imaging and calibration of the EDA2 data undertaken to provide the raw images used for further analysis.  In \S \ref{subsec:ann} we describe the data processing undertaken to separate the different categories of RFI signals, and in \S \ref{sec:res} we describe the results, assessing the components of the RFI budget in this frequency band.  Finally, in \S \ref{sec:dis} we discuss the likely impacts of these components of the RFI budget for some areas of key low frequency science.
+
+\section{OBSERVATIONS AND DATA PROCESSING}
+\label{sec:obs}
+
+\subsection{Observations}
+\label{subsec:obs}
+
+Observations were conducted using the Engineering Development Array, version 2 (EDA2: Figure \ref{eda}), an array of 256 MWA antennas arranged in an SKA\_low station configuration (station diameter of 35 m) and located at the MRO (Wayth et al. in preparation).  Analogue signal chains from the individual antennas (both polarisations; X and Y) are digitised and coarse-channalised in the firmware \citep{2017JAI.....641015C} implemented in Tile Processing Modules \citep[TPM;][]{2017JAI.....641014N}. The coarse-channelised voltage streams are received on the data acquisition computer and signals from individual antennas are correlated using the \textsc{xGPU} \citep{xGPU} software correlator.  Thus, the EDA2 forms a 256 element, dual-polarisation interferometer that can be used to form all-sky images using standard interferometric calibration and imaging techniques.
+
+
+EDA2 data were collected between 2020-01-31 06:30 and 2020-02-03 07:20 UTC at \SI{1.98}{\second} temporal resolution, as part of commissioning activities for the array.  During these observations, 54 antennas were non-functional for commissioning, leaving a usable array of 202 antennas.  Data were collected over a \SI{0.926}{\mega\hertz} bandwidth (single coarse channel), at a central frequency of \SI{98.4375}{\mega\hertz}. This particular coarse channel covered two FM stations from Geraldton at 98.1 and \SI{98.9}{\mega\hertz} providing excellent data to perform the analysis presented in this paper. The correlation products were saved in \textsc{HDF5} format\footnote{https://www.hdfgroup.org/}, which is envisaged as the data format for the SKA telescope.
+
+\subsection{Imaging and calibration}
+\label{subsec:imcal}
+
+The data were converted from native \textsc{HDF5} format into UV FITS files \citep{uvfits}, averaging four consecutive raw integrations into \SI{7.92}{s} files, using the zenith as the phase centre for each file. This generated 33,994 individual files to be imaged.
+Further processing was performed with the \textsc{Miriad} data processing suite \citep{1995ASPC...77..433S}.
+
+Calibration (phase and amplitude) was performed using the \textsc{mfcal} task on a subset of data from the solar transit and a flux density model of the quiet sun \citep{sun_model}. Baselines shorter than $5\lambda$ were excluded to minimise the contribution from Galactic extended emission.
+The calibration was transferred to all datasets, then each file was imaged with \textsc{invert} into $128\times128$ pixel images using robust=-0.5 weights, and deconvolved with \textsc{clean} using 10000 iterations, speed=-1, and phat=0.1. Each image covers the entire hemisphere visible for that file with 1.25 degree pixel scale at the zenith in sine projection, with an angular resolution of $\sim3.5^{\circ}$ at zenith.
+The two independent polarisations (corresponding to the `XX' or east-west oriented dipoles and the `YY' or north-south oriented dipoles) were imaged independently.
+This process generated two zenith-centred images for each visibility file, which were exported as FITS images. 
+%\textbf{TODO : add further imaging details}
+
+\subsection{Radio frequency interference analysis}
+\label{subsec:ann}
+
+The FITS images at the 33,994 individual time steps (at each XX and YY polarisation, for a total of 67,988 images) were processed using a Python script.
+
+Each image was loaded from disk and a difference image was formed via subtraction of the previous image in time.  Difference images remove the component of the sky brightness distribution that remains constant from time step to time step, including astronomical sources such as the very bright Galactic Plane.  Difference images reveal signals that change with time between images and are sensitive to time-varying sources of RFI.  Since there are no sources of FM RFI in the immediate vicinity of the MRO, all sources of RFI in this band are due to complex propagation or scattering effects, and are therefore strongly time variable.
+
+The difference images were searched for point sources, using the DAOStarFinder task within the photutils Python module \citep{Bradley_2019_2533376}, based on DAOPHOT \citep{1987PASP...99..191S}.  At the angular resolution of EDA2, any time-variable sources of RFI will be point-like in nature, even scattering objects in motion (aircraft and satellites, for example).  In the search for point sources, a threshold of ten times the Root Mean Square (RMS) in the difference image was adopted and a Full Width at Half Maximum (FWHM) for the source of five pixels was adopted.
+
+The RMS values of the difference images vary.  For images with strong sidelobes due to sources of interference and/or the presence of strong astronomical sources, the RMS values can be higher than at other times.  Thus, the detection threshold of ten times the RMS varies across the set of observations.  Figure \ref{meanstd} shows the distributions of mean and RMS values, for all difference images in the XX polarisation.  The YY polarisation distributions are very similar and are not shown.
+
+\begin{figure*}[hbt!]
+\centering
+\includegraphics[width=0.45\textwidth]{Figures/mean-hist.pdf}
+\includegraphics[width=0.45\textwidth]{Figures/std-hist.pdf}
+\caption{Distributions of the mean of the difference images (top) and the RMS (bottom) for the XX polarisation data.}
+\label{meanstd}
+
+\end{figure*}
+
+As can be seen in these figures, the RMS values are strongly dominated by values of less than $\sim$1000 Jy/beam, but with outliers of up to 100,000 Jy/beam.  Generally these outliers are encountered when very strong episodes of direct reception from distant transmitters (for example from Geraldton) occur, or when reflections from aircraft over the MRO are seen, or when a particularly strong meteor reflection is present.
+
+The pixel coordinates, times, and peak intensities of all detections were recorded.  The detections were then visualised as density maps in pixel coordinates, celestial coordinates, and Galactic coordinates, in order to make an initial examination of the variety of signals present in the data.
+
+Broadly speaking, the detected signals can be well categorised as the following: 
+
+1) sources confirmed to a single time step occurring at random locations in the sky, with larger numbers occurring near the horizon ($<$20$^{\circ}$ elevation) than near the zenith (mostly likely meteor reflections); 
+
+2) reflections from aircraft, identified as having very high peak intensities and being trackable from time step to time step, along known flight paths at angular speeds corresponding to standard aircraft air speeds and altitudes; 
+
+3) candidate reflections from satellites, identified as being similar to planes but with far lower peak flux densities, detectable preferably near zenith, not having the trajectories of known flight paths, and with the expected angular speeds of objects in Low Earth Orbit; 
+
+4) persistent sources of time-variable RFI on the horizon and at azimuths corresponding to population centres at large distances, beyond the MWA horizon; and
+
+5) detections that followed the locations of the brightest celestial radio sources, largely due to imperfect difference imaging in the presence of the extremely bright radio sources, likely due to combinations of sidelobes around these sources, the effect of the ionosphere, and small errors in imaging and calibration.  
+
+Across all categories, a total of 40,133 detections were made in the XX polarisation and a total of 39,954 in the YY polarisation.
+
+{\bfseries This situation of a time variable RMS and a fixed signal-to-noise detection threshold somewhat problematic in terms of a robust statistical analysis of the full 67,988 image set and the different signal populations.
+
+We could adopt a running median of the image RMS, to mitigate against the variations in RMS.  However, this would then effectively lower the signal-to-noise ratio of the detection threshold in a time variable manner.  For example, for an image with a high noise (due to sidelobes caused by the presence of a very strong transient signal) relative to the running median, and using a fixed detection threshold, the result would be a large number of false detections above the threshold for that image.  In this case, we would be corrupting the events we claim to be real.
+
+The approach we have taken ensures that the events we claim to be real are real, at the price of occasionally sacrificing real events that would sit above the detection threshold for other images with lower noise levels.  Given the large volume of observations, and therefore total number of detections, we have clearly been able to distinguish between the different categories of signals, even though we have sacrificed some real signals.
+
+We cannot claim to be able to do statistically robust population analyses for these signal types, in part due to the issue of the variable RMS and the loss of some real detections.  However, we maintain that even without this issue, such a detailed analysis would be difficult, due to: the calibration of the signal strengths because of primary beam effects; the intrinsic nature of the signals, which is highly dependent on the placement and illumination pattern of the RFI source (FM radio stations hundreds of km away); propagation effects; and the temporal and frequency resolution of our data.}
+
+Figure \ref{image} shows a sequence of five images (left panels; intensity range from 0 Jy/beam to 5000 Jy/beam), plus corresponding difference images (right panels; intensity range from -600 Jy/beam to 600 Jy/beam), with examples of the different categories of signal present in the EDA2 data, for the XX polarisation.  In all images, the Galactic Centre is near transit at the zenith.  The Sun is present and labeled and the location of Geraldton on the horizon is labeled.  From top to bottom (time order): the top two images show an aircraft moving from south to north, including high amplitude residuals due to sidelobes; the third, fourth, and fifth images show a satellite moving toward the north-east, between the Galactic Centre and the Sun.  For the aircraft and the satellite, the difference images show the distinctive streaks with positive/negative structures \citep{2020arXiv200201674P}.  The fifth image also shows a single timestep signal likely from a meteor, near the southern horizon.  Throughout the series of images, residuals near the Galactic Centre are apparent, also at the Sun (likely due to the strong variability of even the quiet Sun).  Variability of astronomical sources due to ionospheric scintillation will also make some contribution to difference image artifacts.  The variability of the signals received from over the horizon toward Geraldton is also apparent, in this case due to tropospheric scattering/ducting.
+
+\begin{table*}
+\begin{threeparttable}
+\caption{Identified backscatter from objects in orbit and their properties}\label{satdet}
+\begin{tabular}{ c c c c c c } \toprule
+Satellite\tnote{a}   &NORAD           &Start      &End               &Mean intensity         &RCS\tnote{b}            \\
+name        &ID \#           &time (UT)       &time (UT)             & (Jy/beam)      &($m^{2}$)        \\ \midrule
+BGUSAT      & 41999 &2020-01-31 14:40:09.9  &2020-01-31 14:43:11.9  &1060  &$<$0.1       \\ 
+ISS (ZARYA) & 25544 &2020-01-31 17:17:41.9  &2020-01-31 17:19:00.9  &440  & $>$1.0      \\ 
+MAX VALIER SAT& 42778 &2020-02-03 01:18:16.9  &2020-02-03 01:20:09.9  &650  &0.1 $-$ 1.0       \\
+ISS (ZARYA) &22554 &2020-02-03 01:31:07.9  &2020-02-03 01:33:14.9  &930  &$>$1.0         \\ 
+FLOCK 3P 71 & 42024 &2020-02-01 14:16:22.9& 2020-02-01 14:18:05.9  &330  &$<$0.1       \\ 
+ISS (ZARYA) & 25544 &2020-02-02 02:18:17.9  &2020-02-02 02:20:16.9  &740  &$>$1.0 \\  
+BGUSAT      & 41999 &2020-02-02 02:18:17.9  &2020-02-02 02:20:16.9  &1010  &$<$0.1 \\ \bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item[a] TLE information for predicted trajectories from space-track.org for the epoch of observation: 2020-02-01
+\item[b] Radar Cross Section (RCS) is categorised by space-track.org as: small ($<$0.1); medium (0.1 $<$ RCS $<$ 1.0); and large ($>$1.0)
+\end{tablenotes}
+\end{threeparttable}
+\end{table*}
+
+
+
+\begin{figure*}[hbt!]
+\centering
+\includegraphics[width=0.45\textwidth]{Figures/62656.pdf}
+\includegraphics[width=0.45\textwidth]{Figures/62674.pdf}
+\includegraphics[width=0.45\textwidth]{Figures/62754.pdf}
+\includegraphics[width=0.45\textwidth]{Figures/62762.pdf}
+\includegraphics[width=0.45\textwidth]{Figures/62770.pdf}
+\caption{A sequence of five images (left panels), plus corresponding difference images (right panels), for the XX polarisation, as described in the text (times are UTC).}
+\label{image}
+
+\end{figure*}
+
+Movies showing the full sequences of the original images, for both XX and YY polarisations, are available as electronic supporting material in the online publication.
+
+Further processing of the data was undertaken to isolate and examine the different categories of signal in more detail.  
+
+For the category of signals associated with high amplitude residuals from the differencing process and associated with the brightest celestial radio sources in the sky, the simplest method to isolate them is to define exclusion regions around their locations.  Thus, for each difference image, a set of celestial radio source coordinates were transferred into image pixel coordinates using the WCS information attached to the images (utilising functions within the astropy Python module).  Exclusion regions with a radius of five pixels were defined around the sources and signals detected in these regions were excluded from further analysis.  The bright radio sources in question are: the Sun; Cygnus A; Centaurus A; 3C273; the Crab nebula; Hydra A; Fornax A; Virgo A; Pictor A; and the Vela nebula.  Additionally, the Galactic Centre is the brightest radio region in the sky and this region was also excluded, but in this case it was more convenient to define an exclusion region based on Galactic coordinates, such that $-15^{\circ}<b<15^{\circ}$ and $-25^{\circ}<l<25^{\circ}$ defined the region.
+
+The simplest and most effective method to isolate signals from aircraft was to manually identify the time ranges during which they were visible to EDA2 and construct a data set containing aircraft and a data set with aircraft absent.  Given the strong scattered signals from aircraft often produced strong sidelobes, we did not attempt to recover other categories of sources during periods when aircraft were present.  In total, 9.82 hours of data included strong signals from aircraft, from a total of 75.35 hours of observations, corresponding to a temporal percentage of 13\%.  \citet{https://doi.org/10.7907/25dp-j474} accurately describes aircraft as ``an irritating source of RFI''.  Details of the characteristics of the aircraft signals are given in \S \ref{subsec:air}.
+
+A similar approach was taken for the isolation of satellite signals.  In total, seven candidate satellite signals were detected, occupying approximately 16 minutes of the total observation time, approximately 0.3\%.  These candidates were confirmed via examination of the original images and were verified by comparing the observed trajectories to trajectories predicted from orbital parameters corresponding to the epoch of observation.  In all seven cases, a positive identification with an object in orbit could be made.  Detailed information on these satellite detections is given in \S \ref{subsec:orb}.  Although the fraction of the observations containing satellites is small, we exclude these times from the analysis of other categories of source in the same way that we exclude aircraft.
+
+The isolation of signals from persistent transmitters beyond the MWA horizon is generally relatively straightforward, since the signals occupy a constant position in the images.  However, because the difference images will only characterise the RFI variability between time steps of a persistent transmitter, and because we are interested in the apparent intensity of the RFI, we extract signals from the original images and describe the signals in detail in \S \ref{subsec:tran}.  In terms of excluding these signals from the difference image analysis, we place exclusion regions around the transmitter locations most affected.  The strongest RFI originates from Geraldton, south-west of the MRO.  For this transmitter origin, a circular region of exclusion in the difference images corresponding to a radius of ten pixels was used.  Signals from this region were not considered further in the difference image analyses.  Likewise, exclusion regions with a radius of ten pixels were located at the horizon positions of Karatha and Port Hedland, both due north of the MRO.
+
+While transmitters on the horizon were generally straightforward to deal with, we did observe some extreme variability on the horizon (almost the entire western horizon) in the last $\sim$1.8 hours of the observation period.  This behaviour was not localised and was extreme in its intensity and positional variability, particularly in the YY polarisation data (more sensitive in the east-west direction than the XX polarisation).  This activity is due to lightning and we describe it in detail in \S \ref{subsec:tran}.  Thus, the last 1.8 hours of data were also excluded from further analysis of the difference images.
+
+After the isolation of residual errors near bright radio sources, aircraft, satellites, persistent signals on the horizon from transmitters, and the extreme activity noted in the final 1.8 hours of the observation period, the remaining signals in the difference images represent signals confined to single time steps and occurring randomly across the sky.  Overwhelmingly, these signals are likely to be due to backscatter from meteor trails in the upper atmosphere.  Detailed information for these signals is presented in \S \ref{subsec:met}.  15,530 of these signals were detected, in both XX and YY polarisations, representing approximately 37\% of the total number of detected signals.
+
+\section{RESULTS}
+\label{sec:res}
+
+For each category of signal we have described and isolated in the previous section, we provide detailed information below.  In general, we examine the spatial, temporal, and intensity distributions of these signals and show examples of individual signals.  Throughout this section, many of the figures depicting histograms of peak intensity for the various classes of event appear to have powerlaw-like distributions.  In all cases, we attempted to parameterise the distributions with powerlaws, but in no case did a single powerlaw provide a good description of any observed distribution.
+
+\subsection{Aircraft backscatter}
+\label{subsec:air}
+
+Figure \ref{pdur} shows the durations of periods in which aircraft are visible in the EDA2 data, as a function of time of day.  Each point in Figure \ref{pdur} denotes a discrete period during which one or multiple aircraft are present.
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=\textwidth]{Figures/plane-duration.pdf}
+\caption{Durations of periods in which aircraft backscatter signals are present in the EDA2 images, as a function of time relative to the starting time of observations (and folded on a 24 hour period, given that flight schedules from day to day are similar).}
+\label{pdur}
+
+\end{figure}
+
+Figure \ref{pexa} (top panel) shows example aircraft trajectories, as detected in the XX polarisation via the difference imaging analysis, over an approximate 6.5 minute period.  As noted in \S \ref{subsec:ann}, the integrated observation time affected by RFI reflected from aircraft represented in Figure \ref{pdur} is 9.82 hours, or 13\% of the total observation time over three days.  Over a multi-day period, this will be representative of the general situation for the MRO.  Overwhelmingly, the flight paths over the MRO are north-south routes, to/from Perth, which is due south of the MRO, to/from a number of mining centres in the north of Western Australia, and to/from a range of international locations largely north of Australia.  A small number of east-west routes to the north of the MRO are also detected, and also other seldom-used flight paths.
+
+A two-dimensional histogram of the spatial occurance of signals detected during the 9.82 hour period is also illustrated in Figure \ref{pexa} (bottom panel), reflecting the preponderance of north-south flight paths over the MRO.
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=0.45\textwidth]{Figures/plane-example.pdf}
+\includegraphics[width=0.45\textwidth]{Figures/2dhist-planes.pdf}
+\caption{Example of two aircraft trajectories across the sky on north-south flight paths (top panel) and the two dimensional histogram of detected signals during the periods when aircraft are visible from the MRO (bottom panel).  The red markers in the top panel denote the positions of strong astrophysical radio sources above the horizon at this time.  In both panels, the yellow marker denotes the location of Geraldton on the horizon.}
+\label{pexa}
+
+\end{figure}
+
+Finally, Figure \ref{plaint} shows the distribution of peak intensity of signals in the XX polarisation (the distribution for the YY polarisation is effectively identical) for periods during which aircraft are visible in the EDA2 data.  The signals shown in Figures \ref{pexa} and \ref{plaint} account for detections of aircraft, but also include all other detections of other categories of signals present during these periods.  The detections are dominated by aircraft detections, however, characterised by their very high peak intensities as compared to other signal categories, as shown in later sections.
+
+\begin{figure}[hbt!]
+
+\includegraphics[width=\textwidth]{Figures/planes-fd-hist-XX.pdf}
+\caption{Peak intensity of signals detected during periods in which aircraft are above the horizon at the MRO, for the XX polarisation.}
+\label{plaint}
+\end{figure}
+
+
+\subsection{In-orbit object backscatter/transmission}
+\label{subsec:orb}
+
+Artificial satellites in Earth orbit also produce backscattered signals from FM transmitters, in the same way that aircraft do.  Even though satellite passes are vastly more frequent above the MRO horizon (constant, in fact) than aircraft, the objects are much more distant ($\sim$1000 km vs $\sim$10 km) and generally smaller ($\sim$1 m vs $\sim$100 m), and thus produce far weaker signals at the MRO.  
+
+However, as demonstrated using the MWA, a sensitive instrument at FM frequencies can detect many reflections from satellites \citep{2020arXiv200303947H,2020arXiv200201674P,8835821,7944483,Tingay2013OnFeasibility} at high signal to noise.  Although the EDA2 instrument is not as sensitive as the MWA (approximately 1/10$^{th}$ as sensitive), a handful of satellite detections have been made.
+
+Table \ref{satdet} provides the list of satellites identified from the difference imaging process, based on being able to track a trajectory across the sky over multiple time steps.
+
+
+Figure \ref{sate} shows an example of a detected satellite trajectory, for the BGUSAT satellite, compared to the trajectory predicted using orbital parameters from the epoch of observation (utilising the PyEphem package in python).
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=0.4\textwidth]{Figures/sat-example.pdf}
+\caption{Example satellite trajectory detected as described in the text, for the BGUSAT satellite as listed in Table \ref{satdet}, compared to the trajectory predicted from orbital elements at the epoch of observation.  Only the middle portion of the predicted trajectory is shown as dark blue markers, to allow comparison to the observed trajectory (light blue markers).}
+\label{sate}
+
+\end{figure}
+
+Table \ref{satdet} shows a number of detections of the International Space Station (ISS), which is not surprising given that this is the largest artificial satellite in Earth orbit and has been detected many times in Space Situational Awareness (SSA) passive radar tests and observations with the MWA \citep{Tingay2013OnFeasibility, 7944483, 2020arXiv200201674P}.  
+
+More surprising are the detections of small satellites such as BGUCAT, MAX VALIER SAT, and FLOCK 3P 71.  BGUSAT is a nanosatellite developed at the Ben-Guiron University in Israel and was launched in February 2017; it is equipped with cameras for climate research\footnote{https://in.bgu.ac.il/en/epif/Pages/BGU-SAT.aspx}.  MAX VALIER SAT is a small Italian/German amateur satellite, launched in June 2017; it is equipped with an X-ray telescope\footnote{http://www.maxvaliersat.it/}.  FLOCK 3P 71 is a 3U cubesat that is part of a large fleet of satellites equipped with cameras for Earth observation; it was launched in February 2017\footnote{https://space.skyrocket.de/doc\_sdat/flock-1.htm}.
+
+Given the low Radar Cross Sections (RCSs) for these three objects, we would not typically expect to detect them in reflected FM transmissions.  Some small satellites carry long antenna systems for communications at frequencies near 150 MHz, which may increase the RCS at FM frequencies.  However, even in these cases we would expect detection to be marginal.  In Table \ref{satdet}, BGUSAT is the brightest object detected, brighter than the ISS, which would not be expected (note however that these measured intensities are not corrected for the antenna beam pattern in Table \ref{satdet}.
+
+It is possible that we are not seeing these small satellites in reflected FM, but are seeing direct transmissions from the satallites in the EDA2's frequency range.  Using the MWA for non-coherent passive radar observations, \citet{2020arXiv200201674P} found two cubesats to be transmitting broadband signals.  One was the Israeli student satellite Duchifat-1 and the other was the UK satellite UKube-1.  Indeed, there is evidence that BGUSAT is in the same situation; EDA2 data similar to those presented here, but at a frequency of 70 MHz (well below the FM band), shows a detected signal from BGUSAT (X. Zhang, Private Communication).  An investigation of MAX VELIER SAT and FLOCK 3P 71 should be conducted at other frequencies, to determine if they are also generating broadband transmissions.  These satellites are not licensed for broadband transmissions, which raises a potentially concerning situation for ground-based radio astronomy.
+
+Finally, Figure \ref{satfd} shows the distribution of peak intensity of signals in the XX polarisation (the distribution for the YY polarisation is virtually identical) for periods during which satellites are detected in the EDA2 data (note that values much higher than the mean peak intensity listed in Table \ref{satdet} are seen in Figure \ref{satfd}).
+
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=\textwidth]{Figures/sats-fd-hist-XX.pdf}
+\caption{Peak intensity of signals detected during periods in which satellites are detected in the EDA2 data (reflections and/or direct transmissions, as discussed in the text).}
+\label{satfd}
+
+\end{figure}
+
+\ldots
+
+
+\begin{acknowledgement}
+We thank the anonymous referee for constructive comments that improved aspects of the paper.  This research has made use of the NASA/IPAC Extragalactic Database (NED), which is funded by the National Aeronautics and Space Administration and operated by the California Institute of Technology.
+This scientific work makes use of the Murchison Radio-astronomy Observatory, operated by CSIRO. We acknowledge the Wajarri Yamatji people as the traditional owners of the Observatory site.  This research made use of Photutils, an Astropy package for
+detection and photometry of astronomical sources \citep{Bradley_2019_2533376}.  The acquisition system was designed and purchased by INAF/Oxford University and the RX chain was design by INAF, as part of the SKA design and prototyping program.
+\end{acknowledgement}

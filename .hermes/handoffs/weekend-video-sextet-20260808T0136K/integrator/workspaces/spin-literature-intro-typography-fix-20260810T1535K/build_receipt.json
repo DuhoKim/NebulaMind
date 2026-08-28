@@ -1,0 +1,66 @@
+{
+  "candidate": "spin-literature-intro-typography-fix-20260810T1535K",
+  "revision": "v5-duho-literature-beat-only",
+  "renderer": "build.py",
+  "renderer_sha256": "9ec14e3b1fa373a04f3c46c4615de21861537573f2eed92bed33d0429baa6356",
+  "narration_script": "narration_script_v5.json",
+  "narration_script_sha256": "6e6b3e98779b5e5125a656d14aec7f6bd37612e9ea2f634aed5243e712bbe377",
+  "timeline": "audio_v5/timeline.json",
+  "timeline_sha256": "9e550ee6051bd42a58e941502973b147bc76838a61335895377afbafe1ae9996",
+  "audio_master": "audio_v5/narration_master.wav",
+  "audio_master_sha256": "ff6b367c1ea5387ebee2e51b13741442128981ae574d801ca267b3268d1a1cb6",
+  "output": "spin-literature-intro-canary-20260810T1535K.mp4",
+  "output_sha256": "fe04bed4605c8ee75b0641ff44c12d61990f388858f97f78103fef3c073678ed",
+  "frame_count": 8416,
+  "raw_frames_submitted": 8417,
+  "encoded_video_frames": 8416,
+  "encoded_video_duration_seconds": 280.533333,
+  "audio_minus_encoded_video_seconds": 0.03187533333328929,
+  "frame_count_derivation": "raw_frames_submitted = ceil(audio_master_seconds * 30); ffmpeg -shortest encodes one fewer video frame because audio ends before the final raw frame completes; delta is under one frame",
+  "fps": 30,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "duration_from_audio_seconds": 280.5652083333333,
+  "word_count": 532,
+  "delivered_wpm": 115.00000375287189,
+  "audio_visual_start_max_delta_seconds": 0.015333333333333421,
+  "music": false,
+  "python": "3.11.15 (main, Jun 23 2026, 15:46:51) [Clang 22.1.3 ]",
+  "platform": "macOS-26.6.1-arm64-arm-64bit",
+  "pillow": "12.3.0",
+  "ffprobe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "duration": "280.533333",
+        "nb_frames": "8416",
+        "nb_read_frames": "8416"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "r_frame_rate": "0/0",
+        "duration": "280.565000",
+        "nb_frames": "13153",
+        "nb_read_frames": "13152"
+      }
+    ],
+    "format": {
+      "duration": "280.565000",
+      "size": "30442013"
+    }
+  },
+  "status": "PENDING_KUN_GUARDRAIL_REVIEW_THEN_TORI_EXACT_HASH_REGATE"
+}

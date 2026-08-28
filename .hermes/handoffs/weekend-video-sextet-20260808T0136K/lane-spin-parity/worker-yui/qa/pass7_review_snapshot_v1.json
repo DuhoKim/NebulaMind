@@ -1,0 +1,155 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass7-review-v1-20260808T054919K",
+  "created_at": "2026-08-08T05:49:19+09:00",
+  "scope": "isolated worker-Yui pass-7 caption/player-UI encoded-frame audit, caption-safe storyboard correction proposal, and sealed-v8 custody",
+  "supersedes": {
+    "path": "qa/pass6_review_snapshot_v1.json",
+    "sha256": "043766adde73dddd61b00a98a9231d26fbba4d09b4baa7414c092bf94f106fc3",
+    "snapshot_id": "spin-worker-yui-pass6-review-v1-20260808T052446K"
+  },
+  "supersession_reason": "Pass 7 adds fresh exact midpoint decoding, deterministic bottom-15-percent and bottom-25-percent obstruction evidence, a sealed-v8 scene-specific-boundary loss audit, and a QA-only caption-safe correction mockup without changing v8.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS7_ENCODED_FRAME_AUDIT.md",
+      "sha256": "95fb9c0598b143f51bd9bef01206d1d0b212a3397ee8be81e30a572c80385f47"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS7.json",
+      "sha256": "70c6a152610e3626d9fa4d8948e10625673176a9d4eef52d0df4dc18b8b13776"
+    },
+    {
+      "path": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+      "sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f"
+    },
+    {
+      "path": "qa/pass7_obstruction_audit/extract_obstruction_frames.py",
+      "sha256": "d97cb765ea333c49696006ceda983f25ca270d3fedbcef452c8e9c9408ea9b68"
+    },
+    {
+      "path": "qa/pass7_obstruction_audit/extraction_receipt.json",
+      "sha256": "e5face289309bf6a3b91a6553c0f92f00bcd494de5fc33415b6e9b24f457f146"
+    },
+    {
+      "path": "qa/audit_pass7_obstruction_ocr.py",
+      "sha256": "ddc6c0d17d5ba061eb4056bbc9e3833e1315cb02e7cb87d71a7697df73015345"
+    },
+    {
+      "path": "qa/pass7_obstruction_ocr_audit.json",
+      "sha256": "4d7e6ad087d420dad145d2fdd4bc5303c15ca4b8e040b4fe242c7c5578721e1e"
+    },
+    {
+      "path": "qa/build_pass7_v8_obstruction.py",
+      "sha256": "7acde8575d85ea7851f43fe7ec29399b98502d1dd9e94a53f1fd6e0171a3114b"
+    },
+    {
+      "path": "qa/pass7_v8_obstruction_audit.json",
+      "sha256": "ca07df898082b2238f102edffc7b74f198e1ad3c070ef8198fdb01e7ab32d2f9"
+    },
+    {
+      "path": "qa/build_pass7_caption_safe_mockup.py",
+      "sha256": "296cf0d54ed3c9ba28c1bb4b51b471cc9e37136fd4513cd612fc8e1f4ccb8b91"
+    },
+    {
+      "path": "qa/pass7_caption_safe_mockup/receipt.json",
+      "sha256": "bd614040a75908473a916babc0dc337fccc37748c66b065c2ddd8d929a421e81"
+    },
+    {
+      "path": "qa/pass7_caption_safe_mockup/contact_sheet_caption_safe.png",
+      "sha256": "7d3652264517b67a9fd62a8bb1221cabc706426c95c8657fe67a89305f6bc0cf"
+    },
+    {
+      "path": "qa/pass7_caption_safe_mockup/contact_sheet_caption_safe_player_ui_25pct.png",
+      "sha256": "efa563015cf58cb49286cf9c9bfe4e005a7d935b39c7aacbafbe8ef3bfff316f"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "render_proposal_frames.py",
+      "sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "qa/static_proposal_validation.json",
+      "sha256": "2b39d1f0779c436b7b38112f23409006a13f06fa7f8e59f54ecbaf6b51cf1e96"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass7_encoded_evidence": {
+    "scene_count": 16,
+    "frame_count": 48,
+    "variants": ["clean", "caption_15pct", "player_ui_25pct"],
+    "fresh_cut_detection": "15/15_EXACT_PASS6_TIMESTAMPS",
+    "clean_midpoint_reproduction": "16/16_PASS6_BYTE_IDENTICAL",
+    "contact_sheet_sha256": {
+      "clean": "e5b0270bd759a594be9342d12544843b332afadb7493bbfc389c801bd5876b1c",
+      "caption_15pct": "7d3637fda63d4ba3ff7bbf2a0f1ffef99b05c08dae30308ecdea0bce1a4dc9c8",
+      "player_ui_25pct": "ce948fcf3fd45f11c190e5ee1b357a95477f4f78f38863b055beb946f267c06a"
+    },
+    "caption_15pct": {
+      "mean_full_retention": 0.866911,
+      "mean_headline_retention": 0.96625,
+      "mean_lower_support_retention": 0.295149,
+      "occupied_zone_tokens_removed": "161/161",
+      "structural_gate_scenes": 0
+    },
+    "player_ui_25pct": {
+      "mean_full_retention": 0.756673,
+      "mean_headline_retention": 0.946477,
+      "mean_lower_support_retention": 0.164207,
+      "occupied_zone_tokens_removed": "335/335",
+      "structural_gate_scenes": 0
+    },
+    "critical_player_ui_25pct": {
+      "scenes": [7, 9, 10, 11, 16],
+      "mean_full_retention": 0.454035,
+      "mean_headline_retention": 0.856,
+      "mean_lower_support_retention": 0.325462,
+      "structural_gate_scenes": 0
+    }
+  },
+  "pass7_v8_obstruction": {
+    "derived_frame_count": 21,
+    "contact_sheet_sha256": {
+      "clean": "553cb7ae2e07ee5e70dd73b8c332c6e36fbd216ffd5d24708291b49fe2f008de",
+      "caption_15pct": "c972066b3609fd373940662eb45704a7aa80f5aceaa978b83a5580b8e49c7b5a",
+      "player_ui_25pct": "05ed6b9e625a182bc2725751d0cdf6cadc6d65d6608f53593f4c0e98e2529406"
+    },
+    "visual_result_held_badge_readability": "7/7_ALL_VARIANTS",
+    "generic_hold_survives": true,
+    "scene_specific_boundary_loss": "S2_S3_S4_S5_S6_S7",
+    "sealed_v8_modified": false,
+    "v9_created": false
+  },
+  "pass7_correction_proof": {
+    "status": "QA_STATIC_MOCKUP_ONLY_NOT_V9_NOT_A_CANDIDATE",
+    "scene_specific_gate_lines": "7/7_VISIBLE_CLEAN_AND_PLAYER_UI_25PCT",
+    "result_held_badges": "7/7_VISIBLE_CLEAN_AND_PLAYER_UI_25PCT",
+    "top_75pct_pixel_identity_clean_to_masked": "7/7",
+    "gate_line_bottom_y_fraction": 0.119444,
+    "sealed_v8_modified": false
+  },
+  "representation_correction": "SCENE_SPECIFIC_GATE_LINE_ABOVE_BOTTOM_QUARTER__PERSISTENT_RESULT_HELD__HUMAN_VISUAL_REVIEW",
+  "science_blockers": "UNCHANGED__NO_VALID_POST_RUN_A3_8_REVIEW__FRAME_UNSTATED",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

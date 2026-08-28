@@ -1,0 +1,133 @@
+{
+  "config_id": "MZR_CENSUS_AUDIO_PASS_V1_20260810T1028K",
+  "created_at_kst": "2026-08-10T10:28:15+09:00",
+  "live_order_binding": {
+    "source": "Duho direct morning instruction relayed in the current Hermes session",
+    "scope": "mzr-census audio and card-seam timing only",
+    "supersedes_all_prior_video_quality_track_orders": true,
+    "single_candidate_only": true,
+    "why_study_sibling_rollout_held": true
+  },
+  "source_of_truth": {
+    "audit_path": "reviews/KUN_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md",
+    "audit_sha256": "cd3195bce3bf0d7c9f32514aeccd08589a132e73a087914c5745fe4203da8a9b",
+    "silence_evidence_path": "reviews/kun-overnight-video-quality-20260810T0055K/audio/mzr_census_silence.txt",
+    "silence_evidence_sha256": "42e9778e94fa4c9a6bd4bc56e9bd959f5d6c1bc17ec2543429d063bf7f13503d",
+    "loudness_evidence_path": "reviews/kun-overnight-video-quality-20260810T0055K/audio/mzr_census_ebur128.txt",
+    "loudness_evidence_sha256": "623ad1dbbc295e6a88679a9e4e66979cd7788adb9a282a8f9ad7737115fd2dc1"
+  },
+  "predecessor": {
+    "candidate": "mzr-census-method-overhaul-canary-20260809T0320K",
+    "video_path": "integrator/canaries/mzr-census-method-overhaul-canary-20260809T0320K/mzr-census-method-overhaul-canary-20260809T0320K.mp4",
+    "video_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "encoded_aac_adts_sha256": "4e138f98802401217a0e19207ab73acb75f6be19a2d74797e5d315bd1c016315",
+    "encoded_audio_decoded_s16le_48k_mono_sha256": "718d9188ae7e97e18f2b26f81d4ebdc278d7c0b18bb95f4b2b400c7cb039a56f",
+    "timeline_path": "source_snapshot/audio/timeline.json",
+    "timeline_sha256": "d1495001eac971557edab645cdc579e0c8f4635f42282aba45ca4f286f398aa8",
+    "narration_master_path": "source_snapshot/audio/narration_master.wav",
+    "narration_master_sha256": "5c196bf5d6158a085e426387bb473ddc23ceecef8004b5e247d580bdf6c0ee35",
+    "narration_raw_sha256": "6f70ed7aad4dd0e2a4103a3ceaae21df79b7930247a439c08dabb1eb06228520",
+    "synthesis_receipt_sha256": "7fdb79a6cf97d429686240b8048568387a221611261d73dfbf0bb943a164ddf5",
+    "spec_sha256": "00a0bb580f81985f8bd095f33c46ad6aa9ae4f240f8a89fe4cfe1a6e7ba53c2a"
+  },
+  "output": {
+    "candidate_directory": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K",
+    "video_filename": "mzr-census-audio-pass-canary-20260810T1028K.mp4"
+  },
+  "audio_target": {
+    "integrated_lufs": -20.5,
+    "lra_target_lu": 7.0,
+    "lra_allowed_lu": [
+      6.5,
+      7.8
+    ],
+    "true_peak_ceiling_dbtp": -2.3,
+    "channels": 1,
+    "sample_rate_hz": 48000,
+    "codec": "aac"
+  },
+  "seam_policy": {
+    "silence_detector": "silencedetect=noise=-35dB:d=0.5",
+    "routine_gap_cap_seconds": 3.9,
+    "allowed_cap_band_seconds": [
+      3.5,
+      4.0
+    ],
+    "listed_routine_seams": [
+      {
+        "from": "i04",
+        "to": "d01",
+        "source_silence_start": 32.816896,
+        "source_silence_end": 37.683396,
+        "source_silence_seconds": 4.8665
+      },
+      {
+        "from": "d02",
+        "to": "p01",
+        "source_silence_start": 54.599417,
+        "source_silence_end": 59.473083,
+        "source_silence_seconds": 4.873667
+      },
+      {
+        "from": "p05",
+        "to": "f01",
+        "source_silence_start": 109.202271,
+        "source_silence_end": 114.073375,
+        "source_silence_seconds": 4.871104
+      },
+      {
+        "from": "f02",
+        "to": "e01",
+        "source_silence_start": 131.775021,
+        "source_silence_end": 136.654917,
+        "source_silence_seconds": 4.879896
+      },
+      {
+        "from": "g02",
+        "to": "b01",
+        "source_silence_start": 194.693104,
+        "source_silence_end": 199.573271,
+        "source_silence_seconds": 4.880167
+      },
+      {
+        "from": "b01",
+        "to": "x01",
+        "source_silence_start": 207.767313,
+        "source_silence_end": 212.641646,
+        "source_silence_seconds": 4.874333
+      }
+    ],
+    "deliberate_visual_breaths_preserved": [
+      {
+        "from": "e02",
+        "to": "c01",
+        "source_silence_seconds": 4.827354
+      },
+      {
+        "from": "c02",
+        "to": "g01",
+        "source_silence_seconds": 4.834417
+      }
+    ]
+  },
+  "visual_custody": {
+    "strategy": "copy the predecessor H.264 stream without re-encoding",
+    "video_frame_count": 6899,
+    "video_duration_seconds": 229.966667,
+    "card_state_timing_changes_allowed": false,
+    "visual_pixel_changes_allowed": false,
+    "script_or_heading_changes_allowed": false,
+    "audio_shift_relative_to_fixed_visuals_must_be_disclosed": true
+  },
+  "gates": {
+    "upload": false,
+    "public_or_frontend": false,
+    "cockpit_copy": false,
+    "published_json": false,
+    "database": false,
+    "deploy": false,
+    "git": false,
+    "billing_provider_or_config": false,
+    "acceptance_label": false
+  }
+}

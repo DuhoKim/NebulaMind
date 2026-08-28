@@ -1,0 +1,954 @@
+{
+  "audio_generated": false,
+  "candidate_path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "contact_sheet_sha256": {
+    "clean": "eeb014b5a458bd60d9fae19f28601757a162530268bde11a0384761060b3ab37",
+    "shadow_floor_08": "343806194fbabe5552d56c935e8e16c57146cd6f0f40a1ac833f2d8f5fc46820",
+    "shadow_floor_16": "2028ae8b7cca25a81d7d47e53bdc090d0b12d5f5895a749473f4903f706c32f5",
+    "shadow_floor_32": "95bd3aa72d41a3f55af9a583276fb56235ac07cc969ed5ae815631b3c8651dc1",
+    "shadow_floor_48": "b4c32d96ed98365b801c7617a403c91ac51165f89d7f8464b040d8cb9fd7632d"
+  },
+  "created_at": "2026-08-08T09:25:29.355659+09:00",
+  "cut_detection": {
+    "cuts": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "exact_pass13_match": true,
+    "implementation": "30fps 160x90 grayscale mean-absolute frame difference",
+    "maximum_nonselected_score_outside_exclusion": 0.829722222,
+    "minimum_selected_score": 3.955555556,
+    "minimum_selected_to_nonselected_ratio": 4.767325075,
+    "nonmaximum_separation_frames": 30,
+    "selected_incoming_frame_indices": [
+      364,
+      791,
+      1418,
+      1814,
+      2240,
+      2642,
+      3070,
+      3490,
+      3931,
+      4441,
+      4861,
+      5392,
+      5904,
+      6403,
+      7016
+    ]
+  },
+  "decoder": {
+    "ffmpeg": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "numpy": "1.26.4",
+    "pillow": "11.3.0",
+    "python": "3.9.6"
+  },
+  "deepening_pass": 14,
+  "ffprobe": {
+    "format": {
+      "bit_rate": "941643",
+      "duration": "243.300000",
+      "filename": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+      "format_long_name": "QuickTime / MOV",
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "nb_programs": 0,
+      "nb_stream_groups": 0,
+      "nb_streams": 2,
+      "probe_score": 100,
+      "size": "28637729",
+      "start_time": "0.000000",
+      "tags": {
+        "compatible_brands": "isomiso2avc1mp41",
+        "encoder": "Lavf62.12.102",
+        "major_brand": "isom",
+        "minor_version": "512"
+      }
+    },
+    "streams": [
+      {
+        "avg_frame_rate": "30/1",
+        "bit_rate": "844464",
+        "bits_per_raw_sample": "8",
+        "chroma_location": "left",
+        "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+        "codec_name": "h264",
+        "codec_tag": "0x31637661",
+        "codec_tag_string": "avc1",
+        "codec_type": "video",
+        "coded_height": 1080,
+        "coded_width": 1920,
+        "disposition": {
+          "attached_pic": 0,
+          "captions": 0,
+          "clean_effects": 0,
+          "comment": 0,
+          "default": 1,
+          "dependent": 0,
+          "descriptions": 0,
+          "dub": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "karaoke": 0,
+          "lyrics": 0,
+          "metadata": 0,
+          "multilayer": 0,
+          "non_diegetic": 0,
+          "original": 0,
+          "still_image": 0,
+          "timed_thumbnails": 0,
+          "visual_impaired": 0
+        },
+        "duration": "243.300000",
+        "duration_ts": 3737088,
+        "extradata_size": 47,
+        "field_order": "progressive",
+        "has_b_frames": 2,
+        "height": 1080,
+        "id": "0x1",
+        "index": 0,
+        "is_avc": "true",
+        "level": 40,
+        "mime_codec_string": "avc1.640028",
+        "nal_length_size": "4",
+        "nb_frames": "7299",
+        "pix_fmt": "yuv420p",
+        "profile": "High",
+        "r_frame_rate": "30/1",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "tags": {
+          "encoder": "Lavc62.28.102 libx264",
+          "handler_name": "VideoHandler",
+          "language": "und"
+        },
+        "time_base": "1/15360",
+        "width": 1920
+      },
+      {
+        "avg_frame_rate": "0/0",
+        "bit_rate": "91195",
+        "bits_per_sample": 0,
+        "channel_layout": "mono",
+        "channels": 1,
+        "codec_long_name": "AAC (Advanced Audio Coding)",
+        "codec_name": "aac",
+        "codec_tag": "0x6134706d",
+        "codec_tag_string": "mp4a",
+        "codec_type": "audio",
+        "disposition": {
+          "attached_pic": 0,
+          "captions": 0,
+          "clean_effects": 0,
+          "comment": 0,
+          "default": 1,
+          "dependent": 0,
+          "descriptions": 0,
+          "dub": 0,
+          "forced": 0,
+          "hearing_impaired": 0,
+          "karaoke": 0,
+          "lyrics": 0,
+          "metadata": 0,
+          "multilayer": 0,
+          "non_diegetic": 0,
+          "original": 0,
+          "still_image": 0,
+          "timed_thumbnails": 0,
+          "visual_impaired": 0
+        },
+        "duration": "242.099000",
+        "duration_ts": 5810376,
+        "extradata_size": 5,
+        "id": "0x2",
+        "index": 1,
+        "initial_padding": 0,
+        "mime_codec_string": "mp4a.40.2",
+        "nb_frames": "5676",
+        "profile": "LC",
+        "r_frame_rate": "0/0",
+        "sample_fmt": "fltp",
+        "sample_rate": "24000",
+        "start_pts": 0,
+        "start_time": "0.000000",
+        "tags": {
+          "handler_name": "SoundHandler",
+          "language": "und"
+        },
+        "time_base": "1/24000"
+      }
+    ]
+  },
+  "frame_count": 80,
+  "fresh_clean_match": "16/16_PASS13_BYTE_IDENTICAL",
+  "git_action": false,
+  "raw_ocr_text_stored": false,
+  "records": [
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_01.png",
+      "png_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_01.png",
+      "png_sha256": "48eba8f80ddf5de0b32a616734c44dd12f5f74ddfd0ec0e7a3aed1390ed93a55",
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_01.png",
+      "png_sha256": "ebd6b1dbdfeb01aefd272632b060877fe5676cba3a0a11bec45da3de6c9cb676",
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_01.png",
+      "png_sha256": "d805aaa9e56a0cde97976dfc2e2924aa5e5e84a75495a5960ec868f1fff0145b",
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_01.png",
+      "png_sha256": "34b98488a17ee911ef98549d890cd4f2e1befa81ca673fc64d0e04d9de202fe5",
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_02.png",
+      "png_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_02.png",
+      "png_sha256": "4022bbca9794af4dc5476ebcef33ae6f0f55033cb6a2650f9f755e0a0fcd53ae",
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_02.png",
+      "png_sha256": "44c93b4e1b7f2bbd1105aefa8466681b28bca88d285800750761c6decf7cf1f5",
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_02.png",
+      "png_sha256": "7eb0602f57cd5557026fd9e9266a667a671a4eae2e795072f805b07d21b7e01e",
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_02.png",
+      "png_sha256": "321e349c11ccce65f6362dcf35955701b80bd98e707ccbc41e357dd936362e33",
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_03.png",
+      "png_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_03.png",
+      "png_sha256": "63c5076259b3473d24c6c15ef639c7719e3e2951aaff6e919cfe29d843b20822",
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_03.png",
+      "png_sha256": "cd2b6d9afc838c7c36210a0abb8d5eda04da893552bd366e047aaf8b70f58aea",
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_03.png",
+      "png_sha256": "e3dbfae26efea6430eacb5edcf7a45a25d8b2c41a244b048329ffedfb9738c93",
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_03.png",
+      "png_sha256": "6c1660272ed10d312c27ac53a687e36cd2b86d99d2e59114773e2130070afd93",
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_04.png",
+      "png_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_04.png",
+      "png_sha256": "c0d36e410147c2bc604379eb27af17a0b804869a8b8bae2131e9f4e8a816aac6",
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_04.png",
+      "png_sha256": "f6ad10d7667619fffb2ffd26e97ff9d154350075e179f5a7676547d6984791ce",
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_04.png",
+      "png_sha256": "d805b442b62050b61601a700d170a3fb7ba81079718c3bfbc4ca447047248628",
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_04.png",
+      "png_sha256": "164ebb7ee79f1ebef158fa22f514c76d2d9d587cedda06280db4ec1a85a8f18b",
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_05.png",
+      "png_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_05.png",
+      "png_sha256": "8ed515204387f380bb4fd534a51ee3ed1dc33d1f23f01761d5ce71da5983bb18",
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_05.png",
+      "png_sha256": "19274569e85c01f03c36ed41119cf0cb9fb42a8693a6ceec91511f88d435f33f",
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_05.png",
+      "png_sha256": "e9d3b8778ccd07b843000e24ea6cb02554c5f1f6c67e6346ef3a1c1d0104e356",
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_05.png",
+      "png_sha256": "1e4b31dfa7e371585f396a96c8bfa2bf7f1a79bdd5219785aaad38ac9a3153bb",
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_06.png",
+      "png_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_06.png",
+      "png_sha256": "e5aef47908923ac1703b9a317f85a288827c25b8bda93d1082655d51353dfe56",
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_06.png",
+      "png_sha256": "a541b25fcddbc97399646d009858efc06ef57dec67ad2c3bf1cb4c8e29282c1e",
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_06.png",
+      "png_sha256": "f9f0add7e556d01ac6d4acb25c184baf09fceb641bf0870143ade7e6f0acde3c",
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_06.png",
+      "png_sha256": "fc111fed7ab40c437525004e13e13813d2d38fc10ebcff3c11c7ff8da167c105",
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_07.png",
+      "png_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_07.png",
+      "png_sha256": "c5a66d633c20b44c61949aec914802c4a4306ec92b293a4fd7ed549deddc37f5",
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_07.png",
+      "png_sha256": "1b75cf7a593696c268d5042fbb936bbdd5c88b4caa352480e9069e30a92fa3f8",
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_07.png",
+      "png_sha256": "02ae51d5f8d0b91d1cc9d27485317bbad1bdf7f7f84b17557813f170a3d0982b",
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_07.png",
+      "png_sha256": "018f646b3aad95e303bd2632c27765f53629aca258c26bca02aff031c28d9f62",
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_08.png",
+      "png_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_08.png",
+      "png_sha256": "2cc65a5789deb9402a220b5c33a0ea22f5461c00bbc9c769dddc5ad0b1e9f300",
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_08.png",
+      "png_sha256": "204653a5071588022f90b088ccc3f0d4c26a0c1ff6fbb0f51fa2bff4e112426e",
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_08.png",
+      "png_sha256": "828a04aaef7c41cb58d6b7bdce8a80dd5dafd48bd9062572f7f36483cd78f631",
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_08.png",
+      "png_sha256": "f63e3011ba160afcf9c660ce291857439ae2924e78d7db79532a30fb94e30f31",
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_09.png",
+      "png_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_09.png",
+      "png_sha256": "37a692122f727680c7513976a1275f0561df93c38dcec9fc53a44dfc5903498d",
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_09.png",
+      "png_sha256": "df4491e679db92e27e05def41729c0505634bae8cd3b9c81a9903231d0b49570",
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_09.png",
+      "png_sha256": "cdbd5bd2272f6dbc788b1376f8afcb4624db2e61b25aaff8c6d5044516f2b6e6",
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_09.png",
+      "png_sha256": "a61e90b35d3f98201e5008d660af95ed51ea2c99920b341b335bc50b0a733634",
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_10.png",
+      "png_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_10.png",
+      "png_sha256": "197c247849bde6a0d9a74d8b469335e976a34ef5cbb5cc162db8cb99365d6f2a",
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_10.png",
+      "png_sha256": "49d86f6c7946a7a5712555d2270b131ae5a19039b9e6ad4a62d0a11850d243a4",
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_10.png",
+      "png_sha256": "edf060a145786707f39ce8d997220ec6ce610d66b604652942702ce83bc6e4ac",
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_10.png",
+      "png_sha256": "4b5805d33358ca2e070d9c4f3fd26fda134cd48270110b5d1d34d9140bc1e7e7",
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_11.png",
+      "png_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_11.png",
+      "png_sha256": "4c58ca2527de345415e5bc826f3434dcb7379b7420f7460b471e58a32f420e41",
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_11.png",
+      "png_sha256": "4cd280d71fe901591e3736697ea82423b10c5cb033550f993fae7f34f1e503d4",
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_11.png",
+      "png_sha256": "fae491178abcf591c54669ed6528dc49b3c98ea0c79ef371c7c47331b2683619",
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_11.png",
+      "png_sha256": "d2ac77992a8843d7fb24b2ae689ec53e229b85395344c82d2e4d3833386259c6",
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_12.png",
+      "png_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_12.png",
+      "png_sha256": "826f26f1e24cd47b94d0a5cb36b36450fb383cb4276eda1c11f9a7fb02142db6",
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_12.png",
+      "png_sha256": "028df27139baf7c12e2c356accd62f268820a9c90bed1025ab22ffbcca3fc56e",
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_12.png",
+      "png_sha256": "780a43dc7e5fdf7dd727858611c7011538e8b0d000b3989fd83dba07f7eea879",
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_12.png",
+      "png_sha256": "796e84dc5b114ec1c85babfcaebbac13e1d4fe392b4b2fd690d09cc2889d0836",
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_13.png",
+      "png_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_13.png",
+      "png_sha256": "0b40ef14225630ab2c0151d32b7d266c87e756fd41ed75574024b47f3530ff55",
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_13.png",
+      "png_sha256": "e3075703b324a5a366df65b771115decb1c9a436942ce5128d63319dc4822f9a",
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_13.png",
+      "png_sha256": "77988743950aa150076946701db35294b68a0457cfb74ec6d28deaa764d4a081",
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_13.png",
+      "png_sha256": "3ba40936ad6e4ebc97ff82734b56e389e61a39735a51e53bf26efb749545e8c3",
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_14.png",
+      "png_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_14.png",
+      "png_sha256": "7e39b8071b25ca75f5e71ca41ec0fcf46fb2e02381397dbd97dedd8ca28b640d",
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_14.png",
+      "png_sha256": "10baad9c6626a838769155462224f438bc3a9b172d66f8f7e8d3ef0e737d7b85",
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_14.png",
+      "png_sha256": "92ff0711d488f9e3d5803ef1f29cf53648fcabfaeed67e1848f15a79a9b4cca9",
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_14.png",
+      "png_sha256": "e8b111ed1f2a82da16ddee8741abbaaefec8bb1b19db52a641e9d6d44a72d0c3",
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_15.png",
+      "png_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_15.png",
+      "png_sha256": "d6dceecdf283494dbd79cd3a396d00b142119b5a3d4ccfaba9cc364811a81010",
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_15.png",
+      "png_sha256": "1d863a81c3011790b2e4fe5ab8b9ac5fa5ddd053199206e79b773c7c8996c988",
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_15.png",
+      "png_sha256": "1bd53b25aa8ade079b2de8644f0d4f75186f0683889ec4e63cb4d4b7b3a7978d",
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_15.png",
+      "png_sha256": "65c182a79caa65b9e10a63221f4727a41608f589c8b61419c243b006ebc88ff9",
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "shadow_floor_48"
+    },
+    {
+      "luma_floor_code_value": null,
+      "pass13_clean_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "path": "qa/pass14_shadow_floor_audit/frames/clean/scene_16.png",
+      "png_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "clean"
+    },
+    {
+      "luma_floor_code_value": 8,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_08/scene_16.png",
+      "png_sha256": "ed5ad6d69b5fff00338c28b428f94d2620d1089b9aed4ebf3602681cbe39b075",
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "shadow_floor_08"
+    },
+    {
+      "luma_floor_code_value": 16,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_16/scene_16.png",
+      "png_sha256": "9b2ff0599846ec524d1d5f3c8aebf221a07aa554a476be3f396abb7c5eb202e6",
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "shadow_floor_16"
+    },
+    {
+      "luma_floor_code_value": 32,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_32/scene_16.png",
+      "png_sha256": "16b6d3e2a5453be9c271a34cde340549aeba3ca422a4690f5dd91e7ac4fadbe1",
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "shadow_floor_32"
+    },
+    {
+      "luma_floor_code_value": 48,
+      "pass13_clean_sha256": null,
+      "path": "qa/pass14_shadow_floor_audit/frames/shadow_floor_48/scene_16.png",
+      "png_sha256": "daff8fbb0d4b38c0fcee987550a21534708c5bf373d428f2671382eb3707affc",
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "shadow_floor_48"
+    }
+  ],
+  "scene_count": 16,
+  "scientific_adjudication_performed": false,
+  "shared_or_public_assets_modified": false,
+  "status": "QA_STATIC_PNG_DERIVATIVES_NOT_A_CANDIDATE",
+  "transform_contract": {
+    "canvas_change": false,
+    "floors_srgb_code_value": [
+      8,
+      16,
+      32,
+      48
+    ],
+    "implementation": "integer-luma-preserving dark-tone floor and full-range remap",
+    "luma_rounding": "add 128 then floor divide by 256",
+    "luma_weights_integer_over_256": [
+      54,
+      183,
+      19
+    ],
+    "remap": "Y2=max(Y-floor,0)*255/(255-floor), integer round-half-up; RGB2=RGB*Y2/Y, integer round-half-up",
+    "source_mode": "RGB"
+  },
+  "tts_invoked": false,
+  "variant_count": 5,
+  "variant_order": [
+    "clean",
+    "shadow_floor_08",
+    "shadow_floor_16",
+    "shadow_floor_32",
+    "shadow_floor_48"
+  ],
+  "video_encoded": false
+}

@@ -1,0 +1,40 @@
+{
+  "review_round": 10,
+  "pass": 7,
+  "snapshot": "pass7-validator-projection-causality-v2",
+  "snapshot_manifest_sha256": "6a278356613dd5aac995202cb74574a4d9103c5629b50018cc1c2f9d727c4cc4",
+  "manifest_entries": 34,
+  "start_hashes_verified": "34/34",
+  "end_hashes_verified": "34/34",
+  "file_modes": "0444",
+  "directory_modes": "0555",
+  "snapshot_changed": false,
+  "packet_reads": 1,
+  "answer_key_present": false,
+  "score": 8,
+  "maximum_score": 8,
+  "threshold": 7,
+  "mandatory_questions": [4, 8],
+  "mandatory_questions_passed": true,
+  "display_citations_visible_in_packet": true,
+  "verdict": "PASS",
+  "answers_summary": {
+    "q1": "Single-table VizieR metadata-search reach on abundance-, mass-, and redshift-search axes; no cross-table joins/crossmatches, physical adjudication, eligibility, metallicity, or MZR measurement.",
+    "q2": "Semantic UCD tags and column-name variants.",
+    "q3": "5393→5568 (+175), 6118→6206 (+88), 6667→6687 (+20), intersection 178, minus 21 (19 redshift + 2 abundance), leaves 157; 62/157 is a vocabulary-only side branch and all 157 go to T2.",
+    "q4": "62 is description-term regex vocabulary presence only; not eligible tables, gas-phase evidence, measurement, or T2 subset.",
+    "q5": "7/7 and 0/3 are T1 retrieval-instrument checks; T2 uses 12 decoys plus 3 anchors as contract-design controls, not eligibility results.",
+    "q6": "Precision and the dominant precision-contamination mode were not certified.",
+    "q7": "Symbol/meaning collisions: Galactic Cartesian height and stellar-grid/model metal fraction; target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity; recorded characterizations, not T2 rulings.",
+    "q8": "T1 counts, 178−21=157, 62/157 side check, T1 checks with precision not certified, and frozen T2 contract are reportable; T2 application, eligible-table count, and metallicity/MZR measurement remain pending."
+  },
+  "ambiguities": [
+    "Packet says controls omitted the dominant precision-contamination mode but does not identify one taxonomy category as dominant; reviewer inferred none."
+  ],
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "release_disposition": "HOLD",
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "current_gate_note": "V2 comprehension PASS cannot clear v4 or the encoded candidate."
+}

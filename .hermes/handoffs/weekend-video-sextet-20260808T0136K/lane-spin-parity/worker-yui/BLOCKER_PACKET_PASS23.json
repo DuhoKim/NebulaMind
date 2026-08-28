@@ -1,0 +1,94 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass23-blockers-20260808T133615K",
+  "checked_at": "2026-08-08T13:36:15+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 23,
+  "video_reportable_now": false,
+  "candidate": {
+    "name": "spin-parity-census-20260808T0149",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD — NOT AUTHORIZED FOR RELEASE OR ACCEPTANCE",
+    "preserved": true,
+    "modified": false,
+    "structural_gate_result": "0/16 scenes across full-color, grayscale, protanopia, deuteranopia, and tritanopia 360p represented variants",
+    "science_values_copied_into_packet": false
+  },
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "video_reportable_now": false,
+    "semantic_decision": "SUBSTANTIVE_RESULT_DECK_HELD; METHOD_ONLY_VISUAL_PROPOSAL_ALLOWED"
+  },
+  "blockers": [
+    {
+      "id": "A3_8_POST_RUN_INDEPENDENT_REVIEW_MISSING",
+      "status": "OPEN",
+      "exact_requirement": "A valid independent post-run A3.8 verdict record for the exact frozen all-209-file T4_PAIRED_FLIP artifact, with exact T4 identity and review-record identity sufficient to bind the review to that run.",
+      "current_evidence": "The complete pass-5 content inventory covers 209/209 regular files. It finds zero post-T4 files carrying an exact T4+A3.8 hash pair. No later pass has supplied a new authoritative record.",
+      "not_substitutes": [
+        "presentation QA",
+        "candidate mux or numeric-source-guard success",
+        "OCR or encoded-frame metrics",
+        "LANA_ZERO_CONCORDANCE.md science pressure",
+        "a filename mention without exact frozen-artifact identity"
+      ],
+      "unblock_condition": "Hwao receives and validates the missing independent post-run record against the exact frozen T4 identity."
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "status": "OPEN",
+      "authority": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+        "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+        "terminal_status": "FRAME REVIEW: AGREES FRAME_UNSTATED"
+      },
+      "exact_requirement": "Resolve whether stored mirrored-direction labels follow the displayed image or are mapped back before storage, with source-bound independent evidence sufficient for physical interpretation.",
+      "not_substitutes": [
+        "color or monochrome presentation survival",
+        "direct labels plus non-color geometry",
+        "normal-leg table-column integrity",
+        "mirroring procedure description",
+        "a visual convention schematic"
+      ],
+      "unblock_condition": "Hwao receives an authoritative source-bound resolution of the archive storage convention and records the resulting interpretation gate."
+    },
+    {
+      "id": "VIDEO_REPORTABILITY_CLOSED",
+      "status": "OPEN",
+      "current_value": false,
+      "exact_requirement": "A new authoritative source/status freeze must set video_reportable_now true after the science blockers are resolved.",
+      "not_substitutes": [
+        "a method proof passing every representation test",
+        "all seven held/status gates remaining readable",
+        "candidate visual hierarchy remaining recognizable",
+        "a successful deterministic verifier or manifest"
+      ]
+    }
+  ],
+  "pass23_representation_evidence": {
+    "audit": "PASS23_ENCODED_FRAME_AUDIT.md",
+    "audit_sha256": "16b1a03f6f1066eaa82e510233e6d56acd121218ead9213d7f428bbc5352afc2",
+    "quantitative_audit": "qa/pass23_minimum_scale_color_vision_quantitative_audit.json",
+    "quantitative_audit_sha256": "8a20b38b37c0c667db07792020373cd18e448dd839ac48a91827f766106ced03",
+    "guard": "MINIMUM_SCALE_COLOR_REDUNDANCY_GUARD_PASS23.json",
+    "guard_sha256": "b4f1811a7e4503005f95b4e2cfd17ed74da76432acaef9b05b3e3319e6e17ea2",
+    "finding": "All four compound color/monochrome stresses preserve the candidate's result hierarchy without adding a structural hold. The live method proof retains exact gates and complete color-independent status geometry, so the evidence supports a non-pixel guard rather than a new visual correction.",
+    "science_adjudicated": false
+  },
+  "allowed_next_action": "Hwao may review the pass-23 compound color-redundancy guard with the cumulative method-only packet. Result integration remains prohibited until the exact A3.8 review, archive-frame resolution, and a new authoritative video_reportable_now=true freeze exist.",
+  "safety": {
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

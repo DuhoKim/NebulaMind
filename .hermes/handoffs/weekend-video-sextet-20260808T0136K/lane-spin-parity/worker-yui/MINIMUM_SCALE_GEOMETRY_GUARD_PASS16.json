@@ -1,0 +1,186 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass16-minimum-scale-geometry-20260808T103416K",
+  "created_at": "2026-08-08T10:34:16+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 16,
+  "focus": "compound anisotropic geometry plus minimum-scale 640x360 representation resilience",
+  "scope": {
+    "source_candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "sealed_storyboard_iteration": "v8",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "storyboard_modified": false,
+    "v9_created": false,
+    "candidate_created": false,
+    "science_adjudicated": false
+  },
+  "stress_contract": {
+    "operational_variants": {
+      "x90_360p": {
+        "native_scale_x": 0.9,
+        "native_scale_y": 1.0,
+        "native_padding": "centered black RGB",
+        "output_size": [640, 360],
+        "resampler": "Pillow LANCZOS"
+      },
+      "y90_360p": {
+        "native_scale_x": 1.0,
+        "native_scale_y": 0.9,
+        "native_padding": "centered black RGB",
+        "output_size": [640, 360],
+        "resampler": "Pillow LANCZOS"
+      }
+    },
+    "characterization_only_variants": {
+      "x80_360p": {
+        "native_scale_x": 0.8,
+        "native_scale_y": 1.0,
+        "output_size": [640, 360]
+      },
+      "y80_360p": {
+        "native_scale_x": 1.0,
+        "native_scale_y": 0.8,
+        "output_size": [640, 360]
+      }
+    },
+    "transform_order": "native anisotropic LANCZOS resampling, centered black padding to 1920x1080, then full-canvas LANCZOS downscale to 640x360",
+    "interpretation_limit": "Packet-specific representation stress only; not a named display, player, projector, codec, browser, delivery platform, service, room, viewer, or pixel-aspect standard."
+  },
+  "observed_candidate_failure": {
+    "fresh_cut_reproduction": "15/15",
+    "fresh_midpoints_byte_identical_to_pass15": "16/16",
+    "operational_x90_360p": {
+      "mean_headline_token_recall_vs_clean": 0.92055,
+      "mean_full_token_recall_vs_clean": 0.72607,
+      "mean_lower_support_token_recall_vs_clean": 0.682688,
+      "mean_numeric_token_recall_vs_clean": 0.449145,
+      "structural_gate_scenes": "0/16"
+    },
+    "operational_y90_360p": {
+      "mean_headline_token_recall_vs_clean": 0.912103,
+      "mean_full_token_recall_vs_clean": 0.75736,
+      "mean_lower_support_token_recall_vs_clean": 0.717162,
+      "mean_numeric_token_recall_vs_clean": 0.461298,
+      "structural_gate_scenes": "0/16"
+    },
+    "held_critical_scenes_7_9_10_11_16": {
+      "x90_360p_headline_recall": 0.814727,
+      "x90_360p_full_recall": 0.480969,
+      "x90_360p_lower_support_recall": 0.403528,
+      "x90_360p_numeric_recall": 0.324445,
+      "y90_360p_headline_recall": 0.857394,
+      "y90_360p_full_recall": 0.51621,
+      "y90_360p_lower_support_recall": 0.439766,
+      "y90_360p_numeric_recall": 0.363333,
+      "structural_gate_scenes_each_variant": "0/5"
+    },
+    "human_visual_finding": "Large result headlines, numbers, bars, matrices, plots, and conclusions remain primary. Small axes, tick labels, error bars, caveats, citations, and provenance are not uniformly acceptance-readable. No structural held boundary appears.",
+    "disposition": "PRESERVE_FAILED_CANDIDATE"
+  },
+  "observed_method_resilience": {
+    "sealed_v8_operational_result_held_badges_visual": {
+      "x90_360p": "7/7",
+      "y90_360p": "7/7"
+    },
+    "sealed_v8_operational_major_status_boundaries_visual": {
+      "x90_360p": "7/7",
+      "y90_360p": "7/7"
+    },
+    "pass7_operational_specific_gate_lines_visual": {
+      "x90_360p": "7/7_EXACT",
+      "y90_360p": "7/7_EXACT"
+    },
+    "pass12_operational_specific_gate_lines_visual": {
+      "x90_360p": "7/7_EXACT",
+      "y90_360p": "7/7_EXACT"
+    },
+    "pass12_operational_gate_character_similarity_mean": {
+      "x90_360p": 1.0,
+      "y90_360p": 0.973463
+    },
+    "pass12_characterization_specific_gate_lines_visual": {
+      "x80_360p": "7/7_EXACT",
+      "y80_360p": "7/7_EXACT"
+    },
+    "pass12_characterization_gate_character_similarity_mean": {
+      "x80_360p": 1.0,
+      "y80_360p": 0.979486
+    },
+    "pass12_result_held_badges_visual_all_four_compound_variants": "7/7_EACH",
+    "overlap_clipping_or_semantic_ambiguity": false,
+    "fine_copy_limit": "Fine source/provenance lines and some tertiary labels are not uniformly acceptance-readable at represented 360p pixels; no acceptance in the pass-12 proof depends on them."
+  },
+  "future_hwao_authored_layout_requirements": [
+    "Treat the x90_360p and y90_360p transforms in this packet as an operational compound representation pair; x80_360p and y80_360p are characterization only.",
+    "Required interpretation, uncertainty, branch, and result-status boundaries must remain direct readable text after both operational transforms; do not encode them only through slope, angle, aspect, area, width, spacing, proximity, line thickness, color, or tiny fine print.",
+    "At 1080p authoring scale, each scene-specific top gate should meet or exceed the demonstrated pass-12 contract: bold 28 px text with 1 px stroke in a high-contrast box within title-safe bounds, above the bottom obstruction zone.",
+    "Retain a redundant RESULT HELD badge and a large scene-specific status boundary. The gate line and badge must agree.",
+    "Axes, units, values, error bars, thresholds, branches, and equation terms that are required for acceptance must have direct readable labels at represented 360p pixels; tertiary captions, citations, and provenance may not be the sole carrier of required meaning.",
+    "Do not rely on global full-frame OCR as the only acceptance gate at 360p. Use exact mapped crops plus human review of represented output pixels.",
+    "Do not infer platform, viewer, codec, room, or device behavior from this packet-specific transform.",
+    "Do not advance a result-bearing candidate while the source-frame and independent-review blockers remain unresolved."
+  ],
+  "action": {
+    "type": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "reason": "The pass-12 proof retains all seven exact gate lines and RESULT HELD badges under both operational and both characterization compound variants without clipping, overlap, or semantic ambiguity. A new visual correction is not evidence-justified; the representation interaction instead adds a guard for future Hwao-authored layouts.",
+    "candidate_integration_authority": "HWAO_ONLY",
+    "tts_authority": "HWAO_ONLY"
+  },
+  "cumulative_guard_chain": [
+    "360p minimum-resolution",
+    "bottom-25-percent obstruction",
+    "color and monochrome",
+    "symmetric title-safe crop",
+    "20-percent black ambient-contrast lift",
+    "JPEG q60 4:2:0 recompression",
+    "spatial defocus r1.50",
+    "directional horizontal box-smear w07",
+    "dark-tone shadow-floor",
+    "centered anisotropic geometry",
+    "compound centered anisotropic geometry plus 640x360 minimum scale"
+  ],
+  "evidence": {
+    "extractor": {
+      "path": "qa/extract_pass16_minimum_scale_geometry_frames.py",
+      "sha256": "61b3b8566c7610bfe6cd46b644b69aaff34b9f36bd8d60689256aa0df78710a1"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass16_minimum_scale_geometry_audit/extraction_receipt.json",
+      "sha256": "c8667ff898e65d0b73eb4c5d64311b834354b693e8dd92879fad5336d65764b7"
+    },
+    "method_builder": {
+      "path": "qa/build_pass16_v8_minimum_scale_geometry.py",
+      "sha256": "2a3c034743c13b7068e8c88d55eecb57225f8f610fbeb70e16952de95cf33b3e"
+    },
+    "method_receipt": {
+      "path": "qa/pass16_v8_minimum_scale_geometry/receipt.json",
+      "sha256": "88b491d3cfa542dac2ea328ce07c207a0901d83570aa175b26b360018fcff42d"
+    },
+    "quantitative_auditor": {
+      "path": "qa/audit_pass16_minimum_scale_geometry.py",
+      "sha256": "5965fe1a77890307b28c6890b7e49c9aef43bbdbccd86e058c78ebda6629de8c"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass16_minimum_scale_geometry_quantitative_audit.json",
+      "sha256": "fdc613e9dd0b949ae52a8d07a32460835b4d6895ba522f7d6836701448091dcc"
+    }
+  },
+  "science_blockers_unchanged": [
+    "No valid post-run independent A3.8 review exists for the exact frozen all-209-file T4 artifact.",
+    "KUN_FRAME_REVIEW.md still ends FRAME REVIEW: AGREES FRAME_UNSTATED.",
+    "The archive storage convention required for result interpretation remains unresolved.",
+    "video_reportable_now remains false."
+  ],
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "published": false
+  }
+}

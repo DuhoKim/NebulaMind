@@ -1,0 +1,277 @@
+{
+  "proposal_id": "spin-method-only-graphics-v1",
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "video_reportable_now": false,
+  "format": {
+    "canvas": "1920x1080",
+    "fps_if_integrated": 30,
+    "estimated_duration_seconds": 54,
+    "presentation_class": "NO-FACE METHOD-ONLY DIAGNOSTIC",
+    "audio_in_worker_packet": "none",
+    "narration_route_if_later_authorized_by_hwao": "Alloy through Nous, speed 1.18"
+  },
+  "acceptance_contract": {
+    "must_show": [
+      "sample/readout counts as parallel branches",
+      "predeclared asymmetry equation",
+      "CW and ACW definitions",
+      "handedness storage-convention schematic",
+      "normal-leg column-alignment check",
+      "bias-control design and unavailable flag rung",
+      "full-screen unresolved-result boundary"
+    ],
+    "must_not_show": [
+      "T3 or T4 result values or figures",
+      "dipole-axis result or interpretation",
+      "cosmological parity violation",
+      "Ganalyzer or DESI Legacy Survey claims",
+      "GRB, SN Ia, dark-energy, quasar, or H0 context",
+      "black-hole-universe cosmology support",
+      "internal repository paths as audience citations"
+    ]
+  },
+  "scenes": [
+    {
+      "id": "S1",
+      "duration_seconds": 6,
+      "section": "QUESTION",
+      "sentence": "The method asks whether apparent clockwise and anticlockwise winding counts differ; each readout produces its own CW/ACW counts and A estimate, but a result stays locked until the archive frame and independent review are settled.",
+      "on_screen_copy": {
+        "headline": "Do apparent clockwise and anticlockwise counts differ?",
+        "subhead": "METHOD ONLY · sample → statistic → convention → alignment → controls",
+        "status_badge": "METHOD ONLY · RESULT HELD"
+      },
+      "visual_action": "Reveal five linked method nodes in the same order as the following scenes; keep the final RESULT node locked and state both unlock requirements: archive frame and independent post-run review.",
+      "dominant_visual": "method pipeline with locked result node",
+      "display_citation": "NebulaMind galaxy-spin contract, frozen before data",
+      "provenance_role": "PREDECLARED METHOD",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/SPIN_PARITY_CONTRACT_V1.md",
+          "sha256": "dc2ace678322c57b1c801f12feac6774564f5c39da74990c0fd7089afffa400e",
+          "anchor": "sections 2–4 and 6"
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "duration_seconds": 9,
+      "section": "SAMPLE",
+      "sentence": "The frozen Galaxy Zoo source is reread three ways; each readout independently defines a sample, produces CW/ACW counts, and gets its own A estimate, while overlapping counts must not be added.",
+      "on_screen_copy": {
+        "headline": "One source, three overlapping readouts",
+        "subhead": "Confidence means classification confidence; each readout gets its own A estimate",
+        "source_count": "667,944 Galaxy Zoo table rows",
+        "branches": [
+          "Release SPIRAL flag: 190,225 pass = 161,172 classified + 29,053 ties",
+          "Classification confidence ≥ 0.80: 30,412 classified; 0 ties",
+          "Classification confidence ≥ 0.60: 51,157 classified; 0 ties"
+        ],
+        "relationship_notes": [
+          "confidence ≥0.80 is contained within confidence ≥0.60",
+          "release-flag overlap is not quantified here"
+        ],
+        "scope_note": "ALTERNATIVE READOUTS · COUNTS OVERLAP · DO NOT SUM"
+      },
+      "visual_action": "Fan one source node into three equal-width branches; print exact values inside each branch; highlight the 0.80 branch as primary without moving it ahead of the others.",
+      "dominant_visual": "parallel sample-branch diagram",
+      "display_citation": "Galaxy Zoo 1 Data Release · frozen sample audit · 2026-08-05",
+      "provenance_role": "ARCHIVE CENSUS",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T1_FUNNEL.json",
+          "sha256": "ed97758ac1b991488d4d15da3ecb8dca229e8ec4ab547086468b81c9e64e281d",
+          "anchor": "files.zooSpec.rows_parsed and funnel.zooSpec"
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "duration_seconds": 7,
+      "section": "STATISTIC",
+      "sentence": "The predeclared asymmetry compares clockwise and anticlockwise classified counts separately for each readout, with ties kept outside the denominator; swapping the labels reverses the sign.",
+      "on_screen_copy": {
+        "headline": "The statistic was fixed before the count",
+        "equation": "A = (N_CW − N_ACW) / (N_CW + N_ACW)",
+        "definitions": [
+          "CW = clockwise",
+          "ACW = anticlockwise",
+          "ties reported separately"
+        ],
+        "sign_key": "A < 0: more ACW · A = 0: equal · A > 0: more CW",
+        "swap_bridge": "Swap CW and ACW labels → the sign of A reverses",
+        "boundary": "The sign describes the chosen label frame; physical interpretation waits for the archive convention."
+      },
+      "visual_action": "Place CW and ACW count bins on opposite sides of the equation; route ties to a separate reported-only tray instead of the denominator.",
+      "dominant_visual": "equation plus denominator-flow schematic",
+      "display_citation": "NebulaMind galaxy-spin contract v1.2",
+      "provenance_role": "PREDECLARED STATISTIC",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/SPIN_PARITY_CONTRACT_V1.md",
+          "sha256": "dc2ace678322c57b1c801f12feac6774564f5c39da74990c0fd7089afffa400e",
+          "anchor": "section 2 statistic"
+        },
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T1_FUNNEL.json",
+          "sha256": "ed97758ac1b991488d4d15da3ecb8dca229e8ec4ab547086468b81c9e64e281d",
+          "anchor": "N_CW, N_ACW, N_tie, N_classified fields"
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "duration_seconds": 9,
+      "section": "CONVENTION",
+      "sentence": "Mirroring changes the displayed winding, but the archive does not state whether stored labels follow that display or are mapped back first; the two possibilities are shown without probability.",
+      "on_screen_copy": {
+        "headline": "The archive storage convention is not stated",
+        "left_branch": "AS DISPLAYED · label follows the mirrored image",
+        "right_branch": "DE-MIRRORED · label mapped back before storage",
+        "boundary": "FRAME UNSTATED",
+        "boundary_explanation": "Until the storage rule is known, A remains a statistic of archive labels—not a physical direction.",
+        "probability_note": "Possibilities shown without probability",
+        "schematic_label": "CONCEPTUAL — convention map, not data"
+      },
+      "visual_action": "Mirror a simple winding glyph, then split the storage arrow into two visually parallel branches that converge on a large unresolved boundary; state that branch spacing carries no probability. Do not attach any measured value to either branch.",
+      "dominant_visual": "two-branch handedness convention schematic",
+      "display_citation": "Frame review of Lintott et al. (2011) and Land et al. (2008)",
+      "provenance_role": "SOURCE-INTERPRETATION BOUNDARY",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+          "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+          "anchor": "section 1 and verdict FRAME_UNSTATED"
+        }
+      ]
+    },
+    {
+      "id": "S5",
+      "duration_seconds": 7,
+      "section": "ALIGNMENT",
+      "sentence": "A bounded 36-object probe found no crossed normal-column mapping across matched rows, but it is not an image-orientation or coordinate check and does not determine the mirrored storage frame.",
+      "on_screen_copy": {
+        "headline": "A 36-object probe found no crossed column mapping",
+        "subhead": "Column-name/value mapping across matched rows; not image or coordinate alignment",
+        "metrics": [
+          "36 checked",
+          "36 same-column",
+          "0 crossed",
+          "0 ambiguous"
+        ],
+        "column_definitions": [
+          "P_CW / P_ACW = source clockwise / anticlockwise values",
+          "pcS / paS = comparison clockwise / anticlockwise values"
+        ],
+        "example_note": "SCHEMATIC · 6 EXAMPLE ROWS OF 36",
+        "boundary": "THIS PROBE ONLY · NORMAL TABLE COLUMNS · MIRRORED STORAGE FRAME UNRESOLVED"
+      },
+      "visual_action": "Draw six schematic example connector rows from P_CW/P_ACW to pcS/paS and label them as six examples from a 36-object probe; reserve a red crossed lane with a visible zero.",
+      "dominant_visual": "column-alignment connector matrix",
+      "display_citation": "36-object column-mapping probe · 2026-08-05",
+      "provenance_role": "INSTRUMENT CHECK",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T1C_COLUMN_INTEGRITY.json",
+          "sha256": "fc73061fa76cbd873d6648069621e141322b05d7b651e5584f45275ef0576237",
+          "anchor": "verdict, probe, and counts"
+        }
+      ]
+    },
+    {
+      "id": "S6",
+      "duration_seconds": 8,
+      "section": "CONTROLS",
+      "sentence": "The bias design pairs the same object across normal, monochrome, and reflected conditions, asking whether colour removal preserves labels and whether reflected winding switches the displayed label; no outcome is shown.",
+      "on_screen_copy": {
+        "headline": "Bias checks are part of the measurement design",
+        "conditions": [
+          "NORMAL · reference labels",
+          "MONOCHROME · asks whether labels stay the same",
+          "MIRROR 1 · asks whether displayed labels switch (vertical)",
+          "MIRROR 2 · asks whether displayed labels switch (diagonal)"
+        ],
+        "threshold_definition": "0.80 and 0.60 are classification-confidence thresholds",
+        "available_rungs": "available: confidence 0.80 and 0.60",
+        "unavailable_rung": "unavailable in bias payload: SPIRAL flag",
+        "matching": "paired by object ID",
+        "comparison_logic": "Compare labels within the same object; outcomes withheld.",
+        "boundary": "CONTROL DESIGN ONLY · NO OUTCOME SHOWN"
+      },
+      "visual_action": "Arrange four condition cards in a 2×2 matrix; connect them to two available rung rails; show the unavailable flag rail as dashed and explicitly blocked.",
+      "dominant_visual": "condition-by-rung control matrix",
+      "display_citation": "Paired-control design · frozen before the paired run",
+      "provenance_role": "BIAS-CONTROL METHOD",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/SPIN_PARITY_CONTRACT_V1.md",
+          "sha256": "dc2ace678322c57b1c801f12feac6774564f5c39da74990c0fd7089afffa400e",
+          "anchor": "sections 2–4"
+        },
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+          "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+          "anchor": "vertical/diagonal mirroring procedure and FRAME_UNSTATED"
+        },
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T3_READING.json",
+          "sha256": "207450354be3eacd505c8c18438dcfe2964427b8e443bdb97e6d0b5c78823495",
+          "anchor": "ladder_note only: flag unavailable in table5/table6; result fields excluded"
+        },
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A4_DRAFT.md",
+          "sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+          "anchor": "section 2: matching by objID and normal/monochrome condition-pair design only"
+        }
+      ]
+    },
+    {
+      "id": "S7",
+      "duration_seconds": 8,
+      "section": "BOUNDARY",
+      "sentence": "This proposal can teach the frozen method, but it withholds the result until the required review and frame interpretation are resolved.",
+      "on_screen_copy": {
+        "headline": "RESULT STATUS · HELD",
+        "known": [
+          "source and overlapping readout counts",
+          "predeclared asymmetry formula",
+          "bounded column-mapping probe"
+        ],
+        "unresolved": [
+          "mirrored-direction storage frame",
+          "independent post-run review"
+        ],
+        "not_claimed": [
+          "a numerical scientific finding",
+          "an interpretation beyond archive labels",
+          "any connection to other probes or models"
+        ],
+        "next_gate": "Any later result work requires separate authorization after both blockers resolve"
+      },
+      "visual_action": "Hold a full-frame three-column KNOWN / UNRESOLVED / NOT CLAIMED matrix; keep RESULT HELD as the largest label; no plot, result number, character, or URL close.",
+      "dominant_visual": "status-boundary matrix",
+      "display_citation": "Weekend spin source/status freeze · 2026-08-08",
+      "provenance_role": "RELEASE BOUNDARY",
+      "verification_sources": [
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/lane-spin-parity/worker-yui/SOURCE_STATUS_FREEZE.json",
+          "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+          "anchor": "video_reportable_now, semantic_decision, and blocking_facts"
+        },
+        {
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A4_DRAFT.md",
+          "sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+          "anchor": "section 5 required post-run verdict-record review"
+        }
+      ]
+    }
+  ],
+  "integrator_notes": [
+    "This packet intentionally omits an MP4 and audio. Hwao owns official rendering and TTS.",
+    "Do not adapt the official result plots into this method-only proposal; the hold must be structural, not a small disclaimer.",
+    "Display citations are audience-readable labels. Absolute verification paths stay in this JSON and receipts only.",
+    "If this proposal is promoted, preserve its exact text as a snapshot before semantic review and shared-tool integration."
+  ]
+}

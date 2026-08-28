@@ -1,0 +1,74 @@
+{
+  "status": "STAGED_ONLY_BUILD_FORBIDDEN",
+  "created_at": "2026-08-09T21:56:57+09:00",
+  "scope": [
+    "fesc",
+    "brightend",
+    "mzr-anchor",
+    "mzr-census"
+  ],
+  "authority": {
+    "path": "HWAO_WHY_STUDY_INTRO_FOUR_LANES_20260809T2131K.md",
+    "sha256": "2cdc44db6710c106d38a83f009d776daecbc530255ce3eef5480c2f752e76c4b"
+  },
+  "research_boundary": {
+    "lana_packet": "reviews/LANA_FOUR_LANE_WHY_MOTIVATION.md",
+    "lana_packet_sha256": "ca2672eef829801efa87fc9b946a319682dc5666af17e9650c33b68527e26793",
+    "goru_packet": "reviews/GORU_WHY_STUDY_FOUR_LANES_HOLD_20260809T2140K.md",
+    "goru_packet_sha256": "70dd3469e7e06a65e3978b7e2e1e9ae40b78bb24302f325004b4afd4a489e35f",
+    "goru_state": "PRE_LANA_HOLD_NOT_CLEARANCE",
+    "kun_packet": "reviews/KUN_WHY_STUDY_INTRO_FOUR_LANES_20260809T2131K.md",
+    "kun_packet_sha256": "c0ef666d1bbcdccfc88d620954c34f1f593179da0065f7a1a668ab30fa6f1d25",
+    "kun_state": "PRE_LANA_HOLD_NOT_CLEARANCE",
+    "quote_debt": "EXACT_PRIMARY_WORDING_REQUIRED_BEFORE_SCRIPTING_ATTRIBUTED_OR_DIRECTIONAL_LITERATURE_STATEMENTS"
+  },
+  "build_gate": {
+    "spin_internal_pass": false,
+    "duho_validated_exact_spin_bytes": false,
+    "hwao_explicit_sibling_build_go": false,
+    "post_lana_goru_clearance": false,
+    "post_lana_kun_clearance": false,
+    "build_authorized": false
+  },
+  "lane_authorization": {
+    "active_source_freeze_count": 0,
+    "video_reportable_now": false,
+    "mode": "METHOD_ONLY_RESULTS_WITHHELD"
+  },
+  "preserved_candidates": {
+    "fesc": {
+      "candidate": "fesc-method-overhaul-canary-20260809T1501K",
+      "mp4_sha256": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660"
+    },
+    "brightend": {
+      "candidate": "brightend-method-overhaul-canary-20260809T1345K",
+      "mp4_sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8"
+    },
+    "mzr-anchor": {
+      "candidate": "mzr-anchor-method-overhaul-canary-20260809T1406K",
+      "mp4_sha256": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584"
+    },
+    "mzr-census": {
+      "candidate": "mzr-census-method-overhaul-canary-20260809T0320K",
+      "mp4_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b"
+    }
+  },
+  "plan_files": {
+    "README.md": "e0a7f6ada9399bdd82a905abd9d7ba68797353b03bd8a6dce0be8aa847fb4690",
+    "fesc.md": "b880f5baffb50da0fb9e98c3b064c8fb6a212385524956b878f59e7f80778a2d",
+    "brightend.md": "5d3be081af2e806c1be9dcebd00ec2f4949ce08ec631aa249599c9a732d85dbc",
+    "mzr-anchor.md": "8cc6d1ee16ecac9c40f57eafaac3a8b19e55827b5ce8a8ebedfb653f7e08c200",
+    "mzr-census.md": "611513eb5a42cefcb0bb2731123440b3de6a08bb3d0180e26a5b74714a5357c3"
+  },
+  "actions_not_taken": {
+    "script_authored": false,
+    "audio_generated": false,
+    "timeline_generated": false,
+    "renderer_invoked": false,
+    "candidate_created": false,
+    "private_link_changed": false,
+    "protected_root_changed": false,
+    "external_mutation": false
+  },
+  "next_action": "WAIT_FOR_SPIN_EXACT_BYTES_TO_PASS_INTERNAL_GATES_AND_DUHO_VALIDATION_THEN_HWAO_GO;_OBTAIN_POST_LANA_GORU_AND_KUN_CLEARANCES_BEFORE_ANY_BUILD"
+}

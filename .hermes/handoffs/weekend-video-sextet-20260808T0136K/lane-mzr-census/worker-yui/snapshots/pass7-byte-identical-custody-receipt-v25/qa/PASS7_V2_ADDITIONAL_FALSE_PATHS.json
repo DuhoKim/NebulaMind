@@ -1,0 +1,38 @@
+{
+  "verdict": "FAIL_V2_VALIDATOR_ADDITIONAL_FALSE_PASS_PATHS",
+  "tested_snapshot": "pass7-validator-projection-causality-v2",
+  "snapshot_manifest_sha256": "6a278356613dd5aac995202cb74574a4d9103c5629b50018cc1c2f9d727c4cc4",
+  "cases": [
+    {
+      "case": "fabricated_b02_narration",
+      "validator_exit_code": 0,
+      "validator_verdict": "PASS",
+      "errors": [],
+      "false_pass": true
+    },
+    {
+      "case": "fabricated_b08_screen",
+      "validator_exit_code": 0,
+      "validator_verdict": "PASS",
+      "errors": [],
+      "false_pass": true
+    },
+    {
+      "case": "fabricated_b09_example",
+      "validator_exit_code": 0,
+      "validator_verdict": "PASS",
+      "errors": [],
+      "false_pass": true
+    },
+    {
+      "case": "contradictory_visual_action",
+      "validator_exit_code": 0,
+      "validator_verdict": "PASS",
+      "errors": [],
+      "false_pass": true
+    }
+  ],
+  "false_pass_count": 4,
+  "snapshot_modified": false,
+  "v3_disposition": "All four are rejected by pass7-full-contract-closure-v3; v2 preserved."
+}

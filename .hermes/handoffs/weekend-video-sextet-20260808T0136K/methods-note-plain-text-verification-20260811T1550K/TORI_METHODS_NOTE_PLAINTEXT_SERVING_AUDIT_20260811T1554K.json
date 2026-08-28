@@ -1,0 +1,85 @@
+{
+  "marker": "TORI_METHODS_NOTE_PLAINTEXT_SERVING_AUDIT_20260811T1554K",
+  "timestamp": "2026-08-11T15:54:21+09:00",
+  "scoped_result": "PASS_EXACT_BYTES_AND_INLINE_DISPLAY__FAIL_BROWSER_UTF8_DECODING_BECAUSE_CHARSET_HEADER_IS_ABSENT",
+  "source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md",
+    "bytes": 11473,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "plain_text_copy": {
+    "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal.txt",
+    "bytes": 11473,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+    "cmp_exit_against_source": 0,
+    "filesystem_mime": "text/plain; charset=utf-8"
+  },
+  "markdown_hashes_unchanged": {
+    "authoritative": "36e4efe8984c8d5f7f6f1996f2d6efb38a1be2ceade49b4622f0131917fb99aa",
+    "clean": "80b1d1425a9fa28a17b27c3ae599eb5c231c31ae46ad9871ce468cf386489aa7",
+    "external": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "frozen_render_hashes_unchanged": {
+    "v1": "5a5bf634ab20984536e52bb37ce924f65e2794ae714fe67e1a1dd36f77806557",
+    "v2": "ffd3086b8b8f8ee00db7ba07bb3ac19ba1b2d0f8dc080e8944240c2fc8c1e9ce",
+    "v3": "25de23fae7473d2753bda74e47156d1164f16f35da13328fa9a65a6bd8156fca"
+  },
+  "served_routes": {
+    "local": {
+      "url": "http://127.0.0.1:8093/cockpit/methods-note-mittal-singal.txt",
+      "status": 200,
+      "content_type_header": "text/plain",
+      "content_length": 11473,
+      "content_disposition_header_present": false,
+      "body_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+      "body_cmp_source": true
+    },
+    "tailnet_https": {
+      "url": "https://duho-macstudio.taila27502.ts.net/cockpit/methods-note-mittal-singal.txt",
+      "status": 200,
+      "content_type_header": "text/plain",
+      "content_length": 11473,
+      "content_disposition_header_present": false,
+      "body_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+      "body_cmp_source": true
+    }
+  },
+  "browser_check": {
+    "client": "Headless Chrome 151",
+    "tailnet_url_opened": true,
+    "inline_pre_element_present": true,
+    "pre_style": "word-wrap: break-word; white-space: pre-wrap;",
+    "anchor_count": 0,
+    "download_attribute_count": 0,
+    "triggered_download": false,
+    "inline_display": true,
+    "source_unicode_characters": 11324,
+    "browser_pre_unicode_characters": 11375,
+    "browser_visible_text_exact": false,
+    "non_equal_diff_opcodes": 72,
+    "unicode_replacement_character_count": 96,
+    "examples": [
+      "em dash — displays as ��",
+      "Mittal–Singal contains mojibake in place of the en dash",
+      "section sign § displays as 짠",
+      "λᵢ·sᵢ displays as 貫巢◈톝巢�",
+      "degree symbol ° displays as 째"
+    ]
+  },
+  "root_cause": "The server response is text/plain without an explicit charset=utf-8 parameter. The transferred bytes are exact UTF-8, but Chrome decodes the inline plain-text response using a different legacy encoding, producing visible mojibake.",
+  "decision": {
+    "byte_identity": "PASS",
+    "three_markdown_hashes": "PASS_UNCHANGED",
+    "inline_not_download": "PASS",
+    "browser_readable_exact_text": "FAIL",
+    "duho_can_rely_on_current_served_route_as_exact_reading_copy": false,
+    "required_next_step": "Serve the same unchanged bytes with Content-Type: text/plain; charset=utf-8 and no Content-Disposition: attachment, then re-probe HTTP body hash and browser-visible text."
+  },
+  "skill_lesson": {
+    "already_recorded": true,
+    "skill": "cockpit-handoff-review",
+    "version": "1.4.2",
+    "reference": "references/private-review-markdown-html-visible-equivalence.md",
+    "recorded_rule": "Shape is only preliminary; a 9x2 table can remain shape-green while cell content is truncated. Compare every normalized cell string in order and bind canary notation/source attribution to the exact expected cell."
+  }
+}

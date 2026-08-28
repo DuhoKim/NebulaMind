@@ -1,0 +1,200 @@
+{
+  "proposal_id": "c41-mzr-anchor-unit-preserving-graphics-v1",
+  "status": "PROPOSAL_ONLY_HWAO_INTEGRATION_REQUIRED",
+  "evidence_freeze_sha256": "06eed1ddb0a7db668fd74acdbd28f592f6f94fe48a85b973b67af42723cf01db",
+  "scope": "graphics-first, no-face paper-lane proposal; not an official candidate bundle",
+  "scientific_boundary": {
+    "reportable": "public-archive direct-Te anchor census and mass-bin no-verdict result",
+    "not_reportable": [
+      "a calibrated high-redshift mass-metallicity relation",
+      "a metallicity deficit of any size or direction",
+      "local calibrations validated or invalidated at high redshift",
+      "anchors absent from the sky",
+      "an FMR result"
+    ]
+  },
+  "audio": {
+    "generated": false,
+    "invoked": false,
+    "route_if_hwao_integrates": "Nous managed gateway, gpt-4o-mini-tts, alloy, speed 1.18",
+    "writer": "Hwao sole integrator",
+    "note": "The proposed narration is speech-safe copy, not an executed TTS manifest. Heading or body edits require a full affected-card recut."
+  },
+  "display_citations": {
+    "C1": "NebulaMind Autonomous Research Crew (2026), The Public-Archive Direct-Te Anchor Gap at z>3: A Contract-Grade Census, §§3–4, nebulamind.net/studies/c41-highz-mzr-calibration-anchored.pdf",
+    "C2": "Andrews & Martini (2013), ApJ 765, 140",
+    "C3": "Izotov et al. (2006), A&A 448, 955",
+    "C4": "Luridiana et al. (2015), A&A 573, A42"
+  },
+  "verification_sources_not_for_display": {
+    "run_log": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/c41-trackb-shape2-mzr-20260804T1452K/T3_REAL_LOG.txt",
+      "sha256": "45ffb83fbe761739c83ec5f9eb04edab17ef492b54dd97e3d8cb5863a1d342e1"
+    },
+    "results": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/c41-trackb-shape2-mzr-20260804T1452K/T3_REAL_RESULTS.json",
+      "sha256": "f9b671aa0fa6915f4762bf48b24bcb629be8cb0c92e2b89f08d28f7cbe3e3fd6"
+    },
+    "sample": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/c41-trackb-shape2-mzr-20260804T1452K/T3_REAL_SAMPLE.jsonl",
+      "sha256": "cfecf77e25a96e6e1855979cb6139ac8b119ca1a7024b4dcf6324490d6b2caaa"
+    },
+    "paper": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/c41-trackb-shape2-mzr-20260804T1452K/ANCHOR_GAP_PAPER.pdf",
+      "sha256": "6be02f3ebaf86ea03854df628bd05787929e6a851bcb992240b4cf98453df232"
+    }
+  },
+  "visual_grammar": {
+    "opening": "Question plus evidence preview; no manuscript cover.",
+    "cross_unit_pipeline": "Equal-width stage cards. Every count has a large unit chip. Geometry is deliberately non-proportional because tables, rows, and anchors are different units.",
+    "same_unit_exclusions": "A proportional row-accounting bar is allowed only for the 95-row split because all segments share the unit rows.",
+    "mass_bin_result": "One chart with x-axis stellar-mass bin, y-axis contract-grade anchors N, actual bars 2/1/0, and a shared dashed N=3 decision threshold. The two logM<8 anchors remain a separate side pool, not a fourth comparable bin.",
+    "provenance": "Audience citations use author/year/journal or the public paper URL. Internal paths appear only in verification fields.",
+    "limitation": "The final frame must say archive census, not galaxy relation, and no deficit verdict."
+  },
+  "beats": [
+    {
+      "id": "b01_question",
+      "duration_floor_seconds": 10.0,
+      "narration": "Can public archives supply enough direct-temperature anchors above redshift three to test a mass-metallicity calibration?",
+      "on_screen_copy": [
+        "The measurement needed",
+        "direct-temperature abundance + stellar mass",
+        "at z > 3"
+      ],
+      "visual_action": "Reveal the scientific question, then the two required measurements as a simple non-data workflow.",
+      "asset_or_view_state": "concept_question_required_measurements",
+      "display_citations": ["C1", "C3", "C4"],
+      "claim_type": "conceptual_method",
+      "required_label": "CONCEPTUAL — method requirement, not data"
+    },
+    {
+      "id": "b02_79_tables",
+      "duration_floor_seconds": 10.0,
+      "narration": "The search began with seventy-nine archive tables carrying a lambda four three six three class column.",
+      "on_screen_copy": ["79", "ARCHIVE TABLES", "λ4363-class column present"],
+      "visual_action": "Light only the first stage card. Keep the unit chip ARCHIVE TABLES adjacent to 79.",
+      "asset_or_view_state": "pipeline_stage_01_79_tables",
+      "display_citations": ["C1"],
+      "claim_type": "measured_archive_census"
+    },
+    {
+      "id": "b03_23_candidate_tables",
+      "duration_floor_seconds": 10.0,
+      "narration": "Twenty-three candidate tables had redshift available in the table or through a sibling join.",
+      "on_screen_copy": ["23", "CANDIDATE TABLES", "redshift in-table or sibling join"],
+      "visual_action": "Add a redshift-join gate and illuminate the second stage while retaining 79 as prior context.",
+      "asset_or_view_state": "pipeline_stage_02_23_tables",
+      "display_citations": ["C1"],
+      "claim_type": "measured_archive_census"
+    },
+    {
+      "id": "b04_11_fetched_tables",
+      "duration_floor_seconds": 13.0,
+      "narration": "Eleven tables, spanning eight catalogs, were fetched at run time. Twelve candidate tables were unreachable. These are still table counts, not galaxies.",
+      "on_screen_copy": [
+        "11 TABLES FETCHED",
+        "8 CATALOGS",
+        "12 CANDIDATE TABLES UNREACHABLE",
+        "unit remains: tables"
+      ],
+      "visual_action": "Split the 23-table stage into fetched and unreachable table branches; do not resize by the later row or anchor counts.",
+      "asset_or_view_state": "pipeline_stage_03_fetch_split",
+      "display_citations": ["C1"],
+      "claim_type": "measured_archive_census"
+    },
+    {
+      "id": "b05_95_rows",
+      "duration_floor_seconds": 10.0,
+      "narration": "Across the fetched tables, ninety-five rows sat above redshift three with a tabulated auroral flux. The unit has now changed from tables to rows.",
+      "on_screen_copy": ["95", "z > 3 ROWS", "tabulated λ4363 flux", "UNIT CHANGE: TABLES → ROWS"],
+      "visual_action": "Use an explicit unit-change bridge, then reveal a row-grid state rather than another table card.",
+      "asset_or_view_state": "pipeline_stage_04_95_rows",
+      "display_citations": ["C1"],
+      "claim_type": "measured_archive_census"
+    },
+    {
+      "id": "b06_row_exclusions",
+      "duration_floor_seconds": 15.0,
+      "narration": "The row audit excludes sixty-four below the signal-to-noise floor, twelve without H beta, six without required fluxes, and eight with unusable temperatures. Ninety exclusions plus five survivors close the ninety-five-row accounting.",
+      "on_screen_copy": [
+        "95 ROWS ACCOUNTED",
+        "64 below S/N floor",
+        "12 no Hβ",
+        "6 missing λ4363 or λ5007 flux",
+        "8 Te failures",
+        "5 survivors"
+      ],
+      "visual_action": "Replace the row grid with one proportional 95-row accounting bar; all segments share the same unit ROWS.",
+      "asset_or_view_state": "row_accounting_95",
+      "display_citations": ["C1"],
+      "claim_type": "measured_archive_census"
+    },
+    {
+      "id": "b07_5_anchors",
+      "duration_floor_seconds": 10.0,
+      "narration": "Five rows survive as contract-grade direct-temperature anchors with linked stellar masses. The unit has changed again, from rows to anchors.",
+      "on_screen_copy": [
+        "5",
+        "CONTRACT-GRADE ANCHORS",
+        "direct-Te abundance + linked stellar mass",
+        "UNIT CHANGE: ROWS → ANCHORS"
+      ],
+      "visual_action": "Collapse only the five survivor cells into anchor glyphs; retain a small 95 ROWS source label so the lineage remains visible.",
+      "asset_or_view_state": "pipeline_stage_05_5_anchors",
+      "display_citations": ["C1", "C3", "C4"],
+      "claim_type": "measured_archive_census"
+    },
+    {
+      "id": "b08_mass_bin_null",
+      "duration_floor_seconds": 14.0,
+      "narration": "Inside the frozen mass bins, the anchor counts are two, one, and zero. Every bin falls below the shared minimum of three. Two additional anchors lie below log mass eight and are binned nowhere.",
+      "on_screen_copy": [
+        "ACTUAL CONTRACT-GRADE ANCHORS",
+        "2 | 1 | 0",
+        "shared decision threshold: N = 3 anchors per bin",
+        "+2 below frozen logM = 8 floor — not hidden in the bins"
+      ],
+      "visual_action": "Show the three actual bars against one dashed N=3 baseline. Add the two below-floor anchors as a separate side pool outside the x-axis bins.",
+      "asset_or_view_state": "mass_bin_actual_vs_threshold",
+      "display_citations": ["C1"],
+      "claim_type": "measured_mass_bin_null"
+    },
+    {
+      "id": "b09_boundary",
+      "duration_floor_seconds": 14.0,
+      "narration": "No mass bin can support a deficit verdict at contract-grade public statistics. This is a lower-bound census of public archive supply, not a calibrated high-redshift relation and not evidence that anchors are absent from the sky.",
+      "on_screen_copy": [
+        "NO DEFICIT VERDICT POSSIBLE",
+        "archive census — not a galaxy relation",
+        "5 is a public-archive floor",
+        "12 candidate tables unreachable; λ4363 channel only"
+      ],
+      "visual_action": "Hold the mass-bin chart faintly at left and place the scientific boundary in the dominant right panel; no new number enters.",
+      "asset_or_view_state": "boundary_archive_census_not_relation",
+      "display_citations": ["C1"],
+      "claim_type": "status_and_non_claim_boundary"
+    }
+  ],
+  "rejected_visuals": [
+    {
+      "asset": "lit_metallicity.png",
+      "reason": "Mixed calibration families are visually dense and not commensurate; using the scatter as evidence risks implying a calibrated high-z relation. It may serve only as a carefully fenced motivation graphic, not the canary evidence surface."
+    },
+    {
+      "asset": "c41-highz-mzr-calibration-anchored_bins.png",
+      "reason": "The existing plot has y-maximum below three and omits the shared N=3 decision threshold; its internal-path footer is not an audience citation."
+    },
+    {
+      "asset": "ANCHOR_GAP_FIGURE.png panel a",
+      "reason": "The five metallicity points against the AM13 curve can visually imply a calibrated high-z relation or deficit. The paper de-licenses that reading, but a short video frame is more likely to overclaim."
+    }
+  ],
+  "safety": {
+    "shared_tools_modified": false,
+    "storyboard_of_record_modified": false,
+    "tts_invoked": false,
+    "candidate_bundle_written": false,
+    "public_artifact_modified": false
+  }
+}

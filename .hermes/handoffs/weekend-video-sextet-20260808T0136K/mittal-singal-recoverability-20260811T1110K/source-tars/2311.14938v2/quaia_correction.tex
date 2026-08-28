@@ -1,0 +1,338 @@
+% mnras_template.tex 
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.2 July 2023
+%	Updated guidance on use of amssymb package
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[fleqn,usenatbib]{mnras}
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+\usepackage{newtxtext,newtxmath}
+\usepackage{multirow}
+\usepackage[round-mode=places,
+            separate-uncertainty=true,
+            table-align-uncertainty=true]{siunitx}
+\usepackage[table]{xcolor}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+
+% Allow "Thomas van Noord" and "Simon de Laguarde" and alike to be sorted by "N" and "L" etc. in the bibliography.
+% Write the name in the bibliography as "\VAN{Noord}{Van}{van} Noord, Thomas"
+\DeclareRobustCommand{\VAN}[3]{#2}
+\let\VANthebibliography\thebibliography
+\def\thebibliography{\DeclareRobustCommand{\VAN}[3]{##3}\VANthebibliography}
+
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+% Only include extra packages if you really need them. Avoid using amssymb if newtxmath is enabled, as these packages can cause conflicts. newtxmatch covers the same math symbols while producing a consistent Times New Roman font. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title[Correction to: The cosmic dipole in Quaia]{
+    Correction to: The cosmic dipole in the Quaia sample of quasars:
+    a Bayesian analysis}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[Mittal, Oayda $\&$ Lewis]{
+Vasudev Mittal,$^{1,2*}$\thanks{E-mail: vasudeviiser@gmail.com}
+Oliver T. Oayda,$^{2*\thanks{E-mail: oliver.oayda@sydney.edu.au}}$
+and Geraint F. Lewis${^2}$
+\\
+% List of institutions
+$^{*}$Joint first author\\
+$^{1}$Department of Physical Sciences, IISER Mohali, Knowledge City, Sector 81, SAS Nagar, Manauli PO 140306, Punjab, India\\
+$^{2}$Sydney Institute for Astronomy, School of Physics A28, The University of Sydney, NSW 2006, Australia\\
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2024}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+    errata, addenda -- quasars: general -- cosmology: observations
+    -- cosmology: theory -- large-scale structure of Universe
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\noindent In the original paper \citep{mittal2024},
+ an error was made in the calculation of the distribution
+of spectral indices $\alpha$,
+as appearing in fig. 2 of that paper.
+The error arises from equation~(3),
+which in the original paper reads
+\begin{equation}
+    m_\nu = -2.5 \log_{10} S_\nu + \text{ZP}. \label{eq:mag}
+\end{equation}
+While this equation is mathematically correct,
+the issue relates to the correct interpretation of the units
+of the passband flux density $S_\nu$ when using \textit{Gaia} magnitudes.
+These magnitudes, like the G band magnitude as
+appearing in the \verb|phot_g_mean_mag| column
+of the \textit{Gaia} DR3 release table,
+are defined such that $S_\nu$ in Equation~\eqref{eq:mag} is in \emph{units of photoelectrons per second}
+\citep[$e^- s^{-1}$;][]{hambly2022}.
+We noted this in our original paper at the beginning
+of Section~4.2.2,
+at which stage we mentioned that to convert from $e^- s^{-1}$ into Jy,
+one must first multiply the passband flux density by
+a correction factor $c_\nu$ to give units of W\,m$^{-2}$\,Hz$^{-1}$.
+However, since this factor was not applied in equation~(4) in the original work,
+equation~(5) is incorrect as one cannot use the relation
+$S_\nu \propto \nu^{-\alpha}$ if $S_\nu$ is in units of $e^- s^{-1}$.
+
+To correct this,
+let $S'_\nu$ denote the passband flux density in
+W\,m$^{-2}$\,Hz$^{-1}$ such that $S'_\nu = c_\nu S_\nu$.
+Substituting this into Equation~\eqref{eq:mag} yields
+\begin{equation}
+m_\nu = -2.5 \log_{10} S'_\nu + 2.5 \log_{10} c_\nu + \text{ZP}.
+\end{equation}
+Thus, equations~(4) and (5) in the original work
+should be replaced with these corrected versions:
+\begin{align}
+    m_{\mathrm{G - BP}} &= 2.5 \log_{10}
+    \left( S'_{\mathrm{BP}} / S'_{\mathrm{G}} \right) +
+    2.5 \log_{10}
+        \left( c_{\mathrm{G}} / c_{\mathrm{BP}} \right) + k \\
+    % m_{\mathrm{G - BP}} &= 2.5 \left[ \log_{10} (c_{\mathrm{BP}} S_{\mathrm{BP}}) - \log_{10}( c_{\mathrm{G}} S_{\mathrm{G}}) \right] + k \\
+    \implies \alpha_i &= \frac{\epsilon + k - m_{\mathrm{G - BP}}}{2.5 \log_{10} (\nu_{\mathrm{BP}} / \nu_{\mathrm{G}})} \label{eq:spectral-index}
+\end{align}
+where $\epsilon$ is $2.5 \log_{10} (c_{\mathrm{G}} / c_{\mathrm{BP}} )$ and $k$ is $\text{ZP}_{\mathrm{G}} - \text{ZP}_{\mathrm{BP}}$ as defined originally.
+The value of these correction factors for each passband
+are given in section~5.4.1 of the \textit{Gaia} DR3 documentation \citep{busso2022}.
+With the correction applied,
+fig. 2 in the original work is to be replaced with Fig.~\ref{fig:spectral_indices} as shown below.
+Since fig. 3 in the original work
+included the correction factor when converting \textit{Gaia} magnitudes
+to flux densities,
+this figure does not need to be altered.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig2_corrected.pdf}
+    \caption{Distribution of spectral indices $\alpha$ in the Quaia low and Quaia high samples computed from $m_{G - BP}$. Blue and orange are used to denote Quaia low and Quaia high respectively. The mean spectral indices $\bar{\alpha}$ for each catalogue are indicated by the vertical lines.}
+    \label{fig:spectral_indices}
+\end{figure}
+
+As the \citet{ellis1984} relation is dependent on $\alpha$,
+the correction to the spectral index
+changes the expected dipole amplitude $\mathcal{D}$.
+We repeated the methodology in Section~4.2.2 with the amended
+values of $\alpha$,
+finding a distribution of dipole amplitudes as shown in Fig.~\ref{fig:dipole-amplitude}.
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fig4_corrected.pdf}
+    \caption{Probability distribution for the dipole amplitude assuming $v_\text{CMB}$. This follows from the analysis in Section~4.2.2 and was performed with both the Quaia low and Quaia high samples.}
+    \label{fig:dipole-amplitude}
+\end{figure}
+This is to replace fig.~4 of the original work.
+We thus take the mean amplitude of $\mathcal{\bar{D}} = 0.0048$ for Quaia low
+and $\mathcal{\bar{D}} = 0.0043$ for Quaia high,
+using these as the dipole expectations.
+
+Correcting for this error in the way described above impacts the relative Bayesian evidences
+of our different hypotheses.
+This is because models which incorporate the expected dipole amplitude will
+necessarily arrive at different marginal likelihoods.
+These are models $M_5$ (kinematic velocity) and $M_6$ (kinematic dipole)
+in our original paper.
+Accordingly,
+the last two rows of tables A1--A4 in the original paper
+are to be replaced with those given here in
+Tables~\ref{tab:bayes-low-p2p}--\ref{tab:bayes-high-poisson}.
+
+Based on these tables, our conclusions are altered slightly.
+The relative ordering of each model in terms of evidential power is not changed.
+Namely,
+for the Quaia low sample with a $40^\circ$ galactic plane mask,
+the kinematic dipole (model $M_6$) is still the prevailing model.
+However, the difference in support between $M_6$ and the next-favoured model,
+$M_4$ (the marginal likelihood of which is given in the original work),
+becomes $\ln B_{64} = 1.5$.
+This means that the kinematic dipole is somewhat less preeminent than as in the original work
+($\ln B_{65} = 2.6$).
+
+Additionally, the conclusion in section~6.3 in the original work
+needs to be replaced.
+We now find that our conclusions are, to a certain extent,
+sensitive to the choice of prior.
+As mentioned there,
+after adjusting the prior function for $\mathcal{D}$
+from $\mathcal{U}[0,1.0]$ to $\mathcal{U}[0,0.1]$,
+the marginal likelihood of model $M_4$ increases to 8.0
+(Quaia low; $b^\circ < |40|$ masked).
+Based on the corrected Bayes factors in Table~\ref{tab:bayes-low-p2p},
+this means that model $M_4$ (kinematic direction) is the prevailing model
+with $\ln B_{46} = 0.7$,
+in which case we find $\mathcal{D} \approx 11\substack{+5 \\ -5} \times 10^{-3}$.
+Although, this Bayes factor is indicative of only a slight preference
+for $M_4$ over $M_6$.
+Meanwhile,
+the conclusions for Quaia high using the adjusted prior on $\mathcal{D}$
+are unchanged.
+
+Though these aspects have been altered,
+it still remains that the Quaia sample
+strongly favours a dipole aligning with the direction
+of the CMB dipole.
+The question of its amplitude is not as decisive;
+while we cannot rule out the possibility of a value
+larger than expected from the CMB dipole,
+we have also pointed towards support for
+it being equal to the CMB value.
+This leaves significant scope for future inquiry
+to attempt to resolve this matter.
+
+% the conclusion that we are heading towards the kinematic expectation
+% is the same
+% the orientation of the dipole is aligned; how strongly can one
+% say that the amplitude has kinematic origin i.e. corresponds
+% to the value derived from the CMB.?
+
+\begin{table*}
+  \centering
+   \begin{tabular}{l  S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1, round-precision=1] }
+\hline
+\multirow{2}*{Hypothesis} & \multicolumn{6}{c}{Galactic mask angle $b^\circ$}\\
+  & 0 & 10 & 20 &30 & 40 & 30*\\
+  \hline
+  $M_{5}$ (Kinematic Velocity) & 30.4 & 27.8 & 17.7 & 9.1  & 5.3  & 7.5  \\
+  $M_{6}$ (Kinematic Dipole)   & 16.2 & 18.4 & 15.7 & 11.0 & 7.3\cellcolor{black!10} & 10.1 \\
+
+\hline
+ \end{tabular}
+ \caption{Table of Bayes Factors for different hypotheses and galactic masks using the Quaia low catalogue with the point-by-point analysis. Here, 30$^*$ represents the combination of a $30^\circ$ mask and a $4\,\text{sr}$ circular mask centered at the $(l^\circ, b^\circ)=(0,0)$. The highlighted cell represents the model with the highest Bayes factor, indicating it has the strongest level of support.}
+ \label{tab:bayes-low-p2p}
+ \end{table*}
+
+ \begin{table*}
+  \centering
+   \begin{tabular}
+   {l  S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1, round-precision=1] }
+\hline
+\multirow{2}*{Hypothesis} & \multicolumn{6}{c}{Galactic mask angle $b^\circ$}\\
+  & 0 & 10 &20&30&40&30*\\
+  \hline
+$M_{5}$ (Kinematic Velocity) & 30.4 & 27.9 & 17.7 & 9.0  & 5.1 & 7.4 \\
+$M_{6}$ (Kinematic Dipole)   & 16.3 & 18.4 & 15.6 & 11.0 & 7.1\cellcolor{black!10} & 10.1 \\
+\hline
+ \end{tabular}
+ \caption{As for Table~\ref{tab:bayes-low-p2p} but with the Poisson statistics.}
+ \label{tab:bayes-low-poisson}
+ \end{table*}
+
+ \begin{table*}
+  \centering
+   \begin{tabular}
+   {l  S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1, round-precision=1] }
+\hline
+\multirow{2}*{Hypothesis} & \multicolumn{6}{c}{Galactic mask angle $b^\circ$}\\
+  & 0 & 10 &20&30&40&30*\\
+  \hline
+$M_{5}$ (Kinematic Velocity) & 62.9 & 56.6 & 37.3 & 20.9 & 14.6 & 11.5 \\
+$M_{6}$ (Kinematic Dipole)   & 21.8 & 25.2 & 24.5 & 18.5 & 14.5 & 12.6 \\
+\hline
+ \end{tabular}
+ \caption{As for Table~\ref{tab:bayes-low-p2p} but with Quaia high.}
+ \label{tab:bayes-high-p2p}
+ \end{table*}
+
+ \begin{table*}
+  \centering
+   \begin{tabular}
+   {l  S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1,round-precision=1] S[table-format=7.1, round-precision=1] S[table-format=7.1, round-precision=1] }
+\hline
+\multirow{2}*{Hypothesis} & \multicolumn{6}{c}{Galactic mask angle $b^\circ$}\\
+  & 0 & 10 &20&30&40&30*\\
+  \hline
+$M_{5}$ (Kinematic Velocity) & 63.1 & 56.5 & 37.4 & 20.7 & 14.9 & 11.3 \\
+$M_{6}$ (Kinematic Dipole)   & 21.9 & 25.1 & 24.2 & 18.6 & 14.5 & 12.7 \\
+\hline
+ \end{tabular}
+  \caption{As for Table~\ref{tab:bayes-low-p2p} but with Quaia high and the Poisson statistics.}
+  \label{tab:bayes-high-poisson}
+ \end{table*}
+
+
+\section*{Acknowledgements}
+We extend our sincere gratitude to Nathan Secrest,
+who pointed out the steepness of our original spectral indices
+and generously shared some of their own results.
+This led us to uncover the error mentioned in this correction.
+
+This work has made use of data from the European Space Agency (ESA) mission \textit{Gaia} (\url{https://www.cosmos.esa.int/gaia}),
+processed by the \textit{Gaia} Data Processing and Analysis Consortium (DPAC, \url{https://www.cosmos.esa.int/web/gaia/dpac/consortium}).
+Funding for the DPAC has been provided by national institutions,
+in particular the institutions participating in the \textit{Gaia} Multilateral Agreement.
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+\bibliographystyle{mnras}
+\bibliography{quaia_correction} % if your bibtex file is called example.bib
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex

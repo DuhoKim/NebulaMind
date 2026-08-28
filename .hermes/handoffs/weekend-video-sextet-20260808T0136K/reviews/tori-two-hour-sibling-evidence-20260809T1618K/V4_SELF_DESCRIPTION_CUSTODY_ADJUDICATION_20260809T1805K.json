@@ -1,0 +1,85 @@
+{
+  "timestamp_kst": "2026-08-09T18:05:17+09:00",
+  "authority": "HWAO_RULING_SELF_DESCRIPTION_20260809T1800K.md",
+  "proposal_set": "proposal_v4",
+  "stable_proposal_hashes": {
+    "fesc": "0426d4822edda1f5a8bcbd98e510a26d69a8ce99b1bbf7cfb162a02cdd589db8",
+    "brightend": "0849f37bf539f5d7c775e25f283022b1a64f8c20330783c40428e85ecf2b3ad9",
+    "mzr-anchor": "44b676fd186f799134070c0f3038842bc0f5bf3db2ac806ca69388460e34acf5",
+    "mzr-census": "2962340b14dcd8f5bf548c83cfd7602ed27be1852ab9312bdd4acbe656eefec1"
+  },
+  "positive_actual_state_findings": {
+    "v4_and_bundle_three_second_stability": true,
+    "semantic_scalar_wrapper_violations": 0,
+    "version_title_freeze_id_decision_consistent_v4": true,
+    "all_semantic_receipt_timestamps": "2026-08-09T09:01:26Z",
+    "frozen_at_value_equals_frozen_at_receipt_timestamp": true,
+    "original_source_hashes": {
+      "fesc": "19/19",
+      "brightend": "8/8",
+      "mzr-anchor": "12/12",
+      "mzr-census": "15/15"
+    },
+    "manifest_digest_match": {
+      "fesc": true,
+      "brightend": true,
+      "mzr-anchor": true,
+      "mzr-census": true
+    },
+    "embedded_manifest_lines_exact": {
+      "fesc": true,
+      "brightend": true,
+      "mzr-anchor": true,
+      "mzr-census": true
+    },
+    "frozen_copy_hash_and_size_checks": {
+      "fesc": "19/19",
+      "brightend": "8/8",
+      "mzr-anchor": "12/12",
+      "mzr-census": "15/15"
+    },
+    "original_to_copy_hash_size_multisets_match": true,
+    "manifest_path_receipts_now_name_bundle_generation": true,
+    "physical_seal_current_state": {
+      "fesc": "20/20 files 0444; root and inputs dirs 0555",
+      "brightend": "9/9 files 0444; root and inputs dirs 0555",
+      "mzr-anchor": "13/13 files 0444; root and inputs dirs 0555",
+      "mzr-census": "16/16 files 0444; root and inputs dirs 0555",
+      "symlinks": 0
+    },
+    "all_video_reportable_now_values": false,
+    "active_SOURCE_FREEZE_count": 0
+  },
+  "blocking_findings": [
+    {
+      "id": "V4-SEAL-RECEIPT-ABSENT",
+      "finding": "Filesystem inspection confirms the current 0444/0555 seal, but the proposed freeze JSON has no immutability_seal/seal operation scalar and derivation receipt. The Markdown self-description that chmod was run is not evidence or an installed-freeze receipt.",
+      "ruling_basis": "Seal the bundle read-only and receipt the seal, or remove the immutable claim.",
+      "effect": "BLOCK_INSTALLATION"
+    },
+    {
+      "id": "V4-MANIFEST-CREATION-RELATIONSHIP-ABSENT",
+      "finding": "COPY_HASHES_v2 manifests were created at 08:33:48Z; their mode-change ctime and the V4 frozen_at/receipt time are 09:01:26Z. The proposed freeze records only 09:01:26Z and does not record both operations or state that the earlier manifest was sealed/re-adjudicated at the later freeze time.",
+      "ruling_basis": "If manifest creation and script execution differ, record both and state their relationship.",
+      "effect": "BLOCK_INSTALLATION"
+    },
+    {
+      "id": "V4-SOURCE-PATH-RECEIPTS-REMAIN-BOILERPLATE",
+      "finding": "Every source_artifacts[*].path receipt still uses the generic text 'Re-verified existence from active disk state; originally sourced from historical worker freezes or SOURCE_HASHES_INITIAL.txt'. This does not identify which exact input inventory supplied each path and is the same boilerplate across distinct provenance classes.",
+      "ruling_basis": "A receipt must name the operation that actually produced the value; never carry a boilerplate source string.",
+      "effect": "BLOCK_INSTALLATION"
+    }
+  ],
+  "self_description_boundary": {
+    "markdown_claim_used_as_authority": false,
+    "filesystem_modes_checked_directly": true,
+    "file_hashes_and_sizes_checked_directly": true,
+    "receipt_structure_and_content_checked_directly": true
+  },
+  "tori_custody_verdict": "PASS_V4_BYTE_INTEGRITY_SELF_CONSISTENCY_AND_CURRENT_MODE_SEAL__BLOCK_INSTALLATION_FOR_MISSING_OR_INEXACT_OPERATION_RECEIPTS",
+  "three_seat_clearance_complete": false,
+  "result_authorization": false,
+  "new_result_bearing_Yui_candidate_authorized": false,
+  "exact_next_action": "Issue versioned V5 proposal bytes that include a receipt-bearing seal operation with actual mode/count results, record manifest_created_at and sealed_at/frozen_at plus their relationship, and replace each source-path boilerplate with the exact inventory and re-verification operation that produced that path. Then Lana, Kun, and Tori independently review the exact V5 hashes. Do not install SOURCE_FREEZE.json meanwhile.",
+  "gates_closed": true
+}

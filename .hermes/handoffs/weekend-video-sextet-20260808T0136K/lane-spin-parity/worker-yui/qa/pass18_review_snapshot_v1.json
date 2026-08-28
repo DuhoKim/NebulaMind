@@ -1,0 +1,134 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass18-review-v1-20260808T112928K",
+  "created_at": "2026-08-08T11:29:28+09:00",
+  "deepening_pass": 18,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "authority": {
+    "hwao_weekend_order": {
+      "path": "../../HWAO_WEEKEND_ORDER.md",
+      "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710"
+    },
+    "coordination_update": {
+      "path": "../../COORDINATION_UPDATE.md",
+      "sha256": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"
+    },
+    "lane_brief": {
+      "path": "../../lanes/spin/BRIEF.md",
+      "sha256": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec"
+    }
+  },
+  "custody": {
+    "source_freeze": {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+      "modified": false
+    },
+    "storyboard_proposal": {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "iteration": "v8",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+      "modified": false
+    },
+    "sealed_v8_render_receipt": {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+      "modified": false
+    },
+    "prior_pass_snapshot": {
+      "path": "qa/pass17_review_snapshot_v1.json",
+      "sha256": "2c17757ef56a94cc0cacb29d8eebfc3e682eb2c34042ca012b18efb7ffc700be"
+    },
+    "preserved_failed_candidate": {
+      "name": "spin-parity-census-20260808T0149",
+      "media_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+      "receipt_sha256": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+      "qa_sha256": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+      "hashes_sha256": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3",
+      "modified": false,
+      "re_dispatched": false
+    }
+  },
+  "pass18": {
+    "focus": "compound 640x360 minimum-scale plus opaque bottom-obstruction representation",
+    "fresh_cut_reproduction": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS17",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "reference_variant": "downscale_360p",
+    "operational_variants": ["caption15_360p", "player_ui25_360p"],
+    "characterization_variant": "heavy35_360p",
+    "candidate_structural_gate_scenes_player25_360p": "0/16",
+    "candidate_critical_structural_gates_player25_360p": "0/5",
+    "sealed_v8_player25_generic_badges": "7/7",
+    "sealed_v8_scene_specific_status_complete_player25": false,
+    "pass7_player25_exact_top_gates": "7/7",
+    "pass12_player25_exact_top_gates": "7/7",
+    "pass12_player25_gate_similarity_mean": 0.985159,
+    "pass12_player25_result_held_badges": "7/7",
+    "pass12_player25_unobstructed_pixel_identity": "7/7",
+    "pass12_heavy35_exact_top_gates": "7/7_CHARACTERIZATION",
+    "action": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "video_reportable_now": false
+  },
+  "evidence": {
+    "extractor": {
+      "path": "qa/extract_pass18_minimum_scale_obstruction_frames.py",
+      "sha256": "98e548514a9c1c0479209187aeb28fcb521e60492aadb7cecae6f8a155ba4afa"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass18_minimum_scale_obstruction_audit/extraction_receipt.json",
+      "sha256": "cd4d24f3152e054906caecd7918c6c9c6d0bcf02f18648b2f7b0b17e25837eca"
+    },
+    "method_builder": {
+      "path": "qa/build_pass18_v8_minimum_scale_obstruction.py",
+      "sha256": "c72f8f8d1adcf9fb5e007800359789cc9ef5ce9235688f17e9effbe8a47b923b"
+    },
+    "method_receipt": {
+      "path": "qa/pass18_v8_minimum_scale_obstruction/receipt.json",
+      "sha256": "50adb21a297b109d0156554cc10b68b935ce2580699139c76f737dc0d5c9cde7"
+    },
+    "quantitative_auditor": {
+      "path": "qa/audit_pass18_minimum_scale_obstruction.py",
+      "sha256": "92de8d63bf8fafe63aca7323d2a9cb0d822d2c04f762b35b6f8469b314ca63d7"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass18_minimum_scale_obstruction_quantitative_audit.json",
+      "sha256": "4ea190e438f348635ffeb735d852ba08993b8eddcc53843b9e622db6b9b55ba1"
+    },
+    "integration_guard": {
+      "path": "MINIMUM_SCALE_OBSTRUCTION_GUARD_PASS18.json",
+      "sha256": "8d0740776fc847e577185cfddefba741804b3c0a6403721a0de41f7c169345d3"
+    },
+    "encoded_frame_audit": {
+      "path": "PASS18_ENCODED_FRAME_AUDIT.md",
+      "sha256": "6848f1dfc0451c555b1b33eb1d04e273f2c3956eb4fedb8fd9ad6174ad1d1266"
+    },
+    "blocker_packet": {
+      "path": "BLOCKER_PACKET_PASS18.json",
+      "sha256": "07e51c3648859986911bd4c9fc843a20b97a28bc4cc2280db07ed7aec6715a80"
+    }
+  },
+  "blockers": {
+    "post_run_independent_review": "MISSING_FOR_EXACT_FROZEN_T4_209_FILE_ARTIFACT",
+    "archive_storage_frame": "FRAME_REVIEW_AGREES_FRAME_UNSTATED",
+    "candidate_representation": "RESULT_BEARING_WITHOUT_STRUCTURAL_HELD_GATE",
+    "video_reportable_now": false
+  },
+  "representation_boundary": {
+    "required_header": "GALAXY SPIN",
+    "forbidden_audience_topics_absent_from_method_frames": true,
+    "method_only": true,
+    "science_adjudicated": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

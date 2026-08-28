@@ -1,0 +1,47 @@
+{
+  "review_round": 10,
+  "pass": 7,
+  "snapshot": "pass7-validator-projection-causality-v2",
+  "snapshot_manifest_sha256": "6a278356613dd5aac995202cb74574a4d9103c5629b50018cc1c2f9d727c4cc4",
+  "manifest_entries": 34,
+  "start_hashes_verified": "34/34",
+  "end_hashes_verified": "34/34",
+  "file_modes": "0444",
+  "directory_modes": "0555",
+  "snapshot_changed": false,
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "id": "nonsemantic-state-and-gap-overstatement",
+      "evidence": "b08_s02 duplicated the already-visible precision status; b08_s04 exposed empty group shells. Excluding these produced two six-second unchanged-evidence intervals and at most 43 semantic states, contradicting 45-state and three-second claims."
+    },
+    {
+      "id": "nonexhaustive-search-axis-qualification",
+      "evidence": "b05 audience copy used redshift/abundance axis instead of redshift-search/abundance-search at all occurrences."
+    },
+    {
+      "id": "packet-projection-contract-overstatement",
+      "evidence": "Audience payload was exact at 10 narration, 58 screen leaves, and 10 citations, but the packet also contained eight review questions and instructions outside the audience projection while receipts claimed projection-only behavior."
+    },
+    {
+      "id": "broad-validator-false-pass-paths",
+      "evidence": "Twelve additional temporary counterfactuals all returned PASS: 44 states, 3.5 s gap, decorative reveal, hidden reset, false T2-completed stage, extra 62-eligible claim, swapped citations, 20 clauses, swapped clause mappings, adjudicated-measurements heading, route-only-62 contradiction, and decoys-only complete-control claim."
+    }
+  ],
+  "verified_passes": {
+    "source_reconstruction": "PASS",
+    "topology_and_status": "PASS",
+    "helper_check_modes": "PASS without writes",
+    "candidate_frame_hashes": "43/43",
+    "candidate_full_decode": "clean",
+    "static_v8": "compatible unclipped overview only; not temporal proof"
+  },
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "tts_invoked": false,
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "current_gate_note": "V2 FAIL is preserved. V3/v4 canonical-contract hardening addresses the demonstrated mutation classes, but only the current exact review can clear the latest proposal gate."
+}

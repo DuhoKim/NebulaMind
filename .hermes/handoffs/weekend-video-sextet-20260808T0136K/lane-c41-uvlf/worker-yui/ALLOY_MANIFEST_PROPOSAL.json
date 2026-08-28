@@ -1,0 +1,69 @@
+{
+  "marker": "C41_UVLF_ALLOY_REQUEST_PROPOSAL_V1",
+  "status": "PREPARED_NOT_EXECUTED",
+  "artifact_class": "REQUEST_FOR_HWAO_NOT_TTS_OUTPUT",
+  "execution_authority": "Hwao only",
+  "coordination_gate": "Do not execute for C41 until the lane-c31-sed/worker-tori canary is accepted and Hwao explicitly opens the C41 candidate/TTS gate.",
+  "paper_slug": "c41-brightend-uvlf-archival-gap",
+  "engine": "OpenAI TTS",
+  "model": "gpt-4o-mini-tts",
+  "voice": "alloy",
+  "speed": 1.18,
+  "music": false,
+  "source_storyboard": "STORYBOARD_CANDIDATE.json",
+  "target_seconds": 132,
+  "narration_words": 269,
+  "segments": [
+    {
+      "id": "01_archive_question",
+      "target_seconds": 12,
+      "text": "Published bright-end ultraviolet luminosity functions exist. But can a reader reconstruct their evolution from the frozen two-channel VizieR manifest, rather than from figures alone?"
+    },
+    {
+      "id": "02_search_channels",
+      "target_seconds": 18,
+      "text": "In that manifest, a completed column-name search reaches twenty of one hundred twelve candidate tables. Physical-meaning metadata, encoded as UCD tags, identifies the other ninety-two. Search reach is not eligibility, and other repositories were not exhaustively searched."
+    },
+    {
+      "id": "03_eligibility_layer",
+      "target_seconds": 22,
+      "text": "Search reach is not eligibility. Of sixty-seven counted catalogues, twenty-seven contribute rows in the frozen slices and forty contribute none. Thirty-four candidates are disqualified, one remains pending, and ten lack a usable magnitude-redshift pair. The contributing catalogues retain six thousand four hundred seventeen raw rows."
+    },
+    {
+      "id": "04_slice_plane",
+      "target_seconds": 21,
+      "text": "Now keep the half-open slice from redshift ten up to, but not including, eleven point five. Every dot is one frozen row with a catalogued ultraviolet-like absolute magnitude. Four hundred twenty of the four hundred fifty-three rows come from the COSMOS2025 LePhare table."
+    },
+    {
+      "id": "05_bright_subset",
+      "target_seconds": 21,
+      "text": "The slice contains four hundred fifty-three raw rows. One hundred seventy-six pass the reported magnitude cut at minus twenty. These catalogued bands are not homogenized to a common rest wavelength, and one hundred sixty-one of the bright rows come from the dominant table."
+    },
+    {
+      "id": "06_source_boundary",
+      "target_seconds": 21,
+      "text": "This census is not a luminosity-function measurement. In the predefined roster, no published-luminosity-function table met the machine-readable data requirements for this slice. That means missing extractable data—not zero galaxies or zero published luminosity functions. No completeness correction or density inference follows."
+    },
+    {
+      "id": "07_reproducibility_packet",
+      "target_seconds": 17,
+      "text": "Human review cleared this study for a Lab landing, not as a journal-refereed, independently validated result. The repair is procedural: publish the luminosity-function values and uncertainties, bin geometry, redshift support, units, Hubble-scaling conventions, and transformations."
+    }
+  ],
+  "requested_audio_checks": [
+    "Use the Alloy voice and speed 1.18 exactly if Hwao executes this request.",
+    "Do not add default music.",
+    "Confirm the spoken distinction between '453 raw rows' and '176 passing the reported magnitude cut'.",
+    "Confirm the no-bandpass-homogenization caveat survives exactly.",
+    "Confirm the predefined-roster statement is spoken as missing extractable LF data, not zero galaxies or zero published LFs.",
+    "Confirm the frozen two-channel VizieR scope and other-repository limitation survive exactly.",
+    "Confirm Lab-landing clearance is not spoken as journal review, independent validation, or a journal result.",
+    "Measure actual generated segment durations before scene timing or mux.",
+    "Do not execute until Hwao has accepted the visual and semantic candidate."
+  ],
+  "execution_receipt": {
+    "tts_called": false,
+    "audio_files_created": 0,
+    "mux_performed": false
+  }
+}

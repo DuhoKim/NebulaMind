@@ -1,0 +1,59 @@
+{
+  "packet_version": "pass7-exhaustive-receipt-and-neutral-scaffolding-v27",
+  "status": "EXHAUSTIVE_RECEIPT_LIKE_OBJECT_CLASSIFICATION",
+  "excluded_live_lane_local_receipts": [
+    "qa/PASS7_V1_LOCAL_CHECKS.json",
+    "qa/PASS7_V2_LOCAL_CHECKS.json",
+    "qa/PASS7_V3_LOCAL_CHECKS.json",
+    "qa/PASS7_V4_LOCAL_CHECKS.json",
+    "qa/PASS7_V5_LOCAL_CHECKS.json",
+    "qa/PASS7_V6_LOCAL_CHECKS.json",
+    "qa/PASS7_V7_LOCAL_CHECKS.json",
+    "qa/PASS7_V8_LOCAL_CHECKS.json",
+    "qa/PASS7_V11_LOCAL_CHECKS.json",
+    "qa/PASS7_V12_LOCAL_CHECKS.json",
+    "qa/PASS7_V13_LOCAL_CHECKS.json",
+    "qa/PASS7_V14_LOCAL_CHECKS.json",
+    "qa/PASS7_V15_LOCAL_CHECKS.json",
+    "qa/PASS7_V16_LOCAL_CHECKS.json",
+    "qa/PASS7_V17_LOCAL_CHECKS.json",
+    "qa/PASS7_V18_LOCAL_CHECKS.json",
+    "qa/PASS7_V19_LOCAL_CHECKS.json",
+    "qa/PASS7_V20_LOCAL_CHECKS.json",
+    "qa/PASS7_V21_LOCAL_CHECKS.json",
+    "qa/PASS7_V22_LOCAL_CHECKS.json",
+    "qa/PASS7_V23_LOCAL_CHECKS.json",
+    "qa/PASS7_V24_LOCAL_CHECKS.json",
+    "qa/PASS7_V25_LOCAL_CHECKS.json",
+    "qa/PASS7_V26_LOCAL_CHECKS.json"
+  ],
+  "local_receipt_versions_not_created": {
+    "v9": "superseded pre-dispatch; no PASS7_V9_LOCAL_CHECKS.json exists",
+    "v10": "superseded pre-dispatch; no PASS7_V10_LOCAL_CHECKS.json exists"
+  },
+  "current_packet_local_receipt": {
+    "path": "qa/PASS7_V27_LOCAL_CHECKS.json",
+    "classification": "CURRENT_LOCAL_GATE_RECEIPT",
+    "current_gate_authority": true
+  },
+  "retained_historical_receipt_like_objects": [
+    {"path":"qa/PASS7_V2_ADDITIONAL_FALSE_PATHS.json","classification":"HISTORICAL_FALSE_PATH_REGRESSION_FIXTURE","current_gate_authority":false},
+    {"path":"qa/PASS7_V6_CITATION_CHECKS.json","classification":"HISTORICAL_PASS6_CHECK_FIXTURE","current_gate_authority":false},
+    {"path":"qa/PASS7_V6_CONTINUITY_SEMANTIC_CHECKS.json","classification":"HISTORICAL_PASS6_CHECK_FIXTURE","current_gate_authority":false},
+    {"path":"qa/PASS7_V6_CUSTODY_CHECKS.json","classification":"HISTORICAL_PASS6_CHECK_FIXTURE","current_gate_authority":false},
+    {"path":"qa/PASS7_V6_PACKET_PAYLOAD_CHECKS.json","classification":"HISTORICAL_PASS6_CHECK_FIXTURE","current_gate_authority":false},
+    {"path":"qa/PASS7_V6_VALIDATOR_CHECKS.json","classification":"HISTORICAL_PASS6_CHECK_FIXTURE","current_gate_authority":false},
+    {"path":"qa/PASS7_V7_CUSTODY_INVENTORY_CHECKS.json","classification":"HISTORICAL_PASS7_V7_REGRESSION_FIXTURE","current_gate_authority":false}
+  ],
+  "current_nonlocal_receipt_like_objects": [
+    {"path":"qa/proposal_validation.json","classification":"CURRENT_CONTENT_ONLY_PRESEAL_VALIDATOR_RECEIPT","current_gate_authority":true},
+    {"path":"qa/PASS7_VALIDATOR_MUTATION_TESTS.json","classification":"CURRENT_37_CASE_MUTATION_RECEIPT","current_gate_authority":true},
+    {"path":"qa/visual_proposal_qa.json","classification":"CURRENT_STATIC_VISUAL_QA_RECEIPT","current_gate_authority":true},
+    {"path":"qa/EXTERNAL_CANDIDATE_CUSTODY.json","classification":"CURRENT_EXTERNAL_CANDIDATE_CUSTODY_RECEIPT","current_gate_authority":true},
+    {"path":"qa/PAPER_NAIVE_PACKET_PROJECTION.json","classification":"CURRENT_PACKET_PROJECTION_RECEIPT","current_gate_authority":true}
+  ],
+  "authority": "Only explicitly current objects above may contribute to current local validation. Every retained historical fixture is regression evidence only and cannot clear any current gate.",
+  "candidate_clearance": "NOT_GRANTED",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED"
+}

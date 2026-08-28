@@ -1,0 +1,57 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-complete-audience-static-v9",
+  "storyboard_version": "pass7-distinct-example-clock-v8",
+  "storyboard_sha256": "4fb15c927f5d567c402b4c4f933fabe64a492fdb275311991491aa777cd95b71",
+  "complete_audience_projection": {
+    "fields": ["narration", "on_screen_copy", "display_citation"],
+    "narration_strings": 10,
+    "on_screen_leaf_strings": 62,
+    "display_citations": 10,
+    "sha256": "a905e42d23e13deb07240273dab8caa3ce5264ae48fca7e28cacee7b096f450b",
+    "verdict": "PASS"
+  },
+  "closed_book_scaffolding": {
+    "question_count": 8,
+    "answer_premise_guard": "PASS",
+    "answer_premise_hits": 0,
+    "answer_key_present": false
+  },
+  "static_visual": {
+    "artifact": "visual_proposal_v9.png",
+    "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "dimensions": "1920x1080",
+    "full_resolution_qa": "PASS",
+    "all_19_2_labels_search_qualified": true,
+    "clipping_or_overlap": false,
+    "direct_157_to_T2_topology": true,
+    "side_62_does_not_intercept_T2": true,
+    "taxonomy_and_footer_fit": true,
+    "deterministic_rerender_match": true
+  },
+  "renderer": {
+    "sha256": "763b3d6173d3d4b4d1c8d824abeb320adfeda0c16a4e540f687ac35948358c23",
+    "evidence_source": "frozen_sources/pass7",
+    "absolute_external_evidence_path": false,
+    "writes_only": "visual_proposal_v9.png"
+  },
+  "semantic_replay_retained": {
+    "distinct_states": "45/45",
+    "declared_clauses_mapped": "21/21",
+    "maximum_unchanged_evidence_state_seconds": 3.0
+  },
+  "validator_verdict": "PASS",
+  "mutation_verdict": "PASS",
+  "mutation_cases": 28,
+  "expected_failures": 27,
+  "manifest_authentication_design": "EXTERNAL_IMMUTABLE_MANIFEST_DIGEST_REQUIRED",
+  "external_candidate": {
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "filesystem_mode": "0644",
+    "handling_authorization": "READ_ONLY_BY_WORKER_POLICY",
+    "disposition": "FAIL"
+  },
+  "integration_publication": "CLOSED",
+  "tts_invoked": false,
+  "note": "V9 closes the v6 complete-audience projection and static-search-qualification/replay classes while retaining v8 semantic/closed-book corrections and v7 custody/inventory. Exact immutable review remains mandatory."
+}

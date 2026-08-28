@@ -1,0 +1,865 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_EXECUTED",
+  "writer": "Hwao only",
+  "provider_route": "Nous-managed OpenAI text-to-speech route",
+  "voice": "Alloy",
+  "speed": 1.18,
+  "speed_source": "authoritative HWAO_WEEKEND_ORDER.md; do not re-derive per segment",
+  "source_storyboard": "STORYBOARD_CANDIDATE.json",
+  "source_storyboard_version": "pass7-adversarial-semantic-closure-v5",
+  "source_storyboard_sha256": "88d9faa0558ce0c33565122d90435f0a4e68de54c5c880c3ea5bf5250ee33dc7",
+  "audience_copy_status": "STATIC_STORYBOARD_PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "visual_qa_gate": {
+    "artifact": "visual_proposal_v8.png",
+    "sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "verdict": "PASS_FOR_STATIC_VISUAL_PROPOSAL_ONLY_PASS7_V5_LOCAL_GATE_PENDING_INDEPENDENT_REGATE"
+  },
+  "planned_total_words": 208,
+  "planned_visual_floor_seconds": 105.0,
+  "planned_delivered_wpm": 118.9,
+  "pronunciation_guidance": {
+    "VizieR": "VEE-zee-air",
+    "UCD": "U-C-D",
+    "MZR": "M-Z-R",
+    "T2": "T two",
+    "src.redshift": "source dot redshift",
+    "symbol Z": "symbol zee"
+  },
+  "segments": [
+    {
+      "segment_id": "b01",
+      "text": "This VizieR metadata census asks which single tables intersect the abundance-search, mass-search, and redshift-search axes.",
+      "word_count": 15,
+      "visual_floor_seconds": 9.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b01_s01",
+          "at_seconds": 0.0,
+          "operation": "reveal",
+          "evidence_delta": "archive-table icon and T1 stage label",
+          "clause_ids": [
+            "b01_c01"
+          ],
+          "visible_change": "Show one VizieR single-table icon and T1 ENUMERATION stage label."
+        },
+        {
+          "state_id": "b01_s02",
+          "at_seconds": 2.0,
+          "operation": "reveal",
+          "evidence_delta": "abundance-search metadata rail",
+          "clause_ids": [
+            "b01_c01"
+          ],
+          "visible_change": "Reveal ABUNDANCE SEARCH metadata rail."
+        },
+        {
+          "state_id": "b01_s03",
+          "at_seconds": 4.0,
+          "operation": "reveal",
+          "evidence_delta": "mass-search metadata rail",
+          "clause_ids": [
+            "b01_c01"
+          ],
+          "visible_change": "Reveal MASS SEARCH metadata rail."
+        },
+        {
+          "state_id": "b01_s04",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "redshift-search rail and three-axis merge",
+          "clause_ids": [
+            "b01_c01"
+          ],
+          "visible_change": "Reveal REDSHIFT SEARCH metadata rail and merge all three into the single-table intersection."
+        },
+        {
+          "state_id": "b01_s05",
+          "at_seconds": 8.0,
+          "operation": "reveal",
+          "evidence_delta": "not-an-MZR and single-table/no-crossmatch badges",
+          "clause_ids": [
+            "b01_c01"
+          ],
+          "visible_change": "Reveal and lock the persistent not-an-MZR and single-table/no-crossmatch badges."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b01_c01",
+          "text": "This VizieR metadata census asks which single tables intersect the abundance-search, mass-search, and redshift-search axes"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "root_start",
+        "exit_state_id": "search_axis_scope",
+        "persistent_layers": [
+          "single-table archive icon",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": []
+      },
+      "proposed_start_seconds": 0.0,
+      "proposed_end_seconds": 9.0,
+      "output_basename_proposal": "b01-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b02",
+      "text": "The search combined semantic UCD tags with column-name variants, and each frozen query returned exactly its pre-counted rows.",
+      "word_count": 18,
+      "visual_floor_seconds": 8.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b02_s01",
+          "at_seconds": 0.0,
+          "operation": "reveal",
+          "evidence_delta": "semantic UCD retrieval channel",
+          "clause_ids": [
+            "b02_c01"
+          ],
+          "visible_change": "Reveal the SEMANTIC UCD TAGS rail."
+        },
+        {
+          "state_id": "b02_s02",
+          "at_seconds": 2.5,
+          "operation": "reveal",
+          "evidence_delta": "column-name-variant retrieval channel",
+          "clause_ids": [
+            "b02_c01"
+          ],
+          "visible_change": "Reveal the COLUMN-NAME VARIANTS rail beside it."
+        },
+        {
+          "state_id": "b02_s03",
+          "at_seconds": 5.0,
+          "operation": "transform",
+          "evidence_delta": "two channels joined under frozen-query state",
+          "clause_ids": [
+            "b02_c01",
+            "b02_c02"
+          ],
+          "visible_change": "Join the rails and reveal FROZEN QUERIES."
+        },
+        {
+          "state_id": "b02_s04",
+          "at_seconds": 7.0,
+          "operation": "reveal",
+          "evidence_delta": "zero-channel-failures status",
+          "clause_ids": [
+            "b02_c02"
+          ],
+          "visible_change": "Reveal ZERO CHANNEL FAILURES as a status badge."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b02_c01",
+          "text": "The search combined semantic UCD tags with column-name variants"
+        },
+        {
+          "clause_id": "b02_c02",
+          "text": "each frozen query returned exactly its pre-counted rows"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "search_axis_scope",
+        "exit_state_id": "retrieval_channels",
+        "persistent_layers": [
+          "three search-axis rails",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "opening question"
+        ]
+      },
+      "proposed_start_seconds": 9.0,
+      "proposed_end_seconds": 17.0,
+      "output_basename_proposal": "b02-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b03",
+      "text": "UCD plus name matching reached 5,568 tables on the abundance-search axis, 6,206 on mass-search, and 6,687 on redshift-search; name matching added 175, 88, and 20.",
+      "word_count": 28,
+      "visual_floor_seconds": 12.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b03_s01",
+          "at_seconds": 0.0,
+          "operation": "reveal",
+          "evidence_delta": "abundance-search UCD and plus-name counts",
+          "clause_ids": [
+            "b03_c01"
+          ],
+          "visible_change": "Reveal the ABUNDANCE SEARCH card with UCD and UCD-plus-name counts."
+        },
+        {
+          "state_id": "b03_s02",
+          "at_seconds": 3.0,
+          "operation": "reveal",
+          "evidence_delta": "mass-search UCD and plus-name counts",
+          "clause_ids": [
+            "b03_c01"
+          ],
+          "visible_change": "Reveal the MASS SEARCH card with UCD and UCD-plus-name counts."
+        },
+        {
+          "state_id": "b03_s03",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "redshift-search UCD and plus-name counts",
+          "clause_ids": [
+            "b03_c01"
+          ],
+          "visible_change": "Reveal the REDSHIFT SEARCH card with UCD and UCD-plus-name counts."
+        },
+        {
+          "state_id": "b03_s04",
+          "at_seconds": 9.0,
+          "operation": "reveal",
+          "evidence_delta": "name-channel gains +175 +88 +20",
+          "clause_ids": [
+            "b03_c02"
+          ],
+          "visible_change": "Reveal +175, +88, and +20 gains on a common baseline."
+        },
+        {
+          "state_id": "b03_s05",
+          "at_seconds": 11.0,
+          "operation": "reveal",
+          "evidence_delta": "counts-not-area geometry note",
+          "clause_ids": [
+            "b03_c02"
+          ],
+          "visible_change": "Reveal and lock COUNTS \u00b7 AREA NOT ENCODED."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b03_c01",
+          "text": "UCD plus name matching reached 5,568 tables on the abundance-search axis, 6,206 on mass-search, and 6,687 on redshift-search"
+        },
+        {
+          "clause_id": "b03_c02",
+          "text": "name matching added 175, 88, and 20"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "retrieval_channels",
+        "exit_state_id": "axis_reach_counts",
+        "persistent_layers": [
+          "UCD channel",
+          "name-variant channel",
+          "three search-axis labels",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "zero channel failures badge"
+        ]
+      },
+      "proposed_start_seconds": 17.0,
+      "proposed_end_seconds": 29.0,
+      "output_basename_proposal": "b03-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b04",
+      "text": "The three axis lists intersected at 178 candidate tables.",
+      "word_count": 9,
+      "visual_floor_seconds": 7.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b04_s01",
+          "at_seconds": 0.0,
+          "operation": "transform",
+          "evidence_delta": "three axis cards compacted into labeled merge rails",
+          "clause_ids": [
+            "b04_c01"
+          ],
+          "visible_change": "Transform the three axis cards into compact labeled merge rails while keeping their values visible."
+        },
+        {
+          "state_id": "b04_s02",
+          "at_seconds": 2.0,
+          "operation": "transform",
+          "evidence_delta": "three-list intersection topology",
+          "clause_ids": [
+            "b04_c01"
+          ],
+          "visible_change": "Animate the three-list intersection."
+        },
+        {
+          "state_id": "b04_s03",
+          "at_seconds": 4.0,
+          "operation": "reveal",
+          "evidence_delta": "178 single-table intersection node",
+          "clause_ids": [
+            "b04_c01"
+          ],
+          "visible_change": "Reveal 178 SINGLE TABLES."
+        },
+        {
+          "state_id": "b04_s04",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "recorded-candidates-not-rulings boundary",
+          "clause_ids": [
+            "b04_c01"
+          ],
+          "visible_change": "Reveal and lock RECORDED METADATA CANDIDATES \u00b7 NOT ELIGIBILITY RULINGS."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b04_c01",
+          "text": "The three axis lists intersected at 178 candidate tables"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "axis_reach_counts",
+        "exit_state_id": "intersection_178",
+        "persistent_layers": [
+          "three search-axis cards",
+          "channel labels",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "per-axis gain annotations after merge completes"
+        ]
+      },
+      "proposed_start_seconds": 29.0,
+      "proposed_end_seconds": 36.0,
+      "output_basename_proposal": "b04-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b05",
+      "text": "Modifier columns then emptied a required search axis in 21 tables: 19 on redshift-search and 2 on abundance-search, leaving 157 recorded candidates.",
+      "word_count": 22,
+      "visual_floor_seconds": 12.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b05_s01",
+          "at_seconds": 0.0,
+          "operation": "transform",
+          "evidence_delta": "178 node becomes modifier-accounting spine anchor",
+          "clause_ids": [
+            "b05_c01"
+          ],
+          "visible_change": "Transform the 178 node into the left anchor of the modifier-accounting spine."
+        },
+        {
+          "state_id": "b05_s02",
+          "at_seconds": 2.5,
+          "operation": "reveal",
+          "evidence_delta": "minus-21 modifier-filter branch",
+          "clause_ids": [
+            "b05_c01"
+          ],
+          "visible_change": "Branch \u221221 MODIFIER-FILTER DROPS from the main path."
+        },
+        {
+          "state_id": "b05_s03",
+          "at_seconds": 5.0,
+          "operation": "reveal",
+          "evidence_delta": "19-redshift-search and 2-abundance-search drop bins",
+          "clause_ids": [
+            "b05_c01"
+          ],
+          "visible_change": "Split the dropped branch into 19 REDSHIFT-SEARCH and 2 ABUNDANCE-SEARCH bins."
+        },
+        {
+          "state_id": "b05_s04",
+          "at_seconds": 7.5,
+          "operation": "reveal",
+          "evidence_delta": "recorded modifier examples under both bins",
+          "clause_ids": [
+            "b05_c01"
+          ],
+          "visible_change": "Reveal the recorded modifier examples under their bins."
+        },
+        {
+          "state_id": "b05_s05",
+          "at_seconds": 10.0,
+          "operation": "reveal",
+          "evidence_delta": "157 node and direct T2 path",
+          "clause_ids": [
+            "b05_c02"
+          ],
+          "visible_change": "Reveal 157 RECORDED CANDIDATE TABLES and keep its direct path to T2 visible."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b05_c01",
+          "text": "Modifier columns then emptied a required search axis in 21 tables: 19 on redshift-search and 2 on abundance-search"
+        },
+        {
+          "clause_id": "b05_c02",
+          "text": "leaving 157 recorded candidates"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "intersection_178",
+        "exit_state_id": "funnel_178_21_157_t2",
+        "persistent_layers": [
+          "178 parent node",
+          "three-axis intersection label",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "individual search-axis cards after their merged parent remains visible"
+        ]
+      },
+      "proposed_start_seconds": 36.0,
+      "proposed_end_seconds": 48.0,
+      "output_basename_proposal": "b05-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b06",
+      "text": "As a side check, a frozen term regex matched 62 of those 157 recorded descriptions; it is not an eligibility filter, and T2 still applies to all 157.",
+      "word_count": 28,
+      "visual_floor_seconds": 12.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b06_s01",
+          "at_seconds": 0.0,
+          "operation": "reveal",
+          "evidence_delta": "direct 157-to-T2 main path",
+          "clause_ids": [
+            "b06_c03"
+          ],
+          "visible_change": "Reveal the direct 157-to-T2 path first."
+        },
+        {
+          "state_id": "b06_s02",
+          "at_seconds": 3.0,
+          "operation": "reveal",
+          "evidence_delta": "62-of-157 vocabulary side branch",
+          "clause_ids": [
+            "b06_c01"
+          ],
+          "visible_change": "Branch 62 OF 157 downward without interrupting the main path."
+        },
+        {
+          "state_id": "b06_s03",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "vocabulary-presence-not-evidence boundary",
+          "clause_ids": [
+            "b06_c02"
+          ],
+          "visible_change": "Reveal FROZEN VOCABULARY REGEX PRESENCE \u00b7 NOT ADJUDICATED GAS-PHASE EVIDENCE."
+        },
+        {
+          "state_id": "b06_s04",
+          "at_seconds": 9.0,
+          "operation": "reveal",
+          "evidence_delta": "side-check-only and all-157-to-T2 boundary",
+          "clause_ids": [
+            "b06_c02",
+            "b06_c03"
+          ],
+          "visible_change": "Reveal and lock SIDE CHECK ONLY \u00b7 T2 STILL APPLIES TO ALL 157."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b06_c01",
+          "text": "As a side check, a frozen term regex matched 62 of those 157 recorded descriptions"
+        },
+        {
+          "clause_id": "b06_c02",
+          "text": "it is not an eligibility filter"
+        },
+        {
+          "clause_id": "b06_c03",
+          "text": "T2 still applies to all 157"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_178_21_157_t2",
+        "exit_state_id": "funnel_plus_62_side",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "19/2 drop bins",
+          "157 parent",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "modifier-column examples after 19/2 bins remain labeled"
+        ]
+      },
+      "proposed_start_seconds": 48.0,
+      "proposed_end_seconds": 60.0,
+      "output_basename_proposal": "b06-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b07",
+      "text": "All seven pinned recall members returned, while none of the three controls appeared.",
+      "word_count": 13,
+      "visual_floor_seconds": 8.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b07_s01",
+          "at_seconds": 0.0,
+          "operation": "reveal",
+          "evidence_delta": "T1 retrieval-instrument stage label",
+          "clause_ids": [
+            "b07_c01",
+            "b07_c02"
+          ],
+          "visible_change": "Reveal T1 RETRIEVAL-INSTRUMENT CHECK stage label."
+        },
+        {
+          "state_id": "b07_s02",
+          "at_seconds": 2.0,
+          "operation": "reveal",
+          "evidence_delta": "recall 7-of-7 scorecard",
+          "clause_ids": [
+            "b07_c01"
+          ],
+          "visible_change": "Reveal RECALL 7/7 with seven checks."
+        },
+        {
+          "state_id": "b07_s03",
+          "at_seconds": 4.0,
+          "operation": "reveal",
+          "evidence_delta": "controls-appearing 0-of-3 scorecard",
+          "clause_ids": [
+            "b07_c02"
+          ],
+          "visible_change": "Reveal CONTROLS APPEARING 0/3 with three absences."
+        },
+        {
+          "state_id": "b07_s04",
+          "at_seconds": 6.5,
+          "operation": "reveal",
+          "evidence_delta": "retrieval-check-complete transition tag",
+          "clause_ids": [
+            "b07_c01",
+            "b07_c02"
+          ],
+          "visible_change": "Reveal T1 RETRIEVAL CHECK COMPLETE \u00b7 PRECISION STATUS NEXT between the two scorecards."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b07_c01",
+          "text": "All seven pinned recall members returned"
+        },
+        {
+          "clause_id": "b07_c02",
+          "text": "none of the three controls appeared"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_62_side",
+        "exit_state_id": "funnel_plus_T1_metrics",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch",
+          "side-check-only boundary",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "description-term detail while 62 parent and boundary persist"
+        ]
+      },
+      "proposed_start_seconds": 60.0,
+      "proposed_end_seconds": 68.0,
+      "output_basename_proposal": "b07-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b08",
+      "text": "Those checks validate retrieval, not precision: the frozen controls did not cover the dominant precision-contamination mode.",
+      "word_count": 16,
+      "visual_floor_seconds": 13.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b08_s01",
+          "at_seconds": 0.0,
+          "operation": "transform",
+          "evidence_delta": "retrieval-check status becomes explicitly passed",
+          "clause_ids": [
+            "b08_c01"
+          ],
+          "visible_change": "Transform the transition tag into RETRIEVAL CHECK PASSED while the scorecards remain visible."
+        },
+        {
+          "state_id": "b08_s02",
+          "at_seconds": 3.0,
+          "operation": "reveal",
+          "evidence_delta": "distinct precision-not-certified status",
+          "clause_ids": [
+            "b08_c01"
+          ],
+          "visible_change": "Reveal PRECISION NOT CERTIFIED as a distinct scientific status."
+        },
+        {
+          "state_id": "b08_s03",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "frozen-control coverage limitation",
+          "clause_ids": [
+            "b08_c02"
+          ],
+          "visible_change": "Reveal FROZEN CONTROLS DID NOT COVER THE DOMINANT PRECISION-CONTAMINATION MODE."
+        },
+        {
+          "state_id": "b08_s04",
+          "at_seconds": 9.0,
+          "operation": "reveal",
+          "evidence_delta": "two named precision-failure taxonomy groups",
+          "clause_ids": [
+            "b08_c02"
+          ],
+          "visible_change": "Reveal SYMBOL / MEANING COLLISION and TARGET-DOMAIN MISMATCH as the two precision-failure groups."
+        },
+        {
+          "state_id": "b08_s05",
+          "at_seconds": 12.0,
+          "operation": "reveal",
+          "evidence_delta": "recorded-examples not-T2-rulings boundary",
+          "clause_ids": [
+            "b08_c02"
+          ],
+          "visible_change": "Reveal RECORDED EXAMPLES \u00b7 NOT T2 RULINGS above the two named groups."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b08_c01",
+          "text": "Those checks validate retrieval, not precision"
+        },
+        {
+          "clause_id": "b08_c02",
+          "text": "the frozen controls did not cover the dominant precision-contamination mode"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_T1_metrics",
+        "exit_state_id": "funnel_plus_precision_limit",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch with side-check boundary",
+          "T1 stage label",
+          "7/7 and 0/3 scorecards",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": []
+      },
+      "proposed_start_seconds": 68.0,
+      "proposed_end_seconds": 81.0,
+      "output_basename_proposal": "b08-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b09",
+      "text": "Recorded examples separate symbol-and-meaning collisions\u2014Galactic height and model-grid metal fraction\u2014from target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity. They are not T2 rulings.",
+      "word_count": 25,
+      "visual_floor_seconds": 15.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b09_s01",
+          "at_seconds": 0.0,
+          "operation": "transform",
+          "evidence_delta": "characterization transition becomes T1 recorded-characterization stage",
+          "clause_ids": [
+            "b09_c01",
+            "b09_c03"
+          ],
+          "visible_change": "Transform the transition label into T1 RECORDED CHARACTERIZATION \u00b7 NOT T2 RULINGS."
+        },
+        {
+          "state_id": "b09_s02",
+          "at_seconds": 3.0,
+          "operation": "reveal",
+          "evidence_delta": "symbol-and-meaning-collision group",
+          "clause_ids": [
+            "b09_c01"
+          ],
+          "visible_change": "Reveal SYMBOL / MEANING COLLISION."
+        },
+        {
+          "state_id": "b09_s03",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "Galactic-height and model-grid examples",
+          "clause_ids": [
+            "b09_c01"
+          ],
+          "visible_change": "Reveal Galactic height and model-grid metal fraction inside that group."
+        },
+        {
+          "state_id": "b09_s04",
+          "at_seconds": 9.0,
+          "operation": "reveal",
+          "evidence_delta": "target-domain-mismatch group",
+          "clause_ids": [
+            "b09_c02"
+          ],
+          "visible_change": "Reveal TARGET-DOMAIN MISMATCH."
+        },
+        {
+          "state_id": "b09_s05",
+          "at_seconds": 12.0,
+          "operation": "reveal",
+          "evidence_delta": "gravitational-redshift examples and not-T2 boundary",
+          "clause_ids": [
+            "b09_c02",
+            "b09_c03"
+          ],
+          "visible_change": "Reveal the two gravitational-redshift examples and lock NOT T2 RULINGS."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b09_c01",
+          "text": "Recorded examples separate symbol-and-meaning collisions\u2014Galactic height and model-grid metal fraction"
+        },
+        {
+          "clause_id": "b09_c02",
+          "text": "from target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity"
+        },
+        {
+          "clause_id": "b09_c03",
+          "text": "They are not T2 rulings"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_precision_limit",
+        "exit_state_id": "funnel_plus_characterization",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch with side-check boundary",
+          "precision-not-certified status",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "individual 7/7 and 0/3 icons after their precision limitation remains visible"
+        ]
+      },
+      "proposed_start_seconds": 81.0,
+      "proposed_end_seconds": 96.0,
+      "output_basename_proposal": "b09-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b10",
+      "text": "The T2 rule contract was frozen after seven gate rounds over twelve decoys and three anchors, but the 157-table eligibility application is not completed, so no eligible-table count or metallicity measurement is reportable yet.",
+      "word_count": 34,
+      "visual_floor_seconds": 9.0,
+      "timed_reveal_states": [
+        {
+          "state_id": "b10_s01",
+          "at_seconds": 0.0,
+          "operation": "reveal",
+          "evidence_delta": "reportable-now panel with T1 facts and complete T2 design provenance",
+          "clause_ids": [
+            "b10_c01"
+          ],
+          "visible_change": "Reveal REPORTABLE NOW with the frozen T1 facts and complete T2 contract-design control provenance."
+        },
+        {
+          "state_id": "b10_s02",
+          "at_seconds": 3.0,
+          "operation": "reveal",
+          "evidence_delta": "pending panel with all-157 application and measurement outputs",
+          "clause_ids": [
+            "b10_c02"
+          ],
+          "visible_change": "Reveal PENDING with T2 application, eligible-table count, and any metallicity/MZR measurement."
+        },
+        {
+          "state_id": "b10_s03",
+          "at_seconds": 6.0,
+          "operation": "reveal",
+          "evidence_delta": "application-not-completed and no-count gate",
+          "clause_ids": [
+            "b10_c02",
+            "b10_c03"
+          ],
+          "visible_change": "Reveal APPLICATION NOT COMPLETED \u00b7 NO ELIGIBLE-TABLE COUNT across the direct 157-to-T2 gate."
+        },
+        {
+          "state_id": "b10_s04",
+          "at_seconds": 8.0,
+          "operation": "transform",
+          "evidence_delta": "reportable and pending panels joined into qualified close",
+          "clause_ids": [
+            "b10_c03"
+          ],
+          "visible_change": "Transform REPORTABLE NOW and PENDING into the combined qualified summary with SINGLE-TABLE METADATA CENSUS \u00b7 NOT AN MZR MEASUREMENT."
+        }
+      ],
+      "narration_clauses": [
+        {
+          "clause_id": "b10_c01",
+          "text": "The T2 rule contract was frozen after seven gate rounds over twelve decoys and three anchors"
+        },
+        {
+          "clause_id": "b10_c02",
+          "text": "the 157-table eligibility application is not completed"
+        },
+        {
+          "clause_id": "b10_c03",
+          "text": "no eligible-table count or metallicity measurement is reportable yet"
+        }
+      ],
+      "state_handoff": {
+        "entry_state_id": "funnel_plus_characterization",
+        "exit_state_id": "qualified_close",
+        "persistent_layers": [
+          "178\u2192\u221221\u2192157\u2192T2 main spine",
+          "62-of-157 side branch with side-check boundary",
+          "T1/T2 stage history",
+          "application-not-completed/no-count gate",
+          "not-an-MZR badge",
+          "single-table/no-crossmatch scope"
+        ],
+        "retire_after_exit": [
+          "individual contamination examples after both category headings remain in reportable history"
+        ]
+      },
+      "proposed_start_seconds": 96.0,
+      "proposed_end_seconds": 105.0,
+      "output_basename_proposal": "b10-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    }
+  ],
+  "audio_artifacts": [],
+  "tts_invoked": false,
+  "integration_constraints": [
+    "Visual card durations are floors; narration duration may expand a card but must not compress below the visual floor.",
+    "No worker-lane audio synthesis is authorized.",
+    "No narration may call 62 eligible or describe the census as an MZR measurement.",
+    "No narration may call abundance-search-, mass-search-, or redshift-search-axis metadata reach an adjudicated physical measurement.",
+    "T1 retrieval controls and T2 contract-design controls are distinct workflow stages and must remain labeled separately.",
+    "If T2 control counts are spoken or shown, include all 12 decoys plus 3 anchors and call them contract-design controls, not eligibility results.",
+    "Public release requires an audience-reachable methods and count ledger for internally derived denominators.",
+    "No substantive scientific evidence state may remain unchanged for more than three seconds on the global timeline; every declared narration clause must map to at least one structured reveal or transform state.",
+    "Do not create standalone section-divider holds; persist section identity with the evidence surface.",
+    "Reveal REPORTABLE NOW, then PENDING, then the no-count gate, then transform into the combined qualified summary.",
+    "After mux, re-run hard-cut/evidence-state timing and sentence/action alignment on the exact candidate.",
+    "Do not use full-frame scientific resets between beats; each exit_state_id must match the next entry_state_id.",
+    "Keep the 178-to-minus-21-to-157-to-T2 main spine visible after it is constructed through the final qualified close.",
+    "Whenever 62 is visible, preserve its 157 parent, side-check boundary, and the all-157-to-T2 main path.",
+    "Persist T1/T2 stage identity across handoffs and re-run exact cut-boundary continuity after mux.",
+    "Use the final spoken script corresponding to the final Hwao storyboard, then run waveform and mux checks in the integrator lane.",
+    "Listening approval is a separate gate after synthesis and mux."
+  ],
+  "publication_gate": "CLOSED"
+}

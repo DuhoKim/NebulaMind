@@ -1,0 +1,92 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass20-blockers-20260808T121840K",
+  "checked_at": "2026-08-08T12:18:40+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 20,
+  "video_reportable_now": false,
+  "candidate": {
+    "name": "spin-parity-census-20260808T0149",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "modified": false,
+    "re_dispatched": false
+  },
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "video_reportable_now": false,
+    "modified": false
+  },
+  "exact_science_blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_REVIEW",
+      "state": "OPEN",
+      "exact_artifact": "T4_PAIRED_FLIP.json",
+      "exact_artifact_sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "required_review": "valid post-run independent A3.8 verdict record bound to the exact frozen T4 artifact",
+      "coverage_receipt": "all 209 regular files content-covered; zero exact T4+A3.8 hash-pair review records",
+      "presentation_audit_can_resolve": false
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "state": "OPEN",
+      "source": "KUN_FRAME_REVIEW.md",
+      "source_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "terminal_status": "FRAME REVIEW: AGREES FRAME_UNSTATED",
+      "required_resolution": "source-authorized archive storage-frame interpretation",
+      "presentation_audit_can_resolve": false
+    },
+    {
+      "id": "FAILED_CANDIDATE_REPRESENTATION",
+      "state": "PRESERVED_EVIDENCE",
+      "finding": "result-bearing hierarchy remains dominant while no structural held gate appears under native Gaussian radius 1.5 followed by 640x360 LANCZOS",
+      "required_resolution": "do not promote candidate; use a separately authorized method-only layout after all source and representation gates pass",
+      "presentation_audit_can_authorize_science": false
+    }
+  ],
+  "pass20_representation_finding": {
+    "focus": "native-canvas Gaussian spatial defocus followed by minimum-scale 640x360 interaction",
+    "operational_variant": "defocus_r1_50_then_360p",
+    "candidate_structural_gate_scenes": "0/16",
+    "held_critical_structural_gates": "0/5",
+    "pass12_exact_top_gates": "7/7",
+    "pass12_result_held_badges": "7/7",
+    "pass12_mean_mapped_gate_similarity": 0.954273,
+    "pass12_exact_transform_recomputation": "7/7",
+    "new_pixel_or_copy_correction_justified": false,
+    "action": "MINIMUM_SCALE_DEFOCUS_INTEGRATION_GUARD"
+  },
+  "evidence": {
+    "encoded_frame_audit": {
+      "path": "PASS20_ENCODED_FRAME_AUDIT.md",
+      "sha256": "da89038c15c7e146b53915b5fa3ba45a49151b15c94855a12a48f38c6d0d9056"
+    },
+    "integration_guard": {
+      "path": "MINIMUM_SCALE_DEFOCUS_GUARD_PASS20.json",
+      "sha256": "51d4fafe6b4379685758c89e003ed04d3fdd18249a7d65db924495c97ffe888c"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass20_minimum_scale_defocus_quantitative_audit.json",
+      "sha256": "73a7c54ca6752d8d04c2c4f00ff48e028cfba8382e40cf54b14d2c4901469401"
+    }
+  },
+  "exact_unblock_requirements": [
+    "Provide a valid post-run independent A3.8 verdict record bound by exact hash to the frozen T4 artifact.",
+    "Resolve FRAME_UNSTATED through a source-authorized archive storage-frame record.",
+    "Obtain separate authorization for substantive result integration, narration, candidate encoding, and publication.",
+    "For any method-only iteration, satisfy pass20 and all cumulative representation guards before Hwao considers integration."
+  ],
+  "safety": {
+    "science_invented": false,
+    "quarantined_result_values_copied": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

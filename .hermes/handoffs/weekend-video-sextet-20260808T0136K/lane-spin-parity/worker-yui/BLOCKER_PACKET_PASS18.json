@@ -1,0 +1,96 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass18-blockers-20260808T112707K",
+  "checked_at": "2026-08-08T11:27:07+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 18,
+  "video_reportable_now": false,
+  "substantive_result_status": "HELD",
+  "science_adjudicated_by_this_pass": false,
+  "candidate_custody": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "modified": false,
+    "re_dispatched": false
+  },
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "modified": false
+  },
+  "blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_REVIEW",
+      "status": "OPEN",
+      "exact_scope": "the exact frozen all-209-regular-file T4 artifact",
+      "required_record": "a valid independent post-run A3.8 verdict record hash-bound to T4_PAIRED_FLIP.json",
+      "current_evidence": "203 UTF-8 regular files contain nine post-T4 documents and four T4 identifiers but zero exact T4+A3.8 hash pairs; four gzip archives and two literature PDFs decode to zero T4 or A3.8 identity markers and zero exact hash pairs",
+      "video_or_presentation_fix_can_resolve": false
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "status": "OPEN",
+      "required_record": "source-authorized resolution of whether stored winding labels follow displayed/mirrored orientation or are mapped back before storage",
+      "current_evidence": "KUN_FRAME_REVIEW.md terminates FRAME REVIEW: AGREES FRAME_UNSTATED",
+      "source_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "video_or_presentation_fix_can_resolve": false
+    },
+    {
+      "id": "FAILED_CANDIDATE_STRUCTURAL_STATUS_BOUNDARY",
+      "status": "OPEN_FOR_CANDIDATE_0149",
+      "current_evidence": "At 640x360 plus caption15, player_ui25, and heavy35 bottom masks, candidate structural result/status gates remain 0/16; large result headlines, numbers, bars, matrices, plots, and conclusions remain primary while lower support is occluded.",
+      "resolution_path": "preserve candidate 0149 as failed evidence; any future Hwao-authored layout must remain method-only until source blockers close and must carry an exact scene-specific gate plus complete RESULT HELD capsule above the bottom 25 percent boundary"
+    }
+  ],
+  "pass18_representation_finding": {
+    "axis": "native RGB -> Pillow LANCZOS 640x360 -> opaque bottom obstruction",
+    "operational_masks": ["caption15_360p", "player_ui25_360p"],
+    "characterization_mask": "heavy35_360p",
+    "candidate_player_ui25_structural_gates": "0/16",
+    "candidate_held_critical_player_ui25_structural_gates": "0/5",
+    "pass12_player_ui25_exact_top_gates": "7/7",
+    "pass12_player_ui25_result_held_badges": "7/7",
+    "pass12_player_ui25_unobstructed_pixel_identity": "7/7",
+    "pass12_player_ui25_overlap_clipping_or_ambiguity": false,
+    "sealed_v8_scene_specific_lower_boundaries_occluded": ["S2", "S3", "S4", "S5", "S6"],
+    "disposition": "ADD_NON_PIXEL_MINIMUM_SCALE_OBSTRUCTION_GUARD; NO_NEW_PIXEL_OR_COPY_CORRECTION"
+  },
+  "evidence": {
+    "encoded_frame_audit": {
+      "path": "PASS18_ENCODED_FRAME_AUDIT.md",
+      "sha256": "6848f1dfc0451c555b1b33eb1d04e273f2c3956eb4fedb8fd9ad6174ad1d1266"
+    },
+    "guard": {
+      "path": "MINIMUM_SCALE_OBSTRUCTION_GUARD_PASS18.json",
+      "sha256": "8d0740776fc847e577185cfddefba741804b3c0a6403721a0de41f7c169345d3"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass18_minimum_scale_obstruction_audit/extraction_receipt.json",
+      "sha256": "cd4d24f3152e054906caecd7918c6c9c6d0bcf02f18648b2f7b0b17e25837eca"
+    },
+    "method_receipt": {
+      "path": "qa/pass18_v8_minimum_scale_obstruction/receipt.json",
+      "sha256": "50adb21a297b109d0156554cc10b68b935ce2580699139c76f737dc0d5c9cde7"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass18_minimum_scale_obstruction_quantitative_audit.json",
+      "sha256": "4ea190e438f348635ffeb735d852ba08993b8eddcc53843b9e622db6b9b55ba1"
+    }
+  },
+  "exact_unblock_requirements": [
+    "Provide a valid independent post-run A3.8 verdict record for the exact frozen T4 artifact, including exact artifact identity/hash and terminal verdict.",
+    "Resolve FRAME_UNSTATED with source-authorized archive storage-frame evidence.",
+    "Only after both science blockers close may result integration be separately reviewed and authorized.",
+    "Any later layout must independently pass minimum-scale obstruction and every cumulative representation guard; a presentation pass cannot substitute for missing science records."
+  ],
+  "not_performed": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "candidate_modified": false,
+    "shared_or_public_assets_modified": false,
+    "published": false,
+    "git_action": false
+  }
+}

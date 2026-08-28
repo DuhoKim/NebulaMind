@@ -1,0 +1,108 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass5-review-v1-20260808T050256K",
+  "created_at": "2026-08-08T05:02:56+09:00",
+  "scope": "isolated worker-Yui pass-5 encoded cut-boundary audit, hard-cut transition guard, complete non-UTF-8 content scan, and sealed-v8 no-change decision",
+  "supersedes": {
+    "path": "qa/pass4_review_snapshot_v1.json",
+    "sha256": "0b07e16c0374654b205c0c699369aa3b78c6cd6ae1cf3fb686e3eb5af0e3b013",
+    "snapshot_id": "spin-worker-yui-pass4-review-v1-20260808T044638K"
+  },
+  "supersession_reason": "Pass 5 adds five-frame coverage around all 15 encoded cuts, deterministic hard-cut classification, a bounded transition contract for future integration, and direct content decoding of all six non-UTF-8 source files while preserving sealed v8 and the held candidate.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS5_ENCODED_FRAME_AUDIT.md",
+      "sha256": "97641ed87e5dffb9af34de8a8eb6650c3c1c86d53f7c13bc6c3105432ee77b01"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS5.json",
+      "sha256": "f0fde8fbf8b60020c5fad2ef58f98de5be669a15b2145fe1e950113085788039"
+    },
+    {
+      "path": "qa/pass5_boundary_audit/extract_boundary_frames.py",
+      "sha256": "a9ced81ca16f5b850e4843ed295ff334d8a8ae71ee32cc4bacb05d972a859c6e"
+    },
+    {
+      "path": "qa/pass5_boundary_audit/extraction_receipt.json",
+      "sha256": "09952da01a3e370cc8f813719ededc0a1c92ae55e8d11e374bd4354538f73dec"
+    },
+    {
+      "path": "qa/audit_pass5_cut_classification.py",
+      "sha256": "ff62db94ce2637cf00fa07d4982531a63ddc027464936fe4015903c674dfd69a"
+    },
+    {
+      "path": "qa/pass5_cut_classification.json",
+      "sha256": "4e1bb336627e090659ca46cfa65178180705e1241fb625b05ed36b597fb22234"
+    },
+    {
+      "path": "qa/build_pass5_binary_content_scan.py",
+      "sha256": "4bc91466606a27c398eece56e0f04413c543bab39f8e32fbc7155005be28ce86"
+    },
+    {
+      "path": "qa/pass5_binary_content_scan.json",
+      "sha256": "092cba9cbf432555573206e4afef48d30d89a8172a58c453c48970cc5a5ba21e"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "render_proposal_frames.py",
+      "sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "qa/static_proposal_validation.json",
+      "sha256": "2b39d1f0779c436b7b38112f23409006a13f06fa7f8e59f54ecbaf6b51cf1e96"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass5_boundary_evidence": {
+    "transition_count": 15,
+    "sample_count": 75,
+    "frame_offsets": [-2, -1, 0, 1, 2],
+    "contact_sheet_sha256": {
+      "minus_2f": "6ce410292454e7c038043edf32031391a4959247ae7f49b3bc13c17018b9cf87",
+      "minus_1f": "6eb4f61054c3ca81f80e03a88c4b84c5f3c2f3513ffba9e438e7aa879491e472",
+      "cut": "5779e88b8f297961202fc6db856349b057f66c1d0831b1b40de82f9476db2e55",
+      "plus_1f": "d0486bd7f5f3262c14befa8fa3173887e3e12e59416d3946fad3a6a4d90d190f",
+      "plus_2f": "1c672a9764946adb755e6a4854096ab35281f506466f35431435dae9653d783f"
+    },
+    "frame_hashes_pinned_by_extraction_receipt": 75,
+    "unique_frame_hash_count": 75,
+    "hard_cut_sequence_count": 15,
+    "expected_sequence": ["outgoing", "outgoing", "incoming", "incoming", "incoming"],
+    "all_cut_timestamp_frames_classify_incoming": true,
+    "minimum_reference_separation_ratio": 6.275656,
+    "blank_flash_blend_or_partial_frame_found": false
+  },
+  "pass5_binary_content_scan": {
+    "non_utf8_file_count": 6,
+    "gzip_file_count": 4,
+    "pdf_file_count": 2,
+    "files_with_any_t4_or_a3_8_identity_marker": 0,
+    "files_with_exact_t4_and_a3_8_hash_pair": 0,
+    "all_209_regular_files_identity_marker_content_covered": true
+  },
+  "v8_disposition": "SEALED_AUTHORITATIVE_PROPOSAL_NO_PIXEL_CHANGE",
+  "transition_correction": "CLEAN_HARD_CUTS__RESULT_HELD_ON_BOTH_SIDES__NO_BLANK_OR_CROSSFADE",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

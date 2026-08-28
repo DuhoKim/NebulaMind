@@ -1,0 +1,16 @@
+{
+  "test": "dark-tone-resilience acceptance (spin pass-14 guard; operational transform = integer-luma dark-tone floor 16/255 + full-range remap)",
+  "guard_source": "lane-spin-parity/worker-yui/DARK_TONE_RESILIENCE_GUARD_PASS14.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T09:24:00+09:00",
+  "method": "exact contract transform (Y=(54R+183G+19B+128)//256; Y2=max(Y-16,0)*255/239 round-half-up; RGB scaled by Y2/Y) on the 11 encoded state frames; floor-32 characterization; human review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 amber-bordered RESULT HELD capsule readable on 11/11 floored states",
+    "boundaries_primary": "PASS \u2014 headline boundary copy bright and primary",
+    "no_meaning_in_near_black_separation": "PASS \u2014 the page background and dark chip fills crush to black by design; all semantic content is carried by bright text, borders, and strokes",
+    "labels_distinguishable": "PASS \u2014 readout boxes, arrows, spirals, equation remain distinct",
+    "characterization_floor32": "generated, reviewed as characterization only"
+  },
+  "verdict": "PASS",
+  "evidence": "dark_tone_floor/contact_sheet_floor16.png, contact_sheet_floor32.png"
+}

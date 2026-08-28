@@ -1,0 +1,40 @@
+{
+  "review_round": 15,
+  "pass": 7,
+  "snapshot": "pass7-explicit-custody-inventory-v7",
+  "snapshot_manifest_sha256": "c06b0f0882ceb8b9eee75900cbfb6f4c6787e5380e891bf8c5d8a6c77a87b79f",
+  "manifest_entries": 92,
+  "manifest_is_complete_authority": true,
+  "verdict": "PASS",
+  "score": 8,
+  "threshold": 7,
+  "mandatory_questions": [4, 8],
+  "mandatory_questions_passed": true,
+  "confidence": "HIGH_ALL_QUESTIONS",
+  "answers": {
+    "q1": "single-table VizieR metadata-reach census; no joins, crossmatches, metallicity measurement, or MZR measurement",
+    "q2": "semantic UCD tags and column-name variants",
+    "q3": "5393→5568 (+175), 6118→6206 (+88), 6667→6687 (+20), 178−21=157 with 19 redshift-search and 2 abundance-search; 62 is a side branch and all 157 go to T2",
+    "q4": "62/157 recorded descriptions match frozen vocabulary only; not eligibility or measurement; all 157 require T2",
+    "q5": "T1 retrieval check 7/7 and 0/3; T2 contract design 12 decoys plus 3 anchors, not eligibility results",
+    "q6": "precision not certified against symbol/meaning collision and target-domain mismatch",
+    "q7": "symbol/meaning: Galactic height and stellar-grid/model Z; target-domain: stellar gravitational redshift and gravitational-redshift velocity",
+    "q8": "T1 census/protocol state reportable; T2 application incomplete, no eligible count and no measurement"
+  },
+  "closed_book_compliance": "PAPER_NAIVE_PACKET.md read semantically exactly once; start/end custody accesses byte-only",
+  "display_citations_visible": true,
+  "custody": {
+    "entries_verified_start_end": "92/92",
+    "sources_verified_start_end": "8/8",
+    "frames_verified_start_end": "43/43",
+    "file_mode": "0444",
+    "directory_mode": "0555",
+    "external_candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "external_candidate_mode": "0644"
+  },
+  "files_modified": [],
+  "ambiguities": [],
+  "candidate_disposition": "FAIL preserved",
+  "release_disposition": "integration, TTS, media, shared, public, Git, and publication gates remain closed",
+  "scope_note": "Scoped comprehension PASS does not override the independently returned exact-v7 adversarial FAIL and cannot clear a later packet."
+}

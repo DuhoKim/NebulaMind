@@ -1,0 +1,210 @@
+{
+  "status": "REPORT_ALL_OUTLIERS_AND_TOKENIZATION_SENSITIVITY_NO_SILENT_RETIMING",
+  "contract_band_wpm": [
+    120,
+    135
+  ],
+  "counting_rules": {
+    "whitespace_proxy": "len(card narration .split()); exactly reproduces Lana's disclosed V9 Card-04 count of 99",
+    "spoken_compound_proxy": "Unicode word tokens after splitting em dash, en dash, and hyphen compounds; responds to Lana's warning that joined compounds undercount spoken words"
+  },
+  "counting_caveat": "Both are transparent text proxies, not measured speech. Encoded per-card speech duration is the final pace authority.",
+  "authority_repair": {
+    "card": "04",
+    "planned_seconds_old": 41,
+    "planned_seconds_new": 48,
+    "authority_floor_seconds": 46,
+    "selected_seconds": 48
+  },
+  "cards": [
+    {
+      "card": "01",
+      "planned_seconds": 35,
+      "whitespace_proxy": {
+        "token_count": 90,
+        "computed_wpm": 154.29,
+        "band_status": "HIGH"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 90,
+        "computed_wpm": 154.29,
+        "band_status": "HIGH"
+      }
+    },
+    {
+      "card": "02",
+      "planned_seconds": 36,
+      "whitespace_proxy": {
+        "token_count": 84,
+        "computed_wpm": 140.0,
+        "band_status": "HIGH"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 82,
+        "computed_wpm": 136.67,
+        "band_status": "HIGH"
+      }
+    },
+    {
+      "card": "03",
+      "planned_seconds": 39,
+      "whitespace_proxy": {
+        "token_count": 87,
+        "computed_wpm": 133.85,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 88,
+        "computed_wpm": 135.38,
+        "band_status": "HIGH"
+      }
+    },
+    {
+      "card": "04",
+      "planned_seconds": 48,
+      "whitespace_proxy": {
+        "token_count": 99,
+        "computed_wpm": 123.75,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 101,
+        "computed_wpm": 126.25,
+        "band_status": "IN_BAND"
+      }
+    },
+    {
+      "card": "05",
+      "planned_seconds": 51,
+      "whitespace_proxy": {
+        "token_count": 83,
+        "computed_wpm": 97.65,
+        "band_status": "LOW"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 85,
+        "computed_wpm": 100.0,
+        "band_status": "LOW"
+      }
+    },
+    {
+      "card": "06",
+      "planned_seconds": 29,
+      "whitespace_proxy": {
+        "token_count": 61,
+        "computed_wpm": 126.21,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 60,
+        "computed_wpm": 124.14,
+        "band_status": "IN_BAND"
+      }
+    },
+    {
+      "card": "07",
+      "planned_seconds": 29,
+      "whitespace_proxy": {
+        "token_count": 68,
+        "computed_wpm": 140.69,
+        "band_status": "HIGH"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 68,
+        "computed_wpm": 140.69,
+        "band_status": "HIGH"
+      }
+    },
+    {
+      "card": "08",
+      "planned_seconds": 35,
+      "whitespace_proxy": {
+        "token_count": 70,
+        "computed_wpm": 120.0,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 71,
+        "computed_wpm": 121.71,
+        "band_status": "IN_BAND"
+      }
+    },
+    {
+      "card": "09",
+      "planned_seconds": 27,
+      "whitespace_proxy": {
+        "token_count": 59,
+        "computed_wpm": 131.11,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 61,
+        "computed_wpm": 135.56,
+        "band_status": "HIGH"
+      }
+    },
+    {
+      "card": "10",
+      "planned_seconds": 36,
+      "whitespace_proxy": {
+        "token_count": 65,
+        "computed_wpm": 108.33,
+        "band_status": "LOW"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 66,
+        "computed_wpm": 110.0,
+        "band_status": "LOW"
+      }
+    },
+    {
+      "card": "11",
+      "planned_seconds": 34,
+      "whitespace_proxy": {
+        "token_count": 66,
+        "computed_wpm": 116.47,
+        "band_status": "LOW"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 69,
+        "computed_wpm": 121.76,
+        "band_status": "IN_BAND"
+      }
+    }
+  ],
+  "whitespace_proxy_outliers_after_card04_repair": {
+    "01": "HIGH",
+    "02": "HIGH",
+    "05": "LOW",
+    "07": "HIGH",
+    "10": "LOW",
+    "11": "LOW"
+  },
+  "spoken_compound_proxy_outliers_after_card04_repair": {
+    "01": "HIGH",
+    "02": "HIGH",
+    "03": "HIGH",
+    "05": "LOW",
+    "07": "HIGH",
+    "09": "HIGH",
+    "10": "LOW"
+  },
+  "robust_outliers_under_both_proxies": {
+    "01": "HIGH",
+    "02": "HIGH",
+    "05": "LOW",
+    "07": "HIGH",
+    "10": "LOW"
+  },
+  "method_sensitive_cards": [
+    "03",
+    "09",
+    "11"
+  ],
+  "disposition": "Reported for three-seat/user adjudication; V10 changes no timing outside Card 04.",
+  "total_whitespace_proxy_tokens": 832,
+  "total_spoken_compound_proxy_tokens": 841,
+  "total_planned_seconds": 399,
+  "aggregate_whitespace_proxy_wpm": 125.11,
+  "aggregate_spoken_compound_proxy_wpm": 126.47
+}

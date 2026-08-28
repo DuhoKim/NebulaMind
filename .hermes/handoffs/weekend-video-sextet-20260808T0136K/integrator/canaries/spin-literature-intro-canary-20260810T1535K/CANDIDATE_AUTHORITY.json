@@ -1,0 +1,82 @@
+{
+  "authority_id": "SPIN_LITERATURE_INTRO_CANARY_AUTHORITY_V2_20260810T1546K",
+  "state": "PROVISIONAL_CORRECTED_CANDIDATE_AWAITING_KUN_GUARDRAIL_REREVIEW_AND_TORI_EXACT_HASH_REGATE_AND_DUHO_WATCH",
+  "created_at": "2026-08-10T15:46:37+09:00",
+  "lane": "spin",
+  "candidate": {
+    "path": "spin-literature-intro-canary-20260810T1535K.mp4",
+    "sha256": "fe04bed4605c8ee75b0641ff44c12d61990f388858f97f78103fef3c073678ed",
+    "format_duration_seconds": 280.565,
+    "raw_frames_submitted": 8417,
+    "encoded_video_frames": 8416,
+    "encoded_video_duration_seconds": 280.533333,
+    "audio_minus_encoded_video_seconds": 0.03187533333328929,
+    "size_bytes": 30442013
+  },
+  "supersedes_held_attempt": {
+    "mp4_sha256": "cfb9b1fabb7d4fb46009319d45d33931bf108917f317a184e4074e6f471d968d",
+    "kun_report_sha256": "00670f4a67c0afaf4975779fab0b5d59492e89eaec5504aa05d0c438b93d3714",
+    "status": "PRESERVED_HOLD_NOT_A_CANDIDATE_FOR_TORI"
+  },
+  "hold_corrections": {
+    "scientific_typography": "STIX Two Text now renders U+207B minus at superscript height in card and caption exponents",
+    "frame_receipt": "raw_frames_submitted and encoded_video_frames are separately measured; ffmpeg -shortest one-frame relationship and sub-one-frame tail delta are explicit and independently checked"
+  },
+  "scope": {
+    "changed": "WHY IT MATTERS opening beat 4 states exactly what Longo, Shamir, and Land et al. reported, using one verbatim primary-abstract sentence per study with explicit attribution and a claimed-disputed-unsettled synthesis",
+    "unchanged": [
+      "five-beat arc",
+      "stakes before method",
+      "conditional Longo framing",
+      "WHY IT MATTERS rail ahead of MIRROR TEST",
+      "NO ANSWER SELECTED header",
+      "seam into mirror-control method spine",
+      "method-spine narration from s02 through s24",
+      "rail focus fix",
+      "forbidden_icon_primitives hardening"
+    ],
+    "excluded_from_rendered_content": [
+      "superseded alternate-cosmology beat",
+      "result claims by this video",
+      "asserted asymmetry, direction, parity violation, or significance by this video"
+    ]
+  },
+  "literature_guardrails": {
+    "attributed_other_study_claims": ["Longo 2011", "Shamir 2012", "Land et al. 2008"],
+    "verbatim_primary_abstract_sentences": true,
+    "land_null_presented_as_settled_answer": false,
+    "winner_selected": false,
+    "current_video_finding_claimed": false
+  },
+  "audio": {
+    "model": "gpt-4o-mini-tts",
+    "voice": "alloy",
+    "speed": 1.18,
+    "delivered_wpm": 115.00000375287189,
+    "integrated_loudness_lufs": -20.85,
+    "true_peak_db": -2.31,
+    "lra_lu": 6.70,
+    "max_audio_visual_start_delta_seconds": 0.015333333333333421,
+    "exact_inequality_pronunciation_asr": "PASS"
+  },
+  "qa": {
+    "encoded_checks_all_pass": true,
+    "frame_count_contract_pass": true,
+    "encoded_introduction_asr": "PASS",
+    "encoded_introduction_asr_similarity": 0.9667761956918584,
+    "preencode_symbol_asr": "PASS",
+    "pre_synthesis_contract": "PASS",
+    "corrected_visual_encoded_frame_review": "PASS_NO_CONCRETE_DEFECT"
+  },
+  "closed_gates": {
+    "human_watch_acceptance_conferred": false,
+    "predecessor_replacement_authorized": false,
+    "cockpit_copy_authorized": false,
+    "upload_authorized": false,
+    "public_authorized": false,
+    "database_authorized": false,
+    "deploy_authorized": false,
+    "git_write_authorized": false
+  },
+  "video_reportable_now": false
+}

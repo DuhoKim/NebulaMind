@@ -1,0 +1,39 @@
+{
+  "freeze_id": "c41-mzr-worker-yui-20260808T020544K",
+  "created_utc": "2026-08-07T17:05:44Z",
+  "evidence_manifest": "EVIDENCE_FREEZE.json",
+  "evidence_manifest_sha256": "06eed1ddb0a7db668fd74acdbd28f592f6f94fe48a85b973b67af42723cf01db",
+  "video_reportable_now": true,
+  "verdict": "PASS_WITH_STRICT_ARCHIVE_CENSUS_BOUNDARY",
+  "frozen_claims": {
+    "pipeline_units": [
+      "79 archive tables",
+      "23 candidate tables",
+      "11 fetched tables across 8 catalogs",
+      "95 z>3 rows",
+      "5 contract-grade anchors"
+    ],
+    "unreachable_candidate_tables": 12,
+    "row_exclusions": {
+      "sn4363_below_floor": 64,
+      "no_hbeta": 12,
+      "missing_flux": 6,
+      "te_failure": 8,
+      "survivors": 5
+    },
+    "mass_bin_counts": [2, 1, 0],
+    "below_frozen_logM8_floor": 2,
+    "shared_minimum_per_bin": 3,
+    "result": "no-deficit-verdict-possible in every frozen mass bin"
+  },
+  "non_claims": [
+    "no calibrated high-redshift mass-metallicity relation",
+    "no metallicity deficit magnitude or direction",
+    "no validation or invalidation of local diagnostics at high redshift",
+    "no inference that anchors are absent from the sky",
+    "no FMR result"
+  ],
+  "current_video_disposition": "FAIL_AS_CURRENT_CANDIDATE__ARTIFACT_LINEAGE_AND_REPRESENTATION_BOUNDARY",
+  "integration_authority": "Hwao sole integrator and candidate/shared-tool/TTS writer",
+  "paper_lane_permissions": "evidence, visual/storyboard proposals, QA, and requests only"
+}

@@ -1,0 +1,76 @@
+{
+  "request_id": "SPIN_V5_BOUNDED_TORI_PACKET_RECHECK_REQUEST_20260810T0057K",
+  "created_at_kst": "2026-08-10T00:57:19+09:00",
+  "requester": "Yui receipt-correction lane under Duho's direct V5 order",
+  "requested_reviewer": "Tori",
+  "status": "READY_FOR_PACKET_ONLY_RECHECK",
+  "scope": "Bounded provenance/self-description recheck of the new V5 receipt packet only. Do not repeat the full presentation, science, media, OCR, ASR, or 6,726-frame audit unless the exact MP4 hash has changed.",
+  "exact_candidate_must_remain_unchanged": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "required_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "required_bytes": 25486290,
+    "rehash_before_and_after_packet_review": true,
+    "render_or_reencode_authorized": false
+  },
+  "preserved_v4_evidence": {
+    "candidate_tree_file_count": 210,
+    "candidate_tree_sha256": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb",
+    "post_encode_freeze_v4_sha256": "a8949ffb9bb994b066f4fcde7cf58b607045ad789ed58fe5eddfb253ef776405",
+    "original_build_receipt_v4_sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22",
+    "tori_independent_evidence_file_count": 517,
+    "tori_independent_evidence_tree_sha256": "391cd851dc630e8c27f60ec44b169dbe3700cd07ee83324b9ebd8a0488b80c57",
+    "tori_v4_adjudication_sha256": "4a8acaaf91722eed6e9f833f641d33789d79c31add6d755f3928a6f1362cfb2f",
+    "preserve_byte_for_byte": true
+  },
+  "standing_tori_passes_on_exact_mp4": {
+    "presentation_on_exact_bytes": "PASS",
+    "science_and_claim_boundary_on_exact_bytes": "PASS_METHOD_ONLY_NO_RESULT",
+    "media_integrity_on_exact_bytes": "PASS",
+    "five_why_study_beats_visible_and_ordered": true,
+    "broad_stakes_precede_sorter_bias_method": true,
+    "zero_forbidden_ocr_hits_across_uniform_frames": true,
+    "actual_encoded_frame_audit": 6726,
+    "do_not_reopen_without_hash_drift": true
+  },
+  "sole_v4_block": {
+    "code": "BUILD_RECEIPT_FRAME_COUNT_IS_NOT_THE_ENCODED_FRAME_COUNT",
+    "description": "V4 build_receipt.json exposed frame_count=6727 without saying this was the generated raw-frame submission count; the encoded H.264 stream contains 6726 frames."
+  },
+  "v5_correction_files": [
+    {
+      "path": "FRAME_COUNT_DERIVATION_V5.json",
+      "sha256": "000b1ea713ec090c9aa660893f970ee37621672f247bac0df2f0ef8a07645869",
+      "review": "Verify both numbers, their different semantic scopes, named producing/measurement operations, and operation times."
+    },
+    {
+      "path": "BUILD_RECEIPT_V5.json",
+      "sha256": "53424efa9bf869038bf1373460209dbb2036f64d57b74f4d131f2fa3475fd2e0",
+      "review": "Verify raw_frames_submitted_to_ffmpeg=6727 and encoded_video_frames=6726 are explicit, separately qualified, and the original V4 receipt remains immutable."
+    }
+  ],
+  "required_recheck_questions": [
+    "Does V5 preserve the exact MP4 and V4 candidate/evidence trees without mutation?",
+    "Does V5 explicitly distinguish raw_frames_submitted_to_ffmpeg=6727 from encoded_video_frames=6726?",
+    "Does each scalar name its producing or observing operation and execution time, with the original operation interval honestly identified as filesystem-bounded evidence because V4 omitted an explicit timestamp?",
+    "Do ffprobe nb_frames, ffprobe nb_read_frames, and an independent full decode all return 6726?",
+    "Does the corrected receipt preserve rather than silently overwrite the historically true V4 scalar?",
+    "Is the original self-description blocker closed without reopening already-passed presentation, claim-boundary, or media findings?"
+  ],
+  "requested_output": {
+    "format": "new versioned JSON adjudication under reviews",
+    "verdict_scope": "V5 packet plus unchanged exact MP4 hash only",
+    "allowed_verdicts": [
+      "PASS_PROVENANCE_RECEIPT_CORRECTION",
+      "HOLD_PROVENANCE_RECEIPT_CORRECTION"
+    ],
+    "acceptance_not_conferred": true
+  },
+  "closed_actions": [
+    "No render or re-encode",
+    "No candidate-tree mutation",
+    "No upload, publication, public/frontend, or cockpit mutation by this correction lane",
+    "No database, deploy, restart, Git, billing, provider, config, browser/account, or secrets mutation",
+    "No acceptance label"
+  ],
+  "human_gate": "Duho's watch/listen verdict remains final."
+}

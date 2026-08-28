@@ -1,0 +1,68 @@
+{
+  "audit_timestamp_kst": "2026-08-09T14:23:22+09:00",
+  "lane": "brightend",
+  "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+  "candidate_dir": "integrator/canaries/brightend-method-overhaul-canary-20260809T1345K",
+  "candidate_sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+  "candidate_bytes": 9812969,
+  "duration_seconds": 227.9,
+  "video_frames_decoded_to_eof": 6837,
+  "full_decode_exit_code": 0,
+  "binding": {
+    "disk_equals_dispatched_hash": true,
+    "disk_equals_POST_ENCODE_FREEZE": true,
+    "disk_equals_build_receipt": true,
+    "freeze_receipt_hash_matches_RECEIPT_json": true,
+    "source_manifest_all_copies_match": true,
+    "frozen_STATUS_copy_matches": true,
+    "current_lane_STATUS_reviewed": true,
+    "SOURCE_FREEZE_present": false,
+    "excluded_mzr_anchor_1300K": true
+  },
+  "narration": {
+    "source": "spec.json sentences[]",
+    "sentence_count": 22,
+    "word_count": 431,
+    "timeline_record_count": 22,
+    "timeline_text_matches_sentences": true
+  },
+  "actual_frame_review": {
+    "uniform_ocr_fps": 2,
+    "uniform_ocr_frames": 456,
+    "ocr_errors": 0,
+    "sentence_midpoint_frames": 22,
+    "section_end_frames": 9,
+    "vision_inspected_frames": 31,
+    "in_axis_plotted_point_absent": true,
+    "other_outcome_bearing_marker_absent": true,
+    "catalogue_or_object_count_absent": true,
+    "evaluated_threshold_slice_gap_or_pace_absent": true,
+    "evaluated_N_slice_absent": true,
+    "selected_explanation_absent": true,
+    "internal_filename_absent": true,
+    "geometry_gate": "PASS"
+  },
+  "audio": {
+    "integrated_loudness_lufs": -20.0,
+    "true_peak_dbfs": -2.3,
+    "private_playback_start_kst": "2026-08-09T14:15:37+09:00",
+    "private_playback_end_kst": "2026-08-09T14:19:25+09:00",
+    "private_playback_exit_code": 0
+  },
+  "closed_gates": {
+    "exact_8766_route_matches_candidate_hash": true,
+    "candidate_hash_absent_from_protected_mp4_roots": true,
+    "protected_root_manifests_unchanged": true,
+    "paperVideos_ts_unchanged": true,
+    "git_head_and_index_unchanged": true,
+    "git_cached_diff_empty": true,
+    "legacy_8093_route_http_status": 404,
+    "upload_or_publication_performed": false
+  },
+  "authority_boundary": {
+    "method_only": true,
+    "video_reportable_now": false,
+    "scientific_result_authorized": false,
+    "self_QA_or_numeric_guard_used_as_authority": false
+  }
+}

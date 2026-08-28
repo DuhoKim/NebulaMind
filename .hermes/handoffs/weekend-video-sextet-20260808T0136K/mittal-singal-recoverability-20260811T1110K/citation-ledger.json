@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://arxiv.org/pdf/2311.14938v1",
+      "title": "Mittal et al. original arXiv v1 PDF",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\\date{Accepted 2023 November 24. Received 2023 November 15; in original form 2023 October 17}",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "With this in mind, in this work we present an analysis of the recently-released Quaia quasar catalogue \\citep{storeyfisher2023quaia}.\n    At the highest magnitude limit, this catalogue contains $1\\,295\\,502$ sources.\n    We examine the anisotropy in angular distribution of these quasars over the sky, applying a Bayesian framework to compare the inferred dipole to that of the CMB.\n    The structure of this paper is as follows.\n    In Section~\\ref{sec:background}, we present the background theory and an overview of the instant state of the literature, including current observations of the cosmic dipole and an assessment of their consistency with the cosmological principle.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "To decontaminate their sample, the authors imposed proper motion cuts, since quasars are anticipated to be sources well within the background, and a number of colour magnitude cuts.\n    They finally applied a $G < 20.5$ magnitude cut, the result of which constitutes their primary catalogue: the `Quaia high' catalogue.\n    Another cut of $G < 20.0$ created the `Quaia low' catalogue, since the authors noted that deeper magnitudes sacrificed purity and measurement precision.\n    \n    One other issue is outstanding: selection effects.\n    To mitigate these, the authors created a selection function to account for how some sources are preferentially observed at different locations on the sky due to dust extinction, stellar density and the peculiarities of \\textit{Gaia}'s scanning pattern.\n    This information is encoded in four maps: a dust extinction map; a stellar distribution map; a separate Large Magellanic Cloud and Small Magellanic Cloud stellar map; and, a map encoding \\textit{Gaia}'s scanning law and source crowding.\n    This data is passed to a Gaussian process, producing a probability map: the selection function.\n    The selection function describes how likely it is for sources to be included in the final catalogue depending on where they are on the sky.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "% \\end{figure*}\n    To generate the smoothed map, we first scaled the catalogue according to the selection function such that the $i$-th pixel with number of sources $N_i$ (see Section~\\ref{subs:binning} for information on how sources are binned) is scaled by $1 / s_i$, where $s_i$ is the value of the selection function at that pixel.\n    We then implemented a sliding average; for each pixel, we selected pixels within 1 steradian and computed the mean density.\n    These maps give a visual cue of a source over-density near the galactic centre, as well as under-densities near mid galactic longitudes along the galactic plane.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\\label{subs:binning}\n        In order to prepare the catalogue for analysis, the sky was divided into equal-area pixels using the the pixelisation regime of HEALPix\\footnote{\\url{https://healpix.sourceforge.io/}} \\citep{Gorski2005, Zonca2019} as incorporated in the Python package \\textsc{healpy}. \n        % In order to get a decent number count for each pixel,\n        $N_\\text{side} = 64$ -- generating a total of $49\\,152$ pixels -- was chosen, since the selection maps created by the Quaia authors are given at this resolution.\n        The choice of $N_\\text{side}$ depends upon the fact that for number count analysis, the uncertainty in number counts for each pixel due to shot noise should not be greater than the mean number count for the catalogue.\n        We then summed the number of sources within each pixel using their recorded positions in right ascension and declination.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "In order to address this issue, we chose to mask the galactic plane with a series of increasingly conservative masks, as the Quaia authors suspected may be necessary at Section 4.5 in \\citet{storeyfisher2023quaia}.\n        To be explicit, we examined the effect of $|b| < 10^\\circ$, $20^\\circ$, $30^\\circ$ and $40^\\circ$ galactic plane masks on the recovered signal in conjunction with an unmasked catalogue. \n        % With a $30^\\circ$ mask, the smoothed catalogue appears as it does in Fig.~\\ref{fig:smooth-cat-30} for Quaia low and Quaia high. \n        The $30^\\circ$ mask curtains much of the problematic regions, but it is still possible that at the edge of the mask the issues at the galactic plane seep into the masked sample.\n        Accordingly, in addition to testing with a $40^\\circ$ mask, we implemented a circular mask centred on $(l^\\circ, b^\\circ)=(0,0)$ and subtending a solid angle of $4\\,\\text{sr}$ in concert with the $30^\\circ$ galactic plane mask.\n        We denote this as a $30^*$ mask for future reference.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "In practice, as explained in Section~\\ref{sec:quaia-catalogue}, Quaia is packaged with a selection function that ascribes each pixel with a probability.\n                On top of statistical fluctuations and variations due to the underlying signal, pixels might have source under-densities because of factors like extinction from dust in the galactic plane.\n                This needs to be accounted for insofar that we are examining the assumption of homogeneity and isotropy.\n                We can do this through attenuating the rate parameter by the value of the selection function $s_i$ (a probability between 0 and 1) at the $i$-th pixel.\n                Explicitly, this means that\n                \\begin{equation}\n                    P(N_i | \\, \\mathbf{\\hat{p}_i} ) = \\frac{(\\lambda_i \\times s_i)^{N_i} e^{-\\lambda_i \\times s_i}}{N_i!} \\label{eq:poisson-prob}\n                \\end{equation}",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "Let us introduce the function $f_i$, which describes the anticipated signal at pixel $i$.\n                This is a model-dependent term, the functional form of which we leave for Section~\\ref{sub:hypotheses-considered}.\n                If we examine each source individually and not as a member of a pixel, then the distribution associating points with a probability depending on their position on the sky takes the form $f_i$, at least up to a normalising constant.\n                Thus, the contribution to the likelihood function at the $i$-th pixel is $\\propto (s_i \\times f_i)^{N_i}$, since we are taking the product over all points $N_i$ in the pixel.\n\n                To normalise this distribution for the $i$-th pixel (denoted as $\\hat{f}_i$ below), which is critical after application of a mask and selection map, we sum over all unmasked pixels such that\n                \\begin{equation}\n                    \\hat{f}_i = \\frac{s_i \\times f_i}{\\sum_{i=1}^{n_{\\text{pix.}}} s_i \\times f_i}. \\label{eq:hybrid-prob}\n                \\end{equation}\n                Thus, the natural logarithm of the likelihood function can be written as\n                \\begin{equation}\n                    \\ln \\mathcal{L} = \\sum_{i=1}^{n_{\\text{pix.}}} N_i \\ln \\hat{f}_i. \\label{eq:hybrid-likelihood}\n                \\end{equation}\n                In principle, both the Poissonian and point-by-point models should give consistent results, since both represent slightly different approaches to describe the same underlying effect.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "To summarise all the above, we form the view that while the over-densities are removed with the $|b| < 40^\\circ$ mask for Quaia low, they are present beyond this limit for Quaia high.\n    % However, with Quaia high, the superior coverage of the $30^*$ mask for high values of $b$ (see the bottom row of Fig.~\\ref{fig:all-maps}) screens out these over-densities, which causes $M_6$ to gain favour.\n    Thus, we use the $40^\\circ$ mask to infer the cosmic dipole in Quaia low, and more broadly the Quaia sample.\n    This is predicated on its ability to remove most of the clustering issues arising from the selection function.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\\subsection{Dipole estimation from the results}\n        % Based on the above discussion, it is imperative to use the $30^*$ and $40^\\circ$ masks for determination of dipole from Quaia low and high as these masks cover almost all of the over-dense region in the northern hemisphere.\n        Having interpreted our results, we present our final determination of the cosmic dipole in Quaia.\n        To reiterate the foregoing, we take the result from the $40^\\circ$ mask from Quaia low\n        % and the $30^*$ for Quaia high.\n        and withhold any conclusions regarding Quaia high.\n    \n        For Quaia low, a dipole aligned both in direction and magnitude with the CMB dipole ($M_6$) best accounts for the results.\n        % it is seen that for both $30^*$ and $40^\\circ$ masks, $M_6$ is the preferred hypothesis.\n        % The almost equal support for $M_2$ for $30^*$ and low support at $|b|= 40^\\circ$ indicates that some over density region in $40^\\circ > b\\geq 30^\\circ$ is not covered by the $4 \\text{ sr}$ circular mask.\n        This model has positive support over the next-favoured model $M_5$ ($\\ln B_{65} = 2.6$), which only fixes the dipole magnitude to that expected from the CMB.\n        % In fact, there is an overwhelming support for $M_6$ for $40^\\circ$ because the relative Bayes factor as compared to next most preferred hypothesis, which is $M_5$ here is $\\ln B_{65} = 2.6$.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\\begin{enumerate}\n            \\item \\emph{Studying the redshift-based evolution of the dipole.}\n            In this work, we examined the cosmic dipole of both Quaia samples without reference to the quasar redshift distribution.\n            A redshift-binned selection function map for Quaia high has been released, in which a cut at $z=1.47$ was imposed to divide sources into those at a redshift lower and greater than this threshold \\citep{alonso2023}.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n\\section*{Data Availability}",
+          "added": "2026-08-11"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "url": "https://arxiv.org/pdf/2311.14938v2",
+      "title": "Mittal et al. arXiv v2 with published correction",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\\noindent In the original paper \\citep{mittal2024},\n an error was made in the calculation of the distribution\nof spectral indices $\\alpha$,\nas appearing in fig. 2 of that paper.\nThe error arises from equation~(3),\nwhich in the original paper reads\n\\begin{equation}\n    m_\\nu = -2.5 \\log_{10} S_\\nu + \\text{ZP}. \\label{eq:mag}\n\\end{equation}\nWhile this equation is mathematically correct,\nthe issue relates to the correct interpretation of the units\nof the passband flux density $S_\\nu$ when using \\textit{Gaia} magnitudes.\nThese magnitudes, like the G band magnitude as\nappearing in the \\verb|phot_g_mean_mag| column\nof the \\textit{Gaia} DR3 release table,\nare defined such that $S_\\nu$ in Equation~\\eqref{eq:mag} is in \\emph{units of photoelectrons per second}\n\\citep[$e^- s^{-1}$;][]{hambly2022}.\nWe noted this in our original paper at the beginning\nof Section~4.2.2,\nat which stage we mentioned that to convert from $e^- s^{-1}$ into Jy,\none must first multiply the passband flux density by\na correction factor $c_\\nu$ to give units of W\\,m$^{-2}$\\,Hz$^{-1}$.\nHowever, since this factor was not applied in equation~(4) in the original work,\nequation~(5) is incorrect as one cannot use the relation\n$S_\\nu \\propto \\nu^{-\\alpha}$ if $S_\\nu$ is in units of $e^- s^{-1}$.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "As the \\citet{ellis1984} relation is dependent on $\\alpha$,\nthe correction to the spectral index\nchanges the expected dipole amplitude $\\mathcal{D}$.\nWe repeated the methodology in Section~4.2.2 with the amended\nvalues of $\\alpha$,\nfinding a distribution of dipole amplitudes as shown in Fig.~\\ref{fig:dipole-amplitude}.\n\\begin{figure}\n    \\centering\n    \\includegraphics[width=\\linewidth]{Figures/fig4_corrected.pdf}\n    \\caption{Probability distribution for the dipole amplitude assuming $v_\\text{CMB}$. This follows from the analysis in Section~4.2.2 and was performed with both the Quaia low and Quaia high samples.}\n    \\label{fig:dipole-amplitude}\n\\end{figure}\nThis is to replace fig.~4 of the original work.\nWe thus take the mean amplitude of $\\mathcal{\\bar{D}} = 0.0048$ for Quaia low\nand $\\mathcal{\\bar{D}} = 0.0043$ for Quaia high,\nusing these as the dipole expectations.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "Based on these tables, our conclusions are altered slightly.\nThe relative ordering of each model in terms of evidential power is not changed.\nNamely,\nfor the Quaia low sample with a $40^\\circ$ galactic plane mask,\nthe kinematic dipole (model $M_6$) is still the prevailing model.\nHowever, the difference in support between $M_6$ and the next-favoured model,\n$M_4$ (the marginal likelihood of which is given in the original work),\nbecomes $\\ln B_{64} = 1.5$.\nThis means that the kinematic dipole is somewhat less preeminent than as in the original work\n($\\ln B_{65} = 2.6$).\n\nAdditionally, the conclusion in section~6.3 in the original work\nneeds to be replaced.\nWe now find that our conclusions are, to a certain extent,\nsensitive to the choice of prior.\nAs mentioned there,\nafter adjusting the prior function for $\\mathcal{D}$\nfrom $\\mathcal{U}[0,1.0]$ to $\\mathcal{U}[0,0.1]$,\nthe marginal likelihood of model $M_4$ increases to 8.0\n(Quaia low; $b^\\circ < |40|$ masked).\nBased on the corrected Bayes factors in Table~\\ref{tab:bayes-low-p2p},\nthis means that model $M_4$ (kinematic direction) is the prevailing model\nwith $\\ln B_{46} = 0.7$,\nin which case we find $\\mathcal{D} \\approx 11\\substack{+5 \\\\ -5} \\times 10^{-3}$.\nAlthough, this Bayes factor is indicative of only a slight preference\nfor $M_4$ over $M_6$.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "Though these aspects have been altered,\nit still remains that the Quaia sample\nstrongly favours a dipole aligning with the direction\nof the CMB dipole.\nThe question of its amplitude is not as decisive;\nwhile we cannot rule out the possibility of a value\nlarger than expected from the CMB dipole,\nwe have also pointed towards support for\nit being equal to the CMB value.\nThis leaves significant scope for future inquiry\nto attempt to resolve this matter.",
+          "added": "2026-08-11"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "url": "https://arxiv.org/pdf/2403.16581v2",
+      "title": "Singal 2024 arXiv v2 PDF",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\\begin{table*}\n\\begin{center}\n\\caption{\\label{T1}Dipole estimates for the QUAIA sample for various G-magnitude ($m_{\\rm G}$) limits with different galactic latitude (b) cuts.} \n\\hskip4pc\\vbox{\\columnwidth=33pc\n%\\begin{tabular*}{\\textwidth}{@{\\extracolsep\\fill}ccccccccccccccc}\n%\\footnotesize\n\\begin{tabular}{ccccccccccccccc}\n\\hline \n(1)&(2)&(3)&(4)&(5)&(6)&(7)&(8)\\\\\nSerial&G-magnitude & |b|  & N&\\multicolumn{4}{c}{Observed dipole vector and inferred peculiar velocity} \\\\\n\\cline{5-8}\n%\\cline{8-10}\n% & ${\\cal D}$& ${\\cal D}_{\\rm h}$  &  & $p_{\\rm h}$\\\\\nNo.&($m_{\\rm G}$)  & limit  & & RA & Dec & ${\\cal D}$ &$p$ \\\\% &  ($10^{-2}$)\n&&($^{\\circ}$)&&($^{\\circ}$)&  ($^{\\circ}$)&$10^{-2}$&($370$ km s$^{-1}$)\\\\\n\\hline\n1&$m_{\\rm G}< 20.5$   & $>30$  & 917565 &  $181\\pm 14$ &  $+20\\pm 13$ & $3.3\\pm0.5$ & $4.2\\pm0.6$ \\\\\n\n2&$m_{\\rm G}< 20.5$  & $>40$  & 680931 &  $180\\pm 15$ &  $+20\\pm 14$ & $2.4\\pm0.6$ & $3.0\\pm0.7$ \\\\\n\n3&$m_{\\rm G}< 20.5$  & $>35$  & 797350 &  $181\\pm 14$ &  $+19\\pm 13$ & $2.9\\pm0.6$ & $3.7\\pm0.7$ \\\\\\\\\n%\n4&$m_{\\rm G}< 20.0$  & $>30$  & 530364 &  $179\\pm 15$ &  $+17\\pm 13$ & $3.3\\pm0.5$ & $4.2\\pm0.6$ \\\\\n\n5&$m_{\\rm G}< 20.0$ & $>40$  & 395134 &  $175\\pm 16$ &  $+16\\pm 14$ & $2.3\\pm0.6$ & $3.0\\pm0.7$ \\\\\n\n6&$m_{\\rm G}< 20.0$ & $>35$  & 461905 &  $178\\pm 15$ &  $+14\\pm 13$ & $2.9\\pm0.6$ & $3.6\\pm0.7$ \\\\\\\\\n\n7&$20<m_{\\rm G}<20.5$  & $>30$  & 387201 &  $184\\pm 15$ &  $+24\\pm 13$ & $3.3\\pm0.5$ & $4.2\\pm0.6$ \\\\\n\n8&$20<m_{\\rm G}<20.5$ & $>40$  & 285797 &  $186\\pm 16$ &  $+26\\pm 14$ & $2.5\\pm0.6$ & $3.2\\pm0.7$ \\\\\n\n9&$20<m_{\\rm G}<20.5$ & $>35$  & 335445 &  $186\\pm 15$ &  $+24\\pm 13$ & $3.0\\pm0.6$ & $3.8\\pm0.7$ \\\\",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "A vector sum of the angular position vectors of all sources in a sample having a full sky-coverage gives the direction of the dipole as well as provides a measure of the dipole amplitude. \nThis is called the dipole vector method (Crawford 2009; Singal 2011,24). \nWe can investigate the dipole using another way, known as hemisphere method, by computing projection of the dipole in various directions of the sky. For this, we first divide the sky into $10^\\circ \\times 10^\\circ$ pixels, creating a grid of $422$ cells covering the whole sky. \nThen taking the centre of each of these 422 cells, we divide the sky in two equal hemispheres, $\\Sigma_1$ and $\\Sigma_2$, with $\\Sigma_1$ centred on the chosen cell and $\\Sigma_2$ as the opposite hemisphere and count the number of sources $N_1, N_2$ within $\\Sigma_1, \\Sigma_2$ respectively in our sample. Then $2(N_1-N_2)/(N_1+N_2)$ gives the component of the dipole in the direction of the chosen cell (Singal 2023,24). A contour map of thus computed dipole components yields the direction and amplitude for the dipole. The pole direction is expected to be in vicinity of the highest contour value.\nWe expect a  $\\cos\\psi$ dipole pattern with respect to the true dipole direction in sky, with a minimum of a chi-square fit in that direction, which should agree with the corresponding value  derived directly from the dipole vector method in case of a genuine dipole. \n%--------------------------------------------\n\nFor a partial sky-coverage with symmetric cuts in diametrically opposite regions, e.g. $|b|<30^\\circ$, which affect the forward and backward measurements \nidentically, there is no effect on the direction inferred for the dipole (Ellis \\& Baldwin 1984, Singal 2011), except that position errors may be higher because of the smaller sample. The dipole amplitude may need, however, to be corrected in such cases by factors of order unity (Singal 2011,24).",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "QUAIA, the Gaia-unWISE Quasar Catalog, is a publicly available, an all-sky spectroscopic quasar sample, which may be a highly competitive sample for cosmological large-scale structure analyses (Storey-Fisher et al. 2023). The sample is drawn from the 6,649,162 quasar candidates, identified by the Gaia mission (Gaia Collaboration 2016), released in Gaia DR3 (Gaia Collaboration 2023a,b). Further, all Gaia\nquasars have been cross-matched with those from the Wide-field Infrared Survey Explorer (WISE; Wright et al. 2010), to also provide photometric information in the W1 and W2 infrared bands. \nThe QUAIA catalogue is available in two versions with different Gaia G-band magnitude limits, the full  $m_{\\rm G}< 20.5$ version containing 1,295,502 quasars, and a reduced but cleaner version with 755,850 quasars, which is just a subset of the larger catalogue with an additional magnitude cut, $m_{\\rm G}< 20.0$. \n\nFigure~\\ref{F1} shows a Hammer--Aitoff equal-area projection plot in galactic co-ordinates of the QUAIA quasars with $m_{\\rm G}< 20.5$, $|b|>10^\\circ$. \nAccording to Storey-Fisher et al. (2023), the QUAIA sample has significantly lower accuracy around the Galactic Plane, as can be seen from Fig.~\\ref{F1} here. To mitigate its effects on the determined dipole, we restrict the Galactic latitude in our sample to $|b|>30^\\circ$. As noted by Mittal et al. (2024), the $|b|<30^\\circ$ mask should cover much of the problematic regions, but to counter the possibility that some issues of non-uniformity at the edge of the mask (Fig.~\\ref{F1}) may still seep into our sample, following Mittal et al. (2024) we also employ $|b|<40^\\circ$ mask. Apart from that, *\n\n%The sky distribution of quasars in galactic coordinates is displayed in Fig.~1, where we have indicated the positions of the CMB pole ($\\odot$).\n\nTo determine the power law index $x$ for our sample of quasars, we have made a plot of the integrated source counts $N(< m_{\\rm G})$ against $m_{\\rm G}$, in~Fig.~\\ref{F2}, which shows a power law behavior of the integrated source counts, with~a slope that varies between 0.52 and 0.9. As emphasized by Singal (2023), the relevant values of $x$ and $\\alpha$ are the ones in the vicinity of the lower  threshold flux density and are determined empirically from actual observations. \nSince the index in the $N(< m_{\\rm G})$ plots (Fig.~\\ref{F2}) for the weakest sources in our two samples, $m_{\\rm G}=20.5$ and $m_{\\rm G}=20.5$, is 0.52, accordingly the index of integral source counts in our sample is $x=2.5 \\times 0.52= 1.3$. For~the spectral index, we have taken \n$\\alpha\\approx 2.4$ for both samples (Mittal et al. 2024). The~peculiar speed, accordingly, is determined in our sample from, $v\\approx c {\\cal D} /6.4$.\n%$\\alpha\\approx 2.37$ for the  $m_{\\rm G}< 20.5$ sample and $\\alpha\\approx 2.44$ for the  $m_{\\rm G}< 20.0$ sample (Mittal et al. 2024). The~peculiar speed, accordingly, is determined in our sample from, $v\\approx c {\\cal D} /(6.38)$ for the  $m_{\\rm G}< 20.5$ sample and $v\\approx c {\\cal D} /(6.47)$ for the  $m_{\\rm G}< 20.0$ sample. \nFor convenience of a comparison with the CMB dipole, we use a parameter $p$ to express the peculiar velocity $v$, in units of the CMB value, so that $v=p \\times 370$ km s$^{-1}$. It means a peculiar velocity equal to the CMB value is represented by $p=1$. Of course, because of large gaps because of the Galactic Plane masks, we apply  appropriate corrections, which are of the order of unity (Singal 2024), in the dipole amplitudes.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "Table~\\ref{T1} gives the dipole estimates for both QUAIA samples $m_{\\rm G}< 20.5$ and $m_{\\rm G}< 20.0$, with different Galactic Plane cuts ($|b|>30^\\circ, |b|>40^\\circ$). We have also made an intermediate cut $|b|>35^\\circ$. For either of the $m_{\\rm G}< 20.5$ or $m_{\\rm G}< 20.0$ QUAIA samples, the dipole amplitude is significantly higher (about three to four times) than the CMB dipole. We also used the QUAIA   sample with $20<m_{\\rm G}<20.5$. As can be seen from Table~\\ref{T1}, a comparison of the results from rows 7-9 with those in rows 4-6 shows consistent values for the dipole estimates, both on position and amplitude, from QUAIA quasars in the $20<m_{\\rm G}<20.5$ sample vs. in the $m_{\\rm G}<20.0$ sample. Now these two quasar samples are independent of each other, with not even a single source overlapping. A consistency of the inferred dipoles in these two statistically-independent samples gives us confidence in the dipole values. \n\nWe do not know Why the Bayesian analysis by Mittal et al. (2024) had yielded a different results for the dipole. We have used the version v0.1.0 of Quaia, the same as used by Mittal et al. (2024). We \ndid not incorporate the selection function provided by (Storey-Fisher et al. 2023). The reason being that their procedure seems to  obliterate\nany dipole asymmetries across the sky as according to Storey-Fisher et al. : \"In\nthe case of no selection effects (and under the assumption of\nisotropy), we would expect each pixel to contain roughly the same\nnumber of sources.\" Later they mention: \"We take the mean predicted\nnumber of quasars in these clean pixels, normalize the predicted\nsource numbers by this mean, and then fix pixels with normalized\nvalues greater than 1 to exactly 1.\" In our opinion the dipoles will\nget suppressed in this procedure and that might be the reason why results of Mittal et al. (2024) differ from ours.",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\\section*{Data Availability}\nThe data used in this article is freely available at DOI 10.5281/zenodo.8060755.",
+          "added": "2026-08-11"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "url": "https://zenodo.org/api/records/8060755",
+      "title": "Quaia 0.1.0 exact Zenodo record",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\"key\": \"selection_function_NSIDE64_G20.0.fits\", \"size\": 400320, \"checksum\": \"md5:e62df7437156763ee59210976a808e45\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"selection_function_NSIDE64_G20.5.fits\", \"size\": 400320, \"checksum\": \"md5:d327cafb2011ac4a4ceafb57e7b553f3\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"random_G20.5_10x.fits\", \"size\": 259113600, \"checksum\": \"md5:ba9f7f1428ab27cb28b13e8b4b488457\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"random_G20.0_10x.fits\", \"size\": 151122240, \"checksum\": \"md5:c5d5240d8bf72dbf1d19eebee9dddf2c\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"quaia_G20.5.fits\", \"size\": 171020160, \"checksum\": \"md5:8b816b719e8c8ccd1c0a648b53557ddd\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"quaia_G20.0.fits\", \"size\": 99786240, \"checksum\": \"md5:42cec6519d139ac5fdcf4f891a68b5d4\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "00-0003-1641-6222\"}, {\"name\": \"Alonso, David\", \"affiliation\": \"University of Oxford\", \"orcid\": \"0000-0001-7283-5064\"}], \"version\": \"0.1.0\", \"language\": \"eng\", \"resource_type\": {\"title\": \"Dataset\", \"type\": \"dataset\"}, \"license\": {\"id\": \"cc-b",
+          "added": "2026-08-11"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "url": "https://zenodo.org/api/records/10403370",
+      "title": "Quaia 1.0.0 exact Zenodo record",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\"key\": \"quaia_G20.0.fits\", \"size\": 99786240, \"checksum\": \"md5:72531bc67bde1b08a69d5aeae03fb26e\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"quaia_G20.5.fits\", \"size\": 171020160, \"checksum\": \"md5:98659ac4bd8a09da2c4ce653690d53df\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"selection_function_template_maps.zip\", \"size\": 879199, \"checksum\": \"md5:5a887fcdbcb2bb3f2bc4b9de58cd9c67\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"selection_function_NSIDE64_G20.0.fits\", \"size\": 400320, \"checksum\": \"md5:9bec5ff5d2bda8f283fd99d6db6621df\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"selection_function_NSIDE64_G20.5.fits\", \"size\": 400320, \"checksum\": \"md5:0aec3460d2e1152afe700d77554341d3\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"random_G20.0_10x.fits\", \"size\": 151269120, \"checksum\": \"md5:e89dc31635d4688c8f3861dfb8a7e546\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "\"key\": \"random_G20.5_10x.fits\", \"size\": 259122240, \"checksum\": \"md5:45e5d5e76b2349899a504b49a5a7f13b\"",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "00-0003-1641-6222\"}, {\"name\": \"Alonso, David\", \"affiliation\": \"University of Oxford\", \"orcid\": \"0000-0001-7283-5064\"}], \"version\": \"1.0.0\", \"language\": \"eng\", \"resource_type\": {\"title\": \"Dataset\", \"type\": \"dataset\"}, \"license\": {\"id\": \"cc-b",
+          "added": "2026-08-11"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "url": "https://arxiv.org/abs/2311.14938",
+      "title": "Mittal arXiv version history",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\\[Submitted on 25 Nov 2023 ( [v1](https://arxiv.org/abs/2311.14938v1)), last revised 15 Aug 2024 (this version, v2)\\]",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "| Comments: | 14 pages, 7 figures, accepted for publication in MNRAS; updated to include published correction (2 pages, 2 figures) |\n| Subjects: | Cosmology and Nongalactic Astrophysics (astro-ph.CO) |\n| Cite as: | [arXiv:2311.14938](https://arxiv.org/abs/2311.14938) \\[astro-ph.CO\\] |\n|  | (or [arXiv:2311.14938v2](https://arxiv.org/abs/2311.14938v2) \\[astro-ph.CO\\] for this version) |\n|  | [https://doi.org/10.48550/arXiv.2311.14938](https://doi.org/10.48550/arXiv.2311.14938)<br>Focus to learn more<br>arXiv-issued DOI via DataCite |\n| Journal reference: | MNRAS, Volume 527, Issue 3, January 2024, Pages 8497-8510; Correction: MNRAS, Volume 530, Issue 4, June 2024, Pages 4763-4764 |\n| Related DOI: | [https://doi.org/10.1093/mnras/stad3706](https://doi.org/10.1093/mnras/stad3706)<br>Focus to learn more<br>DOI(s) linking to related resources |",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "**[\\[v1\\]](https://arxiv.org/abs/2311.14938v1)**\nSat, 25 Nov 2023 05:55:39 UTC (13,204 KB)\n\n**\\[v2\\]**\nThu, 15 Aug 2024 08:20:45 UTC (13,696 KB)",
+          "added": "2026-08-11"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "url": "https://arxiv.org/abs/2403.16581",
+      "title": "Singal arXiv version history",
+      "accessed": "2026-08-11",
+      "quotes": [
+        {
+          "text": "\\[Submitted on 25 Mar 2024 ( [v1](https://arxiv.org/abs/2403.16581v1)), last revised 7 May 2024 (this version, v2)\\]",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "| Comments: | 6 pages, 6 figures, 2 tables, accepted in MNRAS |\n| Subjects: | Cosmology and Nongalactic Astrophysics (astro-ph.CO) |\n| Cite as: | [arXiv:2403.16581](https://arxiv.org/abs/2403.16581) \\[astro-ph.CO\\] |\n|  | (or [arXiv:2403.16581v2](https://arxiv.org/abs/2403.16581v2) \\[astro-ph.CO\\] for this version) |\n|  | [https://doi.org/10.48550/arXiv.2403.16581](https://doi.org/10.48550/arXiv.2403.16581)<br>Focus to learn more<br>arXiv-issued DOI via DataCite |\n| Journal reference: | MNRAS 532, L1 (2024) |\n| Related DOI: | [https://doi.org/10.1093/mnrasl/slae039](https://doi.org/10.1093/mnrasl/slae039)<br>Focus to learn more<br>DOI(s) linking to related resources |",
+          "added": "2026-08-11"
+        },
+        {
+          "text": "**[\\[v1\\]](https://arxiv.org/abs/2403.16581v1)**\nMon, 25 Mar 2024 09:47:15 UTC (1,663 KB)\n\n**\\[v2\\]**\nTue, 7 May 2024 11:26:10 UTC (1,663 KB)",
+          "added": "2026-08-11"
+        }
+      ]
+    }
+  ]
+}

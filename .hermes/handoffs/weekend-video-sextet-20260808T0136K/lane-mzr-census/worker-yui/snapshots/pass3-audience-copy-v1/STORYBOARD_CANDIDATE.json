@@ -1,0 +1,178 @@
+{
+  "title": "MZR archive census — graphics-first proposal",
+  "status": "PROPOSAL_ONLY_FOR_HWAO_INTEGRATION",
+  "scope": "T1 VizieR metadata enumeration and its limits; no eligibility result and no MZR measurement",
+  "target_runtime_seconds": 105,
+  "storyboard_version": "pass3-audience-copy-v1",
+  "audience_copy_contract": {
+    "audible_field": "narration",
+    "visible_fields": ["on_screen_copy", "display_citation"],
+    "never_render_verbatim": ["visual_action", "verification_sources", "visual_rejections"],
+    "persistent_visible_copy": [
+      "METADATA CENSUS — NOT AN MZR MEASUREMENT",
+      "SINGLE-TABLE METADATA INTERSECTION · CROSS-TABLE JOINS AND CROSSMATCHES NOT ASSESSED"
+    ],
+    "prohibited_audience_tokens": ["source:", ".md", ".json", "/Users/", "Cut to", "Replace", "Expand", "Return"],
+    "status": "STATIC_STORYBOARD_PROPOSAL_ONLY_NOT_A_CANDIDATE"
+  },
+  "beats": [
+    {
+      "id": "b01",
+      "proposed_seconds": 9,
+      "narration": "This is a census of VizieR catalogue metadata: it asks which single tables are reachable for gas-phase abundance, stellar mass, and redshift together.",
+      "on_screen_copy": {
+        "heading": "A single-table metadata census",
+        "body": "Which VizieR tables have metadata-reachable columns for gas-phase abundance, stellar mass, and redshift together?",
+        "persistent_badge": "METADATA CENSUS — NOT AN MZR MEASUREMENT",
+        "persistent_scope": "SINGLE-TABLE METADATA INTERSECTION · CROSS-TABLE JOINS AND CROSSMATCHES NOT ASSESSED"
+      },
+      "visual_action": "Open on three labeled metadata columns flowing into one archive-table icon; reveal a persistent badge: METADATA CENSUS — NOT AN MZR MEASUREMENT, plus the persistent subtitle SINGLE-TABLE METADATA INTERSECTION — CROSS-TABLE JOINS AND CROSSMATCHES NOT ASSESSED.",
+      "display_citation": "VizieR: Ochsenbein, Bauer & Marcout 2000, A&AS 143, 23",
+      "verification_sources": ["T1_FINDINGS.md", "LANA_MZR_SCIENCE_RULING.md"]
+    },
+    {
+      "id": "b02",
+      "proposed_seconds": 8,
+      "narration": "The search combined semantic UCD tags with column-name variants, and each frozen query returned exactly its pre-counted rows.",
+      "on_screen_copy": {
+        "heading": "Two retrieval channels",
+        "channels": ["SEMANTIC UCD TAGS", "COLUMN-NAME VARIANTS"],
+        "status": "FROZEN QUERIES · ZERO CHANNEL FAILURES"
+      },
+      "visual_action": "Reveal two channel rails labeled UCD and NAME VARIANTS; show zero channel failures without a decorative plot.",
+      "display_citation": "IVOA UCD1+ v1.5; NebulaMind VizieR census, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md", "T1_MZR_MANIFEST.json"]
+    },
+    {
+      "id": "b03",
+      "proposed_seconds": 12,
+      "narration": "UCD plus name matching reached 5,568 abundance tables, 6,206 mass tables, and 6,687 redshift tables; the name channel added 175, 88, and 20 respectively.",
+      "on_screen_copy": {
+        "heading": "Metadata reach by axis",
+        "cards": [
+          "ABUNDANCE · UCD 5,393 · UCD + NAME 5,568 · GAIN +175 TABLES",
+          "STELLAR MASS · UCD 6,118 · UCD + NAME 6,206 · GAIN +88 TABLES",
+          "REDSHIFT · UCD 6,667 · UCD + NAME 6,687 · GAIN +20 TABLES"
+        ],
+        "geometry_note": "COUNTS · AREA NOT ENCODED"
+      },
+      "visual_action": "Use three equal-width axis cards. Each card shows UCD count, plus-name count, and gain. Label: counts, not area encoded.",
+      "display_citation": "NebulaMind pre-registered VizieR metadata census, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md"]
+    },
+    {
+      "id": "b04",
+      "proposed_seconds": 7,
+      "narration": "The three axis lists intersected at 178 candidate tables.",
+      "on_screen_copy": {
+        "heading": "Three-axis metadata reach",
+        "main": "178 SINGLE TABLES",
+        "boundary": "RECORDED METADATA CANDIDATES · NOT ELIGIBILITY RULINGS"
+      },
+      "visual_action": "Merge the three rails into one large node labeled THREE-AXIS REACH: 178.",
+      "display_citation": "NebulaMind VizieR census, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md", "T1_MZR_MANIFEST.json"]
+    },
+    {
+      "id": "b05",
+      "proposed_seconds": 12,
+      "narration": "Modifier columns then emptied a required axis in 21 tables: 19 on redshift and 2 on abundance, leaving 157 recorded candidates.",
+      "on_screen_copy": {
+        "heading": "Modifier filter accounting",
+        "main": "178 − 21 = 157 RECORDED CANDIDATE TABLES",
+        "redshift_drop": "19 · REDSHIFT AXIS EMPTIED · e_Z · e_[Z/H]",
+        "abundance_drop": "2 · ABUNDANCE AXIS EMPTIED · e_Ha/Hb · e_logOI/Ha · l_logOI/Ha"
+      },
+      "visual_action": "Animate 178 → minus 21 → 157. Split and group the dropped branch into visible bins: 19 REDSHIFT AXIS EMPTIED with e_Z and e_[Z/H] examples; 2 ABUNDANCE AXIS EMPTIED with e_Ha/Hb, e_logOI/Ha, and l_logOI/Ha examples.",
+      "display_citation": "NebulaMind VizieR census, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md", "T1_MZR_MANIFEST.json"]
+    },
+    {
+      "id": "b06",
+      "proposed_seconds": 12,
+      "narration": "As a side check, a frozen term regex matched 62 of those 157 recorded descriptions; it is not an eligibility filter, and T2 still applies to all 157.",
+      "on_screen_copy": {
+        "heading": "Description-term side check",
+        "main": "62 OF 157 RECORDED DESCRIPTIONS MATCHED",
+        "boundary": "SIDE CHECK ONLY · NOT AN ELIGIBILITY FILTER · T2 STILL APPLIES TO ALL 157"
+      },
+      "visual_action": "Connect 157 directly to T2. Branch 62 downward as a side inset labeled FROZEN TERM-REGEX MATCH IN RECORDED DESCRIPTIONS and SIDE CHECK ONLY — T2 STILL APPLIES TO ALL 157.",
+      "display_citation": "NebulaMind description-term audit, 2026-08-05",
+      "verification_sources": ["T1E_GASPHASE_COUNT.json"]
+    },
+    {
+      "id": "b07",
+      "proposed_seconds": 8,
+      "narration": "All seven pinned recall members returned, while none of the three controls appeared.",
+      "on_screen_copy": {
+        "heading": "Retrieval instrument check",
+        "recall": "RECALL 7/7",
+        "controls": "CONTROLS APPEARING 0/3"
+      },
+      "visual_action": "Show two explicit scorecards: RECALL 7/7 and CONTROLS APPEARING 0/3, with seven blue checks and three green absences.",
+      "display_citation": "NebulaMind pre-registered retrieval check, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md", "T1_MZR_MANIFEST.json"]
+    },
+    {
+      "id": "b08",
+      "proposed_seconds": 13,
+      "narration": "Those checks validate retrieval, not precision: the frozen controls did not cover the dominant precision-contamination mode.",
+      "on_screen_copy": {
+        "heading": "RETRIEVAL CHECK PASSED · PRECISION NOT CERTIFIED",
+        "body": "FROZEN CONTROLS DID NOT COVER THE DOMINANT PRECISION-CONTAMINATION MODE"
+      },
+      "visual_action": "Keep 7/7 and 0/3 on the left; add an amber PRECISION NOT CERTIFIED panel on the right and open two groups of recorded examples.",
+      "display_citation": "IVOA UCD1+ v1.5; NebulaMind VizieR census, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md"]
+    },
+    {
+      "id": "b09",
+      "proposed_seconds": 15,
+      "narration": "Recorded examples separate symbol-and-meaning collisions—Galactic height and model-grid metal fraction—from target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity. They are not T2 rulings.",
+      "on_screen_copy": {
+        "heading": "RECORDED EXAMPLES · NOT T2 RULINGS",
+        "symbol_or_meaning_collision": ["GALACTIC CARTESIAN HEIGHT", "STELLAR-GRID METAL FRACTION · MODEL Z"],
+        "target_domain_mismatch": ["STELLAR GRAVITATIONAL REDSHIFT", "GRAVITATIONAL-REDSHIFT VELOCITY"]
+      },
+      "visual_action": "Group the four recorded examples under SYMBOL / MEANING COLLISION and TARGET-DOMAIN MISMATCH; hold RECORDED EXAMPLES — NOT T2 RULINGS above them and use no trend geometry.",
+      "display_citation": "NebulaMind VizieR metadata examples, 2026-08-05",
+      "verification_sources": ["T1_FINDINGS.md", "T1_MZR_MANIFEST.json"]
+    },
+    {
+      "id": "b10",
+      "proposed_seconds": 9,
+      "narration": "The T2 rule contract is frozen, but the 157-table eligibility application is not completed, so no eligible-table count or metallicity measurement is reportable yet.",
+      "on_screen_copy": {
+        "heading": "Reportable now versus pending",
+        "reportable_now": [
+          "T1 METADATA-ENUMERATION COUNTS",
+          "178 − 21 = 157 RECORDED CANDIDATE TABLES",
+          "62/157 DESCRIPTION-TERM SIDE CHECK",
+          "RECALL 7/7 · CONTROLS 0/3 · PRECISION NOT CERTIFIED",
+          "T2 RULE CONTRACT FROZEN"
+        ],
+        "pending": [
+          "T2 APPLICATION TO ALL 157 TABLES",
+          "ELIGIBLE-TABLE COUNT",
+          "ANY METALLICITY OR MZR MEASUREMENT"
+        ],
+        "gate": "APPLICATION NOT COMPLETED · NO ELIGIBLE-TABLE COUNT",
+        "close": "SINGLE-TABLE METADATA CENSUS · NOT AN MZR MEASUREMENT"
+      },
+      "visual_action": "End the direct 157-to-T2 path at a qualified gate: CONTRACT FROZEN — APPLICATION NOT COMPLETED — NO ELIGIBLE-TABLE COUNT. Hold REPORTABLE NOW versus PENDING.",
+      "display_citation": "NebulaMind pre-registered T2 eligibility protocol v1.8, frozen 2026-08-06",
+      "verification_sources": ["FREEZE_RECORD_T2.md", "WORKFLOW_CHECKLIST.json", "LANA_MZR_SCIENCE_RULING.md"]
+    }
+  ],
+  "visual_rejections": [
+    "Do not use the metallicity-versus-redshift literature scatter in this census explainer.",
+    "Do not render internal paths or filenames as audience citations.",
+    "Do not make 62 look like a terminal eligible sample.",
+    "Do not draw 62 in series as a filter feeding T2; T2 applies to all 157.",
+    "Do not omit the single-table scope or imply that cross-table joins and crossmatches were assessed.",
+    "Do not hide the 19/2 dropped-row reasons inside body prose.",
+    "Do not call the archive census a metallicity measurement or flagship galaxy-evolution study."
+  ],
+  "audio_contract": "Alloy through Nous at speed 1.18 per Hwao order; manifest proposal only here, no TTS invocation.",
+  "publication_gate": "CLOSED"
+}

@@ -1,0 +1,135 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass20-review-v1-20260808T122059K",
+  "created_at": "2026-08-08T12:20:59+09:00",
+  "deepening_pass": 20,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "authority": {
+    "hwao_weekend_order": {
+      "path": "../../HWAO_WEEKEND_ORDER.md",
+      "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710"
+    },
+    "coordination_update": {
+      "path": "../../COORDINATION_UPDATE.md",
+      "sha256": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"
+    },
+    "lane_brief": {
+      "path": "../../lanes/spin/BRIEF.md",
+      "sha256": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec"
+    }
+  },
+  "custody": {
+    "source_freeze": {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+      "modified": false
+    },
+    "storyboard_proposal": {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "iteration": "v8",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+      "modified": false
+    },
+    "sealed_v8_render_receipt": {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+      "modified": false
+    },
+    "prior_pass_snapshot": {
+      "path": "qa/pass19_review_snapshot_v1.json",
+      "sha256": "6a55b10f1835e5859466f25915ba295bb2c4a6c19c081013fde1872f3bd544ed"
+    },
+    "preserved_failed_candidate": {
+      "name": "spin-parity-census-20260808T0149",
+      "media_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+      "receipt_sha256": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+      "qa_sha256": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+      "hashes_sha256": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3",
+      "modified": false,
+      "re_dispatched": false
+    }
+  },
+  "pass20": {
+    "focus": "native-canvas Gaussian spatial defocus followed by minimum-scale 640x360 interaction",
+    "fresh_cut_reproduction": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS19",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "reference_variant": "downscale_360p",
+    "operational_variant": "defocus_r1_50_then_360p",
+    "characterization_variants": ["defocus_r2_50_then_360p", "defocus_r4_00_then_360p"],
+    "candidate_structural_gate_scenes_defocus_r1_50_then_360p": "0/16",
+    "candidate_critical_structural_gates_defocus_r1_50_then_360p": "0/5",
+    "sealed_v8_defocus_r1_50_then_360p_result_held_badges": "7/7",
+    "sealed_v8_defocus_r1_50_then_360p_major_status_boundaries": "7/7",
+    "pass7_defocus_r1_50_then_360p_exact_top_gates": "7/7",
+    "pass12_defocus_r1_50_then_360p_exact_top_gates": "7/7",
+    "pass12_defocus_r1_50_then_360p_gate_similarity_mean": 0.954273,
+    "pass12_defocus_r1_50_then_360p_result_held_badges": "7/7",
+    "pass12_defocus_r1_50_then_360p_exact_transform": "7/7",
+    "pass12_defocus_r2_50_then_360p_mapped_gate_threshold_passes": "5/7_CHARACTERIZATION",
+    "pass12_defocus_r4_00_then_360p_mapped_gate_threshold_passes": "0/7_CHARACTERIZATION",
+    "action": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "video_reportable_now": false
+  },
+  "evidence": {
+    "extractor": {
+      "path": "qa/extract_pass20_minimum_scale_defocus_frames.py",
+      "sha256": "0ec4ea4dd610cc22a9e28491d81d73a48096748f09b0ce70fa14fd7dc4bc88f7"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass20_minimum_scale_defocus_audit/extraction_receipt.json",
+      "sha256": "a827fa51fb67577953378e3a6e8e651056acaacf5c44a903dbf9ce129fdbd120"
+    },
+    "method_builder": {
+      "path": "qa/build_pass20_v8_minimum_scale_defocus.py",
+      "sha256": "1c60316d5e160795ae1e781f19b5edd00dd077ae53ac489c7f5ed9ad96670139"
+    },
+    "method_receipt": {
+      "path": "qa/pass20_v8_minimum_scale_defocus/receipt.json",
+      "sha256": "1d591a131719c63111151292b340e0a763828da68a79d2896cf02fba9ac647ce"
+    },
+    "quantitative_auditor": {
+      "path": "qa/audit_pass20_minimum_scale_defocus.py",
+      "sha256": "20898ff49f41b47e47e3438ce1a1f74e4e4db4f000087ee7d044d359db574362"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass20_minimum_scale_defocus_quantitative_audit.json",
+      "sha256": "73a7c54ca6752d8d04c2c4f00ff48e028cfba8382e40cf54b14d2c4901469401"
+    },
+    "integration_guard": {
+      "path": "MINIMUM_SCALE_DEFOCUS_GUARD_PASS20.json",
+      "sha256": "51d4fafe6b4379685758c89e003ed04d3fdd18249a7d65db924495c97ffe888c"
+    },
+    "encoded_frame_audit": {
+      "path": "PASS20_ENCODED_FRAME_AUDIT.md",
+      "sha256": "da89038c15c7e146b53915b5fa3ba45a49151b15c94855a12a48f38c6d0d9056"
+    },
+    "blocker_packet": {
+      "path": "BLOCKER_PACKET_PASS20.json",
+      "sha256": "d53990fb4b7169e6418853398e78890bcea87150c0bd10450bd06175067770b9"
+    }
+  },
+  "blockers": {
+    "post_run_independent_review": "MISSING_FOR_EXACT_FROZEN_T4_209_FILE_ARTIFACT",
+    "archive_storage_frame": "FRAME_REVIEW_AGREES_FRAME_UNSTATED",
+    "candidate_representation": "RESULT_BEARING_WITHOUT_STRUCTURAL_HELD_GATE",
+    "video_reportable_now": false
+  },
+  "representation_boundary": {
+    "required_header": "GALAXY SPIN",
+    "forbidden_audience_topics_absent_from_method_frames": true,
+    "method_only": true,
+    "science_adjudicated": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

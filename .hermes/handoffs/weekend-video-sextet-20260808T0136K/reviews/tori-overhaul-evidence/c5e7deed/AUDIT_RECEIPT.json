@@ -1,0 +1,128 @@
+{
+  "audit_timestamp_kst": "2026-08-09T00:37:11+09:00",
+  "audit_timestamp_utc": "2026-08-08T15:37:11Z",
+  "candidate": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260808T1959K/spin-method-overhaul-canary-20260808T1959K.mp4",
+    "sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240",
+    "bytes": 16065978,
+    "duration_seconds": 187.695,
+    "video": "H.264 High, 1920x1080, 30 fps, 5630 decoded frames, 187.666667 s",
+    "audio": "AAC LC, mono, 48000 Hz, 187.695 s",
+    "full_video_audio_decode_exit": 0
+  },
+  "supersession": {
+    "predecessor_sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+    "predecessor_mp4_still_exact": true,
+    "predecessor_script_v2_sha256": "3f033dd02d00767c6bb4cc1baf8b7197a78847bad076411cbaed9aab732cd416",
+    "predecessor_script_still_exact": true,
+    "predecessor_disposition_preserved": "ACCEPTED WITH INCIDENT"
+  },
+  "source_status": {
+    "source_freeze_sha256": "f7204bd7aa9a96830e22b76456cd2e24b1fda4d543f2d0333c4f72cad8c98183",
+    "source_freeze_matches": "17/17",
+    "status_sha256": "679cb3f6dd8a348c0fa3a86f07b968805c24c0623515982b5015750f1efa65a3",
+    "video_reportable_now": false,
+    "substantive_result_render": "BLOCKED",
+    "overhaul_narration_authorized_by_status": true,
+    "status_still_names_predecessor_as_accepted": true,
+    "candidate_source_manifest_current_origin_matches": "16/17",
+    "candidate_source_manifest_note": "The sole current-origin mismatch is reviews/LANA_OVERHAUL.md, which is an append-only evolving review: the current 39,360-byte file begins with the exact frozen 32,578-byte copy and adds 6,782 bytes. The candidate-bound frozen copy remains exact; SOURCE_FREEZE and STATUS remain exact."
+  },
+  "actual_frames": {
+    "full_decoded_frames": 5630,
+    "uniform_ocr_frames": 375,
+    "sentence_midpoint_frames": 27,
+    "intro_one_second_frames": 22,
+    "critical_frames": 13,
+    "vision_inspected_contact_cells": 62,
+    "forbidden_science_hits": 0,
+    "internal_filename_hits": 0,
+    "intro_terms_after_22_seconds": 0,
+    "opening_is_conditional_motivation_not_result_claim": true,
+    "inherited_mirror_discipline_funnel_estimator_controls_gates_close_survive": true,
+    "visual_verdict": "PASS"
+  },
+  "narration": {
+    "sentences": 27,
+    "script_whitespace_words": 353,
+    "timing_contract_delivered_words": 354,
+    "word_count_note": "The ordinary whitespace count requested by Hwao is 353. The timing contract counts hyphenated gate-cleared as two delivered words, giving 354.",
+    "universe_occurrences_in_script": 1,
+    "sky_occurrences_in_script": 1,
+    "sorters_occurrences_in_script": 1,
+    "script_equals_srt_normalized": true,
+    "srt_cues": 27,
+    "occupied_seconds": 184.69564583333334,
+    "delivered_wpm": 115.0000039479364,
+    "max_audio_visual_action_start_delta_seconds": 0.01658333333332962,
+    "audio_integrated_lufs": -20.3,
+    "audio_true_peak_dbfs": -2.3,
+    "audio_mean_volume_db": -21.5,
+    "last_speech_end_seconds": 184.987646,
+    "tail_silence_seconds": 2.724354,
+    "private_playback": {
+      "tool": "ffplay -nodisp -autoexit",
+      "start_kst": "2026-08-09T00:28:10+09:00",
+      "end_kst": "2026-08-09T00:31:18+09:00",
+      "exit": 0
+    },
+    "audio_verdict": "PASS"
+  },
+  "raw_tts_receipt_caveat": {
+    "blocking": false,
+    "classification": "pre-freeze receipt inconsistency; not an encoded-candidate mutation",
+    "mismatched_records": {
+      "s21": {
+        "receipt_sha256": "a7d7ff2e2b8155b2ed44610244e78fe0b574db76e6c97daf68f10d820e871300",
+        "actual_sha256": "522c975ed3b3a6ed11c2648b12dc55a33ff4702412ec0c81f0a5ebf0e5ed6cd4",
+        "receipt_bytes": 119808,
+        "actual_bytes": 129024
+      },
+      "s22": {
+        "receipt_sha256": "886b6a2815a1f2c1e3a183b6717ed968a7ed9e88e1767e518c9fb27c43e02fe1",
+        "actual_sha256": "64a933998b48d81f15847c2eca04650512edd83dd6a5bb45986dca4356b14ce2",
+        "receipt_bytes": 63360,
+        "actual_bytes": 67200
+      },
+      "s23": {
+        "receipt_sha256": "0370903dcef1f2ad7bfe0128bc6358f639b29785ada3a8eb944df8aa719013f4",
+        "actual_sha256": "822cabda6a847545122b1a23f3d275019299de2163d869c9a20dc88dfa90e8bb",
+        "receipt_bytes": 67968,
+        "actual_bytes": 71424
+      }
+    },
+    "all_mismatch_ctimes_precede_synthesis_receipt": true,
+    "files_changed_after_post_encode_freeze": 0,
+    "post_encode_freeze_bound_files_match": "12/12",
+    "current_raw_to_stored_decoded_pcm_matches": "27/27",
+    "stored_decoded_wav_hashes_match_timeline": "27/27",
+    "candidate_narration_master_still_matches_post_encode_freeze": true,
+    "impact": "The final encoded audio lineage is unambiguous and audibly complete, but the synthesis receipt's exact-byte fields for three intermediate MP3s require an append-only correction if raw-TTS byte provenance is later promoted to a hard gate."
+  },
+  "closed_gates": {
+    "candidate_hash_hits_under_HermesOps": 0,
+    "candidate_hash_hits_under_working_frontend_public": 0,
+    "candidate_hash_hits_under_live_frontend_public": 0,
+    "candidate_filename_hits_under_those_roots": 0,
+    "cockpit_weekend_canaries_directory_exists": false,
+    "paperVideos_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "paperVideos_worktree_diff_bytes": 0,
+    "public_spin_sha256": "dfc8be91c47bf55b34c0040d1b6572b5960e31942c9a0cec1465d8bcf4f44585",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_branch": "feat/paper-workflow-v2",
+    "git_index_sha256": "2b79ff47d5b9f8f0845f29246b877db512c4bc1b786b01c5c7d778afe57fffad",
+    "git_cached_diff_bytes": 0,
+    "route": "http://100.84.12.101:8766/spin-method-overhaul-canary-20260808T1959K/spin-method-overhaul-canary-20260808T1959K.mp4",
+    "route_http_status": 200,
+    "route_content_type": "video/mp4",
+    "route_bytes": 16065978,
+    "route_sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240",
+    "route_process_pid": 38142,
+    "route_process_root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries",
+    "route_is_private_tailnet_non_global": true,
+    "route_serves_authoritative_bytes_in_place": true,
+    "protected_root_copy_created": false,
+    "verdict": "PASS"
+  },
+  "tori_disposition": "PASS_WITH_NONBLOCKING_RECEIPT_CAVEAT"
+}

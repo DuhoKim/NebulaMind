@@ -1,0 +1,142 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass24-review-v1-20260808T140417K",
+  "created_at": "2026-08-08T14:04:17+09:00",
+  "deepening_pass": 24,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "authority": {
+    "hwao_weekend_order": {
+      "path": "../../HWAO_WEEKEND_ORDER.md",
+      "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710"
+    },
+    "coordination_update": {
+      "path": "../../COORDINATION_UPDATE.md",
+      "sha256": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"
+    },
+    "lane_brief": {
+      "path": "../../lanes/spin/BRIEF.md",
+      "sha256": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec"
+    }
+  },
+  "custody": {
+    "source_freeze": {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+      "modified": false
+    },
+    "storyboard_proposal": {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "iteration": "v8",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+      "modified": false
+    },
+    "sealed_v8_render_receipt": {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+      "modified": false
+    },
+    "prior_pass_snapshot": {
+      "path": "qa/pass23_review_snapshot_v1.json",
+      "sha256": "9b11f15962e07431f1cd182cadde5e45097b946c6e3691e87790dd68b474387a"
+    },
+    "preserved_failed_candidate": {
+      "name": "spin-parity-census-20260808T0149",
+      "media_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+      "receipt_sha256": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+      "qa_sha256": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+      "hashes_sha256": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3",
+      "modified": false,
+      "re_dispatched": false
+    }
+  },
+  "pass24": {
+    "focus": "native monochrome or fixed color-vision presentation transform followed by minimum-scale 640x360 and JPEG q60 4:2:0 recompression",
+    "fresh_cut_reproduction": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS23",
+    "candidate_pass23_baseline_reproduction": "80/80_PIXEL_EXACT",
+    "method_pass23_baseline_reproduction": "105/105_PIXEL_EXACT",
+    "candidate_decoded_png_frames": 80,
+    "candidate_jpeg_streams": 80,
+    "method_decoded_png_frames": 105,
+    "method_jpeg_streams": 105,
+    "candidate_structural_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_critical_structural_gates": "0/5_ALL_FIVE_VARIANTS",
+    "candidate_exact_jpeg_stream_recomputation": "16/16_PER_VARIANT",
+    "candidate_exact_decoded_rgb_recomputation": "16/16_PER_VARIANT",
+    "candidate_grayscale_incremental_headline_recall": 0.988586,
+    "candidate_grayscale_incremental_full_text_recall": 0.950012,
+    "sealed_v8_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates_visual": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates_visual": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_gate_threshold_passes": "7/7_FOUR_VARIANTS__6/7_TRITANOPIA",
+    "pass12_tritanopia_scene2_ocr_aid_similarity": 0.72973,
+    "pass12_tritanopia_scene2_direct_visual": "EXACT_GATE_DIRECTLY_READABLE_CONTAINER_COMPLETE",
+    "method_exact_jpeg_stream_recomputation": "7/7_PER_VARIANT",
+    "method_exact_decoded_rgb_recomputation": "7/7_PER_VARIANT",
+    "method_hue_only_required_meaning": 0,
+    "action": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "video_reportable_now": false
+  },
+  "evidence": {
+    "extractor": {
+      "path": "qa/extract_pass24_color_minimum_scale_recompression_frames.py",
+      "sha256": "09653b6091a34450db50f74deddde4c35dbf9b637435baea15101b1c2404cf7a"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass24_color_minimum_scale_recompression_audit/extraction_receipt.json",
+      "sha256": "16c5fdcf9021990e9cfaf2f926dd1118a682b6794acf317894d73e80e2e726ec"
+    },
+    "method_builder": {
+      "path": "qa/build_pass24_v8_color_minimum_scale_recompression.py",
+      "sha256": "6e88b958eee988e2d40622e77ccb91f7eed777059f1b4e46be33a63d5b5de4cf"
+    },
+    "method_receipt": {
+      "path": "qa/pass24_v8_color_minimum_scale_recompression/receipt.json",
+      "sha256": "451d8910a45e782438dfaf9358665e1ea496e9e0320301b576610ee2cd649782"
+    },
+    "quantitative_auditor": {
+      "path": "qa/audit_pass24_color_minimum_scale_recompression.py",
+      "sha256": "092e606c2a26eb3f43c9233b3a5ffe8e49240db691b7d22509b16c0a702678cb"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass24_color_minimum_scale_recompression_quantitative_audit.json",
+      "sha256": "d9fb219b4d7ef9960c28d1d7f69355ed2fe92f68c679f971dc7fbae2332f08dc"
+    },
+    "integration_guard": {
+      "path": "COLOR_MINIMUM_SCALE_RECOMPRESSION_GUARD_PASS24.json",
+      "sha256": "cda5fc835ae8d399db4e8271d405ba048336e73747e603aa1254a1fe4fd45bcb"
+    },
+    "encoded_frame_audit": {
+      "path": "PASS24_ENCODED_FRAME_AUDIT.md",
+      "sha256": "1d7bd3a7cebf054e2f031795fd4dd7d7eb75644a5300785a1169aeb5802185a6"
+    },
+    "blocker_packet": {
+      "path": "BLOCKER_PACKET_PASS24.json",
+      "sha256": "124a5562f3c3a5f8df89d68954505826962994e38abd229200c69b89d3e8277e"
+    }
+  },
+  "blockers": {
+    "post_run_independent_review": "MISSING_FOR_EXACT_FROZEN_T4_209_FILE_ARTIFACT",
+    "archive_storage_frame": "FRAME_REVIEW_AGREES_FRAME_UNSTATED",
+    "candidate_representation": "RESULT_BEARING_WITHOUT_STRUCTURAL_HELD_GATE",
+    "video_reportable_now": false
+  },
+  "representation_boundary": {
+    "required_header": "GALAXY SPIN",
+    "forbidden_audience_topics_absent_from_method_frames": true,
+    "method_only": true,
+    "science_adjudicated": false,
+    "presentation_stress_not_clinical_or_delivery_standard": true
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

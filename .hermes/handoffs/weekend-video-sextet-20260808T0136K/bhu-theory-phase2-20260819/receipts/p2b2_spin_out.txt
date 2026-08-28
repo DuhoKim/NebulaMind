@@ -1,0 +1,15 @@
+bounce T: Treatment I = 1.152e+32 K (9.93e+18 GeV); Treatment II = 1.91e+18 GeV (2.22e+31 K)
+  eps_b(I) = 7.112e+114 J/m^3  (rho = 7.913e+97 kg/m^3)
+  eps_b(II) = 9.781e+111 J/m^3  (rho = 1.088e+95 kg/m^3)
+
+(A) epsilon ceiling, xi = 0.4 (bracket 0.2-0.5 noted):
+         M    a*  treat    R_b [m]  J_par [J s]    eps_max
+     1e+01  0.70      I   3.91e-23     6.17e+43   1.51e-27
+     1e+01  0.70     II   3.52e-22     6.17e+43   1.36e-26
+     1e+09  0.70      I   1.82e-20     6.17e+59   7.03e-33
+     1e+09  0.70     II   1.63e-19     6.17e+59   6.32e-32
+
+sanity (10 Msun, a*=0.7, treat I): Omega if J conserved = 5.06e+57 s^-1 vs causal limit c/R_b = 7.66e+30 s^-1  -> excess 6.6e+26
+scaling check: eps_max ratio (1e9/10 Msun) = 4.642e-06 vs (1e8)^(-2/3) = 4.642e-06
+(B) polarization ~ hbar*Omega_max/kB T (I): 5.1e-13
+(B) polarization ~ hbar*Omega_max/kB T (II): 2.6e-12

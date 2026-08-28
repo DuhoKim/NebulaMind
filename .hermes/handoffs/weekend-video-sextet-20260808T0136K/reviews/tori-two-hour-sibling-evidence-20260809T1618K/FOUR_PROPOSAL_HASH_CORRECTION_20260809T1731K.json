@@ -1,0 +1,45 @@
+{
+  "timestamp_kst": "2026-08-09T17:31:31+09:00",
+  "corrects": "FOUR_PROPOSAL_CUSTODY_ADJUDICATION_20260809T1726K.json proposal_sha256 fields only",
+  "reason": "The first receipt copied four hashes from the 17:24:36 intermediate write while Goru was still finalizing the proposals. The stable files are the 17:25:44-17:25:45 writes. Tori's independent path/hash, manifest-shape, SOURCE_BYTES_INITIAL, source-copy, scope, and active-freeze checks ran against the stable content, so findings and verdict do not change.",
+  "corrections": [
+    {
+      "lane": "fesc",
+      "superseded_intermediate_sha256": "d38c1433e230dc1493ab595f33cab6ed8fcf48f6fc06e0348348a5ca130caa64",
+      "stable_proposal_sha256": "3d4a1aa5d13a3463fc866145e82bbde6ba214b2f4a84f5804980cf2ebc5d671b",
+      "stable_mtime_kst": "2026-08-09T17:25:44+09:00"
+    },
+    {
+      "lane": "brightend",
+      "superseded_intermediate_sha256": "c8ceea30d5ddc7171c3909dc4de172e73d733ab0e1db5c466dd709ddeee157de",
+      "stable_proposal_sha256": "dbd9d51a9c28d918467a3d294804408dc7a337c50cc61f8d615ab001788def66",
+      "stable_mtime_kst": "2026-08-09T17:25:45+09:00"
+    },
+    {
+      "lane": "mzr-anchor",
+      "superseded_intermediate_sha256": "c0719566552a7f2450e05419661352c19071a9a6fcb139d22e6376b20df5595e",
+      "stable_proposal_sha256": "96f2086882ed89ad56755a26e20256a938dca8b4f8845bf8ae8b95d453812886",
+      "stable_mtime_kst": "2026-08-09T17:25:45+09:00"
+    },
+    {
+      "lane": "mzr-census",
+      "superseded_intermediate_sha256": "f200748ccb183f870d4ae312ff0c73397a186f3d2fbebfd4a9b557ce790c4369",
+      "stable_proposal_sha256": "86356f5dd991a033def3ee0c7a979c9032e1b6a6eb418ea28e4e231ad33bdd50",
+      "stable_mtime_kst": "2026-08-09T17:25:45+09:00"
+    }
+  ],
+  "stable_findings": {
+    "fesc_source_paths_hash_match": "19/19",
+    "brightend_source_paths_hash_match": "8/8",
+    "mzr_anchor_source_paths_hash_match": "12/12",
+    "mzr_census_source_paths_hash_match": "15/15",
+    "mzr_anchor_SOURCE_BYTES_INITIAL_is_literal_backslash_n_single_line": true,
+    "mzr_anchor_COPY_HASHES_entries_lack_sizes": true,
+    "fesc_brightend_mzr_census_immutable_copy_bundles_absent": true,
+    "active_SOURCE_FREEZE_count": 0,
+    "video_reportable_now": false,
+    "custody_verdict": "BLOCK_ACTIVE_FREEZE_INSTALLATION_ALL_FOUR"
+  },
+  "verdict_change": "NONE",
+  "gates_closed": true
+}

@@ -1,0 +1,16 @@
+{
+  "test": "minimum-scale obstruction compound acceptance (spin pass-18 guard; bottom-25% caption mask at represented 640x360)",
+  "guard_source": "lane-spin-parity/worker-yui/MINIMUM_SCALE_OBSTRUCTION_GUARD_PASS18.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T11:36:00+09:00",
+  "method": "360p downscale + bottom-25% mask on the 11 encoded state frames; human represented-pixel review decisive",
+  "checks": {
+    "capsules_above_mask": "PASS \u2014 RESULT HELD capsule (top-right) fully above the boundary on 11/11 states",
+    "required_content_outside_mask": "PASS \u2014 the not-reportable boundary (card 2), the value-withholding limit (card 6), all readout counts incl. '29,053 ties excluded' (inside figure boxes), the equation, and the FRAME-review statement (card 7 body above mask) all survive",
+    "occluded_content_supplementary_only": "PASS with notes \u2014 bottom-quarter losses are citations (supplementary; full provenance in receipts), the opening question's tail (comprehension, not an enumerated required class), and figure micro-captions whose required facts are duplicated above the mask",
+    "asymmetry_check": "PASS trivially \u2014 no result assertions exist to outlive occluded caveats"
+  },
+  "verdict": "PASS",
+  "notes": "If a future iteration is authorized, moving the dominance-definition line and the 'no asymmetry computed' statement to mid-card copy would remove the only duplication-dependent survivals.",
+  "evidence": "min_scale_obstruction/contact_sheet_caption25_360p.png"
+}

@@ -1,0 +1,58 @@
+\begin{table*}
+\centering
+\caption{Sources of Uncertainty}
+\begin{tabular}{llllccc}
+\toprule
+
+%stat only 0.0239
+Description & Baseline  & Systematic (S$_\psi$) & $\sigma_\psi$ &  $\sigma_{w{\rm sys}}$&$\sigma_{w{\rm sys}}/\sigma_{w{\rm stat}}$&$\Delta w_{\rm sys}$ \\%$^c\Delta \bar{w}_{\psi}$\\
+\hline \\
+
+\textbf{\ul{All Systematics}}&&&&0.019&0.79&-0.009\\
+\\
+\hline \\
+
+\textbf{\ul{Calibration}}\\ %
+
+SALT2 Train \& $^*$LCFIT  & Fragilistic Best Fit & 10 covariance realizations & $1/3$ each&0.009&0.38&0.000\\
+SALT2 Method & SALT2-B22 & JLA SALT2 Surface & $1/3$ & 0.008&0.33&0.003\\
+CSP Tertiary Stars       & \cite{krisciunis17} &  \cite{Stritzinger2018} & $1$ & 0.003&0.13&$-0.003$\\
+{\it HST} & Calspec 2020 Update &  5\,mmag/7000\,\AA & $3$ & 0.003&0.13 &$-0.006$ \\
+\\
+
+\textbf{\ul{Redshifts}}\\
+$v_{\rm pec}$ Map & 2M++ & 2M++ iLOS \& 2MRS & $0.7$ each &0.002&0.08&0.005\\
+Redshift Bias & No $z$-shift & $10^{-4}$ $z$-shift & $1$&0.011&0.46&0.015\\
+\\
+
+\textbf{\ul{Astrophysics}}\\
+
+Intrinsic Variations & BS21 dust model &  G10 and C11 & $0.7$ each & 0.002&0.08&$-0.003$ \\
+MW $E(B-V)$ & \cite{Schlafly11} & 4\% Scaling & $1.0$ & 0.008&0.33 & $-0.010$\\
+MW Color Law & \cite{Fitzpatrick99} & \cite{ccm} & $1/3$ & 0.006&0.25&$-0.006$\\
+Mass Step & Split at 10 & Split at 10.2 & $1$ & 0.001&0.04 & 0.000\\
+\\
+
+\textbf{\ul{Modeling}}\\
+
+Selection Efficiency & Nominal Exposure Time & 20\% increase & $1$ &0.004&0.17&0.001\\
+Populations & BS21 parameters &  3 Sets of Params (P21) & $0.6$  &0.000&0.00&0.003 \\
+
+\\
+
+\toprule\\
+\label{Tab:inputsys}
+\vspace{-4mm}
+\end{tabular}
+{\raggedright
+$^*$LCFIT denotes zero-points and filter central wavelengths have been varied during light-curve fitting.\\
+$^a$Constraints are combined with Planck 2018.\\
+% $^b$ $\Delta w_{\rm cov} = w^{\rm cov}_{\rm Sys} - w^{\rm diag}_{\rm Stat}$.\\
+% $^c$ $\Delta \bar{w}_{\rm diag} = \bar{w}^{\rm diag}_{\rm Sys} - w^{\rm diag}_{\rm Stat}$\\\vspace{2mm}
+\textbf{Notes}: A summary of the systematic uncertainties and the baseline component of the analysis as described in Sec.~\ref{sec:Inputs}, the size of the systematic $S_\Psi$ used to determine the impact of that systematic, the scaling of the systematic $\sigma_\psi$ as constrained in this analysis, and the contribution to the total uncertainty in $w$CDM (can be compared to statistical uncertainty of 0.03), and the shift when allowing the uncertainty on the best-fit cosmological parameter.  The last column shows the simplistic change in best-fit cosmology if a perturbation of size $\sigma_\psi$ is applied with statistical-only uncertainties.  The amount shown is different than seen for the combined shift for best-fit and increase of uncertainty given in the previous columns due to the self-calibration as explained by \cite{binning21}.   \\ 
+\vspace{26mm}
+}
+\end{table*}
+
+
+

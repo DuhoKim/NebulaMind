@@ -1,0 +1,1355 @@
+{
+  "audio_generated": false,
+  "audit": "method_proofs_native_monochrome_and_color_vision_then_minimum_scale_then_represented_pixel_bilinear_resampling_roundtrip",
+  "created_at": "2026-08-08T16:06:12+09:00",
+  "deepening_pass": 30,
+  "exact_resampling_roundtrip_recomputation_count": 105,
+  "frame_count": 105,
+  "git_action": false,
+  "groups": {
+    "pass12_sharpness_safe": {
+      "contact_sheets": {
+        "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "a387544fcfbd118975c7aa4d760ff489b43aea536c501ce2db49166c6185925c",
+          "width": 1280
+        },
+        "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "9d51a2bd5cb6b0ee56f77f3b75d4f0d468357d4bf2280bfc13314cc63ea1eb6c",
+          "width": 1280
+        },
+        "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "88b438c1853048d41d451600772e197ac21cc4509c2fc87020935dd8f1ddab6e",
+          "width": 1280
+        },
+        "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "84827765537b85b570dae91fcc9f594773c1af286c4023421fa52f12d9501c36",
+          "width": 1280
+        },
+        "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "ad780893d695f88ef4fbd2e025c5552ca9ea83b9b851aeed7ec8099d6eddeeb7",
+          "width": 1280
+        }
+      },
+      "frame_count": 35,
+      "group": "pass12_sharpness_safe",
+      "scene_count": 7,
+      "scenes": [
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_01_color_360p.png",
+              "baseline_sha256": "aa924c11cdfb582f8a14ecb8730dbfbec1d03344defb8166c693463630655a0b",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_01_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "e7683e830fb772a0e66dcba17c47888e18f58c894834ecd2453a9160a1ced1fb",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_01_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "87d24977e1ec47e2d8231670bdb88bad10cb6bbb67ebd1f01fc79c82f8a723a5",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_01_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "a98878a7e4526986179260350f8abc6ef0ad94d3f524bf15176d9b05a4afbe5a",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_01_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "1cfd2e3eb5f07a87458f53a4962c7999de713b258b42ec49b8fb6c6ad4f5d5e9",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_01_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "e7c0b1c43df54b200386ceab886aa47c3f22b79aa5a2c9eca066c6d643bc7599",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_01_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "47d97b21017738878bbf251649bed8f27b913dd262f1d8d11281488a49fd63de",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_01_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "1df3c5a4c23d7f6acf50d8ce98cb04b4a39854f4f752393cc4954d7d4889d91a",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_01_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "41097d8e706cc1e005efbd5a0f5442cda5913b2aac7081a9a3facf7792078294",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_01_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "7bf59ca0fbf9f4c2f81e5c8f575c4155df47e66bc89025e66ddb05d3680a22b1",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 1,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_01_clean.png",
+          "source_sha256": "10339ef244eabe1b6351b7402bc1d38fe810ff712b0e0976ec9893504055e35a"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_02_color_360p.png",
+              "baseline_sha256": "d857ccabb87525bbca7cf259c5a1e3deb000ae24a71204a6770bba1d39ce0802",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_02_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "104d0daff0c1244dd98209636df7fe6ad34b559c3a7cdf87a40aac3722a181b3",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_02_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "234b7e107c003662cf729b2b33dc7d21ceb587b5bb43d67f21e30ad5b42323f1",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_02_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "6c04494e803223925d866733b8c100a30f40be02ae07f76497162b68924076d3",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_02_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "cf68d734ec0aa1fddc8a2bc0be8a490c42af4e5cd4bbe922a39ed3792320f303",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_02_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "418da16c868f6095adecded68524817d4b77d0d4c22e19ebf3ba66adba5b5c3c",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_02_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "e7fa42cb6080059660d5f61f077c3fceafb36bdab4065c394b82b670133dc536",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_02_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "427c13047c263c0159110a8a49fabb7641dca1010d0779e373cb1066804a509f",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_02_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "824e8b17f55b9b9f84eff48b11341e3b28a2449e7b2d7cd12e20bdfbbc3850ff",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_02_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "3e8a8310e34462445af2506633b61380c84ada902e6c116fdd8d2def38a031f5",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 2,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_02_clean.png",
+          "source_sha256": "bc18c887fdfceac3b14fa1848b4d468ba1ff7726f64f6c3ab48c663808f7f641"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_03_color_360p.png",
+              "baseline_sha256": "faabcba61b3aa2720711cd19447e1e88ca4d013191a2b12d7dbaf1770e26f5c0",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_03_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "63442c2a20f4ea90693fa337468086d921743518697e3d188a036f99b7c19fc3",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_03_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "105d25576e982a06c4a17b26e19abc77228c012cefc04b9ca8846576d2030dde",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_03_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "0f783d369a53067a21476e18592f17244bb6bbc81314ba91ee948ae885ff1d93",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_03_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "0d8d417f61328f705d0df6019de2901bbc4df1e2c875dc4add3fadbb0e7f0885",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_03_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "27ffcf9f27cd232250fe7420677c514f7c899686cc89eb8791301e2158544ddd",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_03_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "9772b13eb461efc9f3aa91040bff1ee11e5d7b937f26ddd819e35cc878c69002",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_03_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "bccdcffcd4529f221117e8ef3c5abe855e2e8527b985fc3c6f278c04183165b8",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_03_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "ebcf10f513cfe47d7cb05471b1b0eb0c66f91ed53b6ac09d8a4f5c691c1e8ee1",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_03_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "ba4a9551a901698b8fce26cb66094fd4344a9cf120508a12e3b32e58455aaba8",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 3,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_03_clean.png",
+          "source_sha256": "03509f48e19acf49854c60bc4af390e023fb3fc73dcb582ddd3610e22d8c1721"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_04_color_360p.png",
+              "baseline_sha256": "4a296a2bcdc001b4cbc73d5f8104cc99b41bd3a1e0bc372e7dc0b5ba88a2ea06",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_04_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "bc4d1e9dcea9672f551f8735fa447c9fe49cacce91f092544de0b3bb2ae1fd12",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_04_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "15a2c20670832ed72979285381ad7871c14d5a40f44891dba1cbb738387b2d0b",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_04_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "f75e5979bc65aa660e3d6dbb91d6bf966931361e7fc185f5b54329b6619582a6",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_04_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "1f90306d7a71b5c51be853f6037527f92f45064c1cd31dcc7b33fea94adcbe3a",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_04_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "0467692218edce268b6a2ce6852cec8e185f5add23e474a205cccc2f62b48ec6",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_04_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "c5b4cbe8763ee48bd9f8b2208c35bd2164fd186504dbb2925c44f185173fcf09",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_04_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "bb49445b960332f6193f5cfee767f35e2ce9d7d5456e6c7cd6715a642ff18f89",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_04_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "adc48585c119a9207a7b5e744116ff19ffb49baba19b71e8a0d29d64df6bcbf6",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_04_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "093af7ece857e3c3fcb8f003525cd2dde710d790a48326252de95adaa1e92e99",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 4,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_04_clean.png",
+          "source_sha256": "f1d5e97124161a75d596494526e5010f126b84e79f6f83aa6534a4339e7825d5"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_05_color_360p.png",
+              "baseline_sha256": "248a62bcff5a9d61f61d69ae50d56f862f41ad5c8e6057821d814b6efa344b10",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_05_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "76e4217be63566171e511f337005763b474e98f98990b1352624ac779ca77f73",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_05_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "7e93ce196e40cfee5de723da39125b7ea45fcac2a2b7e08090f3c44eb4a50cc1",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_05_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "b06b39d90fa030c62a6c10048871061679e87a9c4fa0e03aa8c37e92f2a2a375",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_05_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "e26ea819a4f41aefa4bd3cfd6bb2fcdd3906fbf8b65f25d38ddeea755a0654cf",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_05_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "976696dabe96264b97dbcc599adb71b517f019d8184138470a9bfc30f0899360",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_05_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "6d7111a14858fcb57cb2e31ba41485b76d188f0f7b4a2d5eda2ebb2215103a25",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_05_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "6642f2ea65226940e6d28b7aea5043d6c7fbe47509af0f920eafa1c46e36fbe7",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_05_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "314d66673b3a2b5b174cf9f29ddda9797b7d963ad01b924b712f91c0e8580cb7",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_05_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "df6e6bcd352d4f4a67a235a394f58907be11cd2a82f95b81dadca139595ca583",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 5,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_05_clean.png",
+          "source_sha256": "36e155620da4c3935c4cb4037458fa34f5b4446afbee06c54e422bbf7c7bd892"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_06_color_360p.png",
+              "baseline_sha256": "9dbd83c44f5ec5b192f301e217a2fe80c478ba64f2eeb4969334ccc56f865a20",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_06_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "498ff5b468ae7471e3dd397d4928940e74561d8b11be1561db669d65b983420e",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_06_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "61e6ff1bd9b74b779aff6068d87d8115a48e91ae81ff28d65c7e07193b94963c",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_06_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "c29c8b65c17dfa35390249d5003475fb734202addcc765864bee91b7950f39e2",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_06_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "77478a9694e5344704c0ac578a284cebe03e3f94ac12cdeb57da0a2b4939e2d0",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_06_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "a56342490ce3eafb5ba4dd11c406a2750d24cb76c8923db94ed2ee56f9110f8e",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_06_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "a1d0af3afebdbb338424fbd2390bfcd6c3a5c97aad8ea5321373558d3a49d038",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_06_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "9b42c87a4fde43f28313b6f41ad170f847d95a375553530d21a49278c34acf5f",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_06_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "7123e65ef03cae48648684619e0336eafc4845b9b3cec44c5b821fb8d8fd9460",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_06_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "34a3213655fcdfb82596d5183e3cc8e5bc0127684f1ba9a44bc2e30bd86cef5a",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 6,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_06_clean.png",
+          "source_sha256": "f65335293bc31091bb280ba21b7aa5ed2cdf2eca7f8f174e766383969e370f4c"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_07_color_360p.png",
+              "baseline_sha256": "13f6f28eb2bc0adbb6d54b29440f16720eace9e92cd30d58b3e3444c42fc29c1",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_07_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "8b9b48435b8502e43c524a602dfd28e9d8c0b418bd2439c8673583e89abd2437",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_07_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "2ceda1ab3b50074b082b89f1a4ebc8d2ec555eb588b9b00467ec142b807cd974",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_07_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "79e9a1033c7be2a611589bad8eecbbefd5f138a9d34bd0af1e8be49d13949edf",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_07_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "a8b86a32eb2b603b074d4f94546422a9463c26d5d3f1324ddc89ce52fd8ae7b6",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_07_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "4f7b469e2a03b58c219145f94243414413cbe04c3f89838b25097c6756e3b7dc",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_07_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "fa043801744816a3e2413469e87e14d064a7458e41f48c975eb356fc194f7c24",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_07_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "240e4a065731ed042bee9c290028592ee87c151323d1da295ef49653ffb9d0bc",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass12_sharpness_safe/frames/scene_07_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "6a342eaff1b3296d2ac6869c730e4191a02a4cf7fe6540eeb3244ed0811b698f",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_07_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "40c62fb22e45d40a497282c841313ce8a48b0847687c0ff6f356b35dcf88530f",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 7,
+          "source": "qa/pass12_sharpness_safe_mockup/frames/scene_07_clean.png",
+          "source_sha256": "a6e89a71e1ebe3659d936d4c8030e47acbcc8a6bd93f45b6edb459763d0c6243"
+        }
+      ],
+      "source_receipt": "qa/pass12_sharpness_safe_mockup/receipt.json",
+      "source_receipt_sha256": "35f526a60b053f8c203278b3c205c1e0145f9a6dcd6da309541eb57b6399e92c"
+    },
+    "pass7_caption_safe": {
+      "contact_sheets": {
+        "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "3663108bcea443d79106e98bde4ce6e1b8cb380e3ed9ee88712130133ac9c9a7",
+          "width": 1280
+        },
+        "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "a03974fdf7e2d7e04e2ce56fa785273a0258af8f82c80f37277a6fbb16d5bdc6",
+          "width": 1280
+        },
+        "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "3b75ab776bb6f7c400b157720381c38e28861e0cce97aad36d002ca0a53cb897",
+          "width": 1280
+        },
+        "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "a6487da2a1395f371a9def953db5ef2b3793c070a1c257674917c7df889c1d0c",
+          "width": 1280
+        },
+        "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "02e3272d8ce4db57a3811fa9ff112b270406c07ebf5ddba8d4c2c29d8b5b02e0",
+          "width": 1280
+        }
+      },
+      "frame_count": 35,
+      "group": "pass7_caption_safe",
+      "scene_count": 7,
+      "scenes": [
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_01_color_360p.png",
+              "baseline_sha256": "d3ccdd49c942d7294c9f4c6f7e47a633b62ea31692452ca5176d9dafadc3f771",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_01_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "fe9fa177235d8bb010b11697b2944bcb97a72f4b9335565d29bc77a4b1fb7b19",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_01_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "ad41633988053145b65030c9aa6213740555c8db2232346b5e2a0ca0f431fd51",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_01_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "26d24e0bec05e28b49a86bcf946918344a640a2f3ea87f9b3e99089de69d1aa5",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_01_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "367047256e6f0670ea64bb2680356d4a5a8badc6264f851c697c3b36679bb9d1",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_01_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "b98362f005277acfc79afb8882eab48413fae03351c86ded71ba11e86ae469f9",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_01_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "5a04c68182d0afa0dffa7c55a101f93b41a3ebf0c3c41fa1e4ccd44a4a4e95f4",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_01_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "c4f998229b29344342e6457bce4f783ae00597a8def82bac299889c56fcf7121",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_01_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "511f71596fdc50f01724f0041d3751375c31e089b8e41ef8b9b5a7bbce16f2ec",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_01_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "3f012ce7493a791ea4469c6203cd2a13285032c5dc63dc17f8990a466d3e8491",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 1,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_01_caption_safe.png",
+          "source_sha256": "9a99bfe1c80c1472a027c7066e67e87abcb1f5b3b7800f52851261b69d415c63"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_02_color_360p.png",
+              "baseline_sha256": "0c7498747df9f4354f738b34911dc258e065663c062efae52e35c7289c148faf",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_02_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "79e48534c76fbc18cf736e64145c4a264caa23d6c4d29fd5580510ee322d08d4",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_02_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "33224ca63b549fbbae1ec40ada670cd5a80ecf1010abadc889cb10fd042c0a96",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_02_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "2164a80ccaddb6e12b45f1b2fdb9d1a955a79099170f9913348bfe0fe00c114c",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_02_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "d35a0769357650b1b57e1edddb87a51d60aa8a0a8f445a2bf08461ccca293c47",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_02_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "8cfbe2ef308d611ec1b116ad811c838a11a247727f9aca08565ec1a1ee7e8cb8",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_02_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "c25a747d1ae38dff1481958a7c9b86e45e2c718a9661387dd4f374b40158689e",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_02_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "5258f31c071605a442b80c698b12710312ac81436b89dd0a5eb134edd870003b",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_02_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "248802e219c78d9ee0e8af6b45ac01bc16e3352c50cb7d595044fac89f5b5ecf",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_02_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "68c30d674141e2d4ad9f344b2e8a8028d4c5a622e8fa4dbb8a78c3897bdbc3c6",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 2,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_02_caption_safe.png",
+          "source_sha256": "e32b8531fdeee6a7d9511c600c00b246373883b8cbbf6b0dcae87c6be13674fb"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_03_color_360p.png",
+              "baseline_sha256": "4b59dde0fc0cef4ef45d92a85f440e42b60133289bd51c6b1989455a29fe82f1",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_03_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "eafb74ce96fdcc150831468dd309e75abc45526821afa1acbf7646e7322658b2",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_03_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "e9dbc95ca20b9c9e79291f9a52b4a261c75fb34ab6e913575783f5b591a6b3d1",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_03_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "0dfcd7cd04033755eb61aaeb9aec9a470416c385a9ca93ded135895c9176bad5",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_03_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "7249e046ff54eeba49f051667ea5cb74106a6aa2d1599eac61727d6b7a6d2693",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_03_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "26f4a876c92bf4443d0ad21706742336c486206d018158a515d7823898efd2f9",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_03_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "3371227b9a4f0cab9c20234e34194f756c324733d6ebae3959d6c2e57e2235b0",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_03_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "b56656e74259581b56e30a426c15e198128bf6ff21614e767632fb340dc5dedf",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_03_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "a02c47c3a125d4c62d9f12bdf873f9446c534d8b47a65ed9ee1049b09fe9cf1a",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_03_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "35ed1c41e6e33b677cea2a0100d7cbd303a9e0794931afa3b4a292afd89a02e6",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 3,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_03_caption_safe.png",
+          "source_sha256": "f306e00e9dc424f063ad79dca05ca0ce272457cba4494893466737efce83f09b"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_04_color_360p.png",
+              "baseline_sha256": "186cd0f1369702120f78e4a10f0117e96646a9a2d5ef7187da10dbf0faa73a72",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_04_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "612483b8f7fb5a075ba0ffcdb99b8ab7d7f236274a0f64ab1d2f6b0c775b9034",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_04_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "1e495b5c60dd6d44501e3248b3a12fd8f85ed9e1b3028685e9e931e137e8dc68",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_04_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "c542ec3a033e95fd3fe39eaf0db8898fb74051be48d742326785588944f499f9",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_04_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "50b03700d8cf7e744474c72626cb1cbed3dbd174f9deb354df4e5cc765e1257b",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_04_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "e5c88e55f61d886fa7ef67da5f7ebd5ac7f3115993926849b9cbbe05e732c9b4",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_04_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "389030192b337b53597f18c12a8c51b72607bfbbd91a8e7019c82527c0ed31ca",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_04_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "fcba0ab8d56f47867b5499c0102eccf4fa65971e543ca4df5d58ec51315cffce",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_04_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "443afd8ddd0f98c3ec60c23411a8d0c68f3b9539e32524c9138d3705c564805f",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_04_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "b7c0fefcc940638468b254875a7ac431279075636312c7b6afce0ae29f41938c",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 4,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_04_caption_safe.png",
+          "source_sha256": "96f52407a01505298c74b8cb6bdb202b0aafd440319cdfe5da93db6ce2eff761"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_05_color_360p.png",
+              "baseline_sha256": "c9c8b6fc87cf7f66d1c10b79cc93b40b45f1c67b3be012ef2e2947399f5842b6",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_05_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "1f19445715cdf6fa86b735a902f687a27bdf4702817afb1beb1e9a796d746215",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_05_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "bcb0aefbb82caff0a644aa8bc241a31fe19417ddcf443b2c5f83d794b5558143",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_05_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "41b4845a411b80271fe74be2655a6abce878c0c0ad80f327e62af6d97f6511c2",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_05_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "9253731d0d765bac7d9d070e698aba0ed8a9519b904c5dc056078f7af263f297",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_05_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "112f6245a977234b2805b26342291fdd12e9edbd0dbdbc414a859a2cd98af734",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_05_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "408d14b69195b6e12db9fee49a5cf041951db79bf23c846c470d532578573332",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_05_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "1054af27d7ee435e171e743fd438fea3f11620b7a9d9e3a63b741099189b0349",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_05_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "31347a5e059d67da30dccdbf2b81aeaeb07db13c2e4456089b3496b995a0fefb",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_05_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "129d4677768bf3f33b2cc2bd2db86f832e7fa9fe46df3d845dc1674a1ec20ec4",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 5,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_05_caption_safe.png",
+          "source_sha256": "a89b8ac817126c1bf63b33dcb3dd041e305678211d3e0f29a232f4095c3fa320"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_06_color_360p.png",
+              "baseline_sha256": "87a9dec29d2d0540ce0e303e87965ecaa07b66760e6cf5c77c32eb93c2f6a2df",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_06_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "50d88dbf3f46cfeea56d89b67442b3772883223285830ef49dcd5e1209c515c2",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_06_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "ef5d5cc9d7bc7e28ffa09c04f93dee312b7409ff4ba908f0fbf18d044e013c91",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_06_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "2ea99ebbe589fb64eb5530080c625f5d185d74ff2fe466e44cbf1464bc9e14e1",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_06_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "732e659111f236abe3f3ee749b95d370173e1624f3c7787326cf154e311b418a",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_06_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "ec7e6c244a8251348d9feede86e2da44ae7d97d89726bab33ed9429cdc1548d9",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_06_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "0166435adecebf3b0e11eb5870b7163d4125536f5961d5db536e52b1fac45df9",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_06_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "de4636e63959d325165db376b39171251a3f86f27ec5b77da66333f2f68bac5e",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_06_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "add6ec9da6ad634f6e6dd007d69de4ddbd19dba0631a23ea631e752ded46ffd7",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_06_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "91a394b33853118c50373364d1648d10522846779107b428a3734a2390334aa7",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 6,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_06_caption_safe.png",
+          "source_sha256": "5b451b0ed9c25a2132adafed5bd16de720ba9c030cc5ece1d985f75d03d565ae"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_07_color_360p.png",
+              "baseline_sha256": "18e260ba7b7055bef01fd00a67bcf89ffae7a66b0f7973ad6716e483290ccb11",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_07_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "ada7893aba9f8872a64bf96e3426b0af7936149d5ddbb99d2d8b00916dded3c2",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_07_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "c7a1febb2f32d11c61e1512a403194ce81e51f77c4f658d6a4d67a165e2470f1",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_07_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "1baf88bbdef28e3b843537ab1ffb3a0ed0c7bbbe91c076a8ba83f05c52d634cb",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_07_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "e755c10ff80e55755a3b1844a85d347012165c530365674e2f28cd0779356b5d",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_07_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "b30bb16a564ff60bc0d28af2a38e479a7e65749b29619e7f224fcfaaed6326a0",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_07_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "b5a8ad8fb8b54cd22aa9076b06e7f17599d5628578c532d3fbb443f141f1b0cf",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_07_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "287b0d449f31c6051263f7a2f83776a5eb43ea206e89a15b9808d07e22a97dad",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/pass7_caption_safe/frames/scene_07_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "d689a4463654df5901d2bf0940e52a0c3efc120f608a75ccee7f1419371eae3f",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_07_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "2d277d1f4d5a42f37f5b256c49e0d65cdb60df202665cb4a190a836526416543",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 7,
+          "source": "qa/pass7_caption_safe_mockup/frames/scene_07_caption_safe.png",
+          "source_sha256": "997b69c3ba10f36177907b62d760019490910533514af3328dc50ac6e9aaacd6"
+        }
+      ],
+      "source_receipt": "qa/pass7_caption_safe_mockup/receipt.json",
+      "source_receipt_sha256": "bd614040a75908473a916babc0dc337fccc37748c66b065c2ddd8d929a421e81"
+    },
+    "sealed_v8": {
+      "contact_sheets": {
+        "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "21685f29b64a21465900d22947fcb0be05bbf3f2039c08141cf528712df4dfd6",
+          "width": 1280
+        },
+        "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "6f3600354af907e44bed41da490ea0b8ac4a7cf3a9f62b75943bb48500973fde",
+          "width": 1280
+        },
+        "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "076f19835bbb8a127a70b534e74cd0b96bca326c3c41e22a981dc3420a2706ad",
+          "width": 1280
+        },
+        "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "2602ca0ac065551c36ca927cf8fd47213ed50f3b27d498b7b966abf4c2fda794",
+          "width": 1280
+        },
+        "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360": {
+          "height": 1552,
+          "path": "contact_sheet_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+          "sha256": "0713f35b54d6a61a2e2edddba371328a5b0fae2f2805121fd3e315d66f797ce7",
+          "width": 1280
+        }
+      },
+      "frame_count": 35,
+      "group": "sealed_v8",
+      "scene_count": 7,
+      "scenes": [
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_01_color_360p.png",
+              "baseline_sha256": "d9913882bce7c5730e2c749f1841a6987315102e28f96e1d783c287974aefa73",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_01_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "0c88b65adb25fbeecdf7021465d84e6878a339d5cf2139d3b9b5e0c10cc9ed92",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_01_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "006e9a03ace16deae866816f7fee46b59c8a1bdcbf1b59beb8532d3713badfb8",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_01_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "4549eb6c48d2b0ca96f3ef0d0747e3a4e32d83250a706bb818d1551f5938ba0f",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_01_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "364cc9f961dae80a24912930771d941e9906cb92ebde445e54de5dfe2c76a60f",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_01_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "c884b26158e6dc5d732af4a09683dee0be3ac35e2113ac161bb51f43fa1b780a",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_01_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "5b7f00a9beb0e93fbe41b6833e3dedb01a45f9da65854caa491aa9e31bd5a064",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_01_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "abc1b55910b493635f6b7f5338cd359c6c44e89658d17a435a4ea2d0d4b8e766",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_01_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "92c73434fb42343ceb0ef47c172c8241a0143f759b10da7981cb10c407776749",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_01_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "fc780854266a64a991e2d8683794918995c1cb1b42724e35450613e5320f07f9",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 1,
+          "source": "proposal_frames/v8/scene_01_s1.png",
+          "source_sha256": "e9759ce1bc350dceb17f4fc28c82570b447eec0487ce75b5d3550f05263a75be"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_02_color_360p.png",
+              "baseline_sha256": "c7d619ab1d118d89a4043bbaacba92199564b8b13a5ca356a5bd2ad65c8a3b46",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_02_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "05c862c5a283d3a5cd7f5b8f75e671c71327b83975ce003b90fdbbe5369637d6",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_02_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "e280cb6b1004ee51536d3998acb5c7445d90cb78b60cc9e3d6da4235bc611cdc",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_02_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "baec2f49115497627961ec00b4cf696246fbddca7a5af50c2aaf01d46d1530a5",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_02_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "379b4f871fdf2a95dc077c09fcb229c935673aebb8aed8af014d1739b791a5a3",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_02_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "3d457124dfb194edd3166ad9387f6bf42d52a352eef975cc811f972ac081bafb",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_02_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "3647eea53ba78bb0ecdf1f36ac9fea677112a4299210f8a3653761ce6e108310",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_02_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "3d562c31d7957d197802d5ec50728d6830c07805887fb99e4127acb820296589",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_02_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "cf43f0b140b83cf8fc4354c774d67686483772c03f86d7eeb67d16e13cfdce7b",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_02_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "796d14bb4e1f94f378e88439cab4e41a37a3885aaa2448e2a9f5020777827c61",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 2,
+          "source": "proposal_frames/v8/scene_02_s2.png",
+          "source_sha256": "95710fc5afbec50a6ca26639822a5a4e719e395668e6add46333cb1321007f0b"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_03_color_360p.png",
+              "baseline_sha256": "6b1e0f4c1eb1337adccb9a24c46141109278d79198a55594729ea81b7275f887",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_03_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "38496f252803f0237edbffac508c453e7f09116b747a5342bb7ae1ef7fce97ee",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_03_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "c1c040162e71f28ccec12ae8dd67719bdd220291836a72191b51138f89d73e49",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_03_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "9c48d2e3326ed249fa86d48ee0c6741d9826487bd6d8bc736f8d5be30560b726",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_03_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "8ff524eed6f64210027dae1083d23a22a5186d597a7d2e6e4654cace018184f6",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_03_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "e7142683a4a717d473cbca25c7425fd21bf7d2741753b32dddc05097c3ab1469",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_03_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "d7e9d3857a34ec8805eae459f991d1dc48275503cb48a7110b0344ebe19012e9",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_03_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "8a5674c271521ff8b6a7899bf298e1e3f3e7ff253b507e5ba5c1b937071f9704",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_03_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "e4326cb81aaa91b1039afdf39ad2f95be74d6466e35cd76ff85a179e1cdc6c3b",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_03_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "4c1e4ef47f3479585344827903b11e2cf932b5043715d47a56b2b58d7b0cc27d",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 3,
+          "source": "proposal_frames/v8/scene_03_s3.png",
+          "source_sha256": "07fb50c7e245b5ccaab213f8b4bb30f0bc5d472526f8cd3453d964d97e39823a"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_04_color_360p.png",
+              "baseline_sha256": "83aa797b81abf5399e879e738188f783a5fd0b757e9da861bee7b122925558c6",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_04_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "25dbcef91ca566b54bc6e0cb3f7b78ebca748421e986ba7be2da0dae03d6a217",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_04_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "3ab12163a5235e7c8bd4f98e54ae66e8462be571d8a736ec4a5bac529df7a98b",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_04_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "f4b55adc7a616491823b1b81cc15b5694f3b53a239bfc78d07225ef0d64bf214",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_04_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "31f611484786d74bacdeb2620ec57db6386fb1cc88f89e6a5ee9a65b2de66bf1",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_04_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "befb2c9c29ace3f8d5511ecf11c4de01bbf196f906972c28bad5ff0756066cd4",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_04_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "ec587624a897d7caf1bbe88b7f4c4afa6b1ac0b1c00eaddc992a7deedf610dcc",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_04_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "765d4d8b0be435b49955ec47895aacf47a284a0028ceebaf605e65614f8cbc7c",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_04_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "74d914a5e7b588a905fb1e1f06b77d215b91757a31f7522aa23d906bb4185482",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_04_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "bfa87a316d75e45f656207ec2d16abffb1db066ae87c95c1c974e7340799b233",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 4,
+          "source": "proposal_frames/v8/scene_04_s4.png",
+          "source_sha256": "62993b4e3c4a1ade2ee9cd38cc8eddff3522bc3dd7153917020daff8ef8c4357"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_05_color_360p.png",
+              "baseline_sha256": "a6394b971bc80a23978e31125c171de1fcf972cbf2199726274456a775ffad28",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_05_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "98984c941455c2a937034c6a930536db52d4a517ec76533980329ff8d2a01910",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_05_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "b920a7dc670456b1f8aa9c20aa5c8114d42a68ea50c55777c2eafb5beb437dcb",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_05_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "106a9e60bb3228a3241014bbb6ca719baac192041850433c7217864f2aedf485",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_05_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "3982667deb80ba2a087cb48924224b21f316909ec9adbdfd807f0c3a683b6756",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_05_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "eb6081d7fce432836445655f6905368dccb5e6c98f575754c228fd97cd1e2d55",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_05_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "5b875bd909d323176a5277b35964e75cecd0ef9fc8adb8803e1dc7469c39aaa1",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_05_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "0c8e0d70c0d4002a1a387f86f7001111943f67c27d8f468676e6950de5717b86",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_05_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "43721cd7944917ad57c91bfadd263e4585d15f672c8ac89322bacd3fadeccab6",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_05_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "676d747df5d60b12821d922a67b14db9dfcce0958292ee0d1ae7ce8c160b32ea",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 5,
+          "source": "proposal_frames/v8/scene_05_s5.png",
+          "source_sha256": "5041e358f9e7ec2dcb76d2a3b32de02a613cd29b5f0da87fad9574351dc8f4bf"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_06_color_360p.png",
+              "baseline_sha256": "b9d2ec3e4e24022f5c1213431c7c5060148fdcaa86af7f577ddf20d556312be7",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_06_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "66fbeadab51dd7f29f46a97fc543e7178a6edee20cf345d9896f5ea4fda722c7",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_06_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "f0c99455ca8f9a9e6612357c728482df3a8d071c0b44d54c6ce54b996f084b0b",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_06_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "ac2e73e6591501b981cc9023fb0d7ae7876944fac7ee4231f8c7205263791ccb",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_06_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "8429a08cbdbfe2d653187ffbc7eb9a9724fdedb3b13d372dc161bca4c59f51c8",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_06_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "2ab72a8dbea3aef3eeb83a3a47634c3d37c4d1b27bed6afc22db0390e30cca5b",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_06_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "87ced2ab3b2d72178260daa1c4723a1b2f5e425c089797add5a3f977b2db6e83",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_06_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "f532a5d607db8860ad781a9a472049084fc94550ae393b4006ad1d48be71c330",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_06_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "5c4ee2233bf9dff7f7afd015dd30d225a97d878be5b8ff4a64fc13f0f218c561",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_06_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "c626453e50f2b32cc817c451bef461eaebffe99bdd90d2b9f708a007494570bf",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 6,
+          "source": "proposal_frames/v8/scene_06_s6.png",
+          "source_sha256": "db3f9efc18404767d36ddb1221f2ada2668161547afefcee5ebba55e8afe6121"
+        },
+        {
+          "samples": [
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_07_color_360p.png",
+              "baseline_sha256": "9806b04c42a68655c6f29686af9773e34ca310c4724d444aa5524c8a822a22b5",
+              "baseline_variant": "color_360p",
+              "frame": "frames/scene_07_color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "26a59402c9bd744281b09b300d5dcd01631ce5a92318846de78cb5a1ce57e4ed",
+              "height": 360,
+              "variant": "color_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_07_grayscale_bt709_then_360p.png",
+              "baseline_sha256": "809dc7051879621a387ccd18a40977e2e7bf265dd0cfdbba18447318d05d3c03",
+              "baseline_variant": "grayscale_bt709_then_360p",
+              "frame": "frames/scene_07_grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "b335a11b9edc0effe920a0ec345b7bcae98dbb9c0b9c28651d57742d22a15e7f",
+              "height": 360,
+              "variant": "grayscale_bt709_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_07_protanopia_machado100_then_360p.png",
+              "baseline_sha256": "d4d49abf52cdf23679478e5b99ae2f78544cd9af2996f9ffbbec96e22a0710c0",
+              "baseline_variant": "protanopia_machado100_then_360p",
+              "frame": "frames/scene_07_protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "6eab929a20d1083b86d6b0568bb6dccd093625372ac6d3cca56c4702610fe15b",
+              "height": 360,
+              "variant": "protanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_07_deuteranopia_machado100_then_360p.png",
+              "baseline_sha256": "7f0ec774a5b49ed5344d725be8d89e634a36620ddd42bdd8d093af2bad730574",
+              "baseline_variant": "deuteranopia_machado100_then_360p",
+              "frame": "frames/scene_07_deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "5e46aaae979fb7906fb692bdfeaa455b1c250e11851714c95f29eaa74e004d18",
+              "height": 360,
+              "variant": "deuteranopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            },
+            {
+              "baseline_path": "qa/pass23_v8_minimum_scale_color_vision/sealed_v8/frames/scene_07_tritanopia_machado100_then_360p.png",
+              "baseline_sha256": "f00fb9e0a50d105c49ba2581f29177b41955a040b43deabf0ecd1292e09cd4b8",
+              "baseline_variant": "tritanopia_machado100_then_360p",
+              "frame": "frames/scene_07_tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360.png",
+              "frame_sha256": "6cb6fc6d302c160702948b59dfe0bae5feeb08256f3ca563dfdbbde82a30fd09",
+              "height": 360,
+              "variant": "tritanopia_machado100_then_360p_then_represented_bilinear_roundtrip_512x288_to_640x360",
+              "width": 640
+            }
+          ],
+          "scene": 7,
+          "source": "proposal_frames/v8/scene_07_s7.png",
+          "source_sha256": "2b411aea73ea486959c1cb8af565bb3dbde7650f814ed42ede6573d56ac2bf56"
+        }
+      ],
+      "source_receipt": "proposal_frames/v8/render_receipt.json",
+      "source_receipt_sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    }
+  },
+  "pass23_baseline_match_count": 105,
+  "source_receipt": "qa/pass23_v8_minimum_scale_color_vision/receipt.json",
+  "source_receipt_sha256": "fa61f82d25c85d5d1c30cf8b3bd15298ffe76dfbce0fc99693c5a76d5124434b",
+  "transform": {
+    "intermediate_resolution": [
+      512,
+      288
+    ],
+    "numpy_version": "2.4.3",
+    "order": [
+      "native color/monochrome presentation",
+      "Pillow LANCZOS 640x360",
+      "Pillow BILINEAR 512x288 then Pillow BILINEAR 640x360 on represented pixels"
+    ],
+    "pillow_version": "12.3.0",
+    "png_optimize": false,
+    "resampler_down": "Pillow BILINEAR",
+    "resampler_up": "Pillow BILINEAR",
+    "restored_resolution": [
+      640,
+      360
+    ]
+  },
+  "video_encoded": false
+}

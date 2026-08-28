@@ -1,0 +1,132 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass5-blockers-20260808T050057K",
+  "checked_at": "2026-08-08T05:00:57+09:00",
+  "scope": "isolated pass-5 encoded cut-boundary audit, hard-cut integration guard, and full non-UTF-8 content coverage; no science adjudication, result rendering, narration, candidate write, or publication",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "expected_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "hash_match": true,
+    "preserved_failed_candidate": true,
+    "modified": false
+  },
+  "video_reportable_now": false,
+  "worker_verdict": "FAIL_SCIENTIFIC_PRESENTATION_AND_HELD_SOURCE_GATE",
+  "science_blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_REVIEW",
+      "state": "BLOCKING",
+      "t4_artifact": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "t4_sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "frozen_review_contract": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "frozen_review_contract_sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0",
+      "pass5_exact_absence_proof": {
+        "source_regular_files": 209,
+        "utf8_decodable_files": 203,
+        "post_t4_utf8_files": 9,
+        "post_t4_files_identifying_t4": 4,
+        "post_t4_files_with_exact_t4_and_a3_8_hash_pair": 0,
+        "non_utf8_files": 6,
+        "decoded_gzip_files": 4,
+        "text_extracted_pdf_files": 2,
+        "decoded_non_utf8_files_with_any_t4_or_a3_8_identity_marker": 0,
+        "decoded_non_utf8_files_with_exact_t4_and_a3_8_hash_pair": 0,
+        "post_t4_complete_minimum_marker_candidates": 0,
+        "binary_content_scan": "qa/pass5_binary_content_scan.json",
+        "binary_content_scan_sha256": "092cba9cbf432555573206e4afef48d30d89a8172a58c453c48970cc5a5ba21e",
+        "interpretation": "All 209 regular source files are now content-covered for exact T4/A3.8 identity markers. No file satisfies the frozen review contract's artifact-and-contract identity minimum. This is an absence/custody finding only, not a review verdict."
+      }
+    },
+    {
+      "id": "ARCHIVE_FRAME_UNSTATED",
+      "state": "BLOCKING",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+      "required_exact_status": "FRAME REVIEW: AGREES FRAME_UNSTATED",
+      "interpretation": "The archive-storage convention remains unresolved; no physical-direction interpretation is licensed."
+    }
+  ],
+  "encoded_cut_boundary_audit": {
+    "extraction_receipt": "qa/pass5_boundary_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "09952da01a3e370cc8f813719ededc0a1c92ae55e8d11e374bd4354538f73dec",
+    "classification": "qa/pass5_cut_classification.json",
+    "classification_sha256": "4e1bb336627e090659ca46cfa65178180705e1241fb625b05ed36b597fb22234",
+    "transition_count": 15,
+    "sample_count": 75,
+    "sampling": "minus two frames, minus one frame, detected cut timestamp, plus one frame, plus two frames",
+    "hard_cut_sequence_count": 15,
+    "expected_sequence": [
+      "outgoing",
+      "outgoing",
+      "incoming",
+      "incoming",
+      "incoming"
+    ],
+    "all_cut_timestamp_frames_classify_incoming": true,
+    "minimum_reference_separation_ratio": 6.275656,
+    "blank_flash_blend_or_partial_frame_found": false,
+    "finding": "Held result figures and prose appear complete on their first incoming frames. No transition frame establishes the scientific gate before those assertions."
+  },
+  "sealed_v8_disposition": {
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "renderer": "render_proposal_frames.py",
+    "renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+    "contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "source_freeze": "SOURCE_STATUS_FREEZE.json",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "pass5_fresh_visual_review": "PASS",
+    "result_held_badge_frames": "7/7",
+    "pixel_change_warranted": false,
+    "v9_warranted": false,
+    "reason": "Every v8 frame already carries the structural held boundary and no result content. The evidence-backed correction belongs in the transition contract, not sealed pixels."
+  },
+  "hard_cut_integration_guard": {
+    "applies_only_if_hwao_authorizes_integration": true,
+    "requirements": [
+      "Use clean hard cuts between the seven static v8 scenes.",
+      "Hold the complete outgoing frame through its last frame and show the complete incoming frame at the cut.",
+      "Keep RESULT HELD visible on both sides of every cut.",
+      "Do not crossfade, wipe, zoom, morph, or animate held result material into the method-only deck.",
+      "Do not insert blank or badge-free transition frames."
+    ],
+    "changes_sealed_v8_bytes": false,
+    "authorizes_render_or_narration": false
+  },
+  "minimum_unblock_record_fields": [
+    "exact T4 artifact path and SHA-256",
+    "exact frozen A3.8 review-contract path and SHA-256",
+    "reviewer identity and selection rule",
+    "first-opened evidence-order ledger with timestamps",
+    "verbatim result artifact lines or fields used",
+    "independent branch before source comparison and explicit disagreement handling"
+  ],
+  "prohibitions": [
+    "Do not infer scientific status from this packet.",
+    "Do not promote the held candidate or any pass-5 PNG to a candidate.",
+    "Do not render, narrate, publish, wire, deploy, restart, or mutate shared/public assets from this worker seat.",
+    "Do not use transition timing or small caveat copy as a substitute for resolving the two source gates."
+  ],
+  "pass5_artifacts": {
+    "audit": {
+      "path": "PASS5_ENCODED_FRAME_AUDIT.md",
+      "sha256": "97641ed87e5dffb9af34de8a8eb6650c3c1c86d53f7c13bc6c3105432ee77b01"
+    },
+    "boundary_extraction_script": {
+      "path": "qa/pass5_boundary_audit/extract_boundary_frames.py",
+      "sha256": "a9ced81ca16f5b850e4843ed295ff334d8a8ae71ee32cc4bacb05d972a859c6e"
+    },
+    "classification_script": {
+      "path": "qa/audit_pass5_cut_classification.py",
+      "sha256": "ff62db94ce2637cf00fa07d4982531a63ddc027464936fe4015903c674dfd69a"
+    },
+    "binary_scan_script": {
+      "path": "qa/build_pass5_binary_content_scan.py",
+      "sha256": "4bc91466606a27c398eece56e0f04413c543bab39f8e32fbc7155005be28ce86"
+    }
+  },
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

@@ -1,0 +1,166 @@
+{
+  "created_at_utc": "2026-08-09T15:21:23.591290+00:00",
+  "candidate": "spin-method-overhaul-canary-20260809T2340K",
+  "status": "INTERNAL_QA_PASS_PENDING_TORI_EXACT_HASH_REGATE_AND_DUHO_WATCH_LISTEN",
+  "video_reportable_now": false,
+  "human_acceptance_conferred": false,
+  "candidate_mp4_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+  "predecessor_preserved": {
+    "candidate": "spin-method-overhaul-canary-20260808T1959K",
+    "mp4_sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240"
+  },
+  "narration": {
+    "provider": "Hermes managed OpenAI audio gateway",
+    "voice": "alloy",
+    "speed": 1.18,
+    "music": false,
+    "word_count": 424,
+    "delivered_wpm": 114.99999764560407,
+    "duration_seconds": 224.21739583333334,
+    "max_abs_audio_visual_start_delta_seconds": 0.016062500000003865,
+    "encoded_opening_asr_similarity": 1.0
+  },
+  "internal_gates": {
+    "exactly_one_video_stream": true,
+    "exactly_one_audio_stream": true,
+    "h264_video": true,
+    "aac_audio": true,
+    "resolution_1920x1080": true,
+    "fps_30": true,
+    "duration_matches_audio_within_one_frame": true,
+    "delivered_wpm_105_to_125": true,
+    "audio_visual_action_delta_within_0_3s": true,
+    "all_29_sentence_frames_nonblack": true,
+    "five_beat_introduction_is_first": true,
+    "opening_required_terms_present": true,
+    "opening_beats_remain_separate": true,
+    "long_source_directional_sentence_is_verbatim": true,
+    "long_source_stakes_remain_conditional": true,
+    "open_question_adopts_no_answer": true,
+    "broad_reason_precedes_sorting_method": true,
+    "five_unique_encoded_mirror_positions": true,
+    "no_freeze_event_8s": true,
+    "motion_near_unchanged_run_under_8s": true,
+    "encoded_integrated_loudness_in_governing_band": true,
+    "encoded_true_peak_no_clipping": true,
+    "no_forbidden_narration_terms": true,
+    "no_forbidden_or_internal_filename_ocr_hits": true,
+    "forbidden_icon_primitives_contract_present": true,
+    "generic_curve_dispatch_absent": true,
+    "local_breathing_rail_focus_present": true,
+    "encoded_why_study_intro_asr_exact": true,
+    "build_receipt_hash_matches_video": true,
+    "build_receipt_audio_matches_timeline": true,
+    "predecessor_mp4_preserved": true,
+    "predecessor_script_v3_preserved": true
+  },
+  "encoded_loudness": {
+    "input_i": "-21.31",
+    "input_tp": "-2.32",
+    "input_lra": "7.10",
+    "input_thresh": "-31.68",
+    "output_i": "-16.28",
+    "output_tp": "-2.30",
+    "output_lra": "6.70",
+    "output_thresh": "-26.66",
+    "normalization_type": "dynamic",
+    "target_offset": "0.28"
+  },
+  "mandatory_encoded_frame_review": {
+    "status": "PASS",
+    "reviewed_artifact": "encoded-contact-sheet-v4.jpg extracted from exact candidate bytes",
+    "scope": "29 sentence-mid frames plus five mirror-animation frames",
+    "finding": "No clipping, overlap, selected result or direction, stale frame, rail regression, or mirror-animation defect found. The five why-study beats remain visibly distinct and precede the method handoff."
+  },
+  "artifact_hashes": [
+    {
+      "path": "spin-method-overhaul-canary-20260809T2340K.mp4",
+      "bytes": 25486290,
+      "sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078"
+    },
+    {
+      "path": "spin-method-overhaul-canary-20260809T2340K-v4.srt",
+      "bytes": 3725,
+      "sha256": "cb7ef5e36f6d345efb781243149331a1d603cf66b0662fce9faa31e76c3e1f7b"
+    },
+    {
+      "path": "narration_script_v4.json",
+      "bytes": 11302,
+      "sha256": "5df1d0a20e1feede746a82cd784ecd43c5cd1f21ebcc74d5418cbb87d69e90f1"
+    },
+    {
+      "path": "storyboard_v4_final.json",
+      "bytes": 32788,
+      "sha256": "8c5a0f87b740be76e94f3335ca52089c6bfa9b89bfaa9bdc44c68751400c4fe9"
+    },
+    {
+      "path": "source_manifest_v4.json",
+      "bytes": 9089,
+      "sha256": "faf0bdb21aaa575b78b357ada745937f3eadbef795a2f4f946a992e8bb087c1a"
+    },
+    {
+      "path": "audio_v4/synthesis_receipt.json",
+      "bytes": 24029,
+      "sha256": "ddecf5c11e67982e8d9f1bce32bfd3f77e7ec109beb6de11fd6ddd43fbd86807"
+    },
+    {
+      "path": "audio_v4/timeline.json",
+      "bytes": 26373,
+      "sha256": "8d6fe95efd9f68ef0034f9bf69f41ab59461a2bebd07aa514e60f7c83f4ebf0a"
+    },
+    {
+      "path": "audio_v4/narration_master.wav",
+      "bytes": 21524948,
+      "sha256": "e35b5ca002c88a0b84d6bdf5bb5be7508564021c037295e9114ec9d299378bc6"
+    },
+    {
+      "path": "build.py",
+      "bytes": 45297,
+      "sha256": "639f9e477904ab0117144d5722831ada0a58a9a1d43c5fca13bd8d54a4a96864"
+    },
+    {
+      "path": "build_receipt.json",
+      "bytes": 1774,
+      "sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22"
+    },
+    {
+      "path": "qa_encoded.py",
+      "bytes": 16310,
+      "sha256": "8906e22becac53a435450728d220784a0325697fa1d4700435bc90585fcee08b"
+    },
+    {
+      "path": "encoded_qa.json",
+      "bytes": 13120,
+      "sha256": "c8192c837f9e484538f3629e687a65f3f7fb7f0d2de6ec88a52c0061bbc3b0ed"
+    },
+    {
+      "path": "encoded_qa/encoded-why-study-introduction-transcription-v4.json",
+      "bytes": 1922,
+      "sha256": "a968ff07b83d2a3c90a56882d3bb1db6fa9277b8d9c7541d12db3ba6009d8318"
+    },
+    {
+      "path": "final-timing-contact-sheet-v4.jpg",
+      "bytes": 1430219,
+      "sha256": "28fa31b83f3ef8d5e14cea21642230f54bdc9e1aa7cc3d2fa8c176acc25b4d98"
+    },
+    {
+      "path": "encoded-contact-sheet-v4.jpg",
+      "bytes": 843639,
+      "sha256": "98a1a308f61c9e3bb8314b7cd49a36fa02ed3fc57aa9daf447bcd4cc2a1d9c5e"
+    }
+  ],
+  "pre_freeze_tree": {
+    "file_count": 210,
+    "digest_algorithm": "sha256 over sorted relative-path NUL file-sha256 lines",
+    "sha256": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb"
+  },
+  "forbidden_actions_remain_closed": [
+    "public or cockpit replacement",
+    "frontend mutation",
+    "upload or publication",
+    "database or SQL write",
+    "deploy or restart",
+    "git commit, push, or merge"
+  ],
+  "next_gate": "Tori must re-gate these exact MP4 bytes by SHA-256; Duho's watch/listen verdict remains the only acceptance gate."
+}

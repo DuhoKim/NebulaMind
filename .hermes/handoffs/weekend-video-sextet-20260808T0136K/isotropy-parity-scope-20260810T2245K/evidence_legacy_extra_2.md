@@ -1,0 +1,47 @@
+# URL: https://www.legacysurvey.org/svtips/
+
+[Skip to main content](https://www.legacysurvey.org/svtips/#content)
+
+The Legacy Surveys [Sky Viewer](https://www.legacysurvey.org/viewer) (also known as the "Interactive Map" on [the front page](https://www.legacysurvey.org/)) is generally intuitive, but here are some additional features of which you might not be aware:
+
+1. Each time you reload the page, you'll jump to a new random NGC galaxy within the most recent Legacy Survey footprint.
+
+2. You can jump to a new random galaxy by entering a blank string in the "Jump to object" search box.
+
+3. Clicking on the map will return a popup with a few different options. A particularly useful option is "Link Here", which redirects your browser to a URL that should reproduce what you're seeing - at the correct position, zoom, and layer, with the correct overlays enabled. This is convenient if you want to share something of note.
+
+4. If you notice something unusual which you'd like to bring to the attention of the LegacySurvey team, you can click on the map and in the popup look for the "Discuss This Object" link. That will direct you to our discussion forum, with a link back to your object of interest.
+
+5. If you click on the RA,Dec coordinate readout box, you can enter an RA, Dec, and zoom number that you'd like to view.
+
+6. If you select one layer and then select a second layer, you can flip back to the previous layer using the space bar. This is handy to "blink" between two layers, e.g., to look for moving objects. You can set up a blink by adding a parameter to the URL: `&blink=<layer-name>`; [blink example](https://www.legacysurvey.org/viewer/?ra=111.3938&dec=29.4898&zoom=12&layer=ls-dr9&blink=unwise-neo6).
+
+7. Annotations: If you add to the URL an extra parameter `&mark=1,2;3,4`, the viewer will place yellow circles at RA,Dec = 1,2 and 3,4. This is useful for marking the position of objects whose RA,Decs you know. If you add `&poly=1,2,3,4;5,6,7,8`, it will draw a line from RA,Dec = (1,2) to (3,4) and another polygon from (5,6) to (7,8). You can draw multiple polygons this way.
+
+8. When fetching cutouts, if you add &subimage to the URL, then instead of getting a resampled image, you will get sub-images cut out from our data release coadd products (at a fixed pixel scale of 0.262 arcseconds per pixel). This will include the image and inverse-variance maps for each band. If you requested cutout region spans multiple bricks, then you will get cutouts of those multiple images, and since bricks overlap, some sky regions will be covered by more than one subimage; [subimage example](https://www.legacysurvey.org/viewer/cutout.fits?ra=19.8023&dec=10.3749&layer=ls-dr10&size=100&subimage).
+
+9. When fetching cutouts, if you set the pixscale=0.262, then you will get images in the same units as our data release coadd image products, which are in "nanomaggy" units, ie, fluxes with a zeropoint of 22.5 mag in the AB system.
+
+
+Uploading a custom catalog:
+
+1. In the bottom-left corner there is a box to upload a Custom Catalog. This file can be in FITS or CSV format. It must contain columns called "RA" and "DEC" (case-insensitive), in decimal degrees. It may optionally contain columns: "NAME" (giving a label to each point); "COLOR", which can take either color names like "red" and "magenta" or hex codes like "#ff0000"; and "RADIUS", which takes a marker size in arcseconds (default 10 arcseconds. Check out an [example FITS table](https://www.legacysurvey.org/files/example-cat.fits) or [example CSV table](https://www.legacysurvey.org/files/example-cat.csv).
+
+
+Cutouts:
+
+1. If you click on the map, in the popup, one of the links is a "Cutout" (in JPEG format) (or "(FITS)" format cutout).
+The cutout URLs are like
+`https://www.legacysurvey.org/viewer/cutout.jpg?ra=187.9778&dec=15.1242&layer=ls-dr9&pixscale=0.500`
+
+2. You can set the image size with either the `size=500` or `width=800&height=500` arguments.
+
+3. For FITS format, you can set the `bands=gr` argument to include the given list of bands, from among `g`, `r`, `i` and `z` for the optical; and `1` or `2` for unWISE.
+
+4. Normally, we resample from the released brick-level products into the WCS grid that you have requested. For FITS cutouts, you can instead request that we return a sub-image from the brick-level products (without resampling), by including the `subimage` argument. This will return all images that overlap your WCS region of interest. In parts of the sky where bricks overlap, subimage from each overlapping brick will be included.
+
+5. For FITS cutouts, inverse-variance maps can be requested with the `invvar` flag.
+
+
+A list of the URL patterns that are supported by the viewer is
+available [here](https://www.legacysurvey.org/viewer/urls).

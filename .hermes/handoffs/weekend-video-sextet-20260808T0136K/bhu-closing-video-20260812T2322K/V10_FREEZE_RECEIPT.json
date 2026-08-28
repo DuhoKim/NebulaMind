@@ -1,0 +1,114 @@
+{
+  "status": "FROZEN_V10_AWAITING_TIGHT_THREE_SEAT_EXACT_HASH_CONFIRMATION",
+  "created_at": "2026-08-13T14:25:22+0900",
+  "render_authority": false,
+  "render_scope_if_unconditionally_cleared": "LOCAL_ONLY_NO_PAID_GENERATION_NO_UPLOAD_NO_PUBLICATION_NO_ACCEPTANCE",
+  "gate_type": "TIGHT_THREE_SEAT_EXACT_HASH_CONFIRMATION_WITH_ALL_CARD_WPM_ADJUDICATION",
+  "supersedes_render_authority_from": [
+    "V9_FREEZE_FOR_TIGHT_CONFIRMATION.md",
+    "V9_FREEZE_RECEIPT.json",
+    "preflight_gate_v9.py"
+  ],
+  "review_targets": {
+    "NARRATION_DRAFT_V10.md": "4324c9b73de038e760c67e80fee70b60656599cf22d95cb1d92167e818f5ef75",
+    "STORYBOARD_DRAFT_V10.json": "dc853f90c3299c5e1c051c0c37a45b6612f5418eaa9bbaad63608fd10ec56ae9",
+    "CLAIM_LINE_LEDGER_V10.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V10.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "verification_controls": {
+    "V10_DELTA_RECEIPT.json": "e3fab1248e7511cc7cbf1bac56e5b3d5c89d2b9fcbe40cb33640d277976df643",
+    "V10_BUILD_VERIFICATION.json": "814f2f7374239ac5756f7492d425db93d868826ab427aa04c0aa42a244352667",
+    "V10_WPM_AUDIT.json": "5ca591ca336e991381662d865a9cb8a3434829d097af73427d0c3c32b6457678",
+    "V10_SHORTHAND_AUDIT.json": "ec8a8d2095785b0db936fbdd009da0872a086d9a5acb82c3b02b9bfb2095224c"
+  },
+  "generator_and_verifier": {
+    "make_v10_two_repairs.py": "7b059d5f85d5ec3d7c746da6280068bfea3c602531aa789b10b6cd9bd794d9af",
+    "verify_v10_delta.py": "9bcce9642c7e6df96ca93e9c723628cfdf4999e15ee1671040dad145b8a71d99"
+  },
+  "v9_authority_receipts": {
+    "LANA_CONFIRM_V9.md": "f553e690201c3eaccfeee5b8b12c34e9defe6924166fa7397ed0a3fb95a35b3c",
+    "GORU_CONFIRM_V9.md": "d4ae02987ab1269d3c777b47031f56e81cbe5b1f9b106e808d11b970191c49bd",
+    "KUN_CONFIRM_V9.md": "0ed5627ebef10460755151719a1313a3304dc0705d48c3fff8e20e7078f361f9"
+  },
+  "authored_repairs": [
+    {
+      "authority": "KUN_CONFIRM_V9.md",
+      "path": "cards[3].heading",
+      "old": "One CNS chain puts a low ceiling on neutron-star mass",
+      "new": "One cosmological-natural-selection chain puts a low ceiling on neutron-star mass"
+    },
+    {
+      "authority": "LANA_CONFIRM_V9.md",
+      "path": "cards[3].planned_seconds",
+      "old": 41,
+      "new": 48
+    }
+  ],
+  "derived_consistency_change": {
+    "path": "estimated_duration_seconds",
+    "old": 392,
+    "new": 399,
+    "rule": "sum(cards[*].planned_seconds)"
+  },
+  "standalone_narration_delta": "Card 04 assertion heading only; all spoken narration is byte-equivalent to V9",
+  "byte_identical_review_targets": [
+    "CLAIM_LINE_LEDGER_V10.md",
+    "DETERMINISTIC_DIAGRAM_SPEC_V10.md"
+  ],
+  "shorthand_result": {
+    "viewer_facing_CNS_occurrences": 0,
+    "card04_full_name_visible_from_card_start": true,
+    "card04_renderer_exception_required": false,
+    "remaining_lexical_initialisms": [
+      "BHU",
+      "CW/CCW"
+    ],
+    "remaining_render_reveal_constraints_required": true
+  },
+  "pacing_result": {
+    "contract_band_wpm": [
+      120,
+      135
+    ],
+    "planned_runtime_seconds": 399,
+    "card04_whitespace_proxy_wpm": 123.75,
+    "card04_spoken_compound_proxy_wpm": 126.25,
+    "robust_outliers_under_both_proxies": {
+      "01": "HIGH",
+      "02": "HIGH",
+      "05": "LOW",
+      "07": "HIGH",
+      "10": "LOW"
+    },
+    "method_sensitive_cards": [
+      "03",
+      "09",
+      "11"
+    ],
+    "method_sensitive_detail": {
+      "03": "IN_BAND by whitespace proxy; HIGH at 135.38 by spoken-compound proxy",
+      "09": "IN_BAND by whitespace proxy; HIGH at 135.56 by spoken-compound proxy",
+      "11": "LOW by whitespace proxy; IN_BAND at 121.76 by spoken-compound proxy"
+    },
+    "silent_retiming_performed_outside_card04": false,
+    "final_encoded_gate": "Measure real per-card encoded speech duration; text tokenizers are disclosed planning proxies only."
+  },
+  "deterministic_replay": "PASS_TWO_REBUILDS_BYTE_IDENTICAL",
+  "required_verdicts": {
+    "LANA_CONFIRM_V10.md": null,
+    "GORU_CONFIRM_V10.md": null,
+    "KUN_CONFIRM_V10.md": null
+  },
+  "required_verdict_rule": "Each verdict must bind all four exact V10 target hashes plus exact V10_WPM_AUDIT.json and V10_SHORTHAND_AUDIT.json hashes; state standalone unconditional VERDICT: PASS or PASS_FOR_RENDER; and include exact DELTA_DISPOSITION, WPM_AUDIT_DISPOSITION, and SHORTHAND_AUDIT_DISPOSITION lines required by preflight_gate_v10.py.",
+  "blocked_until_gate": [
+    "audio generation",
+    "frame generation",
+    "render",
+    "upload",
+    "publication",
+    "acceptance"
+  ],
+  "premature_v10_media_files": 0,
+  "publication_registry_sha256": "0389911c32d03c91ffca14998281d485d95b5e487ff782187a904124dda119e2",
+  "publication_registry_mutated": false
+}

@@ -1,0 +1,138 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass21-minimum-scale-directional-smear-20260808T124534K",
+  "created_at": "2026-08-08T12:45:34+09:00",
+  "deepening_pass": 21,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "integrator": "Hwao/Fable",
+  "focus": "native-canvas centered horizontal directional smear followed by minimum-scale 640x360 interaction",
+  "disposition": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+  "science_adjudicated": false,
+  "video_reportable_now": false,
+  "transform_contract": {
+    "input": "native 1920x1080 RGB",
+    "step_1": "centered horizontal box smear with edge replication, uint64 channel sums, and integer round-half-up division",
+    "step_2": "Pillow LANCZOS full-canvas downscale to 640x360 RGB",
+    "smear_w07_then_360p": {
+      "native_kernel_width_pixels": 7,
+      "classification": "operational"
+    },
+    "smear_w13_then_360p": {
+      "native_kernel_width_pixels": 13,
+      "classification": "characterization only"
+    },
+    "smear_w21_then_360p": {
+      "native_kernel_width_pixels": 21,
+      "classification": "characterization only"
+    },
+    "simulation_limit": "packet-specific stress only; not a claim about a named camera, lens, motion, exposure, projector, display, player, browser, platform, service, room, viewer, or universal standard"
+  },
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "fresh_cut_detection": "15/15 exact pass20 timestamps",
+    "fresh_clean_midpoints": "16/16 byte-identical to pass20",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "candidate_smear_w07_then_360p": {
+      "headline_recall_vs_native_clean": 0.85,
+      "full_text_recall_vs_native_clean": 0.620722,
+      "lower_support_recall_vs_native_clean": 0.265169,
+      "numeric_recall_vs_native_clean": 0.122222,
+      "incremental_rgb_psnr_db_vs_lossless_360p": 30.957814,
+      "incremental_tolerant_luma_edge_recall_vs_lossless_360p": 0.983109,
+      "incremental_x_gradient_energy_ratio_vs_lossless_360p": 0.357208,
+      "incremental_y_gradient_energy_ratio_vs_lossless_360p": 0.736968,
+      "incremental_x_to_y_gradient_retention_ratio": 0.48424,
+      "exact_transform_recomputed_scenes": "16/16",
+      "structural_gate_scenes": "0/16",
+      "held_critical_structural_gates": "0/5"
+    },
+    "candidate_held_critical_smear_w07_then_360p": {
+      "headline_recall_vs_native_clean": 0.795699,
+      "full_text_recall_vs_native_clean": 0.384913,
+      "lower_support_recall_vs_native_clean": 0.266846,
+      "numeric_recall_vs_native_clean": 0.085714,
+      "structural_gates": "0/5"
+    },
+    "sealed_v8_smear_w07_then_360p": {
+      "generic_result_held_badges": "7/7",
+      "major_method_status_boundaries": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe_smear_w07_then_360p": {
+      "exact_top_gates_visual": "7/7",
+      "result_held_badges": "7/7",
+      "overlap_clipping_or_ambiguity": false
+    },
+    "pass12_sharpness_safe_smear_w07_then_360p": {
+      "exact_top_gates_visual": "7/7",
+      "mapped_gate_threshold_passes": "6/7",
+      "mean_mapped_gate_similarity": 0.945953,
+      "scene4_mapped_similarity": 0.780488,
+      "mapped_threshold": 0.8,
+      "scene4_direct_visual_exact_copy_readable": true,
+      "result_held_badges": "7/7",
+      "exact_transform_recomputed_scenes": "7/7",
+      "overlap_clipping_or_ambiguity": false
+    },
+    "pass12_sharpness_safe_smear_w13_then_360p": {
+      "mapped_gate_threshold_passes": "0/7 characterization",
+      "mean_mapped_gate_similarity": 0.212419,
+      "top_gate_hierarchy_recognizable": "7/7 characterization",
+      "exact_wording_not_uniformly_acceptance_reliable": true
+    },
+    "pass12_sharpness_safe_smear_w21_then_360p": {
+      "mapped_gate_threshold_passes": "0/7 characterization",
+      "mean_mapped_gate_similarity": 0.161198,
+      "top_gate_hierarchy_recognizable": "7/7 characterization",
+      "exact_wording_acceptance_reliable": false,
+      "fine_support_not_acceptance_reliable": true
+    }
+  },
+  "acceptance_guard_for_future_hwao_authored_layouts": [
+    "After native-canvas centered horizontal width-7 box smear followed by full-canvas Pillow LANCZOS downscale to 640x360, all seven exact scene-specific gates and all seven complete RESULT HELD capsules must remain directly readable at represented pixels.",
+    "Every required status boundary, qualifier, uncertainty, branch distinction, axis, unit, value, error bar, threshold, equation term, interpretation limit, and provenance fact must survive through direct high-contrast text plus a complete border, capsule, connector, marker, or stable geometry channel.",
+    "No required meaning may be carried only by thin vertical strokes, tiny axis ticks or error bars, one-pixel connectors, narrow glyph spacing, fine legends, citations, provenance footers, subtle grids, low-contrast caveats, or global OCR recovery.",
+    "Represented-pixel human review is decisive for direct readability. The fixed mapped-crop OCR aid must be reported, including near-threshold failures such as scene 4 at 0.780488, but an arbitrary OCR threshold alone neither establishes semantic loss nor repairs a hierarchy.",
+    "The exact compound transform must be independently recomputed from each native source; matching hashes or receipts alone cannot certify it.",
+    "Native widths 13 and 21 followed by 360p remain characterization only and are not acceptance thresholds."
+  ],
+  "cumulative_requirements": [
+    "pass20 native radius1.5 Gaussian defocus before 640x360",
+    "pass19 20 percent represented-pixel black lift after 640x360",
+    "pass18 bottom15 and bottom25 obstruction after 640x360",
+    "pass17 q60 4:2:0 after 640x360",
+    "pass16 compound minimum-scale geometry",
+    "pass15 native geometry",
+    "pass14 floor16 dark-tone",
+    "pass13 native centered horizontal width7 smear",
+    "pass12 native radius1.5 defocus and strengthened gate",
+    "pass11 native q60 4:2:0 recompression",
+    "pass10 native 20 percent black lift",
+    "pass9 inner-five-percent title-safe review",
+    "pass8 direct-label plus non-color redundancy",
+    "pass7 obstruction-safe exact gates",
+    "pass6 standalone 360p",
+    "pass5 hard-cut continuity",
+    "pass4 temporal persistence"
+  ],
+  "pixel_action": {
+    "new_pixel_or_copy_correction_requested": false,
+    "reason": "The latest pass12 proof retains 7/7 directly readable exact top gates and 7/7 complete RESULT HELD capsules under the operational compound transform with no clipping, overlap, or ambiguity. The one mapped OCR score below 0.80 is a disclosed aid result, not visual evidence of semantic loss.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

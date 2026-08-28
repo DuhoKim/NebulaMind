@@ -1,0 +1,324 @@
+{
+  "review_sequence": [
+    {
+      "round": 1,
+      "paper_naive": "PASS 8/8",
+      "adversarial": "FAIL",
+      "artifact": "visual_proposal_v3.png",
+      "disposition": "preserved; corrected topology, scope, and T2 wording in v5",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_V1.json",
+        "qa/ADVERSARIAL_RESULT_V1.json"
+      ]
+    },
+    {
+      "round": 2,
+      "paper_naive": "PASS 8/8",
+      "adversarial": "PASS",
+      "artifact": "visual_proposal_v5.png",
+      "disposition": "preserved successful gate; superseded by pass-2 taxonomy deepening",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_V2_V5.json",
+        "qa/ADVERSARIAL_RESULT_V2_V5.json"
+      ]
+    },
+    {
+      "round": 3,
+      "paper_naive": "PASS 8/8 high confidence",
+      "adversarial": "PASS; no material defects",
+      "artifact": "visual_proposal_v7.png",
+      "sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+      "disposition": "accepted v7 visual remains current; contemporaneous storyboard preserved and superseded by pass-3 audience-copy version",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT.json",
+        "qa/ADVERSARIAL_RESULT.json"
+      ]
+    },
+    {
+      "round": 4,
+      "paper_naive": "PASS 8/8 high confidence",
+      "adversarial": "PASS; no material defects; 9/9 immutable snapshot entries stable",
+      "artifact": "visual_proposal_v7.png plus pass3-audience-copy-v1 STORYBOARD_CANDIDATE.json",
+      "visual_sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+      "storyboard_sha256": "e6639fa69a685a1f476b4528572b4d7baeaf2475e0eab5cb91c8a41f0945b843",
+      "snapshot_source_freeze_sha256": "04288e4181e3c0c8140e7e8f320ab75b04ad68965883cdf134b574912ae26f11",
+      "disposition": "current accepted worker static proposal/storyboard packet; Hwao integration request only",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS3.json",
+        "qa/ADVERSARIAL_RESULT_PASS3.json"
+      ]
+    },
+    {
+      "round": 5,
+      "paper_naive": "PASS 8/8 high confidence",
+      "adversarial": "FAIL; taxonomy headings absent from flattened audience-copy values",
+      "artifact": "pass4-retrieval-axis-provenance-v1 immutable snapshot",
+      "storyboard_sha256": "ec35df6bb7815ee700f24b2a2ba72f71d62032cfa318522af8de2a5f4b13b34b",
+      "snapshot_source_freeze_sha256": "edeb11c54f2e76aa4c972c4323899a579fad92662bae178368dfcd93da269ee7",
+      "disposition": "preserved exact FAIL; superseded by explicit visible-value correction in pass4 v2",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS4_V1.json",
+        "qa/ADVERSARIAL_RESULT_PASS4_V1.json"
+      ]
+    },
+    {
+      "round": 6,
+      "paper_naive": "PASS 8/8 high confidence",
+      "adversarial": "PASS; no material defects",
+      "artifact": "visual_proposal_v7.png plus pass4-retrieval-axis-provenance-v2 STORYBOARD_CANDIDATE.json",
+      "visual_sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+      "storyboard_sha256": "24b862c8f305551d711b8dafbf95752efc33ce80c1b9614e87a6e359ebca2584",
+      "snapshot_source_freeze_sha256": "7c3225992a59ca636b478eeeb3b58eb6385fa5a4b241f209719ea2f0dabee93b",
+      "disposition": "current accepted worker static proposal/storyboard packet; Hwao integration request only; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS4.json",
+        "qa/ADVERSARIAL_RESULT_PASS4.json"
+      ]
+    },
+    {
+      "round": 7,
+      "paper_naive": "PASS 8/8 high confidence",
+      "adversarial": "PASS; no material defects; 14/14 immutable snapshot entries stable",
+      "artifact": "visual_proposal_v8.png plus pass5-all-axis-control-provenance-v1 STORYBOARD_CANDIDATE.json",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "storyboard_sha256": "18ae41fe91d4f9840144f71c472bffad84f2102abba336707c7597785a69d07b",
+      "snapshot_source_freeze_sha256": "c3c81e83e0f3a57137a9bc2cf61b33cf7332436e728560e80437a34e31042533",
+      "snapshot_manifest_sha256": "b72296079d59968a05a970ed7b03b597e7613dbd2a4008e285c1b127de54c986",
+      "disposition": "accepted worker static proposal/storyboard packet; superseded by pass-6 evidence-state causality deepening; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS5.json",
+        "qa/ADVERSARIAL_RESULT_PASS5.json"
+      ]
+    },
+    {
+      "round": 8,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed",
+      "adversarial": "FAIL; semantic seven-second b07-to-b08 unchanged state, unencoded clause mapping, validator false-pass paths, non-exact comprehension packet, and helper packaging defects",
+      "artifact": "visual_proposal_v8.png plus pass6-evidence-state-causality-v1 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "storyboard_sha256": "d8db669d30a7595c2d0f8b5278d5fc02d3c08f3ec73ddbeead89172b0ee9020b",
+      "snapshot_manifest_sha256": "8b5fdb14a5d83a27956ec0fce527f1ff1a0960ad5a4917fca1beb4bdb07e4d01",
+      "disposition": "preserved exact FAIL; scientific copy/topology and static v8 scoped PASS do not clear motion/validator/packet defects; superseded by pass-7 correction cycle; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS6.json",
+        "qa/ADVERSARIAL_RESULT_PASS6.json",
+        "qa/PASS6_EXACT_REGATE_RESULT.md"
+      ]
+    },
+    {
+      "round": 9,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 22/22 immutable entries stable",
+      "adversarial": "FAIL; global 5 s and 7 s unchanged evidence intervals plus continuity-validator false-PASS paths",
+      "artifact": "visual_proposal_v8.png plus pass7-state-continuity-v1 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "storyboard_sha256": "3154a8f939fbf927776a969a0abdd53cac07d5e010a4c86e53d97a9c3751faf8",
+      "snapshot_manifest_sha256": "2890a2a633289b250f7b875cfb191787cf5cd042686df7e516b5452d5d054720",
+      "disposition": "preserved exact FAIL; storyboard state-continuity correction scoped PASS only; superseded by pass-7 v2/v3/v4 hardening; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V1.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V1.json"
+      ]
+    },
+    {
+      "round": 10,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 34/34 immutable entries stable; 0444/0555 enforced",
+      "adversarial": "FAIL; nonsemantic-state gap overstatement, incomplete search-axis qualification, packet-projection contract overstatement, and 12 demonstrated validator false-PASS paths",
+      "artifact": "visual_proposal_v8.png plus pass7-validator-projection-causality-v2 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "storyboard_sha256": "7913170e49276f8cd5c6f7e79e37e028beb0a7e94c2b6c4b61c1d85c651f2411",
+      "snapshot_manifest_sha256": "6a278356613dd5aac995202cb74574a4d9103c5629b50018cc1c2f9d727c4cc4",
+      "disposition": "preserved exact FAIL; superseded by canonical-contract and self-contained-replay hardening in v3/v4; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V2.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V2.json"
+      ]
+    },
+    {
+      "round": 11,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 36/36 immutable entries stable; 0444/0555 enforced",
+      "adversarial": "FAIL; semantic global-gap false PASS, contradictory b01 visual-action/state contract, and rotatable co-located approved-contract mechanism",
+      "artifact": "visual_proposal_v8.png plus pass7-full-contract-closure-v3 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "snapshot_manifest_sha256": "0a8c390ed9ee20c389f13994bd1997d7a5d167aaf3a256a75d991a01b942748a",
+      "disposition": "preserved exact FAIL; paper-naive scoped PASS remains valid, but adversarial defects block the whole v3 gate; b05→b06 duplication, b01 contradiction, and approval-rotation mechanism carried into v5 and were corrected in v6; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V3.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V3.json"
+      ]
+    },
+    {
+      "round": 12,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 89/89 immutable entries, 8/8 frozen sources, and 43/43 audited PNG frames stable; 0444/0555 enforced",
+      "adversarial": "FAIL; false semantic-motion contract, b01/b08 visual-action/state contradictions, 13 self-resigned standalone-validator false passes, and external-candidate/packet-inventory custody mismatch",
+      "artifact": "visual_proposal_v8.png plus pass7-self-contained-contract-v4 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "snapshot_manifest_sha256": "206c72e16de2b279b6cd51b4db735e10f69482e3b82b7778e984cc1261e72049",
+      "disposition": "preserved exact FAIL; v5/v6 corrected the science/build/authentication defects, but external-candidate custody wording and packet inventory remain applicable to v6 and require a higher exact packet version; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V4.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V4.json"
+      ]
+    },
+    {
+      "round": 13,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 95/95 immutable entries, 8/8 frozen sources, and 43/43 audited frames stable; 0444/0555 enforced; scaffolding supplied no answers or new science",
+      "adversarial": "FAIL; b09 duplicate taxonomy-label reveals create two six-second gaps, closed-book questions leak answer premises, and nine dangerous mutations pass after co-located approval rotation",
+      "artifact": "visual_proposal_v8.png plus pass7-adversarial-semantic-closure-v5 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "snapshot_manifest_sha256": "2e2e89c7cac3a4c14b32984f430a8a05b629c2ff365da83af685be35d0e3f754",
+      "disposition": "preserved exact FAIL; v6 closes approval rotation, while v8 must close b09 semantic duplication and closed-book answer-premise leakage; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V5.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V5.json"
+      ]
+    },
+    {
+      "round": 14,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 88/88 immutable entries, 8/8 frozen sources, and 43/43 audited frames stable; 0444/0555 enforced",
+      "adversarial": "FAIL; 43/45 distinct states with two six-second gaps, answer-premise leakage, audience projection omits narration, and static-v8/search-label plus absolute-source/no-check replay defects",
+      "artifact": "visual_proposal_v8.png plus pass7-manifest-authenticated-semantic-v6 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "snapshot_manifest_sha256": "6515425a5ad567e487977a2b8154b740caaf58703cdda2dc701f41f640f3ca9f",
+      "disposition": "preserved exact FAIL; v11 closes all four applicable classes; v6 cannot clear v11; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V6.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V6.json"
+      ]
+    },
+    {
+      "round": 15,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; 92/92 immutable entries, 8/8 frozen sources, and 43/43 audited/re-extracted frames stable; 0444/0555 enforced",
+      "adversarial": "FAIL; 43/45 distinct states with two six-second gaps, absolute-source/no-check renderer, answer-premise leakage, and stale numeric-source links to absent visual v7",
+      "artifact": "visual_proposal_v8.png plus pass7-explicit-custody-inventory-v7 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "snapshot_manifest_sha256": "c06b0f0882ceb8b9eee75900cbfb6f4c6787e5380e891bf8c5d8a6c77a87b79f",
+      "disposition": "preserved exact FAIL; v12 closes all four applicable classes; v7 cannot clear v12; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V7.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V7.json"
+      ]
+    },
+    {
+      "round": 16,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; exact one-read packet; 93/93 immutable entries, 8/8 frozen sources, and 43/43 audited frames stable; 0444/0555 enforced",
+      "adversarial": "FAIL; external manifest digest ignored by shipped validator, selected-entry authentication permitted fully re-signed mutations, renderer and verification-source packet not self-contained, closed-book mechanical guard under-scoped, and exact-version/timing/numeric-source records stale",
+      "artifact": "visual_proposal_v8.png plus pass7-distinct-example-clock-v8 immutable snapshot",
+      "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "snapshot_manifest_sha256": "910c1ba2b9a131dbc59e3be40b8c3c7fd983d6a5959c2c590932f39ef9f8f1b0",
+      "disposition": "preserved exact FAIL; v13 closes all four applicable classes; v8 cannot clear v13; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V8.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V8.json"
+      ]
+    },
+    {
+      "round": 17,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; exact one-read packet; 93/93 immutable entries stable; 0444/0555 enforced; encoded timing unassessed",
+      "adversarial": "FAIL; expected manifest digest ignored and granular checks masked by co-rotatable hashes; narration preparer accepted absent/fake visual bytes; numeric audit named absent visual v7; packet title visibly said v8",
+      "artifact": "visual_proposal_v9.png plus pass7-complete-audience-static-v11 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "6af439440736040f9a136376bfc68055322b6ec05c012cf9546f01e2dad34566",
+      "disposition": "preserved exact FAIL; v12-v14 close all applicable classes; v11 cannot clear v14; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V11.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V11.json"
+      ]
+    },
+    {
+      "round": 18,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; exact one-read packet; 93/93 immutable entries stable; 0444/0555 enforced; encoded timing unassessed",
+      "adversarial": "FAIL; numeric audit named absent lit_metallicity visual and unsupported 304-point scatter, stale stellar-mass locator, and no granular audit-source/used_in checker",
+      "artifact": "visual_proposal_v9.png plus pass7-current-artifact-traceability-v12 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "8d68aaf30b920ea49d65c77c7e85da77c25b996c9996ba8dfcc63242ffe9b21c",
+      "disposition": "preserved exact FAIL; v15 closes all three classes; v12 cannot clear v15; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V12.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V12.json"
+      ]
+    },
+    {
+      "round": 19,
+      "paper_naive": "PASS 8/8 high confidence; mandatory Q4/Q8 passed; exact one-read packet; 93/93 immutable entries stable; 0444/0555 enforced; encoded timing unassessed",
+      "adversarial": "FAIL; stored validator and mutation receipts stale versus sealed replay, current identifiers named v8/v12/visual-v8, and superseded four-second guidance remained operative-looking",
+      "artifact": "visual_proposal_v9.png plus pass7-external-anchor-contract-v13 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "9e318e555acc5a18aff7be238f430d3a0a54bc67adc69b39a58fdec4b3ef8027",
+      "disposition": "preserved exact FAIL; v16 closes all four classes; v13 cannot clear v16; candidate remains FAIL",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V13.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V13.json"
+      ]
+    },
+    {
+      "round": 20,
+      "paper_naive": "PASS 8/8; mandatory Q4/Q8 passed; exact one-read packet; 93/93 stable; title/bullet/question/62-term/metadata-title scaffolding ambiguities recorded",
+      "adversarial": "FAIL; stale integrator storyboard/packet/contract labels, stale source/candidate visual identifiers, and unversioned historical visual PASS with absent receipts/current-v9 regate pending",
+      "artifact": "visual_proposal_v9.png plus pass7-visual-auth-current-label-v14 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "9cdbee02f94324a364cc8134798c523cc0a063eec44f062676cb692ca215431b",
+      "disposition": "preserved exact FAIL; v17 closes operational identifiers, visual-regate ambiguity, title/projection/question scaffolding; v14 cannot clear v17",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V14.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V14.json"
+      ]
+    },
+    {
+      "round": 21,
+      "paper_naive": "PASS 8/8; mandatory Q4/Q8 passed; exact one-read packet; 93/93 stable; title/question/bullet-boundary/dominant-mode ambiguities recorded",
+      "adversarial": "FAIL; candidate notes named visual v8 and unqualified search axes; integrator handoff used 27 not 31 attacks, omitted renderer check, and named storyboard v8/packet v12/contract v8",
+      "artifact": "visual_proposal_v9.png plus pass7-numeric-audit-contract-v15 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "41a6e0f6705a1e39b94610a6003dc8b519d129fc97dae5a6fd3825c5c17d9852",
+      "disposition": "preserved exact FAIL; v18 closes stale handoff, renderer, search-axis, and qualified-precision classes; v15 cannot clear v18",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V15.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V15.json"
+      ]
+    },
+    {
+      "round": 22,
+      "paper_naive": "PASS 8/8; mandatory Q4/Q8 passed; exact one-read packet; 93/93 stable; title/question/dominant-mode ambiguities recorded",
+      "adversarial": "FAIL; unversioned historical visual PASS cited excluded receipts while current v9 regate remained pending; candidate guidance omitted packet/storyboard identifiers despite consistency claim",
+      "artifact": "visual_proposal_v9.png plus pass7-sealed-receipt-current-identifiers-v16 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "089b9695b818fe07b8852c99a5978379a6459bf3ba445de89bdef879f26e1c21",
+      "disposition": "preserved exact FAIL; v17 closes historical visual-regate ambiguity and v19 closes active candidate-guidance identifiers; v16 cannot clear v19",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V16.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V16.json"
+      ]
+    },
+    {
+      "round": 23,
+      "paper_naive": "PASS 8/8; mandatory Q4/Q8 passed; exact one-read packet; 93/93 stable; title and declared scaffolding judged comprehensible",
+      "adversarial": "FAIL; unsupported dominant ranking; Q5 numerical premise; stale handoff identifier and paper hashes; omitted renderer check; unqualified candidate-note axes",
+      "artifact": "visual_proposal_v9.png plus pass7-neutral-scaffolding-versioned-regate-v17 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "609c5f25cdb8d1d8fd3bf0da2d98ff5159172da126d07770ebb47b64842837a5",
+      "disposition": "preserved exact FAIL; v18-v20 close listed classes; v17 cannot clear v20",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V17.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V17.json"
+      ]
+    },
+    {
+      "round": 24,
+      "paper_naive": "PASS 8/8; mandatory Q4/Q8 passed; exact one-read packet; 93/93 stable; packet/storyboard v18 projection understood",
+      "adversarial": "FAIL; operative handoff named storyboard v13; manifest-listed PASS7_V17_LOCAL_CHECKS was stale/current-facing while scope claimed v18 local receipt",
+      "artifact": "visual_proposal_v9.png plus pass7-qualified-precision-version-v18 immutable snapshot",
+      "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "snapshot_manifest_sha256": "0e8abe6201634ca9bdbe1765e2195fb75b2f78c7fb3bd47184b0b525f373e978",
+      "disposition": "preserved exact FAIL; v21 corrects handoff and v22 closes the stale-receipt class; v18 cannot clear v22",
+      "receipts": [
+        "qa/PAPER_NAIVE_RESULT_PASS7_V18.json",
+        "qa/ADVERSARIAL_RESULT_PASS7_V18.json"
+      ]
+    }
+  ],
+  "current_integrator_artifact": "visual_proposal_v9.png",
+  "current_storyboard_version": "pass7-qualified-precision-version-v18",
+  "current_storyboard_sha256": "2bbcc3fc01bb4cfa6b63e7de87b72414d8b3b64d050b801b61402cf65fc0b9c7",
+  "current_regate": "IN PROGRESS; round-27 exact v22 paper-naive and adversarial review dispatched as deleg_67a674d0 on 93-entry pass7-single-current-local-receipt-v22, manifest 7db814620b15785bc89f2e8d92fad73ddce2a84cd74870d066003cc59853e20e; rounds 25-26 v19/v20 and all earlier results cannot clear v22",
+  "publication_gate": "CLOSED"
+}

@@ -1,0 +1,16 @@
+{
+  "test": "minimum-scale black-lift compound acceptance (spin pass-19 guard; LANCZOS 640x360 then 20% linear-light black lift)",
+  "guard_source": "lane-spin-parity/worker-yui/MINIMUM_SCALE_BLACK_LIFT_GUARD_PASS19.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T12:04:00+09:00",
+  "method": "360p downscale followed by srgb->linear 20% black lift (30% characterization) on the 11 encoded state frames; human review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 RESULT HELD capsule readable on 11/11 compound-transformed states",
+    "boundaries_primary": "PASS \u2014 headline boundary copy legible under wash at 360p",
+    "labels_readable": "PASS \u2014 readout counts, equation terms, branch labels legible",
+    "gate_never_on_faded_copy": "PASS \u2014 citations wash but carry no gate (pass-10 rule holds)",
+    "characterization_lift30": "generated, reviewed as characterization only"
+  },
+  "verdict": "PASS",
+  "evidence": "min_scale_black_lift/contact_sheet_360p_lift20.png, contact_sheet_360p_lift30.png"
+}

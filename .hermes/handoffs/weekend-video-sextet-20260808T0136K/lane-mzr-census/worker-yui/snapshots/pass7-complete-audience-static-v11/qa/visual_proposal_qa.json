@@ -1,0 +1,367 @@
+{
+  "verdict": "PASS_FOR_STATIC_VISUAL_PROPOSAL_ONLY_PASS7_V9_LOCAL_GATE_PENDING_INDEPENDENT_REGATE",
+  "accepted_artifact": "visual_proposal_v9.png",
+  "accepted_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+  "deterministic_rerender": {
+    "before_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "after_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "match": true
+  },
+  "dimensions": "1920x1080",
+  "iterations": [
+    {
+      "artifact": "visual_proposal_v1.png",
+      "sha256": "d468dd6e3366ce57dfc33a5bb6c8153b8fa5793505a082c452c53b3fdcdef1e9",
+      "verdict": "FAIL",
+      "defects": ["header overlapped status badge", "modifier notation ambiguous", "long boundary label overflow risk"]
+    },
+    {
+      "artifact": "visual_proposal_v2.png",
+      "sha256": "b24f573de61c68a9f2d75c014900b7a9fcc602809d2db150ad17da7645887601",
+      "verdict": "FAIL",
+      "defects": ["19/2 label exceeded its box", "modifier examples and 62 boundary overlapped"]
+    },
+    {
+      "artifact": "visual_proposal_v3.png",
+      "sha256": "74592fabe143b6efbd88b74c7e8e7eab28cb98e658741807bd7706017732e7b2",
+      "verdict": "FAIL_AFTER_INDEPENDENT_ADVERSARIAL_REVIEW",
+      "defects": [
+        "62 was drawn in series as if it filtered the sample entering T2, although T2 applies to all 157",
+        "single-table scope and crossmatch-not-assessed boundary were missing",
+        "T2 NOT RUN wording was more absolute than the frozen status supports"
+      ]
+    },
+    {
+      "artifact": "visual_proposal_v4.png",
+      "sha256": "0b0fdb065a37050479b0b3f110e1898ef689384b3ca009ba75445f79c7f92be3",
+      "verdict": "FAIL_LOCAL_FRAME_QA",
+      "defects": ["second row of contamination labels extended below the amber panel"]
+    },
+    {
+      "artifact": "visual_proposal_v5.png",
+      "sha256": "f07a3ccbbfadda9a409c074e06578777c6ce221b42685cd0876fcda9363a1fe0",
+      "verdict": "PASS_LOCAL_FRAME_QA_SUPERSEDED_BY_DEEPENING_PASS2",
+      "reason": "Fresh encoded-frame audit found that the Hwao candidate conflates symbol/meaning collisions with target-domain mismatches; v5 listed the examples without making the distinction."
+    },
+    {
+      "artifact": "visual_proposal_v6.png",
+      "sha256": "535e72112db05a1b06352813cd2778a7b9a1c86d3339aad8870588b418b45463",
+      "verdict": "FAIL_DEEPENING_BOUNDARY_QA",
+      "defects": ["taxonomy was grouped correctly but did not explicitly say the recorded examples are not T2 rulings"]
+    },
+    {
+      "artifact": "visual_proposal_v7.png",
+      "sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+      "verdict": "PASS_LOCAL_AND_FINAL_INDEPENDENT_REGATE",
+      "checks": {
+        "no_clipping_or_overlap": true,
+        "single_table_crossmatch_boundary_visible": true,
+        "direct_157_to_T2_topology": true,
+        "62_side_check_not_T2_input": true,
+        "T2_contract_frozen_application_not_completed": true,
+        "no_eligible_table_count_visible": true,
+        "axis_retrieval_counts_visible": true,
+        "funnel_178_minus_21_equals_157_visible": true,
+        "drop_split_19_redshift_2_abundance_visible": true,
+        "modifier_examples_grouped_by_drop_bin": true,
+        "recall_7_of_7_visible": true,
+        "controls_0_of_3_visible": true,
+        "precision_not_certified_visible": true,
+        "symbol_meaning_collision_group_visible": true,
+        "target_domain_mismatch_group_visible": true,
+        "recorded_examples_not_T2_rulings_visible": true,
+        "scholarly_named_run_citation_no_internal_paths": true,
+        "explicit_not_an_MZR_measurement": true
+      }
+    },
+    {
+      "artifact": "visual_proposal_v8.png",
+      "sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+      "verdict": "PASS_PASS5_LOCAL_FULL_RESOLUTION_QA_PENDING_INDEPENDENT_REGATE",
+      "correction": "Replaced target-concept axis headings with ABUNDANCE SEARCH, MASS SEARCH, and REDSHIFT SEARCH; no other pixels changed outside the heading row.",
+      "checks": {
+        "all_three_search_axis_headings_legible": true,
+        "no_adjudicated_physical_measurement_claim": true,
+        "no_one_sided_T2_control_count_shown": true,
+        "direct_157_to_T2_topology": true,
+        "62_side_check_not_T2_input": true,
+        "T2_contract_frozen_application_not_completed": true,
+        "no_eligible_table_count_visible": true,
+        "retrieval_and_taxonomy_boundaries_preserved": true,
+        "difference_confined_to_axis_heading_row": true,
+        "bright_outer_edge_pixels_zero": true,
+        "no_clipping_or_overlap": true
+      }
+    },
+    {
+      "artifact": "visual_proposal_v9.png",
+      "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+      "verdict": "PASS_LOCAL_FULL_RESOLUTION_AND_DETERMINISTIC_RERENDER_PENDING_INDEPENDENT_REGATE",
+      "correction": "Qualified every visible 19/2 modifier-drop label as redshift-search or abundance-search, split the central panel to prevent overflow, and made the renderer snapshot-local to frozen_sources/pass7.",
+      "checks": {
+        "all_19_2_drop_labels_search_qualified": true,
+        "central_three_line_panel_inside_bounds": true,
+        "no_clipping_or_overlap": true,
+        "direct_157_to_T2_topology": true,
+        "62_side_check_not_T2_input": true,
+        "taxonomy_chips_and_footer_inside_bounds": true,
+        "snapshot_local_source_reads": true,
+        "deterministic_rerender_match": true
+      }
+    }
+  ],
+  "independent_regate": {
+    "paper_naive": "PASS 8/8 high confidence",
+    "adversarial": "PASS; no material defects",
+    "receipts": ["qa/PAPER_NAIVE_RESULT.json", "qa/ADVERSARIAL_RESULT.json"]
+  },
+  "pass3_local_reconciliation": {
+    "visual_pixels_changed": false,
+    "storyboard_version": "pass3-audience-copy-v1",
+    "storyboard_sha256": "e6639fa69a685a1f476b4528572b4d7baeaf2475e0eab5cb91c8a41f0945b843",
+    "audience_copy_projection_sha256": "570e19de21b805e2b4ad1a82d8c97d09a893ae32278878779247c0e1ea21874d",
+    "deterministic_visual_rerender_match": true,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "The one-frame overview already shows qualified T2 status, no eligible-table count, single-table scope, and no MZR measurement. The exact REPORTABLE NOW versus PENDING close is a beat-10 storyboard addition, not a claim that the unchanged overview contains a separate closing frame.",
+    "exact_pass3_independent_regate": "PASS: paper-naive 8/8 high confidence; adversarial no material defects; 9/9 snapshot entries stable"
+  },
+  "pass4_local_reconciliation": {
+    "visual_pixels_changed": false,
+    "storyboard_version": "pass4-retrieval-axis-provenance-v2",
+    "storyboard_sha256": "24b862c8f305551d711b8dafbf95752efc33ce80c1b9614e87a6e359ebca2584",
+    "audience_copy_projection_sha256": "ff3dbd44815bf3f91f34d471348adb444c241b8ded95aaa99f2b99ef1d40517e",
+    "deterministic_visual_rerender_match": true,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "checks": {
+      "search_axis_reach_not_adjudicated_gas_phase_measurement": true,
+      "term_regex_presence_not_explicit_gas_phase_evidence": true,
+      "direct_157_to_T2_with_62_side_branch": true,
+      "T2_contract_application_status_distinct": true,
+      "retrieval_check_and_recorded_characterization_visually_separate": true,
+      "taxonomy_headings_are_explicit_audience_copy_values": true,
+      "internal_paths_or_filenames_absent": true,
+      "clipping_or_overlap_absent": true
+    },
+    "material_defects": [],
+    "scope_note": "The one-frame overview uses abundance/mass/redshift axis labels and term-regex wording without claiming adjudicated gas-phase evidence. Beat-level T1/T2 stage labels are a pass-4 storyboard requirement for future renders; their absence as literal T1 text on this unchanged overview is not a static-overview contradiction.",
+    "v1_exact_regate": "FAIL preserved: taxonomy headings existed only as JSON field names/build directions, not flattened audience-copy values",
+    "v2_local_delta": "PASS: both taxonomy headings are explicit on_screen_copy label values and validator checks the audience projection",
+    "exact_pass4_v2_independent_regate": "PASS: paper-naive 8/8 high confidence; adversarial no material defects; 9/9 snapshot entries, 13/13 source pins, and 2/2 encoded-artifact pins stable",
+    "exact_pass4_v2_manifest_sha256": "f52786d1be564373dec20ea37153db25a27ace6dc8ce32f035f11f55867acf9c"
+  },
+  "pass5_local_reconciliation": {
+    "visual_pixels_changed": true,
+    "supersedes_artifact": "visual_proposal_v7.png",
+    "storyboard_version": "pass5-all-axis-control-provenance-v1",
+    "storyboard_sha256": "18ae41fe91d4f9840144f71c472bffad84f2102abba336707c7597785a69d07b",
+    "audience_copy_projection_sha256": "b4906fb898da2f1ead4bb846099ebc715022796dee331b144829ba8b97b273ca",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "deterministic_visual_rerender_match": true,
+    "full_resolution_pixel_verdict": "PASS_LOCAL_PENDING_EXACT_INDEPENDENT_REGATE",
+    "difference_from_v7_bbox": [352, 182, 1509, 199],
+    "material_defects": [],
+    "scope_note": "v8 changes only the three axis-heading pixels so every T1 axis is visibly a search axis. T2 control counts are not shown on this overview; the storyboard requires all 12 decoys plus 3 anchors if a future beat shows them. Public release remains closed pending an audience-reachable methods/count ledger."
+  },
+  "pass6_local_reconciliation": {
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass6-evidence-state-causality-v1",
+    "storyboard_sha256": "d8db669d30a7595c2d0f8b5278d5fc02d3c08f3ec73ddbeead89172b0ee9020b",
+    "audience_copy_projection_sha256": "b4906fb898da2f1ead4bb846099ebc715022796dee331b144829ba8b97b273ca",
+    "scientific_copy_changed_from_pass5": false,
+    "timed_reveal_state_count": 45,
+    "maximum_planned_evidence_state_gap_seconds": 3.0,
+    "motion_contract_limit_seconds": 4.0,
+    "standalone_section_dividers_allowed": false,
+    "deterministic_visual_rerender_match": true,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "The unchanged v8 overview is scientifically and spatially compatible with the pass-6 storyboard, but one frame cannot demonstrate the new timed-reveal contract. Any Hwao-built candidate must encode all timed reveal states and pass exact hard-cut/evidence-state and sentence/action-alignment QA."
+  },
+  "pass7_local_reconciliation": {
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-state-continuity-v1",
+    "storyboard_sha256": "3154a8f939fbf927776a969a0abdd53cac07d5e010a4c86e53d97a9c3751faf8",
+    "scientific_copy_changed_from_pass6": false,
+    "state_handoff_count": 10,
+    "cross_beat_handoff_match_count": 9,
+    "full_frame_scientific_resets_allowed": false,
+    "main_spine_persistent_after_construction": true,
+    "62_parent_and_side_check_boundary_persistent": true,
+    "T1_T2_stage_identity_persistent": true,
+    "qualified_close_inherits_scope_and_status": true,
+    "deterministic_visual_rerender_match": true,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "The unchanged v8 overview contains the complete topology as one frame, but cannot demonstrate cross-cut continuity. Pass 7 therefore changes storyboard handoff semantics only. Any Hwao-built candidate must preserve declared evidence layers across cuts and pass exact cut-boundary continuity QA."
+  },
+  "pass7_v2_local_reconciliation": {
+    "supersedes_snapshot": "pass7-state-continuity-v1",
+    "superseded_snapshot_disposition": "PRESERVED; exact review continues independently and cannot confer PASS on v2",
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-validator-projection-causality-v2",
+    "storyboard_sha256": "7913170e49276f8cd5c6f7e79e37e028beb0a7e94c2b6c4b61c1d85c651f2411",
+    "scientific_copy_changed_from_v1": false,
+    "structured_semantic_states": 45,
+    "declared_narration_clauses": 21,
+    "maximum_global_semantic_gap_seconds": 3.0,
+    "cross_beat_semantic_timing_validated": true,
+    "hold_and_retain_states_count_as_changes": false,
+    "source_to_render_bindings_validated": true,
+    "display_citations_reconciled_exactly_to_ledger": true,
+    "paper_packet_is_deterministic_exact_projection": true,
+    "validator_mutation_suite": "PASS baseline plus eight expected-fail counterfactuals",
+    "helper_check_mode_writes": false,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "V2 repairs pass-6 validator, motion-semantics, exact-projection, and helper-replay defects without changing scientific audience copy or static v8 pixels. A future encoded candidate must still prove temporal implementation with exact pixel/audio gates."
+  },
+  "pass7_v3_local_reconciliation": {
+    "supersedes_snapshot": "pass7-validator-projection-causality-v2",
+    "superseded_snapshot_disposition": "PRESERVED; four additional validator false-pass paths demonstrated from a temporary mutation harness",
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-full-contract-closure-v3",
+    "storyboard_sha256": "c7bf862bd195995072dde59160d8485cd0195275ef98418ad3171ba79313a47b",
+    "scientific_audience_copy_changed_from_v2": false,
+    "build_direction_changes": [
+      "replace two ambiguous hold directions with persistent or ordered reveal/transform directions",
+      "pin exact canonical audience and build semantics in APPROVED_STORYBOARD_CONTRACT.json"
+    ],
+    "approved_storyboard_contract_sha256": "fc957ade7f2ef24c8b976e02d8d2dc4d833499554eca6c51b85465b5d8c86f22",
+    "validator_mutation_suite": "PASS baseline plus 12/12 expected-fail counterfactuals",
+    "new_counterfactuals_rejected": [
+      "fabricated formerly-unbound b02 narration",
+      "fabricated precision-certified b08 screen copy",
+      "fabricated b09 recorded example",
+      "contradictory static-hold visual action"
+    ],
+    "source_render_bindings_cover_b02_b07_b08_b09_b10": true,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "V3 closes demonstrated v2 validator gaps without changing scientific audience copy or static v8 pixels. Exact independent v3 review remains mandatory; no storyboard validation can prove future MP4 timing."
+  },
+  "pass7_v4_local_reconciliation": {
+    "supersedes_snapshot": "pass7-full-contract-closure-v3",
+    "superseded_snapshot_disposition": "PRESERVED; validator source replay depended on an absolute external prior-pack path",
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-self-contained-contract-v4",
+    "storyboard_sha256": "ca911926a2b93f9311bc135b5dc94c2c11acf4e28f55e75cdbf96b1a75d3b767",
+    "scientific_audience_copy_changed_from_v3": false,
+    "build_semantics_changed_from_v3": false,
+    "frozen_source_manifest_sha256": "4a1463053fbf3adea7187c961b77efc9f5258acca2243ff57dcb3adee5f4bfa6",
+    "frozen_source_files": 8,
+    "approved_storyboard_contract_sha256": "c07995f7bc94590477cb5056dbef88880a8a759050fb9de06b2ac173d1f2d295",
+    "validator_mutation_suite": "PASS baseline plus 13/13 expected-fail counterfactuals",
+    "source_tamper_mutation_rejected": true,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "V4 makes validator replay source-self-contained and will package all 43 audited PNG frames. It changes no science or visual pixels. Exact independent v4 review remains mandatory."
+  },
+  "pass7_v5_local_reconciliation": {
+    "supersedes_snapshot": "pass7-self-contained-contract-v4",
+    "superseded_snapshot_disposition": "PRESERVED; round-10 v2 adversarial findings exposed defects still present in v4",
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-adversarial-semantic-closure-v5",
+    "storyboard_sha256": "88d9faa0558ce0c33565122d90435f0a4e68de54c5c880c3ea5bf5250ee33dc7",
+    "audience_copy_projection_sha256": "3f657d27765f99e2564edf07628170f67c71f38d5b2856eaf1bdb9018f03993a",
+    "scientific_audience_copy_changes": [
+      "qualify all b05 drop references as redshift-search and abundance-search",
+      "replace duplicate precision panel and empty taxonomy shells with five distinct semantic b08 states"
+    ],
+    "packet_contract": "EXACT_AUDIENCE_PAYLOAD_PLUS_DECLARED_REVIEW_SCAFFOLDING",
+    "approved_storyboard_contract_sha256": "c6bce178faa06e2d77d5509fd92dbfd921a7922382806e2e11f2da06202bfe38",
+    "validator_mutation_suite": "PASS baseline plus 25/25 expected-fail counterfactuals",
+    "maximum_global_semantic_gap_seconds": 3.0,
+    "structured_semantic_states": 45,
+    "declared_narration_clauses": 21,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "V5 applies the exact v2 adversarial findings to the current self-contained packet. The unchanged static v8 remains compatible but cannot prove future temporal encoding. Exact independent v5 review remains mandatory."
+  },
+  "pass7_v6_local_reconciliation": {
+    "supersedes_snapshot": "pass7-adversarial-semantic-closure-v5",
+    "superseded_snapshot_disposition": "PRESERVED; round-11 v3 adversarial mechanisms remained partly applicable to v5",
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-manifest-authenticated-semantic-v6",
+    "storyboard_sha256": "07fd92ef90951cf6a0a6229b0cb78974b62b690d7946f9da610bf5fb95cb555f",
+    "audience_copy_projection_sha256": "3f657d27765f99e2564edf07628170f67c71f38d5b2856eaf1bdb9018f03993a",
+    "scientific_audience_copy_changed_from_v5": false,
+    "build_semantic_corrections": [
+      "b01 visual action now matches the progressive icon, rail, merge, and badge states",
+      "b05 closes on the new 157 result; b06 newly reveals the direct 157-to-T2 path rather than re-revealing a persistent path",
+      "immutable replay authenticates approved-contract, storyboard, and validator hashes against the externally supplied snapshot manifest digest"
+    ],
+    "packet_contract": "EXACT_AUDIENCE_PAYLOAD_PLUS_DECLARED_REVIEW_SCAFFOLDING",
+    "approved_storyboard_contract_sha256": "6aa81f591904f558e1877307fe76e6310afce6f0e2df29a62c710bfd5abb28aa",
+    "validator_mutation_suite": "PASS baseline plus 27/27 expected-fail counterfactuals, including two co-located approval-rotation attacks",
+    "maximum_global_semantic_gap_seconds": 3.0,
+    "structured_semantic_states": 45,
+    "declared_narration_clauses": 21,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "V6 applies the exact round-11 v3 carry-forward defects without changing audience science or static-v8 pixels. The external immutable manifest digest remains the trust anchor. Exact independent v6 review is mandatory."
+  },
+  "pass7_v8_local_reconciliation": {
+    "supersedes_storyboard": "pass7-manifest-authenticated-semantic-v6",
+    "superseded_v5_disposition": "PRESERVED EXACT FAIL; duplicate b09 taxonomy labels and closed-book answer-premise leakage require v8",
+    "visual_pixels_changed": false,
+    "visual_artifact": "visual_proposal_v8.png",
+    "visual_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+    "storyboard_version": "pass7-distinct-example-clock-v8",
+    "storyboard_sha256": "4fb15c927f5d567c402b4c4f933fabe64a492fdb275311991491aa777cd95b71",
+    "audience_copy_projection_sha256": "3f657d27765f99e2564edf07628170f67c71f38d5b2856eaf1bdb9018f03993a",
+    "scientific_audience_copy_changed_from_v6": false,
+    "build_semantic_corrections": [
+      "b08 taxonomy labels and not-T2 boundary persist into b09",
+      "b09 reveals Galactic height, model-grid metal fraction, stellar gravitational redshift, and gravitational-redshift velocity one at a time instead of re-revealing labels",
+      "closed-book questions remove measurement, eligibility, certification, and category answer premises"
+    ],
+    "packet_contract": "EXACT_AUDIENCE_PAYLOAD_PLUS_DECLARED_REVIEW_SCAFFOLDING",
+    "answer_premise_guard": "PASS",
+    "approved_storyboard_contract_sha256": "aa745a15c3050ba28c8193623625cb11dcc416e6dbd76945dad8b363e325aeb2",
+    "validator_mutation_suite": "PASS baseline plus 27/27 expected-fail counterfactuals",
+    "maximum_global_semantic_gap_seconds": 3.0,
+    "structured_semantic_states": 45,
+    "distinct_semantic_states": 45,
+    "declared_narration_clauses": 21,
+    "full_resolution_pixel_verdict": "PASS_FOR_UNCHANGED_STATIC_OVERVIEW_ONLY",
+    "material_defects": [],
+    "scope_note": "V8 changes build timing and closed-book review scaffolding only; audience science and static-v8 pixels remain unchanged. Exact independent v8 review is mandatory."
+  },
+  "pass7_v9_local_reconciliation": {
+    "supersedes_packet": "pass7-distinct-example-clock-v8",
+    "superseded_v6_disposition": "PRESERVED EXACT FAIL; incomplete audience-projection hash and stale static search-axis labels require v9",
+    "visual_pixels_changed": true,
+    "visual_artifact": "visual_proposal_v9.png",
+    "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "storyboard_version": "pass7-distinct-example-clock-v8",
+    "storyboard_sha256": "4fb15c927f5d567c402b4c4f933fabe64a492fdb275311991491aa777cd95b71",
+    "complete_audience_projection_sha256": "a905e42d23e13deb07240273dab8caa3ce5264ae48fca7e28cacee7b096f450b",
+    "complete_audience_projection_fields": ["narration", "on_screen_copy", "display_citation"],
+    "scientific_audience_copy_changed_from_v8": false,
+    "static_visual_corrections": [
+      "all 19/2 modifier-drop labels now use redshift-search and abundance-search",
+      "central modifier-drop panel uses three fitted lines",
+      "snapshot-local frozen_sources/pass7 and writes visual_proposal_v9.png; --check verifies byte identity without writes"
+    ],
+    "full_resolution_pixel_verdict": "PASS_FOR_STATIC_OVERVIEW_ONLY",
+    "deterministic_rerender_match": true,
+    "material_defects": [],
+    "scope_note": "V10 closes v6 audience-projection and static-label/replay defects without changing storyboard narration or on-screen scientific claims; renderer --check is sealed and write-free. Exact independent v10 review is mandatory."
+  },
+  "scope": "Static worker visual proposal; not an encoded candidate and not authorization to render, narrate, upload, or publish."
+}

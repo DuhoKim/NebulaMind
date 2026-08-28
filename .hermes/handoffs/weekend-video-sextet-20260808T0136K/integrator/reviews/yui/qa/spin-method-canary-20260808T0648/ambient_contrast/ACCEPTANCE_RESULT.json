@@ -1,0 +1,17 @@
+{
+  "test": "ambient-contrast acceptance (spin pass-10 guard; operational transform = 20% uniform linear-light black lift)",
+  "guard_source": "lane-spin-parity/worker-yui/AMBIENT_CONTRAST_GUARD_PASS10.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T07:12:00+09:00",
+  "method": "srgb->linear black lift (out = 0.20 + 0.80*in) on the 11 encoded state frames; 30% sheet generated as characterization only per guard clause 6; human review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 RESULT HELD capsule readable on 11/11 lifted states",
+    "boundaries_primary": "PASS \u2014 the unresolved boundary lives in headline-scale copy (cards 2/10) plus the capsule, both legible under lift",
+    "no_qualifier_only_in_low_contrast_copy": "PASS \u2014 citations/figure micro-copy fade but carry provenance only; the tie-exclusion qualifier also appears in readable card body",
+    "labels_borders_distinguishable": "PASS \u2014 readout boxes, arrows, spirals, equation, and status columns remain distinct",
+    "characterization_30pct": "generated, reviewed as characterization only (guard clause 6)"
+  },
+  "borderline_note": "The dominance-threshold definition exists only in small figure copy; under the guard as written a definition is a comprehension aid, not a qualifier \u2014 recorded for promotion to card body if the lane's standard later tightens.",
+  "verdict": "PASS",
+  "evidence": "ambient_contrast/contact_sheet_lift_20pct.png, contact_sheet_lift_30pct.png"
+}

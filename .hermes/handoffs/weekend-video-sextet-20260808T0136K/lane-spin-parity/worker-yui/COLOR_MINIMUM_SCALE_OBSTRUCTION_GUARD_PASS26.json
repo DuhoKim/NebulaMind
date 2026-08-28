@@ -1,0 +1,82 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass26-color-minimum-scale-obstruction-20260808T144908K",
+  "created_at": "2026-08-08T14:49:08+09:00",
+  "deepening_pass": 26,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+  "video_reportable_now": false,
+  "audit_scope": {
+    "order": "native RGB -> color or linear-light BT.709 grayscale/fixed Machado severity-100 protanopia, deuteranopia, or tritanopia presentation transform -> sRGB np.rint uint8 -> Pillow LANCZOS 640x360 -> opaque RGB black rows 270..359",
+    "operational_bottom_fraction": 0.25,
+    "mask_top_y": 270,
+    "mask_color_rgb": [0, 0, 0],
+    "representation_only": true,
+    "clinical_diagnostic": false,
+    "named_caption_player_viewing_or_delivery_standard": false
+  },
+  "evidence": {
+    "fresh_scene_detection": "15/15_EXACT_PASS25_AND_PASS23_TIMESTAMPS",
+    "fresh_native_midpoints": "16/16_BYTE_IDENTICAL_TO_PASS25",
+    "candidate_pass23_baselines": "80/80_PIXEL_EXACT",
+    "method_pass23_baselines": "105/105_PIXEL_EXACT",
+    "candidate_derivatives": "80/80_EXACT_TOP_IDENTITY_AND_OPAQUE_MASK",
+    "method_derivatives": "105/105_EXACT_TOP_IDENTITY_AND_OPAQUE_MASK",
+    "candidate_structural_held_gates": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_held_critical_structural_gates": "0/5_ALL_FIVE_VARIANTS",
+    "candidate_reference_mask_zone_tokens": "COLOR_148__GRAYSCALE_161__PROTANOPIA_168__DEUTERANOPIA_178__TRITANOPIA_191__OBSERVED_0_EACH",
+    "sealed_v8_complete_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_method_status_hierarchy": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_scene_specific_lower_boundaries_occluded": "S2_S3_S4_S5_S6_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_gate_ocr_aid": "7/7_ALL_FIVE_VARIANTS__SIMILARITY_1.0",
+    "hue_only_required_meaning": 0,
+    "above_mask_overlap_clipping_or_ambiguity": 0
+  },
+  "acceptance_guard": {
+    "required": [
+      "Preserve all seven exact scene-specific gates as directly readable represented-pixel text entirely above row 270 after the complete declared transform chain.",
+      "Preserve all seven complete RESULT HELD badges and every major method/status boundary entirely above the operational bottom quarter.",
+      "Place required qualifiers, uncertainty, branch distinctions, axes, units, values, error bars, thresholds, equation terms, provenance, and interpretation limits above the bottom quarter or duplicate them there with direct high-contrast text.",
+      "Pair every required category, branch, comparison, unavailable rung, qualifier, interpretation boundary, and release status with direct text plus at least one complete non-color geometry channel.",
+      "Keep the GALAXY SPIN header, exact gate, badge, headline, diagrams, and support copy visually separated without clipping, overlap, or ambiguous layering above the mask.",
+      "Independently recompute each native color/monochrome transform and 640x360 reduction before proving exact byte identity above row 270 and exact opaque pixels at and below row 270.",
+      "Use human review of represented pixels and complete containers as the semantic acceptance oracle; OCR remains a reproducible aid."
+    ],
+    "prohibited_sole_channels": [
+      "hue or chroma",
+      "any copy or geometry located only in the lower quarter",
+      "tiny axes, ticks, units, error bars, legends, or thresholds",
+      "one-pixel lines, dividers, or connectors",
+      "small caveats, citations, or provenance footers",
+      "global OCR recognition"
+    ],
+    "interpretation": "If the opaque lower quarter removes qualification or provenance while large assertions remain primary, record increased assertion-versus-support imbalance. Never treat color remapping or obstruction as repair, scientific authorization, or evidence adjudication."
+  },
+  "disposition": {
+    "pixel_or_copy_correction_requested": false,
+    "reason": "The existing pass-7 and pass-12 proofs retain 7/7 exact top gates, 7/7 complete badges, direct labels, and non-color geometry across all five variants. Pass 26 confirms those earlier corrections and adds a non-pixel compound guard; another cosmetic proof is not justified.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "blockers_unchanged": [
+    "No valid independent post-run A3.8 verdict record exists for the exact frozen all-209-file T4 artifact.",
+    "KUN_FRAME_REVIEW.md remains FRAME REVIEW: AGREES FRAME_UNSTATED.",
+    "video_reportable_now remains false."
+  ],
+  "safety": {
+    "science_adjudicated": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

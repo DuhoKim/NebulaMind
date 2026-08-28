@@ -1,0 +1,3 @@
+# URL: https://raw.githubusercontent.com/waynebhayes/SpArcFiRe/22a3ea5d838d08242aa444c76b29e96fe3b6ce95/GalfitModule/RegTest/TestData/test-out/1237655463239155886/1237655463239155886_arcs.csv
+
+gxyName,alenRank,math_initial_theta,pitch_angle,math_initial_radius,relative_theta_start,relative_theta_end,r_start,r_end,used2rev,failed2rev,hasUndefinedEndpoints,arc_length,num_pixels,err_per_len,err_per_pixel,mean_intensity,brt_ratio_score,anovaF_score,clusOutputColor

@@ -1,0 +1,55 @@
+{
+  "receipt_id": "TORI_GORU_OVERNIGHT_QUALITY_SWEEP_RECEIPT_BLOCKER_20260810T0112K",
+  "created_at_kst": "2026-08-10T01:12:41+09:00",
+  "reviewer": "Tori",
+  "artifact": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/GORU_OVERNIGHT_QUALITY_SWEEP_20260810T0055K.md",
+    "sha256": "2ade8daf7e1f6574818b60e420eaf60af941f745e89f05b607badf3894de86e4",
+    "bytes": 5730,
+    "exact_candidate_bindings_present": true
+  },
+  "verdict": "HOLD_GORU_QUALITY_SWEEP_RECEIPT_INCOMPLETE",
+  "effect": "The Markdown findings are useful leads but are not authority for Yui edits or new-candidate acceptance. No passing candidate may be overwritten and no quality gate opens from this artifact.",
+  "blocking_findings": [
+    {
+      "code": "SCALARS_HAVE_NO_DERIVATION_RECEIPT",
+      "detail": "The 36 defective-card rows provide dwell seconds, reading-time seconds, and visible word counts but do not name the exact source files/hashes, extraction operation, execution time, card-state start/end derivation, tokenization rule, or machine-readable output. The 200 WPM value is stated as an assumption but is not separated from directly measured scalars."
+    },
+    {
+      "code": "MOTION_METRIC_UNDEFINED",
+      "detail": "The per-lane maximum near-unchanged runs (0.0 or 0.5 seconds) do not define decoded sampling rate, pixel metric, threshold, run-boundary algorithm, operation time, or evidence files. A label such as near-unchanged is not self-verifying."
+    },
+    {
+      "code": "REQUESTED_CONSISTENCY_SWEEP_INCOMPLETE",
+      "detail": "The order requires headers, rails, banner language, colour semantics, visible card grammar, section naming, and end cards. The report covers only section taxonomy, internal storyboard data structure, and end-card structure. It does not adjudicate headers, rails, banner wording, colour-role semantics, or visible cross-lane card grammar."
+    },
+    {
+      "code": "INTERNAL_SCHEMA_IS_NOT_VIEWER_FACING_CARD_GRAMMAR",
+      "detail": "The report treats structured params versus unstructured visual_action fields as card-grammar consistency. That is an implementation representation, not proof that encoded cards look or read consistently to viewers."
+    },
+    {
+      "code": "WHICH_LANE_IS_RIGHT_RATIONALE_UNPROVEN",
+      "detail": "The recommendation that the four siblings are right relies on their majority/unified structure. It does not show that their nine-section taxonomy is semantically compatible with spin's distinct why-study/mirror story, nor bind the recommendation to Lana's claim-boundary veto."
+    }
+  ],
+  "required_correction": {
+    "new_versioned_artifact": true,
+    "do_not_modify_this_receipt_in_place": true,
+    "requirements": [
+      "Machine-readable per-card ledger with exact source paths and SHA-256 hashes, visible-text extraction definition, word-tokenization rule, start/end/dwell derivation, operation timestamp, and all intermediate scalars.",
+      "Explicitly distinguish measured values from the policy assumption of 200 WPM.",
+      "Motion receipt naming actual encoded MP4s, decode/sampling operation, frame rate, pixel-delta metric, threshold, run algorithm, timestamps, and per-lane evidence output.",
+      "Complete viewer-facing cross-lane matrix for headers, rails, banner wording, colour roles, visible card grammar, section names, and end cards.",
+      "For every 'which is right' decision, give viewer-facing and semantic rationale and bind claim-bearing changes to Lana's veto reference; do not choose by majority alone."
+    ]
+  },
+  "custody_state_at_block": {
+    "new_quality_candidate_seen": false,
+    "five_current_source_hashes_unchanged": true,
+    "five_current_cockpit_hashes_unchanged": true,
+    "cockpit_mp4_count": 35,
+    "published_json_sha256": "4abe62fbf2b9bf7a6e9f694a3fcbbe8313747a00184075fba8c5c49a190548e0",
+    "paperVideos_ts_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "release_rollout_or_acceptance_gate_opened": false
+  }
+}

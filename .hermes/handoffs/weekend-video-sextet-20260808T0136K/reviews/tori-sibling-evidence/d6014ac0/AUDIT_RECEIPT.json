@@ -1,0 +1,67 @@
+{
+  "audit_timestamp_kst": "2026-08-09T14:23:22+09:00",
+  "lane": "mzr-census",
+  "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+  "candidate_dir": "integrator/canaries/mzr-census-method-overhaul-canary-20260809T0320K",
+  "candidate_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+  "candidate_bytes": 9539823,
+  "duration_seconds": 229.966667,
+  "video_frames_decoded_to_eof": 6899,
+  "full_decode_exit_code": 0,
+  "binding": {
+    "disk_equals_dispatched_hash": true,
+    "disk_equals_POST_ENCODE_FREEZE": true,
+    "disk_equals_build_receipt": true,
+    "freeze_receipt_hash_matches_RECEIPT_json": true,
+    "source_manifest_all_copies_match": true,
+    "frozen_STATUS_copy_matches": true,
+    "current_lane_STATUS_reviewed": true,
+    "SOURCE_FREEZE_present": false,
+    "excluded_mzr_anchor_1300K": true
+  },
+  "narration": {
+    "source": "spec.json sentences[]",
+    "sentence_count": 22,
+    "word_count": 445,
+    "timeline_record_count": 22,
+    "timeline_text_matches_sentences": true
+  },
+  "actual_frame_review": {
+    "uniform_ocr_fps": 2,
+    "uniform_ocr_frames": 460,
+    "ocr_errors": 0,
+    "sentence_midpoint_frames": 22,
+    "section_end_frames": 9,
+    "vision_inspected_frames": 31,
+    "178_21_157_absent": true,
+    "other_empirical_stage_totals_absent": true,
+    "eligibility_result_absent": true,
+    "evaluated_estimator_absent": true,
+    "selected_direction_or_sign_absent": true,
+    "internal_filename_absent": true,
+    "geometry_gate": "PASS"
+  },
+  "audio": {
+    "integrated_loudness_lufs": -21.6,
+    "true_peak_dbfs": -2.3,
+    "private_playback_start_kst": "2026-08-09T14:07:49+09:00",
+    "private_playback_end_kst": "2026-08-09T14:11:40+09:00",
+    "private_playback_exit_code": 0
+  },
+  "closed_gates": {
+    "exact_8766_route_matches_candidate_hash": true,
+    "candidate_hash_absent_from_protected_mp4_roots": true,
+    "protected_root_manifests_unchanged": true,
+    "paperVideos_ts_unchanged": true,
+    "git_head_and_index_unchanged": true,
+    "git_cached_diff_empty": true,
+    "legacy_8093_route_http_status": 404,
+    "upload_or_publication_performed": false
+  },
+  "authority_boundary": {
+    "method_only": true,
+    "video_reportable_now": false,
+    "scientific_result_authorized": false,
+    "self_QA_or_numeric_guard_used_as_authority": false
+  }
+}

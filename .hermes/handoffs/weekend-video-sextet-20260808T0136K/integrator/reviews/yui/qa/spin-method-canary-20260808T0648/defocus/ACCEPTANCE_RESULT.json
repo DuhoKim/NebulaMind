@@ -1,0 +1,16 @@
+{
+  "test": "sharpness-resilience acceptance (spin pass-12; operational transform = gaussian defocus radius 1.50)",
+  "guard_source": "lane-spin-parity/worker-yui/SHARPNESS_RESILIENCE_STORYBOARD_CORRECTION_PASS12.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T08:22:00+09:00",
+  "method": "PIL GaussianBlur r=1.5 (operational) and r=2.5 (characterization) on the 11 encoded state frames; human review decisive",
+  "checks": {
+    "capsules_readable": "PASS \u2014 bold 30px RESULT HELD capsule readable on 11/11 defocused states",
+    "boundaries_primary": "PASS \u2014 boundary in headline copy + capsule, both surviving r=1.5",
+    "no_qualifier_in_low_sharpness_detail": "PASS \u2014 softened micro-copy carries provenance/definition only",
+    "labels_distinguishable": "PASS \u2014 readout boxes, arrows, spirals, equation remain distinct",
+    "characterization_r2_5": "generated, reviewed as characterization only"
+  },
+  "verdict": "PASS",
+  "evidence": "defocus/contact_sheet_defocus_r1_50.png, contact_sheet_defocus_r2_50.png"
+}

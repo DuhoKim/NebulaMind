@@ -1,0 +1,104 @@
+{
+  "handoff_id": "TORI_OVERNIGHT_VIDEO_QUALITY_MAJOR_HANDOFF_20260810T0144K",
+  "created_at_kst": "2026-08-10T01:44:04+09:00",
+  "reviewer": "Tori",
+  "order": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/HWAO_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md",
+    "sha256": "4f10d11ffb9696f78984e911f762478c941ea1729089654f5e57c370d55ebda1"
+  },
+  "headline_verdict": "FAIL_CLOSED_WITH_ACTIONABLE_AUDIT_RESULTS_NO_NEW_QUALITY_CANDIDATE",
+  "major_results": [
+    {
+      "topic": "spin_v5_provenance",
+      "verdict": "PASS_PROVENANCE_RECEIPT_CORRECTION",
+      "detail": "Yui's completed V5 packet correctly separates 6727 raw frames submitted to ffmpeg from 6726 encoded frames. Tori independently reproduced the arithmetic, binary hashes/versions, operation times, ffprobe frame count, one-byte-per-frame full decode count, preserved V4 tree, and unchanged MP4 bytes.",
+      "artifact": "reviews/TORI_SPIN_V5_PACKET_ONLY_PROVENANCE_ADJUDICATION_20260810T0103K.json",
+      "artifact_sha256": "71af98bfe7a8a0e28ee7672516282d4d136f6a23821d0e2cf962dc5d13129db8",
+      "gate_effect": "The prior provenance-receipt HOLD is closed. This does not confer Duho acceptance, sibling rollout authority, publication authority, or any other gate."
+    },
+    {
+      "topic": "spin_pipeline_reproducibility",
+      "verdict": "PASS_BYTE_IDENTICAL_REPRODUCTION_NOT_A_NEW_CANDIDATE",
+      "detail": "The corrected build invocation in a new workspace reproduced the spin MP4 byte-identically at 4d230cc0. A transient partial file observed during the write was never frozen or declared; the at-rest output is the known exact candidate.",
+      "artifact": "reviews/TORI_SPIN_BUILD_INVOCATION_CORRECTION_CUSTODY_CLASSIFICATION_20260810T0118K.json",
+      "artifact_sha256": "4b637f0f5ff1a65a0cf3cb36b08052f712df09a9fec90503e6531b1e5e2f9f1c"
+    },
+    {
+      "topic": "kun_audio_and_legibility",
+      "verdict": "ACTIONABLE_AUDIT_FINDINGS_NO_IMPLEMENTATION_AUTHORITY",
+      "detail": "Independent audio logs reproduce Brightend -20.0, FESC -20.2, MZR-anchor -20.9, Spin -21.3, and MZR-census -21.6 LUFS; all true peaks are -2.3 dBFS and no clipping is present. Kun selected -20.5 LUFS, true peak <= -2.3 dBFS, LRA 6.5-7.8 LU as the series target. MZR-census has the widest LRA and repeated approximately 4.87-second seams. Basic 1080p legibility passes; the strongest polish finding is split attention when dense known/held/next boundary cards and dense subtitles appear together.",
+      "artifact": "reviews/KUN_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md",
+      "artifact_sha256": "cd3195bce3bf0d7c9f32514aeccd08589a132e73a087914c5745fe4203da8a9b",
+      "evidence_tree": {
+        "file_count": 60,
+        "sha256_of_sorted_relative_path_nul_file_sha256_lines": "49ccc551a1923f169219322473501c27394490459239131751962df33047abf1"
+      },
+      "implementation_status": "No audio or legibility candidate was completed. Measurements remain actionable for a properly bounded morning A/B."
+    },
+    {
+      "topic": "spin_encoded_overclaim_guardrails",
+      "verdict": "KUN_PASS_ALL_SIX_AND_TORI_PRESENTATION_PASS_STAND",
+      "detail": "Kun independently passed all six encoded-frame stop conditions. This is a second crew validation of the encoded artifact, not Duho's watch/listen validation."
+    },
+    {
+      "topic": "reading_time_and_motion",
+      "verdict": "PARKED_UNPROVEN_AFTER_THREE_FAILED_GORU_RECEIPTS",
+      "detail": "V1 lacked scalar derivation receipts. V2's Markdown displayed five motion hashes that matched neither its JSON nor the at-rest files, counted non-visible renderer instruction/internal strings as visible words, and crossed into the held sibling intro rollout. V3 bound its sources but emitted zero words and time 0.0 for all 29 spin cards from a nonempty 448-frame OCR file, counted persistent full-frame chrome/captions/OCR noise as card reading load, and supplied prose rather than replayable extraction code. The i04/36-card magnitudes are not findings and may not drive a candidate.",
+      "artifact": "reviews/TORI_GORU_OVERNIGHT_QUALITY_SWEEP_V3_STOP_VERDICT_20260810T0128K.json",
+      "artifact_sha256": "b0f3597d22f9a39f05e448a7e17cbee759e0766b816703a96998d836d1cab948",
+      "morning_definition_needed": "Separate persistent series chrome, newly introduced card text, subtitles, prior-state labels, and OCR noise; bind renderer draw calls to exact frames; then disclose a reading-rate policy before measuring."
+    },
+    {
+      "topic": "cross_lane_series_decisions",
+      "verdict": "DESIGN_GUIDANCE_ONLY_NOT_APPLIED",
+      "detail": "Hwao decided Spin is the right semantic reference for its why-study seam, while the current sibling rails remain the live reference until Duho's watch. No taxonomy or motivation rollout is authorized. Kun's known/held/next boundary grammar is retained as the right boundary structure, but dense subtitle overlap is a polish defect. Yui's five-lane series implementation plan is superseded and cannot act as authority because it used invalid Goru V2 leads and drifted audio/visual policies.",
+      "artifact": "reviews/TORI_YUI_CROSS_LANE_SERIES_DECISIONS_V1_SUPERSESSION_BLOCKER_20260810T0134K.json",
+      "artifact_sha256": "c39b65006d822384b5f7b2d8b4d7aeacb427d1c334132adcb63b8c9b82876328"
+    },
+    {
+      "topic": "build_scope_containment",
+      "verdict": "CONTAINED_COORDINATION_FAILURE_NO_CANDIDATE",
+      "detail": "Yui began a Brightend preview from the older broad scope because Hwao's supersession waited for an idle seat and never reached her. Hwao interrupted the turn, accepted responsibility, and stopped build work for the night. The quarantined workspace has 65 canary files and 29 preview artifacts, zero MP4s, no freeze, and no regate request. Nothing was deleted and Yui did not disobey a received order.",
+      "artifact": "reviews/TORI_BRIGHTEND_QUALITY_SCOPE_OVERRIDE_CONTAINMENT_20260810T0141K.json",
+      "artifact_sha256": "464ea460a02291dd8e9452a32bff61f07ea84e8871dd403faaafe663a939b9ee"
+    }
+  ],
+  "final_custody_check": {
+    "checked_at_kst": "2026-08-10T01:43:47+09:00",
+    "source_and_cockpit_and_http_exact_hash_all_pass": true,
+    "served_http_status_all": 200,
+    "cockpit_mp4_count": 35,
+    "published_json_sha256": "4abe62fbf2b9bf7a6e9f694a3fcbbe8313747a00184075fba8c5c49a190548e0",
+    "paperVideos_ts_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_tree": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "new_mp4_after_0118K": [],
+    "accepted_by_duho_true_files": [],
+    "lanes": {
+      "spin": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+      "fesc": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+      "brightend": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+      "mzr_anchor": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+      "mzr_census": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b"
+    }
+  },
+  "final_gate_state": {
+    "five_existing_cockpit_links_live_and_untouched": true,
+    "new_quality_candidate": "NONE",
+    "mzr_census_audio_ab": "NOT_BUILT",
+    "brightend_preview_workspace": "QUARANTINED_NON_AUTHORITATIVE",
+    "sibling_why_study_rollout": "HELD_FOR_DUHO_WATCH",
+    "new_claims_results_source_freezes": false,
+    "public_frontend_cockpit_replacement_upload_db_deploy_git_provider_config": false,
+    "accepted_by_duho": false,
+    "build_work_overnight": "STOPPED_FAIL_CLOSED",
+    "scheduled_overnight_followup": "Hwao custody-only checks at 02:17, 04:17, and 06:17; no build restart; morning report at 08:43."
+  },
+  "morning_next_actions": [
+    "Duho watches/listens to the unchanged Spin 4d230cc0 cockpit copy. Only his decision can open the four-sibling why-study rollout.",
+    "If Duho or Hwao wants an audio A/B, start with one MZR-census candidate only, bind it to a new exact written request, reuse exact sentence audio, derive every seam edit, preserve card dwell, disclose any visual timing delta, freeze it, then request Tori exact-hash regate.",
+    "Define reading load before restarting any dwell-time work; do not reuse Goru V1/V2/V3 magnitudes.",
+    "Preserve the quarantined Brightend preview workspace for audit; do not install, promote, or treat it as a candidate."
+  ]
+}

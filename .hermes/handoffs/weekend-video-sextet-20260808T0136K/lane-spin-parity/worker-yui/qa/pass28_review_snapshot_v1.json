@@ -1,0 +1,95 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass28-review-v1-20260808T153230K",
+  "created_at": "2026-08-08T15:32:30+09:00",
+  "deepening_pass": 28,
+  "lane": "spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "status": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "modified": false
+  },
+  "authority": {
+    "HWAO_WEEKEND_ORDER.md": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710",
+    "COORDINATION_UPDATE.md": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f",
+    "lanes/spin/BRIEF.md": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec",
+    "SOURCE_STATUS_FREEZE.json": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "STORYBOARD_PROPOSAL.json": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "proposal_frames/v8/render_receipt.json": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+  },
+  "candidate_records": {
+    "RECEIPT.md": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+    "QA.md": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+    "hashes.txt": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3"
+  },
+  "baseline_receipts": {
+    "qa/pass23_minimum_scale_color_vision_audit/extraction_receipt.json": "d7e8b183f4fa28281b5cb286998b5ad53be299a2db09289bd09ff62235d7b8f1",
+    "qa/pass23_v8_minimum_scale_color_vision/receipt.json": "fa61f82d25c85d5d1c30cf8b3bd15298ffe76dfbce0fc99693c5a76d5124434b",
+    "qa/pass27_review_snapshot_v1.json": "c351931842f3a522bc7dbee8764a71ffadb92ac264f731c37dd9e860af592433"
+  },
+  "pass28_artifacts": {
+    "qa/extract_pass28_color_minimum_scale_represented_smear_frames.py": "cbe99ab2060404626b527d8bb852fc73ef02d3bad1ff4c38a0d89b4ab21dfba0",
+    "qa/build_pass28_v8_color_minimum_scale_represented_smear.py": "b318f02210073f7bc245a2633b0d01adff84ae626c747610c64c022417807e14",
+    "qa/audit_pass28_color_minimum_scale_represented_smear.py": "3b4bb446b0ac97f40444a70b779678fa1a0fed0d491e41b01889014b34758f02",
+    "qa/pass28_color_minimum_scale_represented_smear_audit/extraction_receipt.json": "259bf0ab21c7f1becddc338af6e9c1b01aaf86a28ce0586b13446fb989e4ea80",
+    "qa/pass28_v8_color_minimum_scale_represented_smear/receipt.json": "9284cb5890c74158797dfb42895619b66d2cebe68296a3b651366f4ba50e225d",
+    "qa/pass28_color_minimum_scale_represented_smear_quantitative_audit.json": "b1f4b89abfd64728e692e49ba4c3821fc49fe98c36a122c0173df406f3fa6eae",
+    "COLOR_MINIMUM_SCALE_REPRESENTED_SMEAR_GUARD_PASS28.json": "d0a7aed16c54edcce5100848bcbf14739a5b71e929dfbaad56e4ab30e26d35f4",
+    "BLOCKER_PACKET_PASS28.json": "3599c27971a8e7f5a9ec0267b7bdd7556f15b6f67d30f07695c53f0dc31e5e02",
+    "PASS28_ENCODED_FRAME_AUDIT.md": "17d98ed901f754fa70f9cdf0e82803b7240ea2784885125adb1c91fa66d5a81b"
+  },
+  "transform": {
+    "order": [
+      "native full color / native linear-light BT.709 grayscale / fixed packet-specific Machado severity-100 presentation transform",
+      "Pillow LANCZOS full-canvas 640x360",
+      "represented-pixel centered horizontal width-3 box smear"
+    ],
+    "axis": "horizontal",
+    "width_pixels_at_640x360": 3,
+    "edge_handling": "edge replication",
+    "accumulator": "uint64",
+    "rounding": "integer round half up",
+    "claim_boundary": "packet-specific only; no native equivalence or named viewing standard"
+  },
+  "custody_counts": {
+    "fresh_scene_cuts": "15/15",
+    "native_midpoint_byte_matches_to_pass27": "16/16",
+    "candidate_pass23_baseline_pixel_matches": "80/80",
+    "method_pass23_baseline_pixel_matches": "105/105",
+    "exact_smear_recomputations": "185/185"
+  },
+  "human_encoded_review": {
+    "candidate_structural_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_held_critical_gate_scenes": "0/5_ALL_FIVE_VARIANTS",
+    "sealed_v8_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_method_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "hue_only_required_meaning": 0,
+    "clipping_overlap_or_meaning_changing_ambiguity": false
+  },
+  "ocr_aid": {
+    "threshold": 0.8,
+    "threshold_pass_counts": {
+      "color": "7/7",
+      "grayscale": "4/7",
+      "protanopia": "5/7",
+      "deuteranopia": "5/7",
+      "tritanopia": "5/7"
+    },
+    "minimum_score": 0.545455,
+    "interpretation": "under-counting corroborative aid retained; direct encoded-pixel review controls visual QA and confirms 7/7"
+  },
+  "action": "ADOPT_COLOR_MINIMUM_SCALE_REPRESENTED_SMEAR_GUARD_NOT_PIXEL_OR_COPY_CORRECTION",
+  "blockers_unchanged": true,
+  "sealed_v8_modified": false,
+  "v9_created": false,
+  "candidate_created_or_promoted": false,
+  "shared_assets_modified": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "tts_invoked": false,
+  "git_action": false
+}

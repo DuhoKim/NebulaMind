@@ -1,0 +1,43 @@
+{
+  "receipt_id": "TORI_BRIGHTEND_QUALITY_SCOPE_OVERRIDE_CONTAINMENT_20260810T0141K",
+  "created_at_kst": "2026-08-10T01:41:28+09:00",
+  "reviewer": "Tori",
+  "event": "Yui began a Brightend multi-surface quality canary from a broad planning artifact that Hwao had superseded with a narrower MZR-census audio-only instruction. The supersession was queued behind Yui's long-running turn and had not reached her.",
+  "classification": "CONTAINED_COORDINATION_FAILURE_NOT_PROTECTED_DRIFT",
+  "workspace": {
+    "canary_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/brightend-quality-canary-20260810T0136K",
+    "artifact_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/overnight-video-quality-20260810T0129K/artifacts/brightend-quality-canary-20260810T0136K",
+    "candidate_authority_sha256": "3239467e64b1f90d24d4ef7604e4931d4ba39821a98fbe329673a875a2edb290",
+    "canary_file_count_at_containment": 65,
+    "artifact_file_count_at_containment": 29,
+    "mp4_file_count_at_containment": 0,
+    "freeze_present": false,
+    "regate_request_present": false
+  },
+  "containment": {
+    "yui_turn_interrupted": true,
+    "yui_pane_state": "idle prompt after 'Interrupted during API call'",
+    "full_render_started": false,
+    "candidate_bytes_exist": false,
+    "candidate_declared": false,
+    "exact_hash_regate_triggered": false,
+    "workspace_disposition": "QUARANTINED_NON_AUTHORITATIVE_BY_CLASSIFICATION; preserve for audit, do not use as authority or candidate source",
+    "cause": "Hwao's supersession dispatcher waited for an idle seat, so the stop order remained queued while Yui continued the earlier broad order in good faith. This is not Yui disobedience."
+  },
+  "protected_state": {
+    "five_passing_candidate_hashes_unchanged": true,
+    "five_cockpit_links_unchanged": true,
+    "cockpit_mp4_count": 35,
+    "published_json_unchanged": true,
+    "paperVideos_ts_unchanged": true,
+    "git_head_and_index_unchanged": true,
+    "no_upload_public_frontend_db_deploy_or_acceptance": true
+  },
+  "verdict": "NO_CANDIDATE_NO_REGATE_BUILD_TRACK_STOPPED_FAIL_CLOSED",
+  "standing_gates": {
+    "mzr_census_audio_candidate": "NOT_BUILT",
+    "goru_reading_time_lead": "PARKED_UNPROVEN",
+    "sibling_why_study_rollout": "HELD_FOR_DUHO_WATCH",
+    "accepted_by_duho": false
+  }
+}

@@ -1,0 +1,445 @@
+                                              MNRAS 000, 1–?? (2021)                              Preprint 8 May 2024             Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                              Cosmic dipoles of active galactic nuclei at optical and radio wavelengths
+                                              display much larger amplitudes than the cosmic microwave background
+                                              dipole
+                                              Ashok K. Singal⋆
+                                              Astronomy and Astrophysics Division, Physical Research Laboratory, Navrangpura, Ahmedabad - 380009, India
+
+
+
+
+arXiv:2403.16581v2 [astro-ph.CO] 7 May 2024
+                                              Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                              ABSTRACT
+                                              Sky distributions of large samples of distant active galactic nuclei (AGNs) have shown dipoles significantly larger
+                                              than the cosmic microwave background (CMB) dipole. However, a recent Bayesian analysis of the QUAIA sample,
+                                              comprising 1.3 million quasars, has yielded a dipole that seems to be in tandem with the CMB dipole, in contravention
+                                              of most previous studies of AGN dipoles. Since the question has large cosmological implications, we investigate the
+                                              QUAIA quasar sample afresh, by directly computing the dipole from asymmetries observed in the source number
+                                              counts. We instead find a dipole 3-4 times as large as the CMB dipole though in the same direction. Further, it has
+                                              been claimed elsewhere that the difference between the CMB dipole and the radio dipole estimated from the NRAO
+                                              VLA Sky Survey (NVSS), the first large catalogue that showed an AGN dipole about four times larger than the CMB
+                                              dipole, can be fully accounted for by incorporating the shot-noise and clustering contributions to the total NVSS
+                                              dipole. A careful reinvestigation of the NVSS dipole, however, shows that the random phenomena like shot noise or
+                                              clustering cannot account for the actually observed NVSS asymmetries, which show a systematic dipole pattern over
+                                              the sky.
+                                              Key words: quasars: general – cosmic background radiation – cosmological parameters – large-scale structure of
+                                              Universe – cosmology: miscellaneous
+
+
+
+                                              1 INTRODUCTION                                                   to be in conformity with the CMB reference frame at much
+                                                                                                               larger redshifts (z ∼
+                                                                                                                                   >
+                                                                                                                                     103 ).
+                                              According to the cosmological principle (CP), a comoving
+                                                                                                                  On the other hand, Mittal, Oayda & Lewis (2024), from
+                                              observer should find the Universe to be isotropic. However
+                                                                                                               a Bayesian analysis of the Quaia sample of quasars (Storey-
+                                              peculiar motion of the observer, a motion with respect to the
+                                                                                                               Fisher et al. 2023), found a dipole that seems to be in tan-
+                                              comoving coordinates of the expanding cosmic fluid, would
+                                                                                                               dem with the CMB dipole. After excising extended Galactic
+                                              introduce a dipole anisotropy in some of the observed sky dis-
+                                                                                                               Plane (|b| < 30◦ ) regions, where the Quaia sample seemed
+                                              tributions. The CMB, for example, shows a dipole anisotropy
+                                                                                                               significantly contaminated by selection effects, Mittal et al.
+                                              which has been interpreted as resulting from a Solar pe-
+                                                                                                               (2024) found evidence that the Quaia quasar dipole is con-
+                                              culiar velocity 370 km s−1 along RA= 168◦ , Dec= −7◦
+                                                                                                               sistent with the CMB dipole, both in terms of the expected
+                                              (Lineweaver et al. 1996; Hinshaw et al. 2009; Aghanim et
+                                                                                                               amplitude and direction. This result seemed to lend support
+                                              al. 2020). Also, dipole anisotropies have been observed in the
+                                                                                                               to the cosmological principle. Since the question at stake, a
+                                              number counts or sky brightness distributions in the large
+                                                                                                               conformity with the CP, has large cosmological implications,
+                                              samples of distant AGNs which have yielded peculiar veloc-
+                                                                                                               we examine the QUAIA quasar sample afresh, using a more
+                                              ities many times larger than that inferred from the CMB,
+                                                                                                               direct approach to compute the dipole from asymmetries ob-
+                                              although mostly in the same direction as the CMB dipole
+                                                                                                               served in the sky distribution of quasar number counts. As
+                                              (Singal 2011,19a,b,21a,b,22,23,24; Rubart & Schwarz 2013;
+                                                                                                               we shall show the QUAIA AGN dipole turns out much larger
+                                              Tiwari et al. 2015; Colin et al. 2017; Bengaly, Maartens &
+                                                                                                               than the CMB dipole, in tune with the other previously de-
+                                              Santos 2018; Secrest et al. 2021; Siewert, Rubart & Schwarz
+                                                                                                               termined AGN dipoles and thereby inconsistent with the CP.
+                                              2021; Dam, Lewis & Brewer 2022; Kothari et al. 2022; Wa-
+                                                                                                                  Further, for the NVSS radio catalogue, which was the first
+                                              genveld, Klöckner & Schwarz 2023). From that it appears
+                                                                                                               large AGN sample that showed a dipole amplitude about four
+                                              that the reference frame of the universe at relatively closer
+                                                                                                               times as large as the CMB dipole (Singal 2011), it has been
+                                              though still at cosmological redshifts (z ∼
+                                                                                        >
+                                                                                          1), does not seem
+                                                                                                               claimed recently (Cheng, Chang & Lidz 2023) that the ob-
+                                                                                                               served difference between the amplitudes of NVSS and CMB
+                                                                                                               dipoles can be fully accounted for by incorporating the con-
+                                              ⋆   E-mail: ashokkumar.singal@gmail.com                          tributions of shot-noise and clustering to the NVSS dipole
+
+                                              © 2021 The Authors
+2     A. K. Singal
+and it has been the conclusion that the NVSS dipole is con-
+sistent with a kinematic origin for the CMB dipole within
+ΛCDM. However, from a careful examination of the dipole
+determined from the NVSS data at different flux-density lev-
+els and spanning different declination ranges, we show that
+their observed systematic dipole patterns over the sky rule
+out that any random phenomena like shot noise or clustering
+could account for the actually observed NVSS dipole.
+
+
+
+
+                                                                    Figure 1. The sky distribution of 1.3 million quasars in the QUAIA
+                                                                    mG < 20.5, |b| > 10◦ sample, in the Hammer–Aitoff equal-area
+2 A BRIEF DESCRIPTION OF THE METHOD                                 projection map, plotted in galactic coordinates.
+
+Following the CP, we expect for a comoving observer the num-
+ber distribution of quasars to be uniform over the sky. How-
+ever, a peculiar motion of the observer along with the Solar
+system, because of stellar aberration and Doppler boosting,
+would introduce in the otherwise uniform number density an
+apparent dipole, along the direction of motion, with an am-
+plitude
+
+                  v
+D = [2 + x(1 + α)] ,                                         (1)
+                  c
+
+where v is the peculiar velocity of the Solar system, c is
+the velocity of light, α is the spectral index, defined by
+S ∝ ν −α , and x is the index of the integral source counts of
+extragalactic source population, which follows a power law,
+N0 (> S) ∝ S −x (Ellis & Baldwin 1984; Crawford 2009).
+   A vector sum of the angular position vectors of all sources
+in a sample having a full sky-coverage gives the direction of
+the dipole as well as provides a measure of the dipole am-          Figure 2. A plot of the integrated source counts N (< mG ) against
+plitude. This is called the dipole vector method (Crawford          mG for the QUAIA sample, showing the power law behavior of the
+2009; Singal 2011,24). We can investigate the dipole using          source counts. From piece-wise straight line fits to data in different
+another way, known as hemisphere method, by computing               mG ranges, the slope appears to steepen for stronger sources, as
+                                                                    shown by continuous lines with the slope values written above.
+projection of the dipole in various directions of the sky. For
+this, we first divide the sky into 10◦ × 10◦ pixels, creating
+a grid of 422 cells covering the whole sky. Then taking the
+                                                                    3 DIPOLE SEEN IN THE SKY DISTRIBUTION OF
+centre of each of these 422 cells, we divide the sky in two
+                                                                      QUAIA QUASARS
+equal hemispheres, Σ1 and Σ2 , with Σ1 centred on the cho-
+sen cell and Σ2 as the opposite hemisphere and count the            QUAIA, the Gaia-unWISE Quasar Catalog, is a publicly
+number of sources N1 , N2 within Σ1 , Σ2 respectively in our        available, an all-sky spectroscopic quasar sample, which may
+sample. Then 2(N1 − N2 )/(N1 + N2 ) gives the component of          be a highly competitive sample for cosmological large-scale
+the dipole in the direction of the chosen cell (Singal 2023,24).    structure analyses (Storey-Fisher et al. 2023). The sample
+A contour map of thus computed dipole components yields             is drawn from the 6,649,162 quasar candidates, identified
+the direction and amplitude for the dipole. The pole direction      by the Gaia mission (Gaia Collaboration 2016), released in
+is expected to be in vicinity of the highest contour value. We      Gaia DR3 (Gaia Collaboration 2023a,b). Further, all Gaia
+expect a cos ψ dipole pattern with respect to the true dipole       quasars have been cross-matched with those from the Wide-
+direction in sky, with a minimum of a chi-square fit in that        field Infrared Survey Explorer (WISE; Wright et al. 2010),
+direction, which should agree with the corresponding value          to also provide photometric information in the W1 and W2
+derived directly from the dipole vector method in case of a         infrared bands. The QUAIA catalogue is available in two ver-
+genuine dipole.                                                     sions with different Gaia G-band magnitude limits, the full
+   For a partial sky-coverage with symmetric cuts in diametri-      mG < 20.5 version containing 1,295,502 quasars, and a re-
+cally opposite regions, e.g. |b| < 30◦ , which affect the forward   duced but cleaner version with 755,850 quasars, which is just
+and backward measurements identically, there is no effect on        a subset of the larger catalogue with an additional magnitude
+the direction inferred for the dipole (Ellis & Baldwin 1984,        cut, mG < 20.0.
+Singal 2011), except that position errors may be higher be-            Figure 1 shows a Hammer–Aitoff equal-area projection
+cause of the smaller sample. The dipole amplitude may need,         plot in galactic co-ordinates of the QUAIA quasars with
+however, to be corrected in such cases by factors of order          mG < 20.5, |b| > 10◦ . According to Storey-Fisher et al.
+unity (Singal 2011,24).                                             (2023), the QUAIA sample has significantly lower accuracy
+
+MNRAS 000, 1–?? (2021)
+                                                      Cosmic AGN dipoles are much larger than CMB dipole                                3
+
+Table 1. Dipole estimates for the QUAIA sample for various G-magnitude (mG ) limits with different galactic latitude (b) cuts.
+
+
+                   (1)          (2)            (3)      (4)       (5)         (6)         (7)             (8)
+                  Serial    G-magnitude         |b|      N      Observed dipole vector and inferred peculiar velocity
+                   No.         (mG )          limit               RA         Dec           D               p
+                                               (◦ )               (◦ )        (◦ )       10−2        (370 km s−1 )
+
+                    1         mG < 20.5       > 30    917565    181 ± 14    +20 ± 13    3.3 ± 0.5        4.2 ± 0.6
+                    2         mG < 20.5       > 40    680931    180 ± 15    +20 ± 14    2.4 ± 0.6        3.0 ± 0.7
+                    3         mG < 20.5       > 35    797350    181 ± 14    +19 ± 13    2.9 ± 0.6        3.7 ± 0.7
+
+                    4         mG < 20.0       > 30    530364    179 ± 15    +17 ± 13    3.3 ± 0.5        4.2 ± 0.6
+                    5         mG < 20.0       > 40    395134    175 ± 16    +16 ± 14    2.3 ± 0.6        3.0 ± 0.7
+                    6         mG < 20.0       > 35    461905    178 ± 15    +14 ± 13    2.9 ± 0.6        3.6 ± 0.7
+
+                    7      20 < mG < 20.5     > 30    387201    184 ± 15    +24 ± 13    3.3 ± 0.5        4.2 ± 0.6
+                    8      20 < mG < 20.5     > 40    285797    186 ± 16    +26 ± 14    2.5 ± 0.6        3.2 ± 0.7
+                    9      20 < mG < 20.5     > 35    335445    186 ± 15    +24 ± 13    3.0 ± 0.6        3.8 ± 0.7
+
+
+
+around the Galactic Plane, as can be seen from Fig. 1 here.
+To mitigate its effects on the determined dipole, we restrict
+the Galactic latitude in our sample to |b| > 30◦ . As noted by
+Mittal et al. (2024), the |b| < 30◦ mask should cover much of
+the problematic regions, but to counter the possibility that
+some issues of non-uniformity at the edge of the mask (Fig. 1)
+may still seep into our sample, following Mittal et al. (2024)
+we also employ |b| < 40◦ mask. Apart from that, *
+   To determine the power law index x for our sample of
+quasars, we have made a plot of the integrated source counts
+N (< mG ) against mG , in Fig. 2, which shows a power law be-
+havior of the integrated source counts, with a slope that varies
+between 0.52 and 0.9. As emphasized by Singal (2023), the             Figure 3. A contour map of the dipole amplitudes, estimated
+                                                                      for various directions in the sky, from the QUAIA mG < 20.0,
+relevant values of x and α are the ones in the vicinity of the
+                                                                      |b| > 35◦ data. The contour values depict components of the es-
+lower threshold flux density and are determined empirically
+                                                                      timated peculiar velocity, in units of the CMB value of 370 km
+from actual observations. Since the index in the N (< mG )            s−1 , in various directions of the sky. The horizontal and vertical
+plots (Fig. 2) for the weakest sources in our two samples,            axes denote RA and Dec in degrees. Positive component values
+mG = 20.5 and mG = 20.5, is 0.52, accordingly the index of            are shown by continuous contour lines, while the negative compo-
+integral source counts in our sample is x = 2.5 × 0.52 = 1.3.         nent values are shown by dotted lines. The dashed curve represents
+For the spectral index, we have taken α ≈ 2.4 for both sam-           zero amplitude of the dipole component. The optimum pole direc-
+ples (Mittal et al. 2024). The peculiar speed, accordingly, is        tion is expected to be in vicinity of the highest contour value that
+determined in our sample from, v ≈ cD/6.4. For convenience            seems to lie in close proximity of the CMB pole position, indicated
+of a comparison with the CMB dipole, we use a parameter p             by symbol ⊙. The symbol ⊕ indicates the optimum pole position
+                                                                      where a 3D cos ψ fit yields a minimum chi-square, while 1σ and
+to express the peculiar velocity v, in units of the CMB value,
+                                                                      2σ errors are indicated by grey ellipses around it.
+so that v = p × 370 km s−1 . It means a peculiar velocity
+equal to the CMB value is represented by p = 1. Of course,
+because of large gaps because of the Galactic Plane masks,            ferred dipoles in these two statistically-independent samples
+we apply appropriate corrections, which are of the order of           gives us confidence in the dipole values.
+unity (Singal 2024), in the dipole amplitudes.                           We do not know Why the Bayesian analysis by Mittal et al.
+   Table 1 gives the dipole estimates for both QUAIA samples          (2024) had yielded a different results for the dipole. We have
+mG < 20.5 and mG < 20.0, with different Galactic Plane cuts           used the version v0.1.0 of Quaia, the same as used by Mittal
+(|b| > 30◦ , |b| > 40◦ ). We have also made an intermediate cut       et al. (2024). We did not incorporate the selection function
+|b| > 35◦ . For either of the mG < 20.5 or mG < 20.0 QUAIA            provided by (Storey-Fisher et al. 2023). The reason being
+samples, the dipole amplitude is significantly higher (about          that their procedure seems to obliterate any dipole asymme-
+three to four times) than the CMB dipole. We also used the            tries across the sky as according to Storey-Fisher et al. : ”In
+QUAIA sample with 20 < mG < 20.5. As can be seen from                 the case of no selection effects (and under the assumption of
+Table 1, a comparison of the results from rows 7-9 with those         isotropy), we would expect each pixel to contain roughly the
+in rows 4-6 shows consistent values for the dipole estimates,         same number of sources.” Later they mention: ”We take the
+both on position and amplitude, from QUAIA quasars in the             mean predicted number of quasars in these clean pixels, nor-
+20 < mG < 20.5 sample vs. in the mG < 20.0 sample. Now                malize the predicted source numbers by this mean, and then
+these two quasar samples are independent of each other, with          fix pixels with normalized values greater than 1 to exactly 1.”
+not even a single source overlapping. A consistency of the in-        In our opinion the dipoles will get suppressed in this proce-
+
+                                                                                                               MNRAS 000, 1–?? (2021)
+4     A. K. Singal
+
+Table 2. Velocity vector from number counts for the NVSS dataset in different declination ranges with |b| > 10◦ .
+
+
+                 (1)         (2)              (3)          (4)        (5)          (6)          (7)            (8)
+                Serial   Flux-density     Declination       N                Peculiar velocity vector estimate
+                 No.          S             range                     RA           Dec           D              p
+                            (mJy)             (◦ )                    (◦ )         (◦ )       (10−2 )     (370 km s−1 )
+
+                  1          ≥ 18           |δ| ≤ 40     252842    157 ± 10     +06 ± 10     1.7 ± 0.3     4.0 ± 0.8
+                  2          ≥ 18        20 < |δ| ≤ 40   116596    165 ± 15     +07 ± 14     2.0 ± 0.5     4.5 ± 1.1
+                  3          ≥ 18           |δ| ≤ 20     136246    149 ± 14     +05 ± 13     1.6 ± 0.4     3.7 ± 1.0
+
+
+
+dure and that might be the reason why results of Mittal et
+al. (2024) differ from ours.
+   Figure 3 shows a contour map of our computed dipole com-
+ponents. The dipole direction for the corresponding QUAIA
+sample (Table 2), where a 3D cos ψ fit yields a minimum
+chi-square value (Singal 2023,24), lies on the maxima of the
+contour map, which lies very close to the CMB dipole position
+on sky. However, the maxima of the contour level, represent-
+ing the dipole amplitude, is at least a factor of three higher
+than the CMB dipole, in tune with the other previously de-
+termined AGN dipoles, which are inconsistent with the CP.
+
+                                                                       Figure 4. A contour map of the dipole amplitudes, estimated for
+                                                                       various directions in the sky, for the NVSS data with S ≥ 18, in
+                                                                       the range 20 < |δ| ≤ 40. The contour values depict components
+                                                                       of the estimated peculiar velocity, in units of the CMB value of
+4 THE CASE OF NVSS DIPOLE
+                                                                       370 km s−1 , in various directions of the sky. The horizontal and
+The NRAO VLA Sky Survey (NVSS), comprising 1.8 mil-                    vertical axes denote RA and Dec in degrees. Positive component
+lion radio sources with a flux-density limit >3 mJy at 1.4             values are shown by continuous contour lines, while the negative
+GHz (Condon et al. 1998), was the first large catalogue that           component values are shown by dotted lines. The dashed curve
+                                                                       represents zero amplitude of the dipole component. The optimum
+showed in the sky distribution of distant AGNs a dipole asym-
+                                                                       pole direction is expected to be in vicinity of the highest contour
+metry about four times larger (Singal 2011) than the CMB
+                                                                       value that seems to lie in close proximity of the CMB pole position,
+dipole asymmetry, though the direction of the AGN dipole               indicated by symbol ⊙. The symbol ⊕ indicates the optimum pole
+turned out strangely in the same direction as the CMB dipole.          position where a 3-D cos ψ fit yields a minimum chi-square, while
+A large dipole in the NVSS data has subsequently been con-             1σ and 2σ errors are indicated by grey ellipses around it.
+firmed (Singal 2019a,23,24; Rubart & Schwarz 2013; Tiwari
+et al. 2015; Colin et al. 2017; Bengaly et al. 2018; Siewert et
+al. 2021; Secrest et al. 2022; Wagenveld et al. 2023). How-            plitude of the NVSS dipole being larger than the CMB by a
+ever, it has been recently claimed that the large amplitude in         factor of four is not resulting from a local clustering.
+the NVSS data, could be resulting from the shot noise in the              Further, in Singal (2024), the NVSS dipole was computed
+observed numbers of sources and the occurrence of clustering           not only at different flux-density levels, but now for any given
+(Cheng et al. 2023), and that the NVSS dipole could be in              flux-density range, say for S > 18mJy, the dipole was de-
+tune with the CMB dipole, both in direction and amplitude,             termined for various sub-samples with different declination
+as expected according to CP.                                           ranges, though with considerable overlaps. Again, different
+   It should be noted here that the NVSS dipole has been               sub-samples gave consistent values for the direction and am-
+determined at various flux-density levels, where in all cases          plitude of the NVSS dipole. Now the shot noise as well as
+the dipole yielded similar values, with amplitude about four           clustering in different sub-samples covering different declina-
+times the CMB dipole and direction similar to that of the              tion regions cannot be the same so as to yield the same dipole
+CMB dipole (Singal 2011). Such would not happen if the in-             in all cases.
+ferred larger amplitude of the dipole were mainly due to the              Here one should note that the shot noise as well as clus-
+random effects like shot noise. Moreover the errors for the            tering will cause random fluctuations in the dipole amplitude
+dipole amplitudes in Singal (2011) had already taken into ac-          as well as in its direction. It would be a rather contrived sce-
+count the shot noise in the number counts. These estimated             nario if in all cases the direction of the dipole affected by shot
+errors were much smaller than the computed amplitude val-              noise as well as clustering were to yield much larger dipole
+ues. Also, in order to see if there were any effects of any lo-        but always toward the CMB dipole direction. In the case of
+cal clustering in the direction of the Virgo Supercluster, the         NVSS the observations have yielded the same large value of
+dipole amplitude was determined after making cuts in NVSS              the dipole amplitude (about four times the CMB dipole) in
+data in progressively increasing Supergalactic latitude values,        the same direction, even when the samples were used with
+but no significant changes were seen in the computed dipole            different lower cutoff levels (Singal 2011,19a,23). Such would
+amplitude. From that it was concluded that the observed am-            not occur except in a very much contrived case.
+
+MNRAS 000, 1–?? (2021)
+                                                          Cosmic AGN dipoles are much larger than CMB dipole                             5
+                                                                             Since the declination ranges chosen in Singal (2024) had
+                                                                          substantial overlaps, with a number of common sources, we
+                                                                          attempt here declination ranges with no overlap. Table 2
+                                                                          shows the dipole position and amplitude for the S > 18mJy
+                                                                          sample for three declination ranges, |δ| ≤ 40◦ , 20◦ < |δ| ≤ 40◦
+                                                                          and |δ| ≤ 20◦ . In fact, the sky-coverage limit 20◦ < |δ| ≤ 40◦
+                                                                          in the 2nd row has no overlap with the sky-coverage limit,
+                                                                          |δ| ≤ 20◦ in the 3rd row of Table 2, where, with not even
+                                                                          a single common source and thus statistically independent
+                                                                          shot noise as well as clustering, if any, the dipole in each case
+                                                                          turns out to be not only very similar in amplitude, but also
+                                                                          the direction turns out so close to the CMB dipole direction
+                                                                          in either case.
+                                                                             Figure 4 shows a contour map of the computed dipole for
+                                                                          various sky points. For this, as in Fig 3, the sky was divided
+                                                                          into 10◦ × 10◦ pixels, creating a grid of 422 cells covering the
+Figure 5. The dipole component D, computed for various polar              whole sky and the component of the dipole in the direction
+angles with respect to the dipole direction, RA= 165◦ , Dec= 7◦           of each cell was computed. In order to compute the expected
+(derived by the dipole vector method, Table 2) for the NVSS sam-          dipole amplitude, we used α = 0.65 and x = 0.95 for the
+ple in the range 20 < |δ| ≤ 40. The corresponding component               NVSS data (Singal 2024). The contours appear to have a
+values of peculiar velocity p (in units of CMB value 370 km s−1 )         systematic angular pattern over the sky with a maxima close
+are shown on the right hand vertical scale. Plotted circles (o) with
+                                                                          to the CMB dipole position in sky and the amplitude close to
+error bars show values for bin averages of the dipole components,
+                                                                          four times the CMB dipole amplitude. If the inferred dipole
+obtained for various 20◦ wide slices of the sky in polar angle, while
+the dashed line shows a least square fit of cos ψ to the bin average      amplitude p ∼ 4 were instead due to something like a shot
+values.                                                                   noise or clustering, both random phenomena, then we should
+                                                                          be seeing random variations of that order in amplitude dis-
+                                                                          tribution over the sky which we do not see. It is clear that
+                                                                          the dipole amplitude of p ∼ 4 is not resulting from shot noise
+                                                                          or clustering and is genuinely present even if otherwise we
+                                                                          may not be sure of its cause of origin, whether Solar pecu-
+                                                                          liar motion or some other as yet unknown, but may be some
+                                                                          intrinsic effect.
+                                                                             The shot noise or clustering might introduce some ran-
+                                                                          dom fluctuations in the computed dipole, both in direction
+                                                                          and amplitude, but then one would not expect a systematic
+                                                                          cos ψ variation of the dipole pattern with respect to the max-
+                                                                          imum value. To investigate that, we have plotted in Fig. (5)
+                                                                          the dipole component D, for various sky points, as a scatter
+                                                                          plot for various polar angles, measured with respect to the
+                                                                          dipole direction, RA= 165◦ , Dec= 7◦ , derived from dipole
+                                                                          vector method, (Table 2, for the NVSS sample in the range
+                                                                          20 < |δ| ≤ 40. We also computed bin averages of the dipole
+                                                                          component D in 20◦ wide slices of the sky by divided the sky
+                                                                          into bins of 20◦ width in polar angle about the above pole
+                                                                          position, viz. RA= 165◦ , Dec= 7◦ . The scatter plot and their
+                                                                          various bin-average values clearly show the expected cos ψ
+                                                                          behaviour with a maximum value of p = 4.5 (Fig. 5). A least
+                                                                          square fit of cos ψ to the bin average values (Fig. (5)) shows
+                                                                          that the computed D values for various sky points at polar
+Figure 6. A 3-D plot of the reduced chi-square (χ2ν ) values (in violet   angles (ψ) do follow a systematic cos ψ dependence. The cor-
+colour), from the cosfit routine for various trial directions for the     responding component values of peculiar velocity p (in units
+NVSS data with S ≥ 18, in the range 20 < |δ| ≤ 40. The horizontal         of CMB value 370 km s−1 ) are shown on the right hand ver-
+plane shows the direction in sky as RA and Dec in degrees. The
+                                                                          tical scale.
+position (RA and Dec) of the minimum of the reduced chi-square is
+determined at RA= 165◦ , and Dec= 07◦ from the 2-D projections,
+                                                                             In case of a genuine dipole, one expects a cos ψ dipole pat-
+shown in light grey.                                                      tern with respect to the true dipole direction in sky, with a
+                                                                          minimum of a chi-square fit in that direction. To check that,
+                                                                          we made a 3-D cos ψ fit for each of the n = 422 positions for
+                                                                          the remaining n − 1 p values, and computed the chi-square
+                                                                          value for each of these n fits. A reduced Chi-squared (χ2ν )
+                                                                          values for the 3-D cos fits made to the dipole amplitudes
+                                                                          estimated for various trial dipole directions across the sky,
+                                                                          shows a clear minimum (Fig. (6)), from which we infer the
+
+                                                                                                                 MNRAS 000, 1–?? (2021)
+6     A. K. Singal
+direction of the observer’s peculiar velocity as RA = 165◦ ,       Mittal V., Oayda O. T., Lewis G. F., 2024, MNRAS, 527, 8497
+and Dec = 7◦ , which agrees very well with the corresponding       Rubart M., Schwarz D. J., 2013, A&A, 555, A117
+value derived directly from the dipole vector method (Table 2,     Secrest N. J., Hausegger S. V., Rameez M., Mohayaee R., Sarkar
+20 < |δ| ≤ 40).                                                    S., Colin J., 2021, ApJ, 908, L51
+                                                                   Secrest N., Hausegger S. V., Rameez M., Mohayaee R., Sarkar S.,
+                                                                   2022, ApJ, 937, L31
+                                                                   Siewert T. M., Rubart M. S., Schwarz D. J., 2021, A&A, 653, A9
+5 CONCLUSIONS                                                      Singal A. K., 2011, ApJ, 742, L23
+                                                                   Singal A. K., 2019a, Phys. Rev. D, 100, 063501
+It was shown that the QUAIA quasar dipole, which had ear-          Singal A. K., 2019b, MNRAS, 488, L104
+lier been shown through a Bayesian analysis to be consistent       Singal A. K., 2021, Universe 7, 107
+with the CMB dipole, shows from a direct determination to          Singal A. K., 2022a, MNRAS, 511, 1819
+be about three to four times larger in amplitude. Also the         Singal A. K., 2022b, MNRAS, 515, 5969
+NVSS dipole, which was recently claimed to be affected by          Singal A. K., 2023, MNRAS, 524, 3636
+random shot noise and clustering, has a systematic dipole          Singal A. K., 2024, MNRAS, 528, 5679
+pattern in sky which cannot be due to som ransom precesses.        Storey-Fisher, K., Hogg, D. W., Rix, H.-W., Eilers,
+The dipoles determined from the asymmetries seen in the an-        A.-C., Fabbian, G., Blanton, M., Alonso, D., 2023,
+gular distribution of AGNs in sky appear almost always to          https://doi.org/10.5281/zenodo.8060755
+                                                                   Tiwari P., 2019, Res. Astr. Astrophys., 19, 96
+be of significantly larger amplitudes than the CMB dipole,
+                                                                   Tiwari P., Kothari R., Naskar A., Nadkarni-Ghosh S., Jain P.,
+although their directions seem to overlap within statistical       2015, Astropart. Phys., 61, 1
+uncertainties. Such large differences in the amplitudes of the     Wagenveld J. D., Klöckner H.-R., Schwarz D. J., 2023, A&A, 675,
+AGN and CMB dipoles but non-random orientations in sky             A72
+cannot be due to some random process like shot noise or clus-
+tering in the AGN number distributions, instead it suggests
+a preferred direction in the Universe, which contrary to the
+conventional wisdom is not due to a peculiar motion of the
+Solar system, raises doubts about the CP, the basic founda-
+tion of the standard model in modern cosmology.
+
+
+DECLARATIONS
+The author has no conflicts of interest/competing interests
+to declare that are relevant to the content of this article. No
+funds, grants, or other support of any kind was received from
+anywhere for this research.
+
+
+DATA AVAILABILITY
+The data used in this article is freely available at DOI
+10.5281/zenodo.8060755.
+
+
+REFERENCES
+ Aghanim N. et al., 2020, A&A, 641, A1
+ Aluri P. K. et al., 2023, Class. Quant. Grav., 40, 094001
+ Bengaly C. A. P., Maartens R., Santos M. G., 2018, J. Cosm.
+ Astropart. Phys., 4, 31
+ Cheng Y.-T., Chang T.-C., Lidz A., 2023, ArXiv:2309.02490
+ Colin J., Mohayaee R., Rameez M., Sarkar S., 2017, MNRAS,
+ 471, 1045
+ Condon J. J., Cotton W. D., Greisen E. W., Yin Q. F., Perley R.
+ A., Taylor G. B., Broderick J. J., 1998, AJ, 115, 1693
+ Crawford F., 2009, ApJ, 692, 887
+ Dam L., Lewis G. F., Brewer B. J., 2023, MNRAS, 525, 231
+ Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377
+ Gaia Collaboration, 2016, A&A, 595, A1
+ Gaia Collaboration, 2023a, A&A, 674, A1
+ Gaia Collaboration, 2023b, A&A, 674, A41
+ Hinshaw G. et al., 2009, ApJS, 180, 225
+ Kothari R., Panwar M., Singh G., Tiwari P., Jain P., 2024, Eur.
+ Phys. J. C., 84, 75
+ Lineweaver C. H., Tenorio L., Smoot G. F., Keegstra P., Banday
+ A. J., Lubin P., 1996, ApJ, 470, 38
+
+MNRAS 000, 1–?? (2021)
+

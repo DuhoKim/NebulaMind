@@ -72,9 +72,47 @@ one of our own notes. That drops 27 to 5, and the 5 survive inspection.
 Recorded because the failure mode is generic: a citation-shaped string proves the paper was
 *cited*, not that it is *present*. Any future acquisition sweep will hit this.
 
-### Still unpinned: 27 of 51
+---
 
-Entries 2, 3, 4, 5, 8, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 42, 46,
+## EXTENSION 2026-08-28 (2) — the ranked targets, acquired. +6 entries
+
+`a1_fetch_unpinned.py` in `bhu-acquisition-20260828/`, 3/3 self-checks, exit 0.
+
+Cross-referencing the bibliography's OWN ranked target list against the pinned set showed the
+ranking was mostly unacquired — ranks 3, 4 and 5 entirely, and rank 1 missing exactly one paper:
+
+| entry | pinned file | sha256 (12) | why it was on the list |
+|---|---|---|---|
+| 8 | `0902.1994_clean.txt` | `6c22823e60a6` | rank 1 — the only missing member of the Popławski spine |
+| 21 | `2203.13295_clean.txt` | `82f0d604d5b4` | rank 4 — Roupas "detectable" |
+| 22 | `2606.25023_clean.txt` | `14e2200090a9` | rank 5 — Easson no-go theorems |
+| 23 | `2003.11544_clean.txt` | `25cf2122ba7b` | rank 3 — parent of entry 54's causal-horizon chain |
+| 24 | `2104.00521_clean.txt` | `ff5670f8ff9a` | rank 3 supporting |
+| 27 | `2204.11608_clean.txt` | `c1e91c0a88a6` | rank 3 supporting |
+
+**Auditable corpus: 24 → 30 of 51.**
+
+### The paywall claim below is WRONG for the targets that matter
+
+The section that follows says the unpinned set carries "a DOI and nothing else, so acquisition
+means a per-paper lookup with real paywall risk (Elsevier, Springer, APS)." That framing cost
+this lane time. In fact **EPJC is gold OA via SCOAP3, Symmetry and Universe are MDPI OA, and
+Popławski, Gaztañaga and Easson all post to arXiv.** Six of eight targets resolved on a single
+arXiv title query and downloaded in one pass, in under a minute, with no paywall encountered.
+
+The correct statement is narrower: the *bibliography* records DOIs only, so the identifiers are
+missing from our record — not from the world. A title query recovers them.
+
+**Still genuinely unresolved: entries 25 and 26** (Gaztañaga, "The Black Hole Universe" Parts I
+and II, Symmetry 14, 1849 and 14, 1984). No arXiv posting under those titles. Both are MDPI
+open access, so they are *available* — they just need fetching from mdpi.com rather than arXiv.
+These are rank 3's two primary papers and remain the largest single hole.
+
+---
+
+### Still unpinned: 21 of 51 (was 27)
+
+Entries 2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20, 21, 25, 26, 28, 42, 46,
 47, 48, 50, 56. The bibliography names an arXiv id for only two of them; the rest carry a DOI and
 nothing else, so acquisition means a per-paper lookup with real paywall risk (Elsevier, Springer,
 APS). `LIBRARY_REQUEST_20260825.md` already exists and covers part of this set.

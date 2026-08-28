@@ -1,0 +1,66 @@
+{
+  "receipt_id": "TORI_GORU_OVERNIGHT_QUALITY_SWEEP_V2_RECEIPT_BLOCKER_20260810T0122K",
+  "created_at_kst": "2026-08-10T01:22:38+09:00",
+  "reviewer": "Tori",
+  "artifact": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/GORU_OVERNIGHT_QUALITY_SWEEP_LEDGER_V2_20260810T0116K.json",
+    "sha256": "fe6b73ea37118bfb3485c27719289d7256ad03e8efe0ada0c58658c85e65dd16",
+    "bytes": 77661,
+    "json_parse": "PASS",
+    "top_level_keys": [
+      "receipt_id",
+      "operation_timestamp",
+      "lanes"
+    ]
+  },
+  "verdict": "HOLD_GORU_QUALITY_SWEEP_V2_SELF_DESCRIPTION_INCOMPLETE",
+  "passing_checks": [
+    "All five candidate MP4 hashes match current custody.",
+    "All five named timeline-source hashes match bytes at the stated absolute paths.",
+    "All five named encoded-QA motion-source hashes match bytes at the stated absolute paths.",
+    "Per-card whitespace token arithmetic matches each stored measured_visible_word_count.",
+    "The ledger separates dwell and word-count scalars rather than directly storing the original derived reading-time table."
+  ],
+  "blocking_findings": [
+    {
+      "code": "CLAIMED_V2_CORRECTIONS_ABSENT_FROM_FILE",
+      "detail": "The pane claimed V2 contained the corrected consistency basis, seven-surface matrix, Lana-bound decisions, and separated 200-WPM policy. The actual JSON has only receipt_id, operation_timestamp, and lanes. It contains no consistency matrix, headers, rails, banner language, colour roles, viewer-facing card grammar, section/end-card decisions, reading-rate policy, derived reading times, or defective-card ledger. The initial 36-defect verdict is therefore not reproduced by this file."
+    },
+    {
+      "code": "VISIBLE_TEXT_SELF_DESCRIPTION_FALSE",
+      "detail": "Every card says visible text is formed by concatenating display_citation, every string in params, and visual_action. visual_action is renderer instruction prose, not necessarily audience-visible copy. Spin examples count sentences such as 'A conceptual all-sky field assembles...' as visible words; the original Goru report itself described visual_action as unstructured prose instructions. Sibling extraction also admits internal schema values such as plane, archive, semantic, paired_strokes, and expression. Forty-four cards contain at least one of those known internal tokens. Whitespace arithmetic is internally consistent, but it does not measure actual on-screen readable words."
+    },
+    {
+      "code": "NO_RENDERED_FIELD_ALLOWLIST_OR_FRAME_BINDING",
+      "detail": "The ledger has no renderer-specific allowlist proving which params fields are painted, no field-to-frame mapping, and no OCR/frame comparison. It cannot distinguish visible labels from animation instructions, icon types, colour-role tokens, or layout keys."
+    },
+    {
+      "code": "MOTION_RECEIPT_STILL_AMBIGUOUS",
+      "detail": "Motion records provide 2-fps summaries and a 0.08 threshold, but metric_definition says mean/max absolute pixel difference without selecting which statistic drives near-unchanged classification, specifying luma/RGB scale and frame resolution, or providing the consecutive-sample series/run boundaries needed to reproduce longest_near_unchanged_seconds."
+    },
+    {
+      "code": "NO_PACKET_MANIFEST_OR_OPERATION_SCRIPT_BINDING",
+      "detail": "V2 binds selected inputs but does not bind the extraction code/command, its hash, outputs, runtime versions, or a manifest for the correction packet. The operation_timestamp alone is not a derivation receipt."
+    }
+  ],
+  "required_correction": {
+    "new_versioned_v3_packet": true,
+    "do_not_modify_v1_or_v2_in_place": true,
+    "requirements": [
+      "Include the actual seven-surface consistency matrix and the Lana-bound rationale for each which-is-right decision in the frozen packet.",
+      "Derive visible word counts from renderer-confirmed painted fields only, using a per-renderer allowlist bound to renderer hashes; exclude visual_action and internal style/icon/layout values unless exact frame evidence proves they are drawn.",
+      "Include per-card exact frame/time binding and an OCR or renderer draw-call cross-check that proves the extracted tokens are audience-visible.",
+      "State the reading-rate policy separately and regenerate the defect table from corrected visible-word counts and measured dwell times.",
+      "Define the motion scalar and scale unambiguously, include the consecutive-sample series and run boundaries, and bind the extraction command/code/hash/runtime.",
+      "Add a packet manifest that binds all inputs, code, ledgers, decisions, and outputs."
+    ]
+  },
+  "effect": {
+    "v1_or_v2_authorizes_yui_edits": false,
+    "new_quality_candidate_authorized": false,
+    "current_passing_candidates_may_be_overwritten": false,
+    "current_cockpit_links_may_be_changed": false,
+    "gate_opened": false,
+    "accepted_by_duho": false
+  }
+}

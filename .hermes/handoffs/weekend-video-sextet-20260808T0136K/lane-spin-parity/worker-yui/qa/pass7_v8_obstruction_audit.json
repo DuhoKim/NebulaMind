@@ -1,0 +1,575 @@
+{
+  "aggregates": {
+    "caption_15pct": {
+      "result_held_badge_detected": 4,
+      "scene_count": 7,
+      "semantic_phrase_scene_counts": {
+        "frame_unstated": 0,
+        "no_outcome_shown": 0,
+        "outcomes_withheld": 1,
+        "result_held": 0,
+        "result_locked": 1,
+        "separate_authorization": 1,
+        "storage_frame_unresolved": 0
+      },
+      "top_region_pixel_identical_to_sealed": 7
+    },
+    "clean": {
+      "result_held_badge_detected": 4,
+      "scene_count": 7,
+      "semantic_phrase_scene_counts": {
+        "frame_unstated": 0,
+        "no_outcome_shown": 0,
+        "outcomes_withheld": 1,
+        "result_held": 1,
+        "result_locked": 1,
+        "separate_authorization": 1,
+        "storage_frame_unresolved": 0
+      },
+      "top_region_pixel_identical_to_sealed": 7
+    },
+    "player_ui_25pct": {
+      "result_held_badge_detected": 4,
+      "scene_count": 7,
+      "semantic_phrase_scene_counts": {
+        "frame_unstated": 0,
+        "no_outcome_shown": 0,
+        "outcomes_withheld": 1,
+        "result_held": 0,
+        "result_locked": 1,
+        "separate_authorization": 0,
+        "storage_frame_unresolved": 0
+      },
+      "top_region_pixel_identical_to_sealed": 7
+    }
+  },
+  "audit": "sealed_v8_caption_and_player_ui_obstruction",
+  "contact_sheets": {
+    "caption_15pct": {
+      "height": 540,
+      "path": "contact_sheet_caption_15pct.png",
+      "sha256": "c972066b3609fd373940662eb45704a7aa80f5aceaa978b83a5580b8e49c7b5a",
+      "width": 1920
+    },
+    "clean": {
+      "height": 540,
+      "path": "contact_sheet_clean.png",
+      "sha256": "553cb7ae2e07ee5e70dd73b8c332c6e36fbd216ffd5d24708291b49fe2f008de",
+      "width": 1920
+    },
+    "player_ui_25pct": {
+      "height": 540,
+      "path": "contact_sheet_player_ui_25pct.png",
+      "sha256": "05ed6b9e625a182bc2725751d0cdf6cadc6d65d6608f53593f4c0e98e2529406",
+      "width": 1920
+    }
+  },
+  "deepening_pass": 7,
+  "frame_count": 21,
+  "human_visual_review_required": true,
+  "raw_ocr_text_stored": false,
+  "scenes": [
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "85b851523df21ed845355d9a63e17c27a054283bb5d4ef1ffdbdce52627581a8",
+          "frame": "frames/scene_01_clean.png",
+          "frame_sha256": "e9759ce1bc350dceb17f4fc28c82570b447eec0487ce75b5d3550f05263a75be",
+          "full_ocr_sha256": "5ab32169542fdd5016e001501999ce4d0f863dbe7cd45ce0f80849b49e5316ab",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": false,
+          "scene": 1,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": true,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "85b851523df21ed845355d9a63e17c27a054283bb5d4ef1ffdbdce52627581a8",
+          "frame": "frames/scene_01_caption_15pct.png",
+          "frame_sha256": "7c21e8530caaa4250e6e1e895fa992a43d8dc8c0c524384ca0d6914696e13060",
+          "full_ocr_sha256": "c855bc9ea80a8f45a7e94fe827f6db66c93ac29bce9cc8068280ecbd39145ab6",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": false,
+          "scene": 1,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": true,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "85b851523df21ed845355d9a63e17c27a054283bb5d4ef1ffdbdce52627581a8",
+          "frame": "frames/scene_01_player_ui_25pct.png",
+          "frame_sha256": "ff0d671a4682a3ae7e2a672b4d5ef308027e17d3db654036296c859cc40ccf7d",
+          "full_ocr_sha256": "c855bc9ea80a8f45a7e94fe827f6db66c93ac29bce9cc8068280ecbd39145ab6",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": false,
+          "scene": 1,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": true,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 1,
+      "sealed_input": "scene_01_s1.png",
+      "sealed_input_sha256": "e9759ce1bc350dceb17f4fc28c82570b447eec0487ce75b5d3550f05263a75be"
+    },
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_02_clean.png",
+          "frame_sha256": "95710fc5afbec50a6ca26639822a5a4e719e395668e6add46333cb1321007f0b",
+          "full_ocr_sha256": "74b6c5cd4d5a546766ccd1ca9d120b3d71b6d5c61d9f64c44dab807525ccd0a2",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": true,
+          "scene": 2,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_02_caption_15pct.png",
+          "frame_sha256": "3751f15b5e8dbec7fec7d65c0d281da7107e16d3001053fa217d4b68cdca88c5",
+          "full_ocr_sha256": "06a96895ce858b66816582ae3821b5ce399312ff7e36c793ad23d4dd50f0e98e",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": true,
+          "scene": 2,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_02_player_ui_25pct.png",
+          "frame_sha256": "a7dd7c3d4d2b4d60dff5f9cedc3c7666b9544984b63ea164cfee0f6bb4bb1f0a",
+          "full_ocr_sha256": "d60aa40dccfdfd797a46436503be080572d8d19344bc7518edaab3ca067ecff5",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": true,
+          "scene": 2,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 2,
+      "sealed_input": "scene_02_s2.png",
+      "sealed_input_sha256": "95710fc5afbec50a6ca26639822a5a4e719e395668e6add46333cb1321007f0b"
+    },
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_03_clean.png",
+          "frame_sha256": "07fb50c7e245b5ccaab213f8b4bb30f0bc5d472526f8cd3453d964d97e39823a",
+          "full_ocr_sha256": "204b1ddf58b8269cc4cb2e0e1bd06593d3f59c00ade9773832923102d697ef66",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": true,
+          "scene": 3,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_03_caption_15pct.png",
+          "frame_sha256": "e295ae55875ecfc45f49a769676e5bba7105abcbae009aeca873885e1924053a",
+          "full_ocr_sha256": "f9ec522358724b0b5b38b46cd75d16c96fe139b1a1246dee428e9fb0fd2642ff",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": true,
+          "scene": 3,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_03_player_ui_25pct.png",
+          "frame_sha256": "34cc79856b00ad8e9c14c40da3f08354f84072dc3ffe484b5169039518c67e0a",
+          "full_ocr_sha256": "131ee7201397d0ca967b9b74ad0ebecfeedb77293ecdc2eb67dd3e0d4928b9b0",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": true,
+          "scene": 3,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 3,
+      "sealed_input": "scene_03_s3.png",
+      "sealed_input_sha256": "07fb50c7e245b5ccaab213f8b4bb30f0bc5d472526f8cd3453d964d97e39823a"
+    },
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_04_clean.png",
+          "frame_sha256": "62993b4e3c4a1ade2ee9cd38cc8eddff3522bc3dd7153917020daff8ef8c4357",
+          "full_ocr_sha256": "a810b07fc8711d7f3d634a1c8530085387076da7ffe84c9b47e15ce4c3564fcc",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": true,
+          "scene": 4,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_04_caption_15pct.png",
+          "frame_sha256": "c102bb138c28ea993210e87603467c8455293b47e5a906f0b49a80299eb7b4b3",
+          "full_ocr_sha256": "ac3234783372ed09747558c02e935c3b810f8a542d06a9c7b88214775cb51ea2",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": true,
+          "scene": 4,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_04_player_ui_25pct.png",
+          "frame_sha256": "8de72d3655ec9e08771144ea6f1486a789663d03e2b04e7f238779ed52e4d656",
+          "full_ocr_sha256": "13d0b2f4e58a9ce307cdc737dbdc38253067af68e19d89b79232535b5fdfb2cb",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": true,
+          "scene": 4,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 4,
+      "sealed_input": "scene_04_s4.png",
+      "sealed_input_sha256": "62993b4e3c4a1ade2ee9cd38cc8eddff3522bc3dd7153917020daff8ef8c4357"
+    },
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "8b848e7e9cd28e44b67523015bd79f297297ae1c6863d2e381bf6b62f90b6978",
+          "frame": "frames/scene_05_clean.png",
+          "frame_sha256": "5041e358f9e7ec2dcb76d2a3b32de02a613cd29b5f0da87fad9574351dc8f4bf",
+          "full_ocr_sha256": "df4489f982e7786e14fb27a2dcfdbfaa1714a36dfb49db1de17756b93f935c2a",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": false,
+          "scene": 5,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "8b848e7e9cd28e44b67523015bd79f297297ae1c6863d2e381bf6b62f90b6978",
+          "frame": "frames/scene_05_caption_15pct.png",
+          "frame_sha256": "d5dac7c8a41155b6e80249231a33396e84f7b3dba4abeb9f95fd25e1fe3de005",
+          "full_ocr_sha256": "a46c64a151c774388c626f9793b72c71e8d68f0d7a3cea38f145a2d3ef08646b",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": false,
+          "scene": 5,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "8b848e7e9cd28e44b67523015bd79f297297ae1c6863d2e381bf6b62f90b6978",
+          "frame": "frames/scene_05_player_ui_25pct.png",
+          "frame_sha256": "b3eb6244a9c5a725b717baf02779359c5c3660d597a13cb2f55c5b9fbef2532d",
+          "full_ocr_sha256": "a46c64a151c774388c626f9793b72c71e8d68f0d7a3cea38f145a2d3ef08646b",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": false,
+          "scene": 5,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 5,
+      "sealed_input": "scene_05_s5.png",
+      "sealed_input_sha256": "5041e358f9e7ec2dcb76d2a3b32de02a613cd29b5f0da87fad9574351dc8f4bf"
+    },
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "4415b7e361fc6f6ba2492adef1f27cfb00d0105e4588177470cecc4214b35284",
+          "frame": "frames/scene_06_clean.png",
+          "frame_sha256": "db3f9efc18404767d36ddb1221f2ada2668161547afefcee5ebba55e8afe6121",
+          "full_ocr_sha256": "f595c25855a68e1b76211075cb7b7f51d7133422c1ce8a47bea28d9cef52a39c",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": false,
+          "scene": 6,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": true,
+            "result_held": true,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "4415b7e361fc6f6ba2492adef1f27cfb00d0105e4588177470cecc4214b35284",
+          "frame": "frames/scene_06_caption_15pct.png",
+          "frame_sha256": "90223415b9ad9290d5533c3319e6003ca5a163f56172011884f68bba815cad6f",
+          "full_ocr_sha256": "02ea9a847ad0b5845ac631edb4a3633a398f7a548a7f1b6400d095bc8f35ba7e",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": false,
+          "scene": 6,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": true,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "4415b7e361fc6f6ba2492adef1f27cfb00d0105e4588177470cecc4214b35284",
+          "frame": "frames/scene_06_player_ui_25pct.png",
+          "frame_sha256": "cec6a68ac7564c68ed57157320ded3692f8f4f8ae2fa2fa53fbb41e3aea1b03d",
+          "full_ocr_sha256": "b8c4216a99c8c7c89468ac7c356282e62c37d507cceb089feb55d2d67229cdf9",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": false,
+          "scene": 6,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": true,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 6,
+      "sealed_input": "scene_06_s6.png",
+      "sealed_input_sha256": "db3f9efc18404767d36ddb1221f2ada2668161547afefcee5ebba55e8afe6121"
+    },
+    {
+      "samples": [
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_07_clean.png",
+          "frame_sha256": "2b411aea73ea486959c1cb8af565bb3dbde7650f814ed42ede6573d56ac2bf56",
+          "full_ocr_sha256": "fbf2749d76febc0e1017f9d2f89c48988d76aa5641059628d9c20c50ee35de79",
+          "mask_start_y": 1080,
+          "occluded_bottom_fraction": 0.0,
+          "result_held_badge_detected": true,
+          "scene": 7,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": true,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "clean"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_07_caption_15pct.png",
+          "frame_sha256": "fbc6b4da9f9f60c6d71ffd6c823605716a727bacfd6c3b99fd76717a649bb677",
+          "full_ocr_sha256": "e6c018bab456c4d88688ddc3e6a0d0ac35d9fce8085d44ffb94863c6b1acc500",
+          "mask_start_y": 918,
+          "occluded_bottom_fraction": 0.15,
+          "result_held_badge_detected": true,
+          "scene": 7,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": true,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "badge_ocr_sha256": "82b23b6e52cdc99cfb480919dfc20901183e78273aa82a0a8172b12e25ae73c8",
+          "frame": "frames/scene_07_player_ui_25pct.png",
+          "frame_sha256": "6764f04d77f24cdf3f344db7df1ccd93e25cfa6981bd0e7aa55979e1610f0e31",
+          "full_ocr_sha256": "b31fc284f013375eb01a39d472ad3de44edfbacbc308d4c9f70a539fc2359845",
+          "mask_start_y": 810,
+          "occluded_bottom_fraction": 0.25,
+          "result_held_badge_detected": true,
+          "scene": 7,
+          "semantic_phrases_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false,
+            "result_locked": false,
+            "separate_authorization": false,
+            "storage_frame_unresolved": false
+          },
+          "top_region_pixel_identical_to_sealed": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 7,
+      "sealed_input": "scene_07_s7.png",
+      "sealed_input_sha256": "2b411aea73ea486959c1cb8af565bb3dbde7650f814ed42ede6573d56ac2bf56"
+    }
+  ],
+  "sealed_v8_modified": false,
+  "sealed_v8_renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+  "sealed_v8_storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+  "shared_or_public_assets_modified": false,
+  "status": "QA_DERIVATIVES_ONLY_NOT_A_CANDIDATE",
+  "tts_invoked": false,
+  "variant_order": [
+    "clean",
+    "caption_15pct",
+    "player_ui_25pct"
+  ],
+  "video_encoded": false
+}

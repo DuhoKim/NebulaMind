@@ -1,0 +1,88 @@
+{
+  "marker": "C41_UVLF_AUDIENCE_DATA_SUPPLEMENT_PROPOSAL_V1",
+  "artifact_class": "WORKER_PROPOSAL_NOT_PUBLIC_SUPPLEMENT",
+  "status": "PREPARED_FOR_HWAO_REVIEW_NOT_PUBLISHED",
+  "purpose": "Provide an audience-verifiable lineage for the 453-row denominator, 176 stored-value cut, six-table geometry, and dominant-source caveat before any public candidate is approved.",
+  "source_freeze": {
+    "row_sample": "T3_CENSUS_SAMPLE.jsonl",
+    "row_sample_sha256": "1cdb3de8738ecf1b80328c147a0dd25a159b147c1b76a1e7dd6473a16eddf5c5",
+    "census_results": "T3_CENSUS_RESULTS.json",
+    "census_results_sha256": "4b21d432524a55bf5746fb3685e89360eaa33f143f68c042975f7259dd645ed7"
+  },
+  "predicate": {
+    "slice": "10 <= z < 11.5",
+    "highlight": "stored muv <= -20",
+    "interpretation": "reported heterogeneous catalogue-native UV-like absolute-magnitude values; no bandpass homogenization"
+  },
+  "totals": {
+    "rows_in_slice": 453,
+    "rows_passing_stored_value_cut": 176,
+    "contributing_vizier_tables": 6
+  },
+  "tables": [
+    {
+      "vizier_table": "J/A+A/704/A339/lephare",
+      "rows_in_slice": 420,
+      "rows_passing_cut": 161,
+      "magnitude_column": "NUVMAG",
+      "redshift_column": "zfinal",
+      "provenance_note": "COSMOS2025 LePhare photo-z catalog",
+      "band_mismatch_restNUV": true
+    },
+    {
+      "vizier_table": "J/A+A/693/A60/catalog",
+      "rows_in_slice": 11,
+      "rows_passing_cut": 6,
+      "magnitude_column": "UVMAG",
+      "redshift_column": "zspec",
+      "provenance_note": "JWST/NIRSpec reference sample; spec-z",
+      "band_mismatch_restNUV": null
+    },
+    {
+      "vizier_table": "J/A+A/705/A114/tablef1",
+      "rows_in_slice": 9,
+      "rows_passing_cut": 5,
+      "magnitude_column": "UVMAG",
+      "redshift_column": "zsp",
+      "provenance_note": "Lya damping-wings z about 6–13 sample; zsp",
+      "band_mismatch_restNUV": null
+    },
+    {
+      "vizier_table": "J/ApJS/278/33/tablea1",
+      "rows_in_slice": 8,
+      "rows_passing_cut": 3,
+      "magnitude_column": "UVMAG",
+      "redshift_column": "z",
+      "provenance_note": "Lya in JADES/GLASS/CEERS; z",
+      "band_mismatch_restNUV": null
+    },
+    {
+      "vizier_table": "J/ApJ/946/L35/final",
+      "rows_in_slice": 4,
+      "rows_passing_cut": 0,
+      "magnitude_column": "UVMag",
+      "redshift_column": "zphot",
+      "provenance_note": "high-z galaxies from JWST ERO; zphot plus z",
+      "band_mismatch_restNUV": null
+    },
+    {
+      "vizier_table": "J/MNRAS/516/2162/table",
+      "rows_in_slice": 1,
+      "rows_passing_cut": 1,
+      "magnitude_column": "UVMag",
+      "redshift_column": "zmed",
+      "provenance_note": "RELICS lensed high-z SED fits",
+      "band_mismatch_restNUV": null
+    }
+  ],
+  "required_publication_fields": [
+    "machine-readable row-level table or exact replayable query/result packet",
+    "the six VizieR table identifiers",
+    "source-native magnitude and redshift columns",
+    "half-open slice and stored-value-cut predicates",
+    "dominant-table shares for full and highlighted cohorts",
+    "no-bandpass-homogenization caveat",
+    "clear statement that rows are not unique confirmed galaxies or a luminosity-function density measurement"
+  ],
+  "closed_gate": "Hwao must choose an audience-reachable publication location and independently verify this proposal before any public video integration. Worker-Yui did not publish it."
+}

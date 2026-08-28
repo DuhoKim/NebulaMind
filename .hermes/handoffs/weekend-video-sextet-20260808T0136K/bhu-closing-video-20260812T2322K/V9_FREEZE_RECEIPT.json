@@ -1,0 +1,74 @@
+{
+  "status": "FROZEN_V9_AWAITING_TIGHT_THREE_SEAT_EXACT_HASH_CONFIRMATION",
+  "created_at": "2026-08-13T13:39:35+0900",
+  "render_authority": false,
+  "render_scope_if_unconditionally_cleared": "LOCAL_ONLY_NO_PAID_GENERATION_NO_UPLOAD",
+  "gate_type": "TIGHT_SAME_CARD_THREE_SEAT_EXACT_HASH_CONFIRMATION",
+  "supersedes_render_authority_from": [
+    "V8_FREEZE_FOR_FULL_REGATE.md",
+    "V8_FREEZE_RECEIPT.json",
+    "preflight_gate_v8.py"
+  ],
+  "review_targets": {
+    "NARRATION_DRAFT_V9.md": "85f111d366c5d11d912e4f7db5586f10b491b12b1c5091d3f94d822c388190b3",
+    "STORYBOARD_DRAFT_V9.json": "c9824b95453be7e67d6066f3810648dc8d588a8c3210546ec9caa5ee74710d7a",
+    "CLAIM_LINE_LEDGER_V9.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V9.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "repair": {
+    "authority": "LANA_GATE_V8.md",
+    "authority_sha256": "4240e33df939a5a0b7bd3cadf7ec54ef5efde04b6066717071e29e9e1d67fb35",
+    "verdict": "PASS WITH ONE REPAIR",
+    "canonical_changed_paths": [
+      "cards[3].narration"
+    ],
+    "derived_changed_channel": "NARRATION_DRAFT_V9.md",
+    "sentence": "One proposal — called cosmological natural selection — says universes have children: every black hole buds off a new universe with slightly different physics."
+  },
+  "v8_verdict_receipts": {
+    "LANA_GATE_V8.md": "4240e33df939a5a0b7bd3cadf7ec54ef5efde04b6066717071e29e9e1d67fb35",
+    "GORU_GATE_V8.md": "d3eb719e7176e9c976bba15134ecc293d42157bb0239ff16d4de2b7b6216c805",
+    "KUN_GATE_V8.md": "c58c0a70a96f0363cf47f36cff6a5bd0541391bbe3621113b9fa4dd3b1aaaa9a"
+  },
+  "verification_receipts": {
+    "make_v9_one_sentence.py": "dd4ea8317223592849d4922cbf434c08e0ca98aa8fc3146910b870eb66246a36",
+    "verify_v9_delta.py": "64fb75aef54e3f6c61995a612155069f2de16d01a0d47a3e784b539e3b3ae14b",
+    "V9_DELTA_RECEIPT.json": "6835ef6c48f3b2ca70482ae7b5dee67325089c287f993d99eaa975ce05a8c497",
+    "V9_BUILD_VERIFICATION.json": "a8776a1b8ba09855d2aa3daa52a7db84ed0e55cd0e3dfb32bc9d69653fc51b6d",
+    "V9_SHORTHAND_AUDIT.json": "2cd55bd9698ec11ccf002b3e1810ab51408bfdbe18f4bca3fa51314e46931624"
+  },
+  "shorthand_audit": {
+    "lexical_initialisms": [
+      "BHU",
+      "CNS",
+      "CW/CCW"
+    ],
+    "scientific_shorthand": [
+      "~",
+      "M☉",
+      "M ≳ 2 M☉",
+      "±",
+      "68.3%",
+      "95.4%",
+      "≠"
+    ],
+    "unearned_string_defects_after_repair": 0,
+    "render_reveal_constraints_required": true,
+    "render_reveal_receipt": "V9_SHORTHAND_AUDIT.json"
+  },
+  "required_verdicts": {
+    "LANA_GATE_V9.md": null,
+    "GORU_GATE_V9.md": null,
+    "KUN_GATE_V9.md": null
+  },
+  "required_verdict_rule": "Each verdict must name all four exact V9 hashes and state an unconditional standalone VERDICT: PASS or PASS_FOR_RENDER. Any PASS WITH, CONDITIONAL, HOLD, or FAIL verdict marker blocks; descriptive mention of the already-applied V8 repair does not.",
+  "blocked_until_gate": [
+    "audio generation",
+    "frame generation",
+    "render",
+    "upload",
+    "publication",
+    "acceptance"
+  ],
+  "publication_state": "The user states the previous upload is PRIVATE and retired. This freeze performs no publication-state mutation."
+}

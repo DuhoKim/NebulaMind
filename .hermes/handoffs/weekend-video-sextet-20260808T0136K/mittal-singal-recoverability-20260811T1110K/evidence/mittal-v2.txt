@@ -1,0 +1,1253 @@
+                                               MNRAS 000, 1–14 (2023)                                                Preprint 16 August 2024                Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                               The Cosmic Dipole in the Quaia Sample of Quasars: A Bayesian Analysis
+
+                                               Vasudev Mittal,1,2∗★ Oliver T. Oayda,2∗ † and Geraint F. Lewis2
+                                               ∗ Joint first author
+                                               1 Department of Physical Sciences, IISER Mohali, Knowledge City, Sector 81, SAS Nagar, Manauli PO 140306, Punjab, India
+                                               2 Sydney Institute for Astronomy, School of Physics A28, The University of Sydney, NSW 2006, Australia
+
+
+
+
+arXiv:2311.14938v2 [astro-ph.CO] 15 Aug 2024
+                                               Accepted 2023 November 24. Received 2023 November 15; in original form 2023 October 17
+
+
+
+                                               ABSTRACT
+                                               We present a Bayesian analysis of the Quaia sample of 1.3 million quasars as a test of the cosmological principle. This principle
+                                               postulates that the universe is homogeneous and isotropic on sufficiently large scales, forming the basis of prevailing cosmological
+                                               models. However, recent analyses of quasar samples have found a matter dipole inconsistent with the inferred kinematic dipole
+                                               of the Cosmic Microwave Background (CMB), representing a tension with the expectations of the cosmological principle. Here,
+                                               we explore various hypotheses for the distribution of quasars in Quaia, finding that the sample is influenced by selection effects
+                                               with significant contamination near the galactic plane. After excising these regions, we find significant evidence that the Quaia
+                                               quasar dipole is consistent with the CMB dipole, both in terms of the expected amplitude and direction. This result is in conflict
+                                               with recent analyses, lending support to the cosmological principle and the interpretation that the observed dipole is due to our
+                                               local departure from the Hubble flow.
+                                               Key words: quasars: general – cosmology: observations – cosmology: theory – large-scale structure of Universe
+
+
+
+                                               1 INTRODUCTION                                                                  the cosmological principle is an accurate description of the universe,
+                                                                                                                               then the peculiar velocity inferred from this dipole should correspond
+                                               A critical assumption in the contemporary cosmological framework
+                                                                                                                               with vCMB .
+                                               is that the universe is homogeneous and isotropic at the largest
+                                               scales (Harrison 2000). This is the cosmological principle, and it
+                                                                                                                                  This matter anisotropy is observed, but there is no clear consensus
+                                               is for example taken as a starting point by the Friedmann-Lemaître-
+                                                                                                                               on whether it is consistent with the cosmological principle or not.
+                                               Robertson-Walker (FLRW) metric of spacetime and the Friedmann
+                                                                                                                               However, the general trend is that the matter dipole studies – specif-
+                                               equations describing cosmic evolution. Homogeneity and isotropy
+                                                                                                                               ically with radio galaxies and quasars – find a dipole that aligns
+                                               were initially raised to the level of an a priori principle by Milne
+                                                                                                                               with the CMB dipole in direction, but is larger in magnitude (Peebles
+                                               (1935) – but the question as to whether there is an a posteriori basis
+                                                                                                                               2022; Kumar Aluri et al. 2023). This ‘dipole anisotropy problem’ thus
+                                               remains. If such a basis cannot be found, then we must critically
+                                                                                                                               represents an outstanding problem amongst cosmological probes. In-
+                                               re-examine the support for prevailing cosmological models.
+                                                                                                                               sofar that a consensus on this issue has not been reached, independent
+                                                  The cosmological principle tacitly assumes the existence of a set
+                                                                                                                               studies of matter dipoles with new catalogues of sources are key in
+                                               of fundamental observers which reside in the ‘cosmic rest frame’
+                                                                                                                               further understanding the nature of this anomaly; for example, does
+                                               where the universe is maximally isotropic. This is supported by
+                                                                                                                               it represents a shortcoming of our scientific understanding or an as
+                                               the fact that the ‘cosmic microwave background’ (CMB) is remark-
+                                                                                                                               of yet unresolved systematic issue?
+                                               ably smooth with temperature anisotropies of order Δ𝑇/𝑇 ≈ 10 −5 .
+                                               However, imprinted on these underlying small-scale fluctuations is
+                                                                                                                                  With this in mind, in this work we present an analysis of the
+                                               a dipole anisotropy of order Δ𝑇/𝑇 ≈ 10 −3 . This is conventionally
+                                                                                                                               recently-released Quaia quasar catalogue (Storey-Fisher et al. 2023).
+                                               explained by the Earth’s peculiar motion through the universe with a
+                                                                                                                               At the highest magnitude limit, this catalogue contains 1 295 502
+                                               speed of 369.82 ± 0.11 km s −1 towards (𝑙, 𝑏) = (264.◦ 021, 48.◦ 253)
+                                                                                                                               sources. We examine the anisotropy in angular distribution of these
+                                               in galactic coordinates (Planck Collaboration et al. 2020), which we
+                                                                                                                               quasars over the sky, applying a Bayesian framework to compare the
+                                               denote as vCMB for future reference. If this explanation (the kine-
+                                                                                                                               inferred dipole to that of the CMB. The structure of this paper is
+                                               matic interpretation of the CMB) is correct, then other cosmological
+                                                                                                                               as follows. In Section 2, we present the background theory and an
+                                               probes using all-sky surveys should show a similar anisotropy. Crit-
+                                                                                                                               overview of the instant state of the literature, including current obser-
+                                               ically, distributions of matter at sufficiently large distances – namely
+                                                                                                                               vations of the cosmic dipole and an assessment of their consistency
+                                               where local clustering effects are negligible – should exhibit a dipole
+                                                                                                                               with the cosmological principle. The data under consideration in this
+                                               anisotropy, which we call the ‘cosmic dipole’ or the ‘matter dipole’. If
+                                                                                                                               study – the Quaia quasar catalogue – is presented in Section 3, and
+                                                                                                                               our approach to analysing the sample is examined in Section 4. The
+                                               ★ E-mail: vasudeviiser@gmail.com                                                results are presented in Section 5. We discuss our results and present
+                                               † E-mail: ooay3125@uni.sydney.edu.au                                            our conclusions in Section 6.
+
+                                               © 2023 The Authors
+2      Mittal, Oayda & Lewis
+2 BACKGROUND: NUMBER COUNT DIPOLE                                           the language of Bayesian statistics have been used less extensively,
+                                                                            which we discuss below.
+The cosmological principle’s key assumption of homogeneity and
+                                                                               Turning away from the radio galaxy studies, Secrest et al. (2021)
+isotropy can, and has been, tested. One critical family of tests involves
+                                                                            showcased that the Ellis & Baldwin (1984) method can be used to
+probing the distribution of matter in the Earth’s frame of reference;
+                                                                            study the matter dipole in quasar samples. This study, taken together
+these are the ‘matter dipole’ studies. If we assume the principle to be
+                                                                            with the joint radio galaxy and quasar analysis in Secrest et al. (2022),
+an accurate description of the universe, then the CMB’s temperature
+                                                                            is perhaps one of the more significant challenges to the cosmological
+dipole is interpreted to arise solely from the Earth’s peculiar motion.
+                                                                            principle. Therein, the authors studied the dipole in the distribution
+Moreover, the dipole-removed frame is the frame of ‘cosmic rest’
+                                                                            of quasars from CatWISE2020 (Marocco et al. 2021) using a least
+where the universe is perceived as maximally isotropic and homoge-
+                                                                            squares estimator, finding that the amplitude was at least twice as
+neous. Insofar that the Earth’s peculiar velocity imprints a Doppler
+                                                                            large as expected (at a 4.9𝜎 level of statistical significance). A similar
+shift on observed sources like radio galaxies, we should be able to
+                                                                            conclusion with the same sample was reached in Kothari et al. (2022).
+recover the magnitude and direction of this motion from the dipole
+                                                                            Separately, Singal (2021) used a sample of 0.28 million quasars and
+in matter distributions over the sky. Framed in this way, measur-
+                                                                            also found a dipole magnitude in excess of the CMB expectation,
+ing the consistency between the CMB-inferred and matter-inferred
+                                                                            although the sample size there was about 5 times smaller than that
+velocities is the linchpin of the matter dipole studies.
+                                                                            of Secrest et al. (2021).
+   To see this, consider an observer moving with velocity 𝑣 ≪ 𝑐
+                                                                               As we touched on earlier, these analyses used frequentist statistics,
+with respect to distant sources which are isotropic and homogeneous
+                                                                            and the results are sensitive to the estimator chosen. However, a
+in their own rest frame. As suggested in Ellis & Baldwin (1984), if
+                                                                            Bayesian analysis of CatWISE2020 was performed by Dam et al.
+within the observer’s passband the sources have a spectral energy
+                                                                            (2023), in which Secrest et al. (2021)’s result of an anomalously
+distribution with a power law dependence on frequency described
+                                                                            large dipole was confirmed at a statistical significance of 5.7𝜎. Taken
+by 𝑆 ∝ 𝜈 − 𝛼 , and the apparent flux density has a cumulative power
+                                                                            together, these results lend evidence to the proposition that the quasar
+law distribution 𝑁 (> 𝑆) ∝ 𝑆 − 𝑥 , then Doppler boosting and relativis-
+                                                                            dipole is in tension with the kinematic dipole inferred from the CMB.
+tic aberration will induce a dipole anisotropy in the distribution of
+                                                                               On the basis of the foregoing, the literature interrogating the matter
+sources in the observer’s frame. The isotropic frame of reference will
+                                                                            dipole is by no means unanimous. That being said, these works do
+be boosted by an amplitude
+                                                                            not represent an exhaustive survey of what is possible; a suite of
+                  𝑣
+D = [2 + 𝑥(1 + 𝛼)] .                                                 (1)    other probes have been formulated, many of which are accounted
+                  𝑐                                                         for in Kumar Aluri et al. (2023). Some of these include tests with
+This is the famous ‘kinematic dipole’, and Ellis & Baldwin (1984)           Type Ia SNe (see e.g. Horstmann et al. 2022; Singal 2022; Sorrenti
+made the rough estimate that a minimum of 𝑂 (105 ) sources would be         et al. 2022), analyses of bulk flows (see e.g. Watkins et al. 2023) and
+needed to discern this dipole. The implicit assumption here is that the     direct probes of the FLRW metric with tests of spatial curvature (see
+observer should survey the sky until a flux density above which there       e.g. Zhou & Li 2020). Recently, Oayda & Lewis (2023) proposed a
+is no directional bias in the completeness of the survey. Additionally,     novel test involving a dipole in time dilation, as sources with intrinsic
+𝑥 and 𝛼 are assumed to not be redshift-dependent, although there            time-scales are time dilated along the direction of the Earth’s motion.
+has been some suggestion that this simplification should be revisited          Returning to quasars, if there is an outstanding tension between
+(see e.g. Dalang & Bonvin 2022). Further, local inhomogeneities             the dipole inferred from quasars and that expected from the CMB,
+introduce a clustering dipole, so for a genuine measurement of the          then closer scrutiny is warranted. Since the cosmological principle is
+cosmic dipole a significant fraction of the sources need to be at high      a foundational assumption in the prevailing cosmological paradigm
+redshifts (𝑧 ≈ 1; Tiwari & Nusser 2016). From equation (1), the net         (Harrison 2000), a challenge to it cannot be easily overlooked. In this
+dipole anisotropy for a patch of sky in the direction n̂ will be            work, we present another analysis of the dipole in quasar distribu-
+                                                                            tions. We tested the recently-released Quaia catalogue (Storey-Fisher
+Δ𝑁                          v                                               et al. 2023), employing Bayesian inference to understand which
+   = D · n̂ = [2 + 𝑥(1 + 𝛼)] · n̂.                                   (2)
+ 𝑁                          𝑐                                               model is best supported by the sample and whether the inferred
+Various all-sky surveys of radio sources have been used to trace out        dipole is consistent with that of the CMB.
+this dipole over the sky, and thus probe the cosmological principle.
+We note that Kumar Aluri et al. (2023) deals with the genealogy of
+these tests in greater detail, but none the less we recount some of the
+                                                                            3 QUAIA CATALOGUE
+salient results here.
+   Blake & Wall (2002) initially found support for a kinematic dipole       The Quaia catalogue (Storey-Fisher et al. 2023) is principally taken
+aligned with the CMB and possessing the expected amplitude. How-            from quasars observed by the Gaia satellite (Gaia Collaboration
+ever, the immediate state of the literature is equivocal as to whether      et al. 2016), which were released in Gaia DR3 (Gaia Collaboration
+or not the matter dipole is consistent with the CMB dipole. Many            et al. 2023a,b). The full sample of DR3 quasar candidates totals to
+studies (see e.g. Singal 2011; Colin et al. 2017; Bengaly et al. 2018;      6 649 162 sources, which was the starting point for the authors.
+Singal 2019; Siewert et al. 2021; Singal 2023; Wagenveld et al. 2023)          In constructing their catalogue, they first imposed that all Gaia
+have reported dipole amplitudes that are in excess of the CMB ex-           quasars have a measurement of photometric magnitude in the 𝐺,
+pectation, while the inferred dipole directions generally align with        𝐵𝑃 and 𝑅𝑃 bands. Additionally, the authors cross-matched each of
+the CMB dipole (although notably Darling (2022) and Cheng et al.            the quasar candidates with those from the Wide-field Infrared Survey
+(2023) find consistency with the CMB dipole for their chosen radio          Explorer (WISE; Wright et al. 2010), using the unWISE reprocessing
+catalogues). We point out that in the foregoing works and amongst           to also provide photometric information in the 𝑊1 and 𝑊2 infrared
+others, authors discussed the appropriate choice of dipole estimator        bands. To decontaminate their sample, the authors imposed proper
+at length, including whether or not certain estimators incur a bias that    motion cuts, since quasars are anticipated to be sources well within
+must be accounted for. To our knowledge, tests instead formulated in        the background, and a number of colour magnitude cuts. They finally
+
+MNRAS 000, 1–14 (2023)
+                                                                                                   The Cosmic Dipole in Quaia                     3
+applied a 𝐺 < 20.5 magnitude cut, the result of which constitutes          4.1.2 Masking
+their primary catalogue: the ‘Quaia high’ catalogue. Another cut of
+                                                                           Storey-Fisher et al. (2023) noted that the selection function is po-
+𝐺 < 20.0 created the ‘Quaia low’ catalogue, since the authors noted
+                                                                           tentially poorly-modelled in the vicinity of the galactic plane. In
+that deeper magnitudes sacrificed purity and measurement precision.
+                                                                           making this judgment, they computed the fractional residuals be-
+   One other issue is outstanding: selection effects. To mitigate these,
+                                                                           tween a synthetic catalogue generated by randomly sampling over
+the authors created a selection function to account for how some
+                                                                           a sphere according to the selection function and the actual Quaia
+sources are preferentially observed at different locations on the sky
+                                                                           catalogue. Around the edge of the plane, the random synthetic cat-
+due to dust extinction, stellar density and the peculiarities of Gaia’s
+                                                                           alogue over-predicts the data; additionally, near the galactic centre,
+scanning pattern. This information is encoded in four maps: a dust ex-
+                                                                           the random catalogue seems to under-predict the data. We note that
+tinction map; a stellar distribution map; a separate Large Magellanic
+                                                                           in the bottom row of Fig. 1, which shows our smoothed map of the
+Cloud and Small Magellanic Cloud stellar map; and, a map encoding
+                                                                           Quaia low and Quaia high samples, there indeed appears to be an
+Gaia’s scanning law and source crowding. This data is passed to a
+                                                                           over-density near (𝑙, 𝑏) ≈ (0◦ , 30◦ ) as well as under-densities along
+Gaussian process, producing a probability map: the selection func-
+                                                                           the galactic plane from about 𝑙 = 120◦ to 𝑙 = 240◦ . This is in line
+tion. The selection function describes how likely it is for sources to
+                                                                           with the proposition made by the Quaia authors. For example, if
+be included in the final catalogue depending on where they are on
+                                                                           the galactic centre is under-predicted by the selection function, then
+the sky. In other words, regions which are less dense on the basis
+                                                                           𝑠𝑖 < 𝑠˜𝑖 where 𝑠˜𝑖 is some true value of the selection function. Thus,
+of systematics like dust extinction will be associated with a lower
+                                                                           in our smoothed maps which originate from scaled number counts,
+probability, and regions which do not suffer from these effects have
+                                                                           the 𝑖-th pixel has a number count 𝑁𝑖 /𝑠𝑖 > 𝑁𝑖 /𝑠˜𝑖 , manifesting as an
+a probability closer to 1.
+                                                                           over-density.
+   A visualisation of the raw Quaia low and Quaia high catalogues
+                                                                              In order to address this issue, we chose to mask the galactic plane
+with number count densities can be seen in the top row of Fig. 1.
+                                                                           with a series of increasingly conservative masks, as the Quaia authors
+These maps, as well as subsequent ones, are displayed in galactic
+                                                                           suspected may be necessary at Section 4.5 in Storey-Fisher et al.
+coordinates. We show the selection function provided by the Quaia
+                                                                           (2023). To be explicit, we examined the effect of |𝑏| < 10◦ , 20◦ , 30◦
+authors for both catalogues in the middle row of Fig. 1. By visual in-
+                                                                           and 40◦ galactic plane masks on the recovered signal in conjunction
+spection, dust extinction appears to dominate the map, which explains
+                                                                           with an unmasked catalogue. The 30◦ mask curtains much of the
+the dearth of sources near the galactic plane in the raw catalogue. Fi-
+                                                                           problematic regions, but it is still possible that at the edge of the
+nally, we show smoothed maps in the bottom row of Fig. 1 for Quaia
+                                                                           mask the issues at the galactic plane seep into the masked sample.
+low and Quaia high. To generate the smoothed map, we first scaled
+                                                                           Accordingly, in addition to testing with a 40◦ mask, we implemented
+the catalogue according to the selection function such that the 𝑖-th
+                                                                           a circular mask centred on (𝑙 ◦ , 𝑏 ◦ ) = (0, 0) and subtending a solid
+pixel with number of sources 𝑁𝑖 (see Section 4.1.1 for information
+                                                                           angle of 4 sr in concert with the 30◦ galactic plane mask. We denote
+on how sources are binned) is scaled by 1/𝑠𝑖 , where 𝑠𝑖 is the value
+                                                                           this as a 30∗ mask for future reference. The 40◦ mask is represented
+of the selection function at that pixel. We then implemented a sliding
+                                                                           by the solid black line overlaid on the bottom row of Fig. 1, and the
+average; for each pixel, we selected pixels within 1 steradian and
+                                                                           30∗ mask is represented by the dashed black line.
+computed the mean density. These maps give a visual cue of a source
+over-density near the galactic centre, as well as under-densities near
+mid galactic longitudes along the galactic plane. Superimposed on          4.2 Dipole amplitude expectation
+the maps are two masks we chose to use, which are explained in more
+detail in Section 4.1.2.                                                   Since we are ultimately testing the kinematic interpretation of the
+                                                                           CMB, we will need to compare the expected dipole amplitude given
+                                                                           CMB-inferred motion and the actual recovered dipole from the Quaia
+                                                                           sample. Conventionally, this amounts to using equation (1) with
+                                                                           𝑣 = 𝑣 CMB ≈ 369 km s −1 . This also means that 𝑥 and 𝛼 must be
+4 APPROACH                                                                 ascertained from the sample of galactic sources. Here, we instead
+                                                                           use the actual source counts themselves – rather than their proxy
+4.1 Catalogue processing
+                                                                           𝑥 – and take the distribution of 𝛼 to find a distribution of dipole
+4.1.1 Binning                                                              amplitudes D given 𝑣. This approach is detailed below.
+In order to prepare the catalogue for analysis, the sky was divided
+into equal-area pixels using the the pixelisation regime of HEALPix1       4.2.1 Spectral index
+(Górski et al. 2005; Zonca et al. 2019) as incorporated in the Python
+package healpy. 𝑁side = 64 – generating a total of 49 152 pixels –         As mentioned earlier, we assume that the 𝑖-th Quaia source follows
+was chosen, since the selection maps created by the Quaia authors are      a flux power law such that 𝑆 𝜈 ∝ 𝜈 − 𝛼𝑖 . To find the spectral index 𝛼𝑖 ,
+given at this resolution. The choice of 𝑁side depends upon the fact that   we compute the colour magnitude 𝑚 𝐺−𝐵𝑃 . Since Gaia magnitudes
+for number count analysis, the uncertainty in number counts for each       are measured in the Vega system, we use the zero points (ZP) and
+pixel due to shot noise should not be greater than the mean number         mean wavelengths of the 𝐺 and 𝐵𝑃 bands, as provided in (Riello
+count for the catalogue. We then summed the number of sources              et al. 2021), to determine 𝛼𝑖 . Namely,
+within each pixel using their recorded positions in right ascension        𝑚 𝜈 = −2.5 log10 𝑆 𝜈 + ZP                                            (3)
+and declination. This gives a means by which changes in the source
+density can be discerned as a function of sky position.                    such that
+                                                                           𝑚 𝐺−𝐵𝑃 = 2.5(log10 𝑆 𝐵𝑃 − log10 𝑆𝐺 ) + ZP𝐺 − ZP 𝐵𝑃                   (4)
+                                                                                        𝑘 − 𝑚 𝐺−𝐵𝑃
+                                                                            =⇒ 𝛼𝑖 =                                                             (5)
+1   https://healpix.sourceforge.io/                                                 2.5 log10 (𝜈 𝐵𝑃 /𝜈𝐺 )
+
+                                                                                                                          MNRAS 000, 1–14 (2023)
+4          Mittal, Oayda & Lewis
+             Quaia Low Quasar Catalogue, G < 20.0 (N = 755 850)                                   Quaia High Quasar Catalogue, G < 20.5 (N = 1 295 502)
+             60°                                                                                   60°
+
+
+     30°                                                                                    30°
+
+               120°                60°          0°           300°      240°                          120°               60°          0°          300°       240°
+0°                                                                                     0°
+
+
+    -30°                                                                                   -30°
+
+
+             -60°                                                                                  -60°
+
+
+                         1.8                                 17.8   33.9                                        3                                30.2    57.4
+                                   Number density per healpixel                                                         Number density per healpixel
+                               Selection function model, G < 20.0                                                   Selection function model, G < 20.5
+             60°                                                                                   60°
+
+
+     30°                                                                                    30°
+
+               120°                60°          0°           300°          240°                      120°               60°         0°           300°       240°
+0°                                                                                     0°
+
+
+    -30°                                                                                   -30°
+
+
+             -60°                                                                                  -60°
+
+
+                     0             0.25        0.5           0.75      1                                   0            0.25        0.5          0.75       1
+                                           Probability                                                                          Probability
+               Quaia Low Quasar Catalogue, G < 20.0 Smoothed                                        Quaia High Quasar Catalogue, G < 20.5 Smoothed
+             60°                                                                                   60°
+
+
+     30°                                                                                   30°
+
+               120°                60°          0°           300°          240°                     120°               60°          0°           300°       240°
+0°                                                                                    0°
+
+
+    -30°                                                                                -30°
+
+
+             -60°                                                                                 -60°
+
+
+                    19.6                              23.1            25.3                               33.5                             40.4            45.1
+                                   Number density per healpixel                                                        Number density per healpixel
+
+Figure 1. Visualisation of the salient features of the two Quaia catalogues in galactic coordinates, with Quaia low in the left column and Quaia high in the right
+column. Top row: Raw catalogue prior to any additional masking or processing. Note that the catalogue already has an absence of sources near the galactic plane,
+shown in grey, primarily due to dust absorption. Middle row: The selection function provided for both the Quaia catalogues, with the colour scale indicating
+the probability of source detection associated with each pixel due to factors like dust extinction. Bottom row: Both catalogues have been smoothed via a sliding
+average over a 1 steradian scale after scaling according to the selection function. Deviations in source density along the galactic plane can be seen, with an
+over-density at the galactic centre and an under-density at mid galactic longitudes. The solid and dashed lines indicate the 40◦ and 30∗ galactic plane masks
+respectively.
+
+
+where 𝑘 is ZP𝐺 − ZP 𝐵𝑃 and in the last line we used the assumption                  above. This yields Gaia fluxes in units of photoelectrons s −1 , though
+that 𝑆 𝜈 ∝ 𝜈 − 𝛼𝑖 . Equation (5) yields a distribution of spectral indices          we note that these fluxes can also be found by matching each Quaia
+for Quaia low and Quaia high, which we show in Fig. 2. The mean                     source with its entry in DR3 by using each entry’s Gaia DR3 source
+value of 𝛼 is labelled there only for illustrative purposes; what is                identifier. To convert from these units into Jy, we apply the relevant
+important, in our analysis, is the distribution itself.                             conversion factor 𝑐 𝜈 found in the Gaia documentation (European
+                                                                                    Space Agency & Gaia Data Processing and Analysis Consortium
+                                                                                    2021). A histogram showing the resultant flux distribution is pre-
+4.2.2 Source number counts                                                          sented in Fig. 3. Overlaid there in red is the integrated distribution,
+To find the distribution of fluxes in the Quaia sample, we first convert            i.e. the number of sources above some limiting flux density 𝑁 (> 𝑆).
+the 𝐺 magnitude into a Gaia flux using the zero points mentioned                       In the context of quasar studies, the approach used in describing
+
+MNRAS 000, 1–14 (2023)
+                                                                                                                     The Cosmic Dipole in Quaia                   5
+
+                    ×104
+                6
+                           α distribution (low)                                                                                             Amplitude (low)
+                           α distribution (high)                                                      600                                   Amplitude (high)
+                5          ᾱ = 2.44 (low)                                                                                                  D̄ = 0.0080 (low)
+                           ᾱ = 2.37 (high)                                                           500                                   D̄ = 0.0068 (high)
+                4
+
+
+ Number count                                                                           Probability
+                                                                                                      400
+                3
+                                                                                                      300
+
+                2                                                                                     200
+
+                1                                                                                     100
+
+                0                                                                                       0
+                              1            2          3                     4                               0.004   0.006    0.008    0.010        0.012
+                                  Spectral index α (G − BP )                                                                Amplitude D
+
+
+                                                                                       Figure 4. Probability distribution for the dipole amplitude assuming 𝑣CMB .
+Figure 2. Distribution of spectral indices 𝛼 in the Quaia low and Quaia
+                                                                                       This follows from the analysis in Section 4.2.2 and was performed with both
+high samples computed from 𝑚𝐺−𝐵𝑃 . Blue and orange are used to denote
+                                                                                       the Quaia low and Quaia high samples.
+Quaia low and Quaia high respectively. The mean spectral indices 𝛼¯ for each
+catalogue are indicated by the vertical lines.
+
+
+
+                                                                                       of the data, we instead work directly with the observed fluxes in
+                                                                                       the 𝐺 band. When we observe a population of sources and their
+                106                                     Flux count (low)               associated fluxes, we expect a number count enhancement in the
+                                                        Flux count (high)              forward hemisphere and a diminution in the backwards hemisphere;
+                105                                     Integrated count (high)        sources become brighter and fainter respectively, and they congregate
+                                                                                       along the line of motion. The conceptual underpinning of Ellis &
+
+
+
+ Number count
+                104                                                                    Baldwin (1984) is that the observed source count power law 𝑆 − 𝑥 is
+                                                                                       the resultant of these two effects. Thus, in order to find the expected
+                103                                                                    dipole amplitude, the following method was used.
+
+                102                                                                       (i) We computed the number of sources greater than some limiting
+                                                                                       flux density 𝑆0 , denoted as 𝑛𝑖 .
+                101                                                                       (ii) For the 𝑗-th source with measured flux 𝑆 𝑗 , a Doppler shift
+                                                                                       was applied such that 𝑆 𝑗 → 𝑆 𝑗 𝛿1+𝛼 where 𝛿 = 𝛾(1 + 𝑣 cos 𝜃) and
+                100                                                                    𝛾 is the Lorentz factor. This is the relationship between the observed
+                                   10−4                 10−3                    10−2   and rest frame flux densities as described in Ellis & Baldwin (1984).
+                                             G band flux (Jy)                             (iii) We then computed the number of boosted fluxes greater than
+                                                                                       some limiting flux density and multiplied this sum by 𝛿2 , which
+                                                                                       anticipates relativistic aberration. We denote this final value as 𝑛𝑏 .
+Figure 3. Source number counts binned by 𝐺 band flux for both Quaia low
+                                                                                          (iv) Combining the above, we then calculated the expected dipole
+(blue) and Quaia high (orange). Overlaid in red is the integrated source count         amplitude as
+above a limiting flux density for Quaia high, which of course includes sources
+in Quaia low.
+                                                                                         𝑛 − 𝑛𝑖
+                                                                                       D= 𝑏     .                                                                (6)
+                                                                                            𝑛𝑖
+
+the source count distribution has been similar to that of radio galaxy                 Note that we have selected units where 𝑐 = 1, and if we take a
+studies. Specifically, in determining the dipole amplitude, power law                  measurement along the line of motion – the direction of maximal
+fits of the form 𝑆 −𝑥 to the integrated source counts have been used                   density enhancement – then 𝜃 = 0 so 𝛿 = 𝛾(1 + 𝑣). We also fixed 𝑆0
+(see e.g. Secrest et al. 2021), as well as piece-wise straight line fits,              to be near the flux limit of the catalogue. For Quaia low, 𝐺 = 20.0
+onto which a flux cut is imposed such that the data is constrained to the              corresponds to a flux of ≈ 3.27 × 10 −5 Jy in the 𝐺 band, so we
+regime of one of those power laws (see e.g. Singal 2023). This traces                  took 𝑆0 = 3.3 × 10 −5 Jy. For Quaia high, 𝐺 = 20.5 corresponds to ≈
+back to the original conceptual framing of Ellis & Baldwin (1984),                     2.06×10 −5 Jy, and so we used 𝑆0 = 2.1×10 −5 Jy. Then, substituting
+which supposed that a radio galaxy population can be described by                      𝑣 = 𝑣 CMB into the above analysis and randomly sampling 𝛼 from
+a power law. Yet, by inspection, a straight line fit to the integrated                 Fig. 2 50 000 times, we find a dipole described by the distributions
+counts in Fig. 3 is not the best reflection of the actual data. In order               in Fig. 4 with mean amplitude D̄ ≈ 0.0080 for Quaia low and
+to get a better hold of the non-linear nature (in logarithmic space)                   D̄ ≈ 0.0068 for Quaia high.
+
+                                                                                                                                       MNRAS 000, 1–14 (2023)
+6      Mittal, Oayda & Lewis
+4.3 Bayesian analysis                                                      has the strongest level of support, and as such what kind of model
+                                                                           best accounts for the Quaia sample.
+4.3.1 Bayes’s theorem
+With the Quaia sample prepared for analysis, we now explore how the
+                                                                           4.3.3 Nested sampling
+framework of Bayesian statistics provides a natural language to test
+competing hypotheses and understand the Quaia data. The specific           A key difficulty with Bayesian methods is that the marginal likelihood
+models we consider are explained in Section 4.5, but for now, a            cannot usually be computed analytically, and is somewhat expensive
+Bayesian approach to model comparison can be broken down into              to determine numerically. However, modern computational methods
+two key steps or levels (Mackay 2003). At the first level of inference,    are well-adapted to this challenge, and provide efficient algorithms
+a model’s parameters are optimised and the posterior distributions         which are easy to implement. In this work, we take advantage of the
+for those parameters are recovered. This amounts to solving Bayes’s        Nested Sampling (NS) algorithm (Skilling 2004, 2006). The focus
+theorem, where                                                             of NS is on first determining the marginal likelihood and then eval-
+               L (D|𝚯, 𝑀)𝜋(𝚯|𝑀)                                            uating the posterior distributions for a model’s parameters as a ‘sub-
+𝑃(𝚯|D, 𝑀) =                     .                                   (7)    sidiary element’ (Skilling 2004). In trying to evaluate the marginal
+                    Z(D|𝑀)
+                                                                           likelihood, which is an integral over all parameter space as men-
+We have recast the notation of Bayes’s theorem in line with Speagle        tioned earlier, NS recasts the integral to be over the prior instead and
+(2020) to better indicate what each term means in the context of           generates iso-likelihood contours or shells of increasing likelihood
+model inference; namely, D refers to the data and 𝚯 refers to the set of   (Speagle 2020). This gives an effective means of evaluating Z and
+parameters pertaining to model 𝑀. L, 𝜋 and Z refer to the likelihood,      an associated uncertainty, with the posterior distribution as a byprod-
+prior and evidence or marginal likelihood functions respectively, and      uct. Here, we have used Dynesty2 (Koposov et al. 2023), a Python
+𝑃 denotes the resulting posterior probability distribution.                package which implements the NS algorithm.
+
+4.3.2 Evidence and the Bayes factor                                        4.4 Likelihood functions
+At the first level, the marginal likelihood only represents a normal-      Armed with the methods of Bayesian analysis, the next step in our ap-
+isation term. However, at the second level of inference, competing         proach is to construct likelihood functions L to be placed in Bayes’s
+hypotheses or models are ranked using the Bayes factor, which is the       theorem at equation (7). There are essentially two approaches that
+ratio of the marginal likelihoods for each model. Specifically, if we      we can apply; these each test the same underlying assumption, but
+wish to determine the relative levels of support for models 𝑀1 and         are framed in slightly different ways. We describe each of these in a
+𝑀2 , we may compute                                                        model-invariant manner, eluding to how they would be altered to fit
+ln 𝐵12 = ln Z1 − ln Z2                                              (8)    a particular hypothesis along the way.
+
+where 𝐵 denotes the Bayes factor. It is advantageous to work with
+natural logarithms since the actual value of the marginal likelihood       4.4.1 Poissonian statistics
+is generally very small. In this work, any quoted marginal likelihood      In the first approach, the binning process referenced in Section 4.1.1
+or Bayes factor is a natural logarithm. The interpretation of the level    is analogous to a Poisson point process, and variations in number
+of support depends on the value of the Bayes factor. In this example,      density (occupancy) across each pixel can ideally be explained by
+ln 𝐵12 > 0 means that 𝑀1 is preferred over 𝑀2 , with larger values         two factors: shot noise and an intrinsic signal. Shot noise necessitates
+indicating more support for 𝑀1 . For reference, Kass & Raftery (1995)      that we associate each pixel with a Poisson distribution, i.e. the
+provide a qualitative description depending on the value of the Bayes      occupancy for a given pixel is a random variate drawn from a Poisson
+factor, although we stress that this is not meant to be definitive. We     distribution. The intrinsic signal could be a dipole, where sources in
+also note that the table in their work has units of 2 ln 𝐵. We present     the forward hemisphere are associated with higher number densities
+our values as ln 𝐵, so the reader will need to keep the factor of two      than sources in the backward hemisphere. This modifies the rate
+in mind when comparing our values to the ranges appearing in Kass          parameter of the Poisson distribution describing a pixel’s number
+& Raftery (1995).                                                          density.
+   Since the∫ marginal likelihood is an integral over all parameter           In light of this, the probability 𝑃 of observing 𝑁𝑖 sources in pixel
+space Z = Ω L (𝚯) × 𝜋(𝚯) 𝑑𝚯, models with excessive parameters              𝑖 can be written as
+              𝚯
+which waste parameter space are intrinsically disfavoured. To a rough
+approximation, the marginal likelihood can be written as                                 𝜆 𝑁𝑖 𝑒 −𝜆𝑖
+                                                                           𝑃(𝑁𝑖 | p̂i ) = 𝑖                                                   (10)
+                                                                                            𝑁𝑖 !
+             Δ𝚯
+Z ≈ L (𝚯MP ) 0                                                      (9)    where p̂i is a unit vector pointing towards the 𝑖-th pixel and 𝜆𝑖 is the
+            Δ 𝚯
+                                                                           rate parameter for the 𝑖-th pixel. The expected number of occupants
+following the argument in Mackay (2003). L (𝚯MP ) is the value
+                                                                           in a pixel is just the rate parameter: 𝐸 [𝑁𝑖 ( p̂i )] = 𝜆𝑖 .
+of the likelihood function at the most optimal set of parameters,
+                                                                              In practice, as explained in Section 3, Quaia is packaged with a
+where Δ𝚯/Δ0 𝚯 can be analogised as the ratio of the peak in the
+                                                                           selection function that ascribes each pixel with a probability. On top
+likelihood function to the width of the prior distribution. This term
+                                                                           of statistical fluctuations and variations due to the underlying signal,
+is called the Occam factor, and it generally penalises models which
+                                                                           pixels might have source under-densities because of factors like ex-
+squander parameter space and only have explanatory power (i.e. a
+                                                                           tinction from dust in the galactic plane. This needs to be accounted
+high likelihood) for a comparatively small region of parameter space.
+                                                                           for insofar that we are examining the assumption of homogeneity and
+   For each of our hypotheses or models, we compute the marginal
+likelihoods and Bayes factors, using these metrics to rank them. The
+result of this process is a quantitative evaluation of which hypothesis    2   https://pypi.org/project/dynesty/
+
+MNRAS 000, 1–14 (2023)
+                                                                                                       The Cosmic Dipole in Quaia                         7
+isotropy. We can do this through attenuating the rate parameter by          This acts as the null hypothesis for our study. In order to compute
+the value of the selection function 𝑠𝑖 (a probability between 0 and 1)      the likelihood function in the Poissonian case, the rate parameter 𝜆𝑖
+at the 𝑖-th pixel. Explicitly, this means that                              of equation (11) is replaced with 𝑁,¯ whereas in the point-by-point
+                                                                            case 𝑓𝑖 is set to 1. These are then substituted into equations (12)
+                  (𝜆 𝑖 × 𝑠𝑖 ) 𝑁𝑖 𝑒 −𝜆𝑖 ×𝑠𝑖
+𝑃(𝑁𝑖 | p̂i ) =                                                      (11)    and (14) respectively. Thus, 𝚯Pois. = { 𝑁¯ } in the Poissonian case and
+                            𝑁𝑖 !                                            𝚯P×P = ∅ in the point-by-point case.
+such that 𝐸 [𝑁𝑖 ( p̂i )] = 𝜆 𝑖 × 𝑠𝑖 .
+   By associating each pixel on the sky with a probability determined
+from Poisson distributions, the likelihood function can be written as       4.5.2 𝑀1 : Dipole
+the product of all probabilities. As a logarithm, this becomes              As an alternative to the null hypothesis, we introduce the vector D,
+         ∑︁
+         𝑛pix.                                                              which points in the direction of the dipole signal and has amplitude
+ln L =           ln 𝑃(𝑁𝑖 | 𝚯)                                       (12)    equal to the magnitude of the dipole (see e.g. equation (1)). The an-
+         𝑖=1                                                                ticipated number count is then described by the sum of the monopole
+for total number of pixels 𝑛pix. .                                          and dipole signals (see e.g. Dam et al. 2023) such that
+                                                                            𝐸 [𝑁𝑖 ( p̂i )] = 𝑁¯ + 𝑁¯ (D · p̂i ) = 𝑁¯ (1 + D cos 𝜃 𝑖 )                  (16)
+4.4.2 Point-by-point analysis                                               where 𝜃 𝑖 is the angle between the dipole direction and the 𝑖-th pixel
+Turning to the second approach, we are not restricted to our choice         vector, and D is the magnitude of the dipole.
+of Poissonian statistics. We can see this by examining each source             Here, Equation (16) is the rate parameter 𝜆𝑖 that is inserted
+individually such that the likelihood function is now the product of        into equation (11) where Poissonian statistics is used, and 𝑓𝑖 =
+all points, not the product of all pixels. Thus, we term this the ‘point-   1 + D cos 𝜃 𝑖 in the point-by-point analysis for the purposes of equa-
+by-point’ approach. However, the sky is still discretised to simplify       tion (13). Evidently, the parameter spaces are given by 𝚯Pois. =
+the calculation; points within a certain pixel are assumed to have the      {¯𝑁, D, 𝑙, 𝑏} and 𝚯P×P = {D, 𝑙, 𝑏}, where 𝑙 and 𝑏 characterise the
+same probability. This approach was adopted by Conn et al. (2011,           direction of the dipole in galactic coordinates.
+2012) in their distance determinations using the tip of the red giant
+branch for sparsely populated systems.
+                                                                            4.5.3 𝑀2 : Double dipole
+   Let us introduce the function 𝑓𝑖 , which describes the anticipated
+signal at pixel 𝑖. This is a model-dependent term, the functional           The presence of an over-density region just above the galactic center
+form of which we leave for Section 4.5. If we examine each source           and other under-densities along the galactic plane in both Quaia low
+individually and not as a member of a pixel, then the distribution          and Quaia high, which we described in Section 4.1.2, hints towards
+associating points with a probability depending on their position           the fact that the net dipole in Quaia might be a combination of two
+on the sky takes the form 𝑓𝑖 , at least up to a normalising constant.       dipoles. The net dipole modulation is then the multiplication of two
+Thus, the contribution to the likelihood function at the 𝑖-th pixel is      individual dipoles, and the expected number density for the 𝑖-th pixel
+∝ (𝑠𝑖 × 𝑓𝑖 ) 𝑁𝑖 , since we are taking the product over all points 𝑁𝑖 in     is given by
+the pixel.
+   To normalise this distribution for the 𝑖-th pixel (denoted as 𝑓ˆ𝑖        𝐸 [𝑁𝑖 ( p̂i )] = 𝑁¯ [(1 + D1 · p̂i ) × (1 + D2 · p̂i )]                    (17)
+below), which is critical after application of a mask and selection         This is used as a rate parameter for equation (11) where Poissonian
+map, we sum over all unmasked pixels such that                              statistics is used, and 𝑓𝑖 = (1 + D1 · p̂i ) × (1 + D2 · p̂i ) in the point-by-
+        𝑠 𝑖 × 𝑓𝑖                                                            point case for equation (13). Thus, our parameter space is 𝚯Pois. =
+𝑓ˆ𝑖 = Í𝑛pix.        .                                               (13)      ¯ D1 , 𝑙1 , 𝑏 1 , D2 , 𝑙2 , 𝑏 2 } and 𝚯P×P = {D1 , 𝑙1 , 𝑏 1 , D2 , 𝑙2 , 𝑏 2 }.
+                                                                            { 𝑁,
+       𝑖=1 𝑖
+             𝑠 × 𝑓𝑖
+                                                                               The assumption here is that the two dipoles were generated at
+Thus, the natural logarithm of the likelihood function can be written       different times and due to different factors. So, the observer’s frame
+as                                                                          was already anisotropic due to one dipole at the genesis of the second
+         ∑︁
+         𝑛pix.                                                              dipole, and it makes sense to apply an extra modulation on top of an
+ln L =           𝑁𝑖 ln 𝑓ˆ𝑖 .                                        (14)    already modulated sky. If this was not the case and the genesis time
+         𝑖=1                                                                were the same for the two, then the net motion should be in a direction
+In principle, both the Poissonian and point-by-point models should          that is in between the two dipoles and hence only a single dipole
+give consistent results, since both represent slightly different ap-        would be observed. Even if such a scenario seems unlikely, it is worth
+proaches to describe the same underlying effect. We confirm this in         examining as the marginal likelihood will balance the explanatory
+our results at Section 5.                                                   power of this model and its complexity, potentially revealing deeper
+                                                                            insight into the nature of the Quaia sample.
+
+4.5 Hypotheses under consideration
+                                                                            4.5.4 𝑀3 : Quadrupole
+4.5.1 𝑀0 : Monopole (Null)
+                                                                            For the sake of completeness, we also test for an underlying
+Suppose that the distribution of sources is in fact homogeneous and         quadrupole signal. We postulate that this signal is ∝ cos2 𝜃, such
+isotropic in the observer’s frame. Then a monopole signal is antici-        that the expected number density for the 𝑖-th pixel is
+pated, where pixels are expected to have some mean number density
+𝑁¯ irrespective of the location of the pixel on the sky. Expressed          𝐸 [𝑁𝑖 ( p̂i )] = 𝑁¯ (1 + D̃ cos2 𝜃 𝑖 ).                                    (18)
+differently, the expected number density is
+                                                                            Our parameter spaces are 𝚯Pois. = { ¯ 𝑁, D̃, 𝑙, 𝑏}, where the tilde on
+                 ¯
+𝐸 [𝑁𝑖 ( p̂i )] = 𝑁.                                                 (15)    the signal magnitude suggests the fact that the quadrupole amplitude
+
+                                                                                                                                 MNRAS 000, 1–14 (2023)
+8      Mittal, Oayda & Lewis
+is not necessarily the same as the foregoing dipole models. For the                         Model (Point-by-point)           ln 𝐵𝑖0
+point-by-point case, 𝚯P×P = { D̃, 𝑙, 𝑏}. The expected form of this                          𝑀0 (Null)                               —
+signal is inserted into equations (11) and (13), as already described                       𝑀1 (Dipole)                           14.4
+above. It is worth noting that the quadrupole model is in fact a                            𝑀2 (Double Dipole)                    18.9
+                                                                                            𝑀3 (Quadrupole)                        6.2
+special case for the double dipole model with D1 · p̂i = −D2 · p̂i in
+                                                                                            𝑀4 (Kinematic Direction)              12.8
+equation (17).                                                                              𝑀5 (Kinematic Velocity)               14.0
+                                                                                            𝑀6 (Kinematic Dipole)                 15.5
+4.5.5 𝑀4 : Dipole pointing towards the kinematic dipole                    Table 1. Table of Bayes factors by model for a 30◦ mask with the Quaia low
+                                                                           sample and using the point-by-point approach. The highlighted cell represents
+In order to verify the kinematic interpretation of the cosmic dipole,      the model with the highest Bayes factor, indicating it has the strongest level
+it is worth fixing certain parameters to their value as determined         of support.
+from the CMB dipole while varying the others. Doing so is advanta-
+geous, as the marginal likelihood for a kinematic hypothesis can be
+compared to models where such an interpretation is not assumed.            cross-talk between the two signals in the posterior distribution at
+   Here, we fix the model’s dipole to the direction of the CMB dipole,     opposite hemispheres. In a similar sense, for the quadrupole model
+namely (𝑙, 𝑏) = (264.◦ 0.21, 48.◦ 253), and leave the amplitude as a       we took 𝜙 ∼ [𝜋/2, 3𝜋/2] and 𝜃 ∼ cos −1 (1 − 2𝑢), since there is a
+free parameter. The expectation of the number density is identical         degenerate solution in the other hemisphere.
+to equation (16) except with 𝜃 fixed to 𝜃 CMB , and so the parameters         • For the mean number density or monopole signal 𝑁,  ¯ we took
+pertaining to each model are 𝚯Pois. = { 𝑁,¯ D} and 𝚯P×P = {D}.              ¯                                 ¯
+                                                                           𝑁 ∼ U [0, 30] for Quaia low and 𝑁 ∼ U [0, 50] for Quaia high.
+
+
+4.5.6 𝑀5 : Dipole fixed by the kinematic dipole velocity
+                                                                           5 RESULTS
+Another test involves fixing the magnitude of the dipole to the CMB
+value while allowing its direction to vary. The dipole magnitude is        With our models outlined, we now turn to the recovered parameters
+fixed to the mean values of D calculated using the method described        and marginal likelihoods of each model. Since we are chiefly inter-
+in 4.2.2. More explicitly, D = 0.0080 for Quaia low and D = 0.0068         ested in this comparative assessment, and not the actual value of the
+for Quaia high. Here, equation (16) applies with D fixed, and so the       evidence itself, an easy way to represent the data is by computing the
+parameters for each model are 𝚯Pois. = { ¯𝑁, 𝑙, 𝑏} and 𝚯P×P = {𝑙, 𝑏}.      Bayes factor for model 𝑀𝑖 with respect to the null hypothesis 𝑀0 :
+                                                                           this is ln 𝐵𝑖0 = ln Z𝑖 − ln Z0 . All models are being assessed with
+                                                                           a common benchmark – the null hypothesis – which allows a quick
+4.5.7 𝑀6 : CMB motion                                                      identification of the strongest hypothesis. Thus, the relative level of
+                                                                           support for one hypothesis (𝑀𝑖 ) over another hypothesis (𝑀 𝑗 ) is
+Finally, we may totally align this model’s dipole in both direction
+                                                                           simply computed by
+and magnitude with the CMB kinematic dipole and compute the
+marginal likelihood. This gives a metric by which the veracity of          ln 𝐵𝑖 𝑗 = ln Z𝑖 − ln Z 𝑗 = (ln Z𝑖 − ln Z0 ) − (ln Z 𝑗 − ln Z0 )          (19)
+CMB-aligned motion in the Quaia sample compares to an inferred                                       = ln 𝐵𝑖0 − ln 𝐵 𝑗0 .                           (20)
+direction after parameter optimisation. The parameters in this case
+are 𝚯Pois. = { 𝑁¯ } and 𝚯P×P = ∅.                                          One point to keep in mind, however, is that since our Poissonian
+                                                                           and point-by-point approaches of Section 4.4 use different likelihood
+                                                                           functions, the actual value of Z for a given model is very differ-
+4.6 Choice of priors                                                       ent across the two approaches. What should not change appreciably
+As a final step, we determine the prior functions 𝜋(𝚯|𝑀) for equation      between them, as we show below, is the Bayes factor.
+(7), which is needed for each model’s parameters. The choice of prior         Since our experiment has many variations – namely different mod-
+represents our belief about what values the parameters are likely to       els, masks, approaches and catalogues – we generated a considerable
+take before knowledge of the data.                                         number of marginal likelihoods and hence Bayes factors, with the
+                                                                           latter being tabulated in Appendix A. There, the highlighted cells
+   • We adopted a broad prior for the dipole amplitude 𝐷, as well as       draw attention to the model with the highest Bayes factor for a given
+the double dipole amplitudes 𝐷 1 , 𝐷 2 , choosing them from a uniform      galactic mask. These are too voluminous to give in their entirety
+distribution 𝐷, 𝐷 1 , 𝐷 2 ∼ U [0, 1]. This choice was motivated by         here. Certain salient results, however, are referenced periodically in
+the significant uncertainty in the magnitude of the dipole across a        the following text to substantiate our findings.
+diverse spectrum of independent tests (see e.g. Abdalla et al. 2022;
+Kumar Aluri et al. 2023). In contrast, we sampled the quadrupole
+amplitude according to 𝐷˜ ∼ U [−1, 0], since in testing we found that      5.1 Quaia low
+the positive amplitude solution restricted the solution to a poorer fit
+                                                                           5.1.1 Low galactic masks: |𝑏| < 10◦ , 20◦ , 30◦
+at the north galactic pole.
+   • For the direction parameters, in internal calculations we work in     In this masking regime, the prevailing model is the double dipole
+equatorial coordinates but convert the posterior afterwards to galactic    (𝑀2 ). This is exemplified by the Bayes factors in in Table A1 and
+coordinates for presentation. We denote these equatorial coordinates       Table A2 for the point-by-point and Poissonian approaches respec-
+(𝜙, 𝜃) for right ascension 𝜙 in radians and co-declination 𝜃 in radians.   tively. Note here that the conclusions – that is, the level of support
+For the dipole direction, we uniformly sampled over the surface of         for each model – are the same across both approaches.
+a unit sphere, and so 𝜙 ∼ U [0, 2𝜋] and 𝜃 ∼ cos −1 (1 − 2𝑢) where             As an example, we placed the Bayes factors for a 30◦ mask with
+𝑢 ∼ U [0, 1]. For the double dipole directions, we took 𝜙1 , 𝜙2 ∼          Quaia low and the point-by-point method in Table 1. The level of
+[3𝜋/2, 5𝜋/2], [𝜋/2, 3𝜋/2] and 𝜃 1 , 𝜃 2 ∼ cos −1 (1 − 2𝑢) to prevent       support of the double dipole (𝑀2 ) over the dipole (𝑀1 ) is ln 𝐵21 =
+
+MNRAS 000, 1–14 (2023)
+                                                                                                         The Cosmic Dipole in Quaia                     9
+                 Model (Point-by-point)           ln 𝐵𝑖0                            For lower galactic mask angles, the double dipole model is consis-
+                 𝑀0 (Null)                               —                       tently favoured over the dipole model, with the difference in Bayes
+                 𝑀1 (Dipole)                           49.6                      factors increasing as the galactic mask angle 𝑏 decreases.
+                 𝑀2 (Double Dipole)                    49.6
+                 𝑀3 (Quadrupole)                        1.6
+                 𝑀4 (Kinematic Direction)              29.2
+                                                                                 5.2.2 High galactic mask: |𝑏| < 40◦
+                 𝑀5 (Kinematic Velocity)               35.3
+                 𝑀6 (Kinematic Dipole)                 28.7                      Unlike the Quaia low sample, 𝑀4 (kinematic direction) is the pre-
+Table 2. Table of Bayes factors by model for a 30◦ mask with the Quaia high      vailing explanation with a |𝑏| < 40◦ galactic plane mask on Quaia
+sample and using the point-by-point approach. The highlighted cell represents    high. This is consistent across both the point-by-point and Poisso-
+the model with the highest Bayes factor, indicating it has the strongest level   nian approaches, as expected. This being said, the Bayes factors (see
+of support.                                                                      Tables A3 and A4) for all models except 𝑀3 and 𝑀0 are comparable,
+                                                                                 with the difference between the lowest and highest Bayes factor being
+                                                                                 ≈ 1 log unit. This suggests that each model is on a similar footing
+4.5, which represents strong support. The model with the second-                 in terms of explanatory power; one model does not totally dominate
+highest Bayes factor in Table 1 – the kinematic dipole 𝑀6 – yields               over the others. At best, the largest Bayes factor ln 𝐵41 ≈ 1 suggests
+a relative Bayes factor of ln 𝐵26 = 3.4. For the |𝑏| < 30◦ mask, this            some positive support for 𝑀4 over the double dipole (𝑀1 ).
+is the closest a competing model comes to out-competing the double                  Interestingly, with the 30∗ mask, the dipole (𝑀1 ) is the favoured
+dipole. As we move towards less conservative galactic plane masks,               hypothesis, and the kinematic dipole (𝑀6 ) offers the next-best ex-
+this difference in general increases. For |𝑏| < 10◦ , 20◦ , the dipole           planation of the data. The difference between the Bayes factor for
+model (𝑀1 ) has the second-highest Bayes factor as seen in Tables                𝑀1 and the other models is in general higher than the differences
+A1 and A2, followed by the kinematic velocity model (𝑀5 ).                       between 𝑀4 and the other hypotheses with the 40◦ mask, suggesting
+                                                                                 the dipole 𝑀1 is more dominant in this regime.
+
+5.1.2 High galactic mask: |𝑏| < 40◦ and 30∗
+For the |𝑏| < 40◦ galactic plane mask, no longer is the double dipole            6 DISCUSSION & CONCLUSIONS
+the prevailing model. Instead, the kinematic dipole 𝑀6 has the highest
+Bayes factor, followed by 𝑀5 (kinematic velocity) and 𝑀4 (kinematic              6.1 Prevailing double dipole as the effect of over-densities
+direction). Recall that model 𝑀6 assumes a dipole totally aligned with           We turn first to explaining the dominance of the double dipole at
+the CMB dipole and possessing the same amplitude. The dominance                  low galactic masks as opposed to the other hypotheses, which is
+of model 𝑀6 is consistent across both Poissonian and point-by-point              observed in both Quaia low and Quaia high. This was outlined in
+approaches, as expected.                                                         Sections 5.1.1 and 5.2.1. In essence, what must be explained is why
+    Critically, this sheds light on the fact that a transition is occurring      the double dipole – despite having a more significant penalty from
+from the |𝑏| < 30◦ mask to the |𝑏| < 40◦ mask; the support for the               the Occam factor for its complexity – can provide a comparatively
+fitted hypotheses 𝑀1 –𝑀3 dwindles substantially, while the kinematic             better explanation of the data than the other models.
+hypotheses 𝑀4 –𝑀6 , which generally have less parameters, gain com-                 To better see how the model is fitting the data, we extracted the
+paratively higher Bayes factors. This is also evinced by the 30∗ mask,           single best fit values (highest marginal probability) for the double
+which incorporates both the |𝑏| < 30◦ and a 4 sr circular mask cen-              dipole with a 30◦ mask and computed the signal term 𝑓𝑖 = (1 +
+tred on (𝑙, 𝑏) = (0◦ , 0◦ ). The double dipole 𝑀2 and kinematic dipole           D1 · p̂i ) × (1 + D2 · p̂i ). We did this for all pixels over the sky
+𝑀6 have comparable Bayes factors in this regime, and so the 30∗                  and show the resultant map in Fig. 5. Compare this map with the
+mask must represent an intermediate stage of this transition.                    smoothed versions shows in the bottom row of Fig. 1, noting the
+                                                                                 dashed lines which indicate the 30∗ mask we applied. With this in
+                                                                                 mind, the high value of the Bayes factors likely arise because of
+5.2 Quaia high                                                                   the over-density at (𝑙, 𝑏) ≈ (0◦ , 30◦ ) and the under-densities along
+                                                                                 the galactic plane from about 𝑙 = 120◦ to 𝑙 = 240◦ ; this cannot
+5.2.1 Low galactic masks: |𝑏| < 10◦ , 20◦ , 30◦
+                                                                                 be adequately captured by for instance the dipole 𝑀1 , but is better
+Similar to Quaia low, the prevailing model is the double dipole (𝑀2 ).           captured by the double dipole 𝑀2 . This applies both for Quaia low
+This is again exemplified by the Bayes factors in Tables A3 and A4               and Quaia high. Considering the coverage of the |𝑏| < 30◦ mask, it is
+for the point-by-point and Poissonian approaches respectively. The               probable that this angle and those below it are not able to sufficiently
+level of support is the same across these approaches.                            remove the region of over-density.
+   The Bayes factors for the 30◦ mask with the point-by-point method                We therefore are of the view that systematic effects arising from
+are reproduced in Table 2 for reference. Curiously, there is equal               the Quaia selection function impact our analysis. These systematic
+support for both the double dipole (𝑀2 ) and the dipole (𝑀1 ) with               effects – whether arising from inadequate consideration of dust ex-
+ln 𝐵21 = 0, although for the Poissonian approach the Bayes factor                tinction effects, stellar contaminants, etc. – likely contribute to over-
+for 𝑀2 is slightly higher than 𝑀1 (see Tables A3 and A4). This                   dense regions near the galactic centre, which give spurious fits as far
+difference, however, does not change the interpretation significantly            as probing the distribution of distant quasars is concerned. We can
+since it at best suggests a marginal level of support for 𝑀2 over 𝑀1 .           better understand the effect of this dubious over-density by examin-
+Further, the model with the third-highest Bayes factor in Table 2 –              ing how the direction and amplitude of the recovered dipole of model
+the kinematic velocity model 𝑀5 – yields a relative Bayes factor                 𝑀1 changes with galactic mask angle. This is illustrated in Fig. 6.
+of ln 𝐵25 = 14.3. This suggests overwhelming support for both the                Looking at the top pane (Quaia low), as the region of over-density
+double dipole and dipole models at |𝑏| < 30◦ mask over the other                 near the galactic centre is progressively masked out with increasing
+competing explanations.                                                          galactic latitude 𝑏, the recovered dipole direction shifts towards the
+
+                                                                                                                                MNRAS 000, 1–14 (2023)
+10           Mittal, Oayda & Lewis
+
+                60°                                                                                  60°
+
+      30°                                                                                 30°
+
+            150° 120°     90°   60°   30°   0°   330° 300° 270° 240° 210°                        150° 120° 90°     60°   30°     0°    330° 300° 270° 240° 210°
+ 0°                                                                                     0°
+
+                                                                                                                               |b| < 0.0◦               |b| < 30.0◦
+  -30°                                                                                   -30°
+                                                                                                                                            ◦
+                                                                                                                               |b| < 10.0               |b| < 40.0◦
+                                                                                                                                            ◦           CMB dipole
+               -60°                                                                                 -60°                       |b| < 20.0
+
+
+                  0.955                                        1.01                          Amplitude 𝐷 (×103 )     37 −4
+                                                                                                                        +4     34 −4
+                                                                                                                                  +4    25 −5
+                                                                                                                                           +5   17 −6
+                                                                                                                                                   +6     11 −5
+                                                                                                                                                             +6       8
+                      Signal fi = (1 + D1 · p̂i) × (1 + D2 · p̂i)
+
+                60°                                                                                  60°
+
+      30°                                                                                 30°
+
+            150° 120°     90°   60°   30°   0°   330° 300° 270° 240° 210°                        150° 120° 90°     60°   30°     0°    330° 300° 270° 240° 210°
+ 0°                                                                                     0°
+
+                                                                                                                               |b| < 0.0◦               |b| < 30.0◦
+  -30°                                                                                   -30°
+                                                                                                                                            ◦
+                                                                                                                               |b| < 10.0               |b| < 40.0◦
+                                                                                                                                            ◦           CMB dipole
+               -60°                                                                                 -60°                       |b| < 20.0
+
+
+                      0.971                                    1.02                          Amplitude 𝐷 (×103 )    48 −3
+                                                                                                                       +4      43 −3
+                                                                                                                                  +3    32 −4
+                                                                                                                                           +4   20 −4
+                                                                                                                                                   +4     12 −3
+                                                                                                                                                             +4   7
+                       Signal fi = (1 + D1 · p̂i) × (1 + D2 · p̂i)
+                                                                                       Figure 6. Projection of the posterior distribution for recovered dipole direction
+                                                                                       (using the Poissonian likelihood) onto a Mollweide projection. The graticules
+Figure 5. Reconstructed signal using the best fit parameters for model 𝑀2              are in galactic coordinates, and the contours give intervals of 11.8%, 39.4%
+(double dipole) tested on a 30◦ mask. The functional form of this signal is            and 67.5% of posterior mass, equivalent to 0.5𝜎, 1𝜎 and 1.5𝜎 for a 2D
+as explained in Section 4.5.3. By visual inspection, the nature of this signal         Gaussian. The different colours correspond to different galactic plane cuts
+is similar to the pattern of over-densities and under-densities shown in the           applied, as indicated by the legend. Amplitudes of the recovered dipole (×103 )
+bottom row of Fig. 1, since it is this pattern that the model is trying to fit. Top:   are also tabulated beneath the plots with the same colour code as the sky
+Fit with Quaia low (𝐺 < 20.0). Bottom: Fit with Quaia high (𝐺 < 20.5).                 projections. The listed uncertainties give an interval containing 95% of the
+                                                                                       posterior mass, equivalent to 2𝜎 for a 1D Gaussian. The key point is that
+                                                                                       as increasingly conservative masks are used, the recovered and CMB dipoles
+                                                                                       more closely align for Quaia low. Top: Quaia low. Bottom: Quaia high.
+CMB dipole. For a 40◦ galactic plane mask (red contours), the recov-
+ered direction is consistent with the CMB direction within ≈ 0.5𝜎,
+although we note that at this stage the uncertainty in the fitted pa-                  they have equivalent explanatory power. This is likely because the 30∗
+rameters has drastically increased because more than half of the sky                   mask is being influenced by other over-densities and under-densities,
+has been masked. With respect to the dipole amplitudes, these are                      which are better filtered out by the 40◦ mask. We therefore find that
+shown for each mask in the single row below the Quaia low sky                          the 40◦ mask is most apt for genuinely interpreting the cosmic dipole
+projection of Fig. 6. As the over-dense region is masked out, the                      in Quaia low.
+recovered dipole amplitude approaches the CMB dipole amplitude.                           Quaia high cannot be viewed with the same interpretation. Looking
+Interestingly, for a 40◦ galactic plane mask, the recovered dipole am-                 at the bottom pane of Fig. 6, the recovered dipole for Quaia high drifts
+plitude 𝐷 × 103 ≈ 11 −5+6 is consistent with the CMB dipole amplitude
+                                                                                       away from the CMB dipole and towards (𝑙, 𝑏) ≈ (330◦ , 60◦ ) with
+       3
+𝐷 ×10 ≈ 8 given the 2𝜎 uncertainties, which sheds light on why 𝑀6                      high galactic masks, which it reaches by |𝑏| < 40◦ . Moreover, the
+is the preferred model in this regime. We interpret this as signifying                 CMB and inferred dipole amplitudes do not agree with each other
+that the spurious over-densities are filtered out with the 40◦ mask,                   within 2𝜎, even with the 40◦ mask. Looking at the Bayes factors, the
+and so the prevailing model is simply a dipole consistent with the                     favoured hypothesis with a 40◦ mask is the kinematic direction (𝑀4 ),
+CMB dipole.                                                                            but only marginally; the next-best model, 𝑀1 , is only 0.2 to 0.3 log
+   We also attempted to remove this over-dense region – while max-                     units behind. This is only a superficial, ‘bare mention’ of support for
+imising the final number of sources analysed – by imposing a 4 sr                      𝑀4 over 𝑀1 (Kass & Raftery 1995). We therefore form the view that,
+circular mask centered at (𝑙, 𝑏) = (0◦ , 0◦ ) on top of the 30◦ mask.                  while a dipole is being inferred in the sample, its parameters cannot
+This mask has been labelled as 30∗ in Tables A1–A4. Note that                          be constrained. That is, the data is insufficiently clear on whether
+this mask covers regions beyond the |𝑏| < 40◦ limit and hence in                       this dipole aligns with the CMB dipole, or has a preferred direction
+principle is better in removing the over-densities concentrated in the                 somewhere away from the CMB dipole. This is likely happening
+northern hemisphere along the line of 𝑙 ≈ 0◦ . Still, for Quaia low, the               because, while 𝑀4 has one less parameter than 𝑀1 and hence a more
+Bayes factor for the kinematic dipole (𝑀6 ) is about equal to that of                  favourable Occam factor, it also has less explanatory power. On net,
+the double dipole (𝑀2 ) where the 30∗ mask is employed, suggesting                     the models balance out in terms of support.
+
+MNRAS 000, 1–14 (2023)
+                                                                                                              The Cosmic Dipole in Quaia                     11
+                                                                                       6.2 Dipole estimation from the results
+              60°
+                                                                                       Having interpreted our results, we present our final determination
+  30°                                                                                  of the cosmic dipole in Quaia. To reiterate the foregoing, we take
+                                                                                       the result from the 40◦ mask from Quaia low and withhold any
+0°
+         150° 120° 90°        60°   30°         0°   330° 300° 270° 240° 210°          conclusions regarding Quaia high.
+                                                                                          For Quaia low, a dipole aligned both in direction and magnitude
+                                                         Contamination dipole (C)
+                                                                                       with the CMB dipole (𝑀6 ) best accounts for the results. This model
+  -30°
+                                                                                       has positive support over the next-favoured model 𝑀5 (ln 𝐵65 = 2.6),
+                                                         Quaia low dipole (L)
+                                                                                       which only fixes the dipole magnitude to that expected from the
+             -60°                                        CMB dipole
+                                                                                       CMB. Accordingly, the inferred distribution of quasars in Quaia low
+                                                                                       is consistent with the kinematic interpretation of the CMB, and thus
+                                                                                       is consistent with the cosmological principle.
+Figure 7. Projection of the 2D posterior distribution for the Quaia low dipole
+and the contaminated dipole, as defined in equations (21)–(23), using a 40◦
+mask. The contours give intervals of 11.8%, 39.4% and 67.5% of posterior               6.3 Impact of priors on results
+mass, equivalent to 0.5𝜎, 1𝜎 and 1.5𝜎 for a 2D Gaussian.
+                                                                                       It is worth noting that because the marginal likelihood in Bayes’s the-
+                                                                                       orem is an integral over all parameter space, it is generally sensitive to
+   We are hesitant to draw genuine conclusions from Quaia high be-                     the choice of prior. This could have an effect on the inferences made
+cause of the building evidence that the sample suffers more severely                   when evaluating competing hypotheses. Thus, we also investigated
+from contamination than Quaia low. Inspection of Fig. 6 lends sup-                     whether or not our conclusions still hold with a narrower prior on
+port to this, but as an additional check, we tested one final model on                 the dipole amplitude. Specifically, we sampled the dipole amplitude
+both samples. Suppose that Quaia high is in fact contaminated, such                    according to 𝐷 ∼ [0, 0.1] and the quadrupole amplitude according
+that the sample consists of some genuine dipole component aligned                      to 𝐷˜ ∼ [−0.1, 0]. These ranges of values are one order of magnitude
+with that of Quaia low (L), as well as a contaminated component.                       smaller than our previous choices.
+If so, then using our Poissonian methodology, the rate parameter                           With more restrictive priors, we find that our conclusions do not
+describing Quaia high (H) for the 𝑖-th pixel would be                                  change; that is, our findings are not strongly sensitive to the choice
+(𝜆𝑖 )H = (𝜆𝑖 )L + (𝜆𝑖 )H−L                                                      (21)   of prior. In general, the marginal likelihood for the dipole hypothesis
+                                                                                       (𝑀1 ), quadrupole hypothesis (𝑀3 ) and kinematic direction hypoth-
+       = 𝑁¯ L (1 + DL · p̂i ) + 𝑁¯ H−L (1 + DC · p̂i )                          (22)
+                                                                                       esis (𝑀4 ) increased with respect to the other hypotheses. With a
+where H − L refers to the ‘high minus low’ sample and C refers to                      |𝑏| < 40◦ galactic plane mask on Quaia low, the Bayes factor for
+the contaminated dipole component. The ‘high minus low’ sample is                      𝑀1 moved from 2.8 → 5.2, 0.5 → 2.9 for 𝑀3 and 5.8 → 8.0 for
+simply a catalogue we constructed containing the sources in Quaia                      𝑀4 . This is with respect to the point-by-point approach, but the trend
+high that are not in Quaia low. In this model, we fit both catalogues                  of increasing Bayes factors was similar for the Poissonian approach.
+simultaneously: we use the rate parameter (𝜆𝑖 )L to fit a dipole to                    While 𝑀4 is slightly more favoured than it was hitherto, 𝑀6 is still
+Quaia low, which is our genuine component, and use the rate pa-                        the dominant hypothesis (recall it has a Bayes factor of 10, as in
+rameter (𝜆𝑖 )H to fit the Quaia high sample. Accordingly, the total                    Table A1). Similar changes occur for Quaia high. 𝑀4 remains the
+likelihood is the sum of the two likelihoods for both catalogues, i.e.                 favoured hypothesis, but with only marginally more support than 𝑀1 .
+             ∑︁
+             𝑛pix.                      ∑︁
+                                        𝑛pix.                                          However, since the marginal likelihood for 𝑀4 increases while 𝑀5
+ln Ltot. =           ln 𝑃(𝑁𝑖 | 𝚯L ) +           ln 𝑃(𝑁𝑖 | 𝚯H ).                 (23)   and 𝑀6 are fixed between the two prior functions, 𝑀4 prevails more
+             𝑖=1                        𝑖=1                                            significantly over the other kinematic hypotheses. None the less, we
+In this case, the set of parameters 𝚯L = { 𝑁¯ L , 𝐷 𝐿 , 𝑙 𝐿 , 𝑏 𝐿 } and 𝚯H =           reserve drawing further conclusions from Quaia high for the reasons
+{𝚯L , 𝑁¯ H−L , 𝐷 C , 𝑙C , 𝑏 C }, since the rate parameter for Quaia high               mentioned in Section 6.1. Thus, even with more restrictive priors,
+now depends on the parameters of the dipole for Quaia low and the                      the best explanation of the data is a dipole consistent with the CMB
+parameters for the contaminated ‘high minus low’ component.                            dipole.
+   Testing this on a 40◦ mask yielded the posterior distributions seen
+in Fig 7. Evidently, the Quaia low dipole is recovered well (cf. Fig. 6),
+                                                                                       6.4 Final thoughts and future outlook
+and the bulk of the posterior mass coincides with the CMB dipole.
+In contrast, the contamination dipole, which to reiterate has a rate                   In this work, we presented a Bayesian analysis of the distribution
+parameter described by 𝑁¯ H−L (1 + DC · p̂i ), coincides with the region               of quasars in the Quaia catalogue of Storey-Fisher et al. (2023).
+of over-density near the galactic centre. This is instructive insofar                  Analysing both the Quaia low and Quaia high samples, there is sub-
+that it lends further evidence to their being sources near the galactic                stantial evidence that systematic effects arising from the construc-
+centre which significantly contaminate Quaia high.                                     tion of the selection function introduce spurious over-densities and
+   To summarise all the above, we form the view that while the over-                   under-densities into the catalogue, contaminating it. This affects the
+densities are removed with the |𝑏| < 40◦ mask for Quaia low, they                      inference of the cosmic dipole for both samples. After masking the
+are present beyond this limit for Quaia high. Thus, we use the 40◦                     contaminated regions, the inferred dipole is consistent with the CMB
+mask to infer the cosmic dipole in Quaia low, and more broadly the                     dipole in both magnitude and direction for Quaia low, but the data
+Quaia sample. This is predicated on its ability to remove most of                      affords insufficient clarity to define the parameters of the dipole for
+the clustering issues arising from the selection function. For Quaia                   Quaia high. There, the dipole drifts along 𝑙 = 0◦ towards high values
+high, we can at best infer that there is a dipole, but not its parameters.             of 𝑏 as more conservative galactic plane masks are applied, which
+There is strong reason to believe that this is because the sample is                   we have identified as an effect of a large over-density in the northern
+contaminated by sources not part of the quasar background.                             hemisphere. However, taking the results together, the inferred dipole
+
+                                                                                                                                      MNRAS 000, 1–14 (2023)
+12      Mittal, Oayda & Lewis
+in the distribution of quasars is in agreement with the CMB dipole,        REFERENCES
+and hence the cosmological principle.
+                                                                           Abdalla E., et al., 2022, Journal of High Energy Astrophysics, 34, 49
+   There are numerous avenues that can be pursued in the future to         Alonso D., Fabbian G., Storey-Fisher K., Eilers A.-C., García-García C.,
+build on this result. These include:                                            Hogg D. W., Rix H.-W., 2023, arXiv e-prints, p. arXiv:2306.17748
+                                                                           Astropy Collaboration et al., 2022, apj, 935, 167
+   (i) Studying the redshift-based evolution of the dipole. In this
+                                                                           Bengaly C. A., Maartens R., Santos M. G., 2018, J. Cosmology Astropart.
+work, we examined the cosmic dipole of both Quaia samples without               Phys., 2018, 031
+reference to the quasar redshift distribution. A redshift-binned selec-    Blake C., Wall J., 2002, Nature, 416, 150
+tion function map for Quaia high has been released, in which a cut at      Cheng Y.-T., Chang T.-C., Lidz A., 2023, arXiv e-prints, p. arXiv:2309.02490
+𝑧 = 1.47 was imposed to divide sources into those at a redshift lower      Colin J., Mohayaee R., Rameez M., Sarkar S., 2017, MNRAS, 471, 1045
+and greater than this threshold (Alonso et al. 2023). Future work          Conn A. R., et al., 2011, ApJ, 740, 69
+might generate a number of source redshift bins, regenerating the se-      Conn A. R., et al., 2012, ApJ, 758, 11
+lection map for each bin using the code released with Storey-Fisher        Dalang C., Bonvin C., 2022, Monthly Notices of the Royal Astronomical
+et al. (2023), and then study the evolution of the cosmic dipole as a           Society, 512, 3895
+function of redshift. This approach has been utilised by Horstmann         Dam L., Lewis G. F., Brewer B. J., 2023, MNRAS, 525, 231
+et al. (2022) in their study of the dipole evolution of Type Ia SNe.       Darling J., 2022, ApJ, 931, L14
+                                                                           Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377
+   (ii) A joint analysis with other data-sets. A joint analysis of Quaia
+                                                                           European Space Agency Gaia Data Processing and Analysis Consortium
+with other all-sky catalogues such as radio galaxies, SNe and other
+                                                                                2021,      https://gea.esac.esa.int/archive/documentation/
+quasar samples can give interesting insights into the overall matter            GEDR3/pdf/GaiaEDR3_documentation_1.1.pdf
+dipole of the universe. It might also shed light on how systematic         Gaia Collaboration et al., 2016, A&A, 595, A1
+effects are influencing the recovered dipole for different catalogues.     Gaia Collaboration et al., 2023a, A&A, 674, A1
+Such cross-sample studies have been performed by many different re-        Gaia Collaboration et al., 2023b, A&A, 674, A41
+search groups (see e.g. Secrest et al. 2022; Darling 2022; Wagenveld       Górski K. M., Hivon E., Banday A. J., Wandelt B. D., Hansen F. K., Reinecke
+et al. 2023).                                                                   M., Bartelmann M., 2005, ApJ, 622, 759
+   (iii) A revisit of the Quaia selection function. In this work, sub-     Harris C. R., et al., 2020, Nature, 585, 357
+stantial masking of the galactic plane was employed to screen out          Harrison E. R., 2000, Cosmology. The science of the universe.. Cambridge
+over-densities and under-densities, which are suspected to arise not            University Press
+                                                                           Horstmann N., Pietschke Y., Schwarz D. J., 2022, A&A, 668, A34
+because of the Earth’s peculiar motion, but because of systematic
+                                                                           Hunter J. D., 2007, Computing in Science & Engineering, 9, 90
+errors introduced by the selection function. Our primary concern is
+                                                                           Kass R. E., Raftery A. E., 1995, Journal of the American Statistical Associ-
+how the selection function appears to over-estimate source density              ation, 90, 773
+near the galactic centre. These density fluctuations have limited our      Koposov        S.,     et   al.,    2023,    joshspeagle/dynesty:     v2.1.2,
+ability to determine the cosmic dipole of Quaia, chiefly by reducing            doi:10.5281/zenodo.7995596, https://doi.org/10.5281/zenodo.
+the final number of sources which are analysed after masking. Hence             7995596
+a full appraisal of the selection function will be essential in deter-     Kothari R., Panwar M., Singh G., Tiwari P., Jain P., 2022, arXiv e-prints, p.
+mining the robustness of the cosmic dipole within the Quaia sample              arXiv:2208.14397
+and its impact on the cosmological principle.                              Kumar Aluri P., et al., 2023, Classical and Quantum Gravity, 40, 094001
+                                                                           Mackay D. J. C., 2003, Information Theory, Inference and Learning Algo-
+                                                                                rithms. Cambridge University Press
+                                                                           Marocco F., et al., 2021, ApJS, 253, 8
+                                                                           Milne E. A., 1935, Relativity, Gravitation and World-structure. Oxford Uni-
+ACKNOWLEDGEMENTS                                                                versity Press
+                                                                           Oayda O. T., Lewis G. F., 2023, MNRAS, 523, 667
+We first wish to extend our sincere gratitude to the authors of Storey-
+                                                                           Peebles P., 2022, Annals of Physics, 447, 169159
+Fisher et al. (2023) – we thank them for making the Quaia catalogue
+                                                                           Planck Collaboration et al., 2020, A&A, 641, A1
+publicly available and for their positive responses to our queries.        Riello M., et al., 2021, A&A, 649, A3
+We also wish to acknowledge and thank the insightful comments              Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., Colin
+made by the anonymous referee. VM acknowledges Prof. Kulinder                   J., 2021, ApJ, 908, L51
+Pal Singh, IISER Mohali for his support; DST, Government of India          Secrest N. J., von Hausegger S., Rameez M., Mohayaee R., Sarkar S., 2022,
+for the INSPIRE-SHE scholarship and University of Sydney’s in-                  ApJ, 937, L31
+ternship program which made this work possible. OTO is supported           Siewert T. M., Schmidt-Rubart M., Schwarz D. J., 2021, A&A, 653, A9
+by the Australian Government Research Training Program (RTP)               Singal A. K., 2011, The Astrophysical Journal Letters, 742, L23
+Scholarship. This work made use of the Python packages dynesty             Singal A. K., 2019, Phys. Rev. D, 100, 063501
+(Skilling 2004, 2006; Koposov et al. 2023), healpy (Górski et al.          Singal A. K., 2021, Universe, 7
+2005; Zonca et al. 2019), numpy (Harris et al. 2020), matplotlib           Singal A. K., 2022, MNRAS, 515, 5969
+                                                                           Singal A. K., 2023, MNRAS, 524, 3636
+(Hunter 2007), pandas (Wes McKinney 2010; The Pandas Develop-
+                                                                           Skilling J., 2004, in Fischer R., Preuss R., Toussaint U. V., eds, American
+ment Team 2020), scipy (Virtanen et al. 2020) and astropy (Astropy
+                                                                                Institute of Physics Conference Series Vol. 735, Bayesian Inference and
+Collaboration et al. 2022).                                                     Maximum Entropy Methods in Science and Engineering: 24th Interna-
+                                                                                tional Workshop on Bayesian Inference and Maximum Entropy Methods
+                                                                                in Science and Engineering. pp 395–405, doi:10.1063/1.1835238
+                                                                           Skilling J., 2006, Bayesian Analysis, 1, 833
+DATA AVAILABILITY                                                          Sorrenti F., Durrer R., Kunz M., 2022, arXiv e-prints, p. arXiv:2212.10328
+                                                                           Speagle J. S., 2020, MNRAS, 493, 3132
+The data used in this study will be made available with a reasonable       Storey-Fisher K., Hogg D. W., Rix H.-W., Eilers A.-C., Fabbian G., Blanton
+request to the authors.                                                         M., Alonso D., 2023, arXiv e-prints, p. arXiv:2306.17749
+
+MNRAS 000, 1–14 (2023)
+                                                                              The Cosmic Dipole in Quaia       13
+The Pandas Development Team 2020, pandas-dev/pandas: Pandas,
+    doi:10.5281/zenodo.3509134, https://doi.org/10.5281/zenodo.
+    3509134
+Tiwari P., Nusser A., 2016, Journal of Cosmology and Astroparticle Physics,
+    2016, 062
+Virtanen P., et al., 2020, Nature Methods, 17, 261
+Wagenveld J. D., Klöckner H.-R., Schwarz D. J., 2023, A&A, 675, A72
+Watkins R., et al., 2023, MNRAS, 524, 1885
+Wes McKinney 2010, in Stéfan van der Walt Jarrod Millman eds, Pro-
+    ceedings of the 9th Python in Science Conference. pp 56 – 61,
+    doi:10.25080/Majora-92bf1922-00a
+Wright E. L., et al., 2010, AJ, 140, 1868
+Zhou H., Li Z., 2020, ApJ, 889, 186
+Zonca A., Singer L., Lenz D., Reinecke M., Rosset C., Hivon E., Gorski K.,
+    2019, Journal of Open Source Software, 4, 1298
+
+
+
+APPENDIX A: BAYES FACTORS FOR TESTED
+HYPOTHESES
+Tables of Bayes factors for all the tested hypotheses are given on the
+following page.
+
+
+
+
+                                                                                             MNRAS 000, 1–14 (2023)
+14       Mittal, Oayda & Lewis
+                                                                                     Galactic mask angle 𝑏◦
+                    Hypothesis
+                                                           0.0            10.0            20.0           30.0              40.0            30.0*
+                    𝑀0 (Null)                              0.0             0.0             0.0            0.0               0.0             0.0
+                    𝑀1 (Dipole)                          130.6           109.5            49.4           14.4               2.8            11.3
+                    𝑀2 (Double Dipole)                   175.0           130.6            57.7           18.9               0.2            14.5
+                    𝑀3 (Quadrupole)                       44.3            21.1            10.2            6.2               0.5            12.0
+                    𝑀4 (Kinematic Direction)              23.4            30.5            24.0           12.8               5.8            13.2
+                    𝑀5 (Kinematic Velocity)               50.4            45.7            28.7           14.0               7.4            11.8
+                    𝑀6 (Kinematic Dipole)                 23.4            27.0            22.9           15.5              10.0            14.6
+
+Table A1. Table of Bayes Factors for different hypotheses and galactic masks using the Quaia low catalogue with the point-by-point analysis. Here, 30∗ represents
+the combination of a 30◦ mask and a 4 sr circular mask centered at the (𝑙 ◦ , 𝑏◦ ) = (0, 0). The highlighted cell represents the model with the highest Bayes factor,
+indicating it has the strongest level of support.
+
+
+                                                                                     Galactic mask angle 𝑏◦
+                    Hypothesis
+                                                           0.0            10.0            20.0           30.0              40.0            30.0*
+                    𝑀0 (Null)                              0.0             0.0             0.0            0.0               0.0             0.0
+                    𝑀1 (Dipole)                          131.4           109.9            49.9           14.5               3.5            11.7
+                    𝑀2 (Double Dipole)                   175.6           132.0            58.9           20.0               1.4            15.2
+                    𝑀3 (Quadrupole)                       45.5            22.1            11.2            7.4               1.6            13.1
+                    𝑀4 (Kinematic Direction)              23.8            30.7            24.5           12.9               6.1            13.4
+                    𝑀5 (Kinematic Velocity)               50.9            46.4            29.5           14.1               7.9            12.1
+                    𝑀6 (Kinematic Dipole)                 23.7            27.5            23.6           16.0              10.5            15.2
+
+Table A2. As for Table A1 but with the Poisson statistics.
+
+
+                                                                                     Galactic mask angle 𝑏◦
+                    Hypothesis
+                                                           0.0            10.0            20.0           30.0              40.0            30.0*
+                    𝑀0 (Null)                              0.0             0.0             0.0            0.0               0.0             0.0
+                    𝑀1 (Dipole)                          375.9           308.5          146.4            49.6              21.0            18.6
+                    𝑀2 (Double Dipole)                   426.8           329.2          156.4            49.6              20.3            16.3
+                    𝑀3 (Quadrupole)                       64.4            27.5            10.2            1.6               0.0             6.8
+                    𝑀4 (Kinematic Direction)              32.6            43.2            43.6           29.2              21.3            16.0
+                    𝑀5 (Kinematic Velocity)               98.7            88.9            58.0           31.4              21.1            16.8
+                    𝑀6 (Kinematic Dipole)                 30.3            35.7            34.9           26.1              20.4            17.4
+
+Table A3. As for Table A1 but with Quaia high.
+
+
+                                                                                     Galactic mask angle 𝑏◦
+                    Hypothesis
+                                                           0.0            10.0            20.0           30.0              40.0            30.0*
+                    𝑀0 (Null)                              0.0             0.0             0.0            0.0               0.0             0.0
+                    𝑀1 (Dipole)                          376.0           308.1          146.5            49.3              21.2            18.8
+                    𝑀2 (Double Dipole)                   426.8           328.5          155.8            50.9              20.2            16.2
+                    𝑀3 (Quadrupole)                       64.4            27.7            10.2            2.3               0.2             7.2
+                    𝑀4 (Kinematic Direction)              32.5            43.2            43.6           29.2              21.4            16.3
+                    𝑀5 (Kinematic Velocity)               98.3            88.6            57.7           31.6              21.0            16.6
+                    𝑀6 (Kinematic Dipole)                 30.2            35.7            34.7           26.2              20.4            17.4
+
+Table A4. As for Table A1 but with Quaia high and the Poisson statistics.
+
+
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+
+
+
+
+MNRAS 000, 1–14 (2023)
+                                               MNRAS 000, 1–2 (2024)                                                  Preprint 16 August 2024                           Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                               Correction to: The cosmic dipole in the Quaia sample of quasars: a
+                                               Bayesian analysis
+
+                                               Vasudev Mittal,1,2∗★ Oliver T. Oayda,2∗ † and Geraint F. Lewis2
+                                               ∗ Joint first author
+                                               1 Department of Physical Sciences, IISER Mohali, Knowledge City, Sector 81, SAS Nagar, Manauli PO 140306, Punjab, India
+                                               2 Sydney Institute for Astronomy, School of Physics A28, The University of Sydney, NSW 2006, Australia
+
+
+
+
+arXiv:2311.14938v2 [astro-ph.CO] 15 Aug 2024
+                                               Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                               Key words: errata, addenda – quasars: general – cosmology: observations – cosmology: theory – large-scale structure of
+                                               Universe
+
+
+
+                                               In the original paper (Mittal et al. 2024), an error was made in the                                 ×104
+                                               calculation of the distribution of spectral indices 𝛼, as appearing in
+                                               fig. 2 of that paper. The error arises from equation (3), which in the                                      α distribution (low)
+
+                                               original paper reads                                                                             8
+                                                                                                                                                           α distribution (high)
+                                                                                                                                                           ᾱ = 0.48 (low)
+                                               𝑚 𝜈 = −2.5 log10 𝑆 𝜈 + ZP.                                             (1)                                  ᾱ = 0.41 (high)
+
+
+
+
+                                                                                                                                 Number count
+                                               While this equation is mathematically correct, the issue relates to                              6
+                                               the correct interpretation of the units of the passband flux density
+                                               𝑆 𝜈 when using Gaia magnitudes. These magnitudes, like the G band
+                                               magnitude as appearing in the phot_g_mean_mag column of the                                      4
+                                               Gaia DR3 release table, are defined such that 𝑆 𝜈 in Equation (1) is
+                                               in units of photoelectrons per second (𝑒 − 𝑠 −1 ; Hambly et al. 2022).
+                                               We noted this in our original paper at the beginning of Section 4.2.2,                           2
+                                               at which stage we mentioned that to convert from 𝑒 − 𝑠 −1 into Jy, one
+                                               must first multiply the passband flux density by a correction factor
+                                               𝑐 𝜈 to give units of W m −2 Hz −1 . However, since this factor was not                           0
+                                               applied in equation (4) in the original work, equation (5) is incorrect                              −2           −1          0        1               2
+                                               as one cannot use the relation 𝑆 𝜈 ∝ 𝜈 − 𝛼 if 𝑆 𝜈 is in units of 𝑒 − 𝑠 −1 .                                        Spectral index α (G − BP)
+                                                  To correct this, let 𝑆 ′𝜈 denote the passband flux density in
+                                               W m −2 Hz −1 such that 𝑆 ′𝜈 = 𝑐 𝜈 𝑆 𝜈 . Substituting this into Equation (1)
+                                               yields                                                                          Figure 1. Distribution of spectral indices 𝛼 in the Quaia low and Quaia
+                                                                                                                               high samples computed from 𝑚𝐺−𝐵𝑃 . Blue and orange are used to denote
+                                               𝑚 𝜈 = −2.5 log10 𝑆 ′𝜈 + 2.5 log10 𝑐 𝜈 + ZP.                            (2)      Quaia low and Quaia high respectively. The mean spectral indices 𝛼¯ for each
+                                               Thus, equations (4) and (5) in the original work should be replaced             catalogue are indicated by the vertical lines.
+                                               with these corrected versions:
+                                                                            
+                                                                      ′    ′
+                                               𝑚 G−BP = 2.5 log10 𝑆BP    /𝑆G   + 2.5 log10 (𝑐 G /𝑐 BP ) + 𝑘    (3)                As the Ellis & Baldwin (1984) relation is dependent on 𝛼, the cor-
+                                                         𝜖 + 𝑘 − 𝑚 G−BP                                                        rection to the spectral index changes the expected dipole amplitude
+                                               =⇒ 𝛼𝑖 =                                                                (4)      D. We repeated the methodology in Section 4.2.2 with the amended
+                                                       2.5 log10 (𝜈BP /𝜈G )
+                                                                                                                               values of 𝛼, finding a distribution of dipole amplitudes as shown in
+                                               where 𝜖 is 2.5 log10 (𝑐 G /𝑐 BP ) and 𝑘 is ZPG − ZPBP as defined orig-          Fig. 2. This is to replace fig. 4 of the original work. We thus take the
+                                               inally. The value of these correction factors for each passband are             mean amplitude of D̄ = 0.0048 for Quaia low and D̄ = 0.0043 for
+                                               given in section 5.4.1 of the Gaia DR3 documentation (Busso et al.              Quaia high, using these as the dipole expectations.
+                                               2022). With the correction applied, fig. 2 in the original work is to be           Correcting for this error in the way described above impacts the
+                                               replaced with Fig. 1 as shown below. Since fig. 3 in the original work          relative Bayesian evidences of our different hypotheses. This is be-
+                                               included the correction factor when converting Gaia magnitudes to               cause models which incorporate the expected dipole amplitude will
+                                               flux densities, this figure does not need to be altered.                        necessarily arrive at different marginal likelihoods. These are models
+                                                                                                                               𝑀5 (kinematic velocity) and 𝑀6 (kinematic dipole) in our original
+                                               ★ E-mail: vasudeviiser@gmail.com                                                paper. Accordingly, the last two rows of tables A1–A4 in the original
+                                               † E-mail: oliver.oayda@sydney.edu.au                                            paper are to be replaced with those given here in Tables 1–4.
+
+                                               © 2024 The Authors
+2               Mittal, Oayda & Lewis
+                                                                              institutions, in particular the institutions participating in the Gaia
+               600                                 Amplitude (low)            Multilateral Agreement.
+                                                   Amplitude (high)
+               500                                 D̄ = 0.0048 (low)
+                                                   D̄ = 0.0043 (high)
+                                                                              REFERENCES
+               400
+
+
+ Probability
+                                                                              Busso G., et al., 2022, Gaia DR3 documentation Chapter 5: Photometric
+               300                                                                 data, Gaia DR3 documentation, European Space Agency; Gaia Data
+                                                                                   Processing and Analysis Consortium, https://gea.esac.esa.int/
+                                                                                   archive/documentation/GDR3/index.html
+               200
+                                                                              Ellis G. F. R., Baldwin J. E., 1984, MNRAS, 206, 377
+                                                                              Hambly N., et al., 2022, Gaia DR3 documentation Chapter 20: Datamodel
+               100                                                                 description, Gaia DR3 documentation, European Space Agency; Gaia
+                                                                                   Data Processing and Analysis Consortium, https://gea.esac.esa.
+                 0                                                                 int/archive/documentation/GDR3/index.html
+                     0.002   0.004      0.006         0.008           0.010   Mittal V., Oayda O. T., Lewis G. F., 2024, MNRAS, 527, 8497
+                                  Amplitude D
+                                                                              This paper has been typeset from a TEX/LATEX file prepared by the author.
+
+Figure 2. Probability distribution for the dipole amplitude assuming 𝑣CMB .
+This follows from the analysis in Section 4.2.2 and was performed with both
+the Quaia low and Quaia high samples.
+
+
+
+   Based on these tables, our conclusions are altered slightly. The
+relative ordering of each model in terms of evidential power is not
+changed. Namely, for the Quaia low sample with a 40◦ galactic plane
+mask, the kinematic dipole (model 𝑀6 ) is still the prevailing model.
+However, the difference in support between 𝑀6 and the next-favoured
+model, 𝑀4 (the marginal likelihood of which is given in the original
+work), becomes ln 𝐵64 = 1.5. This means that the kinematic dipole is
+somewhat less preeminent than as in the original work (ln 𝐵65 = 2.6).
+   Additionally, the conclusion in section 6.3 in the original work
+needs to be replaced. We now find that our conclusions are, to a
+certain extent, sensitive to the choice of prior. As mentioned there,
+after adjusting the prior function for D from U [0, 1.0] to U [0, 0.1],
+the marginal likelihood of model 𝑀4 increases to 8.0 (Quaia low;
+𝑏 ◦ < |40| masked). Based on the corrected Bayes factors in Table 1,
+this means that model 𝑀4 (kinematic direction) is the prevailing
+model with ln 𝐵46 = 0.7, in which case we find D ≈ 11 −5      +5 × 10 −3 .
+Although, this Bayes factor is indicative of only a slight preference
+for 𝑀4 over 𝑀6 . Meanwhile, the conclusions for Quaia high using
+the adjusted prior on D are unchanged.
+   Though these aspects have been altered, it still remains that the
+Quaia sample strongly favours a dipole aligning with the direction
+of the CMB dipole. The question of its amplitude is not as decisive;
+while we cannot rule out the possibility of a value larger than expected
+from the CMB dipole, we have also pointed towards support for it
+being equal to the CMB value. This leaves significant scope for future
+inquiry to attempt to resolve this matter.
+
+
+
+ACKNOWLEDGEMENTS
+We extend our sincere gratitude to Nathan Secrest, who pointed out
+the steepness of our original spectral indices and generously shared
+some of their own results. This led us to uncover the error mentioned
+in this correction.
+   This work has made use of data from the European Space
+Agency (ESA) mission Gaia (https://www.cosmos.esa.int/
+gaia), processed by the Gaia Data Processing and Analysis Consor-
+tium (DPAC, https://www.cosmos.esa.int/web/gaia/dpac/
+consortium). Funding for the DPAC has been provided by national
+
+MNRAS 000, 1–2 (2024)
+                                                                                          Correction to: The cosmic dipole in Quaia                                3
+                                                                                     Galactic mask angle 𝑏◦
+                     Hypothesis
+                                                            0.0           10.0            20.0           30.0             40.0            30.0*
+                     𝑀5 (Kinematic Velocity)               30.4           27.8            17.7            9.1              5.3             7.5
+                     𝑀6 (Kinematic Dipole)                 16.2           18.4            15.7           11.0              7.3            10.1
+
+Table 1. Table of Bayes Factors for different hypotheses and galactic masks using the Quaia low catalogue with the point-by-point analysis. Here, 30∗ represents
+the combination of a 30◦ mask and a 4 sr circular mask centered at the (𝑙 ◦ , 𝑏◦ ) = (0, 0). The highlighted cell represents the model with the highest Bayes factor,
+indicating it has the strongest level of support.
+
+
+                                                                                     Galactic mask angle 𝑏◦
+                     Hypothesis
+                                                            0.0           10.0            20.0           30.0             40.0            30.0*
+                     𝑀5 (Kinematic Velocity)               30.4           27.9            17.7            9.0              5.1             7.4
+                     𝑀6 (Kinematic Dipole)                 16.3           18.4            15.6           11.0              7.1            10.1
+
+Table 2. As for Table 1 but with the Poisson statistics.
+
+
+                                                                                     Galactic mask angle 𝑏◦
+                     Hypothesis
+                                                            0.0           10.0            20.0           30.0             40.0            30.0*
+                     𝑀5 (Kinematic Velocity)               62.9           56.6            37.3           20.9             14.6            11.5
+                     𝑀6 (Kinematic Dipole)                 21.8           25.2            24.5           18.5             14.5            12.6
+
+Table 3. As for Table 1 but with Quaia high.
+
+
+                                                                                     Galactic mask angle 𝑏◦
+                     Hypothesis
+                                                            0.0           10.0            20.0           30.0             40.0            30.0*
+                     𝑀5 (Kinematic Velocity)               63.1           56.5            37.4           20.7             14.9            11.3
+                     𝑀6 (Kinematic Dipole)                 21.9           25.1            24.2           18.6             14.5            12.7
+
+Table 4. As for Table 1 but with Quaia high and the Poisson statistics.
+
+
+
+
+                                                                                                                                          MNRAS 000, 1–2 (2024)
+

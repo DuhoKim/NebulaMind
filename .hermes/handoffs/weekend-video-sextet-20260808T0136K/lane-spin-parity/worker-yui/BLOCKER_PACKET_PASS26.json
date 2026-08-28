@@ -1,0 +1,82 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass26-blockers-20260808T144908K",
+  "checked_at": "2026-08-08T14:49:08+09:00",
+  "deepening_pass": 26,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "candidate": {
+    "name": "spin-parity-census-20260808T0149",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD — NOT AUTHORIZED FOR RELEASE OR ACCEPTANCE",
+    "modified": false,
+    "preserved": true
+  },
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "video_reportable_now": false,
+    "modified": false
+  },
+  "blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_VERDICT",
+      "state": "OPEN_UNCHANGED",
+      "exact_frozen_artifact": "T4_PAIRED_FLIP.json",
+      "exact_frozen_artifact_sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "required_by": "AMENDMENT_A4_DRAFT.md section 5",
+      "required_by_sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+      "inventory_scope": "exact frozen all-209-file T4 artifact",
+      "missing_record": "valid independent post-run A3.8 verdict record bound to the exact frozen artifact",
+      "presentation_audit_can_resolve": false
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "state": "OPEN_UNCHANGED",
+      "review_record": "KUN_FRAME_REVIEW.md",
+      "review_record_sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "terminal_status": "FRAME REVIEW: AGREES FRAME_UNSTATED",
+      "presentation_audit_can_resolve": false
+    },
+    {
+      "id": "VIDEO_REPORTABILITY_CLOSED",
+      "state": "OPEN_UNCHANGED",
+      "terminal_status": "video_reportable_now=false",
+      "presentation_audit_can_resolve": false
+    }
+  ],
+  "pass26_representation_finding": {
+    "transform": "native color/linear-light BT.709 grayscale/fixed Machado severity-100 matrix -> Pillow LANCZOS 640x360 -> opaque RGB black bottom quarter",
+    "candidate_structural_held_gates": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_held_critical_structural_gates": "0/5_ALL_FIVE_VARIANTS",
+    "candidate_assertion_support_imbalance": "LARGE_ASSERTIONS_REMAIN_PRIMARY_WHILE_LOWER_SUPPORT_IS_MASKED",
+    "candidate_repaired_or_authorized": false,
+    "sealed_v8_lower_boundary_occlusion": "S2_S3_S4_S5_S6_ALL_FIVE_VARIANTS",
+    "method_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "method_complete_badges": "7/7_ALL_FIVE_VARIANTS",
+    "method_non_color_redundancy": "PASS",
+    "disposition": "CONFIRM_EXISTING_TOP_GATE_CORRECTIONS_AND_ADD_NON_PIXEL_COMPOUND_GUARD__NO_NEW_PIXEL_OR_COPY_CORRECTION"
+  },
+  "unblock_requirement": {
+    "blocker_a": "Supply a valid independent post-run A3.8 verdict record explicitly bound to the exact frozen all-209-file T4 artifact.",
+    "blocker_b": "Resolve the archive storage/display-frame convention with an authorized source/review record.",
+    "blocker_c": "Issue a new source/status freeze that explicitly changes video_reportable_now only after the preceding science gates resolve."
+  },
+  "quarantined": {
+    "result_values_copied_into_packet": false,
+    "result_direction_or_significance_stated": false,
+    "cosmology_invented_or_adjudicated": false
+  },
+  "safety": {
+    "sealed_v8_modified": false,
+    "v9_created": false,
+    "candidate_modified": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "verdict": "PASS",
+  "storyboard_version": "pass7-validator-projection-causality-v2",
+  "storyboard_sha256": "7913170e49276f8cd5c6f7e79e37e028beb0a7e94c2b6c4b61c1d85c651f2411",
+  "packet_sha256": "9af725408f9fd924a2653fabd7fd031ce17a0b7a1ba692b7652c5aa482b7bb92",
+  "audience_projection_sha256": "b4906fb898da2f1ead4bb846099ebc715022796dee331b144829ba8b97b273ca",
+  "beat_count": 10,
+  "narration_count": 10,
+  "display_citation_count": 10,
+  "on_screen_leaf_string_count": 58,
+  "question_count": 8,
+  "excluded_fields": [
+    "visual_action",
+    "timed_reveal_states",
+    "state_handoff",
+    "narration_clauses",
+    "verification_sources",
+    "visual_rejections"
+  ],
+  "records": [
+    {
+      "beat_id": "b01",
+      "narration": "This VizieR metadata census asks which single tables intersect the abundance-search, mass-search, and redshift-search axes.",
+      "on_screen_copy_leaf_strings": [
+        "T1 ENUMERATION · SEARCH-AXIS METADATA REACH",
+        "A single-table metadata census",
+        "Which VizieR single tables have metadata-reachable columns on the abundance-search, mass-search, and redshift-search axes?",
+        "METADATA CENSUS — NOT AN MZR MEASUREMENT",
+        "SINGLE-TABLE METADATA INTERSECTION · CROSS-TABLE JOINS AND CROSSMATCHES NOT ASSESSED"
+      ],
+      "display_citation": "VizieR: Ochsenbein, Bauer & Marcout 2000, A&AS 143, 23"
+    },
+    {
+      "beat_id": "b02",
+      "narration": "The search combined semantic UCD tags with column-name variants, and each frozen query returned exactly its pre-counted rows.",
+      "on_screen_copy_leaf_strings": [
+        "T1 ENUMERATION",
+        "Two retrieval channels",
+        "SEMANTIC UCD TAGS",
+        "COLUMN-NAME VARIANTS",
+        "FROZEN QUERIES · ZERO CHANNEL FAILURES"
+      ],
+      "display_citation": "IVOA UCD1+ v1.5; NebulaMind VizieR census, 2026-08-05"
+    },
+    {
+      "beat_id": "b03",
+      "narration": "UCD plus name matching reached 5,568 tables on the abundance-search axis, 6,206 on mass-search, and 6,687 on redshift-search; name matching added 175, 88, and 20.",
+      "on_screen_copy_leaf_strings": [
+        "T1 ENUMERATION",
+        "Metadata reach by axis",
+        "ABUNDANCE SEARCH · UCD 5,393 · UCD + NAME 5,568 · GAIN +175 TABLES",
+        "MASS SEARCH · UCD 6,118 · UCD + NAME 6,206 · GAIN +88 TABLES",
+        "REDSHIFT SEARCH · UCD 6,667 · UCD + NAME 6,687 · GAIN +20 TABLES",
+        "COUNTS · AREA NOT ENCODED"
+      ],
+      "display_citation": "NebulaMind pre-registered VizieR metadata census, 2026-08-05"
+    },
+    {
+      "beat_id": "b04",
+      "narration": "The three axis lists intersected at 178 candidate tables.",
+      "on_screen_copy_leaf_strings": [
+        "T1 ENUMERATION",
+        "Three-axis metadata reach",
+        "178 SINGLE TABLES",
+        "RECORDED METADATA CANDIDATES · NOT ELIGIBILITY RULINGS"
+      ],
+      "display_citation": "NebulaMind VizieR census, 2026-08-05"
+    },
+    {
+      "beat_id": "b05",
+      "narration": "Modifier columns then emptied a required axis in 21 tables: 19 on redshift and 2 on abundance, leaving 157 recorded candidates.",
+      "on_screen_copy_leaf_strings": [
+        "T1 ENUMERATION",
+        "Modifier filter accounting",
+        "178 − 21 = 157 RECORDED CANDIDATE TABLES",
+        "19 · REDSHIFT AXIS EMPTIED · e_Z · e_[Z/H]",
+        "2 · ABUNDANCE AXIS EMPTIED · e_Ha/Hb · e_logOI/Ha · l_logOI/Ha"
+      ],
+      "display_citation": "NebulaMind VizieR census, 2026-08-05"
+    },
+    {
+      "beat_id": "b06",
+      "narration": "As a side check, a frozen term regex matched 62 of those 157 recorded descriptions; it is not an eligibility filter, and T2 still applies to all 157.",
+      "on_screen_copy_leaf_strings": [
+        "T1 ENUMERATION · VOCABULARY SIDE CHECK",
+        "Description-term side check",
+        "62 OF 157 RECORDED DESCRIPTIONS MATCHED",
+        "FROZEN VOCABULARY REGEX PRESENCE · NOT ADJUDICATED GAS-PHASE EVIDENCE",
+        "SIDE CHECK ONLY · NOT AN ELIGIBILITY FILTER · T2 STILL APPLIES TO ALL 157"
+      ],
+      "display_citation": "NebulaMind description-term audit, 2026-08-05"
+    },
+    {
+      "beat_id": "b07",
+      "narration": "All seven pinned recall members returned, while none of the three controls appeared.",
+      "on_screen_copy_leaf_strings": [
+        "T1 RETRIEVAL-INSTRUMENT CHECK · 3 CONTROLS",
+        "Retrieval instrument check",
+        "RECALL 7/7",
+        "CONTROLS APPEARING 0/3"
+      ],
+      "display_citation": "NebulaMind pre-registered retrieval check, 2026-08-05"
+    },
+    {
+      "beat_id": "b08",
+      "narration": "Those checks validate retrieval, not precision: the frozen controls did not cover the dominant precision-contamination mode.",
+      "on_screen_copy_leaf_strings": [
+        "T1 RETRIEVAL-INSTRUMENT CHECK · 3 CONTROLS",
+        "RETRIEVAL CHECK PASSED · PRECISION NOT CERTIFIED",
+        "FROZEN CONTROLS DID NOT COVER THE DOMINANT PRECISION-CONTAMINATION MODE"
+      ],
+      "display_citation": "IVOA UCD1+ v1.5; NebulaMind VizieR census, 2026-08-05"
+    },
+    {
+      "beat_id": "b09",
+      "narration": "Recorded examples separate symbol-and-meaning collisions—Galactic height and model-grid metal fraction—from target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity. They are not T2 rulings.",
+      "on_screen_copy_leaf_strings": [
+        "T1 RECORDED CHARACTERIZATION · NOT T2 RULINGS",
+        "RECORDED EXAMPLES · NOT T2 RULINGS",
+        "SYMBOL / MEANING COLLISION",
+        "GALACTIC CARTESIAN HEIGHT",
+        "STELLAR-GRID METAL FRACTION · MODEL Z",
+        "TARGET-DOMAIN MISMATCH",
+        "STELLAR GRAVITATIONAL REDSHIFT",
+        "GRAVITATIONAL-REDSHIFT VELOCITY"
+      ],
+      "display_citation": "NebulaMind VizieR metadata examples, 2026-08-05"
+    },
+    {
+      "beat_id": "b10",
+      "narration": "The T2 rule contract was frozen after seven gate rounds over twelve decoys and three anchors, but the 157-table eligibility application is not completed, so no eligible-table count or metallicity measurement is reportable yet.",
+      "on_screen_copy_leaf_strings": [
+        "T2 CONTRACT STATUS · APPLICATION NOT COMPLETED",
+        "Reportable now versus pending",
+        "T1 METADATA-ENUMERATION COUNTS",
+        "178 − 21 = 157 RECORDED CANDIDATE TABLES",
+        "62/157 DESCRIPTION-TERM SIDE CHECK",
+        "RECALL 7/7 · CONTROLS 0/3 · PRECISION NOT CERTIFIED",
+        "T2 RULE CONTRACT FROZEN",
+        "T2 CONTRACT DESIGN · 12 DECOYS + 3 ANCHORS · NOT ELIGIBILITY RESULTS",
+        "T2 APPLICATION TO ALL 157 TABLES",
+        "ELIGIBLE-TABLE COUNT",
+        "ANY METALLICITY OR MZR MEASUREMENT",
+        "APPLICATION NOT COMPLETED · NO ELIGIBLE-TABLE COUNT",
+        "SINGLE-TABLE METADATA CENSUS · NOT AN MZR MEASUREMENT"
+      ],
+      "display_citation": "NebulaMind pre-registered T2 eligibility protocol v1.8, frozen 2026-08-06"
+    }
+  ]
+}

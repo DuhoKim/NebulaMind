@@ -1,0 +1,246 @@
+{
+  "packet_type": "WORKER_YUI_STORYBOARD_PROPOSAL__NOT_STORYBOARD_OF_RECORD",
+  "version": "fesc-graphics-proposal-v2",
+  "lane": "lane-fesc-zsweep/worker-yui",
+  "integrator": "Hwao",
+  "source_freeze_sha256": "b14188e0cc838cc4f512ebd78474b11cf742ea07cd45787df2f41510e97720c9",
+  "purpose": "A no-face graphics-first scientific-presentation canary proposal centered on the source-supported redshift sweep. This worker packet does not authorize or produce an official candidate.",
+  "audience": "A scientifically literate general viewer who has not read the manuscript.",
+  "duration_seconds": 98,
+  "fps_proposal": 30,
+  "audio_contract": {
+    "current_worker_action": "DO_NOT_SYNTHESIZE",
+    "future_route_if_Hwao_accepts_and_delegates": "Nous managed TTS, voice Alloy, speed 1.18",
+    "owner": "Hwao",
+    "note": "Narration text below is proposed copy only. No TTS, audio file, or narration manifest is produced by this worker pass."
+  },
+  "visual_contract": {
+    "aspect_ratio": "16:9",
+    "resolution": "1920x1080",
+    "presenter_or_face": false,
+    "primary_surface": "progressive two-panel quantitative redraw from frozen TREND_RESULTS.json",
+    "graphics_primary_runtime_fraction": 1.0,
+    "section_divider_runtime_seconds": 0,
+    "manuscript_cover_runtime_seconds": 0,
+    "generated_scientific_geometry": false,
+    "source_pixel_overlay_policy": "All explanatory text remains in a right-side or bottom rail; no labels cover model curves, bands, markers, or crossing geometry.",
+    "minimum_encoded_axis_or_tick_text_px": 24,
+    "audience_provenance": "NebulaMind z-sweep model output (2026-08-04) · 40,000 draws per redshift · model propagation, not a measurement",
+    "internal_paths_visible": false
+  },
+  "semantic_definitions": {
+    "required_escape_fraction": "The fraction required by the maintenance-budget model to balance recombinations.",
+    "proxy_inferred_escape_fraction": "A z-independent distribution produced by transporting the same low-redshift O32 and UV-slope proxy calibrations to every grid redshift.",
+    "Delta": "required escape fraction minus proxy-inferred escape fraction",
+    "median_crossing_z_m": "The redshift where the median of Delta crosses zero: 6.328.",
+    "closure_crossing_z_c": "The redshift where the 16th percentile of Delta crosses zero and the 16-84% interval stops spanning zero: 8.045 in the fiducial model.",
+    "shortfall_probability": "Conditional probability mass with Delta greater than zero under the frozen model anchors; not the probability that a real cosmic shortfall exists."
+  },
+  "scenes": [
+    {
+      "scene_id": "S01",
+      "start_seconds": 0,
+      "end_seconds": 12,
+      "duration_seconds": 12,
+      "narration_proposal": "Can galaxies leak enough ionizing light to keep the early universe reionized? This model compares the escape fraction the photon budget requires with a proxy-based value.",
+      "visual_action": "Open directly on the scientific question and define escape fraction as the share of ionizing photons that get out of galaxies. Then reveal a small preview of the two-panel sweep. Keep a persistent MODEL PROPAGATION — NO NEW MEASUREMENT status chip.",
+      "asset_view_state": "question_with_evidence_preview",
+      "on_screen_copy": [
+        "Can galaxies leak enough ionizing light?",
+        "escape fraction = share of ionizing photons that get out",
+        "Compare required leakage with proxy-based leakage",
+        "MODEL PROPAGATION — no new measurement"
+      ],
+      "source_anchors": [
+        "MERGED_FESC_ZSWEEP.tex:10-19",
+        "MERGED_FESC_ZSWEEP.tex:24-41"
+      ],
+      "allowed_claim": "The paper performs a literature-anchored model comparison and makes no new measurement.",
+      "forbidden_implication": "Do not imply that the plot points are direct galaxy measurements."
+    },
+    {
+      "scene_id": "S02",
+      "start_seconds": 12,
+      "end_seconds": 23,
+      "duration_seconds": 11,
+      "narration_proposal": "The required fraction rises with redshift. The inferred fraction stays fixed because the same low-redshift calibrations are transported to every redshift.",
+      "visual_action": "Reveal the top-panel axes first, then the required median and 16-84% band, then the fixed proxy-inferred median and band. Attach definitions to the legend, not to floating prose cards.",
+      "asset_view_state": "required_vs_inferred_with_bands",
+      "on_screen_copy": [
+        "x: redshift",
+        "y: escape fraction",
+        "required by the maintenance budget",
+        "proxy-inferred; fixed in redshift by construction"
+      ],
+      "source_anchors": [
+        "TREND_RESULTS.json:/grid_fiducial",
+        "MERGED_FESC_ZSWEEP.tex:31-41",
+        "MERGED_FESC_ZSWEEP.tex:52-56"
+      ],
+      "allowed_claim": "The required median increases over the grid while the proxy-inferred distribution is z-independent by construction.",
+      "forbidden_implication": "Do not label these median curves as crossing at z=8.045."
+    },
+    {
+      "scene_id": "S03",
+      "start_seconds": 23,
+      "end_seconds": 35,
+      "duration_seconds": 12,
+      "narration_proposal": "Delta means required minus inferred. The band shows the model's sixteen-to-eighty-four percent systematic interval. The budget can still balance while that interval spans zero.",
+      "visual_action": "Reveal the bottom Delta panel and zero line. Draw the median and 16-84% envelope from the frozen triples. Highlight the lower envelope edge as the closure criterion.",
+      "asset_view_state": "delta_definition_and_zero_line",
+      "on_screen_copy": [
+        "Δ = required − inferred",
+        "band: 16–84% model interval",
+        "the budget can still balance while the interval spans zero"
+      ],
+      "source_anchors": [
+        "TREND_RESULTS.json:/grid_fiducial/*/delta",
+        "TREND_RESULTS.json:/closure_crossing_fiducial/definition",
+        "MERGED_FESC_ZSWEEP.tex:78-85"
+      ],
+      "allowed_claim": "The closure criterion is defined by whether the 16-84% Delta interval spans zero.",
+      "forbidden_implication": "Do not describe the shaded interval as observational error or statistical confidence on a measurement."
+    },
+    {
+      "scene_id": "S04",
+      "start_seconds": 35,
+      "end_seconds": 50,
+      "duration_seconds": 15,
+      "narration_proposal": "At redshift 8.045, the lower edge touches zero. Resampling the model draws gives sixteen-to-eighty-four-percent bounds of 8.030 to 8.059. This is the closure-envelope crossing, not the median crossing.",
+      "visual_action": "Zoom the Delta panel. Mark z_c=8.045 exactly where the 16th-percentile edge reaches zero and show a horizontal bootstrap bracket from 8.030 to 8.059. Keep z_m=6.328 as a small separate label only if the median crossing remains visible.",
+      "asset_view_state": "fiducial_closure_crossing",
+      "on_screen_copy": [
+        "closure-envelope crossing",
+        "z_c = 8.045",
+        "finite-Monte-Carlo resampling, 16th–84th percentiles: 8.030–8.059",
+        "lower edge reaches Δ = 0",
+        "median crossing is separate: z_m = 6.328"
+      ],
+      "source_anchors": [
+        "TREND_RESULTS.json:/closure_crossing_fiducial",
+        "TREND_RESULTS.json:/median_crossing_fiducial",
+        "MERGED_FESC_ZSWEEP.tex:80-84"
+      ],
+      "allowed_claim": "The fiducial closure-envelope crossing is z_c=8.045 with the frozen bootstrap bounds.",
+      "forbidden_implication": "Do not say the required and inferred median curves first cross at 8.045."
+    },
+    {
+      "scene_id": "S05",
+      "start_seconds": 50,
+      "end_seconds": 60,
+      "duration_seconds": 10,
+      "narration_proposal": "The conditional shortfall fraction rises smoothly: 66 percent at redshift 7, 83 percent at 8, and 93 percent at 9.",
+      "visual_action": "Highlight the z=7, 8, and 9 grid markers in sequence on the Delta panel. Place each rounded percentage directly beside its keyed marker and retain the conditional-model status chip.",
+      "asset_view_state": "keyed_deficit_probabilities",
+      "on_screen_copy": [
+        "66% @ z=7",
+        "83% @ z=8",
+        "93% @ z=9",
+        "conditional on frozen model anchors"
+      ],
+      "source_anchors": [
+        "TREND_RESULTS.json:/grid_fiducial[z=7.0]/frac_shortfall=0.659525",
+        "TREND_RESULTS.json:/grid_fiducial[z=8.0]/frac_shortfall=0.833525",
+        "TREND_RESULTS.json:/grid_fiducial[z=9.0]/frac_shortfall=0.927475",
+        "MERGED_FESC_ZSWEEP.tex:65-73"
+      ],
+      "allowed_claim": "The rounded conditional shortfall fractions are 66%, 83%, and 93% at z=7, 8, and 9.",
+      "forbidden_implication": "Do not present the numbers without percent signs, redshift keys, or the conditional-model boundary."
+    },
+    {
+      "scene_id": "S06",
+      "start_seconds": 60,
+      "end_seconds": 73,
+      "duration_seconds": 13,
+      "narration_proposal": "In a separate model run, removing the JWST-motivated star-formation-rate-density tail makes closure harder. This removes one prior family and moves the crossing earlier, to redshift 7.615.",
+      "visual_action": "Add the separate no-SFRD-tail run's 16th-percentile curve as a dotted comparison. Label it as one prior family removed, not a paired-draw counterfactual. Mark its zero crossing at 7.615 and show finite-Monte-Carlo resampling bounds 7.602-7.631.",
+      "asset_view_state": "no_tail_scenario_comparison",
+      "on_screen_copy": [
+        "NO-SFRD-TAIL SCENARIO",
+        "separate model run; one prior family removed",
+        "z_c = 7.615",
+        "finite-Monte-Carlo resampling, 16th–84th percentiles: 7.602–7.631",
+        "moves earlier → fiducial tail makes closure easier"
+      ],
+      "source_anchors": [
+        "TREND_RESULTS.json:/corner_boost_none",
+        "MERGED_FESC_ZSWEEP.tex:89-94"
+      ],
+      "allowed_claim": "Removing the JWST-motivated SFRD tail strengthens the deficit and moves the closure crossing earlier.",
+      "forbidden_implication": "Do not call this a corner where every assumption is set against the result or a full uncertainty envelope over all omitted systematics."
+    },
+    {
+      "scene_id": "S07",
+      "start_seconds": 73,
+      "end_seconds": 87,
+      "duration_seconds": 14,
+      "narration_proposal": "But this is a model propagation, not a measurement. The dominant omission is whether low-redshift proxy calibrations apply above redshift 6; other assumptions also remain outside the Monte Carlo.",
+      "visual_action": "Retain the plot and add an external status rail with examples of propagated priors, the dominant omitted proxy-transport systematic, and a note that the rail is not a complete outside-model inventory.",
+      "asset_view_state": "inside_vs_outside_model_boundary",
+      "on_screen_copy": [
+        "EXAMPLES PROPAGATED: ξ_ion, clumping, SFRD priors",
+        "DOMINANT OMISSION: proxy evolution with redshift",
+        "other structural assumptions also remain unpropagated",
+        "no survey measurement in this study"
+      ],
+      "source_anchors": [
+        "MERGED_FESC_ZSWEEP.tex:96-106",
+        "MERGED_FESC_ZSWEEP.tex:108-112"
+      ],
+      "allowed_claim": "Proxy transportability is a dominant untested systematic outside the Monte Carlo.",
+      "forbidden_implication": "Do not say the shortfall percentages are the probability that a real cosmic shortfall exists."
+    },
+    {
+      "scene_id": "S08",
+      "start_seconds": 87,
+      "end_seconds": 98,
+      "duration_seconds": 11,
+      "narration_proposal": "So the result is a conditional number about frozen anchors. Measuring how escape-fraction proxies evolve at high redshift is the next test.",
+      "visual_action": "End on a held scientific summary with a small but complete plot, not a URL card. Use four explicit rows: finding, evidence, boundary, next test.",
+      "asset_view_state": "scientific_summary_hold",
+      "on_screen_copy": [
+        "FINDING — closure envelope leaves zero at z_c=8.045",
+        "EVIDENCE — lower Delta edge crosses zero; finite-MC 16th–84th bounds 8.030–8.059",
+        "BOUNDARY — model propagation over frozen low-z anchors; no new measurement",
+        "NEXT TEST — measure proxy transport at high redshift"
+      ],
+      "source_anchors": [
+        "TREND_RESULTS.json:/closure_crossing_fiducial",
+        "MERGED_FESC_ZSWEEP.tex:100-109"
+      ],
+      "allowed_claim": "The model's closure-envelope crossing is a conditional result and empirical proxy transport is the next test.",
+      "forbidden_implication": "Do not replace the scientific summary with branding or claim the result is a fact about the sky."
+    }
+  ],
+  "asset_contract": {
+    "numeric_source_path": ".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/TREND_RESULTS.json",
+    "numeric_source_sha256": "8df9f25b5f8acaf22825d6ece958867562c7e37a73fe69aa8e8175fe0b7aa242",
+    "canonical_figure_path": ".hermes/handoffs/fesc-zsweep-merged-paper-20260804T1040K/fesc_zsweep_trend.png",
+    "canonical_figure_sha256": "10269f5f89b3d9a11365d5cb11f09f3dc62152d71fd26418affcb8c1db4f6b3c",
+    "redraw_policy": "Allowed only as an exact deterministic redraw of frozen arrays and crossing fields. No interpolation beyond the frozen crossing values; no invented points, smoothing, or uncertainty.",
+    "display_citation": "NebulaMind z-sweep model output (2026-08-04)",
+    "provenance_role": "MODEL OUTPUT — conditional on frozen low-redshift proxy anchors",
+    "verification_paths_visible_to_audience": false
+  },
+  "acceptance_checks": [
+    "Every scene is plot- or graphic-primary; no presenter or manuscript cover appears.",
+    "z_c=8.045 is attached to the 16th-percentile Delta edge crossing zero, not the median required/inferred curves.",
+    "z_m=6.328 is not conflated with z_c.",
+    "66%, 83%, and 93% are keyed to z=7, 8, and 9.",
+    "The no-tail scenario is named exactly and not broadened into all assumptions.",
+    "Both crossing bootstrap intervals remain visible where the values are discussed.",
+    "No internal repository path is rendered.",
+    "Axis titles, material tick labels, legend, bands, markers, and zero line remain readable at 1920x1080.",
+    "The model-versus-measurement boundary is persistent and repeated in the closing hold.",
+    "Hwao remains the only candidate/shared-tool/TTS writer."
+  ],
+  "closed_gates": [
+    "shared renderer edits",
+    "storyboard-of-record edits",
+    "TTS invocation",
+    "official candidate render",
+    "upload/publication",
+    "website/cockpit mutation",
+    "Git writes"
+  ]
+}

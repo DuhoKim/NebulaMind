@@ -1,0 +1,73 @@
+{
+  "candidate_sha256": "c5e7deed0dc243ccff170fdb72b128f4816a85e1ed4dbc185543e53496baa240",
+  "sampling": {
+    "uniform_fps": 2,
+    "uniform_actual_encoded_frames": 375,
+    "sentence_midpoint_actual_frames": 27,
+    "intro_one_second_actual_frames": 22,
+    "critical_native_actual_frames": 13
+  },
+  "ocr": {
+    "engine": "tesseract psm 11",
+    "errors": 0,
+    "nonempty_frames": 375,
+    "forbidden_science_hits": 0,
+    "internal_filename_hits": 0,
+    "forbidden_terms": [
+      "T3",
+      "T4",
+      "significance/significant",
+      "dipole",
+      "parity",
+      "cosmology/cosmological",
+      "GRB",
+      "SN Ia/supernova",
+      "dark energy",
+      "quasar",
+      "H0",
+      "black-hole",
+      "DESI",
+      "Ganalyzer"
+    ],
+    "introduction_terms": {
+      "universe": {
+        "ocr_frames": 35,
+        "time_range_seconds": [4.25, 21.25],
+        "frames_after_22_seconds": 0
+      },
+      "sky": {
+        "ocr_frames": 35,
+        "time_range_seconds": [4.25, 21.25],
+        "frames_after_22_seconds": 0
+      },
+      "sorters": {
+        "ocr_frames": 24,
+        "time_range_seconds": [9.75, 21.25],
+        "frames_after_22_seconds": 0
+      },
+      "excess": {
+        "ocr_frames": 11,
+        "time_range_seconds": [9.75, 14.75],
+        "frames_after_22_seconds": 0
+      }
+    },
+    "method_boundary": {
+      "method_design_no_measured_value_banner_frames": 371,
+      "banner_range_seconds": [0.25, 185.75],
+      "no_sign_selected_detected": true,
+      "design_only_no_outcomes_detected": true,
+      "not_reportable_or_not_yet_reportable_detected": true
+    }
+  },
+  "visual_review": {
+    "contact_sheet_cells_inspected": 62,
+    "opening_claim_boundary": "PASS: two balanced handednesses; IF GENUINE image-linked sky/universe lane; COULD ARISE IN SORTING alternative; unresolved question; no count, selected side, observed excess, value, direction, or significance",
+    "funnel": "PASS: source/sample accounting only; 667,944 source rows; 190,225 spiral-flag rows = 161,172 decisive + 29,053 ties; 51,157 at 0.60; 30,412 at 0.80; parallel-not-sequential",
+    "estimator": "PASS: symbolic A=(N_CW-N_ACW)/(N_CW+N_ACW); VALUE WITHHELD; symmetric sign rail; no sign selected",
+    "controls": "PASS: DESIGN ONLY - NO OUTCOMES",
+    "gates": "PASS: discipline chain stops before ANSWER; stored-direction frame unresolved; value/direction/interpretation not reportable",
+    "closing": "PASS: returns to images versus labeling process and mirror discriminant; gate-cleared answer not yet reportable",
+    "result_claim_or_forbidden_context_found": false,
+    "internal_filename_found": false
+  }
+}

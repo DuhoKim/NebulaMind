@@ -1,0 +1,50 @@
+{
+  "review_round": 13,
+  "pass": 7,
+  "snapshot": "pass7-adversarial-semantic-closure-v5",
+  "snapshot_manifest_sha256": "2e2e89c7cac3a4c14b32984f430a8a05b629c2ff365da83af685be35d0e3f754",
+  "manifest_entries": 95,
+  "start_hashes_verified": "95/95",
+  "end_hashes_verified": "95/95",
+  "regular_file_census": "96 total: 95 listed entries plus MANIFEST.json",
+  "file_modes": "0444",
+  "directory_modes": "0555",
+  "frozen_sources_verified": "8/8",
+  "audited_frame_pngs_verified": "43/43",
+  "snapshot_changed": false,
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "id": "b09-duplicate-taxonomy-reveals-break-semantic-clock",
+      "evidence": "b08_s04 already reveals both taxonomy labels. With b08 retiring none, b09_s02 and b09_s04 re-reveal those labels rather than new evidence. Conservative replay yields 43/45 distinct states and two six-second unchanged intervals at global 81→87 and 87→93 seconds, contradicting the 45-state and 3.0-second claims."
+    },
+    {
+      "id": "closed-book-review-scaffolding-leaks-answer-premises",
+      "evidence": "Questions state that search axes are not adjudicated physical measurements, T2 controls are not eligibility results, and disclose certification/category premises. This contradicts the packet and receipt assertion that scaffolding supplies no answers or new declarative science."
+    },
+    {
+      "id": "standalone-validator-remains-tautological-under-approval-rotation",
+      "evidence": "All 12 unrotated hostile mutations were rejected, but after rotating temporary co-located approval hashes nine dangerous mutations passed: publication authorization, contradictory b01 claim, wrong registered citation, 46 states, decorative no-op, swapped clauses, reset synonym, topology contradiction, and source tamper with rotated local source manifest. The external immutable MANIFEST digest remains the independent trust anchor."
+    }
+  ],
+  "verified_passes": {
+    "required_helper_commands": "PASS without writes",
+    "supplied_mutation_suite": "PASS baseline plus 25/25 expected failures, including all 12 v2 attacks",
+    "additional_unrotated_mutations": "12/12 rejected",
+    "b05_search_axis_qualification": "PASS; 12 qualified occurrences and no unqualified redshift/abundance occurrence",
+    "source_reconstruction": "PASS",
+    "topology_control_taxonomy_status": "PASS",
+    "citation_registration": "PASS; locality remains approval-rotation-vulnerable in standalone use",
+    "packet_payload_mechanical_projection": "PASS: 10 narration, 62 on-screen leaves, 10 citations; no dedicated answer-key file",
+    "static_v8": "compatible unclipped one-frame overview only; cannot prove temporal implementation"
+  },
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "tts_invoked": false,
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "carry_forward_to_current": "V6 manifest authentication closes approval rotation. V8 must replace the duplicate b09 label reveals with four one-at-a-time example reveals and remove answer premises from closed-book questions. V7 custody/inventory remains applicable and is retained in the higher packet.",
+  "current_gate_note": "V5 exact FAIL is preserved. It cannot clear v7/v8, the encoded candidate, or downstream gates."
+}

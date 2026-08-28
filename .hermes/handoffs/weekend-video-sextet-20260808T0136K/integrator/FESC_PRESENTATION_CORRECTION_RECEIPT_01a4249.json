@@ -1,0 +1,124 @@
+{
+  "status": "LOCAL_SELF_QA_AND_TORI_FRAME_SWEEP_PASS_FROZEN_AWAITING_HWAO_DISPOSITION",
+  "created_at": "2026-08-09T15:36:10+0900",
+  "candidate": "fesc-method-overhaul-canary-20260809T1501K",
+  "candidate_dir": "integrator/canaries/fesc-method-overhaul-canary-20260809T1501K",
+  "authority": "HWAO_FESC_PRESENTATION_FIX_ORDER.md",
+  "authority_sha256": "ec4561df5a270fc4318fbd5ccf83b2c73c3df16880c8b6c09031266cd1789e3b",
+  "video": {
+    "sha256": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+    "bytes": 10605559,
+    "format": "H.264/AAC",
+    "resolution": "1920x1080",
+    "fps": 30,
+    "duration_seconds": 236.739,
+    "video_frames_read": 7102,
+    "renderer_sha256": "b1261b23181de0bf45a54d6453b98a336713f9752d719e5db54ddfe7303521bc"
+  },
+  "predecessor": {
+    "candidate": "fesc-method-overhaul-canary-20260809T1420K",
+    "sha256": "4c8115997e21689508f31587672a3dd7da9c902803427c43490603bad08309b9",
+    "verified_unchanged_after_correction": true,
+    "disposition": "HOLD_SUPERSEDED_BY_NEW_VERSIONED_PRESENTATION_CORRECTION"
+  },
+  "defects": {
+    "crossing_curve_class": {
+      "status": "CLOSED_WITHOUT_REGRESSION",
+      "paired_strokes_icon_count": 8,
+      "curve_icon_count": 0,
+      "frame_verdict": "separated equal-length horizontal strokes; no order and no intersection"
+    },
+    "progress_rail": {
+      "status": "CLOSED_AT_RENDERER_PRIMITIVE_LEVEL",
+      "correction": "removed the time-looped inter-stage sweep; a locally bounded breathing capsule, dot, and label remain anchored only to the active stage",
+      "sampled_encoded_frames": 473,
+      "active_stage_mismatch_count": 0,
+      "off_dot_or_interstage_cyan_fill_frame_count": 0,
+      "reported_times": {
+        "5.052": "MOTIVATION",
+        "118.000": "SOURCE",
+        "222.410": "SCIENCE"
+      }
+    },
+    "pill_text_collision": {
+      "status": "CLOSED_AT_BADGE_PRIMITIVE_LEVEL",
+      "correction": "fit every badge string to its padded inner width and fail closed when containment is impossible",
+      "reported_frame": "5.052s clean; long pill fully contained and separated from both paired-stroke glyphs"
+    },
+    "whole_deck_collision_sweep": {
+      "status": "PASS",
+      "encoded_frames_reviewed": 473,
+      "contact_sheets_reviewed": 10,
+      "full_resolution_times_reviewed_seconds": [5.052, 118.0, 222.41],
+      "additional_pre_render_finding_closed": "discipline gray explainer no longer overlays its amber subtitle",
+      "remaining_collision_or_clipping_count": 0
+    }
+  },
+  "retained_content": {
+    "lane_specific_introduction": true,
+    "conditional_motivation_in_narration_and_visuals": true,
+    "equal_height_declared_calculation_arm_peak": true,
+    "matched_sweep_design_no_result_geometry": true,
+    "symbolic_estimator_value_sign_result_withheld": true,
+    "method_design_no_measured_value_header": true,
+    "controls_discipline_boundary_payoff": true,
+    "video_reportable_now": false
+  },
+  "audio": {
+    "tree_byte_identical_to_1420K": true,
+    "audio_master_sha256": "8e40e71229fc3e0bf2f21e7f02f8c3370e1042a62ffadb03fb2ff10f96adf156",
+    "managed_voice": "alloy",
+    "speed": 1.18,
+    "delivered_wpm": 115.0000026739212,
+    "sentence_count": 22,
+    "word_count": 448,
+    "max_abs_audio_visual_start_delta_seconds": 0.015333333333330756,
+    "integrated_loudness_lufs": -20.24,
+    "true_peak_dbtp": -2.30,
+    "introduction_asr_similarity": 1.0,
+    "music": false,
+    "narration_or_timing_change": false
+  },
+  "encoded_qa": {
+    "status": "PASS",
+    "passed": 32,
+    "total": 32,
+    "motion_longest_near_unchanged_seconds": 0.5,
+    "motion_gate_seconds": 8.0,
+    "encoded_qa_sha256": "3450727a1e8a5fe9e29ee0c972df6500da0ec29e78854a2b1b126a959c06727f"
+  },
+  "frame_evidence": {
+    "workspace": "integrator/workspaces/fesc-presentation-fix-20260809T1501K/encoded-frame-review",
+    "frame_index_sha256": "24b59c940447328855784b133fe2d893c23ed3a65a4bd82c27d7f7668880d76a",
+    "exact_time_sheet_sha256": "01f7ffeaee9df1510db6eb25d67126eab83401eedf884cf2424aefb4a53fd29f",
+    "tori_frame_sweep_sha256": "41c8ebe117e4627b334804a3d80f47626803e0bb4439c56f12b7087decc60ffb",
+    "visual_review_sha256": "761253aa2dbb924f24171ed832311ec897511fcc8f0c18e2cc65901ab2a80862"
+  },
+  "preserved_rejected_attempt": {
+    "sha256": "d0dd0327447a04563d5bc78fd115619889a35d7419efe9f012de657676d710d1",
+    "reason": "presentation sweep passed but encoded QA held the no-eight-second-freeze gate after inter-stage fill removal",
+    "location": "integrator/workspaces/fesc-presentation-fix-20260809T1501K/rejected-attempts/no-eight-second-freeze-hold-d0dd0327",
+    "inside_frozen_candidate": false,
+    "under_tmp": false
+  },
+  "freeze": {
+    "status": "LOCAL_SELF_QA_PASS_FROZEN",
+    "candidate_receipt_sha256": "6b02228dc3099c42a485d32d2d863d36cec9105ec5d7ccf4f06a98b0c35968a9",
+    "build_receipt_sha256": "c480316a283ed7475531d3444efbb4c79c5d2d1f04fbeba49087f9c529582435",
+    "post_encode_freeze_sha256": "4f81f53b91074fc9d79a30216fc5f049406a4932e9b89b5e2ede1950102a367e",
+    "candidate_scratch_directory_count": 0,
+    "replacement_policy": "never rewrite; any correction requires a new versioned directory"
+  },
+  "gates": {
+    "upload": false,
+    "publication": false,
+    "public_or_shared_mp4": false,
+    "frontend_or_public_write": false,
+    "paperVideos_ts_write": false,
+    "cockpit": false,
+    "database": false,
+    "deploy_or_restart": false,
+    "git_action": false,
+    "promotion": false
+  }
+}

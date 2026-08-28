@@ -1,0 +1,105 @@
+{
+  "marker": "TORI_METHODS_NOTE_CHARSET_PAGE_AUDIT_20260811T1609K",
+  "timestamp": "2026-08-11T16:09:05+09:00",
+  "scoped_result": "PASS_CHARACTER_EXACT_PRIVATE_READING_COPY_WITH_ESCAPE_SCOPE_CORRECTION",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal-text.html",
+    "bytes": 12511,
+    "sha256": "4bed48850e3730ad1b2c30f2bf1777b490cc1f0929c87764f83ac25b312c7620"
+  },
+  "source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md",
+    "bytes": 11473,
+    "characters": 11324,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "tailnet_fetch": {
+    "url": "https://duho-macstudio.taila27502.ts.net/cockpit/methods-note-mittal-singal-text.html",
+    "status": 200,
+    "content_type_header": "text/html",
+    "content_length": 12511,
+    "body_sha256": "4bed48850e3730ad1b2c30f2bf1777b490cc1f0929c87764f83ac25b312c7620",
+    "body_cmp_local_candidate": true
+  },
+  "html_structure": {
+    "meta_charset": "utf-8",
+    "meta_charset_byte_offset": 15,
+    "pre_count": 1,
+    "script_count": 0,
+    "pre_white_space": "pre-wrap",
+    "pre_word_wrap": "break-word",
+    "disclosed_banner_outside_pre": true
+  },
+  "independent_round_trip": {
+    "raw_pre_payload_equals_python_html_escape_quote_true": true,
+    "html_unescape_raw_pre_equals_source": true,
+    "decoded_pre_text_equals_source": true,
+    "decoded_pre_utf8_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "escape_scope_correction": {
+    "result_impact": "NONE_ON_DECODED_TEXT",
+    "stated_three_classes_amp_lt_gt_count": 15,
+    "actual_source_counts": {
+      "ampersand": 0,
+      "less_than": 10,
+      "greater_than": 5,
+      "double_quote": 8,
+      "apostrophe": 26
+    },
+    "actual_raw_pre_entity_counts": {
+      "amp": 0,
+      "lt": 10,
+      "gt": 5,
+      "quot": 8,
+      "apostrophe_x27": 26
+    },
+    "actual_entity_substitutions_total": 49,
+    "explanation": "The 15-character claim covers the less-than and greater-than symbols (and zero ampersands), but the actual escaper also escaped eight double quotes and twenty-six apostrophes because quote=True. The escaped payload still unescapes exactly to the gated source."
+  },
+  "headless_chrome": {
+    "client": "Chrome 151",
+    "tailnet_page_opened": true,
+    "pre_count": 1,
+    "browser_pre_characters": 11324,
+    "source_characters": 11324,
+    "browser_pre_exact_source_text": true,
+    "browser_pre_utf8_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+    "unicode_replacement_character_count": 0,
+    "mojibake_observed": false,
+    "wraps_without_horizontal_clipping_in_first_viewport": true,
+    "literal_markdown_markers_intentional": true,
+    "source_pre_unicode_canaries": {
+      "approximately": 9,
+      "degree": 6,
+      "minus": 1,
+      "asterisk_operator": 2,
+      "em_dash": 22,
+      "lambda": 2,
+      "delta": 1,
+      "multiplication": 1,
+      "section_sign": 7,
+      "alpha": 8,
+      "beta": 1,
+      "right_arrow": 4
+    },
+    "whole_page_em_dash_count": 24,
+    "whole_page_em_dash_scope_note": "The exact source pre contains 22 em dashes; the title/banner framing contributes two more, yielding the stated whole-page count of 24."
+  },
+  "unchanged_custody": {
+    "raw_txt_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+    "render_v1_sha256": "5a5bf634ab20984536e52bb37ce924f65e2794ae714fe67e1a1dd36f77806557",
+    "render_v2_sha256": "ffd3086b8b8f8ee00db7ba07bb3ac19ba1b2d0f8dc080e8944240c2fc8c1e9ce",
+    "render_v3_sha256": "25de23fae7473d2753bda74e47156d1164f16f35da13328fa9a65a6bd8156fca",
+    "authoritative_md_sha256": "36e4efe8984c8d5f7f6f1996f2d6efb38a1be2ceade49b4622f0131917fb99aa",
+    "clean_md_sha256": "80b1d1425a9fa28a17b27c3ae599eb5c231c31ae46ad9871ce468cf386489aa7",
+    "external_md_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+    "two_round_hash_stability": true
+  },
+  "decision": {
+    "duho_can_rely_on_this_private_page_as_character_exact_reading_copy": true,
+    "conversion_claim": "NO_MARKDOWN_CONVERSION",
+    "display_contract": "The source appears as literal Markdown text inside pre; asterisks, pipes, list markers and blockquote markers are intentionally visible exactly as carried by the gated source.",
+    "clearance_conferred": false,
+    "display_thread_state": "CLOSED_AFTER_PASS"
+  }
+}

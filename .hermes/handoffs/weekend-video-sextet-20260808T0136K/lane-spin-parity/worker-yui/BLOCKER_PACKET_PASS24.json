@@ -1,0 +1,80 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass24-blockers-20260808T140417K",
+  "checked_at": "2026-08-08T14:04:17+09:00",
+  "lane": "spin-parity",
+  "worker": "yui",
+  "deepening_pass": 24,
+  "science_adjudicated": false,
+  "video_reportable_now": false,
+  "candidate": {
+    "name": "spin-parity-census-20260808T0149",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD_NOT_AUTHORIZED",
+    "preserved": true,
+    "modified": false,
+    "re_dispatched": false
+  },
+  "blockers": [
+    {
+      "id": "POST_RUN_A3_8_EXACT_ARTIFACT_REVIEW_MISSING",
+      "status": "OPEN",
+      "required_artifact": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+        "sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873"
+      },
+      "required_rule": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A4_DRAFT.md",
+        "sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+        "anchor": "section 5 requires an independent A3.8 verdict-record review after the run"
+      },
+      "exact_missing_record": "a valid independent post-run A3.8 verdict explicitly bound to the exact frozen all-209-file T4 artifact",
+      "pass24_effect": "NONE_PRESENTATION_AUDIT_CANNOT_SUPPLY_SCIENCE_REVIEW"
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "status": "OPEN",
+      "evidence": {
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+        "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+        "terminal_verdict": "FRAME REVIEW: AGREES FRAME_UNSTATED"
+      },
+      "exact_missing_record": "an authoritative archive storage-convention resolution",
+      "pass24_effect": "NONE_PRESENTATION_AUDIT_CANNOT_RESOLVE_ARCHIVE_MEANING"
+    },
+    {
+      "id": "VIDEO_REPORTABLE_NOW_FALSE",
+      "status": "OPEN",
+      "evidence": {
+        "path": "SOURCE_STATUS_FREEZE.json",
+        "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+        "value": false
+      },
+      "pass24_effect": "UNCHANGED"
+    }
+  ],
+  "pass24_representation_result": {
+    "compound_chain": "optional native BT.709 grayscale or fixed Machado100 matrix -> LANCZOS 640x360 -> Pillow JPEG q60 4:2:0 -> RGB decode",
+    "candidate_structural_held_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "held_critical_structural_gate_scenes": "0/5_ALL_FIVE_VARIANTS",
+    "candidate_result_hierarchy": "UNCHANGED_RESULT_BEARING_PRIMARY",
+    "pass12_exact_top_gates_visual": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_ocr_aid": "7/7_FOUR_VARIANTS__6/7_TRITANOPIA__SCENE2_0.729730_DISCLOSED__DIRECT_VISUAL_EXACT_GATE_READABLE",
+    "action": "COLOR_MINIMUM_SCALE_RECOMPRESSION_INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "candidate_authorized": false
+  },
+  "unblock_requires": [
+    "valid independent post-run A3.8 verdict bound to the exact frozen all-209-file T4 artifact",
+    "authoritative archive storage-frame resolution",
+    "fresh Hwao/user authorization after blockers resolve"
+  ],
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

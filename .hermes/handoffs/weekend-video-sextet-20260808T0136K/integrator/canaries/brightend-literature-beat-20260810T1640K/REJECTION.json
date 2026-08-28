@@ -1,0 +1,9 @@
+{
+  "rejection_id": "BRIGHTEND_LITERATURE_ENCODED_QA_FORMULATION_HOLD_20260810T1732K",
+  "state": "REVIEW_PACKET_REJECTED_NOT_A_CANDIDATE",
+  "video": "brightend-literature-beat-canary-20260810T1640K.mp4",
+  "video_sha256": "49f1fe3dcf3fed69d0269c24fefddb67c45f6d558e34727d4b7ee5b823abc05d",
+  "failed_check": "encoded_opening_transcription_pass",
+  "reason": "The encoded transcript preserved the quoted claim, unresolved hedge, contested framing, and the safe closing at 0.9981 normalized similarity. The QA semantic list nevertheless required the literal words 'no answer', while this lane's approved closing correctly says the video adopts neither claim nor explanation as its finding.",
+  "disposition": "Preserve this review packet. Do not waive the check. Replace the mismatched semantic terms with the lane's actual safety sentence: neither claim, explanation, finding. Repackage the byte-identical video in a new versioned candidate directory and rerun every QA check before freeze."
+}

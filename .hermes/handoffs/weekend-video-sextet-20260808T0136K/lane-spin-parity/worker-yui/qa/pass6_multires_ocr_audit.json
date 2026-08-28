@@ -1,0 +1,1509 @@
+{
+  "status": "DETERMINISTIC_MULTI_RESOLUTION_OCR_HIERARCHY_AUDIT",
+  "deepening_pass": 6,
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "scene_count": 16,
+  "frame_count": 64,
+  "resolutions": [
+    "1080p",
+    "720p",
+    "540p",
+    "360p"
+  ],
+  "ocr": {
+    "engine": "tesseract 5.5.2",
+    "page_segmentation_mode": 6,
+    "minimum_confidence": 30,
+    "normalization": "casefolded ASCII alphanumeric tokens",
+    "raw_ocr_text_stored": false
+  },
+  "region_definition": {
+    "headline": "token centre y <= 30% frame height",
+    "support": "token centre y >= 65% frame height"
+  },
+  "result_bearing_scenes": [
+    7,
+    9,
+    10,
+    11
+  ],
+  "close_scene": 16,
+  "aggregates": {
+    "1080p": {
+      "mean_full_token_retention_vs_1080p": 1.0,
+      "mean_headline_token_retention_vs_1080p": 1.0,
+      "mean_support_token_retention_vs_1080p": 1.0,
+      "scenes_with_any_structural_gate": 0,
+      "mean_numeric_token_count": 5.4375
+    },
+    "720p": {
+      "mean_full_token_retention_vs_1080p": 0.942152,
+      "mean_headline_token_retention_vs_1080p": 0.9975,
+      "mean_support_token_retention_vs_1080p": 0.897305,
+      "scenes_with_any_structural_gate": 0,
+      "mean_numeric_token_count": 4.625
+    },
+    "540p": {
+      "mean_full_token_retention_vs_1080p": 0.840371,
+      "mean_headline_token_retention_vs_1080p": 0.97751,
+      "mean_support_token_retention_vs_1080p": 0.702634,
+      "scenes_with_any_structural_gate": 0,
+      "mean_numeric_token_count": 2.5625
+    },
+    "360p": {
+      "mean_full_token_retention_vs_1080p": 0.728766,
+      "mean_headline_token_retention_vs_1080p": 0.961206,
+      "mean_support_token_retention_vs_1080p": 0.230643,
+      "scenes_with_any_structural_gate": 0,
+      "mean_numeric_token_count": 1.1875
+    }
+  },
+  "critical_resolution_metrics": {
+    "1080p": {
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "mean_full_token_retention_vs_1080p": 1.0,
+      "mean_headline_token_retention_vs_1080p": 1.0,
+      "mean_support_token_retention_vs_1080p": 1.0,
+      "structural_gate_scene_count": 0
+    },
+    "720p": {
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "mean_full_token_retention_vs_1080p": 0.866207,
+      "mean_headline_token_retention_vs_1080p": 0.992,
+      "mean_support_token_retention_vs_1080p": 0.885661,
+      "structural_gate_scene_count": 0
+    },
+    "540p": {
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "mean_full_token_retention_vs_1080p": 0.575039,
+      "mean_headline_token_retention_vs_1080p": 0.955304,
+      "mean_support_token_retention_vs_1080p": 0.517475,
+      "structural_gate_scene_count": 0
+    },
+    "360p": {
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "mean_full_token_retention_vs_1080p": 0.380218,
+      "mean_headline_token_retention_vs_1080p": 0.90313,
+      "mean_support_token_retention_vs_1080p": 0.416629,
+      "structural_gate_scene_count": 0
+    }
+  },
+  "scenes": [
+    {
+      "scene": 1,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 8,
+          "headline_token_count": 0,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 31,
+          "headline_token_count": 0,
+          "support_token_count": 22,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "95f4ccd1d518b8939bf09891c320ca2f52c36587e6c1f10298af67460af8e1c7",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "eb278b2f2ae0019f0689dc250bdaba8648bfcf819cd7c7ba7f55f7a9555e5822",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 31,
+          "headline_token_count": 0,
+          "support_token_count": 22,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "95f4ccd1d518b8939bf09891c320ca2f52c36587e6c1f10298af67460af8e1c7",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "eb278b2f2ae0019f0689dc250bdaba8648bfcf819cd7c7ba7f55f7a9555e5822",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 11,
+          "headline_token_count": 0,
+          "support_token_count": 0,
+          "numeric_token_count": 3,
+          "token_sequence_sha256": "3d8832d50a1e3463eeb18ac54b0792cd43dd3b36f503341f5e19117ddaa4c76b",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        }
+      ]
+    },
+    {
+      "scene": 2,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 42,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "1b2e48172d827a6a177eb5ef2a56c9b7c55463cd26815652e140b32cae731d69",
+          "headline_token_sequence_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 42,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "1b2e48172d827a6a177eb5ef2a56c9b7c55463cd26815652e140b32cae731d69",
+          "headline_token_sequence_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 40,
+          "headline_token_count": 7,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "9286c5a9f45d1c546a6096335c474f35d050d5b172e4591feca281c853228fbe",
+          "headline_token_sequence_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.952381,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 39,
+          "headline_token_count": 7,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "284b0d13900fb080fdbdf79ccfba7fc50dbe9dcde4f93d4fe2f93d420a950ac9",
+          "headline_token_sequence_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.904762,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 3,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 71,
+          "headline_token_count": 10,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "707a19ad2ec53f470df4e660e37ce4c368bd30dea4eb4a4e24612d0a77365358",
+          "headline_token_sequence_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 71,
+          "headline_token_count": 10,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "707a19ad2ec53f470df4e660e37ce4c368bd30dea4eb4a4e24612d0a77365358",
+          "headline_token_sequence_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 71,
+          "headline_token_count": 10,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "707a19ad2ec53f470df4e660e37ce4c368bd30dea4eb4a4e24612d0a77365358",
+          "headline_token_sequence_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 69,
+          "headline_token_count": 10,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "b9109eb277d7e58d3f86ca280015a69ff64bfc06ef36e621cd401d0c802f1d16",
+          "headline_token_sequence_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.943662,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 4,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 25,
+          "headline_token_count": 0,
+          "support_token_count": 1,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "aa3ba67ef29bd0042e40b65fc78aaa93565a4927bd18b4a7c7c41a19380b8563",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "41cf6794ba4200b839c53531555f0f3998df4cbb01a4d5cb0b94e3ca5e23947d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 27,
+          "headline_token_count": 0,
+          "support_token_count": 3,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "401d81e402448a171860d8337ea1a242346a83dd7369bd0cd25662f6ae82ec7b",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "c7c5ac51d182c7e5fa166b1401cf1f93f7168fff673b0624a97b2d36dddb886d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 27,
+          "headline_token_count": 0,
+          "support_token_count": 3,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "401d81e402448a171860d8337ea1a242346a83dd7369bd0cd25662f6ae82ec7b",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "c7c5ac51d182c7e5fa166b1401cf1f93f7168fff673b0624a97b2d36dddb886d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 24,
+          "headline_token_count": 0,
+          "support_token_count": 0,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885",
+          "headline_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.96,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 5,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 62,
+          "headline_token_count": 22,
+          "support_token_count": 28,
+          "numeric_token_count": 10,
+          "token_sequence_sha256": "0b614c57b17df240b3e8b1a1636e3d61f09f36c22fe08ebe6c1a9aa8f72c1b61",
+          "headline_token_sequence_sha256": "525c58818889fb271164a1aab11f903c1f29fddb25b0f1cdebdb906b686e1ab2",
+          "support_token_sequence_sha256": "790c972fd7d44f1911f7d4c35f29ece8ce3acefb65388e514cac40d5a37c73cd",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 62,
+          "headline_token_count": 23,
+          "support_token_count": 28,
+          "numeric_token_count": 10,
+          "token_sequence_sha256": "4b1ea450c5022e81b6f14657b8efe491f67263c79d0ecb9b831900b933f1561d",
+          "headline_token_sequence_sha256": "1419d1e71e78bdb09e41d00fea637a3b776630861fd42b50f155a87a1ea44575",
+          "support_token_sequence_sha256": "5a21fbe9d3a8c44de174d53efcbbdfaa5dab76c36e4d24bc49de358d0a93f236",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.919355,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.928571
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 50,
+          "headline_token_count": 19,
+          "support_token_count": 25,
+          "numeric_token_count": 8,
+          "token_sequence_sha256": "50a48c070c8e46e6e234dd8798b3267876866aac45aaca0f1277a8446a87cb0c",
+          "headline_token_sequence_sha256": "7fe33a34754c9977364c6d2954c4cefb79842d4deed19fcfbf6f0803adfd9220",
+          "support_token_sequence_sha256": "74af8e2dd6c2350f3628fde8d9672cc15dd2927c4929cc2277ad49e9daae9c90",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.758065,
+          "headline_token_retention_vs_1080p": 0.863636,
+          "support_token_retention_vs_1080p": 0.821429
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 39,
+          "headline_token_count": 19,
+          "support_token_count": 20,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "70c3492e1c69c23e635119115c4a92cd169ea323126d3446637c2d6b9437b469",
+          "headline_token_sequence_sha256": "7fe33a34754c9977364c6d2954c4cefb79842d4deed19fcfbf6f0803adfd9220",
+          "support_token_sequence_sha256": "f41e3f6912ca9479b0c60348be52df9419ff2ece84db094fd7c7d302165673ee",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.580645,
+          "headline_token_retention_vs_1080p": 0.863636,
+          "support_token_retention_vs_1080p": 0.607143
+        }
+      ]
+    },
+    {
+      "scene": 6,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 38,
+          "headline_token_count": 8,
+          "support_token_count": 3,
+          "numeric_token_count": 3,
+          "token_sequence_sha256": "74d9bac0da678dd4e53747fcc65c12af15f0f9c45884e50a93c25c42ec8eef19",
+          "headline_token_sequence_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925",
+          "support_token_sequence_sha256": "9249a604fc585ab44f414991e6ed250da2d9a999a201c35e0a735d7341b5e5df",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 38,
+          "headline_token_count": 8,
+          "support_token_count": 3,
+          "numeric_token_count": 3,
+          "token_sequence_sha256": "74d9bac0da678dd4e53747fcc65c12af15f0f9c45884e50a93c25c42ec8eef19",
+          "headline_token_sequence_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925",
+          "support_token_sequence_sha256": "9249a604fc585ab44f414991e6ed250da2d9a999a201c35e0a735d7341b5e5df",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 36,
+          "headline_token_count": 8,
+          "support_token_count": 1,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "df5a7db3ca746fdd97f565c843dcfa123f6fcacc3d3fc720924172ababb74c10",
+          "headline_token_sequence_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925",
+          "support_token_sequence_sha256": "41cf6794ba4200b839c53531555f0f3998df4cbb01a4d5cb0b94e3ca5e23947d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.947368,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.333333
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 35,
+          "headline_token_count": 8,
+          "support_token_count": 0,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "410cff01aaf9f4caf48548dd0b6067fbe207dbee9cb570afa50891f00829be0f",
+          "headline_token_sequence_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.921053,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 7,
+      "result_bearing": true,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 122,
+          "headline_token_count": 23,
+          "support_token_count": 75,
+          "numeric_token_count": 27,
+          "token_sequence_sha256": "a83cac7f1a463ff10083606d29d47bf98edd7729463a1a7894be2d389596c8a6",
+          "headline_token_sequence_sha256": "1b2befd726042e4f4818fab8969eb56318cd102346d650fc865301d360007f0c",
+          "support_token_sequence_sha256": "40c52788c19e289cc572a2f1ad882b210c64105293681cd30088dc23b6f45081",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 83,
+          "headline_token_count": 23,
+          "support_token_count": 41,
+          "numeric_token_count": 19,
+          "token_sequence_sha256": "9fab10509ee91c3d3f16eaa87e933ecde7b3c617b672a2ee05e2027fbbe6a1da",
+          "headline_token_sequence_sha256": "1b2befd726042e4f4818fab8969eb56318cd102346d650fc865301d360007f0c",
+          "support_token_sequence_sha256": "350e9b480d61f53612101f2feb9cbf9d4805e78073d9d46f1c1e54a40e521bcb",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.647541,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.546667
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 51,
+          "headline_token_count": 22,
+          "support_token_count": 27,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "41f66458ac0d184083ef9709bac1ba0fd5ca32a72f60af334f21ef2c65742ab4",
+          "headline_token_sequence_sha256": "096f7e08fd8181962841eac5f1143ce1f26ba1dc013bad410eb287656371d2a5",
+          "support_token_sequence_sha256": "3575dec76e61f166da79c49eca15cbb8310e3565cc21eaebdb13d6e940bca61b",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.401639,
+          "headline_token_retention_vs_1080p": 0.956522,
+          "support_token_retention_vs_1080p": 0.36
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 25,
+          "headline_token_count": 19,
+          "support_token_count": 2,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "60e5727757d749b9a3ef56a613d6fce7366daa89c4014e2858ae379e7b90be7f",
+          "headline_token_sequence_sha256": "2e0bcfcfb9c8d58dad821e3f7733e82567ec110f75c1fef82140e6e2c45f117d",
+          "support_token_sequence_sha256": "652f4989b0398e2258ca7dfd89b62a52053a3de827ea3cd0d1f100693df8f85d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.147541,
+          "headline_token_retention_vs_1080p": 0.695652,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 8,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 45,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "783142d6591cffcb252c931c77a725998dad4be6a57607fd883152c751eab834",
+          "headline_token_sequence_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb",
+          "support_token_sequence_sha256": "2f20d4580cdc7d568ae88cc8fe1387d7759f1d24e3b645f5e0e247bc71812de8",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 38,
+          "headline_token_count": 7,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "6fc2563c25ad5d27bd23c83f0de415f4d022bc1cd398a5ae8a2b619114149cbd",
+          "headline_token_sequence_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.844444,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 45,
+          "headline_token_count": 7,
+          "support_token_count": 3,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "4eba244ef0d7f09c7980ca114b2e1146b9746a85f1f625c26de2864e921d7ba0",
+          "headline_token_sequence_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb",
+          "support_token_sequence_sha256": "e7d59a12e81f1e50f97da97ba73d143398c916346021294623607a015696c50b",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.933333,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.5
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 30,
+          "headline_token_count": 7,
+          "support_token_count": 0,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "380bb655315ebce05c50327917581aad6c56dea06cb94fb9068d7c4bf6d62541",
+          "headline_token_sequence_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.666667,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 9,
+      "result_bearing": true,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 132,
+          "headline_token_count": 25,
+          "support_token_count": 91,
+          "numeric_token_count": 17,
+          "token_sequence_sha256": "8fbe15256b3597a2d80fc50f46b6bd776790ecfcfb1e6ef89b832a6f79bcfa78",
+          "headline_token_sequence_sha256": "87e74bb53d1b3c7c96ea0866b5816a2e91163192e5ea6e1d6835dd8c622ef484",
+          "support_token_sequence_sha256": "4424bd2ccf240c10fa50f6ae12f85e8e59f838ebbdebe8499c0977bf35a06e67",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 128,
+          "headline_token_count": 24,
+          "support_token_count": 91,
+          "numeric_token_count": 16,
+          "token_sequence_sha256": "c84c92a9997bcfad2bf55ca2be66337b520d916a1b57d0a50fa410d103b8d52b",
+          "headline_token_sequence_sha256": "145a223ad4d6bcc68db7d7950cafbff210f1022dc574dd306a306b6512301108",
+          "support_token_sequence_sha256": "b31128bd6865c9e65d584478fe2616d655bfe3a098a3609169ab0de85830162c",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.916667,
+          "headline_token_retention_vs_1080p": 0.96,
+          "support_token_retention_vs_1080p": 0.978022
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 80,
+          "headline_token_count": 25,
+          "support_token_count": 38,
+          "numeric_token_count": 14,
+          "token_sequence_sha256": "8b32d29f02015a1551e6d88edb139fd1b79f63a9d7ef0c57b40430cd10c0a697",
+          "headline_token_sequence_sha256": "e72f75295cb1177759272256c89fc5df561774d90aade95d514d98de9b3ab5dd",
+          "support_token_sequence_sha256": "7718025bd62945cbd7c27ae95dec1116a9b023ee6b786da8551b8371395172d6",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.530303,
+          "headline_token_retention_vs_1080p": 0.92,
+          "support_token_retention_vs_1080p": 0.406593
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 60,
+          "headline_token_count": 25,
+          "support_token_count": 34,
+          "numeric_token_count": 2,
+          "token_sequence_sha256": "8d5ce41cd1c954ca8e966dca9f2299e2e2f24ed32f45c6e356b2dda3e657d91b",
+          "headline_token_sequence_sha256": "e05f5593dab38ab9651c48d139b973e0643584b9e98bd09cb5ef0bd108b576fe",
+          "support_token_sequence_sha256": "3ef6baec83fd78fd65c544e28672d943217f75cec0e7b7e7ea32725566bfa10f",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.431818,
+          "headline_token_retention_vs_1080p": 0.92,
+          "support_token_retention_vs_1080p": 0.362637
+        }
+      ]
+    },
+    {
+      "scene": 10,
+      "result_bearing": true,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 109,
+          "headline_token_count": 12,
+          "support_token_count": 83,
+          "numeric_token_count": 10,
+          "token_sequence_sha256": "cb17e1fd7ff3a426d9adea0412556be540afdb06bf5bc63ba928f75c66085764",
+          "headline_token_sequence_sha256": "1d42941c04065cff85e7692b84adffafc2523ead132138f385e9ab80f91480de",
+          "support_token_sequence_sha256": "7f62629e8576801a73c28da272e10a342d3aa069037c9be99dfea6fa5aff501c",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 101,
+          "headline_token_count": 12,
+          "support_token_count": 78,
+          "numeric_token_count": 7,
+          "token_sequence_sha256": "5a7ce2e960e0ee9053d822ea49c07c78ef6f26200d622c08744382850f331ea7",
+          "headline_token_sequence_sha256": "1d42941c04065cff85e7692b84adffafc2523ead132138f385e9ab80f91480de",
+          "support_token_sequence_sha256": "303e09295bde54d7660df0d0d9045a5901338e867898c305af0a57d7df6be67f",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.862385,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.903614
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 62,
+          "headline_token_count": 12,
+          "support_token_count": 38,
+          "numeric_token_count": 4,
+          "token_sequence_sha256": "09090ee001a79de107723d44fbe675a6f7b7350a00c080061813d19d5c2b8713",
+          "headline_token_sequence_sha256": "1d42941c04065cff85e7692b84adffafc2523ead132138f385e9ab80f91480de",
+          "support_token_sequence_sha256": "eb84a09b67f114f581752f67a98eba454e70f824f32d6866c2ec1ea3f33cdb73",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.522936,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.445783
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 53,
+          "headline_token_count": 12,
+          "support_token_count": 36,
+          "numeric_token_count": 4,
+          "token_sequence_sha256": "7ff8cca34f40df9317144b7d45ed2565000d9f3379fa9b54cc3a83c0c7b1247f",
+          "headline_token_sequence_sha256": "1d42941c04065cff85e7692b84adffafc2523ead132138f385e9ab80f91480de",
+          "support_token_sequence_sha256": "3ec489f29fb6539233671c56acb3ba4e1a23e8edece5c3b8d2296938c0bc0142",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.412844,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.39759
+        }
+      ]
+    },
+    {
+      "scene": 11,
+      "result_bearing": true,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 126,
+          "headline_token_count": 20,
+          "support_token_count": 96,
+          "numeric_token_count": 14,
+          "token_sequence_sha256": "f9e6f9640cf9d76d4eebbd3b1023885212f180781e8cd015763c5674ee51ce56",
+          "headline_token_sequence_sha256": "ee6388df4be003b55ef605c03c4470830b6484b6b6eec48db408f94c512f118d",
+          "support_token_sequence_sha256": "597fd2654b2b1d15d90a374d591eea1a3ce2dc969992840568dba394be2c118d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 122,
+          "headline_token_count": 20,
+          "support_token_count": 96,
+          "numeric_token_count": 14,
+          "token_sequence_sha256": "f09c09b44e41c242db58fea9ba1af437488542305dfa1c70e80093e61c7b0e14",
+          "headline_token_sequence_sha256": "ee6388df4be003b55ef605c03c4470830b6484b6b6eec48db408f94c512f118d",
+          "support_token_sequence_sha256": "597fd2654b2b1d15d90a374d591eea1a3ce2dc969992840568dba394be2c118d",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.944444,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 59,
+          "headline_token_count": 18,
+          "support_token_count": 36,
+          "numeric_token_count": 5,
+          "token_sequence_sha256": "b17f588b85468fd61a469069b045ae87927db6d8d6205c52750b17a95d964290",
+          "headline_token_sequence_sha256": "bf5bf86309b74cc8954864b5e2c34ad2ea201c50921766e494661d48c94c2ce2",
+          "support_token_sequence_sha256": "8e0767f1b00f268420d3fcf91ccdca45d0f412662d6a2e2d22783083b47195d9",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.460317,
+          "headline_token_retention_vs_1080p": 0.9,
+          "support_token_retention_vs_1080p": 0.375
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 53,
+          "headline_token_count": 18,
+          "support_token_count": 35,
+          "numeric_token_count": 3,
+          "token_sequence_sha256": "c648dbdfd91a117f9d36680f5fa9833346a262c621b2af415afc09201c1e6e5d",
+          "headline_token_sequence_sha256": "eee06d3413e3b313468b24412da041624ae2dacf9bd92e4b6cc1498583f586aa",
+          "support_token_sequence_sha256": "ba45558f1e6b9799a52f4edfad6407ac8b62d6d11889cb880b5120077de1fe48",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.388889,
+          "headline_token_retention_vs_1080p": 0.9,
+          "support_token_retention_vs_1080p": 0.322917
+        }
+      ]
+    },
+    {
+      "scene": 12,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 58,
+          "headline_token_count": 8,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "b02798a844cf4e8b414472724ea52d8262f3a720cd8c1350cf6dfd5c2d132098",
+          "headline_token_sequence_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0",
+          "support_token_sequence_sha256": "1dff283e9c19364e9a5d447ab285fc0dda9dd060f931b9fe5aa203c873366685",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 58,
+          "headline_token_count": 8,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "b02798a844cf4e8b414472724ea52d8262f3a720cd8c1350cf6dfd5c2d132098",
+          "headline_token_sequence_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0",
+          "support_token_sequence_sha256": "1dff283e9c19364e9a5d447ab285fc0dda9dd060f931b9fe5aa203c873366685",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 58,
+          "headline_token_count": 8,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "b02798a844cf4e8b414472724ea52d8262f3a720cd8c1350cf6dfd5c2d132098",
+          "headline_token_sequence_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0",
+          "support_token_sequence_sha256": "1dff283e9c19364e9a5d447ab285fc0dda9dd060f931b9fe5aa203c873366685",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 56,
+          "headline_token_count": 8,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "35098b0db99a4de57b90500227c69eafe61bf7c1e9365e6bef0145ffc1e388a8",
+          "headline_token_sequence_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.965517,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 13,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 49,
+          "headline_token_count": 5,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "234e434b5acd16031402f52109ee9f7613d55a6bef8dec0275d87f08834305a0",
+          "headline_token_sequence_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b",
+          "support_token_sequence_sha256": "55b69f250b832a4d5a5b69f5c38ba1992ec5f186e67b98b4f04dd84280911952",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 49,
+          "headline_token_count": 5,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "6f48f6f42a880da641ca3911ed197f79e4ca7929e5958cbede1d48f7887a5a53",
+          "headline_token_sequence_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b",
+          "support_token_sequence_sha256": "55b69f250b832a4d5a5b69f5c38ba1992ec5f186e67b98b4f04dd84280911952",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.979592,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 50,
+          "headline_token_count": 5,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "7e106b41fe0ba45a3100057badb5b1d796365b09dc9e59a23392c24357c6f6a2",
+          "headline_token_sequence_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b",
+          "support_token_sequence_sha256": "55b69f250b832a4d5a5b69f5c38ba1992ec5f186e67b98b4f04dd84280911952",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.979592,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 49,
+          "headline_token_count": 5,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "16cac09a226020817b0dc9838b37c0e843b3b6d2cb6c853011641c652128e21c",
+          "headline_token_sequence_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.938776,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 14,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 47,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "551dc2e3b7a471ae4927eca19e9744992ba7d165284ad8f78fef4da9d81ce2c4",
+          "headline_token_sequence_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108",
+          "support_token_sequence_sha256": "86251214f51deb6a1e0109876a815a2aa89de216b60b1a6173f592f096c56c5b",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 47,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "551dc2e3b7a471ae4927eca19e9744992ba7d165284ad8f78fef4da9d81ce2c4",
+          "headline_token_sequence_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108",
+          "support_token_sequence_sha256": "86251214f51deb6a1e0109876a815a2aa89de216b60b1a6173f592f096c56c5b",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 47,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "551dc2e3b7a471ae4927eca19e9744992ba7d165284ad8f78fef4da9d81ce2c4",
+          "headline_token_sequence_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108",
+          "support_token_sequence_sha256": "86251214f51deb6a1e0109876a815a2aa89de216b60b1a6173f592f096c56c5b",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 45,
+          "headline_token_count": 7,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "b290272c61aa661b1eba0d102ed7234e329879cfb5f31cd1640039fc25666ccb",
+          "headline_token_sequence_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.957447,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 15,
+      "result_bearing": false,
+      "close_scene": false,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 63,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "04a0ebcb81e1a177b0f97fac8325b43c604c14b8e08baa2c4856842b7258f2f0",
+          "headline_token_sequence_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 63,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "04a0ebcb81e1a177b0f97fac8325b43c604c14b8e08baa2c4856842b7258f2f0",
+          "headline_token_sequence_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 63,
+          "headline_token_count": 7,
+          "support_token_count": 2,
+          "numeric_token_count": 1,
+          "token_sequence_sha256": "04a0ebcb81e1a177b0f97fac8325b43c604c14b8e08baa2c4856842b7258f2f0",
+          "headline_token_sequence_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547",
+          "support_token_sequence_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 60,
+          "headline_token_count": 7,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "64b25b4af7b3a4804781bd501d3c4b180ce495d6aa9794e408ab67322699027f",
+          "headline_token_sequence_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.920635,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 0.0
+        }
+      ]
+    },
+    {
+      "scene": 16,
+      "result_bearing": false,
+      "close_scene": true,
+      "samples": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "token_count": 25,
+          "headline_token_count": 1,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6",
+          "headline_token_sequence_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "1080p",
+          "full_token_retention_vs_1080p": 1.0,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "token_count": 26,
+          "headline_token_count": 1,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "e27d1454b758e29534337169dc585aad45c69e54d4c5f616d592c8aa858e872a",
+          "headline_token_sequence_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "720p",
+          "full_token_retention_vs_1080p": 0.96,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "token_count": 26,
+          "headline_token_count": 1,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "b38d5dc423419ede61291c0bd53bfb9c775820db7fcea7ba48f538c7f1230b8c",
+          "headline_token_sequence_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "540p",
+          "full_token_retention_vs_1080p": 0.96,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "token_count": 13,
+          "headline_token_count": 1,
+          "support_token_count": 0,
+          "numeric_token_count": 0,
+          "token_sequence_sha256": "f94b02e40beee68dc96e25c6eb954921b6a0ccfa93dcd450d24c1824c9ed74a8",
+          "headline_token_sequence_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763",
+          "support_token_sequence_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "structural_gate_detected": {
+            "result_held": false,
+            "frame_unstated": false,
+            "outcomes_withheld": false
+          },
+          "resolution": "360p",
+          "full_token_retention_vs_1080p": 0.52,
+          "headline_token_retention_vs_1080p": 1.0,
+          "support_token_retention_vs_1080p": 1.0
+        }
+      ]
+    }
+  ]
+}

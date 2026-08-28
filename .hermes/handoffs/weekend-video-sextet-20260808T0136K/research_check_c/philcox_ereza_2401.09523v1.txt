@@ -1,0 +1,453 @@
+                                                 Could Sample Variance be Responsible for the Parity-Violating Signal Seen in the
+                                                                            BOSS Galaxy Survey?
+
+                                                                                     Oliver H. E. Philcox1, 2, ∗ and Julia Ereza3, †
+                                                                          1
+                                                                          Department of Physics, Columbia University, New York, NY 10027, USA
+                                                                      2
+                                                                         Simons Society of Fellows, Simons Foundation, New York, NY 10010, USA
+                                                           3
+                                                             Instituto de Astrofı́sica de Andalucı́a (CSIC), Glorieta de la Astronomı́a, E-18080 Granada, Spain
+                                                             Recent works have uncovered an excess signal in the parity-odd four-point correlation function
+                                                             measured from the BOSS spectroscopic galaxy survey. If physical in origin, this could indicate
+                                                             evidence for new parity-breaking processes in the scalar sector, most likely from inflation. At heart,
+                                                             these studies compare the observed four-point correlator to the distribution obtained from parity-
+                                                             conserving mock galaxy surveys; if the simulations underestimate the covariance of the data, noise
+
+
+
+
+arXiv:2401.09523v1 [astro-ph.CO] 17 Jan 2024
+                                                             fluctuations may be misinterpreted as a signal. To test this, we reanalyse the BOSS CMASS & LOWZ
+                                                             parity-odd dataset with the noise distribution modeled using the newly developed GLAM-Uchuu
+                                                             suite of mocks. These comprise full N -body simulations that follow the evolution of 20003 dark
+                                                             matter particles in a ΛCDM universe, and represent a significant upgrade compared to the formerly
+                                                             used MultiDark-Patchy mocks, which were based on an alternative (non N -body) gravity solver.
+                                                             We find no significant evidence for parity-violation in the BOSS dataset (with a baseline detection
+                                                             significance of 1.4σ), suggesting that the former signal (>3.5σ with our data cuts) could be caused
+                                                             by an underestimation of the covariance in MultiDark-Patchy. The significant differences between
+                                                             results obtained with the two sets of BOSS-calibrated galaxy catalogs showcases the heightened
+                                                             sensitivity of beyond-two-point analyses to the treatment of non-linear effects and indicates that
+                                                             previous constraints may suffer from large systematic uncertainties.
+
+
+                                               Is the large-scale Universe invariant under a parity trans-       as a function of shape (which is a 4PCF in disguise).1 Effi-
+                                               formation? According to the standard model of cosmology,          cient methods for computing this exist [e.g., 17–19] (using
+                                               the answer is yes, but a slew of recent observations have         mathematical tools developed in [20]), which have facili-
+                                               challenged this notion. In particular, several works have         tated parity-violation measurements from the SDSS-III
+                                               obtained evidence for birefringence in the Planck cosmic          BOSS galaxy survey containing O(106 ) galaxies [21, 22].
+                                               microwave background (CMB) polarization [e.g., 1–7],                 In essence, the analyses of [9] and [10] proceed by com-
+                                               which could indicate novel tensorial physics such as an           puting the parity-odd 4PCF of BOSS data and inter-
+                                               axion-photon coupling [8]. Moreover, analyses of the spec-        preting this result in terms of the expected distribution
+                                               troscopic galaxy four-point correlation function (hereafter       arising from cosmic variance and shot-noise. Both works
+                                               4PCF) have found an excess scalar parity-violating signal         report significant deviations from the null distribution;
+                                               [9, 10] (using methods first discussed in [11]). Whilst it        [9] find a 2.9σ excess in the CMASS sample, whilst [10]
+                                               seems unlikely that these effects are related, each could         obtained a 7.1σ (3.1σ) deviation in the CMASS (LOWZ)
+                                               be an intriguing hint of physics beyond the standard              sample. These analyses differ in their approach and as-
+                                               paradigm; however, one must keep in mind the possibility          sumptions; [9] primarily makes use of non-parametric
+                                               that the signatures could be non-physical in origin. In this      rank tests, whilst [10] utilize χ2 tests, facilitated either by
+                                               Letter, we focus on the galaxy parity-violation measure-          rescaling a theoretical covariance or projected the data
+                                               ments, with the hope of disentangling novel phenomena             into a low-dimensional subspace; furthermore, they find
+                                               from analysis systematics.                                        larger signals when adopting finer radial binning.
+                                                  To constrain parity-violation with the distribution of            Analysis differences notwithstanding, both [9] and [10]
+                                               galaxies (which transforms as a scalar), one requires statis-     find an intriguing excess in the 4PCF; if physical, this
+                                               tics based on the 4PCF or beyond. This occurs since               would suggest parity-violating processes at work in the
+                                               tetrahedra (which describe the vertices of a quadruplet of        Universe, which could be of relevance to both the obser-
+                                               galaxies) are the first chiral polyhedron, and thus the sim-      vational and theoretical communities. For the former,
+                                               plest shape for which one can distinguish reflection and          we note that searches for parity-violation have also been
+                                               rotation (as discussed in [11], see also [12–16]). Roughly        performed using the CMB four-point function [23, 24]
+                                               speaking, parity-violation measurements proceed by iter-          (and the tensorial three-point function [25]), and there
+                                               ating over all possible tetrahedra of galaxies in a survey        remains the intriguing possibility that such effects could
+                                               and counting the number that are left- and right-handed           be searched for in galaxy shape and spin statistics [e.g.,
+
+
+                                                                                                                  1 This can be done uniquely; one considers the sign of the triple
+                                               ∗ ohep2@cantab.ac.uk
+                                                                                                                    product r1 · r2 × r3 , where ri is the position vector from the
+                                               † jferrer@iaa.es                                                     zeroth vertex to the i-th and we fix r1 < r2 < r3 .
+                                                                                                                               2
+
+26–31]. To date, none of these studies have reported a          statistics. In addition, the generation of these catalogs
+significant detection. On the theory side, a wide variety of    involves specifying a significant number of parameters
+works have considered parity-violating models both in the       (five), leading to a remarkable degree of parameter de-
+scalar and tensor sector [14, 16, 32–51]. Applied to BOSS       generacy. In contrast, GLAM-Uchuu has only one free
+data, [45] drew the general conclusions: (a) late-time          parameter. A further important difference is that, un-
+solutions (i.e. non-inflationary) are heavily suppressed        like MultiDark-Patchy, GLAM-Uchuu includes the
+on large-scales, (b) none of the theoretical models yet         redshift-dependent evolution of galaxy clustering. Whilst
+analysed are consistent with the observational data.            the MultiDark-Patchy catalogs were generated using
+   Perhaps the least exciting explanation for the BOSS          a single 2.5 h−1 Gpc box, the GLAM-Uchuu catalogs
+parity-odd-excess is a mischaracterization of the 4PCF          were generated by joining boxes of different redshift into
+noise distribution. Both previous analyses essentially          spherical shells, reproducing the clustering evolution with
+analyze the following quantity:                                 redshift (see [53] for a detailed description of this method).
+                                                                Moreover, [56] recently reported some evidence of model
+                   χ̃2 = ζodd
+                          T
+                              C−1 ζodd ,                 (1)
+                                                                specification errors in MultiDark-Patchy, and [53]
+where ζodd is the (possibly compressed) 4PCF and C is           found differences in the two-point covariances.
+some covariance matrix, calibrated to a suite of realis-           In the below, we perform a similar analysis to [9], but
+tic galaxy catalogs, namely the MultiDark-Patchy                replacing MultiDark-Patchy with the GLAM-Uchuu
+suite [52]. In the Gaussian limit, and assuming C is the        galaxy catalogs. Assuming that they better characterize
+true covariance of ζ, χ̃2 follows a χ2 distribution (with       the null ζodd distribution (which is a fair assumption, viz
+the null theory ζodd = 0), thus the value of χ̃2 obtained       the above discussion), this will allow us to test whether the
+from BOSS can be interpreted as a parity-violation de-          formerly-reported BOSS 4PCF excess could be explained
+tection probability. Of course, the actual analyses are         by a simple underestimate of the data’s sample variance.
+somewhat more nuanced, and take into account effects
+such as the finite number of mocks used to estimate C
+and non-Gaussianities in the distribution of χ̃2 (via a                                  METHODS
+simple invocation of simulation-based-inference) [9, 10].
+At heart, all analyses make a key assumption: that the          Our observational data-set is the twelfth data release
+noise distribution of ζodd from BOSS matches the noise          (DR12) of the Baryon Oscillation Spectroscopic Survey
+distribution of ζodd from the MultiDark-Patchy mock             (BOSS), part of SDSS-III [21, 22, 57]. As in [10] (but ex-
+catalogs.                                                       tending beyond [9]) we use both the low-redshift LOWZ
+   In this Letter, we test the above assumption. This is        sample (0.2 < z < 0.4) and the high-redshift CMASS
+facilitated by a new suite of BOSS mocks: the GLAM-             sample (0.43 < z < 0.7), which represent two physi-
+Uchuu galaxy catalogs [53]. These are N -body cosmo-            cally distinct galaxy populations, and split the data into
+logical simulations that follow the evolution of 20003          the North and South galactic regions (denoted ‘N’ and
+dark matter particles, each having a particle mass of           ‘S’ hereafter). Adopting the standard BOSS systematic
+1.06×1010 h−1 M⊙ . The cosmological parameters adopted          weights [58, 59] (which we caution have been validated
+are Ωm,0 = 0.309, Ωb,0 = 0.0486, ΩΛ,0 = 0.691, h = 0.677,       only for the two-point functions), the effective number
+ns = 0.9667, and σ8 = 0.816, representing the best fitting      of galaxies in our sample is 606 000, 225 000, 196 000 and
+ΛCDM parameters corresponding to the Planck 2015 cos-           91 103 for CMASS-N, CMASS-S, LOWZ-N and LOWZ-S
+mology [54]. In contrast, the previously used MultiDark-        respectively.
+Patchy catalogs, rely on an approximate model for grav-            We use two sets of mock catalogs in this study:
+itational evolution, rather than employing N -body codes.       MultiDark-Patchy and GLAM-Uchuu. Both model
+The Patchy code generates fields for dark matter den-           the full BOSS footprint (split across all four chunks) with
+sity and peculiar velocity on a mesh, utilizing Gaussian        similar redshift-distributions and observational masks.
+fluctuations and implementing the augmented Lagrangian          Here, we use Nsim = 2042 MultiDark-Patchy and
+perturbation theory scheme [55].                                Nsim = 627 GLAM-Uchuu mocks.2 Both sets of cata-
+   Whilst alternative methods to N -body simulations are        logs include the observational veto mask and estimated
+more computationally efficient, they necessarily sacrifice      fiber collision weights, emulating the observational sam-
+some accuracy, implying that the MultiDark-Patchy               ple. We additionally utilize random catalogs to char-
+simulations fail to generate a precise matter density field     acterize the unperturbed galaxy distribution (from the
+compared to a full N -body simulation such as GLAM-             mask and radial distribution). These have been separately
+Uchuu, which fully encodes nonlinear gravitational evolu-
+tion (up to resolution and baryonic effects). The feasibility
+of the resulting MultiDark-Patchy galaxy catalogs in
+                                                                2 6 MultiDark-Patchy and 3 GLAM-Uchuu mocks were cor-
+a real universe is uncertain, which introduces ambiguity in
+their covariance error estimates for the BOSS clustering          rupted in data transfer and are thus dropped from the analysis.
+                                                                                                                                                            3
+
+
+                                   CMASS-N         CMASS-S        LOWZ-N          LOWZ-S           0.0030          GLAM-Uchuu                 84.7%
+                         1.6                                                                                       MultiDark-Patchy           100.0%
+            )
+
+                                                                                                   0.0025          BOSS
+
+
+
+
+var( GLAM) /var Patchy
+                         1.4
+            (
+                                                                                                   0.0020
+                         1.2
+                                                                                             PDF   0.0015
+                         1.0
+                                                                                                   0.0010
+                         0.8
+                                                                                                   0.0005
+                               0    200      400       600       800       1000    1200            0.0000
+                                                     Bin Index                                                      5000        5500         6000
+                                                                                                                                 2
+   FIG. 1. Comparison of the parity-odd 4PCF variance es-
+   timated with two suites of galaxy mock catalogs: GLAM-
+   Uchuu (N -body) and MultiDark-Patchy (mesh, with aug-                                   FIG. 2. Distribution of the parity-odd statistic χ̃2 (1) from
+   mented Lagrangian perturbation theory). We show results                                 2042 MultiDark-Patchy catalogs (used in previous analyses)
+   for the four BOSS samples, as indicated in the caption, and                             and 627 GLAM-Uchuu catalogs (new to this work), with the
+   collapse all 1288 4PCF bins into one dimension. In all samples                          BOSS result shown as a vertical red line. We show results
+   except LOWZ-S, the GLAM-Uchuu variance exceeds that of                                  from the combined CMASS+LOWZ observational dataset,
+   MultiDark-Patchy. This gives rise to the differences seen                               with those from the four subsamples displayed in Fig. 3. The
+   in Figs. 2 & 3.                                                                         rank-test probabilities (i.e. detection significances) are shown
+                                                                                           in the upper right corner. Using the GLAM-Uchuu catalogs,
+                                                                                           we find no evidence for parity-violation in BOSS, but a strong
+                                                                                           preference when the 4PCF noise distribution is modeled with
+   generated for each dataset (BOSS, GLAM-Uchuu and                                        the MultiDark-Patchy suite. Further, we find ≥3σ evidence
+   MultiDark-Patchy) and have size 40×, 30×, and 20×                                       for parity-violation in 41% of the (parity-conserving) GLAM-
+   the data respectively.                                                                  Uchuu mocks, when analyzed with MultiDark-Patchy.
+      Given the datasets, the 4PCFs are obtained using the                                 Numerical constraints are given in Tab. I.
+   encore code [17, 60]. This computes the following quan-
+   tity (with a complexity quadratic in the number of galax-
+   ies):                                                                                      Computation of the 4PCFs was performed on a high-
+                                                                                           performance computing cluster. Thanks to encore’s
+                                Z                                                          efficient C++ and avx implementation, ≈ 90 minutes
+    ζℓ1 ℓ2 ℓ3 (r1 , r2 , r3 ) =   dx dr̂1 dr̂2 dr̂3 Pℓ∗1 ℓ2 ℓ3 (r̂1 , r̂2 , r̂3 ) (2)      was needed to process each mock (including all four data
+                                                                                           chunks) on a 40-CPU machine, thus the full analysis
+                                             × δ(x)δ(x + r1 )δ(x + r2 )δ(x + r3 ),
+                                                                                           required ≈ 16 000 CPU-hours.4 The full data-vector,
+  where δ is the galaxy overdensity,3 and Pℓ1 ℓ2 ℓ3 is an an-                              ζodd = {ζℓ1 ℓ2 ℓ3 (r1 , r2 , r3 ) ∀ ri , ℓi } contains Nbins = 1288
+  gular basis function relative to one vertex of the galaxy                                bins for each of the four (assumed independent) data
+  tetrahedron (as defined in [20]; see also the BiPoSH basis                               chunks.
+  [62]). The ri parameters give the (discretized) tetrahe-                                    To analyze the data, we follow the methods of [9],
+  dron side lengths, whilst ℓi index the Fourier complement                                making use of a fiducial analytic covariance matrix C
+  of the internal angle, with odd ℓ1 + ℓ2 + ℓ3 encoding                                    computed as described in [63]. This is estimated using
+  parity-violation. Our binning follows [9]; we use all ℓ                                  various simplifying assumptions (in the Gaussian limit,
+  up to ℓ = 5, but drop ℓ = 5 due to residual leakage                                      for example), thus we use it only as an approximate tool
+  from the window function, and use 10 radial bins with                                    for dimensionality reduction (noting that former works
+  ri ∈ [20, 160)h−1 Mpc, additionally dropping any config-                                 [9, 60, 63] have found that it well-represents the empirical
+  urations with internal radii (i.e. the three tetrahedron                                 correlation structure of the 4PCF, but not the variance).
+  sides not specified by r1,2,3 ) below 14h−1 Mpc.                                         On each of the data and mocks, we estimate a pseudo-χ2
+                                                                                           statistic (hereafter χ̃2 ) via (1). If C is close to the true
+
+
+    3 In practice, we use the data and random catalogs to create a                         4 Though the encore GPU implementation described in [17] is
+
+             Landy-Szalay-type estimator [61] to remove the window function,                 considerably faster, we do not use it here due to the far larger
+             as described in [17, 60].                                                       number of CPUs available on a typical cluster.
+                                                                                                                                        4
+
+                       CMASS-N                         CMASS-S                          LOWZ-N                   LOWZ-S
+                                      1.4%                              65.4%                      64.0%      GLAM-Uchuu       100.0%
+        0.007                         98.8%                             97.3%                      96.6%      MultiDark-Patchy 95.0%
+                                                                                                              BOSS
+        0.006
+        0.005
+
+  PDF   0.004
+        0.003
+        0.002
+        0.001
+        0.000
+                1200 1400 1600 1800               1200     1400    1600          1200    1400    1600      1000 1200 1400 1600
+                             2                              2                              2                          2
+
+FIG. 3. As Fig. 2, but assessing the probability of parity-violation in each of the four BOSS data chunks (indicated by the title).
+The PDFs of GLAM-Uchuu and MultiDark-Patchy are significantly shifted in all except LOWZ-N, as expected from Fig. 1.
+We find no detection of parity-violation in three of the four samples (see Tab. I), though the LOWZ-S result is anomalous,
+suggesting possible underestimated covariances or observational systematics.
+
+
+covariance, this will provide an optimal noise weighting in                which is closely related to (1) but uses the empirical
+the Gaussian limit. Given the set of χ̃2 values obtained                   covariance Csim = (Πζodd )(Πζodd )T sim estimated from
+from a suite of (parity-conserving) mock catalogs, we con-                 Nsim mocks. Assuming a Gaussian distribution for Πζodd ,
+struct an empirical distribution psim (χ̃2 ) and assess the                (3) follows a T 2 distribution, as discussed in [65]. When
+probability-to-exceed of BOSS, i.e. psim (χ̃2BOSS ). This is               combining samples, we add the T 2 values, with the com-
+practically implemented as a rank test, which is a simple                  bined theoretical distribution obtained via a convolution
+form of simulation-based inference. Since we take the dis-                 as in [9], or from the empirical mock-based distribution,
+tribution of χ̃2 directly from the catalogs, we do not need                as above. Assuming that the fiducial and empirical co-
+to assume Gaussianity nor that C well-approximates the                     variances differ, this test will provide a different weighting
+true covariance; however, we must assume that psim (χ̃2 )                  than the rank-based test described above, and could thus
+is accurate, i.e. that the simulated noise matches the ob-                 differently highlight parity-violating signatures, though
+servational noise. When analyzing multiple data chunks,                    we caution that it assumes Gaussianity.
+we sum the χ̃2 values of each, weighted by the ratio of
+the fiducial covariance C to the empirical one, as esti-
+mated from 10% of the MultiDark-Patchy catalogs                                                     RESULTS
+using a Kullback-Leibler minimization (i.e. inverse noise
+weighting). Once again, we note that this cannot induce                    We begin by discussing the empirical 4PCF covariances
+bias.                                                                      obtained from the GLAM-Uchuu and MultiDark-
+   We additionally perform a second test for parity-                       Patchy suites. Whilst the correlation structures are
+violation, used in both [9] and [10] (following [60, 64]).                 very similar (see Fig. 3 of [9]), the variances differ con-
+Given the high-dimensionality of ζodd , we cannot compute                  siderably, as shown in Fig. 1. For all data chunks except
+                                            T                              LOWZ-S, the GLAM-Uchuu covariance significantly
+the empirical covariance Csim = ζodd ζodd       sim
+                                                    directly
+from the mock catalogs. Instead, we use the fiducial                       exceeds that of MultiDark-Patchy, with a roughly
+covariance C to define a minimum-variance eigenbasis                       uniform rescaling found across the radial and angular
+containing Neig = 250 elements, into which the data and                    4PCF components. In LOWZ-S, the conclusion reverses;
+mock 4PCFs are projected via some Neig × Nbins operator                    the MultiDark-Patchy variance is larger than that
+Π.5 This is then analyzed with the following statistic:                    of GLAM-Uchuu. These results are not unsurprising,
+                                                                           given that: (a) [53] found a significant excess in the two-
+                T 2 = (Πζodd )T C−1
+                                 sim (Πζodd ),                    (3)      point correlation function variances of GLAM-Uchuu
+                                                                           compared to MultiDark-Patchy for the CMASS-N
+                                                                           data-chunk, and (b) the 4PCF covariance contains contri-
+5 The choice of N
+                  eig is somewhat arbitrary, but [9] found Neig = 250
+                                                                           butions from the 2PCF, 3PCF, 4PCF, 5PCF and 8PCF.
+  to yield large detection significances with MultiDark-Patchy             The above observation is central to the remainder of the
+  catalogs whilst limiting finite-mock effects.                            paper. If the MultiDark-Patchy 4PCF covariance was
+                                                                                                                                5
+
+     Sample      GLAM-Uchuu MultiDark-Patchy                               0.008        GLAM-Uchuu                 96.0%
+     Combined     84.7%    1.4σ   100.0%      >3.5σ
+                                                                           0.007        MultiDark-Patchy           99.4%
+     CMASS-N       1.4%    0.0σ    98.8%       2.5σ                                     BOSS
+     CMASS-S      65.4%    0.9σ    97.3%       2.2σ                        0.006
+     LOWZ-N       64.0%    0.9σ    96.6%       2.1σ                        0.005
+     LOWZ-S      100.0% >3.2σ      95.0%       2.0σ
+                                                                     PDF   0.004
+TABLE I. Probability of a detection of parity-violation from
+the BOSS dataset, obtained using the rank test shown in                    0.003
+Figs. 2 & 3. We give the one-tailed probability of BOSS com-
+pared to the distribution of GLAM-Uchuu (left columns,
+                                                                           0.002
+new to this work) and MultiDark-Patchy (right columns,                     0.001
+matching previous work) simulations, and present also the
+effective Gaussian significances. Where the BOSS result is                 0.000
+larger than all values in the empirical histogram, we give the                     1000 1200 1400 1600 1800 2000
+minimum detection significance.                                                                  T2
+                                                                 FIG. 4. Alternative test for parity-violation, projecting the
+underestimated, could this explain the excess parity-odd         parity-odd statistic onto the 250 lowest-noise eigenmodes of
+signal?                                                          a fiducial covariance matrix, then computing the distribution
+   In Fig. 2 we present the main result of this work: a com-     of the T 2 statistic (3) using the empirical GLAM-Uchuu or
+                                                                 MultiDark-Patchy covariance. PDFs are obtained from
+parison of the parity-violation parameter χ̃2 from BOSS,
+                                                                 jackknifing (histograms) and analytic Gaussian theory (lines)
+GLAM-Uchuu and MultiDark-Patchy. This is anal-                   and we show results for all samples combined, with the num-
+ogous to Fig. 4 of [9] but now includes the LOWZ dataset,        bers on the top-right giving the detection probabilities relative
+as well as the empirical distribution from the GLAM-             to the mocks. The full (dashed) red lines show the BOSS
+Uchuu catalogs. The results are striking: we find that the       results when analyzed using the GLAM-Uchuu (MultiDark-
+BOSS data has larger χ̃2 than every MultiDark-Patchy             Patchy) mocks. We find no significant detection of parity-
+catalog but only 84.7% of the GLAM-Uchuu suite. Con-             violation when using GLAM-Uchuu but a detection when
+                                                                 using MultiDark-Patchy.
+verted to one-tailed Gaussian significances (cf. Tab. I), this
+corresponds to a >3.5σ excess in BOSS when analyzed
+with MultiDark-Patchy (consistent with [9, 10]) or
+                                                                 MultiDark-Patchy and/or GLAM-Uchuu catalogs
+a 1.4σ deviation using GLAM-Uchuu. If we regard
+                                                                 for this chunk (which has a more complex selection func-
+MultiDark-Patchy as the ‘true’ noise distribution we
+                                                                 tion than CMASS). We note, however, that this region
+thus obtain a strong detection of parity-violation from
+                                                                 contains the fewest galaxies, and thus the least statistical
+BOSS, but this disappears if we assume GLAM-Uchuu
+                                                                 weight.
+is a more realistic representation of the BOSS survey.
+Furthermore, we can treat each GLAM-Uchuu mock                      Finally, we show results from the alternative Gaussian
+as a ‘validation’ dataset for the MultiDark-Patchy               analysis in Fig. 4. When projecting the data onto 250
+analysis: in this framework, we find ≥ 3σ detections of          eigenmodes and analyzing via the analytic T 2 distribu-
+parity-violation in 41% of the GLAM-Uchuu mocks,                 tion, we find a 3.0σ excess in BOSS when analyzed with
+indicating significant bias in the MultiDark-Patchy              MultiDark-Patchy or a 2.4σ detection with GLAM-
+pipeline.                                                        Uchuu. From the figure it is clear that the T 2 distribution
+                                                                 is somewhat broader than the analytic theory, which is a
+   To understand these results further, we show the χ̃2
+                                                                 signature of likelihood non-Gaussianity and leads to in-
+distributions from each BOSS chunk in turn in Fig. 3,
+                                                                 flated detection significances. If one uses the empirical T 2
+with associated numerical results given in Tab. I. In all
+                                                                 distribution rather than the theoretical, these detection
+cases, we find significant differences between the GLAM-
+                                                                 significances reduce to 2.7σ (MultiDark-Patchy) and
+Uchuu and MultiDark-Patchy distributions, which
+                                                                 2.1σ (GLAM-Uchuu), indicating no significant evidence
+occurs primarily due to the different 4PCF covariances
+                                                                 for parity-violation in the GLAM-Uchuu analysis.
+(cf. Fig. 1). In all datasets except LOWZ-S, χ̃2BOSS falls in
+the center or the left of the GLAM-Uchuu distribution
+but in the tails of the MultiDark-Patchy distribu-
+tion, matching the findings of Fig. 2. For LOWZ-S, we                                   DISCUSSION
+find the opposite results: the GLAM-Uchuu distribu-
+tion is shifted to lower χ̃2 , thus its detection significance   What do the above results imply for the cosmic parity-
+is larger than that obtained with MultiDark-Patchy.              violation study of [9]? The precise conclusions depend sig-
+This may indicate inaccuracies in the construction of the        nificantly on our assumptions about the GLAM-Uchuu
+                                                                                                                                  6
+
+and MultiDark-Patchy simulation suites. Two choices              We thank Giovanni Cabass and Colin Hill for insightful comments.
+are apparent:                                                    OHEP is a Junior Fellow of the Simons Society of Fellows and thanks
+                                                                 the night markets of Taipei for their pig-related delicacies. JE
+   1. We assume that the noise distribution of BOSS is           acknowledges financial support from the Spanish MICINN funding
+      well-modeled by the new GLAM-Uchuu catalogs                grant PGC2018-101931-B-I00. The GLAM-Uchuu catalogs will
+      but not by the older MultiDark-Patchy catalogs             be made publicly available at http://www.skiesanduniverses.org/
+      (which are less realistic, as, for example, they use an    Simulations/Uchuu/.
+      alternative method to N -body and do not account
+      for redshift evolution of the galaxy samples). In this
+      case, we find no evidence for parity-violation, with
+      our main analysis yielding only 1.4σ.
+                                                                  [1] J. R. Eskilt, Astron. Astrophys. 662, A10 (2022),
+   2. We assume that neither the GLAM-Uchuu nor                       arXiv:2201.13347 [astro-ph.CO].
+      MultiDark-Patchy suites accurately represent                [2] J. R. Eskilt and E. Komatsu, (2022), arXiv:2205.13962
+      the BOSS noise distribution (seen, for example,                 [astro-ph.CO].
+      by the anomalous results with the LOWZ-S data               [3] P. Diego-Palazuelos et al., Phys. Rev. Lett. 128, 091302
+      chunk). In this case, the significant variation in              (2022), arXiv:2201.07682 [astro-ph.CO].
+      detection significances from two differently produced       [4] E. Komatsu, Nature Rev. Phys. 4, 452 (2022),
+                                                                      arXiv:2202.13919 [astro-ph.CO].
+      galaxy catalogs (both of which are calibrated to            [5] Y. Minami and E. Komatsu, Phys. Rev. Lett. 125, 221301
+      BOSS) indicates that our pipeline may have large                (2020), arXiv:2011.11254 [astro-ph.CO].
+      systematic errors and cannot be used to claim any           [6] P. Diego-Palazuelos et al., JCAP 01, 044 (2023),
+      strong detection of parity-violation.                           arXiv:2210.07655 [astro-ph.CO].
+                                                                  [7] S. E. Clark, C.-G. Kim, J. C. Hill, and B. S. Hensley,
+In either case, we do not find significant evidence for               Astrophys. J. 919, 53 (2021), arXiv:2105.00120 [astro-
+parity-violation from the BOSS survey (using the ap-                  ph.GA].
+proach of [9]), and thus no observational motivation for          [8] M. S. Turner and L. M. Widrow, Phys. Rev. D 37, 2743
+novel inflationary or late-time physics.                              (1988).
+   Although the statistical methods differ, this result also      [9] O. H. E. Philcox, Phys. Rev. D 106, 063501 (2022),
+                                                                      arXiv:2206.04227 [astro-ph.CO].
+has implications for the analysis of [10]. In this work,
+                                                                 [10] J. Hou, Z. Slepian, and R. N. Cahn, Mon. Not. Roy.
+the main constraints come from an unprojected Gaussian                Astron. Soc. 522, 5701 (2023), arXiv:2206.03625 [astro-
+analysis using the theoretical covariance matrices of [63],           ph.CO].
+with the effective volume and shot-noise fitted to the           [11] R. N. Cahn, Z. Slepian, and J. Hou, Phys. Rev. Lett.
+empirical MultiDark-Patchy covariance. Although                       130, 201002 (2023), arXiv:2110.12004 [astro-ph.CO].
+this introduces mock-based information only through a            [12] A. Lue, L.-M. Wang, and M. Kamionkowski, Phys. Rev.
+pair of parameters, one still affects significant variation           Lett. 83, 1506 (1999), arXiv:astro-ph/9812088.
+                                                                 [13] D. Jeong and M. Kamionkowski, Phys. Rev. Lett. 108,
+in the constraints if the GLAM-Uchuu catalogs are                     251301 (2012), arXiv:1203.0302 [astro-ph.CO].
+replaced with those of MultiDark-Patchy (from Fig. 1,            [14] M. Shiraishi, Phys. Rev. D 94, 083503 (2016),
+given the roughly constant variance ratio). The parity-               arXiv:1608.00368 [astro-ph.CO].
+odd excess of [10] is also enhanced if more bins are used        [15] V. Gluscevic and M. Kamionkowski, Phys. Rev. D 81,
+in the data-vector; this would be interesting to investigate          123529 (2010), arXiv:1002.1308 [astro-ph.CO].
+further with the GLAM-Uchuu catalogs, though we                  [16] T. Liu, X. Tong, Y. Wang, and Z.-Z. Xianyu, JHEP 04,
+caution that larger dimensionality is often associated with           189 (2020), arXiv:1909.01819 [hep-ph].
+                                                                 [17] O. H. E. Philcox, Z. Slepian, J. Hou, C. Warner,
+likelihood non-Gaussianity.                                           R. N. Cahn, and D. J. Eisenstein, arXiv e-prints ,
+   Finally, the analysis described in this Letter has ram-            arXiv:2105.08722 (2021), arXiv:2105.08722 [astro-ph.IM].
+ifications for future surveys such as DESI and Euclid            [18] O. H. E. Philcox and Z. Slepian, Proc. Nat. Acad. Sci.
+[66, 67]. These experiments will lead to an explosion in              119, e2111366119 (2022), arXiv:2106.10278 [astro-ph.IM].
+the data volume, facilitating much more precise probes of        [19] O. H. E. Philcox and Z. Slepian, arXiv e-prints ,
+the parity-violating sector (amongst many other topics).              arXiv:2106.10278 (2021), arXiv:2106.10278 [astro-ph.IM].
+Enhanced precision does not preclude bias however, and           [20] R. N. Cahn and Z. Slepian, J. Phys. A 56, 325204 (2023),
+                                                                      arXiv:2010.14418 [astro-ph.CO].
+it remains possible that model-independent analyses like         [21] K. S. Dawson, D. J. Schlegel, C. P. Ahn, S. F. Anderson,
+the above will be limited by the accuracy of our cata-                É. Aubourg, S. Bailey, R. H. Barkhouser, J. E. Bautista,
+logs, in particular their ability to reproduce the statistical        A. Beifiori, et al., AJ 145, 10 (2013), arXiv:1208.0022
+properties of high-dimensional observables. If these hur-             [astro-ph.CO].
+dles can be surmounted, however, the parity-odd dataset          [22] S. Alam, M. Ata, S. Bailey, F. Beutler, D. Bizyaev,
+could open doors to a wide variety of exciting inflationary           J. A. Blazek, A. S. Bolton, J. R. Brownstein, A. Bur-
+studies.                                                              den, C.-H. Chuang, et al., MNRAS 470, 2617 (2017),
+                                                                      arXiv:1607.03155 [astro-ph.CO].
+                                                                                                                              7
+
+[23] O. H. E. Philcox, (2023), arXiv:2303.12106 [astro-ph.CO].        Phys. 126, 937 (2011), arXiv:1108.0175 [astro-ph.CO].
+[24] O. H. E. Philcox and M. Shiraishi,                (2023),   [49] N. Bartolo, S. Matarrese, M. Peloso, and M. Shiraishi,
+     arXiv:2308.03831 [astro-ph.CO].                                  JCAP 01, 027 (2015), arXiv:1411.2521 [astro-ph.CO].
+[25] O. H. E. Philcox and M. Shiraishi,                (2023),   [50] M. Shiraishi, A. Ricciardone, and S. Saga, JCAP 11, 051
+     arXiv:2312.12498 [astro-ph.CO].                                  (2013), arXiv:1308.6769 [astro-ph.CO].
+[26] O. H. E. Philcox, M. J. König, S. Alexander, and D. N.     [51] K. W. Masui, U.-L. Pen, and N. Turok, Phys. Rev. Lett.
+     Spergel, (2023), arXiv:2309.08653 [astro-ph.CO].                 118, 221301 (2017), arXiv:1702.06552 [astro-ph.CO].
+[27] W. R. Coulton, O. H. E. Philcox, and F. Villaescusa-        [52] F.-S. Kitaura, S. Rodrı́guez-Torres, C.-H. Chuang,
+     Navarro, (2023), arXiv:2306.11782 [astro-ph.CO].                 C. Zhao, F. Prada, H. Gil-Marı́n, H. Guo, G. Yepes,
+[28] H. Jia, H.-M. Zhu, and U.-L. Pen, Astrophys. J. 943, 32          A. Klypin, C. G. Scóccola, et al., MNRAS 456, 4156
+     (2023), arXiv:2210.04168 [astro-ph.CO].                          (2016), arXiv:1509.06400 [astro-ph.CO].
+[29] H.-R. Yu, P. Motloch, U.-L. Pen, Y. Yu, H. Wang, H. Mo,     [53] J. Ereza, F. Prada, A. Klypin, T. Ishiyama, A. Smith,
+     X. Yang, and Y. Jing, Phys. Rev. Lett. 124, 101302               C. M. Baugh, B. Li, C. Hernández-Aguayo, and J. Ruedas,
+     (2020), arXiv:1904.01029 [astro-ph.CO].                          (2023), arXiv:2311.14456 [astro-ph.CO].
+[30] P. Motloch, U.-L. Pen, and H.-R. Yu, Phys. Rev. D 105,      [54] P. A. R. Ade et al. (Planck), Astron. Astrophys. 594, A13
+     083512 (2022), arXiv:2111.12590 [astro-ph.CO].                   (2016), arXiv:1502.01589 [astro-ph.CO].
+[31] K. Kogai, K. Akitsu, F. Schmidt, and Y. Urakawa, JCAP       [55] F. S. Kitaura, G. Yepes, and F. Prada, MNRAS 439,
+     03, 060 (2021), arXiv:2009.05517 [astro-ph.CO].                  L21 (2014), arXiv:1307.3285 [astro-ph.CO].
+[32] S. Alexander and N. Yunes, Phys. Rept. 480, 1 (2009),       [56] B. Yu, U. Seljak, Y. Li, and S. Singh, JCAP 2023, 057
+     arXiv:0907.2562 [hep-th].                                        (2023), arXiv:2211.16794 [astro-ph.CO].
+[33] S. Alexander, A. Marciano, and D. Spergel, JCAP 04,         [57] D. J. Eisenstein, D. H. Weinberg, E. Agol, H. Ai-
+     046 (2013), arXiv:1107.0318 [hep-th].                            hara, C. Allende Prieto, S. F. Anderson, J. A. Arns,
+[34] S. H. S. Alexander, Int. J. Mod. Phys. D 25, 1640013             É. Aubourg, S. Bailey, E. Balbinot, et al., AJ 142, 72
+     (2016), arXiv:1604.00703 [hep-th].                               (2011), arXiv:1101.1529 [astro-ph.IM].
+[35] C. Creque-Sarbinowski, S. Alexander, M. Kamionkowski,       [58] M. Vargas-Magaña, S. Ho, A. J. Cuesta, R. O’Connell,
+     and O. Philcox, (2023), arXiv:2303.04815 [astro-ph.CO].          A. J. Ross, D. J. Eisenstein, W. J. Percival, J. N.
+[36] N. Bartolo and G. Orlando, JCAP 07, 034 (2017),                  Grieb, A. G. Sánchez, et al., MNRAS 477, 1153 (2018),
+     arXiv:1706.04627 [astro-ph.CO].                                  arXiv:1610.03506 [astro-ph.CO].
+[37] N. Bartolo, S. Matarrese, M. Peloso, and M. Shiraishi,      [59] A. J. Ross et al. (BOSS), Mon. Not. Roy. Astron. Soc.
+     JCAP 07, 039 (2015), arXiv:1505.02193 [astro-ph.CO].             464, 1168 (2017), arXiv:1607.03145 [astro-ph.CO].
+[38] L. Sorbo, JCAP 06, 003 (2011), arXiv:1101.1525 [astro-      [60] O. H. E. Philcox, J. Hou, and Z. Slepian, (2021),
+     ph.CO].                                                          arXiv:2108.01670 [astro-ph.CO].
+[39] M. Shiraishi, M. Liguori, and J. R. Fergusson, JCAP 01,     [61] S. D. Landy and A. S. Szalay, ApJ 412, 64 (1993).
+     007 (2015), arXiv:1409.0265 [astro-ph.CO].                  [62] D. A. Varshalovich, A. N. Moskalev, and V. K. Kherson-
+[40] M. Shiraishi, M. Liguori, and J. R. Fergusson, JCAP 05,          skii, Quantum Theory of Angular Momentum (1988).
+     008 (2014), arXiv:1403.4222 [astro-ph.CO].                  [63] J. Hou, R. N. Cahn, O. H. E. Philcox, and Z. Slepian,
+[41] S. H. S. Alexander, Phys. Lett. B 660, 444 (2008),               Phys. Rev. D 106, 043515 (2022), arXiv:2108.01714 [astro-
+     arXiv:hep-th/0601034.                                            ph.CO].
+[42] J.-O. Gong, M. Mylova, and M. Sasaki, JHEP 10, 140          [64] R. Scoccimarro, H. M. P. Couchman, and J. A. Frieman,
+     (2023), arXiv:2303.05178 [hep-th].                               ApJ 517, 531 (1999), arXiv:astro-ph/9808305 [astro-ph].
+[43] J. Soda, H. Kodama, and M. Nozawa, JHEP 08, 067             [65] E. Sellentin and A. F. Heavens, MNRAS 464, 4658 (2017),
+     (2011), arXiv:1106.3228 [hep-th].                                arXiv:1609.00504 [astro-ph.CO].
+[44] L. Bordin and G. Cabass, JCAP 07, 014 (2020),               [66] DESI Collaboration, A. Aghamousa, J. Aguilar, S. Ahlen,
+     arXiv:2004.00619 [astro-ph.CO].                                  S. Alam, L. E. Allen, C. Allende Prieto, J. Annis, S. Bai-
+[45] G. Cabass, M. M. Ivanov, and O. H. E. Philcox, Phys. Rev.        ley, C. Balland, et al., arXiv e-prints , arXiv:1611.00036
+     D 107, 023523 (2023), arXiv:2210.16320 [astro-ph.CO].            (2016), arXiv:1611.00036 [astro-ph.IM].
+[46] G. Cabass, S. Jazayeri, E. Pajer, and D. Stefanyszyn,       [67] R. Laureijs, J. Amiaux, S. Arduini, J. L. Auguères,
+     (2022), arXiv:2210.02907 [hep-th].                               J. Brinchmann, R. Cole, M. Cropper, C. Dabin, L. Duvet,
+[47] M. Shiraishi, JCAP 06, 015 (2012), arXiv:1202.2847               A. Ealet, et al., arXiv e-prints , arXiv:1110.3193 (2011),
+     [astro-ph.CO].                                                   arXiv:1110.3193 [astro-ph.CO].
+[48] M. Shiraishi, D. Nitta, and S. Yokoyama, Prog. Theor.
+

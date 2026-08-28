@@ -1,0 +1,258 @@
+{
+  "status": "V13_CLOSED_WORLD_VIEWER_TEXT_CONTRACT",
+  "authority_sha256": "cf9cefe8a0c07f8cc960388004a20d4518a7cf7fbcea5ff688825ffdc47bfd22",
+  "rules": {
+    "unlisted_text_forbidden": true,
+    "captions_are_subtitle_stream_and_sidecars_not_burned_frame_text": true,
+    "generated_text_forbidden": true,
+    "crew_terms_forbidden": [
+      "duho",
+      "lana",
+      "goru",
+      "kun",
+      "hwao",
+      "yui",
+      "tori",
+      "fable"
+    ],
+    "conditionally_permitted_roles": [
+      {
+        "role": "illustration_tag",
+        "text": "ILLUSTRATION",
+        "permitted_when": "QA judges a generated asset could be read as an observation"
+      }
+    ]
+  },
+  "cards": {
+    "01": {
+      "permitted": [
+        {
+          "role": "safety_badge",
+          "text": "A PERSONAL SIDE-QUESTION · NOT PART OF THE LAB'S RESEARCH PROGRAMME",
+          "reveal": "frame_zero",
+          "persistent_full_card": true
+        },
+        {
+          "role": "anchor",
+          "text": "ROUTE CLOSED",
+          "reveal": "route_verdict"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "This route closed because it had no calibrated, identifying target",
+        "WE READ THE PRIMARY SOURCES",
+        "A NUMBER WE CAN CHECK",
+        "GALAXY SPIN: THE SOURCES GIVE NO EXPECTED SIZE FOR THE EFFECT · NOT IDENTIFYING BY ITSELF",
+        "ROUTE CLOSED · IDEA NOT DECLARED TRUE OR FALSE"
+      ]
+    },
+    "02": {
+      "permitted": [
+        {
+          "role": "root_label",
+          "text": "BLACK-HOLE UNIVERSE (BHU)",
+          "reveal": "bhu"
+        },
+        {
+          "role": "tile_caption",
+          "text": "CLOSED UNIVERSE",
+          "reveal": "proposal_1"
+        },
+        {
+          "role": "tile_caption",
+          "text": "COLLAPSE BOUNCE",
+          "reveal": "proposal_2"
+        },
+        {
+          "role": "tile_caption",
+          "text": "INHERITED SPIN",
+          "reveal": "proposal_3"
+        },
+        {
+          "role": "tile_caption",
+          "text": "REPRODUCING UNIVERSES",
+          "reveal": "proposal_4"
+        },
+        {
+          "role": "tile_caption",
+          "text": "DISTINCT FINGERPRINTS",
+          "reveal": "proposal_5"
+        },
+        {
+          "role": "anchor",
+          "text": "FIVE IDEAS — NO SHARED PREDICTION",
+          "reveal": "no_shared_forecast"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "“Black-hole universe” names different proposals, not one model",
+        "ONE LABEL",
+        "AT LEAST FIVE PROPOSALS IN THIS SURVEY",
+        "NO SINGLE SHARED FORECAST"
+      ]
+    },
+    "03": {
+      "permitted": [],
+      "forbidden_legacy_strings": [
+        "A test needs a target that can be wrong—and identify the idea",
+        "MODEL",
+        "TARGET",
+        "MEASUREMENT",
+        "1 · CAN BE WRONG",
+        "2 · CAN IDENTIFY THE IDEA",
+        "NEUTRON STARS: ULTRA-DENSE COLLAPSED CORES",
+        "SPINNING, TIMED NEUTRON STARS ARE PULSARS"
+      ]
+    },
+    "04": {
+      "permitted": [
+        {
+          "role": "quotation",
+          "text": "“SERIOUS DOUBT OR SIMPLY FALSIFY” — BROWN, LEE & RHO",
+          "reveal": "source_quote"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "One cosmological-natural-selection chain puts a low ceiling on neutron-star mass",
+        "BROWN–BETHE MAXIMUM ~1.5 M☉",
+        "M ≳ 2 M☉"
+      ]
+    },
+    "05": {
+      "permitted": [
+        {
+          "role": "chart_data",
+          "text": "1.97 ± 0.04 M☉",
+          "reveal": "demorest_uncertainty"
+        },
+        {
+          "role": "chart_data",
+          "text": "2.08 ± 0.07 M☉",
+          "reveal": "fonseca_uncertainty"
+        },
+        {
+          "role": "chart_data",
+          "text": "68.3%",
+          "reveal": "percent_68_3"
+        },
+        {
+          "role": "anchor",
+          "text": "AT 95.4% CREDIBILITY, THE CLOSING RECORD STATES ONLY THAT THE RESULT DOES NOT CLEAR 2.00",
+          "reveal": "percent_95_4"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "Measured pulsars have entered the source’s approximately two-solar-mass regime",
+        "EVERY DISTANT-STAR MASS HAS AN UNCERTAINTY RANGE",
+        "DEMOREST: 1.97 ± 0.04 M☉",
+        "FONSECA: 2.08 ± 0.07 M☉ · 68.3%",
+        "NO 95.4% LOWER-BOUND VALUE IS QUOTED OR PLOTTED HERE"
+      ]
+    },
+    "06": {
+      "permitted": [
+        {
+          "role": "quotation",
+          "text": "SERIOUS DOUBT",
+          "reveal": "source_disjunction"
+        },
+        {
+          "role": "quotation_join",
+          "text": "OR",
+          "reveal": "source_disjunction"
+        },
+        {
+          "role": "quotation",
+          "text": "SIMPLY FALSIFY",
+          "reveal": "source_disjunction"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "The evidence enters the test regime; the closing record does not call it falsification",
+        "NOT ADJUDICATED HERE",
+        "OBSERVATIONS ENTER THE SOURCE-NAMED REGIME"
+      ]
+    },
+    "07": {
+      "permitted": [
+        {
+          "role": "missing_value",
+          "text": "?",
+          "reveal": "no_amplitude"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "The rotating-parent source explicitly says the two handedness counts should differ",
+        "PARENT ROTATION AXIS",
+        "INHERITED PREFERRED AXIS",
+        "CW COUNTS ≠ CCW COUNTS",
+        "EXPLICIT QUALITATIVE CLAIM"
+      ]
+    },
+    "08": {
+      "permitted": [
+        {
+          "role": "chart_data",
+          "text": "2025",
+          "reveal": "timeline"
+        },
+        {
+          "role": "missing_value",
+          "text": "?",
+          "reveal": "forecast_blanks",
+          "repeat": 4
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "The handedness claim came after the cited data and never became a numerical forecast",
+        "OBSERVATIONS CITED FIRST",
+        "HANDEDNESS CLAIM ADDED IN 2025",
+        "NOT A PREDICTION MADE BEFORE THE DATA",
+        "EQUATIONS PRESENT",
+        "NO EXPECTED SIZE OR PASS-OR-FAIL RANGE FOR HANDEDNESS"
+      ]
+    },
+    "09": {
+      "permitted": [
+        {
+          "role": "anchor",
+          "text": "MEASUREMENT ≠ IDENTIFICATION",
+          "reveal": "measurement_not_identification"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "A real spin difference would still not identify a black-hole origin",
+        "OBSERVED CW/CCW DIFFERENCE",
+        "BHU?",
+        "OTHER POSSIBLE CAUSES",
+        "NOT BHU-SPECIFIC BY ITSELF"
+      ]
+    },
+    "10": {
+      "permitted": [],
+      "forbidden_legacy_strings": [
+        "The spin route fails twice: no numerical target, and no unique signature",
+        "1 · NO SOURCE-DEFINED PASS-OR-FAIL RANGE",
+        "2 · NO UNIQUE SIGNATURE",
+        "A FINITE-PRECISION RESULT CANNOT BE NUMERICALLY SCORED AGAINST A RANGE THE SOURCE DOES NOT GIVE",
+        "A POSITIVE RESULT DOES NOT IDENTIFY BHU",
+        "THE HUNT HAD A SOURCE · IT DID NOT HAVE A TARGET"
+      ]
+    },
+    "11": {
+      "permitted": [
+        {
+          "role": "anchor",
+          "text": "REOPENS ONLY WITH A NUMBER — OR A FINGERPRINT",
+          "reveal": "reopen"
+        }
+      ],
+      "forbidden_legacy_strings": [
+        "Reopen this route only for a calibrated target or a unique signature",
+        "REOPEN CONDITION 1 · CALIBRATED TARGET",
+        "REOPEN CONDITION 2 · UNIQUE SIGNATURE",
+        "SPIN ASYMMETRY ALONE IS NOT A BHU TEST"
+      ]
+    }
+  }
+}

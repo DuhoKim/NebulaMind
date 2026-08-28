@@ -1,0 +1,2678 @@
+{
+  "aggregates": {
+    "caption_15pct": {
+      "mean_bottom_15pct_token_retention_vs_clean": 0.125,
+      "mean_bottom_25pct_token_retention_vs_clean": 0.272721,
+      "mean_full_numeric_token_count": 5.1875,
+      "mean_full_token_retention_vs_clean": 0.866911,
+      "mean_headline_token_retention_vs_clean": 0.96625,
+      "mean_lower_support_token_retention_vs_clean": 0.295149,
+      "mean_middle_token_retention_vs_clean": 0.928813,
+      "scene_count": 16,
+      "scenes_with_any_structural_gate": 0,
+      "scenes_with_top_region_pixel_identity": 16
+    },
+    "clean": {
+      "mean_bottom_15pct_token_retention_vs_clean": 1.0,
+      "mean_bottom_25pct_token_retention_vs_clean": 1.0,
+      "mean_full_numeric_token_count": 5.5625,
+      "mean_full_token_retention_vs_clean": 1.0,
+      "mean_headline_token_retention_vs_clean": 1.0,
+      "mean_lower_support_token_retention_vs_clean": 1.0,
+      "mean_middle_token_retention_vs_clean": 1.0,
+      "scene_count": 16,
+      "scenes_with_any_structural_gate": 0,
+      "scenes_with_top_region_pixel_identity": 16
+    },
+    "player_ui_25pct": {
+      "mean_bottom_15pct_token_retention_vs_clean": 0.125,
+      "mean_bottom_25pct_token_retention_vs_clean": 0.125,
+      "mean_full_numeric_token_count": 3.125,
+      "mean_full_token_retention_vs_clean": 0.756673,
+      "mean_headline_token_retention_vs_clean": 0.946477,
+      "mean_lower_support_token_retention_vs_clean": 0.164207,
+      "mean_middle_token_retention_vs_clean": 0.820017,
+      "scene_count": 16,
+      "scenes_with_any_structural_gate": 0,
+      "scenes_with_top_region_pixel_identity": 16
+    }
+  },
+  "audit": "caption_and_player_ui_obstruction_ocr_hierarchy",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "critical_scene_metrics": {
+    "caption_15pct": {
+      "mean_bottom_25pct_token_retention_vs_clean": 0.62985,
+      "mean_full_token_retention_vs_clean": 0.755184,
+      "mean_headline_token_retention_vs_clean": 0.892,
+      "mean_lower_support_token_retention_vs_clean": 0.701618,
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "structural_gate_scene_count": 0
+    },
+    "clean": {
+      "mean_bottom_25pct_token_retention_vs_clean": 1.0,
+      "mean_full_token_retention_vs_clean": 1.0,
+      "mean_headline_token_retention_vs_clean": 1.0,
+      "mean_lower_support_token_retention_vs_clean": 1.0,
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "structural_gate_scene_count": 0
+    },
+    "player_ui_25pct": {
+      "mean_bottom_25pct_token_retention_vs_clean": 0.2,
+      "mean_full_token_retention_vs_clean": 0.454035,
+      "mean_headline_token_retention_vs_clean": 0.856,
+      "mean_lower_support_token_retention_vs_clean": 0.325462,
+      "scenes": [
+        7,
+        9,
+        10,
+        11,
+        16
+      ],
+      "structural_gate_scene_count": 0
+    }
+  },
+  "deepening_pass": 7,
+  "frame_count": 48,
+  "interpretation_boundary": {
+    "does_not_authorize_result": true,
+    "does_not_validate_science": true,
+    "human_visual_review_required": true,
+    "metric_is_presentation_only": true
+  },
+  "obstruction_zone_loss": {
+    "caption_15pct": {
+      "reference_token_count": 161,
+      "region": "bottom_15pct",
+      "scenes_with_reference_copy": 14,
+      "scenes_with_zero_token_retention": 14,
+      "surviving_token_count": 0
+    },
+    "player_ui_25pct": {
+      "reference_token_count": 335,
+      "region": "bottom_25pct",
+      "scenes_with_reference_copy": 14,
+      "scenes_with_zero_token_retention": 14,
+      "surviving_token_count": 0
+    }
+  },
+  "ocr": {
+    "comparison": "token-multiset retention against clean frame at same midpoint",
+    "engine": "tesseract 5.5.2",
+    "minimum_confidence": 20.0,
+    "normalization": "casefold alphanumeric",
+    "page_segmentation_mode": 6,
+    "raw_ocr_text_stored": false
+  },
+  "regions": {
+    "bottom_15pct": "token center y >= 0.85",
+    "bottom_25pct": "token center y >= 0.75",
+    "headline": "token center y < 0.30",
+    "lower_support": "token center y >= 0.65",
+    "middle": "0.30 <= token center y < 0.65"
+  },
+  "scene_count": 16,
+  "scenes": [
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "1fb4f54d27aa1f9ba5d8553eea4b26bb5bab257f6fc71391b9e3f4ca076cafed"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 1
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "1b2e48172d827a6a177eb5ef2a56c9b7c55463cd26815652e140b32cae731d69",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "full": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 42,
+              "token_multiset_sha256": "1b2e48172d827a6a177eb5ef2a56c9b7c55463cd26815652e140b32cae731d69"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a"
+            },
+            "lower_support": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 33,
+              "token_multiset_sha256": "049c23cb8ed8a006fbddb96fe5daca411967f3b330bdda3c8aa707248d621be0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "9286c5a9f45d1c546a6096335c474f35d050d5b172e4591feca281c853228fbe",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.952381,
+              "token_count": 40,
+              "token_multiset_sha256": "9286c5a9f45d1c546a6096335c474f35d050d5b172e4591feca281c853228fbe"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 33,
+              "token_multiset_sha256": "049c23cb8ed8a006fbddb96fe5daca411967f3b330bdda3c8aa707248d621be0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "9286c5a9f45d1c546a6096335c474f35d050d5b172e4591feca281c853228fbe",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.952381,
+              "token_count": 40,
+              "token_multiset_sha256": "9286c5a9f45d1c546a6096335c474f35d050d5b172e4591feca281c853228fbe"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "37812474fd597dc015721d66ffe493ecf12ff8628ceae8d1a55d0151ae3f406a"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 33,
+              "token_multiset_sha256": "049c23cb8ed8a006fbddb96fe5daca411967f3b330bdda3c8aa707248d621be0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 2
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "707a19ad2ec53f470df4e660e37ce4c368bd30dea4eb4a4e24612d0a77365358",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "full": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 71,
+              "token_multiset_sha256": "707a19ad2ec53f470df4e660e37ce4c368bd30dea4eb4a4e24612d0a77365358"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 10,
+              "token_multiset_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb"
+            },
+            "lower_support": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 59,
+              "token_multiset_sha256": "1208620642efcb42403d6d853a39ca3d920b5ea96301bc1505b490e973a2014c"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "42d3d101b4d188422e0e4cf59621fe0be3b14856ec55378513b08459591e6a74",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.971831,
+              "token_count": 69,
+              "token_multiset_sha256": "42d3d101b4d188422e0e4cf59621fe0be3b14856ec55378513b08459591e6a74"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 10,
+              "token_multiset_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 59,
+              "token_multiset_sha256": "1208620642efcb42403d6d853a39ca3d920b5ea96301bc1505b490e973a2014c"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "42d3d101b4d188422e0e4cf59621fe0be3b14856ec55378513b08459591e6a74",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.971831,
+              "token_count": 69,
+              "token_multiset_sha256": "42d3d101b4d188422e0e4cf59621fe0be3b14856ec55378513b08459591e6a74"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 10,
+              "token_multiset_sha256": "ad2ae9470edca27caeaf7758d09f6ba6d7c7a85e229600ca3d51c692527d85eb"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 59,
+              "token_multiset_sha256": "1208620642efcb42403d6d853a39ca3d920b5ea96301bc1505b490e973a2014c"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 3
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "aa3ba67ef29bd0042e40b65fc78aaa93565a4927bd18b4a7c7c41a19380b8563",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 1,
+              "token_multiset_sha256": "41cf6794ba4200b839c53531555f0f3998df4cbb01a4d5cb0b94e3ca5e23947d"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 1,
+              "token_multiset_sha256": "41cf6794ba4200b839c53531555f0f3998df4cbb01a4d5cb0b94e3ca5e23947d"
+            },
+            "full": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 25,
+              "token_multiset_sha256": "aa3ba67ef29bd0042e40b65fc78aaa93565a4927bd18b4a7c7c41a19380b8563"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 1,
+              "token_multiset_sha256": "41cf6794ba4200b839c53531555f0f3998df4cbb01a4d5cb0b94e3ca5e23947d"
+            },
+            "middle": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 24,
+              "token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 0.96,
+              "token_count": 24,
+              "token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 24,
+              "token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 0.96,
+              "token_count": 24,
+              "token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 24,
+              "token_multiset_sha256": "38a48a55d25b4e73937ec99ed422deb96f6461eb0a417109dff3f2427f9a8885"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 4
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "0b614c57b17df240b3e8b1a1636e3d61f09f36c22fe08ebe6c1a9aa8f72c1b61",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 21,
+              "token_multiset_sha256": "58b387dd638bc6dd6773c0607d92328fa32219341795c5217cd4f7965fd33312"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 1.0,
+              "token_count": 28,
+              "token_multiset_sha256": "790c972fd7d44f1911f7d4c35f29ece8ce3acefb65388e514cac40d5a37c73cd"
+            },
+            "full": {
+              "numeric_token_count": 10,
+              "retention_vs_clean": 1.0,
+              "token_count": 62,
+              "token_multiset_sha256": "0b614c57b17df240b3e8b1a1636e3d61f09f36c22fe08ebe6c1a9aa8f72c1b61"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 22,
+              "token_multiset_sha256": "525c58818889fb271164a1aab11f903c1f29fddb25b0f1cdebdb906b686e1ab2"
+            },
+            "lower_support": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 1.0,
+              "token_count": 28,
+              "token_multiset_sha256": "790c972fd7d44f1911f7d4c35f29ece8ce3acefb65388e514cac40d5a37c73cd"
+            },
+            "middle": {
+              "numeric_token_count": 6,
+              "retention_vs_clean": 1.0,
+              "token_count": 12,
+              "token_multiset_sha256": "a11aca8eaebc3cda8f9094627a95f83cfa2cd35835cfe1ce4d3b49cc904ab796"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "828bae3500404096f170aa4d1433a130766cde259570e25255399bda7c83f692",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 0.214286,
+              "token_count": 7,
+              "token_multiset_sha256": "4beb2617f64c54ab9cf868a36878ff6a2de33497607ed0929158d4b5010ad7b9"
+            },
+            "full": {
+              "numeric_token_count": 10,
+              "retention_vs_clean": 0.612903,
+              "token_count": 43,
+              "token_multiset_sha256": "828bae3500404096f170aa4d1433a130766cde259570e25255399bda7c83f692"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 22,
+              "token_multiset_sha256": "525c58818889fb271164a1aab11f903c1f29fddb25b0f1cdebdb906b686e1ab2"
+            },
+            "lower_support": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 0.214286,
+              "token_count": 7,
+              "token_multiset_sha256": "4beb2617f64c54ab9cf868a36878ff6a2de33497607ed0929158d4b5010ad7b9"
+            },
+            "middle": {
+              "numeric_token_count": 7,
+              "retention_vs_clean": 0.833333,
+              "token_count": 14,
+              "token_multiset_sha256": "2891438cf537d56dde74e21dfdc821d8ff274d75f45d299bbe4c1d76bae5a9e2"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "693725d114055cf96c9d7089e39e4b03abb1dc6e5e7948b26a9a04aa3c930c5d",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.354839,
+              "token_count": 23,
+              "token_multiset_sha256": "693725d114055cf96c9d7089e39e4b03abb1dc6e5e7948b26a9a04aa3c930c5d"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.863636,
+              "token_count": 19,
+              "token_multiset_sha256": "7fe33a34754c9977364c6d2954c4cefb79842d4deed19fcfbf6f0803adfd9220"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.25,
+              "token_count": 4,
+              "token_multiset_sha256": "78e0d50892c500b29b25f451334e0a46987f6735e56a66bbc8f8bed346f901ae"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 5
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "74d9bac0da678dd4e53747fcc65c12af15f0f9c45884e50a93c25c42ec8eef19",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 3,
+              "token_multiset_sha256": "9249a604fc585ab44f414991e6ed250da2d9a999a201c35e0a735d7341b5e5df"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 3,
+              "token_multiset_sha256": "9249a604fc585ab44f414991e6ed250da2d9a999a201c35e0a735d7341b5e5df"
+            },
+            "full": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 1.0,
+              "token_count": 38,
+              "token_multiset_sha256": "74d9bac0da678dd4e53747fcc65c12af15f0f9c45884e50a93c25c42ec8eef19"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925"
+            },
+            "lower_support": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 3,
+              "token_multiset_sha256": "9249a604fc585ab44f414991e6ed250da2d9a999a201c35e0a735d7341b5e5df"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 27,
+              "token_multiset_sha256": "878c014e0f1bac847fbab05e6aa5086349434022da97ef8d4f18e1a4835a125d"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "410cff01aaf9f4caf48548dd0b6067fbe207dbee9cb570afa50891f00829be0f",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 0.921053,
+              "token_count": 35,
+              "token_multiset_sha256": "410cff01aaf9f4caf48548dd0b6067fbe207dbee9cb570afa50891f00829be0f"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 27,
+              "token_multiset_sha256": "878c014e0f1bac847fbab05e6aa5086349434022da97ef8d4f18e1a4835a125d"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "410cff01aaf9f4caf48548dd0b6067fbe207dbee9cb570afa50891f00829be0f",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 0.921053,
+              "token_count": 35,
+              "token_multiset_sha256": "410cff01aaf9f4caf48548dd0b6067fbe207dbee9cb570afa50891f00829be0f"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "0ccf5771feab7c25c2ffd79e660257b0c748b574f0d280980bade361fe3af925"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 27,
+              "token_multiset_sha256": "878c014e0f1bac847fbab05e6aa5086349434022da97ef8d4f18e1a4835a125d"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 6
+    },
+    {
+      "critical": true,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "35801aa70e8249a7e21f158f7a0f1a31bb76a8d464523ab67a199cfa9941d7f9",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 27,
+              "token_multiset_sha256": "3575dec76e61f166da79c49eca15cbb8310e3565cc21eaebdb13d6e940bca61b"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 5,
+              "retention_vs_clean": 1.0,
+              "token_count": 67,
+              "token_multiset_sha256": "5d660f9f1a7664bc2cdcfd3edd95b2ae8c6bd7f2287f82023863a9edbb8ca5d6"
+            },
+            "full": {
+              "numeric_token_count": 28,
+              "retention_vs_clean": 1.0,
+              "token_count": 123,
+              "token_multiset_sha256": "35801aa70e8249a7e21f158f7a0f1a31bb76a8d464523ab67a199cfa9941d7f9"
+            },
+            "headline": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 23,
+              "token_multiset_sha256": "1b2befd726042e4f4818fab8969eb56318cd102346d650fc865301d360007f0c"
+            },
+            "lower_support": {
+              "numeric_token_count": 13,
+              "retention_vs_clean": 1.0,
+              "token_count": 75,
+              "token_multiset_sha256": "40c52788c19e289cc572a2f1ad882b210c64105293681cd30088dc23b6f45081"
+            },
+            "middle": {
+              "numeric_token_count": 14,
+              "retention_vs_clean": 1.0,
+              "token_count": 25,
+              "token_multiset_sha256": "ada43abb998ca2dd68870fbe0d68191572281ff5f23ec2e2fc07370f8d061e9f"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "9b371f71c7422d03ec13674278175c168460b8e125c23773624957e364cce9d7",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 5,
+              "retention_vs_clean": 0.597015,
+              "token_count": 40,
+              "token_multiset_sha256": "78a85d81a8488550dddbbb38cc24475874ff507ed105dcc95751f118e75d4480"
+            },
+            "full": {
+              "numeric_token_count": 29,
+              "retention_vs_clean": 0.764228,
+              "token_count": 97,
+              "token_multiset_sha256": "9b371f71c7422d03ec13674278175c168460b8e125c23773624957e364cce9d7"
+            },
+            "headline": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 23,
+              "token_multiset_sha256": "1b2befd726042e4f4818fab8969eb56318cd102346d650fc865301d360007f0c"
+            },
+            "lower_support": {
+              "numeric_token_count": 13,
+              "retention_vs_clean": 0.64,
+              "token_count": 48,
+              "token_multiset_sha256": "32a92cab99fbc687755dc63008c0508083e84123e4eb543cd7c954212321df66"
+            },
+            "middle": {
+              "numeric_token_count": 15,
+              "retention_vs_clean": 0.92,
+              "token_count": 26,
+              "token_multiset_sha256": "db903f2c918573cbfd56c58a76aaf39ecd97bfb73747a415685a2b0b6ce5d83c"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "a8989b74060c58adfdb823e4b151bd18c009ab79e0d96860fa5409544054b305",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 21,
+              "retention_vs_clean": 0.325203,
+              "token_count": 51,
+              "token_multiset_sha256": "a8989b74060c58adfdb823e4b151bd18c009ab79e0d96860fa5409544054b305"
+            },
+            "headline": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 23,
+              "token_multiset_sha256": "1b2befd726042e4f4818fab8969eb56318cd102346d650fc865301d360007f0c"
+            },
+            "lower_support": {
+              "numeric_token_count": 8,
+              "retention_vs_clean": 0.106667,
+              "token_count": 8,
+              "token_multiset_sha256": "633a433207c69fbc9f734716a002772476d7136fa99abfb91a3c4f696d121770"
+            },
+            "middle": {
+              "numeric_token_count": 12,
+              "retention_vs_clean": 0.36,
+              "token_count": 20,
+              "token_multiset_sha256": "e46559100d9a760b2b18561e75094ba9da8ed91d0b3a60445119a3b3f2e391bd"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 7
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "9db47e333a25a9be27c0beb7b642a27db98b4a29972ae970e8989e10b01e90a8",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "2f20d4580cdc7d568ae88cc8fe1387d7759f1d24e3b645f5e0e247bc71812de8"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "2f20d4580cdc7d568ae88cc8fe1387d7759f1d24e3b645f5e0e247bc71812de8"
+            },
+            "full": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 1.0,
+              "token_count": 46,
+              "token_multiset_sha256": "9db47e333a25a9be27c0beb7b642a27db98b4a29972ae970e8989e10b01e90a8"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb"
+            },
+            "lower_support": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "2f20d4580cdc7d568ae88cc8fe1387d7759f1d24e3b645f5e0e247bc71812de8"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 37,
+              "token_multiset_sha256": "0d2e618dbe5fa9f00c311bf76e4e0daf2731fdbfb5ea5b1ce33077ac3bf54300"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "6fc2563c25ad5d27bd23c83f0de415f4d022bc1cd398a5ae8a2b619114149cbd",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.826087,
+              "token_count": 38,
+              "token_multiset_sha256": "6fc2563c25ad5d27bd23c83f0de415f4d022bc1cd398a5ae8a2b619114149cbd"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.837838,
+              "token_count": 31,
+              "token_multiset_sha256": "310929c317863c6e2b7126dd466b3639c4cacb49e82bf4a542b9128f252a86f1"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "6fc2563c25ad5d27bd23c83f0de415f4d022bc1cd398a5ae8a2b619114149cbd",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.826087,
+              "token_count": 38,
+              "token_multiset_sha256": "6fc2563c25ad5d27bd23c83f0de415f4d022bc1cd398a5ae8a2b619114149cbd"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "1046cd83fb689a9ffbcdcfe0930cb528adb670184c57f99c5347c47df670f5fb"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.837838,
+              "token_count": 31,
+              "token_multiset_sha256": "310929c317863c6e2b7126dd466b3639c4cacb49e82bf4a542b9128f252a86f1"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 8
+    },
+    {
+      "critical": true,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "ef5392d75adcff3c341e2be4e90439ac3aeef4e8231574a32de7c052c265ae5b",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 34,
+              "token_multiset_sha256": "e14abe037c682ca3af762a97ace1bf811875470465096ce3862bbcde4646c8d8"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 83,
+              "token_multiset_sha256": "5dc0c33ae36a072a545576072ff2f733b9e07dafccee257d15df01f6466d7679"
+            },
+            "full": {
+              "numeric_token_count": 17,
+              "retention_vs_clean": 1.0,
+              "token_count": 134,
+              "token_multiset_sha256": "ef5392d75adcff3c341e2be4e90439ac3aeef4e8231574a32de7c052c265ae5b"
+            },
+            "headline": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 1.0,
+              "token_count": 25,
+              "token_multiset_sha256": "87e74bb53d1b3c7c96ea0866b5816a2e91163192e5ea6e1d6835dd8c622ef484"
+            },
+            "lower_support": {
+              "numeric_token_count": 10,
+              "retention_vs_clean": 1.0,
+              "token_count": 91,
+              "token_multiset_sha256": "4424bd2ccf240c10fa50f6ae12f85e8e59f838ebbdebe8499c0977bf35a06e67"
+            },
+            "middle": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 1.0,
+              "token_count": 18,
+              "token_multiset_sha256": "80c4cd05629a80e328e5fe5d3bc9617f6268eb5bb0228bae9acc67910292ac4a"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "ff067d4fe32b51b2c5ccb167177e5395d05d07ef412a9d6525742d5fac492415",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 0.590361,
+              "token_count": 49,
+              "token_multiset_sha256": "8cf7f12c9e634729459424beea3dff4fe78c79aa160e927d4986d54cabe9b046"
+            },
+            "full": {
+              "numeric_token_count": 17,
+              "retention_vs_clean": 0.679104,
+              "token_count": 97,
+              "token_multiset_sha256": "ff067d4fe32b51b2c5ccb167177e5395d05d07ef412a9d6525742d5fac492415"
+            },
+            "headline": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 0.96,
+              "token_count": 24,
+              "token_multiset_sha256": "145a223ad4d6bcc68db7d7950cafbff210f1022dc574dd306a306b6512301108"
+            },
+            "lower_support": {
+              "numeric_token_count": 10,
+              "retention_vs_clean": 0.626374,
+              "token_count": 57,
+              "token_multiset_sha256": "0d436d641d995a6b5a39592aa5a8ccf662836a6a29ee77ca860114316f134ac5"
+            },
+            "middle": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.555556,
+              "token_count": 16,
+              "token_multiset_sha256": "e52c7e4c2c71404dfa601c44b5793aa86bde97aec0a917fd18825b92355fad46"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "029be749ca756fc2a073a230c9a1e214876907a0ac9e53f2eb3a39ebd824d1e2",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 12,
+              "retention_vs_clean": 0.298507,
+              "token_count": 44,
+              "token_multiset_sha256": "029be749ca756fc2a073a230c9a1e214876907a0ac9e53f2eb3a39ebd824d1e2"
+            },
+            "headline": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 0.88,
+              "token_count": 22,
+              "token_multiset_sha256": "e53131373a8c9b22dc8394c757a45df5ee6a6a0db8eae8718cb9d3d1c679a9ed"
+            },
+            "lower_support": {
+              "numeric_token_count": 8,
+              "retention_vs_clean": 0.087912,
+              "token_count": 8,
+              "token_multiset_sha256": "bc3b706f21c877b4f9db15547288c2f609941f294b78cbcb1efa1284cef57f45"
+            },
+            "middle": {
+              "numeric_token_count": 3,
+              "retention_vs_clean": 0.555556,
+              "token_count": 14,
+              "token_multiset_sha256": "7b82bac722aa10f6d3111fa95aa1f2bec06c1a917408865844eb35600804c2c2"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 9
+    },
+    {
+      "critical": true,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "cb17e1fd7ff3a426d9adea0412556be540afdb06bf5bc63ba928f75c66085764",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 31,
+              "token_multiset_sha256": "9e946bcc8483fda1b2234b4c74a0275a0944692cc30111c9a70ce25ac3b7ef87"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 1.0,
+              "token_count": 54,
+              "token_multiset_sha256": "19711a3bdbef138306ed00a926cd2a3064c62b1a90f73036ae04fe40d9b951cc"
+            },
+            "full": {
+              "numeric_token_count": 10,
+              "retention_vs_clean": 1.0,
+              "token_count": 109,
+              "token_multiset_sha256": "cb17e1fd7ff3a426d9adea0412556be540afdb06bf5bc63ba928f75c66085764"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 12,
+              "token_multiset_sha256": "1d42941c04065cff85e7692b84adffafc2523ead132138f385e9ab80f91480de"
+            },
+            "lower_support": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 1.0,
+              "token_count": 83,
+              "token_multiset_sha256": "7f62629e8576801a73c28da272e10a342d3aa069037c9be99dfea6fa5aff501c"
+            },
+            "middle": {
+              "numeric_token_count": 6,
+              "retention_vs_clean": 1.0,
+              "token_count": 14,
+              "token_multiset_sha256": "a391a0a9bc125be157e2d2cf90fce9407b8bd766c6e1843d8427db8fb98cb699"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "c185819f8dac901438567e309e7d1810a1939ac6cc58701d41ee407f1ea3eb99",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.314815,
+              "token_count": 27,
+              "token_multiset_sha256": "7876c0dc72128f056d9c64a0b8fe33a733e745f62f8800b1de3c0d35ed4f79f7"
+            },
+            "full": {
+              "numeric_token_count": 11,
+              "retention_vs_clean": 0.568807,
+              "token_count": 77,
+              "token_multiset_sha256": "c185819f8dac901438567e309e7d1810a1939ac6cc58701d41ee407f1ea3eb99"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.5,
+              "token_count": 6,
+              "token_multiset_sha256": "4bb29d0b6e31bdea838a781290d0a3105991ef7118be9faf209cbd32fdd896cb"
+            },
+            "lower_support": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.554217,
+              "token_count": 56,
+              "token_multiset_sha256": "484396df7a933638b5a75e4ddef82c5aa88401c3c16e1524d506f27a4c8c02e6"
+            },
+            "middle": {
+              "numeric_token_count": 7,
+              "retention_vs_clean": 0.714286,
+              "token_count": 15,
+              "token_multiset_sha256": "26286a6139358a1d8d31d51159e2651692652d9616857b24fd522f23740ae732"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "170699f1120c0ec3e4010673622fe47b159617ffb07b6f5c51c5f75a82111371",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.394495,
+              "token_count": 47,
+              "token_multiset_sha256": "170699f1120c0ec3e4010673622fe47b159617ffb07b6f5c51c5f75a82111371"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.5,
+              "token_count": 6,
+              "token_multiset_sha256": "4bb29d0b6e31bdea838a781290d0a3105991ef7118be9faf209cbd32fdd896cb"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.349398,
+              "token_count": 29,
+              "token_multiset_sha256": "4b6828ae73f0e6ad1ef2d0aff1795be9f1935e8525e1c9488525ecc5356bcb3f"
+            },
+            "middle": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.571429,
+              "token_count": 12,
+              "token_multiset_sha256": "b7a9429fc2a739414e2f9f282d58a277f4175823d9d12de59c12a1428e8d36f0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 10
+    },
+    {
+      "critical": true,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "d1346216346f668f53ba11acc4b076ce44c545f3ea906eb7eb9a092a0304a1aa",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 30,
+              "token_multiset_sha256": "24fdd40b3dc2a48d1709c9974e222fe261522daf1eaf3b9f7695d5ba9fe967ac"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 5,
+              "retention_vs_clean": 1.0,
+              "token_count": 85,
+              "token_multiset_sha256": "e6b855395fc6e6f738d093b2b3fdadf0ef3c05a28f024b23ee76f06f51bda7aa"
+            },
+            "full": {
+              "numeric_token_count": 14,
+              "retention_vs_clean": 1.0,
+              "token_count": 127,
+              "token_multiset_sha256": "d1346216346f668f53ba11acc4b076ce44c545f3ea906eb7eb9a092a0304a1aa"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 20,
+              "token_multiset_sha256": "ee6388df4be003b55ef605c03c4470830b6484b6b6eec48db408f94c512f118d"
+            },
+            "lower_support": {
+              "numeric_token_count": 12,
+              "retention_vs_clean": 1.0,
+              "token_count": 96,
+              "token_multiset_sha256": "597fd2654b2b1d15d90a374d591eea1a3ce2dc969992840568dba394be2c118d"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 11,
+              "token_multiset_sha256": "63d277d1224020d4b188c5d76950486b5b7578fb0698d99d277af4115b61cc3f"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "334972ccc204d8958b40cbd8b537107f822f404997a1a9f0ecd21fde3c47eb60",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.647059,
+              "token_count": 55,
+              "token_multiset_sha256": "16f5e26db2090bdab894014c299487428ead731c091164956e6f88565161e09e"
+            },
+            "full": {
+              "numeric_token_count": 13,
+              "retention_vs_clean": 0.76378,
+              "token_count": 97,
+              "token_multiset_sha256": "334972ccc204d8958b40cbd8b537107f822f404997a1a9f0ecd21fde3c47eb60"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 20,
+              "token_multiset_sha256": "ee6388df4be003b55ef605c03c4470830b6484b6b6eec48db408f94c512f118d"
+            },
+            "lower_support": {
+              "numeric_token_count": 11,
+              "retention_vs_clean": 0.6875,
+              "token_count": 66,
+              "token_multiset_sha256": "7b9d06b053a2a72017c6ab4b3eff85d044b19b152080ea540117eb2cdc98821e"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 1.0,
+              "token_count": 11,
+              "token_multiset_sha256": "63d277d1224020d4b188c5d76950486b5b7578fb0698d99d277af4115b61cc3f"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "f12a740e849ec4740ba7dcd07a4c844e9c0acd80189c3ab4876aeae148a93ad2",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 6,
+              "retention_vs_clean": 0.251969,
+              "token_count": 34,
+              "token_multiset_sha256": "f12a740e849ec4740ba7dcd07a4c844e9c0acd80189c3ab4876aeae148a93ad2"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.9,
+              "token_count": 19,
+              "token_multiset_sha256": "851d771b668ae10f487ce0d1bb9a16ae4fbe01fb2a10df8fe6668045c0c754d7"
+            },
+            "lower_support": {
+              "numeric_token_count": 4,
+              "retention_vs_clean": 0.083333,
+              "token_count": 8,
+              "token_multiset_sha256": "0073bc231ca89542f4679a5288e3d2cf9d33a43a27f9196c1127e21f549985c0"
+            },
+            "middle": {
+              "numeric_token_count": 2,
+              "retention_vs_clean": 0.545455,
+              "token_count": 7,
+              "token_multiset_sha256": "98ac790550428f14fad1db80872fafba010fb63173c547ae564d922be77531b0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 11
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "b02798a844cf4e8b414472724ea52d8262f3a720cd8c1350cf6dfd5c2d132098",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "1dff283e9c19364e9a5d447ab285fc0dda9dd060f931b9fe5aa203c873366685"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "1dff283e9c19364e9a5d447ab285fc0dda9dd060f931b9fe5aa203c873366685"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 58,
+              "token_multiset_sha256": "b02798a844cf4e8b414472724ea52d8262f3a720cd8c1350cf6dfd5c2d132098"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "1dff283e9c19364e9a5d447ab285fc0dda9dd060f931b9fe5aa203c873366685"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 48,
+              "token_multiset_sha256": "ae554b58edf5502c0933a150f298ce5ddbbd309cdb5cda36f838b5aea25fe006"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "35098b0db99a4de57b90500227c69eafe61bf7c1e9365e6bef0145ffc1e388a8",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.965517,
+              "token_count": 56,
+              "token_multiset_sha256": "35098b0db99a4de57b90500227c69eafe61bf7c1e9365e6bef0145ffc1e388a8"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 48,
+              "token_multiset_sha256": "ae554b58edf5502c0933a150f298ce5ddbbd309cdb5cda36f838b5aea25fe006"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "35098b0db99a4de57b90500227c69eafe61bf7c1e9365e6bef0145ffc1e388a8",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.965517,
+              "token_count": 56,
+              "token_multiset_sha256": "35098b0db99a4de57b90500227c69eafe61bf7c1e9365e6bef0145ffc1e388a8"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 8,
+              "token_multiset_sha256": "9b7ec535ea1eb7f1eb8c0e15fecd400dd8cbf5d5ea8b5646db3209b337f596a0"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 48,
+              "token_multiset_sha256": "ae554b58edf5502c0933a150f298ce5ddbbd309cdb5cda36f838b5aea25fe006"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 12
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "234e434b5acd16031402f52109ee9f7613d55a6bef8dec0275d87f08834305a0",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "55b69f250b832a4d5a5b69f5c38ba1992ec5f186e67b98b4f04dd84280911952"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "55b69f250b832a4d5a5b69f5c38ba1992ec5f186e67b98b4f04dd84280911952"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 49,
+              "token_multiset_sha256": "234e434b5acd16031402f52109ee9f7613d55a6bef8dec0275d87f08834305a0"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 5,
+              "token_multiset_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "55b69f250b832a4d5a5b69f5c38ba1992ec5f186e67b98b4f04dd84280911952"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 42,
+              "token_multiset_sha256": "c267bc19b4d240e322a53538b30b736040727044521498bd053dce5998d4eee0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "996b89c51669985ea16b9a3a6585c2399e69dfc9f392a517f3d0dacfeb2f4898",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.959184,
+              "token_count": 48,
+              "token_multiset_sha256": "996b89c51669985ea16b9a3a6585c2399e69dfc9f392a517f3d0dacfeb2f4898"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 5,
+              "token_multiset_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 43,
+              "token_multiset_sha256": "64742907167588b21c587a1d8b7097b7477e91202830492f9c410caedf0bd3b7"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "ecd15b32da2b6bd72e6c4bd51e04295973497506f5bfc6547368dbd26e959d59",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.959184,
+              "token_count": 47,
+              "token_multiset_sha256": "ecd15b32da2b6bd72e6c4bd51e04295973497506f5bfc6547368dbd26e959d59"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 5,
+              "token_multiset_sha256": "ee2a61353adc9d02562ca9f25ccbbebde7ebcf2e52b6157fd6da7d792daa2f2b"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 42,
+              "token_multiset_sha256": "c267bc19b4d240e322a53538b30b736040727044521498bd053dce5998d4eee0"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 13
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "551dc2e3b7a471ae4927eca19e9744992ba7d165284ad8f78fef4da9d81ce2c4",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "86251214f51deb6a1e0109876a815a2aa89de216b60b1a6173f592f096c56c5b"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "86251214f51deb6a1e0109876a815a2aa89de216b60b1a6173f592f096c56c5b"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 47,
+              "token_multiset_sha256": "551dc2e3b7a471ae4927eca19e9744992ba7d165284ad8f78fef4da9d81ce2c4"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "86251214f51deb6a1e0109876a815a2aa89de216b60b1a6173f592f096c56c5b"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 38,
+              "token_multiset_sha256": "8e68dd4a686cd3c31a60edcc5c919d925d15279200960b01e6f0b98bbdd79073"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "b290272c61aa661b1eba0d102ed7234e329879cfb5f31cd1640039fc25666ccb",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.957447,
+              "token_count": 45,
+              "token_multiset_sha256": "b290272c61aa661b1eba0d102ed7234e329879cfb5f31cd1640039fc25666ccb"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 38,
+              "token_multiset_sha256": "8e68dd4a686cd3c31a60edcc5c919d925d15279200960b01e6f0b98bbdd79073"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "b290272c61aa661b1eba0d102ed7234e329879cfb5f31cd1640039fc25666ccb",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.957447,
+              "token_count": 45,
+              "token_multiset_sha256": "b290272c61aa661b1eba0d102ed7234e329879cfb5f31cd1640039fc25666ccb"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "12d2bf8010c741683e014b4884fbfc48997f6c915cfc9374a5b2700ccc744108"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 38,
+              "token_multiset_sha256": "8e68dd4a686cd3c31a60edcc5c919d925d15279200960b01e6f0b98bbdd79073"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 14
+    },
+    {
+      "critical": false,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "04a0ebcb81e1a177b0f97fac8325b43c604c14b8e08baa2c4856842b7258f2f0",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "full": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 63,
+              "token_multiset_sha256": "04a0ebcb81e1a177b0f97fac8325b43c604c14b8e08baa2c4856842b7258f2f0"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547"
+            },
+            "lower_support": {
+              "numeric_token_count": 1,
+              "retention_vs_clean": 1.0,
+              "token_count": 2,
+              "token_multiset_sha256": "e05ff5b91d479386a0282c7ea9dc2e033bcdfb4ff107c77471a4f5f837c4ced3"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 54,
+              "token_multiset_sha256": "b0fe86ca61b86f1e4276182ad714691a77a5998edcd5beb753eb03db7a3eb08d"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "b86510189c4cb05e6549df572353ed571dedc0b37646ebffcd0cb89177cf9106",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.968254,
+              "token_count": 61,
+              "token_multiset_sha256": "b86510189c4cb05e6549df572353ed571dedc0b37646ebffcd0cb89177cf9106"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 54,
+              "token_multiset_sha256": "b0fe86ca61b86f1e4276182ad714691a77a5998edcd5beb753eb03db7a3eb08d"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "b86510189c4cb05e6549df572353ed571dedc0b37646ebffcd0cb89177cf9106",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.968254,
+              "token_count": 61,
+              "token_multiset_sha256": "b86510189c4cb05e6549df572353ed571dedc0b37646ebffcd0cb89177cf9106"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 7,
+              "token_multiset_sha256": "d6a46aad0e44bd02741050bf5ab65b4635be1a232eaebb93bb68d4d02c0a9547"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 0.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 54,
+              "token_multiset_sha256": "b0fe86ca61b86f1e4276182ad714691a77a5998edcd5beb753eb03db7a3eb08d"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 15
+    },
+    {
+      "critical": true,
+      "samples": [
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6",
+          "occluded_bottom_fraction": 0.0,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 25,
+              "token_multiset_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 1,
+              "token_multiset_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 24,
+              "token_multiset_sha256": "607dca03dfc5ca28343cf2f5486d0be268a09bd212e74ae98a81fe578e3c05d8"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "clean"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6",
+          "occluded_bottom_fraction": 0.15,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 25,
+              "token_multiset_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 1,
+              "token_multiset_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 24,
+              "token_multiset_sha256": "607dca03dfc5ca28343cf2f5486d0be268a09bd212e74ae98a81fe578e3c05d8"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "caption_15pct"
+        },
+        {
+          "any_structural_gate_detected": false,
+          "full_token_multiset_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6",
+          "occluded_bottom_fraction": 0.25,
+          "regions": {
+            "bottom_15pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "bottom_25pct": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "full": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 25,
+              "token_multiset_sha256": "a9cda703344fa26ad6bc8d3530213fd3c2a30398ce9254f3a24a0355f420c6b6"
+            },
+            "headline": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 1,
+              "token_multiset_sha256": "42ed79851c0a03c3ac50bc38271051b4285d6e4b8ffe02a2ea418ee95a14e763"
+            },
+            "lower_support": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 0,
+              "token_multiset_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "middle": {
+              "numeric_token_count": 0,
+              "retention_vs_clean": 1.0,
+              "token_count": 24,
+              "token_multiset_sha256": "607dca03dfc5ca28343cf2f5486d0be268a09bd212e74ae98a81fe578e3c05d8"
+            }
+          },
+          "structural_gate_detected": {
+            "frame_unstated": false,
+            "no_outcome_shown": false,
+            "outcomes_withheld": false,
+            "result_held": false
+          },
+          "top_region_pixel_identical_to_clean": true,
+          "variant": "player_ui_25pct"
+        }
+      ],
+      "scene": 16
+    }
+  ],
+  "status": "QA_ONLY_NOT_A_CANDIDATE",
+  "variant_order": [
+    "clean",
+    "caption_15pct",
+    "player_ui_25pct"
+  ]
+}

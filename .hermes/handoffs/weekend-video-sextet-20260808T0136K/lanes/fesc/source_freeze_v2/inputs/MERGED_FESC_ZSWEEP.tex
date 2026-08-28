@@ -1,0 +1,127 @@
+\documentclass[twocolumn]{aastex702}
+\begin{document}
+
+\title{A systematics-bounded redshift sweep of the reionization ionizing-photon budget: an apparent escape-fraction shortfall that becomes robust to the stated systematics only above $z \approx 8$}
+
+\author{NebulaMind Lab (autonomous pipeline)}
+\email{lab@nebulamind.net}
+\affiliation{NebulaMind Lab, \url{https://lab.nebulamind.net}}
+
+\begin{abstract}
+We sweep a single literature-anchored ionizing-photon-budget calculation over $z=6.0$--$10.0$ ($\Delta z=0.5$; 40{,}000-draw systematic Monte Carlo per point) and confront the escape fraction \emph{required} of star-forming galaxies to maintain reionization (Madau--Dickinson SFRD; $\log \xi_{\rm ion}=25.5\pm0.15$; clumping $C\in[2,5]$; a JWST-motivated SFRD-tail boost) with the \emph{indirect-proxy-inferred} $f_{\rm esc}=0.062~(+0.108/-0.039)$ obtained by transporting low-redshift LzLCS O32/$\beta$ calibrations to $z>6$ unchanged. The central result is the trend, not any single redshift: the median budget deficit $\Delta=f_{\rm esc}^{\rm req}-f_{\rm esc}^{\rm inf}$ rises from $-0.012$ at $z=6$ to $+0.590$ at $z=10$, the shortfall fraction of the systematic Monte Carlo rises monotonically from 41\% to 97\%, and the 16--84\% interval of $\Delta$ detaches from zero at a closure-crossing redshift $z_c=8.05$ (bootstrap 16--84\%: 8.03--8.06). Below $z_c$ the budget closes within the stated systematics (at $z=8$ only marginally: the lower interval edge sits at $-0.003$ with 83\% of the systematic mass on the shortfall side); above $z_c$ an apparent shortfall persists throughout the systematic envelope, reaching $\Delta=+0.302~(+0.087$ to $+0.697)$ at $z=9$. Removing the JWST-motivated SFRD-tail boost (the most crisis-correlated prior) \emph{strengthens} the shortfall and moves the crossing earlier ($z_c=7.62$; $z=9$ interval $+0.163$ to $+0.854$), so the fiducial choice is conservative for the shortfall claim. All conclusions are conditional on the frozen low-redshift proxy anchors: no new measurement is made, and redshift evolution of the proxy calibrations --- the dominant untested systematic --- lies outside the Monte Carlo. This is a bounded, reproducible propagation of published anchor values, not a survey-data study.
+\end{abstract}
+
+\section{Introduction}
+JWST-era source counts have sharpened a tension in the reionization photon budget: if the abundant, UV-bright galaxy population now seen at $z>6$ is assigned standard ionizing efficiencies and escape fractions, models can produce too many ionizing photons too early, while absorption-calibrated analyses of the $z\sim6$ Lyman-$\alpha$ forest instead argue for \emph{increased} demands on the sources (framing follows [Munoz2024, Davies2021]). Assessments of the galaxy ionizing budget across $z<10$ [Duncan2015], analytic reconstructions of the reionization history [Madau2017], and photon-conserving calibrations of semi-numerical models [Park2022] all hinge on the same degenerate product $f_{\rm esc}\,\xi_{\rm ion}\,\rho_{\rm UV}$.
+
+This note asks a deliberately narrow question inside that degeneracy: \emph{at which redshift does the mismatch between the required and the proxy-inferred escape fraction stop being attributable to the stated systematics?} We propagate the dominant systematic uncertainties ($\xi_{\rm ion}$, IGM clumping, SFRD normalization) through a standard maintenance-budget calculation on a $z=6$--$10$ grid and locate the closure-crossing redshift $z_c$ at which the systematic interval of the deficit detaches from zero. Three earlier single-redshift drafts of this calculation ($z=7$, 8, 9) were superseded by this sweep after adversarial internal review concluded that the per-redshift slices contain no independent information --- the sweep and its crossing are the only new content, and they were analyzed in none of the three. This paper is that analysis.
+
+We emphasize the modality up front, in the spirit of the earlier $z\sim9$ draft's hedged title: what follows is a systematics reconciliation over frozen, literature-anchored inputs. It makes no new measurement, uses no survey catalog data, and every conclusion is conditional on transporting low-redshift proxy calibrations to $z>6$ unchanged.
+
+\section{Method: a literature-anchored budget model}
+\label{sec:method}
+
+\subsection{Formalism}
+We use the standard reionization-maintenance criterion [MHR1999, Robertson2015]: the comoving ionizing emissivity must balance recombinations,
+\begin{equation}
+\dot{n}_{\rm ion}^{\rm crit}(z) = C\,\alpha_B\,\langle n_{\rm H}\rangle^2 (1+z)^3 \left(1+\frac{Y}{4X}\right) V_{\rm Mpc},
+\end{equation}
+with case-B $\alpha_B=2.6\times10^{-13}\,{\rm cm^3\,s^{-1}}$, Planck-consistent $\langle n_{\rm H}\rangle$ ($\Omega_b=0.0486$, $h=0.6774$, $X=0.76$), and clumping factor $C$. The available emissivity is $f_{\rm esc}\,\xi_{\rm ion}\,\rho_{\rm UV}$ with $\rho_{\rm UV} = {\rm SFRD}(z)\,b/\kappa_{\rm UV}$, $\kappa_{\rm UV}=1.15\times10^{-28}\,M_\odot\,{\rm yr^{-1}}/({\rm erg\,s^{-1}\,Hz^{-1}})$ [MadauDickinson2014], and $b$ an SFRD boost factor (below). The required escape fraction is $f_{\rm esc}^{\rm req}(z) = \dot{n}_{\rm ion}^{\rm crit}/(\xi_{\rm ion}\rho_{\rm UV})$.
+
+\subsection{Frozen anchor values}
+\label{sec:anchors}
+All inputs are frozen constants of the pipeline code (\texttt{tools/nm\_ionizing\_budget.py}); none is refetched at run time, and we list them explicitly so that every downstream number is reproducible from this section alone:
+\begin{itemize}
+\item ${\rm SFRD}(z)$: the Madau--Dickinson analytic fit, $0.015(1+z)^{2.7}/[1+((1+z)/2.9)^{5.6}]\ M_\odot\,{\rm yr^{-1}\,cMpc^{-3}}$ [MadauDickinson2014].
+\item $\log \xi_{\rm ion}/({\rm erg^{-1}\,Hz}) \sim \mathcal{N}(25.5, 0.15)$, a representative anchor spanning the range reported in JWST-era determinations (e.g., [Simmonds2024]; Bouwens et al.\ 2016). The specific value is a pipeline constant, not a number extracted verbatim from either reference.
+\item Clumping $C \sim \mathcal{U}(2,5)$.
+\item SFRD boost $b$: fiducially $10^{\mathcal{N}(0,\,0.2\,{\rm dex})}\times\big(1+\mathcal{U}(0,1.5)\big)$ applied to a random half of the draws --- a JWST-motivated bright-end/tail enhancement of up to $\sim$2.5$\times$. The \texttt{none} corner drops the tail term (Section~\ref{sec:corners}).
+\item Proxy-inferred $f_{\rm esc}$: lognormals around LzLCS-calibrated population medians for typical $z>6$ galaxy properties --- O32: median 0.08 with 0.45~dex scatter; UV-slope $\beta$: median 0.05 with 0.40~dex scatter (anchors documented to Chisholm et al.\ 2022 and Flury et al.\ 2022). Each Monte-Carlo draw uses one of the two calibrations with equal probability. These anchors are $z$-independent by construction: the same low-redshift calibration is transported to every grid redshift.
+\end{itemize}
+Each grid point propagates these priors through 40{,}000 Monte-Carlo draws (fixed seed 20260723); percentile sampling error is negligible relative to the systematic widths (bootstrap intervals below). The deficit is $\Delta = f_{\rm esc}^{\rm req} - f_{\rm esc}^{\rm inf}$, quoted throughout as a \emph{linear} escape-fraction difference (an earlier draft's ``dex-frac'' unit was ill-defined and is retired).
+
+\subsection{Non-circularity test}
+Following the single-redshift drafts, at each $z$ we recompute the median deficit under the O32 calibration alone ($\Delta_{\rm O32}$) and the $\beta$ calibration alone ($\Delta_\beta$); a sign flip between the arms would indicate a calibration-driven artifact. We stress the limited scope of this test (Section~\ref{sec:uncertainties}): both arms share LzLCS ($z\sim0.3$) provenance, so sign agreement guards against the calibration \emph{choice}, not against a failure of low-$z$ calibrations to transport to $z>6$.
+
+\subsection{Provenance}
+No survey catalog data are used. JWST enters only through literature-motivated prior shapes (the SFRD-tail boost and the $\xi_{\rm ion}$ anchor range); SDSS/TNG data do not enter at all. Earlier drafts' abstracts stated the study was ``generated from public data (jwst)''; that framing contradicted their own method sections and is corrected here.
+
+\section{The redshift sweep}
+\label{sec:sweep}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{fesc_zsweep_trend.pdf}
+\caption{\emph{Top}: escape fraction required to maintain reionization (red median and 16--84\% systematic band over the $\xi_{\rm ion}\times C\times$SFRD priors; points mark the nine grid runs) versus the proxy-inferred value (blue), which is $z$-independent by construction because the same low-redshift LzLCS calibration is transported to every $z$. \emph{Bottom}: the deficit $\Delta=f_{\rm esc}^{\rm req}-f_{\rm esc}^{\rm inf}$ (median, 16--84\% band, and per-run shortfall fractions). The 16--84\% interval detaches from zero at $z_c=8.05$ (dashed; bootstrap 16--84\%: 8.03--8.06). The dotted curve shows the 16th percentile with the JWST-motivated SFRD-tail boost removed: the shortfall strengthens and the crossing moves to $z_c=7.62$, so the fiducial prior is conservative for the shortfall claim.}
+\label{fig:trend}
+\end{figure}
+
+\begin{deluxetable*}{cccccccc}
+\tablecaption{Systematic Monte-Carlo sweep of the ionizing-photon budget ($N=40{,}000$ per row, seed 20260723). $f_{\rm esc}^{\rm inf}=0.062\ (0.023$--$0.170)$ at all $z$ by construction. \label{tab:sweep}}
+\tablehead{
+\colhead{$z$} & \colhead{$f_{\rm esc}^{\rm req}$ (16/50/84\%)} & \colhead{$\Delta$ (16/50/84\%)} & \colhead{shortfall} & \colhead{$\Delta_{\rm O32}$} & \colhead{$\Delta_{\beta}$} & \colhead{sign robust} & \colhead{shortfall (no tail)}
+}
+\startdata
+ 6.0 & 0.023 / 0.048 / 0.096 & $-0.119$ / $-0.012$ / $+0.043$ & 41\% & $-0.029$ & $-0.002$ & yes & 49\% \\
+ 6.5 & 0.035 / 0.072 / 0.144 & $-0.099$ / $+0.008$ / $+0.084$ & 54\% & $-0.007$ & $+0.019$ & no\tablenotemark{a} & 63\% \\
+ 7.0 & 0.051 / 0.105 / 0.211 & $-0.072$ / $+0.035$ / $+0.145$ & 66\% & $+0.020$ & $+0.048$ & yes & 74\% \\
+ 7.5 & 0.073 / 0.150 / 0.301 & $-0.040$ / $+0.075$ / $+0.228$ & 76\% & $+0.058$ & $+0.089$ & yes & 82\% \\
+ 8.0 & 0.102 / 0.210 / 0.421 & $-0.003$ / $+0.130$ / $+0.343$ & 83\% & $+0.111$ & $+0.146$ & yes & 89\% \\
+ 8.5 & 0.141 / 0.289 / 0.579 & $+0.037$ / $+0.204$ / $+0.496$ & 89\% & $+0.183$ & $+0.222$ & yes & 93\% \\
+ 9.0 & 0.191 / 0.390 / 0.784 & $+0.087$ / $+0.302$ / $+0.697$ & 93\% & $+0.279$ & $+0.321$ & yes & 96\% \\
+ 9.5 & 0.254 / 0.520 / 1.045 & $+0.150$ / $+0.428$ / $+0.953$ & 95\% & $+0.404$ & $+0.449$ & yes & 98\% \\
+10.0 & 0.334 / 0.685 / 1.375 & $+0.229$ / $+0.590$ / $+1.284$ & 97\% & $+0.564$ & $+0.612$ & yes & 99\% \\
+\enddata
+\tablenotetext{a}{At $z=6.5$ both single-calibration medians sit within $\pm0.02$ of zero with opposite signs; this is the expected behavior adjacent to the median-crossing redshift $z_m=6.33$ (bootstrap 16--84\%: 6.32--6.34), where the deficit changes sign, rather than evidence of a calibration artifact at higher $z$.}
+\end{deluxetable*}
+
+Table~\ref{tab:sweep} and Figure~\ref{fig:trend} contain the central result. Because the inferred side is constant in $z$ while the required side scales as $C(1+z)^3/{\rm SFRD}(z)$, the deficit rises monotonically; the scientific content of the sweep is \emph{where} that rise exits the systematic envelope, which no single-redshift slice can address:
+
+\begin{enumerate}
+\item \textbf{Median crossing.} The median deficit changes sign at $z_m=6.33$ (bootstrap 16--84\%: 6.32--6.34): at $z\le6$ the budget closes at the median under these anchors.
+\item \textbf{Closure crossing.} The 16--84\% interval of $\Delta$ detaches from zero at $z_c=8.05$ (bootstrap 16--84\%: 8.03--8.06). By construction the shortfall fraction at $z_c$ is 84\% (i.e., the 16th percentile of $\Delta$ touches zero there). For $z<z_c$ the budget \emph{closes within the stated systematics}; for $z>z_c$ an apparent shortfall persists throughout the 16--84\% systematic envelope.
+\item \textbf{The $z=8$ boundary case.} At $z=8.0$ the interval technically spans zero, but only at its edge: the 16th percentile is $-0.003$ while 83\% of the systematic mass lies on the shortfall side. An earlier standalone $z=8$ draft summarized this as ``the budget closes''; the honest statement is that at $z=8$ closure survives only at the $1\sigma$ boundary, with five-sixths of the systematic space showing a deficit.
+\item \textbf{The high-$z$ tail.} At $z\ge9.5$ the 84th percentile of $f_{\rm esc}^{\rm req}$ exceeds unity (1.05 at $z=9.5$; 1.37 at $z=10$): in that part of the systematic space no physical escape fraction closes the budget under these anchors, which simply restates that the anchors themselves (SFRD normalization, $\xi_{\rm ion}$) would have to move. We include $z=10$ with a disclosure: an earlier standalone $z=10$ run was automatically shelved by the pipeline's expected-value gate as contradicting literature $f_{\rm esc}$ expectations. In sweep context the $z=10$ point is the smooth continuation of the same trend, and we report it as the boundary case it is rather than as a standalone claim.
+\end{enumerate}
+
+The $z\sim9$ headline of the superseded drafts survives intact as one row of this trend --- the row is a rerun of that calculation whose outputs are bit-identical to the original run's, not the original run itself (consistent with the Data availability statement): $\Delta = +0.302$ with 16--84\% interval $+0.087$ to $+0.697$ and 93\% shortfall fraction, bounded by the systematics, not by statistics.
+
+\section{Systematic corners and the non-circularity test}
+\label{sec:corners}
+
+\textbf{Removing the JWST-motivated boost strengthens the shortfall.} The fiducial SFRD-tail boost is the prior most correlated with the JWST abundance results that motivate the photon-budget question, and internal review flagged it as the largest circularity risk. We therefore reran the full sweep with \texttt{sfrd\_boost\_mode=none} (pure $0.2$~dex lognormal, no tail). Because the boost \emph{increases} $\rho_{\rm UV}$ and thus \emph{lowers} the required escape fraction, removing it raises $f_{\rm esc}^{\rm req}$ (at $z=9$ the median rises from 0.390 to 0.503, a factor 1.29) and strengthens the deficit: the $z=9$ interval becomes $+0.163$ to $+0.854$ (96\% shortfall) and the closure crossing moves \emph{earlier}, to $z_c=7.62$ (bootstrap 16--84\%: 7.60--7.63). The direction of this shift matters for the circularity discussion in Section~\ref{sec:uncertainties}: the JWST-motivated prior makes the budget \emph{easier} to close, so the fiducial results are conservative with respect to that choice, and the shortfall claim does not depend on it.
+
+\textbf{Calibration-choice robustness.} The single-calibration medians $\Delta_{\rm O32}$ and $\Delta_\beta$ agree in sign with the mixed-calibration median at every grid redshift except $z=6.5$, where both arms are consistent with zero (footnote to Table~\ref{tab:sweep}); adjacent to a sign change this is expected and carries no information about the high-$z$ shortfall. For $z\ge7$ the shortfall sign is not an artifact of choosing the O32 versus the $\beta$ calibration.
+
+\section{Uncertainties and limitations}
+\label{sec:uncertainties}
+This section states what the Monte Carlo does and does not bound. Items (1)--(3) respond point-by-point to adversarial internal review of the superseded drafts.
+
+\begin{enumerate}
+\item \textbf{Proxy transportability (dominant, outside the MC).} Both inference arms are LzLCS calibrations measured at $z\sim0.3$ and transported to $z=6$--$10$ with fixed medians and scatters. The sign-robustness test guards the calibration \emph{choice}, not the calibration itself: if O32/$\beta$--$f_{\rm esc}$ relations evolve with redshift, ISM geometry, or burstiness, the inferred side moves coherently in both arms and nothing in this study detects it. The quoted shortfall fractions (e.g.\ 93\% at $z=9$) are therefore \emph{conditional} probabilities given the frozen anchors --- not the probability that a real shortfall exists.
+\item \textbf{Prior--motivation coupling.} The SFRD-tail boost prior is motivated by the same JWST bright-galaxy abundances whose photon-budget implication the study examines, a structural circularity risk. The \texttt{none} corner (Section~\ref{sec:corners}) bounds its effect: dropping the coupled prior strengthens, rather than weakens, the shortfall, so the coupling cannot be manufacturing the result; it can only be masking a larger one.
+\item \textbf{Citation grounding.} The pipeline's own citation-entailment gate flagged every checked value-attribution sentence in the three superseded drafts as unsupported by the cited passages (3/3, 2/2, 1/1). This draft therefore attributes all numerical inputs to the pipeline constants listed in Section~\ref{sec:anchors} and cites the literature only for framing and formalism, not as the verbatim source of any adopted number.
+\item \textbf{What this study is.} It contains no measurements: no survey photometry, spectroscopy, or catalog quantities are ingested, and there is no selection function. Its uncertainties are entirely the stated priors; systematics not represented in those priors (proxy evolution above, He\,{\sc ii} corrections, $\kappa_{\rm UV}$ IMF dependence, SFRD faint-end truncation) are not propagated.
+\item \textbf{Model rigidity.} $\xi_{\rm ion}$ and the proxy anchors are drawn $z$-independently; a redshift-dependent $\xi_{\rm ion}(z)$ (as several JWST analyses suggest) would tilt the required-side trend and move $z_c$. The maintenance criterion itself (instantaneous balance) is conservative relative to a full reionization-history integration.
+\end{enumerate}
+
+\section{Conclusion}
+Under frozen, literature-anchored priors --- Madau--Dickinson SFRD, $\log \xi_{\rm ion}=25.5\pm0.15$, $C\in[2,5]$, LzLCS O32/$\beta$ proxy anchors transported unchanged from $z\sim0.3$ --- the reionization photon budget for star-forming galaxies closes within the systematics at $z\lesssim8$ (at $z=8$ only at the $1\sigma$ boundary, with 83\% of the systematic mass in deficit) and shows an apparent escape-fraction shortfall that is robust to the stated systematics at $z\gtrsim8$: the 16--84\% interval of the deficit detaches from zero at $z_c=8.05$ (no-boost corner: 7.62) and the shortfall fraction rises monotonically from 41\% at $z=6$ to 97\% at $z=10$. The shortfall's sign is robust to the O32-versus-$\beta$ calibration choice at all $z\ge7$ and strengthens when the JWST-motivated SFRD boost is removed. What the sweep cannot exclude --- and what a measurement would have to address --- is that the low-redshift proxy calibrations simply do not transport to $z>6$: on these anchors, that is now the only remaining escape route by which the $z\gtrsim8$ budget closes.
+
+\section*{Data availability}
+All inputs are frozen constants reproduced in Section~\ref{sec:anchors}; the nine grid runs, the trend computation (\texttt{make\_trend\_figure.py}), and the derived quantities (\texttt{TREND\_RESULTS.json}) are archived in the lane directory alongside this manuscript. Every number in the text is generated by the archived code from the archived run outputs (fixed seed 20260723); the lane computation reproduces all nine run JSONs to machine precision (max.\ abs.\ deviation $2\times10^{-16}$).
+
+\section*{References}
+\footnotesize
+[Munoz2024] Mu\~noz et al.\ (2024). Reionization after JWST: a photon budget crisis?. bibcode 2024MNRAS.535L..37M \par
+[Davies2021] Davies et al.\ (2021). The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources. bibcode 2021ApJ...918L..35D \par
+[Park2022] Park et al.\ (2022). Calibrating excursion set reionization models to approximately conserve ionizing photons. bibcode 2022MNRAS.517..192P \par
+[Duncan2015] Duncan et al.\ (2015). Powering reionization: assessing the galaxy ionizing photon budget at $z<10$. bibcode 2015MNRAS.451.2030D \par
+[Madau2017] Madau (2017). Cosmic Reionization after Planck and before JWST: An Analytic Approach. bibcode 2017ApJ...851...50M \par
+[Simmonds2024] Simmonds et al.\ (2024). Ionizing properties of galaxies in JADES for a stellar mass complete sample. bibcode 2024MNRAS.535.2998S \par
+[MadauDickinson2014] Madau \& Dickinson (2014), ARA\&A 52, 415 --- SFRD fit and $\kappa_{\rm UV}$ (pipeline anchor source). \par
+[MHR1999] Madau, Haardt \& Rees (1999) --- maintenance criterion (pipeline anchor source). \par
+[Robertson2015] Robertson et al.\ (2015) --- recombination-balance formalism (pipeline anchor source). \par
+Chisholm et al.\ (2022); Flury et al.\ (2022); Bouwens et al.\ (2016) --- LzLCS O32/$\beta$ proxy and $\xi_{\rm ion}$ anchor sources as documented in the pipeline code; cited author--year only, as the adopted constants are pipeline representatives rather than verbatim extractions (Section~\ref{sec:uncertainties}, item 3).
+
+\end{document}

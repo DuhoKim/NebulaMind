@@ -1,0 +1,79 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass27-blockers-20260808T151015K",
+  "checked_at": "2026-08-08T15:10:15+09:00",
+  "deepening_pass": 27,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "candidate": {
+    "name": "spin-parity-census-20260808T0149",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "verdict": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "modified": false,
+    "preserved": true,
+    "structural_gate_scenes_after_pass27_transform": "0/16_ALL_FIVE_VARIANTS"
+  },
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "video_reportable_now": false,
+    "modified": false
+  },
+  "blockers": [
+    {
+      "id": "POST_RUN_INDEPENDENT_A3_8_REVIEW_MISSING",
+      "status": "OPEN_UNCHANGED",
+      "exact_requirement": "A valid independent post-run A3.8 verdict record bound to the exact frozen all-209-file T4 artifact.",
+      "current_evidence": "All 209 regular source files are content-covered. The 203 UTF-8 files yield nine post-T4 documents and four T4 identifiers but zero exact T4+A3.8 hash pairs; the four gzip archives and two PDFs yield zero T4 or A3.8 identity markers and zero exact hash pairs.",
+      "not_satisfied_by": "presentation QA, color transform, minimum-scale rendering, represented-pixel defocus, OCR, method proof, or machine-valid candidate"
+    },
+    {
+      "id": "ARCHIVE_STORAGE_FRAME_UNSTATED",
+      "status": "OPEN_UNCHANGED",
+      "exact_requirement": "A source-authorized resolution of whether stored labels follow the displayed mirrored frame or are mapped back before storage.",
+      "current_evidence": "KUN_FRAME_REVIEW.md still ends FRAME REVIEW: AGREES FRAME_UNSTATED.",
+      "not_satisfied_by": "presentation clarity, direct labels, schematic redundancy, or blur resilience"
+    },
+    {
+      "id": "VIDEO_REPORTABLE_NOW_FALSE",
+      "status": "OPEN_UNCHANGED",
+      "exact_requirement": "A fresh source/status authorization after both scientific blockers resolve.",
+      "current_evidence": "SOURCE_STATUS_FREEZE.json remains video_reportable_now false and allows method-only proposal work.",
+      "not_satisfied_by": "encoded-frame QA or integration guard"
+    }
+  ],
+  "pass27_deepening": {
+    "fresh_cut_detection": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS26",
+    "candidate_pass23_baseline_reproduction": "80/80_PIXEL_EXACT",
+    "method_pass23_baseline_reproduction": "105/105_PIXEL_EXACT",
+    "exact_blur_recomputation": "185/185",
+    "pass12_exact_gate_visual": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_mapped_gate_threshold_passes": "7/7_ALL_FIVE_VARIANTS",
+    "presentation_finding": "Large result assertions remain primary while fine axes, error bars, legends, caveats, citations, provenance, and small qualifiers soften first; no structural hold appears in the failed candidate.",
+    "disposition": "NON_PIXEL_GUARD_ADDED_NO_NEW_CORRECTION"
+  },
+  "required_next_evidence": [
+    "Independent post-run A3.8 verdict record with exact identity/hash binding to the frozen T4 artifact.",
+    "Source-authorized archive-frame resolution superseding FRAME_UNSTATED.",
+    "Fresh Hwao source/status authorization before result integration, TTS, encoding, or publication."
+  ],
+  "prohibited_content": {
+    "t4_result_values_copied": false,
+    "result_direction_or_significance_invented": false,
+    "cosmology_claim_invented": false,
+    "science_adjudicated": false
+  },
+  "safety": {
+    "sealed_v8_modified": false,
+    "v9_created": false,
+    "candidate_modified": false,
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "marker": "TORI_METHODS_NOTE_PRIVATE_COPY_V2_SEMANTIC_AUDIT_20260811T1529K",
+  "timestamp": "2026-08-11T15:28:57+09:00",
+  "scoped_result": "FAIL_VISIBLE_EQUIVALENCE_V2__NARRATIVE_AND_EMPHASIS_PASS__PROVENANCE_ROW_TRUNCATED",
+  "source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md",
+    "bytes": 11473,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "frozen_failed_render": {
+    "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal.html",
+    "bytes": 15388,
+    "sha256": "5a5bf634ab20984536e52bb37ce924f65e2794ae714fe67e1a1dd36f77806557",
+    "unchanged": true
+  },
+  "v2_render": {
+    "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal-v2.html",
+    "bytes": 15940,
+    "sha256": "ffd3086b8b8f8ee00db7ba07bb3ac19ba1b2d0f8dc080e8944240c2fc8c1e9ce"
+  },
+  "narrative_excluding_table_banner_footer": {
+    "visible_text_exact": true,
+    "expected_words": 1387,
+    "target_words": 1387,
+    "strong_sequence_exact": true,
+    "em_sequence_exact": true,
+    "code_sequence_exact": true,
+    "h1_sequence_exact": true,
+    "h2_sequence_exact": true,
+    "list_item_sequence_exact": true,
+    "blockquote_sequence_exact": true,
+    "expected_strong_count": 61,
+    "target_strong_count": 61,
+    "expected_em_count": 13,
+    "target_em_count": 13,
+    "expected_code_count": 24,
+    "target_code_count": 24,
+    "literal_double_asterisk_visible_count": 0
+  },
+  "specific_emphasis": {
+    "summary_same_release_not_byte_self_binding_span_is_strong": true,
+    "summary_coupled_choices_different_quantities_span_is_strong": true,
+    "section1_same_release_limitation_span_is_strong": true,
+    "wrong_intervening_parenthetical_or_method_fork_clause_is_strong": false
+  },
+  "provenance_table": {
+    "expected_rows_including_header": 9,
+    "target_rows_including_header": 9,
+    "expected_cell_counts": [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    "target_cell_counts": [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    "exact_matching_rows": 8,
+    "mismatching_row_index_zero_based_including_header": 5,
+    "expected_claim": "Singal cuts (`mG<20.5/20.0/20<mG<20.5`; `|b|>30/35/40`); Mittal `Nside=64`, `|b|<40°`+`30∗`",
+    "expected_source": "Singal 2024; Mittal et al. 2024 (stated in the papers)",
+    "target_claim_visible": "Singal cuts (mG<20.5/20.0/20<mG<20.5; `",
+    "target_source_visible": "b",
+    "missing_from_render": "The remainder of the Claim after the opening pipe in |b|>30/35/40, including both complete |b| expressions, Mittal Nside=64 and 30∗, plus the entire intended Source attribution.",
+    "expected_table_abs_latitude_expression_count": 2,
+    "target_table_abs_latitude_expression_count": 0,
+    "expected_whole_note_abs_latitude_expression_count": 5,
+    "target_whole_note_abs_latitude_expression_count": 3,
+    "shape_only_check_is_insufficient": true
+  },
+  "document": {
+    "whole_document_strong_count_including_banner_and_table": 75,
+    "script_count": 0,
+    "display_none_rules": 0,
+    "visibility_hidden_rules": 0,
+    "opacity_zero_rules": 0,
+    "font_size_zero_rules": 0,
+    "footer_says_visible_equivalence_pending": true,
+    "footer_makes_false_verbatim_claim": false,
+    "footer_mentions_frozen_failed_hash": true
+  },
+  "root_cause": "Pandoc's GFM table reader still treats unescaped pipe characters inside inline code spans as table delimiters. It emitted a nominal two-cell row but silently discarded the rest of the intended source row after the first two fragments. Counting rows and cells therefore passed while content custody failed.",
+  "custody_decision": {
+    "v2_visible_equivalence": "FAIL",
+    "duho_can_rely_on_v2_as_exact_reading_copy": false,
+    "recommended_action": "Freeze v2 by hash without overwrite. Produce another no-overwrite sibling using a conversion path that preserves pipes inside code spans (for example Pandoc's markdown reader, independently rechecked), then repeat per-cell and Chrome verification."
+  }
+}

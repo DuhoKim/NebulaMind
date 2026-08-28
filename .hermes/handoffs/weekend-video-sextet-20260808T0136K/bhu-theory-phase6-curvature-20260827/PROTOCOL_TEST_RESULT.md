@@ -1,0 +1,27 @@
+## Entry 6
+STEP 1 HEADLINE: "Thus, modifications of the parameters of particle physics and cosmology from their present values should tend to decrease the nunber of black holes in the universe."
+STEP 2 QUALIFICATION: "If the ideas proposed in this paper prove fruitful it will be important to show that (i) and (ii) do, indeed, follow in an appropriate set of models. For the moment it is sufficient to assume them and investigate their consequences." (smolin_1992_clean.txt:225-228); "This simple model makes a prediction, which is that we will observe fluctuations in the universe of the order of 6p/p(Xcritical).This cannot yet be taken seriously; however it suggests that it might be possible to elaborate this model to the point where a serious prediction could be made for 6 p / p ." (smolin_1992_clean.txt:518-521); "many more 'stars' collapse immediately to black holes in the hypothetical universe, and our hypothesis is contradicted, given the assumptions that went into our simple model." (smolin_1992_clean.txt:789-791); "However, it cannot be taken very seriously unless a detailed scenario and mechanism, based on known physics, can be developed to explain the value of a particular parameter which is falsifiable by some combination of experiment and theory. Whether this can be done successfully remains to be seen." (smolin_1992_clean.txt:1020-1023)
+CLASS: QUALITATIVE-DIRECTIONAL
+ABSTRACT-ALONE WOULD GIVE: same
+CONFIDENCE: medium — the headline is directional but the body repeatedly marks the examples as assumption-dependent and not yet serious calibrated tests.
+
+## Entry 31
+STEP 1 HEADLINE: "An observational test is described which could falsify the theory."
+STEP 2 QUALIFICATION: "But their calculations involve approximations such as chiral dynamics and may be suMciently inaccurate that in fact c ¿ . However, we can be reasonably sure of the existence of such a critical value c ." (smolin_2004_cns_clean.txt:249-252); "Therefore a single observation of a neutron star whose mass M was suMciently high would show that  ¿ c , refuting Bethe and Brown’s claim for the opposite. SuMciently high is certainly 2:5M◦ , although if one is completely conEdent of Bethe and Brown’s upper limit of 1.5 solar masses, any value higher than this would be troubling." (smolin_2004_cns_clean.txt:255-258)
+CLASS: CALIBRATED-FALSIFIER
+ABSTRACT-ALONE WOULD GIVE: different: PROSPECT
+CONFIDENCE: high — the abstract only advertises a possible test, while the body gives a concrete neutron-star mass threshold.
+
+## Entry 51
+STEP 1 HEADLINE: "Thus, if torsion exists and the ECKS theory of gravity is correct, the LHC cannot produce micro black holes."
+STEP 2 QUALIFICATION: "The appearance of torsion only inside material bodies introduces limitations on its detection and thus on experimental verification of the ECKS theory." (0910.1181_clean.txt:105); "To verify if a toroidal structure describes a fermion, and also if spacetime surrounding the toroid admits unphysical closed timelike curves as in the case for a Kerr-Newman naked singularity, the full Einstein-Maxwell-Yang-Mills-Dirac-Heisenberg-Ivanenko field equations corresponding to the ECKS Lagrangian density ( 3 ) with ℒ m \\mathcal{L}_{m} given by ( 18 ) must be solved." (0910.1181_clean.txt:349); "We expect that the Cartan density for an electron, ρ C ​ e ∼ m e / r C ​ e 3 ∼ 10 51 ​ kg ​ m − 3 \\rho_{Ce}\\sim m_{e}/r_{Ce}^{3}\\sim 10^{51}\\,\\mbox{kg}\\,\\mbox{m}^{-3} , approximately gives the order of the maximum density of ordinary matter composed of quarks and leptons." (0910.1181_clean.txt:359); "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ∼ 10 4 ​ GeV \\sim 10^{4}\\,\\mbox{GeV} , cannot produce micro black holes Ward if the four-dimensional ECKS theory is a correct theory of gravity." (0910.1181_clean.txt:369)
+CLASS: CALIBRATED-FALSIFIER
+ABSTRACT-ALONE WOULD GIVE: same
+CONFIDENCE: medium — the LHC exclusion has explicit energy scales, but depends on the ECKS/torsion framework and order-of-magnitude density estimates.
+
+## Entry 54
+STEP 1 HEADLINE: "This model provides novel insights into black hole interiors and, when extended to a cosmological setting, predicts a small but non-zero closed spatial curvature: − 0.07 ± 0.02 ≤ Ω k < 0 -0.07\\pm 0.02\\leq\\Omega_{k}<0 ."
+STEP 2 QUALIFICATION: "Ω k ≡ − k ​ ( 1 H 0 ) 2 = − ( 0.07 ± 0.02 ) ​ ( χ ∗ χ k ) 2 , \\Omega_{k}\\equiv-k\\left(\\frac{1}{H_{0}}\\right)^{2}=-(0.07\\pm 0.02)\\left(\\frac{\\chi_{*}}{\\chi_{k}}\\right)^{2}\\,," (2505.23877_clean.txt:329-331); "which, for χ k > χ ∗ \\chi_{k}>\\chi_{*} , is consistent with a critical reanalysis of the Planck Legacy 2018 data Di Valentino et al. 2020 ." (2505.23877_clean.txt:335); "The limits for Ω k \\Omega_{k} above assume that the homogeneity scale is the result of only χ ∗ \\chi_{*} . This also explains the low quadrupole C 2 C_{2} Camacho-Quevedo and Gaztañaga 2022 . However, if the homogeneity scale or the low value of C 2 C_{2} has a different origin, then the value of Ω k \\Omega_{k} in the floating FLRW cloud could be smaller. Inflation preceded by a bounce requires Ω k < 0 \\Omega_{k}<0 , and this could be found in upcoming cosmic surveys, as indicated by the analysis in Di Valentino et al. 2020 ." (2505.23877_clean.txt:336)
+CLASS: QUALITATIVE-DIRECTIONAL
+ABSTRACT-ALONE WOULD GIVE: different: CALIBRATED-FALSIFIER
+CONFIDENCE: high — the abstract's numerical interval becomes a sign prediction with a free factor less than one and an explicit caveat that the magnitude could be smaller.

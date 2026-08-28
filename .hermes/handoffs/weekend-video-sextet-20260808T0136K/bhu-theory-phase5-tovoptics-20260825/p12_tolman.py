@@ -3,7 +3,7 @@
 rather than invented?
 
 ================================================================================================
-REFUTED, 2026-08-29. THE ANSWER BELOW IS WRONG. Closed as route C3 in BHU_CLOSED_ROUTES.md.
+REFUTED, 2026-08-28. THE ANSWER BELOW IS WRONG. Closed as route C3 in BHU_CLOSED_ROUTES.md.
 Kept because the way it fails is worth more than the file was.
 
 Tolman-Ehrenfest requires a TIMELIKE KILLING VECTOR. This code integrates the region N > 1,

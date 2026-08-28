@@ -1,0 +1,2116 @@
+                                               Probing Parity-Violation with the Four-Point Correlation Function of BOSS Galaxies
+
+                                                                                                 Oliver H. E. Philcox1, 2, ∗
+                                                                              1
+                                                                               Department of Astrophysical Sciences, Princeton University,
+                                                                                               Princeton, NJ 08540, USA
+                                                                      2
+                                                                        School of Natural Sciences, Institute for Advanced Study, 1 Einstein Drive,
+                                                                                               Princeton, NJ 08540, USA
+                                                               Parity-violating physics in the early Universe can leave detectable traces in late-time observables.
+                                                            Whilst vector- and tensor-type parity-violation can be observed in the B-modes of the cosmic mi-
+                                                            crowave background, scalar-type signatures are visible only in the four-point correlation function
+                                                            (4PCF) and beyond. This work presents a blind test for parity-violation in the 4PCF of the BOSS
+                                                            CMASS sample, considering galaxy separations in the range [20, 160]h−1 Mpc. The parity-odd 4PCF
+                                                            contains no contributions from standard ΛCDM physics and can be efficiently measured using re-
+
+
+
+
+arXiv:2206.04227v2 [astro-ph.CO] 29 Jul 2022
+                                                            cently developed estimators. Data are analyzed using both a non-parametric rank test (comparing
+                                                            the BOSS 4PCFs to those of realistic simulations) and a compressed χ2 analysis, with the former
+                                                            avoiding the assumption of a Gaussian likelihood. These find similar results, with the rank test giv-
+                                                            ing a detection probability of 99.6% (2.9σ). This provides significant evidence for parity-violation,
+                                                            either from cosmological sources or systematics. We perform a number of systematic tests: although
+                                                            these do not reveal any observational artefacts, we cannot exclude the possibility that our detection
+                                                            is caused by the simulations not faithfully representing the statistical properties of the BOSS data.
+                                                            Our measurements can be used to constrain physical models of parity-violation. As an example, we
+                                                            consider a coupling between the inflaton and a U (1) gauge field and place bounds on the latter’s
+                                                            energy density, which are several orders of magnitude stronger than those previously reported. Up-
+                                                            coming probes such as DESI and Euclid will reveal whether our detection of parity-violation is due
+                                                            to new physics, and strengthen the bounds on a variety of models.
+
+
+
+
+                                                                                                  I.   INTRODUCTION
+
+                                                  A detection of parity-violation in cosmological observables would be a smoking gun for physics beyond the standard
+                                               model, and could provide crucial insights into the nature of dark matter, dark energy, and inflation. In the conventional
+                                               paradigm, all cosmological correlators are symmetric under the parity operator P, since gravity (along with all other
+                                               standard model interactions except the weak force [1]), is P-invariant. Despite this, a number of theoretical arguments
+                                               suggest that parity-violating interactions should occur in the early Universe, most notably to source baryogenesis.
+                                               Creation of the current baryon asymmetry requires a process which violates charge and parity conservation [2, 3]; a
+                                               possible route is via leptogenesis, which, if sourced by gravity, must be parity-violating [e.g., 4–8].
+                                                  Additional sources of parity-violation include inflationary interactions between multiple fields, such as via the
+                                               Chern-Simons term [e.g., 9–14], generation of primordial magnetic fields [e.g., 15–17], vector perturbations generated
+                                               by cosmic strings or defects [e.g., 18–20], reheating [e.g., 21, 22], Chern-Simons modified general relativity [11], and
+                                               inflationary particle exchange [23, 24], all of which leave distinctive imprints on late-time observables [e.g., 9]. Potential
+                                               evidence for such models was recently provided by [25], which found a 2.4σ hint (updated to 3.6σ in [26]) of parity-
+                                               violation in the cosmic microwave background (hereafter CMB). Whilst some argue that this effect may be caused
+                                               by interstellar dust emission [27] (though see [28, 29]), it has nevertheless provided a resurgence of interest in these
+                                               theories.
+                                                  To constrain such phenomena, we require observables that are parity-sensitive. Common choices are vector and
+                                               tensor quantities, such as B modes of the CMB [e.g., 30], or those of galaxy ellipticities [e.g., 31]. These satisfy
+                                               P[B] = −B, and can be combined in two-point correlators (e.g., T B and EB for the CMB, or EB for weak lensing).
+                                               Barring contamination by systematics, the observables should have no contribution from standard ΛCDM physics, but
+                                               can be sourced by effects such as birefringence (whereupon the plane of the photon polarization is coherently rotated
+                                               between the surface of last scattering and the observer, as in [25]), gravitational wave chirality [e.g., 9, 32–35], and
+                                               multi-field inflation [7, 23, 36]. Information is not limited to the two-point function however; higher-order correlators
+                                               such as T T B can give additional constraining power on effects such as birefringence [37].
+                                                  When constructing observables from scalar fields (such as the galaxy density or CMB temperature), obtaining a
+                                               parity-sensitive quantity is more difficult. As an example, the isotropic galaxy two-point correlation function (hereafter
+
+
+                                               ∗ ohep2@cantab.ac.uk
+                                                                                                                                                2
+
+
+
+
+FIG. 1. Cartoon of the galaxy four-point correlation functions (4PCFs) considered in this work. In the left panel, we show the
+4PCF, ζ(r1 , r2 , r3 ), which depends on the separation vectors of three secondary galaxies from a given primary. The right panel
+shows the parity-inverted 4PCF, P [ζ(r1 , r2 , r3 )], which corresponds to replacing ri with −ri . Unlike for the 2PCF and 3PCF,
+the two configurations cannot be related by a rotation. The parity-even 4PCF is a sum of the two geometries (which have the
+same side-lengths and relative angles), whilst the parity-odd 4PCF is a difference. In this work, the 4PCF is given as a function
+of three lengths (r1 , r2 , and r3 ) and three internal angles (fixing the angle of the ri vectors with the respect to the primary
+galaxy). The latter are represented by their harmonic-space momenta, `1 , `2 and `3 , with odd-parity 4PCFs corresponding to
+odd `1 + `2 + `3 . Assuming standard ΛCDM physics, the two correlators shown in the figure should be equivalent, thus the
+expectation value of the parity-odd 4PCF is zero.
+
+
+2PCF) is insensitive to parity, since the action of P is equivalent to a rotation, under which the statistic is invariant. In
+three-dimensions, the isotropic N -point correlation functions (NPCFs) are parity-sensitive only if N > 3; this applies
+also to the CMB, since the intrinsic fluctuations are the projection of a three-dimensional quantity. The simplest
+statistic with which to probe scalar parity-violation is thus the 4PCF, as pointed out in [23, 38, 39]. A cartoon of this
+is shown in Fig. 1.1
+   Whilst a number of works have considered the 4PCF of the CMB [e.g., 44, 45] including its parity-odd contributions
+[38, 46] (though only theoretically), the large scale structure (LSS) equivalent has been rarely explored. Given the
+influx of spectroscopic data expected in the next decade from DESI [47], Euclid [48], and Rubin [49], galaxy surveys
+seem to be a natural arena in which to hunt for parity-violating interactions, allowing constraints to exceed the CMB
+cosmic variance limit. Historically, use of the higher-point galaxy correlation functions has been hampered by the
+computational resources required for their estimation; naı̈vely, the 4PCF requires O(Ng4 ) operations to compute from
+Ng galaxies. Recent works have significantly improved upon this [50, 51], with the algorithm of [51] requiring only
+O(Ng2 ) operations. This allows the 4PCF of current galaxy surveys to be computed in ∼ 30 CPU-hours. The approach
+proceeds by first projecting the correlation function into a suitable angular basis [52]; thence, the integrals decouple
+and the 4PCF may be computed by summing over pairs of galaxies. This naturally generalizes to higher-dimensions,
+as well as to anisotropic correlators [53]. Furthermore, there is a natural split into parity-even and parity-odd basis
+functions. The former can be used to place constraints on gravitational non-Gaussianity from a hitherto unexplored
+statistic [54], whilst the latter are the subject of this work (see also [23, 39]).
+   There are two main ways in which parity-violation can be probed using the galaxy 4PCF. Firstly, one may place
+constraints on the amplitudes of specific physical models given their associated theoretical predictions. This is an
+approach oft-used in the analysis of CMB 3- and 4-point functions, for example in non-Gaussianity studies, which
+typically exploit separability of the underlying theoretical templates for significant computational gain [e.g., 55]. This
+approach was also suggested in [23, 46, 56], and allows for targeted constraints on specific models of early-Universe
+particle exchange, via a search for their specific isotropy-violating signatures. An alternative method would be to first
+measure the full galaxy 4PCF in some set of bins, then perform a blind test, looking for the signatures of any physical
+model (and systematic effects). This approach is possible since the parity-odd 4PCF receives no contribution in ΛCDM,
+including from general relativistic and baryonic effects. Given the multitude of possible models for parity-violation,
+we will principally adopt the second strategy in this work, though we demonstrate also the first, by placing constraints
+on a specific model involving Chern-Simons terms in the inflationary Lagrangian. Analysis using the galaxy 4PCF
+comes with its complexities, however. In particular, the high-dimensionality of the statistic prohibits conventional
+mock-based χ2 -analyses. To alleviate this, we include a data-compression step, facilitated using a theoretical model
+
+
+1 Large scale structure correlators are sensitive also to redshift-space distortions [40, 41], giving dependence of the statistic on line-of-sight
+
+  velocities [42]. This enables vector-type parity-violation to be probed in the 3PCF [43], though it requires careful modelling of galaxy
+  velocities.
+                                                                                                                                                                    3
+
+of the 4PCF covariance [57], which dramatically reduces the number of bins without introducing bias. It is not
+guaranteed that the 4PCF likelihood be Gaussian however (see Appendix A and [58, 59]); to provide a fully robust,
+yet conservative, test for parity-violation, we make use of a likelihood-free inference technique, involving a suite of
+realistic simulations. We caution that such blind tests are naturally subject to systematic uncertainties, some of which
+will be explored in this work. The results below represent the first constraints on scalar parity-violation from LSS
+data.
+  The remainder of this work is structured as follows. In §II, we present the parity-odd 4PCF estimator, including the
+corrections necessary to account for non-uniform survey geometry, before we discuss the data and covariance matrices
+in §III. Analysis methods are considered in §IV, with the corresponding constraints on parity-violation presented in
+§V. In §VI, we include a number of systematic checks and a brief discussion of potential biases in the approach. §VII
+discusses parity-breaking phenomena including the presentation of an inflationary model for the parity-odd 4PCF,
+based on a Chern-Simons coupling, whose amplitude is then bounded using the BOSS data. We conclude in §VIII,
+with Appendices A and B discussing the impacts of likelihood non-Gaussianity and sketching the derivation of the
+Chern-Simons 4PCF template. Jupyter notebooks containing our analysis pipeline can be found on GitHub.2
+  Note on Blinding: To limit confirmation bias, the BOSS data were sent to an external collaborator (M. König)
+after computation, and not revealed until the analysis pipeline was constructed and tested. The initial draft of the
+paper was also written before unblinding (encompassing all sections except §VI and Appendix A), with the BOSS
+data replaced by that from a single mock dataset.
+
+
+                                               II.    MEASURING THE PARITY-ODD 4PCF
+
+  We begin by outlining our estimator for the parity-odd 4PCF, which is implemented in the public encore code.3
+Further details of the formalism can be found in [51] (for the general NPCF estimator and encore), [52] (for the basis
+functions), [54] (for the parity-even 4PCF), [39] (for an overview of the parity-odd 4PCF) and [53] (for extensions
+beyond flat 3D space).
+
+
+                                                             A.     Isotropic Basis Functions
+
+  Given a (scalar) density field δ(r), the 4PCF is defined as
+
+                                                ζ(r1 , r2 , r3 ) ≡ hδ(s)δ(s + r1 )δ(s + r2 )δ(s + r3 )i ,                                                        (1)
+
+where h· · ·i represents a statistical average over realizations of δ. A cartoon of this parametrization is shown in Fig. 1.
+By statistical homogeneity, the 4PCF is independent of the absolute coordinate s.
+   As demonstrated in [51, 53], a complete angular basis for the isotropic N -point correlation functions is given by the
+isotropic basis functions of (N − 1) coordinates defined in [52] (see also the TriPoSH formalism; [60]).4 For N = 4,
+the basis functions are
+                                                               X `  `2 `3
+                                                                            
+                                                                   1
+                 P`1 `2 `3 (r̂1 , r̂2 , r̂3 ) ≡ (−1)`1 +`2 +`3                Y`1 m1 (r̂1 )Y`2 m2 (r̂2 )Y`3 m3 (r̂3 ),  (2)
+                                                                  m1 m2 m3
+                                                                     m1 m2 m3
+
+where Y`m (r̂) is a spherical harmonic, the 3 × 2 matrix is a Wigner 3-j symbol, and the mi summations run over
+integer mi ∈ [−`i , `i ]. Such functions arise from the theory of angular momentum addition, and are specified by
+three non-negative integers {`1 , `2 , `3 }, encoding the relative orientation of r̂1 , r̂2 , and r̂3 . Due to the 3-j symbol, the
+integers must obey the triangle condition |`1 − `2 | ≤ `3 ≤ `1 + `2 , and we additionally enforce `i ≤ `max . In practice,
+we restrict to relatively low `max , which gives an angular resolution of θmin ≈ 2π/`max for the internal angles of the
+4PCF tetrahedron. The basis functions have the following properties under parity and conjugation transformations
+(for parity operator P):
+    P [P`1 `2 `3 (r̂1 , r̂2 , r̂3 )] = (−1)`1 +`2 +`3 P`1 `2 `3 (r̂1 , r̂2 , r̂3 ),   P`∗1 `2 `3 (r̂1 , r̂2 , r̂3 ) = (−1)`1 +`2 +`3 P`1 `2 `3 (r̂1 , r̂2 , r̂3 ), (3)
+
+
+
+2 Available at github.com/oliverphilcox/Parity-Odd-4PCF.
+3 Available at github.com/oliverphilcox/encore.
+4 The approach naturally extends to anisotropic correlators [53], though we do not consider them in this work.
+                                                                                                                                                  4
+
+implying that the basis is parity-odd and pure imaginary if `1 + `2 + `3 is odd, and parity-even and real else.
+Furthermore, (2) is invariant under joint rotations of all three separation vectors, i.e. {r1 , r2 , r3 } → {Rr1 , Rr2 , Rr3 },
+for arbitrary rotation matrix R.
+  The isotropic part of the galaxy 4PCF can be decomposed into the basis of (2):
+                                                      X
+                               ζiso (r1 , r2 , r3 ) =   ζ`1 `2 `3 (r1 , r2 , r3 )P`1 `2 `3 (r̂1 , r̂2 , r̂3 ),             (4)
+                                                                      `1 `2 `3
+
+where the coefficients ζ`1 `2 `3 (hereafter denoted ‘multiplets’) can be obtained via the orthonormality of P`1 `2 `3 .5 Given
+the transformation properties of (3), we find a natural split of ζiso into parity-even and parity-odd parts:
+                                                    X
+                               ζ+ (r1 , r2 , r3 ) =          ζ`1 `2 `3 (r1 , r2 , r3 )P`1 `2 `3 (r̂1 , r̂2 , r̂3 ),        (5)
+                                                            `1 +`2 +`3 =even
+                                                                       X
+                                     ζ− (r1 , r2 , r3 ) =                         ζ`1 `2 `3 (r1 , r2 , r3 )P`1 `2 `3 (r̂1 , r̂2 , r̂3 ).
+                                                                `1 +`2 +`3 =odd
+
+These satisfy P [ζ± (r1 , r2 , r3 )] = ± ζ± (r1 , r2 , r3 ), and may be related to the sum and difference of the two panels in
+Fig. 1. In this work, we restrict to odd `1 + `2 + `3 , and thus consider the (purely imaginary) parity-odd 4PCF.
+
+
+                                                                      B.     4PCF Estimator
+
+  Invoking the ergodic principle, we may estimate the full 4PCF as an integral over four density fields,
+                                                    Z
+                                                  1
+                              ζ̂(r1 , r2 , r3 ) ≡     ds δ(s)δ(s + r1 )δ(s + r2 )δ(s + r3 ),                                                     (6)
+                                                  V
+where V is the integration volume. This is unbiased, i.e. it has expectation E[ζ̂] = ζ. Since the basis functions of (2)
+are orthonormal [52], (6) can be used to construct an estimator for the 4PCF basis coefficients:
+                                      Z
+         ζ̂`1 `2 `3 (r1 , r2 , r3 ) = dr̂1 dr̂2 dr̂3 P`∗1 `2 `3 (r̂1 , r̂2 , r̂3 )ζ̂(r1 , r2 , r3 )                                    (7)
+                                                                      
+                                      1 X           `1 `2 `3
+                                    =
+                                      V m m m m1 m2 m3
+                                        Z1 2 3
+                                      ×   ds dr̂1 dr̂2 dr̂3 δ(s)δ(s + r1 )δ(s + r2 )δ(s + r3 )Y`1 m1 (r̂1 )Y`2 m2 (r̂2 )Y`3 m3 (r̂3 ),
+
+using the conjugate properties of (3). Defining the harmonic coefficients
+                                                      Z
+                                          a`m (s; r) ≡ dr̂ δ(s + r)Y`m (r̂),                                                                     (8)
+
+this is separable in r̂i :
+                                                                                Z
+                                                   X            `1 `2 `3                ds
+                  ζ̂`1 `2 `3 (r1 , r2 , r3 ) =                                             δ(s)a`1 m1 (s; r1 )a`2 m2 (s; r2 )a`3 m3 (s; r3 ).    (9)
+                                                                m1 m2 m3                V
+                                                 m1 m2 m3
+
+For a discrete density field defined by Ng particles at positions {xi } with weights wi , the estimator can be written as
+a sum:
+                                                 Ng
+                                                 X
+                           a`m (xi ; r) ≡              wj Y`m (xj
+                                                                \ − xi )δD (r − |xj − xi |),                                                    (10)
+                                                 j=1
+                                                 Ng                           
+                                                 X       X            `1 `2 `3
+                  ζ̂`1 `2 `3 (r1 , r2 , r3 ) =                                   wi a`1 m1 (xi ; r1 )a`2 m2 (xi ; r2 )a`3 m3 (xi ; r3 ),
+                                                                      m1 m2 m3
+                                                 i=1 m1 m2 m3
+
+
+
+
+5 Since the anisotropic basis functions are orthogonal to those of (2), the decomposition in (4) holds regardless of whether the full statistic
+
+  is isotropic.
+                                                                                                                                          5
+
+where the Dirac delta, δD , ensures that we count only secondary particles, j, separated from the primary, i, by a
+distance r. Since we must compute a`m at the location of each primary particle, the estimator requires a sum over
+pairs of particles, and thus has complexity O(Ng2 ); in practice, the scaling is closer to linear, as the mi summation
+is rate limiting for large `max [51]. By replacing the Dirac function in (10) by a binning function of finite width, the
+estimator extends to bin-averaged 4PCF estimates; we refer the reader to [51, 54] for details. We further note that
+the 4PCF contains also a ‘disconnected’ piece sourced by two copies of the 2PCF. Whilst this can be subtracted at
+the estimator level directly [54], it does not contribute to parity-odd multiplets, and will thus be ignored henceforth.
+
+
+                                                                C.     Edge-Correction
+
+  Finally, estimator (9) must be modified to account for the non-uniform survey geometry. For this purpose, we first
+define the 4PCF using the generalized Landy-Szalay form [51, 61, 62]
+                                                                                 N (r1 , r2 , r3 )
+                                                           ζ̂(r1 , r2 , r3 ) ≡                     ,                                   (11)
+                                                                                 R(r1 , r2 , r3 )
+where N and R are the 4PCF estimates obtained from ‘data-minus-random’ and random catalogs respectively, both
+of which are modulated by the survey window function. Following some algebra, the edge-corrected 4PCF multiplets
+are given by
+                                                    X        `0 `0 `0                   N`0 `0 `0 (r1 , r2 , r3 )
+                        ζ`1 `2 `3 (r1 , r2 , r3 ) =       M −1 `11 `22 `33 (r1 , r2 , r3 ) 1 2 3                    , (12)
+                                                    0 0 0
+                                                                                           R000 (r1 , r2 , r3 )
+                                                            `1 `2 `3
+
+defining the coupling matrix
+                                                                                                                           #         0
+                                                                                                                                        
+                                                                                                                              `  L  `
+                                                                                        " 3
+                                          `01 +`02 +`03                                                                        1  1
+                                        (−1)                  RL1 L2 L3 (r1 , r2 , r3 )                                               1
+                                                                                             q
+        `01 `02 `03
+                                                      X                                  Y                                             
+    M   `1 `2 `3      (r1 , r2 , r3 ) =       3/2
+                                                                                              (2`i + 1)(2Li + 1)(2`0i + 1)    `2 L2 `02 (13)
+                                          (4π)                 R000 (r1 , r2 , r3 )      i=1
+                                                                                                                            ` L `0 
+                                                     L1 L2 L3                                                                  3  3   3
+
+                                           `1 L1 `01     `2 L2 `02       `3 L3 `03
+                                                                                   
+                                        ×                                                 ,
+                                            0 0 0         0 0 0           0 0 0
+with the curly brackets indicating a Wigner 9-j symbol. This allows us to ‘undo’ the effects of non-uniform survey
+geometry by measuring the 4PCF multiplets of the random field R.6 Note that there are two manners in which an
+parity-odd ζ can be sourced: parity-odd N and parity-even R, or parity-odd R and parity-even N .7 For this reason,
+it is imperative to restrict to parity-odd multipets only after performing edge-correction.
+
+
+                                                                       III.   DATA
+
+                                                           A.      Data and Simulations
+
+  Our dataset comprises galaxies from the twelfth data-release (DR12) [64] of the Baryon Oscillation Spectroscopic
+Survey (BOSS), part of SDSS-III [65, 66]. The survey contains two samples, CMASS and LOWZ, of which we use
+the former. This contains 587 071 (216 041) galaxies in the Northern (Southern) galactic cap (hereafter denoted NGC
+                                                                                          8
+and SGC), across a redshift range z ∈ [0.43, 0.7] and an effective
+                                                                P redshift of zeff = 0.57. We use a fiducial cosmology
+                 2
+{Ωm = 0.31, Ωb h = 0.022, h = 0.676, σ8 = 0.8, ns = 0.96, mν = 0.06 eV} to convert angles and redshifts to
+Cartesian coordinates [cf. 54, 67], and assign galaxy weights according to
+                                                          wtot = (wrf + wfc − 1)wsys wfkp .                                            (14)
+Here wrf , wfc , and wsys correspond to redshift-failure, fiber-collision, and systematic weights respectively, with wfkp =
+[1 + n(z)P0 ]−1 being the well-known FKP weight [68] for background number density n(z) and P0 = 104 h−3 Mpc3 .
+To model the survey geometry, we use the BOSS random catalogs, containing 50× more randoms than galaxies.
+
+
+6 Note that this does not remove any geometry effects that couple to the anisotropic 4PCF, nor those coupling to the 4PCF multiplets
+
+  with `i > L, assuming an initial `max of L. The former effect is expected to be small (and usually ignored for the 3PCF [e.g., 63]),
+  and the latter is ameliorated by discarding all multiplets containing `i = L after edge-correction, justified by noting that the coupling
+  matrix, M , is close to tridiagonal.
+7 This occurs since the product of 3-j symbols in the coupling matrix is zero unless ` + ` + ` + `0 + `0 + `0 + L + L + L is even.
+                                                                                      1    2    3     1    2    3    1     2     3
+8 Data are publicly available at data.sdss.org/sas/dr12/boss/lss/.
+                                                                                                                                                         6
+
+  We additionally make use of a suite of Nmocks = 2048 ‘MultiDark-Patchy’ (hereafter Patchy) simulations [69, 70].
+These are computed using an approximate gravity solver and calibrated to an N -body simulation, with halo occupation
+parameters adjusted such that the mocks well reproduce the BOSS two- and three-point statistics. These share the
+CMASS survey geometry and are assigned weights via
+                                                                wtot = wveto wfc wfkp ,                                                              (15)
+                               . The mocks are generated with the parameter set {Ωm = 0.3071, Ωb h2 = 0.02205, h =
+including the veto weight wvetoP
+0.6777, σ8 = 0.8288, ns = 0.96, mν = 0 eV} and coordinates are converted using the BOSS fiducial cosmology.
+
+
+                                                              B.     4PCF Estimates
+
+   One of the main drawbacks with higher-order NPCFs is their dimensionality. To characterize the 4PCF, we must
+specify three multiplet indices (`1 , `2 , `3 ) and three radial bins (r1 , r2 , r3 ), which can lead to a statistic with a large
+number of (highly correlated) elements [51]. For this reason, we adopt a relatively coarse radial binning scheme using
+Nr = 10 linearly spaced radial bins in [20, 160]h−1 Mpc, giving ∆r = 14h−1 Mpc. Furthermore, we enforce r2 > r1 +∆r
+and r3 > r2 + ∆r, to ensure that the the separation between any two galaxies in the 4PCF tetrahedron is at least ∆r
+(cf. Fig. 1). This removes modes from the non-linear region; these are difficult to model and can be strongly affected
+by baryonic physics. For the angular binning, we fix `max = 5, leading to a total of 56 radial bins and 111 multiplets
+(both parity-odd and parity-even), hence 6 216 elements in the full 4PCF statistic. In the analysis of §IV, we use only
+the 23 multiplets with odd `1 + `2 + `3 and `i ≤ 4, giving a total of Nζ = 1288 elements; the rest are required for
+edge-correction (§II C).
+   Computation of the 4PCF multiplets, ζ`1 `2 `3 (r1 , r2 , r3 ), is performed using the encore code [51]. We separately
+measure the contributions from a random catalog and a set of 32 ‘data-minus-random’ catalogs, each with 1.5× the
+galaxy density; the latter are averaged to form the N quantities entering the edge-correction equation (11), whilst
+the former give R.9 Using (12), the quantities are then combined to form the edge-corrected 4PCF multipoles.
+   For samples with similar number densities to BOSS, the runtime of encore scales as Ng Nr3 (`max + 1)5 [51], with
+computation dominated by the mi summations of (10) rather than estimation of the harmonic coefficients a`m (which
+scales as Ng2 (1+`max )2 , albeit with a more modest prefactor). In practice, we parallelize computation using OpenMP,
+with each NGC (SGC) each simulation requiring ∼ 32 (6) CPU-hours to analyze on a modern 16-core Intel processor,
+including edge-correction. In total, analysis of the BOSS data and 2048 Patchy mocks required ∼ 80k CPU-hours.
+This is comparable to the computational costs of the 2PCF analysis in Ref. [73], and is facilitated by the efficient
+nature of the encore algorithm. We display a selection of the measured 4PCF multiplets in Fig. 2.
+
+
+                                                           C.      Covariance Matrices
+
+  The Patchy mocks described in §III A can be used to form a sample covariance of the 4PCF statistic in the
+standard manner:
+                                                                                 NX
+                                                                                  mocks 
+                                                                           1               (i)
+                                                                                                                                                     
+           Ĉ`1 `2 `3 ;`01 `02 `03 (r1 , r2 , r3 ; r10 , r20 , r30 ) =                    ζ` ` ` (r1 , r2 , r3 ) − ζ̄`1 `2 `3 (r1 , r2 , r3 )          (16)
+                                                                       Nmocks − 1 i=1       1 2 3
+
+                                                                                                                                                   
+                                                                                         (i)
+                                                                                   × ζ`0 `0 `0 (r10 , r20 , r30 ) − ζ̄`01 `02 `03 (r10 , r20 , r30 ) ,
+                                                                                         1 2 3
+
+          (i)
+where ζ represents the i-th 4PCF estimate (in the NGC or SGC region), and ζ̄ is the average over Nmocks realizations.
+Since the number of 4PCF bins exceeds the number of Patchy mocks, this is not invertible, making it difficult to
+perform traditional χ2 -based analyses. For this reason, we supplement the sample covariance with the analytic
+covariance described in [57]. Essentially, this computes:
+                                        ds ds0
+                                      Z
+                      0    0    0
+  Cov(r1 , r2 , r3 ; r1 , r2 , r3 ) =           hδ(s)δ(s + r1 )δ(s + r2 )δ(s + r3 )δ(s0 )δ(s0 + r10 )δ(s0 + r20 )δ(s0 + r30 )i       (17)
+                                        V V
+                                                                                       ds0
+                                        Z                                           Z
+                                           ds
+                                      −        hδ(s)δ(s + r1 )δ(s + r2 )δ(s + r3 )i        hδ(s0 )δ(s0 + r10 )δ(s0 + r20 )δ(s0 + r30 )i ,
+                                           V                                            V
+
+
+9 If the algorithm’s runtime scales as N 2 , this partitioning minimizes the Poisson error at fixed computational cost [71, 72]. In our case,
+                                        g
+  the scaling is closer to linear, thus the total work is roughly independent of the partition size.
+                                                                                                                                    7
+
+
+                            140
+                            120
+
+
+              ri [hMpc 1]
+                            100
+                             80
+                                                                                                                      Bin 1
+                             60                                                                                       Bin 2
+                             40                                                                                       Bin 3
+                                                                   (1, 1, 1)
+                          1500
+
+         (r1, r2, r3) /
+                 ]
+
+
+
+
+                          1000
+                            500
+                 123                                                                                           Patchy: NGC
+                             0                                                                                 Patchy: SGC
+                                                                                                               BOSS: NGC
+                 [
+
+
+
+
+         r1r2r3 Im
+                            500                                                                                BOSS: SGC
+                                                                   (1, 2, 2)
+
+         (r1, r2, r3) /
+                          1000
+                 ]
+
+
+
+
+                            500
+                 123         0
+                 [
+
+
+
+
+         r1r2r3 Im
+                            500
+
+
+                                                                   (2, 3, 4)
+
+      (r1, r2, r3) /
+             ]
+
+
+                          1000
+                            500
+             123             0
+             [
+
+
+
+
+      r1r2r3 Im
+                            500
+                          1000
+                                                                   (4, 4, 3)
+
+         (r1, r2, r3) /
+                 ]
+
+
+
+
+                            500
+
+                             0
+                 123
+                 [
+
+
+                            500
+         r1r2r3 Im
+                                  0   10                20                 30                 40                 50
+                                                               Radial Bin Index
+
+FIG. 2. Measurements of the parity-odd 4PCF from the BOSS CMASS galaxy sample, alongside those from 2048 Patchy
+simulations. The NGC (SGC) results are shown in blue (red) bands, with the BOSS data shown as error-bars, using the
+Patchy variances. Results are displayed for a selection of {`1 , `2 , `3 } multiplets (which specify the internal angles of the galaxy
+tetrahedron, as in Fig. 1), whose values are indicated by the title of each subfigure. In total, 23 parity-odd multiplets are
+included in the analysis of §V. The horizontal axis specifies the radial bin combinations, {r1 , r2 , r3 }, with the central values of
+r1 , r2 and r3 in each bin shown in the top panel. These correspond to the distances of the secondary, tertiary, and quaternary
+galaxies from the primary in Fig. 1. For visibility, the 4PCF measurements are rescaled by a factor −i r1 r2 r3 . As expected, the
+Patchy measurements show no signs of parity-violation. Given the high correlation between neighboring bins, it is difficult to
+visually assess whether the BOSS dataset contains signatures of parity-violation; this is quantified in Figs. 4 & 5.
+                                                                                                                            8
+
+where the statistical expectations can be expanded using Wick’s theorem to yield products of four 2PCFs. The covari-
+ance is then projected into the angular basis of §II A and simplified. The approach makes a number of assumptions:
+    • Isotropy: The 2PCF ξ(r) ≡ hδ(s)δ(s + r)i is assumed to be a function only of |r|. This neglects redshift-space
+      distortions, which have a non-trivial impact on the isotropic 4PCF covariance.
+    • Gaussianity: The expectations entering (17) strictly contain additional contributions from higher-order corre-
+      lators such as the 3PCF.
+    • Survey Geometry: Whilst the 4PCF is edge-corrected (§II C), the same is not true for the covariance. The
+      latter inherits non-trivial dependence on the survey geometry [e.g., 74, 75], which cannot be simply captured by
+      modifying the survey volume or shot-noise [57].
+For these reasons, we do not expect the analytic models of [57] to accurately predict the true covariance of BOSS. It is
+a relatively close approximation of matrix structure however, and will thus be used as a proxy covariance to facilitate
+the analysis techniques described in §IV. We construct the covariance using the same radial binning parameters as in
+§III A, restricting to odd `1 + `2 + `3 . Following the prescription of [74] (but generalized to higher dimensions), we
+use an effective volume of 1.90h−3 Gpc3 (0.77h−3 Gpc3 ) and shot-noise Pshot = 3130h−3 Mpc3 (3160h−3 Mpc3 ) for the
+NGC (SGC) subsample. The input 2PCFs are taken from a fit to the BOSS CMASS power spectrum, modelled using
+the Effective Field Theory of Large Scale Structure [76], as implemented in class-pt [77].
+   Fig. 3 compares the analytic and sample covariances for the NGC region, with the latter estimated
+                                                                                                p       from (16) using
+2048 Patchy mocks. Considering the correlation matrices (Fig. 3a, defined as Rij ≡ Cij / Cii Cjj for covariance
+Cij ), we find good agreement between the two, indicating that the Gaussian theory model well reproduces the matrix
+structure. However, the diagonal elements (Fig. 3b) of the analytic covariance are roughly a factor of two less than
+those of the sample covariance. This is likely to arise from the non-trivial survey geometry of the BOSS CMASS
+region [57] and prohibits direct use of the analytic covariance as a model for the 4PCF statistics.10
+
+
+                                                   IV.    ANALYSIS METHODS
+
+  Below, we discuss two techniques that will be used to search for a signature of parity-violation in §V: (1) a non-
+parametric rank test, which does not require the likelihood to be Gaussian, and (2) data compression followed by
+a mock-based χ2 -analysis. Both approaches make use of the smooth (but inaccurate) covariance matrix model of
+§III C to overcome the difficulties associated with the high-dimensionality of the 4PCF. To avoid confirmation bias,
+the pipeline implementing these techniques11 was constructed before the BOSS data were unblinded.
+
+
+                                                  A.     Non-Parametric Rank Test
+
+   Non-parametric tests provide a powerful way to analyze data when the underlying likelihood is not known. Here, we
+consider a rank test, examining the null hypothesis of zero parity-odd 4PCF. To implement this, we first define a test
+statistic, computed on both the data and a set of mocks. These simulations are required to obey the null hypothesis
+(i.e. be parity-invariant) and have realistic noise properties. The test statistic measured from data is then compared
+to the empirical distribution obtained from the mocks, allowing construction of a detection significance. For example,
+if the data statistic exceeds that of 95% of the mocks, we may reject the null hypothesis at 95% CL. The principal
+advantage of this approach is that it does not require a theoretical PDF for the test statistic, i.e. we do not have to
+assume the 4PCF to be a draw from some multivariate Gaussian. Indeed, the observed 4PCF does not appear to be
+Gaussian; this is explored in Appendix A. A limitation of such rank tests is that one cannot claim a detection at high
+significance; rather the maximal confidence level is (1 − 1/Nmocks ).
+   Below, we will use the following test statistic, dubbed the pseudo-χ2 :
+                                                h          i     h          i
+                                          χ̃2 ≡ ζ T C̃−1 ζ     + ζ T C̃−1 ζ     ,                                  (18)
+                                                                  NGC                 SGC
+
+where ζ is the set of measured parity-odd 4PCF multipoles (treated as a Nζ -dimensional vector), and C̃ is the
+theoretical covariance matrix (§III C). If C̃ is equal to the sample covariance (in the limit of infinite mocks), (18) reduces
+
+
+10 Note that this discrepancy is not fully resolved by rescaling the theory covariance by a constant factor.
+11 Available at github.com/oliverphilcox/Parity-Odd-4PCF.
+                                                                                                                                                                                                                             9
+
+
+                    0
+                                              2048 Patchy Mocks                                                              0
+                                                                                                                                                        Gaussian Theory
+                                                                                                                                                                                                 1.00
+                                                                                                               111                                                                         111
+                   50                                                                                                    50                                                                      0.75
+
+                                                                                                               122                                                                         122   0.50
+                   100                                                                                                   100
+
+
+
+
+                                                                                                                                                                                                        Correlation Matrix
+                                                                                                               133                                                                         133   0.25
+
+
+     Bin Index 2
+                   150                                                                                                   150
+                                                                                                                                                                                                 0.00
+                   200                                                                                         144       200                                                               144
+                                                                                                                                                                                                  0.25
+
+                   250                                                                                         212       250                                                               212    0.50
+
+                   300                                                                                                   300                                                                      0.75
+                             111        122                     133                     144     212       221                        111        122         133         144     212     221
+                                                                                                                                                                                                  1.00
+                         0         50         100                             150         200     250      300                   0         50         100         150     200     250    300
+                                                                       Bin Index 1                                                                           Bin Index 1
+                                                                                                                 (a) Correlation Matrices
+
+
+                                                                             10 5               2048 Patchy Mocks
+
+
+
+
+                                               Reduced Covariance Diagonal
+                                                                                                Gaussian Theory
+
+                                                                             10 6
+
+
+                                                                             10 7
+
+
+                                                                                        111             122            133                 144                212               221
+                                                                             10 8
+                                                                                    0             50             100             150              200               250          300
+                                                                                                                                 Bin Index
+                                                                                                                 (b) Covariance Diagonal
+
+FIG. 3. Comparison of the sample and analytic covariance matrices for the parity-odd 4PCF of the BOSS CMASS NGC region.
+The former are estimated using (16), whilst the latter use the approach of [57], which does not include redshift-space distortions,
+non-Gaussianity, or the effects of survey geometry. Fig. 3a compares the correlation matrices (defined as the covariance matrices
+normalized by their diagonals); we see similar structure in both cases. The rows and columns represent the indices of the 4PCF,
+collapsed into one dimension, with each submatrix (indicated by the dotted lines) showing a different multiplet {`1 , `2 , `3 }, as
+labelled in green. Elements within a submatrix are ordered in increasing radii r1 , r2 , r3 . We include only the first six multiplets
+here; 23 are used in the analysis of §V & VII C. Fig. 3b shows the corresponding diagonal elements of the covariance. Notably,
+the analytic covariance is an underestimate by a factor close to two; we expect this to arise primarily due to the non-uniform
+survey geometry of the CMASS region [57].
+
+
+to the usual χ2 statistic, given a fiducial model of zero parity-odd 4PCF and assuming the NGC and SGC regions to
+be independent. Whilst the covariances are not quite equal in practice (Fig. 3), we expect (18) to produce a close-to-
+optimal weighting for the data, particularly if the likelihood is close to Gaussian. Furthermore, since the pseudo-χ2
+statistic does not subtract off a mean, the rank test will naturally account for any spurious parity-odd contributions
+that are present in both Patchy and BOSS. These might arise from imperfections in the edge-correction routine or
+lightcone projection effects. To perform the test, we simply compute χ̃2 for BOSS and each of the Nmocks = 2048
+Patchy simulations (§III A), before assigning a detection significance from the empirical Patchy PDF.
+
+
+                                                                                                   B.         Compressed Gaussian Analysis
+
+  A common trick when dealing with high-dimensional statistics is to apply some form of data compression [e.g.,
+78–81]. In general, this proceeds by projecting the data onto some (small) set of basis vectors, thus greatly reducing
+                                                                                                                                           10
+
+the dimensionality. When performing parameter inference, basis vectors are usually chosen to preserve the Fisher
+information matrix [e.g., 78, 80] or the log-likelihood [81]. Since our primary goal in this work is to search for signatures
+of parity-violation in a model-agnostic fashion, we adopt a somewhat different compression scheme, following [54, 79].
+   Here, we project the 4PCF onto a basis given by the eigenvectors of the theoretical covariance matrix (§III C).
+Explicitly, we define the projected statistic
+                                                                  v ≡ UT ζ,                                                              (19)
+                                                          T
+where the orthogonal
+                     matrix U is specified by C̃ = UΛU for diagonal eigenvalue matrix Λ. The compressed statistic
+has covariance E vv T = UT CU, where C is the covariance of ζ; if the theory and analytic covariances agree, this is
+diagonal and equal to Λ. In practice, we expect the compressed coefficients to be almost independent.
+  To perform dimensionality reduction, we must restrict to a subset of the aforementioned basis vectors. Given that
+we have no prior on the shape of a parity-violating 4PCF signal, we cannot select the basis vectors based on signal-
+to-noise considerations (as in [54, 79]). Instead, we use the Neig eigenvectors with smallest Λi , corresponding to the
+directions that can be most well measured.12 This highlights the benefits of using the theoretical covariance matrix
+to perform the projection; since the sample covariance does not have full rank, its smallest eigenvalues are not well
+defined.
+  Following selection of the basis vectors, we project both the BOSS data and the Patchy mocks into the Neig -
+dimensional subspace using (19). As in (16), we can form a sample covariance for v from the Patchy measurements:
+                                                       NXmocks 
+                                                 1                          
+                                                                               (i)
+                                                                                     
+                                  Ĉv,αβ =                       vα(i) − v̄α vβ − v̄β ,                            (20)
+                                            Nmocks − 1 i=1
+          (i)
+where vα indicates the compressed 4PCF of the i-th mock, with α, β ∈ {1, . . . , Neig }. Assuming Nmocks > Neig ,
+the sample covariance has full rank (unlike the uncompressed 4PCF covariance), and is thus invertible. In the low-
+dimensional subspace, analysis centers around the following statistic:
+                                                               T̂ 2 = v T Ĉ−1
+                                                                            v v,                                                         (21)
+where we have assumed zero mean, as in the null hypothesis. If v is assumed to be Gaussian distributed (a fair
+assumption if the dimensionality is small), T̂ 2 follows a χ2 -distribution with Neig degrees of freedom in the limit of
+large Nmocks . In practice, we must account for noise in the sample covariance Ĉv . A approach is to add the ‘Hartlap’
+correction factor [82, 83], leading to the modified statistic
+                                                                    Nmocks − Neig − 2
+                                   Ĥ 2 = fH × v T Ĉ−1
+                                                     v v,     fH =                    ,                            (22)
+                                                                       Nmocks − 1
+whose expectation is χ2 . Ĥ 2 is then analyzed using a χ2 -distribution, assuming Gaussianity. However, this does not
+correctly treat the sample covariance noise, and results in a PDF which is too sharply peaked if Neig is close to Nmocks
+[84]. Instead, one should analyze the T̂ 2 statistic (21) directly, using the PDF:
+                                                             Γ [(n + 1)/2]       n−p/2 (T 2 )p/2−1
+                                    fT (T 2 ; n, p) =                                               ,                                    (23)
+                                                        Γ(p/2)Γ [(n − p + 1)/2] (T 2 /n + 1)(n+1)/2
+where n = Nmocks − 1, p = Neig , and Γ is the Gamma function [84]. When dealing with multiple independent
+datasets (i.e. the NGC and SGC 4PCF measurements), one may sum the two T 2 estimates; the resulting PDF is
+the convolution of two copies of (23), and is easily evaluated with a Fast Fourier Transform. This approach will be
+adopted for the main analysis of §V to ensure that we do not claim a false detection of parity-violation.
+  Finally, we comment on the validity of our compression scheme. By the Eckart-Young theorem [85], the scheme is
+optimal (in terms of inverse-variance) in the limit of C̃ = C and a Gaussian covariance. Since the data and mocks are
+compressed in the same manner, it is unbiased for any choice of projection matrix U or dimension Neig . If too few
+basis vectors are used or if the theory covariance is far from the truth, the penalty (in the limit of large Nmocks ) is
+simply a reduced detection significance.13 When using finite Nmocks , increasing Neig will also lead to increased noise
+in the covariance matrix Ĉv , somewhat lessening the detection significance. To incorporate these effects, a range of
+Neig values will be considered in §V.
+
+
+12 Additional choices of basis functions can be found in §VI D.
+                                                                                                                           h i
+13 This is easiest to show by considering the average χ2 difference between some signal ζ and the null hypothesis of E ζ̂ = 0. Without
+                                                                                           0
+                              −1
+                                                                                                                  −1 T
+   compression, ∆χ = ζ0 C ζ0 , whilst following projection by some Nζ ×Neig matrix U, ∆χ2proj = ζ0T U UT CU
+                      2    T                                                                                          U ζ0 . If the projection
+                                                                           PNeig 2
+   is optimal, i.e. if U is the eigenvector matrix of C, then ∆χ2proj,opt = i=1  ζ̄0,i /Λi where ζ̄0 = UT ζ0 . Since ζ̄0,i
+                                                                                                                       2 ≥ 0 and Λ > 0, it
+                                                                                                                                     i
+                     2              2
+   is clear that ∆χproj,opt ≤ ∆χ , with equality iff Neig = Nζ . A similar result holds in the more general case due to the properties of
+  projection matrices; this is easily shown by rotating to a diagonal basis.
+                                                                                                                             11
+
+                                                  BOSS Rank: 2040 /2048 (99.6%)
+                                           250
+                                                                       2048 Patchy Mocks
+                                           200
+                                                                       BOSS Data
+
+                                           150
+                                  Counts
+                                           100
+
+                                           50
+
+                                            0
+                                                 6000     6500    7000      7500     8000
+                                                         Pseudo    2 Statistic
+
+
+FIG. 4. Empirical distribution of the pseudo-χ2 test statistic defined in (18) from 2048 Patchy mocks and the BOSS data. This
+is a proxy for the standard χ2 parameter, but uses the theoretical covariance matrix of §III C. The data (shown as a vertical
+dashed line) has a CDF of 99.6%; this is inconsistent with the null hypothesis of parity-invariance at 2.9σ. Note that this test
+does not assume Gaussianity of the likelihood, and naturally encompasses any spurious parity-odd contributions appearing in
+both the Patchy mocks and the BOSS data. The significant detection of parity-violation found by this test indicates either
+parity-violating physics or unresolved systematics. The above plot represents the main result of this work.
+
+
+
+                                                 V.     NULL-TEST RESULTS
+
+
+   We now proceed to assess whether the BOSS data contains signatures of parity-violation. Firstly, we consider
+the raw 4PCF measurements, displayed in Fig. 2 for a selection of multiplets {`1 , `2 , `3 }. As expected, the mean
+parity-odd 4PCF of Patchy mocks appears close to zero. This functions as a useful consistency test for the analysis
+pipeline; errors in the 4PCF computation could have led to a detectable signal in Patchy mocks, especially given
+that the parity-even 4PCF is large [54]. For the standard-deviations, we find a rough scaling of (r1 r2 r3 )−1 , with
+enhanced amplitudes found for the SGC region due to its smaller volume (§III). Moving to the BOSS results, we find
+considerable (highly correlated) scatter around zero, but no obvious signatures of parity-violation.
+   To examine this further, we turn to the non-parametric rank test of §IV A. In Fig. 4, we plot the empirical distribution
+of the pseudo-χ2 test statistic; this appears to have broader tails than a standard χ2 distribution (most likely due
+to imperfections in the theoretical covariance C̃), highlighting the importance of a non-parametric treatment. The
+BOSS data has a rank of 2040/2048, and an associated detection probability of 99.6% (equivalent to 2.9σ).
+This is inconsistent with a random draw from the empirical distribution of Patchy mocks, and gives evidence for
+parity-violation. A greater number of simulations would be needed to probe this detection at higher significance.
+   An additional test is given by the projected χ2 -based analysis discussed in §IV B. Whilst this assumes a Gaussian
+distribution for the compressed statistic (somewhat justified by the reduced number of bins), it uses the sample
+covariance rather than the theoretical covariance, and thus optimally weights the data. In the top panel of Fig. 5, we
+show the theoretical and empirical distributions of the projected sample statistics T 2 and H 2 (§IV B) from Patchy,
+with the latter obtained via bootstrapping. For small Neig , the empirical distributions of both statistics seem well-fit
+by their theory models, which is expected since Nmocks is considerably larger than Neig . At larger Neig we begin to
+see discrepancies between the H 2 statistic and the accompanying χ2 theory model, with the former having a slightly
+narrower distribution. Considering the detection CDFs shown in the lower panel of Fig. 5, the distribution of Patchy
+mocks appear somewhat non-uniform for the H 2 statistic at Neig > 100. In particular, 152 (199) mocks lie in the
+outermost 5% of the theory distribution for Neig = 100 (Neig = 250), in contrast to the 102 ± 10 expected. This echoes
+the conclusion of [84]; if Neig is close to Nmocks , improper treatment of covariance matrix noise may be dangerous, and
+could lead to false detections of parity-violation. For the T 2 distribution (which correctly treats such effects) we find
+somewhat better agreement, with 135 and 162 mocks in the outer 5% region respectively. However, the distribution
+still appears to be somewhat skewed. We attribute this to intrinsic non-Gaussianity of the 4PCF likelihood (see [e.g.,
+59] and Appendix A), whose effect increases as the size of the data vector increases, and the Central Limit Theorem
+becomes less applicable.
+   For the BOSS data, the compressed Gaussian analysis gives detection significances of 59.2%, 77.8%, 83.3%, and
+100.0% for Neig = 10, 50, 100, and 250 respectively, equivalent to 1.3σ, 1.7σ, 1.9σ, and 3.9σ in a two-tail test. The
+fact that these results are a strong function of Neig suggests that our projection scheme is inefficient, i.e. that 4PCF
+                                                                                                                                                                                                                            12
+
+                                    Neig = 10                                              Neig = 50                                         Neig = 100                                                 Neig = 250
+                                                            H2         0.030                                            0.0200
+             0.06                                                                                                                                                              0.012
+                                                            T2                                                          0.0175
+                                                                       0.025
+             0.05                                                                                                                                                              0.010
+                                                                                                                        0.0150
+                                                                       0.020                                                                                                   0.008
+             0.04                                                                                                       0.0125
+PDF          0.03
+                                                                       0.015                                            0.0100                                                 0.006
+                                                                                                                        0.0075
+             0.02                                                      0.010                                                                                                   0.004
+                                                                                                                        0.0050
+             0.01                                                      0.005                                                                                                   0.002
+                                                                                                                        0.0025
+             0.00                                                      0.000                                            0.0000                                                 0.000
+                    0   10     20    30   40     50    60    70                0    50     100     150      200                  0    100      200     300         400                 0   200    400     600    800 1000 1200
+                                  H 2 or T 2                                               H 2 or T 2                                         H 2 or T 2                                             H 2 or T 2
+                                BOSS: 59.2%                                              BOSS: 77.8%                                        BOSS: 83.3%                                           BOSS: 100.0%
+             160
+             140
+             120
+
+
+
+Occurences
+             100
+              80
+              60
+              40
+              20                                            H2
+                                                            T2
+               0
+                0.0      0.2        0.4    0.6        0.8        1.0       0.0     0.2    0.4    0.6     0.8      1.0        0.0     0.2     0.4     0.6     0.8         1.0       0.0      0.2     0.4         0.6   0.8   1.0
+                             Detection Probability                                  Detection Probability                             Detection Probability                                  Detection Probability
+
+ FIG. 5. Distributions of the H 2 and T 2 statistics (22) & (21) for the compressed BOSS data and Patchy simulations. We show
+ results using various numbers of basis vectors, Neig , as indicated by the titles, and note that the statistic includes both NGC and
+ SGC measurements. The top panels compare the theoretical and empirical PDFs for each statistic, whilst the bottom panels
+ display the CDFs. Results for BOSS are shown as vertical dashed lines in both cases. To compute the empirical distributions
+ (shown as histograms), we apply bootstrapping; (Nmocks −1) mocks are used to define a sample covariance, allowing computation
+ of H 2 and T 2 for the excluded mock. The theoretical PDFs for H 2 and T 2 are the convolution of two χ2 or T 2 distributions
+ (23). For BOSS, we report detection probabilities of 59.2%, 77.8%, 83.3%, and 100.0% from the T 2 statistic using Neig = 10, 50,
+ 100, and 250 basis vectors respectively. As in Fig. 4, we find mild evidence for parity-violation, particularly as Neig increases.
+ We caution that this test assumes a Gaussian likelihood, which may lead to overestimated detection probabilities at high Neig
+ (as suggested by the somewhat skewed empirical distribution of Patchy mocks at Neig = 250, and the results of Appendix A,
+ which correspond to Neig = Nζ ).
+
+
+ components dropped from the analysis carry significant information regarding the parity-violating signature.14 This
+ is a consequence of performing a blind analysis; given the lack of a physical model, we cannot choose basis vectors
+ which maximize the signal-to-noise (though see §VI D for results using alternative choices of compression scheme).
+ Overall, we find a weak preference for a non-Gaussian signal using the compressed analysis. This notwithstanding,
+ we again find a preference for a non-zero parity-odd signal from the sample, though again caution that the Neig = 250
+ result may be artificially enhanced by likelihood non-Gaussianity.
+    To close, we comment on the implications of the results found herein. Firstly, we note that the results are largely
+ consistent between the two tests, with both finding a detection of large-scale parity-violation at ∼ 3σ. This cannot be
+ caused by an incorrectly modelled likelihood (evidenced by the rank test), nor is it a result of our analysis incorrectly
+ treating the window function (which would have led to the compressed analysis showing a parity-violating signature
+ in the Patchy mocks). This leaves two explanations: (1) new physics, and (2) unexplained systematics.
+ Whilst the first is a distinct possibility (and is not ruled out by other observations, since no former experiment has
+ measured the 4PCF in a model-agnostic fashion), the second should also be carefully considered. A brief discussion
+ of this is presented in the next section.
+
+
+                                                                                           VI.         SYSTEMATIC TESTS
+
+   Below, we report the results of various checks performed to test the results of §V, utilizing data cuts, mock catalogs,
+ and rescaled statistics. In the final section, we will also comment on potential sources of systematic effects that could
+
+
+14 This differs from the conclusion of [54], which used a similar compression scheme to analyze the parity-even 4PCF. In the former work,
+
+        basis vectors were chosen based on the mean non-Gaussian signal from the mocks, ensuring optimal linear compression. This is not
+        possible in our case, since the mocks conserve parity.
+                                                                                                                                                             13
+
+                                                                                                            BOSS Rank: 2014 /2048 (98.3%)
+           BOSS Rank: 2023 /2048 [NGC], 1963 /2048 [SGC]                                                                               2048 Patchy Mocks
+                                                                                                   200                                 BOSS Data
+         200
+                                                                                                   150
+         150                                                   2048 Patchy Mocks: NGC     Counts
+Counts
+                                                               2048 Patchy Mocks: SGC              100
+         100                                                   BOSS Data: NGC
+                                                               BOSS Data: SGC                      50
+         50
+                                                                                                    0
+                                                                                                         6500   7000    7500    8000  8500 9000 9500 10000
+          0
+               2500   3000   3500       4000      4500                                                                 Pseudo      2 Statistic
+                         Pseudo     2 Statistic
+
+                                                                                        FIG. 7. As Fig. 4, but normalizing the 4PCF mea-
+FIG. 6. As Fig. 4, but analyzing the two observational regions (NGC                     surements by a realization-dependent amplitude, as de-
+and SGC) separately. The NGC region (red) contains almost three                         scribed in §VI C. This will account for an overall rescal-
+times as many galaxies, and is thus expected to be more constraining.                   ing factor between the BOSS data and Patchy simu-
+We report detection significances of 98.8% (95.8%) for NGC (SGC),                       lations, arising, for example, from a different value of
+corresponding to 2.5σ (2.0σ).                                                           σ8 . In this case, the detection significance is slightly
+                                                                                        reduced, however, we still find hints of parity-violation
+                                                                                        at the 2.4σ level.
+
+
+lead to a false detection of parity-violation. All the analyses below were devised post-unblinding.
+
+
+                                                                A.    Data Partitioning
+
+   A simple test for systematic errors is to repeat the non-parametric rank test described in §IV A for the two BOSS
+regions (NGC and SGC) separately. The two patches are in opposite hemispheres, have different calibrations, and are
+of different angular sizes, thus this is a sensitive test of the effects of survey calibration and large-scale modes.
+   Fig. 6 displays the pseudo-χ2 statistic for the two BOSS regions separately (plotting both the observational data and
+the empirical distribution from 2048 Patchy mocks). Here, we find ranks of 2023/2048 and 1963/2048 for the NGC
+and SGC regions separately, with a lower significance found for the smaller-volume region, as expected. Neither value
+is enough to claim a detection on its own, however, the trends from the two are in agreement, and their combination
+reaches the 2.9σ level reported in §III. This test does not reveal any clear differences between the two regions; the
+results are consistent with our expectations if this is indeed a bona fide detection of parity violation.
+
+
+                                                  B.     Dependence on Radial and Angular Scales
+
+   An additional test is to examine the impact of radial and angular binning on the detection significance reported in
+§V. For this purpose we will primarily use the rank test of §IV A, and adjust the criteria for which bins are included
+in the analysis, always including a subset of those discussed in §III B. In general, we expect the detection significance
+to decrease somewhat as the dimensionality (and hence number of measured Fourier-modes) is reduced, relative to
+the initial size of Nζ = 1288). This will be particularly apparent if we excise regions in which the signal is strongest.
+   First, we consider changing the radial binning strategy. Two variations are possible: we can filter based on the
+distances of secondary galaxies from the primary or those of the secondary galaxies from each other (cf. Fig. 1).
+To test the former, we will separately remove the first and last radial bin in each dimension, i.e. that with ri ∈
+[20, 34]h−1 Mpc and [146, 160]h−1 Mpc respectively. When the minimum radius is increased, we have a modest decrease
+in dimensionality (to Nζ = 805) and a detection rank of 1949/2048 (2.0σ). If the maximum radius is instead
+reduced, Nζ decreases by a third, but we do not find a change in the overall detection significance. The first result
+is unsurprising: the variance scales approximately as (r1 r2 r3 )−2 , thus, if the signal has support over a range of radii,
+removing the low-r bins would reduce the detection significance. In the second case, the lack of variation suggests
+that the detection is not caused by some spurious ultra-large mode (arising from foregrounds, for example), though
+we caution that the signal-to-noise in these modes is the smallest.
+   To vary the allowed distances between secondary galaxies, we may modify the restrictions on the allowed tetrahedral
+shapes. In particular, accepting configurations with r1 < r2 + γ∆r < r3 + 2γ∆r restricts the internal separations to be
+at least γ∆r (with γ = 1 in the fiducial analysis of §V). If we set γ = 0, and thus include all bins satisfying r1 < r2 < r3 ,
+                                                                                                                                       14
+
+secondary galaxies can be arbitrarily close together, and the size of the data-vector increases to Nζ = 2760. If the
+signal contains small-scale power, this should increase the detection significance; here, the non-parametric test gives
+a rank of 2045/2048 (almost at the saturation point), equivalent to 3.2σ, with the Neig = 100 (250) compressed
+χ2 -based analysis giving a detection probability of 99.7% (100.0%), equivalent to 3.4σ (4.3σ). This suggests that
+small-scale modes are of importance, though we note that they could contain contributions from parity-breaking
+physics on halo scales, such as magnetohydrodynamics (whose contributions are generally expected to be small in the
+main analysis, since we restrict to separations above 14h−1 Mpc). If we instead fix γ = 2, forcing secondary galaxies to
+be separated by at least 28h−1 Mpc, we find a sharp reduction in dimensionality to Nζ = 460, but only slight decrease
+in the detection rank (to 1970/2048, or 2.1σ). This suggests that the signal causing the detection contains non-trivial
+support on relatively large (and generally well understood) scales.
+   Next, we consider varying the angular binning, by altering the maximum multipole `max , and thus the values of
+{`1 , `2 , `3 } (§II) that are used in the analysis. Setting `max = 3 reduces the dimensionality to Nζ = 616, and changes
+the detection significance to 1970/2048, or 96.2% (2.1σ). The physical action of this is to reduce the number of
+squeezed tetrahedra in the analysis (which have smaller internal tetrahedron angles i.e. large `). If `max is further
+reduced to 2 (with Nζ = 224) the rank falls to 1466/2048, or 71.6% (1.1σ). Our conclusions for `max = 3 are similar
+to the above: the signal contains contributions from small-scale modes, but is not entirely dominated by them, whilst
+the `max = 2 result will occur primarily due to the much reduced dimensionality, and thus signal-to-noise. We further
+note that the multiplets with greatest impact on the detection significance are {`1 , `2 , `3 } = {1, 1, 1}, {1, 2, 2} and
+permutations thereof. This is again unsurprising, given that these are the modes with the greatest signal-to-noise,
+but may serve to indicate that any signal observed is not entirely from some squeezed limit.
+
+
+                                             C.     Realization-Dependent Rescaling
+
+  Under null assumptions (and assuming Gaussianity for the sake of illustration), the rank test compares the variance
+of the observational data with that of the Patchy mocks. As such, a spurious detection of parity-violation could
+be caused by the simulations underestimating the true covariance, for example due to mismatches in the galaxy bias
+parameters or the underlying cosmology. From Fig. 4, we see that excellent agreement between data and mocks can
+be obtained if one inflates the covariance of the Patchy simulations by 13%. Under the assumption of a Gaussian
+4PCF covariance, this requires the 2PCF to be rescaled by 3%. Whilst this may seem straightforward, it is somewhat
+non-trivial, since the Patchy simulations are calibrated to match the BOSS two- and three-point clustering statistics
+on small scales [69, 70].
+  To probe this, we consider normalizing the odd-parity 4PCF measurements by their even-parity (more specifically,
+disconnected) counterparts and reapplying the rank test of §IV A. To perform this robustly, we first fit the Gaussian
+4PCF contribution to a simple theory template (presented in [86]), extracting a single overall amplitude for each
+realization.15 The odd-parity 4PCF measurements (both for the BOSS data and each Patchy mock) are then
+divided by this amplitude, which will remove the dominant effect of an overall rescaling of the Patchy covariance
+compared to that of BOSS. Whilst the Patchy covariance need not be wrong by a simple constant, this is expected
+to capture the leading-order effect, and particularly accounts for the unknown value of b1 σ8 . We note that this
+prescription cannot be easily applied to the compressed Gaussian analyses, since it violates the Gaussian assumption
+on large scales due to sample-variance cancellation.
+  In practice, we find an NGC (SGC) normalization factor of 0.85 (0.99) for BOSS, and 0.92±0.04 (0.94±0.06) for the
+2048 Patchy simulations. Notably, the BOSS NGC data has a smaller factor; this will shift the corresponding pseudo-
+χ2 value of BOSS towards those of the mocks. In Fig. 7, we show the corresponding rank test results, finding that the
+detection significance is slightly reduced (to 2014/2048), matching our expectation. However, this is consistent with
+the broadened posterior associated with this test (comparing the widths of the empirical distributions in Figs. 4 & 7),
+and we still find a weak detection of parity-violation, now at 2.4σ. It is clear that the detection cannot be entirely
+removed by a simple rescaling; if differences in the statistical properties of simulations and observational data are to
+blame, they must be scale dependent.
+
+
+                                               D.    Choice of Compression Scheme
+
+   For the compressed Gaussian analysis of §IV B, it is important to choose a set of basis vectors that allow for
+significant dimensionality reduction whilst preserving key features of the data. For null tests such as that of §IV B,
+
+
+15 An alternative approach is to divide the odd-parity 4PCF by the value of the disconnected (i.e. Gaussian) 4PCF in each bin; this is not
+
+  performed since the latter statistic suffers from significant cosmic variance on large scales and can be negative.
+                                                                                                                          15
+
+this is non-trivial, since we do not have prior knowledge of the form of a parity-violating model. For this reason,
+the analysis of §III adopted a set of basis vectors selected using a minimum variance criterion; this is equivalent to
+maximizing signal-to-noise assuming a uniform signal in all bins.
+  An alternative approach would be to assert some typical form for the parity-violating signal, and use this to select
+a sensible set of basis vectors onto which the measured 4PCFs are projected. A simple choice is ζΛ (r1 , r2 , r3 ) ∝
+(r1 r2 r3 )−1 (matching the approximate scaling of the error-bars). In this case, the compressed Gaussian analysis
+gives detection significances of 0.8σ, 1.8σ, 3.5σ for Neig = 50, 100, 250 respectively. A more nuanced choice would
+be to weight by the inflationary parity-breaking 4PCF model introduced in §VII. This has a physically reasonable
+form (albeit specific to a single parity-breaking phenomenon) and leads to Gaussian significances of 0.7σ, 1.5σ, 2.3σ
+respectively. Finally, we consider fixing the fiducial model to the {`1 , `2 , `3 } = {0, 0, 0} multiplet of the disconnected
+4PCF. This will indicate whether the observed signal was sourced by incomplete subtraction of the disconnected
+component. In this case, we find detection significances of 2.0σ, 1.3σ and 2.6σ.
+  For an ideal projection, corresponding to matched true and fiducial 4PCFs, a strong detection significance would
+be found at small Neig (whereupon the effects of likelihood non-Gaussianity are suppressed), which would increase
+only slightly as Neig was increased. This behavior is clearly not observed for any of the templates discussed above,
+suggesting that the signal causing the 4PCF detection is not close to one of the above forms. This is unsurprising:
+even if the signal is cosmological in nature, it could be sourced by a wide variety of physical effects, each of which
+has a different signature in the Nζ = 1288-dimensional 4PCF statistic. That we do not observe a strong detection
+with any template is additionally consistent with the notion that, if such effect is real, it lies on the threshold of that
+detectable by current data.
+
+
+                                               E.   Tests on Mock Catalogs
+
+   A useful end-to-end test of our analysis pipeline is to apply it to a set of (parity-conserving) mock catalogs and test
+whether a signal is observed. For this purpose, we will use the Nseries simulation suite:16 a set of 84 mock catalogs
+created to verify the BOSS analysis pipeline [87]. These were constructed from full N -body simulations P     (though are
+not quite independent) using the cosmological parameters {Ωm = 0.286, σ8 = 0.82, ns = 0.97, h = 0.7, mν = 0},
+and have similar halo occupation distribution and selection function to the BOSS data, as well as a careful treatment
+of fiber collisions. The Nseries window function is somewhat different to that of BOSS (cf. §III A), and includes
+only the NGC region. For this reason, the simulations are accompanied by 2048 Patchy simulations generated with
+the Nseries window function (hereafter ‘Patchy-Nseries’ simulations), which will be used to generate covariances
+and perform the relevant rank tests. Unlike for BOSS, the Patchy-Nseries simulations were not calibrated to the
+small-scale clustering of the Nseries simulations (which have a slightly modified cosmology to Patchy-Nseries); as
+a result, the covariance of Nseries and Patchy-Nseries could differ somewhat, which would have implications for
+the parity-violation tests, as discussed in §VI C.
+   Using the methodology of §IV, we analyze each of the 84 Nseries simulations in turn, giving the 4PCF measure-
+ments shown in Fig. 8 (which display no obvious signal). Here, we show results only for the rank tests; implementation
+of the other tests discussed above (such as the compressed Gaussian analysis and constraints on the inflationary mod-
+els of §VII) can be found online.17 Fig. 9a compares the distribution of the pseudo-χ2 statistic for the Nseries and
+Patchy-Nseries simulations (following §V). If our analysis pipeline is working as expected, and the statistical prop-
+erties of Nseries and Patchy-Nseries are similar, the empirical pseudo-χ2 distributions of the two should match,
+thus the Nseries simulations should have a mean rank of ≈ 1024/2048 (with some deviations expected from sample
+variance). In practice, we find a mean rank of 244/2048 (11.9%), which is significantly below the expected value.
+Since the test statistic is a quadratic form, this does not imply a false detection of parity violation (which would give
+a mean rank greater than 1024/2048); instead it highlights differences between the Nseries and Patchy-Nseries
+simulation suites (despite the similarity observed in Fig. 8). As mentioned above, these could come from a variety of
+factors, such as a different underlying cosmology, the inclusion of fiber collisions in the former, and a different halo
+occupation distribution. Notably, none of the Nseries mocks have a mean rank above 95%, hence we do not find
+evidence for parity-violation in any case.
+   To more closely assess the impact of differences in the Nseries and Patchy-Nseries covariance matrices (which
+cause the difference in pseudo-χ2 , in the Gaussian limit), we additionally perform a rank test with the mocks rescaled
+using the realization-dependent factor of §VI C. The relevant normalization is 0.90 ± 0.03 for Nseries, and 0.92 ± 0.04
+for Patchy-Nseries. This differences implies that the Nseries histogram will shift slightly in the direction of
+
+
+16 Available at www.ub.edu/bispectrum/page11.html
+17 github.com/oliverphilcox/Parity-Odd-4PCF
+                                                                                                                                16
+
+
+                        140
+                        120
+
+
+          ri [hMpc 1]
+                        100
+                         80
+                                                                                                                    Bin 1
+                         60                                                                                         Bin 2
+                         40                                                                                         Bin 3
+
+            ]
+                                                                 (1, 1, 1)
+
+      (r1, r2, r3)
+                        200
+                         0                                                                                Patchy-Nseries
+            123         200                                                                               Chern-Simons
+                                                                                                          d0odd
+                        400
+            [
+
+
+
+
+      r1r2r3 Im
+                                                                                                          d1odd
+                        600                                                                               Nseries
+
+            ]           300
+                                                                 (1, 2, 2)
+
+      (r1, r2, r3)
+                        200
+                        100
+            123          0
+            [
+                        100
+
+      r1r2r3 Im
+                        200
+                        300
+            ]
+                                                                 (2, 3, 4)
+
+      (r1, r2, r3)
+                        200
+
+                         0
+            123
+
+                        200
+            [
+
+
+
+
+      r1r2r3 Im         400
+                                                                 (4, 4, 3)
+                        200
+            ]
+
+
+
+
+      (r1, r2, r3)      100
+            123          0
+            [
+
+
+                        100
+      r1r2r3 Im         200
+                              0    10                 20                 30                 40                 50
+                                                            Radial Bin Index
+
+FIG. 8. Measurements of the parity-odd 4PCF from the mean of 84 Nseries mocks (black) and 2048 Nseries-Patchy
+simulations (blue), following the form of Fig. 2. We additionally display theoretical predictions for the Chern-Simons inflationary
+model (green), and its two constituent parts, proportional to dodd 0  (red dashed) and dodd
+                                                                                          1    (purple dashed). Theory models are
+                                                                 4
+multiplied by an amplitude corresponding to ACS = 5 × 10 for visibility, with data-driven constraints on this parameter
+presented in Fig. 10. The Nseries dataset appears consistent with parity-conservation, as expected; this is explored further in
+Fig. 9.
+                                                                                                                                           17
+
+
+                    Nseries Mean Rank: 244 /2048 (11.9%)                              Nseries Mean Rank: 634 /2048 (31.0%)
+                                        2048 Patchy-Nseries Mocks             250                         2048 Patchy-Nseries Mocks
+            200                         84 Nseries Mocks                                                  84 Nseries Mocks
+                                                                              200
+            150
+
+   Counts                                                            Counts
+                                                                              150
+            100
+                                                                              100
+            50                                                                50
+
+             0                                                                 0
+                  2400   2600    2800 3000 3200 3400        3600                         3000      3500       4000      4500        5000
+                                Pseudo 2 Statistic                                               Pseudo       2 Statistic
+
+                                  (a) Fiducial                                      (b) Including realization-dependent rescaling
+
+FIG. 9. Distribution of the pseudo-χ2 statistic for a set of high-fidelity Nseries simulations (orange) and the corresponding
+empirical distributions obtained from 2048 Patchy-Nseries mocks. In the left panel (analogous to Fig. 4), we find a mean rank
+of 244/2048, with 30/84 mocks lying in the outer 5% region of the empirical distribution Patchy-Nseries distribution. As
+such, we report an underestimate of the test statistic relative to that expected. This is attributed to the difference in cosmology
+and bias parameters between the Nseries mocks and Patchy simulations. The right panel shows the effect of including the
+realization-dependent rescaling factor discussed in §VI C: this reduces the difference between datasets and increases the mean
+rank to 634/2048, with only 8 of the 84 simulations in the outer 5% of the empirical distribution. In both cases, there are
+no Nseries simulations with a pseudo-χ2 value in the upper 5% region of the empirical distribution, thus no detection of
+parity-violation.
+
+
+Patchy-Nseries; this is observed in Fig. 9b. The mean rank is 634/2048 (31.0%), which is significantly closer to the
+expected value than without rescaling. Around 10% of the Nseries mocks lie in the outer 5% region of the Patchy-
+Nseries histogram, giving approximately a one-in-ten chance of a false detection (or here, an anti-detection). The
+shift in the mean rank induced by the rescaling factor leads to two conclusions: (a) the factor can be usefully adopted
+to remove the lowest-order differences in simulation covariance matrices (validating the approach of §VI C), (b) the
+difference between Nseries and Patchy-Nseries covariances is not fully captured by the rescaling, and is thus
+scale-dependent.
+   The above tests indicate that the validity of our null-tests depend strongly on whether the statistical properties of the
+simulation suite employed to compute empirical distributions match those of the real data. A difference in the sample
+covariance matrix (which could be caused by various effects, as elaborated upon below) can lead to a false under- or
+over-detection of parity-violation. For the Nseries simulation suite, these differences are quite significant and lead to
+a marked under-detection; however, this can be substantially reduced by including the realization-dependent rescaling
+factor of §VI C.
+
+
+                                                   F.   Other Sources of Systematics
+
+   Whilst the above tests constrain a variety of different systematic effects, they are by no means exhaustive. Below,
+we discuss a number of additional effects that could contribute to the tentative detections reported in §V. These can
+be separated into two groups: (a) effects that lead to the Patchy simulations having a different covariance (and
+higher-order statistical properties) to that of the data, and (b) observational phenomena causing a parity-violating
+signal in the odd-parity 4PCF itself.
+   Firstly, we consider possible causes for a systematic difference between Patchy mocks and BOSS data. Besides
+simple differences in cosmological parameters or halo occupation distributions, discrepancies could arise due to the
+treatment of non-linear evolution. The Patchy mocks are generated using approximate gravity solvers only (before
+being calibrated to an N -body simulation, and the observational data); whilst this will not affect the large (linear)
+scales, it can modify the small-scale clustering, and thus provide an error on small scales, where the constraining
+power of the data is greatest. Simply calibrating the two- and three-point functions does not guarantee that the
+covariance is well reproduced, since this depends on N -point functions up to N = 8. Such effects would distort the
+pseudo-χ2 distribution of the Patchy mocks, and could lead to false detections of parity violation. This hypothesis
+                                                                                                                         18
+
+can be probed via the Nseries tests of §VI E; once realization-dependent rescaling is included, we find fair agreement
+between the mock data and Patchy-Nseries simulations, and no spurious detections of parity-violation. For the
+BOSS data, we expect better agreement with Patchy, given that the simulations were calibrated to the observed
+small-scale clustering; however, we still find a 2.9σ detection of parity-violation, or 2.4σ when the rescaling factor
+is included. This reduces the likelihood that the effect is caused by inaccuracies in Patchy (considering also the
+scale-cut information discussed in §VI B), though this effect is certainly worthy of future study.
+   Another effect not included in the Patchy mocks is that of fiber collisions, arising from the inability to position
+telescope fibers within a certain distance from each other. If the assignment of fibers to a telescope image is performed
+in a particular direction (i.e. picking all objects above a certain brightness from one side of a field-of-view to another),
+and the quartet of galaxies contains some distant component, a parity-violating signal may be created, due to a
+preference of one tetrahedral handedness over the other. Two lines of evidence suggest this may not be an important
+contribution: firstly, the Nseries mocks include the effect of fiber collisions and do not show strong evidence for a
+parity-violating signal; secondly, most tetrahedra considered in this work have large radial separations. Although fiber
+collisions happen in the angular domain, rather than radial, all galaxies have minimum separations above 20h−1 Mpc
+(§VI B), thus most fibers of relevance will be spaced by tens of arcminutes. The effect could also change the statistical
+properties of the data (i.e. the covariance matrix); this impact of this is analogous to the effects discussed above.
+   The BOSS data-set is also known to contain systematic effects on large scales due to imperfectly subtracted fore-
+ground modes, arising, for example, from Galactic emission or varying seeing conditions. Given that these do not
+impact BAO measurements, they are usually ignored, though they may be of more relevance to the analyses con-
+sidered herein. For such an effect to show up in the odd-parity 4PCF signal, it would need to be parity-violating.
+Since observational effects are not required to obey isotropy and homogeneity, this is possible, and could formed, for
+example, from the composition of two small-scale 2PCFs (of different lengths) with a large-scale gradient between
+them. This is analogous to the disconnected 4PCF contribution (but parity-odd) and could be sourced by the above
+observational phenomena, or even cosmological effects such as isocurvature modes. From the analysis employing
+hemispherical cuts (§VI A), it is clear that, if this was the cause of the parity-breaking detection, it is not a one-off
+phenomenon, and, moreover, it is not sourced solely by very small or very large tetrahedron configurations (§VI B).
+The particular form of our tetrahedral basis (i.e. the decomposition into coupled spherical harmonics) makes checking
+individual tetrahedral configurations difficult, unless a dedicated analysis is performed; the best way to probe them
+would be with mocks including all observational effects, though none of this type currently exist. We note however,
+that such large-scale modes would likely have an impact also on lower-order statistics which utilize large-scale data.
+The consistency of such two-point and three-point function analyses with those of the CMB suggest that these effects,
+if present, are comparatively small [76, 88].
+
+
+                          VII.    CONSTRAINTS ON INFLATIONARY PARITY-VIOLATION
+
+   The 4PCF measurements presented in §V may be used to place constraints on specific models of cosmological parity-
+violation, such as those involving inflation. As noted in Appendix B of [7], parity-violation cannot be generated by
+single-field inflation,18 thus its detection in data could give evidence for multiple fields active in the early Universe.
+Here, we consider a particular multi-field model, which gives an analytic form for the parity-odd galaxy 4PCF, in
+addition to lower-dimensional observables. An analogous procedure may be used to constrain any model which induces
+a non-trivial parity-odd 4PCF; a selection of these are briefly discussed in §VII A 2.
+
+
+                                                     A.     Primordial Correlators
+
+                                                       1.   Chern-Simons Inflation
+
+  Consider an inflationary Lagrangian containing the following couplings between an inflaton field, φ, and a U (1)
+gauge field, Aµ :
+                                                                        
+                                                  1       µν   γ      µν
+                                      L ⊃ f (φ) − Fµν F + Fµν F̃           ,                                 (24)
+                                                  4            4
+where Fµν ≡ ∂µ Aν − ∂ν Aµ is a two-form. The second term involves the Hodge dual, F̃ µν , and is of the Chern-Simons
+form [e.g., 10, 13, 90, 91]. This is controlled by two pieces: a function f (φ) giving the time evolution of the field,
+
+
+18 An exception can occur for ghost inflation [89]; this will be discussed in future work.
+                                                                                                                                                 19
+
+and a dimensionless ratio γ, which sets the amplitude of parity-breaking.19 Following [13, 93], we will assume γ
+to be constant (on naturalness grounds), and fix f (φ) ∝ a−4 (for scale-factor a), such that the vector field has a
+time-independent vacuum expectation value (vev) and thus a scale-invariant correlator.20 If one instead assumes
+f (φ) ∝ const., the energy density of the vector field will decay as a−4 during inflation, giving observational signatures
+only on the largest scales [12].
+   The Lagrangian (24) leads to a number of modifications to the standard inflationary picture. Firstly, the presence
+of a background vev Aµ0 (usually represented in the electromagnetic notation as E0 , with B0 = 0) leads to anisotropic
+expansion, and its perturbations can provide an isocurvature source for the primordial curvature ζ. Such effects
+are strongly constrained by CMB data, limiting the energy density in the gauge field (hereafter ρE ) to be a small
+fraction of the inflaton energy density ρφ . Couplings between the inflaton and gauge field will additionally generate
+gravitational waves through the metric tensor hij , as well as scalar-tensor couplings. This can lead to observable
+signatures in CMB E-modes and B-modes (and non-zero parity-breaking spectra such as C`T B and C`EB ), though
+such effects are slow-roll suppressed [13]. We note that a non-zero vev E0 is a natural prediction of the theory; this
+is simply the impact of long-wavelength classical perturbations in the vector field which have not yet re-entered the
+horizon.21 Furthermore, the action of non-zero γ is to produce an excess of one gauge field helicity mode over the
+other, causing a parity asymmetry.
+   In this work, we are interested in the scalar correlators generated by the above interaction, i.e. those only involving
+the curvature ζ. As demonstrated in [12, 13, 38, 95], the gauge fields lead to anisotropy in the two-point function:
+                                                                            h                   i
+                               hζ(k1 )ζ(k2 )i = (2π)3 δD (k1 + k2 ) Pζ (k1 ) 1 + g∗ (k̂1 · Ê0 ) ,                    (25)
+
+where Pζ ≈ H 2 /(4Mp2 k 3 ) is the primordial power spectrum, for Hubble parameter H, Planck mass Mp , and slow-roll
+parameter . This is of the well-known ACW form [96], for approximately scale-invariant coupling g∗ ∝ ρE /ρφ .
+Furthermore, the Lagrangian given in (24) generates an angle-averaged bispectrum and trispectrum of the curvature
+perturbation ζ. The first takes the form of [97, 98]:
+                                                             X
+             hζ(k1 )ζ(k2 )ζ(k3 )i = (2π)3 δD (k1 + k2 + k3 )       cn Ln (k̂1 · k̂2 )Pζ (k1 )Pζ (k2 ) + 2 perms., (26)
+                                                                              n=0,1,2
+                                                                                                            L=n
+where Ln is a Legendre polynomial of order n, and the coefficients cn (simply related to Planck ’s fNL          parameters
+[98]) are again proportional to the fractional energy density in the vector field [13], and satisfy c0 = −2/3c1 = 2c2 .
+These parametrize a number of effects beyond the inflationary Lagrangian (24), such as curvature fluctuations sourced
+by primordial magnetic fields [e.g., 17], solid inflation [e.g., 99] (which boasts c2  c0 ), and massive spinning particles
+[e.g., 24, 100]. Finally, the four-point function for the CS model was computed in [38, 95], and can be expressed in
+terms of the reduced trispectrum t, defined as:
+                                 * 4         +                 4
+                                                                    !
+                                   Y                         X         h                   i
+                                       ζ(ki ) = (2π)3 δD          ki tkk13 kk24 + 23 perms. .                          (27)
+                                                  i=1                        i=1
+
+Separating even and odd parts, we have:
+                 X                                                     
+    tkk13 kk24 =     deven
+                      n      L (k̂
+                              n 1  · k̂ 3 ) + L  (k̂
+                                                n 1  · K̂) + L (k̂
+                                                              n 3  · K̂)  Pζ (k1 )Pζ (k3 )Pζ (K)                                                (28)
+                    even
+                            n=0,2
+                                X                                                                  h                i
+       tkk13 kk24          =i           dodd
+                                         n     Ln (k̂1 · k̂3 ) + Ln (k̂1 · K̂) + (−1)n Ln (k̂3 · K̂) (k̂1 × k̂3 ) · K̂ Pζ (k1 )Pζ (k3 )Pζ (K)
+                    odd
+                                n=0,1
+
+where K = k3 + k4 is the trispectrum diagonal, and t−k               1 −k2       k 1 k2
+                                                                 −k3 −k4 = ±tk3 k4 for the even and odd components respec-
+tively. This depends on new parameters, {dn }, with the odd-parity contributions sourced iff γ is non-zero (i.e.
+if the Lagrangian contains a Chern-Simons term). Whilst (28) is a relatively general parametrization for scale-
+invariant parity-odd primordial trispectra, we may specialize to the Chern-Simons model by fixing deven                   0      = deven
+                                                                                                                                    2    /2,
+      odd            odd
+and d0 = −d1 /3, each of which is linear in ρE /ρφ .
+   For later convenience, we will rewrite the odd-parity reduced trispectrum corresponding to (24) as
+                                                        h                 ih                                  i
+            tkk13 kk24   = 3i ACS Pζ (k1 )Pζ (k3 )Pζ (s) (k̂1 × k̂3 ) · ŝ 1 − k̂1 · k̂3 + k̂1 · ŝ − k̂3 · ŝ ≡ t(k1 , k3 , s),       (29)
+                           odd
+
+
+
+19 Constraints on the reheating temperature from Big Bang nucleosynthesis restrict the coupling strength to |γ| < 5.5 [12, 92].
+20 This is a natural choice within the Ratra mechanism [93, 94].
+21 Following [13], the magnitude of this ought to scale as N
+                                                            tot − N , where N is the number of e-folds before the CMB modes exited the
+  horizon, and Ntot gives the total duration of inflation.
+                                                                                                                                20
+
+introducing the Mandelstam variable s ≡ k1 + k2 , and defining the overall amplitude ACS ≡ −dodd
+                                                                                             0   = dodd
+                                                                                                    1 /3 as
+
+                                                                2                                                 2
+                                    0.3 e8π|γ| |g∗ |                              5.4 × 105 e4π|γ| 0.01
+                                                                                                         
+                                                           N                                                  N         ρE
+                               ACS ≈ 2                               ,     g∗ ≈ −                                          ,   (30)
+                                    π |γ|6 0.01            60                         π      |γ|3            60        ρφ
+
+for |γ| > 1, assuming that modes of interest exited the horizon N e-folds before the end of inflation. As expected
+from §II, the reduced trispectrum in (29) is pure imaginary, and depends on a parity-odd cross-product.
+   Combining the above, we can constrain the gauge field energy density from the two-, three- or four-point functions
+of the scalar field, or, following the transformations outlined in VII B, the galaxy overdensity. As in [13, 38], we expect
+the constraints to be a strong function of |γ|: gauge field production increases with γ, and the N -point function scales
+as 2(N − 1) powers of the gauge field perturbation δE, leading to a prefactor of e4π(N −1)|γ| /|γ|3(N −1) . In this work,
+we will derive constraints only from the parity-odd 4PCF: this provides both a tight constraint for |γ| > 0 due the
+above argument, and is a clean probe, since it is not contaminated by gravitational non-Gaussianity.
+
+
+                                                                 2.      Other Sources
+
+   Before proceeding to derive constraints on the Chern-Simons inflationary model, we briefly discuss a number of
+alternative phenomena that can source parity violation. Firstly, the Lagrangian presented in (24) remains applicable
+when φ is not the inflaton. This has been suggested as a mechanism for primordial magnetogenesis [93, 94], and will
+source similar parity violation. An additional case of interest is when Fµν is the electromagnetic tensor and φ an
+axion-like particle in the late Universe; this can generate detectable cosmic birefringence [e.g., 25, 33, 101]. Secondly,
+the inflationary Lagrangian could contain a gravitational Chern-Simons term
+
+                                                                L ⊃ f 0 (φ)Rσµν
+                                                                            λ
+                                                                                R̃λσµν                                         (31)
+
+[9–11], for some Riemann curvature tensor Rµνρσ and a function f 0 (φ) of the inflaton φ. Following a similar calculation
+to that of [38] for the Lagrangian described above, one can compute to compute the scalar trispectrum corresponding
+to (31), which is now sourced by couplings to tensor modes rather than vectors.
+   Primordial parity-violation can also arise from particle exchange in the early Universe (as part of the so-called
+‘cosmological collider’ [24, 102]). At high energies, it is natural to assume that the inflaton is coupled to additional
+fields (be they scalars, vectors or tensors), via some three-point interaction vertices, e.g., (∂µ φ)(∂ν φ)∂ µ V ν for a
+primordial vector V µ . In this case, the two-point function of the inflaton (and thus the curvature perturbation ζ) can
+receive an off-diagonal contribution. A simple example of this occurs for light mediators, which takes the form
+
+                                                           BζζXp (k1 , k2 , K) ∗
+                                hζ(k1 )ζ(k2 )i|Xp (K) =                       Xp (K)(2π)3 δD (k1 + k2 + K) ,                   (32)
+                                                              PXp (K)
+
+where PXp is the power spectrum of X in some polarization state p, and BζζXp is the interaction three-point function
+[e.g., 23, 46, 56, 103, 104], or, more precisely, its consistency-relation-violating component [105]. Combining two of
+these interactions, one obtains an exchange diagram for ζ, i.e. a four-point function of the scalar curvature, with some
+shape proportional to |BζζXp |2 /PXp . If the field in question is helical, this can lead to a parity-violating trispectrum if
+PX+ 6= PX− . As discussed in [23], such contributions can be measured directly using a statistical anisotropy (‘fossil’)
+estimator, which can be recast as a model-specific compression of the full four-point function. In the squeezed limit
+(K  k1 ≈ k2 , again noting that massive mediators can have different behaviors, [cf. 103, 104, 106]), the interaction
+bispectrum is approximately given by (3/2)Pζ (k1 )PXp (K)pij k̂1i k̂1j [23, 24, 102], where p is the polarization tensor.
+For a light vector exchange field X, this leads to the following schematic form for the trispectra (following [23]):
+                                                                                      h                               i
+            tkk13 kk24
+                                                
+                             ∼ PX+ (K) + PX− (K) Pζ (k1 )Pζ (k3 )(k̂1 · K̂)(k̂3 · K̂) k̂1 · k̂3 − (k̂1 · K̂)(k̂3 · K̂) ,       (33)
+                        even
+                                                                                         h                 i
+             tkk13 kk24
+                                                  
+                             ∼ −i PX+ (K) − PX− (K) Pζ (k1 )Pζ (k3 )(k̂1 · K̂)(k̂3 · K̂) (k̂1 × k̂3 ) · K̂
+                         odd
+
+The similarities of this and (28) are manifest, particularly if one assumes a scale invariant form for the power spectrum
+of X, such that PX± (K) ∝ Pζ (K). We thus note that a simple extension to the parametrization of (28) can incorporate
+trispectra arising from particle exchange. A similar conclusion holds also for intermediate fields X of higher spin
+(noting that scalar exchange cannot generate parity-violating couplings).
+                                                                                                                                               21
+
+                                                               B.    4PCF Model
+
+  To place constraints on the Chern-Simons interaction, we must compute the galaxy 4PCF associated with the
+primordial trispectrum of (29). At redshift z, the tree-level galaxy trispectrum, Tg , can be related to the primordial
+correlator via
+                                                                            * 4                            +
+                                                                             Y
+                       3
+                   (2π) δD (k1 + k2 + k3 + k4 )Tg (k1 , k2 , k3 , k4 , z) =     Z1 (ki , z)M (ki , z)ζ(ki ) ,      (34)
+                                                                                       i=1
+
+where M (k, z) is the transfer function, defined by δmatter (k, z) ≡ M (k, z)ζ(k), and Z1 (k, z) ≡ b(z) + f (z)(k̂ · n̂)2 is
+the tree-level galaxy RSD kernel (for linear bias b(z), growth-rate f (z) and line-of-sight n̂). From (34), we may obtain
+the odd-parity 4PCF using Fourier transforms:
+                                       4 Z
+                                       Y                               Z               h                                       i
+             ζ− (r1 , r2 , r3 , z) =              M (ki , z)Z1 (ki , z)   t(k1 , k3 , s) ei(k1 ·r1 +k2 ·r2 +k3 ·r3 ) + 23 perms.              (35)
+                                       i=1   ki                           s
+
+                                       × (2π)3 δD (k1 + k2 − s) (2π)3 δD (k3 + k4 + s) ,
+shifting the permutation sum to the exponential term by symmetry, and using Dirac delta functions to enforce
+s = k1 + k2 = −k3 − k4 . The corresponding multiplets, ζ`1 `2 `3 , can then be estimated by performing weighted
+integrals over r̂i , as in (7). Following a lengthy derivation sketched in Appendix B, we obtain the final form for odd
+`1 + `2 + `3 :
+                                            √                 X                          0
+       ζ`1 `2 `3 (r1 , r2 , r3 , z) = (4π)11 2ACS i`1 +`2 +`3      iL1 +L2 +L3 +L4 −L5 +L5 CL1 L2 L3 L4 L5 L05      (36)
+                                                                L1 L2 L3 L4 L5 L05
+
+                                                   L3 L4 L05
+                                                             
+                                      L1 L2 L5                         ` ` (` )` 0
+                                  ×                                ML11 L2 2 L33 L34 L5 L0
+                                      0 0 0         0 0 0                                 5
+                                    Z       Z
+                                  ×    x2 dx x02 dx0 KL5 L05 (x, x0 )IL`11 (x; r1 )JL`22 (x; r2 )IL`33 (x0 ; r3 )JL0 4 (x0 ; 0) + 23 perms.
+
+(cf. B9). Here, I, Jpand K are Bessel-weighted integrals over the transfer function and/or primordial power spectrum
+(B10), C`1 ···`N ≡ (2`1 + 1) · · · (2`N + 1), and M is a coupling matrix given in (B11). The 4PCF may thus be
+computed as a two-dimensional integral, following evaluation of the (radially-binned) I, J and K functions for a
+range of values of L, `, x and x0 . In practice, the 4PCF model is computed in Python, with the various Wigner 3-j
+and 9-j symbols evaluated using sympy.22 In Fig. 8 we plot the theoretical model for a range of multiplets, finding a
+shape that depends strongly on both {ri } and {`i }, with some multiplets dominated by the dodd0  part, and others by
+that proportional to dodd
+                       1   .
+
+
+                                                        C.    Amplitude Constraints
+
+   The importance of the inflationary gauge field may be quantified by the ratio of energy densities, ρE /ρφ , or the
+parity-odd 4PCF amplitude, ACS (30). This sets the level of parity-violation imprinted in the primordial inflaton
+perturbations, arising from interactions with the U (1) gauge field. To constrain the amplitudes, we perform parameter
+inference using the measured 4PCF multiplets of §V and the Chern-Simons model given in (36). For simplicity, we will
+assume the data to be Gaussian distributed, and work in a compressed subspace containing Neig = 100 basis vectors
+for each of the NGC and SGC regions (whose distribution was shown to be approximately Gaussian in §V). In §IV B,
+a minimum-variance criterion was used to select the basis vectors; here, we instead pick those with maximal signal-
+to-noise for the Chern-Simons model. The reduced dimensionality facilitates direct use of the Patchy simulations to
+form the sample covariance (20); to account for the finite number of mocks, we perform inference using the following
+log-likelihood:
+                                                                    T 2 (ACS )
+                                                                              
+                                                 Nmocks
+                                 − log L(ACS ) =         log 1 +                 + const.                         (37)
+                                                     2             Nmocks − 1
+
+
+
+22 Code implementing this calculation is available at github.com/oliverphilcox/Parity-Odd-4PCF.
+                                                                                                                                                                                    22
+
+
+                                                      E/       × 100 19 [ =1 1]
+                                           2               1                            2
+
+                              800
+                                           Patchy-Mean                                                                                 n = 0 [BOSS]
+                                           BOSS                                                                            2000        n = 0 [Patchy]
+
+
+
+
+      PDF [Arbitrary Units]                                                                        PDF [Arbitrary Units]
+                                                                                                                                       n = 1 [BOSS]
+                              600                                                                                                      n = 1 [Patchy]
+                                                                                                                           1500
+
+                              400                                                                                          1000
+
+                              200                                                                                          500
+
+                               0                                                                                             0
+                                    3000       2000        1000     0     1000   2000       3000                                  150000 100000   50000       0   50000   100000
+                                                                  ACS                                                                                     dnodd
+FIG. 10. Constraints on the amplitude of physical models for parity-violation, both for the Chern-Simons Lagrangian of (24)
+(left) and the more general parametrization of (28) (right), using the explicit parity-odd 4PCF prediction given in (36) and
+plotted in Fig. 8. To obtain these distributions, we fit the measured 4PCF multiplets shown in Fig. 2 to templates derived in
+Appendix B, following compression of both observations and model into a 100-dimensional subspace. For the Chern-Simons
+model, we give results for both the trispectrum amplitude ACS and the corresponding ratio of parity-breaking gauge field and
+inflaton energy densities, ρE /ρφ , using relation (30) with |γ| = 1. The 1σ constraints are ACS = 0 ± 760 for the mean of 2048
+Patchy mocks (blue) and ACS = 570 ± 780 for the BOSS data (red), both of which are consistent with zero. The right panel
+gives constraints on the dodd
+                          n   parameters appearing in (28): we find dodd
+                                                                       0   = −610 ± 800 (−20 ± 770) and dodd
+                                                                                                         1   = −13 000 ± 35 000
+(0 ± 34 000) for BOSS (mean of Patchy) data respectively. In the Chern-Simons model, −dodd    0  = dodd
+                                                                                                     1 /3 = ACS .
+
+
+
+
+This uses the T 2 statistic, defined analogously to (21):
+                                                                                                                T
+                                                                  T 2 (ACS ) ≡ (v̂data − ACS vCS ) Ĉv−1 (v̂data − ACS vCS ) ,                                                     (38)
+
+where v̂data represents the compressed 4PCF data-vector, Ĉv is a sample covariance, and vCS is the compressed 4PCF
+model of (36), excluding the ACS prefactor. Likelihoods for the NGC and SGC region are constructed separately and
+multiplied, assuming independence. Here, we perform two analyses; one using the BOSS data, and the second using
+the mean of Nmocks = 2048 Patchy mocks. In the latter case, no Chern-Simons contribution should be present.
+    Fig. 10 shows the resulting constraints on the trispectrum amplitude. For the mean of Patchy mocks, the 1σ
+constraint is ACS = 0 ± 760 (demonstrating unbiasedness, as expected), with ACS = 570 ± 780 observed for BOSS. In
+both cases, the constraints are consistent with zero, suggesting that the Chern-Simons coupling is not responsible for
+the detection of parity-violation reported in §V. If we additionally restrict to ACS ≥ 0, we find that ACS < 1500 and
+ACS < 2000 for the mean-of-Patchy and BOSS datasets respectively (95% CL).23 Additionally including tetrahedra
+with small separations between secondary galaxies (as in §V) does not appreciably improve the constraints, which we
+justify by noting that the bulk of the signal-to-noise occurs on comparatively large scales.
+    Of greater physical interest are the constraints on the energy densities ρE /ρφ . These may be obtained from the
+ACS bounds using (30), assuming fiducial values for the inflationary parameters and fixing the coupling strength to
+γ = 1, giving an equal contribution from the parity-even and parity-odd terms in (24).24 Using the BOSS CMASS
+data, we find ρE /ρφ < 1.6 × 10−19 (95% CL). If |γ| is increased to 2, the gauge field production is strongly amplified,
+and the constraint tightens to ρE /ρφ < 3.5 × 10−33 .
+    We may additionally place limits on the phenomenological parameters {dodd     n } appearing in (28). Using an analogous
+method to the above, we find the 1σ constraints dodd     0   = −610 ± 800 and dodd 1    = −13 000 ± 35 000 from BOSS, both
+of which are fully consistent with zero. For the mean of 2048 Patchy simulations, we find dodd        0    = −20 ± 770 and
+dodd
+  1    = 0 ± 34 000, again indicating that the method is unbiased. Although the physical scale of the two coefficients
+is the same (in the Chern-Simons model they follow the relation −dodd         0    = dodd
+                                                                                        1 /3 = ACS ), the first parameter is
+constrained almost 50× better than the second: this is attributed to the different angular behavior of the two terms,
+with dodd0  dominating the {`1 , `2 , `3 } = {1, 1, 1} multiplet, for example (cf. Fig. 8).
+
+
+
+23 We have additionally verified that no false detection of Chern-Simons inflation is obtained when using the Nseries mocks of §VI E.
+24 Note that exchanging γ → −γ simply swaps the dominant and suppressed helicity states of the gauge field.
+                                                                                                                                        23
+
+  Our results for the Chern-Simons model may be compared to those obtained from the power spectrum and bispec-
+trum of the CMB.25 In particular, the Planck 2018 T - and E-mode dataset (analyzed with the smica prescription)
+gave the constraints
+                          −0.036 ≤ g∗ ≤ 0.036,        −13 ≤ c0 ≤ 11,       −7 ≤ c1 ≤ 281,       −55 ≤ c2 ≤ 37                         (39)
+[98, 107], on the inflationary parameters g∗ and {cn } appearing in the two- and three-point parametrizations of (25)
+and (26) at 95% CL, and translating into our notation. Assuming γ = 1 and the above fiducial parameters, these
+can be used to place bounds on the gauge field energy density: ρE /ρφ . 7 × 10−13 (2 × 10−16 ) using the two-
+(three-)point function measurements [cf. 38]. Furthermore, a forecast of the detectability of ρE /ρφ from the CMB
+                                                                                         −20
+          function was presented in [38]. This predicted a bound on ρE /ρφ of ∼ 3 × 10
+four-point
+     odd
+                                                                                             at 95% CL (or equivalently
+σ d1      = 640) for a cosmic-variance dominated measurement using `max = 2000 and |γ| = 1.
+   Bounds on the gauge field energy density from the BOSS 4PCF are far stronger than those obtained from the CMB
+anisotropic power spectrum and isotropic bispectrum (for |γ| > 0), due to the exponential dependence on |γ| [38,
+Fig. 4]. As such, they represent the strongest current constraints on Chern-Simons inflationary models.
+Our measurement is roughly a factor of five worse than that predicted for the CMB: this occurs since the latter
+is contains significantly more Fourier-modes than the observed galaxy distribution, and thus an increased signal-to-
+noise ratio (although is subject to the smoothing effects of projection integrals). As the volume of spectroscopic data
+grows, we expect the constraints on ρE /ρφp  to significantly strengthen, especially considering that the signal-to-noise
+of the Chern-Simons 4PCF (36) scales as Vsurvey , roughly independent of redshift.26 A survey such as DESI will
+probe ∼ 100× the BOSS volume [47], and should thus be expected to tighten the constraints on ρE /ρφ (and any
+other parity-breaking model amplitudes) by roughly an order of magnitude, providing stronger constraints on parity-
+breaking inflation than possible with the CMB. Finally, we note that, for LSS, the parity-odd 4PCF is an optimal
+place in which to search for these signatures, since, unlike other observables, the statistic is free from gravitational
+effects, thus we do not have to marginalize over the effects of late-time non-Gaussianity.
+
+
+                                          VIII.    SUMMARY AND CONCLUSIONS
+
+   Searching for parity-violation provides a unique manner in which to probe new physics occurring in the early
+Universe, including that of multi-field inflation, baryogenesis, and primordial magnetic field generation. Whilst there
+is a long history of constraining various parity-breaking phenomena using the CMB [6, 9, 10, 13, 17, 20, 37, 38, 108],
+few analyses have made use of LSS data. In this work, we have placed the first constraints on (hitherto unexplored)
+scalar-type parity-violation using the BOSS CMASS galaxy sample. The isotropic NPCFs are only parity-sensitive
+if N > 3 [23, 38, 39]; recent developments in NPCF computation [51] have enabled efficient computation of the
+galaxy 4PCF, enabling such analyses. To provide a model-agnostic test, we have performed a blind search for parity-
+violation using the full parity-odd 4PCF (whose expectation value is zero in ΛCDM). Our primary tool has been
+a non-parametric rank test, comparing the BOSS 4PCF (on scales between 20h−1 Mpc and 160h−1 Mpc) to that of
+a suite of realistic mock catalogs. This avoids the need to assume a Gaussian likelihood, and provides a robust
+(albeit conservative) model-agnostic test. In the BOSS sample we found tentative evidence for parity-violation, with
+a detection probability of 99.6%, equivalent to 2.9σ. This indicates either new physics beyond the standard
+model or unknown systematics.
+   As an additional test, we have performed a classical χ2 -based analysis of the BOSS data, making use of a data com-
+pression scheme and a covariance matrix computed from mock catalogs. Furthermore, we use a theoretical Gaussian
+covariance [57] to facilitate high-fidelity compression, which reduces the dataset to Neig numbers; importantly, the re-
+sults are not biased this choice, avoiding a potential systematic error. Post-compression, the empirical χ2 distribution
+closely matches that of the theory model for Neig . 100; this gives credence to the assumption of Gaussianity. For this
+test, we find a detection probability of 83.3% from BOSS when using Neig = 100, or 100.0% when using Neig = 250,
+though the latter may be artificially inflated from likelihood non-Gaussianity. The results are broadly consistent with
+those from the rank test; however, the strong dependence on Neig implies that our basis decomposition is inefficient,
+and that information may be being lost.
+   We have a carried out a number of tests to explore potential systematic effects in our data which could lead to a
+false detection of parity violation. These include splitting the data into sub-regions, imposing radial and angular cuts,
+comparing against mock catalogs, altering the compression scheme, and normalizing by an overall rescaling factor. No
+
+
+25 Since the coupling is assumed to be active only during inflation, the Lagrangian (24) does not generate cosmic birefringence. Generation
+
+   of parity-violating CMB spectra is possible however (due to helical gravitational wave production) but this is slow-roll suppressed, as
+   noted above.
+26 Note that this differs from the signal-to-noise of the gravitational 4PCF, which scales as [b(z)D(z)]2
+                                                                                                          p
+                                                                                                           Vsurvey [54].
+                                                                                                                                       24
+
+clear evidence for systematics is observed, and we find our detection to be relatively coherent across various scales and
+sky regions. That said, our tests do rely heavily on the Patchy mocks well-representing the statistical properties of
+the BOSS data; although we have ruled out differences due to an overall rescaling factor, a scale dependent difference
+remains the most likely cause of our results, in the absence of a cosmological signal.
+   Finally, we have used the measured 4PCF to bound the amplitudes of physical models of parity-violation. Here, we
+have primarily considered a single scenario; a Chern-Simons term in the inflationary Lagrangian, which couples the
+inflaton to a U (1) gauge field. This leads to a definite prediction for the primordial polyspectra [13, 38], which, with
+some effort, can be translated into a model for the galaxy 4PCF. Performing a Gaussian likelihood analysis using this
+template gives a comparable constraint on the ratio of gauge field and inflaton energy densities to that expected from
+the CMB [38] (but much stronger than that from lower-order statistics); ρE /ρφ < 1.6 × 10−19 (95% CL), assuming
+standard inflationary parameters. Notably, this does not appear to explain the above parity-violating signal. Similar
+constraints may be obtained for any other physical model giving a definite prediction for the galaxy 4PCF.
+   The coming years will lead to an explosion in the volume of LSS data available, which will either confirm or refute
+the tentative detection of parity-violation found herein. Unlike for the gravitational contribution [54], the signal-to-
+noise of the inflationary 4PCF is not a strong function of redshift, with the constraints on models of new physics
+being primarily sensitive to the survey volume. To further increase the constraining power, we may fold in additional
+information, for example using the 5PCF and anisotropic NPCFs (which source additional information regarding
+vector parity-breaking [43]). Going beyond spectroscopic surveys, it is likely that high-volume observables such as
+intensity mapping and the Lyman-α forest, as well as the CMB itself, will shed additional light on this, pinning down
+a variety of new physics models.
+
+
+                                                    ACKNOWLEDGMENTS
+
+  We thank Jiamin Hou for providing us with analytic covariance matrices. We are additionally indebted to Stephon Alexander, Giovanni
+Cabass, He Jia, Marc Kamionkowski, Morgane König and David Spergel for insightful discussions regarding parity-violation, Robert
+Cahn, Daniel Eisenstein, Jiamin Hou and Zachary Slepian for conversations relating to NPCFs, William Underwood for suggesting the
+non-parametric statistics of §IV A, and Mikhail Ivanov, Marko Simonović, and Matias Zaldarriaga for general feedback. Furthermore,
+we are grateful to Paolo Campeti and Johannes Eskilt and the anonymous referee for providing valuable feedback on the manuscript.
+OHEP acknowledges funding from the WFIRST program through NNG26PJ30C and NNN12AA01C, thanks the Simons Foundation for
+additional support, and is grateful to the Institute for Advanced Study for their hospitality and abundance of baked goods.
+   The authors are pleased to acknowledge that the work reported in this paper was substantially performed using the Princeton Research
+Computing resources at Princeton University, which is a consortium of groups led by the Princeton Institute for Computational Science
+and Engineering (PICSciE) and the Office of Information Technology’s Research Computing Division.
+   Funding for SDSS-III has been provided by the Alfred P. Sloan Foundation, the Participating Institutions, the National Science
+Foundation, and the U.S. Department of Energy Office of Science. The SDSS-III web site is www.sdss3.org.
+   SDSS-III is managed by the Astrophysical Research Consortium for the Participating Institutions of the SDSS-III Collaboration including
+the University of Arizona, the Brazilian Participation Group, Brookhaven National Laboratory, Carnegie Mellon University, University of
+Florida, the French Participation Group, the German Participation Group, Harvard University, the Instituto de Astrofisica de Canarias,
+the Michigan State/Notre Dame/JINA Participation Group, Johns Hopkins University, Lawrence Berkeley National Laboratory, Max
+Planck Institute for Astrophysics, Max Planck Institute for Extraterrestrial Physics, New Mexico State University, New York University,
+Ohio State University, Pennsylvania State University, University of Portsmouth, Princeton University, the Spanish Participation Group,
+University of Tokyo, University of Utah, Vanderbilt University, University of Virginia, University of Washington, and Yale University.
+   The massive production of all MultiDark-Patchy mocks for the BOSS Final Data Release has been performed at the BSC Marenos-
+trum supercomputer, the Hydra cluster at the Instituto de Fısica Teorica UAM/CSIC, and NERSC at the Lawrence Berkeley National
+Laboratory. We acknowledge support from the Spanish MICINNs Consolider-Ingenio 2010 Programme under grant MultiDark CSD2009-
+00064, MINECO Centro de Excelencia Severo Ochoa Programme under grant SEV- 2012-0249, and grant AYA2014-60641-C2-1-P. The
+MultiDark-Patchy mocks was an effort led from the IFT UAM-CSIC by F. Prada’s group (C.-H. Chuang, S. Rodriguez-Torres and C.
+Scoccola) in collaboration with C. Zhao (Tsinghua U.), F.-S. Kitaura (AIP), A. Klypin (NMSU), G. Yepes (UAM), and the BOSS galaxy
+clustering working group.
+
+
+
+                                          Appendix A: Likelihood Non-Gaussianity
+
+   A major assumption of most cosmological analyses is that the underlying likelihood for the statistic of interest can
+be well approximated as Gaussian. Whilst this is often ensured by the central limit theorem, it can break down in
+the case of highly-correlated data, such as that considered in this work. In this appendix, we present a simple test to
+check whether the likelihood of the full 4PCF can be justifiably considered Gaussian.
+   For this purpose, we take the Patchy-Nseries NGC simulations (§VI E) and partition them into two groups. The
+first 500 are used to compute a sample mean and covariance for the distribution, thus defining a Gaussian distribution
+from which we draw 105 mock observations. Each of these is compressed into one dimension via the pseudo-χ2 statistic
+                                                                                                                                       25
+
+
+                                          0.0025
+                                                                                          Empirical
+                                          0.0020
+                                                                                          Gaussian
+
+                                          0.0015
+                                 PDF
+                                          0.0010
+
+                                          0.0005
+
+                                          0.0000
+                                                   2250 2500 2750 3000 3250 3500 3750 4000
+                                                                       Pseudo- 2
+FIG. 11. Distribution of the pseudo-χ2 statistic (18) estimated from Patchy-Nseries simulations (red) and Gaussian realiza-
+tions (blue), drawn from a distribution with mean and covariance estimated from a second set of Patchy-Nseries simulations.
+The clear differences between the distributions indicates that the full 4PCF likelihood cannot be well-approximated as Gaussian.
+
+
+
+defined in (18), and histogrammed. This can then be compared to the empirical pseudo-χ2 distribution obtained from
+the remaining simulations directly. If the likelihood is Gaussian, the two distributions should match.
+  The resulting PDFs are shown in Fig. 11. Notably, the empirical and Gaussianized distributions do not match,
+indicating that the full 4PCF distribution is not well described by a Gaussian, even in the best-case scenario when
+the mean and variance are estimated from the simulations. In particular, the Gaussian assumption overestimates the
+sample variance, which will reduce any potential detection significance. If one instead uses the theoretical covariance
+to define the Gaussian distribution, the situation is far worse: the pseudo-χ2 distribution instead peaks at ≈ 1250,
+indicating a breakdown of the modelling assumptions (as discussed in §III C). Finally, we note that, although the
+full (uncompressed) 4PCF distribution appears to be non-Gaussian, this does not imply that the same is true for the
+projected statistics of §IV B, since the central limit theorem becomes more applicable as the dimensionality reduces.
+
+
+
+                               Appendix B: Derivation of the Chern-Simons 4PCF Model
+
+
+   Below, we sketch the derivation of the parity-odd 4PCF induced by the Chern-Simons coupling of §VII. Our starting
+point is the general expression given in (35), which is a product of four pieces. By expanding the angular dependence
+of each term using the isotropic basis functions (§II A), we may compute the full 4PCF efficiently.
+   To begin, we consider the primordial Chern-Simons trispectrum defined in (29). The angular pieces may be written
+in terms of isotropic basis functions of three coordinates using [52, Appendix A.2]:
+                                          √
+                                         2                                                 1
+                  (k̂1 × k̂3 ) · ŝ = i    (4π)3/2 P111 (k̂1 , k̂3 , ŝ),   k̂1 · k̂3 = − √ (4π)3/2 P110 (k̂1 , k̂3 , ŝ),            (B1)
+                                       3                                                    3
+                                        1                                                   1
+                          k̂1 · ŝ = − √ (4π)3/2 P101 (k̂1 , k̂3 , ŝ),      k̂1 · k̂3 = − √ (4π)3/2 P011 (k̂1 , k̂3 , ŝ).
+                                         3                                                   3
+
+The resulting products of two basis functions can be simplified using [52, §6.3], yielding
+                             √
+           t(k1 , k3 , s) = − 2ACS (4π)3/2 Pζ (k1 )Pζ (k3 )Pζ (s)                                                                     (B2)
+                                                                                                                                
+                                                       1                         1                         1
+                            × P111 (k̂1 , k̂3 , ŝ) + √ P221 (k̂1 , k̂3 , ŝ) + √ P212 (k̂1 , k̂3 , ŝ) − √ P122 (k̂1 , k̂3 , ŝ) ,
+                                                        5                         5                         5
+
+whose radial part is separable in k1 , k3 and s. For the general parity-odd trispectrum given in (28), we obtain the
+same result, but with the replacement ACS P111 → −dodd                                  odd
+                                                      0 P111 , ACS P221 + 2 perms. → d1 P221 /3 + 2 perms..
+                                                                3
+  Next, we consider the Dirac delta functions. By rewriting (2π) δD (k1 + k2 − s) as a complex exponential, inserting
+plane-wave expansions [109, Eq. 16.63], then performing the angular integral, the function can be expressed as a sum
+                                                                                                                                                   26
+
+over one-dimensional integrals and isotropic basis functions of three coordinates:
+                                                                                           
+                                            X                                      L1 L2 L5
+          (2π)3 δD (k1 + k2 − s) = (4π)5/2          iL1 +L2 +L5 (−1)L5 CL1 L2 L5              PL1 L2 L5 (k̂1 , k̂2 , ŝ)                          (B3)
+                                                                                    0 0 0
+                                           L1 L2 L5
+                                           Z ∞
+                                        ×        x2 dx jL1 (k1 x)jL2 (k2 x)jL5 (sx),
+                                                        0
+                       p
+where CL1 ...LN ≡ (2L1 + 1) . . . (2LN + 1), the 2 × 3 matrices are Wigner 3-j symbols and we have used properties
+of the Gaunt integral [110, Eq. 34.3.22]. Similarly,
+
+                                                                                     L3 L4 L05
+                                                                                                
+                                                            L3 +L4 +L05
+                                                 X
+                   3                        5/2
+               (2π) δD (k3 + k4 + s) = (4π)               i             CL3 L4 L05                 PL3 L4 L05 (k̂3 , k̂4 , ŝ) (B4)
+                                                                                     0 0 0
+                                                L3 L4 L05
+                                                Z ∞
+                                             ×        x02 dx0 jL3 (k3 x0 )jL4 (k4 x0 )jL05 (sx0 ).
+                                                            0
+
+Note that the integrands are again separable in {ki } and s. Using the approach of [111], they may equivalently be
+rewritten as infinite sums.
+  For the transfer functions M (k, z)Z1 (k, z), we first expand the redshift-space kernel Z1 (k) in spherical harmonics
+(dropping the redshift dependence for clarity):
+                                            X                    
+                                      2             f    K    2f K     ∗
+                                                                                           X
+                                                                                                  ∗
+         Z1 (k̂; n̂) ≡ b + f (k̂ · n̂) = 4π      b+     δ`0 +    δ`2 Y`m (n̂)Y`m (k̂) ≡ 4π   Z` Y`m (n̂)Y`m (k̂), (B5)
+                                                    3         15
+                                                  `m                                                                     `m
+
+for linear bias b(z), growth rate f (z) and line-of-sight n̂. Since we consider only isotropic 4PCFs in this work, we
+can integrate over the LoS orientation (which is equivalent to performing a joint rotation of all {ri }). Following some
+algebra, this leads to a set of isotropic functions of four coordinates (see [52] for details):
+        Z
+           dn̂                                                              X j j j  j j j 
+                                                                          2     1 2 12    12    3 4
+               Z1 (k̂1 ; n̂)Z1 (k̂2 ; n̂)Z1 (k̂3 ; n̂)Z1 (k̂4 ; n̂) = (4π)                          Zj1 Zj2 Zj3 Zj4 (B6)
+           4π                                                                  0 0 0      0 0 0
+                                                                              j1 j2 j12 j3 j4
+
+                                                                      × Cj1 j2 j12 j3 j4 Pj1 j2 (j12 )j3 j4 (k̂1 , k̂2 , k̂4 , k̂4 ),
+where ji ∈ {0, 2} and j12 ∈ {0, 2, 4}.
+  The final contribution is from the Fourier basis functions and their permutations, which can be written
+                                                                  X
+                        ei(k1 ·r1 +k2 ·r2 +k3 ·r3 ) + 23 perms. =   ei(k1 ·rH1 +k2 ·rH2 +k3 ·rH3 +k4 ·rH4 ) ,                                     (B7)
+                                                                             H
+
+where {H1, H2, H3, H4} is one of the 24 permutations of {1, 2, 3, 4}, and we have introduced r4 = 0 for convenience.
+Projecting onto the 4PCF basis functions P`1 `2 `3 (r̂1 , r̂2 , r̂3 ) gives a sum of isotropic functions of four coordinates:
+    X            Z
+        (4π)−1/2 dr̂1 dr̂2 dr̂3 dr̂4 P`∗1 `2 `3 (r̂1 , r̂2 , r̂3 )ei(k1 ·rH1 +k2 ·rH2 +k3 ·rH3 +k4 ·rH4 ) Y`4 m4 (r̂4 )    (B8)
+      H
+          X
+     =        (4π)7/2 ΦH (−i)`1 +`2 +`3 j`H1 (k1 rH1 )j`H2 (k2 rH2 )j`H3 (k3 rH3 )j`H4 (k4 rH4 )P`H1 `H2 (`∗ )`H3 `H4 (k̂1 , k̂2 , k̂3 , k̂4 ),
+          H
+
+using the plane wave expansion and inserting `4 = m4 = r4 = 0 in the first line. In the second line we include a
+permutation factor ΦH , given by (−1)`1 +`2 +`3 if {`H1 , `H2 , `H3 , `H4 } is an odd permutation of {`1 , `2 , `3 } (removing
+the zero element) and unity else. Furthermore, `∗ is set by the position of the zero, e.g., `∗ = `H2 if `H1 = 0, `∗ = `H4
+if `H3 = 0 et cetera.
+   Combining the above results, we obtain
+                                         √                 X X                               0
+       ζ`1 `2 `3 (r1 , r2 , r3 ) = (4π)11 2ACS i`1 +`2 +`3             iL1 +L2 +L3 +L4 −L5 +L5 CL1 L2 L3 L4 L5 L05        (B9)
+                                                                H L1 L2 L3 L4 L5 L05
+
+                                                   L3 L4 L05
+                                                             
+                                      L1 L2 L5                             ` `H2 (`∗ )`H3 `H4
+                                  ×                                × MLH1                  0
+                                                                            1 L2 L3 L4 L5 L5
+                                      0 0 0         0 0 0
+                                    Z       Z
+                                  ×    x2 dx x02 dx0 KL5 L05 (x, x0 )IL`H1
+                                                                        1
+                                                                           (x; rH1 )JL`H22
+                                                                                            (x; rH2 )IL`H3
+                                                                                                        3
+                                                                                                           (x0 ; rH3 )JL`H4
+                                                                                                                         4
+                                                                                                                            (x0 ; rH4 ),
+                                                                                                                                                       27
+
+defining the integrals:
+                                Z ∞                                                        Z ∞ 2
+                                      k 2 dk                                    `             k dk
+                 IL` (x; r) ≡                M (k)P ζ (k)j L (kx)j` (kr),     JL  (x; r) ≡          M (k)jL (kx)j` (kr),                           (B10)
+                                 0    2π 2                                                  0  2π 2
+                                                           Z ∞ 2
+                                                                s ds
+                                          KLL0 (x, x0 ) ≡             P (s)jL (sx)jL0 (sx0 ).
+                                                                    2 ζ
+                                                             0   2π
+In practice, we must integrate the statistic over radial bins of finite width, which corresponds to replacing e.g., j` (kr)
+with ̄b` (k) for bin b. The bin-integrated Bessel functions are analytic and their forms can be found in [112, Appendix
+A].
+  The coupling matrix in (B9) is given by an integral over five isotropic basis functions of five coordinates:
+                                                                                                      Z
+    ` `H2 (`∗ )`H3 `H4
+                               X                              j1 j2 j12   j12 j3 j4
+ MLH1                0
+      1 L2 L3 L4 L5 L5
+                        =                 C j1 j2 j12 j3 j4                            Z    Z    Z  Z
+                                                                                          j1 j2 j3 j4          dk̂1 dk̂2 dk̂3 dk̂4 dŝ              (B11)
+                                                              0 0 0        0 0 0
+                          j1 j2 j12 j3 j4
+                                                                                                                              
+                          × Pj1 j2 (j12 )j3 (j4 )j4 0 PL1 L2 (L5 )0(L5 )0L5 P00(0)L3 (L3 )L4 L05 P`H1 `H2 (`∗ )`H3 (`H4 )`H4 0 (k̂1 , k̂2 , k̂3 , k̂4 , ŝ)
+                                                                                                                   
+                                                          1                1                     1
+                          × P10(1)1(1)01 + √ P20(2)2(2)01 + √ P20(2)1(2)02 − √ P10(1)2(2)02 (k̂1 , k̂2 , k̂3 , k̂4 , ŝ),
+                                                            5               5                     5
+where we have noted that that isotropic functions of N coordinates may be rewritten in terms of those with N +M ≥ N
+coordinates by inserting a factor (4π)M/2 . Despite its complexity, this can be evaluated analytically, making extensive
+use of the product relation for isotropic basis functions of five coordinates:
+                                                                                       5
+                                                                                      Y Λ Λ0 Λ00 
+                                                 Λ00 +Λ00 +Λ00 +Λ00  +Λ00
+                                        X
+                                   −5/2                                                       i i i
+                    PΛ PΛ0 = (4π)           (−1)  1    2    3      4    5 CΛ CΛ0 CΛ00                 PΛ00        (B12)
+                                         00
+                                                                                             0 0 0
+                                        Λ                                             i=1
+                                                                                         
+                                  Λ1 Λ2 Λ12  Λ12 Λ3 Λ123  Λ123 Λ4 Λ5 
+                              × Λ01 Λ02 Λ012          Λ0 Λ03 Λ0123             Λ0123 Λ04 Λ05
+                                 Λ00 Λ00 Λ00  Λ12    00      00    00   00
+                                                                               Λ123 Λ004 Λ005 
+                                     1   2    12        12 Λ3 Λ123
+
+[52, §6.5], where Λ ≡ {Λ1 , Λ2 , (Λ3 ), Λ4 , (Λ123 ), Λ4 , Λ5 }, the curly braces indicate Wigner 9-j symbols and CΛ involves
+all elements of Λ. This simplifies considerably when some elements of Λ or Λ0 are zero.
+
+
+
+
+  [1] T. D. Lee and C. N. Yang, Question of parity conservation in weak interactions, Phys. Rev. 104 (1956) 254.
+  [2] A. D. Sakharov, Violation of CP Invariance, C Asymmetry, and Baryon Asymmetry of the Universe, Soviet Journal of
+      Experimental and Theoretical Physics Letters 5 (1967) 24.
+  [3] S. M. Carroll, Quintessence and the Rest of the World: Suppressing Long-Range Interactions, Phys. Rev. Lett. 81 (1998)
+      3067 [astro-ph/9806099].
+  [4] H. Davoudiasl, R. Kitano, G. D. Kribs, H. Murayama and P. J. Steinhardt, Gravitational Baryogenesis, Phys. Rev. Lett.
+      93 (2004) 201301 [hep-ph/0403019].
+  [5] S. Alexander, Inflationary birefringence and baryogenesis, International Journal of Modern Physics D 25 (2016)
+      1640013 [1604.00703].
+  [6] S. H. S. Alexander, Is cosmic parity violation responsible for the anomalies in the WMAP data?, Physics Letters B 660
+      (2008) 444 [hep-th/0601034].
+  [7] T. Liu, X. Tong, Y. Wang and Z.-Z. Xianyu, Probing P and CP violations on the cosmological collider, Journal of High
+      Energy Physics 2020 (2020) 189 [1909.01819].
+  [8] S. H. Alexander, M. E. Peskin and M. M. Sheikh-Jabbari, Leptogenesis from Gravity Waves in Models of Inflation,
+      Phys. Rev. Lett. 96 (2006) 081301 [hep-th/0403069].
+  [9] A. Lue, L. Wang and M. Kamionkowski, Cosmological Signature of New Parity-Violating Interactions, Phys. Rev. Lett.
+      83 (1999) 1506 [astro-ph/9812088].
+ [10] N. Bartolo and G. Orlando, Parity breaking signatures from a Chern-Simons coupling during inflation: the case of
+      non-Gaussian gravitational waves, JCAP 2017 (2017) 034 [1706.04627].
+ [11] S. Alexander and N. Yunes, Chern-Simons modified general relativity, Phys. Rep. 480 (2009) 1 [0907.2562].
+ [12] N. Bartolo, S. Matarrese, M. Peloso and M. Shiraishi, Parity-violating and anisotropic correlations in pseudoscalar
+      inflation, JCAP 2015 (2015) 027 [1411.2521].
+ [13] N. Bartolo, S. Matarrese, M. Peloso and M. Shiraishi, Parity-violating CMB correlators with non-decaying statistical
+      anisotropy, JCAP 2015 (2015) 039 [1505.02193].
+ [14] L. Bordin and G. Cabass, Graviton non-Gaussianities and parity violation in the EFT of inflation, JCAP 2020 (2020)
+      014 [2004.00619].
+                                                                                                                           28
+
+[15] D. Grasso and H. R. Rubinstein, Magnetic fields in the early Universe, Phys. Rep. 348 (2001) 163 [astro-ph/0009061].
+[16] Planck Collaboration, P. A. R. Ade, N. Aghanim, M. Arnaud, F. Arroja, M. Ashdown et al., Planck 2015 results. XIX.
+     Constraints on primordial magnetic fields, A&A 594 (2016) A19 [1502.01594].
+[17] M. Shiraishi, Parity violation of primordial magnetic fields in the CMB bispectrum, JCAP 2012 (2012) 015 [1202.2847].
+[18] L. Pogosian and M. Wyman, B-modes from cosmic strings, Phys. Rev. D 77 (2008) 083509 [0711.0747].
+[19] D. Regan and M. Hindmarsh, The bispectrum of matter perturbations from cosmic strings, JCAP 2015 (2015) 008
+     [1411.2641].
+[20] I. Y. Rybak and L. Sousa, CMB anisotropies generated by cosmic string loops, Phys. Rev. D 104 (2021) 023507
+     [2104.08375].
+[21] J. L. Cook and L. Sorbo, Particle production during inflation and gravitational waves detectable by ground-based
+     interferometers, Phys. Rev. D 85 (2012) 023534 [1109.0022].
+[22] P. Adshead, J. Giblin, John T., T. R. Scully and E. I. Sfakianakis, Gauge-preheating and the end of axion inflation,
+     JCAP 2015 (2015) 034 [1502.06506].
+[23] D. Jeong and M. Kamionkowski, Clustering Fossils from the Early Universe, Phys. Rev. Lett. 108 (2012) 251301
+     [1203.0302].
+[24] N. Arkani-Hamed and J. Maldacena, Cosmological Collider Physics, arXiv e-prints (2015) arXiv:1503.08043
+     [1503.08043].
+[25] Y. Minami and E. Komatsu, New Extraction of the Cosmic Birefringence from the Planck 2018 Polarization Data,
+     Phys. Rev. Lett. 125 (2020) 221301 [2011.11254].
+[26] J. R. Eskilt and E. Komatsu, Improved Constraints on Cosmic Birefringence from the WMAP and Planck Cosmic
+     Microwave Background Polarization Data, 2205.13962.
+[27] S. E. Clark, C.-G. Kim, J. C. Hill and B. S. Hensley, The Origin of Parity Violation in Polarized Dust Emission and
+     Implications for Cosmic Birefringence, ApJ 919 (2021) 53 [2105.00120].
+[28] J. R. Eskilt, Frequency-Dependent Constraints on Cosmic Birefringence from the LFI and HFI Planck Data Release 4,
+     Astron. Astrophys. 662 (2022) A10 [2201.13347].
+[29] P. Diego-Palazuelos et al., Cosmic Birefringence from the Planck Data Release 4, Phys. Rev. Lett. 128 (2022) 091302
+     [2201.07682].
+[30] U. Seljak and M. Zaldarriaga, Signature of Gravity Waves in the Polarization of the Microwave Background, Phys. Rev.
+     Lett. 78 (1997) 2054 [astro-ph/9609169].
+[31] R. G. Crittenden, P. Natarajan, U.-L. Pen and T. Theuns, Discriminating Weak Lensing from Intrinsic Spin
+     Correlations Using the Curl-Gradient Decomposition, ApJ 568 (2002) 20 [astro-ph/0012336].
+[32] S. M. Carroll, G. B. Field and R. Jackiw, Limits on a Lorentz- and parity-violating modification of electrodynamics,
+     Phys. Rev. D 41 (1990) 1231.
+[33] V. Gluscevic and M. Kamionkowski, Testing parity-violating mechanisms with cosmic microwave background
+     experiments, Phys. Rev. D 81 (2010) 123529 [1002.1308].
+[34] R. R. Caldwell and C. Devulder, Axion gauge field inflation and gravitational leptogenesis: A lower bound on B modes
+     from the matter-antimatter asymmetry of the Universe, Phys. Rev. D 97 (2018) 023532 [1706.03765].
+[35] K. W. Masui, U.-L. Pen and N. Turok, Two- and Three-Dimensional Probes of Parity in Primordial Gravity Waves,
+     Phys. Rev. Lett. 118 (2017) 221301 [1702.06552].
+[36] F. Schmidt, N. E. Chisari and C. Dvorkin, Imprint of inflation on galaxy shape correlations, JCAP 2015 (2015) 032
+     [1506.02671].
+[37] M. Kamionkowski and T. Souradeep, Odd-parity cosmic microwave background bispectrum, Phys. Rev. D 83 (2011)
+     027301 [1010.4304].
+[38] M. Shiraishi, Parity violation in the CMB trispectrum from the scalar sector, Phys. Rev. D 94 (2016) 083503
+     [1608.00368].
+[39] R. N. Cahn, Z. Slepian and J. Hou, A Test for Cosmological Parity Violation Using the 3D Distribution of Galaxies,
+     arXiv e-prints (2021) arXiv:2110.12004 [2110.12004].
+[40] N. Kaiser, Clustering in real space and in redshift space, MNRAS 227 (1987) 1.
+[41] A. J. S. Hamilton, Linear Redshift Distortions: a Review, in The Evolving Universe, D. Hamilton, ed., vol. 231 of
+     Astrophysics and Space Science Library, p. 185, Jan., 1998, astro-ph/9708102, DOI.
+[42] C. Bonvin, R. Durrer, N. Khosravi, M. Kunz and I. Sawicki, Redshift-space distortions from vector perturbations, JCAP
+     2018 (2018) 028 [1712.00052].
+[43] D. Jeong and F. Schmidt, The Odd-Parity Galaxy Bispectrum, arXiv e-prints (2019) arXiv:1906.05198 [1906.05198].
+[44] D. Munshi, A. Heavens, A. Cooray, J. Smidt, P. Coles and P. Serra, New optimized estimators for the primordial
+     trispectrum, MNRAS 412 (2011) 1993 [0910.3693].
+[45] K. M. Smith, L. Senatore and M. Zaldarriaga, Optimal analysis of the CMB trispectrum, arXiv e-prints (2015)
+     arXiv:1502.00635 [1502.00635].
+[46] L. Dai, D. Jeong and M. Kamionkowski, Seeking inflation fossils in the cosmic microwave background, Phys. Rev. D 87
+     (2013) 103006 [1302.1868].
+[47] DESI Collaboration, A. Aghamousa, J. Aguilar, S. Ahlen, S. Alam, L. E. Allen et al., The DESI Experiment Part I:
+     Science,Targeting, and Survey Design, arXiv e-prints (2016) arXiv:1611.00036 [1611.00036].
+[48] R. Laureijs, J. Amiaux, S. Arduini, J. L. Auguères, J. Brinchmann, R. Cole et al., Euclid Definition Study Report, arXiv
+     e-prints (2011) arXiv:1110.3193 [1110.3193].
+[49] LSST Science Collaboration, P. A. Abell, J. Allison, S. F. Anderson, J. R. Andrew, J. R. P. Angel et al., Lsst science
+                                                                                                                           29
+
+     book, version 2.0, 2009.
+[50] C. G. Sabiu, B. Hoyle, J. Kim and X.-D. Li, Graph Database Solution for Higher-order Spatial Statistics in the Era of
+     Big Data, ApJS 242 (2019) 29 [1901.00296].
+[51] O. H. E. Philcox, Z. Slepian, J. Hou, C. Warner, R. N. Cahn and D. J. Eisenstein, ENCORE: Estimating Galaxy
+     N -point Correlation Functions in O(Ng2 ) Time, arXiv e-prints (2021) arXiv:2105.08722 [2105.08722].
+[52] R. N. Cahn and Z. Slepian, Isotropic N-Point Basis Functions and Their Properties, arXiv e-prints (2020)
+     arXiv:2010.14418 [2010.14418].
+[53] O. H. E. Philcox and Z. Slepian, Efficient Computation of N -point Correlation Functions in D Dimensions, arXiv
+     e-prints (2021) arXiv:2106.10278 [2106.10278].
+[54] O. H. E. Philcox, J. Hou and Z. Slepian, “A First Detection of the Connected 4-Point Correlation Function of Galaxies
+     using the BOSS CMASS Sample.” in prep.
+[55] M. Liguori, E. Sefusatti, J. R. Fergusson and E. P. S. Shellard, Primordial Non-Gaussianity and Bispectrum
+     Measurements in the Cosmic Microwave Background and Large-Scale Structure, Advances in Astronomy 2010 (2010)
+     980523 [1001.4707].
+[56] E. Dimastrogiovanni, M. Fasiello, D. Jeong and M. Kamionkowski, Inflationary tensor fossils in large-scale structure,
+     JCAP 2014 (2014) 050 [1407.8204].
+[57] J. Hou, R. Cahn, O. Philcox and Z. Slepian, “Analytic Gaussian Covariance Matrices for Galaxy N -Point Correlation
+     Functions.” in prep.
+[58] T. L. Smith and M. Kamionkowski, Probability distribution for non-Gaussianity estimators constructed from the CMB
+     trispectrum, Phys. Rev. D 86 (2012) 063009 [1203.6654].
+[59] C. Hahn, F. Beutler, M. Sinha, A. Berlind, S. Ho and D. W. Hogg, Likelihood non-Gaussianity in large-scale structure
+     analyses, MNRAS 485 (2019) 2956 [1803.06348].
+[60] D. A. Varshalovich, A. N. Moskalev and V. K. Khersonskii, Quantum Theory of Angular Momentum. 1988,
+     10.1142/0270.
+[61] S. D. Landy and A. S. Szalay, Bias and Variance of Angular Correlation Functions, ApJ 412 (1993) 64.
+[62] I. Szapudi and A. S. Szalay, A New Class of Estimators for the N-Point Correlations, ApJ 494 (1998) L41.
+[63] Z. Slepian, D. J. Eisenstein, J. R. Brownstein, C.-H. Chuang, H. Gil-Marı́n, S. Ho et al., Detection of baryon acoustic
+     oscillation features in the large-scale three-point correlation function of SDSS BOSS DR12 CMASS galaxies, MNRAS
+     469 (2017) 1738 [1607.06097].
+[64] S. Alam, F. D. Albareti, C. Allende Prieto, F. Anders, S. F. Anderson, T. Anderton et al., The Eleventh and Twelfth
+     Data Releases of the Sloan Digital Sky Survey: Final Data from SDSS-III, ApJS 219 (2015) 12 [1501.00963].
+[65] D. J. Eisenstein, D. H. Weinberg, E. Agol, H. Aihara, C. Allende Prieto, S. F. Anderson et al., SDSS-III: Massive
+     Spectroscopic Surveys of the Distant Universe, the Milky Way, and Extra-Solar Planetary Systems, AJ 142 (2011) 72
+     [1101.1529].
+[66] K. S. Dawson, D. J. Schlegel, C. P. Ahn, S. F. Anderson, É. Aubourg, S. Bailey et al., The Baryon Oscillation
+     Spectroscopic Survey of SDSS-III, AJ 145 (2013) 10 [1208.0022].
+[67] F. Beutler, H.-J. Seo, S. Saito, C.-H. Chuang, A. J. Cuesta, D. J. Eisenstein et al., The clustering of galaxies in the
+     completed SDSS-III Baryon Oscillation Spectroscopic Survey: anisotropic galaxy clustering in Fourier space, MNRAS
+     466 (2017) 2242 [1607.03150].
+[68] H. A. Feldman, N. Kaiser and J. A. Peacock, Power-Spectrum Analysis of Three-dimensional Redshift Surveys, ApJ 426
+     (1994) 23 [astro-ph/9304022].
+[69] F.-S. Kitaura, S. Rodrı́guez-Torres, C.-H. Chuang, C. Zhao, F. Prada, H. Gil-Marı́n et al., The clustering of galaxies in
+     the SDSS-III Baryon Oscillation Spectroscopic Survey: mock galaxy catalogues for the BOSS Final Data Release,
+     MNRAS 456 (2016) 4156 [1509.06400].
+[70] S. A. Rodrı́guez-Torres, C.-H. Chuang, F. Prada, H. Guo, A. Klypin, P. Behroozi et al., The clustering of galaxies in the
+     SDSS-III Baryon Oscillation Spectroscopic Survey: modelling the clustering and halo occupation distribution of BOSS
+     CMASS galaxies in the Final Data Release, MNRAS 460 (2016) 1173 [1509.06404].
+[71] Z. Slepian and D. J. Eisenstein, Computing the three-point correlation function of galaxies in O(N2̂) time, MNRAS 454
+     (2015) 4142 [1506.02040].
+[72] F. Sosa Nuñez and G. Niz, On the fast random sampling and other properties of the three point correlation function in
+     galaxy surveys, JCAP 2020 (2020) 021 [2006.05434].
+[73] M. Vargas-Magaña, S. Ho, A. J. Cuesta, R. O’Connell, A. J. Ross, D. J. Eisenstein et al., The clustering of galaxies in
+     the completed SDSS-III Baryon Oscillation Spectroscopic Survey: theoretical systematics and Baryon Acoustic
+     Oscillations in the galaxy correlation function, MNRAS 477 (2018) 1153 [1610.03506].
+[74] D. Wadekar and R. Scoccimarro, Galaxy power spectrum multipoles covariance in perturbation theory, Phys. Rev. D 102
+     (2020) 123517 [1910.02914].
+[75] O. H. E. Philcox and D. J. Eisenstein, Estimating covariance matrices for two- and three-point correlation function
+     moments in Arbitrary Survey Geometries, MNRAS 490 (2019) 5931 [1910.04764].
+[76] M. M. Ivanov, M. Simonović and M. Zaldarriaga, Cosmological parameters from the BOSS galaxy power spectrum,
+     JCAP 2020 (2020) 042 [1909.05277].
+[77] A. Chudaykin, M. M. Ivanov, O. H. E. Philcox and M. Simonović, Nonlinear perturbation theory extension of the
+     Boltzmann code CLASS, Phys. Rev. D 102 (2020) 063533 [2004.10607].
+[78] A. F. Heavens, R. Jimenez and O. Lahav, Massive lossless data compression and multiple parameter estimation from
+                                                                                                                              30
+
+      galaxy spectra, MNRAS 317 (2000) 965 [astro-ph/9911102].
+ [79] R. Scoccimarro, The Bispectrum: From Theory to Observations, ApJ 544 (2000) 597 [astro-ph/0004086].
+ [80] J. Alsing and B. Wandelt, Generalized massive optimal data compression, MNRAS 476 (2018) L60 [1712.00012].
+ [81] O. H. E. Philcox, M. M. Ivanov, M. Zaldarriaga, M. Simonović and M. Schmittfull, Fewer mocks and less noise:
+      Reducing the dimensionality of cosmological observables with subspace projections, Phys. Rev. D 103 (2021) 043508
+      [2009.03311].
+ [82] J. Wishart and M. S. Bartlett, The generalised product moment distribution in a normal system, Proceedings of the
+      Cambridge Philosophical Society 29 (1933) 260.
+ [83] J. Hartlap, P. Simon and P. Schneider, Why your model parameter confidences might be too optimistic. Unbiased
+      estimation of the inverse covariance matrix, A&A 464 (2007) 399 [astro-ph/0608064].
+ [84] E. Sellentin and A. F. Heavens, Parameter inference with estimated covariance matrices, MNRAS 456 (2016) L132
+      [1511.05969].
+ [85] C. Eckart and G. Young, The approximation of one matrix by another of lower rank, Psychometrika 1 (1936) 211.
+ [86] O. H. E. Philcox, J. Hou and Z. Slepian, A First Detection of the Connected 4-Point Correlation Function of Galaxies
+      Using the BOSS CMASS Sample, arXiv e-prints (2021) arXiv:2108.01670 [2108.01670].
+ [87] S. Alam, M. Ata, S. Bailey, F. Beutler, D. Bizyaev, J. A. Blazek et al., The clustering of galaxies in the completed
+      SDSS-III Baryon Oscillation Spectroscopic Survey: cosmological analysis of the DR12 galaxy sample, MNRAS 470
+      (2017) 2617 [1607.03155].
+ [88] O. H. E. Philcox and M. M. Ivanov, The BOSS DR12 Full-Shape Cosmology: ΛCDM Constraints from the Large-Scale
+      Galaxy Power Spectrum and Bispectrum Monopole, arXiv e-prints (2021) arXiv:2112.04515 [2112.04515].
+ [89] N. Arkani-Hamed, P. Creminelli, S. Mukohyama and M. Zaldarriaga, Ghost inflation, JCAP 04 (2004) 001
+      [hep-th/0312100].
+ [90] K. Freese, J. A. Frieman and A. V. Olinto, Natural inflation with pseudo Nambu-Goldstone bosons, Phys. Rev. Lett. 65
+      (1990) 3233.
+ [91] S. Alexander, A. Marcianò and D. Spergel, Chern-Simons inflation and baryogenesis, JCAP 2013 (2013) 046.
+ [92] S. Hannestad, What is the lowest possible reheating temperature?, Phys. Rev. D 70 (2004) 043506 [astro-ph/0403291].
+ [93] C. Caprini and L. Sorbo, Adding helicity to inflationary magnetogenesis, JCAP 2014 (2014) 056 [1407.2809].
+ [94] B. Ratra, Cosmological “Seed” Magnetic Field from Inflation, ApJ 391 (1992) L1.
+ [95] M. Shiraishi, E. Komatsu and M. Peloso, Signatures of anisotropic sources in the trispectrum of the cosmic microwave
+      background, JCAP 2014 (2014) 027 [1312.5221].
+ [96] L. Ackerman, S. M. Carroll and M. B. Wise, Imprints of a primordial preferred direction on the microwave background,
+      Phys. Rev. D 75 (2007) 083502 [astro-ph/0701357].
+ [97] M. Shiraishi, E. Komatsu, M. Peloso and N. Barnaby, Signatures of anisotropic sources in the squeezed-limit bispectrum
+      of the cosmic microwave background, JCAP 2013 (2013) 002 [1302.3056].
+ [98] Planck Collaboration, Y. Akrami, F. Arroja, M. Ashdown, J. Aumont, C. Baccigalupi et al., Planck 2018 results. IX.
+      Constraints on primordial non-Gaussianity, A&A 641 (2020) A9 [1905.05697].
+ [99] S. Endlich, A. Nicolis and J. Wang, Solid inflation, JCAP 2013 (2013) 011 [1210.0569].
+[100] G. Franciolini, A. Kehagias, A. Riotto and M. Shiraishi, Detecting higher spin fields through statistical anisotropy in the
+      CMB bispectrum, Phys. Rev. D 98 (2018) 043533 [1803.03814].
+[101] P. Campeti, O. Özsoy, I. Obata and M. Shiraishi, New constraints on axion-gauge field dynamics during inflation from
+      P lanck and BICEP/Keck data sets, 2203.03401.
+[102] J. Maldacena, Non-gaussian features of primordial fluctuations in single field inflationary models, Journal of High
+      Energy Physics 2003 (2003) 013 [astro-ph/0210603].
+[103] E. Dimastrogiovanni, M. Fasiello and L. Pinol, Primordial Stochastic Gravitational Wave Background Anisotropies:
+      in-in Formalization and Applications, 2203.17192.
+[104] E. Dimastrogiovanni, M. Fasiello and M. Kamionkowski, Imprints of Massive Primordial Fields on Large-Scale
+      Structure, JCAP 02 (2016) 017 [1504.05993].
+[105] P. Creminelli and M. Zaldarriaga, Single field consistency relation for the 3-point function, JCAP 10 (2004) 006
+      [astro-ph/0407059].
+[106] D. Bertolini, K. Schutz, M. P. Solon and K. M. Zurek, The trispectrum in the Effective Field Theory of Large Scale
+      Structure, JCAP 2016 (2016) 052 [1604.01770].
+[107] Planck Collaboration, Y. Akrami, F. Arroja, M. Ashdown, J. Aumont, C. Baccigalupi et al., Planck 2018 results. X.
+      Constraints on inflation, A&A 641 (2020) A10 [1807.06211].
+[108] L. Sorbo, Parity violation in the Cosmic Microwave Background from a pseudoscalar inflaton, JCAP 2011 (2011) 003
+      [1101.1525].
+[109] G. Arfken, H. Weber and F. Harris, Mathematical Methods for Physicists: A Comprehensive Guide. Elsevier Science,
+      2013.
+[110] NIST, NIST Digital Library of Mathematical Functions. DLMF.
+[111] O. H. E. Philcox and Z. Slepian, An exact integral-to-sum relation for products of Bessel functions, Proceedings of the
+      Royal Society of London Series A 477 (2021) 20210376 [2104.10169].
+[112] O. H. E. Philcox and D. J. Eisenstein, Computing the small-scale galaxy power spectrum and bispectrum in configuration
+      space, MNRAS 492 (2020) 1214 [1912.01010].
+

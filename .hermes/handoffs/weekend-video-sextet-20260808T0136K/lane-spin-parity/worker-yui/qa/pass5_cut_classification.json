@@ -1,0 +1,936 @@
+{
+  "status": "DETERMINISTIC_CUT_BOUNDARY_CLASSIFICATION",
+  "deepening_pass": 5,
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "transition_count": 15,
+  "sample_count": 75,
+  "reference_definition": "pass-4 late outgoing and early incoming frames, one second inside each scene",
+  "expected_sequence": [
+    "outgoing",
+    "outgoing",
+    "incoming",
+    "incoming",
+    "incoming"
+  ],
+  "hard_cut_sequence_count": 15,
+  "all_cut_timestamp_frames_classify_incoming": true,
+  "minimum_reference_separation_ratio": 6.275656,
+  "mixed_or_blank_frame_detected_by_visual_review": false,
+  "transitions": [
+    {
+      "transition": 1,
+      "from_scene": 1,
+      "to_scene": 2,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "8c3e52341d7587e5777a47677f3226c384c486832563bd0f2b9506274b1d488a",
+          "outgoing_reference_score": 0.514948,
+          "incoming_reference_score": 12.908051,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 25.066708
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "add2f894b930f9bb6aaa4d734983b6f00478cbfc1458261a53002f3513069a5a",
+          "outgoing_reference_score": 0.519407,
+          "incoming_reference_score": 12.903727,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 24.84319
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "a416eedfd86d87a2a6e24a474556f3e823188024bd378a5fb0733405226708e4",
+          "outgoing_reference_score": 12.898889,
+          "incoming_reference_score": 0.575653,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 22.407403
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "b8a2101e44657238169af6edc01dfd8d058ba8566df05607ef3fbfccfbfeeb7d",
+          "outgoing_reference_score": 12.909306,
+          "incoming_reference_score": 0.552481,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 23.366063
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "1842d83843d23bcc54a64fd6c3ccde08749ec1e3d663fc76cb3e4c3b747335c0",
+          "outgoing_reference_score": 12.908785,
+          "incoming_reference_score": 0.546812,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 23.607355
+        }
+      ]
+    },
+    {
+      "transition": 2,
+      "from_scene": 2,
+      "to_scene": 3,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "2b51599beb0baf42b44cc4a1e20700b0675329f15cb5a5dcfbc86bb66ed8d358",
+          "outgoing_reference_score": 0.53243,
+          "incoming_reference_score": 9.306132,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 17.478602
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "230c6c7de20a59b72b33f92d8de1b219d9eda5dc1d29cee4c09d57333020f905",
+          "outgoing_reference_score": 0.538708,
+          "incoming_reference_score": 9.30116,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 17.26568
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "d5fa01e5534220eec1b7b5bcc6210097be9f3d76702b6f13a421a96b6c6ba7d6",
+          "outgoing_reference_score": 9.297383,
+          "incoming_reference_score": 0.543945,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 17.092506
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "05f948bf0e6ec40971537675a0bdc24a715351a7d2cf5be2d272cd06c8f33e79",
+          "outgoing_reference_score": 9.303144,
+          "incoming_reference_score": 0.525543,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 17.701965
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "271f278410973965780578c8a20304ac262497bf2bfbad277a9b0f0398e31530",
+          "outgoing_reference_score": 9.304783,
+          "incoming_reference_score": 0.52213,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 17.820817
+        }
+      ]
+    },
+    {
+      "transition": 3,
+      "from_scene": 3,
+      "to_scene": 4,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "bef6abfef620bfc61d2185ffc2c18774e625fb0dcfcc2d23c67caa53bf7899cf",
+          "outgoing_reference_score": 0.551764,
+          "incoming_reference_score": 9.808649,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 17.776892
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "cdd5168a9452270b5313b1333e28dfef7aaedea35f1176512e4f94fd5e89ebf0",
+          "outgoing_reference_score": 0.552574,
+          "incoming_reference_score": 9.808858,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 17.751212
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "829929f15e0a14dc1e4503404d3afb83c3eb2b078de85a98d53c2f3e143c0e2f",
+          "outgoing_reference_score": 9.531617,
+          "incoming_reference_score": 0.936065,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 10.182644
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "e951761ab6c8e0089fb22d40e4145c3a83cb976412d71f9e14b309b22def185a",
+          "outgoing_reference_score": 9.540655,
+          "incoming_reference_score": 0.946022,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 10.085024
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "9be3a2a1d7e02db5f9fc88df25a88129958522810c59909ed3c8fd83141d42b0",
+          "outgoing_reference_score": 9.544958,
+          "incoming_reference_score": 0.945679,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 10.093232
+        }
+      ]
+    },
+    {
+      "transition": 4,
+      "from_scene": 4,
+      "to_scene": 5,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "da42a5a8062575d15a61c35d009b3dcd60eab91be54b15f2ceeb0581d74a4188",
+          "outgoing_reference_score": 0.541315,
+          "incoming_reference_score": 16.416922,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 30.327853
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "88baf68ed0fc96f2ffcb0be094f64418d0da09babb4639c40d8a97a766b49ee1",
+          "outgoing_reference_score": 0.545783,
+          "incoming_reference_score": 16.420805,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 30.086692
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "a8ae409d47d4437efb297043e9d0d22e19b2acae2c295f7318684850adfc87d6",
+          "outgoing_reference_score": 15.394652,
+          "incoming_reference_score": 1.623774,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 9.480785
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "f02addaf5bf60221f0d5340b7cf127c77ae7a9e4e33950b2119e5ed5ea3ab62f",
+          "outgoing_reference_score": 16.400579,
+          "incoming_reference_score": 0.017524,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 935.892433
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "8f5af77aa26c2775541e32aa7199112a498f43299d85522a79f5fedb2547a901",
+          "outgoing_reference_score": 16.40064,
+          "incoming_reference_score": 0.016613,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 987.21724
+        }
+      ]
+    },
+    {
+      "transition": 5,
+      "from_scene": 5,
+      "to_scene": 6,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "a76bbbe6407e1ccfb3d8d8c77851932098a12dc88dfddcdb5afc1b9c8c7014c1",
+          "outgoing_reference_score": 0.000571,
+          "incoming_reference_score": 17.260553,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 30228.639229
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "1dd5e69cd285624e8c4c4ff006d0f13b04b184e788835b98164634a611c337fe",
+          "outgoing_reference_score": 0.000779,
+          "incoming_reference_score": 17.26058,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 22157.355584
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "71b1d85314849b5008e8dab2a886a21b8491f5aedf2bffd1f927dac6dd9f076d",
+          "outgoing_reference_score": 16.034834,
+          "incoming_reference_score": 1.742411,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 9.20267
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "764ec2175c5f30aa3472cd802e3ff0792dd7a551caa37f8dbe8bad34fe95aeb8",
+          "outgoing_reference_score": 17.233306,
+          "incoming_reference_score": 0.556147,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 30.986962
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "81a7dadbaa6de88428586642e0d11f6d6e92e3f6057f95fd1224eb1aabf6de39",
+          "outgoing_reference_score": 17.234188,
+          "incoming_reference_score": 0.557142,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 30.933206
+        }
+      ]
+    },
+    {
+      "transition": 6,
+      "from_scene": 6,
+      "to_scene": 7,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "02c7e5c948dc3e11cce0a9c51543f200f1a6739b942d580430404058487749af",
+          "outgoing_reference_score": 0.908199,
+          "incoming_reference_score": 11.251517,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 12.388823
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "00ec22b24708047b40c79397fe9cdf9e59cd0714ecf76f9eaa7290a21b6d0f6a",
+          "outgoing_reference_score": 0.907675,
+          "incoming_reference_score": 11.256964,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 12.401976
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "a822a1d492bec1a422fae58e7787060a709da381ee2f15c0d05ab3cb105f24f0",
+          "outgoing_reference_score": 10.521972,
+          "incoming_reference_score": 1.676633,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 6.275656
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "fe320f9485ec8348b3527b675f903482d8eca698176ca6288b8f35e7dde629c7",
+          "outgoing_reference_score": 11.401442,
+          "incoming_reference_score": 0.034504,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 330.438268
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "4e85e5d02b37a6a9b9801b52117cf5af721353b088aaf395733bfcf36cc276a0",
+          "outgoing_reference_score": 11.401735,
+          "incoming_reference_score": 0.03416,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 333.774444
+        }
+      ]
+    },
+    {
+      "transition": 7,
+      "from_scene": 7,
+      "to_scene": 8,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "8cda5ef971108a1fb5b7d2709deef58eff60048077aa5c481a9dd262290d5d5e",
+          "outgoing_reference_score": 0.000249,
+          "incoming_reference_score": 12.140006,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 48755.044177
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "339640d1aa2ab612dd397877616b84d929b74c355166b30d8da7d3b88ba54665",
+          "outgoing_reference_score": 0.000332,
+          "incoming_reference_score": 12.139966,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 36566.162651
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "ad22bbecbb29e8f7bb5ddd88920fd4bcf59aecb0b55a5029664537f074c65d1e",
+          "outgoing_reference_score": 12.090341,
+          "incoming_reference_score": 0.59352,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 20.37057
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "db704d440804b7f28d5fa1dcb2ea0a984a32e6f2dfeb90af70dceeff0d13a897",
+          "outgoing_reference_score": 12.121729,
+          "incoming_reference_score": 0.578616,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 20.949523
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "ba7d190b7cec01f7e0c9740d89fd5ba5776da333238797ef9f0f62b21457f860",
+          "outgoing_reference_score": 12.119504,
+          "incoming_reference_score": 0.577355,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 20.991425
+        }
+      ]
+    },
+    {
+      "transition": 8,
+      "from_scene": 8,
+      "to_scene": 9,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "7462e46a6f128fc720b42ac66c58a5aa7a86d32a3d5683cc1e1fa4110ac986ac",
+          "outgoing_reference_score": 0.534856,
+          "incoming_reference_score": 28.751734,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 53.756028
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "812bb1d6ff9c2df4c7933dfac97fb2a8e56e94827779da00a008c6b7fb6696e8",
+          "outgoing_reference_score": 0.538045,
+          "incoming_reference_score": 28.752552,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 53.438935
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "43f9a3aaf41d107b4950f2590cb3e0e698eb1014da6c8c7695314fb7bf7d28c6",
+          "outgoing_reference_score": 28.747552,
+          "incoming_reference_score": 0.008256,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 3482.01938
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "76d3202b49d512c48a46ffd0bc680bc608bfdd4d93964b6af4b4a60656d64109",
+          "outgoing_reference_score": 28.746578,
+          "incoming_reference_score": 0.006009,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 4783.920453
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "bdebff29978b315126ab86be61f059404dab1e694c6e58ceeb41b15fe107d3ff",
+          "outgoing_reference_score": 28.745943,
+          "incoming_reference_score": 0.004505,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 6380.897447
+        }
+      ]
+    },
+    {
+      "transition": 9,
+      "from_scene": 9,
+      "to_scene": 10,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "48df9d8ca39a03241dd74ce0cd74176f96d358f308337ea6b33bceb335c77bc7",
+          "outgoing_reference_score": 0.001215,
+          "incoming_reference_score": 27.641765,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 22750.423868
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "edec503960ce9811968da6b39568b3a75941690db3f66f609cbc8ec86d3055e6",
+          "outgoing_reference_score": 0.00124,
+          "incoming_reference_score": 27.641755,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 22291.737903
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "de732124b3d2aeeeef253c258c1b983596b09fab9deeedfd69fd26404cab7158",
+          "outgoing_reference_score": 27.641861,
+          "incoming_reference_score": 0.004785,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 5776.773459
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "6fd03f18b43da9966c559660b9c1c3ed8c9be3c23175e3d326a42a98d7b1a668",
+          "outgoing_reference_score": 27.641187,
+          "incoming_reference_score": 0.005667,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 4877.569614
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "430f5b8a746c9e4e3ba5ec0b565e64f20d10a69e749bd7ed837e68ab91a025af",
+          "outgoing_reference_score": 27.641327,
+          "incoming_reference_score": 0.005154,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 5363.08246
+        }
+      ]
+    },
+    {
+      "transition": 10,
+      "from_scene": 10,
+      "to_scene": 11,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "3bce57f3734464cbd54240c4cd25aba5c3131128cac61b8588585af9d642a73c",
+          "outgoing_reference_score": 0.240826,
+          "incoming_reference_score": 19.990453,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 83.007869
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "e31dbd98d8b9813fc6a4ded4e87b787318cd96dc2854970642be6197afbc6132",
+          "outgoing_reference_score": 0.241344,
+          "incoming_reference_score": 19.990618,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 82.830391
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "ba50bf4e825ff674ef9fa2d03067a26e768e15106222510f371186652b413627",
+          "outgoing_reference_score": 19.987206,
+          "incoming_reference_score": 0.02997,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 666.907107
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "d9f8298b586b622244b5f0536f9bd7979bda9fccae75bb1860d1f444edf2192a",
+          "outgoing_reference_score": 19.987269,
+          "incoming_reference_score": 0.029491,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 677.741311
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "f7e7bdefe4274b0788910e2f2d4d569e17b165ffd0649c455170415f72a70dfd",
+          "outgoing_reference_score": 19.987396,
+          "incoming_reference_score": 0.030168,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 662.53633
+        }
+      ]
+    },
+    {
+      "transition": 11,
+      "from_scene": 11,
+      "to_scene": 12,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "3af3c2d5a13493cc0ee87c0f9b301ef71111668e1e56bd4fcfefe2808c62d16f",
+          "outgoing_reference_score": 0.005411,
+          "incoming_reference_score": 20.77152,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 3838.758085
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "76eac57c44605e1f35014a6844926c3df2463e06cc06ab951d3a36e6ed3fe587",
+          "outgoing_reference_score": 0.005401,
+          "incoming_reference_score": 20.771527,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 3845.866877
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "7f31afb74299083f627f249bed80c1cad4c71d8d6d54913f80e5e7764de104be",
+          "outgoing_reference_score": 20.739549,
+          "incoming_reference_score": 0.55672,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 37.253106
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "acf6f6672efaa47adfd4bdbf5e8dad9c512dda2aded8f0345e608beac3fe099e",
+          "outgoing_reference_score": 20.761312,
+          "incoming_reference_score": 0.540026,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 38.445023
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "3792ef2a1dec4b5e9036cbb82d87bd37961909fe1b31da033fbafebae43c4173",
+          "outgoing_reference_score": 20.761101,
+          "incoming_reference_score": 0.535446,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 38.773473
+        }
+      ]
+    },
+    {
+      "transition": 12,
+      "from_scene": 12,
+      "to_scene": 13,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "07ea5969bced1afe19592fd321ddb8ae4ba0c90b5ce210f149acf39655bde728",
+          "outgoing_reference_score": 0.522528,
+          "incoming_reference_score": 10.75386,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 20.580447
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "01a957034d3eeb35ba551f83ca0b1310eed5a5fd071862fd14ad8d505da5342d",
+          "outgoing_reference_score": 0.522397,
+          "incoming_reference_score": 10.748292,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 20.57495
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "03558fb991cfecfbf2f7e22507c5a1fc91eff4844f4bab55bebb22aa62569e9c",
+          "outgoing_reference_score": 10.741698,
+          "incoming_reference_score": 0.600694,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 17.882146
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "d12d8578f0bc772d537d51eb68ddb1ef00d46ef4ce28e0ea1fa249b4ed5f0868",
+          "outgoing_reference_score": 10.738839,
+          "incoming_reference_score": 0.592074,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 18.137664
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "bbf0c98fd7efdbb8453a46d137c29cf06a9528c3cbf14d2af1efe79a69ab7c73",
+          "outgoing_reference_score": 10.744668,
+          "incoming_reference_score": 0.564784,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 19.024385
+        }
+      ]
+    },
+    {
+      "transition": 13,
+      "from_scene": 13,
+      "to_scene": 14,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "aad307af24cc0cfddd8543a2eee2106ea507e69145c734f0220b94a2a0cfa56f",
+          "outgoing_reference_score": 0.518457,
+          "incoming_reference_score": 9.605743,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 18.52756
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "f6683ee2b078a1fd8a01040def9e61988a0a9f6e75e1a6fb1f9edb0084d2048d",
+          "outgoing_reference_score": 0.519721,
+          "incoming_reference_score": 9.603069,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 18.477354
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "fdf60f93dbff69fa01e97c52aa8b2425aae66c4f6d6b1fb5b0c0515ebe413934",
+          "outgoing_reference_score": 9.577729,
+          "incoming_reference_score": 0.624619,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 15.333714
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "8450bb71858c1700ac1e5993551616d65fab1e3e86a9724cfe5f3d3f29b5dfab",
+          "outgoing_reference_score": 9.587714,
+          "incoming_reference_score": 0.594822,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 16.118627
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "91ee294ff643839ba053e35ba9d73e821a942319ddf26636b2667d9a5a0889f1",
+          "outgoing_reference_score": 9.588527,
+          "incoming_reference_score": 0.586628,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 16.345157
+        }
+      ]
+    },
+    {
+      "transition": 14,
+      "from_scene": 14,
+      "to_scene": 15,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "407377d9dada4aaa8f88b2822f94fa3c669a2cce2576463a8165a5cd5ad3b97b",
+          "outgoing_reference_score": 0.563699,
+          "incoming_reference_score": 8.088466,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 14.34891
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "fc65b03f963cea248e3dba9f20a66485d42996d6c1e95ba77c76e085e332ac50",
+          "outgoing_reference_score": 0.568233,
+          "incoming_reference_score": 8.087206,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 14.232201
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "22f9d75aa6a4fb147d2cbac16e01f948a42d044acd608f864d01c14fb8e432fe",
+          "outgoing_reference_score": 8.098092,
+          "incoming_reference_score": 0.735986,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 11.003052
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "1f448fb7c314ddf7cdd73afb5c686f53e41033a1f0b554cf35bfc05062f68f7c",
+          "outgoing_reference_score": 8.101057,
+          "incoming_reference_score": 0.734156,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 11.034517
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "7ba87619d5ab10c011a6b94d62d4040e75efb165f2f174f1d1c1ca412a0c2052",
+          "outgoing_reference_score": 8.102472,
+          "incoming_reference_score": 0.730228,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 11.095811
+        }
+      ]
+    },
+    {
+      "transition": 15,
+      "from_scene": 15,
+      "to_scene": 16,
+      "classification_sequence": [
+        "outgoing",
+        "outgoing",
+        "incoming",
+        "incoming",
+        "incoming"
+      ],
+      "expected_hard_cut_sequence": true,
+      "first_incoming_offset_frames": 0,
+      "samples": [
+        {
+          "offset_frames": -2,
+          "sample": "minus_2f",
+          "frame_sha256": "61abd6183d23a35c35b2b208681a9860622968cca302fd0185975c1146cf265f",
+          "outgoing_reference_score": 0.508738,
+          "incoming_reference_score": 7.972608,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 15.671344
+        },
+        {
+          "offset_frames": -1,
+          "sample": "minus_1f",
+          "frame_sha256": "37a336b947a1fbfb79ddb9dca5446e79d23c178f8688e0274fd2940549604abf",
+          "outgoing_reference_score": 0.516387,
+          "incoming_reference_score": 7.968778,
+          "nearest_reference": "outgoing",
+          "reference_separation_ratio": 15.431794
+        },
+        {
+          "offset_frames": 0,
+          "sample": "cut",
+          "frame_sha256": "457759b5cb77c8bfe564d744212e9d18217dc597207dc7d5340826e24e6f31bd",
+          "outgoing_reference_score": 7.959533,
+          "incoming_reference_score": 0.577247,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 13.788782
+        },
+        {
+          "offset_frames": 1,
+          "sample": "plus_1f",
+          "frame_sha256": "cc49b369b28bc4cdb0edebee6fdf2c11938fd2099b6e71b023c7a9a34c5099d0",
+          "outgoing_reference_score": 7.962318,
+          "incoming_reference_score": 0.566527,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 14.054613
+        },
+        {
+          "offset_frames": 2,
+          "sample": "plus_2f",
+          "frame_sha256": "47fa2e9b083a7bcb2739518a82e1f4dd5d80ac4eaf7f59e0ee4689f69a4f58ca",
+          "outgoing_reference_score": 7.963075,
+          "incoming_reference_score": 0.563428,
+          "nearest_reference": "incoming",
+          "reference_separation_ratio": 14.133261
+        }
+      ]
+    }
+  ]
+}

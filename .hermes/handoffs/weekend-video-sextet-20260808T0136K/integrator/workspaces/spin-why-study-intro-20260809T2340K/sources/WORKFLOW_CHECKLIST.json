@@ -1,0 +1,186 @@
+{
+ "workflow": "PAPER_WORKFLOW_V2",
+ "spec": ".hermes/workflows/PAPER_WORKFLOW_V2.md",
+ "slug": "spin-parity",
+ "question": "Is there a handedness asymmetry in public spiral-galaxy morphology data?",
+ "retrofitted": "2026-08-05 21:42 KST",
+ "retrofit_note": "lane opened before v2; stages mapped to what actually happened, not to what v2 would have prescribed",
+ "stages": [
+  {
+   "stage": "0 global map",
+   "seat": "Goru",
+   "kimi_gate": false,
+   "done_means": "archive holdings AND corpus for this question held in ONE context (Goru: capacity is for unbroken context, not clerical bulk)",
+   "state": "done",
+   "note": "T0 recon: VizieR carries NO handedness catalogue; GZ1 external"
+  },
+  {
+   "stage": "1 framing",
+   "seat": "Goru→Lana",
+   "kimi_gate": false,
+   "done_means": "what is contested, what would settle it",
+   "state": "done",
+   "note": "contested now: Shamir vs Stiskalek 2024, live dispute"
+  },
+  {
+   "stage": "1b prediction freeze",
+   "seat": "Lana",
+   "kimi_gate": false,
+   "done_means": "what the literature predicts, receipted verbatim spans, sha-pinned BEFORE any data; scarcity recorded honestly",
+   "state": "pending",
+   "note": "anchor block frozen IN the contract; not yet a separate stage artifact"
+  },
+  {
+   "stage": "1.5 evidence freeze",
+   "seat": "Yui",
+   "kimi_gate": false,
+   "done_means": "which figures/claims carry the story; source identity and rights; co-designed with video NOW, not after landing",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "2 contract freeze",
+   "seat": "Lana/Hwao",
+   "kimi_gate": true,
+   "done_means": "frame/cuts/statistic/honest-outcomes frozen, sha256 + chmod 444 BEFORE any science row",
+   "state": "done",
+   "note": "v1.2 frozen sha dc2ace67, 3 Miru rounds",
+   "evidence": {
+    "frozen": [
+     "SPIN_PARITY_CONTRACT_V1.md"
+    ]
+   }
+  },
+  {
+   "stage": "2b amendment path",
+   "seat": "Lana",
+   "kimi_gate": null,
+   "done_means": "ONLY if invoked: pre-result amendment, pre-result property itself receipted, gated by the author of the amended clause",
+   "state": "done",
+   "note": "A1.2 PASSED after 3 rounds (zooNoSpec schema)",
+   "evidence": {
+    "glob": "AMENDMENT_A*.md"
+   }
+  },
+  {
+   "stage": "3 eligibility",
+   "seat": "Hwao",
+   "kimi_gate": false,
+   "done_means": "two-channel enumeration; per-table verdicts with verbatim receipts; quote-verification by script, not by a frontier model",
+   "state": "skipped",
+   "note": "n/a: single external source, not an archive enumeration"
+  },
+  {
+   "stage": "4 reviewed script",
+   "seat": "Hwao",
+   "kimi_gate": true,
+   "done_means": "the only artifact allowed to produce numbers (demotable ONLY where stage 6 enforces funnel conservation by a non-author seat)",
+   "state": "done",
+   "note": "t1_gz_fetch verified 15/15 empirical checks"
+  },
+  {
+   "stage": "5 execute + funnel",
+   "seat": "Hwao",
+   "kimi_gate": false,
+   "done_means": "counts and terminal states; every zero diagnosed with direct evidence",
+   "state": "done",
+   "note": "funnel: 30,412 at lead rung; 14,623 CW / 15,789 ACW; 29,053 ties",
+   "evidence": {
+    "contains": {
+     "file": "T1_FUNNEL.json",
+     "pattern": "\"zooSpec\"|SPIRAL_FLAG"
+    },
+    "files": [
+     "T1_FUNNEL.json"
+    ]
+   }
+  },
+  {
+   "stage": "5.5 data sanity",
+   "seat": "Goru",
+   "kimi_gate": true,
+   "done_means": "does the output make physical sense; automated diff vs expected bounds (Goru: static review cannot see live data shape)",
+   "state": "done_with_blocker",
+   "note": "DONE (Goru, GORU_5.5_DATA_SANITY.md). Independently re-parsed the source and reproduced all 12 funnel counts exactly; distributions clean (fractions in [0,1], NVOTE 4-94, 0 duplicate OBJIDs in 667,944 rows, 0 malformed coordinates); proved the zero ties at the dominance rungs are structural, not a filter bug (a tie at 0.60 needs both fractions >=0.60, summing >=1.20, which the fraction constraint forbids). Raised a transposition hypothesis on P_CW/P_ACW which is REFUTED by t1c_column_integrity.py (36/36 ALIGNED, 0 crossed) — but the failure MECHANISM he named is real and led to two contract blockers, now at Miru's gate as AMENDMENT_A2_DRAFT.md: D1 the Land (2008) bias direction is recorded backwards (anticlockwise, not clockwise, was over-reported), D3 the frozen symmetric 0.80 raw cut reproduces Land's UNCORRECTED clean sample. Measurement stages stay blocked until A2 clears.",
+   "evidence": {
+    "files": [
+     "GORU_5.5_DATA_SANITY.md"
+    ],
+    "contains": {
+     "file": "GORU_5.5_DATA_SANITY.md",
+     "pattern": "GORU_DATA_SANITY_COMPLETE|STAGE 5.5"
+    }
+   }
+  },
+  {
+   "stage": "5b measurement",
+   "seat": "Hwao",
+   "kimi_gate": false,
+   "done_means": "the contracted statistic + uncertainty decomposition + forecast-vs-realized + sensitivity + negative controls. NO prose (Tori: v1 had no stage computing the result)",
+   "state": "pending",
+   "note": "NOT DONE — no statistic computed yet, by design (T2)",
+   "evidence": {
+    "files": [
+     "T2_MIRROR_BIAS.json"
+    ],
+    "verdict": {
+     "glob": "KUN_A3_GATE.md",
+     "pattern": "GATE:\\s*PASS"
+    },
+    "blocked_if": {
+     "glob": "KUN_A3_GATE.md",
+     "pattern": "GATE:\\s*FAIL"
+    }
+   }
+  },
+  {
+   "stage": "6 receipts",
+   "seat": "Tori",
+   "kimi_gate": false,
+   "done_means": "totals re-added from raw artifacts; FUNNEL CONSERVATION: every input row reaches exactly one terminal state and they re-add to the input count",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "7 draft",
+   "seat": "Lana",
+   "kimi_gate": false,
+   "done_means": "prose from receipted artifacts only; provenance block with hashes",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "7b contradiction",
+   "seat": "Lana",
+   "kimi_gate": false,
+   "done_means": "enumerate what this contradicts and engage it",
+   "state": "pending",
+   "note": ""
+  },
+  {
+   "stage": "8 referee",
+   "seat": "-",
+   "kimi_gate": true,
+   "done_means": "overclaim hunt + claim-to-artifact binding; established / overstated / understated",
+   "state": "pending",
+   "note": "gated on 5b/6"
+  },
+  {
+   "stage": "9 video",
+   "seat": "Yui",
+   "kimi_gate": false,
+   "done_means": "9A story → 9B evidence graphics → 9C audio gate → 9D paper-naive comprehension gate → 9E render → 9F upload (UNLISTED; the current uploader defaults to PUBLIC and must be replaced)",
+   "state": "pending",
+   "note": "needs the replaced uploader (defaults to public)"
+  },
+  {
+   "stage": "10 landing",
+   "seat": "Duho",
+   "kimi_gate": false,
+   "done_means": "human gate",
+   "state": "pending",
+   "note": ""
+  }
+ ],
+ "evidence_note": "Stage detectors added 2026-08-06. A stage advances only when an artifact on disk proves it; nm_workflow_advance.py records which artifact. Stages without a detector are never assumed done."
+}

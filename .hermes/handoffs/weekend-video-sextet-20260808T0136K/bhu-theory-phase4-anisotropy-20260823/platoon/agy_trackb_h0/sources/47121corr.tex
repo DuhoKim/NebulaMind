@@ -1,0 +1,1308 @@
+% aa.dem
+% AA vers. 9.1, LaTeX class for Astronomy & Astrophysics
+% demonstration file
+%                                                       (c) EDP Sciences
+%-----------------------------------------------------------------------
+%
+%\documentclass[referee]{aa} % for a referee version
+%\documentclass[onecolumn]{aa} % for a paper on 1 column  
+%\documentclass[longauth]{aa} % for the long lists of affiliations 
+%\documentclass[letter]{aa} % for the letters 
+%\documentclass[bibyear]{aa} % if the references are not structured 
+%                              according to the author-year natbib style
+
+%
+\documentclass{aa}
+\usepackage{subfigure}
+%\usepackage{supertabular}
+%\usepackage{lscape}
+%\usepackage{bm}
+\bibpunct{(}{)}{;}{a}{}{,} % to follow the A&A style
+%\usepackage{soul}
+%\setstcolor{yellow}
+%\usepackage{bm}
+%
+\usepackage{graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{txfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage[options]{hyperref}
+% To add links in your PDF file, use the package "hyperref"
+% with options according to your LaTeX or PDFLaTeX drivers.
+%
+\def\de{$\degr$}
+\def\tm{$\theta_\mathrm{max}$ }
+%\usepackage{ulem}
+%\usepackage{orcidlink}
+%\usepackage{appendix}
+  
+\begin{document} 
+        
+%\label{firstpage}
+%\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+%\maketitle
+
+
+   \title{Testing the cosmological principle with the Pantheon+ sample and the region-fitting method}
+   \titlerunning{Testing the cosmological principle}
+  % \subtitle{I. Overviewing the $\kappa$-mechanism}
+
+    \author{J. P. Hu\inst{1} 
+        \and Y. Y. Wang\inst{2} 
+        \and J. Hu\inst{3}
+        \and F. Y. Wang\inst{1,4} 
+   }
+
+   \institute{School of Astronomy and Space Science, Nanjing University, Nanjing 210093, China\\
+             \email{fayinwang@nju.edu.cn}
+         \and
+             Anton Pannekoek Institute for Astronomy, University of Amsterdam, Science Park 904, 1098 XH Amsterdam, Netherlands  \\
+         \and
+             Institute of Astronomy and Information, Dali University, Dali 671003, China \\
+         \and 
+            Key Laboratory of Modern Astronomy and Astrophysics (Nanjing University), Ministry of Education, Nanjing 210093, China
+             }
+
+   \date{Received date; accepted date}
+
+% \abstract{}
+% 5 {} token are mandatory
+ 
+  \abstract
+   {The cosmological principle is fundamental to the standard cosmological model. It assumes that the Universe is homogeneous and isotropic on very large scales. As the basic assumption, it must stand the test of various observations. In this work, we investigated the properties of the Pantheon+ sample, including redshift distribution and position distribution, and we give its constraint on the flat $\Lambda$CDM model: $\Omega_{m}$ = 0.36$\pm$0.02 and $H_{0}$ = 72.83$\pm$0.23 km s$^{-1}$ Mpc$^{-1}$. Then, using the region fitting (RF) method, we mapped the all-sky distribution of cosmological parameters ($\Omega_{m}$ and $H_{0}$) and find that the distribution significantly deviates from isotropy. A local matter underdensity region exists toward (${308.4^{\circ}}$$_{-48.7}^{+47.6}$, ${-18.2^{\circ}}$$_{-28.8}^{+21.1}$) as well as a preferred direction of the cosmic anisotropy (${313.4^{\circ}}$$_{-18.2}^{+19.6}$, ${-16.8^{\circ}}$$_{-10.7}^{+11.1}$) in galactic coordinates. Similar directions may imply that local matter density might be responsible for the anisotropy of the accelerated expansion of the Universe. Results of statistical isotropy analyses including Isotropy and Isotropy with real-data positions (RP) show high confidence levels. For the local matter underdensity, the statistical significances are 2.78$\sigma$ (isotropy) and 2.34$\sigma$ (isotropy RP). For the cosmic anisotropy, the statistical significances are 3.96$\sigma$ (isotropy) and 3.15$\sigma$ (isotropy RP). The comparison of these two kinds of statistical isotropy analyses suggests that inhomogeneous spatial distribution of real sample can increase the deviation from isotropy. The similar results and findings are also found from reanalyses of the low-redshift sample (lp+) and the lower screening angle (\tm = 60$\degr$), but with a slight decrease in statistical significance. Overall, our results provide clear indications for a possible cosmic anisotropy. This possibility must be taken seriously. Further testing is needed to better understand this signal. }
+
+\keywords{cosmology: theory -- cosmological parameters -- supernovae: general}
+\maketitle
+
+
+%
+%-------------------------------------------------------------------
+
+\section{Introduction} \label{sec:intro} 
+The $\Lambda$CDM model is generally accepted as the standard cosmological model, which is consistent with most astronomical observations \citep{2018ApJ...859..101S,2019PhRvL.122q1301A,2020MNRAS.492.4456K,2022ApJ...938..110B,2022MNRAS.513.5686C,2022MNRAS.514.1828D,2022MNRAS.516.2575J,2022ApJ...931...50L,2022PhRvD.106j3530P,2022ApJ...924...97W,2023PhRvD.107f3522D,2023MNRAS.522.1247K,2023MNRAS.521.4406L}. It is based on the fundamental assumption of the cosmological principle, namely that the Universe is statistically isotropic and homogeneous on sufficiently large scales. Despite its many successes, there have been also several analyses of observations that indicate that the Universe may be inhomogeneous and anisotropic; for instance, the fine-structure constant \citep{2011PhRvL.107s1101W,2012MNRAS.422.3370K,2017ChPhC..41f5102L,2022arXiv221202458M}, the direct measurement of the Hubble parameter \citep{2006PhRvL..96s1302B,2021PhRvL.126w1101K}, the cosmic microwave background (CMB)
+\citep{2003ApJS..148....1B,2003PhRvD..68l3523T,2004MNRAS.355.1283B,2011ApJS..192...17B,2011MNRAS.411.1445G,2020MNRAS.492.3994G,2020A&A...641A...7P}, the anisotropic dark energy \citep{2008JCAP...06..018K,2012PhRvD..86h3517M,2020JCAP...10..019B,2021PDU....3200806M}, the large dipole of radio source counts \citep{2014A&A...565A.111R,2017MNRAS.471.1045C,2018MNRAS.477.1772R,2019PhRvD.100f3501S,2023MNRAS.524.3636S}, quasar dipoles \citep{2005AA...441..915H,2016AA...590A..53P,2019AA...622A.113T,2020A&A...643A..93H,2021ApJ...908L..51S,2021EPJC...81..948Z,2021EPJC...81..694Z,2023MNRAS.525..231D}, the anisotropic Hubble constant \citep{2022PhRvD.105j3510L,2023arXiv230402718M} and the type Ia supernovae (SNe Ia) dipole \citep{2011MNRAS.414..264C,2014MNRAS.437.1840Y,2015ApJ...810...47J,2018MNRAS.478.5153S,2018MNRAS.474.3516W,Tang_2023}, and local matter underdensity \citep{2020PhRvD.102b3520K}. These analyses hint that the Universe may have a local void and a preferred expanding direction. In addition, it is assumed that the $\Lambda$CDM model also triggers a serious Hubble constant discrepancy between the \emph{Planck} CMB \citep{2020A&A...641A...6P} and the local distance ladder \citep{2019ApJ...876...85R,2022ApJ...934L...7R}. This is known as the Hubble tension, and its statistical significance has reached 5.0 $\sigma$. Such a high confidence level could not be explained by systematic uncertainty alone, and might imply new physics beyond the $\Lambda$CDM model. There has been intense discussion focused on this issue, and a lot of theoretical explanations have been proposed. We refer the readers to some review articles \citep{2021CQGra..38o3001D,2021A&ARv..29....9S,2022JHEAp..34...49A,2022NewAR..9501659P,2023Univ....9...94H,2023CQGra..40i4001K,2023arXiv230911552K,2023arXiv230810954R,2023Univ....9..393V} for more detailed information about the cosmological anomalies and tension.
+
+It is worth noting that some researchers claim that considering a void model can successfully explain the cosmic dipole and the Hubble tension \citep{2020A&A...633A..19B,2020MNRAS.499.2845H,2020MNRAS.491.2075L,2022CQGra..39r4001C,2022arXiv221106857C,2023MNRAS.525.3274M}. \citet{2020MNRAS.499.2845H} showed that the KBC void \citep{2013ApJ...775...62K} could naturally resolve the Hubble tension in Milgromian dynamics for the first time. By computing the Hubble constant in an inhomogeneous universe and adopting model selection via both the Bayes factor and the Akaike information criterion, \citet{2022CQGra..39r4001C} found that the lambda Lemaître-Tolman-Bondi ($\Lambda$LTB) model is favored with respect to the $\Lambda$CDM model at low-redshift range (0.023 $< z <$ 0.15), and this can be used to explain the Hubble tension. After that, \citet{2022arXiv221106857C} proposed that a gigaparsec-scale void can reconcile the CMB and quasar dipolar tension. If considering a large and thick void, their setup can also ease the Hubble tension. At the same time, there are some findings that could be explained by a local void model. For example, inspired by the H0LiCOW results \citep{2020A&A...639A.101M,2020MNRAS.498.1420W}, \citet{2022MNRAS.517..576H} reported a late-time transition of $H_{0;}$ that is, $H_{0}$ changes from being consistent with the CMB result to being consistent with the distance ladder one from an early-to-late cosmic time, which can be explicated by the local void. The late-time transition of $H_{0}$ was found from the observational Hubble parameter $H(z)$ data combining the Gaussian process (GP) method \citep{2011JMLR...12.2825P} and can be used to effectively relieve the Hubble tension (a mitigation level of around 70 \%). In addition, a similar $H_{0}$ descending behavior has also been discovered by utilizing various observations (such as SNe Ia, $H(z)$, baryon acoustic oscillations and megamasers) and their combinations \citep{2020PhRvD.102j3525K,2021PhRvD.103j3509K,2022Galax..10...24D,2022PhRvD.106d1301O,2022A&A...668A..34H,2022arXiv220611447C,2023A&A...674A..45J,2023arXiv230112725M}. Of course, there are also some opposing voices believing that the void model alone cannot solve the Hubble tension \citep{2019ApJ...875..145K,2021PhRvD.103l3539C,2022JCAP...07..003C}. Therefore, further research on this controversial topic is necessary and would certainly be worthwhile. So far, there has been no research using the Pantheon+ sample to simultaneously map matter-density ($\Omega_{m}$) distribution and the Hubble expansion ($H_{0}$) distribution to test the cosmological principle.
+ 
+In this work, we tested the cosmological principle by the region fitting (RF) method with the latest Pantheon+ sample. Compared to the previous work \citep{2021CQGra..38r4001K,2022PhRvD.105f3514K,2023arXiv230402718M}, we improved our research methodology and carried out the necessary statistical analyses. Usually, considering the simple flat $\Lambda$CDM model, $\Omega_{m}$ and $H_{0}$ are considered to be negatively correlated. Therefore, for the convenience of analysis, one parameter is usually fixed. For example, some recent works fix $\Omega_{m}$ to 0.30 and regard $H_{0}$ as a free parameter \citep{2021CQGra..38r4001K,2022PhRvD.105f3514K,2023arXiv230402718M}. In our fitting calculation process, all cosmological parameters ($\Omega_{m}$ and $H_{0}$) are free to investigate the local properties of our Universe. We would like to plot the all-sky distributions of $\Omega_{m}$ and $H_{0}$ to find out the local matter underdensity region and the preferred direction of expansion (cosmic anisotropy), respectively. The influence of redshift and the screening angle \tm on the final results is also considered. We found the suitable angle of the RF method for the Pantheon+ sample. Then, we analysed a combination of the local void \citep{2008GReGr..40..451E,2008JCAP...04..003G,2013ApJ...775...62K,2013MNRAS.432.3025W,2016ApJ...818..173H,2022A&A...658A..20H,2023ApJ...952...59S}, cosmic anisotropy \citep{2019EPJC...79..783S,2020PhRvD.102l4059A,2020A&A...636A..15M,2021AA...649A.151M,2022JPhCS2191a2001A,2022A&A...668A..34H,2022MNRAS.514..139R,2023PDU....3901162A,2023MNRAS.519.4841D,2023arXiv230516177E}, and Hubble tension \citep{2019NatAs...3..384C,2019ApJ...876...85R,2019NatAs...3..891V,2020A&A...641A...6P,2020NatRP...2...10R,2022ApJ...934L...7R,2023PDU....4001201C} in detail. Finally, we compared our results with those of previous similar research \citep{2010JCAP...12..012A,2012JCAP...02..004C,2013AA...553A..56K,2014MNRAS.443.1680W,2014MNRAS.437.1840Y,2015MNRAS.446.2952C,2016MNRAS.456.1881L,2019MNRAS.486.1658C,2020A&A...643A..93H,2022PhRvD.105j3510L,2023arXiv230402718M} and other observations, including the CMB dipole \citep{2016AA...594A...1P,2020AA...641A...1P}, dark flow \citep{2022JHEAp..34...49A}, bulk flow \citep{2012MNRAS.420..447T,2017MNRAS.468.1420F,2023MNRAS.524.1885W}, and galaxy cluster \citep{2021AA...649A.151M}.
+
+
+
+The outline of this paper is as follows. In Sect. 2, we give a detailed description of the Pantheon+ sample, including redshift distribution, location distribution, and corresponding density contour, and compare it to the Pantheon sample. Section 3 briefly introduces the RF method, which we used to map the all-sky distribution of cosmological parameters. In Sect. 4, we present the results from the whole and low-redshift Pantheon+ sample ($z < 0.30$, lp+) and discuss the impact of RF method with different screening angles \tm on the final results from the Pantheon+ sample. The corresponding investigation and discussion are given in Sect. 5. Finally, conclusions and perspectives are presented in Sect. 6.
+
+
+\section{Pantheon+ sample}\label{sec:data} 
+Pantheon+, as the latest sample of SNe Ia, consists of 1701 SNe Ia light curves observed from 1550 distinct SNe and covers redshift range from 0.001 to 2.26 \citep{2022ApJ...938..110B,2022ApJ...938..113S}. %\footnote{It comprises 18 different samples, including the first sample from the Lick Observatory Supernova Search \citep[LOSS1;][]{2010ApJS..190..418G}, the second sample from LOSS \citep[LOSS2;][]{2019MNRAS.490.3882S}, the Swift Optical/Ultraviolet Supernova Archive \citep[SOUSA;][]{2014Ap&SS.354...89B}, the Carnegie Supernova Project \citep[CSP;][]{2017AJ....154..211K}, the Center for Astrophysics \citep[CfA;][]{1999AJ....117..707R,2006AJ....131..527J,2009ApJ...700..331H,2012ApJS..200...12H} (1-4), the Low-redshift \citep[LOWZ;][]{2007ApJ...659..122J,2010ApJ...721.1627M,2010PZ.....30....2T,2010PASP..122....1Z,2010AJ....139..519C,2011AJ....142..156S,2017RNAAS...1...36K,2018ApJ...863...90W,2020ApJ...893..143K}, the Complete Nearby (Redshift < 0.02) Sample \citep[CNIa0.02;][]{2022ApJS..259...53C}, the Foundation Supernova Survey \citep[Foundation;][]{2018MNRAS.475..193F}, the Sloan Digital Sky Survey \citep[SDSS;][]{2018PASP..130f4002S}, the Panoramic Survey Telescope \& Rapid Response System Medium Deep Survey \citep[PS1MD;][]{2018ApJ...859..101S}, the SuperNova Legacy Survey \citep[SNLS;][]{2014A&A...568A..22B}, the Dark Energy Survey 3 years \citep[DES;][]{2019ApJ...874..106B,2020AJ....160..267S}, the Supernova Cosmology Project \cite[SCP;][]{2012ApJ...746...85S}, the Cosmic Assembly Near Infra-Red Deep Extragalactic Legacy Survey and Cluster Lensing and Supernova survey with Hubble \citep[CANDELS + CLASH;][]{2018ApJ...853..126R} and the Great Observatories Origins Deep Survey and Probing Acceleration Now with Supernova \citep[GOODS + PANS][]{2004ApJ...607..665R,2007ApJ...659...98R}.} 
+The redshift distributions of the Pantheon \citep{2018ApJ...859..101S} and Pantheon+ samples are shown in Fig. \ref{F1}. From the redshift distribution of these two samples, it is not difficult to find that there are two main differences between the new sample and the Pantheon sample. One is that the SN number has increased significantly at low redshift. There are more than 700 additional SNe in the range of $z <$ 0.8, of which more than 500 SNe originated from $z <$ 0.08. This is mainly because the new sample adds five large samples, including the Foundation Supernova Survey \citep[Foundation;][]{2018MNRAS.475..193F}, the Swift Optical/Ultraviolet Supernova Archive \citep[SOUSA;][]{2014Ap&SS.354...89B}, the Lick Observatory Supernova Search \citep[LOSS1;][]{2010ApJS..190..418G}, the second sample from LOSS \citep[LOSS2;][]{2019MNRAS.490.3882S}, and the Dark Energy Survey Year 3  \citep[DES;][]{2019ApJ...874..106B,2020AJ....160..267S}, all of which are low-redshift surveys, except DES. The other difference is that there is a significant deletion in Pantheon+ statistics between $0.8 < z < 1.0$. The reason is that \citet{2022ApJ...938..113S} did not use SNe from the Supernova Legacy Survey (SNLS) at $z >$ 0.8 considering sensitivity to the $U$ band in model training (56 SNe in total). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.1
+
+\begin{figure}[hpt]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.35\textwidth]{z_Dis.pdf}
+        % figure caption is below the figure
+        \caption{Redshift distribution of the Pantheon and Pantheon+ samples.}
+        \label{F1}       % Give a unique label
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.2
+
+\begin{figure*}[htp]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.45\textwidth]{dis.pdf}
+        \includegraphics[width=0.45\textwidth]{density.pdf}
+        % figure caption is below the figure
+        \caption{Distribution and corresponding density contour in the galactic coordinate system. Left panel shows the SNe distribution of the Pantheon sample. Red and blue points represent the new added SNe and the SNe where the Pantheon sample and the Pan sample overlap, respectively. Right panel shows the corresponding density contour.}
+        \label{F2}       % Give a unique label
+\end{figure*}
+
+
+Figure \ref{F2} shows the distribution (left panel) and corresponding density (right panel) of the Pantheon+ sample in the sky of the galactic coordinate system. Some previous work has pointed out that the Pantheon SNe Ia are not uniformly distributed in the sky; half of them are located in the galactic southeast. Some SNe are very concentrated, forming a belt-like structure that is the SDSS sample \citep{2019MNRAS.486.5679Z}. At the same time, \citet{2019MNRAS.486.5679Z} also investigated the effect of the inhomogeneous distribution of the Pantheon sample on the cosmic anisotropy and found that the belt-like structure plays the most important role in the Pantheon sample. In the left panel, to highlight the difference between these two samples, we mark the newly added SNe Ia in red. From the distribution of the Pantheon+ sample, we find that the distribution of the new data is still uneven across the sky. There are only fewer observations near (l, b)$\sim$(300$^{\circ}$, -30$^{\circ}$). Its incomplete sky coverage is primarily due to the fact that the Pantheon+ sample consists of different subsamples, following multiple measurement strategies. In order to make it easier to comprehend this focus, we also plot the density distribution of the Pantheon+ sample utilizing the $plt.contour()$ function\footnote{https://matplotlib.org/stable/gallery/images$_{-}$contours$_{-}$and$_{-}$fields/ir regulardatagrid.html}, as shown in the right panel of Fig. \ref{F2}. Color-coded values represent sample fraction per unit area. From the density distribution, we can more intuitively feel the inhomogeneity of sample distribution. As can be seen, the belt-like part of the Pantheon+ sample still plays the most important role, as in the case of the Pantheon sample, while the maximum density value changes from 0.24 to 0.21 \citep{2020A&A...643A..93H}. This means that the Pantheon+ sample is more uniform than the Pantheon sample. The newly added SNe Ia effectively weaken the dominance of the belt structure in the distribution. The Pantheon+ sample that is relatively uniform and rich in low redshift is very suitable for analyzing the local property of the Universe \citep{2018ApJ...865..119A,2022PhRvD.105j3510L,2023PhRvD.107b3507K}. Here, we used the RF method combined with the Pantheon+ sample to describe the all-sky distribution of cosmological parameters to study the local structure of the Universe, and the detailed analysis process is shown in the next section. 
+
+
+\section{Region fitting method}
+The hemisphere comparison (HC) method proposed by \citet{2007AA...474..717S} has been widely used in the investigation of the cosmic anisotropy, such as the anisotropy of cosmic expansion \citep{2018EPJC...78..755D,2022MNRAS.511.5661Z}, the acceleration scale of modified Newtonian dynamics \citep{2017ApJ...847...86Z,2018ChPhC..42k5103C,2019MNRAS.486.1658C}, and the temperature anisotropy of the CMB \citep{2004MNRAS.354..641H,2013ApJS..208...20B,2016JCAP...01..046G,2021PhRvD.104f3503F}. The RF method we used is similar to it. Here, we provide a detailed introduction to this method. Its goal is to map the all-sky distribution of the cosmological parameters. The most important step is to generate random directions $\hat{D}$ $(l$, $b)$ to pick out SNe data located in specific regions to construct subdatasets, where $l\in(0^{\circ}$, $360^{\circ})$ and $b\in(-90^{\circ}$, $90^{\circ})$ are the longitude and latitude in the galactic coordinate system, respectively. The specific region is given by condition ($\theta < \theta_\mathrm{max}$). $\theta$ is the angle between the random direction $\hat{D}$ $(l$, $b)$ and the SN position. Here we refer to $\theta_\mathrm{max}$ as the screening angle used to obtain regions of different sizes, and the value range is (0$^{\circ}$, 180$^{\circ}$). The remaining steps can be divided into three parts, which we present in the following subsections.
+ 
+ 
+\subsection{Fitting parameters}
+According to subdatasets obtained in the previous step, the corresponding best fits of the cosmological parameters are obtained by minimizing value of $\chi^{2}$,
+\begin{equation}
+        \chi^{2} = \Delta \mu \, \mathbf{C}^{-1}_\mathrm{stat+syst} \, \Delta \mu ^\mathrm{T} ,
+        \label{chi}
+\end{equation}
+where $\Delta \mu$ is the difference between the observational distance modulus $\mu_\mathrm{obs}$ and the theoretical distance modulus $\mu_\mathrm{th}$:
+\begin{equation}
+        \Delta \mu = \mu_\mathrm{obs}(z_{i}) - \mu_\mathrm{th}(\Omega_{m}, H_{0},z_{i}) . 
+        \label{Dmu}
+\end{equation}
+For the flat $\Lambda$CDM model, the corresponding form of $\mu_\mathrm{th}$ can be written as 
+\begin{equation}
+        \mu_\mathrm{th}(\Omega_{m}, H_{0},z_{i}) = m - M = 5 \log_{10} \frac{d_{L}(\Omega_{m}, H_{0},z_{i})}{\textnormal{Mpc}} + 25;
+        \label{mu}
+\end{equation}
+here, $z_{i}$ is the peculiar-velocity-corrected CMB-frame redshift of each SN \citep{2022PASA...39...46C}, $m$ is the apparent magnitude of the source, $M$ is the absolute magnitude, and $d_{L}$ is the luminosity distance expressed in megaparsec, defined in the following equation: 
+\begin{equation}
+        d_{L} = \frac{c(1+z)}{H_{0}} \int_{0}^{z} 
+        \frac{\mathrm{d} z'}{\sqrt{\Omega_{m} (1+z')^{3} + (1-\Omega_{m})}},
+        \label{dl}
+\end{equation}
+where $c$ is the speed of light. 
+
+The statistical ($\mathbf{C}_\mathrm{stat}$) and systematic covariance matrices ($\mathbf{C}_\mathrm{sys}$) are combined and adopted to constrain the cosmological parameters: 
+\begin{equation}
+    \mathbf{C}_\mathrm{stat+sys} = \mathbf{C}_\mathrm{stat} +  \mathbf{C}_\mathrm{sys}.
+        \label{C}
+\end{equation}
+The datasets we used, $\mu_\mathrm{obs,}$ and $\mathbf{C}_\mathrm{stat+sys,}$ are provided by \citet{2022ApJ...938..110B} and can be obtained online\footnote{https://github.com/PantheonPlusSH0ES/DataRelease}. $\mathbf{C}_\mathrm{stat+sys}$ includes all the covariance between SNe (and also Cepheid host covariance) due to systematic uncertainties \citep{2022ApJ...938..110B}. $\mathbf{C}_\mathrm{stat}$ mainly includes the full distance error and measurement noise. $\mathbf{C}_\mathrm{sys}$ can manifest in three key places in the analysis: (1) from changing aspects affecting the light-curve fitting; (2) from changing redshifts that propagate to changes in distance modului relative to a cosmological model; and (3) from changes in the simulations used for bias corrections \citep{2022ApJ...938..110B}. More detailed information about the covariance matrices can be found in Sect. 2.2 of \citet{2022ApJ...938..110B}. Unlike the previous analyses \citep{2014A&A...568A..22B,2019A&A...631L..13C}, we did not introduce an intrinsic scatter. So, in the fitting process, there are only two free parameters ($\Omega_{m}$ and $H_{0}$), which makes them strongly correlated. For the different subdatasets, $\Omega_{m}$ and $H_{0}$ are fitted simultaneously. The $\mathbf{C}_\mathrm{stat+sys}$ we used were obtained by cropping the total covariance matrix according to the SNe Ia subsample. In this work, the minimization was performed employing a Bayesian Markov chain Monte Carlo \citep[MCMC;][]{2013PASP..125..306F} method with the $emcee$ package\footnote{https://emcee.readthedocs.io/en/stable/}. All the fittings in this paper were obtained adopting this python package. The MCMC samples were plotted utilizing the $getdist$ package \citep{2019arXiv191013970L}.
+
+\subsection{All-sky distribution}
+During the calculation, we repeated 5000 random directions $\hat{D}$ $(l$, $b)$, that is, 5000 sets of best fitting results ($\Omega_{m}$ and $H_{0}$). Based on the fitting results, the all-sky distributions of $\Omega_{m}$ and $H_{0}$ are mapped, respectively. From the distribution of $\Omega_{m}$ and $H_{0}$, we can obtain information concerning the local matter underdensity and cosmic anisotropy, respectively. In order to describe the degree of deviation from the cosmological principle, we define a parameter $D_\mathrm{max}(\sigma)$ whose form is as follows:
+\begin{equation}
+        D_\mathrm{max}(\sigma) = \frac{P_\mathrm{max} - P_\mathrm{min}}{\sqrt{\sigma_{\rm P_\mathrm{max}}^{2}+\sigma_{P_\mathrm{min}}^{2}}}.
+        \label{CS}
+\end{equation}
+Here, $P_\mathrm{min}$ and $P_\mathrm{max}$ are the minimum value and the maximum value of the best fitting results, respectively. $\sigma_{P_\mathrm{min}}$ and $\sigma_{P_\mathrm{max}}$ are the corresponding 1$\sigma$ error. The local matter underdensity direction and the preferred direction of cosmic anisotropy are marked by the corresponding location of the lowest $\Omega_\mathrm{m}$ and the largest $H_{0}$. The corresponding 1$\sigma$ regions are plotted in terms of the values of $P_{0,}$ which is calculated from
+\begin{equation}
+        1.00(\sigma) \geqslant \frac{P_{0} - P_\mathrm{fit}}{\sqrt{\sigma_{ P_{0}}^{2}+\sigma_{ P_\mathrm{fit}}^{2}}},
+        \label{DA}
+\end{equation}
+where $P_\mathrm{fit}$, representing the lowest $\Omega_{m}$ constraint or the largest $H_{0}$ constraint, is used to find the 1$\sigma$ range of the local matter underdensity direction or the preferred direction. $\sigma_{P_\mathrm{fit}}$ represents the corresponding error. $P_{0}$ represents the constraints that are consistent with $P_\mathrm{fit}$ within 1$\sigma$ error, and $\sigma_{P_{0}}$ are the corresponding 1$\sigma$ values. We note that $P_{0}$ and $\sigma_{P_{0}}$ are filtered from the total $\Omega_{m}$/$H_{0}$ fitting results depending on Eq. \ref{DA}. Here, $P_{0}$ and $P_\mathrm{fit}$ are completely independent and were obtained using different SNe subsamples.
+ 
+ 
+\subsection{Statistical analyses} \label{stat}
+In order to examine whether the discrepancy degree of the cosmological parameters from the Pantheon+ sample is consistent with statistical isotropy, we plan to carry out statistical isotropic analyses. To achieve this, we spread the original data set evenly across the sky. After that, we were able to obtain the $D_{max}$ for the isotropic dataset. Meanwhile, an additional isotropic analysis was also considered. We preserved the spatial inhomogeneity of real sample and then randomly distributed the real dataset, which randomly redistributed the distance moduli and redshift combination to real-data positions (RP) only. Given the limitations of computing time, we repeated it 500 times; this gave acceptable statistics. For convenience, we refer to these two approaches as isotropy analysis and isotropy RP analysis.
+
+
+\section{Results}
+We first give the best fitting results in the flat $\Lambda$CDM model employing the full Pantheon+ sample, $\Omega_{m}$ = 0.36$\pm$0.02, and $H_{0}$ = 72.83 $\pm$ 0.23 km s$^{-1}$ Mpc$^{-1}$. The results are in line with the previous research \citep{2022ApJ...938..110B}, except that the 1$\sigma$ error of $H_{0}$ is reduced. The main reason is that we utilized the standardized distance modulus \citep[$\mu_\mathrm{obs}$;][]{1998A&A...331..815T}, where fiducial $M$ has been determined from SH0ES 2021 Cepheid host distances \citep{2022ApJ...934L...7R}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.3
+
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.42\textwidth]{Om_contour.pdf}
+        \includegraphics[width=0.42\textwidth]{H0_contour.pdf}
+        % figure caption is below the figure
+        \caption{All-sky distribution of cosmological parameters utilizing the Pantheon+ sample combined with the 90$^{\circ}$ RF method. The upper and the lower panels show the results of $\Omega_{m}$ and $H_{0}$, respectively. The corresponding values of $D_\mathrm{max}(\sigma)$ are 3.29$\sigma$ and 4.48$\sigma$, respectively. The star marks the directions of the lowest $\Omega_{m}$ (upper panel) and the largest $H_{0}$ (lower panel), and the red circle outlines the corresponding 1$\sigma$ areas. The directions and 1$\sigma$ areas are parameterized as $\Omega_{m, \mathrm{min}}$ (${308.4^{\circ}}_{-48.7}^{+47.6}$, ${-18.2^{\circ}}_{-28.8}^{+21.1}$) and $H_{0, \mathrm{max}}$ (${313.4^{\circ}}_{-18.2}^{+19.6}$, ${-16.8^{\circ}}_{-10.7}^{+11.1}$). }
+        \label{F4}       % Give a unique label
+\end{figure}
+
+After that, using the RF method with a screening angle $\theta_\mathrm{max} = 90^{\circ}$, we mapped the all-sky distribution of $\Omega_{m}$ and $H_{0}$ and draw the 1$\sigma$ regions of local matter underdensity and cosmic anisotropy, as shown in the upper panel and lower panel of Fig. \ref{F4}, respectively. In Fig. \ref{F4}, the range of $\Omega_{m}$ and $H_{0}$ are (0.29, 0.41) and (72.03, 74.26), respectively. The corresponding differences are $\Delta \Omega_{m}$ = 0.12 and $\Delta H_{0}$ = 2.23 km s$^{-1}$ Mpc$^{-1}$. The values of $D_\mathrm{max}$ to $\Omega_{m}$ and $H_{0}$ are $D_{\mathrm{max},\Omega_{m}}$ = 3.29$\sigma$ and $D_{\mathrm{max}, H_{0}}$ = 4.48$\sigma$, respectively. In the upper panel of Fig. \ref{F4}, the minimum constraint of $\Omega_{m}$ is $\Omega_{m, \mathrm{min}}$ = 0.29$^{+0.03}_{-0.02}$ (1$\sigma$) and the corresponding constraint for $H_{0}$ is 74.11$^{+0.40}_{-0.40}$ km s$^{-1}$ Mpc$^{-1}$. The direction and corresponding 1$\sigma$ range that can be adopted to describe the local matter underdensity are 
+\begin{equation}
+        (l, b) = ({308.4^{\circ}}_{-48.7}^{+47.6}, {-18.2^{\circ}}_{-28.8}^{+21.1}).
+        \label{lbF4}
+\end{equation}
+The lower panel of Fig. \ref{F4} shows the corresponding all-sky distribution of the Hubble expansion. The maximum constraint of $H_{0}$ is $H_{0,\mathrm{max}}$ = 74.26$\pm$ 0.39 km s$^{-1}$ Mpc$^{-1}$, and the corresponding constraint of $\Omega_{m}$ is 0.30$^{+0.03}_{-0.03}$. Its confidence contours are shown in Fig. \ref{total}, marked with blue lines. The preferred direction of cosmic anisotropy and corresponding 1$\sigma$ range are
+\begin{equation}
+        (l, b) = ({313.4^{\circ}}_{-18.2}^{+19.6}, {-16.8^{\circ}}_{-10.7}^{+11.1}).
+        \label{lbF4H}
+\end{equation} 
+In Fig. \ref{total}, we also give the best fitting results of opposite directions; that is, $H_{0, \mathrm{min}}$ = 72.14$^{+0.27}_{-0.27}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m}$ = 0.40$^{+0.02}_{-0.02}$ , which are marked with red lines.
+
+The statistical isotropic results shown in Fig. \ref{F5} can be well described by Gaussian functions. For the isotropy analysis, the statistical significances ($\alpha$) of the real data are 2.78$\sigma$ for $\Omega_{m}$ anisotropy (upper, purple panel) and 3.96$\sigma$ for $H_{0}$ anisotropy (upper, blue panel). The statistical significance ($\beta$) of the real data given by the isotropy RP analysis are 2.34$\sigma$ for $\Omega_{m}$ anisotropy (lower, purple panel) and 3.15$\sigma$ for $H_{0}$ anisotropy (lower, blue panel).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.4
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.4\textwidth]{H0_total.pdf}
+        % figure caption is below the figure
+        \caption{Confidence contours ($1\sigma$ and $2\sigma$) and marginalized likelihood distributions for the parameter space ($\Omega_{m}$ and $H_{0}$) in the spatially flat $\rm \Lambda$CDM model from the SNe Ia subsamples, which corresponds to $H_{0, \mathrm{min}}$ (red line) and $H_{0, \mathrm{max}}$ (blue line). The best fitting results of preferred direction are $H_{0, \mathrm{max}}$ = 74.26$^{+0.40}_{-0.39}$ km s$^{-1}$ Mpc$^{-1}$, $\Omega_{m}$ = 0.30$^{+0.03}_{-0.03}$ (blue line). The best fitting results of opposite directions are $H_{0, \mathrm{min}}$ = 72.14$^{+0.27}_{-0.27}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m}$ = 0.40$^{+0.02}_{-0.02}$ (red line).}
+        \label{total}       % Give a unique label
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% statistical results
+%Fig.5
+
+\begin{figure}
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.23\textwidth]{iso_Om.pdf}
+        \includegraphics[width=0.23\textwidth]{iso_H0.pdf}
+        \includegraphics[width=0.23\textwidth]{mock_Om.pdf}
+        \includegraphics[width=0.23\textwidth]{mock_H0.pdf}
+        % figure caption is below the figure
+        \caption{Distribution of discrepancy degree $D_\mathrm{max}$ in 500 simulated isotropic datasets. The upper two panels show the results of statistical isotropic analyses (isotropy). The lower two panels show the results of statistical isotropic analyses that preserve the spatial inhomogeneity of real data (isotropy RP). Purple and blue represent the statistical results of $\Omega_{m}$ and $H_{0}$. The black curve is the best fit to the Gaussian function. The solid black and vertical dashed lines are commensurate with the mean and the standard deviation, respectively. The red lines represent the discrepancy degree from the real data. For the isotropy analyses, the statistical significance of the real data are 2.78$\sigma$ for $\Omega_{m}$ anisotropy and 3.96$\sigma$ for $H_{0}$ anisotropy. For the isotropy RP analyses, the statistical significance of the real data are 2.34$\sigma$ and 3.15$\sigma$ for $\Omega_{m}$ and $H_{0}$ anisotropy, respectively. }
+        \label{F5}       % Give a unique label
+\end{figure}
+
+
+\subsection{Reanalyses at low redshift}
+Recently, \citet{2022MNRAS.517..576H} reported a late-time transition of $H_{0}$; that is, $H_{0}$ changes from a low value to a high one from early to late cosmic time by combining the GP method and $H(z)$ data. The $H_{0}$ transition occurs at $z \sim$ 0.49. From other observations, a similar descending behavior of $H_{0}$ has been found adopting other methods (see \citet{2023Univ....9...94H} for a review of $H_{0}$ descending trend). Around $z \sim$ 0.40, $H_{0}$ starts to decrease \citep{2023A&A...674A..45J}. Both the transition behavior and the descending trend of $H_{0}$ can effectively alleviate the Hubble tension. \citet{2023Sci...380.1322K} gave new $H_{0}$ measurements from the gravitationally lensed SNe Ia Refsdal \citep{1964MNRAS.128..295R}. The redshifts of the lens and the source are 0.54 and 1.49 \citep{2015Sci...347.1123K}, respectively. Utilizing eight cluster lens models, they inferred $H_{0}$ = 64.80$_{-4.30}^{+4.40}$ km s$^{-1}$ Mpc$^{-1}$. Then, using the two models most consistent with observations, they found $H_{0}$ = 66.60$_{-3.30}^{+4.10}$ km s$^{-1}$ Mpc$^{-1}$. Marking the values of lensing redshift and $H_{0}$ on Fig. 3 in \citet{2022MNRAS.517..576H} and Fig. 4 in \citet{2023A&A...674A..45J}, we find that these results are in good agreement with the evolutionary behaviors of $H_{0}$. Motivated by the $H_{0}$ special behaviors in the late-time universe, we plan to construct a low-redshift subsample based on the Pantheon+ sample to make a reanalyses. According to the previous research \citep{2022MNRAS.517..576H,2023A&A...674A..45J}, and considering the need for a sufficient sample size, we decided to select 1218 SNe with redshift less than 0.30 in the Pantheon+ sample to construct sub-sample (named the lp+ sample). Detailed steps and results are as follows. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.6
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.40\textwidth]{flat_Om.pdf}
+        % figure caption is below the figure
+        \caption{Confidence contours ($1\sigma$ and $2\sigma$) and marginalized likelihood distributions for parameters space ($\Omega_{m}$ and $H_{0}$) in the spatially flat $\rm \Lambda$CDM model from the Pantheon+ sample and the lp+ sample. For the former, the best fits are $\Omega_{m}$ = 0.36$\pm$0.02 and $H_{0}$ = 72.83 $\pm$ 0.23 km s$^{-1}$ Mpc$^{-1}$ (black line). For the latter, the best fits are $\Omega_{m}$ = 0.44$\pm$0.04 and $H_{0}$ = 72.43$\pm$0.30 km s$^{-1}$ Mpc$^{-1}$ (purple line).}
+        \label{low1}       % Give a unique label
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.7
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.42\textwidth]{Om_conl.pdf}
+        \includegraphics[width=0.42\textwidth]{H0_conl.pdf}
+        % figure caption is below the figure
+        \caption{ All-sky distribution of cosmological parameters utilizing the z $<$ 0.30 part of Pantheon+ sample (lp+ sample) combined with the 90$^{\circ}$ RF method. The upper and the lower panel show the results of $\Omega_{m}$ and $H_{0}$, respectively. The corresponding values of $D_\mathrm{max}(\sigma)$ are 4.17$\sigma$ and 4.49$\sigma$, respectively. The star marks the directions of the lowest $\Omega_{m}$ (upper panel) and the largest $H_{0}$ (lower panel), and the red circle outlines the corresponding 1$\sigma$ areas. The directions and 1$\sigma$ areas are parameterized as $\Omega_{m}$ (${26.4^{\circ}}_{-100.9}^{+26.3}$, ${-19.3^{\circ}}_{-17.0}^{+35.4}$), $H_{0}$ (${321.9^{\circ}}_{-33.5}^{+72.5}$, ${-18.9^{\circ}}_{-11.5}^{+16.6}$). }
+        \label{F6}       % Give a unique label
+\end{figure}
+
+At first, we give the cosmological constraint in the flat $\Lambda$CDM model using the lp+ sample; that is, $\Omega_{m}$ = 0.44$\pm$0.04 and $H_{0}$ = 72.43$\pm$0.30 km s$^{-1}$ Mpc$^{-1}$, which is consistent with the results from the full Pantheon+ sample and from Fig. 16 in \citet{2022ApJ...938..110B}. For ease of comparison, we give the constraint results of the Pantheon+ and lp+ samples in Fig. \ref{low1}. Then, we reproduced the previous analyses. The all-sky distribution, the cosmological constraints, and the isotropic statistic results are shown in Figs. \ref{F6}, \ref{lowr}, and \ref{F7}, respectively. From Fig. \ref{F6}, it is easy to obtain the ranges of constraints: $\Omega_{m}$ (0.25, 0.58) and $H_{0}$ (71.43, 74.11) km s$^{-1}$ Mpc$^{-1}$. The corresponding differences are $\Delta \Omega_{m}$ = 0.33 and $\Delta{H_{0}}$ = 2.68 km s$^{-1}$ Mpc$^{-1}$. By calculation, we obtain $D_{\mathrm{max},\Omega_{m}}$ = 4.17$\sigma$ and $D_{\mathrm{max}, H_{0}}$ = 4.49$\sigma$. The directions and 1$\sigma$ regions of the local matter underdensity and cosmic anisotropy given by the reanalyses using the lp+ sample are 
+\begin{equation}
+        (l, b) = ({26.4^{\circ}}_{-100.9}^{+26.3}, {-19.3^{\circ}}_{-17.0}^{+35.4})
+        \label{lbF6}
+\end{equation}
+and 
+\begin{equation}
+        (l, b) = ({321.9^{\circ}}_{-33.5}^{+72.5}, {-18.9^{\circ}}_{-11.5}^{+16.6}).
+        \label{lbF6H}
+\end{equation} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.8
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.4\textwidth]{Om_low.pdf}
+        % figure caption is below the figure
+        \caption{Confidence contours ($1\sigma$ and $2\sigma$) and marginalized likelihood distributions for the parameters space ($\Omega_{m}$ and $H_{0}$) in the spatially flat $\rm \Lambda$CDM model from the SNe Ia subsamples, which corresponds to $\Omega_{m, \mathrm{min}}$ (blue line) and $\Omega_{m, \mathrm{max}}$ (red line). The best fitting results of preferred direction are $\Omega_{m, \mathrm{min}}$ = 0.25$^{+0.05}_{-0.05}$ and $H_{0}$ = 73.76$^{+0.41}_{+0.41}$ km s$^{-1}$ Mpc$^{-1}$ (blue line). The best fitting results of opposite direction are $\Omega_{m, \mathrm{max}}$ = 0.58$^{+0.06}_{-0.05}$ and $H_{0}$ = 71.46$^{+0.37}_{+0.37}$ km s$^{-1}$ Mpc$^{-1}$ (red line).}           
+        \label{lowr}       % Give a unique label
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.9
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.23\textwidth]{iso_Oml.pdf}
+        \includegraphics[width=0.23\textwidth]{iso_H0l.pdf}
+        \includegraphics[width=0.23\textwidth]{mock_Oml.pdf}
+        \includegraphics[width=0.23\textwidth]{mock_H0l.pdf}
+        % figure caption is below the figure
+        \caption{Distribution of discrepancy degree $D_\mathrm{max}$ in 500 simulated isotropic datasets. The upper two panels show the results of statistical isotropic analyses (isotropy). The lower two panels show the results of statistical isotropic analyses that preserve the spatial inhomogeneity of real data (isotropy RP). The purple and blue represent the statistical results of $\Omega_{m}$ and $H_{0}$. The black curve is the best fit to the Gaussian function. The solid black and vertical dashed lines are commensurate with the mean and the standard deviation, respectively. The red lines represent the discrepancy degree from the real data. For the isotropy analyses, the statistical significance of the real data are 3.68$\sigma$ for $\Omega_{m}$ anisotropy and 3.01$\sigma$ for $H_{0}$ anisotropy. For the isotropy RP analyses, the statistical significance of the real data are 2.09$\sigma$ and 1.35$\sigma$ for $\Omega_{m}$ and $H_{0}$ anisotropy, respectively.}
+        \label{F7}       % Give a unique label
+\end{figure}
+
+The constraints corresponding to preferred directions of the local matter underdensity and cosmic anisotropy are $\Omega_{m, \mathrm{min}}$ = 0.25$\pm$0.05 and $H_{0}$ = 73.76$\pm$0.41 km s$^{-1}$ Mpc$^{-1}$, and $H_{0, \mathrm{max}}$ = 74.11$^{+0.47}_{-0.48}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m}$ = 0.27$\pm$0.06. In Fig. \ref{lowr}, we show the confidence contours in the preferred and opposite directions of the local matter underdensity. The isotropic statistical results from the lp+ sample are shown in Fig. \ref{F7}. For the isotropy analysis, the statistical significance of the real data are 3.68$\sigma$ for $\Omega_{m}$ anisotropy (upper, purple panel) and 3.01$\sigma$ for $H_{0}$ anisotropy (upper, blue panel). The isotropy RP analysis gives the statistical significance of the real data, which is 2.09$\sigma$ for $\Omega_{m}$ anisotropy (lower, purple panel) and 1.35$\sigma$ for $H_{0}$ anisotropy (lower, blue panel). 
+
+
+\subsection{Different screening angles \tm }\label{theta}
+Theoretically, if there are enough SNe data distributed at different redshifts in a certain direction, the constraints of the cosmological parameters in this direction can be obtained \citep{2016MNRAS.460..617L,2018PhRvD..97l3515D,2023CQGra..40i4001K}. Due to the limitation of the number of observational data, it is currently impossible to directly give the result of the limitation of cosmological parameters in a certain direction. Therefore, the 90$\degr$ RF method is usually used to derive the cosmological constraint of the single direction, that is the HC method \citep{2007AA...474..717S}. In this subsection, we try to find out the limit value of $\theta_\mathrm{max}$ that is suitable for the Pantheon+ sample by mapping the all-sky distributions of the cosmological parameters $\Omega_{m}$ and $H_{0}$ with different $\theta_\mathrm{max}$. Considering the limitations of computing time, only three angles (30$\degr$, 45$\degr$ and 60$\degr$) are chosen. Take $\hat{D}$ (60$\degr$, 0$\degr$) as an example, Figure \ref{F8} shows the schematic diagram of the RF method with different $\theta_\mathrm{max}$. Smaller $\theta_\mathrm{max}$ will reduce the overlapping data between sub-samples generated by adjacent random directions. The corresponding all-sky distributions will present more details on the current state of the Universe. For the Pantheon+ sample, lowering $\theta_\mathrm{max}$ can be expected to produce some poorly fitting results. Therefore, we give a constrained culling of possibly poor constraints. Here, we set a loose condition of $0 < \Omega_{m} < 1.00$. The final results are shown in Fig. \ref{F9}. For the screening angles 30$\degr$, 45$\degr,$ and 60$\degr$, the proportions of the wrong fitting results are 30.34\%, 6.47\%, and 0.70\%, respectively. From Fig. \ref{F9}, we find that \tm = 60$\degr$ seems to be the limit that the Pantheon+ sample can bear. At this time, nearly 100\% (99.30\%) of the random directions ($\hat{D}$) can be reliably constrained.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.10
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.43\textwidth]{TEST.pdf}
+        % figure caption is below the figure
+        \caption{Schematic diagram of the RF method with different screening angles including 30$\degr$, 45$\degr$, 60$\degr,$ and 90$\degr$. Black star represents the random direction $\hat{D}$ (60$\degr$, 0$\degr$).}
+        \label{F8}       % Give a unique label
+\end{figure}
+
+
+In Fig. \ref{Ommax}, we give the best fits for the hemispheres where $\Omega_\mathrm{m, min}$ and $\Omega_\mathrm{m, max}$ are located. We find that taking into account narrowing the screening angle \tm significantly increases the 1$\sigma$ error of $\Omega_{m}$ constraints. The reduced chi-square ($\chi^{2}_{r}$) corresponding to $\Omega_\mathrm{m, min}$ is 0.69, which is much smaller than 1.00. Therefore, we only show the analysis results of $H_{0}$. The all-sky distribution, cosmological constraints and isotropic statistical results are displayed in Figs. \ref{F10}, \ref{F60}, and \ref{F11}, respectively. As shown in Fig. \ref{F10}, the preferred direction of cosmic anisotropy given by the $H_{0}$ distribution is (${351.4^{\circ}}_{-64.2}^{+28.0}$, ${-8.8^{\circ}}_{-27.8}^{+40.3}$), and $D_\mathrm{max}$ is 4.39$\sigma$. The corresponding constraints of a preferred direction are $H_{0, \mathrm{max}}$ = 74.81$^{+0.71}_{-0.71}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m}$ = 0.28$^{+0.05}_{-0.04}$. The statistical isotropy results show that the statistical confidences of the real data are 1.70$\sigma$ for the isotropy analysis and 2.27$\sigma$ for the isotropy RP analysis.
+
+All results in this section are summarized in Table \ref{T1}. Additionally, we provide the reduced chi-square $\chi^{2}_{r}$ for the anisotropic direction.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.11
+
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.45\textwidth]{H0_con60.pdf}
+        % figure caption is below the figure
+        \caption{All-sky distribution of $H_{0}$ utilizing Pantheon+ sample combined with 60$^{\circ}$ RF method. The direction and 1$\sigma$ area are parameterized as (${351.4^{\circ}}_{-64.2}^{+28.0}$, ${-8.8^{\circ}}_{-27.8}^{+40.3}$). The statistical discrepancy $D_\mathrm{max}$ is 4.39$\sigma$.}
+        \label{F10}       % Give a unique label
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.12
+
+\begin{figure}[htp]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.4\textwidth]{H0_60c.pdf}
+        % figure caption is below the figure
+        \caption{Confidence contours ($1\sigma$ and $2\sigma$) and marginalized likelihood distributions for parameter space ($\Omega_{m}$ and $H_{0}$) in the spatially flat $\rm \Lambda$CDM model from the SNe Ia subsamples, which corresponds to $H_{0, \mathrm{min}}$ (red line) and $H_{0, \mathrm{max}}$ (blue line). The best fitting results of preferred direction are $H_{0, \mathrm{max}}$ = 74.81$^{+0.71}_{-0.71}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m}$ = 0.28$^{+0.05}_{-0.04}$ (blue line). The best fitting results of opposite directions are $H_{0, \mathrm{min}}$ = 72.49$^{+0.27}_{-0.27}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m}$ = 0.38$^{+0.02}_{-0.02}$ (red line).}
+        \label{F60}       % Give a unique label
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.13
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.24\textwidth]{iso_60_H0.pdf}
+        \includegraphics[width=0.24\textwidth]{mock_60_H0.pdf}
+        % figure caption is below the figure
+        \caption{Distribution of discrepancy degree $D_\mathrm{max}$ obtained from $H_{0}$ distribution in 500 simulated isotropic datasets. The left panel and right panel show the results of isotropy and isotropy RP analyses, respectively. The black curve is the best fit to the Gaussian function. The solid black and vertical dashed lines are commensurate with the mean and the standard deviation, respectively. The red lines represent the discrepancy degree from the real data. The statistical significances of the real data are 1.70$\sigma$ for the isotropy analysis and 2.27$\sigma$ for the isotropy RP analysis.}
+        \label{F11}       % Give a unique label
+\end{figure}
+
+
+\begin{table*}\footnotesize 
+        \caption{ Detailed information of analysis results from the all-sky distribution of cosmological parameters. \label{T1}}
+        \centering
+        \begin{spacing}{1.2}
+                %\tiny
+                \begin{tabular}{ccccccccc} 
+                        \hline\hline
+                        Sample & $\theta_\mathrm{max}$$^{a}$   & $\Omega_{m,min}$ & $H_{0}$ & $D_\mathrm{max}$$^{b}$ & $\alpha$$^{c}$ & $\beta$$^{d}$ & Direction & $\mathrm{\chi^{2}_{r}}$ \\
+                        &   &  & (km s$^{-1}$ Mpc$^{-1}$) & ($\sigma$) & ($\sigma$) & ($\sigma$) & (l, b) & \\
+                        \hline
+                        Pantheon+ & 90$\degr$  & 0.29$^{+0.03}_{-0.02}$ & 74.11$^{+0.40}_{-0.40}$ &3.29 & 2.78 & 2.34 & $({308.4^{\circ}}_{-48.7}^{+47.6}, {-18.2^{\circ}}_{-28.8}^{+21.1})$ & 0.94 \\
+                        Pantheon+ & 60$\degr$  & 0.23$^{+0.20}_{-0.17}$ & 74.05$^{+1.00}_{-1.00}$ & - & - & - & -- & 0.69$^{*}$ \\
+                        lp+ & 90$\degr$  & 0.25$^{+0.05}_{-0.05}$ & 73.76$^{+0.41}_{+0.41}$  & 4.17  &  3.68 & 2.09  & (${26.4^{\circ}}_{-100.9}^{+26.3}$, ${-19.3^{\circ}}_{-17.0}^{+35.4}$) & 0.94 \\
+                        \hline\hline
+                        Sample & $\theta_\mathrm{max}$$^{a}$   & $H_{0,max}$ & $\Omega_{m}$ & $D_\mathrm{max}$$^{b}$&  $\alpha$$^{c}$ & $\beta$$^{d}$ &  Direction & $\mathrm{\chi^{2}_{r}}$ \\
+                        &   & (km s$^{-1}$ Mpc$^{-1}$) & & ($\sigma$) &  ($\sigma$)  &  ($\sigma$) &  (l, b) & \\
+                        \hline
+                        Pantheon+ & 90$\degr$  & 74.26$^{+0.40}_{-0.39}$  & 0.30$^{+0.03}_{-0.03}$ & 4.48 &  3.96 & 3.15  & $({313.4^{\circ}}_{-18.2}^{+19.6}, {-16.8^{\circ}}_{-10.7}^{+11.1})$ & 0.98 \\
+                        Pantheon+ & 60$\degr$  & 74.81$^{+0.71}_{-0.71}$  & 0.28$^{+0.05}_{-0.04}$ & 4.39 & 1.70 & 2.27 & (${351.4^{\circ}}_{-64.2}^{+28.0}$, ${-8.8^{\circ}}_{-27.8}^{+40.3}$) & 0.99 \\
+                        lp+ & 90$\degr$   & 74.11$^{+0.47}_{-0.48}$ & 0.27$^{+0.06}_{-0.06}$ &  4.49 &  3.01 & 1.35 & (${321.9^{\circ}}_{-33.5}^{+72.5}$, ${-18.9^{\circ}}_{-11.5}^{+16.6}$) & 1.14\\
+                        \hline\hline
+                \end{tabular}
+                \begin{itemize} 
+                        \tiny
+                        \item[\rm{$^{a}$}] $\theta_\mathrm{max}$ is the screening angle.
+                        \item[\rm{$^{b}$}] $D_\mathrm{max}$ represents the degree of deviation from the cosmological principle; the larger the value, the higher the degree of deviation.
+                        \item[\rm{$^{c}$}] $\alpha$ indicates the statistical significance of real data from the isotropy analysis.
+                        \item[\rm{$^{d}$}] $\beta$ indicates the statistical significance of real data from the isotropy RP analysis.
+                        \item[\rm{$^{*}$}] For the RF (60$\degr$) results of the Pantheon+ sample, the reduced chi-square ($\chi^{2}_{r}$) corresponding to $\Omega_\mathrm{m, min}$ is 0.69, which is much smaller than 1.00. Therefore, the RF (60$\degr$) results are not given.
+                \end{itemize}
+        \end{spacing}
+\end{table*}
+
+
+
+\section{Discussion}
+All-sky distributions of cosmological parameters ($\Omega_{m}$ and $H_{0}$) from the total sample show that there is an obvious local underdensity area and a preferred direction of cosmic expansion. From Fig. \ref{F4}, we can find that there are some weird features that may result from fluctuations in the matter density, or fluctuations in the Hubble expansion \citep{Gurzadyan2023}. In the upper panel, the red and blue areas represent areas of higher and lower material density, respectively. In the lower panel, the red areas represent regions of higher Hubble expansion. The continuity of these structures suggests that the results may not be sensitive to individual SNe Ia. Combining these two panels of Fig. \ref{F4}, we find that the local underdensity in the upper panel overlaps with the higher Hubble expansion (cosmic anisotropy) in the lower panel. This may imply that local matter density might be responsible for the anisotropy of the accelerated expansion of the Universe. The corresponding 1$\sigma$ regions are quite obvious. In other words, the 1$\sigma$ range of $\Omega_{m}$ is significantly larger than that of $H_{0}$. The main reason for this phenomenon might be that these two parameters have different sensitivities on the redshift. The inhomogeneous matter-density distribution could also affect the decelaration parameter $q_{0}$, causing a larger $q_{0}$ in the local underdensity. Theoretically, the maximum $q_{0}$ direction should be consistent with the local underdensity direction. For the determination of $H_{0}$ value with local distance indicators, the observed $H_{0}$ values depend on the average matter density within the distance range covered \citep{2020A&A...633A..19B}. Combining the $\Omega_{m}$ distribution, we can find that there might be a region of low matter density, which leads to a smaller average matter density which makes the $H_{0}$ measurements higher. Therefore, the local underdensity can exacerbate the magnitude of the Hubble Tension \citep{2020A&A...633A..19B,2022MNRAS.517..576H,2023A&A...674A..45J,2023Univ....9...94H}. In other words, accounting for the local underdensity or cosmic anisotropy could alleviate the current Hubble tension.
+
+
+From Fig. \ref{F5}, we find that the isotropy analysis shows an obvious statistical significance, especially the study of $H_{0}$, which is nearly 4$\sigma$. Afterwards, considering the spatial inhomogeneity of the real sample, we performed the isotropy RP analysis and find a slight decrease in statistical significance. This suggests that inhomogeneous spatial distribution of a real sample can increase the deviation from isotropy. In addition, combining all the statistical results, we find the statistical significations of $H_{0}$ anisotropy are more obvious than that of $\Omega_{m}$ anisotropy. From the distributions of a single parameter, we find an obvious anisotropy. But the effect of one on the other might be canceled out, making the all-sky distribution of luminosity distances isotropic. Therefore, in order to clear up this doubt, we plotted the all-sky distribution of luminosity distances when $z$ is set to 2.26 and give the relationships between $d_{L}$ and $z$ of two anisotropic hemispheres, as shown in Figs. \ref{DLD} and \ref{DL}, respectively. The results of these two figures show that the all-sky distribution of luminosity distances is also anisotropic and the $d_L-z$ relationships obtained from two anisotropic hemispheres have obvious differences. The direction of larger luminosity distance is consistent with the anisotropy direction from the Pantheon+ sample. All in all, our investigations from the Pantheon+ sample display an inhomogeneous and anisotropic universe, and the statistical results show no low confidence level. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.14
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.45\textwidth]{DL_contour.pdf}
+        % figure caption is below the figure
+        \caption{All-sky distribution of luminosity distance $d_{L}$ utilizing the Pantheon+ sample combined with the 90$^{\circ}$ RF method. Here, we fix $z$ = 2.26.}
+        \label{DLD}       % Give a unique label
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.15
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.35\textwidth]{DL.pdf}
+        % figure caption is below the figure
+        \caption{Relationships between $d_{L}$ and $z$ of two anisotropic hemispheres using the two sets of best fits ($H_\mathrm{0,min}$, $\Omega_{m}$  and $H_\mathrm{0,max}$, $\Omega_{m}$) in the $H_{0}$ distribution.}
+        \label{DL}       % Give a unique label
+\end{figure}
+
+Motivated by recent research \citep{2020PhRvD.102j3525K,2021PhRvD.103j3509K,2021ApJ...912..150D,2022Galax..10...24D,2022arXiv220611447C,2022MNRAS.517..576H,2022PhRvD.106d1301O,2023A&A...674A..45J,2023arXiv230112725M} hinting that $H_{0, z}$ might evolve with redshift, we conducted reanalyses using the low-redshift (lp+) sample. If $H_{0, z}$ evolves with redshift (may be caused by the local void, and so on), then the measured $H_{0}$ of low-redshift and high-redshift SNe samples are different. In that case, if the redshift distribution is not uniform across the sky, this could create biases in the anisotropy detection, especially when the full sample is used; moreover, the redshift range is wider. The value of $H_{0}$ obtained from the higher redshift hemisphere is smaller than that obtained from the lower redshift hemisphere. Severely uneven redshift distribution might lead to an increase in the degree of anisotropy or a bias in the anisotropy detection. The reanalysis results are similar to those of the Pantheon+ sample and verify our previous findings. From the results of the lp+ sample (Fig. \ref{F6}), we find that directions of the local matter underdensity and cosmic anisotropy given by the lp+ sample are inconsistent. Comparing the results in Figs. \ref{total} and \ref{lowr}, we can find that the best fits of the two anisotropic hemispheres obtained from the lp+ sample are significantly worse than the results of the total sample. In Fig. \ref{Dz}, we also show the relationship between $D_\mathrm{max}$ and $z_\mathrm{max}$, the detailed information are display in Table \ref{TT}. From Fig. \ref{Dz}, we can find that $D_\mathrm{max}$ changes with $z_\mathrm{max}$, and has a maximum value near $z_\mathrm{max}$ = 0.30. This might imply that the structure of the Universe changes with redshift. In addition, we also find that the influence of redshift on the all-sky distribution of $\Omega_{m}$ is larger than that of $H_{0}$. Finally, from the statistical results of lp+ sample, we also find that the statistical significance obtained from the isotropy RP analysis are lower than that from the isotropy analysis. This finding confirms that inhomogeneous spatial distribution of a real sample can increase the deviation from isotropy.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.16
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.35\textwidth]{D_z.pdf}
+        % figure caption is below the figure
+        \caption{Relationship between discrepancy degree $D_\mathrm{max}$ and $z_\mathrm{max}$.}
+        \label{Dz}       % Give a unique label
+\end{figure}
+
+\begin{table}\footnotesize
+        \caption{Detailed information on the investigation of the relationship between the discrepancy degree $D_\mathrm{max}$ and $z_{max}$. \label{TT}}
+        \centering
+        \begin{spacing}{1.2}
+                \begin{tabular}{cccc}
+                        \hline\hline
+                        $z_\mathrm{max}$ & Number & $D_{max}$ ($\Omega_{m}$)& $D_{max}$ ($H_{0}$)  \\
+                        &  & ($\sigma$) & ($\sigma$)  \\
+                        \hline
+                        0.10 & 747  & 2.31 & 3.14 \\
+                        0.20 & 962  & 3.03 & 3.76 \\
+                        0.30 & 1218 & 4.17 & 4.49 \\
+                        0.40 & 1399 & 3.43 & 4.11 \\
+                        0.50 & 1497 & 2.81 & 3.80 \\
+                        0.60 & 1575 & 2.60 & 3.74 \\
+                        1.00 & 1677 & 3.07 & 4.11 \\
+                        2.26 & 1701 & 3.29 & 4.48 \\
+                        
+                        \hline\hline
+                \end{tabular}
+                \begin{itemize} 
+                        \tiny
+                        \item[*] $D_\mathrm{max}$ represents the degree of deviation from the cosmological principle, and the larger the value, the higher the degree of deviation.
+                \end{itemize}
+        \end{spacing}
+\end{table}
+
+Theoretically, the screening angle \tm in the RF method can be any value between 0$\degr$ and 180$\degr$. However, due to the limitations of real data in quantity, spatial part, and redshift distribution, \tm cannot be selected arbitrarily. In Sect. \ref{theta}, we combine the RF method with the latest Pantheon+ sample, hoping to find a suitable screening angle \tm. The analysis results are shown in Fig. \ref{F9}. Finally, we find that the screening angle \tm of the Pantheon+ sample is 60$\degr$. Then, based on the 60$\degr$ RF method, we restudied the Pantheon+ sample. The corresponding results are shown in Figs. \ref{F10}, \ref{F60}, and \ref{F11}. From Fig. \ref{F10}, we find that there is a small area (314.16$\degr$, -22.92$\degr$) with a lower $H_{0}$ value in the higher $H_{0}$ area, but this structure does not appear in the RF (90$\degr$) results. The lower $H_{0}$ area may be caused by high material density structures (e.g. dark matter halo) or statistical uncertainty. Narrowing the screening angle reduces the number of SNe constraining cosmological parameters, which may increase the uncertainty of the constraint. We performed a bootstrap resampling of the sample (ignoring the direction, repeated 2000 times) to study the dependence of the best-fit result error and $D_\mathrm{max}$ on the number of SNe Ia used. Here, the number of SNe ranges from 100 to 700, with a total of seven groups. From the results of Fig. \ref{err}, we can find that the average error and $D_\mathrm{max}$ increases as the used number of SNe decreases. The number of SNe used significantly affects the average error but does not significantly affect the $D_\mathrm{max}$ value. The $D_\mathrm{max}$ difference caused by the reduction in number is much smaller than the total $D_\mathrm{max}$. The preferred direction of cosmic anisotropy using the RF method with \tm = 60$\degr$ is in line with that using \tm = 90$\degr$ within a 1$\sigma$ error. However, narrowing the screening angle means that the statistical significance of the isotropy analyses are significantly reduced. Interestingly, unlike previous findings, the statistical significance of the isotropy RP analysis is actually higher than that of the isotropy one. 
+
+
+Overall, we find that the all-sky distributions of cosmological parameters deviate significantly from isotropy, as shown in Figs. \ref{F4}, \ref{F6}, and \ref{F10}. All preferred directions we obtained are consistent with each other within a 1$\sigma$ range, and they are in line with previous research that traced the anisotropy of $\Omega_{m}$ and $H_{0}$ \citep{2010JCAP...12..012A,2012JCAP...02..004C,2013AA...553A..56K,2015MNRAS.446.2952C,2020A&A...643A..93H} and other dipole researches \citep{2014MNRAS.443.1680W,2014MNRAS.437.1840Y,2016MNRAS.456.1881L,2017MNRAS.468.1953P,2019MNRAS.486.1658C,2023MNRAS.525..231D}. However, they are different from those of \citet{2022PhRvD.105j3510L} and \citet{2023arXiv230402718M}, which are consistent with the results of the CMB dipole \citep{2016AA...594A...1P,2020AA...641A...1P}. In addition, comparing with other independent observations (as shown in Table \ref{T2}) including the CMB dipole \citep{2016AA...594A...1P,2020AA...641A...1P}, dark flow \citep{2022JHEAp..34...49A}, bulk flow \citep{2012MNRAS.420..447T,2017MNRAS.468.1420F,2023MNRAS.524.1885W}, and galaxy cluster \citep{2021AA...649A.151M}, it is easy to find that the directions of the larger $H_{0}$ and the smaller $\Omega_{m}$ are not consistent with the CMB dipole \citep{2016AA...594A...1P,2020AA...641A...1P}, but they coincide with the bulk flow \citep{2012MNRAS.420..447T,2017MNRAS.468.1420F,2023MNRAS.524.1885W} and the galaxy cluster \citep{2021AA...649A.151M}. To facilitate understanding, we aggregated these results with the ones we obtained, marking them on the galactic coordinate system, as shown in Fig. \ref{F12}. The effect of peculiar velocities and the bulk flow on SNe Ia cosmology has already been discussed \citep{2006PhRvD..73l3526H,2011ApJ...741...67D,2014A&A...568A..22B,2018MNRAS.477.1772R}. They can make a tiny shift in the best-fit cosmological parameters and the preferred direction locally \citep{2019A&A...631L..13C}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.17
+\begin{figure}[h]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.24\textwidth]{ERRom.pdf}
+        \includegraphics[width=0.24\textwidth]{ERRh0.pdf}
+        \includegraphics[width=0.24\textwidth]{D_nom.pdf}
+        \includegraphics[width=0.24\textwidth]{D_nh0.pdf}
+        % figure caption is below the figure
+        \caption{Relationship between average error and discrepancy degree $D_\mathrm{max}$ and SN number used. The upper panels show the relationship between the average error and the used SN number. The lower panels show the relationship between the discrepancy degree $D_\mathrm{max}$ and the SN number used. Blue and red correspond to parameters $\Omega_{m}$ and $H_{0,}$ respectively.  }
+        \label{err}       % Give a unique label
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.18
+
+\begin{figure*}
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.8\textwidth]{Fig12.pdf}
+        % figure caption is below the figure
+        \caption{Distribution of preferred directions (l, b) with 1$\sigma$ range in other independent observations. We mark the directions given by $\Omega_{m}$ with plus signs at different screening angles, and the directions given by $H_{0}$ are shown with triangles at different screening angles. The color represents the important result obtained in this work; black shows the result given by other independent observations including the CMB dipole \citep{2016AA...594A...1P,2020AA...641A...1P}, dark flow \citep{2022JHEAp..34...49A}, bulk flow \citep{2012MNRAS.420..447T,2017MNRAS.468.1420F,2023MNRAS.524.1885W}, and galaxy cluster \citep{2021AA...649A.151M}. }
+        \label{F12}       % Give a unique label
+\end{figure*}
+
+
+\begin{table*}\footnotesize
+        \caption{Preferred directions given by other independent observations. \label{T2}}
+        \centering
+        \begin{spacing}{1.2}
+                \begin{tabular}{ccc}
+                        \hline\hline
+                        Cosmological obs. & Direction (l, b)  & Ref.  \\
+                        \hline
+                        CMB dipole & (264.00$^{\circ}$$\pm$0.03, 48.24$^{\circ}$$\pm$0.02)  & \citep{2016AA...594A...1P} \\
+                        & (264.02$^{\circ}$$\pm$0.01, 48.25$^{\circ}$$\pm$0.01)  & \citep{2020AA...641A...1P} \\
+                        Dark flow  &(290$^{\circ}$$\pm$20, 30$^{\circ}$$\pm$15)  & \citep{2022JHEAp..34...49A} \\
+                        Bulk flow  & (319$^{\circ}$$\pm$18, 7$^{\circ}$$\pm$14)  & \citep{2012MNRAS.420..447T} \\
+                        & (315$^{\circ}$$\pm$52, -17$^{\circ}$$\pm$15)  & \citep{2017MNRAS.468.1420F} \\
+                        & (304$^{\circ}$$\pm$14, 22$^{\circ}$$\pm$11)  & \citep{2017MNRAS.468.1420F} \\
+                        & (297$^{\circ}$$\pm$4, -6$^{\circ}$$\pm$3)  & \citep{2023MNRAS.524.1885W} \\
+                        & (298$^{\circ}$$\pm$5, -8$^{\circ}$$\pm$4)  & \citep{2023MNRAS.524.1885W} \\                 
+                        Galaxy cluster & (280$^{\circ}$$\pm$35, -15$^{\circ}$$\pm$20)  & \citep{2021AA...649A.151M} \\
+                        Pantheon+ ($H_{0}$, 90$\degr$) & $({313.4^{\circ}}_{-18.2}^{+19.6}, {-16.8^{\circ}}_{-10.7}^{+11.1})$  & this paper \\
+                        Pantheon+ ($H_{0}$, 60$\degr$) & (${351.4^{\circ}}_{-64.2}^{+28.0}$, ${-8.8^{\circ}}_{-27.8}^{+40.3}$)  & this paper \\
+                        lp+ ($H_{0}$, 90$\degr$) & (${321.9^{\circ}}_{-33.5}^{+72.5}$, ${-18.9^{\circ}}_{-11.5}^{+16.6}$)  & this paper \\
+                        Pantheon+ ($\Omega_{m}$, 90$\degr$) & (${308.4^{\circ}}_{-48.7}^{+47.6}, {-18.2^{\circ}}_{-28.8}^{+21.1}$)  & this paper \\
+                        lp+ ($\Omega_{m}$, 90$\degr$) & (${26.4^{\circ}}_{-100.9}^{+26.3}$, ${-19.3^{\circ}}_{-17.0}^{+35.4}$)  & this paper \\
+                       
+                        
+                        
+                        \hline\hline
+                \end{tabular}
+        \end{spacing}
+\end{table*}
+
+
+\section{Conclusions and perspectives}
+In this paper, we propose the RF method for the first time and combine this method with the Pantheon+ sample to test the cosmological principle. From the matter density and the Hubble expansion distributions mapped using the RF method, we find that the all-sky distributions of cosmological parameters deviate significantly from isotropy. The corresponding distribution of luminosity distance also deviates from isotropy; that is, the $d_{L}$-$z$ relation actually diverges from region to region. Results of statistical isotropy analyses (isotropy and isotropy RP) show relatively high confidence levels: 2.78$\sigma$ (isotropy) and 2.34$\sigma$ (isotropy RP) for the local matter underdensity, 3.96$\sigma$ (isotropy) and 3.15$\sigma$ (isotropy RP) for the cosmic anisotropy. Comparing the results of statistical isotropy analyses, we find that inhomogeneous spatial distribution of real sample can increase the deviation from isotropy. The statistical significations of $H_{0}$ anisotropy are more obvious than that of $\Omega_{m}$ anisotropy. This might hint that parameter $H_{0}$ is more sensitive to cosmic anisotropy. The similar results and findings are found from reanalyses of the lp+ sample and the lower screening angle (\tm = 60$\degr$), but with a slight decrease in statistical significance. In addition, we find that $D_\mathrm{max}$ changes with $z_\mathrm{max}$ and has a maximum value near $z_\mathrm{max}$ = 0.30. The average error and $D_\mathrm{max}$ increase as the used number of SNe decreases. Comparing with the previous researches, we find all preferred directions we obtained are in line with that were provided by \citet{2010JCAP...12..012A}, \citet{2012JCAP...02..004C}, \citet{2014MNRAS.443.1680W}, \citet{2014MNRAS.437.1840Y}, \citet{2013AA...553A..56K}, \citet{2015MNRAS.446.2952C}, \citet{2016MNRAS.456.1881L}, \citet{2019MNRAS.486.1658C}, and \citet{2020A&A...643A..93H}, but they are not consistent with those given by \citet{2022PhRvD.105j3510L} and \citet{2023arXiv230402718M}.
+
+
+Until now, many SNe Ia have been observed and have been widely used for cosmological applications \citep{2018ApJ...854...46H,2021PhRvD.104l3511P,2023MNRAS.526.1482C,2022A&A...661A..71H,2022PhRvD.106f3515W,2023MNRAS.522.6024B}.\footnote{For more recent studies on the cosmological applications employing the SNe Ia sample, see \citet{2023MNRAS.521.3909B}, \citet{2023PhRvD.107j3521C}, \citet{2023arXiv230517243D}, \citet{2023PhRvD.108h3024H}, \citet{2023ChPhC..47f5104J}, \citet{2023arXiv231003509K}, \citet{2023arXiv231006028L}, \citet{2023ApJ...956..130M}, \citet{2023PDU....4001216O}, \citet{2023PDU....4001224P}, \citet{2023MNRAS.520.5110P}, \citet{2023PhRvD.108h3519S}, \citet{2023arXiv230504946V}, \citet{2023EPJC...83..859W}, and references therein.} However, there is still an inhomogeneous distribution in data, which significantly affects the testing of cosmological principle. One way to solve this problem is to add some new SNe Ia measurements, and another way is to consider other independent observations; for example, quasar \citep{2016ApJ...819..154L,2017FrASS...4...68B,2017A&A...602A..79L,2019NatAs...3..272R,2022MNRAS.516.1721C,2022MNRAS.515.3729K,2023PhLB..84538166L,2023arXiv230508179Z}, gamma-ray burst \citep[GRB;][]{2015NewAR..67....1W,2020MNRAS.496.1530S,2021MNRAS.507..730H,2022MNRAS.510.2928C,2022ApJ...935....7L,2022Univ....8..344L,2022ApJ...941...84L,2022ApJ...924...97W}, fast radio burst \citep[FRB;][]{2022MNRAS.511..662H,2022MNRAS.515L...1W,2022MNRAS.516.4862J,2022arXiv221213433Z,2023arXiv230708285G,2023ApJ...946L..49L}, Tip of the Red Giant Branch \citep[TRGB;][]{2019ApJ...882...34F,2020ApJ...891...57F,2021ApJ...919...16F}, galaxy cluster \citep{2017A&A...597A.120J,2020A&A...636A..15M,2021AA...649A.151M}, and gravitational wave \citep[GW;][]{2017Natur.551...85A,2018Natur.562..545C,2023ChPhC..47f5104J,2023ApJ...943...13W} observations, among others. At present, these observations may still have some deficiencies in quantity or quality, but this situation is expected to improve in the future. The e-ROSITA all-sky survey \citep{2012arXiv1209.3114M,2012SPIE.8443E..1RP,2013A&A...558A..89K,2020FrASS...7....8L}, Einstein Probe \citep[EP;][]{Yuan2015}, French--Chinese satellite space-based multi-band astronomical variable objects monitor \citep[SVOM;][]{Wei2016}, China Space Station Telescope (CSST) photometric survey \citep{2022MNRAS.515.5587X,2023MNRAS.519.1132M,2023SCPMA..6629511L}, and Transient High-Energy Sky and Early Universe Surveyor \citep[THESEUS;][]{Amati2018} space missions together with ground- and space-based multi-messenger facilities will provide a lot of observations and measurements, improve the observational quality, and probe the poorly explored high-redshift universe. The Australian Square Kilometer Array Pathfinder \citep[ASKAP;][]{2017ASPC..512...73C}, MeerKAT \citep{2018IAUS..337..406S}, Very Large Array \citep[VLA;][]{2018ApJS..236....8L}, and Canadian Hydrogen Intensity Mapping Experiment (CHIME)/FRB Outriggers \citep{2021AJ....161...81L} will provide a large number of positioned FRBs in the future, which will give higher precision cosmological constraints. In addition, the Advanced Laser Interferometer Gravitational-wave Observatory \citep[aLIGO;][]{2015CQGra..32g4001L} and Virgo \citep{2015CQGra..32b4001A} detectors will provide more GW events. In combination with the electromagnetic counterparts, model-independent constraints will be given on the cosmological parameters. The high-quality observations enable us to examine the cosmological principle at higher redshifts and investigate whether the Hubble tension is related to the failure of the cosmological principle. 
+
+\noindent \emph{\emph{Notes:} \emph{As this work was about to be completed, \citet{2023PhRvD.108f3509P} used the HC method to test the cosmic isotropy of the SNe Ia absolute magnitudes from the Pantheon+ and SH0ES samples in various redshift/distance bins. They found that sharp changes of the level of anisotropy occuring at distances under 40 Mpc in the real samples. If there are enough local observations in the future, more local information about our Universe could be obtained by combining our method with the idea of \citet{2023PhRvD.108f3509P}. This will be pursued in future work.}}
+
+
+
+%% The "ht!" tells LaTeX to put the figure "here" first, at the "top" next
+%% and to override the normal way of calculating a float position
+\section*{Acknowledgements}
+We thank the anonymous referee for constructive comments. This work was supported by the National Natural Science Foundation of China (grant No. 12273009), the China Manned Spaced Project (CMS-CSST-2021-A12), Jiangsu Funding Program for Excellent Postdoctoral Talent (20220ZB59), Project funded by China Postdoctoral Science Foundation (2022M721561), NWO, the Dutch Research Council, under Vici research programme `ARGO' with project number 639.043.815, Yunnan Youth Basic Research Projects 202001AU070013 and National Natural Science Foundation of China (grant No. 12303050).
+
+
+% for the bibliography, at the end
+\bibliographystyle{aa} % style aa.bst
+%\bibliography{aaref} % your references Yourfile.bib
+\begin{thebibliography}{219}
+	\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+	
+	\bibitem[{{Abbott} {et~al.}(2017){Abbott}, {Abbott}, {Abbott}, {Acernese}, {Ackley}, {Adams}, {Adams}, {Addesso}, {Adhikari}, {Adya}, {Affeldt}, {Afrough}, {Agarwal}, {Agathos}, {Agatsuma}, {Aggarwal}, {Aguiar}, {Aiello}, {Ain}, {Ajith}, {Allen}, {Allen}, {Allocca}, {Altin}, {Amato}, {Ananyeva}, {Anderson}, {Anderson}, {Angelova}, {Antier}, {Appert}, {Arai}, {Araya}, {Areeda}, {Arnaud}, {Arun}, {Ascenzi}, {Ashton}, {Ast}, {Aston}, {Astone}, {Atallah}, {Aufmuth}, {Aulbert}, {Aultoneal}, {Austin}, {Avila-Alvarez}, {Babak}, {Bacon}, {Bader}, {Bae}, {Baker}, {Baldaccini}, {Ballardin}, {Ballmer}, {Banagiri}, {Barayoga}, {Barclay}, {Barish}, {Barker}, {Barkett}, {Barone}, {Barr}, {Barsotti}, {Barsuglia}, {Barta}, {Bartlett}, {Bartos}, {Bassiri}, {Basti}, {Batch}, {Bawaj}, {Bayley}, {Bazzan}, {B{\'e}csy}, {Beer}, {Bejger}, {Belahcene}, {Bell}, {Berger}, {Bergmann}, {Bero}, {Berry}, {Bersanetti}, {Bertolini}, {Betzwieser}, {Bhagwat}, {Bhandare}, {Bilenko}, {Billingsley}, {Billman}, {Birch}, {Birney}, {Birnholtz},
+		{Biscans}, {Biscoveanu}, {Bisht}, {Bitossi}, {Biwer}, {Bizouard}, {Blackburn}, {Blackman}, {Blair}, {Blair}, {Blair}, {Bloemen}, {Bock}, {Bode}, {Boer}, {Bogaert}, {Bohe}, {Bondu}, {Bonilla}, {Bonnand}, {Boom}, {Bork}, {Boschi}, {Bose}, {Bossie}, {Bouffanais}, {Bozzi}, {Bradaschia}, {Brady}, {Branchesi}, {Brau}, {Briant}, {Brillet}, {Brinkmann}, {Brisson}, {Brockill}, {Broida}, {Brooks}, {Brown}, {Brown}, {Brunett}, {Buchanan}, {Buikema}, {Bulik}, {Bulten}, {Buonanno}, {Buskulic}, {Buy}, {Byer}, {Cabero}, {Cadonati}, {Cagnoli}, {Cahillane}, {Bustillo}, {Callister}, {Calloni}, {Camp}, {Canepa}, {Canizares}, {Cannon}, {Cao}, {Cao}, {Capano}, {Capocasa}, {Carbognani}, {Caride}, {Carney}, {Diaz}, {Casentini}, {Caudill}, {Cavagli{\`a}}, {Cavalier}, {Cavalieri}, {Cella}, {Cepeda}, {Cerd{\'a}-Dur{\'a}n}, {Cerretani}, {Cesarini}, {Chamberlin}, {Chan}, {Chao}, {Charlton}, {Chase}, {Chassande-Mottin}, {Chatterjee}, {Chatziioannou}, {Cheeseboro}, {Chen}, {Chen}, {Chen}, {Cheng}, {Chia}, {Chincarini}, {Chiummo},
+		{Chmiel}, {Cho}, {Cho}, {Chow}, {Christensen}, {Chu}, {Chua}, {Chua}, {Chung}, {Chung}, {Ciani}, {Ciolfi}, {Cirelli}, {Cirone}, {Clara}, {Clark}, {Clearwater}, {Cleva}, {Cocchieri}, {Coccia}, {Cohadon}, {Cohen}, {Colla}, {Collette}, {Cominsky}, {Constancio}, {Conti}, {Cooper}, {Corban}, {Corbitt}, {Cordero-Carri{\'o}n}, {Corley}, {Cornish}, {Corsi}, {Cortese}, {Costa}, {Coughlin}, {Coughlin}, {Coulon}, {Countryman}, {Couvares}, {Covas}, {Cowan}, {Coward}, {Cowart}, {Coyne}, {Coyne}, {Creighton}, {Creighton}, {Cripe}, {Crowder}, {Cullen}, {Cumming}, {Cunningham}, {Cuoco}, {Dal Canton}, {D{\'a}lya}, {Danilishin}, {D'Antonio}, {Danzmann}, {Dasgupta}, {da Silva Costa}, {Datrier}, {Dattilo}, {Dave}, {Davier}, {Davis}, {Daw}, {Day}, {de}, {Debra}, {Degallaix}, {de Laurentis}, {Del{\'e}glise}, {Del Pozzo}, {Demos}, {Denker}, {Dent}, {de Pietri}, {Dergachev}, {De Rosa}, {Derosa}, {de Rossi}, {Desalvo}, {de Varona}, {Devenson}, {Dhurandhar}, {D{\'\i}az}, {di Fiore}, {di Giovanni}, {di Girolamo}, {di Lieto}, {di
+			Pace}, {di Palma}, {di Renzo}, {Doctor}, {Dolique}, {Donovan}, {Dooley}, {Doravari}, {Dorrington}, {Douglas}, {Dovale {\'A}lvarez}, {Downes}, {Drago}, {Dreissigacker}, {Driggers}, {Du}, {Ducrot}, {Dupej}, {Dwyer}, {Edo}, {Edwards}, {Effler}, {Eggenstein}, {Ehrens}, {Eichholz}, {Eikenberry}, {Eisenstein}, {Essick}, {Estevez}, {Etienne}, {Etzel}, {Evans}, {Evans}, {Factourovich}, {Fafone}, {Fair}, {Fairhurst}, {Fan}, {Farinon}, {Farr}, {Farr}, {Fauchon-Jones}, {Favata}, {Fays}, {Fee}, {Fehrmann}, {Feicht}, {Fejer}, {Fernandez-Galiana}, {Ferrante}, {Ferreira}, {Ferrini}, {Fidecaro}, {Finstad}, {Fiori}, {Fiorucci}, {Fishbach}, {Fisher}, {Fitz-Axen}, {Flaminio}, {Fletcher}, {Fong}, {Font}, {Forsyth}, {Forsyth}, {Fournier}, {Frasca}, {Frasconi}, {Frei}, {Freise}, {Frey}, {Frey}, {Fries}, {Fritschel}, {Frolov}, {Fulda}, {Fyffe}, {Gabbard}, {Gadre}, {Gaebel}, {Gair}, {Gammaitoni}, {Ganija}, {Gaonkar}, {Garcia-Quiros}, {Garufi}, {Gateley}, {Gaudio}, {Gaur}, {Gayathri}, {Gehrels}, {Gemme}, {Genin}, {Gennai},
+		{George}, {George}, {Gergely}, {Germain}, {Ghonge}, {Ghosh}, {Ghosh}, {Ghosh}, {Giaime}, {Giardina}, {Giazotto}, {Gill}, {Glover}, {Goetz}, {Goetz}, {Gomes}, {Goncharov}, {Gonz{\'a}lez}, {Castro}, {Gopakumar}, {Gorodetsky}, {Gossan}, {Gosselin}, {Gouaty}, {Grado}, {Graef}, {Granata}, {Grant}, {Gras}, {Gray}, {Greco}, {Green}, {Gretarsson}, {Groot}, {Grote}, {Grunewald}, {Gruning}, {Guidi}, {Guo}, {Gupta}, {Gupta}, {Gushwa}, {Gustafson}, {Gustafson}, {Halim}, {Hall}, {Hall}, {Hamilton}, {Hammond}, {Haney}, {Hanke}, {Hanks}, {Hanna}, {Hannam}, {Hannuksela}, {Hanson}, {Hardwick}, {Harms}, {Harry}, {Harry}, {Hart}, {Haster}, {Haughian}, {Healy}, {Heidmann}, {Heintze}, {Heitmann}, {Hello}, {Hemming}, {Hendry}, {Heng}, {Hennig}, {Heptonstall}, {Heurs}, {Hild}, {Hinderer}, {Hoak}, {Hofman}, {Holt}, {Holz}, {Hopkins}, {Horst}, {Hough}, {Houston}, {Howell}, {Hreibi}, {Hu}, {Huerta}, {Huet}, {Hughey}, {Husa}, {Huttner}, {Huynh-Dinh}, {Indik}, {Inta}, {Intini}, {Isa}, {Isac}, {Isi}, {Iyer}, {Izumi}, {Jacqmin}, {Jani},
+		{Jaranowski}, {Jawahar}, {Jim{\'e}nez-Forteza}, {Johnson}, {Jones}, {Jones}, {Jonker}, {Ju}, {Junker}, {Kalaghatgi}, {Kalogera}, {Kamai}, {Kandhasamy}, {Kang}, {Kanner}, {Kapadia}, {Karki}, {Karvinen}, {Kasprzack}, {Katolik}, {Katsavounidis}, {Katzman}, {Kaufer}, {Kawabe}, {K{\'e}f{\'e}lian}, {Keitel}, {Kemball}, {Kennedy}, {Kent}, {Key}, {Khalili}, {Khan}, {Khan}, {Khan}, {Khazanov}, {Kijbunchoo}, {Kim}, {Kim}, {Kim}, {Kim}, {Kim}, {Kim}, {Kimbrell}, {King}, {King}, {Kinley-Hanlon}, {Kirchhoff}, {Kissel}, {Kleybolte}, {Klimenko}, {Knowles}, {Koch}, {Koehlenbeck}, {Koley}, {Kondrashov}, {Kontos}, {Korobko}, {Korth}, {Kowalska}, {Kozak}, {Kr{\"a}mer}, {Kringel}, {Krishnan}, {Kr{\'o}lak}, {Kuehn}, {Kumar}, {Kumar}, {Kumar}, {Kuo}, {Kutynia}, {Kwang}, {Lackey}, {Lai}, {Landry}, {Lang}, {Lange}, {Lantz}, {Lanza}, {Lartaux-Vollard}, {Lasky}, {Laxen}, {Lazzarini}, {Lazzaro}, {Leaci}, {Leavey}, {Lee}, {Lee}, {Lee}, {Lee}, {Lee}, {Lehmann}, {Lenon}, {Leonardi}, {Leroy}, {Letendre}, {Levin}, {Li}, {Linker},
+		{Littenberg}, {Liu}, {Liu}, {Lo}, {Lockerbie}, {London}, {Lord}, {Lorenzini}, {Loriette}, {Lormand}, {Losurdo}, {Lough}, {Lousto}, {Lovelace}, {L{\"u}ck}, {Lumaca}, {Lundgren}, {Lynch}, {Ma}, {Macas}, {Macfoy}, {Machenschalk}, {Macinnis}, {MacLeod}, {Hernandez}, {Maga{\~n}a-Sandoval}, {Zertuche}, {Magee}, {Majorana}, {Maksimovic}, {Man}, {Mandic}, {Mangano}, {Mansell}, {Manske}, {Mantovani}, {Marchesoni}, {Marion}, {M{\'a}rka}, {M{\'a}rka}, {Markakis}, {Markosyan}, {Markowitz}, {Maros}, {Marquina}, {Martelli}, {Martellini}, {Martin}, {Martin}, {Martynov}, {Mason}, {Massera}, {Masserot}, {Massinger}, {Masso-Reid}, {Mastrogiovanni}, {Matas}, {Matichard}, {Matone}, {Mavalvala}, {Mazumder}, {McCarthy}, {McClelland}, {McCormick}, {McCuller}, {McGuire}, {McIntyre}, {McIver}, {McManus}, {McNeill}, {McRae}, {McWilliams}, {Meacher}, {Meadors}, {Mehmet}, {Meidam}, {Mejuto-Villa}, {Melatos}, {Mendell}, {Mercer}, {Merilh}, {Merzougui}, {Meshkov}, {Messenger}, {Messick}, {Metzdorff}, {Meyers}, {Miao}, {Michel},
+		{Middleton}, {Mikhailov}, {Milano}, {Miller}, {Miller}, {Miller}, {Millhouse}, {Milovich-Goff}, {Minazzoli}, {Minenkov}, {Ming}, {Mishra}, {Mitra}, {Mitrofanov}, {Mitselmakher}, {Mittleman}, {Moffa}, {Moggi}, {Mogushi}, {Mohan}, {Mohapatra}, {Montani}, {Moore}, {Moraru}, {Moreno}, {Morriss}, {Mours}, {Mow-Lowry}, {Mueller}, {Muir}, {Mukherjee}, {Mukherjee}, {Mukherjee}, {Mukund}, {Mullavey}, {Munch}, {Mu{\~n}iz}, {Muratore}, {Murray}, {Napier}, {Nardecchia}, {Naticchioni}, {Nayak}, {Neilson}, {Nelemans}, {Nelson}, {Nery}, {Neunzert}, {Nevin}, {Newport}, {Newton}, {Ng}, {Nguyen}, {Nichols}, {Nielsen}, {Nissanke}, {Nitz}, {Noack}, {Nocera}, {Nolting}, {North}, {Nuttall}, {Oberling}, {O'Dea}, {Ogin}, {Oh}, {Oh}, {Ohme}, {Okada}, {Oliver}, {Oppermann}, {Oram}, {O'Reilly}, {Ormiston}, {Ortega}, {O'Shaughnessy}, {Ossokine}, {Ottaway}, {Overmier}, {Owen}, {Pace}, {Page}, {Page}, {Pai}, {Pai}, {Palamos}, {Palashov}, {Palomba}, {Pal-Singh}, {Pan}, {Pan}, {Pang}, {Pang}, {Pankow}, {Pannarale}, {Pant}, {Paoletti},
+		{Paoli}, {Papa}, {Parida}, {Parker}, {Pascucci}, {Pasqualetti}, {Passaquieti}, {Passuello}, {Patil}, {Patricelli}, {Pearlstone}, {Pedraza}, {Pedurand}, {Pekowsky}, {Pele}, {Penn}, {Perez}, {Perreca}, {Perri}, {Pfeiffer}, {Phelps}, {Piccinni}, {Pichot}, {Piergiovanni}, {Pierro}, {Pillant}, {Pinard}, {Pinto}, {Pirello}, {Pitkin}, {Poe}, {Poggiani}, {Popolizio}, {Porter}, {Post}, {Powell}, {Prasad}, {Pratt}, {Pratten}, {Predoi}, {Prestegard}, {Prijatelj}, {Principe}, {Privitera}, {Prodi}, {Prokhorov}, {Puncken}, {Punturo}, {Puppo}, {P{\"u}rrer}, {Qi}, {Quetschke}, {Quintero}, {Quitzow-James}, {Raab}, {Rabeling}, {Radkins}, {Raffai}, {Raja}, {Rajan}, {Rajbhandari}, {Rakhmanov}, {Ramirez}, {Ramos-Buades}, {Rapagnani}, {Raymond}, {Razzano}, {Read}, {Regimbau}, {Rei}, {Reid}, {Reitze}, {Ren}, {Reyes}, {Ricci}, {Ricker}, {Rieger}, {Riles}, {Rizzo}, {Robertson}, {Robie}, {Robinet}, {Rocchi}, {Rolland}, {Rollins}, {Roma}, {Romano}, {Romano}, {Romel}, {Romie}, {Rosi{\'n}ska}, {Ross}, {Rowan}, {R{\"u}diger}, {Ruggi},
+		{Rutins}, {Ryan}, {Sachdev}, {Sadecki}, {Sadeghian}, {Sakellariadou}, {Salconi}, {Saleem}, {Salemi}, {Samajdar}, {Sammut}, {Sampson}, {Sanchez}, {Sanchez}, {Sanchis-Gual}, {Sandberg}, {Sanders}, {Sassolas}, {Sathyaprakash}, {Saulson}, {Sauter}, {Savage}, {Sawadsky}, {Schale}, {Scheel}, {Scheuer}, {Schmidt}, {Schmidt}, {Schnabel}, {Schofield}, {Sch{\"o}nbeck}, {Schreiber}, {Schuette}, {Schulte}, {Schutz}, {Schwalbe}, {Scott}, {Scott}, {Seidel}, {Sellers}, {Sengupta}, {Sentenac}, {Sequino}, {Sergeev}, {Shaddock}, {Shaffer}, {Shah}, {Shahriar}, {Shaner}, {Shao}, {Shapiro}, {Shawhan}, {Sheperd}, {Shoemaker}, {Shoemaker}, {Siellez}, {Siemens}, {Sieniawska}, {Sigg}, {Silva}, {Singer}, {Singh}, {Singhal}, {Sintes}, {Slagmolen}, {Smith}, {Smith}, {Smith}, {Somala}, {Son}, {Sonnenberg}, {Sorazu}, {Sorrentino}, {Souradeep}, {Spencer}, {Srivastava}, {Staats}, {Staley}, {Steer}, {Steinke}, {Steinlechner}, {Steinlechner}, {Steinmeyer}, {Stevenson}, {Stone}, {Stops}, {Strain}, {Stratta}, {Strigin}, {Strunk}, {Sturani},
+		{Stuver}, {Summerscales}, {Sun}, {Sunil}, {Suresh}, {Sutton}, {Swinkels}, {Szczepa{\'n}czyk}, {Tacca}, {Tait}, {Talbot}, {Talukder}, {Tanner}, {T{\'a}pai}, {Taracchini}, {Tasson}, {Taylor}, {Taylor}, {Tewari}, {Theeg}, {Thies}, {Thomas}, {Thomas}, {Thomas}, {Thorne}, {Thrane}, {Tiwari}, {Tiwari}, {Tokmakov}, {Toland}, {Tonelli}, {Tornasi}, {Torres-Forn{\'e}}, {Torrie}, {T{\"o}yr{\"a}}, {Travasso}, {Traylor}, {Trinastic}, {Tringali}, {Trozzo}, {Tsang}, {Tse}, {Tso}, {Tsukada}, {Tsuna}, {Tuyenbayev}, {Ueno}, {Ugolini}, {Unnikrishnan}, {Urban}, {Usman}, {Vahlbruch}, {Vajente}, {Valdes}, {van Bakel}, {van Beuzekom}, {van den Brand}, {van den Broeck}, {Vander-Hyde}, {van der Schaaf}, {van Heijningen}, {van Veggel}, {Vardaro}, {Varma}, {Vass}, {Vas{\'u}th}, {Vecchio}, {Vedovato}, {Veitch}, {Veitch}, {Venkateswara}, {Venugopalan}, {Verkindt}, {Vetrano}, {Vicer{\'e}}, {Viets}, {Vinciguerra}, {Vine}, {Vinet}, {Vitale}, {Vo}, {Vocca}, {Vorvick}, {Vyatchanin}, {Wade}, {Wade}, {Wade}, {Walet}, {Walker}, {Wallace},
+		{Walsh}, {Wang}, {Wang}, {Wang}, {Wang}, {Wang}, {Ward}, {Warner}, {Was}, {Watchi}, {Weaver}, {Wei}, {Weinert}, {Weinstein}, {Weiss}, {Wen}, {Wessel}, {We{\ss}els}, {Westerweck}, {Westphal}, {Wette}, {Whelan}, {Whitcomb}, {Whiting}, {Whittle}, {Wilken}, {Williams}, {Williams}, {Williamson}, {Willis}, {Willke}, {Wimmer}, {Winkler}, {Wipf}, {Wittel}, {Woan}, {Woehler}, {Wofford}, {Wong}, {Worden}, {Wright}, {Wu}, {Wysocki}, {Xiao}, {Yamamoto}, {Yancey}, {Yang}, {Yap}, {Yazback}, {Yu}, {Yu}, {Yvert}, {Zadro{\.z}ny}, {Zanolin}, {Zelenova}, {Zendri}, {Zevin}, {Zhang}, {Zhang}, {Zhang}, {Zhang}, {Zhao}, {Zhou}, {Zhou}, {Zhu}, {Zhu}, {Zimmerman}, {Zucker}, {Zweizig}, {Foley}, {Coulter}, {Drout}, {Kasen}, {Kilpatrick}, {Madore}, {Murguia-Berthier}, {Pan}, {Piro}, {Prochaska}, {Ramirez-Ruiz}, {Rest}, {Rojas-Bravo}, {Shappee}, {Siebert}, {Simon}, {Ulloa}, {Annis}, {Soares-Santos}, {Brout}, {Scolnic}, {Diehl}, {Frieman}, {Berger}, {Alexander}, {Allam}, {Balbinot}, {Blanchard}, {Butler}, {Chornock}, {Cook},
+		{Cowperthwaite}, {Drlica-Wagner}, {Drout}, {Durret}, {Eftekhari}, {Finley}, {Fong}, {Fryer}, {Garc{\'\i}a-Bellido}, {Gill}, {Gruendl}, {Hanna}, {Hartley}, {Herner}, {Huterer}, {Kasen}, {Kessler}, {Li}, {Lin}, {Lopes}, {Louren{\c{c}}o}, {Margutti}, {Marriner}, {Marshall}, {Matheson}, {Medina}, {Metzger}, {Mu{\~n}oz}, {Muir}, {Nicholl}, {Nugent}, {Palmese}, {Paz-Chinch{\'o}n}, {Quataert}, {Sako}, {Sauseda}, {Schlegel}, {Secco}, {Smith}, {Sobreira}, {Stebbins}, {Villar}, {Vivas}, {Wester}, {Williams}, {Yanny}, {Zenteno}, {Abbott}, {Abdalla}, {Bechtol}, {Benoit-L{\'e}vy}, {Bertin}, {Bridle}, {Brooks}, {Buckley-Geer}, {Burke}, {Rosell}, {Kind}, {Carretero}, {Castander}, {Cunha}, {D'Andrea}, {da Costa}, {Davis}, {Depoy}, {Desai}, {Dietrich}, {Estrada}, {Fernandez}, {Flaugher}, {Fosalba}, {Gaztanaga}, {Gerdes}, {Giannantonio}, {Goldstein}, {Gruen}, {Gutierrez}, {Hartley}, {Honscheid}, {Jain}, {James}, {Jeltema}, {Johnson}, {Kent}, {Krause}, {Kron}, {Kuehn}, {Kuhlmann}, {Kuropatkin}, {Lahav}, {Lima}, {Maia},
+		{March}, {Miller}, {Miquel}, {Neilsen}, {Nord}, {Ogando}, {Plazas}, {Romer}, {Roodman}, {Rykoff}, {Sanchez}, {Scarpine}, {Schubnell}, {Sevilla-Noarbe}, {Smith}, {Smith}, {Suchyta}, {Tarle}, {Thomas}, {Thomas}, {Troxel}, {Tucker}, {Vikram}, {Walker}, {Weller}, {Zhang}, {Haislip}, {Kouprianov}, {Reichart}, {Tartaglia}, {Sand}, {Valenti}, {Yang}, {Arcavi}, {Hosseinzadeh}, {Howell}, {McCully}, {Poznanski}, {Vasylyev}, {Tanvir}, {Levan}, {Hjorth}, {Cano}, {Copperwheat}, {de Ugarte-Postigo}, {Evans}, {Fynbo}, {Gonz{\'a}lez-Fern{\'a}ndez}, {Greiner}, {Irwin}, {Lyman}, {Mandel}, {McMahon}, {Milvang-Jensen}, {O'Brien}, {Osborne}, {Perley}, {Pian}, {Palazzi}, {Rol}, {Rosetti}, {Rosswog}, {Rowlinson}, {Schulze}, {Steeghs}, {Th{\"o}ne}, {Ulaczyk}, {Watson}, {Wiersema}, {Lipunov}, {Gorbovskoy}, {Kornilov}, {Tyurina}, {Balanutsa}, {Vlasenko}, {Gorbunov}, {Podesta}, {Levato}, {Saffe}, {Buckley}, {Budnev}, {Gress}, {Yurkov}, {Rebolo}, \& {Serra-Ricart}}]{2017Natur.551...85A}
+	{Abbott}, B.~P., {Abbott}, R., {Abbott}, T.~D., {et~al.} 2017, \nat, 551, 85
+	
+	\bibitem[{{Abbott} {et~al.}(2019){Abbott}, {Alarcon}, {Allam}, {Andersen}, {Andrade-Oliveira}, {Annis}, {Asorey}, {Avila}, {Bacon}, {Banik}, {Bassett}, {Baxter}, {Bechtol}, {Becker}, {Bernstein}, {Bertin}, {Blazek}, {Bridle}, {Brooks}, {Brout}, {Burke}, {Calcino}, {Camacho}, {Campos}, {Carnero Rosell}, {Carollo}, {Carrasco Kind}, {Carretero}, {Castander}, {Cawthon}, {Challis}, {Chan}, {Chang}, {Childress}, {Crocce}, {Cunha}, {D'Andrea}, {da Costa}, {Davis}, {Davis}, {De Vicente}, {DePoy}, {DeRose}, {Desai}, {Diehl}, {Dietrich}, {Dodelson}, {Doel}, {Drlica-Wagner}, {Eifler}, {Elvin-Poole}, {Estrada}, {Evrard}, {Fernandez}, {Flaugher}, {Foley}, {Fosalba}, {Frieman}, {Galbany}, {Garc{\'\i}a-Bellido}, {Gatti}, {Gaztanaga}, {Gerdes}, {Giannantonio}, {Glazebrook}, {Goldstein}, {Gruen}, {Gruendl}, {Gschwend}, {Gutierrez}, {Hartley}, {Hinton}, {Hollowood}, {Honscheid}, {Hoormann}, {Hoyle}, {Huterer}, {Jain}, {James}, {Jarvis}, {Jeltema}, {Kasai}, {Kent}, {Kessler}, {Kim}, {Kokron}, {Krause}, {Kron}, {Kuehn},
+		{Kuropatkin}, {Lahav}, {Lasker}, {Lemos}, {Lewis}, {Li}, {Lidman}, {Lima}, {Lin}, {Macaulay}, {MacCrann}, {Maia}, {March}, {Marriner}, {Marshall}, {Martini}, {McMahon}, {Melchior}, {Menanteau}, {Miquel}, {Mohr}, {Morganson}, {Muir}, {M{\"o}ller}, {Neilsen}, {Nichol}, {Nord}, {Ogando}, {Palmese}, {Pan}, {Peiris}, {Percival}, {Plazas}, {Porredon}, {Prat}, {Romer}, {Roodman}, {Rosenfeld}, {Ross}, {Rykoff}, {Samuroff}, {S{\'a}nchez}, {Sanchez}, {Scarpine}, {Schindler}, {Schubnell}, {Scolnic}, {Secco}, {Serrano}, {Sevilla-Noarbe}, {Sharp}, {Sheldon}, {Smith}, {Soares-Santos}, {Sobreira}, {Sommer}, {Swann}, {Swanson}, {Tarle}, {Thomas}, {Thomas}, {Troxel}, {Tucker}, {Uddin}, {Vielzeuf}, {Walker}, {Wang}, {Weaverdyck}, {Wechsler}, {Weller}, {Yanny}, {Zhang}, {Zhang}, {Zuntz}, \& {DES Collaboration}}]{2019PhRvL.122q1301A}
+	{Abbott}, T.~M.~C., {Alarcon}, A., {Allam}, S., {et~al.} 2019, \prl, 122, 171301
+	
+	\bibitem[{{Abdalla} {et~al.}(2022){Abdalla}, {Abell{\'a}n}, {Aboubrahim}, {Agnello}, {Akarsu}, {Akrami}, {Alestas}, {Aloni}, {Amendola}, {Anchordoqui}, {Anderson}, {Arendse}, {Asgari}, {Ballardini}, {Barger}, {Basilakos}, {Batista}, {Battistelli}, {Battye}, {Benetti}, {Benisty}, {Berlin}, {de Bernardis}, {Berti}, {Bidenko}, {Birrer}, {Blakeslee}, {Boddy}, {Bom}, {Bonilla}, {Borghi}, {Bouchet}, {Braglia}, {Buchert}, {Buckley-Geer}, {Calabrese}, {Caldwell}, {Camarena}, {Capozziello}, {Casertano}, {Chen}, {Chluba}, {Chen}, {Chen}, {Chudaykin}, {Cicoli}, {Copi}, {Courbin}, {Cyr-Racine}, {Czerny}, {Dainotti}, {D'Amico}, {Davis}, {de Cruz P{\'e}rez}, {de Haro}, {Delabrouille}, {Denton}, {Dhawan}, {Dienes}, {Di Valentino}, {Du}, {Eckert}, {Escamilla-Rivera}, {Fert{\'e}}, {Finelli}, {Fosalba}, {Freedman}, {Frusciante}, {Gazta{\~n}aga}, {Giar{\`e}}, {Giusarma}, {G{\'o}mez-Valent}, {Handley}, {Harrison}, {Hart}, {Hazra}, {Heavens}, {Heinesen}, {Hildebrandt}, {Hill}, {Hogg}, {Holz}, {Hooper}, {Hosseininejad}, {Huterer},
+		{Ishak}, {Ivanov}, {Jaffe}, {Jang}, {Jedamzik}, {Jimenez}, {Joseph}, {Joudaki}, {Kamionkowski}, {Karwal}, {Kazantzidis}, {Keeley}, {Klasen}, {Komatsu}, {Koopmans}, {Kumar}, {Lamagna}, {Lazkoz}, {Lee}, {Lesgourgues}, {Levi Said}, {Lewis}, {L'Huillier}, {Lucca}, {Maartens}, {Macri}, {Marfatia}, {Marra}, {Martins}, {Masi}, {Matarrese}, {Mazumdar}, {Melchiorri}, {Mena}, {Mersini-Houghton}, {Mertens}, {Milakovi{\'c}}, {Minami}, {Miranda}, {Moreno-Pulido}, {Moresco}, {Mota}, {Mottola}, {Mozzon}, {Muir}, {Mukherjee}, {Mukherjee}, {Naselsky}, {Nath}, {Nesseris}, {Niedermann}, {Notari}, {Nunes}, {{\'O} Colg{\'a}in}, {Owens}, {{\"O}z{\"u}lker}, {Pace}, {Paliathanasis}, {Palmese}, {Pan}, {Paoletti}, {Perez Bergliaffa}, {Perivolaropoulos}, {Pesce}, {Pettorino}, {Philcox}, {Pogosian}, {Poulin}, {Poulot}, {Raveri}, {Reid}, {Renzi}, {Riess}, {Sabla}, {Salucci}, {Salzano}, {Saridakis}, {Sathyaprakash}, {Schmaltz}, {Sch{\"o}neberg}, {Scolnic}, {Sen}, {Sehgal}, {Shafieloo}, {Sheikh-Jabbari}, {Silk}, {Silvestri}, {Skara},
+		{Sloth}, {Soares-Santos}, {Sol{\`a} Peracaula}, {Songsheng}, {Soriano}, {Staicova}, {Starkman}, {Szapudi}, {Teixeira}, {Thomas}, {Treu}, {Trott}, {van de Bruck}, {Vazquez}, {Verde}, {Visinelli}, {Wang}, {Wang}, {Wang}, {Watkins}, {Watson}, {Webb}, {Weiner}, {Weltman}, {Witte}, {Wojtak}, {Yadav}, {Yang}, {Zhao}, \& {Zumalac{\'a}rregui}}]{2022JHEAp..34...49A}
+	{Abdalla}, E., {Abell{\'a}n}, G.~F., {Aboubrahim}, A., {et~al.} 2022, Journal of High Energy Astrophysics, 34, 49
+	
+	\bibitem[{{Acernese} {et~al.}(2015){Acernese}, {Agathos}, {Agatsuma}, {Aisa}, {Allemandou}, {Allocca}, {Amarni}, {Astone}, {Balestri}, {Ballardin}, {Barone}, {Baronick}, {Barsuglia}, {Basti}, {Basti}, {Bauer}, {Bavigadda}, {Bejger}, {Beker}, {Belczynski}, {Bersanetti}, {Bertolini}, {Bitossi}, {Bizouard}, {Bloemen}, {Blom}, {Boer}, {Bogaert}, {Bondi}, {Bondu}, {Bonelli}, {Bonnand}, {Boschi}, {Bosi}, {Bouedo}, {Bradaschia}, {Branchesi}, {Briant}, {Brillet}, {Brisson}, {Bulik}, {Bulten}, {Buskulic}, {Buy}, {Cagnoli}, {Calloni}, {Campeggi}, {Canuel}, {Carbognani}, {Cavalier}, {Cavalieri}, {Cella}, {Cesarini}, {Mottin}, {Chincarini}, {Chiummo}, {Chua}, {Cleva}, {Coccia}, {Cohadon}, {Colla}, {Colombini}, {Conte}, {Coulon}, {Cuoco}, {Dalmaz}, {D'Antonio}, {Dattilo}, {Davier}, {Day}, {Debreczeni}, {Degallaix}, {Del{\'e}glise}, {Pozzo}, {Dereli}, {Rosa}, {Fiore}, {Lieto}, {Virgilio}, {Doets}, {Dolique}, {Drago}, {Ducrot}, {Endr{\H{o}}czi}, {Fafone}, {Farinon}, {Ferrante}, {Ferrini}, {Fidecaro}, {Fiori}, {Flaminio},
+		{Fournier}, {Franco}, {Frasca}, {Frasconi}, {Gammaitoni}, {Garufi}, {Gaspard}, {Gatto}, {Gemme}, {Gendre}, {Genin}, {Gennai}, {Ghosh}, {Giacobone}, {Giazotto}, {Gouaty}, {Granata}, {Greco}, {Groot}, {Guidi}, {Harms}, {Heidmann}, {Heitmann}, {Hello}, {Hemming}, {Hennes}, {Hofman}, {Jaranowski}, {Jonker}, {Kasprzack}, {K{\'e}f{\'e}lian}, {Kowalska}, {Kraan}, {Kr{\'o}lak}, {Kutynia}, {Lazzaro}, {Leonardi}, {Leroy}, {Letendre}, {Li}, {Lieunard}, {Lorenzini}, {Loriette}, {Losurdo}, {Magazz{\`u}}, {Majorana}, {Maksimovic}, {Malvezzi}, {Man}, {Mangano}, {Mantovani}, {Marchesoni}, {Marion}, {Marque}, {Martelli}, {Martellini}, {Masserot}, {Meacher}, {Meidam}, {Mezzani}, {Michel}, {Milano}, {Minenkov}, {Moggi}, {Mohan}, {Montani}, {Morgado}, {Mours}, {Mul}, {Nagy}, {Nardecchia}, {Naticchioni}, {Nelemans}, {Neri}, {Neri}, {Nocera}, {Pacaud}, {Palomba}, {Paoletti}, {Paoli}, {Pasqualetti}, {Passaquieti}, {Passuello}, {Perciballi}, {Petit}, {Pichot}, {Piergiovanni}, {Pillant}, {Piluso}, {Pinard}, {Poggiani}, {Prijatelj},
+		{Prodi}, {Punturo}, {Puppo}, {Rabeling}, {R{\'a}cz}, {Rapagnani}, {Razzano}, {Re}, {Regimbau}, {Ricci}, {Robinet}, {Rocchi}, {Rolland}, {Romano}, {Rosi{\'n}ska}, {Ruggi}, {Saracco}, {Sassolas}, {Schimmel}, {Sentenac}, {Sequino}, {Shah}, {Siellez}, {Straniero}, {Swinkels}, {Tacca}, {Tonelli}, {Travasso}, {Turconi}, {Vajente}, {van Bakel}, {van Beuzekom}, {van den Brand}, {Van Den Broeck}, {van der Sluys}, {van Heijningen}, {Vas{\'u}th}, {Vedovato}, {Veitch}, {Verkindt}, {Vetrano}, {Vicer{\'e}}, {Vinet}, {Visser}, {Vocca}, {Ward}, {Was}, {Wei}, {Yvert}, {{\.z}ny}, \& {Zendri}}]{2015CQGra..32b4001A}
+	{Acernese}, F., {Agathos}, M., {Agatsuma}, K., {et~al.} 2015, Classical and Quantum Gravity, 32, 024001
+	
+	\bibitem[{{Akarsu} {et~al.}(2020){Akarsu}, {Barrow}, \& {Uzun}}]{2020PhRvD.102l4059A}
+	{Akarsu}, {\"O}., {Barrow}, J.~D., \& {Uzun}, N.~M. 2020, \prd, 102, 124059
+	
+	\bibitem[{{Akarsu} {et~al.}(2022){Akarsu}, {Dereli}, \& {Kat{\i}rc{\i}}}]{2022JPhCS2191a2001A}
+	{Akarsu}, O., {Dereli}, T., \& {Kat{\i}rc{\i}}, N. 2022, in Journal of Physics Conference Series, Vol. 2191, Journal of Physics Conference Series, 012001
+	
+	\bibitem[{{Akarsu} {et~al.}(2023){Akarsu}, {Di Valentino}, {Kumar}, {{\"O}zyi{\u{g}}it}, \& {Sharma}}]{2023PDU....3901162A}
+	{Akarsu}, {\"O}., {Di Valentino}, E., {Kumar}, S., {{\"O}zyi{\u{g}}it}, M., \& {Sharma}, S. 2023, Physics of the Dark Universe, 39, 101162
+	
+	\bibitem[{{Amati} {et~al.}(2018){Amati}, {O'Brien}, {G{\"o}tz}, {Bozzo}, {Tenzer}, {Frontera}, {Ghirlanda}, {Labanti}, {Osborne}, {Stratta}, \& {et al}}]{Amati2018}
+	{Amati}, L., {O'Brien}, P., {G{\"o}tz}, D., {et~al.} 2018, Advances in Space Research, 62, 191
+	
+	\bibitem[{{Andrade} {et~al.}(2018){Andrade}, {Bengaly}, {Santos}, \& {Alcaniz}}]{2018ApJ...865..119A}
+	{Andrade}, U., {Bengaly}, C. A.~P., {Santos}, B., \& {Alcaniz}, J.~S. 2018, \apj, 865, 119
+	
+	\bibitem[{{Antoniou} \& {Perivolaropoulos}(2010)}]{2010JCAP...12..012A}
+	{Antoniou}, I. \& {Perivolaropoulos}, L. 2010, \jcap, 2010, 012
+	
+	\bibitem[{{Bargiacchi} {et~al.}(2023){Bargiacchi}, {Dainotti}, {Nagataki}, \& {Capozziello}}]{2023MNRAS.521.3909B}
+	{Bargiacchi}, G., {Dainotti}, M.~G., {Nagataki}, S., \& {Capozziello}, S. 2023, \mnras, 521, 3909
+	
+	\bibitem[{{Bayron Orjuela-Quintana} {et~al.}(2020){Bayron Orjuela-Quintana}, {{\'A}lvarez}, {Valenzuela-Toledo}, \& {Rodr{\'\i}guez}}]{2020JCAP...10..019B}
+	{Bayron Orjuela-Quintana}, J., {{\'A}lvarez}, M., {Valenzuela-Toledo}, C.~A., \& {Rodr{\'\i}guez}, Y. 2020, \jcap, 2020, 019
+	
+	\bibitem[{{Bennett} {et~al.}(2003){Bennett}, {Halpern}, {Hinshaw}, {Jarosik}, {Kogut}, {Limon}, {Meyer}, {Page}, {Spergel}, {Tucker}, {Wollack}, {Wright}, {Barnes}, {Greason}, {Hill}, {Komatsu}, {Nolta}, {Odegard}, {Peiris}, {Verde}, \& {Weiland}}]{2003ApJS..148....1B}
+	{Bennett}, C.~L., {Halpern}, M., {Hinshaw}, G., {et~al.} 2003, \apjs, 148, 1
+	
+	\bibitem[{{Bennett} {et~al.}(2011){Bennett}, {Hill}, {Hinshaw}, {Larson}, {Smith}, {Dunkley}, {Gold}, {Halpern}, {Jarosik}, {Kogut}, {Komatsu}, {Limon}, {Meyer}, {Nolta}, {Odegard}, {Page}, {Spergel}, {Tucker}, {Weiland}, {Wollack}, \& {Wright}}]{2011ApJS..192...17B}
+	{Bennett}, C.~L., {Hill}, R.~S., {Hinshaw}, G., {et~al.} 2011, \apjs, 192, 17
+	
+	\bibitem[{{Bennett} {et~al.}(2013){Bennett}, {Larson}, {Weiland}, {Jarosik}, {Hinshaw}, {Odegard}, {Smith}, {Hill}, {Gold}, {Halpern}, {Komatsu}, {Nolta}, {Page}, {Spergel}, {Wollack}, {Dunkley}, {Kogut}, {Limon}, {Meyer}, {Tucker}, \& {Wright}}]{2013ApJS..208...20B}
+	{Bennett}, C.~L., {Larson}, D., {Weiland}, J.~L., {et~al.} 2013, \apjs, 208, 20
+	
+	\bibitem[{{Betoule} {et~al.}(2014){Betoule}, {Kessler}, {Guy}, {Mosher}, {Hardin}, {Biswas}, {Astier}, {El-Hage}, {Konig}, {Kuhlmann}, {Marriner}, {Pain}, {Regnault}, {Balland}, {Bassett}, {Brown}, {Campbell}, {Carlberg}, {Cellier-Holzem}, {Cinabro}, {Conley}, {D'Andrea}, {DePoy}, {Doi}, {Ellis}, {Fabbro}, {Filippenko}, {Foley}, {Frieman}, {Fouchez}, {Galbany}, {Goobar}, {Gupta}, {Hill}, {Hlozek}, {Hogan}, {Hook}, {Howell}, {Jha}, {Le Guillou}, {Leloudas}, {Lidman}, {Marshall}, {M{\"o}ller}, {Mour{\~a}o}, {Neveu}, {Nichol}, {Olmstead}, {Palanque-Delabrouille}, {Perlmutter}, {Prieto}, {Pritchet}, {Richmond}, {Riess}, {Ruhlmann-Kleider}, {Sako}, {Schahmaneche}, {Schneider}, {Smith}, {Sollerman}, {Sullivan}, {Walton}, \& {Wheeler}}]{2014A&A...568A..22B}
+	{Betoule}, M., {Kessler}, R., {Guy}, J., {et~al.} 2014, \aap, 568, A22
+	
+	\bibitem[{{Bielewicz} {et~al.}(2004){Bielewicz}, {G{\'o}rski}, \& {Banday}}]{2004MNRAS.355.1283B}
+	{Bielewicz}, P., {G{\'o}rski}, K.~M., \& {Banday}, A.~J. 2004, \mnras, 355, 1283
+	
+	\bibitem[{{Bisogni} {et~al.}(2017){Bisogni}, {Risaliti}, \& {Lusso}}]{2017FrASS...4...68B}
+	{Bisogni}, S., {Risaliti}, G., \& {Lusso}, E. 2017, Frontiers in Astronomy and Space Sciences, 4, 68
+	
+	\bibitem[{{B{\"o}hringer} {et~al.}(2020){B{\"o}hringer}, {Chon}, \& {Collins}}]{2020A&A...633A..19B}
+	{B{\"o}hringer}, H., {Chon}, G., \& {Collins}, C.~A. 2020, \aap, 633, A19
+	
+	\bibitem[{{Bonvin} {et~al.}(2006){Bonvin}, {Durrer}, \& {Kunz}}]{2006PhRvL..96s1302B}
+	{Bonvin}, C., {Durrer}, R., \& {Kunz}, M. 2006, \prl, 96, 191302
+	
+	\bibitem[{{Briffa} {et~al.}(2023){Briffa}, {Escamilla-Rivera}, {Said}, \& {Mifsud}}]{2023MNRAS.522.6024B}
+	{Briffa}, R., {Escamilla-Rivera}, C., {Said}, J.~L., \& {Mifsud}, J. 2023, \mnras, 522, 6024
+	
+	\bibitem[{{Brout} {et~al.}(2019){Brout}, {Sako}, {Scolnic}, {Kessler}, {D'Andrea}, {Davis}, {Hinton}, {Kim}, {Lasker}, {Macaulay}, {M{\"o}ller}, {Nichol}, {Smith}, {Sullivan}, {Wolf}, {Allam}, {Bassett}, {Brown}, {Castander}, {Childress}, {Foley}, {Galbany}, {Herner}, {Kasai}, {March}, {Morganson}, {Nugent}, {Pan}, {Thomas}, {Tucker}, {Wester}, {Abbott}, {Annis}, {Avila}, {Bertin}, {Brooks}, {Burke}, {Carnero Rosell}, {Carrasco Kind}, {Carretero}, {Crocce}, {Cunha}, {da Costa}, {Davis}, {De Vicente}, {Desai}, {Diehl}, {Doel}, {Eifler}, {Flaugher}, {Fosalba}, {Frieman}, {Garc{\'\i}a-Bellido}, {Gaztanaga}, {Gerdes}, {Goldstein}, {Gruen}, {Gruendl}, {Gschwend}, {Gutierrez}, {Hartley}, {Hollowood}, {Honscheid}, {James}, {Kuehn}, {Kuropatkin}, {Lahav}, {Li}, {Lima}, {Marshall}, {Martini}, {Miquel}, {Nord}, {Plazas}, {Roodman}, {Rykoff}, {Sanchez}, {Scarpine}, {Schindler}, {Schubnell}, {Serrano}, {Sevilla-Noarbe}, {Soares-Santos}, {Sobreira}, {Suchyta}, {Swanson}, {Tarle}, {Thomas}, {Tucker}, {Walker}, {Yanny},
+		{Zhang}, \& {DES COLLABORATION}}]{2019ApJ...874..106B}
+	{Brout}, D., {Sako}, M., {Scolnic}, D., {et~al.} 2019, \apj, 874, 106
+	
+	\bibitem[{{Brout} {et~al.}(2022){Brout}, {Scolnic}, {Popovic}, {Riess}, {Carr}, {Zuntz}, {Kessler}, {Davis}, {Hinton}, {Jones}, {Kenworthy}, {Peterson}, {Said}, {Taylor}, {Ali}, {Armstrong}, {Charvu}, {Dwomoh}, {Meldorf}, {Palmese}, {Qu}, {Rose}, {Sanchez}, {Stubbs}, {Vincenzi}, {Wood}, {Brown}, {Chen}, {Chambers}, {Coulter}, {Dai}, {Dimitriadis}, {Filippenko}, {Foley}, {Jha}, {Kelsey}, {Kirshner}, {M{\"o}ller}, {Muir}, {Nadathur}, {Pan}, {Rest}, {Rojas-Bravo}, {Sako}, {Siebert}, {Smith}, {Stahl}, \& {Wiseman}}]{2022ApJ...938..110B}
+	{Brout}, D., {Scolnic}, D., {Popovic}, B., {et~al.} 2022, \apj, 938, 110
+	
+	\bibitem[{{Brown} {et~al.}(2014){Brown}, {Breeveld}, {Holland}, {Kuin}, \& {Pritchard}}]{2014Ap&SS.354...89B}
+	{Brown}, P.~J., {Breeveld}, A.~A., {Holland}, S., {Kuin}, P., \& {Pritchard}, T. 2014, \apss, 354, 89
+	
+	\bibitem[{{Cai} {et~al.}(2021){Cai}, {Ding}, {Guo}, {Wang}, \& {Yu}}]{2021PhRvD.103l3539C}
+	{Cai}, R.-G., {Ding}, J.-F., {Guo}, Z.-K., {Wang}, S.-J., \& {Yu}, W.-W. 2021, \prd, 103, 123539
+	
+	\bibitem[{{Cai} \& {Tuo}(2012)}]{2012JCAP...02..004C}
+	{Cai}, R.-G. \& {Tuo}, Z.-L. 2012, \jcap, 2012, 004
+	
+	\bibitem[{{Cai} {et~al.}(2022){Cai}, {Ding}, \& {Wang}}]{2022arXiv221106857C}
+	{Cai}, T., {Ding}, Q., \& {Wang}, Y. 2022, arXiv e-prints, arXiv:2211.06857
+	
+	\bibitem[{{Camarena} {et~al.}(2022){Camarena}, {Marra}, {Sakr}, \& {Clarkson}}]{2022CQGra..39r4001C}
+	{Camarena}, D., {Marra}, V., {Sakr}, Z., \& {Clarkson}, C. 2022, Classical and Quantum Gravity, 39, 184001
+	
+	\bibitem[{{Cao} {et~al.}(2022{\natexlab{a}}){Cao}, {Khadka}, \& {Ratra}}]{2022MNRAS.510.2928C}
+	{Cao}, S., {Khadka}, N., \& {Ratra}, B. 2022{\natexlab{a}}, \mnras, 510, 2928
+	
+	\bibitem[{{Cao} \& {Ratra}(2022)}]{2022MNRAS.513.5686C}
+	{Cao}, S. \& {Ratra}, B. 2022, \mnras, 513, 5686
+	
+	\bibitem[{{Cao} \& {Ratra}(2023)}]{2023PhRvD.107j3521C}
+	{Cao}, S. \& {Ratra}, B. 2023, \prd, 107, 103521
+	
+	\bibitem[{{Cao} {et~al.}(2022{\natexlab{b}}){Cao}, {Zaja{\v{c}}ek}, {Panda}, {Mart{\'\i}nez-Aldama}, {Czerny}, \& {Ratra}}]{2022MNRAS.516.1721C}
+	{Cao}, S., {Zaja{\v{c}}ek}, M., {Panda}, S., {et~al.} 2022{\natexlab{b}}, \mnras, 516, 1721
+	
+	\bibitem[{{Capozziello} {et~al.}(2023){Capozziello}, {Sarracino}, \& {Spallicci}}]{2023PDU....4001201C}
+	{Capozziello}, S., {Sarracino}, G., \& {Spallicci}, A. D.~A.~M. 2023, Physics of the Dark Universe, 40, 101201
+	
+	\bibitem[{{Carr} {et~al.}(2022){Carr}, {Davis}, {Scolnic}, {Said}, {Brout}, {Peterson}, \& {Kessler}}]{2022PASA...39...46C}
+	{Carr}, A., {Davis}, T.~M., {Scolnic}, D., {et~al.} 2022, \pasa, 39, e046
+	
+	\bibitem[{{Castello} {et~al.}(2022){Castello}, {H{\"o}g{\r{a}}s}, \& {M{\"o}rtsell}}]{2022JCAP...07..003C}
+	{Castello}, S., {H{\"o}g{\r{a}}s}, M., \& {M{\"o}rtsell}, E. 2022, \jcap, 2022, 003
+	
+	\bibitem[{{Chang} \& {Lin}(2015)}]{2015MNRAS.446.2952C}
+	{Chang}, Z. \& {Lin}, H.-N. 2015, \mnras, 446, 2952
+	
+	\bibitem[{{Chang} {et~al.}(2018){Chang}, {Lin}, {Zhao}, \& {Zhou}}]{2018ChPhC..42k5103C}
+	{Chang}, Z., {Lin}, H.-N., {Zhao}, Z.-C., \& {Zhou}, Y. 2018, Chinese Physics C, 42, 115103
+	
+	\bibitem[{{Chang} \& {Zhou}(2019)}]{2019MNRAS.486.1658C}
+	{Chang}, Z. \& {Zhou}, Y. 2019, \mnras, 486, 1658
+	
+	\bibitem[{{Chapman} {et~al.}(2017){Chapman}, {Dempsey}, {Miller}, {Heywood}, {Pritchard}, {Sangster}, {Whiting}, \& {Dart}}]{2017ASPC..512...73C}
+	{Chapman}, J.~M., {Dempsey}, J., {Miller}, D., {et~al.} 2017, in Astronomical Society of the Pacific Conference Series, Vol. 512, Astronomical Data Analysis Software and Systems XXV, ed. N.~P.~F. {Lorente}, K.~{Shortridge}, \& R.~{Wayth}, 73
+	
+	\bibitem[{{Chen}(2019)}]{2019NatAs...3..384C}
+	{Chen}, H.-Y. 2019, Nature Astronomy, 3, 384
+	
+	\bibitem[{{Chen} {et~al.}(2018){Chen}, {Fishbach}, \& {Holz}}]{2018Natur.562..545C}
+	{Chen}, H.-Y., {Fishbach}, M., \& {Holz}, D.~E. 2018, \nat, 562, 545
+	
+	\bibitem[{{Colg{\'a}in} {et~al.}(2022){Colg{\'a}in}, {Sheikh-Jabbari}, {Solomon}, {Dainotti}, \& {Stojkovic}}]{2022arXiv220611447C}
+	{Colg{\'a}in}, E.~{\'O}., {Sheikh-Jabbari}, M.~M., {Solomon}, R., {Dainotti}, M.~G., \& {Stojkovic}, D. 2022, arXiv e-prints, arXiv:2206.11447
+	
+	\bibitem[{{Colin} {et~al.}(2017){Colin}, {Mohayaee}, {Rameez}, \& {Sarkar}}]{2017MNRAS.471.1045C}
+	{Colin}, J., {Mohayaee}, R., {Rameez}, M., \& {Sarkar}, S. 2017, \mnras, 471, 1045
+	
+	\bibitem[{{Colin} {et~al.}(2019){Colin}, {Mohayaee}, {Rameez}, \& {Sarkar}}]{2019A&A...631L..13C}
+	{Colin}, J., {Mohayaee}, R., {Rameez}, M., \& {Sarkar}, S. 2019, \aap, 631, L13
+	
+	\bibitem[{{Colin} {et~al.}(2011){Colin}, {Mohayaee}, {Sarkar}, \& {Shafieloo}}]{2011MNRAS.414..264C}
+	{Colin}, J., {Mohayaee}, R., {Sarkar}, S., \& {Shafieloo}, A. 2011, \mnras, 414, 264
+	
+	\bibitem[{{Cowell} {et~al.}(2023){Cowell}, {Dhawan}, \& {Macpherson}}]{2023MNRAS.526.1482C}
+	{Cowell}, J.~A., {Dhawan}, S., \& {Macpherson}, H.~J. 2023, \mnras, 526, 1482
+	
+	\bibitem[{{Dainotti} {et~al.}(2021){Dainotti}, {De Simone}, {Schiavone}, {Montani}, {Rinaldi}, \& {Lambiase}}]{2021ApJ...912..150D}
+	{Dainotti}, M.~G., {De Simone}, B., {Schiavone}, T., {et~al.} 2021, \apj, 912, 150
+	
+	\bibitem[{{Dainotti} {et~al.}(2022{\natexlab{a}}){Dainotti}, {De Simone}, {Schiavone}, {Montani}, {Rinaldi}, {Lambiase}, {Bogdan}, \& {Ugale}}]{2022Galax..10...24D}
+	{Dainotti}, M.~G., {De Simone}, B.~D., {Schiavone}, T., {et~al.} 2022{\natexlab{a}}, Galaxies, 10, 24
+	
+	\bibitem[{{Dainotti} {et~al.}(2022{\natexlab{b}}){Dainotti}, {Nielson}, {Sarracino}, {Rinaldi}, {Nagataki}, {Capozziello}, {Gnedin}, \& {Bargiacchi}}]{2022MNRAS.514.1828D}
+	{Dainotti}, M.~G., {Nielson}, V., {Sarracino}, G., {et~al.} 2022{\natexlab{b}}, \mnras, 514, 1828
+	
+	\bibitem[{{Dam} {et~al.}(2023){Dam}, {Lewis}, \& {Brewer}}]{2023MNRAS.525..231D}
+	{Dam}, L., {Lewis}, G.~F., \& {Brewer}, B.~J. 2023, \mnras, 525, 231
+	
+	\bibitem[{{Davis} {et~al.}(2011){Davis}, {Hui}, {Frieman}, {Haugb{\o}lle}, {Kessler}, {Sinclair}, {Sollerman}, {Bassett}, {Marriner}, {M{\"o}rtsell}, {Nichol}, {Richmond}, {Sako}, {Schneider}, \& {Smith}}]{2011ApJ...741...67D}
+	{Davis}, T.~M., {Hui}, L., {Frieman}, J.~A., {et~al.} 2011, \apj, 741, 67
+	
+	\bibitem[{{de Cruz P{\'e}rez} {et~al.}(2023){de Cruz P{\'e}rez}, {Park}, \& {Ratra}}]{2023PhRvD.107f3522D}
+	{de Cruz P{\'e}rez}, J., {Park}, C.-G., \& {Ratra}, B. 2023, \prd, 107, 063522
+	
+	\bibitem[{{de Jaeger} \& {Galbany}(2023)}]{2023arXiv230517243D}
+	{de Jaeger}, T. \& {Galbany}, L. 2023, arXiv e-prints, arXiv:2305.17243
+	
+	\bibitem[{{Deng} \& {Wei}(2018{\natexlab{a}})}]{2018EPJC...78..755D}
+	{Deng}, H.-K. \& {Wei}, H. 2018{\natexlab{a}}, European Physical Journal C, 78, 755
+	
+	\bibitem[{{Deng} \& {Wei}(2018{\natexlab{b}})}]{2018PhRvD..97l3515D}
+	{Deng}, H.-K. \& {Wei}, H. 2018{\natexlab{b}}, \prd, 97, 123515
+	
+	\bibitem[{{Dhawan} {et~al.}(2023){Dhawan}, {Borderies}, {Macpherson}, \& {Heinesen}}]{2023MNRAS.519.4841D}
+	{Dhawan}, S., {Borderies}, A., {Macpherson}, H.~J., \& {Heinesen}, A. 2023, \mnras, 519, 4841
+	
+	\bibitem[{{Di Valentino} {et~al.}(2021){Di Valentino}, {Mena}, {Pan}, {Visinelli}, {Yang}, {Melchiorri}, {Mota}, {Riess}, \& {Silk}}]{2021CQGra..38o3001D}
+	{Di Valentino}, E., {Mena}, O., {Pan}, S., {et~al.} 2021, Classical and Quantum Gravity, 38, 153001
+	
+	\bibitem[{{Ebrahimian} {et~al.}(2023){Ebrahimian}, {Krishnan}, {Mondol}, \& {Sheikh-Jabbari}}]{2023arXiv230516177E}
+	{Ebrahimian}, E., {Krishnan}, C., {Mondol}, R., \& {Sheikh-Jabbari}, M.~M. 2023, arXiv e-prints, arXiv:2305.16177
+	
+	\bibitem[{{Enqvist}(2008)}]{2008GReGr..40..451E}
+	{Enqvist}, K. 2008, General Relativity and Gravitation, 40, 451
+	
+	\bibitem[{{Feix} {et~al.}(2017){Feix}, {Branchini}, \& {Nusser}}]{2017MNRAS.468.1420F}
+	{Feix}, M., {Branchini}, E., \& {Nusser}, A. 2017, \mnras, 468, 1420
+	
+	\bibitem[{{Ferreira} \& {Quartin}(2021)}]{2021PhRvD.104f3503F}
+	{Ferreira}, P. d.~S. \& {Quartin}, M. 2021, \prd, 104, 063503
+	
+	\bibitem[{{Foley} {et~al.}(2018){Foley}, {Scolnic}, {Rest}, {Jha}, {Pan}, {Riess}, {Challis}, {Chambers}, {Coulter}, {Dettman}, {Foley}, {Fox}, {Huber}, {Jones}, {Kilpatrick}, {Kirshner}, {Schultz}, {Siebert}, {Flewelling}, {Gibson}, {Magnier}, {Miller}, {Primak}, {Smartt}, {Smith}, {Wainscoat}, {Waters}, \& {Willman}}]{2018MNRAS.475..193F}
+	{Foley}, R.~J., {Scolnic}, D., {Rest}, A., {et~al.} 2018, \mnras, 475, 193
+	
+	\bibitem[{{Foreman-Mackey} {et~al.}(2013){Foreman-Mackey}, {Hogg}, {Lang}, \& {Goodman}}]{2013PASP..125..306F}
+	{Foreman-Mackey}, D., {Hogg}, D.~W., {Lang}, D., \& {Goodman}, J. 2013, \pasp, 125, 306
+	
+	\bibitem[{{Freedman}(2021)}]{2021ApJ...919...16F}
+	{Freedman}, W.~L. 2021, \apj, 919, 16
+	
+	\bibitem[{{Freedman} {et~al.}(2019){Freedman}, {Madore}, {Hatt}, {Hoyt}, {Jang}, {Beaton}, {Burns}, {Lee}, {Monson}, {Neeley}, {Phillips}, {Rich}, \& {Seibert}}]{2019ApJ...882...34F}
+	{Freedman}, W.~L., {Madore}, B.~F., {Hatt}, D., {et~al.} 2019, \apj, 882, 34
+	
+	\bibitem[{{Freedman} {et~al.}(2020){Freedman}, {Madore}, {Hoyt}, {Jang}, {Beaton}, {Lee}, {Monson}, {Neeley}, \& {Rich}}]{2020ApJ...891...57F}
+	{Freedman}, W.~L., {Madore}, B.~F., {Hoyt}, T., {et~al.} 2020, \apj, 891, 57
+	
+	\bibitem[{{Ganeshalingam} {et~al.}(2010){Ganeshalingam}, {Li}, {Filippenko}, {Anderson}, {Foster}, {Gates}, {Griffith}, {Grigsby}, {Joubert}, {Leja}, {Lowe}, {Macomber}, {Pritchard}, {Thrasher}, \& {Winslow}}]{2010ApJS..190..418G}
+	{Ganeshalingam}, M., {Li}, W., {Filippenko}, A.~V., {et~al.} 2010, \apjs, 190, 418
+	
+	\bibitem[{{Gao} {et~al.}(2023){Gao}, {Zhou}, {Du}, {Zou}, {Hu}, \& {Xu}}]{2023arXiv230708285G}
+	{Gao}, J., {Zhou}, Z., {Du}, M., {et~al.} 2023, arXiv e-prints, arXiv:2307.08285
+	
+	\bibitem[{{Garcia-Bellido} \& {Haugb{\o}lle}(2008)}]{2008JCAP...04..003G}
+	{Garcia-Bellido}, J. \& {Haugb{\o}lle}, T. 2008, \jcap, 2008, 003
+	
+	\bibitem[{{Ghosh} \& {Jain}(2020)}]{2020MNRAS.492.3994G}
+	{Ghosh}, S. \& {Jain}, P. 2020, \mnras, 492, 3994
+	
+	\bibitem[{{Ghosh} {et~al.}(2016){Ghosh}, {Kothari}, {Jain}, \& {Rath}}]{2016JCAP...01..046G}
+	{Ghosh}, S., {Kothari}, R., {Jain}, P., \& {Rath}, P.~K. 2016, \jcap, 2016, 046
+	
+	\bibitem[{{Gruppuso} {et~al.}(2011){Gruppuso}, {Finelli}, {Natoli}, {Paci}, {Cabella}, {de Rosa}, \& {Mandolesi}}]{2011MNRAS.411.1445G}
+	{Gruppuso}, A., {Finelli}, F., {Natoli}, P., {et~al.} 2011, \mnras, 411, 1445
+	
+	\bibitem[{{Gurzadyan, V. G.} {et~al.}(2023){Gurzadyan, V. G.}, {Fimin, N. N.}, \& {Chechetkin, V. M.}}]{Gurzadyan2023}
+	{Gurzadyan, V. G.}, {Fimin, N. N.}, \& {Chechetkin, V. M.} 2023, A\&A, 677, A161
+	
+	\bibitem[{{Hagstotz} {et~al.}(2022){Hagstotz}, {Reischke}, \& {Lilow}}]{2022MNRAS.511..662H}
+	{Hagstotz}, S., {Reischke}, R., \& {Lilow}, R. 2022, \mnras, 511, 662
+	
+	\bibitem[{{Hamaus} {et~al.}(2022){Hamaus}, {Aubert}, {Pisani}, {Contarini}, {Verza}, {Cousinou}, {Escoffier}, {Hawken}, {Lavaux}, {Pollina}, {Wandelt}, {Weller}, {Bonici}, {Carbone}, {Guzzo}, {Kovacs}, {Marulli}, {Massara}, {Moscardini}, {Ntelis}, {Percival}, {Radinovi{\'c}}, {Sahl{\'e}n}, {Sakr}, {S{\'a}nchez}, {Winther}, {Auricchio}, {Awan}, {Bender}, {Bodendorf}, {Bonino}, {Branchini}, {Brescia}, {Brinchmann}, {Capobianco}, {Carretero}, {Castander}, {Castellano}, {Cavuoti}, {Cimatti}, {Cledassou}, {Congedo}, {Conversi}, {Copin}, {Corcione}, {Cropper}, {Da Silva}, {Degaudenzi}, {Douspis}, {Dubath}, {Duncan}, {Dupac}, {Dusini}, {Ealet}, {Ferriol}, {Fosalba}, {Frailis}, {Franceschi}, {Franzetti}, {Fumana}, {Garilli}, {Gillis}, {Giocoli}, {Grazian}, {Grupp}, {Haugan}, {Holmes}, {Hormuth}, {Jahnke}, {Kermiche}, {Kiessling}, {Kilbinger}, {Kitching}, {K{\"u}mmel}, {Kunz}, {Kurki-Suonio}, {Ligori}, {Lilje}, {Lloro}, {Maiorano}, {Marggraf}, {Markovic}, {Massey}, {Maurogordato}, {Melchior}, {Meneghetti}, {Meylan},
+		{Moresco}, {Munari}, {Niemi}, {Padilla}, {Paltani}, {Pasian}, {Pedersen}, {Pettorino}, {Pires}, {Poncet}, {Popa}, {Pozzetti}, {Rebolo}, {Rhodes}, {Rix}, {Roncarelli}, {Rossetti}, {Saglia}, {Schneider}, {Secroun}, {Seidel}, {Serrano}, {Sirignano}, {Sirri}, {Starck}, {Tallada-Cresp{\'\i}}, {Tavagnacco}, {Taylor}, {Tereno}, {Toledo-Moreo}, {Torradeflot}, {Valentijn}, {Valenziano}, {Wang}, {Welikala}, {Zamorani}, {Zoubian}, {Andreon}, {Baldi}, {Camera}, {Mei}, {Neissner}, \& {Romelli}}]{2022A&A...658A..20H}
+	{Hamaus}, N., {Aubert}, M., {Pisani}, A., {et~al.} 2022, \aap, 658, A20
+	
+	\bibitem[{{Hansen} {et~al.}(2004){Hansen}, {Banday}, \& {G{\'o}rski}}]{2004MNRAS.354..641H}
+	{Hansen}, F.~K., {Banday}, A.~J., \& {G{\'o}rski}, K.~M. 2004, \mnras, 354, 641
+	
+	\bibitem[{{Haslbauer} {et~al.}(2020){Haslbauer}, {Banik}, \& {Kroupa}}]{2020MNRAS.499.2845H}
+	{Haslbauer}, M., {Banik}, I., \& {Kroupa}, P. 2020, \mnras, 499, 2845
+	
+	\bibitem[{{Horstmann} {et~al.}(2022){Horstmann}, {Pietschke}, \& {Schwarz}}]{2022A&A...668A..34H}
+	{Horstmann}, N., {Pietschke}, Y., \& {Schwarz}, D.~J. 2022, \aap, 668, A34
+	
+	\bibitem[{{Hoscheit} \& {Barger}(2018)}]{2018ApJ...854...46H}
+	{Hoscheit}, B.~L. \& {Barger}, A.~J. 2018, \apj, 854, 46
+	
+	\bibitem[{{Hu} {et~al.}(2023){Hu}, {Hu}, {Li}, {Zhao}, \& {Chen}}]{2023PhRvD.108h3024H}
+	{Hu}, J., {Hu}, J.-P., {Li}, Z., {Zhao}, W., \& {Chen}, J. 2023, \prd, 108, 083024
+	
+	\bibitem[{{Hu} \& {Wang}(2022{\natexlab{a}})}]{2022A&A...661A..71H}
+	{Hu}, J.~P. \& {Wang}, F.~Y. 2022{\natexlab{a}}, \aap, 661, A71
+	
+	\bibitem[{{Hu} \& {Wang}(2022{\natexlab{b}})}]{2022MNRAS.517..576H}
+	{Hu}, J.~P. \& {Wang}, F.~Y. 2022{\natexlab{b}}, \mnras, 517, 576
+	
+	\bibitem[{{Hu} \& {Wang}(2023)}]{2023Univ....9...94H}
+	{Hu}, J.-P. \& {Wang}, F.-Y. 2023, Universe, 9, 94
+	
+	\bibitem[{{Hu} {et~al.}(2021){Hu}, {Wang}, \& {Dai}}]{2021MNRAS.507..730H}
+	{Hu}, J.~P., {Wang}, F.~Y., \& {Dai}, Z.~G. 2021, \mnras, 507, 730
+	
+	\bibitem[{{Hu} {et~al.}(2020){Hu}, {Wang}, \& {Wang}}]{2020A&A...643A..93H}
+	{Hu}, J.~P., {Wang}, Y.~Y., \& {Wang}, F.~Y. 2020, \aap, 643, A93
+	
+	\bibitem[{{Hui} \& {Greene}(2006)}]{2006PhRvD..73l3526H}
+	{Hui}, L. \& {Greene}, P.~B. 2006, \prd, 73, 123526
+	
+	\bibitem[{{Hutsem{\'e}kers} {et~al.}(2005){Hutsem{\'e}kers}, {Cabanac}, {Lamy}, \& {Sluse}}]{2005AA...441..915H}
+	{Hutsem{\'e}kers}, D., {Cabanac}, R., {Lamy}, H., \& {Sluse}, D. 2005, \aap, 441, 915
+	
+	\bibitem[{{Hwang} {et~al.}(2016){Hwang}, {Geller}, {Park}, {Fabricant}, {Kurtz}, {Rines}, {Kim}, {Diaferio}, {Zahid}, {Berlind}, {Calkins}, {Tokarz}, \& {Moran}}]{2016ApJ...818..173H}
+	{Hwang}, H.~S., {Geller}, M.~J., {Park}, C., {et~al.} 2016, \apj, 818, 173
+	
+	\bibitem[{{James} {et~al.}(2022){James}, {Ghosh}, {Prochaska}, {Bannister}, {Bhandari}, {Day}, {Deller}, {Glowacki}, {Gordon}, {Heintz}, {Marnoch}, {Ryder}, {Scott}, {Shannon}, \& {Tejos}}]{2022MNRAS.516.4862J}
+	{James}, C.~W., {Ghosh}, E.~M., {Prochaska}, J.~X., {et~al.} 2022, \mnras, 516, 4862
+	
+	\bibitem[{{Javanmardi} \& {Kroupa}(2017)}]{2017A&A...597A.120J}
+	{Javanmardi}, B. \& {Kroupa}, P. 2017, \aap, 597, A120
+	
+	\bibitem[{{Javanmardi} {et~al.}(2015){Javanmardi}, {Porciani}, {Kroupa}, \& {Pflamm-Altenburg}}]{2015ApJ...810...47J}
+	{Javanmardi}, B., {Porciani}, C., {Kroupa}, P., \& {Pflamm-Altenburg}, J. 2015, \apj, 810, 47
+	
+	\bibitem[{{Jia} {et~al.}(2023){Jia}, {Hu}, \& {Wang}}]{2023A&A...674A..45J}
+	{Jia}, X.~D., {Hu}, J.~P., \& {Wang}, F.~Y. 2023, \aap, 674, A45
+	
+	\bibitem[{{Jia} {et~al.}(2022){Jia}, {Hu}, {Yang}, {Zhang}, \& {Wang}}]{2022MNRAS.516.2575J}
+	{Jia}, X.~D., {Hu}, J.~P., {Yang}, J., {Zhang}, B.~B., \& {Wang}, F.~Y. 2022, \mnras, 516, 2575
+	
+	\bibitem[{{Jin} {et~al.}(2023){Jin}, {Xing}, {Shao}, {Zhang}, \& {Zhang}}]{2023ChPhC..47f5104J}
+	{Jin}, S.-J., {Xing}, S.-S., {Shao}, Y., {Zhang}, J.-F., \& {Zhang}, X. 2023, Chinese Physics C, 47, 065104
+	
+	\bibitem[{{Kalbouneh} {et~al.}(2023){Kalbouneh}, {Marinoni}, \& {Bel}}]{2023PhRvD.107b3507K}
+	{Kalbouneh}, B., {Marinoni}, C., \& {Bel}, J. 2023, \prd, 107, 023507
+	
+	\bibitem[{{Kalus} {et~al.}(2013){Kalus}, {Schwarz}, {Seikel}, \& {Wiegand}}]{2013AA...553A..56K}
+	{Kalus}, B., {Schwarz}, D.~J., {Seikel}, M., \& {Wiegand}, A. 2013, \aap, 553, A56
+	
+	\bibitem[{{Kazantzidis} \& {Perivolaropoulos}(2020)}]{2020PhRvD.102b3520K}
+	{Kazantzidis}, L. \& {Perivolaropoulos}, L. 2020, \prd, 102, 023520
+	
+	\bibitem[{{Keenan} {et~al.}(2013){Keenan}, {Barger}, \& {Cowie}}]{2013ApJ...775...62K}
+	{Keenan}, R.~C., {Barger}, A.~J., \& {Cowie}, L.~L. 2013, \apj, 775, 62
+	
+	\bibitem[{{Kelly} {et~al.}(2023){Kelly}, {Rodney}, {Treu}, {Oguri}, {Chen}, {Zitrin}, {Birrer}, {Bonvin}, {Dessart}, {Diego}, {Filippenko}, {Foley}, {Gilman}, {Hjorth}, {Jauzac}, {Mandel}, {Millon}, {Pierel}, {Sharon}, {Thorp}, {Williams}, {Broadhurst}, {Dressler}, {Graur}, {Jha}, {McCully}, {Postman}, {Schmidt}, {Tucker}, \& {von der Linden}}]{2023Sci...380.1322K}
+	{Kelly}, P.~L., {Rodney}, S., {Treu}, T., {et~al.} 2023, Science, 380, abh1322
+	
+	\bibitem[{{Kelly} {et~al.}(2015){Kelly}, {Rodney}, {Treu}, {Foley}, {Brammer}, {Schmidt}, {Zitrin}, {Sonnenfeld}, {Strolger}, {Graur}, {Filippenko}, {Jha}, {Riess}, {Bradac}, {Weiner}, {Scolnic}, {Malkan}, {von der Linden}, {Trenti}, {Hjorth}, {Gavazzi}, {Fontana}, {Merten}, {McCully}, {Jones}, {Postman}, {Dressler}, {Patel}, {Cenko}, {Graham}, \& {Tucker}}]{2015Sci...347.1123K}
+	{Kelly}, P.~L., {Rodney}, S.~A., {Treu}, T., {et~al.} 2015, Science, 347, 1123
+	
+	\bibitem[{{Kenworthy} {et~al.}(2019){Kenworthy}, {Scolnic}, \& {Riess}}]{2019ApJ...875..145K}
+	{Kenworthy}, W.~D., {Scolnic}, D., \& {Riess}, A. 2019, \apj, 875, 145
+	
+	\bibitem[{{Khadka} \& {Ratra}(2020)}]{2020MNRAS.492.4456K}
+	{Khadka}, N. \& {Ratra}, B. 2020, \mnras, 492, 4456
+	
+	\bibitem[{{Khadka} {et~al.}(2022){Khadka}, {Zaja{\v{c}}ek}, {Panda}, {Mart{\'\i}nez-Aldama}, \& {Ratra}}]{2022MNRAS.515.3729K}
+	{Khadka}, N., {Zaja{\v{c}}ek}, M., {Panda}, S., {Mart{\'\i}nez-Aldama}, M.~L., \& {Ratra}, B. 2022, \mnras, 515, 3729
+	
+	\bibitem[{{Khadka} {et~al.}(2023){Khadka}, {Zaja{\v{c}}ek}, {Prince}, {Panda}, {Czerny}, {Mart{\'\i}nez-Aldama}, {Jaiswal}, \& {Ratra}}]{2023MNRAS.522.1247K}
+	{Khadka}, N., {Zaja{\v{c}}ek}, M., {Prince}, R., {et~al.} 2023, \mnras, 522, 1247
+	
+	\bibitem[{{King} {et~al.}(2012){King}, {Webb}, {Murphy}, {Flambaum}, {Carswell}, {Bainbridge}, {Wilczynska}, \& {Koch}}]{2012MNRAS.422.3370K}
+	{King}, J.~A., {Webb}, J.~K., {Murphy}, M.~T., {et~al.} 2012, \mnras, 422, 3370
+	
+	\bibitem[{{Koivisto} \& {Mota}(2008)}]{2008JCAP...06..018K}
+	{Koivisto}, T. \& {Mota}, D.~F. 2008, \jcap, 2008, 018
+	
+	\bibitem[{{Koksbang}(2021)}]{2021PhRvL.126w1101K}
+	{Koksbang}, S.~M. 2021, \prl, 126, 231101
+	
+	\bibitem[{{Kolodzig} {et~al.}(2013){Kolodzig}, {Gilfanov}, {Sunyaev}, {Sazonov}, \& {Brusa}}]{2013A&A...558A..89K}
+	{Kolodzig}, A., {Gilfanov}, M., {Sunyaev}, R., {Sazonov}, S., \& {Brusa}, M. 2013, \aap, 558, A89
+	
+	\bibitem[{{Krishnan} {et~al.}(2020){Krishnan}, {Colg{\'a}in}, {Ruchika}, {Sheikh-Jabbari}, \& {Yang}}]{2020PhRvD.102j3525K}
+	{Krishnan}, C., {Colg{\'a}in}, E.~{\'O}., {Ruchika}, Sen, A.~A., {Sheikh-Jabbari}, M.~M., \& {Yang}, T. 2020, \prd, 102, 103525
+	
+	\bibitem[{{Krishnan} {et~al.}(2021{\natexlab{a}}){Krishnan}, {Mohayaee}, {Colg{\'a}in}, {Sheikh-Jabbari}, \& {Yin}}]{2021CQGra..38r4001K}
+	{Krishnan}, C., {Mohayaee}, R., {Colg{\'a}in}, E.~{\'O}., {Sheikh-Jabbari}, M.~M., \& {Yin}, L. 2021{\natexlab{a}}, Classical and Quantum Gravity, 38, 184001
+	
+	\bibitem[{{Krishnan} {et~al.}(2022){Krishnan}, {Mohayaee}, {Colg{\'a}in}, {Sheikh-Jabbari}, \& {Yin}}]{2022PhRvD.105f3514K}
+	{Krishnan}, C., {Mohayaee}, R., {Colg{\'a}in}, E.~{\'O}., {Sheikh-Jabbari}, M.~M., \& {Yin}, L. 2022, \prd, 105, 063514
+	
+	\bibitem[{{Krishnan} {et~al.}(2021{\natexlab{b}}){Krishnan}, {{\'O} Colg{\'a}in}, {Sheikh-Jabbari}, \& {Yang}}]{2021PhRvD.103j3509K}
+	{Krishnan}, C., {{\'O} Colg{\'a}in}, E., {Sheikh-Jabbari}, M.~M., \& {Yang}, T. 2021{\natexlab{b}}, \prd, 103, 103509
+	
+	\bibitem[{{Kroupa} {et~al.}(2023){Kroupa}, {Gjergo}, {Asencio}, {Haslbauer}, {Pflamm-Altenburg}, {Wittenburg}, {Samaras}, {Thies}, \& {Oehm}}]{2023arXiv230911552K}
+	{Kroupa}, P., {Gjergo}, E., {Asencio}, E., {et~al.} 2023, arXiv e-prints, arXiv:2309.11552
+	
+	\bibitem[{{Kumar} {et~al.}(2023){Kumar}, {Choudhury}, \& {Nandi}}]{2023arXiv231003509K}
+	{Kumar}, D., {Choudhury}, D., \& {Nandi}, D. 2023, arXiv e-prints, arXiv:2310.03509
+	
+	\bibitem[{{Kumar Aluri} {et~al.}(2023){Kumar Aluri}, {Cea}, {Chingangbam}, {Chu}, {Clowes}, {Hutsem{\'e}kers}, {Kochappan}, {Lopez}, {Liu}, {Martens}, {Martins}, {Migkas}, {{\'O} Colg{\'a}in}, {Pranav}, {Shamir}, {Singal}, {Sheikh-Jabbari}, {Wagner}, {Wang}, {Wiltshire}, {Yeung}, {Yin}, \& {Zhao}}]{2023CQGra..40i4001K}
+	{Kumar Aluri}, P., {Cea}, P., {Chingangbam}, P., {et~al.} 2023, Classical and Quantum Gravity, 40, 094001
+	
+	\bibitem[{{Lapi} {et~al.}(2023){Lapi}, {Boco}, {Cueli}, {Haridasu}, {Ronconi}, {Baccigalupi}, \& {Danese}}]{2023arXiv231006028L}
+	{Lapi}, A., {Boco}, L., {Cueli}, M.~M., {et~al.} 2023, arXiv e-prints, arXiv:2310.06028
+	
+	\bibitem[{{Law} {et~al.}(2018){Law}, {Bower}, {Burke-Spolaor}, {Butler}, {Demorest}, {Halle}, {Khudikyan}, {Lazio}, {Pokorny}, {Robnett}, \& {Rupen}}]{2018ApJS..236....8L}
+	{Law}, C.~J., {Bower}, G.~C., {Burke-Spolaor}, S., {et~al.} 2018, \apjs, 236, 8
+	
+	\bibitem[{{Leung} {et~al.}(2021){Leung}, {Mena-Parra}, {Masui}, {Bandura}, {Bhardwaj}, {Boyle}, {Brar}, {Bruneault}, {Cassanelli}, {Cubranic}, {Kaczmarek}, {Kaspi}, {Landecker}, {Michilli}, {Milutinovic}, {Patel}, {Pleunis}, {Rahman}, {Renard}, {Sanghavi}, {Stairs}, {Scholz}, {Vanderlinde}, \& {Chime/Frb Collaboration}}]{2021AJ....161...81L}
+	{Leung}, C., {Mena-Parra}, J., {Masui}, K., {et~al.} 2021, \aj, 161, 81
+	
+	\bibitem[{{Lewis}(2019)}]{2019arXiv191013970L}
+	{Lewis}, A. 2019, arXiv e-prints, arXiv:1910.13970
+	
+	\bibitem[{{Li} {et~al.}(2023{\natexlab{a}}){Li}, {Li}, {Zhang}, {Vink{\'o}}, {Reg{\H{o}}s}, {Wang}, {Xi}, \& {Zhan}}]{2023SCPMA..6629511L}
+	{Li}, S.-Y., {Li}, Y.-L., {Zhang}, T., {et~al.} 2023{\natexlab{a}}, Science China Physics, Mechanics, and Astronomy, 66, 229511
+	
+	\bibitem[{{Li} \& {Lin}(2017)}]{2017ChPhC..41f5102L}
+	{Li}, X. \& {Lin}, H.-N. 2017, Chinese Physics C, 41, 065102
+	
+	\bibitem[{{Li} {et~al.}(2023{\natexlab{b}}){Li}, {Zhang}, \& {Liang}}]{2023MNRAS.521.4406L}
+	{Li}, Z., {Zhang}, B., \& {Liang}, N. 2023{\natexlab{b}}, \mnras, 521, 4406
+	
+	\bibitem[{{Liang} {et~al.}(2022){Liang}, {Li}, {Xie}, \& {Wu}}]{2022ApJ...941...84L}
+	{Liang}, N., {Li}, Z., {Xie}, X., \& {Wu}, P. 2022, \apj, 941, 84
+	
+	\bibitem[{{LIGO Scientific Collaboration} {et~al.}(2015){LIGO Scientific Collaboration}, {Aasi}, {Abbott}, {Abbott}, {Abbott}, {Abernathy}, {Ackley}, {Adams}, {Adams}, {Addesso}, {Adhikari}, {Adya}, {Affeldt}, {Aggarwal}, {Aguiar}, {Ain}, {Ajith}, {Alemic}, {Allen}, {Amariutei}, {Anderson}, {Anderson}, {Arai}, {Araya}, {Arceneaux}, {Areeda}, {Ashton}, {Ast}, {Aston}, {Aufmuth}, {Aulbert}, {Aylott}, {Babak}, {Baker}, {Ballmer}, {Barayoga}, {Barbet}, {Barclay}, {Barish}, {Barker}, {Barr}, {Barsotti}, {Bartlett}, {Barton}, {Bartos}, {Bassiri}, {Batch}, {Baune}, {Behnke}, {Bell}, {Bell}, {Benacquista}, {Bergman}, {Bergmann}, {Berry}, {Betzwieser}, {Bhagwat}, {Bhandare}, {Bilenko}, {Billingsley}, {Birch}, {Biscans}, {Biwer}, {Blackburn}, {Blackburn}, {Blair}, {Blair}, {Bock}, {Bodiya}, {Bojtos}, {Bond}, {Bork}, {Born}, {Bose}, {Brady}, {Braginsky}, {Brau}, {Bridges}, {Brinkmann}, {Brooks}, {Brown}, {Brown}, {Brown}, {Buchman}, {Buikema}, {Buonanno}, {Cadonati}, {Calder{\'o}n Bustillo}, {Camp}, {Cannon}, {Cao},
+		{Capano}, {Caride}, {Caudill}, {Cavagli{\`a}}, {Cepeda}, {Chakraborty}, {Chalermsongsak}, {Chamberlin}, {Chao}, {Charlton}, {Chen}, {Cho}, {Cho}, {Chow}, {Christensen}, {Chu}, {Chung}, {Ciani}, {Clara}, {Clark}, {Collette}, {Cominsky}, {Constancio}, {Cook}, {Corbitt}, {Cornish}, {Corsi}, {Costa}, {Coughlin}, {Countryman}, {Couvares}, {Coward}, {Cowart}, {Coyne}, {Coyne}, {Craig}, {Creighton}, {Creighton}, {Cripe}, {Crowder}, {Cumming}, {Cunningham}, {Cutler}, {Dahl}, {Dal Canton}, {Damjanic}, {Danilishin}, {Danzmann}, {Dartez}, {Dave}, {Daveloza}, {Davies}, {Daw}, {DeBra}, {Del Pozzo}, {Denker}, {Dent}, {Dergachev}, {DeRosa}, {DeSalvo}, {Dhurandhar}, {D{\textasciiacute}{\i}az}, {Di Palma}, {Dojcinoski}, {Dominguez}, {Donovan}, {Dooley}, {Doravari}, {Douglas}, {Downes}, {Driggers}, {Du}, {Dwyer}, {Eberle}, {Edo}, {Edwards}, {Edwards}, {Effler}, {Eggenstein}, {Ehrens}, {Eichholz}, {Eikenberry}, {Essick}, {Etzel}, {Evans}, {Evans}, {Factourovich}, {Fairhurst}, {Fan}, {Fang}, {Farr}, {Farr}, {Favata}, {Fays},
+		{Fehrmann}, {Fejer}, {Feldbaum}, {Ferreira}, {Fisher}, {Frei}, {Freise}, {Frey}, {Fricke}, {Fritschel}, {Frolov}, {Fuentes-Tapia}, {Fulda}, {Fyffe}, {Gair}, {Gaonkar}, {Gehrels}, {Gergely}, {Giaime}, {Giardina}, {Gleason}, {Goetz}, {Goetz}, {Gondan}, {Gonz{\'a}lez}, {Gordon}, {Gorodetsky}, {Gossan}, {Go{\ss}ler}, {Gr{\"a}f}, {Graff}, {Grant}, {Gras}, {Gray}, {Greenhalgh}, {Gretarsson}, {Grote}, {Grunewald}, {Guido}, {Guo}, {Gushwa}, {Gustafson}, {Gustafson}, {Hacker}, {Hall}, {Hammond}, {Hanke}, {Hanks}, {Hanna}, {Hannam}, {Hanson}, {Hardwick}, {Harry}, {Harry}, {Hart}, {Hartman}, {Haster}, {Haughian}, {Hee}, {Heintze}, {Heinzel}, {Hendry}, {Heng}, {Heptonstall}, {Heurs}, {Hewitson}, {Hild}, {Hoak}, {Hodge}, {Hollitt}, {Holt}, {Hopkins}, {Hosken}, {Hough}, {Houston}, {Howell}, {Hu}, {Huerta}, {Hughey}, {Husa}, {Huttner}, {Huynh}, {Huynh-Dinh}, {Idrisy}, {Indik}, {Ingram}, {Inta}, {Islas}, {Isler}, {Isogai}, {Iyer}, {Izumi}, {Jacobson}, {Jang}, {Jawahar}, {Ji}, {Jim{\'e}nez-Forteza}, {Johnson}, {Jones},
+		{Jones}, {Ju}, {Haris}, {Kalogera}, {Kandhasamy}, {Kang}, {Kanner}, {Katsavounidis}, {Katzman}, {Kaufer}, {Kaufer}, {Kaur}, {Kawabe}, {Kawazoe}, {Keiser}, {Keitel}, {Kelley}, {Kells}, {Keppel}, {Key}, {Khalaidovski}, {Khalili}, {Khazanov}, {Kim}, {Kim}, {Kim}, {Kim}, {Kim}, {King}, {King}, {Kinzel}, {Kissel}, {Klimenko}, {Kline}, {Koehlenbeck}, {Kokeyama}, {Kondrashov}, {Korobko}, {Korth}, {Kozak}, {Kringel}, {Krishnan}, {Krueger}, {Kuehn}, {Kumar}, {Kumar}, {Kuo}, {Landry}, {Lantz}, {Larson}, {Lasky}, {Lazzarini}, {Lazzaro}, {Le}, {Leaci}, {Leavey}, {Lebigot}, {Lee}, {Lee}, {Lee}, {Leong}, {Levin}, {Levine}, {Lewis}, {Li}, {Libbrecht}, {Libson}, {Lin}, {Littenberg}, {Lockerbie}, {Lockett}, {Logue}, {Lombardi}, {Lormand}, {Lough}, {Lubinski}, {L{\"u}ck}, {Lundgren}, {Lynch}, {Ma}, {Macarthur}, {MacDonald}, {Machenschalk}, {MacInnis}, {Macleod}, {Maga{\~n}a-Sandoval}, {Magee}, {Mageswaran}, {Maglione}, {Mailand}, {Mandel}, {Mandic}, {Mangano}, {Mansell}, {M{\'a}rka}, {M{\'a}rka}, {Markosyan}, {Maros},
+		{Martin}, {Martin}, {Martynov}, {Marx}, {Mason}, {Massinger}, {Matichard}, {Matone}, {Mavalvala}, {Mazumder}, {Mazzolo}, {McCarthy}, {McClelland}, {McCormick}, {McGuire}, {McIntyre}, {McIver}, {McLin}, {McWilliams}, {Meadors}, {Meinders}, {Melatos}, {Mendell}, {Mercer}, {Meshkov}, {Messenger}, {Meyers}, {Miao}, {Middleton}, {Mikhailov}, {Miller}, {Miller}, {Millhouse}, {Ming}, {Mirshekari}, {Mishra}, {Mitra}, {Mitrofanov}, {Mitselmakher}, {Mittleman}, {Moe}, {Mohanty}, {Mohapatra}, {Moore}, {Moraru}, {Moreno}, {Morriss}, {Mossavi}, {Mow-Lowry}, {Mueller}, {Mueller}, {Mukherjee}, {Mullavey}, {Munch}, {Murphy}, {Murray}, {Mytidis}, {Nash}, {Nayak}, {Necula}, {Nedkova}, {Newton}, {Nguyen}, {Nielsen}, {Nissanke}, {Nitz}, {Nolting}, {Normandin}, {Nuttall}, {Ochsner}, {O'Dell}, {Oelker}, {Ogin}, {Oh}, {Oh}, {Ohme}, {Oppermann}, {Oram}, {O'Reilly}, {Ortega}, {O'Shaughnessy}, {Osthelder}, {Ott}, {Ottaway}, {Ottens}, {Overmier}, {Owen}, {Padilla}, {Pai}, {Pai}, {Palashov}, {Pal-Singh}, {Pan}, {Pankow}, {Pannarale},
+		{Pant}, {Papa}, {Paris}, {Patrick}, {Pedraza}, {Pekowsky}, {Pele}, {Penn}, {Perreca}, {Phelps}, {Pierro}, {Pinto}, {Pitkin}, {Poeld}, {Post}, {Poteomkin}, {Powell}, {Prasad}, {Predoi}, {Premachandra}, {Prestegard}, {Price}, {Principe}, {Privitera}, {Prix}, {Prokhorov}, {Puncken}, {P{\"u}rrer}, {Qin}, {Quetschke}, {Quintero}, {Quiroga}, {Quitzow-James}, {Raab}, {Rabeling}, {Radkins}, {Raffai}, {Raja}, {Rajalakshmi}, {Rakhmanov}, {Ramirez}, {Raymond}, {Reed}, {Reid}, {Reitze}, {Reula}, {Riles}, {Robertson}, {Robie}, {Rollins}, {Roma}, {Romano}, {Romanov}, {Romie}, {Rowan}, {R{\"u}diger}, {Ryan}, {Sachdev}, {Sadecki}, {Sadeghian}, {Saleem}, {Salemi}, {Sammut}, {Sandberg}, {Sanders}, {Sannibale}, {Santiago-Prieto}, {Sathyaprakash}, {Saulson}, {Savage}, {Sawadsky}, {Scheuer}, {Schilling}, {Schmidt}, {Schnabel}, {Schofield}, {Schreiber}, {Schuette}, {Schutz}, {Scott}, {Scott}, {Sellers}, {Sengupta}, {Sergeev}, {Serna}, {Sevigny}, {Shaddock}, {Shahriar}, {Shaltev}, {Shao}, {Shapiro}, {Shawhan}, {Shoemaker},
+		{Sidery}, {Siemens}, {Sigg}, {Silva}, {Simakov}, {Singer}, {Singer}, {Singh}, {Sintes}, {Slagmolen}, {Smith}, {Smith}, {Smith}, {Smith-Lefebvre}, {Son}, {Sorazu}, {Souradeep}, {Staley}, {Stebbins}, {Steinke}, {Steinlechner}, {Steinlechner}, {Steinmeyer}, {Stephens}, {Steplewski}, {Stevenson}, {Stone}, {Strain}, {Strigin}, {Sturani}, {Stuver}, {Summerscales}, {Sutton}, {Szczepanczyk}, {Szeifert}, {Talukder}, {Tanner}, {T{\'a}pai}, {Tarabrin}, {Taracchini}, {Taylor}, {Tellez}, {Theeg}, {Thirugnanasambandam}, {Thomas}, {Thomas}, {Thorne}, {Thorne}, {Thrane}, {Tiwari}, {Tomlinson}, {Torres}, {Torrie}, {Traylor}, {Tse}, {Tshilumba}, {Ugolini}, {Unnikrishnan}, {Urban}, {Usman}, {Vahlbruch}, {Vajente}, {Valdes}, {Vallisneri}, {van Veggel}, {Vass}, {Vaulin}, {Vecchio}, {Veitch}, {Veitch}, {Venkateswara}, {Vincent-Finley}, {Vitale}, {Vo}, {Vorvick}, {Vousden}, {Vyatchanin}, {Wade}, {Wade}, {Wade}, {Walker}, {Wallace}, {Walsh}, {Wang}, {Wang}, {Wang}, {Ward}, {Warner}, {Was}, {Weaver}, {Weinert}, {Weinstein},
+		{Weiss}, {Welborn}, {Wen}, {Wessels}, {Westphal}, {Wette}, {Whelan}, {Whitcomb}, {White}, {Whiting}, {Wilkinson}, {Williams}, {Williams}, {Williamson}, {Willis}, {Willke}, {Wimmer}, {Winkler}, {Wipf}, {Wittel}, {Woan}, {Worden}, {Xie}, {Yablon}, {Yakushin}, {Yam}, {Yamamoto}, {Yancey}, {Yang}, {Zanolin}, {Zhang}, {Zhang}, {Zhang}, {Zhang}, {Zhao}, {Zhou}, {Zhu}, {Zucker}, {Zuraw}, \& {Zweizig}}]{2015CQGra..32g4001L}
+	{LIGO Scientific Collaboration}, {Aasi}, J., {Abbott}, B.~P., {et~al.} 2015, Classical and Quantum Gravity, 32, 074001
+	
+	\bibitem[{{Lin} {et~al.}(2016{\natexlab{a}}){Lin}, {Li}, \& {Chang}}]{2016MNRAS.460..617L}
+	{Lin}, H.-N., {Li}, X., \& {Chang}, Z. 2016{\natexlab{a}}, \mnras, 460, 617
+	
+	\bibitem[{{Lin} {et~al.}(2016{\natexlab{b}}){Lin}, {Wang}, {Chang}, \& {Li}}]{2016MNRAS.456.1881L}
+	{Lin}, H.-N., {Wang}, S., {Chang}, Z., \& {Li}, X. 2016{\natexlab{b}}, \mnras, 456, 1881
+	
+	\bibitem[{{Liu} {et~al.}(2023{\natexlab{a}}){Liu}, {Yang}, {Zhang}, {Wang}, \& {Biesiada}}]{2023PhLB..84538166L}
+	{Liu}, T., {Yang}, X., {Zhang}, Z., {Wang}, J., \& {Biesiada}, M. 2023{\natexlab{a}}, Physics Letters B, 845, 138166
+	
+	\bibitem[{{Liu} {et~al.}(2022{\natexlab{a}}){Liu}, {Chen}, {Liang}, {Yuan}, {Yu}, \& {Wu}}]{2022ApJ...931...50L}
+	{Liu}, Y., {Chen}, F., {Liang}, N., {et~al.} 2022{\natexlab{a}}, \apj, 931, 50
+	
+	\bibitem[{{Liu} {et~al.}(2022{\natexlab{b}}){Liu}, {Liang}, {Xie}, {Yuan}, {Yu}, \& {Wu}}]{2022ApJ...935....7L}
+	{Liu}, Y., {Liang}, N., {Xie}, X., {et~al.} 2022{\natexlab{b}}, \apj, 935, 7
+	
+	\bibitem[{{Liu} {et~al.}(2023{\natexlab{b}}){Liu}, {Yu}, \& {Wu}}]{2023ApJ...946L..49L}
+	{Liu}, Y., {Yu}, H., \& {Wu}, P. 2023{\natexlab{b}}, \apjl, 946, L49
+	
+	\bibitem[{{Lovyagin} {et~al.}(2022){Lovyagin}, {Gainutdinov}, {Shirokov}, \& {Gorokhov}}]{2022Univ....8..344L}
+	{Lovyagin}, N.~Y., {Gainutdinov}, R.~I., {Shirokov}, S.~I., \& {Gorokhov}, V.~L. 2022, Universe, 8, 344
+	
+	\bibitem[{{Lukovi{\'c}} {et~al.}(2020){Lukovi{\'c}}, {Haridasu}, \& {Vittorio}}]{2020MNRAS.491.2075L}
+	{Lukovi{\'c}}, V.~V., {Haridasu}, B.~S., \& {Vittorio}, N. 2020, \mnras, 491, 2075
+	
+	\bibitem[{{Luongo} {et~al.}(2022){Luongo}, {Muccino}, {Colg{\'a}in}, {Sheikh-Jabbari}, \& {Yin}}]{2022PhRvD.105j3510L}
+	{Luongo}, O., {Muccino}, M., {Colg{\'a}in}, E.~{\'O}., {Sheikh-Jabbari}, M.~M., \& {Yin}, L. 2022, \prd, 105, 103510
+	
+	\bibitem[{{Lusso}(2020)}]{2020FrASS...7....8L}
+	{Lusso}, E. 2020, Frontiers in Astronomy and Space Sciences, 7, 8
+	
+	\bibitem[{{Lusso} \& {Risaliti}(2016)}]{2016ApJ...819..154L}
+	{Lusso}, E. \& {Risaliti}, G. 2016, \apj, 819, 154
+	
+	\bibitem[{{Lusso} \& {Risaliti}(2017)}]{2017A&A...602A..79L}
+	{Lusso}, E. \& {Risaliti}, G. 2017, \aap, 602, A79
+	
+	\bibitem[{{Malekjani} {et~al.}(2023){Malekjani}, {Mc Conville}, {Colg{\'a}in}, {Pourojaghi}, \& {Sheikh-Jabbari}}]{2023arXiv230112725M}
+	{Malekjani}, M., {Mc Conville}, R., {Colg{\'a}in}, E.~{\'O}., {Pourojaghi}, S., \& {Sheikh-Jabbari}, M.~M. 2023, arXiv e-prints, arXiv:2301.12725
+	
+	\bibitem[{{Mandal} {et~al.}(2023){Mandal}, {Duffell}, {Polin}, \& {Milisavljevic}}]{2023ApJ...956..130M}
+	{Mandal}, S., {Duffell}, P.~C., {Polin}, A., \& {Milisavljevic}, D. 2023, \apj, 956, 130
+	
+	\bibitem[{{Mariano} \& {Perivolaropoulos}(2012)}]{2012PhRvD..86h3517M}
+	{Mariano}, A. \& {Perivolaropoulos}, L. 2012, \prd, 86, 083517
+	
+	\bibitem[{{McConville} \& {Colg{\'a}in}(2023)}]{2023arXiv230402718M}
+	{McConville}, R. \& {Colg{\'a}in}, E.~{\'O}. 2023, arXiv e-prints, arXiv:2304.02718
+	
+	\bibitem[{{Merloni} {et~al.}(2012){Merloni}, {Predehl}, {Becker}, {B{\"o}hringer}, {Boller}, {Brunner}, {Brusa}, {Dennerl}, {Freyberg}, {Friedrich}, {Georgakakis}, {Haberl}, {Hasinger}, {Meidinger}, {Mohr}, {Nandra}, {Rau}, {Reiprich}, {Robrade}, {Salvato}, {Santangelo}, {Sasaki}, {Schwope}, {Wilms}, \& {German eROSITA Consortium}}]{2012arXiv1209.3114M}
+	{Merloni}, A., {Predehl}, P., {Becker}, W., {et~al.} 2012, arXiv e-prints, arXiv:1209.3114
+	
+	\bibitem[{{Miao} {et~al.}(2023){Miao}, {Gong}, {Chen}, {Huang}, {Li}, \& {Zhan}}]{2023MNRAS.519.1132M}
+	{Miao}, H., {Gong}, Y., {Chen}, X., {et~al.} 2023, \mnras, 519, 1132
+	
+	\bibitem[{{Migkas} {et~al.}(2021){Migkas}, {Pacaud}, {Schellenberger}, {Erler}, {Nguyen-Dang}, {Reiprich}, {Ramos-Ceja}, \& {Lovisari}}]{2021AA...649A.151M}
+	{Migkas}, K., {Pacaud}, F., {Schellenberger}, G., {et~al.} 2021, \aap, 649, A151
+	
+	\bibitem[{{Migkas} {et~al.}(2020){Migkas}, {Schellenberger}, {Reiprich}, {Pacaud}, {Ramos-Ceja}, \& {Lovisari}}]{2020A&A...636A..15M}
+	{Migkas}, K., {Schellenberger}, G., {Reiprich}, T.~H., {et~al.} 2020, \aap, 636, A15
+	
+	\bibitem[{{Milakovi{\'c}} {et~al.}(2022){Milakovi{\'c}}, {Lee}, {Molaro}, \& {Webb}}]{2022arXiv221202458M}
+	{Milakovi{\'c}}, D., {Lee}, C.-C., {Molaro}, P., \& {Webb}, J.~K. 2022, arXiv e-prints, arXiv:2212.02458
+	
+	\bibitem[{{Millon} {et~al.}(2020){Millon}, {Galan}, {Courbin}, {Treu}, {Suyu}, {Ding}, {Birrer}, {Chen}, {Shajib}, {Sluse}, {Wong}, {Agnello}, {Auger}, {Buckley-Geer}, {Chan}, {Collett}, {Fassnacht}, {Hilbert}, {Koopmans}, {Motta}, {Mukherjee}, {Rusu}, {Sonnenfeld}, {Spiniello}, \& {Van de Vyvere}}]{2020A&A...639A.101M}
+	{Millon}, M., {Galan}, A., {Courbin}, F., {et~al.} 2020, \aap, 639, A101
+	
+	\bibitem[{{Mohammadi} {et~al.}(2023){Mohammadi}, {Yusofi}, {Mohsenzadeh}, \& {Salem}}]{2023MNRAS.525.3274M}
+	{Mohammadi}, S., {Yusofi}, E., {Mohsenzadeh}, M., \& {Salem}, M.~K. 2023, \mnras, 525, 3274
+	
+	\bibitem[{{Motoa-Manzano} {et~al.}(2021){Motoa-Manzano}, {Orjuela-Quintana}, {Pereira}, \& {Valenzuela-Toledo}}]{2021PDU....3200806M}
+	{Motoa-Manzano}, J., {Orjuela-Quintana}, J.~B., {Pereira}, T.~S., \& {Valenzuela-Toledo}, C.~A. 2021, Physics of the Dark Universe, 32, 100806
+	
+	\bibitem[{{{\'O} Colg{\'a}in} {et~al.}(2023){{\'O} Colg{\'a}in}, {Sheikh-Jabbari}, \& {Solomon}}]{2023PDU....4001216O}
+	{{\'O} Colg{\'a}in}, E., {Sheikh-Jabbari}, M.~M., \& {Solomon}, R. 2023, Physics of the Dark Universe, 40, 101216
+	
+	\bibitem[{{{\'O} Colg{\'a}in} {et~al.}(2022){{\'O} Colg{\'a}in}, {Sheikh-Jabbari}, {Solomon}, {Bargiacchi}, {Capozziello}, {Dainotti}, \& {Stojkovic}}]{2022PhRvD.106d1301O}
+	{{\'O} Colg{\'a}in}, E., {Sheikh-Jabbari}, M.~M., {Solomon}, R., {et~al.} 2022, \prd, 106, L041301
+	
+	\bibitem[{{Pandey}(2017)}]{2017MNRAS.468.1953P}
+	{Pandey}, B. 2017, \mnras, 468, 1953
+	
+	\bibitem[{{Past{\'e}n} \& {C{\'a}rdenas}(2023)}]{2023PDU....4001224P}
+	{Past{\'e}n}, E. \& {C{\'a}rdenas}, V.~H. 2023, Physics of the Dark Universe, 40, 101224
+	
+	\bibitem[{{Pedregosa} {et~al.}(2011){Pedregosa}, {Varoquaux}, {Gramfort}, {Michel}, {Thirion}, {Grisel}, {Blondel}, {M{\"u}ller}, {Nothman}, {Louppe}, {Prettenhofer}, {Weiss}, {Dubourg}, {Vanderplas}, {Passos}, {Cournapeau}, {Brucher}, {Perrot}, \& {Duchesnay}}]{2011JMLR...12.2825P}
+	{Pedregosa}, F., {Varoquaux}, G., {Gramfort}, A., {et~al.} 2011, Journal of Machine Learning Research, 12, 2825
+	
+	\bibitem[{{Pelgrims} \& {Hutsem{\'e}kers}(2016)}]{2016AA...590A..53P}
+	{Pelgrims}, V. \& {Hutsem{\'e}kers}, D. 2016, \aap, 590, A53
+	
+	\bibitem[{{Perivolaropoulos}(2023)}]{2023PhRvD.108f3509P}
+	{Perivolaropoulos}, L. 2023, \prd, 108, 063509
+	
+	\bibitem[{{Perivolaropoulos} \& {Skara}(2021)}]{2021PhRvD.104l3511P}
+	{Perivolaropoulos}, L. \& {Skara}, F. 2021, \prd, 104, 123511
+	
+	\bibitem[{{Perivolaropoulos} \& {Skara}(2022)}]{2022NewAR..9501659P}
+	{Perivolaropoulos}, L. \& {Skara}, F. 2022, \nar, 95, 101659
+	
+	\bibitem[{{Perivolaropoulos} \& {Skara}(2023)}]{2023MNRAS.520.5110P}
+	{Perivolaropoulos}, L. \& {Skara}, F. 2023, \mnras, 520, 5110
+	
+	\bibitem[{{Planck Collaboration} {et~al.}(2016){Planck Collaboration}, {Adam}, {Ade}, {Aghanim}, {Akrami}, {Alves}, {Arg{\"u}eso}, {Arnaud}, {Arroja}, {Ashdown}, {Aumont}, {Baccigalupi}, {Ballardini}, {Banday}, {Barreiro}, {Bartlett}, {Bartolo}, {Basak}, {Battaglia}, {Battaner}, {Battye}, {Benabed}, {Beno{\^\i}t}, {Benoit-L{\'e}vy}, {Bernard}, {Bersanelli}, {Bertincourt}, {Bielewicz}, {Bikmaev}, {Bock}, {B{\"o}hringer}, {Bonaldi}, {Bonavera}, {Bond}, {Borrill}, {Bouchet}, {Boulanger}, {Bucher}, {Burenin}, {Burigana}, {Butler}, {Calabrese}, {Cardoso}, {Carvalho}, {Casaponsa}, {Castex}, {Catalano}, {Challinor}, {Chamballu}, {Chary}, {Chiang}, {Chluba}, {Chon}, {Christensen}, {Church}, {Clemens}, {Clements}, {Colombi}, {Colombo}, {Combet}, {Comis}, {Contreras}, {Couchot}, {Coulais}, {Crill}, {Cruz}, {Curto}, {Cuttaia}, {Danese}, {Davies}, {Davis}, {de Bernardis}, {de Rosa}, {de Zotti}, {Delabrouille}, {Delouis}, {D{\'e}sert}, {Di Valentino}, {Dickinson}, {Diego}, {Dolag}, {Dole}, {Donzelli}, {Dor{\'e}},
+		{Douspis}, {Ducout}, {Dunkley}, {Dupac}, {Efstathiou}, {Eisenhardt}, {Elsner}, {En{\ss}lin}, {Eriksen}, {Falgarone}, {Fantaye}, {Farhang}, {Feeney}, {Fergusson}, {Fernandez-Cobos}, {Feroz}, {Finelli}, {Florido}, {Forni}, {Frailis}, {Fraisse}, {Franceschet}, {Franceschi}, {Frejsel}, {Frolov}, {Galeotta}, {Galli}, {Ganga}, {Gauthier}, {G{\'e}nova-Santos}, {Gerbino}, {Ghosh}, {Giard}, {Giraud-H{\'e}raud}, {Giusarma}, {Gjerl{\o}w}, {Gonz{\'a}lez-Nuevo}, {G{\'o}rski}, {Grainge}, {Gratton}, {Gregorio}, {Gruppuso}, {Gudmundsson}, {Hamann}, {Handley}, {Hansen}, {Hanson}, {Harrison}, {Heavens}, {Helou}, {Henrot-Versill{\'e}}, {Hern{\'a}ndez-Monteagudo}, {Herranz}, {Hildebrandt}, {Hivon}, {Hobson}, {Holmes}, {Hornstrup}, {Hovest}, {Huang}, {Huffenberger}, {Hurier}, {Ili{\'c}}, {Jaffe}, {Jaffe}, {Jin}, {Jones}, {Juvela}, {Karakci}, {Keih{\"a}nen}, {Keskitalo}, {Khamitov}, {Kiiveri}, {Kim}, {Kisner}, {Kneissl}, {Knoche}, {Knox}, {Krachmalnicoff}, {Kunz}, {Kurki-Suonio}, {Lacasa}, {Lagache}, {L{\"a}hteenm{\"a}ki},
+		{Lamarre}, {Langer}, {Lasenby}, {Lattanzi}, {Lawrence}, {Le Jeune}, {Leahy}, {Lellouch}, {Leonardi}, {Le{\'o}n-Tavares}, {Lesgourgues}, {Levrier}, {Lewis}, {Liguori}, {Lilje}, {Lilley}, {Linden-V{\o}rnle}, {Lindholm}, {Liu}, {L{\'o}pez-Caniego}, {Lubin}, {Ma}, {Mac{\'\i}as-P{\'e}rez}, {Maggio}, {Maino}, {Mak}, {Mandolesi}, {Mangilli}, {Marchini}, {Marcos-Caballero}, {Marinucci}, {Maris}, {Marshall}, {Martin}, {Martinelli}, {Mart{\'\i}nez-Gonz{\'a}lez}, {Masi}, {Matarrese}, {Mazzotta}, {McEwen}, {McGehee}, {Mei}, {Meinhold}, {Melchiorri}, {Melin}, {Mendes}, {Mennella}, {Migliaccio}, {Mikkelsen}, {Millea}, {Mitra}, {Miville-Desch{\^e}nes}, {Molinari}, {Moneti}, {Montier}, {Moreno}, {Morgante}, {Mortlock}, {Moss}, {Mottet}, {M{\"u}nchmeyer}, {Munshi}, {Murphy}, {Narimani}, {Naselsky}, {Nastasi}, {Nati}, {Natoli}, {Negrello}, {Netterfield}, {N{\o}rgaard-Nielsen}, {Noviello}, {Novikov}, {Novikov}, {Olamaie}, {Oppermann}, {Orlando}, {Oxborrow}, {Paci}, {Pagano}, {Pajot}, {Paladini}, {Pandolfi}, {Paoletti},
+		{Partridge}, {Pasian}, {Patanchon}, {Pearson}, {Peel}, {Peiris}, {Pelkonen}, {Perdereau}, {Perotto}, {Perrott}, {Perrotta}, {Pettorino}, {Piacentini}, {Piat}, {Pierpaoli}, {Pietrobon}, {Plaszczynski}, {Pogosyan}, {Pointecouteau}, {Polenta}, {Popa}, {Pratt}, {Pr{\'e}zeau}, {Prunet}, {Puget}, {Rachen}, {Racine}, {Reach}, {Rebolo}, {Reinecke}, {Remazeilles}, {Renault}, {Renzi}, {Ristorcelli}, {Rocha}, {Roman}, {Romelli}, {Rosset}, {Rossetti}, {Rotti}, {Roudier}, {Rouill{\'e} d'Orfeuil}, {Rowan-Robinson}, {Rubi{\~n}o-Mart{\'\i}n}, {Ruiz-Granados}, {Rumsey}, {Rusholme}, {Said}, {Salvatelli}, {Salvati}, {Sandri}, {Sanghera}, {Santos}, {Saunders}, {Sauv{\'e}}, {Savelainen}, {Savini}, {Schaefer}, {Schammel}, {Scott}, {Seiffert}, {Serra}, {Shellard}, {Shimwell}, {Shiraishi}, {Smith}, {Souradeep}, {Spencer}, {Spinelli}, {Stanford}, {Stern}, {Stolyarov}, {Stompor}, {Strong}, {Sudiwala}, {Sunyaev}, {Sutter}, {Sutton}, {Suur-Uski}, {Sygnet}, {Tauber}, {Tavagnacco}, {Terenzi}, {Texier}, {Toffolatti}, {Tomasi},
+		{Tornikoski}, {Tramonte}, {Tristram}, {Troja}, {Trombetti}, {Tucci}, {Tuovinen}, {T{\"u}rler}, {Umana}, {Valenziano}, {Valiviita}, {Van Tent}, {Vassallo}, {Vibert}, {Vidal}, {Viel}, {Vielva}, {Villa}, {Wade}, {Walter}, {Wandelt}, {Watson}, {Wehus}, {Welikala}, {Weller}, {White}, {White}, {Wilkinson}, {Yvon}, {Zacchei}, {Zibin}, \& {Zonca}}]{2016AA...594A...1P}
+	{Planck Collaboration}, {Adam}, R., {Ade}, P.~A.~R., {et~al.} 2016, \aap, 594, A1
+	
+	\bibitem[{{Planck Collaboration} {et~al.}(2020{\natexlab{a}}){Planck Collaboration}, {Aghanim}, {Akrami}, {Arroja}, {Ashdown}, {Aumont}, {Baccigalupi}, {Ballardini}, {Banday}, {Barreiro}, {Bartolo}, {Basak}, {Battye}, {Benabed}, {Bernard}, {Bersanelli}, {Bielewicz}, {Bock}, {Bond}, {Borrill}, {Bouchet}, {Boulanger}, {Bucher}, {Burigana}, {Butler}, {Calabrese}, {Cardoso}, {Carron}, {Casaponsa}, {Challinor}, {Chiang}, {Colombo}, {Combet}, {Contreras}, {Crill}, {Cuttaia}, {de Bernardis}, {de Zotti}, {Delabrouille}, {Delouis}, {D{\'e}sert}, {Di Valentino}, {Dickinson}, {Diego}, {Donzelli}, {Dor{\'e}}, {Douspis}, {Ducout}, {Dupac}, {Efstathiou}, {Elsner}, {En{\ss}lin}, {Eriksen}, {Falgarone}, {Fantaye}, {Fergusson}, {Fernandez-Cobos}, {Finelli}, {Forastieri}, {Frailis}, {Franceschi}, {Frolov}, {Galeotta}, {Galli}, {Ganga}, {G{\'e}nova-Santos}, {Gerbino}, {Ghosh}, {Gonz{\'a}lez-Nuevo}, {G{\'o}rski}, {Gratton}, {Gruppuso}, {Gudmundsson}, {Hamann}, {Handley}, {Hansen}, {Helou}, {Herranz}, {Hildebrandt}, {Hivon},
+		{Huang}, {Jaffe}, {Jones}, {Karakci}, {Keih{\"a}nen}, {Keskitalo}, {Kiiveri}, {Kim}, {Kisner}, {Knox}, {Krachmalnicoff}, {Kunz}, {Kurki-Suonio}, {Lagache}, {Lamarre}, {Langer}, {Lasenby}, {Lattanzi}, {Lawrence}, {Le Jeune}, {Leahy}, {Lesgourgues}, {Levrier}, {Lewis}, {Liguori}, {Lilje}, {Lilley}, {Lindholm}, {L{\'o}pez-Caniego}, {Lubin}, {Ma}, {Mac{\'\i}as-P{\'e}rez}, {Maggio}, {Maino}, {Mandolesi}, {Mangilli}, {Marcos-Caballero}, {Maris}, {Martin}, {Martinelli}, {Mart{\'\i}nez-Gonz{\'a}lez}, {Matarrese}, {Mauri}, {McEwen}, {Meerburg}, {Meinhold}, {Melchiorri}, {Mennella}, {Migliaccio}, {Millea}, {Mitra}, {Miville-Desch{\^e}nes}, {Molinari}, {Moneti}, {Montier}, {Morgante}, {Moss}, {Mottet}, {M{\"u}nchmeyer}, {Natoli}, {N{\o}rgaard-Nielsen}, {Oxborrow}, {Pagano}, {Paoletti}, {Partridge}, {Patanchon}, {Pearson}, {Peel}, {Peiris}, {Perrotta}, {Pettorino}, {Piacentini}, {Polastri}, {Polenta}, {Puget}, {Rachen}, {Reinecke}, {Remazeilles}, {Renault}, {Renzi}, {Rocha}, {Rosset}, {Roudier},
+		{Rubi{\~n}o-Mart{\'\i}n}, {Ruiz-Granados}, {Salvati}, {Sandri}, {Savelainen}, {Scott}, {Shellard}, {Shiraishi}, {Sirignano}, {Sirri}, {Spencer}, {Sunyaev}, {Suur-Uski}, {Tauber}, {Tavagnacco}, {Tenti}, {Terenzi}, {Toffolatti}, {Tomasi}, {Trombetti}, {Valiviita}, {Van Tent}, {Vibert}, {Vielva}, {Villa}, {Vittorio}, {Wandelt}, {Wehus}, {White}, {White}, {Zacchei}, \& {Zonca}}]{2020AA...641A...1P}
+	{Planck Collaboration}, {Aghanim}, N., {Akrami}, Y., {et~al.} 2020{\natexlab{a}}, \aap, 641, A1
+	
+	\bibitem[{{Planck Collaboration} {et~al.}(2020{\natexlab{b}}){Planck Collaboration}, {Aghanim}, {Akrami}, {Ashdown}, {Aumont}, {Baccigalupi}, {Ballardini}, {Banday}, {Barreiro}, {Bartolo}, {Basak}, {Battye}, {Benabed}, {Bernard}, {Bersanelli}, {Bielewicz}, {Bock}, {Bond}, {Borrill}, {Bouchet}, {Boulanger}, {Bucher}, {Burigana}, {Butler}, {Calabrese}, {Cardoso}, {Carron}, {Challinor}, {Chiang}, {Chluba}, {Colombo}, {Combet}, {Contreras}, {Crill}, {Cuttaia}, {de Bernardis}, {de Zotti}, {Delabrouille}, {Delouis}, {Di Valentino}, {Diego}, {Dor{\'e}}, {Douspis}, {Ducout}, {Dupac}, {Dusini}, {Efstathiou}, {Elsner}, {En{\ss}lin}, {Eriksen}, {Fantaye}, {Farhang}, {Fergusson}, {Fernandez-Cobos}, {Finelli}, {Forastieri}, {Frailis}, {Fraisse}, {Franceschi}, {Frolov}, {Galeotta}, {Galli}, {Ganga}, {G{\'e}nova-Santos}, {Gerbino}, {Ghosh}, {Gonz{\'a}lez-Nuevo}, {G{\'o}rski}, {Gratton}, {Gruppuso}, {Gudmundsson}, {Hamann}, {Handley}, {Hansen}, {Herranz}, {Hildebrandt}, {Hivon}, {Huang}, {Jaffe}, {Jones}, {Karakci},
+		{Keih{\"a}nen}, {Keskitalo}, {Kiiveri}, {Kim}, {Kisner}, {Knox}, {Krachmalnicoff}, {Kunz}, {Kurki-Suonio}, {Lagache}, {Lamarre}, {Lasenby}, {Lattanzi}, {Lawrence}, {Le Jeune}, {Lemos}, {Lesgourgues}, {Levrier}, {Lewis}, {Liguori}, {Lilje}, {Lilley}, {Lindholm}, {L{\'o}pez-Caniego}, {Lubin}, {Ma}, {Mac{\'\i}as-P{\'e}rez}, {Maggio}, {Maino}, {Mandolesi}, {Mangilli}, {Marcos-Caballero}, {Maris}, {Martin}, {Martinelli}, {Mart{\'\i}nez-Gonz{\'a}lez}, {Matarrese}, {Mauri}, {McEwen}, {Meinhold}, {Melchiorri}, {Mennella}, {Migliaccio}, {Millea}, {Mitra}, {Miville-Desch{\^e}nes}, {Molinari}, {Montier}, {Morgante}, {Moss}, {Natoli}, {N{\o}rgaard-Nielsen}, {Pagano}, {Paoletti}, {Partridge}, {Patanchon}, {Peiris}, {Perrotta}, {Pettorino}, {Piacentini}, {Polastri}, {Polenta}, {Puget}, {Rachen}, {Reinecke}, {Remazeilles}, {Renzi}, {Rocha}, {Rosset}, {Roudier}, {Rubi{\~n}o-Mart{\'\i}n}, {Ruiz-Granados}, {Salvati}, {Sandri}, {Savelainen}, {Scott}, {Shellard}, {Sirignano}, {Sirri}, {Spencer}, {Sunyaev}, {Suur-Uski},
+		{Tauber}, {Tavagnacco}, {Tenti}, {Toffolatti}, {Tomasi}, {Trombetti}, {Valenziano}, {Valiviita}, {Van Tent}, {Vibert}, {Vielva}, {Villa}, {Vittorio}, {Wandelt}, {Wehus}, {White}, {White}, {Zacchei}, \& {Zonca}}]{2020A&A...641A...6P}
+	{Planck Collaboration}, {Aghanim}, N., {Akrami}, Y., {et~al.} 2020{\natexlab{b}}, \aap, 641, A6
+	
+	\bibitem[{{Planck Collaboration} {et~al.}(2020{\natexlab{c}}){Planck Collaboration}, {Akrami}, {Ashdown}, {Aumont}, {Baccigalupi}, {Ballardini}, {Banday}, {Barreiro}, {Bartolo}, {Basak}, {Benabed}, {Bersanelli}, {Bielewicz}, {Bock}, {Bond}, {Borrill}, {Bouchet}, {Boulanger}, {Bucher}, {Burigana}, {Butler}, {Calabrese}, {Cardoso}, {Casaponsa}, {Chiang}, {Colombo}, {Combet}, {Contreras}, {Crill}, {de Bernardis}, {de Zotti}, {Delabrouille}, {Delouis}, {Di Valentino}, {Diego}, {Dor{\'e}}, {Douspis}, {Ducout}, {Dupac}, {Efstathiou}, {Elsner}, {En{\ss}lin}, {Eriksen}, {Fantaye}, {Fernandez-Cobos}, {Finelli}, {Frailis}, {Fraisse}, {Franceschi}, {Frolov}, {Galeotta}, {Galli}, {Ganga}, {G{\'e}nova-Santos}, {Gerbino}, {Ghosh}, {Gonz{\'a}lez-Nuevo}, {G{\'o}rski}, {Gruppuso}, {Gudmundsson}, {Hamann}, {Handley}, {Hansen}, {Herranz}, {Hivon}, {Huang}, {Jaffe}, {Jones}, {Keih{\"a}nen}, {Keskitalo}, {Kiiveri}, {Kim}, {Krachmalnicoff}, {Kunz}, {Kurki-Suonio}, {Lagache}, {Lamarre}, {Lasenby}, {Lattanzi}, {Lawrence}, {Le
+			Jeune}, {Levrier}, {Liguori}, {Lilje}, {Lindholm}, {L{\'o}pez-Caniego}, {Ma}, {Mac{\'\i}as-P{\'e}rez}, {Maggio}, {Maino}, {Mandolesi}, {Mangilli}, {Marcos-Caballero}, {Maris}, {Martin}, {Mart{\'\i}nez-Gonz{\'a}lez}, {Matarrese}, {Mauri}, {McEwen}, {Meinhold}, {Mennella}, {Migliaccio}, {Miville-Desch{\^e}nes}, {Molinari}, {Moneti}, {Montier}, {Morgante}, {Moss}, {Natoli}, {Pagano}, {Paoletti}, {Partridge}, {Perrotta}, {Pettorino}, {Piacentini}, {Polenta}, {Puget}, {Rachen}, {Reinecke}, {Remazeilles}, {Renzi}, {Rocha}, {Rosset}, {Roudier}, {Rubi{\~n}o-Mart{\'\i}n}, {Ruiz-Granados}, {Salvati}, {Savelainen}, {Scott}, {Shellard}, {Sirignano}, {Sunyaev}, {Suur-Uski}, {Tauber}, {Tavagnacco}, {Tenti}, {Toffolatti}, {Tomasi}, {Trombetti}, {Valenziano}, {Valiviita}, {Van Tent}, {Vielva}, {Villa}, {Vittorio}, {Wandelt}, {Wehus}, {Zacchei}, {Zibin}, \& {Zonca}}]{2020A&A...641A...7P}
+	{Planck Collaboration}, {Akrami}, Y., {Ashdown}, M., {et~al.} 2020{\natexlab{c}}, \aap, 641, A7
+	
+	\bibitem[{{Porredon} {et~al.}(2022){Porredon}, {Crocce}, {Elvin-Poole}, {Cawthon}, {Giannini}, {De Vicente}, {Carnero Rosell}, {Ferrero}, {Krause}, {Fang}, {Prat}, {Rodriguez-Monroy}, {Pandey}, {Pocino}, {Castander}, {Choi}, {Amon}, {Tutusaus}, {Dodelson}, {Sevilla-Noarbe}, {Fosalba}, {Gaztanaga}, {Alarcon}, {Alves}, {Andrade-Oliveira}, {Baxter}, {Bechtol}, {Becker}, {Bernstein}, {Blazek}, {Camacho}, {Campos}, {Carrasco Kind}, {Chintalapati}, {Cordero}, {DeRose}, {Di Valentino}, {Doux}, {Eifler}, {Everett}, {Fert{\'e}}, {Friedrich}, {Gatti}, {Gruen}, {Harrison}, {Hartley}, {Herner}, {Huff}, {Huterer}, {Jain}, {Jarvis}, {Lee}, {Lemos}, {MacCrann}, {Mena-Fern{\'a}ndez}, {Muir}, {Myles}, {Park}, {Raveri}, {Rosenfeld}, {Ross}, {Rykoff}, {Samuroff}, {S{\'a}nchez}, {Sanchez}, {Sanchez}, {Sanchez Cid}, {Scolnic}, {Secco}, {Sheldon}, {Troja}, {Troxel}, {Weaverdyck}, {Yanny}, {Zuntz}, {Abbott}, {Aguena}, {Allam}, {Annis}, {Avila}, {Bacon}, {Bertin}, {Bhargava}, {Brooks}, {Buckley-Geer}, {Burke}, {Carretero},
+		{Costanzi}, {da Costa}, {Pereira}, {Davis}, {Desai}, {Diehl}, {Dietrich}, {Doel}, {Drlica-Wagner}, {Eckert}, {Evrard}, {Flaugher}, {Frieman}, {Garc{\'\i}a-Bellido}, {Gerdes}, {Giannantonio}, {Gruendl}, {Gschwend}, {Gutierrez}, {Hinton}, {Hollowood}, {Honscheid}, {Hoyle}, {James}, {Kuehn}, {Kuropatkin}, {Lahav}, {Lidman}, {Lima}, {Lin}, {Maia}, {Marshall}, {Martini}, {Melchior}, {Menanteau}, {Miquel}, {Mohr}, {Morgan}, {Ogando}, {Palmese}, {Paz-Chinch{\'o}n}, {Petravick}, {Pieres}, {Plazas Malag{\'o}n}, {Romer}, {Santiago}, {Scarpine}, {Schubnell}, {Serrano}, {Smith}, {Soares-Santos}, {Suchyta}, {Tarle}, {Thomas}, {To}, {Varga}, {Weller}, \& {DES Collaboration}}]{2022PhRvD.106j3530P}
+	{Porredon}, A., {Crocce}, M., {Elvin-Poole}, J., {et~al.} 2022, \prd, 106, 103530
+	
+	\bibitem[{{Predehl}(2012)}]{2012SPIE.8443E..1RP}
+	{Predehl}, P. 2012, in Society of Photo-Optical Instrumentation Engineers (SPIE) Conference Series, Vol. 8443, Space Telescopes and Instrumentation 2012: Ultraviolet to Gamma Ray, ed. T.~{Takahashi}, S.~S. {Murray}, \& J.-W.~A. {den Herder}, 84431R
+	
+	\bibitem[{{Rahman} {et~al.}(2022){Rahman}, {Trotta}, {Boruah}, {Hudson}, \& {van Dyk}}]{2022MNRAS.514..139R}
+	{Rahman}, W., {Trotta}, R., {Boruah}, S.~S., {Hudson}, M.~J., \& {van Dyk}, D.~A. 2022, \mnras, 514, 139
+	
+	\bibitem[{{Rameez} {et~al.}(2018){Rameez}, {Mohayaee}, {Sarkar}, \& {Colin}}]{2018MNRAS.477.1772R}
+	{Rameez}, M., {Mohayaee}, R., {Sarkar}, S., \& {Colin}, J. 2018, \mnras, 477, 1772
+	
+	\bibitem[{{Refsdal}(1964)}]{1964MNRAS.128..295R}
+	{Refsdal}, S. 1964, \mnras, 128, 295
+	
+	\bibitem[{{Riess}(2020)}]{2020NatRP...2...10R}
+	{Riess}, A.~G. 2020, Nature Reviews Physics, 2, 10
+	
+	\bibitem[{{Riess} \& {Breuval}(2023)}]{2023arXiv230810954R}
+	{Riess}, A.~G. \& {Breuval}, L. 2023, arXiv e-prints, arXiv:2308.10954
+	
+	\bibitem[{{Riess} {et~al.}(2019){Riess}, {Casertano}, {Yuan}, {Macri}, \& {Scolnic}}]{2019ApJ...876...85R}
+	{Riess}, A.~G., {Casertano}, S., {Yuan}, W., {Macri}, L.~M., \& {Scolnic}, D. 2019, \apj, 876, 85
+	
+	\bibitem[{{Riess} {et~al.}(2022){Riess}, {Yuan}, {Macri}, {Scolnic}, {Brout}, {Casertano}, {Jones}, {Murakami}, {Anand}, {Breuval}, {Brink}, {Filippenko}, {Hoffmann}, {Jha}, {D'arcy Kenworthy}, {Mackenty}, {Stahl}, \& {Zheng}}]{2022ApJ...934L...7R}
+	{Riess}, A.~G., {Yuan}, W., {Macri}, L.~M., {et~al.} 2022, \apjl, 934, L7
+	
+	\bibitem[{{Risaliti} \& {Lusso}(2019)}]{2019NatAs...3..272R}
+	{Risaliti}, G. \& {Lusso}, E. 2019, Nature Astronomy, 3, 272
+	
+	\bibitem[{{Rubart} {et~al.}(2014){Rubart}, {Bacon}, \& {Schwarz}}]{2014A&A...565A.111R}
+	{Rubart}, M., {Bacon}, D., \& {Schwarz}, D.~J. 2014, \aap, 565, A111
+	
+	\bibitem[{{Sakr}(2023)}]{2023PhRvD.108h3519S}
+	{Sakr}, Z. 2023, \prd, 108, 083519
+	
+	\bibitem[{{Sanidas} {et~al.}(2018){Sanidas}, {Caleb}, {Driessen}, {Morello}, {Rajwade}, \& {Stappers}}]{2018IAUS..337..406S}
+	{Sanidas}, S., {Caleb}, M., {Driessen}, L., {et~al.} 2018, in Pulsar Astrophysics the Next Fifty Years, ed. P.~{Weltevrede}, B.~B.~P. {Perera}, L.~L. {Preston}, \& S.~{Sanidas}, Vol. 337, 406--407
+	
+	\bibitem[{{Schwarz} \& {Weinhorst}(2007)}]{2007AA...474..717S}
+	{Schwarz}, D.~J. \& {Weinhorst}, B. 2007, \aap, 474, 717
+	
+	\bibitem[{{Scolnic} {et~al.}(2022){Scolnic}, {Brout}, {Carr}, {Riess}, {Davis}, {Dwomoh}, {Jones}, {Ali}, {Charvu}, {Chen}, {Peterson}, {Popovic}, {Rose}, {Wood}, {Brown}, {Chambers}, {Coulter}, {Dettman}, {Dimitriadis}, {Filippenko}, {Foley}, {Jha}, {Kilpatrick}, {Kirshner}, {Pan}, {Rest}, {Rojas-Bravo}, {Siebert}, {Stahl}, \& {Zheng}}]{2022ApJ...938..113S}
+	{Scolnic}, D., {Brout}, D., {Carr}, A., {et~al.} 2022, \apj, 938, 113
+	
+	\bibitem[{{Scolnic} {et~al.}(2018){Scolnic}, {Jones}, {Rest}, {Pan}, {Chornock}, {Foley}, {Huber}, {Kessler}, {Narayan}, {Riess}, {Rodney}, {Berger}, {Brout}, {Challis}, {Drout}, {Finkbeiner}, {Lunnan}, {Kirshner}, {Sanders}, {Schlafly}, {Smartt}, {Stubbs}, {Tonry}, {Wood-Vasey}, {Foley}, {Hand}, {Johnson}, {Burgett}, {Chambers}, {Draper}, {Hodapp}, {Kaiser}, {Kudritzki}, {Magnier}, {Metcalfe}, {Bresolin}, {Gall}, {Kotak}, {McCrum}, \& {Smith}}]{2018ApJ...859..101S}
+	{Scolnic}, D.~M., {Jones}, D.~O., {Rest}, A., {et~al.} 2018, \apj, 859, 101
+	
+	\bibitem[{{Secrest} {et~al.}(2021){Secrest}, {von Hausegger}, {Rameez}, {Mohayaee}, {Sarkar}, \& {Colin}}]{2021ApJ...908L..51S}
+	{Secrest}, N.~J., {von Hausegger}, S., {Rameez}, M., {et~al.} 2021, \apjl, 908, L51
+	
+	\bibitem[{{Shah} {et~al.}(2021){Shah}, {Lemos}, \& {Lahav}}]{2021A&ARv..29....9S}
+	{Shah}, P., {Lemos}, P., \& {Lahav}, O. 2021, \aapr, 29, 9
+	
+	\bibitem[{{Shim} {et~al.}(2023){Shim}, {Park}, {Kim}, \& {Hong}}]{2023ApJ...952...59S}
+	{Shim}, J., {Park}, C., {Kim}, J., \& {Hong}, S.~E. 2023, \apj, 952, 59
+	
+	\bibitem[{{Shirokov} {et~al.}(2020){Shirokov}, {Sokolov}, {Lovyagin}, {Amati}, {Baryshev}, {Sokolov}, \& {Gorokhov}}]{2020MNRAS.496.1530S}
+	{Shirokov}, S.~I., {Sokolov}, I.~V., {Lovyagin}, N.~Y., {et~al.} 2020, \mnras, 496, 1530
+	
+	\bibitem[{{Singal}(2019)}]{2019PhRvD.100f3501S}
+	{Singal}, A.~K. 2019, \prd, 100, 063501
+	
+	\bibitem[{{Singal}(2023)}]{2023MNRAS.524.3636S}
+	{Singal}, A.~K. 2023, \mnras, 524, 3636
+	
+	\bibitem[{{Smith} {et~al.}(2020){Smith}, {D'Andrea}, {Sullivan}, {M{\"o}ller}, {Nichol}, {Thomas}, {Kim}, {Sako}, {Castander}, {Filippenko}, {Foley}, {Galbany}, {Gonz{\'a}lez-Gait{\'a}n}, {Kasai}, {Kirshner}, {Lidman}, {Scolnic}, {Brout}, {Davis}, {Gupta}, {Hinton}, {Kessler}, {Lasker}, {Macaulay}, {Wolf}, {Zhang}, {Asorey}, {Avelino}, {Bassett}, {Calcino}, {Carollo}, {Casas}, {Challis}, {Childress}, {Clocchiatti}, {Crawford}, {Frohmaier}, {Glazebrook}, {Goldstein}, {Graham}, {Hoormann}, {Kuehn}, {Lewis}, {Mandel}, {Morganson}, {Muthukrishna}, {Nugent}, {Pan}, {Pursiainen}, {Sharp}, {Sommer}, {Swann}, {Thomas}, {Tucker}, {Uddin}, {Wiseman}, {Zheng}, {Abbott}, {Annis}, {Avila}, {Bechtol}, {Bernstein}, {Bertin}, {Brooks}, {Burke}, {Carnero Rosell}, {Carrasco Kind}, {Carretero}, {Cunha}, {da Costa}, {Davis}, {De Vicente}, {Diehl}, {Eifler}, {Estrada}, {Frieman}, {Garc{\'\i}a-Bellido}, {Gaztanaga}, {Gerdes}, {Gruen}, {Gruendl}, {Gschwend}, {Gutierrez}, {Hartley}, {Hollowood}, {Honscheid}, {Hoyle}, {James},
+		{Johnson}, {Johnson}, {Kuropatkin}, {Li}, {Lima}, {Maia}, {March}, {Marshall}, {Martini}, {Menanteau}, {Miller}, {Miquel}, {Neilsen}, {Ogando}, {Plazas}, {Romer}, {Sanchez}, {Scarpine}, {Schubnell}, {Serrano}, {Sevilla-Noarbe}, {Soares-Santos}, {Sobreira}, {Suchyta}, {Tarle}, {Tucker}, \& {Wester}}]{2020AJ....160..267S}
+	{Smith}, M., {D'Andrea}, C.~B., {Sullivan}, M., {et~al.} 2020, \aj, 160, 267
+	
+	\bibitem[{{Stahl} {et~al.}(2019){Stahl}, {Zheng}, {de Jaeger}, {Filippenko}, {Bigley}, {Blanchard}, {Blanchard}, {Brink}, {Cargill}, {Casper}, {Channa}, {Choi}, {Choksi}, {Chu}, {Clubb}, {Cohen}, {Ellison}, {Falcon}, {Fazeli}, {Fuller}, {Ganeshalingam}, {Gates}, {Gould}, {Halevi}, {Hayakawa}, {Hestenes}, {Jeffers}, {Joubert}, {Kandrashoff}, {Kim}, {Kim}, {Kislak}, {Kleiser}, {Kong}, {de Kouchkovsky}, {Krishnan}, {Kumar}, {Leja}, {Leonard}, {Li}, {Li}, {Lu}, {Mason}, {Molloy}, {Pina}, {Rex}, {Ross}, {Stegman}, {Tang}, {Thrasher}, {Wang}, {Wilkins}, {Yuk}, {Yunus}, \& {Zhang}}]{2019MNRAS.490.3882S}
+	{Stahl}, B.~E., {Zheng}, W., {de Jaeger}, T., {et~al.} 2019, \mnras, 490, 3882
+	
+	\bibitem[{{Sun} \& {Wang}(2018)}]{2018MNRAS.478.5153S}
+	{Sun}, Z.~Q. \& {Wang}, F.~Y. 2018, \mnras, 478, 5153
+	
+	\bibitem[{{Sun} \& {Wang}(2019)}]{2019EPJC...79..783S}
+	{Sun}, Z.~Q. \& {Wang}, F.~Y. 2019, European Physical Journal C, 79, 783
+	
+	\bibitem[{Tang {et~al.}(2023)Tang, Lin, Liu, \& Li}]{Tang_2023}
+	Tang, L., Lin, H.-N., Liu, L., \& Li, X. 2023, Chinese Physics C, 47, 125101
+	
+	\bibitem[{{Tegmark} {et~al.}(2003){Tegmark}, {de Oliveira-Costa}, \& {Hamilton}}]{2003PhRvD..68l3523T}
+	{Tegmark}, M., {de Oliveira-Costa}, A., \& {Hamilton}, A.~J. 2003, \prd, 68, 123523
+	
+	\bibitem[{{Tiwari} \& {Jain}(2019)}]{2019AA...622A.113T}
+	{Tiwari}, P. \& {Jain}, P. 2019, \aap, 622, A113
+	
+	\bibitem[{{Tripp}(1998)}]{1998A&A...331..815T}
+	{Tripp}, R. 1998, \aap, 331, 815
+	
+	\bibitem[{{Turnbull} {et~al.}(2012){Turnbull}, {Hudson}, {Feldman}, {Hicken}, {Kirshner}, \& {Watkins}}]{2012MNRAS.420..447T}
+	{Turnbull}, S.~J., {Hudson}, M.~J., {Feldman}, H.~A., {et~al.} 2012, \mnras, 420, 447
+	
+	\bibitem[{{Vagnozzi}(2023)}]{2023Univ....9..393V}
+	{Vagnozzi}, S. 2023, Universe, 9, 393
+	
+	\bibitem[{{Van Raamsdonk} \& {Waddell}(2023)}]{2023arXiv230504946V}
+	{Van Raamsdonk}, M. \& {Waddell}, C. 2023, arXiv e-prints, arXiv:2305.04946
+	
+	\bibitem[{{Verde} {et~al.}(2019){Verde}, {Treu}, \& {Riess}}]{2019NatAs...3..891V}
+	{Verde}, L., {Treu}, T., \& {Riess}, A.~G. 2019, Nature Astronomy, 3, 891
+	
+	\bibitem[{{Wang}(2022)}]{2022PhRvD.106f3515W}
+	{Wang}, D. 2022, \prd, 106, 063515
+	
+	\bibitem[{{Wang} \& {Dai}(2013)}]{2013MNRAS.432.3025W}
+	{Wang}, F.~Y. \& {Dai}, Z.~G. 2013, \mnras, 432, 3025
+	
+	\bibitem[{{Wang} {et~al.}(2015){Wang}, {Dai}, \& {Liang}}]{2015NewAR..67....1W}
+	{Wang}, F.~Y., {Dai}, Z.~G., \& {Liang}, E.~W. 2015, \nar, 67, 1
+	
+	\bibitem[{{Wang} {et~al.}(2022){Wang}, {Hu}, {Zhang}, \& {Dai}}]{2022ApJ...924...97W}
+	{Wang}, F.~Y., {Hu}, J.~P., {Zhang}, G.~Q., \& {Dai}, Z.~G. 2022, \apj, 924, 97
+	
+	\bibitem[{{Wang} \& {Wang}(2014)}]{2014MNRAS.443.1680W}
+	{Wang}, J.~S. \& {Wang}, F.~Y. 2014, \mnras, 443, 1680
+	
+	\bibitem[{{Wang} {et~al.}(2023{\natexlab{a}}){Wang}, {Chen}, \& {Le Delliou}}]{2023EPJC...83..859W}
+	{Wang}, K., {Chen}, K.-P., \& {Le Delliou}, M. 2023{\natexlab{a}}, European Physical Journal C, 83, 859
+	
+	\bibitem[{{Wang} {et~al.}(2023{\natexlab{b}}){Wang}, {Tang}, {Jin}, \& {Fan}}]{2023ApJ...943...13W}
+	{Wang}, Y.-Y., {Tang}, S.-P., {Jin}, Z.-P., \& {Fan}, Y.-Z. 2023{\natexlab{b}}, \apj, 943, 13
+	
+	\bibitem[{{Wang} \& {Wang}(2018)}]{2018MNRAS.474.3516W}
+	{Wang}, Y.-Y. \& {Wang}, F.~Y. 2018, \mnras, 474, 3516
+	
+	\bibitem[{{Watkins} {et~al.}(2023){Watkins}, {Allen}, {Bradford}, {Ramon}, {Walker}, {Feldman}, {Cionitti}, {Al-Shorman}, {Kourkchi}, \& {Tully}}]{2023MNRAS.524.1885W}
+	{Watkins}, R., {Allen}, T., {Bradford}, C.~J., {et~al.} 2023, \mnras, 524, 1885
+	
+	\bibitem[{{Webb} {et~al.}(2011){Webb}, {King}, {Murphy}, {Flambaum}, {Carswell}, \& {Bainbridge}}]{2011PhRvL.107s1101W}
+	{Webb}, J.~K., {King}, J.~A., {Murphy}, M.~T., {et~al.} 2011, \prl, 107, 191101
+	
+	\bibitem[{{Wei} {et~al.}(2016){Wei}, {Cordier}, {Antier}, {Antilogus}, {Atteia}, {Bajat}, {Basa}, {Beckmann}, {Bernardini}, {Boissier}, {Bouchet}, {Burwitz}, {Claret}, {Dai}, {Daigne}, {Deng}, {Dornic}, {Feng}, {Foglizzo}, {Gao}, {Gehrels}, {Godet}, {Goldwurm}, {Gonzalez}, {Gosset}, {G{\"o}tz}, {Gouiffes}, {Grise}, {Gros}, {Guilet}, {Han}, {Huang}, {Huang}, {Jouret}, {Klotz}, {La Marle}, {Lachaud}, {Le Floch}, {Lee}, {Leroy}, {Li}, {Li}, {Li}, {Liang}, {Lyu}, {Mercier}, {Migliori}, {Mochkovitch}, {O'Brien}, {Osborne}, {Paul}, {Perinati}, {Petitjean}, {Piron}, {Qiu}, {Rau}, {Rodriguez}, {Schanne}, {Tanvir}, {Vangioni}, {Vergani}, {Wang}, {Wang}, {Wang}, {Wang}, {Watson}, {Webb}, {Wei}, {Willingale}, {Wu}, {Wu}, {Xin}, {Xu}, {Yu}, {Yu}, {Yu}, {Zhang}, {Zhang}, {Zhang}, \& {Zhou}}]{Wei2016}
+	{Wei}, J., {Cordier}, B., {Antier}, S., {et~al.} 2016, arXiv e-prints, arXiv:1610.06892
+	
+	\bibitem[{{Wong} {et~al.}(2020){Wong}, {Suyu}, {Chen}, {Rusu}, {Millon}, {Sluse}, {Bonvin}, {Fassnacht}, {Taubenberger}, {Auger}, {Birrer}, {Chan}, {Courbin}, {Hilbert}, {Tihhonova}, {Treu}, {Agnello}, {Ding}, {Jee}, {Komatsu}, {Shajib}, {Sonnenfeld}, {Blandford}, {Koopmans}, {Marshall}, \& {Meylan}}]{2020MNRAS.498.1420W}
+	{Wong}, K.~C., {Suyu}, S.~H., {Chen}, G. C.~F., {et~al.} 2020, \mnras, 498, 1420
+	
+	\bibitem[{{Wu} {et~al.}(2022){Wu}, {Zhang}, \& {Wang}}]{2022MNRAS.515L...1W}
+	{Wu}, Q., {Zhang}, G.-Q., \& {Wang}, F.-Y. 2022, \mnras, 515, L1
+	
+	\bibitem[{{Xu} {et~al.}(2022){Xu}, {Dai}, {Zhao}, \& {Xia}}]{2022MNRAS.515.5587X}
+	{Xu}, Y.-T., {Dai}, J.-P., {Zhao}, D., \& {Xia}, J.-Q. 2022, \mnras, 515, 5587
+	
+	\bibitem[{{Yang} {et~al.}(2014){Yang}, {Wang}, \& {Chu}}]{2014MNRAS.437.1840Y}
+	{Yang}, X., {Wang}, F.~Y., \& {Chu}, Z. 2014, \mnras, 437, 1840
+	
+	\bibitem[{{Yuan} {et~al.}(2015){Yuan}, {Zhang}, {Feng}, {Zhang}, {Ling}, {Zhao}, {Deng}, {Qiu}, {Osborne}, {O'Brien}, {Willingale}, {Lapington}, {Fraser}, \& {the Einstein Probe team}}]{Yuan2015}
+	{Yuan}, W., {Zhang}, C., {Feng}, H., {et~al.} 2015, arXiv e-prints, arXiv:1506.07735
+	
+	\bibitem[{{Zaja{\v{c}}ek} {et~al.}(2023){Zaja{\v{c}}ek}, {Czerny}, {Khadka}, {Prince}, {Panda}, {Mart{\'\i}nez-Aldama}, \& {Ratra}}]{2023arXiv230508179Z}
+	{Zaja{\v{c}}ek}, M., {Czerny}, B., {Khadka}, N., {et~al.} 2023, arXiv e-prints, arXiv:2305.08179
+	
+	\bibitem[{{Zhao} \& {Xia}(2021{\natexlab{a}})}]{2021EPJC...81..948Z}
+	{Zhao}, D. \& {Xia}, J.-Q. 2021{\natexlab{a}}, European Physical Journal C, 81, 948
+	
+	\bibitem[{{Zhao} \& {Xia}(2021{\natexlab{b}})}]{2021EPJC...81..694Z}
+	{Zhao}, D. \& {Xia}, J.-Q. 2021{\natexlab{b}}, European Physical Journal C, 81, 694
+	
+	\bibitem[{{Zhao} \& {Xia}(2022)}]{2022MNRAS.511.5661Z}
+	{Zhao}, D. \& {Xia}, J.-Q. 2022, \mnras, 511, 5661
+	
+	\bibitem[{{Zhao} {et~al.}(2019){Zhao}, {Zhou}, \& {Chang}}]{2019MNRAS.486.5679Z}
+	{Zhao}, D., {Zhou}, Y., \& {Chang}, Z. 2019, \mnras, 486, 5679
+	
+	\bibitem[{{Zhao} {et~al.}(2022){Zhao}, {Zhang}, {Li}, {Zou}, {Zhang}, \& {Zhang}}]{2022arXiv221213433Z}
+	{Zhao}, Z.-W., {Zhang}, J.-G., {Li}, Y., {et~al.} 2022, arXiv e-prints, arXiv:2212.13433
+	
+	\bibitem[{{Zhou} {et~al.}(2017){Zhou}, {Zhao}, \& {Chang}}]{2017ApJ...847...86Z}
+	{Zhou}, Y., {Zhao}, Z.-C., \& {Chang}, Z. 2017, \apj, 847, 86
+	
+\end{thebibliography}
+
+
+
+%\clearpage
+%\onecolumn
+\begin{appendix}
+
+%\clearpage
+%\appendix
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% discrepancy degree
+%Fig.A1
+\section{Additional figures}
+\begin{figure}[htp]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \subfigure[30$\degr$]{\label{Fig9.sub.1}\includegraphics[width=0.42\hsize]{Om_30.pdf}}
+        \subfigure[30$\degr$]{\label{Fig9.sub.2}\includegraphics[width=0.42\hsize]{H0_30.pdf}}\\
+        \subfigure[45$\degr$]{\label{Fig9.sub.3}\includegraphics[width=0.42\hsize]{Om_45.pdf}}
+        \subfigure[45$\degr$]{\label{Fig9.sub.4}\includegraphics[width=0.42\hsize]{H0_45.pdf}}\\
+        \subfigure[60$\degr$]{\label{Fig9.sub.5}\includegraphics[width=0.42\hsize]{Om_60.pdf}}
+        \subfigure[60$\degr$]{\label{Fig9.sub.6}\includegraphics[width=0.42\hsize]{H0_60.pdf}}
+        % figure caption is below the figure
+        \caption{All-sky distribution of cosmological parameter ($\Omega_{m}$ and $H_{0}$) utilizing the Pantheon+ sample combined with the RF method with different screening angles including 30$\degr$, 45$\degr$ , and 60$\degr$. Panels (a) and (b) show the results using the RF method with 30$\degr$. Panels (c) and (d) are the results of 45$\degr$. Panels (e) and (f) are the results of 60$\degr$. The proportions of the wrong fitting results are 30.34\%, 6.47\%, and 0.70\% for the screening angles 30$\degr$, 45$\degr$ , and 60$\degr$, respectively. }
+        \label{F9}       % Give a unique label
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Fig.A2
+\begin{figure}[htp]
+        \centering
+        % Use the relevant command to insert your figure file.
+        % For example, with the graphicx package use
+        \includegraphics[width=0.3\textwidth]{Om_60max.pdf}
+        % figure caption is below the figure
+        \caption{Confidence contours ($1\sigma$ and $2\sigma$) and marginalized likelihood distributions for parameters space ($\Omega_{m}$ and $H_{0}$) in the spatially flat $\rm \Lambda$CDM model from SNe Ia subsamples, which corresponds to $\Omega_{m, \mathrm{min}}$ and $\Omega_{m, \mathrm{max}}$. The best fits are $\Omega_{m, \mathrm{min}}$ = 0.23$^{+0.20}_{-0.17}$ and $H_{0}$ = 74.05$^{+1.00}_{-1.00}$ km s$^{-1}$ Mpc$^{-1}$ and $\Omega_{m, \mathrm{max}}$ = 0.66 $^{+0.17}_{-0.17}$ and $H_{0}$ = 72.70 $^{+0.52}_{-0.52}$ km s$^{-1}$ Mpc$^{-1}$. }
+        \label{Ommax}       % Give a unique label
+\end{figure}
+
+
+\end{appendix}
+% Don't change these lines
+\label{lastpage}
+\end{document}
+

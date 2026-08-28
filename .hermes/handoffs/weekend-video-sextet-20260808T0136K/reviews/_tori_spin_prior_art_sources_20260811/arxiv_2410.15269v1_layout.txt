@@ -1,0 +1,729 @@
+                                                       Asymmetry in galaxy spin directions: a fully reproducible
+                                                                    experiment using HSC data
+
+
+
+
+arXiv:2410.15269v1 [astro-ph.CO] 20 Oct 2024
+                                                                                            Lior Shamir
+                                                                                      Kansas State University
+                                                                             1701 Platt St, Manhattan, KS 66506, USA
+
+
+                                               Abstract                                                       direction is the same as the number of galaxies rotat-
+                                                                                                              ing in the opposite direction, multiple studies starting
+                                               The asymmetry in the large-scale distribution of the           as early as the 1980s have provided consistent results
+                                               directions towards spiral galaxies rotate has been ob-         that the distribution of galaxies in the sky does not
+                                               served by multiple telescopes, all show a consistent           necessarily satisfy the null hypothesis. At the same
+                                               asymmetry in the distribution of galaxy spin direc-            time, other studies argued that the null hypothesis
+                                               tions as observed from Earth. Here, galaxies with              agrees with the observations.
+                                               redshift from HSC DR3 are annotated by their direc-               Early observations were based on a relatively small
+                                               tion of rotation, and their distribution is analyzed.          number of galaxies classified manually by the shape
+                                               The results show that galaxies that rotate in the op-          of the galaxy arms, showing asymmetry between the
+                                               posite direction relative to the Milky Way as observed         number of spiral galaxies that rotate clockwise and
+                                               from Earth are significantly more prevalent compared           the number of spiral galaxies that rotate counter-
+                                               to galaxies that rotate in the same direction relative         clockwise with confidence of 92% (MacGillivray and
+                                               to the Milky Way. The asymmetry also forms a dipole            Dodd, 1985). The deployment of robotic telescopes
+                                               axis that becomes stronger when the redshift gets              allowed using far more galaxies, using autonomous
+                                               higher. These results are aligned with observations            digital sky surveys such as the Sloan Digital Sky
+                                               from virtually all premier digital sky surveys, as well        Survey (SDSS) (Longo, 2011; Shamir, 2012, 2019,
+                                               as space telescopes such as HST and JWST. That                 2020d,c, 2021a).
+                                               shows that the distribution of galaxy spin directions
+                                               as observed from Earth is not symmetric, and has a                Other digital sky surveys also showed asymmetry
+                                               possible link to the rotational velocity of the Milky          between the number of galaxies rotating clockwise
+                                               Way. The experiment is provided with data, code,               and the number of galaxies rotating counetrclock-
+                                               and a full protocol that allows to easily reproduce            wise. These experiments include DECam (Shamir,
+                                               the results in a transparent manner. That practice is          2021b), Pan-STARRS (Shamir, 2020d), the Dark
+                                               used to overcome the “reproducibility crisis” in sci-          Energy Survey (Shamir, 2022c,d), and the DESI
+                                               ence.                                                          Legacy Survey (Shamir, 2022b). These sky surveys
+                                                                                                              cover both the Northern and Southern hemispheres,
+                                                                                                              and showed that the asymmetry in the distribution
+                                               1    Introduction                                              of galaxy spin directions forms a cosmological-scale
+                                                                                                              dipole axis (Shamir, 2020d, 2022c, 2021b, 2022b).
+                                               The distribution of the directions of rotation of spiral       Other experiments were based on space telescopes
+                                               galaxies has been a topic of study for several decades,        such as Hubble Space Telescope (Shamir, 2020b), and
+                                               often with conflicting results. While the null hypoth-         James Webb Space Telescope (Shamir, 2024b). The
+                                               esis is that the number of galaxies rotating in one            James Webb Space Telescope deep field image ac-
+
+                                                                                                          1
+quired inside the field of HST’s Ultra Deep Field al-          cusses the question of the distribution of galaxy spin
+lows to notice the asymmetry by simple manual in-              direction in the light of the current “reproducibility
+spection (Shamir, 2024b).                                      crisis” in science.
+   The asymmetry and the large-scale axis ex-
+hibited by it might be related to anomalies in
+the large-scale structure of the Universe, and can             2    Data
+agree with other theories such as rotating Uni-
+verse (Gödel, 1949; Ozsváth and Schücking, 1962;            The data used in this experiment is galaxies with
+Ozsvath and Schücking, 2001; Sivaram and Arun,                redshift imaged by HSC and included in HSC third
+2012; Chechin, 2016; Seshavatharam and Lakshmi-                data release (DR3). HSC uses the powerful 8.2 me-
+narayana, 2020a; Campanelli, 2021), or black hole              ter Subaru telescope, providing it with imaging power
+cosmology (Pathria, 1972; Easson and Branden-                  stronger than other Earth-based digital sky surveys
+berger, 2001; Seshavatharam and Lakshminarayana,               such SDSS, Pan-STARRS, or DES. HSC can there-
+2014; Poplawski, 2010b; Tatum et al., 2018; Chris-             fore provide images with high details of the galaxy
+tillin, 2014; Seshavatharam and Lakshminarayana,               shapes, allowing to observe the arms of galaxies at
+2020b; Chakrabarty et al., 2020). On the other hand,           higher redshift ranges compared to any other Earth-
+the locations of the most likely axis in all experi-           based digital sky survey. The downside of HSC is
+ments are within close proximity to the Galactic pole          that its footprint size is smaller compared to some
+(McAdam and Shamir, 2023). That leads to the pos-              other Earth-based digital sky surveys.
+sibility that the dipole axis is not necessarily of cos-          The dataset used in this experiment is the same
+mological origin, but could be due to differences in           dataset used in (Shamir, 2024a), and the full details
+the brightness of the galaxies driven by their rota-           regarding the preparation of the dataset are described
+tional velocity relative to the Galactic pole (McAdam          in that paper. In summary, the initial set of galaxies
+and Shamir, 2023; Shamir, 2020a, 2017, 2024d).                 included all galaxies with redshift in HSC DR3. Be-
+   While numerous experiments using several differ-            cause HSC is not a spectroscopic survey, the redshifts
+ent telescopes showed that the distribution of galaxy          of the galaxies are taken from SDSS DR17. That in-
+spin directions is not fully random, other studied             cluded 101,415 galaxies with redshift of 0 < z < 0.3.
+showed no statistically significant asymmetry (Iye                After the images of all galaxies were downloaded,
+and Sugai, 1991; Land et al., 2008; Hayes et al., 2017;        the galaxies were annotated by their direction of ro-
+Iye et al., 2021; Patel and Desmond, 2024). These              tation. Annotating 105 galaxies is definitely a labor
+claims were addressed in previous studies that aimed           intensive task that is largely impractical to do man-
+at reproduction and careful analysis of these exper-           ually. More importantly, manual annotation is sub-
+iment to understand the reason they provided ran-              jected to cognitive biases that are very difficult to
+dom distribution (Shamir, 2023, 2022b, 2024b, 2022e,           quantify and control. Therefore, the entire process of
+2024c).                                                        annotating the galaxies was performed in a fully auto-
+   This paper shows an experiment using galaxies               matic manner, and without any human intervention
+with redshift imaged by the Hyper Suprime-Cam                  except for inspection of the annotation. The spin di-
+(HSC). The redshift and the powerful imaging power             rections of galaxies were annotated by the Ganalyzer
+of HSC allows to analyze galaxies with higher red-             algorithm (Shamir, 2011a,b) as described in (Shamir,
+shift compared to other Earth-based telescopes, and            2024d,a, 2021b, 2022d,b,a,c). The Ganalyzer algo-
+therefore better profile the change of the asymmetry           rithm and the way it was used is described in a large
+in response to the redshift of the galaxies. Code and          number of previous papers (Shamir, 2011a, 2024d,a,
+data are provided, allowing to easily reproduce the            2021b, 2022d,b,a,c).
+experiment and inspect the consistency of the data.               In summary, Ganalyzer first converts each galaxy
+That makes the experiment different from most pre-             image into its radial intensity plot transformation.
+vious studies of this question. The paper also dis-            Then, for each radial distance from the center of the
+
+
+                                                           2
+galaxy, it applies peak detection to identify bright           rect. No in-between cases were identified, as such
+pixels. Because arm pixels are brighter than back-             cases are rejected by the algorithms and these galax-
+ground pixels, the bright pixels are expected to be            ies are not assigned with an annotation. The 100
+on the galaxy arms. If the polar angle of these bright         galaxies were selected such that 50 galaxies had red-
+pixels changes with the radial distance, it means that         shift lower than 0.1 and 50 had redshift higher than
+the arm is curved, and the direction of the curve can          0.1, to ensure that the correctness of the annotation
+identify the direction of rotation of the galaxy. That         does not degrade when the galaxies have higher red-
+is done by applying a linear regression to the bright          shifts. The annotation was repeated also after mir-
+pixels on the radial intensity plot, and the sign of the       roring all galaxy images to ensure that the analysis
+regression coefficient determines the direction of the         is symmetric, and that mirroring the galaxy images
+arm curve. The full details with thorough experimen-           does not change the annotation. In cases of galax-
+tal results are available at (Shamir, 2011a, 2024d,a,          ies with unique shapes or features that can confuse
+2021b, 2022d,b,a,c).                                           the algorithm, it is expected that such galaxies will
+   Ganalyzer is a fully symmetric algorithm (Shamir,           be distributed evenly between galaxies that rotate in
+2011a), and its simple and “mechanical” nature al-             both directions.
+lows to understand and control the way it works.                  Figure 1 shows the distribution of the redshift of
+The explainable nature of Ganalyzer makes it differ-           the galaxies. Naturally, the number of annotated
+ent from machine learning and deep neural network              galaxies decreases as the redshift gets higher, as at
+solutions. The complex nature of these algorithms              higher redshifts the number of galaxies that their
+makes them difficult to fully profile, leading to unex-        shape can be identified gets smaller. Table 2 shows
+pected biases (Ball, 2023; Dhar and Shamir, 2022).             the RA distribution of the galaxies in the dataset,
+   As described with experimental results in (Shamir,          which is driven by the footprint of HSC DR3. Since
+2021b, 2022d,b,a,c), Ganalyzer annotates the sign of           HSC DR3 does not cover all RA ranges, some RA
+the direction of rotation of galaxies (clockwise or            ranges do not have galaxies in them. The RA ranges
+counterclockwise) with virtually no errors. That is,           of [45o , 120o ] and [255o , 330o ] are not within the HSC
+it would very rarely classify a galaxy that rotates            DR3 footprint, and therefore contain no galaxies.
+clockwise as a galaxy that rotates counterclockwise.           Since the footprint does not have galaxies in some
+At the same time, the algorithm also rejects galaxies          large parts of the sky, the analysis requires a method
+that the algorithm cannot determine their direction            that fits the entire set of galaxies into a statistical
+of rotation. As described in (Shamir, 2011a), if the           model, as will be explained in Section 3.
+absolute value of the coefficient of the linear regres-
+sion is smaller than 0.35, the slope is determined to
+be too weak to identify the direction of rotation of the
+galaxy. In that case, the galaxy is ignored and not
+used in the analysis. In HSC DR3 image data, ∼86%
+of the galaxies were ignored, which means that these
+galaxies were elliptical, irregular, or that their shape
+did not allow to identify their direction of rotation.
+   When the annotation of the galaxies was com-
+pleted, it provided a very clean dataset of 13,477
+galaxies (Shamir, 2024a). The dataset can be down-
+loaded at https://people.cs.ksu.edu/~lshamir/                  Figure 1: The redshift distribution of the galaxies.
+data/asymmetry_hsc/. An inspection of 100 galax-               Since galaxies at higher redshift ranges tend to be
+ies shows that the annotations of all of these galaxies        smaller and dimmer, the number of annotated galax-
+are in agreement with the annotation of the human              ies declines as the redshift range gets higher.
+eye, and in all cases the annotation is clear and cor-
+
+
+                                                           3
+                                                                 shift effect, galaxies that rotate in the opposite di-
+                                                                 rection relative to the Galactic pole are expected to
+                                                                 be slightly brighter compared to galaxies that rotate
+                                                                 in the same direction relative to the Galactic pole
+                                                                 (McAdam and Shamir, 2023). With the rotational
+                                                                 velocity of the Milky Way of ∼ 220 km · sec−1 , the
+                                                                 expected magnitude difference is ∼ 0.006 (McAdam
+                                                                 and Shamir, 2023). Empirical experiments have in-
+                                                                 deed shown that the average magnitude of galaxies
+                                                                 that rotate in the same direction relative to the Milky
+                                                                 Way is different from the average magnitude of galax-
+                                                                 ies that rotate in the opposite direction. That was ob-
+Figure 2: RA distribution of the galaxies. The dis- served with data from SDSS, Pan-STARRS (Shamir,
+tribution is driven by the footprint of HSC DR3, and 2017), Hubble Space Telescope (Shamir, 2020a) and
+therefore some RA ranges do not contain galaxies.                DESI Legacy Survey (McAdam and Shamir, 2023).
+                                                                    Since galaxies that rotate in the opposite direction
+                                                                 relative to the Milky Way are expected to be brighter
+   Figure 3 shows the distribution of the exponential than galaxies that rotate in the same direction rela-
+magnitude of the galaxies in the r band. As the graph tive to the Milky Way, galaxies that rotate in the
+shows, the vast majority of the galaxies are with r same direction relative to the Milky Way are expected
+magnitude of between 16 to 18, with very rare cases to be more prevalent to an Earth-base observed com-
+of galaxies dimmer than 18. The dataset also does pare to galaxies that rotate in the same direction rela-
+not contain galaxies brighter than 13.                           tive to the Milky Way. Therefore, more galaxies that
+                                                                 rotate clockwise are expected to be observed around
+         0.5                                                     the Southern Galactic pole, and more galaxies ro-
+        0.45
+         0.4                                                     tating counterclockwise are expected to be observed
+        0.35                                                     in the Northern end of the Galactic pole. For in-
+
+      Fraction of total
+         0.3
+        0.25                                                     stance, JWST deep field images images acquired in
+         0.2                                                     close proximity to the Galactic pole showed that the
+        0.15
+         0.1
+                                                                 number of galaxies that rotate in the opposite di-
+        0.05                                                     rection relative to the Milky Way is higher than the
+           0
+             13-14 14-15 15-16   16-17    17-18  18-19 19-20 >20 number of galaxies that rotate in the same direction
+                             Magnitude range (r)
+                                                                 relative to the Milky Way (Shamir, 2024b).
+                                                                    HSC DR3 does not cover neither the Southern
+Figure 3: The magnitude distribution of the galax- Galactic pole nor the Northern Galactic pole. But it
+ies. The magnitude is the exponential magnitude of can be expected that the population of galaxies that
+the r band. The vast majority of the galaxies have are closer to one of the ends of the Galactic poles
+exponential magnitude of 16-18.                                  will exhibit such asymmetry. That means that in the
+                                                                 population of galaxies closer to the Northern Galac-
+                                                                 tic pole, galaxies rotating counterclockwise will be
+                                                                 brighter, and therefore an excessive number of coun-
+3 Results                                                        terclockwise galaxies will be observed. In the popu-
+                                                                 lation of galaxies in the Southern end of the Galactic
+The first experiment was to test whether the distri- pole, an excessive number of clockwise galaxies is ex-
+bution of galaxy spin directions is different in the pected.
+two ends of the Galactic pole. Due to the Doppler                   Table 1 shows the number of galaxies rotating in
+
+
+                                                           4
+the same direction relative to the Milky Way and              (Shamir, 2019, 2020d,b, 2021a, 2022c,c, 2021b, 2022b,
+in the opposite direction relative to the Milky Way           2024b).
+around the Northern and Southern ends of the Galac-              The separation of the population of galaxies to
+tic pole. As the table shows, in both ends of the             galaxies that are closer to the Northern Galactic pole
+Galactic pole there are more galaxies that rotate in          and Galaxies that are closer to the Southern Galactic
+the opposite direction relative to the Milky Way are          pole provides a very simple experiment that is easy
+observed from Earth. As mentioned above, this is              to analyze and reproduce from the data. The statis-
+not necessarily because galaxies that rotate in the op-       tical inference is also straightforward, and based on
+posite direction relative to the Milky Way are more           simple binomial distribution.
+prevalent in the Universe, but because these galaxies            The higher number of galaxies that rotate in
+might be slightly brighter due to their rotational ve-        the opposite direction relative to the Milky Way is
+locity relative to the rotational velocity of the Earth       aligned with previous studies. For instance, when
+within the Milky Way galaxy.                                  using the “superclean” annotations of Galaxy Zoo 1
+                               OM W −M W
+                                                              (Land et al., 2008) that were also mirrored to offset
+    Pole    # MW     # OMW                  p value
+    North   4,317     4,436
+                               OM W +M W
+                                  0.014      0.103
+                                                              for the human bias, the asymmetry was 2.1% when
+    South   2,313     2,411       0.021      0.085            mirroring galaxy images annotated as counterclock-
+    All     6,630     6,847       0.016      0.031            wise, and 1.5% when mirroring galaxy images anno-
+                                                              tated as clockwise. That is based on the values in Ta-
+Table 1: The number of spiral galaxies that rotate
+                                                              ble 2 in (Land et al., 2008), as explained in (Shamir,
+in the same direction relative to the Milky Way and
+                                                              2022b; Mcadam et al., 2023; Shamir, 2023, 2024b).
+in the opposite direction relative to the Milky Way.
+                                                              The magnitude and direction of the asymmetry agree
+The p values are the binomial distribution probability
+                                                              with other datasets of SDSS galaxies with spectra,
+to have such distribution by chance when assuming
+                                                              showing a difference of ∼1.1% (Shamir, 2020d). The
+that the probability of a galaxy to rotate in a certain
+                                                              footprint of SDSS galaxies with spectra is such that
+direction is 0.5
+                          .                                   most galaxies are around the Northern Galactic pole,
+                                                              leading to the asymmetry when using the entire pop-
+   As the table shows, when using all galaxies in the         ulation of galaxies in that footprint (Shamir, 2023).
+dataset the probability to have such distribution by             Another experiment aimed at identifying whether
+mere chance is p ≃ 0.031. The fact that in both ends          the asymmetry in the distribution of galaxy spin
+of the Galactic pole more observed galaxies rotate            directions exhibits a cosmological-scale dipole axis.
+in the opposite direction relative to the Milky Way           That is based on the same analysis done in (Shamir,
+shows the consistency of the asymmetry, but it also           2019, 2020d,b, 2022c,c, 2021b, 2022b), and analyzed
+shows that it is not a feature of an asymmetry in the         thoroughly with extensive tests in (Shamir, 2021a).
+galaxy annotation algorithm. Galaxies that rotate in          In summary, all possible integer combinations of
+the same direction relative to the Milky Way would            (α, δ) are fitted to a cosine dependence with the di-
+seem to rotate counterclockwise in the Southern pole,         rections of rotations of the galaxies. That is done by
+but clockwise in the Northern Galactic pole. If the           using χ2 statistics shown in Equation 1, such that
+algorithm had some unknown bias towards a certain             the χ2 of the observed directions of rotation of the
+direction, that would have led to more galaxies that          galaxies is compared to the χ2 when assigning the
+rotate in the same direction in one end of the Galac-         galaxies with random spin directions. ϕi is the an-
+tic pole, and a higher number of galaxies that rotate         gular distance between (α, δ) and galaxy i, and d is
+in the opposite direction relative to the Milky Way in        the direction of rotation of the galaxy, where 1 means
+the opposite end of the Galactic pole. As mentioned           clockwise and -1 means counterclockwise.
+in Section 2, the annotation is fully symmetric, and
+was tested with mirroring the images in this exper-                                   (di · | cos(ϕi )| − cos(ϕi ))2
+iment, as well as in numerous previous experiments                   χ2(α,δ) = Σi |                                  |   (1)
+                                                                                                 cos(ϕi )
+
+                                                          5
+             α,δ
+   The χ2real is computed with the observed direc-                 ing the galaxies with random directions of rotation
+tions of rotations of the galaxies. The χ2 when us-                is also available at https://people.cs.ksu.edu/
+ing the random directions of rotations is computed                 ~lshamir/data/asymmetry_hsc. Figure 5 shows the
+1,000 times for each integer (α, δ) combination, and               probability to have a dipole axis by chance in differ-
+        α,δ
+the χ2random is the mean χ2α,δ of the 1,000 runs where             ent parts of the sky when the galaxies are assigned
+each run has a different set of random directions. The             with random directions of rotation.
+standard deviation σ(χ2α,δ ) is also computed using                   To test the link between the asymmetry and the
+the 1,000 runs. The (α, δ) that provides the highest               redshift, the dataset can be divided into two redshift
+χ2real −χ2random                                                   ranges: Galaxies of redshfit between 0 and 0.1, and
+     σ(χ2 )
+                 is the most likely dipole axis formed by
+       α,δ                                                         galaxies with reshift of 0.1 to 0.2. The two sets of
+the distribution of the galaxy spin directions. The                galaxies has 6,246, and 6,214 galaxies, respectively.
+analysis is explained in full detail in (Shamir, 2019,             That makes two sets of galaxies of similar sizes. Fig-
+2020d,b, 2022c,c, 2021b,a, 2022b). χ2 statistics as-               ure 6 shows the results of the analysis using each of
+sumes normal distribution of the galaxy spin direc-                these two redshift ranges, each range separately.
+tions, which is satisfied under the assumption that
+                                                                      When the redshift of the galaxies is z < 0.1 the
+the sign of the galaxy spin direction and the inclina-
+                                                                   statistical strength of the axis is 1.79σ peaking at
+tion of the galaxies are expected to be random.
+                                                                   (α = 114o , δ = 62). When the redshift range is
+                         χ2real −χ2random
+  Figure 4 shows the          σ(χ2α,δ )
+                                            for all possible       0.1 < z < 0.2, the statistical strength of the dipole
+(α, δ) integer combinations. Code and data to repro-               increases to 3.1σ, peaking at (α = 91o , δ = 50). Al-
+duce the experiment is available at https://people.                though the two experiments were based on two non-
+cs.ksu.edu/~lshamir/data/asymmetry_hsc.                            overlapping sets of galaxies, the location of the most
+                                                                   likely axes are close to each other, and well within the
+   The most likely dipole axis is at (α = 94o , δ = 52o ),         1σ error of the dipole axis shown in Figure 4. The
+with statistical significance of 3.3σ. The 1σ error                stronger signal when the galaxies have a higher red-
+range of the location is (39o , 196o ) for the RA and              shift is in agreement with previous observations using
+(−10o , 81o ) for the declination. HSC footprint that              other telescopes, all of them show that the magni-
+also overlaps with SDSS for the spectra is relatively              tude of the asymmetry increases as the redshift gets
+small, at approximately 416 degree2 (More et al.,                  higher (Shamir, 2020d, 2022d). When using high red-
+2023). The analysis identifies the best fit of a dipole            shift galaxies imaged by JWST, the difference be-
+axis by fitting all galaxies into a dipole axis align-             tween the number of galaxies rotating in the same
+ment. Therefore, it is not affected by underpopu-                  direction relative to the Milky Way and in the op-
+lated parts of the sky that can skew the location of               posite direction relative to the Milky Way becomes
+the most likely axis. But a smaller footprint also                 extreme, and a statistically significant difference can
+makes the location of the most likely dipole axis less             be even observed by the naked eye, with no need
+accurate compare to previous studies that used far                 for automatic annotation of large datasets of galax-
+larger footprints.                                                 ies (Shamir, 2024b).
+   While the relatively small footprint does not al-
+low to identify the dipole axis with high accuracy,
+its location is still within the 1σ error from the                 4    Conclusion
+galactic pole at approximately (α = 192o , δ = 28o ).
+When assigning the galaxies with random spin di-                   While the directions of rotation of galaxies as ob-
+rections instead of the observed spin directions, the              served from Earth is expected to be random, sev-
+maximum observed statistical significance drops to                 eral experiments have suggested that the distribu-
+0.51. That is expected as subtracting the χ2 of                    tion is not necessarily random. These experiments
+two sets of random values is not expected to gen-                  are based on several different Earth-based and space-
+erate signal. Reproducible analysis when assign-                   based telescopes and both the Northern and South-
+
+                                                               6
+Figure 4: The χ2 significance of a dipole axis to be formed by the distribution of galaxy spin directions in
+different parts of the sky.
+
+
+ern hemispheres. This paper shows the analysis of             discussed in Section 3, such asymmetry can be driven
+the possible non-randomness using data provided by            by differences in the brightness of galaxies, as galax-
+HSC. While HSC has a relatively small footprint, it           ies that rotate in the same direction relative to the
+is deeper than all other existing Earth-based digital         Milky Way are expected to be slightly brighter than
+sky surveys. That allows to profile the asymmetry in          galaxies that rotate in the same direction relative to
+different redshift ranges.                                    the Milky Way.
+  The results show that galaxies that rotate in the
+same direction relative to the Milky Way galaxy as               The reproduction of scientific results has been a
+observed from Earth are less prevalent compared to            growing challenge in all fields of science, as most re-
+galaxies that rotate in the opposite direction relative       sults published in scientific papers have been shown
+to the Milky Way. It also shows that the signal be-           to be unreproducible (Stodden et al., 2018). That
+comes stronger when the redshift of the galaxy pop-           “reproducibility crisis” naturally introduces a chal-
+ulation gets higher. Explanations can be related to           lenge for advancing science. For that reason, the re-
+anomalies of the large-scale structure of the Universe,       sults shown in this paper are fully reproducible, with
+or to the physics of galaxy rotation.                         code, data, and step-by-step instructions to easily re-
+   If the galaxies had alignment in their inclinations        produce the results. That allows the entire scien-
+or in their directions of rotation, asymmetry in the          tific community to ensure that the data used in this
+spin directions as observed from Earth could be ex-           study is as described in the paper, and that the re-
+pected. But since the inclination of galaxies is ex-          sults shown in the paper using that data are correct.
+pected to be completely random, as well as the di-            These results are also aligned with a large collec-
+rection of rotation, the probability of a galaxy to ro-       tion of observations that challenge the cosmological
+tate in a certain direction as observed from Earth is         isotropy assumption (Aluri et al., 2023), as well as
+the same as its probability to rotate in the opposite         other recent observations and tensions that challenge
+direction. Therefore, asymmetry in the distribution           the standard cosmological model (Aluri et al., 2023;
+of galaxy spin directions is not expected. But as also        Akarsu et al., 2024; Timkov, 2024; Lopes et al., 2024).
+
+
+                                                          7
+Figure 5: The χ2 significance of a dipole axis to be formed in different parts of the sky when the galaxies
+are assigned with random spin directions.
+
+
+5    Discussion                                         man, 2021; Skordis and Zlośnik, 2021; Larin, 2022).
+                                                           Previous experiments provided evidence that the
+Despite over a century of research, the physics of      photometry and spectroscopy of galaxies observed
+galaxy rotation is still one of the most provocative    from Earth are affected by the rotational velocity of
+scientific phenomena, and research efforts to fully     these galaxies relative to the rotational velocity of
+understand the nature of galaxy rotation are still      the Milky Way. For instance, it has been shown that
+being continued. The anomaly in the galaxy rota-        galaxies that rotate in the opposite direction relative
+tion was observed as early as the first half of the     to the Milky Way have lower redshift than galaxies
+20th century, proposing that the nature of galaxy ro-   spinning in the same direction relative to the Milky
+tation can be explained by the contention that the      Way (Shamir, 2024d,a). The data has also been
+visible matter of the galaxy is embedded inside a       shown that galaxies that rotate in the same direc-
+much larger halo of highly dense non-luminous mat-      tion as the Milky Way are dimmer than galaxies that
+ter (Oort, 1940). These observations were ignored for   spin in the opposite direction relative to the Milky
+nearly five decades, possibly due to their disagree-    Way (Shamir, 2020a; McAdam and Shamir, 2023).
+ment with the standard theories of the time (Rubin,     Like this paper, these studies are provided with data,
+2000). Currently, the most common explanation to        and the results are fully reproducible. While a small
+the anomaly of the galaxy rotation curve is the pres-   difference in the brightness is expected, the observed
+ence of dark matter (Rubin, 1983). Another com-         difference in brightness is larger than expected. That
+mon explanation is driven by certain modifications of   could be attributed to the yet unexplained physics of
+Newtonian dynamics (Milgrom, 1983; Bekenstein and       galaxy rotation, although there could be other expla-
+Milgrom, 1984; Milgrom, 2009; Falcon, 2021), and        nations related to new physics or anomalies in the
+other explanations have also been proposed (Sanders,    large-scale structure of the Universe (Shamir, 2020a;
+1990; Capozziello and De Laurentis, 2012; Chadwick      McAdam and Shamir, 2023).
+et al., 2013; Farnes, 2018; Rivera, 2020; Nagao, 2020; If the brightness of galaxies as observed from Earth
+Sivaram et al., 2020; Blake, 2021; Gomel and Zimmer- depends on the direction of rotation of the galaxies
+
+
+                                                    8
+Figure 6: The χ2 significance of a dipole axis to be formed by the distribution of galaxy spin directions in
+redshift of 0 to 0.1 (top) and in redshift of 0.1 to 0.2 (bottom). When using just galaxies with higher redshift
+range the statistical signal is stronger. The number of galaxies used in the two experiment is roughly the
+same, with 6,246 and 6,214 galaxies in the lower and higher redshift ranges, respectively. The two datasets
+are not overlapping, and no galaxy was used in both experiments
+                                                          .
+
+
+relative to the Milky Way galaxy, more galaxies that         fore easier to detect from Earth. That agrees with
+rotate in the opposite direction relative to the Milky       the observation described here, showing an excessive
+Way will be more prevalent near both ends of the             number of galaxies that rotate in the opposite direc-
+Galactic pole to an Earth-based observer. That is            tion compared to the Milky Way.
+not because these galaxies are more prevalent in the            On the other hand, large-scale alignment of the di-
+Universe, but because they are brighter and there-           rections towards which galaxies spin has also been re-
+
+
+                                                         9
+ported (Jones et al., 2010; Tempel et al., 2013; Tem-      also indicate that the photometry of galaxies is af-
+pel and Libeskind, 2013; Codis et al., 2015; Pahwa         fected by their rotational velocity relative to the ro-
+et al., 2016; Ganeshaiah Veena et al., 2018, 2019;         tational velocity of the Milky Way. In that case, the
+Blue Bird et al., 2020; Welker et al., 2020; Kraljic       photometry has small but consistent bias as shown in
+et al., 2021; López et al., 2021). If the cosmological-   (McAdam and Shamir, 2023; Shamir, 2017, 2020a),
+scale alignment forms a cosmological-scale axis that       and a similar analysis has shown bias in the red-
+is not the Galactic pole, it can be considered a           shift (Shamir, 2024e,a). A consistent bias in the red-
+feature of the large-scale structure of the Universe.      shift can be linked to the Ho tension (Capozziello
+In that case, such a cosmological-scale axis can be        et al., 2024; Vagnozzi, 2020; Rameez and Sarkar,
+aligned with alternative cosmological theories such        2021; Di Valentino et al., 2021; Aloni et al., 2022;
+as spinor-driven inflation (Bohmer and Mota, 2008),        Davis et al., 2019), and possibly the tension between
+ellipsoidal universe (Campanelli et al., 2006, 2007,       the size and shape of high-redshift galaxies observed
+2011; Gruppuso, 2007; Cea, 2014; Tedesco, 2024), ro-       with JWST and their expected age as determined by
+tating universe (Gödel, 1949; Ozsváth and Schücking,    their redshift (Glazebrook et al., 2024). A bias in
+1962; Ozsvath and Schücking, 2001; Sivaram and            the redshift, if such indeed exists, can explain this
+Arun, 2012; Chechin, 2016; Seshavatharam and               puzzling tension.
+Lakshminarayana, 2020a; Campanelli, 2021), black
+hole cosmology (Pathria, 1972; Stuckey, 1994; Eas-
+son and Brandenberger, 2001; Seshavatharam, 2010;          Data Availability
+Poplawski, 2010b; Tatum et al., 2018; Christillin,
+                                                           Code, data, and step-by-step instructions to repro-
+2014; Chakrabarty et al., 2020; Poplawski, 2010a;
+                                                           duce the results are available at https://people.
+Seshavatharam and Lakshminarayana, 2014, 2020a;
+                                                           cs.ksu.edu/~lshamir/data/asymmetry_hsc/.
+Campanelli, 2021), holographic universe (Susskind,
+1995; Bak and Rey, 2000; Bousso, 2002; Myung, 2005;
+Hu and Ling, 2006; Rinaldi et al., 2022; Sivaram and       Acknowledgments
+Arun, 2013; Shor et al., 2021), and others (Edwards,
+2024; Ashmore, 2024).                                      I would like to thank the two knowledgeable reviewers
+   If the asymmetry grows as the redshift gets higher      for the insightful comments. The research was funded
+as shown by the HSC data, it can provide an in-            in part by NSF grant 2148878.
+dication that the early Universe was more consis-
+tent than the present Universe, and gradually be-
+came more chaotic as reflected by the distribu-            References
+tion of the directions towards which galaxies ro-
+tate. That can be aligned with cosmological models         Akarsu, Ö., Colgáin, E. Ó., Sen, A. A., and Sheikh-
+that are based on the contention that the Universe           Jabbari, M. (2024). Lcdm tensions: Localising
+was born spinning, such as rotating universe (Gödel,        missing physics through consistency checks. Uni-
+1949; Ozsváth and Schücking, 1962; Ozsvath and             verse, 10(8).
+Schücking, 2001; Sivaram and Arun, 2012; Chechin,         Aloni, D., Berlin, A., Joseph, M., Schmaltz, M.,
+2016; Seshavatharam and Lakshminarayana, 2020a;              and Weiner, N. (2022). A step in understand-
+Campanelli, 2021) or black hole cosmology (Pathria,          ing the hubble tension.     Physical Review D,
+1972; Stuckey, 1994; Easson and Brandenberger,               105(12):123516.
+2001; Seshavatharam, 2010; Poplawski, 2010b; Tatum
+et al., 2018; Christillin, 2014; Chakrabarty et al.,       Aluri, P. K., Cea, P., Chingangbam, P., Chu, M.-C.,
+2020; Poplawski, 2010a; Seshavatharam and Laksh-             Clowes, R. G., Hutsemékers, D., Kochappan, J. P.,
+minarayana, 2014, 2020a; Campanelli, 2021).                  Krasiński, A., Lopez, A. M., Liu, L., Martens, N.
+   But as described above, the results shown here can        C. M., Martins, C. J. A. P., Migkas, K., Colgáin,
+
+
+                                                       10
+  E. ., Pranav, P., Shamir, L., Singal, A. K., Sheikh- Campanelli, L., Cea, P., and Tedesco, L. (2006).
+  Jabbari, M. M., Wagner, J., Wang, S.-J., Wiltshire,    Ellipsoidal universe can solve the cosmic mi-
+  D. L., Yeung, S., Yin, L., and Zhao, W. (2023). Is     crowave background quadrupole problem. PRL,
+  the observable universe consistent with the cosmo-     97(13):131302.
+  logical principle? Classical and Quantum Gravity,
+  40(9):094001.                                        Campanelli, L., Cea, P., and Tedesco, L. (2007). Cos-
+                                                         mic microwave background quadrupole and ellip-
+Ashmore, L. E. (2024). Data from twenty-three frb’s      soidal universe. Physical Review D, 76(6):063007.
+  confirm the universe is static and not expanding.
+                                                       Capozziello, S. and De Laurentis, M. (2012). The
+  Journal of High Energy Physics, Gravitation and
+                                                         dark matter problem from f (r) gravity viewpoint.
+  Cosmology, 10(3):1152–1177.
+                                                         Annalen der Physik, 524(9-10):545–578.
+Bak, D. and Rey, S.-J. (2000). Holographic princi- Capozziello, S., Sarracino, G., and De Somma, G.
+  ple and string cosmology. Classical and Quantum        (2024). A critical discussion on the ho tension.
+  Gravity, 17(1):L1.                                     Universe, 10(3):140.
+Ball, P. (2023). Is ai leading to a reproducibility crisis Cea, P. (2014). The ellipsoidal universe in the planck
+  in science? Nature, 624:22–25.                             satellite era. Monthly Notices of the Royal Astro-
+Bekenstein, J. and Milgrom, M. (1984). Does the              nomical Society, 441(2):1646–1661.
+  missing mass problem signal the breakdown of           Chadwick, E. A., Hodgkinson, T. F., and McDon-
+  newtonian gravity? Astrophysical Journal, 286:7–         ald, G. S. (2013). Gravitational theoretical de-
+  14.                                                      velopment supporting mond. Physical Review D,
+                                                           88(2):024036.
+Blake, B. C. (2021). Relativistic beaming of grav-
+  ity and the missing mass problem. Bulletin of the     Chakrabarty, H., Abdujabbarov, A., Malafarina, D.,
+  American Physical Society, page B17.00002.              and Bambi, C. (2020). A toy model for a baby
+                                                          universe inside a black hole. European Physical
+Blue Bird, J., Davis, J., Luber, N., Van Gorkom, J.,      Journal C, 80(1909.07129):1–10.
+  Wilcots, E., Pisano, D., Gim, H., Momjian, E.,
+  Fernandez, X., Hess, K., et al. (2020). Chiles vi: H Chechin, L. (2016). Rotation of the universe at dif-
+  i and h α observations for z¡ 0.1 galaxies; probing h   ferent cosmological epochs. Astronomy Reports,
+  i spin alignment with filaments in the cosmic web.      60(6):535–541.
+  Monthly Notices of the Royal Astronomical Society,
+  492(1):153–176.                                       Christillin, P. (2014). The machian origin of linear
+                                                          inertial forces from our gravitationally radiating
+Bohmer, C. G. and Mota, D. F. (2008). Cmb                 black hole universe. The European Physical Jour-
+  anisotropies and inflation from non-standard            nal Plus, 129(8):1–3.
+  spinors. Physics Letters B, 663(3):168–171.
+                                                        Codis, S., Pichon, C., and Pogosyan, D. (2015).
+Bousso, R. (2002). The holographic principle. Re-         Spin alignments within the cosmic web: a the-
+  views of Modern Physics, 74(3):825.                     ory of constrained tidal torques near filaments.
+                                                          Monthly Notices of the Royal Astronomical Soci-
+Campanelli, L. (2021). A conjecture on the neutrality     ety, 452(4):3369–3393.
+  of matter. Foundations of Physics, 51:56.
+                                                        Davis, T. M., Hinton, S. R., Howlett, C., and Calcino,
+Campanelli, L., Cea, P., Fogli, G., and Tedesco, L.       J. (2019). Can redshift errors bias measurements
+  (2011). Cosmic parallax in ellipsoidal universe.        of the hubble constant? Monthly Notices of the
+  Modern Physics Letters A, 26(16):1169–1181.             Royal Astronomical Society, 490(2):2948–2957.
+
+                                                       11
+Dhar, S. and Shamir, L. (2022). Systematic biases Gödel, K. (1949). An example of a new type of cos-
+  when using deep neural networks for annotating          mological solutions of einstein’s field equations of
+  large catalogs of astronomical images. Astronomy        gravitation. Reviews of Modern Physics, 21(3):447.
+  and Computing, 38:100545.
+                                                         Gomel, R. and Zimmerman, T. (2021). The effects
+Di Valentino, E., Mena, O., Pan, S., Visinelli, L.,       of inertial forces on the dynamics of disk galaxies.
+  Yang, W., Melchiorri, A., Mota, D. F., Riess,           Galaxies, 9(2):34.
+  A. G., and Silk, J. (2021). In the realm of the hub-
+  ble tension—a review of solutions. Classical and Gruppuso, A. (2007). Complete statistical analysis
+  Quantum Gravity, 38(15):153001.                         for the quadrupole amplitude in an ellipsoidal uni-
+                                                          verse. Physical Review D, 76(8):083010.
+Easson, D. A. and Brandenberger, R. H. (2001). Uni-
+  verse generation from black hole interiors. Journal Hayes, W. B., Davis, D., and Silva, P. (2017). On
+  of High Energy Physics, 2001(06):024.                   the nature and correction of the spurious s-wise
+                                                          spiral galaxy winding bias in galaxy zoo 1. Mon-
+Edwards, M. R. (2024). Shell universe: Reducing cos-      thyl Notices of the Royal Astronomical Society,
+  mological tensions with the relativistic ni solutions.
+                                                          466(4):3928–3936.
+  Astronomy, 3(3):220–239.
+                                                        Hu, B. and Ling, Y. (2006). Interacting dark en-
+Falcon, N. (2021). A large-scale heuristic modifi-
+                                                         ergy, holographic principle, and coincidence prob-
+  cation of newtonian gravity as an alternative ap-
+                                                         lem. Physical Review D, 73(12):123510.
+  proach to dark energy and dark matter. Journal of
+  Astrophysics and Astronomy, 42(2):1–13.
+                                                        Iye, M. and Sugai, H. (1991). A catalog of spin orien-
+Farnes, J. S. (2018). A unifying theory of dark en-       tation of southern galaxies. Astrophysical Journal,
+  ergy and dark matter: Negative masses and matter        374:112–116.
+  creation within a modified λcdm framework. As-
+  tronomy & Astrophysics, 620:A92.                     Iye, M., Yagi, M., and Fukumoto, H. (2021). Spin
+                                                         parity of spiral galaxies iii–dipole analysis of the
+Ganeshaiah Veena, P., Cautun, M., Tempel, E.,            distribution of sdss spirals with 3d random walk
+  van de Weygaert, R., and Frenk, C. S. (2019). The      simulation. Astrophysical Journal, 907:123.
+  cosmic ballet ii: spin alignment of galaxies and
+  haloes with large-scale filaments in the eagle simu- Jones, B. J., Van De Weygaert, R., and Aragón-
+  lation. Monthly Notices of the Royal Astronomical      Calvo, M. A. (2010). Fossil evidence for spin align-
+  Society, 487(2):1607–1625.                             ment of sloan digital sky survey galaxies in fila-
+                                                         ments. Monthly Notices of the Royal Astronomical
+Ganeshaiah Veena, P., Cautun, M., van de Wey-            Society, 408(2):897–918.
+  gaert, R., Tempel, E., Jones, B. J., Rieder, S.,
+  and Frenk, C. S. (2018). The cosmic ballet: spin Kraljic, K., Duckworth, C., Tojeiro, R., Alam,
+  and shape alignments of haloes in the cosmic web.      S., Bizyaev, D., Weijmans, A.-M., Boardman,
+  Monthly Notices of the Royal Astronomical Society,     N. F., and Lane, R. R. (2021). Sdss-iv manga:
+  481(1):414–438.                                        3d spin alignment of spiral and s0 galaxies.
+                                                         Monthly Notices of the Royal Astronomical Soci-
+Glazebrook, K., Nanayakkara, T., Schreiber, C., La-      ety, 504(3):4626–4633.
+  gos, C., Kawinwanichakij, L., Jacobs, C., Chitten-
+  den, H., Brammer, G., Kacprzak, G. G., Labbe, Land, K., Slosar, A., Lintott, C., Andreescu, D.,
+  I., et al. (2024). A massive galaxy that formed its    Bamford, S., Murray, P., Nichol, R., Raddick,
+  stars at z˜ 11. Nature, pages 1–3.                     M. J., Schawinski, K., Szalay, A., et al. (2008).
+
+
+                                                     12
+  Galaxy zoo: the large-scale spin statistics of spi-         K., Zhang, T., Takada, M., et al. (2023). Hy-
+  ral galaxies in the sloan digital sky survey. Mon-          per suprime-cam year 3 results: Measurements
+  thyl Notices of the Royal Astronomical Society,             of clustering of sdss-boss galaxies, galaxy-galaxy
+  388(4):1686–1692.                                           lensing, and cosmic shear. Physical Review D,
+                                                              108(12):123520.
+Larin, S. A. (2022). Towards the explanation of
+  flatness of galaxies rotation curves. Universe, Myung, Y. S. (2005). Holographic principle and dark
+  8(12):632.                                       energy. Physics Letters B, 610(1-2):18–22.
+Longo, M. J. (2011). Detection of a dipole in the        Nagao, S. (2020). Galactic evolution showing a con-
+  handedness of spiral galaxies with redshifts z 0.04.     stant circulating speed of stars in a galactic disc
+  Physics Letters B, 699(4):224–229.                       without requiring dark matter. Reports in Ad-
+Lopes, M., Bernui, A., Hipólito-Ricaldi, W. S.,           vances of Physical Sciences, 4(02):2050004.
+   Franco, C., and Avila, F. (2024). Dipolar fluence
+   distribution of statistically isotropic fermi gamma- Oort, J. H. (1940). Some problems concerning the
+   ray bursts. arXiv:2409.01480.                           structure and dynamics of the galactic system and
+                                                           the elliptical nebulae ngc 3115 and 4494. Astro-
+López, P., Cautun, M., Paz, D., Merchán, M., and         physical Journal, 91:273.
+   van de Weygaert, R. (2021). Deviations from tidal
+   torque theory: Evolution of the halo spin–filament Ozsváth, I. and Schücking, E. (1962). Finite rotating
+   alignment. Monthly Notices of the Royal Astro-          universe. Nature, 193(4821):1168–1169.
+   nomical Society, 502(4):5528–5545.
+                                                         Ozsvath, I. and Schücking, E. (2001). Approaches to
+MacGillivray, H. and Dodd, R. (1985).               The    gödel’s rotating universe. Classical and Quantum
+   anisotropy of the spatial orientations of galaxies in   Gravity, 18(12):2243.
+   the local supercluster. Astronomy & Astrophysics,
+   145:269–274.                                          Pahwa, I., Libeskind, N. I., Tempel, E., Hoffman, Y.,
+                                                           Tully, R. B., Courtois, H. M., Gottlöber, S., Stein-
+McAdam, D. and Shamir, L. (2023). Asymme-                  metz, M., and Sorce, J. G. (2016). The alignment
+   try between galaxy apparent magnitudes shows            of galaxy spin with the shear field in observations.
+   a possible tension between physical properties of       Monthly Notices of the Royal Astronomical Society,
+   galaxies and their rotational velocity. Symmetry,       457(1):695–703.
+   15(6):1190.
+                                                         Patel, D. and Desmond, H. (2024).             No evi-
+Mcadam, D., Shamir, L., et al. (2023). Reanalysis of       dence for anisotropy in galaxy spin directions.
+   the spin direction distribution of galaxy zoo sdss      arXiv:2404.06617v1.
+   spiral galaxies. Advances in Astronomy, 2023.
+
+Milgrom, M. (1983). A modification of the newtonian       Pathria, R. (1972). The universe as a black hole.
+ dynamics as a possible alternative to the hidden           Nature, 240(5379):298–299.
+ mass hypothesis. Astrophysical Journal, 270:365–
+                                                    Poplawski, N. J. (2010a). Cosmology with torsion:
+ 370.
+                                                      An alternative to cosmic inflation. Physics Letters
+Milgrom, M. (2009). Bimetric mond gravity. Physical   B, 694(3):181–185.
+ Review D, 80(12):123536.
+                                                    Poplawski, N. J. (2010b). Radial motion into an
+More, S., Sugiyama, S., Miyatake, H., Rau, M. M.,     einstein–rosen bridge. Physics Letters B, 687(2-
+ Shirasaki, M., Li, X., Nishizawa, A. J., Osato,      3):110–113.
+
+
+                                                         13
+Rameez, M. and Sarkar, S. (2021). Is there really a Shamir, L. (2011b). Ganalyzer: A tool for automatic
+  hubble tension? Classical and Quantum Gravity,         galaxy image analysis. ASCL, page ascl:1105.011.
+  38(15):154005.
+                                                       Shamir, L. (2012). Handedness asymmetry of spiral
+Rinaldi, E., Han, X., Hassan, M., Feng, Y., Nori, F.,    galaxies with z¡ 0.3 shows cosmic parity violation
+  McGuigan, M., and Hanada, M. (2022). Matrix-           and a dipole axis. Physics Letters B, 715(1):25–29.
+  model simulations using quantum computing, deep
+                                                       Shamir, L. (2017). Large-scale photometric asym-
+  learning, and lattice monte carlo. PRX Quantum,
+                                                         metry in galaxy spin patterns. Publications of the
+  3(1):010324.
+                                                         Astronomical Society of Australia, 34:e44.
+Rivera, P. C. (2020). An alternative model of rota-
+                                                       Shamir, L. (2019). Large-scale patterns of galaxy
+  tion curve that explains anomalous orbital velocity,
+                                                         spin rotation show cosmological-scale parity vio-
+  mass discrepancy and structure of some galaxies.
+                                                         lation and multipoles. arXiv, page 1912.05429.
+  American Journal of Astronomy and Astrophysics,
+  7(4):73–79.                                          Shamir, L. (2020a). Asymmetry between galaxies
+                                                         with different spin patterns: A comparison be-
+Rubin, V. C. (1983). The rotation of spiral galaxies.    tween cosmos, sdss, and pan-starrs. Open Astron-
+  Science, 220(4604):1339–1344.                          omy, 29(1):15–27.
+Rubin, V. C. (2000). One hundred years of rotating Shamir, L. (2020b). Galaxy spin direction distribu-
+  galaxies. Publications of the Astronomical Society     tion in hst and sdss show similar large-scale asym-
+  of the Pacific, 112(772):747.                          metry. Publications of the Astronomical Society of
+Sanders, R. (1990). Mass discrepancies in galaxies: Australia, 37:e053.
+  dark matter and alternatives. The Astronomy and Shamir, L. (2020c). Large-scale asymmetry between
+  Astrophysics Review, 2(1):1–28.                   clockwise and counterclockwise galaxies revisited.
+Seshavatharam, U. (2010). Physics of rotating and   Astronomische Nachrichten, 341(3):324–330.
+  expanding black hole universe. Progress in Physics, Shamir, L. (2020d). Patterns of galaxy spin directions
+  2:7–14.                                               in sdss and pan-starrs show parity violation and
+Seshavatharam, U. and Lakshminarayana, S. (2014).       multipoles. Astrophysics & Space Science, 365:136.
+  Understanding black hole cosmology and the cos- Shamir, L. (2021a). Analysis of the alignment of non-
+  mic halt. Journal of Advanced Research in Astro-  random patterns of spin directions in populations
+  physics and Astronomy, 1(1):1–27.                 of spiral galaxies. Particles, 4(1):11–28.
+Seshavatharam, U. and Lakshminarayana, S.              Shamir, L. (2021b). Large-scale asymmetry in galaxy
+  (2020a). An integrated model of a light speed          spin directions: evidence from the southern hemi-
+  rotating universe. International Astronomy and         sphere. Publications of the Astronomical Society of
+  Astrophysics Research Journal, pages 74–82.            Australia, 38:e037.
+Seshavatharam, U. and Lakshminarayana, S. Shamir, L. (2022a). Analysis of ∼ 106 spiral galaxies
+  (2020b). Light speed expansion and rotation of     from four telescopes shows large-scale patterns of
+  a primordial black hole universe having inter-     asymmetry in galaxy spin directions. Advances in
+  nal acceleration. International Astronomy and      Astronomy, 2022:8462363.
+  Astrophysics Research Journal, pages 9–27.
+                                                   Shamir, L. (2022b). Analysis of spin directions of
+Shamir, L. (2011a). Ganalyzer: A tool for auto-      galaxies in the desi legacy survey. Monthly Notices
+  matic galaxy image analysis. Astrophysical Jour-   of the Royal Astronomical Society, 516(2):2281–
+  nal, 736(2):141.                                   2291.
+
+                                                    14
+Shamir, L. (2022c). Asymmetry in galaxy spin direc-      Sivaram, C. and Arun, K. (2013). Holography, dark
+  tions - analysis of data from des and comparison         energy and entropy of large cosmic structures. As-
+  to four other sky surveys. Universe, 8:8.                trophysics and Space Science, 348:217–219.
+
+Shamir, L. (2022d). Large-scale asymmetry in galaxy Sivaram, C., Arun, K., and Rebecca, L. (2020).
+  spin directions: analysis of galaxies with spectra   Mond, mong, morg as alternatives to dark mat-
+  in des, sdss, and desi legacy survey. Astronomical   ter and dark energy, and consequences for cosmic
+  Notes, 343(6-7):e20220010.                           structures. Journal of Astrophysics and Astron-
+                                                       omy, 41(1):1–6.
+Shamir, L. (2022e). Using 3d and 2d analysis for
+  analyzing large-scale asymmetry in galaxy spin di- Skordis, C. and Zlośnik, T. (2021). New relativistic
+  rections. Publications of the Astronomical Society   theory for modified newtonian dynamics. Pattern
+  of Japan, 74(5):1114–1130.                           Recognition Letters, 127(16):161302.
+                                                         Stodden, V., Seiler, J., and Ma, Z. (2018). An em-
+Shamir, L. (2023). Large-scale asymmetry in the dis-
+                                                           pirical analysis of journal policy effectiveness for
+  tribution of galaxy spin directions–analysis and re-
+                                                           computational reproducibility. Proceedings of the
+  production. Symmetry, 15(9):1704.
+                                                           National Academy of Sciences, 115(11):2584–2589.
+Shamir, L. (2024a). An empirical consistent redshift Stuckey, W. (1994). The observable universe in-
+  bias: A possible direct observation of zwicky’s tl   side a black hole. American Journal of Physics,
+  theory. Particles, 7(3):703–716.                     62(9):788–795.
+Shamir, L. (2024b). Galaxy spin direction asymmetry Susskind, L. (1995). The world as a hologram. Jour-
+  in jwst deep fields. Publications of the Astronomi-   nal of Mathematical Physics, 36(11):6377–6396.
+  cal Society of Australia, 41:e038.
+                                                      Tatum, E. T. et al. (2018). Why flat space cosmol-
+Shamir, L. (2024c). Reproducible empirical evi-         ogy is superior to standard inflationary cosmology.
+  dence of cosmological-scale asymmetry in galaxy       Journal of Modern Physics, 9(10):1867.
+  spin directions: comment on arxiv:2404.06617.
+  arXiv:2404.13864.                                   Tedesco, L. (2024). Ellipsoidal universe and cosmic
+                                                        shear. Universe, 10(9):363.
+Shamir, L. (2024d). A simple direct empirical ob-
+                                                      Tempel, E. and Libeskind, N. I. (2013). Galaxy
+  servation of systematic bias of the redshift as a
+                                                        spin alignment in filaments and sheets: obser-
+  distance indicator. Universe, 10(3).
+                                                        vational evidence. Astrophysical Journal Letters,
+Shamir, L. (2024e). A simple direct empirical ob-       775(2):L42.
+  servation of systematic bias of the redshift as a Tempel, E., Stoica, R. S., and Saar, E. (2013). Evi-
+  distance indicator. Universe, 10(3).                 dence for spin alignment of spiral and elliptical/s0
+                                                       galaxies in filaments. Monthly Notices of the Royal
+Shor, O., Benninger, F., and Khrennikov, A. (2021).
+                                                       Astronomical Society, 428(2):1827–1836.
+  Representation of the universe as a dendrogramic
+  hologram endowed with relational interpretation. Timkov, V. (2024). Actual problems of modern
+  Entropy, 23(5):584.                                  physics, astrophysics, and cosmology. IPI Letters,
+                                                       2(2):42–75.
+Sivaram, C. and Arun, K. (2012). Primordial rotation
+  of the universe, hydrodynamics, vortices and angu- Vagnozzi, S. (2020). New physics in light of the h 0
+  lar momenta of celestial objects. Open Astronomy,    tension: An alternative view. Physical Review D,
+  5:7–11.                                              102(2):023518.
+
+                                                      15
+Welker, C., Bland-Hawthorn, J., Van de Sande, J.,
+ Lagos, C., Elahi, P., Obreschkow, D., Bryant,
+ J., Pichon, C., Cortese, L., Richards, S., et al.
+ (2020). The sami galaxy survey: first detection of
+ a transition in spin orientation with respect to cos-
+ mic filaments in the stellar kinematics of galaxies.
+ Monthly Notices of the Royal Astronomical Society,
+ 491(2):2864–2884.
+
+
+
+
+                                                     16
+

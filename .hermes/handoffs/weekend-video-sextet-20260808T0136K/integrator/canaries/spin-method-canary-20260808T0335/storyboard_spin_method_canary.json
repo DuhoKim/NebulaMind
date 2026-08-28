@@ -1,0 +1,96 @@
+{
+ "title": "Galaxy spin handedness — the method, before the verdict",
+ "slug": "spin-method-canary",
+ "cards": [
+  {
+   "kind": "title",
+   "heading": "Galaxy spin handedness — the method, before the verdict",
+   "character": true,
+   "seconds": 8,
+   "body": "The question: is an apparent excess of one spiral handedness a property of the sky, or of the people who labelled the images? This cut shows only how that test was built. The result is deliberately not in this video. NebulaMind Lab."
+  },
+  {
+   "kind": "point",
+   "heading": "The result is not yet reportable — this cut shows only the method",
+   "source": "sources/STATUS.json",
+   "character": true,
+   "seconds": 10,
+   "body": "A measurement exists, but its required post-run review gates are still open, so this lane states no result. What can be shown is how the test was built — and that was fixed before any data arrived.",
+   "display_citation": "NebulaMind weekend spin lane status · 2026-08-08"
+  },
+  {
+   "kind": "point",
+   "heading": "Every rule was frozen before the first row was fetched",
+   "source": "sources/T1_FUNNEL.json",
+   "seconds": 10,
+   "body": "Cuts, thresholds, the decision bar, and what each control would mean were written into a contract before any data was pulled. The archive files were then fetched with their byte size and column header checked against that contract at download time.",
+   "display_citation": "Galaxy Zoo 1 DR · frozen NebulaMind T1 run · 2026-08-05"
+  },
+  {
+   "kind": "data",
+   "heading": "667,944",
+   "source": "sources/T1_FUNNEL.json",
+   "seconds": 7,
+   "body": "rows parsed from the frozen Galaxy Zoo source catalogue — the sample every later cut starts from.",
+   "display_citation": "Galaxy Zoo 1 DR · frozen NebulaMind T1 run · 2026-08-05"
+  },
+  {
+   "kind": "figure",
+   "heading": "Three predeclared readouts of one frozen source",
+   "figure": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-canary-20260808T0335/figures/readouts_method.png",
+   "source": "sources/T1_FUNNEL.json",
+   "seconds": 12,
+   "body": "Counts redrawn directly from the pinned artifact. The readouts are parallel, not nested: the flag readout and both dominance readouts each start from the same frozen source. 29,053 ties are excluded at the flag readout; at the dominance readouts a tie is structurally impossible. No asymmetry is computed anywhere in this cut.",
+   "display_citation": "Galaxy Zoo 1 DR · frozen NebulaMind T1 run · 2026-08-05"
+  },
+  {
+   "kind": "point",
+   "heading": "A = (N_CW − N_ACW) / (N_CW + N_ACW)",
+   "source": "sources/SOURCE_FREEZE.json",
+   "seconds": 13,
+   "body": "The predeclared statistic, computed separately for each of the three readouts: the excess of clockwise-labelled over anticlockwise-labelled spirals, as a fraction of all decisively labelled in that readout. Positive means more CW labels, negative more ACW; mirroring the images should swap the sign of a signal that lives in the sky. Every value is withheld until the review gates close.",
+   "display_citation": "NebulaMind weekend spin source/status freeze · 2026-08-08"
+  },
+  {
+   "kind": "figure",
+   "heading": "Mirroring an image reverses its apparent handedness",
+   "figure": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-canary-20260808T0335/figures/handedness_schematic.png",
+   "source": "sources/SOURCE_FREEZE.json",
+   "seconds": 12,
+   "body": "The predeclared control logic: a signal that lives in the sky must flip sign when the images are mirrored; one that lives in the classifiers need not. Which convention the archive stores — as-seen or corrected-back — is exactly what is still under review.",
+   "display_citation": "NebulaMind weekend spin source/status freeze · 2026-08-08"
+  },
+  {
+   "kind": "point",
+   "heading": "The columns were verified before they were trusted",
+   "source": "sources/T1C_COLUMN_INTEGRITY.json",
+   "seconds": 9,
+   "body": "36 of 36 objects probed across two independent archive copies carry the same handedness labels; none crossed. The convention is consistent between archives — what it refers to is the open question.",
+   "display_citation": "NebulaMind T1C column-integrity run · 2026-08-05"
+  },
+  {
+   "kind": "point",
+   "heading": "The bias controls were designed before the numbers were seen",
+   "source": "sources/SOURCE_FREEZE.json",
+   "seconds": 11,
+   "body": "A mirrored-image condition, two dominance rungs, and a paired object-by-object flip measurement — each predeclared, with its meaning written down in advance. Their outcomes are not shown here; they belong to the gated result.",
+   "display_citation": "NebulaMind weekend spin source/status freeze · 2026-08-08"
+  },
+  {
+   "kind": "limit",
+   "heading": "Why the verdict is not in this video",
+   "source": "sources/SOURCE_FREEZE.json",
+   "character": true,
+   "seconds": 14,
+   "body": "Open gates: the required post-run independent verdict review is not yet on record; the primary sources do not state whether stored directions are as-seen or corrected; the workflow checklist still marks its evidence, receipt, and referee stages pending. A frozen decision blocks any result render until they close.",
+   "display_citation": "NebulaMind weekend spin source/status freeze · 2026-08-08"
+  },
+  {
+   "kind": "close",
+   "heading": "nebulamind.net",
+   "character": true,
+   "seconds": 6,
+   "body": "Method first. The verdict ships only after its review gates close — that order is the point."
+  }
+ ]
+}

@@ -1,0 +1,150 @@
+{
+  "freeze_id": "spin-method-canary-pass1-20260808T0153K",
+  "frozen_at": "2026-08-08T01:53:33+09:00",
+  "video_reportable_now": false,
+  "decision": "BLOCK_SUBSTANTIVE_RESULT_RENDER; ALLOW_METHOD_ONLY_CANARY",
+  "blockers": [
+    {
+      "code": "STATUS_RESULT_MISMATCH",
+      "detail": "The current storyboard renders the post-A4 MIXED result and result figures, but AMENDMENT_A4_DRAFT.md section 5 requires A3.8 verdict-record review after the run; no post-run independent verdict record for T4_PAIRED_FLIP.json was found. LANA_ZERO_CONCORDANCE.md is explicitly science pressure, not a gate."
+    },
+    {
+      "code": "FRAME_UNSTATED",
+      "detail": "KUN_FRAME_REVIEW.md independently agrees FRAME_UNSTATED. The stored mirrored-direction convention is unresolved, so no result may be represented as a sky, dipole, parity, or cosmological finding."
+    },
+    {
+      "code": "WORKFLOW_STATUS_NOT_RELEASE_READY",
+      "detail": "WORKFLOW_CHECKLIST.json still records evidence freeze, receipts, referee, and video stages as pending; it is not an authoritative release-ready result packet."
+    },
+    {
+      "code": "LATER_FREEZE_EXCLUDES_NEW_POINTERS",
+      "detail": "USER_NOTE_GALAXY_SPIN_20260808T0145K.md states that Ganalyzer/DESI/dipole/parity/GRB/SN Ia/dark-energy/quasar/H0 pointers are recorded questions and that nothing in the note may enter a weekend video candidate."
+    }
+  ],
+  "allowed_scope": [
+    "frozen source/sample funnel",
+    "predeclared asymmetry equation",
+    "handedness convention and alignment schematic",
+    "predeclared bias-control design",
+    "clearly labeled unresolved-result boundary"
+  ],
+  "forbidden_scope": [
+    "T3 or T4 headline/result figures",
+    "dipole-axis interpretation",
+    "cosmological parity violation",
+    "GRB, SN Ia, dark-energy, quasar, or H0 context",
+    "black-hole-universe cosmology support",
+    "new DESI Legacy Survey or Ganalyzer claim"
+  ],
+  "current_artifact": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/public/videos/spin-parity-census.mp4",
+    "sha256": "dfc8be91c47bf55b34c0040d1b6572b5960e31942c9a0cec1465d8bcf4f44585",
+    "bytes": 1059019,
+    "duration_seconds": 93.0,
+    "streams": ["H.264 video only"],
+    "resolution": "1920x1080",
+    "fps": 30
+  },
+  "storyboard_of_record": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/storyboard_spin_parity.json",
+    "sha256": "7764d847e24dabb542504a8839e7016ae558587aea7786210c02b3220ef8f9f0",
+    "bytes": 6216,
+    "disposition": "read-only; substantive result cards blocked for this pass"
+  },
+  "shared_renderer": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/tools/nm_paper_video.py",
+    "sha256": "919af6b18057309bfa5ecc2dd0fa44536dabaa4ba02aba960cabd3d791099f5c",
+    "bytes": 15653,
+    "disposition": "read-only; no shared-tool write"
+  },
+  "source_artifacts": [
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T1_FUNNEL.json",
+      "sha256": "ed97758ac1b991488d4d15da3ecb8dca229e8ec4ab547086468b81c9e64e281d",
+      "bytes": 2186,
+      "role": "allowed sample counts"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T1C_COLUMN_INTEGRITY.json",
+      "sha256": "fc73061fa76cbd873d6648069621e141322b05d7b651e5584f45275ef0576237",
+      "bytes": 607,
+      "role": "allowed normal-leg alignment check"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T3_READING.json",
+      "sha256": "207450354be3eacd505c8c18438dcfe2964427b8e443bdb97e6d0b5c78823495",
+      "bytes": 4309,
+      "role": "quarantined substantive result"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "bytes": 5530,
+      "role": "quarantined pending required post-run verdict review"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+      "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "bytes": 13450,
+      "role": "FRAME_UNSTATED boundary"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A4_DRAFT.md",
+      "sha256": "8343c1947384cdb36355a0fe2f6965d4445ab013fda25e3f33b4d8300ce58974",
+      "bytes": 10952,
+      "role": "post-run verdict-review requirement"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/WORKFLOW_CHECKLIST.json",
+      "sha256": "333d74b21e9f826fc8b8d906c51dc12ab8f86f2e727df697b6a387cda16a3ef7",
+      "bytes": 6833,
+      "role": "workflow status conflict"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/HWAO_WEEKEND_ORDER.md",
+      "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710",
+      "bytes": 5512,
+      "role": "later weekend freeze and closed gates"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/USER_NOTE_GALAXY_SPIN_20260808T0145K.md",
+      "sha256": "264945c169ececa27dac2d4e69dcf357644154ca8cb20502107a683d7e5d80ea",
+      "bytes": 2201,
+      "role": "new-pointers exclusion"
+    }
+  ],
+  "storyboard_figures": [
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/plots/spin-parity-census_funnel.png",
+      "sha256": "1028444cf08554c5dc4106a206f89df24d5de4f34ac1c17c29e534fd27d390d4",
+      "bytes": 46086,
+      "disposition": "not reused; canary redraws allowed counts deterministically"
+    },
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/plots/spin-parity-census_verdict.png",
+      "sha256": "d37bd640f1481e7ab596549fac8d2888f88876f76946454d6ddb40c4c5a6c79e",
+      "bytes": 72187,
+      "disposition": "quarantined"
+    },
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/plots/spin-parity-census_significance.png",
+      "sha256": "756ed3e95483cca864f93b81ddc161fc408afd653a311985ec05d5d38b35bbca",
+      "bytes": 69144,
+      "disposition": "quarantined"
+    },
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/plots/spin-parity-census_paired.png",
+      "sha256": "3f65ffea6b6fae9f7bdc1e1c018792eaff7f88f1fa79373d39ba76e0f0e19498",
+      "bytes": 62945,
+      "disposition": "quarantined"
+    },
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/videos/plots/spin-parity-census_decomposition.png",
+      "sha256": "7d44b57e08580355f81db90fadc3ea6b2e96d5ba49f5945889e2f185a349e44a",
+      "bytes": 65424,
+      "disposition": "quarantined"
+    }
+  ],
+  "candidate_audio_contract": "silent method-only visual canary; no narration synthesized or muxed",
+  "publication_state": "local only; all upload/publication/website gates closed"
+}

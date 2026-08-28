@@ -1,0 +1,162 @@
+{
+  "request_id": "TORI_MZR_CENSUS_AUDIO_PASS_EXACT_HASH_REGATE_REQUEST_V1_20260810T1042K",
+  "created_at_kst": "2026-08-10T10:42:00+09:00",
+  "requested_reviewer": "Tori",
+  "requested_action": "exact-hash regate of one new mzr-census audio-only A/B candidate",
+  "status": "REQUEST_EXACT_HASH_REGATE",
+  "live_order_binding": {
+    "source": "Duho direct morning instruction relayed in the current Hermes session",
+    "scope": "mzr-census audio and card-seam timing only",
+    "supersedes_all_prior_video_quality_track_orders": true,
+    "single_candidate_only": true,
+    "quarantined_brightend_workspace_used": false,
+    "sibling_why_study_rollout_held": true
+  },
+  "authoritative_audit": {
+    "path": "reviews/KUN_OVERNIGHT_VIDEO_QUALITY_20260810T0055K.md",
+    "sha256": "cd3195bce3bf0d7c9f32514aeccd08589a132e73a087914c5745fe4203da8a9b",
+    "silence_evidence_sha256": "42e9778e94fa4c9a6bd4bc56e9bd959f5d6c1bc17ec2543429d063bf7f13503d",
+    "loudness_evidence_sha256": "623ad1dbbc295e6a88679a9e4e66979cd7788adb9a282a8f9ad7737115fd2dc1"
+  },
+  "predecessor": {
+    "candidate_path": "integrator/canaries/mzr-census-method-overhaul-canary-20260809T0320K",
+    "video_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "encoded_aac_adts_sha256": "4e138f98802401217a0e19207ab73acb75f6be19a2d74797e5d315bd1c016315",
+    "encoded_audio_decoded_s16le_48k_mono_sha256": "718d9188ae7e97e18f2b26f81d4ebdc278d7c0b18bb95f4b2b400c7cb039a56f",
+    "source_narration_master_sha256": "5c196bf5d6158a085e426387bb473ddc23ceecef8004b5e247d580bdf6c0ee35",
+    "source_timeline_sha256": "d1495001eac971557edab645cdc579e0c8f4635f42282aba45ca4f286f398aa8",
+    "source_spec_sha256": "00a0bb580f81985f8bd095f33c46ad6aa9ae4f240f8a89fe4cfe1a6e7ba53c2a"
+  },
+  "candidate": {
+    "candidate_path": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K",
+    "video_filename": "mzr-census-audio-pass-canary-20260810T1028K.mp4",
+    "video_sha256": "f6b5c6307db59567ec96b8d71f9612512aa938e72968ce09b4d7c819683bb40f",
+    "build_receipt_sha256": "978fbc04d1336de561ad4c7a49a857dabc036cd2975bbeb334c77d2eae37e0c7",
+    "exact_qa_sha256": "5a3c79c4e6f5318687f009095afc28c3ecc11ec63f21deb560aa772ff4540575",
+    "audio_edit_timeline_sha256": "04b0dbbba04ca9bd6195833bc2819a29e17eb56b0b36b9e6af7ad54219510403",
+    "retimed_pre_normalization_audio_sha256": "b47df3c6e6e78b5bb7af57a712483551736b4258405c85c201b23beebf017213",
+    "normalized_audio_master_sha256": "446693711173edf31ae3a6ad849d89d28c0598a5fc480043ae86dcf261a90818"
+  },
+  "measured_output": {
+    "integrated_lufs": -20.5,
+    "lra_lu": 7.7,
+    "authoritative_lra_band_lu": [
+      6.5,
+      7.8
+    ],
+    "true_peak_dbtp": -2.3,
+    "codec": "aac",
+    "sample_rate_hz": 48000,
+    "channels": 1,
+    "audio_start_seconds": 0.0,
+    "video_frames": 6899,
+    "format_duration_seconds": 229.966667
+  },
+  "listed_routine_seam_derivations": [
+    {
+      "seam": "i04->d01",
+      "source_measured_seconds": 4.8665,
+      "derived_seconds": 3.9,
+      "output_measured_seconds": 3.890417
+    },
+    {
+      "seam": "d02->p01",
+      "source_measured_seconds": 4.873667,
+      "derived_seconds": 3.9000003333333337,
+      "output_measured_seconds": 3.899375
+    },
+    {
+      "seam": "p05->f01",
+      "source_measured_seconds": 4.871104,
+      "derived_seconds": 3.899999833333333,
+      "output_measured_seconds": 3.879458
+    },
+    {
+      "seam": "f02->e01",
+      "source_measured_seconds": 4.879896,
+      "derived_seconds": 3.900000166666666,
+      "output_measured_seconds": 3.893271
+    },
+    {
+      "seam": "g02->b01",
+      "source_measured_seconds": 4.880167,
+      "derived_seconds": 3.9000003333333333,
+      "output_measured_seconds": 3.899833
+    },
+    {
+      "seam": "b01->x01",
+      "source_measured_seconds": 4.874333,
+      "derived_seconds": 3.8999996666666665,
+      "output_measured_seconds": 3.898896
+    }
+  ],
+  "deliberate_visual_breaths_preserved": [
+    {
+      "seam": "e02->c01",
+      "source_measured_seconds": 4.827354,
+      "derived_seconds": 4.827354,
+      "output_measured_seconds": 4.820271
+    },
+    {
+      "seam": "c02->g01",
+      "source_measured_seconds": 4.834417,
+      "derived_seconds": 4.834417,
+      "output_measured_seconds": 4.833854
+    }
+  ],
+  "visual_identity": {
+    "method": "predecessor H.264 stream copied without re-encoding",
+    "source_and_candidate_h264_sha256": "caf54352b5bf2120bf8022b8ef2f4f5f1a3b6852d32ed9f3a2a36edb61b5dd3d",
+    "source_and_candidate_framemd5_stream_sha256": "f532e8a04f9ea1339f63bd658f2401b56c28f6c15d310c416824ad2d5b3c3bd0",
+    "source_and_candidate_video_packet_timing_sha256": "599f5e47b06cce9d7828da92b102538a2a73a3f64ab7b645b37107a07d9e3ae1",
+    "card_on_screen_timing_delta_seconds": 0.0,
+    "pixel_delta": "none; exact decoded-frame timeline identity"
+  },
+  "mandatory_audio_to_fixed_visual_disclosure": {
+    "visual_timing_delta_seconds": 0.0,
+    "reason": "Routine seam silence was reduced without moving any visual frame or card-state boundary by shifting selected narration sentence PCM later inside its unchanged visual card window.",
+    "maximum_audio_shift_relative_to_fixed_visual_seconds": 1.9545,
+    "shifted_sentences": {
+      "i03": 0.40402083333333333,
+      "i04": 0.9665,
+      "d02": 0.9736666666666667,
+      "p05": 0.9711041666666667,
+      "f02": 0.9798958333333333,
+      "c02": 0.4719583333333333,
+      "g01": 0.4719583333333333,
+      "g02": 1.9545,
+      "b01": 0.9743333333333334
+    },
+    "caption_consequence": "The baked visual captions and their card windows are byte-identical to the predecessor; for shifted sentences, narration begins later while the same caption is already visible. This bounded A/V offset is disclosed for review rather than hidden as a visual timing change."
+  },
+  "qa_summary": {
+    "status": "PASS",
+    "checks_passed": 23,
+    "checks_total": 23,
+    "full_decode": "PASS",
+    "minimum_post_normalization_sentence_waveform_correlation": 0.9750887044105591,
+    "sentence_text_unchanged": true,
+    "sentence_pcm_slices_byte_preserved_before_normalization": true
+  },
+  "requested_exact_hash_checks": [
+    "bind this request and freeze to the live morning mzr-census-only order",
+    "rehash predecessor and candidate media plus all frozen packet files",
+    "confirm exact H.264, decoded-frame timeline, packet timing, frame count, and duration identity",
+    "confirm exact source audio and source timeline bindings",
+    "independently remeasure output loudness, LRA, true peak, stream shape, and all listed routine seams",
+    "confirm the two deliberate visual breaths remain preserved",
+    "adjudicate the disclosed later-within-card narration shifts and zero visual timing delta",
+    "keep video_reportable_now false unless the exact-hash regate passes"
+  ],
+  "gate_state": {
+    "video_reportable_now": false,
+    "upload": false,
+    "public_or_frontend": false,
+    "cockpit_copy": false,
+    "published_json": false,
+    "database": false,
+    "deploy": false,
+    "git": false,
+    "acceptance_label": false
+  }
+}

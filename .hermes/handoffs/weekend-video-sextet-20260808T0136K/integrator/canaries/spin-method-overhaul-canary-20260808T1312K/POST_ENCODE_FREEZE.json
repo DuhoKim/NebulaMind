@@ -1,0 +1,63 @@
+{
+  "frozen_at": "2026-08-08T14:03:11+0900",
+  "timezone": "KST",
+  "status": "PENDING_SEXTET_POST_ENCODED_REVIEW",
+  "replacement_policy": "Do not rewrite the MP4 or build inputs unless a reviewer issues HOLD; preserve any replacement as a new version.",
+  "artifact": {
+    "path": "spin-method-overhaul-canary-20260808T1312K.mp4",
+    "sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+    "bytes": 13697038,
+    "duration_seconds": 159.0,
+    "video_frames": 4770
+  },
+  "build_inputs": [
+    {
+      "path": "build.py",
+      "sha256": "b949c25925686615235227d59cf9b0cbab67aa17d4f4b43816547089bc8847f0"
+    },
+    {
+      "path": "narration_script_v2.json",
+      "sha256": "3f033dd02d00767c6bb4cc1baf8b7197a78847bad076411cbaed9aab732cd416"
+    },
+    {
+      "path": "synthesize_v2.py",
+      "sha256": "a23b7ccbb72b56f54416c476a25ba6962c90e013675c748dffec92bc9cdb3c87"
+    },
+    {
+      "path": "assemble_audio_v2.py",
+      "sha256": "b2a22ff70dbe34b96796d805eab00b13c9f64f7de77a2fe73b37df5476789517"
+    },
+    {
+      "path": "audio_v2/synthesis_receipt.json",
+      "sha256": "403fa8629c108348c7beb448d7628d539cac6dfb41d5ebbd333f7395832bee8f"
+    },
+    {
+      "path": "audio_v2/timeline.json",
+      "sha256": "5be1dca72a29b0469a8acd8ef55092c95905a18b628a7b454a66c535a2f16e4d"
+    },
+    {
+      "path": "audio_v2/narration_master.wav",
+      "sha256": "e3fffb1d275657aeed183d2d76b4c4656782c2e33462d7be9666bd8a76bc12d8"
+    },
+    {
+      "path": "source_manifest_v2.json",
+      "sha256": "905c8a2e48d2a4d3b5a44199b444f044e191217b3958e51181d6b99b887cac3b"
+    }
+  ],
+  "receipts": {
+    "build_receipt": {
+      "path": "build_receipt.json",
+      "sha256": "1a9de9a38a1b0e864837c7cdd6118e757bd8b0fc74db3490b598943ffccd1805"
+    },
+    "encoded_qa": {
+      "path": "encoded_qa.json",
+      "sha256": "918cc049b95ea875b8f77741a585a0faae02cf97209e87a9f8fad8ffd89ff4f9",
+      "checks_passed": 19,
+      "checks_total": 19
+    }
+  },
+  "rejected_v1_preserved": {
+    "script_sha256": "d935427228f3359f0fe90badeecf008902e6639772a0d6604cd019d9df2d4453",
+    "audio_master_sha256": "ef28bc8f290a46e59b0a2875fed076711666f37024d06e2cd5c986712eb4cd04"
+  }
+}

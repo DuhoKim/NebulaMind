@@ -1,0 +1,137 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass8-redundant-encoding-20260808T061155K",
+  "created_at": "2026-08-08T06:11:55+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "monochrome and color-vision-safe redundant encoding for any future authorized method-only proposal iteration",
+  "simulation_limit": "The monochrome and Machado severity-100 derivatives are presentation stress tests, not clinical diagnostics.",
+  "base": {
+    "sealed_iteration": "v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "pass7_caption_safe_correction": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+    "pass7_caption_safe_correction_sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f",
+    "sealed_v8_modified": false,
+    "pass7_mockup_modified": false,
+    "v9_created": false
+  },
+  "candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "extraction_receipt": "qa/pass8_color_vision_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "c198c393144d4e57098f80aef1b90f0bfde9672143043ec2e3004771d36a481b",
+    "quantitative_audit": "qa/pass8_color_vision_quantitative_audit.json",
+    "quantitative_audit_sha256": "8ec1c19debd37eaeb0354a80e79f7dc4c2407a5130c49d11f4fc3f3980615f6a",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS7_CUT_TIMES",
+    "fresh_color_midpoint_reproduction": "16/16_PASS7_BYTE_IDENTICAL",
+    "variant_count": 5,
+    "frame_count": 80,
+    "variants": [
+      "color",
+      "linear-light BT.709 grayscale",
+      "protanopia Machado severity 100",
+      "deuteranopia Machado severity 100",
+      "tritanopia Machado severity 100"
+    ],
+    "all_scene_aggregates": {
+      "grayscale": {
+        "headline_token_retention_vs_color": 1.0,
+        "full_token_retention_vs_color": 0.933301,
+        "lower_support_token_retention_vs_color": 0.877063,
+        "numeric_token_retention_vs_color": 0.910233,
+        "edge_recall_vs_color": 0.999942,
+        "chroma_retention": 0.0
+      },
+      "protanopia": {
+        "headline_token_retention_vs_color": 1.0,
+        "full_token_retention_vs_color": 0.979962,
+        "edge_recall_vs_color": 0.999953
+      },
+      "deuteranopia": {
+        "headline_token_retention_vs_color": 1.0,
+        "full_token_retention_vs_color": 0.93998,
+        "edge_recall_vs_color": 0.99995
+      },
+      "tritanopia": {
+        "headline_token_retention_vs_color": 1.0,
+        "full_token_retention_vs_color": 0.982433,
+        "edge_recall_vs_color": 0.999839
+      }
+    },
+    "critical_plot_scenes_5_7_9_10_11_grayscale": {
+      "headline_token_retention_vs_color": 1.0,
+      "full_token_retention_vs_color": 0.808086,
+      "lower_support_token_retention_vs_color": 0.739935,
+      "numeric_token_retention_vs_color": 0.779412,
+      "edge_recall_vs_color": 0.999998,
+      "chroma_retention": 0.0
+    },
+    "held_critical_scene_gate_count": "0/5_IN_ALL_FIVE_VARIANTS",
+    "finding": "Removing or altering hue does not demote the candidate's dominant headlines, result numbers, matrices, or plot silhouettes and does not create a held gate. The candidate remains a failed scientific presentation in every tested variant."
+  },
+  "method_only_evidence": {
+    "derivative_receipt": "qa/pass8_v8_color_vision/receipt.json",
+    "derivative_receipt_sha256": "575ec95c0bc4441d514b99fdaad33d2acedbb9c6e06ed73030c10e8946111c62",
+    "quantitative_audit": "qa/pass8_v8_color_vision_audit.json",
+    "quantitative_audit_sha256": "de7789c060e8e52756bc0e610c50f302811677a51298f0e69ab0aefa40c5a7e8",
+    "frame_count": 70,
+    "sealed_v8": {
+      "result_held_visual": "7/7_IN_ALL_FIVE_VARIANTS",
+      "hue_only_semantic_distinctions": 0,
+      "redundant_encoding": "PASS_TEXT_SHAPE_POSITION_ALL_7",
+      "grayscale_full_token_retention_vs_color": 0.962894,
+      "grayscale_edge_recall_vs_color": 1.0
+    },
+    "pass7_caption_safe_proof": {
+      "scene_specific_gate_lines_visual": "7/7_IN_ALL_FIVE_VARIANTS",
+      "result_held_visual": "7/7_IN_ALL_FIVE_VARIANTS",
+      "scene_specific_gate_ocr": "7/7_IN_ALL_FIVE_VARIANTS",
+      "result_held_badge_ocr": "7/7_IN_ALL_FIVE_VARIANTS",
+      "gate_line_token_retention_vs_color": "1.0_IN_ALL_FIVE_VARIANTS",
+      "hue_only_semantic_distinctions": 0,
+      "overlap_or_ambiguity": 0,
+      "grayscale_full_token_retention_vs_color": 0.952297,
+      "grayscale_edge_recall_vs_color": 1.0
+    },
+    "finding": "Sealed v8 and the pass-7 caption-safe correction already encode meaning with words, distinct boxes/glyphs/connectors, and stable position. Hue is emphasis only. No new pixel correction is justified."
+  },
+  "proposed_integration_guard": {
+    "type": "redundant_encoding_acceptance_contract",
+    "rules": [
+      "No method, status, scope, availability, unresolved state, or authorization distinction may be carried by hue alone.",
+      "Every branch, condition, column, rail, marker, and status region must have a direct text label and a distinct shape, line style, marker, or stable position.",
+      "RESULT HELD and every scene-specific caption-safe gate line must remain readable in color and linear-light grayscale; capsule border and text carry the gate, not amber hue.",
+      "Unavailable rails must use both explicit UNAVAILABLE copy and a non-solid or blocked line treatment.",
+      "If any result figure is separately authorized later, series must use direct labels plus distinct marker shapes or line patterns; a color legend alone is insufficient.",
+      "Human-review the full contact sheet in color, grayscale, protanopia, deuteranopia, and tritanopia simulations before proposal promotion.",
+      "Retain the pass-7 bottom-25-percent caption/player-UI safe-area test and the pass-6 360p test; this guard does not replace either."
+    ],
+    "scene_redundancy": {
+      "S1": "numbered pipeline nodes plus arrows and locked-result words",
+      "S2": "three directly labelled readout boxes plus equal branch arrows and containment words",
+      "S3": "directly labelled CW/ACW/tie bins plus equation and separate tie tray",
+      "S4": "mirrored glyph geometry plus AS DISPLAYED/DE-MIRRORED labels and FRAME UNSTATED words",
+      "S5": "direct column labels plus connector geometry, numerical cards, and explicit crossed/ambiguous names",
+      "S6": "direct condition names plus separate cards, solid available rails, dashed blocked unavailable rail, and outcomes-withheld words",
+      "S7": "three titled columns plus bullet position and full-text separate-authorization boundary"
+    },
+    "pixel_change_requested": false,
+    "reason_no_pixel_change": "All seven sealed-v8 scenes and all seven pass-7 caption-safe proof scenes pass the five-variant human review with zero hue-only semantic distinctions. A cosmetic v9 would add custody risk without repairing a demonstrated defect."
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may adopt this guard alongside the pass-7 caption-safe correction when authoring a separately reviewed proposal iteration. This packet changes no storyboard or pixel and is not v9.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false
+}

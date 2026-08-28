@@ -1,0 +1,27 @@
+{
+  "packet": "final_v3",
+  "review_type": "compact_source_backed_adversarial",
+  "verdict": "BLOCK",
+  "verified": [
+    "Frozen hashes match: TREND_RESULTS 8df9f25b; TeX 22f5950b; figure 10269f5f",
+    "Source: fiducial zc=8.045284 is 16th-percentile Delta=0 (8.030081–8.059269); median zm=6.327877",
+    "No-tail zc=7.615345 (7.601756–7.631123); .659525/.833525/.927475 => 66/83/93% at z=7/8/9",
+    "All 8 v3 PNG hashes/sizes/1920x1080 match manifest; S04–S06 geometry/labels are legible and source-derived"
+  ],
+  "findings": [
+    {
+      "severity": "BLOCK",
+      "issue": "Rendered v3 is stale against current storyboard v2: S07 retains exhaustive-looking INSIDE/OUTSIDE boxes and omits 'other structural assumptions remain unpropagated'. TeX 104–105 says He II, kappa_UV/IMF and faint-end truncation are unpropagated; z-dependent xi_ion would move zc.",
+      "fix": "Rerender S07 with EXAMPLES PROPAGATED, DOMINANT OMISSION, and a non-exhaustive note.",
+      "v4_reconciliation": "RESOLVED: v4 S07 labels propagated terms as examples, proxy transport as the dominant omission, and adds NOT EXHAUSTIVE plus other structural assumptions remain unpropagated."
+    },
+    {
+      "severity": "MINOR",
+      "issue": "S04/S06/S08 say only 'bootstrap', and S06 says 'ONE CHANGE'; current storyboard requires finite-MC resampling and 'separate model run; one prior family removed'.",
+      "fix": "Rerender those rails and refresh manifests.",
+      "v4_reconciliation": "RESOLVED: v4 uses finite-Monte-Carlo 16–84% resampling language and separate/unpaired no-tail-run disclosure."
+    }
+  ],
+  "source_delegation": "deleg_ae73647c/task-1",
+  "v4_effect": "NO_NEW_BLOCK__ALL_V3_BLOCKING_FINDINGS_RESOLVED_IN_V4"
+}

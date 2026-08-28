@@ -1,0 +1,53 @@
+{
+  "review_round": 12,
+  "pass": 7,
+  "snapshot": "pass7-self-contained-contract-v4",
+  "snapshot_manifest_sha256": "206c72e16de2b279b6cd51b4db735e10f69482e3b82b7778e984cc1261e72049",
+  "manifest_entries": 89,
+  "start_hashes_verified": "89/89",
+  "end_hashes_verified": "89/89",
+  "file_modes": "0444",
+  "directory_modes": "0555",
+  "frozen_sources_verified": "8/8",
+  "audited_frame_pngs_verified": "43/43",
+  "snapshot_changed": false,
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "id": "semantic-motion-contract-false-pass",
+      "evidence": "b08_s02 repeats the precision-not-certified state and b08_s04 reveals empty characterization shells. Excluding those no-ops gives two 6.0-second unchanged-evidence gaps, violating the exact 3.0-second claim and four-second ceiling; b08_s04/s05 also do not demonstrate their mapped coverage-limitation clause."
+    },
+    {
+      "id": "visual-action-state-contradictions",
+      "evidence": "b01.visual_action opens on all three labeled metadata columns while timed states begin with only the archive icon and add rails later. b08.visual_action requires opening two example groups, but b08 states provide only empty shells and a transition; examples first appear in b09. The canonical build hash pins contradictory directions rather than proving realizability."
+    },
+    {
+      "id": "self-resignable-standalone-contract-and-source-freeze",
+      "evidence": "Thirteen additional temporary hostile probes all passed after re-signing the co-located approved contract or source manifest, including reduced state count, 3.5-second gap, no-op synonyms, hidden reset, scope/measurement/topology/control/citation/clause corruptions, all-at-frame-zero directions, and tampered T1_LOG.txt. The validator does not authenticate the contract against top-level MANIFEST.json when used alone."
+    },
+    {
+      "id": "custody-and-packet-inventory-mismatch",
+      "evidence": "The manifest labels the external candidate read-only although its actual filesystem mode is 0644 and owner-writable; handling was read-only by authorization, not mode enforcement. INTEGRATOR_REQUEST.md lists NUMERIC_SOURCE_AUDIT.json and historical pass-2 through pass-6 QA paths absent from the exact snapshot, so its worker-artifact inventory is not the packet inventory."
+    }
+  ],
+  "verified_passes": {
+    "manifest_modes_sources_frames": "PASS at both boundaries; 89/89 entries, 8/8 sources, 43/43 frames",
+    "required_helper_commands": "PASS directly from read-only snapshot without writes",
+    "supplied_mutation_suite": "PASS baseline plus 13/13 expected failures",
+    "source_locality": "PASS; relocated replay uses only snapshot-local frozen_sources and rejects simple tamper",
+    "science_topology_status_citations": "PASS",
+    "paper_naive_packet": "PASS exact reconstruction; 10 narration, 58 on-screen leaves, 10 citations, eight questions, no answer key",
+    "static_v8": "compatible unclipped one-frame overview only; cannot prove temporal implementation",
+    "candidate_frame_replay": "43/43 exact; encoded candidate defects preserved"
+  },
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_mode": "0644; read-only handling was an authorization boundary rather than filesystem enforcement",
+  "candidate_disposition": "FAIL preserved",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "tts_invoked": false,
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "carry_forward_to_current": "V5 corrected the b08 semantic and search-axis defects; v6 corrected b01 chronology, b05→b06 duplicate reveal, and immutable manifest authentication. The external-candidate custody wording and exact packet-inventory mismatch remain applicable to v6 and require a higher exact packet version.",
+  "current_gate_note": "V4 exact FAIL is preserved. It cannot clear v6, the encoded candidate, or any downstream gate."
+}

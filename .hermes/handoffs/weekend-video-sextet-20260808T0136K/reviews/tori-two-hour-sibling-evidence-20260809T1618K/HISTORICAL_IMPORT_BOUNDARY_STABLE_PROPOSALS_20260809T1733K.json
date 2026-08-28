@@ -1,0 +1,101 @@
+{
+  "timestamp_kst": "2026-08-09T17:33:59+09:00",
+  "authority": "HWAO_DEEPENING_ORDER_HISTORICAL_FREEZES_20260809T1628K.md",
+  "task": "Custody of the historical-freeze import boundary against the stable 17:25 KST Goru proposals",
+  "historical_freezes": {
+    "fesc": {
+      "path": "lane-fesc-zsweep/worker-yui/SOURCE_FREEZE.json",
+      "sha256": "b14188e0cc838cc4f512ebd78474b11cf742ea07cd45787df2f41510e97720c9",
+      "historical_reportability": false
+    },
+    "brightend": {
+      "path": "lane-c41-uvlf/worker-yui/SOURCE_FREEZE.json",
+      "sha256": "d2655f1eab884a93121e7a2d3ed95f01e6391d7d705e94435d8af845c6fffe24",
+      "historical_reportability": "YES_FOR_LOCAL_SCIENTIFIC_PRESENTATION_PROPOSAL_ONLY"
+    },
+    "mzr-anchor": {
+      "path": "lane-c41-mzr/worker-yui/SOURCE_FREEZE.json",
+      "sha256": "a57c36e3a40df5f49b9848e8af346b591658a44625de74abd47cbe71909d2ce1",
+      "historical_reportability": true,
+      "risk_rank": "HIGHEST"
+    },
+    "mzr-census": {
+      "path": "lane-mzr-census/worker-yui/SOURCE_FREEZE.json",
+      "sha256": "59317f7d33d4c4c3d307843932229eadb24a0ccbe97123002daa28ca6f210ec7",
+      "historical_reportability": "YES_WITH_STRICT_SCOPE"
+    }
+  },
+  "stable_active_proposals": {
+    "fesc": "3d4a1aa5d13a3463fc866145e82bbde6ba214b2f4a84f5804980cf2ebc5d671b",
+    "brightend": "dbd9d51a9c28d918467a3d294804408dc7a337c50cc61f8d615ab001788def66",
+    "mzr-anchor": "96f2086882ed89ad56755a26e20256a938dca8b4f8845bf8ae8b95d453812886",
+    "mzr-census": "86356f5dd991a033def3ee0c7a979c9032e1b6a6eb418ea28e4e231ad33bdd50"
+  },
+  "comparison": [
+    {
+      "lane": "fesc",
+      "exact_long_scalar_overlaps": 38,
+      "source_path_or_hash_facts": 38,
+      "non_source_long_scalar_overlaps": 0,
+      "typed_high_risk_scalar_overlap": "video_reportable_now=false",
+      "source_artifacts_reverified_today": "19/19 exist and hash-match",
+      "active_reportability": false
+    },
+    {
+      "lane": "brightend",
+      "exact_long_scalar_overlaps": 16,
+      "source_path_or_hash_facts": 16,
+      "non_source_long_scalar_overlaps": 0,
+      "typed_high_risk_scalar_overlaps": 0,
+      "source_artifacts_reverified_today": "8/8 exist and hash-match",
+      "active_reportability": false
+    },
+    {
+      "lane": "mzr-anchor",
+      "exact_long_scalar_overlaps": 0,
+      "source_path_or_hash_facts": 0,
+      "non_source_long_scalar_overlaps": 0,
+      "typed_high_risk_scalar_overlaps": 0,
+      "source_artifacts_reverified_today": "12/12 exist and hash-match",
+      "historical_reportability_true_crossed": false,
+      "historical_verdict_or_frozen_claim_bundle_crossed": false,
+      "active_reportability": false
+    },
+    {
+      "lane": "mzr-census",
+      "exact_long_scalar_overlaps": 30,
+      "source_path_or_hash_facts": 30,
+      "non_source_long_scalar_overlaps": 0,
+      "typed_high_risk_scalar_overlaps": 0,
+      "source_artifacts_reverified_today": "15/15 exist and hash-match",
+      "active_reportability": false
+    }
+  ],
+  "decisive_findings": [
+    "All exact long-string overlaps are source path/hash facts permitted to cross only after today's independent re-hash; all 54 current proposal source entries exist and hash-match.",
+    "No historical decision, verdict, boundary, permissive reportability value, allowed/forbidden list, claim, non-claim, release blocker, disposition, or authority string appears verbatim in an active proposal.",
+    "The highest-risk mzr-anchor historical video_reportable_now=true did not cross; the active proposal is false and contains none of its historical frozen-claim or verdict bundle.",
+    "Brightend's historical YES_FOR_LOCAL_SCIENTIFIC_PRESENTATION_PROPOSAL_ONLY and mzr-census's YES_WITH_STRICT_SCOPE did not cross.",
+    "Fesc has one indistinguishable typed scalar equality: historical and active video_reportable_now are both false. False is independently mandated by the current order's fail-closed default and creates no permission, but byte comparison alone cannot prove whether the author re-derived rather than retyped it. A current-order derivation receipt is required before installation.",
+    "All four active lanes still lack SOURCE_FREEZE.json. No active lane/proposal text contains reportability=true/True/YES, and no accepted_by_duho label appears."
+  ],
+  "import_boundary_verdict": "PASS_NO_PERMISSIVE_OR_BOUNDARY_IMPORT__STRICT_INSTALLATION_BLOCK_REMAINS",
+  "installation_verdict": "BLOCK_ALL_FOUR_PROPOSALS",
+  "installation_block_reasons": [
+    "No proposal has completed independent Lana + Kun + Tori passes.",
+    "Fesc, brightend, and mzr-census lack immutable versioned source-copy bundles and size-bearing bound manifests.",
+    "Mzr-anchor SOURCE_BYTES_INITIAL is malformed as one physical line with literal backslash-n sequences, and its claimed path+size+hash copy manifest omits sizes.",
+    "Fesc needs an explicit current-order derivation receipt for its same-valued false reportability field if installation is ever proposed."
+  ],
+  "active_SOURCE_FREEZE_count": 0,
+  "new_result_bearing_candidate_authorized": false,
+  "gates_closed": {
+    "cockpit_manifest": "3d7bbfbc8022cbc7db3ee474c2c1eddfa50bb187df6e303ee14fc647ef8f49f6",
+    "working_public_manifest": "8d1b0386e3172ee40e68009cb7bc88ed28148a38781156adb3b50ab087de239c",
+    "live_public_manifest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "paperVideos_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_HEAD": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0
+  }
+}

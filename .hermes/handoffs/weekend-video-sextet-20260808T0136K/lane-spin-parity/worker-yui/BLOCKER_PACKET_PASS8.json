@@ -1,0 +1,120 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass8-blockers-20260808T061259K",
+  "checked_at": "2026-08-08T06:12:59+09:00",
+  "scope": "isolated pass-8 monochrome/color-vision encoded-frame audit, redundant-encoding correction, and exact held-result blocker preservation",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "freeze_match": true,
+    "preserved_failed_candidate": true,
+    "modified": false
+  },
+  "pass8_encoded_audit": {
+    "audit": "PASS8_ENCODED_FRAME_AUDIT.md",
+    "audit_sha256": "f30c2ecaea941ef715474208a3312ea23549ecd031f33eb3ea43ca5bcf7ac7ae",
+    "extraction_receipt": "qa/pass8_color_vision_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "c198c393144d4e57098f80aef1b90f0bfde9672143043ec2e3004771d36a481b",
+    "quantitative_audit": "qa/pass8_color_vision_quantitative_audit.json",
+    "quantitative_audit_sha256": "8ec1c19debd37eaeb0354a80e79f7dc4c2407a5130c49d11f4fc3f3980615f6a",
+    "scene_count": 16,
+    "variant_count": 5,
+    "frame_count": 80,
+    "fresh_cut_detection": "15/15_EXACT_PASS7_TIMESTAMPS",
+    "fresh_color_midpoint_reproduction": "16/16_PASS7_BYTE_IDENTICAL",
+    "grayscale_all_scenes": {
+      "headline_token_retention_vs_color": 1.0,
+      "full_token_retention_vs_color": 0.933301,
+      "lower_support_token_retention_vs_color": 0.877063,
+      "numeric_token_retention_vs_color": 0.910233,
+      "edge_recall_vs_color": 0.999942,
+      "chroma_retention": 0.0
+    },
+    "grayscale_chart_scenes_5_7_9_10_11": {
+      "headline_token_retention_vs_color": 1.0,
+      "full_token_retention_vs_color": 0.808086,
+      "lower_support_token_retention_vs_color": 0.739935,
+      "numeric_token_retention_vs_color": 0.779412,
+      "edge_recall_vs_color": 0.999998,
+      "chroma_retention": 0.0
+    },
+    "held_critical_structural_gate_count": "0/5_IN_COLOR_GRAYSCALE_PROTANOPIA_DEUTERANOPIA_TRITANOPIA",
+    "finding": "Dominant headlines, result figures, numerical cards, matrices, and plot silhouettes persist when hue is removed or transformed. No structural held gate appears. Color accessibility does not mitigate the candidate's scientific-presentation failure."
+  },
+  "pass8_method_only_audit": {
+    "derivative_receipt": "qa/pass8_v8_color_vision/receipt.json",
+    "derivative_receipt_sha256": "575ec95c0bc4441d514b99fdaad33d2acedbb9c6e06ed73030c10e8946111c62",
+    "quantitative_audit": "qa/pass8_v8_color_vision_audit.json",
+    "quantitative_audit_sha256": "de7789c060e8e52756bc0e610c50f302811677a51298f0e69ab0aefa40c5a7e8",
+    "derived_frame_count": 70,
+    "sealed_v8_result_held": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_hue_only_semantic_distinctions": 0,
+    "pass7_caption_safe_lines": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_caption_safe_result_held": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_gate_line_ocr_retention": "1.0_ALL_FIVE_VARIANTS",
+    "finding": "Sealed v8 and the pass-7 caption-safe correction already use words, shapes, connectors, line treatment, and stable position redundantly. Hue is emphasis only."
+  },
+  "representation_correction": {
+    "guard": "REDUNDANT_ENCODING_GUARD_PASS8.json",
+    "guard_sha256": "597b591da0f32325d8b764df23b7a5c9a088c666bac433a2ccd2e9a7b31d53da",
+    "type": "NON_PIXEL_REDUNDANT_ENCODING_ACCEPTANCE_CONTRACT",
+    "requirements": [
+      "No semantic distinction by hue alone.",
+      "Direct labels plus shape, line style, marker, or stable position for every branch, condition, column, rail, and status.",
+      "Words and border carry held gates; amber is emphasis only.",
+      "Unavailable rails use both explicit copy and blocked/non-solid treatment.",
+      "Any separately authorized future figure uses direct labels and distinct marker or line patterns, not color legend alone.",
+      "Human review in color, grayscale, protanopia, deuteranopia, and tritanopia simulations.",
+      "Pass-7 bottom-quarter and pass-6 360p acceptance tests remain binding."
+    ],
+    "pixel_change_requested": false,
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "v9_created": false
+  },
+  "science_blocker_1": {
+    "status": "OPEN",
+    "name": "missing_post_run_independent_A3_8_review",
+    "frozen_quarantined_artifact": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873"
+    },
+    "review_contract": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0"
+    },
+    "all_regular_source_files_content_covered": "209/209",
+    "utf8_files": 203,
+    "decoded_binary_files": 6,
+    "post_t4_utf8_files": 9,
+    "post_t4_documents_identifying_t4": 4,
+    "post_t4_documents_with_exact_t4_and_a3_8_hash_pair": 0,
+    "valid_post_run_independent_review_records": 0,
+    "unblock_requirement": "A new post-run independent review record must identify the exact frozen T4 and A3.8 artifacts and contain the required verdict, axis, frame, magnitude, and disposition fields. Video presentation cannot substitute for that record."
+  },
+  "science_blocker_2": {
+    "status": "OPEN",
+    "name": "FRAME_UNSTATED",
+    "source": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+      "sha256": "ccedf6846391a8f0661a88b2eec0ce21fbfd7c44ad16201080bb196f56d258e5",
+      "exact_terminal_status": "FRAME REVIEW: AGREES FRAME_UNSTATED"
+    },
+    "unblock_requirement": "An authoritative archive recording-convention source must resolve the stored label frame; data behavior and visual encoding cannot substitute for that source."
+  },
+  "withheld_scope": [
+    "T3 or T4 measured values",
+    "result figures or result prose",
+    "significance or direction claims",
+    "physical or cross-topic interpretation",
+    "release acceptance"
+  ],
+  "video_reportable_now": false,
+  "scientific_adjudication_performed": false,
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false,
+  "integrator_action": "Hwao/Fable may adopt the redundant-encoding guard with the pass-7 caption-safe correction in a separately authored and reviewed proposal iteration. This packet does not authorize result rendering, narration, encoding, release, or publication."
+}

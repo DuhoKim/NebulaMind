@@ -1,0 +1,49 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-byte-identical-custody-receipt-v25",
+  "storyboard_version": "pass7-distinct-state-custody-v23",
+  "storyboard_sha256": "48e9962bdd24b860b7398eb405d8e7b590dce47c72427f34ef3601dfe25b35b8",
+  "approved_contract_sha256": "4525cb9c1c5533ce41097105e8fdfa4b65a0a3c5a9624e71b48c97f101a04414",
+  "visual": {
+    "path": "visual_proposal_v9.png",
+    "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "pixels_changed_from_v22": false,
+    "current_exact_regate": "PENDING"
+  },
+  "artifact_hashes": {
+    "qa/visual_proposal_qa.json": "fd64993d112d0717dd259d8bb99eb3fa9e56eb3bfe6dd26798ff4f79cf65fa88",
+    "SOURCE_FREEZE.json": "5a9dab87ee78111f1a8e3c1536474e0276f8dd106858052912bcb6d4e50b2e1a",
+    "SNAPSHOT_SCOPE.md": "d2e818b80cbe668c653b957b772d54303af1bb9c65392117525934209d2648ac",
+    "PAPER_NAIVE_PACKET.md": "652de9219eaccb82d37e6fc5d2e4b722316e879ffe38ee4e0e63587a48bbc854",
+    "qa/PAPER_NAIVE_PACKET_PROJECTION.json": "1903b10149111fa82cea76013ac05ccc09ff2c650dddc24e600492bb365bb4c2",
+    "ALLOY_NARRATION_MANIFEST_PROPOSAL.json": "9a40aaedd95cf1a4d89362d9f617957b5fdc088c5b2832558e907b9237d55ee3",
+    "qa/proposal_validation.json": "3fd9818543255e664c46b3cf14fcde1b136265e36c7b3193708894ec93419a96",
+    "qa/PASS7_VALIDATOR_MUTATION_TESTS.json": "7e4d3e5496554c7be91b540028e250a8befbd3613937b3402c0bf3ed1bf479d6",
+    "validate_proposal.py": "70e8ceaf43e2cd570423b4463a7695c175553364e84210fe8e01493e299f051b",
+    "qa/test_validate_proposal_mutations.py": "8422bba4a52420f90ddd33e5e6e33adf90657d8ad1b4b4feeb6059be6ac483da",
+    "FRAME_DIAGNOSIS.md": "320b3c6b5f5c2259a650e1a76dac17eddc7938e2ecad69e7ee7789a01e8d5774",
+    "CANDIDATE_NOTES.md": "7bc1a7d577aa8e170b6231bf9128b855551c3b05fe341b11eed5739d8c9d6156",
+    "INTEGRATOR_REQUEST.md": "e4d59d023894eb1687f5e7e08b0004fafcfe18978e30f2be1ad25aa463a5030b",
+    "qa/HISTORICAL_LOCAL_RECEIPT_INDEX_V25.json": "99713ae2f0cabd4434e34c4282b960474f3cb88915961494ac71ee78e5630d88"
+  },
+  "checks": {
+    "validator": "PASS; exact content receipt matches",
+    "narration_preparer": "PASS_NO_WRITE",
+    "paper_naive_preparer": "PASS_NO_WRITE",
+    "deterministic_renderer": "PASS_NO_WRITE; exact visual-v9 bytes",
+    "mutation_suite": "PASS; 37 cases = baseline plus 36/36 expected failures",
+    "mutation_receipt_determinism": "custody diagnostics normalize only after real rejection and expected diagnostic checks; live and sealed full-suite receipts must be byte-identical",
+    "self_contained_mutation_harness": "sealed execution selects the containing exact snapshot as the custody fixture; live execution selects preserved exact v22 only as a regression fixture",
+    "question_contract": "validator-owned and preparer-owned exact SHA-256 d2cc5d3eb238cecebed22c407d1697fdb12c1518d97694177afc90247783eac7; eight prompts; no numerical/answer premises",
+    "filesystem_custody": "sealed validator requires regular listed files, 0444 file modes, 0555 directory modes, no symlinks, hashes, sizes, exact inventory, and external MANIFEST digest",
+    "structured_failure": "whole-beat reorder emits JSON FAIL with validator execution exception diagnostic",
+    "distinct_state_contract": "45/45 exact approved states; b08 starts with retrieval-passed versus precision-not-certified comparison, then coverage limitation, two separately revealed taxonomy groups, and boundary; maximum declared semantic gap 3.0 seconds",
+    "operative_guidance": "current packet v25/storyboard v23; search-qualified 19/2; no dominant-mode ranking; current pass7 status; handoff discloses compound mutation case"
+  },
+  "historical_receipts": "All v1-v24 local receipts excluded from the exact packet, preserved in live lane, and denied current authority by HISTORICAL_LOCAL_RECEIPT_INDEX_V25.json.",
+  "candidate_clearance": "NOT_GRANTED",
+  "integration_gate": "CLOSED",
+  "tts_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "shared_public_git_gate": "CLOSED"
+}

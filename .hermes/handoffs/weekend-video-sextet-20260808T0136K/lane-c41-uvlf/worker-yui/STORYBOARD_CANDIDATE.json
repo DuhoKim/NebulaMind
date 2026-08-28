@@ -1,0 +1,132 @@
+{
+  "marker": "C41_UVLF_WORKER_YUI_STORYBOARD_PROPOSAL_V1",
+  "artifact_class": "WORKER_PROPOSAL_NOT_OFFICIAL_CANDIDATE",
+  "coordination_gate": "C41 is non-canary and waits behind acceptance of lane-c31-sed/worker-tori plus a Hwao decision/delegation.",
+  "paper_slug": "c41-brightend-uvlf-archival-gap",
+  "title": "The Machine-Readable Bright End",
+  "target_duration_seconds": 132,
+  "target_format": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "style": "graphics-first, no face, dark scientific evidence plane"
+  },
+  "source_freeze": "SOURCE_FREEZE.json",
+  "visual_proposal_version": "visual_proposals/v10",
+  "source_lineage": {
+    "current_public_pdf_sha256": "7b4e31a41815c755ad9fbad80c4a3714817e82524c8cf5776924f16208452aba",
+    "candidate_manifest_sha256": "50a7a5e81330ba2c251cb84b5e1bb0740a11aa5242e57ba47c96192c6d94b432",
+    "census_results_sha256": "4b21d432524a55bf5746fb3685e89360eaa33f143f68c042975f7259dd645ed7",
+    "row_sample_sha256": "1cdb3de8738ecf1b80328c147a0dd25a159b147c1b76a1e7dd6473a16eddf5c5"
+  },
+  "narration_request": {
+    "status": "PREPARED_NOT_EXECUTED",
+    "execution_authority": "Hwao only",
+    "engine": "OpenAI TTS",
+    "model": "gpt-4o-mini-tts",
+    "voice": "alloy",
+    "speed": 1.18,
+    "mixing": "voice-only; no default music",
+    "note": "Worker-Yui did not call TTS and did not render or mux an official candidate."
+  },
+  "scenes": [
+    {
+      "id": "01_archive_question",
+      "duration_seconds": 12,
+      "narration": "Published bright-end ultraviolet luminosity functions exist. But can a reader reconstruct their evolution from the frozen two-channel VizieR manifest, rather than from figures alone?",
+      "visual_action": "Open directly on the name-channel search card. Reveal '20 of 112' before the sentence finishes; do not use a paper-cover hold.",
+      "visual_asset": "visual_proposals/v10/state_01_name_channel.png",
+      "on_screen_copy": ["Bright-end UV luminosity functions", "20 of 112 frozen VizieR tables", "Other archives were not exhaustively searched"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), §§1 and 3.1–3.2; VizieR column metadata.",
+      "artifact_anchors": ["GAP_PAPER.pdf §§1,3", "T1_CATALOG_MANIFEST.json"],
+      "semantic_checks": ["Published UVLF results and machine-reconstructability are separate claims.", "The archive-search universe is the frozen two-channel VizieR manifest, not all public repositories."]
+    },
+    {
+      "id": "02_search_channels",
+      "duration_seconds": 18,
+      "narration": "In that manifest, a completed column-name search reaches twenty of one hundred twelve candidate tables. Physical-meaning metadata, encoded as UCD tags, identifies the other ninety-two. Search reach is not eligibility, and other repositories were not exhaustively searched.",
+      "visual_action": "Transform the 20-card into a two-channel partition. Add the physical-meaning/UCD +92 block, then consolidate to 112. Keep 'search reach, not eligibility' and the frozen-VizieR scope visible.",
+      "visual_asset": "visual_proposals/v10/state_02_ucd_partition.png",
+      "on_screen_copy": ["20 name-reachable", "+92 physical-meaning-tag only", "112 candidates", "Frozen two-channel VizieR manifest"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), §§3.1–3.2; VizieR column metadata.",
+      "artifact_anchors": ["T1_CATALOG_MANIFEST.json candidates[*].found_by_channels"],
+      "semantic_checks": ["92 is the UCD-only partition, not the total number with any UCD hit.", "20 + 92 = 112.", "Search reach is scoped to the frozen manifest and is not scientific eligibility."]
+    },
+    {
+      "id": "03_eligibility_layer",
+      "duration_seconds": 22,
+      "narration": "Search reach is not eligibility. Of sixty-seven counted catalogues, twenty-seven contribute rows in the frozen slices and forty contribute none. Thirty-four candidates are disqualified, one remains pending, and ten lack a usable magnitude-redshift pair. The contributing catalogues retain six thousand four hundred seventeen raw rows.",
+      "visual_action": "Build the five eligibility boxes sequentially. After their partition sums to 112, distinguish the 27 row-contributing and 40 zero-row counted catalogues before moving to 6,417 raw rows. Keep the raw-uncorrected boundary on screen.",
+      "visual_asset": "visual_proposals/v10/state_03_eligibility_funnel.png",
+      "on_screen_copy": ["67 + 34 + 1 + 10 = 112", "27 row-contributing / 40 zero-row counted catalogues", "6,417 raw rows"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), §§3 and 5; VizieR archive census.",
+      "artifact_anchors": ["T3_CENSUS_RESULTS.json", "TORI_SHAPE1_RECEIPTS_R2B.md"],
+      "semantic_checks": ["Candidates, catalogues, and rows retain distinct units.", "Do not imply that all 67 counted catalogues contribute rows.", "Do not call the 6,417 rows confirmed galaxies.", "Do not imply completeness correction or cross-catalogue merging."]
+    },
+    {
+      "id": "04_slice_plane",
+      "duration_seconds": 21,
+      "narration": "Now keep the half-open slice from redshift ten up to, but not including, eleven point five. Every dot is one frozen row with a catalogued ultraviolet-like absolute magnitude. Four hundred twenty of the four hundred fifty-three rows come from the COSMOS2025 LePhare table.",
+      "visual_action": "Draw axes first, label redshift z and catalogued UV-like absolute magnitude in AB magnitudes, then reveal all 453 source rows without jitter, interpolation, or smoothing. Encode the dominant COSMOS2025 LePhare table as circles and the 33 rows from five other tables as diamonds.",
+      "visual_asset": "visual_proposals/v10/state_04_slice_plane_rows.png",
+      "on_screen_copy": ["10 ≤ z < 11.5", "453 raw rows", "catalogued UV-like absolute magnitude (AB)", "420 from COSMOS2025 LePhare / 33 from five other tables", "Each point = one frozen row"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), Table 1 and §§5–6; VizieR catalogue rows; frozen row-census packet.",
+      "artifact_anchors": ["T3_CENSUS_SAMPLE.jsonl rows satisfying 10 <= z < 11.5"],
+      "semantic_checks": ["Half-open redshift bounds must remain explicit.", "The dominant-table provenance must remain visible.", "Do not imply the catalogue bands are homogenized to a common 1500-angstrom rest-frame quantity.", "Point density is not a luminosity function or survey-volume density.", "An audience-reachable supplement is required before release because the 453 denominator is derived from the frozen row packet."]
+    },
+    {
+      "id": "05_bright_subset",
+      "duration_seconds": 21,
+      "narration": "The slice contains four hundred fifty-three raw rows. One hundred seventy-six pass the reported magnitude cut at minus twenty. These catalogued bands are not homogenized to a common rest wavelength, and one hundred sixty-one of the bright rows come from the dominant table.",
+      "visual_action": "Add the dashed reported-magnitude cut at -20. Recolor exactly the 176 qualifying source points; retain all other slice rows in gray and the five-other-table diamond overlay. Reveal '176 / 453', the no-bandpass-homogenization caveat, and then the '161 / 176 from the dominant table' qualifier.",
+      "visual_asset": "visual_proposals/v10/state_05_slice_plane_threshold.png",
+      "on_screen_copy": ["453 total raw rows", "176 / 453 with reported M_UV-like ≤ −20", "No bandpass homogenization", "161 / 176 bright rows from the dominant table"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), Table 1 and §§5–6; VizieR catalogue rows; frozen row-census packet.",
+      "artifact_anchors": ["T3_CENSUS_SAMPLE.jsonl rows satisfying 10 <= z < 11.5 and stored muv <= -20"],
+      "semantic_checks": ["176 is a reported-magnitude-cut subset of 453, not the full slice count.", "The reported M_UV-like qualifier, inequality, and no-bandpass-homogenization caveat must remain visible whenever 176 is shown.", "Dominant-table provenance must travel with the bright subset."]
+    },
+    {
+      "id": "06_source_boundary",
+      "duration_seconds": 21,
+      "narration": "This census is not a luminosity-function measurement. In the predefined roster, no published-luminosity-function table met the machine-readable data requirements for this slice. That means missing extractable data—not zero galaxies or zero published luminosity functions. No completeness correction or density inference follows.",
+      "visual_action": "Keep the census points and 176/453 geometry visible. Reveal a separate published-LF data-requirements block on the right. State plainly that the absence is missing extractable data, not a zero-valued physical result.",
+      "visual_asset": "visual_proposals/v10/state_06_slice_plane_boundary.png",
+      "on_screen_copy": ["Census side: 453 raw rows", "No predefined-roster LF table met the machine-readable requirements", "Missing extractable data — not zero galaxies or zero published LFs", "No density inference"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), Table 1 and §§5–6.",
+      "artifact_anchors": ["GAP_PAPER.pdf Table 1 and §§5–6", "T3_CENSUS_RESULTS.json"],
+      "semantic_checks": ["The roster statement means missing extractable LF data, not zero galaxies or zero published LFs.", "Census rows and published LF points remain on separate representation planes."]
+    },
+    {
+      "id": "07_reproducibility_packet",
+      "duration_seconds": 17,
+      "narration": "Human review cleared this study for a Lab landing, not as a journal-refereed, independently validated result. The repair is procedural: publish the luminosity-function values and uncertainties, bin geometry, redshift support, units, Hubble-scaling conventions, and transformations.",
+      "visual_action": "Transform the evidence plane into five checklist boxes: luminosity-function value and uncertainty, M_UV bin edges and widths, redshift interval and anchor, units plus Hubble-scaling convention, and selection/correction transformations. Add the paper-specific study-status boundary and label the frame 'procedure — not a new measurement'.",
+      "visual_asset": "visual_proposals/v10/state_07_reproducibility_packet.png",
+      "on_screen_copy": ["Self-describing data packet", "Human-cleared for Lab landing", "Not journal-refereed or independently validated", "Procedure — not a new measurement"],
+      "display_citation": "NebulaMind Autonomous Research Lab (2026), §6, The Machine-Readable Bright End; C41 paper-specific review record.",
+      "artifact_anchors": ["GAP_PAPER.pdf §6", "storyboard_c41_gap.json card c15", "frontend/public/studies/c41-brightend-uvlf-archival-gap_review_loop.md"],
+      "semantic_checks": ["Checklist items are publication requirements, not measured outputs.", "Do not claim this packet already exists for the reviewed literature roster.", "Lab landing clearance is not journal peer review, independent validation, or journal publication."]
+    }
+  ],
+  "global_visual_rules": [
+    "No full-screen paper-cover hold.",
+    "No internal file paths in audience-facing citations.",
+    "No decorative use of lit_uvlf_alpha.png as central evidence.",
+    "No interpolation, jitter, or smoothing of the 453 row-level points.",
+    "Keep row-contribution and dominant-table provenance visible; do not imply 67 independent contributing catalogues in the target slice.",
+    "Keep the no-bandpass-homogenization caveat visible; do not call the plotted catalogue fields a uniform 1500-angstrom rest-frame M_UV measurement.",
+    "Scope archive-search claims to the frozen two-channel VizieR manifest; other repositories were not exhaustively searched.",
+    "Do not approve public integration until an audience-reachable supplement supports the 453-row denominator and six-table geometry.",
+    "Keep study status explicit: human-cleared for Lab landing, but not journal-refereed, independently validated, or a journal result.",
+    "Maintain source boundaries among search reach, eligibility status, census rows, and published LF points.",
+    "Keep the raw-census caveat visible through the evidence-plane scenes.",
+    "Every numerical claim appears with its unit, threshold, slice, denominator, or status qualifier."
+  ],
+  "closed_gates": [
+    "Official candidate render",
+    "Shared renderer or storyboard-of-record modification",
+    "TTS generation or mux",
+    "Public replacement or website wiring",
+    "Git, DB/SQL, deploy/restart, browser automation, provider/config, secret access"
+  ]
+}

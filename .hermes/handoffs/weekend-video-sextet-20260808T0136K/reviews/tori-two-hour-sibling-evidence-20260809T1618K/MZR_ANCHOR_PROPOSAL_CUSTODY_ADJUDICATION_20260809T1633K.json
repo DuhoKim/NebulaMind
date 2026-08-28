@@ -1,0 +1,53 @@
+{
+  "timestamp_kst": "2026-08-09T16:33:14+09:00",
+  "authority": [
+    "HWAO_TWO_HOUR_SIBLING_ORDER_20260809T1620K.md",
+    "HWAO_DEEPENING_ORDER_HISTORICAL_FREEZES_20260809T1628K.md"
+  ],
+  "lane": "mzr-anchor",
+  "proposal": "lanes/mzr-anchor/GORU_PROPOSAL.md",
+  "proposal_type": "non-reportable method/source-inventory freeze",
+  "custody_verification": {
+    "SOURCE_HASHES_INITIAL_entries": 12,
+    "SOURCE_HASHES_INITIAL_unique_hashes": 11,
+    "original_paths_exist": 12,
+    "original_paths_hash_match": 12,
+    "COPY_HASHES_entries": 11,
+    "frozen_copies_exist": 11,
+    "frozen_copies_hash_match": 11,
+    "all_unique_original_hashes_covered_by_frozen_copies": true,
+    "SOURCE_BYTES_INITIAL_entries": 4,
+    "SOURCE_BYTES_INITIAL_required_entries": 12,
+    "SOURCE_BYTES_INITIAL_complete": false
+  },
+  "historical_freeze_non_import_check": {
+    "historical_file": "lane-c41-mzr/worker-yui/SOURCE_FREEZE.json",
+    "historical_video_reportable_now": true,
+    "proposal_video_reportable_now": false,
+    "historical_verdict_imported": false,
+    "historical_frozen_claims_imported": false,
+    "historical_non_claims_imported_verbatim": false,
+    "historical_current_video_disposition_imported": false,
+    "historical_integration_authority_imported": false,
+    "historical_paper_lane_permissions_imported": false,
+    "source_paths_and_hashes_reverified_today_as_facts": true
+  },
+  "blocking_findings": [
+    "SOURCE_BYTES_INITIAL.txt inventories only 4 of 12 source-path entries; custody manifest is incomplete.",
+    "The proposed JSON pre-fills frozen_at=2026-08-09T16:38:00+09:00 before creation; a real freeze may not retain a future/draft timestamp.",
+    "The proposed JSON names mutable original paths but does not embed the immutable frozen-copy path/size/hash mapping or bind COPY_HASHES.txt by hash.",
+    "The proposal forbids table counts, anchor yield, mass-bin occupancy, offset sign, and evolution verdict; it is not a result-bearing authorization and cannot unlock a result-bearing candidate.",
+    "No active SOURCE_FREEZE.json may be written until the corrected proposal independently clears Lana, Kun, and Tori."
+  ],
+  "positive_findings": [
+    "All 12 named original paths exist and match their recorded hashes today.",
+    "All 11 unique frozen copies exist and match; the duplicated PDF source has one byte-identical frozen copy.",
+    "No high-risk historical verdict, frozen-claim bundle, disposition, authority, or reportability=true field was imported into the active proposal."
+  ],
+  "custody_verdict": "BLOCK_INSTALLATION_PENDING_CORRECTED_IMMUTABLE_BYTE_MANIFEST",
+  "result_reportable_use": "BLOCK",
+  "video_reportable_now": false,
+  "SOURCE_FREEZE_present": false,
+  "exact_next_action": "Goru must issue a new versioned proposal with a complete 12-entry byte inventory, an 11-copy immutable path/size/hash manifest bound by its own digest, an actual creation timestamp, and unchanged non-reportable scope; then Lana, Kun, and Tori re-adjudicate independently.",
+  "gates_closed": true
+}

@@ -1,0 +1,278 @@
+{
+  "review_id": "TORI_BRIGHTEND_LITERATURE_BEAT_EXACT_HASH_REGATE_20260810T1804K",
+  "filed_at_utc": "2026-08-10T09:15:11Z",
+  "verdict": "PASS_EXACT_HASH_REGATE",
+  "scope": {
+    "lane": "brightend",
+    "mode": "independent read-only exact-hash regate",
+    "candidate_directory": "integrator/canaries/brightend-literature-beat-typography-fix-20260810T1748K",
+    "candidate_mutation_authorized": false,
+    "gated_surface_mutation_authorized": false,
+    "sole_allowed_write": "reviews/TORI_BRIGHTEND_LITERATURE_BEAT_EXACT_HASH_REGATE_20260810T1804K.json"
+  },
+  "exact_hash_bindings": {
+    "video": {
+      "path": "integrator/canaries/brightend-literature-beat-typography-fix-20260810T1748K/brightend-literature-beat-canary-20260810T1748K.mp4",
+      "required_sha256": "6483525852a5fafbb41d82e4c9fba0dc7e98b4f8b7599007e2af0a379ef49dd7",
+      "recomputed_sha256": "6483525852a5fafbb41d82e4c9fba0dc7e98b4f8b7599007e2af0a379ef49dd7",
+      "match": true
+    },
+    "receipt": {
+      "required_sha256": "a8ebc87b69b087acb743d1ba21ce7098438c244e8712515c41e9bc5b7857b01c",
+      "recomputed_sha256": "a8ebc87b69b087acb743d1ba21ce7098438c244e8712515c41e9bc5b7857b01c",
+      "match": true
+    },
+    "post_encode_freeze": {
+      "required_sha256": "0584917ae4d38f07122203654612df28f133ed415fbbb36638bec4975272821c",
+      "recomputed_sha256": "0584917ae4d38f07122203654612df28f133ed415fbbb36638bec4975272821c",
+      "match": true
+    },
+    "encoded_qa": {
+      "required_sha256": "652500417045407b9ff2eb5824f57dd3aae2fc84fbd9ab57b6de5d90c37331b2",
+      "recomputed_sha256": "652500417045407b9ff2eb5824f57dd3aae2fc84fbd9ab57b6de5d90c37331b2",
+      "match": true
+    },
+    "kun_pass_report": {
+      "required_sha256": "001df0c9af67c7e0d78a86d3156d2d660f63a119d8925beecdf0d6018dee7fc0",
+      "recomputed_sha256": "001df0c9af67c7e0d78a86d3156d2d660f63a119d8925beecdf0d6018dee7fc0",
+      "match": true,
+      "final_nonempty_line": "PASS_GUARDRAILS_EXACT_HASH",
+      "bound_to_final_video_sha256": true
+    },
+    "kun_prior_hold_report": {
+      "required_sha256": "c86f62e6eb5bb5dfb4a7b06e7f5a465832c8036736c05e4620702422e2f896b7",
+      "recomputed_sha256": "c86f62e6eb5bb5dfb4a7b06e7f5a465832c8036736c05e4620702422e2f896b7",
+      "match": true,
+      "final_nonempty_line": "HOLD_GUARDRAILS_EXACT_HASH"
+    },
+    "receipt_chain": {
+      "all_receipt_file_pins_recomputed_and_matching": true,
+      "freeze_receipt_authority_manifest_and_video_pins_match": true,
+      "build_video_renderer_environment_spec_timeline_and_audio_pins_match": true
+    }
+  },
+  "correction_chain": {
+    "held_candidate_video_sha256": "49f1fe3dcf3fed69d0269c24fefddb67c45f6d558e34727d4b7ee5b823abc05d",
+    "held_candidate_sha_recomputed": true,
+    "prior_blocker": "The encoded i05b main quote and caption visually lost the range hyphen in z∼7-10 under the prior serif.",
+    "final_video_bytes_are_new": true,
+    "correction": "STIX Two Math for the i05b quote and caption, retaining 30 px quote and 24 px caption.",
+    "prior_hold_hash_and_held_video_hash_are_bound_in_kun_pass_report": true
+  },
+  "literature_guardrail": {
+    "lana_ruling": {
+      "lane_eligible": true,
+      "required_boundary": "Boylan-Kolchin claims remain attributed, contested, and explicitly unresolved; the lane does not adopt the excess or any explanation.",
+      "independently_consistent_with_candidate": true
+    },
+    "exact_abstract_text": {
+      "primary_source_receipt": "sources/ARXIV_2208.01611V2_EXACT_ABSTRACT.txt",
+      "sentence_one": "Early data from JWST have revealed a bevy of high-redshift galaxy candidates with unexpectedly high stellar masses.",
+      "sentence_two": "the most massive galaxy candidates in JWST observations at z∼7-10 lie at the very edge of these limits, indicating an important unresolved issue with the properties of galaxies derived from the observations, how galaxies form at early times in ΛCDM, or within this standard cosmology itself.",
+      "sentence_one_matches_lana_receipt_spec_and_caption": true,
+      "sentence_two_matches_lana_receipt_spec_and_caption": true,
+      "paraphrase_or_word_substitution_detected": false
+    },
+    "claim_boundary": {
+      "reported_excess_is_attributed": true,
+      "reported_unresolved_hedge_is_attributed": true,
+      "excess_adopted": false,
+      "explanation_adopted": false,
+      "archive_gap_adopted": false,
+      "lane_result_adopted": false,
+      "asymmetry_asserted": false,
+      "shortfall_asserted": false,
+      "evolution_asserted": false,
+      "direction_asserted": false,
+      "parity_asserted": false,
+      "significance_asserted": false,
+      "land_null_discipline": "PASS: claimed, disputed, unsettled, and NO ANSWER SELECTED remain explicit; no settled answer or winner is selected.",
+      "manual_narration_audit": "PASS: result appears only in result-count-removed or without-manufacturing-result constructions; explanation appears only in explicit non-adoption or method-can-tell-apart constructions; archival gap remains apparent or outside the canary."
+    }
+  },
+  "encoded_typography_and_visual_regate": {
+    "independent_i05b_extraction": {
+      "method": "ffmpeg extraction to an in-memory image pipe; no file written",
+      "time_seconds": 51.895624999999995,
+      "ffmpeg_exit": 0,
+      "extracted_bytes": 241388,
+      "extracted_sha256": "89570844b6acbfbd9698475f64824ea72b2f1f7277db144cc2811e71163c40dc",
+      "stored_encoded_frame_sha256": "89570844b6acbfbd9698475f64824ea72b2f1f7277db144cc2811e71163c40dc",
+      "exact_byte_match_to_inspected_frame": true
+    },
+    "i05b_frame": {
+      "path": "integrator/canaries/brightend-literature-beat-typography-fix-20260810T1748K/encoded_qa/frames/i05b-051.896.jpg",
+      "main_quote_has_visible_proper_approximately_glyph": true,
+      "main_quote_has_clear_hyphen_between_7_and_10": true,
+      "main_quote_has_visible_lambda_in_lambda_cdm": true,
+      "caption_has_visible_proper_approximately_glyph": true,
+      "caption_has_clear_hyphen_between_7_and_10": true,
+      "caption_has_visible_lambda_in_lambda_cdm": true,
+      "tofu_missing_glyph_or_clipping": false,
+      "claim_header": "BOYLAN-KOLCHIN 2023 · REPORTED UNRESOLVED HEDGE",
+      "attribution_footer": "ATTRIBUTED TO ANOTHER STUDY · NOT THIS VIDEO'S FINDING",
+      "source_line": "arXiv:2208.01611v2 · exact abstract sentence",
+      "running_header": "LITERATURE CONTEXT · NO ANSWER SELECTED",
+      "local_rail_focus": "WHY IT MATTERS"
+    },
+    "i05a_frame": {
+      "path": "integrator/canaries/brightend-literature-beat-typography-fix-20260810T1748K/encoded_qa/frames/i05a-038.630.jpg",
+      "distinct_readable_serif_quote": true,
+      "claim_header": "BOYLAN-KOLCHIN 2023 · REPORTED EXCESS CLAIM",
+      "attribution_footer_exact": true,
+      "source_line_exact": true,
+      "running_no_answer_selected": true,
+      "local_why_it_matters_focus": true
+    },
+    "i05u_frame": {
+      "path": "integrator/canaries/brightend-literature-beat-typography-fix-20260810T1748K/encoded_qa/frames/i05u-065.906.jpg",
+      "report_line": "REPORTED CLAIM · UNRESOLVED CAUSE",
+      "claimed_disputed_unsettled_visible": true,
+      "no_answer_selected_visible": true,
+      "closing_caption_exact": "Boylan-Kolchin reported these claims and left the issue unresolved; the field remains contested, and this video adopts neither claim nor explanation as its finding."
+    },
+    "full_contact_sheet": {
+      "path": "integrator/canaries/brightend-literature-beat-typography-fix-20260810T1748K/encoded-contact-sheet.jpg",
+      "literature_uses_distinct_attributed_cards": true,
+      "result_looking_curve_present_in_literature_beat": false,
+      "sweeping_result_rail_present": false,
+      "adopted_answer_or_result_geometry_present": false,
+      "blank_broken_tofu_or_obvious_long_frozen_sequence_present": false
+    },
+    "curve_hardening": {
+      "curve_is_forbidden_icon_primitive": true,
+      "candidate_validator_requires_curve_remain_forbidden": true,
+      "candidate_validator_rejects_forbidden_icon_dispatch": true,
+      "generic_curve_dispatch_absent_for_candidate": true,
+      "local_rail_carries_no_result_geometry": true
+    }
+  },
+  "audio_timeline_asr_media": {
+    "audio_provenance": {
+      "provider_route": "Hermes managed OpenAI audio gateway",
+      "model": "gpt-4o-mini-tts",
+      "voice": "alloy",
+      "speed": 1.18,
+      "music": false,
+      "sentence_count": 25,
+      "fresh_relative_to_protected_predecessor": true,
+      "protected_predecessor_audio_reused": false,
+      "final_master_sha256": "60a0e6eeb343865d90f22b09b697db0a147e091390ba99429f4458f37698b5ec",
+      "protected_predecessor_master_sha256": "fd8643eebacc898d2bc49a81e3d1a46ed8878de0e65e55db7ed42fae609e3ed6",
+      "typography_fix_reuses_same_fresh_audio_as_held_candidate": true
+    },
+    "timeline": {
+      "created_at_utc": "2026-08-10T08:50:02.075228+00:00",
+      "sentence_count": 25,
+      "declared_word_count_rule_words": 519,
+      "independently_recomputed_words": 519,
+      "occupied_span_seconds": 270.78260416666666,
+      "independently_recomputed_delivered_wpm": 115.0000019234372,
+      "target_wpm": 115.0,
+      "exact_target_within_0_001_wpm": true,
+      "max_abs_audio_visual_start_delta_seconds": 0.016208333333310065,
+      "under_one_30fps_frame": true
+    },
+    "asr": {
+      "raw_literature_asr_status": "PASS",
+      "sentence_one_similarity": 1.0,
+      "sentence_two_similarity": 1.0,
+      "closing_similarity": 0.9937888198757764,
+      "all_raw_semantic_guards": true,
+      "encoded_opening_asr_status": "PASS",
+      "encoded_opening_similarity": 0.9980657640232108,
+      "encoded_semantic_guard": true,
+      "normalization_advisory": "ASR speaks the scientific symbols as z approximately 7 to 10 and Lambda CDM and omits the hyphen in the author's name; encoded card/caption/source text preserve the required exact glyphs and attribution."
+    },
+    "container_decode_and_frames": {
+      "video_codec": "h264",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "encoded_video_frames": 8213,
+      "raw_frames_submitted": 8214,
+      "frame_delta_at_most_one": true,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate_hz": 48000,
+      "format_duration_seconds": 273.782,
+      "full_decode_exit": 0,
+      "full_decode_errors": []
+    },
+    "loudness_and_motion": {
+      "integrated_loudness_lufs": -20.31,
+      "true_peak_dbfs": -2.65,
+      "loudness_range_lu": 6.10,
+      "astats_peak_db": -2.653976,
+      "astats_rms_db": -21.385943,
+      "nan_samples": 0,
+      "infinite_samples": 0,
+      "motion_sampled_frames": 548,
+      "mean_absolute_frame_difference": 0.3159652396912451,
+      "max_absolute_frame_difference": 12.20923611111111,
+      "longest_near_unchanged_seconds": 0.5
+    },
+    "captions": {
+      "srt_entries": 25,
+      "all_caption_text_exactly_matches_spec": true,
+      "caption_mismatches": [],
+      "encoded_caption_line_limit_at_most_two": true
+    },
+    "file_manifest": {
+      "declared_entries": 152,
+      "recomputed_entries": 152,
+      "total_bytes": 104097164,
+      "missing": 0,
+      "extra": 0,
+      "hash_or_size_mismatches": 0
+    }
+  },
+  "custody_and_closed_gates": {
+    "source_freeze_absent_under_lane_and_candidate": true,
+    "video_reportable_now": false,
+    "accepted_by_duho": false,
+    "upload_gate": false,
+    "cockpit_copy_gate": false,
+    "public_gate": false,
+    "git_gate": false,
+    "candidate_present_in_git_history": false,
+    "protected_predecessor": {
+      "required_sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+      "recomputed_sha256": "c772e6435af2298b3eac0eb772f406730c2240430a318a7f2268858f1b37cdb8",
+      "unchanged": true
+    },
+    "protected_fesc_and_mzr_census_trees": {
+      "tree_count": 10,
+      "all_declared_paths_sizes_hashes_counts_and_tree_hashes_match": true,
+      "failures": []
+    },
+    "cockpit_mp4_manifest": {
+      "required_count": 36,
+      "recomputed_count": 36,
+      "required_tree_sha256": "2f4b01f904abb0bc849be4c2dbe324a41771b9226111999d9430daf954249fcd",
+      "recomputed_tree_sha256": "2f4b01f904abb0bc849be4c2dbe324a41771b9226111999d9430daf954249fcd",
+      "missing": 0,
+      "extra": 0,
+      "mismatches": 0
+    },
+    "forbidden_sibling_builds": {
+      "fesc_literature_candidate_directories": [],
+      "mzr_census_literature_candidate_directories": []
+    }
+  },
+  "failed_attacks": [
+    "Recomputed the final video, receipt, freeze, encoded-QA, Kun-PASS, and prior-Kun-HOLD hashes; every required exact binding held.",
+    "Recomputed all 152 candidate manifest paths, sizes, and SHA-256 values; no missing, extra, or mismatched entry was found.",
+    "Extracted i05b from the exact final MP4 through an in-memory ffmpeg pipe and byte-matched it to the independently inspected frame; ∼, the 7-10 range hyphen, and Λ are visible in both main quote and caption, with no tofu or clipping.",
+    "Compared both literature texts against the current Lana ruling, primary-source receipt, spec, and captions; no paraphrase or word substitution was found.",
+    "Attacked narration and encoded visuals for an adopted excess, explanation, archive gap, lane result, asymmetry, shortfall, evolution, direction, parity, or significance; all risky constructions remained attributed, contested, withheld, apparent, outside the canary, or explicitly non-adopted.",
+    "Full-decoded the MP4 and independently recomputed streams, frame count, loudness, peak, motion, declared 115 WPM, A/V alignment, captions, and audio lineage; no media-integrity blocker was found.",
+    "Recomputed the protected predecessor, ten fesc/mzr-census trees, and the 36-file cockpit MP4 tree; no custody drift was found.",
+    "Searched for SOURCE_FREEZE and forbidden fesc/mzr-census literature candidates; none exists."
+  ],
+  "blockers": [],
+  "advisories": [
+    "ASR normalizes scientific symbols to spoken equivalents and the author's hyphenated surname to Boylan Colchin; encoded typography, captions, and source text remain exact.",
+    "This verdict does not accept, report, upload, publish, copy, commit, or otherwise promote the candidate. Duho watch remains pending."
+  ],
+  "acceptance_effect": "NONE — exact-hash regate only; candidate remains provisional, unaccepted, and non-reportable pending Duho watch."
+}

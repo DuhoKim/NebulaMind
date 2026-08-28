@@ -1,0 +1,25 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'spin-method-canary-20260808T0204.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf62.12.102
+  Duration: 00:01:54.00, start: 0.000000, bitrate: 136 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080, 133 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      encoder         : Lavc62.28.102 libx264
+index=0
+codec_name=h264
+codec_type=video
+width=1920
+height=1080
+pix_fmt=yuv420p
+r_frame_rate=30/1
+duration=114.000000
+size=1943640
+bit_rate=136395
+
+# mean volume: NOT APPLICABLE — the file contains a single H.264 video stream and no audio stream.
+# Silence is the contract for this canary (lane audio_contract: 'silent; narration/TTS not authorized').
+# Duration note: storyboard sums to 108.0s; concat demuxer's repeated final entry holds the close card ~6s longer -> 114.0s total. Benign for a silent canary.

@@ -1,0 +1,321 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": 1,
+      "url": "https://hsc-release.mtk.nao.ac.jp/doc/index.php/data-access__pdr3",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "You need to register for a user account if you wish to search/request/retrieve the data. The use of the HSC data archive is restricted to non-commercial, scientific/educational purposes.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "url": "https://hsc-release.mtk.nao.ac.jp/datasearch/new_user/new",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "This archive provides scientific data for the purposes of astronomical research and education.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "It is strictly prohibited to make use of the data for commercial purposes.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "All users are requested to include an acknowledgement in any publications that make use of data obtained from the system.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "url": "https://hsc-release.mtk.nao.ac.jp/doc/index.php/acknowledging-hsc__pdr3",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "In all publications based on the public HSC-SSP data, the following text should be included",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "url": "https://hsc-gitlab.mtk.nao.ac.jp/ssp-software/data-access-tools/-/raw/master/pdr3/downloadCutout/README.md",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "Download FITS cutouts from the website of HSC data release.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "the program needs synchronizing---the server refuses `downloadCutout.py` if many instances of which are run at the same time.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "If your program does not have a synchronization mechanism,\nyou can run `downloadCutout.py` with synchronization options:",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "If your program does not have a synchronization mechanism,\nyou can run `downloadCutout.py` with synchronization options:\n\n```\npython3 downloadCutout.py .... \\\n    --semaphore=/home/yourname/semaphore --max-connections=4\n```",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "url": "https://www.legacysurvey.org/dr10/files",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "Image stacks are on tangent-plane (WCS TAN) projections, 3600 × 3600 pixels, at 0.262 arcseconds per pixel.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "NOTE: These images are resampled using Lanczos-3 resampling.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "Stacked image centered on a brick location covering 0.25° × 0.25°.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "url": "https://www.legacysurvey.org/viewer/urls",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "subimage (no resampling; subimage from Data Release coadd image; includes invvar map)",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "url": "https://www.legacysurvey.org/acknowledgment",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "Images are licensed under a Creative Commons Attribution 4.0 International License, and hence may on a non-exclusive basis be reproduced without fee provided the credit is clear and visible.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "Legacy Surveys / D. Lang (Perimeter Institute)",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "When using data from the Legacy Surveys in papers, please use the following acknowledgment",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "url": "https://www.legacysurvey.org/pubs",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "When using data from the Legacy Surveys in papers, please include the text on the acknowledgment page.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "url": "https://www.sdss4.org/dr17/data_access",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "You can view SDSS images online for any object or sky position in the survey area, and download images of SDSS fields as FITS files.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "url": "https://www.sdss4.org/dr17/data_access/bulk",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "The number of rsync connections is throttled but the number of wget connections is not.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "If you need a substantial fraction of that data (>1 TB), please contact the helpdesk to arrange a custom data transfer.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "All data can be downloaded directly from data.sdss.org using the rsync or wget commands.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "Globus Online requires a separate account, but once that is set up Globus offers a \"fire-and-forget\" transfer that automatically optimizes transfer settings, retries any failures, and emails you when your transfer is done.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "url": "https://www.sdss4.org/dr17/imaging/images",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "The Science Archive Server provides two versions of the FITS images, which can be used for quantitative analysis",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "The image headers have WCS headers that have been corrected to align correctly with the final astrometric solution",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "url": "https://www.sdss4.org/dr17/imaging/jpg-images-on-skyserver",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "uses JPEG versions of the SDSS images that are retrieved and constructed on the fly by the ImgCutout web service",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "the FITS2JPEG converter – a MATLAB code – reads in the g, r, i-band FITS corrected frame files from the Science Archive Server (SAS) and performs a number of transformations on them before converting them to 3-color JPEG images",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "url": "https://www.sdss4.org/collaboration",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "All SDSS data released in our public data releases is considered in the public domain.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "We provide all images on a Creative Commons Attribution license (CC-BY). Any SDSS image on the SDSS Web site may be downloaded, linked to, or otherwise used for any purpose, provided that you maintain the image credits.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "We request that the following be added to the acknowledgment section of any paper using data from the SDSS-IV.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "url": "https://outerspace.stsci.edu/spaces/PANSTARRS/pages/298812251/PS1+Image+Cutout+Service",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "The resulting cutout images (postage stamps) are available as JPEG images within the web browser or as FITS images.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "The size is currently limited to 6000 pixels.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "FITS cutout images have a correct RADESYS keyword",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "Cutout images do still have the obsolete WCS keywords",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "please do not use more than 10 simultaneous threads for the download.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "If you attempt to download images at an excessive rate, eventually you will find your downloads blocked by the server.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "querying 1000 positions one at a time takes approximately 8 minutes, while uploading 1000 positions in a single query takes less than 1.5 seconds.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "url": "https://archive.stsci.edu/publishing/data-use",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "and therefore do not have restrictions on use.",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "The subset of data for which restrictions do apply are described in the following subsections.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "url": "https://archive.stsci.edu/publishing/data-attributions",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "Authors should also include a digital object identifier (DOI) in all papers that use MAST data.",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "url": "https://outerspace.stsci.edu/spaces/PANSTARRS/pages/298812201/Pan-STARRS1+data+archive+home+page",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "Here is the text for acknowledging PS1 in your publications",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "please cite the following papers describing the instrument, survey, and data analysis as appropriate",
+          "added": "2026-08-12"
+        },
+        {
+          "text": "both warp and stack images may have incorrect WCS",
+          "added": "2026-08-12"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "url": "https://hsc.mtk.nao.ac.jp/ssp/survey",
+      "title": "",
+      "accessed": "2026-08-12",
+      "quotes": [
+        {
+          "text": "the camera has 104 science CCDs covering a 1.5 degree diameter field of view with a 0.168 arcsec pixel scale.",
+          "added": "2026-08-12"
+        }
+      ]
+    }
+  ]
+}

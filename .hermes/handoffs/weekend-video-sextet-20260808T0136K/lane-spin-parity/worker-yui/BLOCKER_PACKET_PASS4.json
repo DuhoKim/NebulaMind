@@ -1,0 +1,129 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass4-blockers-20260808T044235K",
+  "checked_at": "2026-08-08T04:42:35+09:00",
+  "scope": "isolated pass-4 temporal encoded-frame audit and exact A3.8 unblock-contract deepening; no science adjudication, result rendering, narration, candidate write, or publication",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "expected_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "hash_match": true,
+    "preserved_failed_candidate": true,
+    "modified": false
+  },
+  "video_reportable_now": false,
+  "worker_verdict": "FAIL_SCIENTIFIC_PRESENTATION_AND_HELD_SOURCE_GATE",
+  "science_blockers": [
+    {
+      "id": "MISSING_POST_RUN_INDEPENDENT_A3_8_REVIEW",
+      "state": "BLOCKING",
+      "t4_artifact": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/T4_PAIRED_FLIP.json",
+      "t4_sha256": "6e3480d4087b971d8331979a9d26926add7f9a600c5bfaa8e54da2b88e6e6873",
+      "frozen_review_contract": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/AMENDMENT_A3.8_DRAFT.md",
+      "frozen_review_contract_sha256": "d2d494ddfe0c16524b65fc9e9b7e80d067ec06ceede5a14e384a9421707791b0",
+      "pass4_exact_absence_proof": {
+        "source_regular_files": 209,
+        "utf8_decodable_files": 203,
+        "non_utf8_files": 6,
+        "non_utf8_formats": {
+          "gzip_data_archives": 4,
+          "literature_pdfs": 2
+        },
+        "all_non_utf8_files_predate_t4_by_source_mtime": true,
+        "post_t4_non_utf8_files": 0,
+        "post_t4_utf8_files": 9,
+        "post_t4_files_identifying_t4": 4,
+        "post_t4_files_with_exact_t4_and_a3_8_hash_pair": 0,
+        "post_t4_complete_minimum_marker_candidates": 0,
+        "deterministic_scan": "qa/pass4_unblock_contract_scan.json",
+        "deterministic_scan_sha256": "5873af98fec7c7c18aa438441850d7ae35e431da05d86455acd02a11151c509d",
+        "interpretation": "No post-T4 source file satisfies the frozen review contract's exact artifact-and-contract identity minimum. The six prior binary blind spots all predate T4 by source filesystem metadata. This is an absence/custody finding only, not a review verdict."
+      }
+    },
+    {
+      "id": "ARCHIVE_FRAME_UNSTATED",
+      "state": "BLOCKING",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/spin-parity-census-20260805T1922K/KUN_FRAME_REVIEW.md",
+      "required_exact_status": "FRAME REVIEW: AGREES FRAME_UNSTATED",
+      "interpretation": "The archive-storage convention remains unresolved; no physical-direction interpretation is licensed."
+    }
+  ],
+  "temporal_encoded_frame_audit": {
+    "extraction_receipt": "qa/pass4_encoded_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "163f3d94294a9e17cabac678398a9fd6d8cdacc454ce262eb308d4fa4cef7fa9",
+    "temporal_content_audit": "qa/pass4_temporal_content_audit.json",
+    "temporal_content_audit_sha256": "a439cedf61800247335a236d38d9685ae2963f7a0e77d3983111d9f9865b5e6e",
+    "scene_count": 16,
+    "sample_count": 48,
+    "sampling": "early, midpoint, and late samples for every detected scene",
+    "byte_static_scene_count": 0,
+    "exact_ocr_signature_stable_scene_count": 8,
+    "minimum_token_multiset_similarity": {
+      "scene": 7,
+      "value": 0.888889
+    },
+    "semantic_content_transition_found": false,
+    "finding": "The held candidate's result figures and assertions persist throughout their scene dwell times. Small caveat/provenance/plot-label copy is encode-fragile and cannot carry the scientific gate.",
+    "scene_9_copy_defect": "The provenance copy still ends abruptly after LANA_T3_REDERIV because of internal text-width truncation, not frame-edge clipping."
+  },
+  "sealed_v8_disposition": {
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "renderer": "render_proposal_frames.py",
+    "renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+    "contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "source_freeze": "SOURCE_STATUS_FREEZE.json",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "pass4_fresh_visual_review": "PASS",
+    "pixel_change_warranted": false,
+    "v9_warranted": false,
+    "reason": "No evidence-backed defect was found in v8. It already withholds results, keeps the status gate dominant, uses audience-readable provenance, and closes on the unresolved boundary."
+  },
+  "temporal_integration_guard": {
+    "applies_only_if_hwao_authorizes_integration": true,
+    "requirements": [
+      "Keep RESULT HELD visible from the first stable frame through the last stable frame of every scene.",
+      "Do not use a fade, entrance, or exit that temporarily removes the status gate.",
+      "Do not reveal held result plots, values, or conclusion language during transitions.",
+      "Do not rely on small caveat or provenance copy to carry the scientific boundary."
+    ],
+    "changes_sealed_v8_bytes": false,
+    "authorizes_render_or_narration": false
+  },
+  "minimum_unblock_record_fields": [
+    "exact T4 artifact path and SHA-256",
+    "exact frozen A3.8 review-contract path and SHA-256",
+    "reviewer identity and selection rule",
+    "first-opened evidence-order ledger with timestamps",
+    "verbatim result artifact lines or fields used",
+    "independent branch before source comparison and explicit disagreement handling"
+  ],
+  "prohibitions": [
+    "Do not infer scientific status from this packet.",
+    "Do not promote the held candidate or any pass-4 PNG to a candidate.",
+    "Do not render, narrate, publish, wire, deploy, restart, or mutate shared/public assets from this worker seat.",
+    "Do not use small caveat copy as a substitute for resolving the two source gates."
+  ],
+  "pass4_artifacts": {
+    "audit": {
+      "path": "PASS4_ENCODED_FRAME_AUDIT.md",
+      "sha256": "5cc2566929a81cdfe89c6a23837f90002674a31336faf4d6fc55c0949049713e"
+    },
+    "extraction_script": {
+      "path": "qa/pass4_encoded_audit/extract_fresh_frames.py",
+      "sha256": "77bb8403b239d4c434dcecdf47f29384cb27405bfb94e6a9da3aa57146d9f72a"
+    },
+    "temporal_audit_script": {
+      "path": "qa/audit_pass4_temporal_content.py",
+      "sha256": "8b04a0a33178a0776fa9a4632d78d9747c207bc81e291b790593ace1817e766f"
+    },
+    "unblock_scan_script": {
+      "path": "qa/build_pass4_unblock_contract_scan.py",
+      "sha256": "c3dc73f3a630c48692c5bd41bc964e7ef9b3d3c031a226f7498c261550fa8bab"
+    }
+  },
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

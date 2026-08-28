@@ -1,0 +1,65 @@
+{
+  "status": "RECEIPT_ONLY_NON_GOVERNING_SUPERSEDED_EXACT_HASH_REVIEW",
+  "created_at": "2026-08-09T15:41:40+0900",
+  "delegation": "deleg_6c781478",
+  "dispatched_at": "2026-08-09T14:40:22+0900",
+  "reviewed_candidate": "fesc-method-overhaul-canary-20260809T1420K",
+  "reviewed_sha256": "4c8115997e21689508f31587672a3dd7da9c902803427c43490603bad08309b9",
+  "current_candidate": "fesc-method-overhaul-canary-20260809T1501K",
+  "current_sha256": "01a4249beb2351fa25b2d2863eecb59b98dd68a53ced1dcc484ce6b723f45660",
+  "superseding_authority": "HWAO_FESC_PRESENTATION_FIX_ORDER.md",
+  "superseding_authority_sha256": "ec4561df5a270fc4318fbd5ccf83b2c73c3df16880c8b6c09031266cd1789e3b",
+  "disposition_reason": "The review batch was dispatched before the later renderer-level progress-rail and badge-containment order. Its findings bind only 4c811599 and cannot transfer across the byte change to 01a4249.",
+  "reviews": {
+    "lana": {
+      "technical_verdict": "PASS",
+      "hold": false,
+      "packet": "integrator/reviews/LANA_FESC_PRIMITIVE_CORRECTION_REREVIEW_4c811599.md",
+      "sha256": "d5232976c5b973fc1cd62585870250d98e4e7598fe0cdde7166f0dafeae1f496"
+    },
+    "goru": {
+      "technical_verdict": "PASS",
+      "hold": false,
+      "packet": "integrator/reviews/GORU_FESC_PRIMITIVE_CORRECTION_REREVIEW_4c811599.md",
+      "sha256": "190b2de85145d7ec5c923d1387a0185df32d8bdd3c730d42cc8758ed50ce1afd"
+    },
+    "kun": {
+      "technical_verdict": "PASS",
+      "administrative_disposition": "HOLD_GATES_CLOSED",
+      "exact_current_host_replay": true,
+      "packet": "reviews/KUN_FESC_PRIMITIVE_CORRECTION_REREVIEW_4c811599.md",
+      "sha256": "821e41bacfd905313de933c9365d4394bc8873367fff903ec61cc689f02b40de",
+      "portability_caveats_block_current_host_exact_replay": false
+    }
+  },
+  "validated_legacy_evidence": {
+    "crossing_curve_class_closed_on_4c811599": true,
+    "current_host_exact_replay_on_4c811599": true,
+    "audio_sync_codec_loudness_and_no_music_on_4c811599": true
+  },
+  "does_not_validate_on_current_hash": [
+    "progress-rail presentation correction",
+    "badge text containment correction",
+    "discipline title-stack collision correction",
+    "active-stage breathing cue",
+    "01a4249 encoded bytes"
+  ],
+  "action": {
+    "promote_4c811599": false,
+    "promote_01a4249": false,
+    "redispatch_automatically": false,
+    "reason_no_redispatch": "The governing FESC presentation order required one fresh Tori exact-hash frame sweep after the renderer fixes; that sweep already passed on 01a4249. Further reviewer fan-out requires Hwao direction."
+  },
+  "gates": {
+    "upload": false,
+    "publication": false,
+    "public_or_shared_mp4": false,
+    "frontend_or_public_write": false,
+    "paperVideos_ts_write": false,
+    "cockpit": false,
+    "database": false,
+    "deploy_or_restart": false,
+    "git_action": false,
+    "video_reportable_now": false
+  }
+}

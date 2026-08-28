@@ -1,0 +1,94 @@
+{
+  "freeze_id": "SPIN_POST_ENCODE_FREEZE_V5_RECEIPT_CORRECTION_20260810T0058K",
+  "created_at_kst": "2026-08-10T00:58:24+09:00",
+  "status": "V5_PACKET_FROZEN_PENDING_BOUNDED_TORI_PACKET_RECHECK",
+  "freeze_scope": "New external receipt-correction packet only. The V4 candidate directory, exact MP4, original build receipt, V4 freeze, and Tori evidence are preserved without mutation.",
+  "exact_candidate": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "bytes": 25486290,
+    "rendered_or_encoded_in_v5": false,
+    "mutated_in_v5": false
+  },
+  "preserved_v4_candidate_tree": {
+    "directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K",
+    "digest_algorithm": "sha256 over sorted relative-path NUL file-sha256 lines, excluding POST_ENCODE_FREEZE_V4.json and RECEIPT.md as defined by the V4 freeze",
+    "file_count": 210,
+    "sha256": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb",
+    "recomputed_at_v5_pre_freeze": true,
+    "matches_v4_freeze": true
+  },
+  "preserved_v4_artifacts": [
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/build_receipt.json",
+      "sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22",
+      "purpose": "Immutable historical receipt containing the unqualified frame_count=6727 defect."
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/POST_ENCODE_FREEZE_V4.json",
+      "sha256": "a8949ffb9bb994b066f4fcde7cf58b607045ad789ed58fe5eddfb253ef776405",
+      "purpose": "Immutable V4 freeze packet."
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/TORI_SPIN_WHY_STUDY_V4_EXACT_HASH_ADJUDICATION_20260810T0041K.json",
+      "sha256": "4a8acaaf91722eed6e9f833f641d33789d79c31add6d755f3928a6f1362cfb2f",
+      "purpose": "Tori exact-hash adjudication: presentation PASS, method-only claim-boundary PASS, media-integrity PASS, one provenance self-description HOLD."
+    }
+  ],
+  "preserved_tori_independent_evidence": {
+    "directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/tori-spin-v4-exact-hash-regate-20260810T0033K",
+    "file_count": 517,
+    "tree_sha256_as_recorded_by_tori": "391cd851dc630e8c27f60ec44b169dbe3700cd07ee83324b9ebd8a0488b80c57",
+    "mutated_by_yui_v5_correction": false
+  },
+  "v5_core_packet": [
+    {
+      "path": "FRAME_COUNT_DERIVATION_V5.json",
+      "bytes": 8249,
+      "sha256": "000b1ea713ec090c9aa660893f970ee37621672f247bac0df2f0ef8a07645869",
+      "self_description": "Operation- and time-qualified derivation of raw_frames_submitted_to_ffmpeg=6727 and encoded_video_frames=6726."
+    },
+    {
+      "path": "BUILD_RECEIPT_V5.json",
+      "bytes": 5995,
+      "sha256": "53424efa9bf869038bf1373460209dbb2036f64d57b74f4d131f2fa3475fd2e0",
+      "self_description": "Corrected versioned receipt that preserves both true counts and the immutable V4 receipt."
+    },
+    {
+      "path": "TORI_PACKET_RECHECK_REQUEST_V5.json",
+      "bytes": 4512,
+      "sha256": "854c8c8c9feff98fe98391918a412b10405131670067d01ef5a3e3e11384314f",
+      "self_description": "Request for bounded packet-only Tori provenance recheck against the unchanged MP4 hash."
+    }
+  ],
+  "corrected_frame_self_description": {
+    "raw_frames_submitted_to_ffmpeg": 6727,
+    "encoded_video_frames": 6726,
+    "raw_producing_operation": "ceil(PCM duration * 30 fps), followed by 6727 RGB24 writes to ffmpeg stdin",
+    "encoded_producing_operation": "ffmpeg libx264/AAC mux with -shortest",
+    "encoded_observations": [
+      "ffprobe nb_frames=6726",
+      "ffprobe nb_read_frames=6726",
+      "independent full H.264 decode=6726 frames"
+    ],
+    "silent_scalar_replacement_performed": false
+  },
+  "standing_exact_hash_findings_not_reopened": {
+    "presentation_on_exact_bytes": "PASS",
+    "science_and_claim_boundary_on_exact_bytes": "PASS_METHOD_ONLY_NO_RESULT",
+    "media_integrity_on_exact_bytes": "PASS",
+    "human_acceptance_conferred": false
+  },
+  "closed_gates": {
+    "render": false,
+    "encode": false,
+    "candidate_mutation": false,
+    "candidate_tree_mutation": false,
+    "upload_or_publication": false,
+    "public_or_frontend_mutation": false,
+    "cockpit_mutation_by_yui_v5_correction": false,
+    "database_or_deploy_or_restart_or_git_or_billing_or_config_or_secrets_mutation": false,
+    "acceptance_label": false
+  },
+  "next_gate": "Tori packet-only provenance recheck. Duho's watch/listen verdict remains final."
+}

@@ -1,0 +1,15 @@
+{
+  "test": "minimum-scale/geometry compound acceptance (spin pass-16 guard; squeeze then 360p)",
+  "guard_source": "lane-spin-parity/worker-yui/MINIMUM_SCALE_GEOMETRY_GUARD_PASS16.json",
+  "target": "integrator/canaries/spin-method-canary-20260808T0648 (canary v9, sha 6d81e183\u2026)",
+  "run_at": "2026-08-08T11:06:00+09:00",
+  "method": "x90 and y90 squeezes each followed by 640x360 downscale on the 11 encoded state frames; human represented-pixel review decisive (global OCR insufficient per the guard)",
+  "checks": {
+    "boundaries_direct_text_after_both_transforms": "PASS \u2014 capsule + headline boundaries readable on 11/11 states in both compound variants",
+    "no_meaning_by_geometry_color_or_fine_print": "PASS \u2014 carried forward from the pass-49/26 acceptances; compound transform introduces no new dependence",
+    "labels_at_360p_represented_pixels": "PASS \u2014 every readout count, equation term, and branch label directly readable",
+    "gate_text_stroke_contract": "PASS \u2014 capsule text is 30 px bold at 1080p authoring scale, exceeding the 28 px / 1 px demonstrated contract"
+  },
+  "verdict": "PASS",
+  "evidence": "min_scale_geometry/contact_sheet_x90_then_360p.png, contact_sheet_y90_then_360p.png"
+}

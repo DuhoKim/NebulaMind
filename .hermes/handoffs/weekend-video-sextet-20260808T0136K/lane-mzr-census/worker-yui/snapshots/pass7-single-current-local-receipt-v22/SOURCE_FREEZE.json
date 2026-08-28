@@ -1,0 +1,304 @@
+{
+  "freeze_timestamp": "2026-08-08T01:55:15+09:00",
+  "status_reverified_timestamp": "2026-08-08T04:54:41+09:00",
+  "video_reportable_now": {
+    "decision": "YES_WITH_STRICT_SCOPE",
+    "allowed": [
+      "T1 metadata-enumeration counts",
+      "modifier-filter conservation 178 - 21 = 157",
+      "gas-phase vocabulary presence in 62 of 157 recorded descriptions, explicitly not an eligibility ruling",
+      "retrieval check 7/7 recall and 0/3 controls",
+      "recorded precision-contamination examples, split as symbol/meaning collisions and target-domain mismatches; characterization only, not T2 rulings",
+      "T2 contract frozen after seven gate rounds over 12 decoys plus 3 anchors; these are contract-design controls, while eligibility remains pending"
+    ],
+    "forbidden": [
+      "an eligible-table count",
+      "a metallicity or mass-metallicity measurement",
+      "a claim that 62 tables are scientifically eligible",
+      "a claim that the three recall controls certify precision against the dominant contamination mode",
+      "a claim that every recorded src.redshift example is a symbol-Z meaning collision",
+      "a claim that abundance-search-, mass-search-, or redshift-search-axis metadata reach is an adjudicated physical measurement",
+      "a claim that the three T1 retrieval controls and the fifteen T2 contract-design controls are one evaluation result",
+      "a presentation of only the twelve T2 decoys without the three anchors as the complete contract-design control set",
+      "public release of internally derived count graphics without an audience-reachable methods and count ledger",
+      "a claim about total archive capability beyond the single-table intersection"
+    ]
+  },
+  "status_freeze": {
+    "T1_enumeration": "DONE",
+    "T2_contract": "V1.8 FROZEN; document states no ruling logic is in force",
+    "T2_eligibility": "NOT_COMPLETED",
+    "measurement": "NOT_RUN",
+    "receipts_gate": "PASS2_SEALED; PASS3_EXACT_REGATE_PASS; PASS4_V1_ADVERSARIAL_FAIL_PRESERVED; PASS4_V2_EXACT_REGATES_PASS; PASS5_LOCAL_GATE_PASS; PASS5_EXACT_REGATE_PENDING; PASS6_LOCAL_GATE_PASS; PASS6_EXACT_REGATE_PENDING",
+    "video_stage": "PENDING_IN_WORKFLOW_LEDGER",
+    "scientific_class": "archive infrastructure / informatics census, not galaxy-evolution measurement"
+  },
+  "inputs": [
+    {"role":"source_storyboard_of_record","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/storyboard_mzr_census.json","sha256":"7484dbcdb7cc31d703fc2f4e43ed3054bb634fe47e02d74357156c33da9e913c","cards":15,"nominal_seconds":103.5},
+    {"role":"T1_findings","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T1_FINDINGS.md","sha256":"e2c26155e891b175aeb047c0e1acc7393975f5bfc15a2500b269bb959ba8b964"},
+    {"role":"T1_manifest","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T1_MZR_MANIFEST.json","sha256":"b883b3a6f602cfb2f5ae147ea027c0203d0fe66fdd95eece2bc903722012b1e5"},
+    {"role":"gas_phase_vocabulary_count","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T1E_GASPHASE_COUNT.json","sha256":"fc2a9a01d4e6bac609a6bf198a132fc03f0c3e72cf87796c41e1dab7c22ff6c2"},
+    {"role":"T2_freeze_record","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/FREEZE_RECORD_T2.md","sha256":"80e4376c58d29e506a49bbeb5866cb7c8d8d65e32f689a321b3185d8ddf3d978"},
+    {"role":"T2_frozen_contract","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/T2_ELIGIBILITY_CONTRACT_V1_DRAFT.md","sha256":"f40e37240c1728dd1a4aedcb7ee47b39230dad8191e8ef73f54ad2500218f383","status":"frozen contract; eligibility ruling logic not in force"},
+    {"role":"independent_T2_numeric_recount","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/GORU_T2_RECOUNT.md","sha256":"abcd03f4a46b18f398f2e517d680a3f8afaa9059344bc5bc27ad8eac47f6ea06","result":"reproduced 178/21/157, 62, 7/7, and 0/3"},
+    {"role":"historical_T2_structure_gate","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/KUN_T2_STRUCTURE_GATE.md","sha256":"8b88323f8cd90b36e452029a24cb250f46e5ebea5723c283a671be3d4f6c9b4b","result":"PASS_WITH_EDITS before later re-gates; not evidence of an eligibility run"},
+    {"role":"final_T2_evidence_regate","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/KUN_T2_REGATE7.md","sha256":"674ebb343ee5539f5cbcce7cb38380ab2792bee95b8eef49879145162a6e63b7","result":"PASS on contract evidence; explicitly states T2 ruling logic not written"},
+    {"role":"science_ruling","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/LANA_MZR_SCIENCE_RULING.md","sha256":"90eb797c20bd782ceb97338b07580e524776d7bedb7f78b65c74c00384387e73"},
+    {"role":"workflow_status","path":".hermes/handoffs/mzr-archive-census-20260805T1857K/WORKFLOW_CHECKLIST.json","sha256":"e7700c976fff7c83a2c163519b2497525c6c64cdd765cfe73f1c89cc6ecd6686"},
+    {"role":"shared_renderer_read_only","path":"tools/nm_paper_video.py","sha256":"919af6b18057309bfa5ecc2dd0fa44536dabaa4ba02aba960cabd3d791099f5c"},
+    {"role":"shared_plot_renderer_read_only","path":"tools/nm_paper_plot.py","sha256":"6acc8ba13e0393b60950ab78b1dbdf053c48459b0449581211ecc0eff021c43d"}
+  ],
+  "encoded_artifacts": [
+    {"role":"exact_current_public_target","path":"frontend/public/videos/mzr-archive-census.mp4","sha256":"dc2f32a24e5418cb2cf1781401e877e70682dfcf17e4514407cc6cc48d08fcc0","bytes":442463,"duration_seconds":53.0,"streams":["H.264 video 1920x1080 30fps"],"audio":false},
+    {"role":"latest_hwao_integrated_candidate_read_only","path":"/Users/duhokim/HermesOps/cockpit/videos/mzr-archive-census-narrated-20260808T0155.mp4","sha256":"0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d","bytes":13989937,"duration_seconds":128.4,"streams":["H.264 video 1920x1080 30fps","AAC mono 24000Hz"],"publication_state":"local only","last_reverified_timestamp":"2026-08-08T04:36:18+09:00","pass2_contact_sheet_sha256":"5ac85b0f20ac582edb9ff9b52633170675a7f2b69ff9f0530e9fcadcc52ff563","pass3_contact_sheet_sha256":"a54f9c5d7fc1cd3e7b0f186bdec4d6c5f44147b154bdc9ae7487f0bc797826df","pass3_frame_hash_manifest_sha256":"e2d9fe002cd226f0633556b12b1e57c39bd9454ea7886d994f608e1afa8efbf5","pass4_contact_sheet_sha256":"f2f1ab19f1b38f6a5a8c813077d57a3e61e4f22290289f2a50b415c0f39d8c4c","pass4_frame_hash_manifest_sha256":"cf4c9792d03dacfb6148687e7e534976e0df145559155cb606454133711bd375","pass5_contact_sheet_sha256":"278a6c6f76c0e7c8977cff0aa91bd7c044f4f4c2c64c92bdad1abc3babc8459a","pass5_frame_hash_manifest_sha256":"092b168b8e47921fe41f0ced29c1717c05d12682d4866f0e12a4430e68c02974","pass6_contact_sheet_sha256":"08539f7b3e535cde8811352f62ec6968dfe7db7982a4c5f6b781c451932f0bd4","pass6_frame_hash_manifest_sha256":"4252d9f8b404924d4ccf67025abb5138c8adf47c20a6bb67ec348b0752eb1e3c","pass6_scene_holds_sha256":"e98dcd628ae9f977e3f7212764a8de8dd31104be377af3b1f82107ff4d072ae6"}
+  ],
+  "representation_boundary_deepening_pass2": {
+    "source_fact": "T1 records four semantically distinct quantities entering candidacy under src.redshift and leaves actual E1-E4 rulings to T2.",
+    "safe_taxonomy": {
+      "symbol_or_meaning_collision": ["Galactic Cartesian height", "stellar-grid metal fraction (model Z)"],
+      "target_domain_mismatch_for_galaxy_MZR": ["stellar gravitational redshift", "gravitational-redshift velocity"]
+    },
+    "hard_boundary": "Recorded characterization examples only; not T2 eligibility rulings. Do not paraphrase every example as 'symbol Z, not the concept'."
+  },
+  "representation_boundary_deepening_pass3": {
+    "encoded_pixel_findings": [
+      "opening says catalogues carry three physical quantities instead of identifying single-table metadata-reachable columns",
+      "157 card repeats carry-all-three-axes wording and leaves 178-21 conservation plus 19/2 bins in prose or absent",
+      "T2 card shows contract provenance without application-not-completed or no-eligible-table-count gate state",
+      "final close substitutes generic artifact provenance for explicit reportable-now versus pending status"
+    ],
+    "safe_correction": "Explicit on_screen_copy for every beat; visual_action and verification_sources are never audience copy. Open on single-table metadata reach and close on reportable-now versus pending.",
+    "hard_boundary": "Metadata reach does not establish that each table carries adjudicated physical measurements. Contract provenance does not establish an applied eligibility result."
+  },
+  "representation_boundary_deepening_pass4": {
+    "encoded_pixel_findings": [
+      "opening uses the gas-phase target concept as the adjudicated identity of a pre-eligibility abundance-search axis",
+      "62 card upgrades frozen description-vocabulary presence to explicit gas-phase evidence",
+      "consecutive T1 three-control and T2 twelve-decoy cards lack stage labels and can be conflated as one result",
+      "internal verification filenames remain audience-visible citations"
+    ],
+    "safe_correction": "Use abundance-search, stellar-mass, and redshift-search axis wording; label 62 as frozen vocabulary-regex presence; persist explicit T1 enumeration, T1 retrieval-check, T1 characterization, and T2 contract-status stage labels; encode both T1 characterization category headings as explicit audience-copy values rather than JSON field names or build directions.",
+    "hard_boundary": "A search-axis match is not an adjudicated target-domain measurement. T1 retrieval controls and T2 contract-design decoys are different instruments and stages."
+  },
+  "representation_boundary_deepening_pass5": {
+    "encoded_pixel_findings": [
+      "opening prematurely adjudicates all three target concepts, including stellar mass, rather than identifying abundance-search, mass-search, and redshift-search metadata axes",
+      "T2 card reports seven gate rounds and twelve decoys but omits three anchors and does not label these as contract-design controls rather than eligibility results",
+      "internally derived denominator cards expose internal filenames while the close gives only generic recorded-artifact provenance"
+    ],
+    "safe_correction": "Qualify all three axes as search axes; if T2 design counts are shown, present 12 decoys plus 3 anchors together under a NOT ELIGIBILITY RESULTS label; require an audience-reachable methods and count ledger before public release.",
+    "hard_boundary": "T1 does not adjudicate any target physical axis. Fifteen T2 controls test criteria but are not eligibility results. Internal custody is not audience-reachable publication provenance."
+  },
+  "representation_boundary_deepening_pass6": {
+    "encoded_pixel_findings": [
+      "hard-cut audit found 15 scientific evidence-state holds, 10 longer than six seconds, with a 16.133-second maximum",
+      "substantive claims remain single prose, giant-number, or plot states instead of clause-aligned progressive reveals",
+      "four standalone 2.5-second section-divider holds displace evidence"
+    ],
+    "safe_correction": "Add 45 timed reveal states across 10 beats; the superseding current contract caps unchanged substantive evidence states at three seconds; map every substantive narration clause to a visible change; remove standalone section-divider holds; sequence the reportable/pending close.",
+    "hard_boundary": "The new contract changes presentation causality only and adds no scientific claim. Static overview pixels do not prove that motion was encoded; any future candidate requires exact hard-cut/evidence-state and sentence/action regates."
+  },
+  "representation_boundary_deepening_pass7": {
+    "encoded_pixel_findings": [
+      "fresh transition-focused sampling pinned 28 before/after-cut frames and 15 hold midpoints, with a clean full-stream decode",
+      "11 of 14 hard-cut pairs preserve zero declared scientific anchors; the remaining pairs preserve only redshift, 157, or 62",
+      "the 157/62 boundary isolates 62 from its 157 parent and all-157-to-T2 topology, while the retrieval-to-contract boundary erases T1/T2 stage identity",
+      "six of 15 hold midpoints exceed 25 OCR tokens, alternating dense prose/plot states with empty divider holds"
+    ],
+    "safe_correction": "V1 added matched state handoffs. V2 additionally encodes 21 narration clauses, 45 structured reveal/transform deltas on one global timeline, source-to-render bindings, exact citation identity, deterministic packet projection, no-write helper checks, and expected-fail validator mutations.",
+    "hard_boundary": "The correction changes presentation/validation contracts only and adds no scientific claim. Static v8 pixels cannot prove temporal implementation; any future exact candidate requires cut-boundary continuity, global semantic-state timing, clause/audio alignment, and pixel-delta regates.",
+    "pass6_exact_review_dependency": "Pass-6 exact snapshot FAIL is preserved: seven-second cross-beat semantic hold, unencoded clause mapping, validator false-pass paths, non-exact paper packet, and helper packaging defects.",
+    "v2_reconciliation": {
+      "storyboard_version": "pass7-validator-projection-causality-v2",
+      "structured_semantic_states": 45,
+      "declared_narration_clauses": 21,
+      "maximum_global_semantic_gap_seconds": 3.0,
+      "validator_mutation_suite": "PASS baseline plus 8/8 expected-fail counterfactuals",
+      "paper_packet_projection": "10/10 narration, 58/58 on-screen leaf strings, 10/10 display citations",
+      "helper_check_mode_writes": false
+    },
+    "v3_reconciliation": {
+      "storyboard_version": "pass7-full-contract-closure-v3",
+      "v2_false_pass_paths_demonstrated": [
+        "fabricated formerly-unbound b02 narration",
+        "fabricated precision-certified b08 screen copy",
+        "fabricated b09 recorded example",
+        "contradictory static-hold visual action"
+      ],
+      "approved_storyboard_contract_sha256": "fc957ade7f2ef24c8b976e02d8d2dc4d833499554eca6c51b85465b5d8c86f22",
+      "validator_mutation_suite": "PASS baseline plus 12/12 expected-fail counterfactuals",
+      "scientific_audience_copy_changed_from_v2": false,
+      "visual_pixels_changed_from_v2": false
+    },
+    "v4_reconciliation": {
+      "storyboard_version": "pass7-self-contained-contract-v4",
+      "v3_reproducibility_dependency": "validator source reads required an absolute external prior-pack path",
+      "frozen_source_manifest_sha256": "4a1463053fbf3adea7187c961b77efc9f5258acca2243ff57dcb3adee5f4bfa6",
+      "frozen_source_files": 8,
+      "snapshot_frame_pngs_required": 43,
+      "validator_mutation_suite": "PASS baseline plus 13/13 expected-fail counterfactuals, including source tamper",
+      "scientific_audience_copy_changed_from_v3": false,
+      "build_semantics_changed_from_v3": false,
+      "visual_pixels_changed_from_v3": false
+    },
+    "v5_reconciliation": {
+      "storyboard_version": "pass7-adversarial-semantic-closure-v5",
+      "v2_exact_adversarial_dependency": "round-10 v2 FAIL exposed search-qualification, semantic-state, packet-contract, and validator false-PASS defects still present in v4",
+      "search_axis_qualification": "b05 narration, screen copy, visual action, state semantics, source binding, and clause text now use redshift-search and abundance-search",
+      "b08_semantic_state_correction": "five distinct states: retrieval status, precision status, coverage limitation, named taxonomy groups, and not-T2-rulings boundary",
+      "packet_contract": "EXACT_AUDIENCE_PAYLOAD_PLUS_DECLARED_REVIEW_SCAFFOLDING",
+      "validator_mutation_suite": "PASS baseline plus 25/25 expected-fail counterfactuals",
+      "maximum_global_semantic_gap_seconds": 3.0,
+      "scientific_audience_copy_changed_from_v4": true,
+      "visual_pixels_changed_from_v4": false
+    },
+    "v6_reconciliation": {
+      "storyboard_version": "pass7-manifest-authenticated-semantic-v6",
+      "v3_exact_adversarial_dependency": "round-11 v3 FAIL exposed a b05-to-b06 duplicate reveal, a contradictory b01 visual action, and rotatable co-located approval hashes still applicable to v5",
+      "b01_build_state_correction": "visual action now follows icon, abundance rail, mass rail, redshift merge, and persistent badges in exact state order",
+      "b05_b06_semantic_correction": "b05 newly reveals only 157; b06_s01 newly extends that completed spine to the T2 eligibility gate",
+      "approval_trust_model": "co-located hashes are not independent; immutable replay authenticates contract, storyboard, and validator against the externally pinned snapshot manifest digest",
+      "validator_mutation_suite": "PASS baseline plus 27/27 expected-fail counterfactuals, including two approval-rotation probes",
+      "maximum_global_semantic_gap_seconds": 3.0,
+      "scientific_audience_copy_changed_from_v5": false,
+      "build_semantics_changed_from_v5": true,
+      "visual_pixels_changed_from_v5": false
+    },
+    "v7_packet_reconciliation": {
+      "storyboard_version": "pass7-manifest-authenticated-semantic-v6",
+      "snapshot_version": "pass7-explicit-custody-inventory-v7",
+      "v4_exact_adversarial_dependency": "external candidate was policy-read-only but mode 0644 owner-writable, and the integrator live-lane inventory was mistaken for exact packet inventory",
+      "external_candidate_custody": "mode and authorization are explicit; snapshot mode enforcement does not claim to govern the external MP4",
+      "packet_inventory": "MANIFEST.json is complete authority; NUMERIC_SOURCE_AUDIT and explicit scope/custody receipts are included; historical QA and prior review results are deliberately excluded",
+      "scientific_audience_copy_changed_from_v6": false,
+      "build_semantics_changed_from_v6": false,
+      "visual_pixels_changed_from_v6": false
+    },
+    "v8_reconciliation": {
+      "storyboard_version": "pass7-distinct-example-clock-v8",
+      "v5_exact_adversarial_dependency": "round-13 v5 FAIL exposed duplicate b09 taxonomy-label reveals and closed-book answer-premise leakage; v6 already closed approval rotation and v7 already closed custody/inventory wording",
+      "b09_semantic_clock_correction": "persistent taxonomy labels remain visible from b08; b09's four post-stage states each reveal one new recorded example",
+      "closed_book_scaffolding_correction": "questions ask neutral scope, workflow, status, and grouping prompts without supplying measurement, eligibility, certification, or category premises",
+      "answer_premise_guard": "PASS",
+      "maximum_global_semantic_gap_seconds": 3.0,
+      "distinct_semantic_states": "45/45",
+      "scientific_audience_copy_changed_from_v7": false,
+      "build_semantics_changed_from_v7": true,
+      "visual_pixels_changed_from_v7": false
+    },
+    "v9_reconciliation": {
+      "storyboard_version": "pass7-qualified-precision-version-v18",
+      "snapshot_version": "pass7-single-current-local-receipt-v22",
+      "v6_exact_adversarial_dependency": "round-14 v6 FAIL exposed that audience_projection_sha256 omitted narration and static v8 retained unqualified 19/2 labels plus absolute external source reads",
+      "complete_audience_projection": "ordered narration + on_screen_copy leaves + display_citation for all 10 beats",
+      "complete_audience_projection_sha256": "3763e32d7cabc92c478e28415d36ebccc1ebb369b74d0071072645dd78bf8031",
+      "static_visual_correction": "visual v9 qualifies every 19/2 label as redshift-search or abundance-search; full-resolution QA and deterministic rerender PASS",
+      "renderer_source_boundary": "snapshot-local frozen_sources/pass7 only; no absolute external evidence path; --check performs byte-identical no-write replay; narration preparer accepts visual v9",
+      "numeric_source_audit_boundary": "all nine claims bind to snapshot-local frozen sources, current storyboard beats, and current visual_proposal_v9.png; zero absent-visual or external-source dependencies",
+      "scientific_audience_copy_changed_from_v8": false,
+      "build_semantics_changed_from_v8": false,
+      "visual_pixels_changed_from_v8": true,
+      "v8_exact_adversarial_dependency": "round-16 v8 FAIL exposed missing tool enforcement of the external manifest digest, under-scoped manifest authentication, absent verification sources, bypassable question guard, stale four-second language, and stale integrator identifiers",
+      "external_anchor_enforcement": "sealed replay requires MZR_EXPECTED_MANIFEST_SHA256, verifies all listed hashes and sizes, and rejects incomplete or extra packet inventory",
+      "question_contract": "the exact reviewed neutral eight-question list is pinned by canonical SHA-256",
+      "verification_source_contract": "every storyboard verification source is packet-local",
+      "timing_contract": "all exact contract and guidance language uses the three-second ceiling"
+      ,"v11_exact_adversarial_dependency": "round-17 v11 FAIL exposed that the narration preparer accepted absent or fake visual bytes and that the visible packet title retained v8",
+      "narration_visual_authentication": "accepted visual must exist and match the exact visual-QA SHA-256 before generation or check",
+      "packet_title_contract": "derived from current storyboard_version",
+      "v12_exact_adversarial_dependency": "round-18 v12 FAIL exposed absent/unsupported rejected-asset text, a stale mass-card locator, and missing granular numeric-audit validation",
+      "numeric_audit_contract": "exact SHA-256 plus nine exact packet-local sources and current storyboard/visual bindings; four dedicated expected-failure mutations",
+      "v13_exact_adversarial_dependency": "round-19 v13 FAIL exposed stale stored receipts, stale current identifiers, and superseded operative-looking timing guidance",
+      "sealed_receipt_contract": "stored proposal receipt is exact content-only preseal data; sealed check compares it byte-for-byte and emits external-anchor authentication at runtime to avoid manifest self-reference; mutation output is deterministic across live and sealed semantic harnesses",
+      "current_identifier_contract": "storyboard v18, packet v22, visual v9, and current three-second operative guidance",
+      "v14_exact_adversarial_dependency": "round-20 v14 FAIL exposed stale handoff/source/candidate identifiers and an unversioned historical visual regate with absent receipts; paper-naive review exposed packet-title, bullet-boundary, and numerical-question-premise ambiguity",
+      "neutral_scaffolding_contract": "title identifies packet v22 and storyboard v18; field labels and bullet formatting are scaffolding but audience strings in bullets are projected; exact neutral prompts mechanically reject all digits and number words from zero through twelve",
+      "neutral_questions_sha256": "d2cc5d3eb238cecebed22c407d1697fdb12c1518d97694177afc90247783eac7",
+      "visual_regate_contract": "historical pass2 result is explicitly versioned and has no current-gate authority; visual-v9 exact current-packet regate remains pending",
+      "v15_exact_adversarial_dependency": "round-21 v15 FAIL exposed stale handoff counts/version labels, omitted renderer check, and unqualified search-axis wording; paper-naive review exposed an ambiguous dominant-mode ranking",
+      "qualified_precision_contract": "the exact T1 source documents src.redshift qualifier contamination; v18 names that recorded contamination without claiming an unshown ranking, rate, eligibility ruling, or measurement",
+      "v16_exact_adversarial_dependency": "round-22 v16 FAIL exposed an unversioned historical visual PASS and an active candidate-guidance surface that omitted current packet/storyboard identifiers",
+      "current_guidance_identifier_contract": "CANDIDATE_NOTES explicitly identifies packet v22, storyboard v18, visual v9 exact SHA, proposal-only scope, and failed-candidate non-clearance",
+      "v17_exact_adversarial_dependency": "round-23 v17 FAIL exposed unsupported dominant ranking, a numerical premise in question 5, stale current hashes/identifiers, omitted renderer handoff check, and unqualified candidate-note axes",
+      "zero_numerical_premise_contract": "every review question passes an explicit regex guard rejecting digits and number words zero through twelve; approved exact question hash is d2cc5d3eb238cecebed22c407d1697fdb12c1518d97694177afc90247783eac7",
+      "v18_exact_adversarial_dependency": "round-24 v18 FAIL exposed an operative storyboard-v13 handoff label and a manifest-listed unlabeled stale v17 local-check receipt while scope claimed a current v18 receipt",
+      "current_local_receipt_contract": "exact packet includes exactly one PASS7_*_LOCAL_CHECKS receipt, PASS7_V22_LOCAL_CHECKS; all earlier local receipts are excluded and named by HISTORICAL_LOCAL_RECEIPT_INDEX_V22; operative handoff names storyboard qualified-precision-version-v18"
+    }
+  },
+  "worker_proposal_current": {
+    "storyboard_version": "pass7-qualified-precision-version-v18",
+    "storyboard_sha256": "2bbcc3fc01bb4cfa6b63e7de87b72414d8b3b64d050b801b61402cf65fc0b9c7",
+    "audience_copy_projection_sha256": "3763e32d7cabc92c478e28415d36ebccc1ebb369b74d0071072645dd78bf8031",
+    "paper_naive_packet_sha256": "8bd3b10b0d85bedb77ea2ca717f62d4f6cef0c5e3cb820b337430f9ccd4e424a",
+    "paper_naive_projection_receipt_sha256": "8e41e2a356cf1b055423006df8d9f886b19470cf63a02701eec9d5b561c2d4ae",
+    "numeric_source_audit_sha256": "ba58c9a1cb7883551abfc519e7427a77c1644a7e07ff4d1c82701b68583baf2c",
+    "visual_artifact": "visual_proposal_v9.png",
+    "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "visual_pixels_changed_in_pass5": true,
+    "visual_pixels_changed_in_pass6": false,
+    "visual_pixels_changed_in_pass7": false,
+    "visual_pixels_changed_in_pass7_v9": true,
+    "timed_reveal_states": 45,
+    "maximum_planned_evidence_state_gap_seconds": 3.0,
+    "motion_contract_limit_seconds": 3.0,
+    "state_handoffs": 10,
+    "matched_cross_beat_handoffs": 9,
+    "full_frame_scientific_resets_allowed": false,
+    "declared_narration_clauses": 21,
+    "maximum_global_semantic_gap_seconds": 3.0,
+    "hold_or_retain_states_count_as_changes": false,
+    "proposal_validation_sha256": "4f6c6f058cfecc3e75237c8b183bd03982799b8582a814551916b0181ee9ae16",
+    "validator_mutation_tests_sha256": "45e3ac2c55f3490937c030b38e18f1a7f6ed93d983b930ffe5258435cfb47dba",
+    "approved_storyboard_contract_sha256": "2678e5db49729d77e1a27e4ac1ddae107a200865e7d4ed2e0ed3419d9ed4ad37",
+    "frozen_source_manifest_sha256": "4a1463053fbf3adea7187c961b77efc9f5258acca2243ff57dcb3adee5f4bfa6",
+    "cut_boundary_frame_manifest_sha256": "04f0c4c1733d71b512248e3006e1d6761a0b6635b162321537f991a312be96ba",
+    "boundary_continuity_sha256": "6ebb20cc8d5f246afc571bc6f534a8564c1def347ff8e7dbc13a2e0bc487193b",
+    "ocr_density_sha256": "29844ae161f976a5bae00f3ef2ee11222da7c486c220bd9ff94adacdb3b239fd",
+    "citation_ledger_sha256": "b96f3b5083bc4b0e342a38d33ecce22e589edfece8378ac669e8a1ff65cfbc72",
+    "renderer_sha256": "195b30fb19a8e7e681a0a4fbc19994d1a99ed179fe67b83b659ec0fd57fce844",
+    "citation_gate": "PASS locally; all 10 display citations reconcile exactly to the ledger; visual-v9 footer is ledger-driven and deterministically rerenders; prior exact FAILs remain preserved; current exact packet regate required",
+    "status": "STATIC_PROPOSAL_ONLY_NOT_A_CANDIDATE"
+  },
+  "pass4_v1_exact_review_custody": {
+    "snapshot": "snapshots/pass4-retrieval-axis-provenance-v1",
+    "storyboard_sha256": "ec35df6bb7815ee700f24b2a2ba72f71d62032cfa318522af8de2a5f4b13b34b",
+    "reviewed_source_freeze_sha256": "edeb11c54f2e76aa4c972c4323899a579fad92662bae178368dfcd93da269ee7",
+    "manifest_entries_stable": "9/9 initial and final",
+    "paper_naive": "PASS 8/8 high confidence",
+    "adversarial": "FAIL; category headings existed only as field names/build directions, not flattened audience-copy values",
+    "disposition": "PRESERVED; superseded by pass4-retrieval-axis-provenance-v2 correction and exact-v2 regate"
+  },
+  "pass4_exact_review_custody": {
+    "snapshot": "snapshots/pass4-retrieval-axis-provenance-v2",
+    "manifest_sha256": "f52786d1be564373dec20ea37153db25a27ace6dc8ce32f035f11f55867acf9c",
+    "reviewed_source_freeze_sha256": "7c3225992a59ca636b478eeeb3b58eb6385fa5a4b241f209719ea2f0dabee93b",
+    "manifest_entries_stable": "9/9 initial and final",
+    "source_pins_stable": "13/13",
+    "encoded_artifact_pins_stable": "2/2",
+    "paper_naive": "PASS 8/8 high confidence",
+    "adversarial": "PASS; no material defects",
+    "audience_projection_sha256": "ff3dbd44815bf3f91f34d471348adb444c241b8ded95aaa99f2b99ef1d40517e",
+    "candidate_disposition": "unchanged encoded candidate remains FAIL; proposal PASS does not clear it",
+    "receipt_status_delta_after_review": "Only receipt/status/citation-ledger plumbing advanced in the root lane after review; reviewed scientific/proposal/pixel bytes remain frozen in the immutable snapshot, and the ledger-driven renderer reproduces the same visual hash."
+  },
+  "pass3_exact_review_custody": {
+    "snapshot": "snapshots/pass3-audience-copy-v1",
+    "reviewed_source_freeze_sha256": "04288e4181e3c0c8140e7e8f320ab75b04ad68965883cdf134b574912ae26f11",
+    "manifest_entries_stable": "9/9 initial and final",
+    "paper_naive": "PASS 8/8 high confidence",
+    "adversarial": "PASS; no material defects",
+    "receipt_status_delta_after_review": "Only receipt/status timestamps and PASS state were advanced in this root freeze; reviewed scientific/proposal bytes remain preserved in the immutable snapshot."
+  },
+  "expected_figures": [
+    {"name":"mzr-archive-census_evidence.png","sha256":"3885f9407b537f93811347e397e9beb892ac7519afe544f22b4d4dd345d4fa89","disposition":"REVISE_LABELS: vocabulary presence, not eligibility"},
+    {"name":"mzr-archive-census_recall.png","sha256":"c7d61e1e00236a6cd46e5488f0e52bac95b9d1a0989c36226716a12e5339a82e","disposition":"REVISE: add 7/7, 0/3 and precision-control limitation"},
+    {"name":"lit_metallicity.png","sha256":"58d8dbf53a51f6b76e4d46ca82b4b319f49d01cb1f014f3b518e86703764c4a3","disposition":"REJECT_FOR_THIS_CENSUS: visually implies a metallicity measurement and the card says the census exists to measure the spread"}
+  ],
+  "display_sources": [
+    "Ochsenbein, Bauer & Marcout 2000, A&AS 143, 23, doi:10.1051/aas:2000169",
+    "IVOA UCD1+ controlled vocabulary v1.5 (2022)",
+    "NebulaMind pre-registered VizieR metadata census, snapshot 2026-08-05"
+  ],
+  "rights": "Proposed graphics are deterministic redraws from frozen metadata counts; no publisher figure crop is required.",
+  "writer_boundary": "No candidate, TTS, shared-tool, or storyboard-of-record write is authorized in this lane."
+}

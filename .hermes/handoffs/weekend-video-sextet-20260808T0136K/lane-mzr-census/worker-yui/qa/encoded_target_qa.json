@@ -1,0 +1,56 @@
+{
+  "verdict": "FAIL_CURRENT_AND_LATEST_ENCODED_TARGETS",
+  "exact_current_public_target": {
+    "path": "frontend/public/videos/mzr-archive-census.mp4",
+    "sha256": "dc2f32a24e5418cb2cf1781401e877e70682dfcf17e4514407cc6cc48d08fcc0",
+    "duration_seconds": 53.0,
+    "video": "H.264 1920x1080 30fps",
+    "audio": false,
+    "verdict": "FAIL_LINEAGE_AND_PRESENTATION_GRAMMAR",
+    "defects": [
+      "Source storyboard has 15 cards, two figure cards, and 103.5 nominal seconds; target is a 53-second silent prose/count-card sequence.",
+      "No retrieval diagram, funnel, explicit drop bins, recall/control matrix, or eligibility gate is encoded.",
+      "178 and 21 are prose around a giant 157; 62 is not same-frame bounded as vocabulary presence rather than eligibility.",
+      "Audience captions expose internal filenames."
+    ]
+  },
+  "latest_hwao_integrated_local_candidate_read_only": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/mzr-archive-census-narrated-20260808T0155.mp4",
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "duration_seconds": 128.4,
+    "video": "H.264 1920x1080 30fps",
+    "audio": "AAC mono 24000Hz; mean -21.3 dB; max -1.6 dB",
+    "verdict": "FAIL_FOR_SCIENTIFIC_REPRESENTATION_STATIC_EVIDENCE_STATE_CAUSALITY_AND_PRIOR_BOUNDARIES",
+    "blocking_frames": [
+      {"time_seconds":4,"defect":"Opening says catalogues carry the three quantities together; T1 establishes single-table metadata-reachable columns, not adjudicated physical measurements."},
+      {"time_seconds":20,"defect":"Metallicity-versus-redshift scatter is presented as the spread this census exists to measure, but T1 made no metallicity/MZR measurement."},
+      {"time_seconds":44,"defect":"157 dominates and is described as tables carrying all three axes; 178, 21 and the 19/2 drop split remain prose/invisible."},
+      {"time_seconds":55,"defect":"157-versus-62 bar labels 62 as explicit gas-phase evidence, not description vocabulary presence."},
+      {"time_seconds":65,"defect":"62 dominates without a same-frame non-eligibility boundary."},
+      {"time_seconds":80,"defect":"Instrument checks are prose, not 7/7 and 0/3 metrics; precision-control limitation is absent."},
+      {"time_seconds":88,"defect":"T2 card shows contract provenance but omits application-not-completed and no-eligible-table-count gate states."},
+      {"time_seconds":104,"defect":"The card collapses symbol/meaning collisions and target-domain mismatches into 'symbol Z, not the concept'; recorded examples are characterization, not T2 rulings."},
+      {"time_seconds":124,"defect":"Final close substitutes generic artifact provenance for explicit reportable-now versus pending scientific status."}
+      ,{"time_seconds":6,"defect":"Opening treats the gas-phase target concept as the adjudicated identity of the pre-eligibility abundance-search axis."}
+      ,{"time_seconds":62,"defect":"Vocabulary-regex presence in 62 of 157 descriptions is upgraded to explicit gas-phase evidence."}
+      ,{"time_seconds":78,"defect":"Seven recall members and three controls are not labeled as the T1 retrieval-instrument stage."}
+      ,{"time_seconds":90,"defect":"Twelve T2 contract-design decoys follow the T1 control card without a stage boundary and without application-not-completed/no-count status."}
+      ,{"time_seconds":5,"defect":"Opening adjudicates all three target concepts, including stellar mass; T1 records abundance-search, mass-search, and redshift-search metadata reach only."}
+      ,{"time_seconds":89,"defect":"T2 card shows 12 decoys but omits the frozen design's 3 anchors and does not label the fifteen controls as not eligibility results."}
+      ,{"time_seconds":121,"defect":"Close gives generic recorded-artifact custody but no audience-reachable methods/count ledger for derived denominators."}
+    ],
+    "hard_cut_evidence_state_audit": {
+      "detector": "ffmpeg select=gt(scene,0.02),showinfo",
+      "detected_cuts": 14,
+      "evidence_state_holds": 15,
+      "holds_over_6_seconds": 10,
+      "maximum_hold_seconds": 16.133,
+      "standalone_2_5_second_section_dividers": 4,
+      "qualification": "Evidence-state timing, not a claim of pixel identity; subtle decorative background motion may remain."
+    },
+    "listening_gate": "NOT_GRANTED; waveform/stream facts are not human voice approval"
+  },
+  "requested_replacement": "Hwao-only integration from pass6-evidence-state-causality-v1 STORYBOARD_CANDIDATE.json and unchanged visual_proposal_v8.png; preserve all pass-5 science boundaries and implement 45 timed reveal states with a four-second evidence-state maximum and no standalone divider holds",
+  "proposal_review_history": "pass4 v1 exact adversarial FAIL preserved; pass4 v2 exact review PASS preserved; pass5 v1 exact review pending; pass6 v1 local gates PASS and exact independent regate pending",
+  "publication_gate": "CLOSED"
+}

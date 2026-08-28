@@ -1,0 +1,134 @@
+{
+  "status": "FROZEN_LOCAL_ONLY_READY_FOR_KIMI_RENDER_GATE",
+  "created_at_utc": "2026-08-19T09:18:34.858229+00:00",
+  "candidate": {
+    "path": "build/BHU_PHASE2_RESULTS_VIDEO_LOCAL_REVIEW.mp4",
+    "bytes": 11200744,
+    "sha256": "f251d43cda0e7383d56864830cc3d0f68023b065205917edc2e2adb37964ffcb"
+  },
+  "narration_wavs": [
+    {
+      "path": "build/audio/narration-01.wav",
+      "bytes": 3235278,
+      "sha256": "cb618ef3d47837e55778a3a4a0d0917c1889c169aa46b74826e8c06773a60d22"
+    },
+    {
+      "path": "build/audio/narration-02.wav",
+      "bytes": 2716878,
+      "sha256": "c578a93983c911d3f5a5e9a90b7a5c15992ca42a2c0f4cedaa382ec2fe1db1d8"
+    },
+    {
+      "path": "build/audio/narration-03.wav",
+      "bytes": 2894478,
+      "sha256": "4d274d8efb44e637cecfc7083ac2d2cd5291c8d401082f5e976b3a3ee19a55f4"
+    },
+    {
+      "path": "build/audio/narration-04.wav",
+      "bytes": 2505678,
+      "sha256": "bcafa62b3ddf8af6893e8b191a97ac1289642199b4272068ea8bad326b7cfa5b"
+    },
+    {
+      "path": "build/audio/narration-05.wav",
+      "bytes": 2390478,
+      "sha256": "dd730882fc66274d609e62323007d9cdb74ac73e9397161e929d83089750407f"
+    },
+    {
+      "path": "build/audio/narration-06.wav",
+      "bytes": 2784078,
+      "sha256": "a6bee73f98c06860c83576ca87f4da12e3ba304853301d13bed60d8c2159885b"
+    },
+    {
+      "path": "build/audio/narration-07.wav",
+      "bytes": 3168078,
+      "sha256": "a7aa0fb4ef789633f4c23643fce83770dd2fbe4a9f8af31f5161fad82c6cd41e"
+    },
+    {
+      "path": "build/audio/narration-08.wav",
+      "bytes": 2644878,
+      "sha256": "17467c15113d8ab0d8e25732a829280a038d18ca5363d75ee978eebd9a47a1cc"
+    },
+    {
+      "path": "build/audio/narration-09.wav",
+      "bytes": 3422478,
+      "sha256": "76181744b93a5dae913bf3250ee5a02a02c1a9a5b87848cbad1826bbb16ed59c"
+    },
+    {
+      "path": "build/audio/narration-10.wav",
+      "bytes": 3475278,
+      "sha256": "7d62a5649c6560f1963009965412cc5a097ccb910038520e2c0d83924c414207"
+    },
+    {
+      "path": "build/audio/narration_master.wav",
+      "bytes": 31724844,
+      "sha256": "2de5fd95262860ff4f75595a42e542fbb7fcf286e3afd38a513688f79d65a25c"
+    }
+  ],
+  "gated_inputs": [
+    {
+      "path": "VIDEO_BRIEF_P2.md",
+      "bytes": 6818,
+      "sha256": "808cd93dae7ff621389ca4754fc69b6473b288b68903fd0bf578053ca46c313c"
+    },
+    {
+      "path": "SCRIPT.md",
+      "bytes": 6094,
+      "sha256": "82fc80e65683aaccf1987e166ef8b3f603bbc167b4771758f274636bc41ecacf"
+    },
+    {
+      "path": "STORYBOARD.json",
+      "bytes": 29084,
+      "sha256": "2f1f2c0a86329870c570ccdc422d84de72b0346a0d4a6a55be45f79665fb8442"
+    },
+    {
+      "path": "VISUALS.md",
+      "bytes": 8448,
+      "sha256": "c7fa914fb83ee97d28672a09914fe7e96e7c892860ac1394c2045af2125b93de"
+    },
+    {
+      "path": "CLAIM_LEDGER.md",
+      "bytes": 15113,
+      "sha256": "5238336c5c37510b8018821257feeb564bf88486b7e1bfe54d6f246f78f99b7b"
+    },
+    {
+      "path": "KIMI_P2V_PACKET_GATE.md",
+      "bytes": 8231,
+      "sha256": "8a6261d0a071e47aacbaa2da3af8b011c293c8890da97db40dd7c359fb3624dd"
+    }
+  ],
+  "qa": {
+    "path": "build/qa/final-qa-report.json",
+    "bytes": 3000,
+    "sha256": "0b59a12d0d71c6221266167e702161c42a1cb15a51d0ad0f36762c6aff79ed8d"
+  },
+  "asr_qa": {
+    "path": "ASR_QA.md",
+    "bytes": 14028,
+    "sha256": "eefc7f28b99a702433a0388736760a32f4908888d80ed2e3f952009f9017ec1f"
+  },
+  "toolchain": {
+    "python": "3.9.6",
+    "pillow": "11.3.0",
+    "ffmpeg": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "tts": {
+      "route": "Hermes managed OpenAI audio gateway",
+      "model": "gpt-4o-mini-tts",
+      "voice": "alloy",
+      "speed": 1.0
+    },
+    "asr": {
+      "route": "Hermes managed OpenAI audio gateway",
+      "model": "whisper-1"
+    },
+    "visuals": "local deterministic Pillow cards adapted from Phase 1",
+    "assembly": "local ffmpeg"
+  },
+  "safety": {
+    "publication_state": "LOCAL_ONLY_NOT_UPLOADED",
+    "uploads": [],
+    "flow_used": false,
+    "veo_used": false,
+    "image_generation_used": false,
+    "credits_spent": 0,
+    "portal_nersc_used": false
+  }
+}

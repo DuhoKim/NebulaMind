@@ -1,0 +1,121 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "packet_id": "spin-worker-yui-pass14-blockers-20260808T092829K",
+  "checked_at": "2026-08-08T09:28:29+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "deepening_pass": 14,
+  "blocked_claim_scope": "T4 numerical and interpretive result claims remain out of scope; pass 14 audits presentation resilience only",
+  "source_freeze": {
+    "path": "SOURCE_STATUS_FREEZE.json",
+    "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "status": "unchanged"
+  },
+  "failed_candidate_custody": {
+    "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "disposition": "preserved_failed_candidate_read_only",
+    "fresh_pass14_extraction": "15_CUTS_16_SCENES_80_STATIC_QA_FRAMES",
+    "clean_midpoint_reproduction": "16/16_BYTE_IDENTICAL_TO_PASS13"
+  },
+  "presentation_evidence": {
+    "audit": "PASS14_ENCODED_FRAME_AUDIT.md",
+    "audit_sha256": "81bf052493d6ba469733afc232d2f9debab4903b44eec84c81dbe09c23b943ed",
+    "extraction_script": "qa/extract_pass14_shadow_floor_frames.py",
+    "extraction_script_sha256": "78ec23b1ecdb591b6d5b49b12c7946bdd20ca33760b1a157991c7f7759d0ffb0",
+    "extraction_receipt": "qa/pass14_shadow_floor_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "b5d897cfbff6153204f8efa71540afdd6b1cee94c0c03050386309b4e35e8c36",
+    "method_receipt": "qa/pass14_v8_shadow_floor/receipt.json",
+    "method_receipt_sha256": "5e1b5c2ced02c2e081ecf7c49c9cdc4946844cbe6fd9e674288dfd3e913cd0f4",
+    "quantitative_audit": "qa/pass14_shadow_floor_quantitative_audit.json",
+    "quantitative_audit_sha256": "2917cafd30a68a2c7fa89f13911721867b64949ee6b7f27be9cf2b5659c5c022",
+    "integration_guard": "DARK_TONE_RESILIENCE_GUARD_PASS14.json",
+    "integration_guard_sha256": "e25d00e204f41406d0d6da33f01f5447d2ceda74c2f5b4385c1919bf2f819e12",
+    "candidate_frame_count": 80,
+    "method_frame_count": 105,
+    "operational_variant": "shadow_floor_16",
+    "characterization_variants": ["shadow_floor_32", "shadow_floor_48"],
+    "candidate_operational_finding": {
+      "headline_token_recall": 0.997845,
+      "full_token_recall": 0.978241,
+      "lower_support_token_recall": 0.974119,
+      "numeric_token_recall": 0.967361,
+      "additional_black_pixel_fraction": 0.689215,
+      "nonzero_dark_pixel_survival_below_64": 0.26762,
+      "structural_gate_scene_count": 0,
+      "disposition": "bright assertion layer remains readable after most near-black background pixels collapse; no held boundary appears"
+    },
+    "held_critical_operational_finding": {
+      "scenes": [7, 9, 10, 11, 16],
+      "headline_token_recall": 1.0,
+      "full_token_recall": 0.961609,
+      "lower_support_token_recall": 0.952503,
+      "numeric_token_recall": 0.895556,
+      "additional_black_pixel_fraction": 0.796146,
+      "structural_gate_scene_count": 0
+    },
+    "severe_floor_48_finding": {
+      "headline_token_recall": 0.99569,
+      "full_token_recall": 0.900701,
+      "nonzero_dark_pixel_survival_below_64": 0.003571,
+      "structural_gate_scene_count": 0,
+      "disposition": "major result hierarchy remains primary after nearly all source dark pixels are suppressed"
+    },
+    "pass12_strengthened_proof_operational_finding": {
+      "scene_specific_gate_lines_visual": "7/7_EXACT",
+      "scene_specific_gate_lines_character_similarity_at_least_0_85": "7/7",
+      "mean_gate_character_similarity": 1.0,
+      "result_held_badges_visual": "7/7",
+      "overlap_clipping_or_semantic_ambiguity": false
+    },
+    "action": "non-pixel dark-tone integration guard added; no further pixel or copy correction justified"
+  },
+  "exact_blockers": [
+    {
+      "blocker_id": "A3.8_INDEPENDENT_REVIEW_MISSING_FOR_FROZEN_T4",
+      "scope": "science authorization",
+      "state": "BLOCKED",
+      "required_evidence": [
+        "A named independent reviewer must review the exact frozen T4 content artifact after the final run.",
+        "The review must cover the full all-209-file content proof rather than a pre-run design or partial subset.",
+        "The review receipt must identify the exact frozen artifact and record a valid disposition."
+      ],
+      "evidence_present": false,
+      "pass14_change": "none"
+    },
+    {
+      "blocker_id": "FRAME_REVIEW_REMAINS_FRAME_UNSTATED",
+      "scope": "interpretation authorization",
+      "state": "BLOCKED",
+      "required_evidence": [
+        "A valid source-backed archive-frame determination for the exact frozen artifact.",
+        "A post-run review that resolves rather than merely repeats the frame-unstated condition."
+      ],
+      "current_evidence": "KUN_FRAME_REVIEW.md ends FRAME REVIEW: AGREES FRAME_UNSTATED",
+      "pass14_change": "none"
+    }
+  ],
+  "presentation_blocker_deepening": {
+    "finding": "The dark-tone transform adds no scientific evidence and cannot cure a missing status boundary. At floor 16 the failed candidate preserves essentially all headline and support text while 68.9% of source-nonblack pixels become black; its structural gate count remains zero. At floor 48, result hierarchy remains primary after dark-pixel survival below luma 64 falls to 0.003571.",
+    "implication": "A future method-only layout must not carry a status boundary, scientific qualifier, unavailable rung, branch distinction, interpretation limit, axis, error bar, or provenance fact only through near-black fill, texture, grid, divider, or other low-luminance detail. Required meaning needs direct text and a surviving bright border, connector, capsule, or stable geometry channel.",
+    "current_safe_contract": "The pass-12 strengthened proof passes all seven scene gates and all seven badges at floor 16 and preserves required meaning even at the floor-48 characterization. Pass 14 therefore adds a cumulative non-pixel guard rather than mutating sealed or proof pixels.",
+    "does_not_resolve_science": true
+  },
+  "video_reportable_now": false,
+  "science_adjudication_performed": false,
+  "measured_values_added": false,
+  "sealed_v8_modified": false,
+  "pass7_proof_modified": false,
+  "pass12_proof_modified": false,
+  "v9_created": false,
+  "new_candidate_created": false,
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "runtime_action": false,
+  "browser_action": false,
+  "publication_action": false,
+  "git_action": false,
+  "allowed_next_action": "Hwao/Fable may review the pass-14 non-pixel dark-tone guard together with the unchanged science blockers. Any layout integration or new candidate remains a separately authorized integrator action."
+}

@@ -1,0 +1,50 @@
+{
+  "timestamp_kst": "2026-08-09T16:57:29+09:00",
+  "authority": "HWAO_DEEPENING_ORDER_HISTORICAL_FREEZES_20260809T1628K.md",
+  "rule": "Historical worker freezes are mandatory suspect inputs, never authority. No decision, verdict, boundary, or reportability field may cross. Only source facts independently reverified today may enter a new proposal.",
+  "audits": [
+    {
+      "lane": "fesc",
+      "historical_freeze": "lane-fesc-zsweep/worker-yui/SOURCE_FREEZE.json",
+      "historical_sha256": "b14188e0cc838cc4f512ebd78474b11cf742ea07cd45787df2f41510e97720c9",
+      "active_proposal_sha256": "f99c3e534ac4dc8815da21b8655c6c821c7bc2ca763d1458b8e02f753891ae8b",
+      "historical_long_scalar_values_imported_verbatim": 0,
+      "active_SOURCE_FREEZE_present": false,
+      "custody_state": "FAIL_CLOSED"
+    },
+    {
+      "lane": "brightend",
+      "historical_freeze": "lane-c41-uvlf/worker-yui/SOURCE_FREEZE.json",
+      "historical_sha256": "d2655f1eab884a93121e7a2d3ed95f01e6391d7d705e94435d8af845c6fffe24",
+      "active_proposal_sha256": "16566d8005a7ad247e8d164889b3376a5370cbcba7651cb4005dddcb764a4a9a",
+      "historical_long_scalar_values_imported_verbatim": 0,
+      "active_SOURCE_FREEZE_present": false,
+      "custody_state": "FAIL_CLOSED"
+    },
+    {
+      "lane": "mzr-anchor",
+      "historical_freeze": "lane-c41-mzr/worker-yui/SOURCE_FREEZE.json",
+      "historical_sha256": "a57c36e3a40df5f49b9848e8af346b591658a44625de74abd47cbe71909d2ce1",
+      "active_proposal_sha256": "1e3e77d9e4007bc6177dadf2609c1254505bbadf6445d97a959185373c567fe7",
+      "historical_long_scalar_values_imported_verbatim": 0,
+      "historical_video_reportable_now": true,
+      "proposal_video_reportable_now": false,
+      "historical_verdict_or_frozen_claim_bundle_imported": false,
+      "source_paths_and_hashes_in_proposal_reverified_today": true,
+      "active_SOURCE_FREEZE_present": false,
+      "custody_state": "BLOCK_INSTALLATION_AS_WRITTEN"
+    },
+    {
+      "lane": "mzr-census",
+      "historical_freeze": "lane-mzr-census/worker-yui/SOURCE_FREEZE.json",
+      "historical_sha256": "59317f7d33d4c4c3d307843932229eadb24a0ccbe97123002daa28ca6f210ec7",
+      "active_proposal_sha256": "d2e4beca6947c2f82b6c2a261c5a49add125bff49492d7a22c6f94905dbfd494",
+      "historical_long_scalar_values_imported_verbatim": 0,
+      "active_SOURCE_FREEZE_present": false,
+      "custody_state": "FAIL_CLOSED"
+    }
+  ],
+  "result": "PASS_NONIMPORT_CHECK_CURRENT_PROPOSALS__NO_RESULT_AUTHORIZATION",
+  "limitations": "This check establishes absence of verbatim long scalar import and separately checks high-risk mzr-anchor fields. It does not grant scientific correctness or permission; any new proposal requires fresh full custody and independent Lana/Kun/Tori adjudication.",
+  "gates_closed": true
+}

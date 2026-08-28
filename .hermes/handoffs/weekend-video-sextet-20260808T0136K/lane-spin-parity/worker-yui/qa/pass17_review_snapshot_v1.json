@@ -1,0 +1,133 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass17-review-v1-20260808T110626K",
+  "created_at": "2026-08-08T11:06:26+09:00",
+  "deepening_pass": 17,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "authority": {
+    "hwao_weekend_order": {
+      "path": "../../HWAO_WEEKEND_ORDER.md",
+      "sha256": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710"
+    },
+    "coordination_update": {
+      "path": "../../COORDINATION_UPDATE.md",
+      "sha256": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f"
+    },
+    "lane_brief": {
+      "path": "../../lanes/spin/BRIEF.md",
+      "sha256": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec"
+    }
+  },
+  "custody": {
+    "source_freeze": {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+      "modified": false
+    },
+    "storyboard_proposal": {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "iteration": "v8",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+      "modified": false
+    },
+    "sealed_v8_render_receipt": {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3",
+      "modified": false
+    },
+    "prior_pass_snapshot": {
+      "path": "qa/pass16_review_snapshot_v1.json",
+      "sha256": "1205b66b3ccf7080d1f3c5c1eaf9856a2bedc7f14ba2924a7591cd8a48577d40"
+    },
+    "preserved_failed_candidate": {
+      "name": "spin-parity-census-20260808T0149",
+      "media_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+      "receipt_sha256": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+      "qa_sha256": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+      "hashes_sha256": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3",
+      "modified": false,
+      "re_dispatched": false
+    }
+  },
+  "pass17": {
+    "focus": "compound 640x360 minimum-scale plus JPEG 4:2:0 recompression/decode representation",
+    "fresh_cut_reproduction": "15/15",
+    "fresh_clean_midpoint_match": "16/16_BYTE_IDENTICAL_TO_PASS16",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "reference_variant": "downscale_360p",
+    "operational_variant": "jpeg_q60_420_360p",
+    "characterization_variants": [
+      "jpeg_q35_420_360p",
+      "jpeg_q20_420_360p"
+    ],
+    "candidate_structural_gate_scenes_q60_360p": "0/16",
+    "method_pass12_operational_exact_gates": "7/7",
+    "method_pass12_operational_gate_similarity_mean": 1.0,
+    "method_pass12_q20_characterization_exact_gates": "7/7",
+    "method_pass12_q20_characterization_gate_similarity_mean": 0.988874,
+    "method_pass12_result_held_badges": "7/7_EACH_REPRESENTED_VARIANT",
+    "action": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+    "video_reportable_now": false
+  },
+  "evidence": {
+    "extractor": {
+      "path": "qa/extract_pass17_minimum_scale_recompression_frames.py",
+      "sha256": "1c4f1f984e7067545b3cf045610951f936d25256db3e3f0d807ae99073e990a2"
+    },
+    "candidate_extraction_receipt": {
+      "path": "qa/pass17_minimum_scale_recompression_audit/extraction_receipt.json",
+      "sha256": "ab7d1cdee0f5e82fb5d8b51cbcab324bb24036975606ac3a2a7f1833f0468d47"
+    },
+    "method_builder": {
+      "path": "qa/build_pass17_v8_minimum_scale_recompression.py",
+      "sha256": "782252eacedbeba545574d88c6b4381618d7db63596e42804785c92593ffbbad"
+    },
+    "method_receipt": {
+      "path": "qa/pass17_v8_minimum_scale_recompression/receipt.json",
+      "sha256": "388e244eff1e399d153dcb8be7c0916291e3b5d11bd4fb1ad902abb8e8c8e6e9"
+    },
+    "quantitative_auditor": {
+      "path": "qa/audit_pass17_minimum_scale_recompression.py",
+      "sha256": "7125d465a4d17ff650d55ee75cd1229c13c5e2e4c84dbc50bb5ce5ab84f97edd"
+    },
+    "quantitative_audit": {
+      "path": "qa/pass17_minimum_scale_recompression_quantitative_audit.json",
+      "sha256": "d21b50e9aded285a089367ce48504c87e0930aa2528a025cbb729d636ac76dde"
+    },
+    "integration_guard": {
+      "path": "MINIMUM_SCALE_RECOMPRESSION_GUARD_PASS17.json",
+      "sha256": "a7849a58105145f9d7f62c8c795758e3bfba59cfbb32b60de8057cdb7bff217d"
+    },
+    "encoded_frame_audit": {
+      "path": "PASS17_ENCODED_FRAME_AUDIT.md",
+      "sha256": "e48d02506eeef4507c409b0cddd747d016168c453aa94e71f212406942a38d90"
+    },
+    "blocker_packet": {
+      "path": "BLOCKER_PACKET_PASS17.json",
+      "sha256": "c3de86e4cf83d86eacabfdec3888480ccc934b75e63f3c58409a58dafb2dbb04"
+    }
+  },
+  "blockers": {
+    "post_run_independent_review": "MISSING_FOR_EXACT_FROZEN_T4_209_FILE_ARTIFACT",
+    "archive_storage_frame": "FRAME_REVIEW_AGREES_FRAME_UNSTATED",
+    "candidate_representation": "RESULT_BEARING_WITHOUT_STRUCTURAL_HELD_GATE",
+    "video_reportable_now": false
+  },
+  "representation_boundary": {
+    "required_header": "GALAXY SPIN",
+    "forbidden_audience_topics_absent_from_method_frames": true,
+    "method_only": true,
+    "science_adjudicated": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

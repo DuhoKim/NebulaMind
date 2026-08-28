@@ -1,0 +1,140 @@
+{
+  "adjudication_id": "TORI_SPIN_V5_PACKET_ONLY_PROVENANCE_ADJUDICATION_20260810T0103K",
+  "created_at_kst": "2026-08-10T01:03:41+09:00",
+  "reviewer": "Tori",
+  "request": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/receipt-corrections/spin-v5-receipt-correction-20260810T0052K/TORI_PACKET_RECHECK_REQUEST_V5.json",
+    "sha256": "854c8c8c9feff98fe98391918a412b10405131670067d01ef5a3e3e11384314f",
+    "scope_followed": "V5 receipt/freeze packet and unchanged MP4 identity only. Presentation, science, audio, OCR, ASR, and frame-geometry findings were not reopened."
+  },
+  "verdict": {
+    "overall": "PASS_PROVENANCE_RECEIPT_CORRECTION",
+    "v4_self_description_block_closed": true,
+    "exact_mp4_rebuilt_or_reencoded": false,
+    "presentation_finding_reopened": false,
+    "claim_boundary_finding_reopened": false,
+    "media_integrity_finding_reopened": false,
+    "release_or_rollout_gate_opened": false,
+    "human_acceptance_conferred": false,
+    "human_gate": "Duho watch/listen remains final; the four sibling why-study rollouts remain held."
+  },
+  "exact_candidate": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260809T2340K/spin-method-overhaul-canary-20260809T2340K.mp4",
+    "required_sha256": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "sha256_before_packet_review": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "sha256_after_packet_review": "4d230cc0efca0eb68a8d027d614b6b7e500590cff06154f1514d4402a84d7078",
+    "bytes": 25486290,
+    "unchanged": true
+  },
+  "v5_packet": {
+    "directory": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/receipt-corrections/spin-v5-receipt-correction-20260810T0052K",
+    "packet_manifest": {
+      "path": "PACKET_MANIFEST_V5.json",
+      "sha256": "9a554227aa73a53390f4f62ed6c8fc2b07c0b3ecde10beb31c8621c018bdf22a",
+      "status": "FROZEN_PENDING_BOUNDED_TORI_PACKET_RECHECK"
+    },
+    "pre_manifest_tree": {
+      "definition": "sha256 over sorted filename NUL file-sha256 lines, excluding PACKET_MANIFEST_V5.json",
+      "file_count_recorded": 5,
+      "file_count_recomputed": 5,
+      "sha256_recorded": "dc1c3e631e5c12bcbb7662a094de519cf12b4cf7a0dea78459288e9214640241",
+      "sha256_recomputed": "dc1c3e631e5c12bcbb7662a094de519cf12b4cf7a0dea78459288e9214640241",
+      "match": true
+    },
+    "manifest_members": [
+      {
+        "path": "BUILD_RECEIPT_V5.json",
+        "bytes": 5995,
+        "sha256": "53424efa9bf869038bf1373460209dbb2036f64d57b74f4d131f2fa3475fd2e0",
+        "match": true
+      },
+      {
+        "path": "FRAME_COUNT_DERIVATION_V5.json",
+        "bytes": 8249,
+        "sha256": "000b1ea713ec090c9aa660893f970ee37621672f247bac0df2f0ef8a07645869",
+        "match": true
+      },
+      {
+        "path": "POST_ENCODE_FREEZE_V5.json",
+        "bytes": 5097,
+        "sha256": "53f5c1f6c4d92b72a5dda4aa6e83188c950a4f8b789267ce370d4614ffd1d209",
+        "match": true
+      },
+      {
+        "path": "README.md",
+        "bytes": 2370,
+        "sha256": "645ee679663c35e64584363f767c01d088b10f732f226552542efec6149b6bb2",
+        "match": true
+      },
+      {
+        "path": "TORI_PACKET_RECHECK_REQUEST_V5.json",
+        "bytes": 4512,
+        "sha256": "854c8c8c9feff98fe98391918a412b10405131670067d01ef5a3e3e11384314f",
+        "match": true
+      }
+    ]
+  },
+  "preserved_v4_custody": {
+    "candidate_tree": {
+      "file_count_recorded": 210,
+      "file_count_recomputed": 210,
+      "sha256_recorded": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb",
+      "sha256_recomputed": "0d217a1efbf7b3aa666dddbf78b17bd01b201b306f81b712a9e929549f7ebafb",
+      "match": true
+    },
+    "original_build_receipt_v4_sha256": "92f96059701c2609678bdd2ba8cc4e6cfdf9db3440ad4ae4c270bedcbfa47a22",
+    "post_encode_freeze_v4_sha256": "a8949ffb9bb994b066f4fcde7cf58b607045ad789ed58fe5eddfb253ef776405",
+    "tori_v4_adjudication_sha256": "4a8acaaf91722eed6e9f833f641d33789d79c31add6d755f3928a6f1362cfb2f",
+    "tori_independent_evidence": {
+      "file_count_recorded": 517,
+      "file_count_recomputed": 517,
+      "tree_sha256_recorded": "391cd851dc630e8c27f60ec44b169dbe3700cd07ee83324b9ebd8a0488b80c57",
+      "tree_sha256_recomputed": "391cd851dc630e8c27f60ec44b169dbe3700cd07ee83324b9ebd8a0488b80c57",
+      "match": true
+    }
+  },
+  "corrected_scalar_derivations": {
+    "raw_frames_submitted_to_ffmpeg": {
+      "value": 6727,
+      "semantic_scope": "Generated RGB24 frames written to ffmpeg stdin, not frames in the encoded stream.",
+      "independent_recalculation": "ceil(224.21739583333334 * 30) = 6727",
+      "renderer_sha256": "639f9e477904ab0117144d5722831ada0a58a9a1d43c5fca13bd8d54a4a96864",
+      "source_readback": "build.py computes frame_count = math.ceil(DURATION * FPS), iterates range(frame_count), writes frames to ffmpeg stdin, and invokes ffmpeg with -shortest.",
+      "original_operation_time_basis": "Filesystem-bounded evidence, explicitly labeled because V4 recorded no operation timestamp.",
+      "original_operation_interval_kst_verified": "2026-08-10T00:14:06.339051+09:00 through 2026-08-10T00:15:26.315130+09:00"
+    },
+    "encoded_video_frames": {
+      "value": 6726,
+      "semantic_scope": "Frames in the final H.264 stream of the exact MP4.",
+      "ffprobe_nb_frames": 6726,
+      "ffprobe_nb_read_frames": 6726,
+      "independent_full_decode_frames": 6726,
+      "independent_full_decode_stderr": "",
+      "video_stream_seconds": 224.2,
+      "container_seconds": 224.217,
+      "container_bytes": 25486290,
+      "measurement_tooling": {
+        "ffprobe_version": "8.1.2",
+        "ffprobe_sha256": "4322275c1c2ac6ba15c695b288788bc1204e75211b3d5c030e5812c82a6dff73",
+        "ffmpeg_version": "8.1.2",
+        "ffmpeg_sha256": "1332dc2de372bade9a8a63da0d6cdfab9de97fcefbae707bcc0b0506e1203327"
+      }
+    },
+    "different_scopes_explicit": true,
+    "producing_or_observing_operations_named": true,
+    "operation_or_measurement_times_recorded": true,
+    "historical_v4_scalar_silently_replaced": false,
+    "historical_v4_receipt_preserved": true
+  },
+  "closure_reason": "Both scalars are now separately named, semantically scoped, independently reproducible, and time-qualified. The original unqualified V4 field remains preserved as historical evidence. The sole V4 blocker BUILD_RECEIPT_FRAME_COUNT_IS_NOT_THE_ENCODED_FRAME_COUNT is therefore closed by this external versioned packet without changing the MP4 or reopening already-passed media/presentation findings.",
+  "closed_actions_verified": {
+    "render_or_reencode": false,
+    "candidate_or_v4_tree_mutation": false,
+    "upload_or_publication": false,
+    "public_or_frontend_mutation": false,
+    "cockpit_mutation_by_tori": false,
+    "database_deploy_restart_git_billing_provider_config_browser_or_secrets_mutation_by_tori": false,
+    "acceptance_label": false
+  },
+  "standing_next_gate": "No overnight rollout. Preserve the five current private cockpit links. Duho's own watch/listen decision is required before any sibling why-study intro work."
+}

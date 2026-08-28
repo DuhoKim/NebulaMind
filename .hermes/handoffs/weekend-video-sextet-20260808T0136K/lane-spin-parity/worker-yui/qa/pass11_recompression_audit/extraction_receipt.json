@@ -1,0 +1,1359 @@
+{
+  "status": "QA_STATIC_PNG_DERIVATIVES_NOT_A_CANDIDATE",
+  "created_at": "2026-08-08T07:27:26.851432+09:00",
+  "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "candidate_modified": false,
+  "ffmpeg_version": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "python_version": "3.9.6",
+  "pillow_version": "11.3.0",
+  "cut_detection": {
+    "method": "30fps 160x90 grayscale frame-difference peaks with 30-frame nonmaximum separation",
+    "cuts": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "exact_pass10_match": true
+  },
+  "scene_count": 16,
+  "variant_count": 5,
+  "frame_count": 80,
+  "variants": {
+    "clean": {
+      "quality": null,
+      "subsampling": null
+    },
+    "jpeg_q85_420": {
+      "quality": 85,
+      "subsampling": "4:2:0"
+    },
+    "jpeg_q60_420": {
+      "quality": 60,
+      "subsampling": "4:2:0"
+    },
+    "jpeg_q35_420": {
+      "quality": 35,
+      "subsampling": "4:2:0"
+    },
+    "jpeg_q20_420": {
+      "quality": 20,
+      "subsampling": "4:2:0"
+    }
+  },
+  "transform_contract": {
+    "encoder": "Pillow JPEG",
+    "color_mode": "RGB",
+    "subsampling": "4:2:0 (Pillow subsampling=2)",
+    "optimize": false,
+    "progressive": false,
+    "decode": "Pillow JPEG decode to RGB",
+    "storage": "decoded pixels saved as non-optimized RGB PNG",
+    "scope_limit": "representation stress only; JPEG quality values are library parameters, not claims about any named platform or delivery path"
+  },
+  "clean_reproduction": "16/16 pass10 clean midpoint PNGs byte-identical",
+  "contact_sheet_sha256": {
+    "clean": "04e52ee1f9fbe1e60a68d79ff844dfb25403380e76dff6bcda6a6119eb75204e",
+    "jpeg_q85_420": "11b8fd2decc147ee9ca969833d94e187f680bad38fcf33abb28e35451fb0a252",
+    "jpeg_q60_420": "ceb70d9476f0404fdc6904417f3e18f8852217eedcab7e714e4a63772f6c85ab",
+    "jpeg_q35_420": "0d827578c3aca671f1a5a4ebaeada126f2e31de417613e031249cd9b4de519f1",
+    "jpeg_q20_420": "83deb573867ceee8a77919287a1d13905d8439b220fbca14b84d5bf49c450f7a"
+  },
+  "records": [
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_01.png",
+      "png_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "1cf36f516701bfe3be07174c325402458cb0f173e861a65be574b593bd9fc319",
+      "jpeg_bytes": 136040,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_01.png",
+      "png_sha256": "482f218c750b549959eb2fb702879e5730a68a2cb58fbdcc55c0e214ca262df5",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "7474564f35856156a76b03d201939c36e43df2dd503eaf8b60ad0b5e608b850b",
+      "jpeg_bytes": 87645,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_01.png",
+      "png_sha256": "ff94d5c963651291f1aeb9f88dad9a36a0eb2c97786562c77b6c0fa6b987a39e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "cf34d0945235bd34b1abf21f70684c26b435dbf4ba68e4661c35bdb27870d9a3",
+      "jpeg_bytes": 69515,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_01.png",
+      "png_sha256": "2b7c4532f2222c84aa3445f9794ff2645e1864de5a3e48631de38deeb3ed8c85",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "3b875ce2a05c55c194480cebac7d05bb887f282cb1cb3ee54ba4407037a5ed3a",
+      "jpeg_bytes": 58298,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_01.png",
+      "png_sha256": "185abc18bd7dd72a3579bfffb85a95e5a05b52854cfcae6600d551541ef9a799",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_02.png",
+      "png_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "ce26a04792fa2d498bd910e005b83a465e019deed6094858fdc3a4a20b17240d",
+      "jpeg_bytes": 132386,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_02.png",
+      "png_sha256": "84a87229d566c41a5a7eb03b2b5dd377e89a5790d72d6f792eb6d865a0f4d166",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "e93c43eb2bdf22638992a7ae49886f7fc0faa619983b853b2815ef118a69a961",
+      "jpeg_bytes": 87156,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_02.png",
+      "png_sha256": "f741cd188d4b94a2d9412aceffdb0921c14535b7a63effe2ee176fde3fc55bea",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "b5763c7dd635343558d9f185a02d2c5f323c677256cfc456466e798ae9bd852b",
+      "jpeg_bytes": 69667,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_02.png",
+      "png_sha256": "3d77455a00c9f82ba773ef387c3895644b7b45d7768db54694f58488eca4f424",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "1e0aaceac805bfdedacc9f20525c37bed1a31a3c2159dd069728c5404de9a805",
+      "jpeg_bytes": 58704,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_02.png",
+      "png_sha256": "fc50f712a7c6f4446ffa240e59083db0f2e3843c08487db035a023214536f19f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_03.png",
+      "png_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "0a75b705a68686c9dd743afd48b1c7f4944556ffaa5c0d3d8aeb4579f0c30288",
+      "jpeg_bytes": 153229,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_03.png",
+      "png_sha256": "03580a459a6c5dca6ec15c4b95c9dc57adcf8b401f95d01eb60f9750d16555af",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "2bad574d164e63db666b5c0fdc3fcf27b73937b20ea5fffa83a73c4923039954",
+      "jpeg_bytes": 100292,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_03.png",
+      "png_sha256": "f6346fb09d593af38a13f278d530faea18b9bde344b21d0f8bd3bdd117842c15",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "b2aabc3c2a3a5a60801c84ef3cb68e12cc5ebd91fb4567c5a5b7797565efe9c7",
+      "jpeg_bytes": 79011,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_03.png",
+      "png_sha256": "bfa1b75a51d1de9287c8dcd1af1d45f6cf55a40ab663de81258e24a678c01303",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "d13a140ca8588e0ffd4932315cbc5760cf08b6b0c832a42d117ceb9483d9dd28",
+      "jpeg_bytes": 65346,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_03.png",
+      "png_sha256": "85cc8a610554d2ccdde93f31814be19eece734f9d53b52aaeb45f1722ce2b9b9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_04.png",
+      "png_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "fef5f6f8b438f43c36de173949aa2200e5ce309f706a7867c8f880f12b1ce8b9",
+      "jpeg_bytes": 115371,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_04.png",
+      "png_sha256": "1ecef356c5129829d97cade0660d8346f1958060fb223ca0025ec6d028e27b54",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "6c679456d9ac0adcabde407f7ab7b7d27246be7c68b6346d4391619ca7837ede",
+      "jpeg_bytes": 75672,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_04.png",
+      "png_sha256": "2c9a17dfadf6ddfed41b6ced50dc10a41e023cb98dc1fb3415b931873864b943",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "26bd954ab6c9e8ad0534bb20930c562111e02481ccc4afb00021a39966d6f1e6",
+      "jpeg_bytes": 60805,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_04.png",
+      "png_sha256": "a24703630b3f488fee192029462d5af47fdc48c8d7e9b43ed1ee66a2ff0b8f1b",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "0079f3707fa5ba654fdf4ae77c97d090e5872e50d28ea3e8c965846168598df2",
+      "jpeg_bytes": 52175,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_04.png",
+      "png_sha256": "571e6ac56060fd4722edafb107665f6a4925439f8fac816e7f5a80b2393e743e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_05.png",
+      "png_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "b30bd91f9d39540fcea9be368831953599f2ca3ad82817c4442cb143398a45b8",
+      "jpeg_bytes": 121932,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_05.png",
+      "png_sha256": "dae9367d1311f82310687c0efea4e4822aa17523af527b2946d2e799045808f7",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "0e0ba51b9983179b24710ebf277d13ba83e0cfa69dd37682cc64f512fa6573f8",
+      "jpeg_bytes": 88757,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_05.png",
+      "png_sha256": "d9afd1668c4f4ea1a83c4204d6b8577b0c606c939cbf4acd98e408adb101c84f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "9209413666751e898d9668a3407ba7589d52d7bcad4ed22a46a43a1586a10c00",
+      "jpeg_bytes": 73806,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_05.png",
+      "png_sha256": "293c44ba4003c69d0c5a2eee306417e36f08344989a30e98fce51fce3937a17d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "0a6af2d6504e4cf823a81c8512a66a7f0f3eb4d3b17fc47f57c3e0d24fbf1b97",
+      "jpeg_bytes": 62156,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_05.png",
+      "png_sha256": "dd83da6029839962f634260a9dd2bfb3e292277f3abffeec8eebb355b372f0f5",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_06.png",
+      "png_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "9ef9e157948e197b05678df0d757a2e0b82b8af8694e990e46966a1e320170bf",
+      "jpeg_bytes": 120466,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_06.png",
+      "png_sha256": "020e3c122d088f2d8f73891c037033d12e1dfe3cd77ba7f0cbe476f06fb8eb0e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "c0d332aa5a20ec766735158d58a6177b66cbaa1c73364cab6e5217f8adafd886",
+      "jpeg_bytes": 80252,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_06.png",
+      "png_sha256": "154ce6b5477389543ed25ca80e041744b933929bc747cb3532d8e830b051c500",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "3fbfd40a3457c6f3a018981f146019e61bb9e31965609e5e9f27c65bd0bed732",
+      "jpeg_bytes": 64673,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_06.png",
+      "png_sha256": "f61fd2a058b598cc119b1d4d753b73a7993deba91195a56729d7d0fdc2112a72",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "035a195f4df9cc83dc966c9fa8a02f8dffc54dfaf8b5f93f10b5e6164703fe8a",
+      "jpeg_bytes": 55218,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_06.png",
+      "png_sha256": "c2377fefbecd806d21ad480223cdf4b949c398671d6d83087ff26a758b93a079",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_07.png",
+      "png_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "d2c832a2688974219fdf256d7b383c2f6a136741bc947099dcea25abe94d4c87",
+      "jpeg_bytes": 144916,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_07.png",
+      "png_sha256": "e7a06acd903832b3303e8aa7581f808a6e2fba3b6e9597c13534a2725edfbb90",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "a9a8221741b1dfe747c79a504a84960bf9d477e303563e781e8739438a7e00bf",
+      "jpeg_bytes": 101064,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_07.png",
+      "png_sha256": "b471ddb1828409df8449dfcf5f68d1744538b2575faaeba611faf1673186c4dd",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "f00fdc5879a19496257c2b3404adf0f0d939b247ddefbc86e8c546cff03a0c37",
+      "jpeg_bytes": 82632,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_07.png",
+      "png_sha256": "2fc32fe286782b091450200972366a69cabdd3f983a94a878fa7da5f16c12f1a",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "68b9e904f2b944cfc34752c6a807836cda2a2a976e3ec5a7ab1e99831d68ca2d",
+      "jpeg_bytes": 68110,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_07.png",
+      "png_sha256": "b0bbac37614dbc18fb57bc4267e47286cea03d74a06abffe546ca715bc38cf0b",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_08.png",
+      "png_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "d797dfa8d2ae01c270798d5152bec69c989bc183e2de911c764f78f30026f997",
+      "jpeg_bytes": 135288,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_08.png",
+      "png_sha256": "b979f3a3ac9a6925a102ddc0fe27263604b0bd11ba1ba40e843c2a51d479cf24",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "a96e4257d37f547c3fa7caeb342cfbccdf98d9478dbb5d8f31d8473c25884729",
+      "jpeg_bytes": 85784,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_08.png",
+      "png_sha256": "c28aa74433718bc3cf9bf2da02eddcd2fe981ee8b78007503b69b744e9260ab7",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "12cb7cc0a78b9a7e726579d1c112f64a8ffdaf7a5b75090c4f304498082abce1",
+      "jpeg_bytes": 67742,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_08.png",
+      "png_sha256": "15ae367b0282eb3898ebb1450a6b1d856cd65bbd5cf0adfdf6e603bef1203b37",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "50aeaa92e8ce45d504d89624ba3ecc1f9f1ae0202b5be7c209d2d36a70ff6c00",
+      "jpeg_bytes": 56685,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_08.png",
+      "png_sha256": "80f771945d98ef30459db548890cf8de0f2b0416fd3f3d33927067abe5e2c05e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_09.png",
+      "png_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "9c330d0600b94fbb32e9f00e5573a620fef59fe1c2e9a983fca576a1de6d6ba0",
+      "jpeg_bytes": 170384,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_09.png",
+      "png_sha256": "d430fc54c92a21429fe09d52dbb919f26b707996bc9274bf8079e8a22b9c56ec",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "3722b7944820acd1811a2f16bddb3d2376f34d4ceca66cc6b9a0a231fcc3f614",
+      "jpeg_bytes": 116033,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_09.png",
+      "png_sha256": "9807b948fa453cd400c176370ea382d427a8fdfc24983eb2294f74f32b513c11",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "aa3bff5f0d2fd02f37f1604372431c5fef6dd251041f3dc791eca4197e630eac",
+      "jpeg_bytes": 93033,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_09.png",
+      "png_sha256": "0603609fde2ec2407752878d6b7e3ea0c96f51fa435c5762344c5d6abda3b045",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "d1b3c794274cad1dbcaa4df745177296f344e6a8eda835aca582c8b76ed592da",
+      "jpeg_bytes": 76089,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_09.png",
+      "png_sha256": "0d03042b78427f57db87ba9310d8e4796227b3d884477b810109b2c27bc86136",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_10.png",
+      "png_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "b1206617ba3a58f74fafaf9acd52af2d2f2e29a55f68a45c65d635e8c4297170",
+      "jpeg_bytes": 131489,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_10.png",
+      "png_sha256": "86b7bde1b611e86c16fec8e25e224ea124c9c4605bb0e11d949ed3f8ee347cee",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "4aca6789115affda6ad6e66e48c36d547d5b3f79cf99eafc214de568cca524a7",
+      "jpeg_bytes": 91665,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_10.png",
+      "png_sha256": "ebf992a8438ebe718c2418237ef6bd053531a7468dfada5b5f458dc63345882a",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "c5c0e3a193b718f8343bd196de243510b68c7ba601da598e484996622cad8805",
+      "jpeg_bytes": 74655,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_10.png",
+      "png_sha256": "09815d0016ec0a5a1d6e24af962be7a0536087dfaa60a32a1d364605e1cbf79c",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "7bbc992d05d0592baf0d1378b0a5679e819b1f3f5f6f317eb4dd34450d14cf00",
+      "jpeg_bytes": 62948,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_10.png",
+      "png_sha256": "9ad75b2d329e727b6af920c46d896ba6ae16c189cbd2663d2af63eb70e092ddb",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_11.png",
+      "png_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "f381c171dd58e0afa7fe10eb605fee84e5e016599762ca06f2a5959bfd4385d2",
+      "jpeg_bytes": 160760,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_11.png",
+      "png_sha256": "11bcee8c0d46282f9fc054869a18dc0ed79c39467c0fd391b575c230b4e94495",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "2f44d83a468affcc15256a282053f4b8d78a2f54e08313625fb6b50807c76e6c",
+      "jpeg_bytes": 111175,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_11.png",
+      "png_sha256": "d5fdeaa12ac7ec6c43cfa7b230ebf709416b1b1797f1773b1c791ae995b83c45",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "da5177ab2ef228fc13e62dfeaf00e6016c1106ba2c8e868d1040d857a9e27acb",
+      "jpeg_bytes": 90188,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_11.png",
+      "png_sha256": "211d61cc274960205d1963fd2598b8b4ee3b0c86c079fcd423798075fc27d264",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "007fcbeb675a855ffd73872da01e4e37958342d2588a2cba495ea2e96ec92a96",
+      "jpeg_bytes": 73450,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_11.png",
+      "png_sha256": "73cd71f749959fa0acd34ca4b8d3dd7125db2d3a95b7d456e26b1f551cbc9fe5",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_12.png",
+      "png_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "770029a5178c8722832383197040da0fc18512e92ead875c2bd0c73f4aaa840a",
+      "jpeg_bytes": 138858,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_12.png",
+      "png_sha256": "ff858f76e3695788d19fba4746e72e81e827ba59af910780a0c2f1cd619c8e8c",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "ac7dbdaaedd32800d5602b435b9fdd5f3eb5094bee88515f7b8f3072000a861f",
+      "jpeg_bytes": 91069,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_12.png",
+      "png_sha256": "a2c97c70347d4b7173bd7af07ddaf10790c4ed78e917cf9555ee8f50166f48ca",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "10e113c03b0e6ca858f9e35a48a8f8e810fe26dbeb0b9562734f284fc6d15d68",
+      "jpeg_bytes": 72154,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_12.png",
+      "png_sha256": "ff39f2a53db68cc2046b3650cb3ee7cb1adca392e5b80a879d051f0a0848a064",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "6a1e940220f7d2e8ee9c3cecf7d579bcb8503846e8c0eb9a1ce47790421f9239",
+      "jpeg_bytes": 60436,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_12.png",
+      "png_sha256": "7798a8a5409b05acf2a2544bed4f00b322e7838effaef0aff9f767c0342c4700",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_13.png",
+      "png_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "788c65d51c4a7acfaaed5264de653109d29c91fffcdb0fa3bca0ad8bc2b9be6a",
+      "jpeg_bytes": 153926,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_13.png",
+      "png_sha256": "d3c3ffdd94c2a344e0f7f2ffa7d444000a979b0f0d7d43eab07822b07f3911da",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "c894ad4c4212070e55a93dcefc04f76303cc40babea469a1370c1deb2c87b842",
+      "jpeg_bytes": 97601,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_13.png",
+      "png_sha256": "44a755e426ab00379a31dbde6197032a6fd4d48f989cb4566758f25fc51665d0",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "1a9f8a1357fec03a2cdbfa5b96071d25ec7b7a6d659df4c0ebdcc99c2f90a10c",
+      "jpeg_bytes": 76345,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_13.png",
+      "png_sha256": "f99001655082ccda8b4627f6f7649f9b9583e85d9bfe92ed98338fe6f3a1e754",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "90ed610b3bc5ad9de03d0506e02a880a229ddfd2d71349b9d87970c92b951b6c",
+      "jpeg_bytes": 62861,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_13.png",
+      "png_sha256": "36df3a3dd24e836bb433d1ccf595d6c03f1f116564970bdc3a8b6b0171767324",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_14.png",
+      "png_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "eddbe763f7dca72078f329f159f5f21bfac315b2d2008a053f46618dee31341a",
+      "jpeg_bytes": 133125,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_14.png",
+      "png_sha256": "82d629c520bd58bcfdb617ab6b4ee4e3f95b5cd05aedbde11d1a0bd1a780ab44",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "5f7d4273f944418f6f6e678b8ac7f05be07f5d416743c5042dfc236ebe9ef938",
+      "jpeg_bytes": 87480,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_14.png",
+      "png_sha256": "2d3ecc8590467a584e599fa728d1cafde951ef3dd0f41ac9468251f366b62474",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "80d76fb7e948ebda70de00150b254dddceffd2809c30e19048c548f272c3c505",
+      "jpeg_bytes": 69694,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_14.png",
+      "png_sha256": "7149658e187aa5dd0974ff52bf024dbdf36092c95854f7cb56440092cfff7be9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "56d111bb6b1f6387255183c400f7226a7b290c1b0e08c9242df2ea80e8a0675e",
+      "jpeg_bytes": 58700,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_14.png",
+      "png_sha256": "cfac238dd8cf6cc0889d043e6e1a788139b2cc4e2d933cd6fe2534acd2423eb8",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_15.png",
+      "png_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "7d55e476bbf237a220a469ad961f0420fd5cd46a2f5c6ae2cf8bb52e43a034b8",
+      "jpeg_bytes": 147199,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_15.png",
+      "png_sha256": "16b016df6051435427d5ca322dff1d3842d34b143116c5717e32cc7f8177ff41",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "dbab2bf4b1dd0a529c0cb1b78873d1cc747305467f251b0ecf950b453f6657bb",
+      "jpeg_bytes": 96084,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_15.png",
+      "png_sha256": "cf81d7d08abd6aedd6f8d61cc06a3f8206a506f8bf91e77ebd1d941f30468f2f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "5e28938189bca9d1955b2568fbb6ab7855b2b87f084b56c7410460344af9c4bf",
+      "jpeg_bytes": 76095,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_15.png",
+      "png_sha256": "8a84250410448efec81495b9e2e2211b6ae321033c754d17b8691d9aa2ccf6f4",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "c966feda2dc8f2e2d93cc0893582805c4ef0c295b07da128524bf4e3e0372b1c",
+      "jpeg_bytes": 63385,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_15.png",
+      "png_sha256": "e12dfa6806df9596d60dcbf3217e3ebb6c53ea82a01257740da6b0af0f586801",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "clean",
+      "quality": null,
+      "subsampling": null,
+      "jpeg_sha256": null,
+      "jpeg_bytes": null,
+      "path": "qa/pass11_recompression_audit/frames/clean/scene_16.png",
+      "png_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "jpeg_q85_420",
+      "quality": 85,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "3c965af6afb8419b168639ba6b06be78759455f61cfc283f6e540273b6400e95",
+      "jpeg_bytes": 109269,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q85_420/scene_16.png",
+      "png_sha256": "a05d2e023b045178da8ad299b2684fee90303f369833450d875f4fd38b96058f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "jpeg_q60_420",
+      "quality": 60,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "78f45a5dedc910e05aa8068434ae075445eedca6e66ca132bc1d1c30224ae7c8",
+      "jpeg_bytes": 69662,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q60_420/scene_16.png",
+      "png_sha256": "0a4b0293e2f859735c0eff1dcd25cec77fec1972e8a7192b27529eed34bc0a4d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "jpeg_q35_420",
+      "quality": 35,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "a9edae3690229eafaa334e73a3a24230985f3f85fb2c0592f3af9cdc1c8c6335",
+      "jpeg_bytes": 56059,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q35_420/scene_16.png",
+      "png_sha256": "d05e03a8b55f1a22dfb0d239ae1f22d3c9154eeb0032489c8e2e69f3593220b8",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "jpeg_q20_420",
+      "quality": 20,
+      "subsampling": "4:2:0",
+      "jpeg_sha256": "dcb34e55b520be9b77d4f397d2322ed66f48d73f2c34db8e50be54a00bb5c4d2",
+      "jpeg_bytes": 48371,
+      "path": "qa/pass11_recompression_audit/frames/jpeg_q20_420/scene_16.png",
+      "png_sha256": "fcd08cc56971eefa611ddc6a79471c2094a7143af96d30bcf0b1e27211e9f9d9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "video_or_audio_created": false,
+  "tts_invoked": false,
+  "git_action": false
+}

@@ -1,0 +1,228 @@
+{
+  "review_id": "TORI_MZR_ANCHOR_LITERATURE_BEAT_EXACT_HASH_REGATE_20260810T1754K",
+  "filed_at_utc": "2026-08-10T09:03:14Z",
+  "verdict": "PASS_EXACT_HASH_REGATE",
+  "scope": {
+    "lane": "mzr-anchor",
+    "mode": "independent read-only exact-hash regate",
+    "candidate_directory": "integrator/canaries/mzr-anchor-literature-beat-motion-fix-20260810T1705K",
+    "candidate_mutation_authorized": false,
+    "gated_surface_mutation_authorized": false,
+    "sole_allowed_write": "reviews/TORI_MZR_ANCHOR_LITERATURE_BEAT_EXACT_HASH_REGATE_20260810T1754K.json"
+  },
+  "exact_hash_bindings": {
+    "video": {
+      "path": "integrator/canaries/mzr-anchor-literature-beat-motion-fix-20260810T1705K/mzr-anchor-literature-beat-canary-20260810T1705K.mp4",
+      "required_sha256": "47f71fc40e1f81f7e4374e7e867c07cc64f8595ad553137403bff7d52dbec547",
+      "recomputed_sha256": "47f71fc40e1f81f7e4374e7e867c07cc64f8595ad553137403bff7d52dbec547",
+      "match": true
+    },
+    "receipt": {
+      "required_sha256": "4000266d46565344ac2f8900021d72555bc89c11109148a07c9083ff90df0162",
+      "recomputed_sha256": "4000266d46565344ac2f8900021d72555bc89c11109148a07c9083ff90df0162",
+      "match": true
+    },
+    "post_encode_freeze": {
+      "required_sha256": "b2aa23206fafe50122afa68e1351b2fa4c65dce257cd21d78d8988d7a7e03419",
+      "recomputed_sha256": "b2aa23206fafe50122afa68e1351b2fa4c65dce257cd21d78d8988d7a7e03419",
+      "match": true
+    },
+    "kun_report": {
+      "required_sha256": "d9a1b51ff2c0988f9e67a4af0bc6df6419395b7c3159e07ceeef9c7395bf001a",
+      "recomputed_sha256": "d9a1b51ff2c0988f9e67a4af0bc6df6419395b7c3159e07ceeef9c7395bf001a",
+      "match": true,
+      "final_nonempty_line": "PASS_GUARDRAILS_EXACT_HASH",
+      "bound_to_same_video_sha256": true
+    },
+    "receipt_chain": {
+      "all_receipt_file_pins_recomputed_and_matching": true,
+      "freeze_receipt_pin_matches": true,
+      "freeze_authority_pin_matches": true,
+      "freeze_manifest_pin_matches": true,
+      "build_video_spec_timeline_audio_pins_match": true
+    }
+  },
+  "literature_guardrail": {
+    "lana_ruling": {
+      "path": "integrator/canaries/mzr-anchor-literature-beat-motion-fix-20260810T1705K/sources/LANA_FOUR_LANE_LITERATURE_BEAT_20260810.md",
+      "ruling": "YES only for calibration disagreement about the measurement rulers; evolution findings are forbidden",
+      "independently_consistent_with_candidate": true
+    },
+    "primary_source": {
+      "official_url_checked": "https://arxiv.org/abs/0801.1849v1",
+      "source": "Kewley and Ellison (2008), arXiv:0801.1849v1",
+      "exact_sentence": "The absolute metallicity scale (y-int) varies up to 0.7 dex, depending on the calibration used.",
+      "official_abstract_exact_match": true,
+      "local_exact_source_receipt_match": true,
+      "lana_ruling_exact_match": true,
+      "spec_exact_match": true
+    },
+    "claim_boundary": {
+      "evolution_finding_quoted": false,
+      "evolution_finding_adopted": false,
+      "calibration_answer_adopted": false,
+      "result_adopted": false,
+      "asymmetry_adopted": false,
+      "shortfall_adopted": false,
+      "excess_adopted": false,
+      "direction_adopted": false,
+      "parity_adopted": false,
+      "significance_adopted": false,
+      "manual_modality_audit": "PASS: evolution/calibration appear only as conditional alternatives, an open question, explicit non-adoption, or held-out boundary language; result appears only in removed/without-result constructions."
+    }
+  },
+  "encoded_visual_regate": {
+    "quote_frame": {
+      "path": "integrator/canaries/mzr-anchor-literature-beat-motion-fix-20260810T1705K/encoded_qa/frames/i05q-035.458.jpg",
+      "time_seconds": 35.458,
+      "exact_attributed_serif_quote_readable": true,
+      "claim_type_header": "KEWLEY & ELLISON 2008 · REPORTED CALIBRATION DISAGREEMENT",
+      "attribution_footer": "ATTRIBUTED TO ANOTHER STUDY · NOT THIS VIDEO'S FINDING",
+      "source_footer": "arXiv:0801.1849v1 · exact abstract sentence",
+      "running_header": "LITERATURE CONTEXT · NO ANSWER SELECTED",
+      "local_why_it_matters_rail": true
+    },
+    "closing_frame": {
+      "path": "integrator/canaries/mzr-anchor-literature-beat-motion-fix-20260810T1705K/encoded_qa/frames/i05u-043.384.jpg",
+      "time_seconds": 43.384,
+      "kewley_ellison_attribution_visible": true,
+      "reported_calibration_disagreement_visible": true,
+      "claimed_disputed_unsettled_visible": true,
+      "no_answer_selected_visible": true,
+      "closing_caption_exact": "Kewley and Ellison reported disagreement among the measurement rulers; the interpretation remains disputed, and this video adopts no answer as its finding."
+    },
+    "full_contact_sheet": {
+      "path": "integrator/canaries/mzr-anchor-literature-beat-motion-fix-20260810T1705K/encoded-contact-sheet.jpg",
+      "literature_uses_discrete_attributed_cards": true,
+      "result_looking_curve_present": false,
+      "rail_sweep_present": false,
+      "adopted_answer_or_result_geometry_present": false,
+      "obvious_blank_broken_or_frozen_sequence_present": false
+    },
+    "hardening": {
+      "curve_listed_as_forbidden_icon_primitive": true,
+      "candidate_validator_rejects_curve_icon_or_peak_mode": true,
+      "generic_curve_dispatch_absent_for_candidate": true,
+      "ambient_motion_carries_no_result_geometry": true
+    }
+  },
+  "audio_timeline_asr_media": {
+    "audio": {
+      "voice": "alloy",
+      "speed": 1.18,
+      "fresh_literature_task_audio": true,
+      "predecessor_audio_reused": false,
+      "current_master_sha256": "fee180a5e855ad145bc8f834f66b9d9a80e43ed053c2d1ca70409b54e325d33b",
+      "protected_predecessor_master_sha256": "b0900ec6c8146bedae3497d4c4141e81edfc66ad19478faea90b2211d0053df7",
+      "differs_from_protected_predecessor": true,
+      "motion_fix_reuses_fresh_audio_from_immediate_rejected_visual_attempt": true
+    },
+    "timeline": {
+      "created_at_utc": "2026-08-10T08:09:42.950449+00:00",
+      "sentence_count": 24,
+      "declared_word_count_rule_words": 453,
+      "occupied_span_seconds": 236.34783333333334,
+      "independently_recomputed_delivered_wpm": 114.99999647412324,
+      "target_wpm": 115.0,
+      "exact_target_within_0_001_wpm": true,
+      "max_abs_audio_visual_start_delta_seconds": 0.014708333333331325,
+      "under_one_30fps_frame": true
+    },
+    "asr": {
+      "raw_literature_asr_status": "PASS",
+      "quote_similarity": 0.9747899159663865,
+      "closing_similarity": 1.0,
+      "raw_semantic_guards": true,
+      "encoded_opening_asr_status": "PASS",
+      "encoded_opening_similarity": 0.7704918032786885,
+      "encoded_semantic_guard": true,
+      "advisory": "Combined encoded-opening Whisper renders the proper name as Cooley; the isolated raw closing ASR is exact Kewley and Ellison, while encoded on-screen attribution and SRT caption are also exact. The safety meaning is intact."
+    },
+    "container_and_decode": {
+      "video_codec": "h264",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "encoded_video_frames": 7180,
+      "raw_frames_submitted": 7181,
+      "frame_delta_at_most_one": true,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate_hz": 48000,
+      "format_duration_seconds": 239.348,
+      "full_decode_exit": 0,
+      "full_decode_errors": []
+    },
+    "loudness_and_motion": {
+      "integrated_loudness_lufs": -20.57,
+      "true_peak_dbfs": -2.30,
+      "astats_peak_db": -2.301687,
+      "astats_rms_db": -21.601187,
+      "nan_samples": 0,
+      "infinite_samples": 0,
+      "motion_sampled_frames": 479,
+      "mean_absolute_frame_difference": 0.35795792654579267,
+      "longest_near_unchanged_seconds": 0.5
+    },
+    "captions": {
+      "srt_entries": 24,
+      "all_caption_text_exactly_matches_spec": true,
+      "caption_mismatches": []
+    },
+    "file_manifest": {
+      "declared_entries": 146,
+      "recomputed_entries": 146,
+      "total_bytes": 91925307,
+      "missing": 0,
+      "extra": 0,
+      "hash_or_size_mismatches": 0
+    }
+  },
+  "custody_and_closed_gates": {
+    "source_freeze_absent_under_lane_and_candidate": true,
+    "video_reportable_now": false,
+    "accepted_by_duho": false,
+    "upload_gate": false,
+    "cockpit_copy_gate": false,
+    "public_gate": false,
+    "git_gate": false,
+    "candidate_present_in_git_history": false,
+    "protected_predecessor": {
+      "required_sha256": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+      "recomputed_sha256": "c892f3faaec3049e89865673ad46e66a84fe7d24289edbbc857256bbd00e3584",
+      "unchanged": true
+    },
+    "protected_fesc_and_mzr_census_trees": {
+      "tree_count": 10,
+      "all_declared_paths_sizes_hashes_counts_and_tree_hashes_match": true,
+      "failures": []
+    },
+    "cockpit_mp4_manifest": {
+      "required_count": 36,
+      "recomputed_count": 36,
+      "required_tree_sha256": "2f4b01f904abb0bc849be4c2dbe324a41771b9226111999d9430daf954249fcd",
+      "recomputed_tree_sha256": "2f4b01f904abb0bc849be4c2dbe324a41771b9226111999d9430daf954249fcd",
+      "missing": 0,
+      "extra": 0,
+      "mismatches": 0
+    },
+    "forbidden_sibling_builds": {
+      "fesc_literature_candidate_directories": [],
+      "mzr_census_literature_candidate_directories": []
+    }
+  },
+  "failed_attacks": [
+    "Recomputed every candidate manifest path, size, and SHA-256; no missing, extra, or mismatched entry was found.",
+    "Recomputed all receipt/freeze/build pins; no broken custody link was found.",
+    "Attacked the quote against the official arXiv v1 abstract, local source receipt, Lana ruling, spec, encoded frame, narration, and SRT; the exact sentence held everywhere.",
+    "Searched narration and encoded visuals for an adopted result, asymmetry, shortfall, excess, evolution/calibration answer, direction, parity, or significance; all potentially risky wording remained conditional, attributed, disputed, withheld, or explicitly non-adopted.",
+    "Full-decoded the MP4, independently counted frames, recomputed loudness/peak and motion, and recalculated the declared 115 WPM and A/V start deltas; no media-integrity blocker was found.",
+    "Recomputed ten protected fesc/mzr-census trees, the protected predecessor, and all 36 cockpit MP4s; no custody drift was found.",
+    "Searched top-level canaries for forbidden fesc or mzr-census literature candidate directories; none exists."
+  ],
+  "blockers": [],
+  "advisories": [
+    "The combined encoded-opening ASR has a Kewley/Cooley proper-name homophone, but isolated raw ASR, visible encoded attribution, and captions are exact; this does not alter claim safety.",
+    "This verdict does not accept, report, upload, publish, copy, commit, or otherwise promote the candidate. Duho watch remains pending."
+  ],
+  "acceptance_effect": "NONE — exact-hash regate only; candidate remains provisional, unaccepted, and non-reportable pending Duho watch."
+}

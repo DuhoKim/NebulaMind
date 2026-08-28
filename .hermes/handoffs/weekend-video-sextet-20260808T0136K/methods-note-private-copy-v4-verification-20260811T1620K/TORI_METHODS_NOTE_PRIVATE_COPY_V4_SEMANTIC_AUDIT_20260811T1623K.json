@@ -1,0 +1,140 @@
+{
+  "marker": "TORI_METHODS_NOTE_PRIVATE_COPY_V4_SEMANTIC_AUDIT_20260811T1623K",
+  "timestamp": "2026-08-11T16:22:19+09:00",
+  "scoped_result": "FAIL_VISIBLE_EQUIVALENCE_V4__TEXT_EMPHASIS_TABLE_NAV_CHARSET_PASS__LIST_BOUNDARY_PARENTAGE_AND_MOBILE_LAYOUT_FAIL",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal-v4.html",
+    "bytes": 18717,
+    "sha256": "9a71036aba83fd38be75aa1bf02ce0537040c3c54fca205bc4e5612fbfdb82f4"
+  },
+  "source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md",
+    "bytes": 11473,
+    "characters": 11324,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "tailnet_fetch": {
+    "url": "https://duho-macstudio.taila27502.ts.net/cockpit/methods-note-mittal-singal-v4.html",
+    "status": 200,
+    "content_type": "text/html",
+    "content_length": 18717,
+    "body_sha256": "9a71036aba83fd38be75aa1bf02ce0537040c3c54fca205bc4e5612fbfdb82f4",
+    "body_cmp_local_candidate": true
+  },
+  "passes": {
+    "narrative_visible_text_sequence_exact": true,
+    "narrative_words_expected_and_target": [1387, 1387],
+    "narrative_strong_counts": [61, 61],
+    "narrative_strong_sequence_exact": true,
+    "narrative_em_counts": [13, 13],
+    "narrative_em_sequence_exact": true,
+    "narrative_code_counts": [24, 24],
+    "narrative_code_sequence_exact": true,
+    "visible_literal_double_asterisk_count": 0,
+    "visible_literal_single_asterisk_marker_count": 0,
+    "curly_quote_counts": {"left_single": 0, "right_single": 0, "left_double": 0, "right_double": 0},
+    "straight_apostrophe_count_expected_and_target": [26, 26],
+    "table_rows": 9,
+    "table_cells_per_row": [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    "table_all_cells_exact_against_protected_pipe_raw_parse": true,
+    "table_row_matches": [true, true, true, true, true, true, true, true, true],
+    "absolute_latitude_expression_counts_expected_and_target": [5, 5],
+    "unordered_lists": 4,
+    "ordered_lists": 1,
+    "list_item_count": 14,
+    "blockquote_count": 1,
+    "nav_link_count": 7,
+    "h2_count": 7,
+    "nav_text_href_and_order_exact_to_h2": true,
+    "meta_charset": "utf-8",
+    "unicode_replacement_character_count": 0,
+    "unicode_canaries_match_source": true,
+    "script_count": 0,
+    "hidden_source_element_count": 0,
+    "desktop_table_readable_without_clipping": true
+  },
+  "fatal_block_boundary_failure": {
+    "summary": "The extensions recognize the expected number of list and blockquote elements, but Pandoc's lazy list continuation absorbs four source-level outside blocks into the preceding final list item. Counts remain green while parentage and list-item contents are wrong.",
+    "independent_oracle": "Source column-zero boundaries were made explicit in memory by inserting blank lines before the no-blank lists, the column-zero blockquote, and the column-zero prose that follows lists; no words or inline markup were changed. Pandoc markdown-smart then supplied the expected hierarchy. Candidate visible prose still matched globally, but ordered list-item text and parentage did not.",
+    "list_item_text_sequence_exact": false,
+    "list_item_mismatch_count": 4,
+    "mismatches": [
+      {
+        "list_item_index": 5,
+        "source_outside_block": "The three-line product-check blockquote beginning 'The product check above is this note's own.'",
+        "candidate_result": "The blockquote is a descendant of the fifth Section 1 list item.",
+        "source_boundary": "The blockquote markers begin at column zero after the fifth item's indented continuation lines."
+      },
+      {
+        "list_item_index": 7,
+        "source_outside_block": "The paragraph beginning 'This fork is real and acknowledged by both sides.'",
+        "candidate_result": "The complete global fork/claim-boundary paragraph is appended inside the Singal bullet.",
+        "source_boundary": "The paragraph begins at column zero after the second Section 2 list item."
+      },
+      {
+        "list_item_index": 10,
+        "source_outside_block": "The paragraph beginning 'Some simple single-factor explanations are not sufficient...'",
+        "candidate_result": "The complete global caveat paragraph is appended inside ordered item 3 ('Different estimands').",
+        "source_boundary": "The paragraph begins at column zero after ordered item 3's indented continuation lines."
+      },
+      {
+        "list_item_index": 12,
+        "source_outside_block": "The paragraph beginning 'The two null constructions are different...'",
+        "candidate_result": "The complete no-inference/global-estimand paragraph is appended inside the Mittal bullet.",
+        "source_boundary": "The paragraph begins at column zero after the second kinematic list item's indented continuation lines."
+      }
+    ],
+    "blockquote_text_exact": true,
+    "blockquote_expected_parent": "source-body/main level",
+    "blockquote_candidate_parent": "li",
+    "blockquote_candidate_has_li_ancestor": true,
+    "meaning_risk": "The hierarchy falsely scopes global qualifications and conclusions to specific bullets. The fourth mismatch is especially claim-bearing: the no-inference boundary appears as part of the Mittal item rather than the post-list conclusion."
+  },
+  "responsive_layout_failure": {
+    "summary": "The stylesheet defines .tablewrap overflow handling, but no .tablewrap element exists. The table is a direct BODY child with min-width 620px and visible overflow.",
+    "tablewrap_element_count": 0,
+    "table_parent": "BODY",
+    "table_parent_overflow_x": "visible",
+    "table_min_width_css_px": 620,
+    "desktop_viewport_px": 1280,
+    "desktop_document_scroll_width_px": 1280,
+    "mobile_test_viewport_px": [390, 844],
+    "mobile_visible_result": "The 390px Chrome screenshot visibly clips the right side of the banner, navigation links, title, and opening prose; the page lays out wider than the viewport.",
+    "mobile_top_screenshot_sha256": "77fe1e4659c326d112c405dbc712c651ada8e2dc32afaf38ebde8bff3a9b4b94"
+  },
+  "framing_and_nav": {
+    "nav_introduces_new_claim_prose": false,
+    "nav_is_exact_heading_duplication": true,
+    "styles_introduce_claim_content": false,
+    "styles_affect_readability": true,
+    "banner_and_footer_are_disclosed_framing": true,
+    "footer_preflight_limit": "The footer's 14/14 list-item and blockquote-intact counts are true as counts but insufficient and misleading as an equivalence claim because four item contents/parents are wrong."
+  },
+  "chrome_evidence": {
+    "dom_sha256": "66dbc0f70f5aff3f6c0253d978f4c2cb411722f86355e1ce11d1c66c45be5304",
+    "desktop_top_screenshot_sha256": "5587db8d4505110760c1195f1186ec06f11b785331ccd901cff58aabbb3ed3d6",
+    "mobile_top_screenshot_sha256": "77fe1e4659c326d112c405dbc712c651ada8e2dc32afaf38ebde8bff3a9b4b94",
+    "pdf_sha256": "75036d11eedeb32b581188fb307800c5d565ab142d7aa3ccacd79d0cefc1d226",
+    "pdf_text_sha256": "ee8c2d6740bcee3c14fb2fabf9f90ce3296c5dca16d7e6c5377d089ee26208a7",
+    "pdf_pages": 7,
+    "pdf_javascript": false
+  },
+  "unchanged_custody": {
+    "charset_page_sha256": "4bed48850e3730ad1b2c30f2bf1777b490cc1f0929c87764f83ac25b312c7620",
+    "raw_txt_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+    "v1_sha256": "5a5bf634ab20984536e52bb37ce924f65e2794ae714fe67e1a1dd36f77806557",
+    "v2_sha256": "ffd3086b8b8f8ee00db7ba07bb3ac19ba1b2d0f8dc080e8944240c2fc8c1e9ce",
+    "v3_sha256": "25de23fae7473d2753bda74e47156d1164f16f35da13328fa9a65a6bd8156fca",
+    "authoritative_md_sha256": "36e4efe8984c8d5f7f6f1996f2d6efb38a1be2ceade49b4622f0131917fb99aa",
+    "clean_md_sha256": "80b1d1425a9fa28a17b27c3ae599eb5c231c31ae46ad9871ce468cf386489aa7",
+    "external_md_sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b",
+    "two_round_hash_stability": true
+  },
+  "decision": {
+    "duho_can_rely_on_v4_as_exact_reading_copy": false,
+    "v4_status": "FREEZE_AS_FAILED_NO_OVERWRITE_EVIDENCE",
+    "last_passed_exact_reading_copy": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal-text.html",
+    "required_next_gate": "A no-overwrite successor must compare complete ordered list-item text and parent hierarchy, not counts; keep all four outside blocks outside their lists; place the table inside the existing .tablewrap overflow container; then repeat per-cell, emphasis, charset, desktop/mobile Chrome and receipt checks.",
+    "clearance_conferred": false
+  }
+}

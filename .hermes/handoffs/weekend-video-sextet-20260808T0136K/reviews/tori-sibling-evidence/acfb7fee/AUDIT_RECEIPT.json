@@ -1,0 +1,75 @@
+{
+  "audit_timestamp_kst": "2026-08-09T14:23:22+09:00",
+  "lane": "fesc",
+  "verdict": "HOLD",
+  "candidate_dir": "integrator/canaries/fesc-method-overhaul-canary-20260809T1345K",
+  "candidate_sha256": "acfb7fee70d5a131d4a44e8962cfe3fe3cd22104bf9cf8fa00bbbd6c2c00cbc0",
+  "candidate_bytes": 10056847,
+  "duration_seconds": 236.75,
+  "video_frames_decoded_to_eof": 7100,
+  "full_decode_exit_code": 0,
+  "binding": {
+    "disk_equals_dispatched_hash": true,
+    "disk_equals_POST_ENCODE_FREEZE": true,
+    "disk_equals_build_receipt": true,
+    "freeze_receipt_hash_matches_RECEIPT_json": true,
+    "source_manifest_all_copies_match": true,
+    "frozen_STATUS_copy_matches": true,
+    "current_lane_STATUS_reviewed": true,
+    "SOURCE_FREEZE_present": false,
+    "excluded_mzr_anchor_1300K": true
+  },
+  "narration": {
+    "source": "spec.json sentences[]",
+    "sentence_count": 22,
+    "word_count": 448,
+    "timeline_record_count": 22,
+    "timeline_text_matches_sentences": true
+  },
+  "actual_frame_review": {
+    "uniform_ocr_fps": 2,
+    "uniform_ocr_frames": 473,
+    "ocr_errors": 0,
+    "sentence_midpoint_frames": 22,
+    "section_end_frames": 9,
+    "vision_inspected_frames": 31,
+    "peak_equal_height_declared_calculation_arm_cards": true,
+    "peak_MATCHED_SWEEP_DESIGN_NO_RESULT_GEOMETRY": true,
+    "peak_order_crossing_trend_absent": true,
+    "global_order_crossing_absent": false,
+    "evaluated_D_z_absent": true,
+    "selected_direction_or_sign_absent": true,
+    "internal_filename_absent": true,
+    "geometry_gate": "HOLD"
+  },
+  "blocking_finding": {
+    "summary": "The peak fix is clean but eight actual encoded frames outside the peak still draw a thick rising curve intersecting a thin falling curve.",
+    "times_seconds": [5.052, 15.013, 24.243, 31.816, 42.05, 51.592, 222.41, 231.051],
+    "locations": ["opening alternative icons", "one-redshift and whole-sweep difficulty icons", "final explanation icons"],
+    "root_cause_evidence": "spec.json declares params.icon = curve for each of these eight cards",
+    "why_blocking": "The decisive charge is no readable order or crossing anywhere in actual figures. Repetition, lack of numbered axes, and no-result prose do not neutralize visible curve intersection; no SOURCE_FREEZE exists."
+  },
+  "audio": {
+    "integrated_loudness_lufs": -20.2,
+    "true_peak_dbfs": -2.3,
+    "private_playback_start_kst": "2026-08-09T14:11:40+09:00",
+    "private_playback_end_kst": "2026-08-09T14:15:37+09:00",
+    "private_playback_exit_code": 0
+  },
+  "closed_gates": {
+    "exact_8766_route_matches_candidate_hash": true,
+    "candidate_hash_absent_from_protected_mp4_roots": true,
+    "protected_root_manifests_unchanged": true,
+    "paperVideos_ts_unchanged": true,
+    "git_head_and_index_unchanged": true,
+    "git_cached_diff_empty": true,
+    "legacy_8093_route_http_status": 404,
+    "upload_or_publication_performed": false
+  },
+  "authority_boundary": {
+    "method_only": true,
+    "video_reportable_now": false,
+    "scientific_result_authorized": false,
+    "self_QA_or_numeric_guard_used_as_authority": false
+  }
+}

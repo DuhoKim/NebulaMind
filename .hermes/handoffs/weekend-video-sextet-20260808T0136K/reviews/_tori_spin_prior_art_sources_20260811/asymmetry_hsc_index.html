@@ -1,0 +1,70 @@
+<HTML>
+<TITLE>Reproduction of asymmetry in HSC galaxies</TITLE>
+<HEAD>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
+</HEAD>
+
+<BODY>
+
+<B>Reproduction of asymmetry in HSC galaxies direction of rotation</B><br>
+<br>
+<br>
+This page provides code and data for the reproduction of the analysis and results of the asymmetry observed in the distribution of galaxy direction of rotation.<br>
+<br>
+The list of galaxy coordinates and the directions of rotation is available at <a href="data.xlsx">data.xlsx</a>. The file includes the directions of rotations of galaxies closer to the Southern Galactic pole and the Northern Galactic pole. It allows to observed the simple separation of galaxies by their direction of rotation relative to the rotation of the Earth within the Milky Way.<br>
+<br>
+<br>
+To observe the dipole axis, the code that should be used is:
+<a href="dipole.cpp">dipole.cpp</a>. <br>
+<br>
+Since the simulation requires substantial computing time, it is written in C.<br><br>
+
+To compile the code type: g++ -o dipole dipole.cpp<br>
+<br>
+The input data is in the file <a href="data_hsc.csv">data_hsc.csv</a>. That is the exact same galaxies in the file data.xlsx above, but in a single list.<br>
+<br>
+
+To run the code on the data type: ./dipole data_hsc.csv<br>
+The program will print the results in the standard output. The program takes several hours to run.<br>
+<br>
+
+The output of applying the code to the data is in the file <a href="hsc_results_all.csv">hsc_results_all.csv</a>. It shows the probability (sigma) of a dipole axis to form by chance from each location in the sky. It is important to remember that because the simulation is done by comparing the real directions to random directions, every time the code runs the results will be slightly different. Your output will therefore not be identical to the example output above, but it will be very close.<br>
+<br>
+<br>
+<img src="hsc_results_all.jpg" width=1000><br>
+A visualization of the results (<a href="hsc_results_all.csv">hsc_results_all.csv</a>) using Mollweide projection.<br>
+<br>
+<br>
+<br>
+
+<h2>Repeating the experiment with random spin directions</h2><br>
+
+To ensure that the results are consistent, the experiment can be repeated with the exact same code but when the galaxies are assigned with random spin directions. The file <a href="hsc_random.csv">hsc_random.csv</a> contains the exact same galaxies, but each galaxy is assigned with a random spin direction.<br>
+
+To run the code on the data type: ./dipole hsc_random.csv<br>
+The program will run exactly like when the spin directions are the real spin directions, but with random spin directions.<br>
+<br>
+The output of applying the code to the data is in the file <a href="hsc_random_results.csv">hsc_random_results.csv</a>.<br>
+<br>
+<br>
+<img src="hsc_random_results.jpg" width=1000><br>
+A Mollweide visualization of the results (<a href="hsc_random_results.csv">hsc_random_results.csv</a>) when the galaxy spin directions are random.<br>
+<br>
+<br>
+<br>
+
+
+<br>
+
+
+
+</BODY>
+
+</HTML>
+
+

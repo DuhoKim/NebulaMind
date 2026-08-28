@@ -1,0 +1,11 @@
+# Yui snapshot — 17:58 KST
+
+Captured: `2026-08-09T17:59:20+0900`  
+Role state: `SOLE_CANDIDATE_WRITER_BUILDING_NOTHING_0_OF_4_CLEARED`
+
+- **fesc** — freeze `V3 PROPOSED; ACTIVE SOURCE_FREEZE ABSENT`; blocker: V3 byte bundle verifies, but version/status, frozen-at derivation time, generated-manifest receipt, and claimed-immutability semantics are inconsistent; Lana's circularity/primary-quote science block also remains; exact next action: corrected V4 plus fresh Lana/Kun/Tori review, otherwise remain fail-closed; gates `ALL CLOSED`, base `01a4249…` unchanged.
+- **brightend** — freeze `V3 PROPOSED; ACTIVE SOURCE_FREEZE ABSENT`; blocker: the same V3 custody defects; 34 versus 30 is now definitionally re-derived, but no proposal authorizes it and the 453-row/six-table audience supplement remains gated; exact next action: corrected V4 with accurate receipts/seal semantics and fresh three-seat review, while any count remains absent from a candidate; gates `ALL CLOSED`, base `c772e643…` unchanged.
+- **mzr-anchor** — freeze `V3 PROPOSED; ACTIVE SOURCE_FREEZE ABSENT`; blocker: copied bytes and sizes verify, but exact V3 receipt/version/immutability defects block installation, and its scope forbids the bounded sparse-anchor null; exact next action: corrected V4 and fresh three-seat review; any result/null proposal remains separate and higher-bar; gates `ALL CLOSED`, base `c892f3fa…` unchanged.
+- **mzr-census** — freeze `V3 PROPOSED; ACTIVE SOURCE_FREEZE ABSENT`; blocker: same V3 custody defects; fresh re-derivation establishes that `178−21=157` is mechanically sound but grants no authorization, while the proposal forbids substantive claims; exact next action: corrected V4 plus fresh retrieval/eligibility/recall-boundary adjudication, otherwise remain fail-closed; gates `ALL CLOSED`, base `d6014ac0…` unchanged.
+
+Candidate-writer decision: `NO BUILD`. Tori verdict is `PASS_BYTE_CUSTODY_AND_RECEIPT_COVERAGE_SHAPE__BLOCK_EXACT_V3_INSTALLATION`; Kun independently blocks exact V3. Active freeze count is zero, three-seat installation clearance is false, and no result-bearing candidate is authorized. No candidate directory, renderer edit, TTS call, render, or frame sweep occurred; the four exact method-only MP4 hashes remain unchanged.

@@ -1,0 +1,129 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass24-color-minimum-scale-recompression-20260808T140417K",
+  "created_at": "2026-08-08T14:04:17+09:00",
+  "deepening_pass": 24,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "integrator": "Hwao/Fable",
+  "focus": "native monochrome or fixed color-vision presentation transform followed by 640x360 and JPEG q60 4:2:0 recompression",
+  "disposition": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+  "science_adjudicated": false,
+  "video_reportable_now": false,
+  "simulation_scope": "packet-specific presentation stress only; not a clinical diagnostic and not a named display, codec, player, browser, platform, service, room, viewer, or universal delivery standard",
+  "transform_contract": {
+    "order": "native RGB -> optional linear-light BT.709 grayscale or fixed Machado severity-100 protanopia/deuteranopia/tritanopia matrix -> sRGB NumPy rint uint8 -> Pillow LANCZOS 640x360 -> Pillow JPEG quality=60 subsampling=2 optimize=false progressive=false -> decode RGB",
+    "operational_variants": 5,
+    "jpeg_quality": 60,
+    "jpeg_subsampling": "4:2:0 represented by Pillow subsampling=2",
+    "classification": "all five are packet-specific operational compound presentation stresses"
+  },
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "fresh_cut_detection": "15/15 exact pass23 timestamps",
+    "fresh_clean_midpoints": "16/16 byte-identical to pass23",
+    "pass23_baseline_reproduction": "80/80 candidate and 105/105 method represented frames pixel-exact",
+    "candidate_decoded_png_frames": 80,
+    "candidate_jpeg_streams": 80,
+    "method_decoded_png_frames": 105,
+    "method_jpeg_streams": 105,
+    "candidate_incremental_metrics_vs_matching_pass23_baseline": {
+      "color_360p_q60_420": {
+        "headline_recall": 0.986033,
+        "full_text_recall": 0.928357,
+        "lower_support_recall": 0.744065,
+        "numeric_recall": 0.833333,
+        "tolerant_luma_edge_recall": 0.996873,
+        "rgb_psnr_db": 34.59188,
+        "rgb_mae": 2.371461,
+        "structural_gate_scenes": "0/16",
+        "held_critical_structural_gates": "0/5"
+      },
+      "grayscale_bt709_then_360p_q60_420": {
+        "headline_recall": 0.988586,
+        "full_text_recall": 0.950012,
+        "lower_support_recall": 0.955303,
+        "numeric_recall": 0.862202,
+        "tolerant_luma_edge_recall": 0.996758,
+        "rgb_psnr_db": 35.443069,
+        "rgb_mae": 2.113119,
+        "structural_gate_scenes": "0/16",
+        "held_critical_structural_gates": "0/5"
+      },
+      "protanopia_machado100_then_360p_q60_420": {
+        "headline_recall": 0.9975,
+        "full_text_recall": 0.945956,
+        "lower_support_recall": 0.821821,
+        "numeric_recall": 0.886285,
+        "structural_gate_scenes": "0/16"
+      },
+      "deuteranopia_machado100_then_360p_q60_420": {
+        "headline_recall": 0.994106,
+        "full_text_recall": 0.935846,
+        "lower_support_recall": 0.763296,
+        "numeric_recall": 0.81875,
+        "structural_gate_scenes": "0/16"
+      },
+      "tritanopia_machado100_then_360p_q60_420": {
+        "headline_recall": 0.99387,
+        "full_text_recall": 0.915066,
+        "lower_support_recall": 0.859779,
+        "numeric_recall": 0.84494,
+        "structural_gate_scenes": "0/16"
+      },
+      "exact_jpeg_stream_recomputation": "16/16 per variant",
+      "exact_decoded_rgb_recomputation": "16/16 per variant",
+      "represented_pixel_finding": "Large result headlines, numbers, plots, bars, matrices, and conclusions remain primary. Fine axes, error bars, legends, caveats, citations, provenance, and small support weaken first. Recompression adds no structural hold and does not repair or authorize the candidate."
+    },
+    "method": {
+      "sealed_v8": {
+        "complete_result_held_badges": "7/7 all five variants",
+        "major_method_status_boundaries": "7/7 all five variants",
+        "hue_only_required_meaning": 0
+      },
+      "pass7_caption_safe": {
+        "exact_top_gates_visual": "7/7 all five variants",
+        "complete_result_held_badges": "7/7 all five variants",
+        "compression_caused_overlap_clipping_or_ambiguity": false
+      },
+      "pass12_sharpness_safe": {
+        "exact_top_gates_visual": "7/7 all five variants",
+        "complete_result_held_badges": "7/7 all five variants",
+        "mapped_gate_threshold_passes": "7/7 color/grayscale/protanopia/deuteranopia; 6/7 tritanopia",
+        "tritanopia_scene2_mapped_ocr_aid": 0.72973,
+        "tritanopia_mean_mapped_gate_similarity": 0.952139,
+        "direct_visual_scene2_gate": "OVERLAPPING READOUTS DO NOT SUM is directly readable and container-complete",
+        "exact_jpeg_stream_recomputation": "7/7 per variant",
+        "exact_decoded_rgb_recomputation": "7/7 per variant",
+        "hue_only_required_meaning": 0,
+        "compression_caused_overlap_clipping_or_ambiguity": false
+      }
+    }
+  },
+  "acceptance_guard_for_future_hwao_authored_layouts": [
+    "After each declared native grayscale or fixed color-vision presentation transform followed by Pillow LANCZOS 640x360 and Pillow JPEG q60 4:2:0 decode, all seven exact scene-specific gates and all seven complete RESULT HELD capsules must remain directly readable at represented pixels.",
+    "Every required status, category, branch, comparison, equation term, axis, unit, value, error bar, threshold, unavailable rung, uncertainty, qualifier, provenance fact, and interpretation boundary must use a direct label plus at least one compression-resilient non-color channel such as shape, line style, marker, complete border, connector, stable position, pattern, or status column.",
+    "Hue and fine chroma edges may reinforce meaning but may not be the sole carrier of category, sign, direction, threshold crossing, availability, unresolved state, result status, authorization, or interpretation.",
+    "Fine axes, error bars, legends, caveats, citations, provenance, one-pixel rules, and small support cannot be the only carrier of required meaning after minimum-scale recompression.",
+    "Human review of represented pixels, complete containers, clipping, overlap, chroma smear, and ambiguity remains decisive; global OCR is a reproducible aid only. The disclosed pass-12 tritanopia scene-2 OCR-aid miss does not override the directly readable exact gate.",
+    "The exact JPEG byte stream and decoded RGB pixels must be independently recomputed from the matching verified 360p baseline."
+  ],
+  "pixel_action": {
+    "new_pixel_or_copy_correction_requested": false,
+    "reason": "Direct represented-pixel review preserves 7/7 exact gates, 7/7 complete badges, direct labels, and non-color geometry under every compound variant without clipping, overlap, ambiguity, or meaning loss; one OCR-aid miss is disclosed and is not the acceptance oracle.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

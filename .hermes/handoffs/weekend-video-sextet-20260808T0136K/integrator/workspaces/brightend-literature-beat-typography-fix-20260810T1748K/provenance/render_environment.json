@@ -1,0 +1,60 @@
+{
+  "python": "3.11.15 (main, Jun 23 2026, 15:46:51) [Clang 22.1.3 ]",
+  "platform": "macOS-26.6.1-arm64-arm-64bit",
+  "pillow": "12.3.0",
+  "ffmpeg": [
+    "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+    "built with Apple clang version 21.0.0 (clang-2100.0.123.102)",
+    "configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.1.2_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gpl --enable-libsvtav1 --enable-libopus --enable-libx264 --enable-libmp3lame --enable-libdav1d --enable-libvmaf --enable-libvpx --enable-libx265 --enable-openssl --enable-videotoolbox --enable-audiotoolbox --enable-neon",
+    "libavutil      60. 26.102 / 60. 26.102"
+  ],
+  "font_paths": {
+    "sans": "/System/Library/Fonts/Avenir Next.ttc",
+    "mono": "/System/Library/Fonts/Menlo.ttc",
+    "serif": "/System/Library/Fonts/Supplemental/STIXTwoText.ttf"
+  },
+  "font_sha256": {
+    "sans": "98dec241f3ee712a37fad61aafdb83e225ed54c3e5b6e9f0abeb24eba13743ba",
+    "mono": "dc256e0b39c2a6fec947129d421fef41b8b429f58f9b6e5d1b148c87f775c1f6",
+    "serif": "7962b8b7811e6a896c9a91a0bccbb5241047770eb24d4997c5cb5fe21d5c0df2"
+  },
+  "build_command": [
+    "ffmpeg",
+    "-y",
+    "-hide_banner",
+    "-loglevel",
+    "error",
+    "-f",
+    "rawvideo",
+    "-pix_fmt",
+    "rgb24",
+    "-s",
+    "1920x1080",
+    "-r",
+    "30",
+    "-i",
+    "-",
+    "-i",
+    "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/workspaces/brightend-literature-beat-typography-fix-20260810T1748K/audio/narration_master.wav",
+    "-map",
+    "0:v:0",
+    "-map",
+    "1:a:0",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "20",
+    "-pix_fmt",
+    "yuv420p",
+    "-c:a",
+    "aac",
+    "-b:a",
+    "192k",
+    "-movflags",
+    "+faststart",
+    "-shortest",
+    "brightend-literature-beat-canary-20260810T1748K.mp4"
+  ]
+}

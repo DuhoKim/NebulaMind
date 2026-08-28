@@ -1,0 +1,113 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass6-review-v1-20260808T052446K",
+  "created_at": "2026-08-08T05:24:46+09:00",
+  "scope": "isolated worker-Yui pass-6 multi-resolution encoded-frame audit, low-resolution representation guard, and sealed-v8 no-change decision",
+  "supersedes": {
+    "path": "qa/pass5_review_snapshot_v1.json",
+    "sha256": "c40c4f9c4b7504be831bdaeabcadfa349103ab51245b01d0e8d4bf692735c66a",
+    "snapshot_id": "spin-worker-yui-pass5-review-v1-20260808T050256K"
+  },
+  "supersession_reason": "Pass 6 adds fresh midpoint decoding at four playback resolutions, deterministic hierarchy-retention metrics, a sealed-v8 360p legibility check, and an implementable low-resolution representation guard while preserving all prior custody and source blockers.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS6_ENCODED_FRAME_AUDIT.md",
+      "sha256": "2399dac116dc5a84eefc2140f1b84ea350f59eba68ec798c78544cda97426628"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS6.json",
+      "sha256": "460143fec3a6b3c17d8d383acd15f4723be56ae7791b6f7219be1e17b6caa407"
+    },
+    {
+      "path": "LOW_RESOLUTION_REPRESENTATION_GUARD_PASS6.json",
+      "sha256": "2b33c5cb1746e6b334546b77446dd1a7f064ffa848817f7b755712625199cf63"
+    },
+    {
+      "path": "qa/pass6_resolution_audit/extract_multires_frames.py",
+      "sha256": "936520be974aca5f34404d6b751cf6199a41c7ef4790658fd800372c5790d4a6"
+    },
+    {
+      "path": "qa/pass6_resolution_audit/extraction_receipt.json",
+      "sha256": "f9eea0da50f2ae257a4fb0a2c74f59b2fa5d867093c73fac8220e3a736e5e9a9"
+    },
+    {
+      "path": "qa/audit_pass6_multires_ocr.py",
+      "sha256": "d7aa1177464c0cebf95c12c060c965589d0147161ac7c98b3fa2e700f32c706f"
+    },
+    {
+      "path": "qa/pass6_multires_ocr_audit.json",
+      "sha256": "396a698c64d56960863432a524e2cc74d1ab0c1c6d66fe1ea255f6cb06dbab6e"
+    },
+    {
+      "path": "qa/build_pass6_v8_legibility.py",
+      "sha256": "1a27b7515ed64e166bc9c6ba3192319fbbbab6e053582b3dd6b627a6f9359bba"
+    },
+    {
+      "path": "qa/pass6_v8_legibility_audit.json",
+      "sha256": "45211233a2e3fb0a542c4c35d0a7b00d8e549474ab2f258e6f4c842854967de9"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "render_proposal_frames.py",
+      "sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "qa/static_proposal_validation.json",
+      "sha256": "2b39d1f0779c436b7b38112f23409006a13f06fa7f8e59f54ecbaf6b51cf1e96"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass6_encoded_evidence": {
+    "scene_count": 16,
+    "frame_count": 64,
+    "resolutions": ["1080p", "720p", "540p", "360p"],
+    "native_1080p_midpoint_reproduction": "16/16_PASS4_BYTE_IDENTICAL",
+    "contact_sheet_sha256": {
+      "1080p": "e6f0746018a972f0df65b2550ff23faddae8767f73b40a8785b96b9d782d5ae6",
+      "720p": "a424d02d95734f478d93fa1ff032e3d2e99fe011f9aedddaec73f0abb40048d1",
+      "540p": "f96cbc0055fae8e18e8af79ede98dc6193fdf99b354ad527010035d866828914",
+      "360p": "857827677cca159b49f7180963923f4baf5dee7d792c7d3c802ea39da0695400"
+    },
+    "360p_mean_full_token_retention": 0.728766,
+    "360p_mean_headline_token_retention": 0.961206,
+    "360p_mean_lower_support_token_retention": 0.230643,
+    "critical_scenes_360p_mean_full_token_retention": 0.380218,
+    "critical_scenes_360p_mean_headline_token_retention": 0.90313,
+    "critical_scenes_360p_mean_lower_support_token_retention": 0.416629,
+    "critical_structural_gate_scene_count": 0
+  },
+  "pass6_v8_legibility": {
+    "derived_frame_count": 28,
+    "visual_result_held_badge_readability": "7/7_AT_1080P_720P_540P_360P",
+    "badge_ocr_detection": "5/7_AT_ALL_FOUR_RESOLUTIONS",
+    "scale_invariant_ocr_miss_scenes": [1, 5],
+    "human_visual_review_decisive": true,
+    "sealed_v8_modified": false,
+    "v9_warranted": false
+  },
+  "representation_correction": "360P_ACCEPTANCE_TEST__HEADLINE_OR_HIGH_CONTRAST_GATE__NO_FOOTER_ONLY_GATE__HUMAN_VISUAL_REVIEW",
+  "science_blockers": "UNCHANGED__NO_VALID_POST_RUN_A3_8_REVIEW__FRAME_UNSTATED",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

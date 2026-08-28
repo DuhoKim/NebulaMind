@@ -1,0 +1,711 @@
+                                               MNRAS 000, 1–10 (2020)                             Preprint 25 June 2020               Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                               Spin Parity of Spiral Galaxies II: A catalogue of 80k spiral
+                                               galaxies using big data from the Subaru Hyper
+                                               Suprime-Cam Survey and deep learning
+
+                                                Ken-ichi Tadaki,1⋆ Masanori Iye,1 Hideya Fukumoto,2 Masao Hayashi,1
+
+
+
+
+arXiv:2006.13544v1 [astro-ph.GA] 24 Jun 2020
+                                               Cristian
+                                               1
+                                                        E. Rusu,1 Rhythm Shimakawa,1 and Tomoka Tosaki,3
+                                                   National Astronomical Observatory of Japan, 2-21-1 Osawa, Mitaka, Tokyo 181-8588, Japan
+                                               2 The Open University of Japan, 2-11 Wakaba, Mihama-ku, Chiba 261- 8586 Japan
+                                               3 Joetsu University of Education, Yamayashiki-machi, Joetsu, Niigata 943-8512, Japan
+
+
+
+
+                                               Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                                                                  ABSTRACT
+                                                                                  We report an automated morphological classification of galaxies into S-wise spirals, Z-
+                                                                                  wise spirals, and non-spirals using big image data taken from Subaru/Hyper Suprime-
+                                                                                  Cam (HSC) Survey and a convolutional neural network(CNN)-based deep learning
+                                                                                  technique. The HSC i-band images are about 25 times deeper than those from the Sloan
+                                                                                  Digital Sky Survey (SDSS) and have a two times higher spatial resolution, allowing
+                                                                                  us to identify substructures such as spiral arms and bars in galaxies at z > 0.1. We
+                                                                                  train CNN classifiers by using HSC images of 1447 S-spirals, 1382 Z-spirals, and 51,650
+                                                                                  non-spirals. As the number of images in each class is unbalanced, we augment the data
+                                                                                  of spiral galaxies by horizontal flipping, rotation, and rescaling of images to make the
+                                                                                  numbers of three classes similar. The trained CNN models correctly classify 97.5% of
+                                                                                  the validation data, which is not used for training. We apply the CNNs to HSC images
+                                                                                  of a half million galaxies with an i-band magnitude of i < 20 over an area of 320 deg2 .
+                                                                                  37,917 S-spirals and 38,718 Z-spirals are identified, indicating no significant difference
+                                                                                  between the numbers of two classes. Among a total of 76,635 spiral galaxies, 48,576
+                                                                                  are located at z > 0.2, where we are hardly able to identify spiral arms in the SDSS
+                                                                                  images. Our attempt demonstrates that a combination of the HSC big data and CNNs
+                                                                                  has a large potential to classify various types of morphology such as bars, mergers and
+                                                                                  strongly-lensed objects.
+                                                                                  Key words: galaxies: spiral – techniques: image processing – catalogueues
+
+
+
+                                               1     INTRODUCTION                                                  all galaxies are trailing spirals provided that the dark lane
+                                                                                                                   dominant side is the side of the disk near to us. Once the
+                                               Spiral arms are one of the most beautiful structures in galax-
+                                                                                                                   winding direction of spiral arms is identified, we can infer the
+                                               ies and attract the interest of many people. Density wave
+                                                                                                                   spin vector of galaxies, which is one of important physical
+                                               theory is a traditionally accepted concept to explain spi-
+                                                                                                                   properties in the process of galaxy formation. In the frame-
+                                               ral patterns in galaxies (Lin & Shu 1964) whereas recent
+                                                                                                                   work of the tidal torque theory (e.g., Doroshkevich 1970;
+                                               numerical simulations support that spiral arms are formed
+                                                                                                                   Peebles 1969; White 1984), galaxies acquire angular momen-
+                                               due to a swing amplification associated with galactic shear
+                                                                                                                   tum by the tidal fields of their neighbors in the linear stage
+                                               motion (e.g., Baba et al. 2013; Dobbs & Baba 2014), which
+                                                                                                                   of structure formation. Thus, the winding direction, that is
+                                               was originally suggest by Goldreich & Lynden-Bell (1965).
+                                                                                                                   the spin vectors, of galaxies would have been randomly lo-
+                                               The winding direction of spiral arms with respect to the
+                                                                                                                   cated, leading to the isotropic distribution that the number
+                                               galaxy rotation direction has also been a classic subject of
+                                                                                                                   of S-wise spirals (S-spirals) is identical to that of Z-wise spi-
+                                               controversial debates in observational and theoretical stud-
+                                                                                                                   rals (Z-spirals). If there is a global anisotropy in the spatial
+                                               ies of spiral galaxies until around the decade of the 1960s.
+                                                                                                                   distribution of the winding direction, a large-scale vorticity
+                                               Iye et al. (2019) demonstrate a corroborative evidence that
+                                                                                                                   such as galaxy-cluster tidal interaction would affect the spin
+                                                                                                                   of galaxies (Sugai & Iye 1995). However, a statistical anal-
+                                               ⋆   E-mail: tadaki.ken@nao.ac.jp                                    ysis of the winding direction was not well developed in the
+
+                                               © 2020 The Authors
+2     K. Tadaki et al.
+past two decades, except for a few studies (Hayes et al. 2017;                   S-spiral                       Z-spiral
+Shamir 2017).
+     We can immediately identify spiral arms in a galaxy and
+judge whether it is a S-spiral or a Z-spiral by visual inspec-
+tion. However, it is not easy to repeat this procedure 10,000
+times or more. Another problem is that visual classification
+depends on the expertise and experience of people who look         SDSS
+at images. In the Galaxy Zoo project (Lintott et al. 2011;
+Willett et al. 2013), about 100,000 volunteers classified the
+morphology of ∼900,000 galaxies at 0.001 < z < 0.25, drawn
+from the Sloan Digital Sky Survey (SDSS; York et al. 2000).
+Masters et al. (2010) studied 5,433 face-on spiral galaxies at
+0.03 < z < 0.085 from the Galaxy Zoo database. To make
+a similarly large sample of more distant spiral galaxies at
+z > 0.1, we require higher sensitivity and higher resolution
+imaging data set over a wide area.
+                                                                   HSC
+     We are conducting a multi-band imaging survey by us-
+ing Hyper Suprime-Cam (HSC) in Subaru Strategic Pro-
+gram (HSC-SSP; Aihara et al. 2018). The HSC has the
+largest field of view of 1.5 degree diameter on 8-m class tele-
+scopes. The Wide layer of the survey covers 1400 deg2 in five
+broad bands (grizy) with a 5σ point-source depth of i ∼ 26.2,
+which is about 3.5 magnitudes deeper than SDSS. The in-
+creased sensitivity allows us to characterize spiral arms in
+distant galaxies at z > 0.1 while at the same time the wide       Figure 1. Comparisons between SDSS and HSC i−band images
+survey produces images of more than one million galax-            for a S-wise spiral galaxy (left) with i = 18.7 at z = 0.16 and a
+                                                                  Z-wise spiral galaxy (right) with i = 18.8 at z = 0.19. The image
+ies. We therefore need to develop an automated method for
+                                                                  sizes are all 10.8 arcsec × 10.8 arcsec.
+morphological classification in the big data era. Commonly
+used parametric methods such as Sérsic model fitting (e.g.,
+Peng et al. 2010) and nonparametric ones such as the con-
+centration (C), asymmetry (A), clumpiness (S) method and          not included in a training data set. CNNs and other deep
+the Gini/M20 parameters (e.g., Conselice 2014) are not suit-      learning techniques are becoming increasingly common in
+able for identifying substructures in galaxies, such as spi-      Astronomy.
+ral arms, bars, and tidal streams. Currently, only several             In this paper, we present CNN models to identify spiral
+studies succeed in automatically extracting spiral structures     arms in galaxies by using the HSC imaging data. In Section
+(Davis & Hayes 2014; Kuminski & Shamir 2016; Hart et al.          2, we describe the imaging data taken from the HSC-SSP
+2017).                                                            survey and build a training data set. We show the architec-
+                                                                  ture of CNNs and estimate the accuracy of morphological
+     In 2012, deep learning has been dramatically developed
+                                                                  classification by using validation data sets in Section 3. We
+enough to correctly recognize the picture of a cat as a cat
+                                                                  apply the trained CNNs to an unlabeled data set of a half
+with high accuracy of ∼84% (Krizhevsky et al. 2012). The
+                                                                  million galaxy images and present a catalogue of 80k spiral
+accuracy of image classification has exceeded human accu-
+                                                                  galaxies in Section 4.
+racy in 2015 (∼95%; He et al. 2016). A convolutional neu-
+ral network (CNN) is now a commonly-used technique for
+classifying images into multiple categories (e.g., Fukushima
+1980; LeCun et al. 1998; Russakovsky et al. 2015). CNNs
+convolve images with multiple kernels (filters) to reduce         2       DATA
+the amount of information and efficiently extract local fea-
+                                                                  2.1      Subaru Hyper Suprime Cam Data Sample
+tures in images. Dieleman et al. (2015) have applied a CNN
+technique to astronomical images for galaxy morphology            This work is based on data from the second public data
+classification and successfully reproduced the results from       release (PDR-2) of the HSC-SSP for the Wide layer
+the Galaxy Zoo with the accuracy of 99% (see also e.g.,           (Aihara et al. 2019). For morphological classification, we use
+Huertas-Company et al. 2015; Domı́nguez Sánchez et al.           i−band images, which have reached an exposure time of
+2018; Abraham et al. 2018). These approaches are mostly           about 20 minutes. Figure 1 shows the images from the HSC-
+supervised learning, which requires a training data set with      SSP data and SDSS for two spiral galaxies, demonstrating
+pre-labelled images. On the other hand, there are some            the superb image quality with which we can identify the
+studies which adopt an unsupervised learning approach for         spiral winding sense even in distant galaxies at z > 0.1.
+automated morphological classification (e.g., Hocking et al.            We use galaxies with 5.7 arcsec aperture magnitudes
+2018; Martin et al. 2019). Furthermore, Schawinski et al.         i < 20 so that we can visually classify their morphology. It is
+(2017) generate super resolution images from artificially de-     still possible to identify spiral arms in HSC images even for
+graded low-resolution images using a generative adversar-         galaxies with i ∼ 21, allowing for morphological classification
+ial network (Goodfellow et al. 2014) although they caution        of galaxies at higher redshift. However, as such case are rare,
+about application to unknown galaxy population, which is          the inclusion of fainter objects makes it difficult to identify
+
+                                                                                                        MNRAS 000, 1–10 (2020)
+                                                                                              Spin Parity of Spiral Galaxies II                   3
+
+                               Number of galaxy                                                           Completeness [%]
+                   0    200      400          600         800                       0          20          40         60         80         100
+
+                11.5                                                             11.5
+
+
+
+                11.0                                                             11.0
+
+
+
+
+ log M⋆ [M⊙ ]                                                     log M⋆ [M⊙ ]
+                10.5                                                             10.5
+
+
+
+                10.0                                                             10.0
+
+
+
+                 9.5                                                              9.5
+
+
+
+                 9.0                                                              9.0
+                    0    0.2         0.4            0.6         0.8                  0              0.2         0.4           0.6           0.8
+                                  redshift                                                                    redshift
+
+
+Figure 2. Left: stellar mass vs. redshift for galaxies in a subsample of 56,787 galaxies with i < 20 in the Wide XMM-LSS field. Right:
+completeness as functions of stellar mass and redshift. Black lines denote the completeness of 90%.
+
+
+a larger number of spiral galaxies for training CNNs. We                         adjust the contrast and brightness of JPEG images for clas-
+therefore choose a magnitude cut of i < 20 in this work.                         sification and slightly change this parameter for data aug-
+     Stars are removed in advance by the flag of                                 mentation (Section 2.2). Converting images to JPEG images
+i_extendedness_value in the HSC-SSP database. As most                            could potentially loose information respect to the original
+galaxies are observed in other four broad band filters (gr zy),                  FITS images. Optimization of the grayscale images is one
+their photometric redshift is available, provided by the                         of the key challenges for improving classification with deep
+Direct Empirical Photometric code (DEmP: Hsieh & Yee                             learning, but is beyond the scope of our work. In this paper,
+2014). For galaxies with i < 20, the photometric red-                            we simply use JPEG images by following the previous works
+shift error of ∆z = (zphot − zspec )/(1 + zspec ) and the out-                   (e.g., Dieleman et al. 2015; Huertas-Company et al. 2015;
+lier fraction of |∆z| > 0.15 is σ∆z = 0.02 and 5–10%,                            Domı́nguez Sánchez et al. 2018; Abraham et al. 2018). The
+respectively (Tanaka et al. 2018; Nishizawa et al. 2020).                        size of post stamp images is 64 pixel × 64 pixel, covering 10.8
+We remove nearby galaxies with spectroscopic redshift of                         arcsec × 10.8 arcsec, where main spiral features are covered
+zspec < 0.05, provided by VIPERS (Garilli et al. 2014), SDSS                     for most galaxies.
+(Alam et al. 2015), Wiggle-Z (Drinkwater et al. 2010),
+GAMA (Liske et al. 2015) and PRIMUS (Cool et al. 2013),                               Although color composite images are often used for clas-
+as the physical scale resolution becomes significantly differ-                   sifying galaxy morphology, we use monochromatic images
+ent from that at z > 0.1. Edge-on like objects with a major-                     in the i-band for two reasons. First, i-band observations are
+to-minor axis ratio of less than 0.1 are also removed in ad-                     executed in the best observing conditions for cosmic shear
+vance because it is hard to distinguish between spirals and                      measurements (Mandelbaum et al. 2018). The median see-
+non-spirals.                                                                     ing is 0.6 arcsec in the i-band, corresponding to 1.1 kpc
+     For a subsample of 56,787 galaxies with i < 20 in                           at z = 0.1 and 2.1 kpc at z = 0.2, while it is 0.7-0.8 arc-
+the Wide XMM Large Scale Structure survey (XMM-LSS)                              sec in other bands. Second, composite images have the in-
+field, the redshift and stellar mass distributions are shown                     formation of galaxy colors as well as galaxy morphology.
+in Figure 2. The stellar mass is estimated from multi-                           There is a strong correlation between color and morphology:
+wavelength photometry, empirically given by the DEmP                             blue galaxies tend to have a disk with spiral arms while red
+code (Hsieh & Yee 2014). We also derive the completeness                         galaxies are ellipticals (e.g., Strateva et al. 2001). Red spiral
+as functions of redshift and stellar mass by calculating the                     galaxies are likely to be an important population for under-
+ratio of the number of galaxies with i < 20 to the num-                          standing transitions from blue to red galaxies (Masters et al.
+ber of fainter galaxies with i < 22. The stellar mass 90%                        2010) but the number density is smaller compared to blue
+completeness limits are log(M⋆/M ⊙ ) ∼ 10 at z = 0.2 and                         spiral galaxies. If color information is taken into account, the
+log(M⋆ /M ⊙ ) ∼ 11 at z = 0.4.                                                   trained models would tend to classify red galaxies into non-
+     We convert FITS images of galaxies to Joint Photo-                          spirals rather than spirals. We therefore use i-band images
+graphic Experts Group (JPEG) format by using STIFF soft-                         to avoid the color bias and keep morphology information
+ware (Bertin 2012). We adopt GAMMA=2.2 to automatically                          independent from colors.
+
+MNRAS 000, 1–10 (2020)
+4                                          K. Tadaki et al.
+
+                                            rotation=0   rotation=90 rotation=180 rotation=270   to S-spirals, the trained model would naturally give more S-
+
+
+
+
+                      original  original
+                                                                                                 spirals than Z-spirals. We furthermore rotate the images by
+
+
+
+
+  flipped   flipped
+                                                                                                 90 degrees, 180 degrees and 270 degrees, and rescale the
+                                                                                                 brightness of the images with GAMMA=2.0, 2.1, 2.3, 2.4 pa-
+                                                                                                 rameters (Figure 3). The data augmentation increases the
+                                                                                                 number of spiral galaxies by 40 times and make the numbers
+                                                                                                 of three classes similar. The training data set therefore con-
+                                                                                                 tains images of 45,200 S-spirals, 45,200 Z-spirals and 41,320
+                                                                                                 non-spirals. We eventually make five different training data
+                                                                                                 sets by selecting a different subset for validation.
+
+
+
+
+GAMMA=2.4 GAMMA=2.0 GAMMA=2.4 GAMMA=2.0
+                                                                                                 3    CONVOLUTIONAL NEURAL NETWORKS
+                                                                                                 We make CNN models to classify galaxy morphology into
+                                                                                                 non-spirals, S-spirals and Z-spirals in a similar way to previ-
+                                                                                                 ous works (e.g., Dieleman et al. 2015). Table 1 summarizes
+                                                                                                 the configuration of the CNN used in this paper. The size of
+                                                                                                 input images is 64 pixel × 64 pixel. There are four convolu-
+                                                                                                 tional layers with kernel sizes of 5 pixel × 5 pixel, 5 × 5, 3 × 3
+                                                                                                 and 3 × 3, respectively. The number of convolutional filters is
+                                                                                                 32, 64, 128, 128, respectively. Each filter generates a feature
+                                                                                                 map. We add two pooling layers, which take the maximum
+Figure 3. Examples of data augmentation. A FITS image of one                                     value in 4 pixel × 4 pixel and 2 × 2. The maximum pool-
+galaxy is converted into multiple JPEG images with a different                                   ing efficiently extracts important features like edges as well
+gray scale value, which is adjusted by the GAMMA parameter. The                                  as reduces the amount of information by resampling. After
+original images of S-spirals are horizontally flipped and are treated
+                                                                                                 convolutional layers, 128 feature maps with 5 pixel × 5 pixel
+as Z-spiral images. Furthermore, these images are rotated by 90,
+                                                                                                 are flatten and fed into a fully-connected layer with 3200
+180, 270 degrees.
+                                                                                                 features. These features are combined in dense layers. We
+                                                                                                 also include three dropout layers to avoid overfitting of the
+                                                                                                 CNNs (Srivastava et al. 2014). In these layers, 20%, 50%,
+2.2                                        Training data set                                     50% of input units are randomly set to zero. The final layer
+We chose the XMM-LSS field (Pierre et al. 2004) over an                                          uses the Softmax function, which is computed as
+area of ∼ 28 deg2 to make a training data set for CNNs.
+Among 56,787 objects, we confirm 1,447 spiral galaxies with                                                        Õ
+                                                                                                                   3
+clear S-wise spiral structure and 1,382 with clear Z-wise spi-                                   pi,c = esi, c /         esi, c ,                                  (1)
+ral structure by visual inspection. They are visually checked                                                      c=1
+by all of the authors. Additional 1,177 and 1,131 galaxies                                       where si,c is the output score for the c-th category for mor-
+are identified to have S-wise and Z-wise spiral structure with                                   phology classification (non-spiral, S-spiral and Z-spiral) of
+somewhat reduced confidence level. To define as clearly as                                       the i-th image and pi,c corresponds to the predicted proba-
+possible spirals, we classify these galaxies into a category                                     bilities of each class. We eventually adopt the class with the
+of unclear/dubious, which is not used for training CNNs.                                         highest probability to determine the morphology.
+The remaining 51,650 galaxies are non-spiral galaxies. In                                              We train the CNNs using the Keras library
+this work, we do not distinguish between mergers and non-                                        (Chollet et al. 2015) with a single GPU, NVIDIA GeForce
+mergers. Even if spiral galaxies are clearly affected by tidal                                   GTX 1080 Ti. A total of 20,769,539 trainable parameters of
+interactions with their companions, they are categorized as                                      the model are determined by minimizing a loss function,
+S-spirals or Z-spirals. We show example images of randomly-                                      which expresses inconsistency between actual classes and
+selected 100 galaxies in each class from the training data set                                   predicted probabilities (Krizhevsky & Inc 2014). We adopt
+in Appendix A.                                                                                   a cross-entropy (CE) loss function defined as,
+     We adopt a K-fold cross validation technique to evaluate
+the performance of CNN models. We randomly divide the
+original sample in each class into five subsets, which consist                                                     Õ
+                                                                                                                   256 Õ
+                                                                                                                       3
+
+of 289 S-spirals, 276 Z-spirals, and 10,330 non-spirals. Four                                    CE loss = −                  ti,c log pi,c ,                      (2)
+                                                                                                                   i=1 c=1
+of them (1,156 S-spirals, 1,104 Z-spirals, and 41,320 non-
+spirals) are used for the training and the remaining one is                                      where ti,c is the ground truth label (1 if true and 0 if false).
+used for validation. As the numbers of S-spirals and Z-spirals                                   We use Adam algorithm (Kingma & Ba 2014), which opti-
+are much smaller than that of non-spirals, we augment the                                        mizes the parameters based on the gradient descent of the
+data of spiral galaxies. We add horizontally flipped images                                      loss function with a subsample of 256 images randomly-
+of Z-spirals and S-spirals to the S-spiral and Z-spiral classes,                                 selected from the training data set. This method is called the
+resulting in the same number in S-spirals and Z-spirals. Flip-                                   mini-batch stochastic gradient descent. One epoch ends with
+ping spiral galaxies is also important for making an unbiased                                    33 seconds when the entire training data set has been used
+training dataset. When CNNs are trained by a sample biased                                       once for the calculation of the loss function. We repeat this
+
+                                                                                                                                                MNRAS 000, 1–10 (2020)
+                                                                                             Spin Parity of Spiral Galaxies II               5
+
+                 1.0                                                                0.6
+
+
+
+                 0.9
+                                                                                    0.4
+
+
+      accuracy                                                            CE loss
+                 0.8
+
+                                                                                    0.2
+                 0.7
+                                                training dataset
+                                                validation dataset
+                 0.6                                                                0.0
+                    0           20                40                 60                0            20               40              60
+                                        epoch                                                             epoch
+
+
+Figure 4. The accuracy and the CE loss function for the training (black lines) and validation data set (red lines) for one of the six
+cross-validation tests. The blue horizontal line indicate the epoch when the validation loss is minimized.
+
+
+
+Table 1. Structure of CNNs used in this paper                              Table 2. The fractions of images with the predicted class in each
+                                                                           labeled class from the cross-validation.
+
+                        layer                   output shape
+                                                                                Predicted class                 Labeled class
+ 1                  Input                   (64 pix, 64 pix, 1 map)                                non-spiral     S-spiral        Z-spiral
+ 2        Convolution (5 pix × 5 pix)     (60 pix, 60 pix, 32 maps)
+ 3        Convolution (5 pix × 5 pix)     (56 pix, 56 pix, 64 maps)             non-spiral        96.31±0.47%      1.86±0.20%   1.83±0.34%
+ 4        MaxPooling (4 pix × 4 pix)      (14 pix, 14 pix, 64 maps)             S-spiral           1.71±0.17%     98.12±0.24%   0.16±0.10%
+ 5        Convolution (3 pix × 3 pix)    (12 pix, 12 pix, 128 maps)             Z-spiral           1.90±0.22%      0.19±0.13%   97.91±0.34%
+ 6        Convolution (3 pix × 3 pix)    (10 pix, 10 pix, 128 maps)
+ 7        MaxPooling (2 pix × 2 pix)       (5 pix, 5 pix, 128 maps)
+ 8                 Dropout                 (5 pix, 5 pix, 128 maps)
+ 9                 Flatten                      (3200 features)
+                                                                           spirals are misclassified as either S-spirals or Z-spirals and
+ 10                 Dense                       (3200 features)            vice versa. The fraction that S-spirals (Z-spirals) are mis-
+ 11                Dropout                      (3200 features)            classified as Z-spirals (S-spirals) is only 0.2%.
+ 12                 Dense                       (3200 features)                 For about 2.5% of the validation data set, the predicted
+ 13                Dropout                      (3200 features)            class is different from the labeled one. Figure 5 shows exam-
+ 14                 Dense                         (3 classes)              ples of misclassification. Some objects have the second high-
+                                                                           est probability of 0.1–0.5 in the labeled class while others are
+                                                                           misclassified with the high probability of > 0.95. Non-spirals
+                                                                           with different predictions seem to have some substructures,
+60 times and derive the accuracy, which is simply a ratio of               suggesting that they potentially have spiral arms with low
+correctly predicted images to all the images, and the CE loss              contrast. Edge-on galaxies seem to be often misclassified,
+in each epoch. The results of one CNN model are shown in                   compared to face-on ones. The accuracy in the validation
+Figure 4. The training accuracy continues to increase to al-               data set depends on the major-to-minor axis, which can be
+most 100% while the validation accuracy saturates at about                 interpreted as an inclination angle (Figure 6). For galaxies
+20 epochs. The loss function takes the minimum at 32 epochs                with an axis ratio of < 0.2, the accuracy decreases to 96%.
+and turns to increase at the later epochs. As this is clearly              This may be due to a lack of edge-on objects in the training
+overfitting the training data set, we adopt the CNN mod-                   data set as it becomes more difficult to identify spiral arms
+els where the validation loss is minimized. Other four CNN                 by visual inspection.
+models reach the minimum at 29, 32, 41, and 28 epochs.                          We evaluate the accuracy as a function of i−band mag-
+The validation data set is not directly used for the training              nitude, photometric redshift and FWHM size (Figure 6).
+of CNNs, but indirectly affects the choice of the best model.              There is also a weak trend that brighter objects are more
+We therefore compute the average accuracy of 5 CNN mod-                    correctly classified. On the other hand, the accuracy tends
+els from the cross-validation (see section 2.2).                           to be constant across a redshift range to z ∼ 0.5. The
+      The average accuracy and standard deviation is                       FWHM size is estimated from Gaussian-weighted 2nd-order
+97.48±0.14%. For galaxy images with the predicted prob-                    moment in the i-band images (Bernstein & Jarvis 2002).
+ability of >0.95, the accuracy is increased to 99.37±0.10%.                The moment is stored as i_sdssshape_shape11,22,12 in
+Note that the accuracy is different among the morphology                   the PDR2 database. We compute the determinant radius as
+classes. We show the confusion matrix, which is the fraction               rdet = (shape11 × shape22 - shape122 )0.25 . Under the as-
+of correct or incorrect predictions in each predicted class,               sumption of  √ Gaussian, we convert the radius to FWHM by
+in Table 2. Most of the failures are for the case that non-                applying 2 2 ln 2. The high accuracy in compact galaxies
+
+MNRAS 000, 1–10 (2020)
+6            K. Tadaki et al.
+
+
+              non-spirals
+
+
+                               0.02   0.98   0.00 0.07   0.93    0.00 0.14    0.86     0.00 0.05   0.90    0.04 0.17       0.00       0.83 0.01      0.00     0.99 0.02       0.00    0.98
+
+
+
+              S-spirals
+
+
+                               1.00   0.00   0.00 0.84   0.16    0.00 0.72    0.28     0.00 0.97   0.03    0.00 0.01       0.03       0.97 0.98      0.02     0.00 0.95       0.05    0.00
+
+
+
+              Z-spirals
+
+
+                               0.73   0.00   0.27 1.00   0.00    0.00 1.00    0.00     0.00 0.61   0.00    0.39 0.62       0.00       0.38 0.86      0.00     0.14 0.53       0.00    0.47
+
+
+Figure 5. Examples of HSC images of misclassification in each class. From left to right in the bottom of each images, we show the
+predicted probabilities of non-spiral, S-spiral and Z-spiral.
+
+
+
+
+           1.00                                   1.00                                      1.00                                              1.00
+
+
+
+
+accuracy   0.95                                   0.95                                      0.95                                              0.95
+
+
+
+
+           0.90                                   0.90                                      0.90                                              0.90
+              17          18          19        20   0.0        0.2     0.4      0.6      0.8         1      2         3          4       5       0.0   0.2       0.4     0.6    0.8       1.0
+                   i-band [AB magnitude]                              redshift                            FWHM [arcsec]                                           axis ratio
+
+Figure 6. The accuracy of the CNN models for the validation data set as a function of i-band magnitude, photometric redshift, FWHM
+size and major-to-minor axis ratio. A blue line shows the overall accuracy, 0.9748.
+
+
+with FWHM∼1′′ is due to the fact that most galaxies are                                         Table 3. A spin parity Catalogue of spiral galaxies. Object ID
+classified as non-spirals in the HSC images.                                                    is the same in the PDR-2 of the HSC-SSP for the Wide layer
+     We also look at how the sample size affects the per-                                       (Aihara et al. 2019). p0 , p1 , and p2 indicate the predicted prob-
+formance of CNNs. We train CNNs by using images of                                              abilities of non-spirals, S-spirals and Z-spirals, respectively. The
+randomly-selected 100, 200, 400 and 800 galaxies in each                                        full table is available online.
+class and measure the accuracy of validation data. When
+only original images are used for training, the accuracy grad-                                     object ID                          class flag a           p0          p1           p2
+ually increases from 52% at 100 to 90% at 800. The data aug-                                       40959011452899104                          2             0.091       0.000        0.909
+mentation including horizontal flipping, rotation, and rescal-                                     40959011452899880                          2             0.093       0.000        0.907
+ing significantly improves the accuracy from 52% to 89%                                            40959011452901552                          1             0.272       0.728        0.000
+with the same training data set of 100 images. It requires                                         40959015747870352                          2             0.009       0.000        0.991
+at least 100 images to reach an accuracy of more than 90%                                          40959015747871064                          1             0.011       0.989        0.000
+with the data augmentation.                                                                        40959020042835800                          2             0.006       0.000        0.994
+                                                                                                   40959020042837000                          1             0.000       1.000        0.000
+                                                                                                   .                                          .               .           .            .
+
+                                                                                                a Flag: 1=S-spiral; 2=Z-spiral
+4          A CATALOGUE OF SPIRAL GALAXIES
+Now, we apply the trained CNN models to a large data set
+in other HSC-SSP fields, where 561,251 galaxy images are                                        38,718 Z-spirals and provide the catalogue including the pre-
+available over an area of ∼320 deg2 . We use 5 CNN models                                       dicted probabilities in Table 3. The remaining 484,616 galax-
+made from the cross validation to derive average predicted                                      ies are non-spirals. The difference between the numbers of
+probabilities of each class. We identify 37,917 S-spirals and                                   S-spirals and Z-spirals is NS − NZ = −801. The significance
+
+                                                                                                                                                        MNRAS 000, 1–10 (2020)
+                                                                                                             Spin Parity of Spiral Galaxies II                    7
+
+                         0.15                            0.15                                  0.3                             0.15
+
+
+                         0.10                            0.10                                  0.2                             0.10
+
+fraction
+                         0.05                            0.05                                  0.1                             0.05
+                                     S-spirals
+                                     Z-spirals
+                         0.00                            0.00                                  0.0                             0.00
+                         8000                            8000                                 8000                             8000
+
+                         6000                            6000                                 6000                             6000
+
+  N                      4000                            4000                                 4000                             4000
+
+                         2000                            2000                                 2000                             2000
+
+                            0                               0                                    0                                0
+                            3                               3                                    3                                3
+
+
+
+
+  (NS -NZ )/∆(NS -NZ )
+                            2                               2                                    2                                2
+                            1                               1                                    1                                1
+                            0                               0                                    0                                0
+                          −1                              −1                                   −1                               −1
+                          −2                              −2                                   −2                               −2
+                          −3                              −3                                   −3                               −3
+                           17        18      19     20     0.0   0.2     0.4      0.6   0.8           1      2   3    4    5     0.0   0.2   0.4   0.6    0.8   1.0
+                                i-band [AB magnitude]                  redshift                           FWHM [arcsec]                      axis ratio
+
+Figure 7. The fraction of S-spirals (red circles) and Z-spirals (blue circles) to all the galaxies as functions of i-band magnitude,
+photometric redshift, FWHM size and major-to-minor axis ratio (top four panels). The middle four panels and the bottom four panels
+show the number of spiral galaxies and the significance level of the number difference between S-spirals and Z-spirals, respectively. The
+error, ∆(NS − NZ ), takes into account both the Poisson error and the incompleteness of CNN-based classification.
+
+
+level of is 2.9σ when only Poisson statistics is applied to                                    ing data set and in the Galaxy Zoo Catalogue (Land et al.
+estimate the uncertainties in the number of galaxy images                                      2008; Lintott et al. 2008). This is likely to be caused by a
+(Gehrels 1986). However, the uncertainties on these num-                                       human selection bias (Hayes et al. 2017). Visual inspection
+bers are likely to be dominated by misclassification of CNN-                                   by human eyes may unconsciously select more S-spirals. We
+based classification, rather than Poisson errors. S-spirals and                                also calculate the significance level of the number difference
+Z-spirals are in principle affected to the same degree by the                                  between S-spirals and Z-spirals, (NS − NZ )/∆(NS − NZ ), in bins
+contamination. In the validation data set, the fraction that                                   of i−band magnitude, photometric redshift, FWHM size and
+S-spirals are misclassified as non-spirals is similar to the frac-                             major-to-minor axis ratio (Figure 7). We take into account
+tion that Z-spirals are misclassified as non-spirals while there                               the incompleteness of CNN-based classification (Table 2) as
+are some variations (0.20%, 0.34%) between the CNN mod-                                        well as the Poisson errors. We do not find a significant excess
+els (Table 2). This is non-negligible because the vast ma-                                     of S-spirals or Z-spirals with |(NS − NZ )| > 3∆(NS − NZ ).
+jority of a half million galaxies is non-spirals. Considering
+the uncertainties in the misclassification, the error of the                                        The fraction of both spirals including S-spirals and Z-
+difference would be ∆(NS − NZ )=1,932, which is larger than                                    spirals to all the galaxies is 13.7% though it depends on
+the actual measurement. We also use 5 individual trained                                       galaxy properties. Note that we can identify only galaxies
+CNNs for classification of 561,251 images to calculate the                                     with visible spiral arms, depending on the sensitivity and
+average and the standard deviation of the numbers of spi-                                      spatial resolution of images used in the classification. In the
+rals, NS = 38625± 1138 and NZ = 39537± 1479, corresponding                                     Galaxy Zoo project, the fraction of galaxies with features
+to the error of ∆(NS − NZ )=1866). A stable performance of                                     such as spiral arms is 10% at z = 0.1 and ∼ 0% at z = 0.2
+0.04% in misclassification is required so that the uncertainty                                 (Willett et al. 2013). In the deeper HSC images, spiral arms
+is dominated by Poisson errors in the HSC imaging data. We                                     are visible in ∼20% of galaxies at z = 0.1 − 0.2 (Figure 7).
+would need to train the model with more validation data.                                       The measured fraction of spiral galaxies should be still a
+                                                                                               lower limit because more galaxies with fainter or lower con-
+     We do not find a significant difference of the numbers                                    trast spiral arms can be identified in even deeper and higher-
+between S-spirals and Z-spirals. On the other hand, there is                                   resolution images. We actually find that ∼50% of extended
+a significant excess of S-spirals over Z-spirals in our train-                                 galaxies with FWHM∼3 arcsec are classified as spirals since
+
+MNRAS 000, 1–10 (2020)
+8     K. Tadaki et al.
+the HSC resolution is high enough to identify their spiral           misclassified. It would be important to make a clean training
+arms.                                                                sample. Creating mock images from numerical simulations
+     Figure 8 presents examples of S-spirals and Z-spirals           is one of several efficient methods to prepare a large data
+with a spectroscopic redshift of zspec = 0.2 − 0.3. 48,576 of        set for training models (e.g., Huertas-Company et al. 2018;
+76,635 spiral galaxies are located at zphot > 0.2, where we are      Metcalf et al. 2019). Another direction to define a repeatable
+not able to identify spiral arms with the SDSS images. The           class of morphology is an unsupervised learning approach,
+fraction of spiral galaxies decreases from 20% at zphot = 0.2        which does not require visually-classified training data sets
+to 10% at zphot = 0.6. The redshift dependence is strongly           (e.g., Hocking et al. 2018; Martin et al. 2019). Nevertheless,
+affected by the cosmological dimming of the surface bright-          our attempt already demonstrates that CNN is powerful for
+ness, which decreases as (1 + z)−4 . It becomes difficult to de-     making a large sample of galaxies with particular substruc-
+tect an extended substructure such as spiral arms in high-           tures such as spiral arms from a large data-set and efficiently
+redshift galaxies. The magnitude dependence of the spiral            picking up rare objects such as massive spiral galaxies.
+fraction is coupled with the redshift dependence since faint
+sources tend to be at higher redshift. The decrease of spirals
+with a small axis ratio of < 0.2 is likely to be caused by
+human bias since it becomes hard to visually identify spiral         ACKNOWLEDGEMENTS
+arms in edge-on galaxies.                                            We are very grateful to the referee for constructive sug-
+     2,524 galaxies are identified to have spiral arms at            gestions to improve the paper. The Hyper Suprime-Cam
+zphot = 0.5 − 0.7 in spite of the strong effect of the cos-          (HSC) collaboration includes the astronomical communities
+mological dimming. 1,455 of them have a stellar mass of              of Japan and Taiwan, and Princeton University. The HSC in-
+log(M⋆ /M ⊙ ) > 10.8, which is similar to that of Andromeda          strumentation and software were developed by the National
+(M31: Geehan et al. 2006). The existence of spiral arms in-          Astronomical Observatory of Japan (NAOJ), the Kavli In-
+dicates that the galaxies are still forming stars. The majority      stitute for the Physics and Mathematics of the Universe
+of M31-mass galaxies have an early type morphology with-             (Kavli IPMU), the University of Tokyo, the High Energy
+out spiral arms at 0 < z < 0.7 and quench the star formation         Accelerator Research Organization (KEK), the Academia
+(Papovich et al. 2015). The identified massive spiral galaxies       Sinica Institute for Astronomy and Astrophysics in Tai-
+are likely to be the progenitors of M31.                             wan (ASIAA), and Princeton University. Funding was con-
+                                                                     tributed by the FIRST program from the Japanese Cabinet
+                                                                     Office, the Ministry of Education, Culture, Sports, Science
+                                                                     and Technology (MEXT), the Japan Society for the Pro-
+5   SUMMARY
+                                                                     motion of Science (JSPS), Japan Science and Technology
+We have developed a CNN model to classify galaxy morphol-            Agency (JST), the Toray Science Foundation, NAOJ, Kavli
+ogy into three categories (S-spiral, Z-spiral, and non-spiral)       IPMU, KEK, ASIAA, and Princeton University.
+by using images taken by the Subaru HSC survey. The su-                   This paper makes use of software developed for the
+perb image quality allows us to identify spiral arms in faint        Large Synoptic Survey Telescope. We thank the LSST
+galaxies with i ∼ 20 by visual inspection. We have used a            Project for making their code available as free software at
+total of 0.2 million images after data augmentation such as          http://dm.lsst.org
+flipping, rescaling, and rotation for training the model. The             This paper is based on data collected at the Subaru
+trained model successfully classifies the test data set, which       Telescope and retrieved from the HSC data archive system,
+is not used for training and validation, and results in an           which is operated by Subaru Telescope and Astronomy Data
+accuracy of 97.5±0.1%. The accuracy decreases to ∼90% in             Center (ADC) at NAOJ. Data analysis was in part carried
+the case that the training data set consists of less than 100        out with the cooperation of Center for Computational As-
+images in each class. This would become more of a problem            trophysics (CfCA), NAOJ.
+when one finds rare objects.                                              The Pan-STARRS1 Surveys (PS1) and the PS1 pub-
+     We have applied the trained CNN model to 561,251                lic science archive have been made possible through contri-
+galaxy images over an area of ∼320 deg2 . Our automated              butions by the Institute for Astronomy, the University of
+classification efficiently picks up spiral galaxies and de-          Hawaii, the Pan-STARRS Project Office, the Max Planck
+termines their winding direction of spiral arms, providing           Society and its participating institutes, the Max Planck In-
+37,917 S-spirals and 38,718 Z-spirals. We do not find a              stitute for Astronomy, Heidelberg, and the Max Planck In-
+significant excess of S-spirals over Z-spirals, which is seen        stitute for Extraterrestrial Physics, Garching, The Johns
+in the training data set and the Galaxy Zoo Catalogue.               Hopkins University, Durham University, the University of
+We have also identified 1,455 massive spiral galaxies with           Edinburgh, the QueenâĂŹs University Belfast, the Harvard-
+log(M⋆ /M ⊙ ) > 10.8 at zphot = 0.5 − 0.7, which are likely the      Smithsonian Center for Astrophysics, the Las Cumbres Ob-
+progenitors of M31.                                                  servatory Global Telescope Network Incorporated, the Na-
+     There are some limitations to our CNN-based classifi-           tional Central University of Taiwan, the Space Telescope
+cation. The criterion of spiral arms is defined by the train-        Science Institute, the National Aeronautics and Space Ad-
+ing data set, which is selected by our visual inspection. Al-        ministration under grant No. NNX08AR22G issued through
+though we have used the sample of galaxies whose spiral              the Planetary Science Division of the NASA Science Mis-
+arms are clearly seen for the training to minimize the con-          sion Directorate, the National Science Foundation grant No.
+tamination of non-spirals, the criterion of clear spirals is still   AST-1238877, the University of Maryland, Eotvos Lorand
+somewhat ambiguous. The ambiguous definition is probably             University (ELTE), the Los Alamos National Laboratory,
+one of the reasons that 2.5% of the validation data set is           and the Gordon and Betty Moore Foundation.
+
+                                                                                                          MNRAS 000, 1–10 (2020)
+                                                                                  Spin Parity of Spiral Galaxies II                  9
+
+
+
+
+Figure 8. Examples of HSC images of S-spirals (left) and Z-spirals (right) with the predicted probability of >0.95. They are randomly
+selected from spectroscopically-confirmed galaxies at zspec = 0.2 − 0.3.
+
+
+
+     C.E.R acknowledges Anupreeta More for providing a               Gehrels N., 1986, ApJ, 303, 336
+tool for visual inspection of images.                                Goldreich P., Lynden-Bell D., 1965, MNRAS, 130, 125
+                                                                     Goodfellow I., Pouget-Abadie J., Mirza M., Xu B., Warde-Farley
+                                                                         D., Ozair S., Courville A., Bengio Y., 2014, in Ghahramani
+                                                                         Z., Welling M., Cortes C., Lawrence N. D., Weinberger K. Q.,
+REFERENCES                                                               eds, , Advances in Neural Information Processing Systems 27.
+                                                                         Curran Associates, Inc., pp 2672–2680
+Abraham S., Aniyan A. K., Kembhavi A. K., Philip N. S., Vagh-        Hart R. E., et al., 2017, MNRAS, 472, 2263
+    mare K., 2018, MNRAS, 477, 894                                   Hayes W. B., Davis D., Silva P., 2017, MNRAS, 466, 3928
+Aihara H., et al., 2018, PASJ, 70, S4                                He K., Zhang X., Ren S., Sun J., 2016, in 2016 IEEE Confer-
+Aihara H., et al., 2019, PASJ, 71, 114                                   ence on Computer Vision and Pattern Recognition, CVPR
+Alam S., et al., 2015, ApJS, 219, 12                                     2016, Las Vegas, NV, USA, June 27-30, 2016. pp 770–778,
+Baba J., Saitoh T. R., Wada K., 2013, ApJ, 763, 46                       doi:10.1109/CVPR.2016.90
+Bernstein G. M., Jarvis M., 2002, AJ, 123, 583                       Hocking A., Geach J. E., Sun Y., Davey N., 2018, MNRAS,
+Bertin E., 2012, in Ballester P., Egret D., Lorente N. P. F., eds,       473, 1108
+    Astronomical Society of the Pacific Conference Series Vol.       Hsieh B. C., Yee H. K. C., 2014, ApJ, 792, 102
+    461, Astronomical Data Analysis Software and Systems XXI.        Huertas-Company M., et al., 2015, ApJS, 221, 8
+    p. 263                                                           Huertas-Company M., et al., 2018, ApJ, 858, 114
+Chollet F., et al., 2015, Keras, https://keras.io                    Iye M., Tadaki K.-i., Fukumoto H., 2019, ApJ, 886, 133
+Conselice C. J., 2014, ARA&A, 52, 291                                Kingma D. P., Ba J., 2014, arXiv preprint arXiv:1412.6980
+Cool R. J., et al., 2013, ApJ, 767, 118                              Krizhevsky A., Inc G., 2014, Technical report, One weird trick for
+Davis D. R., Hayes W. B., 2014, ApJ, 790, 87                             parallelizing convolutional neural networks
+Dieleman S., Willett K. W., Dambre J., 2015, MNRAS, 450, 1441        Krizhevsky A., Sutskever I., Hinton G. E., 2012, in Pereira F.,
+Dobbs C., Baba J., 2014, Publ. Astron. Soc. Australia, 31, e035          Burges C. J. C., Bottou L., Weinberger K. Q., eds, , Ad-
+Domı́nguez Sánchez H., Huertas-Company M., Bernardi M., Tuc-            vances in Neural Information Processing Systems 25. Curran
+    cillo D., Fischer J. L., 2018, MNRAS, 476, 3661                      Associates, Inc., pp 1097–1105
+Doroshkevich A. G., 1970, Astrophysics, 6, 320                       Kuminski E., Shamir L., 2016, ApJS, 223, 20
+Drinkwater M. J., et al., 2010, MNRAS, 401, 1429                     Land K., et al., 2008, MNRAS, 388, 1686
+Fukushima K., 1980, Biological Cybernetics, 36, 193                  LeCun Y., Bottou L., Bengio Y., Haffner P., 1998,
+Garilli B., et al., 2014, A&A, 562, A23                                  Proceedings of the IEEE, 86, 2278
+Geehan J. J., Fardal M. A., Babul A., Guhathakurta P., 2006,         Lin C. C., Shu F. H., 1964, ApJ, 140, 646
+    MNRAS, 366, 996                                                  Lintott C. J., et al., 2008, MNRAS, 389, 1179
+
+MNRAS 000, 1–10 (2020)
+10     K. Tadaki et al.
+Lintott C., et al., 2011, MNRAS, 410, 166
+Liske J., et al., 2015, MNRAS, 452, 2087
+Mandelbaum R., et al., 2018, PASJ, 70, S25
+Martin G., Kaviraj S., Hocking A., Read S. C., Geach J. E., 2019,
+    arXiv e-prints, p. arXiv:1909.10537
+Masters K. L., et al., 2010, MNRAS, 405, 783
+Metcalf R. B., et al., 2019, A&A, 625, A119
+Nishizawa A. J., Hsieh B.-C., Tanaka M., Takata T., 2020, arXiv
+    e-prints, p. arXiv:2003.01511
+Papovich C., et al., 2015, ApJ, 803, 26
+Peebles P. J. E., 1969, ApJ, 155, 393
+Peng C. Y., Ho L. C., Impey C. D., Rix H.-W., 2010, AJ,
+    139, 2097
+Pierre M., et al., 2004, J. Cosmology Astropart. Phys., 2004, 011
+Russakovsky             O.,          et        al.,         2015,
+    International Journal of Computer Vision (IJCV),         115,
+    211
+Schawinski K., Zhang C., Zhang H., Fowler L., Santhanam G. K.,
+    2017, MNRAS, 467, L110
+Shamir L., 2017, Publ. Astron. Soc. Australia, 34, e044
+Srivastava N., Hinton G., Krizhevsky A., Sutskever I., Salakhut-
+    dinov R., 2014, Journal of Machine Learning Research, 15,
+    1929
+Strateva I., et al., 2001, AJ, 122, 1861
+Sugai H., Iye M., 1995, MNRAS, 276, 327
+Tanaka M., et al., 2018, PASJ, 70, S9
+White S. D. M., 1984, ApJ, 286, 38
+Willett K. W., et al., 2013, MNRAS, 435, 2835
+York D. G., et al., 2000, AJ, 120, 1579
+
+
+
+APPENDIX A: SOME EXTRA MATERIAL
+In Figure A1 and Figure A2, we show example images of S-
+spirals and Z-spirals, which are randomly selected from the
+training data set. We use them for training a CNN model
+after data augmentation such as flipping, rescaling, and ro-
+tation of images.
+
+This paper has been typeset from a TEX/LATEX file prepared by
+the author.
+
+
+
+
+                                                                    MNRAS 000, 1–10 (2020)
+                                                          Spin Parity of Spiral Galaxies II   11
+
+
+
+
+                         Figure A1. Example images of S-spirals.
+
+
+
+
+MNRAS 000, 1–10 (2020)
+12   K. Tadaki et al.
+
+
+
+
+                        Figure A2. Example images of Z-spirals.
+
+
+
+
+                                                                  MNRAS 000, 1–10 (2020)
+

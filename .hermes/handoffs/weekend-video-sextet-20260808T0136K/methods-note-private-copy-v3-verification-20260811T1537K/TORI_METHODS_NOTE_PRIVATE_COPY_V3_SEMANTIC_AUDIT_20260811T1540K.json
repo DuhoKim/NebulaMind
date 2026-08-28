@@ -1,0 +1,106 @@
+{
+  "marker": "TORI_METHODS_NOTE_PRIVATE_COPY_V3_SEMANTIC_AUDIT_20260811T1540K",
+  "timestamp": "2026-08-11T15:39:55+09:00",
+  "scoped_result": "FAIL_VISIBLE_EQUIVALENCE_V3__EMPHASIS_TABLE_AND_PUNCTUATION_PASS__LISTS_AND_BLOCKQUOTE_RENDER_AS_LITERAL_MARKERS",
+  "source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/LANA_METHODS_NOTE_MITTAL_SINGAL_ATTRIBUTABILITY_20260811_EXTERNAL.md",
+    "bytes": 11473,
+    "sha256": "a79f748e42cf92d1831e6115b7ce55912afe4b0555fb9bc185b6d9428edc292b"
+  },
+  "renders": [
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal.html",
+      "bytes": 15388,
+      "sha256": "5a5bf634ab20984536e52bb37ce924f65e2794ae714fe67e1a1dd36f77806557",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal-v2.html",
+      "bytes": 15940,
+      "sha256": "ffd3086b8b8f8ee00db7ba07bb3ac19ba1b2d0f8dc080e8944240c2fc8c1e9ce",
+      "unchanged": true
+    },
+    {
+      "path": "/Users/duhokim/HermesOps/cockpit/methods-note-mittal-singal-v3.html",
+      "bytes": 16020,
+      "sha256": "25de23fae7473d2753bda74e47156d1164f16f35da13328fa9a65a6bd8156fca"
+    }
+  ],
+  "passed_checks": {
+    "literal_double_asterisk_visible_count": 0,
+    "narrative_strong_count_expected": 61,
+    "narrative_strong_count_target": 61,
+    "strong_sequence_exact": true,
+    "requested_three_bold_spans_present": [true, true, true],
+    "wrong_intervening_clause_is_strong": false,
+    "code_sequence_exact": true,
+    "h1_sequence_exact": true,
+    "h2_sequence_exact": true,
+    "provenance_rows_expected": 9,
+    "provenance_rows_target": 9,
+    "provenance_cells_per_row_expected": [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    "provenance_cells_per_row_target": [2, 2, 2, 2, 2, 2, 2, 2, 2],
+    "provenance_rows_exact": 9,
+    "table_abs_latitude_expressions_expected": 2,
+    "table_abs_latitude_expressions_target": 2,
+    "curly_single_quotes_or_apostrophes_visible": 0,
+    "curly_double_quotes_visible": 0,
+    "footer_says_verification_pending": true,
+    "footer_makes_verbatim_claim": false,
+    "footer_names_both_superseded_hash_prefixes": true
+  },
+  "failed_checks": {
+    "narrative_visible_text_exact": false,
+    "narrative_expected_words": 1387,
+    "narrative_target_words": 1402,
+    "extra_visible_syntax_tokens": {
+      "literal_hyphen_list_markers": 9,
+      "literal_ordered_list_markers": ["1.", "2.", "3."],
+      "literal_blockquote_markers": 3,
+      "total_extra_tokens": 15
+    },
+    "expected_structure": {
+      "unordered_lists": 4,
+      "ordered_lists": 1,
+      "list_items": 14,
+      "blockquotes": 1
+    },
+    "target_structure": {
+      "unordered_lists": 1,
+      "ordered_lists": 0,
+      "list_items": 2,
+      "blockquotes": 0
+    },
+    "list_item_sequence_exact": false,
+    "blockquote_sequence_exact": false,
+    "emphasis_sequence_exact": false,
+    "emphasis_failure_detail": "The source blockquote's italic span contains two inserted literal > markers in v3; a third > marker appears immediately before the italic span."
+  },
+  "affected_sections": [
+    "Section 1: five bullets rendered as literal inline hyphens in one paragraph; the product-check blockquote rendered as three literal > markers instead of a blockquote.",
+    "Section 2: two bullets rendered as literal inline hyphens in a paragraph.",
+    "Section 3: ordered items 1, 2 and 3 rendered as inline 1./2./3. text, not an ordered list.",
+    "Section 3 kinematic-null list: two bullets rendered as literal inline hyphens.",
+    "Section 5's two bullets are the only list parsed structurally."
+  ],
+  "root_cause": "Pandoc's markdown reader, with the source's current no-blank-line transitions, requires list/block-quote extension choices different from GFM. Disabling smart fixed punctuation and the markdown reader preserved table pipes, but the reader treated most list and blockquote markers as literal paragraph text.",
+  "candidate_reader_dry_run": {
+    "reader": "markdown-smart+lists_without_preceding_blankline-blank_before_blockquote",
+    "not_a_pass_or_rendered_artifact": true,
+    "narrative_visible_text_exact_in_memory": true,
+    "strong_sequence_exact": true,
+    "em_sequence_exact": true,
+    "code_sequence_exact": true,
+    "unordered_lists": 4,
+    "ordered_lists": 1,
+    "list_items": 14,
+    "blockquotes": 1,
+    "provenance_rows_exact": 9,
+    "provenance_cells_per_row": [2, 2, 2, 2, 2, 2, 2, 2, 2]
+  },
+  "custody_decision": {
+    "v3_visible_equivalence": "FAIL",
+    "duho_can_rely_on_v3_as_exact_reading_copy": false,
+    "recommended_action": "Freeze v3 without overwrite. Produce a new sibling using a reader configuration that preserves tables, disables smart punctuation, and recognizes lists/blockquotes without preceding blanks; then repeat DOM, per-cell, punctuation, emphasis and Chrome checks."
+  }
+}

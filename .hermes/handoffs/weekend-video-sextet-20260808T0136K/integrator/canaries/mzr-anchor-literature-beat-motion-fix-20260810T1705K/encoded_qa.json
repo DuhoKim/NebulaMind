@@ -1,0 +1,357 @@
+{
+  "status": "PASS",
+  "candidate": "mzr-anchor-literature-beat-motion-fix-20260810T1705K",
+  "video": "mzr-anchor-literature-beat-canary-20260810T1705K.mp4",
+  "video_sha256": "47f71fc40e1f81f7e4374e7e867c07cc64f8595ad553137403bff7d52dbec547",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "duration": "239.333333",
+        "nb_read_frames": "7180"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "avg_frame_rate": "0/0",
+        "duration": "239.348000",
+        "nb_read_frames": "11220"
+      }
+    ],
+    "format": {
+      "duration": "239.348000",
+      "size": "13186479",
+      "bit_rate": "440746"
+    }
+  },
+  "timeline_summary": {
+    "sentence_count": 24,
+    "word_count": 453,
+    "delivered_wpm": 114.99999647412324,
+    "master_duration_seconds": 239.34783333333334,
+    "max_abs_audio_visual_start_delta_seconds": 0.014708333333331325,
+    "section_intervals_seconds": {
+      "motivation": 26.753999999999998,
+      "literature": 15.101999999999997,
+      "difficulty": 16.589999999999996,
+      "peak": 42.0,
+      "sample": 20.597999999999985,
+      "estimator": 15.149999999999977,
+      "controls": 16.373999999999995,
+      "discipline": 17.789999999999992,
+      "boundary": 8.951999999999998,
+      "payoff": 13.373999999999995
+    }
+  },
+  "loudness": {
+    "input_i": "-20.57",
+    "input_tp": "-2.30",
+    "input_lra": "5.80",
+    "input_thresh": "-30.90",
+    "output_i": "-20.22",
+    "output_tp": "-2.30",
+    "output_lra": "5.40",
+    "output_thresh": "-30.54",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.08"
+  },
+  "motion": {
+    "sample_rate_fps": 2,
+    "sampled_frames": 479,
+    "mean_absolute_frame_difference": 0.35795792654579267,
+    "max_absolute_frame_difference": 12.095277777777778,
+    "longest_near_unchanged_seconds": 0.5,
+    "threshold": 0.03,
+    "threshold_basis": "Low-amplitude ambient grid/star motion; values below 0.03 are treated as effectively static."
+  },
+  "encoded_opening_transcription": {
+    "status": "PASS",
+    "provider_route": "Hermes managed OpenAI audio gateway",
+    "model": "whisper-1",
+    "start_seconds": 0.35,
+    "end_seconds": 47.65754166666667,
+    "expected": "At high redshift, metallicity relations can disagree because galaxies evolved, or because calibrations changed the measuring scale. If the relation genuinely evolved, that would be a fact about the enrichment history of young galaxies. But an apparent offset could instead be a fact about strong-line recipes, reference frames, or scale conversions rather than galaxies. How do we tell evolution from calibration? The absolute metallicity scale (y-int) varies up to 0.7 dex, depending on the calibration used. Kewley and Ellison reported disagreement among the measurement rulers; the interpretation remains disputed, and this video adopts no answer as its finding.",
+    "transcript": "At high redshift, metallicity relations can disagree because galaxies evolved, or because calibrations changed the measuring scale. If the relation genuinely evolved, that would be a fact about the enrichment history of young galaxies. But an apparent offset could instead be a fact about strong-line recipes, reference frames, or scale conversions, rather than galaxies. How do we tell evolution from calibration? The absolute metallicity scale, y-intercept, varies up to 0.7 dex, depending on the calibration used. Cooley and Ellison reported disagreement among the measurement rulers. The interpretation remains disputed, and this video adopts no answer as its finding.",
+    "similarity": 0.7704918032786885,
+    "semantic_terms": [
+      "metallicity",
+      "calibration",
+      "zero point seven",
+      "dex",
+      "disputed",
+      "no answer",
+      "finding"
+    ],
+    "semantic_guard": true,
+    "audio_sha256": "e52ce3502e471f80b3c2399ff66c2df90de458a1de66d6f52fa9353effb6cd50"
+  },
+  "literature_asr": {
+    "status": "PASS",
+    "provider_route": "Hermes managed OpenAI audio gateway",
+    "model": "whisper-1",
+    "records": [
+      {
+        "id": "i05q",
+        "expected": "The absolute metallicity scale (y-int) varies up to 0.7 dex, depending on the calibration used.",
+        "transcript": "The absolute metallicity scale, Y-intercept, varies up to 0.7 DEX, depending on the calibration used.",
+        "normalized_expected": "the absolute metallicity scale y interceptercept varies up to zero point seven dex depending on the calibration used",
+        "normalized_transcript": "the absolute metallicity scale y intercepterceptercept varies up to zero point seven dex depending on the calibration used",
+        "similarity": 0.9747899159663865,
+        "threshold": 0.86,
+        "semantic_guard": true,
+        "status": "PASS"
+      },
+      {
+        "id": "i05u",
+        "expected": "Kewley and Ellison reported disagreement among the measurement rulers; the interpretation remains disputed, and this video adopts no answer as its finding.",
+        "transcript": "Kewley and Ellison reported disagreement among the measurement rulers. The interpretation remains disputed, and this video adopts no answer as its finding.",
+        "normalized_expected": "kewley and ellison reported disagreement among the measurement rulers the interpretation remains disputed and this video adopts no answer as its finding",
+        "normalized_transcript": "kewley and ellison reported disagreement among the measurement rulers the interpretation remains disputed and this video adopts no answer as its finding",
+        "similarity": 1.0,
+        "threshold": 0.9,
+        "semantic_guard": true,
+        "status": "PASS"
+      }
+    ]
+  },
+  "ocr": {
+    "engine": "tesseract",
+    "frame_count": 24,
+    "forbidden_terms": [
+      "/users/",
+      ".json",
+      ".md",
+      "source_freeze",
+      "internal path"
+    ],
+    "forbidden_hits": [],
+    "status": "PASS"
+  },
+  "caption_lines": {
+    "i01": 2,
+    "i02": 1,
+    "i03": 2,
+    "i04": 1,
+    "i05q": 1,
+    "i05u": 2,
+    "d01": 2,
+    "d02": 2,
+    "p01": 2,
+    "p02": 2,
+    "p03": 2,
+    "p04": 2,
+    "p05": 2,
+    "f01": 2,
+    "f02": 2,
+    "e01": 2,
+    "e02": 2,
+    "c01": 2,
+    "c02": 2,
+    "g01": 2,
+    "g02": 2,
+    "b01": 2,
+    "x01": 2,
+    "x02": 2
+  },
+  "numeric_guard": {
+    "status": "PASS",
+    "problems": [],
+    "evidence": [
+      {
+        "id": "i05q",
+        "number": "0.7",
+        "source": "sources/ARXIV_0801.1849V1_EXACT_ABSTRACT.txt",
+        "hits": [
+          {
+            "line": 6,
+            "context": "The absolute metallicity scale (y-int) varies up to 0.7 dex, depending on the calibration used."
+          }
+        ],
+        "hit_count": 1
+      },
+      {
+        "id": "i05q",
+        "number": "0801",
+        "source": "sources/ARXIV_0801.1849V1_EXACT_ABSTRACT.txt",
+        "hits": [
+          {
+            "line": 1,
+            "context": "Primary source: L. J. Kewley and S. L. Ellison, “Metallicity Calibrations and the Mass-Metallicity Relation for Star-Forming Galaxies,” 2008, arXiv:0801.1849v1."
+          },
+          {
+            "line": 2,
+            "context": "URL: https://arxiv.org/abs/0801.1849v1"
+          }
+        ],
+        "hit_count": 2
+      },
+      {
+        "id": "i05q",
+        "number": "2008",
+        "source": "sources/ARXIV_0801.1849V1_EXACT_ABSTRACT.txt",
+        "hits": [
+          {
+            "line": 1,
+            "context": "Primary source: L. J. Kewley and S. L. Ellison, “Metallicity Calibrations and the Mass-Metallicity Relation for Star-Forming Galaxies,” 2008, arXiv:0801.1849v1."
+          }
+        ],
+        "hit_count": 1
+      },
+      {
+        "id": "i05u",
+        "number": "2008",
+        "source": "sources/LANA_FOUR_LANE_LITERATURE_BEAT_20260810.md",
+        "hits": [
+          {
+            "line": 31,
+            "context": "Verbatim: **Kewley & Ellison (2008)**, *Metallicity Calibrations and the Mass-Metallicity Relation for"
+          }
+        ],
+        "hit_count": 1
+      }
+    ]
+  },
+  "frame_custody": {
+    "raw_frames_submitted": 7181,
+    "encoded_video_frames": 7180
+  },
+  "protected_custody": {
+    "fesc_and_mzr_census": [
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/fesc-method-canary-20260808T1259",
+        "expected_file_count": 7,
+        "current_file_count": 7,
+        "expected_tree_sha256": "5978e94252e68d482f4b38505ccd445e332c29f138849ef1a879ac07f53b4430",
+        "current_tree_sha256": "5978e94252e68d482f4b38505ccd445e332c29f138849ef1a879ac07f53b4430",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/fesc-method-overhaul-canary-20260809T0227K",
+        "expected_file_count": 127,
+        "current_file_count": 127,
+        "expected_tree_sha256": "2e139e141b56f2c38991e6b6649d6002151cae83407c9151da849ed340205fd4",
+        "current_tree_sha256": "2e139e141b56f2c38991e6b6649d6002151cae83407c9151da849ed340205fd4",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/fesc-method-overhaul-canary-20260809T0327K",
+        "expected_file_count": 148,
+        "current_file_count": 148,
+        "expected_tree_sha256": "8afae883f3c4a28f479b6113c77fd50cdaca84fef787c93f9ab83be69ff0c341",
+        "current_tree_sha256": "8afae883f3c4a28f479b6113c77fd50cdaca84fef787c93f9ab83be69ff0c341",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/fesc-method-overhaul-canary-20260809T1345K",
+        "expected_file_count": 104,
+        "current_file_count": 104,
+        "expected_tree_sha256": "587fe4dddb6c71f489160908dae33bb3fcdddbbce766c8ea233f28b16bee4c83",
+        "current_tree_sha256": "587fe4dddb6c71f489160908dae33bb3fcdddbbce766c8ea233f28b16bee4c83",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/fesc-method-overhaul-canary-20260809T1420K",
+        "expected_file_count": 629,
+        "current_file_count": 629,
+        "expected_tree_sha256": "b34b981327dae2d3eeb93942bd835697dbc26c7eba5fe149a8619697ee5645f7",
+        "current_tree_sha256": "b34b981327dae2d3eeb93942bd835697dbc26c7eba5fe149a8619697ee5645f7",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/fesc-method-overhaul-canary-20260809T1501K",
+        "expected_file_count": 75,
+        "current_file_count": 75,
+        "expected_tree_sha256": "0c94180a53e98eea38c9e1799de93c0687e2b3c14743460a994a0716b8ef1ee4",
+        "current_tree_sha256": "0c94180a53e98eea38c9e1799de93c0687e2b3c14743460a994a0716b8ef1ee4",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K",
+        "expected_file_count": 24,
+        "current_file_count": 24,
+        "expected_tree_sha256": "4c4fec38c67f596b27df0361866ae3e8eb7ab61d31c38ff997ba807fc12d59f7",
+        "current_tree_sha256": "4c4fec38c67f596b27df0361866ae3e8eb7ab61d31c38ff997ba807fc12d59f7",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/mzr-census-method-canary-20260808T1254",
+        "expected_file_count": 14,
+        "current_file_count": 14,
+        "expected_tree_sha256": "252f78dbec48deef6b0886a6f8f53d6e98f25247536e2629b323fd502cb5334c",
+        "current_tree_sha256": "252f78dbec48deef6b0886a6f8f53d6e98f25247536e2629b323fd502cb5334c",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/mzr-census-method-overhaul-canary-20260809T0214K",
+        "expected_file_count": 137,
+        "current_file_count": 137,
+        "expected_tree_sha256": "40e6c6379f487be93d3b20a7b410d6bc4260e528bef387aedca4ec7163691a2e",
+        "current_tree_sha256": "40e6c6379f487be93d3b20a7b410d6bc4260e528bef387aedca4ec7163691a2e",
+        "unchanged": true
+      },
+      {
+        "root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/mzr-census-method-overhaul-canary-20260809T0320K",
+        "expected_file_count": 141,
+        "current_file_count": 141,
+        "expected_tree_sha256": "f9756f3c1d3ac8d0fc781e2bd8869385445708cc8282943eaacdb31590695fab",
+        "current_tree_sha256": "f9756f3c1d3ac8d0fc781e2bd8869385445708cc8282943eaacdb31590695fab",
+        "unchanged": true
+      }
+    ],
+    "cockpit": {
+      "expected_file_count": 36,
+      "current_file_count": 36,
+      "expected_tree_sha256": "2f4b01f904abb0bc849be4c2dbe324a41771b9226111999d9430daf954249fcd",
+      "current_tree_sha256": "2f4b01f904abb0bc849be4c2dbe324a41771b9226111999d9430daf954249fcd",
+      "unchanged": true
+    }
+  },
+  "contact_sheet": "encoded-contact-sheet.jpg",
+  "checks": {
+    "video_stream_h264": true,
+    "audio_stream_aac": true,
+    "resolution_1920x1080": true,
+    "fps_30": true,
+    "duration_tail_within_one_frame": true,
+    "delivered_wpm_exact_target": true,
+    "av_alignment_under_one_frame": true,
+    "all_sentence_states_extracted": true,
+    "encoded_opening_transcription_pass": true,
+    "literature_raw_asr_pass": true,
+    "contract_qa_pass": true,
+    "numeric_guard_pass": true,
+    "no_eight_second_freeze": true,
+    "positive_motion": true,
+    "loudness_in_target_band": true,
+    "true_peak_safe": true,
+    "spec_hash_matches_build": true,
+    "timeline_hash_matches_build": true,
+    "audio_hash_matches_build": true,
+    "encoded_hash_matches_build": true,
+    "renderer_snapshot_matches_build": true,
+    "raw_frame_receipt_matches_ceil": true,
+    "encoded_frame_receipt_matches_probe": true,
+    "frame_delta_at_most_one": true,
+    "ocr_internal_terms_clean": true,
+    "captions_at_most_two_lines": true,
+    "source_grounded_runtime_at_least_75_percent": true,
+    "video_reportable_now_false": true,
+    "source_freeze_absent": true,
+    "predecessor_unchanged": true,
+    "all_fesc_and_mzr_census_trees_unchanged": true,
+    "all_cockpit_mp4s_unchanged": true,
+    "full_decode_pass": true
+  },
+  "passed": 33,
+  "total": 33
+}

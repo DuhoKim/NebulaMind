@@ -1,0 +1,63 @@
+{
+  "status": "V10_TWO_REPAIRS_BUILT_AWAITING_TIGHT_THREE_SEAT_EXACT_HASH_CONFIRMATION_NO_RENDER",
+  "render_authority": false,
+  "base_review_targets": {
+    "NARRATION_DRAFT_V9.md": "85f111d366c5d11d912e4f7db5586f10b491b12b1c5091d3f94d822c388190b3",
+    "STORYBOARD_DRAFT_V9.json": "c9824b95453be7e67d6066f3810648dc8d588a8c3210546ec9caa5ee74710d7a",
+    "CLAIM_LINE_LEDGER_V9.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V9.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "authority_receipts": {
+    "LANA_CONFIRM_V9.md": {
+      "sha256": "f553e690201c3eaccfeee5b8b12c34e9defe6924166fa7397ed0a3fb95a35b3c",
+      "verdict": "PASS WITH ONE TIMING REPAIR",
+      "repair": "cards[3].planned_seconds 41 -> 48"
+    },
+    "GORU_CONFIRM_V9.md": {
+      "sha256": "d4ae02987ab1269d3c777b47031f56e81cbe5b1f9b106e808d11b970191c49bd",
+      "verdict": "PASS CLEAR FOR RENDER on V9"
+    },
+    "KUN_CONFIRM_V9.md": {
+      "sha256": "0ed5627ebef10460755151719a1313a3304dc0705d48c3fff8e20e7078f361f9",
+      "verdict": "HOLD_RENDER_ON_SHORTHAND_AUDIT",
+      "repair": "cards[3].heading CNS -> cosmological-natural-selection"
+    }
+  },
+  "authored_canonical_changes": [
+    {
+      "path": "cards[3].heading",
+      "old": "One CNS chain puts a low ceiling on neutron-star mass",
+      "new": "One cosmological-natural-selection chain puts a low ceiling on neutron-star mass"
+    },
+    {
+      "path": "cards[3].planned_seconds",
+      "old": 41,
+      "new": 48
+    }
+  ],
+  "derived_canonical_change": {
+    "path": "estimated_duration_seconds",
+    "old": 392,
+    "new": 399,
+    "rule": "sum(cards[*].planned_seconds)"
+  },
+  "derived_changed_channel": {
+    "file": "NARRATION_DRAFT_V10.md",
+    "change": "Card 04 assertion heading only"
+  },
+  "unchanged_byte_copies": {
+    "CLAIM_LINE_LEDGER_V10.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V10.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "explicitly_unchanged": [
+    "all spoken narration",
+    "all Card 01-03 and Card 05-11 headings",
+    "all Card 01-03 and Card 05-11 planned_seconds values",
+    "all diagrams and printable labels",
+    "all on-screen support",
+    "all source-claim IDs and packet-line mappings",
+    "all scientific numbers, dates, and published-author citations",
+    "all Card 05 no-terminus constraints",
+    "all V9 internal H1/status/scaffolding labels under the tight-delta order"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass30-review-v1-20260808T161354K",
+  "created_at": "2026-08-08T16:13:54+09:00",
+  "deepening_pass": 30,
+  "lane": "spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "status": "HELD_NOT_AUTHORIZED_FOR_RELEASE_OR_ACCEPTANCE",
+    "modified": false
+  },
+  "authority": {
+    "HWAO_WEEKEND_ORDER.md": "ac5d35314a3af78ab2214b62105fa74afb616862aeeb2d09faa1dd6eb1c84710",
+    "COORDINATION_UPDATE.md": "2d64667f8ab95349b344c9098a4f2b8f675c71d53d1cc132a780e0ac699fde1f",
+    "lanes/spin/BRIEF.md": "af91d7a84ddfce470500189546cb7b8d109d4eaaf2c3451f468807c0b5cd4aec",
+    "SOURCE_STATUS_FREEZE.json": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "STORYBOARD_PROPOSAL.json": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "proposal_frames/v8/render_receipt.json": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+  },
+  "candidate_records": {
+    "RECEIPT.md": "9f220353e1dca55365da6c7ed2145a042de4312322b41a949443c7ddec04fac2",
+    "QA.md": "cb7acfc91f41b6b47f253121f465bed49bdd9b45cf43fb5513bea929f0a29bf2",
+    "hashes.txt": "5d73b0bd9debf405afcd89ec3f3f2b94790cec1e54752d7f1b6c181332e52cf3"
+  },
+  "baseline_receipts": {
+    "qa/pass23_minimum_scale_color_vision_audit/extraction_receipt.json": "d7e8b183f4fa28281b5cb286998b5ad53be299a2db09289bd09ff62235d7b8f1",
+    "qa/pass23_v8_minimum_scale_color_vision/receipt.json": "fa61f82d25c85d5d1c30cf8b3bd15298ffe76dfbce0fc99693c5a76d5124434b",
+    "qa/pass29_review_snapshot_v1.json": "d5ea947087d63b765c742467c95beb0bf7f9ec5da4cf608e7bf7957fc53df229"
+  },
+  "pass30_artifacts": {
+    "qa/extract_pass30_color_minimum_scale_represented_resampling_roundtrip_frames.py": "988d71f572a8ae5ac8db4d1ae1cd9fe86157bc7297a8f771c1b773eaacaf4c81",
+    "qa/build_pass30_v8_color_minimum_scale_represented_resampling_roundtrip.py": "950b26574dfc6ac46dab03c97424fb843af785cd4d1bd994fc2b64afc244c7f6",
+    "qa/audit_pass30_color_minimum_scale_represented_resampling_roundtrip.py": "0ee727e3b71e51c226d6c0a8b505c5dff56d38562475d61946c04acacfa5658e",
+    "qa/pass30_color_minimum_scale_represented_resampling_roundtrip_audit/extraction_receipt.json": "95eeda3e87d57ba89b387bb7cff0c1d303aeae62b46bca70485d60212eca520c",
+    "qa/pass30_v8_color_minimum_scale_represented_resampling_roundtrip/receipt.json": "3e20d2ac0adb03cd36ecdf90651ce57ec030862f7c971eb9af58ce9b8073db8f",
+    "qa/pass30_color_minimum_scale_represented_resampling_roundtrip_quantitative_audit.json": "e52811867275a6540c5c513918c55a6722c995ce8683c1ad65515ca0831b9caf",
+    "COLOR_MINIMUM_SCALE_REPRESENTED_RESAMPLING_ROUNDTRIP_GUARD_PASS30.json": "5beec5f5f497ba37997fb63fbae85f4d9920494fdcdc4f81660a276b10b40eac",
+    "BLOCKER_PACKET_PASS30.json": "14d8b87f9f38c112df29ad3bb4de7454a2b71a44c60cf60c178eb127f6e1f516",
+    "PASS30_ENCODED_FRAME_AUDIT.md": "1478fc0d42592ee09c2861cb9c93e3d65a66a32f8e1b6c1707c5a61e6a84b9a8"
+  },
+  "transform": {
+    "order": [
+      "native full color / native linear-light BT.709 grayscale / fixed packet-specific Machado severity-100 presentation transform",
+      "Pillow LANCZOS full-canvas 640x360",
+      "represented-pixel Pillow BILINEAR 512x288",
+      "represented-pixel Pillow BILINEAR 640x360"
+    ],
+    "intermediate_resolution": [512, 288],
+    "restored_resolution": [640, 360],
+    "resampler_down": "Pillow BILINEAR",
+    "resampler_up": "Pillow BILINEAR",
+    "claim_boundary": "packet-specific only; no named display, player, browser, projector, platform, service, room, viewer, scaling policy, delivery route, or universal standard"
+  },
+  "custody_counts": {
+    "fresh_scene_cuts": "15/15",
+    "native_midpoint_byte_matches_to_pass29": "16/16",
+    "candidate_pass23_baseline_pixel_matches": "80/80",
+    "method_pass23_baseline_pixel_matches": "105/105",
+    "exact_resampling_roundtrip_recomputations": "185/185"
+  },
+  "human_encoded_review": {
+    "candidate_structural_gate_scenes": "0/16_ALL_FIVE_VARIANTS",
+    "candidate_held_critical_gate_scenes": "0/5_ALL_FIVE_VARIANTS",
+    "sealed_v8_result_held_badges": "7/7_ALL_FIVE_VARIANTS",
+    "sealed_v8_major_method_status_boundaries": "7/7_ALL_FIVE_VARIANTS",
+    "pass7_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "pass12_exact_top_gates": "7/7_ALL_FIVE_VARIANTS",
+    "hue_only_required_meaning": 0,
+    "clipping_overlap_or_meaning_changing_ambiguity": false
+  },
+  "ocr_aid": {
+    "threshold": 0.8,
+    "threshold_pass_counts": {
+      "color": "4/7",
+      "grayscale": "4/7",
+      "protanopia": "5/7",
+      "deuteranopia": "4/7",
+      "tritanopia": "4/7"
+    },
+    "minimum_score": 0.285714,
+    "interpretation": "under-counting corroborative aid retained; direct represented-pixel review controls visual QA and confirms 7/7"
+  },
+  "action": "ADOPT_COLOR_MINIMUM_SCALE_REPRESENTED_RESAMPLING_ROUNDTRIP_GUARD_NOT_PIXEL_OR_COPY_CORRECTION",
+  "blockers_unchanged": true,
+  "sealed_v8_modified": false,
+  "v9_created": false,
+  "candidate_created_or_promoted": false,
+  "shared_assets_modified": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "tts_invoked": false,
+  "git_action": false
+}

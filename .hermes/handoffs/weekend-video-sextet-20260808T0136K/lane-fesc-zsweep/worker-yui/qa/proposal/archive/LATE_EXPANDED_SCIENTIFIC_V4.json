@@ -1,0 +1,14 @@
+{
+  "packet": "final_v4",
+  "review_type": "expanded_compact_source_backed_scientific",
+  "verdict": "PASS",
+  "findings": [
+    "Independent replay of make_trend_figure.py matches TREND_RESULTS/TREND_DATA to 4.44e-16: z_c=8.045284 (Delta16=0; finite-MC 8.030–8.059), z_m=6.327877 (median Delta=0), and no-tail z_c=7.615345 (7.602–7.631).",
+    "0.659525/0.833525/0.927475 correctly render as 66/83/93% at z=7/8/9 with 'conditional model mass, not real-world probability'.",
+    "S06 visibly says separate run, one SFRD-tail prior family removed, draws unpaired—no worst-case/all-assumptions expansion.",
+    "Persistent 'MODEL OUTPUT · NO NEW MEASUREMENT,' frozen-low-z boundary, proxy-transport omission, and non-exhaustive outside-model caveat match MERGED_FESC_ZSWEEP.tex.",
+    "v4 pins TREND_RESULTS hash, uses Delta lower-edge geometry rather than nm_paper_plot.py's legacy top-curve framing, and exposes no internal audience path; packet hashes were stable."
+  ],
+  "required": "none",
+  "source_delegation": "deleg_10a9d52e/task-1"
+}

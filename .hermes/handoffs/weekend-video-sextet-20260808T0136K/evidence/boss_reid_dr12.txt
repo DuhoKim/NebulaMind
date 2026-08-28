@@ -1,0 +1,1557 @@
+                                                                                                                                                 BOSS LSS targeting and catalogues                 1
+
+
+
+                                               SDSS-III Baryon Oscillation Spectroscopic Survey Data Release 12:
+                                               galaxy target selection and large scale structure catalogues
+
+                                               Beth Reid1,2 , Shirley Ho3 , Nikhil Padmanabhan4 , Will J. Percival?5 , Jeremy Tinker6 , Rita
+                                               Tojeiro7 , Martin White8,2 , Daniel J. Eisenstein9 , Claudia Maraston5 , Ashley J. Ross10 ,
+                                               Ariel G. Sánchez11 , David Schlegel1,2 , Erin Sheldon12 , Michael A. Strauss13 Daniel
+                                               Thomas5 , David Wake14,15 , Florian Beutler2 , Dmitry Bizyaev16,17 , Adam S. Bolton18 ,
+                                               Joel R. Brownstein18 , Chia-Hsun Chuang19 , Kyle Dawson18 , Paul Harding20 , Francisco-
+
+
+
+
+arXiv:1509.06529v2 [astro-ph.CO] 19 Oct 2015
+                                               Shu Kitaura21 , Alexie Leauthaud22 , Karen Masters 5 , Cameron K. McBride9 , Surhud
+                                               More22 , Matthew D. Olmstead23,18 , Daniel Oravetz16 , Sebastián E. Nuza24 Kaike Pan16 ,
+                                               John Parejko4 , Janine Pforr5,25 , Francisco Prada19,26,27 , Sergio Rodrı́guez-Torres19,26,28 ,
+                                               Salvador Salazar-Albornoz11,29 , Lado Samushia30,31,5 Donald P. Schneider32,33 , Claudia
+                                               G. Scóccola34,35,36 , Audrey Simmons16 , Mariana Vargas-Magana37
+                                               1 Berkeley Center for Cosmological Physics, Department of Physics, University of California, Berkeley, CA, 94720, USA
+                                               2 Lawrence Berkeley National Laboratory, 1 Cyclotron Road, Berkeley, CA 94720, USA
+                                               3 Bruce and Astrid McWilliams Center for Cosmology, Department of Physics, Carnegie Mellon University, 5000 Forbes Ave, Pittsburgh, PA 15213, USA
+                                               4 Yale Center for Astronomy and Astrophysics, Yale University, New Haven, CT, 06520, USA
+                                               5 Institute of Cosmology & Gravitation, Dennis Sciama Building, University of Portsmouth, Portsmouth, PO1 3FX, UK
+                                               6 Center for Cosmology and Particle Physics, Department of Physics, New York University, 4 Washington Place, New York, NY 10003, USA
+                                               7 School of Physics and Astronomy, University of St Andrews, North Haugh, St Andrews KY16 9SS, UK
+                                               8 Departments of Physics and Astronomy, University of California, Berkeley, CA 94720, USA
+                                               9 Harvard-Smithsonian Center for Astrophysics, 60 Garden St., Cambridge, MA 02138, USA
+                                               10 Center for Cosmology and AstroParticle Physics, The Ohio State University, Columbus, OH 43210, USA
+                                               11 Max-Planck-Institut für extraterrestrische Physik, Postfach 1312, Giessenbachstr., 85741 Garching, Germany
+                                               12 Brookhaven National Laboratory, Bldg 510, Upton, New York, NY 11973, USA
+                                               13 Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544 USA
+                                               14 Department of Astronomy, University of Winsconsin-Madison, 475 N. Charter Street, Madison, WI 53706-1582, USA
+                                               15 Department of Physical Sciences, The Open University, Milton Keynes MK7 6AA, UK
+                                               16 Apache Point Observatory and New Mexico State University, P.O. Box 59, Sunspot, NM, 88349-0059, USA
+                                               17 Sternberg Astronomical Institute, Moscow State University, Moscow
+                                               18 Department Physics and Astronomy, University of Utah, 115 S 1400 E, Salt Lake City, UT 84112, USA
+                                               19 Instituto de Fı́sica Teórica, (UAM/CSIC), Universidad Autonoma de Madrid, Cantoblanco, E-28049 Madrid, Spain
+                                               20 Department of Astronomy, Case Western Reserve University, 10900 Euclid Ave, Cleveland, OH 44106, USA
+                                               21 Leibniz-Institut für Astrophysik Potsdam (AIP), An der Sternwarte 16, D-14482 Potsdam, Germany
+                                               22 Kavli IPMU (WPI), UTIAS, The University of Tokyo, Kashiwa, Chiba 277-8583, Japan
+                                               23 King’s College, Department of Chemistry and Physics, Wilkes Barre, PA 18711, USA
+                                               24 Leibniz-Institut für Astrophysik Potsdam (AIP), An der Sternwarte 16, D-14482 Potsdam, Germany
+                                               25 Aix Marseille Universit, CNRS, LAM (Laboratoire d’Astrophysique de Marseille) UMR 7326, 13388, Marseille, France
+                                               26 Campus of International Excellence UAM+CSIC, Cantoblanco, E-28049 Madrid, Spain
+                                               27 Instituto de Astrofisica de Andaluca (CSIC), Glorieta de la Astronoma, E-18080 Granada, Spain
+                                               28 Departamento de Fı́sica Teórica, Universidad Autónoma de Madrid, Cantoblanco, 28049, Madrid, Spain
+                                               29 Universitäts-Sternwarte München, Scheinerstrasse 1, 81679 Munich, Germany
+                                               30 Kansas State University, Manhattan KS 66506, USA
+                                               31 National Abastumani Astrophysical Observatory, Ilia State University, 2A Kazbegi Ave., GE-1060 Tbilisi, Georgia
+                                               32 Department of Astronomy and Astrophysics, The Pennsylvania State University, University Park, PA 16802 USA
+                                               33 Institute for Gravitation and the Cosmos, The Pennsylvania State University, University Park, PA 16802 USA
+                                               34 Instituto de Astrofı́sica de Canarias (IAC), C/Vı́a Láctea, s/n, La Laguna, Tenerife, Spain
+                                               35 Facultad de Ciencias Astronómicas y Geofı́sicas -Universidad Nacional de La Plata. Paseo del Bosque S/N (1900). La Plata, Argentina
+                                               36 CONICET, Rivadavia 1917, 1033, Buenos Aires, Argentina
+                                               37 Instituto de Fisica, Universidad Nacional Autónoma de México, Apdo. Postal 20-364, México
+
+
+
+
+                                               20 October 2015
+
+
+
+
+                                               c 0000 RAS, MNRAS 000, 2–21
+Mon. Not. R. Astron. Soc. 000, 2–21 (0000)    Printed 20 October 2015    (MN LATEX style file v2.2)
+
+
+                                       ABSTRACT
+                                       The Baryon Oscillation Spectroscopic Survey (BOSS), part of the Sloan Digital Sky Survey
+                                       (SDSS) III project, has provided the largest survey of galaxy redshifts available to date, in
+                                       terms of both the number of galaxy redshifts measured by a single survey, and the effective
+                                       cosmological volume covered. Key to analysing the clustering of these data to provide cosmo-
+                                       logical measurements is understanding the detailed properties of this sample. Potential issues
+                                       include variations in the target catalogue caused by changes either in the targeting algorithm
+                                       or properties of the data used, the pattern of spectroscopic observations, the spatial distribu-
+                                       tion of targets for which redshifts were not obtained, and variations in the target sky density
+                                       due to observational systematics. We document here the target selection algorithms used to
+                                       create the galaxy samples that comprise BOSS. We also present the algorithms used to create
+                                       large scale structure catalogues for the final Data Release (DR12) samples and the associated
+                                       random catalogues that quantify the survey mask. The algorithms are an evolution of those
+                                       used by the BOSS team to construct catalogues from earlier data, and have been designed
+                                       to accurately quantify the galaxy sample. The code used, designated MKSAMPLE, is released
+                                       with this paper.
+                                       Key words: cosmology: observations - (cosmology:) large-scale structure of Universe
+
+
+
+1    INTRODUCTION                                                          proximating each survey as a single volume, limited in redshift and
+                                                                           area, and sampled by a constant density of galaxies, with numbers
+The size of galaxy redshift surveys has grown exponentially over
+                                                                           approximately matching those of the actual surveys. Thus the re-
+the last decade and will continue do so into the next, thanks to
+                                                                           sults themselves are not precise and are designed to simply demon-
+the continuing development of instrumentation to undertake mulit-
+                                                                           strate the evolution rather than provide a quantitative comparison
+object spectroscopy (MOS) on dedicated telescopes. The scientific
+                                                                           between experiments. The best fit line shows the growth in the im-
+driver for this dramatic increase is that galaxy redshift surveys pro-
+                                                                           pact of past surveys, following the development of Multi-Object
+vide a wealth of cosmological and extra-galactic information. The
+                                                                           Spectrographs (MOS) on the Anglo-Australian telescope (Lewis et
+most easily accessible cosmological information is encoded in 2-
+                                                                           al. 1998) and the Sloan telescope (Gunn et al. 2006), which con-
+point clustering statistics of the over-density field, which contain
+                                                                           tinues to the next generation with a new MOS being developed
+both the Baryon Acoustic Oscillation (BAO) and Redshift Space
+                                                                           for the Hobby-Eberly telescope (HETDEX; Hill et al. 2008), the
+Distortion (RSD) signals. The BAO scale is a comoving large-
+                                                                           Mayall telescope (DESI; Levi et al. 2013), the VISTA telescope
+scale enhancement in pairs of galaxies separated by ∼150 Mpc,
+                                                                           (4MOST; de Jong et al. 2014), the William Herschel Telescope
+which can be used to track cosmological expansion. It arises from
+                                                                           (WEAVE; Dalton et al. 2014), the Subaru telescope (PFS; Takada et
+the propagation of sound waves in the early Universe (Peebles &
+                                                                           al. 2014) and the satellite experiments Euclid (Laureijs et al. 2011)
+Yu 1970; Sunyaev & Zel’dovich 1970; Doroshkevich et al. 1978),
+                                                                           and WFIRST (Spergel et al. 2015) . For clarity we only plot ap-
+and is quite insensitive to astrophysical processing that occurs on
+                                                                           proximate DESI and Euclid predictions in Fig. 1 to show the gen-
+smaller scales; thus BAO experiments are affected by a low level
+                                                                           eral expected trend from these new instruments, as our simplified
+of systematics (see review by Weinberg et al. 2013 for a compar-
+                                                                           approach is insufficient to provide a careful differential analysis of
+ison of different methods). Redshift-Space Distortions arise from
+                                                                           these future projects. Also, there is significant uncertainty in the
+the peculiar velocities of galaxies within a comoving frame, which
+                                                                           predictions for Euclid, as a consequence of our lack of knowledge
+produce coherent distortions in the measured redshifts compared to
+                                                                           about the galaxy population targeted: the prediction here uses the
+those produced by the Hubble expansion (Kaiser 1987). As these
+                                                                           predicted volume and galaxy density of Laureijs et al. (2011). The
+velocities are gravitational in origin, the amplitude depends on the
+                                                                           higher redshift surveys of eBOSS and WiggleZ are inherently more
+rate of structure growth, and hence RSD allow tests of General Rel-
+                                                                           difficult and consequently they lie above the line: they push into
+ativity (GR) on large scales.
+                                                                           new redshift ranges, rather than to larger volumes.
+      The BAO signature has now been detected in many different
+galaxy surveys and analysed using a variety of methods. To show                 In this paper, we present the target selection and catalogue
+the exponential growth in BAO measurements, Fig. 1 presents the            generation of the Data Release 12 (DR12; Alam et al. 2015) sam-
+predicted error on the BAO scale expected for different surveys,           ples of galaxies selected from the Baryon Oscillation Spectroscopic
+calculated as if the clustering signal from different directions was       Survey (BOSS; Dawson et al. 2012), which is part of SDSS-III
+optimally combined to provide the best possible single BAO posi-           (Eisenstein et al. 2011). The spectroscopic sample has two primary
+                                                                                                      <                                 <   <
+tion measurement. We include results from various stages of the 2-         catalogues: LOWZ at z ∼      0.4, and CMASS covering 0.4 ∼     z ∼
+degree-Field Galaxy Redshift Survey (2dFGRS; Colless et al. 2001,          0.7 (see Section 3 for details). An overview of the BOSS observa-
+2003), Sloan Digital Sky Survey (SDSS; York et al. 2000) and Wig-          tions is provided in Section 2; see Dawson et al. (2012) for a full
+gleZ (Drinkwater et al 2010), and predictions for the continuation         description of the survey.
+of the SDSS project with eBOSS (Dawson et al. 2015). For consis-                The work presented here follows on from the analysis of pre-
+tency, all calculations used the code of Seo & Eisenstein (2007), ap-      vious data releases: DR12 is the third public SDSS data release
+                                                                           containing BOSS spectroscopic results. The first was DR9 (Ahn et
+                                                                           al. 2012), when the survey was approximately one third complete.
+?   E-mail: will.percival@port.ac.uk                                       The creation of the large-scale structure catalogues from these data
+
+                                                                                                                                    c 0000 RAS
+                                                                                          BOSS LSS targeting and catalogues                      3
+                                                                              using an algorithm that builds on the work described above. This
+                                                                              paper on the targeting algorithm and catalogue creation method
+                                                                              is complemented by a series of papers measuring and analysing
+                                                                              clustering, splitting the BOSS galaxies into sub-samples delineated
+                                                                              by the primary targeting algorithms LOWZ and CMASS samples
+                                                                              (see Section 3 for details). BAO measurements are presented in
+                                                                              configuration-space (Cuesta et al. 2015) and Fourier-space (Gil-
+                                                                              Marin et al. 2015a), and RSD measurements made in Fourier-space
+                                                                              are presented in Gil-Marin et al. (2015b). Two further support pa-
+                                                                              pers are provided in this set: Ross et al. (2015) considers the BOSS
+                                                                              selection function in more detail, presenting the observational foot-
+                                                                              print, masks for image quality and Galactic extinction, and weights
+                                                                              to account for density relationships intrinsic to the imaging and
+                                                                              spectroscopic portions of the survey. Vargas-Magana et al. (2015)
+                                                                              presents systematic tests on the reconstruction algorithm used for
+                                                                              anisotropic BAO analyses. A subsequent set of analyses to be re-
+Figure 1. BAO measurement errors predicted for various surveys as a func-     leased soon, will consider jointly analysing the full BOSS sample,
+tion of the year of publication. In order to calculate these with a consis-   without splitting by target selection.
+tent methodology we plot “predictions” using the code of Seo & Eisenstein           Because the key cosmological measurements depend on the
+(2007) based on a single number of galaxies, and volume for each survey.      density field, galaxy properties (except how they trace this field,
+The surveys plotted are 2dFGRS early (Percival et al. 2001) and final (Cole   commonly quantified by a linear deterministic bias b), are unimpor-
+et al. 2005); SDSS-II LRGs (Eisenstein et al. 2005); WiggleZ (Blake et al.    tant once redshifts have been measured, and cosmological surveys
+2011); BOSS DR9 CMASS (Anderson et al. 2012); BOSS DR11 LOWZ
+                                                                              are free to choose which galaxies to observe to optimise survey ef-
+(Tojeiro et al. 2014) and CMASS (Anderson et al. 2014b). In terms of sur-
+vey volume, BOSS DR12 is very close to DR11 and we do not show it here.
+                                                                              ficiency and the optimal bias b. BOSS targets luminous galaxies
+We also present approximate predictions for the eBOSS, DESI and Euclid        for spectroscopic observations as they have a large bias, are rel-
+future surveys (see text for details).                                        atively easy to target, and have strong spectral features that ease
+                                                                              redshift determination. The target selection adopted by BOSS is an
+                                                                              extension of the targeting algorithms for the SDSS-II (Eisenstein et
+was outlined in Anderson et al. (2012), alongside the isotropic BAO           al. 2001) and 2SLAQ (Cannon et al. 2006) Luminous Red Galax-
+results, with the anisotropic results following in Anderson et al.            ies (LRGs), targeting fainter and bluer galaxies in order to achieve
+(2014a). The development of a method to remove potential system-              the desired number density of ∼ 3 × 10−4 h3 Mpc−3 . The major-
+atic errors in the clustering measurements caused by fluctuations in          ity of the galaxies are old stellar systems whose prominent 4000 Å
+the target catalogue was presented in Ross et al. (2012). The DR9             break makes them relatively easy to target using multi-colour data.
+catalogues were used extensively for science, which also tested the           The data from which the samples are targeted is described in Sec-
+catalogues themselves. The clustering was compared with simula-               tion 2, and the LOWZ and CMASS target selection algorithms are
+tions in Nuza et al. (2013), and with full model fits in Sanchez et           discussed in detail in Section 3.
+al. (2012). RSD were measured by Reid et al. (2012) and enhanced                    In order to do large-scale structure analyses with the sample
+by knowledge of passive galaxy evolution in Tojeiro et al. (2012):            of spectroscopically observed galaxies, we have put together cat-
+the resulting GR tests were presented in Samushia et al. (2013).              alogues including information on the detailed angular and radial
+Primordial non-Gaussianity was constrained by Ross et al. (2013),             mask of the sample including the redshift completeness, the ob-
+while Zhao et al. (2013) reported neutrino masses, and Scoccola               serving conditions when the imaging and spectroscopic observa-
+et al. (2013) examined the time variation of physical constants.              tions were made, and the appropriate weights to give each object, as
+This work led to further refinements of the catalogue creation al-            well as random (i.e., unclustered) catalogues with the same selec-
+gorithm for the analysis of the second public BOSS data release               tion function. These collectively make up the large-scale structure
+DR10 (Ahn et al. 2014), which coincided with an internal release              catalogues, whose contents are detailed in this paper.
+(called DR11). In particular, the code was rewritten into a modu-                   Key to creating these catalogues for the BOSS galaxy surveys
+lar version, called MKSAMPLE, new weights were used to correct                is the ability to predict where we could have observed galaxies, as
+for fluctuations in the expected target density, and new masks were           well as where galaxies exist, thus defining the survey or sample
+used for “bad” areas. These refinements were presented alongside              mask. This mask is intricately linked with the selection of galax-
+the BAO results for the CMASS sample in Anderson et al. (2014b)               ies: in general, corrections for selection effects can be applied to
+and the LOWZ sample in Tojeiro et al. (2014), and were confirmed              either the mask or the galaxy sample to produce a match between
+to be robust to colour (Ross et al. 2014) and against possible sys-           the two. In order to understand the mask, we need to understand
+tematics in the fit (Vargas-Magana et al. 2014). As for DR9, the              both the target sample and the subsequent spectroscopy and red-
+results were extensively used, further testing the catalogues: RSD            shift measurement, which we briefly summarise in Section 4. The
+measurements have been made in a number of different ways (Beut-              BOSS galaxy mask is quantified using a random catalog, a Poisson
+ler et al. 2014a; Samushia et al. 2014; Sanchez et al. 2014; Chuang           sampling of the volume covered by the selected galaxies, includ-
+et al. 2013), the bispectrum calculated and analysed (Gil-Marin et            ing any variations in density other than the cosmological clustering
+al. 2014a,b), and neutrino mass constraints presented (Beutler et             signal we wish to measure. The 3D mask does not have to be quan-
+al. 2014b). Saito et al. (2015) account for redshift dependent selec-         tified by a Poisson sampling, but this is a straightforward approach
+tion effects and compare clustering and RSD with predictions from             to this - in effect providing a Monte-Carlo sampling of the volume
+abundance matching.                                                           covered. This weighted random sample and the weighted galaxy
+      We have now analysed the final BOSS DR12 galaxy sample                  sample form the starting point for the key BOSS galaxy cluster-
+
+c 0000 RAS, MNRAS 000, 2–21
+4      Reid et al.
+ing analyses. Section 5 presents the method adopted by the BOSS          Redshifts are then measured using the methods described in Bolton
+team to prepare catalogues of galaxies and randoms, using routines       et al. (2012). The spectroscopic observations were split into distinct
+made publicly available in a code called MKSAMPLE. This is a fur-        areas of sky, which we call chunks, targeted separately and sequen-
+ther extension of the code used for the early DR9 analyses, which        tially in time, each defined by a subset of the total footprint. Later
+is described in Anderson et al. (2012).                                  chunks can overlap earlier chunks and recover unobserved targets.
+      Although the targeting algorithm adopted for BOSS is               The angular distribution of chunks 2-11, which are special as they
+isotropic and the catalogue of target objects covers an angular area     reflect early versions of the target selection (see Appendix A), but
+larger than that of spectroscopic observations, the mask is compli-      also serve to show how the survey is built up from chunks are shown
+cated by various anisotropic effects including variations in imaging     in Fig. A1, and basic definitions for geometrical descriptors used in
+depth due to recalibration of the SDSS photometric scale and rere-       this paper are provided in Table 1.
+duction of the imaging as the spectrosocpic survey progressed, vari-           The start of spectroscopic observations preceded the finalisa-
+ation of seeing, variation with stellar density caused by occultation    tion of the DR8 imaging reductions, so the imaging data used by
+by stars, the inability to measure spectra for close to another target   BOSS are based on the photometric measurements available at the
+observed at the same time, and the failure to measure spectra as a       time of tiling (see Section 4.2), which may differ from the quan-
+function of signal-to-noise ratio in the spectrum. These effects are     tities available for an object in the DR8 catalog. BOSS targeting
+often corrected by applying a weight to the galaxies (e.g. Ross et al.   was performed using three different versions of the reduction soft-
+2012), but could instead be incorporated into the mask. The quality      ware that resolves the catalogues from overlapping imaging data
+of the DR12 data is such that we can now observe systematic ef-          (RESOLVE; see Aihara et al. 2011). Chunks 1–4 used a version of
+fects that couple radial and angular fluctuations, and we introduce      the RESOLVE software tagged on 14-06-2009, chunks 5–11 used
+3D corrections for these. The manner adopted to deal with these          a version tagged on 16-11-2009, and chunks 12 onwards used the
+effects for BOSS is described in Section 6.                              same version as that used to produce DR8. In total, 17% of targets
+      BOSS includes a number of galaxy catalogues with different         were targeted with pre-DR8 RESOLVE versions. Because these
+selection functions, some of which spatially overlap. The combina-       different versions of the software selected different imaging data to
+tion of these to optimally quantify the underlying matter overden-       be designated as “primary” (i.e. either the only or the best obser-
+sity field is non-trivial, and we present the method adopted by the      vation of this object; see the DR8 documentation for more details),
+BOSS team in Section 7.                                                  approximately 9% of the imaging data used for targeting CMASS
+      The MKSAMPLE code will be released upon publication                galaxies is now designated as secondary1 in the DR8 database.
+of this paper, and we will also publish the resulting Large-
+Scale Structure catalogues, with a full datamodel describing
+each. These will all be linked from the main SDSS web site               2.2   Parent catalog
+http://www.sdss.org/surveys/boss .                                       The selection of galaxy targets for spectroscopic observation is
+                                                                         based on a parent catalogue of photometrically identified objects
+                                                                         within the imaging data. The parent catalogue was based on ob-
+2     DATA                                                               jects chosen from 3172 deg2 in the Southern Galactic Cap (SGC)
+2.1    Imaging Data                                                      and 7606 deg2 in the Northern Galactic Cap (NGC), as described in
+                                                                         this section. The SDSS imaging pipeline returns a number of dif-
+The Sloan Digital Sky Survey (SDSS-I/II; York et al. 2000) im-           ferent measurements of the photometry of galaxies. Full descrip-
+aged approximately 7,606 deg2 of the Northern Galactic Hemi-             tions may be found on the SDSS website2 and in Stoughton et al.
+sphere and 600 deg2 of the Southern Galactic Hemisphere in the           (2002). For galaxy target selection we use three photometric mea-
+ugriz bands (Fukugita et al. 1996; Smith et al. 2002; Doi et al.         surements, which have all been corrected for Galactic extinction
+2010), using a specially designed camera (Gunn et al. 1998) on the       using the Schlegel, Finkbeiner & Davis (1998) dust maps.
+2.5m Sloan telescope (Gunn et al. 2006) at the Apache Point Ob-                The colours of galaxies are based on SDSS model magnitudes
+servatory in New Mexico. The SDSS-III project (Eisenstein et al.         (denoted by the subscript mod). These are determined by using the
+2011) obtained additional imaging to make the region of the South-       best-fit (psf-convolved) deVaucouleurs or exponential profile fit in
+ern Galactic Hemisphere contiguous, covering 3,172 deg2 . As part        the r band to determine the fluxes in the other bands (full details
+of this effort, the original SDSS-I/II data and the SDSS-III data        are provided in Abazajian et al. 2004). Cuts in apparent magni-
+were reduced with the latest versions of the SDSS image process-         tude are made with “cmodel” magnitudes (denoted by a subscript
+ing and calibration pipelines (Lupton et al. 2001; Pier et al. 2003;     cmod). These are a linear combination of the flux from the best fit
+Padmanabhan et al. 2008). These data were released as part of Data       exponential and deVaucouleurs profile fit in each band separately3
+Release 8 (Aihara et al. 2011), and form the parent imaging cata-
+logue for the BOSS galaxy target selection. There are a number                             fcmod = (1 − P )fexp + P fdeV ,                       (1)
+of differences between the processing performed for DR8 (see the         where P is the best-fit coefficient obtained from a fit of the linear
+DR8 paper Aihara et al. 2011 for a detailed discussion) and ear-         combination of the deVaucouleurs and exponential profile fits to the
+lier reductions; reproducing BOSS galaxy samples derived from            image, and weights the different contributions (reported as fracdeV
+the imaging data requires using the appropriate algorithms.              by the SDSS pipelines), and f represents the flux (not magnitude)
+      BOSS obtained spectra and redshifts for 1,372,737 galaxies         assuming an exponential or deVaucouleur profile. Star-galaxy sep-
+over 9,376 deg2 . The targets are assigned to tiles of diameter 3 deg,   aration compares the PSF magnitudes of galaxies (denoted by a
+using a tiling algorithm that is adaptive to the density of targets
+on the sky (Blanton et al. 2003). Spectra are then obtained using
+the BOSS spectrographs (Smee et al. 2013). Each observation is           1 i.e., there is an overlapping observation with higher quality photometry
+performed in a series of 900 sec exposures, integrating until a min-     2 http://www.sdss3.org/dr8
+imum signal-to-noise ratio is achieved for the faint galaxy targets.     3 contrasted with model magnitudes where the fit in the r band is used
+
+
+
+                                                                                                                  c 0000 RAS, MNRAS 000, 2–21
+                                                                                                   BOSS LSS targeting and catalogues                                 5
+    spherical polygon    The base unit of a M ANGLE mask. Spherical polygons are used to represent the boundaries of the imaging survey from which the
+                         targets are drawn, the circular fields defined by spectroscopic tiles, as well as regions to be removed from the survey footprint (e.g.
+                         the centerpost of each spectroscopic tile; see Sec. 5.1.1 for a full list).
+    spectroscopic tile   Output of the tiling algorithm providing a central location on the sky and list of targets to be observed for spectroscopic observations.
+                         Each tile has a circular field-of-view of radius 1.49 degrees, and can be observed by multiple plates.
+    plate                Physical plate with a hole drilled for each target, based on the anticipated airmass of observation. Spectroscopic tiles may be
+                         observed using multiple plates.
+    chunk                Basic unit of sky input to the tiling algorithm. It consists of a set of rectangles in a spherical coordinate system. The SDSS-III BOSS
+                         survey is composed of 38 chunks.
+    sector               The union of spherical polygons defined by a unique intersection of spectroscopic tiles. The survey completeness is treated as
+                         uniform within a sector.
+
+Table 1. Basic definitions for the geometric description of SDSS-III BOSS observations and the LSS M ANGLE masks.
+
+
+subscript PSF) with model or cmodel magnitudes; PSF magnitudes                       3.1    Requirements and Criteria
+underestimate the flux from extended sources compared with the
+                                                                                     The BOSS sample was designed to measure the BAO signature in
+model fits (see § 3.3.2 for details). Finally, we use “fiber2” (de-
+                                                                                     the two-point galaxy clustering signal, and in particular to meet er-
+noted by subscript fib2) magnitudes to estimate the expected flux
+                                                                                     ror requirements on the measurement of the angular diameter dis-
+through the SDSS-III 2” fibres.
+                                                                                     tance dA and Hubble parameter H at z = 0.35 and z = 0.6. These
+      The parent sample for the BOSS galaxy target selection is
+                                                                                     requirements can be met by a survey covering an area of approx-
+constructed by selecting all detected objects that the photometric
+                                                                                     imately 10,000 deg2 with a comoving number density of galaxies
+pipeline classifies as galaxies, and that are chosen by RESOLVE
+                                                                                     of 3 × 10−4 h3 Mpc−3 for 0.1 < z < 0.6. This density is close to
+to be “primary”. The targeting software uses the photometry of the
+                                                                                     optimal for large-scale cosmological studies (e.g., Kaiser 1986). To
+primary objects to select targets for spectroscopic follow-up. The
+                                                                                     efficiently undertake such a survey using the Sloan telescope and
+variation in selected targets from different imaging data is consis-
+                                                                                     spectrographs, we need to select a sub-sample of the parent cata-
+tent with that expected given the photometric uncertainties, and so
+                                                                                     logue of photometrically identified objects that fulfil the following
+we treat the regions targeted with pre- and final DR8 imaging as
+                                                                                     criteria simultaneously:
+statistically identical. We do not make any cuts on photometric-
+ity at this stage; unphotometric data is discarded at the catalogue
+                                                                                        (i) galaxies that lie in the desired redshift range 0.1 < z < 0.6,
+creation stage (see § 5.1.1). Users constructing their own samples
+                                                                                        (ii) sufficient galaxies to meet the desired density over the full
+for science analyses are advised to use the CALIB STATUS flag to
+                                                                                     redshift range,
+cut on photometricity (restricting to photometric observations cor-
+                                                                                        (iii) well-defined limits in stellar populations, to isolate a
+responds to CALIB STATUS==1). We cull objects with suspect
+                                                                                     strongly clustered subsample of galaxies,
+photometry as reported in the flags set by the imaging pipeline. In
+particular, we require objects that are detected in the r and i bands.                  (iv) redshifts that can be measured in a relatively short exposure
+In the Image Processing pipeline, this is indicated by having one                    with our telescope,
+of the BINNED1, BINNED2 or BINNED4 flags set in both the r                              (v) few contaminating objects that are not part of the desired
+and i bands. We also require that the OBJC FLAG flag, which is a                     sample,
+combination of the per-filter flags appropriate for the whole object                    (vi) selectable uniformly across the desired area,
+(the full definition is provided in Stoughton et al. 2002) has                          (vii) selection is not sensitive to systematic errors in the data
+                                                                                     used.
+  (i) Objects not to be saturated :(NOT SATUR) OR (SATUR
+AND (NOT SATUR CENTER)),                                                             The challenge of target selection is to provide an algorithm for
+  (ii) Blended     objects    :    (NOT BLENDED) OR (NOT                             selecting the subsample of the parent imaging catalogue that op-
+NODEBLEND),                                                                          timally meets these goals. Selection based solely on an appar-
+  (iii) Other photometric quality flags : (NOT BRIGHT) AND                           ent magnitude cut, as used for the SDSS-I and -II Main Galaxy
+(NOT TOO MANY PEAKS) AND (NOT PEAKCENTER) AND                                        Sample (Strauss et al. 2002) in general selects too many low red-
+(NOT NOTCHECKED) AND (NOT NOPROFILE).                                                shift and low luminosity galaxies. Rather, in BOSS we follow
+                                                                                     a similar philosophy to the selection of Luminous Red Galaxies
+                                                                                     (LRGs) in SDSS-I and -II (Eisenstein et al. 2001) and the 2SLAQ
+                                                                                     survey (Cannon et al. 2006) using colour-magnitude and colour-
+3     TARGET SELECTION
+                                                                                     colour cuts, selecting luminous galaxies with strong spectral fea-
+We now turn to the specifics of the target selection algorithms used                 tures (item (iv) above).
+to define the BOSS spectroscopic galaxy samples. We first summa-                           At redshifts z < 0.4, we can select such a sample by extend-
+rize the criteria that we wish our algorithm to satisfy (§ 3.1), with                ing to fainter LRGs than observed in SDSS-I and -II. At higher
+the aim of defining a uniformly selected sample over a broad red-                    redshifts, we do not restrict ourselves to red galaxies, and instead
+shift range. The galaxy sample is targeted using two different algo-                 select an approximately stellar mass-limited sample of objects of all
+rithms, which we term “LOWZ” (detailed in § 3.2) and “CMASS”                         intrinsic colours. As in Eisenstein et al. (2001), two sets of colours
+(for “Constant (stellar) Mass”, § 3.3), respectively. Star-galaxy sep-               are necessary to describe the colour locus: one when the 4000 Å
+aration is treated differently in the CMASS sample than elsewhere                    break lies in the SDSS g-band, and the other when it redshifts into
+in SDSS, as we describe in § 3.3.2. A variant of the CMASS al-                       the r-band at z ∼ 0.4. Selecting these two subsamples requires
+gorithm was used to explore the colour boundaries of the sample                      defining fiducial colours that track the locus of a passively evolving
+(§ 3.4).                                                                             population of galaxies in gri colour space. Following Eisenstein et
+
+c 0000 RAS, MNRAS 000, 2–21
+6      Reid et al.
+
+                                                                                      1.0
+
+
+                                                                                      0.8
+                                                                                                                                                                =0
+                                                                                                                                                       c perp
+                                                                                r-i   0.6
+
+                                                                                                                                                c pa
+                                                                                                                                   c pa
+                                                                                                                                                   r,
+                                                                                      0.4                                            r,                fain
+                                                                                                                                                         t
+                                                                                                                                          m
+                                                                                                    c pa
+                                                                                                      r,
+                                                                                                                                          ed
+                                                                                                                                              ia
+                                                                                                                                              n
+                                                                                                           br
+                                                                                                             ht
+                                                                                      0.2                  ig
+
+                                                                                        0.5                1.0           1.5              2.0                    2.5
+                                                                                                                         g-r
+
+                                                                               Figure 3. Density plot of LOWZ galaxies in the (g − r, r − i) colour plane;
+                                                                               red corresponds to higher density and dark blue to lower density, in an ar-
+                                                                               bitrary normalisation and linear scale. Redshift increases rightwards and
+                                                                               upwards along the galaxies locus, starting at z ≃ 0.1 on the bottom left
+                                                                               corner. The knee on the galaxy locus is caused by the 4000 Å break tran-
+                                                                               sitioning between the g− and r-band filters, and happens at z ≈ 0.4. The
+                                                                               colours c⊥ and c|| are simple rotations of this colour plane, and trace the
+Figure 2. Top panel: Black dots show median c|| for LOWZ spectroscopi-         position of a target in parallel and perpendicular, respectively, to the data
+cally confirmed galaxies as a function of measured redshift, with the dashed   locus. The black thick line represents the passively evolving LRG model of
+lines showing the interquartile range. The efficiency of using this quantity   Maraston et al. (2009). The green and red dashed lines are the colour and
+to track redshift is clear. Bottom panel: Median rmod − imod as a function     magnitude targeting cuts – see the main text for details. The few targets seen
+of redshift for confirmed CMASS galaxies, with interquartile range (dashed     outside of the selection cut are due to differences in the targeting and final
+lines). The way in which we can track the high-redshift locus of galaxies      photometry, see Section 2.
+using this colour, and select as a function of redshift, is clear.
+
+                                                                               tion of a metal-poor coeval population. This model was found to
+al. (2001) and Cannon et al. (2006), we define
+                                                                               be a good fit to the g, r, i colours of luminous red galaxies (LRGs)
+c||   =    0.7(gmod − rmod ) + 1.2(rmod − imod − 0.18)                  (2)    from the 2SLAQ survey (Cannon et al. 2006) as a function of red-
+                                                                               shift, over models containing star formation in various amount. The
+c⊥    =    (rmod − imod ) − (gmod − rmod )/4.0 − 0.18                   (3)
+                                                                               same model also better fit the overall luminosity evolution of BOSS
+to describe the low redshift locus and                                         galaxies (Montero-Dorta et al. 2015). The knee seen in the galaxy
+                                                                               locus corresponds to the transition of the 4000 Å break from the
+d⊥    =     (rmod − imod ) − (gmod − rmod )/8 ,                         (4)
+                                                                               g− to the r−band. The parameter c|| quantifies the position of a
+to describe the high-redshift locus. As discussed above, the colours           galaxy along the main locus, and c⊥ characterises the departure of
+are defined using SDSS model magnitudes, and are corrected for                 a galaxy from the centre of the locus; c⊥ = 0 lies approximately at
+Milky Way extinction. The efficiency of these selections to se-                the centre of the galaxy distribution.
+lect luminous galaxies as a function of redshift is demonstrated in                  We select targets at low redshift (z < 0.4) around the pre-
+Fig. 2, which shows how c|| and rmod − imod versus redshift for                dicted colour locus using
+observed BOSS galaxies.
+                                                                                                                  |c⊥ | < 0.2,                                       (5)
+      Where the targeting algorithms use colour selection, they are
+built on model magnitudes, which are based on the flux measured                (red dashed lines in Fig. 3) and we select the brightest and reddest
+through equivalent apertures in all band and thus provide unbiased             objects at each redshift using a sliding colour-magnitude cut with
+colours of galaxies. Brightness limits are instead based on cmodel             c⊥ (an effective proxy for a photometric redshift):
+magnitudes, which provide better estimates of the total light ob-
+served.                                                                                                rcmod < 13.5 + c|| /0.3.                                      (6)
+                                                                               The dashed green lines in Fig. 3 show the effective cuts in c|| for
+                                                                               three different r−band magnitudes: r = 16, 18.73 and 19.6 mag
+3.2   The LOWZ sample
+                                                                               corresponding to the faint boundary, the median magnitude and
+The LOWZ sample is designed to extend the SDSS-I/II Cut I LRG                  the bright boundary of the sample respectively. Thus fainter ob-
+sample (Eisenstein et al. 2001) to z ≈ 0.4 to fainter luminosities,            jects must be redder to pass the cut. This cut is the most important
+in order to increase the number density of the sample by roughly a             criterion in the selection of LOWZ galaxies - it drives the number
+factor of 3. Fig. 3 shows how the colours c|| and c⊥ describe the              density of the sample by effectively setting the magnitude limit as a
+evolution of a passively evolving stellar population with redshift.            function of redshift, and aims to produce a constant number density
+Redshift increases from the bottom left to upper right. The black              over the desired redshift range. The number of galaxies in the sam-
+line shows the passively evolving LRG model of Maraston et al.                 ple is therefore highly sensitive to this cut (see Ross et al. 2012;
+(2009). The Maraston et al. (2009) ’LRG’ template is a model of a              Tojeiro et al. 2014). The resulting space density of the sample is
+metal-rich population in passive evolution containing a small frac-            shown in Fig. 11; the sample is close to volume-limited (constant
+
+                                                                                                                           c 0000 RAS, MNRAS 000, 2–21
+                                                                                      BOSS LSS targeting and catalogues                     7
+space density at ∼ 3 × 10−4 h3 Mpc−3 ) over the redshift range         where TILEID identifies spectroscopic tiles, and this cut corre-
+0.2 < z < 0.4.                                                         sponds to chunk numbers larger than 6.
+     We impose brightness limits on the targets, such that                  Further details on this issue, and other slight changes in the
+                                                                       targeting of LOWZ galaxies in early chunks, can be found in Ap-
+                         16 < rcmod < 19.6.                      (7)
+                                                                       pendix A. Briefly, LOWZ targets in chunk 2, and LOWZ targets in
+The faint limit ensures a high redshift success rate. The bright       chunks 3-6, were selected with different algorithms from those of
+limit excludes a significant number of low-redshift blue galaxies      subsequent data. For the purposes of a large-scale structure catalog,
+that would otherwise pass the colour cut, but also excludes a frac-    in previous data releases we simply removed chunks 2-6 from the
+tion of brightest cluster galaxies in low-redshift massive clusters    LOWZ sample and the corresponding mask. In § 7 we construct
+(Hoshino et al. 2015). A bright cut was not needed in SDSS-I/II as     separate samples using the chunk 2 (“LOWZE2”) and chunk 3-6
+such galaxies were already targeted by the SDSS-I/II Main Galaxy       (“LOWZE3”) selections, and combine all three LOWZ catalogues
+Sample (Strauss et al. 2002), but a significant fraction of the BOSS   with the CMASS samples to construct a single unified sample ap-
+footprint lies outside that of SDSS-I and -II.                         propriate for analyses restricted to large scales, such as BAO fitting.
+     The star-galaxy separation follows the same procedure intro-      The effects of these changes on the density of galaxies measured as
+duced in Eisenstein et al. (2001) for the LRGs,                        a function of redshift can be seen in Fig. 11.
+                         rpsf − rcmod > 0.3 .                    (8)
+The cmodel magnitude is a proxy for a “total” magnitude for a          3.3     The CMASS sample
+galaxy, while the PSF magnitude fits the unresolved component of       The CMASS sample uses similar selection cuts to those utilised
+the object. The difference between the two is therefore a measure      by the Cut-II LRGs from SDSS-I/II and the LRGs in 2SLAQ, but
+of the extendedness of the galaxy.                                     extends them both bluer and fainter in order to increase the number
+      In summary, the LOWZ selection algorithm, as implemented         density of targets in the redshift range 0.4 < z < 0.7 and get closer
+after commissioning, is as follows:                                    to a mass limited sample.
+        rcmod        <          13.5 + c|| /0.3                  (9)        The quantity d⊥ (Fig. 4) effectively discards low-redshift
+                                                                       galaxies by choosing
+         |c⊥ |       <          0.2                            (10)
+           16    < rcmod <      19.6                           (11)                                  d⊥ > 0.55.                          (13)
+rpsf − rcmod         >          0.3 ,                          (12)    We do not apply any further colour cuts, with the exception of a
+                                                                       sliding colour-magnitude cut that selects the brightest objects at
+    The galaxies in the LOWZ sample may be selected from the
+                                                                       each redshift, in such a way as to keep an approximately constant
+DR12 database using the following flags, whose definitions can be
+                                                                       stellar mass limit over the redshift range of CMASS according to
+found on the SDSS website4 :
+                                                                       the passively evolving model of Maraston et al. (2009):
+   • BOSS TARGET1 && 20              Objects targeted by the LOWZ
+                                                                                    icmod < min(19.86 + 1.6(d⊥ − 0.8), 19.9) .           (14)
+algorithm.
+   • SPECPRIMARY == 1              Objects with spectra, removing          This approach is a significant departure from SDSS-I/II Cut-II
+duplicate observations.                                                and 2SLAQ LRGs - which consisted of essentially a flux-limited
+   • ZWARNING NOQSO == 0                  Objects whose spectro-       sample with a colour cut to isolate the reddest galaxies.
+scopic redshifts are cleanly measured.                                     We impose model and magnitude limits as follows:
+   • CLASS NOQSO == ’GALAXY’                 Objects whose spectra
+are those of a galaxy (as opposed to a quasar or star).                17.5     <     icmod < 19.9 ,                                     (15)
+                                                                       ifib2    <     21.5 .                                             (16)
+      The basic properties of the LOWZ sample are presented in
+Parejko et al. (2013), who fitted the small-scale clustering of the                                                                      (17)
+galaxies using halo occupation distribution (HOD) modelling. They      The faint magnitude limits are set to ensure a high redshift success
+demonstrated that these galaxies lie in massive haloes, with a mean    rate, whereas the bright limit protects against some low-redshift
+halo mass of 5.2 × 1013 h−1 M , a large-scale bias of ∼ 2.0 and a      interlopers. In the first 14 tiling chunks, CMASS objects were tar-
+satellite fraction of 12±2%. These galaxies occupy haloes with av-     geted with ifib2 < 21.7, but the redshift failure rate at the faint end
+erage masses between those of the CMASS sample and the original        of this range was quite poor, so we revised this limit to the final
+SDSS I/II LRG sample.                                                  value of ifib2 < 21.5.
+                                                                             To exclude outliers with problematic deblending, we further
+3.2.1   Exceptions to the LOWZ targeting                               impose the following cuts on colour and rdev,i (the effective radius
+                                                                       in the fit to the deVaucouleurs profile for the i-band magnitude,
+During the first nine months of BOSS observations, the incorrect       measured in pixels):
+star-galaxy separation criterion was used to identify LOWZ targets,
+removing a significant fraction of galaxies (see Appendix A). To se-   rmod − imod       <     2                                         (18)
+lect a uniformly-targeted sample from all LOWZ redshifts, with the              rdev,i   <     20.0 pix .                                (19)
+selection criteria described in this section, the simplest procedure
+                                                                       These cuts remove a very small fraction of targets. The CMASS
+is to avoid those data with the use of an additional cut
+                                                                       star-galaxy separation is described in detail in the next section.
+    • TILEID⩾ 10324,                                                        CMASS galaxies can be selected from the DR12 database us-
+                                                                       ing the following flags:
+4   http://www.sdss.org                                                  • BOSS TARGET1 && 21
+
+c 0000 RAS, MNRAS 000, 2–21
+8         Reid et al.
+
+         1.6                                                                     significantly incomplete at stellar masses M∗ < 1011.3 M and
+                                                                                 z > 0.6 for a Kroupa initial mass function, and is roughly consis-
+         1.4                                                                     tent with a volume-limited sample at higher masses and lower red-
+                                                                                 shift. Thomas et al. (2013) presented similar results, showing that
+                                                                                 stellar velocity dispersions of BOSS galaxies peak at ∼240 kms1
+         1.2                                                                     with a narrow distribution virtually independent of redshift. Most
+r-i                                                                              recently, Leauthaud et al. (2015) quantified the stellar mass com-
+         1.0                                                                     pleteness of CMASS and LOWZ using data from the Stripe 82 re-
+                                                                                 gion of sky along the celestial equator - a narrow, but deeper subset
+         0.8                                                                     of the SDSS imaging survey region, that is 2 magnitudes deeper
+                                                                                 than the single epoch SDSS imaging (Annis et al. 2014). Using the
+         0.6                                                                     Stripe 82 Massive Galaxy Catalog (Bundy et al. 2015), they esti-
+                            0.55
+                 d perp =                                                        mate that CMASS is 80% complete at log10 (M∗ /M ) ⩾ 11.6
+           0.0     0.5        1.0      1.5        2.0       2.5        3.0       in the redshift range z = [0.51, 0.61]. The stellar mass complete-
+                                       g-r                                       ness of CMASS decreases at lower and higher redshifts and the de-
+                                                                                 nomination “constant mass” should be considered only as a loose
+         1.6                                                                     approximation outside of the redshift window z = [0.51, 0.61].
+                                                                                 However, the combination of LOWZ and CMASS yields a spec-
+         1.4                                                                     troscopic sample that is 80% complete at log10 (M∗ /M ) ⩾ 11.6
+                                                                                 at z < 0.61. Compared to cut-II LRGs, CMASS galaxies have
+         1.2                                                                     a larger range of properties including morphology (Masters et al.
+
+d_perp
+                                                                                 2011), star-formation rates (Thomas et al. 2013; Chen et al. 2012)
+         1.0                                                                     and star-formation histories (Tojeiro et al. 2012), partly because
+                                                                                 no red cut has been imposed on the g-r observed-frame colour. It
+                                                                                 should be noted however that, for example, galaxies with detectable
+         0.8                                                                     emission-lines (hence hosting very young stellar populations) still
+                                                                                 represent only 4% of the sample (see Thomas et al. 2013).
+         0.6
+
+          17.0    17.5        18.0     18.5      19.0       19.5       20.0      3.3.1   Exceptions in CMASS targeting flag
+                                     i_cmag
+                                                                                 The meaning of BOSS TARGET1 && 21 (the CMASS targeting
+Figure 4. Both panels show density plots of CMASS galaxies; red cor-             flag) evolved during the first 14 chunks of the survey. Therefore
+responds to higher density and dark blue to lower density in an arbitrary        BOSS TARGET1 && 21 will not select CMASS galaxies (as de-
+normalisation and linear scale. The black thick line shows the passively         fined by the equations in the previous sections) in these regions, and
+evolving LRG model of Maraston et al. (2009). Top: redshift increases up-
+                                                                                 further subsampling is required based on galaxy colours and mag-
+wards, starting at z ≃ 0.4 at d⊥ = 0.55. Bottom: the sliding cut in d⊥
+                                                                                 nitudes to recover the final selection in these regions. Alternatively,
+with i−band magnitude, designed to select an approximately stellar-mass
+complete sample. Stellar mass increases with the perpendicular distance to       these chunks can be explicitly excluded. For the first 14 chunks the
+the sliding cut, represented here by the red dashed line - see Maraston et al.   following exceptions should be noted:
+(2013) for details. The green dashed line shows the sliding cut adopted for
+                                                                                   • Chunks 1 & 2: The data taken in the commissioning phase
+the CMASS SPARSE sample (see Section 3.4). Vertical solid lines show
+the magnitude limits. On both panels, the small fraction of targets that lie
+                                                                                 (chunks 1 & 2) used a significantly broader selection criteria (see
+outside of the selection cut are due to differences in the targeting and final   Section 3.3.3), and therefore must be dealt with carefully.
+photometry, see Section 2. Only chunks greater than 6 are shown.                   • Chunks 3-6: The data taken in chunks 3-6 used a slightly
+                                                                                 looser icmod cut, selecting instead on icmod < 19.92 + 1.6(d⊥ −
+                                                                                 0.8).
+    • SPECPRIMARY == 1                                                             • Chunks 1-14: As mentioned above, the cut in ifib2 changed
+    • ZWARNING NOQSO == 0                                                        during the survey. In chunks 1-14 the targeting required ifib2 <
+    • CLASS NOQSO == ’GALAXY’                                                    21.7.
+
+      The basic clustering properties of the CMASS sample are pre-               With the exception of chunk 1, all of these chunks are included in
+sented in White et al. (2011), which fitted the small-scale cluster-             the LSS catalogue after applying the required subsampling based
+ing of the galaxies using HOD modelling. They showed that these                  on colours and/or magnitudes.
+galaxies lie in massive haloes, with a mean halo mass of 2.6 × 1013
+h−1 M , a large-scale bias of ∼ 2.0 and a satellite fraction of 10%.
+These galaxies occupy haloes with lower masses than those of the                 3.3.2   Star-Galaxy Separation in the CMASS sample
+LOWZ sample, although the bias is similar, a consequence of them                 The difference between psf and model magnitudes is a measure
+being at higher redshift.                                                        of the extendedness of a source, thus making it useful to separate
+      CMASS galaxies are massive, with M∗ > 1011 M (e.g.                         stars from galaxies. For the commissioning phase of the survey we
+Chen et al. 2012; Maraston et al. 2013), and the majority are                    applied a star-galaxy separation criterion identical to that used in
+dominated by old stellar populations with low star-formation rates               the 2SLAQ survey (Cannon et al. 2006), a sloping cut in ipsf −imod :
+(e.g. Chen et al. 2012; Thomas et al. 2013; Tojeiro et al. 2012).
+Maraston et al. (2013) argues that the CMASS sample becomes                                    ipsf − imod > 0.2 + 0.2(20 − imod ) .               (20)
+
+                                                                                                                        c 0000 RAS, MNRAS 000, 2–21
+                                                                                           BOSS LSS targeting and catalogues                          9
+
+
+
+
+Figure 5. The distribution of spectroscopically confirmed stars (large blue   Figure 6. The dependence of the star galaxy separation on the FWHM of
+points) and galaxies (small red points) in the psf-model vs model i-band      the imaging PSF. The top panel shows the fraction, and the bottom panel
+(top) and z-band (bottom) planes selected in the CMASS sample of the          the number, of spectroscopically classified stars and galaxies in the com-
+commissioning data. The black lines are the linear cuts that remove the       missioning data that are excluded by the additional z−band star-galaxy
+most spectroscopically confirmed stars whilst removing less than 1% of the    separation as functions of r−band FWHM.
+galaxies. The z−band cut was added to the original i−band cut targeting
+from chunk 3 onwards.
+                                                                              Fig. 6 shows how the fraction of stars and galaxies removed by the
+Whilst this cut is effective at removing the bulk of the stars, roughly       new z−band criteria depends on the r−band PSF. The fraction of
+6.9% of ∼7000 CMASS targets from the commissioning runs had                   galaxies removed is fairly flat at ∼ 1% for PSF FWHM < 1.5” and
+stellar spectra, mainly cool M-dwarfs.                                        then rapidly increases at higher FWHMs. The fraction of stars re-
+      Fig. 5 displays the distribution of the spectroscopically classi-       moved displays the opposite trend. Fig. 6 also presents the numbers
+fied stars (blue) and galaxies (red) in the ipsf − imod vs imod and           of stars and galaxies as a function of r−band FWHM, demonstrat-
+zpsf −zmod vs zmod planes for these commissioning targets. As ex-             ing that the vast majority of the sample is selected from imaging
+pected, the stars preferentially occupy lower values of psf−model             with FWHM <1.500 . This slight seeing-dependent star-galaxy sep-
+than the galaxies, and so applying a more restrictive cut would re-           aration will result in the imprint of a spatial dependence in the den-
+move more stars but at the expense of removing some galaxies. For             sity of galaxies across the survey, which can be corrected using
+a maximum loss of just 1% of galaxies we found the linear cuts                seeing-dependent weights (see 6.4 for details).
+that would remove the largest numbers of stars. These cuts, shown                   Whilst the above analysis addresses the fraction of galax-
+as the black lines in Figure 5, remove 31% and 52% of the stars               ies lost due to the addition of the z−band star galaxy separation
+that remained in the commissioning data for the i− and z−band                 criteria, it provides no indication of how many compact galaxies
+cuts respectively. Since the z−band cut,                                      were removed by the original i−band cut. To investigate this issue
+                                                                              we combined the deep coadded SDSS Stripe82 imaging (Abaza-
+                 zpsf − zmod > 9.125 − 0.46zmod ,                     (21)    jian et al. 2009; Annis et al. 2014) with near-infrared J and K−
+performed significantly better, it was added to the original i−band           band imaging from the UKIDSS Large Area Survey Data Release
+cut (Eq. 20) for all data from Chunk 3 onwards (i.e., after the com-          4 (Lawrence et al. 2007; Casali et al. 2007; Hewett et al. 2006;
+missioning runs), such that targets have to pass both cuts to be se-          Hambly et al. 2008) in order to define a robust set of stars and
+lected. Even though the z−band cut alone removes the vast major-              galaxies over an area of 150 deg2 . A J − K < 1.1 colour cut
+ity of the stars excluded by the i−band cut, we kept the i−band cut           provides an excellent separation between stars and galaxies in the
+in place to ensure that we could apply a consistent star-galaxy sep-          colour-magnitude region that the CMASS galaxies occupy. When
+aration throughout the survey. This is achieved simply by retroac-            this information is combined with the higher S/N measurement of
+tively applying the z−band cut to the commissioning data.                     zpsf − zmod from the coadded imaging we can confidently separate
+      Since these star-galaxy separation criteria measure the com-            stars and galaxies. Using these data we estimate that the final star-
+pactness of the objects in the SDSS imaging, their effectiveness              galaxy separation cuts removes 2.3% of the full sample of galaxies
+will depend on the imaging PSF. Based on the commissioning data,              selected by the CMASS colour cuts.
+
+c 0000 RAS, MNRAS 000, 2–21
+10         Reid et al.
+3.3.3     Summary of CMASS target selection                               4     SPECTROSCOPIC OBSERVATIONS
+In summary, the CMASS target selection for the bulk of the survey         4.1    Previously known redshifts
+is as follows:
+                                                                          Fractions of the LOWZ and CMASS targets have a previous ro-
+          icmod           <        19.86 + 1.6(d⊥ − 0.8)           (22)   bust object classification and redshift determined from the SDSS-
+           17.5       < icmod <    19.9                            (23)   II survey (York et al. 2000; Abazajian et al. 2009). We therefore
+                                                                          matched our target sample to a sample of “known objects” with pre-
+             d⊥           >        0.55                            (24)
+                                                                          determined secure classifications and redshifts and did not spec-
+ ipsf − imod              >        0.2 + 0.2(20 − imod )           (25)   troscopically reobserve these galaxies within BOSS. This subsam-
+zpsf − zmod               >        9.125 − 0.46zmod                (26)   ple of targets has a complicated angular distribution on the sky:
+rmod − imod               <        2                               (27)   the majority of the NGC was covered by SDSS-II, but only a few
+                                                                          stripes in the SGC were observed. These pre-observed targets ac-
+            ifib2         <        21.5                            (28)   count for 43% (9%) of the LOWZ targets in the north (south). A
+          rdev,i          <        20.0 pix .                      (29)   much smaller fraction of CMASS targets were pre-observed: 1.7%
+                                                                          (0.7%) in the N (S).
+     During commissioning (chunks 1 and 2), we used
+significantly looser criteria; the CMASS COMM sample
+(BOSS TARGET&&22 ), just under 25000 galaxies, was se-
+lected as follows:
+                                                                          4.2    Target Collation and Spectroscopic Tiling
+          icmod           <        20.14 + 1.6(d⊥ − 0.8)           (30)   We start with the list of targets provided by the target selection al-
+           17.5       < icmod <    20.0                            (31)   gorithms detailed above, and remove targets with known redshifts
+             d⊥           >        0.55                            (32)   as defined above. The tiling algorithm assigns the remaining targets
+                                                                          to spectroscopic tiles. The sky was tiled in a piecemeal fashion as
+ ipsf − imod              >        0.2 + 0.2(20 − imod )           (33)
+                                                                          the survey progressed; each of these regions is called a “chunk”;
+rmod − imod               <        2                               (34)   see § 2.1 and Dawson et al. (2012) for further details. DR12 con-
+            ifib2         <        22                              (35)   tains observations from 38 chunks. The survey mask and collated
+                                                                   (36)   target catalogue both indicate the chunk to which a region or spe-
+                                                                          cific object was assigned.
+        See other exceptions to these criteria in Section 3.3.1.                The tiling algorithm (Blanton et al. 2003) determines the loca-
+                                                                          tion of the 3◦ diameter spectroscopic tiles and allocates the avail-
+                                                                          able fibres among the targets, including targets from other pro-
+                                                                          grammes within BOSS. Because of the size of the cladding on the
+                                                                          fibres, fibres may not lie within 62” of one another on a given spec-
+3.4     Sparse Sampling Cuts                                              troscopic tile. The algorithm therefore divides target galaxies into
+                                                                          friends-of-friends groups with a linking length of 6200 , and then as-
+Motivated by the wish to study objects of slightly lower stellar mass
+                                                                          signs fibres to the groups in a way that maximizes the number of
+and bluer intrinsic colour, we designed the CMASS SPARSE sam-
+                                                                          targets with fibres. The choice of which galaxies are assigned fibres
+ple. It extends the CMASS selection by altering the icmod -d⊥ slid-
+                                                                          is otherwise random. The algorithm adapts to the density of targets
+ing colour-magnitude cut to
+                                                                          on the sky, such that regions with a larger than average number
+icmod      ⩾        19.86 + 1.6(d⊥ − 0.8)                          (37)   density tend to be covered by more than one tile. For the DR12
+                                                                          sample, 42% (55%) of the area in the north (south) is covered by
+icmod      <        20.14 + 1.6(d⊥ − 0.8) ,                        (38)
+                                                                          multiple tiles, and the number density of CMASS targets is larger
+with the other cuts unchanged (i.e., the area between the red and         by 4.7% (3.4%) in those regions. The tile overlap - target density
+green dashed lines in the bottom panel of Fig. 4). These galaxies         correlation is less pronounced for the LOWZ sample (1.6% and
+were randomly subsampled down to a number density on the sky              2.4% enhancement in north and south, respectively). The LOWZ
+of 5 deg−2 , corresponding to approximately 1 in 10 targets. This         sample constitutes only 35% of the galaxy targets, and particularly
+sample was selected across the full BOSS footprint.                       in the north many galaxies in dense regions already have spectra
+     CMASS SPARSE galaxies may be selected with                           from the SDSS-II and thus were not targeted for SDSS-III BOSS
+                                                                          spectroscopy (see Sec. 4.1).
+  • BOSS TARGET1 && 23                                                          Fibre collisions are partially resolved only in the multiple
+  • SPECPRIMARY == 1                                                      tile regions, and therefore may not be representative of the un-
+  • ZWARNING NOQSO == 0                                                   resolved fibre collisions in lower target density regions. Fibre-
+  • CLASS NOQSO == ’GALAXY’                                               collided galaxies cannot simply be accounted for by reducing the
+                                                                          completeness of their sector, since they are a non-random subset
+after excluding the commissioning chunks.                                 of targets (conditioned to have another target within 6200 ). As dis-
+      Altering the CMASS target selection in this way produces a          cussed further in Sec. 6.1, we provide a set of weights that treat
+sample of galaxies at somewhat lower redshift and stellar mass. The       these objects as if they were observed, and assign their weight to
+median redshift of CMASS SPARSE is z = 0.51, with a stellar               the nearest object of the same target class. Finally, since quasar tar-
+mass distribution that peaks at 1011.2 M (using the stellar masses        gets are given higher priority by the tiling algorithm, we account for
+of Chen et al. 2012), relative to the peak CMASS mass of 1011.4           their presence by simply including a 6200 veto mask (see Sec. 5.1.1)
+M .                                                                       around each high priority quasar target.
+
+                                                                                                                 c 0000 RAS, MNRAS 000, 2–21
+                                                                                           BOSS LSS targeting and catalogues                         11
+                                                                                poor wavelength coverage, broken/dropped and sky-target fibres,
+                0.2                                                             and best fits which are within ∆χ2 /dof = 0.01 of the next best
+                                                                                fit (comparing only to fits with a velocity difference of more than
+                                                                                1000 kms−1 ). This method is a development of that used for the
+               0.15                                                             SDSS DR8 (Aihara et al. 2011), and is explained in further detail
+                                                                                in Bolton et al. (2012), and in Ahn et al. (2012, 2014).
+    p(ifib2)                                                                          For galaxy targets, a dominant source of false identifications
+                0.1                                                             is due to quasar templates with unphysical fit parameters, e.g., large
+                                                                                negative amplitudes causing a quasar template emission feature to
+                                                                                fit a galaxy absorption feature. Thus, for galaxy targets, the best
+               0.05                                                             classification and redshift are selected only from the fits to galaxy
+                                                                                and star templates, and we restrict the sample to fits the pipeline
+                                                                                classifies as robust. The results of these fits are tabulated in the
+                 0
+                  19.5        20          20.5            21            21.5    “* NOQSO” versions of various quantities in the LSS catalogues.
+                                          ifib2                                       Table 2 lists the total number of CMASS and LOWZ targets
+                                                                                that were assigned a fibre within the survey footprint (N̄obs ) as
+Figure 7. Normalised ifib2 distributions of redshift failures (green, dashed)   well as the breakdown for each of the three possible outcomes: the
+and redshift successes (red, solid) for the CMASS sample. Redshift failures     number of CMASS and LOWZ targets robustly classified as stars
+constitute 1.8% of the CMASS targets observed by SDSS-III BOSS. These           (N̄star ) or galaxies (N̄gal ), and the number of targets for which the
+are contrasted against normalised distributions for the LOWZ sample of          pipeline failed to find a robust classification and redshift (N̄fail ). A
+redshift failures (pink, dotted) and redshift successes (blue, dashed). Error   total of 2.3% (3.4%) of CMASS targets are stars and 1.6% (2.1%)
+bars were calculated assuming Poisson statistics. Note that some LOWZ           are redshift failures in the north (south). Only 0.6% of LOWZ tar-
+galaxies have ifib2 < 19.5, which is why the normalisation for LOWZ
+                                                                                gets are stars and 0.5% are redshift failures.
+curves looks lower than for CMASS.
+                                                                                      Fig. 7 demonstrates that the pipeline is less likely to obtain
+                                                                                a successful redshift for CMASS targets with fainter ifib2 magni-
+4.3            Spectroscopic Reductions                                         tudes. Section 6.3 discusses how we account for this strong depen-
+                                                                                dence in the redshift failure weights.
+Each “tile” output from the tiling algorithm specifies a central loca-
+tion on the sky and the list of targets to be observed. Physical plates
+are drilled at the University of Washington based on the anticipated
+airmass of observation. Multiple plates can cover the same tile, and            5     LARGE SCALE STRUCTURE CATALOGUE
+plates may be observed on multiple nights until the desired signal-                   CREATION
+to-noise ratio is reached (Dawson et al. 2012).
+      The BOSS spectroscopic reduction pipeline is detailed in                  The creation of the BOSS large-scale structure catalogues involves
+Bolton et al. (2012), with minor updates given in Alam et al. (2015).           a number of steps. We start with a list of targets based on the target
+The final DR12 catalogues used the v5 7 0 tag of the IDLSPEC 2 D                selection procedure described above, with the previously known
+software package5 for spectroscopic calibration, extraction, classi-            redshifts and outcome of the spectral analysis for each object for
+fication, and redshift analysis. We restrict the large-scale structure          which we have a spectrum, matched to this list. Next we construct
+catalogues to only include data from plates with PLATEQUALITY                   the survey mask, which specifies the regions of the sky that will be
+set to “good.” The criteria for this designation are a minimum of               included in the LSS catalogues and the completeness in each in-
+three exposures, the number of spectroscopic pixels flagged as bad              cluded region. Finally, we use the mask and observed redshifts to
+must be less than 10%, and a minimum signal-to-noise ratio re-                  generate a set of “random” galaxies, Poisson sampling the sky cov-
+quirement for both the blue and red arms of the spectrograph must               erage specified by the mask with the same expected density distri-
+be met (Dawson et al. 2012).                                                    bution as the galaxies. The random galaxies are assigned redshifts
+      The classification and redshift of each object are determined             to match the distribution of the target sample. Together, the data
+by a Maximum Likelihood fit of the coadded spectra to a linear                  and random catalogues can be used for statistical analyses such as
+combination of redshifted eigenspectra in combination with a low-               N -point functions. These steps and some of the subtleties involved
+order polynomial. The polynomial (quadratic for galaxies, quasars,              are now described in detail.
+and cataclysmic variable stars; cubic for all other stars) allows for
+residual extinction effects or broadband continua not otherwise de-
+scribed by the templates. The templates are derived from a rest-                5.1    Mask
+frame principal-component analysis (PCA) of training samples of
+                                                                                We use the M ANGLE software (Swanson et al. 2008) to track the
+galaxies, quasars and stars using stellar population templates at the
+                                                                                areas covered by the BOSS survey and the angular completeness of
+BOSS resolution (from Maraston et al. 2013). The reduced χ2 ver-
+                                                                                each distinct region; our terminology is summarised in Table 1. The
+sus redshift is measured in redshift steps corresponding to the log-
+                                                                                mask is constructed of spherical polygons, which form the base unit
+arithmic pixel scale of the spectra, where ∆ log10 (λ) = 0.0001.
+                                                                                for the geometrical decomposition of the sky. The angular mask of
+Galaxy templates are fit from z = −0.01 to 1.00, quasar templates
+                                                                                the survey is formed from the intersection of the imaging bound-
+from z = 0.0033 to 7.00, and star templates from z = −0.004 to
+                                                                                aries (expressed as a set of polygons) and the spectroscopic tiles.
+0.004 (±1200 kms−1 ). The template fit with the best reduced χ2 is
+                                                                                We define each unique intersection of spectroscopic tiles to be a
+selected as the classification and redshift, with warning flags set for
+                                                                                sector (see Blanton et al. 2003; Tegmark et al. 2004; Aihara et al.
+                                                                                2011).
+5      http://www.sdss3.org/svn/repo/idlspec2d/tags/v5 7 0/                           We compute sector completeness based on the distribution of
+
+c 0000 RAS, MNRAS 000, 2–21
+12        Reid et al.
+                    Property                    NGC         SGC            total     NGC        SGC         total       NGC          NGC
+                    Sample                               CMASS                                LOWZ                   LOWZE2       LOWZE3
+                    N̄gal                    607,357     228,990     836,347       177,336   132,191    309,527        2,985        11,195
+                    N̄known                   11,449       1,841      13,290       140,444    13,073    153,517        2,730         6,371
+                    N̄star                    14,556       8,262      22,818         1,043       976      2,019           24            61
+                    N̄fail                    10,188       5,157      15,345           868       602      1,470           21            55
+                    N̄cp                      34,151      11,163      45,314         4,459     4,422      8,881           16           167
+                    N̄missed                   7,997       3,488      11,485        10,295     3,499     13,794          114           609
+                    N̄used                   568,776     208,426     777,202       248,237   113,525    361,762        4,336        15,380
+                    N̄obs                    632,101     242,409     874,510       179,247   133,769    313,016        3,030        11,311
+                    N̄targ                   685,698     258,901     944,599       334,445   154,763    489,208        5,890        18,458
+                    Total area (deg2 )         7,429       2,823      10,252         6,451     2,823      9,274          144           834
+                    Veto area (deg2 )            495         263         759           431       264        695           10            55
+                    Used area (deg2 )          6,934       2,560       9,493         6,020     2,559      8,579          134           779
+                    Effective area (deg2 )     6,851       2,525       9,376         5,836     2,501      8,337          131           755
+                    Targets / deg2              98.9       101.1        99.5          55.6      60.5       57.0         43.4          23.5
+
+Table 2. Basic parameters of the DR12 CMASS,LOWZ, LOWZE2, and LOWZE3 samples. We track P              these classifications on a sector-by-sector basis in order
+to compute the BOSS fibre completeness in each sector of the survey. In this table we report N̄X = sectors NX , the sum over all sectors retained in the
+final BOSS mask. Target classification counts and areas for the LOWZE2 and LOWZE3 samples are reported for chunk 2 and chunk 3-6, respectively. To
+estimate the target density for those samples, we use the full NGC footprint to reduce cosmic variance.
+
+
+targets across various outcomes of the tiling pipeline and spectro-                  in the random catalogue generation (see Sec. 5.2). By this defini-
+scopic reductions. In each sector (indexed by i) included in the                     tion, the area-weighted average completeness is 99% (97%) for the
+large scale structure catalog, we distinguish the following outcomes                 CMASS (LOWZ) samples. We compute the effective mask area in
+(separately for each target class):                                                  Table 2 by weighting the used area of each sector by its complete-
+                                                                                     ness.
+   (i) galaxies with redshifts from good BOSS spectra (we denote
+                                                                                           The boundaries of the spectroscopic tiles can be seen by eye
+the number in each sector by Ngal,i ),
+                                                                                     in Fig. 8 as discontinuities in the value of completeness; the unique
+   (ii) galaxies with redshifts from pre-BOSS spectra (Nknown,i ),
+                                                                                     intersection of those tiles define individual sectors, in which we
+   (iii) spectroscopically-confirmed stars (Nstar,i ),
+                                                                                     treat the BOSS fiber completeness as uniform. On average, the
+   (iv) objects with BOSS spectra from which stellar classification
+                                                                                     completeness is larger in regions covered by more than one spec-
+or redshift determination failed (Nfail,i ),
+                                                                                     troscopic tile. The raw sky area covered by spectroscopic tiles is
+   (v) objects with no spectra, in a fibre collision group with at least
+                                                                                     10338 deg2 , of which 10252 deg2 remain (7429 deg2 in the NGC
+one object of the same target class (Ncp,i ), 6
+                                                                                     and 2823 deg2 in the SGC) after restricting the mask to sec-
+   (vi) objects with no spectra, if in a fibre collision group then
+                                                                                     tors for which every planned tile has been observed with “good”
+with no other objects from the same target class (Nmissed,i ).
+                                                                                     PLATEQUALITY.
+These quantities, summed over all sectors included in the LSS cat-                         We also define a galaxy redshift completeness, assuming that
+alogues, are given in Table 2. As each target is classed by one of                   stars are always correctly classified spectroscopically
+these descriptors, we have that the total number of targets in sector
+                                                                                                                         Ngal,i
+i is                                                                                                      Cred,i =                    ,                    (42)
+                                                                                                                     Nobs,i − Nstar,i
+Ntarg,i = Nstar,i +Ngal,i +Nfail,i +Ncp,i +Nmissed,i +Nknown,i ,
+                                                                                     and define a target completeness
+                                                          (39)
+and we define the number of targets observed by BOSS as                                                              Ngal,i + Nknown,i
+                                                                                                        Ctarg,i =                      ,                   (43)
+                  Nobs,i = Nstar,i + Ngal,i + Nfail,i .                    (40)                                            Ntarg,i
+
+Matching our analyses for DR9, DR10 and DR11, the LOWZ cat-                          which gives the number of good galaxies spectroscopically ob-
+alogue is then cut to 0.15 < z < 0.43, and the CMASS catalogue                       served in BOSS combined with previously known redshifts divided
+is cut to 0.43 < z < 0.7 to avoid overlap, and to make the samples                   by the number of targets calculated in each sector. Fig. 9 shows the
+independent. The number of galaxies used in the final catalogue                      fraction of the total BOSS area that has target completeness greater
+Nused is the subset of Ngal,i + Nknown,i that pass these redshift                    than a specified value, and how this would change if we coud ig-
+cuts.                                                                                nore various effects. This shows the relative importance of different
+      From these descriptions, we define a BOSS fibre completeness                   categories of targets to the target completness of BOSS, from the
+in sector i                                                                          least important, which is redshift failures, to fibre collisions, which
+                                                                                     is the most important.
+                               Nobs,i + Ncp,i
+  CBOSS,i =                                                   . (41)                       Previous LSS catalogues (DR9, DR10, DR11) had to deal with
+               Nstar,i + Ngal,i + Nfail,i + Ncp,i + Nmissed,i                        sizeable regions where BOSS spectra were not complete, and we
+This completeness definition excludes the “known” objects ob-                        made a number of cuts on sectors to include in the LSS catalogues
+served by SDSS-II. CBOSS,i , shown in Fig. 8, is recorded in the                     to minimise the impact of this effect. In particular, sectors meeting
+mangle mask files released with the LSS catalogues and is used                       any of the following criteria were removed from the LSS mask:
+
+                                                                                       • CBOSS,i < 0.7 (Eqn. 41); removing part-complete sectors on
+6   cp is used because each galaxy exists in a “close-pair” with another             the edges of the survey missing a significant fraction of redshifts.
+
+                                                                                                                             c 0000 RAS, MNRAS 000, 2–21
+                                                                                               BOSS LSS targeting and catalogues                           13
+
+
+
+
+Figure 8. Completeness maps for both the LOWZ and CMASS samples in the north and south Galactic caps. The mean completeness is 98.8% for the CMASS
+sample shown in the left panels, and 97.2% for the LOWZ sample in the right-hand panels. Gaps correspond to early chunks as shown in Fig. A1. Each patch
+of different colour corresponds to a plate, with the colour determined by the completeness of that plate. This is surrounded by the higher completeness regions
+that overlap that plate with other plates. This leaves a pattern that looks like a darker, higher-completeness mesh, covering the survey.
+
+
+   • Cred,i < 0.8 (Eqn. 42) and Ngal,i > 10; removing regions                      of a spectroscopic tile can be observed. This mask reduces the sur-
+with bad spectroscopic observations.                                               vey area by 0.04%.
+   • Nobs,i = 0 and there is not another sector within 2 ◦ in the ±                   • Collision priority mask: Ly−α quasar targets receive higher
+right ascension or declination directions; removing isolated regions               priority than BOSS galaxy targets in the tiling algorithm; in re-
+without galaxies.                                                                  gions of only a single spectroscopic tile, BOSS galaxy targets are
+                                                                                   unobservable within a fibre collision radius (6200 ) of those targets.
+      But this was not done for the DR12 sample. If we had addi-                   Treating the high-priority quasar target locations as uncorrelated
+tionally applied the fibre completeness cut (first criterion above),               with the galaxy density field and neglecting any recovered galaxy
+for DR12 we would have rejected an additional 30 (56) deg2 from                    targets in tile overlap regions, we can simply account for the high-
+the CMASS (LOWZ) mask; if instead we had applied the red-                          priority quasars by masking a 6200 radius around each. This mask
+shift success cut in DR12 (second criterion above), we would have                  reduces the survey area by 1.5%.
+rejected an additional 1.7 (1.4) deg2 from the CMASS (LOWZ)
+                                                                                      • Bright stars mask: We mask an area around stars in the Ty-
+mask. The difference between the earlier mask selection and the
+                                                                                   cho catalogue (Høg et al. 2000) with Tycho BT magnitude within
+algorithm described above applied to DR12 constitute negligible
+                                                                                   [6,11.5] with magnitude-dependent radius
+changes on the survey mask. The two algorithms agree to within
+0.3% of the total mask area for both the CMASS and LOWZ sam-                                R = (0.0802BT2 − 1.860BT + 11.625) arcmin.                    (44)
+ples. Finally, the classification of Ncp,i and Nmissed,i has slightly
+changed in DR12 relative to DR9-DR11; see Sec. 6.1.                                This mask reduces the area by 1.9%.
+                                                                                      • Bright objects mask: The standard bright star mask occasion-
+                                                                                   ally misses some bright stars that impact the SDSS imaging data
+5.1.1   Veto Masks                                                                 quality. Additionally, a small number of bright local galaxies satu-
+While the basic geometry of the survey is encapsulated in the sur-                 rate the imaging as well, affecting target selection in their outskirts.
+vey mask described in the previous sections, there remain many                     These objects were identified by visual inspection, and the mask
+small regions within it where we could not have observed galax-                    radii for each object were also determined in this manner, ranging
+ies. Although they are individually small, they are not randomly                   from 0.1 ◦ to 1.5 ◦ . The number of objects in this mask is ∼ 125,
+distributed across the sky, and sum to a significant area, and so we               subtending a total area of 43.8 deg2 . The list of objects is described
+exclude them from any analysis. We represent those regions by a set                in section 2.1 of (Rykoff et al. 2014). This mask covers 0.4% of the
+of veto masks, and remove “randoms” that fall within these masks.                  BOSS area.
+The masks are:                                                                        • Non-photometric conditions mask: We mask regions where
+                                                                                   the imaging was not photometric in g, r, or i bands, the PSF mod-
+  • Centerpost mask: Each Sloan plate is secured to the focal                      elling failed, the imaging reduction pipeline timed out (usually due
+plane by a central bolt: no targets coinciding with the centerpost                 to too many blended objects in a single field, caused by a high stel-
+
+c 0000 RAS, MNRAS 000, 2–21
+14       Reid et al.
+                                                                              5.2    Random Catalogue generation
+                                                                              All of our clustering analyses make use of random catalogues with
+                                                                              the same angular and redshift selection functions as the data. To
+                                                                              produce these catalogues, we first use the M ANGLE ransack com-
+                                                                              mand to generate one ≈ 10× and two ≈ 50× catalogues, where
+                                                                              the angular density of the random galaxies is proportional to the
+                                                                              completeness value in the mask for each sector7 . As the random
+                                                                              catalogue follows the redshift completeness per sector, it automat-
+                                                                              ically corrects for any systematic effects caused by the decrease
+                                                                              in fiducial exposure times starting roughly half-way through the
+                                                                              BOSS survey. Next we remove random galaxies using the set of
+                                                                              veto masks described in Sec. 5.1.1. Only the angular coordinates
+                                                                              of the 10× random catalogue are used to fit for angular system-
+                                                                              atic weights; see Sec. 6.4. Since the true underlying redshift distri-
+                                                                              bution of our targets is unknown and can only be estimated from
+                                                                              the empirical redshift distribution, we assign redshifts to the galax-
+                                                                              ies in the two 50× random catalogues by randomly drawing from
+                                                                              the measured galaxy redshifts, but with a weight for each galaxy
+                                                                              given by wtot,i , defined in Eq. (50). This procedure ensures that
+                                                                              the (weighted) galaxy and random catalogues have exactly the same
+                                                                              redshift distribution, apart from (small) stochasticity from the ran-
+                                                                              dom redshift assignment. Ross et al. (2012) compare this random
+Figure 9. The fraction of the total survey area that has a target complete-   redshift assignment scheme with approaches that fit a spline of
+ness greater than the value shown, where target completeness is defined       varying knot number to the measured galaxy redshift distribution,
+as the number of good galaxies spectroscopically observed in BOSS and         and then sample from the resulting spline directly. Based on anal-
+those with previously known redshifts divided by the number of targets
+                                                                              ysis of mock catalogues, their figure 19 demonstrates that the for-
+calculated in each sector as Ctarg,i = (Ngal,i + Nknown,i )/Ntarg,i ,
+                                                                              mer method provides the smallest bias in fits to the monopole and
+as in Eq. (43). We compare this completeness with those we would have
+obtained had we not had to include various classes of targets. If there       quadrupole correlation function.
+had been no stars in our target list, the completeness would have been
+(Ngal,i + Nknown,i )/(Ntarg,i − Nstar,i ) (green line). If additionally we
+had not had to deal with fibre collisions, we would have observed a com-      6     ACCOUNTING FOR OBSERVATIONAL ARTEFACTS
+pleteness (Ngal,i + Nknown,i + Ncp,i )/(Ntarg,i − Nstar,i ) (blue line),
+                                                                                    IN LSS CATALOGUES
+and if additionally there were no redshift failures (Ngal,i + Nknown,i +
+Ncp,i + Nfail,i )/(Ntarg,i − Nstar,i ) (black line). From the definition of   In this section we describe in detail how we weight the targeted
+Ntarg,i in Eq. (39) we see that the remaining decrement of the black line     galaxies when computing LSS statistics, in order to minimize the
+from Ctarg,i = 1 is due to missed galaxies Nmissed,i .                        impact of observational artefacts on our estimate of the true galaxy
+                                                                              overdensity field. We identify various effects that affect the com-
+                                                                              pleteness of the sample, which we quantify with weights applied
+                                                                              per sector. These weights are a development of those presented in
+                                                                              Anderson et al. (2012, 2014b). In particular, we discuss treatment
+                                                                              of “known” redshifts from SDSS-II that were not re-observed in
+lar density), or the image was identified as having any other critical        SDSS-III BOSS, galaxies not observed due to fibre collisions, ob-
+problems. This mask reduces the area by 3.4%.                                 served galaxies for which a robust redshift was not obtained, and a
+   • Seeing cut: we discard regions where the point spread function           weighting scheme to null non-cosmological fluctuations imprinted
+full width half maximum (labeled ’PSF FHWM’ in the catalogues)                on the catalogue by the target selection step. The weights described
+is greater than 2.3, 2.1, 2.0 in the g, r, and i band, respectively.          below are available for each galaxy in the LSS catalogues. In this
+The rationale for this cut is to decrease the variation of target den-        section we also summarise weights we apply to minimize our sta-
+sity and properties with seeing due to the star galaxy separation             tistical error on the observed power spectrum.
+(Eqns. 12, 20, and 21) and ifib2 cuts. This cut removes an addi-
+tional 0.5% (1.7%) of the NGC (SGC) footprint.
+   • Extinction cut: for similar reasons, we also discard areas               6.1    Fibre collision corrections
+where the E(B − V ) extinction (labeled ’EB MINUS V’ in the
+catalogues, from Schlegel, Finkbeiner & Davis 1998) exceeds 0.15.             Galaxies that were not assigned a spectroscopic fibre due to fibre
+This cut removes an additional 0.06% (2.2%) of the NGC (SGC)                  collisions are not a random subsample of the full target sample
+footprint.                                                                    since they are within a fibre collision radius (6200 ) of another target.
+                                                                              This is potentially a large effect: in the SGC, where the coverage
+     In the catalogue creation pipeline, the list of targets is imme-
+diately passed through these veto masks, so that targets in vetoed            7 To exactly reproduce the officially released random catalogues, one must
+regions do not contribute to the sector completeness calculation.             use the ransack version included in the SDSS idlutils product with version
+All random galaxies within the veto regions must also be removed.             v5 4 25 or higher (Surhud More, private communication). Random seeds
+Table 2 shows that in total, 6.6% (9.3%) of the area within the north         input to ransack are provided in the catalogue generation scripts accompa-
+(south) galactic cap footprint was removed by the veto masks.                 nying MKSAMPLE.
+
+                                                                                                                      c 0000 RAS, MNRAS 000, 2–21
+                                                                                     BOSS LSS targeting and catalogues                       15
+of known targets from SDSS-II is lowest, approximately 20% of             fibre. These galaxies are treated as random incompleteness in the
+galaxy targets are in a collision group containing other CMASS or         survey coverage and comprise 0.14% of the total galaxy sample.
+LOWZ galaxy targets. As a result, 5.8% of CMASS targets and                  • Finally, 0.3% of targets did not receive a fibre due to collisions
+3.3% of LOWZ targets were not assigned a spectroscopic fibre.             with targets other than CMASS and LOWZ but of the same priority.
+      These objects preferentially occupy denser environments and         Again we treat these missing redshifts as random.
+therefore have higher than average large-scale bias. They are also
+                                                                          Tables 3 and 4 provide statistics about the distribution of CMASS
+more likely than average to occupy the same dark matter halo as
+                                                                          and LOWZ galaxies in fibre collision groups and how the proba-
+a neighbouring galaxy target. Accurate fibre collision corrections
+                                                                          bility of assigning a fibre to a pair of collided galaxies in the same
+are therefore particularly important for applications relying on the
+                                                                          fibre collision group depends on the size of the collision group. Ap-
+absolute value of galaxy bias (i.e., in a comparison of the lensing
+                                                                          proximately 75% of collided galaxies are in a group of only two,
+and clustering amplitude) or those that use small-scale clustering to
+                                                                          and group sizes above four are quite rare. In Table 4, ffibre reports
+deduce halo occupation statistics and satellite fractions.
+                                                                          the fraction of galaxies in a collision group that received a spec-
+      In the default large-scale structure catalogue that focuses on      troscopic fibre, as a function of ntiles , the number of spectroscopic
+obtaining unbiased galaxy density fields on large scales, we sim-         tiles covering their sector. In the remaining columns we report the
+ply upweight the nearest galaxy from the same target class that was       fraction of pairs of CMASS+LOWZ targets in the same collision
+assigned a fibre to account for collided galaxies that were not as-       group for which both targets received a fibre, both globally (cpair ),
+signed fibres. This information is tracked by incrementing a weight       and as a function of ngroup . In regions covered by a single spec-
+wcp , labelled WEIGHT CP in the DR12 LSS catalogues. The up-              troscopic tile, only a small fraction of pairs with ngroup = 2 both
+weighted nearest neighbour could be classified by the spectroscopic       receive a spectroscopic fibre (4%). Such pairs must be sourced from
+pipeline as a good galaxy redshift, a star, or a redshift failure. Up-    collision groups containing at least one target of another class, ori-
+weighting the neighbour without reference to its classification is        ented such that the two CMASS/LOWZ targets in the group are
+the appropriate thing to do as the missed object could be in any of       separated by more than 6200 . As expected, for ntiles > 1 pairs in
+these classes.                                                            smaller collision groups are more likely to be resolved, and the ma-
+      We correct 34151 (11163) CMASS targets and 4459 (4422)              jority of fibre collisions are removed.
+LOWZ targets by nearest neighbour upweighting in the NGC                        Finally, to understand the impact of fibre collision corrections
+(SGC). This amounts to 5.0% (4.3%) of CMASS targets in the                on our estimate of the true galaxy density field, we examine the
+NGC (SGC), and 1.3% (2.9%) of the LOWZ targets. The differ-               apparent separation for pairs of galaxies in the same fibre colli-
+ence between the hemispheres is due both to higher tile density           sion group for which good redshifts were obtained for both. Fig. 10
+in the SGC (so more fibre collisions fall in overlap regions where        shows the distribution near ∆z ≈ 0, although the tails extend to
+they can be partially resolved) and to most of the previously known       much larger separations. We have converted redshift separations
+SDSS-II redshifts falling in the NGC.                                     to apparent distance separations using the fiducial cosmological
+      The algorithm used to generate the DR12 catalogues differs          model. The observed distribution (coloured lines) can be fit by a flat
+slightly from the one used for the DR9-DR11 catalogues. The new           background and an exponential distribution centered on ∆z = 0
+algorithm uses the output from the tiling algorithm to determine          (black lines). The fraction of resolved fibre collision pairs that are
+membership in fibre collision groups. Targets with the same ’FI-          “correlated” (i.e., contribute to the exponential component in the fit
+NALN’ and ’INGROUP’ field flags output from the tiling code               to the pairwise separation histogram) is 52% for pairs of CMASS
+share a collision group. We choose the nearest object of the same         targets and 62% for pairs of LOWZ targets, i.e., nearly half of fi-
+target class and collision group to carry the weight of the unob-         bre collision pairs are unassociated projections. Interestingly, the
+served target. We also allow “known” galaxies to carry the weight         width of the distribution is consistent with σexp = 5.4 h−1 Mpc for
+if they are closer than all BOSS-observed targets. In DR9-DR11            both target classes and is generally consistent with halo modeling
+catalogues, we did not refer to the fibre collision group indices, but    expectations.
+simply identified collision pairs in the same target class if they were         Since the choice of which galaxies are assigned fibres in a
+separated by less than 6200 . Nonetheless, the two algorithms select      collision group is completely random (apart from maximising the
+the same nearest neighbour ∼ 94% of the time.                             number of targets receiving a fibre), the object not assigned a fibre
+      Our adopted fibre collision correction scheme neglects a few        is statistically equivalent to the one we upweight, and so once up-
+subtle cases:                                                             weighted correlations at transverse separations larger than the fibre
+                                                                          collision scale should be unbiased. However, correlations at trans-
+                                                                          verse separations below the collision scale will be biased, since
+   • No corrections are applied for objects that are the only mem-
+                                                                          we are removing these small scale pairs. Additionally, these small-
+bers of their target class in their fibre collision group, and did not
+                                                                          scale variations will be anisotropic, and therefore likely to have a
+receive a fibre. For CMASS, this class represents 4% of all targets
+                                                                          stronger affect on the quadrupole, rather than monopole moments
+in fibre collision groups, and 0.7% of all CMASS targets overall.
+                                                                          of 2-point clustering statistics, for example. We therefore advocate
+Since there are more CMASS targets per unit area, this effect is
+                                                                          constructing statistics that do not apply these weights in situations
+larger for LOWZ targets: 12% of all collided LOWZ targets and
+                                                                          where these effects are important; see Reid et al. (2014) for an ex-
+1.4% of the full sample. Treating such collision pairs as unassoci-
+                                                                          ample configuration space statistic.
+ated is still a good approximation. To verify this assumption, we ex-
+amined all collision groups consisting of a single LOWZ target and
+single CMASS target, and for which we obtained both redshifts.
+                                                                          6.2   Treatment of “known” targets
+Only 11% of such pairs had line-of-sight separations smaller than
+50 h−1 Mpc.                                                               As the pre-observed “known” sample is complete (no failures are
+   • No corrections are applied when none of the multiple objects         kept), it does not match the angular distribution induced by varia-
+of the same target class in a fibre collision group were assigned a       tions in completeness of the galaxies spectroscopically observed by
+
+c 0000 RAS, MNRAS 000, 2–21
+16             Reid et al.
+
+Table 3. Distribution of galaxies across fibre collision group sizes. The           BOSS. Rather than try to model the distribution of known galaxies,
+largest collisions group (not listed) contains 17 galaxy targets. The first         we instead subsampled these data to match BOSS completeness in
+column provides the fraction of CMASS targets in groups with ngroup                 each sector, thus imposing the BOSS mask on the known galax-
+CMASS targets, restricted to groups with at least two CMASS targets. The            ies. In this way we make the sample indistinguishable from BOSS-
+second column shows the same calculation for LOWZ targets. The final col-           observed targets. In earlier data releases (DR9-11) we also marked
+umn lists the fibre collision group size distribution, where ngroup includes        a fraction of the galaxies in a 6200 close pair containing at least one
+both CMASS and LOWZ targets. For consistency across the mask these re-              object from the “known” sample as fibre-collided; we did not apply
+sults were computed from the LOWZ sample footprint (chunks ⩾ 7). For
+                                                                                    this step in our DR12 analysis and describe the difference in more
+reference, the fraction of galaxies that are not in any collision group is 77%.
+                                                                                    detail in the next section.
+                   ngroup      fCMASS      fLOWZ        fC+L                              In DR9-DR11 catalogues we additionally marked a fraction of
+                   2           0.7631      0.8456       0.7566                      the galaxies in a 6200 close pair containing at least one object from
+                   3           0.1687      0.1182       0.1726                      the “known” sample as fibre-collided, and assigned its weight to
+                   4           0.0440      0.0270       0.0461                      its nearest neighbour. This fraction was determined by measuring
+                   5           0.0146      0.0070       0.0150                      the fraction of 6200 BOSS targets that were fibre collision corrected
+                   6           0.0059      0.0010       0.0057
+                                                                                    in each sector. In sectors covered only by a single spectroscopic
+                   7           0.0023      0.0005       0.0022
+                   8           0.0007      0.0003       0.0008
+                                                                                    tile all 6200 pairs were collided. The original motivation of this cor-
+                   9           0.0003      0.0006       0.0003                      rection was to impose the same fibre collision completeness on the
+                                                                                    “known” targets as the BOSS targets. In DR12 we did not apply this
+                                                                                    correction. The rationale was that on sufficiently large scales the
+Table 4. Fibre collision statistics for targets in regions covered by ntiles        nearest neighbour upweighting scheme restores the correct cluster-
+spectroscopic tiles. The second column shows the fraction of the total mask
+                                                                                    ing statistics, and so should therefore be equivalent to using the
+area covered by ntiles tiles. The third column gives ffibre , the fraction of all
+                                                                                    measured redshifts. However, we expect the effective shot noise to
+collided galaxies that were assigned a fibre. The remaining columns specify
+the fraction of pairs of galaxy targets (CMASS + LOWZ) in the same colli-           be larger when using the former procedure. Correlation function
+sion group for which both targets received a fibre, both globally (cpair ), and     and power spectrum analyses that marginalize over a shot noise
+as a function of ngroup . We use the global fraction cpair to remove collided       term should be unaffected by this choice; analyses of smaller-scale
+pairs and approximate the fibre collision effect in our mock galaxy cata-           clustering should examine this issue further. This change is partic-
+logues. We track cpair separately for the NGC and SGC and for CMASS,                ularly important for clustering of the LOWZ sample because of the
+LOWZ or combined catalogues, but in practice the values are similar in              large overlap with the “known” galaxy sample.
+each case to those reported here.
+
+  ntiles        farea     ffibre   cpair    cpair (2)    cpair (3)     cpair (4)
+                                                                                    6.3   Redshift Failures
+  1             0.54      0.561    0.092    0.042        0.159         0.142
+  2             0.41      0.945    0.820    0.971        0.685         0.589        For 1.8% (0.5%) of CMASS (LOWZ) targets, the spectroscopic
+  3             0.05      0.992    0.966    0.992        0.985         0.915        pipeline fails to obtain a robust redshift. We do not necessarily ex-
+  4             0.0005    1.000    1.000    1.000        1.000         -            pect these to be distributed randomly with respect to e.g., plate cen-
+                                                                                    ter or redshift, and so we again adopt a nearest neighbour upweight-
+                                                                                    ing scheme to account for these objects. Redshift failure galax-
+                                                                                    ies were permitted to be upweighted because of a nearest neigh-
+        0.06 σexp = 5.4 h−1 Mpc                σexp = 5.4 h−1 Mpc                   bour fibre collision. We therefore transfer the total weight to the
+        0.05                                                                        nearest neighbour of the redshift failure, incrementing a weight
+                            CMASS                            LOWZ                   wnoz , labelled WEIGHT NOZ in the DR12 LSS catalogues. The
+        0.04                pexp =0.52                       pexp =0.62             upweighted object must be classified either as a good galaxy or star
+p(∆z)   0.03                                                                        redshift.
+                                                                                          In DR9-DR11 large-scale structure catalogues we removed
+        0.02                                                                        sectors with redshift success rates below 80% and at least ten good
+        0.01                                                                        redshifts; in our DR12 catalogue we exclude troublesome observa-
+                                                                                    tions by restricting mask regions with PLATEQUALITY of ’good’,
+        0.00                                                                        and do not remove the handful of sectors that would have been
+               30 20 10 0 10 20 30          30 20 10 0 10 20 30
+                    ∆z [h−1 Mpc]                 ∆z [h−1 Mpc]                       excluded using the DR9-11 criteria. Upon closer examination, we
+                                                                                    found that sectors failing the DR9-11 cut contained a small num-
+Figure 10. The probability distribution of apparent line-of-sight separations       ber of targets and therefore subject to small number statistics; we
+for pairs of galaxies in the same fibre collision group and for which both          checked that targets in those sectors were drawn from plates with
+have good redshifts. The left panel uses pairs of CMASS targets and the
+                                                                                    high redshift success rates.
+right panel uses pairs of LOWZ targets. Both distributions can be fit with the
+                                                                                          In DR9-11 we searched for redshift failure neighbours to up-
+sum of a background term and an exponential: ae−|∆z|/σ + b in the range
+|∆z| < 50 h−1 Mpc. A total of 52% (62%) of the CMASS (LOWZ) pairs                   weight only in the same sector; in the DR12 catalogue we only
+contribute to the exponential term. The best fit width σ of the exponential         consider neighbours observed on the same plate (which spans mul-
+component is 5.4 h−1 Mpc for both CMASS and LOWZ targets.                           tiple sectors) and same date, which restricts the neighbour search
+                                                                                    to galaxies observed under approximately the same conditions, and
+                                                                                    means the weighted number of classified objects in each sector
+                                                                                    matches the number of targets. The majority of close neighbours re-
+                                                                                    stricted to the same sector vs. restricted to the same plate and date
+                                                                                    are the same neighbour. The median angular separation between
+                                                                                    galaxies without a good redshift and their closest neighbour using
+
+                                                                                                                           c 0000 RAS, MNRAS 000, 2–21
+                                                                                     BOSS LSS targeting and catalogues                       17
+the updated algorithm is 3.70 (3.90 ) in the north (south), compared      pixels with nside = 1024 over the primary SDSS galaxies in the
+with 2.90 using the sector-based algorithm. Total counts of redshift      DR8 Catalogue Archive Server. For DR12, we instead directly
+failures for CMASS and LOWZ galaxies are listed in Table 2.               query the imaging data to determine the conditions estimated for
+      In CMASS, redshift failures are more likely to occur on faint       each galaxy’s parent imaging field. Per-object and per-field seeing
+targets - see Fig. 7. In the weighting scheme described above the         estimates are calculated differently. Empirically, these two meth-
+neighbouring, up-weighted, galaxies are drawn from the distribu-          ods for determining Si differ by a factor of ∼ 0.9. There is also
+tion of observed galaxies, which in turn are brighter on average than     scatter between per-field and per-object estimates of sky flux and
+the galaxies that failed to yield a good redshift. Given the slight       airmass. The DR12 galaxy and random catalogues contain fields
+correlation of ifib2 with redshift, this introduces a small redshift-     for ’PSF FWHM’, ’AIRMASS’, ’SKYFLUX’, ’EB MINUS V’,
+dependent bias on the LSS catalogues. To ameliorate this effect,          and ’IMAGE DEPTH’ if users want to further explore system-
+we modify the redshift-failure weights such that the weighted dis-        atics relationships. In what follows, the i-band seeing Si =
+tribution of ifib2 of the corrective weight matches the ifib2 of the      PSF FWHM[3]. For DR12 we adopted a slightly different param-
+targets with failed redshifts. In practice, acknowledging that an         eter convention from that of earlier catalogues9 :
+up-weighted galaxy might be a neighbour to more than one red-                                                              −1
+shift failure, we compute wnoz,new = 1 + (wnoz,old − 1)wif ib2 ,                                  −1              Si − Bsee
+                                                                                     wsee (S) = Asee 1 − erf                      .      (46)
+where wif ib2 = n(if ib2 , noz)/n(if ib2 , cp) with n(if ib2 , noz)                                                  σsee
+and n(if ib2 , cp) corresponding to the green and red lines of Fig. 7
+                                                                          In addition, we fit the systematic relationship separately for the
+respectively. To avoid wif ib2 being dominated by Poisson noise
+                                                                          NGC and SGC, again restricting the fits to objects in the CMASS
+in any given bin of if ib2 , we set wif ib2 = 1 for any bin where
+                                                                          LSS catalogues with 0.35 < z < 1.0. The DR12 parameter values
+n(if ib2 , noz) or n(i
+                    Pf ib2 , cp) are less
+                                       Pthan ten. The weights are nor-    are Asee = 0.5205 (0.5344), Bsee = 2.844 (2.267), and σsee =
+malised such that       wnoz,new =        wnoz,old . This scheme effec-
+                                                                          1.236 (0.906) for the NGC and SGC, respectively. In DR10/DR11
+tively transfers weight from bright to faint neighbours of redshift-
+                                                                          we also set wsee (Si > 200 .5) = wsee (Si = 200 .5); this action is no
+failure weights. We only apply this extra correction to CMASS for
+                                                                          longer necessary since the DR12 veto masks remove all area with
+two reasons: firstly the LOWZ redshift-failure rate is very small
+                                                                          Si > 200 .0.
+(0.5%) and, secondly, we find no significant dependence of red-
+                                                                               Finally, the application of the CMASS z-band star/galaxy sep-
+shift failure with ifib2 for LOWZ targets.
+                                                                          aration cut in the LOWZE3 sample induced a significant depen-
+                                                                          dence on the sample number density with Si that varies with the
+6.4    Angular Systematic Weights                                         i-band model magnitude; see Ross et al. (2015) for details. The
+                                                                          systematic weight for this sample is
+For the DR12 data we follow the same approach as described in
+                                                                                       ` = max −2, b + m(imod − 16.)−0.5
+                                                                                                                                     
+Ross et al. (2012) and updated in Anderson et al. (2014b) to re-                                                                            (47)
+move non-cosmological fluctuations in CMASS target density with                                                               −1 
+                                                                          wsee,LOWZE3 = min 5, (1. + (Si − 1.25)`)                          (48)
+stellar density and seeing. The LOWZ targets are brighter and do
+not show significant variations with these quantities, so LOWZ tar-       with parameters b = 0.875 and m = −2.226, fit using all objects
+gets do not require these weights.                                        in the LOWZE3 catalogue with 0.2 < z < 0.5, including objects
+      In DR12 we update the nside = 128 HEALPix8 stellar density          in chunks ⩾ 6 in addition to the LOWZE3 targeted region, chunks
+map to include all stars with i-band magnitudes between 17.5 and          3-6.
+19.9; the map used in DR10/DR11 did not impose the 17.5 bright                 The total angular systematic weights are simply the product of
+cut. The two maps also differ by a factor of the pixel area, 0.210        wstar and wsee for each object with index i:
+deg−2 . The functional form for wstar was also updated in DR12 to
+                                                                                                wsystot,i = wstar,i wsee,i                  (49)
+be the inverse of a linear relation:
+               wstar (ns , ifib2 ) = (Aifib2 + Bifib2 ns )−1 ,    (45)
+while in DR10/DR11 wstar was linearly dependent on ns ; see               6.5   Total Galaxy Weights
+Ross et al. (2015) for details. These two differences explain the
+                                                                          Finally, we combine the angular systematics weight wsystot,i with
+changes to the values of the Aifib2 and Bifib2 parameters be-
+                                                                          the fibre collision and redshift failure nearest neighbour weights to
+tween DR10/DR11 and DR12. The DR12 parameter values for
+                                                                          produce a final weight for each object i in the final catalog:
+wstar , determined using all galaxies in the CMASS catalog with
+0.35 < z < 1.0, are Aifib2 = [0.959, 0.994, 1.038, 1.087, 1.120]                        wtot,i = wsystot,i (wcp,i + wnoz,i − 1).            (50)
+and Bifib2 = [0.826, 0.149, −0.782, −1.83, −2.52] × 10−4 , com-
+puted in computed in 0.3 magnitude width ifib2 bins centred at            Since the default values of both wcp,i and wnoz,i are 1, the term
+[20.45, 20.75, 21.05, 21.35], as in Anderson et al. (2014b). The pa-      in parentheses conserves the total number of galaxy targets. This
+rameter wstar is determined for each galaxy by first linearly inter-      is the galaxy weighting consistent with the construction of the LSS
+polating the Aifib2 and Bifib2 fits to derive a value at each galaxy’s    catalogues provided, and must be used to obtain unbiased estimates
+ifib2 , and then using Eq. 45. The distribution of weight values is       of the galaxy density field, since this weight is used when assigning
+similar in the NGC and SGC and, overall, 93% of CMASS galax-              the random galaxy redshifts; see Sec. 5.2.
+ies have 0.95 < wstar < 1.1.
+       For DR10/DR11 analyses, a map of the DR8 i-band seeing,
+Si , was created by taking the mean seeing value within HEALPix           9  Eq. 20 of Anderson et al. (2014b) should state wsee (S) =
+                                                                                 h                  i−1
+                                                                                            Si −Bsee
+                                                                          2A−1see 1 − erf     σsee
+                                                                                                          for the parameter values listed in that
+8   http://healpix.jpl.nasa.gov/                                          text.
+
+c 0000 RAS, MNRAS 000, 2–21
+18       Reid et al.
+6.6   Angular Density and Redshift Distribution                                                      8
+We estimate the angular density of galaxy targets as the total num-                                                                         CMASS
+ber of targets within the final LSS mask divided by the total non-                                   7                                      LOWZ
+vetoed area within the sample LSS mask. The values for each target                                                                          LOWZE2
+class are listed in the final line of Table 2.10 We convert this angu-                               6                                      LOWZE3
+lar target density into a three-dimensional space density through a                                                                         CMASS+LOWZ
+
+
+
+
+                                                                                 104 n̄ [h−1 Mpc]3
+properly normalised redshift probability distribution:
+                                  X                 X                                                5
+      p(zj , zj + dz)dz ∝                  wtot,i /   wtot,i ,    (51)
+                              zi ∈[zj ,zj +dz]                                                       4
+where we sum over all objects in the catalogue with good spectro-
+scopic redshifts, and wtot,i is the total weight assigned to target i                                3
+to account for various observational artefacts (Eq. 50). The inclu-
+sion of wsystot,i in the estimate for p(z) accounts for any impact                                   2
+of the angular systematics on the (normalised) redshift distribution,
+through e.g., the ifib2 dependence of the stellar weights. However,
+                                                                                                     1
+our estimator for the angular target density does not recover the
+true target density in the absence of stars and imperfect seeing,
+                                                                                                     0
+but an average target density over the survey footprint. Finally, we                                 0.1   0.2    0.3   0.4        0.5      0.6   0.7    0.8
+use the fiducial cosmology to determine the number of targets per
+h−3 Mpc3 . The result is shown in Fig. 11 for all four target classes,
+                                                                                                                               z
+as well as the sum of the CMASS and LOWZ sample number densi-
+ties (with duplicate CMASS and LOWZ targets counted only once).                  Figure 11. Number density of all four target classes assuming our fidu-
+The CMASS+LOWZ number density reaches a local minimum in                         cial cosmology with Ωm = 0.31, along with the sum of the CMASS and
+                                                                                 LOWZ number densities (black).
+the overlap region of n̄(z = 0.41) = 2.2 × 10−4 h−3 Mpc3 . As
+reported in the previous sections, survey incompleteness, fibre col-
+lisions, redshift failures, and stars in the target sample all reduce            ‘WEIGHT FKP’ in the DR12 galaxy and random catalogues is
+the average angular density of good galaxy redshifts compared to                 given by
+the angular target density; their aggregate impact is a 10% (4.4%)
+reduction for CMASS (LOWZ). Finally, we compute the effective                                                                     1
+                                                                                                                 wFKP,i =                                (53)
+volume Veff , which quantifies the reach of a sample for making                                                             1 + n̄(zi )P0
+cosmological measurements, for the CMASS and LOWZ samples                        for an object with redshift zi , where n̄(zi ) is computed by lin-
+following the same algorithm outlined in Anderson et al. (2014b),                ear interpolation over bins with ∆z = 0.005 starting at z = 0.
+summing over 200 redshift shells                                                 The wFKP weight is optional in LSS analyses. To utilize these
+                       X  n̄(zi )P0 2                                          weights in a large scale structure analysis, one must weight both
+               Veff =                          ∆V (zi ) ,         (52)           data and random objects; the final weight of galaxy i is therefore
+                        i
+                             1 + n̄(zi )P0
+                                                                                 wtot,i wFKP,i and the final weight of random object j is wFKP,j . If
+where ∆V (zi ) is the volume of the shell at zi , and we assume that             one does not use the FKP weights (i.e., as in Reid et al. 2014), con-
+P0 = 10 000 h−3 Mpc3 , which we have changed since DR11, so                      sistent weightings of the galaxy and random catalogues are wtot,i
+the numbers are not directly comparable to Anderson et al. (2014b).              and wj = 1, respectively.
+We find Veff = 5.1 Gpc3 for CMASS and 2.3 Gpc3 for LOWZ.                              Earlier data releases adopted a different fiducial cosmology
+                                                                                 and assumed P0 = 20000 h−3 Mpc3 to compute wFKP . Perci-
+                                                                                 val, Verde, & Peacock (2004) updated the analysis of Feldman,
+6.7   FKP weights                                                                Kaiser & Peacock (1994) to a weighting scheme that accounts for
+                                                                                 luminosity-dependent clustering; such weights will be presented
+Feldman, Kaiser & Peacock (1994), hereafter FKP, showed that                     for the BOSS galaxy samples in a forthcoming BOSS team pa-
+the optimal weighting of galaxies as a function of redshift de-                  per. However, because our target selection algorithm is so efficient
+pends on the number density of galaxy tracers. The optimal weight                at selecting massive galaxies, the gain provided by luminosity-
+wFKP depends on the amplitude of the power spectrum in the                       dependent weights is modest for our sample.
+power spectrum bin of interest. In practice, we use the same value
+P0 = 10000 h−3 Mpc3 to estimate both the power spectrum and
+correlation function on all scales. This value of P0 corresponds
+to the observed power spectrum at k ≈ 0.15 hMpc−1 . The field                    7       COMBINED CATALOGUE CREATION
+                                                                                 For the purpose of providing a maximally contiguous three dimen-
+10
+                                                                                 sional density field estimate, in DR12 we provide a new catalogue
+   Our calculation of the ’NBAR’ field in the galaxy and random          cata-
+                                                                                 that combines the CMASS sample with the three lower redshift
+logues estimates the angular density of the sample as A−1
+                                                                 P
+                                                             eff    i (wcp +
+wnoz − 1). Here Aeff is the completeness weighted area inside the mask           samples: LOWZE2 (chunk 2), LOWZE3 (chunks 3-6), and LOWZ
+and the sum is over all galaxies in the catalogue with good redshifts. This      (chunks ⩾ 7). See Appendix A for details of the LOWZE2 and
+method is slightly noisier since the completeness in each region is estimated    LOWZE3 samples. A precise geometric description of the sky area
+from a finite number of galaxies. We verified that the two methods agree to      covered by each sample is provided in mangle mask format, con-
+within 0.02%.                                                                    structed such that every sector included in the CMASS mask is
+
+                                                                                                                                c 0000 RAS, MNRAS 000, 2–21
+                                                                                    BOSS LSS targeting and catalogues                      19
+included in exactly one of the LOWZE2, LOWZE3, or LOWZ                   Although this is expected to be small due to the relatively benign
+footprints. We also construct two additional masks, one includ-          transition from LOWZ to CMASS (Ross et al. 2015), a full explo-
+ing the LOWZE2 + LOWZ sky coverage and another including the             ration of this issue is left for a forthcoming BOSS team paper.
+LOWZE3 + LOWZ sky coverage.
+      Using those masks, we first generate a LOWZE2 catalogue
+including chunk 2 and chunks ⩾ 7 and a LOWZE3 catalogue
+                                                                         8   DISCUSSION
+including chunks ⩾ 3 using the target selection algorithms de-
+tailed in Appendix A. This is possible since all the galaxies passing    The small statistical errors achievable on cosmological measure-
+LOWZE2 and LOWZE3 cuts will also pass the LOWZ cuts. Pro-                ments from BOSS data require removal of potential systematic is-
+ducing a catalogue across a larger fraction of the sky allows a more     sues to an unprecedented level. Spectroscopic target selection and
+accurate estimate of n̄(z) for the LOWZE2 and LOWZE3 samples             mask creation are key areas where systematic problems can be in-
+(and therefore a better means of assigning redshifts to the random       troduced if care is not taken to fully understand both. In this paper
+galaxy sample). Without this step, the average density in chunk2         we have presented the target selection for the three primary spec-
+and chunks 3-6 would be poorly determined and could lead to erro-        troscopic galaxy catalogues within BOSS: LOWZ, CMASS and
+neous reconstruction flows towards or away from those regions in         Sparse, and for variations on these used for some early data. Each
+the final combined catalogues. As discussed in Sec. 6.4 and Ross et      sample has different sky coverage and expected redshift distribu-
+al. (2015), there is a significant correlation between i-band seeing     tion.
+and LOWZE3 target density which we remove using a systematic                   We have also presented the methods used to turn the target
+weight given by Eq. (48); LOWZE2 and LOWZ samples require no             catalogue and redshift measurement data into galaxy and random
+systematic weight corrections. We follow this same procedure with        catalogues, which enable clustering measurements to be quickly
+some minor but important differences when combining CMASS                made, as well as methods to mitigate potential systematics. It may
+and LOWZ catalogues. After full footprint data and random cat-           be that some analyses are best done without the corrections pro-
+alogues are produced, we trim each catalogue back to its original        vided - for example, it may be cleaner for small-scale clustering
+targeted region (i.e., LOWZE2 in chunk 2, LOWZE3 in chunks 3-            analyses not to apply the close-pair weights, but to correct in some
+6, and LOWZ in chunks ⩾ 7) using the mutually exclusive masks            other manner.
+discussed above.                                                               In addition to a number of improvements over the catalogue
+      Our algorithm to generate the combined catalogue from the          creation method used for DR9, DR10 and DR11 samples we have
+four different samples (CMASS, LOWZ, LOWZE2, LOWZE3) is                  described how we have created a single BOSS catalog, combining
+as follows:                                                              CMASS and LOWZ samples. This allows us to include some extra
+                                                                         galaxies, and maximise the effective volume covered by galaxies
+   • Renormalize the CMASS galaxy systematic weights
+                                                                         within BOSS. It also allows us to use a binning scheme in redshift
+w̃systot,i ∝ wsystot,i such that
+                   P                                                     different from those of CMASS and LOWZ, optimising our cos-
+                       i w̃ systot,i (wcp,i + wnoz,i − 1)                mological measurements.
+              1=         P                                . (54)
+                             i (wcp,i + wnoz,i − 1)
+                                                                               The resulting galaxy and random catalogues, the largest in the
+                                                                         world, are hosted at http://www.sdss.org/dr12/ as well
+This ensures that in the combined catalog, a CMASS target and a
+                                                                         as supplemental catalogue and target information. In this final re-
+LOWZ target on average have equal weight in each of the three dis-
+                                                                         lease, we also provide copies of our source code, MKSAMPLE, to re-
+tinct regions. The functional form chosen for wsee and wstar does
+                                                                         produce the DR10, DR11, and DR12 catalogues. The reader should
+not guarantee this normalisation. Fibre collision and redshift failure
+                                                                         consult the source code directly to resolve any ambiguities in our
+weights are left the same as in the original CMASS-only catalogue
+                                                                         description here.
+and the parameters for the systematic weights are identical to the
+                                                                               Next generation spectroscopic experiments, such as eBOSS
+ones in the CMASS-only catalogue (apart from the renormalisa-
+                                                                         (Dawson et al. 2015), DESI (Levi et al. 2013), HETDEX (Hill et
+tion).
+                                                                         al. 2008), 4MOST (de Jong et al. 2014), WEAVE (Dalton et al.
+   • For each of LOWZ, LOWZE2, LOWZE3 samples
+                                                                         2014) PFS (Takada et al. 2014), Euclid (Laureijs et al. 2011) and
+(“LOWZX”), read in the targets (including those in chunks
+                                                                         WFIRST (Spergel et al. 2015), are expected to make cosmologi-
+⩾ 7), and remove objects already in the CMASS catalog. Dupli-
+                                                                         cal measurements with precision either comparable or higher by up
+cate targets are 2.6%, 2.4%, and 4.4% of the LOWZ, LOWZE2,
+                                                                         to an order of magnitude compared to that of BOSS, requiring a
+and LOWZE3 samples, respectively. Fibre collision and redshift
+                                                                         thorough understanding and extremely careful treatment of poten-
+failure weights are then recomputed on each duplicate excluded
+                                                                         tial systematic effects. Although each of these future experiments
+LOWZX sample. As in the previous catalogues, fibre collision
+                                                                         have different observing strategies, they will encounter challenges
+and redshift failure weights are only assigned to other LOWZX
+                                                                         in the process of catalogue creation similar to those of BOSS (e.g.
+targets (not CMASS targets). For the LOWZE3 sample, sys-
+                                                                         variations in the galaxy surface density due to galactic extinction is
+tematic weights are assigned using the same parameters as the
+                                                                         an effect inherent to our observable Universe). The lessons learned
+LOWZE3-only sample, but renormalised as in Eq. 54.
+                                                                         from the catalogue creation method applied within BOSS, and de-
+   • Concatenate the CMASS and LOWZX samples and compute
+                                                                         scribed in this paper, will be of strong benefit for these future sur-
+the completeness of the combined sample in each sector. The rest of
+                                                                         veys.
+the catalogue creation steps, i.e., random catalogue generation and
+n̄ estimation, are identical to the algorithms used for the CMASS
+and LOWZ catalogues described previously.
+                                                                         9   ACKNOWLEDGEMENTS
+     When analysing the combined catalogue, as well as allowing
+for any evolution in the bias across the sample, one also has to con-    Funding for SDSS-III has been provided by the Alfred P. Sloan
+sider the differential bias between LOWZ and CMASS samples.              Foundation, the Participating Institutions, the National Science
+
+c 0000 RAS, MNRAS 000, 2–21
+20      Reid et al.
+Foundation, and the U.S. Department of Energy Office of Science.             Airborne Instrumentation for Astronomy V, 91470M (July 24,
+The SDSS-III web site is http://www.sdss3.org/.                              2014); doi:10.1117/12.2055826
+      SDSS-III is managed by the Astrophysical Research Consor-         Doi M., et al., 2010, AJ, 139, 1628
+tium for the Participating Institutions of the SDSS-III Collabora-      Doroshkevich A.G., Zel’dovich Ya.B., Sunyaev R.A., 1978 Soviet
+tion including the University of Arizona, the Brazilian Participation        Astronomy, 22, 523
+Group, Brookhaven National Laboratory, Carnegie Mellon Univer-          Drinkwater M., et al., 2010, MNRAS, 401, 1429
+sity, University of Florida, the French Participation Group, the Ger-   Eisenstein D.J., et al., 2001, AJ, 122, 2267
+man Participation Group, Harvard University, the Instituto de As-       Eisenstein D.J., et al., 2005, ApJ, 633, 560
+trofisica de Canarias, the Michigan State/Notre Dame/JINA Par-          Eisenstein D.J., et al., 2011, AJ, 142, 72
+ticipation Group, Johns Hopkins University, Lawrence Berkeley           Feldman H.A., Kaiser N., Peacock J.A., 1994, ApJ, 426, 23
+National Laboratory, Max Planck Institute for Astrophysics, Max         Fukugita M., et al., 1996, AJ, 111, 1748
+Planck Institute for Extraterrestrial Physics, New Mexico State         Gil-Marin H., et al., 2014, [arXiv:1407.5668]
+University, New York University, Ohio State University, Pennsyl-        Gil-Marin H., et al., 2014, [arXiv:1408.0027]
+vania State University, University of Portsmouth, Princeton Uni-        Górski, K. M., Hivon, E., Banday, A. J., Wandelt, B. D., Hansen, F.
+versity, the Spanish Participation Group, University of Tokyo, Uni-          K., Reinecke, M., & Bartelmann, M. 2005, ApJ, 622, 759
+versity of Utah, Vanderbilt University, University of Virginia, Uni-    Gunn J.E., et al., 1998, AJ, 116, 3040
+versity of Washington, and Yale University.                             Gunn J.E., et al., 2006, AJ, 131, 2332
+      We thank Eli Rykoff for providing the Bright Objects Mask         Hambly N.C., et al., 2008, MNRAS, 384, 637
+described in Section 5.1.1.                                             Hewett P.C., Warren S.J., Leggett S.K., Hodgkin S.T., 2006, MN-
+      The author order reflects the following: BR led the develop-           RAS, 367, 454
+ment of the MKSAMPLE software package. She is followed in the           Hill G.J., et al., 2008, in Panoramic Views of the Universe, ASP
+author list by two alphabetical lists of scientists who provided ma-         Conf. Series 399, 115
+jor contributions to galaxy targeting and/or catalogue creation. Out    Høg, E., et al., 2000, A&A, 355, 27
+of these, WJP is corresponding author as he took-over the creation      Hoshino H., et al., 2015, MNRAS, 452, 998
+of this paper when BR left the field of astronomy. This list is fol-    Kaiser N., 1986, MNRAS, 219, 785
+lowed by an alphabetical list of scientists who provided moderate       Kaiser N., 1987, MNRAS, 227, 1
+contributions to these topics, and who contributed to the BOSS          Laureijs R., et al., 2011, arXiv:1110.3193
+project as a whole.                                                     Lawrence A., et al., 2007, MNRAS, 379, 1599
+                                                                        Leauthaud A., et al., 2015, arXiv:1507.04752
+                                                                        Levi M., et al., 2013, arXiv:1308.0847
+                                                                        Lewis I.J., Glazebrook K., Taylor K., 1998, SPIE, 3355, 828
+REFERENCES
+                                                                        Lupton R., Gunn J.E., Ivezić Z., Knapp G., Kent S., 2001, “Astro-
+Abazajian K. N., et al. 2004, AJ, 128, 502                                   nomical Data Analysis Software and Systems X”, v.238, 269.
+Abazajian, K. N., et al., 2009, ApJS, 182, 543                          Maraston C., Strömbäck G., Thomas D., Wake D. A., Nichol R. C.,
+Ahn C.P., et al., 2012, ApJS, 203, 21                                        2009, MNRAS, 394, 107
+Ahn C.P., et al., 2014, ApJS, 211, 17                                   Maraston C., et al., 2013, MNRAS, 435, 2764
+Aihara H., et al., 2011, ApJS, 193, 29                                  Masters K.L., et al., 2011, MNRAS, 418, 1055
+Alam S., et al., 2015, ApJS in press, arXiv:1501.00963                  Montero-Dorta A.D., et al., 2015, arXiv:1410.5854
+Anderson L., et al., 2012, MNRAS, 427, 3435                             Nuza S.E., 2013, MNRAS, 432, 743
+Anderson L., et al., 2014a, MNRAS, 439, 83                              Padmanabhan N., et al., 2008, ApJ, 674, 1217
+Anderson L., et al., 2014b, MNRAS, 441, 24                              Parejko J.K., et al., 2013, MNRAS, 429, 98
+Annis J., et al., 2014, ApJ, 794, 120                                   Peebles P.J.E., Yu J.T., 1970, ApJ, 162, 815
+Aubourg E., et al., 2014, [arXiv:1411.1074]                             Percival W.J., et al., 2001, MNRAS, 327, 1297
+Blake C., et al., 2011, MNRAS, 418, 1707                                Percival W., Verde L., Peacock J., 2004, MNRAS, 347, 645
+Blanton M., et al., 2003, AJ, 125, 2276                                 Pier J.R., et al., 2003, AJ, 125, 1559
+Bolton A., et al., 2012, AJ, 144, 144                                   Reid B., et al., 2012, MNRAS, 426, 2719
+Beutler F., et al., 2014a, MNRAS, 443, 1065                             Reid B., Seo H.-J., Leauthaud A., Tinker J., White M., 2014, MN-
+Beutler F., et al., 2014b, MNRAS, 444, 3501                                  RAS, 444, 476
+Bundy K., et al., 2015, arXiv:1509.01276                                Ross A., et al., 2012, MNRAS, 428, 1116
+Casali M., et al., 2007, A&A, 467, 777                                  Ross A., et al., 2013, MNRAS, 424, 564
+Cannon, R., et al., 2006, MNRAS, 372, 425                               Ross A., et al., 2014, MNRAS, 437, 1109
+Chen Y.M., et al., 2012, MNRAS, 421, 314                                Ross A., et al., 2015, in prep.
+Chuang C.-H., 2013, [arXiv:1312.4889]                                   Rykoff E.S., et al., 2014, ApJ, 785, 104
+Cole S., et al., 2005, MNRAS, 362, 505                                  Saito S., et al., 2015, arXiv:1509.00482
+Colless M., et al., 2001, MNRAS, 328, 1039                              Samushia L., Pericval W., Raccanelli A., 2012, MNRAS, 420, 2102
+Colless M., et al., 2003, [astro-ph/0306581]                            Samushia L., et al., 2013, MNRAS, 429, 1514
+Dalton G., et al., 2014, Proc. SPIE 9147, Ground-based and Air-         Samushia L., et al., 2014, MNRAS, 439, 3504
+     borne Instrumentation for Astronomy V, 91470L (July 8,             Sanchez et al., 2012, MNRAS, 425, 415
+     2014); doi:10.1117/12.2055132;                                     Sanchez et al., 2014, MNRAS, 440, 2692
+Dawson K., et al., 2012, AJ, 145, 10                                    Schlegel D.J., Finkbeiner D.P., Davis M., 1998, ApJ, 500, 525
+Dawson K., et al., 2015, in prep                                        Scoccola C.G., et al., 2013, MNRAS, 434, 1792
+de Jong R.S., et al., 2014, Proc. SPIE 9147, Ground-based and           Seo H.-J., Eisenstein D. J., 2007, ApJ, 665, 14
+
+                                                                                                             c 0000 RAS, MNRAS 000, 2–21
+                                                                                           BOSS LSS targeting and catalogues                   21
+Smee S., et al., 2013, AJ, 146, 32
+Smith J.A., et al., 2002, AJ, 123, 2121
+                                                                                                     DR12 Early Chunks
+Spergel D., et al., 2015, arXiv:1503.03757                                       +30°
+Stoughton C., et al., 2002, AJ, 123, 3487
+
+
+
+
+                                                                         Dec (degrees)
+Strauss M.A., et al., 2002, AJ, 124, 1810
+Sunyaev R.A., Zel’dovich Ya.B., 1970, ApSS, 7, 3                                 +20°
+Swanson M.E.C., Tegmark M., Hamilton A.J.S., Hill J.C., 2008,
+     MNRAS, 387, 1391                                                            +10°
+                                                                                    0°
+Takada M., et al., 2014, PASP, 66, 1
+Tegmark M., et al., 2004, ApJ, 606, 702
+Thomas D., et al., 2013, MNRAS, 431, 1383
+Tojeiro R., et al., 2012, MNRAS, 424, 136
+                                                                                  -10°
+Tojeiro R., et al., 2014, MNRAS, 440, 2222
+Vargas-Magana M., et al., 2014, MNRAS, 445, 2                                        240° 220° 200°  180° 160° 140° 120°
+                                                                                                RA (degrees)
+Weinberg, D. H., et al., 2013, Physics reports, 530, 87
+White M., et al., 2011, ApJ, 728, 126
+                                                                          Figure A1. The location of early chunks, where targeting and/or photo-
+York D.G., et al., 2000, AJ, 120, 1579                                    metric reduction versions differed from the later chunks. Chunk 2 (blue),
+Zhao G.-B., et al., 2013, MNRAS, 436, 2038                                chunks 3-4 (green), chunks 5-6 (red), and chunks 7-11 (black) are shown.
+                                                                          Chunks 7-11 used an early version of the imaging data reduction software
+                                                                          (see Section 2).
+
+
+APPENDIX A: LOWZ EARLY SELECTION                                          nominal LOWZ target sample.
+ALGORITHMS
+                                                                                         rcmod       <        13.4 + c|| /0.3                (A6)
+As the survey progressed, these were slight changes to the targeting                      |c⊥ |      <        0.2                            (A7)
+pipeline. In some instances the newer algorithm was stricter than
+the one used in the past, so we simply apply the same cuts to the ob-                       17    < rcmod <   19.5                           (A8)
+jects targeted earlier as well. One special case is the LOWZ targets      rpsf − rcmod               >        0.3                            (A9)
+in chunks 2-6. The star-galaxy separation algorithm for CMASS                ipsf − imod             >        0.2 + 0.2(20 − imod )         (A10)
+was erroneously applied to those galaxies as well, resulting in a
+                                                                            zpsf − zmod              >        9.125 − 0.46zmod .            (A11)
+drastic reduction in the target density. There are other differences,
+and so we define two algorithms, LOWZE2 as that applied to chunk            • The ifib2 < 21.5 CMASS cut was applied to chunks 15 and
+2, and LOWZE3 as that applied to chunks 3-6. In analyses thus far         above. Our CMASS LSS catalogue applies this cut to all chunks.
+we have simply eliminated these early regions from our LOWZ
+catalog, but we are actively pursuing a sufficient description of that
+population to robustly recover clustering measurements in those re-
+gions. Removing this area results in a 10% reduction in the LOWZ
+survey mask area. The distributions of the early chunks on the sky
+are shown in Fig. A1. Chunk 2 was commissioning data, and used
+the LOWZE2 version; Chunks 3-6 used LOWZE3, and chunks 7-
+11 used older photometric reductions, and a different version of
+RESOLVE (see Section 2.1). Chunk 1 was used for very early com-
+missioning runs and is not of sufficient uniformity to be used to
+create LSS catalogues. Chunk 1 is located at DEC=0◦ in the SGC
+footprint (commonly referred to as “Stripe 82”). This area was later
+reobserved with updated target selection as Chunk 11.
+
+   • Chunk 2: The LOWZE2 sample had slightly different rcmod
+cuts and the CMASS i-band star-galaxy separation cut was erro-
+neously applied. The catalogue was later trimmed to 16 < rcmod
+as well. This selection yields a target density ∼ 15% lower than the
+nominal LOWZ target sample.
+       rcmod      <     13.4 + c|| /0.3                          (A1)
+         |c⊥ |    <     0.2                                      (A2)
+    rcmod <      19.5                                            (A3)
+rpsf − rcmod      >     0.3                                      (A4)
+ ipsf − imod      >     0.2 + 0.2(20 − imod ) .                  (A5)
+  • Chunks 3-6: The LOWZE3 sample is the same as chunk 2 but
+with a stricter 17 < rcmod bound and both star-galaxy separation
+cuts. This selection yields a target density ∼ 45% lower than the
+
+c 0000 RAS, MNRAS 000, 2–21
+

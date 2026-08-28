@@ -1,0 +1,1358 @@
+% mnras_template.tex 
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[fleqn,usenatbib]{mnras}
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+
+% Allow "Thomas van Noord" and "Simon de Laguarde" and alike to be sorted by "N" and "L" etc. in the bibliography.
+% Write the name in the bibliography as "\VAN{Noord}{Van}{van} Noord, Thomas"
+\DeclareRobustCommand{\VAN}[3]{#2}
+\let\VANthebibliography\thebibliography
+\def\thebibliography{\DeclareRobustCommand{\VAN}[3]{##3}\VANthebibliography}
+
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+% Only include extra packages if you really need them. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+% \usepackage{amssymb}	% Extra maths symbols
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{academicons}
+\usepackage{hyperref}
+\usepackage{orcidlink}
+\usepackage[normalem]{ulem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+
+
+\newcommand{\lcdm}{$\Lambda\rm{CDM}$} %\;
+\newcommand{\jess}[1]{\textcolor{magenta} {\textbf{[JAC]:{#1}}}}
+\newcommand{\val}[1]{\textcolor{red}{\textbf{{#1}}}}
+\newcommand{\jesst}[1]{\textcolor{magenta}{#1}}
+\newcommand{\hay}[1]{{\color[rgb]{0.7,0.0,0.7} {\textbf{[HMC: #1]}}}}
+\newcommand{\hayt}[1]{{\color[rgb]{0.7,0.0,0.7} {#1}}}
+\newcommand{\sdt}[1]{{\color[rgb]{0.2,0.2,0.7} {\textbf{SD:#1}}}}
+\defcitealias{Macpherson_Heinesen_2021}{MH21}
+\defcitealias{dhawan2022quadrupole}{D22}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+% \title[Short title, max. 45 characters]{Cosmographical Anisotropic Constraints from Pantheon+}
+
+%HM - suggested titles? feel free to edit / mix + match / use none of these / whatever
+%\title[New constraints on the quadrupole in $H_0$]{New constraints on the quadrupole in the local Hubble parameter with Pantheon+}
+\title[Constraints on a quadrupolar expansion in Pantheon+]{Potential signature of a quadrupolar Hubble expansion in Pantheon+ supernovae}
+%\title[Constraints on anisotropic expansion in Pantheon+]{Potential signature of a anisotropic Hubble expansion in Pantheon+ supernovae}
+
+
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[Jessica A. Cowell et al.]{
+Jessica A. Cowell \orcidlink{0000-0002-7228-6621},$^{1,2, 3}$\thanks{E-mail: jessica.cowell@physics.ox.ac.uk(JAC) , 
+% suhail.dhawan@ast.cam.ac.uk
+}
+Suhail Dhawan,$^{1}$
+Hayley J. Macpherson,$^{4,5,6}$
+\\
+% List of institutions
+$^{1}$Institute of Astronomy and Kavli Institute for Cosmology, University of Cambridge, Madingley Road, Cambridge CB3 0HA, UK\\
+$^{2}$ Department of Physics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford OX1 3RH, UK\\
+$^{3}$ Kavli Institute for the Physics and Mathematics of the Universe (IMPU), the University of Tokyo, Kashiwa, Chiba, 277-8582, Japan\\
+$^{4}$Department of Applied Mathematics and Theoretical Physics, University of Cambridge, Cambridge CB3 0WA, UK \\
+$^{5}$Kavli Institute for Cosmological Physics, The University of Chicago, 5640 South Ellis Avenue, Chicago, Illinois 60637, USA \\
+$^{6}$NASA Einstein Fellow
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2022}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Abstract of the paper
+\begin{abstract}
+The assumption of isotropy --- that the Universe looks the same in all directions on large scales --- is fundamental to the standard cosmological model. This model forms the building blocks of essentially all of our cosmological knowledge to date. It is therefore critical to empirically test in which regimes its core assumptions hold. Anisotropies in the cosmic expansion are expected on small scales due to nonlinear structures in the late Universe, however, the extent to which these anisotropies might impact our low-redshift observations remains to be fully tested. 
+In this paper, we use fully general relativistic simulations to calculate the expected local anisotropic expansion and identify the dominant multipoles in cosmological parameters to be the quadrupole in the Hubble parameter and the dipole in the deceleration parameter. We constrain these multipoles simultaneously in the new Pantheon+ supernova compilation. The fiducial analysis is done  in the rest frame of the CMB with peculiar velocity corrections.
+Under the fiducial range of redshifts in the Hubble flow sample, we find a $\sim 2\sigma$ deviation from isotropy. We constrain the  eigenvalues of the quadrupole in the Hubble parameter to be $\lambda_1 =0.021\pm{ 0.011}$ and $ {\lambda_2= 3.15\times 10^{-5}}\pm 0.012$ and place a $1\sigma$ upper limit on its amplitude of $2.88\%$. We find 
+no significant dipole in the deceleration parameter,  finding constraints of  $q_{\rm dip} =  4.5^{+1.9}_{-5.4}$. However, in the rest frame of the CMB without corrections, we find $ q_{ \rm dip} = 9.6^{+4.0}_{-6.9}$, a $>2\sigma$ positive amplitude. We also investigate the impact of these anisotropies on the Hubble tension. We find a maximal shift of $0.30$ km s$^{-1}$ Mpc$^{-1}$ in the monopole of the Hubble parameter and conclude that local anisotropies are unlikely to fully explain the observed tension. 
+
+
+
+
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+% \begin{keywords}
+% keyword1 -- keyword2 -- keyword3
+% \end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+The Lambda {cold dark matter} model (\lcdm) is generally accepted as the current standard model of cosmology.
+% It describes an accelerating Universe caused by its main component, Dark Energy, otherwise named the Cosmological Constant, $\Lambda$, which drives the  expansion of the Universe due to its negative pressure. It also contains cold dark matter, a form of matter that interacts only gravitationally, as well as radiation and baryonic matter.
+Over the years, \lcdm\ has amassed overwhelming agreement from many {cosmological} measurements, notably measurements from the {cosmic microwave background (CMB)} polarization, temperature, and lensing \citep{Planck2018}, 
+the {clustering} of galaxies at large scales \citep[e.g.][]{DESY3_cosmo}, and the measurements of the acceleration of the expansion of the Universe \citep{Riess1998,Perlmutter1999}.
+Despite its many successes, %there are still 
+some disagreements between \lcdm\ predictions and observations {are coming to light as measurements get more precise}. Perhaps the most notable is the ``Hubble tension'' \citep{Riess_2016}{:} the disagreement between inferences of the Hubble parameter {at redshift zero}, $H_0$, from Cepheid-calibrated supernovae {distances} %ladder measurements 
+and predictions from the CMB {which assume \lcdm}. %There is a wealth of literature on 
+{Many works have considered a wealth of} possible phenomenological or systematic sources of the tension %e.g.
+\citep[see, e.g.][]{Di_Valentino_2021, Efstathiou_2021, Mortsell2018}{, however, no one solution has yet been widely accepted. Aside from the Hubble tension, there are other disagreements with %`tensions' appearing with %in 
+\lcdm\ with varying significance}, 
+%which we will not discuss in this paper but are reviewed in e.g. 
+see, e.g., \citet{abdalla2022cosmology} {and \citet{Aluri2022}} for recent reviews.
+
+
+For such a long-standing model, as our data become more precise it is imperative {that} we continue to test the validity of the assumptions {upon which the model was originally built. Departures from these assumptions may only become observable once our precision passes a certain threshold, thus, continuous testing is required to ensure both precision and accuracy in cosmology. } %we form our model upon. 
+{While the CMB radiation we observe is largely isotropic --- after removing the dipole, which still leaves several anomalies \citep[see, e.g.][]{Schwarz:2016} --- tests of isotropy in the late Universe are in disagreement \citep[e.g.][]{Ripa2017,Javanmardi2017,Alonso_2015,Gibelyou_2012}. }
+In particular, at what point can we assume a transition to global isotropy from the anisotropic local Universe, 
+{where effects such as local bulk motions will dominate}? {Recent studies have called the assumption of isotropy on small scales into question \citep[e.g.][]{Colin_2011}.}
+
+A cornerstone of \lcdm\ is the assumption of a flat Friedmann–Lema\^itre–Robertson–Walker (FLRW) {space-time} metric. {These models assume \textit{exact} homogeneity and isotropy of space-time, however, their use is motivated by observations of the transition to \textit{statistical} homogeneity and isotropy at large scales \citep[e.g.][]{Scrimgeour:2012,Hogg:2005}. } 
+%assuming the Universe is homogeneous and isotropic at large scales. 
+%Historically, due to the lack of data, %it has not been feasible to detect anisotropy and %HM --> I think this is too general of a statement, because it assumes the anisotropy is a small deviation from FLRW
+{The FLRW assumption has allowed us to extract cosmological information from our observations even in early cosmology when data sets were limited.} %has been a necessary assumption 
+However, in the coming years, the amount of data is expected to drastically {increase} \citep{LSST_SRD, Hounsell2018,scolnic2019generation, Simons_Observatory_2019}, which will allow us to %look deeper at how we define anisotropies in our data, and 
+{critically} investigate the {realm of} validity of the %isotropic 
+assumptions at the core of \lcdm.
+
+
+{ There is recent debate around whether the presence of any observed anisotropy is still consistent with \lcdm\ once %one takes into consideration 
+{we consider local peculiar velocity} effects in the local Universe. %, such as any large-scale bulk velocity.
+%Much 
+{In particular, recent} discussion {has revolved} around the CMB dipole \citep{2018CMB, 2003WMAP.}. %which
+{This dipole is commonly} %is largely 
+attributed to the motion of our local galactic group (LG) relative to the CMB, %due to
+{caused by gravitational} attraction to a nearby over-density %, such as in 
+{\citep[see, e.g.][]{Nusser_Davis_2011}}. 
+%There is a plethora of literature investigating 
+Many studies have investigated whether the motion of the LG is consistent with the {measured} CMB dipole direction. While some find %good 
+agreement \citep[e.g.][]{Feindt2013, Appleby_2015}, other studies using Type Ia supernovae (SNe) claim to find no bulk flow \citep[e.g.][]{Huterer_2015}. 
+More generally, there is still heavy debate around the presence of anisotropy in low redshift data. While some studies claim to find consistency with {\lcdm\ } %homogeneity and isotropy, 
+\citep[e.g.][]{Gibelyou_2012, Alonso_2015, chang_2018}, recent %theoretical %studies 
+{work by \citet{2022HAYLEY} shows that we expect anisotropies} %a dominant dipolar signature 
+in the distance-redshift relation for low-redshift data sourcing from local differential expansion. {Any universe with structure will contain such anisotropies, so what remains is to determine their significance in our cosmological data. } %,2022HAYLEY 
+%Methods 
+{Some works} using the hemispherical comparison method \citep{2016Bengaly, Cai_2012} %, as well 
+{or} the %FLRW %HM - this is not technically FLRW since they add anisotropies 
+cosmographic method 
+\citep[][see also Section~\ref{sec:cosmo_distances}]{Sarkar2019, Wang_Wang_2014} find {a significant dipole} in the deceleration parameter using SNe and gamma ray burst data. Furthermore, \citet{Secrest_2021} found a large dipole in the angular distribution of quasars and \citet{Bolejko2016} found dipolar and quadrupolar anisotropies in the Hubble expansion. Moreover \citet{Rameez_2018, Kalbouneh:2022tfw} found anisotropies using galaxy catalogues. 
+Meanwhile, %other studies 
+{some studies have found consistency} 
+%find any anisotropic signals are still consistent 
+with \lcdm\ using both the hemispherical method \citep{Kalus2013, zhao2019} 
+{and other dipole fitting methods}
+%, and others e.g. 
+\citep[e.g.][]{Rubin_2020, Andrade2018, rahman2021new, soltis2019, Alonso_2015, Gibelyou_2012}.}
+
+
+%Conventionally, when doing such 
+{Many of these} anisotropy studies %even studies that 
+are independent of a particular cosmological model {through their use of a cosmographic expansion of the luminosity distance \citep[see][and Section~\ref{sec:cosmo_distances}]{Visser_2004}. Typically, anisotropies are added on top of the background FLRW cosmographic expansion. } 
+%e.g \citep{Wang_Wang_2014} still work within an FLRW metric by using the `cosmographic approach' \citep{Visser_2004}, and then adding anisotropies on top. 
+%{Such a} cosmographic expansion is commonly utilised for low redshift observations and derives directly from FLRW geometry, which we discuss in more detail in Section \ref{sec: FLRW_cosmography}. 
+In this work we will use a physically-motivated approach, %as we use 
+{via our use of} the novel {generalised cosmographic expansion} %framework 
+presented in \citet{Heinesen_2021}. This framework is %metric 
+independent {of any form of the metric tensor or field equations,} which allows %, in theory, %allowing 
+for a truly model independent analysis. In practise, such an analysis is difficult, owing to the vastly increased number of independent degrees of freedom (DOFs) of the general formalism {with respect to the FLRW framework}. Some works have tried to reduce the DOFs either by considering realistic physical approximations \citep{Heinesen_Macpherson_2021_Hubble_flow} or by analysing the framework within numerical relativity (NR) simulations \citep{Macpherson_Heinesen_2021}.
+
+We extend on the work of \citet{Macpherson_Heinesen_2021} (hereafter referred to as \citetalias{Macpherson_Heinesen_2021}) by performing a quantitative analysis {of their same data} 
+%across a set of observers in the same NR simulation 
+to determine which anisotropic signatures we expect to be dominant. {Then, we} constrain the {dominant anisotropies we find} in the {new} Pantheon+ {SNe} data set \citep{scolnic2021pantheon+}. %We also 
+{In doing this, we} improve the recent constraints from \citet{dhawan2022quadrupole} (henceforth referred to as \citetalias{dhawan2022quadrupole}) --- where the authors found no significant quadrupole in the Hubble parameter {using the Pantheon data set} \citep{pantheon_2018}. 
+
+% In this paper we take a more physically-motivated approach by starting with a more general Cosmography formalism by \citep{Heinesen_2021} which is not metric dependent, and then neglecting anisotropic terms that we find to be likely unimportant from the results of a analysing simulations by \citep{Macpherson_Heinesen_2021}. 
+
+
+% {We should discuss this, because, I think when those studies add anisotropies on top it's no longer explicitly an FLRW geometry (since this comes from the assumption of exact homogeneity and isotropy). Maybe best to frame this paragraph as: they add anisotropies on top of FLRW (in a kind of ad-hoc manner?), whereas we take a more physically-motivated approach by starting with Asta's formalism and neglecting terms that we find to be likely unimportant.}
+
+%{This para needs a bit more. See comment above, and maybe glue these together. You need more motivating the use of simulations. Maybe something like: here we use a physically-motivated approach. From the completely general cosmography of [cite Asta], we build on [cite Hay+Asta] by performing a thorough analysis across a set of observers to determine which anisotropic signatures we expect to be dominant. etc...}
+
+%%%%%%%%%%%%%%
+%findings from 2022 paper, need to weave in...
+%\citetalias{dhawan2022quadrupole} analyse redshift frames and find an insignificant dipole when applying peculiar velocity corrections to the CMB frame.
+%\citetalias{dhawan2022quadrupole} find no significant quadrupole in the hubble parameter. {you can put these Suhail + me papers into the discussion above, when you state the physically-motivated approach, because your work is building on that with better motivation + better data}
+
+ % Much discussion revolves around the presence of the CMB dipole \citep{2018CMB, 2003WMAP.}, which is largely attributed to the motion of our local galactic group (LG) relative to the CMB due to attraction to a nearby over-density, such as in \citet{Nusser_Davis_2011}. Within this area, there have been debates as to the scale of such a local bulk flow, with a plethora of literature investigating whether the motion of the LG is consistent with the dipole direction. While some find good agreement e.g. \citep{Feindt2013, Appleby_2015}  other studies using Type Ia Supernovae (SNe) claim to find no bulk flow \citep{Huterer_2015}.  \jess{talk about Suhail-hayley paper also! HAYLEY &SUHAIL find dipole aligns.... }
+% There is also a wealth of literature investigating the implications of an anisotropic Universe, such as modelling the Universe without dark energy \citep{Marra_Notari_2011}, but that is beyond the scope of this report.
+% We note however, theoretical works such as \citet{2022HAYLEY} predict a dominant dipolar signature in the distance-redshift relation for low-redshift data sourcing from local differential expansion. \jess{new paper agreed with this.. } 
+% This area of research is still a very active field, and we are yet to see truly metric independent analysis of anisotropy using observational data. 
+% \jess{needs updating}
+% The aim of this project is to build on the work of \citetalias{Macpherson_Heinesen_2021}. We use the novel framework from \citet{Heinesen_2021} to quantify anisotropy in Type Ia Supernovae (SNe) data using a framework that is metric independent, i.e., does not use a FLRW metric assumption, for the purpose of analysing anisotropy in cosmological data at low redshifts. 
+
+\section{Cosmological Distances}\label{sec:cosmo_distances}
+
+{In practice, when measuring distances in cosmology we use the distance luminosity relation, a relation between the distance of an object {and its redshift, which may assume some specific} %given a 
+cosmological model {(i.e., some expansion history)}. %This requires input knowledge of the underlying cosmological model. 
+{However,} at low redshift, we can free ourselves from these constraints %by 
+using the cosmographic approach. %The standard approach for 
+{Many} surveys measuring distance to astronomical objects at low redshift ($z\ll 1$) %$z\leq1$) %is to Taylor expand 
+{will use a Taylor expansion of} the luminosity-distance relation. 
+{Such an expansion can then be used in conjunction with observational data to infer cosmological parameters without assuming a specific expansion history.}}
+%, see Section~\ref{sec: Sne}.} }
+
+{In Section~\ref{sec: FLRW_cosmography} below, we briefly introduce the standard expansion performed within FLRW cosmologies, and in Section ~\ref{sec:general_cosmog} we briefly discuss a generalised formalism which does not assume a particular space-time metric.}
+
+
+
+\subsection{FLRW Cosmography}
+\label{sec: FLRW_cosmography}
+
+The standard approach for many surveys measuring the distance to astronomical objects at low redshift {($z<1$)} is to Taylor expand the luminosity distance {as a function of redshift, usually truncated at third order, namely } %relation as follows
+\begin{equation}
+d_{L}(z) = d^{(1)}_{L}z +d^{(2)}_{L}z^2+d^{(3)}_{L}z^3 + \mathcal {O}(z^4) .
+\label{eq:flrw_taylor}
+\end{equation}
+{Within the FLRW class of models, }
+%The cosmographic expansion most commonly used is the framework by \citet{Visser_2004}, within which 
+the coefficients of Eq.~\eqref{eq:flrw_taylor} can be {expressed as \citep{Visser_2004}}
+%derived from the FLRW geometry as;
+\begin{subequations}\label{eqs:dLFLRW_coeff}
+  \begin{align}
+% \begin{equation}
+    d^{(1)}_{L,FLRW}& \equiv \frac{1}{H_o},\\
+% \end{equation}
+% \begin{equation}
+    d^{(2)}_{L,FLRW}& \equiv \frac{1-q_o}{2H_o},\\
+% \end{equation}
+% \begin{equation}
+    d^{(3)}_{L,FLRW} & \equiv \frac{-1 + 3q_o^2 + q_o - j_o + \Omega_{k,o} }{6H_o}.
+% \end{equation}
+\end{align}
+
+\end{subequations}
+In the above, the standard Hubble, deceleration, jerk and curvature parameters, are defined as %:
+\begin{align}
+\label{eq:h0}
+&H \equiv \;\frac{\dot{a}}{a}, 
+\quad\quad\; q \equiv\; - \frac{\ddot{a}}{aH^2},  \\
+& j \equiv \frac{ \dddot{a}}{aH^3}, 
+ \quad\quad \Omega_k \equiv \frac{-k}{a^2H^2}, \label{eq:omega_k}
+\end{align}
+% \label{eq:FLRW_param}
+respectively, where $a$ is the FLRW scale factor, $k$ is the scalar curvature of the space-time {--- taking on values $k = \pm1, 0$ ---}
+{and an over-dot represents a derivative with respect to time.} {The subscript `$o$' in Eqs.~\eqref{eqs:dLFLRW_coeff} denotes that the parameters are measured at the observer position, 
+i.e. at redshift $z=0$.}
+
+
+
+% While many use this method, it is not truly a model 
+% -independent cosmography; while it does not specify field equations for  the evolution of the Universe, it does fix the metric to FLRW.
+% {suggest re-word of the above: These definitions are explicitly dependent on the existence of an FLRW geometry of the Universe.}
+The definitions {above} are explicitly dependent on the existence of an {exact} FLRW geometry {and expansion}. 
+In the next section, we will summarise the recent results of \citet{Heinesen_2021} in which 
+%{Recently, in} the theoretical work of \citet{Heinesen_2021}, %which derives 
+{the author derived} the {fully} model-independent {cosmographic} %series 
+expansion of $d_L$ in $z$, making no assumptions on the {field equations or underlying} metric {of space-time}. 
+%We outline this general formalism in the next section.
+
+\subsection{General Cosmography}
+%Below 
+\label{sec:general_cosmog}
+
+Series expansions of cosmological distances in the context of arbitrary space-time metrics --- i.e., removing the FLRW approximation --- have been studied for decades \citep[e.g.][]{Kristian_Sachs1966,Ellis_Nel_Maartens_Stoeger_Whitman_1985,Seitz1994LightPI,Clarkson_2011,Heinesen_2021}. 
+%Previous works on series expansions of observables in general geometries can be found in the literature \citep{Kristian_Sachs1966, Ellis_Nel_Maartens_Stoeger_Whitman_1985, Seitz1994LightPI, Clarkson_2011}.
+{In this section,} we will focus on the more recent
+%{summarise} the 
+results from \citet{Heinesen_2021}, in which the author presents a new generalised framework for cosmological data analysis outside of the FLRW metric. This is the framework upon which we will base our observational constraints presented in Section~\ref{sec:obs_results}. 
+
+The general form of the cosmography once again follows from {the Taylor expansion} \eqref{eq:flrw_taylor}, however, we now define %defining 
+the inhomogenous and anisotropic coefficients %in a similar {manner} 
+as follows; 
+\begin{subequations}
+\begin{align}
+% \begin{equation}
+d^{(1)}_{L} &\equiv \frac{1}{\mathfrak{H}_o},\\
+% \end{equation}
+% \begin{equation}
+d^{(2)}_{L} &\equiv \frac{1-\mathfrak{Q}_o} {2\mathfrak{H}_o},\\
+% \end{equation}
+% \begin{equation}
+d^{(3)}_{L} &\equiv \frac{-1 + 3\mathfrak{Q}_o^2 + \mathfrak{Q}_o- \mathfrak{J}_o + \mathfrak{R}_o}{6\mathfrak{H}_o}.
+% \end
+\end{align}
+\end{subequations}
+%where the subscript $o$ denotes that parameters are measured at the observer position.
+We consider a set of observers and emitters co-moving with the large-scale flow of the cosmological fluid with 4--velocity $u^\mu$.
+The coefficients above %define 
+{contain} %the effective 
+parameters which appear in the same place in the $d_L(z)$ {expansion} %coefficients 
+as {their} FLRW counterparts, %but 
+{however, they} have different physical interpretations. {They are thus named the \textit{effective}} Hubble, jerk, curvature and deceleration parameters, respectively, {and} are defined as; 
+\begin{subequations}\label{eqs:effective_params}
+\begin{align}
+% \begin{equation}
+\label{eq:effective_hubble}
+\mathfrak{H} &\equiv -\frac{1}{E}\frac{dE}{d\lambda},\\
+% \end{equation}
+% \begin{equation}
+\mathfrak{J} &\equiv \frac{1}{E^2} \frac{\frac{d^2\mathfrak{H}}{d\lambda^2}}{\mathfrak{H}^3}  -4\mathfrak{Q}-3,\label{eq:effective_jerk}\\
+% \end{equation}
+% \begin{equation}
+\mathfrak{R} &\equiv 1 + \mathfrak{Q} - \frac{1}{2E^2}\frac{k^{\mu}k^{\nu}R_{\mu\nu}}{\mathfrak{H}^2},
+\label{eq:effective_curvature}\\
+% \end{equation}
+% \begin{equation}
+\mathfrak{Q} &\equiv -1 - \frac{1}{E}\frac{\frac{d\mathfrak{H}}{d\lambda}}{\mathfrak{H}^2}.
+\label{eq: effective_decel}
+% \end{equation}
+\end{align}
+\end{subequations}
+In the above, $k^\mu$ is the 4--momentum of an incoming null ray, the derivative  ${d}/{d\lambda}$ is the derivative along the direction of the incoming null ray, {$E\equiv -u^\mu k_\mu$} is the photon energy function as measured by the observer, and $R_{\mu\nu}$ is the Ricci tensor
+of the space-time. We would like to emphasise again that the above set of parameters depend both on the observer's location \textit{as well as} the direction of observation. 
+{The latter can be better understood when writing} the effective parameters as an exact multipole {series} expansion in the direction of observation, $e^\mu$.
+%; as a function of the location and line of sight for an observer. 
+%Defining $e^\mu $ as the unit vector direction of an incoming photon on the observer's sky, 
+The expansion of the effective Hubble parameter $\mathfrak{H}$ {---} in terms of
+%can be expanded exactly as a multipole series, depending on 
+kinematic variables of the fluid {---} is  
+\begin{equation}
+\mathfrak{H}(e) = \frac{1}{3}\theta - e^{\mu}a_{\mu}+e^{\mu}e^{\nu}\sigma_{\mu\nu},
+\label{eq:effective hubble_multipole_expansion}
+\end{equation}
+where $\theta$ is the volume expansion rate, $a^\mu$ is the 4--acceleration and $\sigma_{\mu\nu}$ is the shear tensor {\citep[see, e.g.][for definitions of these fluid quantities]{Heinesen_2021}}. This is an exact representation, where the effective Hubble parameter is naturally truncated to quadrupolar order{. In the exactly} homogeneous and isotropic limit, {we have $\theta\rightarrow 3H$ and thus $\mathfrak{H}$} %simply 
+reduces to the FLRW Hubble parameter as defined in Eq.~\eqref{eq:h0}. 
+
+The same {multipole expansion} can be done for the {effective} deceleration parameter, {namely}
+%which is derived in \citet{Heinesen_2021} to be exactly truncated at the 16-pole {there is a subtlety here, the series in brackets in the below eq is truncated at the 16-pole, but once you divide by h(e) you end up with an infinite series of multipoles, apparently};
+\begin{multline}
+    \mathfrak{Q}(e) = -1 - \frac{1}{\mathfrak{H}^2(e)} \bigg( \overset{0}{\mathfrak{q}}+e^\mu \overset{1}{\mathfrak{q}}_\mu + e^\mu e^\nu\overset{2}{\mathfrak{q}}_{\mu\nu}+ 
+    e^\mu e^\nu e^\rho \overset{3}{\mathfrak{q}}_{\mu\nu\rho} +\\
+e^\mu e^\nu e^\rho e^\kappa \overset{4}{\mathfrak{q}}_{\mu\nu\rho\kappa}\bigg)
+     \label{eq: deceleration_multipole}  
+\end{multline}
+with coefficients
+\begin{subequations} \label{eqs:q_coeffs}
+    \begin{align}
+     &\overset{0}{\mathfrak{q}} \equiv \frac{1}{3} \frac{d\theta}{d\tau} + \frac{1}{3}D_\mu a^{\mu} - \frac{2}{3}a^\mu a_\mu - \frac{2}{5} \sigma_{\mu\nu}\sigma^{\mu\nu}, \\
+     &\overset{1}{\mathfrak{q}}_\mu \equiv - \frac{1}{3}D_\mu \theta  - \frac{2}{5} D_\nu \sigma^\nu_{\mu} -\frac{da_\mu}{d\tau}+a^\nu \omega_{\mu\nu}+ \frac{9}{5}a^\nu \sigma_{\mu\nu} \label{eq:q1_coefficent},  \\
+      &\overset{2}{\mathfrak{q}}_{\mu\nu} \equiv \frac{d\sigma_{\mu\nu}}{d\tau} + D_{\langle _\mu}a_{\nu\rangle} + a_{\langle \mu }a_{\nu \rangle } -2\sigma_{\alpha\langle\mu \omega^\alpha_\nu\rangle} -\frac{6}{7}\sigma_{\alpha \langle \mu }\sigma^\alpha_{\nu \rangle }, \\
+       &\overset{3}{\mathfrak{q}}_{\mu\nu\rho} \equiv  - D_{\langle _\mu}\sigma_{\nu\rho\rangle} -3a_{\langle \mu }\sigma_{\nu\rho \rangle } ,\label{eq:q3_coefficent}
+       \\
+    &\overset{4}{\mathfrak{q}}_{\mu\nu\rho\kappa} \equiv  2\sigma_{\langle \mu\nu }\sigma_{\rho\kappa \rangle },
+    \end{align}
+\end{subequations}
+where $\langle\rangle$ implies symmetrisation over the enclosed indices, see \citet{Heinesen_2021}. {The multipole expansion Eq.~\eqref{eq: deceleration_multipole} implies that the parameter $\mathfrak{H}^2(\mathfrak{Q}+1)$ is exactly truncated at the 16-pole \citep[see][]{Heinesen_2021}. }
+
+For $\mathfrak{R}$ and $\mathfrak{J}$ the same {expansions} can be done, %with $\mathfrak{R}$ %going 
+%{and $\mathfrak{J}$ 
+{containing multipoles} up to {the} 16-pole and  %going up to
+64-pole, {respectively,} see \citet{Heinesen_2021} for details.
+{In this work, we will focus only on the multipolar expansions in the lowest order parameters, $\mathfrak{H}$ and $\mathfrak{Q}$.}
+
+{In its full generality, this formalism contains 61 independent degrees of freedom when truncated at third order in redshift. \citet{Heinesen_Macpherson_2021_Hubble_flow} reduced this to $\sim 31$ degrees of freedom using realistic model universe assumptions, however, constraining this many degrees of freedom}
+{%Using this formalism in full {generality} 
+is difficult when working within the limitations of current {low redshift standardisable} %observational 
+data. To reduce the degrees of freedom when fitting these parameters, we %aim to 
+{will first} analyse which multipole terms are expected to %will 
+dominate, then simplify {the general cosmographic expression} to include only %relevant 
+these dominant terms. %To do this we analyse 
+For this analysis, we will use the numerical simulation {data} %of
+{presented in} \cite{Macpherson_Heinesen_2021}, %where 
+in which the effective anisotropic parameters %are 
+were calculated explicitly for {a set of synthetic} observers within the simulations.}
+In the next section, we explain this data and present our multipole analysis determining the dominant multipoles for the effective cosmological parameters. 
+
+%\section{Numerical Relativity Simulation}
+\section{Anisotropy in Cosmological Simulations}
+
+In this %work 
+{section,} we analyse {two} {numerical relativity (NR)} {cosmological} simulations 
+{to quantify potentially observable} effects generated by local {anisotropic} expansion. 
+We will use the results %from this analysis 
+{we present in this section} to {motivate} %inform 
+our choice of multipoles %when constraining anisotropy 
+{we constrain} in SNe data {in Section~\ref{sec:obs_results}}. 
+
+In Section~\ref{sec:sims} below we {describe} the simulation data we use and in Section~\ref{sec:sim_results} we present our detailed multipole analysis {across the} %for a 
+set of observers in these simulations. 
+
+
+\subsection{Numerical Relativity Simulation Data}
+\label{sec:sims}
+ 
+
+{We use calculations of the effective cosmological parameters \eqref{eqs:effective_params} from \citet{Macpherson_Heinesen_2021} (hereafter \citetalias{Macpherson_Heinesen_2021}), as calculated within a set of two NR cosmological simulations. We will use this data to determine the dominant multipoles in each effective parameter for a set of synthetic observers within the simulations. 
+}
+
+These %cosmological NR 
+simulations adopt a dust fluid approximation {(with negligible pressure, namely $P\ll \rho$)} for the matter with no dark energy \citep[see][for further details on the software and physical assumptions of the simulations]{MacphersonNR2019}.
+{We are interested in how the effective cosmological parameters compare to their FLRW equivalents. }
+Consequently, %in this work 
+we normalise the simulation values to {the} flat, matter-dominated FLRW model {--- i.e., the} Einstein de Sitter (EdS) model. The initial conditions {of the simulations} are that of a linearly-perturbed EdS metric, with Gaussian-random initial density fluctuations mimicking the CMB. {The $z\approx 0$ snapshots of the simulations agree well with the EdS model used for the background initial data when averaged on large scales \citep[see][]{MacphersonNR2019}.}
+Since the simulations contain no dark energy, they will have higher density contrasts in general compared to an equivalent \lcdm model universe. However, as discussed in \citetalias{Macpherson_Heinesen_2021}, we will see \textit{qualitatively} similar anisotropic signatures as in an equivalent simulation with $\Lambda\neq 0$, however, the amplitude of the signatures may be reduced. {Therefore, our conclusions on which multipoles are \textit{dominant} across observers should be robust. }
+
+% The simulation  was produced using the {\tt Einstein Toolkit} \citep{Zilhao_Loffler_2013, Frank2021} by evolving the Einstein equations alongside equations of general-relativistic hydrodynamics. The simulations have coarse graining scales such that each cell is 100$\;h^{-1} \rm{Mpc}^{-1}$, where `little h' is defined by $H_0=100\;h \rm{kms}^{-1}\rm{Mpc}^{-1}$,and are a periodic cubic box shape with length 12.8$h^{-1}$Gpc. 
+% Observations find a transition to statistical homogeneity \begin{multline}at $\approx$ 100$h^{-1}$Mpc \citep{Scrimgeour:2012wt}, so any small-scale non linearities are smoothed out of the simulations. 
+\begin{figure*}
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{final_figures/h0.pdf}
+    \end{subfigure}%
+    \begin{subfigure}{.5\textwidth}
+         \centering
+        \includegraphics[width=\linewidth]{final_figures/q0.pdf}
+    \end{subfigure}
+    \caption{Sky maps for a single observer measured in directions of the $12\times N_{\rm side}^2$ {\tt HEALPix} pixels with $N_{\rm side} = 32$. {The simulations have physical domain length of $L=12.8 \,h^{-1}$ with a smoothing scale of $100\, h^{-1}$ Mpc. }The left panel shows the effective Hubble parameter and the right panel shows the effective deceleration parameter. Both panels are normalised by their respective EdS values.}
+    \label{Fig:skymap}
+\end{figure*}
+We use the data of 100 observers placed in random locations throughout two simulations from \citetalias{Macpherson_Heinesen_2021}. The two simulations {both have numerical resolution $N=128$ (with the full cubic domain containing $N^3$ grid cells) but} have different {``{smoothing} %coarse-graining 
+scales''}, such that individual grid cells have lengths $100\, h^{-1}$ Mpc and $200\, h^{-1}$ Mpc, giving {domain} lengths of {$L=12.8 \,h^{-1}$} Gpc and $ L=25.6 \,h^{-1}$ Gpc{, respectively}. These smoothing scales are chosen such that small-scale non-linearities have been %smoothed out of 
+{explicitly excluded from} the simulations. %, %in accordance 
+%{consistent} 
+{These chosen smoothing scales are motivated by} %with 
+observations %finding 
+{which report} a transition to statistical homogeneity at $\approx$ 100$h^{-1}$Mpc \citep{Scrimgeour:2012wt}. {Incorporating such a smoothing scale {in these kinds of calculations} is necessary to ensure the regularity requirements of the general cosmography are satisfied in the calculations \citep[see][and also \citetalias{Macpherson_Heinesen_2021}]{Heinesen_2021}}. 
+
+For each observer, the effective cosmographic parameters have been calculated {in the direction of}
+%along 
+$12\times N_{\rm side}^2$ 
+%lines of sight, with $N_{\rm side}=32$, 
+{\tt HEALPix}\footnote{http://healpix.sourceforge.net} indices {with with $N_{\rm side}=32$ --- ensuring an } 
+
+isotropic sky coverage for each observer \citep{healpy2}. %<-- note this healpy2 paper is actually the HEALPix reference
+
+{In} {Figure~\ref{Fig:skymap} {we show}} %example 
+sky maps for the %normalised 
+effective Hubble (left panel) and deceleration (right panel) parameters for a single observer in the NR simulation with smoothing scale {$100 h^{-1}$MPc}  (adapted from \citetalias{Macpherson_Heinesen_2021}). 
+{Both parameters are normalised by their {respective} EdS
+{values, namely $H_{0,{\rm EdS}}=45$ km/s/Mpc and $q_{0,{\rm EdS}}=0.5$. }
+%{equivalents}.
+{For} this %example 
+observer, %we can see a %clear 
+%quadrupolar %structure arising 
+%{anisotropy dominating} in $\mathfrak{H}_o$ and a {dipole anisotropy in $\mathfrak{Q}_o$, however, the presence of higher-order mutlipoles is clear in the latter. }
+%In Figure~\ref{Fig:skymap}, for this observer
+by eye we can see a quadrupolar anisotropy dominating the signal {for the effective Hubble parameter --- physically} sourced from the shear tensor contribution in \eqref{eq:effective hubble_multipole_expansion}. {This is to be expected for all observers in these simulations, since they are co-moving with a dust fluid and thus the acceleration $a_\mu$ term (contributing to the dipole) is subdominant.}
+
+For the effective deceleration parameter, %shown in Figure~\ref{Fig:skymap}, 
+the dipolar %modulation 
+anisotropy appears to be dominant --- physically sourced by gradients in the local expansion rate. While we might expect gradient terms to dominate in the coefficients \eqref{eqs:q_coeffs}, this is not obviously the case across all observers and will be dependent on their specific location. 
+{Thus, in the following section, we proceed to use this data for all observers to explicitly determine the dominant multipoles for each parameter. }
+
+
+% {instead of 12,288 quote this as $12\times N_{\rm side}^2$ lines of sight with $N_{\rm side}=32$ Healpix indices, then cite healpix here. Usually people are used to thinking in terms of Nside instead of the total number.}
+
+
+%We also see a dominant dipole in $\mathfrak{q}_0$, due to the derivative of the volume expansion rate $D_\mu \theta $ in Eq. \eqref{eq:q1_coefficent}. Also, note the degeneracy between $\mathfrak{R}_0$ and $\mathfrak{q}_0$ due to $\mathfrak{Q}$ entering \eqref{eq:effective_curvature}. 
+\subsection{Multipole Analysis}
+\label{sec:sim_results}
+ 
+{In this section,} we %move to 
+{work in} Fourier space where the multipole components can be easily separated. First, we use the {\tt healpy} package \citep{healpy1,healpy2} to calculate the angular power spectrum {for multipole $\ell$ as}
+%defined as;
+\begin{equation}
+	\label{eq: angular power spectrum}
+    {C_\ell } = \frac{1}{2 \ell +1} \sum_{m} |{{a}_{\ell m}}|^2,
+\end{equation}
+{using the {\tt healpy.anafast} function.}
+%where $\ell$ is the multipole and 
+%what does the hat mean in the above?}
+{In the above, }$a_{\ell m}$ are the spherical harmonic coefficients to {the} spherical harmonics $Y_{\ell m }$, {which are} defined from the expansion of a band-limited function {$f$} on a sphere with angular coordinates $\theta, \phi$ as  
+\begin{equation}
+    \label{eq: spherical harmonics}
+    f(\theta, \phi) = \sum^{\ell_{max}}_{\ell = 0}\sum_m a_{\ell m} Y_{\ell m }(\theta, \phi).
+\end{equation}
+
+
+We use $C_\ell$ to quantify the strength of each multipole component relative to the monopole. Specifically, for each observer, we %look at
+{calculate} the ratio of the spherical harmonic coefficients, that is  
+\begin{equation}
+{\mathcal{R_{\ell}} =\sqrt{ \frac{(2\ell + 1) C_\ell}{C_{\ell=0}} } }, 
+\end{equation}
+for $\ell>0$ in the numerator.
+\begin{figure}
+    \includegraphics[width=\columnwidth]{final_figures/diff_ratio_violinplot.pdf}
+    \caption{ 
+    Relative ratios ($\mathcal{R}_\ell$) for each multipole relative to the monopole for the effective hubble ($\mathfrak{H_o}$) and deceleration ($\mathfrak{Q_o}$) parameters. The upper panel shows $\mathfrak{H_o}$, while  $\mathfrak{Q_o}$ is shown below. Shaded regions represent an empirical distribution of the data, calculated using kernel density estimation (KDE). Results for two simulations of length $12.8h^-1$Gpc and $25.6h^-1$Gpc are shown in yellow and blue. The upper limits and medians are marked on the plots with horizontal lines. Note that $\mathfrak{H_o}$ only goes up to quadrupolar order, and $\mathfrak{Q_o}$ to a 16-pole due to the exact truncations in Eq. \ref{eq:effective hubble_multipole_expansion} and \ref{eq: deceleration_multipole}}
+    \label{fig:violin_plots}
+\end{figure}
+This approach allows us to {calculate} the relative strength of each multipole {with respect} to the isotropic {(monopole)} component. 
+Since $\mathfrak{R}$ and $\mathfrak{J}$ only enter {the expansion} \eqref{eq:flrw_taylor} at third order in redshift, their contributions $d_L$ will be {difficult} to constrain with current data. {Thus, in this work}
+we focus on anisotropies in the {effective} Hubble and deceleration parameters. %Those interested may find 
+{We present} the corresponding analysis for the {effective} curvature and jerk parameters in Appendix~\ref{sec: curv_jerk}.  
+
+{In {Figure~}\ref{fig:violin_plots}} we show %the results of 
+this calculation for all 100 observers for both simulations for the effective Hubble and deceleration parameters.
+%observationally, while also being suppressed in low-redshift data compared to other multipoles, 
+The shaded regions %show regions 
+represent an empirical distribution of the data, calculated using kernel density estimation (KDE), with the median, upper, and lower limits displayed {as horizontal bars}. 
+
+{We see the same {qualitative} trend} for both simulations, {however,} for the %smaller smoothing scale 
+simulation {with $100\,h^{-1}$ Mpc smoothing scale} we see %a trend of 
+{generally} larger {amplitude} anisotropic components. This is expected, as the {smaller physical} resolution %of $100\, h^{-1}$Mpc 
+allows for more {small-scale structures to form, resulting in stronger {local} anisotropic effects}. {For the rest of this work, }we %take 
+{consider} %the $12.8 h^{-1}$ Gpc 
+{this} simulation %{(smaller smoothing scale)} 
+as the fiducial case{, since it contains the most realistic structure of the two. } %}
+
+For the effective Hubble parameter $\mathfrak{H}_0$, %we see 
+the dipole is %effectively insignificant, being %HM <-- this is subjective, just state facts
+on average {four} orders of magnitude smaller than the {monopole} term, with a median of { $\mathcal{R}_{\ell=1}(\mathfrak{H}) =1.029\times 10^{-4} $}.
+However, 
+%we do see a more significant 
+{the} quadrupole %, with 
+{has} median value {$\mathcal{R}_{\ell=2}(\mathfrak{H}) = 7.52 \times 10^{-3}$. }
+The effective deceleration parameter, %Particularly of note is 
+$\mathfrak{Q}_0$, %which 
+has a dipole {with amplitude} approximately {$110\%$ }{that} %the size 
+of the monopole, {namely a median of} {$\mathcal{R}_{\ell=1}(\mathfrak{Q}) = 1.12$}.{The} %and an 
+octopole of {the effective deceleration parameter has amplitude of approximately} %around 
+{$30\%$, {or} $\mathcal{R}_{\ell=3}(\mathfrak{Q}) =0.314$. }
+
+From these results, we {can} reduce the degrees of freedom of %the theory 
+the general cosmographic expansion %by simplifying to 
+by including only the dominant terms in each effective parameter.
+
+The simplified version of Eq. \eqref{eq: deceleration_multipole} we use for the effective deceleration parameter which includes the monopole, dipole, and octopole contributions is%;
+\begin{equation}
+    \label{eq: approx q}
+    \mathfrak{Q}(e) \approx -1 - \frac{1}{\mathfrak{H}^2(e)} \bigg( \overset{0}{\mathfrak{q}}+e^\mu \overset{1}{\mathfrak{q}}_\mu + 
+    e^\mu e^\nu e^\rho \overset{3}{\mathfrak{q}}_{\mu\nu\rho} \bigg{)}.
+\end{equation}
+
+There are still
+%With the 
+many degrees of freedom even in this simplified expression. %, 
+It will be difficult to constrain all {three multipole} components of $\mathfrak{Q}(e)$, and although the sky coverage of SNe has %dramatically 
+improved with Pantheon+, tightly constraining an octopole remains a challenge. 
+%potentially challenging. 
+For this reason, %these practical reasons, 
+despite its potential significance, %in this work 
+we neglect the octopole contribution and further simplify the expression to 
+%do not constrain the octopole, and use
+\begin{equation}
+    \label{eq: multipole_decel}
+    \mathfrak{Q}(\boldsymbol{e}) \approx -1 - \frac{1}{\mathfrak{H}^2(\boldsymbol{e})} \bigg( \overset{0}{\mathfrak{q}}+e^\mu \overset{1}{\mathfrak{q}}_\mu  \bigg{)}.
+\end{equation}
+
+
+Similarly, for the effective Hubble parameter $\mathfrak{H}$, we use a simplified version of Eq. \eqref{eq:effective hubble_multipole_expansion} {in which we neglect} %neglecting 
+the dipole term:
+\begin{equation}
+    \label{eq: simplified effective hubble}
+    \mathfrak{H}(\boldsymbol{e}) \approx \frac{1}{3}\theta - e^{\mu}e^{\nu}\sigma_{\mu\nu}.
+\end{equation}
+
+
+
+
+Armed with a  simplified version of the general cosmographic parametrisation {of the luminosity distance}, we now move toward constraining {these} anisotropies in %real 
+{observational} data.
+
+
+% \section{Work for next term}
+% This project aims to analyse which coefficients in this expansion appear the most prominent in skymaps and determine whether we can observe similar results in real data. For the future work for this project I would like to examine more formally the statistical properties of the multipole coefficients, defining some new statistics.
+% The next step would be to analyse the best-fit preferred directions and compare them to, for example, the direction of the dipole in the CMB \citep{2018CMB}. Following this, if time allows, we aim to test this analysis by performing new analysis of low-redshift data including the impact of anisotropy, then repeat the analysis using fully general-relativistic ray tracing results and compare to initial calculations.
+
+\color{black}
+
+
+%\section{Observational Constraints}
+\section{Observational data and methodology}
+Here we detail our methods for constraining the anisotropies discussed in the previous section using supernova data. We introduce %supernovae methods 
+{the use of supernovae distances in constraining cosmology} in Section~\ref{sec: Sne}, the statistical method we use in Section~\ref{sec:chisq}, the data sets we use in Section~\ref{sec:P+}, the parametrisations we constrain in Section~\ref{sec:theory_sn}, and present our constraints themselves in Section~\ref{sec:obs_results}. 
+
+
+\subsection{Supernova distances}
+\label{sec: Sne}
+
+Type Ia supernovae (SNe) are a key part of the cosmic distance ladder {\citep[see, e.g.][for a review]{Goobar2011}}. 
+%cite a review?} 
+When calibrated, they act as standard candles for {distance} measurements %of distance, 
+%following 
+{via} the relation %is the below a definition? use equiv if so}
+\begin{equation}
+    \label{eq: Tripp formula}
+    \mu \equiv m_B^* - M ,
+    \end{equation}
+where $\mu$ is the distance modulus, $m_B^*$ is the corrected apparent magnitude {of the SN} and $M$ is {its} absolute magnitude. In this work, we will use 
+%the corrected magnitude 
+$m_B^*$ from the Pantheon+ data set, {which we introduce in Section~\ref{sec:P+} below.}
+%details of corrections applied can be found in 
+%see 
+{We refer the reader to} \citet{scolnic2021pantheon+} for details of the corrections applied {to $m_B$ in the public data set}. % and Section~\ref{sec:Pplus} for more details on the data we use here.}
+
+
+% as the raw observed apparent magnitude has already been corrected for lightcurve shape, colour, host galaxy properties and distance bias as in \citet{1998A&A_Tripp,pantheon_2018}. 
+The luminosity distance, $d_L$ {(in units of 10 parsec)}, is related to the distance modulus {via} %by:
+\begin{equation}
+    \mu = 5 \;\log \left(\frac{d_L}{10pc}\right),
+\end{equation}
+
+{which then allows us to constrain a chosen}
+%The distance luminosity can then be related to a given 
+cosmological model {via an analytic expression for the luminosity distance {$d_L(z)$ using}
+%as a function of 
+the {observed} redshift of the SNe}. 
+%{Using}
+{An option would be to use} the \lcdm\, distance-{redshift}
+%luminosity 
+relation{, however, this} {would} require input knowledge of the 
+%underlying cosmological model, such as the 
+parameters for each component of the total energy-density {of the Universe}. 
+Alternatively, at low redshift we can free ourselves from these constraints by using the cosmographic approach and {thus adopting} a general expansion history, as we {outlined earlier} in  Section~\ref{sec:general_cosmog}.
+%\label{sec:SNe_constraints}
+
+
+%We emphasize that 
+{While} the parameters describing the anisotropies {in the luminosity distance} %that we constrain 
+are not degenerate with the SN~Ia absolute $B$-band magnitude {(see Section~\ref{sec:theory_sn}), the monopole of the Hubble expansion does suffer this degeneracy. This is well-known in SN~Ia cosmology and is the reason that calibrators are required for local $H_0$ measurements \citep[see, e.g.][]{Riess_2022,Freedman:2019}}. In the fiducial analysis for constraining the anisotropies, we only use Hubble flow SNe~Ia (i.e. with $z \geq 0.023$), hence, we cannot constrain the monopole, $H_{\rm mono}$. However, {in attempt to assess} %we compute 
+the impact of anisotropies on the %$H_0$
+{``Hubble tension'', in Section~\ref{sec:Htension} we perform an analysis including the calibrator sample of SNe~Ia in Pantheon+ and simultaneously constrain the monopole and quadrupole of the Hubble expansion.}
+
+
+\subsection{Constrained $\chi^2$ method}
+\label{sec:chisq}
+{In this work, we will place constraints on cosmological parameters (isotropic and anisotropic)}
+{%We constrain the data 
+by assuming a $\chi ^2$ distribution; }
+\begin{equation}
+    \chi^2_{SN} = \Delta ^T C_{SN}^{-1} \Delta
+\end{equation}
+%with 
+{where the residual vector is} $\Delta = m_{obs} - m_{th}$ {(and $\Delta^T$ is its transpose vector)}, % being the residual vector, 
+and $C_{SN}$ is the covariance matrix. We use {\tt pymultinest} \citep{pymultinest}, a python wrapper of {\tt Multinest} \citep{Multinest_Feroz_Hobson_Bridges_2009} to derive the posterior {distribution} of the parameters.
+
+
+\subsection{Pantheon+ Data}\label{sec:P+}
+
+
+
+{We use the new} %from 
+Pantheon+ \citep{scolnic2021pantheon+} data set, {a first analysis of which was presented}
+in \citet{P+cosmology-2021} and \citet{Riess_2022}. 
+This new Pantheon release has added {six} %6
+large {SNe} samples to the original data set \citep{pantheon_2018}, including 574 more light curves at $z<1$, as well as updated surveys due to a better understanding of the photometry. It contains 1701 light curves from 1550 {SNe} %Type 1a supernovae, 
+in the redshift range $0.001 \leq z \leq 2.26$. %We produce a skyplot of the data set in Figure \ref{fig:P+_skymap}. 
+{In Figure~\ref{fig:P+_skymap} we show a skyplot of the directions of the Pantheon+ SNe in galactic coordinates, coloured according to their redshift in the heliocentric frame, $z_{\rm hel}$. The bottom panel shows a histogram of the number of SNe in the sample as a function of $z_{\rm hel}$. }
+The sky-coverage is %almost 
+{close to} isotropic {for the low-redshift SNe, however, the higher-redshift SNe are more strongly clustered on the sky.} 
+%and we can also 
+{From the histogram, we can} see that the data is dominated by the low redshift {SNe}. %samples.
+
+{As briefly mentioned in Section~\ref{sec:cosmo_distances}, the cosmographic expansion of luminosity distance with redshift as a parameter is strictly only convergent for $z<1$ \citep{Cattoen:2007}. Since the Pantheon+ sample contains objects out to $z=2.26$, an upper-limit redshift cut might be necessary to ensure robust results. }
+For our fiducial analysis, we use the same redshift cuts as {was used for the cosmographic fits for $H_0$ and $q_0$ in} \citet{Riess_2022}, 
+% \jess{is this the right ref?}{yes, they use this cut for their cosmographic fits for both H and q, though for the H-only fit they use <0.15.} 
+%that is 
+{namely}, $0.023 \leq z \leq 0.8$. This {reduces our fiducial SNe} sample to 1341 light curves.
+
+\begin{figure}
+    \centering
+\includegraphics[width=\columnwidth]{final_figures/P+_skymap.pdf}
+    \caption{Skymap plot for the Pantheon+ dataset. Each star shows the location of a SNe on the sky, with colour showing heliocentric redshift. The lower panel shows the redshift distribution of the data.}
+    \label{fig:P+_skymap}
+\end{figure}
+
+
+\subsection{Redshift Frames and Peculiar Velocity Effects}
+\label{sec:zframes}
+
+The choice of redshift frame has been shown to affect the strength of the %observed 
+{constrained} dipole in the deceleration parameter (e.g., \citetalias{dhawan2022quadrupole},\citet{Rubin_2020}). 
+{Different ``redshift frames'' are defined by applying some kind of peculiar velocity corrections to the raw redshifts that we observe, with the goal of transforming the observations into a different frame of reference. } %We investigate this effect on {our} constraints {via} %by the use of {three} %3 
+{Most commonly, three} redshift frames {are used}; the heliocentric frame (HEL), the CMB frame, and the Hubble diagram frame (HD). The heliocentric frame refers to redshift in the frame of the Sun, while the CMB frame redshifts have been corrected according to a %applies a velocity correction corresponding to the rest frame of the CMB. 
+single pointwise boost of our observations into the rest frame of the CMB. This boost is performed using our velocity inferred from the CMB dipole (assuming it is purely kinematic in nature). 
+The HD frame redshifts are %is 
+the CMB frame redshifts with peculiar velocity (PV) corrections applied to the SNeIa. These corrections are calculated based on density maps of the local Universe and linear perturbation theory, and estimate the PV of each SNe with respect to the CMB rest frame. 
+For discussion on the effect of cosmological reference frames we refer the reader to \citet{Calcino:2016jpu}. In Section~\ref{sec:dipconstraints} and \ref{sec:quadconstraints}, we %show
+study the effect of varying the redshift frame on our resulting constraints.
+
+
+%\subsection{General Cosmography Theory}
+\subsection{Anisotropic distances for supernovae}
+\label{sec:theory_sn}
+% \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width =\columnwidth]{Figures/dog2.pdf}
+%     \caption{Posteriors of the anisotropic deceleration parameter assuming three different decay models $F(z,S)$ for the dipole. The exponential model is shown in yellow, the constant model is shown in purple, and the linear model is shown in green. Contours show the $1\sigma$ and $2\sigma$ confidence intervals}
+%     \label{fig:q_dipole_chains}
+% \end{figure}
+
+
+%We motivate our choice of multipoles to constrain by the theoretical 
+{Here we discuss our method to constrain the dominant multipoles we identified} %results 
+in Section~\ref{sec:sim_results} %to constrain the effective anisotropic parameters from 
+in the Pantheon+ data set.
+
+%We begin by fitting a dipole to the deceleration parameter. Although we also found a dominant octopole in the NR simulation, to reduce degrees of freedom we use only a dipole, 
+{For the effective deceleration parameter, as discussed in Section~\ref{sec:sim_results}, we only constrain its dipole anisotropy.}
+We re-parameterise Eq. \eqref{eq: approx q} in a manner similar to \citetalias{dhawan2022quadrupole};
+\begin{equation}\label{eq:q_dip}
+%     \mathfrak{q}_0 = q_{mono} + q_{dip}\mathcal{F}(z,S),
+     \mathfrak{Q}(\boldsymbol{e}) = q_{\rm mono} + q_{\rm dip}(\boldsymbol{e}) \,\mathcal{F}(z,S_{\rm dip}),     
+\end{equation}
+where $\mathcal{F}(z,S_{\rm dip})$ is the scale dependence of the dipole and 
+%$q_{\rm dip}=\bf{q_{\rm dip}}\cdot\hat{n}$, where ${\bf \hat{n}}$ 
+$q_{\rm dip}=\bf{q_{\rm dip}}\cdot \boldsymbol{e}$, where $\boldsymbol{e}$ 
+is the direction of the supernova {and ${\bf q_{\rm dip}}$ is the dipole vector}}. In order to quantify the strength of the dipole, we define the amplitude of the dipole at a given redshift as follows:
+\begin{equation}
+    A_d = \Big|\Big| \frac{ q_{\rm dip}({\bf e})}{q_{\rm mono}} \Big{|\Big|} \,\mathcal{F}_(z,S_{\rm dip}) .\\
+    \label{eq:dipamp}
+\end{equation}
+{To further reduce the degrees of freedom and improve our fits,} we also assume {this dipole is aligned with} the CMB dipole. {Such an alignment might be expected based on the results of \citet{Heinesen_Macpherson_2021_Hubble_flow}, where the authors found that the dipole in the effective deceleration parameter should be aligned with local density contrasts near the observer. Further, \citetalias{dhawan2022quadrupole} and \citet{Sarkar2019} both tested the best-fit direction of this dipole and found it to coincide with the direction of the CMB dipole. Thus, we proceed by fixing the direction of ${\bf q}_{\rm dip}$ to be $(l,b) = (264.021, 48.523)$\textdegree\ as found in \citet{aghanim2020planck}.} 
+
+%In this work, 
+The {low-redshift} anisotropic effects we are %looking for 
+{interested in} are generated by the local clustering of matter, {which leads} to an anisotropic expansion of the {local space-time}. %Universe. 
+%We are also looking only locally, within the low redshift assumption. 
+{We expect such effects to decay as we move further away from the observer, i.e., to higher redshift.}
+For these reasons, {we choose to constrain} an exponentially decaying anisotropy \citep[see][for fits using other forms of $\mathcal{F}$]{Sarkar2019}. 
+%is our preferred choice of decay model as it allows for the observed anisotropy to decay away quickly with redshift. 
+The exponential decay function {we use here} is %defined as 
+\begin{equation}\label{eq:decay_function}
+    \mathcal{F}(z, S) = {\rm exp}\left(-\frac{z}{S}\right),   
+\end{equation}
+%We fit for an exponential decay using 
+{where we use} a uniform prior for the decay {scale}, %parameter, 
+$S$, in line with \citet{rahman2021new} and \citetalias{dhawan2022quadrupole}.
+
+Other works have {similarly constrained a dipole in the deceleration parameter}
+%used similar methods 
+while %using 
+{assuming} an isotropic $H_0$.
+However, as we see from Eq.~\eqref{eq: deceleration_multipole}, $\mathfrak{Q}_0$ is dependent on $\mathfrak{H}_0$. 
+In this work, we incorporate {the} %this 
+%directional dependence of 
+{dominant quadrupole in} the Hubble parameter. Specifically, %by allowing for a quadrupole 
+we re-parameterise Eq.~\eqref{eq: simplified effective hubble} as
+%, we allow for a quadrupole in the Hubble parameter such that;
+\begin{equation}
+\begin{aligned}\label{eq:h_quad}
+    \mathfrak{H}(\boldsymbol{e}) &= H_{\rm mono} + H_{\rm quad}(\boldsymbol{e})\, \mathcal{F}(z,S_q) \\
+    &= H_{\rm mono} \bigg\{1 + \bigg[\lambda_1 \cdot {\rm cos}^2\theta_1+ \lambda_2 \cdot {\rm cos}^2\theta_2 \\
+    &\quad\quad - (\lambda_1 + \lambda_2) \cdot {\rm cos}^2\theta_3\bigg]\mathcal{F}(z,S_q) \bigg\},
+\end{aligned}
+\end{equation}
+% \begin{multline}
+% \mathfrak{H}_0 = H_0+\mathfrak{h}_{quad} = H_0\left[1 + \left(\lambda_1 \cdot {\rm cos}^2\theta_1+ \lambda_2 \cdot {\rm cos}^2\theta_2 \\
+% - (\lambda_1 + \lambda_2) \cdot {\rm cos}^2\theta_3) F(z, S) \right) \right],
+% \label{eq:h_quad}
+% \end{multline}
+where {%$H_{\rm quad}={\bf H_{\rm quad}\cdot \hat{n}\,\hat{n}}$, 
+$H_{\rm quad}(\boldsymbol{e})={\bf H_{\rm quad}}\cdot \boldsymbol{e}\, \boldsymbol{e}$ with
+${\bf H_{\rm quad}}$ the quadrupole tensor,} $\lambda_1$ and $ \lambda_2$ {(and $\lambda_3 = \lambda_1 + \lambda_2 $)} are the eigenvalues of the {normalised} quadrupole moment tensor {${\bf H_{\rm quad}}/H_{\rm mono}$}, {the $\theta_i$ (for $i=1,2,3$)} are the angular separations between the location of the supernova and the quadrupole eigendirections, and $\mathcal{F}(z,S_q)$ is the quadrupole decay function. {We use the form of $\mathcal{F}$ given in Eq.~\eqref{eq:decay_function} but we ensure the decay scale $S_q$ is distinct from that of the dipole in the deceleration parameter.}
+
+% %These are
+% {The expanded form of the quadrupole component, $H_{\rm quad}$, given above is} derived from the quadrupole moment tensor, 
+% %, $Q_{i j}$ 
+% {(equivalent to $\sigma_{\mu\nu}$ given in Eq.~\eqref{eq: simplified effective hubble})}, 
+% and its {five} %5 
+% irreducible components, $q_i$, as: 
+% %\begin{multline}
+% \begin{align}
+%     {H}_{\rm quad} &= A \, Q_{i k} e^i e^k \\
+%     %A \, Q_{i k} \, n_i n_k %n_i n_k 
+% %    = A[q_1 (n_1^2 -n_3^2) + q_2(n_2^2 - n_3^2 ) +\\
+% %    q_3n_1n_2 + q_4 n_1 n_3 + q_5 n_2 n_3]
+%     &= A \bigg[ q_1 \left(e^1 e^1 - e^3 e^3\right) + q_2\left(e^2 e^2 - e^3 e^3 \right) \nonumber\\
+%     &\quad\quad + q_3 e^1 e^2 + q_4 e^1 e^3 + q_5 e^2 e^3 \bigg]
+% \end{align}
+% %\end{multline}
+% % where $A$ is the magnitude 
+% {Jess: what is the relation between $A Q_{ik}$ and ${\bf H_{\rm quad}}$ defined in (20)? Best to minimise the new notation if its possible to write the above in terms of ${\bf H_{\rm quad}}$, especially since we never see $A$ again} {Jess: what is the relation between the $q_i$ and the $\lambda_i$?} {bringing this back bcos we need to discuss tomorrow}
+% and $e^i$ are the Cartesian components of the unit vector $\boldsymbol{e}$
+% %$\hat{\textbf{n}} $ 
+% towards the direction of the supernova on the observers sky {(in the observer's rest frame)}, defined in terms of galactic coordinates $(l, b)$ as
+% \begin{align}
+%     % n_1 & = n_z = \sin{b}\\
+%     % n_2 & = n_x =\cos{l}\cos{b} \\
+%     % n_3 & = n_y =\sin{l}\cos{b}.
+%     e^1 & = e^z = \sin{b}\\
+%     e^2 & = e^x =\cos{l}\cos{b} \\
+%     e^3 & = e^y =\sin{l}\cos{b}.    
+% \end{align}
+
+% where $A = \frac{1-q_0}{2}$ and $B = \frac{-(1 - q_0 - 3q_0^2 + j_0 - \Omega_{\rm K})}{6}$ and $\mathcal{C} = \frac{1}{1 + \left(\lambda_1 \cdot {\rm cos}^2\theta_1+ \lambda_2 \cdot {\rm cos}^2\theta_2 - (\lambda_1 + \lambda_2) \cdot {\rm cos}^2\theta_3\right)\mathcal{F}}$.
+%Without more data, 
+Due to the %amount of 
+{additional} free parameters, it is difficult to constrain the direction of the quadrupole {to any useful accuracy with current data sets. Thus,} %so 
+we assume %alignment 
+{the quadrupole in the Hubble parameter is aligned} with %the direction 
+{that} found in \citet{Parnovsky} {using the Revised Flat Galaxy Catalogue (RFGC) catalogue of 4236 galaxies.  
+}
+%which look at 
+{In this work, the authors studied the} collective motion of local galaxies, fitting a dipole (bulk flow), a quadrupole (cosmic shear), and octupole component. They find eigenvectors {of the quadrupole} %pointing
+to have directions $(l, b)$ = (118, 85)\textdegree, (341, +4)\textdegree\ and (71, -4)\textdegree. This eigendirection was also used in the constraints on the quadrupole in the Hubble parameter in \citetalias{dhawan2022quadrupole}, where the authors found the constraints to be %largely independent of
+{{insensitive to} the chosen direction. }
+
+{%We also 
+{To assess the overall amplitude of the quadrupole in the Hubble parameter, we calculate} %define 
+the amplitude of the quadrupole component of $\mathfrak{H}(\boldsymbol{e})$ in the same way as \citetalias{dhawan2022quadrupole}, and similar to the dipole amplotide defined in Eq. \ref{eq:dipamp}, {namely,} as the norm of the tensor ${\bf H_{\rm quad}}$ multiplied by the decay function $\mathcal{F}$, %namely %{Jess: you don't use $H_q$, so make this consistent with your notation}
+\begin{align}
+    A_q &= || {\bf H_{\rm quad}} || \,\mathcal{F}_{\rm quad}(z,S) \\
+    & = \sqrt{\lambda_1^2 + \lambda_2^2 + \left(\lambda_1 + \lambda_2\right)^2}\, \mathcal{F}_{\rm quad}(z,S_q), \label{eq:ampcalc}
+\end{align}
+for some redshift scale $z$. 
+}
+
+\section{Anisotropy in supernova data}
+\label{sec:obs_results}
+{In this section we present our constraints on local anisotropies in the Pantheon+ data set, motivated by those we identified in the numerical relativity simulations. 
+In Section~\ref{sec:zframes} we discuss the redshift frames of the data we use, in Section~\ref{sec:dipconstraints} we present our constraints on the dipole in the deceleration parameter, and in Section~\ref{sec:quadconstraints} we present constraints on the quadrupole in the Hubble parameter. We also present constraints on the isotropic Hubble parameter, $H_0$, in Section~\ref{sec:Htension} and the resulting implications for the ``Hubble tension''.}
+
+
+% Choice of redshift intuititively will influence results of the scale of feasible aniosotropy in the deceleration parameter, . 
+% \jess{We expect these peculiar velocity corrections take into account the effects that generate the dipole we observed in the simulation?....SCIENCE EXPLANATION	.}
+
+\begin{figure*}
+    \centering
+    \vspace{10mm}
+    \includegraphics[width=.49\textwidth, ]
+    {final_figures/redshift_frame_dipole_only.pdf}
+    \includegraphics[width=.49\textwidth, ]{final_figures/fiducial_dipole.pdf}
+    \caption{ Left panel: Results for the dipole in various redshift frames. The blue solid line shows our fiducial analysis, the Hubble diagram frame, the green dashed line shows the CMB frame and the yellow dotted line shows the heliocentric frame. Right panel:  Constraints on the dipole in the effective deceleration parameter when fitting only for a dipole (blue dashed) vs. also fitting for a quadrupole in the Hubble parameter with decay factor $S_q = 0.06/\ln (2)$(pink solid). The blue star marks isotropy. Contours represent the $1\sigma$ and $2\sigma$ –-constraints.
+    % {need a bit more spacing between these two plots, make it the same as Fig 5}
+    }
+
+    % the dipole fit with its associated mononpole. The blue dashed line shows the case where we use an isotropic $H_0$, whereas in the pink solid line we also fit for a quadrupole.}
+    
+    % Results for the dipole and quadrupole in various redshift frames. The blue solid line shows our fiducial analysis, the Hubble diagram frame, he green dashed line shows the CMB frame and the yellow dotted line shows the heliocentric frame. The left panel shows the dipole with its associated mononpole, the right panel shows the constraints on the eigenvalues of the quadrupole. \jess{unsure how to fixthe top of this (its a latex problem?)} {I think its your `trim' statement thing in the includegraphics part, maybe change this to be a subfigure, like the next one is?}  
+    \label{fig:dipole}
+\end{figure*}
+
+
+\begin{figure*}
+    \centering
+    \begin{subfigure}{.49\textwidth}
+        % \centering
+        \includegraphics[width=\linewidth]{final_figures/redshift_frame_quadrupole_0.1.pdf}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        % \centering
+        \includegraphics[width=\linewidth]{final_figures/dip_quad_l1l2.pdf}
+    \end{subfigure}
+    \caption{ Left panel: Constraints on the quadrupole eigenvalues in various redshift frames. The blue solid line shows our fiducial analysis, the Hubble diagram frame, the green dashed line shows the CMB frame and the yellow dotted line shows the heliocentric frame. The decay scale is set to $S_q = 0.1/\ln (2)$. The blue star marks isotropy. Contours represent the $1\sigma$ and $2\sigma$ –-constraints. {\bf Right panel:}Constrains on the eigenvalues of the quadrupole of the effective Hubble parameter when parameterised at fixed decay scales, $S_q$. The blue star marks isotropy. Contours represent the $1\sigma$ and $2\sigma$ constraints. All cases are inconsistent with isotropy.}
+    \label{fig:quadrupole}
+\end{figure*}
+
+
+% {
+% \subsection{A note on simulation vs data}
+% \jess{rough word vomit currently}
+% We note that the ratio we defined earlier are not directly comparable to the amplitudes we derive here. The $R_\ell$ are derived from the amplitude of the normalised angular power spectra, $C_\ell$ , whereas the amplitudes we present below are proportional to the spherical harmonic coefficients, $a_{lm}$. It is simple to transform the two, such that for the dipole ($\ell = 1$), $A_{d} = \sqrt{3 R_{\ell=1}} $ and $A_q = \sqrt{5 R_{\ell=2}}$. 
+% OR
+% $ R_{\ell=1} = \frac{A_{d}^2}{3} $...
+% \jess{We have 2 options here, can leave as is and do a conversion for comparison, or can just redefine $R_l$ so it is in terms of $a_{lm}$ ?}
+% In that case we get 
+% $\mathcal{R}_{\ell=1}(\mathfrak{H}) =1.06 \times 10^{-8} $ ->. 0.0003574083761566044 ,  $\mathcal{R}_{\ell=2}(\mathfrak{H}) = 5.65 \times 10^{-5}$ -> 0.007515999672316596 l=2 \\ 
+% $\mathcal{R}_{\ell=1}(\mathfrak{Q}) = 0.533$. -> 4.150127025767003 l=1
+% }
+% \begin{figure}
+% \includegraphics{diff_ratio_violinplot.pdf}
+% \caption{\jess{ratio usilg $a_{lm}$ isntead of $C_{\ell}$}}
+% \end{figure}
+% For the effective Hubble parameter $\mathfrak{H}_0$, %we see 
+% the dipole is %effectively insignificant, being %HM <-- this is subjective, just state facts
+% on average {eight} orders of magnitude smaller than the {monopole} term, with a median of $\mathcal{R}_{\ell=1}(\mathfrak{H}) =1.06 \times 10^{-8} $. However, 
+% %we do see a more significant 
+% {the} quadrupole %, with 
+% {has} median value $\mathcal{R}_{\ell=2}(\mathfrak{H}) = 5.65 \times 10^{-5}$. 
+% The effective deceleration parameter, %Particularly of note is 
+% $\mathfrak{Q}_0$, %which 
+% has a dipole {with amplitude} approximately $50\%$ {that} %the size 
+% of the monopole, {namely a median of} $\mathcal{R}_{\ell=1}(\mathfrak{Q}) = 0.533$. {The} %and an 
+% octopole of {the effective deceleration parameter has amplitude of approximately} %around 
+% $0.3\%$, {or} $\mathcal{R}_{\ell=3}(\mathfrak{Q}) = 2.93 \times 10^{-3}$. 
+
+
+\subsection{Dipole of the deceleration parameter}\label{sec:dipconstraints}
+We begin our analysis by fitting the dipole in the deceleration parameter of the form given in Eq.~\eqref{eq:q_dip}. 
+{In this section, we will consider cases} both with and without an additional contribution from a quadrupole in the Hubble parameter. 
+{As discussed in Section~\ref{sec:theory_sn},} we fix the direction of the dipole to coincide with the CMB dipole, as constrained by \citet{Planck_2018_III_High_freq}.
+%; $(l, b)$ = (264.021, 48.523)\textdegree. %The effect of 
+%This assumption 
+The dependence of the {resulting dipole amplitude} on this fixed direction has been explored in \citetalias{dhawan2022quadrupole} and \citet{Sarkar2019} and in both cases the CMB {dipole} direction was the best fit for the data sets. {We do not anticipate this dependence to differ in the case of the Pantheon+ data set.}
+
+%First, we test the dependence of the dipole on redshift frame.
+{First, we will constrain the dipole in the deceleration parameter in all three redshift frames introduced in Section~\ref{sec:zframes}, while simultaneously constraining a quadrupole in the Hubble parameter. In this section we present the constraints on $\mathfrak{Q}(e)$ only, and present the constraints on quadrupole parameters in the section \ref{sec:quadconstraints}. In the left panel of Figure~\ref{fig:dipole} we show constraints in the $q_{\rm dip}$-$q_{\rm mono}$ plane for heliocentric frame (dotted brown contours), CMB frame (dashed green contours), and HD frame (solid blue contours) redshifts. Contours represent the 1- and $2\sigma$ constraints for all fits. The blue star marks isotropy within $\Lambda$CDM, namely $q_{\rm mono} = -0.55$ and $q_{\rm dip} = 0$. 
+We summarise the central values and 1$\sigma$ uncertainties of these constraints for all three frames in Table~\ref{tab:redshift_dipole}. 
+When quoting $\sigma$ deviations from isotropy throughout this work, we do not assume a Gaussian distribution of our parameter constraints. {Instead, we use the inverse error function to convert a given percentile to a significance in multiples of $\sigma$ (in a similar manner to \citetalias{dhawan2022quadrupole}).}} 
+
+%We illustrate this difference in the left panel of Figure \ref{fig:dipole}, and the constraints are shown in Table \ref{tab:redshift_dipole}.
+% \jess{wrong!}The constraints on the dipole $q_{\rm dip}$ are; CMB: $0.0195 \pm  0.0112$, HD: $0.0214 \pm 0.0111$, HEL: $ 0.0162 \pm 0.0113$
+
+In the HD redshift frame, we find consistency with isotropy at $<1\sigma$. %an insignificant dipole. 
+%However, when in the CMB frame or heliocentric frame we find a significant dipole, in agreement with \citet{Sarkar2019} and \citet{dhawan2022quadrupole}.
+However, in the CMB frame 
+%Notably, in Figure~\ref{fig:dipole} the %Hubble diagram 
+%HD frame --- which differs from the CMB frame only by SNe PV corrections --- %has a much better consistency 
+%{shows more consistency} with isotropy %, the blue star, for the dipole 
+%than the CMB frame, which 
+{we find} inconsistency with isotropy {{at $3.17 \sigma$. }
+Our constraints for the CMB and HD frame redshifts are {roughly consistent} with \citetalias{dhawan2022quadrupole}, however, our heliocentric frame constraints are consistent with isotropy at $\lesssim 2\sigma$ while both \citetalias{dhawan2022quadrupole} and \citet{Sarkar2019} detect a dipole at $>2\sigma$. This difference can most likely be attributed to the addition of a quadrupole in the Hubble parameter in our analysis, since in both \citetalias{dhawan2022quadrupole} and \citet{Sarkar2019} the authors considered a dipole-only fit. It is perhaps the case that some of the anisotropy present in distances in the heliocentric frame is being absorbed into the quadrupolar anisotropy in $\mathfrak{H}(e)$ in our analysis.} %{does this seem legit?} \jess{I think so?}
+
+
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c|c|}
+    \hline
+         Frame & $q_{\rm mono}$ & $q_{\rm dip}$ & Dipole significance \\
+        \hline
+        CMB & $-0.405\pm 0.089
+        $& $9.6^{+4.0}_{-6.9}$ & 3.17 $\sigma$\\
+                HD & $-0.503\pm 0.088
+        $ & $ 4.5^{+1.9}_{-5.4}$ & - \\
+                HEL & $ -0.391\pm 0.091
+        $ &  $-2.36^{+1.6}_{-0.43} $ & $>2\sigma$\\
+    \hline
+    \end{tabular}
+    \caption{{Summary of constraints on the dipole in the deceleration parameter for the three redshift frames used in the Pantheon+ data set. All results were obtained using the $\chi^2$ method and %$\sigma$-disagreements
+    significances were found using the highest posterior density interval and the error function, as in \citetalias{dhawan2022quadrupole}}}
+    \label{tab:redshift_dipole}
+\end{table}
+
+%Now, we will continue working in the HD frame 
+{Next, we will compare our constraints on the dipole in the HD frame both} 
+%We show our constraints on the dipole in the deceleration parameter, 
+with and without a quadrupole contribution in the Hubble parameter. The right panel of Figure~\ref{fig:dipole}
+%The constraints found from fitting only a dipole and using a constant $H_0$ are shown in dashed blue, whereas constraints from the joint fit are shown in pink solid. 
+shows our constraints assuming \textit{only} a dipole in the deceleration parameter {(dashed blue contours)}
+and when also allowing for a quadrupole in $\mathfrak{H}$ with decay scale $S_q = 0.06/{\rm ln}(2)$ {(pink solid contours; see Section~\ref{sec:quadconstraints} below for constraints on the quadrupole and a discussion of decay scales)}.
+%We show $1-\sigma$ and $2-\sigma$ contours for both cases. 
+Our constraints for the dipole only fit are % on the dipole magnitude %of
+are %$q_{\rm dip} = -0.492 \pm 4.85$ for the joint fit, and  
+{$q_{\rm mono} = -0.541\pm 0.085$, $q_{\rm dip}=7.0^{+3.8}_{-7.2}$} {, to be compared with the HD case in Table~\ref{tab:redshift_dipole}, %We note 
+namely, we find a small shift to larger values of both $|q_{\rm mono}|$ and dipole magnitude for the dipole-only case. Although, this shift is{ $<1\sigma$} and so we conclude that the two cases are consistent with one another. } We also note that our results, for a similar selection of the redshift range, are consistent with a recent study by \citet{Sorrenti2022}.
+%higher monopole and dipole values for the joint fit vs the dipole-only fit.}
+%{This case} is contained within the %smallest 
+%1$\sigma$ contours of both of our fits, therefore, 
+From Eq. \ref{eq:dipamp}, using 1$\sigma$ constraints and a redshift of 0.035 and decay scale $S_{\rm dip} = 0.0367$, we find a {maximum} amplitude of $417\%$, and an amplitude of $345\%$ when using the median values. While not directly comparable due to having to select a redshift, this is in agreement with our simulation value of $110\%$  {For both cases, our constraints on the deceleration parameter} are also consistent with %isotropy 
+$\Lambda$CDM to within $1\sigma$. 
+
+% \jess{joint fit:$q_{mono} -0.492\pm 0.090
+% q_{dip} 4.3^{+1.8}_{-5.3}$, dip only fit: $q_{mono} -0.541\pm 0.085
+% }
+
+% \begin{table}
+% \color{red}
+%     \centering
+%     \begin{tabular}{c|c|c|c|c|c|c|c|c|}
+%          fit & $h0$  & $M $& $q_{mono}$ & $q_{dip}$ & $j$ & $S_{dip}$ & $\lambda_1$ & $\lambda_2$
+%          \hline
+%          h0 75\pm 10
+         
+% M 0.02\pm 0.43
+% q_{mono} -0.492\pm 0.090
+% q_{dip} 4.3^{+1.8}_{-5.3}
+% j -0.999^{+0.58}_{-0.49}
+% \lambda_1 0.026\pm 0.013
+% \lambda_2 -0.002\pm 0.015
+% S_{dip} 0.17^{-0.13}_{-0.16}
+% q_{mono} -0.541\pm 0.085
+% q_{dip} 7.0^{+5.2}_{-7.2}
+% j -1.22^{+0.59}_{-0.51}
+% S_{dip} < 0.0207 \\
+%          & 
+%     \end{tabular}
+%     \caption{Caption}
+%     \label{tab:my_label}
+% \end{table}
+
+\color{black}
+\subsection{Quadrupole in the Hubble parameter}\label{sec:quadconstraints}
+
+% \jess{Constraints:
+% S1 = 0.1/ln(2) , $ 0.0214 \pm 0.0111$
+% $S_q = 0.03/ln(2), \lambda_1 = 0.03711 \pm 0.019411$
+% for $S_q = 0.06/ln(2), \lambda_1 is 0.02615706 \pm 0.0194115$ }
+% 6.424170591357026e-05 standard dev is  0.012182125135481526
+% 0.03 median is 6.424170591357026e-05 0.012182125135481526
+% 0.06 median is 6.424170591357026e-05 0.012182125135481526
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c|c|}
+    \hline
+    $S_q$ &  $\lambda_1$ & $\lambda_2$ & $A_q$ \\
+    \hline
+     $ 0.1/{\rm ln}(2)$ & $ 0.021\pm{ 0.011}
+$ & $ {3.15\times 10^{-5}}\pm 0.012$& $2.68\%$ \\
+    
+     $0.06/{\rm ln}(2)$ & $0.026 \pm {0.014}$&$-0.0021\pm { 0.014}$ & $2.88\%$ \\
+ $ 0.03/{\rm ln}(2)$ &$ 0.037 \pm 0.02$& $ -0.0072\pm {0.022}$ & $2.85\%$ \\
+    \hline
+    \end{tabular}
+    \caption{Constraints on the quadrupole in $H_0$ for the fiducial case in the HD frame %{state what this is, i.e. HD frame?} 
+    (while also fitting for a dipole in $\mathfrak{Q}(\boldsymbol{e})$). The {maximum allowed} amplitude {at $1\sigma$,} $A_q$, is calculated according to Eq.~\eqref{eq:ampcalc} at a redshift of $z = 0.035$, corresponding to scales of $\approx 100\,h^{-1}$ Mpc. }
+    \label{tab:quad}
+\end{table}
+
+
+
+We constrain the effective Hubble parameter %in a similar way in accordance with 
+{using the form given in} Eq.~\eqref{eq:h_quad}. {Here, we will only} quote results from the joint fit of a dipole {in the deceleration parameter} and a quadrupole {in the Hubble parameter}. {We constrain the quadrupole eigenvalues $\lambda_1$ and $\lambda_2$ and initially fit with the decay scale $S_q$ as a free parameter in the analysis. However, we find $S_q$ to be largely unconstrained. Thus, we proceed to constrain the quadrupole eigenvalues for three values of the decay scale as used in \citetalias{dhawan2022quadrupole}. Namely, we choose }
+%{When keeping the decay scale, $S_{\rm q}$, as a free parameter, we find it is largely unconstrained. (as was also found in \citetalias{dhawan2022quadrupole}).} 
+% \jac{although maybe it doesnt seem that way in the paper? make z=0.035 plot :) }
+%We thus present constraints {where we fix the decay scale} {using three} 
+%different values: 
+$S_q=0.1/$ln(2), $S_q=0.06/$ln(2), and $S_q=0.03/$ln(2). This %decay scales, 
+corresponds to a halving of the quadrupole amplitude at redshifts of $z=0.1, 0.06,$ and $0.03${, respectively}. 
+{As mentioned in Section~\ref{sec:theory_sn}, to further} reduce the degrees of freedom we fix the quadrupole direction to that found by \citet{Parnovsky} {in the RFGC catalogue}. %who used 4236 galaxies to measure a quadrupole in the collective motion of these galaxies.  %<-- you said this earlier, I added this number to the relevant section
+Specifically, {we fix the} eigenvectors {of the quadrupole} %pointing
+to {directions} $(l, b)$ = (118, 85)\textdegree, (341, +4)\textdegree\ and (71, -4)\textdegree. The {effect of varying the} quadrupole direction was explored in \citetalias{dhawan2022quadrupole}, {where the authors found} no significant improvement for different choices of eigenvectors.
+%The constraints are shown in Figure \ref{fig:quadrupole} for the two eigenvalues of the quadrupole while simultaneously fitting the deceleration dipole. 
+
+As in \citetalias{dhawan2022quadrupole}, we also test the impact of redshift frame on the quadrupole constraints. %We show this 
+{In the left panel of Figure~\ref{fig:quadrupole}, we show constraints on $\lambda_1$ and $\lambda_2$ for the heliocentric (HEL) frame (dotted brown contours), CMB frame (dashed green contours), and HD frame (solid blue contours) redshifts, where the blue star marks isotropy ($\lambda_1=\lambda_2=0$). These three constraints use a fixed }
+%where we use a 
+decay scale of $S_q = 0.1/{\rm ln}(2)$. %In agreement with
+{As in} \citetalias{dhawan2022quadrupole}, we see {very} little shifting of the quadrupole posterior with redshift frame. We note however that {in the case of} the HD frame {redshifts, our constraints are}
+%shifts the distribution slightly to higher values, making it 
+inconsistent with isotropy at {$\sim 2\sigma$}{, while the heliocentric and CMB frame redshifts yield results consistent with isotropy at < 2$\sigma$. The CMB redshifts are calculated from the heliocentric redshifts using a single pointwise boost towards the CMB --- which is predominantly a dipolar correction. Thus,{we might expect \textit{some} shift in the} 
+%the large shift in the 
+detected dipole in the deceleration parameter in the left panel of Figure~\ref{fig:dipole} (when moving from HEL to CMB redshifts).
+%is perhaps to be expected
+{Although, we might not necessarily expect the CMB frame redshifts to still contain a dipole signal at $\sim 2\sigma$}. %\jess{I thought this was the opposite of what we would expect?}{Hmm, yes, I guess I meant that we expect *some* kind of shift in the dipole, maybe we should reword} 
+%At first order, 
+
+We would not expect this single boost to impact a quadrupole in the field of local SNe, which is what we find in the left panel of Figure~\ref{fig:quadrupole} (i.e., little to no shift moving from HEL to CMB redshifts). However, the next step to get from CMB to HD redshifts is to apply individual corrections to each SNe according to estimates of the local PV field. Such a correction is more extensive than a single boost, and thus %might be expected to 
+in general should contain both dipole and quadrupole components {(as well as higher-order multipoles)}. 
+This is what we find, namely, we see both a change in the dipole we detect (moving from CMB to HD redshifts in the left panel of Figure~\ref{fig:dipole}) \textit{and} a small, but noticeable, shift in the quadrupole (moving from CMB to HD redshifts in the left panel of Figure~\ref{fig:quadrupole}). This is perhaps surprising, as it implies including PV corrections, that is corrections of bulk flows, brings us further from the isotropic model by slightly pushing the quadrupole to higher values. However, we would expect the source  anisotropies to be due to bulk flows around an FLRW background, and so the corrections to have the opposite effect. 
+For the rest of this section,} %. From now onwards 
+we take the fiducial case to be the HD frame {redshifts, since these are most commonly used in SNe analyses}.
+
+{Next, we will assess the quadrupole eigenvalues when varying the fixed decay scale $S_q$.}
+{In the} right panel of Figure \ref{fig:quadrupole}, {we show constraints on the two independent eigenvalues $\lambda_1$ and $\lambda_2$ for} 
+%our constraints on the two {independent} eigenvalues of the quadrupole when also allowing for a dipole in the deceleration parameter.
+%The blue solid contours represent %the case when we set the 
+a decay scale of $S_q=0.1/$ln(2) {with solid blue contours}, {a scale of} $S_q=0.06/$ln(2) with dotted purple contours, and $S_q=0.03/$ln(2) {with pink dashed contours}. The blue star again marks isotropy, i.e., $\lambda_1, \lambda_2$ = 0. 
+For all cases {we consider}, we find a {quadrupole} signal {which is} inconsistent with isotropy at the $\sim 2\sigma$ level. {We calculate upper {($1\sigma$)} limits on the amplitude of the quadrupole{ using Eq~\ref{eq:ampcalc}} for all three cases, {and find
+the largest amplitude %calculated is for 
+{in the case of a decay} scale of $S_q=0.06/$ln(2), %being 
+{namely, we place a limit of a $\lesssim$ { $2.88\%$} quadrupole strength at $z=0.035$.
+In Table~\ref{tab:quad} we present our exact constraints together} with $1\sigma$ uncertainties.}} This is in agreement this with the strength we predicted from simulations in Section \ref{sec:sim_results}, {$\mathcal{R}_{\ell=2}(\mathfrak{H}) = 7.52 \times 10^{-3} = 0.752 \%$. }  
+% {Jess: add a sentence with a quoted \% amplitude here for all three cases}
+% The constraints are shown
+% {We quote our exact constraints with $1\sigma$ uncertainties} in Table \ref{tab:quad}, along with the calculated amplitudes $A_q$.
+% The constraints are;  $S_q = 0.1/{\rm ln}(2)$: $  \lambda_1 =0.0214 \pm 0.0111$,
+% $S_q = 0.03/{\rm ln}(2): \lambda_1 = 0.0371 \pm 0.01941$ and
+% for $S_q = 0.06/{\rm ln}(2), \lambda_1 = 0.0262 \pm 0.0194$ {maybe this would be better in a small table?}. 
+
+{While all contours are inconsistent with isotropy at {$\sim 2\sigma$,}
+this deviation is only due to a non-zero $\lambda_1$ at 2$\sigma$, {while $\lambda_2$ remains consistent with zero at 1$\sigma$ for all three cases of fixed decay scale (and also for all three redshift frames in the left panel of Figure~\ref{fig:quadrupole}). }}
+%We note that for all decay scales $\lambda_2$ remains consistent with zero, however, 
+{Smaller values of $S_q$ imply a faster decay of $\mathcal{F}(z,S_q)$, and thus the quadrupole anisotropy being constrained is present at lower redshifts. We find that }
+reducing the decay scale shifts the distribution of $\lambda_1$ {slightly} towards larger values {(though all distributions are consistent within 1$\sigma$)}. This is somewhat intuitive, 
+%as a smaller decay scale 
+%restricts the anisotropy to lower redshift, where 
+{as} we expect these {local anisotropic} effects to %dominate 
+{be larger closer to the observer, i.e., at lower redshifts}.
+% {I re-worded this, because I don't think a smaller S necessarily means the low-z aniso will be *larger*, just that you're restricting it to be present only for lower redshifts}
+We also see {a widening of the constraints} %contours 
+for %these
+{progressively} smaller decay scales, which {again might} be expected because as we {sharpen the decline of $\mathcal{F}(z,S_q)$,}
+%reduce this scale, 
+we are {also effectively} constraining the anisotropy using less {SNe}.
+%\jess{not sure we are using less SNe, but the fit has to be extrapolated more?} {Jess, I reworded slightly, see if you agree}
+%objects. 
+%as 
+Ideally, we would require a data set with more low-redshift objects to %effectively 
+{more tightly} constrain these model{s with small decay scales}. 
+
+%In our results, we find a much more significant quadrupole than found in \citetalias{dhawan2022quadrupole}, who found the quadrupole to be in agreement with isotropy at $2-\sigma$ for all decay scales and redshift frames. 
+{\citetalias{dhawan2022quadrupole} found the quadrupole in the Hubble parameter --- constrained using an identical method to that which we use here, though with the original Pantheon data set --- to be consistent with isotropy for all cases at $\sim 1\sigma$ using the same set of fixed decay scales as we show in the right panel of Figure~\ref{fig:quadrupole}. While our constraints are roughly consistent with those of \citetalias{dhawan2022quadrupole} to within $\sim 1\sigma$ for all three decay scales, we do see a shift to larger $\lambda_1$ values with the updated Pantheon+ data set, as well as a tightening of the contours.}
+
+{Recently, \citet{Kalbouneh:2022tfw} defined a new observable based on a spherical harmonic decomposition of 
+the observed Hubble expansion, correct to linear order in redshift. While the authors claim detection of a significant quadrupole in the \textit{Cosmicflows-3} all-sky galaxy catalogue \citep{CF3}, they report a null detection in the Pantheon sample \citep{pantheon_2018} as was found in \citetalias{dhawan2022quadrupole}. Such an analysis using updated data sets, such as \textit{Cosmicflows-4} \citep{CF4} and Pantheon+, would provide a valuable comparison and potential validation of the significant quadrupole we find in this work. The methods and data sets used in \citet{Kalbouneh:2022tfw} differ from our work such that a direct comparison of the quadrupoles we find is not straightforward. However, in the next section we will naively compare to their quoted maximal variance of $H_0$ across the sky and its relevance to the ``Hubble tension''. 
+}
+%apply an alternative method but also find a significant quadrupole in the Hubble parameter using Pantheon data.
+
+
+
+\subsection{Implications for the Hubble tension}\label{sec:Htension}
+
+{Current measurements of the local Hubble expansion within the FLRW model, $H_0$,} using the Pantheon+ data set now lie in 5$\sigma$ tension with \lcdm\ predictions based on measurements of CMB anisotropies \citep{Riess_2022,aghanim2020planck}. {This is commonly referred to as the ``Hubble tension'' and no one resolution is widely accepted. }
+In this section, we explore the significance of our {results with respect to measurements of the Hubble parameter}. 
+
+\subsubsection{Impact on the monopole}
+
+First, we assess the impact of accounting for a quadrupole on
+%in the Hubble parameter on 
+%constraints on the quadrupole for 
+the inferred value of the monopole of the Hubble parameter, i.e., for a measurement of the local Hubble constant $H_0$.  
+%In this work, we have 
+We found a quadrupolar variance of the Hubble parameter across the sky at 2$\sigma$ significance. 
+%Such an anisotropy might be expected to impact a local measurement of the Hubble parameter which is found within a framework assuming isotropy, as is the case in \citet{Riess_2022}. }
+%In the presence of the quadrupole we have found in the previous section, the Hubble parameter naturally varies across the sky. 
+For a catalogue of SNe with incomplete sky coverage, an inference of the isotropic Hubble parameter $H_0$ might be expected to be impacted by this anisotropy. {Such an effect could result in a locally higher value of $H_0$ if the catalogue preferentially samples directions of maximal quadrupole amplitude \citep[see also][for a discussion on this]{Macpherson_Heinesen_2021}.}
+
+%However, as stated above{state Section}, 
+{As briefly mentioned in Section~\ref{sec: Sne}}, SNe~Ia alone cannot constrain the monopole in the Hubble parameter %, given 
+{due to} the degeneracy between $H_{\rm mono}$ and the absolute luminosity of the SN~Ia, $M$.
+{Including the}
+%Therefore, for this analysis, we use all the 
+calibrator SNe~Ia --- which are also distributed as part of the SH0ES and Pantheon+ data release --- {allows us to break this degeneracy and thus constrain $H_{\rm mono}$}. This {calibrator sample} includes a total of 37 galaxies with distances measured using Cepheid variables, hosting a total of 42 SNe~Ia. 
+{We will first} 
+simultaneously constrain $H_{\rm mono}$, $M$, and the parameters for {the} quadrupole {in the Hubble parameter}, i.e. $\lambda_1$ and $\lambda_2$. 
+% \hay{currently quad only, but Suhail to run with dipole also}
+%The
+{We show our} resulting constraints {on the monopoles of the deceleration and Hubble parameters} 
+%{--- again using three} %for 
+%values of the fixed decay scale, $S_q$ {---} %are shown 
+in Figure~\ref{fig:h0_tension}. 
+%We chose several input values for the decay scale, i.e. 0.01/ln(2), 0.03/ln(2), 0.06/ln(2), 0.1/ln(2), 
+We use the same three fixed decay scales as in Section~\ref{sec:quadconstraints}, and for comparison, we show a purely isotropic constraint on $H_{\rm mono}$ with black dashed contours {(i.e., a fit with fixed $\lambda_1=\lambda_2=0$)}. 
+%We find that \mathfrak
+{
+The central value of $H_{\rm mono}$ {is %the same for 
+{consistent across} all anisotropic fits, and }
+does not differ significantly from the isotropic case. {We find the} largest difference {between the central values of the anisotropic fits and} the %fiducial value
+isotropic $H_{\rm mono}$ {to be} {0.30 km s$^{-1}$ Mpc$^{-1}$ in the case of $S_q = 0.1/\ln(2)$, where $H_0 = 73.40 \pm 1.02 $}. 
+%Looking at Figure \ref{fig:h0_tension}, we see 
+{Thus, we conclude} that despite finding a %dominant
+{2$\sigma$ significant} quadrupole, {accounting for this anisotropy in an inference of $H_{\rm mono}$ does not shift the central value enough to account for the $\sim 5$ km s$^{-1}$ Mpc$^{-1}$ Hubble tension discrepancy. }
+%we find that accounting for it does not vary the calculated value of $H_0$ significantly, and does not shift the standard supernovae value of $H_0$ enough to contribute toward the problem of the Hubble tension.
+}
+
+
+\subsubsection{Maximal sky variance of the Hubble parameter}
+%{Will fix the below + calculate our max H across the sky for comparison}
+%Taking the largest possible difference between the upper and lower $1\sigma$ bounds, we obtain $\Delta H_0$ of $2.47$. We note that \citep{Kalbouneh:2022tfw} also compare best estimates of $H_0$ by fitting in two cones corresponding to an apex and anti apex. They find a difference of $\delta H_0 = (2.4 \pm 1.1)$, which is comparable with our findings. 
+
+\citet{Kalbouneh:2022tfw} studied the maximal deviation in $H_0$ as measured using two populations of Pantheon SNe in antipodal directions on the sky. While the authors did not find a significant quadrupole feature in the Pantheon sample, they did find a dipolar feature in the distance modulus of these SNe \citep[which can most likely be attributed to anisotropy in the effective deceleration parameter, see][]{Heinesen_2021,Heinesen_Macpherson_2021_Hubble_flow}. For this sample, they find the maximal variance to be $\Delta H_0 = 2.4 \pm 1.1$ km s$^{-1}$ Mpc$^{-1}$ \textit{after} applying PV corrections (i.e. using HD frame redshifts). 
+While here we constrained only a quadrupole anisotropy in the Hubble parameter, as is expected, we might still compare the maximal variance across the sky found by \citet{Kalbouneh:2022tfw} to our own given the constraints presented in Section~\ref{sec:quadconstraints}.
+To do this we use the constraints on $\lambda_1$ and $\lambda_2$ given in Table~\ref{tab:quad} for the three decay scales studied, and calculate $\mathfrak{H}(\boldsymbol{e})$ using Eq.~\ref{eq:h_quad}. {We study two different cases of directions ($\boldsymbol{e}$) and redshifts ($z$ in the decay scale $\mathcal{F}(z,S_q)$) in calculating $\mathfrak{H}(\boldsymbol{e})$. First, we consider $\boldsymbol{e}$} 
+given by the directions of \texttt{HEALPix} indices (with $N_{\rm side}=4$) and the separations $\theta_i$ are thus the sky separation between each \texttt{HEALPix} index and our fixed quadrupole direction. {In this first case, we consider a single redshift value of $z=0.035$ to quantify the variance in $\mathfrak{H}$ at $\sim 100 \, h^{-1}$ Mpc scales. 
+Second, we consider $\boldsymbol{e}$ given by the directions of the Pantheon+ SNe and $\mathcal{F}(z,S_q)$ calculated using each SNe redshift, which lies in the range 0.023<$z$<0.8. This second case gives us a quantification of the variance in $\mathfrak{H}$ across the sky for the Pantheon+ SNe sample. In both cases, }
+we then calculate $\Delta \mathfrak{H}(\boldsymbol{e})\equiv \mathfrak{H}(\boldsymbol{e})_{\rm max} - \mathfrak{H}(\boldsymbol{e})_{\rm min}$ for an assumed $H_{\rm mono} = 73.5$ km s$^{-1}$ Mpc$^{-1}$ (consistent with our fits in Figure~\ref{fig:h0_tension}). 
+
+We show the variances we find in Table~\ref{tab:DeltaH0} {for both sample cases (single redshift or Pantheon+ redshift range) for all decay scale models we have constrained}. All show a $\sim 2--2.5$ km s$^{-1}$ Mpc$^{-1}$ sky-variance of the Hubble parameter, with upper limits closer to $\sim 4$ km s$^{-1}$ Mpc$^{-1}$. 
+All of our results are consistent with the variance found in \citet{Kalbouneh:2022tfw} using the Pantheon sample{, although the authors here used a more restricted, low-$z$ sample of $0.01 < z < 0.05$ due to their first-order expression.}
+
+%Combined with our findings from the previous section, it is unlikely that the anisotropy in the Hubble expansion that we find here {can account for a large part of} the Hubble tension. 
+
+%\jess{nice :) }
+ 
+\begin{table}
+    \centering
+    \begin{tabular}{c|c|c}
+    \hline\hline
+    $S_q$ & $z$ &  $\Delta \mathfrak{H}(\boldsymbol{e})$ (km/s/Mpc) \\ \hline\hline
+     $ 0.1/{\rm ln}(2)$ & 0.035 &  $2.356^{+1.802}_{-1.185}$ \vspace{2mm} \\   
+      & 0.023 < z < 0.8 & $2.329^{+1.693}_{-1.152}$ \\ \hline
+     $0.06/{\rm ln}(2)$ & 0.035 & $2.377^{+2.010}_{-1.040} $ \vspace{2mm} \\
+      & 0.023 < z < 0.8 & $2.406^{+1.999}_{-1.002}$ \\ \hline     
+     $ 0.03/{\rm ln}(2)$ & 0.035 &  $2.122^{+1.853}_{-0.679}$ 
+     \vspace{2mm} \\
+           & 0.023 < z < 0.8 &  $2.471^{+1.948}_{-0.785}$ \\ 
+    % below at z values equal to scale half
+     % $ 0.1/{\rm ln}(2)$ & 0.1 &  $1.502^{+1.148}_{-0.756}$ \vspace{2mm} \\    
+     % $0.06/{\rm ln}(2)$ & 0.06 & $1.780^{+1.506}_{-0.778} $ \vspace{2mm} \\
+     % $ 0.03/{\rm ln}(2)$ & 0.03 &  $2.381^{+2.081}_{-0.761}$ \\
+    \hline\hline
+    \end{tabular}
+    \caption{Maximal sky variance of the anisotropic Hubble parameter, $\Delta \mathfrak{H}(\boldsymbol{e})$, for our best-fit quadrupole constraints given in Table~\ref{tab:quad}. All variances are calculated at a scale of $z=0.035$, corresponding approximately to $100\,h^{-1}$ Mpc. 
+    }
+    \label{tab:DeltaH0}
+\end{table}
+
+
+
+% diff in median values 0.35113525000966206
+% max difference to 1 sigma 2.4716788922555537
+% max difference to 2 sigma 4.59222253450146
+
+% $iso h_0 73.6998336829769 \pm 1.0415454585764$
+% $0.03/ln(2) 73.37031673840475 \pm 1.0776499210106187$
+% $0.06/ln(2) 73.34869843296724 \pm 1.0789981836694975
+% 0.1/ln(2) 73.40374817390935 \pm 1.0334194454176557$
+
+% diff in median values 0.35113525000966206
+% max difference to 1 sigma 2.4487123241591613
+% max difference to 2 sigma 4.567907703746188
+% \jess{is this different from our fiducial case or from sh0es? Also, since we need to be consistent on notion of monopole component of H, any preferance between $\mathfrak{q_{\rm mono}}$ and $H_m$ ? }
+% {Add a small paragraph on the new paper we discussed here. Add the maximal deviation that they also calculated, and comment. A concluding sentence or two on what this means for the Hubble tension specifically}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.46\textwidth]{final_figures/aniso_tension_plot.pdf}
+    \caption{The constraints on the monopole of the Hubble parameter and the deceleration parameter with and without including anisotropy. Black dashed contours show an isotropic fit to the monopoles, and the coloured contours show constraints on the monopoles when accounting for anisotropy (for three models for the decay scale, as indicated in the legend). 
+    %for different assumptions of the decay scale. 
+    % \hay{y-axis should be $q_{\rm mono}$} 
+    }
+    \label{fig:h0_tension}
+\end{figure}
+
+
+
+
+
+
+\section{Conclusions}
+{%In the local universe, at small scales the Universe is highly non-homogenous and anisotropic, with non-linear structure forming due to clustering. 
+{The local Universe is highly inhomogeneous and anisotropic due to the presence of late-time nonlinear structures. }
+This {naturally} leads to an anisotropic local expansion {of space-time}, which could impact {cosmological inferences which assume isotropy. 
+%distance measurements if not accounted for correctly. 
+In this work, {our goal was to} constrain theoretically-motivated anisotropies in %cosmographic measurements from 
+low-redshift supernova data}. %, sourcing from clustering of matter on small scales. 
+%Using 
+
+{We used} the {generalised cosmographic expansion of the luminosity distance from} %formalism by
+\citet{Heinesen_2021} and the {simulation data} from \citet{Macpherson_Heinesen_2021} {to predict the dominant anisotropic signatures in nearby luminosity distances. To do this, we considered a set of two simulations, with different ``smoothing scales'', each containing 100 randomly-placed synthetic observers. Each observer has a full-sky distribution of the effective cosmological parameters defined in \citet{Heinesen_2021}, on which we performed a multipole expansion to determine the dominant contributions. }
+We found %a significant 
+{the} dipole and octopole {to be the dominant multipoles} in the {effective} deceleration parameter and {found the} quadrupole {to dominate the effective} Hubble parameter {for all cases we studied.} %inside 2 simulations, 
+%when looking at skymaps for 100 observers placed randomly inside. 
+Within the simulation with smoothing scale of $100 \,h^{-1}$ Mpc, we found {the quadrupolar signal in the Hubble parameter has a} %an average 
+strength of $5.65 \times 10^{-3}\%$ with respect to the monopole {on average over all observers, while the} dipole in the deceleration parameter {has strength} $\sim 53 \%$ {on average}. 
+
+%We then moved on to 
+{Next, we constrained these dominant anisotropies} using the {new} Pantheon+ {SNe} data set \citep{scolnic2021pantheon+}. {In the rest frame of the CMB, }
+we found an {$ 3.17 \sigma$} significant dipole %in the CMB frame 
+{with} magnitude {$q_{\rm dip}= 9.6^{+4.0}_{-6.9}$}. 
+%being inconsistent with isotropy at {$\approx 3\sigma$}. 
+{When correcting SNe redshifts for their peculiar velocities (i.e. using HD frame redshifts), the significance is removed and we find consistency with \lcdm. \citep[see also,][]{Sorrenti2022}}
+%This disappears in the HD 
+ {Interestingly, we found a {$1.96 \sigma$}} significant quadrupole in the Hubble parameter %in \textit{all redshift frames} we used here. 
+{even after applying all peculiar velocity corrections. }
+{We place a new $1\sigma$ upper limit on the maximum amplitude of a quadrupole in the Hubble expansion of {$2.88\%$}. }
+
+{Anisotropies in the Hubble expansion are of particular interest for the Hubble tension \citep{Macpherson_Heinesen_2021}. If the Hubble parameter varies depending on which direction we observe, studies assuming an isotropic Hubble expansion could be biased in their results. We performed an analysis in which we constrained the monopole of the Hubble parameter --- by also including calibrator SNe --- along with the anisotropic components, as shown in Fig. \ref{fig:h0_tension}. Allowing for such an anisotropic variance results in a monopole of the Hubble parameter of {$73.40 \pm 1.02$ km s$^{-1}$ Mpc$^{-1}$. }This corresponds to a maximum shift of {$\sim 0.30$ km s$^{-1}$ Mpc$^{-1}$} (for the cases considered here) with respect to the isotropic fit, and thus it is unlikely that such an anisotropic variance can account for the observed difference in local inferences of the Hubble parameter. 
+}}
+
+% \hay{TODO: add a small paragraph disclaiming that inhomogeneities can affect observables in ways other than those constrained here. The conclusions we make are specific to the models we use within the cosmographic framework, cite some papers that Asta suggested + others}
+Finally, we note that our findings are specific to models within the cosmographic framework, and the effects we discuss arising in the simulation source purely from clustering effects. Therefore this work is not a general constraint on any potential anisotropy, especially e.g. anisotropic cosmological models such as e.g. \citet{Lavinto:Tardis, constantin2022spatially}.  
+%When comparing constraints on the monopole of the Hubble parameter with the constraints found from assuming a Hubble constant, we find little change, making this unlikely to contribute to the Hubble tension.
+
+
+\section*{Acknowledgements}
+
+%{Probably Dan Scolnic and Brout? Add George eventually. }
+%\hayt{The authors would like to thank X and Y for helpful comments on the manuscript. }
+JAC acknowledges support from the Institute of Astronomy Summer Internship Program at the University of Cambridge.
+SD acknowledges support from the European Union's Horizon 2020 research and innovation programme Marie Skłodowska-Curie Individual Fellowship (grant agreement No. 890695), and a Junior Research Fellowship at Lucy Cavendish College, Cambridge. 
+HJM appreciates support received by the Herchel Smith postdoctoral fellowship fund for the majority of this work. Support for the late stages of this work and HJM was provided by NASA through the NASA Hubble Fellowship grant HST-HF2-51514.001-A awarded by the Space Telescope Science Institute, which is operated by the Association of Universities for Research in Astronomy, Inc., for NASA, under contract NAS5-26555.
+% The Acknowledgements section is not numbered. Here you can thank helpful
+% colleagues, acknowledge funding agencies, telescopes and facilities used etc.
+% Try to keep it short.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Data Availability}
+All Python packages and the Pantheon+ data used in this work are publicly available. Specific code used in our analysis can be made available upon reasonable request to the corresponding author.
+
+ 
+% The inclusion of a Data Availability Statement is a requirement for articles published in MNRAS. Data Availability Statements provide a standardised format for readers to understand the availability of data underlying the research results described in the article. The statement may refer to original data generated in the course of the study or to third-party data analyzed in the article. The statement should describe and provide means of access, where possible, by linking to the data or providing the required accession numbers for the relevant databases or DOIs.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+\bibliographystyle{mnras}
+\bibliography{mnras_template.bib}
+% Alternatively you could enter them by hand, like this:
+% This method is tedious and prone to error if you have lots of references
+%\begin{thebibliography}{99}
+%\bibitem[\protect\citeauthoryear{Author}{2012}]{Author2012}
+%Author A.~N., 2013, Journal of Improbable Astronomy, 1, 1
+%\bibitem[\protect\citeauthoryear{Others}{2013}]{Others2013}
+%Others S., 2012, Journal of Interesting Stuff, 17, 198
+%\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+
+
+\section{The Curvature and Jerk Parameters}
+\label{sec: curv_jerk}
+Here we present {our results on the level of anisotropy measured in} the effective curvature, $\mathfrak{R}$, and jerk, $\mathfrak{J}$, parameters {in the NR simulations presented in}
+%using the same analysis methods as 
+Section~\ref{sec:sims}. 
+{The parameters} $\mathfrak{R}$ and $\mathfrak{J}$ are defined in Eq.~\eqref{eq:effective_curvature} and \ref{eq:effective_jerk} respectively. Their full multipole expansions {are given} in \citet{Heinesen_2021}.
+{Here we perform the same multipole analysis on these parameters as we performed in Section~\ref{sec:sim_results} for the Hubble and deceleration parameters. }
+
+%The violin plots are shown in 
+{Figure~\ref{fig:JandRviolin_plots} shows violin plots representing the strength of a multipole relative to the monopole, namely $\mathcal{R}_\ell$, as a function of the multipole number $\ell$. Yellow regions represent the distribution over 100 observers placed in the simulation with box length $L=12.8\,h^{-1}$Gpc, and green regions represent the same number of observers in the simulation with box length $L=25.6\,h^{-1}$Gpc. The top panel shows results for the effective jerk parameter and the bottom panel shows results for the effective curvature parameter. Horizontal bars in each distribution represent the maximum, mean, and minimum (top to bottom, respectively) value across the distribution of observers, and the width of each distribution represents the number of observers with that value of $\mathcal{R}_\ell$. }
+%where again we show results for both simulations. 
+%As before, 
+
+As we also saw in Section~ \ref{sec:sim_results}, in general, the $L=12.8 h^{-1}$ Gpc simulation shows a trend of larger {amplitude} anisotropic effects. This is to be expected since this simulation has a smaller smoothing scale and thus higher density contrasts in general. We can also see that in both the {effective} jerk and curvature {parameters}, some higher-order {multipole} terms dominate over the isotropic terms {(i.e. they have $\mathcal{R}_{\ell} > 1$)}. {Specifically, {the median} 
+${\mathcal{R}_{\ell=1}(\mathfrak{R}) =5.01}$ and ${\mathcal{R}_{\ell=3}(\mathfrak{R}) =1.30}$
+.}
+% % {however}, for %31 and 20 out of 100 
+% {31\% and 20\% of} observers, the octopole and 16-pole, respectively, have %coefficients with greater than  
+% $\mathcal{R}_{\ell} > 1$. %, that is higher-order components dominate over the monopole in amplitude. 
+Similarly for $\mathfrak{J}_o$, we see the {median value of the ratio for the quadrupole is {$\mathcal{R}_{\ell=1}(\mathfrak{J}) = 1.12$,
+.} }
+% {Jess: check these numbers, is this for J or R? you say J but it doesnt seem to line up with the figure. state if you are quoting means or maxs or what} 
+% quadrupole $\mathcal{R}_{\ell=2}(\mathfrak{J}) = 1.24$, and 16-pole $\mathcal{R}_{\ell=4}(\mathfrak{J}) = 0.0626$. }
+% HM - I just left this sentence out, because we don't necessarily *expect* the monopole to be small, and I don'y think we need to explain this here, I think its fine to just present the values
+%Since we expect the monopole of the curvature to be $\approx 0$, the large values in $\mathcal{R}_\ell(\mathfrak{R}) $ can be expected. % We expect such low values, as for the isotropic case we expect the curvature to be effectively zero, and there is a degeneracy between the two.}{this last sentence doesn't make sense to me, can you try to re-word?} 
+
+\begin{figure}
+    \includegraphics[width=\columnwidth]{final_figures/R_J_diff_ratio_violinplot.pdf}
+    \caption{Relative ratios $\mathcal{R}_\ell$ for each multipole relative to the monopole for the effective jerk ($\mathfrak{J}_o$) and curvature ($\mathfrak{R}$) parameters. We show $\mathfrak{J}_o$ in the upper panel and in the bottom panel we show $\mathfrak{R}$. Shaded regions represent an empirical distribution of the data, calculated using kernel density estimation (KDE). Results for two simulations of length $12.8\,h^-1$ Gpc and $25.6\, h^-1$ Gpc are shown in yellow and blue, respectively. The upper limits, medians, and minimum values are marked on the plots with horizontal lines.}
+    \label{fig:JandRviolin_plots}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex

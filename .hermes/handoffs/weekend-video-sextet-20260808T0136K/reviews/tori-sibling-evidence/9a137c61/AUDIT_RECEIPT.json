@@ -1,0 +1,66 @@
+{
+  "audit_timestamp_kst": "2026-08-09T13:11:04+09:00",
+  "lane": "brightend",
+  "verdict": "HOLD",
+  "authority": "HWAO_SIBLING_ROLLOUT_ORDER.md",
+  "self_qa_or_numeric_guard_used_as_authority": false,
+  "candidate": {
+    "sha256": "9a137c61011a3d9629c96ebbf365955295e11082cededa325ceb38f1ce268a2f",
+    "bytes": 9446070,
+    "duration_seconds": 227.869,
+    "video_frames": 6836,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/brightend-method-overhaul-canary-20260809T0235K/brightend-method-overhaul-canary-20260809T0235K.mp4",
+    "post_encode_freeze_matches": true,
+    "full_video_and_audio_decode_exit": 0
+  },
+  "authority_snapshot": {
+    "lane_status_phase": "source_status_freeze",
+    "lane_status_verdict": "IN_PROGRESS",
+    "lane_status_current_candidate": null,
+    "source_freeze_exists": false,
+    "candidate_status_copy_matches_current": true,
+    "candidate_source_manifest_matches": "10/10"
+  },
+  "actual_frame_audit": {
+    "uniform_ocr_fps": 2,
+    "uniform_ocr_actual_encoded_frames": 456,
+    "sentence_midpoint_actual_encoded_frames": 22,
+    "section_end_actual_encoded_frames": 9,
+    "vision_inspected_actual_encoded_frames": 31,
+    "ocr_errors": 0,
+    "internal_filename_visible": false,
+    "substantive_result_drift": true,
+    "finding": "From about 59 through 107 seconds, the magnitude-redshift evidence-plane figure contains a cyan plotted point while its banner explicitly says SCHEMATIC · NO DATA POINTS. At the peak close the axes become MISSING DATA? and MISSED DATA? while the point remains, giving it an outcome-bearing location. No SOURCE_FREEZE.json exists."
+  },
+  "narration_and_playback": {
+    "narration_source": "spec.json sentences[]",
+    "sentences": 22,
+    "words_whitespace": 431,
+    "timeline_records": 22,
+    "spec_timeline_texts_match": true,
+    "max_abs_audio_visual_start_delta_seconds": 0.015729166666666572,
+    "integrated_loudness_lufs": -21.3,
+    "true_peak_dbfs": -2.3,
+    "playback_start_kst": "2026-08-09T13:03:19+09:00",
+    "playback_end_kst": "2026-08-09T13:07:07+09:00",
+    "playback_exit": 0
+  },
+  "serve_and_closed_gates": {
+    "route_http_ok": true,
+    "served_sha256_matches": true,
+    "served_from_canary_root": true,
+    "protected_root_hash_matches": 0,
+    "cockpit_video_manifest_unchanged": true,
+    "working_frontend_public_mp4_manifest_unchanged": true,
+    "live_frontend_public_mp4_manifest_unchanged": true,
+    "paperVideos_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_tree": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "legacy_8093_candidate_route_status": 404
+  },
+  "hold_reasons": [
+    "The actual figure contains a plotted point despite the explicit no-data-points banner.",
+    "The point remains when the schematic axes become missing-data versus missed-data questions, creating outcome-bearing visual geometry without a SOURCE_FREEZE.json."
+  ]
+}

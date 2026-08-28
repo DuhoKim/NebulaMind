@@ -1,0 +1,92 @@
+{
+  "marker": "C41_UVLF_WORKER_YUI_QA_VERDICT_V2",
+  "verdict": "V10_REVISION_PACKET_READY_FOR_HWAO_REVIEW",
+  "approved_integration_verdict": "BLOCKED_PENDING_HWAO_REVIEW_SUPPLEMENT_AND_STATUS_RECONCILIATION",
+  "official_candidate_verdict": "NOT_RUN_CLOSED_GATE",
+  "public_release_verdict": "BLOCKED",
+  "current_public_mp4": {
+    "sha256": "1d84b8755e0baf726c86625baac6335fb9ca91f3356786b5b363976aa26c76d2",
+    "encoding": "PASS_BASIC_ENCODING",
+    "presentation": "FAIL_PRESENTATION",
+    "reasons": [
+      "Ten static cards over 83 seconds",
+      "No audio stream",
+      "No axes, data marks, archive-flow geometry, or row-level evidence",
+      "Internal filenames used as citations",
+      "The 176 card lacks the 453 denominator",
+      "Encoded MP4 is stale relative to the 16-card/99.5-second source storyboard"
+    ]
+  },
+  "best_worker_proposal": {
+    "version": "visual_proposals/v10",
+    "status": "PASS_LOCAL_DELTA_REVISION_PACKET_NOT_INDEPENDENTLY_CLEARED",
+    "official_candidate": false,
+    "audio": false,
+    "scene_states": 7,
+    "contact_sheet_sha256": "55ec47073ce2e68e7ab918f02588f0baa535008996f2966c7c446287d787c8e5"
+  },
+  "qa_passes": {
+    "machine": {
+      "artifact": "qa/MACHINE_QA_V10.json",
+      "verdict": "PASS_REVISION_PACKET_NOT_APPROVED_INTEGRATION",
+      "checks": [
+        "source-hash assertions",
+        "deterministic rebuild",
+        "dimensions",
+        "storyboard/Alloy-proposal exact match",
+        "visual full-resolution review",
+        "contact-sheet review",
+        "OCR internal-path scan",
+        "contrast"
+      ]
+    },
+    "paper_naive": {
+      "artifact": "qa/PAPER_NAIVE_QA.md",
+      "verdict": "INDEPENDENT_V5_PASS_WITH_REQUIRED_NOTES_THEN_V10_LOCAL_DELTA_PASS",
+      "remaining_note": "State 3 must be progressively revealed over 22 seconds; v10 was not independently re-reviewed."
+    },
+    "adversarial": {
+      "artifact": "qa/ADVERSARIAL_QA.md",
+      "verdict": "INDEPENDENT_V5_FAIL_THEN_V10_LOCAL_DELTA_PASS_FOR_REVISION_PACKET_ONLY",
+      "corrections": [
+        "27 row-contributing versus 40 zero-row counted catalogues",
+        "420/453 and 161/176 dominant-table provenance",
+        "five-other-table geometric layer",
+        "no-bandpass-homogenization boundary",
+        "reported UV-like catalogue-magnitude wording",
+        "separate census and published-LF data-requirement planes",
+        "frozen two-channel VizieR scope and non-exhaustive-other-repositories boundary",
+        "explicit z=11.5 excluded marker",
+        "plain missing-extractable-data wording",
+        "paper-specific Lab-clearance versus journal-status boundary",
+        "local six-table audience-supplement proposal and visible publication requirement",
+        "269 words over 132 seconds at 120.0–123.5 words per minute"
+      ]
+    }
+  },
+  "semantic_boundaries": {
+    "search_reach_is_not_eligibility": true,
+    "search_scope_is_not_all_public_repositories": true,
+    "catalogues_are_not_rows": true,
+    "raw_rows_are_not_confirmed_unique_galaxies": true,
+    "raw_rows_are_not_a_luminosity_function": true,
+    "reported_magnitude_fields_are_not_bandpass_homogenized": true,
+    "point_density_is_not_number_density": true,
+    "published_lf_roster_absence_is_not_zero_galaxies": true,
+    "published_lf_roster_absence_is_not_zero_published_lfs": true,
+    "lab_clearance_is_not_journal_review_or_validation": true,
+    "procedure_frame_is_not_a_new_measurement": true
+  },
+  "closed_gates": [
+    "C41 is non-canary and waits behind acceptance of lane-c31-sed/worker-tori.",
+    "Hwao is sole integrator and official candidate/shared-tool/TTS writer.",
+    "Hwao must independently review the exact v10/storyboard snapshot before approved integration.",
+    "Hwao must verify and publish an audience-reachable row-level supplement before public use of the 453 denominator or six-table geometry.",
+    "Hwao must reconcile public metadata 30 disqualified with the frozen final count 34.",
+    "No TTS until Hwao accepts visual and semantic form.",
+    "Public replacement/status claims require reconciliation of generic Flagship Studies copy with paper-specific human-clearance records.",
+    "No public video replacement, website edit, Git action, DB mutation, deploy, or publication action was authorized."
+  ],
+  "artifacts_preserved": true,
+  "failed_or_superseded_visual_versions_preserved": ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9"]
+}

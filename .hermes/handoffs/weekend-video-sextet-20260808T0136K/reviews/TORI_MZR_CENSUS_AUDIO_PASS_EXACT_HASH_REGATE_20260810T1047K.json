@@ -1,0 +1,368 @@
+{
+  "review_id": "TORI_MZR_CENSUS_AUDIO_PASS_EXACT_HASH_REGATE_V1_20260810T1047K",
+  "created_at_kst": "2026-08-10T11:01:23+09:00",
+  "reviewer": "Tori",
+  "review_mode": "independent read-only exact-hash and encoded-media regate; Yui PASS booleans were not used as evidence",
+  "authority_binding": {
+    "direct_user_instruction": "LIVE MORNING REGATE",
+    "dispatch_path": "reviews/TORI_MZR_CENSUS_AUDIO_PASS_EXACT_HASH_REGATE_REQUEST_20260810T1047K.json",
+    "dispatch_sha256_actual": "4c00bd6b35d9d1e5089999ad0232d75c67d1c32d9958e856fd7e278c138f5dc3",
+    "detail_request_path": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K/TORI_EXACT_HASH_REGATE_REQUEST.json",
+    "detail_request_sha256_expected": "d30d40fa252dafd6ec2a986733c584c815ea691ad6663089e79829bf1aee15ee",
+    "detail_request_sha256_actual": "d30d40fa252dafd6ec2a986733c584c815ea691ad6663089e79829bf1aee15ee",
+    "detail_request_match": true,
+    "scope": "one new versioned MZR-census audio-only A/B candidate; all prior video-quality-track build orders superseded",
+    "single_candidate_only": true,
+    "sibling_why_study_rollout_held": true,
+    "quarantined_brightend_workspace_used": false,
+    "binding_verdict": "PASS"
+  },
+  "candidate": {
+    "directory": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K",
+    "video": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K/mzr-census-audio-pass-canary-20260810T1028K.mp4",
+    "sha256_expected": "f6b5c6307db59567ec96b8d71f9612512aa938e72968ce09b4d7c819683bb40f",
+    "sha256_actual_at_review_start": "f6b5c6307db59567ec96b8d71f9612512aa938e72968ce09b4d7c819683bb40f",
+    "sha256_actual_at_review_close": "f6b5c6307db59567ec96b8d71f9612512aa938e72968ce09b4d7c819683bb40f",
+    "bytes": 9574855,
+    "stable_at_rest": true,
+    "match": true
+  },
+  "freeze_and_manifest": {
+    "freeze_path": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K/CANDIDATE_FREEZE.json",
+    "freeze_sha256_expected": "c963d4014c329af6bc7027cfd042c5327d45d7f3213edd9b636b9abe2d4e5b0e",
+    "freeze_sha256_actual": "c963d4014c329af6bc7027cfd042c5327d45d7f3213edd9b636b9abe2d4e5b0e",
+    "freeze_match": true,
+    "freeze_created_at_utc": "2026-08-10T01:50:58.386039+00:00",
+    "freeze_after_all_bound_file_mtimes": true,
+    "file_manifest_path": "integrator/canaries/mzr-census-audio-pass-canary-20260810T1028K/FILE_MANIFEST.json",
+    "file_manifest_sha256_expected": "086e462362a375e73c0259aebc49a16c28c1f22b7bc11a07277fbeefd9efea30",
+    "file_manifest_sha256_actual": "086e462362a375e73c0259aebc49a16c28c1f22b7bc11a07277fbeefd9efea30",
+    "manifest_listed_file_count": 22,
+    "manifest_actual_file_count": 22,
+    "all_manifest_entry_hashes_and_sizes_recomputed": true,
+    "manifest_entry_mismatches": [],
+    "pre_manifest_tree_sha256_expected": "57e82c90fe05a6c04985fdcc48e8db843bb2686982dc42ba5a3a1f43b99e34c2",
+    "pre_manifest_tree_sha256_actual": "57e82c90fe05a6c04985fdcc48e8db843bb2686982dc42ba5a3a1f43b99e34c2",
+    "frozen_file_count_excluding_freeze": 23,
+    "frozen_tree_sha256_excluding_freeze_expected": "5df6b5cad43da0ba2a47b17baf8fccad8e7f27e94a04322af5b96b25196df61f",
+    "frozen_tree_sha256_excluding_freeze_actual_at_review_start": "5df6b5cad43da0ba2a47b17baf8fccad8e7f27e94a04322af5b96b25196df61f",
+    "frozen_tree_sha256_excluding_freeze_actual_at_review_close": "5df6b5cad43da0ba2a47b17baf8fccad8e7f27e94a04322af5b96b25196df61f",
+    "candidate_directory_total_file_count_including_freeze": 24,
+    "candidate_directory_writes_by_tori": 0,
+    "verdict": "PASS"
+  },
+  "requested_hash_recomputations": {
+    "authoritative_audit": {
+      "expected": "cd3195bce3bf0d7c9f32514aeccd08589a132e73a087914c5745fe4203da8a9b",
+      "actual": "cd3195bce3bf0d7c9f32514aeccd08589a132e73a087914c5745fe4203da8a9b",
+      "match": true
+    },
+    "authoritative_silence_evidence": {
+      "expected": "42e9778e94fa4c9a6bd4bc56e9bd959f5d6c1bc17ec2543429d063bf7f13503d",
+      "actual": "42e9778e94fa4c9a6bd4bc56e9bd959f5d6c1bc17ec2543429d063bf7f13503d",
+      "match": true
+    },
+    "authoritative_loudness_evidence": {
+      "expected": "623ad1dbbc295e6a88679a9e4e66979cd7788adb9a282a8f9ad7737115fd2dc1",
+      "actual": "623ad1dbbc295e6a88679a9e4e66979cd7788adb9a282a8f9ad7737115fd2dc1",
+      "match": true
+    },
+    "predecessor_video": {
+      "expected": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+      "actual": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+      "match": true
+    },
+    "predecessor_encoded_aac_adts": {
+      "expected": "4e138f98802401217a0e19207ab73acb75f6be19a2d74797e5d315bd1c016315",
+      "actual": "4e138f98802401217a0e19207ab73acb75f6be19a2d74797e5d315bd1c016315",
+      "bytes": 3405147,
+      "match": true
+    },
+    "predecessor_decoded_audio_s16le_48k_mono": {
+      "expected": "718d9188ae7e97e18f2b26f81d4ebdc278d7c0b18bb95f4b2b400c7cb039a56f",
+      "actual": "718d9188ae7e97e18f2b26f81d4ebdc278d7c0b18bb95f4b2b400c7cb039a56f",
+      "bytes": 22077440,
+      "match": true
+    },
+    "source_narration_master": {
+      "expected": "5c196bf5d6158a085e426387bb473ddc23ceecef8004b5e247d580bdf6c0ee35",
+      "actual": "5c196bf5d6158a085e426387bb473ddc23ceecef8004b5e247d580bdf6c0ee35",
+      "origin_copy_byte_identical": true,
+      "match": true
+    },
+    "source_timeline": {
+      "expected": "d1495001eac971557edab645cdc579e0c8f4635f42282aba45ca4f286f398aa8",
+      "actual": "d1495001eac971557edab645cdc579e0c8f4635f42282aba45ca4f286f398aa8",
+      "origin_copy_byte_identical": true,
+      "match": true
+    },
+    "source_spec": {
+      "expected": "00a0bb580f81985f8bd095f33c46ad6aa9ae4f240f8a89fe4cfe1a6e7ba53c2a",
+      "actual": "00a0bb580f81985f8bd095f33c46ad6aa9ae4f240f8a89fe4cfe1a6e7ba53c2a",
+      "origin_copy_byte_identical": true,
+      "match": true
+    },
+    "candidate_build_receipt": {
+      "expected": "978fbc04d1336de561ad4c7a49a857dabc036cd2975bbeb334c77d2eae37e0c7",
+      "actual": "978fbc04d1336de561ad4c7a49a857dabc036cd2975bbeb334c77d2eae37e0c7",
+      "match": true
+    },
+    "candidate_exact_qa": {
+      "expected": "5a3c79c4e6f5318687f009095afc28c3ecc11ec63f21deb560aa772ff4540575",
+      "actual": "5a3c79c4e6f5318687f009095afc28c3ecc11ec63f21deb560aa772ff4540575",
+      "match": true,
+      "note": "Hash was bound; self-reported PASS fields were not used as evidence."
+    },
+    "audio_edit_timeline": {
+      "expected": "04b0dbbba04ca9bd6195833bc2819a29e17eb56b0b36b9e6af7ad54219510403",
+      "actual": "04b0dbbba04ca9bd6195833bc2819a29e17eb56b0b36b9e6af7ad54219510403",
+      "match": true
+    },
+    "retimed_pre_normalization_audio": {
+      "expected": "b47df3c6e6e78b5bb7af57a712483551736b4258405c85c201b23beebf017213",
+      "actual": "b47df3c6e6e78b5bb7af57a712483551736b4258405c85c201b23beebf017213",
+      "match": true
+    },
+    "normalized_audio_master": {
+      "expected": "446693711173edf31ae3a6ad849d89d28c0598a5fc480043ae86dcf261a90818",
+      "actual": "446693711173edf31ae3a6ad849d89d28c0598a5fc480043ae86dcf261a90818",
+      "match": true
+    },
+    "all_requested_hashes_match": true
+  },
+  "independent_toolchain": {
+    "ffmpeg": {
+      "path": "/opt/homebrew/Cellar/ffmpeg/8.1.2_1/bin/ffmpeg",
+      "sha256": "1332dc2de372bade9a8a63da0d6cdfab9de97fcefbae707bcc0b0506e1203327",
+      "version": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffprobe": {
+      "path": "/opt/homebrew/Cellar/ffmpeg/8.1.2_1/bin/ffprobe",
+      "sha256": "4322275c1c2ac6ba15c695b288788bc1204e75211b3d5c030e5812c82a6dff73",
+      "version": "ffprobe version 8.1.2 Copyright (c) 2007-2026 the FFmpeg developers"
+    },
+    "measurement_window_kst": {
+      "started": "2026-08-10T10:58:59.714462+09:00",
+      "finished": "2026-08-10T11:00:08.775199+09:00"
+    },
+    "loudness_command": "ffmpeg -i <candidate> -filter_complex ebur128=peak=true -f null -",
+    "silence_command": "ffmpeg -i <media> -af silencedetect=noise=-35dB:d=0.5 -f null -",
+    "frame_count_command": "ffprobe -count_frames with nb_frames and nb_read_frames",
+    "full_decode_command": "ffmpeg -i <media> -map 0:v:0 -map 0:a:0 -f null - with progress=pipe:1",
+    "h264_identity_command": "ffmpeg -i <media> -map 0:v:0 -c:v copy -f h264 - | sha256",
+    "decoded_frame_identity_command": "ffmpeg -i <media> -map 0:v:0 -f framemd5 - | sha256",
+    "packet_timing_identity_command": "ffprobe -select_streams v:0 -show_packets -show_entries packet=pts,dts,duration,size,flags -of compact=p=0:nk=1 | sha256"
+  },
+  "encoded_media_recomputation": {
+    "full_decode": {
+      "predecessor_returncode": 0,
+      "predecessor_decoded_frames": 6899,
+      "candidate_returncode": 0,
+      "candidate_decoded_frames": 6899,
+      "both_reached_eof": true
+    },
+    "video_stream": {
+      "codec": "h264",
+      "width": 1920,
+      "height": 1080,
+      "frame_rate": "30/1",
+      "time_base": "1/15360",
+      "start_seconds": 0.0,
+      "nb_frames": 6899,
+      "nb_read_frames": 6899,
+      "stream_duration_seconds": 229.966667,
+      "format_duration_seconds": 229.966667
+    },
+    "audio_stream": {
+      "codec": "aac",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "channel_layout": "mono",
+      "start_seconds": 0.0,
+      "stream_duration_seconds": 229.956,
+      "nb_frames": 10781,
+      "nb_read_frames": 10780
+    },
+    "h264_elementary_stream": {
+      "expected": "caf54352b5bf2120bf8022b8ef2f4f5f1a3b6852d32ed9f3a2a36edb61b5dd3d",
+      "predecessor_actual": "caf54352b5bf2120bf8022b8ef2f4f5f1a3b6852d32ed9f3a2a36edb61b5dd3d",
+      "candidate_actual": "caf54352b5bf2120bf8022b8ef2f4f5f1a3b6852d32ed9f3a2a36edb61b5dd3d",
+      "bytes": 5956618,
+      "exact_identity": true
+    },
+    "decoded_frame_timeline": {
+      "expected": "f532e8a04f9ea1339f63bd658f2401b56c28f6c15d310c416824ad2d5b3c3bd0",
+      "predecessor_actual": "f532e8a04f9ea1339f63bd658f2401b56c28f6c15d310c416824ad2d5b3c3bd0",
+      "candidate_actual": "f532e8a04f9ea1339f63bd658f2401b56c28f6c15d310c416824ad2d5b3c3bd0",
+      "exact_identity": true
+    },
+    "video_packet_timing": {
+      "expected": "599f5e47b06cce9d7828da92b102538a2a73a3f64ab7b645b37107a07d9e3ae1",
+      "predecessor_actual": "599f5e47b06cce9d7828da92b102538a2a73a3f64ab7b645b37107a07d9e3ae1",
+      "candidate_actual": "599f5e47b06cce9d7828da92b102538a2a73a3f64ab7b645b37107a07d9e3ae1",
+      "exact_identity": true
+    },
+    "visual_timing_delta_seconds": 0.0,
+    "card_on_screen_timing_delta_seconds": 0.0,
+    "pixel_delta": "none; exact H.264 elementary stream, decoded-frame timeline, packet timing, frame count, and duration identity",
+    "verdict": "PASS"
+  },
+  "independent_audio_measurements": {
+    "integrated_lufs": -20.5,
+    "integrated_lufs_target": -20.5,
+    "lra_lu": 7.7,
+    "authoritative_lra_band_lu": [
+      6.5,
+      7.8
+    ],
+    "true_peak_dbtp": -2.3,
+    "true_peak_ceiling_dbtp": -2.3,
+    "decoded_integer_sample_peak": 25154,
+    "decoded_sample_peak_dbfs": -2.2968575675805663,
+    "normalized_master_frames": 11037913,
+    "normalized_master_duration_seconds": 229.95652083333334,
+    "decoded_candidate_aac_samples": 11038720,
+    "decoded_candidate_aac_duration_seconds": 229.97333333333333,
+    "aac_tail_padding_samples": 807,
+    "aac_tail_padding_seconds": 0.0168125,
+    "aac_tail_padding_classification": "expected nonblocking AAC decode padding; no truncation",
+    "minimum_normalized_master_to_decoded_candidate_aac_zero_lag_correlation": 0.999992668266522,
+    "minimum_source_sentence_to_normalized_master_correlation": 0.9750887044105591,
+    "all_22_source_sentence_correlations_at_least_0p97": true,
+    "sentence_text_exact_across_spec_and_source_timeline": true,
+    "source_and_output_subtitle_text_exact": true,
+    "source_and_output_srt_bytes_exact": false,
+    "srt_difference_classification": "timestamps changed to follow the retimed audio; subtitle text is exact; the baked visual captions remain in the unchanged H.264 stream",
+    "verdict": "PASS"
+  },
+  "independently_remeasured_requested_seams": [
+    {
+      "seam": "i04->d01",
+      "classification": "listed_routine_seam",
+      "source_measured_seconds": 4.8665,
+      "derived_seconds": 3.9000000000000004,
+      "output_measured_seconds": 3.890417,
+      "maximum_absolute_delta_from_request_seconds": 4.440892098500626e-16
+    },
+    {
+      "seam": "d02->p01",
+      "classification": "listed_routine_seam",
+      "source_measured_seconds": 4.873667,
+      "derived_seconds": 3.9000003333333337,
+      "output_measured_seconds": 3.899375,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    },
+    {
+      "seam": "p05->f01",
+      "classification": "listed_routine_seam",
+      "source_measured_seconds": 4.871104,
+      "derived_seconds": 3.899999833333333,
+      "output_measured_seconds": 3.879458,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    },
+    {
+      "seam": "f02->e01",
+      "classification": "listed_routine_seam",
+      "source_measured_seconds": 4.879896,
+      "derived_seconds": 3.900000166666666,
+      "output_measured_seconds": 3.893271,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    },
+    {
+      "seam": "g02->b01",
+      "classification": "listed_routine_seam",
+      "source_measured_seconds": 4.880167,
+      "derived_seconds": 3.9000003333333333,
+      "output_measured_seconds": 3.899833,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    },
+    {
+      "seam": "b01->x01",
+      "classification": "listed_routine_seam",
+      "source_measured_seconds": 4.874333,
+      "derived_seconds": 3.8999996666666665,
+      "output_measured_seconds": 3.898896,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    },
+    {
+      "seam": "e02->c01",
+      "classification": "deliberate_visual_breath_preserved",
+      "source_measured_seconds": 4.827354,
+      "derived_seconds": 4.827354,
+      "output_measured_seconds": 4.820271,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    },
+    {
+      "seam": "c02->g01",
+      "classification": "deliberate_visual_breath_preserved",
+      "source_measured_seconds": 4.834417,
+      "derived_seconds": 4.834417,
+      "output_measured_seconds": 4.833854,
+      "maximum_absolute_delta_from_request_seconds": 0.0
+    }
+  ],
+  "seam_policy_adjudication": {
+    "all_six_listed_routine_seams_in_3p5_to_4p0_second_band": true,
+    "all_other_routine_seams_at_or_below_4p0_seconds": true,
+    "both_deliberate_visual_breaths_preserved_within_0p05_seconds": true,
+    "all_eight_requested_source_derived_output_measurements_reproduced_within_1_microsecond": true,
+    "verdict": "PASS"
+  },
+  "audio_to_fixed_visual_shift_adjudication": {
+    "independent_method": "For each of 22 source-timeline sentences, locate the full source PCM slice byte-exactly and uniquely in the retimed pre-normalization master; compute shift in integer samples; correlate the same slice against the normalized master; compare detected speech interval to the unchanged encoded visual card frame interval.",
+    "sentence_count": 22,
+    "shifted_sentence_count": 9,
+    "all_22_source_pcm_slices_byte_preserved_before_normalization": true,
+    "all_22_detected_shift_deltas_from_disclosure_samples": 0,
+    "all_22_detected_audio_intervals_inside_fixed_visual_card_windows": true,
+    "maximum_detected_shift_seconds": 1.9545,
+    "shifted_sentences_seconds": {
+      "i03": 0.40402083333333333,
+      "i04": 0.9665,
+      "d02": 0.9736666666666667,
+      "p05": 0.9711041666666667,
+      "f02": 0.9798958333333333,
+      "c02": 0.4719583333333333,
+      "g01": 0.4719583333333333,
+      "g02": 1.9545,
+      "b01": 0.9743333333333334
+    },
+    "caption_consequence": "The exact predecessor H.264 stream preserves baked captions and card windows. For nine sentences the unchanged caption is visible before the later narration start, by at most 1.9545 seconds. The offset is complete, bounded, byte-recomputed, and remains inside the same fixed card window.",
+    "classification": "DISCLOSED_NONBLOCKING_AV_OFFSET",
+    "verdict": "PASS"
+  },
+  "closed_gate_custody": {
+    "checked_at_kst": "2026-08-10T11:00:57.976891+09:00",
+    "candidate_exact_hash_matches_under_cockpit_or_frontend_public_roots": [],
+    "cockpit_mp4_count": 35,
+    "current_mzr_census_cockpit_sha256": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "published_json_sha256": "4abe62fbf2b9bf7a6e9f694a3fcbbe8313747a00184075fba8c5c49a190548e0",
+    "paperVideos_ts_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_tree": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "candidate_directory_writes": 0,
+    "cockpit_public_db_deploy_git_published_json_actions": 0,
+    "acceptance_label_written": false,
+    "external_gates_remain_closed": true,
+    "verdict": "PASS"
+  },
+  "regate": {
+    "verdict": "PASS",
+    "verdict_detail": "PASS_EXACT_HASH_REGATE_WITH_DISCLOSED_NONBLOCKING_AV_OFFSET",
+    "technical_video_reportable_now": true,
+    "candidate_hash": "f6b5c6307db59567ec96b8d71f9612512aa938e72968ce09b4d7c819683bb40f",
+    "predecessor_hash": "d6014ac09636b106a197a9868c8f3a720c29b2015417c295849279a704e1061b",
+    "new_candidate_exact_hash_regate_passed": true,
+    "may_replace_predecessor": false,
+    "may_copy_to_cockpit_or_public_root": false,
+    "may_upload_or_publish": false,
+    "may_mutate_published_json": false,
+    "may_mutate_database_or_deploy": false,
+    "may_commit_or_change_git_state": false,
+    "acceptance_conferred": false,
+    "sibling_rollout_opened": false,
+    "next_gate": "Hwao/Duho may compare the exact frozen A/B privately under a separately authorized viewing path; installation, cockpit copy, publication, and acceptance remain separate gates."
+  },
+  "standalone_final_marker": "TORI_MZR_CENSUS_AUDIO_PASS_REGATE_DONE"
+}

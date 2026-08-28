@@ -1,0 +1,356 @@
+{
+  "aggregates": {
+    "clean": {
+      "mean_full_token_recall_vs_clean": 1.0,
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+      "mean_headline_token_recall_vs_clean": 1.0,
+      "scene_specific_gate_count": 7
+    },
+    "defocus_r0_75": {
+      "mean_full_token_recall_vs_clean": 0.972032,
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+      "mean_headline_token_recall_vs_clean": 0.996429,
+      "scene_specific_gate_count": 7
+    },
+    "defocus_r1_50": {
+      "mean_full_token_recall_vs_clean": 0.837002,
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 0.990148,
+      "mean_headline_token_recall_vs_clean": 0.976327,
+      "scene_specific_gate_count": 7
+    },
+    "defocus_r2_50": {
+      "mean_full_token_recall_vs_clean": 0.433368,
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 0.989418,
+      "mean_headline_token_recall_vs_clean": 0.739516,
+      "scene_specific_gate_count": 7
+    },
+    "defocus_r4_00": {
+      "mean_full_token_recall_vs_clean": 0.104555,
+      "mean_gate_character_similarity_best_of_psm_6_7_11_13": 0.253959,
+      "mean_headline_token_recall_vs_clean": 0.275805,
+      "scene_specific_gate_count": 0
+    }
+  },
+  "audio_generated": false,
+  "deepening_pass": 12,
+  "frame_count": 35,
+  "gate_ocr_method": "Crop the exact title-safe gate box; run Tesseract PSM 6, 7, 11, and 13; retain only maximum normalized alphanumeric character-sequence similarity; require >=0.85. No recognized text is stored.",
+  "git_action": false,
+  "human_visual_review": {
+    "operational_r1_50_no_overlap_clipping_or_semantic_ambiguity": true,
+    "result_held_badges_visual": {
+      "clean": "7/7",
+      "defocus_r0_75": "7/7",
+      "defocus_r1_50": "7/7",
+      "defocus_r2_50": "7/7",
+      "defocus_r4_00": "7/7"
+    },
+    "scene_specific_gate_lines_visual": {
+      "clean": "7/7_EXACT_WORDING",
+      "defocus_r0_75": "7/7_EXACT_WORDING",
+      "defocus_r1_50": "7/7_EXACT_WORDING",
+      "defocus_r2_50": "7/7_EXACT_WORDING",
+      "defocus_r4_00": "7/7_GATE_CONTAINERS_AND_BOUNDARY_HIERARCHY__EXACT_WORDING_NOT_ACCEPTANCE_RELIABLE"
+    },
+    "severe_r4_00_support_softening": "small citations, footer provenance, and minor body labels weaken first; gate containers and boundary hierarchy remain recognizable, but exact scene-specific wording is not acceptance-reliable"
+  },
+  "pass7_proof_modified": false,
+  "proof_receipt": "qa/pass12_sharpness_safe_mockup/receipt.json",
+  "raw_ocr_text_stored": false,
+  "scene_count": 7,
+  "scenes": [
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 63,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 63,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.698413,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 52,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.333333,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.65,
+          "ocr_token_count": 38,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.15873,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.346667,
+          "headline_token_recall_vs_clean": 0.4,
+          "ocr_token_count": 30,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 1
+    },
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 94,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 94,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.957447,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.931034,
+          "headline_token_recall_vs_clean": 0.964286,
+          "ocr_token_count": 92,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.702128,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.925926,
+          "headline_token_recall_vs_clean": 0.785714,
+          "ocr_token_count": 90,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.106383,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.228571,
+          "headline_token_recall_vs_clean": 0.178571,
+          "ocr_token_count": 64,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 2
+    },
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 93,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 93,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.784946,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.96,
+          "ocr_token_count": 74,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.376344,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.84,
+          "ocr_token_count": 62,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.086022,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.338983,
+          "headline_token_recall_vs_clean": 0.32,
+          "ocr_token_count": 41,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 3
+    },
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 77,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 0.974026,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 78,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.935065,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.96,
+          "ocr_token_count": 80,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.415584,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.64,
+          "ocr_token_count": 60,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.142857,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.266667,
+          "headline_token_recall_vs_clean": 0.28,
+          "ocr_token_count": 36,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 4
+    },
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 107,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 0.869159,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.975,
+          "ocr_token_count": 97,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.738318,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.95,
+          "ocr_token_count": 86,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.476636,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.825,
+          "ocr_token_count": 72,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.093458,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.088889,
+          "headline_token_recall_vs_clean": 0.225,
+          "ocr_token_count": 47,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 5
+    },
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 77,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 0.961039,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 75,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.961039,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 80,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.337662,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.666667,
+          "ocr_token_count": 53,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.103896,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.285714,
+          "headline_token_recall_vs_clean": 0.296296,
+          "ocr_token_count": 24,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 6
+    },
+    {
+      "metrics": {
+        "clean": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 74,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r0_75": {
+          "full_token_recall_vs_clean": 1.0,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 74,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r1_50": {
+          "full_token_recall_vs_clean": 0.783784,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 1.0,
+          "ocr_token_count": 59,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r2_50": {
+          "full_token_recall_vs_clean": 0.391892,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 1.0,
+          "headline_token_recall_vs_clean": 0.769231,
+          "ocr_token_count": 44,
+          "scene_specific_gate_detected": true
+        },
+        "defocus_r4_00": {
+          "full_token_recall_vs_clean": 0.040541,
+          "gate_character_similarity_best_of_psm_6_7_11_13": 0.222222,
+          "headline_token_recall_vs_clean": 0.230769,
+          "ocr_token_count": 13,
+          "scene_specific_gate_detected": false
+        }
+      },
+      "scene": 7
+    }
+  ],
+  "sealed_v8_modified": false,
+  "shared_or_public_assets_modified": false,
+  "status": "QA_ONLY_NOT_V9_NOT_A_CANDIDATE_NOT_SCIENCE_ADJUDICATION",
+  "tts_invoked": false,
+  "v9_created": false,
+  "variant_order": [
+    "clean",
+    "defocus_r0_75",
+    "defocus_r1_50",
+    "defocus_r2_50",
+    "defocus_r4_00"
+  ],
+  "video_encoded": false
+}

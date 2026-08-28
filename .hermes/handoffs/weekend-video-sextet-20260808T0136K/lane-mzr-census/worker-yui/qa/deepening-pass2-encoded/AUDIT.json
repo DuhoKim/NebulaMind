@@ -1,0 +1,27 @@
+{
+  "pass": 2,
+  "audit_timestamp": "2026-08-08T02:27:59+09:00",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/mzr-archive-census-narrated-20260808T0155.mp4",
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "bytes": 13989937,
+    "duration_seconds": 128.4,
+    "streams": ["H.264 1920x1080 30fps", "AAC mono 24000Hz"]
+  },
+  "contact_sheet": {
+    "path": "qa/deepening-pass2-encoded/contact_sheet_20frames.jpg",
+    "sha256": "5ac85b0f20ac582edb9ff9b52633170675a7f2b69ff9f0530e9fcadcc52ff563",
+    "frame_times_seconds": [0, 8, 16, 20, 24, 32, 40, 45, 48, 55, 56, 64, 65, 72, 80, 88, 96, 104, 112, 120]
+  },
+  "verdict": "FAIL_FOR_SCIENTIFIC_REPRESENTATION_GRAPHICS_GRAMMAR_AND_CONTAMINATION_TAXONOMY",
+  "new_material_finding": {
+    "encoded_times_seconds": [104, 112],
+    "finding": "The candidate collapses semantically distinct contamination modes into 'symbol Z, not the concept'.",
+    "evidence_boundary": "T1_FINDINGS records four semantically distinct quantities. Galactic height and model-grid metal fraction are symbol/meaning collisions; stellar gravitational redshift and gravitational-redshift velocity are target-domain mismatches for galaxy-MZR work. T2 has not ruled eligibility.",
+    "safe_correction": "Split the proposal examples into SYMBOL / MEANING COLLISION and TARGET-DOMAIN MISMATCH; label them recorded examples, not T2 rulings."
+  },
+  "candidate_modified": false,
+  "shared_or_public_asset_modified": false,
+  "tts_invoked": false,
+  "publication_gate": "CLOSED"
+}

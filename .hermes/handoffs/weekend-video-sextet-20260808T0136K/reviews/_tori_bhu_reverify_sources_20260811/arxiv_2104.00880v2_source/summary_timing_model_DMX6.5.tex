@@ -1,0 +1,48 @@
+\begin{deluxetable*}{l|cc|c}
+    \tablehead{\colhead{Parameter\tablenotemark{b}} & \colhead{Narrowband TOAs} & \colhead{Wideband TOAs} & \colhead{Difference ($\sigma_{\rm max}$)\tablenotemark{c}}\label{tab:timing_model}}
+    \tablecaption{A summary of timing parameters for PSR J0740+6620 when using DMX to estimate DM values\tablenotemark{a} in 6.5-day bins.}
+    \startdata
+    \multicolumn{4}{c}{Astrometry} \\
+    \hline
+    Ecliptic longitude, $\lambda$ (degrees) \dotfill & 103.759135333(12) & 103.759135338(13) & 0.4 \\
+    Ecliptic latitude, $\beta$ (degrees) \dotfill & 44.102478368(13) & 44.102478361(13) & 0.5 \\
+    Proper motion in $\lambda$, $\mu_\lambda$ (mas yr$^{-1}$) \dotfill & $-$2.735(14) & $-$2.737(15) & 0.1 \\
+    Proper motion in $\beta$, $\mu_\beta$ (mas yr$^{-1}$) \dotfill & $-$32.48(2) & $-$32.48(2) & 0.0 \\
+    Timing parallax, $\varpi$ (mas) \dotfill & 1.04(18) & 0.87(19) & 0.9 \\
+    \hline
+    \multicolumn{4}{c}{Spin} \\
+    \hline
+    Spin frequency, $\nu_{\rm s}$ (s$^{-1}$) \dotfill & 346.5319964608338(3) & 346.5319964608337(3) & 0.0 \\
+    Time rate of change in frequency, $\dot{\nu}_{\rm s}$ ($10^{-15}$ s$^{-2}$) \dotfill &  $-$1.463874(11) & $-$1.463870(11) & 0.4 \\
+    \hline
+    \multicolumn{4}{c}{Binary Motion} \\
+    \hline
+    Orbital period, $P_{\rm b}$ (days) \dotfill & 4.76694461933(8) & 4.76694461936(8) & 0.4 \\
+    Projected semi-major axis, $x$ (lt-s) \dotfill & 3.97755608(10) & 3.97755607(11) & 0.0 \\
+    First Laplace-Lagrange eccentricity parameter, $\epsilon_1$ ($10^{-6}$) \dotfill & $-$5.68(3) & $-$5.70(3) & 0.7 \\
+    Second Laplace-Lagrange eccentricity parameter, $\epsilon_2$ ($10^{-6}$) \dotfill & $-$1.833(18) & $-$1.840(19) & 0.3 \\
+    Epoch of ascending-node passage, $T_{\rm asc}$ \dotfill & 57804.731308893(17) & 57804.731308895(18) & 0.1\\
+    Time rate of change in period, $\dot{P}_{\rm b}$ (10$^{-12}$ s\,s$^{-1}$) \dotfill & 1.2(2) & 1.2(2) & 0.2 \\
+    Companion mass, $m_{\rm c}$ (M$_\odot$) \dotfill & 0.251(5) & 0.253(6) & 0.3 \\
+    Sine of inclination angle, $\sin i$ \dotfill & 0.99909(12) & 0.99908(13) & 0.1 \\
+    \hline
+    \multicolumn{4}{c}{Profile Evolution} \\
+    \hline
+    First coefficient of FD expansion, $c_1$ ($10^{-5}$) \dotfill & $-$3.2(2) & n/a & n/a \\
+    Second coefficient of FD expansion, $c_2$ ($10^{-5}$) \dotfill & $-$2.0(3) & n/a & n/a \\
+    Third coefficient of FD expansion, $c_3$ ($10^{-5}$) \dotfill & $-$1.0(2) & n/a & n/a \\
+    \hline
+    \multicolumn{4}{c}{Fit Configuration and Statistics} \\
+    \hline
+    Reference epoch for spin, astrometry (MJD) \dotfill & 57807 & 57807 & n/a \\ 
+    Terrestrial clock standard \dotfill & TT(BIPM2019) & TT(BIPM2019) & n/a \\
+    Solar system ephemeris \dotfill & DE438 & DE438 & n/a \\
+    Barycentric time scale \dotfill & TDB & TDB & n/a \\
+    Degrees of freedom \dotfill & 18,041 & 1,099 & n/a \\
+    Goodness of fit, $\chi^2$ \dotfill & 18,183 & 1,072 & n/a \\
+    Daily-averaged, weighted RMS ($\mu$s) \dotfill & 0.27 & 0.28 & n/a \\
+    \enddata
+    \tablenotetext{a}{We do not list DM values in this table due to the large number of DMX bins used to model DM variations. We refer the reader to Figures \ref{fig:residuals} and \ref{fig:residuals_zoom} for graphical representations of the best-fit DMX data.}
+    \tablenotetext{b}{All parameter uncertainties, listed in parentheses, denote the 68.3\% (i.e., 1 $\sigma$) confidence intervals in the preceding digit(s) as obtained from \tempo{}.}
+    \tablenotetext{c}{Differences between best-fit parameter estimates derived from narrowband and wideband TOAs are listed in units of the larger of the two statistical uncertainties ($\sigma_{\rm max}$).}
+\end{deluxetable*}

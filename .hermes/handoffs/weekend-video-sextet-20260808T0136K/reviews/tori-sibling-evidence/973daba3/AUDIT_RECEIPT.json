@@ -1,0 +1,63 @@
+{
+  "audit_timestamp_kst": "2026-08-09T13:11:04+09:00",
+  "lane": "mzr-anchor",
+  "verdict": "PASS_METHOD_ONLY_LOCAL_CANARY",
+  "authority": "HWAO_SIBLING_ROLLOUT_ORDER.md",
+  "self_qa_or_numeric_guard_used_as_authority": false,
+  "candidate": {
+    "sha256": "973daba3a6b8ef66409d3bbd2588fc2db2459f4fb3c5d474a731a93b8c2e1970",
+    "bytes": 9649802,
+    "duration_seconds": 219.533333,
+    "video_frames": 6586,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/mzr-anchor-method-overhaul-canary-20260809T0245K/mzr-anchor-method-overhaul-canary-20260809T0245K.mp4",
+    "post_encode_freeze_matches": true,
+    "full_video_and_audio_decode_exit": 0
+  },
+  "authority_snapshot": {
+    "lane_status_phase": "source_freeze_in_progress",
+    "lane_status_verdict": "PENDING",
+    "lane_status_current_candidate": null,
+    "source_freeze_exists": false,
+    "candidate_status_copy_matches_current": true,
+    "candidate_source_manifest_matches": "10/10"
+  },
+  "actual_frame_audit": {
+    "uniform_ocr_fps": 2,
+    "uniform_ocr_actual_encoded_frames": 439,
+    "sentence_midpoint_actual_encoded_frames": 22,
+    "section_end_actual_encoded_frames": 9,
+    "vision_inspected_actual_encoded_frames": 31,
+    "ocr_errors": 0,
+    "internal_filename_visible": false,
+    "substantive_result_drift": false,
+    "finding": "The direct-temperature-to-common-scale chain remains schematic and method-only. No table, anchor, galaxy, or mass-bin count is displayed. Delta_Z(M*) is symbolic, VALUE WITHHELD is explicit, and HIGH-Z LOWER / SCALES OVERLAP / HIGH-Z HIGHER remain an unselected three-way rail. Evolution and calibration explanations remain balanced."
+  },
+  "narration_and_playback": {
+    "narration_source": "spec.json sentences[]",
+    "sentences": 22,
+    "words_whitespace": 415,
+    "timeline_records": 22,
+    "spec_timeline_texts_match": true,
+    "max_abs_audio_visual_start_delta_seconds": 0.01624999999998522,
+    "integrated_loudness_lufs": -20.9,
+    "true_peak_dbfs": -2.3,
+    "playback_start_kst": "2026-08-09T13:07:07+09:00",
+    "playback_end_kst": "2026-08-09T13:10:47+09:00",
+    "playback_exit": 0
+  },
+  "serve_and_closed_gates": {
+    "route_http_ok": true,
+    "served_sha256_matches": true,
+    "served_from_canary_root": true,
+    "protected_root_hash_matches": 0,
+    "cockpit_video_manifest_unchanged": true,
+    "working_frontend_public_mp4_manifest_unchanged": true,
+    "live_frontend_public_mp4_manifest_unchanged": true,
+    "paperVideos_sha256": "e80eb76426067a671de834fb487a79b483542b6bb6a64b29f5489ff9e8c75f91",
+    "git_head": "ebe9c7f587bfbdad30ea8cb62d42e51294e1599e",
+    "git_index_tree": "9974b1d20e44764c01639d2674a31d9ff38bc3a2",
+    "git_cached_diff_bytes": 0,
+    "legacy_8093_candidate_route_status": 404
+  },
+  "boundary": "Pass is limited to a local method-only canary. video_reportable_now remains false, and no result publication is authorized without an independent SOURCE_FREEZE.json and explicit result gate."
+}

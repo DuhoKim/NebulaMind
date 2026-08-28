@@ -1,0 +1,58 @@
+{
+  "audit_timestamp_kst": "2026-08-08T14:03:05+09:00",
+  "candidate": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/integrator/canaries/spin-method-overhaul-canary-20260808T1312K/spin-method-overhaul-canary-20260808T1312K.mp4",
+  "candidate_sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+  "candidate_bytes": 13697038,
+  "duration_seconds": 159.0,
+  "video": {
+    "codec": "h264 High",
+    "resolution": "1920x1080",
+    "fps": 30,
+    "frames": 4770,
+    "decode_to_eof": true
+  },
+  "audio": {
+    "codec": "aac LC",
+    "sample_rate": 48000,
+    "channels": 1,
+    "duration_seconds": 159.0,
+    "integrated_lufs": -20.3,
+    "true_peak_dbfs": -2.3,
+    "clipping_detected": false,
+    "private_ffplay_start_kst": "2026-08-08T13:59:56+09:00",
+    "private_ffplay_end_kst": "2026-08-08T14:02:36+09:00",
+    "private_ffplay_exit": 0
+  },
+  "frame_audit": {
+    "ocr_sample_rate_fps": 2,
+    "ocr_frames": 318,
+    "ocr_failures": 0,
+    "forbidden_term_hits": 0,
+    "sentence_midpoint_frames_visually_inspected": 24,
+    "native_resolution_end_state_frames_visually_inspected": 6,
+    "forbidden_render_string_hits": 0,
+    "forbidden_narration_hits": 0,
+    "verdict": "PASS"
+  },
+  "source_status": {
+    "source_freeze_sha256": "f7204bd7aa9a96830e22b76456cd2e24b1fda4d543f2d0333c4f72cad8c98183",
+    "status_sha256": "38b0c676925c95456882f9a672dc5a78f8d5100ba728223ef61ae8bc4a5bd2fe",
+    "freeze_bound_hashes_matching": 17,
+    "freeze_bound_hashes_total": 17,
+    "video_reportable_now": false,
+    "method_only_narration_authorized": true
+  },
+  "closed_gates": {
+    "frontend_public_videos_touched": false,
+    "paperVideos_ts_touched": false,
+    "git_write": false,
+    "prior_attempts_preserved": "11/11",
+    "external_upload_action_found": false,
+    "shared_or_public_mp4_touched": true,
+    "violating_copy": "/Users/duhokim/HermesOps/cockpit/videos/_weekend-canaries/spin-method-overhaul-canary-20260808T1312K.mp4",
+    "violating_copy_sha256": "40804f86b221bc9af3d5107b923b954b379e0734e384c33c29fc0363712d65c9",
+    "violating_copy_created_kst": "2026-08-08T13:57:59+09:00"
+  },
+  "overall_verdict": "HOLD",
+  "hold_reason": "The exact candidate was copied into a shared cockpit video path after the 13:02 KST closed-gate order. Content, audio, source/status, Git, and prior-attempt checks pass, but the shared/public MP4 and cockpit gate did not hold."
+}

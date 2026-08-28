@@ -1,0 +1,53 @@
+{
+  "status": "FROZEN_V8_AWAITING_FULL_THREE_SEAT_EXACT_HASH_PASS",
+  "render_authority": false,
+  "gate_type": "FULL_THREE_SEAT_EXACT_HASH_REVIEW",
+  "tight_delta_carry_forward_allowed": false,
+  "review_targets": {
+    "NARRATION_DRAFT_V8.md": "6dc0ca1984e9fa262a28c39cc23b6559dac0cc1c4ebb6026693fb7b5b004f35c",
+    "STORYBOARD_DRAFT_V8.json": "56bcf195a871ae4f60f822b3e8cc3c5bd90f262a1a8325ca7b18a42b0917ddcb",
+    "CLAIM_LINE_LEDGER_V8.md": "aa4b459a3b4112dc40feabb5e84a0853e205db400d0adfc9d58cab248f6cc9aa",
+    "DETERMINISTIC_DIAGRAM_SPEC_V8.md": "e296e2f29a00cf714cbc9f562bb224d224e185fb8d6a5ecb03e718cf5e1cc52e"
+  },
+  "supporting_records": {
+    "V8_BUILD_MATRIX.json": "1afc44f665285788e421b2b1ca3698a3e9c1b0fdf4710e3f72d439b21ea5b2ae",
+    "V8_BUILD_VERIFICATION.json": "90c37c16352b494b878f3fd08206093df41d2f14e810025061366a5b6a27adbf"
+  },
+  "pinned_inputs": {
+    "LANA_SIMPLIFY_AND_DENAME_SPEC.md": "53e2c694334cdb9913e8d14e91032dbfb552e5c2eee5d1aea75360403f4b3274",
+    "STORYBOARD_DRAFT_V7.json": "3077f0636385487bb4092d2032c18bbedaedb647780bbfc581e59027c87a8d2b",
+    "NARRATION_DRAFT_V7.md": "3380497f0514e906db8463d0fdd2ffd1f0b02b37ac6825e3bfdec86011c2edc0",
+    "CLAIM_LINE_LEDGER_V7.md": "871a808c4f2af94e24ef68b19cef416b7f7e3295720dab25ef8676753c845b5a",
+    "authority_packet": "b244ea0a3bb276a673fd88efaad248322a7adaa521e31d0a864e6949de5aa516"
+  },
+  "checks": {
+    "copy_replacement_count": 27,
+    "graphics_count": 8,
+    "assertion_headings": "11/11 unchanged",
+    "claim_ids_and_packet_lines": "unchanged",
+    "narration_storyboard_sync": "11/11 exact",
+    "viewer_local_name_hits": 0,
+    "viewer_internal_vocabulary_hits": 0,
+    "raw_local_name_occurrences_unclassified": 0,
+    "published_authors_retained": [
+      "Brown",
+      "Lee",
+      "Rho",
+      "Demorest",
+      "Fonseca"
+    ],
+    "a1_visual_boundary": "frame one through full card",
+    "a2_introduction_card": "02",
+    "card05_95_4_scaled_position_markers": 0,
+    "premature_v8_media_files": 0
+  },
+  "required_full_gate_questions": [
+    "Kun must explicitly sign off B-10 on the exact V8 hashes.",
+    "Lana and Kun must adjudicate Card 01 timing: 89 words require 39.56 seconds at 135 WPM versus a 35-second plan; the full narration boundary phrase completes at 12.5 seconds at 120 WPM, while the exact badge is visible from frame one."
+  ],
+  "preflight": {
+    "command": "python3 preflight_gate_v8.py",
+    "observed_exit": 2,
+    "observed_output": "HOLD: no full exact-hash LANA V8 verdict"
+  }
+}

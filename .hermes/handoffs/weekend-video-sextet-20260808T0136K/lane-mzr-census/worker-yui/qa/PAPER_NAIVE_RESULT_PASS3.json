@@ -1,0 +1,38 @@
+{
+  "review_round": 4,
+  "review_name": "isolated_deepening_pass3_exact_snapshot",
+  "artifact_under_review": "snapshots/pass3-audience-copy-v1/PAPER_NAIVE_PACKET.md",
+  "packet_sha256": "8d0af4022cc478e53adb76bda26e01b2991ee185d186062e3acad376cbfde568",
+  "method": "read exactly once, answer all eight questions from memory without reopening, browsing, inspecting neighboring files, or reading the answer key",
+  "completed_at": "2026-08-08T03:10:28+09:00",
+  "verdict": "PASS",
+  "score": "8/8",
+  "mandatory_questions_passed": true,
+  "confidence": "HIGH",
+  "findings": {
+    "counted_object": "single VizieR tables with metadata-reachable columns for gas-phase abundance, stellar mass, and redshift together; metadata reach does not establish adjudicated physical measurements",
+    "not_measured": "not an MZR or metallicity measurement and not an eligibility ruling",
+    "retrieval_channels": ["semantic UCD tags", "column-name variants"],
+    "axis_reach": {
+      "abundance": "5393 to 5568; name-channel gain 175",
+      "stellar_mass": "6118 to 6206; name-channel gain 88",
+      "redshift": "6667 to 6687; name-channel gain 20"
+    },
+    "count_sequence": "178 minus 21, split 19 redshift and 2 abundance, leaves 157",
+    "term_check": "62 of 157 recorded descriptions matched; side branch only; all 157 proceed to T2",
+    "instrument_check": "7/7 recall and 0/3 controls support retrieval but do not establish precision or eligibility",
+    "precision_taxonomy": {
+      "symbol_or_meaning_collision": ["Galactic Cartesian height", "stellar-grid metal fraction/model Z"],
+      "target_domain_mismatch": ["stellar gravitational redshift", "gravitational-redshift velocity"]
+    },
+    "ruling_status": "recorded examples, not T2 rulings",
+    "reportable_now": "T1 metadata counts, 178-21=157 accounting, 62/157 side check, 7/7 and 0/3 with precision not certified, frozen T2 contract",
+    "pending": "apply T2 to all 157; eligible-table count; any metallicity or MZR measurement",
+    "scope": "single-table metadata intersection; cross-table joins and crossmatches not assessed"
+  },
+  "opening_boundary_understood": true,
+  "uncertainty": "Mild wording uncertainty only: the packet names a dominant precision-contamination mode without identifying one of the two later taxonomy categories as uniquely dominant.",
+  "material_confusion": false,
+  "files_modified_by_reviewer": [],
+  "issues": []
+}

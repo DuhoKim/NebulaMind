@@ -1,0 +1,1124 @@
+{
+  "status": "QA_STATIC_PNG_DERIVATIVES_NOT_A_CANDIDATE",
+  "created_at": "2026-08-08T07:52:04.626720+09:00",
+  "candidate": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+  "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+  "candidate_modified": false,
+  "ffmpeg_version": "ffmpeg version 8.1.2 Copyright (c) 2000-2026 the FFmpeg developers",
+  "python_version": "3.9.6",
+  "pillow_version": "11.3.0",
+  "cut_detection": {
+    "method": "30fps 160x90 grayscale frame-difference peaks with 30-frame nonmaximum separation",
+    "cuts": [
+      12.133333,
+      26.366667,
+      47.266667,
+      60.466667,
+      74.666667,
+      88.066667,
+      102.333333,
+      116.333333,
+      131.033333,
+      148.033333,
+      162.033333,
+      179.733333,
+      196.8,
+      213.433333,
+      233.866667
+    ],
+    "exact_pass11_match": true
+  },
+  "scene_count": 16,
+  "variant_count": 5,
+  "frame_count": 80,
+  "variant_order": [
+    "clean",
+    "defocus_r0_75",
+    "defocus_r1_50",
+    "defocus_r2_50",
+    "defocus_r4_00"
+  ],
+  "variants": {
+    "clean": {
+      "radius_pixels": null
+    },
+    "defocus_r0_75": {
+      "radius_pixels": 0.75
+    },
+    "defocus_r1_50": {
+      "radius_pixels": 1.5
+    },
+    "defocus_r2_50": {
+      "radius_pixels": 2.5
+    },
+    "defocus_r4_00": {
+      "radius_pixels": 4.0
+    }
+  },
+  "transform_contract": {
+    "implementation": "Pillow ImageFilter.GaussianBlur",
+    "source_mode": "RGB",
+    "radii_pixels": [
+      0.75,
+      1.5,
+      2.5,
+      4.0
+    ],
+    "canvas_change": false,
+    "storage": "filtered RGB pixels saved as non-optimized PNG",
+    "scope_limit": "deterministic spatial-defocus presentation stress only; radii are packet parameters, not claims about a named lens, projector, display, viewer, or service"
+  },
+  "clean_reproduction": "16/16 pass11 clean midpoint PNGs byte-identical",
+  "contact_sheet_sha256": {
+    "clean": "04e52ee1f9fbe1e60a68d79ff844dfb25403380e76dff6bcda6a6119eb75204e",
+    "defocus_r0_75": "07a6f1c77a44efedef40138c6291707ada8ad120247f03e532cfbf97ecbb697d",
+    "defocus_r1_50": "4ef59f9c389ef6cef39aff88f6322ac66fe9f6d65e3075e82da1f9150b29ed4a",
+    "defocus_r2_50": "dc9fc5c066268a46f45ecf1be11f97e30ef22cdc30f66a2862ec083b768b9b1f",
+    "defocus_r4_00": "030285c132aa997a5aecae2954c63597a0c96a99632429564081ec72e6ab1d3e"
+  },
+  "records": [
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_01.png",
+      "png_sha256": "54ed8c1c1708220ffce967633b1bd49fcd2d552c5fd6e519894a4077e87669d7",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_01.png",
+      "png_sha256": "31bb7baeae4a7d4461f3d2b70782bbece1ab0863c5359378966587b27a9b3e8a",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_01.png",
+      "png_sha256": "4808def49363d508d53fe2efc66c4bffd1bfc7b50db725a8f8f6e1e022f0432e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_01.png",
+      "png_sha256": "6937a2dd352e38e3ddc8c321c7c8e7012176781721f86bce865e0140d5022940",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 1,
+      "timestamp_seconds": 6.066667,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_01.png",
+      "png_sha256": "10bf88a3e9d9afe39de5ce67b32836bcaca9cf66d5f0714bd130364efa8f1708",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_02.png",
+      "png_sha256": "129c9b6e627f84fc638361cda0fcbb7e6f01eda3a286ba458d11cdfe9d496fac",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_02.png",
+      "png_sha256": "f94c11a5b85406ea7cd662ac805a472222c902e88ba6ee79d2bcb79a5002ad06",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_02.png",
+      "png_sha256": "7010a9bae303ccd37c0907af62c0a1822aabf4147498b52a9fbb1f6f2e16bd67",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_02.png",
+      "png_sha256": "792a57276c14111810e7ae191fb825ccbb237cfd79d9b85f2a39f012f679f350",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 2,
+      "timestamp_seconds": 19.25,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_02.png",
+      "png_sha256": "15a221667846241ed5b820938754d1401517b3650e7c5de8412254f18a98da34",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_03.png",
+      "png_sha256": "f517b3bdb8caea2bdb413a035af78ccd650f4d38a5ad26a3bec3f349fc4a0dfb",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_03.png",
+      "png_sha256": "32b9956459d673bb5688203c7b51d90a2de3093bfdf68b25831cb34ba26fdc68",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_03.png",
+      "png_sha256": "bb313c4801861baefc59cb0ca2b51e76012560c0600f25f02165d79aff4aaa71",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_03.png",
+      "png_sha256": "cea2df4626b5221f0576cef2e81a56ade3c9a49c423443f254e63f12b83c2f08",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 3,
+      "timestamp_seconds": 36.816667,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_03.png",
+      "png_sha256": "7eff6e1aa233b972f6aeeba0ba9456c9c0db42ad91213f76aae1633e5bcaa86f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_04.png",
+      "png_sha256": "c81d3ed1d4d00e3d068192c126c50f409e89f329733bb90cf9171c65bfe2583d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_04.png",
+      "png_sha256": "383f4b65baef11c9564c555447d90442a4faa9d6bec69c7123730dab527ee419",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_04.png",
+      "png_sha256": "b01784632dd2647bb765630875eb817d5b7ec20e9958c3f3d15a417ebf58492f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_04.png",
+      "png_sha256": "dc1ef7d929df47d1b4538d2bd74430f2cf6a6ffa19681dd1247e90cc172b892d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 4,
+      "timestamp_seconds": 53.866667,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_04.png",
+      "png_sha256": "cc77028a3bc842f62eb2b1ff575483a76db6df389e97b3d6082a1f54b4f58bf2",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_05.png",
+      "png_sha256": "f7453ec75f47caed6234a8fed2677163bc313c742823d4aa114359d6ed40f4d9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_05.png",
+      "png_sha256": "aab99e26c2306b91d14e46047d7aedff830fcc63268e5133de0ccd5ea8876b91",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_05.png",
+      "png_sha256": "d5a3d858fbe9ea0303de90a790ad03ead50e62e6b56d84ec593476375c5b17af",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_05.png",
+      "png_sha256": "9c69f372bf0e1b71bf7810537a628a66bc57de95c90d442268e3790ef93f4147",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 5,
+      "timestamp_seconds": 67.566667,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_05.png",
+      "png_sha256": "e795a6a97ba93616b715ecc101a1bfe76a053db60361db9019852ad91547d6ce",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_06.png",
+      "png_sha256": "04e4e55fad43daa8e234dbe04ebd10a221896d808d1990d1c3120d18b8926f90",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_06.png",
+      "png_sha256": "f2fff984e68d083eb407b814619a50a8b2063cd1d3d6de6d0604b138c7790353",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_06.png",
+      "png_sha256": "fc40da6e3492b301217516dfa1e0acd21d8a67fd955fb7a86e1a67d92d3f4d90",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_06.png",
+      "png_sha256": "a5bfc5db9ee722b306ca669d54b55baacb43bbf0610c8cae229d514e889b16a9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 6,
+      "timestamp_seconds": 81.366667,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_06.png",
+      "png_sha256": "d89430cc9b6a3a58134e41edea4f13f31fbf86c4de3adc390cf9a515592d21a3",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_07.png",
+      "png_sha256": "de3c20045050cb6b91540735f2c1bc37cd49b03776826c4242d92a0a1e36ed41",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_07.png",
+      "png_sha256": "c309b9f8f601f7735766967d209ea2afd170c75c53cbb2939eab46dde95cc2d8",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_07.png",
+      "png_sha256": "087c05fd1a259dd4846da4cb9316def1db2dd721e3b92d719c20a870e6f17b70",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_07.png",
+      "png_sha256": "562662bf1ba889d1a9e67606ba697f274f16f772a33e8a0dd789383b45c76d76",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 7,
+      "timestamp_seconds": 95.2,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_07.png",
+      "png_sha256": "e36b2aceb9e11a0891f36783c1d35888200c98c9c44f64be0100613bab9d22e1",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_08.png",
+      "png_sha256": "f5a1a4060172743bdf45c3a5410955e0dd143a6863c6bb7ef764ee84620fede8",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_08.png",
+      "png_sha256": "fb784e0470a9d91e4e08b2930f8f515f8c011b09cb59c7f7c43cab8d74bad331",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_08.png",
+      "png_sha256": "9c8531cfd0db803b08ce66a77311a1c85e1834fb41c460e7ae49e9f238b9de78",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_08.png",
+      "png_sha256": "a76c6e7498142e7c82dbcb2bcbc3f090c433dd1b09c9fc017a32dfe18ad64c64",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 8,
+      "timestamp_seconds": 109.333333,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_08.png",
+      "png_sha256": "ddbf49efa696c1ddf3e0da013c6fe55e96eeefcc68f4dd9fad87df9c32c9bfe3",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_09.png",
+      "png_sha256": "f6b61969b7d1bf624c3b489d2c69de5ccd08d4f81aeba9f94ed5909490bad352",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_09.png",
+      "png_sha256": "a44869882feddbe7ec9836e122fb6fb3a4a31194783eba8f02c39f15113fc924",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_09.png",
+      "png_sha256": "2c07289b1e43cfa818b1ef76a3aecaffa6f085ad8590b7d0b9f9cff2fb52c0fa",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_09.png",
+      "png_sha256": "b51e9adf58cb2d71232dce0cc39febbbfb39d37bb211f3f18d862de1552ab7d2",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 9,
+      "timestamp_seconds": 123.683333,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_09.png",
+      "png_sha256": "c2f53fcfb69a52ae0c87357a0956f133c36068284d9fd0507983be3bf2059887",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_10.png",
+      "png_sha256": "a2fcd6708aecbbae32e9a2465d6685bc7f28e620fa799979d5737ca29881a3f6",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_10.png",
+      "png_sha256": "13f9b41a1b9bdc589a00a0740cda1ce7d2f8633cf865c842f6a4dcd23fe6d422",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_10.png",
+      "png_sha256": "dbd5ea8471d6d7bc5209e8a49dc1ec42a7041607d47d357fe146780b346dc471",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_10.png",
+      "png_sha256": "58e678dcf561f43f48ac6afb64ec7c7dccd8129eb8350a706f7b831f8b6fce9e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 10,
+      "timestamp_seconds": 139.533333,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_10.png",
+      "png_sha256": "ed247a202d3be3acbcf1186ea4a84155210bedc71db02ab491336a63a70e2421",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_11.png",
+      "png_sha256": "c4e228e9d77eb150dcc9e10cb62dd440700aca5d9b93fd419d028bdbdea74109",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_11.png",
+      "png_sha256": "5d7dad3fa8d4fbd997f99dea3d2b45a4babf0612c3bffa9a786b1964e66b0551",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_11.png",
+      "png_sha256": "548816c8af0b04526eb305c9c9416b470254aef7557eae69bc4c2ddf773bc8a4",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_11.png",
+      "png_sha256": "2131c3a80d2c69a0d1bb2bbc5c73be6a85a1fd2506784b87b8a3bc6c728e52fb",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 11,
+      "timestamp_seconds": 155.033333,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_11.png",
+      "png_sha256": "5414b967e2fb4b144854f17ef48306166da4d26937a6508fa5049422efbb80b5",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_12.png",
+      "png_sha256": "8819126a799ed34c514e80ec7711901015fade35e021c6d1edb5a5372ea26adc",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_12.png",
+      "png_sha256": "69aed99d57a1954266c605f8ccd8719e20dae63bea5d2240d58a80d50f6f89d5",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_12.png",
+      "png_sha256": "221c75b261525d79d95a7f2676aa10846249da203eff499af0d438f62c9b88d9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_12.png",
+      "png_sha256": "462572bfc6aaac1f377c831f68eba075e2579c41dfdd8575fafa807ddde56393",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 12,
+      "timestamp_seconds": 170.883333,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_12.png",
+      "png_sha256": "54302a3a5717bd99ef6b611d913cb87c267d35c8201b0411ad1ffeeede4c5944",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_13.png",
+      "png_sha256": "be21ca22830ba3da577badf97c628be6a7398fdbd81b9b7d258df91c9508e97d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_13.png",
+      "png_sha256": "39aaf088bb71a93e446b872c868460e6c1d688ac55accda1da31368228cf94f1",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_13.png",
+      "png_sha256": "7b3646f23720ea469bfc6f86d058500ef2bcb45b48f54112cff39fe9a7979077",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_13.png",
+      "png_sha256": "c2da16c6dfc79e8b90f5975ec15c88f15c8cea34545a1972a3e5ddba1e68b766",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 13,
+      "timestamp_seconds": 188.266666,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_13.png",
+      "png_sha256": "c01d151173188b349b952bdf6182494c0d4fd9ca59760095da503d2a8abcd025",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_14.png",
+      "png_sha256": "070b60d6ae880c936cd1746b611c1cfd4618749344a13215eef0194a58aa925e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_14.png",
+      "png_sha256": "deb37cc0066773d53f2be8cd44e8fa12c7db5a82eac6a531a7a300f62f32d56f",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_14.png",
+      "png_sha256": "97eab18cf3d9db2b43c4a635432a011741e5e03f15b1877efddd17b0d8e52b87",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_14.png",
+      "png_sha256": "0eaadddd1958fc21786e94653aefad501f0f45eb99075b9b8cf9636034fd6a97",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 14,
+      "timestamp_seconds": 205.116667,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_14.png",
+      "png_sha256": "a19dd6dda54eca0708c71dbbaba5fb9c4106ea81e7c7df9f31fd775afd6146c9",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_15.png",
+      "png_sha256": "7513ab71e36a37f5dd54399402690e6193b54e37e89ead73c72d1fcd2f54133d",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_15.png",
+      "png_sha256": "3d210a6bee8ac215e8ce5d7e380afbb380e65d4c664b41c92bcb8d2a3da35c5b",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_15.png",
+      "png_sha256": "09ab600ea6b9341d23b267c6d30b9ba4efb94b29c1d9b3408df35a1a2f99e9c1",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_15.png",
+      "png_sha256": "ac7e2cd2a1c5b9b1afa36a582d635380d0707a178e53b544eb742ebcb395a9b4",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 15,
+      "timestamp_seconds": 223.65,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_15.png",
+      "png_sha256": "e62554f7fa7f53ed1c5b0c9cda5d21e1a7d0a947203acfcd6f6e743a4139afa3",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "clean",
+      "radius_pixels": null,
+      "path": "qa/pass12_spatial_defocus_audit/frames/clean/scene_16.png",
+      "png_sha256": "241cd47be1058f3c147cdd243e8e7c8e55d6a629da4d0ca502a49dfbf92d35fa",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "defocus_r0_75",
+      "radius_pixels": 0.75,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r0_75/scene_16.png",
+      "png_sha256": "8abb1c152df5b5dce42ff3fc197eb4d53a3a288a5fd54694c823a28ac2732ac4",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "defocus_r1_50",
+      "radius_pixels": 1.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r1_50/scene_16.png",
+      "png_sha256": "aaae666732891695eb3881b17fd9a2ea2c7ca62ce967e705b9004b6d6caba94e",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "defocus_r2_50",
+      "radius_pixels": 2.5,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r2_50/scene_16.png",
+      "png_sha256": "ee66a2ca7e2077fcd4b0208b8c24609157400a6dc71f2cd88190f18f37ed6514",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "scene": 16,
+      "timestamp_seconds": 238.583334,
+      "variant": "defocus_r4_00",
+      "radius_pixels": 4.0,
+      "path": "qa/pass12_spatial_defocus_audit/frames/defocus_r4_00/scene_16.png",
+      "png_sha256": "18d80c9d5ae0437a3af32dbf9d828463c19cbb35774b2b201db749455e06d4bf",
+      "mode": "RGB",
+      "size": [
+        1920,
+        1080
+      ]
+    }
+  ],
+  "video_or_audio_created": false,
+  "tts_invoked": false,
+  "git_action": false
+}

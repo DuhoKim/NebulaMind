@@ -1,0 +1,126 @@
+{
+  "status": "PROPOSAL_ONLY_INTEGRATION_GUARD_NOT_V9_NOT_A_CANDIDATE",
+  "guard_id": "spin-worker-yui-pass19-minimum-scale-black-lift-20260808T114942K",
+  "created_at": "2026-08-08T11:49:42+09:00",
+  "deepening_pass": 19,
+  "lane": "spin-parity",
+  "worker": "yui",
+  "integrator": "Hwao/Fable",
+  "focus": "minimum-scale 640x360 plus represented-pixel uniform linear-light black-lift interaction",
+  "disposition": "INTEGRATION_GUARD_NOT_PIXEL_CORRECTION",
+  "science_adjudicated": false,
+  "video_reportable_now": false,
+  "transform_contract": {
+    "input": "native 1920x1080 RGB",
+    "step_1": "Pillow LANCZOS full-canvas downscale to 640x360 RGB",
+    "step_2": "decode represented sRGB uint8 to linear-light float64",
+    "step_3": "L_out = a + (1-a) * L_in per RGB channel",
+    "step_4": "encode to sRGB, clip to [0,1], numpy rint to uint8",
+    "black_lift20_360p": {
+      "black_lift_fraction": 0.2,
+      "maximum_ideal_white_to_black_wcag_like_ratio": 4.2,
+      "classification": "operational"
+    },
+    "black_lift30_360p": {
+      "black_lift_fraction": 0.3,
+      "maximum_ideal_white_to_black_wcag_like_ratio": 3.0,
+      "classification": "characterization only"
+    },
+    "black_lift40_360p": {
+      "black_lift_fraction": 0.4,
+      "maximum_ideal_white_to_black_wcag_like_ratio": 2.333333,
+      "classification": "characterization only"
+    },
+    "simulation_limit": "packet-specific stress only; not a claim about a named display, projector, room, player, browser, platform, service, viewer, or universal standard"
+  },
+  "evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "source_freeze_sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1",
+    "fresh_cut_detection": "15/15 exact pass18 timestamps",
+    "fresh_clean_midpoints": "16/16 byte-identical to pass18",
+    "candidate_static_frames": 80,
+    "method_static_frames": 105,
+    "candidate_black_lift20_360p": {
+      "headline_recall_vs_native_clean": 0.883333,
+      "full_text_recall_vs_native_clean": 0.621673,
+      "lower_support_recall_vs_native_clean": 0.289888,
+      "numeric_recall_vs_native_clean": 0.155556,
+      "mean_robust_p99_p01_ratio": 2.522387,
+      "exact_transform_recomputed_scenes": "16/16",
+      "structural_gate_scenes": "0/16",
+      "held_critical_structural_gates": "0/5"
+    },
+    "candidate_held_critical_black_lift20_360p": {
+      "headline_recall_vs_native_clean": 0.860215,
+      "full_text_recall_vs_native_clean": 0.40619,
+      "lower_support_recall_vs_native_clean": 0.274933,
+      "numeric_recall_vs_native_clean": 0.142857,
+      "structural_gates": "0/5"
+    },
+    "sealed_v8_black_lift20_360p": {
+      "generic_result_held_badges": "7/7",
+      "major_method_status_boundaries": "7/7",
+      "required_meaning_ambiguous": false
+    },
+    "pass7_caption_safe_black_lift20_360p": {
+      "exact_top_gates": "7/7",
+      "result_held_badges": "7/7",
+      "overlap_clipping_or_ambiguity": false
+    },
+    "pass12_sharpness_safe_black_lift20_360p": {
+      "exact_top_gates": "7/7",
+      "mean_mapped_gate_similarity": 0.996825,
+      "result_held_badges": "7/7",
+      "exact_transform_recomputed_scenes": "7/7",
+      "overlap_clipping_or_ambiguity": false
+    },
+    "pass12_sharpness_safe_black_lift40_360p": {
+      "exact_top_gates": "7/7 characterization",
+      "mean_mapped_gate_similarity": 0.996825,
+      "result_held_badges": "7/7 characterization",
+      "fine_support_not_acceptance_reliable": true
+    }
+  },
+  "acceptance_guard_for_future_hwao_authored_layouts": [
+    "At represented 640x360 pixels after the exact 20 percent linear-light black-lift transform, all seven exact scene-specific gates and all seven complete RESULT HELD capsules must remain directly readable.",
+    "Every required status boundary, qualifier, uncertainty, branch distinction, axis, unit, value, error bar, threshold, equation term, interpretation limit, and provenance fact must survive by direct high-contrast text plus a complete shape, border, connector, or stable geometry channel.",
+    "No required meaning may be carried only by a dark fill, low-contrast footer, tiny axis, one-pixel line, subtle grid, citation, provenance footer, or global OCR recovery.",
+    "Represented-pixel human review and mapped gate crops are decisive because global OCR can under-count visible gates at 360p and can change non-monotonically under black lift.",
+    "The exact transform must be independently recomputed from the lossless 360p reference; matching hashes or receipts alone cannot certify it.",
+    "Black-lift 30 percent and 40 percent remain characterization only and are not acceptance thresholds."
+  ],
+  "cumulative_requirements": [
+    "pass18 bottom15 and bottom25 obstruction after 640x360",
+    "pass17 q60 4:2:0 after 640x360",
+    "pass16 compound minimum-scale geometry",
+    "pass15 native geometry",
+    "pass14 floor16 dark-tone",
+    "pass13 centered horizontal width7 smear",
+    "pass12 radius1.5 defocus and strengthened gate",
+    "pass11 native q60 4:2:0 recompression",
+    "pass10 native 20 percent black lift",
+    "pass9 inner-five-percent title-safe review",
+    "pass8 direct-label plus non-color redundancy",
+    "pass7 obstruction-safe exact gates",
+    "pass6 standalone 360p",
+    "pass5 hard-cut continuity",
+    "pass4 temporal persistence"
+  ],
+  "pixel_action": {
+    "new_pixel_or_copy_correction_requested": false,
+    "reason": "The latest pass12 proof retains 7/7 exact top gates and 7/7 complete RESULT HELD capsules under the operational compound transform, with no clipping, overlap, or ambiguity.",
+    "sealed_v8_modified": false,
+    "pass7_proof_modified": false,
+    "pass12_proof_modified": false,
+    "v9_created": false
+  },
+  "safety": {
+    "tts_invoked": false,
+    "audio_generated": false,
+    "video_encoded": false,
+    "published": false,
+    "shared_or_public_assets_modified": false,
+    "git_action": false,
+    "writes_confined_to_worker_lane": true
+  }
+}

@@ -1,0 +1,65 @@
+{
+ "protocol": "SPIN_T1_V1",
+ "contract_sha256": "dc2ace678322c57b1c801f12feac6774564f5c39da74990c0fd7089afffa400e",
+ "files": {
+  "zooSpec": {
+   "url": "https://galaxy-zoo-1.s3.amazonaws.com/GalaxyZoo1_DR_table2.csv.gz",
+   "bytes": 20384458,
+   "sha256": "5121e43f502856c9f73e31934a6e7d7282669c3ae065564a31f5d5115f45541d",
+   "bytes_expected": 20384458,
+   "size_matches_contract": true,
+   "fetched_at": "2026-08-05T20:30:49+0900",
+   "final_url": "https://galaxy-zoo-1.s3.amazonaws.com/GalaxyZoo1_DR_table2.csv.gz",
+   "http_status": 200,
+   "last_modified": "Wed, 30 Jun 2010 18:56:54 GMT",
+   "content_length": "20384458",
+   "header_verbatim_prestrip": "OBJID,RA,DEC,NVOTE,P_EL,P_CW,P_ACW,P_EDGE,P_DK,P_MG,P_CS,P_EL_DEBIASED,P_CS_DEBIASED,SPIRAL,ELLIPTICAL,UNCERTAIN",
+   "header_verbatim": "OBJID,RA,DEC,NVOTE,P_EL,P_CW,P_ACW,P_EDGE,P_DK,P_MG,P_CS,P_EL_DEBIASED,P_CS_DEBIASED,SPIRAL,ELLIPTICAL,UNCERTAIN",
+   "header_matches_contract": true,
+   "rows_parsed": 667944,
+   "rows_unparseable": 0,
+   "status": "OK"
+  },
+  "zooNoSpec": {
+   "url": "https://galaxy-zoo-1.s3.amazonaws.com/GalaxyZoo1_DR_table3.csv.gz",
+   "bytes": 5778740,
+   "sha256": "282c8049e93c47b5343885210ace8ba5710e9914ce035a6b39061395436d9723",
+   "bytes_expected": 5778740,
+   "size_matches_contract": true,
+   "fetched_at": "2026-08-05T20:30:58+0900",
+   "final_url": "https://galaxy-zoo-1.s3.amazonaws.com/GalaxyZoo1_DR_table3.csv.gz",
+   "http_status": 200,
+   "last_modified": "Wed, 30 Jun 2010 19:08:02 GMT",
+   "content_length": "5778740",
+   "header_verbatim_prestrip": "OBJID,RA,DEC,NVOTE,P_EL,P_CW,P_ACW,P_EDGE,P_DK,P_MG,P_CS",
+   "header_verbatim": "OBJID,RA,DEC,NVOTE,P_EL,P_CW,P_ACW,P_EDGE,P_DK,P_MG,P_CS",
+   "header_matches_contract": false,
+   "status": "HEADER_MISMATCH"
+  }
+ },
+ "funnel": {
+  "zooSpec": {
+   "SPIRAL_FLAG": {
+    "N_CW": 75873,
+    "N_ACW": 85299,
+    "N_tie": 29053,
+    "N_classified": 161172,
+    "N_pass": 190225
+   },
+   "0.80": {
+    "N_CW": 14623,
+    "N_ACW": 15789,
+    "N_tie": 0,
+    "N_classified": 30412,
+    "N_pass": 30412
+   },
+   "0.60": {
+    "N_CW": 24771,
+    "N_ACW": 26386,
+    "N_tie": 0,
+    "N_classified": 51157,
+    "N_pass": 51157
+   }
+  }
+ }
+}

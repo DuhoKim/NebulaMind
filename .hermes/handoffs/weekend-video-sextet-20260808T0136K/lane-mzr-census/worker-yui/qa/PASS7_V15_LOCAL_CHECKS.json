@@ -1,0 +1,51 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-numeric-audit-contract-v15",
+  "storyboard_version": "pass7-external-anchor-contract-v13",
+  "storyboard_sha256": "83629bb2051fdb17a8411607b809bb1f1065a8753c2928c55af9ed62c417e790",
+  "preserved_audience_semantics_sha256": "882ced7b916d18ae6a20441901b972f5a551c0cb3c8edf9d27b73e326c80b6ac",
+  "preserved_build_semantics_sha256": "7e27c0c9b43961222c9d4d9475a9764539a099686a5ad0b8687df8f8ac15bb8b",
+  "v12_exact_dependency": "round-18 v12 FAIL exposed an absent rejected visual and unsupported 304-point claim, a stale stellar-mass locator, and no granular numeric-audit source/used_in validator",
+  "corrections": {
+    "absent_unsupported_rejected_asset": "removed from exact packet",
+    "mass_locator": "current visual locator is MASS SEARCH card",
+    "numeric_audit_hash_contract": "validator pins exact NUMERIC_SOURCE_AUDIT SHA-256",
+    "numeric_audit_structure": "exactly nine supported claims, exact packet-local sources and current storyboard/visual targets, no rejected or absent visual block",
+    "new_expected_failure_mutations": [
+      "external numeric source",
+      "absent storyboard beat b030",
+      "stale visual v8 target",
+      "absent lit_metallicity asset plus unsupported 304-point number"
+    ],
+    "retained_v14": "accepted-visual existence/hash authentication and current storyboard-derived paper-naive title",
+    "retained_v13": "complete-inventory external anchor, packet-local verification sources, canonical questions, and exact three-second language"
+  },
+  "validator_sha256": "844be60f4ab9f049bf49106f62fc7357a438c60ee360eb5eb7c560b82df9e462",
+  "paper_naive_preparer_sha256": "0a2c376526d04cc394a99a6dac6e9f755373139835baf27b558dbf7ac20d0ade",
+  "narration_preparer_sha256": "ff570b67cf72a4cd530330e5ea2f419fa3aea0cd9a57446a51324e4535471f1e",
+  "mutation_test_script_sha256": "14571603865cff4f519deb1cfd01b3269a5dd04c6aaa7f51f51e602fc41ecbfd",
+  "paper_naive_projection_sha256": "b34f0bb4ed31e13eabafa9049295e932fb1720dcd0cde4a59b452eb70acbcfb4",
+  "proposal_validation_sha256": "ab73f539c16a21199b2499b004b570bb29532f3a1c3fab822141a9dc707670f3",
+  "mutation_test_receipt_sha256": "12bb693b6183e2399dd8cd96a94da5b2868098c593751ededf91fbf23aea70f9",
+  "paper_naive_packet_sha256": "655b7715c4b51a3738640b2cf0e778abc19b331bd9283c2fb32ba2fa2af5f8fb",
+  "narration_manifest_sha256": "f1ab9965a2c5f3c5ecf4cc67839c0f330c5f3670bfea2f03f61aa8725741a00e",
+  "numeric_source_audit_sha256": "39b6771fb53cc70233f1a08ff184fda535ef149dee5ab381fe0fa2a691e1b496",
+  "visual_artifact": "visual_proposal_v9.png",
+  "visual_sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+  "checks": {
+    "validator_live": "PASS_NUMERIC_AUDIT_8_OF_8",
+    "paper_naive_preparer_check": "PASS",
+    "narration_preparer_check": "PASS_VISUAL_EXISTS_AND_HASH_VERIFIED",
+    "renderer_check": "PASS_BYTE_IDENTICAL_NO_WRITES",
+    "mutation_suite": "PASS_BASELINE_PLUS_31_EXPECTED_FAILURES",
+    "numeric_mutation_cases": "4/4 rejected with numeric-source audit contract diagnostic",
+    "exact_reviewed_questions_match": true,
+    "all_verification_sources_packet_local": true,
+    "complete_audience_projection": "10 narration, 62 on-screen leaves, 10 citations",
+    "semantic_replay": "45/45 distinct states; 21/21 clauses; maximum unchanged interval 3.0 seconds",
+    "candidate_disposition": "FAIL_PRESERVED"
+  },
+  "supersession": "v15 supersedes but does not erase v14, v13, v12, or earlier snapshots and exact failures",
+  "publication_gate": "CLOSED",
+  "worker_boundary": "proposal and QA only; no TTS/media/shared/public/Git writes"
+}

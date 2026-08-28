@@ -1,0 +1,448 @@
+                                                Draft version November 3, 2020
+                                                Typeset using LATEX twocolumn style in AASTeX63
+
+
+
+
+                                                 Spin Parity of Spiral Galaxies III – Dipole Analysis of the Distribution of SDSS Spirals with 3D
+                                                                                     Random Walk Simulations
+                                                                             Masanori Iye,1 Masafumi Yagi,1 and Hideya Fukumoto2
+                                                                 1 National Astronomical Observatory of Japan, Osawa 2-21-1, Mitaka, Tokyo 181-8588 Japan
+
+
+
+
+arXiv:2011.00662v1 [astro-ph.GA] 2 Nov 2020
+                                                                       2 The Open University of Japan, 2-11 Wakaba, Mihama-ku, Chiba 261-8586 Japan
+
+
+
+
+                                                                                                   Submitted to ApJ
+
+                                                                                                      ABSTRACT
+                                                        Observation has not yet determined whether the distribution of spin vectors of galaxies is truly
+                                                      random. It is unclear whether is there any large-scale symmetry-breaking in the distribution of the
+                                                      vorticity field in the universe. Here, we present a formulation to evaluate the dipole component Dmax
+                                                      of the observed spin distribution, whose statistical significance σD can be calibrated by the expected
+                                                      amplitude for 3D random walk (random flight) simulations.
+                                                        We apply this formulation to evaluate the dipole component in the distribution of Sloan Digital Sky
+                                                      Survey (SDSS) spirals. Shamir (2017a) published a catalog of spiral galaxies from the SDSS DR8,
+                                                      classifying them with his pattern recognition tool into clockwise and counterclockwise (Z-spiral and
+                                                      S-spirals, respectively). He found significant photometric asymmetry in their distribution. We have
+                                                      confirmed that this sample provides dipole asymmetry up to a level of σD = 4.00.
+                                                        However, we also found that the catalog contains a significant number of multiple entries of the
+                                                      same galaxies. After removing the duplicated entries, the number of samples shrunk considerably to
+                                                      45%. The actual dipole asymmetry observed for the ’cleaned’ catalog is quite modest, σD = 0.29. We
+                                                      conclude that SDSS data alone does not support the presence of a large-scale symmetry-breaking in
+                                                      the spin vector distribution of galaxies in the local universe. The data are compatible with a random
+                                                      distribution.
+
+                                                      Keywords: anisotropy—catalogs—galaxies: formation—galaxies: rotation—galaxies: spiral
+
+                                                                1. INTRODUCTION                                  vidual galaxies (Robertson et al. 2004; Agertz et al.
+                                                For many decades, investigation of the formation                 2011; Ceverino et al. 2017; Shimizu et al. 2019).
+                                              and evolution of galaxies has been primary subject                   On the other hand, there are other classical models
+                                              of astrophysics. Semi-analytic simulations of struc-               of galaxy formation, such as the primordial whirl sce-
+                                              ture formation in the ΛCDM model of the uni-                       nario (von Weizsaecker 1955), the pancake shock sce-
+                                              verse to reproduce clustering and merging of galax-                nario (Peebles 1969; Zeldovich 1970), and the tidal
+                                              ies provide the current standard picture of galaxy                 torque scenario (White 1984). Each provides naive in-
+                                              formation (White & Rees 1978; Steinmetz & Navarro                  ference regarding the statistical distribution of the spin
+                                              2002).    Ferreira (2020) suggests that ultralight                 vectors of galaxies.
+                                              dark matter may reconcile certain remaining prob-                    If the spin vectors of individual galaxies were produced
+                                              lems which the standard models fail to explain. Re-                by splitting of large-scale primordial whirls, there would
+                                              cent high-spatial resolution simulations enable track-             be some remaining coherent spin alignment parallel to
+                                              ing of the formation of the spiral structure of indi-              the primordial whirl vectors, producing an observable
+                                                                                                                 dipole anisotropy.
+                                                                                                                   If the galaxies were formed mainly at the equatorial
+                                              Corresponding author: Masanori Iye                                 planes of primordial collapsing pancakes, spin vectors
+                                              m.iye@nao.ac.jp                                                    can mostly be expected to be parallel to the equatorial
+                                                                                                                 planes, possibly producing a quadrupole anisotropy seen
+                                                                                                                 from the observer located within a cluster of galaxies.
+2                                                            Iye et al.
+
+  If an individual galaxy started spinning owing to the                 Borchkhadze & Kogoshvili (1976) pointed out the
+tidal torque from a galactic cluster mass assembly, the              number dominance of ”S”spirals over ”reverse S” spi-
+galaxy’s spin vector should initially be perpendicular to            rals, hereafter referred as Z-spirals in the present paper,
+the line joining the galaxy and the center of gravity of             in the 7,563 galaxies sampled from the Abastumani cat-
+the cluster mass assembly. Such an initial correlation               alog of Bright Galaxies. MacGillivray & Dodd (1985)
+would, however, be diluted soon by orbital mixing.                   found a similar trend and a marginal dependence on
+  Figure 1 illustrates potential anisotropy that might               the super galactic hemisphere. Iye & Sugai (1991) and
+be induced from different galactic formation scenarios               Sugai & Iye (1995) used S/Z parity information on spi-
+(Sugai & Iye 1995). While the orbital mixing and merg-               ral galaxies to study the distribution of spin angular
+ing of galaxies could wipe out these initial spin vec-               momentum vectors in the assembly of galaxies. How-
+tor anisotropy, if any, observational verification of any            ever the data sets available at that time were not large
+symmetry-breaking in the distribution of spin vectors                enough.
+would be a significant evidence.                                        The Galaxy Zoo 1 catalog, a morphological classifica-
+                                                                     tion of SDSS galaxies, was compiled by a public poll. It
+                                                                     showed a similar predominance of S spirals as previous
+                                                                     studies, but Hayes et al. (2017) interpreted this as be-
+                                                                     ing due to human selection bias rather than a human
+                                                                     chirality bias or physical reality.
+                                                                        Shamir (2017a) published tables of 82,244 clock-
+                                                                     wise (Z-spirals) and 80,272 counterclockwise (S-spirals)
+                                                                     galaxies by using his Ganalyzer algorithm (Shamir
+                                                                     2011a,b) for a dataset of 740,908 galaxies classified as
+                                                                     spiral galaxies from three million SDSS Data Release
+                                                                     8 galaxies (Kuminski & Shamir 2016). The statistics
+                                                                     show over-dominance of Z-spirals from a random dis-
+                                                                     tribution at 3.46σ. Shamir (2017b) reported finding a
+                                                                     significant ”photometric anisotropy” such that the mean
+                                                                     magnitudes of S/Z spirals behave differently depending
+                                                                     on their right ascension with a possible asymmetry axis
+                                                                     at (α = 172◦ , δ = +50◦ ) in J2000. This axis corresponds
+                                                                     to the direction (l = 152◦ , b = +62◦ ) near the galac-
+                                                                     tic pole (b = +90◦ ). Note that Shamir’s catalog shows
+                                                                     dominance of Z-spirals instead of the S-spiral dominance
+Figure 1. Three illustrative scenarios of galaxy formation:          reported by previous workers.
+(a) primordial whirl, (b) pancake shock, and (c) tidal torque.          In the present paper, we develop a formulation to
+Inferred distributions of spin vectors of galaxies are shown in
+                                                                     analyze the dipole anisotropy of S/Z spin distribution
+top views, side views, and views for observers located inside
+the cluster of galaxies (modified from a figure in Sugai & Iye       of galaxies and apply this formulation to reanalyze the
+(1995)).                                                             Shamir’s SDSS catalog.
+
+                                                                          2. FORMULATION OF DIPOLE ANALYSIS
+  There were hot debates in the middle of the last cen-                    2.1. Dipole Component of Spin Distribution
+tury over whether the spiral structure of galaxies winds
+in a trailing way or in a leading way. It has been gen-                Number statistics can be used to study the S/Z num-
+erally believed that the spiral structure of galaxies is             ber asymmetry from equipartition. The significance
+in general ”trailing” rather than ”leading.” Iye et al.              level of the number asymmetry is given by
+(2019) found corroborative evidence from their survey                                              p
+                                                                              σN = |N (S) − N (Z)|/ N (S) + N (Z).      (1)
+of 146 spiral galaxies that all spiral structure in these
+galaxies is indeed ”trailing.” This confirmation provides              Another option is to look for any statistically signifi-
+a basis for us to use the spiral winding direction pro-              cant dipole in the spatial distribution of S/Z-spirals.
+jected on the sky, either S-wise spirals or Z-wise spirals,            Let Ωi (li , bi , di ) = (Ωil , Ωib , Ωid ) be the spin vector
+to judge the sign of the line-of-sight component Ωd of a             of the i-th galaxy with galactic longitude li , galactic
+galaxy’s spin vector. This determines whether the spin               latitude bi , and distance di . The distance di to the
+vector is pointing away or toward us.                                galaxy can be approximated for the nearby universe by
+                                                             Spin parity III                                                     3
+
+di = cz i /H0 , where c is the speed of light, z i is the spec-        axis with small θi add to Dmax while those near the
+troscopic/photometric redshift of the i-th galaxy and H0               equator with θi ∼ π/2 reduce Dmax . It is easy to
+is the Hubble constant.                                                see by integration that the expected mean amplitude
+   Measuring the 3D vector Ωi is nontrivial, but one can                  perf ect
+                                                                       Dmax        of all sky sampling is 0.5. Perfect but random
+easily judge the sign hi of Ωid . This can be done by                  dipole distribution produces fluctuation around this ex-
+examining the spiral winding sense to see if it is S-wise              pected mean amplitude of 0.5. Monte Carlo simulation
+(hi = −1) or Z-wise (hi = +1), since all spiral galaxies               shows that the associated standard deviation from this
+can be assumed to be trailing (Iye et al. 2019, : Paper                mean amplitude
+                                                                                   √        for perfect random dipole distributions
+I). The net effect of misidentifying S-spirals vs Z-spirals            is ∼ 0.3/ N .
+and improbable presence of leading spiral arms would
+be reduction of the dipole strength, should it exist. For              2.3. Effect of Non-uniform Sky Coverage for a Perfect
+simplicity, hereafter we assume that all the Ωi have an                                    Dipole Distribution
+unit length, namely Ωid = hi .                                           Although the currently available data from imaging
+   By compiling the spin parity, hi = ±1, together with                surveys are growing rapidly, the data do not yet fill the
+the coordinates of spiral galaxies from image archives                 entire sky uniformly. There may be observational bi-
+such as SDSS, Pan-Starrs1, ESO-DR2, DES, Subaru                        ases that affect evaluation of S/Z number asymmetry
+HSC, and others, we estimate that one can produce a                    and/or the evaluation of the observed dipole vector in
+spin parity catalog of up to a million spiral galaxies in              the S/Z distribution. Let us examine the effect of non-
+the 3D volume within 1 Gpc of the Earth. We are de-                    uniform sky coverage for the perfect dipole distribution
+veloping an analysis scheme to probe any partial vol-                  case mentioned in the previous subsection.
+ume within this volume, not necessarily centered on the                  When the sky sampling is limited to a certain narrow
+Earth. This will be discussed in a forthcoming paper.                  cone direction, the dipole amplitude can take any value
+For the moment, however, we consider a local volume                    in the range 0 ≤ Dmax ≤ 1 depending on the direction to
+centered on the Earth.                                                 the sample. The largest amplitude Dmax = 1 is obtained
+   To analyze the spin vector distribution in terms of                 when the sampling is toward the pole, θ = 0 or π, and
+spherical harmonics expansion, one can first examine on                the lowest amplitude Dmax = 0 is observed toward the
+its dipole component Y10 , quadrupole component Y20 and                equator θ = π/2. Therefore depending on the direction
+higher components.                                                     of the biased small sky sampling, the resulting Dmax can
+   If we define a unit vector to a fiducial pole P(lP , bP ),          be larger or smaller than the whole sky sampling.
+one can calculate the inner product                                      Consider a non-uniform sampling of the complete
+                      N
+                      X                 N
+                                        X                              dipole distribution covering only the northern hemi-
+      D(lP , bP ) =         i   i
+                            h Ω P/N =         hi cos θi /N     (2)     sphere as shown in Figure 2(b). There would be a con-
+                      i=1               i=1                            spicuous number count asymmetry. However, the dipole
+where the angle θi is the angle between the direction                  strength observed would be equal to that of the whole
+of the i-th galaxy and the direction of the fiducial pole              sky sampling. If the sampling were limited to the east-
+vector P. By determining the direction of the vector P                 ern hemisphere as shown in Figure 2(c), there would be
+for which the amplitude Dmax = |D(lP , bP )| takes the                 no number asymmetry. The dipole amplitude, again,
+largest value, one can derive the dipole vector Dmax of                would be equal to that of full sky sampling.
+the observed distribution.                                               The number asymmetry and the dipole amplitude thus
+  In fact, Dmax can be obtained simply by calculating                  provide complementary information to analyze large
+a vector G, which is the vector sum of the unit radial                 scale symmetry-breaking in the spin distribution of
+vectors pointing to the direction of the i-th galaxy mul-              galaxy ensembles.
+tiplied by the helicity hi . The inner product of G with P
+                                                                           2.4. Random Flight Simulation for an Isotropic
+takes the maximum value when P is pointing in parallel
+                                                                                              Distribution
+to G, and then Dmax is kG/N k.
+                                                                         For a uniformly randomly distributed set of N vec-
+             2.2. Perfect Dipole Distribution                          tors with Ωi , the resultant vector sum Dmax will have
+  We assume an extreme case of perfect dipole segre-                   an isotropic distribution with non-zero amplitude, un-
+gation, where all S-spirals are in the northern hemi-                  less the summation has incidentally completely canceled
+sphere and all Z-spirals are in the southern hemisphere                Dmax .
+as shown in Figure 2(a). The weight factor cos θi of                     As Dmax can be calculated by kG/N k, our problem is
+Equation 2 shows that the galaxies toward the dipole                   equivalent to a well-studied mathematical problem, 3D
+4                                                            Iye et al.
+
+                                                                     expected mean amplitude Dmax is
+                                                                                     √              √
+                                                                                       2Γ(2)      2 2    0.921
+                                                                            Dmax = √           = √     ∼ √ .               (4)
+                                                                                     3N Γ(3/2)     3πN      N
+
+                                                                      The associated standard deviation from this expected
+                                                                     mean distance is given by
+                                                                                 s                             r
+                                                                                    2[Γ(3/2)Γ(5/2) − Γ(2)2 ]     3π − 8
+                                                                       Stddev =                              =
+                                                                                           3Γ(3/2)2 N             3πN
+                                                                                    0.389
+                                                                                  ∼ √ .                                    (5)
+                                                                                       N
+                                                                       We can use these formulae to evaluate the statisti-
+                                                                     cal significance σD of the observed spin dipole strength
+                                                                     Dmax in any ensemble of spiral galaxies using
+Figure 2. Effect of non-uniform sky coverage on the num-
+ber asymmetry and on dipole evaluation. (a) Distribution of                                   √
+                                                                                  σD ∼ (Dmax N − 0.921)/0.389.            (6)
+spiral galaxies for an extreme case of 100% dipole asymme-
+try. All spirals in the northern hemisphere are exclusively
+                                                                               2.5. Detectability of Dipole Component
+S-spirals, while all spirals in the southern hemisphere are
+exclusively Z-spirals. (b) If the sampling volume is limited           Consider an ensemble of galaxies where a perfect
+only to the northern hemisphere, then only S-spirals are ob-         dipole system and a uniform random system are mixed
+served, showing an extreme asymmetry in the number count.            with fractions p and 1 − p, respectively. The observed
+The dipole amplitude, however, is equal to that derived for
+                                                                     dipole vector Dmax would be, on average, a vector sum
+the entire sky. (c) If the sampling volume is limited to the
+eastern hemisphere, the dipole amplitude is equal to that of
+                                                                     of Dperfect
+                                                                          max    with an amplitude 0.5p and√ a random vector
+the entire sky and no asymmetry is observed in the number            with an amplitude (1 − p) × 0.921/ N in an arbitrary
+count.                                                               direction. To discern the intrinsic dipole from the ran-
+                                                                     dom dipole with a statistical significance of s-sigma, the
+random walk (random flight). Namely, it is equivalent to             following relation is required
+find the distribution of distance to the final point vector                                                    √
+                                                                                 0.5p ≥ (s + 1) ∗ 0.921(1 − p)/ N           (7)
+R of a particle that starts from the origin and takes N
+steps of a 3D random walk. One can evaluate the mean                      This implies
+amplitude of Dmax and the standard deviation around
+the mean amplitude as a function of N .                                                     0.921(1 − p)(1 + s) 2
+                                                                                     N ≥(                      )           (8)
+   Chandrasekhar (1943) established that the probability                                           0.5p
+density function W (R) of the final displacement vector
+R of random flights for a large N will be a 3D Gaussian                 The Equation 8 indicates that between one hundred
+distribution.                                                        thousand or one million spirals are necessary to detect
+                                                                     a 3%, or 1% residual inherent dipole system at 5σ con-
+                                                                     fidence level, respectively.
+                      1
+ W (R) =                       3   exp(−3|R|2 /2N hr2 iAv ) (3)         Real data are not always obtained uniformly. The
+              (2πN hr2 iAv /3) 2                                     quantitative discussion of the non-uniform sampling of
+                                                                     a random distribution in the general case is not straight-
+where hr2 iAv is the expected mean square displacement,              forward. We examine, however, the actual S/Z data of
+which is in our case hr2 iAv = 1.                                    SDSS spirals in the next section and compare the ob-
+                          2                                          served dipole amplitude with those expected from sim-
+  The distribution of Dmax   , therefore, follows the chi-
+squared distribution for three degrees of freedom. The               ulated random distributions.
+distribution of Dmax , hence, follows the chi distribu-
+tion1 , a square root of chi- squared distribution. The                   3. APPLICATION TO THE S/Z DISTRIBUTION
+                                                                                     OF SDSS SPIRAL GALAXIES
+    1 Weisstein,
+                                                                              3.1. Reanalysis of Shamir’s Spin Catalog
+                      Eric      W.      ”Chi        Distribution.”
+     From      MathWorld–A       Wolfram      Web       Resource.      To apply our formulation of dipole anisotropy to real
+     https://mathworld.wolfram.com/ChiDistribution.html              data, we studied two samples using Shamir’s catalog
+                                                         Spin parity III                                                     5
+
+based on SDSS photometric data (Shamir 2017a)2 . The
+first sample retains all 162,516 spirals from the origi-
+nal catalog. The original sample shows an S/Z
+dipole signal of Dmax = 0.00489, with its axis
+pointing toward (l, b) = (189◦ , +15◦ ). This axis
+coincides with that reported in Shamir (2020a),
+(α = 88◦ , δ = +36◦ ), which is (l = 175◦, b = +5◦ ) for
+an SDSS sample, considering the 1σ estimation
+error of about 30◦ in both coordinates.
+   For calibration, we made 50,000 independent
+Monte Carlo simulations by assigning hi = ±1
+randomly to the 162,516 spirals and measured
+the simulation’s Dmax . The resulting Dmax shows
+an isotropic distribution with an ensemble mean
+amplitude of Dmax = 0.00225 and an associated
+amplitude standard deviation of σ = 0.00105, as                    Figure 3. Dipole amplitude Dmax measured in 50,000 mock
+shown in Table 1. The observed Dmax from                           simulations and in a sample of 111,867 spirals within a vol-
+the original catalog, therefore, has an ampli-                     ume of 0.01 ≤ z ≤ 0.1 from Shamir (2017a). The solid line
+tude, that is larger than the mean amplitude by                    shows the mean dipole amplitude expected from the simula-
+σD = 2.52. The number dominance of Z-spirals over                  tion and the broken line shows ±1σ deviation from the mean
+S-spirals here is σN = 4.89.                                       amplitude. The observed dipole (red circle) for this volume-
+                                                                   limited sample is 4.00σ away from the expected mean am-
+   The second sample we studied is a volume-limited
+                                                                   plitude.
+sample retaining 111,867 spirals with measured redshift
+in the range 0.01 ≤ z ≤ 0.1. To avoid any possible
+effect of local peculiar motions, 162 nearby spirals at
+z ≤ 0.01 were removed from this volume-limited sam-
+ple. This sample shows a stronger S/Z dipole signal
+Dmax = 0.00773 with its axis pointing toward (l, b) =
+(138◦ , −38◦).
+   The Dmax value observed for this sample, together
+with that of 50,000 simulated mock samples is shown in
+Figure 3. The observed Dmax from the original catalog
+limited to a volume defined by redshift, therefore, has
+an amplitude, that is larger than the mean amplitude
+by σD = 4.00.This amplitude happens to be close to the
+value 4.34σ reported in Shamir (2020a). The number
+dominance for this sample is 6.36σ.
+
+
+         3.2. Analysis of New Cleaned Catalog
+                                                                   Figure 4. Same as Figure 3 but for a ’cleaned’ sample
+  Upon re-examining Shamir’s original catalog, we
+                                                                   of 48,089 spirals, removing multiple entries in the original
+found significant duplication of entries in its tables. Ap-        catalog.
+parently, Shamir (2017a) used PhotoObjAll to search
+the SDSS catalog. According to the Table Description
+                                                                      In fact, 34,198 spiral galaxies were found to have
+of DR83 , the view of PhotoPrimary, instead of PhotoOb-
+                                                                   multiple entries with their coordinates within 3 arc-
+jAll, should be used to avoid duplicate detections. Pho-
+                                                                   sec distance of each another. For instance, one of the
+toObjAll returns every entry from the searched images
+                                                                   galaxies in his catalog, SDSS J031945.63-000437.9 (ob-
+without checking for duplication of the same object.
+                                                                   jid=1237666300555427954) at z = 0.037, has 89 sepa-
+                                                                   rate entries. We confirmed by visual inspection that all
+  2 https://data-portal.hpc.swin.edu.au/dataset/data-for-galaxy-   of them are the same galaxy.
+   assymetry-experiment                                               A total of 106 spirals had contradicting S/Z classifi-
+  3 http://skyserver.sdss.org/dr8/en/help/docs/tabledesc.asp
+                                                                   cation among the duplicated entries. We rectified these
+6                                                        Iye et al.
+
+contradictions by assigning a spin parity via visual in-         bution of spirals in an ensemble of galaxies. We show
+spection in some cases. In other cases, where the voting         that the statistical significance σD of this quantity can
+was significantly split, we adhered to the outcome of            be calibrated with that expected from 3D random flight
+majority voting.                                                 simulations.
+   After removing the duplicated entries, the number of            Notably, we found that the S/Z spin catalog published
+spiral galaxies is reduced to 72,888, that is 45% of the         by Shamir (2017a) contains a significant amount of du-
+original number. The number of spirals in the volume-            plicated data, which at least partly caused the increased
+limited sample range 0.01 ≤ z ≤ 0.1 is 48,089 (23,819 S-         level of dipole asymmetry that we observed. After re-
+spirals and 24,270 Z-spirals), 43% of the 111,867 counted        moving the duplicated entries from the catalog, we found
+in the original catalog. The measured amplitudes for             that the distribution is compatible with random distri-
+these ’cleaned’ samples with and without the volume              bution. We conclude that the SDSS sample of spiral
+limitation are summarized in Table 1.                            galaxies does not show large scale anisotropy in the spin
+   The observed dipole for the entire cleaned sample             distribution of galaxies.
+set has Dmax = 0.00535 with its axis pointing toward               Recently, Shamir (2020b) studied another dataset
+(l, b) = (192◦ , +79◦). 50,000 random mock simula-               based on spectroscopic sample to detect a significant
+tions for the cleaned sample shows a mean amplitude              dipole signal. Previously Shamir (2012) also presented
+Dmax = 0.00336 and a standard deviation σ = 0.00154.             that a dataset based on SDSS SpecObj shows a signifi-
+Therefore, the observed dipole deviates from the ex-             cant dipole signal, while the direction of the axis is dif-
+pected mean strength only at a level of σD = 1.29. Num-          ferent. The different results from the different datasets
+ber dominance of Z-spirals over S-spirals is also only at        will be investigated elsewhere.
+the σN = 1.87 level.                                               The current authors are compiling a large coher-
+   The observed dipole for the cleaned sample limited to         ent dataset of spiral winding evaluation as derived
+the redshift range 0.01 ≤ z ≤ 0.1, is Dmax = 0.00468             from several modern large image datasets, including
+with its axis pointing toward (l, b) = (106◦ , +57◦ ). Re-       the SDSS (Aguado et al. 2018), the Panoramic Survey
+sults of 50,000 random mock simulations for the cleaned          Telescope and Rapid Response System (Pan-Starrs1:
+sample shows a mean amplitude Dmax = 0.00414 and a               Chambers et al. 2016), the Hyper Suprime-Cam (HSC:
+standard deviation σ = 0.00188, as shown in Figure 4.            Miyazaki et al. 2018) of Subaru Telescope, and the
+   Therefore, the observed dipole deviates from the ex-          Dark Energy Survey (Abbott et al. 2018) by deep
+pected mean strength only at the σD = 0.29 level. Col-           learning algorithm. Tadaki et al. (2020) developed a
+umn (13) of Table 1, obtained from Equation 6 for uni-           deep learning algorithm to judge S/Z winding of 76,635
+form sampling is not necessarily correct for non-uniform         spiral galaxies from the Hyper Suprime-Cam Subaru
+sampling. However, the fact that Column (13) shows               Strategic Program Data Release 2 dataset (HSC SSP
+values close to the values in column (12), obtained from         DR2: Aihara et al. 2019) sample, with further objec-
+actual sampling, suggests their relevance. Finally, the          tive to generate a galactic spin data catalog.
+number dominance of Z-spirals over S-spirals is also only
+at the σN = 2.06 level.
+   Comparison of Figures 3 and 4 clearly shows that the
+apparent pseudo dipole signal observed in Figure 3 came
+from massively duplicated data in the original catalog.
+   As a final remark, Longo (2011) made a similar anal-
+ysis of his sample of 15,158 spirals with z ≤ 0.085 from
+SDSS DR6. He used the terms left-handed (S-spiral
+in the present paper) and right-handed (Z-spiral). He
+found a dipole asymmetry by plotting the distribution
+of A = (Z − S)/(Z + S). The dipole strength under his
+definition was −0.0408±0.011, found with an axis point-
+ing at (l, b) = (52◦ , +68.5◦) at 5.6σ. The relation of his
+study to the current work has yet to be investigated.
+
+                   4. CONCLUSION
+  We present a formulation to quantify the observed
+dipole amplitude Dmax of the S/Z spin parity distri-
+                                                        Spin parity III                                                           7
+
+Table 1. Observed dipole asymmetry in the spin distribution of SDSS galaxies. Column(6) is the number asymmetry significance
+level. Columns (7-9) shows the observed amplitude and the direction of the dipole Dobs max , while Columns (10) and (11) show the
+mean amplitude of Dmax from 50,000 mock simulations and the standard deviation from the mean value, respectively. Column
+(12) is the observed significance level of Dmax . Column(13) is the expected significance level for an isotropic random distribution
+as given by Equation 6.
+
+       (1)            (2)            (3)      (4)       (5)    (6)      (7)     (8)    (9)      (10)      (11)    (12)   (13)
+                                                                         obs                                       obs     iso
+     Sample     redshift range        N      N(S)      N(Z)    σN      Dmax      l      b      Dmax     stddev    σD     σD
+     Original         All         162,516   80,272    82,244   4.89   0.00489   189    +15    0.00225   0.00105   2.52   2.70
+     Original   0.01 ≤ z ≤ 0.1    111,867   54,870    56,997   6.36   0.00773   138    -38    0.00271   0.00126   4.00   4.28
+     Cleaned          All          72,888   36,191    36,697   1.87   0.00535   192    +79    0.00336   0.00154   1.29   1.34
+     Cleaned    0.01 ≤ z ≤ 0.1     48,089   23,819    24,270   2.06   0.00468   106    +57    0.00414   0.00188   0.29   0.27
+
+
+
+                ACKNOWLEDGMENTS
+   Special thanks are due to Lior Shamir who gave us use-
+ful comments to improve the present paper. We thank
+the anonymous referee for helpful comments. Data anal-
+ysis of this study was in part carried out on the Multi-
+wavelength Data Analysis System operated by the As-
+tronomy Data Center (ADC), National Astronomical
+Observatory of Japan. This research has made use of
+NASA’s Astrophysics Data System Bibliographic Ser-
+vices. Funding for SDSS-III has been provided by the
+Alfred P. Sloan Foundation, the Participating Institu-
+tions, the National Science Foundation, and the U.S. De-
+partment of Energy Office of Science. The SDSS-III web
+site is http://www.sdss3.org/. SDSS-III is managed by
+the Astrophysical Research Consortium for the Partici-
+pating Institutions of the SDSS-III Collaboration includ-
+ing the University of Arizona, the Brazilian Participa-
+tion Group, Brookhaven National Laboratory, Carnegie
+Mellon University, University of Florida, the French
+Participation Group, the German Participation Group,
+Harvard University, the Instituto de Astrofisica de Ca-
+narias, the Michigan State/Notre Dame/JINA Partic-
+ipation Group, Johns Hopkins University, Lawrence
+Berkeley National Laboratory, Max Planck Institute for
+Astrophysics, Max Planck Institute for Extraterrestrial
+Physics, New Mexico State University, New York Uni-
+versity, Ohio State University, Pennsylvania State Uni-
+versity, University of Portsmouth, Princeton University,
+the Spanish Participation Group, University of Tokyo,
+University of Utah, Vanderbilt University, University of
+Virginia, University of Washington, and Yale University.
+
+
+                                                         REFERENCES
+Abbott, T. M. C. Abdalla, F. B., Allam, S. et al. , 2018,             Aguado, D. S., Aumada, R. Almeida, A.et al. , 2018, ApJS,
+ ApJS, 239, 18                                                          240, 23
+Agertz, O., Teyssier, R. & Moore, B. 2011, MNRAS, 410,                Aihara, H.,, AlSayyad,Y., Ando,M. et al. 2019, PASJ, 71,
+ 1391.                                                                  114
+8                                                       Iye et al.
+
+Borchkhadze, T. M. & Kogoshvili, N. G. 1976, A&A, 53,           Shamir, L. 2011a, The Astrophysics Space Code Library,
+  431                                                             p.ascl:1105.011
+Ceverino, D., Primack, J., Dekel, A. et al. , 2017, MNRAS,      Shamir, L. 2011b, ApJ, 736, 141
+  467, 2664                                                     Shamir, L. 2012, Phys. Let. B, 715, 25
+Chambers, K. C., Magnier, E. A., Metcalfe, N. et al. 2016,      Shamir, L. 2017a, PASA, 34, e011
+  arXiv:1612.05560                                              Shamir, L. 2017b, PASA, 34, e044
+Chandrasekhar, S. 1943, Rev. Modern Physics,15, 1               Shamir, L. 2020a, Astron. N., 341, 324
+Ferreira,E.G.M., 2020, arXiv:2005.03254v1                       Shamir, L. 2020b, Ap&SS, 365, 136
+Hayes, W. B., Davis, D., & Silva, P. 2017, MNRAS, 466,          Shimizu I., Todoroki, K., Yajima, H. and Nagamine, K.,
+  3928                                                            2019, MNRAS, 484, 2632-2655
+Iye, M. and Sugai, H. 1991, ApJ, 374, 112                       Steinmetz, M. & Navarro, J. F. 2002, NewA, 7,155.
+Iye, M., Tadaki, K. and Fukumoto, H. 2019, ApJ, 886, 133        Sugai, H. & Iye, M. 1995, MNRAS, 276, 327
+Kuminski, E. & Shamir, L. 2016, ApJS, 223, 20                   Tadaki, K., Iye, M., Fukumoto, H., Hayashi, M., Rusu, C.
+Longo, M. 2011, Physics Letter B, 669, 224                        E., Shimakawa, R. and Tosaki T. 2020, MNRAS, xxx, yyy
+MacGillivray, T. M. & Dodd, R. J. 1985, A&A, 145, 269           von Weizsaecker, C. F., 1955, Zeitshrift fur Astronomie, 35,
+Miyazaki, S., Komiyama, Y., Kawanomoto, S. et al. 2018,           252
+  PASJ, 70, 1                                                   White, S. & Rees, M. 1978, MNRAS, 183, 341.
+Peebles, P. J. E., 1969, ApJ, 155, 393                          White, S., 1984, ApJ, 286, 38
+Robertson, B., Yoshida, N., Springel, V. et al. 2004, ApJ,
+                                                                Zeldovich, Y. B., 1970, A&A. 5, 84
+  606, 32
+

@@ -1,0 +1,123 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_V9_NOT_A_CANDIDATE",
+  "correction_id": "spin-worker-yui-pass7-caption-safe-storyboard-correction-20260808T054548K",
+  "created_at": "2026-08-08T05:45:48+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "caption/player-UI-safe scene-specific semantic gates for a future authorized integration",
+  "base": {
+    "iteration": "sealed_v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "renderer": "render_proposal_frames.py",
+    "renderer_sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8",
+    "contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "sealed_v8_modified": false
+  },
+  "candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "audit_receipt": "qa/pass7_obstruction_audit/extraction_receipt.json",
+    "audit_receipt_sha256": "e5face289309bf6a3b91a6553c0f92f00bcd494de5fc33415b6e9b24f457f146",
+    "ocr_audit": "qa/pass7_obstruction_ocr_audit.json",
+    "ocr_audit_sha256": "4d7e6ad087d420dad145d2fdd4bc5303c15ca4b8e040b4fe242c7c5578721e1e",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS6_CUT_TIMES",
+    "fresh_clean_midpoint_reproduction": "16/16_PASS6_BYTE_IDENTICAL",
+    "caption_15pct": {
+      "mean_full_token_retention": 0.866911,
+      "mean_headline_token_retention": 0.96625,
+      "mean_lower_support_token_retention": 0.295149,
+      "bottom_zone_scenes_with_reference_copy": 14,
+      "bottom_zone_reference_tokens": 161,
+      "bottom_zone_surviving_tokens": 0
+    },
+    "player_ui_25pct": {
+      "mean_full_token_retention": 0.756673,
+      "mean_headline_token_retention": 0.946477,
+      "mean_lower_support_token_retention": 0.164207,
+      "bottom_zone_scenes_with_reference_copy": 14,
+      "bottom_zone_reference_tokens": 335,
+      "bottom_zone_surviving_tokens": 0
+    },
+    "critical_scenes_player_ui_25pct": {
+      "scenes": [7, 9, 10, 11, 16],
+      "mean_full_token_retention": 0.454035,
+      "mean_headline_token_retention": 0.856,
+      "mean_lower_support_token_retention": 0.325462,
+      "mean_bottom_25pct_token_retention": 0.2,
+      "structural_gate_scene_count": 0
+    },
+    "finding": "A bottom obstruction removes all OCR-visible copy in the occupied obstruction zone while leaving the top assertion region pixel-identical. Dominant result headlines and plots therefore remain without their lower qualification or provenance."
+  },
+  "sealed_v8_obstruction_evidence": {
+    "audit": "qa/pass7_v8_obstruction_audit.json",
+    "audit_sha256": "ca07df898082b2238f102edffc7b74f198e1ad3c070ef8198fdb01e7ab32d2f9",
+    "visual_result_held_badge_readability": "7/7_CLEAN__7/7_CAPTION15__7/7_PLAYER_UI25",
+    "badge_ocr_is_auxiliary": "4/7_SCALE_INVARIANT",
+    "generic_hold_survives": true,
+    "scene_specific_boundary_loss_under_player_ui_25pct": {
+      "S2": "bottom DO NOT SUM scope note is obscured",
+      "S3": "label-frame physical-interpretation boundary is obscured",
+      "S4": "large FRAME UNSTATED explanation is partially obscured",
+      "S5": "column-check-only and storage-frame-unresolved boundary is obscured",
+      "S6": "paired-comparison and outcomes-withheld strip is obscured",
+      "S7": "separate-authorization next gate is obscured"
+    },
+    "finding": "The generic top-right hold survives, but several scene-specific reasons and next-gate constraints do not. A generic badge alone is not an exact replacement for those semantic boundaries."
+  },
+  "proposed_storyboard_correction": {
+    "type": "scene_specific_caption_safe_gate_line",
+    "placement": {
+      "canvas": "1920x1080",
+      "box": [38, 83, 1882, 129],
+      "box_bottom_fraction": 0.119444,
+      "protected_from_bottom_obstruction_fraction": 0.25,
+      "minimum_font_px_at_1080p": 25,
+      "persistent_top_right_badge": "RESULT HELD"
+    },
+    "scene_lines": {
+      "S1": "RESULT LOCKED · ARCHIVE FRAME + INDEPENDENT REVIEW REQUIRED",
+      "S2": "OVERLAPPING READOUTS · DO NOT SUM",
+      "S3": "LABEL-FRAME STATISTIC · PHYSICAL INTERPRETATION HELD",
+      "S4": "FRAME UNSTATED · RESULT HELD",
+      "S5": "COLUMN CHECK ONLY · STORAGE FRAME UNRESOLVED",
+      "S6": "CONTROL DESIGN ONLY · OUTCOMES WITHHELD",
+      "S7": "SEPARATE AUTHORIZATION REQUIRED AFTER BOTH BLOCKERS RESOLVE"
+    },
+    "rules": [
+      "Keep the scene-specific line fully above y=0.25 of the frame and below the header/subhead without overlap.",
+      "Keep the generic RESULT HELD capsule visible on every frame and on both sides of every hard cut.",
+      "Retain lower citations and provenance as supporting custody, but never use them as the sole semantic gate.",
+      "Do not introduce any measured result, result figure, scientific adjudication, or cross-topic interpretation.",
+      "Require human visual review of clean, caption-15-percent, player-UI-25-percent, and 360p derivatives before promotion."
+    ]
+  },
+  "qa_only_mockup": {
+    "status": "PROOF_ONLY_NOT_V9_NOT_A_CANDIDATE",
+    "builder": "qa/build_pass7_caption_safe_mockup.py",
+    "builder_sha256": "296cf0d54ed3c9ba28c1bb4b51b471cc9e37136fd4513cd612fc8e1f4ccb8b91",
+    "receipt": "qa/pass7_caption_safe_mockup/receipt.json",
+    "receipt_sha256": "bd614040a75908473a916babc0dc337fccc37748c66b065c2ddd8d929a421e81",
+    "clean_contact_sheet": "qa/pass7_caption_safe_mockup/contact_sheet_caption_safe.png",
+    "clean_contact_sheet_sha256": "7d3652264517b67a9fd62a8bb1221cabc706426c95c8657fe67a89305f6bc0cf",
+    "player_ui_25pct_contact_sheet": "qa/pass7_caption_safe_mockup/contact_sheet_caption_safe_player_ui_25pct.png",
+    "player_ui_25pct_contact_sheet_sha256": "efa563015cf58cb49286cf9c9bfe4e005a7d935b39c7aacbafbe8ef3bfff316f",
+    "visual_review": "PASS_7/7_SCENE_SPECIFIC_LINES_AND_7/7_RESULT_HELD_BADGES_SURVIVE_PLAYER_UI_25PCT",
+    "top_75pct_pixel_identity_clean_to_masked": "7/7",
+    "sealed_v8_modified": false
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may adopt, revise, or reject this exact correction from the sole integrator/writer seat. Adoption requires a new separately reviewed proposal iteration; this packet itself is not v9.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false
+}

@@ -1,0 +1,170 @@
+{
+  "snapshot_status": "IMMUTABLE_REVIEW_SNAPSHOT",
+  "snapshot_id": "spin-worker-yui-pass8-review-v1-20260808T061653K",
+  "created_at": "2026-08-08T06:16:53+09:00",
+  "scope": "isolated worker-Yui pass-8 fresh color/monochrome/color-vision encoded-frame audit, redundant-encoding integration guard, and sealed-v8/pass-7-proof custody",
+  "supersedes": {
+    "path": "qa/pass7_review_snapshot_v1.json",
+    "sha256": "54caffbac33f886f904545c6aa44bd58ea7ace7273e17951ce5d4e41507c1871",
+    "snapshot_id": "spin-worker-yui-pass7-review-v1-20260808T054919K"
+  },
+  "supersession_reason": "Pass 8 adds fresh exact midpoint decoding, deterministic grayscale/protanopia/deuteranopia/tritanopia presentation evidence, sealed-v8 and pass-7 correction redundancy review, and a non-pixel acceptance guard without changing v8 or the pass-7 proof.",
+  "candidate": {
+    "path": "/Users/duhokim/HermesOps/cockpit/videos/spin-parity-census-narrated-20260808T0149.mp4",
+    "sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "preserved_failed_candidate": true
+  },
+  "pinned_artifacts": [
+    {
+      "path": "PASS8_ENCODED_FRAME_AUDIT.md",
+      "sha256": "f30c2ecaea941ef715474208a3312ea23549ecd031f33eb3ea43ca5bcf7ac7ae"
+    },
+    {
+      "path": "BLOCKER_PACKET_PASS8.json",
+      "sha256": "77db4b39f6be2cd56afce2a96d0c33695b6def3e337e59edb4fa2522f70d3a65"
+    },
+    {
+      "path": "REDUNDANT_ENCODING_GUARD_PASS8.json",
+      "sha256": "597b591da0f32325d8b764df23b7a5c9a088c666bac433a2ccd2e9a7b31d53da"
+    },
+    {
+      "path": "qa/pass8_color_vision_audit/extract_color_vision_frames.py",
+      "sha256": "09331b5e7461efcf5d61b562d1dff3745b04f98354f2f4e96e8786fe02e9ce51"
+    },
+    {
+      "path": "qa/pass8_color_vision_audit/extraction_receipt.json",
+      "sha256": "c198c393144d4e57098f80aef1b90f0bfde9672143043ec2e3004771d36a481b"
+    },
+    {
+      "path": "qa/audit_pass8_color_vision.py",
+      "sha256": "4516120fbd87a348b8c2da38ef86af0e3d22c7ba32cfab6f457c3e1f66564d55"
+    },
+    {
+      "path": "qa/pass8_color_vision_quantitative_audit.json",
+      "sha256": "8ec1c19debd37eaeb0354a80e79f7dc4c2407a5130c49d11f4fc3f3980615f6a"
+    },
+    {
+      "path": "qa/build_pass8_v8_color_vision.py",
+      "sha256": "38cb597192ab9927c87bbf84cdd805511b0b1d0727924133c6478b1c1f3acad9"
+    },
+    {
+      "path": "qa/pass8_v8_color_vision/receipt.json",
+      "sha256": "575ec95c0bc4441d514b99fdaad33d2acedbb9c6e06ed73030c10e8946111c62"
+    },
+    {
+      "path": "qa/audit_pass8_v8_color_vision.py",
+      "sha256": "de2219a4010f221237f2d512d4480c27081057f9929a26a7fbcd225c5602f869"
+    },
+    {
+      "path": "qa/pass8_v8_color_vision_audit.json",
+      "sha256": "de7789c060e8e52756bc0e610c50f302811677a51298f0e69ab0aefa40c5a7e8"
+    },
+    {
+      "path": "STORYBOARD_PROPOSAL.json",
+      "sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce"
+    },
+    {
+      "path": "render_proposal_frames.py",
+      "sha256": "cf1ba19c47d599166b98ab50098b9601108027cbca63b8ecf93136726904a3f8"
+    },
+    {
+      "path": "proposal_frames/v8/render_receipt.json",
+      "sha256": "fe5a8d379e6e7e84f480263befd7a3964886f55e7795e1a7dd0c61760d3297f3"
+    },
+    {
+      "path": "proposal_frames/v8/contact_sheet.png",
+      "sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056"
+    },
+    {
+      "path": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+      "sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f"
+    },
+    {
+      "path": "qa/pass7_caption_safe_mockup/receipt.json",
+      "sha256": "bd614040a75908473a916babc0dc337fccc37748c66b065c2ddd8d929a421e81"
+    },
+    {
+      "path": "SOURCE_STATUS_FREEZE.json",
+      "sha256": "ecff0992015e0bea2b86c14fbf627b79348228bc387d4ad4523208f4925a56a1"
+    }
+  ],
+  "pass8_encoded_evidence": {
+    "scene_count": 16,
+    "variant_count": 5,
+    "frame_count": 80,
+    "variants": [
+      "color",
+      "grayscale_bt709",
+      "protanopia_machado100",
+      "deuteranopia_machado100",
+      "tritanopia_machado100"
+    ],
+    "fresh_cut_detection": "15/15_EXACT_PASS7_TIMESTAMPS",
+    "color_midpoint_reproduction": "16/16_PASS7_BYTE_IDENTICAL",
+    "contact_sheet_sha256": {
+      "color": "1dd2f7e77694fa33b08ebb1254c82e9507d8c58c2b86a3772b169eced1527995",
+      "grayscale_bt709": "e7e89ea83c6ade43da0fbb0427be6814e591c4d9a0c86a13eefef621e54b0678",
+      "protanopia_machado100": "0adf46e1647041cd91c1948066130a9ecb44af2748235755ef10625ae027d274",
+      "deuteranopia_machado100": "8c5707e8e5340b32a0711aefc003760883b05f0a7cd12b709f8b6b56a6dc783a",
+      "tritanopia_machado100": "14021b42d7f2248cefd8ebcee79922f8c63e50c12d995afd0fcdc26ad4a687c5"
+    },
+    "grayscale_all_scenes": {
+      "headline_token_retention": 1.0,
+      "full_token_retention": 0.933301,
+      "lower_support_token_retention": 0.877063,
+      "numeric_token_retention": 0.910233,
+      "edge_recall": 0.999942,
+      "chroma_retention": 0.0
+    },
+    "grayscale_plot_scenes_5_7_9_10_11": {
+      "headline_token_retention": 1.0,
+      "full_token_retention": 0.808086,
+      "lower_support_token_retention": 0.739935,
+      "numeric_token_retention": 0.779412,
+      "edge_recall": 0.999998,
+      "chroma_retention": 0.0
+    },
+    "held_critical_structural_gate_count": "0/5_ALL_VARIANTS"
+  },
+  "pass8_method_only_evidence": {
+    "derived_frame_count": 70,
+    "sealed_v8": {
+      "visual_result_held": "7/7_ALL_FIVE_VARIANTS",
+      "hue_only_semantic_distinctions": 0,
+      "redundant_encoding": "PASS_TEXT_SHAPE_POSITION_ALL_7",
+      "grayscale_full_token_retention": 0.962894,
+      "grayscale_edge_recall": 1.0
+    },
+    "pass7_caption_safe": {
+      "visual_scene_specific_gate_lines": "7/7_ALL_FIVE_VARIANTS",
+      "visual_result_held": "7/7_ALL_FIVE_VARIANTS",
+      "ocr_scene_specific_gate_lines": "7/7_ALL_FIVE_VARIANTS",
+      "ocr_result_held": "7/7_ALL_FIVE_VARIANTS",
+      "gate_line_token_retention": "1.0_ALL_FIVE_VARIANTS",
+      "hue_only_semantic_distinctions": 0,
+      "overlap_or_ambiguity": 0
+    },
+    "contact_sheet_sha256": {
+      "sealed_v8_color": "ba11161fd3e9eeec0756769dd9918d33b3c7135dbdc4ff0c58cad098ce694737",
+      "sealed_v8_grayscale": "dea83f8d663c4d2fa860000a4a6672ecb9b1283a75e2325d211f1009c9b94cd5",
+      "sealed_v8_protanopia": "b1df1752f722dc89646c60b5860241b1531881d811dfc6037c476dbf99081818",
+      "sealed_v8_deuteranopia": "1e116018d96900d837cb9bb525c3f17f3b13c24ff24cc847b8c648172cb19a30",
+      "sealed_v8_tritanopia": "1ea48685f9ba14d9a7c4fd182809899d6323f107c9c34c693559a6c751b331d8",
+      "pass7_color": "e399125d9b4806961299ac249bb899c0fc281eb536263ed28de9e946c294ea4b",
+      "pass7_grayscale": "05e0441f9cead63bc9f260187a87030579126b2aefd79421fc6c614ac78b8dd7",
+      "pass7_protanopia": "e574e558514ced0d1091515be13f3114da0756c30e5cc9900914bdf6150be63f",
+      "pass7_deuteranopia": "90d67464791249410f4eda770a8dad4f39f351790eaefcace74abfaca2249469",
+      "pass7_tritanopia": "9855fc44dafafa3b05457b2bd9fa03a7fde58d78e4a8f1a3640a2e47367065fe"
+    }
+  },
+  "representation_correction": "NO_HUE_ONLY_MEANING__DIRECT_LABEL_PLUS_SHAPE_LINE_MARKER_OR_POSITION__FIVE_VARIANT_HUMAN_REVIEW",
+  "pixel_change_requested": false,
+  "sealed_v8_modified": false,
+  "pass7_proof_modified": false,
+  "v9_created": false,
+  "science_blockers": "UNCHANGED__NO_VALID_POST_RUN_A3_8_REVIEW__FRAME_UNSTATED",
+  "video_reportable_now": false,
+  "tts_invoked": false,
+  "encoded_output_created": false,
+  "shared_or_public_assets_modified": false
+}

@@ -1,0 +1,74 @@
+{
+  "verdict": "PASS",
+  "packet_version": "pass7-current-artifact-traceability-v12",
+  "storyboard_version": "pass7-distinct-example-clock-v8",
+  "storyboard_sha256": "4fb15c927f5d567c402b4c4f933fabe64a492fdb275311991491aa777cd95b71",
+  "complete_audience_projection": {
+    "fields": ["narration", "on_screen_copy", "display_citation"],
+    "narration_strings": 10,
+    "on_screen_leaf_strings": 62,
+    "display_citations": 10,
+    "sha256": "a905e42d23e13deb07240273dab8caa3ce5264ae48fca7e28cacee7b096f450b",
+    "verdict": "PASS"
+  },
+  "closed_book_scaffolding": {
+    "question_count": 8,
+    "answer_premise_guard": "PASS",
+    "answer_premise_hits": 0,
+    "answer_key_present": false
+  },
+  "numeric_source_audit": {
+    "verdict": "PASS",
+    "claims": 9,
+    "sources_packet_local": true,
+    "current_storyboard_references": "9/9",
+    "current_static_visual_references": "9/9 visual_proposal_v9.png",
+    "absent_visual_references": 0,
+    "external_source_dependencies": 0
+  },
+  "static_visual": {
+    "artifact": "visual_proposal_v9.png",
+    "sha256": "c07eb10a3652e088f8dfca9085b1e1cc35d6af4f84ccf58d4ab767efca78eebe",
+    "dimensions": "1920x1080",
+    "full_resolution_qa": "PASS",
+    "all_19_2_labels_search_qualified": true,
+    "clipping_or_overlap": false,
+    "direct_157_to_T2_topology": true,
+    "side_62_does_not_intercept_T2": true,
+    "taxonomy_and_footer_fit": true,
+    "deterministic_rerender_match": true
+  },
+  "renderer": {
+    "sha256": "195b30fb19a8e7e681a0a4fbc19994d1a99ed179fe67b83b659ec0fd57fce844",
+    "evidence_source": "frozen_sources/pass7",
+    "absolute_external_evidence_path": false,
+    "writes_only": "visual_proposal_v9.png outside --check",
+    "check_mode": "PASS",
+    "check_mode_writes": false
+  },
+  "narration_preparer": {
+    "accepted_visual": "visual_proposal_v9.png",
+    "check_mode": "PASS",
+    "tts_invoked": false,
+    "audio_artifacts": []
+  },
+  "semantic_replay_retained": {
+    "distinct_states": "45/45",
+    "declared_clauses_mapped": "21/21",
+    "maximum_unchanged_evidence_state_seconds": 3.0
+  },
+  "validator_verdict": "PASS",
+  "mutation_verdict": "PASS",
+  "mutation_cases": 28,
+  "expected_failures": 27,
+  "manifest_authentication_design": "EXTERNAL_IMMUTABLE_MANIFEST_DIGEST_REQUIRED",
+  "external_candidate": {
+    "sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+    "filesystem_mode": "0644",
+    "handling_authorization": "READ_ONLY_BY_WORKER_POLICY",
+    "disposition": "FAIL"
+  },
+  "integration_publication": "CLOSED",
+  "tts_invoked": false,
+  "note": "V12 closes exact-v7 stale numeric-source current-artifact linkage while retaining v11 complete-audience/static/replay, v8 semantic/closed-book, and v7 custody/inventory closure. Exact immutable review remains mandatory."
+}

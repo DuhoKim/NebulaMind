@@ -1,0 +1,213 @@
+{
+  "status": "PASS_NO_HIGH_CARDS_TWO_AUTHORIZED_DELIBERATE_LOW_CARDS",
+  "metric": "full-card occupancy proxy; not encoded narration rate",
+  "contract_band_wpm": [
+    120,
+    135
+  ],
+  "counting_rules": {
+    "whitespace_proxy": "len(card narration .split()); preserves continuity with the V10 audit",
+    "spoken_compound_proxy": "Unicode word tokens after splitting em dash, en dash, and hyphen compounds; Lana's ruling uses this proxy for pacing decisions"
+  },
+  "counting_caveat": "LOW means available visual/silent dwell, not automatically slow speech. Encoded per-card speech spans remain the final pace authority.",
+  "cards": [
+    {
+      "card": "01",
+      "planned_seconds": 38,
+      "whitespace_proxy": {
+        "token_count": 81,
+        "occupancy_wpm": 127.89,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 80,
+        "occupancy_wpm": 126.32,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "02",
+      "planned_seconds": 40,
+      "whitespace_proxy": {
+        "token_count": 84,
+        "occupancy_wpm": 126.0,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 82,
+        "occupancy_wpm": 123.0,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "03",
+      "planned_seconds": 42,
+      "whitespace_proxy": {
+        "token_count": 87,
+        "occupancy_wpm": 124.29,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 88,
+        "occupancy_wpm": 125.71,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "04",
+      "planned_seconds": 48,
+      "whitespace_proxy": {
+        "token_count": 99,
+        "occupancy_wpm": 123.75,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 101,
+        "occupancy_wpm": 126.25,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "05",
+      "planned_seconds": 51,
+      "whitespace_proxy": {
+        "token_count": 83,
+        "occupancy_wpm": 97.65,
+        "band_status": "LOW"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 85,
+        "occupancy_wpm": 100.0,
+        "band_status": "LOW"
+      },
+      "authority_disposition": "DELIBERATE_LOW_HARDEST_IDEA_AND_G3_WIDENING_BAND_WATCHING_TIME"
+    },
+    {
+      "card": "06",
+      "planned_seconds": 29,
+      "whitespace_proxy": {
+        "token_count": 61,
+        "occupancy_wpm": 126.21,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 60,
+        "occupancy_wpm": 124.14,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "07",
+      "planned_seconds": 33,
+      "whitespace_proxy": {
+        "token_count": 68,
+        "occupancy_wpm": 123.64,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 68,
+        "occupancy_wpm": 123.64,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "08",
+      "planned_seconds": 35,
+      "whitespace_proxy": {
+        "token_count": 70,
+        "occupancy_wpm": 120.0,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 71,
+        "occupancy_wpm": 121.71,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "09",
+      "planned_seconds": 29,
+      "whitespace_proxy": {
+        "token_count": 59,
+        "occupancy_wpm": 122.07,
+        "band_status": "IN_BAND"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 61,
+        "occupancy_wpm": 126.21,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    },
+    {
+      "card": "10",
+      "planned_seconds": 36,
+      "whitespace_proxy": {
+        "token_count": 65,
+        "occupancy_wpm": 108.33,
+        "band_status": "LOW"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 66,
+        "occupancy_wpm": 110.0,
+        "band_status": "LOW"
+      },
+      "authority_disposition": "DELIBERATE_LOW_LEDGER_BLANK_RULER_DWELL_AND_CLOSING_LINE_AIR"
+    },
+    {
+      "card": "11",
+      "planned_seconds": 34,
+      "whitespace_proxy": {
+        "token_count": 66,
+        "occupancy_wpm": 116.47,
+        "band_status": "LOW"
+      },
+      "spoken_compound_proxy": {
+        "token_count": 69,
+        "occupancy_wpm": 121.76,
+        "band_status": "IN_BAND"
+      },
+      "authority_disposition": null
+    }
+  ],
+  "high_cards": {
+    "whitespace_proxy": [],
+    "spoken_compound_proxy": []
+  },
+  "deliberate_low_cards": {
+    "05": "Hardest idea; G3 widening-band animation needs watching time; nuance lands after the closing sentence.",
+    "10": "Ledger and blank-ruler dwell; the closing line benefits from air."
+  },
+  "method_sensitive_cards": {
+    "11": "LOW at 116.47 by whitespace proxy; IN_BAND at 121.76 by spoken-compound proxy; Lana rules keep for wanted final reopen-gate hold."
+  },
+  "maximum_occupancy_wpm": {
+    "whitespace_proxy": {
+      "card": "01",
+      "wpm": 127.89
+    },
+    "spoken_compound_proxy": {
+      "card": "01",
+      "wpm": 126.32
+    }
+  },
+  "card01_spine_authority": {
+    "planned_seconds": 38,
+    "spoken_compound_proxy_wpm": 126.32,
+    "authority_estimated_verdict_arrival_seconds": "32-33",
+    "encoded_qa_required": "Verify the route verdict lands by approximately 35 seconds and all speech remains inside Card 01 without rushing."
+  },
+  "total_whitespace_proxy_tokens": 823,
+  "total_spoken_compound_proxy_tokens": 831,
+  "total_planned_seconds": 415,
+  "aggregate_whitespace_proxy_wpm": 118.99,
+  "aggregate_spoken_compound_proxy_wpm": 120.14,
+  "silent_retiming_outside_authorized_cards": false
+}

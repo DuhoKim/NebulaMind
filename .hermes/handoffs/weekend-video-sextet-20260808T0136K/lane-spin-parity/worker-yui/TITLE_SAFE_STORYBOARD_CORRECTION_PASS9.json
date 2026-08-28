@@ -1,0 +1,149 @@
+{
+  "status": "PROPOSAL_ONLY_LAYOUT_CORRECTION_NOT_V9_NOT_A_CANDIDATE",
+  "correction_id": "spin-worker-yui-pass9-title-safe-20260808T063736K",
+  "created_at": "2026-08-08T06:37:36+09:00",
+  "owner": "lane-spin-parity/worker-yui",
+  "integrator": "Hwao/Fable",
+  "scope": "five-percent title-safe placement for any future Hwao-authored method-only proposal iteration",
+  "simulation_limit": "The crop-and-rescale derivatives are deterministic presentation stress tests, not a claim that a named player, display, or projector applies these crops.",
+  "base": {
+    "sealed_iteration": "v8",
+    "storyboard": "STORYBOARD_PROPOSAL.json",
+    "storyboard_sha256": "80c91bc5513ac6268501c02cac2e8354388e43bf0094569804e4bbf54f293bce",
+    "contact_sheet": "proposal_frames/v8/contact_sheet.png",
+    "contact_sheet_sha256": "5889dfcbcb7f24afe989411b127a5c30adb9e4685513058eca9d51cc0cf32056",
+    "pass7_caption_safe_correction": "CAPTION_SAFE_STORYBOARD_CORRECTION_PASS7.json",
+    "pass7_caption_safe_correction_sha256": "f12b26ac1fb70b39696f9d02e7da8baf82ffb06c3ebc9e1434d7e79fc9030d3f",
+    "pass8_redundant_encoding_guard": "REDUNDANT_ENCODING_GUARD_PASS8.json",
+    "pass8_redundant_encoding_guard_sha256": "597b591da0f32325d8b764df23b7a5c9a088c666bac433a2ccd2e9a7b31d53da",
+    "sealed_v8_modified": false,
+    "pass7_mockup_modified": false,
+    "v9_created": false
+  },
+  "candidate_evidence": {
+    "candidate_sha256": "02fe11f0dd9bacc9a46ca2ec8b67764bd871ce2e2dab0f59990f36df11ee8431",
+    "extraction_receipt": "qa/pass9_safe_area_audit/extraction_receipt.json",
+    "extraction_receipt_sha256": "1326e6689288368393d5af7e485a5190bba544f12037d8bcef79448810be281b",
+    "quantitative_audit": "qa/pass9_safe_area_quantitative_audit.json",
+    "quantitative_audit_sha256": "b6fc7ff69b52da49ccc0f9705a45f08fdea2b4bedeb1c6d77ee9f2f4a755a279",
+    "fresh_scene_detection": "15_CUTS_16_SCENES__EXACT_PASS8_CUT_TIMES",
+    "fresh_clean_midpoint_reproduction": "16/16_PASS8_COLOR_BYTE_IDENTICAL",
+    "variant_count": 5,
+    "frame_count": 80,
+    "variants": [
+      "clean",
+      "symmetric crop 3 percent",
+      "symmetric crop 5 percent",
+      "horizontal crop 5 percent",
+      "vertical crop 5 percent"
+    ],
+    "symmetric_crop_3pct": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.980399,
+      "numeric_token_recall_vs_clean": 0.972159,
+      "structural_gate_scene_count": 0
+    },
+    "symmetric_crop_5pct": {
+      "headline_token_recall_vs_clean": 0.99569,
+      "full_token_recall_vs_clean": 0.981884,
+      "numeric_token_recall_vs_clean": 0.973861,
+      "structural_gate_scene_count": 0
+    },
+    "held_critical_scenes_7_9_10_11_16_symmetric_crop_5pct": {
+      "headline_token_recall_vs_clean": 1.0,
+      "full_token_recall_vs_clean": 0.965485,
+      "numeric_token_recall_vs_clean": 0.916356,
+      "structural_gate_scene_count": 0
+    },
+    "finding": "The dominant failed-candidate result hierarchy survives both three-percent and five-percent crop-and-rescale stress while no structural held gate appears. Crop cannot authorize or repair the candidate."
+  },
+  "method_only_evidence": {
+    "derivative_receipt": "qa/pass9_v8_safe_area/receipt.json",
+    "derivative_receipt_sha256": "2c94388def5b6decb32ddc8916db249f0a81e98bdccd8691e056ddc904c0fd33",
+    "derived_frame_count": 70,
+    "sealed_v8": {
+      "three_percent": {
+        "semantic_loss_scene_count": 0,
+        "result_held_text_visual": "7/7",
+        "mean_full_token_recall_vs_clean": 0.939553,
+        "mean_headline_token_recall_vs_clean": 0.979692
+      },
+      "five_percent": {
+        "result_held_text_visual": "7/7",
+        "result_held_badge_capsules_clipped": "7/7",
+        "left_header_clipped": "7/7",
+        "edge_content_clipped_scenes": [1, 5, 7],
+        "clean_ocr_tokens_outside_safe_rectangle": 44,
+        "mean_full_token_recall_vs_clean": 0.899783,
+        "mean_headline_token_recall_vs_clean": 0.946693,
+        "mean_numeric_token_recall_vs_clean": 0.705597
+      }
+    },
+    "pass7_caption_safe_proof": {
+      "three_percent": {
+        "scene_specific_gate_lines_visual": "7/7",
+        "result_held_text_visual": "7/7",
+        "mean_full_token_recall_vs_clean": 0.932761
+      },
+      "five_percent": {
+        "scene_specific_gate_lines_visual": "7/7",
+        "scene_specific_gate_lines_ocr": "7/7",
+        "result_held_text_visual": "7/7",
+        "result_held_badge_capsules_clipped": "7/7",
+        "left_header_clipped": "7/7",
+        "edge_content_clipped_scenes": [1, 5, 7],
+        "clean_ocr_tokens_outside_safe_rectangle": 44,
+        "mean_full_token_recall_vs_clean": 0.89602,
+        "mean_headline_token_recall_vs_clean": 0.957313,
+        "mean_numeric_token_recall_vs_clean": 0.705597
+      }
+    },
+    "finding": "Three-percent symmetric crop preserves all observed method semantics. Five-percent crop leaves the centered scene-specific gate words readable but clips every generic badge capsule and left header, plus edge content in scenes 1, 5, and 7. The current layout therefore does not satisfy a strict inner-five-percent title-safe contract."
+  },
+  "proposed_storyboard_integration_correction": {
+    "type": "TITLE_SAFE_LAYOUT_CONTRACT",
+    "canvas": [1920, 1080],
+    "required_safe_rectangle": {
+      "left": 96,
+      "top": 54,
+      "right": 1824,
+      "bottom": 1026,
+      "definition": "Every semantic or audience-readable element, including its border or marker, must fit fully inside this rectangle. The outer five percent is decorative-only."
+    },
+    "requirements": [
+      "Move the full GALAXY SPIN header, METHOD-ONLY label, and all of their glyphs inside x=96..1824 and y=54..1026.",
+      "Move every complete RESULT HELD badge capsule, including border and fill, inside the same rectangle; readable text in a clipped capsule is not a pass.",
+      "Keep the pass-7 scene-specific gate line centered and fully inside the safe rectangle; do not move it down into the bottom-quarter obstruction zone.",
+      "Inset headlines, subtitles, and dominant diagram/card borders. In particular, protect the S1 first pipeline node, S5 left source-column card, and S7 KNOWN card and RESULT STATUS headline.",
+      "Keep every audience-readable citation/footer fully inside the safe rectangle. Verification-only paths and hashes remain receipt-only.",
+      "Use the outer five-percent band only for background, star field, or other non-semantic decoration.",
+      "Do not satisfy the crop test by removing or shrinking a gate into small copy. Gate words remain headline-scale or in the high-contrast capsule.",
+      "After any layout change, rerun clean, symmetric-three-percent, symmetric-five-percent, horizontal-five-percent, and vertical-five-percent full-sheet review.",
+      "Retain the pass-8 five color/monochrome variants, pass-7 bottom-quarter obstruction test, and pass-6 360p test; the title-safe contract is cumulative."
+    ],
+    "acceptance": {
+      "three_percent": "zero clipped semantic elements",
+      "five_percent": "zero clipped headers, badge capsules, scene-specific gates, headlines, diagram/card borders, labels, status columns, or audience citations",
+      "gate_count": "7/7 complete RESULT HELD capsules and 7/7 complete scene-specific gate lines",
+      "human_visual_review_required": true
+    },
+    "future_pixel_layout_change_requested": true,
+    "worker_pixel_change_performed": false,
+    "reason_worker_did_not_create_pixels": "The safe-area defect is evidenced, but Hwao/Fable is the sole integrator and proposal writer. Worker Yui supplies an exact bounded layout contract and preserves sealed v8 plus the pass-7 proof."
+  },
+  "science_boundary": {
+    "video_reportable_now": false,
+    "science_blockers_unchanged": [
+      "No valid post-run independent A3.8 review for the frozen T4 artifact.",
+      "FRAME REVIEW remains FRAME_UNSTATED."
+    ],
+    "does_not_authorize_result": true,
+    "does_not_authorize_render_or_narration": true
+  },
+  "integrator_action": "Hwao/Fable may apply the exact five-percent title-safe layout contract with the pass-7 caption-safe correction and pass-8 redundant-encoding guard in a separately authored, rendered, and reviewed proposal iteration. This packet is not v9 and changes no sealed pixel.",
+  "tts_invoked": false,
+  "audio_generated": false,
+  "video_encoded": false,
+  "shared_or_public_assets_modified": false,
+  "git_action": false
+}

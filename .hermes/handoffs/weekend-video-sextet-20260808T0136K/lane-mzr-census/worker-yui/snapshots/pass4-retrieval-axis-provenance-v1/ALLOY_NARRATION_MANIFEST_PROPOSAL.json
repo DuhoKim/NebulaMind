@@ -1,0 +1,142 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_EXECUTED",
+  "writer": "Hwao only",
+  "provider_route": "Nous-managed OpenAI text-to-speech route",
+  "voice": "Alloy",
+  "speed": 1.18,
+  "speed_source": "authoritative HWAO_WEEKEND_ORDER.md; do not re-derive per segment",
+  "source_storyboard": "STORYBOARD_CANDIDATE.json",
+  "source_storyboard_version": "pass4-retrieval-axis-provenance-v1",
+  "source_storyboard_sha256": "ec35df6bb7815ee700f24b2a2ba72f71d62032cfa318522af8de2a5f4b13b34b",
+  "audience_copy_status": "STATIC_STORYBOARD_PROPOSAL_ONLY_NOT_A_CANDIDATE",
+  "visual_qa_gate": {
+    "artifact": "visual_proposal_v7.png",
+    "sha256": "ed1f9c7c2aa192b423b23655388d10c941c84069a394032de868bd51fe902883",
+    "verdict": "PASS_FOR_STATIC_VISUAL_PROPOSAL_ONLY_FINAL_INDEPENDENT_REGATE"
+  },
+  "planned_total_words": 197,
+  "planned_visual_floor_seconds": 105.0,
+  "planned_delivered_wpm": 112.6,
+  "pronunciation_guidance": {
+    "VizieR": "VEE-zee-air",
+    "UCD": "U-C-D",
+    "MZR": "M-Z-R",
+    "T2": "T two",
+    "src.redshift": "source dot redshift",
+    "symbol Z": "symbol zee"
+  },
+  "segments": [
+    {
+      "segment_id": "b01",
+      "text": "This VizieR metadata census asks which single tables intersect the abundance-search, stellar-mass, and redshift-search axes.",
+      "word_count": 15,
+      "visual_floor_seconds": 9.0,
+      "proposed_start_seconds": 0.0,
+      "proposed_end_seconds": 9.0,
+      "output_basename_proposal": "b01-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b02",
+      "text": "The search combined semantic UCD tags with column-name variants, and each frozen query returned exactly its pre-counted rows.",
+      "word_count": 18,
+      "visual_floor_seconds": 8.0,
+      "proposed_start_seconds": 9.0,
+      "proposed_end_seconds": 17.0,
+      "output_basename_proposal": "b02-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b03",
+      "text": "UCD plus name matching reached 5,568 tables on the abundance axis, 6,206 on mass, and 6,687 on redshift; name matching added 175, 88, and 20.",
+      "word_count": 28,
+      "visual_floor_seconds": 12.0,
+      "proposed_start_seconds": 17.0,
+      "proposed_end_seconds": 29.0,
+      "output_basename_proposal": "b03-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b04",
+      "text": "The three axis lists intersected at 178 candidate tables.",
+      "word_count": 9,
+      "visual_floor_seconds": 7.0,
+      "proposed_start_seconds": 29.0,
+      "proposed_end_seconds": 36.0,
+      "output_basename_proposal": "b04-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b05",
+      "text": "Modifier columns then emptied a required axis in 21 tables: 19 on redshift and 2 on abundance, leaving 157 recorded candidates.",
+      "word_count": 21,
+      "visual_floor_seconds": 12.0,
+      "proposed_start_seconds": 36.0,
+      "proposed_end_seconds": 48.0,
+      "output_basename_proposal": "b05-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b06",
+      "text": "As a side check, a frozen term regex matched 62 of those 157 recorded descriptions; it is not an eligibility filter, and T2 still applies to all 157.",
+      "word_count": 28,
+      "visual_floor_seconds": 12.0,
+      "proposed_start_seconds": 48.0,
+      "proposed_end_seconds": 60.0,
+      "output_basename_proposal": "b06-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b07",
+      "text": "All seven pinned recall members returned, while none of the three controls appeared.",
+      "word_count": 13,
+      "visual_floor_seconds": 8.0,
+      "proposed_start_seconds": 60.0,
+      "proposed_end_seconds": 68.0,
+      "output_basename_proposal": "b07-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b08",
+      "text": "Those checks validate retrieval, not precision: the frozen controls did not cover the dominant precision-contamination mode.",
+      "word_count": 16,
+      "visual_floor_seconds": 13.0,
+      "proposed_start_seconds": 68.0,
+      "proposed_end_seconds": 81.0,
+      "output_basename_proposal": "b08-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b09",
+      "text": "Recorded examples separate symbol-and-meaning collisions\u2014Galactic height and model-grid metal fraction\u2014from target-domain mismatches: stellar gravitational redshift and gravitational-redshift velocity. They are not T2 rulings.",
+      "word_count": 25,
+      "visual_floor_seconds": 15.0,
+      "proposed_start_seconds": 81.0,
+      "proposed_end_seconds": 96.0,
+      "output_basename_proposal": "b09-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    },
+    {
+      "segment_id": "b10",
+      "text": "The T2 rule contract is frozen, but the 157-table eligibility application is not completed, so no eligible-table count or metallicity measurement is reportable yet.",
+      "word_count": 24,
+      "visual_floor_seconds": 9.0,
+      "proposed_start_seconds": 96.0,
+      "proposed_end_seconds": 105.0,
+      "output_basename_proposal": "b10-alloy.wav",
+      "synthesis_state": "NOT_EXECUTED"
+    }
+  ],
+  "audio_artifacts": [],
+  "tts_invoked": false,
+  "integration_constraints": [
+    "Visual card durations are floors; narration duration may expand a card but must not compress below the visual floor.",
+    "No worker-lane audio synthesis is authorized.",
+    "No narration may call 62 eligible or describe the census as an MZR measurement.",
+    "No narration may call abundance-search-axis metadata reach adjudicated gas-phase abundance or evidence.",
+    "T1 retrieval controls and T2 contract-design decoys are distinct workflow stages and must remain labeled separately.",
+    "Use the final spoken script corresponding to the final Hwao storyboard, then run waveform and mux checks in the integrator lane.",
+    "Listening approval is a separate gate after synthesis and mux."
+  ],
+  "publication_gate": "CLOSED"
+}

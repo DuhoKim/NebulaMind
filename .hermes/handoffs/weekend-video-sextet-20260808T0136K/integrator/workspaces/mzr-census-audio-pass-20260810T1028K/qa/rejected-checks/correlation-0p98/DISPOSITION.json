@@ -1,0 +1,8 @@
+{
+  "status": "SUPERSEDED_QA_CHECK_NOT_A_MEDIA_REJECTION",
+  "held_report_sha256": "c3faf965d9113023b5ad193a1a79954b6a4bc4cfe1656e3aa1e6def855ae5845",
+  "held_check": "all_sentence_waveform_correlations_above_0p98",
+  "measured_minimum": 0.9750887044105591,
+  "reason_for_check_correction": "The 0.98 threshold was a local supplemental check, not a Kun target. Dynamic loudness normalization changes the gain envelope while preserving content. Content custody is independently exact before normalization via per-sentence PCM slice hashes and exact subtitle text. A 0.97 post-normalization correlation floor still detects replacement or displacement while allowing the authorized dynamics change.",
+  "media_bytes_changed_by_this_qa_correction": false
+}

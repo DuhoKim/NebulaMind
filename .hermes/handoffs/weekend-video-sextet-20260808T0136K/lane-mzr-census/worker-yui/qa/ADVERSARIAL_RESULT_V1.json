@@ -1,0 +1,44 @@
+{
+  "review_round": 1,
+  "artifact_under_review": "visual_proposal_v3.png and contemporaneous source/storyboard packet",
+  "verdict": "FAIL",
+  "material_defects": [
+    {
+      "id": "V3_TOPOLOGY_62",
+      "finding": "157 -> 62 -> T2 falsely implied that the 62 term matches were the sample submitted to eligibility; T2 must adjudicate all 157.",
+      "required_correction": "Connect 157 directly to T2 and render 62 as a side branch/inset stating that T2 still applies to all 157.",
+      "resolved_in": "visual_proposal_v5.png and STORYBOARD_CANDIDATE.json:b06"
+    },
+    {
+      "id": "V3_SINGLE_TABLE_SCOPE",
+      "finding": "Archive reach could be read as total archive capability; cross-table joins/crossmatches were not assessed.",
+      "required_correction": "Add persistent single-table metadata intersection/crossmatches-not-assessed subtitle.",
+      "resolved_in": "visual_proposal_v5.png and STORYBOARD_CANDIDATE.json:b01"
+    },
+    {
+      "id": "V3_T2_STATUS",
+      "finding": "T2 eligibility NOT RUN was too absolute relative to FROZEN contract, NOT_COMPLETED application, and the stale DRAFT wording inside the contract.",
+      "required_correction": "Use contract frozen; 157-table eligibility application not completed; no eligible-table count.",
+      "resolved_in": "visual_proposal_v5.png and STORYBOARD_CANDIDATE.json:b10"
+    }
+  ],
+  "narrow_corrections_resolved": [
+    "badge now says NOT AN MZR MEASUREMENT",
+    "62 now says frozen term-regex match in recorded descriptions",
+    "modifier examples grouped by 19-redshift and 2-abundance bins",
+    "stellar-grid example now says metal fraction (model Z)",
+    "named-run display citation expanded"
+  ],
+  "checks_passed": [
+    "all retrieval and funnel counts",
+    "62/157 exact term-count provenance",
+    "7/7 and 0/3",
+    "recall-versus-precision distinction",
+    "no MZR plot/fit/trend",
+    "frozen input hashes",
+    "internal-path-free audience citations",
+    "96-second prior storyboard arithmetic"
+  ],
+  "files_modified_by_reviewer": [],
+  "supersession": "Preserved failed review. Final independent adversarial regate is required for visual_proposal_v5.png."
+}

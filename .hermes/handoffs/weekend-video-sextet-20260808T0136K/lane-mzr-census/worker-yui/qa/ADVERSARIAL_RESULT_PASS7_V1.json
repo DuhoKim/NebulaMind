@@ -1,0 +1,53 @@
+{
+  "review_round": 9,
+  "pass": 7,
+  "snapshot": "pass7-state-continuity-v1",
+  "snapshot_manifest_sha256": "2890a2a633289b250f7b875cfb191787cf5cd042686df7e516b5452d5d054720",
+  "manifest_entries": 22,
+  "start_hashes_verified": "22/22",
+  "end_hashes_verified": "22/22",
+  "snapshot_changed": false,
+  "verdict": "FAIL",
+  "scoped_storyboard_continuity_verdict": "PASS_PROPOSAL_ONLY",
+  "static_visual_verdict": "PASS_UNCHANGED_COMPATIBLE_OVERVIEW_ONLY",
+  "material_defects": [
+    {
+      "id": "global-motion-contract-failure",
+      "evidence": [
+        "5.0 s unchanged interval from b05 157/T2 reveal at global 46.0 s to b06 62 branch at 51.0 s; b06 direct-path carry-forward was a no-op.",
+        "7.0 s unchanged interval from b07 0/3 reveal at 64.0 s to b08 retrieval-check state at 71.0 s; hold/retain rows were no-ops."
+      ],
+      "declared_limit_seconds": 4.0
+    },
+    {
+      "id": "continuity-validator-false-pass",
+      "evidence": [
+        "Removing b08 visible T1 stage identity and its persistent-layer declaration still passed because an earlier existential witness remained.",
+        "Replacing b06 timed states with an isolated giant 62 full-frame reset while stale handoff metadata claimed continuity still passed."
+      ]
+    }
+  ],
+  "scientific_semantics": {
+    "count_topology": "PASS: 178−21=157; 19 redshift + 2 abundance; 62 vocabulary-only side branch; all 157 to T2",
+    "controls": "PASS: T1 7/7 and 0/3 distinct from T2 12 decoys + 3 anchors",
+    "scope_status": "PASS: single-table/no-crossmatch; T2 application incomplete; no eligible-table count; no MZR/metallicity measurement",
+    "handoffs": "PASS: 10/10 declarations; 9/9 matched IDs; proposal-only"
+  },
+  "encoded_pixel_replay": {
+    "frame_hashes": "43/43",
+    "boundary_frames": 28,
+    "hold_midpoints": 15,
+    "cuts_with_zero_preserved_anchors": "11/14",
+    "boundary_contact_sha256": "215834598ff62a28afb00b0c435b6dfec7f69e9417214abb9f1345f845617f5c",
+    "midpoint_contact_sha256": "fa9388349ff37de815769e57ae4593df7adae1996fd7fbb5f467ef7cf53af309"
+  },
+  "visual_proposal_v8_sha256": "5c36f6e1d4b63d215a0bb68545457376d961b168bff1f18686ad45e1d4d19df9",
+  "candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "candidate_disposition": "FAIL preserved",
+  "integration_gate": "CLOSED",
+  "publication_gate": "CLOSED",
+  "tts_invoked": false,
+  "files_modified_by_reviewer": [],
+  "superseded_for_current_gate": true,
+  "current_gate_note": "V1 FAIL is preserved. V2–v4 corrections address these defects, but only exact v4 review can clear the current proposal gate."
+}

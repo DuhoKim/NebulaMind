@@ -1,0 +1,37 @@
+{
+  "review_round": 21,
+  "pass": 7,
+  "snapshot": "pass7-numeric-audit-contract-v15",
+  "snapshot_manifest_sha256": "41a6e0f6705a1e39b94610a6003dc8b519d129fc97dae5a6fd3825c5c17d9852",
+  "manifest_entry_count": 93,
+  "result": "FAIL",
+  "material_defects": [
+    "CANDIDATE_NOTES identified visual v8 rather than visual v9 and used unqualified redshift-axis and abundance-axis wording",
+    "INTEGRATOR_REQUEST required only 27 rather than 31 expected failures and omitted render_visual_proposal.py --check",
+    "INTEGRATOR_REQUEST named storyboard v8 rather than v13 and packet v12 rather than v15",
+    "INTEGRATOR_REQUEST described the approved contract as storyboard v8 rather than v13",
+    "validator and mutation suite did not detect the current-facing stale handoff strings"
+  ],
+  "passed_checks": {
+    "external_manifest_start_end": true,
+    "manifest_entries_hash_size_mode": "93/93",
+    "exact_inventory": true,
+    "sources": "8/8",
+    "frames": "43/43",
+    "anchored_validator": "PASS",
+    "both_preparers_and_renderer_check": "PASS",
+    "official_mutation_suite": "baseline plus 31/31 expected failures",
+    "additional_hostile_attacks": "25/25 rejected",
+    "numeric_audit_exactly_nine_current_bindings": true,
+    "complete_audience_projection": "10 narration + 62 screen leaves + 10 citations",
+    "timing_contract": "45 states; 21 clauses; <=3.0 seconds",
+    "no_write": true
+  },
+  "external_candidate_sha256": "0bdfd12dcc87098e1034196bc973df4ace79044cadc4261f3f827b65d7cd162d",
+  "external_candidate_mode": "0644",
+  "external_candidate_policy_read_only": "FAIL",
+  "files_modified": [],
+  "whole_packet_cleared": false,
+  "encoded_timing_assessed": false,
+  "release_gates": "CLOSED"
+}
