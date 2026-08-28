@@ -73,8 +73,12 @@ P_REJECT_MIN = V9.P_REJECT_MIN
 CODES = {
     "T01": "p_of_A is not non-increasing in |A| over the scanned range",
     "T02": "a supplied scale is not finite or not positive",
-    "T03": "the transcribed verdict disagrees with the production predicate",
 }
+# T03 used to be declared here - "the transcribed verdict disagrees with the production predicate" -
+# and was never emitted by any runtime path. The transcription agreement IS checked, but by
+# self_test() against v9._decide_from(), which is a build-time assertion and not a per-call refusal.
+# A CODES dict that advertises a refusal the module cannot produce overstates its refusal surface,
+# so T03 is removed rather than faked. self_test() now asserts the dict has no orphans.
 
 
 def verdict_at(A: float, p: float, sigma_comb: float, sig_band: float, floor: float) -> str:
@@ -260,6 +264,19 @@ def self_test() -> int:
         print(f"  {'OK  ' if ok else 'FAIL'} {name}: {sorted(got) or 'ACCEPTED'}")
         if not ok:
             fails.append(name)
+
+    # Every declared code must be emittable by some runtime path. A declared-but-unemitted code
+    # advertises a refusal the module cannot produce - the same overclaim shape as a control name
+    # that asserts more than its predicate tests. T03 was exactly that and is gone.
+    import re as _re
+    src = Path(__file__).read_text()
+    emitted = set(_re.findall(r"\[\{?(T\d{2})", src))
+    orphans = sorted(set(CODES) - emitted)
+    ok = not orphans
+    print(f"  {'OK  ' if ok else 'FAIL'} every declared code is emitted by a runtime path"
+          f"{'' if ok else f' — orphans {orphans}'}")
+    if not ok:
+        fails.append("orphan codes")
 
     print(f"  self-test: {len(fails)} failure(s)")
     return 1 if fails else 0
