@@ -1,0 +1,79 @@
+GATE — P12: can the Tolman-Ehrenfest relation SUPPLY the exterior temperature profile that
+phase 5b closed for lack of?
+
+Lane: .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase5-tovoptics-20260825/
+Artifact: `p12_tolman.py` (4/4, exit 0). Machinery it borrows: `p6_path_transfer.py`.
+Pinned source: `../bhu-reading-20260823/sources/math-ph_0302036_clean.txt` (Smoller & Temple).
+Context: `PHASE5B_CLOSING_SUMMARY.md`, `REGATE4_PHASE5B_VERDICT.md`, `BHU_CLOSED_ROUTES.md`.
+
+You are an independent seat with no prior context. Read the geometry yourself.
+
+## What phase 5b concluded, and what this proposes
+
+Phase 5b closed because Smoller-Temple supply a MECHANICAL equation of state p(rho) and never a
+CALORIC one. Every computed signature was therefore a property of an added closure. REGATE4 was
+sharper: varying the crossing epoch sweeps a SPACELIKE family of different fluid elements, so an
+adiabatic law along one worldline cannot relate them. The missing piece is the exterior's
+SPATIAL temperature profile.
+
+P12 proposes supplying it with **Tolman-Ehrenfest**: in a static spacetime in local thermal
+equilibrium, `T(r) * sqrt(-g_tt(r)) = const`, so `T(r) = T_j / Z(r)` where
+`Z = sqrt(|B(r)|/|B_j|)` is already integrated by p6 from the model's own field equations. No
+free parameter.
+
+## ATTACK 1 — AND I THINK THIS MAY BE FATAL. Rule on it first.
+
+**Tolman-Ehrenfest requires a timelike Killing vector. Does one exist in the region p12
+integrates through?**
+
+p6's own docstring says the metric is used "in the A<0 interior", with
+`ds^2 = -B dtbar^2 + A^-1 drbar^2 + rbar^2 dOmega^2`, and the comoving fluid has
+`u^rbar = sqrt(N-1)`. Phase 5b's own claim 2 rests on the fact that **inside the horizon the
+radial direction plays the role of time** — that is why the photon trajectory cancels out of the
+optical depth integral.
+
+If `rbar` is timelike and `tbar` is spacelike in the integrated region, then there is **no static
+Killing vector**, the region is **not static in the required sense**, and Tolman-Ehrenfest does
+not apply at all — in which case p12 is invalid regardless of how cleanly it computes.
+
+Determine the causal character of `tbar` and `rbar` in the region p6 integrates (junction outward
+to `N -> 1`). If `tbar` is spacelike there, say so plainly and P12 falls.
+
+## ATTACK 2 — is `B` actually `-g_tt`, and is the exponent right?
+
+`T ∝ 1/sqrt(-g_tt)`. p12 uses `T/T_j = 1/Z` with `Z = sqrt(|B|/|B_j|)`. Check that `B` as
+integrated in p6 (`B'/B = -(1/(N-1))(N/rbar + kappa rhobar)`, from PINNED 3.4) is the metric
+function `-g_tt` and not something else, and that no factor or square root has been dropped.
+Note p6 uses the same `Z` as a REDSHIFT factor; a redshift and a Tolman temperature factor are
+related but not identical, and conflating them would be an easy error.
+
+## ATTACK 3 — does the equilibrium assumption survive contact with the model?
+
+Tolman-Ehrenfest needs LOCAL THERMAL EQUILIBRIUM. The exterior is the medium a shock wave is
+propagating into. Is an equilibrium assumption defensible for pre-shock material in this
+construction, or is it exactly the kind of convenient closure phase 5b was closed for? P12 claims
+it is "named, standard, and derived from the model's own metric" and therefore different in kind
+from the adiabatic closure REGATE4 invalidated. Is that distinction real or rhetorical?
+
+## ATTACK 4 — the direction
+
+P12 reports Tolman rising inward (T/T_j -> 1.79e5 at the horizon) where the invalidated
+adiabatic closure falls (-> 1.35e-5), and treats the disagreement as evidence they are genuinely
+different physics. Is the rising profile physically sensible here, or is it an artefact of
+integrating toward a horizon where `Z -> 0` and `1/Z` diverges by construction?
+
+## ATTACK 5 — reproduce
+
+`python3 p12_tolman.py`, expect exit 0, 4/4. The checks are weak by design — they test
+determinacy and difference, not correctness. Say so if you agree.
+
+## Verdict
+
+First line exactly one of:
+
+    SUPPLY_VALID        — Tolman-Ehrenfest legitimately supplies the profile
+    SUPPLY_INVALID_<reason>  — it does not apply; state which attack kills it
+    HOLD_<reason>
+
+Name the file per your seat convention (CGATE_/AGATE_). I proposed this and want it broken if it
+is breakable; attack 1 is my own objection and I would rather lose it now than build a phase on it.

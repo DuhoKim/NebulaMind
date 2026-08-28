@@ -121,6 +121,51 @@ same absence in the same source.
 
 ---
 
+### C3 — Tolman–Ehrenfest as the missing caloric equation of state
+
+**Status: CLOSED. Refuted by two independent gates, on the geometry.**
+
+Phase 5b closed because Smoller–Temple supply a mechanical equation of state `p(ρ)` and never a
+caloric one, so every computed signature was a property of an added closure. REGATE4 sharpened
+it: varying the crossing epoch sweeps a *spacelike* family of fluid elements, so a per-worldline
+adiabatic law cannot relate them. What is missing is the exterior's **spatial** temperature
+profile.
+
+**The proposal (mine, `p12_tolman.py`):** the ST exterior is a static TOV solution, so
+Tolman–Ehrenfest `T·√(−g_tt) = const` should fix that profile as `T(r) = T_j / Z(r)`, with `Z`
+already integrated by p6 from the model's own field equations and no free parameter.
+
+**Why it fails.** Tolman–Ehrenfest requires a **timelike Killing vector**. p6/p12 integrate from
+the junction to `N = 1 + ε`, so the entire domain has `N > 1`, hence `A < 0`. The pinned source
+states the causal character for exactly this case — the metric is called TOV because its
+components depend only on `r̄`, *"but now r̄ is timelike"*, and in the shock-matching section that
+`x⁰ = r̄` is timelike and `x¹ = t̄` is spacelike because `N > 1`.
+
+So `∂_t̄`, the only candidate, is **spacelike throughout the integrated region**. The timelike
+direction is `∂_r̄`, but every metric function depends on `r̄`, so it is not a Killing direction.
+In the gate's words: *"This is not a static exterior in the Tolman–Ehrenfest sense; it is a
+time-dependent interior solution written with the timelike coordinate r̄."*
+
+**The instructive part.** `B` really is the metric coefficient and the exponent really is the
+familiar inverse square root — *"but it is being applied to the wrong causal object."* The
+arithmetic was correct and meaningless, which is why `p12_tolman.py` runs 4/4: its checks test
+determinacy and difference, never applicability. **A green self-check is not a licence.**
+
+**Verdicts:** `CGATE_P12_VERDICT.md` (SUPPLY_INVALID_ATTACK1_NO_TIMELIKE_KILLING, codex gpt-5.5)
+and `AGATE_P12_VERDICT.md` (SUPPLY_INVALID_ATTACK1_TBAR_SPACELIKE, agy) — independent, same
+reason, both from the primary source rather than the requester's framing.
+
+**Note against myself.** The fact that killed this is the one phase 5 established three separate
+times: inside the horizon `r̄` plays the role of time. It killed the expansion-anisotropy route
+(C1), it *gave* us the optical-depth cancellation (claim 2), and it has now killed my own
+proposed fix. I proposed, computed and reported P12 before noticing that — and caught it only
+while writing the brief designed to attack it. **Ask the causal-character question first.**
+
+**What stays open:** the successor question is unchanged. A caloric equation of state must still
+come from somewhere, and it is not this.
+
+---
+
 ## HELD (not closed — do not file these as settled either way)
 
 ### H1 — Boundary glow / optical transfer across the shock
