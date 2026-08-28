@@ -88,6 +88,15 @@ byte- and position-identical to V30; class counts 15 class-P / 8 class-E; all fo
 - **`<lane>/ref/successor_ref_v9.py` is FROZEN** = `6a9abbbd900db882b804149edd6d2b8d1780b7114b191e1a58457d7e5875c148`. Never modify it. (Decision 4(ii)'s
   repair would require changing it — which is half of why it stops here.)
 - **The citation check is quarantined and must not be reopened** (§5).
+- **FREEZE VERIFIED 2026-08-29 08:03 KST, from the file rather than from notes.** `successor_ref_v9.py`
+  hashes to `6a9abbbd…` exactly as recorded, and at its current path it has **exactly one commit** —
+  `cdbcc8945`, the commit that created it. Nothing has modified it since the freeze. (The eleven
+  older commits `git log --follow` shows are predecessor versions v3/v4/v7/v8 at earlier paths, not
+  edits to v9.) Re-run: `shasum -a 256 <lane>/ref/successor_ref_v9.py` and
+  `git log --oneline -- <lane>/ref/successor_ref_v9.py`.
+- **Lane fully committed, working tree clean** as of the same check: `git status --porcelain <lane>`
+  is empty and all sixteen key files plus the four `tools/` checkers are tracked in HEAD — so every
+  digest in §6 is the committed content, not an uncommitted local edit.
 - Stop and write `OPEN_QUESTION_<topic>.md` for: a fork where both directions cost something; seats
   disagreeing on substance; anything changing what the study CLAIMS (tiers, acceptance rules,
   `|mu|max`, thresholds); filling a slot or touching BS-6; any repair I am not confident in.
