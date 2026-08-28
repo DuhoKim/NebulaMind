@@ -1,0 +1,75 @@
+GATE -- HARNESS AUDIT: attack my check battery. I audited it myself and pronounced it clean, and
+that is exactly why it needs you.
+
+Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/
+
+## Why this round exists
+
+Six consecutive gates found that my check NAMES claimed more than my PREDICATES tested. Once it
+was an outright tautology: `w_implied = -1.0 - (0.0)/(3*H*rho)`, then asserting it equals -1.
+
+So I built `a11_predicate_audit.py` to find the rest, fixed five checks, and declared the battery
+sound. That is a self-audit of a self-audit -- the thing checking the checker written by the same
+hand with the same blind spot. A parallel lane ran the same exercise tonight, believed its six
+harnesses were sound, and found THREE overclaims, one of which had certified six releases by
+verifying an announcement's envelope and never its contents.
+
+Assume mine are wrong. Find where.
+
+## What to attack
+
+Scripts: a1..a10, a12 (skip a11 itself unless you want it too). Run each: `python3 <name>`.
+All exit 0. Every one of them is an argument about a published paper, and every PASS is load-bearing
+for a tier verdict in a corpus audit.
+
+Sources are under `../bhu-reading-20260823/sources/`. Several are browser-reassembled rather than
+publisher PDFs (a4_stitch_mdpi.py explains); if a check depends on text that reassembly could have
+damaged, say so.
+
+## ATTACK 1 -- the gap I claim to have closed
+
+`a11_predicate_audit.py` classifies each predicate as TAUTOLOGY / LITERAL / STRING / MIXED /
+COMPUTED and reports 1/1/19/7/24 over 52 checks. I then hand-adjudicated FIVE as real
+name/predicate gaps and renamed them to "QUOTED: ..." or "ABSENCE CLAIM: ...".
+
+  (a) Is the classifier itself right? It resolves variable bindings transitively, including
+      AugAssign and FunctionDef. Does it still mis-classify? It reported 22 tautologies in v1 and
+      3 in v2, both times its own artefacts -- assume a v3 artefact remains.
+  (b) Did I find all the real gaps, or only the ones I was willing to see? Read the 19 STRING and
+      7 MIXED checks and name any whose NAME still asserts something a presence test cannot reach.
+  (c) Are the five renames honest, or cosmetic relabelling that preserves the overclaim?
+
+## ATTACK 2 -- the checks I did NOT flag
+
+I flagged five and left forty-seven. Pick the ones I was most likely to be soft on: checks that
+support conclusions I had already reported, and checks in a2 and a5 (the two gates where my
+findings SURVIVED -- I had less incentive to look hard there).
+
+## ATTACK 3 -- false PASSES, not just weak names
+
+Beyond naming: is any check capable of passing when its claim is FALSE? Concretely --
+  - would it still pass on a truncated or corrupted source?
+  - would it pass on a DIFFERENT paper?
+  - does any regex match something other than what the name says it matches?
+A check that passes on the wrong input is worse than one that is merely badly named.
+
+## ATTACK 4 -- the counts
+
+Several checks COUNT things (`len(sci) == 0`, `len(rate_hits) == 0`, `mays >= 2`). Counting zero
+is an absence claim wearing arithmetic. Verify the patterns actually cover what the names imply,
+and say what each would miss.
+
+## Verdict
+
+First line EXACTLY one of:
+
+    HARNESS_SOUND                 -- no further real gaps beyond the five already fixed
+    HARNESS_GAPS_FOUND_<n>        -- n additional real defects; list them
+    HARNESS_UNSOUND_<reason>      -- a defect that invalidates a reported verdict
+
+Then:
+    FALSE_PASS_POSSIBLE:  YES | NO    -- attack 3
+    CLASSIFIER_SOUND:     YES | NO    -- attack 1(a)
+
+Name the file CGATE_HARNESS_VERDICT.md (codex) or AGATE_HARNESS_VERDICT.md (agy) in the lane dir.
+Be specific: file, check name, and what would make it pass wrongly.

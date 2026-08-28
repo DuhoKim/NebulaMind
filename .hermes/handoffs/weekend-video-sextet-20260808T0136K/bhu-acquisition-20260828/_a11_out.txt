@@ -1,0 +1,97 @@
+======================================================================================================================
+A11 -- name/predicate gap across my own check battery
+======================================================================================================================
+file                       form       check name
+----------------------------------------------------------------------------------------------------------------------
+a1_fetch_unpinned.py       TAUTOLOGY  no file is an ar5iv stub or conversion-failure page
+                                        predicate: ok_all
+a2_roupas_audit.py         LITERAL    the literal reading puts the mode comfortably inside the instrument band
+                                        predicate: 63.0 > LIGO_SEARCH_CUT * 1.5
+a10_entry23_cutoff.py      STRING     entry 23 states a PREDICTION about an observable, in the author's own word
+                                        predicate: pred is not None
+a10_entry23_cutoff.py      STRING     QUOTED: the source says 'predict Omega_Lambda FROM the lack of CMB correlation
+                                        predicate: reverse and not fwd_err
+a10_entry23_cutoff.py      STRING     QUOTED: the source defines theta_S = chi_S/chi_CMB and evaluates it at the mea
+                                        predicate: chain and from_ol
+a1_fetch_unpinned.py       STRING     every target produced a file with its own arXiv id in the header region
+                                        predicate: all(os.path.exists(p) and aid in open(p, 'rb').read()[:4096].decode('utf-8', 'replace') for _, a
+a2_roupas_audit.py         STRING     both '63 Hz' and '10 Hz' really are in the pinned text
+                                        predicate: ("63" in T and "Hz" in T) and bool(re.search(r"10\s*Hz|10\{\\rm Hz\}", T))
+a2_roupas_audit.py         STRING     the paper explicitly defers the amplitude to future work
+                                        predicate: defer is not None
+a2_roupas_audit.py         STRING     and pre-authorises the escape from any null result
+                                        predicate: bool(re.search(r"not amplitude-wise sensitive enough", T))
+a3_pin_mdpi.py             STRING     both entries produced a file carrying their own DOI and PUBLISHED title in the
+                                        predicate: allok
+a3_pin_mdpi.py             STRING     the published title is pinned, not the preprint title the APIs return
+                                        predicate: all("Part I" in open(o).read()[:4096] for _, _, o, _ in rows if o)
+a4_stitch_mdpi.py          STRING     every landmark from the START, MIDDLE and END of each paper is present
+                                        predicate: all(not [m for m in P["landmarks"] if m not in doc] for _, doc, P in good)
+a4_stitch_mdpi.py          STRING     no harness artefact survives in either file
+                                        predicate: all(not re.search(r"output truncated at|Tab Context:|Source element:", doc) for _, doc, P in goo
+a5_entry26_prediction.py   STRING     the observed Lambda lies ABOVE every modal location the paper names, on its ow
+                                        predicate: all(res[k] > modes[0] for k in res)
+a6_entry25_falsifier.py    STRING     the falsification sentence carries its own qualifier 'not solely', which limit
+                                        predicate: bool(sent) and "not solely" in s and "equation of state" in s
+a6_entry25_falsifier.py    STRING     the equation H^2 = 8piG/3 rho + Lambda/3 = 8piG/3 rho + 1/r_S^2 is present in 
+                                        predicate: fried is not None
+a6_entry25_falsifier.py    STRING     QUOTED: the source states the mass relaxes to the SBH value and the exterior s
+                                        predicate: mdot and relax and outside and drift is None
+a8_desi_receipt.py         STRING     the collaboration reports a 3.1 sigma preference for evolving dark energy from
+                                        predicate: bool(re.search(r"3\.1\s*(?:\\sigma|σ)", D)) and "dynamical dark energy" in D
+a8_desi_receipt.py         STRING     ABSENCE CLAIM (weakest form): no sigma-level rejection rule matches in entry 2
+                                        predicate: has_threshold is None
+a9_entry52_threshold.py    STRING     entry 52 states an explicit numeric threshold, as our note said
+                                        predicate: thr is not None
+a9_entry52_threshold.py    STRING     QUOTED: the source fixes lambda from the observed Lambda and says C 'must reac
+                                        predicate: bool(lam) and from_obs and must_reach
+a12_entry8_indistinguishable.py MIXED      COUNTED: the paper contains no scientific-notation value and no numeric magnit
+a12_entry8_indistinguishable.py MIXED      COUNTED: the paper's own conclusion is modal -- 'suggest that observed astroph
+a2_roupas_audit.py         MIXED      no rate-ESTIMATE construct appears anywhere in the paper
+a2_roupas_audit.py         MIXED      the broad hits are acknowledged rather than hidden by a narrow pattern
+a3_pin_mdpi.py             MIXED      neither file is the 4,455-byte anti-bot page that fooled the CSIC path
+a4_stitch_mdpi.py          MIXED      each file recovers >=95% of the character count the page itself reported
+a4_stitch_mdpi.py          MIXED      the seams did not duplicate text
+a7_entry22_nogo.py         MIXED      entry 22 states what CANNOT hold and makes no observational prediction -- so B
+a8_desi_receipt.py         MIXED      the significance is combination-dependent, spanning well below and above 3 sig
+a10_entry23_cutoff.py      COMPUTED   both hedges are present and are recorded here, not suppressed
+a10_entry23_cutoff.py      COMPUTED   the CMB large-angle correlation anomaly predates the paper, so this is a POSTD
+a12_entry8_indistinguishable.py COMPUTED   QUOTED: the source states Einstein-Rosen and Schwarzschild black holes are ind
+a1_fetch_unpinned.py       COMPUTED   all six ranked targets accounted for
+a2_roupas_audit.py         COMPUTED   Table 1 reproduces the text's '63' -- so a real, mass-parameterised number exi
+a2_roupas_audit.py         COMPUTED   the paper's two printed upper bounds are the SAME number differing by 2pi
+a2_roupas_audit.py         COMPUTED   the 2pi conversion reproduces the textbook Schwarzschild ringdown; omitting it
+a2_roupas_audit.py         COMPUTED   so omega in this paper is ANGULAR, and 'Hz' is the wrong unit for it
+a2_roupas_audit.py         COMPUTED   the corrected value is NOT cleanly outside -- it sits on the design boundary
+a2_roupas_audit.py         COMPUTED   the top of the paper's own mass range [10,1e9] is OUTSIDE the LISA band it cla
+a4_stitch_mdpi.py          COMPUTED   both papers reassembled from overlapping captures
+a5_entry26_prediction.py   COMPUTED   (2/3)*r_S with r_S = 2GM is algebraically 4GM/3
+a5_entry26_prediction.py   COMPUTED   the mass->time UNIT conversion reproduces the textbook solar mass in time unit
+a5_entry26_prediction.py   COMPUTED   Lambda_O = 4/(3 tau_O^2) follows exactly from Lambda = 3/r_S^2 and r_S = 3 tau
+a5_entry26_prediction.py   COMPUTED   the two stated central values are mutually inconsistent, at a level consistent
+a5_entry26_prediction.py   COMPUTED   the three peak positions the paper names reproduce the quoted Lambda_O/9 ... L
+a6_entry25_falsifier.py    COMPUTED   the estimator reproduces matter and radiation, THEN gives w = -1 for constant 
+a6_entry25_falsifier.py    COMPUTED   the pinned third-party fit puts w0 within ~2 sigma of -1, computed not quoted
+a7_entry22_nogo.py         COMPUTED   the published theorem and this lane's independently-derived result are both on
+a7_entry22_nogo.py         COMPUTED   entry 25's load-bearing junction is degenerate and non-comoving BY ITS OWN TEX
+a7_entry22_nogo.py         COMPUTED   entry 25 concedes a past singularity, so it never claims completeness -- CONSI
+a7_entry22_nogo.py         COMPUTED   the two texts do NOT name the same technical ingredient -- the correspondence 
+a8_desi_receipt.py         COMPUTED   the pinned document is the DESI collaboration's own DR2 cosmology paper
+a9_entry52_threshold.py    COMPUTED   the paper analyses all three curvature cases and commits to none for our Unive
+a9_entry52_threshold.py    COMPUTED   C is NOT a free model parameter -- it is an observable quantity (aT, conserved
+----------------------------------------------------------------------------------------------------------------------
+total checks: 55   TAUTOLOGY=1  LITERAL=1  STRING=19  MIXED=9  COMPUTED=25
+
+PREDICATES THAT CANNOT REACH A SEMANTIC CLAIM: 21/55 (38%)
+
+READ THIS BEFORE ACTING ON IT
+
+A STRING result is NOT automatically a defect. "the paper states X" is honestly testable by
+searching for X. The defect is a NAME that asserts something a presence test cannot reach --
+a causal direction, a derivation, the ABSENCE of an alternative reading. Those need a human.
+
+The three forms above are ranked by how little they can vary:
+  TAUTOLOGY -- cannot fail at all. Delete or rewrite; this is the a6-check-4 defect.
+  LITERAL   -- compares constants. Passes regardless of the paper.
+  STRING    -- can fail, but only if the text changes. Fine for "X appears"; wrong for "X implies".
+
