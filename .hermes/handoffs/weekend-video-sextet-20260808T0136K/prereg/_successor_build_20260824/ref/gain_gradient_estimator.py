@@ -110,7 +110,11 @@ def estimate_gamma(a_hat, cov_a, c_bar):
     # Rank and conditioning BEFORE any inverse. A singular covariance is refused outright: no
     # pseudo-inverse is substituted, because the choice of generalised inverse would itself be an
     # unpinned degree of freedom (GPT56-GAINV3-2).
-    w = np.linalg.eigvalsh(S)
+    try:
+        w = np.linalg.eigvalsh(S)
+    except np.linalg.LinAlgError as e:
+        refuse("G08", f"numerical linear algebra failed in eigvalsh: {e}")
+        return None, bad
     if w.min() <= 0.0:
         refuse("G03", f"cov_g eigenvalues {np.round(w, 18).tolist()} — not positive definite")
         return None, bad
@@ -123,8 +127,13 @@ def estimate_gamma(a_hat, cov_a, c_bar):
     # theta1 IS g0*gamma. gamma = theta1/theta0 by construction, which is the gamma the bias
     # equation uses.
     X = np.column_stack([np.ones(N_BINS), c])
-    if np.linalg.matrix_rank(X) < 2:
-        refuse("G05", f"design matrix rank {np.linalg.matrix_rank(X)} < 2; c_bar = {c.tolist()}")
+    try:
+        rank_X = int(np.linalg.matrix_rank(X))
+    except np.linalg.LinAlgError as e:
+        refuse("G08", f"numerical linear algebra failed in matrix_rank: {e}")
+        return None, bad
+    if rank_X < 2:
+        refuse("G05", f"design matrix rank {rank_X} < 2; c_bar = {c.tolist()}")
         return None, bad
 
     # GLS by Cholesky solve rather than an explicit inverse. matrix_rank(X) == 2 is NOT sufficient:

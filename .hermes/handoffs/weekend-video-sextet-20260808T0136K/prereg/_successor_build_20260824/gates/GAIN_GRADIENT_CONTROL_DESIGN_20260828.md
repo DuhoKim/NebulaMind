@@ -86,12 +86,14 @@ inverse, the delta-method Jacobian written out, and the exact receipt fields.
 | `G05` | the design matrix is rank-deficient; the bin centres do not span a slope |
 | `G06` | the intercept is within `3σ` of zero, so `slope/intercept` is undefined |
 | `G07` | a bin accuracy is outside v9's `(0.5, 1.0]` domain |
-| `G08` | **declared unreachable** and exempted from coverage *by name* — after G01/G03/G05/G06 the result cannot be non-finite. Not counted as covered. |
+| `G08` | a deterministic numerical linear-algebra failure was caught. **The v4 "unreachable by construction" exemption is WITHDRAWN** — both seats broke it, and a denormal covariance `diag(5e-324)` passes `G01`/`G03` and then fails inside the solve. It carries a real control. |
+| `G09` | a bin centre is outside the physical `cos θ` range `[-1, 1]` |
 
 `--self-test` recovers `γ` exactly on noiseless fixtures at `γ ∈ {0, ±0.2, ±0.5}`, fires every
-reachable refusal with an exact code set, computes coverage from the controls that ran, and **carries
-a regression control asserting the old sample-mean normalisation gives a different, predicted
-number** — so the defect cannot return silently.
+refusal with an exact code set, computes coverage from the controls that ran — **9 of 9, nothing
+exempt** — and **carries a regression control asserting the old sample-mean normalisation gives a
+different, predicted number**, so the defect cannot return silently. Every `numpy.linalg` call is
+inside the refusal wrapper, so the result-or-refusal contract is total rather than nearly so.
 
 **And `verify_mu_gamma.py` now builds `γ̂` through this recipe end-to-end**, binning simulated data
 with v9's own `calibration_bins()` and calling the same estimator. GPT56 observed that the earlier
@@ -137,7 +139,20 @@ report a false mismatch.
 **Everything in this statistic is already produced by the frozen pipeline.** No injection campaign,
 no cutout, no fetch.
 
-## 4. The decision rule — exact, not sampled
+## 4. The decision rule — the p-gated half is REFUTED and OPEN
+
+**`ref/verdict_breakpoints.py` does NOT close T-completeness, and this section no longer claims it
+does.** Both seats refuted the reduction it rested on: production `p` is **not** a function of `|A|`,
+because the permutation null is built from the observed sign multiset, which a gain gradient changes.
+I had argued the null was a geometry property the gradient could not move. It is not.
+
+What survives: the **amplitude-side** breakpoints (`A = 0`, the band edges, the floor, the rejection
+edge) and the transcription check against the production branch at `v9:1579-1584`. What does not:
+folding the `p` gates into `A`-breakpoints. **T-completeness therefore remains an open BLOCKING
+FREEZE item**, and closing it needs either a conservative joint `(A, p)` perturbation rule or a proof
+that the permitted gradient cannot cross either `p` boundary — a design choice, not a repair.
+
+## 4a. The amplitude-side rule, which does survive
 
 v2 evaluated the verdict at `δ ∈ {−Γ, +Γ}` and called equal endpoints invariance. **Both seats were
 right that this is not an invariance test**; a decision function can differ in the interior.

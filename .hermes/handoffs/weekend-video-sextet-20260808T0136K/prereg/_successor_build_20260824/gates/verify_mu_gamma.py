@@ -98,6 +98,16 @@ def recipe_gamma(c, gamma_true, gbar, reps=400, seed=7):
     routes simulated data through v9's own calibration bins and through the SAME estimator
     production would use, so the recipe itself is under test.
     """
+    # v4's finding was about THIS function, and v5 found it still unrepaired: simulate() gained
+    # finiteness checks and recipe_gamma() did not, so an out-of-domain per-object accuracy field
+    # was averaged into a valid bin probability and returned a value, or raised a raw ValueError
+    # out of rng.binomial. Same guards, same refusal contract, before anything is averaged.
+    if not all(np.isfinite(v) for v in (gamma_true, gbar)):
+        return None, "REFUSED: non-finite parameter"
+    a_true_full = (1.0 + gbar * (1.0 + gamma_true * c)) / 2.0
+    if a_true_full.min() <= 0.5 or a_true_full.max() > 1.0:
+        return None, (f"REFUSED: per-object accuracy [{a_true_full.min():.6f}, "
+                      f"{a_true_full.max():.6f}] outside (0.5, 1.0]")
     bnd = V9.calibration_bins(c)
     b = V9.assign_bins(c, bnd)
     a_true = (1.0 + gbar * (1.0 + gamma_true * c)) / 2.0
