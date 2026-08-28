@@ -222,7 +222,13 @@ def check_prose_counts(text, rows, out):
 
 
 def check_repair_citations(text, gates, out):
-    """A 'V## CORRECTION (SEAT-Vn Fk)' claim must cite a finding that exists on disk.
+    """A 'V## CORRECTION (SEAT-Vn Fk)' claim must cite a finding that exists in that seat's report.
+
+    NAMED for what it evaluates. Until 2026-08-29 the docstring claimed it verified the FINDING
+    existed while the predicate only checked that a REPORT FILE for that seat and version existed -
+    `fid` was parsed and then used solely in the error message. A citation to CODEX-V27 F9 passed
+    against a report with four findings. That is a name asserting more than its predicate tested,
+    the same defect this lane found in Tori's harness and in two of mine.
 
     The document's most dangerous sentence is one announcing a repair, because a reader stops
     checking there. V12's blockquote claimed the unanimous round-1 blinding finding repaired
@@ -244,11 +250,29 @@ def check_repair_citations(text, gates, out):
             # review's subject changed. Hard-coding one pattern made the check report missing
             # citations for reports sitting next to it under a newer name — the same staleness this
             # tool exists to catch, in the tool.
-            names = [p.name for p in gates.glob("*.md")]
-            if not any(seat in n and f"V{ver}" in n and "REVIEW" in n.upper() or
-                       n == f"PREREG_TEXT_V{ver}_{seat}.md" for n in names):
+            hits = [p for p in gates.glob("*.md")
+                    if (seat in p.name and f"V{ver}" in p.name and "REVIEW" in p.name.upper())
+                    or p.name == f"PREREG_TEXT_V{ver}_{seat}.md"]
+            if not hits:
                 out.append(("repair-citations",
-                            f"cites {seat}-V{ver} {fid} but no PREREG_TEXT_V{ver}_{seat}.md exists"))
+                            f"cites {seat}-V{ver} {fid} but no report for {seat} V{ver} exists"))
+                continue
+            # The finding NUMBER must actually be in that report. Reports number findings as
+            # "### 3." headings or as explicit SEAT-Vn-3 ids; accept either.
+            k = fid.lstrip("Ff")
+            body = "\n".join(h.read_text(errors="ignore") for h in hits)
+            # Accept every heading shape the reports have actually used: "### F3 — ...",
+            # "### 3. ...", and the explicit SEAT-Vn-3 id. My first version accepted only "### 3."
+            # and reported a REAL citation missing against a report whose findings are "### F3" -
+            # a pattern narrower than the data, which is the third time tonight.
+            found = (re.search(rf"^#+\s*F?{re.escape(k)}\b", body, re.M)
+                     or re.search(rf"{seat}-V{ver}-{re.escape(k)}\b", body))
+            if not found:
+                nums = sorted({n for n in re.findall(r"^#+\s*F?(\d+)\b", body, re.M)}, key=int)
+                out.append(("repair-citations",
+                            f"cites {seat}-V{ver} {fid} but that report has no finding {k}"
+                            + (f" (it has {', '.join(nums)})" if nums else
+                               " and no parseable numbered findings")))
 
 
 
