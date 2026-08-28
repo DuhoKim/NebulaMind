@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import getpass
 import json
 import math
 import re
@@ -157,6 +158,39 @@ def oauth_failure_state() -> dict[str, Any]:
 _OAUTH_USAGE_ENABLED = os.environ.get('NM_CLAUDE_OAUTH_USAGE') == '1'
 
 
+def _read_oauth_credentials() -> dict[str, Any] | None:
+    """Claude Code's live OAuth credentials, Keychain first.
+
+    Fixed 2026-08-28. This function used to read only
+    ~/.claude/.credentials.json, and that file is a leftover: on macOS the live
+    credential lives in the login Keychain under service
+    "Claude Code-credentials". The JSON copy was last written 2026-08-24 12:45
+    and its accessToken expired eight hours later, so the usage endpoint had been
+    returning 401 for four days while three Claude Code sessions authenticated
+    perfectly well from the Keychain item beside it. The recorded failure looked
+    like an auth problem with the account; it was an auth problem with our
+    *source*.
+
+    Token values are never returned to a caller that logs, never printed, and
+    never written to the cache — only the parsed usage numbers are.
+    """
+    try:
+        proc = subprocess.run(
+            ['security', 'find-generic-password',
+             '-s', 'Claude Code-credentials', '-a', getpass.getuser(), '-w'],
+            capture_output=True, text=True, timeout=10)
+        if proc.returncode == 0 and proc.stdout.strip():
+            return json.loads(proc.stdout)
+    except Exception:
+        pass          # fall through to the file; a Keychain miss is not fatal
+    path = os.path.expanduser('~/.claude/.credentials.json')
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+
 def fetch_claude_quota_via_oauth() -> dict[str, Any] | None:
     if not _OAUTH_USAGE_ENABLED:
         return _oauth_cache_read()[0]
@@ -173,15 +207,22 @@ def fetch_claude_quota_via_oauth() -> dict[str, Any] | None:
     except Exception:
         pass
     try:
-        creds_path = os.path.expanduser('~/.claude/.credentials.json')
-        if not os.path.exists(creds_path):
-            _oauth_cache_write(None, 'no-credentials-file')
+        creds = _read_oauth_credentials()
+        if creds is None:
+            _oauth_cache_write(None, 'no-credentials')
             return cached
-        with open(creds_path, 'r') as f:
-            creds = json.load(f)
-        token = creds.get('claudeAiOauth', {}).get('accessToken')
+        oauth = creds.get('claudeAiOauth', creds)
+        token = oauth.get('accessToken')
         if not token:
             _oauth_cache_write(None, 'no-access-token')
+            return cached
+        # Do not spend a request on a token we can already see is dead. The 401
+        # recorded on 2026-08-27 was exactly this: a token that had expired three
+        # days earlier, retried on every pass, each failure indistinguishable
+        # from a real auth problem.
+        exp = oauth.get('expiresAt')
+        if isinstance(exp, (int, float)) and exp / 1000.0 <= time.time():
+            _oauth_cache_write(None, 'token-expired')
             return cached
         req = urllib.request.Request('https://api.anthropic.com/api/oauth/usage')
         req.add_header('Authorization', f'Bearer {token}')

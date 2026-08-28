@@ -62,6 +62,23 @@
     <dict>
         <key>PATH</key>
         <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+
+        <!--
+          Re-enabled 2026-08-28. It was switched off on 2026-08-27 after repeated
+          refusals, on the reading that the endpoint was throttling us. That was
+          wrong: the recorded failure was a 401, not a 429, and the cause was our
+          own source. The monitor read ~/.claude/.credentials.json, a leftover
+          whose token expired 2026-08-24, while the live credential sat in the
+          login Keychain being refreshed all along. Reading the Keychain returns
+          200 and seven_day.utilization=70.0, matching the browser page exactly.
+
+          Enabled here rather than in code so only the scheduled job fetches, at
+          the 900s cache TTL. The incident this cache exists for was 1,440 calls
+          a day from a 60s loop; at a 600s interval with a 900s TTL this is about
+          96. Manual runs stay off unless the operator sets the variable.
+        -->
+        <key>NM_CLAUDE_OAUTH_USAGE</key>
+        <string>1</string>
     </dict>
 
     <key>WorkingDirectory</key>
