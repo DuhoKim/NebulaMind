@@ -74,3 +74,58 @@ adds no selection, and changes no frozen quantity.
 3. **Blanc's route 1 — the mirror test.** Strongest for classifier bias, but needs images. Galaxy Zoo
    published mirrored-subset results; a literature amplitude may substitute for a commissioned
    measurement.
+
+---
+
+# Addendum — null axes, and a correctly calibrated null (2026-08-28)
+
+**Blanc's route 3, run.** Chirality is sealed so the "same slope" cannot be measured; the parity test
+can be run along any axis, which answers the same question: does the cut carry positional structure
+that would imitate a signal?
+
+## 300 random axes
+
+    parity-odd e2    random axes: median  9.4   90th 15.3   max 25.6
+                     Longo axis :  7.5  →  31st percentile
+    null control e1  random axes: median  6.6   90th 11.1   max 19.2
+                     Longo axis :  4.3  →  21st percentile
+
+**The Longo axis is unremarkable, and on the low side.** No axis carries selection structure that the
+tested axis happens to share. Worst random axis reached χ² 25.6 — the look-elsewhere cost of scanning
+300 directions, and a reminder that any future axis scan needs that trials factor stated.
+
+## A correctly specified null, and a correction to my own reading
+
+Across axes, 15.0% of e2 results exceeded the nominal χ² 14.07 where 5% is expected. **I first read
+that as the per-axis test being mis-calibrated. It is not.** Different axes bin the sky differently
+and galaxy ellipticities are spatially correlated, so the **spread across axes** is wider than χ²(7)
+while each axis remains individually sound. Those are different quantities and conflating them was my
+error.
+
+The right null for "is this cut parity-odd on this axis" holds the positional structure of the cut
+fixed and destroys only the parity-odd component: **reshuffle which objects are excluded, preserving
+each bin's excluded count.** 400 reshuffles on the Longo axis:
+
+    median 6.2    95th percentile 13.4    (nominal χ² crit 14.07 — agreement, not drift)
+    real cut χ² = 7.5  →  63rd percentile,  p = 0.37
+
+## Bound, re-derived against that null
+
+    f = 0.00%   median χ²  7.5   detected   0%     ← the real cut
+    f = 0.50%   median χ²  8.3   detected   0%
+    f = 0.75%   median χ² 11.9   detected  45%
+    f = 1.00%   median χ² 32.8   detected 100%
+    f = 2.00%   median χ² 98.2   detected 100%
+
+**Unchanged: any parity-odd component of this cut is below roughly 0.75% differential removal**,
+against a 4% signal amplitude. The re-derivation moved the threshold from 14.07 to 13.4 and moved no
+conclusion — which is the useful outcome of checking a calibration rather than assuming one.
+
+## Status after both tests
+
+Three things now hold, each computed rather than argued: the cut shows no parity-odd selection on the
+tested axis; the tested axis is typical of 300 random ones; and the effect is bounded under 0.75%.
+
+**Still not established, and V29's wording stands:** `e2` is a proxy for parity-oddness, not
+chirality; the classifier systematic is untouched; and none of this licenses the cut. What has changed
+is that the assumption now carries a number.
