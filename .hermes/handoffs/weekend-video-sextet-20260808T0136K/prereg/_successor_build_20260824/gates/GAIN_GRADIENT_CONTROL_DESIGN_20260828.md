@@ -59,12 +59,41 @@ bin `b`, and `Cov(ĝ) = 4·Cov(â)` from BS-8f:
 **GLS, not OLS, because `Cov(â)` is not diagonal** — `epsilon` is one shared quantity and its
 derivative enters every bin (v9:1446). Treating the bins as independent would understate `σ_γ`.
 
-The spurious dipole contribution from this route is, to first order,
+### The bias, derived and then verified by simulation
 
-    A_spurious = |μ| · |γ̂|
+With `E[lat|c] = μ + A·c` and `g(c) = ḡ(1 + γc)`, expanding `Cov(s,c)/Var(c)` exactly gives
 
-by the same algebra as v2: with `E[lat] = μ + A·c` and `g(c) = ḡ(1 + γc)`, the `c`-linear term of
-`E[s]/ḡ` is `A + μγ`.
+    recovered = A + γ·(μ + A·κ),      κ ≡ Cov(c², c) / Var(c)
+
+so the spurious contribution is
+
+    A_spurious = |γ̂| · |μ + A·κ|
+
+**`κ` is a skewness term of the realised `cos θ` distribution, not a free parameter.** Computed on
+the 49,211 retained objects with the frozen axis: **`κ = +0.005104`**, so `A·κ = +0.000208` — an
+effective monopole that exists *even when `μ = 0`*. It is small, but it is exact and it is now
+stated rather than dropped.
+
+**What the simulation does and does not establish, stated precisely.**
+`gates/verify_mu_gamma.py` simulates v9's own production model on the real `cos θ` distribution and
+recovers the predicted amplitude across ten `(μ, γ, ḡ)` combinations including negative `μ` and
+negative `γ`. **It confirms the `γ·μ` structure — sign, magnitude and the absence of bias at
+`γ = 0` — but it does NOT discriminate the `A·κ` term**, which at `0.000208` sits far below the
+simulation's standard error of `≈0.001`. The naive form passes every case too.
+
+**So `A·κ` is derived algebraically and is stated as derived, not as verified.** Resolving it by
+simulation would need roughly a hundredfold increase in replicates, which has not been run. Anyone
+relying on the `A·κ` term should check the expansion in this section rather than the script.
+
+*(An earlier draft of this section claimed the script had falsified the naive form. It had not — the
+first run failed because it exceeded v9's accuracy domain, and `κ` was found by doing the expansion
+while investigating that failure. The claim is withdrawn.)*
+
+**A domain constraint came out of the same check and belongs in the contract.** v9 requires accuracy
+in `(0.5, 1.0]` (`inject_signs`, v9:1207). Since `a = (1 + ḡ(1+γc))/2` and `c ∈ [−1, 1]`, this bounds
+the physically representable gradient at `|γ| ≤ 1/ḡ − 1`. The verification script **refuses**
+out-of-domain parameters rather than clamping them; clamping silently is what made its first run
+report a false mismatch.
 
 **Everything in this statistic is already produced by the frozen pipeline.** No injection campaign,
 no cutout, no fetch.
