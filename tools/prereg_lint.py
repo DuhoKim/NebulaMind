@@ -250,94 +250,88 @@ def check_repair_citations(text, gates, out):
             # review's subject changed. Hard-coding one pattern made the check report missing
             # citations for reports sitting next to it under a newer name — the same staleness this
             # tool exists to catch, in the tool.
-            hits = _reports_for(gates, seat, ver)
-            if not hits:
+            k = int(fid.lstrip("Ff"))
+            outcome, nums = citation_outcome(gates, seat, ver, k)
+            if outcome == "NO-REPORT":
                 out.append(("repair-citations",
                             f"cites {seat}-V{ver} {fid} but no report for {seat} V{ver} exists"))
-                continue
-            k = int(fid.lstrip("Ff"))
-            declared = set()
-            for h in hits:
-                declared |= _declared_findings(h.read_text(errors="ignore"))
-            if k not in declared:
+            elif outcome == "FABRICATED":
                 out.append(("repair-citations",
-                            f"cites {seat}-V{ver} {fid} but that report declares no finding {k}"
-                            + (f" (it declares {', '.join(str(n) for n in sorted(declared))})"
-                               if declared else " and declares no parseable findings")))
+                            f"cites {seat}-V{ver} {fid} but that report declares findings "
+                            f"{', '.join(str(n) for n in sorted(nums))}"))
+            elif outcome == "UNVERIFIABLE":
+                # NOT reported as clean and NOT as a document defect. The parse failed; say so.
+                out.append(("repair-citations",
+                            f"cites {seat}-V{ver} {fid} but that report's finding grammar is not "
+                            f"recognisable — citation UNVERIFIABLE, not disproved"))
 
-# ── Citation support. Split out because the naive version was wrong in BOTH directions: it
-# accepted generic numbered section headings as findings (CODEX-HARNESS-1 got F4/F7/F8 accepted on
-# a three-finding report), matched versions by substring so V1 borrowed V11's reports, and rejected
-# real list-form findings. Reports have used four declaration shapes across the night's rounds.
 
-_VER_RE = None
 
+# ── Citation support. See CITATION_CHECK_SPEC.md. The governing rule, from a sister lane:
+# a narrow pattern is safe for PRESENCE and dangerous for ABSENCE. Every earlier version of this
+# check enumerated findings by regex and then concluded a citation was absent, manufacturing
+# absence whenever the grammar was unfamiliar and presence whenever a numbered non-finding matched.
 
 def _reports_for(gates, seat, ver):
-    """Reports for exactly this seat and version. The version needs a NUMERIC BOUNDARY: `f"V{ver}"
-    in name` let a citation to V1 be satisfied by V11_... files."""
+    """Reports for exactly this seat and version. The version needs a NUMERIC BOUNDARY: a plain
+    `f"V{ver}" in name` let a citation to V1 be satisfied by V11_... files."""
     out = []
     for p in gates.glob("*.md"):
         n = p.name
-        if seat not in n:
-            continue
-        if not re.search(rf"V{ver}(?!\d)", n):
+        if seat not in n or not re.search(rf"V{ver}(?!\d)", n):
             continue
         if "REVIEW" in n.upper() or n == f"PREREG_TEXT_V{ver}_{seat}.md":
             out.append(p)
     return out
 
 
-def _declared_findings(body: str) -> set:
-    """Finding numbers DECLARED by a report, in the grammars reports actually use.
+_GRAMMARS = (
+    ("F",       re.compile(r"^#+\s*F(\d+)\b", re.M)),
+    ("Finding", re.compile(r"^#+\s*Finding\s+(\d+)\b", re.M | re.I)),
+    ("bare",    re.compile(r"^#+\s*(\d+)\.", re.M)),
+    ("list",    re.compile(r"^\s{0,3}(\d+)\.\s+\*\*", re.M)),
+)
 
-    Supported, because all four appear in this gates directory:
-        ### F3 — ...            ### Finding 3 ...
-        ### 3. HIGH — ...       1. **BLOCKING ...**   (top-level numbered list)
 
-    A generic `## 8. Evidence` heading is NOT a finding. Bare `### N.` therefore only counts inside
-    a findings section, which is what stopped the naive version certifying F4/F7/F8.
+def declared_findings(body: str):
+    """Return ('recognised'|'unverifiable', numbers).
+
+    Recognised requires EXACTLY ONE grammar inside the findings section, numbering contiguous from
+    1. A mixed-grammar report, or one with holes, is UNVERIFIABLE - because there "not declared"
+    cannot be told apart from "not parsed", and asserting either would be manufacturing a result.
     """
-    found = set()
-    for m in re.finditer(r"^#+\s*(?:F|Finding\s+)(\d+)\b", body, re.M):
-        found.add(int(m.group(1)))
-    lines = body.splitlines()
-    in_findings = False
-    for line in lines:
-        h = re.match(r"^(#+)\s*(.*)", line)
-        if h:
-            in_findings = "finding" in h.group(2).lower()
-            m = re.match(r"^#+\s*(\d+)\.", line)
-            if m and in_findings is False and found:
-                pass
-            continue
-        if in_findings:
-            m = re.match(r"^\s{0,3}(\d+)\.\s+\*\*", line)
-            if m:
-                found.add(int(m.group(1)))
-    # `### N.` counts only after a findings-section heading, and only at the depth of the FIRST
-    # such heading, so a generic `## 8. Evidence` at another level is not a finding.
-    #
-    # Do NOT re.split on headings containing "finding": V24_WHOLE_REVIEW_GPT56 has two of them, so
-    # taking sec[1] truncated the scan after finding 1 and reported a REAL citation missing. Anchor
-    # once and scan to the end instead.
-    if not found:
-        anchor = None
-        for m in re.finditer(r"^#+\s*.*finding.*$", body, re.M | re.I):
-            anchor = m.end()
-            break
-        if anchor is not None:
-            depth = None
-            for m in re.finditer(r"^(#+)\s*(\d+)\.", body[anchor:], re.M):
-                d = len(m.group(1))
-                if depth is None:
-                    depth = d
-                if d == depth:
-                    found.add(int(m.group(2)))
-        for m in re.finditer(r"^\s{0,3}(\d+)\.\s+\*\*", body, re.M):
-            found.add(int(m.group(1)))
-    return found
+    m = re.search(r"^#+\s*.*finding.*$", body, re.M | re.I)
+    if not m:
+        return "unverifiable", set()
+    region = body[m.end():]
+    hits = {}
+    for name, rx in _GRAMMARS:
+        nums = {int(g) for g in rx.findall(region)}
+        if nums:
+            hits[name] = nums
+    if len(hits) != 1:
+        return "unverifiable", set()
+    nums = next(iter(hits.values()))
+    if sorted(nums) != list(range(1, max(nums) + 1)):
+        return "unverifiable", nums
+    return "recognised", nums
 
+
+def citation_outcome(gates, seat, ver, k):
+    """VERIFIED / FABRICATED / UNVERIFIABLE / NO-REPORT. Three real outcomes, not a binary."""
+    hits = _reports_for(gates, seat, ver)
+    if not hits:
+        return "NO-REPORT", set()
+    best = ("unverifiable", set())
+    for h in hits:
+        outcome, nums = declared_findings(h.read_text(errors="ignore"))
+        if outcome == "recognised":
+            if k in nums:
+                return "VERIFIED", nums
+            best = ("recognised", nums)
+    if best[0] == "recognised":
+        return "FABRICATED", best[1]
+    return "UNVERIFIABLE", set()
 
 
 # ─────────────────────────────────────────────────────────────────────────────────────────────
@@ -383,6 +377,18 @@ def _mut_slots_exist(text):
     return text + "\n\nSlot BS-77 governs the freeze.\n"
 
 
+def _mut_citation_fabricated(text):
+    """Cite a number a WELL-PARSED report does not declare. This is the control the old canary
+    lacked: it exercised only report-absence, so deleting the membership test left it green."""
+    return text + "\n\nV99 CORRECTION (GPT56-V11 F97): fabricated.\n"
+
+
+def _mut_citation_unverifiable(text):
+    """Cite into a report whose grammar is not recognisable. Must report UNVERIFIABLE - not clean,
+    and not a document defect. Absence-by-parse-miss is not absence."""
+    return text + "\n\nV99 CORRECTION (CODEX-V21 F4): unparseable grammar.\n"
+
+
 def _mut_repair_citations(text):
     """Cite a referee finding whose report does not exist."""
     return text + "\n\nV99 CORRECTION (CODEX-V98 7): repaired per that finding.\n"
@@ -390,6 +396,8 @@ def _mut_repair_citations(text):
 
 CONTROLS = [
     ("check_repair_citations", _mut_repair_citations, "repair-citations"),
+    ("citation fabricated", _mut_citation_fabricated, "repair-citations", "declares findings"),
+    ("citation unverifiable", _mut_citation_unverifiable, "repair-citations", "UNVERIFIABLE"),
     ("check_prose_counts",    _mut_prose_count,     "prose-count-disagreement"),
     ("check_class_agreement", _mut_class_agreement, "slot-class-disagreement"),
     ("check_lock_identity",   _mut_lock_identity,   "lock-identity"),
@@ -407,14 +415,16 @@ CHECKS_RUN = ["check_slots_exist", "check_class_agreement", "check_prose_counts"
 
 
 def uncontrolled():
-    covered = {n for n, _, _ in CONTROLS}
+    covered = {c[0] for c in CONTROLS}
     return [c for c in CHECKS_RUN if c not in covered]
 
 
 def run_controls(text, gates):
     """Return a list of check names that FAILED to fire on their own negative control."""
     vacuous = []
-    for name, mutate, category in CONTROLS:
+    for ctrl in CONTROLS:
+        name, mutate, category = ctrl[0], ctrl[1], ctrl[2]
+        want = ctrl[3] if len(ctrl) > 3 else None
         broken = mutate(text)
         rows = slot_rows(broken)
         out = []
@@ -424,7 +434,10 @@ def run_controls(text, gates):
         check_lock_identity(broken, out)
         check_list_numbering(broken, out)
         check_repair_citations(broken, gates, out)
-        if not any(k == category for k, _ in out):
+        # The OUTCOME, not merely the category. Asserting "a repair-citations message appeared" let
+        # a neutered parser pass both citation controls at once, because UNVERIFIABLE and
+        # FABRICATED share a category. That is the same defect the controls exist to catch.
+        if not any(k == category and (want is None or want in m) for k, m in out):
             vacuous.append((name, category))
     return vacuous
 
@@ -439,7 +452,9 @@ def self_test(draft, gates):
     """
     text = Path(draft).read_text()
     failures = []
-    for name, mutate, category in CONTROLS:
+    for ctrl in CONTROLS:
+        name, mutate, category = ctrl[0], ctrl[1], ctrl[2]
+        want = ctrl[3] if len(ctrl) > 3 else None
         broken = mutate(text)
         rows = slot_rows(broken)
         out = []
@@ -449,7 +464,7 @@ def self_test(draft, gates):
         check_lock_identity(broken, out)
         check_list_numbering(broken, out)
         check_repair_citations(broken, gates, out)
-        fired = any(k == category for k, _ in out)
+        fired = any(k == category and (want is None or want in m) for k, m in out)
         print(f"  {'OK  ' if fired else 'FAIL'} {name}: control {'fires' if fired else 'SILENT'}")
         if not fired:
             failures.append(name)

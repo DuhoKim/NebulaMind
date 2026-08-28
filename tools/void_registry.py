@@ -229,7 +229,7 @@ def _mut_unknown_row(text):
 
 
 CONTROLS = (
-    ("row loses coverage", _mut_drop_row, {"V05"}),
+    ("row loses its naming antecedent", _mut_drop_row, {"V05"}),
     ("duplicate id", _mut_duplicate, {"V02"}),
     ("phase outside vocabulary", _mut_bad_phase, {"V03"}),
     ("effect not VOID", _mut_bad_effect, {"V04"}),
