@@ -239,7 +239,14 @@ def check_repair_citations(text, gates, out):
         # \b after the version digits, or "V24-1" parses as version 2 finding 4 and reports a
         # citation nobody wrote. That false positive fired on every draft from V25 on.
         for seat, ver, fid in re.findall(r"(KIMI|GPT56|CODEX)-V(\d+)\b\s*[-–]?\s*(F?\d+)", cite):
-            if f"PREREG_TEXT_V{ver}_{seat}.md" not in [p.name for p in gates.glob("*.md")]:
+            # Match the report by SEAT and VERSION, not by one filename shape. Reports have been
+            # PREREG_TEXT_V*_SEAT.md, SECTION6_REVIEW_R*_SEAT.md and V*_WHOLE_REVIEW_SEAT.md as the
+            # review's subject changed. Hard-coding one pattern made the check report missing
+            # citations for reports sitting next to it under a newer name — the same staleness this
+            # tool exists to catch, in the tool.
+            names = [p.name for p in gates.glob("*.md")]
+            if not any(seat in n and f"V{ver}" in n and "REVIEW" in n.upper() or
+                       n == f"PREREG_TEXT_V{ver}_{seat}.md" for n in names):
                 out.append(("repair-citations",
                             f"cites {seat}-V{ver} {fid} but no PREREG_TEXT_V{ver}_{seat}.md exists"))
 
