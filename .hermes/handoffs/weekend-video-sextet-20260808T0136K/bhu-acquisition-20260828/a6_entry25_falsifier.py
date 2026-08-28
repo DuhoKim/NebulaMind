@@ -1,145 +1,157 @@
 #!/usr/bin/env python3
-"""A6 -- entry 25 (Gaztanaga, Symmetry 14, 1849, Part I). THE TIER IS TOO WEAK.
+"""A6 -- entry 25 (Gaztanaga, Symmetry 14, 1849, Part I): does it hold a promotable falsifier?
 
-Blanc's directive for this round: the blind spot in this sweep is the OPPOSITE error. Three
-entries re-read had all overclaimed, and A5 made it four. An entry whose tier is too WEAK -- one
-holding an author-stated number and threshold we have been ignoring -- is worth more than another
-demotion. This is that entry.
+GATED 2026-08-29. BOTH SEATS REFUSED THE PROMOTION, on the same attack:
+    CGATE_A6_VERDICT.md  PROMOTE_REFUTED_ATTACK1_QUALIFIED_CONSEQUENCE / RIGID NO / DISTINCTIVE NO / FIRES UNDETERMINED
+    AGATE_A6_VERDICT.md  PROMOTE_REFUTED_ATTACK_1                      / RIGID NO / DISTINCTIVE NO / FIRES YES
 
-THE FALSIFIER, in the author's own words and his own falsification language (Section 4):
+WHAT KILLED IT, and it is one word inside the sentence I was promoting:
 
-    "The BHU can also be challenged by a measurement a[t] the DE equation of state w != -1.
-     This would indicate that cosmic acceleration is not solely caused by the BHU event
-     horizon r_S."
+    "The BHU can also be challenged by a measurement a[t] the DE equation of state w != -1. This
+     would indicate that cosmic acceleration is not SOLELY caused by the BHU event horizon r_S."
 
-Named observable (dark-energy equation of state), exact threshold (w = -1), and a stated
-consequence for the model. The bibliography tiers entry 25 QUALITATIVE-DIRECTIONAL on the
-grounds that "the Lambda-r_S identification is a number, but it is fixed FROM the measured
-Lambda rather than predicting it". That is true of Lambda. It is NOT true of w, which the model
-fixes with no freedom at all -- and which nobody in this lane has looked at.
+"Not solely" leaves the horizon contribution in place and assigns the remainder to another
+cause. So the sentence is a calibrated test of the paper's SOLE-CAUSE ACCELERATION CLAIM, not a
+falsifier of the BHU model family. CGATE: "Promoting entry 25 as a live family falsifier would
+silently strengthen the author's stated consequence."
 
-WHY THIS ONE IS DIFFERENT FROM ENTRIES 21 AND 26. Both of those supplied a real number that
-could not fail, because an auxiliary absorbed any discrepancy: an uncomputed excitation
-amplitude in Roupas, an uncalibrated observer measure in Part II. Here there is no auxiliary.
-Lambda = 3/r_S^2 with r_S the FIXED exterior Schwarzschild radius is a true constant, and a
-constant dark-energy density forces w = -1 identically through the continuity equation. There is
-no parameter to move.
+I quoted that sentence four times before a seat pointed at the word. It was the entry-54 error
+with the sign flipped -- and the qualification was not even buried in the body, it was in the
+line itself.
 
-Pinned: ../bhu-reading-20260823/sources/sym14091849_clean.txt (entry 25)
-        ../bhu-reading-20260823/sources/2512.09486_clean.txt   (wwCDM+Omega_k on DESI DR1/DR2)
+WHAT SURVIVED, and it is not nothing. Both seats confirmed the narrow rigidity: r_S is NOT
+time-dependent in this construction, the intermediate Mdot != 0 is the interior Misner-Sharp mass
+relaxing to a fixed asymptote, and for the isolated horizon term a constant Lambda does force
+w = -1. CGATE searched for a later withdrawal and for any time-varying-Lambda mechanism and found
+neither. What fails is the STRONGER claim I made -- "no auxiliary" -- because the author's own
+"not solely" licenses an extra component, so w_eff can differ while the BHU horizon survives.
+
+AND THE INSTRUMENT WAS WORSE THAN THE ARGUMENT. CGATE: "All five check names claim more than
+their predicates test", and "the script's successful self-checks validate its hard-coded
+assertions, not the promotion." Check 4 was a tautology; check 5 hard-coded its own answer;
+checks 3 and 5 each computed a variable and then left it out of the predicate. Every check below
+is rewritten to compute or parse what its name claims, and check 4 now carries a positive control.
 """
 import re, sys, hashlib
 
-P25 = "../bhu-reading-20260823/sources/sym14091849_clean.txt"
+P25  = "../bhu-reading-20260823/sources/sym14091849_clean.txt"
 DESI = "../bhu-reading-20260823/sources/2512.09486_clean.txt"
 T = open(P25).read(); D = open(DESI).read()
+NT = " ".join(T.split())          # whitespace-normalised, for reliable phrase location
 checks = []
 def chk(name, pred, detail=""):
     if not isinstance(pred, bool): raise TypeError("chk needs a computed predicate")
     checks.append((name, pred, detail)); print(("PASS " if pred else "FAIL ") + name + ("  -- " + detail if detail else ""))
 
 print("=" * 96)
-print(f"A6 -- entry 25: an author-stated falsifier the tier does not reflect")
-print(f"     entry 25 sha256 {hashlib.sha256(T.encode()).hexdigest()[:12]} | DESI sha256 {hashlib.sha256(D.encode()).hexdigest()[:12]}")
+print("A6 -- entry 25: PROMOTION REFUSED by both seats. What the sentence actually supports.")
+print(f"     entry25 {hashlib.sha256(T.encode()).hexdigest()[:12]} | DESI {hashlib.sha256(D.encode()).hexdigest()[:12]}")
 print("=" * 96)
 
-# ---- 1. the falsifier sentence is really there --------------------------------------------
-m = re.search(r"The BHU can also be challenged by a measurement[^.]*\.[^.]*\.", T)
-print(f"\n1. THE SENTENCE, GREPPED NOT PARAPHRASED")
-print("   " + (" ".join(m.group(0).split()) if m else "<< NOT FOUND >>"))
-chk("the paper states a falsification condition on the DE equation of state", m is not None,
-    "'challenged' is the author's own word, not an interpretation of a hedge")
+# ---- 1. the sentence AND its qualifier -- the qualifier is now the finding -----------------
+sent = re.search(r"The BHU can also be challenged by a measurement[^.]*\.[^.]*\.", NT)
+s = sent.group(0) if sent else ""
+print(f"\n1. THE SENTENCE, AND THE WORD I MISSED IN IT")
+print("   " + s)
+chk("the falsification sentence carries its own qualifier 'not solely', which limits the consequence",
+    bool(sent) and "not solely" in s and "equation of state" in s,
+    "tests the OBSERVABLE, the sentence, AND the qualifier -- the earlier version tested only that a regex matched")
 
-# ---- 2. Lambda = 3/r_S^2, confirmed against the Friedmann equation the paper writes --------
-has_fried = bool(re.search(r"8\s*𝜋\s*𝐺\s*3\s*𝜌\s*\+\s*1\s*𝑟\s*𝑆", T)) or "1 𝑟 𝑆" in T
-print(f"\n2. THE DARK ENERGY TERM IS 1/r_S^2, FROM THE PAPER'S OWN FRIEDMANN EQUATION")
-print(f"   the paper writes  H^2 = (8 pi G/3) rho + Lambda/3 = (8 pi G/3) rho + 1/r_S^2")
-print(f"   so Lambda/3 = 1/r_S^2, i.e. Lambda = 3/r_S^2  ->  check: 3*(1/r_S^2)/3 == 1/r_S^2")
-rS = 2.7
-chk("Lambda = 3/r_S^2 is exactly the Lambda/3 = 1/r_S^2 the Friedmann equation carries",
-    abs((3.0/rS**2)/3.0 - 1.0/rS**2) < 1e-15 and has_fried,
-    "the DE sector is fixed entirely by r_S; there is no separate DE parameter in the model")
+# ---- 2. locate the Friedmann equation itself, not a loose substring -----------------------
+fried = re.search(r"𝐻\s*2\s*=\s*8\s*𝜋\s*𝐺\s*3\s*𝜌\s*\+\s*Λ\s*3\s*=\s*8\s*𝜋\s*𝐺\s*3\s*𝜌\s*\+\s*1\s*𝑟\s*𝑆", NT)
+print(f"\n2. THE DE TERM IS 1/r_S^2, LOCATED IN THE PAPER'S OWN FRIEDMANN EQUATION")
+print("   " + (fried.group(0) if fried else "<< EQUATION NOT LOCATED >>"))
+chk("the equation H^2 = 8piG/3 rho + Lambda/3 = 8piG/3 rho + 1/r_S^2 is present in the source",
+    fried is not None,
+    "the earlier check paired an arbitrary r_S=2.7 identity with a two-character substring search")
 
-# ---- 3. RIGIDITY -- the escape hatch I went looking for does not exist ---------------------
-# Appendix D: "there is an intermediate regime when we approach the dS phase where M reduces
-# its value (Mdot != 0)". If THAT M set r_S, Lambda would drift and w != -1 would be absorbed.
-# It does not: the varying M is the interior Misner-Sharp mass 2GM = R^3 H^2, which relaxes TO
-# the constant exterior value ("all that remains is the SBH mass: 2GM = r_S"), and the paper
-# says the outside observer "only sees r_S because r < r_S is causally disconnected".
-mdot = "reduces its value" in T
-relax = bool(re.search(r"all that remains is the SBH mass", T))
-outside = bool(re.search(r"only sees\s*𝑟\s*𝑆|outside only sees", T))
-print(f"\n3. IS THERE AN INTERNAL ESCAPE FROM w = -1?  (I went looking for one)")
-print(f"   Appendix D admits Mdot != 0 in an intermediate regime  : {mdot}")
-print(f"   but that M relaxes TO the constant SBH mass            : {relax}")
-print(f"   and the exterior observer sees only the fixed r_S      : {outside}")
-chk("the varying mass is the INTERIOR Misner-Sharp mass, not r_S -- so Lambda does not drift",
-    mdot and relax,
-    "the one auxiliary that could have absorbed w != -1 is closed by the paper's own Appendix D")
+# ---- 3. r_S constancy -- every clause the name claims is now IN the predicate --------------
+relax   = "all that remains is the SBH mass" in NT
+outside = bool(re.search(r"observer outside only sees", NT))
+mdot    = "reduces its value" in NT
+# and the negative half: no statement that Lambda or r_S evolves as part of the mechanism
+drift   = re.search(r"(time[- ]varying|evolving)\s*(Λ|Lambda|𝑟\s*𝑆)", NT)
+print(f"\n3. IS r_S CONSTANT? (all four conditions now enter the predicate)")
+print(f"   admits intermediate Mdot != 0 .................. {mdot}")
+print(f"   that M relaxes to the constant SBH mass ........ {relax}")
+print(f"   exterior observer sees only r_S ................ {outside}")
+print(f"   any time-varying Lambda/r_S mechanism stated ... {drift is not None}")
+chk("r_S is a fixed asymptote, not an evolving quantity -- so the horizon term's Lambda is constant",
+    mdot and relax and outside and drift is None,
+    "CGATE independently: 'the text does not make the exterior Schwarzschild radius time-dependent'")
 
-# ---- 4. constant DE density forces w = -1, by the continuity equation ---------------------
-# rho_dot + 3 H (1 + w) rho = 0. Lambda constant => rho_DE constant => rho_dot = 0
-# => 3 H (1 + w) rho = 0 => w = -1 for H != 0, rho != 0.  Solve it numerically as a check.
-H, rho = 0.07, 0.7
-w_implied = -1.0 - (0.0) / (3.0 * H * rho)      # rho_dot = 0
-print(f"\n4. A CONSTANT Lambda FORCES w = -1 IDENTICALLY")
-print(f"   continuity: rho_dot + 3H(1+w) rho = 0, with rho_dot = 0 for constant Lambda")
-print(f"   =>  w = {w_implied:+.6f}   (no free parameter anywhere in the chain)")
-chk("the model predicts w = -1 exactly, not approximately",
-    abs(w_implied + 1.0) < 1e-12,
-    "this is what makes it a CALIBRATED falsifier rather than a directional preference")
+# ---- 4. w from a REAL derivative, with a positive control ---------------------------------
+# w(a) = -1 - (1/3) dln rho / dln a. Differentiate numerically; check against known fluids.
+def w_from(rho_of_a):
+    import math
+    a1, a2 = 1.0, 1.0001
+    dlnrho = math.log(rho_of_a(a2)) - math.log(rho_of_a(a1))
+    dlna   = math.log(a2) - math.log(a1)
+    return -1.0 - dlnrho/(3.0*dlna)
+w_const = w_from(lambda a: 0.7)          # constant Lambda
+w_mat   = w_from(lambda a: 0.3*a**-3)    # matter   -> should give  0
+w_rad   = w_from(lambda a: 1e-4*a**-4)   # radiation-> should give +1/3
+print(f"\n4. A CONSTANT Lambda FORCES w = -1  [derived, with a positive control]")
+print(f"   estimator w = -1 - (1/3) dln(rho)/dln(a), differentiated numerically")
+print(f"   matter    rho ~ a^-3 -> w = {w_mat:+.5f}   (known  0.00000)")
+print(f"   radiation rho ~ a^-4 -> w = {w_rad:+.5f}   (known +0.33333)")
+print(f"   constant Lambda      -> w = {w_const:+.5f}   (claim -1.00000)")
+chk("the estimator reproduces matter and radiation, THEN gives w = -1 for constant Lambda",
+    abs(w_mat) < 1e-3 and abs(w_rad - 1.0/3.0) < 1e-3 and abs(w_const + 1.0) < 1e-9,
+    "the earlier check set rho_dot=0 by hand and asserted -1.0 == -1.0, which tested nothing")
 
-# ---- 5. is it LIVE? the best constraint in our own pinned corpus ---------------------------
-sig = re.findall(r"approximately\s*([0-9.]+)\s*𝜎|([0-9.]+)\s*𝜎\s*1\\sigma", D)
-band = re.search(r"deviation is slightly reduced to approximately[^.]*\.", D)
-print(f"\n5. DOES IT FIRE TODAY? -- from the PINNED wwCDM+Omega_k analysis of DESI DR1/DR2")
-print(f"   DR2+BBN, DR2+BBN+OHD .......... consistent with w0 = -1")
-print(f"   DR1+BBN, DR1+BBN+OHD .......... ~1.0 sigma (phantom side)")
-print(f"   DR1+BBN+PP, +OHD .............. ~0.5 sigma")
-print(f"   DR2+BBN+PP, +OHD .............. ~1.8 sigma (quintessence side)")
-maxdev = 1.8
-chk("the falsifier is LIVE but does NOT currently fire",
-    maxdev < 3.0,
-    f"largest deviation from w0 = -1 in the pinned analysis is {maxdev} sigma -- a real test the model passes")
+# ---- 5. PARSE the DESI constraints and compute the offsets ourselves ----------------------
+rows = re.findall(r"-0\.(9\d\d)\^\{\+0\.(\d+)\}_\{-0\.(\d+)\}|-0\.(9\d\d)\\pm\s*0\.(\d+)", D)
+vals = []
+for m in rows:
+    if m[0]: vals.append((float("0."+m[0]), float("0."+m[1])))
+    elif m[3]: vals.append((float("0."+m[3]), float("0."+m[4])))
+print(f"\n5. HOW FAR IS w0 FROM -1?  [parsed from the pinned table, offsets computed here]")
+offs = []
+for v, e in vals:
+    off = (1.0 - v)/e; offs.append(off)
+    print(f"   w0 = -{v:.3f} +/- {e:.3f}   ->  ({1.0:.0f} - {v:.3f})/{e:.3f} = {off:.2f} sigma from -1")
+maxoff = max(offs) if offs else float("nan")
+chk("the pinned third-party fit puts w0 within ~2 sigma of -1, computed not quoted",
+    len(offs) >= 4 and maxoff < 2.0,
+    f"largest computed offset {maxoff:.2f} sigma; the paper's prose rounds this to 'approximately 1.8', "
+    f"which CGATE noted is tolerable but not reproduced exactly from the marginalised numbers")
 
 print("""
-6. WHAT I COULD NOT VERIFY -- stated, not omitted   [Blanc's second directive]
+6. THE SPLIT, RECORDED RATHER THAN RESOLVED   [Blanc's instruction]
 
-   TESTIMONY, NOT RECEIPT. The sigma values in check 5 come from a THIRD-PARTY analysis
-   (2512.09486, a wwCDM+Omega_k CPL-style fit by other authors using DESI data). It is NOT the
-   DESI collaboration's own headline w0-wa result. I believe the collaboration's DR2 release
-   quoted a larger significance for evolving dark energy, but NO PINNED SOURCE IN THIS CORPUS
-   SUPPORTS THAT NUMBER and I am not asserting it from memory. Until a DESI collaboration paper
-   is pinned, "does not fire" is established only at the strength of this one third-party fit.
-   That gap is the single most important thing to close before this falsifier is quoted.
+   FIRES:  AGATE said YES.  CGATE said UNDETERMINED.  I record both and adopt neither.
 
-   ALSO UNVERIFIED: the paper writes "w != -1" without saying whether w is constant or the
-   (w0, wa) pair. The rigidity argument in checks 3-4 holds for BOTH readings -- a constant
-   Lambda predicts w(z) = -1 at every redshift -- so the ambiguity does not weaken the test,
-   but the paper does not state which it means and I am not inferring it.
+   Both seats went outside the pinned corpus to the DESI collaboration itself, which is the gap
+   I had flagged as testimony. CGATE gives the citation: DESI DR2 Results II, arXiv:2503.14738,
+   published Phys. Rev. D 112, 083515 (2025), reporting w0waCDM preferred over LambdaCDM at
+   3.1 sigma for BAO+CMB and 2.8-4.2 sigma once supernovae are added, depending on the sample.
 
-   MY OWN DERIVATION, flagged as mine: check 3's rigidity conclusion is my reading of Appendix D
-   plus the exterior-mass discussion. The author never writes "w = -1 is rigid". He writes the
-   falsification sentence and, separately, the equations that make it rigid. Joining them is my
-   step and it is what the gate should attack hardest.
+   AGATE reads that as the falsifier firing. CGATE refuses the step, and its reasoning is the
+   more careful one: the BHU paper supplies NO statistical rejection rule, my script invented the
+   3 sigma threshold, DESI's preference is dataset- and model-dependent, and the author's stated
+   consequence is only "not solely caused". So the honest value is UNDETERMINED.
 
-7. A SECOND, WEAKER CLAIM in the same conclusion, recorded but not promoted
+   TESTIMONY, NOT RECEIPT: arXiv:2503.14738 is NOT pinned in this corpus. Both seats reached it
+   by search. Nothing above is asserted on it. Pinning that paper is the single highest-value
+   next acquisition in this lane, and it would settle FIRES.
 
-   "At the time of CMB last scattering, R corresponds to an angle theta = chi*/chi_o ~= 60 deg.
-    Such super-horizon scales COULD BE RELATED to the so-called CMB anomalies."
-   A specific number, but hedged with "could be related" and attached to no threshold. That is
-   QUALITATIVE-DIRECTIONAL and stays there.
+   CGATE also corrected my "does not fire" in the other direction: the collaboration results
+   "overturn the script's suggestion that the best reachable evidence is only the pinned 1.8
+   sigma fit." My framing understated what is reachable.
 
-8. PROPOSED TIER CHANGE -- the first PROMOTION in this sweep
+7. WHAT ENTRY 25 ACTUALLY HOLDS, at the strength both seats allow
 
-   entry 25:  QUALITATIVE-DIRECTIONAL  ->  CALIBRATED-FALSIFIER
-   on the w != -1 statement alone, not on Lambda = 3/r_S^2 (which IS fitted from the measured
-   Lambda, exactly as the bibliography says) and not on the 60 deg angle.
+   NOT: a family-level calibrated falsifier.  Tier stays QUALITATIVE-DIRECTIONAL.
+   BUT: a calibrated test of the paper's SOLE-CAUSE ACCELERATION CLAIM -- w != -1 would show the
+   horizon is not the whole of the acceleration, which is a narrower and genuinely stated
+   consequence. Worth a bibliography NOTE, not a tier change.
 
-   NOT APPLIED. Entry 51's promotion went through a gate and so must this one.
+   DISTINCTIVE: NO from both. LambdaCDM predicts w = -1 too, so w != -1 rejects a pure
+   cosmological-constant sector in both and selects between neither. Recording this separately
+   from falsifiability, because this lane demoted a claim once for conflating the two.
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")
-print("\nSTATUS: UNGATED. A tier PROMOTION changes the family's live-falsifier count, which is the\n"
-      "number this whole programme reports. It does not move until two seats have attacked it.")
+print("\nSTATUS: GATED. Promotion REFUSED by both seats. No tier change proposed.")
 sys.exit(0 if n_ok == len(checks) else 1)
