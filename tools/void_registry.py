@@ -121,6 +121,13 @@ def compound_gaps(text: str):
     It CANNOT prove completeness: it only inspects the frozen trigger clauses, and only their
     slash/or structure. A clean result here is not evidence the registry is complete. It exists so
     that this particular class of gap is caught by a check rather than by a careful reader.
+
+    IT ALSO CANNOT TELL A SUBJECT FROM A CONDITION, and that produces false positives. §5 says
+    "permutation/statistic/protocol non-finite/degenerate failures": the FIRST compound is the
+    subjects, the SECOND is the conditions. `VOID-5-NONFINITE` names the condition generically
+    across all three subjects, so "permutation" and "statistic" are covered and only "degenerate"
+    is a genuinely unnamed condition. The heuristic flags all three. Treat its output as candidates
+    for a reader to adjudicate, never as a count of gaps.
     """
     rows = extract(text)
     out = []
@@ -290,8 +297,9 @@ def main() -> int:
     print(f"  registry_digest  {digest(rows)}")
     gaps = compound_gaps(text)
     if gaps:
-        print(f"  ADVISORY — {len(gaps)} compound-branch candidate(s) with no antecedent for that "
-              f"source. Heuristic: not a refusal, and NOT proof of completeness either way.")
+        print(f"  ADVISORY — {len(gaps)} compound-branch CANDIDATE(s), not gaps. Heuristic: not a "
+              f"refusal, no proof of completeness, and it cannot tell a subject from a condition "
+              f"(see docstring). A reader must adjudicate each.")
         for s, w, _ in gaps:
             print(f"    {s:<6} {w}")
     for b in bad:

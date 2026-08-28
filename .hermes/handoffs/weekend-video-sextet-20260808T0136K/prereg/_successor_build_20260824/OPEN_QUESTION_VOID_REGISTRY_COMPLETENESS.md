@@ -37,6 +37,19 @@ I told both seats that coverage is only verified against §6.1's row table, and 
 **A negative claim ("I found no gaps") is weaker evidence than three specific positives, and the
 positives check out.** This is not a tie; CODEX missed them. But the remedy is still not mine.
 
+## Adjudicated 02:35 — three gaps, not five
+
+`void_registry.py`'s compound heuristic reports **five** candidates. Two are false positives and a
+human should not be handed the larger number. §5 reads
+`permutation/statistic/protocol non-finite/degenerate failures`: **the first compound is the
+subjects, the second is the conditions.** `VOID-5-NONFINITE` names the condition generically across
+all three subjects, so `permutation` and `statistic` are covered. Only `degenerate` is an unnamed
+condition.
+
+**The three real gaps are exactly the three GPT56 named** — `degenerate`, `digest`, `chosen` — which
+is also a point in GPT56's favour over CODEX's "I found none". The heuristic's docstring and its
+output now say it cannot distinguish a subject from a condition.
+
 ## Why I am stopping rather than fixing it
 
 Adding or renaming a VOID antecedent, or changing a phase, **changes what the preregistration
