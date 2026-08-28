@@ -229,6 +229,7 @@ def main():
     subj_v = int(subj.group(1)) if subj else None
     for r in rows:
         if int(r["to"]) <= 15 or (subj_v is not None and int(r["to"]) >= subj_v):
+            # (in-band coverage stops at the predecessor; > subject is out of scope entirely)
             continue
         # A written row may say anything; what it must not do is contradict a computed digest.
         pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b")
@@ -261,7 +262,14 @@ def main():
     for r in rows:
         if int(r["to"]) <= HISTORIC_EXEMPT_BEFORE:
             continue                      # exempt by stated rule
-        if subject_ver is not None and int(r["to"]) >= subject_ver:
+        if subject_ver is not None and int(r["to"]) > subject_ver:
+            # OUT OF SCOPE. A draft is not answerable for transitions that postdate it. The first
+            # version used >= subject_ver, so every future transition entered the sidecar branch and
+            # was mislabelled "the current transition". CODEX-V28-1 proved it by building a mirror
+            # with a synthetic V29 and no V28→V29 mapping: checking the *unchanged* V28 then failed
+            # on a transition that had nothing to do with V28.
+            continue
+        if subject_ver is not None and int(r["to"]) == subject_ver:
             # In-band coverage stops at the predecessor — but the sidecar OWNS this transition, so
             # it must still be checked there. The first version skipped it entirely, which meant the
             # one row that most needs verifying was the one guaranteed never to be examined: a guard
