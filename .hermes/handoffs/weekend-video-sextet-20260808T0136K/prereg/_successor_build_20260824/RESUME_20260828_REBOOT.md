@@ -5,14 +5,20 @@ recalling decisions.** Written for a reader with none of today in memory.
 
 ## TWO ROUNDS ARE IN FLIGHT RIGHT NOW — read their reports before doing anything else
 
-Dispatched 19:09 and 19:11 KST, four seats. If this session died, the seats may still have written:
+Dispatched 19:11 and 19:20 KST, four seats. If this session died, the seats may still have written:
 
-    gates/V30_WHOLE_REVIEW_{GPT56,CODEX}.md    V30  e81becce1b19d88a302ce7004e930467d9b12b24828bcfe037913a2eb978fecc
+    gates/V31_WHOLE_REVIEW_{GPT56,CODEX}.md    V31  ce1b6914eae0d36b38d5fc77bb0a8d17c3502d4a007611ad39efe7fe78f1349c
     gates/BS2A_CODE_GATE_{GPT56,CODEX}.md      code c6fe6930c0ae451555e278ec2617c7ae647bba61d6f6af729030c6af3899d59e
 
-**Check those four files first.** Briefs are `gates/BRIEF_V30_REVIEW.md` and
-`gates/BRIEF_BS2A_CODE_GATE_R3.md`; runners are `gates/_tmp_v30_round.sh` and
-`gates/_tmp_bs2acode_r3.sh`.
+**Check those four files first.** Briefs are `gates/BRIEF_V31_REVIEW.md` and
+`gates/BRIEF_BS2A_CODE_GATE_R3.md`; runners are `gates/_tmp_v31_round.sh` and
+`gates/_tmp_bs2acode_r3.sh`. **If `BS2A_CODE_GATE_*.md` is still dated 16:40/16:41, round 3 never
+wrote and those are the round-2 reports** — round-2 copies are safe in `gates/_bs2a_round2/`.
+
+**V30 was NOT CLEAR from both seats** (`gates/V30_WHOLE_REVIEW_*.md`) on: the §1 monopole/dipole
+conflation, and `prereg_trace.py --check` failing on a missing V28→V29 §10 row and a missing
+V29→V30 sidecar entry. GPT56 additionally found §1 line 122 overstated McAdam & Shamir. **V31
+repairs all three** — see commit `efb2fd04f`.
 
 **`hermes` is NOT on the agent shell's PATH after a reboot.** Use
 `/Users/duhokim/.hermes/hermes-agent/venv/bin/hermes`. A bare `hermes` dies with `command not found`
@@ -24,13 +30,22 @@ and the runner log shows dispatch and done at the **same second** — that is th
 two-seat clear. V30 adds motivation on top of it and is **under review as of 19:09**.
 
     V29  542ee7d93dec457a0c9ea55327040550eec530675faf849c4e07750062d99343   CLEAR ×2
-    V30  e81becce1b19d88a302ce7004e930467d9b12b24828bcfe037913a2eb978fecc   IN REVIEW
+    V30  e81becce1b19d88a302ce7004e930467d9b12b24828bcfe037913a2eb978fecc   NOT CLEAR ×2
+    V31  ce1b6914eae0d36b38d5fc77bb0a8d17c3502d4a007611ad39efe7fe78f1349c   IN REVIEW
 
-**The V30 sentence most likely to fail:** §1 compares Galaxy Zoo's ~15% bias to Longo's 4% dipole
-amplitude as "nearly four times the signal being sought". The 15% is direction-independent; the 4%
-is a dipole. `gates/FRAMING_LEVERAGE_IS_IDENTIFIABILITY_20260828.md` says a constant bias is
-parity-even and separable from a parity-odd dipole — **so that sentence may imply a danger this
-lane's own analysis denies.** The referees were pointed at it explicitly.
+**The V31 §1 paragraph is the thing to watch.** V30 divided a direction-independent annotation
+excess by a dipole amplitude. The first repair removed the ratio and lost the argument with it; the
+principal caught that. **The danger is projection, not magnitude** — a bias that large needs only
+mild position-dependence to counterfeit a dipole of comparable size, and BS-3's
+`antisymmetry_receipt` bounds that component by measurement rather than assumption. **No numerical
+projection fraction is asserted**, because GPT56 showed the ~15% is a relative difference between
+annotation counts and does not share a denominator with a normalised amplitude. The open risk is
+that the paragraph has now retreated too far to motivate BS-3; the seats were asked both ways.
+
+**Line 122 adjudication (the seats disagreed):** GPT56 said V30 overstated McAdam & Shamir; CODEX
+ruled it held. **GPT56 was right** — verified from arXiv:2302.06530's body, which says of Land's
+mirrored-image control "these probabilities are not considered statistically significant" (P~0.13,
+P~0.21). CODEX had read only the abstract, which does not isolate that residual.
 
 ## What is blocked, and it is not the text
 
