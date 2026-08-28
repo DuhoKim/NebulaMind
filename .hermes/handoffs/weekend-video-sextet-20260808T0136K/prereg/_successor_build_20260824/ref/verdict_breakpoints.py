@@ -187,23 +187,35 @@ def self_test() -> int:
     p_of_A = _p_step()
     sc, sb, fl = 0.004, 0.003, 0.010
 
-    # 1. TRANSCRIPTION. verdict_at must agree with the production branch on a grid. This is the
-    #    trust root: everything else is derived from these conditions.
+    # 1. TRANSCRIPTION, against PRODUCTION ITSELF. GPT56 found the previous version compared
+    #    verdict_at() to another local restatement of the same if/elif - a control that could not
+    #    fail, in the check called the trust root. This calls v9's own `_decide_from()` and takes
+    #    its sigma/floor back out of the returned record, so the comparison is against the
+    #    production decision rather than against a copy of my own transcription.
     import itertools
+    import numpy as _np
+
+    class _Mask:                      # _decide_from only reads .n and .digest for the record
+        n, digest = 49211, "fixture"
+
+    # a_lb_b must clear v9's A_FLOOR = 0.85 or adjudicate_path raises InconclusiveByCalibration -
+    # the prereg's own pre-unblinding calibration halt, enforced in the production code.
+    cal = {"a_hat": 0.90, "sigma_a": 0.01, "a_lb": 0.87,
+           "a_b": _np.array([0.90, 0.90, 0.90]), "a_lb_b": _np.array([0.87, 0.87, 0.87]),
+           "cov_a": _np.eye(3) * 1e-4}
+    assert V9.adjudicate_path(cal) == "SCALAR", "fixture must select the scalar path"
+    w = 2.0 * cal["a_hat"] - 1.0
     n_checked = 0
-    for A, p in itertools.product([-0.08, -0.0408, -0.001, 0.0, 0.001, 0.02, 0.0408, 0.08],
-                                  [0.0005, 0.001, 0.01, 0.05, 0.06, 0.9]):
-        mine = verdict_at(A, p, sc, sb, fl)
-        if p < V9.P_REPRODUCED and A > 0.0 and abs(A - V9.A_LONGO) <= 3.0 * sc and A >= fl:
-            prod = "REPRODUCED-LONGO"
-        elif p > V9.P_REJECT_MIN and (abs(A) + 3.0 * sb) < V9.A_LONGO:
-            prod = "REJECTED-AT-LONGO-AMPLITUDE"
-        else:
-            prod = "INCONCLUSIVE"
+    for A_target, p in itertools.product(
+            [-0.08, -0.0408, -0.001, 0.0, 0.001, 0.02, 0.0408, 0.08],
+            [0.0005, 0.001, 0.01, 0.05, 0.06, 0.9]):
+        rec = V9._decide_from(A_target * w, p, 0.002, _Mask(), cal)
+        mine = verdict_at(rec["A_L"], p, rec["sigma_comb"], rec["sigma_ours_band"],
+                          rec["evaluated_floor"])
         n_checked += 1
-        if mine != prod:
-            fails.append(f"transcription A={A} p={p}: {mine} != {prod}")
-    print(f"  {'OK  ' if not fails else 'FAIL'} transcription matches the production branch "
+        if mine != rec["verdict"]:
+            fails.append(f"transcription A={A_target} p={p}: {mine} != {rec['verdict']}")
+    print(f"  {'OK  ' if not fails else 'FAIL'} transcription matches v9._decide_from() "
           f"on {n_checked} (A, p) points")
 
     # 2. Every branch condition contributes its locus, and the p gates appear as A-values.
