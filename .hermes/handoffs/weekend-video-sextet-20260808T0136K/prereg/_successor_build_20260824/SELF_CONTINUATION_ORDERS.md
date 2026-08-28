@@ -58,7 +58,7 @@ Everything else is specification quality. Progress so far:
 | **BS-2a code gate** | **CLOSED.** Round 6 CLEAR ×2, scoped "CLEAR for FREEZING the quality-predicate component; not a fill authorization". Pinned in V34's §7 row with its recorded limit. |
 | **Prereg draft** | V34 (`1c45d32d…`). Both seats cleared the V33 *document*. Untouched since, deliberately. |
 | **VOID / clause 10** | **Mechanism CLEARED, content BLOCKED.** Both seats agree the BS-2v circularity claim is false and that pinning is necessary-not-sufficient. They split on completeness; three real gaps verified (`degenerate`, `digest`, `chosen`). **Awaiting a human.** |
-| **Gain control** | v5 findings repaired; **v6 dispatched 02:42** (scoped). T-completeness parked. |
+| **Gain control** | **v6 CLEAR ×2 (scoped) at 02:56.** All four repairs hold, including the transcription check against `_decide_from()`. The ONLY remaining gain blocker is the parked T-completeness fork. |
 
 ## TWO DECISIONS AWAIT A HUMAN — nothing else is blocked on them
 
