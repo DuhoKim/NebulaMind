@@ -48,16 +48,55 @@ required by BS-8f/BS-5f.** It needs no new images.
 
 ## 3. The statistic
 
-With `ĝ_b = 2·â_b − 1` over the three `cos θ` tertiles, `c̄_b` the count-weighted mean `cos θ` in
-bin `b`, and `Cov(ĝ) = 4·Cov(â)` from BS-8f:
+With `ĝ_b = 2·â_b − 1` over the three `cos θ` tertiles, `c̄_b` the mean `cos θ` in bin `b`, and
+`Cov(ĝ) = 4·Cov(â)` from BS-8f, fit the **uncentred** model by GLS:
 
-    ĝ_bar = Σ_b n_b ĝ_b / Σ_b n_b
-    slope  = generalised least squares of ĝ_b on c̄_b, using Cov(ĝ)      [3 points, 1 slope]
-    γ̂     = slope / ĝ_bar
-    σ_γ    = propagated from Cov(ĝ) by the delta method
+    ĝ_b = θ₀ + θ₁·c̄_b            so  θ₀ = g₀  and  θ₁ = g₀·γ  by construction
+    γ̂  = θ₁ / θ₀                 — slope over INTERCEPT, both from the same fit
+    σ_γ = √( J·Cov(θ)·Jᵀ ),      J = [ −θ₁/θ₀² , 1/θ₀ ]
+
+**`γ̂` is normalised by the fitted intercept, never by a sample mean.** v3 divided the slope by the
+count-weighted mean `ĝ_bar`, which is `g₀(1 + γ·mean(c))`, so the statistic it actually defined was
+`γ/(1 + γ·mean(c))` — not `γ`. On the frozen retained geometry (`mean(c) = −0.158387518`) a true
+`γ = +0.2` read as `+0.2065` and `γ = +0.5` as `+0.5430`. Both seats found this
+(GPT56-GAINV3-1, CODEX-GAINV3-1); it was the same class of error as the v2 blocker, one layer in.
+
+**This also dissolves CODEX's `n_b` ambiguity rather than pinning a fourth convention.** `n_b` was
+undefined between the population tertile count, the hand-check allocation (which is deliberately
+*not* population-proportional, v9:1378–1443), and the GLS's own implied pivot. **The intercept
+normalisation removes `n_b` from the statistic entirely.**
 
 **GLS, not OLS, because `Cov(â)` is not diagonal** — `epsilon` is one shared quantity and its
 derivative enters every bin (v9:1446). Treating the bins as independent would understate `σ_γ`.
+
+### The contract is `ref/gain_gradient_estimator.py`, not this paragraph
+
+Both seats found the GLS and delta-method "named, not written down", with no singular-covariance
+rule. **They are now code.** `estimate_gamma(a_hat, cov_a, c_bar)` returns a result or a refusal set,
+never a partial answer, and pins every choice: the design matrix including the intercept, a Cholesky
+solve rather than an explicit inverse, eigenvalue-based rank and conditioning checks *before* any
+inverse, the delta-method Jacobian written out, and the exact receipt fields.
+
+| code | refusal |
+|---|---|
+| `G01` | an input is not finite |
+| `G02` | the covariance is not symmetric |
+| `G03` | the covariance is rank-deficient — **no generalised inverse is substituted**, because choosing one would itself be an unpinned freedom |
+| `G04` | the covariance is worse-conditioned than the frozen ceiling `1e12` |
+| `G05` | the design matrix is rank-deficient; the bin centres do not span a slope |
+| `G06` | the intercept is within `3σ` of zero, so `slope/intercept` is undefined |
+| `G07` | a bin accuracy is outside v9's `(0.5, 1.0]` domain |
+| `G08` | **declared unreachable** and exempted from coverage *by name* — after G01/G03/G05/G06 the result cannot be non-finite. Not counted as covered. |
+
+`--self-test` recovers `γ` exactly on noiseless fixtures at `γ ∈ {0, ±0.2, ±0.5}`, fires every
+reachable refusal with an exact code set, computes coverage from the controls that ran, and **carries
+a regression control asserting the old sample-mean normalisation gives a different, predicted
+number** — so the defect cannot return silently.
+
+**And `verify_mu_gamma.py` now builds `γ̂` through this recipe end-to-end**, binning simulated data
+with v9's own `calibration_bins()` and calling the same estimator. GPT56 observed that the earlier
+verifier "does not construct `γ̂` by §3's three-bin recipe" — a guard that could not fail for this
+defect. It can now.
 
 ### The bias, derived and then verified by simulation
 
