@@ -1,0 +1,175 @@
+#!/usr/bin/env python3
+"""PREREG TRACE — generate §10's revision trace from the diffs, instead of writing prose about it.
+
+WHY THIS EXISTS
+---------------
+Blanc, 2026-08-28:
+
+    gpt56 records the V16→V17 row as ACCURATE in V20, ACCURATE in V21, then NOT ACCURATE in V22.
+    Nobody edited that row. Later edits made a previously true statement false.
+
+    §10 grows one trace row per round — six by V22 — each a fresh assertion about history that a
+    later edit can invalidate. The document is generating self-description obligations faster than
+    it closes them.
+
+That is the describe-versus-compute law applied to a document's account of itself. Twenty-one gates
+established that self-describing prose always falls and self-computing checks never did.
+
+THE DESIGN DECISION THAT MATTERS
+--------------------------------
+This emits **what changed**, never **what the change accomplished**.
+
+"Repaired the Class E count from 7 to 8" is a characterisation. It was true when written, and became
+false when a later round revealed the table had held 8 all along — the sentence did not change, the
+world around it did. A characterisation carries an implicit claim about correctness, and correctness
+is exactly what later evidence revises.
+
+"§7: 1 line changed; class-E count 7 → 8" is an observation. It cannot go stale, because it says only
+what the bytes did. Whether that was a repair or a regression is a finding, and findings live in the
+referee reports where they can be superseded without rewriting history.
+
+So: sections touched, line counts, digest chain, and any §7 count transitions — all computed. Intent
+is referenced by finding ID only, never restated.
+
+    python3 tools/prereg_trace.py <dir>                    # emit the trace table
+    python3 tools/prereg_trace.py <dir> --check <draft>    # compare against the draft's §10
+
+Exit 0 clean, 1 if --check finds the written trace disagrees with the computed one.
+"""
+from __future__ import annotations
+
+import argparse
+import difflib
+import hashlib
+import re
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from prereg_lint import count_rows  # noqa: E402
+
+DRAFT = re.compile(r"PREREG_SUCCESSOR_DRAFT_V(\d+)_(\d+)\.md$")
+HEADING = re.compile(r"^#{2,3}\s+(§[\d.]+|[A-Za-z].*)")
+
+
+def drafts(d: Path):
+    """Every draft in the directory, ordered by version number."""
+    found = []
+    for p in sorted(d.glob("PREREG_SUCCESSOR_DRAFT_V*.md")):
+        m = DRAFT.search(p.name)
+        if m:
+            found.append((int(m.group(1)), p))
+    return [p for _, p in sorted(found)]
+
+
+def sha(p: Path):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def section_of(lines, idx):
+    """The nearest §-heading at or above line idx — which section a changed line sits in."""
+    for i in range(idx, -1, -1):
+        m = HEADING.match(lines[i])
+        if m:
+            t = m.group(1)
+            return t.split()[0] if t.startswith("§") else t[:28]
+    return "(preamble)"
+
+
+def changed_sections(a_text, b_text):
+    """Map section -> (added, removed), computed from a real line diff."""
+    a, b = a_text.splitlines(), b_text.splitlines()
+    stats = {}
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag == "equal":
+            continue
+        for j in range(j1, j2):
+            s = section_of(b, j)
+            stats.setdefault(s, [0, 0])[0] += 1
+        for i in range(i1, i2):
+            s = section_of(a, i)
+            stats.setdefault(s, [0, 0])[1] += 1
+    return stats
+
+
+def count_transition(a_text, b_text):
+    """§7 class counts before and after — the invariant that reopened at V22."""
+    a, b = count_rows(a_text), count_rows(b_text)
+    bits = []
+    for cls in ("P", "E"):
+        if a[cls] != b[cls]:
+            bits.append(f"class-{cls} rows {a[cls]} → {b[cls]}")
+    return "; ".join(bits) or "no row-count change"
+
+
+def build(d: Path):
+    ds = drafts(d)
+    rows = []
+    for prev, cur in zip(ds, ds[1:]):
+        pt, ct = prev.read_text(), cur.read_text()
+        stats = changed_sections(pt, ct)
+        touched = ", ".join(
+            f"{s} (+{a}/−{r})" for s, (a, r) in sorted(stats.items(), key=lambda kv: -sum(kv[1]))[:6]
+        )
+        rows.append({
+            "from": DRAFT.search(prev.name).group(1),
+            "to": DRAFT.search(cur.name).group(1),
+            "from_sha": sha(prev)[:16],
+            "to_sha": sha(cur)[:16],
+            "touched": touched or "(no textual change)",
+            "counts": count_transition(pt, ct),
+        })
+    return rows
+
+
+def render(rows):
+    out = ["| transition | predecessor sha256 (16) | result sha256 (16) | sections changed (+added/−removed) | §7 row counts |",
+           "|---|---|---|---|---|"]
+    for r in rows:
+        out.append(f"| V{r['from']} → V{r['to']} | `{r['from_sha']}` | `{r['to_sha']}` | "
+                   f"{r['touched']} | {r['counts']} |")
+    out.append("")
+    out.append("*Generated by `tools/prereg_trace.py` from the draft bytes. Every field is computed: "
+               "digests by sha256, sections and line counts by diff, row counts by parsing the §7 "
+               "table. No field characterises whether a change was a repair — that is a finding, and "
+               "findings are cited by ID from the referee reports so they can be superseded without "
+               "rewriting this table.*")
+    return "\n".join(out)
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("dir")
+    ap.add_argument("--check", help="draft whose written §10 trace should agree with the computed one")
+    args = ap.parse_args()
+
+    d = Path(args.dir)
+    rows = build(d)
+    if not rows:
+        print("no consecutive draft pairs found")
+        return 1
+
+    if not args.check:
+        print(render(rows))
+        return 0
+
+    text = Path(args.check).read_text()
+    bad = 0
+    print(f"prereg trace check — {Path(args.check).name}")
+    for r in rows:
+        # A written row may say anything; what it must not do is contradict a computed digest.
+        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}")
+        if not pat.search(text):
+            print(f"  MISSING: no written row for V{r['from']} → V{r['to']}")
+            bad += 1
+            continue
+        if r["to_sha"][:12] not in text and r["from_sha"][:12] not in text:
+            print(f"  UNPINNED: V{r['from']} → V{r['to']} cites neither endpoint digest")
+            bad += 1
+    print(f"  {len(rows)} computed transition(s); {bad} problem(s)")
+    return 1 if bad else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
