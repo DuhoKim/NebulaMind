@@ -47,18 +47,31 @@ verifies after rather than during. Meter figures below are Blanc's captures, car
 |---|---|---|
 | **Hwao** | `claude-opus-5[1m]` | self-reported from its own system prompt — authoritative for itself |
 | **Blanc** | `claude-opus-5[1m]` | Blanc verified from its own system prompt, 2026-08-28 |
-| **Tori** | **UNVERIFIED — do not infer** | Blanc asked at **14:04 KST 2026-08-28**; Tori was mid-task and has not answered. Two confirmed members of a three-member set are not the set. Blanc will supply hers when it lands. |
+| **Tori** | `claude-opus-5[1m]` | Tori verified from her own system prompt, **17:16 KST 2026-08-28**. Asked three times: the first two were buried under the corpus sweep. |
 
-### Meters — captured 2026-08-28T05:00:52Z from claude.ai/settings/usage, page reading "Last updated: just now"
+**All three verified, each from its own system prompt — none inferred from the others.** The row above
+stood UNVERIFIED for three hours rather than being closed from two confirmations, and holding it open
+cost nothing while closing it early would have made a three-member claim from two members. That is the
+standard this table should keep.
 
-| meter | reading |
-|---|---|
-| **All models, weekly** | **69% used** ← the meter that governs the coordinators |
-| Fable, weekly | 100% used |
-| Current session | 4% |
-| Reset | both weeklies **Saturday 2:00 PM** |
-| Usage credits | **ON** |
-| Plan | **Max (20×)**, limits promo-boosted through **Aug 31** |
+**The Fable line is `claude-seat`, not the coordinators.** No coordinator draws on the Fable weekly.
+
+### Meters — two captures, both recorded
+
+**Latest: 2026-08-28T06:39Z**, settings page, **confirmed independently via the API path Blanc
+repaired** — two routes agreeing, not one route trusted.
+
+| meter | reading | note |
+|---|---|---|
+| **All models, weekly** | **70% used** | ← governs all three coordinators |
+| Fable, weekly | 100% used | **belongs to `claude-seat`; no coordinator draws on it** |
+| Reset | both weeklies in **~21 hours** from capture | |
+
+Prior capture **2026-08-28T05:00:52Z** (settings page, "Last updated: just now"): all-models 69%,
+Fable 100%, session 4%, usage credits ON, plan Max (20×) promo-boosted through Aug 31.
+
+**All-models moved 69% → 70% between captures while Fable did not move.** That is independent
+evidence the coordinators are not spending against Fable, separate from the three model IDs.
 
 **These supersede the 2026-08-27 17:39 table above**, which is kept as the dated reading it was.
 Note the all-models figure moved 64% → 69% between captures; the Fable figure did not move because
@@ -68,9 +81,9 @@ the coordinators are not spending against it.
 `.hermes/state/claude_plan_usage.json` was **20.5 hours stale**. Refreshed at the capture above. A
 stale meter reading as a live one is how the exhausted-pool premise survived a full day.
 
-**Consequence.** If the coordinators run on Opus they are not drawing on the Fable weekly at all, so
-**all-models at 69% governs, not Fable weekly at 100%.** Blanc reported the opposite to Duho earlier
-on 2026-08-28 and corrected it within the hour.
+**Consequence.** All three coordinators run on Opus, so none draws on the Fable weekly at all:
+**all-models — 70% at the latest capture — governs, not Fable weekly at 100%.** Blanc reported the
+opposite to Duho earlier on 2026-08-28 and corrected it within the hour.
 
 **Consequence for the drafting doctrine below.** The doctrine still stands, but **not for the reason
 it gives.** Its stated premise — that coordinators burn an exhausted pool — is false. The reasons that
@@ -80,9 +93,8 @@ survive are independent of cost:
 - a coordinator's context is better spent on work needing the whole lane in one head;
 - a seat draft is a draft, and separating drafting from refereeing is the point.
 
-**Do not cite the 100%-exhausted figure as justification for anything.** Two of three coordinators
-are verifiably on Opus; the third has not been checked, and two confirmed members of a three-member
-set are not the set.
+**Do not cite the 100%-exhausted figure as justification for anything.** All three coordinators are
+verified on Opus, each from its own system prompt. The Fable weekly belongs to `claude-seat`.
 
 
 ## CLI engines
