@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>__HTML_TITLE__</title>
+  <style>
+:root{--bg:#06101e;--panel:#0d1b2e;--panel2:#102640;--ink:#edf6ff;--mut:#a9bdd4;--line:#274263;--ok:#61d394;--warn:#ffd166;--bad:#ff6b6b;--cyan:#62d6ef;--blue:#96b8ff;--violet:#c3a6ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 18% 0%,#173354,#06101e 45%,#03070d);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif}main{max-width:1220px;margin:0 auto;padding:28px 18px 70px}.hero{border:1px solid var(--line);border-radius:26px;padding:26px;background:linear-gradient(135deg,rgba(21,48,82,.96),rgba(7,17,30,.98));box-shadow:0 18px 80px rgba(0,0,0,.30)}.kicker{margin:0 0 8px;color:var(--cyan);text-transform:uppercase;letter-spacing:.13em;font-weight:800;font-size:12px}.lead{font-size:20px;max-width:980px}.marker{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#85a0be;word-break:break-all}
+.gauge-observed{font-size:.72rem;letter-spacing:.02em;margin:.25em 0 0}
+.gauge-observed.fresh{color:var(--ok,#61d394)}
+.gauge-observed.aging{color:#f0d9a8}
+.gauge-observed.stale{color:#ff9f8a;font-weight:700}
+.gauge-observed.reference{color:#9ab3cc;font-style:italic}.pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.pill{border:1px solid var(--line);background:#08182a;border-radius:999px;padding:7px 11px;color:var(--mut)}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:7px}.okdot{background:var(--ok)}.warndot{background:var(--warn)}.card{border:1px solid var(--line);border-radius:22px;background:rgba(13,27,46,.90);padding:22px;margin-top:18px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.box{grid-column:span 4;border:1px solid var(--line);background:#08182a;border-radius:18px;padding:16px}.box.wide{grid-column:span 6}.box.full{grid-column:1/-1}.box h3{margin:0 0 8px}.ok{border-color:rgba(97,211,148,.55)}.warn{border-color:rgba(255,209,102,.65)}.danger{border-color:rgba(255,107,107,.55)}.mut{color:var(--mut)}code,pre,textarea{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;background:#030913;border:1px solid var(--line);border-radius:14px;padding:12px;max-height:300px;overflow:auto}.copybox{width:100%;min-height:76px;margin-top:8px;border:1px solid var(--line);border-radius:14px;background:#030913;color:#def4ff;padding:12px;font-size:13px}table{width:100%;border-collapse:collapse;margin-top:10px}td,th{border-bottom:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{color:#cfe0ff}.steps li{margin:8px 0}.banner{padding:14px;border-radius:16px;border:1px solid rgba(97,211,148,.55);background:rgba(97,211,148,.10)}.provider-gauge-card{grid-column:span 6;min-width:0}.gauge-kind{margin:0 0 10px;color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.08em}.gauge-track{position:relative;min-height:40px;height:auto;border:1px solid var(--line);border-radius:18px;overflow:visible;background:#030913;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);padding:3px 10px}.gauge-fill{position:absolute;inset:0 auto 0 0;border-radius:18px;background:linear-gradient(90deg,var(--ok),var(--cyan));min-width:10px}.warn .gauge-fill{background:linear-gradient(90deg,var(--warn),#ff9f1c)}.danger .gauge-fill{background:linear-gradient(90deg,var(--bad),#ff9f1c)}.gauge-fill.unknown{background:repeating-linear-gradient(135deg,rgba(169,189,212,.18) 0 10px,rgba(98,214,239,.20) 10px 20px);opacity:.9}.gauge-value{position:relative;z-index:1;min-height:34px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#f6fbff;text-shadow:0 1px 8px rgba(0,0,0,.75);font-size:13px;text-align:center;padding:2px 8px;line-height:1.18;white-space:normal;overflow-wrap:anywhere}.sub-gauge-list{display:grid;gap:9px;margin:12px 0 4px;padding:10px;border:1px solid rgba(169,189,212,.18);border-radius:14px;background:rgba(3,9,19,.40)}.sub-gauge-label{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;color:var(--mut);font-size:12px;flex-wrap:wrap}.sub-gauge-label span{min-width:9em}.sub-gauge-label b{color:#edf6ff;text-align:right;overflow-wrap:anywhere}.sub-gauge-list .gauge-track{min-height:34px;height:auto;margin-top:5px}.sub-gauge-list .gauge-value{font-size:12px;min-height:28px;padding:2px 4px}a{color:#9bd9ff}@media(max-width:900px){.provider-gauge-card{grid-column:span 6}}@media(max-width:760px){.box,.box.wide,.provider-gauge-card{grid-column:1/-1}.lead{font-size:17px}}
+  </style>
+</head>
+<body data-marker="__MARKER__" data-cockpit-contract="RICH_BASELINE_STABLE_COCKPIT_V1" data-canonical-source-sha256="__CANONICAL_SHA256__">
+<main>
+  <!-- RICH_BASELINE_STABLE_COCKPIT_V1 -->
+  <section class="hero" id="operator-board">
+    <p class="kicker">__HERO_KICKER__</p>
+    <h1>__HERO_HEADLINE__</h1>
+    <p class="lead">__HERO_LEAD__</p>
+    <div id="recommended-first-action" style="margin:18px 0;padding:18px;border:2px solid var(--cyan);border-radius:18px;background:rgba(98,214,239,.10)">
+      <p class="kicker" style="margin-bottom:6px">RECOMMENDED FIRST ACTION · UPDATED UTC __UPDATED_AT_UTC__</p>
+      <h2 style="margin:0 0 10px">NEXT ACTION PHRASE</h2>
+      <textarea class="copybox" readonly>__NEXT_RECOMMENDED__</textarea>
+      <p class="mut" style="margin:8px 0 0">This is a steering phrase only; it does not authorize execution. If copy buttons fail, click inside the box and press Cmd-A then Cmd-C.</p>
+    </div>
+    <div class="pills">__PILLS__</div>
+    __METHOD_RESULT_BUTTONS__
+    <p class="marker">__MARKER__ · canonical sha256 __CANONICAL_SHA256__</p>
+  </section>
+
+  <section id="baseline" class="card">
+    <p class="kicker">THE BASELINE</p>
+    <h2>__BASELINE_TITLE__</h2>
+    <p><b>__BASELINE_PRIMITIVE__</b></p>
+    <p class="mut">__BASELINE_SUMMARY__</p>
+  </section>
+
+  <section id="baseline-steps" class="card">
+    <p class="kicker">Canonical Baseline roadmap</p>
+    <h2>Where the Galaxy Evolution page is in the Baseline</h2>
+    <div class="grid">__BASELINE_STEPS__</div>
+  </section>
+
+  <section id="latest-result" class="card">
+    <p class="kicker">Latest result</p>
+    <h2>__LATEST_TITLE__</h2>
+    <div class="grid">__LATEST_CARDS__</div>
+  </section>
+
+  <section id="provider-usage-gauges" class="card">
+    <p class="kicker">Provider usage gauges</p>
+    <h2>Gauge view for all active providers</h2>
+    <p class="mut">Pane-observed limit/status snapshot, not a billing dashboard or API probe. Numeric quotas that were not visible are shown as neutral striped gauges rather than invented percentages.</p>
+    <p class="mut"><b>Realtime mode:</b> <span id="provider-usage-live-state">PROVIDER_USAGE_REALTIME_MONITOR_V1 · loading live status JSON…</span></p>
+    <p class="marker">The browser polls <code>live-steering-status.json</code> every 5 seconds with cache-busting. The local writer refreshes that JSON from safe visible pane/CLI status as often as it can without touching billing/API/account/payment surfaces.</p>
+    <div class="grid" id="provider-usage-grid">__PROVIDER_USAGE_GAUGES__</div>
+  </section>
+
+  <section id="claim-layer" class="card">
+    <p class="kicker">Claim-layer status</p>
+    <table><tr><th>Item</th><th>Status</th></tr>__CLAIM_ROWS__</table>
+  </section>
+
+  <section id="next-move" class="card">
+    <p class="kicker">Next decision</p>
+    <div class="grid">
+      <div class="box warn"><h3>Recommended next</h3><p class="mut">__NEXT_RECOMMENDED__</p></div>
+      <div class="box wide"><h3>Later / held work</h3><ul class="steps">__NEXT_LATER__</ul></div>
+    </div>
+  </section>
+
+  <section id="lane-board" class="card">
+    <p class="kicker">Lane board</p>
+    <div class="grid">__LANE_CARDS__</div>
+  </section>
+
+  <section id="prevention-rail" class="card">
+    <p class="kicker">Prevention rail</p>
+    <div class="banner"><b>Stable route rule:</b> live-steering-cockpit.html is generated from canonical state by one renderer. Packet pages stay timestamped artifacts.</div>
+    <ol class="steps">__PREVENTION_RULES__</ol>
+    <p class="mut">__PREVENTION_CONTEXT__</p>
+  </section>
+
+  <section id="safety-ledger" class="card">
+    <p class="kicker">Safety ledger</p>
+    <div class="grid" id="septet-grid">__SEPTET__</div>
+    <table><tr><th>Item</th><th>Status</th></tr>__SAFETY_ROWS__</table>
+    <textarea class="copybox" readonly>__COPYABLE_STATE__</textarea>
+    <p class="marker">Updated UTC __UPDATED_AT_UTC__. __MARKER__.</p>
+  </section>
+
+  <section id="artifact-links" class="card">
+    <p class="kicker">Artifacts</p>
+    <ul class="steps">__ARTIFACT_LINKS__</ul>
+  </section>
+</main>
+<script>
+(() => {
+  const grid = document.getElementById('provider-usage-grid');
+  const state = document.getElementById('provider-usage-live-state');
+  const pollMs = 5000;
+  if (!grid || !state || !window.fetch) return;
+  function text(node, value) { node.textContent = value == null ? '' : String(value); return node; }
+  function pct(value) {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return null;
+    return Math.max(0, Math.min(100, n));
+  }
+  function el(tag, className, value) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value != null) text(node, value);
+    return node;
+  }
+  function gaugeTrack(label, value, valueLabel, unknown) {
+    const p = pct(value);
+    const track = el('div', 'gauge-track');
+    track.setAttribute('role', 'meter');
+    track.setAttribute('aria-label', label || 'provider usage gauge');
+    if (p != null && !unknown) {
+      track.setAttribute('aria-valuemin', '0');
+      track.setAttribute('aria-valuemax', '100');
+      track.setAttribute('aria-valuenow', String(Math.round(p)));
+    }
+    const fill = el('div', p == null || unknown ? 'gauge-fill unknown' : 'gauge-fill');
+    fill.style.width = (p == null || unknown ? 100 : p) + '%';
+    track.appendChild(fill);
+    track.appendChild(el('span', 'gauge-value', valueLabel || 'not observed'));
+    return track;
+  }
+  function card(g) {
+    const tone = g && g.tone ? String(g.tone) : 'warn';
+    const box = el('div', 'box provider-gauge-card ' + tone);
+    box.dataset.provider = g.provider || '';
+    box.dataset.liveRendered = 'true';
+    box.appendChild(el('h3', '', g.provider || 'Provider'));
+    box.appendChild(el('p', 'gauge-kind', g.kind || 'usage-limit snapshot'));
+    box.appendChild(gaugeTrack((g.provider || 'provider') + ' usage limit gauge', g.fill_pct, g.value_label, g.fill_pct == null));
+    const subs = Array.isArray(g.sub_gauges) ? g.sub_gauges : [];
+    if (subs.length) {
+      const list = el('div', 'sub-gauge-list');
+      subs.forEach((s) => {
+        const item = el('div', 'sub-gauge-item ' + (s.tone || tone));
+        const label = el('div', 'sub-gauge-label');
+        label.appendChild(el('span', '', s.label || 'Sub-limit'));
+        label.appendChild(el('b', '', s.value_label || 'not observed'));
+        item.appendChild(label);
+        item.appendChild(gaugeTrack((g.provider || 'provider') + ' ' + (s.label || 'sub-limit'), s.fill_pct, s.value_label, s.fill_pct == null));
+        list.appendChild(item);
+      });
+      box.appendChild(list);
+    }
+    const status = el('p', 'mut');
+    const statusB = el('b', '', g.status || 'Observed status');
+    status.appendChild(statusB);
+    box.appendChild(status);
+    box.appendChild(el('p', 'mut', g.detail || ''));
+    box.appendChild(el('p', 'marker', g.source_label || 'pane-observed snapshot'));
+    return box;
+  }
+  async function refreshProviderUsage() {
+    try {
+      const response = await fetch('live-steering-status.json?usage_ts=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      const gauges = data.provider_usage_gauges || (data.canonical_state && data.canonical_state.provider_usage_gauges) || [];
+      const monitor = data.provider_usage_monitor || (data.canonical_state && data.canonical_state.provider_usage_monitor) || {};
+      if (Array.isArray(gauges) && gauges.length) {
+        grid.replaceChildren(...gauges.map(card));
+      }
+      const observed = monitor.observed_at_utc || data.updated_at_utc || 'unknown observation time';
+      const interval = monitor.local_refresh_seconds ? ` · local refresh target ${monitor.local_refresh_seconds}s` : '';
+      text(state, `${monitor.marker || 'PROVIDER_USAGE_REALTIME_MONITOR_V1'} · ${monitor.status || 'live JSON loaded'} · observed ${observed}${interval} · browser poll ${Math.round(pollMs/1000)}s`);
+      document.body.dataset.providerUsageObservedAt = observed;
+    } catch (error) {
+      text(state, `PROVIDER_USAGE_REALTIME_MONITOR_V1 · live JSON refresh failed: ${error.message}`);
+    }
+  }
+  refreshProviderUsage();
+  window.setInterval(refreshProviderUsage, pollMs);
+})();
+</script>
+</body>
+</html>
