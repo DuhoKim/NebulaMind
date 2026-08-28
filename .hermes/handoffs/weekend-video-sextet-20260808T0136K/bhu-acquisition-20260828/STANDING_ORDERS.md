@@ -1,3 +1,8 @@
+> **STATUS: DORMANT as of 2026-08-29 08:35 KST.** Cron `b03afec9` was deleted when the lane
+> closed clean, before the 09:00 bound, so nothing triggers these orders now. They are kept as
+> the record of what ran overnight and as a template if Duho keeps the arrangement. **Do not
+> assume anything is running.**
+
 # Standing orders — Tori, BHU lane. Overnight, bounded 09:00 KST.
 
 Written 2026-08-29 05:20. Authority: Blanc, extended to this lane on Blanc's own judgement while
