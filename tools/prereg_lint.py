@@ -31,7 +31,13 @@ SLOT = re.compile(r"\bBS-[0-9]+[a-z]?\b|\bBS-[A-Z]\b")
 
 
 def slot_rows(text):
-    """Slot identifiers that have a row in the §7 table, and the class each sits under."""
+    """Slot identifiers that have a row in the §7 table, and the class each sits under.
+
+    Keyed by slot ID, so this is the map for *identity* questions (does BS-2f sit in Class E?).
+    It is NOT a row count: it only sees rows whose first cell starts with a BS- identifier.
+    Use count_rows() to count. See the note there — assuming these were the same thing put a
+    wrong number into the document.
+    """
     rows, cls = {}, None
     for line in text.splitlines():
         if re.match(r"\*\*Class [PE]", line.strip()):
@@ -40,6 +46,38 @@ def slot_rows(text):
         if m:
             rows[m.group(1)] = cls
     return rows
+
+
+def count_rows(text):
+    """Count §7 DATA rows per class — every row, not only BS-prefixed ones.
+
+    Class E holds a row whose first cell reads "Unblinding receipt", not a BS- identifier. The
+    identifier-keyed matcher above never saw it, so this linter reported 7 Class-E rows where the
+    table has 8. I trusted that over five drafts of prior agreement, had a correct 8 changed to an
+    incorrect 7, and had the repair trace rewritten to accuse V17 of introducing an error it had
+    actually fixed. CODEX caught it by counting data rows instead of asserted slot IDs.
+
+    My cross-check used the same `^| BS-` shape as the matcher, so it shared the blind spot and
+    confirmed nothing. Two checks that agree because they carry the same assumption are one check.
+
+    Header and separator rows are excluded; anything else with a non-empty first cell is a row.
+    """
+    n, cls = {"P": 0, "E": 0}, None
+    for line in text.splitlines():
+        s = line.strip()
+        if re.match(r"\*\*Class [PE]", s):
+            cls = "P" if "Class P" in s else "E"
+            continue
+        if s.startswith("## "):
+            cls = None
+        if cls and s.startswith("|"):
+            if re.match(r"^\|[\s:|-]*\|?$", s):          # separator row
+                continue
+            first = s.split("|")[1].strip() if s.count("|") > 1 else ""
+            if not first or first.lower() in {"slot", "slot id"}:  # header row
+                continue
+            n[cls] += 1
+    return n
 
 
 def check_slots_exist(text, rows, out):
@@ -162,8 +200,7 @@ def check_prose_counts(text, rows, out):
     def _cites_version(line):
         return re.search(r"\bV\d+\s+lines?\b", line) is not None
 
-    actual = {"P": sum(1 for c in rows.values() if c == "P"),
-              "E": sum(1 for c in rows.values() if c == "E")}
+    actual = count_rows(text)
     pats = [(re.compile(r"of\s+([a-z]+|\d+)\s+class-P slots", re.I), "P"),
             (re.compile(r"are\s+([a-z]+|\d+)\s+class-E slots", re.I), "E")]
     for block in _blocks(text):
@@ -218,9 +255,9 @@ def main():
     check_repair_citations(text, gates, out)
 
     print(f"prereg lint — {Path(args.draft).name}")
-    print(f"  §7 slot rows found: {len(rows)} "
-          f"({sum(1 for c in rows.values() if c == 'P')} class P, "
-          f"{sum(1 for c in rows.values() if c == 'E')} class E)")
+    n = count_rows(text)
+    print(f"  §7 data rows: {n['P'] + n['E']} ({n['P']} class P, {n['E']} class E) "
+          f"— {len(rows)} carry a BS- identifier")
     if not out:
         print("  no inconsistencies found")
         return 0
