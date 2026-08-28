@@ -50,6 +50,52 @@ fail the lint. A fourth repair attempt is explicitly out of bounds — the decis
 - **`prereg_trace` refactor**: cleared by both seats; predicates unchanged.
 - **V34's correction citations are real** — confirmed independently, twice.
 
+## CURRENT DRAFT IS V36 — **CLEAR FROM BOTH SEATS, 06:57 KST**
+
+`PREREG_SUCCESSOR_DRAFT_V36_20260829.md` = `e4d7b175ac270f4cdc0bc4af3a16af0e834aa3e4eacc174a73d10798cd4b6177`
+
+**First two-seat CLEAR the preregistration document has had.** Both seats verified the digest, the
+delta (line 1, line 698, one §10 row), the V30 byte- and position-identical invariants, class counts
+15/8, and the BS-2a pin. CODEX ran a fresh whole-document absence-surface attack and **found no new
+repair-required defect.** Their two numbered items each are HELD confirmations of the V35 repairs,
+not new findings.
+
+**WHAT THIS DOES AND DOES NOT MEAN.** It means the text is a correct preregistration that is honest
+about being an unfinished programme. **It does not mean the study may proceed.** BS-2a stays DESIGN,
+UNFILLED; one of fifteen class-P slots filled; BS-2v UNRESOLVED; rows C2 and E cannot run; Stage P
+SUPERSEDED; **BS-6 and the first image byte remain blocked.** Four decisions below are still open and
+two of them (the BS-6 dependency edge, `require_authorization`) are HIGH findings the seats raised
+and I parked — a CLEAR on V36 does not retire them, because both were declared out of scope for the
+round rather than resolved.
+
+## FOUR DECISIONS AWAITING DUHO — the lane is blocked on these, not on dispatch
+
+1. `OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md` — **three verified gaps**: `degenerate`,
+   `digest`, `chosen`. Mechanism cleared by both seats (the BS-2v circularity claim is false);
+   content is not. Amending §7.1 is normative.
+2. `OPEN_QUESTION_T_COMPLETENESS.md` — the p-gated fork, (a)/(b)/(c). I would drift to (a) because
+   it is cheap; that is the reason not to let me take it.
+3. `OPEN_QUESTION_CITATION_CHECK.md` — see quarantine below.
+4. `OPEN_QUESTION_BS6_DEPENDENCY_AND_AUTHORIZATION.md` — **the two biggest findings of the night**:
+   "must be bound before BS-6" has no dependency edge (repair moves counts 15/8 → 16/8), and
+   `require_authorization()` accepts arbitrary bytes (CODEX ran frozen v9 against a referee brief
+   and the guard passed). Both normative; both Duho's.
+
+## DO NOT REOPEN
+
+**The citation check in `tools/prereg_lint.py` is QUARANTINED to advisory** after three consecutive
+two-seat NOT CLEARs. It emits `FABRICATED` against real citations (`CODEX-V4 F9` exists in
+`GATE_CODEX_SUCCESSOR_V4.md`). Its findings carry category `repair-citations-advisory` and do not
+fail the lint. A fourth repair attempt is explicitly out of bounds — the decision is filed.
+
+## CLEARED — do not redo
+
+- **BS-2a code gate**: CLEAR ×2 at round 6. `ref/bs2a_quality_gate.py` = `dfbd63d146b472f194f74d01b313874f23c9a4264f26903b22837ae32aa18508`. Pinned in the
+  §7 BS-2a row with its recorded limit. Slot stays DESIGN, UNFILLED.
+- **Gain control repairs**: CLEAR ×2 at v6 (scoped). T-completeness still parked (decision 2).
+- **`prereg_trace` refactor**: cleared by both seats; predicates unchanged.
+- **V34's correction citations are real** — confirmed independently, twice.
+
 ## CURRENT DRAFT IS V36 (built 06:45 KST, NEVER REFEREED)
 
 `PREREG_SUCCESSOR_DRAFT_V36_20260829.md` = `e4d7b175ac270f4cdc0bc4af3a16af0e834aa3e4eacc174a73d10798cd4b6177`
