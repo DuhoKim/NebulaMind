@@ -1,139 +1,181 @@
 #!/usr/bin/env python3
-"""A7 -- entry 22 (Easson 2026, PRD, "Obstructions to Minimal Regular Black Hole Cosmologies").
+"""A7 -- entry 22 (Easson 2026, PRD 114, 044077). GATED 2026-08-29.
 
-Blanc's standing directive: hunt the OPPOSITE error -- an entry tiered too weak. Entry 22 is
-tiered CONSISTENCY-ONLY. That is not merely too weak; it is a CATEGORY ERROR, and the category
-error is the finding.
+    CGATE_A7_VERDICT.md   A7_CONFIRMED_TIER_ONLY
+                          REACHES_E25: NO  | AUXILIARY: TIDY_STORY | PUBLISHED: YES
+    AGATE_A7_VERDICT.md   A7_CONFIRMED_BOTH
+                          REACHES_E25: YES | AUXILIARY: TIDY_STORY | PUBLISHED: NO
 
-CONSISTENCY-ONLY is defined in this programme as "shows compatibility with observation; states
-no prediction that could fail." Easson's paper does neither. It proves that a class of
-constructions CANNOT work. All four tiers -- CALIBRATED-FALSIFIER, QUALITATIVE-DIRECTIONAL,
-CONSISTENCY-ONLY, PROSPECT -- rank papers by OBSERVATIONAL testability. A no-go theorem is a
-different kind of constraint: it can refute models by mathematics rather than measurement, and
-the taxonomy has no slot for it. So the bibliography structurally cannot record the one thing
-this paper is for -- CONSTRAINING OTHER ENTRIES IN OUR OWN CORPUS.
+THE SEATS SPLIT ON TWO TOKENS. Recorded, and adjudicated on evidence I checked myself -- not
+by vote. Both agree the tier gap is REAL and both demote my auxiliary claim to TIDY_STORY.
 
-That is a live constraint the programme has been ignoring, which is exactly what Blanc asked
-for, though not in the form either of us expected: not a hidden observable threshold, but a
-paper whose force is invisible to the classification scheme.
+ONE OF MY TWO CLAIMS SURVIVED.
 
-Pinned: ../bhu-reading-20260823/sources/2606.25023_clean.txt        (entry 22, Easson)
-        ../bhu-reading-20260823/sources/sym14091849_clean.txt       (entry 25, Gaztanaga I)
+SUSTAINED -- the tier is a category error. CGATE: "Calling that CONSISTENCY-ONLY does not merely
+coarsen its evidential strength; it misstates the kind of work the result does ... That is a real
+representational gap." Entry 22 proves things cannot hold; CONSISTENCY-ONLY is defined as showing
+compatibility and stating no prediction that could fail. Both halves are wrong.
+
+REFUTED -- that Theorem 1 reaches entry 25. And it was refuted by three sentences in entry 25
+that I never read, because I stopped at the one that supported me ("no defects or discontinuities
+in the junction"). All three are now verified in the source by hand:
+
+    "A null junction has degeneracies that require more elaborate consideration."
+    chi_* "is not always constant"                       [i.e. NON-COMOVING]
+    "the BHU (or the FLRW*) metric is not static and has a past singularity."
+
+Easson's Theorem 1 requires a NONDEGENERATE COMOVING Darmois boundary. Entry 25's load-bearing
+junction is the event horizon, which its own author calls degenerate and non-comoving. CGATE:
+"'There are no surface terms' is a no-shell claim, but it cannot cure the nondegenerate/comoving
+mismatch." And the flat/open branch forbids being BOTH null-complete AND ANEC-consistent -- but
+entry 25 concedes a past singularity, so it never claims completeness. It is CONSISTENT with the
+obstruction, not forbidden by it.
+
+This is the same error shape as the A6 gate: I lifted a supporting phrase and did not read the
+qualifications around it. Second time in two gates.
+
+WITHDRAWN -- the auxiliary correspondence (old check 5), demoted to TIDY_STORY. Easson's extra
+bulk component is an escape for the CLOSED branch; entry 25 is FLAT. Gaztanaga names no bulk
+component and no redshift law. CGATE: "The two sentences can be narratively aligned, but they do
+not establish identity of a technical ingredient." That is my SECOND cross-paper claim demoted in
+a row (A5 PATTERN, A7 AUXILIARY). It is now a habit of mine, not two slips, and is recorded here
+as one.
+
+THE USEFUL NEGATIVE RESULT: entry 22 and entry 25 do NOT conflict. Anyone who reads both will try
+this join; it fails on the junction hypothesis, and the reason is written in entry 25 itself.
 """
 import re, sys, hashlib
 
 E22 = "../bhu-reading-20260823/sources/2606.25023_clean.txt"
 E25 = "../bhu-reading-20260823/sources/sym14091849_clean.txt"
+C3  = "../bhu-theory-phase5-tovoptics-20260825/BHU_CLOSED_ROUTES.md"
 A = " ".join(open(E22).read().split())
 G = " ".join(open(E25).read().split())
+R = " ".join(open(C3).read().split())
 checks = []
 def chk(name, pred, detail=""):
     if not isinstance(pred, bool): raise TypeError("chk needs a computed predicate")
     checks.append((name, pred, detail)); print(("PASS " if pred else "FAIL ") + name + ("  -- " + detail if detail else ""))
 
-print("=" * 96)
-print("A7 -- entry 22: a no-go theorem the tier scheme cannot express")
-print(f"     E22 {hashlib.sha256(open(E22,'rb').read()).hexdigest()[:12]} | E25 {hashlib.sha256(open(E25,'rb').read()).hexdigest()[:12]}")
-print("=" * 96)
+print("=" * 96); print("A7 [GATED] -- entry 22: tier gap SUSTAINED, cross-entry reach REFUTED"); print("=" * 96)
 
-# ---- 1. it is a theorem paper, not a compatibility paper ----------------------------------
-props = re.findall(r"(Proposition \d+|Theorem \d+)\s*\(", A)
-print(f"\n1. WHAT KIND OF PAPER IS THIS?")
-print(f"   formal statements found: {sorted(set(props))}")
-chk("the paper's results are named theorems/propositions, not compatibility demonstrations",
-    len(set(props)) >= 3,
-    "CONSISTENCY-ONLY means 'shows compatibility, states no prediction that could fail' -- "
-    "this paper states what CANNOT hold, which is neither")
+# ---- 1. the tier gap: test BOTH halves of the CONSISTENCY-ONLY definition ------------------
+forbids = len(re.findall(r"cannot be both|cannot be|does not yield|obstruct|must give up", A))
+predicts = len(re.findall(r"we predict|would be observed|detectable by|constrain(?:s|ed) by (?:current|future) (?:data|observations)", A))
+print(f"\n1. THE TIER GAP  [SUSTAINED by the gate]")
+print(f"   impossibility statements in entry 22 ......... {forbids}")
+print(f"   observational-prediction statements .......... {predicts}")
+chk("entry 22 states what CANNOT hold and makes no observational prediction -- so BOTH halves of "
+    "the CONSISTENCY-ONLY definition are false of it",
+    forbids >= 5 and predicts == 0,
+    "the earlier version merely counted three theorem labels, which tested neither half")
 
-# ---- 2. Proposition 1 is the theorem form of what phase 5 found the hard way ---------------
-ks = "the trapped interior is not an exact FRW cosmology in its natural slicing" in A
-print(f"\n2. PROPOSITION 1 RESTATES, AS A THEOREM, WHAT PHASE 5 REDISCOVERED THREE TIMES")
-print(f"   Easson: the trapped region is KANTOWSKI-SACHS, not FRW.")
-print(f"   Phase 5 (Smoller-Temple): inside the horizon rbar plays the role of time. That fact")
-print(f"   killed C1 (expansion anisotropy), GAVE us the optical-depth cancellation, and killed")
-print(f"   my own P12 (Tolman-Ehrenfest needs a timelike Killing vector, and there is none).")
-chk("a published theorem independently confirms the phase-5 diagnosis", ks,
-    "our lane derived this per-model; Easson proves it for the whole one-function static class")
+# ---- 2. Proposition 1 vs what phase 5 paid for three times ---------------------------------
+ks   = "the trapped interior is not an exact FRW cosmology in its natural slicing" in A
+ours = "rbar is timelike" in R or "r̄ is timelike" in R
+print(f"\n2. PROPOSITION 1 IS THE THEOREM FORM OF OUR OWN PHASE-5 FINDING")
+print(f"   Easson states the trapped interior is Kantowski-Sachs, not FRW ..... {ks}")
+print(f"   our C3 register records rbar timelike inside the horizon ........... {ours}")
+chk("the published theorem and this lane's independently-derived result are both on record",
+    ks and ours,
+    "cross-checked against BHU_CLOSED_ROUTES.md, not asserted -- the old check searched one file")
 
-# ---- 3. do Theorem 1's hypotheses cover the Gaztanaga construction? ------------------------
-# Theorem 1: static, spherically symmetric, asymptotically flat parent, one-function class
-# g_tt g_rr = -1, finite ADM mass M>0, FRW daughter on a comoving spherical Darmois boundary,
-# NO-SHELL, daughter fixed by the parent profile with no extra component.
-# Schwarzschild: g_tt = -(1 - rs/r), g_rr = 1/(1 - rs/r)  =>  g_tt*g_rr = -1 identically.
-rs, r = 2.0, 7.3
-one_function = abs((-(1 - rs/r)) * (1.0/(1 - rs/r)) + 1.0) < 1e-15
-g_flat  = "the same flat FLRW metric" in G
-g_asym  = "asymptotically flat" in G
-g_shell = "we find no defects or discontinuities in the junction" in G
-print(f"\n3. DOES THEOREM 1 REACH ENTRY 25? checking its hypotheses against Gaztanaga's model")
-print(f"   one-function class g_tt*g_rr = -1 for Schwarzschild ..... {one_function}  (computed)")
-print(f"   Gaztanaga's exterior is asymptotically flat ............. {g_asym}")
-print(f"   Gaztanaga's daughter is FLAT (k=0) ..................... {g_flat}")
-print(f"   Gaztanaga claims a NO-SHELL junction ................... {g_shell}")
-chk("every stated hypothesis of Theorem 1 is satisfied by the entry-25 construction",
-    one_function and g_asym and g_flat and g_shell,
-    "Theorem 1's hypotheses do NOT include parent regularity -- Schwarzschild qualifies")
+# ---- 3. THE REFUTATION: entry 25's own text fails Theorem 1's junction hypotheses ----------
+degenerate  = "A null junction has degeneracies that require more elaborate consideration" in G
+noncomoving = "is not always constant" in G
+noshell     = "we find no defects or discontinuities in the junction" in G
+needs_nondeg = "nondegenerate comoving spherical Darmois boundary" in A
+print(f"\n3. DOES THEOREM 1 REACH ENTRY 25?  ->  NO  [my claim B, refuted]")
+print(f"   Theorem 1 requires a NONDEGENERATE COMOVING Darmois boundary ....... {needs_nondeg}")
+print(f"   entry 25 calls its own null junction DEGENERATE .................... {degenerate}")
+print(f"   entry 25's chi_* is NOT always constant (non-comoving) ............. {noncomoving}")
+print(f"   entry 25 does claim no-shell -- but that cures neither of the above . {noshell}")
+chk("entry 25's load-bearing junction is degenerate and non-comoving BY ITS OWN TEXT, so it "
+    "falls outside Theorem 1's hypotheses",
+    needs_nondeg and degenerate and noncomoving,
+    "I had cited only the no-shell sentence and stopped reading; these three were on the same pages")
 
-# ---- 4. which branch bites, and what it demands --------------------------------------------
+# ---- 4. and entry 25 never claims what the flat branch forbids -----------------------------
+past_sing = "has a past singularity" in G
 flat_branch = "cannot be both null geodesically complete and ANEC-consistent" in A
-give_up = "must give up at least one of the desired conditions" in A
-print(f"\n4. THE FLAT BRANCH IS THE ONE THAT BITES (k=0, from entry 25 line 307)")
-print(f"   Easson: a non-static curvature-regular FRW with k=0 or k=-1 and regular affine ends")
-print(f"           'cannot be both null geodesically complete and ANEC-consistent'.")
-print(f"   Escape: 'must give up at least one of ... curvature regularity, null completeness,")
-print(f"           ANEC consistency, the FRW ansatz, or the flat/open curvature class.'")
-chk("the flat/open obstruction and its escape list are both present verbatim",
-    flat_branch and give_up,
-    "entry 26 claims a nonsingular bounce from NEUTRON DEGENERACY PRESSURE -- ordinary, "
-    "ANEC-respecting matter -- which is the combination Easson's flat branch forbids")
+print(f"\n4. THE FLAT BRANCH FORBIDS COMPLETE + ANEC-CONSISTENT. DOES ENTRY 25 CLAIM THAT?")
+print(f"   flat/open obstruction present in entry 22 .......................... {flat_branch}")
+print(f"   entry 25: 'the BHU (or the FLRW*) metric ... has a past singularity' {past_sing}")
+chk("entry 25 concedes a past singularity, so it never claims completeness -- CONSISTENT with "
+    "the obstruction, not forbidden by it",
+    flat_branch and past_sing,
+    "my earlier version attributed an ANEC-respecting complete bounce to entry 26 in a script "
+    "that never opened entry 26; CGATE caught that the hypothesis was untested")
 
-# ---- 5. the escape Easson names is the auxiliary entry 25's own sentence licenses ----------
-easson_esc = "additional smooth bulk component" in A and "positive vacuum-energy component is the simplest example" in A
-gaz_aux = "not solely caused by the BHU event horizon" in G
-print(f"\n5. THE TWO PAPERS NAME THE SAME AUXILIARY, FROM OPPOSITE SIDES")
-print(f"   Easson  : an unbounded daughter needs 'an additional smooth bulk component whose")
-print(f"             density redshifts no faster than A^-2. A positive vacuum-energy component")
-print(f"             is the simplest example, but adding it lies outside the ... minimal")
-print(f"             construction considered here.'                          present: {easson_esc}")
-print(f"   Gaztanaga: w != -1 would show acceleration is 'not solely caused by the BHU event")
-print(f"             horizon r_S'  -- i.e. an additional component.          present: {gaz_aux}")
-chk("Easson's named escape route and entry 25's licensed auxiliary are the same ingredient",
-    easson_esc and gaz_aux,
-    "the component that saves entry 25 from this theorem is the component that made its w != -1 "
-    "falsifier non-rigid at the A6 gate")
+# ---- 5. the auxiliary correspondence, demoted -- test its SPECIFICITY and watch it fail ----
+easson_closed = "additional smooth bulk component" in A
+easson_law    = "redshifts no faster than" in A
+gaz_names_it  = ("smooth bulk component" in G) or ("redshifts no faster" in G) or ("vacuum-energy component" in G)
+print(f"\n5. THE AUXILIARY CORRESPONDENCE  [WITHDRAWN -- gate says TIDY_STORY]")
+print(f"   Easson names a bulk component with a redshift law ......... {easson_closed and easson_law}")
+print(f"   entry 25 names that same ingredient anywhere .............. {gaz_names_it}")
+print(f"   Easson's escape is for the CLOSED branch; entry 25 is FLAT. Different branch.")
+chk("the two texts do NOT name the same technical ingredient -- the correspondence fails "
+    "specificity and is withdrawn",
+    (easson_closed and easson_law) and not gaz_names_it,
+    "second cross-paper claim of mine demoted in two gates; the predicate now tests the "
+    "specificity my prose assumed")
 
 print("""
-6. WHAT I AM NOT CLAIMING   [the A5 PATTERN ruling applies]
+6. PUBLICATION RECEIPT -- an open item in the bibliography is now closed
 
-   NOT claimed: that Easson refutes Gaztanaga. I have checked that Theorem 1's STATED hypotheses
-   are satisfied; I have NOT verified the proof, and I have not established that Easson intended
-   his result to cover a SINGULAR Schwarzschild parent. The paper's title and framing are about
-   REGULAR black holes; Theorem 1's hypotheses as written do not mention regularity. Whether that
-   omission is deliberate generality or an implicit assumption carried from the framing is THE
-   question for the gate, and my whole cross-entry reading turns on it.
+   Our record carried: "VERIFIED with a stated caveat: ... the deposit is still anonymized and
+   carries no volume/article number yet", pending a spot-check by Miru -- a RETIRED seat, so it
+   was never going to happen.
 
-   NOT claimed: a general pattern. The A5 gate demoted my last cross-paper claim to TIDY_STORY at
-   n=2. Check 5 is not a narrative -- it is one specific named ingredient (an additional
-   vacuum-energy-like bulk component) appearing in both papers. That is narrower than a pattern
-   and is offered as such.
+   CGATE resolved it from APS: Damien A. Easson, "Obstructions to minimal regular black hole
+   cosmologies", Physical Review D 114, 044077, published 24 August 2026, DOI 10.1103/qs86-npwk;
+   received 25 June 2026, accepted 31 July 2026.
 
-7. TESTIMONY, NOT RECEIPT
+   That discharges the caveat AND corrects a date: our record lists "published online 2026-07-31",
+   which is the ACCEPTANCE date. Publication was 24 August 2026.
 
-   Entry 22 is dated 2026 and pinned from arXiv:2606.25023. The bibliography records it as "Phys.
-   Rev. D, published online 2026" with "one publication-metadata caveat ... pending Miru's
-   spot-check" -- and Miru is a RETIRED seat, so that spot-check never happened and is not going
-   to. The publication status of entry 22 is therefore UNVERIFIED in our record. It matters here:
-   an unrefereed preprint constraining five other corpus entries is a weaker instrument than a
-   published PRD theorem.
+   Still testimony, not a receipt in this corpus: a seat's APS lookup, not a pinned document.
+   Recorded with that label.
 
-8. PROPOSED -- and this one is a CHOICE, not a mechanical continuation
+7. WHAT THIS GATE ACTUALLY ESTABLISHED
 
-   The tier scheme has no class for a theoretical no-go. Options are (a) leave entry 22 at
-   CONSISTENCY-ONLY and accept that the record cannot express its force, or (b) add a fifth
-   class. (b) changes what the programme claims about its own corpus and is therefore NOT mine
-   to take. Written to the gate and to OPEN_QUESTIONS rather than applied.
+   - Entry 22's tier is a category error. The record cannot express theoretical obstruction.
+     Whether to add a fifth class is in OPEN_QUESTIONS_FOR_DUHO.md and is not mine to take.
+   - Entry 22 does NOT constrain entry 25. Useful negative: anyone reading both will attempt this
+     join, and it fails on the junction hypothesis, for reasons written in entry 25 itself.
+   - Entry 22 IS published, in PRD 114, 044077.
+   - Sixth entry, sixth tier unchanged.
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")
-print("\nSTATUS: UNGATED.")
+print("""
+8. THE TWO SPLITS, AND WHY I SIDE WITH CGATE ON BOTH
+
+  REACHES_E25.  AGATE says YES, arguing entry 25's junction is the TIMELIKE comoving boundary of
+  its Section 2.2.1, which is nondegenerate. That describes a real junction in the paper -- but
+  not the load-bearing one. The indefinite expansion Easson's theorem would obstruct comes from
+  the HORIZON mechanism, Lambda = 3/r_S^2 with R -> r_S, and that junction is the one entry 25
+  itself calls degenerate and non-comoving. I verified all three sentences by hand in the source
+  (check 3). CGATE: "'There are no surface terms' is a no-shell claim, but it cannot cure the
+  nondegenerate/comoving mismatch."
+
+  Independently of the junction: entry 25 concedes a past singularity, so it never claims the
+  null completeness the flat branch forbids (check 4). AGATE's attack-3 rebuttal attributes an
+  ANEC-respecting complete bounce to ENTRY 26 -- but neither my script nor AGATE ever opened
+  entry 26. AGATE inherited that claim from my brief and reasoned from it. CGATE caught it.
+
+  PUBLISHED.  AGATE says entry 22 is an unrefereed preprint and our metadata is wrong. But our
+  OWN bibliography records DOI 10.1103/qs86-npwk as Crossref-VERIFIED: "an APS Physical Review D
+  journal-article of this exact title". That check was made independently and earlier, and it
+  agrees with CGATE, not AGATE. CGATE adds PRD 114, 044077, published 24 August 2026, and
+  resolves the date our record got wrong -- 2026-07-31 was ACCEPTANCE, not publication.
+  Two independent confirmations against one dissent. Treated as PUBLISHED; the volume/article
+  number remains a seat's lookup and is labelled testimony, not a receipt in this corpus.
+
+  Both seats flagged that my check names outclaimed their predicates -- the FIFTH consecutive
+  gate to do so. All five are rewritten above.
+""")
+print("STATUS: GATED. Tier gap SUSTAINED by both seats. Cross-entry reach REFUTED (split, "
+      "adjudicated).")
 sys.exit(0 if n_ok == len(checks) else 1)
