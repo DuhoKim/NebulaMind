@@ -1,26 +1,33 @@
-| transition | predecessor sha256 (16) | result sha256 (16) | sections changed (+added/−removed) | §7 row counts |
-|---|---|---|---|---|
-| V1 → V2 | `2a775bcb2d206ad0` | `8362166cc0329457` | §2 (+14/−16), §3 (+16/−12), §6 (+13/−12), §5 (+10/−7), (preamble) (+6/−5), §7 (+5/−5) | no row-count change |
-| V2 → V3 | `8362166cc0329457` | `1c4788c5555a9f7e` | §2 (+30/−22), §3 (+21/−18), §6 (+24/−14), §7 (+19/−8), §4 (+18/−8), (preamble) (+13/−8) | class-P rows 0 → 8; class-E rows 0 → 4 |
-| V3 → V4 | `1c4788c5555a9f7e` | `1ea8bb8d8e236049` | §2 (+58/−24), §3 (+33/−20), §6 (+23/−22), §4 (+22/−18), §7 (+16/−12), (preamble) (+13/−12) | class-P rows 8 → 10 |
-| V4 → V5 | `1ea8bb8d8e236049` | `1c283bbf6dd7bd59` | §2 (+46/−62), §6 (+26/−27), §3 (+15/−34), §7 (+20/−24), §9 (+15/−17), (preamble) (+22/−9) | class-P rows 10 → 0; class-E rows 4 → 0 |
-| V5 → V6 | `1c283bbf6dd7bd59` | `9f40dfb0c1f2d56b` | §6 (+33/−26), §2 (+2/−45), §7 (+25/−21), §3 (+25/−14), (preamble) (+12/−24), §4 (+24/−9) | class-P rows 0 → 12; class-E rows 0 → 6 |
-| V6 → V7 | `9f40dfb0c1f2d56b` | `f15b0b4dad9d5c56` | §10 (+29/−20), §4 (+18/−9), §5 (+16/−6), §2.4 (+14/−7), §3 (+9/−5), §6 (+9/−3) | no row-count change |
-| V7 → V8 | `f15b0b4dad9d5c56` | `faea9047682e9de6` | §10 (+20/−26), §2.6 (+21/−0), §4 (+14/−6), §2.4 (+10/−3), §0 (+3/−3), (preamble) (+2/−2) | no row-count change |
-| V8 → V9 | `faea9047682e9de6` | `b97ba35c8d1eeb66` | §10 (+18/−19), §2.4 (+19/−4), §2.6 (+11/−8), §0 (+3/−3), (preamble) (+2/−2) | no row-count change |
-| V9 → V10 | `b97ba35c8d1eeb66` | `d6703db149dca28c` | §2.6 (+37/−6), §10 (+23/−15), §0 (+22/−3), §4 (+3/−2), (preamble) (+2/−2), §7 (+1/−1) | no row-count change |
-| V10 → V11 | `d6703db149dca28c` | `bcab646794c6eca9` | §2.7 (+34/−0), §6.1 (+32/−0), §2.6 (+13/−1), §2.1 (+10/−0), (preamble) (+8/−1), §6.2 (+8/−0) | no row-count change |
-| V11 → V12 | `bcab646794c6eca9` | `7633bc7a6b49da82` | §2.7 (+29/−5), (preamble) (+12/−3), §2.6 (+12/−1), §6.1 (+11/−2), §7 (+2/−1) | class-E rows 6 → 7 |
-| V12 → V13 | `7633bc7a6b49da82` | `80adc0210973617b` | §6.1 (+19/−8), (preamble) (+9/−2), §2.7 (+2/−2), §7 (+2/−1) | class-P rows 12 → 14; class-E rows 7 → 6 |
-| V13 → V14 | `80adc0210973617b` | `0b25608836b58997` | §6.1 (+36/−11), §2.7 (+3/−3) | no row-count change |
-| V14 → V15 | `0b25608836b58997` | `efb27c619c063f8f` | §7 (+1/−1), §10 (+1/−1) | no row-count change |
-| V15 → V16 | `efb27c619c063f8f` | `1b9b9486736bf734` | §6.1 (+62/−70), §6.2 (+4/−45), The fold record (+48/−0), (preamble) (+30/−1), §2.7 (+7/−9), §6.3 (+11/−0) | class-E rows 6 → 8 |
-| V16 → V17 | `1b9b9486736bf734` | `1a0a259a91f5a73a` | §6.3 (+38/−7), (preamble) (+8/−6), §5 (+6/−6), §4 (+3/−1), §2.7 (+1/−2), §3 (+1/−2) | no row-count change |
-| V17 → V18 | `1a0a259a91f5a73a` | `ce144dc23ba8605d` | §10 (+21/−1), §5 (+4/−4), The fold record (+4/−4), (preamble) (+3/−3), §2.7 (+2/−2), §3 (+1/−1) | no row-count change |
-| V18 → V19 | `ce144dc23ba8605d` | `b7deb106eb81b3e1` | §5 (+7/−5), §10 (+9/−3), (preamble) (+3/−3) | no row-count change |
-| V19 → V20 | `b7deb106eb81b3e1` | `607df3dd5b022a29` | §10 (+11/−1), (preamble) (+3/−3), §5 (+3/−3), §11 (+2/−0) | no row-count change |
-| V20 → V21 | `607df3dd5b022a29` | `8386d5f0b3cdc8ed` | §10 (+9/−1), (preamble) (+4/−3), §5 (+2/−2), §6.1 (+1/−1), §7 (+1/−0), §11 (+1/−0) | class-P rows 14 → 15 |
-| V21 → V22 | `8386d5f0b3cdc8ed` | `9b09416685e966cc` | §10 (+9/−1), (preamble) (+3/−3), §7 (+2/−2), §11 (+2/−1), §5 (+1/−1) | no row-count change |
-| V22 → V23 | `9b09416685e966cc` | `134433199c85ea45` | §7.1 (+59/−0), §10 (+11/−3), (preamble) (+3/−3), §7 (+2/−1), §6.1 (+1/−1) | no row-count change |
+| transition | predecessor sha256 (16) | result sha256 (16) | sections changed (+added/−removed) | §7 row counts | findings answered |
+|---|---|---|---|---|---|
+| V1 → V2 | `2a775bcb2d206ad0` | `8362166cc0329457` | §2 (+14/−16), §3 (+16/−12), §6 (+13/−12), §5 (+10/−7), (preamble) (+6/−5), §7 (+5/−5), §4 (+5/−4), §9 (+5/−3), §8 (+1/−1) | no row-count change | **— none cited —** |
+| V2 → V3 | `8362166cc0329457` | `1c4788c5555a9f7e` | §2 (+30/−22), §3 (+21/−18), §6 (+24/−14), §7 (+19/−8), §4 (+18/−8), (preamble) (+13/−8), §1 (+14/−6), §9 (+10/−8), §5 (+9/−8), §8 (+6/−4) | class-P rows 0 → 8; class-E rows 0 → 4 | **— none cited —** |
+| V3 → V4 | `1c4788c5555a9f7e` | `1ea8bb8d8e236049` | §2 (+58/−24), §3 (+33/−20), §6 (+23/−22), §4 (+22/−18), §7 (+16/−12), (preamble) (+13/−12), §9 (+17/−8), §8 (+6/−7), §1 (+5/−7), §5 (+6/−5) | class-P rows 8 → 10 | **— none cited —** |
+| V4 → V5 | `1ea8bb8d8e236049` | `1c283bbf6dd7bd59` | §2 (+46/−62), §6 (+26/−27), §3 (+15/−34), §7 (+20/−24), §9 (+15/−17), (preamble) (+22/−9), §4 (+8/−21), §5 (+8/−11), §1 (+5/−12), §8 (+5/−5) | class-P rows 10 → 0; class-E rows 4 → 0 | **— none cited —** |
+| V5 → V6 | `1c283bbf6dd7bd59` | `9f40dfb0c1f2d56b` | §6 (+33/−26), §2 (+2/−45), §7 (+25/−21), §3 (+25/−14), (preamble) (+12/−24), §4 (+24/−9), §8 (+26/−6), §5 (+22/−7), §1 (+18/−5), §9 (+8/−15), §10 (+23/−0), §2.1 (+19/−0), §2.3 (+19/−0), §0 (+15/−0), §2.4 (+15/−0), §2.2 (+6/−0), §2.5 (+6/−0) | class-P rows 0 → 12; class-E rows 0 → 6 | **— none cited —** |
+| V6 → V7 | `9f40dfb0c1f2d56b` | `f15b0b4dad9d5c56` | §10 (+29/−20), §4 (+18/−9), §5 (+16/−6), §2.4 (+14/−7), §3 (+9/−5), §6 (+9/−3), §0 (+3/−3), (preamble) (+3/−2) | no row-count change | **— none cited —** |
+| V7 → V8 | `f15b0b4dad9d5c56` | `faea9047682e9de6` | §10 (+20/−26), §2.6 (+21/−0), §4 (+14/−6), §2.4 (+10/−3), §0 (+3/−3), (preamble) (+2/−2), §2.5 (+1/−0) | no row-count change | **— none cited —** |
+| V8 → V9 | `faea9047682e9de6` | `b97ba35c8d1eeb66` | §10 (+18/−19), §2.4 (+19/−4), §2.6 (+11/−8), §0 (+3/−3), (preamble) (+2/−2) | no row-count change | **— none cited —** |
+| V9 → V10 | `b97ba35c8d1eeb66` | `d6703db149dca28c` | §2.6 (+37/−6), §10 (+23/−15), §0 (+22/−3), §4 (+3/−2), (preamble) (+2/−2), §7 (+1/−1) | no row-count change | **— none cited —** |
+| V10 → V11 | `d6703db149dca28c` | `bcab646794c6eca9` | §2.7 (+34/−0), §6.1 (+32/−0), §2.6 (+13/−1), §2.1 (+10/−0), (preamble) (+8/−1), §6.2 (+8/−0), §7 (+7/−0), §2.4 (+1/−1), §4 (+1/−1), §6 (+1/−0) | no row-count change | **— none cited —** |
+| V11 → V12 | `bcab646794c6eca9` | `7633bc7a6b49da82` | §2.7 (+29/−5), (preamble) (+12/−3), §2.6 (+12/−1), §6.1 (+11/−2), §7 (+2/−1) | class-E rows 6 → 7 | **— none cited —** |
+| V12 → V13 | `7633bc7a6b49da82` | `80adc0210973617b` | §6.1 (+19/−8), (preamble) (+9/−2), §2.7 (+2/−2), §7 (+2/−1) | class-P rows 12 → 14; class-E rows 7 → 6 | **— none cited —** |
+| V13 → V14 | `80adc0210973617b` | `0b25608836b58997` | §6.1 (+36/−11), §2.7 (+3/−3) | no row-count change | **— none cited —** |
+| V14 → V15 | `0b25608836b58997` | `efb27c619c063f8f` | §7 (+1/−1), §10 (+1/−1) | no row-count change | **— none cited —** |
+| V15 → V16 | `efb27c619c063f8f` | `1b9b9486736bf734` | §6.1 (+62/−70), §6.2 (+4/−45), The fold record (+48/−0), (preamble) (+30/−1), §2.7 (+7/−9), §6.3 (+11/−0), §7 (+6/−5), §11 (+9/−0), §5 (+3/−1), §6 (+1/−3), §10 (+3/−0), §2.5 (+1/−1) | class-E rows 6 → 8 | FOLD — §6 replaced from SECTION6_DRAFT_AGY_R15 (d2c388a4) on principal's instruction 21:48 |
+| V16 → V17 | `1b9b9486736bf734` | `1a0a259a91f5a73a` | §6.3 (+38/−7), (preamble) (+8/−6), §5 (+6/−6), §4 (+3/−1), §2.7 (+1/−2), §3 (+1/−2), §2.6 (+1/−1), §6.1 (+1/−1), §7 (+1/−1) | no row-count change | GPT56-V16-1, GPT56-V16-2, GPT56-V16-3, GPT56-V16-4, CODEX-V16-1, CODEX-V16-2, CODEX-V16-3 |
+| V17 → V18 | `1a0a259a91f5a73a` | `ce144dc23ba8605d` | §10 (+21/−1), §5 (+4/−4), The fold record (+4/−4), (preamble) (+3/−3), §2.7 (+2/−2), §3 (+1/−1) | no row-count change | GPT56-V17-1, GPT56-V17-2, GPT56-V17-3, CODEX-V17-1, CODEX-V17-2, CODEX-V17-3, CODEX-V17-4 |
+| V18 → V19 | `ce144dc23ba8605d` | `b7deb106eb81b3e1` | §5 (+7/−5), §10 (+9/−3), (preamble) (+3/−3) | no row-count change | GPT56-V18-1, CODEX-V18-1, CODEX-V18-2 |
+| V19 → V20 | `b7deb106eb81b3e1` | `607df3dd5b022a29` | §10 (+11/−1), (preamble) (+3/−3), §5 (+3/−3), §11 (+2/−0) | no row-count change | GPT56-V19-1, CODEX-V19-1 |
+| V20 → V21 | `607df3dd5b022a29` | `8386d5f0b3cdc8ed` | §10 (+9/−1), (preamble) (+4/−3), §5 (+2/−2), §6.1 (+1/−1), §7 (+1/−0), §11 (+1/−0) | class-P rows 14 → 15 | GPT56-V20-1, GPT56-V20-2, GPT56-V20-3, CODEX-V20-1, CODEX-V20-2 |
+| V21 → V22 | `8386d5f0b3cdc8ed` | `9b09416685e966cc` | §10 (+9/−1), (preamble) (+3/−3), §7 (+2/−2), §11 (+2/−1), §5 (+1/−1) | no row-count change | GPT56-V21-1, GPT56-V21-2, GPT56-V21-3, CODEX-V21-1, CODEX-V21-2, CODEX-V21-3, CODEX-V21-4 |
+| V22 → V23 | `9b09416685e966cc` | `134433199c85ea45` | §7.1 (+59/−0), §10 (+11/−3), (preamble) (+3/−3), §7 (+2/−1), §6.1 (+1/−1) | no row-count change | CODEX-V22-1 (class-E count 8 not 7), CODEX-V22-2, CODEX-V22-3, CODEX-V22-4, GPT56-V22-1, GPT56-V22-2, GPT56-V22-3 |
+| V23 → V24 | `134433199c85ea45` | `6d722dc51316a2db` | §10 (+26/−87), (preamble) (+3/−3), §7 (+2/−2), §11 (+1/−1) | no row-count change | CODEX-V23-1, CODEX-V23-2, CODEX-V23-3, GPT56-V23-1, GPT56-V23-2, GPT56-V23-3, plus BLANC-20260828 (compute the counts and the trace) |
+| V24 → V25 | `6d722dc51316a2db` | `50f2e53256cc7970` | §10 (+27/−26), §2.7 (+11/−4), §4 (+10/−2), (preamble) (+3/−5), §6.1 (+2/−2), §7 (+2/−2) | no row-count change | BS2A-ADOPTION-20260828 (quality-cut exclusion predicate; principal's instruction), GPT56-V24-1, GPT56-V24-2, CODEX-V24-4, CODEX-V24-5, CODEX-V24-6 |
+| V25 → V26 | `50f2e53256cc7970` | `2eec8da41ee69374` | §6.1 (+6/−6), (preamble) (+4/−4), §2.7 (+4/−4), §7 (+2/−2), §6.3 (+1/−2), §5 (+1/−1), The fold record (+1/−1), §11 (+1/−1) | no row-count change | GPT56-V25-1, GPT56-V25-2, CODEX-V25-1, CODEX-V25-2, CODEX-V25-3, CODEX-V25-4 |
+| V26 → V27 | `2eec8da41ee69374` | `e801a18bb7c489f0` | (preamble) (+4/−4), §2.6 (+2/−2), §2.7 (+2/−2), §4 (+2/−2), §6.1 (+2/−2), §5 (+1/−1), §10 (+2/−0), §7.1 (+0/−1) | no row-count change | GPT56-V26-1, GPT56-V26-2, GPT56-V26-3, CODEX-V26-1, CODEX-V26-2, CODEX-V26-4 |
+| V27 → V28 | `e801a18bb7c489f0` | `82cd8ac3690fb87b` | §10 (+19/−12), (preamble) (+1/−1) | no row-count change | GPT56-V27-1, GPT56-V27-2, GPT56-V27-3, CODEX-V27-1 |
 
-*Generated by `tools/prereg_trace.py` from the draft bytes. Every field is computed: digests by sha256, sections and line counts by diff, row counts by parsing the §7 table. No field characterises whether a change was a repair — that is a finding, and findings are cited by ID from the referee reports so they can be superseded without rewriting this table.*
+*Byte-level columns generated by `tools/prereg_trace.py` — digests by sha256, sections and line counts by diff, row counts by parsing the §7 table. The **findings answered** column is human-supplied from `gates/FINDINGS_MAP.md` and is NOT generated: which finding a change answers is a judgement, and the tool refuses to make it. The tool does enforce it — a transition that changes a normative section while citing no finding is a failure, which is how §6.3's finding→change obligation is checked rather than asserted.*
+
+*A draft cannot describe the transition that created it: the row for V(n−1) → V(n) would change V(n)'s bytes and therefore its own digest. Each draft's table covers transitions up to its predecessor; the transition that produced it appears in the next draft. This is a property of self-reference, not an omission.*
