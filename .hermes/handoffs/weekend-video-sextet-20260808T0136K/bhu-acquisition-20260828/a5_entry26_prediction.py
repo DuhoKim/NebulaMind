@@ -1,22 +1,44 @@
 #!/usr/bin/env python3
 """A5 -- entry 26 (Gaztanaga, Symmetry 14, 1984): is the stated prediction a falsifier?
 
-THE ABSTRACT PROMISES ONE: "We present a simple prediction to explain the observed value of
-M ~ 6e22 Msun or equivalently Omega_Lambda ... and the coincidence problem Omega_m ~ Omega_Lambda."
-A number on a measured observable. That is what a calibrated falsifier looks like from outside.
+GATED 2026-08-28 and SUBSTANTIALLY REPAIRED. Verdicts:
+    CGATE_A5_VERDICT.md  AUDIT_CONFIRMED_TIER_ONLY / ANTHROPIC: FAIR / PATTERN: TIDY_STORY
+    AGATE_A5_VERDICT.md  AUDIT_CONFIRMED_BOTH      / ANTHROPIC: FAIR / PATTERN: REAL
 
-THE CHAIN, quoted from Section 4:
-  "the maximum probability corresponds to observers that appear in BHs with Lambda_O/9 < Lambda
-   < Lambda_O, where Lambda_O = 4/(3 tau_O^2) is the value corresponding to r_S ~ 3 tau_O/2 ...
-   for the minimum time tau_O needed for observers to exit. If we assume that this time tau
-   agrees with the age of our galaxy, we find good agreement between this prediction and the
-   observed Lambda measurements (Omega_Lambda ~ 0.75)."
+The seats split and I followed CGATE on every contested point, on the merits. AGATE agreed with
+my framing almost throughout -- including where it was wrong -- and answered the band question
+by asserting the algebra is exact, which nobody disputed. CGATE answered the question actually
+asked, by deriving P(Delta) from Equation (11).
 
-Supporting numbers the paper supplies itself: "M ~ 6e22 Msun ... has a typical collapse time of
-tau ~ 11 Gyr", and "tau = 4GM/3".
+WHAT THE GATE FOUND WRONG IN MY FIRST VERSION -- four things, all mine:
 
-Everything below is COMPUTED. The lane's describe-vs-compute law: no check here is satisfied by
-prose. Pinned source: ../bhu-reading-20260823/sources/sym14101984_clean.txt
+ 1. I WROTE THAT THE PAPER SUPPLIES NO NUMBER for the galaxy age. It does, and I missed it:
+    "tau_O is the astronomical time needed for observers like us to exist. Its value must be
+    close to tau_O ~= 13 Gyrs, corresponding to the age of our galaxy". Both seats found it.
+    My whole attack-1 worry -- that 13.6 Gyr was MY import -- dissolves: the paper picks 13.
+
+ 2. I CONFLATED tau WITH tau_O. tau ~ 11 Gyr is the COLLAPSE TIME of the observed mass.
+    tau_O ~ 13 Gyr is the OBSERVER TIME that serves as the model's input. Different quantities;
+    I put them in one candidate table.
+
+ 3. MY CIRCULARITY CHARGE WAS WRONG and is withdrawn. The paper's intended chain runs
+    tau_O -> M_O -> r_S -> Lambda_O, with tau_O supplied externally from the galaxy age:
+    "an accurate estimation of tau_O provides a prediction for M_O and therefore a prediction
+    for r_S ... and Lambda." That is a genuine predictive direction. My charge came from the
+    tau/tau_O conflation in (2).
+
+ 4. THE BAND IS NOT AN ALLOWED INTERVAL. Equation (11) gives
+    P(Delta) ~ (1+Delta)^(-3/2) Delta exp[-(M_O/M_*) Delta], whose PEAK moves to Delta = 0, 1, 2
+    as M_O/M_* varies -- which is exactly the Lambda_O, Lambda_O/4, Lambda_O/9 spread. So the
+    band is the ENVELOPE OF THE MODE'S LOCATION over an unspecified parameter, not a credible
+    interval. P has support at every Delta > 0. My "allowed window / satisfies / IN / OUT"
+    language claimed more than Equation (11) establishes.
+
+WHAT SURVIVES is narrower and still worth having: with the paper's OWN tau_O, the observed
+Lambda does not sit at ANY of the modal locations the paper claims. That is an internal-
+consistency criticism, not a failed test. Stated that way below.
+
+Pinned source: ../bhu-reading-20260823/sources/sym14101984_clean.txt
 """
 import re, sys, hashlib
 
@@ -28,113 +50,111 @@ def chk(name, pred, detail=""):
     checks.append((name, pred, detail)); print(("PASS " if pred else "FAIL ") + name + ("  -- " + detail if detail else ""))
 
 c, G, Msun = 2.99792458e8, 6.674e-11, 1.98892e30
-GYR = 3.155760e16                      # seconds
-KMSMPC_PER_INV_GYR = 977.792           # 1/Gyr -> km/s/Mpc
+GYR = 3.155760e16
+KMSMPC_PER_INV_GYR = 977.792
 
-print("=" * 96); print(f"A5 -- entry 26, the stated prediction  [source sha256 {SHA}]"); print("=" * 96)
+print("=" * 96); print(f"A5 -- entry 26, the stated prediction  [GATED]  [source sha256 {SHA}]"); print("=" * 96)
 
-# ---- 0. POSITIVE CONTROL on the unit chain ------------------------------------------------
+# ---- 0. the formula, and a control that validates ONLY the unit conversion -----------------
 GMsun_c3 = G * Msun / c**3
-print(f"\n0. POSITIVE CONTROL -- the mass-to-time conversion this whole audit rests on")
-print(f"   G*Msun/c^3 = {GMsun_c3*1e6:.4f} microseconds   (textbook value 4.9255 us)")
-chk("the mass->time unit chain reproduces the textbook solar mass in time units",
-    abs(GMsun_c3*1e6 - 4.9255) < 0.005, "so tau = 4GM/3 can be trusted below")
+print(f"\n0. THE FORMULA AND THE UNIT CHAIN, kept separate")
+print(f"   Equation (5)/(8): tau_BH = (2/3) r_S, and r_S = 2GM  =>  tau = 4GM/3")
+print(f"   both seats verified that from the source; there is no hidden pi or free-fall factor")
+print(f"   G*Msun/c^3 = {GMsun_c3*1e6:.4f} us   (textbook 4.9255 us)")
+chk("(2/3)*r_S with r_S = 2GM is algebraically 4GM/3", abs((2.0/3.0)*2.0 - 4.0/3.0) < 1e-15,
+    "the formula itself, checked as algebra")
+chk("the mass->time UNIT conversion reproduces the textbook solar mass in time units",
+    abs(GMsun_c3*1e6 - 4.9255) < 0.005,
+    "CGATE: this control validates the conversion ONLY, not the formula -- so both are checked")
 
 # ---- 1. the paper's algebra is internally consistent --------------------------------------
-# Part I: Lambda = 3/r_S^2. Paper: r_S = 3 tau_O/2  =>  Lambda_O = 3/(3 tau_O/2)^2 = 4/(3 tau_O^2)
 tau_sym = 7.0
-lhs = 3.0 / (1.5 * tau_sym)**2
-rhs = 4.0 / (3.0 * tau_sym**2)
-print(f"\n1. THE ALGEBRA CHECKS OUT")
-print(f"   Lambda = 3/r_S^2 with r_S = 3tau/2  ->  {lhs:.10f}")
-print(f"   the paper's Lambda_O = 4/(3 tau^2)  ->  {rhs:.10f}")
 chk("Lambda_O = 4/(3 tau_O^2) follows exactly from Lambda = 3/r_S^2 and r_S = 3 tau_O/2",
-    abs(lhs - rhs) < 1e-12, "the derivation is not where this fails")
+    abs(3.0/(1.5*tau_sym)**2 - 4.0/(3.0*tau_sym**2)) < 1e-12, "the derivation is not where this fails")
 
-# ---- 2. but the paper's OWN M and OWN tau disagree by 13% ----------------------------------
+# ---- 2. F1: the paper's two stated numbers, at one significant figure ----------------------
 M_paper = 6e22
 tau_from_M = (4.0/3.0) * GMsun_c3 * M_paper / GYR
-print(f"\n2. THE PAPER'S TWO STATED NUMBERS ARE NOT CONSISTENT WITH EACH OTHER")
-print(f"   tau = 4GM/3 at the paper's M = 6e22 Msun   ->  {tau_from_M:.2f} Gyr")
-print(f"   the paper states                            ->  11 Gyr")
-print(f"   M that WOULD give 11 Gyr                    ->  {11*GYR*3/(4*GMsun_c3)/1e22:.2f}e22 Msun")
-chk("M = 6e22 Msun does NOT give the paper's own tau ~ 11 Gyr",
+print(f"\n2. F1 -- the paper's own M and its own tau are 14% apart")
+print(f"   tau = 4GM/3 at M = 6e22 Msun  ->  {tau_from_M:.2f} Gyr;  the paper states ~11 Gyr")
+print(f"   M that would give 11 Gyr      ->  {11*GYR*3/(4*GMsun_c3)/1e22:.2f}e22 Msun")
+chk("the two stated central values are mutually inconsistent, at a level consistent with ROUNDING",
     abs(tau_from_M - 11.0) > 1.0,
-    f"it gives {tau_from_M:.2f} Gyr, {100*(tau_from_M-11)/11:.0f}% high; 11 Gyr needs M = 5.3e22")
+    f"{tau_from_M:.2f} vs 11 Gyr; both are one-significant-figure, so this is a minor internal "
+    f"tension and NOT a precision defect -- CGATE required that caveat")
 
-# ---- 3. the band, converted into a window on tau_O ----------------------------------------
-def tau_window(H0, OL):
-    H_L = H0 * OL**0.5 / KMSMPC_PER_INV_GYR      # 1/Gyr
-    return 2.0/(9.0*H_L), 2.0/(3.0*H_L), H_L
-print(f"\n3. THE PREDICTION, SOLVED FOR tau_O")
-print(f"   Lambda_O/9 < Lambda_obs < Lambda_O   <=>   2/(9 H_L) < tau_O < 2/(3 H_L)")
-print(f"   {'cosmology':<34} {'H_Lambda':>12} {'allowed tau_O (Gyr)':>26}")
-WINDOWS = {}
-for lbl, H0, OL in [("Planck 2018 (67.36, 0.6847)", 67.36, 0.6847),
-                    ("the paper's own quoted 0.75", 67.36, 0.75),
-                    ("SH0ES-like (73.04, 0.6847)", 73.04, 0.6847)]:
-    lo, hi, H_L = tau_window(H0, OL); WINDOWS[lbl] = (lo, hi)
-    print(f"   {lbl:<34} {H_L*KMSMPC_PER_INV_GYR:>9.2f} km/s/Mpc   {lo:>8.2f} -> {hi:<8.2f}")
-lo_p, hi_p = WINDOWS["the paper's own quoted 0.75"]
-chk("the allowed window is a FACTOR OF 3 wide in tau_O (factor 9 in Lambda)",
-    abs((hi_p/lo_p) - 3.0) < 0.01, f"{lo_p:.2f} -> {hi_p:.2f} Gyr; galaxy ages sit inside almost regardless")
+# ---- 3. what the band actually is: the envelope of the MODE -------------------------------
+# Equation (11): P(Delta) ~ (1+Delta)^-3/2 * Delta * exp[-(M_O/M_*)Delta], M = M_O(1+Delta).
+# Paper: peak at Delta=0 (M_O>>M_*), Delta=1 (M_O~M_*), Delta=2 (M_O<<M_*).
+# tau ~ M so tau_mode = tau_O(1+Delta), and Lambda = 4/(3 tau^2) so Lambda_mode = Lambda_O/(1+Delta)^2.
+print(f"\n3. THE BAND IS THE ENVELOPE OF THE PEAK, NOT AN ALLOWED INTERVAL  [repaired]")
+print(f"   Delta=0 -> Lambda_O    Delta=1 -> Lambda_O/4    Delta=2 -> Lambda_O/9")
+print(f"   so 'Lambda_O/9 < Lambda < Lambda_O' spans where the MODE sits as M_O/M_* varies.")
+print(f"   Equation (11) has support at every Delta > 0; no credible interval is stated.")
+chk("the three peak positions the paper names reproduce the quoted Lambda_O/9 ... Lambda_O span",
+    abs(1.0/(1+2)**2 - 1.0/9.0) < 1e-12 and abs(1.0/(1+0)**2 - 1.0) < 1e-12,
+    "so the span is a mode envelope over an unspecified M_O/M_*, not a probability interval")
 
-# ---- 4. and now the verdict on each candidate tau_O ----------------------------------------
-CANDS = [("the paper's stated tau", 11.0),
-         ("tau implied by the paper's own M = 6e22", tau_from_M),
-         ("Milky Way oldest stars / globular clusters", 13.6),
-         ("Milky Way thin disk", 8.8),
-         ("epoch of the Sun's formation", 9.2)]
-print(f"\n4. WHICH tau_O ACTUALLY SATISFIES THE PREDICTION?")
-print(f"   {'candidate':<44} {'tau (Gyr)':>10} {'Planck':>9} {'0.75':>7}")
-for lbl, tv in CANDS:
-    a = WINDOWS["Planck 2018 (67.36, 0.6847)"]; b = WINDOWS["the paper's own quoted 0.75"]
-    print(f"   {lbl:<44} {tv:>10.2f} {('IN' if a[0]<=tv<=a[1] else 'OUT'):>9} {('IN' if b[0]<=tv<=b[1] else 'OUT'):>7}")
-a = WINDOWS["Planck 2018 (67.36, 0.6847)"]
-chk("the paper's stated tau = 11 Gyr DOES satisfy its own prediction",
-    a[0] <= 11.0 <= a[1], f"but with only {100*(a[1]-11)/11:.0f}% margin to the upper edge")
-chk("the tau implied by the paper's OWN mass does NOT",
-    not (a[0] <= tau_from_M <= a[1]), f"tau({M_paper:.0e} Msun) = {tau_from_M:.2f} Gyr > {a[1]:.2f} Gyr")
-chk("'the age of our galaxy' -- the justification the paper gives -- does NOT either",
-    not (a[0] <= 13.6 <= a[1]),
-    f"13.6 Gyr (oldest stars) exceeds the upper edge {a[1]:.2f} Gyr; only the YOUNGER galaxy ages fit")
+# ---- 4. the surviving finding, stated at the strength the gate allows ----------------------
+TAU_O_PAPER = 13.0     # the paper's OWN value, not an import
+def H_L_of(tau): return (2.0/3.0)/tau * KMSMPC_PER_INV_GYR      # km/s/Mpc at the Delta-mode
+print(f"\n4. WITH THE PAPER'S OWN tau_O = {TAU_O_PAPER:g} Gyr, WHERE DOES THE OBSERVED Lambda SIT?")
+print(f"   {'mode':<10} {'tau_mode (Gyr)':>15} {'H_Lambda (km/s/Mpc)':>21}")
+modes = []
+for D in (0, 1, 2):
+    tm = TAU_O_PAPER * (1 + D); modes.append(H_L_of(tm))
+    print(f"   Delta={D:<4} {tm:>15.1f} {H_L_of(tm):>21.2f}")
+res = {}
+for lbl, H0, OL in [("Planck 2018 (67.36, 0.6847)", 67.36, 0.6847), ("the paper's quoted 0.75", 67.36, 0.75)]:
+    H_obs = H0 * OL**0.5; res[lbl] = H_obs
+    print(f"   observed, {lbl:<30} {H_obs:>21.2f}   -> Lambda_obs/Lambda_O = {(H_obs/modes[0])**2:.3f}")
+chk("the observed Lambda lies ABOVE every modal location the paper names, on its own tau_O",
+    all(res[k] > modes[0] for k in res),
+    f"highest mode (Delta=0) is {modes[0]:.2f} km/s/Mpc; observed is {res['Planck 2018 (67.36, 0.6847)']:.2f}, "
+    f"i.e. Lambda_obs = {(res['Planck 2018 (67.36, 0.6847)']/modes[0])**2:.2f} x Lambda_O")
 
-# ---- 5. the circularity ---------------------------------------------------------------------
 print("""
-5. WHY THIS IS A CONSISTENCY STATEMENT AND NOT A PREDICTION
+5. WHAT THIS DOES AND DOES NOT SHOW  [rewritten at CGATE's instruction]
 
-   tau is not an independent input. The chain runs:
-       observed Lambda  ->  r_S = sqrt(3/Lambda)  ->  M = r_S/2G  ->  tau = 4GM/3
-   so tau ~ 11 Gyr is COMPUTED FROM the very Lambda the argument sets out to explain. The only
-   external quantity is "the age of our galaxy", which enters with no number, no uncertainty,
-   and no statement of WHICH age -- and the candidates span 8.8 to 13.6 Gyr (check 4), which is
-   most of the factor-of-3 window (check 3). A target that wide is hit by construction.
+   DOES: on the paper's own tau_O ~ 13 Gyr, the observed Lambda sits ~24% above even the
+   Delta=0 peak -- the largest value the modal envelope reaches. So the paper's own input does
+   not place our Universe at any of the peak locations its own Equation (11) predicts.
+   That is an INTERNAL-CONSISTENCY criticism.
 
-6. THE ANTHROPIC SHIELD, which is the deeper reason this cannot fail
+   DOES NOT: show the model is excluded. Equation (11) has support everywhere, so an
+   observation off-peak is improbable-by-some-unstated-measure, not forbidden. The earlier
+   version of this file called the span an "allowed window" and printed IN/OUT verdicts. That
+   was wrong and is withdrawn.
 
-   Equation (11) is a probability P(Delta) over observers: the claim is where MOST observers
-   live. A single observation -- ours -- falling outside the peak is not a refutation, because
-   an atypical observer is permitted by the distribution. The paper states no confidence
-   threshold at which our own position would count against the model. Without one, no
-   measurement of Lambda can refute it.
+   WITHDRAWN ENTIRELY: the circularity charge. tau_O is an external input from the galaxy age,
+   and the chain tau_O -> M_O -> r_S -> Lambda_O is a real predictive direction. I generated
+   that charge by conflating tau_O with the collapse time tau of the observed mass.
 
-   This is the same structure found in entry 21 (Roupas) an hour earlier: a real number that
-   cannot fail, because the auxiliary that absorbs a discrepancy is supplied by the author.
-   There it was an uncomputed amplitude; here it is observer typicality.
+6. THE ANTHROPIC OBJECTION, restated  [CGATE: FAIR, but my wording was too absolute]
 
-7. VERDICT ON THE TIER
+   NOT: "no measurement can refute it."
+   BUT: the paper states no quantitative rule by which an observation updates or rejects this
+   observer model. It assumes a linear observer factor, leaves M_O/M_* unspecified, discusses
+   only where the mode lands, and gives no normalised likelihood, tail probability or rejection
+   criterion. Weinberg-style anthropic reasoning IS scientifically informative when it supplies
+   a measure, a selection function and a bound. This paper supplies none of the three, so it has
+   not delivered a calibrated falsifier -- which is a calibration ruling, not a dismissal of
+   anthropic prediction as such.
 
-   NOT a calibrated falsifier. Entry 26 stays QUALITATIVE-DIRECTIONAL, and the bibliography's
-   existing tier is CONFIRMED -- the second such confirmation today, against a classifier bias
-   that runs the other way (METHODS_NOTE_CLASSIFIER_BIAS.md).
+7. THE ENTRY-21 / ENTRY-26 PATTERN  [demoted -- CGATE: TIDY_STORY, AGATE: REAL]
 
-   The band Lambda_O/9 < Lambda < Lambda_O IS an inequality with numbers, which is what makes
-   this worth the audit rather than a glance. What it lacks is a refutation condition: tau_O is
-   derived from the observable it explains, the window is a factor of 3 wide, and the anthropic
-   framing licenses any miss.
+   Permitted: "both papers lack a completed quantitative bridge to observation."
+   NOT permitted: "in each, the author supplies an auxiliary that absorbs any discrepancy."
+   The mechanisms are materially different -- an omitted excitation amplitude in Roupas, an
+   uncalibrated observer measure here -- and n=2 does not establish a recurring mechanism.
+   This lane has demoted a tidy unifying story before, for exactly this reason. I flagged the
+   risk in my own brief and then leaned on the claim anyway.
+
+8. VERDICT ON THE TIER  -- unchanged, and the one thing both seats agree on
+
+   NOT a calibrated falsifier. Entry 26 stays QUALITATIVE-DIRECTIONAL; the bibliography's
+   existing tier is CONFIRMED.
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")
-print("\nSTATUS: UNGATED. Checks 2 and 4 are quantitative criticisms of a published paper and\n"
-      "must not leave this lane until an adversarial seat has attacked them.")
 sys.exit(0 if n_ok == len(checks) else 1)
