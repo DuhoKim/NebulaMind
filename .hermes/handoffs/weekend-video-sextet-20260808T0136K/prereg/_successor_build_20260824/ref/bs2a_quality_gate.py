@@ -42,6 +42,32 @@ being the authenticated evidence.
 This binds the receipt to specific bytes. It does not make the *predicate* independent of
 handedness, and E23 matching is not evidence about the science — only about custody.
 
+THE ROBUSTNESS LIMIT, STATED WHERE THE MODULE IS CLAIMED
+-------------------------------------------------------
+Two different properties, and only one of them is established.
+
+**Sound against forgery — established.** Two referee seats independently failed to make the verifier
+accept a receipt it should refuse: forged parent member, foreign all-pass partition, chi nested in
+`thresholds`, float/bool/int-subclass counts, lying `__eq__` on correct-typed subclasses, NaN and
+bool thresholds, duplicated evidence lists, empty-string join keys. All 26 single-check and all 325
+pairwise deletion probes are caught, and under a *strict* rule that scores a crash as NOT detected,
+all 26 are caught by their own named control. All five frozen constants recompute from the sources
+without importing this module.
+
+**Hardened against arbitrary hostile input — NOT established, and deliberately not claimed.** Four
+crash sites were found across gate rounds 3-5, each one level further out than the last: a row's
+fields, the row itself, the containers holding the rows, and the join-key tuple. Each is repaired,
+and the pattern is a receding boundary rather than convergence. What bounds the risk is narrower
+than a fix:
+
+  * every crash path found requires input the BUILDER CANNOT PRODUCE - over all 65,060 rows the
+    builder emits 0 off-schema rows, 0 non-string join keys, 0 non-float values, 0 non-bool flags;
+  * a crash FAILS CLOSED. `main()` exits non-zero on a traceback and can never emit a PASS.
+
+So: in this study the verifier is only ever handed builder output, where the limit is unreachable.
+Used as a library on untrusted input it would need a validating wrapper. **Anything that fills a
+slot against this module must state that limit rather than inherit the word "verified".**
+
 WHY THE CONTROLS LOOK LIKE THIS
 -------------------------------
 Round 1: controls asserted that *some* refusal fired, so a surviving guard masked a deleted one.
@@ -362,6 +388,9 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
     if mistyped:
         refuse("E21", f"count field(s) not a non-negative int: "
                       f"{ {f: repr(receipt[f]) for f in mistyped} }")
+        # RETURN. E14/E16/E17/E18 compare and add these values; doing arithmetic on a field this
+        # check has just rejected is how E18 crashed on a JSON-native string count (GPT56 round 5).
+        return bad
 
     # EVERY row, not the first mismatch. The original broke out of this loop, so a clean row 0
     # let a later row carry chi_net straight through the schema that exists to stop it
@@ -420,6 +449,9 @@ def verify_receipt(receipt: dict, evidence: list[dict]) -> list[str]:
     if mistyped_keys:
         refuse("E24", f"{len(mistyped_keys)} evidence row(s) have a non-string join key; "
                       f"first index {mistyped_keys[0]}")
+        # RETURN. E15 hashes these into a set and E20/E23 digest them; a JSON array or object as
+        # brickid is unhashable and crashed set(keys) straight past this gate (GPT56 rounds 4-5).
+        return bad
 
     keys = [(e.get("brickid"), e.get("objid")) for e in evidence]
     if len(set(keys)) != len(keys):
@@ -678,6 +710,19 @@ def _c_evidence_is_dict(rec, ev):
     return rec, {"a": 1}
 
 
+def _c_string_count(rec, ev):
+    """A JSON-native string count. E21 flagged it and E18 then added it (GPT56 round 5)."""
+    rec["n_retained"] = str(rec["n_retained"])
+    return rec, ev
+
+
+def _c_unhashable_key(rec, ev):
+    """A JSON array as brickid. E24 flagged it and E15 then hashed it (GPT56 rounds 4-5)."""
+    ev[0] = dict(ev[0])
+    ev[0]["brickid"] = []
+    return rec, ev
+
+
 def _c_all_pass(rec, ev):
     """GPT56's stronger round-2 forgery: a wholly foreign all-pass partition, internally consistent
     and honestly re-digested, which the verifier accepted while printing MISMATCH."""
@@ -706,7 +751,8 @@ CONTROLS = (
     ("joined count wrong",         _c_joined,             {"E14", "E17"}),
     ("partition does not sum",     _c_partition,          {"E18"}),
     ("float count fields",         _c_float_counts,       {"E21"}),
-    ("boolean count field",        _c_bool_count,         {"E18", "E21"}),
+    ("boolean count field",        _c_bool_count,         {"E21"}),
+    ("string count field",         _c_string_count,       {"E21"}),
     ("evidence digest wrong",      _c_evidence_digest,    {"E19"}),
     ("extra receipt field",        _c_extra_field,        {"E02"}),
     ("missing receipt field",      _c_missing_field,      {"E01"}),
@@ -727,7 +773,8 @@ CONTROLS = (
     ("non-finite quality value",   _c_nonfinite,          {"E10", "E23"}),
     ("duplicate evidence key",     _c_duplicate_key,      {"E15", "E20", "E23"}),
     ("forged parent member",       _c_forged_parent_key,  {"E20", "E23"}),
-    ("non-string join key",        _c_nonstring_key,      {"E24", "E20", "E23"}),
+    ("non-string join key",        _c_nonstring_key,      {"E24"}),
+    ("unhashable join key",        _c_unhashable_key,     {"E24"}),
     ("foreign all-pass partition", _c_all_pass,           {"E12", "E22", "E23"}),
 )
 
