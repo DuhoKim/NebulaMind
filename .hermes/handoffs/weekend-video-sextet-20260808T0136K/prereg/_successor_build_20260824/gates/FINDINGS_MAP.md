@@ -23,3 +23,4 @@ V28→V29: CODEX-V28-1 (current-transition scope rule)
 V29→V30: PRINCIPAL-20260828-LAND-NULL (human direction: "add the land 2008 null to the prereg motivation"; no referee finding — the change answers an instruction, and inventing a finding ID for it would be a lie)
 V30→V31: GPT56-V30-1, GPT56-V30-2, GPT56-V30-3, CODEX-V30-1, CODEX-V30-2
 V31→V32: GPT56-V31-1, CODEX-V31-1, plus PRINCIPAL-20260828-COUPLING (human direction: "the cut raised the coupling — flag it in §2.7"; measured figures, not a referee finding)
+V32→V33: GPT56-V32-6, CODEX-V32-5 (§2.7 conditional-independence overreach). The five gain-control findings — GPT56-V32-1..5, CODEX-V32-1..4 — were repaired in gates/GAIN_GRADIENT_CONTROL_DESIGN_20260828.md, which is a sidecar and not part of this document's bytes.
