@@ -51,22 +51,28 @@ Everything else is specification quality. Progress so far:
 - Never modify a subject while a seat is reviewing it — the POST-CHECK exists to catch exactly that,
   and doing it once already cost GPT56's round-4 findings.
 
-## STATE AT HANDOVER (00:40 KST)
+## STATE — refreshed 02:45 KST
 
 | thread | state |
 |---|---|
-| **BS-2a code gate** | **CLOSED.** Round 6 CLEAR from both seats, scoped "CLEAR for FREEZING the quality-predicate component; not a fill authorization". Pinned in V34's §7 row with its recorded limit. |
-| **Prereg draft** | V34 (`1c45d32d…`). Both seats cleared the V33 *document*; all open findings are in the gain sidecar. |
-| **Gain control** | v4 NOT CLEAR ×2. Normalisation repair confirmed correct by both. |
-| **VOID / clause 10** | registry tool built; the circularity claim looks false; needs a gate round. |
+| **BS-2a code gate** | **CLOSED.** Round 6 CLEAR ×2, scoped "CLEAR for FREEZING the quality-predicate component; not a fill authorization". Pinned in V34's §7 row with its recorded limit. |
+| **Prereg draft** | V34 (`1c45d32d…`). Both seats cleared the V33 *document*. Untouched since, deliberately. |
+| **VOID / clause 10** | **Mechanism CLEARED, content BLOCKED.** Both seats agree the BS-2v circularity claim is false and that pinning is necessary-not-sufficient. They split on completeness; three real gaps verified (`degenerate`, `digest`, `chosen`). **Awaiting a human.** |
+| **Gain control** | v5 findings repaired; **v6 dispatched 02:42** (scoped). T-completeness parked. |
 
-**Open gain-sidecar items, all with agreed fixes** (safe to apply unsupervised):
-1. `G08` is reachable — both seats broke it with finite inputs escaping the refusal API by exception.
-2. Near-degenerate designs crash instead of refusing (`LinAlgError`).
-3. `verify_mu_gamma.py`: NaN parameters bypass both domain guards and saturate silently.
+## TWO DECISIONS AWAIT A HUMAN — nothing else is blocked on them
 
-**Not safe alone:** the `T`/p-gated invariance rework is built (`ref/verdict_breakpoints.py`) but
-whether it *settles* the freeze is a gate question.
+1. **`OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md`** — amend §7.1 or not. Four options with costs.
+   Three verified gaps, not the five my heuristic reports (it cannot tell a subject from a
+   condition). Under-enumerating pins a registry that *looks* closed; over-enumerating makes a
+   condition normative the study never meant to void on.
+2. **`OPEN_QUESTION_T_COMPLETENESS.md`** — the p-gated fork. (a) hold observed `p` fixed, cheap but
+   asserts the systematic does not move `p`, which GPT56's counterexample undermines; (b) freeze a
+   joint counterfactual path, correct and expensive, and its sign-vector mapping is itself a
+   modelling assumption; (c) withdraw the rule and state the systematic as an unbounded limitation.
+   **I would drift to (a) because it is cheap, which is the reason not to let me take it.**
+
+**Neither blocks BS-6, which stays blocked regardless.**
 
 ## Operating notes that cost time tonight
 
