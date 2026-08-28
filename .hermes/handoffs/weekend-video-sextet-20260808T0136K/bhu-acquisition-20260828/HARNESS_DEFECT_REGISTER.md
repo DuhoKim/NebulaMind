@@ -158,16 +158,23 @@ harness check.** The checks were corroboration. Six of the fifteen were addition
 two adversarial seats who read the papers themselves. No tier verdict has been shown wrong by any
 defect found tonight.
 
-| entry | tier outcome | what the conclusion rests on | condemned check in its support? |
-|---|---|---|---|
-| 21 | PROSPECT confirmed | author's own amplitude deferral, quoted; rate absence | **was** — rate regex is a narrow-pattern absence claim. Codex re-verified it by hand at the gate and the script now records that the seat, not the regex, closes it. Re-derived. |
-| 25 | promotion REFUSED | the "not solely" qualifier, quoted; both seats | rigidity check is presence tests; codex called the rename cosmetic. **Not re-derived** — but the refusal rests on the quote, and a refusal is the conservative direction. |
-| 26 | QUALITATIVE-DIRECTIONAL confirmed | Eq.11's modal envelope read from the paper; both seats | a5's Λ_O identity check never touches the source (agy). **Not re-derived.** The tier rests on the envelope reading, which both seats performed independently. |
-| 22 | category error found | theorem/proposition statements, quoted; both seats | not individually audited. **Unknown.** |
-| 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing, quoted | direction-of-inference check is presence tests; rename called cosmetic. **Not re-derived.** |
-| 23 | promotion REFUSED | the reverse-inference sentence, quoted; both seats | two renames called cosmetic by codex. **Not re-derived** — again a refusal, the conservative direction. |
-| 8 | CONSISTENCY-ONLY confirmed | the indistinguishability sentence, quoted | count check was **FALSE**. Repaired; conclusion no longer reads it. Re-derived. |
-| 24, 36, 40 | tiers confirmed (random draw) | agreement language / the bounds and R\* / unobservability statement — all quoted | count check was **FALSE**. Repaired; the three conclusions no longer read it. Re-derived. |
+| entry | tier outcome | rested on BEFORE | rests on NOW | status |
+|---|---|---|---|---|
+| 21 | PROSPECT confirmed | amplitude-deferral quote + a **rate-absence regex** | the same quote + **codex's hand adjudication of the rate question**, which the script now records as the thing that closes it | **re-derived** |
+| 8 | CONSISTENCY-ONLY confirmed | indistinguishability quote + **"zero numbers in the text"** — which was **FALSE**, the paper has 18 inequalities | the indistinguishability quote **alone**; the count is withdrawn and no conclusion reads it | **re-derived** |
+| 24 | QUAL-DIRECTIONAL confirmed | "agrees with" quote + **"carries zero numeric content"** — **FALSE**, 12 inequalities | the "agrees with" quote alone | **re-derived** |
+| 36 | CONSISTENCY-ONLY confirmed | the derived bounds + free parameter R\*, read from the paper | unchanged — the bounds were always read, never counted | **re-derived** |
+| 40 | CONSISTENCY-ONLY confirmed | unobservability quote + **"carries zero numeric content"** — **FALSE**, 17 inequalities | the unobservability quote alone | **re-derived** |
+| 25 | promotion **REFUSED** | the "not solely" qualifier, quoted; both seats | unchanged | rigidity check is a presence test; codex called the rename cosmetic. **NOT re-derived** |
+| 26 | QUAL-DIRECTIONAL confirmed | Eq.11's modal envelope, read by both seats | unchanged | a5's Λ_O identity check never touches the source. **NOT re-derived** |
+| 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing, quoted | unchanged | direction-of-inference check is a presence test. **NOT re-derived** |
+| 23 | promotion **REFUSED** | the reverse-inference sentence, quoted; both seats | unchanged | two renames called cosmetic. **NOT re-derived** |
+| 22 | category error found | theorem/proposition statements, quoted; both seats | unchanged | harness never individually audited. **UNKNOWN** |
+
+**How to read this cold.** Five rows say *re-derived*: something in their support was condemned,
+and the conclusion has since been rebuilt without it — in three cases because the condemned thing
+was outright false. Four say *not re-derived*: a weak check remains in their support, but the
+conclusion itself rests on a quotation two independent seats read. One says *unknown*.
 
 ### The honest residual
 

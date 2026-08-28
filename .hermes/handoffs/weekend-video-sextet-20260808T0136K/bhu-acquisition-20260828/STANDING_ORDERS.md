@@ -4,10 +4,26 @@ Written 2026-08-29 05:20. Authority: Blanc, extended to this lane on Blanc's own
 Duho slept, after the trial proved out in Hwao's lane. **Flagged in the morning handover for Duho
 to revoke or keep.** Tier changes stay human either way — that boundary does not move.
 
-Cron `b03afec9`, hourly at :23 from 01:00–08:00, carries an abbreviated form of this file. The
-cron is **session-only**: it dies when the session exits and cannot outlive the context that
-authorised it. This file is the durable copy — the cron was invisible from outside the lane,
-which is why Blanc twice believed there was no self-continuation running.
+## Is anything actually triggering this? — verification, because you cannot see it
+
+Blanc asked four times whether a tick exists behind this file, because **a session-only cron is
+invisible from outside the session**. It is real. Evidence, so the next reader does not have to
+take it on trust:
+
+    CronList -> b03afec9 — 23 1-8 * * * (recurring) [session-only]
+                "BHU sweep self-continuation tick (Tori)..."
+
+    fired at 01:43, 02:43, 03:43, 04:43, 05:43, 06:43 KST — each firing delivered the prompt text
+    written into that cron, and each produced a committed result. The :23 -> :43 offset is the
+    scheduler's documented jitter (up to 10% of period).
+
+**But Blanc's objection has a real core and it is stated here rather than argued away.** The cron
+is session-only. **When this session ends, the cron dies and this file describes a continuation
+that nothing triggers.** At that moment this document becomes exactly the defect it was written
+alongside — a name with no predicate behind it.
+
+**So: if you are reading this and the session that wrote it has ended, these orders are DORMANT.**
+Do not assume anything is running. Check `CronList`; if `b03afec9` is absent, nothing is.
 
 ## STOP CONDITION — checked first, every tick
 
