@@ -2,6 +2,29 @@
 """P12 — the successor question: can the missing exterior temperature be SUPPLIED
 rather than invented?
 
+================================================================================================
+REFUTED, 2026-08-29. THE ANSWER BELOW IS WRONG. Closed as route C3 in BHU_CLOSED_ROUTES.md.
+Kept because the way it fails is worth more than the file was.
+
+Tolman-Ehrenfest requires a TIMELIKE KILLING VECTOR. This code integrates the region N > 1,
+i.e. A < 0, where the pinned source says plainly that rbar is timelike and tbar is spacelike.
+So d/dtbar -- the only candidate -- is SPACELIKE throughout the domain, and the timelike
+direction d/drbar is not a Killing direction because every metric function depends on rbar.
+The relation does not apply. Not approximately, not with corrections: it does not apply.
+
+  CGATE_P12_VERDICT.md   SUPPLY_INVALID_ATTACK1_NO_TIMELIKE_KILLING   (codex gpt-5.5)
+  AGATE_P12_VERDICT.md   SUPPLY_INVALID_ATTACK1_TBAR_SPACELIKE        (agy)
+
+Independent seats, same reason, both reading the source rather than my framing.
+
+AND THE POINT, which is why this file is not deleted: B really IS the metric coefficient and
+the exponent really IS the familiar inverse square root. The arithmetic below is correct. It is
+also meaningless, because it is applied to the wrong causal object. The self-checks pass 4/4
+because they test determinacy and difference and never once test APPLICABILITY.
+
+A GREEN SELF-CHECK IS NOT A LICENCE. This script exits 2 no matter how many checks pass.
+================================================================================================
+
 PHASE 5b closed on this: every computed signature was a property of an added thermal closure,
 because Smoller-Temple give a MECHANICAL equation of state p(rho) and never a CALORIC one.
 REGATE4's specific objection was sharper than "no temperature": varying the crossing epoch
@@ -49,8 +72,17 @@ Z    = e["Z"]                   # sqrt(|B(r)|/|B_junction|)  -- already in p6
 rho  = e["rhobar"]
 T_ad = e["T_rad"]               # the ADIABATIC closure REGATE4 invalidated, for comparison
 
+BANNER = """
+################################################################################################
+#  REFUTED -- SUPPLY_INVALID. Do not cite anything this script prints as a result.
+#  Tolman-Ehrenfest needs a timelike Killing vector. In the integrated region (N > 1, A < 0)
+#  tbar is SPACELIKE, so there is none. The numbers below are arithmetic on the wrong object.
+#  Gates: CGATE_P12_VERDICT.md / AGATE_P12_VERDICT.md.  Route C3 in BHU_CLOSED_ROUTES.md.
+################################################################################################
+"""
+print(BANNER)
 print("=" * 92)
-print("P12 -- Tolman-Ehrenfest as the supplied exterior temperature profile")
+print("P12 -- Tolman-Ehrenfest as the supplied exterior temperature profile  [REFUTED]")
 print("=" * 92)
 
 # ---- A. is it determinate? ---------------------------------------------------------
@@ -100,7 +132,13 @@ print("""
 D. WHAT IT COSTS -- stated as an assumption, not smuggled
 
   Tolman-Ehrenfest requires LOCAL THERMAL EQUILIBRIUM in a STATIC gravitational field. The ST
-  exterior is static, so the second condition is met by construction. The first is an ADDED
+  exterior is static, so the second condition is met by construction.
+
+        <<< FALSE. THIS SENTENCE IS THE WHOLE ERROR. The region integrated here is NOT static:
+        <<< N > 1 means A < 0, tbar is spacelike, and no timelike Killing vector exists. I wrote
+        <<< "met by construction" about the one condition that fails. Both gates cut here.
+
+  The first is an ADDED
   physical assumption: it says the exterior fluid has had time to equilibrate and is not, say,
   freely streaming or shock-heated out of equilibrium.
 
@@ -114,5 +152,8 @@ D. WHAT IT COSTS -- stated as an assumption, not smuggled
   CAN be supplied on principled grounds -- which is the one thing phase 5b said was needed.
 """)
 np_ = sum(1 for _, ok_, _ in checks if ok_)
-print(f"SELF-CHECKS: {np_}/{len(checks)} passed")
-sys.exit(0 if np_ == len(checks) else 1)
+print(f"SELF-CHECKS: {np_}/{len(checks)} passed -- AND THAT DOES NOT MATTER, see below")
+print(BANNER)
+print("D. above is superseded. The cost is not an equilibrium assumption; the cost is that the")
+print("   relation does not apply to this region at all. Exiting 2 regardless of check count.")
+sys.exit(2)
