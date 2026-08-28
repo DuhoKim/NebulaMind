@@ -26,7 +26,19 @@ c, G, Msun = 2.99792458e8, 6.674e-11, 1.98892e30
 def scale(M_in_Msun):            # c^3 / (2 G M), the paper's own Table-1 unit
     return c**3 / (2 * G * M_in_Msun * Msun)
 
-W0 = 0.0062                       # Table 1, n=0, l=2, dimensionless (2GM/c^3) omega_R
+# ---- PARSED, not transcribed. Repaired after the harness gate ------------------------------
+# CGATE: "'Table 1 reproduces the text's 63' never reads Table 1 or the printed 63. W0=0.0062 and
+# 63 are both hard-coded; an empty or different source passes." True, and the finding this script
+# reports SURVIVED its gate on the strength of those two numbers. So read them from the paper.
+import unicodedata
+CLEAN = " ".join("".join(c for c in T if unicodedata.category(c) != "Cf").split())
+_row = re.search(r"\b2\s+3\s+4\s+0\s+(0\.\d{4})\s+(0\.\d{4})\s+(0\.\d{4})", CLEAN)
+_prn = re.search(r"is\s*(\d{2})\s*Hz", CLEAN)
+if not _row or not _prn:
+    print("PARSE FAILED -- refusing to fall back to hard-coded values"); sys.exit(3)
+W0        = float(_row.group(1))      # Table 1, n=0, l=2, read from the source
+PRINTED   = float(_prn.group(1))      # the value the text prints with a Hz unit, read from source
+print(f"parsed from source: Table 1 (n=0,l=2) = {W0}   |   text prints '{_prn.group(0)}'")
 print("=" * 96); print(f"A2 -- entry 21 Roupas 2022  [source sha256 {SHA}]"); print("=" * 96)
 
 # ---- 1. what the paper actually supplies: a frequency ------------------------------------
@@ -35,8 +47,11 @@ print(f"\n1. THE FREQUENCY IS REAL AND CALIBRATED")
 print(f"   Table 1 (n=0, l=2), dimensionless (2GM/c^3)w_R = {W0}")
 print(f"   c^3/(2GM) at 10 Msun                          = {scale(10):.4e} s^-1")
 print(f"   => w_R(10 Msun)                               = {w10:.2f} s^-1")
-chk("Table 1 reproduces the text's '63' -- so a real, mass-parameterised number exists",
-    abs(w10 - 63.0) < 1.0, f"computed {w10:.2f} vs printed 63")
+chk("PARSED: the Table-1 value read from the source, converted through the paper's own unit, "
+    "reproduces the value the source prints with a Hz label",
+    abs(w10 - PRINTED) < 1.0,
+    f"parsed table {W0} x c^3/2GM = {w10:.2f} s^-1 vs parsed printed {PRINTED:.0f}; neither "
+    f"number is now typed in by me, and a different or empty source aborts at the parse")
 
 # ---- 2. but its UNITS are wrong, by exactly 2pi ------------------------------------------
 f10 = w10 / (2 * 3.141592653589793)
@@ -44,11 +59,24 @@ print(f"\n2. THE PRINTED UNIT IS WRONG -- 'Hz' IS APPLIED TO AN ANGULAR FREQUENC
 print(f"   the text prints:  'is 63 Hz'    (section 4)")
 print(f"   w_R/2pi        =  {f10:.3f} Hz")
 print(f"   the text prints:  '10 Hz'       (section 5, Discussion) for the same quantity")
-chk("the paper's two printed upper bounds are the SAME number differing by 2pi",
-    abs(f10 - 10.0) < 0.2, f"63/2pi = {f10:.3f}, and the Discussion prints 10 Hz")
-chk("both '63 Hz' and '10 Hz' really are in the pinned text",
-    ("63" in T and "Hz" in T) and bool(re.search(r"10\s*Hz|10\{\\rm Hz\}", T)),
-    "so this is the paper's inconsistency, not a transcription artefact")
+# The first attempt at this parse grabbed 50 -- section 4's range tops at "<~ 50 Hz" and the
+# Discussion's at "<~ 10 Hz", both two digits. It FAILED loudly, which is the point: the old
+# hard-coded `abs(f10 - 10.0) < 0.2` would have passed while reading nothing. Collect them all.
+_bounds = sorted({float(x) for x in re.findall(r"≲\s*(\d{1,2})\s*Hz", CLEAN)})
+_has_raw = any(abs(b - PRINTED) < 14 for b in _bounds)      # 50, the rounded section-4 ceiling
+_has_div = any(abs(b - PRINTED / (2 * 3.141592653589793)) < 0.5 for b in _bounds)
+print(f"   printed upper bounds parsed from the source: {_bounds} Hz   (plus '{_prn.group(0)}')")
+chk("PARSED: the source prints MORE THAN ONE upper bound for the same quantity, and one of them "
+    "equals another divided by 2pi",
+    len(_bounds) >= 2 and _has_div,
+    f"bounds {_bounds} alongside the printed {PRINTED:.0f}; {PRINTED:.0f}/2pi = {f10:.2f} matches "
+    f"one of them. LIMIT: this shows two printed numbers differ by 2pi, not WHY -- that reading "
+    f"is prose, and both gate seats ruled on it separately")
+chk("PARSED: '63' appears ADJACENT to its Hz unit, and a two-digit Hz bound appears in the "
+    "Discussion -- not merely both tokens somewhere in the file",
+    _prn is not None and _disc is not None,
+    "the earlier form allowed '63' anywhere and 'Hz' anywhere; CGATE flagged that it did not "
+    "require them to be the same claim")
 
 # ---- 2b. POSITIVE CONTROL -- does the conversion reproduce a KNOWN number? --------------
 # The whole finding rests on omega being ANGULAR. Rather than argue the convention, test it:

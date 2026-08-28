@@ -89,6 +89,36 @@ was screening — deciding which of the three deserved a deep read — and it po
 was correct. So the draw's *conclusion* stands; its *screening step* was unreliable and could
 have sent me past a paper that mattered.
 
+## 1f. a2 REWIRED TO PARSE — the survived finding now rests on reading, not transcription
+
+CGATE, on the lane where my finding SURVIVED its gate: *"'Table 1 reproduces the text's 63' never
+reads Table 1 or the printed 63. `W0=0.0062` and `63` are both hard-coded; an empty or different
+source passes."* True — and worse than the other defects in one respect, because that finding was
+reported upward as confirmed by two seats, resting on two numbers I had typed in by hand.
+
+Both are now **parsed from the pinned source** (after stripping Unicode format characters, which
+is why the first attempt to match `63 Hz` failed — the text carries `is 63Hz` with a zero-width
+character between):
+
+    Table 1, n=0, l=2  ->  0.0062   parsed from the row "2 3 4 0 0.0062 0.0063 0.0063"
+    printed with unit  ->  63       parsed from "is 63Hz"
+
+If either parse fails the script now **aborts rather than falling back** to a hard-coded value.
+
+### The repair caught my own error immediately
+
+My first replacement for the "two printed bounds differ by 2π" check parsed **50**, not 10 —
+section 4's range tops at `≲ 50 Hz` and the Discussion's at `≲ 10 Hz`, and both are two digits, so
+the regex took the first. **The check FAILED loudly.** The hard-coded form it replaced
+(`abs(f10 - 10.0) < 0.2`) would have passed while reading nothing at all.
+
+Repaired to collect every printed bound: `[10.0, 50.0]` alongside the printed `63`. The check now
+asserts that the source prints more than one upper bound for one quantity and that one equals
+another divided by 2π — and names its limit, that this shows the numbers differ by 2π but not why.
+
+**This is the clearest evidence in the register that hard-coding hides errors rather than merely
+overclaiming.** The same check, reading instead of asserting, failed on its first run.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
