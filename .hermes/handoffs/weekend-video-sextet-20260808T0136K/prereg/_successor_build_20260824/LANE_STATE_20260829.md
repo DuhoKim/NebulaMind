@@ -212,12 +212,19 @@ that raises has not refused.** Probe deletions strictly — a crash must never c
 
 ---
 
-## 10. IF A CRON TICK FIRES
+## 10. THE SELF-CONTINUATION LOOP IS CLOSED
 
-Cron `db6ea525` fires at :13/:33/:53, self-continuation bound **09:00 KST**; past that, `CronDelete`
-it and write a handover. Blanc relays independently.
+Cron `db6ea525` was **deleted at 08:43 KST**, 17 minutes inside its 09:00 bound.
+`SELF_CONTINUATION_ORDERS.md` is marked DORMANT and is now a record, not a live instruction.
 
-**Before 09:00 there is nothing to dispatch.** The instruction on a tick is: confirm no seat report
-or human answer has landed, and stop. Do not open a new object, do not re-run a cleared gate, and do
-not spend seat quota on a question that cannot be acted on alone. Duho's last instruction was to
-commit and hold.
+It ran 00:40 -> 08:43. What it produced after the V36 clear was verification, not new construction:
+the open questions re-checked against V36 rather than the draft they were written on, the v9 freeze
+proven from the file and its history instead of from notes, lane commit integrity confirmed, the
+stale VOID priority marked BLOCKED, and the four decisions restated in plain language.
+
+**It was closed early on purpose.** Every remaining path crosses a decision that is Duho's, and
+continuing would have meant inventing work to look busy — the same failure the orders warn about in
+the registry-check paragraph. **Do not restart the loop without a fresh authorisation.**
+
+**To pick the lane back up:** read `DECISIONS_FOR_DUHO.md`, take one of the four decisions, then
+re-read §1–§3 here before touching anything.

@@ -1,4 +1,14 @@
-# SELF-CONTINUATION — standing orders, 2026-08-29 00:40 KST → 09:00 KST
+# SELF-CONTINUATION — **DORMANT, closed 2026-08-29 08:43 KST.** Orders below are retained as a record.
+
+**Cron `db6ea525` is deleted.** The loop ran 00:40 -> 08:43 and is closed 17 minutes inside its own
+09:00 bound, because everything doable without a human was done and the honest choice was to stop
+rather than manufacture a step. Do not restart it without a fresh authorisation from Duho.
+
+**Nothing here is a live instruction.** Current state is `LANE_STATE_20260829.md`; the four
+decisions are `DECISIONS_FOR_DUHO.md`.
+
+---
+
 
 **Authorised by Duho, relayed by Blanc.** First lane to run without a relay between rounds. The
 problem being fixed: every round tonight ended with a turn and nothing dispatched the next, costing
