@@ -51,28 +51,26 @@ Everything else is specification quality. Progress so far:
 - Never modify a subject while a seat is reviewing it — the POST-CHECK exists to catch exactly that,
   and doing it once already cost GPT56's round-4 findings.
 
-## STATE — refreshed 02:45 KST
+## STATE — NOT HERE. Read `LANE_STATE_20260829.md`.
 
-| thread | state |
-|---|---|
-| **BS-2a code gate** | **CLOSED.** Round 6 CLEAR ×2, scoped "CLEAR for FREEZING the quality-predicate component; not a fill authorization". Pinned in V34's §7 row with its recorded limit. |
-| **Prereg draft** | V34 (`1c45d32d…`). Both seats cleared the V33 *document*. Untouched since, deliberately. |
-| **VOID / clause 10** | **Mechanism CLEARED, content BLOCKED.** Both seats agree the BS-2v circularity claim is false and that pinning is necessary-not-sufficient. They split on completeness; three real gaps verified (`degenerate`, `digest`, `chosen`). **Awaiting a human.** |
-| **Gain control** | **v6 CLEAR ×2 (scoped) at 02:56.** All four repairs hold, including the transcription check against `_decide_from()`. The ONLY remaining gain blocker is the parked T-completeness fork. |
+**This file holds the RULES. `LANE_STATE_20260829.md` holds the STATE. Do not duplicate state here
+again.**
 
-## TWO DECISIONS AWAIT A HUMAN — nothing else is blocked on them
+At 06:21 the table that used to sit in this section had gone stale in the dangerous direction: it
+said the draft was V34 and untouched, and that two decisions awaited a human. By then V35 existed
+with three fixes applied and **four** decisions were parked. The cron prompt tells the reader to open
+*this* file first, so a compacted reader would have taken the stale version as current and could have
+re-dispatched a round on a superseded draft, or missed half the open questions.
 
-1. **`OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md`** — amend §7.1 or not. Four options with costs.
-   Three verified gaps, not the five my heuristic reports (it cannot tell a subject from a
-   condition). Under-enumerating pins a registry that *looks* closed; over-enumerating makes a
-   condition normative the study never meant to void on.
-2. **`OPEN_QUESTION_T_COMPLETENESS.md`** — the p-gated fork. (a) hold observed `p` fixed, cheap but
-   asserts the systematic does not move `p`, which GPT56's counterexample undermines; (b) freeze a
-   joint counterfactual path, correct and expensive, and its sign-vector mapping is itself a
-   modelling assumption; (c) withdraw the rule and state the systematic as an unbounded limitation.
-   **I would drift to (a) because it is cheap, which is the reason not to let me take it.**
+Two files describing one state is the same defect this lane has been finding all night in other
+forms: a second copy that can silently disagree with the thing it describes. One source now.
 
-**Neither blocks BS-6, which stays blocked regardless.**
+## PRIORITY, unchanged: VOID reverse reachability
+
+It is the single item gating clause 10 executability and therefore BS-6. `tools/void_registry.py`
+extracts, canonicalises, digests and checks §7.1. The mechanism is cleared by both seats — the
+BS-2v row's stated circularity is false — and the *content* is blocked on a human: three verified
+gaps (`degenerate`, `digest`, `chosen`). See `OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md`.
 
 ## Operating notes that cost time tonight
 
