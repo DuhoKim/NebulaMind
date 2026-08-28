@@ -1,0 +1,69 @@
+GATE — C3, the chi_* provenance and self-consistency check.
+
+Lane: .hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase6-curvature-20260827/
+Environment: python 3.9.6, numpy 1.26.4, scipy 1.13.1. Run from that directory.
+
+You are an independent seat with no prior context. The previous gate (both seats, PASS) named
+this the right next attack. Do not defer to my framing.
+
+## Target chain
+
+Gaztanaga, Kumar, Pradhan & Gabler, PRD 111 103537 (2025) [pinned:
+`../bhu-reading-20260823/sources/2505.23877_clean.txt`]. Its only NUMBER descends:
+
+    Omega_k ceiling (0.07 +- 0.02)  Eq.27
+      <- chi_* = 15.93 +- 2.22 Gpc  Eq.26
+      <- theta_cut = 65.9 +- 9.2 deg Eq.25  [Camacho-Quevedo & Gaztanaga 2022, JCAP 04 044]
+      <- chi_CMB = 13.8 Gpc          Eq.24  "for Omega_Lambda ~ 0.7 and H0 ~ 70"
+
+## What I claim — `c3_chistar_provenance.py` (7/7, exit 0) and this brief
+
+**A. Provenance.** All three citations supporting the cutoff carry E. Gaztanaga, the target's
+lead author. The anchoring measurement describes itself, verbatim, as "the FIRST measurement",
+"AT ODDS with the LambdaCDM prediction", and an "ANOMALY". The one independent citation
+(Efstathiou 2003) shares no author but contains NO numerical scale and says "we SPECULATE".
+
+**B. Self-consistency.** Camacho-Quevedo & Gaztanaga state their conversion assumes flat
+geometry, verbatim: "Assuming translation invariance (AND FLAT GEOMETRY) we can convert the
+isotropy scale theta_H into a (comoving) homogeneity scale". The target feeds that output into
+Eq.27 to predict NON-zero curvature without redoing the conversion at that curvature. Redoing
+it with the comoving transverse distance S_k gives chi_* shifts of -7.3% at Omega_k = -0.05 and
+-13.3% at -0.09 — comparable to the quoted +-2.22 Gpc.
+
+## Attack these
+
+1. **IS MY S_k TREATMENT THE RIGHT CORRECTION?** This is the one to break. Eq.24 is
+   `theta_cut = chi_*/chi_CMB`. I replaced `chi_CMB` with the comoving transverse distance
+   `S_k(chi_CMB)`. Is that the correct generalisation of Eq.24 to curved geometry, or have I
+   misapplied it? If chi_* is intended as an ARC LENGTH on the last-scattering sphere rather
+   than a transverse separation, the relation may already be exact and my correction spurious.
+   Rule on which reading Eq.24 requires. If I am wrong here, finding B falls entirely.
+
+2. **The small-angle question, which I have NOT resolved.** theta_cut = 65.9 deg = 1.15 rad is
+   not a small angle. `theta = chi/D` is the small-angle form. Does Eq.24 survive at 66 degrees
+   under either reading? I flag this and do not claim it as a defect, because I have not
+   determined what the source intends. Determine it.
+
+3. **Is the provenance point fair or is it innuendo?** Self-citation is not misconduct, and a
+   first measurement has to be somebody's. My claim is narrower: the number rests on a single
+   unreplicated, self-described-anomalous measurement by the target's own lead author, and the
+   target does not disclose that as a single point of failure. Is that fair, or am I dressing
+   up ordinary practice as a defect?
+
+4. **Is "unreplicated" accurate?** I checked for independent measurements of the CMB homogeneity
+   scale and found DESI DR1 angular-homogeneity work (arXiv 2606.07854) measuring theta_H from
+   GALAXIES at 0.4<z<1.1 — a different observable from theta_H on the CMB sky, so I did not
+   treat it as a replication. Was that right, or am I dismissing a genuine cross-check?
+
+5. **Reproduce.** `python3 c3_chistar_provenance.py`, expect exit 0, 7/7. The distance
+   integration carries a positive control against the target's own stated chi_CMB (13.8 Gpc)
+   and chi_* (15.93 Gpc). Verify the control actually controls.
+
+## What an honest PASS means
+
+That the provenance chain is stated fairly, and that finding B is a real self-consistency gap
+rather than my own error in curved-space distances. A HOLD on point 1 is entirely likely and
+would be more useful to me than a pass.
+
+Verdict file in this directory, first line `PASS_C3` or `HOLD_<reason>`. Name it per your seat
+convention (CGATE_/AGATE_).
