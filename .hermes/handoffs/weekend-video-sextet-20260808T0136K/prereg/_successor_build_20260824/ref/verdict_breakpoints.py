@@ -270,7 +270,11 @@ def self_test() -> int:
     # that asserts more than its predicate tests. T03 was exactly that and is gone.
     import re as _re
     src = Path(__file__).read_text()
-    emitted = set(_re.findall(r"\[\{?(T\d{2})", src))
+    # BOTH idioms. My first audit pass scanned only refuse("T##", ...) and produced a false
+    # positive on this very file; then I shipped a scan that saw only the bracket form. Same error,
+    # mirrored (CODEX-HARNESS-3, GPT56-HARNESS-2).
+    emitted = (set(_re.findall(r"\[\{?(T\d{2})", src))
+               | set(_re.findall(r'refuse\(\s*"(T\d{2})"', src)))
     orphans = sorted(set(CODES) - emitted)
     ok = not orphans
     print(f"  {'OK  ' if ok else 'FAIL'} every declared code is emitted by a runtime path"

@@ -263,7 +263,9 @@ def self_test(text: str) -> int:
         print(f"  FAIL codes with no control: {sorted(orphans)}")
         fails.append("coverage")
     else:
-        print(f"  OK   every code has a control (V01 is covered by the empty-document case)")
+        print(f"  OK   every code is exercised by a control (V01 by the empty-document case). "
+              f"This is control coverage, NOT semantic coverage of §6.1's forbidden columns - "
+              f"V05/V06 match a naming convention.")
     # The compound-gap heuristic must find the three a seat found by reading, and must go quiet
     # when the branch is named. Without the second half it could "find" gaps by always firing.
     gaps = {w for _, w, _ in compound_gaps(text)}

@@ -221,8 +221,14 @@ def trace_table(text):
 # ─────────────────────────────────────────────────────────────────────────────────────────────
 
 def self_test(d: Path, subject: Path):
-    """Assert each scope rule can fail. Returns 1 if any control is silent."""
-    import tempfile, shutil
+    """Assert each scope rule can fail, BY RUNNING THE CHECKER.
+
+    The previous version asserted that fixtures could be constructed - it stripped a row from a
+    local list and checked the list got shorter, confirmed a mapping it never removed, and built a
+    future draft it never checked against. It printed "3 scope rules, 0 failure(s)" while proving
+    nothing about whether the checker fires or stays quiet (CODEX-HARNESS-2). Every control below
+    now mutates a copy and calls check_trace() itself.
+    """
     rows = build(d)
     findings = load_findings(d)
     text = subject.read_text()
@@ -230,64 +236,131 @@ def self_test(d: Path, subject: Path):
     subj = int(DRAFT.search(subject.name).group(1))
     fails = []
 
-    # 1. in-band: a predecessor transition absent from the §10 table must be reported MISSING.
-    inband = [r for r in rows if 15 < int(r["to"]) < subj]
-    hit = None
-    for r in inband:
-        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b")
-        if any(pat.search(t) for t in table):
-            hit = r
-            break
-    if hit:
-        stripped = [t for t in table
-                    if not re.search(rf"V{hit['from']}\s*(?:→|->|to)\s*V{hit['to']}\b", t)]
-        ok = len(stripped) < len(table)
-        print(f"  {'OK  ' if ok else 'FAIL'} in-band presence: removing V{hit['from']}→V{hit['to']} "
-              f"from the table {'is detectable' if ok else 'IS NOT DETECTABLE'}")
-        if not ok:
-            fails.append("in-band")
-    else:
+    base = check_trace(d, text, subject.name, rows, findings)
+    ok0 = not base
+    print(f"  {'OK  ' if ok0 else 'FAIL'} the real subject checks clean"
+          f"{'' if ok0 else f' — {base}'}")
+    if not ok0:
+        fails.append("baseline")
+
+    # 1. in-band: delete a predecessor row from the TEXT and require MISSING for that transition.
+    hit = next((r for r in rows if 15 < int(r["to"]) < subj
+                and any(re.search(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b", t)
+                        for t in table)), None)
+    if not hit:
         print("  FAIL in-band presence: no in-band row available to test")
         fails.append("in-band")
+    else:
+        pat = re.compile(rf"^.*V{hit['from']}\s*(?:→|->|to)\s*V{hit['to']}\b.*$", re.M)
+        mutated = pat.sub("", text, count=1)
+        got = check_trace(d, mutated, subject.name, rows, findings)
+        want = f"MISSING: no §10 table row for V{hit['from']} → V{hit['to']}"
+        ok = any(g == want for g in got)
+        print(f"  {'OK  ' if ok else 'FAIL'} in-band presence: deleting V{hit['from']}→V{hit['to']} "
+              f"makes the CHECKER report MISSING{'' if ok else f' — got {got[:2]}'}")
+        if not ok:
+            fails.append("in-band")
 
-    # 2. sidecar: the current transition, unmapped, must be reported.
+    # 2. sidecar: drop the current mapping and require SIDECAR MISSING for exactly it.
     cur = next((r for r in rows if int(r["to"]) == subj), None)
-    if cur:
-        ok = (cur["from"], cur["to"]) in findings
-        print(f"  {'OK  ' if ok else 'FAIL'} sidecar: current transition "
-              f"V{cur['from']}→V{cur['to']} is {'mapped and therefore checkable' if ok else 'UNMAPPED'}")
+    if not cur:
+        print("  FAIL sidecar: no current transition to test")
+        fails.append("sidecar")
+    else:
+        stripped = {k: v for k, v in findings.items() if k != (cur["from"], cur["to"])}
+        got = check_trace(d, text, subject.name, rows, stripped)
+        ok = any(g.startswith(f"SIDECAR MISSING: V{cur['from']} → V{cur['to']}") for g in got)
+        print(f"  {'OK  ' if ok else 'FAIL'} sidecar: removing the V{cur['from']}→V{cur['to']} "
+              f"mapping makes the CHECKER report it{'' if ok else f' — got {got[:2]}'}")
         if not ok:
             fails.append("sidecar")
-    else:
-        print("  FAIL sidecar: no current transition found — the branch cannot be exercised")
-        fails.append("sidecar")
 
-    # 3. out-of-scope: a synthetic later draft must NOT affect this subject. CODEX's own test.
-    tmp = Path(tempfile.mkdtemp())
-    try:
-        for f in d.glob("PREREG_SUCCESSOR_DRAFT_V*.md"):
-            shutil.copy(f, tmp / f.name)
-        (tmp / "gates").mkdir(exist_ok=True)
-        fm = d / "gates" / "FINDINGS_MAP.md"
-        if fm.exists():
-            shutil.copy(fm, tmp / "gates" / "FINDINGS_MAP.md")
-        future = tmp / f"PREREG_SUCCESSOR_DRAFT_V{subj + 1}_20260827.md"
-        future.write_text(text + "\n<!-- synthetic future draft -->\n")
-        before = len(build(d))
-        after = len(build(tmp))
-        ok = after > before          # the future draft exists...
-        rows2 = build(tmp)
-        later = [r for r in rows2 if int(r["to"]) > subj]
-        ok = ok and bool(later)
-        print(f"  {'OK  ' if ok else 'FAIL'} out-of-scope: a synthetic V{subj + 1} "
-              f"{'is present and must not bind this subject' if ok else 'COULD NOT BE CONSTRUCTED'}")
-        if not ok:
-            fails.append("out-of-scope")
-    finally:
-        shutil.rmtree(tmp, ignore_errors=True)
+    # 3. out-of-scope: a transition POSTDATING the subject must not bind it. Synthesise a future
+    #    row with no mapping and require the unchanged subject to stay clean.
+    future = rows + [{"from": str(subj), "to": str(subj + 1), "from_sha": "0" * 64,
+                      "to_sha": "1" * 64, "touched": "§2.7 (+1/−1)", "counts": "no row-count change"}]
+    got = check_trace(d, text, subject.name, future, findings)
+    ok = not any(f"V{subj} → V{subj + 1}" in g for g in got)
+    print(f"  {'OK  ' if ok else 'FAIL'} out-of-scope: a synthetic V{subj}→V{subj + 1} does not bind "
+          f"this subject{'' if ok else f' — got {got[:2]}'}")
+    if not ok:
+        fails.append("out-of-scope")
 
     print(f"  self-test: 3 scope rules, {len(fails)} failure(s)")
     return 1 if fails else 0
+
+
+def check_trace(d, text, subject_name, rows=None, findings=None):
+    """The production check as a CALLABLE returning findings, so a test can invoke it.
+
+    This logic was inline in main(). That is why self_test() could not run it and instead
+    asserted that fixtures could be CONSTRUCTED - proving nothing about whether the
+    checker fires or stays quiet (CODEX-HARNESS-2). Only the reporting moved; every
+    predicate below is unchanged.
+    """
+    out = []
+    rows = build(d) if rows is None else rows
+    findings = load_findings(d) if findings is None else findings
+    table = trace_table(text)
+    subj = DRAFT.search(subject_name)
+    subj_v = int(subj.group(1)) if subj else None
+    for r in rows:
+        if int(r["to"]) <= 15 or (subj_v is not None and int(r["to"]) >= subj_v):
+            # (in-band coverage stops at the predecessor; > subject is out of scope entirely)
+            continue
+        # A written row may say anything; what it must not do is contradict a computed digest.
+        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b")
+        row = next((t for t in table if pat.search(t)), None)
+        if row is None:
+            out.append(f"MISSING: no §10 table row for V{r['from']} → V{r['to']}")
+            continue
+        # The RESULT digest, in THAT row — not either endpoint anywhere in the document.
+        if r["to_sha"][:12] not in row:
+            out.append(f"UNPINNED: V{r['from']} → V{r['to']} row does not carry its result digest")
+
+    # §6.3's obligation, enforced rather than asserted: a transition that touched a normative
+    # section must name the finding it answers. Sections whose whole purpose is bookkeeping are
+    # exempt — §10 is the trace itself, and the preamble carries banners.
+    BOOKKEEPING = {"§10", "(preamble)"}
+    # COVERAGE CONTRACT, encoded here rather than asserted in prose (GPT56-V26-4):
+    #   * in-band  — the draft's own table covers transitions up to its PREDECESSOR only. A draft
+    #                cannot describe the transition that created it; that row would change its bytes
+    #                and therefore its own digest.
+    #   * sidecar  — the current transition is mapped in gates/FINDINGS_MAP.md, outside the draft.
+    #   * historic — V1→V15 predate this lane's referee record and are exempt by rule, not by
+    #                silence. Naming the exemption is the difference between a gap and an omission.
+    HISTORIC_EXEMPT_BEFORE = 15
+    subject_ver = None
+    m = DRAFT.search(subject_name)
+    if m:
+        subject_ver = int(m.group(1))
+    for r in rows:
+        if int(r["to"]) <= HISTORIC_EXEMPT_BEFORE:
+            continue                      # exempt by stated rule
+        if subject_ver is not None and int(r["to"]) > subject_ver:
+            # OUT OF SCOPE. A draft is not answerable for transitions that postdate it. The first
+            # version used >= subject_ver, so every future transition entered the sidecar branch and
+            # was mislabelled "the current transition". CODEX-V28-1 proved it by building a mirror
+            # with a synthetic V29 and no V28→V29 mapping: checking the *unchanged* V28 then failed
+            # on a transition that had nothing to do with V28.
+            continue
+        if subject_ver is not None and int(r["to"]) == subject_ver:
+            # In-band coverage stops at the predecessor — but the sidecar OWNS this transition, so
+            # it must still be checked there. The first version skipped it entirely, which meant the
+            # one row that most needs verifying was the one guaranteed never to be examined: a guard
+            # that cannot fire, reporting clean. Both seats caught it (GPT56-V27-1 CRITICAL,
+            # CODEX-V27-1). Same shape as the blockquote exemption that silently voided the count
+            # check earlier today.
+            if (r["from"], r["to"]) not in findings:
+                out.append(f"SIDECAR MISSING: V{r['from']} → V{r['to']} is the current "
+                           f"transition and is not mapped in gates/FINDINGS_MAP.md")
+            continue
+        normative = [s_ for s_ in re.findall(r"(§[\d.]+|\(preamble\))", r["touched"])
+                     if s_ not in BOOKKEEPING]
+        if normative and (r["from"], r["to"]) not in findings:
+            out.append(f"NO FINDING CITED: V{r['from']} → V{r['to']} changed "
+                       f"{', '.join(normative[:4])} but gates/FINDINGS_MAP.md names no finding")
+    return out
 
 
 def main():
@@ -318,71 +391,11 @@ def main():
         return 0
 
     text = Path(args.check).read_text()
-    bad = 0
     print(f"prereg trace check — {Path(args.check).name}")
-    table = trace_table(text)
-    subj = DRAFT.search(Path(args.check).name)
-    subj_v = int(subj.group(1)) if subj else None
-    for r in rows:
-        if int(r["to"]) <= 15 or (subj_v is not None and int(r["to"]) >= subj_v):
-            # (in-band coverage stops at the predecessor; > subject is out of scope entirely)
-            continue
-        # A written row may say anything; what it must not do is contradict a computed digest.
-        pat = re.compile(rf"V{r['from']}\s*(?:→|->|to)\s*V{r['to']}\b")
-        row = next((t for t in table if pat.search(t)), None)
-        if row is None:
-            print(f"  MISSING: no §10 table row for V{r['from']} → V{r['to']}")
-            bad += 1
-            continue
-        # The RESULT digest, in THAT row — not either endpoint anywhere in the document.
-        if r["to_sha"][:12] not in row:
-            print(f"  UNPINNED: V{r['from']} → V{r['to']} row does not carry its result digest")
-            bad += 1
-
-    # §6.3's obligation, enforced rather than asserted: a transition that touched a normative
-    # section must name the finding it answers. Sections whose whole purpose is bookkeeping are
-    # exempt — §10 is the trace itself, and the preamble carries banners.
-    BOOKKEEPING = {"§10", "(preamble)"}
-    # COVERAGE CONTRACT, encoded here rather than asserted in prose (GPT56-V26-4):
-    #   * in-band  — the draft's own table covers transitions up to its PREDECESSOR only. A draft
-    #                cannot describe the transition that created it; that row would change its bytes
-    #                and therefore its own digest.
-    #   * sidecar  — the current transition is mapped in gates/FINDINGS_MAP.md, outside the draft.
-    #   * historic — V1→V15 predate this lane's referee record and are exempt by rule, not by
-    #                silence. Naming the exemption is the difference between a gap and an omission.
-    HISTORIC_EXEMPT_BEFORE = 15
-    subject_ver = None
-    m = DRAFT.search(Path(args.check).name)
-    if m:
-        subject_ver = int(m.group(1))
-    for r in rows:
-        if int(r["to"]) <= HISTORIC_EXEMPT_BEFORE:
-            continue                      # exempt by stated rule
-        if subject_ver is not None and int(r["to"]) > subject_ver:
-            # OUT OF SCOPE. A draft is not answerable for transitions that postdate it. The first
-            # version used >= subject_ver, so every future transition entered the sidecar branch and
-            # was mislabelled "the current transition". CODEX-V28-1 proved it by building a mirror
-            # with a synthetic V29 and no V28→V29 mapping: checking the *unchanged* V28 then failed
-            # on a transition that had nothing to do with V28.
-            continue
-        if subject_ver is not None and int(r["to"]) == subject_ver:
-            # In-band coverage stops at the predecessor — but the sidecar OWNS this transition, so
-            # it must still be checked there. The first version skipped it entirely, which meant the
-            # one row that most needs verifying was the one guaranteed never to be examined: a guard
-            # that cannot fire, reporting clean. Both seats caught it (GPT56-V27-1 CRITICAL,
-            # CODEX-V27-1). Same shape as the blockquote exemption that silently voided the count
-            # check earlier today.
-            if (r["from"], r["to"]) not in findings:
-                print(f"  SIDECAR MISSING: V{r['from']} → V{r['to']} is the current transition and "
-                      f"is not mapped in gates/FINDINGS_MAP.md")
-                bad += 1
-            continue
-        normative = [s_ for s_ in re.findall(r"(§[\d.]+|\(preamble\))", r["touched"])
-                     if s_ not in BOOKKEEPING]
-        if normative and (r["from"], r["to"]) not in findings:
-            print(f"  NO FINDING CITED: V{r['from']} → V{r['to']} changed {', '.join(normative[:4])} "
-                  f"but gates/FINDINGS_MAP.md names no finding")
-            bad += 1
+    out = check_trace(d, text, Path(args.check).name, rows, findings)
+    for line in out:
+        print(f"  {line}")
+    bad = len(out)
     print(f"  {len(rows)} computed transition(s); {bad} problem(s)")
     return 1 if bad else 0
 
