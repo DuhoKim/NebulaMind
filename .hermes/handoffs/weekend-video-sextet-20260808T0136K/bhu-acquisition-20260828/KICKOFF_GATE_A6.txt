@@ -1,0 +1,119 @@
+GATE -- A6: should entry 25 be PROMOTED to CALIBRATED-FALSIFIER? This would be the sweep's first
+promotion and it changes the number this programme reports.
+
+Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/
+Artifact: `a6_entry25_falsifier.py` (5/5, exit 0). Run: `cd <lane>; python3 a6_entry25_falsifier.py`
+Sources (both pinned):
+  entry 25  ../bhu-reading-20260823/sources/sym14091849_clean.txt   sha256 391a2510c8be
+            = E. Gaztanaga, "The Black Hole Universe, Part I", Symmetry 14, 1849 (2022).
+  DESI      ../bhu-reading-20260823/sources/2512.09486_clean.txt    sha256 37f097db4a78
+            = a third-party wwCDM+Omega_k fit to DESI DR1/DR2. NOT a DESI collaboration paper.
+
+You are an independent seat with no prior context. I am the requester and I want this broken if
+it is breakable. A promotion is harder to undo than a demotion: it would be quoted as a live
+test of this model family.
+
+## PROVENANCE WARNING
+
+The entry-25 file is NOT a publisher PDF. I reassembled it from three overlapping browser text
+captures because MDPI blocks scripted access, and an earlier attempt of mine at pinning this same
+paper was silently truncated without my noticing. It now passes start/middle/end landmark checks
+and recovers 96.1% of the character count the page reports for itself. The article is open access
+at https://www.mdpi.com/2073-8994/14/9/1849. **If any quotation below is mangled, mis-ordered, or
+an equation is missing, say so -- that alone is a clean kill.**
+
+## THE CLAIM I AM MAKING
+
+Section 4 (Discussion and Conclusions) contains, in the author's own falsification language:
+
+    "The BHU can also be challenged by a measurement a[t] the DE equation of state w != -1. This
+     would indicate that cosmic acceleration is not solely caused by the BHU event horizon r_S."
+
+I claim this is a CALIBRATED FALSIFIER -- named observable, exact threshold, stated consequence --
+and that the model is RIGID at w = -1 with no auxiliary able to absorb a deviation, because
+Lambda = 3/r_S^2 with r_S the fixed exterior Schwarzschild radius is a true constant, and a
+constant dark-energy density forces w = -1 through the continuity equation.
+
+The bibliography tiers entry 25 QUALITATIVE-DIRECTIONAL, reasoning that "the Lambda-r_S
+identification is a number, but it is fixed FROM the measured Lambda rather than predicting it."
+I agree about Lambda. I say that reasoning does not touch w.
+
+## ATTACK 1 -- AM I DOING THE ENTRY-54 ERROR IN REVERSE? Rule on this FIRST.
+
+This lane DEMOTED entry 54 because its abstract stated a bracket that Section VI quietly
+qualified into a ceiling. The lesson was: hunt the qualification before you trust the headline.
+
+I am now promoting on ONE SENTENCE in a Discussion section. So run the same protocol in the
+promotion direction: **go through the body and hunt for text that WEAKENS, CONDITIONS or
+WITHDRAWS the w != -1 statement.** Does the paper elsewhere allow an effective w != -1, admit a
+time-varying Lambda, permit additional dark-energy content alongside r_S, or soften "challenged"
+into something conditional? If you find such text, the promotion fails and I have made the
+entry-54 mistake with the sign flipped. Say "searched, none found" if you actually looked and
+found nothing -- that is a different answer from not having looked.
+
+## ATTACK 2 -- the rigidity join is MINE, not the author's
+
+The author never writes "w = -1 is rigid". He writes the falsification sentence in Section 4 and,
+separately, the equations. Joining them is my step. Attack it:
+
+ (a) Is r_S genuinely CONSTANT in this model? Appendix D admits an intermediate regime where
+     "M reduces its value (Mdot != 0)". I claim the varying M is the INTERIOR Misner-Sharp mass
+     2GM = R^3 H^2 relaxing to the constant exterior value ("all that remains is the SBH mass:
+     2GM = r_S"), and that the exterior observer "only sees r_S". If instead r_S itself evolves,
+     Lambda drifts, w != -1 is absorbed, and my whole rigidity argument dies.
+ (b) The junction has R(tau) -> r_S asymptotically. Does that make r_S a derived, dynamical
+     quantity rather than a fixed parameter?
+ (c) Does the model permit any dark-energy component OTHER than the r_S term? If it does,
+     w != -1 no longer refutes it.
+
+## ATTACK 3 -- DISTINCTIVENESS. This one may matter more than the tier.
+
+LambdaCDM also predicts w = -1 exactly. So a measurement of w != -1 refutes BOTH. Does that make
+this a falsifier that cannot discriminate BHU from the standard model?
+
+Note the trap, and rule on the two questions SEPARATELY:
+  - FALSIFIABILITY: would w != -1 refute BHU? (I say yes)
+  - DISTINCTIVENESS: would it single BHU out? (I suspect no)
+This lane previously demoted a claim for exactly this conflation -- a factor-of-two horizon
+temperature was called "not discriminating" and the gate ruled that non-distinctiveness is not
+the same as non-falsifiability. Do not repeat that error in either direction.
+
+## ATTACK 4 -- did I even read the sentence correctly?
+
+The pinned text reads "challenged by a measurement a the DE equation of state omega != -1" --
+there is a typo ("a the"). Confirm from the source that omega here is the dark-energy equation of
+state (the paper uses p = omega rho elsewhere) and not some other omega. If the symbol is
+something else, the finding evaporates.
+
+## ATTACK 5 -- the DESI numbers are TESTIMONY and I have labelled them so. Check the labelling.
+
+My check 5 says the falsifier is live but does not fire, citing 1.8 sigma max deviation. That
+comes from a third-party fit, NOT the DESI collaboration. I explicitly do NOT assert the
+collaboration's own headline evolving-dark-energy significance, because no pinned source in this
+corpus supports it and I will not quote it from memory.
+
+Verify: (a) that I read 2512.09486's sigma values correctly, and (b) that my "does not fire"
+conclusion is stated at the strength that ONE third-party fit can carry and no stronger. If you
+can reach a DESI collaboration DR2 paper, say what it actually reports -- that is the single most
+useful thing you can add, and it could flip FIRES from NO to YES.
+
+## ATTACK 6 -- reproduce, and audit names against predicates
+
+Run it. Expect 5/5, exit 0. Report any check whose NAME claims more than its PREDICATE tests --
+I have shipped that error three times today and a seat caught it each time.
+
+## Verdict
+
+First line EXACTLY one of:
+
+    PROMOTE_CONFIRMED             -- entry 25 should become CALIBRATED-FALSIFIER
+    PROMOTE_REFUTED_<reason>      -- name the attack that kills it
+    HOLD_<reason>
+
+Then, each on its own line:
+    RIGID:        YES | NO          -- attack 2: is w = -1 forced with no auxiliary?
+    DISTINCTIVE:  YES | NO          -- attack 3: does it separate BHU from LambdaCDM?
+    FIRES:        YES | NO | UNDETERMINED   -- on the evidence you can actually reach
+
+Name the file CGATE_A6_VERDICT.md (codex) or AGATE_A6_VERDICT.md (agy) in the lane directory.
+Quote the paper. Do your own arithmetic. Do not defer to mine.
