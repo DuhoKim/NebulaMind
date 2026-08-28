@@ -50,7 +50,19 @@ fail the lint. A fourth repair attempt is explicitly out of bounds — the decis
 - **`prereg_trace` refactor**: cleared by both seats; predicates unchanged.
 - **V34's correction citations are real** — confirmed independently, twice.
 
-## V35 ROUND IS RUNNING (dispatched 06:17 KST)
+## CURRENT DRAFT IS V36 (built 06:45 KST, NEVER REFEREED)
+
+`PREREG_SUCCESSOR_DRAFT_V36_20260829.md` = `e4d7b175ac270f4cdc0bc4af3a16af0e834aa3e4eacc174a73d10798cd4b6177`
+
+V35 came back **NOT CLEAR from both seats, but with both major repairs HELD**: §1 line 120 correctly
+scoped without under-claiming, and §6.2 line 592 not relocating the false detection claim into
+BS-2k's mouth. The only remaining finding from each was MEDIUM, wording-only, in the BS-2a pin —
+now fixed in V36. Change vs V35: line 1, line 698, one §10 row. Class counts still 15/8; §1 scope
+and §2.7 line 384 still V30-identical; four checkers pass.
+
+**Next: referee V36, same absence-clause lens, quarantine disclosure repeated.**
+
+## V35 ROUND (done 06:31)
 
 Both seats, reports to `gates/V35_WHOLE_REVIEW_<SEAT>.md`, runner
 `gates/_tmp_v35_round.sh`, log `gates/runner_v35_round.log`. Brief
