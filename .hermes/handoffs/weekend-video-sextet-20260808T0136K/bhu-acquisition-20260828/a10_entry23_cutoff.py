@@ -1,8 +1,36 @@
 #!/usr/bin/env python3
 """A10 -- entry 23 (Gaztanaga 2020, MNRAS 494, 2766, "The size of our causal Universe").
 
-Tiered QUALITATIVE-DIRECTIONAL. I think that is TOO WEAK, and unlike the entry-25 attempt this
-one is not built on a single sentence.
+GATED 2026-08-29. BOTH SEATS REFUSED THE PROMOTION.
+    CGATE_A10_VERDICT.md  HOLD_UNCALIBRATED_CUTOFF   RIGID: YES | DERIVED: YES | MATCHES: CONTESTED
+    AGATE_A10_VERDICT.md  PROMOTE_REFUTED_ATTACK_5   RIGID: NO  | DERIVED: NO  | MATCHES: CONTESTED
+
+THE KILL, AND I HANDED IT TO THEM AS ATTACK 5 WITHOUT SEEING IT MYSELF. I quoted "we roughly
+estimate theta_S ~= 60 +/- 3 deg" and stopped at "deg." The sentence continues:
+
+    "We can also PREDICT Omega_Lambda FROM the lack of CMB correlations. From Fig.3 we roughly
+     estimate theta_S ~= 60 +/- 3 deg. TO FIND (using Eq.22) Omega_Lambda = 0.7 +/- 0.1."
+
+The +/-3 is READ OFF THE OBSERVED CMB CURVE and used as an INPUT to infer Omega_Lambda. It is not
+a propagated forward uncertainty on a prediction. My check 2 -- "the prediction carries a stated
+uncertainty" -- was simply wrong about which inference that uncertainty belongs to.
+
+THIS IS THE THIRD TIME TONIGHT. A6: I quoted the w != -1 sentence four times and missed "not
+solely" inside it. A7: I cited "no defects or discontinuities" and missed three sentences on the
+same pages saying the junction is null, degenerate and non-comoving. Now A10: I stopped one clause
+early again. That is a systematic reading failure of mine, not three separate slips: I stop at the
+phrase that supports the claim I am forming.
+
+WHAT SURVIVES, and CGATE is careful to preserve it: the FORWARD chain is real. Eq.19 gives
+rho_Lambda = rho_S, Eq.22 maps the measured density to chi_S = (3.149 +/- 0.006) c/H_0 from
+Omega_Lambda = 0.69 +/- 0.01, and theta_S = chi_S/chi_CMB follows. So the ~60 deg IS derived from
+a measured quantity. What is absent is a CALIBRATION -- no propagated angular uncertainty, no
+likelihood, no confidence level. A derived direction without a calibrated threshold is exactly
+QUALITATIVE-DIRECTIONAL, which is where the entry already sits.
+
+Tiered QUALITATIVE-DIRECTIONAL. TIER CONFIRMED -- and for a sharper reason than the bibliography
+gave: not "the scale is fitted from the anomalies" (the derivation is sound), but "the error bar
+is borrowed from the anomaly it is checked against".
 
 THE PREDICTION, with the author's own verb and his own error bar:
 
@@ -50,9 +78,16 @@ chk("entry 23 states a PREDICTION about an observable, in the author's own word"
 err = re.search(r"roughly estimate\s*θ§?\s*≃?\s*60\s*±\s*3", T) or ("60\\pm 3" in T) or ("60±3" in T.replace(" ",""))
 print(f"\n2. IT HAS AN ERROR BAR")
 print(f"   'we roughly estimate theta_S ~= 60 +/- 3 deg'  present: {bool(err)}")
-chk("the prediction carries a stated uncertainty, not just a round number",
-    bool(err),
-    "60 +/- 3 deg is ~5% -- tight enough that a measured cutoff at 30 or 90 deg would fail it")
+# REPAIRED: the +/-3 belongs to the REVERSE inference. Test the direction, not the presence.
+reverse = "We can also predict" in T and "to find (using Eq.22)" in T.replace("Eq.22","Eq.22")
+fwd_err = re.search(r"θ§\s*=\s*[0-9.]+\s*±", T) is not None
+print(f"   direction: 'predict Omega_Lambda FROM the lack of CMB correlations' .. {reverse}")
+print(f"   any propagated FORWARD uncertainty on theta_S ................. {fwd_err}")
+chk("the +/-3 is an OBSERVATIONAL read-off feeding the reverse inference, not a forward "
+    "prediction uncertainty -- so the claim is NOT calibrated",
+    reverse and not fwd_err,
+    "my original check tested that an uncertainty EXISTS; it never tested which inference "
+    "it belonged to, and both seats killed the promotion on exactly that")
 
 # ---- 3. WHICH WAY DOES THE DERIVATION RUN? the bibliography's post-hoc worry ---------------
 chain = "θ§≡χ§χC​M​B" in T.replace(" ","") or "\\frac{\\chi_{\\lx@sectionsign}}{\\chi_{CMB}}" in T
@@ -88,7 +123,36 @@ chk("the CMB large-angle correlation anomaly predates the paper, so this is a PO
     "questions and this lane has demoted a claim once for conflating them")
 
 print("""
-6. WHY THIS IS UNLIKE ENTRIES 21, 25 AND 26
+6. FURTHER QUALIFICATIONS CGATE FOUND THAT I HAD NOT
+
+   "As we dont know the values of a_i or rho(t_i) it seems impossible to estimate how large
+    chi_S is from current observations or first principles."
+   "this rough estimate does not take into account the foreground (late) ISW and lensing
+    effects ... This requires further investigation."
+   the CMB-inferred boundary "might be slightly different to the value near us", and such
+    differences are "impossible to quantify ... without a model for the initial conditions".
+   "More work is needed to account for the late ISW and lensing and to interpret the CMB
+    measurements with a metric that is not homogeneous."
+
+   Five hedges, none of which I found. I reported two.
+
+7. MATCHES: CONTESTED -- and the reason is circular in a way I missed
+
+   Both seats agree the large-angle correlation deficit is real in COBE/WMAP/Planck but is not a
+   cleanly established cutoff at 60 +/- 3 deg. CGATE's decisive point: the S_1/2 statistic ITSELF
+   integrates above 60 degrees, and that boundary was chosen a posteriori. So "matches the
+   anomaly at 60 deg" is partly matching a number the anomaly literature also chose after the
+   fact. Using it to manufacture a calibration is circular.
+
+8. THE SPLIT, RECORDED
+
+   RIGID and DERIVED: CGATE says YES to both, AGATE says NO to both. CGATE is the more careful
+   reading and I follow it: the paper DOES contain the forward chain (Eq.19 -> Eq.22 -> chi_S =
+   3.149 +/- 0.006 c/H_0), so the direction of inference is genuinely Omega_Lambda -> theta_S.
+   AGATE's NO overstates -- it collapses "the error bar runs backwards" into "the whole
+   derivation runs backwards", and those are different failures. The promotion dies either way.
+
+9. WHY THIS IS UNLIKE ENTRIES 21, 25 AND 26
 
    Each of those supplied a real number that could not fail, because the author also supplied the
    auxiliary that absorbs a discrepancy: an uncomputed excitation amplitude (21), "not solely
@@ -98,13 +162,12 @@ print("""
    parameter in it. That is the claim the gate should attack hardest, because it is exactly the
    claim I got wrong at A6.
 
-7. PROPOSED, NOT APPLIED -- this is a CHOICE, so it goes to the file and to the seats
+10. OUTCOME
 
-   entry 23:  QUALITATIVE-DIRECTIONAL  ->  CALIBRATED-FALSIFIER
-
-   Eighth entry of the sweep and the second promotion candidate. The first was refused.
+   NO PROMOTION. entry 23 stays QUALITATIVE-DIRECTIONAL, confirmed by both seats.
+   Eighth entry, eighth tier unchanged. Second promotion candidate, second refusal.
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")
-print("\nSTATUS: UNGATED, and NO TIER CHANGE APPLIED.")
+print("\nSTATUS: GATED. Promotion REFUSED by both seats. Tier unchanged.")
 sys.exit(0 if n_ok == len(checks) else 1)

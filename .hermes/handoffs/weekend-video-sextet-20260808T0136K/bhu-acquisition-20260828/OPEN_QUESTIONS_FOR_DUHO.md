@@ -85,7 +85,11 @@ authorised and continuing it is mechanical. Stopping is a judgement about value.
 ## Q4. Entry 23 looks like a CALIBRATED-FALSIFIER filed as QUALITATIVE-DIRECTIONAL.
 
 **Raised by:** entry 23 (Gaztañaga 2020, MNRAS 494, 2766, "The size of our causal Universe").
-Audited in `a10_entry23_cutoff.py` (5/5). **Not applied — gated to two seats, verdicts pending.**
+Audited in `a10_entry23_cutoff.py`. **RESOLVED 2026-08-29 03:0x — both seats REFUSED the
+promotion. Q4 is closed; no decision needed from you.** Left here because the reason is worth
+reading: the ±3° I built the case on is read *off the observed CMB curve* and used to infer Ω_Λ,
+not propagated forward from Ω_Λ. The forward derivation is real (CGATE: RIGID YES, DERIVED YES);
+the *calibration* is not. Tier stays QUALITATIVE-DIRECTIONAL.
 
 The paper predicts an angular scale on a measured observable, with an uncertainty, in the
 author's own verb:
