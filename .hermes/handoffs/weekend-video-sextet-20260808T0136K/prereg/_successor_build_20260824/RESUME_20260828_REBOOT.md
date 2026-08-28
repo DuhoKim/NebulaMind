@@ -1,25 +1,48 @@
-# RESUME — DESI successor lane, 2026-08-28 17:50 KST, written for a reboot
+# RESUME — DESI successor lane, updated 2026-08-28 19:15 KST (post-reboot, two rounds in flight)
 
 **Everything below is on disk and committed. Trust the files. Reseed by reading paths, not by
 recalling decisions.** Written for a reader with none of today in memory.
 
+## TWO ROUNDS ARE IN FLIGHT RIGHT NOW — read their reports before doing anything else
+
+Dispatched 19:09 and 19:11 KST, four seats. If this session died, the seats may still have written:
+
+    gates/V30_WHOLE_REVIEW_{GPT56,CODEX}.md    V30  e81becce1b19d88a302ce7004e930467d9b12b24828bcfe037913a2eb978fecc
+    gates/BS2A_CODE_GATE_{GPT56,CODEX}.md      code c6fe6930c0ae451555e278ec2617c7ae647bba61d6f6af729030c6af3899d59e
+
+**Check those four files first.** Briefs are `gates/BRIEF_V30_REVIEW.md` and
+`gates/BRIEF_BS2A_CODE_GATE_R3.md`; runners are `gates/_tmp_v30_round.sh` and
+`gates/_tmp_bs2acode_r3.sh`.
+
+**`hermes` is NOT on the agent shell's PATH after a reboot.** Use
+`/Users/duhokim/.hermes/hermes-agent/venv/bin/hermes`. A bare `hermes` dies with `command not found`
+and the runner log shows dispatch and done at the **same second** — that is the tell, not a fast run.
+
 ## Where the lane actually is
 
 **The preregistration text is done being wrong.** V29 is **CLEAR from both seats** — the first
-two-seat clear. V30 adds motivation on top of it and **has not been refereed**.
+two-seat clear. V30 adds motivation on top of it and is **under review as of 19:09**.
 
     V29  542ee7d93dec457a0c9ea55327040550eec530675faf849c4e07750062d99343   CLEAR ×2
-    V30  e81becce1b19d88a302ce7004e930467d9b12b24828bcfe037913a2eb978fecc   NOT REFEREED
+    V30  e81becce1b19d88a302ce7004e930467d9b12b24828bcfe037913a2eb978fecc   IN REVIEW
 
-**Next action: referee V30.** Pattern to copy: `gates/BRIEF_V29_REREVIEW.md` and
-`gates/_tmp_w29_round.sh`. Ask specifically whether the added null **overclaims** — a null cited as
-motivation can read as the study expecting to find nothing.
+**The V30 sentence most likely to fail:** §1 compares Galaxy Zoo's ~15% bias to Longo's 4% dipole
+amplitude as "nearly four times the signal being sought". The 15% is direction-independent; the 4%
+is a dipole. `gates/FRAMING_LEVERAGE_IS_IDENTIFIABILITY_20260828.md` says a constant bias is
+parity-even and separable from a parity-odd dipole — **so that sentence may imply a danger this
+lane's own analysis denies.** The referees were pointed at it explicitly.
 
 ## What is blocked, and it is not the text
 
-- **BS-2a** — code exists (`ref/bs2a_quality_gate.py`) and **failed its second gate is pending**:
-  round 1 NOT CLEAR ×2, hardened, **round 2 was dispatched and its verdicts were never read.**
-  Check `gates/BS2A_CODE_GATE_{GPT56,CODEX}.md` — round-1 copies are in `gates/_bs2a_round1/`.
+- **BS-2a** — code is `ref/bs2a_quality_gate.py`. **Rounds 1 and 2 were both NOT CLEAR ×2**; round 3
+  is in flight. Round-1 reports in `gates/_bs2a_round1/`, round-2 in `gates/_bs2a_round2/`.
+  Round 2's finding was that both seats **forged a receipt the verifier accepted** (a substituted
+  parent key; a foreign all-pass partition), and that three checks could be deleted with the battery
+  still green. Round 3 binds membership with three frozen commitments (E20 key set, E22 retained
+  count, E23 full evidence), makes every control assert an **exact refusal-code set**, and makes the
+  fixture the real production evidence. All 24 checks were deletion-probed — see the commit body of
+  `7e0b327d6`. **Re-run `python3 ref/bs2a_quality_gate.py --self-test` (25 controls) before trusting
+  any of that.**
 - **BS-2v** VOID converter UNRESOLVED. **BS-5p** unfillable, Stage P superseded on the 49,211 mask.
 - **BS-6 and the first image byte remain blocked. Nothing is authorised to fetch.**
 - **One of fifteen class-P slots is filled.**
@@ -56,9 +79,15 @@ motivation can read as the study expecting to find nothing.
     tools/prereg_lint.py      --self-test   6 controls, coverage computed not asserted
     tools/prereg_counts.py    --write       emits §7 counts from the table
     tools/prereg_trace.py     --self-test   3 scope rules; --check enforces the findings map
-    ref/bs2a_quality_gate.py  --self-test   17 controls, each asserting its own refusal reason
+    ref/bs2a_quality_gate.py  --self-test   25 controls over 24 checks, each asserting an EXACT
+                                            refusal-code set (needs acquire/ — the fixture is the
+                                            real authenticated evidence, not a synthetic one)
+    gates/_tmp_deletion_probe_r3.py         deletes each check in turn; must report 0 undetected
 
-## Nothing is mid-flight
+## State as of 19:15 KST
 
-No seat dispatched, no chain running, no watcher armed. V30 completed and was verified before this
-note was written. **No artefact here is truncated.**
+**Four seats ARE dispatched** (see the top of this note). No other chain running, no watcher armed.
+Nothing under review may be edited until its round's POST-CHECK reports the subject unchanged —
+mutating a subject mid-review is exactly what the digest pinning exists to catch.
+
+**No artefact here is truncated.**
