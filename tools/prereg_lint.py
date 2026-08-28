@@ -132,6 +132,53 @@ def check_list_numbering(text, out):
             out.append(("list-numbering", f"list repeats item number(s) {dupes}"))
 
 
+_WORD_NUM = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7,
+    "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13,
+    "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+    "nineteen": 19, "twenty": 20,
+}
+
+
+def _as_int(tok):
+    tok = tok.strip().lower()
+    return _WORD_NUM.get(tok, int(tok) if tok.isdigit() else None)
+
+
+def check_prose_counts(text, rows, out):
+    """§7's prose slot counts must equal the counts parsed from its own table.
+
+    §7 promises a lint assertion that the prose count equals the parsed table count. Nothing
+    implemented it, so V21 could say "There are 8 class-E slots" over a table holding 7 and lint
+    clean — a referee found it by counting rows. A section that states its own tally and is never
+    checked against it will drift every time a row is inserted, which is exactly how the VOID
+    prerequisite broke the count it was inserted into.
+
+    Historical lines are skipped — but NOT by the blockquote rule. §7 states its live count inside a
+    blockquote callout, so treating every blockquote as history made this check silently vacuous: it
+    passed V21's false "8 class-E slots" on the first run. Only an explicit version citation marks
+    history here. A guard that cannot fire is worse than no guard, because it reports "clean".
+    """
+    def _cites_version(line):
+        return re.search(r"\bV\d+\s+lines?\b", line) is not None
+
+    actual = {"P": sum(1 for c in rows.values() if c == "P"),
+              "E": sum(1 for c in rows.values() if c == "E")}
+    pats = [(re.compile(r"of\s+([a-z]+|\d+)\s+class-P slots", re.I), "P"),
+            (re.compile(r"are\s+([a-z]+|\d+)\s+class-E slots", re.I), "E")]
+    for block in _blocks(text):
+        if any(_cites_version(l) for l in block.splitlines()):
+            continue
+        flat = " ".join(block.split())
+        for pat, cls in pats:
+            for m in pat.finditer(flat):
+                claimed = _as_int(m.group(1))
+                if claimed is not None and claimed != actual[cls]:
+                    out.append(("prose-count-disagreement",
+                                f"prose says {claimed} class-{cls} slots; the §7 table has "
+                                f"{actual[cls]}"))
+
+
 def check_repair_citations(text, gates, out):
     """A 'V## CORRECTION (SEAT-Vn Fk)' claim must cite a finding that exists on disk.
 
@@ -165,6 +212,7 @@ def main():
     out = []
     check_slots_exist(text, rows, out)
     check_class_agreement(text, rows, out)
+    check_prose_counts(text, rows, out)
     check_lock_identity(text, out)
     check_list_numbering(text, out)
     check_repair_citations(text, gates, out)
