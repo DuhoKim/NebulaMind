@@ -60,7 +60,7 @@ BS-2k's mouth. The only remaining finding from each was MEDIUM, wording-only, in
 now fixed in V36. Change vs V35: line 1, line 698, one §10 row. Class counts still 15/8; §1 scope
 and §2.7 line 384 still V30-identical; four checkers pass.
 
-**Next: referee V36, same absence-clause lens, quarantine disclosure repeated.**
+**V36 ROUND IS RUNNING** — dispatched 06:46, both seats, reports to `gates/V36_WHOLE_REVIEW_<SEAT>.md`, log `gates/runner_v36_round.log`. **If those reports exist, read them before dispatching anything.** If V36 clears both seats, update this file to say so — that is the first two-seat CLEAR the draft would have had.
 
 ## V35 ROUND (done 06:31)
 
