@@ -123,6 +123,51 @@ productive of the night. Brief pattern: `gates/BRIEF_V34_REVIEW.md`. Runner patt
 **The brief must repeat the citation-check quarantine disclosure** or a seat will infer from a green
 lint something the lint cannot support.
 
+## ARTIFACT INVENTORY — every current object, short hash
+
+All paths relative to the repo root `/Users/duhokim/NebulaMind/NebulaMind`.
+Lane = `.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_successor_build_20260824`.
+
+| object | short sha256 | state |
+|---|---|---|
+| `<lane>/PREREG_SUCCESSOR_DRAFT_V36_20260829.md` | `e4d7b175` | **CLEAR ×2, 06:57** |
+| `<lane>/ref/successor_ref_v9.py` | `6a9abbbd` | **FROZEN — never modify** |
+| `<lane>/ref/bs2a_quality_gate.py` | `dfbd63d1` | CLEAR ×2 round 6; pinned in §7 |
+| `<lane>/ref/gain_gradient_estimator.py` | `e2270297` | CLEAR ×2 gain v6 |
+| `<lane>/gates/verify_mu_gamma.py` | `e33d9275` | CLEAR ×2 gain v6 |
+| `<lane>/ref/verdict_breakpoints.py` | `bd248c93` | p-to-A reduction REFUTED; amplitude side + transcription survive |
+| `<lane>/gates/GAIN_GRADIENT_CONTROL_DESIGN_20260828.md` | `1c3ced94` | §4 marked REFUTED/OPEN |
+| `tools/prereg_lint.py` | `826512ce` | citation check QUARANTINED to advisory |
+| `tools/prereg_trace.py` | `9bd194b9` | refactor cleared ×2 |
+| `tools/void_registry.py` | `4980701c` | mechanism cleared ×2; content parked |
+
+## WHAT CLEARED, AND WHEN
+
+- **BS-2a code gate** — CLEAR ×2 at round 6 (02:37/02:44), scoped *"CLEAR for FREEZING the
+  quality-predicate component; not a fill authorization."* Six rounds. Slot stays DESIGN, UNFILLED.
+- **Gain control repairs** — CLEAR ×2 at v6 (02:46/02:53), scoped to the repairs. **The control is
+  NOT freezeable**: T-completeness is decision 2 below. Do not rebuild the estimator; it is done.
+- **`prereg_trace` refactor** — cleared ×2; predicates unchanged by the factoring.
+- **V36 document** — CLEAR ×2 (06:57). First two-seat clear on the draft.
+
+## VERIFY-BEFORE-TRUSTING
+
+Every self-test is runnable and each ships negative controls. Run them rather than believing this
+file: `bs2a_quality_gate.py --self-test` (36 controls), `gain_gradient_estimator.py --self-test`
+(9/9 codes, none exempt), `verify_mu_gamma.py`, `verdict_breakpoints.py --self-test`,
+`prereg_lint.py <draft> --gates <lane>/gates --self-test` (8 controls),
+`prereg_trace.py <lane> --check <draft> --self-test` (3 scope rules),
+`void_registry.py <draft> --self-test` (6 controls).
+
+## THE NIGHT'S RECURRING DEFECT, so it is not repeated
+
+**A narrow pattern is safe for presence and dangerous for absence.** Five times I wrote a pattern
+narrower than the data and treated the data as wrong (phase vocabulary, emission idiom, heading
+format, findings-section split, report-family filter). The citation check was quarantined because it
+kept doing this in the absence direction. **Applying the same lens to the DOCUMENT — ~70 universal
+negatives — produced a real finding in every round it was used**, including the two HIGH ones now
+parked. If a future round needs an attack surface, that is the one that works.
+
 ## Operating notes that cost time
 
 - `hermes` is NOT on PATH: `/Users/duhokim/.hermes/hermes-agent/venv/bin/hermes`. A bare `hermes`
