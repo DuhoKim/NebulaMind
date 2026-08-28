@@ -54,6 +54,11 @@ def kappa_of(c: np.ndarray) -> float:
 
 def simulate(c, mu: float, gamma: float, gbar: float, reps: int = 60, seed: int = 20260828):
     """Return (mean recovered amplitude, standard error) or (None, None) if out of v9's domain."""
+    # NaN bypasses BOTH domain guards below, because every comparison with NaN is False - the
+    # guards silently saturate instead of refusing (GPT56-GAINV4-3, CODEX-GAINV4-3). Finiteness is
+    # therefore checked FIRST, on the parameters themselves.
+    if not all(np.isfinite(v) for v in (mu, gamma, gbar)):
+        return None, None
     a = (1.0 + gbar * (1.0 + gamma * c)) / 2.0
     if a.min() <= 0.5 or a.max() > 1.0:
         return None, None                      # REFUSE. Do not clamp.
@@ -80,6 +85,8 @@ OUT_OF_DOMAIN = (
     (0.05, 0.40, 0.80),    # accuracy leaves (0.5, 1.0]
     (0.00, 0.60, 0.80),    # accuracy leaves (0.5, 1.0]
     (1.20, 0.00, 0.80),    # LATENT PROBABILITY leaves [0,1] — GPT56-GAINV3-4
+    (float("nan"), 0.20, 0.80),   # NaN mu must refuse, not saturate (GPT56/CODEX-GAINV4-3)
+    (0.05, float("nan"), 0.80),   # NaN gamma likewise
 )
 
 

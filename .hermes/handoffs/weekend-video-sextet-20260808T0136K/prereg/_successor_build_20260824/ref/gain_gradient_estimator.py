@@ -46,6 +46,7 @@ import numpy as np
 # ── Frozen. Changing any of these is a contract change. ─────────────────────────────────────────
 N_BINS = 3
 COND_MAX = 1.0e12          # covariance condition-number ceiling; above it the solve is refused
+DESIGN_COND_MAX = 1.0e10   # whitened normal-matrix ceiling; near-coincident bin centres refuse
 INTERCEPT_K = 3.0          # |intercept| must exceed this many standard errors, or gamma is undefined
 A_LO, A_HI = 0.5, 1.0      # v9's own accuracy domain (`inject_signs`, v9:1207)
 
@@ -57,7 +58,8 @@ CODES = {
     "G05": "the design matrix is rank-deficient; the bin centres do not span a slope",
     "G06": "the fitted intercept is not distinguishable from zero, so slope/intercept is undefined",
     "G07": "a bin accuracy is outside v9's (0.5, 1.0] domain",
-    "G08": "the fitted result is not finite",
+    "G08": "a deterministic numerical linear-algebra failure was caught",
+    "G09": "a bin centre is outside the physical cos(theta) range [-1, 1]",
 }
 
 
@@ -87,6 +89,8 @@ def estimate_gamma(a_hat, cov_a, c_bar):
     if not (np.isfinite(a).all() and np.isfinite(S_a).all() and np.isfinite(c).all()):
         refuse("G01", "a_hat, cov_a or c_bar carries a non-finite value")
         return None, bad
+    if c.min() < -1.0 or c.max() > 1.0:
+        refuse("G09", f"c_bar range [{c.min():.6f}, {c.max():.6f}] outside the physical [-1, 1]")
     if a.min() <= A_LO or a.max() > A_HI:
         refuse("G07", f"accuracy range [{a.min():.6f}, {a.max():.6f}] outside ({A_LO}, {A_HI}]")
     if not np.allclose(S_a, S_a.T, rtol=0.0, atol=1e-15):
@@ -97,6 +101,11 @@ def estimate_gamma(a_hat, cov_a, c_bar):
     # g = 2a - 1, so Cov(g) = 4 Cov(a). The estimator consumes the gain, not the accuracy.
     g = 2.0 * a - 1.0
     S = 4.0 * S_a
+    # Finite inputs do not imply finite derived algebra in float64: cov_a = diag(1e308) is finite
+    # and 4*cov_a is not. Checked AFTER the scaling, not before (CODEX-GAINV4-2).
+    if not np.isfinite(S).all():
+        refuse("G01", "cov_a is finite but 4*cov_a overflows; the scaled covariance is not finite")
+        return None, bad
 
     # Rank and conditioning BEFORE any inverse. A singular covariance is refused outright: no
     # pseudo-inverse is substituted, because the choice of generalised inverse would itself be an
@@ -118,13 +127,26 @@ def estimate_gamma(a_hat, cov_a, c_bar):
         refuse("G05", f"design matrix rank {np.linalg.matrix_rank(X)} < 2; c_bar = {c.tolist()}")
         return None, bad
 
-    # GLS by Cholesky solve rather than an explicit inverse.
-    L = np.linalg.cholesky(S)
-    Xw = np.linalg.solve(L, X)
-    gw = np.linalg.solve(L, g)
-    XtX = Xw.T @ Xw
-    theta = np.linalg.solve(XtX, Xw.T @ gw)
-    cov_theta = np.linalg.inv(XtX)
+    # GLS by Cholesky solve rather than an explicit inverse. matrix_rank(X) == 2 is NOT sufficient:
+    # bin centres separated by 1e-8 are formally rank 2 and still make XtX singular
+    # (GPT56-GAINV4-2). Condition the whitened normal matrix, and wrap every numpy.linalg call so a
+    # deterministic failure becomes a refusal rather than an exception escaping the API.
+    try:
+        L = np.linalg.cholesky(S)
+        Xw = np.linalg.solve(L, X)
+        gw = np.linalg.solve(L, g)
+        XtX = Xw.T @ Xw
+        wx = np.linalg.eigvalsh(XtX)
+        if wx.min() <= 0.0 or float(wx.max() / wx.min()) > DESIGN_COND_MAX:
+            refuse("G05", f"whitened normal matrix condition "
+                          f"{float(wx.max() / max(wx.min(), 1e-300)):.3e} > {DESIGN_COND_MAX:.1e}; "
+                          f"bin centres {c.tolist()} do not span a slope")
+            return None, bad
+        theta = np.linalg.solve(XtX, Xw.T @ gw)
+        cov_theta = np.linalg.solve(XtX, np.eye(2))
+    except np.linalg.LinAlgError as e:
+        refuse("G08", f"numerical linear algebra failed: {e}")
+        return None, bad
 
     g0, g1 = float(theta[0]), float(theta[1])
     se_g0 = float(np.sqrt(max(cov_theta[0, 0], 0.0)))
@@ -156,12 +178,11 @@ def estimate_gamma(a_hat, cov_a, c_bar):
 
 # ── Fixtures. Every refusal must prove it can fire, and the normalisation must prove it is fixed. ─
 
-# G08 is a defensive postcondition, not a reachable refusal: once G01 (finite), G03 (positive
-# definite), G05 (rank) and G06 (intercept) have passed, `gamma = g1/g0` and `var = J Cov J` are
-# finite and non-negative by construction. It is therefore DECLARED UNREACHABLE and exempted from
-# control coverage BY NAME, rather than being quietly counted as covered. If a future change makes
-# it reachable, add a control and remove it from this set.
-UNREACHABLE = {"G08"}
+# v4 declared G08 "unreachable by construction" and exempted it from coverage. BOTH SEATS BROKE
+# THAT, and they were right: finite inputs do not imply finite derived algebra in float64. The
+# exemption is withdrawn and G08 now carries a real control - a denormal covariance passes G01 and
+# G03 and then fails inside the solve. Nothing here is exempt from coverage any more.
+UNREACHABLE: set[str] = set()   # G08 is reachable and controlled; the exemption is withdrawn
 
 
 def REFUSAL_CONTROLS(a_ok, S_ok, c_ok):
@@ -173,6 +194,20 @@ def REFUSAL_CONTROLS(a_ok, S_ok, c_ok):
         ("near-singular cov", (a_ok, (np.diag([1e-6, 1e-6, 1e-19])).tolist(), c_ok), {"G04"}),
         ("degenerate c_bar", (a_ok, S_ok, [0.1, 0.1, 0.1]), {"G05"}),
         ("accuracy out of domain", ([0.4, 0.8, 0.9], S_ok, c_ok), {"G07"}),
+        # GPT56-GAINV4-2: formally rank-2 but numerically singular.
+        ("near-coincident bin centres",
+         ([0.8, 0.81, 0.82], np.diag([1e-20, 1e-20, 1e-20]).tolist(),
+          [1 - 2e-8, 1 - 1e-8, 1.0]), {"G05"}),
+        # G08 IS reachable: a denormal covariance survives G01/G03 and fails inside the solve.
+        # The v4 "unreachable by construction" exemption was wrong and both seats said so.
+        ("denormal covariance",
+         ([0.8, 0.8, 0.8], np.diag([5e-324, 5e-324, 5e-324]).tolist(), [-0.9, 0.0, 0.9]),
+         {"G08"}),
+        # CODEX-GAINV4-2: finite cov_a whose 4x scaling overflows.
+        ("cov overflows on scaling",
+         ([0.8, 0.8, 0.8], np.diag([1e308, 1e308, 1e308]).tolist(), [-0.9, 0.0, 0.9]), {"G01"}),
+        # CODEX-GAINV4-2: bin means of cos(theta) must lie in [-1, 1].
+        ("bin centre out of range", (a_ok, S_ok, [-2.0, 0.0, 2.0]), {"G09"}),
     ]
 
 C_BAR_REF = [-0.94001065, -0.453413185, 0.918326918]   # the real retained-sample bin centres
