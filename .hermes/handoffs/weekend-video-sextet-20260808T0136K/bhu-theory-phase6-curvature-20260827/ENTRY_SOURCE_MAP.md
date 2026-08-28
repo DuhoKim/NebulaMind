@@ -110,9 +110,49 @@ These are rank 3's two primary papers and remain the largest single hole.
 
 ---
 
-### Still unpinned: 21 of 51 (was 27)
+---
 
-Entries 2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20, 21, 25, 26, 28, 42, 46,
+## EXTENSION 2026-08-28 (3) — entries 25/26, rank 3's two primary papers. +2
+
+| entry | pinned file | sha256 (12) | route |
+|---|---|---|---|
+| 25 | `sym14091849_clean.txt` | `391a2510c8be` | publisher page, browser |
+| 26 | `sym14101984_clean.txt` | `01aad28a7d44` | publisher page, browser |
+
+**Auditable corpus: 30 → 32 of 51.** The Gaztañaga series (23, 24, 25, 26, 27) is now complete,
+which closes the hole under entry 54: phase 6 audited the 2025 PRD paper in depth while its
+parent series sat unacquired.
+
+### Every scripted route was bot-blocked; the papers were never paywalled
+
+    mdpi.com article + /pdf + doi.org ......... HTTP 403 (Cloudflare)
+    hal.science /document and /file/*.pdf ..... HTTP 200, "Making sure you're not a bot!"
+    digital.csic.es bitstream ................. HTTP 200, 4,455-byte HTML
+
+The CSIC result is the one to remember: an invented path, `blackhole1.pdf`, returned **the same
+4,455 bytes** as the real `blackhole2.pdf`. A 200 and a plausible size prove nothing. Metadata
+came from the OpenAlex and HAL APIs, which are open; the text came through Chrome, which clears
+the challenge. These are CC-BY articles — the obstacle was anti-bot, not access.
+
+### Two traps recorded because they will recur
+
+**The preprint-title trap.** OpenAlex and HAL both title entry 25 *"The Black Hole Universe (BHU)
+from a FLRW cloud"*, and HAL's deposit is `BHUelsaV2.pdf`. That is the preprint title; the
+published article is *"Part I"*. This is exactly why the arXiv title sweep in extension (2) found
+entries 21/22/23/24/27 and missed 25/26. Searching a published title against an index that
+carries the preprint title returns nothing, and looks like absence.
+
+**The truncation trap, which I walked into.** `a3_pin_mdpi.py` pinned both papers and passed
+3/3 — while entry 25 was missing 36% of its text. `get_page_text` cuts at 50,000 characters, and
+a truncated file still contains its DOI, its title, and the word "Conclusion". `a4_stitch_mdpi.py`
+rebuilds both from three overlapping captures and checks landmarks from the **start, middle and
+end** of each paper, because only an end-landmark can fail on a truncation.
+
+---
+
+### Still unpinned: 19 of 51 (was 21)
+
+Entries 2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20, 21, 28, 42, 46,
 47, 48, 50, 56. The bibliography names an arXiv id for only two of them; the rest carry a DOI and
 nothing else, so acquisition means a per-paper lookup with real paywall risk (Elsevier, Springer,
 APS). `LIBRARY_REQUEST_20260825.md` already exists and covers part of this set.
