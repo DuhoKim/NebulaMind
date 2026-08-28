@@ -1,0 +1,90 @@
+GATE -- A10: should entry 23 be PROMOTED to CALIBRATED-FALSIFIER? Second promotion attempt of
+this sweep. The first was refused, and I want this one broken the same way if it deserves it.
+
+Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/
+Artifact: `a10_entry23_cutoff.py` (5/5, exit 0). Run: `cd <lane>; python3 a10_entry23_cutoff.py`
+Source (pinned, from arXiv via ar5iv):
+  ../bhu-reading-20260823/sources/2003.11544_clean.txt
+  = E. Gaztanaga, "The size of our causal Universe", MNRAS 494, 2766 (2020). Tier today:
+  QUALITATIVE-DIRECTIONAL.
+
+You are an independent seat with no prior context. Break this if it breaks.
+
+## THE CLAIM
+
+Entry 23 predicts an angular scale on a measured observable, with an uncertainty:
+
+    "It also predicts that CMB temperature should not be correlated above theta > theta_S ~= 60 deg."
+    "...we roughly estimate theta_S ~= 60 +/- 3 deg."
+
+and the scale is not fitted to that anomaly -- it follows from the measured dark-energy density:
+theta_S = chi_S / chi_CMB, evaluated "for Omega_Lambda = Omega_S ~= 0.7". One observable in, a
+different observable out.
+
+Our bibliography tiers this QUALITATIVE-DIRECTIONAL and warns of "the post-hoc-fitting risk ...
+the scale is fitted from the anomalies it explains". I say the derivation runs the other way.
+
+## ATTACK 1 -- AM I REPEATING MY OWN A6 MISTAKE? Rule on this FIRST.
+
+Two hours ago I proposed promoting a different Gaztanaga paper on the strength of one sentence.
+Both seats refused: the qualification was INSIDE the sentence I was quoting -- "not solely caused
+by" -- and I had read past it four times.
+
+So hunt the qualification here. Go through the body for text that WEAKENS, CONDITIONS or
+WITHDRAWS the 60-degree prediction: a free parameter in the causal scale, an admission that the
+angle depends on unfixed choices, a softening of "predicts", or an alternative value elsewhere in
+the paper. I have found two hedges and recorded them ("roughly estimate"; the premise "assuming
+that the causal scale is smaller than the observable Universe today"). Are there worse ones?
+Say "searched, none found" if you looked and found nothing -- that is a real and different answer.
+
+## ATTACK 2 -- IS THE CHAIN RIGID? This is where A6 actually died.
+
+At A6 the model could absorb any deviation because the author licensed an extra component. Here
+the chain is Omega_Lambda -> chi_S -> theta_S. Attack it:
+ (a) Is the identification Omega_S = Omega_Lambda FORCED by the model, or a choice the author
+     makes? If the causal scale can be tuned independently of Omega_Lambda, 60 deg is not a
+     prediction at all.
+ (b) Does anything else in the paper let theta_S move -- inflationary details, the definition of
+     chi_S, the redshift of last scattering?
+ (c) What would the model say if the CMB cutoff were measured at 40 deg? Is there an escape?
+
+## ATTACK 3 -- DOES IT ACTUALLY MATCH? and is the anomaly even robust?
+
+The "anomalous lack of correlations" in the CMB above ~60 deg is a real reported feature (COBE,
+WMAP, Planck; the S_1/2 statistic) but its statistical significance is contested and depends on
+masking, estimator, and a-posteriori choices. If the anomaly is not robust, then entry 23's check
+is weak even if its arithmetic is fine. Say what the literature you can reach actually supports.
+
+## ATTACK 4 -- POSTDICTION. Does it change the TIER?
+
+The missing large-angle correlations were known long before 2020, so this is a postdiction, not a
+novel prediction. I claim that lowers evidential WEIGHT but not FALSIFIABILITY, and that the tier
+scheme grades falsifiability. This lane once demoted a claim for conflating falsifiability with
+distinctiveness, so rule on the two separately and tell me if I am now making the mirror error.
+
+## ATTACK 5 -- does "+/- 3 deg" mean anything?
+
+"Roughly estimate ... 60 +/- 3" -- is that a propagated uncertainty or a hand-wave? If the error
+bar is not derived, the claim is a round number wearing a lab coat and the promotion should fail.
+
+## ATTACK 6 -- reproduce, and audit names against predicates
+
+Run it. Expect 5/5, exit 0. Report any check whose NAME claims more than its PREDICATE tests. Five
+consecutive gates have caught that in my scripts, once as an outright tautology. Assume it is
+there until you have checked each one.
+
+## Verdict
+
+First line EXACTLY one of:
+
+    PROMOTE_CONFIRMED             -- entry 23 should become CALIBRATED-FALSIFIER
+    PROMOTE_REFUTED_<reason>      -- name the attack that kills it
+    HOLD_<reason>
+
+Then, each on its own line:
+    RIGID:    YES | NO                  -- attack 2
+    DERIVED:  YES | NO                  -- is 60 deg derived from Omega_Lambda, or fitted?
+    MATCHES:  YES | NO | CONTESTED      -- attack 3
+
+Name the file CGATE_A10_VERDICT.md (codex) or AGATE_A10_VERDICT.md (agy) in the lane directory.
+Quote the paper. Do your own reasoning. Do not defer to mine.

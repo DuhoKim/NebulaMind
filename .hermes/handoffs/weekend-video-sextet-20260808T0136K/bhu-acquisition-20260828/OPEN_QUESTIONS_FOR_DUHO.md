@@ -78,3 +78,44 @@ marginal audit is returning less each time.
 **The question is whether to keep sweeping the remaining 19 unpinned / 26 unaudited entries, or
 stop and write up what the five audits established.** I have kept going because the sweep was
 authorised and continuing it is mechanical. Stopping is a judgement about value.
+
+
+---
+
+## Q4. Entry 23 looks like a CALIBRATED-FALSIFIER filed as QUALITATIVE-DIRECTIONAL.
+
+**Raised by:** entry 23 (Gaztañaga 2020, MNRAS 494, 2766, "The size of our causal Universe").
+Audited in `a10_entry23_cutoff.py` (5/5). **Not applied — gated to two seats, verdicts pending.**
+
+The paper predicts an angular scale on a measured observable, with an uncertainty, in the
+author's own verb:
+
+> "It also predicts that CMB temperature should not be correlated above θ > θ_§ ≃ 60 deg."
+> "…we roughly estimate θ_§ ≃ **60 ± 3** deg."
+
+**And the number is derived, not fitted.** The bibliography's ranked-target note warns of "the
+post-hoc-fitting risk … the scale is fitted from the anomalies it explains." That is the right
+worry and it does not appear to hold: the causal scale follows from the **measured Ω_Λ**
+(θ_§ = χ_§/χ_CMB, evaluated "for Ω_Λ = Ω_§ ≃ 0.7"), and the CMB anomaly is then an *independent*
+check. One observable in, a different observable out.
+
+**Why this is unlike the other entries audited tonight.** Entries 21, 25 and 26 each supplied a
+real number that could not fail, because the author also supplied the auxiliary that absorbs a
+discrepancy — an uncomputed excitation amplitude, "not solely caused by", observer typicality
+with no rejection rule. I have not found a free parameter in this chain. That is exactly the
+claim I got wrong at A6, which is why it is gated rather than applied.
+
+**Recorded against it, not argued away:**
+- The hedge is "**roughly** estimate", and the whole result is conditional on "assuming that the
+  causal scale is smaller than the observable Universe today".
+- It is a **postdiction** — the missing large-angle CMB correlations were known long before 2020.
+  I judge that lowers evidential weight but not falsifiability; the seats are asked to rule on
+  those separately, since this lane has demoted a claim once for conflating the two.
+- Whether the CMB anomaly is statistically robust at all is contested in the literature
+  (S_1/2, masking and a-posteriori choices). If it is not, the check is weak even if the
+  arithmetic is sound.
+
+**Why I did not act.** A promotion changes what the programme claims about its own corpus — the
+live-falsifier count is the headline number of this whole effort. Under the overnight rule that
+is a choice, not mechanical continuation. If both seats confirm, the change is still yours to
+approve.
