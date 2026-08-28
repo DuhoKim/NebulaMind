@@ -167,14 +167,36 @@ defect found tonight.
 | 40 | CONSISTENCY-ONLY confirmed | unobservability quote + **"carries zero numeric content"** — **FALSE**, 17 inequalities | the unobservability quote alone | **re-derived** |
 | 25 | promotion **REFUSED** | the "not solely" qualifier + a **narrow** no-drift pattern | the same quote + that absence **re-tested with a broadened pattern**: 0 sentences link Λ or r_S to any variation, in either word order | **re-derived** |
 | 26 | QUAL-DIRECTIONAL confirmed | Eq.11's modal envelope + an identity check **on a hardcoded symbol that never opened the paper** | the envelope + both relations **located in the sources** — and the identity turns out to **span two papers** (Λ=3/r_S² is Part I's, r_S=3τ_O/2 is Part II's) | **re-derived** |
-| 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing, quoted | unchanged | direction-of-inference check is a presence test. **NOT re-derived** |
+| 52 | CONSISTENCY-ONLY confirmed | the paper's conditional phrasing + a check *named* for direction of inference | the same phrasing + a check **renamed PRESENCE ONLY**, with the direction recorded as an attributed **human reading** (§1j) | **limit named — not re-derivable** |
 | 23 | promotion **REFUSED** | the reverse-inference sentence + a **narrow** no-forward-uncertainty pattern | the same quote + that absence **re-tested broadly**: exactly 1 uncertainty near θ_S in the paper, and it is the 60±3 backward read-off itself | **re-derived** |
 | 22 | category error found | theorem/proposition statements + a **narrow-pattern absence claim** ("no observational prediction") | the same quotes + that absence **re-tested with a broadened pattern and every hit inspected** | **re-derived** |
 
 **How to read this cold.** Nine rows say *re-derived*: something in their support was condemned,
 and the conclusion has since been rebuilt without it — in three cases because the condemned thing
-was outright **false**. **One** says *not re-derived* — entry 52, whose direction-of-inference check remains a presence
-test. Its conclusion rests on the paper's own conditional phrasing, quoted. **No row is unknown.**
+was outright **false**. **One** says *limit named* — entry 52. Its direction-of-inference claim is not computable from a
+text search, so the check now claims only presence and the direction is an attributed human
+reading (§1j). **No row is unknown.**
+
+## 1j. ENTRY 52 — a limit named rather than a check that pretends
+
+CGATE: *"three disconnected presence tests do not establish that λ is fixed FROM the observed Λ
+or that the threshold is downstream of it."* Correct — and **not closeable by a better pattern.**
+Direction of inference is a reading, not a string property. A third regex would *simulate* a
+judgement rather than perform one, which is the failure mode that got a parallel lane's citation
+check quarantined after three adversarial rounds.
+
+The check now claims only what a presence test supports: three phrases occur in the source.
+
+**The direction is a human reading, recorded as such:**
+
+> **Read by:** Tori (this session), 2026-08-29 ~02:00 KST, re-affirmed 08:20.
+> **Basis:** *"This small value results from the small cosmological constant Λ = 1.1×10⁻⁵² m⁻²"*
+> — λ is fixed **from** the measured Λ — and *"must reach the threshold (51) so that the Universe
+> could start the observed current acceleration"* — C is required to satisfy a condition derived
+> from that measurement.
+> **Therefore:** observation constrains the model parameter, not the reverse — which is the
+> definition of CONSISTENCY-ONLY, and why entry 52's tier is correct.
+> **Not gated.** No seat has attacked this reading. It is one person's reading of two sentences.
 
 ### The three absence claims that HELD
 

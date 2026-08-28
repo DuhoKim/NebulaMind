@@ -49,11 +49,22 @@ must_reach = "must reach the threshold" in T
 print(f"\n3. WHICH WAY DOES THE INFERENCE RUN?")
 print(f"   lambda fixed at 5.0e-124 from the OBSERVED Lambda ........ {bool(lam) and from_obs}")
 print(f"   and C 'must reach the threshold' so the model matches ..... {must_reach}")
-chk("QUOTED: the source fixes lambda from the observed Lambda and says C 'must reach the "
-    "threshold' -- direction of inference read from the text, not computed here",
+# FINAL FORM, 08:20. CGATE: "three disconnected presence tests do not establish that lambda is
+# fixed FROM the observed Lambda or that the threshold is downstream of it." Correct, and the gap
+# is NOT closeable by a better pattern: direction-of-inference is a reading, not a string
+# property. A third regex here would simulate a judgement rather than perform one -- the failure
+# mode that got a parallel lane's citation check quarantined after three adversarial rounds.
+#
+# So this check now claims ONLY what a presence test can support. The direction itself is a HUMAN
+# READING, attributed in HARNESS_DEFECT_REGISTER.md 1j. A named limit beats a check that pretends.
+chk("PRESENCE ONLY: three phrases occur in the source -- lambda's numeric value, the sentence "
+    "attributing it to the observed cosmological constant, and 'must reach the threshold'. This "
+    "check does NOT establish the direction of inference between them",
     bool(lam) and from_obs and must_reach,
-    "'must reach the threshold (51) so that the Universe could start the observed current "
-    "acceleration' -- a requirement on the model, not a prediction that could fail")
+    "the DIRECTION -- observation constrains the parameter rather than the reverse -- is read by "
+    "a human from 'This small value results from the small cosmological constant' and 'must reach "
+    "the threshold ... so that the Universe could start the observed current acceleration'. "
+    "Attributed in the register; not computed here and not computable from a text search")
 
 # ---- 4. our own note's reasoning is imprecise, and the imprecision is worth fixing ---------
 what_c = "representing the product of the scale factor and temperature" in T
