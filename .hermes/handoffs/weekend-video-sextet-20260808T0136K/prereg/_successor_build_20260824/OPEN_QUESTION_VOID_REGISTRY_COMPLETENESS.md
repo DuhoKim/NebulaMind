@@ -111,3 +111,22 @@ name-coverage only.
   fixed point. 52 antecedents, 20 §6.1 rows, all covered, `registry_digest bd55490e…`.
 - Reports: `gates/VOID_GATE_GPT56.md` (NOT CLEAR), `gates/VOID_GATE_CODEX.md` (CLEAR).
 - **BS-6 and the first image byte remain blocked either way.**
+
+---
+
+## VERIFIED CURRENT AGAINST V36 — 2026-08-29 07:25 KST
+
+This question was written against V34. The draft has since moved to V36 (CLEAR from both seats).
+Re-checked so that a decision taken from this file is a decision about the **current** document.
+
+- `void_registry.py` returns **identical output on V34, V35 and V36**: 52 antecedents, 20 §6.1 rows,
+  `registry_digest bd55490ea4290895996bbb12c1e4c81f8a7076c7220a3f2df68971b52c2a50bb`. §7.1 did not
+  move between the drafts.
+- **§5 line 493 is byte- and position-identical in V34 and V36.** It reads: *"**VOID:** triggered by
+  forbidden acts, protocol/digest deviation, or permutation/statistic/protocol non-finite/degenerate
+  failures. **This category is not yet executable.**"* Gap 1 (`degenerate`) and gap 2 (`digest`) are
+  quoted exactly above.
+- **§2.7 line 388 is byte- and position-identical**, still: *"A threshold chosen or moved after
+  inference exists voids the run."* Gap 3 (`chosen`) is quoted exactly.
+
+**All three gaps hold on the current draft. Nothing in this file is stale.**

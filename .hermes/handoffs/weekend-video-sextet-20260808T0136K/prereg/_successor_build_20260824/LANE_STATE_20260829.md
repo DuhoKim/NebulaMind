@@ -26,6 +26,12 @@ the options and what each costs; each ends by saying it is not mine to take.
 | 3 | `<lane>/OPEN_QUESTION_CITATION_CHECK.md` | Disposition of the quarantined check: delete / advisory forever / make reports machine-readable / verify by hand at freeze. My reading is C-for-future, D-for-corpus. |
 | 4 | `<lane>/OPEN_QUESTION_BS6_DEPENDENCY_AND_AUTHORIZATION.md` | **The two largest findings of the night.** (i) "must be bound before BS-6" has no dependency edge that makes it true; the repair moves the frozen class counts 15/8 → 16/8. (ii) `require_authorization()` accepts arbitrary bytes — CODEX ran the frozen v9 against a referee brief and the guard returned success. |
 
+**All four were written against V34/V35 and have been re-verified against V36 (07:25 KST).** Each
+file now carries a `VERIFIED CURRENT AGAINST V36` stamp recording exactly what was re-checked: the
+VOID registry digest is identical across V34/V35/V36; §5 line 493, §5 lines 511-514 and §2.7 line 388
+are byte- and position-identical; §1 line 120 still ends "must be bound before BS-6" and V35's repair
+to that line did not touch the clause; counts are 15/8 on V36. **No open question is stale.**
+
 **Decisions 1 and 4 are seat-raised HIGH findings that I declared out of scope for a round. They
 were parked, not resolved. V36 clearing does not retire them.**
 

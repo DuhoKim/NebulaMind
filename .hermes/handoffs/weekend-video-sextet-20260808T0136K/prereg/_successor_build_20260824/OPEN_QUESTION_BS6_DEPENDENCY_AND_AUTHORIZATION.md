@@ -78,3 +78,26 @@ open door.
 
 V35 = `b80d50afe076fe8d20c9fd1a6e6b5db63779dfc02ee46601667a67227e12fbdd`. Four checkers pass; §1 scope
 and §2.7 line 384 still byte- and position-identical to V30; class counts unmoved at 15/8.
+
+---
+
+## VERIFIED CURRENT AGAINST V36 — 2026-08-29 07:25 KST
+
+Written against V34; the draft is now V36 (CLEAR from both seats). Both findings re-checked against
+it, because V35 edited the very line finding 1 cites and it matters whether that repair touched it.
+
+**Finding 1 — it did not.** §1 line 120 still ends *"... must be bound before BS-6."* at the same
+line number. V35 rewrote the surrounding sentence (the refuted "a biased or broken `w` cannot create
+one") and **left this clause untouched**.
+- `prereg_counts.py` on V36: **15 class P, 8 class E**, prose matches the table — so option (a)'s
+  15/8 → 16/8 is still the real cost.
+- `sensitivity-gradient control` occurs **exactly once** in V36: inside the sentence that claims the
+  precondition. **No BS- row is that control.** The document's BS- identifiers are BS-1, BS-1b,
+  BS-2a, BS-2c, BS-2f, BS-2k, BS-2m, BS-2o, BS-2s, BS-2v, BS-3, BS-4, BS-5f, BS-5p, BS-6, BS-7f,
+  BS-7p, BS-8f, BS-8p, BS-9.
+
+**Finding 2 — unchanged.** §5 lines 511–514 are byte- and position-identical in V34 and V36, still
+saying the authorization *"does not exist and must not be written yet"*. Its subject
+`ref/successor_ref_v9.py` remains frozen at `6a9abbbd…`.
+
+**Both findings hold on the current draft. Nothing in this file is stale.**

@@ -74,3 +74,15 @@ this.** The failure is entirely in the tool.
 The other harness repairs stand and were cleared: the `prereg_trace` refactor (predicates unchanged,
 all four refusal branches identical, three controls invoke `check_trace()`), the orphan scan, and the
 `void_registry` renames.
+
+---
+
+## VERIFIED CURRENT AGAINST V36 — 2026-08-29 07:25 KST
+
+Quarantine confirmed live on the current draft: all three emission sites in `tools/prereg_lint.py`
+(lines 252, 271, 274) carry category `repair-citations-advisory`, and the lint run on V36 exits **0**
+with *"no inconsistencies found (all 6 checks demonstrated they can fail)"* — the citation check is
+not among the six that can fail the lint. `--self-test` passes 8 controls.
+
+**The check is still quarantined and still must not be reopened.** This stamp records that state, not
+a new attempt at it.

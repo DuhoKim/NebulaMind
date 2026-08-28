@@ -76,3 +76,15 @@ negligible — because that is a scientific judgement wearing an engineering cos
 - Reports: `gates/GAIN_V5_REVIEW_{GPT56,CODEX}.md`, both NOT CLEAR, converged.
 - **This blocks FREEZING the gain control. It does not block anything else, and `γ̂` remains
   unmeasured regardless. BS-6 and the first image byte remain blocked.**
+
+---
+
+## VERIFIED CURRENT AGAINST V36 — 2026-08-29 07:25 KST
+
+This question is about code, not draft text, so the V34→V36 move does not touch it. What I re-ran:
+`ref/gain_gradient_estimator.py --self-test` (9 codes G01–G09, none exempt), `gates/verify_mu_gamma.py`
+(10 in-domain cases, 5 domain controls) and `ref/verdict_breakpoints.py --self-test` — **0 failures
+each**. Digests: estimator `e2270297`, verifier `e33d9275`, breakpoints `bd248c93`.
+
+The fork is unchanged and remains open. **The estimator itself is finished and cleared ×2 at gain v6;
+what is blocked is the choice below, not any remaining code.**
