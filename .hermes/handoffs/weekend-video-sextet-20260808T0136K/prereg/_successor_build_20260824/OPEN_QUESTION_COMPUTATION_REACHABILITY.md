@@ -61,3 +61,56 @@ as written cannot be produced on the failures it names, and that must not be fro
 - Checkers on V45: counts 16/8 prose-matched; trace 44 transitions, 0 problems; `void_registry`
   self-test 6/0; lint exits 0.
 - **BS-6 and the first image byte remain blocked.**
+
+---
+
+# UPDATE 13:5x — option C is eliminated. I said I could not establish this; now I have.
+
+I wrote that C *"needs someone to confirm such a locus actually exists pre-unblinding; if it does
+not, C is A or B wearing a narrower name, and I could not establish that from the document alone."*
+**It is establishable, and there is no such locus.**
+
+## Why the enumeration can carry a negative here
+
+Normally "I looked and found nothing" proves nothing — that is this lane's most-repeated lesson. It
+carries here **only because §6.1's row table is closed by its own catch-all**: Row R is *"every other
+person and every other process — nothing χ-bearing pre-unblinding; **the default is forbidden**."*
+A locus outside the enumerated rows is not undiscovered, it is prohibited. That is what turns an
+enumeration into an argument.
+
+## Every pre-unblinding computational locus, and what already claims its numerical failure
+
+| locus | what it computes pre-unblinding | who claims a non-finite/degenerate result |
+|---|---|---|
+| **Row C2** | the acceptance-evidence projection — **authenticated predicate bits** (`parent_attempt_present`, `byte_integrity_pass`, `canonical_shape_pass`) | not a statistic; a bit is true or false, so there is no non-finite value to produce |
+| **Row D** | per-object instrument outputs — χ, sign, amplitude, confidence | **§2.7 exclusion reason (c)**, *"the instrument returns a non-finite or absent output"* — the object is excluded, the run does not halt |
+| **Row J** | the calibration lower bound from BS-8f aggregates | **`INCONCLUSIVE-BY-CALIBRATION`** |
+| **Row J** | Stage C — the permutation work | **`INCONCLUSIVE-BY-POWER`**, universally, via §4 line 476 |
+| production runner | the `N_eq` floor | **`INCONCLUSIVE-BY-POWER`** |
+| **Row R** | — | forbidden by default |
+
+**Every permutation, statistic and protocol computation that happens before unblinding already
+terminates in a named outcome.** There is nothing left for `INCONCLUSIVE-BY-COMPUTATION` to claim.
+
+## What this does to the options
+
+**C is eliminated** — there is no locus to scope it to.
+
+**A and B remain, and both still change what an existing guard claims** (narrowing §4's POWER branch,
+or inverting the POWER/COMPUTATION precedence).
+
+**D is strengthened, and I now think it is close to forced.** The code was created to satisfy a
+ruling that pre-unblinding numerical failures *route to an inconclusive code alongside the calibration
+one*. **That routing already existed** — through POWER for Stage C and the `N_eq` floor, through
+CALIBRATION for the aggregates, and through §2.7(c) exclusion for a per-object output. The new code
+did not add a route; it added a **second claimant** to routes that were already terminated, which is
+what produced the overlap and then the dead branch.
+
+## The limit of this argument, stated
+
+It rests on two things a reader should check rather than take from me: **that §6.1's row table is
+closed** (Row R's default-forbidden clause), and **that §2.7(c) disposes of a per-object non-finite
+instrument output as an exclusion rather than a halt.** If either is wrong, C returns.
+
+**Still not my decision.** Eliminating C narrows the fork; it does not answer whether deleting the
+code is faithful to what the principal ruled, and that remains the part I should not judge.
