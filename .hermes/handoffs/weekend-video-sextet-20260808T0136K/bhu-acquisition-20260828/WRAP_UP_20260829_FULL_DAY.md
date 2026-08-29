@@ -1,5 +1,10 @@
 # BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 23:45 KST
 
+> **SUPERSEDED FOR EVERYTHING AFTER ~23:40 by `WRAP_UP_20260830_OVERNIGHT.md`** — the census
+> (closed at the full readable corpus), the miss-rate reversal, questions 5–7, four
+> acquisitions, and `check.py` all post-date this file. Read this file for the day, that one
+> for the night.
+
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
 to need no recollection: **`ENTRY31_STUDY.md`** (the result) and **`HARNESS_DEFECT_REGISTER.md`**

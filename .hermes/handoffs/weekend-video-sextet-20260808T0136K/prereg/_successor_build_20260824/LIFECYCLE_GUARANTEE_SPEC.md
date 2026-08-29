@@ -28,8 +28,8 @@ conflict between them is a defect in the draft.**
 | # | invariant | holds for |
 |---|---|---|
 | G1 | **No unlogged touch**: no bytes leave or land in a sealed store without a committed event | every touch kind |
-| G2 | **No false event**: an event's outcome field is true of the store effect it records | every event |
-| G3 | **One event per touch** — and, equally, **one touch per event** | every touch kind |
+| G2 | **No false event**: a touch event's outcome field is true of the store effect it records; **a refusal event truthfully records that a request was refused and NO store effect occurred** | every event |
+| G3 | **One event per touch** — and **every event is either exactly one touch's event or a refusal's event; no event is both, and no event is neither** (V70's wording said "one touch per event", which contradicted refusal events outright — GPT56-V70 F1, CODEX-V70 F1, the round's first finding against this spec) | every touch kind |
 | G4 | **No double decision**: one request never yields two events | every request |
 | G5 | **Render = touch.** Every render is its own touch with its own committed event. **Row G's *"any unlogged view"* void clause is a consumer of G5, not an exception to N1** | Row G only |
 
@@ -86,8 +86,14 @@ is needed, because no rule changed: G5 restates what Row G's void clause already
 **The costs, stated so the dissolution is not mistaken for free:**
 - **The V65 schedule sentence is recut**: *"re-viewing the current object is unrestricted"* remains
   true in **schedule** terms (a re-render is not a request for a different object and never violates
-  the traversal) and is **corrected in custody terms: every re-render is a logged touch.** Dwell and
-  magnification of an **already-rendered frame** involve no store bytes and are no touch.
+  the traversal) and is **corrected in custody terms: every re-render is a logged touch.** **A VIEW is the display session of ONE render commit** — it begins when the committed conveyance
+  is displayed and ends when the traversal position advances or the interface clears. Within a
+  session, dwell and magnification of the already-rendered frame move no store bytes and are the
+  SAME view — one commit, one event. **Displaying the object again after the session ends is a NEW
+  view and requires a new render commit** (CODEX-V70 F2: without the session boundary, "magnification
+  is no touch" and "any unlogged view voids" contradicted on cached frames). **If the principal means
+  "view" per-glance rather than per-session, that is his reading to impose; the spec's definition is
+  the session, stated so the word has one meaning.**
 - **The committed buffer is GOVERNED, answering CODEX-V69 F2**: for **renders there is no buffer
   reuse** — each render re-conveys under its own commit; for **conveyance** the buffer is part of the
   committed touch, destroyed on delivery completion or request end, and **its existence, bounds and
