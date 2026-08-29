@@ -1,0 +1,619 @@
+ 
+ [2411.14673] Holographic black hole cosmologies 
+ Holographic black hole cosmologies 
+ Abhisek Sahu, Mark Van Raamsdonk
+ Affiliation:  Department of Physics and Astronomy, University of British Columbia,
+ 6224 Agricultural Road, Vancouver, B.C., V6T 1Z1, Canada
+ Email:  abhi@phas.ubc.ca 
+ July 2024 
+ Abstract 
+ We describe and study a holographic construction of big-bang / big-crunch cosmological spacetimes where the matter consists of a lattice of black holes. The cosmological spacetime is dual to an entangled state of a collection of holographic CFTs associated with the second asymptotic regions of the black holes. For a cosmology with spatial slice geometry Σ \Sigma , this state is constructed via a Euclidean path integral for the CFT on a geometry obtained by connecting two copies of Σ \Sigma by a lattice of tubes. In three-dimensional gravity, we describe the cosmological solutions and the associated Euclidean saddles explicitly. For the case of (globally) flat cosmology, we determine when the Euclidean solution associated with the cosmology provides the dominant saddle compared to other natural candidates that preserve the symmetries of the boundary space. We find that the cosmological saddle dominates when the black holes are sufficiently large and close together. 
+ Our cosmology has a mixed state version where the physics behind the black hole horizons is unspecified and the Euclidean construction involves a pair of CFTs with an ensemble of operator insertions correlated between the two CFTs. Various purifications (adding second asymptotic regions for the black holes) correspond to various ways to promote this ensemble to an interaction by adding auxiliary degrees of freedom that couple the two CFTs in the Euclidean picture. These auxiliary degrees of freedom provide a Hilbert space for the cosmology in the Lorentzian picture. 
+ 1 Introduction 
+ Negative Λ \Lambda gravitational effective field theories associated with holographic CFTs have interesting and potentially realistic cosmological solutions with zero, positive, or negative spatial curvature (for a recent summary, see VanRaamsdonk:2024sdp ). Understanding whether there is some underlying CFT description of the physics of these solutions may be a straightforward route to achieving fully microscopic models of big-bang cosmologies. 
+ The cosmological solutions are big-bang / big-crunch solutions without any asymptotically AdS regions, so the role of a dual CFT is not obvious. However, in many cases the solutions are time-reflection symmetric at the level of background cosmology and the analytic continuation to Euclidean time is a reflection-symmetric AdS wormhole with two asymptotically AdS boundaries. This suggests that certain special cosmological states may have a Euclidean path integral construction (similar to Hartle-Hawking) where the gravitational path integral has a holographic definition via a pair of holographic Euclidean CFTs Maldacena:2004rf ; VanRaamsdonk:2020tlr . 
+ The connectedness of the Euclidean wormhole solution suggests correlations between the pair of CFTs and these correlations suggest that some type of ensemble or interaction is present in the holographic construction Maldacena:2004rf ; Saad:2019lba ; Betzios:2019rds ; VanRaamsdonk:2020tlr . 1 1 
+ 1 
+ For example, connected two-point functions between the two CFTs computed holographically will be non-vanishing unless there are cancellations due to other saddles in the path integral. 
+Some insight into the nature of these correlations comes by considering a specific simple model of cosmology where the matter is an approximately uniform distribution of heavy particles (associated with CFT operators with large dimension) MMV (see also Chandra:2022bqq ; Sahu:2023fbx ; Sasieta2022Wormholes ; Balasubramanian:2022gmo ).
+In the Lorentzian picture, these particles behave as pressureless dust and we get the Λ < 0 \Lambda<0 matter cosmology. In the Euclidean solution, the geodesics associated with these particles extend from one asymptotic boundary of the wormhole to the other. This indicates that we have a pair of operator insertions at corresponding points in the two CFTs for each heavy particle. 
+ The operator insertions suggest a natural place for correlations between the CFTs to arise. Instead of considering a single instance of a pair of CFTs with specific operators inserted, we can consider an ensemble of such insertions (in the same pair of CFTs) where the microscopic details of which operators are being inserted vary among elements of the ensemble Sahu:2023fbx ; MMV . In the cosmology picture, this gives rise to a mixed state cosmology; the ensemble in the CFT description gives rise to an entropy of the cosmological state. For the wormhole to be the dominant saddle in the gravitational path integral, a large degree of correlation is necessary. 2 2 
+ 2 
+ We briefly review an argument from MMV : Consider slicing the wormhole along a plane that intersects the two asymptotic boundaries. This slice provides the initial data for a connected Lorentzian wormhole. The dual CFT state here requires 𝒪 ⁡ ( c ) {\cal O}(c) mutual information between the two CFTs, and this must arise from the correlations present in the ensemble in the Euclidean picture. In the cosmology picture, we require a large entropy. 3 3 
+ 3 
+ We will see below that in some cases, we can purify this cosmological state by adding some auxiliary degrees of freedom. In the Euclidean picture, these couple the two CFTs, and the ensemble of insertions arises by integrating them out. In the Lorentzian picture, the auxiliary degrees of freedom provide the Hilbert space in which the state describing the cosmology lives. 
+ In this paper, we investigate a particular way of achieving this large entropy to produce a cosmological solution that arises from the dominant saddle of a Euclidean path integral. We consider a fixed set of locations for our heavy operator insertions, but for each pair of insertions, we take a specific correlated sum 
+ ∑ i 𝒪 i 1 ​ 𝒪 i 2 ​ e − β ​ Δ i . \sum_{i}{\cal O}^{1}_{i}{\cal O}^{2}_{i}e^{-\beta\Delta_{i}}\;. 
+ (1) 
+ For small enough β \beta , this is dominated by heavy operators associated with black hole microstates and gives the usual canonical ensemble of microstates associated with a thermal CFT state. The resulting cosmology is one where the matter is an array of black holes. 
+ In our construction, the highly mixed cosmological state can be purified by adding a second asymptotic region to each black hole. In this case, the full cosmology including these second asymptotic regions can be understood as being dual to an entangled state of a collection of CFTs associated with these asymptotic regions. 4 4 
+ 4 
+ From this perspective, the cosmology is the interior geometry of a multi-boundary Lorentzian wormhole. The spatial slice of this wormhole fixed by time-reflection symmetry is depicted schematically in Figure 3 . In the Euclidean picture, this purification process corresponds to replacing the ensemble with an interaction: each ensemble of insertions ( 1 ) can be obtained by integrating out the CFT degrees of freedom on a tube that connects the two copies of the CFT, as shown in Figure 1 . Slicing the resulting path integral in half gives the path integral that constructs the pure entangled state of many CFTs that is dual to the cosmological spacetime (Figure 1 , right). 
+ Figure 1 : Left: a pair of Euclidean CFTs with an ensemble of operator insertions. Each pair of insertions is summed over all operators with a Boltzmann-type weight. The dual geometry has a spatial slice (green) with a collection of thermal mixed-state black holes. Center: the sum of operator insertions can be obtained by integrating out CFT degrees of freedom on a collection of tubes connecting the two CFTs. The dual geometry in this case has a second asymptotic region for each black hole. Right: The path integral with tubes can be sliced to define a pure entangled state of a collection of non-interacting CFTs (red) on spatial spheres. This state is dual to the Lorentzian cosmology. 
+ The entropy of the black holes increases for decreasing β \beta in 1 or equivalently, as the tubes in the geometrical picture become shorter or wider. We would like to understand whether there is some critical β \beta below which the dominant saddle yields a cosmological solution. In order to gain analytic control over this question, we investigate in this paper the case of three dimensional gravity where we are able to write down the black hole cosmology solutions explicitly (following MMV ). In this case, we do find a critical β \beta below which the cosmology dominates; the transition to this cosmological state is akin to the Hawking-Page transition. In the cosmology phase, the black holes are large and close together for the (globally) flat cosmologies that we study in detail. The critical black hole size decreases as the overall volume of the space increases. In the limit of an infinite space with a planar square lattice of black holes, we find that the critical radius is r c ​ r ​ i ​ t ≈ 1.1 ​ ℓ A ​ d ​ S r_{crit}\approx 1.1\ell_{AdS} , approximately equal to the radius r c ​ r ​ i ​ t = ℓ A ​ d ​ S r_{crit}=\ell_{AdS} of a 3D black hole in AdS just above the Hawking-Page transition. 5 5 
+ 5 
+ The spacing between the black holes is determined to be D c ​ r ​ i ​ t ≈ 1.3 ​ ℓ A ​ d ​ S D_{crit}\approx 1.3\ell_{AdS} . Thus, the black hole size is always at least of order the cosmological scale. 
+ For larger β \beta (with smaller and/or more widely separated black holes), we still have cosmological solutions. These correspond to subdominant contributions to the gravitational path integral, but the wavefunction of the universe produced by the CFT construction still contains these cosmologies as rare parts of the superposition. 6 6 
+ 6 
+ It may be worthwhile to keep in mind that our own universe might be a rare part of some, e.g. for anthropic reasons. Perhaps some projection on the entangled CFT state could isolate the cosmological part of the wavefunction in this case. 
+ Outline 
+ The basic setup we have just described is explained in more detail in section 2 below.
+In section 3, we describe the construction of solutions for the case of three-dimensional gravity. Our approach makes use of the fact that for three-dimensional gravity, solutions involving heavy particles and black holes are locally AdS. The spatial slices of these solutions can be obtained by gluing together pieces of hyperbolic space. For massive particles, these spatial slices include conical singularities. As the particle mass increases above the black hole threshold, these singularities open up into Einstein-Rosen bridges to second asymptotic regions. When the matter is all black holes, the Euclidean gravity solution is smooth and locally AdS everywhere. We explicitly construct such solutions corresponding to arbitrary spherical, planar, or hyperbolic lattices of black holes. For a fixed lattice, we have a one-parameter family of solutions, with the black hole horizon size varying from 0 to infinity.
+In the solutions, the scale factor is always a ⁡ ( t ) = cos ⁡ ( t / ℓ A ​ d ​ S ) a(t)=\cos(t/\ell_{AdS}) and the volume of space per black hole is always 
+ V / ℓ A ​ d ​ S 2 = 2 ​ p ​ ( π 2 − π q ) . V/\ell_{AdS}^{2}=2p({\frac{\pi}{2}}-{\frac{\pi}{q}})\;. 
+ (2) 
+ where p p is the number of sides of the polygons in the lattice and q q is the number of polygons joined at a vertex. 
+ In section 4, we study in detail a particular example where we can control the overall volume of the universe and the size of the black holes. Specifically, we take a square lattice of black holes on a toroidal spatial geometry. In the limit of large volume, we get a spatial geometry that is flat at large scales. Here, we are able to identify and construct three saddles that preserve the lattice symmetry and are the most plausible candidates for the least action saddle at each β \beta . Using tools developed in previous work Krasnov2000Holography ; Maxfield2016HigherGenus ; Wien2017Numerical , we are able (in Section 4) to compare the actions for these saddles, finding that the cosmological saddle dominates below some critical β \beta . 
+ In section 5, we provide further discussion of various points, including how the construction can be generalized to higher dimensions, how the mixed cosmology can be purified in other ways, and how various regions of the cosmological spacetime lie in entanglement wedges of various collections of the dual CFTs. 
+ Relation to earlier work 
+ Our construction of a black hole filled cosmology provides an example of the type of construction suggested originally in Maldacena:2004rf where the cosmology is obtained via analytic continuation from a Euclidean wormhole. The explicit construction of a wormhole and the associated cosmology based on interactions between a pair of CFTs was discussed in Cooper2018 and the later related work Betzios:2019rds ; Chen:2020tes ; Betzios:2021fnm ; VanRaamsdonk:2020tlr ; VanRaamsdonk:2021qgv ; Sahu:2023fbx . See also Usatyuk:2024mzs for a recent discussion of holographic constructions of negative Λ \Lambda cosmology in low dimensions and Antonini:2023hdh for a different construction of closed universe cosmologies making use of auxiliary entangled CFTs. The idea of an ensemble of operator insertions giving rise to a cosmological wormhole was discussed in Sahu:2023fbx ; MMV . Lattice black hole cosmologies have been studied by various authors in the past outside the constext of holography; for a recent review, see bentivegna2018black . 
+ 2 Setup 
+ In this section, we describe the setup in detail, starting with the final picture of a connected Euclidean path integral giving rise to a purified cosmology. 
+ Consider a d d -dimensional holographic CFT, with a corresponding dual Λ < 0 \Lambda<0 gravitational effective field theory that describes the physics in the asymptotically AdS spacetimes dual to the CFT states. We describe a Euclidean path integral construction for a state of many such CFTs whose dual gravitational wavefunction includes a description of approximately homogeneous and isotropic big-bang / big-crunch cosmological spacetimes filled with black holes. 
+ Let B B be the homogeneous and isotropic geometry (sphere, plane or hyperbolic space) that we want the spatial geometry of our cosmology to approximate.
+We consider two copies of the Euclidean version of our holographic CFT on B B . Next, we deform the geometry to introduce a number of tubes connecting the two copies of B B . Topologically, we remove a collection of n n d d -dimensional balls from each copy of B B and then glue each ( d − 1 ) (d-1) -sphere boundary to the corresponding boundary on the other copy of B B . We can take the tubes to be spherically symmetric, characterized by some length and radius. We denote by B 2 B_{2} this CFT geometry with two copies of B B connected by tubes. 
+ On its own, the CFT path integral on each cylindrical tube constructs a thermofield double state of a pair of CFTs on the boundary spheres. This state can also be constructed by a Euclidean path integral on a pair of disks with a correlated insertions of operators, as shown in Figure ( 2 ). Thus, we expect that for the purpose of evaluating correlators on B 2 B_{2} with no operators inserted on the tubes, it should be equivalent to replace the tubes with correlated insertions of operators on pairs of disks. On the other hand, the tube picture gives us some additional observables (we can insert operators on the tubes), and on the gravity side, gives rise to a more complete geometry. 
+ Figure 2 : The CFT path integral on a cylinder produces the thermofield double state of the a pair of CFTs on the boundary spheres. The same state is constructed by the Euclidean path integral on a pair of disks with a correlated insertions of operators. 
+ A key point in either description is that we are introducing correlations between the fields in one copy of the CFT and the fields in the other copy of the CFT. These correlations are reflected in the existence of a Euclidean wormhole solution that connects the two copies of B B through the bulk 7 7 
+ 7 
+ Technically, this isn’t a usual wormhole since the boundary is connected because of the tubes. . 
+ The wormhole solution we are interested in is one where the bulk geometry topologically fills the region between the two copies of B B , leaving the tubes unfilled. This is depicted in fig.   8 . We will refer to this as the “cosmological saddle” for reasons that will become apparent. For the same boundary geometry B 2 B_{2} , there will be a variety of other possible bulk saddles (i.e. solutions of the bulk gravitational equations whose boundary geometry is conformal to B 2 B_{2} ). The bulk solution with the least gravitational action will dominate the path integral; later, we will be interested in understanding when the cosmological saddle dominates. This will depend on the parameters of the CFT setup. 
+ The Lorentzian geometry 
+ The Euclidean CFT geometry has a ℤ 2 \mathbb{Z}_{2} reflection symmetry that exchanges the two copies of B B . The surface fixed by this reflection is a collection of n n ( d − 1 ) (d-1) -dimensional spheres that comprise the middle slices of all the tubes we have introduced. The Euclidean path integral sliced at this surface constructs an entangled state of n n copies of the (Lorentzian) CFT on these spheres. 
+ The CFT state is dual to a gravitational state that is a superposition of different spacetimes, but is expected to be dominated by one particular geometry that is an analytic continuation of the dominant saddle in the Euclidean construction. According to the standard rules of holography, the dual geometry includes n n asymptotically AdS regions with spherical boundary geometry. In some cases, the dominant contribution to the dual geometry might be n n copies of pure AdS with matter entangled between the different copies (similar to the dual of the thermofield double state below the Hawking-Page transition). However, we are most interested in the situation where the dominant saddle in the Euclidean construction is the cosmological saddle described above. 
+ Let us understand the Lorentzian geometry of the cosmological saddle. This background geometry inherits a time reversal symmetry from the Euclidean construction. The spatial geometry of the time-reversal symmetric slice is the same as that in the Euclidean geometry. Since this slice cuts through all of the tubes, the spatial geometry must contain n n asymptotic boundaries. But this spatial slice is connected, with topology the same as B B with n n balls removed. This spatial slice geometry is depicted schematically as in Figure 3 for the case when B B is a sphere. We will describe this geometry very explicitly in the case of 3D gravity below. 
+ Figure 3 : Left: Euclidean path integral constructing an entangled state of CFTs (associated with the red boundaries). Right: Spatial slice of the dual spherical black hole cosmology; the funnels represent the second asymptotic regions for the black holes in the cosmology. 
+ From each of the asymptotic regions, the spacetime geometry should look like a black hole exterior. However, from the interior perspective, we have a connected geometry with n n black holes 8 8 
+ 8 
+ Specifically, we have n n spherical codimension-two extremal surfaces on the time-symmetric slice . We will see below that this interior geometry is time-dependent, with singularities in the past and future, so we can think of it as a big-bang / big-crunch cosmology where the matter is n n black holes. 
+ 3 Three dimensional gravity construction 
+ In this section, we describe the CFT construction and the dual geometries explicitly in the case where we have a two-dimensional holographic CFT and a three-dimensional bulk geometry. 
+ In three-dimensional gravity, the Einstein equations with negative cosmological constant imply that the spacetime geometry is locally AdS 3 in the absence of matter. The solutions we are interested in have a ℤ 2 \mathbb{Z}_{2} time-reversal symmetry. The surface Σ \Sigma left fixed by this symmetry is an extremal surface whose local geometry is two-dimensional hyperbolic space. Denoting the metric for the geometry of this surface by d ​ Σ 2 d\Sigma^{2} , the metric for the full spacetime geometry is simply 
+ d ​ s 2 = − d ​ t 2 + cos 2 ⁡ ( t / ℓ ) ​ d ​ Σ 2 ds^{2}=-dt^{2}+\cos^{2}(t/\ell)d\Sigma^{2} 
+ (3) 
+ in the Lorentzian picture and 
+ d ​ s 2 = d ​ τ 2 + cosh 2 ⁡ ( τ / ℓ ) ​ d ​ Σ 2 ds^{2}=d\tau^{2}+\cosh^{2}(\tau/\ell)d\Sigma^{2} 
+ (4) 
+ in the Euclidean picture. 
+ 3.1 Spatial geometry 
+ We can describe the surface Σ \Sigma by gluing together patches of hyperbolic space bounded by geodesics. These patches can be finite area hyperbolic polygons or infinite area patches that include one or more boundary segments on the hyperbolic disk. 9 9 
+ 9 
+ Without loss of generality, we can restrict to hyperbolic triangles or regions bounded by three geodesics that include one boundary segment. In order to have a smooth geometry, we require that any geodesic segments are glued to other geodesic segments of the same length and that the angles at any vertex add to 2 ​ π 2\pi . 
+ Figure 4 : Gluing together patches of hyperbolic disk 
+ Black hole lattices 
+ As explicit examples, we will consider a geometry that can be understood as a regular lattice of black holes in a space whose global geometry is spherical, flat, or hyperbolic. Cosmologies associated with lattices of black holes have been considered in the past; for a recent review, see bentivegna2018black . 
+ We will construct the geometries by gluing copies of a single basic shape shown in figure 4 (left). Here, we have three geodesics on the Poincaré disk, with equal intersection angles π / q \pi/q for some q q that we will later choose to be an integer. Apart from q q , we have one other parameter that we can take to be the length A A of the finite geodesic segment. By gluing p p copies of this shape together along the semi-infinite geodesics, we obtain a funnel geometry shown in Figure 4 (right). The funnel has a geodesic cycle of some length R R ; this will be the black hole horizon length. 
+ For later use, we note that the two-dimensional volume V V (i.e. area) of the space on the finite side of the geodesic cycle is given by 
+ V / ℓ A ​ d ​ S 2 = 2 ​ p ​ ( π 2 − π q ) V/\ell_{AdS}^{2}=2p\left({\pi\over 2}-{\pi\over q}\right) 
+ (5) 
+ as a consequence of the fact that the area of an n n -sided polygon in hyperbolic space is equal to ℓ A ​ d ​ S 2 \ell_{AdS}^{2} times the amount by which the sum of the interior angles is less than ( n − 2 ) ​ π (n-2)\pi . 
+ We now form a lattice of these funnels by gluing the polygonal boundaries together, with q > 2 q>2 
+ 10 10 
+ 10 
+ For q = 2 q=2 we get the BTZ black hole where two infinite funnels join at a codimension 1 circle, and there is no cosmological region. 
+polygons joined at each vertex. Since the vertex angles of each funnel are 2 ​ π / q 2\pi/q , the resulting geometry is smooth everywhere. For various cases of ( p , q ) (p,q) , we can obtain spherical, planar, or hyperbolic lattices
+ 11 11 
+ 11 
+ The Euler characteristic χ \chi of such a lattice is p ​ F ​ ( 1 p + 1 q − 1 2 ) pF\left(\frac{1}{p}+\frac{1}{q}-\frac{1}{2}\right) , assuming there are no boundaries. We have a hyperbolic lattice for χ < 0 \chi<0 , a planar lattice for χ = 0 \chi=0 and a spherical lattice for χ > 0 . \chi>0. 
+, and in the last two cases, these can be infinite or (by some identifications) finite. 
+ Spherical lattices 
+ For the cases ( p , q ) ∈ { ( 3 , 3 ) , ( 3 , 4 ) , ( 3 , 5 ) , ( 4 , 3 ) , ( 5 , 3 ) } (p,q)\in\{(3,3),(3,4),(3,5),(4,3),(5,3)\} , we have a spherical lattice of black holes arranged in a regular tetrahedron, octahedron, icosahedron, cube, and dodecahedron respectively. From 5 , the two-dimensional volume V V of of the space outside the horizons are related to R R by 
+ V / ℓ A ​ d ​ S 2 = 2 ​ p ​ F ​ ( π 2 − π q ) V/\ell_{AdS}^{2}=2pF\left({\pi\over 2}-{\pi\over q}\right) 
+ (6) 
+ where F F is the number of faces of the polyhedron. 
+ Planar lattices 
+ The cases ( p , q ) = { ( 3 , 6 ) , ( 4 , 4 ) , ( 6 , 3 ) } (p,q)=\{(3,6),(4,4),(6,3)\} correspond to planar triangular, square, and hexagonal lattices. These can be taken as infinite, or, by making appropriate identifications, toroidal. For our analysis below, we will consider in detail the case where we have an m × n m\times n square lattice. 
+ Hyperbolic lattices 
+ For any other ( p , q ) (p,q) with q > 2 + 4 / ( p − 2 ) q>2+4/(p-2) , we have a hyperbolic lattice. As for the planar case, this can be taken to be infinite, or, by various identifications, a finite lattice of genus g > 2 g>2 . 
+ 3.2 Euclidean spacetime geometry 
+ Let us now understand better the Euclidean spatial geometry ( 4 ) arising from the spatial slices that we have described. The three dimensional geometry can be constructed by gluing together patches described by ( 4 ) where d ​ Σ 2 d\Sigma^{2} is the hyperbolic funnel shown in Figure 4 (right). For each funnel, the part on the finite side of the geodesic cycle is topologically an annulus and gives rise to a 3D geometry that topologically is a thickened version of this annulus with two annular boundaries. The funnel on the infinite side of the geodesic cycle gives rise to a spacetime geometry that is half a Euclidean BTZ black hole. This has a boundary geometry that is a finite cylinder which connects the two asymptotic boundaries on the annular part, as shown in Figure 5 c. Thus, the spacetime geometry arising from the full funnel has a connected boundary( Figure 5 d). 
+ Figure 5 : a) The hyperbolic funnel geometry of the τ = 0 \tau=0 slice. b) a simpler representation of this, with the asymptotic boundary represented as a finite circle. c) The spacetime geometry ( 4 ) corresponding to this spatial patch. d) The asymptotic boundary of this spacetime geometry. 
+ For all the cases we have described above, the full spacetime geometry is obtained by gluing together a lattice of these three-dimensional pieces in the same way that we glued together the two-dimensional pieces to obtain the spatial slice. The boundary geometry of the resulting space is connected, but with some large genus; see Figure 7 for the case of a flat toroidal boundary. For the spherical lattices with n n black holes, the genus of this boundary surfaces is n − 1 n-1 . 
+ 3.3 Lorentzian spacetime geometry 
+ In the Lorentzian version ( 3 ) of the geometry, the infinite side of each funnel leads to a spacetime region that is equivalent to one half of a two-sided BTZ black hole (including the exterior region and half of the past and future interior regions). The finite interior region leads to the cosmological part of the spacetime with big-bang and big-crunch singularities in the past and future and a lattice of black holes. The spatial slices of this cosmological region are locally negatively curved, but the geometry on large distance scales can be spherical, planar, or hyperbolic, depending on which type of lattice we choose. 
+ 3.4 Other saddles 
+ We have described a variety of solutions that from the exterior perspective are connected multi-boundary wormholes and from the interior perspective are big-bang / big-crunch cosmologies filled with a lattice of black holes. 
+ In each case, the associated Euclidean solution obtained by analytic continuation has a connected two-dimensional boundary geometry. In general, there will be other gravitational solutions with this same boundary geometry. In order that the CFT path integral on this boundary geometry produces a state that is dominated by the cosmology, the cosmological saddle that we have described must be the least action solution with the given boundary geometry. In the next section, we will investigate in detail for a specific case when this cosmological saddle dominates. 
+ 4 Comparing actions 
+ In order that the cosmological solution is the dominant contribution to the wavefunction, it must be that the 3D Euclidean gravity solution corresponding to the cosmology is the least action solution with the given boundary geometry. Whether or not this is true will depend on the parameters of the solution, namely the number and arrangement of black holes and their horizon radii. In this section, we will investigate when the cosmological saddle dominates in a specific case. 
+ Figure 6 : Hyperbolic patch for construction of the spatial geometry with a square lattice of black holes. The shaded region here corresponds to the shaded region in Figure 4 a. The full geometry is obtained by gluing together an M × N M\times N array of copies of this this along the geodesic sides. 
+ We would like to consider a class of solutions where we can have an arbitrary number of black holes with an arbitrary horizon radius. It will be convenient in our calculations to consider the situation where we have a planar lattice with identifications to give an m × n m\times n square lattice of black holes, with each lattice “site” preserving D 4 D_{4} symmetry. In this case, geometry of the t = 0 t=0 spatial slice of the cosmological saddle can be obtained by gluing together an m × n m\times n grid of hyperbolic funnels with square boundaries. Alternatively, we can glue together an m × n m\times n grid of the geometry shown in Figure 6 .
+Apart from m m and n n , we have only a single physical dimensionless parameter in the setup, which can be taken to be the horizon length R R of one of the black holes in the cosmological saddle for the given boundary geometry. 
+ The full boundary geometry for this solution is shown schematically in Figure 7 . This has genus ( m ​ n + 1 ) (mn+1) .
+The Euclidean cosmological saddle can be obtained by gluing together an m × n m\times n lattice of 3D pieces, as we have described above.
+For this solution, the bulk geometry topologically fills in the region between the planes in Figure 7 but does not fill in the tubes. However, there are other solutions that preserve this lattice symmetry and which have lower action in some cases. 
+ To understand these other solutions, note the boundary geometry of Figure 7 is topologically a pair of tori glued together via a lattice of tubes. Other solutions preserving the lattice symmetry correspond (topologically) to filling in these tori in some way and then gluing the filled tori together with solid tubes. As an example, the topologies of three different saddles are shown in Figure 8 for the 1 × 2 1\times 2 lattice. 
+ Figure 7 : Euclidean boundary geometry for cosmological saddle with toriodal spatial geometry and and a lattice of six black holes. 
+ 4.1 Simplification using lattice symmetry 
+ We would now like to set up the comparison of gravitational actions for these simplest bulk saddles preserving the full symmetry of the boundary geometry. Let M m , n M_{m,n} be the boundary geometry in some conformal frame. 12 12 
+ 12 
+ Later, it will be convenient to consider the frame in which this geometry has constant negative curvature. 
+ Figure 8 : Topological description of bulk saddles for the same boundary geometry. The left most panel shows the cosmological saddle whereas the other two show the non-cosmological ones. Red edges and blue edges are identified. 
+ We will consider the three saddles with topology shown in Figure 8 , referring to these as saddle 1,2, and 3 respectively. Let S m , n ( i ) S^{(i)}_{m,n} be the action (in some conformal frame) for the i i th saddle with boundary geometry M m , n M_{m,n} . For the cosmological saddle, the bulk geometry is just an m × n m\times n grid of identical pieces, and each of these pieces will have the same action as the cosmological saddle for M 1 , 1 M_{1,1} . Thus, we have 
+ S m , n ( 1 ) = m ​ n ​ S 1 , 1 ( 1 ) . S^{(1)}_{m,n}=mnS^{(1)}_{1,1}\;. 
+ (7) 
+ Saddles 2 and 3 can be divided into m m and n n identical pieces respectively, and the action for each of these pieces will be the same as the action for M 1 , n M_{1,n} and M m , 1 M_{m,1} respectively, so we have that 
+ S m , n ( 2 ) = m ​ S 1 , n ( 1 ) S m , n ( 3 ) = n ​ S m , 1 ( 3 ) . S^{(2)}_{m,n}=mS^{(1)}_{1,n}\qquad\qquad S^{(3)}_{m,n}=nS^{(3)}_{m,1}\;. 
+ (8) 
+ Using these, we can write the action differences as 
+ S m , n ( 1 ) − S m , n ( 2 ) \displaystyle S^{(1)}_{m,n}-S^{(2)}_{m,n} 
+ = \displaystyle= 
+ m ​ n ​ [ ( S 1 , 1 ( 1 ) − S 1 , 1 ( 2 ) ) + ( S 1 , 1 ( 2 ) − 1 n ​ S 1 , n ( 2 ) ) ] \displaystyle mn\left[(S^{(1)}_{1,1}-S^{(2)}_{1,1})+(S^{(2)}_{1,1}-{1\over n}S^{(2)}_{1,n})\right] 
+ S m , n ( 1 ) − S m , n ( 3 ) \displaystyle S^{(1)}_{m,n}-S^{(3)}_{m,n} 
+ = \displaystyle= 
+ m ​ n ​ [ ( S 1 , 1 ( 1 ) − S 1 , 1 ( 3 ) ) + ( S 1 , 1 ( 3 ) − 1 m ​ S m , 1 ( 3 ) ) ] \displaystyle mn\left[(S^{(1)}_{1,1}-S^{(3)}_{1,1})+(S^{(3)}_{1,1}-{1\over m}S^{(3)}_{m,1})\right] 
+ The cosmological saddle will dominate if both of these are negative. 
+ For simplicity, we will focus on the case where m = n m=n where saddles 2 and 3 are related by the symmetry that exchanges rows and columns of the lattice. Thus, we would like to understand when the expression 
+ S n , n ( 1 ) − S n , n ( 2 ) = n 2 ​ [ ( S 1 , 1 ( 1 ) − S 1 , 1 ( 2 ) ) + ( S 1 , 1 ( 2 ) − 1 n ​ S 1 , n ( 2 ) ) ] S^{(1)}_{n,n}-S^{(2)}_{n,n}=n^{2}\left[(S^{(1)}_{1,1}-S^{(2)}_{1,1})+(S^{(2)}_{1,1}-{1\over n}S^{(2)}_{1,n})\right] 
+ (9) 
+ is negative.
+Here, the first difference in brackets is the action difference when the boundary geometry is the genus two surface M 1 , 1 M_{1,1} . In this case, the cosmological saddle corresponds to a toroidal universe with a single black hole. In section section   4.2 below, we will compute this action difference as a function of the parameter R R that gives the horizon length of the black hole, finding that it decreases with R R and is negative for R R above some critical size R 1 c ​ r ​ i ​ t R^{crit}_{1} . Above this critical size, the cosmological saddle dominates in the single black hole toroidal universe. 
+ The second difference becomes relevant for n > 1 n>1 . In section   4.3 below, we will argue that for fixed R R this contribution is negative and decreases with n n . Thus, with more black holes, the critical black hole size can be smaller.
+Defining the asymptotic value 
+ Δ ⁡ ( R ) = lim n → ∞ ( 1 n ​ S 1 , n ( 2 ) ​ ( R ) − S 1 , 1 ( 2 ) ​ ( R ) ) , \Delta(R)=\lim_{n\to\infty}\left({1\over n}S^{(2)}_{1,n}(R)-S^{(2)}_{1,1}(R)\right)\;, 
+ (10) 
+ the critical black hole size R ∞ c ​ r ​ i ​ t R^{crit}_{\infty} in the limit of an infinite grid will be determined as 
+ ( S 1 , 1 ( 1 ) − S 1 , 1 ( 2 ) ) ​ ( R ) = Δ ⁡ ( R ) . (S^{(1)}_{1,1}-S^{(2)}_{1,1})(R)=\Delta(R)\;. 
+ (11) 
+ 4.2 Action difference for genus two 
+ In this section, we consider the first term in eq.   9 , that is, the action difference ( S 1 , 1 ( 1 ) − S 1 , 1 ( 2 ) ) (S^{(1)}_{1,1}-S^{(2)}_{1,1}) . Each of the actions appearing here is the gravitational action for a different bulk geometry with the same genus two boundary. 
+ We will consider a one-parameter family of boundary geometries parameterised by the size of the black hole horizon in the cosmological saddle. To describe this, it is useful to start with the time-symmetric slice of the bulk cosmological solution, obtained by making identifications on the Poincaré disk shown in Figure 6 . 
+ A useful description of the full 3D geometry of the cosmological saddle can be obtained by taking the Poincaré disk in Figure 6 as the surface x 2 + y 2 + z 2 = 1 x^{2}+y^{2}+z^{2}=1 in the Poincaré-Ads geometry with metric 
+ d ​ s 2 = ℓ 2 z 2 ​ ( d ​ z 2 + d ​ x 2 + d ​ y 2 ) . ds^{2}={\ell^{2}\over z^{2}}(dz^{2}+dx^{2}+dy^{2})\;. 
+ (12) 
+ The cosmological saddle geometry is obtained by
+by removing half balls of radius ρ < 1 \rho<1 centred at ( ± ( 1 + ρ 2 ) / 2 , ± ( 1 + ρ 2 ) / 2 CLOSE (\pm\sqrt{(1+\rho^{2})/2},\pm\sqrt{(1+\rho^{2})/2} and identifying the boundaries of the half-balls on opposite corners of the square. This identification is smooth since each boundary introduced is a geodesic H 2 H_{2} surface in H 3 H_{3} . In addition to the obvious symmetries inherited from the construction, this geometry has a symmetry 
+ z → z x 2 + y 2 + z 2 x → x x 2 + y 2 + z 2 y → y x 2 + y 2 + z 2 z\to{z\over x^{2}+y^{2}+z^{2}}\qquad x\to{x\over x^{2}+y^{2}+z^{2}}\qquad y\to{y\over x^{2}+y^{2}+z^{2}} 
+ (13) 
+ that corresponds to the ℤ 2 \mathbb{Z}_{2} Euclidean time reflection. 
+ The bulk geometrical parameters R R (the black hole horizon length) and D D (the distance between black holes) shown in Figure 6 are related to the parameter ρ \rho by 
+ tanh ⁡ D 2 = ρ cosh ⁡ R 4 = 1 ρ 2 . \tanh{D\over 2}=\rho\qquad\qquad\cosh{R\over 4}={1\over\rho^{2}}\;. 
+ (14) 
+ To obtain these, we note that the sphere x 2 + y 2 + z 2 = 1 x^{2}+y^{2}+z^{2}=1 intersects the four spheres defined above at points with | x | = | y | = 1 / 2 ​ ( 1 + ρ 2 ) |x|=|y|=1/\sqrt{2(1+\rho^{2})} . The distance A / 2 A/2 in 6 is the geodesic distance between ( x , y , z ) = ( 0 , 0 , 1 ) (x,y,z)=(0,0,1) and one of these points. The other results can be obtained from the results of appendix   D by noting that we have a right-angled hyperbolic pentagon with sides D / 2 , A / 2 , A / 2 , D / 2 , R / 4 D/2,A/2,A/2,D/2,R/4 . 
+ In this description, the boundary geometry can be described as the plane with disks of radius ρ \rho centred at ( ± ( 1 + ρ 2 ) / 2 , ± ( 1 + ρ 2 ) / 2 CLOSE (\pm\sqrt{(1+\rho^{2})/2},\pm\sqrt{(1+\rho^{2})/2} removed and the boundaries of diagonally opposite disks identified. This is an example of a more general construction of genus two surfaces known as the Schottky construction. Since the Schottky construction will be useful in describing other saddles with the same boundary geometry, we briefly describe it here. 
+ The Schottky description of genus two surfaces 
+ Figure 9 : Two different Schottky representations of the genus 2 Bolza curve. For each one, we obtain a corresponding bulk solution by considering the plane as the boundary of Poincaré-AdS, removing half-balls corresponding to each circle, and gluing as indicated. The description a gives the cosmological saddle, while the description b gives an alternative saddle. 
+ The Schottky description of a genus two surface involves two pairs of circles ( C 1 , C 1 ′ ) (C_{1},C_{1}^{\prime}) , ( C 2 , C 2 ′ ) (C_{2},C_{2}^{\prime}) on the complex plane and a pair of elements L i L_{i} of S ​ L ​ ( 2 , ℤ ) SL(2,\mathbb{Z}) mapping the exterior of C i C_{i} to the interior of C i ′ C_{i}^{\prime} . Letting Ω 0 \Omega_{0} be the region exterior to the circles, and Ω = Ω 0 ∪ C 1 ∪ C 2 \Omega=\Omega_{0}\cup C_{1}\cup C_{2} , the genus 2 surface can be understood as a quotient G ​ Ω / G G\Omega/G where G G is the group generated by { L 1 , L 2 } \{L_{1},L_{2}\} . The region Ω \Omega is a fundamental domain for the action of G G here. The Riemann surface inherits a complex structure from that of the plane. This defines a conformal class of metrics; we will describe the construction of a particular metric with constant negative curvature below. Any genus two Riemann surface can be constructed in this way, but the construction is not unique. 
+ The Schottky description is particularly useful in the holographic context, since given a Schottky construction of some genus two surface, there is a natural 3D locally AdS geometry with this surface as the boundary geometry. To construct this, we consider the Schottky plane as the boundary of Poincaré-AdS, remove bulk hemispheres corresponding to each of the circles C i C_{i} and C i ′ C_{i}^{\prime} , and glue the hemisphere boundary associated with C i C_{i} to that associated with C i ′ C_{i}^{\prime} . This produces a smooth geometry.
+Different saddles for the same boundary geometry arise as the 3D geometries associated with different Schottky constructions of this boundary geometry. 13 13 
+ 13 
+ These constructions should be non-equivalent under the equivalence relation L i → M ​ L i ​ M − 1 L_{i}\to ML_{i}M^{-1} for M M an element of S ​ L ​ ( 2 , ℤ ) SL(2,\mathbb{Z}) . 
+ Our cosmological saddle is associated with a Schottky construction as shown in Figure 9 a, where L 1 L_{1} and L 2 L_{2} map the lower circles to the diagonally opposite upper circles. The circles have radius ρ \rho and are centered at ( ± OPEN ( 1 + ρ 2 ) / 2 ) , ± ( 1 + ρ 2 ) / 2 ) (\pm\sqrt{(1+\rho^{2})/2)},\pm\sqrt{(1+\rho^{2})/2}) . The associated 3D geometry has a 𝔻 4 \mathbb{D}_{4} symmetry.
+To find the non-cosmological saddle, we can consider a separate family of Schottky constructions indicated in Figure 9 b. Here, we have unit circles centered at u , u ¯ , − u , − u ¯ {u,\bar{u},-u,-\bar{u}} where u = α + i ​ cosh ⁡ λ u=\alpha+i\cosh\lambda . The generator L 1 L_{1} maps the exterior of the bottom right circle in Figure 9 b to the interior of the top right circle and L 2 L_{2} maps the exterior of the bottom left circle to the interior of the top left circle.
+We describe the above Schottky constructions in more detail in appendix   B . 
+ This construction gives a two-parameter family of genus two Riemann surfaces with ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} symmetry 14 14 
+ 14 
+ There are sub-families of Riemann surfaces which admit larger automorphism groups with 16, 24 or 48 fold symmetry. See appendix   C for a review. . There is a one parameter sub-family with 𝔻 4 \mathbb{D}_{4} symmetry; for each ρ \rho in the construction associated with the cosmological saddle, there will be some u ⁡ ( ρ ) u(\rho) for which the non-cosmological saddle that we have just described has the same boundary geometry. We will explain how to determine u ⁡ ( ρ ) u(\rho) presently. 
+ Matching boundary geometries 
+ To find cosmological and non-cosmological saddles with the same boundary geometry, it will be useful to make use of the uniformisation theorem, which guarantees that for any conformal class of genus two surfaces (with elements related by Weyl transformations) there exists a unique geometry with constant negative curvature. The constant curvature metrics we are interested in sit within a two-parameter family with ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} symmetry that can be constructed by gluing eight right-angle hyperbolic pentagons together as shown in Figure 10 . The pentagon boundaries become geodesics, each fixed by one of the ℤ 2 \mathbb{Z}_{2} symmetries. Using hyperbolic trigonometry, it is straightforward to show that only two of the geodesic lengths are independent, with the remaining ones determined by relations described in Appendix D . 
+ Figure 10 : Left: A genus 2 Riemann surface with ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} , showing the various geodesics fixed by one of the ℤ 2 \mathbb{Z}_{2} reflections. Right: a right-angled pentagon on the hyperbolic disk. Gluing eight of these pentagons together gives the genus two Riemann surface with a metric of constant negative curvature. 
+ We can choose the independent cycle lengths to be A 1 A_{1} and B 1 B_{1} .
+The Schottky construction associated with the cosmological saddle gives a one-parameter family of boundary geometries with the further constraint that the cycle lengths A 1 A_{1} and B 1 B_{1} are equal; this gives the additional symmetry that gives us a square lattice of black holes instead of a rectangular lattice. For each value the parameter ρ \rho , we have some parameters A 1 ​ ( ρ ) = B 1 ​ ( ρ ) A_{1}(\rho)=B_{1}(\rho) for the boundary Riemann surface in the constant curvature description. 
+ The Schottky construction associated with the non-cosmological saddle gives a two parameter family of boundary geometries. For each u u we have some A 1 ​ ( u ) A_{1}(u) and B 1 ​ ( u ) B_{1}(u) . These are generally not equal but will be equal in a one-parameter family. In this family, each boundary surface will be equivalent to the surface obtained in the earlier construction for some ρ \rho . 
+ To summarize, for each parameter ρ \rho we can use a numerical method described below to find A 1 ​ ( ρ ) = B 1 ​ ( ρ ) A_{1}(\rho)=B_{1}(\rho) . Similarly, for each u u , we can numerically find A 1 ​ ( u ) A_{1}(u) and B 1 ​ ( u ) B_{1}(u) , and by scanning over parameters find a u u that gives the same values as for a given ρ \rho parameter. We can then compare the actions for the saddles associated with ρ \rho and u ⁡ ( ρ ) u(\rho) . 
+ Numerical computation 
+ In this section, following Maxfield2016HigherGenus ; Wien2017Numerical , we describe the numerical procedure to start from a genus two Riemann surface specified by a Schottky presentation and determine cycle lengths on the constant curvature Riemann surface obtained from this via a Weyl transformation.
+With this procedure, we will identify different Schottky constructions that give the same constant curvature Riemann surface. Each Schottky construction has an associated bulk solution that we have described above, so we obtain different bulk saddles for the same boundary surface. Below, we describe how to compare actions for these saddles. 
+ Starting with the flat metric on the plane, the Weyl-rescaled metric with constant negative curvature can be written as 
+ d ​ s 2 = e 2 ​ Φ ​ ( z , z ¯ ) ​ d ​ z ​ d ​ z ¯ . ds^{2}=e^{2\Phi(z,\bar{z})}dzd\bar{z}. 
+ (15) 
+ The requirement of constant negative curvature implies that the conformal factor Φ \Phi satisfies the Liouville equation 
+ 4 ​ ∂ z ∂ z ¯ Φ = e 2 ​ Φ . 4\partial_{z}\partial_{\bar{z}}\Phi=e^{2\Phi}. 
+ (16) 
+ To ensure that metric is consistent between various images of the fundamental domain, the Liouville field is subject to the conditions 
+ Φ ⁡ ( L ⁡ ( z ) ) = Φ ⁡ ( z ) − 1 2 ​ log ⁡ | L ′ ​ ( z ) | 2 , \Phi(L(z))=\Phi(z)-{1\over 2}\log{|L^{\prime}(z)|^{2}}, 
+ (17) 
+ where L ∈ { L 1 , L 2 } L\in\{L_{1},L_{2}\} . 
+ Analytical solutions of the Liouville equation can be found only in a few highly symmetrical cases. For our calculations, we make use of a Mathematica package Handlebodies.m Wien2017Numerical developed by Jason Wein. The package takes a description of the circles C i , C i ′ C_{i},C_{i}^{\prime} as an input, generates a mesh on the domain Ω \Omega (or a reduced domain if there are symmetries specified) and solves the Liouville equation using finite element methods. The output includes the numerical solution of Φ \Phi and other boundary quantities of interest such as the length of various boundary geodesics. 
+ With this method, we can calculate the lengths A 1 ​ ( ρ ) = B 1 ​ ( ρ ) A_{1}(\rho)=B_{1}(\rho) of the geodesic cycles shown in Figure 10 starting with the Schottky description associated with the cosmological saddle boundary (Figure 9 a). 
+ Next, we can consider the Schottky description of Figure 9 b, numerically finding A 1 A_{1} and B 1 B_{1} given parameters α \alpha and λ \lambda . We scan over the possible values of α \alpha to obtain the values of λ \lambda such that the resulting boundary geometry has A 1 = B 1 A_{1}=B_{1} . Finally, by varying ρ \rho or α \alpha , we can find parameters ρ \rho and ( α , λ ) (\alpha,\lambda) that each give the same value of A 1 = B 1 A_{1}=B_{1} .
+Both these searches involve finding a single parameter and can be accomplished using Newton-Raphson or Secant methods.
+The result is that we have a one-parameter family of values ( ρ , α , λ , A 1 , B 1 ) (\rho,\alpha,\lambda,A_{1},B_{1}) corresponding to the one-parameter family of boundary genus two Riemann surfaces with our desired symmetry. 
+ In this one-parameter family, as α \alpha is increased, λ \lambda decreases and approaches a constant value of π \pi as α → ∞ \alpha\rightarrow\infty . The length of the A 1 A_{1} cycle 15 15 
+ 15 
+ Recall that we are considering the one-parameter regime where the A cycles and the B-cycles have equal length, i.e., A 1 = B 1 A_{1}=B_{1} and A 2 = B 2 A_{2}=B_{2} . (the 2 A cycles with equal length due to one of the ℤ 2 \mathbb{Z}_{2} symmetries) decreases monotonically with increasing α \alpha and the length of the A 2 A_{2} cycle (the non-repeating A cycle) increases monotonically with α \alpha .
+Consequently, there is a point where the A 1 A_{1} cycle and A 2 A_{2} cycle have equal length and hence all the A A and B B cycles have the same length 2 ​ cosh − 1 ⁡ 2 2\cosh^{-1}{2} . This corresponds to the maximally symmetric genus 2 Riemann surface, also known as the Bolza curve.
+The Schottky parameter values corresponding to this curve are, α = 3.178 , λ = 3.652 , ρ = 0.135 \alpha=3.178,\lambda=3.652,\rho=0.135 . The Schottky descriptions corresponding to these parameters are shown in Figure 9 . 
+ In Hidalgo2005Numerical the authors use a numerical approach called Burnside’s program and find the Schottky parameters corresponding to the Bolza curve.
+The one parameter family of Schottky groups used in their paper, which makes the 𝔻 6 \mathbb{D}_{6} automorphism manifest, is different than the one mentioned here which manifests the 𝔻 4 \mathbb{D}_{4} automorphism group.
+However, an appropriate Mobius transformation can be constructed that maps their Schottky group into the one shown in ( fig.   9 ,right).
+We verified that the Schottky parameters for the Bolza curve match in both our cases under the appropriate Mobius transformation. This provides a check of our numerical procedure. 
+ Action calculation 
+ The Schottky construction based on the parameter ρ \rho and the one based on the corresponding parameters ( α ⁡ ( ρ ) , λ ⁡ ( ρ ) ) (\alpha(\rho),\lambda(\rho)) each have an associated bulk solution, obtained by identifying hemispheres in Poincaré-AdS associated with the various circles. Our goal is to compute the action difference between the cosmological saddle (associated with the construction in Figure 9 a) and the other saddle (associated with the construction in Figure 9 b). The action comparison is also accomplished via the Handlebodies.m Wien2017Numerical package. 
+ The bulk gravitational action is given by 
+ S \displaystyle S 
+ = S b ​ u ​ l ​ k + S G ​ H ​ Y + S c ​ t \displaystyle=S_{bulk}+S_{GHY}+S_{ct} 
+ (18) 
+ = − 1 16 ​ π ​ G ∫ d 3 x g ( R − 2 Λ ) − 1 8 ​ π ​ G ∫ d 2 x h ( K − 1 ℓ ) . \displaystyle=-\frac{1}{16\pi G}\int d^{3}x\sqrt{g}(R-2\Lambda)-\frac{1}{8\pi G}\int d^{2}x\sqrt{h}(K-{1\over\ell}). 
+ (19) 
+ The bulk term and the boundary term both diverge near the boundary. Hence one must regularise the action appropriately and cancel the divergent terms before removing the regulator.
+Krasnov Krasnov2000Holography ; Krasnov2003BlackHole showed that one could use the solution of the Liouville equation eq.   16 to design a one parameter family of regularising surfaces near the boundary such that the regularising surface approaches the boundary as the regulator is removed, with the required uniform negatively curved metric on the boundary surface.
+Using this Φ \Phi -dependent regularisation, the gravitational action can be written in terms of the on-shell Takhtajan-Zograf action Zograf1988Uniformosation which is a functional of the Liouville field.
+Thus, the gravitational action calculation has been reduced to solving the Liouville field equation as we have described above. The package
+ Handlebodies.m Wien2017Numerical makes use of its numerical solution for the Liouville field in order to numerically compute this action. 
+ Figure 11 : Gravitational action of the two possible genus 2 saddles is plotted as a function of the length of the cycles fixed by reflection symmetry.
+In both figures, the cosmological action is shown in green and the non-cosmological action is plotted in orange. The left and right panel show the actions respectively as a function of the cycle lengths A 1 A_{1} and A 2 A_{2} , in units of ℓ s ​ y ​ m \ell_{\mathrm{s}ym} , the cycle lengths of the maximally symmetric genus 2 manifold, the Bolza curve. 
+ As shown in fig.   11 , the action of the cosmological saddle decreases monotonically with the length of the A 1 A_{1} cycle (i.e., increases with the A 2 A_{2} cycle). On the other hand the non-cosmological saddle action has a local maximum.
+There is a point where both the actions are equal; the value of the action here is − 1.2133 ​ c -1.2133c , where c = 3 ​ ℓ A ​ d ​ S / 2 ​ G c=3\ell_{AdS}/2G is the central charge of the CFT. An interesting point is that this Riemann surface does not correspond to the maximally symmetric Bolza surface, but has moduli close to it. 
+ Our results agree with those reported in Maxfield2016HigherGenus . In their paper they explore the full space parameterised by α \alpha and λ \lambda and create a phase diagram (their Fig. 7) showing the subspaces where the various saddles dominate. In the language of that paper, our cosmological saddle corresponds to the “partially connected” phase, while the “connected” and “disconnected” phases correspond to our non-cosmological saddles. We are only exploring the 1 parameter family where the A A and B B cycles are of equal length. This follows the curve between the connected and disconnected phases in Fig. 7 of Maxfield2016HigherGenus and then continues into the partially connected phase. The triple intersection point in their figure corresponds to the first order phase transition between the non-cosmological and the cosmological transition in our case, and we find parameter values for this transition in agreement with those in that figure. 
+ For the case n = 1 n=1 (corresponding in the cosmological case to a toroidal universe with a single black hole), the genus two action difference is the only contribution to equation ( eq.   9 ), so we can say that the cosmological saddle dominates for ρ < 0.087 \rho<0.087 or for black hole horizon length R > 22.341 ​ ℓ R>22.341\ell . 
+ The numerical procedure that we have described above allows us to compute the first difference in brackets in eq.   9 .
+We shall use a similar approach for calculating the second term in eq.   9 as well, although in a different conformal frame.
+For the convenience of the reader we have outlined the organisation of our numerical calculations in fig.   12 , showing different conformal frames and boundary geometries involved. 
+ Figure 12 : A step-by-step guide to the numerical computations. The green coloured manifolds have a constant negative curvature whereas the grey ones have a flat metric.
+First we calculate the Weyl factors Φ 1 , Φ 2 \Phi_{1},\Phi_{2} in the Schottky representation of the boundary to obtain a uniform negatively curved metric. In
+step 2 we match the cycle lengths of the genus 2 manifold thus obtained to find the Schottky parameters α , λ \alpha,\lambda as a function of ρ \rho , and compare the actions S 1 , 1 ( 1 ) , S 1 , 1 ( 2 ) S^{(1)}_{1,1},S^{(2)}_{1,1} .
+This gives us the first difference in eq.   9 .
+In step 3, we find the canonical metric on the sandwich manifold and calculate the cycle lengths to find the parameter ℛ \cal R as a function of ρ \rho that correspond to the same boundary manifolds obtained in Step 2.
+Finally in step 4, we calculate the action S 1 , 1 ( 2 ) S^{(2)}_{1,1} in the flat conformal frame by calculating the Weyl anomaly and subsequently calculate the second term in eq.   9 .
+ 4.3 Replica contribution 
+ In this section, we consider the remaining contribution to eq.   9 , relevant for n > 1 n>1 . We would like to understand the behavior of 
+ ( S 1 , 1 ( 2 ) − 1 n ​ S 1 , n ( 2 ) ) (S^{(2)}_{1,1}-{1\over n}S^{(2)}_{1,n}) 
+ (20) 
+ as a function of ρ \rho (or R R ) and n n . 
+ In a particular conformal frame, the boundary geometry for S 1 , 1 ( 2 ) S^{(2)}_{1,1} can be taken to be the one shown in fig.   13 , with a pair of flat square tori glued along the boundary of a circle removed from each of the tori. 16 16 
+ 16 
+ There will be a cusp at the location of the circle with this gluing. In appendix   B we outline an approach for obtaining the sandwich manifold from the Schottky descriptions considered in section   4.2 .
+Let us call this the sandwich manifold.
+This boundary geometry preserves the 𝔻 4 \mathbb{D}_{4} symmetry, so should correspond to the cosmological saddle with some value of ρ \rho . 
+ In general, the non-cosmological saddle geometry associated with S 1 , n ( 2 ) S^{(2)}_{1,n} is difficult to determine, but simplifications occur either when the gluing circles are very small or when we take large n n . In this case, we can make use of the following approximation.
+We consider first the geometries obtained by ignoring the circles. In this case, we have a pair of rectangular tori with side lengths L L and n ​ L nL . Each of these has a bulk saddle where the circle of length n ​ L nL is contractible. The geometry is reviewed in Appendix A . 
+ Now consider again the n n gluing circles on the boundary of each of these filled tori, and consider the extremal surfaces in the bulk associated with each of the gluing circles. For small circles or large n n , these extremal surfaces will lie in a region that is well approximated by Poincaré-AdS. Extremal surfaces with a circular boundary in Poincaré-AdS have zero extrinsic curvature. Thus, if we remove the half-ball regions outside the extremal surfaces for each of the gluing circles, we can glue the two filled tori together along these extremal surfaces; the gluing is smooth in the limit where the extremal surfaces have vanishing extrinsic curvature. For finite n n and finite circle size, the gluing won’t be quite smooth, and the geometry won’t quite be a solution to Einstein’s equations, but we can take the action for this approximate solution as an approximation to the correct action. 
+ For this approximate saddle, we can write the action as 
+ S 1 , n 2 , a ​ p ​ p ​ r ​ o ​ x = 2 ​ S t ​ o ​ r ​ u ​ s − 2 ​ n ​ S h ​ a ​ l ​ f ​ b ​ a ​ l ​ l . S^{2,approx}_{1,n}=2S^{torus}-2nS^{half\;ball}\;. 
+ (21) 
+ As we show in appendix   A , the regularized action for the torus is given by 
+ S t ​ o ​ r ​ u ​ s = − ℓ ​ π 4 ​ G ​ 1 n S^{torus}=-{\ell\pi\over 4G}{1\over n} 
+ (22) 
+ while the regularized action for each half-ball with boundary circle radius ℛ {\cal R} 
+ S h ​ a ​ l ​ f ​ b ​ a ​ l ​ l = − ℓ ​ π 4 ​ G ​ ln ⁡ ℛ ϵ . S^{half\;ball}=-{\ell\pi\over 4G}\ln{{\cal R}\over\epsilon}\;. 
+ (23) 
+ Combining these, we have that 
+ S 1 , n 2 , a ​ p ​ p ​ r ​ o ​ x = ℓ 2 ​ G ​ ( − π n + n ​ ln ⁡ ℛ ϵ ) S^{2,approx}_{1,n}={\ell\over 2G}(-{\pi\over n}+n\ln{{\cal R}\over\epsilon}) 
+ (24) 
+ The cutoff dependence here will cancel with a similar dependence in the first term of ( 20 ). All together, we have 
+ ( S 1 , 1 ( 2 ) − 1 n ​ S 1 , n ( 2 ) ) ≈ [ S 1 , 1 ( 2 ) − ℓ 2 ​ G ​ ln ⁡ ℛ ϵ ] + ℓ 2 ​ G ​ π n 2 (S^{(2)}_{1,1}-{1\over n}S^{(2)}_{1,n})\approx\left[S^{(2)}_{1,1}-{\ell\over 2G}\ln{{\cal R}\over\epsilon}\right]+{\ell\over 2G}{\pi\over n^{2}} 
+ (25) 
+ Here, the n n dependence is all in the second term and is such that the expression decreases with n n . Since the difference on the left is exactly 0 for n = 1 n=1 , we expect it to be negative and decreasing with n n , at least in the situations (large n n for general ℛ {\cal R} or small ℛ {\cal R} for general n n ) where our approximation is reliable. 
+ For small ℛ {\cal R} , the approximation ( eq.   21 ) should be good for n = 1 n=1 , so we can write the more explicit expression 
+ ( S 1 , 1 ( 2 ) − 1 n ​ S 1 , n ( 2 ) ) ≈ π ​ ℓ 2 ​ G ​ ( − 1 + 1 n 2 ) (S^{(2)}_{1,1}-{1\over n}S^{(2)}_{1,n})\approx{\pi\ell\over 2G}\left(-1+{1\over n^{2}}\right) 
+ (26) 
+ This is independent of ℛ {\cal R} and should give the precise limit of the more general expression as ℛ → 0 {\cal R}\to 0 . 
+ For a general ℛ \cal R and n = 1 n=1 , the approximation eq.   21 is not valid. So we use a different approach to calculate S 1 , 1 ( 2 ) S^{(2)}_{1,1} which does not require us to know how the top and bottom half of the bulk spacetime are joined in the n = 1 n=1 case.
+Our strategy is the following. First, we find the required Weyl transform of the flat metric to impose a constant negative curvature metric on the sandwich manifold.
+This allows us to match the boundary geometry to a corresponding Schottky description discussed in section   4.2 .
+The action corresponding to these two manifolds should also be equal upto a constant.
+We then relate the action calculated in the Schottky description to the action in the flat conformal frame required in eq.   25 by adding a Liouville term evaluated on the Weyl factor calculated above.
+We describe this procedure in detail below. 
+ Figure 13 : The boundary geometry used to calculate the replica contribution is shown on the left. It consists of a pair of square tori (with opposite sides identified) glued along a circular hole
+shown in green) at the center of the square. Each toroidal half has a ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} symmetry as shown in the right. Combined with the exchange symmetry exchanging the top and bottom half, the geometry has a 𝔻 4 \mathbb{D}_{4} symmetry. 
+ We obtain the Weyl transformation Ω \Omega by solving the Liouville differential equation 
+ ∇ a ∇ a ​ Ω = e 2 ​ Ω \nabla_{a}\nabla^{a}\Omega=e^{2\Omega} 
+ (27) 
+ over the sandwich manifold shown in fig.   13 . Due to the exchange symmetry between the top and bottom half of this picture, it is sufficient to solve this equation on one half, which we take to be a square bounded by the lines x = ± 1 x=\pm 1 and y = ± 1 y=\pm 1 (in AdS length units) with a circle of size ℛ ∈ ( 0 , 1 ) \mathcal{R}\in(0,1) removed from the centre.
+We further reduce the domain to one-eighth of its initial size using the three reflection symmetries; one each along a diagonal and the coordinate axes.
+The resulting domain is a quadrilateral bounded by three straight lines (say, for concreteness, the x − x- axis, the line x = 1 x=1 and the diagonal x = y x=y ) and a circular arc of length π / 4 \pi/4 (shown on the right hand side panel of fig.   13 ). 
+ In the locally flat conformal frame the manifold has a cusp at the circular hole. We see this cusp clearly in quantities such as the circumference of the circles of radius r r , in this case is simply 2 ​ π ​ r 2\pi r , which is non-differentiable at r = ℛ r=\mathcal{R} , as its radial derivative changes discontinuously from + 2 ​ π +2\pi to − 2 ​ π -2\pi while crossing the hole.
+The boundary conditions satisfied by Ω \Omega are chosen such that the resulting Weyl transformed manifold is smooth everywhere.
+Smoothness at the circular hole requires the proper length of any arc of size δ \delta to vary smoothly at the circular hole.
+This gives us the condition 17 17 
+ 17 
+ These boundary conditions yield the area given by the Gauss-Bonnet formula for 2D Riemann surfaces. Integrating the Liouville equation eq.   27 over the entire domain, the R.H.S. gives the area of the genus-2 surface. The L.H.S., a total derivative, can be evaluated using integration by parts with Neumann boundary conditions eq.   28 , yielding 4 ​ π 4\pi , matching the area from Gauss-Bonnet.
+ ∂ ρ ( e 2 ​ Ω ​ ( ρ , θ ) ρ δ ) | ρ = ℛ = 0 ⟹ ∂ r Ω ( ℛ , θ ) = − 1 / ℛ . \displaystyle\partial_{\rho}(e^{2\Omega(\rho,\theta)}\rho\delta)\big|_{\rho=\mathcal{R}}=0\;\;\implies\;\;\partial_{r}\Omega(\mathcal{R},\theta)=-1/\mathcal{R}. 
+ (28) 
+ At all other parts of the boundary the normal derivative of Ω \Omega vanishes due to reflection symmetry.
+Since any genus two surface can be constructed as a quotient of the hyperbolic plane with uniform negative curvature, the Liouville equation has a unique solution given the above Neumann boundary conditions, which we solve for numerically.
+In terms of this Weyl factor the various cycle lengths are given by: 
+ C = 8 ​ ∫ 0 π / 4 d ​ θ ​ ℛ ​ e Ω ⁡ ( ℛ , θ ) , A 2 = B 2 = 4 ​ ∫ ℛ 1 d ​ x ​ e Ω ⁡ ( x , 0 ) , A 1 = B 1 = 2 ​ ∫ 0 1 d ​ y ​ e Ω ⁡ ( 1 , y ) \displaystyle C=8\int_{0}^{\pi/4}\mathrm{d}\theta\mathcal{R}e^{\Omega(\mathcal{R},\theta)},\quad A_{2}=B_{2}=4\int_{\mathcal{R}}^{1}\mathrm{d}xe^{\Omega(x,0)},\quad A_{1}=B_{1}=2\int_{0}^{1}\mathrm{d}ye^{\Omega(1,y)} 
+ (29) 
+ Thus we obtain a family of genus 2 Riemann surfaces with constant negative curvature and a 𝔻 4 \mathbb{D}_{4} automorphism group, parametrised by ℛ \mathcal{R} . 
+ In section   4.2 we obtained another one-parameter family non-cosmological handlebodies with a genus 2 boundary having a Schottky description in terms of the Schottky parameter ρ \rho . We can find a one-one mapping between the parameters ρ \rho and ℛ \cal R by matching the cycle lengths of their corresponding Riemann manifolds.
+Both these families of Riemann surfaces, and their corresponding bulk geometries, represent the same set of handlebody spacetimes related by a diffeomorphism that we have not explicitly determined.
+The question of whether their regularised action is the same is a more subtle question as the spacetimes are regularised differently. 
+ The regularising surface z = ϵ z=\epsilon used for the sandwich manifold may be mapped by the diffeomorphism into a surface different from the canonical regularising surface (characterised by some regulator ϵ ~ \tilde{\epsilon} ) used in the Schottky description which depends on the other Weyl factor Φ \Phi Krasnov2000Holography .
+However, since the regulator surfaces must approach the same boundary surface in the limit ϵ , ϵ ~ → 0 \epsilon,\tilde{\epsilon}\rightarrow 0 , ϵ ~ \tilde{\epsilon} must be a multiple of ϵ \epsilon in this limit.
+The regularised action of a genus 2 handlebody contains a logarithmic divergence ℓ 2 ​ G ​ log ⁡ ϵ \frac{\ell}{2G}\log{\epsilon} .
+This divergence has its origin in the conformal anomaly and is universal, independent of the boundary moduli and the conformal frame.
+Thus the action in the Schottky picture and the sandwich picture may differ at most by a constant k k .
+So we have 
+ S 1 , 1 2 , s ​ a ​ n ​ d ​ w ​ i ​ c ​ h = S 1 , 1 2 , S ​ c ​ h ​ o ​ t ​ t ​ k ​ y − ℓ 2 ​ G ​ log ⁡ ϵ + k , S^{2,sandwich}_{1,1}=S^{2,Schottky}_{1,1}-\frac{\ell}{2G}\log{\epsilon}+k, 
+ (30) 
+ where S 1 , 1 ( 2 , S ​ c ​ h ​ o ​ t ​ t ​ k ​ y ) S^{(2,Schottky)}_{1,1} is the finite part of the action in the Schottky picture, calculated numerically in section   4.2 . 
+ The partition function of a 2D CFT under a Weyl transformation of its underlying metric transforms as 
+ Z ⁡ [ e 2 ​ Ω ​ g ] = e I L ​ [ g , Ω ] ​ Z ​ [ g ] Z[e^{2\Omega}g]=e^{I_{L}[g,\Omega]}Z[g] 
+ (31) 
+ where I L I_{L} is the Liouville action 
+ I L ​ [ g , Ω ] = c 24 ​ π ​ ∫ d 2 ​ x ​ g ​ ( ∇ a Ω ​ ∇ a Ω + ℛ ​ Ω ) , I_{L}[g,\Omega]=\frac{c}{24\pi}\int d^{2}x\,\sqrt{g}\left(\nabla_{a}\Omega\nabla^{a}\Omega+\mathscr{R}\Omega\right), 
+ (32) 
+ and ℛ \mathscr{R} is the Ricci curvature associated with the metric g g .
+Applying log \log{} to both sides of eq.   31 , we see that actions in the flat and the canonical frame are related as 
+ S 1 , 1 ( 2 , f ​ l ​ a ​ t ) \displaystyle S^{(2,flat)}_{1,1} 
+ = S 1 , 1 ( 2 , s ​ a ​ n ​ d ​ w ​ i ​ c ​ h ) + I L ​ [ η , Ω ] \displaystyle=S^{(2,sandwich)}_{1,1}+I_{L}[\eta,\Omega] 
+ (33) 
+ = S 1 , 1 ( 2 , S ​ c ​ h ​ o ​ t ​ t ​ k ​ y ) + I L ​ [ η , Ω ] − ℓ 2 ​ G ​ log ⁡ ϵ + k . \displaystyle=S^{(2,Schottky)}_{1,1}+I_{L}[\eta,\Omega]-\frac{\ell}{2G}\log{\epsilon}+k. 
+ (34) 
+ We evaluate the R.H.S of the above equation numerically and the chose the constant k k to fit the analytical small ℛ \cal R limit, 
+ S 1 , 1 ( 2 , f ​ l ​ a ​ t ) ​ ( ℛ ) = ℓ 2 ​ G ​ ( − π + log ⁡ ℛ 2 ​ ϵ ) . S^{(2,flat)}_{1,1}(\mathcal{R})=\frac{\ell}{2G}\left(-\pi+\log{\frac{\mathcal{R}}{2\epsilon}}\right). 
+ (35) 
+ We present our numerical calculation in fig.   14 and find the constant k ≈ 0.063 . k\approx 0.063. 
+ Figure 14 : The action S 1 , 1 ( 2 ) S^{(2)}_{1,1} calculated in the flat conformal frame with the sandwich manifold as the boundary, as a function of the log of the hole size ℛ \mathcal{R} . The blue dots represent numerical values of the action including the constant shift α = 0.063 \alpha=0.063 . The dashed line shows the action calculated analytically using the approximation eq.   21 . We see that the approximation holds remarkably well for log ⁡ ℛ < − 1 \log\mathcal{R}<-1 or ℛ < 0.36 \mathcal{R}<0.36 . 
+ Figure 15 : Action difference per lattice site between the cosmological saddle and the non-cosmological saddle, plotted against the event horizon length of the black holes in the cosmological saddle (in AdS units).
+The blue curve shows the action difference for the n = 1 n=1 case. The green curve shows the total action difference per lattice site in the limit n → ∞ n\to\infty . 
+ 4.4 Total action difference 
+ We now consider the complete action difference in ( eq.   9 ). 
+ As we mentioned above, for n = 1 n=1 , only the first term contributes and the cosmological saddle dominates for ρ < 0.087 \rho<0.087 or for black hole horizon length R > 22.341 ​ ℓ R>22.341\ell .
+The replica term in eq.   9 is non-zero for n > 1 n>1 . From fig.   14 we see that 
+ S 1 , 1 ( 2 ) < ℓ 2 ​ G ​ ( − π + log ⁡ ℛ ϵ ) . S^{(2)}_{1,1}<\frac{\ell}{2G}(-\pi+\log{\frac{\cal R}{\epsilon}}). 
+ In conjunction with eq.   25 this implies that the replica contribution is always less than or equal to − π ℓ / 2 G ( 1 − 1 / n 2 ) -\pi\ell/2G(1-1/n^{2}) , with the equality holding for small ℛ \mathcal{R} .
+Thus the replica contribution is always negative and decreasing with n n .
+If we increase the size of the lattice (so that we have more black holes) with the other parameters fixed, the cosmological saddle is more likely to dominate.
+Numerically, we find that in the limit of an infinite lattice, the cosmological saddle has lower action when the black hole has a radius above the critical value R ∞ c ​ r ​ i ​ t ≈ 7.06 ​ ℓ R^{crit}_{\infty}\approx 7.06\ell . This is illustrated in fig.   15 , which shows the total action difference per lattice site for a 1 × 1 1\times 1 lattice (blue) and in the limit of an infinite lattice (green).
+The critical size corresponds to a black hole horizon radius r c ​ r ​ i ​ t = R c ​ r ​ i ​ t / ( 2 ​ π ) ≈ 1.12 ​ ℓ A ​ d ​ S r_{crit}=R_{crit}/(2\pi)\approx 1.12\ell_{AdS} , close to the radius ℓ A ​ d ​ S \ell_{AdS} of a 3D black hole just above the Hawking-Page transition. From the general relation ( 14 ) we find that the critical radius corresponds to a critical separation d c ​ r ​ i ​ t ≈ 1.2 ​ ℓ A ​ d ​ S d_{crit}\approx 1.2\ell_{AdS} . 
+ 5 Discussion 
+ In this paper, we have described a microscopic construction of a big-bang / big-crunch cosmological spacetime using the tools of holography. We used a Euclidean CFT path integral to define a particular entangled state of a collection of uncoupled CFTs; in some cases, the dual spacetime has an interior region that is a cosmology where the matter is a lattice of black holes. 
+ A significant quantitative result is that the saddle giving rise to the cosmology only dominates the path integral for a range of parameters where the size of the black holes and the separation between the horizons is similar to the cosmological scale, r > r c ​ r ​ i ​ t = 1.12 ​ ℓ A ​ d ​ S r>r_{crit}=1.12\ell_{AdS} . In this sense, the spacetimes are quite inhomogeneous at the scale of the lattice, but the lattice itself is perfectly homogeneous and isotropic. 
+ The results show that a cosmology with black holes that are much smaller than the cosmological scale (as in our own universe) will only arise from the contributions of a subdominant saddle and thus will be a rare part of the wavefunction in our construction. It would be interesting to understand whether the physics of such a cosmology can still be extracted from the dual CFT state in some way or whether there is a projection on the CFT state that projects onto this cosmology on the gravity side. For example, projection of the CFT state to a high-energy band for each CFT (with energies of order c c ) might largely remove the contributions of the non-cosmological spacetimes for which the CFT energies are of order c 0 c^{0} . 
+ While our explicit calculations have been in three-dimensional gravity, we expect that the general picture should be qualitatively the same in higher-dimensions. For example, the case of a spherical “lattice” with two black holes reduces to the thermofield double construction, and here the physics is similar in higher dimensions, with the Hawking-Page transition between the two-sided black hole (the “cosmological” solution). Constructing solutions in higher dimensions would generally require numerics, but similar numerical computations have been done in the past (see e.g. bentivegna2018black ).
+A simple analytic construction of various cosmologies with matter and black holes was given in Sahu2024Singular . Here, the idea is to start with a homogeneous and isotropic universe with matter and radiation; from this universe, we can remove spherical spatial regions and patch on an interior region of a Schwarzschild black hole, satisfying the Israel junction conditions via a shell of dust. 
+ Figure 16 : Regions of hyperbolic space giving lattice cells for cosmologies with a square lattice of massive particles of increasing mass (left to right). Below the black hole threshold (left of center), the corners are associated with conical defects and the solution includes massive particles at these locations. Above the black hole threshold (right of center) the cells include parts of the boundary that give rise to second asymptotic regions associated with the black holes. 
+ Insensitivity of scale factor to mass above the black hole threshold 
+ For the square lattice cosmologies, we have a one- parameter family of solutions parametrized by the particle / black hole mass. All of these solutions have the same scale factor a ⁡ ( t ) = cos ⁡ ( t / ℓ A ​ d ​ S ) a(t)=\cos(t/\ell_{AdS}) . The solutions below the black hole threshold (see fig.   16 ), described in more detail in MMV have a lattice of conical defects each with a particle having mass proportional to the defect angle. The particle mass divided by the area of the lattice cell is the same in all cases, ρ M = M / A = 1 / ( 8 ​ π ​ G ​ ℓ A ​ d ​ S 2 ) \rho_{M}=M/A=1/(8\pi G\ell_{AdS}^{2}) and this is precisely the mass density required to produce the scale factor a ⁡ ( t ) = cos ⁡ ( t / ℓ A ​ d ​ S ) a(t)=\cos(t/\ell_{AdS}) according to the 3D flat space Friedmann equation 
+ H 2 + 1 ℓ A ​ d ​ S 2 = 8 ​ π ​ G ​ ρ M a 2 H^{2}+{1\over\ell_{AdS}^{2}}=8\pi G{\rho_{M}\over a^{2}}\; 
+ (36) 
+ for homogeneous and isotropic spacetime. Thus, there are no “back-reaction” effects due to the inhomogeneity MMV .
+Above the black hole threshold, the area of space excluding the second asymptotic regions is always 2 ​ π ​ ℓ A ​ d ​ S 2 2\pi\ell_{AdS}^{2} , independent of the size of the black holes. Thus, if we don’t include any space past the black hole horizons when calculating the volume, the mass density keeps increasing while the scale factor evolution is unchanged. If we want the Friedmann equation ( 36 ) to be satisfied, it is necessary to include a certain additional area associated with each black hole when calculating the density ρ M \rho_{M} . 
+ A closed universe Hilbert space from auxiliary degrees of freedom 
+ An interesting feature of our solutions is that while some of them describe “closed universes,” e.g. with spherical or toroidal spatial slices, there is still a non-trivial underlying Hilbert space, associated with the second asymptotic regions of the black holes. From the bulk perspective, the cosmology is in a mixed state, purified by fields in the second asymptotic regions. The full states are dual to states in the Hilbert space of the collection of CFTs; here, there are many possible states.
+Thus, our situation appears to be qualitatively different from other settings e.g. Usatyuk:2024mzs where it has been argued that the Hilbert space for closed universes is one-dimensional. While our situation has second asymptotic regions for the black holes and thus is in some sense not completely closed, we might expect something similar in cases without black holes where the matter is in a mixed state, entangled with some external auxiliary degrees of freedom. 
+ Alternative purifications 
+ In our construction, we began by considering a mixed state cosmology generated by a Euclidean path integral for a pair of Euclidean CFTs with an ensemble of operator insertions. We then purified the construction by noting that the ensemble of insertions could be reproduced by introducing a set of auxiliary degrees of freedom (the CFT degrees of freedom on a set of tubes connecting the two CFTs) and integrating these out. This construction corresponded to a natural purification of the cosmology in the Lorentzian picture where we add a second asymptotic region to each black hole. 
+ There are many other possible purifications. In the Euclidean picture, this is related to the fact that there are many possible ways to introduce auxiliary degrees of freedom and integrate them out in order to obtain the same ensemble of operator insertions. In various examples, the Lorentzian degrees of freedom associated with the time-symmetric slice of the Euclidean path integral will be different. Thus, the same cosmology can be holographically encoded in many different ways, using many possible sets of degrees of freedom. In the various examples, the spacetime past the horizons of the black holes will be different, but physics in the cosmological region will be the same. The idea that the same spacetime can be encoded using various holographic descriptions was discussed previously in van2020spacetime ; VanRaamsdonk2018 ; simidzija_holo-ween_2020 . 
+ Entanglement wedges and islands 
+ In cases where the cosmological saddle is dominant, it is interesting to understand how various regions of the cosmology are encoded in the dual CFTs. Consider the case where we have a planar lattice of black holes. Consider the density matrix associated with a collection of CFTs associated with a connected region containing n n black holes. A candidate RT surface for the entanglement entropy of this collection of CFTs is the set of n n horizons homologous to the n n asymptotic boundaries corresponding to the CFTs. This surface has length n ​ L nL .
+However, we can consider an alternative surface in the cosmological region of the geometry that surrounds all of these horizons. The length of this can be upper bounded by m ​ A mA , where A A is the distance shown in figure 5 (generally also of order L L ). This will certainly be smaller than the other candidate surface when 
+ m ​ A < n ​ L . mA<nL\;. 
+ (37) 
+ Since m m is the number of lattice points on the perimeter of the chosen region on the lattice and n n is the number of lattice points in the interior, this will be satisfied for any sufficiently large region of a fixed shape. In this case, the entanglement wedge of the collection of CFTs will include a portion of the cosmology. We can think of such a region as a cosmological island Hartman:2020khs . 
+ Acknowledgements 
+ We would like to thank Jim Bryan, Alex Maloney, Viraj Meruliya, and Petar Simidzija for helpful discussions.
+We acknowledge support from the National Science and Engineering Research Council of Canada
+(NSERC) and the Simons foundation via a Simons Investigator Award. 
+ Appendix A Gravitational action in special geometries 
+ In this appendix we review the calculation of bulk action of some special geometries in Fefferman-Graham coordinates. 
+ Locally A ​ d ​ S 3 AdS_{3} with a flat torus boundary 
+ Consider a Euclidean 2D holographic CFT on a rectangular torus with sides L 1 L_{1} and L 2 L_{2} . We can describe this as periodically identified flat space with coordinates x 1 ∼ x 1 + L 1 x_{1}\sim x_{1}+L_{1} and x 2 ∼ x 2 + L 2 x_{2}\sim x_{2}+L_{2} . We have two possible dominant saddles for the dual gravity solution. Each can be written as periodically identified AdS. In Fefferman-Graham coordinates, we can represent these as 
+ d ​ s 2 = ℓ 2 z 2 ​ ( d ​ z 2 + ( 1 − z 2 z 1 2 ) 2 ​ d ​ x 1 2 + ( 1 + z 2 z 1 2 ) 2 ​ d ​ x 2 2 ) ds^{2}={\ell^{2}\over z^{2}}\left(dz^{2}+\left(1-{z^{2}\over z_{1}^{2}}\right)^{2}dx_{1}^{2}+\left(1+{z^{2}\over z_{1}^{2}}\right)^{2}dx_{2}^{2}\right) 
+ (38) 
+ and 
+ d ​ s 2 = ℓ 2 z 2 ​ ( d ​ z 2 + ( 1 + z 2 z 1 2 ) 2 ​ d ​ x 1 2 + ( 1 − z 2 z 1 2 ) 2 ​ d ​ x 2 2 ) ds^{2}={\ell^{2}\over z^{2}}\left(dz^{2}+\left(1+{z^{2}\over z_{1}^{2}}\right)^{2}dx_{1}^{2}+\left(1-{z^{2}\over z_{1}^{2}}\right)^{2}dx_{2}^{2}\right) 
+ (39) 
+ where z i = L i / π z_{i}=L_{i}/\pi . In the first solution, the x 1 x_{1} circle is contractible in the bulk, while in the second solution, the x 2 x_{2} circle is contractible in the bulk. The values of z i z_{i} are chosen to avoid a conical singularity at z = z i z=z_{i} . 
+ To compare the action for these two solutions, the simplest approach is to choose a cutoff surface at the same z c = ϵ z_{c}=\epsilon in both solutions (it is important that we are using Fefferman-Graham coordinates here, subtract the regularized actions, and take the cutoff to infinity. For this, it suffices to use the bulk action 
+ S b ​ u ​ l ​ k = − 1 16 ​ π ​ G ∫ d 3 x g ( R − 2 Λ ) , S_{bulk}=-{1\over 16\pi G}\int d^{3}x\sqrt{g}(R-2\Lambda)\;, 
+ (40) 
+ where Λ = − 1 / ℓ 2 \Lambda=-1/\ell^{2} .
+The bulk equation of motion gives 
+ R μ ​ ν − 1 2 ​ g μ ​ ν ​ R − 1 ℓ 2 ​ g μ ​ ν = 0 . R_{\mu\nu}-{1\over 2}g_{\mu\nu}R-{1\over\ell^{2}}g_{\mu\nu}=0\;. 
+ (41) 
+ Contracting indices gives 
+ R = − 6 ℓ 2 . R=-{6\over\ell^{2}}\;. 
+ (42) 
+ so we have 
+ S b ​ u ​ l ​ k = 1 4 ​ π ​ G ​ ℓ 2 ​ ∫ d 3 ​ x ​ g . S_{bulk}={1\over 4\pi G\ell^{2}}\int d^{3}x\sqrt{g}\;. 
+ (43) 
+ The action for the i i th solution, integrated from z = z i z=z_{i} to the cutoff z = ϵ z=\epsilon then gives 
+ S \displaystyle S 
+ = \displaystyle= 
+ ℓ 4 ​ π ​ G ​ ∫ ϵ z i d ​ x 1 ​ d ​ x 2 ​ 𝑑 z ​ ( 1 z 3 − z z i 4 ) \displaystyle{\ell\over 4\pi G}\int_{\epsilon}^{z_{i}}dx_{1}dx_{2}dz({1\over z^{3}}-{z\over z_{i}^{4}}) 
+ = \displaystyle= 
+ ℓ 4 ​ π ​ G ​ L 1 ​ L 2 ​ ( − 1 2 ​ z 2 − z 2 2 ​ z i 4 ) | ϵ z i \displaystyle\left.{\ell\over 4\pi G}L_{1}L_{2}(-{1\over 2z^{2}}-{z^{2}\over 2z_{i}^{4}})\right|_{\epsilon}^{z_{i}} 
+ = \displaystyle= 
+ ℓ 4 ​ π ​ G ​ L 1 ​ L 2 ​ [ ( 1 2 ​ ϵ 2 + ϵ 2 2 ​ z i 4 ) − 1 z i 2 ] . \displaystyle{\ell\over 4\pi G}L_{1}L_{2}\left[({1\over 2\epsilon^{2}}+{\epsilon^{2}\over 2z_{i}^{4}})-{1\over z_{i}^{2}}\right]\;. 
+ We see that the leading divergent term is the same for both solutions. Subtracting the actions and taking the limit ϵ → 0 \epsilon\to 0 gives the finite result 
+ S 1 − S 2 = ℓ 4 ​ π ​ G ​ L 1 ​ L 2 ​ [ 1 z 2 2 − 1 z 1 2 ] = π ​ ℓ 4 ​ G ​ [ L 1 L 2 − L 2 L 1 ] S_{1}-S_{2}={\ell\over 4\pi G}L_{1}L_{2}\left[{1\over z_{2}^{2}}-{1\over z_{1}^{2}}\right]={\pi\ell\over 4G}\left[{L_{1}\over L_{2}}-{L_{2}\over L_{1}}\right] 
+ (44) 
+ We see that solution 1 has lower action if L 1 < L 2 L_{1}<L_{2} . In other words, the smaller circle prefers to be contractible in the bulk. 
+ We can alternatively make use of the boundary action plus counterterms to render each term finite individually. The Gibbons-Hawking boundary action is 
+ S G ​ H = − 1 8 ​ π ​ G ∫ d 2 x h K . S_{GH}=-{1\over 8\pi G}\int d^{2}x\sqrt{h}K\;. 
+ (45) 
+ To calculate K K , we can write the metric as 
+ d ​ s 2 = d ​ r 2 + γ i ​ j ​ ( r ) ​ d ​ x i ​ d ​ x j ds^{2}=dr^{2}+\gamma_{ij}(r)dx_{i}dx_{j} 
+ (46) 
+ where ρ \rho increases towards the boundary and use K i ​ j = 1 2 ​ ℒ r ​ γ i ​ j K_{ij}={1\over 2}{\cal L}_{r}\gamma_{ij} which leads to 
+ K = d d ​ r ​ ln ⁡ γ . K={d\over dr}\ln\sqrt{\gamma}\;. 
+ (47) 
+ The appropriate coordinate transformation is r / L = ln ⁡ ( z 0 / z ) r/L=\ln(z_{0}/z) . Up to terms that vanish when ϵ → 0 \epsilon\to 0 , we have 
+ K = 2 ℓ K={2\over\ell} 
+ (48) 
+ Thus, the Gibbons-Hawking action gives 
+ S G ​ H = − ℓ 4 ​ π ​ G ​ L 1 ​ L 2 ​ 1 ϵ 2 . S_{GH}=-{\ell\over 4\pi G}L_{1}L_{2}{1\over\epsilon^{2}}\;. 
+ (49) 
+ The required counterterm action is 
+ S c ​ t = 1 8 ​ π ​ G ​ ∫ d 2 ​ x ​ h ​ 1 ℓ . S_{ct}={1\over 8\pi G}\int d^{2}x\sqrt{h}{1\over\ell}\;\;. 
+ (50) 
+ Up to terms that vanish for ϵ → 0 \epsilon\to 0 , this gives 
+ S c ​ t = ℓ 8 ​ π ​ G ​ L 1 ​ L 2 ​ 1 ϵ 2 . S_{ct}={\ell\over 8\pi G}L_{1}L_{2}{1\over\epsilon^{2}}\;. 
+ (51) 
+ Adding all terms and taking ϵ → 0 \epsilon\to 0 , we have 
+ S i = − ℓ ​ π 4 ​ G ​ L 1 ​ L 2 L i 2 S_{i}=-{\ell\pi\over 4G}{L_{1}L_{2}\over L_{i}^{2}} 
+ (52) 
+ Taking the difference in action for the two saddles recovers the result 44 above. 
+ Hemispheres anchored on the boundary 
+ Consider a Poincaré-AdS spacetime and a hemispherical shell of radius ℛ \cal R anchored on a circle on the boundary z = 0 z=0 .
+We can calculate the action for the spacetime enclosed within this shell with the standard counterterms and a cutoff surface that is z = ϵ z=\epsilon in the Poincaré geometry.
+The bulk action is 
+ S b ​ u ​ l ​ k \displaystyle S_{bulk} 
+ = \displaystyle= 
+ 1 4 ​ π ​ G ​ ℓ 2 ​ ∫ d 3 ​ g \displaystyle{1\over 4\pi G\ell^{2}}\int d^{3}\sqrt{g} 
+ = \displaystyle= 
+ 1 4 ​ π ​ G ​ ℓ 2 ​ ∫ ϵ ℛ d ​ z ​ ℓ 3 z 3 ​ ∫ 0 ℛ 2 − z 2 d ​ r ​ 2 ​ π ​ r \displaystyle{1\over 4\pi G\ell^{2}}\int_{\epsilon}^{\cal R}dz{\ell^{3}\over z^{3}}\int_{0}^{\sqrt{{\cal R}^{2}-z^{2}}}dr2\pi r 
+ = \displaystyle= 
+ ℓ 4 ​ G ​ ∫ ϵ ℛ d ​ z ​ 1 z 3 ​ ( ℛ 2 − z 2 ) \displaystyle{\ell\over 4G}\int_{\epsilon}^{\cal R}dz{1\over z^{3}}(\mathcal{R}^{2}-z^{2}) 
+ = \displaystyle= 
+ ℓ 4 ​ G ​ ( ℛ 2 2 ​ ϵ 2 − ln ⁡ ℛ ϵ − 1 2 ) \displaystyle{\ell\over 4G}\left({\mathcal{R}^{2}\over 2\epsilon^{2}}-\ln{\mathcal{R}\over\epsilon}-{1\over 2}\right) 
+ The GH term and counterterm are 
+ S G ​ H + S c ​ t \displaystyle S_{GH}+S_{ct} 
+ = \displaystyle= 
+ 1 8 ​ π ​ G ​ ∫ d 2 ​ x ​ h ​ ( − K + 1 ℓ ) \displaystyle{1\over 8\pi G}\int d^{2}x\sqrt{h}\left(-K+{1\over\ell}\right) 
+ = \displaystyle= 
+ − 1 8 ​ π ​ G ​ ℓ ∫ 0 ℛ 2 − ϵ 2 d r ℓ 2 ϵ 2 2 π ρ \displaystyle-{1\over 8\pi G\ell}\int_{0}^{\sqrt{{\cal R}^{2}-\epsilon^{2}}}dr{\ell^{2}\over\epsilon^{2}}2\pi\rho 
+ = \displaystyle= 
+ ℓ 4 ​ G ​ ( − ℛ 2 2 ​ ϵ 2 + 1 2 ) \displaystyle{\ell\over 4G}\left(-{\mathcal{R}^{2}\over 2\epsilon^{2}}+{1\over 2}\right) 
+ This gives us the total action 
+ S t ​ o ​ t = − ℓ 4 ​ G ​ ln ⁡ ℛ ϵ . S_{tot}=-{\ell\over 4G}\ln{\mathcal{R}\over\epsilon}. 
+ (53) 
+ We need to be careful about the locus where the cutoff surface intersects the extremal surfaces. Here, for finite ϵ \epsilon , the cutoff surface has a cusp, and this gives a singular extrinsic curvature. 
+ Appendix B Details of the Schottky construction for genus two surfaces 
+ In this appendix, we provide more details of the Schottky construction associated with the non-cosmological saddle. Consider a region of the complex plane obtained by removing unit circles centered at u , u ¯ , − u , − u ¯ {u,\bar{u},-u,-\bar{u}} where u = α + i ​ cosh ⁡ λ u=\alpha+i\cosh\lambda (Figure 17 a). This region is a fundamental domain for the action of a group with generators L 1 , L 2 ∈ S ​ L ​ ( 2 , ℂ ) L_{1},L_{2}\in SL(2,\mathbb{C}) defined by maps w → z w\to z given by 
+ L 1 : z − v z − v ¯ = e − 2 ​ λ ​ w − v w − v ¯ L 2 : z + v ¯ z + v = e − 2 ​ λ ​ w + v ¯ w + v v ≡ a + i ​ sinh ⁡ λ L_{1}:{z-v\over z-\bar{v}}=e^{-2\lambda}{w-v\over w-\bar{v}}\qquad\qquad L_{2}:{z+\bar{v}\over z+v}=e^{-2\lambda}{w+\bar{v}\over w+v}\qquad\qquad v\equiv a+i\sinh\lambda 
+ (54) 
+ Here, L 1 L_{1} maps the exterior of the bottom right circle in Figure 17 a to the interior of the top right circle and L 2 L_{2} maps the exterior of the bottom left circle to the interior of the top left circle. Identifying points by the action of this group, we obtain a genus two surface. We can visualize this by adding a point at infinity so the complex plane topologically becomes a sphere, and then gluing the circles on the right together and the circles on the left together to form two handles. The specific construction we have described gives a family of Riemann genus two Riemann surfaces with ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} symmetry. 
+ One may also show how the construction can be explicitly mapped into a geometry like the sandwich manifold considered in fig.   13 .
+Starting from the right side of fig.   17 a, we can consider a holomorphic transformation 
+ z → v | v | ​ z − v ¯ z − v z\to{v\over|v|}{z-\bar{v}\over z-v} 
+ (55) 
+ which maps it into the Figure 17 b.
+The images of the upper right and lower right circle in 17 a are concentric circles of radius e λ e^{\lambda} and e − λ e^{-\lambda} centered at the origin, while the image of the imaginary axis is a circle of radius ( sinh ⁡ λ ) / α (\sinh{\lambda})/\alpha centered at z = 1 + ( sinh 2 ⁡ λ ) / α 2 z=\sqrt{1+(\sinh^{2}\lambda)/\alpha^{2}} . 
+ Figure 17 : a) Complex plane with pairs of circles identified to define a genus 2 Riemann surface. b) Image of right side after a Mobius transformation. c) Image after a logarithm d) Gluing to another copy (corresponding to the other half of the first figure) gives one “site” of the lattice shown in Figure 7 
+ Considering the further map 
+ z → log ⁡ z z\to\log z 
+ (56) 
+ with a branch cut taken on the negative real axis maps this to the interior of a rectangle | ℜ ⁡ ( z ) | < λ |\Re(z)|<\lambda , | ℑ ⁡ ( z ) | < π |\Im(z)|<\pi , shown in fig.   17 c. The imaginary axis in fig.   17 a is now mapped to a curve C C described by 
+ cosh ⁡ x = cos ⁡ y ​ 1 + ( sinh 2 ⁡ λ ) / α 2 , \cosh x=\cos y\sqrt{1+(\sinh^{2}\lambda)/\alpha^{2}}\;, 
+ (57) 
+ where z = x + i ​ y z=x+iy .
+The lattice site geometry of figure fig.   17 d can be understood as two copies of fig.   17 c glued together along the curve C C (thus restoring the left half of fig.   17 a).
+The resulting manifold is similar to the sandwich manifold in fig.   13 , except for the fact that the curve C C is different from a circle.
+In principle one may consider a mapping, more complicated than the logarithmic mapping, to construct the sandwich manifold starting from the Schottky description. 
+ Appendix C Automorphisms of genus 2 Riemann surfaces 
+ Riemann surfaces with g ≥ 2 g\geq 2 admit a discrete group of automorphisms.
+In mathematical literature, these groups have been classified using the properties of the hyperelliptic functions (complex equation of the form y 2 = p ⁡ ( x ) y^{2}=p(x) ) corresponding to a Riemann surface.
+Hurwitz’s theorem provides an upper bound of 84 ​ ( g − 1 ) 84(g-1) on the order of the automorphism group for connected Riemann surfaces with g ≥ 2 g\geq 2 . This upper bound is not always reached however; in case of g = 2 g=2 , the biggest automorphism group is of order 48 48 and is called a Bolza curve. 
+ We are interested in a two dimensional moduli space of genus 2 Riemann surfaces where the surface has ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} symmetry.
+This 8-fold Abelian group of symmetries is often enhanced at particular points in the moduli space. In this section we want to understand how this enhancement occurs. 
+ A general g = 2 g=2 surface has a moduli space of 3 3 complex or 6 6 real dimensions.
+When such a surface has a ℤ 2 \mathbb{Z}_{2} symmetry, the number of parameters reduces to 3 3 , which correspond to the lengths of 3 circles fixed by this ℤ 2 \mathbb{Z}_{2} symmetry. Lets call them A-cycles .
+Making 2 of these A-cycles equal in length, introduces an additional ℤ 2 \mathbb{Z}_{2} symmetry that swaps the two A-cycles of equal length.
+It is slightly non-trivial to see how, but having two of the ℤ 2 \mathbb{Z}_{2} symmetries ensures a third ℤ 2 \mathbb{Z}_{2} symmetry which fixes a second set of B-cycles 
+ 18 18 
+ 18 
+ The explanation for this is related to the fact that all the genus 2 hypersurfaces under consideration are associated with a hyperelliptic curve of the form y 2 = p ⁡ ( x ) y^{2}=p(x) where p p is a polynomial of degree 5 5 or 6 6 .
+Then the involution y → − y y\xrightarrow{}-y gives a Riemann surface in which the roles of the A-cycles and the B-cycles are interchanged. Thus we have a different set of moduli, but they correspond to the same genus 2 Riemann surface.
+It is similar to the genus 1 case where interchanging the ’contractible’ and ’non-contractible’ cycles gives a different bulk solution, but the boundary is the same.
+Composition of the involution and one of the ℤ 2 \mathbb{Z}_{2} gives rise to a new ℤ 2 \mathbb{Z}_{2} . . Since all these ℤ 2 \mathbb{Z}_{2} symmetries commute the overall symmetry group has a product structure ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} . 
+ If we further consider this 8-fold symmetric surface to have a constant negative curvature (as can be ensured by uniformisation theorems), it can be built from 8 copies of a right angled pentagon as shown in fig.   10 .
+The two parameters of this surface correspond to two sides of the pentagon.
+Using this pentagon one can show that because two of the A-cycles are equal in length, two of the B-cycles are also equal in length. In fact, the ℤ 2 \mathbb{Z}_{2} symmetry that swaps the two A-cycles also swaps the two equal B-cycles. 
+ A further reduction in parameter space occurs when all the A-cycles (and consequently the B-cycles) are equal in length.
+Then the 3 A-cycles (or B-cycles) can be permuted, enhancing the ℤ 2 \mathbb{Z}_{2} symmetry associated with exchange of equal A-cycles to a 𝔻 3 \mathbb{D}_{3} symmetry; the group of symmetries of a equilateral triangle.
+Hence the automorphism group becomes 𝔻 3 × ℤ 2 × ℤ 2 \mathbb{D}_{3}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} .
+It is easy to see that 𝔻 3 × ℤ 2 \mathbb{D}_{3}\times\mathbb{Z}_{2} is isomorphic to 𝔻 6 \mathbb{D}_{6} , the symmetry group of a regular hexagon.
+Thus we have a one parameter group of surfaces with conformal automorphism group 𝔻 6 \mathbb{D}_{6} and an anti-conformal group ℤ 2 \mathbb{Z}_{2} which can be interpreted as a time-reversal symmetry. 
+ A different one parameter family arises by introducing a ℤ 2 \mathbb{Z}_{2} symmetry that interchanges the A-cycles and the B-cycles.
+This ℤ 2 \mathbb{Z}_{2} groups acts non-trivially on the original order 8 automorphism group and gives rise to a semi-product structure as we describe below.
+First taking a product of two of the ℤ 2 \mathbb{Z}_{2} groups we get 𝔻 2 \mathbb{D}_{2} , the dihedral group of order 4, or the group of symmetries of a rectangle.
+ 𝔻 2 \mathbb{D}_{2} is a normal subgroup of of 𝔻 4 \mathbb{D}_{4} , the group of symmetry of a square.
+The additional ℤ 2 \mathbb{Z}_{2} that interchanges the A-cycle and B-cycles, can also be thought of as a subgroup of 𝔻 4 \mathbb{D}_{4} .
+This ℤ 2 \mathbb{Z}_{2} group acts on 𝔻 2 \mathbb{D}_{2} to give a inner semi-definite product ℤ 2 ⋉ 𝔻 2 \mathbb{Z}_{2}\ltimes\mathbb{D}_{2} which is nothing but 𝔻 4 \mathbb{D}_{4} .
+Hence the conformal automorphism group becomes 𝔻 4 \mathbb{D}_{4} along with a time-reversal anti-conformal automorphism ℤ 2 \mathbb{Z}_{2} . 
+ These two one-parameter families meet at a single point, with a 48-fold symmetry
+consisting of 24 conformal automorphisms and a time reversal anti-conformal symmetry. The Order 24 group is the Van Dyck group D ⁡ ( 2 , 4 , 6 ) . D(2,4,6). 
+ Appendix D Hyperbolic right-angled pentagons 
+ We found that a genus 2 Riemann surface with ℤ 2 × ℤ 2 × ℤ 2 \mathbb{Z}_{2}\times\mathbb{Z}_{2}\times\mathbb{Z}_{2} symmetry and a hyperbolic metric
+may be constructed by joining hyperbolic right angled pentagons.
+Such pentagons have only two free parameters; fixing the length of any two adjacent sides fixes the length of the rest of the sides. 
+ Let two adjacent sides of the pentagon be a , b a,b and the unique side non-adjacent to both these sides be of length c c . Then they satisfy the relation 
+ cosh ⁡ c = sinh ⁡ a ​ sinh ⁡ b , \cosh c=\sinh a\sinh b, 
+ (58) 
+ which of course holds for any pair of adjacent sides.
+Let the two remaining sides be of lengths m m , n n where the former corresponds to the side between the sides of length a a and c c .
+Then the following relation also holds: 
+ sinh ⁡ m ​ cosh ⁡ a = cosh ⁡ b ​ sinh ⁡ n . \sinh{m}\cosh{a}=\cosh{b}\sinh{n}. 
+ (59) 
+ This relation involves 4 adjacent sides and it also holds for any 4 adjacent sides. This set of relations is not independent from the set of relations exemplified by eq.   58 ; one set of relations can be derived from the other.
+Another set of relations involving 3 adjacent sides is 
+ tanh ⁡ m ​ cosh ⁡ c ​ tanh ⁡ n = 1 . \tanh{m}\cosh{c}\tanh{n}=1. 
+ (60) 
+ Explicitly, the sides m , n m,n are given in terms of a , b a,b by 
+ cosh ⁡ m \displaystyle\cosh{m} 
+ = cosh ⁡ a ​ sinh ⁡ b sinh 2 ⁡ a ​ sinh 2 ⁡ b − 1 \displaystyle=\frac{\cosh a\sinh b}{\sqrt{\sinh^{2}a\sinh^{2}b-1}} 
+ (61) 
+ cosh ⁡ n \displaystyle\cosh{n} 
+ = cosh ⁡ b ​ sinh ⁡ a sinh 2 ⁡ a ​ sinh 2 ⁡ b − 1 . \displaystyle=\frac{\cosh b\sinh a}{\sqrt{\sinh^{2}a\sinh^{2}b-1}}. 
+ (62) 
+ Thus the three remaining sides of the pentagon are found uniquely in terms of 2 2 adjacent sides. 
+ In case two adjacent sides of the pentagon are equal, we have a one parameter family of isosceles pentagons.
+For isosceles pentagons the two sides attached to the equal adjacent sides are also equal. In the notation of the previously described general right angled pentagon, if a = b a=b , m = n m=n .
+The equal non-adjacent side and the unequal fifth side are given as 
+ coth ⁡ m \displaystyle\coth{m} 
+ = sinh ⁡ a \displaystyle=\sinh{a} 
+ (63) 
+ cosh ⁡ c \displaystyle\cosh{c} 
+ = sinh 2 ⁡ a . \displaystyle=\sinh^{2}{a}. 
+ (64) 
+ Interestingly there is only one equilateral right pentagon which has a side length of a = cosh − 1 ⁡ ( 1 + 5 ) / 2 a=\cosh^{-1}{(1+\sqrt{5})/2} in units of the curvature scale. 
+ References 
+ (1) 
+M. Van Raamsdonk and C. Waddell, Holographic motivations and observational evidence for decreasing dark energy , 2406.02688 .
+ (2) 
+J. M. Maldacena and L. Maoz, Wormholes in AdS , JHEP 02 (2004) 053 , [ hep-th/0401024 ].
+ (3) 
+M. Van Raamsdonk, Comments on wormholes, ensembles, and cosmology , JHEP 12 (2021) 156 , [ 2008.02259 ].
+ (4) 
+P. Saad, S. H. Shenker and D. Stanford, JT gravity as a matrix integral , 1903.11115 .
+ (5) 
+P. Betzios, E. Kiritsis and O. Papadoulaki, Euclidean Wormholes and Holography , JHEP 06 (2019) 042 , [ 1903.05658 ].
+ (6) 
+A. Maloney, V. Meruliya and M. Van Raamsdonk, Ordinary wormholes , to appear .
+ (7) 
+J. Chandra, S. Collier, T. Hartman and A. Maloney, Semiclassical 3D gravity as an average of large-c CFTs , JHEP 12 (2022) 069 , [ 2203.06511 ].
+ (8) 
+A. Sahu, P. Simidzija and M. Van Raamsdonk, Bubbles of cosmology in AdS/CFT , JHEP 11 (2023) 010 , [ 2306.13143 ].
+ (9) 
+M. Sasieta, Wormholes from heavy operator statistics in AdS/CFT , JHEP 03 (2023) 158 , [ 2211.11794 ].
+ (10) 
+V. Balasubramanian, A. Lawrence, J. M. Magan and M. Sasieta, Microscopic origin of the entropy of black holes in general relativity , 2212.02447 .
+ (11) 
+K. Krasnov, Holography and Riemann surfaces , Adv. Theor. Math. Phys. 4 (2000) 929–979 , [ hep-th/0005106 ].
+ (12) 
+H. Maxfield, S. Ross and B. Way, Holographic partition functions and phases for higher genus Riemann surfaces , Class. Quant. Grav. 33 (2016) 125018 , [ 1601.00980 ].
+ (13) 
+J. Wien, Numerical Methods for Handlebody Phases , other thesis, UC, Santa Barbara, 2017.
+ (14) 
+S. Cooper, M. Rozali, B. Swingle, M. Van Raamsdonk, C. Waddell and D. Wakeham, Black hole microstate cosmology , Journal of High Energy Physics 2019 (2019) 1–70.
+ (15) 
+Y. Chen, V. Gorbenko and J. Maldacena, Bra-ket wormholes in gravitationally prepared states , JHEP 02 (2021) 009 , [ 2007.16091 ].
+ (16) 
+P. Betzios, E. Kiritsis and O. Papadoulaki, Interacting systems and wormholes , JHEP 02 (2022) 126 , [ 2110.14655 ].
+ (17) 
+M. Van Raamsdonk, Cosmology from confinement? , JHEP 03 (2022) 039 , [ 2102.05057 ].
+ (18) 
+M. Usatyuk, Z.-Y. Wang and Y. Zhao, Closed universes in two dimensional gravity , SciPost Phys. 17 (2024) 051 , [ 2402.00098 ].
+ (19) 
+S. Antonini, M. Sasieta and B. Swingle, Cosmology from random entanglement , JHEP 11 (2023) 188 , [ 2307.14416 ].
+ (20) 
+E. Bentivegna, T. Clifton, J. Durk, M. Korzyński and K. Rosquist, Black-hole lattices as cosmological models , Classical and Quantum Gravity 35 (2018) 175004.
+ (21) 
+R. A. Hidalgo and J. Figueroa, Numerical schottky uniformizations , Geometriae Dedicata 111 (2005) 125–157 .
+ (22) 
+K. Krasnov, Black hole thermodynamics and Riemann surfaces , Class. Quant. Grav. 20 (2003) 2235–2250 , [ gr-qc/0302073 ].
+ (23) 
+P. G. Zograf and L. A. Takhtadzhyan, On uniformization of riemann surfaces and the weil-petersson metric on teichmÜller and schottky spaces , Mathematics of the USSR-Sbornik 60 (feb, 1988) 297 .
+ (24) 
+A. Sahu, Singular hypersurfaces and thin shells in cosmology , 2402.09539 .
+ (25) 
+M. Van Raamsdonk, Spacetime from bits , Science 370 (2020) 198–202.
+ (26) 
+M. Van Raamsdonk, Building up spacetime with quantum entanglement II: It from BC-bit , 1809.01197 .
+ (27) 
+P. Simidzija and M. Van Raamsdonk, Holo-ween , Journal of High Energy Physics 2020 (Dec., 2020) 28 .
+ (28) 
+T. Hartman, Y. Jiang and E. Shaghoulian, Islands in cosmology , 2008.01022 .
+ ◄ 
+ Feeling lucky? 
+ Conversion report 
+ Report an issue 
+ View original on arXiv ► 
+ Copyright 
+ Privacy Policy 
+ Generated by L a T e XML oxide 
