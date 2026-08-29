@@ -8,6 +8,48 @@ mine. The old version of this file read as a status report and buried a decision
 
 ## OPEN — three decisions
 
+> **Numbering note, 2026-08-29.** These read **2, 3, 1** and the new one was numbered **3**,
+> which was already taken by a question closed the same evening — two different "question 3" in the
+> file you read to decide things. The new one is now **4**, historical numbers are unchanged because
+> commits cite them, and the order below is 1, 2, 4.
+
+### 1. Should the black-hole-universe papers be re-sorted using an automatic screen, or only by hand?
+
+**The stake.** I built a test that tries to spot "impossibility" papers — ones that prove a whole
+class of models *cannot* work, as opposed to papers that simply make no prediction. You approved
+adding that category this morning. The test works perfectly on the four papers I designed it
+against. Then I ran it across all 29 papers we hold, and **it was right about one and wrong about
+three** — it flagged a paper that builds a model rather than forbidding one, and it flagged a
+survey paper that is not even part of our collection.
+
+So the category is fine; the automatic sorter for it is not.
+
+**The options.**
+
+- **(a) Hand-sort only.** Every paper that goes into the new category gets read by two independent
+  reviewers, the way the one current member did.
+  *Cost:* slow — roughly an hour of reviewer time per paper, and there are 29.
+  *Benefit:* no wrong filings, which matters because a paper filed here is one we would cite as
+  ruling other models out.
+- **(b) Use the screen to shortlist, then hand-check the shortlist.**
+  *Cost:* the screen misses things it should catch; a paper it skips never gets looked at.
+  *Benefit:* cheap, and the hand-check still catches the wrong ones.
+- **(c) Improve the screen first, then decide.**
+  *Cost:* my time, and last night showed I am not a reliable judge of my own tools — this one
+  passed every test I wrote for it and then failed the moment I ran it for real.
+
+**Why it is your call and not mine.** Option (a) spends reviewer time you are paying for. Option
+(b) accepts that we will silently miss papers — that is a decision about how complete you want the
+collection to be, not a technical one. I can carry out any of the three; I should not choose which
+kind of incompleteness we accept.
+
+**My recommendation: (b).** The screen is bad at precision but there is no evidence yet that it is
+bad at recall, and every shortlisted paper still gets read before anything is filed.
+
+---
+
+---
+
 ### 2. One published paper's number does not follow from its own inputs. Do we say so in print?
 
 **The stake.** Popławski's 2010 paper is one of only two papers in this collection that makes a
@@ -86,7 +128,9 @@ category is unchanged.
 
 ---
 
-### 3. A paper's prediction is fine. The reasoning behind it is under attack. Does it keep its label?
+---
+
+### 4. A paper's prediction is fine. The reasoning behind it is under attack. Does it keep its label?
 
 **The stake.** Smolin's 2004 paper is the one entry in this collection that makes a sharp,
 still-open prediction: no neutron star heavier than 2.5 solar masses. We call it a *calibrated
@@ -130,41 +174,6 @@ one of those is a stop condition on its own.
 and gated, the findings recorded, and **entry 31's label is untouched**. The fourth (Silk, *Science*
 1997) is paywalled — if you can reach it through a university login, that would settle more than
 anything else here.
-
----
-
-### 1. Should the black-hole-universe papers be re-sorted using an automatic screen, or only by hand?
-
-**The stake.** I built a test that tries to spot "impossibility" papers — ones that prove a whole
-class of models *cannot* work, as opposed to papers that simply make no prediction. You approved
-adding that category this morning. The test works perfectly on the four papers I designed it
-against. Then I ran it across all 29 papers we hold, and **it was right about one and wrong about
-three** — it flagged a paper that builds a model rather than forbidding one, and it flagged a
-survey paper that is not even part of our collection.
-
-So the category is fine; the automatic sorter for it is not.
-
-**The options.**
-
-- **(a) Hand-sort only.** Every paper that goes into the new category gets read by two independent
-  reviewers, the way the one current member did.
-  *Cost:* slow — roughly an hour of reviewer time per paper, and there are 29.
-  *Benefit:* no wrong filings, which matters because a paper filed here is one we would cite as
-  ruling other models out.
-- **(b) Use the screen to shortlist, then hand-check the shortlist.**
-  *Cost:* the screen misses things it should catch; a paper it skips never gets looked at.
-  *Benefit:* cheap, and the hand-check still catches the wrong ones.
-- **(c) Improve the screen first, then decide.**
-  *Cost:* my time, and last night showed I am not a reliable judge of my own tools — this one
-  passed every test I wrote for it and then failed the moment I ran it for real.
-
-**Why it is your call and not mine.** Option (a) spends reviewer time you are paying for. Option
-(b) accepts that we will silently miss papers — that is a decision about how complete you want the
-collection to be, not a technical one. I can carry out any of the three; I should not choose which
-kind of incompleteness we accept.
-
-**My recommendation: (b).** The screen is bad at precision but there is no evidence yet that it is
-bad at recall, and every shortlisted paper still gets read before anything is filed.
 
 ---
 
