@@ -322,6 +322,26 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
             # re-trigger the detector that surfaced it
             if head.lstrip().startswith("# RETIRED") or "RETIRED" in f.name:
                 continue
+            # An explicit STATUS marker beats any phrase search, and the lane has
+            # written one for a while: `**STATUS: OPEN**`, `RULED`, `RESOLVED`,
+            # `DRAFT FOR THE PRINCIPAL`. Honour it first.
+            #
+            # Why this exists: the phrase pattern below looks for "Duho's
+            # ruling/decision/go/signature", and Hwao writes "the principal".
+            # On 2026-08-29 that meant TWELVE open questions and two proposals
+            # were awaiting a decision while this detector reported ZERO of
+            # them — the cockpit said nothing was waiting on him at the moment
+            # everything was. A pending-work detector that fails closed is worse
+            # than none, because an empty list reads as "you are clear".
+            ms = re.search(r"\*{0,2}STATUS:\s*([A-Z][A-Z ]*)", head)
+            if ms:
+                state = ms.group(1).strip()
+                if re.match(r"RULED|RESOLVED|CLOSED|WITHDRAWN|SUPERSEDED", state):
+                    continue
+                if re.match(r"OPEN|DRAFT", state):
+                    out.append({"file": f.name, "phrase": f"STATUS: {state}",
+                                "age_h": round((time.time() - f.stat().st_mtime) / 3600.0, 1)})
+                    continue
             # A decision that has been GIVEN must leave this list. Two shapes:
             # the artifact records its own resolution ("EFFECTIVE BY SIGNATURE"),
             # or a sibling *_GO_RECORD / *_RULING captures the ruling that a
@@ -783,7 +803,16 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 "latest_gate": tg[0].name,
                 "verdict": verdict_t,
                 "gate_age_h": round((time.time() - tg[0].stat().st_mtime) / 3600.0, 1),
-                "duho_items": [],
+                # Was hardcoded `[]`. This is the row tracking the live draft —
+                # the one whose pending decisions matter most — and it was
+                # structurally incapable of reporting any, so it read "nothing
+                # waiting on you" no matter what. On 2026-08-29 twelve
+                # OPEN_QUESTION_*.md and two PROPOSAL_*.md sat unanswered in the
+                # lane root while this row showed none.
+                #
+                # Scan `sb`, the lane root, not `sb/"gates"`: gates holds briefs
+                # and referee reports, and every open question lives one level up.
+                "duho_items": _duho_decision_items(sb),
                 "pin_mismatches": [],
                 "seats": seats_t,
                 "note": ("the mechanism is frozen and refereed; the TEXT is neither — "
@@ -828,9 +857,27 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 continue
             first = next((l.strip() for l in f.read_text(errors="ignore").splitlines()
                           if l.strip()), "")
-            if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first) and not re.search(
-                    r"_(DONE|COMPLETE|ACK)$", first):
-                verdict, verdict_file = first[:64], f
+            # Normalise before matching. Seats write the same verdict three ways:
+            # bare (`STUDY_UNSOUND_...`), emphasised (`**DEMOTE**`), and as a
+            # heading (`# VERDICT: NEITHER IS DETERMINED...`). Matching only the
+            # bare form left six verdict files in this tree yielding nothing —
+            # and the loop does not stop there, it walks on to an OLDER file, so
+            # the row shows a stale verdict instead of an error. A wrong answer
+            # that looks right is the failure mode worth spending code on.
+            cand = re.sub(r"^#+\s*", "", first)
+            cand = re.sub(r"^\*\*\s*|\s*\*\*$", "", cand).strip()
+            mv = re.match(r"^VERDICT:\s*(.+)$", cand, re.I)
+            if mv:
+                cand = mv.group(1).strip()
+            # {3,} not {6,}: the old floor was seven characters, which admits
+            # PROMOTE, REFUTED and UNSOUND but rejects PASS, CLEAR, UPHOLD,
+            # DEMOTE and FIRED. The short tokens are disproportionately the
+            # affirmative ones, so the reader was blind in the direction where
+            # being blind matters most — the same asymmetry as the seat-verdict
+            # bug fixed above.
+            if re.match(r"^[A-Z][A-Z0-9_ ]{3,}$", cand) and not re.search(
+                    r"_(DONE|COMPLETE|ACK)$", cand):
+                verdict, verdict_file = cand[:64], f
                 break
         out.append({
             "lane": f"BHU theory / audit ({cur.name.replace('bhu-theory-', '').replace('bhu-', '')})",
