@@ -14,49 +14,48 @@ written `<lane>` below.
 
 ---
 
-## 1. ONE OPEN QUESTION. Seven have now been ruled on.
+## 1. TWO OPEN QUESTIONS. Nine have been ruled on today.
 
 | # | file | status |
 |---|---|---|
-| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN.** What counterfactual sign vector a gain gradient γ produces. The option (b) path is built and refuses to run without a mapping; supplying one is a modelling assumption needing preregistration. |
+| 1 | `OPEN_QUESTION_PRE_UNBLINDING_NUMERICAL_ROUTES.md` | **OPEN, and larger than when it was raised.** Row F's FAIL branches have no named outcome. The principal ruled **option A** (reuse an existing outcome if one honestly fits); **A has failed on its own terms** — `INCONCLUSIVE-BY-CALIBRATION`'s third producer is scoped to *aggregates* at BS-8f, not bins/allocation at P3, and an infeasible allocation is not a non-finite aggregate at all. **My reading is now B scoped as a rule, not one code for Row F.** |
+| 2 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN, unchanged.** What counterfactual sign vector a gain gradient γ produces. `ref/gain_counterfactual_path.py` is built and refuses to run without a mapping. |
 
-**RULED AND APPLIED — do not reopen:**
+**Scale established for question 1, since the principal ruled against a two-branch problem:**
+**Row F alone is nine raise sites** — one `degenerate calibration bins`, plus **eight distinct
+feasibility failures** in `allocate_handcheck`. Across the pinned reference: **111 raise sites, 3
+typed to a named outcome, 69 bare.** Classified by what each guard tests: 29 caller-input guards, 31
+reachable run-time failures, **48 undecidable without reading** — so the class is **at least 31, at
+most 79**, reported as a bound rather than a number. **The defect is not confined to pre-unblinding**:
+the decision path (`_finite`, `w_profile`, `sigma_ours_*`) raises bare errors post-unblinding too.
 
-- **Rerun procedure** → **option A, ruled 13:00.** The `INCONCLUSIVE-BY-COMPUTATION` halt is
-  **terminal**; the operator's recourse is a new run under a new preregistration. Deleted in V43.
-  Dissolves all three HIGH findings at once: **no seed schedule, no attempt log, no verifier, no
-  attempt cap, no new slot. Counts stay 16/8**, and Row J's one-outcome contract stops being
-  contradicted rather than being defended.
-- **VOID registry completeness** → option A. Three gaps closed in V37 (`degenerate`, `digest`, `chosen`).
-- **BS-6 dependency** → option (a). `BS-3g` added in V37; counts **15/8 → 16/8**.
-- **VOID-5 phase scope** → option C, applied V40. Numerical conditions read post-unblinding;
-  **misconduct conditions deliberately unmoved at `Any`** (verified: all 54 registry rows
-  byte-identical V39→V40).
-- **T-completeness fork** → **option (b), "real gate"**. Option (a) is dead.
-- **Citation check** → option C (rebuilt), and the legacy corpus → **option D**. Both closed; see §5.
-- **§2.7 phase** → **not a ruling.** Recovered from V11 commit `4d99d1d93`; the principal declined it
-  as this lane's own words. Answer: `Post-first-real-χ`, unchanged.
-- **`require_authorization`** → **deprioritised.** Recorded accurately in §5 of the draft; not built;
-  v9 untouched.
+**RULED TODAY — do not reopen:** VOID registry **A**; BS-6 slot **(a)** (counts 15/8 → 16/8); VOID-5
+phase scope **C**; the gain fork **(b), "real gate"**; citation check **C**; legacy corpus **D**;
+rerun procedure **A** (halt is terminal); `INCONCLUSIVE-BY-COMPUTATION` **D** (deleted); Row F
+direction **A** (*failed on its own terms — back to the principal*). The **§2.7 phase** was not ruled
+but **recovered from V11 commit `4d99d1d93`**. **`require_authorization` stays deprioritised.**
 
-## 2. CURRENT DRAFT — V43, READY TO DISPATCH
+## 2. CURRENT DRAFT — V48, BUILT, NOT DISPATCHED
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V43_20260829.md` = `7b2e9a701c38c57094b23b0dcb9173985c6a986bf99de6f31af8e3200f23dfbd`
+`<lane>/PREREG_SUCCESSOR_DRAFT_V48_20260829.md` = `8d2e68f7f52db1268d89df69d33eb055753b465bda4191f45031961660973ff7`
 
-**V40 was NOT CLEAR ×2** (GPT56 7, CODEX 4) — the last refereed draft. V41, V42 and V43 repair it.
+**Last refereed draft: V46** (`c5afba31f909dcda`) — **NOT CLEAR ×2 at 14:06.** V47 and V48 are not
+refereed.
 
-- **V41** `5270452ff9a54caf` — `BS-3g` added to §6.1's closed non-χ-bearing receipt list (both seats;
-  its `blocks BS-6` edge was not receiptable without it) plus a §11 code-side item; and the §2.7
-  citations fixed properly — **absolute line numbers are not citations**, they rot on the next edit.
-- **V42** `6c9cc2fca67d5aff` — one miscitation found by hand, not by any tool: `KIMI-V11 F4` is a
-  §6.1 access finding; KIMI's Stage-P finding is **F7**.
-- **V43** `7b2e9a701c38c570` — **option A: the rerun allowance is deleted**, and GPT56-V40 F5's
-  overlap closed by making `INCONCLUSIVE-BY-COMPUTATION` explicitly subordinate to
-  `INCONCLUSIVE-BY-CALIBRATION`. F5 was checked against the deletion rather than assumed dissolved —
-  **it survived**, because the overlap is about which code fires, not about the rerun.
+| draft | sha256 (short) | what it did |
+|---|---|---|
+| V43 | `7b2e9a701c38c570` | rerun allowance deleted (option A). **NOT CLEAR ×2**, 13:33 |
+| V44 | `4faa2564ba093ae4` | all five V43 findings. **NOT CLEAR ×2**, 13:49 |
+| V45 | `4fcc9c3460abfe2d` | §11's BS-3g item — the second site cited at V43 and missed at V44 |
+| V46 | `c5afba31f909dcda` | `INCONCLUSIVE-BY-COMPUTATION` deleted (option D), with the record kept. **NOT CLEAR ×2**, 14:06 |
+| V47 | `bc0fd1f0aa9537f2` | **retracts** the completeness argument both seats broke — §2.7(c) is *catalogue quality*, and the enumeration had missed Row F |
+| **V48** | `8d2e68f7f52db126` | §11 exception-to-outcome conversion item, required under any resolution; decides no outcome for any branch |
 
-**All V40 findings are now answered.** Checkers on V43: counts **16 P / 8 E** prose-matched; trace 42
-transitions, 0 problems; `void_registry` self-test 6/0; **lint exits 0** — 96 advisory, 0 blocking.
+**Not dispatched on purpose.** The open question above would be re-found immediately, and the
+principal's answer will change §5/§11 text a round would be reviewing.
+
+**Checkers on V48:** counts **16 P / 8 E** prose-matched; trace 47 transitions, 0 problems;
+`void_registry` self-test 6/0; lint exits 0.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
@@ -221,6 +220,25 @@ noticed for days.**
 
 **And the sharper half: a red control nobody reads is indistinguishable from a green one.** I ran the
 main path and not `--self-test` for four drafts. Running a checker is not the same as checking it.
+
+
+## 8b. THIS FILE DRIFTS BECAUSE THE LANE IS PRODUCTIVE, AND IT DRIFTS THE DANGEROUS WAY
+
+Three times today `LANE_STATE` went stale, and **every time it was stale in the direction that
+misleads** — it named an older draft as current and an already-answered question as open. A reader
+following it would have dispatched a superseded subject.
+
+It is not carelessness about the file; it is a structural consequence. **State drifts fastest exactly
+when rounds are landing and rulings are arriving**, which is when a reader is most likely to consult
+it. The fix that has actually worked is not more diligence but a trigger: **refresh state whenever no
+round is live and the build queue is empty** — that is the moment the file is both wrong and cheap to
+correct, and it is where two of the three refreshes happened.
+
+**Drift record:** §2 said "V40, ROUND RUNNING" after the round finished and two drafts existed; §10
+said the self-continuation loop was CLOSED forty minutes before it was renewed; §1 said "ONE OPEN
+QUESTION / V43 READY TO DISPATCH" while V48 stood with two open. **The state file is the one artifact
+here with no adversarial reader** — the drafts get seats, the checkers get controls, this gets
+whatever attention is left over.
 
 ## 9. OPERATING NOTES THAT COST TIME
 
