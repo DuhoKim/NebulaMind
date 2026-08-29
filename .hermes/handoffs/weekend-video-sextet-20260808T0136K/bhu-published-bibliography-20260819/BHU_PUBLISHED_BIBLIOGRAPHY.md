@@ -399,7 +399,8 @@ DOI 10.3847/0004-637X/832/2/96 — VERIFIED (Crossref: ApJ, v832, 96, 2016-12-01
 (arXiv:1410.3881; the v1 title differs — version-bound at the Phase 1 custody audit.)
 Claim: spin-fluid bounce inside the horizon yields a nonsingular closed universe with a finite
 inflation-like expansion phase without a scalar field.
-Testability: **CONSISTENCY-ONLY** — per the Phase 1 full-body check: no preferred-axis, handedness,
+Testability: **CONSISTENCY-ONLY**
+**OBSTRUCTION-CONTENT ADJUDICATED 2026-08-30** (`b36`, both seats, full reads): NOT an obstruction — constructive family; closes "may create a new universe". Tier confirmed. — per the Phase 1 full-body check: no preferred-axis, handedness,
 spectral-index, or tensor forecast. Record: characterized in packet §1.2.
 Audit-worthiness: **high** — pairs with entry 9 as the published core of the parentage mechanism.
 
@@ -412,7 +413,8 @@ Testability: **CONSISTENCY-ONLY**. Record: pinned at Kun's Phase 1 gate. Audit-w
 **39. N. J. Popławski (2012). "Big bounce from spin and torsion." Gen. Relativ. Gravit. 44, 1007–1014.**
 DOI 10.1007/s10714-011-1323-2 — VERIFIED (Crossref: GRG, v44, p1007-1014, 2012-01). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Refines the PLB 694 bounce with all SM degrees of freedom: ε_bounce = 15.4 ε_Pl — above Planck density, a validity limit the paper concedes itself — with preons or trans-Planckian classicality as undischarged escapes; averaging still cited, not derived. Strengthens, and does not contradict, the Phase 2 audit.
+Testability: **CONSISTENCY-ONLY**
+**OBSTRUCTION-CONTENT ADJUDICATED 2026-08-30** (`b36`, both seats, full reads): NOT an obstruction — constructive torsion-bounce family (as 10/40/12); the quantum-vs-classical bounce remark is a mechanism comparison. Tier confirmed.. READ 2026-08-23 (Tori). Refines the PLB 694 bounce with all SM degrees of freedom: ε_bounce = 15.4 ε_Pl — above Planck density, a validity limit the paper concedes itself — with preons or trans-Planckian classicality as undischarged escapes; averaging still cited, not derived. Strengthens, and does not contradict, the Phase 2 audit.
 Record: recalled by the gate with its DOI remembered EXACTLY (verified digit-for-digit); fills the hole between the 2010 and 2012 mechanism papers of this branch.
 
 **40. N. Popławski (2021). "Gravitational collapse of a fluid with torsion into a universe in a black hole." J. Exp. Theor. Phys. 132, 374 (Zh. Eksp. Teor. Fiz. 159, 448).**
@@ -568,7 +570,8 @@ Testability: **CONSISTENCY-ONLY**. Record: **new to us**. Audit-worthiness: **lo
 DOI 10.1140/epjc/s10052-022-10202-6 — VERIFIED (Crossref: EPJC, v82, 2022-03).
 Claim: regular black holes can contain dark-energy universes with matched mass-energy and entropy,
 claimed detectable by gravitational-wave experiments in the μHz–Hz band (LISA-class).
-Testability: **PROSPECT** — a named instrument band, but (per the abstract read this session) no
+Testability: **PROSPECT**
+**OBSTRUCTION-CONTENT ADJUDICATED 2026-08-30** (`b36`, both seats, full reads): NOT an obstruction at paper level; tier PROSPECT stands. **It does own a narrow claim-level exclusion, kept per the entry-37/55 convention:** its linearised analysis (Eqs. 105–108) derives that *radial perturbations of its constructed interior can only be static — no unstable radial modes develop* — a source-owned stability theorem delimiting the construction, not a class-wide no-go. — a named instrument band, but (per the abstract read this session) no
 amplitude or threshold; whether the body derives one is exactly the strict-night question.
 Record: baseline corpus entry (2203.13295), publication newly verified here.
 Audit-worthiness: **high** — see ranked target 4.

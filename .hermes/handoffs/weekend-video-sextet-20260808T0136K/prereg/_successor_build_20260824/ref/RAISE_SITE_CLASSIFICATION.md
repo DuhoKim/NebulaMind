@@ -11,8 +11,8 @@
 - **CALLER** — 25
 - **INTEGRITY** — 60
 - **NUMERICAL** — 20
-- **PLANNING-INTERNAL** — 1
-- **TYPED-OUTCOME** — 3
+- **PLANNING-INTERNAL** — 3
+- **TYPED-OUTCOME** — 1
 - **WRAPPER** — 3
 
 **Total 112 raise nodes.** Sites marked *soft* are ones I am least sure of; if they read as CALLER instead, the numerical class drops from 20 to 18. Sites marked *moved* were reclassified by ruling, not by reading.
@@ -98,8 +98,8 @@
 | 1153 | `perm_record` | `RuntimeError` | **NUMERICAL** |  | non-finite permutation value — FAIL |
 | 1206 | `inject_signs` | `RuntimeError` | **CALLER** |  | per-bin accuracy must have shape ({},) |
 | 1209 | `inject_signs` | `RuntimeError` | **CALLER** |  | accuracy outside (0.5, 1] — FAIL |
-| 1331 | `_plan` | `InconclusiveByPower` | **TYPED-OUTCOME** |  | no ledger prefix passes Stage P at planning |
-| 1341 | `_plan` | `InconclusiveByPower` | **TYPED-OUTCOME** |  | final selected set fails the Stage-P re-pass ({}/{} < {}) |
+| 1331 | `_plan` | `InconclusiveByPower` | **PLANNING-INTERNAL** | moved | no ledger prefix passes Stage P at planning |
+| 1341 | `_plan` | `InconclusiveByPower` | **PLANNING-INTERNAL** | moved | final selected set fails the Stage-P re-pass ({}/{} < {}) |
 | 1369 | `calibration_bins` | `RuntimeError` | **NUMERICAL** |  | degenerate calibration bins {} — FAIL |
 | 1397 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | stratum {} needs {} labels but only {} objects exist — FAIL |
 | 1401 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | inherited floors need {} labels, budget {} — FAIL |

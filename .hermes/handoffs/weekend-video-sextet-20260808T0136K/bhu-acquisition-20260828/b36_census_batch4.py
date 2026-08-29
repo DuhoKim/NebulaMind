@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """B36 -- census batch 4: entries 39, 21, 11.
 
-DRAW: from b35_draw_batch4.py, COMMITTED BEFORE THE READS (a038e197b) with ordered pools and the
+DRAW: from b35_draw_batch4.py, COMMITTED BEFORE THE BATCH ADJUDICATION ARTIFACT (a038e197b) -- CGATE's precise wording: git orders repository artifacts, not my private reading history, and some of these papers were read earlier tonight for other questions with ordered pools and the
 executable rule -- the repair for b34's refuted draw. Anyone re-running b35 gets 39, 21, 11.
 
 RULE unchanged from b28. VERDICTS (mine, to the gate):

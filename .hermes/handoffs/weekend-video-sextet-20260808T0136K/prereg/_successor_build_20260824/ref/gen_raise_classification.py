@@ -13,7 +13,13 @@ NUM = {1123,1134,1153, 1369,1397,1401,1403,1411,1435,1437,1439,1442,
        1462,1468, 1503,1513,1517,1537,1548,1554}
 SOFT = {1462,1468}                      # domain-vs-computed, named as uncertain
 PLAN = {963,973}          # caller/setup: infeasible against a SUPPLIED l_plan
-PLAN_INTERNAL = {986}     # MOVE_CAP: an internal cap against a frozen constant, fired AFTER a
+PLAN_INTERNAL = {986, 1331, 1341}   # 986: MOVE_CAP (below). 1331/1341: _plan raises the TYPED
+                          # OUTCOME exception InconclusiveByPower AT PLANNING (CODEX-V68 F3) -
+                          # before a run exists, so no run outcome is produced; the typed
+                          # exception is the operator-stop MECHANISM, and the outcome CLASS is
+                          # produced only by the run-time guards. The AST inventory still counts
+                          # these nodes by exception TYPE, so '2 InconclusiveByPower' stays true
+                          # as a type count.     # MOVE_CAP: an internal cap against a frozen constant, fired AFTER a
                           # feasible prefix exists. NOT a caller error - calling it one violated
                           # the supplied-argument boundary (GPT56-V64 F4, CODEX-V64 F6). NOT an
                           # outcome class either: no terminal consequence, because a failure
@@ -37,13 +43,13 @@ for n in ast.walk(tree):
     msg = str(a.value) if isinstance(a,ast.Constant) else (
         "".join(v.value if isinstance(v,ast.Constant) else "{}" for v in a.values) if isinstance(a,ast.JoinedStr) else "")
     ln=n.lineno
-    if et in ("InconclusiveByPower","InconclusiveByCalibration"): cls="TYPED-OUTCOME"
+    if ln in PLAN_INTERNAL: cls="PLANNING-INTERNAL"
+    elif et in ("InconclusiveByPower","InconclusiveByCalibration"): cls="TYPED-OUTCOME"
     elif et=="ManifestClosureError": cls="INTEGRITY"
     elif ln in UNREACH_BOTH: cls="UNREACHABLE-BY-CONSTRUCTION"
     elif ln in UNREACH_MEAS: cls="UNREACHABLE-MEASURED-ONLY"
     elif ln in NUM: cls="NUMERICAL"
     elif ln in WRAP: cls="WRAPPER"
-    elif ln in PLAN_INTERNAL: cls="PLANNING-INTERNAL"
     elif ln in CALLER or ln in PLAN: cls="CALLER"
     elif ln in INTEG: cls="INTEGRITY"
     else: cls="UNASSIGNED"
