@@ -46,8 +46,9 @@ cannot be routed through the wrapper, the permissive path stays reachable and on
 it. **My reading: bind and verify, do not unfreeze.** The principal has kept v9 frozen all day and
 deprioritised `require_authorization` specifically to avoid this, and nothing here forces his hand.
 
-**What I have NOT done:** written the wrapper into the successor layer, added the five SLOT_SCHEMA
-entries, or specified BS-3g's schema. **He asked for the schema and producer; that is half one and is
+**SUPERSEDED IN PART, 2026-08-29 21:0x — this file was nine minutes stale and Blanc caught it contradicting the draft.** **BS-3g's schema IS specified**, in V58 §11: nine fields with types written for an independent implementer, a producer, an independent verifier, failure behaviour, and a demonstration that no field can carry a per-object quantity. **V59 adds the strict-constructor binding and the detection verifier.** What remains undone: the four other `SLOT_SCHEMA` entries, deliberately — see V59 §11.
+
+**What was NOT done at the time of writing:** **He asked for the schema and producer; that is half one and is
 document content, and I did not start it at 20:47 against a 21:00 bound** — a half-specified schema is
 exactly the defect CODEX just found, and the fields have to be written so someone who did not write
 them can implement the verifier.
