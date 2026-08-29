@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — two decisions
+## OPEN — three decisions
 
 ### 2. One published paper's number does not follow from its own inputs. Do we say so in print?
 
@@ -81,6 +81,49 @@ programme speaks about other people's work, and it should be yours.
 **What is already done regardless of your answer:** nothing downstream waits on this. Both possible
 figures are recorded, the route is written up as conditional on which is right, and the paper's
 category is unchanged.
+
+---
+
+### 3. One paper made a real prediction and lost. Our label doesn't say so. Should it?
+
+**The stake.** Entry 44 (Pourhasan, Afshordi & Mann, 2014) is unusual in this collection: it made a
+sharp, checkable prediction — that the early universe's ripples should be exactly the same size at
+every scale — and **the measurement disagreed**. Planck sees them tilted, at eight standard
+deviations. The authors say so themselves, in their own paper.
+
+Almost nothing else here has been through that. Most of these papers make claims that no
+measurement could contradict. This one could be contradicted, and was.
+
+**The problem.** We currently file it as "directional" — the same shelf as papers that never risked
+anything. Both reviewers, working separately, said that is wrong, and both said it in the same
+direction: the label gives the paper credit for the vague idea it has *left* while hiding the sharp
+one it *lost*.
+
+**Why one label cannot hold it.** The paper is really two things at once. The part that was tested
+is dead. What survives is a promise — the authors say it is "easy to imagine" a correction of about
+the right size, but they do not do the calculation, and the size they name is simply the size the
+measurement already showed. So the paper is refuted looking backwards and vague looking forwards,
+and our shelf system has one slot per paper.
+
+| | proposes | what it costs |
+|---|---|---|
+| Reviewer A (Gemini) | Mark it **failed**. | Simple and honest about the outcome. But it throws away the surviving proposal, which is not nothing. |
+| Reviewer B (GPT) | Use the two-part form **we already use elsewhere** — "sharp prediction, fired" — and file the leftover separately. | Keeps both facts. But it means one paper occupying two rows, which nothing else here does. |
+
+**Option 3 — leave it alone and write the reason down.** Say explicitly that our labels describe
+only what a paper still claims, not what it has already lost. *Costs:* the collection stops being
+able to show which papers were ever actually tested — which, given how few were, is the more
+interesting number. *Gains:* no change to the scheme.
+
+**My recommendation: Reviewer B's.** It is the only one that keeps both facts, and it uses a form
+this collection already has rather than inventing one. But it changes how papers are shelved, which
+is a scheme decision.
+
+**Why this is not mine to decide.** Every tier change is yours by standing rule, and this is
+stronger than a tier change — it asks whether one paper can hold two.
+
+**Nothing waits on it.** The audit is complete and committed, the reasoning is recorded, and the
+paper's current label is untouched.
 
 ---
 

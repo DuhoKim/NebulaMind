@@ -755,6 +755,37 @@ interval, USE THE STATISTIC IT PRINTS — do not manufacture a sigma from a cent
 error bar. And a charge against a published paper needs the same standard as a tier change: a
 receipt, not a computation of mine that happens to support it.
 
+### 1aa — AN ABSENCE CLAIM MADE TO THE FULL STANDARD, AND STILL FALSE
+
+**Found by CGATE_B17 and AGATE_B17 independently, 2026-08-29. The letters 1a–1z are exhausted;
+this continues the same series.**
+
+The lane's rule for an absence claim is: state the pattern, name one class it would miss, and say
+what was done to look for that class anyway. **b17 did all three and the claim was still wrong.**
+
+- **Pattern:** predictive verbs plus numeric-with-error-bar constructs.
+- **Class named as missed:** a prediction stated as a bare inequality, no verb, no error bar.
+- **What was done:** the one instance of that class was found — Eq. (4.15) — and read directly.
+- **Conclusion drawn:** that Eq. (4.15) "closes on itself" because neither quantity in it is
+  independently measured.
+
+**It does not close.** Section 5 propagates an observational DGP bound through it to
+`M_5 ≲ 9 MeV`, and the sentence doing so **names the equation**: *"where we used the inequality in
+Eq. (4.15) to bound the Hubble constant."*
+
+**The gap the discipline does not cover.** Every step above is about finding CANDIDATE CLAIMS. Not
+one is about tracing what the paper subsequently DOES with a candidate. I read the equation at its
+definition site, formed a judgement about it there, and never asked where else it appears.
+
+**The guard, and it is one line.** Before asserting anything about an equation, grep its number
+across the whole document. `grep -o "4\.15" source` would have returned the refutation.
+
+**Why this one matters more than the others in this register.** The previous absence failures
+(§1e–1j) were patterns too narrow — fixable by widening. This one had a correct pattern, an
+honestly named blind spot, and a conclusion drawn from a complete reading of the right object.
+**Following the discipline is not the same as being right, and a claim can be wrong in a way the
+discipline is not shaped to catch.** AGATE: the overclaim "directly blinded the script."
+
 ## 4. AGATE's five (three not in CGATE's list)
 
 - `a5` "Λ_O = 4/(3τ_O²) follows exactly from…" — pure math identity on a hardcoded `tau_sym=7.0`.
