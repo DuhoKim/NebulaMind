@@ -74,7 +74,11 @@ ERRORS = {
            "state, never the object)",
     "R04": "the draft does not forbid free text in the refusal-reason field",
     "R05": "the draft does not state the CATCH-ALL GUARD — that every REFUSED-UNCLASSIFIED emission "
-           "is a defect enumerated at freeze, never a routine outcome",
+           "is a defect to be enumerated, never a routine outcome",
+    "R06": "the catch-all enumeration is anchored at FREEZE, which precedes every refusal and "
+           "therefore cannot police any of them",
+    "R07": "the catch-all guard has no BLOCKING INVARIANT — an obligation to review with no "
+           "executable consequence is a promise, and the seats read it as one",
 }
 
 ROW_RE = re.compile(r"^\|\s*([A-Z][0-9]?)\s*\|")
@@ -128,9 +132,19 @@ def check(text: str):
         fail("R03")
     if not re.search(r"no free text", text, re.I):
         fail("R04")
-    if not (re.search(r"enumerated at freeze", text, re.I)
-            and re.search(r"REFUSED-UNCLASSIFIED", text)):
+    # The guard is checked as a MECHANISM, not as a phrase. V64 stated the obligation and both seats
+    # found it unenforceable: a freeze-time review cannot police run-time emissions, and an
+    # obligation with no consequence is a promise. Phrase-matching the guard was the finding.
+    if not (re.search(r"enumerat(ed|ion)", text, re.I) and re.search(r"REFUSED-UNCLASSIFIED", text)):
         fail("R05")
+    else:
+        anchored_at_freeze = re.search(r"REFUSED-UNCLASSIFIED[^.]{0,200}?enumerated at freeze|"
+                                       r"enumerated at freeze[^.]{0,200}?REFUSED-UNCLASSIFIED",
+                                       text, re.I | re.S)
+        if anchored_at_freeze:
+            fail("R06", "the enumeration is tied to freeze")
+        if not re.search(r"MAY NOT BE ISSUED while any `?REFUSED-UNCLASSIFIED", text, re.I):
+            fail("R07", "no artifact is blocked by an unenumerated emission")
     return out
 
 
@@ -145,9 +159,16 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
         txt += "The reason may describe the request and the authorisation state, never the OBJECT.\n"
     if freetext:
         txt += "The field carries exactly one code: no free text.\n"
-    if guard:
-        txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at freeze, "
-                "never a routine outcome.\n")
+    if guard == "freeze":
+        txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at freeze.\n"
+                "BS-L MAY NOT BE ISSUED while any REFUSED-UNCLASSIFIED event is unenumerated.\n")
+    elif guard == "noblock":
+        txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
+                "checkpoint, never a routine outcome.\n")
+    elif guard:
+        txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
+                "checkpoint, never a routine outcome.\n"
+                "BS-L MAY NOT BE ISSUED while any REFUSED-UNCLASSIFIED event is unenumerated.\n")
     txt += "".join(f"- `{c}`\n" for c in codes)
     if fingerprint:
         txt += f"refusal-vocabulary-derivation: `{'a' * 64}`\n"
@@ -165,6 +186,8 @@ CONTROLS = (
     ("the principle is absent", lambda: _fixture(principle=False), "R03"),
     ("free text is not forbidden", lambda: _fixture(freetext=False), "R04"),
     ("the catch-all guard is absent", lambda: _fixture(guard=False), "R05"),
+    ("the enumeration is anchored at freeze", lambda: _fixture(guard="freeze"), "R06"),
+    ("the guard has no blocking invariant", lambda: _fixture(guard="noblock"), "R07"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
