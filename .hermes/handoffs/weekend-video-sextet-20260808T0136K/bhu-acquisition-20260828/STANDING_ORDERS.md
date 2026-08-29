@@ -1,7 +1,8 @@
-> **STATUS: DORMANT as of 2026-08-29 08:35 KST.** Cron `b03afec9` was deleted when the lane
-> closed clean, before the 09:00 bound, so nothing triggers these orders now. They are kept as
-> the record of what ran overnight and as a template if Duho keeps the arrangement. **Do not
-> assume anything is running.**
+> **STATUS: DORMANT as of 2026-08-29 11:40 KST. Do not rely on this file.**
+> Cron `fa0e88e5` deleted. **Blanc is driving ticks directly** — I stalled three times writing
+> "next tick" against a cadence that left visible gaps, and rather than be asked a fourth time
+> the relay took it over. Nothing in this lane self-triggers. Kept only as the record of what ran
+> overnight.
 
 # Standing orders — Tori, BHU lane. Overnight, bounded 09:00 KST.
 

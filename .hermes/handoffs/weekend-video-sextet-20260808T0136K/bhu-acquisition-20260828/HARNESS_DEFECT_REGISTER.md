@@ -1,3 +1,9 @@
+> **SWEEP PARKED 2026-08-29 11:40**, by Duho's redirect. **15 entries audited, 0 tiers changed;
+> 36 of 51 remain unaudited.** The null covers the 15 and no more. Parked at the top of the
+> depth queue: entry 39 was next by the density rule, entry 27 after it. The lane moved to
+> entry 31 — the corpus's one live calibrated falsifier — because a sixteenth consistency-only
+> audit cannot compete with a real prediction being decided by data now.
+
 # Harness defect register — Tori, 2026-08-29 ~05:00 KST
 
 Two fresh-context seats attacked my check battery after I audited it myself and pronounced it
