@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 21:35 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 21:51 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -34,7 +34,21 @@ names four published criticisms the record had never carried. Three acquired as 
 two read (`b20`, `b21`), both gated. **Rothman & Ellis does confront Smolin with COBE data** — a
 claim I had withdrawn wrongly and then re-established. **Harrison is a rival theory** whose
 objection is topological and bounded to recollapsing cosmologies. A cross-entry tension I proposed
-between entries 31 and 54 was **refuted by both seats and withdrawn**. Entry 31 is *not* the
+between entries 31 and 54 was **refuted by both seats and withdrawn**.
+
+**Where entry 31 stands after all of it — read this before re-deriving anything.** The published
+criticisms attack the *reasoning*, not the number. The prediction runs through the **strange quark
+mass** (not the collapse mass limit the critics attack), and Smolin's own words make it a
+local-maximum argument of exactly the form they object to. **I then argued that this means Smolin
+answered them by making their objection testable — BOTH SEATS REFUTED THAT AND IT IS WITHDRAWN**
+(`b23`, `PARAM_REFUTED_INFERENCE` / `PARAM_REFUTED_DEFENCE_INFERENCE`): he answers those critics
+elsewhere, introduces the falsifier against a *different* objection, and making one parameter
+testable cannot answer a complaint quantified over all of them. **Do not re-derive it.** Both seats
+also said I was smuggling a verdict on open question 4 into what I called evidence for it — which
+is recorded in the question itself, so my recommendation there reads as a preference, not a finding.
+
+**The seats now disagree about whether entry 31 keeps its tier, and that is open question 4** —
+filed, not decided, nothing changed in the bibliography. Entry 31 is *not* the
 corpus's only live calibrated falsifier — **entry 51 is the other**, and its measurement side was
 found to be an uncited sentence. Fixing that turned up a second defect of the same class, and
 sweeping for it turned up two more. Detail in the section below; six sources pinned, four new
