@@ -841,6 +841,33 @@ state. That sweep is the control §1ab asked for and prose could not supply.
 
 ---
 
+### 1ae — MY OWN VERIFICATION GREP, DEFEATED BY A LINE BREAK. THREE TIMES.
+
+**Third occurrence 2026-08-29, and the failure rule says register rather than fix again.**
+
+The lane's guard is: `grep -qi <new content> && git commit`. It has now failed three times for one
+reason — **the phrase I grep for wraps across a line in the file it is checking**:
+
+1. `(their paper\nitself remains unread)` — entry 31's note.
+2. `no member of a specified class of models can satisfy a\nspecified conjunction` — b24's check.
+3. `**A single false absence\nrefutes the count**` — this brief's own verification.
+
+Each time the edit had landed perfectly and the guard reported failure. **A guard that cries wolf
+gets ignored, which is exactly how the three commits that claimed changes they never made got
+through in the first place.** The guard exists because of that; a false alarm in it is not a
+harmless annoyance.
+
+**The mechanical rule, adopted now:** a verification grep must use a fragment SHORT ENOUGH TO FIT ON
+ONE LINE — six or seven words at most — or must normalise whitespace first
+(`tr -s '[:space:]' ' '`). Long distinctive sentences feel safer and are strictly worse, because
+markdown wrapping is invisible in the text I am composing.
+
+**Why it kept recurring.** I write the check by copying the most distinctive phrase I just wrote.
+The more distinctive it is, the longer it is; the longer it is, the more likely it spans a wrap.
+**The habit that makes the check feel reliable is the same habit that breaks it.**
+
+---
+
 ### 1ac — A RUNNER THAT REPORTED 31 FAILURES AND HAD FOUND NONE
 
 **Same battery run.** The runner wrapped each script in `timeout 300`. **macOS has no `timeout`** —
