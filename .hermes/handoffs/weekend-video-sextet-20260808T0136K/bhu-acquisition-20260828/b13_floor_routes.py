@@ -26,7 +26,20 @@ WHERE THE SEATS SPLIT, I TOOK THE NARROWER READING AND AM NOT ADJUDICATING:
     whose ordering sits 0.0467 decade from reversing. Taken: CGATE's.
   Declining the stronger form of my own finding is not picking a winner between seats.
 
-THIS FILE STILL DECIDES NOTHING about error-vs-estimate. That is Duho's, open question 2.
+OPEN QUESTION 2 IS NOW CLOSED, and this file's restraint was the right call. Duho returned the
+decision with "answer question 2". THE RULING: an unreproduced step, NOT an error.
+
+TWO FACTS DECIDED IT, and one of them destroyed my own recommendation. I had recommended getting
+the journal version first, on the assumption we held only a preprint. WE HOLD THE PUBLISHED PAPER —
+Phys. Lett. B 690(1) 73-77, (c) Elsevier — so that option was already exhausted and I had not
+checked. The published text carries no step either: 86 characters separate the density claim from
+the mass figure, and the derivation is the phrase "from which".
+
+WHY NOT "ERROR", ON THE MERITS RATHER THAN AS A FALLBACK. The two options record the SAME verifiable
+content -- six routes, none reaches it, 3.1-4.1 decades short, no step shown. They differ only in
+asserting something about the author that cannot be checked. And this file explicitly refuses to
+prove that no route exists; "error" asserts exactly that. CGATE's rule from a later gate applies
+unchanged: a gap is not a defect unless we can show the stronger claim, and we cannot.
 """
 import math, sys
 S="../bhu-reading-20260823/sources/"
