@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 19:45 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 20:40 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -7,7 +7,7 @@ to need no recollection: **`ENTRY31_STUDY.md`** (the result) and **`HARNESS_DEFE
 
 ---
 
-## The day in two halves
+## The day in three parts
 
 **Overnight (21:00–11:35): a corpus sweep that changed nothing, and that is the result.**
 Fifteen entries examined — twelve hand-picked, three drawn at random as a selection-bias control
@@ -20,9 +20,15 @@ case the number turned out to be **borrowed from the data it was checked against
 observability, or carrying a free parameter.** The hypothesis was **tested and refuted**, not left
 unfound.
 
-**Daytime (11:35–now): Duho redirected the lane to entry 31**, the corpus's only live calibrated
-falsifier, on the grounds that a sixteenth consistency-only audit cannot compete with a real
-prediction being decided by data.
+**Daytime (11:35–19:45): Duho redirected the lane to entry 31**, on the grounds that a sixteenth
+consistency-only audit cannot compete with a real prediction being decided by data. The study was
+gated, found unsound, and rewritten — see below.
+
+**Evening (19:45–20:40): entry 51, then a corpus-wide sweep it triggered.** Entry 31 is *not* the
+corpus's only live calibrated falsifier — **entry 51 is the other**, and its measurement side was
+found to be an uncited sentence. Fixing that turned up a second defect of the same class, and
+sweeping for it turned up two more. Detail in the section below; six sources pinned, four new
+harness defect classes, one new decision for Duho, **no tier changed**.
 
 ---
 
@@ -73,6 +79,33 @@ here. Smolin's own 2004 premise — that all well-measured masses lie below 1.5 
 
 ---
 
+## The evening: entry 51 and what the sweep found
+
+**Entry 51 (Popławski 2010) is the corpus's second live CALIBRATED-FALSIFIER**, and the wrap-up
+above understated that by calling entry 31 the only one. Its status — "CMS reports no evidence for
+microscopic black holes as of 2025-12" — carried **no citation of any kind**. Now receipted to two
+CMS searches (`2604.10732`, `2511.10662`).
+
+**A proposed better test route, gated and narrowed.** Popławski's floor is a bound on *density*
+(the LHC is his illustration, not his scope), so primordial black holes are in scope and the floor
+lands inside the open PBH dark-matter window. Both seats narrowed this to a **conditional**
+astrophysical route: the derivation covers fermionic matter only, the window is caveated, and no
+present detection protocol is pinned. `b12` (8/8), `b13` (5/5), four gate verdicts.
+
+**Six routes to Popławski's floor, none of which reaches it.** `b13` computes the Cartan radius
+from the paper's own eq. (33); the shortfall is 3.1–4.1 decades in density and *refining his inputs
+makes it worse*. Both seats reproduced every number; neither found a seventh route. **This is
+open question 2 and it is Duho's** — whether to call it an error or an unreproduced step.
+
+**The sweep (`b14`, 4/4).** Because *both* live falsifiers rested on uncited experiment claims, all
+58 entries were swept for that shape. **No fabricated result was found anywhere.** Three
+candidates: entry 39 a false positive (the Planck *unit*, not the satellite), entry 44 real and its
+">5σ" claim **true and understated** (Planck: 8σ, 9σ with BAO), entry 54 real — the record carried
+one side of a live dispute and now carries Planck's own resolution (adding lensing returns Ω_K to
+−0.0106 ± 0.0065, flat within 2σ).
+
+---
+
 ## What a cold reader should distrust
 
 **The check batteries are working notes, not verification.** Two seats declared the harness
@@ -80,6 +113,19 @@ here. Smolin's own 2004 premise — that all well-measured masses lie below 1.5 
 the register against the filesystem, but cannot check prose — and most of the register is prose.
 
 **Every tier conclusion rests on quoted source text and on gates, never on the harness.**
+
+**Four defect classes were added this evening and three of them are about checks that passed.**
+§1w a number I invented to fill a truncated read, which spread to four artifacts while every
+self-check passed; §1x a predicate that *could not fail* (`len(d)==len(set(d))` on a dict);
+§1y the silent overwrite §1x was hiding, which had a sweep reporting 58 entries screened having
+screened 53; §1z reaching for "they overstated it" against a published paper and building a naive
+Gaussian ratio to support it — **refuted by a seat**, and the charge is withdrawn.
+
+**A CORRECTION TO THIS FILE'S OWN ARITHMETIC.** Earlier versions said "36 of 51 entries". **The
+bibliography holds 58 entries, numbered contiguously 1–58.** The 51 is a stale total that survived
+the addition of entries 52–58 and was never re-derived. `WRAP_UP_20260829.md` carries the same
+stale figure and is superseded, not repaired. Treat any count in this lane's prose as suspect
+unless a script recomputed it.
 
 The register's §1h table says, per entry, what each conclusion rested on **before** and **now**.
 Nine re-derived, one named limit, none unknown.
@@ -107,6 +153,13 @@ hand-sorted, screened-then-checked, or the screen improved first. **Recommendati
 hand-check** — the screen is imprecise but there is no evidence it is bad at recall, and nothing
 is filed without a read.
 
-**Not blocked, not done:** 36 of 51 entries remain unaudited; the sweep is parked by redirect, not
-by obstacle. The highest-value real-world item is not ours to do — an independent mass for a black
+**A SECOND decision for Duho**, filed this evening: whether to say in print that Popławski's
+10¹⁶ kg does not follow from his own inputs, or only that we could not reproduce it. Both seats
+agree on the arithmetic and disagree on that. **Recommendation: get the journal version first** —
+we hold only the preprint and it never shows the step.
+
+**Not blocked, not done:** the corpus is **58** entries, of which the large majority remain
+unaudited; the sweep is parked by redirect, not by obstacle. **Entry 44 is the standing next
+target** — it surfaced this evening as a real sweep candidate and exactly one sentence of it has
+ever been read. The highest-value real-world item is not ours to do — an independent mass for a black
 widow by a non-optical method would settle far more than another audit.

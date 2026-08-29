@@ -6,9 +6,9 @@
 
 **Boundary applied** (V50 §5): a raise is a CALLER error if it tests a property of an argument as supplied; a run outcome if it tests a value computed from admissible data. INTEGRITY covers failures already claimed by a VOID antecedent. NUMERICAL-PLANNING fires before the run exists. WRAPPER re-raises another site's failure.
 
-- **CALLER** — 21
-- **INTEGRITY** — 61
-- **NUMERICAL** — 21
+- **CALLER** — 23
+- **INTEGRITY** — 60
+- **NUMERICAL** — 20
 - **NUMERICAL-PLANNING** — 3
 - **TYPED-OUTCOME** — 3
 - **WRAPPER** — 3
@@ -79,7 +79,7 @@
 | 973 | `local_pass` | `RuntimeError` | **NUMERICAL-PLANNING** |  | greedy order never reaches l_plan on retained counts |
 | 986 | `local_pass` | `RuntimeError` | **NUMERICAL-PLANNING** |  | MOVE_CAP reached — FAIL |
 | 1018 | `__init__` | `RuntimeError` | **CALLER** |  | mask field lengths disagree or mask is empty |
-| 1020 | `__init__` | `RuntimeError` | **INTEGRITY** |  | mask carries non-finite or /c/ > 1 |
+| 1020 | `__init__` | `RuntimeError` | **CALLER** |  | mask carries non-finite or /c/ > 1 |
 | 1022 | `__init__` | `RuntimeError` | **CALLER** |  | mask has duplicate (brickid, objid) |
 | 1027 | `__init__` | `RuntimeError` | **CALLER** |  | supplied bin labels disagree with the sealed boundaries — FAIL |
 | 1032 | `__init__` | `RuntimeError` | **CALLER** |  | bin labels malformed |
@@ -95,7 +95,7 @@
 | 1134 | `perm_sigma_exact` | `RuntimeError` | **NUMERICAL** |  | degenerate c or s — FAIL |
 | 1153 | `perm_record` | `RuntimeError` | **NUMERICAL** |  | non-finite permutation value — FAIL |
 | 1206 | `inject_signs` | `RuntimeError` | **CALLER** |  | per-bin accuracy must have shape ({},) |
-| 1209 | `inject_signs` | `RuntimeError` | **NUMERICAL** | soft | accuracy outside (0.5, 1] — FAIL |
+| 1209 | `inject_signs` | `RuntimeError` | **CALLER** |  | accuracy outside (0.5, 1] — FAIL |
 | 1331 | `_plan` | `InconclusiveByPower` | **TYPED-OUTCOME** |  | no ledger prefix passes Stage P at planning |
 | 1341 | `_plan` | `InconclusiveByPower` | **TYPED-OUTCOME** |  | final selected set fails the Stage-P re-pass ({}/{} < {}) |
 | 1369 | `calibration_bins` | `RuntimeError` | **NUMERICAL** |  | degenerate calibration bins {} — FAIL |
