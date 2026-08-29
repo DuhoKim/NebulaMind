@@ -305,3 +305,48 @@ and no existing outcome honestly covers four distinct conditions any better than
 five more of unknown status in this function alone"** — not "nine". I am correcting it before it is
 decided from, because I have now had to retract two confident numbers today and would rather not
 supply a third.
+
+---
+
+# POST-RULING FINDING 15:4x — the classification is TERNARY, and V49's precedence list invites a
+# misreading. For the draft after V49; the V49 round is live and untouched.
+
+I began reading the unclassified raise sites, using the boundary test V49 itself installs. It does not
+partition them cleanly, because **there is a third class the binary boundary does not name.**
+
+    CALLER            ~27   argument type/shape/admissibility — caller's defect, no run outcome
+    VOID-integrity    ~25   digest mismatch, PLANNER CHANGED DURING THE PLAN, MANIFEST NOT CLOSED,
+                            receipt internally inconsistent, parent not the fetched artifact
+    NUMERICAL         ~26   non-finite, degenerate, infeasible — the class V49's rule terminates
+    UNCLEAR           ~33   still needs reading
+
+**The middle class is the finding.** Those ~25 are not caller errors and not numerical failures —
+they are **integrity and protocol failures**, and §5 already claims them through
+`VOID-5-DIGEST-DEVIATION`, `VOID-5-PROTOCOL-DEVIATION` and `VOID-5-FORBIDDEN-ACT`.
+
+## Why this matters for V49 as written
+
+V49's rule defers to *"a more specific named outcome"*, and a VOID antecedent **is** one — so the rule
+is **strictly correct**. But its precedence clause names only `INCONCLUSIVE-BY-POWER`,
+`INCONCLUSIVE-BY-CALIBRATION` and `INCONCLUSIVE-BY-MISSING-ALLOCATED-OUTPUT`. **A reader classifying
+sites against that list would route a digest mismatch to `INCONCLUSIVE-BY-NUMERICAL-FAILURE`**,
+turning an integrity failure into an inconclusive halt.
+
+**That is the option-C concern arriving from the other side.** There, the worry was narrowing what
+voids a run; here, a literal reading of a rule I wrote would quietly *convert* voiding conditions into
+inconclusive ones. **This is an invited misreading, not a hole** — the rule's own words prevent it —
+and the repair is one clause: name the VOID antecedents in the precedence list.
+
+**I am not making that edit.** V49 is with both seats. If they find it, it is theirs; if they do not,
+it goes into the next draft with this note as its provenance.
+
+## An honesty note about the counts
+
+Across three passes the buckets have been 48, then 51, then 33 unclear — **because each pass used a
+different heuristic, not because the code changed.** These partitions are indicative, not
+measurements. **The decision-relevant output here is the SHAPE — that a third class exists — not any
+of the numbers**, and the class extent stays the range already recorded (31–79) until the sites are
+read individually rather than bucketed by regex.
+
+Reporting the shape and refusing to attach a firm count to it is deliberate: a regex partition is
+exactly the instrument that has been wrong three times today.
