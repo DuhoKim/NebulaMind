@@ -1210,7 +1210,34 @@ def main() -> int:
     args = ap.parse_args()
 
     if not args.watch:
-        result = update_once(refresh_slash=args.refresh_slash, render=not args.no_render, local_refresh_seconds=args.interval, slash_refresh_seconds=args.slash_interval)
+        # --slash-interval used to apply ONLY in watch mode, but launchd runs
+        # this single-pass on a StartInterval, so the scheduled job could never
+        # slash-refresh at all: it scraped whatever happened to be on screen,
+        # which after a dismissed /usage overlay is nothing. That is why the
+        # meter sat hours stale while correctly reporting itself NOT REFRESHING
+        # — it only ever updated when a human opened the panel by hand.
+        #
+        # Honour the interval across invocations via a stamp file, so a
+        # single-pass job can refresh every N seconds instead of every pass.
+        # Typing into a live agent pane is intrusive, so the default stays 0
+        # (never) and the cadence is the caller's explicit choice.
+        do_slash = args.refresh_slash
+        # Runtime state, not a published artifact: keep it in the HermesOps
+        # cockpit dir rather than DEFAULT_PUBLIC_ROOTS[0], which is
+        # frontend/public/ — git-tracked and web-served.
+        stamp = Path('/Users/duhokim/HermesOps/cockpit/.provider-usage-last-slash')
+        if not do_slash and args.slash_interval > 0:
+            try:
+                last = float(stamp.read_text().strip())
+            except Exception:
+                last = 0.0
+            do_slash = (time.time() - last) >= args.slash_interval
+        result = update_once(refresh_slash=do_slash, render=not args.no_render, local_refresh_seconds=args.interval, slash_refresh_seconds=args.slash_interval)
+        if do_slash:
+            try:
+                stamp.write_text(str(time.time()))
+            except Exception:
+                pass
         print(json.dumps(result, indent=2, sort_keys=True))
         return 0
 

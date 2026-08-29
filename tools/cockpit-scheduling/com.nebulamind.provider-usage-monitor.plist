@@ -56,6 +56,14 @@
         <string>/Users/duhokim/NebulaMind/NebulaMind/tools/live_provider_usage_monitor.py</string>
         <string>--interval</string>
         <string>300</string>
+        <!-- Slash-refresh at most every 30 min. Without this the job never
+             sends /usage at all: it scraped whatever was on screen, so the
+             meter only updated when a human opened the panel by hand and
+             otherwise sat hours stale while reporting itself NOT REFRESHING.
+             30 min, not every 300s pass, because a refresh types into the
+             live agy and codex panes. -->
+        <string>--slash-interval</string>
+        <string>1800</string>
     </array>
 
     <key>EnvironmentVariables</key>
