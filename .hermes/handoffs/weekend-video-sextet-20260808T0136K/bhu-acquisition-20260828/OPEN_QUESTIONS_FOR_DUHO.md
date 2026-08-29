@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — three decisions
+## OPEN — two decisions
 
 ### 2. One published paper's number does not follow from its own inputs. Do we say so in print?
 
@@ -84,47 +84,6 @@ category is unchanged.
 
 ---
 
-### 3. One paper made a real prediction and lost. Our label doesn't say so. Should it?
-
-**The stake.** Entry 44 (Pourhasan, Afshordi & Mann, 2014) is unusual in this collection: it made a
-sharp, checkable prediction — that the early universe's ripples should be exactly the same size at
-every scale — and **the measurement disagreed**. Planck sees them tilted, at eight standard
-deviations. The authors say so themselves, in their own paper.
-
-Almost nothing else here has been through that. Most of these papers make claims that no
-measurement could contradict. This one could be contradicted, and was.
-
-**The problem.** We currently file it as "directional" — the same shelf as papers that never risked
-anything. Both reviewers, working separately, said that is wrong, and both said it in the same
-direction: the label gives the paper credit for the vague idea it has *left* while hiding the sharp
-one it *lost*.
-
-**Why one label cannot hold it.** The paper is really two things at once. The part that was tested
-is dead. What survives is a promise — the authors say it is "easy to imagine" a correction of about
-the right size, but they do not do the calculation, and the size they name is simply the size the
-measurement already showed. So the paper is refuted looking backwards and vague looking forwards,
-and our shelf system has one slot per paper.
-
-| | proposes | what it costs |
-|---|---|---|
-| Reviewer A (Gemini) | Mark it **failed**. | Simple and honest about the outcome. But it throws away the surviving proposal, which is not nothing. |
-| Reviewer B (GPT) | Use the two-part form **we already use elsewhere** — "sharp prediction, fired" — and file the leftover separately. | Keeps both facts. But it means one paper occupying two rows, which nothing else here does. |
-
-**Option 3 — leave it alone and write the reason down.** Say explicitly that our labels describe
-only what a paper still claims, not what it has already lost. *Costs:* the collection stops being
-able to show which papers were ever actually tested — which, given how few were, is the more
-interesting number. *Gains:* no change to the scheme.
-
-**My recommendation: Reviewer B's.** It is the only one that keeps both facts, and it uses a form
-this collection already has rather than inventing one. But it changes how papers are shelved, which
-is a scheme decision.
-
-**Why this is not mine to decide.** Every tier change is yours by standing rule, and this is
-stronger than a tier change — it asks whether one paper can hold two.
-
-**Nothing waits on it.** The audit is complete and committed, the reasoning is recorded, and the
-paper's current label is untouched.
-
 ---
 
 ### 1. Should the black-hole-universe papers be re-sorted using an automatic screen, or only by hand?
@@ -171,3 +130,87 @@ bad at recall, and every shortlisted paper still gets read before anything is fi
 | 2b | Should there be one fixed confidence bar for the whole collection? | **No — case by case, each one recorded with an owner and a reason.** |
 | 3 | Is the survey worth continuing after fifteen papers with no change? | **Yes — "then look harder with more entries."** |
 | 4 | Was one paper's prediction genuinely calibrated? | Closed by me; both reviewers refused it. No decision needed. |
+
+---
+
+## CLOSED 2026-08-29 — question 3
+
+**Duho's instruction, verbatim: "answer question 3".** I read that as returning the decision to me
+rather than answering it, and I acted on it. **If you meant "explain it to me", say so and I will
+revert — it is four edits.**
+
+**My answer: Reviewer B's option — and it needed no scheme change, because the scheme already
+existed.** I went to check whether the collection really had a two-part form before building one,
+and found it does: there is a table headed *entry | tier | standing | what it fires*, introduced
+with "The tier describes the CLAIM; a separate axis describes its STANDING". Entry 51 already
+carries the combined form inline. **The only thing missing was entry 44's row.** So all three
+options I offered you were built on a false premise — that this was a scheme change. It was a gap.
+
+**What I did.**
+1. Entry 44 → `CALIBRATED-FALSIFIER / FIRED`, with the "what it fires" scoped precisely: the
+   Sec. 4 thermal free 5D field theory's prediction of exact scale invariance, **not** the
+   holographic framework. Precedent is entry 7, which fired an instrument chain and not CNS.
+2. Added its row to the standing table.
+3. **Extended the combined form to entries 7 and 31**, which were still bare. Their FIRED/LIVE
+   values are unchanged and taken from the table — nothing new was decided. *This is the one part
+   that goes beyond entry 44; I did it because answering "yes, record what was lost" only half
+   works if the collection still cannot show at a glance which fired. Reverse it if you disagree.*
+4. Corrected two stale sentences, one of which said the record "carries no status axis" — false
+   since the table was added.
+
+**And it turned up something the record was hiding.** The tally said *"3 calibrated, 2 live — but
+only ONE (entry 31) bears directly on a black-hole-universe theory."* With entry 44 filed that is
+wrong. **Entry 44 is a BHU construction in this record's own branch 10, and observation killed its
+computable core.** So the family has a falsifier that already fired against one of its own
+cosmologies — not against an instrument chain, as entry 7 did — and the record did not say so.
+That is the real content of this decision, and it was invisible while the paper sat filed as
+"directional".
+
+Tally recomputed by script, not asserted: 58 entries, 32 consistency-only, 7 directional, 7 with
+no label at all, 4 unread, 3 prospect, **2 calibrated/fired, 2 calibrated/live**, 1 obstruction.
+
+<details><summary>The question as it was originally filed</summary>
+
+### 3. One paper made a real prediction and lost. Our label doesn't say so. Should it?
+
+**The stake.** Entry 44 (Pourhasan, Afshordi & Mann, 2014) is unusual in this collection: it made a
+sharp, checkable prediction — that the early universe's ripples should be exactly the same size at
+every scale — and **the measurement disagreed**. Planck sees them tilted, at eight standard
+deviations. The authors say so themselves, in their own paper.
+
+Almost nothing else here has been through that. Most of these papers make claims that no
+measurement could contradict. This one could be contradicted, and was.
+
+**The problem.** We currently file it as "directional" — the same shelf as papers that never risked
+anything. Both reviewers, working separately, said that is wrong, and both said it in the same
+direction: the label gives the paper credit for the vague idea it has *left* while hiding the sharp
+one it *lost*.
+
+**Why one label cannot hold it.** The paper is really two things at once. The part that was tested
+is dead. What survives is a promise — the authors say it is "easy to imagine" a correction of about
+the right size, but they do not do the calculation, and the size they name is simply the size the
+measurement already showed. So the paper is refuted looking backwards and vague looking forwards,
+and our shelf system has one slot per paper.
+
+| | proposes | what it costs |
+|---|---|---|
+| Reviewer A (Gemini) | Mark it **failed**. | Simple and honest about the outcome. But it throws away the surviving proposal, which is not nothing. |
+| Reviewer B (GPT) | Use the two-part form **we already use elsewhere** — "sharp prediction, fired" — and file the leftover separately. | Keeps both facts. But it means one paper occupying two rows, which nothing else here does. |
+
+**Option 3 — leave it alone and write the reason down.** Say explicitly that our labels describe
+only what a paper still claims, not what it has already lost. *Costs:* the collection stops being
+able to show which papers were ever actually tested — which, given how few were, is the more
+interesting number. *Gains:* no change to the scheme.
+
+**My recommendation: Reviewer B's.** It is the only one that keeps both facts, and it uses a form
+this collection already has rather than inventing one. But it changes how papers are shelved, which
+is a scheme decision.
+
+**Why this is not mine to decide.** Every tier change is yours by standing rule, and this is
+stronger than a tier change — it asks whether one paper can hold two.
+
+**Nothing waits on it.** The audit is complete and committed, the reasoning is recorded, and the
+paper's current label is untouched.
+
+
+</details>

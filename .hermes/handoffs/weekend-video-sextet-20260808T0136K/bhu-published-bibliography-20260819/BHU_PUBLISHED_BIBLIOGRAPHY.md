@@ -53,10 +53,17 @@ The tier describes the CLAIM; a separate axis describes its STANDING:
 | 7 | CALIBRATED-FALSIFIER | **FIRED** | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
 | 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
 | 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
+| 44 | CALIBRATED-FALSIFIER | **FIRED** | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
 
-So: **3 calibrated, 2 live — but only ONE (entry 31) bears directly on a black-hole-universe
-theory.** Entry 51 constrains BHU only where a model inherits its ECKS premise, and entry 7 fired
-an instrument rather than a cosmology. Any sentence of the form "the family has N live
+So: **4 calibrated — 2 live, 2 fired — and TWO bear directly on a black-hole-universe theory:
+entry 31, live; and entry 44, ALREADY FIRED.** *(Corrected 2026-08-29 when entry 44 was filed here.
+This previously read "3 calibrated, 2 live … only ONE (entry 31) bears directly on a
+black-hole-universe theory".)* Entry 51 constrains BHU only where a model inherits its ECKS
+premise, and entry 7 fired an instrument rather than a cosmology — **but entry 44 is a BHU
+construction in this record's own branch 10, and observation killed its computable core.** That is
+the family's first falsifier to fire against one of its own cosmologies rather than against an
+instrument chain, and the record did not say so until now. What survives there is the authors'
+uncomputed correction, not the model that was tested. Any sentence of the form "the family has N live
 falsifiers" must say which N it means. The honest short answer to "can this family still be
 killed by observation?" is: **one route, entry 31, and it is drifting away from firing.**
 **2026-08-28 correction: entry 54 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL**,
@@ -167,7 +174,7 @@ DOI 10.1103/PhysRevLett.101.091101 — VERIFIED (Crossref: PRL, v101, 091101, 20
 (Publisher's Note PRL 101, 119901 pins the threshold symbol ≳, per the Phase 1 custody audit.)
 Claim: the Brown–Bethe kaon-condensate EoS gives M_max ≈ 1.5 M☉; a neutron star with M ≳ 2 M☉
 "would put in serious doubt or simply falsify" the chain including CNS.
-Testability: **CALIBRATED-FALSIFIER** — the family's clean number + threshold.
+Testability: **CALIBRATED-FALSIFIER / FIRED** *(standing appended 2026-08-29 for consistency with entries 51 and 44; the FIRED/LIVE value is UNCHANGED and is taken from the standing table in §0, not newly decided here)* — the family's clean number + threshold.
 Record: **FIRED as to the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉;
 for CNS the source supports "serious doubt" / "serious obstacle" / "put in doubt", NOT simple
 falsification.** *(Corrected 2026-08-28 by two-seat audit — `CGATE_ENTRY7_VERDICT.md` and
@@ -181,8 +188,11 @@ voice, gives BB and CNS a "serious obstacle"; the CCS/gravitational-wave passage
 5/5, exit 0. Consequence for the record's coherence: because entry 7 did NOT kill CNS at ≳2 M☉,
 entry 31's `2.5 M☉` bar is not moot, and its LIVE_CALIBRATED ruling stands — both seats declined to
 overturn it. Both seats also noted that this tier conflates the NATURE of a claim with its STATUS:
-entry 7 is CALIBRATED-FALSIFIER / FIRED, entry 31 is CALIBRATED-FALSIFIER / LIVE, and the record
-carries no status axis to say so. That schema change is NOT made here.)* The packet Rev 4 carries
+entry 7 is CALIBRATED-FALSIFIER / FIRED, entry 31 is CALIBRATED-FALSIFIER / LIVE.
+**STALE AS OF 2026-08-29 — this sentence used to continue "and the record carries no status axis
+to say so. That schema change is NOT made here." Both halves are now false:** the standing table
+in §0 IS that axis and predates this note's staleness, entry 51 carries the combined form inline,
+and the schema question was closed on Duho's instruction "answer question 3" — see entry 44.)* The packet Rev 4 carries
 the measurement facts:
 PSR J1614−2230 at 1.97 ± 0.04 M☉ (Demorest et al. 2010, Nature 467, 1081–1083,
 DOI 10.1038/nature09466 — VERIFIED) and PSR J0740+6620 at 2.08 ± 0.07 M☉ (Fonseca et al. 2021,
@@ -200,7 +210,7 @@ PDF is openly hosted on a VU Amsterdam academic collection
 (few.vu.nl/~wimu/Varying-Constants-Papers/Smolin-Physica-2004.pdf); pinned as
 `bhu-reading-20260823/sources/smolin_2004_cns_physica_a340.pdf`
 (sha256 46e57c43…, header/pagination verified: Physica A 340 (2004) 705–713).
-Testability: **CALIBRATED-FALSIFIER** — READ 2026-08-23 (Tori). §4 states the falsifier in the
+Testability: **CALIBRATED-FALSIFIER / LIVE** *(standing appended 2026-08-29 for consistency with entries 51 and 44; the FIRED/LIVE value is UNCHANGED and is taken from the standing table in §0, not newly decided here)* — READ 2026-08-23 (Tori). §4 states the falsifier in the
 author's own words: if the strange-quark mass is below a critical value, kaon condensation caps
 neutron stars at "approximately 1.5 M☉" (attributed to Bethe–Brown calculations [52–54], not to
 CNS itself); a sufficiently heavy neutron star refutes S, and "sufficiently high is certainly
@@ -652,7 +662,7 @@ finding; the big bang as the interior/exterior of a white-hole or 5D collapse.
 **44. R. Pourhasan, N. Afshordi & R. B. Mann (2014). "Out of the white hole: a holographic origin for the Big Bang." JCAP 04 (2014) 005.**
 DOI 10.1088/1475-7516/2014/04/005 — VERIFIED (Crossref: JCAP, v2014, 005, 2014-04). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori). 3-brane out of 5D BH formation; thermal atmosphere gives scale-invariance without inflation. Rare self-honesty: states its own base model is 'already ruled out at >5σ' (exact scale-invariance vs the observed red tilt) and names the fix as its immediate challenge.
+Testability: **CALIBRATED-FALSIFIER / FIRED** — re-tiered 2026-08-29 from QUALITATIVE-DIRECTIONAL on Duho's instruction *"answer question 3"*, which returned open question 3 to me to decide. **What fired is the Sec. 4 model, not the framework** — see the standing table in §0. Audit `b17_entry44_audit.py` (6/6), gates `CGATE_B17` / `AGATE_B17`, both of which called the previous label wrong and in this same direction. READ 2026-08-23 (Tori), AUDITED 2026-08-29 (Tori). 3-brane out of 5D BH formation; thermal atmosphere gives scale-invariance without inflation. Rare self-honesty: states its own base model is 'already ruled out at >5σ' (exact scale-invariance vs the observed red tilt) and names the fix as its immediate challenge.
 **RECEIPTED 2026-08-29** (`b16_entry44_tilt.py`, 4/4): Planck 2018 VI eq. (19),
 `1807.06209_clean.txt`, gives n_s = 0.9649 ± 0.0042 — *"which is 8σ away from scale-invariance
 (n_s = 1), confirming the red tilt of the spectrum at high significance"* — and nearly 9σ adding
