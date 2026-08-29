@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 21:51 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 22:15 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -47,8 +47,19 @@ testable cannot answer a complaint quantified over all of them. **Do not re-deri
 also said I was smuggling a verdict on open question 4 into what I called evidence for it — which
 is recorded in the question itself, so my recommendation there reads as a preference, not a finding.
 
-**The seats now disagree about whether entry 31 keeps its tier, and that is open question 4** —
-filed, not decided, nothing changed in the bibliography. Entry 31 is *not* the
+**Questions 3 and 4 were both closed by Duho returning them to me.** Entry 44 is
+`CALIBRATED-FALSIFIER / FIRED`; the standing table gained a **warrant** column — scoped to the four
+calibrated falsifiers only, **not** a corpus-wide audit, and my "it only costs four rows"
+justification was itself refuted (a directional claim or a no-go can have a disputed warrant too;
+Duho's original cost objection stands). Two of the four have real derivational problems: entry 31
+disputed by criticism we now hold, entry 51 unreproduced from its own inputs. Entry 44's reasoning
+is **sound** — it made a proper prediction and the measurement disagreed.
+
+**Entry 22 (the one no-go) now states its domain**, which it never did. And I was unfair to it:
+I counted eleven "conditions" that were eleven *phrases* for about eight hypotheses, and called a
+theorem's stated hypotheses a limitation. Both seats refuted that. **A flagged follow-up — that this
+record's matching series escapes the no-go via Israel junction conditions — is FALSE and withdrawn**;
+Israel formalism does not imply a shell, and the pinned series says it has no surface term. Entry 31 is *not* the
 corpus's only live calibrated falsifier — **entry 51 is the other**, and its measurement side was
 found to be an uncited sentence. Fixing that turned up a second defect of the same class, and
 sweeping for it turned up two more. Detail in the section below; six sources pinned, four new

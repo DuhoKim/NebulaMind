@@ -553,6 +553,26 @@ prediction. It **proves that a class of constructions cannot work** (Proposition
 Theorem 1). The new tier asserts: *no member of a specified class of models can satisfy a
 specified conjunction of conditions; refuted by exhibiting a counterexample in that domain, not by
 any measurement.* Membership criterion and its controls: `b1_theoretical_obstruction_tier.py`.
+**DOMAIN STATED 2026-08-29** (`b24_entry22_warrant.py`, gated `SCOPE_REFUTED_INFLATED_COUNT_AND_HOSTILE_FRAMING`
+/ `SCOPE_NARROWED_COUNT_AND_CELL`) — the tier definition above says "a *specified* class" and "a
+*specified* conjunction" and the entry never said which. It is: **Proposition 1** excludes
+identifying the natural trapped slicing with exact FRW; **Proposition 2** bounds nondegenerate
+comoving no-shell closed-FRW daughters of static, asymptotically flat, finite-ADM parents; the
+**flat/open limb** additionally assumes curvature regularity, regular affine ends and ANEC. Shells,
+modified asymptotics, non-FRW or non-comoving evolution, and added bulk stress-energy are
+**expressly outside** the result — the author names these escape routes himself. Proof skeleton
+checked against the source; the external completeness theorem was not independently verified.
+*(This is a DOMAIN note, not a warrant flag. I first proposed the cell "scope-limited by
+construction — eleven stated conditions", and both seats refuted it: the eleven was a count of
+**phrases**, not assumptions — the real figure is eight hypothesis groups, or four-to-five
+independent physical assumptions — and treating a theorem's stated hypotheses as a defect damns
+ordinary rigour with scope. The paper advertises "minimal" in its own title. Propositions 1 and 2
+are in fact **broader** than Theorem 1's headline: Prop 1 needs no matching, asymptotics or shell
+assumption at all, and Prop 2 is independent of the regular core.)*
+*(A follow-up I flagged — that this record's interior-matching series might fall outside the no-go
+by using Israel junction conditions — is **FALSE and withdrawn**. Easson cites Israel and calls his
+own conditions "Darmois–Israel **no-shell** conditions", and `2505.23877` states "No additional
+surface term or exotic matter layer is required." Verified against both sources directly.)*
 
 **PUBLICATION CAVEAT DISCHARGED 2026-08-29.** The "flagged for Miru's spot-check" above never
 happened — Miru is a retired seat. Resolved instead at the A7 gate: **Phys. Rev. D 114, 044077,

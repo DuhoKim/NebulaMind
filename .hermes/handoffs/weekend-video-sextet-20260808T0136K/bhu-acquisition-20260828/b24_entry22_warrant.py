@@ -1,15 +1,40 @@
 #!/usr/bin/env python3
-"""B24 -- warrant check on the corpus's ONE no-go entry, where warrant matters most.
+"""B24 -- warrant check on the corpus's ONE no-go entry.  GATED, and I was unfair to the paper.
 
-WHY THIS ONE. Both seats refuted my claim that only calibrated falsifiers have warrants, naming
-THEORETICAL-OBSTRUCTION as a class that can "rest on a disputed no-go". The corpus has exactly one
-such entry, 22 (Easson 2026, PRD). AND A NO-GO IS NOTHING BUT ITS DERIVATION: a calibrated
-falsifier survives a bad warrant as a number someone might still measure, but an obstruction whose
-theorem is narrower than advertised has no residue at all. Source pinned: 2606.25023_clean.txt,
-with a real text layer, so every quotation here is grep-verifiable.
+  AGATE_B24  SCOPE_REFUTED_INFLATED_COUNT_AND_HOSTILE_FRAMING
+  CGATE_B24  SCOPE_NARROWED_COUNT_AND_CELL
 
-THIS IS NOT A TIER QUESTION. Entry 22 is THEORETICAL-OBSTRUCTION and stays there. The question is
-what its warrant cell should say if the axis is ever extended past the calibrated four.
+WITHDRAWN #1 -- THE COUNT. I said Theorem 1 carries ELEVEN conditions and called the count honest
+because it was mechanical. It was mechanical and wrong: I counted PHRASES, not assumptions.
+"Darmois boundary", "no-shell" and "no independent shell stress tensor" are the same physical
+requirement stated three ways; "asymptotically flat" and "no modified asymptotics" are one boundary
+condition stated twice. CGATE enumerates EIGHT hypothesis groups for the closed branch; AGATE puts
+the independent physical assumptions at four or five. Adopted: eight, with CGATE's caveat that no
+number here is canonical -- and the point stands that eleven overstates independence.
+
+WITHDRAWN #2 -- THE FRAMING. "Real but narrow" is damning ordinary rigour with scope. The paper
+ADVERTISES its narrowness in its own title, defines "minimal" in its introduction, and repeatedly
+says it does not exclude more elaborate constructions. Stating hypotheses is what a theorem is.
+CGATE's replacement, adopted: "explicitly scope-bounded, with structurally broad results inside
+each stated branch."
+
+WITHDRAWN #3 -- THE FOLLOW-UP I FLAGGED. I suggested this corpus's interior-matching series might
+fall OUTSIDE the no-go because it uses Israel junction conditions while Theorem 1 assumes no-shell.
+FALSE, and verified false against the sources rather than accepted from a seat:
+  - Easson himself cites Israel and calls his own conditions "the Darmois-Israel NO-SHELL
+    conditions". Using Israel formalism does not mean carrying a shell.
+  - 2505.23877 says outright: "No additional surface term or exotic matter layer is required."
+THE SEATS SPLIT HERE -- AGATE called it a real gap, CGATE called it false -- and this is NOT a
+substantive disagreement to escalate: AGATE reasoned from the general formalism, CGATE checked the
+pinned text, and the pinned text settles it. I checked it myself before writing this.
+
+AND I DID NOT READ THE PROPOSITIONS. CGATE did. Proposition 1 needs no matching, no asymptotics and
+no shell assumption at all; Proposition 2 is independent of the regular core and survives a static
+redshift function, so it is LESS restricted than Theorem 1's headline. My "narrow" gloss was built
+on the one part of the paper I had read.
+
+WHAT SURVIVES: the escape routes are real (both seats), and the record still does not say anywhere
+a reader would meet it WHICH class the no-go covers. That was the finding worth having.
 """
 import re, sys
 T=" ".join(open("../bhu-reading-20260823/sources/2606.25023_clean.txt",errors="ignore").read().split())
@@ -33,12 +58,18 @@ i=T.find("Theorem 1 (Minimal asymptotically flat FRW daughters)")
 stmt=T[i:i+900]
 present=[c for c in COND if c in stmt]
 for c in COND: print(f"   {'YES' if c in stmt else 'no ':<4} {c}")
-chk("SOURCE: the theorem's own statement carries at least ten separate conditions on the parent, "
-    "the boundary and the daughter",
+chk("LEXICAL: eleven distinct condition-PHRASES appear in the theorem statement -- a fact about "
+    "wording, not about independent hypotheses",
     len(present) >= 10,
-    f"{len(present)} of {len(COND)} found inside the 900 characters following 'Theorem 1'. A no-go "
-    f"is exactly as wide as its assumptions, and these are not incidental -- they name the "
-    f"construction class")
+    f"{len(present)} of {len(COND)} PHRASES found inside the 900 characters following 'Theorem 1' "
+    f"-- and PHRASES ARE NOT ASSUMPTIONS. Both seats refuted the count: CGATE enumerates eight "
+    f"hypothesis groups, AGATE four or five independent physical assumptions. This check now "
+    f"reports a lexical fact and its name says so")
+chk("MEASURED: the phrase count exceeds every assumption count either seat arrived at, which is the "
+    "defect rather than the finding",
+    len(present) > 8,
+    "11 phrases against 8 groups (CGATE) and 4-5 physical assumptions (AGATE). I called the count "
+    "honest BECAUSE it was mechanical; mechanical counting of the wrong objects is not rigour")
 
 print("\n2. THREE OF THEM ARE ESCAPE HATCHES THE AUTHOR NAMES HIMSELF")
 chk("SOURCE: the theorem explicitly excludes three additions, so a model carrying any of them is "
@@ -62,29 +93,25 @@ chk("RECORD: the tier definition is correctly scoped -- it says a SPECIFIED clas
     "nowhere stated in the entry, so a reader meets a no-go without its scope")
 
 print("""
-4. THE WARRANT CELL THIS ENTRY WOULD GET
+4. THE WARRANT CELL, IN CGATE's WORDING RATHER THAN MINE
 
-   NOT "disputed" -- nothing in this corpus challenges the derivation, and I have not searched the
-   literature. NOT "sound" either, which would be a claim about the mathematics I have not checked.
+   "EXPLICITLY DOMAIN-BOUNDED -- Proposition 1 excludes identifying the natural trapped slicing with
+   exact FRW; Proposition 2 bounds nondegenerate comoving no-shell closed-FRW daughters of static
+   asymptotically flat finite-ADM parents; the flat/open limb additionally assumes curvature
+   regularity, regular affine ends and ANEC. Shells, modified asymptotics, non-FRW/non-comoving
+   evolution, or added bulk stress-energy are expressly outside the result. Proof skeleton checked
+   against the source; external completeness theorem not independently verified."
 
-   WHAT IS ESTABLISHED: the obstruction is REAL BUT NARROW, and its narrowness is the author's own,
-   stated in his title and in three explicit "no additional ..." clauses. A regular-black-hole
-   cosmology carrying a shell stress tensor, a late-time bulk component, or modified asymptotics is
-   OUTSIDE Theorem 1 by construction.
+   CGATE's ruling on why mine had to go: "scope is not a warrant defect unless the bibliography has
+   advertised a broader conclusion than the source proves." IT HAS NOT -- check 4 below confirms the
+   tier definition is honest. So there was never a warrant defect here to find, and I went looking
+   for one anyway.
 
-   So the honest cell is: "SCOPE-LIMITED BY CONSTRUCTION -- eleven stated conditions, three of them
-   explicit exclusions; the author's own title says 'minimal'. Derivation not independently
-   checked."
+5. WHAT THE RECORD SHOULD ACTUALLY GAIN
 
-5. A FOLLOW-UP I AM NAMING AND NOT INVESTIGATING
-
-   This corpus's largest interior-matching series uses Israel junction conditions, which concern
-   shells. Easson's Theorem 1 assumes NO-SHELL matching. WHETHER ANY CORPUS ENTRY FALLS INSIDE OR
-   OUTSIDE THIS NO-GO IS THEREFORE A REAL QUESTION -- and I am not answering it here.
-
-   I proposed a cross-entry link once tonight already (b21, entries 31 and 54) and both seats
-   refuted it on a distinction I had not checked. The same shape is present here: two things I
-   read the same evening, a tidy connection, and no verification. It is recorded as a question.
+   Not a warrant flag. The gap is narrower and duller: the entry says the tier asserts "no member of
+   a specified class ... can satisfy a specified conjunction", and never says WHICH class or WHICH
+   conjunction. A reader meets a no-go with no domain attached. The cell above supplies it.
 
 6. NO TIER CHANGE. Entry 22 stays THEORETICAL-OBSTRUCTION.
 """)
