@@ -28,10 +28,22 @@ conflict between them is a defect in the draft.**
 | # | invariant | holds for |
 |---|---|---|
 | G1 | **No unlogged touch**: no bytes leave or land in a sealed store without a committed event | every touch kind |
-| G2 | **No false event**: a touch event's outcome field is true of the store effect it records; **a refusal event truthfully records that a request was refused and NO store effect occurred** | every event |
+| G2 | **No false event**: a touch event's outcome field is true of the store effect it records; **a refusal event truthfully records that a request was refused and NO store effect occurred — AND its reason token is true of the refusal: a request with no completed permission verdict may carry only `REFUSED-UNCLASSIFIED`, and any specific code asserts its condition was actually established** (GPT56-V71 F2: without this, a false specific code bypasses the catch-all enumeration entirely) | every event |
 | G3 | **One event per touch** — and **every event is either exactly one touch's event or a refusal's event; no event is both, and no event is neither** (V70's wording said "one touch per event", which contradicted refusal events outright — GPT56-V70 F1, CODEX-V70 F1, the round's first finding against this spec) | every touch kind |
 | G4 | **No double decision**: one request never yields two events | every request |
 | G5 | **Render = touch.** Every render is its own touch with its own committed event. **Row G's *"any unlogged view"* void clause is a consumer of G5, not an exception to N1** | Row G only |
+
+## 1b. Operations that are in NO cell because they are FORBIDDEN, not unmodelled
+
+**Delete, truncate, and custody-relevant metadata mutation of a sealed object are not touch kinds —
+they are forbidden operations** (GPT56-V71 F7 asked which cell they land in; the answer is none, on
+purpose, and here is the purpose). No row's stated surface includes destroying or mutating a sealed
+object, so **via Row B such a request is a REFUSAL COMMIT (`REFUSED-ROW-NOT-AUTHORISED` or
+`REFUSED-OUTSIDE-STATED-SURFACE`)**, fully covered by the refusal invariants; **outside Row B it is a
+bypass of the mediator — `VOID-5-FORBIDDEN-ACT` / digest deviation**, which the covenant already
+claims at phase Any. **The commit domain does not model operations whose occurrence voids the run; it
+refuses the request or the run dies.** An unmodelled-but-possible operation would be a spec hole; a
+forbidden one is a wall.
 
 ## 2. The non-guarantees, with equal weight
 
@@ -87,7 +99,13 @@ is needed, because no rule changed: G5 restates what Row G's void clause already
 - **The V65 schedule sentence is recut**: *"re-viewing the current object is unrestricted"* remains
   true in **schedule** terms (a re-render is not a request for a different object and never violates
   the traversal) and is **corrected in custody terms: every re-render is a logged touch.** **A VIEW is the display session of ONE render commit** — it begins when the committed conveyance
-  is displayed and ends when the traversal position advances or the interface clears. Within a
+  is displayed and ends at the FIRST of: the traversal position advancing, the interface clearing,
+  or **ANY interruption of continuous display — visibility loss, blanking, occlusion, navigation
+  away** (CODEX-V71 F2: a visibility-loss-and-restore redisplay fired neither named ender and kept
+  one commit alive across views). **A session is one continuous uninterrupted display**; duration
+  alone does not multiply views — one long look is one view — but **nothing displayed after an
+  interruption is the same view** (GPT56-V71 F3: an operator could otherwise hold a session open
+  indefinitely across repeated redisplays under one event). Within a
   session, dwell and magnification of the already-rendered frame move no store bytes and are the
   SAME view — one commit, one event. **Displaying the object again after the session ends is a NEW
   view and requires a new render commit** (CODEX-V70 F2: without the session boundary, "magnification
