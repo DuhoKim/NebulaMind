@@ -45,6 +45,20 @@ tier questions sit with Duho: **5** (entry 5), **6** (entry 51's dual shape — 
 - Census artifacts: `b28` (preregistration), `b29` (result, corrected), `b31` (census frame),
   `b33/b36/b37/b38` (batches + gates), `b35` (committed draw pattern).
 
+## After ~01:00: acquisitions closed the free frontier
+
+Four not-located papers recovered from arXiv by exact-title search (15, 17, 20, 28 — b38, gated;
+entry 20's author field corrected: Bronnikov–Melnikov–Dehnen, not Fabris), the cited charged-no-go
+owner pinned (Bronnikov 2001), and entry 19 captured by browser from MDPI (b39, gated; capture
+relabelled ABRIDGED per CGATE; its derived no-barrier condition recorded claim-level; entry 48
+gains secondary testimony — Dymnikova's verbatim "unavoidable obstacle" sentence). **Readable 39.
+The remaining 12 not-located (1, 2, 3, 4, 13, 14, 16, 18, 42, 47, 48, 50) were each checked against
+arXiv (title and author search) and free archives: all are journal-only behind paywalls — including,
+surprisingly, entry 16 (NPB 2025, no arXiv posting). THE FREE-ACQUISITION FRONTIER IS CLOSED; every
+further pin needs Duho's institutional login.** Questions 5 and 7 remain his; question 6 was ruled
+(entry 51 keeps its tier, as an explicit convention adopted at the ruling — its first stated basis,
+"Duho's Q3 precedent", was refuted as a retrofit and corrected).
+
 ## Open with Duho (nothing else blocks)
 
 Questions **5, 6, 7** in `OPEN_QUESTIONS_FOR_DUHO.md` — all tier calls. Answering **6** settles the
