@@ -112,14 +112,23 @@ def check(text: str):
     def fail(code, extra=""):
         out.append((code, ERRORS[code] + (f" — {extra}" if extra else "")))
 
-    pinned = set(re.findall(r"`(REFUSED-[A-Z-]+)`", text))
+    # GPT56-V70 F4: backtick-only extraction let a bare "REFUSED-EVADE." evade R01 entirely, and the
+    # retired-mention convention (write it unformatted so it is not counted) was the evasion's twin.
+    # Members are now parsed independently of Markdown decoration; a non-member token is legal ONLY
+    # on a line that also carries a retirement word.
+    RETIREMENT = re.compile(r"deleted|merged|retired|superseded|GONE|does not survive", re.I)
+    pinned, illegal = set(), []
+    for line in text.splitlines():
+        for tok in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", line):
+            tok = tok.rstrip("-")
+            if tok in CODES:
+                pinned.add(tok)
+            elif not RETIREMENT.search(line):
+                illegal.append(tok)
+    if illegal:
+        fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
     if pinned and pinned != set(CODES):
-        missing, extra = sorted(set(CODES) - pinned), sorted(pinned - set(CODES))
-        revived = [c for c in extra if c in RETIRED]
-        note = f"missing {missing}, extra {extra}"
-        if revived:
-            note += f"; RETIRED CODE REVIVED: {[(c, RETIRED[c]) for c in revived]}"
-        fail("R01", note)
+        fail("R01", f"missing {sorted(set(CODES) - pinned)}")
     elif not pinned:
         fail("R01", "no REFUSED-* codes found")
 
@@ -139,6 +148,13 @@ def check(text: str):
     if not re.search(r"never describe the\s+\*{0,2}OBJECT|never the\s+\*{0,2}OBJECT|"
                      r"may\s+\*{0,2}never\*{0,2}\s+describe the\s+\*{0,2}object", text, re.I):
         fail("R03")
+    else:
+        # a later contradiction must not coexist with the phrase that makes R03 pass (GPT56-V70 F4)
+        for line in text.splitlines():
+            if re.search(r"may describe the\s+\*{0,2}object", line, re.I) and \
+               not re.search(r"\bnever\b|\bnot\b|refuses", line, re.I):
+                fail("R03", f"affirmative contradiction: {line.strip()[:60]!r}")
+                break
     if not re.search(r"no free text", text, re.I):
         fail("R04")
     # The guard is checked as a MECHANISM, not as a phrase. V64 stated the obligation and both seats
@@ -162,9 +178,11 @@ def check(text: str):
         twice = re.search(r"consulted (twice|at both)", text, re.I) or (
             re.search(r"at the opening of the lock", text, re.I) and
             re.search(r"at \*{0,2}`?BS-L`? issuance", text, re.I))
-        if not (verifier and twice and entry):
-            fail("R08", "verifier named: %s; second consultation: %s; entry object with a join: %s"
-                 % (bool(verifier), bool(twice), bool(entry)))
+        gates5 = re.search(r"BS-7f", text) and re.search(r"disclosure", text, re.I) and \
+                 re.search(r"fresh", text, re.I)
+        if not (verifier and twice and entry and gates5):
+            fail("R08", "verifier: %s; second consultation: %s; entry object: %s; post-opening "
+                 "gates: %s" % (bool(verifier), bool(twice), bool(entry), bool(gates5)))
         if not re.search(r"recur", text, re.I):
             fail("R09", "no rule for a recurring catch-all class")
         elif not re.search(r"class_key", text):
@@ -190,7 +208,7 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
     elif guard == "noblock":
         txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
                 "checkpoint, never a routine outcome.\n")
-    elif guard in ("noverifier", "once", "norecur", "noentry", "nokey", True):
+    elif guard in ("noverifier", "once", "norecur", "noentry", "nokey", "nogates", True):
         txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
                 "checkpoint, never a routine outcome.\n"
                 "BS-L MAY NOT BE ISSUED while any REFUSED-UNCLASSIFIED event is unenumerated.\n")
@@ -204,6 +222,8 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
             txt += "If the same class recurs, explanation stops discharging it.\n"
         if guard not in ("nokey", "norecur"):
             txt += "Two emissions share a class iff their class_key values are equal.\n"
+        if guard != "nogates":
+            txt += "Fresh passes run at BS-7f, BS-V and disclosure.\n"
     txt += "".join(f"- `{c}`\n" for c in codes)
     if fingerprint:
         txt += f"refusal-vocabulary-derivation: `{'a' * 64}`\n"
@@ -214,7 +234,7 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
 
 CONTROLS = (
     ("a twelfth code is pinned", lambda: _fixture(CODES + ("REFUSED-OTHER",)), "R01"),
-    ("the catch-all is dropped", lambda: _fixture(CODES[:-1]), "R01"),
+    ("the catch-all is dropped everywhere", lambda: _fixture(CODES[:-1], guard=False), "R01"),
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
@@ -228,6 +248,11 @@ CONTROLS = (
     ("recurrence can be explained away", lambda: _fixture(guard="norecur"), "R09"),
     ("the verifier has no entry object", lambda: _fixture(guard="noentry"), "R08"),
     ("recurrence has no computed key", lambda: _fixture(guard="nokey"), "R09"),
+    ("a bare twelfth member evades the backtick parse",
+     lambda: _fixture() + "Active refusal member: REFUSED-EVADE.\n", "R01"),
+    ("a later contradiction coexists with the principle",
+     lambda: _fixture() + "A refusal reason may describe the OBJECT.\n", "R03"),
+    ("the post-opening gates are unnamed", lambda: _fixture(guard="nogates"), "R08"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
