@@ -5,7 +5,7 @@ Built 2026-08-28 by script, not by seat. 12 auto-matched on title at score 1.00;
 
 | entry | tier | pinned file | sha256 (12) |
 |---|---|---|---|
-| 1 | CONSISTENCY-ONLY | `1111.1017_clean.txt` | `c9780a259194` |
+| ~~1~~ **46** | CONSISTENCY-ONLY | `1111.1017_clean.txt` | `c9780a259194` | **CORRECTED 2026-08-29 — see below** |
 | 6 | QUALITATIVE-DIRECTIONAL | `smolin_1992_clean.txt` | `3da9aaab5f80` |
 | 31 | CALIBRATED-FALSIFIER | `smolin_2004_cns_clean.txt` | `b051f707ca42` |
 | 36 | CONSISTENCY-ONLY | `smoller_temple_2000_clean.txt` | `13d07d24a6d4` |
@@ -156,3 +156,38 @@ Entries 2, 3, 4, 5, 13, 14, 15, 16, 17, 18, 19, 20, 21, 28, 42, 46,
 47, 48, 50, 56. The bibliography names an arXiv id for only two of them; the rest carry a DOI and
 nothing else, so acquisition means a per-paper lookup with real paywall risk (Elsevier, Springer,
 APS). `LIBRARY_REQUEST_20260825.md` already exists and covers part of this set.
+
+
+---
+
+## CORRECTION 2026-08-29 — entry 1 was mis-mapped; the file belongs to entry 46
+
+**Found by the depth-selection rule on its first pick** (`b3_entry1_mismap.py`, 3/3). The rule was
+fixed in advance, ranked entry 1 top on numeric density, and sent me to a paper my own judgement
+had not chosen. It was the wrong paper.
+
+| | claimed | actually |
+|---|---|---|
+| `1111.1017_clean.txt` | entry 1 — Pathria (1972), *"The Universe as a Black Hole"*, Nature 240, 298–299 | entry 46 — *"Quantization of the Universe as a Black Hole"* (Alfonso-Faus), preprint of ApSS 337, 19–20 |
+
+The pinned file contains the **10¹²² bits** Bohr-quantization result that this bibliography
+already attributes to **entry 46**. It is entry 46's paper.
+
+**How the map got it wrong, in its own words:** *"12 auto-matched on title at score 1.00"*. The
+string *"The Universe as a Black Hole"* is a **substring** of *"Quantization of the Universe as a
+Black Hole"*, so a containment-scoring matcher returns a perfect 1.00 — on the wrong paper. The
+score was honest; it meant something other than what it was read as.
+
+**Corrected state:**
+- **Entry 46 is PINNED** — `1111.1017_clean.txt`. It was listed among the unpinned.
+- **Entry 1 has NO pinned source.** The bibliography always said so: its full text is *"still
+  unobtained"* and the paywalled body *"remains [VERIFY]"*.
+- **The auditable-corpus COUNT is unchanged** (one entry pinned either way). Its **composition**
+  was wrong.
+- **No tier changes.** Entries 1 and 46 are both CONSISTENCY-ONLY and both stay. This is a
+  provenance correction.
+
+**And the part that matters most:** entry 1 was in the random-draw pool for the selection-bias
+control. Had it been drawn, the lane would have depth-audited Alfonso-Faus under the label
+"Pathria 1972" and reported a tier verdict for a paper nobody had opened. It was not drawn — that
+is luck, not method.
