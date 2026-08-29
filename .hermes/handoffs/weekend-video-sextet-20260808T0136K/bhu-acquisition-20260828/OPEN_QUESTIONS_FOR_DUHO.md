@@ -600,15 +600,16 @@ category is unchanged.
 
 **Duho's instruction, verbatim: "answer question 6."** The fifth question returned to me.
 
-**Ruling: entry 51 keeps CALIBRATED-FALSIFIER / LIVE — because you already decided this shape.**
+**Ruling: entry 51 keeps CALIBRATED-FALSIFIER / LIVE — as a convention adopted at this ruling.**
 
-**The premise check that settled it** (the move that overturned my own recommendation on questions
-3, 4 and 2): before choosing between the reviewers, look for an existing convention. **Question 3
-is one.** Entry 44 was a dual paper — a fired model plus a surviving proposal — and your ruling
-put the paper-level tier on its *calibrated-falsifier claim*, with the rest scoped in the standing
-table, whose rows describe **claims, not papers** ("the Sec. 4 model, NOT the framework"; "an
-instrument chain, NOT CNS"). Entry 51 is the same shape with the standing reversed: a live
-falsifier plus a proven theorem. Same convention, same disposition.
+**And the basis I first gave you was wrong, caught by the implementation gate.** I claimed your
+question-3 outcome was precedent — "when a paper carries a calibrated falsifier, that tier leads."
+The reviewer refuted it: **question 3 demonstrated that the standing table can hold claim-level
+scope; it never decided priority between a falsifier and an obstruction**, and its own record says
+*I* chose that option under your delegation — so "you already decided this shape" overstated the
+record twice over, once on content and once on authorship. The outcome survives; the premise did
+not. What stands is an explicit new convention, adopted here: *the paper-level label follows the
+calibrated-falsifier claim; the proved theorem is a scoped claim in prose and in the table.*
 
 **Not the basis:** Reviewer A's "an empirical falsifier is the higher-information label" —
 Reviewer B correctly demolished that; tiers are shapes, not ranks. Nor my filed cost-asymmetry
