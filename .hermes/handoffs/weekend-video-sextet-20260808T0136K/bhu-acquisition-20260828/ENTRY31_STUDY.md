@@ -142,6 +142,51 @@ wrongly called it unsourced. Romani et al. 2025 (arXiv:2512.05099), now pinned, 
 upon"* it — nested analyses of one constant mass. Defensible form: **the posterior was revised
 downward and tightened.**
 
+## What would move it — recomputed under the corrected criterion
+
+The original "what would move it" was written under the instrument framing and now sits below the
+SUPERSEDED marker. Under the method-agnostic criterion the question changes to:
+**is any object above 2.5 M☉ securely a neutron star?**
+
+**First, an arithmetic result that reframes the whole thing.** Holding J0952 at 2.35:
+
+| its uncertainty | distance to the bar | P(M > 2.5) |
+|---|---|---|
+| 0.11 (current) | 1.36σ | 8.6% |
+| 0.05 | 3.00σ | 0.13% |
+| 0.03 | 5.00σ | 0.00003% |
+
+**Tightening cannot fire this falsifier — it can only kill it.** Every improvement in precision at
+a central value of 2.35 drives the bar *further away*. Firing requires the **central value** to
+move above 2.5, which no amount of error-bar work achieves. That inverts the intuition the first
+version carried, where "the error tightening" was treated as the thing to watch.
+
+**So three routes, ranked by what they could actually settle:**
+
+**(A) Resolve GW190814's identity — highest value, possibly unresolvable for that event.** Its
+secondary is the only known object whose mass sits at the bar. If it is a neutron star, the bar is
+met on Smolin's own terms. With no EM counterpart and no measurable tidal signature there may be
+no way to say for *that* event. What would settle it: a comparable event **with** a tidal
+deformability measurement or a counterpart — LIGO/Virgo/KAGRA at O5, contingent on a rare event
+occurring.
+
+**(B) A new object above 2.5 with secure identification.** Per the arithmetic, **the only route
+that fires it.** The heaviest securely-identified neutron star we hold is 2.35, so this needs
++0.15 or more with the identification intact. MeerKAT/TRAPUM, FAST, CHIME now; SKA in the 2030s.
+
+**(C) Population-level M_TOV constraints.** Nathanail 2021 already gives 2.210 +0.116 −0.123 (2σ),
+putting the bar above its interval. **Most likely to move first**, because it improves with every
+binary neutron-star merger rather than waiting on a rare heavy one.
+
+**And the 1.5 M☉ bar is already passed.** Smolin's conditional threshold — *"any value higher than
+this would be troubling"*, crediting Bethe–Brown — was exceeded years ago by every measurement
+here. Nothing needs to move for that; only the 2.5 bar remains unmet.
+
+*Limits: the arithmetic covers the J0952 posterior under a Gaussian approximation only. It says
+nothing about whether 2.35 is correct — that is a question about optical heating models, not about
+σ. Routes (A) and (C) depend on event rates, which nothing here estimates.* Reproduce:
+`b10_what_moves_entry31.py` (2/2).
+
 ### For Duho
 
 **Your keep-both ruling survives — codex says so explicitly — but the reason you were given was
