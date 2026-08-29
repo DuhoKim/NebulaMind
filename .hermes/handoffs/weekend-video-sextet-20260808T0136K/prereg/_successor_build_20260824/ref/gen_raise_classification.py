@@ -7,7 +7,9 @@ owner = {}
 for fn in [n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)]:
     for ln in range(fn.lineno, (fn.end_lineno or fn.lineno)+1): owner.setdefault(ln, fn.name)
 
-NUM = {1123,1134,1153, 1369,1397,1401,1403,1411,1435,1437,1439,1442,
+UNREACH_BOTH = {1411,1435,1437,1439}   # measurement + structure (post-allocation)
+UNREACH_MEAS = {1401}                  # measurement ONLY - a branch of the feasibility decision
+NUM = {1123,1134,1153, 1369,1397,1403,1442,
        1209,1462,1464,1468, 1503,1513,1517,1537,1548,1554}
 SOFT = {1209,1462,1464,1468}                      # domain-vs-computed, named as uncertain
 PLAN = {963,973,986}                              # numerical but pre-run
@@ -26,6 +28,8 @@ for n in ast.walk(tree):
     ln=n.lineno
     if et in ("InconclusiveByPower","InconclusiveByCalibration"): cls="TYPED-OUTCOME"
     elif et=="ManifestClosureError": cls="INTEGRITY"
+    elif ln in UNREACH_BOTH: cls="UNREACHABLE-BY-CONSTRUCTION"
+    elif ln in UNREACH_MEAS: cls="UNREACHABLE-MEASURED-ONLY"
     elif ln in NUM: cls="NUMERICAL"
     elif ln in PLAN: cls="NUMERICAL-PLANNING"
     elif ln in WRAP: cls="WRAPPER"

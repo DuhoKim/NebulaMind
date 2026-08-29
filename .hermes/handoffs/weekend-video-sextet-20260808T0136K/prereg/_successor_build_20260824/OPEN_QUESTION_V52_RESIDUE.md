@@ -1,0 +1,53 @@
+**STATUS: OPEN** — with the principal. Two V52 findings I did not repair.
+
+# OPEN QUESTION — the per-call-site ledger, and Row L's antecedent phase
+
+**Raised 2026-08-29 19:4x KST by Hwao. V53 repaired six of the eight V52 findings. These two are
+not mine: one is a build I should not rush, one is normative.**
+
+## 1. The ledger is per-raise-statement, not per-call-site (GPT56-V52 F3, CODEX-V52 F3, both HIGH)
+
+V50's §11 item — written to answer CODEX-V49 F2 — requires classification to attach to **failure
+paths and call sites**, because a helper may raise on behalf of a caller and the same condition can
+reach different callers under different admissibility contracts. **`ref/RAISE_SITE_CLASSIFICATION.md`
+classifies one row per `raise` statement.** I built the artifact to the specification I had replaced.
+
+CODEX puts the consequence precisely: a per-raise ledger **cannot classify phase-sensitive failure
+paths**. `canon_f8`'s non-finite guard is the clean example — it is one raise statement reachable from
+digest construction, from receipt emission and from the decision path, and its classification is not
+the same in all three.
+
+**Why I am not building it now.** A per-call-site ledger needs a call-graph over the frozen reference
+and a reachability judgement per edge. That is a real build, it is 19:4x against a 21:00 bound, and I
+have been wrong on this corpus four times when I moved fast. **The honest state is that the ledger's
+*enumeration* is sound and its *unit* is wrong** — every raise is accounted for, but a raise is not
+the thing the rule classifies.
+
+## 2. `VOID-6.1L-WRONG-SIGNATURE` is P7-only while Row L signs at P0, P6 and P7 (CODEX-V52 F4)
+
+Row L's `when` is **P0, P6, P7**. The antecedent is registered at **P7**. After V52's exemption the
+freeze signature (P0) and the opening authorization (P7) are exempt, so what the condition still
+catches is a wrong signature at **P6** — the phase the antecedent does not cover.
+
+**Repairing it means changing when a VOID antecedent applies**, which changes what voids a run. It is
+also the second phase defect CODEX has found in this row family. **My reading is that the antecedent
+should carry the row's own phases, P0/P6/P7** — the row and its antecedent disagreeing is the
+condition that produced the original self-voiding contradiction, one level down. **But it is a
+normative change and it is not mine.**
+
+## Repaired in V53, for completeness
+
+- **GPT56-V52 F1 / CODEX-V52 F1 (HIGH).** V52's `UNREACHABLE` example named no sites while the ledger
+  marked all eight guards `NUMERICAL` — **the worked example violated the rule it illustrates.** The
+  five are now named: L1411/L1435/L1437/L1439 on measurement **and** structure; **L1401 on
+  measurement only**, because it is a branch of the feasibility decision itself, not a guard subsumed
+  by it. V52 implied the structural argument covered it; GPT56 was right that it does not.
+- **GPT56-V52 F2 / CODEX-V52 F2.** The 29/31/48-unread and 111 inventories are **withdrawn**, and the
+  AST count of 112 with 39 `ManifestClosureError` is stated with the reason the grep figure arose.
+- **CODEX-V52 F5.** The preamble's carried-open Row L entry is struck and marked closed at V52.
+- **Ledger/§5 agreement.** Numerical class is **17** in both, after the five promotions. V52 had §5 at
+  22 against an eight-site `NUMERICAL` marking — the same class of contradiction, and worth noting it
+  took a seat to find it rather than me.
+
+**V53** = `cc4e289578b129e4`. Checkers: 16/8 prose-matched, trace 52 transitions 0 problems,
+`void_registry` 6/0, lint exits 0. **BS-6 and the first image byte remain blocked.**
