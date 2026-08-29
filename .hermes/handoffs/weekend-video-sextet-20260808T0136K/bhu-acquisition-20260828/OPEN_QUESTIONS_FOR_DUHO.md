@@ -6,9 +6,9 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — three, all tier changes, all yours
+## OPEN — two tier changes, yours
 
-### 7. Two more dual papers — same question as entry 51, so one ruling can settle all three
+### 7. Two more dual papers — construction versus obstruction (it does NOT inherit question 6's answer)
 
 **The stake.** The census closer found that entries 52 and 53 (the Popławski closed-universe pair)
 each headline a derived existence exclusion: *"a closed universe exists only when [a function of
@@ -17,51 +17,15 @@ it (my pattern had no "exists only when"; eighth miss of that kind); one reviewe
 read; **I verified it in both abstracts directly.** Like entry 51, these are constructive bounce
 papers whose *stated central result* is an impossibility over a class.
 
-**Options are the same as question 6, and the recommendation is to answer 6 and 7 together with one
-convention:** whichever way you rule on entry 51's dual shape (keep tier + theorem in prose, or
+**CORRECTION, made when question 6 was ruled:** I told you one ruling would settle 6 and 7
+together. **That was wrong.** Question 6 was decided by your question-3 precedent — *when a paper
+carries a calibrated falsifier, that tier leads* — and entries 52/53 **carry no falsifier claim**.
+Their duality is construction-versus-obstruction, governed by the operative-contribution test (the
+entry-37-versus-22 line), a genuinely separate judgement: the threshold theorem is *a* headline
+result of each abstract, but each paper also constructs the bounce dynamics it is titled for. **So
+this question stands on its own.** Options:** whichever way you rule on entry 51's dual shape (keep tier + theorem in prose, or
 re-tier + construction as secondary), applying it to 52/53 keeps the corpus consistent. **The
 theorems are already recorded in both entries' prose either way — nothing is lost while you decide.**
-
----
-
-
-
-### 6. A paper that proves an impossibility AND carries your one live falsifier. Which label leads?
-
-**The stake.** Entry 51 (Popławski 2010) is one of your two live calibrated falsifiers. Reading it
-for the census showed its **title result is a proven impossibility**: a Dirac field in
-Einstein–Cartan gravity cannot be a point, a system of points, or (under stated symmetry) the
-singular ring — a real derivation, not a hope. **Both reviewers read the paper in full and agree
-the proof is rigorous.** The mass floor your falsifier hangs on is a *corollary* of it.
-
-**So the paper is genuinely two things, and the reviewers split on which one the label should name:**
-
-| | says | reasoning |
-|---|---|---|
-| Reviewer B (GPT) | **Re-tier to impossibility-proof; keep the falsifier as a secondary claim.** | The no-go is the title, the abstract's first result, and the whole point of the analysis. The tiers describe claim shapes; they are not a ranking where a number beats a theorem. The floor is downstream, heuristic, and currently *unreproduced from the paper's own inputs*. |
-| Reviewer A (Gemini) | **Keep calibrated-falsifier; theorem into the notes.** | An empirical falsifier is the higher-information label: it can kill the physical theory with data. The theorem restricts model space; the falsifier tests the world. |
-
-**Option 1 — keep the tier, theorem in the notes** *(already done as common ground — the precise
-proven domain is now in the entry either way)*. *Costs:* the standing table's "4 calibrated" keeps
-counting a paper whose operative result is a proof. *Gains:* your live-falsifier bookkeeping is
-untouched.
-
-**Option 2 — re-tier, floor as secondary.** *Costs:* one of your two LIVE rows leaves the standing
-table, and every "two live falsifiers" sentence in the record needs re-deriving. *Gains:* the label
-names what the paper actually does.
-
-**Option 3 — allow dual labels for this one paper.** You already answered a shape like this for
-entry 44 ("one paper, two claim-level objects"). *Costs:* a schema change. *Gains:* nothing is
-suppressed.
-
-**My recommendation: option 1.** Not because Reviewer A's ranking argument is right — Reviewer B is
-right that the tiers aren't ordinal — but because the *cost asymmetry* is: option 2 rewrites live
-bookkeeping across the record for a labelling gain, and the theorem is now fully recorded either
-way. If you ever adopt claim-level labels corpus-wide, this paper is the first candidate.
-
-**What is already done regardless:** the precise proven domain is in the entry (both reviewers
-wanted that), the over-broad abstract wording is flagged, and the conjecture is separated from the
-theorem. Nothing waits on this.
 
 ---
 
@@ -626,6 +590,80 @@ category is unchanged.
 ---
 
 ---
+
+
+</details>
+
+---
+
+## CLOSED 2026-08-30 — question 6
+
+**Duho's instruction, verbatim: "answer question 6."** The fifth question returned to me.
+
+**Ruling: entry 51 keeps CALIBRATED-FALSIFIER / LIVE — because you already decided this shape.**
+
+**The premise check that settled it** (the move that overturned my own recommendation on questions
+3, 4 and 2): before choosing between the reviewers, look for an existing convention. **Question 3
+is one.** Entry 44 was a dual paper — a fired model plus a surviving proposal — and your ruling
+put the paper-level tier on its *calibrated-falsifier claim*, with the rest scoped in the standing
+table, whose rows describe **claims, not papers** ("the Sec. 4 model, NOT the framework"; "an
+instrument chain, NOT CNS"). Entry 51 is the same shape with the standing reversed: a live
+falsifier plus a proven theorem. Same convention, same disposition.
+
+**Not the basis:** Reviewer A's "an empirical falsifier is the higher-information label" —
+Reviewer B correctly demolished that; tiers are shapes, not ranks. Nor my filed cost-asymmetry
+argument, which was true but weak. Consistency with your prior ruling is the whole basis.
+
+**Applied:** entry 51's prose closes the question with the ruling; its standing-table row now names
+the contrast the table had been hiding — **the paper's best-warranted content is the theorem**
+(both reviewers verified the derivation) **while the tier-bearing floor is its unreproduced
+corollary**; the theorem's precise proven domain was already in the prose.
+
+**And one correction recorded where it counts:** answering 6 does NOT settle 7 — entries 52/53
+carry no falsifier, so the question-3 precedent cannot reach them. Question 7's filing now says so.
+
+<details><summary>The question as originally filed</summary>
+
+### 6. A paper that proves an impossibility AND carries your one live falsifier. Which label leads?
+
+**The stake.** Entry 51 (Popławski 2010) is one of your two live calibrated falsifiers. Reading it
+for the census showed its **title result is a proven impossibility**: a Dirac field in
+Einstein–Cartan gravity cannot be a point, a system of points, or (under stated symmetry) the
+singular ring — a real derivation, not a hope. **Both reviewers read the paper in full and agree
+the proof is rigorous.** The mass floor your falsifier hangs on is a *corollary* of it.
+
+**So the paper is genuinely two things, and the reviewers split on which one the label should name:**
+
+| | says | reasoning |
+|---|---|---|
+| Reviewer B (GPT) | **Re-tier to impossibility-proof; keep the falsifier as a secondary claim.** | The no-go is the title, the abstract's first result, and the whole point of the analysis. The tiers describe claim shapes; they are not a ranking where a number beats a theorem. The floor is downstream, heuristic, and currently *unreproduced from the paper's own inputs*. |
+| Reviewer A (Gemini) | **Keep calibrated-falsifier; theorem into the notes.** | An empirical falsifier is the higher-information label: it can kill the physical theory with data. The theorem restricts model space; the falsifier tests the world. |
+
+**Option 1 — keep the tier, theorem in the notes** *(already done as common ground — the precise
+proven domain is now in the entry either way)*. *Costs:* the standing table's "4 calibrated" keeps
+counting a paper whose operative result is a proof. *Gains:* your live-falsifier bookkeeping is
+untouched.
+
+**Option 2 — re-tier, floor as secondary.** *Costs:* one of your two LIVE rows leaves the standing
+table, and every "two live falsifiers" sentence in the record needs re-deriving. *Gains:* the label
+names what the paper actually does.
+
+**Option 3 — allow dual labels for this one paper.** You already answered a shape like this for
+entry 44 ("one paper, two claim-level objects"). *Costs:* a schema change. *Gains:* nothing is
+suppressed.
+
+**My recommendation: option 1.** Not because Reviewer A's ranking argument is right — Reviewer B is
+right that the tiers aren't ordinal — but because the *cost asymmetry* is: option 2 rewrites live
+bookkeeping across the record for a labelling gain, and the theorem is now fully recorded either
+way. If you ever adopt claim-level labels corpus-wide, this paper is the first candidate.
+
+**What is already done regardless:** the precise proven domain is in the entry (both reviewers
+wanted that), the over-broad abstract wording is flagged, and the conjecture is separated from the
+theorem. Nothing waits on this.
+
+---
+
+
 
 
 </details>

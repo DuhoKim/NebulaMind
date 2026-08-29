@@ -93,7 +93,7 @@ no intermediate step**, the whole inference carried by the words "from which"; t
 abstract repeats the same assertion, and a published erratum exists correcting equations 21, 26 and
 29 — not this estimate. **Duho closed open question 2 by returning it to me; the ruling is that this
 stays an unreproduced step and is NOT called an error** — *and both seats hold that acquiring the
-publisher version of record is still owed before any stronger wording is considered* (`b13`, arithmetic confirmed by both seats; shortfall 3.1–4.1 decades, and refining the inputs widens it). *(Read "DOES NOT FOLLOW" until CGATE_Q4 pointed out that converts a failure to reproduce into a proof of non-entailment and prejudges **open question 2**, which is still Duho's.)* | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
+publisher version of record is still owed before any stronger wording is considered* (`b13`, arithmetic confirmed by both seats; shortfall 3.1–4.1 decades, and refining the inputs widens it). *(Read "DOES NOT FOLLOW" until CGATE_Q4 pointed out that converts a failure to reproduce into a proof of non-entailment and prejudges **open question 2**, which is still Duho's.)* **Contrast, added at the Q6 ruling: the paper's best-warranted content is its Papapetrou nonsingularity THEOREM (both seats verified the derivation; domain in the entry's prose) — the tier-bearing floor is its unreproduced corollary.** | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
 | 44 | CALIBRATED-FALSIFIER | **FIRED** | **EXPLICIT AND UNDISPUTED for the claim in this row** — the Sec. 4 model derives n_s = 1 openly; observation then rejected it at 8σ, which is its *standing*, not a failure of its derivation. **What lacks warrant is the successor**: an uncomputed ~4% correction sized to the measurement it must reproduce, deferred by the authors. *(Read "the warrant is what died" until CGATE_Q4 showed that collapses warrant into standing and defeats the point of a separate axis.)* | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
 
 So: **4 calibrated — 2 live, 2 fired — and TWO bear directly on a black-hole-universe theory:
@@ -440,10 +440,16 @@ nonzero Dirac field cannot be a single-pole point distribution or a system of su
 for the Dirac–Kerr–Newman construction, it cannot be the singular ring considered there.* The
 abstract's unrestricted "one- or two-dimensional surfaces" wording exceeds the proof — the
 string-to-ring step is introduced by "from symmetry considerations we expect" — and the
-all-fermionic-collapse claim is the paper's own conjecture, not this theorem. **The seats SPLIT on
-whether this dual paper should be re-tiered to THEORETICAL-OBSTRUCTION with the floor as a
-secondary claim (CGATE) or keep CALIBRATED-FALSIFIER with the theorem in prose (AGATE) — filed as
-open question 6; tier UNCHANGED pending Duho.** Original one-liner; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg (~10⁴³ GeV).
+all-fermionic-collapse claim is the paper's own conjecture, not this theorem. **QUESTION 6 RULED 2026-08-30** (Duho's instruction, verbatim: "answer question 6", returned to me
+as with questions 1–4): **the tier stays CALIBRATED-FALSIFIER / LIVE — on the question-3 precedent,
+not on a ranking of tiers.** Entry 44 established the corpus's convention for dual papers: when a
+paper carries a calibrated-falsifier claim, the paper-level tier records that claim and the other
+content is scoped in the standing table, whose rows describe *claims* ("the Sec. 4 model, NOT the
+framework"; "an instrument chain, NOT CNS"). Applying the same convention here: the tier follows the
+floor-falsifier; the Papapetrou theorem lives in this prose with its precise proven domain and is
+named in the table row. *(AGATE's "an empirical falsifier is the higher-information label" is NOT
+the basis — CGATE correctly showed the tiers are shapes, not ranks. The basis is consistency with
+the ruling Duho already made.)* Original one-liner; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg (~10⁴³ GeV).
 **The author's stated test is the LHC route**, verbatim: "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ~10⁴ GeV, cannot produce micro black holes … if the four-dimensional ECKS theory is a correct theory of gravity." One-sided and positive-detection only: a confirmed black hole far below the ~10¹⁶ kg floor fires it; a null LHC search fires nothing. LIVE/unfired. **MEASUREMENT SIDE PINNED 2026-08-29** — this previously read "CMS reports no
 evidence for microscopic black holes as of 2025-12" with **no citation of any kind**. Now
 receipted: `2604.10732_clean.txt` (CMS, 13 TeV, 138 fb⁻¹) excludes semiclassical black holes and
