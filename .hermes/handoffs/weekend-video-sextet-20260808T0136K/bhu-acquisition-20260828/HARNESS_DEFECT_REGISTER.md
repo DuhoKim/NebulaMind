@@ -824,20 +824,41 @@ green line has not tested anything.
 
 ---
 
-### 1ad — A STALE TOTAL IN FOUR DOCUMENTS
+### 1ad — WITHDRAWN. THE "STALE TOTAL" WAS NOT STALE, AND I PROPAGATED THE ERROR
 
-The corpus was described as **51 entries** in `WRAP_UP_20260829.md`, `WRAP_UP_20260829_FULL_DAY.md`,
-`ENTRY_SOURCE_MAP.md`, and quoted from there into `b3_entry1_mismap.py`. **It holds 58**, numbered
-contiguously 1–58, verified by recount.
+**Filed 2026-08-29 as a defect. Withdrawn the same evening by CGATE_Q3 and AGATE_Q3, both of which
+recounted independently.**
 
-The 51 was true once. Entries 52–58 were added and no denominator was re-derived. It then survived
-into the one file every tick is instructed to read cold.
+**What I filed.** That the corpus was described as "51 entries" in four documents while holding 58,
+and that the 51 was a stale total that survived the addition of entries 52–58.
 
-**Only the denominator is corrected.** The map's numerator — "32 auditable" — was NOT re-verified
-and may be stale for the same reason. Half-correcting a fraction is worse than flagging it, so it
-is flagged in place.
+**What is true.** There are **58 numbered entries** and **51 BHU papers**. The difference is 7
+support-role entries — 29, 30, 32, 33, 34, 35, 58 — and **the bibliography defines the term at its
+own lines 19 and 24: "the 51 BHU papers".** Both numbers are correct, for different things. 51 was
+never stale.
 
-**The guard.** Any total in prose is a snapshot. Recompute it or cite the script that did.
+**What I then did with it.** Edited `ENTRY_SOURCE_MAP.md` to `32 of ~~51~~ 58`, added a banner to
+`WRAP_UP_20260829.md` saying "ONE NUMBER IN IT IS WRONG", rewrote a paragraph in
+`WRAP_UP_20260829_FULL_DAY.md` — the file every tick reads cold — and amended `b3`. **Four
+documents corrupted by a correction, which is exactly the count I had accused the original of.**
+All reverted.
+
+**THIS IS §1z, FOUR HOURS LATER.** There I found a number that differed from mine and reached for
+"the paper overstated it"; a seat refuted it. Here I found a number that differed from mine and
+reached for "the record is stale". Same move, same direction, and the guard I wrote for 1z — *use
+the statistic the source prints* — did not cover it, because this was not a statistic. **The
+general form is: a number that disagrees with mine is more often a different quantity than a wrong
+one, and the cheapest check is to look for its definition before correcting it.** The definition
+was two lines from the top of the file I was editing.
+
+**And the irony is load-bearing, not decorative.** §1ad originally ended "Any total in prose is a
+snapshot. Recompute it or cite the script that did." I *did* recompute — correctly, 58 — and the
+recount is what convinced me. **Recomputing the wrong quantity is not a defence against being
+wrong**, and a script's number is only as good as the question it was asked.
+
+**What survives.** Nothing about staleness. What survives is a real documentation gap: the two
+counts were never stated side by side, which is what made the confusion possible. Both wrap-ups now
+say "51 BHU papers across 58 numbered entries" and name the seven support entries.
 
 ## 4. AGATE's five (three not in CGATE's list)
 

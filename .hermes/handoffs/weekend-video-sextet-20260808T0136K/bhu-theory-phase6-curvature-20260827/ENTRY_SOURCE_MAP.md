@@ -119,11 +119,11 @@ These are rank 3's two primary papers and remain the largest single hole.
 | 25 | `sym14091849_clean.txt` | `391a2510c8be` | publisher page, browser |
 | 26 | `sym14101984_clean.txt` | `01aad28a7d44` | publisher page, browser |
 
-**Auditable corpus: 30 → 32 of ~~51~~ 58.** *(Denominator corrected 2026-08-29: the
-bibliography holds 58 entries, numbered contiguously 1–58 — recounted by script, not read. The 51
-is a stale total that survived the addition of entries 52–58 and had propagated into four
-documents. **The numerator 32 was NOT re-verified** and may also be stale, since some of entries
-52–58 may be pinned; it is left as written rather than half-corrected.)* The Gaztañaga series (23, 24, 25, 26, 27) is now complete,
+**Auditable corpus: 30 → 32 of 51.** *(This line was "corrected" to 58 on 2026-08-29 and
+**that correction was wrong and is reverted**. 51 is not a stale total: the bibliography defines it
+at its own lines 19 and 24 as "the 51 BHU papers", which is the 58 numbered entries minus the 7
+support-role ones — 29, 30, 32, 33, 34, 35, 58. Both numbers are right for different things. See
+harness defect §1ad, rewritten as a withdrawal.)* The Gaztañaga series (23, 24, 25, 26, 27) is now complete,
 which closes the hole under entry 54: phase 6 audited the 2025 PRD paper in depth while its
 parent series sat unacquired.
 

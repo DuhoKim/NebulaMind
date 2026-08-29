@@ -21,8 +21,13 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: **3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT,
-33 CONSISTENCY-ONLY, 4 UNREAD (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
+Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
+by two seats**: **4 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51),
+7 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 32 CONSISTENCY-ONLY, 1 THEORETICAL-OBSTRUCTION, 4 UNREAD
+— sums to 51. *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
+and carry no Testability label, which is why there are 58 entries and 51 papers. Previously read
+"3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL, 3 PROSPECT, 33 CONSISTENCY-ONLY, 4 UNREAD",
+which predates entry 44's re-tier and omitted the obstruction class.)* (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
 Batch-9 correction: entry 6 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL — the 1992
 text contains no mass-threshold falsifier; that class had been inherited from the entry-7 chain
 at triage. The branch's calibrated falsifiers are entries 7 and 31.
@@ -88,9 +93,11 @@ campus address (Duho's insight — the Studio is inside the licensed range). Els
 same way and CNU does NOT subscribe to the pre-1995 backfile ("does not subscribe to this
 content", sighted on entry 48's page). The true credential wall is the 4 Elsevier papers — 42,
 47, 48, 50 — ≈8%, needing document delivery / interlibrary loan, not just campus IP. Notes per paper in
-`bhu-reading-20260823/`. The family now holds TWO live calibrated falsifiers: entry 54 (closed
-curvature window; DESI decides) and entry 31 (no neutron star above Smolin's stated 2.5 M☉ bar —
-live as stated, though C08 adjudicated its Brown–Bethe instrument limb broken at ≥8σ). Reading
+`bhu-reading-20260823/`. **SUPERSEDED 2026-08-29 — this read "TWO live calibrated falsifiers: entry 54 … and entry 31".
+Entry 54 is no longer calibrated** (re-tiered 2026-08-28 to QUALITATIVE-DIRECTIONAL; its Eq. 27 is
+not a predicted window). The live calibrated falsifiers are **entry 31** (no neutron star above
+Smolin's stated 2.5 M☉ bar — live as stated, though C08 adjudicated its Brown–Bethe instrument limb
+broken at ≥8σ) and **entry 51**. The fired ones are entries 7 and 44. See the standing table in §0. Reading
 corrected three triage-derived record claims in batches 1–5 and this floor claim in batch 6).
 
 ---
@@ -789,7 +796,7 @@ signature survives. This is also the only published route that touches the axis 
 (Appendix A1) without using the unpublished preprint as a base.
 
 **2. The CNS falsifier — entries 6 + 7 (+ the entry-29 measurements).**
-The family's one calibrated number-plus-threshold. A strict night would recompute the Brown–Bethe
+One of the family's four calibrated number-plus-threshold entries, and the CNS branch's. *(Read "The family's one calibrated number-plus-threshold" until 2026-08-29; there are now four — 7, 31, 44, 51.)* A strict night would recompute the Brown–Bethe
 kaon-condensate M_max chain against modern EoS constraints and convert our record's "falsified via
 limb 2" adjudication into a quantitative credibility statement (including whether J0952−0607
 survives its [VERIFY]). Highest rigor-per-hour in the whole bibliography; the caveat is that it
@@ -805,7 +812,7 @@ scale is fitted from the anomalies it explains.
 **4. Roupas 2022 — entry 21.**
 A published "detectable" claim with a named instrument band (μHz–Hz, LISA-class). The strict
 question is sharp and cheap: does the body derive an amplitude and rate, or is "detectable"
-uncalibrated? If a number exists, this becomes the family's second calibrated falsifier; if not,
+uncalibrated? If a number exists, this becomes a **fifth** calibrated falsifier *(the ordinal read "second" until 2026-08-29; entries 7, 31, 44 and 51 are calibrated)*; if not,
 it reclassifies to PROSPECT-without-a-number and says so in print.
 
 **5. Easson 2026 — entry 22.**

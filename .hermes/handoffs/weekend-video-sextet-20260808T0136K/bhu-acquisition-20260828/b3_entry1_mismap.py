@@ -82,7 +82,7 @@ print(f"   map lists entry 46 among the UNPINNED                       : {bool(l
 chk("entry 1 has NO pinned source and entry 46 is pinned but recorded as unpinned -- the count "
     "is unchanged, the IDENTITIES are swapped",
     unobtained and bool(listed_unpinned),
-    "so the map's 'auditable corpus: 32 of ...' is right in number and wrong in composition. NOTE 2026-08-29: that line's denominator said 51; the corpus is 58, corrected in the map, and its numerator remains unverified")
+    "so the map's 'auditable corpus: 32 of 51' is right in number and wrong in composition. The 51 is the BHU-PAPER count, not a stale entry count -- I briefly 'corrected' it to 58 on 2026-08-29 and reverted; see defect 1ad")
 
 print("""
 4. THE SERIOUS PART

@@ -132,11 +132,12 @@ borrowed number the sweep has found and the first to four figures. The paper's t
 exact scale-invariance, **was tested and lost** at 8σ. One of my claims was refuted outright and
 is withdrawn in the file. **Battery re-run after all repairs: 31/31 green.**
 
-**A CORRECTION TO THIS FILE'S OWN ARITHMETIC.** Earlier versions said "36 of 51 entries". **The
-bibliography holds 58 entries, numbered contiguously 1–58.** The 51 is a stale total that survived
-the addition of entries 52–58 and was never re-derived. `WRAP_UP_20260829.md` carries the same
-stale figure and is superseded, not repaired. Treat any count in this lane's prose as suspect
-unless a script recomputed it.
+**A CORRECTION TO THIS FILE, AND THEN A CORRECTION TO THE CORRECTION.** This said "36 of 51
+entries"; I declared the 51 stale, "fixed" it to 58 in three documents, and **was wrong**. There
+are 58 numbered entries and **51 BHU papers** — the difference is 7 support-role entries (29, 30,
+32, 33, 34, 35, 58), and the bibliography defines the term at its own lines 19 and 24. Both numbers
+are correct for different things; all my "corrections" are reverted. Use **51** for papers and
+**58** for entries, and say which.
 
 The register's §1h table says, per entry, what each conclusion rested on **before** and **now**.
 Nine re-derived, one named limit, none unknown.
@@ -169,8 +170,8 @@ is filed without a read.
 agree on the arithmetic and disagree on that. **Recommendation: get the journal version first** —
 we hold only the preprint and it never shows the step.
 
-**Not blocked, not done:** the corpus is **58** entries, of which the large majority remain
-unaudited; the sweep is parked by redirect, not by obstacle. **Entry 44 is the standing next
+**Not blocked, not done:** **51 BHU papers** across **58 numbered entries**, of which the large
+majority remain unaudited; the sweep is parked by redirect, not by obstacle. **Entry 44 is the standing next
 target** — it surfaced this evening as a real sweep candidate and exactly one sentence of it has
 ever been read. The highest-value real-world item is not ours to do — an independent mass for a black
 widow by a non-optical method would settle far more than another audit.

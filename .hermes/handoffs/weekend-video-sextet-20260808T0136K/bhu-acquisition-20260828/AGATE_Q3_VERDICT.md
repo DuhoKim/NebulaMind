@@ -1,0 +1,9 @@
+Q3_IMPL_NARROWED_STALE_COUNT
+
+1. **Claim in Item 4:** True. Entry 44 is indeed a black-hole-universe construction (holographic big bang from a 5D black hole), and its falsifier ($n_s = 1$) fired directly against its own cosmological model. The distinction drawn against Entry 7 is fair, as Entry 7's falsification applied to an auxiliary instrument chain (kaon-condensation EoS) rather than the cosmological model itself.
+2. **"What it fires" Scoping:** Honest and precise. The table explicitly restricts the firing to the Section 4 thermal free 5D model, acknowledging that the broader holographic framework and the proposed ~4% correction survive as promissory ideas.
+3. **Item 3 Scope:** Defensible. Extending the `/ FIRED` and `/ LIVE` tags to entries 7 and 31 did not invent new adjudications; it merely standardized the inline labels using the already-approved standing table, satisfying the implicit goal of making the collection show at a glance which papers were actually tested.
+4. **Did anything break?** Yes. While the Python script used to recompute the overall tally accurately counted the 58 verified entries (and correctly tallied 4 calibrated, 7 directional, etc.), the implementation missed a stale sentence on line 24 of the bibliography itself: *"Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL"*. This sentence still reflects the old counts before entries 44 and 54 were re-tiered.
+5. **Mislabeled Entries:** No other entries are currently mislabeled by this reasoning. The other `QUALITATIVE-DIRECTIONAL` and `PROSPECT` entries either retrodict known anomalies (e.g., Gaztañaga's CMB cutoff) or make directional claims that lack a finite-precision threshold to be falsified (e.g., Entry 54's $\Omega_k < 0$). Entry 44 was unique in making a mathematically exact prediction that was empirically ruled out.
+
+I was able to verify all statements and counts directly; nothing was left unverified.
