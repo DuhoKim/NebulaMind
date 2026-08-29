@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — three decisions
+## OPEN — two decisions
 
 > **Numbering note, 2026-08-29.** These read **2, 3, 1** and the new one was numbered **3**,
 > which was already taken by a question closed the same evening — two different "question 3" in the
@@ -130,81 +130,6 @@ category is unchanged.
 
 ---
 
-### 4. A paper's prediction is fine. The reasoning behind it is under attack. Does it keep its label?
-
-**The stake.** Smolin's 2004 paper is the one entry in this collection that makes a sharp,
-still-open prediction: no neutron star heavier than 2.5 solar masses. We call it a *calibrated
-falsifier* — a real number, a real threshold, not yet crossed.
-
-Tonight I found and read the published criticisms of it, which this collection had never held. **None
-of them says the number is wrong.** What they say is that the *reasoning that produces the number*
-doesn't work — that the argument needs every possible change to the laws of physics to make black
-holes rarer, and some changes plainly make them commoner.
-
-**So: is a prediction still a falsifier for a theory, if the theory arguably doesn't produce it?**
-
-**The two reviewers split, and this is the only thing they disagreed about.**
-
-| | says | reasoning |
-|---|---|---|
-| Reviewer A (Gemini) | **The label must fall.** | A theory can't be credited with a falsifier its own logic doesn't generate. If the reasoning is broken, the prediction isn't the theory's to make, and the label is flattering it. |
-| Reviewer B (GPT) | **The label stays.** | The label describes the *shape* of a claim — a number with a threshold — not whether the reasoning behind it is sound. The bar exists and hasn't been crossed. Doubts about the reasoning belong in the notes, not the label. |
-
-**Option 1 — keep it (Reviewer B).** *Costs:* the collection's flagship claim keeps a strong label
-while its foundations are publicly disputed, and a reader who only scans labels never learns that.
-*Gains:* labels stay a description of claim shape and don't drift into being a quality score.
-
-**Option 2 — drop or downgrade it (Reviewer A).** *Costs:* we would be ruling on a 30-year-old
-physics dispute ourselves, on the basis of three papers, one of which is still unread and paywalled.
-*Gains:* the label stops implying more than the entry can support.
-
-**Option 3 — add a third column.** We already record *what kind of claim* it is and *whether it has
-fired*. This would add *how well-founded the reasoning is*. *Costs:* a third axis to maintain across
-58 entries, and it is the most subjective of the three. *Gains:* both reviewers get what they want,
-and nothing is hidden.
-
-**NEW EVIDENCE, and it cuts against the side I was leaning toward.** I went looking for whether the
-criticism actually reaches the prediction, and found something that sharpens the question rather
-than settling it (`b23_which_parameter.py`, gated `PARAM_REFUTED_INFERENCE` /
-`PARAM_REFUTED_DEFENCE_INFERENCE`; both reviewers read the paper end to end).
-
-- **The prediction runs through a different quantity than the criticism attacks.** The critics'
-  examples are the fine-structure constant and the mass limit for collapse. Smolin's prediction runs
-  through the *strange quark mass*. So the criticism does not reach the prediction directly — one
-  reviewer was right about that.
-- **But the prediction has exactly the shape the criticism attacks.** Smolin's own words: a heavy
-  neutron star refutes him because a decrease in that quantity "would lead to a world with a lower
-  upper mass limit for neutron stars, and therefore more black holes." That *is* the "changing a
-  parameter makes black holes commoner" problem — the other reviewer was right about that.
-- **I then argued that this means Smolin answered his critics by making their objection testable, so
-  the reasoning is defended after all. Both reviewers refuted that, flatly.** He answers those
-  critics in a different section, about something else; he introduces the prediction to answer a
-  *different* objection — that his idea isn't testable at all. And making one quantity testable does
-  not answer a complaint about *every* quantity. As one put it: **if the critics are right about
-  even one of their examples, the theory is already in trouble, and Smolin never addresses it.**
-- **Both reviewers also said, independently, that I was smuggling an answer to this very question
-  into what I called evidence for it.** They were right. I am recording that here rather than
-  quietly dropping it, because it means my recommendation below should be read as a preference and
-  not as a finding.
-- **One more thing worth your attention:** the prediction depends on a piece of nuclear physics
-  (kaon condensation) that Smolin himself says "may be sufficiently inaccurate". If that is wrong,
-  a heavy neutron star disproves *that physics*, not his cosmology — which is exactly what this
-  collection already records happening to a different entry.
-
-**My recommendation: option 3, then option 1 if you don't want a third column.** The disagreement
-is real but it isn't actually about this one paper — it's about whether our labels describe a
-claim's *shape* or its *strength*. A third column answers that once instead of per entry.
-
-**Why this is not mine to decide.** Two reviewers, opposite answers, and it changes a tier — every
-one of those is a stop condition on its own.
-
-**What is already done regardless:** the three criticisms are acquired and pinned, two fully read
-and gated, the findings recorded, and **entry 31's label is untouched**. The fourth (Silk, *Science*
-1997) is paywalled — if you can reach it through a university login, that would settle more than
-anything else here.
-
----
-
 ## SETTLED — recorded so nothing looks still-open
 
 | | question | ruling |
@@ -295,6 +220,128 @@ stronger than a tier change — it asks whether one paper can hold two.
 
 **Nothing waits on it.** The audit is complete and committed, the reasoning is recorded, and the
 paper's current label is untouched.
+
+
+</details>
+
+---
+
+## CLOSED 2026-08-29 — question 4
+
+**Duho's instruction, verbatim: "answer question 4".** Read, as with question 3, as returning the
+decision to me. **If you meant "explain it", say so — it is one table edit to revert.**
+
+**My answer: option 3, the third column — and my costing of it was wrong in your favour.**
+
+**What decided it, and it was not my judgement about the physics.** I checked what the record says
+a tier *is* before ruling on whether a disputed warrant changes one. It says: *"testability classes
+per brief: **CALIBRATED-FALSIFIER** (number + threshold)"*. **The tier is defined by the shape of
+the claim.** So Reviewer B's position is not an opinion — it is the record's own definition.
+Adopting Reviewer A's would mean redefining "testability class" retroactively across 51 papers on
+the strength of one dispute, and then re-auditing all of them under the new meaning.
+
+But Reviewer A is right that something real would go unrecorded. **Both are right about different
+axes, and the record had only two.**
+
+**The cost objection I gave you was wrong.** I told you a third column meant maintaining a
+subjective judgement across 58 entries. It doesn't: **a warrant only exists where there is a
+calibrated claim to have a warrant for.** A consistency-only paper has no falsifier whose reasoning
+could be disputed. The column lives on the standing table, which has **four rows**.
+
+**And filling those four rows showed something the record could not previously say.** Three of the
+four have documented warrant problems, every one of them found in the last two days:
+
+| entry | warrant |
+|---|---|
+| 7 | not disputed here — though its firing was already scoped to an instrument chain, not to CNS |
+| 31 | **disputed**, by pinned published criticism, unanswered on the parameters it names |
+| 51 | **does not follow from the paper's own inputs** — six routes tried, none reaches its number |
+| 44 | **the warrant is what died** — the computable core was tested and lost |
+
+**Only one of this collection's four sharpest claims has reasoning nobody has challenged.** That is
+a fact about the state of this field, it was invisible while the record had two axes, and it is
+worth more than the labelling dispute that produced it.
+
+**What did NOT change: no tier, no standing, and no definition.** Entry 31 is still
+CALIBRATED-FALSIFIER / LIVE. The dispute now sits in a column instead of being argued about in the
+label.
+
+<details><summary>The question as it was originally filed</summary>
+
+### 4. A paper's prediction is fine. The reasoning behind it is under attack. Does it keep its label?
+
+**The stake.** Smolin's 2004 paper is the one entry in this collection that makes a sharp,
+still-open prediction: no neutron star heavier than 2.5 solar masses. We call it a *calibrated
+falsifier* — a real number, a real threshold, not yet crossed.
+
+Tonight I found and read the published criticisms of it, which this collection had never held. **None
+of them says the number is wrong.** What they say is that the *reasoning that produces the number*
+doesn't work — that the argument needs every possible change to the laws of physics to make black
+holes rarer, and some changes plainly make them commoner.
+
+**So: is a prediction still a falsifier for a theory, if the theory arguably doesn't produce it?**
+
+**The two reviewers split, and this is the only thing they disagreed about.**
+
+| | says | reasoning |
+|---|---|---|
+| Reviewer A (Gemini) | **The label must fall.** | A theory can't be credited with a falsifier its own logic doesn't generate. If the reasoning is broken, the prediction isn't the theory's to make, and the label is flattering it. |
+| Reviewer B (GPT) | **The label stays.** | The label describes the *shape* of a claim — a number with a threshold — not whether the reasoning behind it is sound. The bar exists and hasn't been crossed. Doubts about the reasoning belong in the notes, not the label. |
+
+**Option 1 — keep it (Reviewer B).** *Costs:* the collection's flagship claim keeps a strong label
+while its foundations are publicly disputed, and a reader who only scans labels never learns that.
+*Gains:* labels stay a description of claim shape and don't drift into being a quality score.
+
+**Option 2 — drop or downgrade it (Reviewer A).** *Costs:* we would be ruling on a 30-year-old
+physics dispute ourselves, on the basis of three papers, one of which is still unread and paywalled.
+*Gains:* the label stops implying more than the entry can support.
+
+**Option 3 — add a third column.** We already record *what kind of claim* it is and *whether it has
+fired*. This would add *how well-founded the reasoning is*. *Costs:* a third axis to maintain across
+58 entries, and it is the most subjective of the three. *Gains:* both reviewers get what they want,
+and nothing is hidden.
+
+**NEW EVIDENCE, and it cuts against the side I was leaning toward.** I went looking for whether the
+criticism actually reaches the prediction, and found something that sharpens the question rather
+than settling it (`b23_which_parameter.py`, gated `PARAM_REFUTED_INFERENCE` /
+`PARAM_REFUTED_DEFENCE_INFERENCE`; both reviewers read the paper end to end).
+
+- **The prediction runs through a different quantity than the criticism attacks.** The critics'
+  examples are the fine-structure constant and the mass limit for collapse. Smolin's prediction runs
+  through the *strange quark mass*. So the criticism does not reach the prediction directly — one
+  reviewer was right about that.
+- **But the prediction has exactly the shape the criticism attacks.** Smolin's own words: a heavy
+  neutron star refutes him because a decrease in that quantity "would lead to a world with a lower
+  upper mass limit for neutron stars, and therefore more black holes." That *is* the "changing a
+  parameter makes black holes commoner" problem — the other reviewer was right about that.
+- **I then argued that this means Smolin answered his critics by making their objection testable, so
+  the reasoning is defended after all. Both reviewers refuted that, flatly.** He answers those
+  critics in a different section, about something else; he introduces the prediction to answer a
+  *different* objection — that his idea isn't testable at all. And making one quantity testable does
+  not answer a complaint about *every* quantity. As one put it: **if the critics are right about
+  even one of their examples, the theory is already in trouble, and Smolin never addresses it.**
+- **Both reviewers also said, independently, that I was smuggling an answer to this very question
+  into what I called evidence for it.** They were right. I am recording that here rather than
+  quietly dropping it, because it means my recommendation below should be read as a preference and
+  not as a finding.
+- **One more thing worth your attention:** the prediction depends on a piece of nuclear physics
+  (kaon condensation) that Smolin himself says "may be sufficiently inaccurate". If that is wrong,
+  a heavy neutron star disproves *that physics*, not his cosmology — which is exactly what this
+  collection already records happening to a different entry.
+
+**My recommendation: option 3, then option 1 if you don't want a third column.** The disagreement
+is real but it isn't actually about this one paper — it's about whether our labels describe a
+claim's *shape* or its *strength*. A third column answers that once instead of per entry.
+
+**Why this is not mine to decide.** Two reviewers, opposite answers, and it changes a tier — every
+one of those is a stop condition on its own.
+
+**What is already done regardless:** the three criticisms are acquired and pinned, two fully read
+and gated, the findings recorded, and **entry 31's label is untouched**. The fourth (Silk, *Science*
+1997) is paywalled — if you can reach it through a university login, that would settle more than
+anything else here.
+
+---
 
 
 </details>

@@ -51,14 +51,27 @@ gate verdicts for entry 51 are in that lane.
 
 **TIER COUNT IS NOT LIVE-FALSIFIER COUNT. Read both lines before quoting either.** Added
 2026-08-28 (Tori) because I have now mis-stated this tally twice in one day, in both directions.
-The tier describes the CLAIM; a separate axis describes its STANDING:
+The tier describes the CLAIM — *"testability classes per brief: CALIBRATED-FALSIFIER (number +
+threshold)"*, i.e. its **shape**, not whether the reasoning behind it is sound. Separate axes
+describe its **STANDING** (has it fired) and, added 2026-08-29, its **WARRANT** (does the theory
+actually produce it).
 
-| entry | tier | standing | what it fires |
-|---|---|---|---|
-| 7 | CALIBRATED-FALSIFIER | **FIRED** | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
-| 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
-| 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
-| 44 | CALIBRATED-FALSIFIER | **FIRED** | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
+> **Why the warrant column exists.** Duho returned open question 4 to me with the instruction
+> *"answer question 4"*. The two reviewers had split: one held that a theory cannot keep a
+> falsifier its own logic does not generate, so the tier must fall; the other that the tier
+> describes claim shape and doubts about reasoning belong in notes. **Both are right about
+> different axes, and the record had only two.** Dropping the tier would mean redefining
+> "testability class" retroactively across 51 papers on the strength of one dispute; leaving it
+> alone would hide a real one. **A warrant column costs four rows, not fifty-eight** — a
+> consistency-only paper has no falsifier whose reasoning could be disputed — which is the cost
+> objection I put to Duho and got wrong. **No tier and no standing changed.**
+
+| entry | tier | standing | warrant | what it fires |
+|---|---|---|---|---|
+| 7 | CALIBRATED-FALSIFIER | **FIRED** | **not disputed here** — but note this record already scopes what it fired: an instrument chain, not CNS. No published challenge to its derivation is pinned. | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
+| 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | **DISPUTED, and the challenge is pinned** — Rothman & Ellis 1993 argue the selection argument needs every parameter change to reduce black holes while α and M_LC plausibly do the opposite; Harrison 1995 argues a recollapsing closed universe yields at most one offspring, removing differential reproduction. Smolin answers neither on those parameters. Read and gated 2026-08-29 (`b20`, `b21`, `b23`). **Silk 1997 still unread (paywalled).** | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
+| 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | **DOES NOT FOLLOW FROM THE PAPER'S OWN INPUTS** — none of six routes from its stated ρ_Ce reaches the printed 10¹⁶ kg floor; the shortfall is 3.1–4.1 decades in density and refining the inputs widens it (`b13`, arithmetic confirmed by both seats). Whether to call that an error is **open question 2**. | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
+| 44 | CALIBRATED-FALSIFIER | **FIRED** | **the warrant is what died** — the computable core (exact scale invariance) was tested and lost at 8σ. What remains is an uncomputed ~4% correction whose size is read off the measurement it must reproduce, with the calculation deferred by the authors. | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
 
 So: **4 calibrated — 2 live, 2 fired — and TWO bear directly on a black-hole-universe theory:
 entry 31, live; and entry 44, ALREADY FIRED.** *(Corrected 2026-08-29 when entry 44 was filed here.
