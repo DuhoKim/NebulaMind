@@ -1,0 +1,620 @@
+[2007.10999] [2007.10999] On the maximum mass of neutron stars and GW190814
+
+[2007.10999] On the maximum mass of neutron stars and GW190814
+
+On the maximum mass of neutron stars and GW190814Journal: ApJL
+
+Daniel A. Godzieba
+
+OrcID: 0000-0001-7454-0104
+
+Email: dag5611@psu.edu
+
+Affiliation: Department of Physics, The Pennsylvania
+State University, University Park, Pennsylvania 16802
+
+  
+David Radice
+
+OrcID: 0000-0001-6982-1008
+
+Email: dur566@psu.edu
+
+Affiliation: Institute for Gravitation & the Cosmos, The Pennsylvania State University, University Park, PA 16802
+
+Affiliation: Department of Physics, The Pennsylvania
+State University, University Park, Pennsylvania 16802
+
+Affiliation: Department of Astronomy & Astrophysics, The Pennsylvania State University, University Park, PA 16802
+
+  
+Sebastiano Bernuzzi
+
+OrcID: 0000-0002-2334-0935
+
+Email: sebastiano.bernuzzi@uni-jena.de
+
+Affiliation: Theoretisch-Physikalisches Institut, Friedrich-Schiller-Universität Jena, 07743, Jena, Germany
+
+Received XXX; Revised YYY; Accepted ZZZ
+
+Abstract
+ 
+Motivated by the recent discovery of a compact object with mass in the range 2.5−2.67​M⊙2.5{-}2.67\,\mathrm{M}_{\odot} in the binary merger GW190814, we revisit the question of the maximum mass of neutron stars (NSs). We use a Markov Chain Monte Carlo approach to generate about 2 million phenomenological equations of state with and without first order phase transitions. We fix the crust equation of state and only assume causality at higher densities. We show how a strict upper bound on the maximum NS mass can be inferred from upcoming observation of NS radii and masses. The derived upper bounds depend only on relativity and causality, so it is not affected by nuclear physics uncertainties. We show how a lower limit on the maximum mass of NSs, in combination with upcoming measurements of NS radii by LIGO/Virgo and NICER, would constrain the equation of state of dense matter. Finally, we discuss the implications for GW190814.
+
+ 
+
+Keywords: neutron stars (1108) —
+nuclear astrophysics (1129)
+
+I Introduction
+
+One of the most striking predictions of general relativity is the existence of a maximum mass for any static matter configuration. The value of the maximum mass for nonrotating neutron stars (NSs; Mmax{M_{\max}}) is known to be the most important parameter controlling the outcome of binary NS mergers (Shibata & Taniguchi 2006; Sekiguchi et al. 2011; Hotokezaka et al. 2013; Bauswein et al. 2013; Palenzuela et al. 2015; Bernuzzi et al. 2016; Lehner et al. 2016; Dietrich et al. 2017; Piro et al. 2017; Radice et al. 2018b; Köppel et al. 2019), and determines the possible formation of black holes (BHs) in core-collapse supernovae (O’Connor & Ott 2011; Schneider et al. 2020). Moreover, the knowledge of the maximum NS mass would strongly constrain the (poorly known) equation of state (EOS) of matter at several times nuclear density (Hebeler et al. 2010; Lattimer 2012; Hebeler et al. 2013; Özel & Freire 2016; Annala et al. 2018; Tews et al. 2018; Annala et al. 2020; Miller et al. 2019b).
+
+Recently, the LIGO/Virgo collaboration announced the discovery of a compact binary merger, GW190814, containing a compact object with mass 2.5−2.67​M⊙2.5{-}2.67\,{\mathrm{M}_{\odot}} (Abbott et al. 2020). This is either the most massive NS, or the least massive BH ever found. Gravitational wave (GW) observations did not reveal the nature of this object. However, understanding whether it was a NS or a BH would have profound implications for our understanding of high-density physics and the formation of compact objects in the Universe (Abbott et al. 2020).
+
+The theoretical upper limit on Mmax{M_{\max}} is of 3.2​M⊙3.2\,{\mathrm{M}_{\odot}} (Rhoades & Ruffini 1974). This limit rests on weak assumptions on the nature of nuclear forces at around nuclear saturation density (ρnuc≃2.7×1014​g​cm−3\rho_{\text{nuc}}\simeq 2.7\times 10^{14}\,{\rm g}\,{\rm cm}^{-3}), and on causality. It can be somewhat reduced if the EOS of matter is assumed to be known (within some uncertainty range) up to some given density (Kalogera & Baym 1996; Hebeler et al. 2013; Tews & Schwenk 2020, e.g.,). Observationally, only lower bounds on the maximum mass of nonrotating NSs are known with high confidence from mass measurements of slowly rotating NSs. The precise determination of the mass of pulsars J1614-2230 (1.908±0.016​M⊙1.908\pm 0.016\,{\mathrm{M}_{\odot}}; Demorest et al. 2010; Fonseca et al. 2016; Arzoumanian et al. 2018), J0348+0432 (2.01±0.04​M⊙2.01\pm 0.04\,{\mathrm{M}_{\odot}}; Antoniadis et al. 2013), J0740+6620 (2.14±0.1​M⊙2.14\pm 0.1\,{\mathrm{M}_{\odot}}; Cromartie et al. 2019), and J2215+5135 (2.27±0.17​M⊙2.27\pm 0.17\,{\mathrm{M}_{\odot}}; Linares et al. 2018) show that Mmax{M_{\max}} should be of at least 2​M⊙2\,{\mathrm{M}_{\odot}}. Multimessenger observations of the binary NS merger GW170817 (Abbott et al. 2017) have been interpreted as an indication of an upper bound on Mmax{M_{\max}} of about 2.3​M⊙2.3\,{\mathrm{M}_{\odot}} (Margalit & Metzger 2017; Rezzolla et al. 2018; Shibata et al. 2019; Ruiz et al. 2018; Shibata et al. 2017). However, this interpretation rests on the poor understanding of the long-term postmerger evolution of NS binaries (Radice et al. 2018a; Radice et al. 2020) and is not universally accepted (Ai et al. 2018; Li et al. 2018; Piro et al. 2019). The tidal deformability data from GW170817 also suggests that Mmax{M_{\max}} should be of about 2.3​M⊙2.3\,{\mathrm{M}_{\odot}} (Lim & Holt 2018; Abbott et al. 2018; Essick et al. 2020), but these results are very sensitive to their prior and model choices (Greif et al. 2019; Lim et al. 2020). This is not surprising, since GW170817 does not probe directly the EOS at the densities relevant for NSs close to the maximum mass. Finally, the statistical analysis of the mass distribution of known NSs (Alsing et al. 2018; Farr & Chatziioannou 2020) also provides a plausible range for Mmax{M_{\max}}, but this analysis suffers from large uncertainties due to the small number of known NSs with high mass and due to possible selection effects. Summarizing, Mmax{M_{\max}} is currently only weakly constrained.
+
+The announcement of GW190814 triggered a renewed interest in the possibility of very massive NSs and the possible implications of the their existence. Most et al. 2020, Zhang & Li 2020, and Dexheimer et al. 2020 argued that the presence of a NS in GW190814 is compatible with a relatively small Mmax{M_{\max}} under the assumption that the NS was rapidly spinning. However, such scenario requires significantly faster rotation than that of any observed millisecond pulsar. Indeed, in order to significantly exceed the maximum mass, a rotating NS must be endowed with a few times 1052​erg10^{52}\,\mathrm{erg} in rotational kinetic energy (Margalit & Metzger 2017)11
+ 1
+ 
+ 
+ 
+ See, however, Safarzadeh & Loeb 2020 for a proposed mechanism for the formation of fast spinning compact objects in binaries.. More exotic interpretations include anisotropic NSs (Roupas 2020) and primordial BHs (Vattis et al. 2020). Tsokaros et al. 2020 and Fattoyev et al. 2020 showed that current EOS models can accommodate present astrophysical constraints on the NS radii and, at the same time, explain a 2.6​M⊙2.6\,{\mathrm{M}_{\odot}} NS, although the resulting EOS is in tension with constraints from heavy-ion collision experiments (Danielewicz et al. 2002). Finally, the possible implications of the existence of a 2.6​M⊙2.6\,{\mathrm{M}_{\odot}} NS for the EOS of dense matter have been explored by Tews et al. 2020 and Lim et al. 2020.
+
+Despite the intense theoretical efforts, the nature of the secondary in GW190814 remains unknown. Here, we derive strict upper bounds on Mmax{M_{\max}} under the sole assumptions of causality and general relativity. With these assumptions, only bulk properties of NSs factor into the upper bound, and thus the upper bound is independent of nuclear physics uncertainties. We show that current astrophysical constraints on the NS EOS are not in tension with a NS in GW190814, but that future measurements of radii and tidal deformabilities could translate into more stringent upper bounds on Mmax{M_{\max}} and exclude that GW190814 was a NS-BH, unless extreme rotation is invoked for the secondary object.
+
+II Methods
+
+The constraints of causality and general relativity define a space of all possible EOSs, referred to as the EOS band. To probe this space in a computationally efficient manner, we utilize a Markov chain Monte Carlo (MCMC) algorithm. We parameterize the EOSs within the band using a variation on the method developed by Read et al. 2009 that approximates each EOS as a continuous piecewise polytrope with four pieces:
+
+p⁡(ρ)={K0​ρΓ0ρ≤ρ0K1​ρΓ1ρ0<ρ≤ρ1K2​ρΓ2ρ1<ρ≤ρ2K3​ρΓ3ρ>ρ2.p(\rho)=\begin{cases}K_{0}\rho^{\Gamma_{0}}\quad\rho\leq\rho_{0}\\
+K_{1}\rho^{\Gamma_{1}}\quad\rho_{0}<\rho\leq\rho_{1}\\
+K_{2}\rho^{\Gamma_{2}}\quad\rho_{1}<\rho\leq\rho_{2}\\
+K_{3}\rho^{\Gamma_{3}}\quad\rho>\rho_{2}.\end{cases}
+
+(1)
+
+The choice of a piecewise polytropic ansatz does not significantly bias the results compared to other EOS representation schemes (Annala et al. 2020; Annala et al. 2018). The first polytrope piece corresponds to the (presumed known) crust EOS, with K0=3.59389×1013K_{0}=3.59389\times 10^{13} [cgs] and Γ0=1.35692\Gamma_{0}=1.35692 (Douchin & Haensel 2001), and is fixed for all EOSs. The choice of the crust EOS does not influence the bulk properties of massive NSs (Rhoades & Ruffini 1974; Most et al. 2018). The last three pieces are specified by six parameters: three transition densities, ρ0∈[0.15​ρnuc,1.2​ρnuc]\rho_{0}\in[0.15\rho_{\text{nuc}},1.2\rho_{\text{nuc}}], ρ1∈[1.5​ρnuc,8​ρnuc]\rho_{1}\in[1.5\rho_{\text{nuc}},8\rho_{\text{nuc}}], ρ2∈[ρ1,8.5​ρnuc]\rho_{2}\in[\rho_{1},8.5\rho_{\text{nuc}}]; and three adiabatic indices, Γ1∈[1.4,5]\Gamma_{1}\in[1.4,5], Γ2∈[0,8]\Gamma_{2}\in[0,8], Γ3∈[0.5,8]\Gamma_{3}\in[0.5,8]. Nuclear saturation density is taken to be ρnuc=2.7×1014​g​cm−3\rho_{\rm nuc}=2.7\times 10^{14}\,{\rm g}\,{\rm cm}^{-3}. The polytropic constants K1K_{1}, K2K_{2}, and K3K_{3} are fixed by requiring the continuity of the EOS. The wide bounds on the possible values for the Γi\Gamma_{i} allow for a diverse variety of EOSs with a wide range of softnesses and includes EOSs with and without first-order phase transitions.
+
+The MCMC algorithm will be discussed in detail in a future publication (Godzieba et al., in prep). The basic aspects of the algorithm are as follows. For each trial EOS we compute sequences of solutions of the Tolman-Oppenheimer-Volkoff (TOV) equations using the publicly available TOVL code that is described in Bernuzzi & Nagar 2008 and Damour & Nagar 2009. The transition probability is determined by whether the physical properties of the EOS are within three weak physical constraints: 1) causality of the maximum mass NS (sound speed cs<cc_{s}<c); 2) Mmax>1.97​M⊙{M_{\max}}>1.97\,{\mathrm{M}_{\odot}}; 3) tidal deformability of the 1.4​M⊙1.4\,{\mathrm{M}_{\odot}} NS Λ1.4<800\Lambda_{1.4}<800. We have verified that our results do not change if the upper limit on Λ1.4\Lambda_{1.4} is set to 4,000. Here, we report the results from the analysis performed with Λ1.4<800\Lambda_{1.4}<800, since this allows for a more dense coverage of the relevant portion of the parameter space.
+
+III Results
+
+We assemble a data set of 1,966,225 phenomenological EOSs. As already mentioned, the maximum value of Mmax{M_{\max}} in our data set is 2.9​M⊙2.9\,{\mathrm{M}_{\odot}}. Much larger masses are found if Λ1.4\Lambda_{1.4} is allowed to be larger than 800800, however these EOSs are strongly disfavored in light of GW170817 (Abbott et al. 2019a; Abbott et al. 2019b). In any case, our conclusions below would not be altered if we included these more stiff EOSs. Our analysis reveals that the set of all EOSs satisfying certain conditions on the NS radii admits stricter upper bounds on Mmax{M_{\max}}. To be concrete, we consider cases in which the radii of reference NSs with masses 1.4​M⊙1.4\,{\mathrm{M}_{\odot}} and 2.14​M⊙2.14\,{\mathrm{M}_{\odot}} – R1.4R_{1.4} and R2.14R_{2.14} – are fixed, and we show that more stringent upper bounds on Mmax{M_{\max}} can be derived in these cases.
+
+We consider at first the impact of restricting the range of R1.4R_{1.4}. The radius of a NS with mass close to 1.4​M⊙1.4\,{\mathrm{M}_{\odot}}, PSR J0030+0451, has been directly measured by NICER (Riley et al. 2019; Miller et al. 2019a). An indirect constraint on R1.4R_{1.4} has also been obtained using multimessenger data from GW170817 (Annala et al. 2018; Most et al. 2018; De et al. 2018; Abbott et al. 2018; Radice & Dai 2019; Capano et al. 2020; Essick et al. 2020). More precise constraints are expected as systematics in NICER data are better understood, and when GW observatories will come back online with increased sensitivity. Finally, R1.4R_{1.4} is known to correlate strongly with the EOS at around twice nuclear saturation density (Lattimer 2012). This makes R1.4R_{1.4} a particularly interesting case.
+
+Figure 1: Distribution of Mmax{M_{\max}} and radius of the 1.4​M⊙1.4\,{\mathrm{M}_{\odot}} NS, R1.4R_{1.4} for about 2 million phenomenological EOSs. Each point is colored according to the value of the sound speed reached in the maximum mass NS (points with smaller max⁡(cs2)\max(c_{s}^{2}) are drawn on top). The red dashed line shows an approximate linear ansatz for the boundary of all physical EOSs in the Mmax−R1.4{M_{\max}}-R_{1.4} plane (see main text for the details).
+
+Fig. 1 shows the joint span of Mmax{M_{\max}} and R1.4R_{1.4} across our data set. We also color each data point according to the maximum value of the sound speed reached in the maximum mass NS predicted by that EOS. As expected in the light of the results of Rhoades & Ruffini 1974, we find that the largest Mmax{M_{\max}} values are reached at the boundary of causality, that is when cs=cc_{s}=c at the highest densities. We also find that the range of Mmax{M_{\max}} decreases substantially as R1.4R_{1.4} decreases. For example, an upper limit on R1.4R_{1.4} of 11​km11\,{\rm km} would imply Mmax≲2.35​M⊙{M_{\max}}\lesssim 2.35\,{\mathrm{M}_{\odot}}. NICER observations of PSR J0030+0451 currently only provide a weak upper bound of R1.4≲14​kmR_{1.4}\lesssim 14\,{\rm km} (Miller et al. 2019a). This measurement is currently not constraining for Mmax{M_{\max}}. GW and electromagnetic (EM) observations of the NS merger in GW170817 place a more stringent constraint R1.4≲13​kmR_{1.4}\lesssim 13\,{\rm km} (De et al. 2018; Abbott et al. 2018; Radice & Dai 2019). However, even this value is still compatible with maximum NS masses of up to ∼2.9​M⊙{\sim}2.9\,{\mathrm{M}_{\odot}}. This is consistent with the findings of Tews & Schwenk 2020 and Fattoyev et al. 2020, who constructed EOS models compatible with GW170817 and reaching maximum masses of ∼2.6−2.9​M⊙{\sim}2.6-2.9\,{\mathrm{M}_{\odot}}.
+
+Figure 2: Distribution of Mmax{M_{\max}} and radius of the 2.14​M⊙2.14\,{\mathrm{M}_{\odot}} NS, R2.14R_{2.14} for about 2 million phenomenological EOSs. Each point is colored according to the tidal deformability of the 1.4​M⊙1.4\,{\mathrm{M}_{\odot}} NS, Λ1.4\Lambda_{1.4} (points with smaller Λ1.4\Lambda_{1.4} are drawn on top). The red dashed line shows an approximate linear ansatz for the boundary of all physical EOSs in the Mmax−R2.14{M_{\max}}-R_{2.14} plane (see main text for the details).
+
+Among the next NICER targets are pulsars J1614-223 (M≃1.908​M⊙M\simeq 1.908\,{\mathrm{M}_{\odot}}) and J0740+6620 (M≃2.14​M⊙M\simeq 2.14\,{\mathrm{M}_{\odot}}). The measurement of their radii has the potential to yield very strong constraints on the EOS of dense matter (Han & Prakash 2020, e.g.,), but also to constrain Mmax{M_{\max}}, as we show in Fig. 2. We find that an upper bound on R2.14R_{2.14} of 12​km12\,{\rm km} would be sufficient to confidently rule out a NS in GW190814, unless fast rotation is invoked. Similarly, if Λ1.4\Lambda_{1.4} can be constrained to be less than 400400 with future GW observations of merging NSs, then Mmax{M_{\max}} would be constrained to be less than ∼2.5​M⊙{\sim}2.5\,{\mathrm{M}_{\odot}}.
+
+In general, we find that the upper bound on Mmax{M_{\max}} can be very well approximated as
+
+Mmax≤α⁡(M)+β⁡(M)​RM,{M_{\max}}\leq\alpha(M)+\beta(M)R_{M},
+
+(2)
+
+where RMR_{M} is the radius in km of a NS of gravitational mass MM and
+
+α\displaystyle\alpha
+=0.45​M⊙−1.22​M,\displaystyle=0.45\,{\mathrm{M}_{\odot}}-1.22\,M,
+
+(3)
+
+β\displaystyle\beta
+=−0.051​M⊙​km−1+0.34​M​km−1.\displaystyle=-0.051\,{\mathrm{M}_{\odot}}\,{\rm km}^{-1}+0.34\,M\,{\rm km}^{-1}.
+
+These coefficients are obtained by performing a linear fit to a set of data points at the upper edge of the distribution that fall within the range 0.95<max⁡(cs2)<10.95<\max(c_{s}^{2})<1 for eight values of MM. We then add a small shift of 0.04​M⊙0.04\,{\mathrm{M}_{\odot}} to α\alpha, which is sufficient to enclose the vast majority of data points. The quality of these approximate expressions can be appreciated from Figs. 1 and 2.
+
+If the secondary in GW190814 is a NS, then the lower bound on the maximum mass is Mmax>2.5​M⊙{M_{\max}}>2.5\,{\mathrm{M}_{\odot}}. Under this assumption, the measurement of the radius of the 1.4​M⊙1.4\,{\mathrm{M}_{\odot}} NS would strongly constrain the EOS up to densities of ∼3​ρnuc{\sim}3\rho_{\rm nuc} (log⁡ρ≃14.9\log\rho\simeq 14.9), as shown in Fig. 3. We find that an EOS supporting Mmax>2.5​M⊙{M_{\max}}>2.5\,{\mathrm{M}_{\odot}} would violate the causal limit if R1.4≲11.38​kmR_{1.4}\lesssim 11.38\ {\rm km}, which can be roughly seen in Fig. 1. We also find that all EOSs supporting Mmax>2.5​M⊙{M_{\max}}>2.5\,{\mathrm{M}_{\odot}} with radii in the range we considered for R1.4R_{1.4} must violate the conformal limit of (cs/c)2<1/3(c_{s}/c)^{2}<1/3 at ∼2​ρnuc{\sim}2\rho_{\rm nuc} (see Fig. 4). The behavior of the sound speed at higher densities depends on R1.4R_{1.4}. Among these constrained EOSs, those that accommodate small radii (between 11.38​km11.38\,{\rm km} and 11.75​km11.75\,{\rm km}) must have max⁡(cs2)≳0.86\max(c_{s}^{2})\gtrsim 0.86. So, while there are extreme EOS very close to the causal limit that lie in the small radius range, there are still EOS in this range that do not approach the causal limit. Thus, we cannot constrain out non-extreme EOS with Mmax>2.5​M⊙{M_{\max}}>2.5\,{\mathrm{M}_{\odot}} and R1.4<11.75​kmR_{1.4}<11.75\ {\rm km}. (If we look at EOSs that support Mmax>2.6​M⊙{M_{\max}}>2.6\,{\mathrm{M}_{\odot}}, we find that the causal limit is violated if R1.4≲11.8​kmR_{1.4}\lesssim 11.8\,{\rm km}, which excludes the previous small radius range.) These measurements would still leave the extreme density part of the EOS (ρ>1015​g​cm−3\rho>10^{15}\,{\rm g}\,{\rm cm}^{-3}) relatively unconstrained. This would likely change if we were to enforce a matching to perturbative QCD at high densities (Annala et al. 2020). We leave this analysis to future work.
+
+Figure 3: All EOSs with Mmax>2.5​M⊙{M_{\max}}>2.5{\mathrm{M}_{\odot}} and 11.25​km<R1.4<12.75​km11.25\ {\rm km}<R_{1.4}<12.75\ {\rm km} plotted as the pressure, pp (dyne/cm2\rm dyne/cm^{2}), as a function of density, ρ\rho (g/cm3\rm g/cm^{3}). EOSs with smaller radii are drawn on top, since they cover a smaller region. The grey shaded region beneath the colored layers represents the full data set of 1,966,225 EOSs.
+
+Figure 4: Sound speed squared for the EOSs with Mmax>2.5​M⊙{M_{\max}}>2.5{\mathrm{M}_{\odot}} and 11.25​km<R1.4<12.75​km11.25\ {\rm km}<R_{1.4}<12.75\ {\rm km} as a function of density, ρ\rho (normalized to ρnuc\rho_{\rm nuc}). EOSs with smaller radii are drawn on top, since they cover a smaller region. We remark that the sound speed is not assumed to be smooth in our EOSs.
+
+IV Conclusions
+
+We revisited the problem of determining the maximum mass for nonrotating NSs Mmax{M_{\max}} using minimal assumptions and a nuclear-physics agnostic approach. Differently from other works, our analysis does not attempt to provide a likely value Mmax{M_{\max}} and is not affected by prior or model choices. Instead, we provide strict upper limits based on the sole assumptions of causality and general relativity. Our results confirm that current astrophysical measurements of radii and tidal deformability of NSs with canonical mass ∼1.4​M⊙{\sim}1.4\ {\mathrm{M}_{\odot}} do not significantly constrain Mmax{M_{\max}}. In particular, we find that the presence of a nonrotating or moderately spinning NSs in GW190814 cannot be excluded. However, future observations constraining the radii of massive NSs have the potential to yield stringent upper bounds on the NS maximum mass and might rule out a nonrotating NSs in GW190814. Our analysis also show that, if the secondary in GW190814 was in fact a NS, then this information, in combination with upcoming measurements of R1.4R_{1.4}, would strongly constraint the EOS to densities up to ∼3​ρnuc{\sim}3\rho_{\rm nuc}. It would also imply that the conformal limit must be violated at ∼2​ρnuc{\sim}2\rho_{\rm nuc}. However, even a stringent upper limit on R1.4R_{1.4} of 11.75​km11.75\,{\rm km}, together with Mmax>2.5​M⊙{M_{\max}}>2.5\,{\mathrm{M}_{\odot}}, could still be accommodated by EOSs that are well below the causal limit. If we assume Mmax>2.5​M⊙{M_{\max}}>2.5\,{\mathrm{M}_{\odot}}, the causal limit is strictly violated for R1.4≲11.38​kmR_{1.4}\lesssim 11.38\,{\rm km}, and if we assume Mmax>2.6​M⊙{M_{\max}}>2.6\,{\mathrm{M}_{\odot}}, the causal limit is strictly violated for R1.4≲11.8​kmR_{1.4}\lesssim 11.8\,{\rm km}.
+
+Our analysis did not make use of the knowledge of the EOS of matter at around nuclear density (Gandolfi et al. 2019). Instead, we treated the EOS at densities beyond those of the crust as being unconstrained. It is likely that, with the inclusion of more information from nuclear theory, more stringent upper bounds on Mmax{M_{\max}} could be derived. However, the fact that our results are broadly consistent with those obtained with more sophisticated approaches (Hebeler et al. 2013; Annala et al. 2018; Tews & Schwenk 2020; Fattoyev et al. 2020) suggests that the extent to which the upper bound might be improved will be modest. Indeed, it is well known that Mmax{M_{\max}} depends most strongly on the EOS at densities of several times that of nuclear saturation (Lattimer 2012).
+
+Our analysis did not consider the possibility of strange quark stars, but our EOS parametrization does allow for hybrid stars with hadronic crusts and a first order QCD phase transition in their interior (Annala et al. 2020, e.g.,). We leave the determination of upper bounds on the maximum mass for self-bound quark stars to a future work. Future work should also consider the implication of X-ray burst (Steiner et al. 2010; Lattimer 2012; Özel & Freire 2016) and laboratory constraints (Danielewicz et al. 2002) on the high density EOS on the upper bound of Mmax{M_{\max}}.
+
+Software used
+
+TOVL (Bernuzzi & Nagar 2008), Matlab®.
+
+Data Availability
+
+EOS parameters and bulk properties of reference NSs generated for this work are publicly available on Zenodo (Godzieba et al. 2020).
+
+Acknowledgements
+
+We thank the anonymous referee for insightful suggestions that improved the quality of this work.
+Computations for this research were performed on the Pennsylvania State University’s Institute for Computational and Data Sciences Advanced CyberInfrastructure (ICDS-ACI).
+S.B. acknowledges support by the EU H2020 under ERC Starting Grant, no. BinGraSp-714626.
+
+References
+
+ 
+Abbott et al. (2017)
+
+Abbott, B. P., et al. 2017, Astrophys. J. Lett., 848, L12,
+doi: 10.3847/2041-8213/aa91c9
+
+ 
+Abbott et al. (2018)
+
+—. 2018, Phys. Rev. Lett., 121, 161101,
+doi: 10.1103/PhysRevLett.121.161101
+
+ 
+Abbott et al. (2019a)
+
+—. 2019a, Phys. Rev., X9, 011001,
+doi: 10.1103/PhysRevX.9.011001
+
+ 
+Abbott et al. (2019b)
+
+—. 2019b, Phys. Rev., X9, 031040,
+doi: 10.1103/PhysRevX.9.031040
+
+ 
+Abbott et al. (2020)
+
+Abbott, R., et al. 2020, Astrophys. J., 896, L44,
+doi: 10.3847/2041-8213/ab960f
+
+ 
+Ai et al. (2018)
+
+Ai, S., Gao, H., Dai, Z.-G., et al. 2018, Astrophys. J., 860, 57,
+doi: 10.3847/1538-4357/aac2b7
+
+ 
+Alsing et al. (2018)
+
+Alsing, J., Silva, H. O., & Berti, E. 2018, Mon. Not. Roy. Astron. Soc., 478,
+1377, doi: 10.1093/mnras/sty1065
+
+ 
+Annala et al. (2020)
+
+Annala, E., Gorda, T., Kurkela, A., Nättilä, J., & Vuorinen, A. 2020, Nature
+Phys., doi: 10.1038/s41567-020-0914-9
+
+ 
+Annala et al. (2018)
+
+Annala, E., Gorda, T., Kurkela, A., & Vuorinen, A. 2018, Phys. Rev. Lett.,
+120, 172703, doi: 10.1103/PhysRevLett.120.172703
+
+ 
+Antoniadis et al. (2013)
+
+Antoniadis, J., et al. 2013, Science, 340, 6131,
+doi: 10.1126/science.1233232
+
+ 
+Arzoumanian et al. (2018)
+
+Arzoumanian, Z., et al. 2018, Astrophys. J. Suppl., 235, 37,
+doi: 10.3847/1538-4365/aab5b0
+
+ 
+Bauswein et al. (2013)
+
+Bauswein, A., Baumgarte, T. W., & Janka, H. T. 2013, Phys. Rev. Lett., 111,
+131101, doi: 10.1103/PhysRevLett.111.131101
+
+ 
+Bernuzzi & Nagar (2008)
+
+Bernuzzi, S., & Nagar, A. 2008, Phys. Rev., D78, 024024,
+doi: 10.1103/PhysRevD.78.024024
+
+ 
+Bernuzzi et al. (2016)
+
+Bernuzzi, S., Radice, D., Ott, C. D., et al. 2016, Phys. Rev., D94, 024023,
+doi: 10.1103/PhysRevD.94.024023
+
+ 
+Capano et al. (2020)
+
+Capano, C. D., Tews, I., Brown, S. M., et al. 2020, Nature Astron., 4, 625,
+doi: 10.1038/s41550-020-1014-6
+
+ 
+Cromartie et al. (2019)
+
+Cromartie, H. T., et al. 2019, Nat. Astron., 4, 72,
+doi: 10.1038/s41550-019-0880-2
+
+ 
+Damour & Nagar (2009)
+
+Damour, T., & Nagar, A. 2009, Phys. Rev., D80, 084035,
+doi: 10.1103/PhysRevD.80.084035
+
+ 
+Danielewicz et al. (2002)
+
+Danielewicz, P., Lacey, R., & Lynch, W. G. 2002, Science, 298, 1592,
+doi: 10.1126/science.1078070
+
+ 
+De et al. (2018)
+
+De, S., Finstad, D., Lattimer, J. M., et al. 2018, Phys. Rev. Lett., 121,
+091102, doi: 10.1103/PhysRevLett.121.259902,
+10.1103/PhysRevLett.121.091102
+
+ 
+Demorest et al. (2010)
+
+Demorest, P., Pennucci, T., Ransom, S., Roberts, M., & Hessels, J. 2010,
+Nature, 467, 1081, doi: 10.1038/nature09466
+
+ 
+Dexheimer et al. (2020)
+
+Dexheimer, V., Gomes, R. O., Klähn, T., Han, S., & Salinas, M. 2020,
+arXiv:2007.08493.
+
+https://arxiv.org/abs/2007.08493
+
+ 
+Dietrich et al. (2017)
+
+Dietrich, T., Ujevic, M., Tichy, W., Bernuzzi, S., & Bruegmann, B. 2017, Phys.
+Rev., D95, 024029, doi: 10.1103/PhysRevD.95.024029
+
+ 
+Douchin & Haensel (2001)
+
+Douchin, F., & Haensel, P. 2001, Astron. Astrophys., 380, 151,
+doi: 10.1051/0004-6361:20011402
+
+ 
+Essick et al. (2020)
+
+Essick, R., Landry, P., & Holz, D. E. 2020, Phys. Rev., D101, 063007,
+doi: 10.1103/PhysRevD.101.063007
+
+ 
+Farr & Chatziioannou (2020)
+
+Farr, W. M., & Chatziioannou, K. 2020, Research Notes of the American
+Astronomical Society, 4, 65, doi: 10.3847/2515-5172/ab9088
+
+ 
+Fattoyev et al. (2020)
+
+Fattoyev, F. J., Horowitz, C. J., Piekarewicz, J., & Reed, B. 2020,
+arXiv:2007.03799.
+
+https://arxiv.org/abs/2007.03799
+
+ 
+Fonseca et al. (2016)
+
+Fonseca, E., et al. 2016, Astrophys. J., 832, 167,
+doi: 10.3847/0004-637X/832/2/167
+
+ 
+Gandolfi et al. (2019)
+
+Gandolfi, S., Lippuner, J., Steiner, A., et al. 2019, J. Phys. G, 46, 103001,
+doi: 10.1088/1361-6471/ab29b3
+
+ 
+Godzieba et al. (2020)
+
+Godzieba, D. A., Radice, D., & Bernuzzi, S. 2020, Phenomenological EOS Data
+Set, Zenodo, doi: 10.5281/zenodo.3954899
+
+ 
+Greif et al. (2019)
+
+Greif, S., Raaijmakers, G., Hebeler, K., Schwenk, A., & Watts, A. 2019, Mon.
+Not. Roy. Astron. Soc., 485, 5363, doi: 10.1093/mnras/stz654
+
+ 
+Han & Prakash (2020)
+
+Han, S., & Prakash, M. 2020, arXiv:2006.02207.
+
+https://arxiv.org/abs/2006.02207
+
+ 
+Hebeler et al. (2010)
+
+Hebeler, K., Lattimer, J. M., Pethick, C. J., & Schwenk, A. 2010, Phys. Rev.
+Lett., 105, 161102, doi: 10.1103/PhysRevLett.105.161102
+
+ 
+Hebeler et al. (2013)
+
+—. 2013, Astrophys. J., 773, 11, doi: 10.1088/0004-637X/773/1/11
+
+ 
+Hotokezaka et al. (2013)
+
+Hotokezaka, K., Kiuchi, K., Kyutoku, K., et al. 2013, Phys. Rev., D88,
+044026, doi: 10.1103/PhysRevD.88.044026
+
+ 
+Kalogera & Baym (1996)
+
+Kalogera, V., & Baym, G. 1996, Astrophys. J. Lett., 470, L61,
+doi: 10.1086/310296
+
+ 
+Köppel et al. (2019)
+
+Köppel, S., Bovard, L., & Rezzolla, L. 2019, Astrophys. J. Lett., 872, L16,
+doi: 10.3847/2041-8213/ab0210
+
+ 
+Lattimer (2012)
+
+Lattimer, J. M. 2012, Ann. Rev. Nucl. Part. Sci., 62, 485,
+doi: 10.1146/annurev-nucl-102711-095018
+
+ 
+Lehner et al. (2016)
+
+Lehner, L., Liebling, S. L., Palenzuela, C., et al. 2016, Class. Quant.
+Grav., 33, 184002, doi: 10.1088/0264-9381/33/18/184002
+
+ 
+Li et al. (2018)
+
+Li, S.-Z., Liu, L.-D., Yu, Y.-W., & Zhang, B. 2018, Astrophys. J. Lett., 861,
+L12, doi: 10.3847/2041-8213/aace61
+
+ 
+Lim et al. (2020)
+
+Lim, Y., Bhattacharya, A., Holt, J. W., & Pati, D. 2020, arXiv:2007.06526.
+
+https://arxiv.org/abs/2007.06526
+
+ 
+Lim & Holt (2018)
+
+Lim, Y., & Holt, J. W. 2018, Phys. Rev. Lett., 121, 062701,
+doi: 10.1103/PhysRevLett.121.062701
+
+ 
+Linares et al. (2018)
+
+Linares, M., Shahbaz, T., & Casares, J. 2018, Astrophys. J., 859, 54,
+doi: 10.3847/1538-4357/aabde6
+
+ 
+Margalit & Metzger (2017)
+
+Margalit, B., & Metzger, B. D. 2017, Astrophys. J. Lett., 850, L19,
+doi: 10.3847/2041-8213/aa991c
+
+ 
+Miller et al. (2019a)
+
+Miller, M., et al. 2019a, Astrophys. J. Lett., 887, L24,
+doi: 10.3847/2041-8213/ab50c5
+
+ 
+Miller et al. (2019b)
+
+Miller, M. C., Chirenti, C., & Lamb, F. K. 2019b,
+arXiv:1904.08907, doi: 10.3847/1538-4357/ab4ef9
+
+ 
+Most et al. (2020)
+
+Most, E. R., Papenfort, L. J., Weih, L. R., & Rezzolla, L. 2020,
+arXiv:2006.14601.
+
+https://arxiv.org/abs/2006.14601
+
+ 
+Most et al. (2018)
+
+Most, E. R., Weih, L. R., Rezzolla, L., & Schaffner-Bielich, J. 2018, Phys.
+Rev. Lett., 120, 261103, doi: 10.1103/PhysRevLett.120.261103
+
+ 
+O’Connor & Ott (2011)
+
+O’Connor, E., & Ott, C. D. 2011, Astrophys. J., 730, 70,
+doi: 10.1088/0004-637X/730/2/70
+
+ 
+Palenzuela et al. (2015)
+
+Palenzuela, C., Liebling, S. L., Neilsen, D., et al. 2015, Phys. Rev., D92,
+044045, doi: 10.1103/PhysRevD.92.044045
+
+ 
+Piro et al. (2017)
+
+Piro, A. L., Giacomazzo, B., & Perna, R. 2017, Astrophys. J. Lett., 844, L19,
+doi: 10.3847/2041-8213/aa7f2f
+
+ 
+Piro et al. (2019)
+
+Piro, L., et al. 2019, Mon. Not. Roy. Astron. Soc., 483, 1912,
+doi: 10.1093/mnras/sty3047
+
+ 
+Radice et al. (2020)
+
+Radice, D., Bernuzzi, S., & Perego, A. 2020, arXiv:2002.03863,
+doi: 10.1146/annurev-nucl-013120-114541
+
+ 
+Radice & Dai (2019)
+
+Radice, D., & Dai, L. 2019, Eur. Phys. J., A55, 50,
+doi: 10.1140/epja/i2019-12716-4
+
+ 
+Radice et al. (2018a)
+
+Radice, D., Perego, A., Bernuzzi, S., & Zhang, B. 2018a, Mon.
+Not. Roy. Astron. Soc., 481, 3670, doi: 10.1093/mnras/sty2531
+
+ 
+Radice et al. (2018b)
+
+Radice, D., Perego, A., Zappa, F., & Bernuzzi, S. 2018b,
+Astrophys. J. Lett., 852, L29, doi: 10.3847/2041-8213/aaa402
+
+ 
+Read et al. (2009)
+
+Read, J. S., Lackey, B. D., Owen, B. J., & Friedman, J. L. 2009, Phys. Rev.,
+D79, 124032, doi: 10.1103/PhysRevD.79.124032
+
+ 
+Rezzolla et al. (2018)
+
+Rezzolla, L., Most, E. R., & Weih, L. R. 2018, Astrophys. J. Lett., 852, L25,
+doi: 10.3847/2041-8213/aaa401
+
+ 
+Rhoades & Ruffini (1974)
+
+Rhoades, Jr., C. E., & Ruffini, R. 1974, Phys. Rev. Lett., 32, 324,
+doi: 10.1103/PhysRevLett.32.324
+
+ 
+Riley et al. (2019)
+
+Riley, T. E., et al. 2019, Astrophys. J. Lett., 887, L21,
+doi: 10.3847/2041-8213/ab481c
+
+ 
+Roupas (2020)
+
+Roupas, Z. 2020, arXiv2007.10679.
+
+https://arxiv.org/abs/2007.10679
+
+ 
+Ruiz et al. (2018)
+
+Ruiz, M., Shapiro, S. L., & Tsokaros, A. 2018, Phys. Rev., D97, 021501,
+doi: 10.1103/PhysRevD.97.021501
+
+ 
+Safarzadeh & Loeb (2020)
+
+Safarzadeh, M., & Loeb, A. 2020, Astrophys. J. Lett., 899, L15,
+doi: 10.3847/2041-8213/aba9df
+
+ 
+Schneider et al. (2020)
+
+Schneider, A. S., O’Connor, E., Granqvist, E., Betranhandy, A., & Couch, S. M.
+2020, arXiv:2001.10434, doi: 10.3847/1538-4357/ab8308
+
+ 
+Sekiguchi et al. (2011)
+
+Sekiguchi, Y., Kiuchi, K., Kyutoku, K., & Shibata, M. 2011, Phys. Rev. Lett.,
+107, 051102, doi: 10.1103/PhysRevLett.107.051102
+
+ 
+Shibata et al. (2017)
+
+Shibata, M., Fujibayashi, S., Hotokezaka, K., et al. 2017, Phys. Rev., D96,
+123012, doi: 10.1103/PhysRevD.96.123012
+
+ 
+Shibata & Taniguchi (2006)
+
+Shibata, M., & Taniguchi, K. 2006, Phys. Rev., D73, 064027,
+doi: 10.1103/PhysRevD.73.064027
+
+ 
+Shibata et al. (2019)
+
+Shibata, M., Zhou, E., Kiuchi, K., & Fujibayashi, S. 2019, Phys. Rev., D100,
+023015, doi: 10.1103/PhysRevD.100.023015
+
+ 
+Steiner et al. (2010)
+
+Steiner, A. W., Lattimer, J. M., & Brown, E. F. 2010, Astrophys. J., 722, 33,
+doi: 10.1088/0004-637X/722/1/33
+
+ 
+Tews et al. (2018)
+
+Tews, I., Margueron, J., & Reddy, S. 2018, Phys. Rev. C, 98, 045804,
+doi: 10.1103/PhysRevC.98.045804
+
+ 
+Tews et al. (2020)
+
+Tews, I., Pang, P. T. H., Dietrich, T., et al. 2020, arXiv:2007.06057.
+
+https://arxiv.org/abs/2007.06057
+
+ 
+Tews & Schwenk (2020)
+
+Tews, I., & Schwenk, A. 2020, Astrophys. J., 892, 14,
+doi: 10.3847/1538-4357/ab7232
+
+ 
+Tsokaros et al. (2020)
+
+Tsokaros, A., Ruiz, M., & Shapiro, S. L. 2020, arXiv:2007.05526.
+
+https://arxiv.org/abs/2007.05526
+
+ 
+Vattis et al. (2020)
+
+Vattis, K., Goldstein, I. S., & Koushiappas, S. M. 2020, arXiv:2006.15675.
+
+https://arxiv.org/abs/2006.15675
+
+ 
+Özel & Freire (2016)
+
+Özel, F., & Freire, P. 2016, Ann. Rev. Astron. Astrophys., 54, 401,
+doi: 10.1146/annurev-astro-081915-023322
+
+ 
+Zhang & Li (2020)
+
+Zhang, N.-B., & Li, B.-A. 2020, arXiv:2007.02513.
+
+https://arxiv.org/abs/2007.02513
+
+ 
+
+◄
+ 
+ Feelinglucky?
+ 
+ Conversionreport
+ Reportan issue
+ View originalon arXiv►
+
+Copyright
+Privacy Policy
+
+Generated by LaTeXML oxide

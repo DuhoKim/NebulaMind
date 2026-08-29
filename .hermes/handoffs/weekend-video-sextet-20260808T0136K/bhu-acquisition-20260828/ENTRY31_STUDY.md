@@ -22,6 +22,16 @@ selection. Against the same bar, from the same corpus:
 single number — *1.36σ* — that sits between the two answers and belongs to neither. It came from
 an uncertainty (±0.11) with no pinned origin; the published value is ±0.17.
 
+**UPDATED 12:55 — the split is four-way, not two-way, and one branch FIRES.** The
+gravitational-wave leg is now pinned (§6). Adding it:
+
+| instrument | value | against the 2.5 M☉ bar |
+|---|---|---|
+| radio timing, J0740+6620 | 2.08 ± 0.07 | **6.0σ away — dead** |
+| M_TOV from GW170817 | 2.210 +0.116 −0.123 (2σ) | **bar above the interval — excluded** |
+| black widow optical, J0952−0607 | 2.35 ± 0.17 | **0.88σ — live, 19%** |
+| GW190814 secondary, *if a neutron star* | 2.50–2.67 (90%) | **entire interval at or above — FIRES** |
+
 ---
 
 ## 1. The bar, from Smolin's own words
@@ -101,6 +111,31 @@ the known difficulty is that an object in that range may be a light black hole, 
 the ambiguity the bar cannot tolerate. Cheap to acquire and the obvious next pin.
 
 ---
+
+## 6. The gravitational-wave leg — an object sitting on the bar whose nature is contested
+
+Pinned today: the GW190814 discovery paper (`2006.12611`) and two analyses of what it implies for
+the maximum neutron-star mass (`2007.10999`, `2101.01735`).
+
+Smolin's argument concerns the **maximum neutron-star mass**, not pulsars specifically — so any
+instrument measuring that maximum is on-bar. Gravitational waves supply two, and **they disagree
+with each other.**
+
+**GW190814's secondary is 2.50–2.67 M☉ at 90% credibility — the entire interval at or above the
+bar.** And the discovery paper explicitly declines to say what it is:
+
+> *"its secondary component is **either the lightest black hole or the heaviest neutron star**
+> ever discovered in a double compact-object system."*
+
+The tension paper states the conditional outright: GW170817 suggests **M_TOV ≲ 2.3 M☉**, while
+GW190814 requires **M_TOV ≳ 2.5 M☉** *"if the secondary was a (non- or slowly rotating) neutron
+star at merger."* Its own preferred value from GW170817 is **M_TOV = 2.210 +0.116 −0.123 M☉ (2σ)**
+— which puts Smolin's bar **above** the interval, pointing the same way as radio timing and the
+opposite way from the event the paper is named after.
+
+**So whether the corpus's only live falsifier has already fired turns on whether one object
+241 Mpc away was a neutron star or a black hole — a question its discoverers refused to answer.**
+That refusal is the finding. It is not resolved here, and it should not be.
 
 ## 5. What this is for Duho to decide
 
