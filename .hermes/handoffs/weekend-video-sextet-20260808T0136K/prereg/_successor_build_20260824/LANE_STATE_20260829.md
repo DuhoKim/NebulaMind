@@ -14,15 +14,19 @@ written `<lane>` below.
 
 ---
 
-## 1. TWO OPEN QUESTIONS. Six have been ruled on since this file last said "four".
+## 1. ONE OPEN QUESTION. Seven have now been ruled on.
 
 | # | file | status |
 |---|---|---|
-| 1 | `OPEN_QUESTION_RERUN_PROCEDURE.md` | **OPEN.** Both seats, three HIGH findings: my `INCONCLUSIVE-BY-COMPUTATION` rerun allowance is simultaneously terminal and retryable, is either deterministic-and-pointless or an unbound fork, and its attempt cap has no dependency edge. My reading is **delete the rerun** — the halt is terminal, which is what §6.1 already contracts. **V42 cannot clear a round until this is answered.** |
-| 2 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN.** What counterfactual sign vector a gain gradient γ produces. The option (b) path is built and refuses to run without a mapping; supplying one is a modelling assumption needing preregistration. |
+| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN.** What counterfactual sign vector a gain gradient γ produces. The option (b) path is built and refuses to run without a mapping; supplying one is a modelling assumption needing preregistration. |
 
 **RULED AND APPLIED — do not reopen:**
 
+- **Rerun procedure** → **option A, ruled 13:00.** The `INCONCLUSIVE-BY-COMPUTATION` halt is
+  **terminal**; the operator's recourse is a new run under a new preregistration. Deleted in V43.
+  Dissolves all three HIGH findings at once: **no seed schedule, no attempt log, no verifier, no
+  attempt cap, no new slot. Counts stay 16/8**, and Row J's one-outcome contract stops being
+  contradicted rather than being defended.
 - **VOID registry completeness** → option A. Three gaps closed in V37 (`degenerate`, `digest`, `chosen`).
 - **BS-6 dependency** → option (a). `BS-3g` added in V37; counts **15/8 → 16/8**.
 - **VOID-5 phase scope** → option C, applied V40. Numerical conditions read post-unblinding;
@@ -35,27 +39,24 @@ written `<lane>` below.
 - **`require_authorization`** → **deprioritised.** Recorded accurately in §5 of the draft; not built;
   v9 untouched.
 
-## 2. CURRENT DRAFT — V42, BUILT, BRIEF READY, NOT DISPATCHED
+## 2. CURRENT DRAFT — V43, READY TO DISPATCH
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V42_20260829.md` = `6c9cc2fca67d5aff263282f646fc5b0c07a22b0c2c3665d458c47582de7990a6`
+`<lane>/PREREG_SUCCESSOR_DRAFT_V43_20260829.md` = `7b2e9a701c38c57094b23b0dcb9173985c6a986bf99de6f31af8e3200f23dfbd`
 
-**V40 came back NOT CLEAR from both seats at 11:26** (GPT56 7 findings, CODEX 4), converging on three
-HIGH problems in the rerun procedure I authored. Those are open question 1.
+**V40 was NOT CLEAR ×2** (GPT56 7, CODEX 4) — the last refereed draft. V41, V42 and V43 repair it.
 
-- **V41** `5270452ff9a54caf` — GPT56/CODEX-V40 F4: `BS-3g` added to §6.1's closed non-χ-bearing
-  receipt list (it was χ-bearing by default, so its BS-6 edge was not receiptable), plus a §11
-  code-side item because a receipt class with no producer is still not receiptable. GPT56-V40 F6:
-  the §2.7 citations were wrong for a second draft running — **absolute line numbers are not
-  citations**, they rot on the next edit; replaced with section-and-quoted-content.
-- **V42** `6c9cc2fca67d5aff` — one miscitation found by hand: `KIMI-V11 F4` is a §6.1 access finding
-  cited for a Stage-P claim. KIMI's Stage-P finding is **F7**. Corrected.
+- **V41** `5270452ff9a54caf` — `BS-3g` added to §6.1's closed non-χ-bearing receipt list (both seats;
+  its `blocks BS-6` edge was not receiptable without it) plus a §11 code-side item; and the §2.7
+  citations fixed properly — **absolute line numbers are not citations**, they rot on the next edit.
+- **V42** `6c9cc2fca67d5aff` — one miscitation found by hand, not by any tool: `KIMI-V11 F4` is a
+  §6.1 access finding; KIMI's Stage-P finding is **F7**.
+- **V43** `7b2e9a701c38c570` — **option A: the rerun allowance is deleted**, and GPT56-V40 F5's
+  overlap closed by making `INCONCLUSIVE-BY-COMPUTATION` explicitly subordinate to
+  `INCONCLUSIVE-BY-CALIBRATION`. F5 was checked against the deletion rather than assumed dissolved —
+  **it survived**, because the overlap is about which code fires, not about the rerun.
 
-**`gates/BRIEF_V42_REVIEW.md` is written** and opens with what changed in the lint's citation
-behaviour. **Do not dispatch until open question 1 is answered** — the round would re-find three
-known HIGH findings.
-
-**Checkers on V42:** counts 16 P / 8 E prose-matched; trace 41 transitions, 0 problems;
-`void_registry` self-test 6/0; **lint exits 0** — 96 advisory, 0 blocking.
+**All V40 findings are now answered.** Checkers on V43: counts **16 P / 8 E** prose-matched; trace 42
+transitions, 0 problems; `void_registry` self-test 6/0; **lint exits 0** — 96 advisory, 0 blocking.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
@@ -190,6 +191,36 @@ surface, that is the one that works. Related defect class, seen across six BS-2a
 that raises has not refused.** Probe deletions strictly — a crash must never count as detection.
 
 ---
+
+
+## 8a. A CONTROL THAT ENCODES THE CURRENT STATE GOES RED WHEN AN AUTHORISED CHANGE LANDS
+
+**Written jointly with Blanc, 2026-08-29, because both of us did it on the same day and neither
+noticed for days.**
+
+- **Mine:** `void_registry.py`'s self-test asserted the compound-gap heuristic still finds
+  `degenerate`, `digest` and `chosen`. **The principal's option A closed those three at V37**, so the
+  heuristic correctly went quiet and the control demanding them went red — through V37, V38, V39 and
+  V40, **while I reported that checker's output on all four drafts.** Its other half was worse: it
+  patched a `VOID-5-DEGENERATE` row into the live text and checked for silence, which became a no-op
+  the moment that row really existed, so it passed while testing nothing.
+- **Blanc's:** their verdict probe read a bare `**CLEAR**` from prose ahead of the verdict section
+  and reported **V34 CODEX as CLEAR when its real verdict was NOT CLEAR**, for days, and that reading
+  was relayed upward. It also matched nothing at all on V38, because the seats write `**NOT CLEAR.**`
+  with the period inside the asterisks — so a round that genuinely cleared in that style would have
+  been missed entirely.
+
+**The rule, in two parts:**
+
+1. **A control must assert the MECHANISM, not a transient state of the document.** "The heuristic
+   flags an unnamed branch" survives a ruling; "the heuristic finds these three specific gaps" does
+   not. Both of mine are now fixture-based and give identical results on V34 through V43.
+2. **When a ruling changes normative content, re-derive the controls that assert things about that
+   content IN THE SAME COMMIT** — not at the next round. The gap between an authorised change and the
+   control catching up is exactly where a red control sits unread.
+
+**And the sharper half: a red control nobody reads is indistinguishable from a green one.** I ran the
+main path and not `--self-test` for four drafts. Running a checker is not the same as checking it.
 
 ## 9. OPERATING NOTES THAT COST TIME
 
