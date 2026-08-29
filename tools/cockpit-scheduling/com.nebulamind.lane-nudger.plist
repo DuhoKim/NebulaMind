@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  com.nebulamind.lane-nudger — the durable third path for lane liveness.
+
+  Authorised by Duho 2026-08-29 after a session-only cron stopped delivering for
+  ~3h while the machine, launchd and the other lane were all healthy. Tori, who
+  had been told to rely on that single cron, lost 3h10m; Hwao, who kept her own
+  mechanism, lost 81 min. Session crons die with their session; this one does
+  not, which is the whole point of it.
+
+  Shape follows com.nebulamind.provider-usage-monitor: StartInterval plus a
+  single-pass invocation, NOT a long-lived watch loop. launchd owns the cadence,
+  so a killed pass costs one interval instead of stopping updates for good.
+
+  Cadence: every 10 min. The script itself enforces a 25-minute minimum gap per
+  lane via a stamp file, so a short interval means "check often, nudge rarely"
+  rather than nudge spam. The frequent check is what catches a blocking feedback
+  survey quickly; the stamp is what stops the nudging being intrusive.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nebulamind.lane-nudger</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/zsh</string>
+        <string>/Users/duhokim/HermesOps/scripts/nm_lane_nudger.sh</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/duhokim</string>
+    </dict>
+
+    <key>StartInterval</key>
+    <integer>600</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/duhokim/HermesOps/cockpit/lane-nudger-launchd.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/duhokim/HermesOps/cockpit/lane-nudger-launchd.log</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/duhokim</string>
+</dict>
+</plist>
