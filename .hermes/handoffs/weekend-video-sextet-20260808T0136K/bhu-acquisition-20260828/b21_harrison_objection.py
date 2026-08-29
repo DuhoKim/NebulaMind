@@ -1,5 +1,35 @@
 #!/usr/bin/env python3
-"""B21 -- Harrison 1995 is not what our record's citation implies, and its objection is sharper.
+"""B21 -- Harrison 1995 is not what our record's citation implies, and its objection is BOUNDED.
+
+GATED 2026-08-29. Both seats rendered all 11 pages and read the body.
+  AGATE_B21  HARRISON_REFUTED_TENSION
+  CGATE_B21  HARRISON_REFUTED_CROSS_ENTRY_TENSION
+
+CLAIM 1 CONFIRMED, one qualification. The note-(11) transcription is word-for-word accurate; ref
+(10) is Smolin 1992; neither seat found any observational confrontation on pp. 194-201.
+QUALIFICATION (CGATE): Harrison DOES criticise Smolin in the body, at p. 196 -- conceptually, that
+the proposal falls short of his condition (3) and lacks an unequivocal black-hole/organic-life
+connection, citing Rothman & Ellis for the reservation that maximising black holes need not
+maximise life. So "its objection" must mean THIS objection, not every objection he makes.
+
+CLAIM 2 REFUTED -- THE CROSS-ENTRY TENSION IS DEAD, and it died on the distinction I listed as the
+fourth way it could fail. Harrison's premise is not the SIGN of curvature; it is a globally closed
+universe that RECOLLAPSES TO ONE FUTURE SINGULARITY, swallowing every black hole into a common
+crunch. Entry 54 predicts a closed universe WITH A BOUNCE, and a bounce averts the global future
+singularity entirely. AGATE: "the universe never collapses to a point that would merge all
+individual black holes ... The two entries are compatible." CGATE adds that inflation and late-time
+acceleration make the omitted dynamics decisive, and that Harrison's own wording is tentative
+("This argument suggests") and imports a coordinate-sensitive horizon description into a global
+collapsing spacetime without the causal derivation it needs.
+
+SO THE CORPUS IS NOT IN TENSION WITH ITSELF, and the useful result is the BOUND: Harrison's
+objection bites only on recollapsing closed cosmologies, which is a class this corpus's bounce
+models are not in. That is worth more than the tension would have been.
+
+THE PROCESS IS THE POINT. I distrusted this inference on sight -- it was the 1z shape, a tidy story
+linking two things worked the same evening -- listed four specific ways it could fail, asked both
+seats to break it, and it broke on one of the four. Flagging beat suppressing and beat asserting.
+
 
 Read tonight from the ADS scan pinned earlier. SAME PROVENANCE LIMIT AS B20: JBIG2 images, no text
 layer, so every quotation here is MY TRANSCRIPTION from rendered pages and cannot be grep-verified.
@@ -40,8 +70,10 @@ print("="*98); print("B21 -- Harrison 1995 read"); print("="*98)
 raw=open(F,"rb").read(); d=fitz.open(F)
 print(f"\n  {os.path.basename(F)}  {len(raw)} b  sha256 {hashlib.sha256(raw).hexdigest()[:12]}  {d.page_count} pp")
 chk("ARTIFACT: the file's sha256 is compared against the digest recorded when it was acquired",
-    hashlib.sha256(raw).hexdigest().startswith("ea3e8d081592") and d.page_count==11,
-    "11 pages for QJRAS 36, 193-203")
+    hashlib.sha256(raw).hexdigest()==
+      "ea3e8d081592d063b3f87f693a86da9d25f0ae837d762ff1a320e2b06ba4ce54" and d.page_count==11,
+    "11 pages for QJRAS 36, 193-203. CGATE flagged that this compared only a 12-character prefix "
+    "while the prose said 'the digest'; the full digest it reproduced independently is now pinned")
 txt="".join(p.get_text() for p in d)
 chk("ARTIFACT: no usable text layer, so the quotations above are transcriptions and this file "
     "cannot grep-verify any of them",
@@ -65,23 +97,20 @@ print("""
    AND THIS IS THE THIRD TIME TONIGHT THE PULL HAS BEEN TOWARD "THE AUTHOR OVERSTATED IT" --
    defect 1z, then 1ad, and now a third opportunity. The restraint above is deliberate.
 
-2. A CROSS-ENTRY TENSION -- MINE, UNGATED, AND FLAGGED AS SUCH
+2. THE CROSS-ENTRY TENSION -- PROPOSED, GATED, REFUTED, WITHDRAWN
 
-   Harrison's objection is CONDITIONAL ON SPATIAL CLOSURE. It says a CLOSED universe gives Smolin's
-   theory at most one offspring, destroying selection.
+   I proposed: Harrison's objection is conditional on spatial closure; entry 54 predicts a closed
+   universe; therefore confirming entry 54 would break entry 31's mechanism, and the corpus would
+   be in tension with itself.
 
-   ENTRY 54 OF THIS CORPUS PREDICTS A CLOSED UNIVERSE -- Omega_k < 0, "Inflation preceded by a
-   bounce requires Omega_k < 0", and a weekly cron watches DESI for exactly that sign.
+   IT DOES NOT FOLLOW, and both seats killed it the same way. "Closed" is not one premise. Harrison
+   needs a universe that RECOLLAPSES to a single future singularity so that black holes merge into
+   the common crunch. Entry 54 predicts closed geometry WITH A BOUNCE -- and a bounce removes the
+   future singularity Harrison's argument requires. Geometric overlap, different dynamics.
 
-   So if entry 54's prediction were confirmed, Harrison's argument says entry 31's mechanism fails.
-   TWO ENTRIES IN THIS CORPUS WOULD BE IN TENSION, and the corpus does not record it.
-
-   THIS IS AN INFERENCE OF MINE AND IT IS EXACTLY THE SHAPE THAT PRODUCED DEFECT 1z: a tidy story
-   linking two things I worked on the same evening. It is NOT written into the bibliography and is
-   going to both gate seats first. Specific ways it could be wrong: Harrison's argument may not
-   survive scrutiny; it may not apply to entry 54's bounce cosmology, which is not a simple closed
-   FRW recollapse; entry 31's CNS may not require the offspring-count variation the argument
-   removes; and "closed" in the two papers may not mean the same thing.
+   WHAT SURVIVES IS A BOUND, and it is more useful than the claim was: HARRISON'S OBJECTION APPLIES
+   ONLY TO RECOLLAPSING CLOSED COSMOLOGIES. Every bounce model in this corpus is outside its scope.
+   Recorded so that nobody later rediscovers the "tension" and files it.
 
 3. NO TIER CHANGE, and none is proposed for 31, 54 or anything else.
 """)

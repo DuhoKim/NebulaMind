@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 20:45 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 21:35 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -24,7 +24,17 @@ unfound.
 consistency-only audit cannot compete with a real prediction being decided by data. The study was
 gated, found unsound, and rewritten — see below.
 
-**Evening (19:45–20:45): entry 51, a corpus-wide sweep it triggered, then entry 44.** Entry 31 is *not* the
+**Evening (19:45–21:35): entry 51, a corpus-wide sweep it triggered, entry 44, and then the case
+*against* entry 31.** Duho closed open question 3 by returning it to me: entry 44 is now
+`CALIBRATED-FALSIFIER / FIRED`, and filing it revealed that the record's claim that "only ONE
+[entry] bears directly on a black-hole-universe theory" was wrong — **the family has already had
+one of its own cosmologies falsified.** A source-level sweep (`b18`) then found no *second*
+self-admitted firing among the 27 pinned corpus papers, but turned up that entry 31's own source
+names four published criticisms the record had never carried. Three acquired as free ADS scans;
+two read (`b20`, `b21`), both gated. **Rothman & Ellis does confront Smolin with COBE data** — a
+claim I had withdrawn wrongly and then re-established. **Harrison is a rival theory** whose
+objection is topological and bounded to recollapsing cosmologies. A cross-entry tension I proposed
+between entries 31 and 54 was **refuted by both seats and withdrawn**. Entry 31 is *not* the
 corpus's only live calibrated falsifier — **entry 51 is the other**, and its measurement side was
 found to be an uncited sentence. Fixing that turned up a second defect of the same class, and
 sweeping for it turned up two more. Detail in the section below; six sources pinned, four new

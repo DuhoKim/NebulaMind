@@ -297,8 +297,22 @@ whether the selection argument yields a prediction at all, not whether that pred
 seats split on how hard to put that; **the weaker form is adopted**: the bar's selection-theoretic
 warrant is weakened or made conditional, not severed, since Rothman & Ellis analyse Smolin 1992 and
 never touch the 2004 mass argument. **No tier change.** Smolin's §3 groups this with three others
-as arguing S is "contradicted by present observation" — [13] supplies that for *one limb only*;
-[14] Ellis 1993 and [30] Harrison 1995 are pinned-but-unread, [31] Silk 1997 paywalled. Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
+as arguing S is "contradicted by present observation" — [13] supplies that for *one limb only*.
+**[30] Harrison 1995 READ 2026-08-29** (`b21_harrison_objection.py`, gated `HARRISON_REFUTED_TENSION`
+/ `HARRISON_REFUTED_CROSS_ENTRY_TENSION`): it is a **rival cosmology** — universes built by
+intelligent life in a parent universe — not an observational refutation, and neither seat found any
+confrontation with data on pp. 194–201. Its objection to Smolin sits in reference-note (11) and is
+**topological**: a spatially closed universe recollapsing to a single future singularity swallows
+every black hole into the common crunch, so "the black hole population fails to affect the
+reproductive rate of universes, and each closed universe in Smolin's theory produces at most one
+offspring universe." That attacks the *selection mechanism*, upstream of the mass bar. **It is
+bounded**: it needs a RECOLLAPSE, so it does not reach bounce cosmologies — including entry 54's,
+whose Ω_k < 0 is closed geometry *with* a bounce. *(A proposed cross-entry tension between entries
+31 and 54 was refuted by both seats on exactly that distinction and is withdrawn; the bound is what
+survives, recorded so nobody rediscovers the "tension" and files it.)*
+**[14] Ellis 1993 pinned but still unread; [31] Silk 1997 paywalled.** Two of four read, and neither
+is primarily "contradicted by present observation" — but **no conclusion is drawn** about Smolin's
+collective characterisation until all four are.. Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
 conjecture ("one can conjecture that the present value of Λ maximizes the formation of black
 holes"), not a result.
 Record: the CNS audit chain's missing base entry, now read; Track C's published-record basis is
