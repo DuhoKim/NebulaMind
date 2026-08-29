@@ -841,6 +841,33 @@ state. That sweep is the control §1ab asked for and prose could not supply.
 
 ---
 
+### 1af — FOUR FALSE-POSITIVE CLASSES IN ONE MATCHER, EACH FIX REVEALING THE NEXT
+
+**b27, 2026-08-29.** A document-identity matcher — does this file contain that paper? — failed four
+distinct ways, and every fix exposed the next:
+
+| # | class | found by |
+|---|---|---|
+| 1 | key built from filtered words, searched as a contiguous string | my own positive controls |
+| 2 | PDF extraction splits words: "obser v able Uni v erse" | positive controls again |
+| 3 | scraped publisher landing page — title, thousands of chars, no paper | chasing a seat's finding |
+| 4 | reference-list fragment: dozens of cited titles inside the "head" | CGATE's independent search |
+
+**Only classes 1 and 2 were caught by controls I had built.** Classes 3 and 4 needed an independent
+searcher, and class 4 was found only because a seat's manual list disagreed with mine by ONE entry
+and I chased the difference instead of averaging it away.
+
+**The general shape.** Every fix narrowed what counts as "this document IS that paper" and each
+narrowing revealed a new way to look like a paper without being one. There is no reason to think
+class 5 does not exist. **The final list agrees member-for-member with a seat's independent manual
+search, and that agreement — not the passing checks — is what makes it usable.**
+
+**And the total was right while the membership was wrong.** 34/17 before correction and 34/17
+after, because a false positive and a false absence cancelled. CGATE: "A source inventory is about
+identities, not merely a total." A matching count is not corroboration.
+
+---
+
 ### 1ae — MY OWN VERIFICATION GREP, DEFEATED BY A LINE BREAK. THREE TIMES.
 
 **Third occurrence 2026-08-29, and the failure rule says register rather than fix again.**
