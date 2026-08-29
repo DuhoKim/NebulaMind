@@ -266,24 +266,34 @@ def self_test(text: str) -> int:
         print(f"  OK   every code is exercised by a control (V01 by the empty-document case). "
               f"This is control coverage, NOT semantic coverage of §6.1's forbidden columns - "
               f"V05/V06 match a naming convention.")
-    # The compound-gap heuristic must find the three a seat found by reading, and must go quiet
-    # when the branch is named. Without the second half it could "find" gaps by always firing.
-    gaps = {w for _, w, _ in compound_gaps(text)}
-    want = {"degenerate", "digest", "chosen"}
-    ok = want <= gaps
-    print(f"  {'OK  ' if ok else 'FAIL'} compound-gap heuristic finds GPT56's three: "
-          f"{sorted(want & gaps)}{'' if ok else f' — missed {sorted(want - gaps)}'}")
+    # The compound-gap heuristic, tested against FIXTURES in both directions.
+    #
+    # Both halves of this control were stale. The first asserted the heuristic still finds
+    # `degenerate`, `digest` and `chosen` in the LIVE document - real gaps when it was written, and
+    # closed at V37 under the principal's option A, after which the heuristic correctly went quiet
+    # and the control demanding them went red. It stayed red through V37, V38, V39 and V40 while I
+    # reported this tool's output on all four, because I ran the main path and not --self-test.
+    # The second half patched a VOID-5-DEGENERATE row into the live text and checked the heuristic
+    # fell silent - which became a no-op once that row was really there, so it passed while testing
+    # nothing.
+    #
+    # A control must exercise the MECHANISM, not a transient state of the document.
+    _HDR = "### \u00a77.1 fixture registry\n"
+    _GAP_FIX = (_HDR + "| `VOID-5-NONFINITE` | \u00a75 | Any | VOID |\n"
+                "- **VOID:** triggered by non-finite/degenerate failures. Next sentence.\n")
+    _CLOSED_FIX = (_HDR + "| `VOID-5-NONFINITE` | \u00a75 | Any | VOID |\n"
+                   "| `VOID-5-DEGENERATE` | \u00a75 | Any | VOID |\n"
+                   "- **VOID:** triggered by non-finite/degenerate failures. Next sentence.\n")
+    present = {w for _, w, _ in compound_gaps(_GAP_FIX)}
+    named = {w for _, w, _ in compound_gaps(_CLOSED_FIX)}
+    ok = "degenerate" in present
+    ok2 = "degenerate" not in named
+    print(f"  {'OK  ' if ok else 'FAIL'} heuristic flags an unnamed compound branch: {sorted(present)}")
+    print(f"  {'OK  ' if ok2 else 'FAIL'} and goes quiet once it is named: {sorted(named)}")
     if not ok:
-        fails.append("compound heuristic")
-    covered = text.replace("| `VOID-5-NONFINITE` | §5 | Post-unblinding | VOID |",
-                           "| `VOID-5-NONFINITE` | §5 | Post-unblinding | VOID |\n"
-                           "| `VOID-5-DEGENERATE` | §5 | Post-unblinding | VOID |", 1)
-    quiet = {w for _, w, _ in compound_gaps(covered)}
-    ok2 = "degenerate" not in quiet
-    print(f"  {'OK  ' if ok2 else 'FAIL'} and goes quiet once the branch is named: "
-          f"{'degenerate no longer flagged' if ok2 else 'still flagged'}")
+        fails.append("compound heuristic missed an unnamed branch")
     if not ok2:
-        fails.append("compound heuristic silence")
+        fails.append("compound heuristic fires even when named - it would always fire")
 
     _, b01 = check("no registry here")
     if _codes(b01) != {"V01"}:
