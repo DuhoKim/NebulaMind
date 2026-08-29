@@ -1,4 +1,9 @@
-**STATUS: OPEN** — with the principal. Two V53 findings whose repair is normative.
+**STATUS: RULED AND APPLIED — both items, in V61.** **(1) The canonical freeze-signature body and its
+verifier are specified**, which is what CODEX-V53 F4 required: naming an object is not narrowing when
+the object has no canonical form. **(2) BS-2v's false reason is corrected and THE SLOT STAYS BLOCKED**
+— the principal's words were *"KEEP THE SLOT BLOCKED"*, and pinning remains necessary-not-sufficient:
+the converter, receipt schema, verifier and fixtures are still owed. **Nothing here is pending on the
+principal.**
 
 # OPEN QUESTION — the freeze-signature exemption's scope, and BS-2v's stale UNRESOLVED
 

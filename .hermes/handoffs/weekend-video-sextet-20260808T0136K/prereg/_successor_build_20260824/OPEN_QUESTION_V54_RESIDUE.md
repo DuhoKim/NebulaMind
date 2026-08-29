@@ -1,4 +1,14 @@
-**STATUS: OPEN** — with the principal. Four V54 findings whose repair is normative or conceptual.
+**STATUS: RULED — all four items, 2026-08-29, relayed by Blanc. Application is in V63.**
+**(1) Basis (i) is DROPPED** — promotion to `UNREACHABLE-BY-CONSTRUCTION` requires a structural proof
+and measurement is corroboration only; §5 must say explicitly that a permanently empty category is a
+real answer and not a defect to be fixed by loosening the bar. **(2) The two clauses are MADE
+DISJOINT** — authorised, and the text must state the **partition**, not the edit: any post-unblinding
+failure must be assignable without consulting a precedence rule, and if precedence is still needed the
+repair has not landed. **(3) `NUMERICAL-PLANNING` comes OUT** as an outcome class — nothing has
+started, so nothing can be voided or declared inconclusive; the three sites are **moved, not deleted**,
+and if the call-site rebuild shows any of them reachable during a run that goes straight back to him.
+**(4) The 80,000-execution withdrawal stands on the RULE CHANGE, not on the measurement** — the
+unpinned harness supports no live claim once basis (i) is dropped.
 
 # OPEN QUESTION — "by construction" cannot be established by sampling, and three others
 

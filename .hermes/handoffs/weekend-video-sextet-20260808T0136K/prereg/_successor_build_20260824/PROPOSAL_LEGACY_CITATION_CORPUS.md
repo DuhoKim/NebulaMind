@@ -1,3 +1,10 @@
+**STATUS: RULED — option D, 2026-08-29. Not pending on the principal.** Verify only citations that
+carry a **repair announcement**, not every mention — which narrows the measured 94 to the load-bearing
+reads, and those have been hand-verified. **This file carried NO status marker at all until now**,
+which made it invisible to a marker-anchored pending list in both directions: it could not show as
+owed and could not show as settled. A missing marker is a worse failure than a stale one, because
+nothing about the file looks wrong.
+
 # PROPOSAL for Blanc → Duho — the pre-block citation corpus is 94 citations, not ~30 reports
 
 **Written 2026-08-29 10:35 KST. Duho ruled option C ("fix it so checker actually read it") but did

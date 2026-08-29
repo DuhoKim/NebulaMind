@@ -1,5 +1,10 @@
-**STATUS: DRAFT FOR THE PRINCIPAL** — the closed refusal set GPT56-V49 F1 requires, written before
-the ask so the content is on the table rather than discovered after a direction is authorised.
+**STATUS: RULED, THEN SUPERSEDED — not pending on the principal.** He ruled **option A** on it (eight
+codes, closed, **no catch-all**), and then ruled that the derivation be **redone from scratch — "not a
+ninth code"**, which **suspended option A without reaffirming or reversing it**. The live document is
+**`PROPOSAL_REFUSAL_VOCABULARY_REDERIVED.md`**; this file is the superseded first derivation and is
+kept because the rederivation is only checkable against what it replaced. **The suspended eight-code
+set is still the operative language in the draft and the checker still enforces it** (GPT56-V59 F4,
+CODEX-V59 F1) — that is a live finding against the draft, not an open question on him.
 
 # The access log's refusal vocabulary, drafted
 

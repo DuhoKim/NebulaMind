@@ -53,8 +53,16 @@ gate verdicts for entry 51 are in that lane.
 2026-08-28 (Tori) because I have now mis-stated this tally twice in one day, in both directions.
 The tier describes the CLAIM — *"testability classes per brief: CALIBRATED-FALSIFIER (number +
 threshold)"*, i.e. its **shape**, not whether the reasoning behind it is sound. Separate axes
-describe its **STANDING** (has it fired) and, added 2026-08-29, its **WARRANT** (does the theory
-actually produce it).
+describe its **STANDING** (has it fired) and, added 2026-08-29, its **WARRANT — scoped to calibrated falsifiers only** (does the theory actually produce *this*
+falsifier).
+
+> **SCOPE, corrected 2026-08-29 after both gate seats refuted the first version.** I justified the
+> column by saying "a warrant only exists where there is a calibrated claim". **That is false.** A
+> directional claim can fail to follow in the asserted direction, a PROSPECT can fail to connect
+> theory to instrument, a THEORETICAL-OBSTRUCTION can rest on a disputed no-go. **My original cost
+> objection to Duho was right the first time and my reversal was wrong.** What is implemented here
+> is four calibrated-falsifier warrant cells — **NOT a corpus-wide warrant audit, which has not
+> been done.** If the axis is ever extended to the other classes the maintenance cost returns.
 
 > **Why the warrant column exists.** Duho returned open question 4 to me with the instruction
 > *"answer question 4"*. The two reviewers had split: one held that a theory cannot keep a
@@ -68,10 +76,10 @@ actually produce it).
 
 | entry | tier | standing | warrant | what it fires |
 |---|---|---|---|---|
-| 7 | CALIBRATED-FALSIFIER | **FIRED** | **not disputed here** — but note this record already scopes what it fired: an instrument chain, not CNS. No published challenge to its derivation is pinned. | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
+| 7 | CALIBRATED-FALSIFIER | **FIRED** | **no pinned challenge in this corpus** — a statement about what is filed here, **not a finding that the derivation is sound**; neither seat could verify the literature. This record already scopes what it fired: an instrument chain, not CNS — scope adjudication, not validation. | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
 | 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | **DISPUTED, and the challenge is pinned** — Rothman & Ellis 1993 argue the selection argument needs every parameter change to reduce black holes while α and M_LC plausibly do the opposite; Harrison 1995 argues a recollapsing closed universe yields at most one offspring, removing differential reproduction. Smolin answers neither on those parameters. Read and gated 2026-08-29 (`b20`, `b21`, `b23`). **Silk 1997 still unread (paywalled).** | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
-| 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | **DOES NOT FOLLOW FROM THE PAPER'S OWN INPUTS** — none of six routes from its stated ρ_Ce reaches the printed 10¹⁶ kg floor; the shortfall is 3.1–4.1 decades in density and refining the inputs widens it (`b13`, arithmetic confirmed by both seats). Whether to call that an error is **open question 2**. | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
-| 44 | CALIBRATED-FALSIFIER | **FIRED** | **the warrant is what died** — the computable core (exact scale invariance) was tested and lost at 8σ. What remains is an uncomputed ~4% correction whose size is read off the measurement it must reproduce, with the calculation deferred by the authors. | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
+| 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | **UNREPRODUCED FROM THE STATED INPUTS** — none of *six tested* routes from its ρ_Ce reaches the printed 10¹⁶ kg floor, the paper omits the connecting step, and the enumeration is **non-exhaustive** (`b13`, arithmetic confirmed by both seats; shortfall 3.1–4.1 decades, and refining the inputs widens it). *(Read "DOES NOT FOLLOW" until CGATE_Q4 pointed out that converts a failure to reproduce into a proof of non-entailment and prejudges **open question 2**, which is still Duho's.)* | the four-dimensional ECKS density/minimum-mass chain, via the LHC route. **Not a direct BHU falsifier.** |
+| 44 | CALIBRATED-FALSIFIER | **FIRED** | **EXPLICIT AND UNDISPUTED for the claim in this row** — the Sec. 4 model derives n_s = 1 openly; observation then rejected it at 8σ, which is its *standing*, not a failure of its derivation. **What lacks warrant is the successor**: an uncomputed ~4% correction sized to the measurement it must reproduce, deferred by the authors. *(Read "the warrant is what died" until CGATE_Q4 showed that collapses warrant into standing and defeats the point of a separate axis.)* | the Sec. 4 thermal free 5D field theory's prediction of **exact scale invariance, n_s = 1**. Planck: n_s = 0.9649 ± 0.0042, **8σ** from 1 (9σ with BAO); the authors concede >5σ themselves. **NOT the holographic white-hole framework** — they propose an uncomputed ~4% correction whose size is read off the measurement. Added 2026-08-29. |
 
 So: **4 calibrated — 2 live, 2 fired — and TWO bear directly on a black-hole-universe theory:
 entry 31, live; and entry 44, ALREADY FIRED.** *(Corrected 2026-08-29 when entry 44 was filed here.
@@ -323,8 +331,10 @@ bounded**: it needs a RECOLLAPSE, so it does not reach bounce cosmologies — in
 whose Ω_k < 0 is closed geometry *with* a bounce. *(A proposed cross-entry tension between entries
 31 and 54 was refuted by both seats on exactly that distinction and is withdrawn; the bound is what
 survives, recorded so nobody rediscovers the "tension" and files it.)*
-**[14] Ellis 1993 pinned but still unread; [31] Silk 1997 paywalled.** Two of four read, and neither
-is primarily "contradicted by present observation" — but **no conclusion is drawn** about Smolin's
+**[14] Ellis 1993 READ 2026-08-29** (`b22`, both seats read it in full): it is a review of five
+cosmological paradigms, **not a critique** — its only substantive mention of Smolin, p. 328, is
+*favourable*, and it delegates criticism in one clause to Rothman & Ellis. **[31] Silk 1997
+paywalled and unread.** Three of four read, and none is primarily "contradicted by present observation" — but **no conclusion is drawn** about Smolin's
 collective characterisation until all four are.. Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
 conjecture ("one can conjecture that the present value of Λ maximizes the formation of black
 holes"), not a result.

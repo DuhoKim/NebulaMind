@@ -243,24 +243,29 @@ the strength of one dispute, and then re-auditing all of them under the new mean
 But Reviewer A is right that something real would go unrecorded. **Both are right about different
 axes, and the record had only two.**
 
-**The cost objection I gave you was wrong.** I told you a third column meant maintaining a
-subjective judgement across 58 entries. It doesn't: **a warrant only exists where there is a
-calibrated claim to have a warrant for.** A consistency-only paper has no falsifier whose reasoning
-could be disputed. The column lives on the standing table, which has **four rows**.
+**I told you the cost objection was wrong. Then both reviewers told me *that* was wrong.** I said a
+third column meant a judgement across all 58 entries; I then reversed it to "only four, because only
+a calibrated claim has a warrant". **The reversal is false** — a directional claim can fail to follow
+in the direction asserted, an impossibility proof can rest on disputed maths. **Your original
+objection stands.** What I have actually built is four warrant cells for the four sharpest claims,
+**not a survey of the collection**, and the file now says so where the column is defined. Extending
+it later brings the cost back.
 
-**And filling those four rows showed something the record could not previously say.** Three of the
-four have documented warrant problems, every one of them found in the last two days:
+**What the four cells show, stated at the strength the evidence supports:**
 
 | entry | warrant |
 |---|---|
-| 7 | not disputed here — though its firing was already scoped to an instrument chain, not to CNS |
-| 31 | **disputed**, by pinned published criticism, unanswered on the parameters it names |
-| 51 | **does not follow from the paper's own inputs** — six routes tried, none reaches its number |
-| 44 | **the warrant is what died** — the computable core was tested and lost |
+| 7 | **no challenge filed here** — a fact about our shelves, *not* a finding that the reasoning is sound. Neither reviewer could check the wider literature. |
+| 31 | **disputed**, by published criticism we now hold, unanswered on the quantities it names |
+| 51 | **unreproduced** — six ways tried, none reaches the paper's number, and the list isn't exhaustive |
+| 44 | **sound, and it still lost** — the prediction follows from the model openly; the measurement simply disagreed. What lacks support is the *replacement* the authors sketched and never computed. |
 
-**Only one of this collection's four sharpest claims has reasoning nobody has challenged.** That is
-a fact about the state of this field, it was invisible while the record had two axes, and it is
-worth more than the labelling dispute that produced it.
+**I first wrote that "only one of the four has reasoning nobody has challenged". Both reviewers
+refuted it and they were right, twice over:** entry 7's cell means *we have not filed a challenge*,
+which is not the same as nobody making one; and entry 44's reasoning was never in doubt — its
+prediction was derived properly and then failed, which is what a good prediction does. **Two of the
+four have real problems with their reasoning. That is still the most useful thing this column has
+shown, and it is the honest version.**
 
 **What did NOT change: no tier, no standing, and no definition.** Entry 31 is still
 CALIBRATED-FALSIFIER / LIVE. The dispute now sits in a column instead of being argued about in the
