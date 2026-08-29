@@ -35,6 +35,19 @@ rerun procedure **A** (halt is terminal); `INCONCLUSIVE-BY-COMPUTATION` **D** (d
 direction **A** (*failed on its own terms — back to the principal*). The **§2.7 phase** was not ruled
 but **recovered from V11 commit `4d99d1d93`**. **`require_authorization` stays deprioritised.**
 
+
+**How to check §1 against disk, in one line.** Every `OPEN_QUESTION_*.md` now carries a machine-
+readable status as its **first line**: `**STATUS: OPEN**`, `**STATUS: RULED — …**`, or
+`**STATUS: RESOLVED FROM THE RECORD …**`.
+
+    grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md
+
+must return exactly the files §1 lists, and nothing else. **This was added because the first run of
+Blanc's state-check found ten `OPEN_QUESTION_*` files on disk against two open questions in §1** —
+seven of the eight resolved ones opened with the words "OPEN QUESTION" and buried the ruling further
+down, so `head` gave the wrong answer for seven of ten files. A glob was never a safe index and now
+it is one.
+
 ## 2. CURRENT DRAFT — V48, BUILT, NOT DISPATCHED
 
 `<lane>/PREREG_SUCCESSOR_DRAFT_V48_20260829.md` = `8d2e68f7f52db1268d89df69d33eb055753b465bda4191f45031961660973ff7`
