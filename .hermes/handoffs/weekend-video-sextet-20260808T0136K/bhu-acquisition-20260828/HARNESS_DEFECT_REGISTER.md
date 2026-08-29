@@ -350,6 +350,47 @@ separately, so `CALIBRATED-FALSIFIER / LIVE` yields tier `CALIBRATED-FALSIFIER` 
 **Result after repair:** 5 cross-references carrying a tier claim, all consistent or marked as
 quoted retractions. **0 unnamed population claims.** No new staleness anywhere in the bibliography.
 
+## 1p. CROSS-LANE RECURRENCE — and why it is a property of the method, not of any script
+
+Blanc, 2026-08-29: *"a defect that keeps reappearing in independent contexts is a property of how
+we work rather than of any one script."* Recording the instances, then the structural reason.
+
+**Instance, DESI lane (Hwao).** A completeness argument — *"these are all the ways a pre-unblinding
+numerical failure can occur"* — built by filtering a row table on `pre-unblind|permut|stage`. One
+row contains none of those words, was silently excluded, and its failure branches turn out to have
+**no defined outcome at all**. She had personally triggered that exact failure earlier the same
+day and still left the row out. Her own description:
+
+> *"A narrow pattern, in the absence direction, inside the argument about when absence may be
+> asserted."*
+
+That is this register's rule, reached independently, **inside the argument that was supposed to
+establish completeness.**
+
+**Second instance, same lane, same family.** She quoted a clause from a diff read that morning
+rather than from the current text, which had changed underneath her. Caught it herself. That is
+the execution gap: **trusting a reading instead of re-reading at the moment of use.**
+
+**Count for the day: six false absence claims across two lanes** — entries 8, 24 and 40 here, the
+excluded row there, plus this register's own probes twice reporting artefacts as findings.
+
+### Why it recurs, which is the part worth keeping
+
+A pattern is built from **the instances you can already think of**. An absence claim quantifies
+over **the instances you have not thought of**. So the pattern is *systematically* narrower than
+the claim it is asked to support — not occasionally, not through carelessness, but by
+construction. The gap is exactly the set of cases that motivated writing a check in the first
+place: the ones you did not anticipate.
+
+That is why "widen the pattern and inspect what turns up" works and "write a better regex" does
+not. Widening does not require imagining the missing case — it requires only lowering the bar
+until something unexpected appears, and then reading it.
+
+**Operational form:** an absence claim is admissible only when it states (a) the pattern used,
+(b) at least one class of thing that pattern would miss, and (c) what was done to look for that
+class anyway. Any absence claim without all three is an untested hypothesis wearing a result's
+clothes.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
