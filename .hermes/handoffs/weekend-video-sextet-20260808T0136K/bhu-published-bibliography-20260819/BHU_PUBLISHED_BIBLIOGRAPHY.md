@@ -518,7 +518,8 @@ Audit-worthiness: **medium**.
 **15. D. A. Easson, R. H. Brandenberger (2001). "Universe generation from black hole interiors." JHEP 06 (2001) 024.**
 DOI 10.1088/1126-6708/2001/06/024 — VERIFIED (Crossref: JHEP, v2001, 024, 2001-06-11).
 Claim: universe generation from black-hole interiors with limiting curvature.
-Testability: **CONSISTENCY-ONLY**. Record: packet §1.6. Audit-worthiness: **medium**.
+Testability: **CONSISTENCY-ONLY**
+**ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — constructive; its inside-horizon coordinate-role remark is a limitation of setting, not a class exclusion.. Record: packet §1.6. Audit-worthiness: **medium**.
 
 **16. B. Pourhassan et al. (2025). "Multiversal entropy and information conservation in black hole nucleated baby universes." Nucl. Phys. B 1020, 117160.**
 DOI 10.1016/j.nuclphysb.2025.117160 — VERIFIED (Crossref: NPB, v1020, 117160, 2025-11).
@@ -531,7 +532,8 @@ Record: packet §1.6 (the "2025 Nucl. Phys. B baby-universe paper"). Audit-worth
 **17. H. Chakrabarty et al. (2020). "A toy model for a baby universe inside a black hole." Eur. Phys. J. C 80 (2020).**
 DOI 10.1140/epjc/s10052-020-7964-0 — VERIFIED (Crossref: EPJC, v80, 2020-05).
 Claim: explicit toy interior in which a baby universe replaces the singularity.
-Testability: **CONSISTENCY-ONLY**. Record: baseline corpus entry, publication newly verified here.
+Testability: **CONSISTENCY-ONLY**
+**ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction at paper level — a constructive toy model. **Claim-level note (CGATE):** it *derives* that the classical/quantum matching *requires* a boundary stress layer (junction-layer necessity) — the entry-5 shape in miniature, source-owned; kept in prose.. Record: baseline corpus entry, publication newly verified here.
 Audit-worthiness: **low-medium**.
 
 **42. P. F. González-Díaz (1991). "Baby universe metric equivalent to an interior black-hole metric." Phys. Lett. B 261, 357–362.**
@@ -563,10 +565,15 @@ DOI 10.3390/universe5050111 — VERIFIED (Crossref: Universe, v5, 111, 2019-05-1
 Claim: explicit universes-inside-a-regular-BH construction. Testability: **CONSISTENCY-ONLY**.
 Record: **new to us**. Audit-worthiness: **medium**.
 
-**20. K. A. Bronnikov, J. C. Fabris (2007)-class: "Regular black holes and black universes." Gen. Rel. Grav. 39, 973–987.**
+**20. K. A. Bronnikov, V. N. Melnikov & H. Dehnen (2007): "Regular black holes and black universes." Gen. Rel. Grav. 39, 973–987.**
+*(Author field corrected 2026-08-30, CGATE_B38: the record said "Bronnikov, J. C. Fabris", but the
+Crossref-verified DOI 10.1007/s10714-007-0430-6 and the pinned paper's own byline are
+Bronnikov–Melnikov–Dehnen. Fabris co-authored "Regular phantom black holes", PRL 96 251101 — a
+different paper, cited as this one's ref [1]. Title-only identity checks cannot catch this class.)*
 DOI 10.1007/s10714-007-0430-6 — VERIFIED (Crossref: GRG, v39, p973-987, 2007-05).
 Claim: "black universes" — regular BH solutions whose interior is an expanding universe.
-Testability: **CONSISTENCY-ONLY**. Record: **new to us**. Audit-worthiness: **low-medium**.
+Testability: **CONSISTENCY-ONLY**
+**ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — a comparative catalogue of regular-BH/black-universe solutions. **It cites, does not own, a real no-go:** charged solutions "impossible whatever be the choice of L(F)" — proved in its ref [16], **Bronnikov 2001, PRD 63 044005, gr-qc/0006014**, now pinned as a reference. It also reproduces structural restrictions (a regular centre only in an R-region; minimum horizon structure). Ownership-of-proof: tier untouched.. Record: **new to us**. Audit-worthiness: **low-medium**.
 
 **21. Z. Roupas (2022). "Detectable universes inside regular black holes." Eur. Phys. J. C 82, 255.**
 DOI 10.1140/epjc/s10052-022-10202-6 — VERIFIED (Crossref: EPJC, v82, 2022-03).
@@ -705,7 +712,8 @@ DOI 10.1007/JHEP05(2025)233 — VERIFIED (Crossref: JHEP, v2025, 2025-05-28). No
 is exactly why arXiv metadata alone is not trusted in either direction.
 Claim: big-bang/big-crunch cosmologies behind black-hole horizons as entangled states of multiple
 CFTs, with dominance conditions in 3D gravity.
-Testability: **CONSISTENCY-ONLY**. Record: baseline corpus entry, newly verified.
+Testability: **CONSISTENCY-ONLY**
+**ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — "we have described a microscopic construction"; its quantitative result is a dominance condition on its own saddle.. Record: baseline corpus entry, newly verified.
 Audit-worthiness: **low-medium** — far from any observable, but the only active holographic line.
 
 ## 9. Smoller–Temple shock-wave interior cosmology
