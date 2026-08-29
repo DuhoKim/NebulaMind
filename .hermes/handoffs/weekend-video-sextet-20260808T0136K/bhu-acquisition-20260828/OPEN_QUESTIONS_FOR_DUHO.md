@@ -6,7 +6,25 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — two, both tier changes, both yours
+## OPEN — three, all tier changes, all yours
+
+### 7. Two more dual papers — same question as entry 51, so one ruling can settle all three
+
+**The stake.** The census closer found that entries 52 and 53 (the Popławski closed-universe pair)
+each headline a derived existence exclusion: *"a closed universe exists only when [a function of
+scale factor and temperature] exceeds a threshold"* — open and flat universes unrestricted. I missed
+it (my pattern had no "exists only when"; eighth miss of that kind); one reviewer found it on a full
+read; **I verified it in both abstracts directly.** Like entry 51, these are constructive bounce
+papers whose *stated central result* is an impossibility over a class.
+
+**Options are the same as question 6, and the recommendation is to answer 6 and 7 together with one
+convention:** whichever way you rule on entry 51's dual shape (keep tier + theorem in prose, or
+re-tier + construction as secondary), applying it to 52/53 keeps the corpus consistent. **The
+theorems are already recorded in both entries' prose either way — nothing is lost while you decide.**
+
+---
+
+
 
 ### 6. A paper that proves an impossibility AND carries your one live falsifier. Which label leads?
 

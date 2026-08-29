@@ -1,5 +1,24 @@
 #!/usr/bin/env python3
-"""B37 -- census final batch: ALL NINE remaining papers. No draw, and none is needed: taking the
+"""B37 -- census final batch: ALL NINE remaining papers.
+
+GATED 2026-08-30:  AGATE_B37 CENSUS_CONFIRMED  /  CGATE_B37 CENSUS_REFUTED_ENTRIES52_AND53
+
+"ALL NINE NOT-OBSTRUCTION" IS WITHDRAWN. Seven confirmed; entries 52 and 53 each HEADLINE a derived
+existence exclusion -- "a closed universe exists only when {f(scale factor, temperature)} is higher
+than a particular threshold" -- proved from their EC Friedmann systems, refutable by a sub-threshold
+counterexample, not by measurement. CGATE found it on full reads; I VERIFIED IT IN BOTH ABSTRACTS
+DIRECTLY before recording anything. AGATE confirmed my all-nine without engaging the theorem -- the
+B29/B34 pattern again: one seat does the work.
+
+WHY I MISSED IT: my impossibility pattern had no "exists only when" -- the EXISTENCE-CONDITIONAL
+form. Both papers' one pattern hit was their SEC-evasion line and I read no further into either.
+EIGHTH false absence from a narrow pattern in this lane, and the second inside the census itself
+(entry 5 was the first). The census's defence held: full-read gating caught what triage missed,
+which is exactly why every batch went to the gate.
+
+DISPOSITION: theorems recorded in both entries' prose (verified receipts, not testimony); tier
+proposals FILED AS QUESTION 7, the same dual-paper shape as question 6, with the recommendation
+that Duho answer 6 and 7 together under one convention. No draw, and none is needed: taking the
 entire remainder eliminates selection bias by construction, which is what the randomisation was for.
 
 RULE unchanged from b28. METHOD per the corrected practice: hits read in context AND closings read
