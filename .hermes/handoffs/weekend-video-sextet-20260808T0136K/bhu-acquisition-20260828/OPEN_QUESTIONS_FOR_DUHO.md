@@ -43,6 +43,40 @@ So the category is fine; the automatic sorter for it is not.
 collection to be, not a technical one. I can carry out any of the three; I should not choose which
 kind of incompleteness we accept.
 
+
+
+**THE NUMBER YOU WERE GIVEN WAS WRONG. Re-measured 2026-08-29** (`b25_screen_precision.py`, gated
+twice). The screen's score was recorded as "wrong three times out of four". That figure was written
+when 29 papers were on the shelf; there are now 41, and **the screen's own output disagrees with its
+own summary** — the code flags six papers while the note beside it still says four.
+
+**Three honest figures, and which way each one pushes:**
+
+| measured over | score | favours |
+|---|---|---|
+| everything on the shelf | right **1 time in 6** | sorting by hand |
+| only the papers it would actually be run on | right **1 time in 3** | using the screen |
+| counting a paper as a hit if *any* claim in it qualifies | right **2 times in 3** | using the screen |
+
+**And the two friendlier numbers are the less trustworthy ones — I want to say that plainly, because
+my first draft led with them.**
+
+- The 1-in-3 comes from dropping the big observational papers. Those are **measurably longer** —
+  median 86,000 characters against 50,000. The screen works by *counting words*, so longer documents
+  trip it for reasons that have nothing to do with whether they contain an impossibility proof.
+  Removing them flatters it.
+- The 2-in-3 depends on counting a paper as a hit when one buried argument qualifies. One reviewer
+  found such an argument inside a paper the screen flags. **But adopting that convention would change
+  how every paper in the collection is filed**, not just this one.
+
+**What nobody has measured: what the screen MISSES.** Every figure above is about its false alarms.
+A screen used to re-sort a collection is judged at least as much on what it fails to catch, and
+**22 of the 51 papers have never been run through it at all.**
+
+*(Both reviewers also told me this file was not the neutral measurement it claimed to be — it
+produces the number your decision turns on, and my framing favoured one side. That correction is
+theirs, and the table above is the result of it.)*
+
 **My recommendation: (b).** The screen is bad at precision but there is no evidence yet that it is
 bad at recall, and every shortlisted paper still gets read before anything is filed.
 

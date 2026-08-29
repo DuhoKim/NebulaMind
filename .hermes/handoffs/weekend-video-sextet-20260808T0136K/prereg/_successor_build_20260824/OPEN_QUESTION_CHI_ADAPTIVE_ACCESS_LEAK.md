@@ -44,12 +44,17 @@ study permits rather than to how it is described.
   think this survives being written down plainly — but the option is listed rather than suppressed,
   because deciding it is yours.
 
-## My reading, and its limit
+## FEASIBILITY ANSWERED — `FEASIBILITY_CHI_BLIND_ACCESS_SCHEDULE.md`, 2026-08-29 22:3x KST
 
-**(a) if the adaptivity is not load-bearing, and that is a question about the acquisition plan I have
-not answered.** I can check whether anything in the pipeline actually depends on adaptive scheduling
-before you rule, and I have not done so — this file exists to raise the leak, not to hold it while I
-investigate. Say the word and I will establish that first.
+**Asked by the principal at 22:24: is a totally precommitted schedule compatible with how Rows D and G
+are meant to operate? Yes for both.** Row D's universe is already fixed and χ-blind, order is
+irrelevant to the result, and its runner is not yet built. **And Row G's accepted protocol already
+requires a precommitted sequence:** HC-1H is one human checker and 850 blinded labels — 500 real, **200
+blind synthetic injections and 150 mirrored re-presentations** — a design that only works if the
+presentation order is fixed by the design rather than by the subject. **So A enforces HC-1H rather than
+overriding it.** The workable human form is **fixed next item, free dwell**. The one real cost is
+**selective revisiting**, and the one thing unread is HC-1H's full rules, carried by quotation and not
+yet quoted.
 
 **What is not in doubt:** the condition my proposal depends on is **not satisfied by the current
 draft**, and both seats reached that independently against different rows.

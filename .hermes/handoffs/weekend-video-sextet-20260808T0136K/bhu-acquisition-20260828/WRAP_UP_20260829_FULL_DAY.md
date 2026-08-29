@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 22:15 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 22:35 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -54,6 +54,18 @@ justification was itself refuted (a directional claim or a no-go can have a disp
 Duho's original cost objection stands). Two of the four have real derivational problems: entry 31
 disputed by criticism we now hold, entry 51 unreproduced from its own inputs. Entry 44's reasoning
 is **sound** — it made a proper prediction and the measurement disagreed.
+
+**Question 2 closed too** — unreproduced, not an error. The fact I justified it with was false: the
+pinned Popławski file is an ar5iv render of the arXiv submission carrying the journal line, **not**
+Elsevier's version of record, so acquiring it is still owed and ScienceDirect returns 403.
+**Two papers now need Duho's login**: Popławski *PLB* 690 73–77 and Silk *Science* 277 644.
+
+**Question 1's evidence was re-measured and its number was wrong** (`b25`): the screen's score was
+recorded against 29 sources when there are now 41, and b1's own live output flags six while its
+summary says four. Three honest figures — 1-in-6, 1-in-3, 2-in-3 — depending on population and
+labelling convention, with the friendlier two resting on a length confound and an unadopted
+convention respectively. **Recall is unmeasured and 22 of 51 papers have never been screened.**
+Question 1 itself is untouched and remains Duho's.
 
 **Entry 22 (the one no-go) now states its domain**, which it never did. And I was unfair to it:
 I counted eleven "conditions" that were eleven *phrases* for about eight hypotheses, and called a
