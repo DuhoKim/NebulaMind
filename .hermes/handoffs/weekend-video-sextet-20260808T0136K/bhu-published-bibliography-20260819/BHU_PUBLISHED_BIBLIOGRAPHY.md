@@ -418,8 +418,23 @@ is still anonymized and carries no volume/article number yet; the arXiv v3 of 26
 D. A. Easson, sole) is marked "Version to appear in PRD." Publication fact rests on the DOI
 registry record; authorship tie rests on the unique title match. **Flagged for Miru's spot-check.**
 Claim: no-go obstructions for minimal regular-black-hole cosmologies.
-Testability: **CONSISTENCY-ONLY** (a constraint result). Record: baseline corpus entry (preprint),
-journal status newly established here. Audit-worthiness: **high** — see ranked target 5.
+Testability: **THEORETICAL-OBSTRUCTION** — **refiled 2026-08-29 on Duho's ruling ("then add
+another category").** Previously CONSISTENCY-ONLY, which is wrong in *both* halves of that
+definition: this paper neither shows compatibility with observation nor merely fails to state a
+prediction. It **proves that a class of constructions cannot work** (Proposition 1, Proposition 2,
+Theorem 1). The new tier asserts: *no member of a specified class of models can satisfy a
+specified conjunction of conditions; refuted by exhibiting a counterexample in that domain, not by
+any measurement.* Membership criterion and its controls: `b1_theoretical_obstruction_tier.py`.
+
+**PUBLICATION CAVEAT DISCHARGED 2026-08-29.** The "flagged for Miru's spot-check" above never
+happened — Miru is a retired seat. Resolved instead at the A7 gate: **Phys. Rev. D 114, 044077,
+published 24 August 2026** (received 25 June, accepted 31 July), DOI `10.1103/qs86-npwk`, verified
+from APS by the codex seat. Note the date correction: **2026-07-31 was the ACCEPTANCE date**, not
+publication. Still testimony rather than a pinned receipt — a seat's lookup, not a document in
+this corpus.
+
+Record: baseline corpus entry, now the sole member of a new tier. Audit-worthiness: **high** —
+see ranked target 5.
 
 **55. "Asymptotically de Sitter universe inside a Schwarzschild black hole." Phys. Rev. D 102, 066010 (2020).**
 DOI 10.1103/physrevd.102.066010 — VERIFIED (Crossref: PRD, v102, 066010, 2020). Added 2026-08-23, hunt round 2

@@ -277,6 +277,42 @@ run 25 in stitched files vs 2 in never-stitched controls).
 Completeness evidence for these two documents is now a15's equation-citation probe — zero orphaned
 citations in either — not any check in a4.
 
+## 1k. A CHECK WHOSE GREEN STATE IS REACHED BY DESTROYING WHAT IT AUDITS
+
+**First instance either lane has produced.** Filed separately from the entry-31 work at Blanc's
+instruction, because it is a distinct and nastier class than a check that merely overclaims.
+
+While probing for stale cross-entry claims I wrote:
+
+```python
+stale_gone = "gives the family a SECOND live calibrated falsifier" not in entry_31_text
+```
+
+It failed. Not because the defect persists — because **the correction quotes the withdrawn claim**
+so a reader can see what was retracted. The phrase is present *as history*.
+
+**The check is satisfiable by deleting the retraction.** Its green state is reachable by erasing
+the record's account of its own error. An agent following it faithfully would strip the
+bibliography of exactly the evidence that makes its corrections auditable.
+
+> **The class: a control whose GREEN condition is reachable by destroying the thing it audits.**
+
+This is worse than the execution gap in one specific way. An overclaiming check *fails to detect*
+a problem. A destructively-green check **creates pressure to cause one** — and the pressure runs
+toward exactly the material that would reveal it. It is a control that rewards its own blinding.
+
+**Fix:** test that every occurrence sits inside a retraction context, not that no occurrence
+exists.
+
+```python
+occurrences = [m.start() for m in re.finditer(PHRASE, text)]
+stale_gone = all("previously read" in text[max(0,i-120):i] for i in occurrences)
+```
+
+**Where else to look for it:** any check phrased as "X must not appear". If the legitimate reason
+for X to appear is *a record of X having been wrong*, the check is destructive. Absence tests over
+a corrected record are the natural habitat.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
