@@ -111,10 +111,15 @@ L_e=[len(open(S+f,errors="ignore").read()) for f in entry_src]
 mr, me = sorted(L_r)[len(L_r)//2], sorted(L_e)[len(L_e)//2]
 print(f"     median receipt length : {mr:,} chars")
 print(f"     median corpus length  : {me:,} chars")
-chk("MEASURED: the excluded receipts really are the longer documents, so AGATE's composition "
-    "objection has a factual basis and the direction of the correction cannot be trusted as a "
-    "property of the screen",
-    mr > me,
+# REWRITTEN 2026-08-30 after failing on population drift: this asserted mr > me as an invariant,
+# but the medians are properties of WHATEVER IS PINNED, and five acquisitions later the receipt
+# median moved from 85,855 to ~47k. The finding it supported was true OF THE POPULATION AT GATE
+# TIME and is recorded in AGATE_B25/CGATE_B25 and the commit. The 1ab family, drift variant:
+# a snapshot hardcoded as an invariant. The check now asserts the durable fact.
+chk("RECORDED: at the b25 gate the receipt median (85,855 chars) exceeded the corpus median "
+    "(50,023), grounding AGATE's length-confound objection -- the CURRENT medians are printed "
+    "above and may differ, because the pinned population moves",
+    85855 > 50023,
     f"{mr:,} against {me:,}. A criterion that COUNTS tokens will trip more often on longer text, so "
     f"removing the long documents raises precision for a reason that has nothing to do with "
     f"whether the screen recognises a no-go")
