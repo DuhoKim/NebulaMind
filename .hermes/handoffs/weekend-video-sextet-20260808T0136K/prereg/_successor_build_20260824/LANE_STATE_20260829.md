@@ -21,10 +21,8 @@ written `<lane>` below.
 | 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | The γ → sign-vector mapping. **The feasibility check Duho authorised was RUN and is invalid as built** — see `FEASIBILITY_RESULT_GAIN_OPTION_B.md`; the passability question is still open. |
 | 2 | `OPEN_QUESTION_V52_RESIDUE.md` | The ledger's per-raise unit (needs a call-graph); `VOID-6.1L-WRONG-SIGNATURE` P7-only while Row L signs at P0/P6/P7. |
 | 3 | `OPEN_QUESTION_V54_RESIDUE.md` | **The evidence bar lets sampling establish a status named for a proof** (both seats); the post-unblinding double-claim has **recurred**; `NUMERICAL-PLANNING` is an unauthorised category; the 80,000-execution rerun has no pinned harness. |
+| 4 | `OPEN_QUESTION_V53_RESIDUE.md` | The freeze-signature exemption is unbounded — no canonical body defines which signed bytes qualify; and BS-2v is UNRESOLVED for a self-reference its own checker disproves. |
 
-**Also open, from V53:** `OPEN_QUESTION_V53_RESIDUE.md` — the freeze-signature exemption is unbounded
-(no canonical body defines which bytes qualify), and BS-2v is UNRESOLVED for a self-reference its own
-checker disproves.
 
 **RULED AND APPLIED TODAY:** VOID option A; BS-6 slot (a), 15/8→16/8; VOID-5 option C; gain fork (b);
 citation check C + corpus D; rerun option A; `INCONCLUSIVE-BY-COMPUTATION` option D; numerical routes
