@@ -229,6 +229,33 @@ QUESTION / V43 READY TO DISPATCH" while V48 stood with two open. **The state fil
 here with no adversarial reader** — the drafts get seats, the checkers get controls, this gets
 whatever attention is left over.
 
+
+## 8c. THE VERDICT LIVES IN THE BLOCK, NOT IN PROSE — and a probe looking for prose will miss it
+
+**2026-08-29 16:0x.** Blanc's probe reported GPT56's V49 report as having *no verdict at all*, and
+concluded V49 was not a two-seat round. **Checked: the report does render a verdict** — line 69,
+`VERDICT: NOT CLEAR`, inside `FINDINGS-BLOCK v1`. What it lacks is a prose `## Verdict` heading and a
+bold `**NOT CLEAR**` token, which is the *old* convention.
+
+**All twelve V38–V49 reports carry `VERDICT:` in the block, and every brief since V42 mandates the
+field.** The block is the authoritative location precisely because it was introduced under the
+principal's option C so a verdict would not have to be recovered from prose. A probe keyed on the
+prose token is reading the convention the block replaced.
+
+**Do not "fix" this by requiring both.** Two sources for one fact is the drift this lane has spent the
+day repairing; a brief demanding a prose verdict *and* a block verdict would create exactly that. One
+authoritative location, and the reader reads it:
+
+    grep -m1 '^VERDICT:' <report>.md
+
+**This is the second probe misread today, and they failed in opposite directions** — at V34 the probe
+took a bare `**CLEAR**` from prose and reported CLEAR when the verdict was NOT CLEAR; here it found no
+prose token and reported no verdict when one was present. Both are the same defect: reading a
+convention the artifact no longer uses. **Blanc's first instinct was that the probe was broken and the
+second was that the report was; the first instinct was the right one.**
+
+*(Severity counts in the same relay were also off: GPT56-V49 is 2 HIGH and 5 MEDIUM, not 7 MEDIUM.)*
+
 ## 9. OPERATING NOTES THAT COST TIME
 
 - `hermes` is **not** on PATH: `/Users/duhokim/.hermes/hermes-agent/venv/bin/hermes`. A bare `hermes`
