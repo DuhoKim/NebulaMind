@@ -41,59 +41,30 @@ were parked, not resolved. V36 clearing does not retire them.**
 
 ---
 
-## 2. CURRENT DRAFT — V38, BUILT 10:3x, NOT YET REFEREED
+## 2. CURRENT DRAFT — V40, ROUND RUNNING (dispatched 11:0x)
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V38_20260829.md` = `b5776d287a22cff71fe34d1ee1dbe937f1af61d51ad70530f378668cbfe1ec56`
+`<lane>/PREREG_SUCCESSOR_DRAFT_V40_20260829.md` = `531d3f40f06130e792ff474e660fde931038e2d7bd8e573612b90c8ec624c1f6`
 
-V38 = V37 + the §2.7 instant settled from the record (cell unchanged) + §5 recording the
-`require_authorization` limit accurately without building anything. Checkers: 16/8 prose-matched,
-trace 0 problems, registry 54/20 digest `a4d1d745…`, lint exits 1 on the known quarantined advisory.
+**V38 was NOT CLEAR ×2** (GPT56 1 finding, CODEX 4). V39 repaired three; V40 implements the principal's
+ruling on the fourth.
 
-### Superseded: V37, built 09:45
+- **V39** — `221c6a08cd794e5b`. BS-3g added to §7's DESIGN-slot prose (**both seats**);
+  `DECISIONS_FOR_DUHO.md` no longer cited as the record of a ruling (CODEX-V38 F3); §6.1/§6.2
+  mis-citations corrected to §6/§5 and the commit-metadata-proves-authorship claim withdrawn
+  (CODEX-V38 F4).
+- **V40** — **principal ruling of 2026-08-29 11:00, option C on CODEX-V38 F2 (HIGH).** §5's VOID
+  trigger split by kind: **forbidden acts and protocol/digest deviation stay `Any`**; the **numerical**
+  conditions read **post-unblinding**; pre-unblinding numerical failures route to new
+  **`INCONCLUSIVE-BY-COMPUTATION`** with a binding rerun procedure (same frozen digests, every attempt
+  logged, silent rerun is a forbidden act, no rerun on a finite result). **Maximum attempt count is
+  deliberately unbound and declared as such — must be pinned before BS-6.**
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V37_20260829.md` = `62dd8a7525c399126477573d55a952f1ed2f147d16f8bfbb12aa89a295821c42`
+**Verified mechanically, not by eye:** all 54 registry rows byte-identical V39→V40, the three
+misconduct antecedents still `Any`, only the title changed before §5, `registry_digest` unmoved at
+`a4d1d745…`. Counts 16/8 prose-matched; trace 0 problems.
 
-**V36 (`e4d7b175…`) was CLEAR ×2 at 06:57 and remains the last REFEREED draft.** V37 applies the two
-decisions Duho ruled on at 09:20, relayed by Blanc: VOID **option A**, BS-6 **option (a)**.
-
-- `VOID-5-DEGENERATE` added (§5, `Post-unblinding` — the phase of its sibling in the same §5 clause).
-- `VOID-5-DIGEST-DEVIATION` added (§5, `Any`) as a separate antecedent, not an undeclared alias.
-- `VOID-2.7-THRESHOLD-MOVED` → `VOID-2.7-THRESHOLD-CHOSEN-OR-MOVED`. **Phase untouched, on purpose.**
-- **`BS-3g` added — class P, DESIGN/UNFILLED, blocks BS-6.** Counts **15/8 → 16/8**, the first
-  row-count change since V4. §1's sentence now names the edge that makes it true.
-- §7.1 preamble states what the checker proves (**NAME-coverage only**) and what it does not.
-
-**Checkers:** counts 16 P / 8 E, prose matches the table; trace 0 problems; `void_registry` 54
-antecedents, 20 rows, no refusal, new `registry_digest a4d1d745…`. **Lint exits 1** on one advisory
-from the quarantined citation check — see §5. Invariants hold: §2.7 line 384 and §1 lines 2–119 byte-
-and position-identical to V30.
-
-**THE §2.7 PHASE IS RESOLVED** — `Post-first-real-χ`, recovered from V11's commit `4d99d1d93` rather
-than ruled on. My `Post-unblinding` recommendation was wrong (χ *exists* pre-unblinding; I confused it
-with when χ is *read*). Registry digest unmoved at `a4d1d745…`, so the registry is unblocked.
-
-**NOT DISPATCHED.** Per Blanc: do not dispatch if the phase question would land mid-round.
-
-## 3. LAST REFEREED DRAFT — V36, CLEAR FROM BOTH SEATS
-
-`<lane>/PREREG_SUCCESSOR_DRAFT_V36_20260829.md`
-`e4d7b175ac270f4cdc0bc4af3a16af0e834aa3e4eacc174a73d10798cd4b6177`
-**CLEAR ×2 at 06:57 KST — the first two-seat CLEAR the document has had.**
-
-Both seats verified the digest, the three-region delta, the V30 byte- and position-identical
-invariants, class counts 15/8, and the BS-2a pin. CODEX ran a fresh whole-document absence-surface
-attack and found no new repair-required defect. The two numbered items in each report are HELD
-confirmations of the V35 repairs, not findings.
-Reports: `<lane>/gates/V36_WHOLE_REVIEW_GPT56.md`, `<lane>/gates/V36_WHOLE_REVIEW_CODEX.md`.
-
-### What the CLEAR means, and what it does not
-
-It means **the text is a correct preregistration that is honest about being an unfinished
-programme.** It does **not** mean the study may proceed.
-
-Still true after it: BS-2a is DESIGN, UNFILLED; one of fifteen class-P slots is filled; BS-2v is
-UNRESOLVED; rows C2 and E cannot run; Stage P is SUPERSEDED; **BS-6 and the first image byte remain
-blocked**; and the four decisions in §1 are open.
+**Round running**, both seats, reports to `gates/V40_WHOLE_REVIEW_<SEAT>.md`. The brief tells GPT56
+plainly that it missed CODEX-V38 F2, so it reviews the repair instead of re-deriving the hole.
 
 ### Lineage
 
