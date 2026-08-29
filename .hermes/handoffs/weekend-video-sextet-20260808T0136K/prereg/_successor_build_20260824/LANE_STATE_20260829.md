@@ -1,3 +1,5 @@
+**SUPERSEDED by `LANE_STATE_20260830.md` (2026-08-30 02:00 KST).** Kept as the record of the V36-era state.
+
 # LANE STATE — DESI successor preregistration
 
 **Single source of state for this lane. Last rewritten 2026-08-29 07:20 KST.**
