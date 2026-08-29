@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 20:40 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 20:45 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -24,7 +24,7 @@ unfound.
 consistency-only audit cannot compete with a real prediction being decided by data. The study was
 gated, found unsound, and rewritten — see below.
 
-**Evening (19:45–20:40): entry 51, then a corpus-wide sweep it triggered.** Entry 31 is *not* the
+**Evening (19:45–20:45): entry 51, a corpus-wide sweep it triggered, then entry 44.** Entry 31 is *not* the
 corpus's only live calibrated falsifier — **entry 51 is the other**, and its measurement side was
 found to be an uncited sentence. Fixing that turned up a second defect of the same class, and
 sweeping for it turned up two more. Detail in the section below; six sources pinned, four new
@@ -114,12 +114,23 @@ the register against the filesystem, but cannot check prose — and most of the 
 
 **Every tier conclusion rests on quoted source text and on gates, never on the harness.**
 
-**Four defect classes were added this evening and three of them are about checks that passed.**
+**Eight defect classes were added this evening and most are about checks that passed.**
 §1w a number I invented to fill a truncated read, which spread to four artifacts while every
 self-check passed; §1x a predicate that *could not fail* (`len(d)==len(set(d))` on a dict);
 §1y the silent overwrite §1x was hiding, which had a sweep reporting 58 entries screened having
 screened 53; §1z reaching for "they overstated it" against a published paper and building a naive
-Gaussian ratio to support it — **refuted by a seat**, and the charge is withdrawn.
+Gaussian ratio to support it — **refuted by a seat**, and the charge is withdrawn;
+§1aa an absence claim made to this lane's *full* standard that was **still false**, because every
+step of that standard is about finding candidate claims and none is about tracing what a paper
+later does with one; §1ab a detection script left asserting a defect after the defect was fixed,
+so its **red state meant success**; §1ac a battery runner that reported 31 of 31 failed and had
+found nothing (`timeout` is GNU; macOS has none); §1ad the stale 51 in four documents.
+
+**Entry 44 audited and gated (`b17`, 6/6).** No concealed calibrated falsifier — Eq. (4.14)'s
+four-significant-figure `T_b/M_5 = 0.17139 ± 0.00077` is a *fitted normalisation*, the seventh
+borrowed number the sweep has found and the first to four figures. The paper's testable core,
+exact scale-invariance, **was tested and lost** at 8σ. One of my claims was refuted outright and
+is withdrawn in the file. **Battery re-run after all repairs: 31/31 green.**
 
 **A CORRECTION TO THIS FILE'S OWN ARITHMETIC.** Earlier versions said "36 of 51 entries". **The
 bibliography holds 58 entries, numbered contiguously 1–58.** The 51 is a stale total that survived
