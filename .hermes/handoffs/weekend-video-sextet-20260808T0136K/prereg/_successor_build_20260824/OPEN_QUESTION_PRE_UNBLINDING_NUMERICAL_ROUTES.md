@@ -254,3 +254,54 @@ twice today and had to retract.
 
 Not adjudicating the 48, and not deciding whether the nine Row F sites are one outcome or several.
 **Both are the substance of the pending decision, not inputs to it.**
+
+---
+
+# CORRECTION 15:1x — "nine raise sites" was raise-sites, not reachable branches
+
+I wrote that **Row F is at least nine raise sites** and let that number stand as the scale of the
+problem. It is the count of `raise` statements. **It is not the count of branches shown to fire**,
+and the principal is being asked to decide against a scale, so the difference matters.
+
+## What was actually tested
+
+`allocate_handcheck` executed against **60,000 generated cell-count tables** at nine density scales,
+with dead strata and dead bins injected, at the frozen constants (`N_CAL_BINS=3`, `N_HC_STRATA=9`,
+`HC_MIN_PER_CELL=10`, `HC_MIN_PER_STRATUM=30`, budget `HC_REAL_LABELS=500`):
+
+| site | status |
+|---|---|
+| `stratum {j} needs {n} labels but only {m} objects exist` | **REACHED** |
+| `budget {b} exceeds available objects {n}` | **REACHED** |
+| `stratum {j} below floor after apportionment` | **REACHED** |
+| `inherited floors need {n} labels, budget {b}` | not reached |
+| `floors exceed budget after the stratum lift` | not reached |
+| `no headroom remains to place the budget` | not reached |
+| `allocation {n} != budget {b}` | not reached |
+| `allocation exceeds available objects in a cell` | not reached |
+
+Plus `calibration_bins` → `degenerate calibration bins`, **reached** — I tripped that one by accident
+earlier today, which is how Row F entered this question at all.
+
+## The corrected number, and its limit
+
+**4 branches are demonstrated reachable. 5 were not reached.**
+
+**"Not reached in 60,000 random tables" is not "unreachable."** That is the absence direction, and
+this document has been wrong in it repeatedly today. The five may be genuinely dead defensive checks,
+or reachable only under structured inputs a random search does not produce — the function's own
+docstring says feasibility is *decided before allocating*, which is exactly the design that would
+make later guards hard to reach. **The search has a positive control** — three of the eight did fire,
+so it is capable of finding these — but that makes "not reached" weakly informative, not conclusive.
+
+## What this does and does not change
+
+**It does not rescue option A.** The three reachable allocation failures are *different causes* — a
+stratum short of objects, a budget exceeding total availability, and a stratum falling below floor
+after apportionment. Together with a degenerate calibration bin that is **four distinct conditions**,
+and no existing outcome honestly covers four distinct conditions any better than it covered nine.
+
+**It does correct the scale I gave.** The honest statement is **"at least four demonstrated, with
+five more of unknown status in this function alone"** — not "nine". I am correcting it before it is
+decided from, because I have now had to retract two confident numbers today and would rather not
+supply a third.
