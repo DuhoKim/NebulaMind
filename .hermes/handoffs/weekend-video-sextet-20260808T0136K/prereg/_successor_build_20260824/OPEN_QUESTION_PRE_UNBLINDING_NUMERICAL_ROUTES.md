@@ -1,4 +1,4 @@
-**STATUS: RULED — option B as a CLASS RULE, 15:32 (option A withdrawn).** A was ruled at 14:32 against a two-branch problem, failed on its own terms once the extent was measured, and was withdrawn. `INCONCLUSIVE-BY-NUMERICAL-FAILURE` added in V49, stated as a condition covering unenumerated sites, at every phase. **48 raise sites remain unread; the class stays a range (31–79) until they are.**
+**STATUS: RULED — option B as a CLASS RULE, 15:32.** The corpus is fully classified in `ref/RAISE_SITE_CLASSIFICATION.md`; **the 48-unread status and the 31–79 range in this file's body are WITHDRAWN** and survive only as the record of how they were reached (GPT56-V54 F5).
 
 # OPEN QUESTION — a pre-unblinding numerical failure may have no executable route at all
 

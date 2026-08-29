@@ -10,11 +10,11 @@ for fn in [n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)]:
 UNREACH_BOTH = set()   # WITHDRAWN V54 - no site meets the evidence bar
 UNREACH_MEAS = set()   # WITHDRAWN V54 - the harness froze the budget argument
 NUM = {1123,1134,1153, 1369,1397,1401,1403,1411,1435,1437,1439,1442,
-       1209,1462,1464,1468, 1503,1513,1517,1537,1548,1554}
-SOFT = {1209,1462,1464,1468}                      # domain-vs-computed, named as uncertain
+       1209,1462,1468, 1503,1513,1517,1537,1548,1554}
+SOFT = {1209,1462,1468}                      # domain-vs-computed, named as uncertain
 PLAN = {963,973,986}                              # numerical but pre-run
 WRAP = {168,1620,776}                             # propagation, not a distinct condition
-CALLER = {215,217,262,938,1018,1022,1027,1032,1038,1040,1050,1053,1077,1099,1102,1108,1206,1460,1603,1675}
+CALLER = {215,217,262,938,1464,1018,1022,1027,1032,1038,1040,1050,1053,1077,1099,1102,1108,1206,1460,1603,1675}
 INTEG = {64,856,858,860,862,864,867,872,876,885,887,889,891,1020,1601,1605,1641,1643,1649,1677,1681,1687}
 
 rows=[]

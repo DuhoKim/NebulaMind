@@ -6,9 +6,9 @@
 
 **Boundary applied** (V50 §5): a raise is a CALLER error if it tests a property of an argument as supplied; a run outcome if it tests a value computed from admissible data. INTEGRITY covers failures already claimed by a VOID antecedent. NUMERICAL-PLANNING fires before the run exists. WRAPPER re-raises another site's failure.
 
-- **CALLER** — 20
+- **CALLER** — 21
 - **INTEGRITY** — 61
-- **NUMERICAL** — 22
+- **NUMERICAL** — 21
 - **NUMERICAL-PLANNING** — 3
 - **TYPED-OUTCOME** — 3
 - **WRAPPER** — 3
@@ -109,7 +109,7 @@
 | 1442 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | stratum {} below floor after apportionment — FAIL |
 | 1460 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** |  | calibration inputs malformed — FAIL |
 | 1462 | `accuracy_from_handcheck` | `RuntimeError` | **NUMERICAL** | soft | empty calibration bin — FAIL |
-| 1464 | `accuracy_from_handcheck` | `RuntimeError` | **NUMERICAL** | soft | agreement count outside [0, n] — FAIL |
+| 1464 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** |  | agreement count outside [0, n] — FAIL |
 | 1468 | `accuracy_from_handcheck` | `RuntimeError` | **NUMERICAL** | soft | epsilon outside [0, 0.5) — FAIL |
 | 1494 | `adjudicate_path` | `InconclusiveByCalibration` | **TYPED-OUTCOME** |  | a_lb_b min {} < {} |
 | 1503 | `_finite` | `RuntimeError` | **NUMERICAL** |  | non-finite decision quantity — FAIL |
