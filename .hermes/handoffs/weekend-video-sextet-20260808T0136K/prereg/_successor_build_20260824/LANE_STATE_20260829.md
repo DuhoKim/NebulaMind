@@ -14,19 +14,19 @@ written `<lane>` below.
 
 ---
 
-## 1. THREE OPEN QUESTIONS
+## 1. FIVE OPEN QUESTIONS — one of them urgent
 
 | # | file | what is open |
 |---|---|---|
-| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | The γ → sign-vector mapping. **The feasibility check Duho authorised was RUN and is invalid as built** — see `FEASIBILITY_RESULT_GAIN_OPTION_B.md`; the passability question is still open. |
-| 2 | `OPEN_QUESTION_V52_RESIDUE.md` | The ledger's per-raise unit (needs a call-graph); `VOID-6.1L-WRONG-SIGNATURE` P7-only while Row L signs at P0/P6/P7. |
-| 3 | `OPEN_QUESTION_V54_RESIDUE.md` | **The evidence bar lets sampling establish a status named for a proof** (both seats); the post-unblinding double-claim has **recurred**; `NUMERICAL-PLANNING` is an unauthorised category; the 80,000-execution rerun has no pinned harness. |
-| 4 | `OPEN_QUESTION_V53_RESIDUE.md` | The freeze-signature exemption is unbounded — no canonical body defines which signed bytes qualify; and BS-2v is UNRESOLVED for a self-reference its own checker disproves. |
+| 1 | `OPEN_QUESTION_REFUSAL_VOCABULARY_PREMISE.md` | **URGENT.** The option-A ruling rests on two premises **both seats broke in one round**: the eight-code set is **not closed** (an authorised read of a missing/unreadable cutout has no code, and an unlogged refusal voids the run), and the derivation fingerprint **omitted the surface column** so it could not check the claim it was pinned for. Fingerprint fixed; **the set and the ruling are not.** |
+| 2 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | The mapping. **B is now ruled out as a gate** by the valid retry (f\* ≈ 0.0007, 20–49 signs of 49,211) — **A is the live candidate**, and its seed/quantile policy is the next question. |
+| 3 | `OPEN_QUESTION_V52_RESIDUE.md` | Ledger's per-raise unit (needs a call-graph); `VOID-6.1L-WRONG-SIGNATURE` P7-only while Row L signs at P0/P6/P7. |
+| 4 | `OPEN_QUESTION_V53_RESIDUE.md` | The freeze-signature exemption is unbounded — no canonical body defines which bytes qualify; BS-2v UNRESOLVED for a self-reference its own checker disproves. |
+| 5 | `OPEN_QUESTION_V54_RESIDUE.md` | The evidence bar lets sampling establish a status named for a proof; the post-unblinding double-claim **recurred**; `NUMERICAL-PLANNING` unauthorised; the 80,000-execution rerun has no pinned harness. |
 
-
-**RULED AND APPLIED TODAY:** VOID option A; BS-6 slot (a), 15/8→16/8; VOID-5 option C; gain fork (b);
-citation check C + corpus D; rerun option A; `INCONCLUSIVE-BY-COMPUTATION` option D; numerical routes
-option B as a class rule; Row L qualify; the third status; **refusal vocabulary option A (V56)**.
+**Check §1 against disk — with a PREFIX match.** The exact-close pattern `STATUS: OPEN\*\*` missed
+`REFUSAL_VOCABULARY_PREMISE`, whose marker reads `**STATUS: OPEN — URGENT.**`. **An urgent question was
+invisible to the index for ten minutes** — the same defect as the verdict token, in my own convention.
 
 ## 2. CURRENT DRAFT — V56, BUILT, NOT DISPATCHED
 

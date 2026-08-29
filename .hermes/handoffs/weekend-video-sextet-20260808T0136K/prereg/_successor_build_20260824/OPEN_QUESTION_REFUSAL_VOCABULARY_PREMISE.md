@@ -1,4 +1,4 @@
-**STATUS: OPEN — URGENT.** The refusal-vocabulary ruling rests on two premises both seats broke in
+**STATUS: OPEN** — **URGENT.** The refusal-vocabulary ruling rests on two premises both seats broke in
 one round. The ruled text is in V56 and should not be treated as settled.
 
 # The option-A ruling was made on a premise that does not hold
