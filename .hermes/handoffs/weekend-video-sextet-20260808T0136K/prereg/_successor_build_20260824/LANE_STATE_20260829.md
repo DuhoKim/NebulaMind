@@ -14,77 +14,48 @@ written `<lane>` below.
 
 ---
 
-## 1. THE LANE IS BLOCKED ON FOUR HUMAN DECISIONS, NOT ON DISPATCH
+## 1. TWO OPEN QUESTIONS. Six have been ruled on since this file last said "four".
 
-There is no referee round worth running until at least one of these is answered. Each file states
-the options and what each costs; each ends by saying it is not mine to take.
-
-| # | file | what is blocked |
+| # | file | status |
 |---|---|---|
-| 1 | `<lane>/OPEN_QUESTION_VOID_REGISTRY_COMPLETENESS.md` | Three verified §7.1 gaps — `degenerate`, `digest`, `chosen`. Both seats cleared the *mechanism* (the BS-2v circularity claim is false); the *content* is not complete. Amending §7.1 changes what the study normatively enumerates as voiding a run. |
-| 2 | `<lane>/OPEN_QUESTION_T_COMPLETENESS.md` | The gain control's p-gated fork, options (a)/(b)/(c). I would drift to (a) because it is cheap — that is precisely why it is not mine. |
-| 3 | `<lane>/OPEN_QUESTION_CITATION_CHECK.md` | Disposition of the quarantined check: delete / advisory forever / make reports machine-readable / verify by hand at freeze. My reading is C-for-future, D-for-corpus. |
-| 4 | `<lane>/OPEN_QUESTION_BS6_DEPENDENCY_AND_AUTHORIZATION.md` | **The two largest findings of the night.** (i) "must be bound before BS-6" has no dependency edge that makes it true; the repair moves the frozen class counts 15/8 → 16/8. (ii) `require_authorization()` accepts arbitrary bytes — CODEX ran the frozen v9 against a referee brief and the guard returned success. |
+| 1 | `OPEN_QUESTION_RERUN_PROCEDURE.md` | **OPEN.** Both seats, three HIGH findings: my `INCONCLUSIVE-BY-COMPUTATION` rerun allowance is simultaneously terminal and retryable, is either deterministic-and-pointless or an unbound fork, and its attempt cap has no dependency edge. My reading is **delete the rerun** — the halt is terminal, which is what §6.1 already contracts. **V42 cannot clear a round until this is answered.** |
+| 2 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN.** What counterfactual sign vector a gain gradient γ produces. The option (b) path is built and refuses to run without a mapping; supplying one is a modelling assumption needing preregistration. |
 
-**All four were written against V34/V35 and have been re-verified against V36 (07:25 KST).** Each
-file now carries a `VERIFIED CURRENT AGAINST V36` stamp recording exactly what was re-checked: the
-VOID registry digest is identical across V34/V35/V36; §5 line 493, §5 lines 511-514 and §2.7 line 388
-are byte- and position-identical; §1 line 120 still ends "must be bound before BS-6" and V35's repair
-to that line did not touch the clause; counts are 15/8 on V36. **No open question is stale.**
+**RULED AND APPLIED — do not reopen:**
 
-**`DECISIONS_FOR_DUHO.md` states all four in plain language** — the ask, the options, the cost and a
-recommendation for each, pointing back at these files for evidence. It is an index, not a source; if
-it and one of these files disagree, the file is right.
+- **VOID registry completeness** → option A. Three gaps closed in V37 (`degenerate`, `digest`, `chosen`).
+- **BS-6 dependency** → option (a). `BS-3g` added in V37; counts **15/8 → 16/8**.
+- **VOID-5 phase scope** → option C, applied V40. Numerical conditions read post-unblinding;
+  **misconduct conditions deliberately unmoved at `Any`** (verified: all 54 registry rows
+  byte-identical V39→V40).
+- **T-completeness fork** → **option (b), "real gate"**. Option (a) is dead.
+- **Citation check** → option C (rebuilt), and the legacy corpus → **option D**. Both closed; see §5.
+- **§2.7 phase** → **not a ruling.** Recovered from V11 commit `4d99d1d93`; the principal declined it
+  as this lane's own words. Answer: `Post-first-real-χ`, unchanged.
+- **`require_authorization`** → **deprioritised.** Recorded accurately in §5 of the draft; not built;
+  v9 untouched.
 
-**Decisions 1 and 4 are seat-raised HIGH findings that I declared out of scope for a round. They
-were parked, not resolved. V36 clearing does not retire them.**
+## 2. CURRENT DRAFT — V42, BUILT, BRIEF READY, NOT DISPATCHED
 
----
+`<lane>/PREREG_SUCCESSOR_DRAFT_V42_20260829.md` = `6c9cc2fca67d5aff263282f646fc5b0c07a22b0c2c3665d458c47582de7990a6`
 
-## 2. CURRENT DRAFT — V40, ROUND RUNNING (dispatched 11:0x)
+**V40 came back NOT CLEAR from both seats at 11:26** (GPT56 7 findings, CODEX 4), converging on three
+HIGH problems in the rerun procedure I authored. Those are open question 1.
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V40_20260829.md` = `531d3f40f06130e792ff474e660fde931038e2d7bd8e573612b90c8ec624c1f6`
+- **V41** `5270452ff9a54caf` — GPT56/CODEX-V40 F4: `BS-3g` added to §6.1's closed non-χ-bearing
+  receipt list (it was χ-bearing by default, so its BS-6 edge was not receiptable), plus a §11
+  code-side item because a receipt class with no producer is still not receiptable. GPT56-V40 F6:
+  the §2.7 citations were wrong for a second draft running — **absolute line numbers are not
+  citations**, they rot on the next edit; replaced with section-and-quoted-content.
+- **V42** `6c9cc2fca67d5aff` — one miscitation found by hand: `KIMI-V11 F4` is a §6.1 access finding
+  cited for a Stage-P claim. KIMI's Stage-P finding is **F7**. Corrected.
 
-**V38 was NOT CLEAR ×2** (GPT56 1 finding, CODEX 4). V39 repaired three; V40 implements the principal's
-ruling on the fourth.
+**`gates/BRIEF_V42_REVIEW.md` is written** and opens with what changed in the lint's citation
+behaviour. **Do not dispatch until open question 1 is answered** — the round would re-find three
+known HIGH findings.
 
-- **V39** — `221c6a08cd794e5b`. BS-3g added to §7's DESIGN-slot prose (**both seats**);
-  `DECISIONS_FOR_DUHO.md` no longer cited as the record of a ruling (CODEX-V38 F3); §6.1/§6.2
-  mis-citations corrected to §6/§5 and the commit-metadata-proves-authorship claim withdrawn
-  (CODEX-V38 F4).
-- **V40** — **principal ruling of 2026-08-29 11:00, option C on CODEX-V38 F2 (HIGH).** §5's VOID
-  trigger split by kind: **forbidden acts and protocol/digest deviation stay `Any`**; the **numerical**
-  conditions read **post-unblinding**; pre-unblinding numerical failures route to new
-  **`INCONCLUSIVE-BY-COMPUTATION`** with a binding rerun procedure (same frozen digests, every attempt
-  logged, silent rerun is a forbidden act, no rerun on a finite result). **Maximum attempt count is
-  deliberately unbound and declared as such — must be pinned before BS-6.**
-
-**Verified mechanically, not by eye:** all 54 registry rows byte-identical V39→V40, the three
-misconduct antecedents still `Any`, only the title changed before §5, `registry_digest` unmoved at
-`a4d1d745…`. Counts 16/8 prose-matched; trace 0 problems.
-
-**Round running**, both seats, reports to `gates/V40_WHOLE_REVIEW_<SEAT>.md`. The brief tells GPT56
-plainly that it missed CODEX-V38 F2, so it reviews the repair instead of re-deriving the hole.
-
-### Lineage
-
-| draft | sha256 | outcome |
-|---|---|---|
-| `PREREG_SUCCESSOR_DRAFT_V34_20260828.md` | `1c45d32d5f360ab48217ff8114478efa8818cd66f16fa38a8c83d6def31a2948` | NOT CLEAR ×2 — the absence-clause round, four defects, the most productive round of the night |
-| `PREREG_SUCCESSOR_DRAFT_V35_20260829.md` | `b80d50afe076fe8d20c9fd1a6e6b5db63779dfc02ee46601667a67227e12fbdd` | NOT CLEAR ×2, **both major repairs HELD**; only remaining findings were MEDIUM wording in the BS-2a pin |
-| `PREREG_SUCCESSOR_DRAFT_V36_20260829.md` | `e4d7b175ac270f4cdc0bc4af3a16af0e834aa3e4eacc174a73d10798cd4b6177` | **CLEAR ×2** |
-
-V35 = V34 + three fixes: §1 line 120 ("a biased or broken `w` cannot create one" narrowed to what
-the antisymmetry identity actually enforces); §6.2 line 592 (the false claim that an unlogged archive
-read breaks the log chain, deleted rather than relocated into BS-2k's mouth); §7 line 698 (my own
-BS-2a pin overclaimed the pairwise deletion-probe evidence — CODEX's 325 was filter-derived with six
-pairs literally source-mutated, and GPT56 did not run all 325).
-V36 = V35 + line 1, line 698, one §10 row.
-
-Invariant across all three, and to be re-checked after any future edit: **§1 scope and §2.7 line 384
-byte- and position-identical to V30; class counts 15 class-P / 8 class-E; all four checkers pass.**
-
----
+**Checkers on V42:** counts 16 P / 8 E prose-matched; trace 41 transitions, 0 problems;
+`void_registry` self-test 6/0; **lint exits 0** — 96 advisory, 0 blocking.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
@@ -124,30 +95,30 @@ byte- and position-identical to V30; class counts 15 class-P / 8 class-E; all fo
 
 ---
 
-## 5. THE CITATION CHECK IS REBUILT — option C, wired 2026-08-29 11:5x
+## 5. THE CITATION CHECK IS REBUILT AND ITS CORPUS QUESTION IS CLOSED
 
-**The quarantine is over.** The principal ruled option C ("fix it so checker actually read it").
-`tools/citation_block_check.py` reads `FINDINGS-BLOCK v1` — the judgement of which numbered items are
-findings is now **declared by the report's author** instead of recovered by pattern-matching, which
-is what made three earlier versions unsound.
+**Option C (rebuilt) and option D (corpus scope) are both ruled and done.**
 
-**The root defect is gone, not worked around.** Reports are indexed **by the blocks they declare**,
-never by filename pattern. The original failure — calling `CODEX-V4 F9` fabricated because
-`_reports_for` demanded `"REVIEW"` in the filename — is structurally impossible now.
+`tools/citation_block_check.py` reads `FINDINGS-BLOCK v1`; reports are indexed **by the blocks they
+declare, never by filename**, which removes the defect that made the old check call a real citation
+fabricated. Compound citations (`KIMI/GPT56-V11 F4`) are expanded and **every named seat is checked**
+— previously only the last seat was seen, which hid a real miscitation.
 
-Three categories in `prereg_lint.py`, and only two block:
-- `repair-citation-fabricated` — a well-formed block exists and does not declare the cited finding. **Blocks.**
-- `repair-citation-malformed` — a report's block does not parse. The format is mandatory. **Blocks.**
-- `repair-citation-legacy` — no block for that seat/version. **ADVISORY, never blocks.**
+Three categories in `prereg_lint.py`, two of which block: `repair-citation-fabricated` and
+`repair-citation-malformed` fail the lint; **`repair-citation-legacy` is advisory and does not.**
+Advisory now genuinely does not block — `main()` returns 1 only for non-advisory categories.
 
-**Advisory now genuinely does not block.** `main()` returns 1 only for non-advisory categories. The
-old quarantine changed the category string and left `return 1 if out` untouched, so an "advisory"
-still failed the lint — unnoticed because V36 emitted none. On V41: **95 findings, 0 blocking,
-exit 0.** All 95 are legacy-corpus citations.
+**Option D, ruled by the principal:** verify only the repair-announcing citations. The criterion is
+in `CRITERION_LOAD_BEARING_CITATIONS.md`, derived from `CITATION_CHECK_SPEC.md` (committed 05:19,
+before the corpus was measured) with the bias risk disclosed. Applied: **12 of 108 selected (11%),
+96 not, 0 unclassifiable.** All 12 verify — 8 hand-checked for topical match, 4 machine-VERIFIED.
 
-**The ~30 historical reports remain unruled** — `PROPOSAL_LEGACY_CITATION_CORPUS.md` puts four
-options to the principal with the measured size (94 citations, all pre-format). Until he rules, they
-are reported and never acted on.
+**Read the result precisely:** a clean D result means *every repair-announcing citation is sound*. It
+does **not** mean the citations are correct — the one wrong citation found in the whole corpus sits
+in a passage D does not select. **The 96 keep reporting `NO_BLOCK`; that is now their permanent
+answer, not a deferral.** Do not let them drift to `UNVERIFIABLE` or `VERIFIED`.
+
+**Historical reports must not be retrofitted with blocks** (option B is rejected).
 
 ## 6. ARTIFACT INVENTORY
 
@@ -172,6 +143,18 @@ bins are cos theta tertiles (v9:1359). `gamma = slope/intercept` from **one** GL
 slope/sample-mean, which equals `gamma/(1 + gamma*mean(c))`. `kappa = Cov(c^2,c)/Var(c) = +0.005104`.
 
 ---
+
+
+**Added since this inventory was last written:**
+
+| object | short sha256 | state |
+|---|---|---|
+| `<lane>/PREREG_SUCCESSOR_DRAFT_V42_20260829.md` | `6c9cc2fc` | current, brief ready, NOT dispatched |
+| `<lane>/ref/gain_counterfactual_path.py` | `f8e50750` | option (b) path; refuses without a mapping |
+| `<lane>/CRITERION_LOAD_BEARING_CITATIONS.md` | `62b3c925` | option D criterion + results |
+| `tools/citation_block_check.py` | `3fede692` | 12 controls, deletion probe catches all four outcomes |
+| `tools/prereg_lint.py` | `6819fa1c` | option C wired; advisory no longer blocks |
+| `tools/void_registry.py` | `8eca2f91` | fixture controls; self-test green V34-V42 |
 
 ## 7. VERIFY BEFORE TRUSTING THIS FILE
 
@@ -225,19 +208,18 @@ that raises has not refused.** Probe deletions strictly — a crash must never c
 
 ---
 
-## 10. THE SELF-CONTINUATION LOOP IS CLOSED
+## 10. THE SELF-CONTINUATION LOOP IS ACTIVE — renewed, not closed
 
-Cron `db6ea525` was **deleted at 08:43 KST**, 17 minutes inside its 09:00 bound.
-`SELF_CONTINUATION_ORDERS.md` is marked DORMANT and is now a record, not a live instruction.
+**Cron `4a937173`, ticks :07/:27/:47, bound 21:00 KST today.** Renewed by Duho at 10:15 and relayed
+by Blanc. The earlier job `db6ea525` was deleted at 08:43; **this section previously said the loop
+was closed, which was true for forty minutes and dangerously wrong afterwards.**
 
-It ran 00:40 -> 08:43. What it produced after the V36 clear was verification, not new construction:
-the open questions re-checked against V36 rather than the draft they were written on, the v9 freeze
-proven from the file and its history instead of from notes, lane commit integrity confirmed, the
-stale VOID priority marked BLOCKED, and the four decisions restated in plain language.
+Rules are in `SELF_CONTINUATION_ORDERS.md`. On a tick: if seats are running, do not disturb them or
+touch anything under review. If a round has both reports, read the verdicts. Otherwise work the build
+queue — **both queue items are now complete**, so the honest answer on most ticks is that the lane is
+blocked on the two open questions in §1.
 
-**It was closed early on purpose.** Every remaining path crosses a decision that is Duho's, and
-continuing would have meant inventing work to look busy — the same failure the orders warn about in
-the registry-check paragraph. **Do not restart the loop without a fresh authorisation.**
-
-**To pick the lane back up:** read `DECISIONS_FOR_DUHO.md`, take one of the four decisions, then
-re-read §1–§3 here before touching anything.
+**A question about this lane's own words is not a question for the principal.** He refused the §2.7
+phase with *"I didn't write it, ask an agent who wrote it"* and was right. Check `git log` for
+authorship before escalating; if this lane wrote the words, recover intent from the commit and the
+findings it answered.
