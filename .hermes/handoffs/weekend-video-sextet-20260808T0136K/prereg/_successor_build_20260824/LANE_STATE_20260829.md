@@ -14,61 +14,37 @@ written `<lane>` below.
 
 ---
 
-## 1. TWO OPEN QUESTIONS. Nine have been ruled on today.
+## 1. ONE OPEN QUESTION. Ten rulings today; the numerical-routes question was ruled twice.
 
 | # | file | status |
 |---|---|---|
-| 1 | `OPEN_QUESTION_PRE_UNBLINDING_NUMERICAL_ROUTES.md` | **OPEN, and larger than when it was raised.** Row F's FAIL branches have no named outcome. The principal ruled **option A** (reuse an existing outcome if one honestly fits); **A has failed on its own terms** — `INCONCLUSIVE-BY-CALIBRATION`'s third producer is scoped to *aggregates* at BS-8f, not bins/allocation at P3, and an infeasible allocation is not a non-finite aggregate at all. **My reading is now B scoped as a rule, not one code for Row F.** |
-| 2 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN, unchanged.** What counterfactual sign vector a gain gradient γ produces. `ref/gain_counterfactual_path.py` is built and refuses to run without a mapping. |
+| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN, with the principal.** γ → counterfactual sign-vector/calibration mapping. `ref/gain_counterfactual_path.py` is built and refuses to run without one. |
 
-**Scale established for question 1, since the principal ruled against a two-branch problem:**
-**Row F alone is nine raise sites** — one `degenerate calibration bins`, plus **eight distinct
-feasibility failures** in `allocate_handcheck`. Across the pinned reference: **111 raise sites, 3
-typed to a named outcome, 69 bare.** Classified by what each guard tests: 29 caller-input guards, 31
-reachable run-time failures, **48 undecidable without reading** — so the class is **at least 31, at
-most 79**, reported as a bound rather than a number. **The defect is not confined to pre-unblinding**:
-the decision path (`_finite`, `w_profile`, `sigma_ours_*`) raises bare errors post-unblinding too.
+**Ruled 15:32 — `OPEN_QUESTION_PRE_UNBLINDING_NUMERICAL_ROUTES.md`: option B as a CLASS RULE.**
+Option A (ruled 14:32) was **withdrawn** after it failed on its own terms — no existing outcome
+honestly covers a degenerate calibration bin plus three distinct allocation-feasibility failures.
+`INCONCLUSIVE-BY-NUMERICAL-FAILURE` is added in V49.
 
-**RULED TODAY — do not reopen:** VOID registry **A**; BS-6 slot **(a)** (counts 15/8 → 16/8); VOID-5
-phase scope **C**; the gain fork **(b), "real gate"**; citation check **C**; legacy corpus **D**;
-rerun procedure **A** (halt is terminal); `INCONCLUSIVE-BY-COMPUTATION` **D** (deleted); Row F
-direction **A** (*failed on its own terms — back to the principal*). The **§2.7 phase** was not ruled
-but **recovered from V11 commit `4d99d1d93`**. **`require_authorization` stays deprioritised.**
+**Carry this, because the record looks self-contradictory without it:** a code was **deleted** at V46
+under option D (a *redundant claimant*) and one **added** at V49 under option B (*genuine absence*).
+Both rulings stand; §5 of the draft records both grounds.
 
+**48 raise sites are still unread. The class is a range — at least 31, at most 79 — and must not be
+reported as 31 because that is the figure with clean provenance.** Four branches are demonstrated
+reachable by execution; "nine raise sites" was raise-statements, not branches shown to fire.
 
-**How to check §1 against disk, in one line.** Every `OPEN_QUESTION_*.md` now carries a machine-
-readable status as its **first line**: `**STATUS: OPEN**`, `**STATUS: RULED — …**`, or
-`**STATUS: RESOLVED FROM THE RECORD …**`.
+**Check §1 against disk:** `grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md` must return
+exactly the list above.
 
-    grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md
+## 2. CURRENT DRAFT — V49, ROUND RUNNING (dispatched 15:4x)
 
-must return exactly the files §1 lists, and nothing else. **This was added because the first run of
-Blanc's state-check found ten `OPEN_QUESTION_*` files on disk against two open questions in §1** —
-seven of the eight resolved ones opened with the words "OPEN QUESTION" and buried the ruling further
-down, so `head` gave the wrong answer for seven of ten files. A glob was never a safe index and now
-it is one.
+`<lane>/PREREG_SUCCESSOR_DRAFT_V49_20260829.md` = `d8a9501e0653dd84ca554e26aaacd4de87d4efb34cb6ef6266285757b96ce2bc`
 
-## 2. CURRENT DRAFT — V48, BUILT, NOT DISPATCHED
+**Last refereed: V46** (`c5afba31f909dcda`), NOT CLEAR ×2 at 14:06. V47 retracted the false
+completeness argument; V48 added the §11 conversion item; **V49 adds the class rule.**
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V48_20260829.md` = `8d2e68f7f52db1268d89df69d33eb055753b465bda4191f45031961660973ff7`
-
-**Last refereed draft: V46** (`c5afba31f909dcda`) — **NOT CLEAR ×2 at 14:06.** V47 and V48 are not
-refereed.
-
-| draft | sha256 (short) | what it did |
-|---|---|---|
-| V43 | `7b2e9a701c38c570` | rerun allowance deleted (option A). **NOT CLEAR ×2**, 13:33 |
-| V44 | `4faa2564ba093ae4` | all five V43 findings. **NOT CLEAR ×2**, 13:49 |
-| V45 | `4fcc9c3460abfe2d` | §11's BS-3g item — the second site cited at V43 and missed at V44 |
-| V46 | `c5afba31f909dcda` | `INCONCLUSIVE-BY-COMPUTATION` deleted (option D), with the record kept. **NOT CLEAR ×2**, 14:06 |
-| V47 | `bc0fd1f0aa9537f2` | **retracts** the completeness argument both seats broke — §2.7(c) is *catalogue quality*, and the enumeration had missed Row F |
-| **V48** | `8d2e68f7f52db126` | §11 exception-to-outcome conversion item, required under any resolution; decides no outcome for any branch |
-
-**Not dispatched on purpose.** The open question above would be re-found immediately, and the
-principal's answer will change §5/§11 text a round would be reviewing.
-
-**Checkers on V48:** counts **16 P / 8 E** prose-matched; trace 47 transitions, 0 problems;
-`void_registry` self-test 6/0; lint exits 0.
+Reports to `gates/V49_WHOLE_REVIEW_<SEAT>.md`. Checkers on V49: counts **16 P / 8 E** prose-matched;
+trace 48 transitions, 0 problems; `void_registry` self-test 6/0; lint exits 0.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
