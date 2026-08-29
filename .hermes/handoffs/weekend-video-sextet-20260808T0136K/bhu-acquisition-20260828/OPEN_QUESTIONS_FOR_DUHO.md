@@ -43,6 +43,28 @@ more useful finding.
 Letters B text may contain the missing step. *Costs:* a delay, and it may not be reachable.
 *Gains:* it could settle the question outright instead of us choosing between two guesses.
 
+**NEW EVIDENCE, added the same evening — I tried to find his number instead of just failing to
+reproduce it, and it did not turn up.** `b13_floor_routes.py` (5/5, UNDER GATE). The paper
+actually *defines* the quantity both reviewers had been taking at its rounded value, so I could
+compute it exactly rather than accept "about 10⁵¹". Then I tried **five** different ways of getting
+from a density to a smallest-possible black hole, instead of the one way both reviewers tried.
+
+- **None of the five reaches his number.** The closest lands 18 times below it. Most are further.
+- **Computing his density exactly makes the mismatch worse, not better** — from 37 times to 111.
+  So the gap is not rounding; rounding runs the other way.
+- **The shortfall is three to four factors of ten in density.** "About" and "of order" normally
+  cover one, sometimes two.
+
+**This cuts against my own earlier finding, and I want that on the record.** On the exact figure
+his floor drops *below* the observational window entirely, which would mean the promising new test
+I reported this evening does not exist at all. There are now three candidate floors and they
+disagree about whether there is anything to look for.
+
+**What it does NOT do is close this question.** Ruling out every route I can think of is not the
+same as proving none exists — he may apply the bound to something I have not thought of, and the
+paper shows nothing between the two numbers. So the choice below is unchanged; it is just better
+informed, and the evidence now leans toward Reviewer A.
+
 **My recommendation: option 3, then option 1 if the journal version does not settle it.**
 
 **Why this is not mine to decide.** It is the difference between reporting what we could not
