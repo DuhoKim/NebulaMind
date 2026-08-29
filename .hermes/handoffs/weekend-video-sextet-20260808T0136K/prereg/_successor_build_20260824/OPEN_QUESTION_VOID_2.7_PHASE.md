@@ -1,3 +1,34 @@
+# RESOLVED 2026-08-29 10:3x KST — from the authorship record, not by a new ruling
+
+**The principal refused this question as put — "I didn't write it, ask an agent who wrote it" — and
+he was right.** The clause entered at V11 (commit `4d99d1d93`, 08-27 13:27) and was written by this
+lane, so the instant is a question of what its author meant, not a policy for him to set.
+
+**ANSWER: `Post-first-real-χ`. The cell was already correct and is unchanged.**
+
+**The determining words**, from V11's own §2.7 preamble: the acceptance freedom is *"the largest
+remaining researcher degree of freedom **because it is exercised after image inference exists** and
+it moves both the signs and the geometry."* "Inference exists" is **image inference having produced
+real output** — the first real χ.
+
+**My recommendation below was WRONG, and the error is worth keeping.** I argued for `Post-unblinding`
+on the premise that unblinding comes first, citing Row P reading real χ post-unblinding. That
+confused **when χ is read** with **when χ exists**. The document is explicit that real χ exists
+earlier, sealed: Row J *"never reads a real χ"* yet halts the run **pre-unblinding** (§6.1), and §6.2
+forbids χ-derived disclosure *"before the primary lock"*. So `Post-first-real-χ` is **earlier and
+broader** than `Post-unblinding` — the reverse of what I wrote. Had this been escalated as a policy
+choice, a wrong ordering would have been the basis of the decision.
+
+**Not legislated:** between the first image byte and the first real χ there is a narrow window this
+antecedent's phase does not cover, though §2.7(5) independently pins those thresholds *"before any
+image byte"*. Naming a new antecedent for it would be new policy, not recovery. Observed and recorded
+in §7.1; not acted on.
+
+**Registry consequence:** the phase did not move, so `registry_digest a4d1d745…` is unchanged and the
+registry is no longer blocked by this question.
+
+---
+
 # OPEN QUESTION — when does "inference exist"? The §2.7 phase, deliberately unresolved in V37.
 
 **Raised 2026-08-29 09:4x KST by Hwao. The principal's 09:20 authorisation covered decision 1

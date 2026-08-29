@@ -41,7 +41,15 @@ were parked, not resolved. V36 clearing does not retire them.**
 
 ---
 
-## 2. CURRENT DRAFT — V37, BUILT 09:45 UNDER PRINCIPAL AUTHORISATION, NOT YET REFEREED
+## 2. CURRENT DRAFT — V38, BUILT 10:3x, NOT YET REFEREED
+
+`<lane>/PREREG_SUCCESSOR_DRAFT_V38_20260829.md` = `b5776d287a22cff71fe34d1ee1dbe937f1af61d51ad70530f378668cbfe1ec56`
+
+V38 = V37 + the §2.7 instant settled from the record (cell unchanged) + §5 recording the
+`require_authorization` limit accurately without building anything. Checkers: 16/8 prose-matched,
+trace 0 problems, registry 54/20 digest `a4d1d745…`, lint exits 1 on the known quarantined advisory.
+
+### Superseded: V37, built 09:45
 
 `<lane>/PREREG_SUCCESSOR_DRAFT_V37_20260829.md` = `62dd8a7525c399126477573d55a952f1ed2f147d16f8bfbb12aa89a295821c42`
 
@@ -60,9 +68,9 @@ antecedents, 20 rows, no refusal, new `registry_digest a4d1d745…`. **Lint exit
 from the quarantined citation check — see §5. Invariants hold: §2.7 line 384 and §1 lines 2–119 byte-
 and position-identical to V30.
 
-**A FIFTH DECISION IS NOW OPEN:** `OPEN_QUESTION_VOID_2.7_PHASE.md` — when does "inference exist"?
-The authorisation covered the ID's coverage, not the phase. **The registry must not be pinned as
-final until it is answered**, since the digest moves with it.
+**THE §2.7 PHASE IS RESOLVED** — `Post-first-real-χ`, recovered from V11's commit `4d99d1d93` rather
+than ruled on. My `Post-unblinding` recommendation was wrong (χ *exists* pre-unblinding; I confused it
+with when χ is *read*). Registry digest unmoved at `a4d1d745…`, so the registry is unblocked.
 
 **NOT DISPATCHED.** Per Blanc: do not dispatch if the phase question would land mid-round.
 
