@@ -26,23 +26,39 @@ WHERE THE SEATS SPLIT, I TOOK THE NARROWER READING AND AM NOT ADJUDICATING:
     whose ordering sits 0.0467 decade from reversing. Taken: CGATE's.
   Declining the stronger form of my own finding is not picking a winner between seats.
 
-OPEN QUESTION 2 IS NOW CLOSED, and this file's restraint was the right call. Duho returned the
-decision with "answer question 2". THE RULING: an unreproduced step, NOT an error.
+OPEN QUESTION 2 IS CLOSED ON WORDING: an unreproduced step, NOT an error. Duho returned the
+decision with "answer question 2".
 
-TWO FACTS DECIDED IT, and one of them destroyed my own recommendation. I had recommended getting
-the journal version first, on the assumption we held only a preprint. WE HOLD THE PUBLISHED PAPER —
-Phys. Lett. B 690(1) 73-77, (c) Elsevier — so that option was already exhausted and I had not
-checked. The published text carries no step either: 86 characters separate the density claim from
-the mass figure, and the derivation is the phrase "from which".
+BUT THE FACT I SAID IT TURNED ON WAS FALSE, and both seats caught it. I claimed we already held the
+published Physics Letters B article, so the "get the journal version" option was exhausted. THE
+PINNED FILE IS AN ar5iv RENDERING OF arXiv:0910.1181 -- LaTeXML-generated, "View original on arXiv"
+in its footer -- which merely CARRIES the journal line in its front matter, as author manuscripts
+often do. It is not Elsevier's version of record. THE ACQUISITION OPTION IS STILL LIVE AND IS OWED.
 
-WHY NOT "ERROR", ON THE MERITS RATHER THAN AS A FALLBACK. The two options record the SAME verifiable
-content -- six routes, none reaches it, 3.1-4.1 decades short, no step shown. They differ only in
-asserting something about the author that cannot be checked. And this file explicitly refuses to
-prove that no route exists; "error" asserts exactly that. CGATE's rule from a later gate applies
-unchanged: a gap is not a defect unless we can show the stronger claim, and we cannot.
+I also stated the gap as "86 characters". CGATE showed that number is representation-dependent --
+78, 80 or 86 depending on normalisation and where the span starts -- and reproducible only under one
+undocumented convention. Withdrawn in favour of the invariant statement: ONE SENTENCE, NO
+INTERMEDIATE STEP.
+
+AND MY ARGUMENT FOR THE WORDING WAS TOO BINARY. I said "error" and "unreproduced" record identical
+checkable content and differ only in an unverifiable claim about the author. CGATE: false. "Error"
+carries checkable mathematical content -- that no admissible completion yields the value -- which
+"unreproduced" deliberately withholds. THE RIGHT ANSWER FOR THE WRONG REASON. What actually
+supports the cautious wording is this file's own non-exhaustiveness: Kerr-Newman geometry, local
+proper density, a full ECKS interior and suppressed order-unity coefficients are all untested here.
+
+THE SEATS NOW SPLIT ON WHAT FOLLOWS. CGATE: the outcome survives, because non-exhaustiveness
+prevents a proof of error. AGATE: overturn it -- "there is no alternative physics to route through",
+so this is a demonstrable arithmetic failure and "unreproduced" understates it. BOTH AGREE the
+publisher version should be obtained first. That is the next action, and the wording holds until it
+is done.
 """
 import math, sys
-S="../bhu-reading-20260823/sources/"
+import os
+_HERE=os.path.dirname(os.path.abspath(__file__))
+# CGATE_Q2: this was relative to the process working directory, so the script failed
+# before testing anything when run from the repo root. Now anchored to the file.
+S=os.path.join(_HERE,"../bhu-reading-20260823/sources/")
 P=" ".join(open(S+"0910.1181_clean.txt").read().split())
 G=6.67430e-11; c=2.99792458e8; hbar=1.054571817e-34; me=9.1093837015e-31
 TARGET=1e16

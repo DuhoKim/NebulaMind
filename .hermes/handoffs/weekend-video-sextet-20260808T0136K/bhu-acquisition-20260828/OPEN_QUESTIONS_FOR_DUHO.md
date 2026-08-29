@@ -136,35 +136,55 @@ anything else here.
 
 **My answer: we say we could not reproduce it. We do NOT call it an error.**
 
-**And the first thing I found killed my own recommendation.** I had told you to get the journal
-version first, because we only held a preprint and the published paper might contain the missing
-step. **We already hold the published paper** — *Physics Letters B* volume 690, pages 73–77, with
-the Elsevier line on it. I had not checked. That is the third question in a row where my
-recommendation rested on a premise that did not survive one look.
+**And the first thing I found looked decisive, and was wrong.** I told you to get the journal
+version first, because we held only a preprint. I then found the pinned file headed *"Physics Letters
+B* volume 690, pages 73–77, © Elsevier" and concluded we already had the published article. **Both
+reviewers refuted that.** It is an automated rendering of the arXiv submission which merely *carries*
+that journal line in its front matter, as author manuscripts often do. **We do not hold the published
+article, and getting it is still owed.** That is the third question running where my recommendation
+rested on a premise that did not survive one check — but this time the check was mine and it was
+also wrong.
 
-**So the published text settles what a preprint might have excused.** It goes from "the mass density
-of a black hole cannot exceed ρ_Ce" to "its minimum mass … is ∼10¹⁶ kg" in **eighty-six
-characters**. The entire derivation is the phrase *"from which"*. Nothing was lost between preprint
-and journal; there was never anything there.
+**What the text does show**, and this survives: the density claim and the mass figure sit in **one
+sentence**, with no step between them. The whole inference is the phrase *"from which"*. I first
+quantified that as "86 characters"; one reviewer showed the number changes with formatting
+conventions, so the invariant statement is the one above. The publisher's abstract repeats the same
+assertion, and a published erratum exists — correcting three other equations, not this one.
 
-**Why not call it an error, on the merits and not as a fallback.** The two options record exactly
-the same checkable content: six ways of getting from his density to a smallest black hole, none
-lands within a factor of thirteen, the gap is three to four factors of ten, and neither reviewer
-could find a seventh route. **They differ only in one added claim — about what the author did —
-that we cannot check.** Our own work explicitly refuses to prove no route exists; calling it an
-error asserts precisely that.
+**Why not call it an error.** Not, as I first argued, because the two options record identical
+checkable content — a reviewer showed that is false: "error" claims that *no* admissible route
+reaches the number, which is a mathematical claim, not a claim about the author. **The reason is
+that our own work refuses to make it.** Six routes were tried; Kerr–Newman geometry, local proper
+density, a full interior solution and suppressed order-unity factors were not. **You cannot call
+something an error on an enumeration you have declared non-exhaustive.**
 
-**There is also a pattern I should put in front of you rather than hide.** Five times tonight I
-reached for the reading that an author overstated, miscited, or erred. Every one was refuted or had
-to be narrowed. Twice reviewers used the same phrase — that I was smuggling a verdict. **A sixth
-instance is not what this record needs**, and the restraint here is not timidity; it is the only
-version of the finding I can defend.
+**The reviewers now split on what follows, and I am not hiding it.** One holds the cautious wording
+is right and stays right. The other holds it understates a demonstrable failure and should be
+overturned. **They agree on the next step: obtain the publisher's version of record first.** The
+wording stands until that is done.
+
+> **Process note, separated from the reasoning above at a reviewer's insistence.** Five times
+> tonight I reached for the reading that an author overstated or erred, and every one was refuted or
+> narrowed. That legitimately raises my threshold for making a sixth public accusation. It is **not
+> evidence about Popławski's arithmetic** and must not be read as part of the case. Both reviewers
+> flagged that I had mixed the two; the correction is theirs.
 
 **What the record now says**, in entry 51's warrant cell: unreproduced from the stated inputs, six
 routes tried, none reaches the printed floor, the enumeration is non-exhaustive, the published paper
 omits the connecting step. **All of that is checkable. None of it is an accusation.**
 
-**And this closes permanently, not pending.** There is no further version to fetch. Two things could
+**This closes on wording, NOT on provenance.** There IS a further version to fetch, and **I tried
+and could not get it**: ScienceDirect returns *403 Forbidden* to automated access
+(`S0370269310005691`, DOI `10.1016/j.physletb.2010.04.073`). I did not attempt to work around that.
+
+**So there are now two papers that need your login and nobody else's**, and both bear on the same
+entry-31/51 pair:
+> - **Popławski**, *Phys. Lett. B* 690, 73–77 — would settle whether the published article contains
+>   the step the arXiv text omits, and one reviewer holds that if it does not, "error" becomes the
+>   only honest word.
+> - **Silk**, *Science* 277, 644 — the last unread criticism of entry 31.
+
+Everything else here is done and checkable. Two things could
 still change it, and neither is ours to manufacture: someone finds a route that works — which would
 vindicate the paper and we would record it — or a published erratum or critique appears, which would
 be someone else's finding to cite.
