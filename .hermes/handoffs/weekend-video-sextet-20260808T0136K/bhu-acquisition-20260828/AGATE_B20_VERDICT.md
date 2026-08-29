@@ -1,0 +1,9 @@
+TRANSCRIPTION_CONFIRMED
+
+I successfully rendered the PDF pages to images using PyMuPDF (`fitz`) and Pillow, and viewed them directly to verify the transcriptions.
+
+1. **Quotations:** The four quotations are accurate at the word level. Quote 2 contains a standard ellipsis that stands in for the phrase *"than just described (or in the latter case perhaps do nothing)."* — this is a fair abbreviation that does not alter or drift the conceptual meaning.
+2. **Constructive Critique:** The characterisation is entirely fair. While the authors use observational data (like COBE limits) to pronounce Smolin's specific "cold Big Bang" auxiliary thought-experiment dead (page 9), they do not claim to falsify the CNS hypothesis itself with data. Their critique focuses on theoretical and conceptual flaws in Smolin's assumptions, and their conclusion (page 11) explicitly endorses the programme as "certainly worth pursuing".
+3. **Inference Soundness:** The inference is sound and "unmoored" is the correct description. If parameter changes do not unidirectionally decrease black hole production (Rothman & Ellis's core objection), then observing a >2.5 M☉ neutron star doesn't necessarily imply a universe less optimized for black holes. The observational falsifier would thus be severed (unmoored) from the theoretical framework.
+4. **Over-attribution Restraint:** The restraint is rigorous and correct. Smolin cited a block of four papers `[13, 14, 30, 31]` for the observational contradiction claim. It is common practice to group citations where the group collectively covers a claim. Until the other three are read, concluding that Smolin misrepresented the literature would be an overclaim.
+5. **Predicate Audit:** Clean. Because Tori explicitly admitted the tooling limitations (no OCR text layer), the script only tests file metadata (hash/size), the absence of a text layer, and the stale state of the bibliography. The predicate names do not overclaim their bounds.

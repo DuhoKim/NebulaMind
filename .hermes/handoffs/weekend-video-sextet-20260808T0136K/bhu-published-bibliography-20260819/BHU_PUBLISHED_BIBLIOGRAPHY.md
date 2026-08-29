@@ -275,8 +275,30 @@ reading exist, pointing opposite ways. See `ENTRY31_STUDY.md` §6. **Not folded 
 two-branch ruling; flagged for him.**
 Footnote 6 concedes in print that S could be saved by ad-hoc parameter-coupling fixes and
 disclaims them absent independent support. Footnote 1 cites Rothman & Ellis (1993) [13] as the
-source of the open-universe correction — corroborating appendix A0's citation trail (their paper
-itself remains unread). Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
+source of the open-universe correction — corroborating appendix A0's citation trail **(READ 2026-08-29 — this said "their paper itself remains unread")**. Acquired as a free ADS
+scan, `rothman_ellis_1993_qjras34_201.pdf`, 179,670 b, sha256 `ad76b7ace95c…`, 12 pp. **Their
+critique targets Smolin 1992 — entry 6 — not this 2004 paper**, a distinction the record had not
+drawn. Its central objection is *unidirectionality* — the scenario needs every parameter change to
+reduce black-hole counts, while raising α or M_LC does the opposite — which the authors call a
+"basic flaw in Smolin's scenario". They twice conclude his result is "probably reversed", and for
+Δm = 0 say our universe would have *more* black holes, "in contradiction to his hypothesis". **And
+page 209 confronts him with data**: cold/tepid-Big-Bang models, "in the wake of the COBE
+observations … can almost certainly be pronounced dead." They nonetheless close by calling the
+programme "certainly worth pursuing" — so it is a constructive endorsement of the programme
+alongside attempted refutations of its concrete arguments.
+**GATED**: `AGATE_B20` TRANSCRIPTION_CONFIRMED, `CGATE_B20`
+TRANSCRIPTION_NARROWED_MISSED_COBE_CONFRONTATION. Both seats rendered the scan and verified every
+quotation word-by-word — necessary because the scan has no text layer, so nothing here is
+grep-verifiable. *(An earlier draft of this note called it "not a confrontation with data";
+**withdrawn** — I had read pages 1, 2 and 11 and skimmed the rest, and page 209 is in the part I
+skimmed.)*
+**Bearing on this entry's own falsifier**: the objection is *upstream* of the 2.5 M☉ bar — it asks
+whether the selection argument yields a prediction at all, not whether that prediction holds. The
+seats split on how hard to put that; **the weaker form is adopted**: the bar's selection-theoretic
+warrant is weakened or made conditional, not severed, since Rothman & Ellis analyse Smolin 1992 and
+never touch the 2004 mass argument. **No tier change.** Smolin's §3 groups this with three others
+as arguing S is "contradicted by present observation" — [13] supplies that for *one limb only*;
+[14] Ellis 1993 and [30] Harrison 1995 are pinned-but-unread, [31] Silk 1997 paywalled. Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
 conjecture ("one can conjecture that the present value of Λ maximizes the formation of black
 holes"), not a result.
 Record: the CNS audit chain's missing base entry, now read; Track C's published-record basis is

@@ -15,7 +15,7 @@ WHAT THIS FILE IS: a receipt that the gap exists, built from Smolin's own refere
 pinned. WHAT IT IS NOT: an assessment of whether the criticisms are any good. None of the four is
 in this corpus and none has been read.
 """
-import re, sys
+import re, sys, os
 S="../bhu-reading-20260823/sources/"
 B="../bhu-published-bibliography-20260819/BHU_PUBLISHED_BIBLIOGRAPHY.md"
 T=" ".join(open(S+"smolin_2004_cns_clean.txt", errors="ignore").read().split())
@@ -59,15 +59,28 @@ print(f"   'Rothman' in the bibliography            : {roth}")
 print(f"   'Harrison'                               : {harr}")
 print(f"   'Silk'                                   : {silk}")
 print(f"   'Answers to criticisms'                  : {crit}")
-chk("MEASURED: Harrison does not appear in the bibliography at all",
-    harr == 0,
-    "one of the four papers Smolin answers is absent from a record that classes his paper as a "
-    "LIVE calibrated falsifier")
-chk("MEASURED: where Rothman & Ellis DO appear in entry 31 it is in a different role -- as the "
-    "source of a correction, not as critics -- and the entry says their paper is unread",
-    "the source of the open-universe correction" in BIB and "remains unread" in BIB,
-    "entry 31 footnote-1 note: 'cites Rothman & Ellis (1993) [13] as the source of the "
-    "open-universe correction ... (their paper itself remains unread)'. Entry 6 mentions "
+# THIRD 1ab INSTANCE TONIGHT, and the one that taught the most. This asserted harr == 0 --
+# "Harrison does not appear in the bibliography at all" -- which was TRUE when written and became
+# false the moment I cited him in entry 31's note. Inverting it to "Harrison IS now cited" would
+# have created a FOURTH instance, because he is pinned-but-unread and I intend to read him.
+# THE ONLY STABLE THING TO ASSERT IS THE DURABLE ARTIFACT. The finding belongs in prose.
+HARR_PDF = "../bhu-reading-20260823/sources/harrison_1995_qjras36_193.pdf"
+chk("ARTIFACT: Harrison 1995 is pinned as a file, which stays true whether or not it has been "
+    "read and whether or not the record cites it",
+    os.path.exists(HARR_PDF) and os.path.getsize(HARR_PDF) == 277259,
+    f"277,259 b. FINDING, kept as prose because it is history rather than a testable state: when "
+    f"this file was written Harrison appeared NOWHERE in the bibliography, though he is one of the "
+    f"four papers Smolin answers in a record that classes Smolin's paper as a live calibrated "
+    f"falsifier. He is now named in entry 31 and pinned. HE IS STILL UNREAD")
+# INVERTED 2026-08-29, ~90 minutes after writing it. The second half asserted the entry SAYS the
+# paper is unread -- true when written, false the moment b20 read it. That is defect 1ab exactly,
+# committed by me AFTER registering 1ab. See the register entry, which now records the recurrence.
+chk("MEASURED: Rothman & Ellis is still cited in entry 31 for the open-universe correction, AND "
+    "the entry no longer calls it unread -- so this file tests the repaired state, not the wound",
+    "the source of the open-universe correction" in BIB and
+    "their paper\nitself remains unread" not in BIB,
+    "when this file was written the entry read '... (their paper itself remains unread)'. It now "
+    "carries the reading, the hash and the gate verdicts. Entry 6 mentions "
     "'the Delta-m sign argument Rothman-Ellis attacked' -- so the adversarial role IS known "
     "somewhere in the record, and is not attached to the entry it bears on")
 

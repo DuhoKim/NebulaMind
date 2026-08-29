@@ -805,6 +805,42 @@ explicitly; the original substring-match bug is preserved as history, not as an 
 
 ---
 
+### 1ab-RECURRENCE — I COMMITTED THE SAME DEFECT 90 MINUTES AFTER REGISTERING IT
+
+**2026-08-29, same evening as §1ab.** `b19_entry31_criticisms.py` asserted that entry 31 *says*
+Rothman & Ellis is unread. True when written. `b20` then read the paper and the note was corrected,
+so `b19` went red — **its failure meaning success, which is the precise defect §1ab describes.**
+
+I wrote §1ab, with its guard — *"invert a defect-assertion in the same commit that repairs it, or
+write it against the repaired state from the start"* — and then wrote `b19` about 90 minutes later
+in exactly the forbidden shape.
+
+**What this says about the register.** Writing a defect down did not stop me repeating it. The
+register is a record, not a control. A control would be a rule applied at the moment of writing a
+`chk(...)`, and the only version of that which could work is mechanical: **before asserting a state
+of a file I control, ask whether I intend to change that state; if so, assert the post-change
+state.** Every finding in this register is about something I intend to fix, so the answer is almost
+always yes.
+
+**IT HAPPENED THREE TIMES, NOT TWICE.** After inverting the check the battery flagged `b19` again:
+a *second* check in the same file asserted "Harrison does not appear in the bibliography at all",
+which my own edit to entry 31 had just falsified. **I fixed the instance I had been told about and
+never asked whether the same file held another of the same shape.**
+
+**And the naive repair would have made a fourth.** Inverting it to "Harrison IS now cited" asserts a
+state I also intend to change — he is pinned but unread. **The only stable thing to assert is the
+durable artifact** (the file exists, at this size); the finding belongs in prose, because a finding
+is history and a check is a state.
+
+**So the control was built, not written down.** A mechanical sweep over every `chk(...)` whose
+predicate asserts a negative about a record file — `== 0`, `not in`, `is None` — returns 3 across
+the battery, and correctly separates the one live defect from two that already assert the *repaired*
+state. That sweep is the control §1ab asked for and prose could not supply.
+
+**Caught by the battery every time, never by review.** Three for three in one evening.
+
+---
+
 ### 1ac — A RUNNER THAT REPORTED 31 FAILURES AND HAD FOUND NONE
 
 **Same battery run.** The runner wrapped each script in `timeout 300`. **macOS has no `timeout`** —
