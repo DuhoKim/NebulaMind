@@ -234,31 +234,43 @@ here with no adversarial reader** — the drafts get seats, the checkers get con
 whatever attention is left over.
 
 
-## 8c. THE VERDICT LIVES IN THE BLOCK, NOT IN PROSE — and a probe looking for prose will miss it
+## 8c. A NARROW PATTERN, USED TO AUDIT A NARROW PATTERN, THREE LEVELS DEEP
 
-**2026-08-29 16:0x.** Blanc's probe reported GPT56's V49 report as having *no verdict at all*, and
-concluded V49 was not a two-seat round. **Checked: the report does render a verdict** — line 69,
-`VERDICT: NOT CLEAR`, inside `FINDINGS-BLOCK v1`. What it lacks is a prose `## Verdict` heading and a
-bold `**NOT CLEAR**` token, which is the *old* convention.
+**Corrected 2026-08-29 19:3x. The version of this section written at 16:0x contained a false claim
+and is replaced.**
 
-**All twelve V38–V49 reports carry `VERDICT:` in the block, and every brief since V42 mandates the
-field.** The block is the authoritative location precisely because it was introduced under the
-principal's option C so a verdict would not have to be recovered from prose. A probe keyed on the
-prose token is reading the convention the block replaced.
+**The facts.** GPT56's V49 report states its verdict **twice**: line 3 reads `**Verdict: NOT CLEAR.**`
+and line 69 carries the contracted `VERDICT: NOT CLEAR` footer. V52 is the same. **V49 and V52 were
+both genuine two-seat rounds.** Every brief since V42 contracts for the footer, and GPT56 has emitted
+it since V38.
 
-**Do not "fix" this by requiring both.** Two sources for one fact is the drift this lane has spent the
-day repairing; a brief demanding a prose verdict *and* a block verdict would create exactly that. One
-authoritative location, and the reader reads it:
+**How three readers missed one of the most prominent lines in the file:**
 
-    grep -m1 '^VERDICT:' <report>.md
+1. **Blanc's probe** required the verdict word alone inside the emphasis — `**NOT CLEAR.**`. GPT56
+   moved the label inside the bold, `**Verdict: NOT CLEAR.**`, and the probe returned no-token.
+2. **Blanc then opened the file to verify the probe and grepped for the same shape the probe had just
+   failed on**, found nothing, and reported an absence.
+3. **I audited that claim with `\*\*(NOT )?CLEAR\*\*`** — a *different* narrow shape, requiring the
+   bold to contain only the token. The `Verdict: ` prefix and trailing period defeated it. **I then
+   wrote into this file that the report "lacks a bold `**NOT CLEAR**` token", which was false**, while
+   correcting someone else's false claim about the same file.
 
-**This is the second probe misread today, and they failed in opposite directions** — at V34 the probe
-took a bare `**CLEAR**` from prose and reported CLEAR when the verdict was NOT CLEAR; here it found no
-prose token and reported no verdict when one was present. Both are the same defect: reading a
-convention the artifact no longer uses. **Blanc's first instinct was that the probe was broken and the
-second was that the report was; the first instinct was the right one.**
+**The rule this earns: when auditing a pattern that failed in the absence direction, do not verify
+with another pattern of the same kind.** Read the artifact, or anchor on the contracted form. A second
+regex is not an independent check of a first regex — it is the same instrument with a different
+setting, and it will fail on the same class of input.
 
-*(Severity counts in the same relay were also off: GPT56-V49 is 2 HIGH and 5 MEDIUM, not 7 MEDIUM.)*
+**Where the exposure actually is here.** `citation_block_check.py` and `prereg_lint.py` read seat
+reports **only** through the contracted `FINDINGS-BLOCK` marker at column 0; `_reports_for` and
+`declared_findings` survive solely in a comment explaining their removal. **The tools anchor on the
+contract. The failures were ad-hoc greps typed during a turn**, which are uncontrolled by
+construction — no negative control, no positive control, used once and believed.
+
+**Still true, and now better supported:** do not require both a prose verdict and a block verdict.
+The brief contracts for one; a seat volunteering a second is fine, and demanding both would create
+two sources for one fact — the drift this lane has spent the day repairing.
+
+    grep -m1 '^VERDICT:' <report>.md        # the contracted form, and the authoritative one
 
 ## 9. OPERATING NOTES THAT COST TIME
 
