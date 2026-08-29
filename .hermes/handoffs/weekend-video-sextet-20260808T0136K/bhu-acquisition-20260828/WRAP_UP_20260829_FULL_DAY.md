@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 22:35 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 22:55 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -59,6 +59,15 @@ is **sound** — it made a proper prediction and the measurement disagreed.
 pinned Popławski file is an ar5iv render of the arXiv submission carrying the journal line, **not**
 Elsevier's version of record, so acquiring it is still owed and ScienceDirect returns 403.
 **Two papers now need Duho's login**: Popławski *PLB* 690 73–77 and Silk *Science* 277 644.
+
+**ALL FOUR QUESTIONS ARE NOW CLOSED — Duho returned every one of them to me.** Question 1's answer:
+use the screen as a first pass, hand-check every flag, **with a flag-volume stop rule and either a
+miss-rate audit or an explicit acceptance of the risk**. My first draft of that answer was **refuted
+outright by both seats** — I miscounted the unreadable papers by parsing an index instead of the
+filesystem (wrong in both directions), I claimed a verified screen is "safe at any precision" when
+that is only true at today's three flags, and I said the miss rate cannot be measured when it can
+(11 reads to catch a gross failure at 95%, ~29 for near-certainty). **A cold reader should not
+re-derive any of those three.**
 
 **Question 1's evidence was re-measured and its number was wrong** (`b25`): the screen's score was
 recorded against 29 sources when there are now 41, and b1's own live output flags six while its

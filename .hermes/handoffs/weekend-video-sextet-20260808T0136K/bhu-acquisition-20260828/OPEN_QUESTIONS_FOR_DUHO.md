@@ -6,12 +6,207 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — one decision
+## OPEN — none. All four are closed.
 
 > **Numbering note, 2026-08-29.** These read **2, 3, 1** and the new one was numbered **3**,
 > which was already taken by a question closed the same evening — two different "question 3" in the
 > file you read to decide things. The new one is now **4**, historical numbers are unchanged because
 > commits cite them, and the order below is 1, 2, 4.
+
+## SETTLED — recorded so nothing looks still-open
+
+| | question | ruling |
+|---|---|---|
+| 1 | Should a proof-based "no-go" paper get its own category? | **Yes — "then add another category."** Added, with controls; entry 22 refiled. |
+| 2 | Do we need a third reviewer for the split on whether a test can "fire"? | **No** (Blanc's call, Duho informed). Settled by writing a rule instead. |
+| 2b | Should there be one fixed confidence bar for the whole collection? | **No — case by case, each one recorded with an owner and a reason.** |
+| 3 | Is the survey worth continuing after fifteen papers with no change? | **Yes — "then look harder with more entries."** |
+| 4 | Was one paper's prediction genuinely calibrated? | Closed by me; both reviewers refused it. No decision needed. |
+
+---
+
+## CLOSED 2026-08-29 — question 3
+
+**Duho's instruction, verbatim: "answer question 3".** I read that as returning the decision to me
+rather than answering it, and I acted on it. **If you meant "explain it to me", say so and I will
+revert — it is four edits.**
+
+**My answer: Reviewer B's option — and it needed no scheme change, because the scheme already
+existed.** I went to check whether the collection really had a two-part form before building one,
+and found it does: there is a table headed *entry | tier | standing | what it fires*, introduced
+with "The tier describes the CLAIM; a separate axis describes its STANDING". Entry 51 already
+carries the combined form inline. **The only thing missing was entry 44's row.** So all three
+options I offered you were built on a false premise — that this was a scheme change. It was a gap.
+
+**What I did.**
+1. Entry 44 → `CALIBRATED-FALSIFIER / FIRED`, with the "what it fires" scoped precisely: the
+   Sec. 4 thermal free 5D field theory's prediction of exact scale invariance, **not** the
+   holographic framework. Precedent is entry 7, which fired an instrument chain and not CNS.
+2. Added its row to the standing table.
+3. **Extended the combined form to entries 7 and 31**, which were still bare. Their FIRED/LIVE
+   values are unchanged and taken from the table — nothing new was decided. *This is the one part
+   that goes beyond entry 44; I did it because answering "yes, record what was lost" only half
+   works if the collection still cannot show at a glance which fired. Reverse it if you disagree.*
+4. Corrected two stale sentences, one of which said the record "carries no status axis" — false
+   since the table was added.
+
+**And it turned up something the record was hiding.** The tally said *"3 calibrated, 2 live — but
+only ONE (entry 31) bears directly on a black-hole-universe theory."* With entry 44 filed that is
+wrong. **Entry 44 is a BHU construction in this record's own branch 10, and observation killed its
+computable core.** So the family has a falsifier that already fired against one of its own
+cosmologies — not against an instrument chain, as entry 7 did — and the record did not say so.
+That is the real content of this decision, and it was invisible while the paper sat filed as
+"directional".
+
+Tally recomputed by script, not asserted: 58 entries, 32 consistency-only, 7 directional, 7 with
+no label at all, 4 unread, 3 prospect, **2 calibrated/fired, 2 calibrated/live**, 1 obstruction.
+
+<details><summary>The question as it was originally filed</summary>
+
+### 3. One paper made a real prediction and lost. Our label doesn't say so. Should it?
+
+**The stake.** Entry 44 (Pourhasan, Afshordi & Mann, 2014) is unusual in this collection: it made a
+sharp, checkable prediction — that the early universe's ripples should be exactly the same size at
+every scale — and **the measurement disagreed**. Planck sees them tilted, at eight standard
+deviations. The authors say so themselves, in their own paper.
+
+Almost nothing else here has been through that. Most of these papers make claims that no
+measurement could contradict. This one could be contradicted, and was.
+
+**The problem.** We currently file it as "directional" — the same shelf as papers that never risked
+anything. Both reviewers, working separately, said that is wrong, and both said it in the same
+direction: the label gives the paper credit for the vague idea it has *left* while hiding the sharp
+one it *lost*.
+
+**Why one label cannot hold it.** The paper is really two things at once. The part that was tested
+is dead. What survives is a promise — the authors say it is "easy to imagine" a correction of about
+the right size, but they do not do the calculation, and the size they name is simply the size the
+measurement already showed. So the paper is refuted looking backwards and vague looking forwards,
+and our shelf system has one slot per paper.
+
+| | proposes | what it costs |
+|---|---|---|
+| Reviewer A (Gemini) | Mark it **failed**. | Simple and honest about the outcome. But it throws away the surviving proposal, which is not nothing. |
+| Reviewer B (GPT) | Use the two-part form **we already use elsewhere** — "sharp prediction, fired" — and file the leftover separately. | Keeps both facts. But it means one paper occupying two rows, which nothing else here does. |
+
+**Option 3 — leave it alone and write the reason down.** Say explicitly that our labels describe
+only what a paper still claims, not what it has already lost. *Costs:* the collection stops being
+able to show which papers were ever actually tested — which, given how few were, is the more
+interesting number. *Gains:* no change to the scheme.
+
+**My recommendation: Reviewer B's.** It is the only one that keeps both facts, and it uses a form
+this collection already has rather than inventing one. But it changes how papers are shelved, which
+is a scheme decision.
+
+**Why this is not mine to decide.** Every tier change is yours by standing rule, and this is
+stronger than a tier change — it asks whether one paper can hold two.
+
+**Nothing waits on it.** The audit is complete and committed, the reasoning is recorded, and the
+paper's current label is untouched.
+
+
+</details>
+
+---
+
+## CLOSED 2026-08-29 — question 4
+
+**Duho's instruction, verbatim: "answer question 4".** Read, as with question 3, as returning the
+decision to me. **If you meant "explain it", say so — it is one table edit to revert.**
+
+**My answer: option 3, the third column — and my costing of it was wrong in your favour.**
+
+**What decided it, and it was not my judgement about the physics.** I checked what the record says
+a tier *is* before ruling on whether a disputed warrant changes one. It says: *"testability classes
+per brief: **CALIBRATED-FALSIFIER** (number + threshold)"*. **The tier is defined by the shape of
+the claim.** So Reviewer B's position is not an opinion — it is the record's own definition.
+Adopting Reviewer A's would mean redefining "testability class" retroactively across 51 papers on
+the strength of one dispute, and then re-auditing all of them under the new meaning.
+
+But Reviewer A is right that something real would go unrecorded. **Both are right about different
+axes, and the record had only two.**
+
+**I told you the cost objection was wrong. Then both reviewers told me *that* was wrong.** I said a
+third column meant a judgement across all 58 entries; I then reversed it to "only four, because only
+a calibrated claim has a warrant". **The reversal is false** — a directional claim can fail to follow
+in the direction asserted, an impossibility proof can rest on disputed maths. **Your original
+objection stands.** What I have actually built is four warrant cells for the four sharpest claims,
+**not a survey of the collection**, and the file now says so where the column is defined. Extending
+it later brings the cost back.
+
+**What the four cells show, stated at the strength the evidence supports:**
+
+| entry | warrant |
+|---|---|
+| 7 | **no challenge filed here** — a fact about our shelves, *not* a finding that the reasoning is sound. Neither reviewer could check the wider literature. |
+| 31 | **disputed**, by published criticism we now hold, unanswered on the quantities it names |
+| 51 | **unreproduced** — six ways tried, none reaches the paper's number, and the list isn't exhaustive |
+| 44 | **sound, and it still lost** — the prediction follows from the model openly; the measurement simply disagreed. What lacks support is the *replacement* the authors sketched and never computed. |
+
+**I first wrote that "only one of the four has reasoning nobody has challenged". Both reviewers
+refuted it and they were right, twice over:** entry 7's cell means *we have not filed a challenge*,
+which is not the same as nobody making one; and entry 44's reasoning was never in doubt — its
+prediction was derived properly and then failed, which is what a good prediction does. **Two of the
+four have real problems with their reasoning. That is still the most useful thing this column has
+shown, and it is the honest version.**
+
+**What did NOT change: no tier, no standing, and no definition.** Entry 31 is still
+CALIBRATED-FALSIFIER / LIVE. The dispute now sits in a column instead of being argued about in the
+label.
+
+<details><summary>The question as it was originally filed</summary>
+
+
+</details>
+
+---
+
+## CLOSED 2026-08-29 — question 1, and with it the queue
+
+**Duho's instruction, verbatim: "answer question 1".** The fourth and last returned to me.
+
+**My answer: use the screen as a first pass and hand-check every paper it flags — with two
+conditions attached that I did not have in my first draft.**
+
+**Both reviewers refuted that first draft outright, and they were right.** It is the fourth question
+you handed back and the first where my answer had to be rebuilt rather than trimmed.
+
+**What I got wrong:**
+
+- **The number.** I told you eighteen papers have no text. I got that by reading the *index*, not by
+  looking. Two of the eighteen are sitting on disk right now — a 776 kB published paper and an 82 kB
+  one — and a nineteenth was counted as *present* because my pattern pulled "17" out of a filename.
+  **The index is not a reliable list of what we can read**, and an accurate count needs someone to
+  look at the files. *(My first attempt to check one reviewer's correction used a wrong path and
+  nearly rejected a true finding.)*
+- **My main argument.** I said that if every flag gets read, the screen's accuracy doesn't matter.
+  **That is only true because it flags three papers today.** If it flagged thirty of thirty-three,
+  "check every flag" *is* reading everything, plus the cost of running the screen. It was a fact
+  about this week dressed up as a principle.
+- **And the thing I most want to correct.** I told you the screen's miss rate *cannot* be measured.
+  It can. You read a random sample of the papers it *didn't* flag and see whether any belong. One
+  reviewer called that an abdication and gave the real cost: **11 papers read** would catch a bad
+  miss rate with 95% confidence; **19** for a subtler one; about **29** — nearly everything — to be
+  confident there is no single missed paper. That trade between effort and completeness *is* your
+  question, and I had erased it by calling it impossible.
+
+**So the two conditions:**
+
+1. **A stop rule on volume.** The screen earns its place while it flags a handful. If it starts
+   flagging most of the collection, it is costing more than it saves and we go back to reading.
+2. **Either run the miss-rate check, or say plainly that we are accepting the risk.** Reading the
+   flags catches nothing that was never flagged. As one reviewer put it: *not having looked for
+   misses is not the same as there being none.*
+
+**And separately — not instead —** some papers cannot be sorted by anyone until we get hold of them.
+I originally offered that as the answer. Both reviewers called it an evasion, and it was: the
+readable papers still need a policy.
+
+**What is actually finished:** the screen flags three papers, all three have been read, one belonged,
+and this pass moved nothing. A full re-sort is not finished until the unflagged pile is sampled or
+you accept the unknown.
+
+<details><summary>The question as it was originally filed</summary>
 
 ### 1. Should the black-hole-universe papers be re-sorted using an automatic screen, or only by hand?
 
@@ -304,149 +499,6 @@ category is unchanged.
 ---
 
 ---
-
-## SETTLED — recorded so nothing looks still-open
-
-| | question | ruling |
-|---|---|---|
-| 1 | Should a proof-based "no-go" paper get its own category? | **Yes — "then add another category."** Added, with controls; entry 22 refiled. |
-| 2 | Do we need a third reviewer for the split on whether a test can "fire"? | **No** (Blanc's call, Duho informed). Settled by writing a rule instead. |
-| 2b | Should there be one fixed confidence bar for the whole collection? | **No — case by case, each one recorded with an owner and a reason.** |
-| 3 | Is the survey worth continuing after fifteen papers with no change? | **Yes — "then look harder with more entries."** |
-| 4 | Was one paper's prediction genuinely calibrated? | Closed by me; both reviewers refused it. No decision needed. |
-
----
-
-## CLOSED 2026-08-29 — question 3
-
-**Duho's instruction, verbatim: "answer question 3".** I read that as returning the decision to me
-rather than answering it, and I acted on it. **If you meant "explain it to me", say so and I will
-revert — it is four edits.**
-
-**My answer: Reviewer B's option — and it needed no scheme change, because the scheme already
-existed.** I went to check whether the collection really had a two-part form before building one,
-and found it does: there is a table headed *entry | tier | standing | what it fires*, introduced
-with "The tier describes the CLAIM; a separate axis describes its STANDING". Entry 51 already
-carries the combined form inline. **The only thing missing was entry 44's row.** So all three
-options I offered you were built on a false premise — that this was a scheme change. It was a gap.
-
-**What I did.**
-1. Entry 44 → `CALIBRATED-FALSIFIER / FIRED`, with the "what it fires" scoped precisely: the
-   Sec. 4 thermal free 5D field theory's prediction of exact scale invariance, **not** the
-   holographic framework. Precedent is entry 7, which fired an instrument chain and not CNS.
-2. Added its row to the standing table.
-3. **Extended the combined form to entries 7 and 31**, which were still bare. Their FIRED/LIVE
-   values are unchanged and taken from the table — nothing new was decided. *This is the one part
-   that goes beyond entry 44; I did it because answering "yes, record what was lost" only half
-   works if the collection still cannot show at a glance which fired. Reverse it if you disagree.*
-4. Corrected two stale sentences, one of which said the record "carries no status axis" — false
-   since the table was added.
-
-**And it turned up something the record was hiding.** The tally said *"3 calibrated, 2 live — but
-only ONE (entry 31) bears directly on a black-hole-universe theory."* With entry 44 filed that is
-wrong. **Entry 44 is a BHU construction in this record's own branch 10, and observation killed its
-computable core.** So the family has a falsifier that already fired against one of its own
-cosmologies — not against an instrument chain, as entry 7 did — and the record did not say so.
-That is the real content of this decision, and it was invisible while the paper sat filed as
-"directional".
-
-Tally recomputed by script, not asserted: 58 entries, 32 consistency-only, 7 directional, 7 with
-no label at all, 4 unread, 3 prospect, **2 calibrated/fired, 2 calibrated/live**, 1 obstruction.
-
-<details><summary>The question as it was originally filed</summary>
-
-### 3. One paper made a real prediction and lost. Our label doesn't say so. Should it?
-
-**The stake.** Entry 44 (Pourhasan, Afshordi & Mann, 2014) is unusual in this collection: it made a
-sharp, checkable prediction — that the early universe's ripples should be exactly the same size at
-every scale — and **the measurement disagreed**. Planck sees them tilted, at eight standard
-deviations. The authors say so themselves, in their own paper.
-
-Almost nothing else here has been through that. Most of these papers make claims that no
-measurement could contradict. This one could be contradicted, and was.
-
-**The problem.** We currently file it as "directional" — the same shelf as papers that never risked
-anything. Both reviewers, working separately, said that is wrong, and both said it in the same
-direction: the label gives the paper credit for the vague idea it has *left* while hiding the sharp
-one it *lost*.
-
-**Why one label cannot hold it.** The paper is really two things at once. The part that was tested
-is dead. What survives is a promise — the authors say it is "easy to imagine" a correction of about
-the right size, but they do not do the calculation, and the size they name is simply the size the
-measurement already showed. So the paper is refuted looking backwards and vague looking forwards,
-and our shelf system has one slot per paper.
-
-| | proposes | what it costs |
-|---|---|---|
-| Reviewer A (Gemini) | Mark it **failed**. | Simple and honest about the outcome. But it throws away the surviving proposal, which is not nothing. |
-| Reviewer B (GPT) | Use the two-part form **we already use elsewhere** — "sharp prediction, fired" — and file the leftover separately. | Keeps both facts. But it means one paper occupying two rows, which nothing else here does. |
-
-**Option 3 — leave it alone and write the reason down.** Say explicitly that our labels describe
-only what a paper still claims, not what it has already lost. *Costs:* the collection stops being
-able to show which papers were ever actually tested — which, given how few were, is the more
-interesting number. *Gains:* no change to the scheme.
-
-**My recommendation: Reviewer B's.** It is the only one that keeps both facts, and it uses a form
-this collection already has rather than inventing one. But it changes how papers are shelved, which
-is a scheme decision.
-
-**Why this is not mine to decide.** Every tier change is yours by standing rule, and this is
-stronger than a tier change — it asks whether one paper can hold two.
-
-**Nothing waits on it.** The audit is complete and committed, the reasoning is recorded, and the
-paper's current label is untouched.
-
-
-</details>
-
----
-
-## CLOSED 2026-08-29 — question 4
-
-**Duho's instruction, verbatim: "answer question 4".** Read, as with question 3, as returning the
-decision to me. **If you meant "explain it", say so — it is one table edit to revert.**
-
-**My answer: option 3, the third column — and my costing of it was wrong in your favour.**
-
-**What decided it, and it was not my judgement about the physics.** I checked what the record says
-a tier *is* before ruling on whether a disputed warrant changes one. It says: *"testability classes
-per brief: **CALIBRATED-FALSIFIER** (number + threshold)"*. **The tier is defined by the shape of
-the claim.** So Reviewer B's position is not an opinion — it is the record's own definition.
-Adopting Reviewer A's would mean redefining "testability class" retroactively across 51 papers on
-the strength of one dispute, and then re-auditing all of them under the new meaning.
-
-But Reviewer A is right that something real would go unrecorded. **Both are right about different
-axes, and the record had only two.**
-
-**I told you the cost objection was wrong. Then both reviewers told me *that* was wrong.** I said a
-third column meant a judgement across all 58 entries; I then reversed it to "only four, because only
-a calibrated claim has a warrant". **The reversal is false** — a directional claim can fail to follow
-in the direction asserted, an impossibility proof can rest on disputed maths. **Your original
-objection stands.** What I have actually built is four warrant cells for the four sharpest claims,
-**not a survey of the collection**, and the file now says so where the column is defined. Extending
-it later brings the cost back.
-
-**What the four cells show, stated at the strength the evidence supports:**
-
-| entry | warrant |
-|---|---|
-| 7 | **no challenge filed here** — a fact about our shelves, *not* a finding that the reasoning is sound. Neither reviewer could check the wider literature. |
-| 31 | **disputed**, by published criticism we now hold, unanswered on the quantities it names |
-| 51 | **unreproduced** — six ways tried, none reaches the paper's number, and the list isn't exhaustive |
-| 44 | **sound, and it still lost** — the prediction follows from the model openly; the measurement simply disagreed. What lacks support is the *replacement* the authors sketched and never computed. |
-
-**I first wrote that "only one of the four has reasoning nobody has challenged". Both reviewers
-refuted it and they were right, twice over:** entry 7's cell means *we have not filed a challenge*,
-which is not the same as nobody making one; and entry 44's reasoning was never in doubt — its
-prediction was derived properly and then failed, which is what a good prediction does. **Two of the
-four have real problems with their reasoning. That is still the most useful thing this column has
-shown, and it is the honest version.**
-
-**What did NOT change: no tier, no standing, and no definition.** Entry 31 is still
-CALIBRATED-FALSIFIER / LIVE. The dispute now sits in a column instead of being argued about in the
-label.
-
-<details><summary>The question as it was originally filed</summary>
 
 
 </details>
