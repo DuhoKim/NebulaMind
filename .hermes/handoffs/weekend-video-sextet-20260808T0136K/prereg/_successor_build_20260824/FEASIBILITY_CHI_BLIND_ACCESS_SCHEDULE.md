@@ -1,93 +1,121 @@
-**STATUS: FEASIBILITY REPORT — for the principal, via Blanc. Not a choice between A and B.** Asked at
-22:24 KST: is a totally precommitted χ-blind access schedule **compatible with how Rows D and G are
-actually meant to operate?** **Short answer: yes for both — and for Row G the accepted hand-check
-protocol ALREADY REQUIRES ONE.**
+**STATUS: ANSWER — for the principal, via Blanc. Asked 22:24 KST: does anything in the acquisition plan
+actually REQUIRE choosing the next object on the strength of a previous object's χ-derived output?**
+**This reports what is, not what should be done. It contains no recommendation and does not choose
+between (a), (b) and (c).**
 
-# Is a precommitted χ-blind access schedule workable for the rows that read χ?
+# Is the adaptivity load-bearing?
 
-## First, which rows this is actually about
+## The answer in three lines
 
-Four rows can reach χ-bearing bytes. **Two are already schedule-constrained and are not at issue:**
-**Row C2** reads cutouts *"via row B and **fixed parent lists**"*, and **Row I** reads the sealed label
-set and the instrument outputs *corresponding to it* — its read set is the **sealed allocation**, fixed
-at BS-2f from χ-free inputs. **Both are already determined by an object fixed before any χ is read.**
+- **Row D — NO, and this is established from code, not inference.** The runner has no retry, no
+  re-request and no reordering of any kind, and the directory states it "contains no acquisition or
+  selection query."
+- **Row G — NO for choosing what to view next, which the design forbids; YES for ONE mechanism,
+  `flag → discard → replace`, which HC-1H calls "the only escape hatch" for identity exposure.**
+- **Stopping rules — nothing stops early on results so far in a way that selects a next object, but
+  three preregistered halts do depend on χ-derived aggregates, and one of them is the §2b pilot.**
 
-**The live subjects are Row D and Row G**, exactly as the seats found.
+---
 
-## Row D — the instrument runner. Compatible, and nothing in its purpose wants adaptivity
+## 1. Row D — the cutout pipeline
 
-- **The universe is already fixed and χ-blind.** Row D reads the cutouts of the accepted sample. The
-  acceptance ledger is computed by Row E from **predicate bits and catalogue-quality fields only**,
-  and §2.7's predicates were fixed before any image byte.
-- **Order is irrelevant to the result.** Inference is per-object and independent; no quantity the study
-  computes depends on the sequence. A frozen permutation — canonical `(brickid, objid)` order, or a
-  seeded shuffle pinned at freeze — is available at no cost.
-- **Multiplicity is already one per object**, and `require_complete_sample()` refuses a partial run
-  outright: *"a partial run is not a smaller run, it is a different experiment."*
-- **Retries are the only real specification work**, and they are not χ-conditioned: a transient read
-  failure is a fact about storage, so *"attempt each object exactly k times in place; the k-th failure
-  is terminal and recorded"* is both fixable in advance and honest.
-- **Stopping is the manifest being exhausted.** There is no early-stop condition to preregister.
+**How this was established: by reading the code that exists** — `_cutout_runner_20260820/cutout_runner.py`,
+`incremental_wrapper.py` and the directory's `README.md` — **not from the conduct table.**
 
-**Cost of A for Row D: essentially none, and the timing is favourable — the runner is not built.**
-BS-3 is not yet delivered, so the constraint is something to build *to* rather than to retrofit.
+- **There is no acquisition or selection query in it at all.** The README states the scope: *"local/offline
+  composition only. This directory contains no acquisition or selection query. It accepts an explicit
+  `ra,dec,ls_id` CSV and an explicit receipt-pinned brick manifest."*
+- **The read set is exactly the supplied list.** The runner refuses unless
+  `set(manifest) == {position.ls_id for position in positions}` — no object may be added or dropped.
+- **The order is the order it is given.** `for position in positions:` over the CSV as read; the
+  incremental wrapper takes `sorted(set(objects) - done)[:BATCH_LIMIT]` — **sorted by identifier**, and
+  its selection depends only on **whether** an output already exists, never on that output's value.
+- **There is no retry.** A per-object failure is caught, `failures += 1`, and the loop advances. No
+  backoff, no re-request, no requeue.
+- **Nothing is downstream of a computed per-object output.**
 
-## Row G — the hand check. Compatible, and this is the part that changes the question
+**Two limits on this answer, stated rather than smoothed.** This is the **composition layer**; the
+acquisition step that fetches bricks is not in the lane, so I can say nothing about code that does not
+exist. And **BS-3, Row D's authorising instrument slot, is not delivered** — so this runner is not
+established as the pinned Row D implementation. **What is established: nothing that exists is adaptive,
+and nothing in Row D's stated surface asks for adaptivity.**
 
-**HC-1H — the accepted protocol, `HC1H_ACCEPTANCE_20260815.md`, authorised 2026-08-15 — replaced
-HC-1…HC-6 with: one human checker, 850 blinded labels — 500 real, 200 blind synthetic ground-truth
-injections, 150 mirrored re-presentations.**
+## 2. Row G — the hand check
 
-**A design with injected synthetics and mirrored re-presentations cannot work unless the presentation
-sequence is fixed by the design rather than by the subject.** If the checker chooses what to view next:
-the 200 synthetic injections stop being blind, because a subject who controls the sequence can notice
-what is being slipped in; and the 150 mirrored re-presentations stop measuring self-consistency,
-because the subject selects which items get re-shown. **The blinding and the self-consistency
-measurement both depend on the schedule being precommitted.**
+**How this was established: from HC-1H's defining artifact** — `LANA_ONE_HUMAN_ATTENUATION_20260814.md`,
+accepted 2026-08-15 at SHA-256 `b2590e42…` per `HC1H_ACCEPTANCE_20260815.md` — **read directly, because
+the draft carries these rules only "by quotation at freeze" and they are not quoted in it yet.**
 
-**So option A does not impose a new constraint on Row G. It writes down a constraint HC-1H's design
-already presumes.** It is unenforced in this text only because *"V3-pred's HC-1H measurement and
-validity rules (committee, sealed keys, HC-5, HC-6) are carried **by quotation at freeze**"* — they are
-inherited, not yet quoted, and therefore not yet in force where Row B could enforce them.
+**Choosing what to view next is not merely unnecessary here — the design forbids it.** HC-1H is *one
+human checker, 850 blinded labels*: 500 real, **200 blind synthetic injections "interleaved unmarked"**,
+and **150 mirrored re-presentations "in randomized later positions"**, with *"every image — real,
+synthetic, repeat — presented in random parity with a sealed key"* and *"the key opens only after all
+850 labels are in."* Sessions are capped at ≤ 50 images and the re-presentations are deliberately placed
+late so drift shows as a rising ε̂_rr across session index. **The sequence is constructed by the design.
+The blinding assumption — that the checker cannot tell synthetic from real or first-showing from repeat
+— is called "load-bearing" in that document, and a checker who chose their own order would be selecting
+which items get re-shown.**
 
-### The workable shape for a human, stated precisely
+### The one mechanism that IS load-bearing, named exactly
 
-**Fixed next item; free dwell.** The checker may look at the current cutout for as long as they like
-and re-display it as often as they like; **they may not choose which object comes next.** This
-preserves everything a careful human review needs — time, re-examination, second looks — and removes
-exactly the channel, because **the leak is in which object is requested next, not in how long one is
-viewed.**
+**`flag → discard → replace`.** HC-1H, verbatim: *"the labelling interface carries a **flag** action; if
+the checker flags specific items as suspected-identifiable during the session, before key opening, those
+items are discarded, the flags logged, and **fresh draws from the same stratum and category substituted**
+before the key opens."*
 
-### The one thing A genuinely costs, and it should not be glossed
+**So the set actually labelled depends on the checker's in-session, content-derived judgements.** The
+allocated universe is fixed; the realised set is not.
 
-**Selective revisiting.** *"Come back to the hard ones at the end"* is adaptive by construction: the
-decision to revisit object X after seeing Y and Z depends on their content. **A full second pass in a
-fixed order is compatible; a chosen revisit is not.** If HC-1H's own rules require selective revisit,
-that is a genuine conflict — **and I cannot rule it out from this text**, because HC-1H's full rules
-are carried by quotation and have not been quoted yet. **Reading them is the one open piece of this
-answer.**
+**What it would cost to give it up, in the source's own terms.** It is *"the only escape hatch"* for
+HC-7 trigger (v), identity exposure. HC-1H: *"No other path repairs an exposure: identity leakage
+discovered after key opening, or systematic exposure (a whole session or category recognisable), is not
+item-discardable and returns **hard INCONCLUSIVE for the affected batch**."* **Removing the flag rule
+converts a repairable in-session problem into a run-level inconclusive**, and the rule was added
+deliberately — at Revision 4, on Kun's re-gate, because the blinding assumption *"was load-bearing but
+unenforced."*
 
-## A discrepancy I found while checking, flagged and NOT resolved
+**What I have NOT established, and will not assert either way:** whether exercising that flag actually
+carries χ. The flag responds to *identity* cues — "this looks synthetic", "I have seen this before" —
+not to handedness, and *"no instrument signs [are] visible at any point."* But the checker forms a
+handedness judgement on every image and flags after viewing, so I cannot rule out that the propensity to
+flag correlates with image properties that also correlate with χ. **That is a question about human
+judgement that I cannot settle by reading files, and it is the part that would need the person who
+designed the procedure.**
 
-**Row G is written as a committee; HC-1H is one human checker, and that checker is Duho.**
+## 3. Stopping rules
 
-Row G's cells say *"Hand-check committee"*, *"the member co-signatures carried by the label-set
-receipt"*, and void the run on *"a member holding any other role"*. **HC-1H — the protocol that
-replaced HC-1…HC-6 — specifies one human checker (Duho).** If Row G's checker is Duho, **he also holds
-Row L** (signs the freeze at P0, signs BS-L at P6, opens the lock at P7), and **Row G's own
-other-role clause fires against him.**
+**How this was established: from the draft's conduct table and from HC-1H.**
 
-**Either Row G was written against the superseded committee design, or the exclusivity clause cannot
-mean what it says.** This is independent of the χ channel and it has to be answered before Row G can
-be conducted either way. **I am not resolving it — it changes what the conduct table permits.**
+- **No early stop on the labelling itself.** *"The key opens only after all 850 labels are in."* The
+  incremental wrapper stops a round when it resolves nothing new — a **stall detector**, not a result
+  criterion.
+- **The §2b optional pilot is a genuine continue/stop gate on χ-derived aggregates.** 150 labels
+  returning only `PASS-TO-FULL-HC1H` or `INCONCLUSIVE`, on *"protocol executes cleanly; session
+  ergonomics acceptable; **ε̂ crude estimate < 0.10**; no HC-7 trigger."* It decides **whether to
+  continue at all**, never which object comes next — and it is preregistered.
+- **Two preregistered halts already depend on χ-derived aggregates and are already accepted as such.**
+  Row I must fail the run before BS-8f if any allocated object lacks a usable finite instrument output —
+  the draft already records the cost: *"leaking that at least one allocated object was
+  missing/non-finite, which we accept."* And Row J halts on `a_LB_b < 0.85`.
+- **Worth noting because it is the same class, already handled:** HC-1H's carry-forward was corrected at
+  Revision 3 precisely because *"a criterion referencing real-label agreement or retest non-flip values
+  would exclude those labels too."* **The designers have met this problem once and fixed it.**
 
-## What I am not doing
+## 4. Other places to look — you asked, so here are the ones beyond your three
 
-**I am not choosing between A and B.** This reports feasibility only. What the report does establish is
-that **the "A is unworkable for Row G" branch does not appear to be live**: the accepted hand-check
-protocol already needs a precommitted presentation sequence, so A is closer to enforcing HC-1H than to
-overriding it. **Whether that makes A preferable to B is not mine.**
+- **Row C2** reads *"only cutouts via row B and **fixed parent lists**"* — fixed by construction.
+- **Row I** reads the sealed label set and the instrument outputs corresponding to it; its read set is
+  the **sealed allocation**. Fixed.
+- **Row F, the allocation itself — and here I found something I could not resolve.** §6.3 says the 3 × 9
+  allocation uses *"V3-pred's nine HC strata"*, and HC-1H defines those strata as **machine-committee
+  state (3) × |χ| tertile (3)**. But Row F's cell says it *"reads the accepted partition's positions and
+  acceptance flags only **(χ-free)**"* and voids the run on *"any χ-bearing input to bin construction."*
+  **Those cannot both hold if the HC strata are |χ|-tertile-defined.** If the allocation is χ-derived,
+  then the *universe* Row G sees is χ-conditioned before any question of sequence arises — which is
+  upstream of the leak under discussion. **I am flagging this, not asserting it:** it may be that this
+  draft redefined the strata, and I have not found where it says so.
 
-**CODEX's sentence belongs in the repair whichever way it goes:** *a sign-blind exclusion rule is not a
-substitute for a sign-blind access schedule.* **The inheritance §2.7(3) was carrying — χ-blindness of
-the exclusion predicates — never reached the access schedule, and that gap is the defect.**
+---
+
+**Nothing in this report is evidence about the sky.** No χ has been read. **v9 stays frozen at
+`6a9abbbd`; BS-6 and the first image byte remain blocked.**

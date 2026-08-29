@@ -44,17 +44,28 @@ study permits rather than to how it is described.
   think this survives being written down plainly — but the option is listed rather than suppressed,
   because deciding it is yours.
 
-## FEASIBILITY ANSWERED — `FEASIBILITY_CHI_BLIND_ACCESS_SCHEDULE.md`, 2026-08-29 22:3x KST
+## DEPENDENCY ESTABLISHED — `FEASIBILITY_CHI_BLIND_ACCESS_SCHEDULE.md`, 2026-08-29 22:30 KST
 
-**Asked by the principal at 22:24: is a totally precommitted schedule compatible with how Rows D and G
-are meant to operate? Yes for both.** Row D's universe is already fixed and χ-blind, order is
-irrelevant to the result, and its runner is not yet built. **And Row G's accepted protocol already
-requires a precommitted sequence:** HC-1H is one human checker and 850 blinded labels — 500 real, **200
-blind synthetic injections and 150 mirrored re-presentations** — a design that only works if the
-presentation order is fixed by the design rather than by the subject. **So A enforces HC-1H rather than
-overriding it.** The workable human form is **fixed next item, free dwell**. The one real cost is
-**selective revisiting**, and the one thing unread is HC-1H's full rules, carried by quotation and not
-yet quoted.
+**The principal asked whether the adaptivity is load-bearing before ruling. The answer is: almost
+nothing depends on it, and one thing does.**
+
+- **Row D — nothing.** Established **from the code**, not the table: `_cutout_runner_20260820` has no
+  retry, no re-request and no reordering, its read set must equal the supplied manifest exactly, and its
+  README states it *"contains no acquisition or selection query."* Limits: it is the composition layer
+  only, and BS-3 is undelivered, so no acquisition code exists to examine.
+- **Row G — the design forbids choosing what to view next**, because the 200 interleaved synthetics and
+  150 mirrored re-presentations depend on a sequence the design controls. **But `flag → discard →
+  replace` is genuinely load-bearing:** the checker flags suspected-identifiable items in session, they
+  are discarded and **fresh draws substituted**, so the realised set depends on content-derived
+  judgements. **Giving it up costs what HC-1H says it costs** — identity exposure becomes
+  non-item-discardable and *"returns hard INCONCLUSIVE for the affected batch."*
+- **Stopping rules — none selects a next object**, though the §2b pilot gates continuation on a
+  χ-derived ε̂ and two preregistered halts already depend on χ-derived aggregates.
+- **Not established, and not assertable by reading files:** whether exercising the flag actually carries
+  χ. That needs the person who designed the procedure.
+- **Found while checking, unresolved:** Row F is described as χ-free while the HC strata it allocates
+  over are defined by |χ| tertile. If that stands, the allocated universe is χ-conditioned upstream of
+  any question about sequence.
 
 **What is not in doubt:** the condition my proposal depends on is **not satisfied by the current
 draft**, and both seats reached that independently against different rows.
