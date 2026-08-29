@@ -734,7 +734,31 @@ Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Cro
 **38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**
 DOI 10.4310/maa.2004.v11.n1.a7 — VERIFIED (Crossref: MAA, v11, p77-132, 2004). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). The theorems behind entry 37. The authors' own caveat: 'only rough qualitative models' — the TOV-side equation of state cannot be imposed, only bounded. Rigor about the mathematics and equal rigor about its limits.
+Testability: **CONSISTENCY-ONLY**
+**TWO IMPOSSIBILITY CLAIMS RECORDED 2026-08-29** (`b32`, gated `CANDIDATE_REFUTED_NO_PROOF_IN_SOURCE`
+/ `CANDIDATE_NARROWED_ENTRY57_NOT_PROOF_OWNER`) — found by censusing the unflagged papers b29's
+random sample did not draw. Neither was in this entry.
+1. *"a standard TOV metric cannot be continued into a Black Hole, except in the special case when the
+   pressure is zero (we proved this in [15])"*. **The attribution is unsupported.** [15] resolves by
+   volume and pages to **entry 57**, which both seats read in full: it restricts itself to *"the case
+   when the shock wave lies outside of the Schwarzschild radius (A > 0)"* and **the phrase "black
+   hole" does not occur in it at all** (0 of 64,874 chars). An assumption that keeps the analysis
+   outside the horizon is not a proof that continuation is impossible. **Entry 57 does not own this
+   claim and must not be labelled as owning it.**
+   **But entry 38 itself supplies the warrant**, in its §4: for A < 0 the radial coordinate becomes
+   timelike, so a co-moving perfect fluid carries its four-velocity along r̄ and the Einstein–fluid
+   system (4.16)–(4.18) is *dynamical*, not a continuation of the standard static TOV construction.
+   The defensible claim is narrow: **standard static/co-moving TOV does not continue into A < 0 *as
+   that same construction*** — not that no TOV-form metric can exist inside a black hole, since
+   entry 38 builds precisely such an analogue.
+2. *"the infinite FRW metric cannot be matched to the Schwarzschild metric"* — **a finite-mass
+   junction limitation, not a coordinate artifact**: the paper uses Eddington–Finkelstein coordinates
+   specifically to regularise the horizon and obtains a regular trajectory through it. A complete
+   infinite k = 0 FRW slice cannot be the bounded interior of a Schwarzschild exterior of finite
+   enclosed mass; only a finite FRW region can be matched. *(CGATE's reading; AGATE called it a
+   coordinate/idealisation statement, and CGATE's rebuttal of that is the one adopted.)*
+**TIER UNCHANGED — CONSISTENCY-ONLY.** Under the ownership-of-proof convention both seats agree the
+limitation motivates and delimits a construction rather than being the paper's operative result. **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). The theorems behind entry 37. The authors' own caveat: 'only rough qualitative models' — the TOV-side equation of state cannot be imposed, only bounded. Rigor about the mathematics and equal rigor about its limits.
 Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
 
 **57. J. Smoller & B. Temple (1997). "General relativistic shock waves that extend the Oppenheimer–Snyder model." Arch. Rational Mech. Anal. 138, 239–277.**

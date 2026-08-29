@@ -868,6 +868,32 @@ identities, not merely a total." A matching count is not corroboration.
 
 ---
 
+### 1ag — I BUILT THE CONTROL AND THEN DID NOT RUN IT
+
+**Fourth occurrence of §1ab, 2026-08-29, and the worst one.**
+
+`b32` asserted that entry 38's record contained neither of two impossibility statements. True when
+written. I then recorded both — the whole point of the file — and the check went red.
+
+**That is §1ab exactly, for the fourth time.** The first three produced a fix: a mechanical sweep
+over every `chk(...)` whose predicate asserts a negative about a record file. I wrote that sweep
+specifically so this would stop happening. **I did not run it before committing b32.** Run
+afterwards, it named `b32` immediately and correctly cleared the two other negative-asserting checks
+as properly-inverted.
+
+**So the lesson from §1ab-RECURRENCE — "the register is a record, not a control" — was right and
+insufficient.** A control that exists but is not invoked is indistinguishable from no control. What
+was missing is not the tool but a trigger: **the sweep belongs in the pre-commit path, beside the
+battery, not in a file I have to remember.**
+
+**Why it keeps happening specifically here.** Every one of these scripts is written to document a
+gap and then close it in the same session. The natural check — "the gap is present" — is guaranteed
+to be falsified by the work the script exists to justify. **The defect is structural to the
+workflow, not a lapse of attention**, which is why four repetitions of "be careful" have not
+touched it.
+
+---
+
 ### 1ae — MY OWN VERIFICATION GREP, DEFEATED BY A LINE BREAK. THREE TIMES.
 
 **Third occurrence 2026-08-29, and the failure rule says register rather than fix again.**

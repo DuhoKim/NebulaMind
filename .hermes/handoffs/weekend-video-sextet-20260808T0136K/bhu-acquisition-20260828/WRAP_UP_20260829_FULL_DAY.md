@@ -1,4 +1,4 @@
-# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 22:55 KST
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 23:45 KST
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
@@ -75,6 +75,23 @@ summary says four. Three honest figures — 1-in-6, 1-in-3, 2-in-3 — depending
 labelling convention, with the friendlier two resting on a length confound and an unadopted
 convention respectively. **Recall is unmeasured and 22 of 51 papers have never been screened.**
 Question 1 itself is untouched and remains Duho's.
+
+**THE SCREEN LEAKS, MEASURED.** A preregistered random sample of 11 unflagged readable papers —
+drawn and committed before anything was opened — contains **at least two** papers meeting the
+obstruction rule. I had scored it zero; a seat re-read all eleven and found them. So hand-checking
+flags does not make the screen safe: **it cannot see a paper that was never flagged.** Recorded
+against question 1's closed answer, not reversing it.
+
+**OWNERSHIP-OF-PROOF ADOPTED** — both seats proposed it independently: a paper earns the obstruction
+tier only if it *does the proving*; citing someone else's theorem does not transfer it. Applied
+twice already. **Entry 48 (Farhi & Guth) is where entry 49's proof lives and nobody has read it** —
+ScienceDirect 403, no free scan.
+
+**A FALSE ATTRIBUTION FOUND IN A PUBLISHED PAPER.** Entry 38 says "a standard TOV metric cannot be
+continued into a Black Hole … we proved this in [15]". [15] is entry 57 — which both seats read in
+full, which restricts itself to *outside* the Schwarzschild radius, and in which **the phrase "black
+hole" never occurs.** Entry 38's own §4 supplies the real warrant. Both impossibility claims are now
+in its record; tier unchanged.
 
 **Entry 22 (the one no-go) now states its domain**, which it never did. And I was unfair to it:
 I counted eleven "conditions" that were eleven *phrases* for about eight hypotheses, and called a

@@ -53,9 +53,13 @@ chk("SOURCE: the citation resolves to Arch. Rat. Mech. Anal. 138, 239-277 (1997)
     "entry 57's own PDF running header reads 'Arch. Rational Mech. Anal. 138 (1997) 239-277'. The "
     "titles differ slightly between citation and paper, which is the alternate-title trap that cost "
     "b27 entry 41 -- so this is matched on volume and pages, not on title")
-chk("RECORD: entry 38's own entry contains neither impossibility statement",
-    "cannot be continued into a Black Hole" not in BIB and
-    "cannot be matched to the Schwarzschild" not in BIB,
+# INVERTED after the gate. This asserted the record LACKED both statements -- true when written,
+# false the moment I recorded them. Defect 1ab, FOURTH occurrence, and the worst of the four: I had
+# already BUILT a mechanical sweep for exactly this shape after the third, and did not run it.
+chk("RECORD: entry 38's entry now carries both impossibility statements and the note that entry 57 "
+    "does not own the attributed proof",
+    "cannot be continued into a Black Hole" in BIB and
+    "does not own this" in BIB,
     "PATTERN: the two verbatim phrases. ONE CLASS THIS MISSES: the record could paraphrase either "
     "result without quoting it. WHAT WAS DONE: entry 38's note was read directly -- it is a "
     "construction summary with no impossibility content at all")
