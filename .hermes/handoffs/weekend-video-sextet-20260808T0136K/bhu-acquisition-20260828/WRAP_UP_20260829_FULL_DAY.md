@@ -1,0 +1,112 @@
+# BHU lane — full-day wrap-up, 2026-08-28 21:00 → 2026-08-29 19:45 KST
+
+**Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
+overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written
+to need no recollection: **`ENTRY31_STUDY.md`** (the result) and **`HARNESS_DEFECT_REGISTER.md`**
+(what went wrong and what guards it).
+
+---
+
+## The day in two halves
+
+**Overnight (21:00–11:35): a corpus sweep that changed nothing, and that is the result.**
+Fifteen entries examined — twelve hand-picked, three drawn at random as a selection-bias control
+seeded from a git sha fixed before the draw. Six went through adversarial gates. **Not one tier
+changed.** Two promotion candidates were proposed and both were refused by both seats.
+
+The sweep was specifically hunting the *opposite* error — an entry tiered too weak, concealing a
+number and threshold. Six such candidates across three author lines and three frameworks. In every
+case the number turned out to be **borrowed from the data it was checked against, placed beyond
+observability, or carrying a free parameter.** The hypothesis was **tested and refuted**, not left
+unfound.
+
+**Daytime (11:35–now): Duho redirected the lane to entry 31**, the corpus's only live calibrated
+falsifier, on the grounds that a sixteenth consistency-only audit cannot compete with a real
+prediction being decided by data.
+
+---
+
+## What the entry-31 work concluded — after being gated and found unsound
+
+Smolin (2004) predicts a sufficiently heavy neutron star refutes cosmological natural selection.
+**His bar is graded: 2.5 M☉ for certain refutation, 1.5 M☉ for "troubling"** if one credits
+Bethe–Brown.
+
+**My first study claimed the falsifier's status turns on which instrument you accept.
+Both gate seats returned `STUDY_UNSOUND`, and they were right.** It died on a footnote I never
+quoted — footnote 5: *"Other methods yield less precise estimates [58]"* — which ranks other
+methods **by precision**, not excluding them by instrument.
+
+**The corrected finding:**
+
+| estimate | value | method | vs the 2.5 M☉ bar |
+|---|---|---|---|
+| PSR J0740+6620 | 2.08 ± 0.07 | radio timing (Fonseca 2021) | 6.00σ |
+| PSR J0952−0607 | **2.35 ± 0.11** | optical (Romani **2025**) | **1.36σ — 8.6% above** |
+| GW190814 secondary | 2.50–2.67 (90%) | gravitational waves (Abbott 2020) | conditional |
+
+**What is undecided is the OBJECT, not the instrument.** These are three estimates of one quantity
+with different systematics, all evidence. **Duho's keep-both ruling survives; the reasoning I gave
+him for it did not.**
+
+**The durable statement, which survives whichever measurement anyone prefers:**
+> **Is any object above 2.5 M☉ securely a neutron star? Today none is.**
+
+And an arithmetic result that inverts the original intuition: **tightening cannot fire this
+falsifier — only kill it.** At a central value of 2.35, every gain in precision drives the bar
+further away. Firing requires the *central value* to move.
+
+**Also true and previously untracked: the 1.5 M☉ bar was passed years ago**, by every measurement
+here. Smolin's own 2004 premise — that all well-measured masses lie below 1.5 — is now false.
+
+---
+
+## Scheme changes made today (all on Duho's rulings)
+
+1. **New tier `THEORETICAL-OBSTRUCTION`** for proof-based no-gos; entry 22 refiled into it. Its
+   membership criterion passes four controls and **fails at corpus scale (~1-in-4 precision)** —
+   recorded, and it must not be used to propose candidates.
+2. **Falsifier-threshold rule**: falsifiability is a property of the theory's content, not the
+   author's candour; but firing requires a threshold, and **if the author supplied none, we supply
+   it and own it.**
+3. **Bars are set case by case**, each with an owner and a justification. "No bar chosen" is retired.
+
+---
+
+## What a cold reader should distrust
+
+**The check batteries are working notes, not verification.** Two seats declared the harness
+`UNSOUND` at 04:21; every repair since was mine. `b8_verify_register.py` (5/5, 14 scripts) checks
+the register against the filesystem, but cannot check prose — and most of the register is prose.
+
+**Every tier conclusion rests on quoted source text and on gates, never on the harness.**
+
+The register's §1h table says, per entry, what each conclusion rested on **before** and **now**.
+Nine re-derived, one named limit, none unknown.
+
+---
+
+## Methodological findings worth carrying to other lanes
+
+- **The execution gap** (`FINDING_THE_EXECUTION_GAP.md`) — claims made without executing the thing
+  that would falsify them. Eight instances, two lanes, four artifact types.
+- **Absence claims**: six were tested today; three false, three true. *Nothing but widening the
+  pattern and inspecting the hits separates them.* An absence claim must state its pattern, one
+  class it would miss, and what was done to look for that class anyway.
+- **Destructive-green controls** (§1k) — a check whose green state is reachable by deleting the
+  record it audits. First instance either lane produced.
+- **A control you cannot observe failing is not a control** (§1u) — a cron blackout cost this lane
+  3h10m; the lane that kept a redundant path lost 81 minutes.
+
+---
+
+## Open
+
+**One decision for Duho** (`OPEN_QUESTIONS_FOR_DUHO.md`): whether the new tier's members are
+hand-sorted, screened-then-checked, or the screen improved first. **Recommendation: screen then
+hand-check** — the screen is imprecise but there is no evidence it is bad at recall, and nothing
+is filed without a read.
+
+**Not blocked, not done:** 36 of 51 entries remain unaudited; the sweep is parked by redirect, not
+by obstacle. The highest-value real-world item is not ours to do — an independent mass for a black
+widow by a non-optical method would settle far more than another audit.
