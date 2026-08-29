@@ -423,6 +423,38 @@ def send_visible_command(pane_id: str, command: str, wait_seconds: float,
         time.sleep(wait_seconds)
         text = capture_pane(pane_id, 220)
     if command == '/usage':
+        # The panel is a PAGER — it renders "(1-10 of 30 lines)" and only the
+        # first page is on screen. Capturing once saw GEMINI MODELS and never
+        # the CLAUDE AND GPT MODELS group below it, so both Antigravity
+        # Claude/GPT rows read "Not observed" indefinitely while the numbers sat
+        # one PageDown away. parse_agy_usage() has always known how to read that
+        # group; it was never given the text.
+        pages = [text]
+        for _ in range(8):
+            m = re.search(r'\((\d+)\s*[-–—]\s*(\d+)\s+of\s+(\d+)\s+lines\)',
+                          pages[-1])
+            if m and int(m.group(2)) >= int(m.group(3)):
+                break
+            run(['tmux', 'send-keys', '-t', pane_id, 'PageDown'])
+            time.sleep(0.6)
+            nxt = capture_pane(pane_id, 220)
+            if not nxt or nxt == pages[-1]:
+                break
+            pages.append(nxt)
+        # Every page repeats the "Models & Quota" header and parse_agy_usage()
+        # anchors on the LAST occurrence, so a naive join would parse only the
+        # final page — fewer groups than before, not more. Keep page 1 whole and
+        # strip the repeated header from the rest.
+        merged = pages[0]
+        for p in pages[1:]:
+            j = p.rfind('Models & Quota')
+            body = p[j:] if j >= 0 else p
+            merged += '\n' + '\n'.join(body.splitlines()[1:])
+        # Drop pager chrome so it cannot land inside a limit segment.
+        text = '\n'.join(
+            ln for ln in merged.splitlines()
+            if not re.search(r'\(\d+\s*[-–—]\s*\d+\s+of\s+\d+\s+lines\)'
+                             r'|Scroll\b.*Page\b|esc Close', ln))
         # Capture while the panel is visible, then return the pane to idle.
         run(['tmux', 'send-keys', '-t', pane_id, 'Escape'])
         time.sleep(0.5)
