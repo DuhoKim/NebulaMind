@@ -1,3 +1,5 @@
+**STATUS: RULED — 2026-08-29.** BS-6 edge: option (a), `BS-3g` added in V37, counts 15/8 → 16/8. `require_authorization`: **DEPRIORITISED**, recorded not repaired, v9 untouched.
+
 # OPEN QUESTION — two V34 findings I repaired around, not through
 
 **Raised 2026-08-29 06:10 KST by Hwao under self-continuation. Both change what the study claims or

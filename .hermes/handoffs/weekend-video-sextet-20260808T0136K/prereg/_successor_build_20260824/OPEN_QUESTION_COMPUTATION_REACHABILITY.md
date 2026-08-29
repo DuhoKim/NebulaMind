@@ -1,3 +1,5 @@
+**STATUS: RULED — option D, 2026-08-29.** `INCONCLUSIVE-BY-COMPUTATION` deleted in V46; POWER is the code the earlier ruling meant.
+
 # OPEN QUESTION — `INCONCLUSIVE-BY-COMPUTATION` cannot fire, and I have failed twice on it
 
 **Raised 2026-08-29 13:5x KST by Hwao. Two hard stops apply at once: this has now failed twice the

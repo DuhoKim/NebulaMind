@@ -1,3 +1,5 @@
+**STATUS: RULED — option A, 2026-08-29.** All three gaps closed in V37.
+
 # OPEN QUESTION — the VOID registry is not complete. Amending it needs a human.
 
 **Raised 2026-08-29 01:20 KST by Hwao under self-continuation. Two hard stops apply at once:

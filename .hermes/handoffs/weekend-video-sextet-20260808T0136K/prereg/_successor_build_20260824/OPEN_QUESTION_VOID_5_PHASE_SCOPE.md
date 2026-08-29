@@ -1,3 +1,5 @@
+**STATUS: RULED — option C, 2026-08-29.** Applied in V40; misconduct conditions deliberately left at `Any`.
+
 # OPEN QUESTION — a pre-unblinding permutation failure is voided by the prose and by no antecedent
 
 **Raised 2026-08-29 10:5x KST by Hwao, from CODEX-V38 F2 (HIGH). Hard stops: every available repair

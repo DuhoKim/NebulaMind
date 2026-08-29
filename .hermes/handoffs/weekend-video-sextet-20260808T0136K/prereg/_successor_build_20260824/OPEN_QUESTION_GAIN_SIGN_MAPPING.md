@@ -1,3 +1,5 @@
+**STATUS: OPEN** — with the principal. γ → counterfactual sign-vector/calibration mapping.
+
 # OPEN QUESTION — what counterfactual sign vector does a gain gradient produce?
 
 **Raised 2026-08-29 11:2x KST by Hwao, at exactly the point the standing orders said to stop. The

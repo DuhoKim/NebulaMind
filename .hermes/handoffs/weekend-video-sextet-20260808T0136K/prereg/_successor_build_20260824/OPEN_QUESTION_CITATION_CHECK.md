@@ -1,3 +1,5 @@
+**STATUS: RULED — option C, 2026-08-29**, and the legacy corpus **option D**. Checker rebuilt on `FINDINGS-BLOCK v1` and wired into `prereg_lint.py`; 12 load-bearing citations verified.
+
 # OPEN QUESTION — the citation check has failed three adversarial rounds. I have stopped.
 
 **Raised 2026-08-29 05:45 KST by Hwao under self-continuation. Stopping rule invoked: I declared R3

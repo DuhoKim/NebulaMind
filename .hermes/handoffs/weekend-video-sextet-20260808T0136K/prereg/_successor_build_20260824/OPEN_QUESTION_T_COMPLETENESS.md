@@ -1,3 +1,5 @@
+**STATUS: RULED — option (b), "real gate", 2026-08-29.** Option (a) is dead. The remaining open input is the γ → sign-vector mapping; see `OPEN_QUESTION_GAIN_SIGN_MAPPING.md`.
+
 # OPEN QUESTION — the p-gated freeze blocker is a fork, and both directions cost something
 
 **Raised 2026-08-29 02:05 KST by Hwao under self-continuation. Hard stop: "a fork where both

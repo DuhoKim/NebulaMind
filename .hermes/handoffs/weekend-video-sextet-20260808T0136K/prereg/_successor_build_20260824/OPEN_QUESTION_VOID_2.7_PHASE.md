@@ -1,3 +1,5 @@
+**STATUS: RESOLVED FROM THE RECORD, 2026-08-29** — not a ruling. The principal declined it as this lane's own words; answer `Post-first-real-χ`, recovered from V11 commit `4d99d1d93`.
+
 # RESOLVED 2026-08-29 10:3x KST — from the authorship record, not by a new ruling
 
 **The principal refused this question as put — "I didn't write it, ask an agent who wrote it" — and

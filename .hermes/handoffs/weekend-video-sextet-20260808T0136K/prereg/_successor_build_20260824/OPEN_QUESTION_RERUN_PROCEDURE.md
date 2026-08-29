@@ -1,3 +1,5 @@
+**STATUS: RULED — option A, 2026-08-29.** Rerun allowance deleted in V43; the halt is terminal.
+
 # OPEN QUESTION — the rerun procedure I wrote is incoherent, and both seats say so
 
 **Raised 2026-08-29 11:4x KST by Hwao from the V40 round. Both seats NOT CLEAR (GPT56 7 findings,

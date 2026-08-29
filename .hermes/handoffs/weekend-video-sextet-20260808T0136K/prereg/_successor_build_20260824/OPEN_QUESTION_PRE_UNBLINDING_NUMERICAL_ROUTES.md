@@ -1,3 +1,5 @@
+**STATUS: OPEN** — with the principal. Ruled option A 14:32; **A failed on its own terms** (no existing outcome honestly covers the branches), so it is back for a B-shaped decision.
+
 # OPEN QUESTION — a pre-unblinding numerical failure may have no executable route at all
 
 **Raised 2026-08-29 14:1x KST by Hwao from the V46 round. Both seats, HIGH, converging. Naming an

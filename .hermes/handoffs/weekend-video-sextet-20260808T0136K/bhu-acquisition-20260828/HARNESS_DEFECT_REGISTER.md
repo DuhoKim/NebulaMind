@@ -4,6 +4,24 @@
 > entry 31 — the corpus's one live calibrated falsifier — because a sixteenth consistency-only
 > audit cannot compete with a real prediction being decided by data now.
 
+> **THIS FILE NOW HAS A CHECK: `b8_verify_register.py`, 5/5.** Blanc, relaying Hwao: *"This is the
+> one artifact in the lane with no adversarial reader... Everything I've caught in it today I
+> caught by accident."* True of this register too — it carries tier conclusions, retraction status
+> and re-derivation state for the whole corpus, and until 15:10 today nothing had ever checked it.
+>
+> `b8` asserts against the filesystem: **12 named scripts all exist and all exit 0**; all 10
+> entries in the §1h table resolve to a real bibliography entry with a parseable tier; the
+> retracted second-falsifier claim survives **only as a quoted retraction**; and entry 22 is
+> **actually** refiled as THEORETICAL-OBSTRUCTION rather than merely claimed to be.
+>
+> **b8's own first run verified ONE script and reported PASS** — its filename pattern matched
+> backticks only, while the register names scripts as `a12`, "a6's check 4", "b7". The narrow-
+> pattern defect, inside the tool built to audit the record of that defect. Widened to 12 before
+> the result meant anything. **What b8 still cannot check is named in its own section 6: prose
+> claims naming no script or entry, scripts that run but no longer test what the register says,
+> and §1h narrative that is wrong while its numbers are right.** Blanc reads it by hand on refresh;
+> b8 is the floor under that, not a substitute.
+
 # Harness defect register — Tori, 2026-08-29 ~05:00 KST
 
 Two fresh-context seats attacked my check battery after I audited it myself and pronounced it
