@@ -32,3 +32,25 @@ found a closed universe. **Being pinned now.**
 an instrument from a fixed list; a claim about experimental status phrased without any instrument
 name — "current bounds allow", "no such object has been seen" — is invisible to it. That gap is
 named, not measured.
+
+
+---
+
+## GATED — `CGATE_B14_VERDICT.md`, `ADJUDICATION_INCOMPLETE_MISSED_ENTRY44`
+
+Both hand rulings on 4 and 39 confirmed. Two things I got wrong:
+
+**1. A fourth candidate exists and my probe could not see it.** Entry 44 (Pourhasan, Afshordi &
+Mann 2014) states its own base model is *"already ruled out at >5σ"* — an experimental-status
+claim with a quantitative significance and **no instrument named anywhere**, so a fixed instrument
+vocabulary cannot reach it. b14 has been widened with a `BARE_STATUS` pattern and now finds it.
+
+**2. The parser was silently destroying five entries.** See harness defects §1x and §1y. The
+`## Ranked` section's headings are numbered 1–5 and were overwriting bibliography entries 1–5;
+the "no duplicate numbers" check was a tautology and could not catch it. **I adjudicated entry 4
+as a false-positive stub and never asked why a stub was in slot 4** — the symptom was diagnosed
+correctly and its cause buried. Repaired: the parse is bounded to the entry section and asserts on
+the raw match list. Entries 1–5 have now been screened for the first time; none flags.
+
+**Revised candidate set after the rebuild: 39 (false positive), 44 (real), 54 (real).** Precision
+2 of 3, and entry 4 no longer appears at all because the Ranked section is excluded.

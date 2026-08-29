@@ -685,6 +685,76 @@ cannot be grepped it must not be printed. b11 and b12 now both do this.
 random digit. It produces one that looks right. I filled `8.[x]` with `7` and never noticed,
 because 8.7 is exactly what such a figure looks like.
 
+### 1x — A PREDICATE THAT CANNOT FAIL
+
+**Found by CGATE_B14, 2026-08-29.**
+
+b14 parsed the bibliography into `blocks[num] = ...` and then asserted:
+
+```python
+len(blocks) == len(set(blocks))     # "no duplicate entry numbers"
+```
+
+**`set()` of a dict yields its keys, which are unique by construction. The comparison is always
+True.** It is not a weak check or a narrow check — it is a tautology wearing the name of a check,
+and it sat in the PASS column certifying a property of Python rather than a property of the corpus.
+
+**What it was hiding: see §1y.** The two defects are one incident.
+
+**The guard.** A predicate must be able to return False on some reachable input. Before writing
+one, ask what input would make it fail; if the answer is "none", it is decoration. This is the
+`describe vs compute` law applied to the check itself — self-computing is necessary but not
+sufficient, because a computation can be vacuous.
+
+---
+
+### 1y — A SILENT OVERWRITE THAT DELETED FIVE ENTRIES FROM A SWEEP
+
+**Found by CGATE_B14, 2026-08-29. Same incident as §1x.**
+
+b14's heading regex matched **every** bold numbered heading in the document, including the five
+under `## Ranked: the strongest published targets`. Those are numbered 1–5. `blocks[num] = ...`
+therefore **overwrote genuine bibliography entries 1–5** with ranked-target stubs, and the sweep
+reported "58 entries screened" while having screened 53.
+
+The dictionary absorbed the collision without a word. `len(blocks)` counted 58 because 58 distinct
+numbers existed — the count was true and meaningless.
+
+**How it surfaced anyway, partially.** Entry 4 appeared as a candidate and I adjudicated it a false
+positive because "it is a cross-reference stub, not an entry." That was correct about the block and
+completely missed the question of *why a stub was occupying slot 4*. **Diagnosing a symptom
+correctly can bury its cause.**
+
+**The guard.** Bound the parse to the section that holds the objects (`T[:T.find("## Ranked:")]`),
+and assert on the raw match list — `len(raw_matches) == len(dict)` — never on the dict alone.
+
+---
+
+### 1z — REACHING FOR "THEY OVERSTATED IT"
+
+**Found by AGATE_B15, 2026-08-29. A behavioural class, not a code class.**
+
+Given a discrepancy between our record and a published paper, I twice reached for the reading that
+the paper was wrong.
+
+- **Popławski's 10¹⁶ kg floor.** Two seats split on error-vs-estimate. I declined to call it an
+  error and filed it for Duho. **Correct.**
+- **The source paper's "3σ" for Ω_k.** I asserted it overstated Planck's "well over 2σ", and
+  computed `0.044/0.018 = 2.44σ` to prove it. **Refuted.** Planck prints the tail directly — "only
+  about 1/10000 samples at Ω_K ≥ 0", i.e. ~3.7σ — in the *same paragraph I was quoting from*. My
+  ratio applied a Gaussian move to a posterior Planck explicitly calls non-Gaussian, using
+  asymmetric errors printed in the equation I was reading. AGATE: *"completely unfair and
+  incorrect."*
+
+**The shape.** A number that differs from ours invites an explanation, and "they overstated" is
+always available and always flattering. The arithmetic then gets built to fit it, and passes,
+because ratios always compute.
+
+**The guard, and it is specific.** When a source prints a tail probability, a Δχ², or a confidence
+interval, USE THE STATISTIC IT PRINTS — do not manufacture a sigma from a central value over an
+error bar. And a charge against a published paper needs the same standard as a tier change: a
+receipt, not a computation of mine that happens to support it.
+
 ## 4. AGATE's five (three not in CGATE's list)
 
 - `a5` "Λ_O = 4/(3τ_O²) follows exactly from…" — pure math identity on a hardcoded `tau_sym=7.0`.

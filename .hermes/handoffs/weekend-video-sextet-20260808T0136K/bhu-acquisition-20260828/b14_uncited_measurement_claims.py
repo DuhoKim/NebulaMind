@@ -29,43 +29,64 @@ def chk(n,p,d=""):
     checks.append((n,p,d)); print(("PASS " if p else "FAIL ")+n+("  -- "+d if d else ""))
 
 # --- split into entry blocks on the numbered bold heading ------------------------------------
-starts=[(m.start(), int(m.group(1))) for m in re.finditer(r"^\*\*(\d{1,2})\. ", T, re.M)]
+# CGATE_B14: the first version matched EVERY bold numbered heading, including the five in the
+# "Ranked: the strongest published targets" section, then did blocks[num]=... -- which SILENTLY
+# OVERWROTE genuine entries 1-5. It never screened them. And its "no duplicate numbers" check was
+# a TAUTOLOGY: dict keys are unique by construction, so it could not fail. Both repaired here.
+cut = T.find("## Ranked: the strongest published targets")
+assert cut > 0, "section boundary not found -- refusing to parse an unbounded document"
+BODY = T[:cut]
+raw=[(m.start(), int(m.group(1))) for m in re.finditer(r"^\*\*(\d{1,2})\. ", BODY, re.M)]
+nums=[n for _,n in raw]
+dupes=sorted({n for n in nums if nums.count(n)>1})
 blocks={}
-for i,(pos,num) in enumerate(starts):
-    end = starts[i+1][0] if i+1 < len(starts) else len(T)
-    blocks[num]=T[pos:end]
-print("="*98); print("B14 -- uncited external-experiment claims across the corpus"); print("="*98)
-print(f"\nparsed {len(blocks)} entry blocks, numbers {min(blocks)}-{max(blocks)}")
-chk("PARSED: the block splitter recovers a plausible number of entries rather than silently "
-    "returning one giant block or none",
-    45 <= len(blocks) <= 60 and len(blocks)==len(set(blocks)),
-    f"{len(blocks)} blocks, no duplicate numbers. A splitter that failed would give 1 or 0 and "
-    f"every downstream count would be vacuous")
+for i,(pos,num) in enumerate(raw):
+    end = raw[i+1][0] if i+1 < len(raw) else len(BODY)
+    blocks[num]=BODY[pos:end]
+print("="*98); print("B14 -- uncited experimental-status claims across the corpus  [REBUILT AFTER CGATE]")
+print("="*98)
+print(f"\nparsed {len(raw)} headings before the Ranked section -> {len(blocks)} distinct entries")
+chk("PARSED: every numbered heading in the entry section maps to a DISTINCT entry, so nothing was "
+    "silently overwritten -- tested on the raw match list, not on the dict",
+    len(raw)==len(blocks) and not dupes,
+    f"{len(raw)} headings, {len(blocks)} keys, duplicates {dupes or 'none'}. The earlier check "
+    f"compared a dict against set(dict) -- ALWAYS TRUE. It passed while entries 1-5 were being "
+    f"replaced by the Ranked section's headings 1-5, which is how b14 shipped without screening "
+    f"five entries at all")
+chk("PARSED: entry 1 is the real bibliography entry and not the Ranked-section item that "
+    "previously displaced it",
+    "Pathria" in blocks.get(1,""),
+    f"blocks[1] now begins '{blocks.get(1,'')[:58]}...' -- the overwritten version began "
+    f"'**1. The Poplawski torsion-bounce chain'")
 
 # --- instruments / collaborations whose RESULTS an entry might assert -------------------------
 INSTR = r"(LIGO|Virgo|KAGRA|LISA|CMS|ATLAS|LHC|Planck|DESI|JWST|NICER|Chandra|Fermi|INTEGRAL|" \
-        r"COMPTEL|Subaru|HSC|OGLE|SDSS|Gaia|EHT|Event Horizon|IceCube|Auger|NANOGrav|Shapiro)"
+        r"COMPTEL|Subaru|HSC|OGLE|SDSS|Gaia|EHT|Event Horizon|IceCube|Auger|NANOGrav|Shapiro|ACT|WMAP)"
 STATUS = r"(report|reports|reported|observ|measur|detect|exclud|constrain|rule[sd]? out|" \
          r"no evidence|limit|bound|as of|null result|non-?detection|search)"
-# citation markers that could support an EXTERNAL claim (not the entry's own DOI line)
+# CGATE_B14 attack 3 succeeded: entry 44 says its base model is "already ruled out at >5 sigma"
+# with NO instrument named, and the fixed vocabulary above cannot see it. This is the widening.
+BARE_STATUS = r"(ruled out at|excluded at|rules out|ruled out by|inconsistent with observ|" \
+              r"[>≳]\s*\d+(?:\.\d+)?\s*(?:σ|sigma)|\d+(?:\.\d+)?\s*(?:σ|sigma)\s*(?:level|exclu|tension))"
 CITE = r"(arXiv:\s*\d{4}\.\d{4,5}|\b\d{4}\.\d{4,5}(_clean)?\b|sources/|_clean\.txt|\.pdf\b|" \
        r"10\.\d{4,9}/[^\s)]+)"
 def first_line(b): return b.split("\n")[0][:96]
 
 cands=[]
 for num,b in sorted(blocks.items()):
-    body = b
-    hits=[]
+    body=b; hits=[]
     for m in re.finditer(INSTR, body):
         w=body[max(0,m.start()-220):m.start()+220]
         if re.search(STATUS, w, re.I): hits.append((m.group(1), " ".join(w.split())))
+    for m in re.finditer(BARE_STATUS, body, re.I):          # <-- CGATE's widening
+        w=body[max(0,m.start()-220):m.start()+220]
+        hits.append(("[no-instrument]", " ".join(w.split())))
     if not hits: continue
-    # does the block cite anything BEYOND its own heading DOI line?
-    after_doi = "\n".join(body.split("\n")[2:])   # drop heading + the entry's own DOI line
-    ext = re.findall(CITE, after_doi)
+    after_doi="\n".join(body.split("\n")[2:])
+    ext=re.findall(CITE, after_doi)
     cands.append((num, first_line(b), len(hits), sorted({h[0] for h in hits}), len(ext), hits[:1]))
 
-print(f"\nentries asserting an instrument's RESULTS: {len(cands)} of {len(blocks)}")
+print(f"\nentries asserting an experimental result: {len(cands)} of {len(blocks)}")
 bare=[c for c in cands if c[4]==0]
 print(f"of those, with NO citation marker anywhere below the heading DOI line: {len(bare)}")
 print("\n" + "-"*98)
