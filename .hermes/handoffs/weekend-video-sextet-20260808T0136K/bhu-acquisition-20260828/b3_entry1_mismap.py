@@ -61,10 +61,18 @@ print(f"\n2. WHAT THE RECORD CLAIMS")
 print(f"   ENTRY_SOURCE_MAP maps entry 1 -> 1111.1017      : {mapped_to_1}")
 print(f"   bibliography entry 1  is Pathria 1972, Nature   : {e1_pathria}")
 print(f"   bibliography entry 46 is the Quantization paper : {e46_quant}")
-chk("the map credits entry 1 with a file that belongs to entry 46",
-    mapped_to_1 and e1_pathria and e46_quant,
-    "a substring title match: 'The Universe as a Black Hole' is contained in 'Quantization of "
-    "the Universe as a Black Hole', so containment scoring gives 1.00 on the wrong paper")
+# INVERTED 2026-08-29. This check previously asserted mapped_to_1 -- i.e. it PASSED while the
+# defect was present. The defect was repaired in commit 9de0d9039 and the check was never turned
+# round, so from that moment its RED state meant SUCCESS. A battery run then reports it as a
+# regression and a reader spends effort chasing a bug that was fixed. Registered as defect 1ab.
+corrected = bool(re.search(r"~~1~~\s*\*\*46\*\*", M)) and "CORRECTED 2026-08-29" in M
+chk("the map no longer credits entry 1 with entry 46's file, and records the correction "
+    "explicitly rather than silently",
+    corrected and not mapped_to_1 and e1_pathria and e46_quant,
+    "the map row now reads '~~1~~ **46** | ... | `1111.1017_clean.txt` | CORRECTED 2026-08-29'. "
+    "THE ORIGINAL DEFECT IS UNCHANGED AS HISTORY: a substring title match, 'The Universe as a "
+    "Black Hole' inside 'Quantization of the Universe as a Black Hole', scoring 1.00 on the wrong "
+    "paper. What changed is that this file now tests the REPAIR instead of the wound")
 
 unobtained = "still unobtained" in B
 listed_unpinned = re.search(r"Entries 2, 3, 4, 5, 13,.*?46", M, re.S) is not None
@@ -74,7 +82,7 @@ print(f"   map lists entry 46 among the UNPINNED                       : {bool(l
 chk("entry 1 has NO pinned source and entry 46 is pinned but recorded as unpinned -- the count "
     "is unchanged, the IDENTITIES are swapped",
     unobtained and bool(listed_unpinned),
-    "so 'auditable corpus: 32 of 51' is right in number and wrong in composition")
+    "so the map's 'auditable corpus: 32 of ...' is right in number and wrong in composition. NOTE 2026-08-29: that line's denominator said 51; the corpus is 58, corrected in the map, and its numerator remains unverified")
 
 print("""
 4. THE SERIOUS PART

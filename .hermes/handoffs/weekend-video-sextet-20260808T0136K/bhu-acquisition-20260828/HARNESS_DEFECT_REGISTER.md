@@ -786,6 +786,59 @@ honestly named blind spot, and a conclusion drawn from a complete reading of the
 **Following the discipline is not the same as being right, and a claim can be wrong in a way the
 discipline is not shaped to catch.** AGATE: the overclaim "directly blinded the script."
 
+### 1ab — A DETECTION SCRIPT LEFT ASSERTING A DEFECT AFTER THE DEFECT WAS FIXED
+
+**Found by a battery re-run, 2026-08-29.**
+
+`b3_entry1_mismap.py` was written to prove entry 1 was mis-mapped to entry 46's paper. Its central
+check asserted `mapped_to_1` — **it PASSED while the defect was present.** The map was repaired in
+commit `9de0d9039`; the check was never turned round. From that moment its **red state meant
+success**.
+
+A battery run reports it as `FAIL ... 2/3`, indistinguishable from a regression, and I spent a full
+investigation cycle chasing a bug that had been fixed hours earlier.
+
+**The guard.** A check that asserts a defect must be inverted in the same commit that repairs it,
+or it becomes a permanent false alarm. Better: write the check against the *repaired* state from
+the start, and keep the defect in prose. `b3` now tests that the map records the correction
+explicitly; the original substring-match bug is preserved as history, not as an assertion.
+
+---
+
+### 1ac — A RUNNER THAT REPORTED 31 FAILURES AND HAD FOUND NONE
+
+**Same battery run.** The runner wrapped each script in `timeout 300`. **macOS has no `timeout`** —
+it is GNU coreutils. Every script exited `127`, and the battery reported **31 of 31 FAILED**,
+including scripts that had run green minutes earlier.
+
+Had the run been trusted, the conclusion would have been that the entire harness was broken.
+
+This is the same class as the `find -newermt` failure already recorded against this operator:
+**a GNU-only tool assumed present on BSD**, where the failure is silent-ish and total rather than
+partial. Here `127` is at least distinctive; the earlier case returned "no matches" and looked like
+a real answer.
+
+**The guard.** A battery whose failures are all identical and all total is reporting on itself, not
+on its subjects. Before believing a red run, check that at least one script passes — a run with no
+green line has not tested anything.
+
+---
+
+### 1ad — A STALE TOTAL IN FOUR DOCUMENTS
+
+The corpus was described as **51 entries** in `WRAP_UP_20260829.md`, `WRAP_UP_20260829_FULL_DAY.md`,
+`ENTRY_SOURCE_MAP.md`, and quoted from there into `b3_entry1_mismap.py`. **It holds 58**, numbered
+contiguously 1–58, verified by recount.
+
+The 51 was true once. Entries 52–58 were added and no denominator was re-derived. It then survived
+into the one file every tick is instructed to read cold.
+
+**Only the denominator is corrected.** The map's numerator — "32 auditable" — was NOT re-verified
+and may be stale for the same reason. Half-correcting a fraction is worse than flagging it, so it
+is flagged in place.
+
+**The guard.** Any total in prose is a snapshot. Recompute it or cite the script that did.
+
 ## 4. AGATE's five (three not in CGATE's list)
 
 - `a5` "Λ_O = 4/(3τ_O²) follows exactly from…" — pure math identity on a hardcoded `tau_sym=7.0`.

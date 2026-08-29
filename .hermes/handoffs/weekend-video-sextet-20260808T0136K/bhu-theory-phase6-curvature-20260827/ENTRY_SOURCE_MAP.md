@@ -119,7 +119,11 @@ These are rank 3's two primary papers and remain the largest single hole.
 | 25 | `sym14091849_clean.txt` | `391a2510c8be` | publisher page, browser |
 | 26 | `sym14101984_clean.txt` | `01aad28a7d44` | publisher page, browser |
 
-**Auditable corpus: 30 → 32 of 51.** The Gaztañaga series (23, 24, 25, 26, 27) is now complete,
+**Auditable corpus: 30 → 32 of ~~51~~ 58.** *(Denominator corrected 2026-08-29: the
+bibliography holds 58 entries, numbered contiguously 1–58 — recounted by script, not read. The 51
+is a stale total that survived the addition of entries 52–58 and had propagated into four
+documents. **The numerator 32 was NOT re-verified** and may also be stale, since some of entries
+52–58 may be pinned; it is left as written rather than half-corrected.)* The Gaztañaga series (23, 24, 25, 26, 27) is now complete,
 which closes the hole under entry 54: phase 6 audited the 2025 PRD paper in depth while its
 parent series sat unacquired.
 
