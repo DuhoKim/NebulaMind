@@ -339,7 +339,7 @@ Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALI
 **The author's stated test is the LHC route**, verbatim: "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ~10⁴ GeV, cannot produce micro black holes … if the four-dimensional ECKS theory is a correct theory of gravity." One-sided and positive-detection only: a confirmed black hole far below the ~10¹⁶ kg floor fires it; a null LHC search fires nothing. LIVE/unfired. **MEASUREMENT SIDE PINNED 2026-08-29** — this previously read "CMS reports no
 evidence for microscopic black holes as of 2025-12" with **no citation of any kind**. Now
 receipted: `2604.10732_clean.txt` (CMS, 13 TeV, 138 fb⁻¹) excludes semiclassical black holes and
-string balls **below 8.7 TeV at 95% CL**, and `2511.10662_clean.txt` is the ML-based search on the
+string balls **below 8.4–11.4 TeV at 95% CL** (string balls 9.0–10.7), a model-dependent range, and `2511.10662_clean.txt` is the ML-based search on the
 same dataset. Both set limits; neither reports a discovery.
 **And the null is a weak CONFIRMATION, not a non-event**: Popławski forbids black holes below
 ~10¹⁶ kg (≈5.6×10⁴² GeV by E=mc², reproducing the record's ~10⁴³), CMS searched a range lying
@@ -349,16 +349,32 @@ same dataset. Both set limits; neither reports a discovery.
 window upward and the collider's energy caps where it can go. An astrophysical constraint on
 primordial black holes below 10¹⁶ kg would probe the same forbidden region without a collider —
 a route this record does not currently track. See `b11_entry51_measurement.py` (2/2).
-**UNDER GATE, 2026-08-29 — do not cite the two sentences above as settled.** `b12_entry51_pbh_route.py`
-(5/5) argues that route is not merely untracked but LIVE: Popławski's floor is a bound on *density*
-("the mass density of a black hole also cannot exceed ρ_Ce"), with the LHC named only as a
-consequence — so primordial black holes are in scope, and 10¹⁹ g lands *inside* the currently open
-10¹⁷–10²³ g PBH dark-matter window (`2002.12778_clean.txt`), splitting it into a forbidden band
-10¹⁷–10¹⁹ g and an allowed band above. A PBH detection in the forbidden band would fire the
-falsifier, ~37 decades closer than any collider. **The load-bearing uncertainty:** inverting the
-paper's own ρ_Ce through ρ = 3c⁶/32πG³M² gives 2.7×10¹⁴ kg, 37× below the stated floor; at that
-value the forbidden band nearly vanishes. Gate brief `GATE_BRIEF_B12.md`, verdicts pending in
-`CGATE_B12_VERDICT.md` / `AGATE_B12_VERDICT.md`. Entry 51's tier is UNCHANGED either way.
+**GATED 2026-08-29 — route CONFIRMED IN DIRECTION, NARROWED IN STRENGTH.**
+`b12_entry51_pbh_route.py` (8/8), `CGATE_B12_VERDICT.md` (ROUTE_NARROWED_FLOOR_AND_DETECTION_NOT_PINNED,
+codex) + `AGATE_B12_VERDICT.md` (ROUTE_NARROWED_MATH_ERROR, agy), brief `GATE_BRIEF_B12.md`.
+**What holds:** Popławski's floor is a bound on *density* — "the mass density of a black hole also
+cannot exceed ρ_Ce" — stated 236 characters *before* the LHC sentence, so the LHC is his corollary
+and **this record has been carrying his illustration as his scope**. Primordial black holes are
+therefore a route, and the record previously had none but the collider.
+**What was cut:** (a) the derivation is about *fermionic* matter — "Dirac particles cannot be
+compressed to densities higher than the densities of its components" — so it does **not** cover
+every PBH formation channel Carr et al. list (radiation overdensities, scalar condensates,
+false-vacuum bubbles, domain walls); (b) 10¹⁷–10²³ g is a **caveated** window, not an open one —
+the review's limits mostly assume a quasi-monochromatic spectrum, and sub-10¹⁸ g PBHs are reported
+at <1% of DM (Laha et al., SPI/INTEGRAL); (c) **no present detection protocol is pinned** — the
+GRB femtolensing bound over 5×10¹⁶–10¹⁹ g is disputed and omitted from the review's master plot;
+(d) the forbidden band is 2.00 decades on the printed floor but **0.43 decades** on the floor
+inverted from the paper's own ρ_Ce, a factor >4 in log width.
+**What got broader:** firing it does *not* require PBHs to be the dark matter — a securely
+identified primordial black hole below the floor suffices, trace population included.
+**A number here was wrong and is corrected above:** "8.7 TeV" was never in the CMS source; an
+extraction truncated the digit and I supplied it. The collider comparison is in any case
+illustrative rather than a shared axis — CMS bounds *production* in large extra dimensions,
+Popławski bounds *density* in 4D ECKS. Popławski's own "39 orders of magnitude" needs no CMS
+figure at all.
+**Open for Duho:** the seats split on whether 10¹⁶ kg is an arithmetic error (agy) or a stacked
+order-of-magnitude estimate that must not be called one (codex). Both compute 2.7×10¹⁴ kg. Filed
+in `OPEN_QUESTIONS_FOR_DUHO.md`; it changes no action here. Entry 51's tier is UNCHANGED either way.
 **Reachability, ruled on by both gates:** the ~10³⁹ gap between LHC reach and the floor does NOT empty the threshold, because the collider operates on the *forbidden* side already — a detection far below the floor is a counterexample and cannot be rescued by shrinking the effect. Unlike entry 54, whose magnitude could retreat toward zero. Calibration is coarse: the source says "expect", "approximately", "conjecture", and gives no uncertainty interval or cross-section.
 **WHAT IT FALSIFIES — scope, and it is not BHU.** The target is the four-dimensional ECKS density/minimum-mass chain. Entry 51 constrains a black-hole-universe model only where that model inherits the same ECKS premise. Not a direct BHU falsifier from this source.
 **CORRECTION 2026-08-28 (Tori, against my own 2026-08-23 entry):** the sub-10¹⁶-kg primordial-black-hole discriminator is **mine, not Popławski's** — the second gate grepped the full text and found no occurrence of "primordial", "PBH", or "black-hole universe". My further claim that standard physics permits such a PBH is also not established by this paper. It may be recorded as a reader-derived route; it must not be attributed to the author. My original entry also called this "a numbered falsifiable consequence" while filing it QUALITATIVE-DIRECTIONAL — the evidence was in hand and mis-tiered anyway.

@@ -659,6 +659,32 @@ match and names major classes it misses. The other four are substantially cosmet
 
 **Relabelling evidence as "QUOTED" does not make a presence test reach a semantic claim.**
 
+### 1w — A TRUNCATED READ COMPLETED BY ME, AND THEN PROPAGATED
+
+**Found by CGATE_B12, 2026-08-29. New class, and the most dangerous one in this register.**
+
+An extraction of the CMS abstract returned the exclusion figure with its digit cut. I wrote
+**8.7 TeV**. The source says **8.4–11.4 TeV** — not a different number, a *range*, model-dependent
+on the count of extra dimensions. There was never an 8.7 anywhere.
+
+It then travelled: `b11` printed it, the commit message printed it, the bibliography inherited it,
+and `b12` computed a decade-gap from it. Four artefacts, one invented digit, and **every
+self-check still passed** — because no predicate ever asserted the value against the source. The
+checks tested that a *sentence* was present, not that the *number I printed* was in it.
+
+**What separates this from the six false-absence claims (§1e–1j).** Those were a pattern being too
+narrow. This is worse: a gap in the input silently filled from my own expectation, in the
+direction of a plausible-looking value. Nothing in the file could have caught it. Only a seat
+re-reading the primary source did.
+
+**The guard, and it is not "read more carefully".** Any number quoted from a source must appear in
+a predicate that greps the source for that exact string. `chk("...", "8.4–11.4" in M, ...)`. If it
+cannot be grepped it must not be printed. b11 and b12 now both do this.
+
+**Direction of the error, which is the part worth keeping.** A truncated read does not produce a
+random digit. It produces one that looks right. I filled `8.[x]` with `7` and never noticed,
+because 8.7 is exactly what such a figure looks like.
+
 ## 4. AGATE's five (three not in CGATE's list)
 
 - `a5` "Λ_O = 4/(3τ_O²) follows exactly from…" — pure math identity on a hardcoded `tau_sym=7.0`.

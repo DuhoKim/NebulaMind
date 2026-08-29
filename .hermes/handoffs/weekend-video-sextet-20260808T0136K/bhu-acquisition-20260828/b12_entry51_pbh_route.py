@@ -1,111 +1,135 @@
 #!/usr/bin/env python3
-"""B12 -- entry 51 has a LIVE falsification route the record does not track.
+"""B12 -- entry 51's primordial-black-hole route.  GATED 2026-08-29, and NARROWED by both seats.
 
-B11 established that the LHC route is bounded: CMS reaches 8.7 TeV, the floor is 39 decades up,
-and no collider closes that gap. That reads like "the falsifier cannot be fired". It is wrong,
-and the reason is in Poplawski's own sentence.
+  CGATE_B12_VERDICT.md  ROUTE_NARROWED_FLOOR_AND_DETECTION_NOT_PINNED   (codex gpt-5.6-sol)
+  AGATE_B12_VERDICT.md  ROUTE_NARROWED_MATH_ERROR                       (agy, Gemini 3.1 Pro)
 
-THE SCOPE QUESTION, settled from the source rather than assumed. Poplawski's bound is on DENSITY,
-not on a production mechanism: "The mass density of a black hole also cannot exceed rho_Ce, from
-which its minimum mass in the ECKS theory is ~10^16 kg." The LHC appears in the NEXT sentence as
-an illustration ("Therefore the LHC ... cannot produce micro black holes"). The floor is therefore
-a statement about ANY black hole of that mass, however it formed -- so PRIMORDIAL black holes are
-in scope, and the record has been reading the illustration as the scope.
+The first version of this file claimed a live, open, two-decade forbidden band ~37 decades better
+than the collider route. THAT CLAIM IS NARROWED, on four counts, and one number in it was simply
+wrong. What survives is a conditional astrophysical route -- which is still more than the record
+had, because the record had only the LHC.
 
-PINNED FOR THE MEASUREMENT SIDE: 2002.12778 (Carr, Kohri, Sendouda, Yokoyama, "Constraints on
-primordial black holes", Rept. Prog. Phys.).
+WHAT BOTH SEATS AGREED, and is applied below:
+  - C1's DIRECTION holds: the floor is a density bound and the LHC is a corollary, so the record
+    has been carrying Poplawski's illustration as his scope.
+  - C1's STRENGTH does not: "any black hole however formed" exceeds the derivation. See sec 1.
+  - The window quotation is the review's CURRENT sentence, not its historical one -- but it is a
+    CAVEATED summary window, not an unqualified open region.
+  - My checks 1 and 2 named conclusions their predicates did not test. Both rewritten.
+  - 8.7 TeV WAS NOT IN THE SOURCE. See the box at section 4.
+
+WHAT THE SEATS SPLIT ON -- filed for Duho, not decided here: whether Poplawski's 1e16 kg is an
+arithmetic error (agy) or a stacked order-of-magnitude estimate that must not be called one
+(codex). Both compute the same 2.7e14 kg. The split does not change any action below.
 """
 import math, sys
 S="../bhu-reading-20260823/sources/"
 P=" ".join(open(S+"0910.1181_clean.txt").read().split())
 C=" ".join(open(S+"2002.12778_clean.txt").read().split())
+M=" ".join(open(S+"2604.10732_clean.txt").read().split())
 checks=[]
 def chk(n,p,d=""):
     if not isinstance(p,bool): raise TypeError("chk needs a computed predicate")
     checks.append((n,p,d)); print(("PASS " if p else "FAIL ")+n+("  -- "+d if d else ""))
 
-print("="*98); print("B12 -- entry 51: the primordial-black-hole route"); print("="*98)
+print("="*98); print("B12 -- entry 51: the PBH route  [GATED, NARROWED BY BOTH SEATS]"); print("="*98)
 
-print("\n1. THE FLOOR IS A DENSITY BOUND, SO IT IS NOT ABOUT COLLIDERS")
-chk("SOURCE: Poplawski derives the floor from a maximum DENSITY that applies to a black hole as "
-    "such, with the LHC named only as a consequence",
-    "mass density of a black hole also cannot exceed" in P and "minimum mass in the ECKS theory" in P,
-    "'The mass density of a black hole also cannot exceed rho_Ce, from which its minimum mass ... "
-    "is ~10^16 kg' -- then 'Therefore the LHC ... cannot produce micro black holes'. Scope first, "
-    "illustration second; the record has been carrying the illustration as the scope")
+print("\n1. THE FLOOR IS A DENSITY BOUND -- AND ITS REACH IS NARROWER THAN I CLAIMED")
+i_den = P.find("mass density of a black hole also cannot exceed")
+i_lhc = P.find("Large Hadron Collider", i_den if i_den>0 else 0)
+chk("ORDERED: the density bound is stated BEFORE the LHC consequence, so the LHC is a corollary "
+    "of the floor and not its scope",
+    i_den > 0 and i_lhc > i_den and (i_lhc - i_den) < 700,
+    f"density sentence at {i_den}, LHC at {i_lhc}, {i_lhc-i_den} chars later in the same passage. "
+    "The earlier version of this check tested two disjoint substrings and NAMED a logical "
+    "derivation -- both seats flagged that independently")
+ferm = ("ordinary matter composed of quarks" in P) and ("Dirac particles cannot be compressed" in P)
+chk("SOURCE: the derivation is about FERMIONIC matter, which is why 'any black hole however "
+    "formed' overreaches it",
+    ferm,
+    "the density is 'the maximum density of ordinary matter composed of quarks and leptons', and "
+    "the mechanism is that 'Dirac particles cannot be compressed to densities higher than the "
+    "densities of its components'. CGATE: it supports a PBH formed by collapse of matter with "
+    "spin; it does NOT pin a theorem covering radiation overdensities, scalar condensates, "
+    "false-vacuum bubbles or domain walls, which Carr et al. list as PBH formation routes")
 
-print("\n2. WHERE THE FLOOR SITS ON THE PBH MASS AXIS")
-M_floor_g = 1e16*1e3
-print(f"   Poplawski floor            {M_floor_g:.0e} g   (10^16 kg)")
-win_lo, win_hi = 1e17, 1e23
-print(f"   open PBH dark-matter window {win_lo:.0e} - {win_hi:.0e} g   (Carr et al., current)")
-chk("SOURCE: the review states the open all-dark-matter window has SHIFTED to 10^17-10^23 g",
-    "10 17 ​ – ​ 10 23" in C or "middle mass window has shifted to" in C,
-    "'the middle mass window has shifted to 10^17-10^23 g, with the both mass limits having "
-    "decreased' -- the decade-ago figures (asteroid 10^16-10^17, sublunar 10^20-10^26) are the "
-    "review's HISTORY sentence, not its current claim")
-inside = win_lo < M_floor_g < win_hi
-chk("COMPUTED: the floor lands INSIDE the open window rather than outside it",
-    inside,
-    f"{M_floor_g:.0e} g is {math.log10(M_floor_g/win_lo):.0f} decades above the window's floor and "
-    f"{math.log10(win_hi/M_floor_g):.0f} below its ceiling -- it CUTS the window in two")
+print("\n2. WHERE THE FLOOR SITS -- inside a CAVEATED window, not an open one")
+M_floor_g=1e19; win_lo,win_hi=1e17,1e23
+chk("SOURCE: 10^17-10^23 g is the review's CURRENT window, not the decade-ago figures it also "
+    "prints -- both seats checked this independently",
+    "middle mass window has shifted to" in C,
+    "the historical sentence gives asteroid 10^16-10^17 g and sublunar 10^20-10^26 g; the current "
+    "one says the middle window 'has shifted to' 10^17-10^23 g. AGATE confirmed from a second "
+    "passage; CGATE confirmed the distinction is correctly drawn")
+caveat = ("quasi-monochromatic" in C) and ("sometimes argued" in C)
+chk("SOURCE: the review itself caveats that window, so calling the band 'presently open' "
+    "overstates it",
+    caveat,
+    "'the lowest and highest mass windows have now narrowed and it is sometimes argued that they "
+    "are excluded'; 'most of the limits assume that PBH mass spectrum is quasi-monochromatic ... "
+    "and it could well be extended'. Both seats: sub-10^18 g PBHs are reported at <1% of DM under "
+    "some assumptions (AGATE cites Laha et al. SPI/INTEGRAL), and rotating-hole evaporation "
+    "constraints can close the lower window")
+chk("COMPUTED: on the PRINTED floor the arithmetic placement is right -- it does lie inside the "
+    "quoted endpoints",
+    win_lo < M_floor_g < win_hi,
+    "this is the one part of section 2 that is pure arithmetic and survived both gates intact")
 
-print("\n3. WHAT THAT MEANS -- and it is a live test, not a bounded one")
-print(f"   {win_lo:.0e} - {M_floor_g:.0e} g   PBHs here are FORBIDDEN by entry 51.")
-print( "                          A dark-matter detection in this band FIRES the falsifier.")
-print(f"   {M_floor_g:.0e} - {win_hi:.0e} g   PBHs here are ALLOWED. A detection fires nothing.")
-print( "   Both bands are open right now. Neither is excluded. The test is available.")
+print("\n3. THE FORBIDDEN BAND IS UNCERTAIN BY THE WIDTH OF ITSELF")
+M_inv=math.sqrt(3*(2.99792458e8)**6/(32*math.pi*(6.674e-11)**3*1e51))*1e3
+print(f"   on the paper's PRINTED floor  1e19 g -> forbidden band 1e17-1e19 g   = 2.00 decades")
+print(f"   on the INVERTED floor    {M_inv:.2e} g -> forbidden band 1e17-{M_inv:.1e} g = "
+      f"{math.log10(M_inv/win_lo):.2f} decades")
+chk("COMPUTED: the two candidate floors give bands differing by more than a factor of four in "
+    "log width, so the route's strength is not determined by the pinned text",
+    2.0/math.log10(M_inv/win_lo) > 4.0,
+    f"2.00 vs {math.log10(M_inv/win_lo):.2f} decades. CGATE independently reproduced 2.70e14 kg "
+    "and added that dropping geometrical factors or using r ~ GM/c^2 moves it only by order-unity, "
+    "not to 1e16 kg. The paper supplies no radius, density convention or intermediate equation")
 
-# how close is each route to the floor?
-GeV_kg=1.78266192e-27
-M_cms_g = 8.7e3*GeV_kg*1e3
-gap_lhc = M_floor_g/M_cms_g
-gap_pbh = M_floor_g/win_lo
-print("\n4. THE TWO ROUTES, COMPARED ON THE ONE AXIS THAT MATTERS")
-print(f"   CMS reach 8.7 TeV        = {M_cms_g:.2e} g   -> {math.log10(gap_lhc):.0f} decades below the floor")
-print(f"   PBH window bottom        = {win_lo:.0e} g   -> {math.log10(gap_pbh):.0f} decades below the floor")
-chk("COMPUTED: the collider gap reproduces Poplawski's own '39 orders of magnitude' figure, so "
-    "this arithmetic is checked against the author rather than only against itself",
-    abs(math.log10(gap_lhc)-39) < 1.0 and "39 orders of magnitude" in P,
-    f"computed {math.log10(gap_lhc):.1f} decades; the paper says '39 orders of magnitude larger "
-    f"than the maximum beam energy currently available at the LHC'")
-chk("COMPUTED: the PBH route is ~37 decades closer to the floor than the collider route",
-    math.log10(gap_lhc/gap_pbh) > 35,
-    f"{math.log10(gap_lhc/gap_pbh):.0f} decades closer. The collider route is bounded because no "
-    f"collider closes 39 decades; the PBH route needs to close TWO, and observations already "
-    f"operate inside it")
+print("\n4. THE COLLIDER COMPARISON -- with a number I had wrong and a mismatch I had missed")
+print("""   ################################################################################
+   #  8.7 TeV WAS NEVER IN THE SOURCE. An earlier extraction returned the digit
+   #  truncated and I supplied '7'. The abstract reports a model-dependent RANGE:
+   #  8.4-11.4 TeV for black holes, 9.0-10.7 TeV for string balls. b11 printed 8.7
+   #  as a single value and the bibliography inherited it. Both are corrected.
+   ################################################################################""")
+chk("SOURCE: the exclusion is a model-dependent range, and no predicate in the earlier version "
+    "pinned the value it printed",
+    "8.4–11.4" in M and "9.0–10.7" in M,
+    "'semiclassical black holes and string balls with masses below 8.4-11.4 TeV and 9.0-10.7 TeV, "
+    "respectively, depending on the model and the number of extra dimensions'")
+chk("SOURCE: the collider gap can still be cross-checked against the AUTHOR, which does not "
+    "depend on the CMS number at all",
+    "39 orders of magnitude" in P,
+    "Poplawski computes it himself from LHC BEAM energy ~1e4 GeV against his 1e43 GeV floor. That "
+    "is the defensible collider statement; it needs no CMS figure")
+print("""   AND THE TWO ARE NOT THE SAME KIND OF NUMBER -- CGATE's point, which I had missed entirely.
+   CMS's limit is derived IN A LARGE-EXTRA-DIMENSIONS MODEL. Poplawski's floor is four-dimensional
+   ECKS. Quoting one against the other compares a production bound in one theory with a density
+   bound in another. The comparison is illustrative, not a shared axis.""")
 
 print("""
-5. WHAT I COULD NOT VERIFY -- stated plainly, because it moves the answer
+5. WHAT THE ROUTE ACTUALLY IS, after both gates
 
-   I CANNOT REPRODUCE THE FLOOR FROM THE DENSITY THE PAPER QUOTES. Inverting rho_Ce ~ 1e51 kg/m^3
-   through the Schwarzschild mean density rho = 3c^6/(32 pi G^3 M^2) gives the number printed
-   below, not 1e16 kg. Both of Poplawski's figures carry "~" and "on the order of", and he may use
-   a different radius or density convention that the pinned text does not spell out. I am NOT
-   calling this an error. I am recording that the floor's PLACEMENT INSIDE THE WINDOW is uncertain
-   at the one-to-two decade level -- which is the whole quantity of interest in section 3, since
-   the forbidden band is only two decades wide.
+   NOT: "a live open two-decade band, 37 decades better than the collider route."
+   BUT: a CONDITIONAL ASTROPHYSICAL ROUTE -- and the record should carry it, because the record
+   currently carries only the LHC, and the LHC route is bounded by 39 decades that no collider
+   closes. This one is bounded by observation quality instead, which improves.
 
-   THE REVIEW'S OWN CAVEAT, which cuts the same way: "most of the limits assume that PBH mass
-   spectrum is quasi-monochromatic ... and it could well be extended". An extended spectrum
-   straddles the floor by construction.
+   WHAT WOULD FIRE IT (CGATE's correction, and it makes the route BROADER than I wrote it):
+   a securely identified black hole below the applicable ECKS floor that is established to be
+   primordial. It does NOT have to constitute the dark matter -- "PBH dark-matter detection" was
+   unnecessarily restrictive. A trace sub-population fires it just as well.
 
-   VINTAGE. Carr et al. is a 2020-21 review and the record's CMS claim was dated 2025-12. Window
-   edges move; the edges used here are the review's, not today's.
-""")
-M_inv = math.sqrt(3*(2.99792458e8)**6/(32*math.pi*(6.674e-11)**3*1e51))
-print(f"   inverted from the paper's own rho_Ce : {M_inv:.2e} kg = {M_inv*1e3:.2e} g")
-print(f"   the paper's stated floor             : 1.00e+16 kg = 1.00e+19 g")
-print(f"   ratio                                : {1e16/M_inv:.0f}x  ({math.log10(1e16/M_inv):.1f} decades)")
-print("""
-   AT THE INVERTED VALUE the floor sits at ~3e17 g -- near the BOTTOM edge of the open window, so
-   the forbidden band nearly vanishes and the route weakens sharply. AT THE PAPER'S VALUE it sits
-   two decades in and the band is real. The route's strength depends on which is right, and
-   settling that needs the published PLB version, not the preprint text pinned here.
+   WHAT IS NOT ESTABLISHED: that such an identification is presently achievable. The pinned review
+   gives prospective sensitivities and contested constraints -- the GRB femtolensing bound over
+   5e16-1e19 g is disputed on finite-source and wave-optics grounds and is omitted from the master
+   plot; GRB parallax and X-ray-pulsar microlensing are described as prospects. Population-level
+   inferences from Hawking radiation or induced GWs are not mass-tagged identifications of an
+   individual hole. NO PRESENT DETECTION PROTOCOL IS PINNED.
 
-6. NO TIER CHANGE IS PROPOSED. Entry 51 stays CALIBRATED-FALSIFIER / LIVE. This finding does not
-   move the tier -- it identifies an untracked route by which the existing tier could actually be
-   exercised, and one uncertainty that governs how strong that route is.
+6. NO TIER CHANGE. Entry 51 stays CALIBRATED-FALSIFIER / LIVE.
 """)
 n=sum(1 for _,o,_ in checks if o)
 print(f"SELF-CHECKS: {n}/{len(checks)} passed")

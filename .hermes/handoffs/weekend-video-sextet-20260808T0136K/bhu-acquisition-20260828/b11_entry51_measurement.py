@@ -24,10 +24,10 @@ def chk(n,p,d=""):
 print("="*98); print("B11 -- entry 51: the measurement side, pinned"); print("="*98)
 
 null = "excluded at 95% CL" in A.replace("\\,"," ") or "excluded at 95%" in A
-mdep = "semiclassical black holes and string balls with masses below" in A
+mdep = "semiclassical black holes and string balls with masses below" in A and "8.4–11.4" in A
 print("\n1. WHAT THE SEARCH ACTUALLY REPORTS")
 print("   CMS, 13 TeV, 138 fb^-1: 'exclude at 95% CL semiclassical black holes and string balls")
-print("   with masses below 8.7 TeV' -- limits, not a discovery.")
+print("   with masses below 8.4-11.4 TeV' (string balls 9.0-10.7) -- a model-dependent RANGE, and limits\n   rather than a discovery. THIS FILE FIRST PRINTED '8.7 TeV', WHICH IS NOT IN THE SOURCE: an\n   extraction returned the digit truncated and I supplied it. Corrected 2026-08-29 after CGATE_B12.")
 chk("PINNED: the 'no evidence' claim now rests on a CMS search in this corpus rather than on an "
     "uncited sentence in our own bibliography",
     mdep,
@@ -39,11 +39,11 @@ c=2.99792458e8; J_per_GeV=1.602176634e-10
 M_FLOOR_KG=1e16
 E_floor_GeV=M_FLOOR_KG*c*c/J_per_GeV
 E_floor_TeV=E_floor_GeV/1e3
-CMS_TeV=8.7
+CMS_TeV=8.4   # low end of the source's 8.4-11.4 TeV model-dependent range; was 8.7, a digit I invented
 print("\n2. THE GAP, COMPUTED")
 print(f"   Poplawski's minimum black-hole mass   ~{M_FLOOR_KG:.0e} kg")
 print(f"   as an energy                          ~{E_floor_GeV:.1e} GeV = {E_floor_TeV:.1e} TeV")
-print(f"   CMS excludes production below          {CMS_TeV} TeV")
+print(f"   CMS excludes production below          {CMS_TeV}-11.4 TeV (model-dependent)")
 print(f"   ratio                                 ~{E_floor_TeV/CMS_TeV:.1e}")
 chk("COMPUTED: the mass-energy conversion reproduces the ~10^43 GeV figure the bibliography "
     "carries for the floor",
@@ -78,8 +78,12 @@ print("""
 
 5. LIMITS OF THIS NOTE
 
-   The 8.7 TeV figure is model-dependent (large extra dimensions, specific M_D and n). It is not a
-   model-independent statement about all black holes below that mass. The primordial-black-hole
+   The 8.4-11.4 TeV range is model-dependent (large extra dimensions, and it varies with the number
+   of them). It is not a model-independent statement about all black holes below that mass. CGATE_B12
+   adds a sharper point: CMS bounds PRODUCTION in a large-extra-dimensions model while Poplawski
+   bounds DENSITY in four-dimensional ECKS, so the two are illustrative against each other, not a
+   shared axis. The collider statement that does NOT depend on CMS is Poplawski's own: LHC beam
+   energy ~1e4 GeV against a 1e43 GeV floor, "39 orders of magnitude". The primordial-black-hole
    route in section 4 is NAMED, NOT PINNED -- no such constraint is in this corpus, and nothing
    here asserts what one would say.
 """)

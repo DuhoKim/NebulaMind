@@ -6,7 +6,54 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — one decision
+## OPEN — two decisions
+
+### 2. One published paper's number does not follow from its own inputs. Do we say so in print?
+
+**The stake.** Popławski's 2010 paper is one of only two papers in this collection that makes a
+genuinely refutable prediction. It says black holes cannot be lighter than about 10¹⁶ kg, and gets
+that from a maximum density it also states. **Working backwards from his own density gives 2.7×10¹⁴
+kg — about 37 times smaller.** Both reviewers checked the arithmetic separately and got the same
+answer. The paper never shows the step in between, so neither of them could reproduce his figure.
+
+This matters beyond bookkeeping. The size of the number decides how much room the prediction has to
+be wrong in: on his figure there are two decades of forbidden territory that observations could
+search, on the recomputed one there is less than half a decade, and most of that is already ruled
+out. The route is either worth pursuing or nearly closed, depending on which number is right.
+
+**The reviewers disagreed, and this is the only thing they disagreed about.**
+
+| | says | reasoning |
+|---|---|---|
+| Reviewer A (Gemini) | **Call it an error.** | The arithmetic is simply wrong; he likely dropped a volume factor. |
+| Reviewer B (GPT) | **Do not call it an error.** | Every figure in that passage is hedged — "expect", "approximately", "on the order of", "~". Stacked rough estimates can drift this far without anyone making a mistake. |
+
+**Option 1 — write it as an unreproduced step (Reviewer B).** We record that we could not derive
+his number from his stated inputs and show our own. *Costs:* if it really is an error, we found it
+and declined to say so. *Gains:* we never accuse a published paper on the basis of a step it
+doesn't show.
+
+**Option 2 — write it as an arithmetic error (Reviewer A).** *Costs:* a public accusation against a
+peer-reviewed paper, resting on an inference about what the author did rather than on anything he
+wrote. **I got this exact call wrong once today already** — I accused our own records of carrying an
+unsourced uncertainty and the source turned out to exist. *Gains:* if correct, it is the sharper and
+more useful finding.
+
+**Option 3 — get the journal version first.** We only hold the preprint. The published Physics
+Letters B text may contain the missing step. *Costs:* a delay, and it may not be reachable.
+*Gains:* it could settle the question outright instead of us choosing between two guesses.
+
+**My recommendation: option 3, then option 1 if the journal version does not settle it.**
+
+**Why this is not mine to decide.** It is the difference between reporting what we could not
+verify and asserting that someone else made a mistake in print. That is a judgement about how this
+programme speaks about other people's work, and it should be yours.
+
+**What is already done regardless of your answer:** nothing downstream waits on this. Both possible
+figures are recorded, the route is written up as conditional on which is right, and the paper's
+category is unchanged.
+
+---
 
 ### 1. Should the black-hole-universe papers be re-sorted using an automatic screen, or only by hand?
 
