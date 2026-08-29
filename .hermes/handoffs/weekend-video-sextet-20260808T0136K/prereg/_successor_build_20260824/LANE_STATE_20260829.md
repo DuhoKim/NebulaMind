@@ -14,34 +14,57 @@ written `<lane>` below.
 
 ---
 
-## 1. FIVE OPEN QUESTIONS — one of them urgent
+## 1. FOUR OPEN QUESTIONS, and TWO BUILDS ahead of them
+
+**Build queue — both authorised, neither started. These come first on resumption.**
+
+1. **BS-3g schema, producer, verifier, failure behaviour** (Duho 20:35, *"fix the BS-3g schema and
+   producer"* — **top item, ahead of the rederivation**). Document content, half one of CODEX-V56 F2.
+   **Constraints:** state the fields so someone who did not write the schema can implement the
+   verifier, and **show** BS-3g's receipt cannot carry a per-object field — §6.1's non-χ claim rests
+   on it. **Not started: 13 minutes before the bound would have produced the half-specified thing
+   CODEX just caught.**
+2. **Redo the refusal-vocabulary derivation from scratch** (Duho 20:30). Not a ninth code. Must cover
+   **authorisation** *and* **availability/mediator behaviour**, with a **tested** joint-exhaustiveness
+   argument. `REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET` does not survive as written.
+
+**Half two of CODEX-V56 F2 is answered and needs no unfreeze** —
+`ANSWER_RECEIPT_UNKNOWN_SLOT_AND_V9.md`. `receipt()` accepts arbitrary fields for any slot absent from
+`SLOT_SCHEMA`; **five are absent** (BS-3g, BS-2a, BS-2k, BS-L, BS-2v). A successor-layer
+`receipt_strict()` closes the mechanism with **v9 untouched at `6a9abbbd`** — but only if the document
+**binds every producer to it** and a verifier checks emitted slots. **The unfreeze question returns
+only if some producer cannot be routed through the wrapper.**
 
 | # | file | what is open |
 |---|---|---|
-| 1 | `OPEN_QUESTION_REFUSAL_VOCABULARY_PREMISE.md` | **URGENT.** The option-A ruling rests on two premises **both seats broke in one round**: the eight-code set is **not closed** (an authorised read of a missing/unreadable cutout has no code, and an unlogged refusal voids the run), and the derivation fingerprint **omitted the surface column** so it could not check the claim it was pinned for. Fingerprint fixed; **the set and the ruling are not.** |
-| 2 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | The mapping. **B is now ruled out as a gate** by the valid retry (f\* ≈ 0.0007, 20–49 signs of 49,211) — **A is the live candidate**, and its seed/quantile policy is the next question. |
-| 3 | `OPEN_QUESTION_V52_RESIDUE.md` | Ledger's per-raise unit (needs a call-graph); `VOID-6.1L-WRONG-SIGNATURE` P7-only while Row L signs at P0/P6/P7. |
-| 4 | `OPEN_QUESTION_V53_RESIDUE.md` | The freeze-signature exemption is unbounded — no canonical body defines which bytes qualify; BS-2v UNRESOLVED for a self-reference its own checker disproves. |
-| 5 | `OPEN_QUESTION_V54_RESIDUE.md` | The evidence bar lets sampling establish a status named for a proof; the post-unblinding double-claim **recurred**; `NUMERICAL-PLANNING` unauthorised; the 80,000-execution rerun has no pinned harness. |
+| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **B is ruled out as a gate** by the valid retry (f\* ≈ 0.0007, 20–49 signs of 49,211). **A is the live candidate**; its seed/quantile policy is the next question. Caveat: one fixture, one calibration — re-derive the margin at the real calibration before discarding B finally. |
+| 2 | `OPEN_QUESTION_V52_RESIDUE.md` | Ledger's per-raise unit (needs a call-graph); `VOID-6.1L-WRONG-SIGNATURE` P7-only while Row L signs at P0/P6/P7. |
+| 3 | `OPEN_QUESTION_V53_RESIDUE.md` | The freeze-signature exemption is unbounded; BS-2v UNRESOLVED for a self-reference its own checker disproves. |
+| 4 | `OPEN_QUESTION_V54_RESIDUE.md` | The evidence bar lets sampling establish a status named for a proof; the post-unblinding double-claim recurred; `NUMERICAL-PLANNING` unauthorised; the 80,000-execution rerun has no pinned harness. |
 
-**Check §1 against disk — with a PREFIX match.** The exact-close pattern `STATUS: OPEN\*\*` missed
-`REFUSAL_VOCABULARY_PREMISE`, whose marker reads `**STATUS: OPEN — URGENT.**`. **An urgent question was
-invisible to the index for ten minutes** — the same defect as the verdict token, in my own convention.
+**Check §1 against disk with a PREFIX match** — an exact-close pattern once hid an urgent question:
 
-## 2. CURRENT DRAFT — V56, BUILT, NOT DISPATCHED
+    grep -l '^\*\*STATUS: OPEN' <lane>/OPEN_QUESTION_*.md
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V56_20260829.md` = `c0743b40698e75b69451fd317adafae94d4f80d011b988dcb2e992496040d122`
+## 2. CURRENT DRAFT — V57, BUILT, NOT DISPATCHED
 
-**Last refereed: V54** (`b0ccbecc46e21677`) — NOT CLEAR ×2 at 19:58 (GPT56 5, CODEX 3).
+`<lane>/PREREG_SUCCESSOR_DRAFT_V57_20260829.md` = `a2c48d0cfe7511b67f3fe1e813720af01964ef1654a43e3add616a20eb8fed00`
 
-- **V55** `8e5c193c6b9c4032` — the Stage-P citation (KIMI never supported it; V42's "correction" was
-  also wrong), L1464 → CALLER (class 22→21), the artifact's stale STATUS line.
-- **V56** `c0743b40698e75b6` — **the refusal vocabulary, ruled option A**: eight codes, no catch-all,
-  the principle written in as the test, B and C recorded as refused, and the derivation pinned by
-  fingerprint with `tools/refusal_vocabulary_check.py` failing when §6.1's gate columns move.
+**Last refereed: V56** (`c0743b40698e75b6`) — NOT CLEAR ×2 at 20:22 (GPT56 5, CODEX 6).
 
-**Checkers on V56:** counts 16/8; trace 55 transitions, 0 problems; lint exits 0; **refusal vocabulary
-0 problems**.
+V57 **withdraws the closure argument and suspends the eight-code set**, records that the enumeration
+missed a *class* not a member, marks `REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET` as not surviving,
+**deliberately does not re-pin the fingerprint** (re-pinning would make the checker green about
+something it no longer describes), removes the hand-copied CALLER/NUMERICAL totals in favour of the
+generated ledger, and reclassifies `inject_signs`' supplied-accuracy guard and mask-c admissibility as
+`CALLER`.
+
+**`gates/BRIEF_V57_REVIEW.md` is written.** Dispatch was **held** so BS-3g half one can go in first.
+**`refusal_vocabulary_check.py` reports R05 on V57 — that is the designed state**, not a defect.
+
+**PROVENANCE:** V57, its brief and the ledger were swept into BHU commits `ff0d6b4b7` / `a9974f78f` by
+the sibling lane's repo-wide `add`. Rationale is in `7f177593b`. **Date this lane's artifacts with
+`git log -- <path>`.**
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 

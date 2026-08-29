@@ -1,4 +1,4 @@
-**STATUS: OPEN** — **URGENT.** The refusal-vocabulary ruling rests on two premises both seats broke in
+**STATUS: RULED 20:30 — REDO THE DERIVATION FROM SCRATCH**, not a ninth code. **Option A is SUSPENDED**, neither reaffirmed nor reversed; the catch-all question returns to the principal only after a derivation exists. The remaining work is a BUILD, not a decision — see the queue in `SELF_CONTINUATION_ORDERS.md`. The refusal-vocabulary ruling rests on two premises both seats broke in
 one round. The ruled text is in V56 and should not be treated as settled.
 
 # The option-A ruling was made on a premise that does not hold
