@@ -349,6 +349,16 @@ same dataset. Both set limits; neither reports a discovery.
 window upward and the collider's energy caps where it can go. An astrophysical constraint on
 primordial black holes below 10¹⁶ kg would probe the same forbidden region without a collider —
 a route this record does not currently track. See `b11_entry51_measurement.py` (2/2).
+**UNDER GATE, 2026-08-29 — do not cite the two sentences above as settled.** `b12_entry51_pbh_route.py`
+(5/5) argues that route is not merely untracked but LIVE: Popławski's floor is a bound on *density*
+("the mass density of a black hole also cannot exceed ρ_Ce"), with the LHC named only as a
+consequence — so primordial black holes are in scope, and 10¹⁹ g lands *inside* the currently open
+10¹⁷–10²³ g PBH dark-matter window (`2002.12778_clean.txt`), splitting it into a forbidden band
+10¹⁷–10¹⁹ g and an allowed band above. A PBH detection in the forbidden band would fire the
+falsifier, ~37 decades closer than any collider. **The load-bearing uncertainty:** inverting the
+paper's own ρ_Ce through ρ = 3c⁶/32πG³M² gives 2.7×10¹⁴ kg, 37× below the stated floor; at that
+value the forbidden band nearly vanishes. Gate brief `GATE_BRIEF_B12.md`, verdicts pending in
+`CGATE_B12_VERDICT.md` / `AGATE_B12_VERDICT.md`. Entry 51's tier is UNCHANGED either way.
 **Reachability, ruled on by both gates:** the ~10³⁹ gap between LHC reach and the floor does NOT empty the threshold, because the collider operates on the *forbidden* side already — a detection far below the floor is a counterexample and cannot be rescued by shrinking the effect. Unlike entry 54, whose magnitude could retreat toward zero. Calibration is coarse: the source says "expect", "approximately", "conjecture", and gives no uncertainty interval or cross-section.
 **WHAT IT FALSIFIES — scope, and it is not BHU.** The target is the four-dimensional ECKS density/minimum-mass chain. Entry 51 constrains a black-hole-universe model only where that model inherits the same ECKS premise. Not a direct BHU falsifier from this source.
 **CORRECTION 2026-08-28 (Tori, against my own 2026-08-23 entry):** the sub-10¹⁶-kg primordial-black-hole discriminator is **mine, not Popławski's** — the second gate grepped the full text and found no occurrence of "primordial", "PBH", or "black-hole universe". My further claim that standard physics permits such a PBH is also not established by this paper. It may be recorded as a reader-derived route; it must not be attributed to the author. My original entry also called this "a numbered falsifiable consequence" while filing it QUALITATIVE-DIRECTIONAL — the evidence was in hand and mis-tiered anyway.
