@@ -22,6 +22,20 @@ beside the vocabulary.
 That is the honest form of the guarantee. When it fails it does not say "here are the new codes"; it
 says **the derivation must be redone and the set re-pinned, not extended by hand** — which is the
 instruction the ruling attaches.
+
+Measured behaviour of the fingerprint, 2026-08-29, before anything relied on it
+------------------------------------------------------------------------------
+A control that fires on noise stops being read — that is how the void_registry self-test sat red for
+four drafts while its output was quoted. So the stability claim was tested rather than assumed:
+
+    stable when a whole new section is appended            yes
+    stable when prose inside a row description is edited   yes
+    moves when a gate-bearing column changes (row id)      yes
+    identical across V52, V53 and V54                      yes  <- three real drafts, §6.1 untouched
+
+The last line is the one that matters: across three consecutive drafts that changed §5, §7.1, §11 and
+the preamble, the fingerprint did not move once. It is sensitive to the thing the derivation depends
+on and deaf to everything else.
 """
 
 import hashlib
