@@ -11,7 +11,7 @@
 | 3 | **`REFUSED-INTEGRITY-MISMATCH`** — indistinguishable from tampering at emission. | §4 below |
 | 4 | **The four availability codes describe the logged object** (CODEX-V64 F2) — they are part of the vocabulary you ruled at 22:18. | parked in the V66 brief |
 | 5 | **The durable pre-verdict state** (GPT56-V66 F1) — closing it needs a second event class, which changes what the access log records. | parked in the V66 brief |
-| 5a | **Whether this study's strata should BE χ-derived** — the *cost* only; the surface repair is ruled and applied. | §5 below |
+| 5a | **The strata AND their producer, together.** Whether the strata should BE χ-derived — and either way, **no covenant row produces the stratum index**, so a producer row or an expanded surface is needed; both change what the study permits. The two are coupled: rule them together. | §5 below + `OPEN_QUESTION_STRATUM_PRODUCER.md` |
 
 ## RULED AND BEING APPLIED — on me, not on you
 

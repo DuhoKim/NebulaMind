@@ -27,6 +27,11 @@ What this checks
     R04  the draft does not forbid free text in the refusal-reason field
     R05  the draft does not state the CATCH-ALL GUARD
 
+**What a lint can establish, stated because three revisions phrase-matched here:** every check in
+this file verifies that the DRAFT'S TEXT states a mechanism. None verifies the mechanism exists —
+that is the job of the referenced build items and their gate rounds. A green result here says the
+words are present and consistent, nothing more.
+
 **R05 is the load-bearing one now.** A catch-all whose count is never reviewed becomes the vocabulary;
 the ruling attached the guard for exactly that reason, and the guard is the only thing standing between
 `REFUSED-UNCLASSIFIED` and a free-text field with one legal value.
@@ -153,14 +158,18 @@ def check(text: str):
         # it, and because a class that recurs can be explained every run and stay formally enumerated
         # forever. Matching the words "BS-L" was the defect; these match the MECHANISM.
         verifier = re.search(r"enumeration verifier", text, re.I)
+        entry = re.search(r"enumeration entry", text, re.I) and re.search(r"chain_position", text)
         twice = re.search(r"consulted (twice|at both)", text, re.I) or (
             re.search(r"at the opening of the lock", text, re.I) and
             re.search(r"at \*{0,2}`?BS-L`? issuance", text, re.I))
-        if not (verifier and twice):
-            fail("R08", "verifier named: %s; second consultation: %s"
-                 % (bool(verifier), bool(twice)))
+        if not (verifier and twice and entry):
+            fail("R08", "verifier named: %s; second consultation: %s; entry object with a join: %s"
+                 % (bool(verifier), bool(twice), bool(entry)))
         if not re.search(r"recur", text, re.I):
             fail("R09", "no rule for a recurring catch-all class")
+        elif not re.search(r"class_key", text):
+            fail("R09", "recurrence has no computed equivalence key - a class you may name is a "
+                        "class you may rename")
     return out
 
 
@@ -181,16 +190,20 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
     elif guard == "noblock":
         txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
                 "checkpoint, never a routine outcome.\n")
-    elif guard in ("noverifier", "once", "norecur", True):
+    elif guard in ("noverifier", "once", "norecur", "noentry", "nokey", True):
         txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
                 "checkpoint, never a routine outcome.\n"
                 "BS-L MAY NOT BE ISSUED while any REFUSED-UNCLASSIFIED event is unenumerated.\n")
         if guard != "noverifier":
             txt += "The enumeration verifier recomputes the emissions from the chain.\n"
+        if guard not in ("noentry", "noverifier"):
+            txt += "Each enumeration entry joins by chain_position and event_digest.\n"
         if guard != "once" and guard != "noverifier":
             txt += "It is consulted twice: at BS-L issuance and at the opening of the lock.\n"
         if guard != "norecur":
             txt += "If the same class recurs, explanation stops discharging it.\n"
+        if guard not in ("nokey", "norecur"):
+            txt += "Two emissions share a class iff their class_key values are equal.\n"
     txt += "".join(f"- `{c}`\n" for c in codes)
     if fingerprint:
         txt += f"refusal-vocabulary-derivation: `{'a' * 64}`\n"
@@ -213,6 +226,8 @@ CONTROLS = (
     ("the guard names no enumeration verifier", lambda: _fixture(guard="noverifier"), "R08"),
     ("the verifier is consulted only once", lambda: _fixture(guard="once"), "R08"),
     ("recurrence can be explained away", lambda: _fixture(guard="norecur"), "R09"),
+    ("the verifier has no entry object", lambda: _fixture(guard="noentry"), "R08"),
+    ("recurrence has no computed key", lambda: _fixture(guard="nokey"), "R09"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
