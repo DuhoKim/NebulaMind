@@ -713,9 +713,30 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 # read "reported (no token)" for a V29 that both seats had
                 # cleared — the one result the whole lane exists to produce,
                 # shown as an absence.
-                m = re.search(r"\*\*(NOT CLEAR|CLEAR|REFUSED)\.?\*\*", head)
+                # Anchor on the brief's contracted footer first. The briefs have
+                # specified `VERDICT: <CLEAR|NOT CLEAR>` since V38 and GPT56 has
+                # emitted it ever since, so it is the stable machine-readable
+                # form; the bold sentence is prose and its style drifts.
+                m = re.search(r"^VERDICT:\s*(NOT CLEAR|CLEAR|REFUSED)\b",
+                              head, re.M | re.I)
                 if m:
-                    token = m.group(1)
+                    token = m.group(1).upper()
+                    seats_t.append(f"{seat}:{token}")
+                    if verdict_t is None or token != "reported":
+                        verdict_t = token
+                    continue
+                # `(?:Verdict:\s*)?` because at V49 GPT56 moved the label INSIDE
+                # the emphasis — `**Verdict: NOT CLEAR.**` — and dropped the bare
+                # `**NOT CLEAR.**`. Without it this row survived only by falling
+                # through to the NOT-CLEAR prose catch-all below, which cannot
+                # match a CLEAR. A two-seat CLEAR in the new style would have
+                # rendered as "reported (no token)": the single result this lane
+                # exists to produce, displayed as an absence, for the second time
+                # after the 2026-08-28 fix recorded just above.
+                m = re.search(r"\*\*\s*(?:Verdict\s*:\s*)?"
+                              r"(NOT CLEAR|CLEAR|REFUSED)\.?\s*\*\*", head)
+                if m:
+                    token = m.group(1).upper()
                 # Codex writes its refusal as prose under "Verdict basis" rather
                 # than a bold token — "not an executable freeze promise", "not
                 # yet a promise that can be frozen". Reading only the bold form
