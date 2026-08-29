@@ -92,6 +92,21 @@
 | `BS-V.path` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
+| `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |
+| `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
+| `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
+| `envelope.environment` | closed-vocab | v9 SLOT_SCHEMA | environment_record keys x pinned values |
+| `envelope.schema` | closed-vocab | v9 SLOT_SCHEMA | the literal successor_ref_v3/1 |
+| `envelope.slot` | closed-vocab | v9 SLOT_SCHEMA | SLOT_SCHEMA keys |
+| `nonslot.acceptance_evidence_projection` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.access_log_chain` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.adequacy_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.archive_seal_state_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.cutout_completion_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.label_set_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.lock_checkpoint_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.stage_completion_artifact` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `nonslot.unblinding_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
 | `baseline_verdict` | closed-vocab | §11 BS-3g | HELD | FAILED | PER-DRAW; informational |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |

@@ -70,6 +70,25 @@ _c("BS-3.antisymmetry_receipt BS-9.hdu_schema BS-9.tensor_layout BS-9.r1_r5_rece
 _c("BS-8p.hc_rules_quotation", "digest-ref", "the HC-1H quotation-at-freeze, by digest")
 _c("BS-9.runner_prohibition BS-7p.environment", "closed-vocab", "declared clause/env sets")
 _c("BS-6.producer_checksum_list", "digest-ref")
+# The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
+# in envelope fields, and environment_record() emits its own - all string-bearing, none previously
+# enumerated), extracted below from the envelope constructor rather than hand-listed.
+_c("envelope.slot", "closed-vocab", "SLOT_SCHEMA keys")
+_c("envelope.schema", "closed-vocab", "the literal successor_ref_v3/1")
+_c("envelope.environment", "closed-vocab", "environment_record keys x pinned values")
+_c("envelope.body_sha256 envelope.envelope_sha256", "digest-ref")
+# The enumerator SIGNATURE itself (GPT56-V74 F1: a valid signature still has degrees of freedom -
+# an ECDSA nonce is a covert channel wearing a validity proof). Constraint: the BS-2k keypair spec
+# MUST mandate a DETERMINISTIC scheme (Ed25519/RFC-6979), making the bytes a function of key+body
+# with no channel left.
+_c("entry.signature", "bounded-encoding", "deterministic scheme mandated at BS-2k - no nonce channel")
+# The seven declared NON-SLOT artifact classes (CODEX-V74 F1): each is digest-referenced here and
+# constrained by its own authenticated schema where it is defined; a class whose schema is not yet
+# written is a blocker there, not an omission here.
+_c("nonslot.access_log_chain nonslot.cutout_completion_receipt nonslot.acceptance_evidence_projection "
+   "nonslot.stage_completion_artifact nonslot.label_set_receipt nonslot.unblinding_receipt "
+   "nonslot.adequacy_receipt nonslot.archive_seal_state_receipt nonslot.lock_checkpoint_receipt",
+   "digest-ref", "authenticated per-class schema where defined")
 
 # (field, constraint, declared-where, note). Constraints: closed-vocab | bounded-encoding | digest-ref
 CONSTRAINTS = {
@@ -133,10 +152,24 @@ def extract(text):
     fields |= set(re.findall(r"`(parent_attempt_present|byte_integrity_pass|canonical_shape_pass)`", text))
     return {f for f in fields if f and not f.isdigit()}
 
+def envelope_fields():
+    """The receipt envelope's own field names, extracted from v9's receipt() constructor."""
+    src = V9.read_text()
+    import re as _re
+    body = _re.search(r"envelope = \((.+?field\(\"body\").+?\)\n", src, _re.S).group(1)
+    names = set(_re.findall(r'field\("([a-z_]+)"', body))
+    names |= {"body_sha256", "envelope_sha256"}
+    return {f"envelope.{n}" for n in names if n != "body"}
+
+NONSLOT = {f"nonslot.{n}" for n in (
+    "access_log_chain", "cutout_completion_receipt", "acceptance_evidence_projection",
+    "stage_completion_artifact", "label_set_receipt", "unblinding_receipt", "adequacy_receipt",
+    "archive_seal_state_receipt", "lock_checkpoint_receipt")}
+
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields()
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

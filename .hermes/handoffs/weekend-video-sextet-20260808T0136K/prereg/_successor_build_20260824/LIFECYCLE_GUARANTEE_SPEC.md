@@ -113,6 +113,16 @@ is needed, because no rule changed: G5 restates what Row G's void clause already
   is no touch" and "any unlogged view voids" contradicted on cached frames). **If the principal means
   "view" per-glance rather than per-session, that is his reading to impose; the spec's definition is
   the session, stated so the word has one meaning.**
+  **BUFFER LIFETIME AND CACHE, because G5 and G6 composed into two contradictions in one round.**
+  A render buffer lives **from its touch commit until its VIEW SESSION ends**, then must be
+  destroyed — V74 said it dies "with its commit", which made delivering after the commit from a
+  dead buffer an impossibility (CODEX-V74 F2); a buffer outliving the SESSION would be a cache.
+  And **the sealed interface renders EXCLUSIVELY from Row B conveyances and holds NO redisplayable
+  surface beyond the live session — compositor, framebuffer or otherwise** (GPT56-V74 F3: occlusion
+  ends the session under G6, and a compositor restore would create the new view with no new commit;
+  the interface must re-request instead, which is a new touch). **A BS-2k interface design
+  requirement with fixtures: occlude-and-restore must produce a second committed render event or no
+  image.**
 - **The committed buffer is GOVERNED, answering CODEX-V69 F2**: for **renders there is no buffer
   reuse** — each render re-conveys under its own commit; for **conveyance** the buffer is part of the
   committed touch, destroyed on delivery completion or request end, and **its existence, bounds and

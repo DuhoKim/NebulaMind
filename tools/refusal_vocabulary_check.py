@@ -128,11 +128,16 @@ def check(text: str):
         # asides inside one sentence, and splitting on it orphaned a legitimate retired mention from
         # its own "was deleted" two asides later.
         for frag in re.split(r"[.;:]", line):
-            for tok in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", frag):
-                tok = tok.rstrip("-")
+            toks = [tk.rstrip("-") for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", frag)]
+            nonmembers = [tk for tk in toks for _ in [0] if tk not in CODES]
+            for tok in toks:
                 if tok in CODES:
                     pinned.add(tok)
-                elif not RETIREMENT.search(frag):
+                # CODEX-V74 F3 (the V73 fix's mirror): with em-dash no longer splitting, one token's
+                # retirement could exempt a second non-member sharing the fragment. A retiring
+                # fragment may retire AT MOST ONE token - two non-members in one retirement fragment
+                # are both illegal, and drafters retire one code per sentence.
+                elif not RETIREMENT.search(frag) or len(nonmembers) > 1:
                     illegal.append(tok)
     if illegal:
         fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
@@ -266,6 +271,8 @@ CONTROLS = (
      lambda: _fixture() + "REFUSED-ZOMBIE is not deleted and remains in force.\n", "R01"),
     ("one retirement word does not exempt a second token on the line",
      lambda: _fixture() + "REFUSED-OLD was deleted; REFUSED-NEW is in force.\n", "R01"),
+    ("an em-dash pair cannot share one retirement",
+     lambda: _fixture() + "REFUSED-OLD was deleted — REFUSED-NEW is in force.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing

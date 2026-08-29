@@ -544,6 +544,20 @@ def main():
         out.append(("lifecycle-derivation-L00",
                     "LIFECYCLE_GUARANTEE_SPEC.md is MISSING beside the draft - the derivation "
                     "cannot be checked, and unchecked is not passed"))
+    # The refusal-checker digest quoted in the draft has gone stale three times, each time because
+    # a later edit to the checker in the same build cycle postdated the hand-update. The rule
+    # "compute it last" survives only as a mechanism (GPT56-V74 F4, CODEX-V74 F5): recompute and
+    # compare, blocking on mismatch.
+    import hashlib as _hl, re as _re
+    _ck = Path(__file__).resolve().parent / "refusal_vocabulary_check.py"
+    if _ck.exists():
+        _live = _hl.sha256(_ck.read_bytes()).hexdigest()[:16]
+        _m = _re.search(r"`([0-9a-f]{16})…` is the sha256 of `tools/refusal_vocabulary_check\.py`", text)
+        if _m and _m.group(1) != _live:
+            out.append(("checker-digest-stale",
+                        f"the draft claims refusal-checker digest {_m.group(1)}… but the live file "
+                        f"is {_live}… — the compute-it-last rule, mechanised after three manual "
+                        f"violations"))
     if spec.exists():
         try:
             from lifecycle_derivation_check import check as _lc_check
