@@ -195,3 +195,60 @@ against a two-branch problem, and the problem is a class with an unknown number 
 **V48 adds the §11 conversion item.** A named outcome that nothing can produce is the defect a code
 was deleted for this morning, one level down, and requiring the conversion is needed under A, B or
 anything else.
+
+---
+
+# THE CLASS SIZED — 2026-08-29 14:4x. Row F alone is nine raise sites, not two branches.
+
+I wrote that separating reachable failures from caller-error guards *"requires reading each site,
+which I have not done"*, while asking the principal to choose against a class of unknown size. Done
+now, to the extent it can be done without adjudicating each one.
+
+## Row F is not two branches. It is at least nine raise sites.
+
+    calibration_bins      L1369  degenerate calibration bins {sizes} — FAIL
+    allocate_handcheck    L1397  stratum {j} needs {n} labels but only ...
+    allocate_handcheck    L1401  inherited floors need {n} labels, budget {b} — FAIL
+    allocate_handcheck    L1403  budget {b} exceeds available objects {n} — FAIL
+    allocate_handcheck    L1411  floors exceed budget after the stratum lift — FAIL
+    allocate_handcheck    L1435  no headroom remains to place the budget — FAIL
+    allocate_handcheck    L1437  allocation {n} != budget {b} — FAIL
+    allocate_handcheck    L1439  allocation exceeds available objects in a cell — FAIL
+    allocate_handcheck    L1442  stratum {j} below floor after apportionment — FAIL
+
+**All nine raise a bare `RuntimeError`. None converts to a named outcome.** "Infeasible hand-check
+allocation" is not one condition — it is **eight distinct feasibility failures**, each with its own
+cause: a stratum short of labels, floors exceeding budget, budget exceeding available objects, no
+headroom, a cell over-allocated, a stratum under floor.
+
+**This settles the A-versus-B question further than my last note could.** No single existing outcome
+can honestly cover eight distinct feasibility conditions plus a degenerate-bin failure. Even a new
+code would need to decide whether these are one outcome or several.
+
+## The class, sized as honestly as a heuristic allows
+
+Classifying the 108 untyped raise sites by what the guard tests:
+
+    caller / input guard — a caller error, needs no run outcome     29
+    reachable run-time failure — needs a named outcome              31
+    UNCLEAR, requires reading                                       48
+
+**Read these as bounds, not counts.** The classifier keys on the raise message, and the largest
+bucket is the one it could not decide — so **the class is at least 31 and at most 79.** I am stating
+it that way rather than picking the middle, because a confident number is exactly what I produced
+twice today and had to retract.
+
+## Two things visible in the residue that the pre-unblinding framing does not cover
+
+- **`accuracy_from_handcheck`** (L1462–1468): empty calibration bin, agreement count out of range,
+  epsilon out of range — Row I's calibration path, same pattern.
+- **The decision path itself** — `_finite` (L1503), `w_profile` (L1513, L1517), `sigma_ours_scalar`
+  (L1537), `sigma_ours_profile` (L1548, L1554) — raises bare errors on a non-finite decision
+  quantity, a degenerate `c`, a vanishing profile factor, `2a−1 ≤ 0`, a negative quadratic form.
+  **These are post-unblinding**, inside `_decide_from`, and equally unconverted. The question was
+  framed as pre-unblinding; the defect is not confined to that phase.
+
+## What I am not doing
+
+Not adjudicating the 48, and not deciding whether the nine Row F sites are one outcome or several.
+**Both are the substance of the pending decision, not inputs to it.**
