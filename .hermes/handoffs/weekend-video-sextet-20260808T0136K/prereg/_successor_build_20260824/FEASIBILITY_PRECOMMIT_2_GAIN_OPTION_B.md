@@ -1,3 +1,5 @@
+**STATUS: RECORD — not a decision, not pending on anyone.** This is the SECOND option-B pre-commitment, committed blind at `13e48e3c4` before the sweep ran — the file that makes the valid run's reading pre-registered.
+
 # SECOND PRE-COMMITMENT — the option-B retry, written before the sweep
 
 **Duho ruled 2026-08-29 20:20: retry it properly, with the positive control stated first.** The first

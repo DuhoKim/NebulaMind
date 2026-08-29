@@ -1,4 +1,5 @@
-**STATUS: ANSWER — for the principal, via Blanc. Asked 22:46 KST: do §6.3's "V3-pred's nine HC strata"
+**STATUS: DECISION PENDING — with the principal. Two decisions: Row F's read surface, and the
+strata, which must be decided before freeze. The investigation behind them is complete.** Asked 22:46 KST: do §6.3's "V3-pred's nine HC strata"
 mean HC-1H's machine-committee state × |χ| tertile IN THIS DRAFT?**
 **THE ANSWER IS THE THIRD ONE: THE DRAFT IS SILENT, and it cannot be determined from the text.** It
 neither redefines the strata nor restates them. **Three things I could establish are below, and one of

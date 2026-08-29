@@ -1,4 +1,8 @@
-**STATUS: ANSWER — for the principal, via Blanc. Asked 22:24 KST: does anything in the acquisition plan
+**STATUS: ANSWERED, AND THE QUESTION IT FED IS RULED — not pending.** The schedule was ruled
+χ-blind and precommitted and applied in V65; `flag → discard → replace` stays unmodified on the
+principal's finding of no connection. **This file is the evidence behind those rulings.**
+
+**Originally filed as:** an answer, via Blanc. Asked 22:24 KST: does anything in the acquisition plan
 actually REQUIRE choosing the next object on the strength of a previous object's χ-derived output?**
 **This reports what is, not what should be done. It contains no recommendation and does not choose
 between (a), (b) and (c).**

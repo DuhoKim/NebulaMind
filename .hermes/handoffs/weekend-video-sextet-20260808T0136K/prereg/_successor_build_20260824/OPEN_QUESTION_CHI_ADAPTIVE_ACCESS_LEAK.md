@@ -1,6 +1,15 @@
-**STATUS: OPEN — with the principal. A LEAK, not a taxonomy problem, and it does not wait on the
-refusal vocabulary.** Raised 2026-08-29 22:2x KST by Hwao, on converging findings from both seats
-(GPT56-VOCAB F2 on **Row G**, CODEX-VOCAB F2 on **Row D**).
+**STATUS: RULED AND APPLIED — 2026-08-29, both halves. Not pending on the principal.**
+**(1) Option (a):** the access schedule is **precommitted and χ-blind** for every row that may read a
+χ-bearing object — order, multiplicity, retries and stopping — with **Row B refusing any request that
+is not the next unserved position**. Applied in **V65**. **The clause FORBIDS adaptivity rather than
+observing that nobody currently uses it**, because the covenant permitted it and **permission is what
+leaks**. **(2) `flag → discard → replace` STAYS UNMODIFIED**, on the principal's finding that
+**recognising a specific galaxy and judging its handedness are separate judgements, and nothing about
+handedness is visible in the image**. That exemption is recorded **as a finding, never as a
+permission**, and is **bound to the pinned digest of the Row G interface** so a different interface,
+visible orientation cues, or a checker who also sees instrument output **lapses it**.
+**What this file left behind and did NOT settle:** the strata question it pointed at is now its own
+finding — `FINDING_ROW_F_STRATA.md` — and **that one is still with the principal.**
 
 # OPEN QUESTION — Rows D and G permit χ-adaptive access, so refusing on an object can export χ
 

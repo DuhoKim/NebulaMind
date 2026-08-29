@@ -1,3 +1,5 @@
+**STATUS: RECORD — not a decision, not pending on anyone.** This is the FIRST option-B pre-commitment, whose run was INVALID — kept because the retry is only checkable against what it replaced.
+
 # PRE-COMMITMENT — what the option-B feasibility check will mean, written before it is run
 
 **Authorised by Duho 2026-08-29 20:00, relayed by Blanc: run the feasibility check. THE CHECK is
