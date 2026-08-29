@@ -336,7 +336,19 @@ Record: harvest #11; parentage construction beyond isotropy.
 DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALITATIVE-DIRECTIONAL by a blind re-classification, upheld by two independent gates (`bhu-theory-phase6-curvature-20260827/`: CGATE_ENTRY51_VERDICT.md, codex gpt-5.5; AGATE2_ENTRY51_VERDICT.md, hermes gpt-5.6-sol). READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg (~10⁴³ GeV).
-**The author's stated test is the LHC route**, verbatim: "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ~10⁴ GeV, cannot produce micro black holes … if the four-dimensional ECKS theory is a correct theory of gravity." One-sided and positive-detection only: a confirmed black hole far below the ~10¹⁶ kg floor fires it; a null LHC search fires nothing. LIVE/unfired — CMS reports no evidence for microscopic black holes as of 2025-12.
+**The author's stated test is the LHC route**, verbatim: "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ~10⁴ GeV, cannot produce micro black holes … if the four-dimensional ECKS theory is a correct theory of gravity." One-sided and positive-detection only: a confirmed black hole far below the ~10¹⁶ kg floor fires it; a null LHC search fires nothing. LIVE/unfired. **MEASUREMENT SIDE PINNED 2026-08-29** — this previously read "CMS reports no
+evidence for microscopic black holes as of 2025-12" with **no citation of any kind**. Now
+receipted: `2604.10732_clean.txt` (CMS, 13 TeV, 138 fb⁻¹) excludes semiclassical black holes and
+string balls **below 8.7 TeV at 95% CL**, and `2511.10662_clean.txt` is the ML-based search on the
+same dataset. Both set limits; neither reports a discovery.
+**And the null is a weak CONFIRMATION, not a non-event**: Popławski forbids black holes below
+~10¹⁶ kg (≈5.6×10⁴² GeV by E=mc², reproducing the record's ~10⁴³), CMS searched a range lying
+*entirely inside* that forbidden region, and found nothing — which is what the theory predicts.
+"One-sided, a null fires nothing" is right about firing and understates what a null contributes.
+**The LHC route is bounded, not merely unexhausted**: each exclusion pushes the possible-detection
+window upward and the collider's energy caps where it can go. An astrophysical constraint on
+primordial black holes below 10¹⁶ kg would probe the same forbidden region without a collider —
+a route this record does not currently track. See `b11_entry51_measurement.py` (2/2).
 **Reachability, ruled on by both gates:** the ~10³⁹ gap between LHC reach and the floor does NOT empty the threshold, because the collider operates on the *forbidden* side already — a detection far below the floor is a counterexample and cannot be rescued by shrinking the effect. Unlike entry 54, whose magnitude could retreat toward zero. Calibration is coarse: the source says "expect", "approximately", "conjecture", and gives no uncertainty interval or cross-section.
 **WHAT IT FALSIFIES — scope, and it is not BHU.** The target is the four-dimensional ECKS density/minimum-mass chain. Entry 51 constrains a black-hole-universe model only where that model inherits the same ECKS premise. Not a direct BHU falsifier from this source.
 **CORRECTION 2026-08-28 (Tori, against my own 2026-08-23 entry):** the sub-10¹⁶-kg primordial-black-hole discriminator is **mine, not Popławski's** — the second gate grepped the full text and found no occurrence of "primordial", "PBH", or "black-hole universe". My further claim that standard physics permits such a PBH is also not established by this paper. It may be recorded as a reader-derived route; it must not be attributed to the author. My original entry also called this "a numbered falsifiable consequence" while filing it QUALITATIVE-DIRECTIONAL — the evidence was in hand and mis-tiered anyway.

@@ -1,0 +1,553 @@
+[2511.10662] [2511.10662] Search for black holes and sphalerons using novel machine learning techniques at CMS
+
+[2511.10662] Search for black holes and sphalerons using novel machine learning techniques at CMS
+
+\vol
+xx
+\publishedxx March 2025
+
+Search for black holes and sphalerons using novel machine learning techniques at CMSJournal: PHEP
+
+Tamas Almos Vami\auno1**
+ *
+ 
+ 
+ 
+ Corresponding author: Tamas.Almos.Vami@cern.ch and Danyi Zhang\auno1 for the CMS Collaboration
+
+Address: 1Department of Physics, University of California, Santa Barbara, CA 93106, USA
+
+Received  xx January 2025
+
+Abstract
+ 
+A comprehensive search for microscopic black holes and electroweak sphalerons is presented, using proton-proton collision data collected by the CMS detector during 2016–2018, corresponding to an integrated luminosity of 138​fb−1138~\mathrm{~fb}^{-1}. A novel tool has been developed to identify collider events with distinct kinematic features, based on the phase-space distance between events. Model-independent limits are set on the cross section of new physics signals producing multiple jets and leptons, which are further interpreted as constraints on black hole and sphaleron production. In the context of models with large extra dimensions, semiclassical black holes with masses below 9.0-11.4 TeV are excluded by this search, significantly extending previous sensitivity. Additionally, a dedicated search for electroweak sphaleron transitions has been performed. An upper limit of 0.0025 is set at 95% confidence level on the fraction of quark–quark interactions with center-of-mass energy above the nominal threshold of 9 TeV that result in sphaleron transitions.
+
+ 
+
+keywords
+pp collisions\sepBeyond standard model\sepBlack holes and sphalerons\sepPhase space distance \sepMachine learning
+10.xxxxx/PHEP.2025.ID
+
+1 Black holes at CMS?
+
+Usually, discussions about black holes (BHs) concern cosmic scales involving enormous masses and volumes.
+However, the criterion for black hole formation is rather simple: the object must be smaller than its Schwarzschild radius.
+The Schwarzschild radius for an object with mass MM is given in Eq. 1, where GG is the gravitational constant and cc is the speed of light [27].
+
+RS=2​G​Mc2R_{S}=\frac{2GM}{c^{2}}
+
+(1)
+
+If we calculate the radius for the Earth, RS​(M=MEarth)R_{S}(M=M_{\mathrm{Earth}}), we find that compressing our planet roughly to the size of an acorn would be enough for it to become a black hole.
+
+The Large Hadron Collider (LHC) at CERN collides proton beams with the center-of-mass energy of 13 TeV. One could ask the question: within what radius would this energy need to be confined to form a black hole? Following the same calculation we find that RS​(M=13​TeV)≈10−50​mR_{S}(M=13~\mathrm{TeV})\approx 10^{-50}~\mathrm{m}. That is an absurdly small scale: for comparison, the Planck lengths, the smallest measurable unit of length in physics, is lPlanck≈10−35​ml_{\mathrm{Planck}}\approx 10^{-35}~\mathrm{m}. Thus, we can conclude that the LHC cannot produce black holes, assuming no new physics beyond the Standard Model (SM).
+
+However, if our world has more than 3+13+1 dimensions [2, 3, 4, 25, 24], denoting the extra dimensions with nn, the Schwarzschild radius calculation changes to as described in Eq. 2, where MB​HM_{BH} is the mass of the black hole, MDM_{D} is the Planck scale in nn dimensions, and Ωn+2=(2​π)n+32/Γ⁡(n+32)\Omega_{n+2}=(2\pi)^{\frac{n+3}{2}}/\Gamma(\frac{n+3}{2}).
+
+RS′=[16​π(n+2)​Ωn+2​MB​HMDn+2]1n+1R^{\prime}_{S}=\left[\frac{16\pi}{(n+2)\Omega_{n+2}}\frac{M_{BH}}{M_{D}^{n+2}}\right]^{\frac{1}{n+1}}
+
+(2)
+
+With this modification, the RS′​(M=13​TeV)≈10−20​mR^{\prime}_{S}(M=13~\mathrm{TeV})\approx 10^{-20}~\mathrm{m}. Based on the Heisenberg uncertainty, Δ​x=13​TeV/ℏ​c≈10−20​m\Delta x=13~\mathrm{TeV}/\hbar c\approx 10^{-20}~\mathrm{m}, the extra-dimensional microscopic black holes are within the LHC reach!
+
+However, even if the LHC could produce such objects, they would undergo Hawking radiation. The time τ\tau it takes to evaporate a black hole is proportional to the cube of its mass, τ∝M3\tau\propto M^{3}. With this the τ⁡(M=MEarth)≈1058​s\tau(M=M_{\mathrm{Earth}})\approx 10^{58}~\mathrm{s} and τ⁡(M=13​TeV)≈10−28​s\tau(M=13~\mathrm{TeV})\approx 10^{-28}~\mathrm{s}. So a microscopic black hole at the LHC will immediately decay to high multiplicity, high energy and isotropic objects. The CMS experiment [7] will thus reconstruct these as jets, leptons and missing momentum, as illustrated in Fig. 1. Isotropic events like these are really hard to separate from SM events, so distinguishing them requires innovative techniques and machine learning tools. The results presented in this work are documented in CMS as CMS-PAS-EXO-24-028 [8].
+
+Figure 1: Event display of the final products from a simulated microscopic black hole evaporation at the LHC. The red lines represent muons, the orange cones are jets, the yellow lines are tracks, the green line is an electron, and the blue block is for a photon interaction in the electric calorimeter.
+
+2 What are sphalerons?
+
+Sphalerons are unstable solutions of the electroweak vacuum within the SM [32, 19]. The cross section of such processes is theorized [30, 14, 22] to be proportional to a factor called the pre-exponential factor. The periodicity of the vacua is denoted with the Chern-Simons number, NC​SN_{CS}, while the amplitude is denoted with EsphE_{\mathrm{sph}}. A sphaleron transition corresponds to a change in vacuum configuration, i.e., a shift in the NC​SN_{CS}. We denote the probability of a Δ​NC​S=1\Delta N_{CS}=1 change with p⁡(NC​S)p({N_{CS}}). In these processes, baryon number conservation is violated and a particle from each SM family is created. This mechanism can explain the matter-antimatter asymmetry problem. The final products are similar to the BH evaporation products, displayed in Fig. 2, thus the same analysis techniques can be applied.
+
+Figure 2: Event display of the final products from a simulated sphaleron process at the LHC.
+
+3 Simulated samples
+
+We produced black hole signal samples under different assumptions regarding their angular momentum, energy loss, and decay mechanisms. We generated samples labeled with B using the BlackMax [12] generator: B1 corresponds to non-rotating black holes, B2 to rotating ones without graviton emission, and B3 to rotating black holes that include energy and momentum loss. We also generated samples labeled with C using the Charybdis2 [18, 16] generator: C1 represents rotating black holes, C2 non-rotating ones, C3 rotating black holes with the evaporation model described in Refs. [10, 11], C4 rotating ones with the Yoshino–Rychkov (YR) model [31], which provides a conservative bound incorporating impact parameter effects, C5 rotating black holes with a stable remnant model [20, 28, 26], where the remnant is a colorless object akin to a quark–antiquark bound state, and C6 non-rotating black holes with a boiling remnant model [13, 17], in which the remnant continues to evaporate until the Hawking temperature reaches a maximum value equal to MDM_{D}.
+
+We used the BaryoGEN [29] generator to simulate sphaleron processes. We simulated events with p⁡(NC​S)p({N_{CS}}) values of 0%, 50% and 100%. The meaning of 50% is that half of the events have Δ​NC​S=−1\Delta N_{CS}=-1 while the other half have Δ​NC​S=1\Delta N_{CS}=1.
+
+To guide the selection criteria and train machine learning models, we simulated four-flavor Quantum Chromodynamics (QCD) multijet production with MadGraph [15] at leading order using the MLM matching scheme [1].
+
+4 Novel data representation
+
+In Ref. [21], the authors proposed that a collision event can be represented on the phase space manifold ΠN\Pi_{N} of the scattering amplitudes for the NN objects in the event. It can be expressed as the product of an (N−1)(N-1)-simplex ΔN−1\Delta_{N-1} and a (2​N−3)(2N-3)-dimensional hypersphere S2​N−3S_{2N-3}, i.e., ΠN≅ΔN−1×S2​N−3\Pi_{N}\cong\Delta_{N-1}\times S_{2N-3}. For this study, we set N=30N=30 and in case there are fewer objects in the event, we assign zero values to them. Next, explicit global coordinates of the phase space were introduced, denoted by ρ→{\vec{\rho}} for the simplex and v→{\vec{v}} for the hypersphere. Using these coordinates, one can define a distance between two events, AA and BB, denoted as dΠ​(ρ→A,v→A′,ρ→B,v→B′)d_{\Pi}({\vec{\rho}}_{A},{\vec{v}}_{A}^{\prime};{\vec{\rho}}_{B},{\vec{v}}_{B}^{\prime}) and expressed in Eq. 3, where dΔd_{\Delta} is the distance on the simplex, dSd_{S} is the distance on the hypersphere, cc serves as a reweighting factor that gives rise to equally valid phase space distances, α=116​π2​(c4)3−2​N3​N−4\alpha=\frac{1}{16\pi^{2}}\left(\frac{c}{4}\right)^{\frac{3-2N}{3N-4}} and β=14​π2​(c4)N−13​N−4\beta=\frac{1}{4\pi^{2}}\left(\frac{c}{4}\right)^{\frac{N-1}{3N-4}}. Further details of this metric calculation, we refer to Ref. [6].
+
+dΠ​(ρ→A,v→A′,ρ→B,v→B′)=α​dΔ2​(ρ→A,ρ→B)+β​dS2​(v→A′,v→B′)d_{\Pi}({\vec{\rho}}_{A},{\vec{v}}_{A}^{\prime};{\vec{\rho}}_{B},{\vec{v}}_{B}^{\prime})=\sqrt{\alpha\,d^{2}_{\Delta}({\vec{\rho}}_{A},{\vec{\rho}}_{B})+\beta\,d^{2}_{S}({\vec{v}}_{A}^{\prime},{\vec{v}}_{B}^{\prime})}
+
+(3)
+
+We calculated the pairwise distance between 10,000 events from a mixture of BH mass points with the B1 model assuming n=2n=2 as signal, and the QCD multijet sample as background. This is displayed as a two-by-two matrix of 10,000 points in each block in Fig. 3. While we can see that background-to-background comparisons yield smaller distances, generally it is really hard for humans to discriminate background vs signal based on this figure.
+
+Figure 3: Pairwise distance between 10,000 events in each category of signal (BH with mixture mass points) and background (QCD multijets).
+
+5 Machine learning tools
+
+To overcome the challenges of interpreting high-dimensional data, we employ advanced machine learning techniques. Specifically, we used a Support Vector Machine (SVM) [9], which is a distance-based tool that finds the optimal hyperplane to classify signal from background. Since our input representation is inherently geometric, the SVM provides a natural and interpretable choice. The output of the SVM is a probability of how signal-like a given event is. The distribution of the SVM score is displayed in Fig. 4. We optimized the selection criteria on this variable using the Punzi figure of merit [23], and found that a single global selection value at 0.63 is sufficient for all mass points, and certainly simplifies the analysis. Varying this threshold between 0.5 and 0.7 changes the signal yield by only 4–25%, depending on MBHM_{\text{BH}}. Unlike other ML approaches, here the input is a physically meaningful distance measure, making the results more interpretable than those from, for example, a neural network.
+
+Figure 4: SVM score distributions for simulated QCD multijets and selected black hole (with n=2n=2) and sphaleron models.
+
+6 Further observables
+
+We require all reconstructed objects to pass standard quality criteria and to have a transverse momentum pTp_{T} of at least 7070 GeV. The number of objects after these selections is denoted with NN and for the final results we consider only events with N>3N>3.
+
+Since signal events are expected to be highly spherical, we also used sphericity as a selection variable. Sphericity is calculated as shown in Eq. 4.
+
+S=2​λ2λ2+λ1,S=\frac{2\lambda_{2}}{\lambda_{2}+\lambda_{1}},
+
+(4)
+
+where λ1\lambda_{1} and λ2\lambda_{2} are the eigenvalues of the transverse momentum tensor Sx​yLS_{xy}^{L}, as defined in Eq. 5,
+
+Sx​yL=1∑ipT,i​∑i1pT,i​[px,i2px,i​py,ipx,i​py,ipy,i2],S_{xy}^{L}=\frac{1}{\sum_{i}p_{\text{T},i}}\sum_{i}\frac{1}{p_{\text{T},i}}\begin{bmatrix}p_{x,i}^{2}&p_{x,i}p_{y,i}\\
+p_{x,i}p_{y,i}&p_{y,i}^{2}\end{bmatrix},
+
+(5)
+
+where the index ii extends over all objects used in the analysis. We require all events to have S>0.1S>0.1.
+
+Another important variable is the scalar sum of the pTp_{T} of the objects used in the analysis, including the missing transverse momentum. It is calculated as shown in Eq. 6.
+
+ST=(∑i=1NpT,i)+pTmissS_{\text{T}}=\left(\sum_{i=1}^{N}p_{\text{T},i}\right)+p_{\text{T}}^{\text{miss}}
+
+(6)
+
+After requiring the sphericity selection, the SVM score vs. STS_{T} distributions are shown in Fig. 5 for simulated QCD multijet background (left) and a selected black hole signal with MD=2​TeVM_{D}=2~\text{TeV}, MB​H=10​TeVM_{BH}=10~\text{TeV} and n=2n=2 (right). A similarly great signal to background discrimination can be observed for all models.
+
+Figure 5: The SVM score vs. the STS_{T} distributions for simulated background (left) and a selected black hole signal model (right).
+
+7 Background prediction
+
+To avoid relying on the precise modeling of the high STS_{T} tails in the QCD simulations, we use a data-driven background prediction technique. We separate the data to a FAIL and PASS region, defined by the SVM score selection at 0.63, and perform a shape based analysis using the STS_{T} variable. We bin the STS_{T} distribution and fit in both regions simultaneously. We then calculate the predicted yields in the PASS region using Eq. 7, where we model the PASS-FAIL ratio,
+RP/F​(j)R_{\text{P/F}}(j) as an exponential function, and jj denotes the bin index.
+
+NPASSbkg​(j)=RP/F​(j)​NFAILbkg​(j)N_{\text{PASS}}^{\text{bkg}}(j)=R_{\text{P/F}}(j)\,N_{\text{FAIL}}^{\text{bkg}}(j)
+
+(7)
+
+We tested this method in a validation region, where we inverted the selection on the sphericity (S<0.1S<0.1), while keeping the other requirements the same. The prediction in this validation region shows good performance: the pulls between the data and prediction are centered at zero and have symmetric deviations.
+
+Figure 6 shows the post-fit STS_{T} distributions in the FAIL (left) and PASS (right) regions, together with two selected signal simulations with red and blue curves. The gray shaded area shows the statistical and systematic uncertainties on the background prediction. We do not observe any significant excess or deficit.
+
+Figure 6: Post-fit STS_{T} distributions in the FAIL (left) and PASS (right) regions. The red and blue curves represent two selected B1 signal examples as noted in the legend. The gray shaded area shows the statistical and systematic uncertainties on the background prediction.
+
+8 Results
+
+Given that we did not observe any excess or deficit, we set model-dependent 95% CL asymptotic limits on signal cross section of the 72 BH models considered. As an example, Fig. 7 shows the expected and observed 95% CL upper limits for B1 models with MD=2​TeVM_{D}=2~\text{TeV}. The theoretical cross section is displayed with the blue curve, which includes the latest recommended parton distributions functions, NNPDF3.1 [5]. The expected and observed excluded MBHM_{\text{BH}} is at 11.4 TeV.
+
+Figure 7: Expected and observed 95% CL upper limits for B1 models with MD=2​TeVM_{D}=2~\text{TeV}. The blue curves represent the theoretical cross section values.
+
+Following the same procedure, we can create a summary plot that shows the observed excluded MBHM_{\text{BH}} as a function of the MDM_{\text{D}}. Figure 8 shows these summary plots, in the left we see the the models with BlackMax, and in the right the models with Charybdis2. Different extra dimension values are denoted with solid, dashed, and dash-dot styles for the curves. The colors represent the different assumptions regarding angular momentum, energy-loss and the evaporation model.
+
+Figure 8: Excluded MBHM_{\text{BH}} values as a function of MDM_{\text{D}} and nn for a variety of BlackMax (left) and Charybdis2 (right) BH models.
+
+One can look at these results as an exclusion on the allowed number of extra dimensions as well. Figure 9 shows the maximum number of excluded extra dimensions as a function of MDM_{\text{D}}, MBHM_{\text{BH}} values for the BlackMax models. The results for Charybdis2 models are very similar. These results show that for the majority of the models, the only possible extra dimension allowed is 1. The points higher than 6 are understood as an overflow, given that we did not simulate any events with higher than n=6n=6.
+
+Figure 9: The maximum number of excluded extra dimensions as a function of MDM_{\text{D}}, MBHM_{\text{BH}} values for the BlackMax models. The points seen near nextramaxn_{\textrm{extra}}^{\textrm{max}} values of 2 and 6 are to be understood as underflow and overflow values given the simulation parameter choices at n=2,4,6n=2,4,6.
+
+The last interpretation is on the sphalerons. Figure 10 shows the observed limits on the pre-exponential factor for the sphaleron models with p⁡(NC​S)=0p(N_{CS})=0, 0.50.5 and 11 as a function of the sphaleron transition energy.
+
+Figure 10: Observed limits on the pre-exponential factor for the sphaleron models with p⁡(NC​S)=0.0p(N_{CS})=0.0, 0.50.5 and 11.
+
+9 Summary
+
+We presented a new method for representing collision data and utilized advanced machine learning tools to distinguish signals from background in the search for black holes and sphalerons at the LHC, using 138​fb−1138~\mathrm{~fb}^{-1} of data collected by the CMS detector at a center-of-mass energy of 13 TeV. We excluded microscopic black holes with masses below 9.0 - 11.4 TeV, extending previous exclusions by 1−1.6​TeV1{-}1.6~\text{TeV}. We excluded the number of extra dimensions more than 1 for a variety of masses and models. We presented limits on the sphaleron pre-exponential factor to be 5×10−45\times 10^{-4} to 2×10−32\times 10^{-3} which is a 10-fold increase with respect to the past results, presenting the best to date results.
+
+References
+
+[1]
+J. Alwall, S. Hoche, F. Krauss, N. Lavesson, L. Lonnblad, F. Maltoni, M. L. Mangano, M. Moretti, C. G. Papadopoulos, F. Piccinini, S. Schumann, M. Treccani, J. Winter, and M. Worek (2008)
+
+Comparative study of various algorithms for the merging of parton showers and matrix elements in hadronic collisions.
+
+Eur. Phys. J. C 53, pp. 473.
+
+External Links: 0706.2569,
+Document
+
+Cited by: §3.
+
+[2]
+I. Antoniadis, N. Arkani-Hamed, S. Dimopoulos, and G. R. Dvali (1998)
+
+New dimensions at a millimeter to a Fermi and superstrings at a TeV.
+
+Phys. Lett. B 436, pp. 257.
+
+External Links: hep-ph/9804398,
+Document
+
+Cited by: §1.
+
+[3]
+N. Arkani-Hamed, S. Dimopoulos, and G. R. Dvali (1998)
+
+The Hierarchy problem and new dimensions at a millimeter.
+
+Phys. Lett. B 429, pp. 263.
+
+External Links: hep-ph/9803315,
+Document
+
+Cited by: §1.
+
+[4]
+N. Arkani-Hamed, S. Dimopoulos, and G. R. Dvali (1999)
+
+Phenomenology, astrophysics and cosmology of theories with submillimeter dimensions and TeV scale quantum gravity.
+
+Phys. Rev. D 59, pp. 086004.
+
+External Links: hep-ph/9807344,
+Document
+
+Cited by: §1.
+
+[5]
+R. D. Ball et al. (2017)
+
+Parton distributions from high-precision collider data.
+
+Eur. Phys. J. C 77 (10), pp. 663.
+
+External Links: 1706.00428,
+Document
+
+Cited by: §8.
+
+[6]
+T. Cai, J. Cheng, N. Craig, G. Koszegi, and A. J. Larkoski (2024)
+
+The phase space distance between collider events.
+
+JHEP 09, pp. 054.
+
+External Links: 2405.16698,
+Document
+
+Cited by: §4.
+
+[7]
+CMS Collaboration (2008)
+
+The CMS experiment at the CERN LHC.
+
+JINST 3, pp. S08004.
+
+External Links: 1003.4038,
+Document
+
+Cited by: §1.
+
+[8]
+CMS Collaboration (2025)
+
+Search for microscopic black holes and sphalerons in proton-proton collisions at 13 TeV.
+
+ CERN, Geneva.
+
+Note: Physics Analysis Summary, CMS-PAS-EXO-24-028
+
+External Links: Link
+
+Cited by: §1.
+
+[9]
+C. Cortes and V. Vapnik (1995)
+
+Support-vector networks.
+
+Machine Learning 20 (3), pp. 273.
+
+External Links: Document
+
+Cited by: §5.
+
+[10]
+S. Creek, O. Efthimiou, P. Kanti, and K. Tamvakis (2007)
+
+Greybody factors for brane scalar fields in a rotating black-hole background.
+
+Phys. Rev. D 75, pp. 084043.
+
+External Links: hep-th/0701288,
+Document
+
+Cited by: §3.
+
+[11]
+S. Creek, O. Efthimiou, P. Kanti, and K. Tamvakis (2007)
+
+Scalar Emission in the Bulk in a Rotating Black Hole Background.
+
+Phys. Lett. B 656, pp. 102.
+
+External Links: 0709.0241,
+Document
+
+Cited by: §3.
+
+[12]
+D. Dai, G. Starkman, D. Stojkovic, C. Issever, E. Rizvi, and J. Tseng (2008)
+
+BlackMax: A black-hole event generator with rotation, recoil, split branes, and brane tension.
+
+Phys. Rev. D 77, pp. 076007.
+
+External Links: 0711.3012,
+Document
+
+Cited by: §3.
+
+[13]
+S. Dimopoulos and R. Emparan (2002)
+
+String balls at the LHC and beyond.
+
+Phys. Lett. B 526, pp. 393.
+
+External Links: hep-ph/0108060,
+Document
+
+Cited by: §3.
+
+[14]
+J. Ellis and K. Sakurai (2016)
+
+Search for Sphalerons in Proton-Proton Collisions.
+
+JHEP 04, pp. 086.
+
+External Links: 1601.03654,
+Document
+
+Cited by: §2.
+
+[15]
+R. Frederix, S. Frixione, V. Hirschi, D. Pagani, H. -S. Shao, and M. Zaro (2018)
+
+The automation of next-to-leading order electroweak calculations.
+
+JHEP 07, pp. 185.
+
+Note: [Erratum: JHEP 11, 085 (2021)]
+
+External Links: 1804.10017,
+Document
+
+Cited by: §3.
+
+[16]
+J. A. Frost, J. R. Gaunt, M. O. P. Sampaio, M. Casals, S. R. Dolan, M. A. Parker, and B. R. Webber (2009)
+
+Phenomenology of Production and Decay of Spinning Extra-Dimensional Black Holes at Hadron Colliders.
+
+JHEP 10, pp. 014.
+
+External Links: 0904.0979,
+Document
+
+Cited by: §3.
+
+[17]
+D. M. Gingrich and K. Martell (2008)
+
+Study of highly-excited string states at the Large Hadron Collider.
+
+Phys. Rev. D 78, pp. 115009.
+
+External Links: 0808.2512,
+Document
+
+Cited by: §3.
+
+[18]
+C. M. Harris, P. Richardson, and B. R. Webber (2003)
+
+CHARYBDIS: A Black hole event generator.
+
+JHEP 08, pp. 033.
+
+External Links: hep-ph/0307305,
+Document
+
+Cited by: §3.
+
+[19]
+F. R. Klinkhamer and N. S. Manton (1984)
+
+A Saddle Point Solution in the Weinberg-Salam Theory.
+
+Phys. Rev. D 30, pp. 2212.
+
+External Links: Document
+
+Cited by: §2.
+
+[20]
+B. Koch, M. Bleicher, and S. Hossenfelder (2005)
+
+Black hole remnants at the LHC.
+
+JHEP 10, pp. 053.
+
+External Links: hep-ph/0507138,
+Document
+
+Cited by: §3.
+
+[21]
+A. J. Larkoski and T. Melia (2020)
+
+Covariantizing phase space.
+
+Phys. Rev. D 102 (9), pp. 094014.
+
+External Links: 2008.06508,
+Document
+
+Cited by: §4.
+
+[22]
+A. Papaefstathiou, S. Plätzer, and K. Sakurai (2019)
+
+On the phenomenology of sphaleron-induced processes at the LHC and beyond.
+
+JHEP 12, pp. 017.
+
+External Links: 1910.04761,
+Document
+
+Cited by: §2.
+
+[23]
+G. Punzi (2003)
+
+Sensitivity of searches for new signals and its optimization.
+
+eConf 030908, pp. MODT002.
+
+External Links: physics/0308063
+
+Cited by: §5.
+
+[24]
+L. Randall and R. Sundrum (1999)
+
+A Large mass hierarchy from a small extra dimension.
+
+Phys. Rev. Lett. 83, pp. 3370.
+
+External Links: hep-ph/9905221,
+Document
+
+Cited by: §1.
+
+[25]
+L. Randall and R. Sundrum (1999)
+
+An Alternative to compactification.
+
+Phys. Rev. Lett. 83, pp. 4690.
+
+External Links: hep-th/9906064,
+Document
+
+Cited by: §1.
+
+[26]
+F. Scardigli (2020)
+
+Glimpses on the micro black hole Planck phase.
+
+Symmetry 12 (9), pp. 1519.
+
+External Links: 0809.1832,
+Document
+
+Cited by: §3.
+
+[27]
+K. Schwarzschild (1916)
+
+On the gravitational field of a mass point according to Einstein’s theory.
+
+Sitzungsber. Preuss. Akad. Wiss. Berlin (Math. Phys. ) 1916, pp. 189–196.
+
+External Links: physics/9905030
+
+Cited by: §1.
+
+[28]
+H. Stoecker (2007)
+
+Stable TeV - Black Hole Remnants at the LHC: Discovery through Di-Jet Suppression, Mono-Jet Emission and a Supersonic Boom in the Quark-Gluon Plasma.
+
+Int. J. Mod. Phys. D 16, pp. 185.
+
+External Links: hep-ph/0605062,
+Document
+
+Cited by: §3.
+
+[29]
+M. Trodden (1999)
+
+Electroweak baryogenesis.
+
+Rev. Mod. Phys. 71, pp. 1463.
+
+External Links: hep-ph/9803479,
+Document
+
+Cited by: §3.
+
+[30]
+S. -H. H. Tye and S. S. C. Wong (2015)
+
+Bloch Wave Function for the Periodic Sphaleron Potential and Unsuppressed Baryon and Lepton Number Violating Processes.
+
+Phys. Rev. D 92 (4), pp. 045005.
+
+External Links: 1505.03690,
+Document
+
+Cited by: §2.
+
+[31]
+H. Yoshino and V. S. Rychkov (2005)
+
+Improved analysis of black hole formation in high-energy particle collisions.
+
+Phys. Rev. D 71, pp. 104028.
+
+Note: [Erratum: Phys.Rev.D 77, 089905 (2008)]
+
+External Links: hep-th/0503171,
+Document
+
+Cited by: §3.
+
+[32]
+G. ’t Hooft (1976)
+
+Symmetry Breaking Through Bell-Jackiw Anomalies.
+
+Phys. Rev. Lett. 37, pp. 8.
+
+External Links: Document
+
+Cited by: §2.
+
+◄
+ 
+ Feelinglucky?
+ 
+ Conversionreport
+ Reportan issue
+ View originalon arXiv►
+
+Copyright
+Privacy Policy
+
+Generated by LaTeXML oxide

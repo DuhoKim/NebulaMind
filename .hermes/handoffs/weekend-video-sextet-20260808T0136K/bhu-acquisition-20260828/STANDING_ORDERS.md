@@ -1,8 +1,12 @@
-> **STATUS: DORMANT as of 2026-08-29 11:40 KST. Do not rely on this file.**
-> Cron `fa0e88e5` deleted. **Blanc is driving ticks directly** — I stalled three times writing
-> "next tick" against a cadence that left visible gaps, and rather than be asked a fourth time
-> the relay took it over. Nothing in this lane self-triggers. Kept only as the record of what ran
-> overnight.
+> **STATUS: ACTIVE, cron `fd850fae`, every 20 minutes, NO CLOCK BOUND.** An earlier version of
+> this file stopped at 21:00; Duho asked why, and the answer was that I had invented the number by
+> carrying over an overnight bound whose reason — him asleep, nobody reviewing — no longer applied.
+> The real boundaries are the MUST-STOP list below, plus: **stop if there is no work whose value
+> you can state in one sentence.**
+>
+> **The cron is session-only.** It dies when this session exits and nothing on disk restarts it.
+> If you are reading this in a later session, check `CronList`: if `fd850fae` is absent, these
+> orders describe a continuation that nothing honours. That confusion cost four relays today.
 
 # Standing orders — Tori, BHU lane. Overnight, bounded 09:00 KST.
 
