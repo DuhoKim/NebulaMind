@@ -14,34 +14,18 @@ written `<lane>` below.
 
 ---
 
-## 1. TWO OPEN QUESTIONS. Ten rulings today; the numerical-routes question was ruled twice.
+## 1. THREE OPEN QUESTION FILES, but only three items across them.
 
-| # | file | status |
+| # | file | what is actually open |
 |---|---|---|
-| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN, with the principal.** γ → counterfactual sign-vector/calibration mapping. `ref/gain_counterfactual_path.py` is built and refuses to run without one. |
-| 2 | `OPEN_QUESTION_V49_NORMATIVE_RESIDUE.md` | **OPEN, with the principal.** Three V49 findings whose repair changes a normative rule: **Row L's signing path still voids itself** (CODEX-V24 F1 raised again at V49, 25 drafts apart — the document carries it as a known-open item, which is not the same as freezable); the access log's **unconstrained refusal reasons** defeating the closed non-χ allowlist; and how the caller/run boundary should treat guards that **cannot fire at all**. |
+| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | γ → counterfactual sign-vector/calibration mapping. The path is built and refuses to run without one. |
+| 2 | `OPEN_QUESTION_V49_NORMATIVE_RESIDUE.md` | **One item only** — the access-log refusal vocabulary. The other two (Row L, unreachable guards) were ruled 16:02 and are in V52. The closed eight-code set is **drafted** in `PROPOSAL_ACCESS_LOG_REFUSAL_VOCABULARY.md`, awaiting the ask. |
+| 3 | `OPEN_QUESTION_V52_RESIDUE.md` | The ledger's unit (per-raise, should be per-call-site — a call-graph build), and `VOID-6.1L-WRONG-SIGNATURE` being P7-only while Row L signs at P0/P6/P7. |
 
-**Ruled 15:32 — `OPEN_QUESTION_PRE_UNBLINDING_NUMERICAL_ROUTES.md`: option B as a CLASS RULE.**
-Option A (ruled 14:32) was **withdrawn** after it failed on its own terms — no existing outcome
-honestly covers a degenerate calibration bin plus three distinct allocation-feasibility failures.
-`INCONCLUSIVE-BY-NUMERICAL-FAILURE` is added in V49.
+**Check §1 against disk.** The disk OPEN set must equal the table rows above:
 
-**Carry this, because the record looks self-contradictory without it:** a code was **deleted** at V46
-under option D (a *redundant claimant*) and one **added** at V49 under option B (*genuine absence*).
-Both rulings stand; §5 of the draft records both grounds.
-
-**48 raise sites are still unread. The class is a range — at least 31, at most 79 — and must not be
-reported as 31 because that is the figure with clean provenance.** Four branches are demonstrated
-reachable by execution; "nine raise sites" was raise-statements, not branches shown to fire.
-
-**Check §1 against disk.** Compare the disk's OPEN set with the **table rows** of §1 — not with every filename mentioned in the section, because §1 also *cites* ruled questions and a loose match counts those as open (it did, on this check's first real use):
-
-    # disk side
     grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md
-    # index side — table rows only, i.e. lines beginning "| <n> | `OPEN_QUESTION_"
     grep -oE '^\| [0-9]+ \| `OPEN_QUESTION_[A-Z0-9_.]+\.md`' <lane>/LANE_STATE_20260829.md
-
-The two must agree exactly.
 
 ## 2. CURRENT DRAFT — V51, BUILT, NOT DISPATCHED
 

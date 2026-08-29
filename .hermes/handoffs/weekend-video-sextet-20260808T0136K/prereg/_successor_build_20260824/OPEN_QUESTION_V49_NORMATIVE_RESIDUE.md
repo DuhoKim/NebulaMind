@@ -1,4 +1,4 @@
-**STATUS: OPEN** — with the principal. Three V49 findings whose repair changes what the study claims.
+**STATUS: OPEN — ONE ITEM ONLY.** Two of the three were ruled 2026-08-29 16:02 and are implemented in V52: **Row L** (qualify the void condition — closed, 25 drafts carried) and **unreachable guards** (third status `UNREACHABLE-BY-CONSTRUCTION` added). **What remains open is the access-log refusal vocabulary**, and its closed eight-code set is drafted in `PROPOSAL_ACCESS_LOG_REFUSAL_VOCABULARY.md` awaiting the ask.
 
 # OPEN QUESTION — three V49 findings I did not repair, and one of them is 25 drafts old
 
