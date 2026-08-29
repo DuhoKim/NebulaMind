@@ -530,6 +530,26 @@ reasonable and globally worse.
 `99f9cfa3` here. Neither trusted alone. A duplicate nudge costs seconds; a missing one cost three
 hours.
 
+### Postscript, 19:12 — the guard failed on its first use, in both possible ways
+
+The guard adopted at §1t was *"verify the edit landed by grep before committing."* Its **first
+application, on this very section**, did both of the things it exists to prevent:
+
+1. **The verification returned a false negative.** I grepped for `single point of failure`
+   against a heading reading `SINGLE POINT OF FAILURE`. **Case-sensitive.** The content was
+   there; the check said 0. *A narrow pattern, in the absence direction* — the day's defect, inside
+   the guard against the day's defect.
+2. **And it did not gate anything.** The grep *printed* `0` and the commit ran regardless, because
+   the check and the commit were sequential lines rather than a conditional. **A verification that
+   does not block is a log line.**
+
+Guard corrected: the verification must be `grep -qi <content> && git commit`, so a failed check
+**stops the commit** rather than decorating it.
+
+That the guard failed immediately is not an argument against it. It is the same argument as
+everything else here: **a control is worthless until you have watched it fail.** This one has now
+been watched.
+
 > **The rule: a control you cannot observe failing is not a control.** If the only evidence that a
 > mechanism works is that nothing has gone wrong, you have an untested assumption, not a guard.
 
