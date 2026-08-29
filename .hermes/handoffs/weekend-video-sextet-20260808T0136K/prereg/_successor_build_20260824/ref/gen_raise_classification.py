@@ -32,7 +32,11 @@ PLAN_INTERNAL = {986, 1331, 1341}   # 986: MOVE_CAP (below). 1331/1341: _plan ra
                        # l_plan and still need a disposition. NUMERICAL-PLANNING is gone as a class.
 WRAP = {168,1620,776}                             # propagation, not a distinct condition
 CALLER = {215,217,262,938,1464,1209,1020,1018,1022,1027,1032,1038,1040,1050,1053,1077,1099,1102,1108,1206,1460,1603,1675}
-INTEG = {64,856,858,860,862,864,867,872,876,885,887,889,891,1601,1605,1641,1643,1649,1677,1681,1687}
+INTEG = {64,856,858,860,862,864,867,872,876,885,887,889,891,1601,1605,1641,1643,1677,1681,1687}
+# 1649 (require_complete_sample) moved INTEGRITY -> CALLER (CODEX-V75 F6): the guard compares two
+# CALLER-SUPPLIED integers and verifies no parent-to-receipt partition - section 5's own recorded
+# limit says so, and the ledger contradicted the draft's recorded limit for four revisions.
+CALLER = CALLER | {1649}
 
 rows=[]
 for n in ast.walk(tree):

@@ -558,6 +558,15 @@ def main():
                         f"the draft claims refusal-checker digest {_m.group(1)}… but the live file "
                         f"is {_live}… — the compute-it-last rule, mechanised after three manual "
                         f"violations"))
+    # Registry staleness (CODEX-V75 F3): the registry records which draft generated it; if that is
+    # not the draft under lint, the registry describes yesterday's schemas. Blocking.
+    _reg = Path(args.draft).parent / "ref/STRING_FIELD_REGISTRY.md"
+    if _reg.exists():
+        _first = _reg.read_text().split("\n", 3)[2]
+        if Path(args.draft).name not in _first:
+            out.append(("string-registry-stale",
+                        f"the registry was generated from a different draft than the one under "
+                        f"lint — regenerate: {_first.strip()[:80]!r}"))
     if spec.exists():
         try:
             from lifecycle_derivation_check import check as _lc_check

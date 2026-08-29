@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V74_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V76_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -95,18 +95,25 @@
 | `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |
 | `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
-| `envelope.environment` | closed-vocab | v9 SLOT_SCHEMA | environment_record keys x pinned values |
+| `envelope.environment` | digest-ref | v9 SLOT_SCHEMA | the container: canonical JSON of the six leaves below, digested into the envelope |
 | `envelope.schema` | closed-vocab | v9 SLOT_SCHEMA | the literal successor_ref_v3/1 |
 | `envelope.slot` | closed-vocab | v9 SLOT_SCHEMA | SLOT_SCHEMA keys |
-| `nonslot.acceptance_evidence_projection` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.access_log_chain` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.adequacy_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.archive_seal_state_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.cutout_completion_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.label_set_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.lock_checkpoint_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.stage_completion_artifact` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
-| `nonslot.unblinding_receipt` | digest-ref | v9 SLOT_SCHEMA | authenticated per-class schema where defined |
+| `environment.byteorder` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
+| `environment.machine` | bounded-encoding | v9 SLOT_SCHEMA | RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real residual surface, named rather than dressed as closed |
+| `environment.numpy` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
+| `environment.platform` | bounded-encoding | v9 SLOT_SCHEMA | RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real residual surface, named rather than dressed as closed |
+| `environment.python` | bounded-encoding | v9 SLOT_SCHEMA | RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real residual surface, named rather than dressed as closed |
+| `environment.python_major_minor` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
+| `nonslot.acceptance_evidence_projection` | closed-vocab | v9 SLOT_SCHEMA | inventoried: three predicate bits |
+| `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above |
+| `nonslot.adequacy_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.archive_seal_state_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.cutout_completion_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.enumeration_surface` | closed-vocab | v9 SLOT_SCHEMA | inventoried: entry.* rows + explanation cause |
+| `nonslot.label_set_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.lock_checkpoint_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.stage_completion_artifact` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.unblinding_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
 | `baseline_verdict` | closed-vocab | §11 BS-3g | HELD | FAILED | PER-DRAW; informational |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |

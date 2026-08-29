@@ -75,20 +75,41 @@ _c("BS-6.producer_checksum_list", "digest-ref")
 # enumerated), extracted below from the envelope constructor rather than hand-listed.
 _c("envelope.slot", "closed-vocab", "SLOT_SCHEMA keys")
 _c("envelope.schema", "closed-vocab", "the literal successor_ref_v3/1")
-_c("envelope.environment", "closed-vocab", "environment_record keys x pinned values")
+# The environment's SIX LEAF FIELDS, extracted from environment_record() itself rather than
+# collapsed into one container row (GPT56-V75 F1, CODEX-V75 F2: "platform" is arbitrary interpreter
+# text, and one falsely-closed row hid six open ones). The honest constraints differ per leaf:
+# three are PINNED by require_environment (deviation refuses - a genuinely closed vocabulary of one
+# value each); three are RECORDED-UNPINNED - carried in the envelope, checked by nothing, and
+# therefore bounded only by their encodings. Saying which is which is the repair.
+_c("envelope.environment", "digest-ref",
+   "the container: canonical JSON of the six leaves below, digested into the envelope")
+_c("environment.python_major_minor environment.numpy environment.byteorder",
+   "closed-vocab", "pinned by require_environment - one frozen value each, deviation refuses")
+_c("environment.python environment.platform environment.machine",
+   "bounded-encoding", "RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real "
+   "residual surface, named rather than dressed as closed")
 _c("envelope.body_sha256 envelope.envelope_sha256", "digest-ref")
 # The enumerator SIGNATURE itself (GPT56-V74 F1: a valid signature still has degrees of freedom -
 # an ECDSA nonce is a covert channel wearing a validity proof). Constraint: the BS-2k keypair spec
 # MUST mandate a DETERMINISTIC scheme (Ed25519/RFC-6979), making the bytes a function of key+body
 # with no channel left.
 _c("entry.signature", "bounded-encoding", "deterministic scheme mandated at BS-2k - no nonce channel")
-# The seven declared NON-SLOT artifact classes (CODEX-V74 F1): each is digest-referenced here and
-# constrained by its own authenticated schema where it is defined; a class whose schema is not yet
-# written is a blocker there, not an omission here.
-_c("nonslot.access_log_chain nonslot.cutout_completion_receipt nonslot.acceptance_evidence_projection "
-   "nonslot.stage_completion_artifact nonslot.label_set_receipt nonslot.unblinding_receipt "
-   "nonslot.adequacy_receipt nonslot.archive_seal_state_receipt nonslot.lock_checkpoint_receipt",
-   "digest-ref", "authenticated per-class schema where defined")
+# The nine declared NON-SLOT artifact classes - HONEST STUBS, not pseudo-fields (GPT56-V75 F2,
+# CODEX-V75 F1: a class name in a field column was classification theatre). Three classes are
+# ALREADY inventoried field-by-field in this registry: the access-log chain (the event.* rows), the
+# enumeration surface (entry.* + cause), and the acceptance-evidence projection (its three predicate
+# bits). The remaining six have NO per-class field schema yet - each is SCHEMA-PENDING, its fields
+# unenumerable until the slot that defines it is filled, and its row says so instead of wearing a
+# constraint it does not have. A SCHEMA-PENDING class cannot carry data: its producer is blocked by
+# the same unfilled slot.
+_c("nonslot.access_log_chain", "closed-vocab", "inventoried: the event.* rows above")
+_c("nonslot.enumeration_surface", "closed-vocab", "inventoried: entry.* rows + explanation cause")
+_c("nonslot.acceptance_evidence_projection", "closed-vocab", "inventoried: three predicate bits")
+_c("nonslot.cutout_completion_receipt nonslot.stage_completion_artifact nonslot.label_set_receipt "
+   "nonslot.unblinding_receipt nonslot.adequacy_receipt nonslot.archive_seal_state_receipt "
+   "nonslot.lock_checkpoint_receipt",
+   "SCHEMA-PENDING", "fields unenumerable until the defining slot fills; producer blocked by the "
+   "same slot - a stub saying so, not a constraint it does not have")
 
 # (field, constraint, declared-where, note). Constraints: closed-vocab | bounded-encoding | digest-ref
 CONSTRAINTS = {
@@ -162,14 +183,22 @@ def envelope_fields():
     return {f"envelope.{n}" for n in names if n != "body"}
 
 NONSLOT = {f"nonslot.{n}" for n in (
-    "access_log_chain", "cutout_completion_receipt", "acceptance_evidence_projection",
-    "stage_completion_artifact", "label_set_receipt", "unblinding_receipt", "adequacy_receipt",
-    "archive_seal_state_receipt", "lock_checkpoint_receipt")}
+    "access_log_chain", "enumeration_surface", "acceptance_evidence_projection",
+    "cutout_completion_receipt", "stage_completion_artifact", "label_set_receipt",
+    "unblinding_receipt", "adequacy_receipt", "archive_seal_state_receipt",
+    "lock_checkpoint_receipt")}
+
+def environment_leaves():
+    """environment_record()'s own keys, from its dict literal - six leaves, not one container."""
+    import re as _re
+    src = V9.read_text()
+    body = _re.search(r"def environment_record.+?return \{(.+?)\}\n", src, _re.S).group(1)
+    return {f"environment.{k}" for k in _re.findall(r'"([a-z_]+)":', body)}
 
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

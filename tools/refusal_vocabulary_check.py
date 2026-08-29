@@ -133,11 +133,12 @@ def check(text: str):
             for tok in toks:
                 if tok in CODES:
                     pinned.add(tok)
-                # CODEX-V74 F3 (the V73 fix's mirror): with em-dash no longer splitting, one token's
-                # retirement could exempt a second non-member sharing the fragment. A retiring
-                # fragment may retire AT MOST ONE token - two non-members in one retirement fragment
-                # are both illegal, and drafters retire one code per sentence.
-                elif not RETIREMENT.search(frag) or len(nonmembers) > 1:
+                # CODEX-V74 F3: a retiring fragment may retire AT MOST ONE token. And GPT56-V75 F4:
+                # the exemption applies ONLY to tokens in the KNOWN retired set - a novel token
+                # cannot buy legality by standing next to the word "deleted", because retirement is
+                # a fact about this vocabulary's history, not a property of nearby prose.
+                elif (tok not in RETIRED or not RETIREMENT.search(frag)
+                      or len(nonmembers) > 1):
                     illegal.append(tok)
     if illegal:
         fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
@@ -273,6 +274,8 @@ CONTROLS = (
      lambda: _fixture() + "REFUSED-OLD was deleted; REFUSED-NEW is in force.\n", "R01"),
     ("an em-dash pair cannot share one retirement",
      lambda: _fixture() + "REFUSED-OLD was deleted — REFUSED-NEW is in force.\n", "R01"),
+    ("a novel token cannot buy legality from the word deleted",
+     lambda: _fixture() + "REFUSED-NOVEL was deleted long ago.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
