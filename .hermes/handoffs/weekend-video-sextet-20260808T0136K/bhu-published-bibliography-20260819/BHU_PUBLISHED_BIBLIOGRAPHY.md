@@ -207,8 +207,41 @@ CNS itself); a sufficiently heavy neutron star refutes S, and "sufficiently high
 2.5 M☉, although if one is completely confident of Bethe and Brown's upper limit of 1.5 solar
 masses, any value higher than this would be troubling." This **confirms Track C's central
 findings from the primary text**: CNS does not predict M_max ≈ 1.5 (that number is Brown–Bethe's
-instrument), and Smolin's own clean-refutation bar is 2.5 M☉ — unmet by any observed mass
-(C08/Track C adjudicated the instrument limb broken at ≥8σ; the 2.5 bar stands unreached).
+instrument).
+
+**STATUS REWRITTEN 2026-08-29 on Duho's ruling — TWO BRANCHES, no winner picked.** This row
+previously read "LIVE, 1.36σ short". That single number belonged to neither branch and rested on
+an uncertainty (±0.11) with no pinned origin; the published figure is ±0.17. Replaced by:
+
+| branch | measurement | instrument | vs the 2.5 M☉ bar |
+|---|---|---|---|
+| **A** | PSR J0740+6620, 2.08 ± 0.07 | relativistic Shapiro delay, radio timing | **6.0σ away — effectively dead** |
+| **B** | PSR J0952−0607, 2.35 ± 0.17 | Keck optical light curve + radial velocities of an irradiated companion | **0.88σ short — live, ~19% posterior above** |
+
+**What the two-branch form means, stated plainly: whether the BHU corpus has a live calibrated
+falsifier at all is ITSELF UNDECIDED** — and undecided for a nameable reason. Not because data
+are missing, but because **"well measured" is doing work nobody had unpacked.** Branch A says the
+corpus has zero live calibrated falsifiers; branch B says it has exactly one.
+
+> **My inference, and the whole two-branch framing rests on it.** Smolin writes *"Presently all
+> well measured neutron star masses are from binary pulsar data"*. Reading that as a **permanent
+> criterion** rather than a **description of the state of measurement in 2004** is a judgement
+> **I** supply and he did not. — Tori, 2026-08-29.
+
+**THE BAR IS GRADED AND THIS ROW NOW TRACKS BOTH.** The quotation above always carried it; the
+*tracking* collapsed to 2.5 alone. Smolin gives **2.5 M☉ for certain refutation** and **1.5 M☉ for
+"troubling"**, conditional on crediting Bethe–Brown. **The 1.5 bar was passed years ago — by both
+measurements above, including the radio-timed one, i.e. by exactly the instrument Smolin named.**
+His own factual premise, that all well-measured masses "are all below 1.5 M☉", is now false. A
+record tracking only the higher bar hides a fired condition.
+
+**Gravitational-wave leg, pinned 2026-08-29 AFTER the ruling and not covered by it.** GW190814's
+secondary is **2.50–2.67 M☉ (90%)** — the entire interval at or above the bar — and the discovery
+paper declines to classify it: *"either the lightest black hole or the heaviest neutron star."*
+The tension analysis (`2101.01735`) states the conditional and its own preferred
+M_TOV = 2.210 +0.116 −0.123 (2σ) puts the bar **above** that interval. So a third and fourth
+reading exist, pointing opposite ways. See `ENTRY31_STUDY.md` §6. **Not folded into Duho's
+two-branch ruling; flagged for him.**
 Footnote 6 concedes in print that S could be saved by ad-hoc parameter-coupling fixes and
 disclaims them absent independent support. Footnote 1 cites Rothman & Ellis (1993) [13] as the
 source of the open-universe correction — corroborating appendix A0's citation trail (their paper
@@ -216,9 +249,10 @@ itself remains unread). Reader's note (mine, not the text's): §3's Λ discussio
 conjecture ("one can conjecture that the present value of Λ maximizes the formation of black
 holes"), not a result.
 Record: the CNS audit chain's missing base entry, now read; Track C's published-record basis is
-upgraded to primary-source-confirmed. With entry 54, this gives the family a SECOND live
-calibrated falsifier — live at the author's stated 2.5 M☉ bar, with the caveat that its
-instrument limb (Brown–Bethe 1.5 M☉) is already broken per C08.
+upgraded to primary-source-confirmed. **Stale line corrected 2026-08-29:** this previously read
+"with entry 54, this gives the family a SECOND live calibrated falsifier". Entry 54 was
+subsequently demoted to QUALITATIVE-DIRECTIONAL, so entry 31 is the family's **only** candidate —
+and per the two-branch status above, whether it is live at all is undecided.
 Audit-worthiness: **high** — now discharged for the falsifier statement itself; entry 6 (CQG 9,
 173) remains the other primary text for the theory's original formulation.
 
