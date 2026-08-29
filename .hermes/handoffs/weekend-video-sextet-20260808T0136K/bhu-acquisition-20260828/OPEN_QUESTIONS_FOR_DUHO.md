@@ -202,6 +202,26 @@ you handed back and the first where my answer had to be rebuilt rather than trim
 I originally offered that as the answer. Both reviewers called it an evasion, and it was: the
 readable papers still need a policy.
 
+> ### THE CONDITION WAS DISCHARGED THE SAME NIGHT, AND THE ANSWER CAME BACK BAD
+>
+> I said: either measure what the screen misses, or say plainly we accept the risk. **I measured it,
+> and the screen leaks.** Eleven papers drawn at random from the pile it did *not* flag — the draw
+> committed before anything was opened — contain **at least two, possibly three** papers that meet
+> the impossibility rule. One reviewer found them by re-reading all eleven; **I had scored them
+> zero.** I misread one paper from the word "construct" in its abstract without opening its
+> theorems, and my own keyword check reported "no impossibility claims" for a paper whose central
+> result is that a certain matching *cannot be smooth*.
+>
+> **This does not overturn your decision, and I am not treating it as if it did** — but the reason I
+> gave for being relaxed about the screen's accuracy was that checking every flag makes its mistakes
+> affordable. **Checking flags cannot see a paper that was never flagged.** The measured miss rate is
+> now consistent with anywhere up to a third or a half of the unflagged pile, which is worse than
+> the "no worse than 19%" I would have reported had my own reading stood.
+>
+> **The honest position: option B still saves reading, and it now demonstrably loses papers.**
+> Whether that trade is acceptable is yours, and it is the one part of question 1 I should not
+> settle by myself twice in one night.
+
 **What is actually finished:** the screen flags three papers, all three have been read, one belonged,
 and this pass moved nothing. A full re-sort is not finished until the unflagged pile is sampled or
 you accept the unknown.

@@ -1,86 +1,103 @@
 #!/usr/bin/env python3
-"""B29 -- the miss-rate audit RESULT. Zero misses in eleven, and what that does and does not bound.
+"""B29 -- the miss-rate audit.  MY RESULT WAS ZERO. IT IS AT LEAST TWO. WITHDRAWN AND CORRECTED.
 
-The sample was drawn and COMMITTED BEFORE ANY PAPER WAS OPENED (b28, commit 932250d2c), seeded from
-a git sha that was already public. The judging rule was fixed in the same commit. Neither could be
-adjusted after seeing results.
+  CGATE_B29  MISSRATE_REFUTED_THREE_MISSES_IN_SAMPLE
+  AGATE_B29  MISSRATE_CONFIRMED_JUDGMENTS_BUT_REFUTED_FRAME
 
-  frame   31 readable BHU papers the screen did not flag
-  sample  [5, 7, 10, 24, 27, 36, 37, 40, 46, 49, 56]
-  rule    does the paper PROVE that no member of a specified class of models can satisfy a
-          specified conjunction of conditions -- refutable by counterexample, not by measurement?
+THE SEATS SPLIT AND IT IS RESOLVABLE ON THE SOURCES, WHICH I DID BEFORE WRITING THIS.
+AGATE confirmed my zero -- but its own verdict says it "specifically investigat[ed] Entries 49, 40,
+and 56", which are the three I NAMED IN THE BRIEF. It never examined entries 5 and 37. CGATE read
+all eleven and found two I had not flagged. And AGATE's arithmetic is wrong: it gives k=5 -> 7.3%
+and k=6 -> 3.6%, concluding the bound is 5. The true values are 9.12% and 5.26%, so the bound is 6.
+Verified here, and CGATE independently agrees. One seat did the work; the other checked my homework.
 
-WHAT WAS FOUND: NOTHING. Every one of the eleven is constructive, observational, or a review.
+THE TWO MISSES, verified in the pinned text by me, not accepted from a verdict:
 
-  5   examines Pathria's model via null-hypersurface matching. ZERO impossibility claims in it.
-  7   argues a measured binary WOULD FALSIFY a chain -- a falsifier tested by MEASUREMENT, which
-      the rule excludes by construction.
-  10  "minimal coupling between torsion and Dirac spinors" -- builds a bounce.
-  24  "We show ... there COULD BE a different universe outside" -- an existence claim, the
-      opposite shape.
-  27  a review of collapse-and-bounce.
-  36  "We construct the simplest solution ..."
-  37  "We construct a class of global exact solutions ..."
-  40  "We show that gravitational repulsion of torsion PREVENTS a singularity" -- its four
-      impossibility words are conditions INSIDE a constructive result ("must grow faster than",
-      "cannot be comoving and synchronous"), not a class-wide exclusion.
-  46  applies Bohr quantisation to the universe.
-  49  a dynamical taxonomy of false-vacuum bubbles. Its impossibility words are technical asides --
-      a discontinuity, a boundary, and a criticism of another paper's figure.
-  56  argues infinite-extent LCDM needs dark energy, then PROPOSES a finite-mass alternative.
-      Constructive, with a motivating critique.
+  ENTRY 5. Its central result: "It turns out that the matching is NOT SMOOTH, and in fact, the null
+  hypersurface is the history of a null shell admitting a surface pressure." No member of the stated
+  FRW/Schwarzschild null-junction class has a smooth shell-free matching. A smooth counterexample
+  would refute it; no measurement is involved. MY CHECK REPORTED "0 IMPOSSIBILITY-WORD HITS" for
+  this paper -- because my pattern had no "not smooth" and no "can only". A false absence from a
+  narrow pattern, for the seventh time in this lane.
+
+  ENTRY 37. "s_sigma(S) < 1 for all 0 < S <= 1, IF AND ONLY IF sigma <= 1/3", with Theorem 3 giving
+  shock speed 0, infinity, or 1 according as sigma <, >, or = 1/3. So no member of the stated exact
+  shock family with sigma > 1/3 is everywhere subluminal. An explicit parameter-space exclusion.
+  I RULED IT CONSTRUCTIVE FROM ITS ABSTRACT'S "We construct" AND NEVER LOOKED AT ITS THEOREMS.
+
+  ENTRY 49 is a third under the rule as preregistered -- it states that under exact spherical
+  symmetry and the weak energy condition "the initial singularity cannot be avoided", names the
+  Penrose theorem as the method and quantum WEC violation as the escape. CGATE notes the full proof
+  is delegated to the companion Farhi-Guth paper, so a "proof must be printed here" convention would
+  exclude it. THAT CONVENTION WAS NOT PREREGISTERED, so it is reported both ways rather than chosen
+  now -- choosing after seeing the result is exactly what preregistration exists to prevent.
+
+CGATE'S BOUNDARY, which is why 10 and 40 are still not misses: entries 10 and 40 establish a
+MECHANISM and exhibit its outcome, so "prevents a singularity" is constructive; entries 5 and 37
+EXCLUDE A REGION of a stated class. Without that line, any existence theorem could be relabelled an
+obstruction by negating it.
 """
-import sys
+import re, os, sys
 from math import comb
+_HERE=os.path.dirname(os.path.abspath(__file__))
+D=os.path.abspath(os.path.join(_HERE,".."))
 checks=[]
 def chk(n,p,d=""):
     if not isinstance(p,bool): raise TypeError("chk needs a computed predicate")
     checks.append((n,p,d)); print(("PASS " if p else "FAIL ")+n+("  -- "+d if d else ""))
 
-N,n,found=31,11,0
-print("="*98); print("B29 -- miss-rate audit result"); print("="*98)
-print(f"\n  frame {N}   sampled {n}   misses found {found}")
+N,n=31,11
+print("="*98); print("B29 -- miss-rate audit [ZERO WITHDRAWN; AT LEAST TWO]"); print("="*98)
 
-# exact hypergeometric upper bound: largest k with P(0 misses in sample | k misses in frame) >= 0.05
-def p0(k): return comb(N-k,n)/comb(N,n) if N-k>=n else 0.0
-k95=max(k for k in range(0,N+1) if p0(k)>=0.05)
-print(f"\n  EXACT FINITE-POPULATION BOUND (hypergeometric, no normal approximation):")
-for k in (1,2,3,4,5,6,8,10):
-    print(f"     if {k:>2} of {N} were misses, chance of drawing none in {n}: {p0(k)*100:5.1f}%")
-print(f"\n  95% upper bound: at most {k95} of the {N} unflagged papers are missed obstructions")
-print(f"  i.e. the miss rate is below {k95/N*100:.0f}% at 95% confidence -- AND NO TIGHTER")
-chk("COMPUTED: zero found in eleven excludes a GROSS miss rate but leaves a moderate one wide open",
-    k95 >= 5,
-    f"at most {k95} misses among {N}. A single hidden obstruction would survive this sample with "
-    f"{p0(1)*100:.0f}% probability -- which is why b28 said in advance that a clean result must not "
-    f"be read as 'recall is fine'")
-chk("PREREGISTERED: the sample and the judging rule were committed before any paper was opened, so "
-    "neither could be tuned to the outcome",
-    True is (found==0),
-    "commit 932250d2c carries the draw, the seed, the frame and the rule. The result is reported "
-    "against that fixed rule, not against one written afterwards")
+# CGATE: "B29 never opens or scores any of the eleven source files. Its result is hardcoded."
+E5=" ".join(open(os.path.join(D,"reviews/bhu-citation-custody-evidence-20260811/arxiv-1412.0105v1.txt"),errors="ignore").read().split())
+E37=" ".join(open(os.path.join(D,"bhu-reading-20260823/sources/0210105_clean.txt"),errors="ignore").read().split())
+chk("SOURCE-READ, not hardcoded: entry 5's own text states the matching is NOT SMOOTH and requires "
+    "a null shell -- an exclusion over its stated junction class",
+    "the matching is not smooth" in E5.lower() and "null shell" in E5.lower(),
+    "the previous version of this file never opened a single sampled paper; its result was the "
+    "literal `found = 0` assigned three lines above the check that 'verified' it")
+chk("SOURCE-READ: entry 37 carries an explicit iff partition excluding sigma > 1/3 from the "
+    "everywhere-subluminal condition",
+    "if and only if" in E37.lower() and "1/3" in E37,
+    "'s_sigma(S) < 1 for all 0 < S <= 1, if and only if sigma <= 1/3', plus Theorem 3. I ruled this "
+    "paper constructive from the word 'construct' in its abstract")
 
-print(f"""
-WHAT THIS SETTLES, AND IT IS LESS THAN IT LOOKS
+def ple(x,k): return sum(comb(k,i)*comb(N-k,n-i) for i in range(0,x+1) if 0<=n-i<=N-k)/comb(N,n)
+b2=max(k for k in range(N+1) if ple(2,k)>=0.05)
+b3=max(k for k in range(N+1) if ple(3,k)>=0.05)
+print(f"\n  observed misses: 2 definite (5, 37); 3 under the rule as written (adding 49)")
+print(f"  X=2 -> 95% upper bound {b2} of {N}  ({b2/N*100:.1f}%)")
+print(f"  X=3 -> 95% upper bound {b3} of {N}  ({b3/N*100:.1f}%)")
+chk("COMPUTED: the corrected bounds are far weaker than the withdrawn one and do NOT exclude a "
+    "gross miss rate -- they are consistent with a third to a half of the unflagged pile",
+    b2 >= 13 and b3 >= 16,
+    f"{b2}/{N} and {b3}/{N}. The withdrawn zero gave 6/31. CGATE reached the same two numbers "
+    f"independently. The likelihood is maximised near 5/31 for X=2")
+chk("ARITHMETIC: AGATE's tail probabilities are wrong, which is why its bound of 5 is wrong",
+    abs(comb(N-5,n)/comb(N,n)-0.0912)<0.001 and abs(comb(N-6,n)/comb(N,n)-0.0526)<0.001,
+    "AGATE: k=5 -> 7.3%, k=6 -> 3.6%. True: 9.12% and 5.26%. Not a judgement call")
 
-  The screen's miss rate is now MEASURED rather than unknown -- which was the condition I attached
-  to my own answer to question 1, and which I had wrongly called impossible to measure. It is below
-  {k95/N*100:.0f}% at 95% confidence.
+print("""
+WHAT THIS MEANS, and it reverses the headline
 
-  IT IS NOT "THE SCREEN HAS GOOD RECALL". {k95} missed obstructions among 31 unflagged papers would
-  be entirely consistent with this result. CGATE's costing stands: 19 reads to bound a 10% rate,
-  ~29 -- essentially a census -- to be confident about a single hidden case.
+  THE SCREEN LEAKS. A random sample of eleven unflagged papers contains at least two -- possibly
+  three -- papers that meet the preregistered obstruction rule. That is direct evidence, on a
+  preregistered draw, that verifying every flag does not make the screen safe: hand-checking flags
+  cannot see a paper that was never flagged.
 
-  A LIMITATION I CANNOT DESIGN AWAY. CGATE's protocol asks for reviewers BLINDED to screen status.
-  I built the frame by excluding the flagged papers, so I necessarily knew every sampled paper was
-  unflagged. What is preserved is that the RULE was fixed before reading and the SAMPLE before
-  looking; what is not is reviewer blinding. A second reader who does not know which papers the
-  screen flagged would be strictly better, and both seats are being asked to be that reader.
+  AND IT BEARS DIRECTLY ON A CLOSED DECISION. My answer to question 1 was "screen, then hand-check
+  every flag", with the condition "either run the miss-rate audit or explicitly accept the risk".
+  THE AUDIT IS RUN AND THE ANSWER IS ADVERSE. I am not silently reversing a closed decision;
+  the result is recorded against it and flagged for Duho.
 
-  AND ONE OBSERVATION THE SAMPLE MADE FOR FREE: of eleven papers drawn at random from this corpus,
-  ten are constructive and one is a measurement falsifier. NONE proves anything impossible. That is
-  consistent with the obstruction tier having exactly one member because the literature contains
-  approximately one such paper -- not because the screen is hiding others.
+  THE FREE OBSERVATION IS WITHDRAWN. I wrote that ten of eleven papers being constructive supports
+  the tier having one member because the literature holds about one such paper. CGATE: factually
+  wrong after source reading, and structurally invalid anyway -- a sample conditioned on what the
+  screen did not flag cannot estimate the literature's prevalence.
+
+  WORDING CORRECTED: 6/31 is 19.35%, so the withdrawn claim "below 19%" was false even on its own
+  terms; and a confidence bound is not a posterior probability about the realised population.
 """)
 n_=sum(1 for _,o,_ in checks if o)
 print(f"SELF-CHECKS: {n_}/{len(checks)} passed")
