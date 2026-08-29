@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V76_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V77_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -92,6 +92,12 @@
 | `BS-V.path` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
+| `canonical.entry_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
+| `canonical.explanation_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
+| `canonical.freeze_signature_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
+| `canonical.lock_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
+| `canonical.opening_authorization` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
+| `canonical.provenance_record` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
 | `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |
 | `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
@@ -99,10 +105,10 @@
 | `envelope.schema` | closed-vocab | v9 SLOT_SCHEMA | the literal successor_ref_v3/1 |
 | `envelope.slot` | closed-vocab | v9 SLOT_SCHEMA | SLOT_SCHEMA keys |
 | `environment.byteorder` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
-| `environment.machine` | bounded-encoding | v9 SLOT_SCHEMA | RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real residual surface, named rather than dressed as closed |
+| `environment.machine` | bounded-encoding | v9 SLOT_SCHEMA | printable ASCII <= 64 bytes, refused by the envelope verifier (successor layer); value unpinned - any conforming interpreter string passes |
 | `environment.numpy` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
-| `environment.platform` | bounded-encoding | v9 SLOT_SCHEMA | RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real residual surface, named rather than dressed as closed |
-| `environment.python` | bounded-encoding | v9 SLOT_SCHEMA | RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real residual surface, named rather than dressed as closed |
+| `environment.platform` | bounded-encoding | v9 SLOT_SCHEMA | printable ASCII <= 64 bytes, refused by the envelope verifier (successor layer); value unpinned - any conforming interpreter string passes |
+| `environment.python` | bounded-encoding | v9 SLOT_SCHEMA | printable ASCII <= 64 bytes, refused by the envelope verifier (successor layer); value unpinned - any conforming interpreter string passes |
 | `environment.python_major_minor` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
 | `nonslot.acceptance_evidence_projection` | closed-vocab | v9 SLOT_SCHEMA | inventoried: three predicate bits |
 | `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above |

@@ -68,6 +68,11 @@ _c("BS-1b.provenance", "digest-ref",
 _c("BS-3.antisymmetry_receipt BS-9.hdu_schema BS-9.tensor_layout BS-9.r1_r5_receipt "
    "BS-8p.allocation BS-8p.bin_algorithm", "digest-ref", "canonical sub-document, digest-referenced")
 _c("BS-8p.hc_rules_quotation", "digest-ref", "the HC-1H quotation-at-freeze, by digest")
+# Declared CANONICAL BODIES the extraction missed (CODEX-V76 F1): each is a canonical field-order
+# encoding with its own verifier, digest-referenced wherever it appears.
+_c("canonical.freeze_signature_body canonical.lock_body canonical.opening_authorization "
+   "canonical.entry_body canonical.explanation_body canonical.provenance_record",
+   "digest-ref", "canonical field-order encoding; detached signatures bind these digests")
 _c("BS-9.runner_prohibition BS-7p.environment", "closed-vocab", "declared clause/env sets")
 _c("BS-6.producer_checksum_list", "digest-ref")
 # The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
@@ -85,9 +90,14 @@ _c("envelope.environment", "digest-ref",
    "the container: canonical JSON of the six leaves below, digested into the envelope")
 _c("environment.python_major_minor environment.numpy environment.byteorder",
    "closed-vocab", "pinned by require_environment - one frozen value each, deviation refuses")
+# GPT56-V76 F1 / CODEX-V76 F2: "bounded-encoding" with no declared bound was a contradiction
+# inside one row. The bound now EXISTS and is enforced at the successor layer: the envelope
+# verifier refuses any of these three exceeding 64 bytes or leaving printable ASCII. Unpinned in
+# VALUE (any interpreter string within the bound passes), bounded in ENCODING (the constraint
+# column's actual claim) - both halves now true.
 _c("environment.python environment.platform environment.machine",
-   "bounded-encoding", "RECORDED-UNPINNED: interpreter-supplied text, refused nowhere - a real "
-   "residual surface, named rather than dressed as closed")
+   "bounded-encoding", "printable ASCII <= 64 bytes, refused by the envelope verifier "
+   "(successor layer); value unpinned - any conforming interpreter string passes")
 _c("envelope.body_sha256 envelope.envelope_sha256", "digest-ref")
 # The enumerator SIGNATURE itself (GPT56-V74 F1: a valid signature still has degrees of freedom -
 # an ECDSA nonce is a covert channel wearing a validity proof). Constraint: the BS-2k keypair spec
@@ -182,6 +192,9 @@ def envelope_fields():
     names |= {"body_sha256", "envelope_sha256"}
     return {f"envelope.{n}" for n in names if n != "body"}
 
+CANONICAL = {f"canonical.{n}" for n in (
+    "freeze_signature_body", "lock_body", "opening_authorization", "entry_body",
+    "explanation_body", "provenance_record")}
 NONSLOT = {f"nonslot.{n}" for n in (
     "access_log_chain", "enumeration_surface", "acceptance_evidence_projection",
     "cutout_completion_receipt", "stage_completion_artifact", "label_set_receipt",
@@ -198,7 +211,7 @@ def environment_leaves():
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
@@ -230,6 +243,9 @@ def main():
         out.append(f"\n**Classified but not found in the draft (stale rows, check the extractor):** "
                    f"{', '.join(f'`{s}`' for s in stale)}")
     (B / "ref/STRING_FIELD_REGISTRY.md").write_text("\n".join(out) + "\n")
+    n_pending = sum(1 for r in rows if "SCHEMA-PENDING" in r)
+    (B / "ref/_registry_counts.txt").write_text(
+        f"total={len(found) + len(v9f)} nonslot={len(NONSLOT)} pending={n_pending}\n")
     print(f"fields found {len(found) + len(v9f)}  classified "
           f"{len(found) + len(v9f) - len(missing)}  FORBIDDEN-BY-DEFAULT {len(missing)}  "
           f"stale {len(stale)}")

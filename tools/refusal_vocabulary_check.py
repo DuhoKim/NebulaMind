@@ -119,6 +119,7 @@ def check(text: str):
     # CODEX-V72 F6: "REFUSED-ZOMBIE is not deleted" contained the word "deleted" and was exempted -
     # a negated retirement is an ACTIVATION. The retirement word must not be negated just before it.
     RETIREMENT = re.compile(r"(?<!not )(?<!never )(deleted|merged|retired|superseded|GONE|does not survive)", re.I)
+    ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|governs", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
         # GPT56-V73 F4 / CODEX-V73 F6: one retirement word exempted every token ON THE LINE, so
@@ -133,12 +134,13 @@ def check(text: str):
             for tok in toks:
                 if tok in CODES:
                     pinned.add(tok)
-                # CODEX-V74 F3: a retiring fragment may retire AT MOST ONE token. And GPT56-V75 F4:
-                # the exemption applies ONLY to tokens in the KNOWN retired set - a novel token
-                # cannot buy legality by standing next to the word "deleted", because retirement is
-                # a fact about this vocabulary's history, not a property of nearby prose.
+                # CODEX-V74 F3: a retiring fragment may retire AT MOST ONE token. GPT56-V75 F4:
+                # the exemption applies ONLY to tokens in the KNOWN retired set. And GPT56-V76 F4 /
+                # CODEX-V76 F3: a retired token REACTIVATED in the same fragment as its historical
+                # retirement word ("was deleted but is hereby reinstated") rode the exemption -
+                # an activation word anywhere in the fragment defeats it.
                 elif (tok not in RETIRED or not RETIREMENT.search(frag)
-                      or len(nonmembers) > 1):
+                      or ACTIVATION.search(frag) or len(nonmembers) > 1):
                     illegal.append(tok)
     if illegal:
         fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
@@ -276,6 +278,8 @@ CONTROLS = (
      lambda: _fixture() + "REFUSED-OLD was deleted — REFUSED-NEW is in force.\n", "R01"),
     ("a novel token cannot buy legality from the word deleted",
      lambda: _fixture() + "REFUSED-NOVEL was deleted long ago.\n", "R01"),
+    ("a retired token cannot be reactivated beside its retirement",
+     lambda: _fixture() + "REFUSED-LOCK-NOT-OPEN was deleted but is hereby reinstated.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
