@@ -313,6 +313,43 @@ stale_gone = all("previously read" in text[max(0,i-120):i] for i in occurrences)
 for X to appear is *a record of X having been wrong*, the check is destructive. Absence tests over
 a corrected record are the natural habitat.
 
+## 1m. THE HABITAT SWEPT — and the risk factor is narrower than the shape
+
+Swept the battery for §1k's class. **24 absence-shaped predicates.** But shape is not the risk:
+
+> **An absence test is destructive only when it runs over a document WE MAINTAIN AND CORRECT.**
+
+Almost every absence test in this battery runs over a **pinned external source** — a paper we
+never edit. Those are safe: there is no correction to delete. The one that ran over a record we
+maintain — the bibliography — is the one that bit. **Population: one, already fixed.**
+
+A crude detector flagged four scripts; three were false positives, matching a *mention* of a
+maintained document in prose rather than a *test* over it. Same defect shape, caught before it
+was reported.
+
+No normative "X must not appear" rules exist in the bibliography's own prose.
+
+## 1n. THE PROBE'S TIER PARSER WAS SILENTLY INCOMPLETE
+
+Running the widened probe surfaced a hole in the probe itself. The tier regex used the class
+`[A-Z\- ]`, which cannot match the **`/ STATUS` suffix this bibliography uses deliberately**:
+
+    entry 7   Testability: **CALIBRATED-FALSIFIER / FIRED**
+    entry 51  Testability: **CALIBRATED-FALSIFIER / LIVE**
+
+Those entries got **no tier at all**, and the cross-reference loop's `if r in tiers` then **skipped
+them without a word.** I reported "entries currently tiered CALIBRATED-FALSIFIER: [7, 31], n=2".
+**The real answer is [7, 31, 51], n=3** — which is what Blanc's own briefing had said all along,
+and I did not reconcile my output against it.
+
+**A pattern that cannot see a legitimate variant produces a silent omission rather than an error.**
+The probe's coverage was incomplete and nothing said so. Repaired: tier and status are now parsed
+separately, so `CALIBRATED-FALSIFIER / LIVE` yields tier `CALIBRATED-FALSIFIER` and status `LIVE`.
+51 entries now carry a parsed tier, up from 50.
+
+**Result after repair:** 5 cross-references carrying a tier claim, all consistent or marked as
+quoted retractions. **0 unnamed population claims.** No new staleness anywhere in the bibliography.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:

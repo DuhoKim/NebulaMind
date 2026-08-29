@@ -30,15 +30,26 @@ def chk(name, pred, detail=""):
 
 # ---- 1. current tier of every entry -----------------------------------------------------------
 starts = [(int(m.group(1)), i) for i, l in enumerate(lines) if (m := re.match(r"^\*\*(\d+)\.\s", l))]
-blocks, tiers = OrderedDict(), OrderedDict()
+blocks, tiers, status = OrderedDict(), OrderedDict(), OrderedDict()
 for k, (n, i) in enumerate(starts):
     end = starts[k+1][1] if k+1 < len(starts) else len(lines)
     body = "\n".join(lines[i:end])
     if n in blocks: continue                      # ranked-list items reuse 1..5; keep the first
     blocks[n] = body
-    t = re.search(r"Testability:\s*\*\*([A-Z][A-Z\- ]+)\*\*", body)
-    if t: tiers[n] = t.group(1).strip()
+    # REPAIRED: the original class [A-Z\- ] could not match the "/ STATUS" suffix this
+    # bibliography uses deliberately -- entry 51 is "**CALIBRATED-FALSIFIER / LIVE**" and entry 7
+    # is ".../ FIRED". The match failed, the entry got no tier, and `if r in tiers` then SKIPPED
+    # it silently. A pattern that cannot see a legitimate variant produces a silent omission
+    # rather than an error, and the probe's coverage was incomplete without saying so.
+    t = re.search(r"Testability:\s*\*\*([A-Z][A-Z\-/ ]+)\*\*", body)
+    if t:
+        raw = t.group(1).strip()
+        tiers[n] = raw.split("/")[0].strip()      # tier proper
+        if "/" in raw: status[n] = raw.split("/", 1)[1].strip()   # FIRED / LIVE, kept separately
 print(f"1. PARSED {len(blocks)} entry blocks; {len(tiers)} carry an explicit tier")
+_cal = sorted(n for n, t in tiers.items() if t == "CALIBRATED-FALSIFIER")
+print(f"   CALIBRATED-FALSIFIER entries: {_cal}")
+print(f"   with an explicit status suffix: {dict(status)}")
 chk("COUNTED: tiers parsed for a majority of entries, so cross-refs can be checked against "
     "something", len(tiers) >= 20, f"{len(tiers)} tiers recovered")
 

@@ -7,30 +7,33 @@
 
 ## The headline
 
-**Entry 31's status is not yet a fact about the universe. It is a fact about which neutron star
-you accept as "well measured."**
+**Entry 31's status is not yet a fact about the universe. It is a fact about which compact object
+you accept as a well-measured neutron star.**
 
 Smolin (2004) predicts that a sufficiently heavy neutron star refutes cosmological natural
-selection. Against the same bar, from the same corpus:
+selection, and states his own bar: **2.5 M☉**. Against that single bar, from pinned sources, the
+corpus supports **four readings that disagree — including one on which the falsifier has already
+fired.**
 
-| accepted measurement | mass | instrument | distance from bar | P(above bar) |
-|---|---|---|---|---|
-| **PSR J0740+6620** | 2.08 ± 0.07 | relativistic Shapiro delay, radio timing | **6.0σ** | ~1 × 10⁻⁹ |
-| **PSR J0952−0607** | 2.35 ± 0.17 | Keck optical light curve + radial velocities | **0.88σ** | **19%** |
+| # | measurement | instrument | vs the 2.5 M☉ bar |
+|---|---|---|---|
+| 1 | PSR J0740+6620, 2.08 ± 0.07 | relativistic Shapiro delay, radio timing | **6.0σ away — effectively dead** |
+| 2 | M_TOV from GW170817, 2.210 +0.116 −0.123 (2σ) | gravitational waves, tidal deformability | **bar sits above the interval — excluded** |
+| 3 | PSR J0952−0607, 2.35 ± 0.17 | Keck optical light curve + radial velocities | **0.88σ short — live, ~19% above** |
+| 4 | GW190814 secondary, 2.50–2.67 (90%) — **if it is a neutron star** | gravitational waves | **entire interval at or above the bar — FIRES** |
 
-**Effectively dead, or live at one in five.** Nobody had noticed, because our record carried a
-single number — *1.36σ* — that sits between the two answers and belongs to neither. It came from
-an uncertainty (±0.11) with no pinned origin; the published value is ±0.17.
+**Read rows 2 and 4 together or you will misread this.** Both are gravitational-wave measurements
+of the maximum neutron-star mass, they come from the *same* analysis paper, and **they point in
+opposite directions.** GW190814 forces M_TOV ≳ 2.5 *if* its secondary was a neutron star; the same
+paper's preferred value from GW170817 puts the bar *above* its 2σ interval. A reader who sees only
+row 4 will conclude the falsifier has fired. A reader who sees only row 2 will conclude it cannot.
 
-**UPDATED 12:55 — the split is four-way, not two-way, and one branch FIRES.** The
-gravitational-wave leg is now pinned (§6). Adding it:
+**Nobody had noticed any of this**, because our record carried a single number — *1.36σ* — that
+belongs to none of the four rows. It rested on an uncertainty (±0.11) with no pinned origin
+against a published ±0.17.
 
-| instrument | value | against the 2.5 M☉ bar |
-|---|---|---|
-| radio timing, J0740+6620 | 2.08 ± 0.07 | **6.0σ away — dead** |
-| M_TOV from GW170817 | 2.210 +0.116 −0.123 (2σ) | **bar above the interval — excluded** |
-| black widow optical, J0952−0607 | 2.35 ± 0.17 | **0.88σ — live, 19%** |
-| GW190814 secondary, *if a neutron star* | 2.50–2.67 (90%) | **entire interval at or above — FIRES** |
+**Duho has ruled on rows 1 and 3: keep both, no winner picked.** Rows 2 and 4 were pinned after
+that ruling and he has not ruled on them.
 
 ---
 
