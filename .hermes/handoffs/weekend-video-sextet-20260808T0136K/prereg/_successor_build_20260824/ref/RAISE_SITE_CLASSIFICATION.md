@@ -4,16 +4,17 @@
 
 **Generated 2026-08-29 by AST enumeration; the CLASS column is a human reading, not a pattern match.** V50 §11 requires the classification be recorded per site — this is that record. It exists so a seat can check the reading line by line instead of accepting a count. **The counts below are a consequence of the table, not an input to it.**
 
-**Boundary applied** (V50 §5): a raise is a CALLER error if it tests a property of an argument as supplied; a run outcome if it tests a value computed from admissible data. INTEGRITY covers failures already claimed by a VOID antecedent. NUMERICAL-PLANNING fires before the run exists. WRAPPER re-raises another site's failure.
+**Boundary applied** (V50 §5): a raise is a CALLER error if it tests a property of an argument as supplied; a run outcome if it tests a value computed from admissible data. INTEGRITY covers failures already claimed by a VOID antecedent. WRAPPER re-raises another site's failure.
 
-- **CALLER** — 23
+**Planning failures are not run outcomes** (principal ruling, 2026-08-29). The three `local_pass` sites that fire during plan construction — L963, L973, L986 — are **CALLER**, marked *moved* below. They were briefly given their own class while this corpus was being classified; a failure that fires before a run exists cannot be a run outcome, because nothing has started that could be voided or declared inconclusive. They are moved rather than deleted: each is a setup error against a caller-supplied `l_plan` and still needs a disposition. `RAISE_CALLSITE_LEDGER.md` finds no path to them through `run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is *no run-time path found*, not *no run-time path exists*.
+
+- **CALLER** — 26
 - **INTEGRITY** — 60
 - **NUMERICAL** — 20
-- **NUMERICAL-PLANNING** — 3
 - **TYPED-OUTCOME** — 3
 - **WRAPPER** — 3
 
-**Total 112 raise nodes.** Sites marked *soft* are ones I am least sure of; if they read as CALLER instead, the numerical class drops from 22 to 18.
+**Total 112 raise nodes.** Sites marked *soft* are ones I am least sure of; if they read as CALLER instead, the numerical class drops from 20 to 18. Sites marked *moved* were reclassified by ruling, not by reading.
 
 | line | function | exception | class | | message |
 |---|---|---|---|---|---|
@@ -75,9 +76,9 @@
 | 889 | `validate_count_table` | `RuntimeError` | **INTEGRITY** |  | grouped total != ungrouped total — FAIL |
 | 891 | `validate_count_table` | `RuntimeError` | **INTEGRITY** |  | ungrouped total {} != pinned release total {} — FAIL |
 | 938 | `exact_min_subset` | `ValueError` | **CALLER** |  | exact mode only for <= N_EXACT candidates |
-| 963 | `local_pass` | `RuntimeError` | **NUMERICAL-PLANNING** |  | no subset reaches l_plan on retained counts |
-| 973 | `local_pass` | `RuntimeError` | **NUMERICAL-PLANNING** |  | greedy order never reaches l_plan on retained counts |
-| 986 | `local_pass` | `RuntimeError` | **NUMERICAL-PLANNING** |  | MOVE_CAP reached — FAIL |
+| 963 | `local_pass` | `RuntimeError` | **CALLER** | moved | no subset reaches l_plan on retained counts |
+| 973 | `local_pass` | `RuntimeError` | **CALLER** | moved | greedy order never reaches l_plan on retained counts |
+| 986 | `local_pass` | `RuntimeError` | **CALLER** | moved | MOVE_CAP reached — FAIL |
 | 1018 | `__init__` | `RuntimeError` | **CALLER** |  | mask field lengths disagree or mask is empty |
 | 1020 | `__init__` | `RuntimeError` | **CALLER** |  | mask carries non-finite or /c/ > 1 |
 | 1022 | `__init__` | `RuntimeError` | **CALLER** |  | mask has duplicate (brickid, objid) |
