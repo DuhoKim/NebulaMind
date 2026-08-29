@@ -14,41 +14,36 @@ written `<lane>` below.
 
 ---
 
-## 1. THREE OPEN QUESTION FILES, but only three items across them.
+## 1. THREE OPEN QUESTIONS
 
-| # | file | what is actually open |
+| # | file | what is open |
 |---|---|---|
-| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | γ → counterfactual sign-vector/calibration mapping. The path is built and refuses to run without one. |
-| 2 | `OPEN_QUESTION_V49_NORMATIVE_RESIDUE.md` | **One item only** — the access-log refusal vocabulary. The other two (Row L, unreachable guards) were ruled 16:02 and are in V52. The closed eight-code set is **drafted** in `PROPOSAL_ACCESS_LOG_REFUSAL_VOCABULARY.md`, awaiting the ask. |
-| 3 | `OPEN_QUESTION_V52_RESIDUE.md` | The ledger's unit (per-raise, should be per-call-site — a call-graph build), and `VOID-6.1L-WRONG-SIGNATURE` being P7-only while Row L signs at P0/P6/P7. |
+| 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | The γ → sign-vector mapping. **The feasibility check Duho authorised was RUN and is invalid as built** — see `FEASIBILITY_RESULT_GAIN_OPTION_B.md`; the passability question is still open. |
+| 2 | `OPEN_QUESTION_V52_RESIDUE.md` | The ledger's per-raise unit (needs a call-graph); `VOID-6.1L-WRONG-SIGNATURE` P7-only while Row L signs at P0/P6/P7. |
+| 3 | `OPEN_QUESTION_V54_RESIDUE.md` | **The evidence bar lets sampling establish a status named for a proof** (both seats); the post-unblinding double-claim has **recurred**; `NUMERICAL-PLANNING` is an unauthorised category; the 80,000-execution rerun has no pinned harness. |
 
-**Check §1 against disk.** The disk OPEN set must equal the table rows above:
+**Also open, from V53:** `OPEN_QUESTION_V53_RESIDUE.md` — the freeze-signature exemption is unbounded
+(no canonical body defines which bytes qualify), and BS-2v is UNRESOLVED for a self-reference its own
+checker disproves.
 
-    grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md
-    grep -oE '^\| [0-9]+ \| `OPEN_QUESTION_[A-Z0-9_.]+\.md`' <lane>/LANE_STATE_20260829.md
+**RULED AND APPLIED TODAY:** VOID option A; BS-6 slot (a), 15/8→16/8; VOID-5 option C; gain fork (b);
+citation check C + corpus D; rerun option A; `INCONCLUSIVE-BY-COMPUTATION` option D; numerical routes
+option B as a class rule; Row L qualify; the third status; **refusal vocabulary option A (V56)**.
 
-## 2. CURRENT DRAFT — V51, BUILT, NOT DISPATCHED
+## 2. CURRENT DRAFT — V56, BUILT, NOT DISPATCHED
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V51_20260829.md` = `e007e9cb940de1358b71c990b450f7346d9ac045b247ec367891dd476bbc6888`
+`<lane>/PREREG_SUCCESSOR_DRAFT_V56_20260829.md` = `c0743b40698e75b69451fd317adafae94d4f80d011b988dcb2e992496040d122`
 
-**Last refereed: V49** (`d8a9501e0653dd84`) — **NOT CLEAR ×2 at 15:47**, GPT56 7 findings (2 HIGH,
-5 MEDIUM), CODEX 3. **V49 was a genuine two-seat round**; the verdict is in the FINDINGS-BLOCK, not in
-prose — see §8c.
+**Last refereed: V54** (`b0ccbecc46e21677`) — NOT CLEAR ×2 at 19:58 (GPT56 5, CODEX 3).
 
-- **V50** `e3d0d65cca545040` — six V49 findings: the VOID antecedents named in the class rule's
-  precedence (both seats — the rule and the VOID clause had both claimed post-unblinding
-  non-finite/degenerate failures); the raise inventory recounted **by AST — 112 nodes including 39
-  `ManifestClosureError` the grep never saw**; the 31–79 range restated as an unsubtracted candidate
-  partition; the false §2.7(c) route removed; §11 classification moved to failure paths.
-- **V51** `e007e9cb940de135` — §2.1's branch contradiction qualified (recovered from the V11 commit),
-  and the predecessor memo's provenance repaired: it was **amended by append after signing**, so both
-  digests and the reason are now recorded.
+- **V55** `8e5c193c6b9c4032` — the Stage-P citation (KIMI never supported it; V42's "correction" was
+  also wrong), L1464 → CALLER (class 22→21), the artifact's stale STATUS line.
+- **V56** `c0743b40698e75b6` — **the refusal vocabulary, ruled option A**: eight codes, no catch-all,
+  the principle written in as the test, B and C recorded as refused, and the derivation pinned by
+  fingerprint with `tools/refusal_vocabulary_check.py` failing when §6.1's gate columns move.
 
-**Not dispatched on purpose.** Three normative V49 findings are with the principal and a round would
-re-find them.
-
-**Checkers on V51:** counts 16 P / 8 E prose-matched; trace 50 transitions, 0 problems;
-`void_registry` self-test 6/0; lint exits 0.
+**Checkers on V56:** counts 16/8; trace 55 transitions, 0 problems; lint exits 0; **refusal vocabulary
+0 problems**.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
