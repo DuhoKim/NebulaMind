@@ -768,16 +768,23 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 "note": ("the mechanism is frozen and refereed; the TEXT is neither — "
                          "this row is what stands between here and a freeze-candidate"),
             })
-    # Tori's phase work lives in bhu-theory-phase* under the sextet handoff dir,
-    # NOT in bhu-track — pointing at the wrong directory rendered "no artifact
-    # seen" for a lane that had just closed Phase 3, which is worse than no row.
+    # Tori's work moves between lane directories under the sextet handoff dir —
+    # bhu-theory-phase*, then bhu-acquisition-*, and it will move again. Globbing
+    # one prefix and taking the last by NAME froze this row 9h behind on
+    # 2026-08-29: her live verdicts were in bhu-acquisition-20260828 while
+    # "bhu-theory-*" sorted last alphabetically and won. The same wrong-directory
+    # mistake cost a "seat is dead" misreport the night before, so the fix is to
+    # stop guessing the directory: scan every bhu-* lane and let the newest
+    # artifact decide which lane is current.
     sextet = REPO / ".hermes/handoffs/weekend-video-sextet-20260808T0136K"
-    phases = sorted((d for d in sextet.glob("bhu-theory-phase*") if d.is_dir()),
-                    key=lambda d: d.name)
-    if phases:
-        cur = phases[-1]
-        files = sorted((f for f in cur.rglob("*.md") if f.is_file()),
+    lanes_t = [d for d in sextet.glob("bhu-*") if d.is_dir()]
+    if lanes_t:
+        files = sorted((f for d in lanes_t for f in d.rglob("*.md") if f.is_file()),
                        key=lambda f: f.stat().st_mtime, reverse=True)
+        cur = (files[0].parent if files else lanes_t[0])
+        # Walk up to the lane root so the label names the lane, not a subdir.
+        while cur.parent != sextet and cur != sextet:
+            cur = cur.parent
         newest = files[0] if files else None
         # The verdict comes from the newest VERDICT file, not the newest file of
         # any kind. Reading only files[0] meant a lane sitting under an
@@ -805,13 +812,26 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 verdict, verdict_file = first[:64], f
                 break
         out.append({
-            "lane": f"BHU theory / audit ({cur.name.replace('bhu-theory-', '')})",
+            "lane": f"BHU theory / audit ({cur.name.replace('bhu-theory-', '').replace('bhu-', '')})",
             "who": "Tori",
             "detail": (newest.name[:52] if newest else "no artifact seen"),
-            "latest_gate": newest.name if newest else None,
+            # latest_gate must name the file the VERDICT came from. It used to
+            # carry the newest file of any kind, so the row displayed
+            # "latest_gate: OPEN_QUESTIONS_FOR_DUHO.md" beside a verdict read
+            # from a different file hours earlier — a field asserting more than
+            # it evaluated, which is the exact defect both lanes spent
+            # 2026-08-28 finding in their own harnesses.
+            "latest_gate": (verdict_file.name if verdict_file
+                            else (newest.name if newest else None)),
             "verdict": verdict,
-            "gate_age_h": (round((time.time() - newest.stat().st_mtime) / 3600.0, 1)
-                           if newest else None),
+            # Age of the VERDICT, not of the lane's newest scratch file. A lane
+            # that writes notes hourly around a stale gate was reading 0.3h.
+            "gate_age_h": (round((time.time() - verdict_file.stat().st_mtime) / 3600.0, 1)
+                           if verdict_file else
+                           (round((time.time() - newest.stat().st_mtime) / 3600.0, 1)
+                            if newest else None)),
+            "activity_age_h": (round((time.time() - newest.stat().st_mtime) / 3600.0, 1)
+                               if newest else None),
             "duho_items": _duho_decision_items(cur),
             "pin_mismatches": _pin_mismatches(cur),
             "note": None,
