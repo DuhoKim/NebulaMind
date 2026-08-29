@@ -1,41 +1,39 @@
 #!/usr/bin/env python3
-"""REFUSAL VOCABULARY CHECK — the access log's closed refusal set, and the derivation it rests on.
+"""REFUSAL VOCABULARY CHECK — the access log's ELEVEN codes, and the guard the catch-all needs.
 
-The principal ruled option A on 2026-08-29: eight codes, closed, **no catch-all**. That ruling has no
-escape hatch, and the only thing that makes it safe is a derivation claim:
-
-    the vocabulary is closed BECAUSE §6.1's row table is closed
-    (Row B is the only path to sealed bytes; Row R's default is forbidden)
-
-**A derivation stated in prose is a claim. This makes it a check.** The lane has spent two days on
-exactly the shape where a document asserts something a reader cannot verify, so the closure argument
-gets a control rather than a paragraph.
-
-What this cannot do, stated plainly
------------------------------------
-It cannot *generate* eight codes from prose — the mapping from a row table to refusal categories is a
-reading, not a parse. What it can do, and what actually matters, is **detect that the basis changed**:
-it fingerprints the gate-bearing structure of §6.1 (the rows, their phases, their authorising
-preconditions and their void columns) and fails when that fingerprint moves away from the one pinned
-beside the vocabulary.
-
-That is the honest form of the guarantee. When it fails it does not say "here are the new codes"; it
-says **the derivation must be redone and the set re-pinned, not extended by hand** — which is the
-instruction the ruling attaches.
-
-Measured behaviour of the fingerprint, 2026-08-29, before anything relied on it
+WHAT CHANGED, AND IT IS AN INVERSION — read this before trusting a green result
 ------------------------------------------------------------------------------
-A control that fires on noise stops being read — that is how the void_registry self-test sat red for
-four drafts while its output was quoted. So the stability claim was tested rather than assumed:
+This module previously enforced a CLOSED eight-code set with NO catch-all, and its central control
+(R02/R05) demanded that the draft pin a **derivation fingerprint** over §6.1's gate-bearing columns.
+That fingerprint existed to detect the invalidation of a **closure argument**.
 
-    stable when a whole new section is appended            yes
-    stable when prose inside a row description is edited   yes
-    moves when a gate-bearing column changes (row id)      yes
-    identical across V52, V53 and V54                      yes  <- three real drafts, §6.1 untouched
+**On 2026-08-29 at 22:18 the principal ruled that non-closure is established and took the catch-all,
+formally reversing the no-catch-all decision of 19:52.** Two independent closure derivations had been
+written and both were broken within an hour of being written — the first missed the availability class
+entirely; the second rested on *"permitted is binary and evaluated before the attempt"*, which is false
+in two directions (a permission check can die before deciding; a write's conformance cannot be judged
+before its payload is read).
 
-The last line is the one that matters: across three consecutive drafts that changed §5, §7.1, §11 and
-the preamble, the fingerprint did not move once. It is sensitive to the thing the derivation depends
-on and deaf to everything else.
+**So the fingerprint control is INVERTED here, deliberately and loudly:** pinning a
+`refusal-vocabulary-derivation` fingerprint is now a FAILURE (R02), because there is no closure claim
+for it to protect, and **a control that reports health about a claim nobody makes is worse than no
+control.** A reader who remembers the old behaviour would otherwise read a silent inversion as a bug.
+
+What this checks
+----------------
+    R01  the draft pins a vocabulary that is not the ruled eleven-code set
+    R02  the draft pins a derivation fingerprint, or claims the set is closed
+    R03  the draft does not state the principle (request/authorisation state, never the object)
+    R04  the draft does not forbid free text in the refusal-reason field
+    R05  the draft does not state the CATCH-ALL GUARD
+
+**R05 is the load-bearing one now.** A catch-all whose count is never reviewed becomes the vocabulary;
+the ruling attached the guard for exactly that reason, and the guard is the only thing standing between
+`REFUSED-UNCLASSIFIED` and a free-text field with one legal value.
+
+`row_fingerprint()` is retained for diagnosis and **gates nothing**. It is the corrected version — it
+includes the `may touch` column, whose omission let both seats rewrite Row B's surface to unrestricted
+access without moving the digest (GPT56-V56 F1, CODEX-V56 F1).
 """
 
 import hashlib
@@ -43,50 +41,53 @@ import re
 import sys
 from pathlib import Path
 
-CODES = (
+AUTHORISATION = (
     "REFUSED-ROW-NOT-AUTHORISED",
     "REFUSED-OUTSIDE-STATED-SURFACE",
     "REFUSED-PRECONDITION-UNVERIFIED",
     "REFUSED-PHASE-NOT-REACHED",
-    "REFUSED-LOCK-NOT-OPEN",
-    "REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET",
-    "REFUSED-SCHEMA-NONCONFORMING",
-    "REFUSED-CEREMONY-CONSUMED",
+    "REFUSED-LOCK-OR-CEREMONY-STATE",
 )
+AVAILABILITY = (
+    "REFUSED-OBJECT-ABSENT",
+    "REFUSED-OBJECT-UNREADABLE",
+    "REFUSED-OBJECT-INCOMPLETE",
+    "REFUSED-INTEGRITY-MISMATCH",
+)
+CONFORMANCE = ("REFUSED-SCHEMA-NONCONFORMING",)
+CATCH_ALL = ("REFUSED-UNCLASSIFIED",)
+CODES = AUTHORISATION + AVAILABILITY + CONFORMANCE + CATCH_ALL
+
+# Codes from the superseded eight-code set that must NOT reappear. Both were removed for a reason and
+# both would pass a naive "is it a REFUSED-* token" check.
+RETIRED = {
+    "REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET": "describes the OBJECT; deleted, not reworded",
+    "REFUSED-LOCK-NOT-OPEN": "merged into REFUSED-LOCK-OR-CEREMONY-STATE",
+    "REFUSED-CEREMONY-CONSUMED": "merged into REFUSED-LOCK-OR-CEREMONY-STATE",
+}
 
 ERRORS = {
-    "R01": "the draft pins a refusal vocabulary that is not the ruled eight-code set",
-    "R02": "§6.1's gate-bearing structure no longer matches the fingerprint pinned with the set — "
-           "the derivation must be redone and the set re-pinned, never extended by hand",
-    "R03": "the draft does not state the principle the closure rests on (request/authorisation "
+    "R01": "the draft pins a refusal vocabulary that is not the ruled eleven-code set",
+    "R02": "the draft pins a derivation fingerprint or claims closure — non-closure was ruled "
+           "established on 2026-08-29, so there is no closure claim for a control to protect",
+    "R03": "the draft does not state the principle the vocabulary rests on (request/authorisation "
            "state, never the object)",
     "R04": "the draft does not forbid free text in the refusal-reason field",
-    "R05": "the draft pins no derivation fingerprint at all",
+    "R05": "the draft does not state the CATCH-ALL GUARD — that every REFUSED-UNCLASSIFIED emission "
+           "is a defect enumerated at freeze, never a routine outcome",
 }
 
 ROW_RE = re.compile(r"^\|\s*([A-Z][0-9]?)\s*\|")
 
 
 def row_fingerprint(text: str) -> str:
-    """Digest the gate-bearing columns of §6.1 — the structure the derivation actually depends on.
-
-    Deliberately NOT the whole row: prose edits inside a row's description must not trip this, or the
-    control becomes noise and gets ignored, which is how a check stops being read.
-    """
+    """Digest §6.1's gate-bearing columns. RETAINED FOR DIAGNOSIS; GATES NOTHING."""
     parts = []
     for line in text.splitlines():
-        m = ROW_RE.match(line)
-        if not m:
+        if not ROW_RE.match(line):
             continue
         cols = [c.strip() for c in line.split("|")]
         # row id, MAY TOUCH (the stated surface), when (phase), authorized-by, what voids the run.
-        #
-        # cols[3] — the surface — was omitted when this shipped, and both seats broke it in one
-        # round (GPT56-V56 F1, CODEX-V56 F1): rewriting Row B's surface to unrestricted access left
-        # the fingerprint unchanged. The derivation claims the vocabulary is closed BECAUSE the
-        # surfaces are closed, so a fingerprint blind to the surface cannot check that claim at all.
-        # I excluded it reaching for insensitivity to prose edits and excluded the load-bearing
-        # column instead.
         keep = [cols[1]] + [cols[i] if len(cols) > i else "" for i in (3, 4, 5, 7)]
         parts.append("\x1f".join(re.sub(r"[*`]", "", k) for k in keep))
     return hashlib.sha256("\x1e".join(parts).encode()).hexdigest()
@@ -101,20 +102,35 @@ def check(text: str):
     pinned = set(re.findall(r"`(REFUSED-[A-Z-]+)`", text))
     if pinned and pinned != set(CODES):
         missing, extra = sorted(set(CODES) - pinned), sorted(pinned - set(CODES))
-        fail("R01", f"missing {missing}, extra {extra}")
+        revived = [c for c in extra if c in RETIRED]
+        note = f"missing {missing}, extra {extra}"
+        if revived:
+            note += f"; RETIRED CODE REVIVED: {[(c, RETIRED[c]) for c in revived]}"
+        fail("R01", note)
     elif not pinned:
         fail("R01", "no REFUSED-* codes found")
 
-    m = re.search(r"refusal-vocabulary-derivation:\s*`([0-9a-f]{64})`", text)
-    if not m:
-        fail("R05")
-    elif m.group(1) != row_fingerprint(text):
-        fail("R02", f"pinned {m.group(1)[:16]}…, computed {row_fingerprint(text)[:16]}…")
+    if re.search(r"refusal-vocabulary-derivation:\s*`[0-9a-f]{64}`", text):
+        fail("R02", "a 64-hex fingerprint is pinned")
+    else:
+        # SCOPED to the vocabulary. An unscoped search for "closed set" fired on
+        # invariance_outcome's HELD/FAILED/NOT-EVALUATED token set in a different section - a control
+        # reporting a closure claim that was never made, which is the same wrong-scope defect this
+        # lane keeps finding. A closure claim must mention the vocabulary ON THE SAME LINE.
+        for line in text.splitlines():
+            if re.search(r"closed\s+(set|vocabulary)", line, re.I) and \
+               re.search(r"REFUSED-|refusal[- ]reason|refusal vocabulary", line, re.I):
+                fail("R02", f"a closure claim about the vocabulary: {line.strip()[:70]!r}")
+                break
 
-    if not re.search(r"never describe the\s+\*{0,2}OBJECT|never the\s+\*{0,2}OBJECT", text, re.I):
+    if not re.search(r"never describe the\s+\*{0,2}OBJECT|never the\s+\*{0,2}OBJECT|"
+                     r"may\s+\*{0,2}never\*{0,2}\s+describe the\s+\*{0,2}object", text, re.I):
         fail("R03")
     if not re.search(r"no free text", text, re.I):
         fail("R04")
+    if not (re.search(r"enumerated at freeze", text, re.I)
+            and re.search(r"REFUSED-UNCLASSIFIED", text)):
+        fail("R05")
     return out
 
 
@@ -122,45 +138,63 @@ def check(text: str):
 # Controls. Each asserts its OWN code — "something refused" is not detection.
 # ---------------------------------------------------------------------------
 
-def _fixture(codes=CODES, principle=True, freetext=True, fp=None, rows=True):
-    body = []
-    if rows:
-        body += ["| B | Store mediator | conduit | Any | BS-2k | log | unlogged refusal |",
-                 "| R | Every other process | nothing | Pre-unblinding | — | — | any access |"]
-    txt = "\n".join(body) + "\n"
-    txt += "The reason may describe the request and the authorisation state, never the OBJECT.\n" if principle else ""
-    txt += "The field carries exactly one code: no free text.\n" if freetext else ""
+def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint=False,
+             closed=False):
+    txt = "| B | Store mediator | conduit | Any | BS-2k | log | unlogged refusal |\n"
+    if principle:
+        txt += "The reason may describe the request and the authorisation state, never the OBJECT.\n"
+    if freetext:
+        txt += "The field carries exactly one code: no free text.\n"
+    if guard:
+        txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at freeze, "
+                "never a routine outcome.\n")
     txt += "".join(f"- `{c}`\n" for c in codes)
-    txt += f"refusal-vocabulary-derivation: `{fp if fp else row_fingerprint(txt)}`\n"
+    if fingerprint:
+        txt += f"refusal-vocabulary-derivation: `{'a' * 64}`\n"
+    if closed:
+        txt += "The closed set of REFUSED- codes is pinned above.\n"
     return txt
 
 
 CONTROLS = (
-    ("a ninth code is pinned", lambda: _fixture(CODES + ("REFUSED-OTHER",)), "R01"),
-    ("a code is dropped", lambda: _fixture(CODES[:-1]), "R01"),
-    ("the row table changed under the pin", lambda: _fixture(fp="0" * 64), "R02"),
+    ("a twelfth code is pinned", lambda: _fixture(CODES + ("REFUSED-OTHER",)), "R01"),
+    ("the catch-all is dropped", lambda: _fixture(CODES[:-1]), "R01"),
+    ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
+    ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
+    ("the set is called closed", lambda: _fixture(closed=True), "R02"),
     ("the principle is absent", lambda: _fixture(principle=False), "R03"),
     ("free text is not forbidden", lambda: _fixture(freetext=False), "R04"),
+    ("the catch-all guard is absent", lambda: _fixture(guard=False), "R05"),
+)
+
+# A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
+# and every positive control would still pass - the shape that let a fingerprint miss the surface
+# column for four drafts.
+NEGATIVE_CONTROLS = (
+    ("an unrelated closed set does not fire R02",
+     lambda: _fixture() + "invariance_outcome takes one token from the closed set HELD/FAILED.\n",
+     "R02"),
 )
 
 
 def self_test() -> int:
     fails = []
-    good = _fixture()
-    codes = {c for c, _ in check(good)}
+    codes = {c for c, _ in check(_fixture())}
     if codes:
         fails.append(f"clean fixture refused: {sorted(codes)}")
     for name, build, want in CONTROLS:
         got = {c for c, _ in check(build())}
         if want not in got:
             fails.append(f"{name}: expected {want}, got {sorted(got) or 'nothing'}")
-    # R05 must be reachable, or a document with no fingerprint would pass silently
-    if "R05" not in {c for c, _ in check(_fixture().replace("refusal-vocabulary-derivation:", "x:"))}:
-        fails.append("R05: a missing fingerprint was not detected")
+    for name, build, must_not in NEGATIVE_CONTROLS:
+        got = {c for c, _ in check(build())}
+        if must_not in got:
+            fails.append(f"{name}: {must_not} fired and must not have")
     for f in fails:
         print(f"  FAIL {f}")
-    unexercised = set(ERRORS) - {w for _, _, w in CONTROLS} - {"R05"}
-    print(f"  self-test: {len(CONTROLS) + 2} controls, {len(fails)} failure(s)"
+    unexercised = set(ERRORS) - {w for _, _, w in CONTROLS}
+    print(f"  self-test: {len(CONTROLS) + len(NEGATIVE_CONTROLS) + 1} controls "
+          f"({len(NEGATIVE_CONTROLS)} negative), {len(fails)} failure(s)"
           + (f"; UNEXERCISED {sorted(unexercised)}" if unexercised else "; every code controlled"))
     return 1 if fails else 0
 
@@ -175,8 +209,7 @@ def main() -> int:
     if not args:
         print("usage: refusal_vocabulary_check.py DRAFT.md | --self-test | DRAFT.md --fingerprint")
         return 2
-    text = Path(args[0]).read_text()
-    problems = check(text)
+    problems = check(Path(args[0]).read_text())
     for code, msg in problems:
         print(f"  [{code}] {msg}")
     print(f"  refusal vocabulary: {len(problems)} problem(s)")
