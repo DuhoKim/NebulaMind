@@ -12,7 +12,14 @@ UNREACH_MEAS = set()   # WITHDRAWN V54 - the harness froze the budget argument
 NUM = {1123,1134,1153, 1369,1397,1401,1403,1411,1435,1437,1439,1442,
        1462,1468, 1503,1513,1517,1537,1548,1554}
 SOFT = {1462,1468}                      # domain-vs-computed, named as uncertain
-PLAN = {963,973,986}   # MOVED to CALLER by principal ruling 2026-08-29: a planning failure fires
+PLAN = {963,973}          # caller/setup: infeasible against a SUPPLIED l_plan
+PLAN_INTERNAL = {986}     # MOVE_CAP: an internal cap against a frozen constant, fired AFTER a
+                          # feasible prefix exists. NOT a caller error - calling it one violated
+                          # the supplied-argument boundary (GPT56-V64 F4, CODEX-V64 F6). NOT an
+                          # outcome class either: no terminal consequence, because a failure
+                          # before a run exists cannot terminate a run. The draft said
+                          # PLANNING-INTERNAL and this generator still said CALLER - the text
+                          # moved and the ledger did not, which is the drift I keep repairing.   # MOVED to CALLER by principal ruling 2026-08-29: a planning failure fires
                        # before a run exists, so it cannot be a run outcome of any kind - nothing has
                        # started, so nothing can be voided or declared inconclusive. The sites are
                        # MOVED and not deleted: they are setup errors against a caller-supplied
@@ -36,10 +43,11 @@ for n in ast.walk(tree):
     elif ln in UNREACH_MEAS: cls="UNREACHABLE-MEASURED-ONLY"
     elif ln in NUM: cls="NUMERICAL"
     elif ln in WRAP: cls="WRAPPER"
+    elif ln in PLAN_INTERNAL: cls="PLANNING-INTERNAL"
     elif ln in CALLER or ln in PLAN: cls="CALLER"
     elif ln in INTEG: cls="INTEGRITY"
     else: cls="UNASSIGNED"
-    note = "moved" if ln in PLAN else ("soft" if ln in SOFT else "")
+    note = "moved" if (ln in PLAN or ln in PLAN_INTERNAL) else ("soft" if ln in SOFT else "")
     rows.append((ln, owner.get(ln,"?"), et, cls, note, msg[:70]))
 rows.sort()
 from collections import Counter
@@ -63,7 +71,10 @@ out.append("**Planning failures are not run outcomes** (principal ruling, 2026-0
            "classified; a failure that fires before a run exists cannot be a run outcome, because "
            "nothing has started that could be voided or declared inconclusive. They are moved rather "
            "than deleted: each is a setup error against a caller-supplied `l_plan` and still needs a "
-           "disposition. `RAISE_CALLSITE_LEDGER.md` finds no path to them through "
+           "disposition. **L986 is PLANNING-INTERNAL** - a disposition, not an outcome class, carrying no "
+           "terminal consequence - because MOVE_CAP is an internal cap against a frozen constant "
+           "that fires after a feasible prefix exists, so it is not an error in any supplied "
+           "argument. `RAISE_CALLSITE_LEDGER.md` finds no path to them through "
            "`run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is "
            "*no run-time path found*, not *no run-time path exists*.\n")
 for k,v in sorted(c.items()): out.append(f"- **{k}** — {v}")

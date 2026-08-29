@@ -219,6 +219,30 @@ and arriving at the worst moment, because **the freeze signature covers the text
   stratification, and define stratification here. *Cost:* partial inheritance needs its own argument,
   for the same reason as (a).
 
+### 5c. ADDED 23:04 — you told me to name the input Row F needs. It is χ-bearing on BOTH axes
+
+**The expected answer was "drop the |χ| axis and the stratification becomes χ-free." That is false.**
+The stratum index is **machine-committee state × |χ| tertile**, and the committee state is *"agree-
+confident / disagree / low-confidence"* over two classifiers **judging handedness** — a per-object
+machine handedness judgement. Under this document's own rule that **doubt resolves toward χ-bearing**,
+both axes are χ-derived. **There is no χ-free version of HC-1H's stratification that keeps its
+structure; a χ-free one would be a different design.**
+
+**And the cost of redefining is smaller in one way than feared and harder in three others.** Validity
+survives: `a` is a population-weighted mean with a **global** noise correction, so it estimates the
+same quantity under any partition, and HC-1H says it itself — *"a bad allocation costs efficiency,
+never validity."* **But:** `N_HC_STRATA = 9` is a **frozen constant in v9**, so a different number of
+strata cannot be expressed without unfreezing; **σ_a would rise, and σ_a is exactly what the power
+floor tests**, so an efficiency cost can still turn a passing gate into `INCONCLUSIVE-BY-POWER`; and
+the natural χ-free substitute axis is **image quality, which §2.7 measures as correlated with the axis
+under test** — coupling the calibration to the signal geometry.
+
+**Three ways, and I am not choosing.** **(A)** accept χ-derived strata and restructure Row F — the
+allocation stays sealed, and V65's precommitted traversal now forbids the adaptive requests that turned
+χ-conditioning into a log channel. **(B)** redefine χ-free — a new design, nine strata or nothing,
+paid for in precision. **(C)** keep the strata and move construction out of Row F — relocates the
+χ-conditioning rather than resolving it.
+
 ### The ordering, because it changes what you are choosing between
 
 **5b has to be answered before 5a can be repaired well.** Which surface repair is right depends on what
