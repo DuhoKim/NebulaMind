@@ -6,7 +6,48 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — one, and it is a tier change so it is yours
+## OPEN — two, both tier changes, both yours
+
+### 6. A paper that proves an impossibility AND carries your one live falsifier. Which label leads?
+
+**The stake.** Entry 51 (Popławski 2010) is one of your two live calibrated falsifiers. Reading it
+for the census showed its **title result is a proven impossibility**: a Dirac field in
+Einstein–Cartan gravity cannot be a point, a system of points, or (under stated symmetry) the
+singular ring — a real derivation, not a hope. **Both reviewers read the paper in full and agree
+the proof is rigorous.** The mass floor your falsifier hangs on is a *corollary* of it.
+
+**So the paper is genuinely two things, and the reviewers split on which one the label should name:**
+
+| | says | reasoning |
+|---|---|---|
+| Reviewer B (GPT) | **Re-tier to impossibility-proof; keep the falsifier as a secondary claim.** | The no-go is the title, the abstract's first result, and the whole point of the analysis. The tiers describe claim shapes; they are not a ranking where a number beats a theorem. The floor is downstream, heuristic, and currently *unreproduced from the paper's own inputs*. |
+| Reviewer A (Gemini) | **Keep calibrated-falsifier; theorem into the notes.** | An empirical falsifier is the higher-information label: it can kill the physical theory with data. The theorem restricts model space; the falsifier tests the world. |
+
+**Option 1 — keep the tier, theorem in the notes** *(already done as common ground — the precise
+proven domain is now in the entry either way)*. *Costs:* the standing table's "4 calibrated" keeps
+counting a paper whose operative result is a proof. *Gains:* your live-falsifier bookkeeping is
+untouched.
+
+**Option 2 — re-tier, floor as secondary.** *Costs:* one of your two LIVE rows leaves the standing
+table, and every "two live falsifiers" sentence in the record needs re-deriving. *Gains:* the label
+names what the paper actually does.
+
+**Option 3 — allow dual labels for this one paper.** You already answered a shape like this for
+entry 44 ("one paper, two claim-level objects"). *Costs:* a schema change. *Gains:* nothing is
+suppressed.
+
+**My recommendation: option 1.** Not because Reviewer A's ranking argument is right — Reviewer B is
+right that the tiers aren't ordinal — but because the *cost asymmetry* is: option 2 rewrites live
+bookkeeping across the record for a labelling gain, and the theorem is now fully recorded either
+way. If you ever adopt claim-level labels corpus-wide, this paper is the first candidate.
+
+**What is already done regardless:** the precise proven domain is in the entry (both reviewers
+wanted that), the over-broad abstract wording is flagged, and the conjecture is separated from the
+theorem. Nothing waits on this.
+
+---
+
+
 
 ### 5. One paper may be filed under a label that says the opposite of what it does
 

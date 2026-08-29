@@ -430,7 +430,18 @@ Record: harvest #11; parentage construction beyond isotropy.
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
 DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALITATIVE-DIRECTIONAL by a blind re-classification, upheld by two independent gates (`bhu-theory-phase6-curvature-20260827/`: CGATE_ENTRY51_VERDICT.md, codex gpt-5.5; AGATE2_ENTRY51_VERDICT.md, hermes gpt-5.6-sol). READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg (~10⁴³ GeV).
+Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALITATIVE-DIRECTIONAL by a blind re-classification, upheld by two independent gates (`bhu-theory-phase6-curvature-20260827/`: CGATE_ENTRY51_VERDICT.md, codex gpt-5.5; AGATE2_ENTRY51_VERDICT.md, hermes gpt-5.6-sol). READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular — **proven domain made precise 2026-08-30** (`b34`, both
+seats read the paper in full and AGREE the Papapetrou argument is a rigorous derivation, not an
+expectation): *in ECKS, under the paper's Dirac-field and Papapetrou multipole assumptions, a
+nonzero Dirac field cannot be a single-pole point distribution or a system of such points
+(N^ijk = 0 → Σ^ijk = 0 → ψ = 0, a contradiction); under the additional symmetry assumptions used
+for the Dirac–Kerr–Newman construction, it cannot be the singular ring considered there.* The
+abstract's unrestricted "one- or two-dimensional surfaces" wording exceeds the proof — the
+string-to-ring step is introduced by "from symmetry considerations we expect" — and the
+all-fermionic-collapse claim is the paper's own conjecture, not this theorem. **The seats SPLIT on
+whether this dual paper should be re-tiered to THEORETICAL-OBSTRUCTION with the floor as a
+secondary claim (CGATE) or keep CALIBRATED-FALSIFIER with the theorem in prose (AGATE) — filed as
+open question 6; tier UNCHANGED pending Duho.** Original one-liner; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg (~10⁴³ GeV).
 **The author's stated test is the LHC route**, verbatim: "Therefore the Large Hadron Collider (LHC), which can operate at energies up to ~10⁴ GeV, cannot produce micro black holes … if the four-dimensional ECKS theory is a correct theory of gravity." One-sided and positive-detection only: a confirmed black hole far below the ~10¹⁶ kg floor fires it; a null LHC search fires nothing. LIVE/unfired. **MEASUREMENT SIDE PINNED 2026-08-29** — this previously read "CMS reports no
 evidence for microscopic black holes as of 2025-12" with **no citation of any kind**. Now
 receipted: `2604.10732_clean.txt` (CMS, 13 TeV, 138 fb⁻¹) excludes semiclassical black holes and

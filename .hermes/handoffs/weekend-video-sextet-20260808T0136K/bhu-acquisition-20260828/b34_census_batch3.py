@@ -1,6 +1,30 @@
 #!/usr/bin/env python3
 """B34 -- census batch 3: entries 51, 31, 12 adjudicated against the obstruction rule.
 
+GATED 2026-08-30:  AGATE_B34 BATCH3_CONFIRMED  /  CGATE_B34 BATCH3_REFUTED_ENTRY51_TIER_AND_DRAW
+
+TWO OF MY CLAIMS WITHDRAWN AFTER THE GATE:
+  1. "RECORDED NOWHERE" WAS FALSE. Entry 51's prose already carried "Dirac fields in ECKS cannot be
+     singular". The real gap was narrower: the PRECISE PROVEN DOMAIN was missing -- points, systems
+     of points, and the symmetry-limited ring, separated from the paper's own conjecture about all
+     fermionic collapse. Now recorded, in CGATE's wording, which AGATE's disposition also asked for.
+  2. THE DRAW-REPRODUCIBILITY CLAIM IS WITHDRAWN. I drew with rng.choice() in a throwaway shell
+     block and NEVER COMMITTED THE DRAW CODE. CGATE recomputed under the recorded b28 convention
+     (.sample on the natural pool orderings) and got entries 26 and 11 -- not 31 and 12. My choice()
+     calls may have been deterministic, but an unverifiable draw protects against nothing: I could
+     have rerolled and no one could tell. BATCH 3's ADJUDICATIONS STAND AS GATED FULL READS (both
+     seats read all three papers); THE BATCH DOES NOT COUNT AS A RANDOM SAMPLE. Future draws: commit
+     the ordered pools and the executable selection rule BEFORE drawing, as b28 did and this batch
+     did not.
+
+THE SEATS SPLIT ON ENTRY 51's TIER -- both agree the theorem is a rigorous derivation; they
+disagree on the disposition of a dual paper. CGATE: the operative-contribution test selects
+THEORETICAL-OBSTRUCTION ("the no-go is the title, the abstract's opening result, the stated purpose
+... calling CALIBRATED-FALSIFIER the higher-information label has no support in the taxonomy -- the
+classes distinguish claim shapes; they are not an ordinal scale"). AGATE: "an empirical falsifier
+is the higher-information label over a mathematical restriction on model space" -- keep the tier,
+theorem in prose. TIER CHANGE + SUBSTANTIVE SPLIT = double stop condition. FILED AS QUESTION 6.
+
 DRAW: the CGATE_B32 section-5 alternation -- one high (51, highest remaining count), one middle
 (31, random from the 3-5 hit stratum), one low (12, random from {11,12}). Seed 469c023fba2a, the
 batch-2 commit, public before the draw.
