@@ -234,6 +234,14 @@ main path and not `--self-test` for four drafts. Running a checker is not the sa
 - Never modify a subject while a seat is reviewing it. The POST-CHECK exists for exactly this, and
   doing it once already cost GPT56's round-4 findings.
 - **The shell here is zsh, which does NOT word-split an unquoted parameter.** `for c in "prog --flag"; do python3 $c; done` passes the whole string as one filename. Worse, it produced a *false green*: the probe printed `exit=0` beside every failure, because `$?` was read after an intervening command. All seven self-tests above were re-run explicitly and pass on V36 — that is the checked claim; the first run was a broken harness, not broken code.
+- **PROVENANCE WARNING, 2026-08-29 13:2x.** `PREREG_SUCCESSOR_DRAFT_V43_20260829.md`,
+  `LANE_STATE_20260829.md` and `BRIEF_V43_REVIEW.md` were **committed by the sibling BHU lane** in
+  `36fe5cfdf probe(bhu): stale cross-entry claims`, not by a DESI commit. That lane commits with a
+  repo-wide `git add -A`, so my files were staged by its sweep before my own commit ran — and my
+  commit then found nothing to stage and did not exist. **The work is committed and intact; only its
+  message is misleading.** `git log --oneline -- <path>` is the reliable way to date this lane's
+  artifacts, never `git log` alone. This hazard was already in the operating notes below; today it
+  actually fired.
 - A sibling lane commits with repo-wide `git add -A` and has swept DESI files into BHU commits.
   Check `git log -- <path>` before assuming your commit carried your files.
 
