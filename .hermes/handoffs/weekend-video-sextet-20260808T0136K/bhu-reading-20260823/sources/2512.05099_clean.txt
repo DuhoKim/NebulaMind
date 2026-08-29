@@ -1,0 +1,394 @@
+[2512.05099] [2512.05099] PSR J0952-0607: Tightening a Record-High Neutron Star Mass
+
+[2512.05099] PSR J0952-0607: Tightening a Record-High Neutron Star Mass
+
+PSR J0952-0607: Tightening a Record-High Neutron Star MassJournal: ApJL
+
+Roger W. Romani
+
+OrcID: 0000-0001-6711-3286
+
+Affiliation: Department of Physics, Stanford University, Stanford, CA 94305, USA
+
+  
+Maya Beleznay
+
+OrcID: 0000-0003-1285-8170
+
+Affiliation: Department of Physics, Stanford University, Stanford, CA 94305, USA
+
+  
+Alexei V. Filippenko
+
+OrcID: 0000-0003-3460-0103
+
+Affiliation: Department of Astronomy, University of California, Berkeley, CA 94720-3411, USA
+
+  
+Thomas G. Brink
+
+Affiliation: Department of Astronomy, University of California, Berkeley, CA 94720-3411, USA
+
+  
+WeiKang Zheng
+
+Affiliation: Department of Astronomy, University of California, Berkeley, CA 94720-3411, USA
+
+Abstract
+ 
+We report on new orbit-minimum photometry and revised radial-velocity fitting that provide an improved measurement of the mass of the neutron star (NS) in pulsar PSR J0952−-0607 at MNS=2.35±0.11​M☉M_{\rm NS}=2.35\pm 0.11\,M_{\sun}. With its fast spin and unusually low magnetic field, this NS has evidently experienced unusual evolution, likely connected with its high mass, which is now 2.5​σ2.5\sigma above that of the heaviest pulsar with a white dwarf companion, as measured by Shapiro delay techniques. By tightening the mass measurement, we also raise the maximum (commonly called Tolman-Oppenheimer-Volkoff) NS mass to MTOV>2.27​M⊙M_{\rm TOV}>2.27\,M_{\odot} (2.12​M⊙)(2.12\,M_{\odot}) at 1​σ1\sigma (3​σ)(3\sigma) confidence, which improves bounds on the dense-matter equation of state. While the statistical error decreases and systematic issues should be modest, uncertainties remain; we comment briefly on these factors and prospects for further improvement.
+
+ 
+
+Keywords: pulsars: general — pulsars: individual (PSR J0952−-0607)
+
+I Introduction
+
+Pulsar PSR J0952−-0607 (hereafter J0952) is the fastest spinning Galactic disk pulsar with Ps=1.41P_{s}=1.41 ms and, with a 20-corrected P˙obs=4.6×10−21​s​s−1{\dot{P}_{\rm obs}}=4.6\times 10^{-21}\,{\rm s\,s^{-1}}, has among the lowest pulsar surface dipole fields at 8.2×1078.2\times 10^{7} G (5). As a black-widow pulsar, it heats the face of its low-mass (0.03​M⊙0.03\,M_{\odot}) companion. 18 reported on model fits to Keck imaging and spectroscopy of this companion which gave a large neutron star (NS) mass of MNS=2.35±0.17​M☉M_{\rm NS}=2.35\pm 0.17\,M_{\sun}.
+
+While “spider” (black-widow/redback) mass measurements depend on optical modeling and are thus less “clean” than pure dynamics estimates from pulsar timing using general relativistic effects, such precision timing is typically achieved only for pulsars with compact [white dwarf (WD) or NS] companions. However, the spiders (with longer, slower mass-transfer phases) may approach the Tolman-Oppenheimer-Volkoff limit MTOVM_{\rm TOV}, the maximum mass allowed by the dense-matter equation of state (3, EOS;). Thus, precision measurements of these objects can be particularly important. J0952 plays a special role in this quest. Its modest heating flux and low companion fill factor make this object relatively immune from model systematics, at the cost of a low flux that makes the observations challenging. The modest heating ensures that the source is nearly flare-free and that the systematic uncertainties due to the hot spots, winds, and other factors present in other spider binaries with stronger companion heating are not present. A simple direct-heating model provides the best fit, minimizing model systematics. Since the EoS model constraining the power of this record-high mass depends on its lower bound, it is desirable to tighten the measurement. We report here on new Keck photometry which, along with spectrum reanalysis, allow a significant improvement.
+
+II 2025 Keck Observations
+
+The R22 statistical mass uncertainty, δ​MNS=0.17​M⊙\delta M_{\rm NS}=0.17\,M_{\odot}, stems from imprecision in the companion center-of-mass radial velocity KCoMK_{\rm CoM} and in the orbital inclination ii. Inclination is constrained by the orbital light curve, especially via the flux and color at minimum brightness. Since existing (Semesters 2018A, 2019A) Keck-I 10 m LRIS (16) photometry suffered from mediocre seeing, we have sought improved LRIS g/Ig/I imaging under better conditions. While several Keck half-nights were scheduled (chosen so that orbital minimum occurred with low airmass and lunation), no periods of the subarcsec seeing required for this very challenging observation occurred.
+Thus, we adopted a “target-of-opportunity” strategy and computed the critical phase windows for all nights that A.V.F.’s team had available for various projects – and then switched to J0952 when conditions became sufficient during the key phase.
+Through the flexibility of our colleagues,
+we were able to use LRIS to obtain 12×65012\times 650 s gg-band + 24×30024\times 300 s II-band exposures on February 27, 2025 (MJD 60733.437-3.540) and 7×6507\times 650 s gg + 14×30014\times 300 s II on April 27, 2025 (MJD 60792.304-2.357). The 0.75–0.85′′ seeing during these observations allowed good photometry across orbital minimum brightness.
+
+The simultaneous g/Ig/I images were calibrated, and forced point-spread-function (PSF) relative photometry was performed at the positions of the pulsar and a grid of comparison stars with catalog PS2 magnitudes. The resulting pulsar photometry was then converted to the SDSS system (9). One gg frame suffered a cosmic ray at the pulsar position and a second near minimum brightness did not give a reliable pulsar detection; all other frames produced acceptable measurements. These magnitudes are plotted in Fig. 1, along with the g/ig/i photometry of R22. The agreement between the two nights (and with the archival photometry) is excellent, with the new data providing substantially more phase points with lower scatter, indicating that we have successfully measured the orbital minimum in these two filters near quiescence. With a minimum at g>27g>27 mag, the good seeing was clearly essential to success. Note that, while flaring activity is evidently very low in J0952, a few points rise above the general trend, especially in the archival data. These may be excised for the best fits to a quiescent light curve.
+
+Figure 1: Keck LRIS g/ig/i photometry near orbital minimum brightness.
+
+III Photometric/Radial-Velocity Fitting
+
+To fit the light curve we use the ICARUS (6) code with added physics (11; 17). The fit parameters are the orbital inclination ii, the companion Roche lobe fill factor f1f_{1}, the heating luminosity LHL_{H}, the companion’s night-side temperature TNT_{N}, and the system distance dd. There can also be small offsets for “bandpass calibrations,” owing to possible imperfections in the photometric zero points. The free parameters are fit with Bayesian parameter estimation from Multinest sampling (8) using its Python implementation pymultinest (7). In addition to the photometry, the fits use the pulsar kinematic parameters of 15.
+
+We add the new gg and ii data to the u​g​r​i​zugriz photometry of the R22 “trimmed” data, which excises a few clear photometric outliers. The fits proceed as in the previous analysis, giving fully consistent parameters, with reduced errors, including for ii. While there are no clear flares in the new data, there are a few small positive fluctuations near minimum brightness, when the companion is faintest, leading to a reduced χ2\chi^{2} slightly larger than 1. These can increase the inferred minimum flux, biasing ii low and increasing the inferred NS mass. We found seven points with >2.5​σ>2.5\sigma when four were expected, so we optionally trimmed these seven outliers and refit. This results in slightly higher ii, smaller uncertainties, and reduced χ2<1\chi^{2}<1. The difference is small, but we adopt this higher ii solution as our fiducial fit, to be conservative. Parameters and uncertainties for the two fits (Table 1) are well within 1​σ1\sigma of each other and of the values reported by R22.
+
+Table 1: Light-Curve/RV-Fit Results for J0952a††footnotetext: a AV=0.16A_{V}=0.16 mag; also fitted Δ​u\Delta u, Δ​g\Delta g, Δ​r\Delta r, Δ​i\Delta i, Δ​z\Delta z.
+
+Parameters
+Trimmed
+All
+
+i⁡(deg)i\,(\mathrm{deg})
+60.2−1.1+1.260.2^{+1.2}_{-1.1}
+60.1±1.260.1\pm 1.2
+
+f1f_{1}
+0.79±0.010.79\pm 0.01
+0.79±0.010.79\pm 0.01
+
+LH/1034​(erg/s)L_{\mathrm{H}}\,/10^{34}\,(\mathrm{erg/s})
+3.76−0.40+0.423.76^{+0.42}_{-0.40}
+3.79−0.41+0.423.79^{+0.42}_{-0.41}
+
+TNT_{\rm N} (K)
+3039−55+523039^{+52}_{-55}
+3049±543049\pm 54
+
+dkpcd_{\rm kpc}
+6.26−0.47+0.406.26^{+0.40}_{-0.47}
+6.29−0.46+0.386.29^{+0.38}_{-0.46}
+
+χ2/DoF\chi^{2}/{\rm DoF}
+309/(346-10)[0.92]
+359/(353-10)[1.05]
+
+KCoMK_{\rm CoM} (km/s)
+377.6±3.8377.6\pm 3.8
+387.9±6.6387.9\pm 6.6
+
+MNS​(M⊙)M_{\rm NS}\,(M_{\odot})
+2.347±0.1072.347\pm 0.107
+2.549±0.1572.549\pm 0.157
+
+MC​(M⊙)M_{\rm C}\,(M_{\odot})
+0.032±0.0010.032\pm 0.001
+0.034±0.0020.034\pm 0.002
+
+χ2/DoF\chi^{2}/{\rm DoF}
+71/(48-2)[1.5]
+314/(54-2)[6.0]
+
+We next treat the data from six 2018–2022 Keck LRIS spectral campaigns, using the calibrated, extracted, and archived spectra from R22. As in that paper, we monitor drifts in the wavelength calibration of the extracted spectra by measuring the radial velocity (RV) of a comparison star included in the long slit. For the first two epochs in Semesters 2018B and 2019A a bright M3V star was used, while for the later epochs a G1V comparison was used, which had colors much closer to those of the pulsar companion at maximum brightness. These RVs and those of the pulsar were measured by cross-correlation using the IRAF rvsao package (14) with standard-star templates. The velocity relative to the comparison stars was fit to determine the binary RV amplitude KK. Since the companion center of light (CoL) lies toward the heated face from the center of mass (CoM), and since this offset depends on the disposition of the lines dominating the RV measurement, one requires a correction KcorK_{\rm cor} to scale the observed KCoLK_{\rm CoL} to the desired KCoMK_{\rm CoM}. This correction depends on the companion heating pattern and the line features (or equivalently template spectral class) used. R22 used a G1V template for the companion; from the metal-line equivalent-width temperature dependence we estimated Kcor=1.05K_{\rm cor}=1.05.
+
+However, we can use the ICARUS photometric solution to compute companion model spectra, by integrating BT-Settl atmosphere emergent spectra (2, and references therein) over the visible face of the companion star for the phase of each observed spectrum, including all heating, limb darkening, and gravity darkening effects. This produces spectra consistent with the ICARUS model and correctly follows the varying line shifts (and line-shape variations) for each element of the companion surface, incorporating the offsets from the companion’s CoM, and modeling nonsinusoidal components of the observed velocities. This automatically and self-consistently incorporates the heating pattern, obviating the need to estimate KcorK_{\rm cor}. In principle, it also provides an ideal multitemperature template to match the companion spectrum at each phase, and thus should result in improved cross-correlations and better RVs.
+
+Figure 2: J0952 RV fits to Keck/LRIS spectra. The upper panel shows the full RV, while the lower panel shows the residual to the R22 RV model. The point size is scaled to the correlation coefficient RR; a number of clear outliers marked with a black “x” are excised in a trimmed fit.
+
+We therefore used the KCoM=376.1K_{\rm CoM}=376.1 km s-1 RV measurement of R22 to compute model spectra for each phase and cross-correlated the observed spectra with these models to fit for residual RVs. A sinusoid fit to velocities measured for the computed models with a G1V template in fact finds Kcor=1.070K_{\rm cor}=1.070 with a nonsinusoidal component of amplitude ∼5\sim 5 km s-1, so fits to model spectra should be appreciably more reliable.
+
+If the R22 value were perfect, we would expect to fit a Γ\Gamma offset for the poorly known absolute RV relative to the average of the comparison stars, but a zero RV amplitude. Following R22, we cross-correlated over the 3800–10,000 Å range, resampled to 8192 wavelengths, and filtered in Fourier space, typically with a lower cosine-bell filter cutoff from modes 10–100 and the upper cutoff running from modes 1800–3200. We expect a correlation peak near zero velocity, after correction for the calibration offset as monitored by the comparison star. As in our previous analysis, the strongest peaks usually corresponded to this low-residual solution. However, in a number of cases the expected correlation peak appeared as a secondary peak or shoulder to a separate cross-correlation maximum. The true peak could generally be isolated by an adjustment of the Fast Fourier Transform (FFT) taper, but for a few spectra, especially in the early 2018B and 2019A epochs, the spurious peak was always dominant. The fit velocity residuals are shown in Fig. 2, with an upper panel displaying the full RVs for scale. We also show weighted least-squares fits to these residuals. Fitting all data returns a significantly increased RV amplitude, but the scatter is large with reduced χ2/DoF=6\chi^{2}/{\rm DoF}=6. However, most of this increase comes from evident outliers; if we trim the half dozen worst points, we get a better (albeit imperfect) scatter. The RV is smaller, consistent with that of R22, so we adopt it for our conservative mass solution.
+
+Figure 3: Mass estimates for heavy NSs. Three Shapiro-delay-measured MS/WD binaries are shown in red. Three black widows are in blue, with this paper’s J0952 measurement in green. The bottom panel shows the normalized Ln(Likelihood) for various combinations of these measurements, assuming a flat distribution of masses from 1.8 M⊙M_{\odot} up to some MToVM_{\rm ToV}. The inset legend gives the median estimator for MToVM_{\rm ToV} as well as the 1​σ1\sigma, 2​σ2\sigma, and 3​σ3\sigma lower bounds on its value, for various millisecond pulsar sets.
+
+IV Mass Implications and Conclusions
+
+Here we revisit the minimum required MToVM_{\rm ToV} by plotting the Gaussian probability distribution functions with Mi,σi{M_{i},\,\sigma_{i}} for observed heavy NSs in Figure 3. Three millisecond-pulsar–WD binaries with Shapiro-delay measurements of >1.8​M⊙>1.8\,M_{\odot} are shown with the red solid Gaussians. These are J0348+0432 at 1.806±0.037​M⊙1.806\pm 0.037\,M_{\odot} (19), J1614−-2230 at 1.937±0.014​M⊙1.937\pm 0.014\,M_{\odot} (1), and J0740+6620 at 2.08±0.07​M⊙2.08\pm 0.07\,M_{\odot} (10). The dashed Gaussian shows the 2.01±0.04​M⊙2.01\pm 0.04\,M_{\odot} estimate for J0348+0432 (4). In blue we show three black widows measured by 12: J1810+1744 at 2.11±0.04​M⊙2.11\pm 0.04\,M_{\odot}, J1653−-0158 at 2.15±0.16​M⊙2.15\pm 0.16\,M_{\odot}, and J1311−-3430 at 2.22±0.10​M⊙2.22\pm 0.10\,M_{\odot}. Green indicates the J0952 measurement in this paper.
+
+As in R22, we estimate the minimum value of MToVM_{\rm ToV} required by these observations by assuming that the NS mass distribution is flat M0M^{0} above M1=1.8​M⊙M_{1}=1.8\,M_{\odot} to some cutoff value (for this >1.8​M⊙>1.8\,M_{\odot} sample, results are insensitive to the underlying distribution; values change by <0.01​M⊙<0.01\,M_{\odot} for M−1M^{-1}). The log(likelihood) for nn Gaussian measurements is
+
+lnℒ=−n​ln​(Mmax−M1)+Σi=1n​ln​[erf⁡(Mi−M121/2​σi)−erf⁡(Mi−Mmax21/2​σi)].\begin{split}{\rm ln}\mathcal{L}=-&n\,{\rm ln}(M_{\rm max}-M_{1})\\
++&\Sigma_{i=1}^{n}{\rm ln}\left[{\rm erf}\left({\frac{M_{i}-M_{1}}{2^{1/2}\sigma_{i}}}\right)-{\rm erf}\left({\frac{M_{i}-M_{\rm max}}{2^{1/2}\sigma_{i}}}\right)\right].\end{split}
+
+These curves are plotted in the lower panel of Figure 3. We list the medians and lower bounds at various confidence levels on MmaxM_{\rm max}, from the likelihood ratio, for the different sample sets.
+
+These estimates ignore the effect of rotational support, which can be important for high-spin NSs with very precise mass measurements; since J0952 is the second fastest rotator known, one expects that its central density will match that of a nonrotating star with somewhat lower mass. 13 provide convenient equations relating rotating MM and nonrotating M∗M_{*} masses in terms of the compactness C∗=M∗/R∗C_{*}=M_{*}/R_{*}. One can forward model for an assumed EoS and apply corrections for C∗​(M∗)C_{*}(M_{*}), or use individual measured RR values. While analysis using all EoS constraints is beyond the scope of this paper and while we lack RRs for our pulsar sample, we can illustrate the corrections by assuming a reasonable R∗R_{*} for these massive NSs. Conservatively adopting R∗=12R_{*}=12 km, these equations indicate that the equivalent nonrotating J0952 mass is lower by 0.026​M⊙0.026\,M_{\odot} (0.25​σ0.25\sigma). For smaller radii the correction is smaller. The rotation correction is actually more important for J1810 and J1614, given their higher mass precision, but even these are small (<0.6​σ<0.6\sigma). Still, as higher mass precision is achieved, such corrections should be applied.
+
+The improved J0952 accuracy drives an “all pulsar” 1​σ1\sigma lower limit MToV=2.27​M⊙M_{\rm ToV}=2.27\,M_{\odot}, increased by 0.08​M⊙0.08\,M_{\odot} over that of R22; the 2.12​M⊙2.12\,M_{\odot} 3​σ3\sigma limit increases by 0.03​M⊙0.03\,M_{\odot}. For the Shapiro-delay-constrained pure radio results one has a 1σ\sigma lower bound just above 2​M⊙2\,M_{\odot}, while the 3​σ3\sigma limit of 1.93​M⊙1.93\,M_{\odot} is now very well constrained by the highly precise J1614 mass measurement, as evidenced by the sharp lower cutoff in the likelihood function. A rotation correction, such as for R∗=12R_{*}=12 km, decreases these lower bounds, and those in Fig. 3, by an average of 0.015​M⊙0.015\,M_{\odot}. Note that the “Shapiro” objects all have WD companions whose progenitors were well evolved at the end of mass transfer, driving high M˙{\dot{M}} and limiting the NS’s mass acceptance. The black widows with very low-mass companions and irradiation-driven evolution can in principle reach higher masses. This drives our quest to measure their masses as accurately as possible and with minimal systematic/model-induced bias.
+
+Of course, the Shapiro measurements are essentially free from systematics, so the cautious theorist should adopt these bounds for EoS constraints. Measurements involving optical modeling are more subject to error. J0348 is an object lesson; its earlier 2.01​M⊙2.01\,M_{\odot} mass measurement relied on optical spectroscopic estimates of the WD companion’s mass. While statistically precise, these were evidently biased, and now the revised radio-only J0348 measurement is ∼5​σ\sim 5\sigma lower and contributes essentially nothing to the MToVM_{\rm ToV} bound. Our J0952 measurement might be subject to similar issues. With our new photometry we feel that the light-curve fits are quite robust; barring a major revision of our understanding of companion heating, the inclination estimates seem unlikely to change. However, the significant scatter and outliers in the RV measurements of Fig. 2 make this component less secure. Indeed, the need to inspect the cross-correlation functions to isolate the RV peak inevitably introduces some subjectivity in the measurements, insufficiently suppressed by the synthesis of the model template spectra. This synthesis has, on the other hand, retired the systematic uncertainty associated with the KcorK_{\rm cor} modeling.
+
+However, if black widows can achieve higher masses, it remains imperative to pin down their parameters. Unfortunately, with low companion masses and with the evaporation driving a significant ionized wind, radio Shapiro techniques cannot be applied. Of the black widows discussed here, J0952 is the simplest, but unfortunately the faintest and observationally most challenging, target. J1810 is bright and well measured but has evidence for a companion hot spot, which complicates modeling. J1311 is also bright, but with extremely strong pulsar heating suffers frequent and bright companion flares, making measurement of the true quiescence light curve challenging. J1653, the Galactic black widow with the shortest orbital period, has a bright and variable veiling flux component covering binary minimum brightness, challenging modeling and limiting precision of the ii measurements. Also, J1311 and J1653 are members of the Tidarren black widow subclass, with H-free companion surfaces, making spectral modeling and CoM RV determination difficult. Similarly, the Tidarren PSR J2322−-2650 shows a beautiful RV curve in new JWST data (21), but has a very low-temperature companion dominated by molecular carbon, so modeling has not yet been able to yield a precise mass. J0952, with its normal H-dominated surface, weak heating, modest Roche lobe fill factor, and long orbital period, remains the most securely modeled black widow. While we certainly expect more black-widow discoveries, especially from follow-up observations of Fermi sources, these will be increasingly distant and (likely) optically faint. Thus, the safest path to progress lies with better spectroscopy of J0952, as this now limits the (statistical) mass precision. This would require significant additional investment of large-aperture telescope time. More efficient spectrographs, perhaps including integral field units to allow improved relative spectrophotometry versus stable comparison stars, can help. But J0952 remains at the limit of the possible, and for higher precision measurements we may need to look to the next generation of large optical telescopes.
+
+This paper’s data were obtained at the W. M. Keck Observatory, which is operated as a scientific partnership among the California Institute of Technology, the University of California, and NASA; it was made possible by the generous financial support of the W. M. Keck Foundation. We are grateful for the excellent assistance of the observatory staff, as well as the Keck Time Allocation Committee and Keck scheduler for accommodating our requests for specific half-nights.
+A.V.F.’s team at U.C. Berkeley received support from the Christopher R. Redlich
+Fund, Gary and Cynthia Bengier, Clark and Sharon Winslow, Alan
+Eustace and Kathy Kwan (W.Z. is a Bengier-Winslow-Eustace Specialist in
+Astronomy), William Draper, Timothy and Melissa Draper, Briggs
+and Kathleen Wood, Sanford Robertson (T.G.B. is a
+Draper-Wood-Robertson Specialist in Astronomy),
+and many other donors.
+
+References
+
+Agazie et al. (2023)
+G. Agazie, M. F. Alam, A. Anumarlapudi, A. M. Archibald, Z. Arzoumanian, P. T. Baker, L. Blecha, V. Bonidie, A. Brazier, P. R. Brook, S. Burke-Spolaor, B. Bécsy, C. Chapman, M. Charisi, S. Chatterjee, T. Cohen, J. M. Cordes, N. J. Cornish, F. Crawford, H. T. Cromartie, K. Crowter, M. E. Decesar, P. B. Demorest, T. Dolch, B. Drachler, E. C. Ferrara, W. Fiore, E. Fonseca, G. E. Freedman, N. Garver-Daniels, P. A. Gentile, J. Glaser, D. C. Good, K. Gültekin, J. S. Hazboun, R. J. Jennings, C. Jessup, A. D. Johnson, M. L. Jones, A. R. Kaiser, D. L. Kaplan, L. Z. Kelley, M. Kerr, J. S. Key, A. Kuske, N. Laal, M. T. Lam, W. G. Lamb, T. J. W. Lazio, N. Lewandowska, Y. Lin, T. Liu, D. R. Lorimer, J. Luo, R. S. Lynch, C. Ma, D. R. Madison, K. Maraccini, A. McEwen, J. W. McKee, M. A. McLaughlin, N. McMann, B. W. Meyers, C. M. F. Mingarelli, A. Mitridate, C. Ng, D. J. Nice, S. K. Ocker, K. D. Olum, E. Panciu, T. T. Pennucci, B. B. P. Perera, N. S. Pol, H. A. Radovan, S. M. Ransom, P. S. Ray, J. D. Romano, L. Salo, S. C. Sardesai, C. Schmiedekamp, A. Schmiedekamp, K. Schmitz, B. J. Shapiro-Albert, X. Siemens, J. Simon, M. S. Siwek, I. H. Stairs, D. R. Stinebring, K. Stovall, A. Susobhanan, J. K. Swiggum, S. R. Taylor, J. E. Turner, C. Unal, M. Vallisneri, S. J. Vigeland, H. M. Wahl, Q. Wang, C. A. Witt, O. Young, and Nanograv Collaboration
+
+The NANOGrav 15 yr Data Set: Observations and Timing of 68 Millisecond Pulsars.
+
+ApJ 951 (1), pp. L9.
+
+External Links: Document,
+2306.16217
+
+Cited by: §IV.
+
+Allard et al. (2013)
+F. Allard, D. Homeier, B. Freytag, W. Schaffenberger, and A. S. Rajpurohit
+
+Progress in modeling very low mass stars, brown dwarfs, and planetary mass objects..
+
+Memorie della Societa Astronomica Italiana Supplementi 24, pp. 128.
+
+External Links: Document,
+1302.6559
+
+Cited by: §III.
+
+Alsing et al. (2018)
+J. Alsing, H. O. Silva, and E. Berti
+
+Evidence for a maximum mass cut-off in the neutron star mass distribution and constraints on the equation of state.
+
+MNRAS 478 (1), pp. 1377–1391.
+
+Cited by: §I.
+
+Antoniadis et al. (2013)
+J. Antoniadis, P. C. Freire, N. Wex, T. M. Tauris, R. S. Lynch, M. H. van Kerkwijk, M. Kramer, C. G, V. S. Dhillon, T. Driebe, et al.
+
+A massive pulsar in a compact relativistic binary.
+
+Science 340 (6131).
+
+Cited by: §IV.
+
+Bassa et al. (2017)
+C. G. Bassa, Z. Pleunis, J. W. T. Hessels, E. C. Ferrara, R. P. Breton, N. V. Gusinskaia, V. I. Kondratiev, S. Sanidas, L. Nieder, C. J. Clark, T. Li, A. S. van Amesfoort, T. H. Burnett, F. Camilo, P. F. Michelson, S. M. Ransom, P. S. Ray, and K. Wood
+
+LOFAR Discovery of the Fastest-spinning Millisecond Pulsar in the Galactic Field.
+
+ApJ 846 (2), pp. L20.
+
+External Links: Document,
+1709.01453
+
+Cited by: §I.
+
+Breton et al. (2012)
+R. P. Breton, S. A. Rappaport, M. H. van Kerkwijk, and J. A. Carter
+
+KOI 1224: a fourth bloated hot white dwarf companion found with kepler.
+
+ApJ 748 (2), pp. 115.
+
+Cited by: §III.
+
+Buchner (2016)
+J. Buchner
+
+PyMultiNest: python interface for multinest.
+
+Astrophysics Source Code Library, pp. ascl–1606.
+
+Cited by: §III.
+
+Feroz et al. (2009)
+F. Feroz, M. Hobson, and M. Bridges
+
+MultiNest: an efficient and robust bayesian inference tool for cosmology and particle physics.
+
+Monthly Notices of the Royal Astronomical Society 398 (4), pp. 1601–1614.
+
+Cited by: §III.
+
+Finkbeiner et al. (2016)
+D. P. Finkbeiner, E. F. Schlafly, D. J. Schlegel, N. Padmanabhan, M. Jurić, W. S. Burgett, K. C. Chambers, L. Denneau, P. W. Draper, H. Flewelling, et al.
+
+Hypercalibration: a pan-starrs1-based recalibration of the sloan digital sky survey photometry.
+
+ApJ 822 (2), pp. 66.
+
+Cited by: §II.
+
+Fonseca et al. (2021)
+E. Fonseca, H. T. Cromartie, T. T. Pennucci, P. S. Ray, A. Yu. Kirichenko, S. M. Ransom, P. B. Demorest, I. H. Stairs, Z. Arzoumanian, L. Guillemot, A. Parthasarathy, M. Kerr, I. Cognard, P. T. Baker, H. Blumer, P. R. Brook, M. DeCesar, T. Dolch, F. A. Dong, E. C. Ferrara, W. Fiore, N. Garver-Daniels, D. C. Good, R. Jennings, M. L. Jones, V. M. Kaspi, M. T. Lam, D. R. Lorimer, J. Luo, A. McEwen, J. W. McKee, M. A. McLaughlin, N. McMann, B. W. Meyers, A. Naidu, C. Ng, D. J. Nice, N. Pol, H. A. Radovan, B. Shapiro-Albert, C. M. Tan, S. P. Tendulkar, J. K. Swiggum, H. M. Wahl, and W. W. Zhu
+
+Refined Mass and Geometric Measurements of the High-mass PSR J0740+6620.
+
+ApJ 915 (1), pp. L12.
+
+External Links: Document,
+2104.00880
+
+Cited by: §IV.
+
+Kandel and Romani (2020)
+D. Kandel and R. W. Romani
+
+Atmospheric circulation on black widow companions.
+
+ApJ 892 (2), pp. 101.
+
+External Links: Document
+
+Cited by: §III.
+
+Kandel and Romani (2023)
+D. Kandel and R. W. Romani
+
+An Optical Study of the Black Widow Population.
+
+ApJ 942 (1), pp. 6.
+
+External Links: Document,
+2211.16990
+
+Cited by: §IV.
+
+Konstantinou and Morsink (2022)
+A. Konstantinou and S. M. Morsink
+
+Universal Relations for the Increase in the Mass and Radius of a Rotating Neutron Star.
+
+ApJ 934 (2), pp. 139.
+
+External Links: Document,
+2206.12515
+
+Cited by: §IV.
+
+Kurtz and Mink (1998)
+M. J. Kurtz and D. J. Mink
+
+RVSAO 2.0: Digital Redshifts and Radial Velocities.
+
+PASP 110 (750), pp. 934–977.
+
+External Links: Document,
+astro-ph/9803252
+
+Cited by: §III.
+
+Nieder et al. (2019)
+L. Nieder, C. J. Clark, C. G. Bassa, J. Wu, A. Singh, J. Y. Donner, B. Allen, R. P. Breton, V. S. Dhillon, H. -B. Eggenstein, J. W. T. Hessels, M. R. Kennedy, M. Kerr, S. Littlefair, T. R. Marsh, D. Mata Sánchez, M. A. Papa, P. S. Ray, B. Steltner, and J. P. W. Verbiest
+
+Detection and Timing of Gamma-Ray Pulsations from the 707 Hz Pulsar J0952-0607.
+
+ApJ 883 (1), pp. 42.
+
+External Links: Document,
+1905.11352
+
+Cited by: §III.
+
+Oke et al. (1995)
+J. Oke, J. Cohen, M. Carr, J. Cromer, A. Dingizian, F. Harris, S. Labrecque, R. Lucinio, W. Schaal, H. Epps, et al.
+
+The keck low-resolution imaging spectrometer.
+
+Publications of the Astronomical Society of the Pacific 107 (710), pp. 375.
+
+Cited by: §II.
+
+Romani et al. (2021)
+R. W. Romani, D. Kandel, A. V. Filippenko, T. G. Brink, and W. Zheng
+
+PSR J1810+1744: Companion Darkening and a Precise High Neutron Star Mass.
+
+ApJ 908 (2), pp. L46.
+
+External Links: Document,
+2101.09822
+
+Cited by: §III.
+
+Romani et al. (2022)
+R. W. Romani, D. Kandel, A. V. Filippenko, T. G. Brink, and W. Zheng
+
+PSR J0952-0607: The Fastest and Heaviest Known Galactic Neutron Star.
+
+ApJ 934 (2), pp. L17.
+
+External Links: Document,
+2207.05124
+
+Cited by: §I.
+
+Saffer et al. (2025)
+A. Saffer, E. Fonseca, S. Ransom, I. Stairs, R. Lynch, D. Good, K. W. Masui, J. W. McKee, B. W. Meyers, S. S. Patil, and C. M. Tan
+
+A Lower Mass Estimate for PSR J0348+0432 Based on CHIME/Pulsar Precision Timing.
+
+ApJ 983 (1), pp. L20.
+
+External Links: Document,
+2412.02850
+
+Cited by: §IV.
+
+Shklovskii (1970)
+I. S. Shklovskii
+
+Possible Causes of the Secular Increase in Pulsar Periods..
+
+Soviet Ast. 13, pp. 562.
+
+Cited by: §I.
+
+Zhang et al. (2025)
+M. Zhang, M. Beleznay, T. D. Brandt, R. W. Romani, P. Gao, H. Beltz, M. Bailes, M. C. Nixon, J. L. Bean, T. D. Komacek, B. P. Coy, G. Fu, R. Luque, D. J. Reardon, E. Carli, R. M. Shannon, J. J. Fortney, A. A. A. Piette, M. C. Miller, and J. Desert
+
+A carbon-rich atmosphere on a windy pulsar planet.
+
+arXiv e-prints, pp. arXiv:2509.04558.
+
+External Links: Document,
+2509.04558
+
+Cited by: §IV.
+
+◄
+ 
+ Feelinglucky?
+ 
+ Conversionreport
+ Reportan issue
+ View originalon arXiv►
+
+Copyright
+Privacy Policy
+
+Generated by LaTeXML oxide

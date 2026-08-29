@@ -218,15 +218,21 @@ an uncertainty (±0.11) with no pinned origin; the published figure is ±0.17. R
 | **A** | PSR J0740+6620, 2.08 ± 0.07 | relativistic Shapiro delay, radio timing | **6.0σ away — effectively dead** |
 | **B** | PSR J0952−0607, 2.35 ± 0.17 | Keck optical light curve + radial velocities of an irradiated companion | **0.88σ short — live, ~19% posterior above** |
 
-**What the two-branch form means, stated plainly: whether the BHU corpus has a live calibrated
-falsifier at all is ITSELF UNDECIDED** — and undecided for a nameable reason. Not because data
-are missing, but because **"well measured" is doing work nobody had unpacked.** Branch A says the
-corpus has zero live calibrated falsifiers; branch B says it has exactly one.
+**CORRECTED 2026-08-29 16:0x after an adversarial gate.** The two rows above are **two estimates
+of one quantity with different systematics**, NOT two branches between which one must choose.
+My earlier framing — that Smolin's "binary pulsar data" sentence sets a permanent instrument
+criterion — was **refuted from his own footnote 5: "Other methods yield less precise estimates
+[58]."** He ranks other methods by precision; he does not exclude them. Duho's ruling to keep
+both is right, and now rests on the right reason: both are evidence.
 
-> **My inference, and the whole two-branch framing rests on it.** Smolin writes *"Presently all
-> well measured neutron star masses are from binary pulsar data"*. Reading that as a **permanent
-> criterion** rather than a **description of the state of measurement in 2004** is a judgement
-> **I** supply and he did not. — Tori, 2026-08-29.
+**Row B's uncertainty is ±0.11, not ±0.17, and our record was right.** Romani et al. 2025
+(arXiv:2512.05099, *"Tightening a Record-High Neutron Star Mass"*, now pinned) supersedes the 2022
+±0.17. **The live figure is 1.36σ short, 8.63% posterior above the bar** — exactly what this row
+carried before I wrongly called it unsourced. I had pinned the 2022 paper and treated it as
+current.
+
+**What remains undecided is not the instrument but the OBJECT**: whether a given compact object is
+securely a neutron star, and how precise its mass estimate is.
 
 **THE BAR IS GRADED AND THIS ROW NOW TRACKS BOTH.** The quotation above always carried it; the
 *tracking* collapsed to 2.5 alone. Smolin gives **2.5 M☉ for certain refutation** and **1.5 M☉ for
