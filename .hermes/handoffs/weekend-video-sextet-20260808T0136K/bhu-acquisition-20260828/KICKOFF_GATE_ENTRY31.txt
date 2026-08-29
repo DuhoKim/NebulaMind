@@ -1,0 +1,105 @@
+GATE -- ENTRY31_STUDY.md. Break it. It is load-bearing on a decision already taken.
+
+Lane: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-acquisition-20260828/
+Target: ENTRY31_STUDY.md
+Scripts: b4_entry31_falsifier.py (7/7), b5_entry31_drift_and_movers.py (2/2), b6_entry31_gw_leg.py (4/4)
+
+## READ THIS BEFORE ANYTHING ELSE
+
+**The harness these scripts belong to was declared UNSOUND by two adversarial seats at 04:21
+today.** Verdicts in this directory: CGATE_HARNESS_VERDICT.md
+(HARNESS_UNSOUND_A12_ZERO_COUNT_INVALIDATES_STRONGEST_TIER_VERDICT) and AGATE_HARNESS_VERDICT.md
+(HARNESS_GAPS_FOUND_5). Both returned FALSE_PASS_POSSIBLE: YES and CLASSIFIER_SOUND: NO. One check
+was false on its own input while printing PASS.
+
+**Every repair since was made by me, the author, with no independent review.** The last
+independent reader of this battery declared it broken. Everything after that is me checking
+myself. That is the single most useful fact you have going in: do not treat a PASS in these
+scripts as evidence of anything until you have re-derived it.
+
+Known recurring defect in my work, so you know what to look for: **narrow patterns used in the
+absence direction.** Six false absence claims across two lanes today. Also: values hard-coded and
+presented as read from a source; check names that describe a conclusion while their predicate
+tests the evidence; and claims made in prose without executing the thing that would falsify them.
+
+## WHAT THE STUDY CLAIMS
+
+Smolin (2004, Physica A 340) states a falsifier for cosmological natural selection: a sufficiently
+heavy neutron star refutes it, and "sufficiently high is certainly 2.5 M_sun". The study claims
+that against that ONE bar, the corpus supports FOUR readings that disagree:
+
+  1  PSR J0740+6620   2.08 +/- 0.07     radio timing, Shapiro delay   6.0 sigma away  DEAD
+  2  M_TOV, GW170817  2.210 +0.116 -0.123 (2s)  gravitational waves   bar above interval  EXCLUDED
+  3  PSR J0952-0607   2.35 +/- 0.17     black widow, optical          0.88 sigma  LIVE ~19%
+  4  GW190814 secondary 2.50-2.67 (90%) IF a neutron star             whole interval at/above  FIRES
+
+Pinned sources for all of it: smolin_2004_cns_clean.txt, 2104.00880_clean.txt, 2207.05124_clean.txt,
+2006.12611_clean.txt, 2101.01735_clean.txt, all under ../bhu-reading-20260823/sources/.
+
+**Duho has ruled on rows 1 and 3 — keep both, no winner.** So a defect here moves ground under a
+decision already taken. If you break it, that is a good outcome and it will be reported as such.
+
+## ATTACK 1 -- RECOMPUTE THE SIGMAS YOURSELF
+
+Do not re-read them from my scripts. Parse the masses from the pinned papers, and compute the
+distance from 2.5 and the posterior mass above it independently. I claim 6.0 sigma and 0.88 sigma.
+Check the error bars too: our record carried +/-0.11 for the black widow and I claim the published
+value is +/-0.17 with the 0.11 having no pinned origin. Verify or refute that.
+
+## ATTACK 2 -- KILL MY INFERENCE. This is the load-bearing step.
+
+Smolin writes: "Presently all well measured neutron star masses are from binary pulsar data and
+are all below 1.5 M_sun." I read the first clause as a PERMANENT CRITERION for what counts as
+well-measured, and the entire two-branch framing rests on that reading.
+
+It may be a DESCRIPTION of the state of measurement in 2004 and nothing more. If it is, branch 1
+has no special standing over branch 3, the instrument question dissolves, and the study's headline
+is wrong. Read the surrounding argument and rule on it. I have flagged this as the one place I
+interpret rather than read; treat that flag as an invitation, not a defence.
+
+## ATTACK 3 -- THE DRIFT COMPUTATION
+
+I claim: on radio timing the drift is real (Cromartie 2020, 2.14 +0.10/-0.09 -> Fonseca 2021,
+2.08 +/- 0.07; posterior above the bar down by a factor of ~76,000), and on the black widow it is
+not false but UNCOMPUTABLE, there being one measurement and no history.
+
+Attack both halves. Is the two-epoch history a legitimate trend or two incommensurable analyses?
+Is "uncomputable" right, or is there prior black-widow mass history I failed to find? I searched
+2207.05124 for prior-measurement mentions and found zero -- a narrow absence test, of exactly the
+kind that has been wrong six times today.
+
+## ATTACK 4 -- THE GW LEG
+
+Two claims: that GW190814's secondary interval (2.50-2.67, 90%) lies ENTIRELY at or above the bar,
+and that the SAME analysis paper's GW170817-derived M_TOV (2.210 +0.116 -0.123, 2 sigma) puts the
+bar ABOVE its interval, so the two point opposite ways.
+
+Check both against the pinned papers. Also check whether I have compared like with like: a 90%
+credible interval on one side and a stated 2-sigma range on the other. If those are not
+commensurable, the table is misleading even if each number is right.
+
+## ATTACK 5 -- IS THERE A THIRD READING OF "WELL MEASURED"?
+
+I found two: binary pulsar timing, and optical black-widow modelling. Blanc asks whether a third
+exists that neither of us considered -- a criterion under which the answer differs again. Look.
+
+## ATTACK 6 -- reproduce, and audit names against predicates
+
+Run all three scripts. Report any check whose NAME claims more than its PREDICATE tests. Seven
+consecutive gates have found that in my work, once as an outright tautology.
+
+## Verdict
+
+First line EXACTLY one of:
+
+    STUDY_SOUND
+    STUDY_DEFECT_<n>_<short reason>      -- n substantive defects; list them
+    STUDY_UNSOUND_<reason>               -- a defect that invalidates the headline
+
+Then, each on its own line:
+    SIGMAS_CONFIRMED:   YES | NO
+    INFERENCE_HOLDS:    YES | NO | UNDETERMINED     -- attack 2
+    THIRD_READING:      NONE | <name it>            -- attack 5
+
+Name the file CGATE_ENTRY31_STUDY_VERDICT.md (codex) or AGATE_ENTRY31_STUDY_VERDICT.md (agy).
+Quote the papers. Do your own arithmetic. Do not defer to mine -- mine was condemned this morning.
