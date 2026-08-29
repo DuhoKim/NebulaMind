@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — two decisions
+## OPEN — three decisions
 
 ### 2. One published paper's number does not follow from its own inputs. Do we say so in print?
 
@@ -83,6 +83,53 @@ figures are recorded, the route is written up as conditional on which is right, 
 category is unchanged.
 
 ---
+
+---
+
+### 3. A paper's prediction is fine. The reasoning behind it is under attack. Does it keep its label?
+
+**The stake.** Smolin's 2004 paper is the one entry in this collection that makes a sharp,
+still-open prediction: no neutron star heavier than 2.5 solar masses. We call it a *calibrated
+falsifier* — a real number, a real threshold, not yet crossed.
+
+Tonight I found and read the published criticisms of it, which this collection had never held. **None
+of them says the number is wrong.** What they say is that the *reasoning that produces the number*
+doesn't work — that the argument needs every possible change to the laws of physics to make black
+holes rarer, and some changes plainly make them commoner.
+
+**So: is a prediction still a falsifier for a theory, if the theory arguably doesn't produce it?**
+
+**The two reviewers split, and this is the only thing they disagreed about.**
+
+| | says | reasoning |
+|---|---|---|
+| Reviewer A (Gemini) | **The label must fall.** | A theory can't be credited with a falsifier its own logic doesn't generate. If the reasoning is broken, the prediction isn't the theory's to make, and the label is flattering it. |
+| Reviewer B (GPT) | **The label stays.** | The label describes the *shape* of a claim — a number with a threshold — not whether the reasoning behind it is sound. The bar exists and hasn't been crossed. Doubts about the reasoning belong in the notes, not the label. |
+
+**Option 1 — keep it (Reviewer B).** *Costs:* the collection's flagship claim keeps a strong label
+while its foundations are publicly disputed, and a reader who only scans labels never learns that.
+*Gains:* labels stay a description of claim shape and don't drift into being a quality score.
+
+**Option 2 — drop or downgrade it (Reviewer A).** *Costs:* we would be ruling on a 30-year-old
+physics dispute ourselves, on the basis of three papers, one of which is still unread and paywalled.
+*Gains:* the label stops implying more than the entry can support.
+
+**Option 3 — add a third column.** We already record *what kind of claim* it is and *whether it has
+fired*. This would add *how well-founded the reasoning is*. *Costs:* a third axis to maintain across
+58 entries, and it is the most subjective of the three. *Gains:* both reviewers get what they want,
+and nothing is hidden.
+
+**My recommendation: option 3, then option 1 if you don't want a third column.** The disagreement
+is real but it isn't actually about this one paper — it's about whether our labels describe a
+claim's *shape* or its *strength*. A third column answers that once instead of per entry.
+
+**Why this is not mine to decide.** Two reviewers, opposite answers, and it changes a tier — every
+one of those is a stop condition on its own.
+
+**What is already done regardless:** the three criticisms are acquired and pinned, two fully read
+and gated, the findings recorded, and **entry 31's label is untouched**. The fourth (Silk, *Science*
+1997) is paywalled — if you can reach it through a university login, that would settle more than
+anything else here.
 
 ---
 
