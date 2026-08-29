@@ -1,7 +1,8 @@
-**STATUS: THREE DECISIONS PENDING — with the principal, 2026-08-29 night.** **Item 2 was RULED at
+**STATUS: FOUR DECISIONS PENDING — with the principal, 2026-08-29 night.** **Item 2 was RULED at
 22:18 while this page was being written — the catch-all is authorised — and it is kept below as the
-record of how that ruling was reached, not as an open item. The three now pending are the partition,
-`n_draws`, and `REFUSED-INTEGRITY-MISMATCH`.** Rewritten from the
+record of how that ruling was reached, not as an open item. Pending on you: the partition, `n_draws`,
+`REFUSED-INTEGRITY-MISMATCH`, and — added 22:5x — Row F. The hand-check flag rule was RULED at 22:49
+and is no longer on this list.** Rewritten from the
 morning version; all four of that version's items are ruled and their records live in the
 `OPEN_QUESTION_*.md` files. **This is a plain-language index, not a source.** It asserts nothing the
 underlying files do not already say, and if this page and one of those files disagree, the file is
@@ -107,7 +108,7 @@ whose count is never reviewed becomes the vocabulary.
 
 ---
 
-## 2a. A leak, and it does not wait on any of this
+## 2a. The χ leak — the repair direction is RULED, and the one exception is a finding
 
 **Both seats found that Rows D and G permit χ-**adaptive** access patterns.** The vocabulary's
 availability axis is only non-leaking while the set of objects read is fixed **χ-blind**. Under the
@@ -115,8 +116,22 @@ current draft it is not. **That makes availability refusals a χ-derived channel
 adopted** — the identity of the object refused can export which χ-derived branch was taken.
 
 **This is a leak, not a taxonomy problem.** I raised the dependency myself when I proposed the axis and
-asked whether the price was actually paid; the answer came back **no**. It is now its own finding with
-its own repair and it is not waiting on anything above.
+asked whether the price was actually paid; the answer came back **no**.
+
+**RULED at 22:49, and both halves matter.** **(1) Option (a):** a precommitted χ-blind object set —
+order, multiplicity, retries and stopping — enforced **before any χ-derived computation can influence a
+later request**. Row D already conforms by construction and Row G's sequence is already built by the
+design, so the clause largely **ratifies what is already true** — but **the seats' point was that the
+covenant PERMITS adaptivity even though nothing uses it, and permission is what leaks, so the clause
+FORBIDS it rather than observing its absence.** **(2) `flag → discard → replace` stays exactly as it
+is**, on the principal's finding that **recognising a specific galaxy and judging its handedness are
+separate judgements, and nothing about handedness is visible in the image.**
+
+**That exception is recorded as a FINDING, never as a permission**, with its dependency written so it
+can be checked: **if flagging ever becomes correlated with handedness — a different interface, visible
+orientation cues, a checker who also sees instrument output — the exemption fails and the discard
+record becomes a χ channel.** **A condition to be preserved, not a fact that stays true by itself** —
+which is exactly the shape I wrote for the availability axis and the seats found unpaid.
 
 ---
 
@@ -153,6 +168,65 @@ emission distinguishes them.** CODEX adds that the same observable event is alre
 **phase-Any digest-deviation VOID antecedent**, so the two collide. **Left flagged deliberately rather
 than resolved:** getting this wrong toward VOID is how the earlier over-strict concern arose, and
 getting it wrong the other way lets tampering be logged as a storage fault.
+
+---
+
+## 5. ADDED 22:5x — Row F says it builds the hand-check allocation from χ-free inputs, and it cannot
+
+**You asked me to settle the strata question before ruling on the flag rule. It is settled, and it
+produced two separate things: one answer and one defect.**
+
+**The answer: the draft is silent.** It never defines the nine hand-check strata — every mention points
+at the predecessor study — and §10 already records *"the strata question"* as **undecided and
+untouched**. The frozen code has a constant saying there are nine and **no function that puts an object
+into one**. So I cannot tell you from this text whether the strata are χ-derived, and I have not
+guessed. **What I can tell you is that the part Row F's void clause actually names — bin construction —
+is provably χ-free: the bins are cut at position tertiles, not at |χ| tertiles.**
+
+### 5a. The defect that does not depend on the strata question
+
+**Row F is stated to read "positions and acceptance flags only" and to write "the hand-check
+allocation". Positions and flags cannot produce that allocation** — it is a 3 × 9 table, and the
+9-way part needs an input Row F is not allowed to read, **whatever the strata turn out to mean.** The
+row promises an output it has no inputs for.
+
+- **(a) Widen Row F's read surface** to include whatever supplies the stratum index. *Cost:* it admits
+  the exact input the row was written to exclude, and **until the strata are defined nobody knows what
+  that input is** — so this is signing a blank.
+- **(b) Take the allocation out of Row F** and leave it the boundaries and bin labels, with the
+  allocation produced where its inputs legitimately live. *Cost:* it splits an act the document
+  currently describes as one, and changes who performs it.
+- **(c) Keep Row F's surface** and require the 3 × 9 counts to arrive as a **pinned artefact produced
+  elsewhere and verified**. *Cost:* another slot and another verifier, on a document that already has
+  four slots deliberately empty as blockers.
+
+### 5b. The one that fires at freeze if nothing changes
+
+HC-1H's rules enter this preregistration **"by quotation at freeze"**, and HC-1H defines the nine strata
+as **machine-committee state × |χ| tertile**. **If that is the definition quoted, then on freeze day
+Row F is stated to build, from χ-free inputs, an allocation over strata defined by |χ| — and its own
+void clause fires on its own emission.** Same shape as Row L signing what its void condition forbade,
+and arriving at the worst moment, because **the freeze signature covers the text containing it.**
+
+- **(a) Define the strata in this document, χ-free** — for instance on machine-committee state alone.
+  *Cost:* it departs from the inherited design, and HC-1H's floors and estimator were validated
+  **together with** its strata; changing one may invalidate the others.
+- **(b) Quote HC-1H as it stands and fix Row F instead** — accept the allocation is χ-derived, drop the
+  χ-free claim, and route it through a row permitted to read χ. *Cost:* **the allocated universe Row G
+  sees is then χ-conditioned**, which sits upstream of the access-schedule question you are already
+  holding.
+- **(c) Scope the quotation** — inherit HC-1H's measurement and validity rules but not its
+  stratification, and define stratification here. *Cost:* partial inheritance needs its own argument,
+  for the same reason as (a).
+
+### The ordering, because it changes what you are choosing between
+
+**5b has to be answered before 5a can be repaired well.** Which surface repair is right depends on what
+input the allocation actually needs, and that is exactly what 5b decides. **Answering 5a first would be
+picking a shape for a hole nobody has measured.**
+
+**And 5b(b) touches the leak.** If the allocated universe is χ-conditioned, then Row G's universe is
+too — which is the premise the access-schedule question rests on.
 
 ---
 
