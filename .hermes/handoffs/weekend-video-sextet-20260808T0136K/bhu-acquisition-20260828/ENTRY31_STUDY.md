@@ -70,8 +70,41 @@ value; I had pinned the 2022 paper and treated it as latest.
 - **"If and only if"** on the GW leg overstates the source, which says "if" — rotation is an
   expressly discussed alternative.
 
-Ten name/predicate defects are listed in the verdict. The sections below are **left as written**
-so the correction is auditable against what it corrects.
+### The second seat, and where the two disagree
+
+`AGATE_ENTRY31_STUDY_VERDICT.md`: **`STUDY_UNSOUND_DESCRIPTIVE_PREMISE_AND_INCOMMENSURABLE_INTERVALS`**
+— SIGMAS_CONFIRMED: YES · INFERENCE_HOLDS: NO · THIRD_READING: ANY_HIGH_PRECISION_MEASUREMENT.
+**Independent convergence on all three tokens.**
+
+**Three things agy found that codex did not:**
+
+1. **A false attribution I repeated upward.** I described the GW190814 interval and the M_TOV value
+   as coming from *"the same analysis paper."* They do not: **2.50–2.67 is from the Abbott 2020
+   discovery paper (`2006.12611`); M_TOV = 2.210 is from the tension paper (`2101.01735`).** The
+   tension paper *does* state both the GW190814 conditional and its own M_TOV — which is what made
+   the shorthand feel safe — but the mass interval is not its measurement, and I told Blanc it was.
+
+2. **The incommensurability is quantitative, not just formal.** Row 4's 90% interval [2.50, 2.67]
+   put on a 2σ footing would **widen its lower bound below 2.50** — so at a comparable confidence
+   level it no longer lies wholly at or above the bar. **The "FIRES" row depends on the 90% level
+   and does not survive being made commensurate with row 2.**
+
+3. **A reason for the missing black-widow history.** Nieder 2019, the J0952 discovery paper, states
+   the counterpart was **too faint for spectroscopic radial velocities.** So the absence had a
+   physical cause — which is context, not a defence of my regex.
+
+**WHERE THEY SPLIT — and the seat that agreed with me was the wrong one.** Agy endorsed my original
+accusation, that the record's ±0.11 was "unpinned and narrower … materially overstated how close
+the falsifier was to firing." **Codex found the 2025 paper that vindicates the record.** Agy
+searched only the pinned 2022 set; codex looked further. Recorded because it is the clearest case
+today of a seat confirming an error by sharing its scope.
+
+**A genuine false PASS in b4.** Agy: check 2's name quotes Smolin's conditional clause, but its
+predicate only tests that `"1.5 solar masses"` and `"troubling"` occur within a 190-character
+window — it prints PASS without testing the quotation.
+
+Ten name/predicate defects from codex, five from agy, overlapping. The sections below are **left as
+written** so the correction is auditable against what it corrects.
 
 ---
 
