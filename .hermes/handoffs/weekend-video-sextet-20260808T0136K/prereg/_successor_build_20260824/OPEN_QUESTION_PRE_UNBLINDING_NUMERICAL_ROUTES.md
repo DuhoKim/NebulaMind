@@ -118,3 +118,80 @@ event and may not honestly share one outcome.
 I am not adjudicating Row E, and I am not examining A, B, L and N further to make the number look
 settled. **Twice today I turned an uncertain reading into a confident claim on this exact question**,
 and the value of this update is the corrected extent, not another conclusion.
+
+---
+
+# OPTION A HAS FAILED ON ITS OWN TERMS — 2026-08-29 14:3x
+
+**The principal ruled option A: reuse an existing outcome if one honestly fits. Blanc's condition was
+that A is a preference and not an instruction to succeed — if no existing code honestly covers the
+branches, say so and stop rather than force the fit. Having done the work: no existing code covers
+them, and the answer is B.**
+
+## First, the question that was actually answerable
+
+**Is `INCONCLUSIVE-BY-CALIBRATION`'s tie to `a_LB_b < 0.85` definitional or incidental? INCIDENTAL.**
+The code already has **three** producers, and the third is independent of the threshold:
+
+> produced by Row J pre-unblinding, pre-verdict validator post-unblinding removal, **or aggregate
+> non-finite/degenerate failures excluding Row-I's missing allocated outputs — validated by
+> `validate_calibration_aggregates` before the `< 0.85` comparison**
+
+So the threshold is one producer among three, and the code already claims non-finite/degenerate
+failures **evaluated before** it. That was the right question to ask, and it does not settle in A's
+favour.
+
+## Why it still fails
+
+**The third producer is scoped to *aggregates*, not to bins or allocation.** §11's own item reads
+*"Implement `validate_calibration_aggregates` to validate calibration **aggregates** as finite and
+non-degenerate."* Aggregates are Row I's product at BS-8f. **Row F's failures are upstream of that**
+— sealed boundaries and the hand-check allocation, at P3/BS-2f.
+
+Applying the test — *a reader who knows only the outcome's definition would correctly predict this
+branch produces it*:
+
+| branch | verdict |
+|---|---|
+| **degenerate calibration bin** | **The name fits; the definition does not.** A reader told "inconclusive by calibration" would guess it; a reader told the *definition* — a named validator, operating on aggregates, before the `< 0.85` comparison — would not, because a bin is not an aggregate and P3 is not BS-8f. Covering it means widening the producer from aggregates to the whole calibration chain and from BS-8f back to P3. **That is stretching, which is precisely what was ruled out.** |
+| **infeasible hand-check allocation** | **Fails outright.** It is not an aggregate, and it is not non-finite or degenerate. It is a feasibility failure. No reading of the definition predicts it. |
+| checked and rejected | `INCONCLUSIVE-BY-POWER` fails on its face. `INCONCLUSIVE-BY-MISSING-ALLOCATED-OUTPUT` is Row I's *missing output after allocation*, not a *failed allocation*. The accounting refusals are Row P and post-unblinding. |
+
+**So A fails on its own terms, and I am reporting that rather than forcing the fit. The answer is B.**
+
+## Third: Row F is not alone, and the gap is systemic
+
+The mechanical prose pass **cannot find Row F** — its failure modes are not in the row's prose at
+all, they are in the code. That is the defect. So the honest axis is the executable one, and on that
+axis the frozen reference says:
+
+    111  raise sites in successor_ref_v9.py
+      3  raise a TYPED outcome exception  (2 InconclusiveByPower, 1 InconclusiveByCalibration)
+     69  raise a bare RuntimeError/ValueError
+      2  exception classes correspond to a named outcome at all
+
+**GPT56's finding generalises far past Stage C.** Almost nothing in the pinned code converts a raised
+exception into a named outcome, so "the route is named in §5" and "the route is executable" come
+apart across the whole reference, not at one row.
+
+**What I am NOT claiming:** that all 69 untyped raises are §6.3(10) violations. Many guard
+inadmissible input — a malformed mask, a wrong-shaped vector — which is a caller error rather than a
+run outcome, and does not need an INCONCLUSIVE code. **Distinguishing the two requires reading each
+site, which I have not done.** What is established is that the conversion layer is nearly absent, and
+that Row F's branches are among the reachable ones — I triggered one myself today, unintentionally.
+
+## What this means for the decision
+
+**B, but scoped as a rule rather than as one code for Row F.** Adding a single outcome for Row F
+would repair the instance the seats happened to name and leave the class open — the same mistake as
+repairing findings one at a time instead of the defect generating them, which is the note this lane
+has been carrying since the citation check.
+
+**Still the principal's call**, and now materially different from the one he was given: A was ruled
+against a two-branch problem, and the problem is a class with an unknown number of members.
+
+## What I did that does not depend on the decision
+
+**V48 adds the §11 conversion item.** A named outcome that nothing can produce is the defect a code
+was deleted for this morning, one level down, and requiring the conversion is needed under A, B or
+anything else.
