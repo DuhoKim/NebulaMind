@@ -350,3 +350,54 @@ read individually rather than bucketed by regex.
 
 Reporting the shape and refusing to attach a firm count to it is deliberate: a regex partition is
 exactly the instrument that has been wrong three times today.
+
+---
+
+# 16:1x — the 39 `ManifestClosureError` sites contribute ZERO to the numerical class
+
+GPT56-V49 F4 showed my inventory missed 39 `ManifestClosureError` sites because every partition I ran
+keyed on `RuntimeError|ValueError`. **I have now read all 39 individually** — by AST, not regex, and
+by reading each message rather than matching it.
+
+## What they are
+
+All 39 sit in the **manifest-closure and pinned-artefact loading path**: `require_pinned_planner` (1),
+`frozen_planner_digest` (1), `verified_bytes` (4), `load_pinned_geometry` (1), `load_pinned_counts`
+(5), `load_pinned_selection` (3), `load_pinned_parent` (8), `close_manifest` (11), `closure_receipt`
+(5). They fall into three kinds:
+
+- **Digest and identity mismatches against a pin** — `PLANNER DIGEST MISMATCH`, `DIGEST MISMATCH`,
+  `PARENT NOT THE FETCHED ARTIFACT`, `PLANNER CHANGED DURING THE PLAN`, count table / selection /
+  parent cardinalities `!= pinned`.
+- **Structural incoherence of frozen inputs** — receipt chunk sequence, receipt internally
+  inconsistent, missing columns, duplicate brickid, `PARENT ROWS OUTSIDE SELECTION`, `PARENT
+  INCOHERENT`, `MANIFEST NOT CLOSED`.
+- **Environment and tooling** — symlink, cannot be opened, not a regular file, planner not a plain
+  function, closure worker missing / failed / produced no receipt.
+
+## The result
+
+**None of the 39 is a numerical failure.** There is no non-finite, no degenerate, no infeasible
+allocation among them. They are integrity, structure and environment failures on **pinned artefacts**,
+and they occur at **manifest-closure time — before the run's statistical phases exist at all.** A
+failure there means the run cannot *start*, not that it produced an inconclusive result.
+
+**So the class extent must be drawn from the ~70 remaining untyped sites, not from 112.** The earlier
+31–79 range was inflated by a third with sites that cannot belong to it. CODEX-V49 F3 said the range
+was an unsubtracted candidate partition; this is the first real subtraction, and it is large.
+
+## The borderline ones, named rather than hidden
+
+Three could be argued numerical — `count table has negative count`, `parent row has out-of-range
+coordinates`, `object plans zero bricks`. **I read them as integrity**, because each validates *pinned
+input data* rather than a computed result: a negative count in a frozen count table is a corrupted
+pin, not a calculation that failed. **They sit in the same pre-run pinning context as the other 36**,
+and if that reading is wrong it moves three sites, not the conclusion.
+
+## Standing
+
+This is a reading of 39 messages, not a measurement, and it is the fifth pass over this corpus — the
+previous four were regex partitions and all four were wrong. **What makes this one different is that
+the instrument is AST for enumeration and a human read for classification**, which is the split the
+V50 §11 item now requires. The remaining ~70 sites have **not** had the same treatment, so the class
+stays a range until they do.

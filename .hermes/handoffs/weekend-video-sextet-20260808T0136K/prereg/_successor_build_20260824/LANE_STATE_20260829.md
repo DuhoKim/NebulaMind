@@ -36,15 +36,28 @@ reachable by execution; "nine raise sites" was raise-statements, not branches sh
 **Check §1 against disk:** `grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md` must return
 exactly the list above.
 
-## 2. CURRENT DRAFT — V49, ROUND RUNNING (dispatched 15:4x)
+## 2. CURRENT DRAFT — V51, BUILT, NOT DISPATCHED
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V49_20260829.md` = `d8a9501e0653dd84ca554e26aaacd4de87d4efb34cb6ef6266285757b96ce2bc`
+`<lane>/PREREG_SUCCESSOR_DRAFT_V51_20260829.md` = `e007e9cb940de1358b71c990b450f7346d9ac045b247ec367891dd476bbc6888`
 
-**Last refereed: V46** (`c5afba31f909dcda`), NOT CLEAR ×2 at 14:06. V47 retracted the false
-completeness argument; V48 added the §11 conversion item; **V49 adds the class rule.**
+**Last refereed: V49** (`d8a9501e0653dd84`) — **NOT CLEAR ×2 at 15:47**, GPT56 7 findings (2 HIGH,
+5 MEDIUM), CODEX 3. **V49 was a genuine two-seat round**; the verdict is in the FINDINGS-BLOCK, not in
+prose — see §8c.
 
-Reports to `gates/V49_WHOLE_REVIEW_<SEAT>.md`. Checkers on V49: counts **16 P / 8 E** prose-matched;
-trace 48 transitions, 0 problems; `void_registry` self-test 6/0; lint exits 0.
+- **V50** `e3d0d65cca545040` — six V49 findings: the VOID antecedents named in the class rule's
+  precedence (both seats — the rule and the VOID clause had both claimed post-unblinding
+  non-finite/degenerate failures); the raise inventory recounted **by AST — 112 nodes including 39
+  `ManifestClosureError` the grep never saw**; the 31–79 range restated as an unsubtracted candidate
+  partition; the false §2.7(c) route removed; §11 classification moved to failure paths.
+- **V51** `e007e9cb940de135` — §2.1's branch contradiction qualified (recovered from the V11 commit),
+  and the predecessor memo's provenance repaired: it was **amended by append after signing**, so both
+  digests and the reason are now recorded.
+
+**Not dispatched on purpose.** Three normative V49 findings are with the principal and a round would
+re-find them.
+
+**Checkers on V51:** counts 16 P / 8 E prose-matched; trace 50 transitions, 0 problems;
+`void_registry` self-test 6/0; lint exits 0.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
