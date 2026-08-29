@@ -75,3 +75,46 @@ and it predates all of this work.
   **not** repair the branches. Checkers: 16/8 prose-matched, trace 46 transitions 0 problems,
   `void_registry` 6/0, lint exits 0.
 - **BS-6 and the first image byte remain blocked.**
+
+---
+
+# UPDATE 14:1x — the enumeration redone properly, this time without a filter
+
+CODEX found Row F because my enumeration used a keyword filter. **I have now walked all twenty §6.1
+rows** — A, B, C, C2, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S. The earlier pass covered **nine
+of twenty**. That is the size of the miss, and it is worth stating before anything I conclude from
+the new pass is believed.
+
+## Rows that compute before unblinding, and whether a failure has a named outcome
+
+| row | what it computes pre-unblinding | failure disposition |
+|---|---|---|
+| **I** | the calibration aggregates from the sealed label set | **NAMED.** The row is explicit: *"Must fail the run before BS-8f if any allocated object lacks a usable finite instrument output"*, and voids on *"failing to abort when an allocated output is missing/non-finite"*. `INCONCLUSIVE-BY-MISSING-ALLOCATED-OUTPUT`. |
+| **J** | Stage C, and the calibration lower bound | **NAMED** — POWER and CALIBRATION — **but GPT56-V46 F1 shows no executable conversion from a raised exception to either.** Named in text, not in code. |
+| **F** | sealed boundaries, bin labels, hand-check allocation | **NONE.** Confirmed. Emits only a record; voids only on a χ-bearing input. Its degenerate-bin and infeasible-allocation failures terminate nowhere. |
+| **C2** | authenticated predicate bits | byte-integrity and shape failures are §2.7 exclusion reasons (a) and (b). **Appears terminated.** |
+| **D** | per-object instrument outputs | §2.7 line 344 defers instrument non-finiteness to **post-unblinding** handling. Not a pre-unblinding halt — which is what my retracted argument got backwards. |
+| **E** | the realised-partition recompute from predicate bits | **I CANNOT CONFIRM.** It emits the realised-partition record and voids only on reading outside the schema. §5's accounting refusals — `INCONCLUSIVE-BY-MISSING-RECORD`, `-DUPLICATE`, `-ORPHAN`, `-MALFORMED` — are attributed **to Row P**, which is post-unblinding. Whether a pre-unblinding recompute failure at Row E has a home is a question for a reader, not for me. |
+| A, B, L, N | container creation, mediation, signing, lock digests | digest and custody operations; failures read as refusals or voids rather than numerical outcomes. **Not examined closely** — flagged, not cleared. |
+| C, G, H, K, M, O, P, Q, R, S | do not compute a pre-unblinding statistic, or run post-unblinding | out of scope for this question. |
+
+## What this changes for the decision
+
+**Row F is confirmed, and it is not necessarily alone.** Row E is a live candidate and rows A, B, L
+and N were not examined closely enough for me to say anything about them. **So the fix should not be
+scoped to "Row F" as if the extent were known.** Whichever option is chosen, the right unit is *every
+pre-unblinding branch that can fail executably*, established by a pass someone has actually audited —
+not by my enumeration, which has now been wrong once and incomplete once on this same table.
+
+**This does not change the options.** A, B and C stand as written, with the same costs.
+
+**It does sharpen one of them.** If the extent is larger than Row F, option A — stretching an existing
+code to cover the branches — gets harder as the branch count grows, because a degenerate calibration
+bin, an infeasible allocation and a partition-recompute mismatch are not obviously the same kind of
+event and may not honestly share one outcome.
+
+## What I am not doing
+
+I am not adjudicating Row E, and I am not examining A, B, L and N further to make the number look
+settled. **Twice today I turned an uncertain reading into a confident claim on this exact question**,
+and the value of this update is the corrected extent, not another conclusion.
