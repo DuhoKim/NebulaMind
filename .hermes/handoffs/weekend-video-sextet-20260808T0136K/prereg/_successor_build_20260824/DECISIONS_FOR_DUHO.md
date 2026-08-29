@@ -1,12 +1,32 @@
-**STATUS: FOUR DECISIONS PENDING — with the principal, 2026-08-29 night.** **Item 2 was RULED at
-22:18 while this page was being written — the catch-all is authorised — and it is kept below as the
-record of how that ruling was reached, not as an open item. Pending on you: the partition, `n_draws`,
-`REFUSED-INTEGRITY-MISMATCH`, and — added 22:5x — Row F. The hand-check flag rule was RULED at 22:49
-and is no longer on this list.** Rewritten from the
-morning version; all four of that version's items are ruled and their records live in the
-`OPEN_QUESTION_*.md` files. **This is a plain-language index, not a source.** It asserts nothing the
-underlying files do not already say, and if this page and one of those files disagree, the file is
-right.
+**STATUS: FIVE AWAITING A RULING — with the principal, 2026-08-29 night.**
+
+**THE TWO LISTS ARE SEPARATED, because they were running together and that made the picture wrong.**
+
+## AWAITING A RULING — nothing moves on these until you answer
+
+| # | what | where |
+|---|---|---|
+| 1 | **The VOID / numerical partition.** Three constructions have failed on one defect. | §1 below |
+| 2 | **`n_draws`** — one integer, and it *is* the gate's strictness. | §3 below |
+| 3 | **`REFUSED-INTEGRITY-MISMATCH`** — indistinguishable from tampering at emission. | §4 below |
+| 4 | **The four availability codes describe the logged object** (CODEX-V64 F2) — they are part of the vocabulary you ruled at 22:18. | parked in the V66 brief |
+| 5 | **The durable pre-verdict state** (GPT56-V66 F1) — closing it needs a second event class, which changes what the access log records. | parked in the V66 brief |
+| 5a | **Whether this study's strata should BE χ-derived** — the *cost* only; the surface repair is ruled and applied. | §5 below |
+
+## RULED AND BEING APPLIED — on me, not on you
+
+| what | ruled | state |
+|---|---|---|
+| The catch-all and non-closure | 22:18 | applied V64, repaired V66 and V67 after two rounds |
+| The request lifecycle | 22:18 | applied V64; atomicity V66; ordering and identity V67 |
+| The χ-blind access schedule | 22:49 | applied **V65** |
+| `flag → discard → replace` stays | 22:49 | applied V65, recorded as a finding with a digest-bound dependency |
+| **Row F's read surface — WIDEN it** | 23:02 | **applied V67.** The input is the per-object HC stratum index and **both its axes are χ-derived** — reported, not absorbed |
+| The gain mapping — option A, worst case over draws | earlier | applied V63; draw set specified V64–V67, blocked on `n_draws` |
+
+**Item 2 of the vocabulary sequence was RULED at 22:18 while this page was being written** and is kept
+below as the record of how that ruling was reached. **This is a plain-language index, not a source** —
+if it and an underlying file disagree, the file is right.
 
 # What is on you tonight — DESI spin preregistration, night of 2026-08-29
 
