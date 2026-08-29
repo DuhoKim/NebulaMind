@@ -269,14 +269,41 @@ def self_test():
     if r["invariant"] or r["flips"] != [(0.0, 0.1, "INCONCLUSIVE", "REPRODUCED-LONGO")]:
         fails.append("invariance: flip not located")
 
+    # 4b — the two codes that wrap PRODUCTION failures. These were reported as "unexercised
+    # (reachable only from production internals)" when this module shipped, which is an honest
+    # label for an uncontrolled branch but still an uncontrolled branch. Both are reachable and
+    # both now have a control asserting their own code.
+    good = lambda g, m, c: (np.array(m.s, dtype=np.float64, copy=True), None)
+    try:
+        # perm_record refuses a FixtureMask under STAGE_REAL BY TYPE - a real production guard.
+        evaluate_at(0.0, mask, _CAL, good, stage=v9.STAGE_REAL, prefix=11, trial=3, n_perm=200)
+        fails.append("P08: production refusal did not surface")
+    except PathRefusal as e:
+        if e.code != "P08":
+            fails.append(f"P08: refused as {e.code}")
+    except Exception as e:
+        fails.append(f"P08: raised {type(e).__name__} rather than refusing")
+
+    # _decide_from on the PROFILE path indexes a_b by mask.bin; a short a_b is a production error.
+    _SHORT = {"a_hat": 0.88, "a_b": np.array([0.95, 0.80]),
+              "a_lb_b": np.full(2, 0.86), "cov_a": np.eye(2) * 4e-4}
+    try:
+        evaluate_at(0.0, mask, _CAL, lambda g, m, c: (good(g, m, c)[0], _SHORT), **ST)
+        fails.append("P09: production refusal did not surface")
+    except PathRefusal as e:
+        if e.code != "P09":
+            fails.append(f"P09: refused as {e.code}")
+    except Exception as e:
+        fails.append(f"P09: raised {type(e).__name__} rather than refusing")
+
     # 5 — no code may be unexercised; an unclaimed code is an uncontrolled branch.
-    exercised = {"P01", "P02", "P03", "P04", "P05", "P06", "P07"}
+    exercised = {"P01", "P02", "P03", "P04", "P05", "P06", "P07", "P08", "P09"}
     unexercised = set(CODES) - exercised
     for f in fails:
         print(f"  FAIL {f}")
-    print(f"  self-test: {len(CODES)} codes, {len(unexercised)} unexercised "
-          f"({sorted(unexercised)} — reachable only from production internals), "
-          f"{len(fails)} failure(s)")
+    print(f"  self-test: {len(CODES)} codes, {len(unexercised)} unexercised"
+          + (f" ({sorted(unexercised)})" if unexercised else " — every code has a control")
+          + f", {len(fails)} failure(s)")
     print("  NOTE: the mapping used above is _TEST_ONLY_ plumbing. gamma -> s' is UNFROZEN and "
           "must be preregistered before this path can gate anything.")
     return 1 if fails else 0
