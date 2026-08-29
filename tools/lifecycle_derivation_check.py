@@ -37,6 +37,10 @@ ERRORS = {
            "is a divergence, not a choice (GPT56-V72 F2: the checker accepted deletion of the "
            "entire quoted block)",
     "L05": "the draft quotes a tag the spec does not define",
+    "L06": "a quoted invariant is TRUNCATED — a true substring can reverse meaning by omission, so "
+           "the quote must be the row's FULL body (GPT56-V73 F3, CODEX-V73 F2)",
+    "L07": "the draft carries more than one lifecycle-spec pin — a second pin is a second source "
+           "for one fact",
 }
 
 TAG = re.compile(r"lifecycle-spec:\s*sha256\s*`?([0-9a-f]{64})`?")
@@ -52,11 +56,13 @@ def norm(s: str) -> str:
 
 def check(draft_text: str, spec_text: str, spec_bytes: bytes):
     out = []
-    m = TAG.search(draft_text)
-    if not m:
+    pins = TAG.findall(draft_text)
+    if not pins:
         out.append(("L01", ERRORS["L01"]))
-    elif m.group(1) != hashlib.sha256(spec_bytes).hexdigest():
-        out.append(("L02", ERRORS["L02"] + f" — pinned {m.group(1)[:16]}…"))
+    elif len(pins) > 1:
+        out.append(("L07", ERRORS["L07"] + f" — {len(pins)} pins"))
+    elif pins[0] != hashlib.sha256(spec_bytes).hexdigest():
+        out.append(("L02", ERRORS["L02"] + f" — pinned {pins[0][:16]}…"))
     spec_rows = {tag: norm(body) for tag, body in ROW.findall(spec_text)}
     quoted = {}
     for tag, body in INV.findall(draft_text):
@@ -66,7 +72,11 @@ def check(draft_text: str, spec_text: str, spec_bytes: bytes):
             out.append(("L05", ERRORS["L05"] + f" — {tag}"))
             continue
         for nb in bodies:
-            if nb not in spec_rows[tag]:
+            if nb == spec_rows[tag]:
+                continue
+            if nb in spec_rows[tag]:
+                out.append(("L06", ERRORS["L06"] + f" — {tag} quotes {len(nb)}/{len(spec_rows[tag])} chars"))
+            else:
                 out.append(("L03", ERRORS["L03"] + f" — {tag}: {nb[:60]!r}"))
     for tag in spec_rows:
         if tag not in quoted:
@@ -94,6 +104,9 @@ def self_test():
         ("a tag the spec does not define", good + "**G9 — invented**\n", {"L04", "L05"})
          if False else
         ("a tag the spec does not define", good + "**N1 — invented**\n", {"L05"}),
+        ("a truncated quote", good.replace("G1 — no bytes move without a committed event",
+                                           "G1 — no bytes move"), {"L06"}),
+        ("two pins", good + f"lifecycle-spec: sha256 `{pin}`\n", {"L07"}),
     ]
     fails = []
     for name, draft, want in cases:

@@ -538,6 +538,12 @@ def main():
     # so a stale pin left the advertised battery green - an unwired check is an unstated spec, one
     # level up). Blocking. Runs only when the spec exists beside the draft.
     spec = Path(args.draft).parent / "LIFECYCLE_GUARANTEE_SPEC.md"
+    if not spec.exists():
+        # GPT56-V73 F3 / CODEX-V73 F5: a silent skip on the missing companion is the unwired-check
+        # defect re-entering through the file system - the battery must go red, not quiet.
+        out.append(("lifecycle-derivation-L00",
+                    "LIFECYCLE_GUARANTEE_SPEC.md is MISSING beside the draft - the derivation "
+                    "cannot be checked, and unchecked is not passed"))
     if spec.exists():
         try:
             from lifecycle_derivation_check import check as _lc_check

@@ -19,9 +19,57 @@ import sys
 from pathlib import Path
 
 B = Path(__file__).resolve().parent.parent
+V9 = Path(__file__).resolve().parent / "successor_ref_v9.py"
 DRAFTS = sorted(B.glob("PREREG_SUCCESSOR_DRAFT_V*.md"),
                 key=lambda p: int(re.search(r"_V(\d+)_", p.name).group(1)))
 DRAFT = DRAFTS[-1]
+
+# v9's operative SLOT_SCHEMA (CODEX-V73 F1, GPT56-V73 F2: the registry claimed every non-chi
+# artifact and enumerated only the draft-declared schemas, omitting all fields of the EXISTING slot
+# receipts - the exact universal-sentence defect the registry replaced, one enumeration down).
+# Extraction is mechanical over the frozen file; classification is human, below, keyed "SLOT.field".
+import ast
+def v9_slot_fields():
+    tree = ast.parse(V9.read_text())
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "SLOT_SCHEMA":
+            d = ast.literal_eval(node.value)
+            return {f"{slot}.{f}" for slot, fs in d.items() for f in fs}
+    raise SystemExit("SLOT_SCHEMA not found in v9 - the extractor is broken, refuse to emit")
+
+V9_CONSTRAINTS = {}
+def _c(slots_fields, constraint, note=""):
+    for sf in slots_fields.split():
+        V9_CONSTRAINTS[sf] = (constraint, "v9 SLOT_SCHEMA", note)
+# digests and hashes
+_c("BS-2m.parent_digest BS-2m.planner_digest BS-2m.plan_digest BS-2f.mask_digest BS-5f.mask_digest "
+   "BS-7f.mask_digest BS-V.mask_digest BS-7f.perm_payload_digest BS-1.config_digest BS-4.anchor_digest "
+   "BS-3.weights_sha256 BS-7p.ref_code_sha256 BS-7p.fixtures_sha256 BS-9.input_function_sha256 "
+   "BS-6.manifest_sha256", "digest-ref")
+# numeric / array payloads (bounded by dtype+shape contracts in v9's field encoders)
+_c("BS-2c.universe_brickid BS-2c.brickid BS-2c.n_eligible BS-2c.c_bytes BS-2c.grouped_sum "
+   "BS-2c.ungrouped_total BS-2o.order_brickid BS-2o.N BS-2o.Var BS-2o.L_raw BS-5p.l_min_plan "
+   "BS-5p.l_plan BS-5p.successes BS-5p.n_trials BS-2s.selected_brickid BS-2s.L_ret BS-2s.L_raw "
+   "BS-2s.N_ret BS-2s.N_eq BS-2s.repass_successes BS-2m.required_count BS-2m.manifest_count "
+   "BS-2f.brickid BS-2f.objid BS-2f.c BS-2f.bin BS-2f.boundaries BS-8f.a_hat BS-8f.sigma_a "
+   "BS-8f.a_lb BS-8f.a_b BS-8f.sigma_ab BS-8f.a_lb_b BS-8f.cov_a BS-8f.epsilon BS-5f.successes "
+   "BS-5f.n_trials BS-7f.beta_obs BS-7f.p BS-7f.n_perm BS-V.A_L BS-V.p BS-V.sigma_comb "
+   "BS-V.evaluated_floor BS-7p.n_perm BS-8p.budget BS-6.byte_ceiling BS-3.tau",
+   "bounded-encoding")
+# closed token sets
+_c("BS-2f.accept_flag BS-5f.passed BS-V.verdict BS-V.path BS-1.branch BS-1.photoz_available "
+   "BS-4.sign_convention BS-4.verdict", "closed-vocab")
+# STRUCTURED payloads - the rows CODEX/GPT56 called out; constrained by named sub-schemas, and any
+# without one is the finding standing until its verifier lands
+_c("BS-1.resolution_date", "bounded-encoding", "ISO date")
+_c("BS-1b.photoz_product BS-1b.columns BS-1b.join_keys", "closed-vocab", "declared column/key sets")
+_c("BS-1b.provenance", "digest-ref",
+   "was FREE PROSE - GPT56-V73 F2 named it; now the digest of a canonical provenance record")
+_c("BS-3.antisymmetry_receipt BS-9.hdu_schema BS-9.tensor_layout BS-9.r1_r5_receipt "
+   "BS-8p.allocation BS-8p.bin_algorithm", "digest-ref", "canonical sub-document, digest-referenced")
+_c("BS-8p.hc_rules_quotation", "digest-ref", "the HC-1H quotation-at-freeze, by digest")
+_c("BS-9.runner_prohibition BS-7p.environment", "closed-vocab", "declared clause/env sets")
+_c("BS-6.producer_checksum_list", "digest-ref")
 
 # (field, constraint, declared-where, note). Constraints: closed-vocab | bounded-encoding | digest-ref
 CONSTRAINTS = {
@@ -88,7 +136,16 @@ def extract(text):
 def main():
     text = DRAFT.read_text()
     found = extract(text)
+    v9f = v9_slot_fields()
     rows, missing = [], []
+    for sf in sorted(v9f):
+        if sf in V9_CONSTRAINTS:
+            c, w, note = V9_CONSTRAINTS[sf]
+            rows.append(f"| `{sf}` | {c} | {w} | {note} |")
+        else:
+            missing.append(sf)
+            rows.append(f"| `{sf}` | **FORBIDDEN-BY-DEFAULT — no registry row** | v9 | classify or remove |")
+    stale_v9 = sorted(set(V9_CONSTRAINTS) - v9f)
     for f in sorted(found):
         if f in CONSTRAINTS:
             c, w, note = CONSTRAINTS[f]
@@ -96,7 +153,7 @@ def main():
         else:
             missing.append(f)
             rows.append(f"| `{f}` | **FORBIDDEN-BY-DEFAULT — no registry row** | ? | classify or remove |")
-    stale = sorted(set(CONSTRAINTS) - found)
+    stale = sorted(set(CONSTRAINTS) - found) + stale_v9
     out = ["# STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact\n",
            f"**Generated from `{DRAFT.name}`'s schema blocks by `ref/gen_string_field_registry.py`; "
            "the extraction is mechanical so the enumeration cannot silently omit a declared field, "
@@ -111,11 +168,16 @@ def main():
         out.append(f"\n**Classified but not found in the draft (stale rows, check the extractor):** "
                    f"{', '.join(f'`{s}`' for s in stale)}")
     (B / "ref/STRING_FIELD_REGISTRY.md").write_text("\n".join(out) + "\n")
-    print(f"fields found {len(found)}  classified {len(found)-len(missing)}  "
-          f"FORBIDDEN-BY-DEFAULT {len(missing)}  stale {len(stale)}")
+    print(f"fields found {len(found) + len(v9f)}  classified "
+          f"{len(found) + len(v9f) - len(missing)}  FORBIDDEN-BY-DEFAULT {len(missing)}  "
+          f"stale {len(stale)}")
     if missing:
         print("UNCLASSIFIED:", missing)
-    return 1 if missing else 0
+    if stale:
+        # CODEX-V73 F4: stale rows are extractor/schema drift - the very signal that caught the
+        # digit-blind bug - and exiting zero on them made a format omission nonblocking.
+        print("STALE (blocking):", stale)
+    return 1 if (missing or stale) else 0
 
 if __name__ == "__main__":
     sys.exit(main())

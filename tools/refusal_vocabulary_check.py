@@ -121,12 +121,19 @@ def check(text: str):
     RETIREMENT = re.compile(r"(?<!not )(?<!never )(deleted|merged|retired|superseded|GONE|does not survive)", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
-        for tok in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", line):
-            tok = tok.rstrip("-")
-            if tok in CODES:
-                pinned.add(tok)
-            elif not RETIREMENT.search(line):
-                illegal.append(tok)
+        # GPT56-V73 F4 / CODEX-V73 F6: one retirement word exempted every token ON THE LINE, so
+        # "REFUSED-OLD was deleted; REFUSED-NEW is in force." activated NEW under OLD's retirement.
+        # The exemption is now per-SENTENCE-FRAGMENT: a token is exempt only if a retirement word
+        # shares its fragment (split on . ; :). Em-dash is NOT a splitter - this corpus uses it for
+        # asides inside one sentence, and splitting on it orphaned a legitimate retired mention from
+        # its own "was deleted" two asides later.
+        for frag in re.split(r"[.;:]", line):
+            for tok in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", frag):
+                tok = tok.rstrip("-")
+                if tok in CODES:
+                    pinned.add(tok)
+                elif not RETIREMENT.search(frag):
+                    illegal.append(tok)
     if illegal:
         fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
     if pinned and pinned != set(CODES):
@@ -257,6 +264,8 @@ CONTROLS = (
     ("the post-opening gates are unnamed", lambda: _fixture(guard="nogates"), "R08"),
     ("a negated retirement activates a token",
      lambda: _fixture() + "REFUSED-ZOMBIE is not deleted and remains in force.\n", "R01"),
+    ("one retirement word does not exempt a second token on the line",
+     lambda: _fixture() + "REFUSED-OLD was deleted; REFUSED-NEW is in force.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
