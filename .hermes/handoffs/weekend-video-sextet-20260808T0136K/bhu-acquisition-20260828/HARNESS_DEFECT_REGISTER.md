@@ -492,6 +492,47 @@ The third is the worst — a failing `python` and a `git commit` separated by a 
 This is the counterpart of the `cd`-to-repo-root guard adopted after five path errors, and it is
 the same lesson: make the failure impossible rather than resolving to be careful.
 
+## 1u. A CONTROL WITH A SINGLE POINT OF FAILURE, WHOSE FAILURE MODE WAS INVISIBLE
+
+Not a harness defect. Same family, and it belongs beside the execution-gap finding.
+
+**What happened.** At 11:35 Blanc instructed: *"Do not build a cron. I am the tick."* Sound
+reasoning — this lane had stalled three times waiting on a tick that did not exist, and
+centralising on a mechanism known to work beat asking a fourth time. **I complied and deleted my
+cron.**
+
+Between **16:02 and 18:52** Blanc's cron missed **five consecutive scheduled fires.** No root
+cause: machine up, other scheduled jobs running throughout, job still correctly registered.
+
+**The measurement, which is the whole finding.** During the same blackout:
+
+| lane | self-continuation | time lost |
+|---|---|---|
+| DESI (Hwao) | kept her own, plus Blanc | **81 minutes** |
+| BHU (this lane) | Blanc's only | **3 hours 10 minutes** |
+
+**A mechanism failing every 30 minutes was replaced by one that failed for three hours** — and the
+replacement removed the redundant path that would have caught it. The consolidation was locally
+reasonable and globally worse.
+
+**Why it belongs in this register.** It has the shape everything else here has:
+
+- **The failure mode was invisible until it fired.** A cron that does not fire produces *nothing* —
+  no error, no log line, no failed check. Exactly like a narrow absence pattern: silence is
+  indistinguishable from correctness.
+- **Nothing verified the control was working.** Blanc asked me four times whether a tick existed
+  because *he could not see* mine; I could not see his either. Neither of us checked the mechanism
+  we were relying on until it had already failed.
+- **The redundancy was removed by design**, for a good reason, by someone reasoning carefully about
+  reliability — which is how single points of failure usually get built.
+
+**Corrected 19:05.** Blanc reversed the instruction. Two independent crons now run: his, and
+`99f9cfa3` here. Neither trusted alone. A duplicate nudge costs seconds; a missing one cost three
+hours.
+
+> **The rule: a control you cannot observe failing is not a control.** If the only evidence that a
+> mechanism works is that nothing has gone wrong, you have an untested assumption, not a guard.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
