@@ -1,13 +1,43 @@
-# SELF-CONTINUATION — **DORMANT, closed 2026-08-29 08:43 KST.** Orders below are retained as a record.
+# SELF-CONTINUATION — **RENEWED 2026-08-29 10:15 KST by Duho, relayed by Blanc. ACTIVE.**
 
-**Cron `db6ea525` is deleted.** The loop ran 00:40 -> 08:43 and is closed 17 minutes inside its own
-09:00 bound, because everything doable without a human was done and the honest choice was to stop
-rather than manufacture a step. Do not restart it without a fresh authorisation from Duho.
+Cron `4a937173`, ticks :07/:27/:47, **bound 21:00 KST today**. Same boundaries as the overnight run:
+mechanical continuation unsupervised; stop on substance disagreements, on tier or claim changes, and
+on forks where both directions cost something.
 
-**Nothing here is a live instruction.** Current state is `LANE_STATE_20260829.md`; the four
-decisions are `DECISIONS_FOR_DUHO.md`.
+**State is `LANE_STATE_20260829.md`. Decisions are `DECISIONS_FOR_DUHO.md`. This file is rules only.**
+
+## STANDING BUILD QUEUE — worked in order when no round is live
+
+1. **Gain control, option (b)** — the executable joint counterfactual path. Duho: *"real gate."*
+   **Option (a) is dead**; I called it a scientific judgement wearing an engineering costume and he
+   did not take it. **Hard stop built into this task:** when the build reaches *what counterfactual
+   sign vector a given γ produces*, stop and raise it separately. That mapping is a modelling
+   assumption needing preregistration, and choosing it quietly on the way to the path is the exact
+   failure mode this queue exists to avoid.
+2. **Citation check, option C** — Duho: *"fix it so checker actually read it."* Reports now carry
+   `FINDINGS-BLOCK v1` (`gates/BRIEF_V38_REVIEW.md`). Build the checker against that block, with
+   negative controls that fail when the positive branch is deleted — the control the old version
+   never had. **The ~30 historical reports predate the block and Duho did NOT rule on them.** Propose
+   a disposition (my reading: hand-verify at freeze) and hand it to Blanc rather than deciding.
+
+## SETTLED TODAY — do not reopen
+
+- **VOID option A** and the **BS-6 class-P slot** (counts 15/8 → 16/8) are applied in V37/V38.
+- **The §2.7 instant is `Post-first-real-χ`**, recovered from V11 commit `4d99d1d93`, not ruled on.
+  My `Post-unblinding` recommendation was wrong: χ *exists* sealed before unblinding; I had confused
+  that with when χ is *read*.
+- **`require_authorization` is deprioritised.** Recorded accurately in §5; **not** repaired. Do not
+  build the typed authorisation record. **Do not touch frozen v9.**
+
+## A QUESTION ABOUT THIS LANE'S OWN WORDS IS NOT A QUESTION FOR THE PRINCIPAL
+
+I escalated the §2.7 phase and Duho refused it: *"I didn't write it, ask an agent who wrote it."* The
+clause was authored here. **Before escalating, check `git log` for who wrote the words.** If this lane
+did, recover the intent from the commit and the findings it answered, apply it, and say which words
+determined it. Legislating new policy and calling it recovery is the failure to avoid.
 
 ---
+
 
 
 **Authorised by Duho, relayed by Blanc.** First lane to run without a relay between rounds. The
