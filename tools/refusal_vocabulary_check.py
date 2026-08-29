@@ -79,6 +79,10 @@ ERRORS = {
            "therefore cannot police any of them",
     "R07": "the catch-all guard has no BLOCKING INVARIANT — an obligation to review with no "
            "executable consequence is a promise, and the seats read it as one",
+    "R08": "the guard names no VERIFIER that recomputes the emissions from the log, or consults it "
+           "only once — an obligation complete at one gate does not cover events appended after it",
+    "R09": "explanation alone can discharge a RECURRING catch-all class, which is the catch-all "
+           "becoming the vocabulary by the route the guard exists to block, while passing it",
 }
 
 ROW_RE = re.compile(r"^\|\s*([A-Z][0-9]?)\s*\|")
@@ -145,6 +149,18 @@ def check(text: str):
             fail("R06", "the enumeration is tied to freeze")
         if not re.search(r"MAY NOT BE ISSUED while any `?REFUSED-UNCLASSIFIED", text, re.I):
             fail("R07", "no artifact is blocked by an unenumerated emission")
+        # R08 and R09 exist because V66 stated a continuous obligation and named nothing that checks
+        # it, and because a class that recurs can be explained every run and stay formally enumerated
+        # forever. Matching the words "BS-L" was the defect; these match the MECHANISM.
+        verifier = re.search(r"enumeration verifier", text, re.I)
+        twice = re.search(r"consulted (twice|at both)", text, re.I) or (
+            re.search(r"at the opening of the lock", text, re.I) and
+            re.search(r"at \*{0,2}`?BS-L`? issuance", text, re.I))
+        if not (verifier and twice):
+            fail("R08", "verifier named: %s; second consultation: %s"
+                 % (bool(verifier), bool(twice)))
+        if not re.search(r"recur", text, re.I):
+            fail("R09", "no rule for a recurring catch-all class")
     return out
 
 
@@ -165,10 +181,16 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
     elif guard == "noblock":
         txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
                 "checkpoint, never a routine outcome.\n")
-    elif guard:
+    elif guard in ("noverifier", "once", "norecur", True):
         txt += ("Every emission of REFUSED-UNCLASSIFIED is a defect to be enumerated at the lock "
                 "checkpoint, never a routine outcome.\n"
                 "BS-L MAY NOT BE ISSUED while any REFUSED-UNCLASSIFIED event is unenumerated.\n")
+        if guard != "noverifier":
+            txt += "The enumeration verifier recomputes the emissions from the chain.\n"
+        if guard != "once" and guard != "noverifier":
+            txt += "It is consulted twice: at BS-L issuance and at the opening of the lock.\n"
+        if guard != "norecur":
+            txt += "If the same class recurs, explanation stops discharging it.\n"
     txt += "".join(f"- `{c}`\n" for c in codes)
     if fingerprint:
         txt += f"refusal-vocabulary-derivation: `{'a' * 64}`\n"
@@ -188,6 +210,9 @@ CONTROLS = (
     ("the catch-all guard is absent", lambda: _fixture(guard=False), "R05"),
     ("the enumeration is anchored at freeze", lambda: _fixture(guard="freeze"), "R06"),
     ("the guard has no blocking invariant", lambda: _fixture(guard="noblock"), "R07"),
+    ("the guard names no enumeration verifier", lambda: _fixture(guard="noverifier"), "R08"),
+    ("the verifier is consulted only once", lambda: _fixture(guard="once"), "R08"),
+    ("recurrence can be explained away", lambda: _fixture(guard="norecur"), "R09"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
