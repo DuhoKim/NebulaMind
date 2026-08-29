@@ -8,11 +8,9 @@
 
 - **CALLER** — 20
 - **INTEGRITY** — 61
-- **NUMERICAL** — 17
+- **NUMERICAL** — 22
 - **NUMERICAL-PLANNING** — 3
 - **TYPED-OUTCOME** — 3
-- **UNREACHABLE-BY-CONSTRUCTION** — 4
-- **UNREACHABLE-MEASURED-ONLY** — 1
 - **WRAPPER** — 3
 
 **Total 112 raise nodes.** Sites marked *soft* are ones I am least sure of; if they read as CALLER instead, the numerical class drops from 22 to 18.
@@ -102,12 +100,12 @@
 | 1341 | `_plan` | `InconclusiveByPower` | **TYPED-OUTCOME** |  | final selected set fails the Stage-P re-pass ({}/{} < {}) |
 | 1369 | `calibration_bins` | `RuntimeError` | **NUMERICAL** |  | degenerate calibration bins {} — FAIL |
 | 1397 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | stratum {} needs {} labels but only {} objects exist — FAIL |
-| 1401 | `allocate_handcheck` | `RuntimeError` | **UNREACHABLE-MEASURED-ONLY** |  | inherited floors need {} labels, budget {} — FAIL |
+| 1401 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | inherited floors need {} labels, budget {} — FAIL |
 | 1403 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | budget {} exceeds available objects {} — FAIL |
-| 1411 | `allocate_handcheck` | `RuntimeError` | **UNREACHABLE-BY-CONSTRUCTION** |  | floors exceed budget after the stratum lift — FAIL |
-| 1435 | `allocate_handcheck` | `RuntimeError` | **UNREACHABLE-BY-CONSTRUCTION** |  | no headroom remains to place the budget — FAIL |
-| 1437 | `allocate_handcheck` | `RuntimeError` | **UNREACHABLE-BY-CONSTRUCTION** |  | allocation {} != budget {} — FAIL |
-| 1439 | `allocate_handcheck` | `RuntimeError` | **UNREACHABLE-BY-CONSTRUCTION** |  | allocation exceeds available objects in a cell — FAIL |
+| 1411 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | floors exceed budget after the stratum lift — FAIL |
+| 1435 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | no headroom remains to place the budget — FAIL |
+| 1437 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | allocation {} != budget {} — FAIL |
+| 1439 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | allocation exceeds available objects in a cell — FAIL |
 | 1442 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | stratum {} below floor after apportionment — FAIL |
 | 1460 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** |  | calibration inputs malformed — FAIL |
 | 1462 | `accuracy_from_handcheck` | `RuntimeError` | **NUMERICAL** | soft | empty calibration bin — FAIL |
