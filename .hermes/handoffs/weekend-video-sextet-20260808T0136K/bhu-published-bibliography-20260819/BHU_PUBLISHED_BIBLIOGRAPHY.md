@@ -13,6 +13,13 @@ machine form of the DOI page: journal, volume, pages, issue date, publisher), vi
 No entry rests on arXiv metadata alone; where arXiv pages were consulted (Easson 2026) they were
 used only to tie authorship to an already-verified journal record, never as the publication
 evidence itself. Anything that could not be verified published is in Appendix A, with the reason.
+**OWNERSHIP-OF-PROOF, adopted 2026-08-29** — both gate seats proposed this independently and in
+almost the same words. A paper earns **THEORETICAL-OBSTRUCTION** when it presents the no-go
+derivation itself, or gives a self-contained application of an established theorem by establishing
+its hypotheses. **Merely stating, summarising or citing a no-go proved in another identifiable paper
+does not transfer the tier** — record it in prose and tier the proof-owning paper after audit.
+Otherwise one theorem makes an obstruction entry of every paper that cites it.
+
 Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 **QUALITATIVE-DIRECTIONAL** / **CONSISTENCY-ONLY** / **PROSPECT** (points at other instruments).
 
@@ -712,7 +719,16 @@ entry 37 (PNAS 2003); here the shock sits outside any horizon.
 **37. J. Smoller & B. Temple (2003). "Shock-wave cosmology inside a black hole." PNAS 100, 11216–11218.**
 DOI 10.1073/pnas.1833875100 — VERIFIED (Crossref: PNAS, v100, p11216-11218, 2003-09). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). Theorem-grade exact GR: big bang as a localized explosion inside a Schwarzschild black hole, subluminous shock beyond the Hubble length, white-hole exit; σ=1/3 uniquely selected. The only paper read so far with no underived ingredient — and no stated falsifier.
+Testability: **CONSISTENCY-ONLY** — **AUDITED AND CONFIRMED 2026-08-29** (`b30`, both seats).
+Proposed for THEORETICAL-OBSTRUCTION and **refused by both**: Theorem 2 proves the constructed shock
+is everywhere subluminal *iff* σ ≤ 1/3, and Theorem 3 gives its Big-Bang limit for the three σ
+regimes — **a real parameter exclusion inside a construction, not the paper's operative result.**
+CGATE's test, adopted: *a constructive paper stays constructive when a theorem delineates the domain
+of the constructed family; the obstruction tier is for papers whose operative result IS the
+exclusion.* Promoting it would have let any uniqueness or parameter-bound theorem be relabelled by
+negation. **Recorded so the theorem is not lost: within its exact constant-equation-of-state shock
+family, everywhere-subluminal propagation requires σ ≤ 1/3; σ > 1/3 is excluded.**
+**[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). Theorem-grade exact GR: big bang as a localized explosion inside a Schwarzschild black hole, subluminous shock beyond the Hubble length, white-hole exit; σ=1/3 uniquely selected. The only paper read so far with no underived ingredient — and no stated falsifier.
 Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Crossref says 2003 — the verified year is used.)
 
 **38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**

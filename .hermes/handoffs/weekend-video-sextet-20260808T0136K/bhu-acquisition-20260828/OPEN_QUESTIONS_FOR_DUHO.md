@@ -6,7 +6,55 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — none. All four are closed.
+## OPEN — one, and it is a tier change so it is yours
+
+### 5. One paper may be filed under a label that says the opposite of what it does
+
+*(Filed as three papers; the reviewers cut it to one. What they agreed on is already applied.)*
+
+**The stake.** Entry 5 (Khakshournia 2010) is filed as *consistency-only* — which in this collection
+means "shows nothing is contradicted, and says nothing about what cannot happen." Its central result
+is that a certain join between an expanding universe and a black-hole exterior **cannot be smooth**;
+it requires a shell carrying pressure.
+
+**How it surfaced:** not by looking. It came out of the random sample drawn to measure what the
+automatic screen misses.
+
+**The reviewers split, and only on this one.**
+
+| | says | reasoning |
+|---|---|---|
+| Reviewer B (GPT) | **Move it.** | Testing whether the join can be smooth *is* the paper's job, and its answer is no. The domain is narrow, but narrowness belongs in the note, not the label. |
+| Reviewer A (Gemini) | **Leave it.** | Working out that a join needs a shell is describing the join, not proving a model impossible. That is ordinary constructive physics. |
+
+**Option 1 — move it, with the narrow scope printed.** *Costs:* a label that says "proves an
+impossibility" attached to a three-page note about one configuration. *Gains:* the label stops
+saying the reverse of the paper's finding.
+
+**Option 2 — leave it, and record the finding in the note.** *Costs:* the collection keeps a paper
+whose result is an impossibility in the drawer marked "says nothing about impossibilities."
+*Gains:* no re-tiering on a split verdict, and the finding is still written down.
+
+**My recommendation: option 2 for now.** The reviewers disagree, the paper is narrow, and the
+information survives either way — which is not true of most tier questions.
+
+**What both reviewers agreed, and is already applied:**
+- **Entry 37 stays put.** Its "if and only if" theorem is a real exclusion *inside* a construction,
+  not the paper's purpose. Promoting it would let any uniqueness theorem be relabelled by negating
+  it. **The theorem is now written into its entry so it isn't lost.**
+- **Entry 49 stays put**, under a new rule both proposed independently: **a paper earns the
+  "proves an impossibility" label only if it does the proving.** Citing someone else's theorem
+  doesn't transfer it. Otherwise one theorem turns every paper that cites it into an obstruction.
+- **The real target is entry 48** — Farhi & Guth, *"An obstacle to creating a universe in the
+  laboratory"* — which is where entry 49 sends the proof. **Nobody has ever read it.**
+
+**And I could not get it.** ScienceDirect returns 403; there is no free scan. **That is now three
+papers behind the same paywalls, and all three matter:** Popławski *PLB* 690, Silk *Science* 277,
+and now Farhi & Guth *PLB* 183. Any one of them would settle something currently open.
+
+---
+
+## PREVIOUSLY CLOSED — all four earlier questions
 
 > **Numbering note, 2026-08-29.** These read **2, 3, 1** and the new one was numbered **3**,
 > which was already taken by a question closed the same evening — two different "question 3" in the
