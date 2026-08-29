@@ -570,7 +570,8 @@ Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 names the class. Audit-w
 
 **19. I. Dymnikova (2019). "Universes Inside a Black Hole with the de Sitter Interior." Universe 5, 111.**
 DOI 10.3390/universe5050111 — VERIFIED (Crossref: Universe, v5, 111, 2019-05-10).
-Claim: explicit universes-inside-a-regular-BH construction. Testability: **CONSISTENCY-ONLY**.
+Claim: explicit universes-inside-a-regular-BH construction. Testability: **CONSISTENCY-ONLY**
+**ACQUIRED AND ADJUDICATED 2026-08-30** (`b39`, browser capture — abridged, see the file header; gated E19_CONFIRMED / E19_NARROWED_DERIVED_SUBCASE_AND_ABRIDGED_CAPTURE): NOT an obstruction; tier confirmed. **Claim-level note (CGATE, derived not assumed):** within its minisuperspace tunneling model, *flat and open births cannot proceed through the specified potential barrier without a sufficiently negative string/quintessence contribution* (the k − B_s term) — a source-owned exclusion delimiting the construction, per the entry-37/55 convention..
 Record: **new to us**. Audit-worthiness: **medium**.
 
 **20. K. A. Bronnikov, V. N. Melnikov & H. Dehnen (2007): "Regular black holes and black universes." Gen. Rel. Grav. 39, 973–987.**
@@ -870,7 +871,8 @@ Record: kimi recall R4; the earliest multi-universe-production construction.
 **48. E. Farhi & A. H. Guth (1987). "An obstacle to creating a universe in the laboratory." Phys. Lett. B 183, 149–155.**
 DOI 10.1016/0370-2693(87)90429-1 — VERIFIED (Crossref: PLB, v183, p149-155, 1987). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **UNREAD**
+**SECONDARY TESTIMONY PINNED 2026-08-30** (`b39`): Dymnikova 2019 (entry 19's paper) states verbatim that *"Farhi and Guth concluded that the initial singularity would be an unavoidable obstacle to the creation of a universe in the laboratory"*, citing PLB 183, 149 — this entry. Corroborates the entry-49→48 ownership chain. **Testimony only: entry 48 remains paywalled and unread, and its proof is NOT thereby verified.** — text unexamined here.
 Record: kimi recall R1; the no-go analysis for manufacturing a child universe. (Kimi remembered p149-153; Crossref says 149-155 — verified pages used.)
 
 **49. S. K. Blau, E. I. Guendelman & A. H. Guth (1987). "Dynamics of false-vacuum bubbles." Phys. Rev. D 35, 1747–1766.**
