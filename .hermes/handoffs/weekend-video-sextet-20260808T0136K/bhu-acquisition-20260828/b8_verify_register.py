@@ -37,16 +37,27 @@ print("=" * 96); print("B8 -- the register, checked against the filesystem for t
 # it -- so: match every aNN / bNN token, resolve to a file on disk, and inspect the residue.
 _tokens = sorted(set(re.findall(r"\b([ab]\d{1,2})(?:_[a-z0-9_]*)?(?:\.py)?\b", R)))
 _ondisk = {f.split("_")[0]: f for f in os.listdir(HERE) if re.match(r"^[ab]\d{1,2}_.*\.py$", f)}
-named   = sorted({_ondisk[t] for t in _tokens if t in _ondisk})
+# SELF-EXCLUSION. Widening the token match (from backticked filenames to every aNN/bNN token)
+# made this script match ITSELF -- the register names b8 -- so b8 executed b8, recursively, until
+# the 600s subprocess timeout. The narrow version could not see itself; the corrected one could.
+# A fix for one defect introducing another, visible only on execution.
+_SELF = os.path.basename(__file__)
+named   = sorted({_ondisk[t] for t in _tokens if t in _ondisk and _ondisk[t] != _SELF})
 unresolved = sorted(t for t in _tokens if t not in _ondisk)
+# a11 was DELETED 2026-08-29 on Duho's instruction after being measured unsound (register 1v).
+# Its token still appears in the register, which is correct -- the record of a retired tool should
+# survive the tool. Declared here so an EXPECTED absence is never confused with a missing file.
+RETIRED = {"a11"}
+unexpected = [t for t in unresolved if t in _ondisk or t not in RETIRED and re.match(r"^[ab]\d+$", t)]
 missing = [f for f in named if not os.path.exists(os.path.join(HERE, f))]
 print(f"   register mentions {len(_tokens)} script tokens; {len(named)} resolve to files on disk")
 print(f"   tokens with no matching file (prose refs, section ids, false hits): {unresolved}")
 print(f"\n1. SCRIPTS NAMED IN THE REGISTER: {len(named)}")
 print(f"   {named}")
-chk("every script token in the register that names a real file resolves, and the register "
-    "references a substantial share of the battery rather than one script",
-    not missing and len(named) >= 10,
+print(f"   deliberately retired, absence EXPECTED: {sorted(RETIRED)}")
+chk("every script token resolves except those deliberately retired, and the register references a "
+    "substantial share of the battery rather than one script",
+    not missing and len(named) >= 10 and all(t in RETIRED for t in unresolved if re.match(r"^[ab]\d+$", t)),
     f"{len(named)} scripts resolved from {len(_tokens)} tokens. The first version of this check "
     f"matched backticked filenames only and verified ONE script while reporting PASS")
 

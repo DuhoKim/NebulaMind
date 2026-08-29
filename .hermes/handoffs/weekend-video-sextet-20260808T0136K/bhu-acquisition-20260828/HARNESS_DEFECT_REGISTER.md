@@ -553,6 +553,54 @@ been watched.
 > **The rule: a control you cannot observe failing is not a control.** If the only evidence that a
 > mechanism works is that nothing has gone wrong, you have an untested assumption, not a guard.
 
+## 1v. THE CLASSIFIER IS DELETED — 2026-08-29 19:25, on Duho's instruction
+
+`a11_predicate_audit.py` and its control directory `_classifier_control/` are **removed from the
+lane.** Section 2 below is the record of why; this note preserves the measurement, because after
+deletion it cannot be re-run.
+
+**Measured against ground truth** — eight synthetic checks of known form:
+
+| check form | ground truth | classifier said | |
+|---|---|---|---|
+| tautology | TAUTOLOGY | **COMPUTED** | ✗ |
+| literal | LITERAL | LITERAL | ✓ |
+| string, direct | STRING | STRING | ✓ |
+| string, via variable | STRING | **COMPUTED** | ✗ |
+| regex, via variable | STRING | STRING | ✓ |
+| computed from parsed value | COMPUTED | **MIXED** | ✗ |
+| count vs threshold | MIXED | MIXED | ✓ |
+| loop flag from membership | STRING | **TAUTOLOGY** | ✗ |
+
+**4 of 8 — and 0 of 1 on tautologies, the category it existed to detect.** Cause: `abs` sat in its
+data-driven call set, so *any tautology written with `abs()` classified as COMPUTED* — and the one
+real tautology this battery ever contained was `abs(w_implied + 1.0) < 1e-12`. **The tool built to
+find that defect would have cleared it.** A gate seat found it instead.
+
+**Why deletion rather than repair.** It was flagged as unsound at 05:25 and left standing for
+fourteen hours. In that time it appeared in the wrap-up and the register as though it were a
+working instrument. **A measured-broken tool left in place is a hazard, not an artifact** — the
+next reader has no way to know its output is noise, and its five "findings" were found by reading
+its output by hand, not by its classification.
+
+**What is NOT lost.** The five real name/predicate gaps it surfaced are recorded at §1h and were
+independently confirmed by two seats. The 21/52 figure it produced is **not** a measurement and is
+marked as such wherever it appears. Nothing downstream depends on it.
+
+**Deleting it broke the register's own verifier, and the break was a second defect.** `b8` runs
+every script the register names. Widening its token match earlier today — the fix for its first
+run verifying *one* script — made it match **itself**, so `b8` executed `b8` recursively until a
+600-second subprocess timeout. **The narrow version could not see itself; the corrected one
+could.** A repair introducing a new defect, invisible except on execution. Self-exclusion added.
+
+`b8` also now declares `a11` as **deliberately retired**, so its absence is an expected result
+rather than a silent unresolved token — the failure mode this register exists to catch.
+**5/5, 14 scripts executed clean.**
+
+**Retained deliberately: this note and §2.** Deleting the tool without keeping the account of its
+failure would be the destructive-green defect of §1k applied to a whole artifact — a clean lane
+achieved by erasing the evidence of what went wrong in it.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
