@@ -652,12 +652,13 @@ finding; the big bang as the interior/exterior of a white-hole or 5D collapse.
 **44. R. Pourhasan, N. Afshordi & R. B. Mann (2014). "Out of the white hole: a holographic origin for the Big Bang." JCAP 04 (2014) 005.**
 DOI 10.1088/1475-7516/2014/04/005 — VERIFIED (Crossref: JCAP, v2014, 005, 2014-04). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori). 3-brane out of 5D BH formation; thermal atmosphere gives scale-invariance without inflation. Rare self-honesty: states its own base model is 'already ruled out at >5σ' (exact scale-invariance vs the observed red tilt) **RECEIPTED 2026-08-29** (`b16_entry44_tilt.py`, 4/4): Planck 2018 VI eq. (19),
+Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori). 3-brane out of 5D BH formation; thermal atmosphere gives scale-invariance without inflation. Rare self-honesty: states its own base model is 'already ruled out at >5σ' (exact scale-invariance vs the observed red tilt) and names the fix as its immediate challenge.
+**RECEIPTED 2026-08-29** (`b16_entry44_tilt.py`, 4/4): Planck 2018 VI eq. (19),
 `1807.06209_clean.txt`, gives n_s = 0.9649 ± 0.0042 — *"which is 8σ away from scale-invariance
 (n_s = 1), confirming the red tilt of the spectrum at high significance"* — and nearly 9σ adding
 BAO (n_s = 0.9665 ± 0.0038). **So the paper's ">5σ" is true and conservative.** Found by
 `CGATE_B14_VERDICT.md`: this is an experimental-status claim with a significance and *no
-instrument named*, invisible to the sweep's original vocabulary. and names the fix as its immediate challenge.
+instrument named*, invisible to the sweep's original vocabulary.
 Record: harvest #24; the 5D holographic/white-hole origin — the line the caption-era Afshordi identification traced back to.
 
 **45. "White hole cosmology and Hawking radiation from quantum cosmological perturbations." Phys. Rev. D 106, 123505 (2022).**
