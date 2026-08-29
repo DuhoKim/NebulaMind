@@ -1,0 +1,42 @@
+1. PARSED 58 entry blocks; 51 carry an explicit tier
+   CALIBRATED-FALSIFIER entries: [7, 31, 51]
+   with an explicit status suffix: {51: 'LIVE'}
+PASS COUNTED: tiers parsed for a majority of entries, so cross-refs can be checked against something  -- 51 tiers recovered
+
+2. CROSS-REFERENCES CARRYING A TIER OR STATUS CLAIM: 5
+
+   row 6 -> entry 31 (currently CALIBRATED-FALSIFIER)
+      "Its three examples (inflaton λ ≈ λ_critical with a δρ/ρ that "cannot yet be taken seriously"; the Δm sign argument Rothman–Ellis attacked; cold big-bang effects) are all directional, and the"
+
+   row 6 -> entry 7 (currently CALIBRATED-FALSIFIER)
+      "Its three examples (inflaton λ ≈ λ_critical with a δρ/ρ that "cannot yet be taken seriously"; the Δm sign argument Rothman–Ellis attacked; cold big-bang effects) are all directional, and the"
+
+   row 7 -> entry 31 (currently CALIBRATED-FALSIFIER)
+      "Both seats also noted that this tier conflates the NATURE of a claim with its STATUS: entry 7 is CALIBRATED-FALSIFIER / FIRED, entry 31 is CALIBRATED-FALSIFIER / LIVE, and the record carries"
+
+   row 31 -> entry 54 (currently QUALITATIVE-DIRECTIONAL)
+      "**Stale line corrected 2026-08-29:** this previously read "with entry 54, this gives the family a SECOND live calibrated falsifier"."
+
+   row 25 -> entry 23 (currently QUALITATIVE-DIRECTIONAL)
+      "Testability: **QUALITATIVE-DIRECTIONAL** — the Λ–r_S identification is a number, but it is fixed *from* the measured Λ rather than predicting it; the falsifiable edge is the implied coincide"
+
+3. THE ORIGINAL DEFECT
+   entry 54's current tier .................... QUALITATIVE-DIRECTIONAL
+   the phrase appears 1x, all inside a 'previously read' quotation: True
+   row 31 records why the claim was withdrawn .. True
+PASS the motivating defect is fixed AND the fix records its own reason, so the next reader sees a withdrawn claim rather than a silently edited one  -- entry 54 is now QUALITATIVE-DIRECTIONAL; row 31's claim depended on it being CALIBRATED-FALSIFIER
+
+4. WHAT THE PROBE FOUND, AND WHAT IT CANNOT FIND
+
+   Cross-references that assert another entry's tier are RARE in this bibliography -- the rows
+   are mostly self-contained, which is why only one such claim ever went stale. That is a real
+   result: the defect class exists but its population here is small.
+
+   WHAT THIS CANNOT FIND, named so it is not trusted past its reach:
+     - claims about another entry made WITHOUT naming it ("the family's other falsifier");
+     - claims in the ranked-target list and the appendices, which use their own numbering;
+     - claims in OTHER documents in the lane that reference bibliography entries -- the register,
+       the study, the closed-routes file. Those were not scanned.
+   A tighter version would parse every lane document. This one parses the bibliography only.
+
+SELF-CHECKS: 2/2 passed

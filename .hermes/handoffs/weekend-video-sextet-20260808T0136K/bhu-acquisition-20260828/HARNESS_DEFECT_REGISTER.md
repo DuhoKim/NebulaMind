@@ -409,6 +409,34 @@ until something unexpected appears, and then reading it.
 class anyway. Any absence claim without all three is an untested hypothesis wearing a result's
 clothes.
 
+## 1q. THE RULE CHANGED THE SIZE OF A PROBLEM BY AN ORDER OF MAGNITUDE
+
+Every prior instance in this register corrected a *wording*. This one corrected a *magnitude*, and
+it is the strongest use anyone has made of the rule today.
+
+**DESI lane.** Blanc told Hwao to stop enumerating with keyword filters and build the list
+mechanically — every row, every failure branch, the outcome each names. Result:
+
+> Row F is not two branches. It is **nine raise sites, all bare `RuntimeError`, none converting to
+> a named outcome.** Across the reference implementation: **108 untyped raise sites** — 29
+> caller-guards needing no outcome, 31 reachable failures that do, and **48 she cannot classify
+> without reading each one.**
+
+The defect two adversarial seats had characterised as *"one row has an unterminated branch"* is a
+class of **between 31 and 79 members.** Widening the pattern did not adjust a claim; it revealed
+the problem was one to two orders of magnitude larger than the finding that prompted it.
+
+**And she stated it as a RANGE rather than picking the middle**, explicitly because *"a confident
+number is exactly what I produced twice today and had to retract."* That is the harder half. The
+midpoint would have read better and been unearned; 31–79 is the honest width of what mechanical
+enumeration plus unread cases actually supports.
+
+**A second lesson inside it: framing a question by phase hid half the class.** The defect was
+scoped to pre-unblinding because that was how the question was asked — the post-unblinding
+decision path has the same bare raises. **The scope of a question silently becomes the scope of
+its answer**, and nothing in the answer reveals the restriction. That is the same failure as a
+narrow pattern, operating on the *question* rather than on the regex.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:
