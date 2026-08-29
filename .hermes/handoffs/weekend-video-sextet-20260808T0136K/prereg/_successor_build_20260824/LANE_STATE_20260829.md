@@ -14,11 +14,12 @@ written `<lane>` below.
 
 ---
 
-## 1. ONE OPEN QUESTION. Ten rulings today; the numerical-routes question was ruled twice.
+## 1. TWO OPEN QUESTIONS. Ten rulings today; the numerical-routes question was ruled twice.
 
 | # | file | status |
 |---|---|---|
 | 1 | `OPEN_QUESTION_GAIN_SIGN_MAPPING.md` | **OPEN, with the principal.** γ → counterfactual sign-vector/calibration mapping. `ref/gain_counterfactual_path.py` is built and refuses to run without one. |
+| 2 | `OPEN_QUESTION_V49_NORMATIVE_RESIDUE.md` | **OPEN, with the principal.** Three V49 findings whose repair changes a normative rule: **Row L's signing path still voids itself** (CODEX-V24 F1 raised again at V49, 25 drafts apart — the document carries it as a known-open item, which is not the same as freezable); the access log's **unconstrained refusal reasons** defeating the closed non-χ allowlist; and how the caller/run boundary should treat guards that **cannot fire at all**. |
 
 **Ruled 15:32 — `OPEN_QUESTION_PRE_UNBLINDING_NUMERICAL_ROUTES.md`: option B as a CLASS RULE.**
 Option A (ruled 14:32) was **withdrawn** after it failed on its own terms — no existing outcome
