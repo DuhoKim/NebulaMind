@@ -43,27 +43,34 @@ more useful finding.
 Letters B text may contain the missing step. *Costs:* a delay, and it may not be reachable.
 *Gains:* it could settle the question outright instead of us choosing between two guesses.
 
-**NEW EVIDENCE, added the same evening — I tried to find his number instead of just failing to
-reproduce it, and it did not turn up.** `b13_floor_routes.py` (5/5, UNDER GATE). The paper
-actually *defines* the quantity both reviewers had been taking at its rounded value, so I could
-compute it exactly rather than accept "about 10⁵¹". Then I tried **five** different ways of getting
-from a density to a smallest-possible black hole, instead of the one way both reviewers tried.
+**NEW EVIDENCE, added the same evening, and both reviewers have now checked it.** `b13_floor_routes.py`
+(5/5). `AGATE_B13` = confirmed, `CGATE_B13` = confirmed but narrowed. Both recomputed every number
+independently and got the same answers; one of them did it to ten significant figures.
 
-- **None of the five reaches his number.** The closest lands 18 times below it. Most are further.
-- **Computing his density exactly makes the mismatch worse, not better** — from 37 times to 111.
-  So the gap is not rounding; rounding runs the other way.
+I tried to *find* his number rather than just fail to reproduce it. The paper turns out to define
+the quantity both reviewers had been taking at its rounded value, so I could work it out rather
+than accept "about". Then I tried **six** different ways of getting from a density to a
+smallest-possible black hole, instead of the one way both reviewers had tried — including one a
+reviewer suggested and computed itself.
+
+- **None of the six reaches his number.** The closest lands 13 times below it; most are further.
+  Neither reviewer could find a seventh that works.
+- **Working his density out rather than rounding it makes the mismatch worse** — 37 times becomes
+  111. So the gap is not that rounding; rounding runs the other way.
 - **The shortfall is three to four factors of ten in density.** "About" and "of order" normally
-  cover one, sometimes two.
+  cover one, sometimes two. *That last sentence is my reading, not a calculation, and both
+  reviewers made me say so.*
 
-**This cuts against my own earlier finding, and I want that on the record.** On the exact figure
-his floor drops *below* the observational window entirely, which would mean the promising new test
-I reported this evening does not exist at all. There are now three candidate floors and they
+**This cuts against my own earlier finding, and I want that on the record.** Under one of the
+three candidate figures his floor drops just below the observational window, which would mean the
+promising new test I reported this evening does not exist at all. But it is only *just* below —
+close enough that a small missing factor would put it back. So: three candidate floors, and they
 disagree about whether there is anything to look for.
 
-**What it does NOT do is close this question.** Ruling out every route I can think of is not the
-same as proving none exists — he may apply the bound to something I have not thought of, and the
-paper shows nothing between the two numbers. So the choice below is unchanged; it is just better
-informed, and the evidence now leans toward Reviewer A.
+**What it does NOT do is close this question**, and here both reviewers were firm with me. Ruling
+out every route I can think of is not proving none exists; one of them listed four more the paper
+allows that I did not try. The paper simply shows nothing between the two numbers. So the choice
+below is unchanged — just better informed, and the evidence now leans toward Reviewer A.
 
 **My recommendation: option 3, then option 1 if the journal version does not settle it.**
 
