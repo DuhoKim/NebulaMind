@@ -124,24 +124,30 @@ byte- and position-identical to V30; class counts 15 class-P / 8 class-E; all fo
 
 ---
 
-## 5. DO NOT REOPEN — the quarantined citation check
+## 5. THE CITATION CHECK IS REBUILT — option C, wired 2026-08-29 11:5x
 
-The citation check in `tools/prereg_lint.py` is **QUARANTINED to advisory** after three consecutive
-two-seat NOT CLEARs. **CORRECTION 09:55 — its findings DO still fail the lint.**
-The quarantine changed the category and message prefix, not the exit code: `main()` returns 1 for any
-finding. V36 emitted none, so the claim was never exercised; V37 emits one and lint exits 1. Not
-changed, because the disposition is decision 3 — see that file's correction block. It emits `FABRICATED` against real citations — `CODEX-V4 F9` exists in
-`GATE_CODEX_SUCCESSOR_V4.md`, but `_reports_for` requires `"REVIEW"` in the filename, so it judged
-the citation against an unrelated report. **Acting on that output would mean "fixing" a correct
-document**, which is strictly worse than not checking.
+**The quarantine is over.** The principal ruled option C ("fix it so checker actually read it").
+`tools/citation_block_check.py` reads `FINDINGS-BLOCK v1` — the judgement of which numbered items are
+findings is now **declared by the report's author** instead of recovered by pattern-matching, which
+is what made three earlier versions unsound.
 
-Its findings now carry category `repair-citations-advisory` and **do not fail the lint**. A fourth
-repair attempt is explicitly out of bounds; the disposition is decision 3.
+**The root defect is gone, not worked around.** Reports are indexed **by the blocks they declare**,
+never by filename pattern. The original failure — calling `CODEX-V4 F9` fabricated because
+`_reports_for` demanded `"REVIEW"` in the filename — is structurally impossible now.
 
-**Any dispatch brief must repeat this disclosure**, or a seat will infer from a green lint something
-the lint cannot support.
+Three categories in `prereg_lint.py`, and only two block:
+- `repair-citation-fabricated` — a well-formed block exists and does not declare the cited finding. **Blocks.**
+- `repair-citation-malformed` — a report's block does not parse. The format is mandatory. **Blocks.**
+- `repair-citation-legacy` — no block for that seat/version. **ADVISORY, never blocks.**
 
----
+**Advisory now genuinely does not block.** `main()` returns 1 only for non-advisory categories. The
+old quarantine changed the category string and left `return 1 if out` untouched, so an "advisory"
+still failed the lint — unnoticed because V36 emitted none. On V41: **95 findings, 0 blocking,
+exit 0.** All 95 are legacy-corpus citations.
+
+**The ~30 historical reports remain unruled** — `PROPOSAL_LEGACY_CITATION_CORPUS.md` puts four
+options to the principal with the measured size (94 citations, all pre-format). Until he rules, they
+are reported and never acted on.
 
 ## 6. ARTIFACT INVENTORY
 

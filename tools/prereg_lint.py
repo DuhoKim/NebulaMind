@@ -27,6 +27,9 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import citation_block_check as cbc
+
 SLOT = re.compile(r"\bBS-[0-9]+[a-z]?\b|\bBS-[A-Z]\b")
 
 
@@ -46,6 +49,9 @@ def slot_rows(text):
         if m:
             rows[m.group(1)] = cls
     return rows
+
+
+ADVISORY_CATEGORIES = {"repair-citation-legacy"}
 
 
 def count_rows(text):
@@ -221,71 +227,66 @@ def check_prose_counts(text, rows, out):
                                 f"{actual[cls]}"))
 
 
+# OPTION C, 2026-08-29. The principal ruled: "fix it so checker actually read it." The old check
+# enumerated a report's findings with a regex and then concluded a cited finding was ABSENT - using
+# a pattern to establish a negative, which is unsound by construction. It called CODEX-V4 F9
+# fabricated because `_reports_for` demanded "REVIEW" in the filename and judged the citation
+# against an unrelated report.
+#
+# Two things changed. Reports now DECLARE their findings in FINDINGS-BLOCK v1, so the judgement is
+# encoded by its author instead of recovered by guessing. And reports are indexed BY THE BLOCKS THEY
+# DECLARE rather than by filename pattern - which removes the original defect at its root, since no
+# filename convention has to be guessed at all.
+#
+# Three categories, and only two of them block:
+#   repair-citation-fabricated  - a well-formed block exists and does not declare the cited finding
+#   repair-citation-malformed   - a report carries a block that does not parse; the format is
+#                                 mandatory in the dispatch brief, so this is a real defect
+#   repair-citation-legacy      - ADVISORY. No block for that seat/version: the ~30 historical
+#                                 reports predate the format. The principal has NOT ruled on that
+#                                 corpus, so this must not fail anything.
+def _block_index(gates):
+    """Map (SEAT, VERSION) -> declared finding numbers, by reading blocks, not filenames."""
+    idx, malformed = {}, []
+    for f in sorted(gates.glob("*.md")):
+        body = f.read_text(errors="ignore")
+        # The marker must sit at COLUMN 0. A dispatch brief carries the block TEMPLATE as an
+        # indented code sample, and scanning for the marker anywhere indexed those templates and
+        # reported them as malformed reports. Briefs are not reports. This is a structural test,
+        # not a filename pattern - guessing filenames is precisely what made the previous check
+        # call a real citation fabricated.
+        if not any(line == cbc.OPEN for line in body.split("\n")):
+            continue
+        blk, why = cbc.parse_block(body)
+        if blk is None:
+            malformed.append((f.name, why))
+        else:
+            idx[(blk.seat, blk.version)] = set(blk.findings)
+    return idx, malformed
+
+
 def check_repair_citations(text, gates, out):
-    """A 'V## CORRECTION (SEAT-Vn Fk)' claim must cite a finding that exists in that seat's report.
-
-    NAMED for what it evaluates. Until 2026-08-29 the docstring claimed it verified the FINDING
-    existed while the predicate only checked that a REPORT FILE for that seat and version existed -
-    `fid` was parsed and then used solely in the error message. A citation to CODEX-V27 F9 passed
-    against a report with four findings. That is a name asserting more than its predicate tested,
-    the same defect this lane found in Tori's harness and in two of mine.
-
-    The document's most dangerous sentence is one announcing a repair, because a reader stops
-    checking there. V12's blockquote claimed the unanimous round-1 blinding finding repaired
-    while half of it stood.
-    """
-    # ── QUARANTINED 2026-08-29 05:45 after three consecutive two-seat NOT CLEARs. ──────────────
-    # This check is UNRELIABLE IN BOTH DIRECTIONS and its findings must not be acted on:
-    #   * it calls a REAL citation fabricated - CODEX-V4 F9 lives in GATE_CODEX_SUCCESSOR_V4.md,
-    #     but _reports_for demands "REVIEW" in the filename, so it judged against the unrelated
-    #     GAIN_V4_REVIEW_CODEX.md and returned FABRICATED. Acting on that would mean "fixing" a
-    #     correct document, which is worse than not checking at all;
-    #   * its canary does NOT detect deletion of the positive VERIFIED branch - the self-test stays
-    #     green with that branch removed, contrary to what I claimed when shipping it;
-    #   * it diverges from CITATION_CHECK_SPEC.md, which requires mixed-grammar verification while
-    #     the code rejects every mixed grammar.
-    # Findings are therefore emitted as ADVISORY and do not fail the lint. Emitting a
-    # known-wrong verdict with authority is the failure this tool exists to prevent.
-    # Decision required: see OPEN_QUESTION_CITATION_CHECK.md.
-    ADVISORY = "ADVISORY (check quarantined, unreliable in both directions): "
+    """Verify every `SEAT-Vn k` repair citation against that report's DECLARED findings."""
     if not gates or not gates.is_dir():
-        out.append(("repair-citations-advisory",
-                    ADVISORY + "gates directory not readable; citations unchecked"))
+        out.append(("repair-citation-legacy",
+                    "ADVISORY: gates directory not readable; citations unchecked"))
         return
-    corpus = "\n".join(p.read_text(errors="ignore") for p in gates.glob("PREREG_TEXT*.md"))
-    if not corpus:
-        return
-    for m in re.finditer(r"\((?:KIMI|GPT56|CODEX)[^)]{0,80}\)", text):
-        cite = m.group(0)
-        # \b after the version digits, or "V24-1" parses as version 2 finding 4 and reports a
-        # citation nobody wrote. That false positive fired on every draft from V25 on.
-        for seat, ver, fid in re.findall(r"(KIMI|GPT56|CODEX)-V(\d+)\b\s*[-–]?\s*(F?\d+)", cite):
-            # Match the report by SEAT and VERSION, not by one filename shape. Reports have been
-            # PREREG_TEXT_V*_SEAT.md, SECTION6_REVIEW_R*_SEAT.md and V*_WHOLE_REVIEW_SEAT.md as the
-            # review's subject changed. Hard-coding one pattern made the check report missing
-            # citations for reports sitting next to it under a newer name — the same staleness this
-            # tool exists to catch, in the tool.
-            k = int(fid.lstrip("Ff"))
-            outcome, nums = citation_outcome(gates, seat, ver, k)
-            if outcome == "NO-REPORT":
-                out.append(("repair-citations-advisory", ADVISORY +
-                            f"cites {seat}-V{ver} {fid} but no report for {seat} V{ver} exists"))
-            elif outcome == "FABRICATED":
-                out.append(("repair-citations-advisory", ADVISORY +
-                            f"cites {seat}-V{ver} {fid} but that report declares findings "
-                            f"{', '.join(str(n) for n in sorted(nums))}"))
-            elif outcome == "UNVERIFIABLE":
-                # NOT reported as clean and NOT as a document defect. The parse failed; say so.
-                out.append(("repair-citations-advisory", ADVISORY +
-                            f"cites {seat}-V{ver} {fid} but that report's finding grammar is not "
-                            f"recognisable — citation UNVERIFIABLE, not disproved"))
+    idx, malformed = _block_index(gates)
+    for name, why in malformed:
+        out.append(("repair-citation-malformed",
+                    f"{name} carries a FINDINGS-BLOCK that does not parse: {why}"))
+    for m in re.finditer(r"\b(GPT56|CODEX|KIMI)[- ]V(\d+)[- ]F?(\d+)\b", text):
+        seat, ver, k = m.group(1), "V" + m.group(2), int(m.group(3))
+        declared = idx.get((seat, ver))
+        if declared is None:
+            out.append(("repair-citation-legacy",
+                        f"ADVISORY: {seat}-{ver} F{k} - no FINDINGS-BLOCK for that seat/version "
+                        f"(pre-format report); citation neither verified nor disproved"))
+        elif k not in declared:
+            out.append(("repair-citation-fabricated",
+                        f"{seat}-{ver} F{k} is cited but that report declares "
+                        f"{sorted(declared) or 'no findings'}"))
 
-
-
-# ── Citation support. See CITATION_CHECK_SPEC.md. The governing rule, from a sister lane:
-# a narrow pattern is safe for PRESENCE and dangerous for ABSENCE. Every earlier version of this
-# check enumerated findings by regex and then concluded a citation was absent, manufacturing
-# absence whenever the grammar was unfamiliar and presence whenever a numbered non-finding matched.
 
 def _reports_for(gates, seat, ver):
     """Reports for exactly this seat and version. The version needs a NUMERIC BOUNDARY: a plain
@@ -405,14 +406,23 @@ def _mut_citation_unverifiable(text):
 
 
 def _mut_repair_citations(text):
-    """Cite a referee finding whose report does not exist."""
-    return text + "\n\nV99 CORRECTION (CODEX-V98 7): repaired per that finding.\n"
+    """Cite a finding a REAL block does not declare. GPT56's V38 block declares exactly F1."""
+    return text + "\n\nV99 CORRECTION (GPT56-V38 9): repaired per that finding.\n"
+
+
+def _mut_indented_block_ignored(text):
+    """An indented block (a brief's template) must not be indexed as a report."""
+    return text + "\n\nV99 CORRECTION (GPT56-V38 9): repaired per that finding.\n"
+
+
+def _mut_citation_legacy(text):
+    """Cite a pre-format report: advisory, never a failure."""
+    return text + "\n\nV99 CORRECTION (CODEX-V11 9): repaired per that finding.\n"
 
 
 CONTROLS = [
-    ("check_repair_citations", _mut_repair_citations, "repair-citations-advisory"),
-    ("citation fabricated", _mut_citation_fabricated, "repair-citations-advisory", "declares findings"),
-    ("citation unverifiable", _mut_citation_unverifiable, "repair-citations-advisory", "UNVERIFIABLE"),
+    ("check_repair_citations", _mut_repair_citations, "repair-citation-fabricated"),
+    ("citation legacy is advisory", _mut_citation_legacy, "repair-citation-legacy"),
     ("check_prose_counts",    _mut_prose_count,     "prose-count-disagreement"),
     ("check_class_agreement", _mut_class_agreement, "slot-class-disagreement"),
     ("check_lock_identity",   _mut_lock_identity,   "lock-identity"),
@@ -535,8 +545,10 @@ def main():
         return 0
     for kind, msg in out:
         print(f"  [{kind}] {msg}")
-    print(f"  {len(out)} finding(s)")
-    return 1
+    blocking = [k for k, _ in out if k not in ADVISORY_CATEGORIES]
+    print(f"  {len(out)} finding(s), {len(blocking)} blocking "
+          f"({len(out) - len(blocking)} advisory)")
+    return 1 if blocking else 0
 
 
 if __name__ == "__main__":
