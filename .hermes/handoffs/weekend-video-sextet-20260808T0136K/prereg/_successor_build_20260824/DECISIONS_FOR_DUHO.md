@@ -1,10 +1,13 @@
-**STATUS: THREE DECISIONS PENDING — with the principal, 2026-08-29 night.** Rewritten from the
+**STATUS: THREE DECISIONS PENDING — with the principal, 2026-08-29 night.** **Item 2 was RULED at
+22:18 while this page was being written — the catch-all is authorised — and it is kept below as the
+record of how that ruling was reached, not as an open item. The three now pending are the partition,
+`n_draws`, and `REFUSED-INTEGRITY-MISMATCH`.** Rewritten from the
 morning version; all four of that version's items are ruled and their records live in the
 `OPEN_QUESTION_*.md` files. **This is a plain-language index, not a source.** It asserts nothing the
 underlying files do not already say, and if this page and one of those files disagree, the file is
 right.
 
-# Three things only you can decide — DESI spin preregistration, night of 2026-08-29
+# What is on you tonight — DESI spin preregistration, night of 2026-08-29
 
 ## Where the lane stands, in one paragraph
 
@@ -59,47 +62,65 @@ object that belongs to both, and that pattern is what a genuine overlap looks li
 
 ---
 
-## 2. The refusal vocabulary: two closure arguments written, two broken within the hour
+## 2. The refusal vocabulary — RULED at 22:18. Kept here because how it was decided is the point
 
-**What the problem is.** When the mediator refuses to hand over data, it writes a code saying why.
-That set of codes must be **closed** — no free text, nothing that leaks what was asked for. You ruled
-a closed eight-code set with **no catch-all**, and the safety of "no catch-all" rests entirely on an
-argument that the set really does cover everything.
+**RULED: non-closure is established; the catch-all is taken. The no-catch-all decision of 19:52 is
+formally reversed, not merely suspended.**
 
-**What happened.** The first argument was broken by both seats within an hour of your ruling. You then
-ordered the derivation redone from scratch — not a ninth code — and suspended the eight-code set. I
-rebuilt it on two axes: *was it permitted?* and *was it permitted but unavailable?* **You ruled that
-this argument be attacked before you decided the catch-all. It was, tonight, and it broke too.**
+**What the problem was.** When the mediator refuses to hand over data it writes a code saying why. That
+set must be **closed** — no free text, nothing that leaks what was asked for. The safety of "no
+catch-all" rested entirely on an argument that the set really covers everything.
 
-**How it broke, because the detail matters.** The argument rested on *"permitted is binary and
-evaluated before the attempt."* CODEX showed permission can be **undecided**: Row B must verify
-another row's authorisation artefact first, and that verifier can time out or die **before returning a
-verdict**. The access has not completed and it was ruled neither permitted nor refused — it escapes
-both axes. GPT56 broke it the other way, finding writes that need permission facts learned *during*
-the transfer. **And the instruction I was deriving against — the draft's own line 588 — lists the
-failures to cover and names "timed out" explicitly. The word does not appear once in what I wrote.**
+**What happened.** Two independent closure arguments were written and **both were broken within an hour
+of being written — by different countercases, both against the actual conduct table rather than against
+a general theory.** The second broke on *"permitted is binary and evaluated before the attempt"*:
+permission can be **undecided**, because Row B must verify another row's authorisation artefact first
+and that verifier can time out or die **before returning a verdict**. The access has not completed and
+was ruled neither permitted nor refused. **The instruction I was deriving against — the draft's own line
+588 — lists the failures to cover and names "timed out" explicitly. The word does not appear once in
+what I wrote.**
 
-**Your options.**
+**Why the ruling is durable, and it is worth being explicit about the sequence.** The catch-all was
+ruled **after** the derivation was attacked, not against it. Had it been decided against the
+rederivation, it would have collapsed the same way the first one did and we would have found out in the
+next round. **The gate before the ruling is the whole reason the answer holds** — and the reasoning
+generalises: if closure cannot be shown, the escape hatch stops being a concession and becomes the
+honest answer, and a routine verifier timeout stops voiding the study.
 
-- **(a) A third derivation**, using the repair the seats named: an explicit request state machine with
-  a fixed terminal treatment for timeout and crash in each state, and a durable log boundary. *Cost:*
-  the pattern says it may break again. *Benefit:* if it survives, the closed set is safe and no
-  catch-all is needed.
-- **(b) Admit a catch-all after all**, on the ground that two serious attempts to prove the set closed
-  have both failed. *Cost:* you ruled against this once for a good reason — a catch-all is where
-  unclassified refusals go to be forgotten. It could be made safer by requiring every use to point at
-  a numbered incident record, so a catch-all is visible rather than absorbent.
-- **(c) Park the vocabulary as a stated limitation and move on.** *Cost:* **this one is not stable.**
-  The suspended eight codes are still written into the event schema and still hard-enforced by the
-  checker, so the document currently forbids in prose what its own tooling requires. That is a live
-  finding (GPT56-V63 F6) and it does not go away by leaving it alone.
+**What the ruling does NOT do — three things stay open and the catch-all must not be allowed to close
+them.**
+- **Permission is not made total and durable before fallible processing** (CODEX-VOCAB F1). The repair
+  is a covenant fix, not a vocabulary fix: an explicit request state machine with a fixed terminal
+  treatment for timeout and crash in each state, and a durable log boundary. **The catch-all makes the
+  failure loggable; it does not make the permission decided.**
+- **"Permitted before the attempt" is simply false for writes** (GPT56-VOCAB F1). For field-constrained
+  writes on Rows C2 and H, whether a write is within the stated surface **cannot be known until Row B
+  decodes the payload**.
+- **`REFUSED-SCHEMA-NONCONFORMING` has to come back, or those refusals need a home.** Rows C2 and H
+  write non-slot field-constrained objects **through Row B**, so moving the code to `receipt_strict()`
+  does not classify the mediator's refusal of those writes.
 
-**I am not recommending between (a) and (b).** My last two recommendations here rested on arguments
-that were destroyed, and a recommendation whose basis collapsed is worth less than none.
+**How the catch-all is written, per the ruling.** It carries **a code and nothing else** — no free
+text, no appended detail. And because it will attract every refusal nobody wants to classify, the text
+must state that **its use is a defect to be enumerated at freeze, not a routine outcome**: a catch-all
+whose count is never reviewed becomes the vocabulary.
 
 ---
 
-## 3. One number: how many draws does the gain gate take its worst case over?
+## 2a. A leak, and it does not wait on any of this
+
+**Both seats found that Rows D and G permit χ-**adaptive** access patterns.** The vocabulary's
+availability axis is only non-leaking while the set of objects read is fixed **χ-blind**. Under the
+current draft it is not. **That makes availability refusals a χ-derived channel whichever vocabulary is
+adopted** — the identity of the object refused can export which χ-derived branch was taken.
+
+**This is a leak, not a taxonomy problem.** I raised the dependency myself when I proposed the axis and
+asked whether the price was actually paid; the answer came back **no**. It is now its own finding with
+its own repair and it is not waiting on anything above.
+
+---
+
+## 3. STILL YOURS — one number: how many draws does the gain gate take its worst case over?
 
 **This is the smallest decision of the three and the only one with a clean answer available.**
 
@@ -124,11 +145,25 @@ not a number you have to choose. **It does not change the question above.**
 
 ---
 
+## 4. STILL YOURS — `REFUSED-INTEGRITY-MISMATCH` stays flagged, and is now a third open item
+
+**Both seats say it cannot be adjudicated at the moment the code is emitted.** A digest mismatch on a
+sealed object may be an ordinary storage fault or it may be tampering, and **nothing observable at
+emission distinguishes them.** CODEX adds that the same observable event is already claimed by the
+**phase-Any digest-deviation VOID antecedent**, so the two collide. **Left flagged deliberately rather
+than resolved:** getting this wrong toward VOID is how the earlier over-strict concern arose, and
+getting it wrong the other way lets tampering be logged as a storage fault.
+
+---
+
 ## What is not being asked
 
 **Nothing here asks you to unblock anything.** `successor_ref_v9.py` stays frozen at `6a9abbbd`, BS-6
 and the first image byte stay blocked, γ̂ stays unmeasured, and option B of the gain mapping stays in
-the record until its margin is re-derived at the real calibration. **Four findings from tonight are
-mine to repair and I am doing them now** — the `MOVE_CAP` site's disposition, the gaps in the draw-set
-specification, BS-3g's missing schema entry, and an overstated claim about what
-`require_complete_sample()` checks.
+the record until its margin is re-derived at the real calibration. **Mine to repair, and not waiting on you:** applying the catch-all and its anti-drift guard; the
+request state machine the covenant repair needs; the write-side surface problem on Rows C2 and H;
+bringing `REFUSED-SCHEMA-NONCONFORMING` back or finding those refusals a home; the χ-blind leak in 2a;
+the `MOVE_CAP` site's disposition; the gaps in the draw-set specification; BS-3g's missing schema
+entry; and an overstated claim about what `require_complete_sample()` checks. **Where any of those
+turns out to change what the study promises rather than how it is written, it stops and comes back to
+you.**
