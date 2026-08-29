@@ -86,3 +86,24 @@ not among the six that can fail the lint. `--self-test` passes 8 controls.
 
 **The check is still quarantined and still must not be reopened.** This stamp records that state, not
 a new attempt at it.
+
+---
+
+## CORRECTION 2026-08-29 09:5x KST — "does not fail the lint" was FALSE, and untested
+
+This file and `LANE_STATE` both stated that the quarantined check's findings "do not fail the lint."
+**That was never true.** `tools/prereg_lint.py` `main()` ends `return 1` for *any* finding in `out`;
+the quarantine changed the finding's **category** to `repair-citations-advisory` and its message
+prefix, and **did not exempt it from the exit code.**
+
+**It went unnoticed because the condition never fired.** V36 produced zero advisory findings, so when
+I "verified the quarantine live on V36" I confirmed the category strings and a green exit on a
+document that emitted none. **V37 emits one — and the lint exits 1.** The advisory is not advisory.
+
+The citation is real: V37 §1 cites `GPT56-V34-1`, which exists. The check reports it UNVERIFIABLE
+because it cannot recognise that report's finding grammar — the exact failure that got it quarantined.
+
+**I have not changed the exit logic.** Making an advisory genuinely non-blocking changes what the
+lint does with this check, and the check's disposition is with the principal as decision 3. Reporting
+it instead of fixing it. **Consequence to know: a V37 referee round cannot be dispatched claiming
+"four checkers pass" — lint exits 1 on an advisory from a quarantined check.**
