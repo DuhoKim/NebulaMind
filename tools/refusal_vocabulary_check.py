@@ -116,7 +116,9 @@ def check(text: str):
     # retired-mention convention (write it unformatted so it is not counted) was the evasion's twin.
     # Members are now parsed independently of Markdown decoration; a non-member token is legal ONLY
     # on a line that also carries a retirement word.
-    RETIREMENT = re.compile(r"deleted|merged|retired|superseded|GONE|does not survive", re.I)
+    # CODEX-V72 F6: "REFUSED-ZOMBIE is not deleted" contained the word "deleted" and was exempted -
+    # a negated retirement is an ACTIVATION. The retirement word must not be negated just before it.
+    RETIREMENT = re.compile(r"(?<!not )(?<!never )(deleted|merged|retired|superseded|GONE|does not survive)", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
         for tok in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", line):
@@ -253,6 +255,8 @@ CONTROLS = (
     ("a later contradiction coexists with the principle",
      lambda: _fixture() + "A refusal reason may describe the OBJECT.\n", "R03"),
     ("the post-opening gates are unnamed", lambda: _fixture(guard="nogates"), "R08"),
+    ("a negated retirement activates a token",
+     lambda: _fixture() + "REFUSED-ZOMBIE is not deleted and remains in force.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing

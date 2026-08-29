@@ -534,6 +534,19 @@ def main():
 
     rows = slot_rows(text)
     out = []
+    # Lifecycle derivation (GPT56-V72 F1: the predicate existed and was not wired into this battery,
+    # so a stale pin left the advertised battery green - an unwired check is an unstated spec, one
+    # level up). Blocking. Runs only when the spec exists beside the draft.
+    spec = Path(args.draft).parent / "LIFECYCLE_GUARANTEE_SPEC.md"
+    if spec.exists():
+        try:
+            from lifecycle_derivation_check import check as _lc_check
+        except ImportError:
+            import sys as _s
+            _s.path.insert(0, str(Path(__file__).resolve().parent))
+            from lifecycle_derivation_check import check as _lc_check
+        for code, msg in _lc_check(text, spec.read_text(), spec.read_bytes()):
+            out.append((f"lifecycle-derivation-{code}", msg))
     check_slots_exist(text, rows, out)
     check_class_agreement(text, rows, out)
     check_prose_counts(text, rows, out)

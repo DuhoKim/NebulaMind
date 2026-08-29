@@ -31,12 +31,18 @@ from pathlib import Path
 ERRORS = {
     "L01": "the draft carries no lifecycle-spec pin",
     "L02": "the pinned digest does not match the spec file's current bytes — re-derive and re-pin",
-    "L03": "a quoted invariant diverges from the spec's text",
+    "L03": "a quoted invariant diverges from ITS OWN spec row — the label binds (GPT56-V72 F2: an "
+           "unbound quote accepted swapped labels)",
+    "L04": "an invariant present in the spec is not quoted in the draft — deletion from the draft "
+           "is a divergence, not a choice (GPT56-V72 F2: the checker accepted deletion of the "
+           "entire quoted block)",
+    "L05": "the draft quotes a tag the spec does not define",
 }
 
 TAG = re.compile(r"lifecycle-spec:\s*sha256\s*`?([0-9a-f]{64})`?")
-INV = re.compile(r"\*{0,2}(?:G[1-5]|N[1-3]) — ([^|\n]+)")  # the BODY after the tag must be spec bytes;
-# the tag+dash form is the draft's quotation marker, while the spec keeps tag and body in table cells
+INV = re.compile(r"\*{0,2}((?:G[1-9]|N[1-9])) — ([^|\n]+)")  # tag AND body; the body must be the
+# tagged spec ROW's bytes — label-bound, so swapped labels fail (GPT56-V72 F2)
+ROW = re.compile(r"^\| ((?:G|N)[1-9]) \| (.+?) \|", re.M)
 
 
 def norm(s: str) -> str:
@@ -51,25 +57,43 @@ def check(draft_text: str, spec_text: str, spec_bytes: bytes):
         out.append(("L01", ERRORS["L01"]))
     elif m.group(1) != hashlib.sha256(spec_bytes).hexdigest():
         out.append(("L02", ERRORS["L02"] + f" — pinned {m.group(1)[:16]}…"))
-    spec_norm = norm(spec_text)
-    for frag in INV.findall(draft_text):
-        n = norm(frag)
-        # a quote may be a truncation of the spec line, but its full extent must be spec bytes
-        if n not in spec_norm:
-            out.append(("L03", ERRORS["L03"] + f" — {n[:70]!r}"))
+    spec_rows = {tag: norm(body) for tag, body in ROW.findall(spec_text)}
+    quoted = {}
+    for tag, body in INV.findall(draft_text):
+        quoted.setdefault(tag, []).append(norm(body))
+    for tag, bodies in quoted.items():
+        if tag not in spec_rows:
+            out.append(("L05", ERRORS["L05"] + f" — {tag}"))
+            continue
+        for nb in bodies:
+            if nb not in spec_rows[tag]:
+                out.append(("L03", ERRORS["L03"] + f" — {tag}: {nb[:60]!r}"))
+    for tag in spec_rows:
+        if tag not in quoted:
+            out.append(("L04", ERRORS["L04"] + f" — {tag}"))
     return out
 
 
 def self_test():
-    spec = "| G1 — NO UNLOGGED TOUCH: no bytes move without a committed event | x |\n"
+    spec = ("| G1 | no bytes move without a committed event | x |\n"
+            "| G2 | events tell the truth | x |\n")
     spec_b = spec.encode()
     pin = hashlib.sha256(spec_b).hexdigest()
-    good = f"lifecycle-spec: sha256 `{pin}`\nquote: **G1 — NO UNLOGGED TOUCH: no bytes move without a committed event**\n"
+    good = (f"lifecycle-spec: sha256 `{pin}`\n"
+            "**G1 — no bytes move without a committed event**\n"
+            "**G2 — events tell the truth**\n")
     cases = [
         ("clean quotation passes", good, set()),
         ("missing pin", good.replace("lifecycle-spec:", "x:"), {"L01"}),
         ("stale pin", good.replace(pin, "0" * 64), {"L02"}),
         ("paraphrased invariant", good.replace("no bytes move", "no byte moves"), {"L03"}),
+        ("swapped labels", good.replace("G1 — no bytes", "G2 — no bytes")
+                              .replace("G2 — events", "G1 — events"), {"L03"}),
+        ("an invariant deleted from the draft",
+         good.replace("**G2 — events tell the truth**\n", ""), {"L04"}),
+        ("a tag the spec does not define", good + "**G9 — invented**\n", {"L04", "L05"})
+         if False else
+        ("a tag the spec does not define", good + "**N1 — invented**\n", {"L05"}),
     ]
     fails = []
     for name, draft, want in cases:
