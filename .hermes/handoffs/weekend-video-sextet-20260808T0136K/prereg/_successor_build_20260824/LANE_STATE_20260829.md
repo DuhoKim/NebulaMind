@@ -41,7 +41,32 @@ were parked, not resolved. V36 clearing does not retire them.**
 
 ---
 
-## 2. CURRENT DRAFT — V36, CLEAR FROM BOTH SEATS
+## 2. CURRENT DRAFT — V37, BUILT 09:45 UNDER PRINCIPAL AUTHORISATION, NOT YET REFEREED
+
+`<lane>/PREREG_SUCCESSOR_DRAFT_V37_20260829.md` = `62dd8a7525c399126477573d55a952f1ed2f147d16f8bfbb12aa89a295821c42`
+
+**V36 (`e4d7b175…`) was CLEAR ×2 at 06:57 and remains the last REFEREED draft.** V37 applies the two
+decisions Duho ruled on at 09:20, relayed by Blanc: VOID **option A**, BS-6 **option (a)**.
+
+- `VOID-5-DEGENERATE` added (§5, `Post-unblinding` — the phase of its sibling in the same §5 clause).
+- `VOID-5-DIGEST-DEVIATION` added (§5, `Any`) as a separate antecedent, not an undeclared alias.
+- `VOID-2.7-THRESHOLD-MOVED` → `VOID-2.7-THRESHOLD-CHOSEN-OR-MOVED`. **Phase untouched, on purpose.**
+- **`BS-3g` added — class P, DESIGN/UNFILLED, blocks BS-6.** Counts **15/8 → 16/8**, the first
+  row-count change since V4. §1's sentence now names the edge that makes it true.
+- §7.1 preamble states what the checker proves (**NAME-coverage only**) and what it does not.
+
+**Checkers:** counts 16 P / 8 E, prose matches the table; trace 0 problems; `void_registry` 54
+antecedents, 20 rows, no refusal, new `registry_digest a4d1d745…`. **Lint exits 1** on one advisory
+from the quarantined citation check — see §5. Invariants hold: §2.7 line 384 and §1 lines 2–119 byte-
+and position-identical to V30.
+
+**A FIFTH DECISION IS NOW OPEN:** `OPEN_QUESTION_VOID_2.7_PHASE.md` — when does "inference exist"?
+The authorisation covered the ID's coverage, not the phase. **The registry must not be pinned as
+final until it is answered**, since the digest moves with it.
+
+**NOT DISPATCHED.** Per Blanc: do not dispatch if the phase question would land mid-round.
+
+## 3. LAST REFEREED DRAFT — V36, CLEAR FROM BOTH SEATS
 
 `<lane>/PREREG_SUCCESSOR_DRAFT_V36_20260829.md`
 `e4d7b175ac270f4cdc0bc4af3a16af0e834aa3e4eacc174a73d10798cd4b6177`
@@ -123,7 +148,10 @@ byte- and position-identical to V30; class counts 15 class-P / 8 class-E; all fo
 ## 5. DO NOT REOPEN — the quarantined citation check
 
 The citation check in `tools/prereg_lint.py` is **QUARANTINED to advisory** after three consecutive
-two-seat NOT CLEARs. It emits `FABRICATED` against real citations — `CODEX-V4 F9` exists in
+two-seat NOT CLEARs. **CORRECTION 09:55 — its findings DO still fail the lint.**
+The quarantine changed the category and message prefix, not the exit code: `main()` returns 1 for any
+finding. V36 emitted none, so the claim was never exercised; V37 emits one and lint exits 1. Not
+changed, because the disposition is decision 3 — see that file's correction block. It emits `FABRICATED` against real citations — `CODEX-V4 F9` exists in
 `GATE_CODEX_SUCCESSOR_V4.md`, but `_reports_for` requires `"REVIEW"` in the filename, so it judged
 the citation against an unrelated report. **Acting on that output would mean "fixing" a correct
 document**, which is strictly worse than not checking.
