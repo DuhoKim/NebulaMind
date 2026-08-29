@@ -275,8 +275,19 @@ def check_repair_citations(text, gates, out):
     for name, why in malformed:
         out.append(("repair-citation-malformed",
                     f"{name} carries a FINDINGS-BLOCK that does not parse: {why}"))
-    for m in re.finditer(r"\b(GPT56|CODEX|KIMI)[- ]V(\d+)[- ]F?(\d+)\b", text):
-        seat, ver, k = m.group(1), "V" + m.group(2), int(m.group(3))
+    # Compound citations must be EXPANDED, not skipped. The document writes
+    # "KIMI/GPT56-V11 F4" to attribute one finding to two seats, and the plain
+    # SEAT-Vn-Fk pattern only ever saw the LAST seat - so a wrong first seat was
+    # invisible. Hand-verification found exactly that: KIMI-V11 F4 is a §6.1
+    # access finding, not the Stage-P one, and this check could not see it.
+    # A citation the checker cannot parse must never be silently dropped.
+    cites = []
+    for m in re.finditer(r"\b((?:(?:GPT56|CODEX|KIMI)/)+)?(GPT56|CODEX|KIMI)[- ]V(\d+)[- ]F?(\d+)\b",
+                         text):
+        seats = [s for s in (m.group(1) or "").split("/") if s] + [m.group(2)]
+        for s in seats:
+            cites.append((s, "V" + m.group(3), int(m.group(4))))
+    for seat, ver, k in cites:
         declared = idx.get((seat, ver))
         if declared is None:
             out.append(("repair-citation-legacy",
@@ -410,6 +421,11 @@ def _mut_repair_citations(text):
     return text + "\n\nV99 CORRECTION (GPT56-V38 9): repaired per that finding.\n"
 
 
+def _mut_compound_citation(text):
+    """A compound citation's FIRST seat must be checked, not just the last."""
+    return text + "\n\nV99 CORRECTION (GPT56/CODEX-V38 9): repaired per that finding.\n"
+
+
 def _mut_indented_block_ignored(text):
     """An indented block (a brief's template) must not be indexed as a report."""
     return text + "\n\nV99 CORRECTION (GPT56-V38 9): repaired per that finding.\n"
@@ -423,6 +439,7 @@ def _mut_citation_legacy(text):
 CONTROLS = [
     ("check_repair_citations", _mut_repair_citations, "repair-citation-fabricated"),
     ("citation legacy is advisory", _mut_citation_legacy, "repair-citation-legacy"),
+    ("compound citation expanded", _mut_compound_citation, "repair-citation-fabricated"),
     ("check_prose_counts",    _mut_prose_count,     "prose-count-disagreement"),
     ("check_class_agreement", _mut_class_agreement, "slot-class-disagreement"),
     ("check_lock_identity",   _mut_lock_identity,   "lock-identity"),
