@@ -119,7 +119,12 @@ def check(text: str):
     # CODEX-V72 F6: "REFUSED-ZOMBIE is not deleted" contained the word "deleted" and was exempted -
     # a negated retirement is an ACTIVATION. The retirement word must not be negated just before it.
     RETIREMENT = re.compile(r"(?<!not )(?<!never )(deleted|merged|retired|superseded|GONE|does not survive)", re.I)
-    ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|governs", re.I)
+    # The activation list is FINITE AND KNOWN INCOMPLETE (CODEX-V77 F4 evaded it with "now
+    # mandatory" - added - and the next phrasing will evade it too). The guard catches named shapes;
+    # prose semantics beyond them are the referee round's job, which is this lint's stated limit,
+    # not a gap it pretends to close.
+    ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|"
+                            r"governs|mandatory|shall apply|takes effect|is live", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
         # GPT56-V73 F4 / CODEX-V73 F6: one retirement word exempted every token ON THE LINE, so
@@ -134,13 +139,25 @@ def check(text: str):
             for tok in toks:
                 if tok in CODES:
                     pinned.add(tok)
+                    # GPT56-V77 F9: an active-code TOMBSTONE ("REFUSED-<member> is deleted") makes
+                    # prose diverge from the operative set while the checker stayed green - a member
+                    # in a retiring fragment is a divergence, not an exemption.
+                    if RETIREMENT.search(frag):
+                        illegal.append(tok + " (member inside a retiring fragment)")
                 # CODEX-V74 F3: a retiring fragment may retire AT MOST ONE token. GPT56-V75 F4:
                 # the exemption applies ONLY to tokens in the KNOWN retired set. And GPT56-V76 F4 /
                 # CODEX-V76 F3: a retired token REACTIVATED in the same fragment as its historical
                 # retirement word ("was deleted but is hereby reinstated") rode the exemption -
                 # an activation word anywhere in the fragment defeats it.
                 elif (tok not in RETIRED or not RETIREMENT.search(frag)
-                      or ACTIVATION.search(frag) or len(nonmembers) > 1):
+                      or ACTIVATION.search(line[line.find(tok):line.find(tok) + len(tok) + 160])
+                      or len(nonmembers) > 1):
+                    # activation is scanned in a 160-char window AFTER the token: "was retired; it
+                    # is now mandatory" rode a pronoun across the fragment boundary (CODEX-V77 F4),
+                    # while whole-line and next-fragment scans both false-fired on "governs" three
+                    # sentences later in a legitimate retired mention. Proximity is the repair for
+                    # both directions; the window size is a stated heuristic, and wording that
+                    # activates beyond it is the round's to catch, per this file's limit statement
                     illegal.append(tok)
     if illegal:
         fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
@@ -280,6 +297,10 @@ CONTROLS = (
      lambda: _fixture() + "REFUSED-NOVEL was deleted long ago.\n", "R01"),
     ("a retired token cannot be reactivated beside its retirement",
      lambda: _fixture() + "REFUSED-LOCK-NOT-OPEN was deleted but is hereby reinstated.\n", "R01"),
+    ("now-mandatory evades the old activation list",
+     lambda: _fixture() + "REFUSED-CEREMONY-CONSUMED was retired; it is now mandatory.\n", "R01"),
+    ("an active-code tombstone is a divergence",
+     lambda: _fixture() + "REFUSED-PHASE-NOT-REACHED is deleted.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing

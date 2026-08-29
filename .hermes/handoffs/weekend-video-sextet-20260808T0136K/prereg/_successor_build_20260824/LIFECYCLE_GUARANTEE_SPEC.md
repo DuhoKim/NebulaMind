@@ -114,8 +114,10 @@ is needed, because no rule changed: G5 restates what Row G's void clause already
   "view" per-glance rather than per-session, that is his reading to impose; the spec's definition is
   the session, stated so the word has one meaning.**
   **BUFFER LIFETIME AND CACHE, because G5 and G6 composed into two contradictions in one round.**
-  A render buffer lives **from its touch commit until its VIEW SESSION ends**, then must be
-  destroyed — V74 said it dies "with its commit", which made delivering after the commit from a
+  A render buffer lives **from its touch commit until its VIEW SESSION ends — or, if no session
+  ever opens (a crash between commit and first frame), until its REQUEST ends — then must be
+  destroyed** (GPT56-V77 F6: a commit that opened no session left the buffer with no named
+  destruction trigger; the request boundary is the trigger every commit already has) — V74 said it dies "with its commit", which made delivering after the commit from a
   dead buffer an impossibility (CODEX-V74 F2); a buffer outliving the SESSION would be a cache.
   And **the sealed interface renders EXCLUSIVELY from Row B conveyances and holds NO redisplayable
   surface beyond the live session — compositor, framebuffer or otherwise** (GPT56-V74 F3: occlusion

@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V77_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V78_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -13,7 +13,7 @@
 | `BS-1b.columns` | closed-vocab | v9 SLOT_SCHEMA | declared column/key sets |
 | `BS-1b.join_keys` | closed-vocab | v9 SLOT_SCHEMA | declared column/key sets |
 | `BS-1b.photoz_product` | closed-vocab | v9 SLOT_SCHEMA | declared column/key sets |
-| `BS-1b.provenance` | digest-ref | v9 SLOT_SCHEMA | was FREE PROSE - GPT56-V73 F2 named it; now the digest of a canonical provenance record |
+| `BS-1b.provenance` | digest-ref | v9 SLOT_SCHEMA | digest of canonical.provenance_record - WHOSE ENCODING IS PENDING; this field is unfillable until that schema is written, which the pending row states |
 | `BS-2c.brickid` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-2c.c_bytes` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-2c.grouped_sum` | bounded-encoding | v9 SLOT_SCHEMA |  |
@@ -64,7 +64,7 @@
 | `BS-7f.n_perm` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-7f.p` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-7f.perm_payload_digest` | digest-ref | v9 SLOT_SCHEMA |  |
-| `BS-7p.environment` | closed-vocab | v9 SLOT_SCHEMA | declared clause/env sets |
+| `BS-7p.environment` | digest-ref | v9 SLOT_SCHEMA | canonical sub-schema below - V77 called this closed-vocab after defining it as a sub-schema, a false label one revision old (CODEX-V77 F2) |
 | `BS-7p.fixtures_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `BS-7p.n_perm` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-7p.ref_code_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
@@ -83,7 +83,7 @@
 | `BS-9.hdu_schema` | digest-ref | v9 SLOT_SCHEMA | canonical sub-document, digest-referenced |
 | `BS-9.input_function_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `BS-9.r1_r5_receipt` | digest-ref | v9 SLOT_SCHEMA | canonical sub-document, digest-referenced |
-| `BS-9.runner_prohibition` | closed-vocab | v9 SLOT_SCHEMA | declared clause/env sets |
+| `BS-9.runner_prohibition` | closed-vocab | v9 SLOT_SCHEMA | declared clause set |
 | `BS-9.tensor_layout` | digest-ref | v9 SLOT_SCHEMA | canonical sub-document, digest-referenced |
 | `BS-V.A_L` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.evaluated_floor` | bounded-encoding | v9 SLOT_SCHEMA |  |
@@ -92,12 +92,16 @@
 | `BS-V.path` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
-| `canonical.entry_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
-| `canonical.explanation_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
-| `canonical.freeze_signature_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
-| `canonical.lock_body` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
-| `canonical.opening_authorization` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
-| `canonical.provenance_record` | digest-ref | v9 SLOT_SCHEMA | canonical field-order encoding; detached signatures bind these digests |
+| `bs7p_env.dependency_roots` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
+| `bs7p_env.dynamic_load_manifest` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
+| `bs7p_env.interpreter_path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments |
+| `bs7p_env.interpreter_sha256` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
+| `canonical.entry_body` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
+| `canonical.explanation_body` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
+| `canonical.freeze_signature_body` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
+| `canonical.lock_body` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
+| `canonical.opening_authorization` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
+| `canonical.provenance_record` | SCHEMA-PENDING | v9 SLOT_SCHEMA | V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written |
 | `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |
 | `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
@@ -155,5 +159,5 @@
 | `sigma_gamma` | bounded-encoding | §11 BS-3g | finite IEEE-754 double, decimal |
 | `success/refusal` | closed-vocab | §6.1 event schema |  |
 | `table row` | closed-vocab | §6.1 event schema |  |
-| `timestamp` | bounded-encoding | §6.1 event schema |  |
+| `timestamp` | bounded-encoding | §6.1 event schema | ISO-8601 UTC YYYY-MM-DDThh:mm:ss.sssZ, exactly 24 bytes (GPT56-V77 F4: labelled bounded with no bound) |
 | `verifier_sha256` | digest-ref | §11 BS-3g |  |

@@ -64,16 +64,27 @@ _c("BS-2f.accept_flag BS-5f.passed BS-V.verdict BS-V.path BS-1.branch BS-1.photo
 _c("BS-1.resolution_date", "bounded-encoding", "ISO date")
 _c("BS-1b.photoz_product BS-1b.columns BS-1b.join_keys", "closed-vocab", "declared column/key sets")
 _c("BS-1b.provenance", "digest-ref",
-   "was FREE PROSE - GPT56-V73 F2 named it; now the digest of a canonical provenance record")
+   "digest of canonical.provenance_record - WHOSE ENCODING IS PENDING; this field is unfillable "
+   "until that schema is written, which the pending row states")
 _c("BS-3.antisymmetry_receipt BS-9.hdu_schema BS-9.tensor_layout BS-9.r1_r5_receipt "
    "BS-8p.allocation BS-8p.bin_algorithm", "digest-ref", "canonical sub-document, digest-referenced")
 _c("BS-8p.hc_rules_quotation", "digest-ref", "the HC-1H quotation-at-freeze, by digest")
 # Declared CANONICAL BODIES the extraction missed (CODEX-V76 F1): each is a canonical field-order
 # encoding with its own verifier, digest-referenced wherever it appears.
 _c("canonical.freeze_signature_body canonical.lock_body canonical.opening_authorization "
-   "canonical.entry_body canonical.explanation_body canonical.provenance_record",
-   "digest-ref", "canonical field-order encoding; detached signatures bind these digests")
-_c("BS-9.runner_prohibition BS-7p.environment", "closed-vocab", "declared clause/env sets")
+   "canonical.entry_body canonical.explanation_body",
+   "digest-ref", "field-order encoding WRITTEN in this draft; detached signatures bind these digests")
+_c("canonical.provenance_record", "SCHEMA-PENDING",
+   "V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the "
+   "SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written")
+_c("BS-9.runner_prohibition", "closed-vocab", "declared clause set")
+_c("BS-7p.environment", "digest-ref",
+   "canonical sub-schema below - V77 called this closed-vocab after defining it as a sub-schema, "
+   "a false label one revision old (CODEX-V77 F2)")
+_c("bs7p_env.interpreter_path", "bounded-encoding",
+   "absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments")
+_c("bs7p_env.interpreter_sha256 bs7p_env.dependency_roots bs7p_env.dynamic_load_manifest",
+   "digest-ref", "roots and linker-resolution manifest as ordered (path, digest) pairs")
 _c("BS-6.producer_checksum_list", "digest-ref")
 # The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
 # in envelope fields, and environment_record() emits its own - all string-bearing, none previously
@@ -144,7 +155,7 @@ CONSTRAINTS = {
     "baseline_verdict": ("closed-vocab", "§11 BS-3g", "HELD | FAILED | PER-DRAW; informational"),
     "delta_gamma_max": ("bounded-encoding", "§11 BS-3g", "finite positive double = frozen class-P"),
     # access-log event (§6.1 (ii))
-    "timestamp": ("bounded-encoding", "§6.1 event schema", ""),
+    "timestamp": ("bounded-encoding", "§6.1 event schema", "ISO-8601 UTC YYYY-MM-DDThh:mm:ss.sssZ, exactly 24 bytes (GPT56-V77 F4: labelled bounded with no bound)"),
     "actor": ("closed-vocab", "§6.1 event schema", "row identifiers"),
     "table row": ("closed-vocab", "§6.1 event schema", ""),
     "operation": ("closed-vocab", "§6.1 event schema", "BS-2k closed operation set"),
@@ -192,6 +203,8 @@ def envelope_fields():
     names |= {"body_sha256", "envelope_sha256"}
     return {f"envelope.{n}" for n in names if n != "body"}
 
+BS7P_ENV = {f"bs7p_env.{n}" for n in (
+    "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 CANONICAL = {f"canonical.{n}" for n in (
     "freeze_signature_body", "lock_body", "opening_authorization", "entry_body",
     "explanation_body", "provenance_record")}
@@ -211,7 +224,7 @@ def environment_leaves():
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
