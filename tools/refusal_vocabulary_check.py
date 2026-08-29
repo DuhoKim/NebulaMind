@@ -79,8 +79,15 @@ def row_fingerprint(text: str) -> str:
         if not m:
             continue
         cols = [c.strip() for c in line.split("|")]
-        # row id, when (phase), authorized-by, what voids the run
-        keep = [cols[1]] + [cols[i] if len(cols) > i else "" for i in (4, 5, 7)]
+        # row id, MAY TOUCH (the stated surface), when (phase), authorized-by, what voids the run.
+        #
+        # cols[3] — the surface — was omitted when this shipped, and both seats broke it in one
+        # round (GPT56-V56 F1, CODEX-V56 F1): rewriting Row B's surface to unrestricted access left
+        # the fingerprint unchanged. The derivation claims the vocabulary is closed BECAUSE the
+        # surfaces are closed, so a fingerprint blind to the surface cannot check that claim at all.
+        # I excluded it reaching for insensitivity to prose edits and excluded the load-bearing
+        # column instead.
+        keep = [cols[1]] + [cols[i] if len(cols) > i else "" for i in (3, 4, 5, 7)]
         parts.append("\x1f".join(re.sub(r"[*`]", "", k) for k in keep))
     return hashlib.sha256("\x1e".join(parts).encode()).hexdigest()
 
