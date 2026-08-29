@@ -163,6 +163,34 @@ fired*. This would add *how well-founded the reasoning is*. *Costs:* a third axi
 58 entries, and it is the most subjective of the three. *Gains:* both reviewers get what they want,
 and nothing is hidden.
 
+**NEW EVIDENCE, and it cuts against the side I was leaning toward.** I went looking for whether the
+criticism actually reaches the prediction, and found something that sharpens the question rather
+than settling it (`b23_which_parameter.py`, gated `PARAM_REFUTED_INFERENCE` /
+`PARAM_REFUTED_DEFENCE_INFERENCE`; both reviewers read the paper end to end).
+
+- **The prediction runs through a different quantity than the criticism attacks.** The critics'
+  examples are the fine-structure constant and the mass limit for collapse. Smolin's prediction runs
+  through the *strange quark mass*. So the criticism does not reach the prediction directly — one
+  reviewer was right about that.
+- **But the prediction has exactly the shape the criticism attacks.** Smolin's own words: a heavy
+  neutron star refutes him because a decrease in that quantity "would lead to a world with a lower
+  upper mass limit for neutron stars, and therefore more black holes." That *is* the "changing a
+  parameter makes black holes commoner" problem — the other reviewer was right about that.
+- **I then argued that this means Smolin answered his critics by making their objection testable, so
+  the reasoning is defended after all. Both reviewers refuted that, flatly.** He answers those
+  critics in a different section, about something else; he introduces the prediction to answer a
+  *different* objection — that his idea isn't testable at all. And making one quantity testable does
+  not answer a complaint about *every* quantity. As one put it: **if the critics are right about
+  even one of their examples, the theory is already in trouble, and Smolin never addresses it.**
+- **Both reviewers also said, independently, that I was smuggling an answer to this very question
+  into what I called evidence for it.** They were right. I am recording that here rather than
+  quietly dropping it, because it means my recommendation below should be read as a preference and
+  not as a finding.
+- **One more thing worth your attention:** the prediction depends on a piece of nuclear physics
+  (kaon condensation) that Smolin himself says "may be sufficiently inaccurate". If that is wrong,
+  a heavy neutron star disproves *that physics*, not his cosmology — which is exactly what this
+  collection already records happening to a different entry.
+
 **My recommendation: option 3, then option 1 if you don't want a third column.** The disagreement
 is real but it isn't actually about this one paper — it's about whether our labels describe a
 claim's *shape* or its *strength*. A third column answers that once instead of per entry.

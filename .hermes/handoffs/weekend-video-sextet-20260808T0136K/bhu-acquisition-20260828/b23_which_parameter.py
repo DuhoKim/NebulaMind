@@ -30,15 +30,18 @@ chk("SOURCE (grep-verifiable, unlike b20-b22): the falsifier is introduced as a 
 chk("SOURCE: M_LC -- the collapse mass limit Rothman & Ellis attack -- is NOT the parameter the "
     "falsifier runs through",
     "Landau" not in T and "M_{LC}" not in T and "M_LC" not in T,
-    "PATTERN: the three ways that quantity is written. ONE CLASS THIS MISSES: Smolin could invoke "
+    "PATTERN: the three ways that quantity is written -- and CGATE is right that three absent "
+    "strings cannot prove CONCEPTUAL absence; what carries this is Smolin's affirmative "
+    "identification of the parameter, not the greps. ONE CLASS THIS MISSES: Smolin could invoke "
     "the same physics under another name -- 'upper mass limit for stable neutron stars' appears in "
     "his list of tuned parameters. WHAT WAS DONE: that phrase was read in context; it is one of "
     "five conditions on star formation, not the falsifier's parameter, which the sentence above "
     "names explicitly")
 
 print("\n2. AND THE FALSIFIER IS A UNIDIRECTIONALITY ARGUMENT -- Smolin's own words")
-chk("SOURCE: firing the bar refutes S precisely by exhibiting a parameter change that INCREASES "
-    "black holes",
+chk("SOURCE: firing the bar refutes S by exhibiting a SUFFICIENT decrease in the parameter that "
+    "increases black holes -- CGATE's qualification: the mechanism needs the critical value to be "
+    "crossed, not any infinitesimal change",
     "would lead to a world with a lower upper mass limit for neutron stars, and therefore more "
     "black holes" in T,
     "'Furthermore, this would refute S because it would then be the case that a decrease of [the "
@@ -46,25 +49,46 @@ chk("SOURCE: firing the bar refutes S precisely by exhibiting a parameter change
     "and therefore more black holes.'")
 
 print("""
-3. WHAT THIS DOES TO THE SEATS' DISAGREEMENT -- it splits it cleanly, and neither seat was wholly right
+3. WHAT THIS DOES TO THE SEATS' DISAGREEMENT -- it splits it, and neither seat was wholly right
 
-   CGATE IS RIGHT ON MECHANISM. Rothman & Ellis's counterexamples are alpha and M_LC. Smolin's 2004
-   falsifier runs through the strange quark mass. They do not reach it, and could not have: their
-   paper is 1993 and the m_s argument is 2004.
+   CGATE IS RIGHT ON MECHANISM. Rothman & Ellis's counterexamples are alpha and M_LC; the falsifier
+   runs through m_s. Their 1993 paper could not have reached a 2004 argument.
 
    AGATE IS RIGHT ON STRUCTURE, WRONG ON PARAMETER. The bar IS a local-maximum-in-one-parameter
-   argument, exactly the form Rothman & Ellis attack. AGATE named M_LC as the route; the route is
-   m_s. The structural point survives the mechanical error.
+   argument, exactly the form Rothman & Ellis attack. AGATE named M_LC as the route; it is m_s.
 
-   AND NEITHER SEAT SAID THE THING THAT SEEMS TO ME TO MATTER MOST. Rothman & Ellis wrote that "it
-   is difficult to think of any parameter change that works in only one direction". Smolin's 2004
-   falsifier says: IF A HEAVY NEUTRON STAR EXISTS, THEN THE STRANGE QUARK MASS IS EXACTLY SUCH A
-   PARAMETER, AND S IS REFUTED. He did not evade their objection -- he took its form and made it
-   observable. The test fires precisely when a unidirectionality counterexample is found.
+3b. MY INFERENCE WAS REFUTED BY BOTH SEATS ON ALL FOUR COUNTS. WITHDRAWN.
 
-   SO THE WARRANT IS NOT "UNDER ATTACK AND UNDEFENDED". The 2004 falsifier IS the defence, converted
-   into a measurement. That bears directly on open question 4 and it is offered as evidence for
-   Duho's decision, NOT as a decision. THIS PARAGRAPH IS AN INFERENCE OF MINE and goes to the gate.
+   I WROTE: Smolin took Rothman & Ellis's objection form and made it observable, so the warrant is
+   not undefended -- the 2004 falsifier IS the defence. THAT IS WRONG.
+
+   (a) NOT RESPONSIVE, TEXTUALLY. Smolin answers Rothman & Ellis in section 3, on star formation
+       and the closed-universe assumption. He introduces section 4 -- the falsifier -- to answer a
+       DIFFERENT objection, "that S is not testable [31,32]", citing Silk and Rees. He never
+       connects the strange-quark construction to unidirectionality. Shared logical form is not
+       responsiveness.
+   (b) A FALSIFICATION CONDITION IS NOT A DEFENCE. CGATE: the test says a heavy neutron star would
+       expose ANOTHER direction that increases black holes. "That makes the criticism observable in
+       one new parameter direction; it does not establish that no such direction exists." Before
+       the bar fires, not seeing a heavy neutron star does not show we sit at a local maximum.
+   (c) ONE PARAMETER CANNOT ANSWER A CLAIM QUANTIFIED OVER ALL OF THEM. AGATE puts it harder: "If
+       R&E are right about M_LC, the theory is already falsified. Smolin entirely sidesteps this."
+   (d) AND THE ONE-PARAMETER TEST IS ITSELF CONDITIONAL. It rests on Bethe-Brown kaon condensation,
+       which Smolin concedes "may be sufficiently inaccurate". If that chain is wrong, a heavy
+       neutron star refutes the INSTRUMENT CHAIN and not S -- which is exactly what this record
+       already says happened to entry 7.
+
+   THE NARROWER FORM, CGATE's, ADOPTED VERBATIM: "Smolin 2004 converts the same kind of directional
+   counterexample that concerns Rothman-Ellis into a proposed observational falsification route for
+   a different parameter. That is evidence that he understood how S could fail, and it strengthens
+   S's testability. It is not a defense of S's local-maximum warrant and cannot close open question
+   4 in S's favor."
+
+   AND BOTH SEATS SAID THE SAME THING ABOUT WHY I WROTE IT. AGATE: "The inference blatantly smuggles
+   a verdict on open question 4." CGATE: "Calling it a defence smuggles precisely such a verdict
+   into the framing." I asked for that specific attack in the brief and it landed. FIFTH TIME
+   TONIGHT the pull ran toward a conclusion flattering to the material I was working on -- and the
+   first time it ran toward flattering the CORPUS rather than toward faulting an author.
 
 4. A SEPARATE FACT WORTH RECORDING. Smolin writes "Presently all well measured neutron star masses
    are from binary pulsar data and are all below 1.5 Msun". That was 2004. The record already
