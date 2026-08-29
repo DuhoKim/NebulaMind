@@ -437,6 +437,61 @@ decision path has the same bare raises. **The scope of a question silently becom
 its answer**, and nothing in the answer reveals the restriction. That is the same failure as a
 narrow pattern, operating on the *question* rather than on the regex.
 
+## 1r. THE ENTRY-31 STUDY WAS GATED AND FOUND UNSOUND
+
+The lane's strongest result, gated eleven hours late at Blanc's insistence, and broken.
+
+    CGATE_ENTRY31_STUDY_VERDICT.md  STUDY_UNSOUND_SMOLIN_SENTENCE_IS_TEMPORAL_DESCRIPTION_...
+    AGATE_ENTRY31_STUDY_VERDICT.md  STUDY_UNSOUND_DESCRIPTIVE_PREMISE_AND_INCOMMENSURABLE_INTERVALS
+    Both: SIGMAS_CONFIRMED YES · INFERENCE_HOLDS **NO** · THIRD_READING: method-agnostic precision
+
+**Killed by a footnote I never quoted.** I built the framing on *"Presently all well measured
+neutron star masses are from binary pulsar data"* read as a permanent criterion. **Footnote 5:
+"Other methods yield less precise estimates [58]"** — Smolin ranks other methods by *precision*,
+not excluding them by instrument. The marker renders as a bare `5` after `[56,57].` in the
+flattened text and I read past it.
+
+**And the record was right where I said it was wrong.** I accused our ±0.11 of having no pinned
+origin. Romani et al. 2025 (arXiv:2512.05099) reports 2.35 ± 0.11 — the record carried the
+*current* value; my pinned set stopped in 2022. **New form of the execution gap: verifying against
+a pinned source without checking the source is current.**
+
+**A split where the agreeing seat was the wrong one.** Agy endorsed my accusation; codex found the
+2025 paper. Agy searched only the pinned set. *"Both seats agree" is not "verified" when they share
+a scope.*
+
+Study rewritten around the method-agnostic criterion (`b9_entry31_corrected.py`, 4/4); original
+preserved below a SUPERSEDED marker. Bibliography row corrected to match — including the table,
+which for three hours said 0.88σ/19% while the correction beneath it said 1.36σ/8.6%. **A document
+disagreeing with itself, created by my own repair.**
+
+## 1s. ANOTHER FALSE PASS — a name quoting a sentence its predicate never verifies
+
+Found by agy in `b4` check 2. The name quotes Smolin's conditional clause; the predicate tests only
+that `"1.5 solar masses"` and `"troubling"` occur **within a 190-character window**. It prints PASS
+on an input whose actual text reads **`conEdent`**, not `confident` — the OCR mangling this corpus
+is full of. **The check would pass on a source that never contained the quoted sentence at all.**
+
+Same class as §1k and the rest: the name asserts a quotation, the predicate tests proximity.
+
+## 1t. THREE COMMITS TODAY CLAIMED CHANGES THAT DID NOT LAND
+
+Recorded together because the pattern is the point, not the instances.
+
+| commit | claimed | actual |
+|---|---|---|
+| `b4529216b` | "entry 22 refiled" | the row was untouched; found later by the cross-ref probe |
+| `247d613f2` | "a2 now 12/12" | `NameError`, aborted after 2 checks |
+| `61e462471` | study rewritten | `ValueError`; the edit never applied, the commit ran anyway |
+
+Same shape each time: **an edit and its commit in one block, with no verification between them.**
+The third is the worst — a failing `python` and a `git commit` separated by a newline rather than
+`&&`, so the commit succeeded describing work that had not happened.
+
+**Guard adopted:** verify the edit landed — by `grep` for the new content — *before* committing it.
+This is the counterpart of the `cd`-to-repo-root guard adopted after five path errors, and it is
+the same lesson: make the failure impossible rather than resolving to be careful.
+
 ## 2. THE CLASSIFIER IS NOT SOUND — both seats, independently
 
 `a11_predicate_audit.py` cannot be trusted as a measurement. Specific defects:

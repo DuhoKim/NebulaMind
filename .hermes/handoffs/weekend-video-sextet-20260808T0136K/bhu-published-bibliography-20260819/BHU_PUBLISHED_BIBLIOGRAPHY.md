@@ -213,10 +213,18 @@ instrument).
 previously read "LIVE, 1.36σ short". That single number belonged to neither branch and rested on
 an uncertainty (±0.11) with no pinned origin; the published figure is ±0.17. Replaced by:
 
-| branch | measurement | instrument | vs the 2.5 M☉ bar |
+| estimate | measurement | method | vs the 2.5 M☉ bar |
 |---|---|---|---|
-| **A** | PSR J0740+6620, 2.08 ± 0.07 | relativistic Shapiro delay, radio timing | **6.0σ away — effectively dead** |
-| **B** | PSR J0952−0607, 2.35 ± 0.17 | Keck optical light curve + radial velocities of an irradiated companion | **0.88σ short — live, ~19% posterior above** |
+| — | PSR J0740+6620, 2.08 ± 0.07 | radio timing, relativistic Shapiro delay (Fonseca 2021) | **6.00σ** |
+| — | PSR J0952−0607, **2.35 ± 0.11** | optical light curve + radial velocities (Romani **2025**, arXiv:2512.05099) | **1.36σ — P(M>2.5) = 8.6%** |
+| — | GW190814 secondary, 2.50–2.67 (90%) | gravitational waves (**Abbott 2020**, arXiv:2006.12611) | **conditional — identity unresolved** |
+
+*Not branches to choose between: three estimates bearing on one quantity, with different
+likelihoods and systematics.* The related M_TOV = 2.210 +0.116 −0.123 (2σ) is a **separate paper**
+(**Nathanail 2021**, arXiv:2101.01735), not the source of the GW190814 mass — an attribution this
+row previously got wrong. On a **matched 2σ footing** GW190814's interval is **[2.482, 2.688]**,
+whose lower bound falls **below** the bar, so it does not lie wholly above it at comparable
+credibility.
 
 **CORRECTED 2026-08-29 16:0x after an adversarial gate.** The two rows above are **two estimates
 of one quantity with different systematics**, NOT two branches between which one must choose.
