@@ -366,7 +366,11 @@ Audit-worthiness: **high** — now discharged for the falsifier statement itself
 **8. N. J. Popławski (2010). "Radial motion into an Einstein–Rosen bridge." Phys. Lett. B 687, 110–113.**
 DOI 10.1016/j.physletb.2010.03.029 — VERIFIED (Crossref: PLB, v687, p110-113, 2010-04).
 Claim: our universe may be the Einstein–Rosen-bridge interior of a black hole; radial geodesics
-pass through. Testability: **CONSISTENCY-ONLY**. Record: new as a distinct verified entry (the
+pass through. Testability: **CONSISTENCY-ONLY**
+**OBSTRUCTION-CONTENT ADJUDICATED 2026-08-30** (`b33`, both seats read in full, unanimous
+`BATCH2_CONFIRMED`): NOT an obstruction. The "does not exist in isotropic coordinates" sentence is a
+chart/domain distinction — the isotropic chart is incomplete and fails to cover the interior — used
+to *support* the Einstein–Rosen construction. Tier confirmed.. Record: new as a distinct verified entry (the
 packet cites his series generically). Audit-worthiness: **medium** — the kinematic seed of the
 parentage chain.
 
@@ -524,7 +528,11 @@ Record: harvest #31; early interior-equivalence result. Author filled 2026-08-23
 **43. "Birth of baby universes from gravitational collapse in a modified-gravity scenario." JCAP 06 (2023) 028.**
 DOI 10.1088/1475-7516/2023/06/028 — VERIFIED (Crossref: JCAP, v2023, 028, 2023-06). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). The corpus's only numerical-relativity demonstration of baby-universe birth: perturbed boson stars in Palatini f(R), throat hidden inside a horizon at all times. Conditional on the modified gravity; no observable.
+Testability: **CONSISTENCY-ONLY**
+**OBSTRUCTION-CONTENT ADJUDICATED 2026-08-30** (`b33`, both seats read in full, unanimous):
+NOT an obstruction. A numerical construction whose Final Remarks claim the opposite direction —
+robustness "for all values" of the coupling. Zero-hit paper cleared by direct reading, not by the
+zero. Tier confirmed.. READ 2026-08-23 (Tori). The corpus's only numerical-relativity demonstration of baby-universe birth: perturbed boson stars in Palatini f(R), throat hidden inside a horizon at all times. Conditional on the modified gravity; no observable.
 Record: harvest #6; direct collapse-to-baby-universe construction in modified gravity.
 
 ## 5. Regular-black-hole interiors (Dymnikova line)
@@ -602,7 +610,12 @@ see ranked target 5.
 **55. "Asymptotically de Sitter universe inside a Schwarzschild black hole." Phys. Rev. D 102, 066010 (2020).**
 DOI 10.1103/physrevd.102.066010 — VERIFIED (Crossref: PRD, v102, 066010, 2020). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). LQG interior bounce beyond minisuperspace; γ ≈ 0.274 gives an asymptotically de Sitter interior, and that γ coincides exactly with LQG's independent black-hole-entropy value. Suggestive, no falsifier — the quantum partner to entry 39's Planck-validity concession.
+Testability: **CONSISTENCY-ONLY**
+**OBSTRUCTION-CONTENT ADJUDICATED 2026-08-30** (`b33`, unanimous): NOT an obstruction — but
+CGATE notes it holds **the strongest internal parameter/branch exclusions of the batch** (which
+dynamical branch is relevant for black-hole physics; zero gravitational charge in the asymptotically
+de Sitter interior), and these delimit its constructive solution rather than constitute its
+operative result. Kept in prose per the same claim-level convention as entry 37. Tier confirmed.. READ 2026-08-23 (Tori). LQG interior bounce beyond minisuperspace; γ ≈ 0.274 gives an asymptotically de Sitter interior, and that γ coincides exactly with LQG's independent black-hole-entropy value. Suggestive, no falsifier — the quantum partner to entry 39's Planck-validity concession.
 Record: triage pick #41 — kimi's #1 base candidate; the most direct recent interior-universe construction.
 
 ## 6. Gaztañaga interior-matching series
