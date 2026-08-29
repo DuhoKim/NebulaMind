@@ -401,3 +401,58 @@ previous four were regex partitions and all four were wrong. **What makes this o
 the instrument is AST for enumeration and a human read for classification**, which is the split the
 V50 §11 item now requires. The remaining ~70 sites have **not** had the same treatment, so the class
 stays a range until they do.
+
+---
+
+# 16:3x — the remaining 70 read. The numerical class is ~22, not 31–79.
+
+The 39 `ManifestClosureError` sites were read and excluded. **The other 70 untyped sites are now read
+the same way** — AST for enumeration, message and guard condition read individually. This completes
+the corpus: 112 `Raise` nodes = 3 typed outcomes + 39 MCE + 70 read here.
+
+## The numerical class, listed rather than counted
+
+**The core I am confident about — 22 sites in four clusters:**
+
+| cluster | sites | lines |
+|---|---|---|
+| **statistic path** | 3 | `beta_slope` zero/non-finite denominator (1123); `perm_sigma_exact` degenerate c or s (1134); `perm_record` non-finite permutation value (1153) |
+| **Row F** | 9 | `calibration_bins` degenerate bins (1369); `allocate_handcheck` ×8 feasibility (1397–1442) |
+| **calibration** | 4 | `inject_signs` accuracy outside (0.5,1] (1209); `accuracy_from_handcheck` empty bin (1462), agreement count out of range (1464), epsilon out of range (1468) |
+| **decision path — POST-UNBLINDING** | 6 | `_finite` non-finite decision quantity (1503); `w_profile` degenerate c (1513) and profile factor ≈ 0 (1517); `sigma_ours_scalar` 2a−1 ≤ 0 (1537); `sigma_ours_profile` non-finite gradient/covariance (1548) and negative quadratic form (1554) |
+
+**So the class is about 22 — not 31, and nowhere near 79.** The upper end of that range was always an
+artefact of counting unread sites as candidates.
+
+## Everything else, and why it is not in the class
+
+- **~24 caller errors** — receipt payload/field-set, mask field lengths, bin labels, sign-vector
+  length and values, `require_any_mask` / `require_sealed` type gates, `inject_signs` shape,
+  `exact_min_subset` mode, `resolve_branch` date format, BS-5f envelope type. All test an argument as
+  supplied.
+- **~17 integrity / protocol** — frozen environment mismatch, `validate_count_table`'s pinned-table
+  checks, authorization digest mismatch, Stage-C receipt not binding this mask, incomplete sample,
+  branch choice-point timing. **Claimed by the VOID antecedents**, per V50's precedence clause.
+- **3 planning-time** — `local_pass` no subset reaches `l_plan` (963), greedy order never reaches it
+  (973), `MOVE_CAP` reached (986). These are *numerical*, but they fire during planning, **before the
+  run exists**, in the same position as the MCE sites. Whether they belong to the class depends on
+  whether a planning failure is a run outcome at all.
+- **2 wrappers** — `canon_f8` non-finite in digest payload (168), and
+  `run_production_verdict`'s re-raise of a failed permutation record (1620), which is propagation
+  rather than a distinct condition — the case CODEX-V49 F2 was about.
+
+## What I am least sure of, named rather than buried
+
+`inject_signs` accuracy outside (0.5,1], and `accuracy_from_handcheck`'s three domain checks, sit on
+the line between a **domain guard on a supplied value** (caller) and a **computed calibration result**
+(numerical). I read them as numerical because the accuracies are computed upstream from hand-check
+labels, not handed in by a caller with a contract. **If that reading is wrong the class is ~18, not
+~22.** The three planning-time sites are the other soft edge.
+
+## Standing
+
+**This is one person's reading, in one pass, and my numbers on this corpus have been wrong four times
+today** — always because the instrument was a regex. The instrument is different now, and the result
+is listed site-by-site precisely so a seat can check it rather than take the count. **Until a seat
+does, ~22 is my reading and not an established figure**, and the honest form remains a reading with
+named soft edges rather than a number with a decimal point.
