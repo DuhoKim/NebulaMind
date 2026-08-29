@@ -46,25 +46,35 @@ only if some producer cannot be routed through the wrapper.**
 
     grep -l '^\*\*STATUS: OPEN' <lane>/OPEN_QUESTION_*.md
 
-## 2. CURRENT DRAFT — V57, BUILT, NOT DISPATCHED
+## 2. CURRENT DRAFT — V59, BUILT, AWAITING DISPATCH CONFIRMATION
 
-`<lane>/PREREG_SUCCESSOR_DRAFT_V57_20260829.md` = `a2c48d0cfe7511b67f3fe1e813720af01964ef1654a43e3add616a20eb8fed00`
+`<lane>/PREREG_SUCCESSOR_DRAFT_V59_20260829.md` = `9257411511b39de6c32b8b5b52a2f4ad45dec287a9150332dadafdd6253c6105`
 
-**Last refereed: V56** (`c0743b40698e75b6`) — NOT CLEAR ×2 at 20:22 (GPT56 5, CODEX 6).
+**Last refereed: V56** (`c0743b40698e75b6`) — NOT CLEAR ×2 at 20:22. **V57, V58, V59 are unrefereed.**
 
-V57 **withdraws the closure argument and suspends the eight-code set**, records that the enumeration
-missed a *class* not a member, marks `REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET` as not surviving,
-**deliberately does not re-pin the fingerprint** (re-pinning would make the checker green about
-something it no longer describes), removes the hand-copied CALLER/NUMERICAL totals in favour of the
-generated ledger, and reclassifies `inject_signs`' supplied-accuracy guard and mask-c admissibility as
-`CALLER`.
+- **V57** `a2c48d0cfe7511b6` — withdraws the refusal-vocabulary closure argument, **suspends the
+  eight-code set** (ruled: redo the derivation, not a ninth code), marks
+  `REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET` as not surviving, **deliberately does not re-pin the
+  fingerprint**, removes hand-copied totals, reclassifies two sites to `CALLER`.
+- **V58** `4df6afe904688940` — **BS-3g's schema specified**: nine fields with implementer-grade types,
+  producer, independent verifier, failure behaviour, and a *demonstration* that no field can carry a
+  per-object quantity. `mapping_id` admits only `MAPPING-NOT-PREREGISTERED` until a mapping is
+  preregistered, and such a receipt **cannot discharge the BS-6 edge**.
+- **V59** `9257411511b39de6` — **every producer bound to `receipt_strict()`**, which refuses slots
+  absent from the pinned `SLOT_SCHEMA`; plus a verifier making a permissive-path receipt *detectable*.
+  **v9 untouched at `6a9abbbd`.**
 
-**`gates/BRIEF_V57_REVIEW.md` is written.** Dispatch was **held** so BS-3g half one can go in first.
-**`refusal_vocabulary_check.py` reports R05 on V57 — that is the designed state**, not a defect.
+**NEXT ACTION: dispatch V59** (Blanc's item 3). `gates/BRIEF_V57_REVIEW.md` exists and must be
+**re-pointed at V59** before use — it names V57's digest.
 
-**PROVENANCE:** V57, its brief and the ledger were swept into BHU commits `ff0d6b4b7` / `a9974f78f` by
-the sibling lane's repo-wide `add`. Rationale is in `7f177593b`. **Date this lane's artifacts with
-`git log -- <path>`.**
+**Then:** the refusal-vocabulary rederivation (ruled, unstarted), covering **authorisation AND
+availability/mediator behaviour** with a *tested* joint-exhaustiveness argument.
+
+**STOP CONDITION:** if any producer cannot be routed through `receipt_strict()`, stop — that is the
+only path back to unfreezing v9 and it is the principal's.
+
+**Four `SLOT_SCHEMA` entries remain absent** (BS-2a, BS-2k, BS-L, BS-2v) — deliberately, as
+fill-blockers rather than holes; each is written as part of filling its slot.
 
 ## 3. STANDING CONSTRAINTS — these outrank any plan
 
