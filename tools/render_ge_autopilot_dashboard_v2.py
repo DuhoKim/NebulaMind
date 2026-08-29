@@ -310,8 +310,16 @@ def _duho_decision_items(d: "Path") -> List[Dict[str, Any]]:
         # newest first, and superseded/refuted forms skipped — the first cut of
         # this listed four SUPERSEDED memo revisions and capped out before the
         # LIVE unsigned memo, which is the one that matters
+        # BRIEF_ files are dispatch briefs written TO the seats. They routinely
+        # recount past rulings as context — "Duho's ruling took your framing and
+        # allowed exactly two routes" — and the phrase pattern below cannot tell
+        # that from a live ask. BRIEF_SECTION6_REVIEW_R6B.md sat on the cockpit
+        # as a pending decision for 51 hours on exactly that sentence, which is
+        # the false-positive twin of the row that reported nothing pending while
+        # twelve questions waited. A brief is never itself an ask.
         files = sorted((f for f in d.glob("*.md")
-                        if "SUPERSEDED" not in f.name and "REFUTED" not in f.name),
+                        if "SUPERSEDED" not in f.name and "REFUTED" not in f.name
+                        and not f.name.startswith("BRIEF_")),
                        key=lambda f: f.stat().st_mtime, reverse=True)
         for f in files:
             try:
