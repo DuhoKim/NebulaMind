@@ -82,6 +82,27 @@ chk("the criterion agrees with the expected label on every case",
     all(got == exp for got, exp in results.values()),
     f"{sum(1 for g, e in results.values() if g == e)}/{len(results)} — one positive, three negative")
 
+# ---- SCALE TEST, run immediately after the controls passed --------------------------------
+# METHODS_NOTE_CLASSIFIER_BIAS.md: "Validate at the scale you intend to run. The protocol passed
+# its small test and failed the real one." So the criterion was run over all 29 pinned sources
+# the moment it went 4/4 on controls. It does NOT hold up.
+import glob, os
+_flag = []
+for _f in sorted(glob.glob(SRC + "*_clean.txt")):
+    _T = " ".join(open(_f).read().split())
+    if is_obstruction(_T): _flag.append(os.path.basename(_f).replace("_clean.txt", ""))
+print(f"\nSCALE TEST -- criterion run over all 29 pinned sources")
+print(f"   flagged: {_flag}")
+print(f"   of these, only 2606.25023 (entry 22) is a no-go. sym14091849 is entry 25, a BHU")
+print(f"   CONSTRUCTION paper; 2503.14738 is the DESI collaboration paper, not a corpus entry at")
+print(f"   all; smolin_1992 is the CNS founding paper.")
+chk("SCALE TEST FAILED: the criterion is a poor SCREEN despite passing every control -- it flags "
+    "4 of 29 sources and only 1 is correct",
+    len(_flag) >= 3 and "2606.25023" in _flag,
+    "4/4 on hand-picked controls, ~1/4 precision at corpus scale. This is the METHODS_NOTE "
+    "finding reproduced on my own new criterion within minutes of building it: a small-batch "
+    "control does not license a method at scale")
+
 print("""
 WHAT THIS CRITERION DOES NOT DO -- named, because the night's lesson is that a criterion which
 does not name its limits will be trusted past them
@@ -98,6 +119,12 @@ does not name its limits will be trusted past them
   The four negative controls are the honest strength of this: the criterion is not merely
   asserted to distinguish a no-go from a silent paper, it is REQUIRED to, on three papers whose
   correct tier is already settled.
+
+  AND THE SCALE TEST IS THE HONEST WEAKNESS. It passes every control and then flags 4 of 29
+  sources, of which 1 is right. So it MUST NOT be used to propose refiling candidates. The tier
+  is sound -- entry 22 belongs in it, on two seats' reading of the paper. The CRITERION is a
+  screen with roughly 1-in-4 precision, and is recorded as such rather than shipped as a
+  classifier. Any future candidate gets a seat reading it, exactly as entry 22 did.
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")

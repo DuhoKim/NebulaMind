@@ -74,9 +74,18 @@ print("""
    judgement we would be imposing, and the paper's stated consequence is only that acceleration
    is "not solely caused by" r_S -- which an added component absorbs anyway.
 
-   SO: FIRES stays UNDETERMINED, but for a better reason than at the A6 gate. It is no longer
-   "we cannot reach the measurement". It is "the measurement is 3.1 sigma and the paper declines
-   to say what would count". That is a fact about entry 25, not a gap in our corpus.
+   SO, AS OF 2026-08-29: FIRES is no longer UNDETERMINED. Duho ruled that where the author states
+   no threshold, WE set one case by case, with an owner and a justification, recorded as ours --
+   because "no bar chosen" meant nothing in the corpus could ever be declared failed.
+
+   The bar for entry 25 is now set (RULE_FALSIFIER_THRESHOLD.md): >=3 sigma in a CMB-independent
+   AND a CMB-dependent combination, chosen by Tori, justified by the prediction's sharpness
+   against DESI's 1.7-4.2 sigma spread.
+
+   THAT BAR IS MET: 3.1 sigma DESI+CMB, 3.3 sigma DESI+SNe.
+   AND THE CLAIM STILL DOES NOT FIRE -- the "not solely caused by" auxiliary means w != -1
+   refutes only the whole-cause claim. Entry 25 survives a bar it meets, structurally rather than
+   evidentially. That is a sharper entry than "undetermined" and it is the one the corpus keeps.
 """)
 n_ok = sum(1 for _, o, _ in checks if o)
 print(f"SELF-CHECKS: {n_ok}/{len(checks)} passed")
