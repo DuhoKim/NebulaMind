@@ -110,6 +110,58 @@ written** so the correction is auditable against what it corrects.
 
 ---
 
+## The corrected picture
+
+**One bar.** Smolin: *"Sufficiently high is certainly 2.5 M☉"* — with a second, conditional
+threshold at **1.5 M☉** (*"troubling"*, if one credits Bethe–Brown). Both stand.
+
+**One criterion, and it is method-agnostic.** From his footnote 5: *"Other methods yield less
+precise estimates [58]."* He ranks other methods **by precision**, not excluding them by
+instrument. The test is: **is the object securely a neutron star, is the mass high enough, is the
+estimate precise enough.**
+
+**Three estimates bear on it. All are evidence; none is excluded by its instrument.**
+
+| estimate | value | from | distance to the 2.5 M☉ bar |
+|---|---|---|---|
+| PSR J0740+6620 | 2.08 ± 0.07 | radio timing, Shapiro delay (Fonseca 2021) | **6.00σ** |
+| PSR J0952−0607 | **2.35 ± 0.11** | optical modelling (Romani **2025**) | **1.36σ — P(M>2.5) = 8.6%** |
+| GW190814 secondary | 2.50–2.67 (90%) | Abbott 2020 | **conditional — identity unresolved** |
+
+**What is undecided is the OBJECT, not the instrument.** GW190814 is conditional because nobody
+knows whether its secondary is a neutron star — its discoverers call it *"either the lightest black
+hole or the heaviest neutron star"* — not because gravitational waves are the wrong tool. And on a
+**matched 2σ footing** its interval becomes **[2.482, 2.688]**, whose lower bound falls **below**
+the bar. The earlier "fires outright" reading depended on comparing a 90% interval with a 2σ one.
+
+**The live number is 1.36σ, 8.6% posterior above the bar** — what our record carried before I
+wrongly called it unsourced. Romani et al. 2025 (arXiv:2512.05099), now pinned, supersedes the
+2022 ±0.17 I had been working from.
+
+**The radio pair is not a drift.** Fonseca *combines* Cromartie's data and *"confirms and improves
+upon"* it — nested analyses of one constant mass. Defensible form: **the posterior was revised
+downward and tightened.**
+
+### For Duho
+
+**Your keep-both ruling survives — codex says so explicitly — but the reason you were given was
+wrong.** I told you the instrument decides, so two branches must be held. The right reason is
+simpler: **J0740 and J0952 are two estimates of one quantity with different likelihoods and
+systematics, so both are evidence.** Nothing forces a choice between them, and nothing ever did.
+
+The genuinely open question is narrower than I made it: **whether any object above 2.5 M☉ is
+securely a neutron star.** Today none is.
+
+Reproduce: `b9_entry31_corrected.py` (4/4).
+
+---
+
+# ══ SUPERSEDED BELOW ══
+
+**Everything from here down is the ORIGINAL study, found UNSOUND by two seats and left unedited so
+the correction is auditable against what it corrects.** Its headline — that the instrument decides
+— is withdrawn. Its σ arithmetic was confirmed; its framing was not.
+
 ## 1. The bar, from Smolin's own words
 
 > *"Sufficiently high is certainly 2.5 M☉, although if one is completely confident of Bethe and
