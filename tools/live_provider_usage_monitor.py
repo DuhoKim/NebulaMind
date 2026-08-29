@@ -318,7 +318,20 @@ def is_idle_codex(text: str) -> bool:
     if not tail:
         return False
     joined = '\n'.join(tail).lower()
-    if any(bad in joined for bad in ['running command', 'thinking', 'approval requested', 'ctrl+o to expand', 'pane is dead']):
+    # 'working' and the interrupt/cancel affordances were missing, and that is a
+    # collision rather than a cosmetic gap: on 2026-08-29 Tori began dispatching
+    # gate seats INTO the meter panes, and this function returned idle=True for
+    # codex-meter while it was mid-gate showing "Working (16s • esc to
+    # interrupt)". The next slash refresh was four minutes away and would have
+    # typed /status — a multi-call protocol with retries — into a running seat.
+    #
+    # The busy list must enumerate what the CLI actually renders while busy, not
+    # what it rendered when this was written. An idle detector that fails toward
+    # "idle" types into live work; one that fails toward "busy" only delays a
+    # meter reading. Bias it the safe way.
+    if any(bad in joined for bad in ['running command', 'thinking', 'approval requested',
+                                     'ctrl+o to expand', 'pane is dead', 'working',
+                                     'esc to interrupt', 'esc to cancel']):
         return False
     return any(line.lstrip().startswith('\u203a') for line in tail) and any('gpt-5' in line.lower() or 'codex' in line.lower() for line in tail)
 
@@ -334,7 +347,11 @@ def is_idle_agy(text: str) -> bool:
     # leaving the meter 56 hours stale while it correctly reported itself NOT
     # REFRESHING. Mention is not use; scope the check to the chrome.
     chrome = '\n'.join(tail[-5:]).lower()
-    if any(bad in chrome for bad in ['ctrl+end bottom', 'models & quota', 'running', 'approval']):
+    # Same widening as is_idle_codex, for the same reason: the meter panes are
+    # now also used as gate seats, so a missed busy marker types into live work.
+    if any(bad in chrome for bad in ['ctrl+end bottom', 'models & quota', 'running',
+                                     'approval', 'working', 'esc to interrupt',
+                                     'esc to cancel']):
         return False
     # Identity is NOT re-checked here. choose_pane() has already established
     # this is an agy pane (cmd == 'agy' or a goru role/target); requiring the
