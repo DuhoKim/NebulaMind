@@ -34,8 +34,14 @@ Both rulings stand; §5 of the draft records both grounds.
 reported as 31 because that is the figure with clean provenance.** Four branches are demonstrated
 reachable by execution; "nine raise sites" was raise-statements, not branches shown to fire.
 
-**Check §1 against disk:** `grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md` must return
-exactly the list above.
+**Check §1 against disk.** Compare the disk's OPEN set with the **table rows** of §1 — not with every filename mentioned in the section, because §1 also *cites* ruled questions and a loose match counts those as open (it did, on this check's first real use):
+
+    # disk side
+    grep -l '^\*\*STATUS: OPEN\*\*' <lane>/OPEN_QUESTION_*.md
+    # index side — table rows only, i.e. lines beginning "| <n> | `OPEN_QUESTION_"
+    grep -oE '^\| [0-9]+ \| `OPEN_QUESTION_[A-Z0-9_.]+\.md`' <lane>/LANE_STATE_20260829.md
+
+The two must agree exactly.
 
 ## 2. CURRENT DRAFT — V51, BUILT, NOT DISPATCHED
 
