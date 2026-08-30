@@ -74,6 +74,9 @@ SURFACE = [
     ("attclose", "VERIF", "DRAFT",
      "the ATTEMPT-CLOSE record `(kind, member_position, close_class, boot_epoch, "
      "monotonic_reading)`", True),
+    ("vclose",   "VERIF", "DRAFT",
+     "the VERIFICATION-CLOSE record `(kind, gate, boundary_position, close_class, "
+     "boot_epoch, monotonic_reading)`", True),
     ("roster",   "ROSTER", "DRAFT",
      "the REVIEWER ROSTER — closed schema `(kind, roster_entries)`", True),
     ("revrec",   "REVREC", "DRAFT",

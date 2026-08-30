@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V113_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V114_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -268,6 +268,12 @@
 | `vbound.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `vbound.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
 | `vbound.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `vclose.boot_epoch` | bounded-encoding | draft 6.1 item (ii-g) - verification-close | the clock pair |
+| `vclose.boundary_position` | bounded-encoding | draft 6.1 item (ii-g) - verification-close | decimal chain position |
+| `vclose.close_class` | closed-vocab | draft 6.1 item (ii-g) - verification-close | ABORTED - EXPIRED - ABORTED-BY-RESTART (three tokens; distinct from the attempt-close two-token set) |
+| `vclose.gate` | closed-vocab | draft 6.1 item (ii-g) - verification-close | the five-gate set, as passrec.gate |
+| `vclose.kind` | closed-vocab | draft 6.1 item (ii-g) - verification-close (GPT56/CODEX-V113 F2) | the VERIFICATION-CLOSE literal |
+| `vclose.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-g) - verification-close | the clock pair |
 | `vread.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `vread.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
 | `vread.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |

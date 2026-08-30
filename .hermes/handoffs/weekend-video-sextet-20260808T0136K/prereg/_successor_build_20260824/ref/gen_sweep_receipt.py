@@ -39,6 +39,10 @@ DEAD = re.compile(
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
+    ("PASS-LAW ARITHMETIC (CODEX-V113 F1)", "for at most one budget", ("draft", "spec"),
+     "the false one-budget bound; budget+2g is the honest form"),
+    ("HAND ORDINALS (CODEX-V113 F5)", "proposing a ninth code", ("draft",),
+     "the stale ordinal guidance; the narrative history mention stays"),
     ("A-PRIORI RANGE SEMANTICS (CODEX-V112 F8)", "places the TRUE gradient inside", ("draft",),
      "the dead guard's confidence claim; conditional HELD replaced it"),
     ("A-PRIORI RANGE SEMANTICS (CODEX-V112 F8)", "the measurement itself plus a frozen constant", ("draft",),

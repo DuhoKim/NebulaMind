@@ -265,6 +265,17 @@ _c("attclose.close_class", "closed-vocab",
    "ABORTED - ABORTED-BY-RESTART (a successful attempt's close is the decision event "
    "itself; spec 3c T2 alternation law - GPT56-V111 F8, CODEX-V111 F4)",
    source="draft 6.1 item (ii-g) - attempt records")
+_c("vclose.kind", "closed-vocab", "the VERIFICATION-CLOSE literal",
+   source="draft 6.1 item (ii-g) - verification-close (GPT56/CODEX-V113 F2)")
+_c("vclose.gate", "closed-vocab", "the five-gate set, as passrec.gate",
+   source="draft 6.1 item (ii-g) - verification-close")
+_c("vclose.boundary_position", "bounded-encoding", "decimal chain position",
+   source="draft 6.1 item (ii-g) - verification-close")
+_c("vclose.close_class", "closed-vocab",
+   "ABORTED - EXPIRED - ABORTED-BY-RESTART (three tokens; distinct from the "
+   "attempt-close two-token set)", source="draft 6.1 item (ii-g) - verification-close")
+_c("vclose.boot_epoch vclose.monotonic_reading", "bounded-encoding", "the clock pair",
+   source="draft 6.1 item (ii-g) - verification-close")
 _c("attclose.kind", "closed-vocab", "the ATTEMPT-CLOSE literal (CODEX-V112 F2: this "
    "kind rode a bounded-encoding blob while its three siblings were closed-vocab)",
    source="draft 6.1 item (ii-g) - attempt records")
@@ -485,34 +496,51 @@ BS7P_ENV = {f"bs7p_env.{n}" for n in (
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
 SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint",
                              "review")}
+ENVELOPE_TUPLE = ("origin_row", "frame_sequence", "operation", "object_identity")
+
 def _preimage_echo(spec_txt, note):
-    """The request-identity preimage class, echoed source-vs-spec. Superseded phrase = red."""
+    """Source-vs-spec preimage echo, TUPLE-COMPARED (CODEX-V113 F4: phrase presence was
+    defeated by semantic drift that kept the trigger words; the echo now extracts the
+    four-member envelope tuple from BOTH texts in order). Residue stated: this is a
+    tuple-and-phrase tripwire, not semantics - the section-11 recomputation obligation
+    and its fixtures are the semantic closure."""
+    import re as _re
     out = []
-    if "IDENTITY ENVELOPE" not in spec_txt:
-        out.append("preimage-echo: spec no longer defines the IDENTITY ENVELOPE - "
-                   "the identity rule moved or died (GPT56/CODEX-V112 F1)")
+    tup = r"\(\s*" + r"\s*,\s*".join(ENVELOPE_TUPLE) + r"\s*\)"
+    if not _re.search(r"IDENTITY ENVELOPE\s*`?" + tup, spec_txt):
+        out.append("preimage-echo: the spec's IDENTITY ENVELOPE no longer carries the "
+                   "four-member tuple in order - moved, gutted or re-membered "
+                   "(GPT56/CODEX-V112 F1; CODEX-V113 F4)")
     for txt, where in ((note, "registry source note"),):
-        if "identity envelope" not in txt.lower():
-            out.append(f"preimage-echo: {where} does not name the identity envelope - "
-                       "the preimage class drifted (GPT56/CODEX-V112 F1)")
+        if not _re.search(tup, txt):
+            out.append(f"preimage-echo: {where} does not carry the four-member envelope "
+                       "tuple in order (CODEX-V113 F4: naming the envelope while "
+                       "computing something else passed the phrase check)")
         if "framed wire unit" in txt or "wire-frame" in txt:
             out.append(f"preimage-echo: {where} carries the SUPERSEDED full-frame "
-                       "preimage - regeneration would un-repair the repair "
-                       "(GPT56/CODEX-V112 F1)")
+                       "preimage phrase (GPT56/CODEX-V112 F1)")
     return out
 
 def _preimage_echo_selftest():
-    """Seeded control: plant the superseded definition, prove red; clean form green."""
+    """Seeded controls incl. CODEX-V113 F4's exact semantic-drift counterexamples."""
     fails = []
-    good = "sha256 over the domain-tagged identity envelope ONLY"
+    good = ("sha256 over the domain-tagged identity envelope ONLY - (origin_row, "
+            "frame_sequence, operation, object_identity)")
     bad = "sha256 of the complete framed wire unit, domain-tagged wire-frame"
     spec_ok = "the IDENTITY ENVELOPE `(origin_row, frame_sequence, operation, object_identity)`"
     if _preimage_echo(spec_ok, good):
         fails.append("clean preimage note not green")
     if not any("SUPERSEDED" in p for p in _preimage_echo(spec_ok, bad)):
         fails.append("planted superseded definition not caught")
-    if not any("moved or died" in p for p in _preimage_echo("no envelope here", good)):
-        fails.append("spec-side deletion not caught")
+    if not any("no longer carries" in p for p in _preimage_echo(
+            "The IDENTITY ENVELOPE exists. Its normative members are now payload_hash "
+            "and frame_length.", good)):
+        fails.append("CODEX-V113 F4 spec drift not caught")
+    if not any("four-member envelope tuple" in p
+               for p in _preimage_echo(spec_ok,
+            "request_digest is sha256 over payload bytes; this value is called the "
+            "identity envelope.")):
+        fails.append("CODEX-V113 F4 source drift not caught")
     return fails
 
 ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "boot_epoch", "monotonic_reading",
@@ -549,7 +577,9 @@ VERIF = {"vread.kind", "vread.request_key", "vread.touch_position",
          "attstart.kind", "attstart.member_position", "attstart.boot_epoch",
          "attstart.monotonic_reading",
          "attclose.kind", "attclose.member_position", "attclose.close_class",
-         "attclose.boot_epoch", "attclose.monotonic_reading"}
+         "attclose.boot_epoch", "attclose.monotonic_reading",
+         "vclose.kind", "vclose.gate", "vclose.boundary_position",
+         "vclose.close_class", "vclose.boot_epoch", "vclose.monotonic_reading"}
 SUCCEXP = {"succexp.kind", "succexp.sealed_enumeration_digest",
            "succexp.continuation_segment_digest", "succexp.terminal_head",
            "succexp.freeze_signature_digest", "succexp.flagged_keys",
@@ -661,6 +691,14 @@ def crosscheck_declared(text):
     _pf = _preimage_echo_selftest()
     if _pf:
         problems.extend(f"preimage-echo SELFTEST: {x}" for x in _pf)
+    # UNBACKTICKED-SCHEMA SCAN (GPT56-V113 F4: a draft-shaped 'closed schema (kind,
+    # surprise_string)' declaration OUTSIDE the backticked grammar was invisible to every
+    # extractor while all checks stayed green - declarations must be written in the one
+    # grammar the extractors read, and this scan refuses the evasion shape).
+    for _m in _re.finditer(r"(?<!`)closed schema \(", text):
+        problems.append("unbackticked schema declaration at offset %d - written outside "
+                        "the backticked grammar every extractor reads (GPT56-V113 F4)"
+                        % _m.start())
     # PREIMAGE-CLASS ECHO (GPT56/CODEX-V112 F1; the coordinator's generator-input rule):
     # the spec's identity-envelope definition and THIS SOURCE's request_digest note must
     # agree on the preimage class - the superseded full-frame phrase in either is fatal.
