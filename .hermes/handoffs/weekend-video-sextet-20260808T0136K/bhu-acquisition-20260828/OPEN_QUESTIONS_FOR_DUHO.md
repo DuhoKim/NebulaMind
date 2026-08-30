@@ -655,6 +655,17 @@ theorem. Nothing waits on this.
 **Ruling: entries 52 and 53 keep CONSISTENCY-ONLY.** The threshold theorems stay recorded in both
 entries' prose, where they already were.
 
+> **CORRECTED BY THE IMPLEMENTATION GATE, disposition unchanged.** My closure below claimed "the
+> conclusions decide it the other way" and proposed that below the threshold the universe cycles
+> rather than failing to exist. **Both wrong.** The reviewer derived the equations: there are TWO
+> thresholds — a small *existence* bound (52: C > √(8/9); 53: C > e^(−1/2), below which the paper
+> itself says "the universe would not exist") and a far larger *dark-energy* bound — and the
+> cycling I quoted belongs to the second. My quotation spliced the two into one and over-claimed
+> that 53 "closes the same way". **The original theorem stands at full strength; the tier ruling
+> survives on the honest weighing** — construction-level closing emphasis alongside a prominently
+> restated exclusion that delimits the papers' own family. Sixth delegated ruling, and the fourth
+> whose stated basis the implementation gate had to correct while the outcome held.
+
 **The premise check that decided it** — the same move as every prior delegated question: the choice
 turned on whether the threshold is each paper's *operative result* (the entry-22 shape) or a
 *delimitation inside a construction* (the entry-37 shape, where both reviewers refused promotion).
