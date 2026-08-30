@@ -1170,6 +1170,13 @@ imports it from here without derivation (B-5, NOT-DERIVED-HERE). **Full article 
 (2026-08-30); no extractable article-content/OCR text layer, so title, byline, and abstract
 checks are visual** (CGATE_B42V2's corrected wording — the older "full text not held" line was
 stale and false once the complete scan was pinned).
+**Sweep-checked 2026-08-30 (b55 support sweep): bound by CUSTODY + image-only status, NOT text —
+this is the one support entry that cannot be text-bound. b55 computes: the pin is a 6-page PDF,
+sha256 `4b1cbae677de…`, git-tracked; its entire extractable text layer is the ADS bibcode overlay
+`1994ApJ...423..659B` (pypdf: 114 chars, all bibcode), which is exactly why the byline and the
+M_max ≃ 1.5 / ~1.84 / 25 ± 5 M⊙ numbers are VISUALLY attested (Tori, page 1) and never machine-
+greppable. The sweep binds entry 32 by custody + honest image-only disclosure; it makes no claim
+that the numbers are computed from the source.**
 
 **33. The vector-manifestation pair** (added 2026-08-22): M. Harada & K. Yamawaki, PRL **86**, 757
 (2001), DOI 10.1103/PhysRevLett.86.757 — VERIFIED; and Phys. Rept. **381**, 1–233 (2003), DOI
