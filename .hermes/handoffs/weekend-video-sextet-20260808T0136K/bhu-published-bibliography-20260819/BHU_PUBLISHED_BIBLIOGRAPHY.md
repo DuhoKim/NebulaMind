@@ -539,6 +539,12 @@ Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 (abstract level). Audit-
 **medium** — the branch's founding calculation.
 
 **14. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1990). "Black holes as possible sources of closed and semiclosed worlds." Phys. Rev. D 41, 383–394.**
+**ACQUIRED 2026-08-30, free frontier route 2 (KEK):** the ICTP preprint scan IC/88/91 (1988
+Miramare–Trieste; KEKSCAN 2000-33-351), pinned at
+`../bhu-reading-20260823/sources/frolov_markov_mukhanov_ic8891_kekscan_2000_33_351.pdf` (sha256
+`1dcb755eb0af…`, 21 scan pages; title page visually verified: title + all three authors).
+**PREPRINT, not the PRD 41, 383 version of record; content identity is testimony until compared.
+NOT YET READ — census read queued.**
 DOI 10.1103/PhysRevD.41.383 — VERIFIED (Crossref: PRD, v41, p383-394, 1990-01-15).
 Claim: the full development of entry 13. Testability: **CONSISTENCY-ONLY**. Record: packet §1.6.
 Audit-worthiness: **medium**.
@@ -961,6 +967,13 @@ information-repository effect. No observational discriminant. Notes: batch 8.
 Record: kimi recall R3; the junction-condition machinery child-universe constructions stand on.
 
 **50. E. Farhi, A. H. Guth & J. Guven (1990). "Is it possible to create a universe in the laboratory by quantum tunneling?" Nucl. Phys. B 339, 417–490.**
+**ACQUIRED 2026-08-30, free frontier route 2 (KEK):** the MIT-CTP-1690 preprint scan (KEKSCAN
+2000-36-692), pinned at
+`../bhu-reading-20260823/sources/farhi_guth_guven_ctp1690_kekscan_2000_36_692.pdf` (sha256
+`32e93d710705…`, 34 scan pages; page-1 title and Farhi/CTP byline verified visually). This is
+entry 48's named QUANTUM-escape sequel. **PREPRINT, not the NPB 339, 417 version of record;
+content identity is testimony until compared. NOT YET READ — census read queued (long: ~68
+preprint pages).**
 DOI 10.1016/0550-3213(90)90357-j — VERIFIED (Crossref: NPB, v339, p417-490, 1990). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **UNREAD** — text unexamined here.
