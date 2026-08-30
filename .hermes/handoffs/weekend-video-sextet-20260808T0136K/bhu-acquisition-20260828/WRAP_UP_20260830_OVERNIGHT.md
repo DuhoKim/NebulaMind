@@ -85,3 +85,34 @@ outcomes held; one tier moved.
 **Nothing.** All seven questions are closed (see above). What remains needs only his login: three papers need his
 library login (Popławski PLB 690, Silk Science 277, Farhi & Guth PLB 183), and entry 19 is MDPI
 open-access, fetchable by the browser route used for entries 25/26.
+
+## 2026-08-30 daytime — the census CLOSED, confirmed by both seats
+
+Duho's morning review (via Blanc, 10:59 KST): **all seven delegated closures stand**, revert
+offers struck, OPEN_QUESTIONS marked settled. His remainder directive ("read the unflagged
+pile") discharged into the coverage proof and its gate chain:
+
+- **b41 v1→v5**: v1 refuted by BOTH seats on different holes (CGATE: entry 38 unreceipted —
+  b33's retrospective sentence laundered a passage-audit into a full read; AGATE: entry 5's
+  file never scanned, entry 6 pre-rule). v5 confirmed by CGATE (`B41V5_CONFIRMED`) after four
+  rounds of receipt-binding repairs; AGATE confirmed at v4. The one-seat-does-the-work pattern
+  recurred at v4 (AGATE blessed existence-only bindings) and is recorded in the docstring.
+- **b43**: entry 38 read in full (3262 lines) under the b28 rule — the census's last
+  unreceipted paper. Both gates: NOT-OBSTRUCTION (CGATE narrowed: constant-σ family scope,
+  **Theorem 8's printed-hypothesis typo** disclosed, footnote 10's rejected characteristic
+  branch recorded). Claim item 3 added to entry 38's record; tier unchanged.
+- **THE NUMBERS OF RECORD** (census closer, CGATE_B41V5): readable corpus receipt coverage
+  **39/39**; paper-tier miss rate **1 of 2** (hit 22, missed 5); precision **1 of 3** flags;
+  claim-level sensitivity **not measured** (no frozen claim table), two labelled observations
+  on the seven claim-level carriers. Entry 5's miss is a **double miss**: never in the scanned
+  pool AND (0,0,0) on the vocabulary — computed live, both facts.
+- **b42**: byline sweep extended to the seven support entries — metadata layer closed over all
+  58. Entry 33's pair acquired by journal-ref match (hep-ph/0010207 full text;
+  hep-ph/0302103 abs-page receipt — ar5iv 503s on 233pp) and pinned. Entry 32 (Brown & Bethe
+  1994) stays testimony: pre-arXiv, ADS-scan browser route open.
+- **Standing dependency** (Duho only): the twelve login-gated papers, listed in
+  OPEN_QUESTIONS_FOR_DUHO.md with the three thread-settlers named (Farhi & Guth PLB 183;
+  Silk Science 277; Popławski PLB 690).
+
+Front commits: d551b99e4 (44's pin repair) → 1e65c6073 (v1) → d7a3291cd (b42) → a88527d26
+(b43+v2) → d3a1e7ab3 (v3+narrowings) → b9ee9d3b8 (v4) → 2860644f0 (v5) → this one.
