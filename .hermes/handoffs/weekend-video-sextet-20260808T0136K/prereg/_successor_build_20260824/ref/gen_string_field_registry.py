@@ -182,6 +182,15 @@ _c("termrec.gate", "closed-vocab", "the five-gate set",
    source="draft 6.1 - terminated-verdict record")
 _c("termrec.chain_head", "bounded-encoding", "position + running digest at production",
    source="draft 6.1 - terminated-verdict record")
+_c("termrec.freeze_signature_digest haltrec.freeze_signature_digest", "digest-ref",
+   "run identity - replay across runs fails (CODEX-V97 F4)",
+   source="terminated-family canonical bodies")
+_c("termrec.signature haltrec.signature", "bounded-encoding",
+   "detached deterministic signature, 64 bytes (GPT56-V97 F5: absent from this registry)",
+   source="terminated-family envelopes")
+_c("passrec.partition_cut_position", "bounded-encoding",
+   "the issuance commit's last write position; 0 pre-BS-L (GPT56-V97 F3)",
+   source="spec 3b - gate pass record")
 _c("passrec.signature", "bounded-encoding",
    "detached deterministic signature, 64 bytes, enumerator keypair - anchors chain by "
    "predecessor verification (GPT56-V95 F2)",
@@ -354,12 +363,14 @@ CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading",
            "ckclock.predecessor_epoch", "ckclock.gap_declaration"}
 # the binding-to-key map, declared at draft (iv-c) (CODEX-V90 F2: the pre-opening verifier
 # consumes it; an unlisted artifact is chi-bearing by default)
-HALTREC = {"haltrec.kind", "haltrec.chain_head"}
+HALTREC = {"haltrec.kind", "haltrec.chain_head", "haltrec.freeze_signature_digest",
+           "haltrec.signature"}
 # the gate PASS RECORD (spec 3b anchors, built at V96 - GPT56-V95 F2, CODEX-V95 F4)
 PASSREC = {"passrec.gate", "passrec.head_position", "passrec.head_digest",
            "passrec.verifier_digest", "passrec.predecessor_record_digest",
-           "passrec.signature"}
-TERMREC = {"termrec.kind", "termrec.class_key", "termrec.gate", "termrec.chain_head"}   # the exhaustion halt receipt's non-chi
+           "passrec.partition_cut_position", "passrec.signature"}
+TERMREC = {"termrec.kind", "termrec.class_key", "termrec.gate", "termrec.chain_head",
+           "termrec.freeze_signature_digest", "termrec.signature"}   # the exhaustion halt receipt's non-chi
 # face (CODEX-V94 F4); identities live SEALED in the committee store (GPT56-V94 F7)
 BINDMAP = {"bindmap.request_key", "bindmap.decision_chain_position",
            "bindmap.decision_event_digest", "bindmap.decision_boot_epoch",

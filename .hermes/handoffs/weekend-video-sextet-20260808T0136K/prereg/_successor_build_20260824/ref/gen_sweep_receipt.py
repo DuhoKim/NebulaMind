@@ -93,6 +93,8 @@ SWEEPS = [
      "the pre-W0/W1 window count (GPT56-V91 F6)"),
     ("COUNT MOVE (GPT56-V88 F7)", "stay 16/8", ("draft",),
      "the unqualified stale class count (CODEX-V91 F6)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "never both, never neither", ("draft",),
+     "the V71 two-way partition revived as live prose in a recap (CODEX-V97 F2)"),
     ("PADDED MULTIPLICITY (V93)", "single-pass, forward-only", ("draft", "spec"),
      "V92's form, broken against the restore rule (GPT56-V92 F4, CODEX-V92 F2)"),
     ("DRAW MECHANICS COMMITTED (2026-08-30 sitting)", "are not yet frozen", ("draft",),

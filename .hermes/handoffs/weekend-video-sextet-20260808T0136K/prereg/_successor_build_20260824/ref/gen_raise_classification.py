@@ -122,7 +122,7 @@ out.append("**ADDENDUM — known IMPLICIT exception paths, hand-enumerated as fo
            "bytes after GPT56-V96 F4 showed two of three rows misread — the lesson this "
            "corpus keeps teaching, applied to its own ledger):** "
            "L1493–1496 `adjudicate_path` — dict subscripts `cal[...]` and numpy reductions: "
-           "implicit KeyError/TypeError, UNCAUGHT on the verdict path → process death, no "
+           "implicit KeyError/TypeError — and ValueError from `np.min`/`np.max` on an empty array (GPT56-V97 F7) — UNCAUGHT on the verdict path → process death, no "
            "verdict record (the operator-observed platform family; loud, never a silent "
            "verdict); L1609 `run_production_verdict` — the `adjudicate_path(cal)` call, the "
            "propagation site of the same, same disposition; L1647–1648 "
