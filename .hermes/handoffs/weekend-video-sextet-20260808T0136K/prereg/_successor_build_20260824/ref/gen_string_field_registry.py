@@ -172,6 +172,10 @@ _c("bindmap.request_key bindmap.decision_chain_position", "bounded-encoding",
    source="draft 6.1 item (iv-c) - binding-to-key map")
 _c("bindmap.decision_event_digest", "digest-ref", "",
    source="draft 6.1 item (iv-c) - binding-to-key map")
+_c("bindmap.decision_boot_epoch bindmap.decision_monotonic_reading", "bounded-encoding",
+   "the decision's clock pair, same bounds as the arrival's - the decide-within-D evidence; "
+   "WIDENED at V93 (CODEX-V92 F1), FILED with the coordinator",
+   source="draft 6.1 item (iv-c) - binding-to-key map")
 _c("bindmap.signature", "bounded-encoding",
    "detached deterministic signature over the canonical entry body, 64 bytes - Row B's "
    "provisioned keypair, signer roster-bound, no envelope leaves (CODEX-V91 F3: sig-envelope "
@@ -181,7 +185,7 @@ _c("ckclock.boot_epoch ckclock.monotonic_reading", "bounded-encoding",
    "the checkpoint CLOCK RECORD of its own production - same bounds as the arrival pair "
    "(epoch [0, 10^6], reading ns [0, 2^63-1], GPT56-V90 F3) - the other side of the spec-3b "
    "comparison rule",
-   source="spec 3b - checkpoint clock record")
+   source="draft 6.1 item (ii-c) + spec 3b - checkpoint clock record")
 _c("envelope.slot", "closed-vocab", "SLOT_SCHEMA keys")
 _c("envelope.schema", "closed-vocab", "the literal successor_ref_v3/1")
 # The environment's SIX LEAF FIELDS, extracted from environment_record() itself rather than
@@ -319,7 +323,8 @@ CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading"}
 # the binding-to-key map, declared at draft (iv-c) (CODEX-V90 F2: the pre-opening verifier
 # consumes it; an unlisted artifact is chi-bearing by default)
 BINDMAP = {"bindmap.request_key", "bindmap.decision_chain_position",
-           "bindmap.decision_event_digest", "bindmap.signature"}
+           "bindmap.decision_event_digest", "bindmap.decision_boot_epoch",
+           "bindmap.decision_monotonic_reading", "bindmap.signature"}
 OPENAUTH = {f"openauth.{n}" for n in ("bsl_digest", "store_identity_main", "store_identity_committee",
     "destination", "ceremony_id", "phase", "signer_identity", "schema_version")}
 FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection_bricks",
@@ -341,10 +346,19 @@ def crosscheck_declared(text):
     import re as _re
     problems = []
     # (ii-b): extract the arrival tuple from the draft bytes and compare field-for-field
-    m = _re.search(r"kind=ARRIVAL, ([^)]+)\)", text)
+    # SCOPED (GPT56-V92 F5, CODEX-V92 F6): the unscoped search matched Row B's duplicate
+    # tuple, so deleting item (ii-b) stayed green. The extraction now anchors on the (ii-b)
+    # label itself, and separately requires the Row B duplicate to EXIST and MATCH - two
+    # sites, one schema, both checked.
+    m = _re.search(r"\(ii-b\).{0,400}?kind=ARRIVAL, ([^)]+)\)", text, _re.S)
+    all_tuples = _re.findall(r"kind=ARRIVAL, ([^)]+)\)", text)
     if not m:
-        problems.append("(ii-b) arrival tuple not found in the draft - extraction dead")
-    else:
+        problems.append("(ii-b)-anchored arrival tuple not found - the list item is gone or "
+                        "reworded past the extractor (GPT56-V92 F5)")
+    elif len(all_tuples) < 2 or any(x != all_tuples[0] for x in all_tuples):
+        problems.append(f"arrival tuple sites disagree or Row B duplicate missing: "
+                        f"{len(all_tuples)} site(s)")
+    if m:
         norm = {"timestamp": "timestamp", "boot_epoch": "boot_epoch",
                 "monotonic_reading": "monotonic_reading", "row": "row",
                 "operation": "operation", "object identity": "object_identity",
@@ -362,7 +376,8 @@ def crosscheck_declared(text):
                             f"{sorted(ARRIVAL - got)}, draft-only {sorted(got - ARRIVAL)}")
     # (iv-c): the bindmap tuple
     m = _re.search(r"closed schema `\(request_key, decision chain_position, decision "
-                   r"event_digest, signature\)`", text)
+                   r"event_digest, decision boot_epoch, decision monotonic_reading, "
+                   r"signature\)`", text)
     if not m:
         problems.append("(iv-c) bindmap tuple not found in the draft or its shape changed - "
                         "re-derive the BINDMAP declaration against the draft bytes")
