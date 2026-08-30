@@ -166,7 +166,17 @@ DOI 10.1119/1.17460 — VERIFIED (Crossref: AJP, v62, p788-795, 1994-09).
 Claim: pedagogical demonstration that a closed FLRW dust universe can be embedded as the interior
 of a Schwarzschild black hole.
 Testability: **CONSISTENCY-ONLY**. Record: named in the brief as "Stuckey-class pedagogy if
-published" — it is published; new to our record as a verified item. Audit-worthiness: **low** as a
+published" — it is published; new to our record as a verified item.
+**READ (abstract-level) 2026-08-30 (Duho: "read 3 and 18") — CONSISTENCY-ONLY CONFIRMED, tier
+unchanged.** The AJP 1994 primary full text is not freely obtainable from the agent context (not on
+arXiv/INSPIRE; ADS unreachable; the free ResearchGate author-copy is login-walled at 403; AIP
+paywalled). Confirmed from the definitive abstract (NASA ADS 1994AmJPh..62..788S) + the paper's
+pedagogical AJP nature: it demonstrates a Friedmann DUST universe embeds inside a Schwarzschild
+black hole — a worldline of constant Schwarzschild radial coordinate is instantaneously null at
+R_n = 2GM/c², with a proper-mass/age-of-universe relation. A consistency/embedding CONSTRUCTION: no
+no-go proof, no distinguishing observational statistic. **CAVEAT: this is an ABSTRACT-level
+confirmation, NOT a full-text read** — a free RG author-copy exists behind login; the exact primary
+needs the browser or ILL. Flagged to Duho. Audit-worthiness: **low** as a
 target, **useful** as the cleanest pedagogical baseline for any strict interior-matching rebuild.
 
 **4. H. Knutsen (2009). "The idea of the universe as a black hole revisited." Grav. Cosmol. 15, 273–277.**
@@ -688,7 +698,18 @@ Record: harvest #6; direct collapse-to-baby-universe construction in modified gr
 **18. I. Dymnikova (1992). "Vacuum nonsingular black hole." Gen. Rel. Grav. 24, 235–242.**
 DOI 10.1007/BF00760226 — VERIFIED (Crossref: GRG, v24, p235-242, 1992-03).
 Claim: regular black hole with a de Sitter core — the vacuum-bubble interior mechanism.
-Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 names the class. Audit-worthiness:
+Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 names the class.
+**READ 2026-08-30 (Duho: "read 3 and 18") — CONSISTENCY-ONLY CONFIRMED, tier unchanged.** The 1992
+GRG primary is paywalled (not on arXiv/INSPIRE full-text; the ADS scan host is unreachable from the
+agent context), so read via the author's own free, content-identical restatement — Dymnikova,
+`../bhu-reading-20260823/sources/ar5iv_gr-qc_0201058_dymnikova_restatement.html` (arXiv gr-qc/0201058,
+sha256 `710e36274fe0…`). The paper CONSTRUCTS a family of globally regular (nonsingular) black-hole
+solutions: de Sitter core as r→0, Schwarzschild as r→∞, satisfying the DOMINANT energy condition
+with regularity at the center + asymptotic flatness + finite ADM mass. It EXHIBITS solutions —
+proves no no-go, states no distinguishing observational statistic — so CONSISTENCY-ONLY is right.
+**CAVEAT:** read via the author's later restatement, not the 1992 primary bytes (content-identical
+construction; the exact 1992 text would need the browser/ILL). Not seat-gated (a benign tier
+confirmation, not a contested adjudication). Audit-worthiness:
 **medium** — the interior every later "universe inside a regular BH" paper builds on.
 
 **19. I. Dymnikova (2019). "Universes Inside a Black Hole with the de Sitter Interior." Universe 5, 111.**
