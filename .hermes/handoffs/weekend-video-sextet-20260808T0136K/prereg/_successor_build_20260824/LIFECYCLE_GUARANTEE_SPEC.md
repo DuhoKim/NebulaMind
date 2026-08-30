@@ -92,7 +92,11 @@ stalled INSIDE the atomic commit could not append the deadline refusal, leaving 
 nonterminal request): the transactional domain aborts any commit that neither completes nor
 aborts within its own BS-2k commit bound — transactional semantics make abort always available —
 and the aborted request then receives the deadline refusal. A stalled commit resolves to
-abort-then-refusal, never to a wait.**
+abort-then-refusal, never to a wait — **within what the platform serves: where the STORAGE ITSELF
+never returns (GPT56/CODEX-V83 F5: an fsync that hangs forever), no domain can conjure liveness,
+and that terminal case is the platform failing, N2's sibling — the run ends by operator
+observation, not by lifecycle rule, and the lifecycle is TOTAL over the states the platform
+serves, which is the honest quantifier.**
 
 ## 4. The states, derived — this list REPLACES every previous statement of the state machine
 

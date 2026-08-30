@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V83_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V84_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -121,7 +121,19 @@
 | `freezebody.draft_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `freezebody.parent_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `freezebody.selection_bricks` | bounded-encoding | v9 SLOT_SCHEMA | decimal ints; class counts as the counts tool emits them |
-| `lockbody.bound_digests` | digest-ref | v9 SLOT_SCHEMA | the digest set clause 3(a) enumerates; leaves live in that clause, one enumeration not two |
+| `lockbody.accepted_mask_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.archive_seal_state` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.calibration_record_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.chain_segment` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.classp_receipt_manifest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.decision_input_digests` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.environment_record` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.freeze_signature` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.gate_reports` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.lock_checkpoint` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.roster_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.signer_identity` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockbody.stagec_receipt_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
 | `nonslot.acceptance_evidence_projection` | closed-vocab | v9 SLOT_SCHEMA | inventoried: three predicate bits |
 | `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above |
 | `nonslot.adequacy_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |

@@ -94,8 +94,15 @@ _c("freezebody.selection_bricks freezebody.class_counts", "bounded-encoding",
 # container plus this pointer rather than inventing a second enumeration (the provenance-record
 # lesson). Openauth's closed sets (store identities, destinations) are BS-2k design artifacts -
 # closed by construction where the roster and destination list are declared.
-_c("lockbody.bound_digests", "digest-ref",
-   "the digest set clause 3(a) enumerates; leaves live in that clause, one enumeration not two")
+# GPT56/CODEX-V83 F6: the V82 pointer said clause 3(a), which contains NO enumeration - the
+# unverified-pointer defect inside the row written as that lesson. The lock body lives in 3(b),
+# read this time, and its leaves are enumerated AND cross-checked against the clause text below.
+_c("lockbody.roster_digest lockbody.accepted_mask_digest lockbody.calibration_record_digest "
+   "lockbody.stagec_receipt_digest lockbody.decision_input_digests lockbody.classp_receipt_manifest "
+   "lockbody.gate_reports lockbody.freeze_signature lockbody.lock_checkpoint "
+   "lockbody.chain_segment lockbody.archive_seal_state lockbody.environment_record "
+   "lockbody.signer_identity",
+   "digest-ref", "clause 3(b)'s canonical order; cross-checked against the clause text at generation")
 _c("canonical.provenance_record", "SCHEMA-PENDING",
    "V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the "
    "SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written")
@@ -261,7 +268,42 @@ FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection
     "class_counts", "draft_sha256")}
 PARAMS = {f"param.{n}" for n in (
     "duration_ms", "attempt_count", "signal_number", "lease_id_digest", "store_errno")}
-LOCKBODY = {"lockbody.bound_digests"}
+LOCKBODY = {f"lockbody.{n}" for n in ("roster_digest", "accepted_mask_digest",
+    "calibration_record_digest", "stagec_receipt_digest", "decision_input_digests",
+    "classp_receipt_manifest", "gate_reports", "freeze_signature", "lock_checkpoint",
+    "chain_segment", "archive_seal_state", "environment_record", "signer_identity")}
+
+def crosscheck_declared(text):
+    """F7 (both seats): declared sets could silently omit. The three richest are now CHECKED
+    declarations - the generator extracts the clause text's own noun phrases and fails if a
+    declared set misses one or carries a stranger.
+    OPENAUTH vs Clause 6; LOCKBODY vs clause 3(b); FREEZE vs the freeze-body sentence."""
+    import re as _re
+    problems = []
+    c6 = _re.search(r"Opening authorization\.\*\* The canonical opening-authorization body[^.]*binds exactly: ([^.]+)\.", text)
+    if c6:
+        want = {"bsl_digest": "BS-L digest", "store_identity_main": "store identities",
+                "store_identity_committee": "store identities", "destination": "destination",
+                "ceremony_id": "ceremony identifier", "phase": "phase P7",
+                "signer_identity": "signer identity", "schema_version": "schema/version"}
+        low = c6.group(1).lower()
+        for f, phrase in want.items():
+            if phrase.split()[0].lower() not in low:
+                problems.append(f"openauth.{f}: '{phrase}' not found in Clause 6")
+    else:
+        problems.append("Clause 6 sentence not found for openauth cross-check")
+    c3b = _re.search(r"canonical body names exactly, in canonical order: (.{100,900}?)signer identity\.", text, _re.S)
+    if c3b:
+        low = c3b.group(0).lower()
+        for probe in ("roster digest", "accepted-mask digest", "calibration-record digest",
+                      "stage-c receipt digest", "decision-input digests", "class-p slot receipt",
+                      "gate reports", "freeze signature", "lock checkpoint", "chain segment",
+                      "archive seal-state", "environment record", "signer identity"):
+            if probe not in low:
+                problems.append(f"lockbody: '{probe}' not found in clause 3(b)")
+    else:
+        problems.append("clause 3(b) sentence not found for lockbody cross-check")
+    return problems
 CANONICAL = {f"canonical.{n}" for n in (
     "freeze_signature_body", "lock_body", "opening_authorization", "entry_body",
     "explanation_body", "provenance_record")}
@@ -280,6 +322,11 @@ def environment_leaves():
 
 def main():
     text = DRAFT.read_text()
+    xp = crosscheck_declared(text)
+    if xp:
+        for x in xp:
+            print("CROSS-CHECK FAIL:", x)
+        return 1
     found = extract(text)
     v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []

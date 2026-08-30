@@ -180,11 +180,12 @@ matching is not smooth (null shell with surface pressure).
 Testability: **THEORETICAL-OBSTRUCTION** — **re-tiered 2026-08-30 from CONSISTENCY-ONLY on Duho's
 instruction, verbatim: "answer question 5"**, resolving the B30 seat split by applying the
 operative-contribution test as matured through questions 6–7, not by picking a seat.
-**Domain, narrowly scoped (CGATE_B30's wording):** *for the stated pressureless closed-FRW /
-Schwarzschild(-Λ) null-horizon setup under Barrabès–Israel conditions, smooth shell-free matching is
-excluded — the transverse extrinsic curvature's uu-component jumps, so the transition can only occur
-through a pressure-bearing null shell (pressure computed in the paper). This is NOT a no-go against
-all universe-in-a-black-hole models or all FRW/Schwarzschild junctions.*
+**Domain, exact (tightened at the Q5 implementation gate, CGATE_Q5):** *for Pathria's pressureless
+closed-FRW interior with 0 ≤ Λ ≤ Λ_c, joined at its equatorial maximum-expansion surface (χ = π/2)
+identified with the horizon of a Schwarzschild–de Sitter exterior carrying the same Λ and the stated
+dust-mass relation, the Barrabès–Israel null junction is not smooth: [K_uu] ≠ 0. The junction
+therefore carries a pressure-only null shell, p = ρa/4. This does not exclude shell-bearing
+realizations or other FRW/black-hole junction classes.*
 **Why this side of the line:** the paper is a test-note ("So what if we study Pathria's cosmological
 model from the matching conditions point of view?") that constructs and advocates no cosmology of
 its own — unlike entries 37/52/53 there is no constructed family for the exclusion to delimit, so
@@ -193,9 +194,10 @@ the entry-37 escape does not apply; the test's outcome IS the operative result, 
 quality demotion, and the question-4 ruling fixed that the tiers are shapes, not ranks; the tier
 definition fits literally (no member of the stated class satisfies smooth ∧ shell-free; refuted by a
 smooth counterexample, not by measurement).
-**Consequence for the screen's record:** entry 5 was UNFLAGGED by b1 and found only by the b29
-random sample — so the corpus now has TWO known obstructions of which the screen caught ONE;
-measured recall stands at 1 of 2. Record: characterized in packet §1.1 (used as the Pathria
+**Consequence for the screen's record (wording per CGATE_Q5):** entry 5 was UNFLAGGED by b1 and
+found only by the b29 random sample — the screen's **observed hit rate on the two currently known
+and adjudicated obstruction papers is 1 of 2**. That is a hit rate on known members, not a validated
+corpus-wide recall estimate. Record: characterized in packet §1.1 (used as the Pathria
 commentary). Audit-worthiness: **medium** — now discharged: the strict junction-condition audit this
 note anticipated is what b29/b30 performed.
 
