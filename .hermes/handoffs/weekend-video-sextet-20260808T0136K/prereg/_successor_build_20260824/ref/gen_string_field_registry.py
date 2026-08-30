@@ -185,6 +185,15 @@ _c("termrec.chain_head", "bounded-encoding", "position + running digest at produ
 _c("termrec.freeze_signature_digest haltrec.freeze_signature_digest", "digest-ref",
    "run identity - replay across runs fails (CODEX-V97 F4)",
    source="terminated-family canonical bodies")
+_c("termrec.first_opening_digest haltrec.first_opening_digest", "digest-ref",
+   "CHAIN identity - one freeze can govern a resumed run, the first opening cannot "
+   "(GPT56-V98 F5, CODEX-V98 F2)", source="terminated-family canonical bodies")
+_c("lockcp.chain_head_position", "bounded-encoding", "decimal chain position",
+   source="draft 3(b) - lock checkpoint receipt, schema closed at V99 (GPT56-V98 F2)")
+_c("lockcp.chain_head_digest lockcp.sealed_entry_set_digest lockcp.sealed_bindmap_digest",
+   "digest-ref", "", source="draft 3(b) - lock checkpoint receipt")
+_c("lockcp.clock_record", "bounded-encoding", "the (epoch, reading) pair per spec 3b",
+   source="draft 3(b) - lock checkpoint receipt")
 _c("termrec.signature haltrec.signature", "bounded-encoding",
    "detached deterministic signature, 64 bytes (GPT56-V97 F5: absent from this registry)",
    source="terminated-family envelopes")
@@ -270,8 +279,9 @@ _c("nonslot.acceptance_evidence_projection", "closed-vocab", "inventoried: three
 _c("nonslot.cutout_completion_receipt nonslot.stage_completion_artifact nonslot.label_set_receipt "
    "nonslot.unblinding_receipt nonslot.adequacy_receipt nonslot.archive_seal_state_receipt "
    "nonslot.lock_checkpoint_receipt",
-   "SCHEMA-PENDING", "fields unenumerable until the defining slot fills; producer blocked by the "
-   "same slot - a stub saying so, not a constraint it does not have")
+   "digest-ref", "schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, "
+   "chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); "
+   "the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest)")
 
 # (field, constraint, declared-where, note). Constraints: closed-vocab | bounded-encoding | digest-ref
 CONSTRAINTS = {
@@ -364,13 +374,16 @@ CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading",
 # the binding-to-key map, declared at draft (iv-c) (CODEX-V90 F2: the pre-opening verifier
 # consumes it; an unlisted artifact is chi-bearing by default)
 HALTREC = {"haltrec.kind", "haltrec.chain_head", "haltrec.freeze_signature_digest",
-           "haltrec.signature"}
+           "haltrec.first_opening_digest", "haltrec.signature"}
+LOCKCP = {"lockcp.chain_head_position", "lockcp.chain_head_digest", "lockcp.clock_record",
+          "lockcp.sealed_entry_set_digest", "lockcp.sealed_bindmap_digest"}
 # the gate PASS RECORD (spec 3b anchors, built at V96 - GPT56-V95 F2, CODEX-V95 F4)
 PASSREC = {"passrec.gate", "passrec.head_position", "passrec.head_digest",
            "passrec.verifier_digest", "passrec.predecessor_record_digest",
            "passrec.partition_cut_position", "passrec.signature"}
 TERMREC = {"termrec.kind", "termrec.class_key", "termrec.gate", "termrec.chain_head",
-           "termrec.freeze_signature_digest", "termrec.signature"}   # the exhaustion halt receipt's non-chi
+           "termrec.freeze_signature_digest", "termrec.first_opening_digest",
+           "termrec.signature"}   # the exhaustion halt receipt's non-chi
 # face (CODEX-V94 F4); identities live SEALED in the committee store (GPT56-V94 F7)
 BINDMAP = {"bindmap.request_key", "bindmap.decision_chain_position",
            "bindmap.decision_event_digest", "bindmap.decision_boot_epoch",
@@ -510,7 +523,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

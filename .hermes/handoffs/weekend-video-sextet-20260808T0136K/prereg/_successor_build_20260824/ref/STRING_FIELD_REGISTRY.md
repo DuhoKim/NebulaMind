@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V98_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V99_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -141,6 +141,7 @@
 | `freezebody.parent_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `freezebody.selection_bricks` | bounded-encoding | v9 SLOT_SCHEMA | decimal ints; class counts as the counts tool emits them |
 | `haltrec.chain_head` | bounded-encoding | spec 5 - exhaustion halt receipt | position + running digest at halt; identities are SEALED committee-side, not here (GPT56-V94 F7) |
+| `haltrec.first_opening_digest` | digest-ref | terminated-family canonical bodies | CHAIN identity - one freeze can govern a resumed run, the first opening cannot (GPT56-V98 F5, CODEX-V98 F2) |
 | `haltrec.freeze_signature_digest` | digest-ref | terminated-family canonical bodies | run identity - replay across runs fails (CODEX-V97 F4) |
 | `haltrec.kind` | closed-vocab | spec 5 - exhaustion halt receipt (CODEX-V94 F4) | the literal TERMINATED-BY-LABEL-EXHAUSTION |
 | `haltrec.signature` | bounded-encoding | terminated-family envelopes | detached deterministic signature, 64 bytes (GPT56-V97 F5: absent from this registry) |
@@ -157,16 +158,21 @@
 | `lockbody.roster_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
 | `lockbody.signer_identity` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
 | `lockbody.stagec_receipt_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
+| `lockcp.chain_head_digest` | digest-ref | draft 3(b) - lock checkpoint receipt |  |
+| `lockcp.chain_head_position` | bounded-encoding | draft 3(b) - lock checkpoint receipt, schema closed at V99 (GPT56-V98 F2) | decimal chain position |
+| `lockcp.clock_record` | bounded-encoding | draft 3(b) - lock checkpoint receipt | the (epoch, reading) pair per spec 3b |
+| `lockcp.sealed_bindmap_digest` | digest-ref | draft 3(b) - lock checkpoint receipt |  |
+| `lockcp.sealed_entry_set_digest` | digest-ref | draft 3(b) - lock checkpoint receipt |  |
 | `nonslot.acceptance_evidence_projection` | closed-vocab | v9 SLOT_SCHEMA | inventoried: three predicate bits |
 | `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above AND the arrival.* rows - the chain carries both event classes (CODEX-V88 F1) |
-| `nonslot.adequacy_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
-| `nonslot.archive_seal_state_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
-| `nonslot.cutout_completion_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.adequacy_receipt` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
+| `nonslot.archive_seal_state_receipt` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
+| `nonslot.cutout_completion_receipt` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
 | `nonslot.enumeration_surface` | closed-vocab | v9 SLOT_SCHEMA | inventoried: entry.* rows + explanation cause |
-| `nonslot.label_set_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
-| `nonslot.lock_checkpoint_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
-| `nonslot.stage_completion_artifact` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
-| `nonslot.unblinding_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `nonslot.label_set_receipt` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
+| `nonslot.lock_checkpoint_receipt` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
+| `nonslot.stage_completion_artifact` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
+| `nonslot.unblinding_receipt` | digest-ref | v9 SLOT_SCHEMA | schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest) |
 | `openauth.bsl_digest` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
 | `openauth.ceremony_id` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
 | `openauth.destination` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
@@ -196,6 +202,7 @@
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `termrec.chain_head` | bounded-encoding | draft 6.1 - terminated-verdict record | position + running digest at production |
 | `termrec.class_key` | bounded-encoding | draft 6.1 - terminated-verdict record | (table row, operation) - the computed key |
+| `termrec.first_opening_digest` | digest-ref | terminated-family canonical bodies | CHAIN identity - one freeze can govern a resumed run, the first opening cannot (GPT56-V98 F5, CODEX-V98 F2) |
 | `termrec.freeze_signature_digest` | digest-ref | terminated-family canonical bodies | run identity - replay across runs fails (CODEX-V97 F4) |
 | `termrec.gate` | closed-vocab | draft 6.1 - terminated-verdict record | the five-gate set |
 | `termrec.kind` | closed-vocab | draft 6.1 - terminated-verdict record (GPT56-V96 F6) | the literal TERMINATED-UNNAMEABLE-REFUSAL-CLASS |
