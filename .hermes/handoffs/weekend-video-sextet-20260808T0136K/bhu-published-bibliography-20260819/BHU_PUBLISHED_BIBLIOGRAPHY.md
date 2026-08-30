@@ -597,7 +597,22 @@ paper is SINGLE-AUTHOR — Behnam Pourhassan (Damghan / Khazar / CRI) — the re
 DOI 10.1016/j.nuclphysb.2025.117160 — VERIFIED (Crossref: NPB, v1020, 117160, 2025-11).
 Claim: entropy/information accounting for black-hole-nucleated baby universes, with stated
 observational prospects in primordial-black-hole populations and gravitational-wave echoes.
-Testability: **PROSPECT** — prospects for other instruments, no sky-statistics target.
+Testability: **PROSPECT** — prospects for other instruments, no sky-statistics target —
+**CONFIRMED BY THE FULL READ 2026-08-30 (b48, census rule): all 11 VoR pages.** NOT an
+obstruction — a conjecture-stack PROPOSAL: supercritical bubbles (M > M_cr, the threshold
+INHERITED from Garriga–Vilenkin–Zhang, its ref. [18], not re-derived — eqs. (1)–(7) review the
+junction relation and define super/subcritical causally) become baby universes behind
+non-traversable wormholes; persistent parent–baby ENTANGLEMENT is conjectured ("We conjecture",
+"We posit" — the paper's own verbs); S_total = S_BH + S_ent with S_ent ~ α log N from landscape
+counting (N ~ 10^500 cut by a CDL accessibility factor to S_ent^eff ≳ 330); a "multiversal
+second law" (eq. 26) and a multiversal Page bound (eq. 33) are proposed. §5/Table 1 name
+channels — GW echoes off wormhole throats, a PBH mass-function feature near M_cr, entropy-bound
+deviations — with NO thresholds, numbers, or datasets ("may hint", "could serve"): exactly the
+PROSPECT shape, source-confirmed. **Cross-links, source-owned:** ref. [19] = entry 50
+(Farhi–Guth–Guven); ref. [41] = entry 14 (Frolov–Markov–Mukhanov); ref. [40] = the
+Sato–Sasaki–Kodama–Maeda wormhole paper (entry 47's programme); ref. [43] = entry 15
+(Easson–Brandenberger); ref. [36] = Abedi–Dykaar–Afshordi echoes (entry 44's co-author). The
+branch's modern continuation of the corpus's own lineage, now readable end to end.
 Record: packet §1.6 (the "2025 Nucl. Phys. B baby-universe paper"). Audit-worthiness:
 **medium-high** — the branch's only recent entry with named observables; see ranked target list.
 
