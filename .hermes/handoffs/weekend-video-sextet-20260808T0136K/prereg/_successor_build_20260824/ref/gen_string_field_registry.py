@@ -181,6 +181,13 @@ _c("bindmap.signature", "bounded-encoding",
    "provisioned keypair, signer roster-bound, no envelope leaves (CODEX-V91 F3: sig-envelope "
    "was off-enum and invited undeclared leaves)",
    source="draft 6.1 item (iv-c) - binding-to-key map")
+_c("ckclock.predecessor_epoch", "bounded-encoding",
+   "the previous opening's epoch, decimal [0, 10^6]; NONE for the anchored first epoch "
+   "(GPT56-V93 F1)", source="draft 6.1 item (ii-c) + spec 3b - opening record")
+_c("ckclock.gap_declaration", "bounded-encoding",
+   "ascending declared-skipped epochs, each decimal [0, 10^6]; emptiness proven by chain "
+   "continuity, not trusted (GPT56-V93 F2)",
+   source="draft 6.1 item (ii-c) + spec 3b - opening record")
 _c("ckclock.boot_epoch ckclock.monotonic_reading", "bounded-encoding",
    "the checkpoint CLOCK RECORD of its own production - same bounds as the arrival pair "
    "(epoch [0, 10^6], reading ns [0, 2^63-1], GPT56-V90 F3) - the other side of the spec-3b "
@@ -319,7 +326,8 @@ SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "ch
 ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "boot_epoch", "monotonic_reading",
     "row", "operation", "object_identity", "request_key", "running_chain_digest")}
 # the checkpoint clock record (spec 3b authenticated clock basis - GPT56-V89 F1, CODEX-V89 F2)
-CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading"}
+CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading",
+           "ckclock.predecessor_epoch", "ckclock.gap_declaration"}
 # the binding-to-key map, declared at draft (iv-c) (CODEX-V90 F2: the pre-opening verifier
 # consumes it; an unlisted artifact is chi-bearing by default)
 BINDMAP = {"bindmap.request_key", "bindmap.decision_chain_position",
@@ -350,11 +358,20 @@ def crosscheck_declared(text):
     # tuple, so deleting item (ii-b) stayed green. The extraction now anchors on the (ii-b)
     # label itself, and separately requires the Row B duplicate to EXIST and MATCH - two
     # sites, one schema, both checked.
-    m = _re.search(r"\(ii-b\).{0,400}?kind=ARRIVAL, ([^)]+)\)", text, _re.S)
+    # decoy-tight (CODEX-V93 F5): the (ii-b) segment must contain EXACTLY ONE tuple, and the
+    # label itself must be unique - a decoy tuple planted inside the window, or a second
+    # (ii-b) label, fails loudly instead of shadowing the normative schema.
+    ITEM = "\n(ii-b) **the ARRIVAL event"   # the item-DEFINITION form; bare "(ii-b)"
+    # cross-references are legion and legitimate (first run of this check counted 5)
+    if text.count(ITEM) != 1:
+        problems.append(f"(ii-b) item-definition count {text.count(ITEM)} != 1 - decoy or deletion")
+    seg = text[text.find(ITEM):text.find(ITEM) + 700] if ITEM in text else ""
+    seg_tuples = _re.findall(r"kind=ARRIVAL, ([^)]+)\)", seg)
     all_tuples = _re.findall(r"kind=ARRIVAL, ([^)]+)\)", text)
+    m = len(seg_tuples) == 1
     if not m:
-        problems.append("(ii-b)-anchored arrival tuple not found - the list item is gone or "
-                        "reworded past the extractor (GPT56-V92 F5)")
+        problems.append(f"(ii-b) segment holds {len(seg_tuples)} arrival tuple(s), not 1 - "
+                        "gone, reworded past the extractor, or decoyed (CODEX-V93 F5)")
     elif len(all_tuples) < 2 or any(x != all_tuples[0] for x in all_tuples):
         problems.append(f"arrival tuple sites disagree or Row B duplicate missing: "
                         f"{len(all_tuples)} site(s)")
@@ -365,7 +382,7 @@ def crosscheck_declared(text):
                 "request_key": "request_key",
                 "running chain digest": "running_chain_digest"}
         got = {"arrival.kind"}
-        for part in m.group(1).split(","):
+        for part in seg_tuples[0].split(","):
             part = part.strip()
             if part in norm:
                 got.add("arrival." + norm[part])

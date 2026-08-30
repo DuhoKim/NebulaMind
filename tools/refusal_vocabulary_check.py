@@ -166,6 +166,11 @@ def check(text: str):
     # each appear inside the operative block — from the "Authorisation (5):" header to "THE GUARD"
     # — outside any retiring fragment; mentions elsewhere count for the tombstone scan above but
     # not for membership. A draft with no such block cannot demonstrate its vocabulary at all.
+    if text.count("Authorisation (5):") > 1:
+        # CODEX-V93 F6: an earlier decoy block satisfied completeness while the real one
+        # lost a member. One operative block, or the draft cannot demonstrate its vocabulary.
+        fail("R01", f"{text.count('Authorisation (5):')} vocabulary blocks - a decoy can "
+                    "shadow the operative one")
     b0 = text.find("Authorisation (5):")
     b1 = text.find("THE GUARD", b0) if b0 >= 0 else -1
     if b0 < 0 or b1 < 0:
@@ -204,6 +209,10 @@ def check(text: str):
     _missing = [n for n, p in _prongs if not re.search(p, text, re.I)]
     if _missing:
         fail("R03", f"missing prong(s): {', '.join(_missing)}")
+    elif re.search(r"schedule (?:is|may be|need be) not (?:precommitted|chi-blind|χ-blind)|"
+                   r"not (?:precommitted|chi-blind|χ-blind)[^.]{0,60}schedule", text, re.I):
+        # GPT56-V93 F9's R03 half: the chi-blind prong passed beside its negation.
+        fail("R03", "a polarity contradiction of the chi-blind-schedule prong coexists")
     else:
         # a later contradiction must not coexist with the phrase that makes R03 pass (GPT56-V70 F4)
         # - under the rebuilt principle the contradiction is an affirmative CONTENT-DERIVED allowance
@@ -214,6 +223,9 @@ def check(text: str):
                 break
     if not re.search(r"no free text", text, re.I):
         fail("R04")
+    elif re.search(r"free (?:text|prose) is (?:allowed|permitted|acceptable)", text, re.I):
+        # GPT56-V93 F9: presence-of-phrase passed beside its direct contradiction.
+        fail("R04", "a direct polarity contradiction coexists with the no-free-text rule")
     # The guard is checked as a MECHANISM, not as a phrase. V64 stated the obligation and both seats
     # found it unenforceable: a freeze-time review cannot police run-time emissions, and an
     # obligation with no consequence is a promise. Phrase-matching the guard was the finding.
@@ -312,6 +324,12 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("a decoy vocabulary block shadows the operative one",
+     lambda: _fixture() + "Authorisation (5): decoy block.\n", "R01"),
+    ("free text allowed beside the no-free-text rule",
+     lambda: _fixture() + "In practice free text is allowed here.\n", "R04"),
+    ("the chi-blind prong contradicted in polarity",
+     lambda: _fixture() + "The read schedule is not precommitted in this mode.\n", "R03"),
     ("a member listed only outside the operative block",
      lambda: _fixture(codes=[c for c in CODES if c != "REFUSED-OBJECT-ABSENT"])
      + "Stray mention elsewhere: `REFUSED-OBJECT-ABSENT`.\n", "R01"),

@@ -51,3 +51,5 @@ BS-SI schema (written when filled). BS-6 and the first image byte remain blocked
 
 **FILED (V93, per the coordinator's standing instruction on the binding map):** the (iv-c) map schema is WIDENED by two fields — the decision's `(boot_epoch, monotonic_reading)` — because the decide-within-D law needs per-decision clock evidence and widening the RULED access-log schema is not authorised; the map carries it instead. Non-χ by construction (bounded decimals), reversible, awaiting confirmation.
 
+**UPDATE (V94):** padding is now PER-OBJECT AND PRE-LABEL (end-clustered timing leaked the count; session-set end was undefined) — every object shows the identical R_max-renders-then-label pattern. **And exhaustion has a named terminal: the run HALTS pre-BS-8f** (the absent-label path the earlier flag assumed did not exist). Softening the halt — an ABSTAIN label, or member replacement — would change the labeling protocol and is YOURS to rule; R_max ≥ 2 makes the halt the rare storm case.
+
