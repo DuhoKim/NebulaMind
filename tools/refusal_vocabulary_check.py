@@ -217,10 +217,28 @@ def check(text: str):
         # invariance_outcome's HELD/FAILED/NOT-EVALUATED token set in a different section - a control
         # reporting a closure claim that was never made, which is the same wrong-scope defect this
         # lane keeps finding. A closure claim must mention the vocabulary ON THE SAME LINE.
-        for line in text.splitlines():
-            if re.search(r"closed\s+(set|vocabulary)", line, re.I) and \
-               re.search(r"REFUSED-|refusal[- ]reason|refusal vocabulary", line, re.I):
-                fail("R02", f"a closure claim about the vocabulary: {line.strip()[:70]!r}")
+        # LITERAL-SHAPE TRIPWIRE, said so (GPT56-V115 F4: 'the refusal vocabulary is
+        # exhaustive' passed the two-literal search while asserting exactly the rejected
+        # principle; the list below is FINITE and semantic closure claims stay the
+        # referee round's to catch - the same honest demotion as the retired-token
+        # activation list).
+        # SENTENCE-scoped (GPT56-V115 F4, then the negative control caught the first
+        # proximity attempt firing across a sentence boundary): this corpus writes giant
+        # single lines, so the scope is the SENTENCE - the closure phrase and the
+        # vocabulary phrase must share one sentence. A finite literal-shape tripwire,
+        # said so; semantic paraphrase stays the round's.
+        for _m in re.finditer(r"closed\s+(set|vocabulary)|is\s+exhaustive|exhausts?\s+every|"
+                              r"complete\s+(set|vocabulary|enumeration)|covers?\s+every\s+possible",
+                              text, re.I):
+            _s0 = max(text.rfind(". ", 0, _m.start()), text.rfind("\n", 0, _m.start()),
+                      text.rfind("; ", 0, _m.start()))
+            _s1e = [x for x in (text.find(". ", _m.end()), text.find("\n", _m.end()),
+                                text.find("; ", _m.end())) if x != -1]
+            _s1 = min(_s1e) if _s1e else len(text)
+            _sent = text[_s0 + 1:_s1]
+            if re.search(r"REFUSED-|refusal[- ]reason|refusal vocabular|refusal reasons", _sent, re.I):
+                fail("R02", f"a closure-shaped claim about the vocabulary: "
+                            f"{_sent.strip()[:70]!r}")
                 break
 
     # REBUILT (principal ruling 2026-08-30 10:46). The old body required the PRE-ruling sentence

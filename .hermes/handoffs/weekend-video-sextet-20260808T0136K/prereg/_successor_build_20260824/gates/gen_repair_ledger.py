@@ -41,6 +41,22 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V115", "GPT56"): {
+        1: ("REPAIRED", "V116 FORM_SCHEMAS kind->exact-set map + echo + controls; "
+            "field-for-field is per-kind"),
+        2: ("REPAIRED", "V116 real symbol named; None-conditionality said; BS-2c slot "
+            "requires non-null proofs, harness refuses None pre-_plan; fixtures"),
+        3: ("REPAIRED", "V116 exact close-class set comparison; widening controls both "
+            "domains (same as CODEX F3)"),
+        4: ("REPAIRED", "V116 R02 demoted to literal-shape tripwire + widened literals; "
+            "checker pin updated"),
+    },
+    ("V115", "CODEX"): {
+        1: ("REPAIRED", "V116 five-gate successor predicate; skip/swap/premature fixtures"),
+        2: ("REPAIRED", "V116 T1 clause keeps its universal subject; the execution is "
+            "SAID to violate it - undetectable-but-violative, testimony-plus-fixture"),
+        3: ("REPAIRED", "V116 exact-set close-class echo (same as GPT56 F3)"),
+    },
     ("V114", "GPT56"): {
         1: ("REPAIRED", "V115 close_class domains qualified once each; EXPIRED echo control"),
         2: ("REPAIRED", "V115 entry precondition demoted to testimony-plus-fixture; "

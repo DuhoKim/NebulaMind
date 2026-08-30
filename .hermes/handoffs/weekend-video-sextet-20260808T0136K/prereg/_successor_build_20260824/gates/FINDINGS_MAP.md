@@ -273,3 +273,34 @@ was flagged freeze-poisoning, none appendix-safe — so this round repairs all e
   the history, was the defect.)
 
 V114 → V115: round 2 of the capped three — gate-bound boundaries, qualified close domains, the entry precondition honestly demoted with the never-a-request derivation, the completed export inside the P9 signed body, verification-close declared with a record-kind closure, the trace claim aligned with its checker.
+
+## V115 → V116 (2026-08-30 night — ROUND 3, THE LAST under the option-2 cap)
+
+**V115 verdicts: NOT CLEAR ×2 (GPT56 4 — 2 HIGH 2 MEDIUM; CODEX 3 — 2 HIGH 1 MEDIUM).
+Eight → seven. Every finding flagged debt-ineligible by its seat, and every one is
+repaired here. After this round's reports: the text loop ENDS — remaining findings become
+the generated known-debt appendix per the principal's option-2 ruling.**
+
+- **GPT56 F1:** the flat REVBODY/SUCCEXP unions are superseded by FORM_SCHEMAS — one kind
+  literal → one exact ordered field set, a FORM-SCHEMA ECHO holding each form's tuple
+  byte-equal in its home corpus, and "field-for-field" now means per-kind; deletion,
+  addition and cross-form-substitution live as seeded controls.
+- **GPT56 F2 (the oldest-quiet attack landing on its ninth asking):** §2.3 named a
+  nonexistent symbol and promised unconditional refusal from None-conditional frozen
+  code. The prose now names `validate_count_table()`, says the conditionality, and closes
+  the bypass AT THE SLOT: BS-2c's receipt requires the three proof objects non-null with
+  digests carried, the harness refuses None before `_plan`, and the missing/extra/
+  disagreement controls run THROUGH `build_plan()`. v9 untouched.
+- **GPT56 F3 + CODEX F3:** the close-class echo compares EXACT token sets both domains;
+  STALLED-widening and EXPIRED-deletion are seeded controls.
+- **GPT56 F4:** R02 is demoted to a literal-shape tripwire IN ITS OWN WORDS and widened
+  ("is exhaustive", "exhausts every", "complete set/vocabulary", "covers every
+  possible"); the checker pin in the draft updates accordingly.
+- **CODEX F1:** the five-gate order is a SUCCESSOR PREDICATE — each pass record's gate
+  equals the unique successor of its predecessor record's gate, first predecessor BS-2f;
+  skip-BS-V, swap, and premature-boundary fixtures.
+- **CODEX F2:** T1's decoded-frame clause keeps its universal subject; the mid-hold
+  violation is SAID to violate it — undetectable-but-violative, the same honest class as
+  a stalled clock read — with the W0 consequence bounded, not blessed.
+
+V115 → V116: round 3 of the capped three — kind-qualified form schemas with a byte-equal echo, the count-oracle prose true against frozen v9 with slot-side non-null closure, exact close-class sets, R02 demoted and widened, the five-gate successor predicate, T1 universal with the violation named.

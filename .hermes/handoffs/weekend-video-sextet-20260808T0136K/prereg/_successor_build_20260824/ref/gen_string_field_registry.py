@@ -504,6 +504,31 @@ SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "ch
                              "review")}
 ENVELOPE_TUPLE = ("origin_row", "frame_sequence", "operation", "object_identity")
 
+# (kind literal, exact ordered fields, home corpus) - GPT56-V115 F1
+FORM_SCHEMAS = (
+    ("successor-export",
+     ("kind", "sealed_enumeration_digest", "continuation_segment_digest",
+      "terminal_head", "freeze_signature_digest", "flagged_keys"), "draft"),
+    ("successor-export-prelock",
+     ("kind", "terminal_enumeration_digest", "terminal_head",
+      "freeze_signature_digest", "flagged_keys"), "draft"),
+    ("terminal-review-terminated",
+     ("kind", "terminal_checkpoint_digest", "drain_start_position",
+      "recomputed_head", "verifier_digest", "transcript_digest"), "spec"),
+    ("terminal-review-completed",
+     ("kind", "disclosure_record_digest", "successor_export_digest",
+      "recomputed_head", "verifier_digest", "transcript_digest"), "spec"),
+)
+
+CLOSE_DOMAINS = {"vclose.close_class": ("ABORTED", "EXPIRED", "ABORTED-BY-RESTART"),
+                 "attclose.close_class": ("ABORTED", "ABORTED-BY-RESTART")}
+
+def _close_tokens(note):
+    """The close-domain tokens: ALLCAPS words of the note's segment before the first
+    parenthesis - the declaration, never the commentary."""
+    import re as _re2
+    return tuple(dict.fromkeys(_re2.findall("\\b[A-Z][A-Z-]{2,}\\b", note.split("(")[0])))
+
 def _preimage_echo(spec_txt, note):
     """Source-vs-spec preimage echo, TUPLE-COMPARED (CODEX-V113 F4: phrase presence was
     defeated by semantic drift that kept the trigger words; the echo now extracts the
@@ -526,6 +551,32 @@ def _preimage_echo(spec_txt, note):
             out.append(f"preimage-echo: {where} carries the SUPERSEDED full-frame "
                        "preimage phrase (GPT56/CODEX-V112 F1)")
     return out
+
+def _domain_echo_selftest():
+    """Seeded controls: widening and deletion in both close domains; form-tuple drift."""
+    fails = []
+    import re as _re
+    def _run(vc_note, ac_note):
+        probs = []
+        for _fld, _want, _note in (("vclose.close_class", CLOSE_DOMAINS["vclose.close_class"], vc_note),
+                                   ("attclose.close_class", CLOSE_DOMAINS["attclose.close_class"], ac_note)):
+            _seen = set(_close_tokens(_note))
+            if set(_want) - _seen:
+                probs.append(f"{_fld} lost")
+            if _seen - set(_want):
+                probs.append(f"{_fld} WIDENED")
+        return probs
+    ok_v = "ABORTED - EXPIRED - ABORTED-BY-RESTART"
+    ok_a = "ABORTED - ABORTED-BY-RESTART"
+    if _run(ok_v, ok_a):
+        fails.append("clean close domains not green")
+    if not any("WIDENED" in p for p in _run(ok_v + " - STALLED", ok_a)):
+        fails.append("vclose widening (STALLED) not caught")
+    if not any("WIDENED" in p for p in _run(ok_v, ok_a + " - STALLED")):
+        fails.append("attclose widening not caught")
+    if not any("lost" in p for p in _run("ABORTED - ABORTED-BY-RESTART", ok_a)):
+        fails.append("vclose EXPIRED deletion not caught")
+    return fails
 
 def _preimage_echo_selftest():
     """Seeded controls incl. CODEX-V113 F4's exact semantic-drift counterexamples."""
@@ -694,7 +745,7 @@ def crosscheck_declared(text):
             if fields != want:
                 problems.append(f"{setname}: spec tuple fields {sorted(fields)} != declared "
                                 f"{sorted(want)} (CODEX-V107 F3)")
-    _pf = _preimage_echo_selftest()
+    _pf = _preimage_echo_selftest() + _domain_echo_selftest()
     if _pf:
         problems.extend(f"preimage-echo SELFTEST: {x}" for x in _pf)
     # UNBACKTICKED-SCHEMA SCAN (GPT56-V113 F4: a draft-shaped 'closed schema (kind,
@@ -705,19 +756,33 @@ def crosscheck_declared(text):
         problems.append("unbackticked schema declaration at offset %d - written outside "
                         "the backticked grammar every extractor reads (GPT56-V113 F4)"
                         % _m.start())
+    # FORM-SCHEMA ECHO (GPT56-V115 F1: flat REVBODY/SUCCEXP unions conformed to
+    # neither canonical body and the completeness controls checked union membership).
+    # One kind literal -> one exact ordered field tuple; the draft/spec must carry each
+    # form's tuple byte-equal to its mapped set.
+    for _kind, _fields, _home in FORM_SCHEMAS:
+        _tup = "`(" + ", ".join(_fields) + ")`"
+        _corpus = text if _home == "draft" else spec_txt
+        if _corpus.count(_tup) < 1:
+            problems.append(f"form-schema echo: kind '{_kind}' exact tuple {_tup[:60]}... "
+                            f"absent from the {_home} (GPT56-V115 F1)")
     # CLOSE-CLASS DOMAIN ECHO (GPT56-V114 F1, CODEX-V114 F5: one exhaustive item gave
     # close_class two incompatible domains; the domains must be QUALIFIED and EXPIRED
     # must live in exactly the verification-close domain).
-    _vc = (V9_CONSTRAINTS.get("vclose.close_class") or CONSTRAINTS.get("vclose.close_class")
-           or ("", "", ""))[2]
-    _ac = (V9_CONSTRAINTS.get("attclose.close_class") or
-           CONSTRAINTS.get("attclose.close_class") or ("", "", ""))[2]
-    if "EXPIRED" not in _vc:
-        problems.append("close-class echo: vclose domain lost EXPIRED - the expiry close "
-                        "would be unnameable (GPT56-V114 F1)")
-    if "EXPIRED" in _ac:
-        problems.append("close-class echo: attclose domain gained EXPIRED - the two-token "
-                        "set widened silently (GPT56-V114 F1)")
+    for _fld, _want in CLOSE_DOMAINS.items():
+        _note = (V9_CONSTRAINTS.get(_fld) or CONSTRAINTS.get(_fld) or ("", "", ""))[2]
+        # EXACT-SET comparison over the note's DOMAIN SEGMENT - the text before the
+        # first "(" is the declaration, the parenthetical is commentary (GPT56/CODEX-V115
+        # F3: the substring echo accepted a fourth token). Extraction shared with the
+        # selftest so the control tests the shipped function, never a twin.
+        _seen = set(_close_tokens(_note))
+        if set(_want) - _seen:
+            problems.append(f"close-class echo: {_fld} lost {sorted(set(_want) - _seen)} "
+                            "(GPT56-V114 F1)")
+        if _seen - set(_want):
+            problems.append(f"close-class echo: {_fld} WIDENED by "
+                            f"{sorted(_seen - set(_want))} - a closed vocabulary grew "
+                            "silently (GPT56/CODEX-V115 F3)")
     if "VERIFICATION-CLOSE.close_class" not in text or "ATTEMPT-CLOSE.close_class" not in text:
         problems.append("close-class echo: the draft no longer QUALIFIES both close_class "
                         "domains by record (CODEX-V114 F5)")

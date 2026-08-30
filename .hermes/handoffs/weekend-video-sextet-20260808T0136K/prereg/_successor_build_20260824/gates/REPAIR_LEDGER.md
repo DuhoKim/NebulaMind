@@ -461,6 +461,13 @@
 - V114/CODEX F3: REPAIRED — V115 same as GPT56 F2 - receipt-transition scoping, testimony said, fixture named
 - V114/CODEX F4: REPAIRED — V115 completed review body binds successor_export_digest; the ceremony is the completed export's closing verifier
 - V114/CODEX F5: REPAIRED — V115 same as GPT56 F1 - qualified domains
+- V115/GPT56 F1: REPAIRED — V116 FORM_SCHEMAS kind->exact-set map + echo + controls; field-for-field is per-kind
+- V115/GPT56 F2: REPAIRED — V116 real symbol named; None-conditionality said; BS-2c slot requires non-null proofs, harness refuses None pre-_plan; fixtures
+- V115/GPT56 F3: REPAIRED — V116 exact close-class set comparison; widening controls both domains (same as CODEX F3)
+- V115/GPT56 F4: REPAIRED — V116 R02 demoted to literal-shape tripwire + widened literals; checker pin updated
+- V115/CODEX F1: REPAIRED — V116 five-gate successor predicate; skip/swap/premature fixtures
+- V115/CODEX F2: REPAIRED — V116 T1 clause keeps its universal subject; the execution is SAID to violate it - undetectable-but-violative, testimony-plus-fixture
+- V115/CODEX F3: REPAIRED — V116 exact-set close-class echo (same as GPT56 F3)
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 
