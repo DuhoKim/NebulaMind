@@ -1,6 +1,6 @@
 # BS-1 RELEASE CHOICE — the Sep-5 brief (DR11 vs DR10.1), in plain words
 
-**Prepared 2026-08-30 21:37 KST for the 2026-09-05 rule date. For Duho. One page.**
+**Prepared 2026-08-30 21:30 KST for the 2026-09-05 rule date. For Duho. One page.**
 
 ## The question, in one sentence
 
