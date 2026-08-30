@@ -118,21 +118,28 @@ version-of-record nicety.
 - Front commit at wrap time: see `git log -1`. The day ran ~98 commits; the last content commit
   before this wrap was `35866c415` (erratum gate closure) → `62113908f` (evening wrap section).
 
-## NEW FRONTIER identified 2026-08-30 evening — SUPPORT-LAYER CONTENT VERIFICATION
+## SUPPORT-LAYER CONTENT VERIFICATION — SWEEP CLOSED 2026-08-30
 
-Reconciling Blanc's 18:35 pickup list found all three items already done (PLB 690 pair
-dispositioned; entries 48/14/50 read+gated). The real remaining unexamined content is the
-**7 support entries (29, 30, 32, 33, 34, 35, 58)**: they were BYLINE-verified (b42) and pinned,
-but their CONTENT — the specific measurement/mechanism each SUPPLIES to a falsifier — was never
-read/adjudicated. They carry NO tier (they are imported measurements, not BHU-claim papers), so
-the b28 obstruction rule does NOT apply; the value is narrower and real: **verify each support
-paper actually establishes the load-bearing claim its falsifier imports** (e.g. entry 30 = the
-kaon-condensation mechanism entry 7's CNS chain imports; 32 = Brown-Bethe M_max≈1.5; 34 =
-Ferdman limb-2 masses; 35 = Tauris accretion budget). A DISCREPANCY between a support paper and
-what its falsifier claims it supplies is a STOP-for-Duho item (it could undermine a calibrated
-falsifier). Started this session with b50 (entry 30). Most have readable text (ar5iv/abs pins);
-entry 32 is image-only and its headline (M_max≈1.5, ~1.84, M_cutoff 25±5) was already read
-visually.
+The 7 support entries (29, 30, 32, 33, 34, 35, 58) were BYLINE-verified (b42) and pinned, but
+their CONTENT — the specific measurement/mechanism each SUPPLIES to a falsifier — had never been
+bound to the source. This sweep bound every one. **No support paper contradicted what its
+falsifier imports** (the STOP-for-Duho trigger never fired); the checks are self-computing string-
+presence (no seat gate), added to the battery (b50–b55), which is green at **69**.
+
+| entry | paper | load-bearing claim bound to source | check |
+|---|---|---|---|
+| 29 | Demorest 2010 + Fonseca 2021 | PSR J1614-2230 = 1.97 ± 0.04 M⊙ and PSR J0740+6620 = 2.08 M⊙ — the two ~2 M⊙ pulsars operating entry 7's CNS falsifier; bound to pinned full texts (was byline-only) | b52 6/6 |
+| 30 | Brown-Lee-Rho Phys.Rept. 2008 | the 4% double-NS asymmetry limb (Sec 3.2) + 0.1–0.2 M⊙ He-red-giant proviso, verbatim | b50 4/4 |
+| 32 | Brown-Bethe ApJ 423 1994 | **cannot be text-bound** — 6-page image scan, no OCR layer; bound by CUSTODY + honest image-only status (M_max≈1.5 stays VISUALLY attested, never machine-greppable) | b55 3/3 |
+| 33 | Harada-Yamawaki PRL 2001 | the vector-manifestation prediction "gauge coupling approaching to zero" near chiral restoration — moves link (1) of entry 7's chain from ASSUMED-FROM-CITATION to source-verified | b53 4/4 |
+| 34 | Ferdman 2020 | masses 1.62/1.27 ± 0.03 M⊙ + He-star/ultra-stripped channel, verbatim | b51 (34 leg) |
+| 35 | Tauris 2017 | **derived-not-quoted catch:** Tauris supplies the framework (Case BB, recycling, hypercritical/Eddington) but the ΔM_NS ≈ 0.0134 M⊙ TOTAL is the auditor's Track-B-gated SUM, NOT a Tauris quote — record relabelled | b51 (35 leg) |
+| 58 | Longo 2011 PLB 699 | **acquired this session at zero cost** (arXiv 1104.2815 abs page, was byline-only/no pin): dipole asymmetry −0.0408 ± 0.011 (chance 7.9×10⁻⁴), axis (l,b)≈(52°,68.5°) near WMAP, SDSS 15158-spiral sample — the amplitude the DESI spin-parity campaign tests | b54 5/5 |
+
+Two findings worth the eye: **(35)** the only derived-vs-quoted distinction — a total that reads
+like a source number but is the gated Track-B derivation, now labelled so; **(58)** a free arXiv
+acquisition that upgraded a byline-only entry to a content pin. Neither is a discrepancy; both are
+recorded honestly.
 
 ## AFTER THE SUPPORT SWEEP / IF IT STALLS
 
