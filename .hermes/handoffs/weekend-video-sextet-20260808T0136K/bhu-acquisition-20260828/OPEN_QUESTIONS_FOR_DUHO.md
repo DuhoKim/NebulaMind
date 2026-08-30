@@ -862,6 +862,15 @@ information survives either way — which is not true of most tier questions.
 papers behind the same paywalls, and all three matter:** Popławski *PLB* 690, Silk *Science* 277,
 and now Farhi & Guth *PLB* 183. Any one of them would settle something currently open.
 
+**[SUPERSEDED 2026-08-30, later the same day — do not re-read the paragraph above as live status:**
+two of those three papers were obtained *after* it was written. **Farhi & Guth *PLB* 183 → entry
+48**, acquired via the KEK preprint scan (KEKSCAN 2000-36-705), READ IN FULL and double-gated
+(`b45` / `AGATE_B45` + `CGATE_B45`), tiered THEORETICAL-OBSTRUCTION under question 8 (closed above).
+**Popławski *PLB* 690 → entry 51**, version-of-record + 2013 erratum acquired and compared. Only
+**Silk *Science* 277** is still behind a wall (free with a registration that is yours to make). The
+"nobody has ever read it / I could not get it" wording was true when this section was written; it
+is not true now. Recorded to stop a stale "go read Farhi & Guth" pointer from recurring.]**
+
 ---
 
 
