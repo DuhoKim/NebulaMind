@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V79_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V80_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -116,6 +116,11 @@
 | `environment.platform` | bounded-encoding | v9 SLOT_SCHEMA | printable ASCII <= 64 bytes, refused by the envelope verifier (successor layer); value unpinned - any conforming interpreter string passes |
 | `environment.python` | bounded-encoding | v9 SLOT_SCHEMA | printable ASCII <= 64 bytes, refused by the envelope verifier (successor layer); value unpinned - any conforming interpreter string passes |
 | `environment.python_major_minor` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
+| `freezebody.class_counts` | bounded-encoding | v9 SLOT_SCHEMA | decimal ints; class counts as the counts tool emits them |
+| `freezebody.code_digest` | digest-ref | v9 SLOT_SCHEMA |  |
+| `freezebody.draft_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
+| `freezebody.parent_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
+| `freezebody.selection_bricks` | bounded-encoding | v9 SLOT_SCHEMA | decimal ints; class counts as the counts tool emits them |
 | `nonslot.acceptance_evidence_projection` | closed-vocab | v9 SLOT_SCHEMA | inventoried: three predicate bits |
 | `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above |
 | `nonslot.adequacy_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
@@ -126,6 +131,14 @@
 | `nonslot.lock_checkpoint_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `nonslot.stage_completion_artifact` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `nonslot.unblinding_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `openauth.bsl_digest` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
+| `openauth.ceremony_id` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
+| `openauth.destination` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
+| `openauth.phase` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
+| `openauth.signer_identity` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
+| `openauth.store_identity_committee` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
+| `openauth.store_identity_main` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
+| `openauth.timestamp` | bounded-encoding | v9 SLOT_SCHEMA | ISO-8601 UTC, 24 bytes |
 | `param.attempt_count` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
 | `param.duration_ms` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
 | `param.lease_id_digest` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |

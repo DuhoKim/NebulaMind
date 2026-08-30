@@ -74,6 +74,19 @@ _c("BS-8p.hc_rules_quotation", "digest-ref", "the HC-1H quotation-at-freeze, by 
 _c("canonical.freeze_signature_body canonical.lock_body canonical.opening_authorization "
    "canonical.entry_body canonical.explanation_body",
    "digest-ref", "field-order encoding WRITTEN in this draft; detached signatures bind these digests")
+# The canonical-body LEAVES (GPT56-V79 F4, CODEX-V79 F4: string leaves were hiding behind
+# digest-ref containers, the CODEX-V78 F2 defect one level up). Opening authorization = Clause 6's
+# eight fields; freeze body = its five declared components. Lock and entry bodies' leaves are
+# already enumerated elsewhere in this registry (entry.* rows; the lock body's components are the
+# BS-L clause's, digest+identity fields).
+_c("openauth.bsl_digest openauth.ceremony_id openauth.signer_identity", "digest-ref",
+   "ceremony_id one-use, signer bound to the BS-2k public key")
+_c("openauth.store_identity_main openauth.store_identity_committee openauth.destination "
+   "openauth.phase", "closed-vocab", "store roster / declared destinations / the literal P7")
+_c("openauth.timestamp", "bounded-encoding", "ISO-8601 UTC, 24 bytes")
+_c("freezebody.code_digest freezebody.parent_sha256 freezebody.draft_sha256", "digest-ref")
+_c("freezebody.selection_bricks freezebody.class_counts", "bounded-encoding",
+   "decimal ints; class counts as the counts tool emits them")
 _c("canonical.provenance_record", "SCHEMA-PENDING",
    "V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the "
    "SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written")
@@ -223,6 +236,10 @@ def envelope_fields():
 BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
+OPENAUTH = {f"openauth.{n}" for n in ("bsl_digest", "store_identity_main", "store_identity_committee",
+    "destination", "ceremony_id", "phase", "signer_identity", "timestamp")}
+FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection_bricks",
+    "class_counts", "draft_sha256")}
 PARAMS = {f"param.{n}" for n in (
     "duration_ms", "attempt_count", "signal_number", "lease_id_digest", "store_errno")}
 CANONICAL = {f"canonical.{n}" for n in (
@@ -244,7 +261,7 @@ def environment_leaves():
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

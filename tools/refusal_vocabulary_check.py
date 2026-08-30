@@ -124,7 +124,7 @@ def check(text: str):
     # prose semantics beyond them are the referee round's job, which is this lint's stated limit,
     # not a gap it pretends to close.
     ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|"
-                            r"governs|mandatory|shall apply|takes effect|is live|will be|will apply|becomes|to be used", re.I)
+                            r"governs|mandatory|shall apply|takes effect|is live|will be|will apply|becomes|to be used|remains operative|expected to apply|should control|continues to", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
         # GPT56-V73 F4 / CODEX-V73 F6: one retirement word exempted every token ON THE LINE, so
@@ -303,6 +303,8 @@ CONTROLS = (
      lambda: _fixture() + "REFUSED-PHASE-NOT-REACHED is deleted.\n", "R01"),
     ("future-tense reactivation is caught",
      lambda: _fixture() + "REFUSED-LOCK-NOT-OPEN was retired; it will be used at P7.\n", "R01"),
+    ("remains-operative reactivation is caught",
+     lambda: _fixture() + "REFUSED-CEREMONY-CONSUMED was superseded yet remains operative.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
