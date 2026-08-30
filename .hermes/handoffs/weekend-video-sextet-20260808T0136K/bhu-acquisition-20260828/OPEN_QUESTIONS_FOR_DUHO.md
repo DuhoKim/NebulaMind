@@ -6,7 +6,39 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — none. All seven delegated questions are closed.
+## OPEN — question 8 (one tier decision)
+
+### 8. Entry 48 is read at last — does it get the impossibility tier?
+
+**What happened:** your login didn't cover the old journals, so I ran the free routes Blanc
+listed. The KEK preprint library in Japan had scanned the original MIT preprint of **Farhi &
+Guth, "An Obstacle to Creating a Universe in the Laboratory" (1987)** — the paper our records
+have been pointing at all week as the true owner of the "you can't make a universe in the lab"
+proof. I read all of it and both reviewers are checking it now.
+
+**What it proves (my reading):** exactly what everyone said it proves, and slightly stronger.
+Any spherically symmetric false-vacuum bubble in ordinary flat surroundings that grows past a
+critical size MUST have come from an initial singularity — proven with Penrose's 1965 theorem,
+every assumption checked, and needing only the *null* energy condition (weaker than what our
+notes claimed, so the theorem is stronger). The authors themselves fence it honestly: the
+non-spherical case is only half-decided, quantum effects are a named escape, and a pre-existing
+white hole would dodge it entirely.
+
+**The decision that is yours (any tier change is):**
+- **Option A — THEORETICAL-OBSTRUCTION.** The convention you approved says the tier goes to the
+  paper that owns the proof; this paper is the cleanest proof-owner in the whole collection
+  (the no-go IS the title, the abstract, and the operative result). Cost: none that I can see;
+  the tally becomes 3 obstructions (22, 5, 48) and the census extends from 39 to 40 read.
+- **Option B — hold at READ/no-tier** until the published PLB version is compared (what I have
+  is the preprint scan; the journal text could differ). Cost: the record stays split
+  (read-but-untiered) and the 49→48 chain stays formally unresolved; benefit: zero risk of
+  tiering off a preprint.
+- Either way, entry 50 (the quantum sequel) just became the next natural read — it's on the
+  same free-archive list.
+
+My recommendation is A, with the preprint caveat printed in the entry (it already is).
+
+## PREVIOUSLY — all seven delegated questions are closed.
 
 **SETTLED 2026-08-30, Duho's review via Blanc (10:59 KST):** all seven closures were walked
 through and none reverted — entry 44's warrant, the warrant column, entry 51's convention,
@@ -15,10 +47,12 @@ the closures below is **declined and struck**; the rulings are final as written.
 
 ## STANDING DEPENDENCY — not a question, kept listed on Duho's instruction
 
-**Twelve papers need his institutional login** (the only thing in this lane no agent can do):
-entries **1, 2, 3, 4, 13, 14, 16, 18, 42, 47, 48, 50**. The three that settle open threads:
-- **entry 48, Farhi & Guth, PLB 183, 149** — the proof-owner of the laboratory-creation no-go
-  that entry 49 reports (and Dymnikova 2019 independently attributes);
+**2026-08-30 update: the login turned out not to cover the backfiles, and the second free
+frontier (Blanc's five routes) is now running instead — entry 48 already FELL to it** (KEK
+preprint scan, read, question 8). Remaining gated until that sweep finishes:
+entries **1, 2, 3, 4, 13, 14, 16, 18, 42, 47, 50**. The threads:
+- ~~entry 48, Farhi & Guth~~ — **ACQUIRED FREE 2026-08-30** (KEK scan of MIT-CTP-1400); only the
+  PLB version-of-record comparison remains gated;
 - **Silk, Science 277, 644** — entry 31's last unread critic (Smolin's citation prints vol 227;
   1997 is vol 277);
 - **Popławski, PLB 690, 73–77** — version-of-record for the unreproduced mass floor.

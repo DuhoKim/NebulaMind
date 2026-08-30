@@ -904,7 +904,41 @@ Record: kimi recall R4; the earliest multi-universe-production construction.
 **48. E. Farhi & A. H. Guth (1987). "An obstacle to creating a universe in the laboratory." Phys. Lett. B 183, 149–155.**
 DOI 10.1016/0370-2693(87)90429-1 — VERIFIED (Crossref: PLB, v183, p149-155, 1987). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD**
+Testability: **READ 2026-08-30 — TIER PENDING DUHO (question 8; the shape is
+THEORETICAL-OBSTRUCTION under the ownership-of-proof convention, but any tier assignment is his)**
+**ACQUIRED AND READ IN FULL 2026-08-30** (`b45`, second-free-frontier sweep, route 2 — KEK scanned
+preprints): the MIT-CTP-1400 preprint scan (KEKSCAN 2000-36-705, "Submitted to: Physics Letters B",
+October 1986, KEK receipt stamp Jan 14 1987), pinned at
+`../bhu-reading-20260823/sources/farhi_guth_mitctp1400_kekscan_2000_36_705.pdf` (sha256
+`573ff9751cec…`, 6 scan pages = 10 preprint pages incl. references, read visually page by page;
+noisy-OCR companion `farhi_guth_mitctp1400_clean.txt` for grep receipts only). **CAVEAT: this is
+the PREPRINT, not the PLB version of record** — VoR remains unheld; identity of content with PLB
+183, 149 is testimony until the VoR is compared.
+**WHAT THE PAPER PROVES (its operative contribution — the title names it):** in classical GR, no
+spacetime satisfies all of (a) an asymptotically flat parent with a well-defined noncompact Cauchy
+development, (b) T_μν k^μ k^ν ≥ 0 for all null k^μ — the paper's own coinage "very weak energy
+condition", i.e. the NULL energy condition, expressly WEAKER than the WEC our entry-49 testimony
+attributed (the theorem is stronger than we recorded), (c) a spherically symmetric false-vacuum
+region (part of de Sitter by the Birkhoff analogue) extending to some r > 1/χ, χ² = (8π/3)Gρ_f,
+and (d) nonsingular initial data. Proof owned in-text: anti-trapped 2-spheres computed explicitly
+(θ_in = −(1/r)(1−r²χ²), θ_out = 2/r, both diverging for r > 1/χ) feeding Penrose's 1965 theorem
+[7 = PRL 14, 57] in time-reversed anti-trapped form, each hypothesis verified for the laboratory
+class. Refutable by counterexample; no measurement involved.
+**DELIMITED BY THE AUTHORS THEMSELVES:** (1) the NONSPHERICAL case is NOT decided — §III derives
+only a NECESSARY condition (Hartle–Wilkins integration + Gauss–Bonnet: ⟨θ_in⟩ > 0 once the
+r-averaged area exceeds 4π/3χ², so avoidance needs every constant-r 2-surface to carry a point
+with θ_in < 0 despite positive average; "we have not succeeded in finding a geometry which has
+this property" — but a "sufficiently weird bubble geometry" is not excluded); (2) CLASSICAL only —
+quantum ⟨T_μν⟩ "will not in general obey the very weak energy condition", the named escape route
+(pursued in Farhi–Guth–Guven 1990, entry 50); (3) the WHITE-HOLE escape, footnote: creation from
+a pre-existing white hole ("a piece of the initial big bang singularity") "is not excluded by our
+arguments"; (4) the compact-Cauchy/closed-universe extension is argued ("appears to be yes, for
+similar reasons"), not proven with the same rigor. Insurmountability argument: a Penrose initial
+singularity "cannot arise by well-behaved Cauchy development from smooth initial conditions".
+**The entry-49→48 ownership chain is now SOURCE-CONFIRMED:** entry 49 reports this theorem and
+delegates the proof here; this paper contains the derivation. Refs also confirm the web: [1] is
+the Sato–Sasaki–Kodama–Maeda chain (incl. PLB 108B = entry 47), [4] is Blau–Guendelman–Guth
+"submitted to PRD" (= entry 49).
 **SECONDARY TESTIMONY PINNED 2026-08-30** (`b39`): Dymnikova 2019 (entry 19's paper) states verbatim that *"Farhi and Guth concluded that the initial singularity would be an unavoidable obstacle to the creation of a universe in the laboratory"*, citing PLB 183, 149 — this entry. Corroborates the entry-49→48 ownership chain. **Testimony only: entry 48 remains paywalled and unread, and its proof is NOT thereby verified.** — text unexamined here.
 Record: kimi recall R1; the no-go analysis for manufacturing a child universe. (Kimi remembered p149-153; Crossref says 149-155 — verified pages used.)
 
