@@ -41,6 +41,16 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V107", "GPT56"): {
+        1: ("REPAIRED", "V108 per-member refusal events inside the checkpoint commit"),
+        2: ("REPAIRED", "V108 B_stage deleted; absolute gate rule"),
+        3: ("REPAIRED", "V108 recurrence scope line - cross-run is the successor's per ruling"),
+    },
+    ("V107", "CODEX"): {
+        1: ("REPAIRED", "V108 the listing is a projection of in-commit events"),
+        2: ("REPAIRED", "V108 absolute orphan refusal, Row-B ordering the only staging"),
+        3: ("REPAIRED", "V108 termination-tuple deletion probes, seeded and shown biting"),
+    },
     ("V106", "GPT56"): {
         1: ("REPAIRED", "V107 the listing is the join's third terminal form (XOR)"),
         2: ("REPAIRED", "V107 drain-start tuple restored into T1"),

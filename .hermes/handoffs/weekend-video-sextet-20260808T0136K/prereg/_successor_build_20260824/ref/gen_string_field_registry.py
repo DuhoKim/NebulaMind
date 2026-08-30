@@ -485,6 +485,31 @@ def crosscheck_declared(text):
         if got != ARRIVAL:
             problems.append(f"ARRIVAL declaration drifted from (ii-b): declared-only "
                             f"{sorted(ARRIVAL - got)}, draft-only {sorted(got - ARRIVAL)}")
+    # termination tuples (CODEX-V107 F3: a spec-side field deletion propagated green -
+    # single-occurrence tuples had no counterpart; the DECLARED sets are now checked against
+    # the SPEC's own T-row bytes, deletion-probed like everything else)
+    spec_p = BASE_SPEC if 'BASE_SPEC' in dir() else None
+    try:
+        spec_txt = (Path(__file__).resolve().parent.parent / "LIFECYCLE_GUARANTEE_SPEC.md").read_text()
+    except Exception:
+        spec_txt = ""
+    if spec_txt:
+        for setname, declared, probe in (
+            ("DRAINST", DRAINST, r"DRAIN-START record[^`]*`\(([^)]+)\)`"),
+            ("TERMCP", TERMCP, r"TERMINAL CHECKPOINT[^`]*`\(kind, ([^)]+)\)`"),
+        ):
+            m2 = _re.search(probe, spec_txt)
+            if not m2:
+                problems.append(f"{setname}: spec tuple not found - deleted or reworded past "
+                                f"the probe (CODEX-V107 F3)")
+                continue
+            fields = {f.strip().replace(" ", "_") for f in m2.group(1).split(",")}
+            if setname == "TERMCP":
+                fields.add("kind")
+            want = {x.split(".")[-1] for x in declared}
+            if fields != want:
+                problems.append(f"{setname}: spec tuple fields {sorted(fields)} != declared "
+                                f"{sorted(want)} (CODEX-V107 F3)")
     # (iv-c): the bindmap tuple
     m = _re.search(r"closed schema `\(request_key, decision chain_position, decision "
                    r"event_digest, decision boot_epoch, decision monotonic_reading, "

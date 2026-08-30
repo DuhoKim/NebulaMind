@@ -377,6 +377,12 @@
 - V106/CODEX F2: REPAIRED — V107 precondition synced to drained-or-listed
 - V106/CODEX F3: REPAIRED — V107 drain-start schema on the single surface
 - V106/CODEX F4: REPAIRED — V107 store-to-log verifier named with consultation points and bound
+- V107/GPT56 F1: REPAIRED — V108 per-member refusal events inside the checkpoint commit
+- V107/GPT56 F2: REPAIRED — V108 B_stage deleted; absolute gate rule
+- V107/GPT56 F3: REPAIRED — V108 recurrence scope line - cross-run is the successor's per ruling
+- V107/CODEX F1: REPAIRED — V108 the listing is a projection of in-commit events
+- V107/CODEX F2: REPAIRED — V108 absolute orphan refusal, Row-B ordering the only staging
+- V107/CODEX F3: REPAIRED — V108 termination-tuple deletion probes, seeded and shown biting
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 
