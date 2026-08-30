@@ -545,10 +545,11 @@ Miramare–Trieste; KEKSCAN 2000-33-351), pinned at
 `1dcb755eb0af…`, 21 scan pages; title page visually verified: title + all three authors).
 **PREPRINT, not the PRD 41, 383 version of record; content identity is testimony until compared.**
 **READ IN FULL 2026-08-30 (b46, census rule): 13 text pages read completely (OCR clean on prose;
-companion `frolov_markov_mukhanov_ic8891_clean.txt` for grep receipts); the 8 figure sheets are
-hand-drawn conformal diagrams — all captions read, the sheets carrying Figs. 5/6 and 11/12
-rendered and visually checked, the rest inspected via captions only (scope stated, not
-smoothed).** VERDICT under the census rule: **NOT an obstruction — constructive throughout;
+companion `frolov_markov_mukhanov_ic8891_clean.txt` for grep receipts); the remaining sheets
+are SEVEN hand-drawn figure sheets plus ONE colophon sheet (CGATE_B46's corrected count — my
+"8 figure sheets" was wrong; sheet 21 is a print colophon) — all twelve captions read, the
+sheets carrying Figs. 5/6 and 11/12 rendered and visually checked by me, all seven rendered by
+the gate (scope stated, not smoothed).** VERDICT under the census rule: **NOT an obstruction — constructive throughout;
 triage's CONSISTENCY-ONLY tier is CONFIRMED by the source, not changed.** Under the LIMITING
 CURVATURE HYPOTHESIS (all curvature invariants bounded by a Planckian limit, the invariant
 including Weyl squared; effective T_uv -> -(Lambda/8pi) g_uv at the limit — expressly a guess
@@ -565,7 +566,12 @@ region and the conditions which are necessary for singularities (in accordance w
 theorem) are not fulfilled here"; and Sec. 5: "the conditions of the existence of the global
 Cauchy surface and T_uv l^mu l^nu >= 0 which are used in [7] may be violated". Entry 14 is thus
 a NAMED-ESCAPE construction against entry 48's obstruction — the two records corroborate each
-other's load-bearing hypotheses from opposite sides. No falsifier is offered; the limiting
+other's load-bearing hypotheses from opposite sides. **CLAIM-LEVEL EXCLUSION (recorded on CGATE_B46's ruling, not erased by the constructive
+tier): within the paper's exact Vaidya/de-Sitter junction family, no member whose remnant
+parameter σ lies in the forbidden interval admits the required common junction hypersurface —
+for β > 1 the range 1/2β < σ < β²/2 is forbidden, for β < 1 the range 1/2 < σ < 1/2β, none for
+β = 1 (intrinsic causal character must match on both sides; a compatible counterexample would
+refute it). Family-delimiting, entry-37's shape.** No falsifier is offered; the limiting
 curvature hypothesis is given no observational discriminator.**
 DOI 10.1103/PhysRevD.41.383 — VERIFIED (Crossref: PRD, v41, p383-394, 1990-01-15).
 Claim: the full development of entry 13. Testability: **CONSISTENCY-ONLY**. Record: packet §1.6.

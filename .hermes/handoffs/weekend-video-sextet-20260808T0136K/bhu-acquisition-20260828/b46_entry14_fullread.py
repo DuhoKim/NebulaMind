@@ -5,11 +5,14 @@ THE READ, scope stated exactly: the 21-sheet KEK scan of ICTP IC/88/91 (Frolov, 
 Mukhanov, "Black Holes as Possible Sources of Closed and Semiclosed Worlds", May 1988;
 published as PRD 41, 383). The 13 TEXT sheets were read completely -- OCR is clean on prose
 (the companion frolov_markov_mukhanov_ic8891_clean.txt holds it, headered as grep receipts) and
-the equation-dense passages were checked against the rendered pages. The 8 FIGURE sheets are
-hand-drawn conformal diagrams: every caption was read (sheet 13 lists all twelve), the sheets
-carrying Figs. 5/6 and Figs. 11/12 were rendered and visually checked against their captions,
-and the remaining figure sheets were inspected via captions only. That is the whole scope; the
-gate should render whatever it distrusts.
+the equation-dense passages were checked against the rendered pages. The remaining sheets are
+SEVEN hand-drawn figure sheets plus ONE colophon sheet -- CGATE_B46 corrected my "8 figure
+sheets" count (sheet 21 is a print colophon, "Stampato in proprio", no figure). Every caption
+was read (sheet 13 lists all twelve), the sheets carrying Figs. 5/6 and Figs. 11/12 were
+rendered and visually checked by me, and CGATE rendered all seven. GATED 2026-08-30:
+AGATE_B46 ENTRY14_CONFIRMED_NOT_OBSTRUCTION / CGATE_B46 ENTRY14_NARROWED_SIGMA_EXCLUSION_AND_
+FIGURE_SHEET_COUNT -- both repairs applied: the sheet count above, and Sec. IV's forbidden
+sigma intervals recorded as a genuine CLAIM-level no-match exclusion in the record.
 
 RULE, unchanged from b28: does the paper PROVE that no member of a specified class of models
 can satisfy a specified conjunction of conditions -- refutable by counterexample, not by
@@ -79,9 +82,10 @@ blocks = {n: B[p:(st[i + 1][0] if i + 1 < len(st) else cut)] for i, (p, n) in en
 b14 = " ".join(blocks[14].split())
 chk("RECORD: entry 14 carries the read scope (figure-sheet honesty included), the confirmed "
     "tier, and the named-escape cross-link to entry 48",
-    "READ IN FULL 2026-08-30" in b14 and "captions only" in b14
+    "READ IN FULL 2026-08-30" in b14 and "ONE colophon sheet" in b14
     and "CONFIRMED by the source, not changed" in b14
-    and "NAMED-ESCAPE construction against entry 48" in b14)
+    and "NAMED-ESCAPE construction against entry 48" in b14
+    and "forbidden interval admits the required common junction" in b14)
 m = re.search(r"Testability: \*\*([A-Z-]+)\*\*", blocks[14])
 chk("TIER UNCHANGED: entry 14 remains CONSISTENCY-ONLY (triage label now source-confirmed)",
     m is not None and m.group(1) == "CONSISTENCY-ONLY")
