@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V88_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V89_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -92,13 +92,13 @@
 | `BS-V.path` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
-| `arrival.kind` | closed-vocab | v9 SLOT_SCHEMA | the literal ARRIVAL |
-| `arrival.object_identity` | bounded-encoding | v9 SLOT_SCHEMA | brickid/objid keys |
-| `arrival.operation` | closed-vocab | v9 SLOT_SCHEMA | the event schema's own closed sets |
-| `arrival.request_key` | bounded-encoding | v9 SLOT_SCHEMA | the arrival's own chain position, decimal - unique by construction, restart-safe; the enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal naming it, every terminal exactly one prior arrival |
-| `arrival.row` | closed-vocab | v9 SLOT_SCHEMA | the event schema's own closed sets |
-| `arrival.running_chain_digest` | digest-ref | v9 SLOT_SCHEMA |  |
-| `arrival.timestamp` | bounded-encoding | v9 SLOT_SCHEMA | ISO-8601 UTC, 24 bytes |
+| `arrival.kind` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the literal ARRIVAL |
+| `arrival.object_identity` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | brickid/objid keys |
+| `arrival.operation` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
+| `arrival.request_key` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the arrival's own chain position, decimal - unique by construction, restart-safe; the enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal naming it, every terminal exactly one prior arrival |
+| `arrival.row` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
+| `arrival.running_chain_digest` | digest-ref | draft 6.1 item (ii-b) - ARRIVAL event schema |  |
+| `arrival.timestamp` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | ISO-8601 UTC, 24 bytes |
 | `bs7p_env.dependency_roots` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
 | `bs7p_env.dynamic_load_manifest` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
 | `bs7p_env.interpreter_path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments |
@@ -142,7 +142,7 @@
 | `lockbody.signer_identity` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
 | `lockbody.stagec_receipt_digest` | digest-ref | v9 SLOT_SCHEMA | clause 3(b)'s canonical order; cross-checked against the clause text at generation |
 | `nonslot.acceptance_evidence_projection` | closed-vocab | v9 SLOT_SCHEMA | inventoried: three predicate bits |
-| `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above |
+| `nonslot.access_log_chain` | closed-vocab | v9 SLOT_SCHEMA | inventoried: the event.* rows above AND the arrival.* rows - the chain carries both event classes (CODEX-V88 F1) |
 | `nonslot.adequacy_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `nonslot.archive_seal_state_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `nonslot.cutout_completion_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |

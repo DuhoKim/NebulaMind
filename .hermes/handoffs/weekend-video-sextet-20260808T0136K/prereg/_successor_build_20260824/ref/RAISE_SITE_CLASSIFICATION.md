@@ -8,14 +8,14 @@
 
 **Planning failures are not run outcomes** (principal ruling, 2026-08-29). Of the `local_pass` sites that fire during plan construction, **L963 and L973 are CALLER** (setup errors against a supplied l_plan) and **L986 is PLANNING-INTERNAL**, all marked *moved* below — this header said all three were CALLER for two revisions after L986 moved (CODEX-V69 F7), the header/table drift one paragraph above the table it drifted from. They were briefly given their own class while this corpus was being classified; a failure that fires before a run exists cannot be a run outcome, because nothing has started that could be voided or declared inconclusive. They are moved rather than deleted: L963 and L973 are setup errors against a caller-supplied `l_plan`; L986 is NOT - it fails against an internal frozen constant (CODEX-V72 F8 caught this paragraph still saying 'each' three clauses after L986 stopped being one) - and all three still need a disposition. **L986 is PLANNING-INTERNAL** - a disposition, not an outcome class, carrying no terminal consequence - because MOVE_CAP is an internal cap against a frozen constant that fires after a feasible prefix exists, so it is not an error in any supplied argument. `RAISE_CALLSITE_LEDGER.md` finds no path to them through `run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is *no run-time path found*, not *no run-time path exists*.
 
-- **CALLER** — 26
+- **CALLER** — 28
 - **INTEGRITY** — 59
-- **NUMERICAL** — 20
+- **NUMERICAL** — 18
 - **PLANNING-INTERNAL** — 3
 - **TYPED-OUTCOME** — 1
 - **WRAPPER** — 3
 
-**Total 112 raise nodes.** Sites marked *soft* are ones I am least sure of; if they read as CALLER instead, the numerical class drops from 20 to 18. Sites marked *moved* were reclassified by ruling, not by reading.
+**Total 112 raise nodes.** The two sites marked *soft* (L1462, L1468) were resolved to CALLER at V89 under the boundary as written — each tests a supplied argument's admissibility before the function computes anything (GPT56-V88 F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 made earlier on the identical argument. Sites marked *moved* were reclassified by ruling, not by reading; *resolved* marks the two boundary applications.
 
 | line | function | exception | class | | message |
 |---|---|---|---|---|---|
@@ -110,9 +110,9 @@
 | 1439 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | allocation exceeds available objects in a cell — FAIL |
 | 1442 | `allocate_handcheck` | `RuntimeError` | **NUMERICAL** |  | stratum {} below floor after apportionment — FAIL |
 | 1460 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** |  | calibration inputs malformed — FAIL |
-| 1462 | `accuracy_from_handcheck` | `RuntimeError` | **NUMERICAL** | soft | empty calibration bin — FAIL |
+| 1462 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** | resolved | empty calibration bin — FAIL (tests supplied `n_counts` before the function computes anything; resolved CALLER under the as-supplied boundary — GPT56-V88 F8) |
 | 1464 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** |  | agreement count outside [0, n] — FAIL |
-| 1468 | `accuracy_from_handcheck` | `RuntimeError` | **NUMERICAL** | soft | epsilon outside [0, 0.5) — FAIL |
+| 1468 | `accuracy_from_handcheck` | `RuntimeError` | **CALLER** | resolved | epsilon outside [0, 0.5) — FAIL (tests supplied `epsilon_hat` before the function computes anything; resolved CALLER under the as-supplied boundary — GPT56-V88 F8) |
 | 1494 | `adjudicate_path` | `InconclusiveByCalibration` | **TYPED-OUTCOME** |  | a_lb_b min {} < {} |
 | 1503 | `_finite` | `RuntimeError` | **NUMERICAL** |  | non-finite decision quantity — FAIL |
 | 1513 | `w_profile` | `RuntimeError` | **NUMERICAL** |  | degenerate c — FAIL |

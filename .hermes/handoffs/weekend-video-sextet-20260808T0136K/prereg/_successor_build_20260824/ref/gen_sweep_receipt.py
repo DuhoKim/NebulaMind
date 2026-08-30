@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+"""SUPERSESSION SWEEP RECEIPT — the sweep as an enumerable list, not an assertion of coverage.
+
+Why this exists (Blanc's directive, 2026-08-30 12:06 KST, after GPT56-V88 F3 / CODEX-V88 F2 found
+the V88 sweep left the retired no-arrival regime live in five draft sentences and one spec cell):
+the V88 sweep was an ASSERTION — "the old regime was grep-enumerated and killed" — whose coverage
+lived in my head. A sweep whose coverage is enumerable can be checked and completed; one that is
+claimed gets refound every round. Same lesson as every registry this week.
+
+What this is: for each ruling, the superseded TOKENS searched, the FILES searched, every hit, and
+every hit's DISPOSITION — computed by running the greps, not by describing them. A hit line is
+DEAD when it carries a retirement marker (SWEEP/RETIRED/pre-arrival/previously/…): the token is
+quoted as history. A hit line with no marker is LIVE: the old regime is still operative there, and
+this tool EXITS NONZERO — an undisposed hit is a failing control, not a note.
+
+Two stated limits, because an honest receipt names its blind spots:
+1. TOKENS ARE LITERAL. A paraphrase of the old regime that avoids every token is invisible here —
+   the referee round remains the control for paraphrase, exactly as the derivation checker says of
+   unlabelled prose. The token list is append-only across revisions: killing a token's row because
+   it went green would un-enumerate the coverage.
+2. THE MARKER TEST IS LINE-LOCAL. A live sentence that happens to contain a marker word reads as
+   DEAD. Every hit is therefore PRINTED with its verdict and line number so a referee can re-judge
+   each one; the receipt is the worklist, not the judgement of last resort.
+
+`gates/FINDINGS_MAP.md` is deliberately OUT of scope: it is testimony about past defects and
+legitimately quotes every dead regime.
+"""
+
+import re
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+BASE = HERE.parent
+
+DEAD = re.compile(
+    r"SWEEP|sweep|RETIRED|retired|superseded|pre-arrival|pre-ruling|predecessor|previously|"
+    r"WITHDRAWN|HISTORY|dissolved|form said|sentence said|wording said|cell carried")
+
+# (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
+SWEEPS = [
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "one request never yields two events", ("draft", "spec"),
+     "G4's pre-arrival form; swept V88"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "no event is neither", ("draft", "spec"),
+     "G3's two-way partition; re-derived three-way at V89 (GPT56-V88 F1)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "not written to the access log", ("draft",),
+     "the pre-arrival identifier rule (GPT56-V88 F3)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "with no binding never happened", ("draft",),
+     "the pre-arrival recovery rule (GPT56-V88 F3, CODEX-V88 F2)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "indistinguishable from a request that never arrived",
+     ("draft",), "the pre-arrival residue (GPT56-V88 F3)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "nothing above changes what the access log records",
+     ("draft",), "the pre-arrival not-authorised ledger (GPT56-V88 F3, CODEX-V88 F2)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "not authorised, REFERRED", ("spec",),
+     "N2's why-cell, still refusing after the body retired (GPT56-V88 F3)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "safe to re-process", ("spec",),
+     "W1's recovery cell, pre-one-decision wording"),
+    ("REBUILT PRINCIPLE (2026-08-30 10:46)", "may never describe the object", ("draft",),
+     "the old principle sentence; swept V88"),
+    ("REBUILT PRINCIPLE (2026-08-30 10:46)", "never the OBJECT", ("checker",),
+     "the stale R03 control body; rebuilt V88 — the eighth site"),
+    ("DRAW DISCIPLINE (2026-08-30 10:46)", "frozen value UNSET", ("registry",),
+     "pre-commitment draw notes; swept V88"),
+    ("DRAW DISCIPLINE (2026-08-30 10:46)", "currently EMPTY", ("registry",),
+     "pre-commitment draw notes; swept V88"),
+    ("FREEZE-TIME ENUMERATION IMPOSSIBLE (GPT56-V87 F7)", "enumerated at freeze", ("draft", "spec"),
+     "the guard's impossible anchor; re-anchored V88"),
+    ("ISSUANCE CUT (V89, GPT56-V88 F6 / CODEX-V88 F4)", "extends through issuance completion",
+     ("draft",), "the circular half of the V88 cut; two cuts named at V89"),
+    ("COUNT MOVE (GPT56-V88 F7)", "16/8 → 16/9", ("draft",),
+     "the false predecessor count; quoted-as-history at V89"),
+]
+
+
+def files_for(draft_path):
+    return {
+        "draft": Path(draft_path),
+        "spec": BASE / "LIFECYCLE_GUARANTEE_SPEC.md",
+        "registry": HERE / "gen_string_field_registry.py",
+        "checker": BASE.parents[4] / "tools" / "refusal_vocabulary_check.py",
+    }
+
+
+def classify(text, token):
+    """Return [(lineno, verdict, line)] for every hit. Pure function; the controls exercise it."""
+    out = []
+    for i, line in enumerate(text.splitlines(), 1):
+        if token in line:
+            out.append((i, "DEAD" if DEAD.search(line) else "LIVE", line.strip()))
+    return out
+
+
+def controls():
+    """Exact-failure controls: a planted live token MUST read LIVE, a marked one MUST read DEAD."""
+    fails = []
+    live = classify("the rule is that one request never yields two events here\n",
+                    "one request never yields two events")
+    if [(v) for _, v, _ in live] != ["LIVE"]:
+        fails.append(f"planted live token not detected LIVE: {live}")
+    dead = classify("the pre-arrival form said one request never yields two events\n",
+                    "one request never yields two events")
+    if [(v) for _, v, _ in dead] != ["DEAD"]:
+        fails.append(f"marked dead token not detected DEAD: {dead}")
+    none = classify("nothing relevant\n", "one request never yields two events")
+    if none:
+        fails.append(f"hit manufactured from clean text: {none}")
+    return fails
+
+
+def main():
+    if len(sys.argv) != 2:
+        print("usage: gen_sweep_receipt.py DRAFT.md")
+        return 2
+    cf = controls()
+    for f in cf:
+        print(f"  CONTROL FAIL {f}")
+    if cf:
+        return 1
+
+    fmap = files_for(sys.argv[1])
+    texts = {k: p.read_text() for k, p in fmap.items()}
+    rows, live_total, dead_total = [], 0, 0
+    for ruling, token, scope, note in SWEEPS:
+        for key in scope:
+            hits = classify(texts[key], token)
+            nlive = sum(1 for _, v, _ in hits if v == "LIVE")
+            ndead = len(hits) - nlive
+            live_total += nlive
+            dead_total += ndead
+            disp = ("VERIFIED-CLEAN" if not hits else
+                    "DEAD-QUOTED" if nlive == 0 else "LIVE-UNDISPOSED")
+            rows.append((ruling, token, fmap[key].name, hits, nlive, ndead, disp, note))
+
+    out = ["# SUPERSESSION SWEEP RECEIPT — computed, not claimed\n",
+           f"**Subject files:** {', '.join(f'`{p.name}`' for p in fmap.values())} — "
+           "`gates/FINDINGS_MAP.md` is out of scope (testimony quotes dead regimes legitimately).\n",
+           "**Rule:** every hit line is printed with a verdict; a LIVE hit under a swept token is "
+           "a FAILING control (exit 1), not a note. Tokens are literal and the list is "
+           "append-only; paraphrase is the round's to catch, and this header says so.\n",
+           "| ruling | superseded token | file | hits | live | disposition |",
+           "|---|---|---|---|---|---|"]
+    tok_show = lambda s: s.replace("|", "·")
+    for ruling, token, fname, hits, nlive, ndead, disp, note in rows:
+        out.append(f"| {ruling} | `{tok_show(token)}` | `{fname}` | {len(hits)} | {nlive} | "
+                   f"{disp} — {note} |")
+    out.append("\n## Every hit, for re-judging\n")
+    for ruling, token, fname, hits, nlive, ndead, disp, note in rows:
+        for ln, v, line in hits:
+            out.append(f"- **{v}** `{fname}:{ln}` token `{tok_show(token)}` — "
+                       f"{tok_show(line)[:160]}")
+    (HERE / "SUPERSESSION_SWEEP_RECEIPT.md").write_text("\n".join(out) + "\n")
+    print(f"sweep receipt: {len(SWEEPS)} token rows over {len(fmap)} files; "
+          f"{dead_total} dead-quoted hit(s), {live_total} LIVE")
+    return 1 if live_total else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

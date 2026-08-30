@@ -40,9 +40,12 @@ def v9_slot_fields():
     raise SystemExit("SLOT_SCHEMA not found in v9 - the extractor is broken, refuse to emit")
 
 V9_CONSTRAINTS = {}
-def _c(slots_fields, constraint, note=""):
+def _c(slots_fields, constraint, note="", source="v9 SLOT_SCHEMA"):
+    # source defaults to the slot schema; declared sets that do NOT come from v9 MUST say
+    # where they come from - the arrival rows shipped labelled "v9 SLOT_SCHEMA" although
+    # frozen v9 has no arrival schema (CODEX-V88 F1): a wrong source is a wrong authority.
     for sf in slots_fields.split():
-        V9_CONSTRAINTS[sf] = (constraint, "v9 SLOT_SCHEMA", note)
+        V9_CONSTRAINTS[sf] = (constraint, source, note)
 # digests and hashes
 _c("BS-2m.parent_digest BS-2m.planner_digest BS-2m.plan_digest BS-2f.mask_digest BS-5f.mask_digest "
    "BS-7f.mask_digest BS-V.mask_digest BS-7f.perm_payload_digest BS-1.config_digest BS-4.anchor_digest "
@@ -137,18 +140,27 @@ _c("BS-6.producer_checksum_list", "digest-ref")
 # The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
 # in envelope fields, and environment_record() emits its own - all string-bearing, none previously
 # enumerated), extracted below from the envelope constructor rather than hand-listed.
-# The ARRIVAL event class (SWEEP: GPT56/CODEX-V87 F2 - the ruled second event class escaped the
+# The ARRIVAL event class - source: the draft's exhaustive non-chi list item (ii-b), where the
+# schema now lives (CODEX-V88 F1: these rows shipped sourced to v9 SLOT_SCHEMA, which never
+# contained an arrival - the registry cannot widen the draft's list, only mirror it).
+# (SWEEP: GPT56/CODEX-V87 F2 - the ruled second event class escaped the
 # exhaustive registry). request_key = the arrival event's own CHAIN POSITION: bounded decimal,
 # unique by chain construction, restart-safe because there is one chain - no new randomness.
-_c("arrival.kind", "closed-vocab", "the literal ARRIVAL")
-_c("arrival.timestamp", "bounded-encoding", "ISO-8601 UTC, 24 bytes")
-_c("arrival.row arrival.operation", "closed-vocab", "the event schema's own closed sets")
-_c("arrival.object_identity", "bounded-encoding", "brickid/objid keys")
+_c("arrival.kind", "closed-vocab", "the literal ARRIVAL",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("arrival.timestamp", "bounded-encoding", "ISO-8601 UTC, 24 bytes",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("arrival.row arrival.operation", "closed-vocab", "the event schema's own closed sets",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("arrival.object_identity", "bounded-encoding", "brickid/objid keys",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
 _c("arrival.request_key", "bounded-encoding",
    "the arrival's own chain position, decimal - unique by construction, restart-safe; the "
    "enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal "
-   "naming it, every terminal exactly one prior arrival")
-_c("arrival.running_chain_digest", "digest-ref")
+   "naming it, every terminal exactly one prior arrival",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("arrival.running_chain_digest", "digest-ref",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
 _c("envelope.slot", "closed-vocab", "SLOT_SCHEMA keys")
 _c("envelope.schema", "closed-vocab", "the literal successor_ref_v3/1")
 # The environment's SIX LEAF FIELDS, extracted from environment_record() itself rather than
@@ -187,7 +199,7 @@ _c("sig.freeze sig.bsl_lock sig.opening sig.explanation sig.checkpoint",
 # unenumerable until the slot that defines it is filled, and its row says so instead of wearing a
 # constraint it does not have. A SCHEMA-PENDING class cannot carry data: its producer is blocked by
 # the same unfilled slot.
-_c("nonslot.access_log_chain", "closed-vocab", "inventoried: the event.* rows above")
+_c("nonslot.access_log_chain", "closed-vocab", "inventoried: the event.* rows above AND the arrival.* rows - the chain carries both event classes (CODEX-V88 F1)")
 _c("nonslot.enumeration_surface", "closed-vocab", "inventoried: entry.* rows + explanation cause")
 _c("nonslot.acceptance_evidence_projection", "closed-vocab", "inventoried: three predicate bits")
 _c("nonslot.cutout_completion_receipt nonslot.stage_completion_artifact nonslot.label_set_receipt "

@@ -32,8 +32,8 @@ conflict between them is a defect in the draft.**
 | # | invariant | holds for |
 |---|---|---|
 | G1 | **No unlogged touch**: no bytes leave or land in a sealed store without a committed event | every touch kind |
-| G2 | **No false event**: a touch event's outcome field is true of the store effect it records; **a refusal event truthfully records that a request was refused and NO store effect occurred — AND its reason token is true of the refusal: a request with no completed permission verdict may carry only `REFUSED-UNCLASSIFIED`, and any specific code asserts its condition was actually established** (GPT56-V71 F2: without this, a false specific code bypasses the catch-all enumeration entirely) | every event |
-| G3 | **One TOUCH event per touch** — and **every touch event is either exactly one touch's event or a refusal's event; no event is both, and no event is neither** (V70's wording said "one touch per event", which contradicted refusal events outright — GPT56-V70 F1, CODEX-V70 F1, the round's first finding against this spec) | every touch kind |
+| G2 | **No false event**: a touch event's outcome field is true of the store effect it records; **a refusal event truthfully records that a request was refused and NO store effect occurred — AND its reason token is true of the refusal: a request with no completed permission verdict may carry only `REFUSED-UNCLASSIFIED`, and any specific code asserts its condition was actually established** (GPT56-V71 F2: without this, a false specific code bypasses the catch-all enumeration entirely) — **and an ARRIVAL event is under this invariant too: it truthfully records RECEIPT — its identifying facts are those of one real request, appended before any processing of that request (extended over the arrival class, GPT56-V88 F1)** | every event |
+| G3 | **One TOUCH event per touch** — and **the event classes PARTITION: every committed event is exactly one of an ARRIVAL event (§1c), one touch's event, or one refusal's event — no event is two of these and no event is none** (re-derived over the arrival class — GPT56-V88 F1: the pre-arrival form said every event is a touch's or a refusal's and no event is neither, which forbade the class the same sitting authorised; V70's lesson — an event partition must name ALL its classes, GPT56-V70 F1, CODEX-V70 F1 — applied to three) | every event |
 | G4 | **No double decision**: one request never yields two DECISION events — a touch commit or a refusal commit — and, since the WRITE-AHEAD ARRIVAL RECEIPT was authorised as its own event class (principal ruling, 2026-08-30 10:46), a completed request carries exactly ONE arrival event and ONE decision event; this invariant counts decisions only. The pre-arrival form said two EVENTS bare, which condemned the arrival receipt the same sitting authorised — swept as a set with GPT56/CODEX-V87 F1. | every request |
 | G6 | **A view is the display session of one render commit**: it ends at the first of position advance, interface clear, or any interruption of continuous display — visibility loss, blanking, occlusion, navigation away; duration alone does not multiply views, nothing displayed after an interruption is the same view, and commit↔session ownership is one-to-one — each render commit opens at most one session and every session is opened by exactly one commit | Row G only |
 | G5 | **Render = touch.** Every render is its own touch with its own committed event. **Row G's *"any unlogged view"* void clause is a consumer of G5, not an exception to N1** | Row G only |
@@ -60,14 +60,14 @@ dies anywhere after arrival has its arrival event, so the crash-before-commit ca
 invisible; the pre-verdict death that N2 spent eleven revisions naming as a residue is now a logged
 arrival with no terminal event, which recovery and the auditor can SEE and the deadline machinery
 can close. An arrival event is not a touch and satisfies no touch invariant; a touch without a
-preceding arrival is refused by the verifier as malformed history.
+preceding arrival is refused by the verifier as malformed history. **One ARRIVAL per request, appended exactly once at receipt by the single serialised writer; recovery resumes from the logged arrival and never re-appends it — a second arrival for one request is malformed history, refused the same way (GPT56-V88 F4's duplicate branch).**
 
 ## 2. The non-guarantees, with equal weight
 
 | # | non-guarantee | why it cannot be otherwise |
 |---|---|---|
 | N1 | **Delivery is outside the custody claim** — the event records the store effect, never the requester's receipt or the human's perception | the requester and the human are external to any commit domain; three orderings failed trying to include them |
-| N2 | **RETIRED BY RULING (2026-08-30 10:46): the WRITE-AHEAD ARRIVAL RECEIPT makes every real request durably visible** — arrival is logged BEFORE any processing, as a second event class the principal explicitly authorised, so no request can vanish and the lifecycle promise becomes true instead of narrowed. Kept in the table as the record of what was a non-guarantee for eleven revisions | making it visible needs a second event class, which changes what the log records — not authorised, REFERRED |
+| N2 | **RETIRED BY RULING (2026-08-30 10:46): the WRITE-AHEAD ARRIVAL RECEIPT makes every real request durably visible** — arrival is logged BEFORE any processing, as a second event class the principal explicitly authorised, so no request can vanish and the lifecycle promise becomes true instead of narrowed. Kept in the table as the record of what was a non-guarantee for eleven revisions | the second event class it needed WAS authorised (principal ruling, 2026-08-30 10:46) — this cell carried the impossibility for eleven revisions; the authorisation dissolved it, and the cell now records that resolution (GPT56-V88 F3, CODEX-V88 F2: the sweep retired the body and left this cell still refusing) |
 | N3 | **The log can over-report delivery, never under-report a touch** | the safe direction for a custody log, consequence of G1 + N1 |
 
 ## 3. The invariant table — crash window × reader
@@ -77,7 +77,7 @@ exists) · W3 = after commit, before delivery · W4 = during delivery · W5 = af
 
 | window | requester sees | verifier/auditor sees | Row B on recovery sees |
 |---|---|---|---|
-| W1 | nothing (no bytes ever left) | **the ARRIVAL event (§1c)** — the request is visible with no terminal event, which the deadline machinery closes; the pre-arrival wire is the only invisible span | no binding → no touch happened; the arrival event shows the request existed; safe to re-process |
+| W1 | nothing (no bytes ever left) | **the ARRIVAL event (§1c)** — the request is visible with no terminal event, which the deadline machinery closes; the pre-arrival wire is the only invisible span | no binding → no decision happened; the arrival event shows the request existed and is the work item; recovery resumes it from the arrival — one decision, no second arrival |
 | W2 | — | — | — (atomic: no such window) |
 | W3 | nothing yet | a TRUE event: the effect happened | binding present → never re-decide; **conveyance**: may re-deliver from the committed buffer, no new event; **render**: NO re-render without a NEW touch commit (G5) |
 | W4 | partial bytes / partial frame | same true event | same as W3 |
@@ -99,7 +99,7 @@ single-home rule violated by the repair that extended the lifecycle)
 and never resets** — no state transition, retry-internal step or partial progress renews it. A live
 request past its deadline **is** a processing failure under a live Row B and receives the
 `REFUSED-UNCLASSIFIED` refusal commit. A request that is neither terminal nor within deadline is a
-state this spec does not admit. **And the COMMIT itself is bounded (CODEX-V82 F7: a live Row B
+state this spec does not admit. **The admitted nonterminal state has a NAME — `PENDING`: arrival committed, no decision event, deadline unexpired (named for the existence half of exactly-one-terminal, GPT56-V88 F4, CODEX-V88 F3). A past-deadline zero-terminal arrival is NOT PENDING and not admitted — it is the state whose absence §6.1's five verifier gates check, and finding one refuses the gate as a custody failure; the last gate refuses any zero-terminal arrival at all — the run does not end over an open request.** **And the COMMIT itself is bounded (CODEX-V82 F7: a live Row B
 stalled INSIDE the atomic commit could not append the deadline refusal, leaving a past-deadline
 nonterminal request): the transactional domain aborts any commit that neither completes nor
 aborts within its own BS-2k commit bound — transactional semantics make abort always available —
