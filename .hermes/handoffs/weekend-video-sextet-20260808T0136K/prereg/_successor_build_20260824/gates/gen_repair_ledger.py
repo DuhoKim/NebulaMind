@@ -41,6 +41,19 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V108", "GPT56"): {
+        1: ("REPAIRED", "V109 drain-scoped ordering law - no cross-set order claimed"),
+        2: ("REPAIRED", "V109 the three drained-or-listed clauses swept"),
+        3: ("REPAIRED", "V109 double-read orphan discipline"),
+        4: ("REPAIRED", "V109 the successor export artifact"),
+    },
+    ("V108", "CODEX"): {
+        1: ("REPAIRED", "V109 ordering law + listing language dead"),
+        2: ("REPAIRED", "V109 double-read discipline"),
+        3: ("REPAIRED", "V109 unique probe anchors"),
+        4: ("REPAIRED", "V109 successor export with joined digests"),
+        5: ("REPAIRED", "V109 REVIEWED disposition, class-paired"),
+    },
     ("V107", "GPT56"): {
         1: ("REPAIRED", "V108 per-member refusal events inside the checkpoint commit"),
         2: ("REPAIRED", "V108 B_stage deleted; absolute gate rule"),

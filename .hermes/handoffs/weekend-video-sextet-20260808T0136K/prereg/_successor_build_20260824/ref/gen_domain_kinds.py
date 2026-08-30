@@ -33,6 +33,7 @@ DECLARED = {
     "terminal-review": "TERMINAL-REVIEW BODY", "drain-start": "DRAIN-START record",
     "terminal-checkpoint": "TERMINAL CHECKPOINT",
     "receipt-note": "RECEIPT-NOTE record",
+    "successor-export": "SUCCESSOR EXPORT",
 }
 # field-name regex -> coverage. Order matters; first match wins.
 PREIMAGE_OF = [
@@ -44,7 +45,10 @@ PREIMAGE_OF = [
     (r"^passrec\.verifier_digest$", ("RAW", "verifier file bytes")),
     (r"^(drainst|termcp|rnote)\.receipt_digest$", ("TAGGED", "termrec")),
     (r"^termcp\.chain_head_digest$", ("FROZEN", "chain running digest")),
-    (r"^(termrec|haltrec)\.freeze_signature_digest$", ("TAGGED", "freeze-body")),
+    (r"^(termrec|haltrec|succexp)\.freeze_signature_digest$", ("TAGGED", "freeze-body")),
+    (r"^succexp\.(sealed_enumeration_digest)$", ("TAGGED", "sealed-entry-set")),
+    (r"^succexp\.(continuation_segment_digest)$", ("RAW",
+     "the continuation segment's concatenated entries - its own canonical discipline")),
     (r"^(termrec|haltrec)\.first_opening_digest$", ("FROZEN",
      "the opening record digest - clock-family, chain-side")),
     (r"^revbody\.terminal_checkpoint_digest$", ("TAGGED", "terminal-checkpoint")),

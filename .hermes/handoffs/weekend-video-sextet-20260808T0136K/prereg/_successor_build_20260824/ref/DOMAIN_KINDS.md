@@ -1,6 +1,6 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**18 kinds; 66 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**19 kinds; 69 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
 - `bindmap-entry`
@@ -16,6 +16,7 @@
 - `receipt-note`
 - `sealed-bindmap`
 - `sealed-entry-set`
+- `successor-export`
 - `terminal-checkpoint`
 - `terminal-review`
 - `termrec`
@@ -73,6 +74,9 @@
 - `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes
 - `rnote.receipt_digest` — TAGGED: termrec
 - `roots_entry.digest` — RAW: loaded-object file bytes
+- `succexp.continuation_segment_digest` — RAW: the continuation segment's concatenated entries - its own canonical discipline
+- `succexp.freeze_signature_digest` — TAGGED: freeze-body
+- `succexp.sealed_enumeration_digest` — TAGGED: sealed-entry-set
 - `termcp.chain_head_digest` — FROZEN: chain running digest
 - `termcp.receipt_digest` — TAGGED: termrec
 - `termrec.first_opening_digest` — FROZEN: the opening record digest - clock-family, chain-side

@@ -213,6 +213,13 @@ _c("rnote.kind", "closed-vocab", "the receipt-note literal",
 _c("rnote.receipt_digest", "digest-ref", "", source="spec 3c T1 - receipt-note record")
 _c("rnote.boot_epoch rnote.monotonic_reading", "bounded-encoding",
    "the clock pair", source="spec 3c T1 - receipt-note record")
+_c("succexp.kind", "closed-vocab", "the successor-export literal",
+   source="draft 11 - successor export (GPT56/CODEX-V108 F4)")
+_c("succexp.sealed_enumeration_digest succexp.continuation_segment_digest "
+   "succexp.freeze_signature_digest", "digest-ref", "",
+   source="draft 11 - successor export")
+_c("succexp.terminal_head", "bounded-encoding", "position + running digest",
+   source="draft 11 - successor export")
 _c("lockcp.chain_head_position", "bounded-encoding", "decimal chain position",
    source="draft 3(b) - lock checkpoint receipt, schema closed at V99 (GPT56-V98 F2)")
 _c("lockcp.chain_head_digest lockcp.sealed_entry_set_digest lockcp.sealed_bindmap_digest",
@@ -414,6 +421,9 @@ TERMCP = {"termcp.kind", "termcp.drain_start_position", "termcp.receipt_digest",
           "termcp.boot_epoch", "termcp.monotonic_reading", "termcp.failed_members"}
 RNOTE = {"rnote.kind", "rnote.receipt_digest", "rnote.boot_epoch",
          "rnote.monotonic_reading"}
+SUCCEXP = {"succexp.kind", "succexp.sealed_enumeration_digest",
+           "succexp.continuation_segment_digest", "succexp.terminal_head",
+           "succexp.freeze_signature_digest"}
 LOCKCP = {"lockcp.chain_head_position", "lockcp.chain_head_digest", "lockcp.clock_record",
           "lockcp.sealed_entry_set_digest", "lockcp.sealed_bindmap_digest"}
 # the gate PASS RECORD (spec 3b anchors, built at V96 - GPT56-V95 F2, CODEX-V95 F4)
@@ -498,11 +508,16 @@ def crosscheck_declared(text):
             ("DRAINST", DRAINST, r"DRAIN-START record[^`]*`\(([^)]+)\)`"),
             ("TERMCP", TERMCP, r"TERMINAL CHECKPOINT[^`]*`\(kind, ([^)]+)\)`"),
         ):
-            m2 = _re.search(probe, spec_txt)
-            if not m2:
+            all_m = list(_re.finditer(probe, spec_txt))
+            if not all_m:
                 problems.append(f"{setname}: spec tuple not found - deleted or reworded past "
                                 f"the probe (CODEX-V107 F3)")
                 continue
+            if len(all_m) > 1:
+                problems.append(f"{setname}: {len(all_m)} probe matches - a stale decoy can "
+                                f"shadow the normative tuple (CODEX-V108 F3)")
+                continue
+            m2 = all_m[0]
             fields = {f.strip().replace(" ", "_") for f in m2.group(1).split(",")}
             if setname == "TERMCP":
                 fields.add("kind")
@@ -590,7 +605,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | DRAINST | TERMCP | RNOTE | REVBODY | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | DRAINST | TERMCP | RNOTE | SUCCEXP | REVBODY | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
