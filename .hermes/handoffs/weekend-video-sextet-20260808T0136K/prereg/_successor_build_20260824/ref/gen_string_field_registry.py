@@ -552,6 +552,8 @@ def form_check(draft_text, spec_txt, forms=None):
     controls, so the controls exercise this function, never a twin (CODEX-V119A F3).
     Contract: per form - kind literal under real word boundaries in its home corpus;
     >=1 exact tuple within 900 bytes of a kind mention; and EVERY backticked
+    candidate WHOSE OPENING lies within 900 bytes of a form-kind mention, read WHOLE
+    from the full corpus wherever it closes (GPT56-V121A F1) - i.e. every
     `(kind,`-opening candidate within 900 bytes of a form-kind mention - ANY length, ANY
     internal whitespace (GPT56/CODEX-V120A F2: the first grammar demanded a literal
     space and 10-400 interior characters, silently exempting short, tabbed, newline and
@@ -578,17 +580,22 @@ def form_check(draft_text, spec_txt, forms=None):
         if not _pair:
             problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
                             f"'{_kind}' in the {_home} (GPT56/CODEX-V116 F3)")
-        for _km in _re.finditer(_kpat, _corpus):
-            _win = _corpus[max(0, _km.start() - 900):_km.end() + 900]
-            for _tm in _re.finditer(r"`\(kind,[^)]*\)`", _win):
-                _cn = _wsnorm(_tm.group(0))
-                if _cn == "`(kind, ...)`":
-                    continue  # the documented metavariable, exempt by name
-                if _cn not in known:
-                    problems.append(f"form-schema echo: a kind-adjacent tuple near "
-                                    f"'{_kind}' matches NO known schema tuple "
-                                    f"(GPT56-V119A F2, all-candidate rule): "
-                                    f"{_tm.group(0)[:60]}...")
+        # adjacency is measured at the candidate's OPENING BACKTICK and the candidate
+        # is read WHOLE from the full corpus (GPT56-V121A F1: slicing a +-900 window
+        # first truncated a long candidate before its closing backtick, so the
+        # any-length grammar was silently bounded by the window)
+        _kpos = [m2.start() for m2 in _re.finditer(_kpat, _corpus)]
+        for _tm in _re.finditer(r"`\(kind,[^)]*\)`", _corpus):
+            if not any(abs(_tm.start() - kp) <= 900 for kp in _kpos):
+                continue
+            _cn = _wsnorm(_tm.group(0))
+            if _cn == "`(kind, ...)`":
+                continue  # the documented metavariable, exempt by name
+            if _cn not in known:
+                problems.append(f"form-schema echo: a kind-adjacent tuple near "
+                                f"'{_kind}' matches NO known schema tuple "
+                                f"(GPT56-V119A F2, all-candidate rule): "
+                                f"{_tm.group(0)[:60]}...")
     return problems
 
 CLOSE_DOMAINS = {"vclose.close_class": ("ABORTED", "EXPIRED", "ABORTED-BY-RESTART"),
@@ -663,7 +670,8 @@ def _domain_echo_selftest():
         # the V120A grammar attacks: short, tabbed, newline-after-comma, overlength
         for _atk in ("`(kind, x)`", "`(kind,\talien_alpha)`",
                      "`(kind,\n" + _f0[1] + ", alien_alpha)`",
-                     "`(kind, " + _f0[1] + ", " + "a" * 450 + ")`"):
+                     "`(kind, " + _f0[1] + ", " + "a" * 450 + ")`",
+                     "`(kind, " + _f0[1] + ", " + "b" * 1200 + ")`"):
             if not any("NO known schema tuple" in p
                        for p in _form_probs(f"the {_k0} body {_atk} and {_t0} here",
                                             forms=_me)):

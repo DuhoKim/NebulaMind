@@ -415,3 +415,14 @@ V119 → V120: read 3's repairs — anchored whole-passage extraction, the all-c
   appendix §4 state exactly this grammar.
 
 V120 → V121: read 4's two — the anchor extended through the full tail, and the candidate grammar completed with its one named exemption.
+
+## V121 → V122 (2026-08-31 small hours — READ 5: CODEX SOUND, GPT56 one finding)
+
+**CODEX-V121A: SOUND, zero findings. GPT56-V121A: one HIGH** — the any-length grammar
+ran inside a ±900-byte slice, so a candidate OPENING beside the kind but CLOSING beyond
+the window was truncated before comparison. Repaired: adjacency is measured at the
+candidate's opening backtick and the candidate is READ WHOLE from the full corpus; the
+1,200-char attack joins the per-form controls; draft §11 and appendix §4 state the
+opening-adjacency/whole-read rule explicitly.
+
+V121 → V122: read 5's one — whole-candidate reading with opening-measured adjacency, the window truncation dead.
