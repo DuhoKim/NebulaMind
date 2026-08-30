@@ -15,13 +15,35 @@ pages"); neither recorded a full read of entry 38. V1's demonstrated coverage wa
   5. live_flags == FROZEN_FLAGS equality, not subset;
   6. the miss rate labelled PAPER-TIER, with claim-level sensitivity stated as NOT MEASURED.
 
+V3, AFTER AGATE_B41 (COVERAGE_REFUTED_MULTIPLE_HOLES, filed against v1). Its two surviving
+holes, both applied here:
+  7. THE LIVE RECOMPUTE NEVER SCANNED ENTRY 5. The screen's deployment pool is the mapped
+     *_clean.txt files in bhu-reading sources; entry 5's text lives under reviews/ and was
+     never in that pool -- in deployment OR in the recompute. V3 scans entry 5's actual file
+     separately and reports the counterfactual: the criterion scores it (0,0,0) -- it would
+     NOT have flagged even in-pool. The miss decomposes into BOTH failure modes: never
+     scanned, and invisible to the vocabulary.
+  8. ENTRY 6'S ADJUDICATION PREDATES THE RULE. Its full read (batch 9, 2026-08-23) reclassified
+     it QUALITATIVE-DIRECTIONAL -- a paper-level tier adjudication that answers the obstruction
+     question by exclusivity -- and B25's gates ruled it a paper-level false positive under the
+     stated convention. That is artifact-backed but it is NOT the b28 unflagged protocol; the
+     coverage claim below says "receipted read + obstruction adjudication", not "uniform
+     procedure", and this line is the disclosure.
+SEAT SPLIT, RESOLVED BY EVENTS: AGATE confirmed v1's {38,57} binding; CGATE refuted it with
+quoted receipts. b43's full read of entry 38 satisfies both readings -- the census no longer
+depends on who was right about B32's scope.
+
 WHAT THIS PROVES AND WHAT IT DOESN'T. The union arithmetic and bindings prove every readable
-BHU paper has a receipted read-plus-adjudication under the one preregistered rule. The
-obstruction ground truth is parsed from the bibliography's CURRENT Testability labels -- the
-output of the gated census plus Duho's rulings -- so the miss rate is measured against the
-corpus's adjudicated record, not against independent re-derivation. The 12-paper not-located
-list is bound to the wrap-up's record; "all paywalled" is that round's testimony, not re-checked
-here.
+BHU paper has a receipted read and obstruction adjudication (flags via their own artifacts,
+everything else under the b28 rule). The obstruction ground truth is parsed from the
+bibliography's CURRENT Testability labels -- the output of the gated census plus Duho's
+rulings -- so the miss rate is measured against the corpus's adjudicated record, not against
+independent re-derivation. The 12-paper not-located list is bound to the wrap-up's record;
+"all paywalled" is that round's testimony, not re-checked here. On the miss-rate PRESENTATION
+the seats split: AGATE would print a claim-level "1 of 6" (caught 22; missed 5, 37, 51, 52,
+53); CGATE refuses any claim-level metric without a frozen denominator and a
+multiple-claims-per-paper rule. This file follows CGATE's rule and prints AGATE's fact as a
+fact, below.
 """
 import re, os, random
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -76,12 +98,25 @@ for f in sorted(os.listdir(SRC)):
     if stem in f2e and is_obstruction(" ".join(open(SRC + f, errors="ignore").read().split())):
         live_flags.add(int(f2e[stem]))
 FROZEN_FLAGS = {22, 25, 6}
-chk("FLAGS RECOMPUTED, EQUALITY: the live screen over the mapped corpus flags exactly b28's "
-    "frozen set -- a new flag or a lost flag goes red here",
+chk("FLAGS RECOMPUTED, EQUALITY: the live screen over ITS OWN POOL (the mapped bhu-reading "
+    "*_clean.txt files -- the pool boundary is part of the finding) flags exactly b28's frozen "
+    "set -- a new flag or a lost flag goes red here",
     live_flags == FROZEN_FLAGS and "FLAGGED={22,25,6}" in txt("b28_missrate_draw.py"),
     f"live: {sorted(live_flags)}")
-chk("FLAG 6 RECEIPTED: full read in the reading notes (batch 9) and the paper-level "
-    "false-positive ruling in b25's gated convention dispute",
+# AGATE_B41 hole 7: entry 5 was never in that pool. Scan its actual file and print both facts.
+E5 = os.path.join(ROOT, "reviews/bhu-citation-custody-evidence-20260811/arxiv-1412.0105v1.txt")
+t5 = " ".join(open(E5, errors="ignore").read().split())
+c5 = (len(re.findall(IMPOSSIBILITY, t5)), len(re.findall(DOMAIN, t5)), len(re.findall(REFUTABLE, t5)))
+print(f"      entry 5 counterfactual: pool-external file scanned separately -> counts {c5} "
+      f"vs threshold (5,2,2) -> would NOT have flagged")
+chk("ENTRY 5 DOUBLE MISS (AGATE_B41): its text was never in the screen's pool, AND the "
+    "criterion scores it (0,0,0) -- it hides from the vocabulary even in-pool; 'missed by the "
+    "screen' means BOTH",
+    os.path.exists(E5) and "Pathria" in t5 and c5 == (0, 0, 0) and not is_obstruction(t5))
+chk("FLAG 6 RECEIPTED WITH ITS DATE: full read in the reading notes (batch 9, 2026-08-23 -- "
+    "predating the b28 rule, disclosed in the docstring) reclassified it "
+    "QUALITATIVE-DIRECTIONAL; b25's gated convention dispute ruled the flag a paper-level "
+    "false positive",
     "# Batch 9 — entry 6" in open(NOTES).read()
     and os.path.exists(os.path.join(_HERE, "AGATE_B25_VERDICT.md")))
 chk("FLAG 22 RECEIPTED: CGATE_B24 read the complete pinned source; entry 22 is the gated "
@@ -143,8 +178,10 @@ print(f"  flags hand-checked   : {sorted(FROZEN_FLAGS)}   (receipted above)")
 print(f"  preregistered sample : {sorted(SAMPLE)}")
 print(f"  census batches       : {len(batch_union)} papers in {len(BATCHES)} receipted rows")
 print(f"  UNION                : {len(covered)}   missing: {missing}   outside corpus: {extra}")
-chk("COVERAGE: every readable BHU paper has a receipted read under the b28 rule; nothing "
-    "adjudicated is outside the corpus", missing == [] and extra == [],
+chk("COVERAGE: every readable BHU paper has a receipted read and obstruction adjudication -- "
+    "unflagged papers under the b28 rule, flags via their own artifacts (entry 6's predates "
+    "the rule, disclosed); nothing adjudicated is outside the corpus",
+    missing == [] and extra == [],
     "v1 could not say this -- entry 38's receipt did not exist; b43 is it")
 remainder = READABLE - FROZEN_FLAGS - SAMPLE
 chk("REMAINDER: the unflagged-unsampled remainder is exactly the batch union, 25 papers",
@@ -167,10 +204,12 @@ hits = sorted(obs & FROZEN_FLAGS); missed = sorted(obs - FROZEN_FLAGS)
 print(f"\n  PAPER-TIER miss rate on the receipted census : {len(missed)} of {len(obs)} "
       f"(hit {hits}, missed {missed})")
 print(f"  PAPER-TIER precision                          : {len(hits)} of {len(FROZEN_FLAGS)} flags")
-print("  CLAIM-LEVEL sensitivity                       : NOT MEASURED. The record carries")
-print("  claim-level exclusions in at least entries 25, 37, 38, 51, 52, 53, 57 -- the screen")
-print("  flagged only 25 of those. A claim-level rate needs its own frozen ground-truth table")
-print("  and a multiple-claims-per-paper rule; this file does not supply one.")
+print(f"  entry 5's miss is a DOUBLE miss               : never in the pool, and (0,0,0) on the")
+print(f"  vocabulary -- see the counterfactual above.")
+print("  CLAIM-LEVEL sensitivity                       : NOT MEASURED as a metric (CGATE's rule:")
+print("  no denominator without a frozen claim table). AGATE's fact, stated as a fact: among the")
+print("  papers whose records carry derived claim-level exclusions (25, 37, 38, 51, 52, 53, 57),")
+print("  the screen flagged only 25 -- AGATE would print 'caught 22; missed 5, 37, 51, 52, 53'.")
 chk("MEASURED (paper-tier only): miss rate 1 of 2 -- the screen missed entry 5, found only by "
     "full read; precision 1 of 3 flags",
     hits == [22] and missed == [5] and len(FROZEN_FLAGS) == 3,

@@ -823,11 +823,19 @@ random sample did not draw. Neither was in this entry.
    infinite k = 0 FRW slice cannot be the bounded interior of a Schwarzschild exterior of finite
    enclosed mass; only a finite FRW region can be matched. *(CGATE's reading; AGATE called it a
    coordinate/idealisation statement, and CGATE's rebuttal of that is the one adopted.)*
-3. *(added 2026-08-30, from the census-closing full read, b43)* **Theorem 7 proves the constructed
-   shock is everywhere subluminous if and only if σ ≤ 1/3**, and Theorem 8 proves the trichotomy at
-   the Big Bang — speed ∞ for σ > 1/3, 0 for σ < 1/3, exactly the speed of light only for σ = 1/3.
-   Same claim-level shape as entry 37's recorded constraint: a theorem delimiting the constructed
-   family, staying with the construction.
+3. *(added 2026-08-30, census-closing full read, b43; narrowed by CGATE_B43)* **Claim-level
+   parameter exclusion, scoped to the paper's unique entropy-satisfying shock family with constant
+   p = σρ, 0 < σ < 1:** the shock is strictly subluminous at every post-Big-Bang point (0 < S ≤ 1)
+   **if and only if σ ≤ 1/3** (Theorem 7); §6.3 and Theorems 7–8 give the Big-Bang speed limit —
+   ∞ for σ > 1/3, 0 for σ < 1/3, exactly the speed of light for σ = 1/3. **Theorem 8's printed
+   opening hypothesis ("Let 0 < σ ≤ 1/3") is inconsistent with its immediately following
+   above-1/3 limb** — a statement typo, disclosed rather than smoothed over; the intended domain
+   is Theorem 6's 0 < σ < 1 (resolved by Theorem 7 and eqs. (6.45)/(6.48)). Footnote 10 owns a
+   methodological rejected branch: for A < 0 one solution of the scalar condition (5.2) is
+   everywhere characteristic for (5.9), fails the full Rankine–Hugoniot relation (5.1), and is
+   not a weak solution of G = κT — repair machinery motivating the direct derivation, not a
+   no-go. Same claim-level shape as entry 37's recorded constraint: theorems delimiting the
+   constructed family, staying with the construction.
 **TIER UNCHANGED — CONSISTENCY-ONLY.** Under the ownership-of-proof convention both seats agree the
 limitation motivates and delimits a construction rather than being the paper's operative result. **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED — tier UNCHANGED.** A blind re-classification proposed promoting this to QUALITATIVE-DIRECTIONAL. Deliberately not gated: that sweep failed its own control (see the standing note above the entry list). The flag is a candidate from a biased instrument, not a finding. Do not promote on it.]. READ 2026-08-23 (Tori). The theorems behind entry 37. The authors' own caveat: 'only rough qualitative models' — the TOV-side equation of state cannot be imposed, only bounded. Rigor about the mathematics and equal rigor about its limits.
 Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
