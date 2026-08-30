@@ -6,30 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — two tier changes, yours
-
-### 7. Two more dual papers — construction versus obstruction (it does NOT inherit question 6's answer)
-
-**The stake.** The census closer found that entries 52 and 53 (the Popławski closed-universe pair)
-each headline a derived existence exclusion: *"a closed universe exists only when [a function of
-scale factor and temperature] exceeds a threshold"* — open and flat universes unrestricted. I missed
-it (my pattern had no "exists only when"; eighth miss of that kind); one reviewer found it on a full
-read; **I verified it in both abstracts directly.** Like entry 51, these are constructive bounce
-papers whose *stated central result* is an impossibility over a class.
-
-**CORRECTION, made when question 6 was ruled:** I told you one ruling would settle 6 and 7
-together. **That was wrong.** Question 6 was decided by your question-3 precedent — *when a paper
-carries a calibrated falsifier, that tier leads* — and entries 52/53 **carry no falsifier claim**.
-Their duality is construction-versus-obstruction, governed by the operative-contribution test (the
-entry-37-versus-22 line), a genuinely separate judgement: the threshold theorem is *a* headline
-result of each abstract, but each paper also constructs the bounce dynamics it is titled for. **So
-this question stands on its own.** Options:** whichever way you rule on entry 51's dual shape (keep tier + theorem in prose, or
-re-tier + construction as secondary), applying it to 52/53 keeps the corpus consistent. **The
-theorems are already recorded in both entries' prose either way — nothing is lost while you decide.**
-
----
-
-
+## OPEN — one tier change, yours
 
 ### 5. One paper may be filed under a label that says the opposite of what it does
 
@@ -661,6 +638,66 @@ way. If you ever adopt claim-level labels corpus-wide, this paper is the first c
 **What is already done regardless:** the precise proven domain is in the entry (both reviewers
 wanted that), the over-broad abstract wording is flagged, and the conjecture is separated from the
 theorem. Nothing waits on this.
+
+---
+
+
+
+
+</details>
+
+---
+
+## CLOSED 2026-08-30 — question 7
+
+**Duho's instruction, verbatim: "answer question 7."** The sixth question returned to me.
+
+**Ruling: entries 52 and 53 keep CONSISTENCY-ONLY.** The threshold theorems stay recorded in both
+entries' prose, where they already were.
+
+**The premise check that decided it** — the same move as every prior delegated question: the choice
+turned on whether the threshold is each paper's *operative result* (the entry-22 shape) or a
+*delimitation inside a construction* (the entry-37 shape, where both reviewers refused promotion).
+The reviewer proposing re-tier said the exclusion is "highlighted in each abstract and conclusion."
+The abstracts I had verified; **the conclusions I had never read. So I read them, and they decide
+it the other way:**
+
+> *"…the formation of our Universe corresponds to the moment when C begins to satisfy the
+> inequality (33)… **If this threshold is not reached, the closed universe contracts to another
+> bounce and starts another cycle**… The last bounce before reaching the threshold can be regarded
+> as the Big Bang."* (entry 52; entry 53 closes the same way)
+
+Both papers **end as scenario constructions** — a cyclic closed universe forming inside a black
+hole — with the threshold as the scenario's *entry condition*. And below the threshold, **their own
+text has the universe cycling, not absent**, which also suggests the "no solution exists below it"
+characterisation was too strong; that refinement goes to the implementation gate rather than into
+the record on my say-so.
+
+**What this is not:** not a win for the reviewer who confirmed my original all-nine — that
+confirmation never engaged the theorem. The basis is the recorded operative-contribution test
+applied to newly read evidence, and the theorems lose nothing: they were already claim-level prose
+in both entries before this ruling.
+
+<details><summary>The question as originally filed</summary>
+
+### 7. Two more dual papers — construction versus obstruction (it does NOT inherit question 6's answer)
+
+**The stake.** The census closer found that entries 52 and 53 (the Popławski closed-universe pair)
+each headline a derived existence exclusion: *"a closed universe exists only when [a function of
+scale factor and temperature] exceeds a threshold"* — open and flat universes unrestricted. I missed
+it (my pattern had no "exists only when"; eighth miss of that kind); one reviewer found it on a full
+read; **I verified it in both abstracts directly.** Like entry 51, these are constructive bounce
+papers whose *stated central result* is an impossibility over a class.
+
+**CORRECTION, made when question 6 was ruled:** I told you one ruling would settle 6 and 7
+together. **That was wrong.** Question 6 was decided by your question-3 precedent — *when a paper
+carries a calibrated falsifier, that tier leads* — and entries 52/53 **carry no falsifier claim**.
+Their duality is construction-versus-obstruction, governed by the operative-contribution test (the
+entry-37-versus-22 line), a genuinely separate judgement: the threshold theorem is *a* headline
+result of each abstract, but each paper also constructs the bounce dynamics it is titled for. **So
+this question stands on its own.** Options:** whichever way you rule on entry 51's dual shape (keep tier + theorem in prose, or
+re-tier + construction as secondary), applying it to 52/53 keeps the corpus consistent. **The
+theorems are already recorded in both entries' prose either way — nothing is lost while you decide.**
 
 ---
 
