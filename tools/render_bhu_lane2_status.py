@@ -77,6 +77,14 @@ def bibliography():
     if not entries:
         return []
 
+    # Keep the branches in the order their sections first appear, but sort papers
+    # by entry number WITHIN each branch (Duho, 2026-08-31: "the paper number is
+    # not ordered" — the Gaztañaga branch had 56 before 54 in file order).
+    sec_order = {}
+    for e in entries:
+        sec_order.setdefault(e["section"], len(sec_order))
+    entries.sort(key=lambda e: (sec_order[e["section"]], e["n"]))
+
     tally = {}
     for e in entries:
         tally[e["cls"] or "unclassified"] = tally.get(e["cls"] or "unclassified", 0) + 1
