@@ -161,6 +161,15 @@ _c("arrival.request_key", "bounded-encoding",
    source="draft 6.1 item (ii-b) - ARRIVAL event schema")
 _c("arrival.running_chain_digest", "digest-ref",
    source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("arrival.boot_epoch arrival.monotonic_reading", "bounded-encoding",
+   "the authenticated clock pair: Row B's own monotonic reading at append + its boot epoch, "
+   "decimal - the durable deadline start; overdue is computed from these bytes, never from a "
+   "clock read at verification (GPT56-V89 F1, CODEX-V89 F2)",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("ckclock.boot_epoch ckclock.monotonic_reading", "bounded-encoding",
+   "the checkpoint CLOCK RECORD of its own production, decimal - the other side of the "
+   "spec-3b comparison rule",
+   source="spec 3b - checkpoint clock record")
 _c("envelope.slot", "closed-vocab", "SLOT_SCHEMA keys")
 _c("envelope.schema", "closed-vocab", "the literal successor_ref_v3/1")
 # The environment's SIX LEAF FIELDS, extracted from environment_record() itself rather than
@@ -288,8 +297,10 @@ BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
 SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint")}
-ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "row", "operation", "object_identity",
-    "request_key", "running_chain_digest")}
+ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "boot_epoch", "monotonic_reading",
+    "row", "operation", "object_identity", "request_key", "running_chain_digest")}
+# the checkpoint clock record (spec 3b authenticated clock basis - GPT56-V89 F1, CODEX-V89 F2)
+CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading"}
 OPENAUTH = {f"openauth.{n}" for n in ("bsl_digest", "store_identity_main", "store_identity_committee",
     "destination", "ceremony_id", "phase", "signer_identity", "schema_version")}
 FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection_bricks",
@@ -377,7 +388,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

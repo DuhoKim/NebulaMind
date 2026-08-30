@@ -35,7 +35,7 @@ BASE = HERE.parent
 
 DEAD = re.compile(
     r"SWEEP|sweep|RETIRED|retired|superseded|pre-arrival|pre-ruling|predecessor|previously|"
-    r"WITHDRAWN|HISTORY|dissolved|form said|sentence said|wording said|cell carried")
+    r"WITHDRAWN|HISTORY|dissolved|form said|sentence said|wording said|clause said|cell carried")
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
@@ -69,6 +69,14 @@ SWEEPS = [
      ("draft",), "the circular half of the V88 cut; two cuts named at V89"),
     ("COUNT MOVE (GPT56-V88 F7)", "16/8 → 16/9", ("draft",),
      "the false predecessor count; quoted-as-history at V89"),
+    ("DRAW MECHANICS COMMITTED (2026-08-30 sitting)", "CURRENTLY UNSET", ("draft",),
+     "live pre-sitting draw prose the literal sweep missed (GPT56-V89 F4, CODEX-V89 F3)"),
+    ("DRAW MECHANICS COMMITTED (2026-08-30 sitting)", "empty generator set", ("draft",),
+     "same paragraph; the generator has one committed member (GPT56-V89 F4)"),
+    ("DRAW MECHANICS COMMITTED (2026-08-30 sitting)", "CLASS-P, UNSET", ("draft",),
+     "the common-vs-independent choice was RULED common (CODEX-V89 F3)"),
+    ("GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2)", "(i, 0)", ("draft",),
+     "the baseline address outside the matrix domain (GPT56-V89 F3); compare to (i, j0)"),
 ]
 
 
@@ -108,8 +116,9 @@ def controls():
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("usage: gen_sweep_receipt.py DRAFT.md")
+    args = [a for a in sys.argv[1:] if a != "--check"]
+    if len(args) != 1:
+        print("usage: gen_sweep_receipt.py DRAFT.md [--check]")
         return 2
     cf = controls()
     for f in cf:
@@ -136,7 +145,11 @@ def main():
            "`gates/FINDINGS_MAP.md` is out of scope (testimony quotes dead regimes legitimately).\n",
            "**Rule:** every hit line is printed with a verdict; a LIVE hit under a swept token is "
            "a FAILING control (exit 1), not a note. Tokens are literal and the list is "
-           "append-only; paraphrase is the round's to catch, and this header says so.\n",
+           "append-only; paraphrase is the round's to catch, and this header says so. **Scopes "
+           "are DECLARED PER TOKEN in the table — this is not a cross-product sweep: a file "
+           "absent from a token's row is UNSWEPT for that token** (CODEX-V89 F3: the two draw "
+           "tokens were scoped to the registry while the live paraphrase sat in the draft — the "
+           "scope was the blind spot, and it is now printed instead of implied).\n",
            "| ruling | superseded token | file | hits | live | disposition |",
            "|---|---|---|---|---|---|"]
     tok_show = lambda s: s.replace("|", "·")
@@ -148,8 +161,14 @@ def main():
         for ln, v, line in hits:
             out.append(f"- **{v}** `{fname}:{ln}` token `{tok_show(token)}` — "
                        f"{tok_show(line)[:160]}")
-    (HERE / "SUPERSESSION_SWEEP_RECEIPT.md").write_text("\n".join(out) + "\n")
-    print(f"sweep receipt: {len(SWEEPS)} token rows over {len(fmap)} files; "
+    content = "\n".join(out) + "\n"
+    target = HERE / "SUPERSESSION_SWEEP_RECEIPT.md"
+    if "--check" in sys.argv:
+        ok = target.exists() and target.read_text() == content
+        print("sweep receipt --check:", "byte-equal to generator output" if ok else "DRIFTED from generator")
+        return 0 if (ok and not live_total) else 1
+    target.write_text(content)
+    print(f"sweep receipt: {len(SWEEPS)} token rows, per-token declared scopes; "
           f"{dead_total} dead-quoted hit(s), {live_total} LIVE")
     return 1 if live_total else 0
 

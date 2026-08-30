@@ -30,5 +30,13 @@ findings close. **What it costs, stated:** if the real instrument's gradient wer
 than 0.25 *and* calibration failed to catch it, the sweep would not cover it; that compound event
 requires the calibration gate itself to fail, which is a separate, already-guarded failure.
 
-**Awaiting: ratify ±0.25, or set different endpoints.** Δγ = 0.01 stands either way (committed in
-`ref/DRAW_MECHANICS_COMMIT_20260830.md`).
+**Awaiting (v2, pre-reconciled with the grid commitment — GPT56-V89 F5): ratify symmetric
+endpoints ±Γ; proposed Γ = 0.25.** The grid is committed as a STEP COUNT — `n_steps = 50`,
+even (`DRAW_MECHANICS_COMMIT_20260830.md`, AMENDMENT 2) — so the spacing is DERIVED, never in
+tension with the ratification: Δγ = 2Γ/50 (= 0.01 at the proposed Γ), grid γ_j = −Γ + j·Δγ for
+j ∈ [0, 50], 51 points, both endpoints on the grid BY CONSTRUCTION for every symmetric choice,
+γ=0 baseline at j₀ = 25 exactly. **The ratification asks ONE number: Γ.** Constraint stated
+plainly: the endpoints are symmetric — an asymmetric range would need a new grid commitment.
+(The v1 text here said a fixed Δγ = 0.01 stood for any endpoints — false for endpoints off the
+0.01 lattice, e.g. ±0.253; the step-count form removes the collision for every possible
+ratification, which is why it reaches the principal pre-reconciled.)

@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V89_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V90_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -92,7 +92,9 @@
 | `BS-V.path` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
+| `arrival.boot_epoch` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the authenticated clock pair: Row B's own monotonic reading at append + its boot epoch, decimal - the durable deadline start; overdue is computed from these bytes, never from a clock read at verification (GPT56-V89 F1, CODEX-V89 F2) |
 | `arrival.kind` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the literal ARRIVAL |
+| `arrival.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the authenticated clock pair: Row B's own monotonic reading at append + its boot epoch, decimal - the durable deadline start; overdue is computed from these bytes, never from a clock read at verification (GPT56-V89 F1, CODEX-V89 F2) |
 | `arrival.object_identity` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | brickid/objid keys |
 | `arrival.operation` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
 | `arrival.request_key` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the arrival's own chain position, decimal - unique by construction, restart-safe; the enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal naming it, every terminal exactly one prior arrival |
@@ -109,6 +111,8 @@
 | `canonical.lock_body` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
 | `canonical.opening_authorization` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
 | `canonical.provenance_record` | SCHEMA-PENDING | v9 SLOT_SCHEMA | V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written |
+| `ckclock.boot_epoch` | bounded-encoding | spec 3b - checkpoint clock record | the checkpoint CLOCK RECORD of its own production, decimal - the other side of the spec-3b comparison rule |
+| `ckclock.monotonic_reading` | bounded-encoding | spec 3b - checkpoint clock record | the checkpoint CLOCK RECORD of its own production, decimal - the other side of the spec-3b comparison rule |
 | `dlm_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
 | `dlm_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
 | `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |

@@ -10,8 +10,13 @@ for fn in [n for n in ast.walk(tree) if isinstance(n, ast.FunctionDef)]:
 UNREACH_BOTH = set()   # WITHDRAWN V54 - no site meets the evidence bar
 UNREACH_MEAS = set()   # WITHDRAWN V54 - the harness froze the budget argument
 NUM = {1123,1134,1153, 1369,1397,1401,1403,1411,1435,1437,1439,1442,
-       1462,1468, 1503,1513,1517,1537,1548,1554}
-SOFT = {1462,1468}                      # domain-vs-computed, named as uncertain
+       1503,1513,1517,1537,1548,1554}
+# 1462/1468 moved NUMERICAL -> CALLER at V89 (GPT56-V88 F8): each tests a supplied argument's
+# admissibility before the function computes anything - the as-supplied boundary as written,
+# the same move 1464 made earlier. V89 edited the OUTPUT and not this generator (CODEX-V89 F4
+# executed the generator and caught the drift); the resolution now lives HERE, where it
+# regenerates instead of reviving.
+RESOLVED = {1462,1468}
 PLAN = {963,973}          # caller/setup: infeasible against a SUPPLIED l_plan
 PLAN_INTERNAL = {986, 1331, 1341}   # 986: MOVE_CAP (below). 1331/1341: _plan raises the TYPED
                           # OUTCOME exception InconclusiveByPower AT PLANNING (CODEX-V68 F3) -
@@ -36,7 +41,7 @@ INTEG = {64,856,858,860,862,864,867,872,876,885,887,889,891,1601,1605,1641,1643,
 # 1649 (require_complete_sample) moved INTEGRITY -> CALLER (CODEX-V75 F6): the guard compares two
 # CALLER-SUPPLIED integers and verifies no parent-to-receipt partition - section 5's own recorded
 # limit says so, and the ledger contradicted the draft's recorded limit for four revisions.
-CALLER = CALLER | {1649}
+CALLER = CALLER | {1649} | RESOLVED
 
 rows=[]
 for n in ast.walk(tree):
@@ -57,7 +62,7 @@ for n in ast.walk(tree):
     elif ln in CALLER or ln in PLAN: cls="CALLER"
     elif ln in INTEG: cls="INTEGRITY"
     else: cls="UNASSIGNED"
-    note = "moved" if (ln in PLAN or ln in PLAN_INTERNAL) else ("soft" if ln in SOFT else "")
+    note = "moved" if (ln in PLAN or ln in PLAN_INTERNAL) else ("resolved" if ln in RESOLVED else "")
     rows.append((ln, owner.get(ln,"?"), et, cls, note, msg[:70]))
 rows.sort()
 from collections import Counter
@@ -92,15 +97,32 @@ out.append("**Planning failures are not run outcomes** (principal ruling, 2026-0
            "`run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is "
            "*no run-time path found*, not *no run-time path exists*.\n")
 for k,v in sorted(c.items()): out.append(f"- **{k}** — {v}")
-out.append(f"\n**Total {len(rows)} raise nodes.** Sites marked *soft* are ones I am least sure of; "
-           f"if they read as CALLER instead, the numerical class drops from {c['NUMERICAL']} to "
-           f"{c['NUMERICAL'] - len(SOFT)}. Sites marked *moved* were reclassified by ruling, not by "
-           "reading.\n")
+out.append(f"\n**Total {len(rows)} raise nodes.** The two sites once marked *soft* (L1462, "
+           "L1468) were resolved to CALLER at V89 under the boundary as written — each tests a "
+           "supplied argument's admissibility before the function computes anything (GPT56-V88 "
+           "F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 "
+           "made earlier on the identical argument. Sites marked *moved* were reclassified by "
+           "ruling, not by reading; *resolved* marks the two boundary applications — encoded in "
+           "this generator at V90 after V89 edited only the output (CODEX-V89 F4: a checked-in "
+           "artifact that can drift from its generator will).\n")
 out.append("| line | function | exception | class | | message |")
 out.append("|---|---|---|---|---|---|")
+ANNOT = {
+    1462: " (tests supplied `n_counts` before the function computes anything; resolved "
+          "CALLER under the as-supplied boundary — GPT56-V88 F8)",
+    1468: " (tests supplied `epsilon_hat` before the function computes anything; resolved "
+          "CALLER under the as-supplied boundary — GPT56-V88 F8)",
+}
 for ln,f,et,cls,soft,msg in rows:
-    safe = msg.replace("|", "/")
+    safe = msg.replace("|", "/") + ANNOT.get(ln, "")
     out.append(f"| {ln} | `{f}` | `{et}` | **{cls}** | {soft} | {safe} |")
-(b/"ref/RAISE_SITE_CLASSIFICATION.md").write_text("\n".join(out)+"\n")
+import sys
+content = "\n".join(out)+"\n"
+target = b/"ref/RAISE_SITE_CLASSIFICATION.md"
+if "--check" in sys.argv:
+    ok = target.read_text() == content
+    print("raise ledger --check:", "byte-equal to generator output" if ok else "DRIFTED from generator")
+    raise SystemExit(0 if ok else 1)
+target.write_text(content)
 print("classes:", dict(c))
 print("UNASSIGNED:", [(r[0],r[1],r[5][:40]) for r in unassigned])

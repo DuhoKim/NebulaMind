@@ -15,7 +15,7 @@
 - **TYPED-OUTCOME** — 1
 - **WRAPPER** — 3
 
-**Total 112 raise nodes.** The two sites marked *soft* (L1462, L1468) were resolved to CALLER at V89 under the boundary as written — each tests a supplied argument's admissibility before the function computes anything (GPT56-V88 F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 made earlier on the identical argument. Sites marked *moved* were reclassified by ruling, not by reading; *resolved* marks the two boundary applications.
+**Total 112 raise nodes.** The two sites once marked *soft* (L1462, L1468) were resolved to CALLER at V89 under the boundary as written — each tests a supplied argument's admissibility before the function computes anything (GPT56-V88 F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 made earlier on the identical argument. Sites marked *moved* were reclassified by ruling, not by reading; *resolved* marks the two boundary applications — encoded in this generator at V90 after V89 edited only the output (CODEX-V89 F4: a checked-in artifact that can drift from its generator will).
 
 | line | function | exception | class | | message |
 |---|---|---|---|---|---|
