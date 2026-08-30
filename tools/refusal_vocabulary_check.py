@@ -23,7 +23,7 @@ What this checks
 ----------------
     R01  the draft pins a vocabulary that is not the ruled eleven-code set
     R02  the draft pins a derivation fingerprint, or claims the set is closed
-    R03  the draft does not state the principle (request/authorisation state, never the object)
+    R03  the draft does not state the REBUILT principle (storage state allowed, content-derived forbidden, chi-blind-schedule dependency stated)
     R04  the draft does not forbid free text in the refusal-reason field
     R05  the draft does not state the CATCH-ALL GUARD
 

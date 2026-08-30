@@ -18,3 +18,13 @@ is not committed here; Δγ stands whatever the ratified endpoints are, as the m
 spacing.
 
 **Every value above is now frozen by commitment: a later change is a post-hoc edit and says so.**
+
+---
+
+**AMENDMENT — 2026-08-30 11:2x KST, logged per this file's own rule ("a later change is a post-hoc
+edit and says so").** CODEX-V86 F10: the addressing rule as first committed read one-based —
+`spawn(n_draws)[i]` for draw `i ∈ [1, n_draws]` — which addresses `spawn(99)[99]`, out of range,
+and leaves child 0 unused. **The rule is corrected to ZERO-BASED: draw `i ∈ [0, n_draws−1]` uses
+`SeedSequence(master_seed).spawn(n_draws)[i]`.** The amendment touches the ADDRESSING RULE only;
+`master_seed`, the generator, `Δγ` and `n_draws` stand exactly as first committed, and this
+amendment is itself part of the committed record.

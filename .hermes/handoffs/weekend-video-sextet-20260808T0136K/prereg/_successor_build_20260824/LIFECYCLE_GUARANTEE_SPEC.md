@@ -77,7 +77,7 @@ exists) · W3 = after commit, before delivery · W4 = during delivery · W5 = af
 
 | window | requester sees | verifier/auditor sees | Row B on recovery sees |
 |---|---|---|---|
-| W1 | nothing (no bytes ever left) | nothing — **N2**: indistinguishable from no request | no binding → request never happened; safe to re-process |
+| W1 | nothing (no bytes ever left) | **the ARRIVAL event (§1c)** — the request is visible with no terminal event, which the deadline machinery closes; the pre-arrival wire is the only invisible span | no binding → no touch happened; the arrival event shows the request existed; safe to re-process |
 | W2 | — | — | — (atomic: no such window) |
 | W3 | nothing yet | a TRUE event: the effect happened | binding present → never re-decide; **conveyance**: may re-deliver from the committed buffer, no new event; **render**: NO re-render without a NEW touch commit (G5) |
 | W4 | partial bytes / partial frame | same true event | same as W3 |
@@ -173,7 +173,7 @@ the covenant as written already contains G5.**
 
 ## 6. What this spec deliberately leaves open
 
-- **N2 stands referred** (the durable pre-verdict state; needs a second event class).
+- **N2 is RETIRED** — the arrival receipt (§1c) is the second event class, authorised 2026-08-30; nothing here is referred any more.
 - **The post-`BS-L` enumeration surface** is the enumeration mechanism's problem, not the
   lifecycle's; it is repaired in the draft where the enumeration lives.
 - **Cross-run recurrence** stays a successor-preregistration duty.
