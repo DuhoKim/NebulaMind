@@ -1,3 +1,5 @@
+**STATUS: RATIFIED AS PROPOSED — 2026-08-30 20:19 KST, Γ = 0.25 (`GAMMA_RATIFICATION_20260830.md`, the principal's verbatim words recorded there). The body below is preserved as the proposal record.**
+
 **STATUS: PROPOSAL — for the principal's ratification. The ONE new item the BS-3g sitting created:
 the a-priori γ range endpoints, proposed from instrument specifications (ruling 2, 2026-08-30).**
 

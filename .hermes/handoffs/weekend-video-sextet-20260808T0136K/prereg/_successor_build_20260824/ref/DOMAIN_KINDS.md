@@ -1,6 +1,6 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**24 kinds; 72 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**24 kinds; 74 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
 - `attempt-start`
@@ -11,6 +11,7 @@
 - `explanation`
 - `freeze-body`
 - `haltrec`
+- `identity-envelope`
 - `lock-body`
 - `lockcp`
 - `opening-auth`
@@ -26,10 +27,9 @@
 - `verdict-record`
 - `verification-boundary`
 - `verification-read`
-- `wire-frame`
 
 ## Sites
-- `arrival.request_digest` — TAGGED: wire-frame
+- `arrival.request_digest` — TAGGED: identity-envelope
 - `arrival.running_chain_digest` — FROZEN: the chain digest itself
 - `bindmap.decision_event_digest` — FROZEN: chain running digest values
 - `bs7p_env.dependency_roots` — RAW: manifest document bytes (roots/DLM files)
@@ -79,6 +79,8 @@
 - `revbody.transcript_digest` — RAW: verifier binary / ceremony transcript bytes
 - `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes
 - `revrec.evidence_ref` — RAW: evidence artifact bytes
+- `revrec.first_opening_digest` — FROZEN: the first opening record - run binding (V98 precedent)
+- `revrec.reviewed_event_digest` — FROZEN: the adjudicated emission's committed event bytes (V112 - GPT56/CODEX-V111 F5)
 - `rnote.receipt_digest` — TAGGED: termrec
 - `roots_entry.digest` — RAW: loaded-object file bytes
 - `succexp.continuation_segment_digest` — TAGGED: continuation-segment

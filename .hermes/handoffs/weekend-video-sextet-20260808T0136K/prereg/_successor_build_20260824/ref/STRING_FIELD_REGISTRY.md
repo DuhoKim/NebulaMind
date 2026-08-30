@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V111_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V112_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -93,6 +93,7 @@
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `arrival.boot_epoch` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the authenticated clock pair: boot_epoch = the BS-2k restart counter, decimal integer in [0, 10^6]; monotonic_reading = decimal integer nanoseconds in [0, 2^63-1] (GPT56-V90 F3: bounds stated); overdue is computed from these bytes under spec-3b's chain-order monotonicity invariants, never from a clock read at verification |
+| `arrival.frame_sequence` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | caller-issued per row, strictly increasing; recovery resumes above the row's last chain-visible sequence (spec 1c - GPT56-V111 F4) |
 | `arrival.kind` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the literal ARRIVAL |
 | `arrival.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the authenticated clock pair: boot_epoch = the BS-2k restart counter, decimal integer in [0, 10^6]; monotonic_reading = decimal integer nanoseconds in [0, 2^63-1] (GPT56-V90 F3: bounds stated); overdue is computed from these bytes under spec-3b's chain-order monotonicity invariants, never from a clock read at verification |
 | `arrival.object_identity` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | brickid/objid keys |
@@ -102,6 +103,11 @@
 | `arrival.row` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
 | `arrival.running_chain_digest` | digest-ref | draft 6.1 item (ii-b) - ARRIVAL event schema |  |
 | `arrival.timestamp` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | ISO-8601 UTC, 24 bytes |
+| `attclose.boot_epoch` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | kind literal + the clock pair |
+| `attclose.close_class` | closed-vocab | draft 6.1 item (ii-g) - attempt records | ABORTED - ABORTED-BY-RESTART (a successful attempt's close is the decision event itself; spec 3c T2 alternation law - GPT56-V111 F8, CODEX-V111 F4) |
+| `attclose.kind` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | kind literal + the clock pair |
+| `attclose.member_position` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | decimal chain position |
+| `attclose.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | kind literal + the clock pair |
 | `attstart.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `attstart.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
 | `attstart.member_position` | bounded-encoding | spec 3c T2 - attempt-start record | decimal chain position |
@@ -136,6 +142,10 @@
 | `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.environment` | digest-ref | v9 SLOT_SCHEMA | the container: canonical JSON of the six leaves below, digested into the envelope |
+| `envelope.frame_sequence` | bounded-encoding | spec 1c - identity envelope | the identity envelope - request_digest's whole preimage, no payload byte, no length field (GPT56-V111 F1) |
+| `envelope.object_identity` | bounded-encoding | spec 1c - identity envelope | the identity envelope - request_digest's whole preimage, no payload byte, no length field (GPT56-V111 F1) |
+| `envelope.operation` | bounded-encoding | spec 1c - identity envelope | the identity envelope - request_digest's whole preimage, no payload byte, no length field (GPT56-V111 F1) |
+| `envelope.origin_row` | bounded-encoding | spec 1c - identity envelope | the identity envelope - request_digest's whole preimage, no payload byte, no length field (GPT56-V111 F1) |
 | `envelope.schema` | closed-vocab | v9 SLOT_SCHEMA | the literal successor_ref_v3/1 |
 | `envelope.slot` | closed-vocab | v9 SLOT_SCHEMA | SLOT_SCHEMA keys |
 | `environment.byteorder` | closed-vocab | v9 SLOT_SCHEMA | pinned by require_environment - one frozen value each, deviation refuses |
@@ -209,8 +219,13 @@
 | `revbody.transcript_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.verifier_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revrec.evidence_ref` | digest-ref | review record |  |
+| `revrec.first_opening_digest` | digest-ref | review record (V112) | run binding, the V98 precedent |
+| `revrec.kind` | closed-vocab | review record (V112 - GPT56-V111 F5, CODEX-V111 F5) | the review-record literal |
 | `revrec.review_disposition` | closed-vocab | review record | fault · tampering |
 | `revrec.review_timestamp` | bounded-encoding | review record | ISO-8601 UTC, human-facing |
+| `revrec.reviewed_chain_position` | bounded-encoding | review record (V112) | decimal chain position |
+| `revrec.reviewed_class_key` | bounded-encoding | review record (V112) | the mismatch class key |
+| `revrec.reviewed_event_digest` | digest-ref | review record (V112) | the adjudicated emission - inside the signed body, so reuse and pre-event adjudication die (GPT56-V111 F5, CODEX-V111 F5) |
 | `revrec.reviewer_identity` | closed-vocab | review record (coordinator on V109, within the mismatch ruling) | roster-bound identity |
 | `rnote.boot_epoch` | bounded-encoding | spec 3c T1 - receipt-note record | the clock pair |
 | `rnote.kind` | closed-vocab | spec 3c T1 - receipt-note record (GPT56-V104 F3) | the receipt-note literal |
@@ -224,7 +239,7 @@
 | `sig.freeze` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `succexp.continuation_segment_digest` | digest-ref | draft 11 - successor export |  |
-| `succexp.flagged_keys` | bounded-encoding | draft 11 - successor export | the recurrence-flagged mismatch class_keys the successor must adjudicate (CODEX-V109 F4) |
+| `succexp.flagged_keys` | bounded-encoding | draft 11 - successor export | the recurrence-flagged mismatch class_keys the successor must adjudicate (CODEX-V109 F4); CANONICAL SET: count-prefixed, lexicographically sorted, duplicate-refusing, empty = count 0 (CODEX-V111 F7) |
 | `succexp.freeze_signature_digest` | digest-ref | draft 11 - successor export |  |
 | `succexp.kind` | closed-vocab | draft 11 - successor export (GPT56/CODEX-V108 F4) | the successor-export literal |
 | `succexp.sealed_enumeration_digest` | digest-ref | draft 11 - successor export |  |
@@ -250,6 +265,8 @@
 | `vread.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `vread.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
 | `vread.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `vread.request_key` | bounded-encoding | draft 6.1 item (ii-g) - verification records | the joined touch's request key (CODEX-V111 F1: a read is an ordinary touch PLUS its typed record) |
+| `vread.touch_position` | bounded-encoding | draft 6.1 item (ii-g) - verification records | the joined touch commit's position |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
 | `baseline_verdict` | closed-vocab | §11 BS-3g | a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |

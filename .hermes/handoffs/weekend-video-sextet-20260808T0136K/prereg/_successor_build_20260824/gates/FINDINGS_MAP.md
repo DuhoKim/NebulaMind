@@ -103,3 +103,57 @@ V107→V108: EVERY MEMBER GETS ITS EVENT, THE WINDOW DIES, THE PROBES BITE. GPT5
 V108→V109: THE ORDERING LAW, THE DOUBLE-READ, THE EXPORT, THE THIRD TOKEN. GPT56-V108 F1 + CODEX-V108 F1 (the drain-scoped ORDERING LAW: ordinary FIFO ends at drain-start; members attempted in arrival order, individual commits in attempt order, deferred in-commit events arrival-ordered among themselves - no cross-set order claimed because none exists to enforce; AND the drained-or-listed language swept from all three surviving clauses, the disjunction gone because both branches are the same thing, an event - one clause survived my first sweep and the re-grep caught it). GPT56-V108 F3 + CODEX-V108 F2 (the DOUBLE-READ DISCIPLINE: the receipt-first interval is real, so the orphan verdict requires a receipt present in two reads with no record while the head ADVANCED between them; no-movement intervals defer to the next pass, which always exists before anything the orphan could corrupt). GPT56-V108 F4 + CODEX-V108 F4 (the SUCCESSOR EXPORT: at the last gate pass the verifier emits the canonical successor-bound artifact joining sealed and continuation enumeration digests with the terminal head under the enumerator keypair, receipted, on the exhaustive list - the duty now points at bytes that exist; registry SUCCEXP, kind 19). CODEX-V108 F5 (the REVIEWED disposition joins the entry schema, valid exactly for the mismatch class - the ruled logged-and-continued treatment was excluded by the only exact schema; the catch-all keeps its two and the verifier enforces the pairing). CODEX-V108 F3 (the tuple probes require a UNIQUE anchor match - a stale decoy can no longer shadow the normative tuple).
 V109→V110: THE PASS'S OWN READS DECIDE, COMMIT-ORDER IS THE LAW, REVIEWED GETS ITS EVIDENCE. GPT56/CODEX-V109 F1 (the defer-to-next-pass clause broke at disclosure - and the answer was already in the machinery: the verifier's store enumeration is Row-B-mediated, every mediated read is a logged touch, every touch appends, so the pass's OWN reads advance the head between its two looks - the orphan verdict is total at every pass including the last, nothing deferred, no next pass needed). GPT56/CODEX-V109 F2 (aborted attempts leave no bytes: the checkable law is COMMIT ORDER - individual commits in arrival order, deferred in-commit events arrival-ordered among themselves - and attempt-order is an implementation obligation SAID to be testimony-plus-fixture, never chain-proved). GPT56-V109 F3 + CODEX-V109 F4 (REVIEWED carries review_ref under the explanation_ref discipline; the unexplained-mismatch blocker's predicate is TOTAL - unexplained = no resolvable review_ref; and the explained-forever worry is answered by the ruling, not dodged: log-and-continue is ORDERED for this class, so recurrence never blocks within-run, but M_max same-class emissions set the RECURRENCE FLAG, the successor export carries every flagged key, and the successor freeze review must adjudicate - impossible to not-see downstream). GPT56-V109 F4 + CODEX-V109 F3 (the export's FINAL-PASS rule: disclosure in a completed run, or the first gate refusal after a TERMINATED receipt - which emits the export before refusing; a run dying with no further pass exports nothing and that case is NAMED with the raw-chain fallback stated; continuation_segment_digest's preimage defined as its own domain-tagged kind, terminal_head's digest half the frozen chain discipline). Registry 269; kinds 20/70.
 V110→V111: THE MOTION-FREE RULE WRITTEN GLOBAL, ROW V DECLARED, EVERYTHING LOG-DERIVED. This build folds the coordinator's V109 four (which crossed with the V110 dispatch) and the V110 round's ten. THE GLOBAL RULE (spec 0b): every liveness/orphan/ordering/staleness predicate over the LOG SEQUENCE, never motion/activity/wall-time/completion - five paid instances named so the seats hold new predicates against it. V109-#1+V110 pair (the orphan verdict is motion-free: absent-from-log = orphan, no precondition; disclosure runs the mandatory reconciliation; and the V110 self-advancing construction's two defects die together - ROW V is declared in the covenant table, read-only non-chi via Row B with VERIFICATION-READ records as their own kind, and PREFIX VERIFICATION AT A DECLARED BOUNDARY closes the fixpoint: boundary record appended, the closed prefix verified, the pass's own reads after the boundary excluded BY TYPE - GPT56/CODEX-V110 F1/F2). V109-#2 (ATTEMPT-START records, unconditional, checkpoint-family - attempt order is chain fact for every future deferral shape; the ruled event classes untouched). V109-#3 (the TERMINAL CHECKPOINT is the export trigger - the export is drain-close artifact-set, never a reward for finishing well; clean runs export at disclosure's reconciliation). V109-#4 (REVIEWED requires a REVIEW RECORD - reviewer identity roster-bound, timestamp, fault-or-tampering disposition, evidence ref, signed - the principal's ruling made checkable, strengthened not changed). V110 F3-pair (recurrence LOG-DERIVED: count = class-key occurrences over the run log, M_max = 3 committed, the flag computed and verified by recount both directions; A_max exhaustion DERIVED from attempt-start counts - a never-attempted member cannot dress as exhausted, GPT56-V110 F4). V110 F4-pair + CODEX F6 (the export body gains flagged_keys, is GENERATED FROM THE SCHEMA with a completeness fixture, and the no-export fallback lists the full evidence set BY NAME including the review records and the pinned tooling the successor inherits through this preregistration's own bytes). CODEX-V110 F5 (request_digest - the wire frame's sha256 - is the REQUEST's identity, distinct from the position-minted key; duplicate appends of one frame refused, retries legitimately new frames). GPT56-V110 F3 (REVIEWED joins the registry's disposition domain; the diff control proves it). Registry 284; kinds 24.
+
+## V111 → V112 (2026-08-30 evening — the round crossed with TWO principal rulings, all folded in one build)
+
+**V111 verdicts: NOT CLEAR ×2 (GPT56 8, CODEX 7).** The count ticked up because V110's repairs
+introduced record types without integration, and two of the coordinator's own V109/V110
+prescriptions broke on contact (his call: own those first). Repairs, all dispositioned in
+`gates/REPAIR_LEDGER.md`:
+
+- **GPT56 F1 (+ coordinator #1):** `request_digest` was a χ oracle — sha256 of the complete
+  frame hashes the χ-bearing write payload into the non-χ arrival. Identity is now the
+  IDENTITY ENVELOPE's digest only `(origin_row, frame_sequence, operation, object_identity)`,
+  spec §1c; the length field deliberately excluded (canonical decimals make length
+  value-correlated — stated deviation from the coordinator's sketch); frame closure stays
+  wire-side. **GPT56 F4 + CODEX F6:** the identity is CONSUMED now — per-row strict-increase
+  law, duplicate-digest refusal, retry = strictly-higher sequence, four fixtures in the
+  verifier contract.
+- **GPT56 F2 (+ coordinator #3):** fourth integration lag — four record kinds off the
+  exhaustive list. Admitted at (ii-g) and (iv-b) with full schemas; and the class is closed
+  mechanically: `ref/gen_nonchi_surface.py` (seeded control SHOWN RED on live V111 first —
+  receipt `gates/_ctrl_nonchi_surface_v111_red.txt` — exactly the seats' five defects; 4/4
+  self-controls; wired into the battery) refuses any registry record kind without an
+  admission, so a fifth instance cannot exist unnoticed.
+- **GPT56 F3:** (ii-d) still declared the five-field export — fixed to six; the surface
+  generator's field-echo now refuses this cross-declaration drift class wholesale.
+- **GPT56 F6:** two export production points → ONE PRODUCER PER ENDING: the terminal
+  checkpoint's atomic commit (terminated) or disclosure's reconciliation pass (completed);
+  the refusing-pass path DELETED and quoted dead; later passes verify-and-consume.
+- **GPT56 F7:** the dead-run fallback now carries THE AUTHENTICATED CHAIN ITSELF first —
+  everything else derives from it — plus the named unsigned-suffix fact.
+- **GPT56 F5 + CODEX F5 (+ coordinator #5a):** the review record now NAMES what it
+  adjudicates — reviewed position, event digest, class_key, first_opening_digest inside the
+  signed body (reuse dies; pre-event adjudication dies cryptographically); roster
+  BS-2k-committed, human-only, machine keys excluded.
+- **GPT56 F8 + CODEX F4 (+ coordinator #5b):** exhaustion counts CLOSED PAIRS — ATTEMPT-CLOSE
+  record, alternation law, dangling starts closed ABORTED-BY-RESTART at the next opening,
+  residue named (pairs prove claim-bracketing, not execution; testimony-plus-fixture).
+- **CODEX F1 (+ coordinator #6):** a Row-V read is an ORDINARY TOUCH (G1–G4 unchanged) PLUS
+  its joined VERIFICATION-READ record; exclusion through typed joins, never a by-type wave.
+- **CODEX F2 (+ coordinator #6):** the boundary is Row B's LAST ORDINARY APPEND until the
+  pass's gate action — admission held at every gate, not only termination; termination's
+  indivisible unit outranks and aborts the pass; deadlines untouched (D runs from arrival
+  commit); hold bounded by the gate-pass budget.
+- **CODEX F3 (+ coordinator #2):** the orphan predicate is SEQUENCE-BOUNDED via the
+  INDIVISIBLE RECEIPT UNIT — store write + log append are one serialised act, so the mandated
+  interval spans zero appends and the first later append either is the record or convicts
+  the unit.
+- **CODEX F7:** `flagged_keys` = canonical set encoding — count-prefixed, sorted,
+  duplicate-refusing, empty = count 0.
+
+**Also folded, same build — two principal rulings landed while the round ran:** Γ RATIFIED
+(20:19 KST, `GAMMA_RATIFICATION_20260830.md`) — five draft sites re-derived, dead phrases
+swept; the TERMINAL SIGNATURE RULED (20:22 KST, `TERMINAL_SIGNATURE_RULING_20260830.md`) —
+P9 is the FOURTH human waypoint, the unruled-suffix sentence superseded, the fallback names
+the pre-ceremony unsigned suffix.

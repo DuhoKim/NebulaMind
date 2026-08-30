@@ -410,6 +410,21 @@
 - V110/CODEX F4: REPAIRED — V111 export generated from schema with completeness fixture
 - V110/CODEX F5: REPAIRED — V111 request_digest is the request's identity
 - V110/CODEX F6: REPAIRED — V111 fallback evidence set listed by name incl. pinned tooling
+- V111/GPT56 F1: REPAIRED — V112 request_digest = identity-envelope digest, never the frame
+- V111/GPT56 F2: REPAIRED — V112 (ii-g)+(iv-b) admissions; gen_nonchi_surface generated-checked
+- V111/GPT56 F3: REPAIRED — V112 (ii-d) six fields; field-echo refuses the drift class
+- V111/GPT56 F4: REPAIRED — V112 per-row strict-increase + duplicate-digest in the contract
+- V111/GPT56 F5: REPAIRED — V112 review record names emission, chain, roster; machine keys out
+- V111/GPT56 F6: REPAIRED — V112 one producer per ending; refusing-pass path deleted
+- V111/GPT56 F7: REPAIRED — V112 fallback carries the authenticated chain itself
+- V111/GPT56 F8: REPAIRED — V112 exhaustion counts closed pairs under the alternation law
+- V111/CODEX F1: REPAIRED — V112 a mediated read is an ordinary touch + joined typed record
+- V111/CODEX F2: REPAIRED — V112 boundary = Row B's last ordinary append; admission held
+- V111/CODEX F3: REPAIRED — V112 indivisible receipt unit; sequence-bounded orphan predicate
+- V111/CODEX F4: REPAIRED — V112 attempt pairs + alternation; residue named
+- V111/CODEX F5: REPAIRED — V112 review record binds emission both ways; roster pinned
+- V111/CODEX F6: REPAIRED — V112 duplicate-digest + sequence rules in the verifier contract
+- V111/CODEX F7: REPAIRED — V112 flagged_keys canonical sorted-unique count-prefixed encoding
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 

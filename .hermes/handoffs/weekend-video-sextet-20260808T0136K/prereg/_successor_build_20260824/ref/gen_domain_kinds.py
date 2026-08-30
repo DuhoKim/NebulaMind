@@ -29,7 +29,7 @@ DECLARED = {
     "lockcp": "lock checkpoint", "sealed-entry-set": "sealed_entry_set_digest",
     "sealed-bindmap": "sealed_bindmap_digest", "opening-auth": "opening authorization",
     "lock-body": "canonical lock digest", "freeze-body": "freeze-signature body",
-    "wire-frame": "framed unit", "verdict-record": "verdict record",
+    "verdict-record": "verdict record",
     "terminal-review": "TERMINAL-REVIEW BODY", "drain-start": "DRAIN-START record",
     "terminal-checkpoint": "TERMINAL CHECKPOINT",
     "receipt-note": "RECEIPT-NOTE record",
@@ -39,6 +39,7 @@ DECLARED = {
     "verification-boundary": "VERIFICATION-BOUNDARY record",
     "attempt-start": "ATTEMPT-START record",
     "review-record": "REVIEW RECORD",
+    "identity-envelope": "IDENTITY ENVELOPE",
 }
 # field-name regex -> coverage. Order matters; first match wins.
 PREIMAGE_OF = [
@@ -55,7 +56,11 @@ PREIMAGE_OF = [
     (r"^succexp\.(continuation_segment_digest)$", ("TAGGED", "continuation-segment")),
     (r"^review_ref$", ("TAGGED", "review-record")),
     (r"^revrec\.evidence_ref$", ("RAW", "evidence artifact bytes")),
-    (r"^arrival\.request_digest$", ("TAGGED", "wire-frame")),
+    (r"^arrival\.request_digest$", ("TAGGED", "identity-envelope")),
+    (r"^revrec\.reviewed_event_digest$", ("FROZEN",
+     "the adjudicated emission's committed event bytes (V112 - GPT56/CODEX-V111 F5)")),
+    (r"^revrec\.first_opening_digest$", ("FROZEN",
+     "the first opening record - run binding (V98 precedent)")),
     (r"^(termrec|haltrec)\.first_opening_digest$", ("FROZEN",
      "the opening record digest - clock-family, chain-side")),
     (r"^revbody\.terminal_checkpoint_digest$", ("TAGGED", "terminal-checkpoint")),

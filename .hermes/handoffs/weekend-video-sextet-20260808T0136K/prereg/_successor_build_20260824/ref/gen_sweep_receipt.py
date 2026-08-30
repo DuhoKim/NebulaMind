@@ -39,6 +39,23 @@ DEAD = re.compile(
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
+    ("GAMMA RATIFICATION (2026-08-30 20:19)", "await ratification", ("draft",),
+     "the pre-ratification banner; folded V112"),
+    ("GAMMA RATIFICATION (2026-08-30 20:19)", "awaiting ratification", ("draft",),
+     "the open-item parentheticals; folded V112"),
+    ("GAMMA RATIFICATION (2026-08-30 20:19)", "the proposed Γ", ("draft",),
+     "every derived-value site now cites the ratified Γ"),
+    ("TERMINAL SIGNATURE RULED (2026-08-30 20:22)",
+     "machine testimony with NO closing waypoint", ("draft", "spec"),
+     "the unruled suffix sentence; P9 exists now"),
+    ("V111 ROUND (GPT56 F1)", "the sha256 of the complete framed wire unit", ("draft",),
+     "the oracle preimage; identity is the envelope's"),
+    ("V111 ROUND (GPT56 F6)",
+     "the FIRST gate pass that refuses after a TERMINATED receipt", ("draft",),
+     "the second export producer; deleted, T3 is the trigger"),
+    ("V111 ROUND (CODEX F1)",
+     "excluded BY TYPE from their own verification scope", ("draft",),
+     "the bare by-type wave; exclusion is through typed joins now"),
     ("ARRIVAL CLASS (2026-08-30 10:46)", "one request never yields two events", ("draft", "spec"),
      "G4's pre-arrival form; swept V88"),
     ("ARRIVAL CLASS (2026-08-30 10:46)", "no event is neither", ("draft", "spec"),
