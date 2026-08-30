@@ -6,7 +6,35 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — question 8 (one tier decision)
+## OPEN — none. Question 8 was returned and is closed below.
+
+## CLOSED 2026-08-30 — question 8
+
+**Duho's instruction, verbatim (via Blanc's relay of the unsubmitted input line): "answer
+question 8" — the same delegation pattern as questions 1–7, all of which he ratified this
+morning.** Read, as with all seven, as returning the decision to me. I ruled it.
+
+**My ruling: Option A — entry 48 is THEORETICAL-OBSTRUCTION, with the preprint caveat printed
+and a revisit clause attached.**
+
+**Basis, stated:** (1) the ownership-of-proof convention he approved — the tier goes to the
+paper that presents the no-go derivation, and both reviewers confirmed this paper owns it
+in-text (the anti-trapped construction, each Penrose hypothesis verified for the laboratory
+class); (2) the operative-contribution test — the exclusion is the title, the abstract, and
+the paper's central result, the cleanest specimen in the collection; (3) the read itself is
+double-gated (AGATE confirmed outright; CGATE narrowed-confirmed with both repairs applied).
+
+**The caveat that travels with the tier:** what we hold is the MIT preprint scan, not the
+Physics Letters B version of record. The entry says so in bold, and the tier is REVISITED if
+the version-of-record comparison ever shows a material difference. Cost of being wrong: one
+tier edit back, plus this closure's correction — small, and bounded by the revisit clause.
+
+**What changed:** entry 48's Testability line; the class tally (now 3 obstructions — 22, 5,
+48 — and 2 UNREAD left: 42, 47); five battery scripts whose obstruction-set assertions moved
+in the same change (b41 frame-scoped so the closed census's 1-of-2 miss rate is untouched —
+entry 48 was never in that frame or the screen's pool). Implementation gated (b48 round).
+
+## ARCHIVED — question 8 as originally filed (closed above)
 
 ### 8. Entry 48 is read at last — does it get the impossibility tier?
 
@@ -45,19 +73,36 @@ through and none reverted — entry 44's warrant, the warrant column, entry 51's
 entries 52/53, and entry 5's move each stand. Every "revert if you meant explain-it" offer in
 the closures below is **declined and struck**; the rulings are final as written.
 
-## STANDING DEPENDENCY — not a question, kept listed on Duho's instruction
+## STANDING DEPENDENCY — what only Duho can do, stated so each takes ten seconds
 
-**2026-08-30 update: the login turned out not to cover the backfiles, and the second free
-frontier (Blanc's five routes) is now running instead — entry 48 already FELL to it** (KEK
-preprint scan, read, question 8). Remaining gated until that sweep finishes:
-entries **1, 2, 3, 4, 13, 14, 16, 18, 42, 47, 50**. The threads:
-- ~~entry 48, Farhi & Guth~~ — **ACQUIRED FREE 2026-08-30** (KEK scan of MIT-CTP-1400); only the
-  PLB version-of-record comparison remains gated;
-- **Silk, Science 277, 644** — entry 31's last unread critic (Smolin's citation prints vol 227;
-  1997 is vol 277);
-- **Popławski, PLB 690, 73–77** — version-of-record for the unreproduced mass floor.
-Entry 32 (Brown & Bethe, ApJ 423, 1994) is separate: not login-gated, pre-arXiv; an ADS-scan
-browser acquisition is the open route if wanted.
+**The free-frontier sweep is DONE** (receipts in `ACQUISITION_ROUTES_20260830.md`). Five fell
+free — 48, 14, 50 (KEK scans), 32 (ADS scan), 33's pair (arXiv) — and everything landed is
+read and gated. What remains, precisely:
+
+**1. THE CHROME CLICK (unlocks four papers + three version-of-record checks in one go).**
+There is no specific web page to click — the click is connecting your Chrome to me:
+open Chrome (any machine with the Claude extension), say anything to me, and when the
+Claude-extension popup appears, **press "Connect"**. I then drive ScienceDirect inside that
+browser — those pages are free to humans (Elsevier Open Archive / SCOAP3 gold OA) but wall
+scripts with a robot check I am not allowed to pass. That one click gets:
+entry 13 (Frolov–Markov–Mukhanov, PLB 216, 1989), entry 42 (Gonzalez-Diaz, PLB 261, 1991),
+entry 47 (Sato–Kodama–Sasaki–Maeda, PLB 108, 1982), entry 16 (Pourhassan et al., NPB 1020,
+2025 — SCOAP3 gold OA, never actually paywalled), plus the version-of-record comparisons for
+entries 48 (PLB 183), 50 (NPB 339), and 51 (PLB 690).
+
+**2. THE TRUE HOLDOUTS — unacquired after all five routes, cheapest lawful route each:**
+
+| entry | paper | journal, year | cheapest route |
+|---|---|---|---|
+| 1 | Pathria, "The Universe as a Black Hole" | Nature, 1972 | interlibrary document copy |
+| 2 | Good, "Chinese universes" | Physics Today, 1972 | interlibrary document copy |
+| 3 | Stuckey, "The observable universe inside a black hole" | Am. J. Phys., 1994 | author email (active academic) or ILL |
+| 4 | Knutsen, "The idea of the universe as a black hole revisited" | Grav. Cosmol., 2009 | interlibrary document copy |
+| 18 | Dymnikova, "Vacuum nonsingular black hole" | Gen. Rel. Grav., 1992 | author email (active) or ILL |
+| — | Silk (entry 31's critic) | Science 277, 1997 | free WITH registration at science.org — account creation is yours by constraint; else ILL |
+| — | PRD 41 VoR check (entry 14) | Phys. Rev. D, 1990 | APS access or ILL (preprint already held+read) |
+
+Never the list price — ILL is a few thousand won per item.
 
 ## PREVIOUSLY CLOSED — all four earlier questions
 

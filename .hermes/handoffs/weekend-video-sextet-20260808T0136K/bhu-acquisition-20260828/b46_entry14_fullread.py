@@ -93,8 +93,9 @@ obs = set()
 for n, b in blocks.items():
     mm = re.search(r"Testability: \*\*([A-Z-]+)\*\*", b)
     if mm and mm.group(1) == "THEORETICAL-OBSTRUCTION": obs.add(n)
-chk("CENSUS UNTOUCHED: the paper-level obstruction set is still exactly {22, 5}",
-    obs == {22, 5})
+chk("OBSTRUCTION SET CURRENT: {22, 5, 48} -- 48 added by the question-8 ruling; entry 14's "
+    "round changed nothing",
+    obs == {22, 5, 48})
 
 print()
 fails = [n for n, p, _ in checks if not p]

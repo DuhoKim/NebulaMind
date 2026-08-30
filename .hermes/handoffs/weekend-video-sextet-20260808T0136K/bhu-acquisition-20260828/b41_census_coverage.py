@@ -264,11 +264,17 @@ for n, b in blocks.items():
     m = re.search(r"Testability: \*\*([A-Z-]+)\*\*", b)
     if m and m.group(1) == "THEORETICAL-OBSTRUCTION": obs.add(n)
 print(f"\n  paper-level THEORETICAL-OBSTRUCTION entries (current adjudicated labels): {sorted(obs)}")
-chk("PARSED: the readable corpus holds exactly two paper-level obstructions, 22 and 5",
-    obs == {22, 5} and obs <= READABLE)
+chk("PARSED: the CLOSED-CENSUS FRAME (readable-39) holds exactly two paper-level obstructions, "
+    "22 and 5; entry 48 -- tiered 2026-08-30 under question 8, AFTER this census closed and "
+    "OUTSIDE its frame (it was not-located then) -- is asserted separately",
+    (obs & READABLE) == {22, 5} and obs == {22, 5, 48})
 
 # --- the measured numbers, honestly labelled -----------------------------------------------------
-hits = sorted(obs & FROZEN_FLAGS); missed = sorted(obs - FROZEN_FLAGS)
+obs_frame = obs & READABLE      # the closed census frame; entry 48 was tiered POST-census,
+                                # outside this frame, and was never in the screen's pool
+hits = sorted(obs_frame & FROZEN_FLAGS); missed = sorted(obs_frame - FROZEN_FLAGS)
+print(f"\n  (entry 48, tiered 2026-08-30 at question 8, sits OUTSIDE this closed frame and")
+print(f"  outside the screen's pool -- it is not a screen hit or miss; the frame metrics stand.)")
 print(f"\n  PAPER-TIER miss rate on the receipted census : {len(missed)} of {len(obs)} "
       f"(hit {hits}, missed {missed})")
 print(f"  PAPER-TIER precision                          : {len(hits)} of {len(FROZEN_FLAGS)} flags")

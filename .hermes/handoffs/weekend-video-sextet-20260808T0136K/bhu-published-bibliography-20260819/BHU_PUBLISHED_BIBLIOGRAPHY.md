@@ -30,8 +30,12 @@ entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
 by two seats**: **4 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51),
-7 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 31 CONSISTENCY-ONLY, **2 THEORETICAL-OBSTRUCTION (entries
-22 and 5 — the latter re-tiered 2026-08-30 at question 5)**, 4 UNREAD — sums to 51. *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
+7 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 32 CONSISTENCY-ONLY, **3 THEORETICAL-OBSTRUCTION
+(entries 22, 5, 48 — 5 re-tiered at question 5, 48 tiered at question 8, both 2026-08-30)**,
+2 UNREAD (entries 42, 47 — the last two unacquired-and-unread) — sums to 51. *(Superseded
+2026-08-30 by the question-8 ruling and the day's reads: previously "31 CONSISTENCY-ONLY,
+2 THEORETICAL-OBSTRUCTION, 4 UNREAD" — entries 50 and 14 read into/confirmed in
+CONSISTENCY-ONLY, entry 48 read and tiered.)* *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
 and carry no Testability label, which is why there are 58 entries and 51 papers. Previously read
 "3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL, 3 PROSPECT, 33 CONSISTENCY-ONLY, 4 UNREAD",
 which predates entry 44's re-tier and omitted the obstruction class.)* (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
@@ -938,8 +942,19 @@ Record: kimi recall R4; the earliest multi-universe-production construction.
 **48. E. Farhi & A. H. Guth (1987). "An obstacle to creating a universe in the laboratory." Phys. Lett. B 183, 149–155.**
 DOI 10.1016/0370-2693(87)90429-1 — VERIFIED (Crossref: PLB, v183, p149-155, 1987). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **READ 2026-08-30 — TIER PENDING DUHO (question 8; the shape is
-THEORETICAL-OBSTRUCTION under the ownership-of-proof convention, but any tier assignment is his)**
+Testability: **THEORETICAL-OBSTRUCTION** — **set 2026-08-30 under question 8's delegation
+("answer question 8", the same verbatim return as questions 1–7, all ratified). Ruled by Tori;
+basis: (i) the adopted ownership-of-proof convention — the tier goes to the paper that presents
+the no-go derivation, and both seats confirmed this paper owns it in-text (anti-trapped
+construction, Penrose hypotheses individually verified); (ii) the operative-contribution test —
+the exclusion IS the title, the abstract, and §II's result; (iii) the read is double-gated
+(AGATE ENTRY48_READ_CONFIRMED, CGATE narrowed-confirmed, repairs applied). The PREPRINT-not-VoR
+caveat below stands with the tier: content identity with PLB 183, 149 is testimony until the
+VoR is compared, and the tier is REVISITED if that comparison ever shows a material difference.
+Domain as proven, not inflated: asymptotically flat parent with noncompact Cauchy development +
+null energy condition + unperturbed spherically symmetric false-vacuum region past r = 1/χ +
+nonsingular initial data — no member of that class exists; nonspherical case NOT decided
+(necessary condition only); quantum and white-hole escapes author-delimited.**
 **ACQUIRED AND READ IN FULL 2026-08-30** (`b45`, second-free-frontier sweep, route 2 — KEK scanned
 preprints): the MIT-CTP-1400 preprint scan (KEKSCAN 2000-36-705, "Submitted to: Physics Letters B",
 October 1986, KEK receipt stamp Jan 14 1987), pinned at

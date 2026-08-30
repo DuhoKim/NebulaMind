@@ -104,15 +104,17 @@ chk("RECORD: entry 48 carries the read, the pin+sha, the preprint-not-VoR caveat
     and "secondary corroboration only" in b48
     and "PARENT need not be spherical" in b48)
 m = re.search(r"Testability: \*\*([A-Z-]+)", blocks[48])
-chk("TIER UNASSIGNED: the Testability marker reads READ (pending Duho) -- no tier class was "
-    "set by this artifact; the obstruction set parsed by b41 is untouched",
-    m is not None and m.group(1) == "READ")
+chk("TIER SET BY QUESTION 8 (2026-08-30, the delegated ruling -- NOT by this artifact, which "
+    "held READ/pending until Duho returned the question): the marker now reads "
+    "THEORETICAL-OBSTRUCTION with the basis and the revisit-on-VoR clause printed in the entry",
+    m is not None and m.group(1) == "THEORETICAL-OBSTRUCTION"
+    and "question 8" in b48 and "REVISITED" in b48)
 obs = set()
 for n, b in blocks.items():
     mm = re.search(r"Testability: \*\*([A-Z-]+)\*\*", b)
     if mm and mm.group(1) == "THEORETICAL-OBSTRUCTION": obs.add(n)
-chk("CENSUS UNTOUCHED: the paper-level obstruction set is still exactly {22, 5}",
-    obs == {22, 5})
+chk("OBSTRUCTION SET CURRENT: {22, 5, 48} after the question-8 ruling",
+    obs == {22, 5, 48})
 
 print()
 fails = [n for n, p, _ in checks if not p]
