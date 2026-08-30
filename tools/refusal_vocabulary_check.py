@@ -267,8 +267,10 @@ def check(text: str):
         twice = re.search(r"consulted (twice|at both)", text, re.I) or (
             re.search(r"at the opening of the lock", text, re.I) and
             re.search(r"at \*{0,2}`?BS-L`? issuance", text, re.I))
-        gates5 = re.search(r"BS-7f", text) and re.search(r"disclosure", text, re.I) and \
-                 re.search(r"fresh", text, re.I)
+        # CODEX-V102 F7: BS-V was named in prose and never required here, so deleting the
+        # mandatory BS-V pass stayed green. All three post-opening gates are now required.
+        gates5 = re.search(r"BS-7f", text) and re.search(r"BS-V", text) and \
+                 re.search(r"disclosure", text, re.I) and re.search(r"fresh", text, re.I)
         # CODEX-V82 F6: these checks were polarity-blind - "the verifier is NOT consulted" passed
         # because the words appeared. A negated mechanism line now fails the mechanism.
         # Negated-FORM patterns, not word proximity: two proximity attempts false-fired on "not"
@@ -347,6 +349,9 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("the BS-V pass deleted from the gate list",
+     lambda: _fixture().replace("Fresh passes run at BS-7f, BS-V and disclosure.",
+                                "Fresh passes run at BS-7f and disclosure."), "R08"),
     ("a semantically reactivated retired token (CODEX-V99 F6 shape)",
      lambda: _fixture() + "REFUSED-LOCK-NOT-OPEN was retired; requests failing the lock "
      "check are henceforth rejected under that token.\n", "R01"),

@@ -1,8 +1,10 @@
-# DOMAIN KINDS — generated, count is OUTPUT
+# DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**15 kinds at this revision** (a number this file emits and no prose may restate):
+**17 kinds; 61 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
+## Kinds
 - `bindmap-entry`
+- `drain-start`
 - `entry`
 - `explanation`
 - `freeze-body`
@@ -13,11 +15,71 @@
 - `passrec`
 - `sealed-bindmap`
 - `sealed-entry-set`
+- `terminal-checkpoint`
 - `terminal-review`
 - `termrec`
 - `verdict-record`
 - `wire-frame`
 
-**Frozen exclusions, by name (GPT56-V101 F2):**
-- ref/successor_ref_v9.py:219-224 — receipt envelope body/envelope digests - frozen; kind-separated by the envelope's own slot/schema fields
-- ref/successor_ref_v9.py access-log running digest — the chain digest itself - frozen discipline predating the tag rule; separated by position, not kind
+## Sites
+- `arrival.running_chain_digest` — FROZEN: the chain digest itself
+- `bindmap.decision_event_digest` — FROZEN: chain running digest values
+- `bs7p_env.dependency_roots` — RAW: manifest document bytes (roots/DLM files)
+- `bs7p_env.dynamic_load_manifest` — RAW: manifest document bytes (roots/DLM files)
+- `bs7p_env.interpreter_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `canonical.entry_body` — RAW: canonical artifact bytes per their rows
+- `canonical.explanation_body` — RAW: canonical artifact bytes per their rows
+- `canonical.freeze_signature_body` — RAW: canonical artifact bytes per their rows
+- `canonical.lock_body` — RAW: canonical artifact bytes per their rows
+- `canonical.opening_authorization` — RAW: canonical artifact bytes per their rows
+- `dlm_entry.digest` — RAW: loaded-object file bytes
+- `drainst.receipt_digest` — TAGGED: termrec
+- `envelope.body_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `envelope.envelope_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `envelope.environment` — FROZEN: environment record under the frozen v9 envelope
+- `freezebody.code_digest` — RAW: pinned code bytes
+- `freezebody.draft_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `freezebody.parent_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `haltrec.first_opening_digest` — FROZEN: the opening record digest - clock-family, chain-side
+- `haltrec.freeze_signature_digest` — TAGGED: freeze-body
+- `lockbody.accepted_mask_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
+- `lockbody.archive_seal_state` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.calibration_record_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
+- `lockbody.chain_segment` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.classp_receipt_manifest` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.decision_input_digests` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
+- `lockbody.environment_record` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.freeze_signature` — TAGGED: freeze-body
+- `lockbody.gate_reports` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.lock_checkpoint` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.roster_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
+- `lockbody.signer_identity` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.stagec_receipt_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
+- `lockcp.chain_head_digest` — FROZEN: chain running digest
+- `lockcp.sealed_bindmap_digest` — TAGGED: sealed-bindmap
+- `lockcp.sealed_entry_set_digest` — TAGGED: sealed-entry-set
+- `nonslot.lock_checkpoint_receipt` — RAW: non-slot artifact bytes or pending schemas, per their rows
+- `openauth.bsl_digest` — TAGGED: lock-body
+- `openauth.ceremony_id` — RAW: opaque one-use identifier / roster-bound identity - identifiers, not canonical-body preimages
+- `openauth.signer_identity` — RAW: opaque one-use identifier / roster-bound identity - identifiers, not canonical-body preimages
+- `param.lease_id_digest` — RAW: lease identifier bytes
+- `passrec.head_digest` — FROZEN: chain running digest at the head
+- `passrec.predecessor_record_digest` — TAGGED: passrec
+- `passrec.verifier_digest` — RAW: verifier file bytes
+- `roots_entry.digest` — RAW: loaded-object file bytes
+- `termcp.chain_head_digest` — FROZEN: chain running digest
+- `termcp.receipt_digest` — TAGGED: termrec
+- `termrec.first_opening_digest` — FROZEN: the opening record digest - clock-family, chain-side
+- `termrec.freeze_signature_digest` — TAGGED: freeze-body
+- `calibration_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `counterfactual_path_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `draw_verdict_digest` — RAW: the row-major verdict-matrix serialization - its own stated section-11 rule, single-use, pre-tag, no cross-kind partner
+- `estimator_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `event_digest` — FROZEN: chain running digest (entry join field)
+- `explanation_ref` — TAGGED: explanation
+- `kernel_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `mask_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `perturbation_manifest_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `rederivation_digest` — RAW: vocabulary revision text bytes
+- `replay_harness_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `verifier_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures

@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V102_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V103_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -123,6 +123,10 @@
 | `ckclock.predecessor_epoch` | bounded-encoding | draft 6.1 item (ii-c) + spec 3b - opening record | the previous opening's epoch, decimal [0, 10^6]; NONE for the anchored first epoch (GPT56-V93 F1) |
 | `dlm_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
 | `dlm_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
+| `drainst.boot_epoch` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
+| `drainst.kind` | closed-vocab | spec 3c - termination records (GPT56-V102 F6) | the record-kind literals (section 3c T3) |
+| `drainst.monotonic_reading` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
+| `drainst.receipt_digest` | digest-ref | spec 3c - termination records |  |
 | `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |
 | `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
@@ -200,6 +204,13 @@
 | `sig.explanation` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.freeze` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
+| `termcp.boot_epoch` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
+| `termcp.chain_head_digest` | digest-ref | spec 3c - termination records |  |
+| `termcp.chain_head_position` | bounded-encoding | spec 3c - termination records | decimal chain positions |
+| `termcp.drain_start_position` | bounded-encoding | spec 3c - termination records | decimal chain positions |
+| `termcp.kind` | closed-vocab | spec 3c - termination records (GPT56-V102 F6) | the record-kind literals (section 3c T3) |
+| `termcp.monotonic_reading` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
+| `termcp.receipt_digest` | digest-ref | spec 3c - termination records |  |
 | `termrec.chain_head` | bounded-encoding | draft 6.1 - terminated-verdict record | position + running digest at production |
 | `termrec.class_key` | bounded-encoding | draft 6.1 - terminated-verdict record | (table row, operation) - the computed key |
 | `termrec.first_opening_digest` | digest-ref | terminated-family canonical bodies | CHAIN identity - one freeze can govern a resumed run, the first opening cannot (GPT56-V98 F5, CODEX-V98 F2) |

@@ -47,9 +47,9 @@ ERRORS = {
 }
 
 TAG = re.compile(r"lifecycle-spec:\s*sha256\s*`?([0-9a-f]{64})`?")
-INV = re.compile(r"\*{0,2}((?:G[1-9]|N[1-9])) — ([^|\n]+)")  # tag AND body; the body must be the
+INV = re.compile(r"\*{0,2}((?:G[1-9]|N[1-9]|T[1-9])) — ([^|\n]+)")  # tag AND body; the body must be the
 # tagged spec ROW's bytes — label-bound, so swapped labels fail (GPT56-V72 F2)
-ROW = re.compile(r"^\| ((?:G|N)[1-9]) \| (.+?) \|", re.M)
+ROW = re.compile(r"^\| ((?:G|N|T)[1-9]) \| (.+?) \|", re.M)
 
 
 def norm(s: str) -> str:
