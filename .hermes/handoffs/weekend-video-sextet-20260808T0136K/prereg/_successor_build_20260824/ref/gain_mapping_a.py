@@ -52,6 +52,28 @@ HERE = Path(__file__).resolve().parent
 _V9 = None
 
 
+def identity_record():
+    """EVERY behavior-determining input, bound into one digestable record (AGY-MAPA F2:
+    MAPPING_ID + file sha missed v9.A_LONGO — a constant this module reads could change
+    behavior without changing the identity). The BS-3g receipt pins this record's digest
+    beside the module digest; a drift in any bound value is an identity change."""
+    v9 = _v9()
+    import numpy
+    rec = {
+        "mapping_id": MAPPING_ID,
+        "master_seed": MASTER_SEED,
+        "n_draws": N_DRAWS,
+        "a_clip": [repr(A_CLIP_LO), repr(A_CLIP_HI)],
+        "a_longo": repr(float(v9.A_LONGO)),
+        "v9_sha256": hashlib.sha256((HERE / "successor_ref_v9.py").read_bytes()).hexdigest(),
+        "numpy_version": numpy.__version__,
+        "generator": "numpy-PCG64-default_rng-SeedSequence-spawn-zero-based",
+    }
+    import json
+    canonical = json.dumps(rec, sort_keys=True, separators=(",", ":")).encode()
+    return rec, hashlib.sha256(canonical).hexdigest()
+
+
 def _v9():
     global _V9
     if _V9 is None:
@@ -172,13 +194,39 @@ def self_test():
     exp = np.where(u[1::2] < (1.0 - a_flat), -lat, lat)
     if not np.array_equal(s_z, exp):
         fails.append("gamma=0 does not reduce to the flat-a0 redraw")
-    # 6. clamp behaviour at extreme gamma is clipped, reported, and in-range
+    # 6. clamp behaviour is BEHAVIORAL, not definitional (AGY-MAPA F1: the old control
+    # tested np.clip against its own bounds — vacuous). At extreme gamma the low-clamped
+    # objects sit at accuracy ~0.5 (coin-flip vs latent: ~half flip) while high-clamped
+    # objects sit at 1.0 (never flip); verify the FLIP RATES, the observable the model
+    # exists to produce.
     mx = make_mapping(5)
     s_x, cal_x = mx(5.0, mask, cal)
     if mx.last_diagnostics["clip_fraction"] <= 0.0:
         fails.append("extreme gamma reported no clipping")
+    c_arr = np.asarray(mask.c, dtype=np.float64)
+    a_raw = float(cal["a_hat"]) + 5.0 * (c_arr - c_arr.mean())
+    u = mx._u
+    lat = np.where(u[0::2] < (1.0 + _v9().A_LONGO * c_arr) / 2.0, 1.0, -1.0)
+    flipped = s_x != lat
+    lo = a_raw <= A_CLIP_LO
+    hi = a_raw >= A_CLIP_HI
+    if lo.sum() >= 20:
+        r_lo = float(flipped[lo].mean())
+        if not (0.35 <= r_lo <= 0.65):
+            fails.append(f"low-clamp flip rate {r_lo:.2f} not ~0.5 — accuracy field not applied")
+    if hi.sum() >= 20 and float(flipped[hi].mean()) != 0.0:
+        fails.append("high-clamp objects flipped despite accuracy 1.0")
     if not (A_CLIP_LO <= cal_x["a_hat"] <= A_CLIP_HI):
         fails.append("cal' a_hat escaped the physical clamp")
+    # 6b. the identity record binds A_LONGO and moves when it moves (AGY-MAPA F2)
+    rec, dg = identity_record()
+    if "a_longo" not in rec or rec["a_longo"] != repr(float(_v9().A_LONGO)):
+        fails.append("identity record does not bind A_LONGO")
+    rec2 = dict(rec); rec2["a_longo"] = repr(0.123)
+    import json
+    dg2 = hashlib.sha256(json.dumps(rec2, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+    if dg2 == dg:
+        fails.append("identity digest insensitive to a bound constant")
     # 7. CRN-size guard
     class FakeMask:  # minimal duck type
         n = mask.n + 1
@@ -204,5 +252,6 @@ if __name__ == "__main__":
     f = self_test()
     for x in f:
         print("SELF-TEST FAIL:", x)
-    print(f"gain_mapping_a self-test: {8 - len(f)}/8 green — {MAPPING_ID}")
+    print(f"gain_mapping_a self-test: {9 - len(f)}/9 green — {MAPPING_ID} "
+          f"(identity {identity_record()[1][:16]}…)")
     sys.exit(1 if f else 0)
