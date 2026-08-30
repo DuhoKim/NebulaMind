@@ -30,8 +30,8 @@ entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers, **recomputed by script 2026-08-29 and independently recounted
 by two seats**: **4 CALIBRATED-FALSIFIER (2 FIRED — entries 7, 44; 2 LIVE — entries 31, 51),
-7 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 32 CONSISTENCY-ONLY, 1 THEORETICAL-OBSTRUCTION, 4 UNREAD
-— sums to 51. *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
+7 QUALITATIVE-DIRECTIONAL**, 3 PROSPECT, 31 CONSISTENCY-ONLY, **2 THEORETICAL-OBSTRUCTION (entries
+22 and 5 — the latter re-tiered 2026-08-30 at question 5)**, 4 UNREAD — sums to 51. *(The 7 remaining numbered entries — 29, 30, 32, 33, 34, 35, 58 — are support-role
 and carry no Testability label, which is why there are 58 entries and 51 papers. Previously read
 "3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL, 3 PROSPECT, 33 CONSISTENCY-ONLY, 4 UNREAD",
 which predates entry 44's re-tier and omitted the obstruction class.)* (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
@@ -177,9 +177,27 @@ DOI 10.1134/S0202289310020131 — VERIFIED (Crossref: Gravitation and Cosmology,
 (arXiv:1412.0105 is the posting of this published note.)
 Claim: the Pathria identification holds only for certain Λ values and the horizon/maximal-expansion
 matching is not smooth (null shell with surface pressure).
-Testability: **CONSISTENCY-ONLY**. Record: characterized in packet §1.1 (used as the Pathria
-commentary). Audit-worthiness: **medium** — the matching defect it identifies is exactly what a
-strict junction-condition audit would re-derive.
+Testability: **THEORETICAL-OBSTRUCTION** — **re-tiered 2026-08-30 from CONSISTENCY-ONLY on Duho's
+instruction, verbatim: "answer question 5"**, resolving the B30 seat split by applying the
+operative-contribution test as matured through questions 6–7, not by picking a seat.
+**Domain, narrowly scoped (CGATE_B30's wording):** *for the stated pressureless closed-FRW /
+Schwarzschild(-Λ) null-horizon setup under Barrabès–Israel conditions, smooth shell-free matching is
+excluded — the transverse extrinsic curvature's uu-component jumps, so the transition can only occur
+through a pressure-bearing null shell (pressure computed in the paper). This is NOT a no-go against
+all universe-in-a-black-hole models or all FRW/Schwarzschild junctions.*
+**Why this side of the line:** the paper is a test-note ("So what if we study Pathria's cosmological
+model from the matching conditions point of view?") that constructs and advocates no cosmology of
+its own — unlike entries 37/52/53 there is no constructed family for the exclusion to delimit, so
+the entry-37 escape does not apply; the test's outcome IS the operative result, derived in the paper
+(ownership-of-proof satisfied). AGATE_B30's "just determining the properties of the junction" is a
+quality demotion, and the question-4 ruling fixed that the tiers are shapes, not ranks; the tier
+definition fits literally (no member of the stated class satisfies smooth ∧ shell-free; refuted by a
+smooth counterexample, not by measurement).
+**Consequence for the screen's record:** entry 5 was UNFLAGGED by b1 and found only by the b29
+random sample — so the corpus now has TWO known obstructions of which the screen caught ONE;
+measured recall stands at 1 of 2. Record: characterized in packet §1.1 (used as the Pathria
+commentary). Audit-worthiness: **medium** — now discharged: the strict junction-condition audit this
+note anticipated is what b29/b30 performed.
 
 **46. "Quantization of the universe as a black hole." Astrophys. Space Sci. 337, 19–20 (2012).**
 DOI 10.1007/s10509-011-0909-1 — VERIFIED (Crossref: ApSS, v337, p19-20, 2011-11). Added 2026-08-22 from the bibliography gate
