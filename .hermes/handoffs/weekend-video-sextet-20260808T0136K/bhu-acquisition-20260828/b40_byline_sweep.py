@@ -79,7 +79,9 @@ SRC={5:"reviews/bhu-citation-custody-evidence-20260811/arxiv-1412.0105v1.txt",
      40:"bhu-reading-20260823/sources/2008.02136_clean.txt",
      41:"bhu-reading-20260823/sources/2007.11556_clean.txt",
      43:"bhu-reading-20260823/sources/2304.12018_clean.txt",
-     44:"bhu-reading-20260823/sources/1309.1487_clean.txt",
+     44:"bhu-reading-20260823/sources/1309.1487.pdf",  # PDF pinned 2026-08-30: the ar5iv text
+     # dropped two authors; the PDF page-1 byline is complete. Two-artifact repair --
+     # the annotated ar5iv text stays for the b16/b17 gates' grep dependencies.
      45:"bhu-reading-20260823/sources/2210.15186_clean.txt",
      46:"bhu-reading-20260823/sources/1111.1017_clean.txt",
      49:"bhu-reading-20260823/sources/blau_guendelman_guth_1987_prd35_1747.pdf",
@@ -122,17 +124,22 @@ print(f"  bylines fully matched: {ok}")
 print(f"  CANDIDATES (some recorded surname absent from the source head): {len(flags)}")
 for n,miss,alln in flags:
     print(f"    entry {n:>2}: missing {miss}  (recorded: {alln})")
-chk("MEASURED (CGATE's wording): 38 recorded surname sets occur in their pinned source bodies; "
-    "entry 44's extraction lacks two authors and is annotated -- one-way surname-containment "
-    "coverage, NOT exact full-byline verification",
+chk("MEASURED: all 39 recorded surname sets occur in their pinned artifacts (entry 44 via the "
+    "arXiv PDF after the two-artifact repair) -- one-way surname-containment coverage, NOT "
+    "exact full-byline verification",
     0 <= len(flags) < 10 and ok > 25,
     f"{ok} matched, {len(flags)} candidates. Every candidate needs a hand check -- a byline can "
     f"be absent from a head for OCR or cover-page reasons, so a flag is not a finding")
-chk("REGRESSION: entry 44's extraction defect is DETECTED once annotations are excluded -- the "
-    "sweep must flag it, because the pin genuinely lacks two authors",
-    any(n==44 for n,_,_ in flags),
-    "CGATE_B40: the annotation-satisfied pass was a tautology. 44's flag is now the EXPECTED state "
-    "until the pin is re-extracted; its record is confirmed right by independent metadata")
+# INVERTED IN THE SAME CHANGE AS THE REPAIR -- the 1ab lesson applied in advance rather than
+# recommitted: the defect-assertion becomes a repaired-state assertion the moment the repair lands.
+E44_AR5IV=" ".join(open(os.path.join(D,"bhu-reading-20260823/sources/1309.1487_clean.txt"),errors="ignore").read().split())
+_below=E44_AR5IV.split("]",1)[1] if E44_AR5IV.startswith("[EXTRACTION DEFECT") else E44_AR5IV
+chk("REPAIRED: entry 44 now resolves through the pinned arXiv PDF, whose page-1 byline carries all "
+    "three authors -- while the annotated ar5iv text, below its header, still lacks two, which is "
+    "the documented state of BOTH artifacts",
+    (not any(n==44 for n,_,_ in flags)) and "Pourhasan" not in _below and "Afshordi" not in _below,
+    "two-artifact repair: the PDF for identity, the ar5iv text (grep-dependency of the b16/b17 "
+    "gates) kept as-is under its EXTRACTION DEFECT header")
 chk("CONTROL: entry 20 -- the known formerly-wrong case, since corrected -- now passes",
     all(n!=20 for n,_,_ in flags),
     "its corrected Bronnikov-Melnikov-Dehnen byline matches the source; the sweep would have "
