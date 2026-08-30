@@ -171,8 +171,17 @@ _c("passrec.gate", "closed-vocab", "the five-gate set",
    source="spec 3b - gate pass record (anchor)")
 _c("passrec.head_position", "bounded-encoding", "decimal chain position",
    source="spec 3b - gate pass record")
-_c("passrec.head_digest passrec.verifier_digest", "digest-ref", "",
-   source="spec 3b - gate pass record")
+_c("passrec.head_digest passrec.verifier_digest passrec.predecessor_record_digest",
+   "digest-ref", "predecessor INSIDE the signed body - the anchors chain by construction "
+   "(GPT56-V96 F2, CODEX-V96 F2)", source="spec 3b - gate pass record")
+_c("termrec.kind", "closed-vocab", "the literal TERMINATED-UNNAMEABLE-REFUSAL-CLASS",
+   source="draft 6.1 - terminated-verdict record (GPT56-V96 F6)")
+_c("termrec.class_key", "bounded-encoding", "(table row, operation) - the computed key",
+   source="draft 6.1 - terminated-verdict record")
+_c("termrec.gate", "closed-vocab", "the five-gate set",
+   source="draft 6.1 - terminated-verdict record")
+_c("termrec.chain_head", "bounded-encoding", "position + running digest at production",
+   source="draft 6.1 - terminated-verdict record")
 _c("passrec.signature", "bounded-encoding",
    "detached deterministic signature, 64 bytes, enumerator keypair - anchors chain by "
    "predecessor verification (GPT56-V95 F2)",
@@ -348,7 +357,9 @@ CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading",
 HALTREC = {"haltrec.kind", "haltrec.chain_head"}
 # the gate PASS RECORD (spec 3b anchors, built at V96 - GPT56-V95 F2, CODEX-V95 F4)
 PASSREC = {"passrec.gate", "passrec.head_position", "passrec.head_digest",
-           "passrec.verifier_digest", "passrec.signature"}   # the exhaustion halt receipt's non-chi
+           "passrec.verifier_digest", "passrec.predecessor_record_digest",
+           "passrec.signature"}
+TERMREC = {"termrec.kind", "termrec.class_key", "termrec.gate", "termrec.chain_head"}   # the exhaustion halt receipt's non-chi
 # face (CODEX-V94 F4); identities live SEALED in the committee store (GPT56-V94 F7)
 BINDMAP = {"bindmap.request_key", "bindmap.decision_chain_position",
            "bindmap.decision_event_digest", "bindmap.decision_boot_epoch",
@@ -488,7 +499,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

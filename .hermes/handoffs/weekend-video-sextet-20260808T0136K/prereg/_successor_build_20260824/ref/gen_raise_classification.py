@@ -118,12 +118,17 @@ out.append(f"\n**Total {len(rows)} failure sites — 112 `raise` nodes and 1 pro
            "this generator at V90 after V89 edited only the output (CODEX-V89 F4: a checked-in "
            "artifact that can drift from its generator will).\n")
 out.append("**ADDENDUM — known IMPLICIT exception paths, hand-enumerated as found "
-           "(GPT56-V95 F5, CODEX-V95 F7; the per-site claim is scoped to explicit sites and "
-           "this list is append-only):** L1493 dict subscript on a verdict-token key — "
-           "KeyError if the closed set is violated upstream, INTEGRITY by boundary; L1609 "
-           "float cast of a config field — ValueError routed to the entry guard, CALLER; "
-           "L1647–1649 date-string slicing in `resolve_branch` — TypeError/ValueError on "
-           "non-string input, CALLER (argument admissibility).**\n")
+           "(GPT56-V95 F5, CODEX-V95 F7; append-only; CORRECTED AT V97 from the actual "
+           "bytes after GPT56-V96 F4 showed two of three rows misread — the lesson this "
+           "corpus keeps teaching, applied to its own ledger):** "
+           "L1493–1496 `adjudicate_path` — dict subscripts `cal[...]` and numpy reductions: "
+           "implicit KeyError/TypeError, UNCAUGHT on the verdict path → process death, no "
+           "verdict record (the operator-observed platform family; loud, never a silent "
+           "verdict); L1609 `run_production_verdict` — the `adjudicate_path(cal)` call, the "
+           "propagation site of the same, same disposition; L1647–1648 "
+           "`require_complete_sample` — `int()` casts of supplied counts: implicit "
+           "ValueError/TypeError, CALLER by the as-supplied boundary (its explicit raise at "
+           "1649 is already a row).**\n")
 out.append("| line | function | exception | class | | message |")
 out.append("|---|---|---|---|---|---|")
 ANNOT = {

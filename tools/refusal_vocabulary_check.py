@@ -134,7 +134,7 @@ def check(text: str):
         # asides inside one sentence, and splitting on it orphaned a legitimate retired mention from
         # its own "was deleted" two asides later.
         for frag in re.split(r"[.;:]", line):
-            toks = [tk.rstrip("-") for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+(?![a-z0-9_])", frag)]
+            toks = [tk.rstrip("-") for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z0-9-]+(?![a-z0-9_])", frag)]
             nonmembers = [tk for tk in toks for _ in [0] if tk not in CODES]
             for tok in toks:
                 if tok in CODES:
@@ -187,7 +187,7 @@ def check(text: str):
                 fail("R01", f"operative block lacks its structure: {hdr!r} missing")
         block_pinned = set()
         for frag in re.split(r"[.;:]", text[b0:b1]):
-            for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+(?![a-z0-9_])", frag):
+            for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z0-9-]+(?![a-z0-9_])", frag):
                 if tk.rstrip("-") in CODES and not RETIREMENT.search(frag):
                     block_pinned.add(tk.rstrip("-"))
         if block_pinned != set(CODES):
@@ -336,6 +336,8 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("a digit-bearing twelfth code evades the token parse",
+     lambda: _fixture() + "Active member: REFUSED-X2 governs retries.\n", "R01"),
     ("a decoy vocabulary block shadows the operative one",
      lambda: _fixture() + "Authorisation (5): decoy block.\n", "R01"),
     ("free text allowed beside the no-free-text rule",

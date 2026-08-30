@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V96_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V97_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -179,10 +179,11 @@
 | `param.signal_number` | bounded-encoding | v9 SLOT_SCHEMA | decimal int [1, 64] |
 | `param.store_errno` | bounded-encoding | v9 SLOT_SCHEMA | decimal int [0, 2^15) |
 | `passrec.gate` | closed-vocab | spec 3b - gate pass record (anchor) | the five-gate set |
-| `passrec.head_digest` | digest-ref | spec 3b - gate pass record |  |
+| `passrec.head_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
 | `passrec.head_position` | bounded-encoding | spec 3b - gate pass record | decimal chain position |
+| `passrec.predecessor_record_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
 | `passrec.signature` | bounded-encoding | spec 3b - gate pass record | detached deterministic signature, 64 bytes, enumerator keypair - anchors chain by predecessor verification (GPT56-V95 F2) |
-| `passrec.verifier_digest` | digest-ref | spec 3b - gate pass record |  |
+| `passrec.verifier_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
 | `roots_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
 | `roots_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
 | `sig.bsl_lock` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
@@ -190,6 +191,10 @@
 | `sig.explanation` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.freeze` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
+| `termrec.chain_head` | bounded-encoding | draft 6.1 - terminated-verdict record | position + running digest at production |
+| `termrec.class_key` | bounded-encoding | draft 6.1 - terminated-verdict record | (table row, operation) - the computed key |
+| `termrec.gate` | closed-vocab | draft 6.1 - terminated-verdict record | the five-gate set |
+| `termrec.kind` | closed-vocab | draft 6.1 - terminated-verdict record (GPT56-V96 F6) | the literal TERMINATED-UNNAMEABLE-REFUSAL-CLASS |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
 | `baseline_verdict` | closed-vocab | §11 BS-3g | a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |
