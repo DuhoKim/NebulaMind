@@ -33,7 +33,7 @@ conflict between them is a defect in the draft.**
 |---|---|---|
 | G1 | **No unlogged touch**: no bytes leave or land in a sealed store without a committed event | every touch kind |
 | G2 | **No false event**: a touch event's outcome field is true of the store effect it records; **a refusal event truthfully records that a request was refused and NO store effect occurred — AND its reason token is true of the refusal: a request with no completed permission verdict may carry only `REFUSED-UNCLASSIFIED`, and any specific code asserts its condition was actually established** (GPT56-V71 F2: without this, a false specific code bypasses the catch-all enumeration entirely) | every event |
-| G3 | **One event per touch** — and **every event is either exactly one touch's event or a refusal's event; no event is both, and no event is neither** (V70's wording said "one touch per event", which contradicted refusal events outright — GPT56-V70 F1, CODEX-V70 F1, the round's first finding against this spec) | every touch kind |
+| G3 | **One TOUCH event per touch** — and **every touch event is either exactly one touch's event or a refusal's event; no event is both, and no event is neither** (V70's wording said "one touch per event", which contradicted refusal events outright — GPT56-V70 F1, CODEX-V70 F1, the round's first finding against this spec) | every touch kind |
 | G4 | **No double decision**: one request never yields two events | every request |
 | G6 | **A view is the display session of one render commit**: it ends at the first of position advance, interface clear, or any interruption of continuous display — visibility loss, blanking, occlusion, navigation away; duration alone does not multiply views, nothing displayed after an interruption is the same view, and commit↔session ownership is one-to-one — each render commit opens at most one session and every session is opened by exactly one commit | Row G only |
 | G5 | **Render = touch.** Every render is its own touch with its own committed event. **Row G's *"any unlogged view"* void clause is a consumer of G5, not an exception to N1** | Row G only |
@@ -50,12 +50,24 @@ claims at phase Any. **The commit domain does not model operations whose occurre
 refuses the request or the run dies.** An unmodelled-but-possible operation would be a spec hole; a
 forbidden one is a wall.
 
+## 1c. The ARRIVAL RECEIPT — the second event class, authorised by ruling (2026-08-30 10:46)
+
+**Every request's ARRIVAL is durably logged BEFORE any processing begins** — a write-ahead event
+carrying the request's identifying facts (row, operation, object identity, timestamp), appended by
+Row B on receipt. **This is a second event class, and it changes what the access log records: the
+principal authorised exactly that.** What it buys: **no real request can vanish** — a request that
+dies anywhere after arrival has its arrival event, so the crash-before-commit case is no longer
+invisible; the pre-verdict death that N2 spent eleven revisions naming as a residue is now a logged
+arrival with no terminal event, which recovery and the auditor can SEE and the deadline machinery
+can close. An arrival event is not a touch and satisfies no touch invariant; a touch without a
+preceding arrival is refused by the verifier as malformed history.
+
 ## 2. The non-guarantees, with equal weight
 
 | # | non-guarantee | why it cannot be otherwise |
 |---|---|---|
 | N1 | **Delivery is outside the custody claim** — the event records the store effect, never the requester's receipt or the human's perception | the requester and the human are external to any commit domain; three orderings failed trying to include them |
-| N2 | **A request that dies before any commit is invisible** | making it visible needs a second event class, which changes what the log records — not authorised, REFERRED |
+| N2-RETIRED | **RETIRED BY RULING (2026-08-30 10:46): the WRITE-AHEAD ARRIVAL RECEIPT makes every real request durably visible** — arrival is logged BEFORE any processing, as a second event class the principal explicitly authorised, so no request can vanish and the lifecycle promise becomes true instead of narrowed. Kept in the table as the record of what was a non-guarantee for eleven revisions | making it visible needs a second event class, which changes what the log records — not authorised, REFERRED |
 | N3 | **The log can over-report delivery, never under-report a touch** | the safe direction for a custody log, consequence of G1 + N1 |
 
 ## 3. The invariant table — crash window × reader
