@@ -41,6 +41,17 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V106", "GPT56"): {
+        1: ("REPAIRED", "V107 the listing is the join's third terminal form (XOR)"),
+        2: ("REPAIRED", "V107 drain-start tuple restored into T1"),
+        3: ("REPAIRED", "V107 store-to-log pass with B_stage bound + fixtures"),
+    },
+    ("V106", "CODEX"): {
+        1: ("REPAIRED", "V107 decision-XOR-listing join form"),
+        2: ("REPAIRED", "V107 precondition synced to drained-or-listed"),
+        3: ("REPAIRED", "V107 drain-start schema on the single surface"),
+        4: ("REPAIRED", "V107 store-to-log verifier named with consultation points and bound"),
+    },
     ("V105", "GPT56"): {
         1: ("REPAIRED", "V106 authority-not-chronology principle"),
         2: ("REPAIRED", "V106 terminal-by-listing composes the rule and the list"),
