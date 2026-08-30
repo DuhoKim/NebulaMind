@@ -38,7 +38,7 @@ V116_ELIGIBILITY = (
      "against the pinned draft/spec bytes: both successor-export tuples and both "
      "terminal-review tuples currently match their intended forms. The defect is that "
      "the checker cannot preserve that fact across a future edit, not that the signed "
-     "V116 bytes leave any current form's fields undecidable. The freeze survives if the "
+     "V116 bytes leave any current form’s fields undecidable. The freeze survives if the "
      "appendix records that this echo is not a kind-binding control and requires manual "
      "pair verification for any later generator revision."),
     ("CODEX F1 (HIGH — T1 mirror sentence)",
@@ -66,13 +66,6 @@ RESIDUES = (
      "repaired here) reviewed the V117 diff and this appendix's v1; sources: "
      "STOPPING_RULE_RULING_20260830.md, FINDINGS_MAP V116→V117 and V117→V118, "
      "gates/V117_APPENDIX_REVIEW_{GPT56,CODEX}.md"),
-    ("Acknowledged draft limitations, enumerated by the mini-round",
-     "GPT56-V117A F3 lists the draft's own acknowledged-open items that v1 omitted: the "
-     "unresolved pre-unblinding numerical-route question (draft §5, ~line 535), the "
-     "caller-pair-only authorization guard (§5, ~lines 559–569), the count-only rather "
-     "than partition-complete sample guard (§5, ~lines 570–579), and the still "
-     "dual-valued Stage-P contract (§2.6, ~lines 275–295) — each acknowledged in place "
-     "in the draft's own words at those sites"),
     ("Writer obligations are testimony-plus-fixture by design",
      "chain-undetectable Row-B obligations, each SAID so in place: pass-entry "
      "precondition & decoding pause, reading-at-commit-start, the indivisible "
@@ -133,6 +126,13 @@ def parse_ledger(ledger_text):
                            ledger_text, re.M)
     pre_total = sum(int(re.search(r"— (\d+) finding", ln).group(1)) for ln in pre_lines)
     fm = re.search(r"^\*\*0 undisposed;.*$", ledger_text, re.M)
+    if fm:
+        cn = re.search(r"(\d+) pre-convention findings", fm.group(0))
+        if not cn or int(cn.group(1)) != pre_total:
+            raise SystemExit(f"REFUSED: the ledger's closing line claims "
+                             f"{cn and cn.group(1)} pre-convention findings but its own "
+                             f"rows sum to {pre_total} - contradictory populations "
+                             f"(CODEX-V118A F4)")
     rounds = sorted({m.group(1) for m in
                      re.finditer(r"^- (V\d+)/", ledger_text, re.M)},
                     key=lambda v: int(v[1:]))
@@ -140,7 +140,74 @@ def parse_ledger(ledger_text):
             "pre_total": pre_total, "final_line": fm.group(0) if fm else None,
             "rounds": rounds}
 
+def _norm(s):
+    """Blockquote-unwrap + whitespace-collapse - the comparison form for verbatim checks."""
+    s = re.sub(r"^> ?", "", s, flags=re.M)
+    return re.sub(r"\s+", " ", s).strip()
+
+def enumerate_preconv(pre_lines, read_report):
+    """Per-finding enumeration (GPT56/CODEX-V118A F1: aggregate counts left the 334
+    content-hidden): each era report's FINDINGS-BLOCK F-lines quoted verbatim; a count
+    mismatch or an unparseable report is SAID in place, never padded."""
+    out = []
+    for ln in pre_lines:
+        m = re.match(r"- (V\d+)/([A-Z0-9]+): PRE-CONVENTION — (\d+) finding", ln)
+        ver, seat, n = m.group(1), m.group(2), int(m.group(3))
+        out.append("")
+        out.append(f"**{ver}/{seat} — {n} finding(s) per the ledger "
+                   f"(source: gates/{ver}_WHOLE_REVIEW_{seat}.md):**")
+        body = read_report(ver, seat)
+        if body is None:
+            out.append("  - REPORT FILE ABSENT — the count stands on the ledger's era "
+                       "accounting alone, said rather than padded")
+            continue
+        fl = re.findall(r"^F\d+ \|.*$", body, re.M)
+        if not fl:
+            out.append("  - NO PARSEABLE F-LINES (pre-block-format report) — the count "
+                       "stands on the ledger's era accounting; full text at the named file")
+            continue
+        for f in fl:
+            out.append(f"  - `{f}`")
+        if len(fl) != n:
+            out.append(f"  - **COUNT MISMATCH, said in place: the ledger line says {n}, "
+                       f"the report's block carries {len(fl)} F-line(s)**")
+    return out
+
+def verify_verbatim(quote, source_text, label):
+    if _norm(quote) not in _norm(source_text):
+        raise SystemExit(f"REFUSED: claimed-verbatim quote for {label} is not a "
+                         f"(whitespace-normalized) substring of its source - a false "
+                         f"verbatim cannot ship (GPT56-V118A F3)")
+
+LIMITATIONS = (
+    ("The unresolved pre-unblinding numerical route (§5)",
+     "**A completeness argument was offered here at V46 and is RETRACTED.** It claimed "
+     "that every pre-unblinding numerical failure already terminates in a named outcome, "
+     "resting on two premises the seats were asked to test. **Both failed** (GPT56-V46 "
+     "F1/F2, CODEX-V46 F1/F2)."),
+    ("The caller-pair-only authorization guard (§5)",
+     "**Recorded limit (CODEX-V34-2), because this text must not claim more than the "
+     "guard does:** the runner takes both the authorization path and its SHA-256 **from "
+     "its caller** and checks only that they agree with each other. There is no "
+     "authorization schema, signer, study identity, permitted operation, run identity, "
+     "or independently frozen expected digest, so **any existing file presented "
+     "alongside its own digest satisfies it**"),
+    ("The count-only sample guard (§5)",
+     "**Recorded limit (CODEX-V63 F4), because this text must not claim more than the "
+     "guard does:** the guard compares **two caller-supplied integers** and refuses when "
+     "they differ. It **does not verify a parent-to-receipt partition** — it does not "
+     "check that the receipts correspond one-to-one to the parent objects, only that a "
+     "count agrees with a count. **Any equal pair of integers satisfies it**, so it "
+     "detects a short run and not a substituted, duplicated or misjoined one. **It is a "
+     "count check, not a completeness proof, and nothing downstream may read it as "
+     "one.**"),
+    ("The dual-valued Stage-P contract (§2.6)",
+     "this is an open blocker, stated here rather than papered over, and **BS-5p cannot "
+     "be filled either way.**"),
+)
+
 def emit(led):
+    led.setdefault("preconv_enum", ["", "  (enumeration not loaded in this context)"])
     if led["final_line"] is None:
         raise SystemExit("REFUSED: the ledger carries no final population line - "
                          "cannot certify a summary of a ledger that does not state its own totals")
@@ -169,6 +236,11 @@ def emit(led):
         "",
     ]
     lines += [f"  {ln}" for ln in led["pre_lines"]]
+    lines += ["",
+              "**The findings themselves, enumerated per report — each F-line quoted "
+              "verbatim from its era report's FINDINGS-BLOCK (GPT56/CODEX-V118A F1; a "
+              "pre-block report or a count mismatch is said in place, never padded):**"]
+    lines += led["preconv_enum"]
     lines += [
         "",
         "The ledger's own closing line, verbatim:",
@@ -180,7 +252,7 @@ def emit(led):
         "custody layer, but NO per-finding disposition record exists for them. The "
         "successor's freeze review inherits them by name via the ledger.",
         "",
-        "## 2. The final round's eligibility arguments, verbatim and in full",
+        "## 2. The final text round's eligibility arguments, verbatim and in full",
         "",
         "All six V116 findings were folded in V117/V118 (un-refereed folds under the "
         "cap; the mini-round reviewed the V117 diff and this appendix). The seats' own "
@@ -192,10 +264,19 @@ def emit(led):
         lines.append("")
         lines.append(f"> {quote}")
         lines.append("")
-    lines += ["## 3. Named residues and honest limits", ""]
+    lines += ["## 3. Acknowledged draft limitations, quoted in full from the draft", "",
+              "The four the mini-round found omitted (GPT56-V117A F3), each a verbatim "
+              "passage verified as a substring of the draft at generation "
+              "(blockquote-unwrapped, whitespace-normalized):", ""]
+    for name, quote in LIMITATIONS:
+        lines.append(f"**{name}**")
+        lines.append("")
+        lines.append(f"> {quote}")
+        lines.append("")
+    lines += ["## 4. Named residues and honest limits", ""]
     for name, desc in RESIDUES:
         lines.append(f"- **{name}.** {desc}")
-    lines += ["", "## 4. Open build inventory (not text debt; freeze-gating where marked)", ""]
+    lines += ["", "## 5. Open build inventory (not text debt; freeze-gating where marked)", ""]
     for item in BUILD_OPEN:
         lines.append(f"- {item}")
     lines += ["",
@@ -222,15 +303,46 @@ def selftest():
         fails.append("missing final line did not refuse")
     except SystemExit:
         pass
+    try:
+        parse_ledger(synth.replace("7 pre-convention findings", "334 pre-convention findings"))
+        fails.append("contradictory closing total did not refuse")
+    except SystemExit:
+        pass
+    fake = {"V40": "F1 | HIGH | x | one\nF2 | LOW | y | two\n"}
+    en = "\n".join(enumerate_preconv(
+        ["- V40/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, "
+         "enumerated as audit debt"],
+        lambda v, s: fake.get(v)))
+    if "`F1 | HIGH | x | one`" not in en or "COUNT MISMATCH" not in en:
+        fails.append("enumeration did not quote F-lines or say the mismatch")
+    try:
+        verify_verbatim("this text is nowhere", "totally different source", "probe")
+        fails.append("false verbatim did not refuse")
+    except SystemExit:
+        pass
     return fails
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         f = selftest()
         for x in f: print("SELFTEST FAIL:", x)
-        print(f"selftest: {3 - len(f)}/3 controls fired correctly")
+        print(f"selftest: {6 - len(f)}/6 controls fired correctly")
         sys.exit(1 if f else 0)
-    body = emit(parse_ledger((HERE / "REPAIR_LEDGER.md").read_text()))
+    led = parse_ledger((HERE / "REPAIR_LEDGER.md").read_text())
+    def _read_report(ver, seat):
+        f = HERE / f"{ver}_WHOLE_REVIEW_{seat}.md"
+        return f.read_text() if f.exists() else None
+    led["preconv_enum"] = enumerate_preconv(led["pre_lines"], _read_report)
+    for name, quote in V116_ELIGIBILITY:
+        seat = "GPT56" if name.startswith("GPT56") else "CODEX"
+        verify_verbatim(quote, (HERE / f"V116_WHOLE_REVIEW_{seat}.md").read_text(), name)
+    import re as _re
+    drafts = sorted(HERE.parent.glob("PREREG_SUCCESSOR_DRAFT_V*_2026*.md"),
+                    key=lambda f: int(_re.search(r"_V(\d+)_", f.name).group(1)))
+    draft_text = drafts[-1].read_text()
+    for name, quote in LIMITATIONS:
+        verify_verbatim(quote, draft_text, name)
+    body = emit(led)
     target = HERE / "KNOWN_DEBT_APPENDIX.md"
     if "--check" in sys.argv:
         ok = target.exists() and target.read_text() == body

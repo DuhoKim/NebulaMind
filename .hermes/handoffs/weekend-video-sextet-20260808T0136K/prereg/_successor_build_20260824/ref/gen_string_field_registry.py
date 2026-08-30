@@ -573,20 +573,20 @@ def _domain_echo_selftest():
         probs = []
         for _kind, _fields, _home in (forms or FORM_SCHEMAS):
             _tup = "`(" + ", ".join(_fields) + ")`"
-            _kp = _re3.escape(_kind) + r"(?!-)"
+            _kp = r"(?<![\w-])" + _re3.escape(_kind) + r"(?![\w-])"
             if not _re3.search(_kp, corpus):
                 probs.append(f"kind absent:{_kind}"); continue
             pair = any(_re3.search(_kp, corpus[max(0, m.start() - 900):m.end() + 900])
                        for m in _re3.finditer(_re3.escape(_tup), corpus))
             if not pair:
                 probs.append(f"no co-located pair:{_kind}")
-            _first = _fields[1]
+            _at = {"`(" + ", ".join(fs) + ")`" for _, fs, _ in FORM_SCHEMAS}
             for _km in _re3.finditer(_kp, corpus):
                 _win = corpus[max(0, _km.start() - 900):_km.end() + 900]
                 for _tm in _re3.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
                     _cand = _tm.group(0)
                     if (sum(1 for f in _fields[1:] if f in _cand) >= 2
-                            and _cand != _tup and _first in _cand):
+                            and _cand not in _at):
                         probs.append(f"kind-adjacent divergent tuple:{_kind}")
         return probs
     # ALL FOUR forms exercised (CODEX-V117A F3: controls covered only FORM_SCHEMAS[:1])
@@ -598,20 +598,31 @@ def _domain_echo_selftest():
         if f"kind absent:{_k0}" not in _form_probs(_clean.replace(_k0, "renamed-thing", 1)):
             fails.append(f"form-echo rename not caught ({_k0})")
             break
-    _k0, _f0, _ = FORM_SCHEMAS[0]
-    _t0 = "`(" + ", ".join(_f0) + ")`"
-    _corrupt = _t0.replace(_f0[1], _f0[1] + "_x", 1)
-    decoy = (f"the {_k0} body {_corrupt} here " + " x" * 600 + " stray " + _t0)
-    _dp = _form_probs(decoy, forms=FORM_SCHEMAS[:1])
-    if not any("divergent tuple" in p or "no co-located pair" in p for p in _dp):
-        fails.append("form-echo adjacent-corruption-with-distant-decoy not caught")
-    # cross-form substitution: form0's kind beside form1's tuple only
-    _k1, _f1, _ = FORM_SCHEMAS[1]
-    _t1 = "`(" + ", ".join(_f1) + ")`"
-    _swap = f"the {_k0} body {_t1} here"
-    _sp = _form_probs(_swap, forms=FORM_SCHEMAS[:1])
-    if not any("no co-located pair" in p or "divergent tuple" in p for p in _sp):
-        fails.append("form-echo cross-form substitution not caught")
+    # per-form deep controls, ALL FOUR (GPT56/CODEX-V118A: v1 covered form 0 only,
+    # had no deletion probe, and a first-field deletion evaded the guard)
+    for _i, (_k0, _f0, _) in enumerate(FORM_SCHEMAS):
+        _t0 = "`(" + ", ".join(_f0) + ")`"
+        _me = FORM_SCHEMAS[_i:_i + 1]
+        # adjacent corruption (FIRST field deleted - the V118A bypass) + distant decoy
+        _corrupt = _t0.replace(_f0[1] + ", ", "", 1)
+        decoy = (f"the {_k0} body {_corrupt} here " + " x" * 600 + " stray " + _t0)
+        if not any("divergent tuple" in p or "no co-located pair" in p
+                   for p in _form_probs(decoy, forms=_me)):
+            fails.append(f"form-echo first-field-corruption+decoy not caught ({_k0})")
+        # prefix rename (the V118A left-boundary bypass)
+        if not any("kind absent" in p
+                   for p in _form_probs(f"the x{_k0} body {_t0} here", forms=_me)):
+            fails.append(f"form-echo prefix rename not caught ({_k0})")
+        # tuple deletion: kind alone
+        if not any("no co-located pair" in p
+                   for p in _form_probs(f"the {_k0} body here", forms=_me)):
+            fails.append(f"form-echo tuple deletion not caught ({_k0})")
+        # cross-form substitution: this kind beside the NEXT form's tuple only
+        _f1 = FORM_SCHEMAS[(_i + 1) % len(FORM_SCHEMAS)][1]
+        _t1 = "`(" + ", ".join(_f1) + ")`"
+        if not any("no co-located pair" in p or "divergent tuple" in p
+                   for p in _form_probs(f"the {_k0} body {_t1} here", forms=_me)):
+            fails.append(f"form-echo cross-form substitution not caught ({_k0})")
     ok_v = "ABORTED - EXPIRED - ABORTED-BY-RESTART"
     ok_a = "ABORTED - ABORTED-BY-RESTART"
     if _run(ok_v, ok_a):
@@ -818,7 +829,7 @@ def crosscheck_declared(text):
         # authority): the echo does NOT establish a unique authoritative site - the
         # corpus legitimately repeats these tuples - and semantic drift outside the
         # kind-adjacent windows stays referee/successor territory.
-        _kpat = _re.escape(_kind) + r"(?!-)"
+        _kpat = r"(?<![\w-])" + _re.escape(_kind) + r"(?![\w-])"
         if not _re.search(_kpat, _corpus):
             problems.append(f"form-schema echo: kind literal '{_kind}' absent from the "
                             f"{_home} (GPT56/CODEX-V116 F3)")
@@ -833,18 +844,21 @@ def crosscheck_declared(text):
             problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
                             f"'{_kind}' in the {_home} - the tuple exists only away from "
                             f"its kind (GPT56/CODEX-V116 F3 duplicate-shadow)")
-        # decoy guard: every tuple-shaped `(kind, ...)` string within 900 bytes of a
-        # kind mention that shares >=2 of this form's fields must equal the exact tuple
-        _first = _fields[1]
+        # decoy guard v2 (GPT56-V118A F4, CODEX-V118A F3 broke v1's _fields[1]
+        # precondition - deleting the first field evaded the guard): a kind-adjacent
+        # tuple-shaped string sharing >=2 of this form's fields is DIVERGENT unless it
+        # byte-equals SOME mapped form's tuple (legitimate neighbours equal their own
+        # form; a corruption equals none).
+        _all_tups = {"`(" + ", ".join(fs) + ")`" for _, fs, _ in FORM_SCHEMAS}
         for _km in _re.finditer(_kpat, _corpus):
             _win = _corpus[max(0, _km.start() - 900):_km.end() + 900]
             for _tm in _re.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
                 _cand = _tm.group(0)
                 _shared = sum(1 for f in _fields[1:] if f in _cand)
-                if _shared >= 2 and _cand != _tup and _first in _cand:
-                    problems.append(f"form-schema echo: a kind-adjacent tuple for "
-                                    f"'{_kind}' differs from the mapped form "
-                                    f"(CODEX-V117A F3 decoy/corruption guard): "
+                if _shared >= 2 and _cand not in _all_tups:
+                    problems.append(f"form-schema echo: a kind-adjacent tuple near "
+                                    f"'{_kind}' equals no mapped form "
+                                    f"(GPT56/CODEX-V118A decoy guard v2): "
                                     f"{_cand[:60]}...")
     # CLOSE-CLASS DOMAIN ECHO (GPT56-V114 F1, CODEX-V114 F5: one exhaustive item gave
     # close_class two incompatible domains; the domains must be QUALIFIED and EXPIRED

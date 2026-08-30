@@ -360,3 +360,27 @@ ledger's scope is WHOLE-REVIEW rounds, so these nine are dispositioned HERE:
   sentence is now true and cites the finding.
 
 V117 → V118: the mini-round's nine repairs — full-ledger appendix with the 334 surfaced, verbatim quotes, the four omitted limitations, echo decoy guard with honest non-claims, the history mutation reverted, the harness registered in the real inventory.
+
+## V118 → V119 (2026-08-31 night — RE-READ 2's REPAIRS; DEFECTIVE ×2 again, narrower again)
+
+**Re-read verdicts on (appendix v2 + V118): DEFECTIVE ×2 (GPT56 4, CODEX 4); six of the
+nine prior repairs CONFIRMED (history revert, real inventory, map correction, limitations
+named, per-echo honesty, populations counted).** The remaining four classes, repaired:
+
+- **GPT56/CODEX F1 (the 334 still content-hidden):** appendix v3 ENUMERATES every
+  pre-convention finding individually — each report's FINDINGS-BLOCK F-lines quoted
+  verbatim under its round/seat header, with per-report count reconciliation against the
+  ledger line (a mismatch or an unparseable report is SAID in place, never padded).
+- **GPT56 F3 / CODEX F2 (the byte):** the GPT56-F3 quote restores U+2019 (`form’s`);
+  the generator now asserts every claimed-verbatim quote is a byte-substring of its
+  source file at generation time — a false "verbatim" refuses the build.
+- **GPT56 F2 (limitations paraphrased):** the four acknowledged limitations are now
+  FULL VERBATIM PASSAGES from the draft, each asserted-as-substring at generation.
+- **GPT56 F4 / CODEX F3 (echo bypasses) + CODEX F4 (reconciliation):** form echo v4 —
+  real word boundaries both sides, divergence = equals-no-mapped-form (kills the
+  first-field-deletion bypass), per-form controls for all four (prefix-rename, tuple
+  deletion, corruption+decoy, cross-form); the appendix parser REFUSES a closing-line
+  total that disagrees with the parsed row sum (control included); the draft's §11 claim
+  sentence now states exactly the shipped contract.
+
+V118 → V119: re-read 2's repairs — the 334 enumerated per-finding verbatim, self-verifying quotes, echo v4 with both-side boundaries and equals-no-mapped-form divergence, enforced population reconciliation.

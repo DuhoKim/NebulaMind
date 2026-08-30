@@ -74,13 +74,475 @@
   - V86/GPT56: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
   - V86/CODEX: PRE-CONVENTION — 10 finding(s) dispositioned in era prose, enumerated as audit debt
 
+**The findings themselves, enumerated per report — each F-line quoted verbatim from its era report's FINDINGS-BLOCK (GPT56/CODEX-V118A F1; a pre-block report or a count mismatch is said in place, never padded):**
+
+**V38/GPT56 — 1 finding(s) per the ledger (source: gates/V38_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | MEDIUM | REPAIR-REQUIRED | §7 line 701 | Live DESIGN-slot inventory omits newly added DESIGN slot BS-3g`
+
+**V38/CODEX — 4 finding(s) per the ledger (source: gates/V38_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | MEDIUM | REPAIR-REQUIRED | §7 line 701 | The DESIGN-slot inventory omits newly added DESIGN slot BS-3g.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §5 line 493; §7.1 lines 737, 752–753 | Generic non-finite/degenerate VOID rows are Post-unblinding despite an unqualified §5 trigger, defeating semantic completeness.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §7.1 line 741 | DECISIONS_FOR_DUHO.md is an unresolved index, not the claimed record of principal option A.`
+  - `F4 | LOW | REPAIR-REQUIRED | §7.1 line 743 | The phase is substantively sound, but §6.2 is mis-cited and commit metadata does not prove lane authorship.`
+
+**V40/GPT56 — 7 finding(s) per the ledger (source: gates/V40_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 488–497; §6.1 lines 568, 604 | Computation failure is both a terminal run outcome and a retryable state, while Row J assigns conflicting POWER and VOID consequences.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §5 lines 494–496 | The rerun is either deterministic repetition or an unbound random fork, and its claimed attempt log has no authenticated schema or verifier.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §5 line 497; §7 lines 708–733 | The mandatory pre-BS-6 attempt cap has no Class-P dependency edge.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 540–550; §7 line 723 | BS-3g is omitted from the exhaustive gate-readable receipt schema, so its BS-6 edge is not receiptable.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 lines 491–493 | Aggregate calibration failures overlap INCONCLUSIVE-BY-CALIBRATION and INCONCLUSIVE-BY-COMPUTATION.`
+  - `F6 | LOW | REPAIR-REQUIRED | §7.1 line 752 | The §2.7 evidence paragraph still cites the wrong lines and section.`
+  - `F7 | LOW | ADVISORY | §7.1 line 746 | The referenced VOID checker passes normally but fails its V40 self-test because the revised trigger syntax disables its compound-gap heuristic.`
+
+**V40/CODEX — 4 finding(s) per the ledger (source: gates/V40_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 488, 491–496; §6.1 line 568 | A run-level computation halt is emitted and then rerun, violating the one-outcome and Row-J halt contracts.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §5 lines 494–496; §6.1 lines 540–559, 568 | Attempt logging is not receiptable or exhaustive and the rerun random address is selectable, leaving a forking path.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §5 line 497; §7 lines 702–727; §11 lines 908–920 | The disclosed maximum-attempt parameter has no named pre-BS-6 slot, schema, producer, or dependency edge.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 540–550; §7 lines 708, 723 | BS-3g is missing from the exhaustive non-χ-bearing slot-receipt inventory.`
+
+**V43/GPT56 — 3 finding(s) per the ledger (source: gates/V43_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 488–493; §6.1 Row J line 564; clause 10 line 600 | A pre-unblinding Stage-C numerical failure still maps to both COMPUTATION and POWER, with no named computation-outcome producer.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §7 line 719; §11 line 920 | The BS-3g row reopens a three-way semantics fork after the cited current sidecar records option (b) as settled, instead of naming only the open γ-to-sign/calibration mapping.`
+  - `F3 | LOW | REPAIR-REQUIRED | §10 lines 848–854, 891, 903 | V43 writes its own V42→V43 transition with no result digest despite saying the current transition is sidecar-only and cannot appear in-band.`
+
+**V43/CODEX — 2 finding(s) per the ledger (source: gates/V43_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 488–498; §6.1 Row J line 564; §11 lines 910–921 | The terminal computation route still overlaps Row J's terminal POWER-FAIL route and has no named implementation path.`
+  - `F2 | LOW | REPAIR-REQUIRED | §7 line 719; §11 line 920 | BS-3g still presents the superseded three-way completeness fork although the principal selected the joint path and only its sign-vector mapping remains open.`
+
+**V44/GPT56 — 2 finding(s) per the ledger (source: gates/V44_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §4 line 476; §5 lines 491–498; §6.1 Row J line 564; §7.1 line 744; §11 line 921 | Row J still assigns numerical Stage-C failures to POWER, while §5 assigns them to residual COMPUTATION and §11 evaluates COMPUTATION only after the claiming power guard.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §7 line 719; §11 line 920 | Section 11 still calls BS-3g completeness semantics open although the joint-counterfactual path is settled and only the γ-to-sign/calibration mapping remains open.`
+
+**V44/CODEX — 2 finding(s) per the ledger (source: gates/V44_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §4 line 476; §5 lines 491–498; §6.1 Row J line 564; §11 line 921 | COMPUTATION is still claimed by Row J's universal POWER-failure branch, and evaluating it after that guard makes the purported residual route unreachable on Stage-C numerical failures.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §7 line 719; §11 line 920 | Section 11 still calls BS-3g completeness semantics open although the principal settled the joint path and only the γ-to-sign/calibration mapping remains open.`
+
+**V46/GPT56 — 2 finding(s) per the ledger (source: gates/V46_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §0 lines 72–100; §5 lines 492–494; §6.1 Row J line 566; §11 lines 912–925 | The normative Stage-C code propagates numerical exceptions and §11 names no conversion, so the claimed existing POWER route that justifies deleting COMPUTATION is not executable.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §2.7 lines 342–345; §5 lines 491–494; §6.1 Rows E/I/P lines 561/565/572; §7.1 line 746 | The closure proof mislabels catalogue-quality reason (c) as instrument-nonfinite handling and omits the actual Row-I/Row-P phase split.`
+
+**V46/CODEX — 2 finding(s) per the ledger (source: gates/V46_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 493–494; §6.1 Row F line 562; §6.3 lines 612–618 and Clause 10 line 602 | Row F's executable degenerate-bin and infeasible-allocation FAIL branches have no named outcome, so Row R does not prove pre-unblinding numerical-failure completeness.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §2.7 lines 342–345; §5 line 493; §6.1 Rows E/P lines 561/572 | Section 5 falsely routes non-finite instrument output through catalogue-quality reason (c); the document actually defers it to post-unblinding Row P and CALIBRATION.`
+
+**V49/GPT56 — 7 finding(s) per the ledger (source: gates/V49_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 547–550 | Unconstrained per-object access-log refusal reasons defeat the asserted non-χ closed allowlist.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §5 lines 494–498, 506–507; §11 line 934 | Post-unblinding non-finite/degenerate failures are simultaneously claimed by VOID and the new numerical outcome.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §5 lines 500–501 | The false §2.7(c) non-finite route remains asserted immediately before its retraction.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §5 line 497; §11 line 934 | Pinned code has 112 raise nodes and 39 ManifestClosureError sites, contradicting the stated 111/RuntimeError-or-ValueError inventory.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 line 496; ref lines 1378–1403 | The binary caller/run boundary misclassifies unreachable defensive guards as caller errors.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §2.1 lines 139–155 | “Nothing else changes with the branch” contradicts Branch A voiding every Branch-B pin and requiring a new preregistration.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | lines 62–64 | The cited predecessor memo path no longer matches its pinned SHA; only an uncited historical git object does.`
+
+**V49/CODEX — 3 finding(s) per the ledger (source: gates/V49_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 Row L, lines 577 and 592–603 | Required freeze/opening signatures still satisfy Row L's unqualified wrong-signature VOID rule.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §5 lines 494–498; §11 line 934 | The any-computation rule inventories only explicit raise sites and gives conflicting classifications across helper boundaries.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §5 line 497 | The 31–79 numerical-class range is a heuristic candidate partition that does not subtract more-specific VOID/outcome sites.`
+
+**V52/GPT56 — 3 finding(s) per the ledger (source: gates/V52_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 497–503; ref lines 1378–1442 | The live UNREACHABLE promotion names no per-site proof, and one of its five guards is the feasibility decision itself rather than a later guard subsumed by it.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §5 line 504; §11 line 944 | Current prose retains stale 29/31/48-unread and 111/RuntimeError-or-ValueError inventories that contradict the 112-node pinned source and supporting table.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §11 line 944; ref classification/generator | The supporting artifact classifies one row per raise statement, not the per-call-site failure paths the draft correctly requires, producing context-insensitive soft classifications.`
+
+**V52/CODEX — 5 finding(s) per the ledger (source: gates/V52_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 497–504 | The claimed live UNREACHABLE example names no five sites, and the supporting ledger marks all eight guards NUMERICAL.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §5 line 504; §11 line 944 | V52 carries incompatible 108/111/112 raise inventories and a stale 48-unread status.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §11 line 944 | The supporting per-raise ledger cannot classify phase-sensitive failure paths or produce the required call-site outcomes.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 Row L line 584; §7.1 line 811 | The wrong-signature antecedent is P7-only although Row L's signing condition can fire at P0, P6, or P7.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | preamble line 31; §7 line 730 | Stale Row-L-open and false BS-2v self-reference claims contradict V52's repair and its own checker.`
+
+**V53/GPT56 — 3 finding(s) per the ledger (source: gates/V53_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 497–506; ref lines 1378–1442 | L1401 is directly reachable under the callable's documented argument surface, and the other four promotions still omit the specific per-site predecessor conditions §5 requires.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | preamble line 31; §7 line 733 | BS-2v remains UNRESOLVED for a claimed registry/converter self-reference that tools/void_registry.py explicitly disproves.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §5 line 507; §11 line 948; raise ledger lines 9–18 | V53 and its ledger still conflict among NUMERICAL 22, NUMERICAL 17/13, 48 unread/range, and none unassigned.`
+
+**V53/CODEX — 4 finding(s) per the ledger (source: gates/V53_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 497–506; ref lines 1378–1403 | L1401 is directly reachable through the pinned function's unrestricted integer budget argument, so non-observation under one frozen-caller harness cannot mark it unreachable.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §5 lines 498–505; raise ledger lines 103–110 | The five promotions still lack the reproducible harness record and per-site structural conditions required by their own evidence rule.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §5 line 507; §11 line 948 | Section 11 still says 48 sites are unread although §5 and the complete ledger say every one of 112 nodes has been classified.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 Row L line 587; clauses 3 and 6 | The exemption for “the freeze signature” is broad because no canonical freeze-signature body or verifier defines which signed bytes qualify.`
+
+**V54/GPT56 — 5 finding(s) per the ledger (source: gates/V54_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 495, 525, 533–534; §7.1 lines 795–796 | The post-unblinding production decision failures are claimed by the generic numerical outcome even though the draft's explicit VOID precedence already claims them.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §5 lines 497–523 | The promotion bar still permits a universal UNREACHABLE-BY-CONSTRUCTION label on finite non-exhaustive testing that can miss a reachable guard while satisfying every literal harness requirement.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §5 lines 493–497, 524; raise ledger lines 7–16, 78–80 | Three NUMERICAL-PLANNING sites fire before a run exists but the universal class rule neither authorizes that fourth category nor states its terminal consequence.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §2.6 lines 276–285; KIMI-V11 lines 224–241, 332–351 | KIMI-V11 F7 is a v7-subject disclosure finding, while the same report calls Stage P single-valued; it does not support V54's asserted three-seat dual-valued ruling.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 lines 524, 530; §11 line 966; numerical-routes artifact line 1 | The referenced status artifact still says 48 sites are unread and the class is 31–79 although its own later body, V54, §11, and the ledger say the corpus is complete.`
+
+**V54/CODEX — 3 finding(s) per the ledger (source: gates/V54_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | MEDIUM | REPAIR-REQUIRED | §5 lines 498–523 | The evidence bar still lets non-exhaustive measurement-only sampling establish a status defined as impossible by construction.`
+  - `F2 | MEDIUM | REPAIR-REQUIRED | §5 lines 496, 524; raise ledger lines 111–113 | L1464 tests supplied count admissibility but is classified NUMERICAL, so the reconciled 22-row inventory violates its own caller boundary.`
+  - `F3 | LOW | ADVISORY | §5 lines 513–517 | The asserted 80,000-execution rerun has no pinned runnable harness, generator, per-site count record, or receipt in the referenced build.`
+
+**V56/GPT56 — 5 finding(s) per the ledger (source: gates/V56_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 581–582; tools/refusal_vocabulary_check.py lines 70–85 | The derivation checker ignores the row-table surface, so a maximal surface change leaves the pinned fingerprint and checker result unchanged.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §2.7 lines 342–355; §6.1 lines 577–581, Row B line 598, Row C2 line 600 | An authorized read of a permitted but missing or unreadable cutout requires a Row-B refusal that none of the eight closed codes can log.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 578–579 | REFUSED-IDENTITY-OUTSIDE-PERMITTED-SET violates the stated principle by encoding a property of the logged object identity.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §5 line 524; ref/RAISE_SITE_CLASSIFICATION.md lines 9–16 | The draft still states CALLER 20 / NUMERICAL 22 while the next sentence and live 112-row ledger say 21 / 21.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 line 496; raise ledger lines 97–99; pinned reference lines 1199–1209 | inject_signs' supplied-accuracy range guard is classified NUMERICAL even though §5's own boundary makes it a CALLER error.`
+
+**V56/CODEX — 6 finding(s) per the ledger (source: gates/V56_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 581–582; refusal_vocabulary_check.py lines 70–85 | Fingerprint omits the row-surface column, so a closure-breaking surface change passes unchanged.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 574–587; §7 line 762; §11 line 976 | BS-3g has no pinned schema/producer/verifier, and unknown-slot receipts accept arbitrary outcome fields.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 577–582; Row B line 598 | Ordinary mediator I/O or object-unavailability refusal is outside the alleged exhaustive eight-code set.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 578–581 | Request/authorisation-shaped codes can still reveal object membership or bounds.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 line 496; raise ledger line 82 | Supplied mask-c admissibility is misclassified as integrity/VOID rather than caller error.`
+  - `F6 | LOW | REPAIR-REQUIRED | §5 line 524; raise ledger lines 9–16 | Post-V55 caller/numerical totals still contradict the table and each other.`
+
+**V59/GPT56 — 7 finding(s) per the ledger (source: gates/V59_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §0 lines 72–100; §7 line 768; §11 lines 982–986 | BS-7p still names permissive receipt(), while the universal strict-constructor rule is impossible for §6.1 producers of non-slot receipts.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 574–576; §7 line 765; §11 lines 987–1026 | BS-3g is classified under a pinned authenticated non-χ schema even though it is absent from the pinned SLOT_SCHEMA and its producer/verifier are unbound.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §11 lines 991–1020 | Fixed-width scalar types do not prevent per-object or covert object-indexed values, and the nine-field schema binds no input sample or perturbation manifest.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 577–585; Row B line 601; refusal checker lines 4–24, 46–65, 95–118 | The prose suspends the eight codes, but the live schema language and checker still enforce that exact set and no-catch-all policy.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §6.1 line 585 | The claimed corrected refusal-checker digest fd6d6d7e… does not match the on-disk tool digest c2ccebbcb4730944….`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §5 lines 498–523; pinned reference lines 373–399 | Varying every formal argument can miss global/imported/filesystem state that controls reachability, making the unreachability evidence bar vacuous for zero-argument guards.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §5 lines 496, 524; raise ledger lines 9–16, 110–114 | The draft says NUMERICAL 21 while the live table says 20, its header still says 22→18, and epsilon_hat’s supplied-argument guard is misclassified NUMERICAL.`
+
+**V59/CODEX — 5 finding(s) per the ledger (source: gates/V59_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 577–585 | The suspended eight-code/no-catch-all set remains the operative access-log schema and is reasserted after its own withdrawal.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 982–986; §6.1 Rows B/C/C2/H/O/P/Q | The universal receipt_strict binding cannot be satisfied by named producers of non-SLOT_SCHEMA receipts, triggering V59's own STOP condition.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §7 line 765; §11 lines 987–1019 | BS-3g binds neither its data inputs nor its perturbation manifest, so a valid-looking receipt can certify a different sample or favourable subset.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 line 585 | The asserted corrected refusal-checker digest fd6d6d7e… does not match the referenced file's c2ccebbc… SHA-256.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 line 524; raise ledger lines 9–16 | The draft says numerical 21 while the live table says 20, and the ledger's own soft-count sentence still starts from 22.`
+
+**V63/GPT56 — 6 finding(s) per the ledger (source: gates/V63_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 495–501; §6.1 Rows I/J and Clause 3(c) | Run-produced BS-2f/BS-8f/BS-5f are also verified before unblinding, so the new VOID/numerical question returns both and is not an exclusive partition.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §5 lines 503–504; raise ledger L986; pinned reference lines 951–1004 | L986 is an internal MOVE_CAP failure after local_pass has already found a feasible prefix, so moving it to CALLER violates the draft’s own supplied-argument boundary.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §7 BS-3g/BS-6/BS-2f/BS-8f rows; §6.1 phase line; §11 lines 1039–1089 | Pre-BS-6 BS-3g verification requires the later P3 BS-2f mask and P4 BS-8f calibration, creating an unfillable lifecycle cycle.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 578–580; §11 lines 1007–1011 and 1018–1104 | BS-3g remains absent from pinned SLOT_SCHEMA and accepts arbitrary fields through v9.receipt(), contradicting its present classification as a pinned authenticated non-χ receipt.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §7 BS-3g row; §11 lines 1024–1087 | The draw fields omit the draw×perturbation addressing, matrix serialization, baseline, and categorical worst-case rule, so replayable draws still do not determine one checkable worst outcome.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 lines 581–589; Row B; refusal checker lines 2–24, 46–65, 95–118 | The old exact-eight/no-catch-all refusal vocabulary is called suspended but remains normative in the event schema and hard-enforced by the referenced checker.`
+
+**V63/CODEX — 4 finding(s) per the ledger (source: gates/V63_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §5 lines 495–501 | Run-produced BS-8f/BS-5f artifacts are later sealed and verified, so one post-unblinding failure belongs to both sides of the alleged exclusive partition.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1024–1031, 1058–1068, 1080–1087 | A replayable receipt cannot prove n_draws and seed were fixed before verdicts; adaptive off-record selection passes all four fields and verifier clause (e).`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §11 lines 1019–1023, 1091–1097 | Unbounded identifier, seed and count encodings defeat the claim that no allowed BS-3g field can carry an object-indexed payload.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §5 lines 556–568; successor_ref_v9.py lines 1591–1599, 1647–1649 | require_complete_sample accepts any equal caller integers and does not verify a parent-to-receipt partition.`
+
+**V64/GPT56 — 5 finding(s) per the ledger (source: gates/V64_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 605–610 | The request lifecycle lacks durable pre-verdict state, atomic logging, recovery ownership, and stale-worker fencing, so requests can end unlogged or in two terminal treatments.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 596, 602, 608–609 | Freeze-time review cannot police run-time catch-all emissions, and no executable consequence prevents REFUSED-UNCLASSIFIED from becoming routine.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §11 lines 1095–1121 | V64 claims draw pre-commitment but contains no frozen n_draws or master-seed value and no declared generator-ID enumeration.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §5 lines 503, 528; raise-site ledger lines 9, 79–81 | L986 is PLANNING-INTERNAL under the source and V64's repair but CALLER in the authoritative live classification and later prose.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §6.1 line 603 | V64's claimed refusal-checker SHA prefix c2ccebbcb4730944 disagrees with the live referenced file's acb38c401e00b075 hash.`
+
+**V64/CODEX — 7 finding(s) per the ledger (source: gates/V64_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 606–610 | Pre-verdict death and the verdict-to-append gap leave requests undecided or unlogged despite the lifecycle's universal claim.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 590, 593–600 | Four availability codes explicitly describe the logged object and create a new per-object state leak.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 596, 608–610; refusal checker lines 102–133 | The catch-all has no freeze artifact or blocking invariant, and the checker only phrase-matches the guard.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §11 lines 1043–1046, 1071–1073, 1125–1137 | A γ=0 singleton manifest passes all BS-3g checks while omitting the allowed perturbation range.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §7 line 791; §11 lines 1095–1120, 1133–1138 | No concrete frozen draw values or closed generator/mapping sets exist for the claimed verifier comparisons.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §5 lines 503, 528; raise-site ledger lines 9, 79–81 | L986 is PLANNING-INTERNAL under the source and V64's repair but CALLER in the authoritative live classification and later prose.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 line 603 | V64's claimed refusal-checker SHA prefix c2ccebbcb4730944 disagrees with the live referenced file's acb38c401e00b075 hash.`
+
+**V66/GPT56 — 5 finding(s) per the ledger (source: gates/V66_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 610–617 | Without durable pre-verdict state, a received request can crash and remain forever undecided and unlogged.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 611, 614–617, 645 | One pre-transfer success/refusal event cannot also truthfully record a later COMPLETED/FAILED transfer outcome.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 598–600, 659, 674, 682; checker lines 146–147 | Post-BS-L catch-all events do not block opening through any named verifier, and R07 checks only a BS-L phrase.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §11 lines 1094–1101, 1154–1158 | A three-point endpoint-spanning γ manifest can miss an interior verdict flip and still report HELD.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §5 line 528; RAISE_SITE_CLASSIFICATION lines 9, 11–16, 80–82 | Draft says all three planning sites are CALLER while L986 is authoritatively PLANNING-INTERNAL.`
+
+**V66/CODEX — 6 finding(s) per the ledger (source: gates/V66_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 611, 614–617, 645 | One pre-transfer event cannot truthfully record a later COMPLETED/FAILED transfer result.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 615, 623–624, 645 | Recovery has no stable request identity with which to prevent redecision across legal retries and repeated touches.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 598–600, 659, 674, 682; checker lines 135–147 | A post-BS-L catch-all event reaches opening because no named verifier consults a fresh enumeration checkpoint.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 596–600, 607, 617–618 | Human explanation can enumerate an endlessly recurring catch-all class, making it routine while formally passing the guard.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1094–1101, 1149–1158 | An endpoint-spanning three-value γ manifest can miss an interior verdict flip and still report HELD.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §5 lines 503, 528; RAISE_SITE_CLASSIFICATION lines 11–16, 80–82 | Draft says all three planning sites are CALLER although L986 is PLANNING-INTERNAL.`
+
+**V67/GPT56 — 7 finding(s) per the ledger (source: gates/V67_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–590, 619–622, 626, 654 | Staging success cannot establish a write's later commit outcome without an atomic log/store contract, so the sole event may be false or bytes may precede it.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 623–625 | An internal request ID omitted from the event has no atomic event binding, so recovery can duplicate one request or suppress a legal retry.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 599, 603–605; §11; checker lines 155–161 | The enumeration verifier has no authenticated entry schema, producer, join, implementation item or real gate wiring; the checker verifies only phrases.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 599–600 | “Same class recurs” has no frozen equivalence key, so routine catch-all failures can be relabelled into formally distinct classes forever.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1100–1104, 1136–1143, 1210–1226 | BS-3g's verifier does not enforce both endpoints, distinct points or maximum spacing Δγ, and Δγ is absent from the receipt binding.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 line 659; §6.3 lines 725–741; §7 BS-8p; successor_ref_v9.py lines 1359–1378 | Row F admits a χ-bearing stratum index that no authorised producer creates, and no typed boundary keeps it out of calibration_bins().`
+  - `F7 | LOW | REPAIR-REQUIRED | §6.1 lines 597–605, 612, 626 | Two live clauses still invoke impossible freeze-time enumeration after the mechanism expressly moved to run-time gates.`
+
+**V67/CODEX — 8 finding(s) per the ledger (source: gates/V67_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 619–622, 626, 654 | Resolve-before-append can under-log a completed sealed-store read, while append-before-commit can falsely report a write or let bytes precede the event.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 623–625 | An internal request ID omitted from the event has no atomic event binding, so recovery can duplicate one request or suppress a legal retry.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–590, 599, 603–605; §11; checker lines 155–161 | The enumeration verifier has no authenticated entry schema, producer, join, implementation item, or executable gate wiring; the checker verifies only phrases.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 599–600; checker line 162 | “Same class recurs” has no frozen equivalence key, so routine catch-all failures can be relabelled into formally distinct classes forever.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §7 line 846; §11 lines 1142, 1195–1199, 1216–1229 | A verifier-valid `FAILED` BS-3g receipt is not prevented from filling the slot and discharging the BS-6 edge.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §11 lines 1100–1104, 1136–1143, 1210–1226 | BS-3g's verifier does not enforce both endpoints, distinct points, or maximum spacing Δγ, and Δγ is absent from the receipt binding.`
+  - `F7 | HIGH | REPAIR-REQUIRED | §6.1 lines 657, 659; §6.3 lines 725–741; successor_ref_v9.py lines 1359–1378 | Row F admits a χ-bearing stratum index that no authorised producer creates, and no typed boundary keeps it out of calibration_bins().`
+  - `F8 | LOW | REPAIR-REQUIRED | §6.1 lines 597–605, 612, 626 | Two live clauses still invoke impossible freeze-time enumeration after the mechanism expressly moved to run-time gates.`
+
+**V68/GPT56 — 5 finding(s) per the ledger (source: gates/V68_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 622–624, 657 | A local store/log transaction cannot atomically include delivery to an external requester, so either a committed success can deliver nothing or bytes can escape before an aborted commit.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 618, 620–623, 629 | A request dying in TRANSFER cannot both have the already-durable verdict line 629 requires and obey the new rule that the sole event commits only with the store effect.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 601, 605–607 | The class key requires lifecycle state at failure, but the closed event schema does not carry that field, so the verifier cannot recompute the key from the chain.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 600–601, 605–607 | `NAMED-AS-DEFECT` is not bound to an actually re-derived vocabulary, and `EXPLAINED` is not bound to a verifiable explanation, so either token can discharge an unsupported claim.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 600, 605–607 | The rule forbids a class explained once per run, but both verifier passes inspect only the current chain and bind no prior class-key history, so cross-run recurrence is invisible.`
+
+**V68/CODEX — 8 finding(s) per the ledger (source: gates/V68_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 622–624, 626, 657 | The atomic commit omits requester delivery, so commit-before-delivery suppresses recovery while delivery-before-commit leaks bytes unlogged.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 622–624, 629 | A request may acquire a durable verdict and then become FAILED, but the append-only one-event contract has nowhere to record the changed terminal fact.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §5 line 503; RAISE_SITE_CLASSIFICATION.md lines 101–102; successor_ref_v9.py lines 1291–1342 | Two `_plan` failures remain typed run outcomes despite the rule that pre-run planning failures cannot be outcomes.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 601; refusal_vocabulary_check.py lines 160–172 | The recurrence key requires lifecycle state, but the exhaustive access-log event schema does not carry that field.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 607, 625; §11 lines 1098–1127 | The draft claims §11 build items for the enumeration verifier and atomic-touch implementation, but neither item nor the verifier file exists.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 Row F line 662; §6.3 lines 766–774; successor_ref_v9.py calibration_bins | A χ-conditioned strict subset can yield exactly the full-set boundaries, so equality does not enforce χ-free bin construction.`
+  - `F7 | HIGH | REPAIR-REQUIRED | §11 lines 1160–1176, 1240–1253 | `gamma_bound` is not derived from measured fields or compared with a frozen bound, allowing an arbitrarily favourable tested interval.`
+  - `F8 | MEDIUM | REPAIR-REQUIRED | §11 lines 1225–1229, 1247–1258 | The verifier's HELD-only biconditional lets a fully evaluated flip be recorded as valid NOT-EVALUATED instead of the required FAILED.`
+
+**V69/CODEX — 7 finding(s) per the ledger (source: gates/V69_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 618, 634–635 | The live state declaration still routes every request through the `TRANSFER` state that the repair later says is deleted.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 625–627, 641, 646, 658, Row G line 673 | Row-G rendering is delivery that the event never records, so permitted re-views are unlogged views and the durable committed buffer becomes an ungoverned χ-bearing holding surface.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 603–607, Row B line 667, Row O line 681, Clause 4 line 700 | A catch-all refusal appended during opening/unsealing occurs after the second verifier pass, with no further enumeration gate before unblinding proceeds.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 599–601, 607; §11 lines 1302–1309 | The exact enumeration-entry schema cannot carry the required re-derivation digest, does not bind explanations to their emission, and still claims a lifecycle-state field it lacks.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1171–1181, 1210, 1261–1284 | The verifier neither requires a zero-gradient point nor recomputes/binds `baseline_verdict`, allowing `HELD` against a producer-chosen baseline.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §11 lines 1191–1197; GAIN_GRADIENT_CONTROL_DESIGN lines 224–230 | `|γ̂| + k_gamma·σ_gamma` is not a bound under bias or underestimated σ, and no coverage/model-validity contract makes it one.`
+  - `F7 | LOW | REPAIR-REQUIRED | RAISE_SITE_CLASSIFICATION.md lines 9, 80–82 | The authoritative ledger says all three `local_pass` sites are CALLER while simultaneously classifying L986 as PLANNING-INTERNAL.`
+
+**V70/GPT56 — 5 finding(s) per the ledger (source: gates/V70_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §0–§1 lines 15–17, 30–33; draft §6.1 lines 630–642 | Refusal events have no touch/store effect, so G3 contradicts them and G2 does not guarantee their truth.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 601, 608, 610 | A post-BS-L EXPLAINED entry cannot place its signed explanation inside already sealed checkpoint materials.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 line 609; §11 lines 1329–1336 | The implementation inventory omits fresh BS-7f, BS-V, and disclosure enumeration passes.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 line 618; tools/refusal_vocabulary_check.py lines 115–143 | The claimed eleven-code/principle enforcement is evadable by formatting and survives an explicit contradiction.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1232–1237, 1268–1277 | One scalar gamma-zero baseline confounds stochastic draw variation with perturbation sensitivity.`
+
+**V70/CODEX — 8 finding(s) per the ledger (source: gates/V70_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §0–§1 lines 15–17, 30–33; draft §6.1 lines 630, 642 | Refusal events have no touch/store effect, so G3 contradicts them and G2 does not guarantee their truth.`
+  - `F2 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §0, §1 G5, §5 lines 87–90; draft §6.1 lines 649, 676 | Cached-frame magnification creates a new Row-G view while the text exempts it from a fresh touch event.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–610, 655–661 | Enumeration/continuation/explanation artifacts are absent from the exhaustive non-χ list their pre-unblinding verifier may read.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 601, 608, 610 | A post-BS-L EXPLAINED entry cannot place its signed explanation inside already sealed checkpoint materials.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 line 609; §11 lines 1329–1336; tools/refusal_vocabulary_check.py lines 160–167 | The build inventory and checker omit fresh BS-7f, BS-V, and disclosure enumeration hooks.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 599–602 | The recurrence key is splittable because its operation component has no canonical bounded vocabulary.`
+  - `F7 | HIGH | REPAIR-REQUIRED | §3 lines 394–397; §5 lines 480–484; §11 lines 1143–1147; ref/gain_counterfactual_path.py lines 120–152 | BS-3g leaves the verdict path and its stage/trial/permutation parameters unbound.`
+  - `F8 | HIGH | REPAIR-REQUIRED | §11 lines 1175–1188, 1234–1241, 1273–1277 | A conforming manifest may include out-of-bound gamma points and report a false allowed-range failure.`
+
+**V71/GPT56 — 7 finding(s) per the ledger (source: gates/V71_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 621, 624–625, 630; LIFECYCLE_GUARANTEE_SPEC.md lines 31–32 | The draft's normative G2/G3 block still carries the refusal-excluding wording that the companion spec repaired.`
+  - `F2 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md G2 line 31; §6.1 lines 589–607 | G2 makes refusal/no-effect true but does not require the refusal-reason token to be true, so a false specific code bypasses catch-all enumeration.`
+  - `F3 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §5 lines 89–101; §6.1 line 649 | An operator can keep one display session alive indefinitely across repeated human views and cached-frame transformations under one event.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 610, 656 | Free-form signed explanations can encode χ through wording or representation while describing only request/authorisation state.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 line 610; §11 lines 1352–1362 | Signature and emission join cannot show that an explanation is true of the joined catch-all event.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §11 lines 1143–1149, 1251–1259, 1311–1318 | The new counterfactual-path digest is a fourth module digest, but the verifier contract still recomputes only the pre-existing three.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §0–§3 lines 12–19, 26–62 | Delete/truncate and custody-relevant metadata mutations are neither conveyance, render nor write and land in no G/N crash-window cell.`
+
+**V71/CODEX — 6 finding(s) per the ledger (source: gates/V71_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §1 lines 31–32; draft §6.1 lines 621–625 | The draft's duplicated G2/G3 still omit refusal truth and event exhaustiveness, contradicting the spec it claims to derive from.`
+  - `F2 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §5 lines 89–96; draft §6.1 line 649 | Visibility loss and restoration can create later redisplays while neither named session-ending event fires, keeping one commit alive across multiple views.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 608, 610, 669; §11 lines 1352–1362 | Continuation entries and explanations are signed but bind no signer identity, key, canonical signed body, or provisioned trust root.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 610, 656; tools/refusal_vocabulary_check.py lines 148–157; §11 lines 1352–1362 | Signed free-form explanations can encode object-derived data because the never-the-object principle has no executable content check.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1236–1250, 1296–1300, 1318–1330 | The repaired within-draw rule and PER-DRAW token are contradicted by two surviving verifier clauses that compare every cell to one scalar baseline.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §11 lines 1225–1235, 1243–1249, 1291–1295; ref/gain_counterfactual_path.py lines 120–152 | The draw contract does not require common random variates across gamma, so within-draw comparisons remain contaminated by independent redraw noise.`
+
+**V72/GPT56 — 5 finding(s) per the ledger (source: gates/V72_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 line 622; tools/prereg_lint.py | The lifecycle derivation predicate is not wired into the blocking lint/battery, so a stale pin can leave the advertised battery green.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 622-632; tools/lifecycle_derivation_check.py lines 17-19, 38, 55-59 | The derivation checker accepts swapped invariant labels and deletion of the entire quoted guarantee block.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 610, 659, 662-672 | Unbounded explanation_ref violates the global string rule and can carry arbitrary pre-unblinding payload.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 line 610; §11 lines 1388-1395 | The enumeration verifier lacks reverse set inclusion and accepts orphan entries joined to non-catch-all events.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1283-1292, 1343-1356; ref/gain_counterfactual_path.py lines 49-50, 137-141 | Production-equal replay pins the wrapper but not the actual successor_ref_v9 module object it executes.`
+
+**V72/CODEX — 8 finding(s) per the ledger (source: gates/V72_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1275–1282, 1328–1332, 1351–1356 | A surviving scalar-baseline clause contradicts the repaired within-draw HELD predicate whenever the gamma-zero verdict varies across draws.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–588, 662–672; ref/successor_ref_v9.py lines 185–224; §11 lines 1148–1151 | Existing non-chi slot receipts accept arbitrary byte prose and object-indexed chi payloads because schemas constrain names, not value domains.`
+  - `F3 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md §5 lines 101–111; §6.1 line 652; tools/lifecycle_derivation_check.py lines 17–23, 55–59 | The draft omits the interruption view boundary in unlabelled prose, and the checker passes deleted or label-swapped invariant quotes.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 601–602, 610; §11 lines 1385–1395 | A re-derivation digest is only resolved; no verifier predicate proves the referenced revision names the joined failure or every failure under the coarse key.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 610, 659, 662–672 | Unfixed numeric-parameter composition, explanation identifiers, and signature encodings remain covert channels while satisfying the five-cause vocabulary.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py lines 115–129 | Negated retirement wording exempts an active illegal REFUSED-* token, so a twelfth code passes R01.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §11 lines 1248–1251, 1323–1327, 1335–1338, 1351–1364 | NOT-EVALUATED requires zero cells but the canonical schema and count-closure rules require at least one.`
+  - `F8 | LOW | REPAIR-REQUIRED | ref/RAISE_SITE_CLASSIFICATION.md line 9 and lines 80–82; §5 line 503 | The classification reference calls L986 both a caller-supplied setup error and an internal-constant failure in the same paragraph.`
+
+**V73/GPT56 — 4 finding(s) per the ledger (source: gates/V73_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 633–641; lifecycle spec lines 66, 116–120 | Unlabelled delivery-retry prose re-authorizes a no-new-event render contrary to G5.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–588, 663–676; §11 lines 1405–1411 | The 37-field registry omits the existing non-χ SLOT_SCHEMA fields, including unconstrained provenance.`
+  - `F3 | HIGH | REPAIR-REQUIRED | tools/lifecycle_derivation_check.py:69; tools/prereg_lint.py:531–549 | The blocking derivation gate accepts truncated invariant bodies and silently skips when the companion is absent.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py:121–129 | A retirement word for one token exempts an unrelated active twelfth REFUSED-* code on the same line.`
+
+**V73/CODEX — 7 finding(s) per the ledger (source: gates/V73_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–588; §11 lines 1405–1411 | Registry omits all 76 fields in the operative v9 SLOT_SCHEMA.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 622–632; lifecycle checker lines 42–73 | Checker accepts materially truncated or hidden invariant quotes and pins.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §11 lines 1303–1314 | Source hash stays pinned while live production callables are rebound.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 668–671 | Schema-format omission becomes nonblocking stale rows and exits zero.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 622–632; prereg lint lines 540–549 | Lint silently skips a missing companion and its battery omits lifecycle wiring.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 591–618 | Unrelated retirement prose exempts an active illegal refusal code.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 621, 633–641 | Unlabelled retry prose permits render-buffer reuse contrary to G5.`
+
+**V74/GPT56 — 4 finding(s) per the ledger (source: gates/V74_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 586-610, 663-677; ref/gen_string_field_registry.py lines 120-134 | The 123-field registry omits the exact enumerator-signature field and leaves a valid-signature covert channel.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1314-1323 | A fresh Python process still runs inherited startup/import code before v9, so the pinned-file replay remains rebindable.`
+  - `F3 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md lines 34, 66-68, 102-120; §6.1 lines 652-653 | Compositor restoration after occlusion creates a G6-new view without a G5-new touch commit.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 line 618 | The claimed post-edit refusal-checker digest prefix 29e85d4a… disagrees with the live file's 1db25971… sha256.`
+
+**V74/CODEX — 5 finding(s) per the ledger (source: gates/V74_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–589, 663–684; §11 lines 1414–1420 | The 123-field registry omits runtime receipt-envelope/environment and declared non-slot fields.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 line 633; lifecycle spec lines 18–19, 59–68 | A render buffer cannot both die with its commit and deliver only after that commit.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 591–618; refusal checker lines 121–138 | An em-dash fragment lets one token's retirement exempt another active undeclared code.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §11 lines 1314–1323 | An ordinary fresh interpreter runs site/import machinery before the pinned v9 import.`
+  - `F5 | LOW | REPAIR-REQUIRED | §6.1 line 618 | The claimed post-edit refusal-checker digest is stale on current bytes.`
+
+**V75/GPT56 — 4 finding(s) per the ledger (source: gates/V75_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 663–684; ref/gen_string_field_registry.py lines 155–162; ref/successor_ref_v9.py lines 50–64, 208–224 | The 138-field registry treats the runtime environment as one container and omits its six decoded leaf fields, including unconstrained platform text.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–587, 668–686; ref/gen_string_field_registry.py lines 164–172 | The nine non-slot rows are hard-coded class placeholders, not field inventories or digest references to pinned per-class schemas.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §11 lines 1315–1328 | The mandated `python -I -S` replay cannot import NumPy on the pinned runtime without an unspecified, unpinned dependency bootstrap.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 line 618; tools/refusal_vocabulary_check.py lines 121–143 | A single active undeclared REFUSED token still borrows any generic retirement word in its fragment and passes the checker.`
+
+**V75/CODEX — 6 finding(s) per the ledger (source: gates/V75_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 586–588, 663–684; §11 1157 | 138-field registry substitutes nine non-slot class-name pseudo-fields for the absent per-class schema inventories`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 663–684; v9 49–65, 208–224 | runtime environment's six nested string fields collapse into one falsely closed-vocab registry row`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 663–677; registry 3; prereg_lint 537–575 | string registry is V74-stale and its generator is not wired into the blocking lint`
+  - `F4 | HIGH | REPAIR-REQUIRED | §11 1310–1328 | bare python executable selection remains PATH-rebindable before the cleared isolated child starts`
+  - `F5 | HIGH | REPAIR-REQUIRED | lifecycle spec 30–35, 99–125; §6.1 620–645 | one render commit/buffer can serve two simultaneous view sessions because ownership is not one-to-one`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §5 504, 569–576; raise ledger 129 | require_complete_sample is misclassified INTEGRITY although it only compares caller-supplied arguments`
+
+**V76/GPT56 — 4 finding(s) per the ledger (source: gates/V76_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 663–684; registry lines 101–106; v9 lines 49–65, 180–182, 220–224 | RECORDED-UNPINNED admits three runtime strings are unchecked but falsely classifies them as bounded encodings without any declared or enforced bound.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §7 lines 892–918; §11 lines 1320–1326; v9 lines 49–65, 200, 208–224 | The absolute-interpreter and dependency-root bootstrap has no canonical BS-7p subfields or verifier, so its claimed end-to-end pins are not receiptable.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 663–677; generator lines 97–112, 185–189; registry lines 107–116 | The claimed nine non-slot classes with six pending schemas are actually ten classes with seven pending schemas.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 line 618; tools/refusal_vocabulary_check.py lines 121–142 | A known retired token can be declared active again in the same fragment as a historical retirement word while the blocking checker returns clean.`
+
+**V76/CODEX — 3 finding(s) per the ledger (source: gates/V76_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 lines 663–684; §6.1 lines 725/734/736; §11 line 1158 | Registry extraction misses declared canonical schemas and miscounts its non-slot/pending surface.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 663–684; ref/successor_ref_v9.py lines 53–64 | Three RECORDED-UNPINNED environment strings are called bounded although no byte, grammar, or value bound exists.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 591–618; tools/refusal_vocabulary_check.py lines 115–142 | A known retired code can be explicitly reactivated in the same fragment while the checker exits clean.`
+
+**V77/GPT56 — 11 finding(s) per the ledger (source: gates/V77_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1326–1330; registry line 67; generator lines 170–184 | BS-7p's nested interpreter/root fields bypass the exhaustive string registry and have no declared path bounds`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1326–1339 | listed-root hashing has no transitive dynamic-load closure, so omitted native dependencies can alter verdict computation`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 610, 669; registry lines 95–100; generator lines 195–197 | canonical provenance and explanation digest-refs lack exact canonical preimage schemas`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 line 589; registry line 158; generator line 147 | timestamp is labelled bounded-encoding without any format or byte/range bound`
+  - `F5 | HIGH | REPAIR-REQUIRED | lifecycle spec line 31; §6.1 lines 589, 606–610, 625; §11 lines 1437–1449 | specific refusal-reason truth is normative but no evidence binding or verifier can detect a false specific code`
+  - `F6 | HIGH | REPAIR-REQUIRED | lifecycle spec lines 34, 53–66, 116–130; §6.1 lines 633, 652–653 | a render commit may open no session and its buffer then has no specified destruction trigger`
+  - `F7 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 601–602, 610; §11 lines 1437–1449 | NAMED-AS-DEFECT accepts a revision containing only the coarse key, so a vacuous re-derivation can discharge recurrence`
+  - `F8 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 586–587, 610, 660, 682–684 | unconstrained truthful selection among five cause tokens remains a mechanically valid χ channel`
+  - `F9 | MEDIUM | REPAIR-REQUIRED | §6.1 line 618; tools/refusal_vocabulary_check.py lines 121–144 | unlisted activation wording and active-code tombstones both make prose semantics diverge while the checker stays green`
+  - `F10 | MEDIUM | REPAIR-REQUIRED | §11 lines 1219–1221, 1371–1375, 1390–1394 | perturbation_manifest_sha256 has no reproducible byte serialization contract`
+  - `F11 | LOW | REPAIR-REQUIRED | §6.1 line 669; ref/_registry_counts.txt line 1 | stale nine/145 inventory prose contradicts generated 10/7/151 counts`
+
+**V77/CODEX — 5 finding(s) per the ledger (source: gates/V77_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 line 669; registry lines 95–100; generator lines 195–197 | canonical.provenance_record is force-added to the registry although no canonical provenance body or field-order encoding exists`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 663–681; §11 lines 1326–1330; registry line 67 | BS-7p's nested interpreter/root fields are absent from the exhaustive string registry and environment is falsely classified closed-vocab`
+  - `F3 | HIGH | REPAIR-REQUIRED | §11 lines 1326–1339 | listed-root hashing has no canonical tree or transitive dynamic-load closure, so unpinned loaded objects can affect replay`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 line 618; tools/refusal_vocabulary_check.py lines 121–144 | a retired code made “now mandatory” evades the finite activation regex and passes the checker`
+  - `F5 | LOW | REPAIR-REQUIRED | §6.1 line 669 | the paragraph still says nine non-slot classes and 145 fields while the generated counts are 10, 7 pending, and 151 total`
+
+**V78/GPT56 — 5 finding(s) per the ledger (source: gates/V78_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1321–1348 | The freeze-time dynamic-load manifest neither closes nor forbids verdict-affecting native loads first requested after replay starts.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 line 610 | Explanation parameter names and arity are unregistered free strings, restoring a pre-unblinding channel the string rule claims to remove.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 clauses 3(b), 6; §11 lines 1172–1175 | canonical.opening_authorization is labelled digest-ref although no exact field-order byte encoding defines its digest preimage.`
+  - `F4 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 593, 625–626 | Availability truth is not uniformly testimony: immutable-chain history can make a false OBJECT-ABSENT token audit-provable.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py lines 121–163 | A retired code stated as “will be used” is semantically reactivated while the blocking checker returns clean.`
+
+**V78/CODEX — 6 finding(s) per the ledger (source: gates/V78_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1330–1348 | freeze-time dynamic-load snapshot does not forbid lazy verdict-affecting loads during replay`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 664–687; §11 lines 1330–1337 | dependency-root and dynamic-manifest path leaves remain unbounded and invisible behind digest-ref containers`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 586–610 and 660–685 | cause precedence moves the χ channel into applicability rather than removing it`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 601–602 and 610; §11 lines 1446–1458 | a changed revision containing only the coarse key still vacuously discharges NAMED-AS-DEFECT`
+  - `F5 | HIGH | REPAIR-REQUIRED | lifecycle spec line 31; §6.1 lines 589 and 625–626; §11 | G2 reason truth has no evidence binding or consuming verifier, so false specific codes bypass catch-all gates`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 lines 610, 726 and 735; §11 line 1174 | canonical digest-ref bodies still lack a reproducible common byte encoding`
+
+**V79/GPT56 — 4 finding(s) per the ledger (source: gates/V79_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1338–1346; ref/successor_ref_v9.py lines 266–277 | Replay-end closure relies on a false no-importlib claim and cannot see a load removed before the final snapshot.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 line 610 and Clause 6 line 735 | Opening authorization has incompatible three-field and Clause-6 canonical bodies.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 line 626 | A prior touch proves past presence, not that a later OBJECT-ABSENT refusal is false.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 664–685; ref/gen_string_field_registry.py lines 72–79, 194–212, 228–230 | Registry hides canonical opening-authorization leaves behind one digest-ref container.`
+
+**V79/CODEX — 7 finding(s) per the ledger (source: gates/V79_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1338–1346; ref/successor_ref_v9.py lines 266–277 | Replay-end closure relies on a false no-importlib premise and cannot detect a load removed before the final snapshot.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 line 610 and Clause 6 line 735 | The opening authorization has incompatible three-field and Clause-6 canonical bodies.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 line 626 | A prior touch proves past presence, not that a later OBJECT-ABSENT refusal is false.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 664–685; ref/gen_string_field_registry.py lines 72–79, 194–212, 228–230 | The registry hides canonical-body string leaves behind digest-ref containers.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 601–602 | NAMES-CLASS accepts an unrelated existing member and does not prove the recurring failure was named.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 line 610; ref/successor_ref_v9.py lines 180–182 | field() frames bytes but leaves logical payload and nested-collection encodings undefined.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py lines 121–160 | Direct reactivation via “remains operative,” “expected to apply,” or “should control” passes the blocking retired-token checker.`
+
+**V80/GPT56 — 5 finding(s) per the ledger (source: gates/V80_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 L610; Clause 6 L735; ref/STRING_FIELD_REGISTRY.md L134-L141 | The supposedly withdrawn second opening-authorization body still substitutes timestamp for Clause 6's schema/version.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 L589, L594, L626; §11 L1156-L1485 | SCHEMA-NONCONFORMING is not recomputable from a payload-free chain, and its named §11 audit consumer does not exist.`
+  - `F3 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md L12-L19, L30-L35, L117-L120; §6.1 L634 | A crash before first frame leaves a committed “render” event although no render or view session occurred.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §11 L1181-L1186, L1344-L1355; ref/gain_counterfactual_path.py L120-L143 | The unpinned mapping callback can load and unload modules before the end snapshot, defeating the composition proof.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 L1327-L1338; ref/successor_ref_v9.py L50-L64, L1591-L1624 | Unpinned -O survives isolation and strips the verdict path's calibration-stability assert.`
+
+**V80/CODEX — 6 finding(s) per the ledger (source: gates/V80_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1347–1355; ref/successor_ref_v9.py lines 1097–1110 | Accepted SealedMask subclass dispatch can execute and unload code, alter consumed signs under the original digest, and evade the end snapshot.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1324–1363; ref/successor_ref_v9.py line 1622 | Unbound `-O` survives `-I -S` and removes the load-bearing calibration-path assertion.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 line 610; Clause 6 line 735; ref/gen_string_field_registry.py lines 82–86, 239–240 | The supposedly withdrawn second opening body substitutes timestamp for schema/version, and the generated registry follows it.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 626 and Clause 4 line 731 | The monotone-presence audit lacks store identity and can join different stored objects sharing brickid/objid.`
+  - `F5 | HIGH | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC.md lines 54, 77–80; §6.1 line 646 | A live indefinitely-stuck pending request has no deadline, failure transition, commit, or terminal treatment.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py lines 121–160 | Missing right token boundary and finite activation prose let a suffixed non-member and direct retired-code reactivation pass.`
+
+**V81/GPT56 — 8 finding(s) per the ledger (source: gates/V81_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 L1333-L1345, L1367-L1378; Python 3.9 _bootstrap_external.py L404-L427, L593-L618 | Unbound -X pycache_prefix can substitute timestamp-matched executable bytecode while isolation and optimize checks pass.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 L621, L646; LIFECYCLE_GUARANTEE_SPEC.md L77-L84; lifecycle_derivation_check.py L17-L23 | The deadline is load-bearing lifecycle semantics absent from the pinned spec and invisible to the derivation checker.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 L634; LIFECYCLE_GUARANTEE_SPEC.md L12-L19, L30-L35 | A “render event” is defined to assert conveyance, assigning one event to two distinct touch kinds and leaving first display unlogged.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 L589, L626, Rows I/O L706/L712; STRING_FIELD_REGISTRY.md L174 | Store identity cannot be derived from row/surface when one row touches multiple stores, so the monotone-presence join still manufactures contradictions.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 L608, L709, L726, L735; STRING_FIELD_REGISTRY.md L99-L107; gen_string_field_registry.py L141-L145, L247-L266 | The exhaustive string registry inventories canonical bodies but omits the lock, freeze, opening, explanation, and other actual signature fields.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py L121-L160 | Retired codes reactivate with “required” or “authoritative” while the finite activation-word checker remains green.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 L610 | Sorted-key compact UTF-8 JSON is not a unique canonical encoding for escapes, Unicode, or numbers.`
+  - `F8 | LOW | REPAIR-REQUIRED | §6.1 L670; ref/_registry_counts.txt L1; STRING_FIELD_REGISTRY.md L104, L126-L133 | Prose says ten non-slot/seven pending while the generated source says ten/eight.`
+
+**V81/CODEX — 8 finding(s) per the ledger (source: gates/V81_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1182–1188, 1324–1359, 1432–1454 | The replay harness carrying the no-caller/type/optimization/load-census repairs is neither named nor pinned in the receipt schema.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1347–1374 | Hashing dependency paths and later importing those paths leaves a verified-bytes/consumed-bytes swap window.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §11 lines 1324–1342 | sys.flags.optimize == 0 does not detect code objects compiled explicitly with optimize=1, which still strip v9's load-bearing assert.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 621, 642, 646; lifecycle spec lines 77–84 | The deadline is absent from the lifecycle's declared single-home spec and has no monotonic clock or reset semantics.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 589, 626, 689, 706 | The event schema lacks store identity, and multi-store Row I makes the claimed presence-audit join non-derivable.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 lines 601, 611; §6.3 lines 821–824 | NAMED-AS-DEFECT either leaves the operative vocabulary unchanged or activates a post-χ rule revision that the document says voids the run.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 line 610 | Sorted compact UTF-8 JSON is not a unique encoding without escape, numeric, and Unicode-normalization rules.`
+  - `F8 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 669–678; ref/gen_string_field_registry.py lines 209–266 | The alleged schema extractor hard-codes opening, canonical, non-slot, environment, and parameter fields instead of extracting them.`
+
+**V82/GPT56 — 3 finding(s) per the ledger (source: gates/V82_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1339–1348; ref/gain_counterfactual_path.py lines 49–50 | The verified path buffer still imports successor_ref_v9 by name, so fresh-namespace exec does not eliminate import machinery or bind the verified v9 namespace.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 line 610; ref/STRING_FIELD_REGISTRY.md lines 142–146 | Five explanation parameters are labelled bounded-encoding but have no ranges or byte grammar, leaving an unbounded chosen-value channel.`
+  - `F3 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 600–601; §11 lines 1492–1495 | Recurrence is enforced only within one run, so a class emitted once per run can be explained forever despite the claimed guard.`
+
+**V82/CODEX — 7 finding(s) per the ledger (source: gates/V82_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1335–1348; ref/gain_counterfactual_path.py lines 43–50 | The verified counterfactual buffer still executes an ordinary import of v9, restoring import machinery and a second disk consumption path.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1182–1190, 1230, 1442–1448 | replay_harness_sha256 has no independent expected pin and is omitted from the detailed verifier digest recomputation.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 599, 603–610; §11 lines 1489–1501 | A post-BS-L continuation entry can join a pre-BS-L event and retroactively heal a lock-time enumeration failure.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 line 610 | Canonical JSON leaves escape-hex case and post-NFC duplicate keys undefined, so one logical value can have multiple canonical bytes.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 664–685, 726, 735; STRING_FIELD_REGISTRY lines 102, 134–141 | Lock-body leaves are absent from the registry and opening-authorization value domains are not independently closed.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | tools/refusal_vocabulary_check.py lines 194–224 | R08/R09 are polarity-blind and accept explicit negations of the mechanisms they claim to verify.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | LIFECYCLE_GUARANTEE_SPEC lines 63–70, 81–90; §6.1 lines 643–646 | A live Row B stalled inside the atomic commit cannot append the promised deadline refusal, leaving a past-deadline nonterminal request.`
+
+**V83/GPT56 — 7 finding(s) per the ledger (source: gates/V83_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1183–1191, 1231, 1449–1461 | replay_harness_sha256 has no named harness artifact or literal independently frozen expected digest.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1336–1390; pinned module import blocks | PRE-BINDING protects v9 only; mutable dependency imports can consume transient swapped bytes restored before the end recheck.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 598–609, 724–731 | Events appended after checkpoint sealing but during BS-L issuance fit neither the sealed checkpoint nor the post-issuance continuation.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 600–610; lifecycle spec lines 158–164 | ANY-prior-run recurrence has no authenticated complete history domain and loses aborted, voided, or enumeration-failed runs.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | lifecycle spec lines 19–21, 81–95; §11 lines 1508–1512 | Atomicity does not make abort always available for a commit wedged inside storage, leaving the deadline lifecycle non-total.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 Clause 3 lines 724–727; STRING_FIELD_REGISTRY line 124 | lockbody.bound_digests points to Clause 3(a), which contains no lock-body field enumeration.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 664–678; gen_string_field_registry.py lines 225–309 | Manually hard-coded schema inventories still permit silent omission despite the generator’s extraction claim.`
+
+**V83/CODEX — 7 finding(s) per the ledger (source: gates/V83_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §11 lines 1183–1191, 1231, 1449–1461 | replay_harness_sha256 still has no named harness artifact or literal independently frozen expected digest.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §11 lines 1336–1390; pinned module import blocks | PRE-BINDING protects v9 only; mutable dependency imports can consume swapped bytes restored before the end recheck.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 598–609, 724–731 | Events appended after checkpoint sealing but during BS-L issuance fit neither the sealed checkpoint nor the post-issuance continuation.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 600–610; lifecycle spec lines 158–164 | ANY-prior-run recurrence has no authenticated complete run-history domain and loses aborted/voided/enumeration-failed runs.`
+  - `F5 | MEDIUM | REPAIR-REQUIRED | lifecycle spec lines 81–95; §11 lines 1508–1512 | Atomicity does not make abort always available for a commit wedged inside storage, leaving the deadline lifecycle non-total.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §6.1 Clause 3 lines 724–727; STRING_FIELD_REGISTRY line 124 | lockbody.bound_digests points to Clause 3(a), which contains no lock-body field enumeration.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 664–678; gen_string_field_registry.py lines 225–284 | Manually hard-coded schema inventories still permit silent omission despite the generator's extraction claim.`
+
+**V86/GPT56 — 6 finding(s) per the ledger (source: gates/V86_WHOLE_REVIEW_GPT56.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 line 706; §7.1 lines 955–1010 | Row D2 has void branches but no canonical VOID antecedent, and the real registry/self-test fail V05.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §6.1 lines 636–652; lifecycle spec lines 53–70, 80, 176 | N2 is declared retired but both normative lifecycle surfaces still make pre-commit requests invisible and referred.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 589–592, 647–650; lifecycle spec lines 53–63 | Arrival events lack an authenticated class/schema and an on-chain request key joining each arrival to exactly one terminal event.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 593, 617; tools/refusal_vocabulary_check.py lines 23–28, 182–184 | The rebuilt storage-state principle conflicts with a live never-describe-the-object rule that R03 still requires.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §11 lines 1201–1208, 1258, 1264–1298, 1313–1316, 1437–1448 | The draw block fixes ruled mechanics and simultaneously leaves the same values unset/empty under the superseded bound model.`
+  - `F6 | HIGH | REPAIR-REQUIRED | §5 lines 538, 543; §6.1 lines 603–619; §11 lines 1521–1533 | The new terminated-class ending has no producer or conversion; recurrence only makes verifiers refuse and gates remain shut.`
+
+**V86/CODEX — 10 finding(s) per the ledger (source: gates/V86_WHOLE_REVIEW_CODEX.md):**
+  - `F1 | HIGH | REPAIR-REQUIRED | §6.1 line 706; §7.1 lines 941-978 | Row D2 has live VOID branches but no canonical VOID antecedent, and void_registry.py refuses V86.`
+  - `F2 | HIGH | REPAIR-REQUIRED | §0 lines 53-59; §7 lines 898-919 | BS-SI is a pre-freeze Class-P receipt for a real χ-derived artifact that cannot exist until P2-P3.`
+  - `F3 | HIGH | REPAIR-REQUIRED | §6.1 lines 625-652; lifecycle spec lines 53-80, 174-176 | The arrival ruling did not replace N2; the spec and draft retain the retired invisible-request lifecycle while the quote checker stays green.`
+  - `F4 | HIGH | REPAIR-REQUIRED | §6.1 lines 647-650; lifecycle spec lines 53-63 | Arrival records omit request identity, so repeated requests cannot be paired with terminal events or deadlines.`
+  - `F5 | HIGH | REPAIR-REQUIRED | §6.1 lines 611, 702, 716 | BS-L issuance's own mediated write event is neither pre-issuance checkpoint material nor post-issuance continuation.`
+  - `F6 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 593, 617, 665; refusal_vocabulary_check.py lines 182-191 | The stale never-describe-object principle contradicts the ruled storage-state principle and is what makes R03 pass.`
+  - `F7 | MEDIUM | REPAIR-REQUIRED | §6.1 lines 596, 618 | REFUSED-INTEGRITY-MISMATCH is simultaneously labelled unresolved and resolved with continue semantics.`
+  - `F8 | HIGH | REPAIR-REQUIRED | §11 lines 1201, 1258, 1274-1314, 1434-1448 | BS-3g's operative block simultaneously commits and unsets its draw mechanics and retains the superseded measurement-derived bound.`
+  - `F9 | HIGH | REPAIR-REQUIRED | §11 lines 1237-1254; DRAW_MECHANICS_COMMIT lines 13-18 | A maximum gap does not freeze the perturbation grid; a receipt-chosen conforming manifest can still avoid interior flips.`
+  - `F10 | MEDIUM | REPAIR-REQUIRED | §11 line 1452; DRAW_MECHANICS_COMMIT line 12 | One-based draw indices address spawn(n_draws)[n_draws], which is out of range and leaves child zero unused.`
+
 The ledger's own closing line, verbatim:
 
 > **0 undisposed; 334 pre-convention findings enumerated as audit debt (per-round counts above).**
 
 **What this debt means at signing:** the pre-convention findings were addressed in their era's briefs and map prose and every one predates V100's stricter custody layer, but NO per-finding disposition record exists for them. The successor's freeze review inherits them by name via the ledger.
 
-## 2. The final round's eligibility arguments, verbatim and in full
+## 2. The final text round's eligibility arguments, verbatim and in full
 
 All six V116 findings were folded in V117/V118 (un-refereed folds under the cap; the mini-round reviewed the V117 diff and this appendix). The seats' own debt judgments, complete paragraphs:
 
@@ -94,7 +556,7 @@ All six V116 findings were folded in V117/V118 (un-refereed folds under the cap;
 
 **GPT56 F3 (MEDIUM — form-echo kind binding)**
 
-> **Debt eligibility: appendix-SAFE.** I manually verified the four present mappings against the pinned draft/spec bytes: both successor-export tuples and both terminal-review tuples currently match their intended forms. The defect is that the checker cannot preserve that fact across a future edit, not that the signed V116 bytes leave any current form's fields undecidable. The freeze survives if the appendix records that this echo is not a kind-binding control and requires manual pair verification for any later generator revision.
+> **Debt eligibility: appendix-SAFE.** I manually verified the four present mappings against the pinned draft/spec bytes: both successor-export tuples and both terminal-review tuples currently match their intended forms. The defect is that the checker cannot preserve that fact across a future edit, not that the signed V116 bytes leave any current form’s fields undecidable. The freeze survives if the appendix records that this echo is not a kind-binding control and requires manual pair verification for any later generator revision.
 
 **CODEX F1 (HIGH — T1 mirror sentence)**
 
@@ -108,10 +570,29 @@ All six V116 findings were folded in V117/V118 (un-refereed folds under the cap;
 
 > **Debt eligibility: DEBT-INELIGIBLE.** These forms are the successor export and terminal-review bodies used by the completed/terminated closing ceremonies. A control that can silently detach kind from body cannot support a signed freeze or generated known-debt appendix. This is a control on an existing generator and is admissible under the scope freeze; it should be repaired rather than carried.
 
-## 3. Named residues and honest limits
+## 3. Acknowledged draft limitations, quoted in full from the draft
+
+The four the mini-round found omitted (GPT56-V117A F3), each a verbatim passage verified as a substring of the draft at generation (blockquote-unwrapped, whitespace-normalized):
+
+**The unresolved pre-unblinding numerical route (§5)**
+
+> **A completeness argument was offered here at V46 and is RETRACTED.** It claimed that every pre-unblinding numerical failure already terminates in a named outcome, resting on two premises the seats were asked to test. **Both failed** (GPT56-V46 F1/F2, CODEX-V46 F1/F2).
+
+**The caller-pair-only authorization guard (§5)**
+
+> **Recorded limit (CODEX-V34-2), because this text must not claim more than the guard does:** the runner takes both the authorization path and its SHA-256 **from its caller** and checks only that they agree with each other. There is no authorization schema, signer, study identity, permitted operation, run identity, or independently frozen expected digest, so **any existing file presented alongside its own digest satisfies it**
+
+**The count-only sample guard (§5)**
+
+> **Recorded limit (CODEX-V63 F4), because this text must not claim more than the guard does:** the guard compares **two caller-supplied integers** and refuses when they differ. It **does not verify a parent-to-receipt partition** — it does not check that the receipts correspond one-to-one to the parent objects, only that a count agrees with a count. **Any equal pair of integers satisfies it**, so it detects a short run and not a substituted, duplicated or misjoined one. **It is a count check, not a completeness proof, and nothing downstream may read it as one.**
+
+**The dual-valued Stage-P contract (§2.6)**
+
+> this is an open blocker, stated here rather than papered over, and **BS-5p cannot be filled either way.**
+
+## 4. Named residues and honest limits
 
 - **The V116→V117→V118 folds are UN-REFEREED BY FULL ROUND.** the option-2 cap ended full rounds; the appendix mini-round (DEFECTIVE ×2, then repaired here) reviewed the V117 diff and this appendix's v1; sources: STOPPING_RULE_RULING_20260830.md, FINDINGS_MAP V116→V117 and V117→V118, gates/V117_APPENDIX_REVIEW_{GPT56,CODEX}.md
-- **Acknowledged draft limitations, enumerated by the mini-round.** GPT56-V117A F3 lists the draft's own acknowledged-open items that v1 omitted: the unresolved pre-unblinding numerical-route question (draft §5, ~line 535), the caller-pair-only authorization guard (§5, ~lines 559–569), the count-only rather than partition-complete sample guard (§5, ~lines 570–579), and the still dual-valued Stage-P contract (§2.6, ~lines 275–295) — each acknowledged in place in the draft's own words at those sites
 - **Writer obligations are testimony-plus-fixture by design.** chain-undetectable Row-B obligations, each SAID so in place: pass-entry precondition & decoding pause, reading-at-commit-start, the indivisible receipt/termination units, T1's decoded-frame priority (violation = W0 residue, bounded); spec §3d, §3c T1, §3b
 - **The echo controls' exact contracts (per-echo, no blanket demotion).** PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS echo: exact token-set comparison over the note's domain segment; FORM echo: kind presence + ≥1 exact tuple within 900 bytes of a kind mention + every kind-adjacent tuple-shaped string byte-equal to the mapped form — its stated NON-CLAIM: no unique authoritative site (the corpus legitimately repeats tuples); R02: sentence-scoped literal-shape list; retired-token activation list: finite, demoted; semantic paraphrase beyond these contracts passes to the successor's freeze review; sources: each tool's own docstring (GPT56-V117A F4 killed v1's blanket-demotion wording)
 - **Inter-anchor rollback window.** no-vanish, deadline and key-uniqueness claims hold AS OF THE EXTERNAL ANCHORS; a rollback inside a window is platform-level custody failure by operator observation; spec §3b, named since V95
@@ -121,7 +602,7 @@ All six V116 findings were folded in V117/V118 (un-refereed folds under the cap;
 - **Named channels, bounded not removed.** cause-token channel, position-gap residual, clock quantization channels (log2-bounded per decision/refusal), inter-object pace; each named where it lives in §6.1/§3b/§5 with its bound
 - **W0/W1 wire residue.** pre-arrival frames are outside custody by the receipt transition's scoping; spec §1c, §3 crash windows
 
-## 4. Open build inventory (not text debt; freeze-gating where marked)
+## 5. Open build inventory (not text debt; freeze-gating where marked)
 
 - gates/count_oracle_harness.py (V118 — registered in §11's inventory; class P)
 - gates/replay_harness.py (class P)
