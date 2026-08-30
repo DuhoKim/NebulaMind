@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V80_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V81_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -135,10 +135,10 @@
 | `openauth.ceremony_id` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
 | `openauth.destination` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
 | `openauth.phase` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
+| `openauth.schema_version` | closed-vocab | v9 SLOT_SCHEMA | the literal schema/version Clause 6 binds - V80 substituted timestamp for this field TWICE, in the withdrawal that claimed to fix the first substitution (GPT56-V80 F1, CODEX-V80 F3) |
 | `openauth.signer_identity` | digest-ref | v9 SLOT_SCHEMA | ceremony_id one-use, signer bound to the BS-2k public key |
 | `openauth.store_identity_committee` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
 | `openauth.store_identity_main` | closed-vocab | v9 SLOT_SCHEMA | store roster / declared destinations / the literal P7 |
-| `openauth.timestamp` | bounded-encoding | v9 SLOT_SCHEMA | ISO-8601 UTC, 24 bytes |
 | `param.attempt_count` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
 | `param.duration_ms` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
 | `param.lease_id_digest` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |

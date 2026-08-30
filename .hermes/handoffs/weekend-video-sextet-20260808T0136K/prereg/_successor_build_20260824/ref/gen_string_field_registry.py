@@ -83,7 +83,9 @@ _c("openauth.bsl_digest openauth.ceremony_id openauth.signer_identity", "digest-
    "ceremony_id one-use, signer bound to the BS-2k public key")
 _c("openauth.store_identity_main openauth.store_identity_committee openauth.destination "
    "openauth.phase", "closed-vocab", "store roster / declared destinations / the literal P7")
-_c("openauth.timestamp", "bounded-encoding", "ISO-8601 UTC, 24 bytes")
+_c("openauth.schema_version", "closed-vocab",
+   "the literal schema/version Clause 6 binds - V80 substituted timestamp for this field TWICE, in "
+   "the withdrawal that claimed to fix the first substitution (GPT56-V80 F1, CODEX-V80 F3)")
 _c("freezebody.code_digest freezebody.parent_sha256 freezebody.draft_sha256", "digest-ref")
 _c("freezebody.selection_bricks freezebody.class_counts", "bounded-encoding",
    "decimal ints; class counts as the counts tool emits them")
@@ -237,7 +239,7 @@ BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
 OPENAUTH = {f"openauth.{n}" for n in ("bsl_digest", "store_identity_main", "store_identity_committee",
-    "destination", "ceremony_id", "phase", "signer_identity", "timestamp")}
+    "destination", "ceremony_id", "phase", "signer_identity", "schema_version")}
 FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection_bricks",
     "class_counts", "draft_sha256")}
 PARAMS = {f"param.{n}" for n in (

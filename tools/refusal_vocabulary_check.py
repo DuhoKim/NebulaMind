@@ -134,7 +134,7 @@ def check(text: str):
         # asides inside one sentence, and splitting on it orphaned a legitimate retired mention from
         # its own "was deleted" two asides later.
         for frag in re.split(r"[.;:]", line):
-            toks = [tk.rstrip("-") for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+", frag)]
+            toks = [tk.rstrip("-") for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+(?![a-z0-9_])", frag)]
             nonmembers = [tk for tk in toks for _ in [0] if tk not in CODES]
             for tok in toks:
                 if tok in CODES:
@@ -305,6 +305,8 @@ CONTROLS = (
      lambda: _fixture() + "REFUSED-LOCK-NOT-OPEN was retired; it will be used at P7.\n", "R01"),
     ("remains-operative reactivation is caught",
      lambda: _fixture() + "REFUSED-CEREMONY-CONSUMED was superseded yet remains operative.\n", "R01"),
+    ("a suffixed non-member is not a member",
+     lambda: _fixture() + "Emit REFUSED-OBJECT-ABSENTLY here.\n", "R01"),
 )
 
 # A control that asserts a code does NOT fire. Without this, scoping R02 could be narrowed to nothing
