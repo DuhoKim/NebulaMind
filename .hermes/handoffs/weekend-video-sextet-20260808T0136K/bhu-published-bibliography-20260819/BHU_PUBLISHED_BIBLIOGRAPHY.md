@@ -543,8 +543,30 @@ Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 (abstract level). Audit-
 Miramare–Trieste; KEKSCAN 2000-33-351), pinned at
 `../bhu-reading-20260823/sources/frolov_markov_mukhanov_ic8891_kekscan_2000_33_351.pdf` (sha256
 `1dcb755eb0af…`, 21 scan pages; title page visually verified: title + all three authors).
-**PREPRINT, not the PRD 41, 383 version of record; content identity is testimony until compared.
-NOT YET READ — census read queued.**
+**PREPRINT, not the PRD 41, 383 version of record; content identity is testimony until compared.**
+**READ IN FULL 2026-08-30 (b46, census rule): 13 text pages read completely (OCR clean on prose;
+companion `frolov_markov_mukhanov_ic8891_clean.txt` for grep receipts); the 8 figure sheets are
+hand-drawn conformal diagrams — all captions read, the sheets carrying Figs. 5/6 and 11/12
+rendered and visually checked, the rest inspected via captions only (scope stated, not
+smoothed).** VERDICT under the census rule: **NOT an obstruction — constructive throughout;
+triage's CONSISTENCY-ONLY tier is CONFIRMED by the source, not changed.** Under the LIMITING
+CURVATURE HYPOTHESIS (all curvature invariants bounded by a Planckian limit, the invariant
+including Weyl squared; effective T_uv -> -(Lambda/8pi) g_uv at the limit — expressly a guess
+about an unknown theory, "our second main hypothesis", eq. (2.7)), the paper CONSTRUCTS:
+the Schwarzschild-interior-to-de-Sitter junction across a SPACELIKE Israel thin shell at
+r0 ~ (2m/l)^(1/3) l (Sec. 2); the collapse case with Kruskal/de Sitter/Friedmann regions
+(Sec. 3); Vaidya-evaporation endpoints including stable Planck remnants and pinched-off closed
+worlds (Sec. 4); and closed/semiclosed/flat Friedmann universes born inside the black hole
+(Sec. 5) — "an example of 'a creation of a closed or semiclosed world in laboratory'".
+**The entry-48 cross-link, source-owned:** the paper cites Farhi & Guth's theorem (its ref. [7])
+twice and explicitly claims the ESCAPE — the junction shell has S_t^t < 0, so "for a particular
+choice of the null vector l^mu the value of T_uv l^mu l^nu may be negative in the transition
+region and the conditions which are necessary for singularities (in accordance with Penrose
+theorem) are not fulfilled here"; and Sec. 5: "the conditions of the existence of the global
+Cauchy surface and T_uv l^mu l^nu >= 0 which are used in [7] may be violated". Entry 14 is thus
+a NAMED-ESCAPE construction against entry 48's obstruction — the two records corroborate each
+other's load-bearing hypotheses from opposite sides. No falsifier is offered; the limiting
+curvature hypothesis is given no observational discriminator.**
 DOI 10.1103/PhysRevD.41.383 — VERIFIED (Crossref: PRD, v41, p383-394, 1990-01-15).
 Claim: the full development of entry 13. Testability: **CONSISTENCY-ONLY**. Record: packet §1.6.
 Audit-worthiness: **medium**.
