@@ -120,10 +120,13 @@ def check(text: str):
     # a negated retirement is an ACTIVATION. The retirement word must not be negated just before it.
     RETIREMENT = re.compile(r"(?<!not )(?<!never )(deleted|merged|retired|superseded|GONE|does not survive)", re.I)
     # The activation list is FINITE AND KNOWN INCOMPLETE (CODEX-V77 F4 evaded it with "now
-    # mandatory" - added - and the next phrasing will evade it too). The guard catches named shapes;
-    # prose semantics beyond them are the referee round's job, which is this lint's stated limit,
-    # not a gap it pretends to close.
-    ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|"
+    # mandatory"; CODEX-V99 F6 with "henceforth rejected under that token" - both added, and
+    # the next phrasing will evade it too). THE CLAIM IS DEMOTED ACCORDINGLY (CODEX-V99 F6's
+    # ask): this guard is a NAMED-SHAPE TRIPWIRE, not a semantic guarantee - a blocking result
+    # here means a known shape fired, a green result means only that none did; semantic
+    # reactivation beyond the list is the referee round's to catch, and any text citing this
+    # checker as a semantic deletion guard overclaims it.
+    ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|henceforth|hereafter|rejected under|failing .{0,40}under that token|"
                             r"governs|mandatory|shall apply|takes effect|is live|will be|will apply|becomes|to be used|remains operative|expected to apply|should control|continues to|required|authoritative|controls |will be used", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
@@ -336,6 +339,9 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("a semantically reactivated retired token (CODEX-V99 F6 shape)",
+     lambda: _fixture() + "REFUSED-LOCK-NOT-OPEN was retired; requests failing the lock "
+     "check are henceforth rejected under that token.\n", "R01"),
     ("a digit-bearing twelfth code evades the token parse",
      lambda: _fixture() + "Active member: REFUSED-X2 governs retries.\n", "R01"),
     ("a decoy vocabulary block shadows the operative one",

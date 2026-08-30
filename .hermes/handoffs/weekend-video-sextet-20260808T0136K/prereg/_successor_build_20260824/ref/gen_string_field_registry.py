@@ -276,12 +276,16 @@ _c("sig.freeze sig.bsl_lock sig.opening sig.explanation sig.checkpoint",
 _c("nonslot.access_log_chain", "closed-vocab", "inventoried: the event.* rows above AND the arrival.* rows - the chain carries both event classes (CODEX-V88 F1)")
 _c("nonslot.enumeration_surface", "closed-vocab", "inventoried: entry.* rows + explanation cause")
 _c("nonslot.acceptance_evidence_projection", "closed-vocab", "inventoried: three predicate bits")
+# V99 stamped the lock-checkpoint schema onto ALL SEVEN classes sharing this call - my edit
+# to a shared declaration (GPT56-V99 F5, CODEX-V99 F2). Split: six keep their honest stub.
 _c("nonslot.cutout_completion_receipt nonslot.stage_completion_artifact nonslot.label_set_receipt "
-   "nonslot.unblinding_receipt nonslot.adequacy_receipt nonslot.archive_seal_state_receipt "
-   "nonslot.lock_checkpoint_receipt",
-   "digest-ref", "schema CLOSED at V99: the five lockcp.* rows - (chain_head_position, "
+   "nonslot.unblinding_receipt nonslot.adequacy_receipt nonslot.archive_seal_state_receipt",
+   "SCHEMA-PENDING", "fields unenumerable until the defining slot fills; producer blocked by "
+   "the same slot - a stub saying so, not a constraint it does not have")
+_c("nonslot.lock_checkpoint_receipt",
+   "digest-ref", "schema CLOSED: the five lockcp.* rows - (chain_head_position, "
    "chain_head_digest, clock_record, sealed_entry_set_digest, sealed_bindmap_digest); "
-   "the pending stub retired (GPT56-V98 F2: BS-L human-signed an undefined digest)")
+   "nested preimages canonical per draft 3(b) (GPT56-V98 F2, GPT56-V99 F3/F4)")
 
 # (field, constraint, declared-where, note). Constraints: closed-vocab | bounded-encoding | digest-ref
 CONSTRAINTS = {
@@ -466,7 +470,10 @@ def crosscheck_declared(text):
                 problems.append(f"openauth.{f}: '{phrase}' not found in Clause 6")
     else:
         problems.append("Clause 6 sentence not found for openauth cross-check")
-    c3b = _re.search(r"canonical body names exactly, in canonical order: (.{100,900}?)signer identity\.", text, _re.S)
+    c3b = _re.search(r"canonical body names exactly, in canonical order: (.{100,2600}?)signer identity\.", text, _re.S)
+    # span widened 900 -> 2600 at V100: the canonical-preimage block (GPT56-V99 F3/F4)
+    # grew clause 3(b) past the old bound and this crosscheck went red - correctly, then
+    # too strictly; the probes below are the real check, the span is just capture.
     if c3b:
         low = c3b.group(0).lower()
         for probe in ("roster digest", "accepted-mask digest", "calibration-record digest",
