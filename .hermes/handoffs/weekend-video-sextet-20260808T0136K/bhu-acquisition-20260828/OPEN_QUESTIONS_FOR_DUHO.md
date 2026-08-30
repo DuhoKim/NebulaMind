@@ -8,6 +8,21 @@ mine. The old version of this file read as a status report and buried a decision
 
 ## OPEN — none. Question 8 was returned and is closed below.
 
+## GATED WORK — for a seat / the tick, NOT a Duho decision (logged per the overnight protocol)
+
+- **Entry 54 — the Ω_K citation testimony.** The bounce paper (PRD 111, 103537) cites "same-
+  direction ACT/DESI trends" for its closed-curvature (Ω_k < 0) prediction. `CGATE_B14`'s phase-6
+  citation audit testified that the cited **DESI analysis actually *assumes* Ω_K = 0** (so it can't
+  supply a "trend") and the **ACT summary runs contrary to the "same-direction" gloss** — but that
+  is *a seat's testimony, not verified against pinned sources*. **What it needs:** acquire the
+  specific DESI + ACT papers the bounce paper cites (free on arXiv), pin them, and have a seat rule
+  whether each *assumes* vs. *constrains* Ω_K. **Why it's gated, not solo:** the "assumes vs.
+  constrains" call is a methodological read (seat judgment, not a string-presence receipt), and it
+  is **falsifier-adjacent** (Ω_k is the family's curvature prediction) — a substantive finding would
+  be a tier/decision matter. **Priority: low.** The record already flags it honestly and the tier is
+  UNCHANGED (entry 54 is QUALITATIVE-DIRECTIONAL; the weekly Ω_k watcher is independent and
+  unaffected). This is a receipt-quality upgrade, not a correction.
+
 ## CLOSED 2026-08-30 — question 8
 
 **Duho's instruction, verbatim (via Blanc's relay of the unsubmitted input line): "answer
