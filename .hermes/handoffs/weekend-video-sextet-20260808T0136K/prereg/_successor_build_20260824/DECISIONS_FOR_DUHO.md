@@ -1,4 +1,4 @@
-**STATUS: FIVE AWAITING A RULING — with the principal, 2026-08-29 night.**
+**STATUS: SIX AWAITING A RULING — with the principal, 2026-08-29 night.**
 
 **THE TWO LISTS ARE SEPARATED, because they were running together and that made the picture wrong.**
 
@@ -11,6 +11,7 @@
 | 3 | **`REFUSED-INTEGRITY-MISMATCH`** — indistinguishable from tampering at emission. | §4 below |
 | 4 | **The four availability codes describe the logged object** (CODEX-V64 F2) — they are part of the vocabulary you ruled at 22:18. | parked in the V66 brief |
 | 5 | **The durable pre-verdict state** (GPT56-V66 F1) — closing it needs a second event class, which changes what the access log records. | parked in the V66 brief |
+| 6 | **Two of your rulings collide** (CODEX-V81 F6): naming a recurring catch-all class requires re-deriving the vocabulary, and the §6.3 void rule voids any post-χ change to a binding rule. The only exit that keeps both rulings standing: a post-χ recurring catch-all class **terminates the run**, the naming owed to the successor preregistration. Options and costs filed. | `OPEN_QUESTION_VOCAB_REDERIVATION_VS_VOID.md` |
 | 5a | **The strata AND their producer, together.** Whether the strata should BE χ-derived — and either way, **no covenant row produces the stratum index**, so a producer row or an expanded surface is needed; both change what the study permits. The two are coupled: rule them together. | §5 below + `OPEN_QUESTION_STRATUM_PRODUCER.md` |
 
 ## RULED AND BEING APPLIED — on me, not on you

@@ -143,6 +143,10 @@ _c("envelope.body_sha256 envelope.envelope_sha256", "digest-ref")
 # MUST mandate a DETERMINISTIC scheme (Ed25519/RFC-6979), making the bytes a function of key+body
 # with no channel left.
 _c("entry.signature", "bounded-encoding", "deterministic scheme mandated at BS-2k - no nonce channel")
+# The ACTUAL signature fields (GPT56-V81 F5: the registry inventoried canonical BODIES and omitted
+# the detached signatures over them). Deterministic scheme, fixed 64-byte encoding.
+_c("sig.freeze sig.bsl_lock sig.opening sig.explanation sig.checkpoint",
+   "bounded-encoding", "detached deterministic signature over the named canonical body, 64 bytes")
 # The nine declared NON-SLOT artifact classes - HONEST STUBS, not pseudo-fields (GPT56-V75 F2,
 # CODEX-V75 F1: a class name in a field column was classification theatre). Three classes are
 # ALREADY inventoried field-by-field in this registry: the access-log chain (the event.* rows), the
@@ -169,7 +173,8 @@ CONSTRAINTS = {
     "kernel_sha256": ("digest-ref", "§11 BS-3g", ""),
     "estimator_sha256": ("digest-ref", "§11 BS-3g", ""),
     "verifier_sha256": ("digest-ref", "§11 BS-3g", ""),
-    "counterfactual_path_sha256": ("digest-ref", "§11 BS-3g", "plus in-process v9 assert"),
+    "counterfactual_path_sha256": ("digest-ref", "§11 BS-3g", "compiled from verified buffer"),
+    "replay_harness_sha256": ("digest-ref", "§11 BS-3g", "the harness carrying every replay obligation (CODEX-V81 F1)"),
     "mapping_id": ("closed-vocab", "§11 BS-3g", "sole member MAPPING-NOT-PREREGISTERED until ruled"),
     "gamma_hat": ("bounded-encoding", "§11 BS-3g", "finite IEEE-754 double, decimal"),
     "sigma_gamma": ("bounded-encoding", "§11 BS-3g", "finite IEEE-754 double, decimal"),
@@ -186,7 +191,7 @@ CONSTRAINTS = {
     "timestamp": ("bounded-encoding", "§6.1 event schema", "ISO-8601 UTC YYYY-MM-DDThh:mm:ss.sssZ, exactly 24 bytes (GPT56-V77 F4: labelled bounded with no bound)"),
     "actor": ("closed-vocab", "§6.1 event schema", "row identifiers"),
     "table row": ("closed-vocab", "§6.1 event schema", ""),
-    "operation": ("closed-vocab", "§6.1 event schema", "BS-2k closed operation set"),
+    "operation": ("closed-vocab", "§6.1 event schema", "BS-2k closed operation set, STORE-QUALIFIED: (row, operation) determines the store (GPT56-V81 F4, CODEX-V81 F5 - Row I touches multiple stores, so unqualified operations made the presence-audit join non-derivable)"),
     "object identity": ("bounded-encoding", "§6.1 event schema", "brickid/objid keys"),
     "success/refusal": ("closed-vocab", "§6.1 event schema", ""),
     "refusal reason": ("closed-vocab", "§6.1 event schema", "the eleven codes"),
@@ -238,6 +243,7 @@ def envelope_fields():
 BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
+SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint")}
 OPENAUTH = {f"openauth.{n}" for n in ("bsl_digest", "store_identity_main", "store_identity_committee",
     "destination", "ceremony_id", "phase", "signer_identity", "schema_version")}
 FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection_bricks",
@@ -263,7 +269,7 @@ def environment_leaves():
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | SIGS | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
@@ -283,9 +289,12 @@ def main():
     stale = sorted(set(CONSTRAINTS) - found) + stale_v9
     out = ["# STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact\n",
            f"**Generated from `{DRAFT.name}`'s schema blocks by `ref/gen_string_field_registry.py`; "
-           "the extraction is mechanical so the enumeration cannot silently omit a declared field, "
-           "and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same "
-           "labour.** A field with no row is **forbidden by default** and the generator exits "
+           "TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while "
+           "several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope "
+           "constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, "
+           "canonical, non-slot, signature and parameter sets are DECLARED here as classification "
+           "law, versioned with this generator. Extraction cannot silently omit; declaration is "
+           "auditable in one screen.** A field with no row is **forbidden by default** and the generator exits "
            "nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` "
            "(digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).\n",
            "**The honest limit:** bounded numerics still carry bits; the registry bounds capacity "

@@ -10,8 +10,12 @@ conflict between them is a defect in the draft.**
 ## 0. Objects and definitions
 
 - **TOUCH** — bytes leaving a sealed store, or landing in one. Two kinds of leaving: **CONVEYANCE**
-  (bytes to another row's process) and **RENDER** (display to a human through Row G's sealed
-  interface). One kind of landing: **WRITE**.
+  (bytes to another row's process) and **RENDER** (bytes to Row G's sealed interface for display —
+  **the render's store effect is the conveyance-to-interface, a DISTINCT kind with its own
+  store-qualified operation token, one event of one kind**; the human's perception is never an
+  event, and the display itself is bounded by G6's session, not logged as a second touch —
+  GPT56-V81 F3: wording that made a render event "assert conveyance" read as one event serving two
+  kinds). One kind of landing: **WRITE**.
 - **TOUCH COMMIT** — one atomic commit in the BS-2k transactional domain:
   `{store effect, its one event carrying the effect's true outcome, Row B's identifier binding}`.
 - **REFUSAL COMMIT** — the same commit with no store effect: `{event, binding}`.
@@ -73,6 +77,17 @@ making the effect part of the commit. V68's outcome-change-after-event = a claim
 that could alter the terminal fact — killed by deleting the `TRANSFER` state: **after W2 there is no
 state whose failure changes what the log claims.** V69's unsatisfiable Row G rule = classing renders
 as N1-delivery — killed by G5.
+
+## 3b. The deadline — lifecycle semantics, so it lives HERE (GPT56-V81 F2, CODEX-V81 F4: the
+deadline was added to the draft and absent from this spec, invisible to the derivation checker — the
+single-home rule violated by the repair that extended the lifecycle)
+
+**Every request carries a deadline.** Its value is a BS-2k design constant; its clock is the
+**monotonic** clock (wall-clock manipulation does not extend it); it is **fixed at request receipt
+and never resets** — no state transition, retry-internal step or partial progress renews it. A live
+request past its deadline **is** a processing failure under a live Row B and receives the
+`REFUSED-UNCLASSIFIED` refusal commit. A request that is neither terminal nor within deadline is a
+state this spec does not admit.
 
 ## 4. The states, derived — this list REPLACES every previous statement of the state machine
 
