@@ -1215,6 +1215,14 @@ DOI 10.1016/j.physletb.2011.04.008 — VERIFIED (Crossref: PLB, v699, p224-229, 
 R10. The original published spin-handedness dipole claim — the adjudication instrument for the
 family's preferred-axis prediction, and the amplitude the DESI spin-parity campaign tests. Entry
 29's role, for the axis observable. Not a BHU paper; support tier by the same rule.
+**Content-bound 2026-08-30 (b54 support sweep): the paper — previously byline-VERIFIED only (kimi
+recall R10, no pin) — is now acquired and pinned. arXiv 1104.2815; ar5iv has no full render for
+this 2011 paper, so the pin is the arXiv abstract page
+`../bhu-reading-20260823/sources/arxiv_1104.2815_abs.html` (sha256 `5bf7c92ddc47…`), carrying the
+complete load-bearing content: dipole asymmetry −0.0408 ± 0.011 (chance probability 7.9×10⁻⁴),
+preferred axis (l,b) ≈ (52°, 68.5°) near the WMAP CMB alignments, SDSS sample of 15158 spirals
+(z < 0.085; the title's z ~ 0.04 is the effective depth). −0.0408 ± 0.011 is the amplitude the
+DESI spin-parity campaign tests. No over-attribution.**
 
 ---
 
