@@ -11,13 +11,18 @@ RESOLUTION HONESTY. Three resolution classes, printed per entry:
   LOCATED   -- the record carries DOIs but no pin path (29, 58); the artifact was found by repo
                search and is tied to the record by an IDENTITY anchor asserted against its head
                (paper title / subject fragment), not just by the surname itself.
-  NONE      -- no local artifact exists (32, Brown & Bethe ApJ 423, 1994). Search pattern: arXiv
-               API au:"Brown"+au:"Bethe" with journal-ref match against ApJ 423 (14 results, none
-               ApJ 423 -- pre-1995 papers were never posted, exactly the missed class this search
-               cannot see) plus a filename sweep of the handoff tree (-iname "*bethe*"). What was
-               done about it: the entry keeps its Crossref verification, and the byline stays
-               TESTIMONY; an ADS-scan browser acquisition is the open route. NOT asserted as a
-               chk -- the day a scan is pinned, a "no artifact" predicate would be the 1ab defect.
+  SCAN      -- an image-only page scan (32, Brown & Bethe ApJ 423, 1994; REPAIRED 2026-08-30).
+               The original NONE state (arXiv API found nothing -- pre-1995, never posted) was
+               closed by fetching the NASA ADS classic scan (articles.adsabs.harvard.edu, direct,
+               no verification wall on that route). The scan has NO text layer, so surname
+               containment cannot machine-check it; page 1 was rendered and read VISUALLY
+               (2026-08-30, Tori): journal header "423:659-664, 1994 March 10", full title, and
+               the byline "G. E. Brown and H. A. Bethe". The check below asserts the pin's
+               existence, PDF magic, sha256, and the record's disclosure -- the byline fact
+               itself is the recorded visual testimony, and the check says so. The old NONE
+               state was deliberately never a chk, so this repair inverts nothing green (the
+               1ab lesson applied at design time); the MEASURED predicate's none_entries
+               assertion flips to empty in this same change.
 
 ACQUISITION IN THIS CHANGE: entry 33's pair was located by journal-ref match in the arXiv API
 (refs taken from the record, no ids from memory) and pinned: ar5iv_0010207.html (full text,
@@ -57,7 +62,8 @@ E = {
          "Refined Mass and Geometric Measurements of the High-Mass PSR J0740+6620")]),
     30: (["Brown", "Lee", "Rho"], [
         ("bhu-theory-phase3-cns-20260821/sources/ar5iv_0708.3137.html", "RECORDED", None)]),
-    32: (["Brown", "Bethe"], []),
+    32: (["Brown", "Bethe"], [
+        ("bhu-theory-phase3-cns-20260821/sources/ads_1994ApJ_423_659_brown_bethe.pdf", "SCAN", None)]),
     33: (["Harada", "Yamawaki"], [
         ("bhu-theory-phase3-cns-20260821/sources/ar5iv_0010207.html", "RECORDED", None),
         ("bhu-theory-phase3-cns-20260821/sources/arxiv_0302103_abs.html", "RECORDED", None)]),
@@ -78,15 +84,22 @@ chk("BOUND: every RECORDED pin's filename is named in its entry's block",
     all(os.path.basename(a) in blocks[n]
         for n, (_, arts) in E.items() for a, res, _ in arts if res == "RECORDED"))
 
-flags = []; checked = 0; none_entries = []
+flags = []; checked = 0; none_entries = []; scan_ok = False
 for n, (sn, arts) in sorted(E.items()):
     if not arts:
         none_entries.append(n)
-        print(f"  {n:>3}  NONE      byline stays TESTIMONY (Crossref-verified record; "
-              f"no free artifact -- see docstring for the search and its missed class)")
+        print(f"  {n:>3}  NONE      byline stays TESTIMONY")
         continue
     for a, res, anchor in arts:
         path = os.path.join(ROOT, a)
+        if res == "SCAN":
+            import hashlib
+            raw = open(path, "rb").read()
+            scan_ok = (raw[:4] == b"%PDF"
+                       and hashlib.sha256(raw).hexdigest().startswith("4b1cbae677de"))
+            print(f"  {n:>3}  {res:<9} {os.path.basename(a):<38} image-only; byline VISUAL "
+                  f"per record (no text layer -- containment impossible, disclosed)")
+            continue
         body = deacc(open(path, errors="ignore").read())
         if anchor and anchor not in body[:4000]:
             flags.append((n, a, "IDENTITY-ANCHOR-MISSING")); continue
@@ -96,17 +109,24 @@ for n, (sn, arts) in sorted(E.items()):
         checked += 1
         print(f"  {n:>3}  {res:<9} {os.path.basename(a):<38} missing-here: {missing if missing else 'none'}")
 for n, (sn, arts) in sorted(E.items()):
-    if not arts: continue
-    bodies = [deacc(open(os.path.join(ROOT, a), errors="ignore").read()) for a, _, _ in arts]
+    texts = [a for a, res, _ in arts if res != "SCAN"]
+    if not texts: continue
+    bodies = [deacc(open(os.path.join(ROOT, a), errors="ignore").read()) for a in texts]
     for s in sn:
         if not any(re.search(r"(?<![A-Za-z])" + re.escape(deacc(s)) + r"(?![A-Za-z])", b) for b in bodies):
             flags.append((n, s, "SURNAME-IN-NO-ARTIFACT"))
 
-chk("MEASURED: all 10 recorded surnames of the 6 artifact-backed support entries occur in at "
-    "least one of their entries' artifacts (8 artifacts -- 29 and 33 are pairs), each artifact "
+chk("MEASURED: all 10 recorded surnames of the 6 TEXT-artifact-backed support entries occur in "
+    "at least one of their entries' artifacts (8 text artifacts -- 29 and 33 are pairs), each "
     "identity-anchored or record-named -- one-way containment, per-entry across pairs",
-    flags == [] and checked == 8 and none_entries == [32],
-    f"artifacts checked: {checked}; flags: {flags if flags else 'none'}; testimony-only: entry 32")
+    flags == [] and checked == 8 and none_entries == [],
+    f"text artifacts checked: {checked}; flags: {flags if flags else 'none'}")
+B2 = open(BIB).read()
+chk("SCAN RECEIPT (entry 32, repaired 2026-08-30): the ADS page scan is pinned (PDF magic + "
+    "sha256 4b1cbae677de...), and the record discloses that its byline verification is VISUAL "
+    "-- machine containment is impossible on an image and this check does not pretend otherwise",
+    scan_ok and "ads_1994ApJ_423_659_brown_bethe.pdf" in B2
+    and "byline checks are VISUAL" in B2)
 
 print()
 fails = [x for x, p, _ in checks if not p]

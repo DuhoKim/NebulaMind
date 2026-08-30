@@ -894,6 +894,29 @@ touched it.
 
 ---
 
+### 1ah — THE RECORD CITED PINS THAT GIT WAS SILENTLY DROPPING. NINE OF THEM.
+
+**2026-08-30, found while pinning entry 32's ADS scan.** The shared `.gitignore` ignores
+`.hermes/**` and re-admits by extension — `.pdf` is not on the list. Every PDF pin the record
+cites was therefore disk-only: present here, absent from every fresh clone. Nine artifacts,
+including **this morning's "two-artifact repair" of entry 44** (commit d551b99e4 shipped the
+sweep and the record; git dropped the artifact the repair was ABOUT) and **entry 57's ARMA
+paper** — the source both B32 seats read "in full, all 39 PDF pages".
+
+This is §"check.sh was invisible" one level down, and it recurred because the fix that time was
+local ("write the control as .py") rather than a rule ("verify custody of anything the record
+cites"). The absence-claim discipline found the full extent: the first sweep pattern
+(backticked ../-relative paths) caught 6 and missed bare backticked filenames; widening caught
+17 and still missed prose-cited filenames (entry 44's `1309.1487.pdf`, verified untracked by
+direct `git ls-files`, not by any pattern). One class remains unenumerable: artifacts cited by
+prose description with no filename.
+
+**Fix:** all nine force-added (`git add -f`, targeted — the shared ignore rule untouched, other
+lanes depend on it); `b44_pin_custody.py` added to the battery: every cited artifact filename
+that exists on disk must be git-tracked, both sweep routes plus the known prose-cited list.
+
+---
+
 ### 1ae — MY OWN VERIFICATION GREP, DEFEATED BY A LINE BREAK. THREE TIMES.
 
 **Third occurrence 2026-08-29, and the failure rule says register rather than fix again.**

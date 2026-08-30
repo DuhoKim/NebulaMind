@@ -955,7 +955,13 @@ document its own audits actually re-derive from.
 
 **32. The Brown–Bethe maximum-mass paper** (added 2026-08-22): G.E. Brown & H.A. Bethe, "A scenario
 for a large number of low-mass black holes in the galaxy," ApJ **423**, 659 (1994), DOI
-10.1086/173844 — VERIFIED (Crossref: ApJ, v423, p659, 1994-03). The actual home of M_max ≈ 1.5 M⊙ —
+10.1086/173844 — VERIFIED (Crossref: ApJ, v423, p659, 1994-03). **Pinned 2026-08-30: the NASA
+ADS page scan**, `../bhu-theory-phase3-cns-20260821/sources/ads_1994ApJ_423_659_brown_bethe.pdf`
+(sha256 `4b1cbae677de…`, 6 pp, image-only — no text layer, so byline checks are VISUAL, not
+machine-greppable: page 1 verified 2026-08-30 (Tori) showing "The Astrophysical Journal,
+423:659–664, 1994 March 10", the full title, and the byline "G. E. Brown and H. A. Bethe". The
+page-1 abstract carries the cited numbers in print: M_max ≃ 1.5 M⊙ for compact cores,
+stabilization up to ~1.84 M⊙, and M_cutoff = 25 ± 5 M⊙.) The actual home of M_max ≈ 1.5 M⊙ —
 the number every limb-1 test is aimed at; the Phase 3 Track A audit found the falsifier paper
 imports it from here without derivation (B-5, NOT-DERIVED-HERE). **Full text not held** — cited and
 Crossref-verified only.
