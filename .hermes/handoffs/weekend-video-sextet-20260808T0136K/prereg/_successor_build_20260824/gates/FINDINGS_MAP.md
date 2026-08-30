@@ -401,3 +401,17 @@ V118 → V119: re-read 2's repairs — the 334 enumerated per-finding verbatim, 
   shipped contract (all-candidate whitelist rule, boundaries, non-claims, one function).
 
 V119 → V120: read 3's repairs — anchored whole-passage extraction, the all-candidate whitelist divergence rule with the twin dissolved, and the appendix's form contract line made exact.
+
+## V120 → V121 (2026-08-31 small hours — READ 4'S TWO; the frame is now two findings wide)
+
+- **The authorization passage's end anchor cut a continuing sentence (GPT56-V120A F1,
+  CODEX-V120A F1):** the anchor extends through "a partial run is not a smaller run, it
+  is a different experiment." — the full Recorded-limit tail inside.
+- **The candidate grammar was narrower than the all-candidate claim (GPT56/CODEX-V120A
+  F2):** the regex demanded a literal space and 10–400 interior characters; it is now
+  `(kind,`-opening, any length, any internal whitespace, with ONE documented exemption —
+  the literal three-dot metavariable, exempt by name; the seats' short/tab/newline/
+  overlength attacks are per-form controls through the shipped function; draft §11 and
+  appendix §4 state exactly this grammar.
+
+V120 → V121: read 4's two — the anchor extended through the full tail, and the candidate grammar completed with its one named exemption.

@@ -75,10 +75,12 @@ RESIDUES = (
      "PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS "
      "echo: exact token-set comparison over the note's domain segment; FORM echo: kind "
      "presence under real word boundaries + ≥1 exact tuple within 900 bytes of a kind "
-     "mention + EVERY kind-adjacent `(kind, ...)`-shaped candidate must "
-     "whitespace-normalize into the asserted-present KNOWN-TUPLE whitelist (all "
-     "candidates, no shared-field threshold — GPT56-V119A F2; controls run through the "
-     "one shipped function — CODEX-V119A F3) — stated NON-CLAIMS: no unique "
+     "mention + EVERY backticked `(kind,`-opening candidate — any "
+     "length, any internal whitespace (GPT56/CODEX-V120A F2: the first grammar demanded "
+     "a literal space and 10–400 interior characters) — must whitespace-normalize into "
+     "the asserted-present KNOWN-TUPLE whitelist; the one documented exemption is the "
+     "three-dot metavariable (all candidates otherwise, no shared-field threshold — "
+     "GPT56-V119A F2; controls run through the one shipped function — CODEX-V119A F3) — stated NON-CLAIMS: no unique "
      "authoritative site, nothing outside kind-adjacent windows; R02: "
      "sentence-scoped literal-shape list; retired-token activation list: finite, "
      "demoted; semantic paraphrase beyond these contracts passes to the successor's "
@@ -188,7 +190,7 @@ LIMIT_ANCHORS = (
      "**The deletion of the redundant code stands on the principal's ruling, not on this retracted argument.**"),
     ("The caller-pair-only authorization guard (§5)",
      "**Recorded limit (CODEX-V34-2),",
-     "**deliberately not built here** (principal direction, 2026-08-29)"),
+     "a partial run is not a smaller run, it is a different experiment."),
     ("The count-only sample guard (§5)",
      "**Recorded limit (CODEX-V63 F4),",
      "stays frozen at `6a9abbbd`."),

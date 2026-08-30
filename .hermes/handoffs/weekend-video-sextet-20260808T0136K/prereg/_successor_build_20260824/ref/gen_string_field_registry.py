@@ -551,10 +551,14 @@ def form_check(draft_text, spec_txt, forms=None):
     """THE shipped FORM-SCHEMA check - called by crosscheck_declared AND by the seeded
     controls, so the controls exercise this function, never a twin (CODEX-V119A F3).
     Contract: per form - kind literal under real word boundaries in its home corpus;
-    >=1 exact tuple within 900 bytes of a kind mention; and EVERY `(kind, ...)`-shaped
-    candidate within 900 bytes of a form-kind mention must whitespace-normalize into
-    KNOWN_KIND_TUPLES (all candidates, no shared-field threshold - GPT56-V119A F2).
-    Non-claims: no unique authoritative site; nothing outside kind-adjacent windows."""
+    >=1 exact tuple within 900 bytes of a kind mention; and EVERY backticked
+    `(kind,`-opening candidate within 900 bytes of a form-kind mention - ANY length, ANY
+    internal whitespace (GPT56/CODEX-V120A F2: the first grammar demanded a literal
+    space and 10-400 interior characters, silently exempting short, tabbed, newline and
+    overlength corruptions) - must whitespace-normalize into KNOWN_KIND_TUPLES. THE ONE
+    EXEMPTION, documented: the literal three-dot metavariable `(kind, ...)`, which this
+    corpus uses as documentation notation and which matches no schema. Non-claims: no
+    unique authoritative site; nothing outside kind-adjacent windows."""
     import re as _re
     problems = []
     known = {_wsnorm(k) for k in KNOWN_KIND_TUPLES}
@@ -576,8 +580,11 @@ def form_check(draft_text, spec_txt, forms=None):
                             f"'{_kind}' in the {_home} (GPT56/CODEX-V116 F3)")
         for _km in _re.finditer(_kpat, _corpus):
             _win = _corpus[max(0, _km.start() - 900):_km.end() + 900]
-            for _tm in _re.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
-                if _wsnorm(_tm.group(0)) not in known:
+            for _tm in _re.finditer(r"`\(kind,[^)]*\)`", _win):
+                _cn = _wsnorm(_tm.group(0))
+                if _cn == "`(kind, ...)`":
+                    continue  # the documented metavariable, exempt by name
+                if _cn not in known:
                     problems.append(f"form-schema echo: a kind-adjacent tuple near "
                                     f"'{_kind}' matches NO known schema tuple "
                                     f"(GPT56-V119A F2, all-candidate rule): "
@@ -653,6 +660,14 @@ def _domain_echo_selftest():
         if not any("NO known schema tuple" in p
                    for p in _form_probs(f"the {_k0} body {one} and {_t0} here", forms=_me)):
             fails.append(f"form-echo one-shared-field corruption not caught ({_k0})")
+        # the V120A grammar attacks: short, tabbed, newline-after-comma, overlength
+        for _atk in ("`(kind, x)`", "`(kind,\talien_alpha)`",
+                     "`(kind,\n" + _f0[1] + ", alien_alpha)`",
+                     "`(kind, " + _f0[1] + ", " + "a" * 450 + ")`"):
+            if not any("NO known schema tuple" in p
+                       for p in _form_probs(f"the {_k0} body {_atk} and {_t0} here",
+                                            forms=_me)):
+                fails.append(f"form-echo grammar attack not caught ({_k0}: {_atk[:20]})")
         if not any("kind absent" in p or "absent from" in p
                    for p in _form_probs(f"the x{_k0} body {_t0} here", forms=_me)):
             fails.append(f"form-echo prefix rename not caught ({_k0})")
