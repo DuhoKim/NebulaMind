@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V112_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V113_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -98,16 +98,16 @@
 | `arrival.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the authenticated clock pair: boot_epoch = the BS-2k restart counter, decimal integer in [0, 10^6]; monotonic_reading = decimal integer nanoseconds in [0, 2^63-1] (GPT56-V90 F3: bounds stated); overdue is computed from these bytes under spec-3b's chain-order monotonicity invariants, never from a clock read at verification |
 | `arrival.object_identity` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | brickid/objid keys |
 | `arrival.operation` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
-| `arrival.request_digest` | digest-ref | draft 6.1 item (ii-b) - ARRIVAL event schema | sha256 of the complete framed wire unit, domain-tagged wire-frame - the REQUEST's identity, distinct from the arrival's position (CODEX-V110 F5) |
+| `arrival.request_digest` | digest-ref | spec 1c identity envelope + draft 6.1 item (ii-b) | sha256 over the domain-tagged identity envelope ONLY - (origin_row, frame_sequence, operation, object_identity), kind identity-envelope; NEVER the frame, never a payload byte (GPT56/CODEX-V112 F1: this source row kept the superseded full-frame preimage after the draft killed it, so regeneration was un-repairing the repair - the generator-input rule dates from this finding). The REQUEST's identity, distinct from the arrival's position (CODEX-V110 F5) |
 | `arrival.request_key` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the arrival's own chain position, decimal - unique by construction, restart-safe; the enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal naming it, every terminal exactly one prior arrival |
 | `arrival.row` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
 | `arrival.running_chain_digest` | digest-ref | draft 6.1 item (ii-b) - ARRIVAL event schema |  |
 | `arrival.timestamp` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | ISO-8601 UTC, 24 bytes |
-| `attclose.boot_epoch` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | kind literal + the clock pair |
+| `attclose.boot_epoch` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | the clock pair |
 | `attclose.close_class` | closed-vocab | draft 6.1 item (ii-g) - attempt records | ABORTED - ABORTED-BY-RESTART (a successful attempt's close is the decision event itself; spec 3c T2 alternation law - GPT56-V111 F8, CODEX-V111 F4) |
-| `attclose.kind` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | kind literal + the clock pair |
+| `attclose.kind` | closed-vocab | draft 6.1 item (ii-g) - attempt records | the ATTEMPT-CLOSE literal (CODEX-V112 F2: this kind rode a bounded-encoding blob while its three siblings were closed-vocab) |
 | `attclose.member_position` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | decimal chain position |
-| `attclose.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | kind literal + the clock pair |
+| `attclose.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-g) - attempt records | the clock pair |
 | `attstart.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `attstart.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
 | `attstart.member_position` | bounded-encoding | spec 3c T2 - attempt-start record | decimal chain position |
@@ -238,6 +238,7 @@
 | `sig.explanation` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.freeze` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
+| `sig.review` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `succexp.continuation_segment_digest` | digest-ref | draft 11 - successor export |  |
 | `succexp.flagged_keys` | bounded-encoding | draft 11 - successor export | the recurrence-flagged mismatch class_keys the successor must adjudicate (CODEX-V109 F4); CANONICAL SET: count-prefixed, lexicographically sorted, duplicate-refusing, empty = count 0 (CODEX-V111 F7) |
 | `succexp.freeze_signature_digest` | digest-ref | draft 11 - successor export |  |

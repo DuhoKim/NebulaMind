@@ -222,9 +222,13 @@ _c("envelope.origin_row envelope.frame_sequence envelope.operation "
    "the identity envelope - request_digest's whole preimage, no payload byte, no "
    "length field (GPT56-V111 F1)", source="spec 1c - identity envelope")
 _c("arrival.request_digest", "digest-ref",
-   "sha256 of the complete framed wire unit, domain-tagged wire-frame - the REQUEST's "
-   "identity, distinct from the arrival's position (CODEX-V110 F5)",
-   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+   "sha256 over the domain-tagged identity envelope ONLY - (origin_row, frame_sequence, "
+   "operation, object_identity), kind identity-envelope; NEVER the frame, never a "
+   "payload byte (GPT56/CODEX-V112 F1: this source row kept the superseded full-frame "
+   "preimage after the draft killed it, so regeneration was un-repairing the repair - "
+   "the generator-input rule dates from this finding). The REQUEST's identity, distinct "
+   "from the arrival's position (CODEX-V110 F5)",
+   source="spec 1c identity envelope + draft 6.1 item (ii-b)")
 _c("revrec.reviewer_identity", "closed-vocab", "roster-bound identity",
    source="review record (coordinator on V109, within the mismatch ruling)")
 _c("revrec.review_timestamp", "bounded-encoding", "ISO-8601 UTC, human-facing",
@@ -261,8 +265,11 @@ _c("attclose.close_class", "closed-vocab",
    "ABORTED - ABORTED-BY-RESTART (a successful attempt's close is the decision event "
    "itself; spec 3c T2 alternation law - GPT56-V111 F8, CODEX-V111 F4)",
    source="draft 6.1 item (ii-g) - attempt records")
-_c("attclose.kind attclose.boot_epoch attclose.monotonic_reading", "bounded-encoding",
-   "kind literal + the clock pair", source="draft 6.1 item (ii-g) - attempt records")
+_c("attclose.kind", "closed-vocab", "the ATTEMPT-CLOSE literal (CODEX-V112 F2: this "
+   "kind rode a bounded-encoding blob while its three siblings were closed-vocab)",
+   source="draft 6.1 item (ii-g) - attempt records")
+_c("attclose.boot_epoch attclose.monotonic_reading", "bounded-encoding",
+   "the clock pair", source="draft 6.1 item (ii-g) - attempt records")
 _c("attstart.member_position", "bounded-encoding", "decimal chain position",
    source="spec 3c T2 - attempt-start record")
 _c("succexp.kind", "closed-vocab", "the successor-export literal",
@@ -352,7 +359,7 @@ _c("envelope.body_sha256 envelope.envelope_sha256", "digest-ref")
 _c("entry.signature", "bounded-encoding", "deterministic scheme mandated at BS-2k - no nonce channel")
 # The ACTUAL signature fields (GPT56-V81 F5: the registry inventoried canonical BODIES and omitted
 # the detached signatures over them). Deterministic scheme, fixed 64-byte encoding.
-_c("sig.freeze sig.bsl_lock sig.opening sig.explanation sig.checkpoint",
+_c("sig.freeze sig.bsl_lock sig.opening sig.explanation sig.checkpoint sig.review",
    "bounded-encoding", "detached deterministic signature over the named canonical body, 64 bytes")
 # The nine declared NON-SLOT artifact classes - HONEST STUBS, not pseudo-fields (GPT56-V75 F2,
 # CODEX-V75 F1: a class name in a field column was classification theatre). Three classes are
@@ -460,7 +467,38 @@ def envelope_fields():
 BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
-SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint")}
+SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint",
+                             "review")}
+def _preimage_echo(spec_txt, note):
+    """The request-identity preimage class, echoed source-vs-spec. Superseded phrase = red."""
+    out = []
+    if "IDENTITY ENVELOPE" not in spec_txt:
+        out.append("preimage-echo: spec no longer defines the IDENTITY ENVELOPE - "
+                   "the identity rule moved or died (GPT56/CODEX-V112 F1)")
+    for txt, where in ((note, "registry source note"),):
+        if "identity envelope" not in txt.lower():
+            out.append(f"preimage-echo: {where} does not name the identity envelope - "
+                       "the preimage class drifted (GPT56/CODEX-V112 F1)")
+        if "framed wire unit" in txt or "wire-frame" in txt:
+            out.append(f"preimage-echo: {where} carries the SUPERSEDED full-frame "
+                       "preimage - regeneration would un-repair the repair "
+                       "(GPT56/CODEX-V112 F1)")
+    return out
+
+def _preimage_echo_selftest():
+    """Seeded control: plant the superseded definition, prove red; clean form green."""
+    fails = []
+    good = "sha256 over the domain-tagged identity envelope ONLY"
+    bad = "sha256 of the complete framed wire unit, domain-tagged wire-frame"
+    spec_ok = "the IDENTITY ENVELOPE `(origin_row, frame_sequence, operation, object_identity)`"
+    if _preimage_echo(spec_ok, good):
+        fails.append("clean preimage note not green")
+    if not any("SUPERSEDED" in p for p in _preimage_echo(spec_ok, bad)):
+        fails.append("planted superseded definition not caught")
+    if not any("moved or died" in p for p in _preimage_echo("no envelope here", good)):
+        fails.append("spec-side deletion not caught")
+    return fails
+
 ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "boot_epoch", "monotonic_reading",
     "row", "operation", "object_identity", "request_key", "frame_sequence", "request_digest",
     "running_chain_digest")}
@@ -582,6 +620,7 @@ def crosscheck_declared(text):
         for setname, declared, probe in (
             ("DRAINST", DRAINST, r"DRAIN-START record[^`]*`\(([^)]+)\)`"),
             ("TERMCP", TERMCP, r"TERMINAL CHECKPOINT[^`]*`\(kind, ([^)]+)\)`"),
+            ("RNOTE", RNOTE, r"RECEIPT-NOTE record[^`]*`\(([^)]+)\)`"),
         ):
             all_m = list(_re.finditer(probe, spec_txt))
             if not all_m:
@@ -600,6 +639,16 @@ def crosscheck_declared(text):
             if fields != want:
                 problems.append(f"{setname}: spec tuple fields {sorted(fields)} != declared "
                                 f"{sorted(want)} (CODEX-V107 F3)")
+    _pf = _preimage_echo_selftest()
+    if _pf:
+        problems.extend(f"preimage-echo SELFTEST: {x}" for x in _pf)
+    # PREIMAGE-CLASS ECHO (GPT56/CODEX-V112 F1; the coordinator's generator-input rule):
+    # the spec's identity-envelope definition and THIS SOURCE's request_digest note must
+    # agree on the preimage class - the superseded full-frame phrase in either is fatal.
+    if spec_txt:
+        _note = (V9_CONSTRAINTS.get("arrival.request_digest") or
+                 CONSTRAINTS.get("arrival.request_digest") or ("", "", ""))[2]
+        problems.extend(_preimage_echo(spec_txt, _note))
     # (iv-c): the bindmap tuple
     m = _re.search(r"closed schema `\(request_key, decision chain_position, decision "
                    r"event_digest, decision boot_epoch, decision monotonic_reading, "

@@ -425,6 +425,23 @@
 - V111/CODEX F5: REPAIRED — V112 review record binds emission both ways; roster pinned
 - V111/CODEX F6: REPAIRED — V112 duplicate-digest + sequence rules in the verifier contract
 - V111/CODEX F7: REPAIRED — V112 flagged_keys canonical sorted-unique count-prefixed encoding
+- V112/GPT56 F1: REPAIRED — V113 registry SOURCE fixed + preimage-class echo with seeded control
+- V112/GPT56 F2: REPAIRED — V113 verifier recomputes request_digest; origin_row = row; fixtures
+- V112/GPT56 F3: REPAIRED — V113 machine-parseable sidecar lines; trace --check joins the battery
+- V112/GPT56 F4: REPAIRED — V113 full-tuple probes; negation tripwire; 6/6 controls
+- V112/GPT56 F5: REPAIRED — V113 hold exception covers drain-start AND receipt-note; fixtured
+- V112/GPT56 F6: DEFERRED — hold-budget enforcement law - designed (boundary-reading release inequality, Row B the watchdog, contaminated-interval refusal), lands in the morning fold before dispatch
+- V112/GPT56 F7: DEFERRED — completed-run terminal-review body - two domain-separated bodies designed, lands in the morning fold
+- V112/GPT56 F8: REPAIRED — V113 short-escape rule (RFC-8785) + collision fixture
+- V112/GPT56 F9: DEFERRED — pre-BS-L export body - terminal-time enumeration set at the drain cut designed, lands in the morning fold
+- V112/CODEX F1: REPAIRED — V113 registry SOURCE fixed + preimage-class echo (same as GPT56 F1)
+- V112/CODEX F2: REPAIRED — V113 attclose.kind closed-vocab; attempt-close a declared kind
+- V112/CODEX F3: REPAIRED — V113 vbound full-tuple probe restate=True; drift + negation controls
+- V112/CODEX F4: DEFERRED — admission-hold executable bound - same design as GPT56 F6, lands in the morning fold
+- V112/CODEX F5: REPAIRED — V113 sig.review registered detached leaf on the surface
+- V112/CODEX F6: DEFERRED — evidence_ref both-direction bind + roster authority chain (P0-frozen BS-2k materials) designed, lands in the morning fold
+- V112/CODEX F7: REPAIRED — V113 blocker inventory restored; ratification record corrected by dated addendum
+- V112/CODEX F8: REPAIRED — V113 HELD conditional; the three dead guard sentences swept
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 

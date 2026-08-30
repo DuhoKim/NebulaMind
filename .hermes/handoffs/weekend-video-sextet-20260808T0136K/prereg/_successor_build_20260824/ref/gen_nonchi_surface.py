@@ -40,11 +40,15 @@ SURFACE = [
     ("ckclock",  "CKCLOCK",  "DRAFT",
      "(ii-c) **the CHECKPOINT CLOCK RECORD under its closed schema", True),
     ("succexp",  "SUCCEXP",  "DRAFT",
-     "AND the SUCCESSOR EXPORT `(kind,", True),
+     "AND the SUCCESSOR EXPORT `(kind, sealed_enumeration_digest, "
+     "continuation_segment_digest, terminal_head, freeze_signature_digest, "
+     "flagged_keys)`", True),
     ("haltrec",  "HALTREC",  "DRAFT",
-     "the EXHAUSTION HALT RECEIPT `(kind,", True),
+     "the EXHAUSTION HALT RECEIPT `(kind, chain_head, freeze_signature_digest, "
+     "first_opening_digest)`", True),
     ("termrec",  "TERMREC",  "DRAFT",
-     "the UNNAMEABLE-CLASS terminated-verdict record `(kind,", True),
+     "the UNNAMEABLE-CLASS terminated-verdict record `(kind, class_key, gate, "
+     "chain_head, freeze_signature_digest, first_opening_digest)`", True),
     ("passrec",  "PASSREC",  "DRAFT",
      "(ii-e) **the GATE PASS RECORD `(gate,", True),
     ("drainst",  "DRAINST",  "DRAFT",
@@ -58,11 +62,22 @@ SURFACE = [
     ("dlm_entry",   "ENTRIES", "DRAFT", "(iv-b) the enumeration entries", False),
     ("roots_entry", "ENTRIES", "DRAFT", "(iv-b) the enumeration entries", False),
     # V112: the four kinds GPT56-V111 F2 found unadmitted, plus attempt-close
-    ("vread",    "VERIF", "DRAFT", "(ii-g) **the VERIFICATION-READ record", True),
-    ("vbound",   "VERIF", "DRAFT", "(ii-g)", False),
-    ("attstart", "VERIF", "DRAFT", "the ATTEMPT-START record `(kind,", True),
-    ("attclose", "VERIF", "DRAFT", "the ATTEMPT-CLOSE record `(kind,", True),
-    ("revrec",   "REVREC", "DRAFT", "the SIGNED REVIEW RECORD `(kind,", True),
+    ("vread",    "VERIF", "DRAFT",
+     "(ii-g) **the VERIFICATION-READ record `(kind, request_key, touch_position, "
+     "boot_epoch, monotonic_reading)`", True),
+    ("vbound",   "VERIF", "DRAFT",
+     "the VERIFICATION-BOUNDARY record `(kind, boot_epoch, monotonic_reading)`",
+     True),
+    ("attstart", "VERIF", "DRAFT",
+     "the ATTEMPT-START record `(kind, member_position, boot_epoch, "
+     "monotonic_reading)`", True),
+    ("attclose", "VERIF", "DRAFT",
+     "the ATTEMPT-CLOSE record `(kind, member_position, close_class, boot_epoch, "
+     "monotonic_reading)`", True),
+    ("revrec",   "REVREC", "DRAFT",
+     "the SIGNED REVIEW RECORD `(kind, reviewer_identity, review_timestamp, "
+     "review_disposition, evidence_ref, reviewed_chain_position, "
+     "reviewed_event_digest, reviewed_class_key, first_opening_digest)`", True),
     # post-run surface: the ceremony body is admitted at the spec's trust paragraph
     ("revbody",  "REVBODY", "SPEC", "CANONICAL TERMINAL-REVIEW BODY", True),
 ]
@@ -105,6 +120,16 @@ def check(draft_text, spec_text):
                 f"ADMISSION: kind '{prefix}' ({setname}) has no admission - probe "
                 f"{probe[:60]!r} absent from the {home} (GPT56-V111 F2)")
             continue
+        # NEGATION TRIPWIRE (GPT56-V112 F4: 'HISTORICAL ONLY' appended after a live probe
+        # passed) - a finite named-shape list, NOT a semantic guarantee; rewording is the
+        # round's to catch, and this comment says so (the vocab checker's precedent).
+        tail = text[text.index(probe):text.index(probe) + len(probe) + 400]
+        for neg in ("no longer admits", "HISTORICAL ONLY", "schema retired",
+                    "does not admit", "admission withdrawn"):
+            if neg in tail:
+                problems.append(
+                    f"ADMISSION-NEGATED: kind '{prefix}' probe is followed by "
+                    f"{neg!r} - a live probe under a dead admission (GPT56-V112 F4)")
         if restate and prefix in by_prefix:
             i = text.index(probe)
             para = text[i:i + 3000]
@@ -160,11 +185,25 @@ def selftest():
     broken = ok_draft.replace("(ii-g) **the VERIFICATION-READ record", "GONE", 1)
     if not any("ADMISSION: kind 'vread'" in p for p in check(broken, ok_spec)):
         fails.append("deleted vread admission not caught")
-    # control 3: field drift goes red (drop one succexp field from the admission text)
-    drifted = ok_draft.replace("flagged_keys", "flag_gone", 1)
-    if not any("FIELD-ECHO: kind 'succexp'" in p and "flagged_keys" in p
-               for p in check(drifted, ok_spec)):
-        fails.append("succexp field drift not caught")
+    # control 3: tuple drift goes red - full-tuple probes make drift an admission miss
+    drifted = ok_draft.replace("flagged_keys)`", "flag_gone)`", 1)
+    if not any("kind 'succexp'" in p for p in check(drifted, ok_spec)):
+        fails.append("succexp tuple drift not caught")
+    # control 5 (CODEX-V112 F3): vbound tuple drift - the V112 blind spot, now a probe miss
+    vdrift = ok_draft.replace(
+        "the VERIFICATION-BOUNDARY record `(kind, boot_epoch, monotonic_reading)`",
+        "the VERIFICATION-BOUNDARY record `(kind, timestamp)`", 1)
+    if not any("kind 'vbound'" in p for p in check(vdrift, ok_spec)):
+        fails.append("vbound tuple drift not caught")
+    # control 6 (GPT56-V112 F4): a live probe under a negated admission goes red
+    negd = ok_draft.replace(
+        "the ATTEMPT-START record `(kind, member_position, boot_epoch, "
+        "monotonic_reading)`",
+        "the ATTEMPT-START record `(kind, member_position, boot_epoch, "
+        "monotonic_reading)` HISTORICAL ONLY; this paragraph no longer admits these records",
+        1)
+    if not any("ADMISSION-NEGATED" in p for p in check(negd, ok_spec)):
+        fails.append("negated admission not caught")
     # control 4: closure - an unregistered kind-bearing prefix goes red
     saved = _ROWMAP.pop("rnote")
     try:
@@ -180,7 +219,7 @@ if __name__ == "__main__":
         f = selftest()
         for x in f:
             print("SELFTEST FAIL:", x)
-        print(f"selftest: {4 - len(f)}/4 controls fired correctly")
+        print(f"selftest: {6 - len(f)}/6 controls fired correctly")
         sys.exit(1 if f else 0)
     draft, spec = args[0], args[1]
     body, problems = emit(draft, spec)

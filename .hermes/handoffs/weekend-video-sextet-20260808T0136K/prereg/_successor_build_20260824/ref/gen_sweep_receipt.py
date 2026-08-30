@@ -39,6 +39,16 @@ DEAD = re.compile(
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
+    ("A-PRIORI RANGE SEMANTICS (CODEX-V112 F8)", "places the TRUE gradient inside", ("draft",),
+     "the dead guard's confidence claim; conditional HELD replaced it"),
+    ("A-PRIORI RANGE SEMANTICS (CODEX-V112 F8)", "the measurement itself plus a frozen constant", ("draft",),
+     "the dead guard's origin; the origin is a-priori now"),
+    ("MAP WIDENING CONFIRMED (2026-08-30 20:45)", "the widening is FILED with the coordinator", ("draft", "spec"),
+     "the awaiting-confirmation posture; confirmed as filed"),
+    ("EXHAUSTION ABSTAIN (2026-08-30 20:54)", "exhaustion HALTS the run pre-BS-8f", ("draft",),
+     "the hard halt for the replay case; ABSTAIN continues the run"),
+    ("GENERATOR-INPUT RULE (2026-08-30 21:07)", "complete framed wire unit, domain-tagged wire-frame", ("draft",),
+     "the superseded preimage anywhere outside quoted history; the registry source is echo-checked separately"),
     ("GAMMA RATIFICATION (2026-08-30 20:19)", "await ratification", ("draft",),
      "the pre-ratification banner; folded V112"),
     ("GAMMA RATIFICATION (2026-08-30 20:19)", "awaiting ratification", ("draft",),

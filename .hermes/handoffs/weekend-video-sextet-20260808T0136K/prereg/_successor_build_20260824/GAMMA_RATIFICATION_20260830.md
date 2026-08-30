@@ -35,3 +35,13 @@ and `PROPOSAL_GAMMA_RANGE.md` (gains a status pointer, body preserved as history
 
 **Recorded also in the track's human-direction history**
 (`.hermes/handoffs/spin-parity-census-20260805T1922K/spin-parity_history.json`, direction #9).
+
+---
+
+**CORRECTION (dated addendum, 2026-08-30 ~21:25 KST — CODEX-V112 F7).** The "Status change"
+paragraph above understated BS-3g's remaining preconditions: beside the harness pin and the
+BS-SI schema, **THE PINNED EXECUTABLE MAPPING remains open** — mapping A is ruled but exists
+as no module, `mapping_id` stays `MAPPING-NOT-PREREGISTERED`, and §11's refusals block BS-6
+until the pinned artifact and its verifier contract exist. The ratification itself — Γ =
+0.25 — is unaffected; only this record's inventory sentence was incomplete. The draft's
+BS-3g row now carries the full inventory.

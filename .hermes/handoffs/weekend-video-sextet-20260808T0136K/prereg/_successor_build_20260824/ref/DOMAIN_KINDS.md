@@ -1,8 +1,9 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**24 kinds; 74 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**25 kinds; 74 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
+- `attempt-close`
 - `attempt-start`
 - `bindmap-entry`
 - `continuation-segment`

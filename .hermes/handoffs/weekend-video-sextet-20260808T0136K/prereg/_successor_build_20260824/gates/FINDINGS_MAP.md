@@ -157,3 +157,50 @@ prescriptions broke on contact (his call: own those first). Repairs, all disposi
 swept; the TERMINAL SIGNATURE RULED (20:22 KST, `TERMINAL_SIGNATURE_RULING_20260830.md`) —
 P9 is the FOURTH human waypoint, the unruled-suffix sentence superseded, the fallback names
 the pre-ceremony unsigned suffix.
+
+## V112 → V113 (2026-08-30 night — the stable point: the generator-input rule lands; five design items deferred by choice)
+
+**V112 verdicts: NOT CLEAR ×2 (GPT56 9, CODEX 8).** The headline was the coordinator's
+diagnosis: repairs were landing in generated OUTPUTS while generator INPUTS kept the old
+regime, so regeneration was un-repairing repairs. HIS RULE, now in force: repairs land in
+the generator's SOURCE; the sweep covers generator inputs; every generator carries the
+seeded control that plants the superseded definition in its source and proves the output
+red.
+
+Twelve repaired tonight; five deferred with designs sketched (the pacing call — banked
+clean rather than rushed): GPT56 F6 + CODEX F4 (hold-budget enforcement law), GPT56 F7
+(completed-run terminal-review body), GPT56 F9 (pre-BS-L export body), CODEX F6
+(evidence_ref/roster authority chain). Dispositions in `gates/REPAIR_LEDGER.md`; the V113
+dispatch happens after the morning fold, not tonight.
+
+- **GPT56/CODEX F1 (the un-repair):** the registry SOURCE row for `request_digest` kept the
+  superseded full-frame preimage. Fixed at the source; PREIMAGE-CLASS ECHO check added
+  (spec↔source agreement) with the seeded superseded-definition control, always-on.
+- **GPT56 F2:** the verifier now RECOMPUTES `request_digest` from the envelope with
+  `origin_row = row`, wrong-digest and row-alias fixtures.
+- **GPT56 F3:** machine-parseable sidecar lines added below; `prereg_trace.py --check`
+  joins the battery.
+- **GPT56 F4 + CODEX F3 (surface blindness):** every record row's probe is now the FULL
+  TUPLE (the probe IS the schema — drift breaks it); vbound restate=True with its own
+  probe; ADMISSION-NEGATED tripwire (finite named-shape list, demoted honestly); 6/6
+  controls including vbound-drift and negation.
+- **GPT56 F5:** the hold exception covers every termination unit — drain-start OR
+  receipt-note — with the DRAIN-OPEN case fixtured.
+- **GPT56 F8:** canonical JSON prescribes short escapes (RFC-8785 rule) + collision fixture.
+- **CODEX F2:** `attclose.kind` closed-vocab; `attempt-close` a declared domain kind.
+- **CODEX F5 (representability half):** the review signature is the registered `sig.review`
+  detached leaf on the surface; the evidence/roster contract half is deferred with its
+  design (P0-frozen roster authority).
+- **CODEX F7:** the BS-3g blocker inventory names THE PINNED EXECUTABLE MAPPING again;
+  `GAMMA_RATIFICATION_20260830.md` carries a dated correction — the ruling stands, its
+  emission-precondition list was incomplete.
+- **CODEX F8:** `HELD` is now conditional (no evaluated-grid flip GIVEN |γ_true| ≤ 0.25 +
+  calibration conditions); the true-gradient-with-confidence sentence, the
+  actual-systematic sentence, and the measurement-plus-constant origin are all dead and
+  swept.
+- **Rulings folded:** map widening CONFIRMED (20:45) at (iv-c) + spec §3b; replay
+  exhaustion → ABSTAIN (20:54) at the §6.1 hand-check clause — the halt survives elsewhere,
+  completeness is every-object-labeled.
+
+V111 → V112: seventeen findings folded with two principal rulings — identity envelope, generated surface, exhaustion pairs, review binding, single export producer; gamma ratified; P9 ruled.
+V112 → V113: the generator-input rule executed at the source layer; twelve of seventeen repaired, five deferred with designs; map widening confirmed and ABSTAIN folded; dispatch deferred to the morning fold.

@@ -38,6 +38,7 @@ DECLARED = {
     "verification-read": "VERIFICATION-READ record",
     "verification-boundary": "VERIFICATION-BOUNDARY record",
     "attempt-start": "ATTEMPT-START record",
+    "attempt-close": "ATTEMPT-CLOSE record",
     "review-record": "REVIEW RECORD",
     "identity-envelope": "IDENTITY ENVELOPE",
 }
