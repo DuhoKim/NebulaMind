@@ -1,3 +1,6 @@
+> **SUPERSEDED 2026-08-30 18:2x KST by `WRAP_UP_20260830_FULL_DAY.md`** — read that for the
+> cold-readable final state. This file is the running log kept for provenance.
+
 # BHU lane — overnight wrap-up, 2026-08-29 ~23:40 → 2026-08-30 ~01:00 KST
 
 **Read cold, this file AFTER `WRAP_UP_20260829_FULL_DAY.md`** — that file covers the day through
