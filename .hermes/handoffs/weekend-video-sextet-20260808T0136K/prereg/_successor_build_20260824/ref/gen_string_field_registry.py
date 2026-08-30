@@ -566,6 +566,30 @@ def _domain_echo_selftest():
             if _seen - set(_want):
                 probs.append(f"{_fld} WIDENED")
         return probs
+    # FORM-ECHO controls (GPT56/CODEX-V116 F3): rename, deletion, swap, shadow -
+    # exercised through the SHIPPED co-location logic on synthetic corpora.
+    def _form_probs(corpus):
+        import re as _re3
+        probs = []
+        for _kind, _fields, _home in FORM_SCHEMAS[:1]:
+            _tup = "`(" + ", ".join(_fields) + ")`"
+            if _kind not in corpus:
+                probs.append("kind absent"); continue
+            pair = any(_kind in corpus[max(0, m.start() - 900):m.end() + 900]
+                       for m in _re3.finditer(_re3.escape(_tup), corpus))
+            if not pair:
+                probs.append("no co-located pair")
+        return probs
+    _k0, _f0, _ = FORM_SCHEMAS[0]
+    _t0 = "`(" + ", ".join(_f0) + ")`"
+    good_corpus = f"the {_k0} body {_t0} here"
+    if _form_probs(good_corpus):
+        fails.append("form-echo clean corpus not green")
+    if "kind absent" not in _form_probs(good_corpus.replace(_k0, "renamed-thing")):
+        fails.append("form-echo kind rename not caught")
+    if "no co-located pair" not in _form_probs(
+            f"the {_k0} body (corrupted) here " + " x" * 600 + " stray " + _t0):
+        fails.append("form-echo duplicate-shadow not caught")
     ok_v = "ABORTED - EXPIRED - ABORTED-BY-RESTART"
     ok_a = "ABORTED - ABORTED-BY-RESTART"
     if _run(ok_v, ok_a):
@@ -763,9 +787,24 @@ def crosscheck_declared(text):
     for _kind, _fields, _home in FORM_SCHEMAS:
         _tup = "`(" + ", ".join(_fields) + ")`"
         _corpus = text if _home == "draft" else spec_txt
-        if _corpus.count(_tup) < 1:
-            problems.append(f"form-schema echo: kind '{_kind}' exact tuple {_tup[:60]}... "
-                            f"absent from the {_home} (GPT56-V115 F1)")
+        # KIND-QUALIFIED (GPT56/CODEX-V116 F3: tuple-presence alone accepted a renamed
+        # kind and a duplicate-shadowed corruption): the kind literal must exist in the
+        # home corpus AND at least one tuple occurrence must sit within 900 bytes of a
+        # kind mention - the co-located pair is the authoritative declaration.
+        if _kind not in _corpus:
+            problems.append(f"form-schema echo: kind literal '{_kind}' absent from the "
+                            f"{_home} (GPT56/CODEX-V116 F3)")
+            continue
+        _pair = False
+        for _m in _re.finditer(_re.escape(_tup), _corpus):
+            _w0 = max(0, _m.start() - 900)
+            if _kind in _corpus[_w0:_m.end() + 900]:
+                _pair = True
+                break
+        if not _pair:
+            problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
+                            f"'{_kind}' in the {_home} - the tuple exists only away from "
+                            f"its kind (GPT56/CODEX-V116 F3 duplicate-shadow)")
     # CLOSE-CLASS DOMAIN ECHO (GPT56-V114 F1, CODEX-V114 F5: one exhaustive item gave
     # close_class two incompatible domains; the domains must be QUALIFIED and EXPIRED
     # must live in exactly the verification-close domain).

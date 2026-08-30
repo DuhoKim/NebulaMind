@@ -41,6 +41,22 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V116", "GPT56"): {
+        1: ("REPAIRED", "V117 (un-refereed fold under the option-2 cap; the appendix "
+            "mini-round sees the diff): gates/count_oracle_harness.py named REQUIRED "
+            "class-P; BS-2c design-gated"),
+        2: ("REPAIRED", "V117 (un-refereed fold): release binding to the 2.4 pinned "
+            "universe digest+cardinality; stale/foreign fixture"),
+        3: ("REPAIRED", "V117 (un-refereed fold): form-echo kind-qualified with "
+            "co-location; rename+shadow controls through the shipped logic"),
+    },
+    ("V116", "CODEX"): {
+        1: ("REPAIRED", "V117 (un-refereed fold): the surviving never-a-contradiction "
+            "sentence derived from the repaired spec wording"),
+        2: ("REPAIRED", "V117 (un-refereed fold): same complex as GPT56 F1/F2 - named "
+            "harness, exact-buffer receipt, release binding"),
+        3: ("REPAIRED", "V117 (un-refereed fold): same as GPT56 F3"),
+    },
     ("V115", "GPT56"): {
         1: ("REPAIRED", "V116 FORM_SCHEMAS kind->exact-set map + echo + controls; "
             "field-for-field is per-kind"),

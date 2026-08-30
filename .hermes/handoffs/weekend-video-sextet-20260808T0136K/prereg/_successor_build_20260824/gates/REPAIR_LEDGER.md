@@ -468,6 +468,12 @@
 - V115/CODEX F1: REPAIRED — V116 five-gate successor predicate; skip/swap/premature fixtures
 - V115/CODEX F2: REPAIRED — V116 T1 clause keeps its universal subject; the execution is SAID to violate it - undetectable-but-violative, testimony-plus-fixture
 - V115/CODEX F3: REPAIRED — V116 exact-set close-class echo (same as GPT56 F3)
+- V116/GPT56 F1: REPAIRED — V117 (un-refereed fold under the option-2 cap; the appendix mini-round sees the diff): gates/count_oracle_harness.py named REQUIRED class-P; BS-2c design-gated
+- V116/GPT56 F2: REPAIRED — V117 (un-refereed fold): release binding to the 2.4 pinned universe digest+cardinality; stale/foreign fixture
+- V116/GPT56 F3: REPAIRED — V117 (un-refereed fold): form-echo kind-qualified with co-location; rename+shadow controls through the shipped logic
+- V116/CODEX F1: REPAIRED — V117 (un-refereed fold): the surviving never-a-contradiction sentence derived from the repaired spec wording
+- V116/CODEX F2: REPAIRED — V117 (un-refereed fold): same complex as GPT56 F1/F2 - named harness, exact-buffer receipt, release binding
+- V116/CODEX F3: REPAIRED — V117 (un-refereed fold): same as GPT56 F3
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 

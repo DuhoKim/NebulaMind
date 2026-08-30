@@ -304,3 +304,26 @@ the generated known-debt appendix per the principal's option-2 ruling.**
   a stalled clock read — with the W0 consequence bounded, not blessed.
 
 V115 → V116: round 3 of the capped three — kind-qualified form schemas with a byte-equal echo, the count-oracle prose true against frozen v9 with slot-side non-null closure, exact close-class sets, R02 demoted and widened, the five-gate successor predicate, T1 universal with the violation named.
+
+## V116 → V117 (2026-08-31 night — THE UN-REFEREED FOLD; the text loop ENDS here per the option-2 ruling)
+
+**V116 verdicts: NOT CLEAR ×2 (GPT56 3 — 2 HIGH 1 MEDIUM; CODEX 3 — 2 HIGH 1 MEDIUM).
+Five of six findings carried a DEBT-INELIGIBLE flag, so all six are folded rather than
+carried; the fold itself is UN-REFEREED BY FULL ROUND — said here and in the appendix —
+and the appendix mini-round (the ruling's one adversarial read) receives this diff.**
+
+- **GPT56 F1 + CODEX F2 (the count-oracle complex):** `gates/count_oracle_harness.py` is
+  NAMED and REQUIRED (class-P, digest when built) — the only production entry to
+  `build_plan()`: None refused pre-dispatch, the receipt built from the exact argument
+  buffers in one bound invocation, proof digests recomputed, and THE RELEASE BINDING —
+  the proof universe must match §2.4's pinned digest `863e5ded…` / cardinality 366,912
+  (GPT56's executed two-brick counterfeit is the stale/foreign fixture). BS-2c is
+  DESIGN-GATED; it cannot fill while the harness is unbuilt.
+- **CODEX F1:** the §11 mirror's surviving "never a T1 contradiction" sentence is derived
+  from the repaired spec: a T1 violation, said so, chain-undetectable,
+  testimony-plus-fixture; only the consequence bounded.
+- **GPT56 F3 + CODEX F3:** the form echo is KIND-QUALIFIED — kind literal required in the
+  home corpus plus a co-located (kind, tuple) pair within 400 bytes as the authoritative
+  declaration; rename and duplicate-shadow controls run through the shipped logic.
+
+V116 → V117: the un-refereed fold — count-oracle harness named/required with release binding, the T1 mirror sentence derived, form-echo kind-qualified; the appendix mini-round reviews this diff and the appendix itself.
