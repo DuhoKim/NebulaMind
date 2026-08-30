@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V110_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V111_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -97,10 +97,15 @@
 | `arrival.monotonic_reading` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the authenticated clock pair: boot_epoch = the BS-2k restart counter, decimal integer in [0, 10^6]; monotonic_reading = decimal integer nanoseconds in [0, 2^63-1] (GPT56-V90 F3: bounds stated); overdue is computed from these bytes under spec-3b's chain-order monotonicity invariants, never from a clock read at verification |
 | `arrival.object_identity` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | brickid/objid keys |
 | `arrival.operation` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
+| `arrival.request_digest` | digest-ref | draft 6.1 item (ii-b) - ARRIVAL event schema | sha256 of the complete framed wire unit, domain-tagged wire-frame - the REQUEST's identity, distinct from the arrival's position (CODEX-V110 F5) |
 | `arrival.request_key` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | the arrival's own chain position, decimal - unique by construction, restart-safe; the enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal naming it, every terminal exactly one prior arrival |
 | `arrival.row` | closed-vocab | draft 6.1 item (ii-b) - ARRIVAL event schema | the event schema's own closed sets |
 | `arrival.running_chain_digest` | digest-ref | draft 6.1 item (ii-b) - ARRIVAL event schema |  |
 | `arrival.timestamp` | bounded-encoding | draft 6.1 item (ii-b) - ARRIVAL event schema | ISO-8601 UTC, 24 bytes |
+| `attstart.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `attstart.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
+| `attstart.member_position` | bounded-encoding | spec 3c T2 - attempt-start record | decimal chain position |
+| `attstart.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `bindmap.decision_boot_epoch` | bounded-encoding | draft 6.1 item (iv-c) - binding-to-key map | the decision's clock pair, same bounds as the arrival's - the decide-within-D evidence; WIDENED at V93 (CODEX-V92 F1), FILED with the coordinator |
 | `bindmap.decision_chain_position` | bounded-encoding | draft 6.1 item (iv-c) - binding-to-key map | chain positions, bounded decimal - the join is (request_key <-> decision position) |
 | `bindmap.decision_event_digest` | digest-ref | draft 6.1 item (iv-c) - binding-to-key map |  |
@@ -203,6 +208,10 @@
 | `revbody.terminal_checkpoint_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.transcript_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.verifier_digest` | digest-ref | spec 3b - terminal-review body |  |
+| `revrec.evidence_ref` | digest-ref | review record |  |
+| `revrec.review_disposition` | closed-vocab | review record | fault · tampering |
+| `revrec.review_timestamp` | bounded-encoding | review record | ISO-8601 UTC, human-facing |
+| `revrec.reviewer_identity` | closed-vocab | review record (coordinator on V109, within the mismatch ruling) | roster-bound identity |
 | `rnote.boot_epoch` | bounded-encoding | spec 3c T1 - receipt-note record | the clock pair |
 | `rnote.kind` | closed-vocab | spec 3c T1 - receipt-note record (GPT56-V104 F3) | the receipt-note literal |
 | `rnote.monotonic_reading` | bounded-encoding | spec 3c T1 - receipt-note record | the clock pair |
@@ -235,6 +244,12 @@
 | `termrec.gate` | closed-vocab | draft 6.1 - terminated-verdict record | the five-gate set |
 | `termrec.kind` | closed-vocab | draft 6.1 - terminated-verdict record (GPT56-V96 F6) | the literal TERMINATED-UNNAMEABLE-REFUSAL-CLASS |
 | `termrec.signature` | bounded-encoding | terminated-family envelopes | detached deterministic signature, 64 bytes (GPT56-V97 F5: absent from this registry) |
+| `vbound.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `vbound.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
+| `vbound.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `vread.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `vread.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
+| `vread.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
 | `baseline_verdict` | closed-vocab | §11 BS-3g | a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |
@@ -245,7 +260,7 @@
 | `class_key` | closed-vocab | §6.1 entry | (row, operation), both closed |
 | `counterfactual_path_sha256` | digest-ref | §11 BS-3g | compiled from verified buffer |
 | `delta_gamma_max` | bounded-encoding | §11 BS-3g | canonical decimal string per the one §11 grammar (no exponent, no trailing zeros, canonical zero 0) - DERIVED = 2*Gamma/n_steps under AMENDMENT 2 (GPT56-V91 F4: this row said finite positive double after the grid went exact-decimal) |
-| `disposition` | closed-vocab | §6.1 entry | NAMED-AS-DEFECT · EXPLAINED |
+| `disposition` | closed-vocab | §6.1 entry | NAMED-AS-DEFECT · EXPLAINED · REVIEWED (REVIEWED added V109, registry lagged one round - GPT56-V110 F3) |
 | `draw_generator_id` | closed-vocab | §11 BS-3g | one member, committed blind: numpy-1.26.4-PCG64-default_rng |
 | `draw_master_seed` | bounded-encoding | §11 BS-3g | decimal int; COMMITTED blind = 20260830 |
 | `draw_verdict_digest` | digest-ref | §11 BS-3g | row-major serialization stated |

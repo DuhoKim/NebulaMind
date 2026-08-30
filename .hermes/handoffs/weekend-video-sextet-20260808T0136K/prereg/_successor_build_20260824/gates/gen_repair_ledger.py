@@ -41,6 +41,20 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V110", "GPT56"): {
+        1: ("REPAIRED", "V111 Row V declared; boundary-prefix verification"),
+        2: ("REPAIRED", "V111 M_max=3 committed; export body gains flagged_keys"),
+        3: ("REPAIRED", "V111 REVIEWED in the registry disposition domain"),
+        4: ("REPAIRED", "V111 A_max exhaustion derived from attempt-start counts"),
+    },
+    ("V110", "CODEX"): {
+        1: ("REPAIRED", "V111 Row V surface"),
+        2: ("REPAIRED", "V111 verification boundary closes the fixpoint by type-exclusion"),
+        3: ("REPAIRED", "V111 log-derived recurrence, computed flag, M_max=3"),
+        4: ("REPAIRED", "V111 export generated from schema with completeness fixture"),
+        5: ("REPAIRED", "V111 request_digest is the request's identity"),
+        6: ("REPAIRED", "V111 fallback evidence set listed by name incl. pinned tooling"),
+    },
     ("V109", "GPT56"): {
         1: ("REPAIRED", "V110 the pass's own mediated reads advance the head - total verdict"),
         2: ("REPAIRED", "V110 commit-order law; attempt-order testimony-plus-fixture"),

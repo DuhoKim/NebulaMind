@@ -213,6 +213,26 @@ _c("rnote.kind", "closed-vocab", "the receipt-note literal",
 _c("rnote.receipt_digest", "digest-ref", "", source="spec 3c T1 - receipt-note record")
 _c("rnote.boot_epoch rnote.monotonic_reading", "bounded-encoding",
    "the clock pair", source="spec 3c T1 - receipt-note record")
+_c("arrival.request_digest", "digest-ref",
+   "sha256 of the complete framed wire unit, domain-tagged wire-frame - the REQUEST's "
+   "identity, distinct from the arrival's position (CODEX-V110 F5)",
+   source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("revrec.reviewer_identity", "closed-vocab", "roster-bound identity",
+   source="review record (coordinator on V109, within the mismatch ruling)")
+_c("revrec.review_timestamp", "bounded-encoding", "ISO-8601 UTC, human-facing",
+   source="review record")
+_c("revrec.review_disposition", "closed-vocab", "fault · tampering",
+   source="review record")
+_c("revrec.evidence_ref", "digest-ref", "", source="review record")
+_c("vread.kind vbound.kind attstart.kind", "closed-vocab",
+   "verification-read / verification-boundary / attempt-start literals - "
+   "checkpoint-family records (Row V surface + the attempt-order fix)",
+   source="spec 3c + draft Row V, V111")
+_c("vread.boot_epoch vread.monotonic_reading vbound.boot_epoch "
+   "vbound.monotonic_reading attstart.boot_epoch attstart.monotonic_reading",
+   "bounded-encoding", "the clock pair", source="spec 3c + draft Row V, V111")
+_c("attstart.member_position", "bounded-encoding", "decimal chain position",
+   source="spec 3c T2 - attempt-start record")
 _c("succexp.kind", "closed-vocab", "the successor-export literal",
    source="draft 11 - successor export (GPT56/CODEX-V108 F4)")
 _c("succexp.sealed_enumeration_digest succexp.continuation_segment_digest "
@@ -361,7 +381,7 @@ CONSTRAINTS = {
     "chain_position": ("bounded-encoding", "§6.1 entry", "index into the chain"),
     "event_digest": ("digest-ref", "§6.1 entry", ""),
     "class_key": ("closed-vocab", "§6.1 entry", "(row, operation), both closed"),
-    "disposition": ("closed-vocab", "§6.1 entry", "NAMED-AS-DEFECT | EXPLAINED"),
+    "disposition": ("closed-vocab", "§6.1 entry", "NAMED-AS-DEFECT · EXPLAINED · REVIEWED (REVIEWED added V109, registry lagged one round - GPT56-V110 F3)"),
     "rederivation_digest": ("digest-ref", "§6.1 entry", "revision must contain the class_key"),
     "explanation_ref": ("digest-ref", "§6.1 entry", "sha256 of the canonical explanation body"),
     "review_ref": ("digest-ref", "§6.1 entry", "sha256 of the signed review artifact - REVIEWED entries only, the explanation_ref discipline (GPT56-V109 F3)"),
@@ -408,7 +428,8 @@ BS7P_ENV = {f"bs7p_env.{n}" for n in (
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
 SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint")}
 ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "boot_epoch", "monotonic_reading",
-    "row", "operation", "object_identity", "request_key", "running_chain_digest")}
+    "row", "operation", "object_identity", "request_key", "request_digest",
+    "running_chain_digest")}
 # the checkpoint clock record (spec 3b authenticated clock basis - GPT56-V89 F1, CODEX-V89 F2)
 CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading",
            "ckclock.predecessor_epoch", "ckclock.gap_declaration"}
@@ -426,6 +447,12 @@ TERMCP = {"termcp.kind", "termcp.drain_start_position", "termcp.receipt_digest",
           "termcp.boot_epoch", "termcp.monotonic_reading", "termcp.failed_members"}
 RNOTE = {"rnote.kind", "rnote.receipt_digest", "rnote.boot_epoch",
          "rnote.monotonic_reading"}
+REVREC = {"revrec.reviewer_identity", "revrec.review_timestamp",
+          "revrec.review_disposition", "revrec.evidence_ref"}
+VERIF = {"vread.kind", "vread.boot_epoch", "vread.monotonic_reading",
+         "vbound.kind", "vbound.boot_epoch", "vbound.monotonic_reading",
+         "attstart.kind", "attstart.member_position", "attstart.boot_epoch",
+         "attstart.monotonic_reading"}
 SUCCEXP = {"succexp.kind", "succexp.sealed_enumeration_digest",
            "succexp.continuation_segment_digest", "succexp.terminal_head",
            "succexp.freeze_signature_digest", "succexp.flagged_keys"}
@@ -489,6 +516,7 @@ def crosscheck_declared(text):
                 "monotonic_reading": "monotonic_reading", "row": "row",
                 "operation": "operation", "object identity": "object_identity",
                 "request_key": "request_key",
+                "request_digest": "request_digest",
                 "running chain digest": "running_chain_digest"}
         got = {"arrival.kind"}
         for part in seg_tuples[0].split(","):
@@ -610,7 +638,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | DRAINST | TERMCP | RNOTE | SUCCEXP | REVBODY | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | DRAINST | TERMCP | RNOTE | SUCCEXP | REVREC | VERIF | REVBODY | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

@@ -400,6 +400,16 @@
 - V109/CODEX F2: REPAIRED — V110 commit-order checkable, attempt-order said testimony
 - V109/CODEX F3: REPAIRED — V110 export final-pass rule; both preimages defined
 - V109/CODEX F4: REPAIRED — V110 review_ref evidence + M_max recurrence flag into the export
+- V110/GPT56 F1: REPAIRED — V111 Row V declared; boundary-prefix verification
+- V110/GPT56 F2: REPAIRED — V111 M_max=3 committed; export body gains flagged_keys
+- V110/GPT56 F3: REPAIRED — V111 REVIEWED in the registry disposition domain
+- V110/GPT56 F4: REPAIRED — V111 A_max exhaustion derived from attempt-start counts
+- V110/CODEX F1: REPAIRED — V111 Row V surface
+- V110/CODEX F2: REPAIRED — V111 verification boundary closes the fixpoint by type-exclusion
+- V110/CODEX F3: REPAIRED — V111 log-derived recurrence, computed flag, M_max=3
+- V110/CODEX F4: REPAIRED — V111 export generated from schema with completeness fixture
+- V110/CODEX F5: REPAIRED — V111 request_digest is the request's identity
+- V110/CODEX F6: REPAIRED — V111 fallback evidence set listed by name incl. pinned tooling
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 

@@ -1,8 +1,9 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**20 kinds; 70 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**24 kinds; 72 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
+- `attempt-start`
 - `bindmap-entry`
 - `continuation-segment`
 - `drain-start`
@@ -15,6 +16,7 @@
 - `opening-auth`
 - `passrec`
 - `receipt-note`
+- `review-record`
 - `sealed-bindmap`
 - `sealed-entry-set`
 - `successor-export`
@@ -22,9 +24,12 @@
 - `terminal-review`
 - `termrec`
 - `verdict-record`
+- `verification-boundary`
+- `verification-read`
 - `wire-frame`
 
 ## Sites
+- `arrival.request_digest` — TAGGED: wire-frame
 - `arrival.running_chain_digest` — FROZEN: the chain digest itself
 - `bindmap.decision_event_digest` — FROZEN: chain running digest values
 - `bs7p_env.dependency_roots` — RAW: manifest document bytes (roots/DLM files)
@@ -73,6 +78,7 @@
 - `revbody.terminal_checkpoint_digest` — TAGGED: terminal-checkpoint
 - `revbody.transcript_digest` — RAW: verifier binary / ceremony transcript bytes
 - `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes
+- `revrec.evidence_ref` — RAW: evidence artifact bytes
 - `rnote.receipt_digest` — TAGGED: termrec
 - `roots_entry.digest` — RAW: loaded-object file bytes
 - `succexp.continuation_segment_digest` — TAGGED: continuation-segment
@@ -93,5 +99,5 @@
 - `perturbation_manifest_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
 - `rederivation_digest` — RAW: vocabulary revision text bytes
 - `replay_harness_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
-- `review_ref` — RAW: signed review artifact bytes (GPT56-V109 F3)
+- `review_ref` — TAGGED: review-record
 - `verifier_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures

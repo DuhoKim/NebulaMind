@@ -35,6 +35,10 @@ DECLARED = {
     "receipt-note": "RECEIPT-NOTE record",
     "successor-export": "SUCCESSOR EXPORT",
     "continuation-segment": "continuation-entry canonical bodies sorted by chain_position",
+    "verification-read": "VERIFICATION-READ record",
+    "verification-boundary": "VERIFICATION-BOUNDARY record",
+    "attempt-start": "ATTEMPT-START record",
+    "review-record": "REVIEW RECORD",
 }
 # field-name regex -> coverage. Order matters; first match wins.
 PREIMAGE_OF = [
@@ -49,7 +53,9 @@ PREIMAGE_OF = [
     (r"^(termrec|haltrec|succexp)\.freeze_signature_digest$", ("TAGGED", "freeze-body")),
     (r"^succexp\.(sealed_enumeration_digest)$", ("TAGGED", "sealed-entry-set")),
     (r"^succexp\.(continuation_segment_digest)$", ("TAGGED", "continuation-segment")),
-    (r"^review_ref$", ("RAW", "signed review artifact bytes (GPT56-V109 F3)")),
+    (r"^review_ref$", ("TAGGED", "review-record")),
+    (r"^revrec\.evidence_ref$", ("RAW", "evidence artifact bytes")),
+    (r"^arrival\.request_digest$", ("TAGGED", "wire-frame")),
     (r"^(termrec|haltrec)\.first_opening_digest$", ("FROZEN",
      "the opening record digest - clock-family, chain-side")),
     (r"^revbody\.terminal_checkpoint_digest$", ("TAGGED", "terminal-checkpoint")),
