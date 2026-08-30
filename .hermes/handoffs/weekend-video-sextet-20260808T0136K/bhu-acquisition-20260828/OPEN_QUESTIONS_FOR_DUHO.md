@@ -6,7 +6,30 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — none. Question 8 was returned and is closed below.
+## OPEN — 1: the browser route for the last three paywalled papers. Question 8 is closed below.
+
+### Should I chase entries 2, 42, 47 through the browser overnight, or leave them?
+
+**What happened:** you said "keep researching papers overnight." I did — and the corpus is now
+essentially complete: 55 of 58 papers are read, and entries 1 and 3 are abstract-confirmed. Only
+three are left, and they are all paywalled or scan-only with no free copy on arXiv, INSPIRE, or
+(from the agent context) ADS:
+- **2** — I. J. Good (1972), "Chinese universes," Physics Today 25(7), 15 — a one-page note.
+- **42** — P. F. González-Díaz (1991), PLB 261, 357 — a holdout (UNREAD).
+- **47** — K. Sato, H. Kodama, M. Sasaki & K. Maeda (1982), PLB 108, 103 — a holdout (UNREAD).
+
+**Your call, with the costs:**
+- **(a) I try the browser (ADS scans), like the entry-32 scan.** Cost: ADS and ResearchGate
+  bot-block automation — RG already blocked me on entry 3 — so this is rabbit-hole-prone and may
+  fail; and reading **42 or 47 would move it out of UNREAD, i.e. assign a tier, which is itself a
+  stop-and-confirm-with-you step.** Low audit value on all three.
+- **(b) Leave them gated.** Cost: three low-value historical papers stay unread; the corpus stays at
+  55 read + 2 abstract-confirmed + 3 gated. The record already says exactly this, honestly.
+- **(c) You fetch them** (your own logged-in browser / ILL — a few thousand won each) and drop the
+  PDFs in ~/Downloads; I pin, read, and prepare the tiers for your sign-off.
+
+I did **not** plunge into the browser on my own — it's the rabbit-hole rule plus the tier-change
+stop. Holding on quiet-tick until you pick one.
 
 ## GATED WORK — for a seat / the tick, NOT a Duho decision (logged per the overnight protocol)
 
