@@ -146,3 +146,37 @@ Duho's login did not cover the backfiles; Blanc relayed the five-route free-fron
 OPEN WITH DUHO: **question 8** (entry 48's tier — recommendation A, THEORETICAL-OBSTRUCTION
 with the preprint caveat printed). Blocked-on-Duho: the Chrome click, the Science registration,
 the ILL list. Nothing else is solo-actionable.
+
+## 2026-08-30 evening — question 8 ruled, the browser acquisitions, the day CLOSED
+
+Supersedes the afternoon section's "OPEN WITH DUHO: question 8" line — that is now closed.
+
+- **Question 8 RULED (returned by Duho via Blanc, the Q1–7 delegation pattern):** entry 48 →
+  **THEORETICAL-OBSTRUCTION**, on ownership-of-proof + operative-contribution, double-gated,
+  preprint caveat + revisit-on-VoR clause printed. Both seats reviewed the ruling; CGATE_Q8
+  caught a display-denominator bug in b41 (printed len(obs)=3 while its predicate asserted 2 —
+  frame-scoped and bound) and a miscount ("five scripts"→four), both fixed.
+- **Four evening census reads, all double-gated:** entry 16 (the SCOAP3 VERSION OF RECORD, via
+  Duho's Chrome — PROSPECT confirmed; CGATE caught the paper's own eq-(19) arithmetic flaw and
+  an et-al byline error), plus the afternoon's 48/14/50. Entry 16 is the corpus's only
+  read-from-VoR entry.
+- **Entry 51's PLB 690 pinned end to end through Duho's browser:** the VERSION OF RECORD
+  (word-for-word identical to arXiv 0910.1181 on every mass-floor number — the "10^16 kg is an
+  error" question is NOT a version artifact) AND the **2013 erratum** (PLB 727, 575). The
+  erratum corrects the Papapetrou ring machinery (Eqs 21/26/29), NOT the mass floor; both seats
+  ran the corrected Eq. (29) and confirmed the ring exclusion HOLDS (ERRATUM_RING_CONCLUSION_
+  HOLDS) — entry 51's obstruction content now rests on the corrected published equations.
+- **Browser-acquisition lesson (defect notes 1ah/1ai + the download write-up):** Chrome's
+  native PDF-viewer download arrow beats the multi-download JS guard; Elsevier signed URLs live
+  ~5 min (re-mint before the click); Downloads is SSH-readable, Desktop is not. Bulk byte-pull
+  through the extension is filter-blocked — not circumvented.
+
+**FINAL STATE.** Corpus 58 entries / 51 papers: 3 THEORETICAL-OBSTRUCTION (5, 22, 48),
+4 CALIBRATED-FALSIFIER (7,44 fired; 31,51 live), 3 PROSPECT, 32 CONSISTENCY-ONLY,
+7 QUALITATIVE-DIRECTIONAL, **2 UNREAD (42, 47)**. Every readable paper read, adjudicated,
+double-gated. All 8 delegated questions closed. Battery: 63 checks green.
+
+**LEFT FOR DUHO ONLY (nothing solo-actionable):** entries 42, 47 (Purchase-only) + 1/2/3/4/18
++ Silk (registration) — the interlibrary/registration list in OPEN_QUESTIONS_FOR_DUHO.md. The
+48/50 version-of-record comparisons are also Purchase-only (pre-2010 PLB/NPB, not in the free
+open archive). On any tick with no new PDF and no incoming commit: quiet-hold, one line.
