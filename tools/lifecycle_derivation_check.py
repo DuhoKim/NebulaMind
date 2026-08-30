@@ -84,20 +84,34 @@ def check(draft_text: str, spec_text: str, spec_bytes: bytes):
     for tag in spec_rows:
         if tag not in quoted:
             out.append(("L04", ERRORS["L04"] + f" — {tag}"))
-    # L08 (GPT56-V100 F2): schema tuples that exist in BOTH files must match exactly.
+    # L08 (GPT56-V100 F2; GENERALIZED at V102 after GPT56-V101 F6 / CODEX-V101 F7 showed the
+    # first cut hard-coded to (gate, ...) while advertising a shared-schema invariant - a
+    # name wider than its predicate): ALL backticked field tuples present in both files,
+    # keyed by first field, must match.
     import re as _re
-    def tuples(s):
-        return {m.group(1) for m in _re.finditer(r"`\((gate, [^)]+)\)`", s)}
-    dt, st = tuples(draft_text), tuples(spec_text)
     _normsig = lambda x: x.replace("signature-enveloped", "signature")
-    if {_normsig(x) for x in dt} != {_normsig(x) for x in st} and dt and st:
-        out.append(("L08", ERRORS["L08"] + f" — draft {sorted(dt)} vs spec {sorted(st)}"))
+    def tuples(s):
+        d = {}
+        for m in _re.finditer(r"`\(([a-z_]+(?:,\s+[a-z_][a-z_ -]*)+)\)`", s):
+            tup = _normsig(m.group(1))
+            parts = [p.strip() for p in tup.split(",")]
+            # key = first TWO fields: every record family opens with kind/gate, so a
+            # one-field key lumped haltrec, termrec and terminal-review into one set and
+            # flagged legitimate single-file tuples (found on V102's own battery)
+            d.setdefault(tuple(parts[:2]), set()).add(tup)
+        return d
+    dt, st = tuples(draft_text), tuples(spec_text)
+    for key in sorted(set(dt) & set(st)):
+        if dt[key] != st[key]:
+            out.append(("L08", ERRORS["L08"] + f" — key {key!r}: draft {sorted(dt[key])} "
+                        f"vs spec {sorted(st[key])}"))
     return out
 
 
 def self_test():
     spec = ("| G1 | no bytes move without a committed event | x |\n"
-            "| G2 | events tell the truth | x |\n")
+            "| G2 | events tell the truth | x |\n"
+            "`(kind, chain_head)`\n")
     spec_b = spec.encode()
     pin = hashlib.sha256(spec_b).hexdigest()
     good = (f"lifecycle-spec: sha256 `{pin}`\n"
@@ -118,6 +132,8 @@ def self_test():
         ("a truncated quote", good.replace("G1 — no bytes move without a committed event",
                                            "G1 — no bytes move"), {"L06"}),
         ("two pins", good + f"lifecycle-spec: sha256 `{pin}`\n", {"L07"}),
+        ("a shared non-gate schema tuple diverges",
+         good + "`(kind, chain_head, extra_field)`\n", {"L08"}),
     ]
     fails = []
     for name, draft, want in cases:

@@ -194,7 +194,10 @@ def check(text: str):
         # BACKTICKED form (`REFUSED-X`) — how the operative list actually writes members —
         # while the tombstone/illegal scan above deliberately stays decoration-independent
         # (GPT56-V70 F4: that direction must catch evasive spellings, not require them).
-        for frag in re.split(r"[.;:]", text[b0:b1]):
+        # CODEX-V101 F8: a canonical token inside an HTML comment still counted as
+        # operative. Comments are stripped for MEMBERSHIP; the tombstone scan keeps them.
+        _blk = re.sub(r"<!--.*?-->", "", text[b0:b1], flags=re.S)
+        for frag in re.split(r"[.;:]", _blk):
             for tk in re.findall(r"`(REFUSED-[A-Z][A-Z0-9-]+)`", frag):
                 if tk in CODES and not RETIREMENT.search(frag):
                     block_pinned.add(tk)
