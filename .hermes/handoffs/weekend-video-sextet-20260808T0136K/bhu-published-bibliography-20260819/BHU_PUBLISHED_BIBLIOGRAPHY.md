@@ -1008,8 +1008,41 @@ content identity is testimony until compared. NOT YET READ — census read queue
 preprint pages).**
 DOI 10.1016/0550-3213(90)90357-j — VERIFIED (Crossref: NPB, v339, p417-490, 1990). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **CONSISTENCY-ONLY** — set by the census full read 2026-08-30 (b47, the routine
+gated-census pattern of b38/b39; both seats verifying).
 Record: kimi recall R2 — remembered under the wrong title ("An obstacle to building…"); venue, volume and pages were exact, and the VERIFIED title is used here.
+**READ IN FULL 2026-08-30 (b47): all 34 two-up scan sheets of the MIT-CTP-1690 preprint (~68
+preprint pages: Secs. I–VII + Appendices A–F + references), read via the OCR companion
+`farhi_guth_guven_ctp1690_clean.txt` — OCR clean on prose, garbled on equations; figures are
+INLINE with their captions (no separate figure sheets); no sheet beyond page 1 was rendered by
+me — the gates render what they distrust (scope stated, not smoothed).** VERDICT under the
+census rule: **NOT an obstruction — a constructive tunneling-amplitude calculation that
+EXECUTES the quantum escape entry 48 named.** The paper computes, in leading WKB, the amplitude
+for a subcritical false-vacuum bubble (type (a), M < M_S — producible without an initial
+singularity, per entry 48's own threshold restated here as ref. [9]) to tunnel to the
+universe-becoming type (b) branch. The functional-integral route yields a negative-definite
+subtracted action (their eq. 5.34), |I_E| ~ 1/(Gχ²), tunneling probability ~ 10^(−10¹¹) at GUT
+scale — "equivalent to zero" for human-made universes, "might be possible at energy scales
+approaching the Planck scale". Conclusion, verbatim shape: "quantum effects can very likely
+avoid the implications of the classical singularity theorems… the laws of physics as we know
+them permit in principle the creation of a new universe by human initiative" — a CONJECTURE,
+flagged as such (the Euclidean interpolation is not a manifold; they coin "pseudomanifold" and
+conjecture its action gives the valid approximation; Fischler–Morgan–Polchinski independently
+agree, their ref. [15]). **Claim-level negative results INSIDE the construction (recorded, not
+tiers):** (1) the CANONICAL approach fails — p(r,ṙ) is noninvertible (∂p/∂ṙ changes sign, their
+eq. 6.3), so no Hamiltonian H(r,p) exists for their slicing, the canonical action is
+non-monotonic in M, and for M_D < M < M_S the momentum cannot vanish at both tunneling
+endpoints — a methodological failure they attribute to the slicing recipe, not a physics no-go;
+(2) a small topological exclusion: a NONSINGULAR multi-sheeted covering of the interpolation is
+excluded because the underlying space is simply connected — hence the singular covering
+(√g changing sign) or covering-number prescription. **Cross-links, source-owned:** ref. [9] =
+entry 48 (the classical no-go this paper tunnels past); ref. [6] = entry 49 (whose eq. 4.25a
+sign error their footnote 18 corrects); ref. [11] = entry 13 (Frolov–Markov–Mukhanov PLB 216,
+the OTHER escape family — limiting curvature); ref. [2] = entry 47's Sato–Kodama–Sasaki–Maeda
+chain. The 48→50 pair completes the corpus's obstruction/escape web: classical no-go (48),
+limiting-curvature escape (13/14), quantum-tunneling escape (50). No falsifier: the rate
+estimate is not an observational discriminator, and the paper ends noting even a created
+universe's signature (the bubble vanishing from radar) may be unverifiable.
 
 ## 8. Measurement papers ridden by the family (verified, support-role only)
 
