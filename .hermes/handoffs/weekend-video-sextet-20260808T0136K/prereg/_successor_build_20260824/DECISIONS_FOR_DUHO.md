@@ -1,4 +1,6 @@
-**STATUS: NO DECISION PENDING — the γ range is RATIFIED (20:19 KST, Γ = 0.25) and the TERMINAL SIGNATURE is APPROVED (20:22 KST — Duho performs the recomputation ceremony at run end; `TERMINAL_SIGNATURE_RULING_20260830.md`). NO OPEN ITEMS — the board is clear (γ 20:19 · terminal signature 20:22 · map widening 20:45 · exhaustion→ABSTAIN 20:54). (γ record:
+**STATUS: NO DECISION PENDING — the γ range is RATIFIED (20:19 KST, Γ = 0.25) and the TERMINAL SIGNATURE is APPROVED (20:22 KST — Duho performs the recomputation ceremony at run end; `TERMINAL_SIGNATURE_RULING_20260830.md`). NO OPEN ITEMS — the board is clear (γ 20:19 · terminal signature 20:22 · map widening 20:45 · exhaustion→ABSTAIN 20:54).
+
+**SCHEDULED, not open: BS-1 release choice resolves BY RULE on 2026-09-05** (DR10.1 auto-selects unless DR11 photo-z appears first — measured absent 2026-08-30; plain-words brief: `BS1_RELEASE_CHOICE_BRIEF_20260830.md`; override anytime before the date). (γ record:
 `GAMMA_RATIFICATION_20260830.md`, verbatim words recorded). Everything else from the seven-item
 sitting of 2026-08-30 10:46 is RULED AND BEING APPLIED (V85). This is a plain-language index, not a
 source; if it and an underlying file disagree, the file is right.**
