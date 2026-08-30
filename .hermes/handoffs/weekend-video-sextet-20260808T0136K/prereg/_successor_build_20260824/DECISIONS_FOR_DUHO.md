@@ -1,14 +1,15 @@
-**STATUS: ONE ITEM PENDING — the γ range endpoints ratification. Everything else from the seven-item
+**STATUS: NO DECISION PENDING — the γ range is RATIFIED (2026-08-30 20:19 KST, Γ = 0.25;
+`GAMMA_RATIFICATION_20260830.md`, verbatim words recorded). Everything else from the seven-item
 sitting of 2026-08-30 10:46 is RULED AND BEING APPLIED (V85). This is a plain-language index, not a
 source; if it and an underlying file disagree, the file is right.**
 
 # Where the lane stands after the seven rulings
 
-## PENDING — the one item the sitting created
+## RATIFIED 2026-08-30 20:19 KST — the one item the sitting created (was PENDING)
 
 | what | where |
 |---|---|
-| **Ratify the a-priori γ range: proposed ±0.25**, derived from the per-bin calibration floor (any gradient steeper than ≈0.21 cannot pass `a_LB_b ≥ 0.85` and never reaches a verdict; ±0.25 sweeps the whole admissible region with margin, at Δγ = 0.01 → 51 points). | `PROPOSAL_GAMMA_RANGE.md` |
+| **RATIFIED — the a-priori γ range ±0.25** (Duho, verbatim: *"γ range approved as proposed, ±0.25 in 50 steps"*). Was: ratify the proposed ±0.25, derived from the per-bin calibration floor (any gradient steeper than ≈0.21 cannot pass `a_LB_b ≥ 0.85` and never reaches a verdict; ±0.25 sweeps the whole admissible region with margin, at Δγ = 0.01 → 51 points). | `PROPOSAL_GAMMA_RANGE.md` · `GAMMA_RATIFICATION_20260830.md` |
 
 ## RULED 2026-08-30 10:46 — applied in V85, on me to keep repairing
 
@@ -39,7 +40,7 @@ the next rounds return.
 
 ## Standing blockers (build-owned, not decision-owned)
 
-BS-3g emission: γ endpoints (ratification) · `gates/replay_harness.py` digest (set when built) ·
+BS-3g emission: γ endpoints RATIFIED (2026-08-30) · `gates/replay_harness.py` digest (set when built) ·
 BS-SI schema (written when filled). BS-6 and the first image byte remain blocked; γ̂ unmeasured;
 **v9 frozen at `6a9abbbd` throughout — nothing in the seven rulings touched it.**
 
