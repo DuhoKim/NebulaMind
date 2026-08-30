@@ -701,7 +701,7 @@ models), per the same discipline as entry 22's domain note.
 
 **One consequence worth your eye:** entry 5 was *never flagged by the screen* — it surfaced only in
 the preregistered random sample. With two known obstructions in the corpus, **the screen's measured
-recall now stands at one of two.** The question-1 record already carries the adverse audit; this
+recall — per the implementation gate's wording, the **observed hit rate on the two known, adjudicated obstructions** — stands at one of two; a hit rate on known members, not a corpus-wide recall estimate.** The question-1 record already carries the adverse audit; this
 ratifies its first miss at tier level.
 
 **The queue is empty.** Seven questions delegated, seven ruled, every implementation gated — and in
