@@ -41,6 +41,18 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V109", "GPT56"): {
+        1: ("REPAIRED", "V110 the pass's own mediated reads advance the head - total verdict"),
+        2: ("REPAIRED", "V110 commit-order law; attempt-order testimony-plus-fixture"),
+        3: ("REPAIRED", "V110 review_ref + total unexplained predicate"),
+        4: ("REPAIRED", "V110 final-pass export rule + named no-pass fallback"),
+    },
+    ("V109", "CODEX"): {
+        1: ("REPAIRED", "V110 total orphan verdict at every pass"),
+        2: ("REPAIRED", "V110 commit-order checkable, attempt-order said testimony"),
+        3: ("REPAIRED", "V110 export final-pass rule; both preimages defined"),
+        4: ("REPAIRED", "V110 review_ref evidence + M_max recurrence flag into the export"),
+    },
     ("V108", "GPT56"): {
         1: ("REPAIRED", "V109 drain-scoped ordering law - no cross-set order claimed"),
         2: ("REPAIRED", "V109 the three drained-or-listed clauses swept"),

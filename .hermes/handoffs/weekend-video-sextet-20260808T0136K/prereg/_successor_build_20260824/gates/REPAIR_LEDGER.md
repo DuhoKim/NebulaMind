@@ -392,6 +392,14 @@
 - V108/CODEX F3: REPAIRED — V109 unique probe anchors
 - V108/CODEX F4: REPAIRED — V109 successor export with joined digests
 - V108/CODEX F5: REPAIRED — V109 REVIEWED disposition, class-paired
+- V109/GPT56 F1: REPAIRED — V110 the pass's own mediated reads advance the head - total verdict
+- V109/GPT56 F2: REPAIRED — V110 commit-order law; attempt-order testimony-plus-fixture
+- V109/GPT56 F3: REPAIRED — V110 review_ref + total unexplained predicate
+- V109/GPT56 F4: REPAIRED — V110 final-pass export rule + named no-pass fallback
+- V109/CODEX F1: REPAIRED — V110 total orphan verdict at every pass
+- V109/CODEX F2: REPAIRED — V110 commit-order checkable, attempt-order said testimony
+- V109/CODEX F3: REPAIRED — V110 export final-pass rule; both preimages defined
+- V109/CODEX F4: REPAIRED — V110 review_ref evidence + M_max recurrence flag into the export
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 

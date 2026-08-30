@@ -34,6 +34,7 @@ DECLARED = {
     "terminal-checkpoint": "TERMINAL CHECKPOINT",
     "receipt-note": "RECEIPT-NOTE record",
     "successor-export": "SUCCESSOR EXPORT",
+    "continuation-segment": "continuation-entry canonical bodies sorted by chain_position",
 }
 # field-name regex -> coverage. Order matters; first match wins.
 PREIMAGE_OF = [
@@ -47,8 +48,8 @@ PREIMAGE_OF = [
     (r"^termcp\.chain_head_digest$", ("FROZEN", "chain running digest")),
     (r"^(termrec|haltrec|succexp)\.freeze_signature_digest$", ("TAGGED", "freeze-body")),
     (r"^succexp\.(sealed_enumeration_digest)$", ("TAGGED", "sealed-entry-set")),
-    (r"^succexp\.(continuation_segment_digest)$", ("RAW",
-     "the continuation segment's concatenated entries - its own canonical discipline")),
+    (r"^succexp\.(continuation_segment_digest)$", ("TAGGED", "continuation-segment")),
+    (r"^review_ref$", ("RAW", "signed review artifact bytes (GPT56-V109 F3)")),
     (r"^(termrec|haltrec)\.first_opening_digest$", ("FROZEN",
      "the opening record digest - clock-family, chain-side")),
     (r"^revbody\.terminal_checkpoint_digest$", ("TAGGED", "terminal-checkpoint")),

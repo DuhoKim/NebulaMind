@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V109_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V110_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -215,10 +215,11 @@
 | `sig.freeze` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `succexp.continuation_segment_digest` | digest-ref | draft 11 - successor export |  |
+| `succexp.flagged_keys` | bounded-encoding | draft 11 - successor export | the recurrence-flagged mismatch class_keys the successor must adjudicate (CODEX-V109 F4) |
 | `succexp.freeze_signature_digest` | digest-ref | draft 11 - successor export |  |
 | `succexp.kind` | closed-vocab | draft 11 - successor export (GPT56/CODEX-V108 F4) | the successor-export literal |
 | `succexp.sealed_enumeration_digest` | digest-ref | draft 11 - successor export |  |
-| `succexp.terminal_head` | bounded-encoding | draft 11 - successor export | position + running digest |
+| `succexp.terminal_head` | bounded-encoding | draft 11 - successor export | position + running digest; the digest half is the chain running digest, frozen discipline (CODEX-V109 F3) |
 | `termcp.boot_epoch` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
 | `termcp.chain_head_digest` | digest-ref | spec 3c - termination records |  |
 | `termcp.chain_head_position` | bounded-encoding | spec 3c - termination records | decimal chain positions |
@@ -263,9 +264,11 @@
 | `operation` | closed-vocab | §6.1 event schema | BS-2k closed operation set, STORE-QUALIFIED: (row, operation) determines the store (GPT56-V81 F4, CODEX-V81 F5 - Row I touches multiple stores, so unqualified operations made the presence-audit join non-derivable) |
 | `parent_attempt_present` | closed-vocab | §6.1 projection | predicate bit |
 | `perturbation_manifest_sha256` | digest-ref | §11 BS-3g |  |
+| `recurrence_flag` | closed-vocab | §6.1 entry | set at M_max same-class emissions; carried into the successor export (CODEX-V109 F4) |
 | `rederivation_digest` | digest-ref | §6.1 entry | revision must contain the class_key |
 | `refusal reason` | closed-vocab | §6.1 event schema | the eleven codes |
 | `replay_harness_sha256` | digest-ref | §11 BS-3g | the harness carrying every replay obligation (CODEX-V81 F1) |
+| `review_ref` | digest-ref | §6.1 entry | sha256 of the signed review artifact - REVIEWED entries only, the explanation_ref discipline (GPT56-V109 F3) |
 | `running chain digest` | digest-ref | §6.1 event schema |  |
 | `sigma_gamma` | bounded-encoding | §11 BS-3g | finite IEEE-754 double, decimal |
 | `success/refusal` | closed-vocab | §6.1 event schema |  |

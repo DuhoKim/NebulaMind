@@ -1,9 +1,10 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**19 kinds; 69 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**20 kinds; 70 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
 - `bindmap-entry`
+- `continuation-segment`
 - `drain-start`
 - `entry`
 - `explanation`
@@ -74,7 +75,7 @@
 - `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes
 - `rnote.receipt_digest` — TAGGED: termrec
 - `roots_entry.digest` — RAW: loaded-object file bytes
-- `succexp.continuation_segment_digest` — RAW: the continuation segment's concatenated entries - its own canonical discipline
+- `succexp.continuation_segment_digest` — TAGGED: continuation-segment
 - `succexp.freeze_signature_digest` — TAGGED: freeze-body
 - `succexp.sealed_enumeration_digest` — TAGGED: sealed-entry-set
 - `termcp.chain_head_digest` — FROZEN: chain running digest
@@ -92,4 +93,5 @@
 - `perturbation_manifest_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
 - `rederivation_digest` — RAW: vocabulary revision text bytes
 - `replay_harness_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
+- `review_ref` — RAW: signed review artifact bytes (GPT56-V109 F3)
 - `verifier_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures

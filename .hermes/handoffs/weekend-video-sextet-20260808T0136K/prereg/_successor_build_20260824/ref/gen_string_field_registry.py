@@ -218,8 +218,11 @@ _c("succexp.kind", "closed-vocab", "the successor-export literal",
 _c("succexp.sealed_enumeration_digest succexp.continuation_segment_digest "
    "succexp.freeze_signature_digest", "digest-ref", "",
    source="draft 11 - successor export")
-_c("succexp.terminal_head", "bounded-encoding", "position + running digest",
-   source="draft 11 - successor export")
+_c("succexp.terminal_head", "bounded-encoding",
+   "position + running digest; the digest half is the chain running digest, frozen discipline (CODEX-V109 F3)", source="draft 11 - successor export")
+_c("succexp.flagged_keys", "bounded-encoding",
+   "the recurrence-flagged mismatch class_keys the successor must adjudicate "
+   "(CODEX-V109 F4)", source="draft 11 - successor export")
 _c("lockcp.chain_head_position", "bounded-encoding", "decimal chain position",
    source="draft 3(b) - lock checkpoint receipt, schema closed at V99 (GPT56-V98 F2)")
 _c("lockcp.chain_head_digest lockcp.sealed_entry_set_digest lockcp.sealed_bindmap_digest",
@@ -361,6 +364,8 @@ CONSTRAINTS = {
     "disposition": ("closed-vocab", "§6.1 entry", "NAMED-AS-DEFECT | EXPLAINED"),
     "rederivation_digest": ("digest-ref", "§6.1 entry", "revision must contain the class_key"),
     "explanation_ref": ("digest-ref", "§6.1 entry", "sha256 of the canonical explanation body"),
+    "review_ref": ("digest-ref", "§6.1 entry", "sha256 of the signed review artifact - REVIEWED entries only, the explanation_ref discipline (GPT56-V109 F3)"),
+    "recurrence_flag": ("closed-vocab", "§6.1 entry", "set at M_max same-class emissions; carried into the successor export (CODEX-V109 F4)"),
     # explanation artifact (§6.1)
     "cause": ("closed-vocab", "§6.1 explanation", "five-member set"),
     # acceptance-evidence projection (§6.1 (v))
@@ -423,7 +428,7 @@ RNOTE = {"rnote.kind", "rnote.receipt_digest", "rnote.boot_epoch",
          "rnote.monotonic_reading"}
 SUCCEXP = {"succexp.kind", "succexp.sealed_enumeration_digest",
            "succexp.continuation_segment_digest", "succexp.terminal_head",
-           "succexp.freeze_signature_digest"}
+           "succexp.freeze_signature_digest", "succexp.flagged_keys"}
 LOCKCP = {"lockcp.chain_head_position", "lockcp.chain_head_digest", "lockcp.clock_record",
           "lockcp.sealed_entry_set_digest", "lockcp.sealed_bindmap_digest"}
 # the gate PASS RECORD (spec 3b anchors, built at V96 - GPT56-V95 F2, CODEX-V95 F4)
