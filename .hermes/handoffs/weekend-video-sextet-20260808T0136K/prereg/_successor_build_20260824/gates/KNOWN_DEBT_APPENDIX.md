@@ -572,29 +572,66 @@ All six V116 findings were folded in V117/V118 (un-refereed folds under the cap;
 
 ## 3. Acknowledged draft limitations, quoted in full from the draft
 
-The four the mini-round found omitted (GPT56-V117A F3), each a verbatim passage verified as a substring of the draft at generation (blockquote-unwrapped, whitespace-normalized):
+The four the mini-round found omitted (GPT56-V117A F3). Each passage is EXTRACTED WHOLE from the draft between declared start and end anchors at generation time (GPT56/CODEX-V119A F1: hand-selected substrings were faithful but incomplete; anchored extraction makes completeness a construction, and a missing, duplicated or out-of-order anchor refuses the build):
 
 **The unresolved pre-unblinding numerical route (§5)**
 
-> **A completeness argument was offered here at V46 and is RETRACTED.** It claimed that every pre-unblinding numerical failure already terminates in a named outcome, resting on two premises the seats were asked to test. **Both failed** (GPT56-V46 F1/F2, CODEX-V46 F1/F2).
+> **A completeness argument was offered here at V46 and is RETRACTED.** It claimed that every pre-unblinding numerical failure already terminates in a named outcome, resting on two premises the seats were asked to test. **Both failed** (GPT56-V46 F1/F2, CODEX-V46 F1/F2). First, it said a per-object non-finite instrument output falls to §2.7's exclusion reason (c); **reason (c) is catalogue quality**, and §2.7 defers instrument absence and non-finiteness to post-unblinding handling instead. Second, it enumerated the §6.1 rows and missed **Row F**, whose degenerate-bin and infeasible-allocation FAIL branches are executable and carry **no named outcome** — so Row R's default-forbidden clause does not close the set the way the argument required.
+>   **The general point survives and is worth keeping: a closed enumeration is an argument, an open one is only a failure to find something.** What failed was not that principle but my application of it — the enumeration was assembled with a keyword filter that silently dropped Row F, which is the same narrow-pattern-in-the-absence-direction error this document has been correcting all along, committed inside the argument about when absence may be asserted.
+>   **What that leaves open is recorded, not papered over:** whether every pre-unblinding numerical failure has an executable route to a named outcome is **UNRESOLVED** — see `OPEN_QUESTION_PRE_UNBLINDING_NUMERICAL_ROUTES.md`. **The deletion of the redundant code stands on the principal's ruling, not on this retracted argument.**
 
 **The caller-pair-only authorization guard (§5)**
 
-> **Recorded limit (CODEX-V34-2), because this text must not claim more than the guard does:** the runner takes both the authorization path and its SHA-256 **from its caller** and checks only that they agree with each other. There is no authorization schema, signer, study identity, permitted operation, run identity, or independently frozen expected digest, so **any existing file presented alongside its own digest satisfies it**
+> **Recorded limit (CODEX-V34-2), because this text must not claim more than
+> the guard does:** the runner takes both the authorization path and its SHA-256 **from its caller** and
+> checks only that they agree with each other. There is no authorization schema, signer, study
+> identity, permitted operation, run identity, or independently frozen expected digest, so **any
+> existing file presented alongside its own digest satisfies it** — demonstrated by executing the
+> pinned `successor_ref_v9.py` against a referee brief, which passed. **It is a file-integrity check,
+> not a test of authority, and nothing downstream may read it as one.** It is **not** a live path to an
+> unauthorised run: BS-6 and the first image byte are blocked by other means. A typed authenticated
+> authorization record is **deliberately not built here** (principal direction, 2026-08-29)
 
 **The count-only sample guard (§5)**
 
-> **Recorded limit (CODEX-V63 F4), because this text must not claim more than the guard does:** the guard compares **two caller-supplied integers** and refuses when they differ. It **does not verify a parent-to-receipt partition** — it does not check that the receipts correspond one-to-one to the parent objects, only that a count agrees with a count. **Any equal pair of integers satisfies it**, so it detects a short run and not a substituted, duplicated or misjoined one. **It is a count check, not a completeness proof, and nothing downstream may read it as one.**
+> **Recorded limit (CODEX-V63 F4), because this text must not claim more than the guard does:** the
+> guard compares **two caller-supplied integers** and refuses when they differ. It **does not verify a
+> parent-to-receipt partition** — it does not check that the receipts correspond one-to-one to the
+> parent objects, only that a count agrees with a count. **Any equal pair of integers satisfies it**, so
+> it detects a short run and not a substituted, duplicated or misjoined one. **It is a count check, not a
+> completeness proof, and nothing downstream may read it as one.** This is the same shape as
+> `require_authorization`'s recorded limit above, found the same way, and it is recorded rather than
+> repaired because `successor_ref_v9.py` stays frozen at `6a9abbbd`.
 
 **The dual-valued Stage-P contract (§2.6)**
 
-> this is an open blocker, stated here rather than papered over, and **BS-5p cannot be filled either way.**
+> > **STAGE P REMAINS DUAL-VALUED, AND THIS TEXT CANNOT FIX IT (V12, GPT56-V11 F4 and CODEX-V11 4 — **two seats, not three**;
+> > **KIMI is removed: its V11 F13 states the promise is *"now single-valued — the exact per-trial test"*, the opposite of this claim, and its F7 is a disclosure finding about the receipt's v7 subject. V42 corrected an earlier miscitation of KIMI F4 by substituting F7, which does not support it either — GPT56-V54 F4** — LEFT OPEN DELIBERATELY).** V11 declared in prose that this text promises the
+> > exact per-trial test. Three seats pointed out that the declaration does not bind: **§0 says
+> > the pinned code defines every mechanism and code beats prose**, and the pinned v9 code
+> > implements the shared-null route. So the document still has two operative definitions and a
+> > later operator could point at either. **No wording change closes this.** It closes one of two
+> > ways, and the choice is not mine: implement the exact per-trial test in the code §0 pins —
+> > with its own fixtures and its own gate — or amend §0's precedence rule. Until one of those
+> > happens this is an open blocker, stated here rather than papered over, and **BS-5p cannot be
+> > filled either way.**
+> >
+> > **WHICH STAGE-P TEST THIS TEXT PREFERS (V11, superseded in force by the paragraph above).** V10 named two: §4
+> > described the shared-null route with a 1% deflation and sampled own-null checks, while §2.6
+> > reported the exact per-trial route. A later operator could have pointed at either. **This text
+> > promises the EXACT per-trial test: every trial judged against its own 20,000-permutation null,
+> > no shared reference null in the counting path.** §4's shared-null contract is superseded and
+> > is retained below only as the description of what the currently pinned code does. That gap is
+> > the point: **BS-5p cannot be filled from the existing measurement receipt.** Filling it
+> > requires implementing the exact route in the code §0 pins, pinning its permutation count,
+> > plus-one rule, random addressing and serialization, adding fixtures, gating it, and re-running
+> > under those exact bytes. This is a design-and-implementation slot, not a value slot.
 
 ## 4. Named residues and honest limits
 
 - **The V116→V117→V118 folds are UN-REFEREED BY FULL ROUND.** the option-2 cap ended full rounds; the appendix mini-round (DEFECTIVE ×2, then repaired here) reviewed the V117 diff and this appendix's v1; sources: STOPPING_RULE_RULING_20260830.md, FINDINGS_MAP V116→V117 and V117→V118, gates/V117_APPENDIX_REVIEW_{GPT56,CODEX}.md
 - **Writer obligations are testimony-plus-fixture by design.** chain-undetectable Row-B obligations, each SAID so in place: pass-entry precondition & decoding pause, reading-at-commit-start, the indivisible receipt/termination units, T1's decoded-frame priority (violation = W0 residue, bounded); spec §3d, §3c T1, §3b
-- **The echo controls' exact contracts (per-echo, no blanket demotion).** PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS echo: exact token-set comparison over the note's domain segment; FORM echo: kind presence + ≥1 exact tuple within 900 bytes of a kind mention + every kind-adjacent tuple-shaped string byte-equal to the mapped form — its stated NON-CLAIM: no unique authoritative site (the corpus legitimately repeats tuples); R02: sentence-scoped literal-shape list; retired-token activation list: finite, demoted; semantic paraphrase beyond these contracts passes to the successor's freeze review; sources: each tool's own docstring (GPT56-V117A F4 killed v1's blanket-demotion wording)
+- **The echo controls' exact contracts (per-echo, no blanket demotion).** PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS echo: exact token-set comparison over the note's domain segment; FORM echo: kind presence under real word boundaries + ≥1 exact tuple within 900 bytes of a kind mention + EVERY kind-adjacent `(kind, ...)`-shaped candidate must whitespace-normalize into the asserted-present KNOWN-TUPLE whitelist (all candidates, no shared-field threshold — GPT56-V119A F2; controls run through the one shipped function — CODEX-V119A F3) — stated NON-CLAIMS: no unique authoritative site, nothing outside kind-adjacent windows; R02: sentence-scoped literal-shape list; retired-token activation list: finite, demoted; semantic paraphrase beyond these contracts passes to the successor's freeze review; sources: each tool's own docstring (GPT56-V117A F4 killed v1's blanket-demotion wording)
 - **Inter-anchor rollback window.** no-vanish, deadline and key-uniqueness claims hold AS OF THE EXTERNAL ANCHORS; a rollback inside a window is platform-level custody failure by operator observation; spec §3b, named since V95
 - **Per-raise vs per-call-site classification unit.** the raise-site ledger classifies raise STATEMENTS; a shared raise reached from call sites of different classes is classified once; parked since ~V83, re-referred every round, never re-scored; source: ref/RAISE_SITE_CLASSIFICATION.md notes
 - **§10 historical section/count cells are as-written.** digests and row presence are tool-verified; 29 cells differ from the current generator's rendering and are labelled historical (GPT56-V114 F3); the V117 fold briefly mutated the V99→V100 row and V118 REVERTED it byte-for-byte (GPT56-V117A F6, CODEX-V117A F2)

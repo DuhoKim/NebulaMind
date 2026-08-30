@@ -384,3 +384,20 @@ named, per-echo honesty, populations counted).** The remaining four classes, rep
   sentence now states exactly the shipped contract.
 
 V118 → V119: re-read 2's repairs — the 334 enumerated per-finding verbatim, self-verifying quotes, echo v4 with both-side boundaries and equals-no-mapped-form divergence, enforced population reconciliation.
+
+## V119 → V120 (2026-08-31 small hours — READ 3'S REPAIRS; DEFECTIVE ×2, three classes, all converging on disclosure exactness)
+
+- **GPT56/CODEX F1 (full passages):** the four limitations are now EXTRACTED WHOLE from
+  the draft between DECLARED ANCHORS at generation — completeness by construction, a
+  missing/duplicated/out-of-order anchor refuses; the full Stage-P block (both operative
+  definitions, the precedence conflict) and every cited tail are inside the anchors.
+- **GPT56 F2 (the one-shared-field hole):** form echo v5 — the divergence rule covers
+  ALL kind-adjacent `(kind, ...)` candidates against a KNOWN-TUPLE whitelist (every
+  legitimate kind-opening tuple in the corpus, asserted present at check time); the
+  threshold is gone; the seats' exact one-shared-field attack is now a per-form control.
+- **CODEX F3 (the twin):** `form_check()` is THE shipped function — called by the
+  crosscheck AND by every control; the `_form_probs` twin is a thin alias to it.
+- **GPT56 F3 / CODEX F2 (the appendix's FORM line):** appendix §4 now states exactly the
+  shipped contract (all-candidate whitelist rule, boundaries, non-claims, one function).
+
+V119 → V120: read 3's repairs — anchored whole-passage extraction, the all-candidate whitelist divergence rule with the twin dissolved, and the appendix's form contract line made exact.

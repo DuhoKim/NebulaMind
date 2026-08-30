@@ -520,6 +520,70 @@ FORM_SCHEMAS = (
       "recomputed_head", "verifier_digest", "transcript_digest"), "spec"),
 )
 
+# Every legitimate `(kind, ...)`-opening tuple in the corpus, whitespace-normalized
+# (GPT56-V119A F2: the >=2-shared-field threshold let a one-shared-field corruption
+# hide behind a clean decoy; the divergence rule now covers ALL kind-adjacent
+# candidates against this whitelist, which is itself asserted-present at check time -
+# an unknown legitimate tuple reds the build and joins the list explicitly).
+KNOWN_KIND_TUPLES = (
+    "`(kind, chain_head, freeze_signature_digest, first_opening_digest)`",
+    "`(kind, class_key, gate, chain_head, freeze_signature_digest, first_opening_digest)`",
+    "`(kind, disclosure_record_digest, successor_export_digest, recomputed_head, verifier_digest, transcript_digest)`",
+    "`(kind, drain_start_position, receipt_digest, chain_head_position, chain_head_digest, boot_epoch, monotonic_reading, failed_members)`",
+    "`(kind, gate, boot_epoch, monotonic_reading)`",
+    "`(kind, gate, boundary_position, close_class, boot_epoch, monotonic_reading)`",
+    "`(kind, member_position, boot_epoch, monotonic_reading)`",
+    "`(kind, member_position, close_class, boot_epoch, monotonic_reading)`",
+    "`(kind, receipt_digest, boot_epoch, monotonic_reading)`",
+    "`(kind, request_key, touch_position, boot_epoch, monotonic_reading)`",
+    "`(kind, reviewer_identity, review_timestamp, review_disposition, evidence_ref, reviewed_chain_position, reviewed_event_digest, reviewed_class_key, first_opening_digest)`",
+    "`(kind, roster_entries)`",
+    "`(kind, sealed_enumeration_digest, continuation_segment_digest, terminal_head, freeze_signature_digest, flagged_keys)`",
+    "`(kind, terminal_checkpoint_digest, drain_start_position, recomputed_head, verifier_digest, transcript_digest)`",
+    "`(kind, terminal_enumeration_digest, terminal_head, freeze_signature_digest, flagged_keys)`",
+)
+
+def _wsnorm(s):
+    import re as _r
+    return _r.sub(r"\s+", " ", s)
+
+def form_check(draft_text, spec_txt, forms=None):
+    """THE shipped FORM-SCHEMA check - called by crosscheck_declared AND by the seeded
+    controls, so the controls exercise this function, never a twin (CODEX-V119A F3).
+    Contract: per form - kind literal under real word boundaries in its home corpus;
+    >=1 exact tuple within 900 bytes of a kind mention; and EVERY `(kind, ...)`-shaped
+    candidate within 900 bytes of a form-kind mention must whitespace-normalize into
+    KNOWN_KIND_TUPLES (all candidates, no shared-field threshold - GPT56-V119A F2).
+    Non-claims: no unique authoritative site; nothing outside kind-adjacent windows."""
+    import re as _re
+    problems = []
+    known = {_wsnorm(k) for k in KNOWN_KIND_TUPLES}
+    for _kind, _fields, _home in (forms or FORM_SCHEMAS):
+        _tup = "`(" + ", ".join(_fields) + ")`"
+        _corpus = draft_text if _home == "draft" else spec_txt
+        _kpat = r"(?<![\w-])" + _re.escape(_kind) + r"(?![\w-])"
+        if not _re.search(_kpat, _corpus):
+            problems.append(f"form-schema echo: kind literal '{_kind}' absent from the "
+                            f"{_home} (GPT56/CODEX-V116 F3)")
+            continue
+        _pair = False
+        for _m in _re.finditer(_re.escape(_tup), _corpus):
+            if _re.search(_kpat, _corpus[max(0, _m.start() - 900):_m.end() + 900]):
+                _pair = True
+                break
+        if not _pair:
+            problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
+                            f"'{_kind}' in the {_home} (GPT56/CODEX-V116 F3)")
+        for _km in _re.finditer(_kpat, _corpus):
+            _win = _corpus[max(0, _km.start() - 900):_km.end() + 900]
+            for _tm in _re.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
+                if _wsnorm(_tm.group(0)) not in known:
+                    problems.append(f"form-schema echo: a kind-adjacent tuple near "
+                                    f"'{_kind}' matches NO known schema tuple "
+                                    f"(GPT56-V119A F2, all-candidate rule): "
+                                    f"{_tm.group(0)[:60]}...")
+    return problems
+
 CLOSE_DOMAINS = {"vclose.close_class": ("ABORTED", "EXPIRED", "ABORTED-BY-RESTART"),
                  "attclose.close_class": ("ABORTED", "ABORTED-BY-RESTART")}
 
@@ -568,59 +632,36 @@ def _domain_echo_selftest():
         return probs
     # FORM-ECHO controls (GPT56/CODEX-V116 F3): rename, deletion, swap, shadow -
     # exercised through the SHIPPED co-location logic on synthetic corpora.
+    # ALL controls below call the SHIPPED form_check (CODEX-V119A F3: the previous
+    # controls exercised a duplicated twin, so branch drift could leave them green).
     def _form_probs(corpus, forms=None):
-        import re as _re3
-        probs = []
-        for _kind, _fields, _home in (forms or FORM_SCHEMAS):
-            _tup = "`(" + ", ".join(_fields) + ")`"
-            _kp = r"(?<![\w-])" + _re3.escape(_kind) + r"(?![\w-])"
-            if not _re3.search(_kp, corpus):
-                probs.append(f"kind absent:{_kind}"); continue
-            pair = any(_re3.search(_kp, corpus[max(0, m.start() - 900):m.end() + 900])
-                       for m in _re3.finditer(_re3.escape(_tup), corpus))
-            if not pair:
-                probs.append(f"no co-located pair:{_kind}")
-            _at = {"`(" + ", ".join(fs) + ")`" for _, fs, _ in FORM_SCHEMAS}
-            for _km in _re3.finditer(_kp, corpus):
-                _win = corpus[max(0, _km.start() - 900):_km.end() + 900]
-                for _tm in _re3.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
-                    _cand = _tm.group(0)
-                    if (sum(1 for f in _fields[1:] if f in _cand) >= 2
-                            and _cand not in _at):
-                        probs.append(f"kind-adjacent divergent tuple:{_kind}")
-        return probs
-    # ALL FOUR forms exercised (CODEX-V117A F3: controls covered only FORM_SCHEMAS[:1])
+        return form_check(corpus, corpus, forms=forms)
     _clean = " ".join(f"the {k} body `(" + ", ".join(fs) + ")` here"
                       for k, fs, _ in FORM_SCHEMAS)
     if _form_probs(_clean):
         fails.append("form-echo clean corpus not green")
-    for _k0, _f0, _ in FORM_SCHEMAS:
-        if f"kind absent:{_k0}" not in _form_probs(_clean.replace(_k0, "renamed-thing", 1)):
-            fails.append(f"form-echo rename not caught ({_k0})")
-            break
-    # per-form deep controls, ALL FOUR (GPT56/CODEX-V118A: v1 covered form 0 only,
-    # had no deletion probe, and a first-field deletion evaded the guard)
     for _i, (_k0, _f0, _) in enumerate(FORM_SCHEMAS):
         _t0 = "`(" + ", ".join(_f0) + ")`"
         _me = FORM_SCHEMAS[_i:_i + 1]
-        # adjacent corruption (FIRST field deleted - the V118A bypass) + distant decoy
         _corrupt = _t0.replace(_f0[1] + ", ", "", 1)
         decoy = (f"the {_k0} body {_corrupt} here " + " x" * 600 + " stray " + _t0)
-        if not any("divergent tuple" in p or "no co-located pair" in p
+        if not any("NO known schema tuple" in p or "co-located (kind, tuple) pair" in p
                    for p in _form_probs(decoy, forms=_me)):
             fails.append(f"form-echo first-field-corruption+decoy not caught ({_k0})")
-        # prefix rename (the V118A left-boundary bypass)
-        if not any("kind absent" in p
+        # the V119A one-shared-field attack, verbatim shape
+        one = ("`(kind, " + _f0[1] + ", alien_alpha, alien_beta)`")
+        if not any("NO known schema tuple" in p
+                   for p in _form_probs(f"the {_k0} body {one} and {_t0} here", forms=_me)):
+            fails.append(f"form-echo one-shared-field corruption not caught ({_k0})")
+        if not any("kind absent" in p or "absent from" in p
                    for p in _form_probs(f"the x{_k0} body {_t0} here", forms=_me)):
             fails.append(f"form-echo prefix rename not caught ({_k0})")
-        # tuple deletion: kind alone
-        if not any("no co-located pair" in p
+        if not any("co-located (kind, tuple) pair" in p
                    for p in _form_probs(f"the {_k0} body here", forms=_me)):
             fails.append(f"form-echo tuple deletion not caught ({_k0})")
-        # cross-form substitution: this kind beside the NEXT form's tuple only
         _f1 = FORM_SCHEMAS[(_i + 1) % len(FORM_SCHEMAS)][1]
         _t1 = "`(" + ", ".join(_f1) + ")`"
-        if not any("no co-located pair" in p or "divergent tuple" in p
+        if not any("co-located (kind, tuple) pair" in p
                    for p in _form_probs(f"the {_k0} body {_t1} here", forms=_me)):
             fails.append(f"form-echo cross-form substitution not caught ({_k0})")
     ok_v = "ABORTED - EXPIRED - ABORTED-BY-RESTART"
@@ -817,49 +858,14 @@ def crosscheck_declared(text):
     # neither canonical body and the completeness controls checked union membership).
     # One kind literal -> one exact ordered field tuple; the draft/spec must carry each
     # form's tuple byte-equal to its mapped set.
-    for _kind, _fields, _home in FORM_SCHEMAS:
-        _tup = "`(" + ", ".join(_fields) + ")`"
-        _corpus = text if _home == "draft" else spec_txt
-        # KIND-QUALIFIED, WITH THE DECOY GUARD (GPT56/CODEX-V116 F3; hardened for
-        # CODEX-V117A F3): kind literal present; >=1 exact tuple within 900 bytes of a
-        # kind mention; and EVERY tuple-shaped string adjacent to a kind mention must
-        # byte-equal the mapped tuple, so corrupting the co-located declaration cannot
-        # hide behind a distant clean decoy. NON-CLAIMS, stated (GPT56-V117A F4: an
-        # appendix line called this a demoted tripwire while this text claimed
-        # authority): the echo does NOT establish a unique authoritative site - the
-        # corpus legitimately repeats these tuples - and semantic drift outside the
-        # kind-adjacent windows stays referee/successor territory.
-        _kpat = r"(?<![\w-])" + _re.escape(_kind) + r"(?![\w-])"
-        if not _re.search(_kpat, _corpus):
-            problems.append(f"form-schema echo: kind literal '{_kind}' absent from the "
-                            f"{_home} (GPT56/CODEX-V116 F3)")
-            continue
-        _pair = False
-        for _m in _re.finditer(_re.escape(_tup), _corpus):
-            _w0 = max(0, _m.start() - 900)
-            if _re.search(_kpat, _corpus[_w0:_m.end() + 900]):
-                _pair = True
-                break
-        if not _pair:
-            problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
-                            f"'{_kind}' in the {_home} - the tuple exists only away from "
-                            f"its kind (GPT56/CODEX-V116 F3 duplicate-shadow)")
-        # decoy guard v2 (GPT56-V118A F4, CODEX-V118A F3 broke v1's _fields[1]
-        # precondition - deleting the first field evaded the guard): a kind-adjacent
-        # tuple-shaped string sharing >=2 of this form's fields is DIVERGENT unless it
-        # byte-equals SOME mapped form's tuple (legitimate neighbours equal their own
-        # form; a corruption equals none).
-        _all_tups = {"`(" + ", ".join(fs) + ")`" for _, fs, _ in FORM_SCHEMAS}
-        for _km in _re.finditer(_kpat, _corpus):
-            _win = _corpus[max(0, _km.start() - 900):_km.end() + 900]
-            for _tm in _re.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
-                _cand = _tm.group(0)
-                _shared = sum(1 for f in _fields[1:] if f in _cand)
-                if _shared >= 2 and _cand not in _all_tups:
-                    problems.append(f"form-schema echo: a kind-adjacent tuple near "
-                                    f"'{_kind}' equals no mapped form "
-                                    f"(GPT56/CODEX-V118A decoy guard v2): "
-                                    f"{_cand[:60]}...")
+    # FORM-SCHEMA ECHO via THE shipped function (CODEX-V119A F3 killed the twin);
+    # whitelist self-verification first: every known tuple must appear in the corpus.
+    _corpus_all = _wsnorm(text) + _wsnorm(spec_txt)
+    for _kt in KNOWN_KIND_TUPLES:
+        if _wsnorm(_kt) not in _corpus_all:
+            problems.append(f"form-schema echo: whitelist tuple absent from the corpus - "
+                            f"stale whitelist entry (self-verification): {_kt[:60]}...")
+    problems.extend(form_check(text, spec_txt))
     # CLOSE-CLASS DOMAIN ECHO (GPT56-V114 F1, CODEX-V114 F5: one exhaustive item gave
     # close_class two incompatible domains; the domains must be QUALIFIED and EXPIRED
     # must live in exactly the verification-close domain).

@@ -74,9 +74,12 @@ RESIDUES = (
     ("The echo controls' exact contracts (per-echo, no blanket demotion)",
      "PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS "
      "echo: exact token-set comparison over the note's domain segment; FORM echo: kind "
-     "presence + ≥1 exact tuple within 900 bytes of a kind mention + every kind-adjacent "
-     "tuple-shaped string byte-equal to the mapped form — its stated NON-CLAIM: no "
-     "unique authoritative site (the corpus legitimately repeats tuples); R02: "
+     "presence under real word boundaries + ≥1 exact tuple within 900 bytes of a kind "
+     "mention + EVERY kind-adjacent `(kind, ...)`-shaped candidate must "
+     "whitespace-normalize into the asserted-present KNOWN-TUPLE whitelist (all "
+     "candidates, no shared-field threshold — GPT56-V119A F2; controls run through the "
+     "one shipped function — CODEX-V119A F3) — stated NON-CLAIMS: no unique "
+     "authoritative site, nothing outside kind-adjacent windows; R02: "
      "sentence-scoped literal-shape list; retired-token activation list: finite, "
      "demoted; semantic paraphrase beyond these contracts passes to the successor's "
      "freeze review; sources: each tool's own docstring "
@@ -179,32 +182,42 @@ def verify_verbatim(quote, source_text, label):
                          f"(whitespace-normalized) substring of its source - a false "
                          f"verbatim cannot ship (GPT56-V118A F3)")
 
-LIMITATIONS = (
+LIMIT_ANCHORS = (
     ("The unresolved pre-unblinding numerical route (§5)",
-     "**A completeness argument was offered here at V46 and is RETRACTED.** It claimed "
-     "that every pre-unblinding numerical failure already terminates in a named outcome, "
-     "resting on two premises the seats were asked to test. **Both failed** (GPT56-V46 "
-     "F1/F2, CODEX-V46 F1/F2)."),
+     "**A completeness argument was offered here at V46 and is RETRACTED.**",
+     "**The deletion of the redundant code stands on the principal's ruling, not on this retracted argument.**"),
     ("The caller-pair-only authorization guard (§5)",
-     "**Recorded limit (CODEX-V34-2), because this text must not claim more than the "
-     "guard does:** the runner takes both the authorization path and its SHA-256 **from "
-     "its caller** and checks only that they agree with each other. There is no "
-     "authorization schema, signer, study identity, permitted operation, run identity, "
-     "or independently frozen expected digest, so **any existing file presented "
-     "alongside its own digest satisfies it**"),
+     "**Recorded limit (CODEX-V34-2),",
+     "**deliberately not built here** (principal direction, 2026-08-29)"),
     ("The count-only sample guard (§5)",
-     "**Recorded limit (CODEX-V63 F4), because this text must not claim more than the "
-     "guard does:** the guard compares **two caller-supplied integers** and refuses when "
-     "they differ. It **does not verify a parent-to-receipt partition** — it does not "
-     "check that the receipts correspond one-to-one to the parent objects, only that a "
-     "count agrees with a count. **Any equal pair of integers satisfies it**, so it "
-     "detects a short run and not a substituted, duplicated or misjoined one. **It is a "
-     "count check, not a completeness proof, and nothing downstream may read it as "
-     "one.**"),
+     "**Recorded limit (CODEX-V63 F4),",
+     "stays frozen at `6a9abbbd`."),
     ("The dual-valued Stage-P contract (§2.6)",
-     "this is an open blocker, stated here rather than papered over, and **BS-5p cannot "
-     "be filled either way.**"),
+     "> **STAGE P REMAINS DUAL-VALUED, AND THIS TEXT CANNOT FIX IT",
+     "This is a design-and-implementation slot, not a value slot."),
 )
+
+def extract_limitations(draft_text):
+    """FULL passages by DECLARED ANCHORS (GPT56-V119A F1, CODEX-V119A F1: hand-selected
+    substrings were faithful but incomplete; extraction from start anchor to end anchor
+    makes completeness a construction, and a missing or duplicated anchor refuses)."""
+    out = []
+    for name, start, end in LIMIT_ANCHORS:
+        if draft_text.count(start) != 1 or draft_text.count(end) != 1:
+            raise SystemExit(f"REFUSED: limitation anchors for {label_or(name)} are not "
+                             f"unique in the draft ({draft_text.count(start)}/"
+                             f"{draft_text.count(end)}) - the passage cannot be "
+                             f"extracted whole")
+        a = draft_text.index(start)
+        b = draft_text.index(end) + len(end)
+        if b <= a:
+            raise SystemExit(f"REFUSED: limitation anchors for {name} are out of order")
+        out.append((name, draft_text[a:b]))
+    return out
+
+def label_or(name):
+    return name
+
 
 def emit(led):
     led.setdefault("preconv_enum", ["", "  (enumeration not loaded in this context)"])
@@ -265,13 +278,17 @@ def emit(led):
         lines.append(f"> {quote}")
         lines.append("")
     lines += ["## 3. Acknowledged draft limitations, quoted in full from the draft", "",
-              "The four the mini-round found omitted (GPT56-V117A F3), each a verbatim "
-              "passage verified as a substring of the draft at generation "
-              "(blockquote-unwrapped, whitespace-normalized):", ""]
-    for name, quote in LIMITATIONS:
+              "The four the mini-round found omitted (GPT56-V117A F3). Each passage is "
+              "EXTRACTED WHOLE from the draft between declared start and end anchors at "
+              "generation time (GPT56/CODEX-V119A F1: hand-selected substrings were "
+              "faithful but incomplete; anchored extraction makes completeness a "
+              "construction, and a missing, duplicated or out-of-order anchor refuses "
+              "the build):", ""]
+    for name, passage in led.get("limitations", []):
         lines.append(f"**{name}**")
         lines.append("")
-        lines.append(f"> {quote}")
+        for pl in passage.split("\n"):
+            lines.append(f"> {pl}")
         lines.append("")
     lines += ["## 4. Named residues and honest limits", ""]
     for name, desc in RESIDUES:
@@ -320,13 +337,29 @@ def selftest():
         fails.append("false verbatim did not refuse")
     except SystemExit:
         pass
+    # anchored extraction: whole passage between anchors; duplicate anchor refuses
+    demo = "AAA START mid1 mid2 END BBB"
+    global LIMIT_ANCHORS
+    keep = LIMIT_ANCHORS
+    LIMIT_ANCHORS = (("demo", "START", "END"),)
+    try:
+        got = extract_limitations(demo)
+        if got[0][1] != "START mid1 mid2 END":
+            fails.append("anchored extraction not whole")
+        try:
+            extract_limitations(demo + " START again END")
+            fails.append("duplicate anchors did not refuse")
+        except SystemExit:
+            pass
+    finally:
+        LIMIT_ANCHORS = keep
     return fails
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         f = selftest()
         for x in f: print("SELFTEST FAIL:", x)
-        print(f"selftest: {6 - len(f)}/6 controls fired correctly")
+        print(f"selftest: {8 - len(f)}/8 controls fired correctly")
         sys.exit(1 if f else 0)
     led = parse_ledger((HERE / "REPAIR_LEDGER.md").read_text())
     def _read_report(ver, seat):
@@ -340,8 +373,7 @@ if __name__ == "__main__":
     drafts = sorted(HERE.parent.glob("PREREG_SUCCESSOR_DRAFT_V*_2026*.md"),
                     key=lambda f: int(_re.search(r"_V(\d+)_", f.name).group(1)))
     draft_text = drafts[-1].read_text()
-    for name, quote in LIMITATIONS:
-        verify_verbatim(quote, draft_text, name)
+    led["limitations"] = extract_limitations(draft_text)
     body = emit(led)
     target = HERE / "KNOWN_DEBT_APPENDIX.md"
     if "--check" in sys.argv:
