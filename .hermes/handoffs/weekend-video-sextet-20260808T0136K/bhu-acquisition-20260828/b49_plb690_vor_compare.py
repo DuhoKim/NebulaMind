@@ -83,8 +83,8 @@ b51 = " ".join(blocks[51].split())
 chk("RECORD: entry 51 carries the VoR pin, the identical-numbers finding, and the "
     "reproducibility-not-settled caveat",
     "VERSION OF RECORD PINNED 2026-08-30" in b51 and "WORD-FOR-WORD identical" in b51
-    and "unreproduced floor" in b51.lower().replace("”", "").replace('"', "")
-    or "unreproduced floor" in b51)
+    and ("unreproduced floor" in b51.lower()))   # CGATE_B49: was A and B and C or D -- the
+    # trailing OR made the whole check pass on the last phrase alone; parenthesised now.
 ERR = os.path.join(ROOT, "bhu-reading-20260823/sources/poplawski_plb690_erratum_2013.pdf")
 ETX = os.path.join(ROOT, "bhu-reading-20260823/sources/poplawski_plb690_erratum_clean.txt")
 eraw = open(ERR, "rb").read()
@@ -100,7 +100,8 @@ chk("ERRATUM SCOPE (recorded finding): it corrects the Papapetrou section (Eqs 2
 chk("RECORD carries the erratum pin, its Papapetrou-not-massfloor scope, and the no-retraction "
     "note",
     "ERRATUM PINNED 2026-08-30" in b51 and "Papapetrou spin-density section" in b51
-    and "does NOT bear on the open" in b51)
+    and "does NOT bear on the open" in b51
+    and "stands BY CALCULATION" in b51)   # both seats' confirmation, recorded
 m = re.search(r"Testability: \*\*([^*]+)\*\*", blocks[51])
 chk("TIER UNCHANGED: entry 51 remains CALIBRATED-FALSIFIER / LIVE",
     m is not None and m.group(1).strip() == "CALIBRATED-FALSIFIER / LIVE")

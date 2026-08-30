@@ -484,7 +484,12 @@ so the erratum does NOT bear on the open "is 10¹⁶ kg an arithmetic error" que
 equation (29) that is the machinery of the OBSTRUCTION content CGATE_B34 read — the derivation
 that a symmetric Dirac–Kerr–Newman singular ring is excluded (support δ(r−a)δ(z)). The
 corrected (29) is a fix to the moment's measure/support, published as a correction, not a
-retraction; the author's conclusion stands in the corrected text.** A gate re-check of whether
+retraction. **BOTH SEATS CONFIRMED 2026-08-30 (AGATE_B49 / CGATE_B49 = ERRATUM_RING_CONCLUSION_
+HOLDS): the ring exclusion stands BY CALCULATION, not by the document's title — CGATE applied the
+corrected Eq. (29) (support δ(r−a)δ(z), the r Jacobian evaluated at r=a) and reproduced
+M¹ⁱʲ=M³ⁱʲ=0, so eqs. (30)→(32) still force the axial spin component to vanish, contradicting the
+symmetric Kerr–Newman ring; the point-particle and system-of-points exclusions are likewise
+un-weakened.** A gate re-check of whether
 the corrected Eq. (29) still yields the vanishing axial component behind the ring exclusion is
 AVAILABLE (dispatched 2026-08-30) but not tier-affecting on its face. No tier change: entry 51
 remains CALIBRATED-FALSIFIER / LIVE. Added 2026-08-23, hunt round 2
