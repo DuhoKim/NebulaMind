@@ -87,7 +87,12 @@ single-home rule violated by the repair that extended the lifecycle)
 and never resets** — no state transition, retry-internal step or partial progress renews it. A live
 request past its deadline **is** a processing failure under a live Row B and receives the
 `REFUSED-UNCLASSIFIED` refusal commit. A request that is neither terminal nor within deadline is a
-state this spec does not admit.
+state this spec does not admit. **And the COMMIT itself is bounded (CODEX-V82 F7: a live Row B
+stalled INSIDE the atomic commit could not append the deadline refusal, leaving a past-deadline
+nonterminal request): the transactional domain aborts any commit that neither completes nor
+aborts within its own BS-2k commit bound — transactional semantics make abort always available —
+and the aborted request then receives the deadline refusal. A stalled commit resolves to
+abort-then-refusal, never to a wait.**
 
 ## 4. The states, derived — this list REPLACES every previous statement of the state machine
 

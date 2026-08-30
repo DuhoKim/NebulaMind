@@ -89,6 +89,13 @@ _c("openauth.schema_version", "closed-vocab",
 _c("freezebody.code_digest freezebody.parent_sha256 freezebody.draft_sha256", "digest-ref")
 _c("freezebody.selection_bricks freezebody.class_counts", "bounded-encoding",
    "decimal ints; class counts as the counts tool emits them")
+# CODEX-V82 F5: lock-body leaves and opening-authorization value domains. The lock body's leaves
+# are the digests clause 3(a) binds - enumerated THERE, each a digest-ref; the registry carries the
+# container plus this pointer rather than inventing a second enumeration (the provenance-record
+# lesson). Openauth's closed sets (store identities, destinations) are BS-2k design artifacts -
+# closed by construction where the roster and destination list are declared.
+_c("lockbody.bound_digests", "digest-ref",
+   "the digest set clause 3(a) enumerates; leaves live in that clause, one enumeration not two")
 _c("canonical.provenance_record", "SCHEMA-PENDING",
    "V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the "
    "SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written")
@@ -108,11 +115,15 @@ _c("roots_entry.path dlm_entry.path", "bounded-encoding",
 _c("roots_entry.digest dlm_entry.digest", "digest-ref")
 # GPT56-V78 F2: explanation parameter NAMES and arity were free strings - the string rule's own
 # surface, one level down. Each cause declares its exact parameters; nothing else is admissible.
-_c("param.duration_ms param.attempt_count param.signal_number param.lease_id_digest "
-   "param.store_errno", "bounded-encoding",
-   "per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) "
-   "- DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - "
-   "STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared")
+# GPT56-V82 F2: "bounded-encoding" with no ranges was the V76 environment-leaf defect on the
+# parameter surface. The ranges:
+_c("param.duration_ms", "bounded-encoding", "decimal int [0, 2^31)")
+_c("param.attempt_count", "bounded-encoding", "decimal int [0, 10^4]")
+_c("param.signal_number", "bounded-encoding", "decimal int [1, 64]")
+_c("param.lease_id_digest", "digest-ref", "64 lowercase hex")
+_c("param.store_errno", "bounded-encoding", "decimal int [0, 2^15)")
+# per-cause arity unchanged: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) -
+# DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno)
 _c("BS-6.producer_checksum_list", "digest-ref")
 # The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
 # in envelope fields, and environment_record() emits its own - all string-bearing, none previously
@@ -250,6 +261,7 @@ FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection
     "class_counts", "draft_sha256")}
 PARAMS = {f"param.{n}" for n in (
     "duration_ms", "attempt_count", "signal_number", "lease_id_digest", "store_errno")}
+LOCKBODY = {"lockbody.bound_digests"}
 CANONICAL = {f"canonical.{n}" for n in (
     "freeze_signature_body", "lock_body", "opening_authorization", "entry_body",
     "explanation_body", "provenance_record")}
@@ -269,7 +281,7 @@ def environment_leaves():
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | SIGS | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

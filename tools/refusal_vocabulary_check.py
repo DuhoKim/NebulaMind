@@ -214,6 +214,19 @@ def check(text: str):
             re.search(r"at \*{0,2}`?BS-L`? issuance", text, re.I))
         gates5 = re.search(r"BS-7f", text) and re.search(r"disclosure", text, re.I) and \
                  re.search(r"fresh", text, re.I)
+        # CODEX-V82 F6: these checks were polarity-blind - "the verifier is NOT consulted" passed
+        # because the words appeared. A negated mechanism line now fails the mechanism.
+        # Negated-FORM patterns, not word proximity: two proximity attempts false-fired on "not"
+        # belonging to neighbouring clauses ("does not discharge", "label is not in the key"). What
+        # R08 must catch is the mechanism VERB negated - "is not consulted", "never runs", "no
+        # longer recomputes" - so those forms are matched directly (CODEX-V82 F6).
+        m_neg = re.search(
+            r"(?:enumeration verifier|fresh pass)[^.;\n]{0,50}\b(?:is|are|was|were|will be)\s+"
+            r"(?:not|never|no longer)\b"
+            r"|\bnot\s+consulted\b|\bnever\s+consulted\b|\bno longer\s+(?:consulted|runs?|recomputes?)\b",
+            text, re.I)
+        if m_neg:
+            fail("R08", f"a mechanism verb is NEGATED: {m_neg.group(0)[:60]!r}")
         if not (verifier and twice and entry and gates5):
             fail("R08", "verifier: %s; second consultation: %s; entry object: %s; post-opening "
                  "gates: %s" % (bool(verifier), bool(twice), bool(entry), bool(gates5)))
@@ -287,6 +300,8 @@ CONTROLS = (
     ("a later contradiction coexists with the principle",
      lambda: _fixture() + "A refusal reason may describe the OBJECT.\n", "R03"),
     ("the post-opening gates are unnamed", lambda: _fixture(guard="nogates"), "R08"),
+    ("a negated mechanism fails the mechanism",
+     lambda: _fixture() + "The enumeration verifier is not consulted at BS-L issuance.\n", "R08"),
     ("a negated retirement activates a token",
      lambda: _fixture() + "REFUSED-ZOMBIE is not deleted and remains in force.\n", "R01"),
     ("one retirement word does not exempt a second token on the line",
