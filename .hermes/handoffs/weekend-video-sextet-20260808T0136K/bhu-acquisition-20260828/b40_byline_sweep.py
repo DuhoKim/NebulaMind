@@ -94,7 +94,13 @@ def head_of(path):
     p=os.path.join(D,path)
     if p.endswith(".pdf"):
         import fitz; d=fitz.open(p); return " ".join(d[0].get_text().split())[:1600]
-    return " ".join(open(p,errors="ignore").read()[:2400].split())[:1600]
+    raw=open(p,errors="ignore").read()
+    # CGATE_B40: repository annotations must not satisfy the sweep -- entry 44's pass was a
+    # tautology (my EXTRACTION DEFECT header names the authors the extraction lacks). Strip any
+    # bracketed annotation block before searching.
+    if raw.startswith("[EXTRACTION DEFECT"):
+        raw=raw.split("]\n",1)[1] if "]\n" in raw[:600] else raw
+    return " ".join(raw[:2400].split())[:1600]
 
 print("="*98); print("B40 -- byline sweep over the readable corpus"); print("="*98)
 flags=[]; ok=0; skipped=[]
@@ -116,10 +122,17 @@ print(f"  bylines fully matched: {ok}")
 print(f"  CANDIDATES (some recorded surname absent from the source head): {len(flags)}")
 for n,miss,alln in flags:
     print(f"    entry {n:>2}: missing {miss}  (recorded: {alln})")
-chk("MEASURED: the sweep separates the corpus rather than flagging everything or nothing",
+chk("MEASURED (CGATE's wording): 38 recorded surname sets occur in their pinned source bodies; "
+    "entry 44's extraction lacks two authors and is annotated -- one-way surname-containment "
+    "coverage, NOT exact full-byline verification",
     0 <= len(flags) < 10 and ok > 25,
     f"{ok} matched, {len(flags)} candidates. Every candidate needs a hand check -- a byline can "
     f"be absent from a head for OCR or cover-page reasons, so a flag is not a finding")
+chk("REGRESSION: entry 44's extraction defect is DETECTED once annotations are excluded -- the "
+    "sweep must flag it, because the pin genuinely lacks two authors",
+    any(n==44 for n,_,_ in flags),
+    "CGATE_B40: the annotation-satisfied pass was a tautology. 44's flag is now the EXPECTED state "
+    "until the pin is re-extracted; its record is confirmed right by independent metadata")
 chk("CONTROL: entry 20 -- the known formerly-wrong case, since corrected -- now passes",
     all(n!=20 for n,_,_ in flags),
     "its corrected Bronnikov-Melnikov-Dehnen byline matches the source; the sweep would have "
