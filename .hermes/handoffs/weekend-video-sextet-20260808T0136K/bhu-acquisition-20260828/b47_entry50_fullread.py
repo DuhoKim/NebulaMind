@@ -18,9 +18,12 @@ VERDICT (mine, to the gate): NOT AN OBSTRUCTION -- the paper is the corpus's sec
 ESCAPE from entry 48's theorem, executed: a constructive leading-WKB tunneling-amplitude
 calculation for subcritical (M < M_S) false-vacuum bubbles tunneling from the collapsing type
 (a) branch to the universe-becoming type (b) branch. Inventory:
-  Sec. II   classical trajectories; M_cr/M_S/M_D thresholds; restates ref [9] (= entry 48):
-            Penrose applies to an expanding type (a) bubble iff M > M_S -- inherited, not
-            re-proven here.
+  Sec. II   classical trajectories; M_cr/M_S/M_D thresholds. CGATE_B47's correction applied:
+            Sec. II locally DEMONSTRATES the M_S Penrose threshold (anti-trapped surface at
+            maximum radius, Penrose + NEC for M > M_S, surface gone when the trajectory
+            crosses right of the Kruskal origin for M < M_S) while reviewing and crediting
+            ref [9] (= entry 48) -- source-owned claim-level content, NOT mere inheritance
+            as this docstring first said.
   Sec. III  the reduced action; surface term kills the r-double-dot; crossing-boundary sign
             rule.
   Sec. IV   subtracted-action WKB formalism.
@@ -81,9 +84,9 @@ chk("ESCAPE LANDMARKS: the conclusion's quantum-escape sentence and the FMP agre
     "the source",
     "avoid the implications of the classical singularity theorems" in S
     and "human initiative" in S and "Polchinski" in S)
-chk("CROSS-LINK LANDMARKS: refs to entry 48 (PLB 183), entry 13 (PLB 216), entry 49 (PRD 35 "
-    "1747) and the Sato chain are in the reference list",
-    "1836. 149" in S.replace("183B. 149", "1836. 149") or "1836. 149" in S)
+chk("CROSS-LINK LANDMARK (entry 48): the PLB 183 149 reference is in the list -- the OCR "
+    "renders B as 6, so both spellings are accepted, stated plainly",
+    ("183B. 149" in S) or ("1836. 149" in S))
 chk("CROSS-LINK LANDMARKS 2: FMM and BGG references present",
     "2166. 272" in S and "035. 1747" in S and "Sato" in S)
 B = open(BIB).read()
@@ -95,7 +98,11 @@ chk("RECORD: entry 50 carries the read scope, the tier provenance, the conjectur
     "both claim-level negatives, and the four cross-links",
     "READ IN FULL 2026-08-30" in b50 and "EXECUTES the quantum escape entry 48 named" in b50
     and "pseudomanifold" in b50 and "noninvertible" in b50
-    and "simply connected" in b50 and "ref. [11] = entry 13" in b50)
+    and "simply connected" in b50 and "ref. [11] = entry 13" in b50
+    # CGATE_B47's two corrections, asserted in their repaired state:
+    and "locally DEMONSTRATES this Penrose threshold" in b50
+    and "superseding edit 2026-08-30" in b50
+    and "NOT YET READ" not in b50.replace("the earlier \"NOT YET READ\" state", ""))
 m = re.search(r"Testability: \*\*([A-Z-]+)\*\*", blocks[50])
 chk("TIER: entry 50 now reads CONSISTENCY-ONLY (set by this census read, gates verifying)",
     m is not None and m.group(1) == "CONSISTENCY-ONLY")

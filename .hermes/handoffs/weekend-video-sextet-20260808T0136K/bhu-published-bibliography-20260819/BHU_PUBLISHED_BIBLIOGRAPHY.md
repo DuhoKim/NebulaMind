@@ -1004,8 +1004,9 @@ Record: kimi recall R3; the junction-condition machinery child-universe construc
 `../bhu-reading-20260823/sources/farhi_guth_guven_ctp1690_kekscan_2000_36_692.pdf` (sha256
 `32e93d710705…`, 34 scan pages; page-1 title and Farhi/CTP byline verified visually). This is
 entry 48's named QUANTUM-escape sequel. **PREPRINT, not the NPB 339, 417 version of record;
-content identity is testimony until compared. NOT YET READ — census read queued (long: ~68
-preprint pages).**
+content identity is testimony until compared — the preprint-vs-VoR caveat ONLY; the pinned
+preprint itself IS read (superseding edit 2026-08-30, CGATE_B47's record-integrity correction:
+the earlier "NOT YET READ" state was left standing above the read adjudication).**
 DOI 10.1016/0550-3213(90)90357-j — VERIFIED (Crossref: NPB, v339, p417-490, 1990). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **CONSISTENCY-ONLY** — set by the census full read 2026-08-30 (b47, the routine
@@ -1019,7 +1020,11 @@ me — the gates render what they distrust (scope stated, not smoothed).** VERDI
 census rule: **NOT an obstruction — a constructive tunneling-amplitude calculation that
 EXECUTES the quantum escape entry 48 named.** The paper computes, in leading WKB, the amplitude
 for a subcritical false-vacuum bubble (type (a), M < M_S — producible without an initial
-singularity, per entry 48's own threshold restated here as ref. [9]) to tunnel to the
+singularity; **CGATE_B47's correction: §II locally DEMONSTRATES this Penrose threshold — it
+traces the anti-trapped surface at maximum radius, applies Penrose + the null energy condition
+for M > M_S, and shows the surface disappears when the Kruskal trajectory crosses right of the
+origin for M < M_S — while reviewing and crediting ref. [9] = entry 48; a source-owned
+claim-level rederivation, not a mere inheritance**) to tunnel to the
 universe-becoming type (b) branch. The functional-integral route yields a negative-definite
 subtracted action (their eq. 5.34), |I_E| ~ 1/(Gχ²), tunneling probability ~ 10^(−10¹¹) at GUT
 scale — "equivalent to zero" for human-made universes, "might be possible at energy scales
