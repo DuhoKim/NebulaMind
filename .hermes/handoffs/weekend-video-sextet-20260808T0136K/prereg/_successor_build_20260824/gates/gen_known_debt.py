@@ -71,25 +71,8 @@ RESIDUES = (
      "precondition & decoding pause, reading-at-commit-start, the indivisible "
      "receipt/termination units, T1's decoded-frame priority (violation = W0 residue, "
      "bounded); spec §3d, §3c T1, §3b"),
-    ("The echo controls' exact contracts (per-echo, no blanket demotion)",
-     "PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS "
-     "echo: exact token-set comparison over the note's domain segment; FORM echo: kind "
-     "presence under real word boundaries + ≥1 exact tuple within 900 bytes of a kind "
-     "mention + EVERY backticked `(kind,`-opening candidate whose opening lies within 900 "
-     "UTF-8 bytes of the kind mention SPAN (nearest edge — CODEX-V122A F1: a "
-     "character-offset start-anchored measure missed both edges), READ WHOLE to "
-     "the nearest close-paren-backtick even across interior parentheses "
-     "(GPT56-V121A F1, GPT56-V122A F1) — any length, any internal whitespace (GPT56/CODEX-V120A F2: the first grammar demanded "
-     "a literal space and 10–400 interior characters) — must whitespace-normalize into "
-     "the asserted-present KNOWN-TUPLE whitelist; the two named notational exemptions are the "
-     "three-dot metavariable and the quoted opening-fragment (comma directly "
-     "followed by the closing backtick, excluded by grammar shape) (all candidates otherwise, no shared-field threshold — "
-     "GPT56-V119A F2; controls run through the one shipped function — CODEX-V119A F3) — stated NON-CLAIMS: no unique "
-     "authoritative site, nothing outside kind-adjacent windows; R02: "
-     "sentence-scoped literal-shape list; retired-token activation list: finite, "
-     "demoted; semantic paraphrase beyond these contracts passes to the successor's "
-     "freeze review; sources: each tool's own docstring "
-     "(GPT56-V117A F4 killed v1's blanket-demotion wording)"),
+    ("The echo controls' exact contracts, and the FORM tripwire's RULED freeze",
+     'PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS echo: exact token-set comparison over the note\'s domain segment; R02: sentence-scoped literal-shape list; retired-token activation list: finite, demoted. FORM echo: FROZEN WITH DISCLOSURE BY RULING (the principal, 2026-08-31, verbatim option label \'Freeze with disclosure (Recommended)\' - APPENDIX_FORM_FREEZE_RULING_20260831.md): a TRIPWIRE - kind presence under real word boundaries, a co-located exact tuple within 900 bytes, a whitelist scan - carrying TWO NAMED LIMITATIONS quoted verbatim from the round-6 reports and machine-verified against them at generation; repairs admissible only as a repaired-and-refereed successor revision during build-out (the un-refereed V123 hardening is reverted, read-7 stopped void, the code parked at commit 2c4d06b3e as that candidate). LIMITATION 1, GPT56-V122A F1 verbatim: \'The changed full-corpus scanner still matches candidates with `[^)]*`, so any backticked `(kind,`-opening candidate containing an interior `)` before its actual closing `)`-backtick is never enumerated; an adjacent nested-parenthesis corruption returned `[]` through shipped `form_check()` for all four forms, contradicting the EVERY-candidate contract while the controls remain green.\' LIMITATION 2, CODEX-V122A F1 verbatim: "The changed opening-adjacency predicate compares Python character offsets from the candidate opening to only the kind match\'s start, not byte-distance to the matched mention span: per-form corrupt candidates opening 896 ASCII bytes after the mention\'s end evade `form_check()` (while 901-byte UTF-8 gaps can be falsely included), contradicting the declared 900-byte all-candidate boundary." Semantic paraphrase beyond these contracts passes to the successor\'s freeze review; sources: each tool\'s own docstring, the two V122 appendix-review reports, and the ruling record'),
     ("Inter-anchor rollback window",
      "no-vanish, deadline and key-uniqueness claims hold AS OF THE EXTERNAL ANCHORS; a "
      "rollback inside a window is platform-level custody failure by operator "
@@ -376,6 +359,11 @@ if __name__ == "__main__":
         seat = "GPT56" if name.startswith("GPT56") else "CODEX"
         verify_verbatim(quote, (HERE / f"V116_WHOLE_REVIEW_{seat}.md").read_text(), name)
     import re as _re
+    for _seat, _frag in (("GPT56", 'The changed full-corpus scanner still matches candidates with `[^)]*`, so any backticked `(kind,`-opening candidate containing an interior `)` before its actual closing `)`-backtick is never enumerated; an adjacent nested-parenthesis corruption returned `[]` through shipped `form_check()` for all four forms, contradicting the EVERY-candidate contract while the controls remain green.'),
+                         ("CODEX", "The changed opening-adjacency predicate compares Python character offsets from the candidate opening to only the kind match's start, not byte-distance to the matched mention span: per-form corrupt candidates opening 896 ASCII bytes after the mention's end evade `form_check()` (while 901-byte UTF-8 gaps can be falsely included), contradicting the declared 900-byte all-candidate boundary.")):
+        verify_verbatim(_frag,
+                        (HERE / f"V122_APPENDIX_REVIEW_{_seat}.md").read_text(),
+                        f"FORM limitation ({_seat}-V122A F1)")
     drafts = sorted(HERE.parent.glob("PREREG_SUCCESSOR_DRAFT_V*_2026*.md"),
                     key=lambda f: int(_re.search(r"_V(\d+)_", f.name).group(1)))
     draft_text = drafts[-1].read_text()

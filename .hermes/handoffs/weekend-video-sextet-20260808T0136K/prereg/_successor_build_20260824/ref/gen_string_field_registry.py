@@ -552,12 +552,8 @@ def form_check(draft_text, spec_txt, forms=None):
     controls, so the controls exercise this function, never a twin (CODEX-V119A F3).
     Contract: per form - kind literal under real word boundaries in its home corpus;
     >=1 exact tuple within 900 bytes of a kind mention; and EVERY backticked
-    candidate WHOSE OPENING lies within 900 UTF-8 BYTES of the kind MENTION SPAN
-    (nearest edge - CODEX-V122A F1), read WHOLE to the nearest close-paren-backtick
-    even across interior parentheses (GPT56-V121A F1, GPT56-V122A F1) - with TWO
-    named notational exemptions: the three-dot metavariable, and the quoted
-    opening-fragment `(kind,` whose comma is directly followed by the closing
-    backtick (excluded by grammar shape) - i.e. every
+    candidate WHOSE OPENING lies within 900 bytes of a form-kind mention, read WHOLE
+    from the full corpus wherever it closes (GPT56-V121A F1) - i.e. every
     `(kind,`-opening candidate within 900 bytes of a form-kind mention - ANY length, ANY
     internal whitespace (GPT56/CODEX-V120A F2: the first grammar demanded a literal
     space and 10-400 interior characters, silently exempting short, tabbed, newline and
@@ -584,32 +580,17 @@ def form_check(draft_text, spec_txt, forms=None):
         if not _pair:
             problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
                             f"'{_kind}' in the {_home} (GPT56/CODEX-V116 F3)")
-        # adjacency: the candidate's OPENING BACKTICK within 900 UTF-8 BYTES of the
-        # kind MENTION SPAN (nearest edge), and the candidate read WHOLE to the nearest
-        # close-paren-backtick (GPT56-V121A F1 killed the window slice; GPT56-V122A F1:
-        # [^)]* could not cross an interior right parenthesis, so a nested-paren
-        # corruption was never enumerated; CODEX-V122A F1: character offsets from the
-        # kind's START mis-measured the declared byte boundary at both edges).
-        _bp = {}
-        def _bofs(i):
-            if i not in _bp:
-                _bp[i] = len(_corpus[:i].encode("utf-8"))
-            return _bp[i]
-        _kspans = [(_bofs(m2.start()), _bofs(m2.end()))
-                   for m2 in _re.finditer(_kpat, _corpus)]
-        for _tm in _re.finditer(r"`\(kind,(?!`)[\s\S]*?\)`", _corpus):
-            _cb = _bofs(_tm.start())
-            _d = min((max(0, _cb - ke, ks - _cb) for ks, ke in _kspans),
-                     default=10**9)
-            if _d > 900:
+        # adjacency is measured at the candidate's OPENING BACKTICK and the candidate
+        # is read WHOLE from the full corpus (GPT56-V121A F1: slicing a +-900 window
+        # first truncated a long candidate before its closing backtick, so the
+        # any-length grammar was silently bounded by the window)
+        _kpos = [m2.start() for m2 in _re.finditer(_kpat, _corpus)]
+        for _tm in _re.finditer(r"`\(kind,[^)]*\)`", _corpus):
+            if not any(abs(_tm.start() - kp) <= 900 for kp in _kpos):
                 continue
             _cn = _wsnorm(_tm.group(0))
             if _cn == "`(kind, ...)`":
-                continue  # named exemption 1: the three-dot metavariable
-            # named exemption 2 (structural, in the grammar itself): the quoted
-            # opening-fragment notation `(kind,` - comma directly followed by the
-            # closing backtick - is corpus notation for the opening, never a tuple;
-            # the (?!`) lookahead above excludes it by shape
+                continue  # the documented metavariable, exempt by name
             if _cn not in known:
                 problems.append(f"form-schema echo: a kind-adjacent tuple near "
                                 f"'{_kind}' matches NO known schema tuple "
@@ -686,27 +667,11 @@ def _domain_echo_selftest():
         if not any("NO known schema tuple" in p
                    for p in _form_probs(f"the {_k0} body {one} and {_t0} here", forms=_me)):
             fails.append(f"form-echo one-shared-field corruption not caught ({_k0})")
-        # span-edge byte adjacency (CODEX-V122A F1): a corruption opening 896 ASCII
-        # bytes after the kind mention's END is adjacent by contract and must be caught;
-        # one beyond 900 UTF-8 bytes (multibyte gap) is out of scope and must pass.
-        _edge = (f"the {_t0} then {_k0}" + " y" * 448 +
-                 " `(kind, " + _f0[1] + ", alien_alpha)`")
-        if not any("NO known schema tuple" in p for p in _form_probs(_edge, forms=_me)):
-            fails.append(f"form-echo span-edge adjacency not caught ({_k0})")
-        _far = (f"the {_t0} then {_k0} " + "\u00e9" * 460 +
-                " `(kind, " + _f0[1] + ", alien_alpha)`")
-        if any("NO known schema tuple" in p for p in _form_probs(_far, forms=_me)):
-            fails.append(f"form-echo beyond-900-bytes candidate wrongly flagged ({_k0})")
-        # the quoted opening-fragment notation is exempt by grammar shape
-        if any("NO known schema tuple" in p for p in _form_probs(
-                f"the {_k0} body {_t0} and the notation " + "`(kind,` here", forms=_me)):
-            fails.append(f"form-echo notation fragment wrongly flagged ({_k0})")
         # the V120A grammar attacks: short, tabbed, newline-after-comma, overlength
         for _atk in ("`(kind, x)`", "`(kind,\talien_alpha)`",
                      "`(kind,\n" + _f0[1] + ", alien_alpha)`",
                      "`(kind, " + _f0[1] + ", " + "a" * 450 + ")`",
-                     "`(kind, " + _f0[1] + ", " + "b" * 1200 + ")`",
-                     "`(kind, " + _f0[1] + ", alien(foo), alien_beta)`"):
+                     "`(kind, " + _f0[1] + ", " + "b" * 1200 + ")`"):
             if not any("NO known schema tuple" in p
                        for p in _form_probs(f"the {_k0} body {_atk} and {_t0} here",
                                             forms=_me)):

@@ -437,3 +437,18 @@ V121 → V122: read 5's one — whole-candidate reading with opening-measured ad
   beyond-900-multibyte negative both ship as per-form controls.
 
 V122 → V123: read 6's pair — span-edge byte adjacency and interior-paren spanning, with both seats' exact shapes as controls.
+
+## V122 → V124 (2026-08-31 ~00:45 KST — THE FORM-ECHO STOPPING RULING: freeze with disclosure)
+
+**The principal ruled the mini-round loop's stopping question (verbatim option label:
+"Freeze with disclosure (Recommended)"; `APPENDIX_FORM_FREEZE_RULING_20260831.md`).**
+Read-6's two findings are NOT repaired — they are QUOTED VERBATIM in the appendix as the
+FORM tripwire's named limitations, and the instrument freezes on that basis. The relay
+race is reconciled by REVERT: read-7 stopped mid-flight with zero outputs; the V123
+un-refereed hardening reverted (registry generator restored to its V122 bytes); V123's
+code parked at commit 2c4d06b3e as the future repaired-and-refereed successor-revision
+candidate. V124 = V122 + the ruled disclosure in §11 + this history. No further FORM
+repair-verify rounds.
+
+V123 → V124: the revert transition — V123's un-refereed FORM hardening reverted per the freeze-with-disclosure ruling; read-7 stopped void; the frozen checker is the V122 state.
+V122 → V124: the ruling executed — V123 reverted, read-7 void, the two round-6 findings quoted verbatim as named limitations, the instrument frozen with disclosure.
