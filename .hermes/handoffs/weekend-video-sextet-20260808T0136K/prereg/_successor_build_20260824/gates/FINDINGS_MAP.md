@@ -452,3 +452,23 @@ repair-verify rounds.
 
 V123 → V124: the revert transition — V123's un-refereed FORM hardening reverted per the freeze-with-disclosure ruling; read-7 stopped void; the frozen checker is the V122 state.
 V122 → V124: the ruling executed — V123 reverted, read-7 void, the two round-6 findings quoted verbatim as named limitations, the instrument frozen with disclosure.
+
+## V124 → V125 (2026-08-31 morning — BUILD-OUT PINS: the first two artifacts land)
+
+**Slot-value fills under the closed text phase (pins are class-P values "set when
+built"); no text-loop question reopened.**
+
+- **`gates/count_oracle_harness.py` PINNED** after the full ladder: built → tier-1 8/8 →
+  agy adversarial pass (5 findings, all repaired: TOCTOU snapshots, integer universe in
+  v9's own form, canonical frames, pre-dispatch emptiness, precise fixture assertions) →
+  kimi gate HOLD-until-tier-2 → tier-2 11/11 THROUGH the real build_plan on the pinned
+  366,912-brick data → pin set.
+- **`ref/gain_mapping_a.py` BUILT and digest-recorded** (self-test 9/9; agy pass 2
+  findings repaired: behavioral clamp control, bound identity record; kimi PIN-READY),
+  **but `mapping_id` holds one more step**: the gate named the honest residual — the
+  batteries prove mechanics, not that the pinned convention IS the ruled one — so the id
+  transitions only after a focused mapping-vs-ruling referee pass, which is the next
+  dispatch.
+
+V123 → V124: the ruled revert — read-7 void, the V123 hardening reverted, the frozen checker is the round-6-reviewed state with its limitations quoted.
+V124 → V125: the first two build-out pins — the count-oracle harness pinned after tier-2 on real data; the mapping module digest-recorded with its identity, the id transition held for the convention pass.

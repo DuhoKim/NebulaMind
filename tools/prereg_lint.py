@@ -262,7 +262,12 @@ def _block_index(gates):
         # dispositions live in FINDINGS_MAP, not the repair ledger. They are excluded
         # from the whole-review citation index BY VERSION TOKEN, not by filename, so a
         # whole-review report cannot dodge parsing by renaming itself.
-        if re.search(r"^VERSION: V\d+-APPENDIX$", body, re.M):
+        _vm = re.search(r"^VERSION: (\S+)$", body, re.M)
+        if _vm and not re.fullmatch(r"V\d+", _vm.group(1)):
+            # non-whole-review artifact classes (Vn-APPENDIX mini-rounds, seat verify
+            # passes like COH-V1/MAPA-V1) are excluded by VERSION TOKEN, not filename —
+            # their dispositions live in FINDINGS_MAP or the build ledger, and a
+            # whole-review report cannot dodge parsing by renaming itself.
             continue
         blk, why = cbc.parse_block(body)
         if blk is None:

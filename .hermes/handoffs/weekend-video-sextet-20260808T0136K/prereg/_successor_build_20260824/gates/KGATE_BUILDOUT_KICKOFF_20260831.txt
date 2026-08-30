@@ -1,0 +1,47 @@
+You are the KIMI GATE SEAT — an outside auditor. Verdict wanted on TWO new build
+artifacts of a frozen preregistration (galaxy spin-handedness replication; the draft text
+is frozen-candidate V124; these are the first two of six required tools). Judge from this
+dossier alone; be adversarial; do not defer.
+
+ARTIFACT 1 — gates/count_oracle_harness.py (sha16 1a30b8d88ad822b9), the ONLY production entry to
+the frozen planner's build_plan(). Contract (draft §2.3): refuse any None/empty/ragged
+proof object BEFORE dispatch; the brick universe is NOT a caller parameter — it derives
+inside from the frozen module's own pinned, sha-verified, cardinality-checked geometry
+loader in its integer form (v9:661); entry snapshots are dispatched AND digested (TOCTOU
+closed); receipt fields use the frozen module's fixed-width canonical encoders; digests
+recomputed never accepted. Verified: tier-1 fixtures 8/8 (a monkeypatch recorder proves
+_plan is never reached on refusals; wrong-sha sidecar refused with the integrity message;
+snapshot-mutation property; frame collision check); tier-2 (missing/extra/disagreement
+through the real build_plan on pinned data) is env-gated and SKIPS LOUDLY — the module
+docstring says BS-2c may not fill on tier-1 alone. An adversarial pass (agy seat) found 5
+defects (TOCTOU, brickname-vs-integer universe crash, newline-join collisions, falsy
+passthrough, vacuous fixtures); all were repaired in v2 and the report is filed.
+
+ARTIFACT 2 — ref/gain_mapping_a.py (sha16 079abac055056c6c), the executable mapping A whose absence
+blocked the calibration-robustness slot. Contract (the principal's ruled model + the
+committed draw mechanics): accuracy a(c)=a0+gamma(c-cbar) with signs REDRAWN in the
+production injector's exact two-uniforms-per-object consumption order; 99 draws, master
+seed 20260830, zero-based PCG64 spawn, COMMON-RANDOM uniforms materialized once per draw
+and cached across every gamma; physical clamp into (0.5,1] stated as a modelling choice
+with per-call clip diagnostics; calibration perturbed with per-bin margins preserved,
+noise terms deliberately unchanged; no degeneracy patching (path refusals are signals).
+Verified: self-test 9/9 incl. CRN identity across gammas, cross-draw stream distinctness,
+zero-based bounds, gamma-zero flat-a0 reduction, mask-drift guard, a BEHAVIORAL clamp
+control (low-clamped objects flip at ~coin rate, high-clamped never), an
+identity-sensitivity control, and one real end-to-end run through the frozen permutation
+machinery via the counterfactual path consumer. An agy pass found 2 defects (vacuous
+clamp control; identity missing a read constant); both repaired in v2: identity_record()
+digests every behavior-determining input (seed, draws, clip bounds, A_LONGO by value, v9
+sha, numpy version).
+
+THE GATE QUESTIONS:
+1. PIN-READINESS: may each artifact's digest be pinned into the draft now (the pins are
+   class-P values "set when built"), or must anything land first? Judge per artifact.
+2. Name the sharpest remaining risk in each that the described batteries do NOT cover.
+3. One process check: the tier-2 gap — is "skips loudly + BS-2c may not fill on tier-1
+   alone" an acceptable pin-now state, or should the pin itself wait for tier-2?
+
+OUTPUT FORM, nothing else:
+Line 1: KGATE_BUILDOUT VERDICT: HARNESS=<PIN-READY|HOLD> MAPPING=<PIN-READY|HOLD>
+Then at most 5 numbered reasons total, then RISKS: (one line each artifact), then
+TIER2: <PIN-NOW-OK|WAIT> with one sentence.
