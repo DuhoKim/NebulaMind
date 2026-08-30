@@ -59,9 +59,29 @@ further pin needs Duho's institutional login.** Questions 5 and 7 remain his; qu
 (entry 51 keeps its tier, as an explicit convention adopted at the ruling — its first stated basis,
 "Duho's Q3 precedent", was refuted as a retrofit and corrected).
 
+## Morning of 08-30: THE QUEUE IS EMPTY — all seven delegated questions ruled
+
+Duho returned questions 7 and 5 in the morning (as he had 1–4 and 6). Rulings, both gated:
+
+- **Q7 (entries 52/53): tiers stay CONSISTENCY-ONLY.** Their conclusions close as cyclic
+  universe-in-a-black-hole scenario constructions; the exclusion delimits their own EC family (the
+  entry-37 disposition). **My "cyclic, not absent" refinement was REFUTED and is withdrawn** —
+  CGATE_Q7 derived both papers' equations: the *existence* thresholds (52: C > √(8/9); 53:
+  C > e^(−1/2), below which "the universe would not exist") stand at full strength; the cycling I
+  quoted belongs to the separate, far larger *dark-energy* threshold (52's (51)). Do not re-derive
+  the conflation.
+- **Q5 (entry 5): RE-TIERED CONSISTENCY-ONLY → THEORETICAL-OBSTRUCTION** — the corpus's first
+  seat-split tier ruling, confirmed by both seats at its gate. **The obstruction tier now has TWO
+  members (22 and 5); the tally is 31 CONSISTENCY-ONLY / 2 THEORETICAL-OBSTRUCTION, still summing
+  to 51.** Domain printed exactly (Pathria setup, [K_uu] ≠ 0, shell p = ρa/4). Entry 17 explicitly
+  does NOT move with it. The screen's observed hit rate on the two known obstructions is 1 of 2 —
+  a hit rate on known members, not corpus-wide recall.
+
+Running ledger: seven delegated, seven ruled, seven gated; four bases corrected by gates while
+outcomes held; one tier moved.
+
 ## Open with Duho (nothing else blocks)
 
-Questions **5, 6, 7** in `OPEN_QUESTIONS_FOR_DUHO.md` — all tier calls. Answering **6** settles the
-dual-paper convention that decides 7 and likely informs 5. Separately: three papers need his
+**Nothing.** All seven questions are closed (see above). What remains needs only his login: three papers need his
 library login (Popławski PLB 690, Silk Science 277, Farhi & Guth PLB 183), and entry 19 is MDPI
 open-access, fetchable by the browser route used for entries 25/26.
