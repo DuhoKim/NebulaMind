@@ -189,10 +189,15 @@ def check(text: str):
             if hdr not in blk:
                 fail("R01", f"operative block lacks its structure: {hdr!r} missing")
         block_pinned = set()
+        # CODEX-V100 F6: membership demanded only a token-shaped substring, so malformed or
+        # commented spellings counted as operative. Membership now requires the CANONICAL
+        # BACKTICKED form (`REFUSED-X`) — how the operative list actually writes members —
+        # while the tombstone/illegal scan above deliberately stays decoration-independent
+        # (GPT56-V70 F4: that direction must catch evasive spellings, not require them).
         for frag in re.split(r"[.;:]", text[b0:b1]):
-            for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z0-9-]+(?![a-z0-9_])", frag):
-                if tk.rstrip("-") in CODES and not RETIREMENT.search(frag):
-                    block_pinned.add(tk.rstrip("-"))
+            for tk in re.findall(r"`(REFUSED-[A-Z][A-Z0-9-]+)`", frag):
+                if tk in CODES and not RETIREMENT.search(frag):
+                    block_pinned.add(tk)
         if block_pinned != set(CODES):
             fail("R01", f"missing from the operative block: {sorted(set(CODES) - block_pinned)}")
 

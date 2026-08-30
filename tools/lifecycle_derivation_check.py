@@ -41,6 +41,9 @@ ERRORS = {
            "the quote must be the row's FULL body (GPT56-V73 F3, CODEX-V73 F2)",
     "L07": "the draft carries more than one lifecycle-spec pin — a second pin is a second source "
            "for one fact",
+    "L08": "a shared closed-schema tuple diverges between draft and spec — the V98 "
+           "partition_cut_position field landed draft-side only and the invariant-bound "
+           "checker missed it for two rounds (GPT56-V100 F2)",
 }
 
 TAG = re.compile(r"lifecycle-spec:\s*sha256\s*`?([0-9a-f]{64})`?")
@@ -81,6 +84,14 @@ def check(draft_text: str, spec_text: str, spec_bytes: bytes):
     for tag in spec_rows:
         if tag not in quoted:
             out.append(("L04", ERRORS["L04"] + f" — {tag}"))
+    # L08 (GPT56-V100 F2): schema tuples that exist in BOTH files must match exactly.
+    import re as _re
+    def tuples(s):
+        return {m.group(1) for m in _re.finditer(r"`\((gate, [^)]+)\)`", s)}
+    dt, st = tuples(draft_text), tuples(spec_text)
+    _normsig = lambda x: x.replace("signature-enveloped", "signature")
+    if {_normsig(x) for x in dt} != {_normsig(x) for x in st} and dt and st:
+        out.append(("L08", ERRORS["L08"] + f" — draft {sorted(dt)} vs spec {sorted(st)}"))
     return out
 
 

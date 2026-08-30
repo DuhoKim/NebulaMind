@@ -55,3 +55,5 @@ BS-SI schema (written when filled). BS-6 and the first image byte remain blocked
 
 **FILED (V100, recommended): the TERMINAL SIGNATURE.** Both seats broke the successor-as-closing-eye answer (a programme-ending run has no successor; an existing one reads only the enumerator key's self-consistent endgame bytes). Recommended ruling: when a run ends, **Duho signs the disclosure pass record's digest** — one additional signing act that closes the P7→P9 suffix under his own key. Until ruled, the spec states the suffix is machine testimony with no closing waypoint, in exactly those words. (This absorbs the earlier Clause-6 filing: the terminal signature is the stronger and simpler of the two.)
 
+**AMENDED (V101):** the terminal-signature recommendation is strengthened per both V100 seats: the signing ceremony RECOMPUTES the terminal head from the chain bytes under a pinned verifier, and the signature covers (recomputed head, recomputation transcript digest) — signing what the enumerator presents would notarize testimony rather than check anything. The ask to Duho is unchanged in size: one signing act at run end.
+
