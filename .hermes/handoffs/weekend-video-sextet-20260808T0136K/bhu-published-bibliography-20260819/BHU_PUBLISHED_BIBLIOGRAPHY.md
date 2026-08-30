@@ -587,24 +587,30 @@ Claim: universe generation from black-hole interiors with limiting curvature.
 Testability: **CONSISTENCY-ONLY**
 **ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — constructive; its inside-horizon coordinate-role remark is a limitation of setting, not a class exclusion.. Record: packet §1.6. Audit-worthiness: **medium**.
 
-**16. B. Pourhassan et al. (2025). "Multiversal entropy and information conservation in black hole nucleated baby universes." Nucl. Phys. B 1020, 117160.**
+**16. B. Pourhassan (2025). "Multiversal entropy and information conservation in black hole nucleated baby universes." Nucl. Phys. B 1020, 117160.** *(heading corrected from "et al." 2026-08-30 — single-author, CGATE_B48)*
 **ACQUIRED 2026-08-30, the VERSION OF RECORD itself — SCOAP3 gold OA (CC-BY), fetched through
 Duho's connected Chrome (ScienceDirect serves it free; only scripts are robot-walled):**
 `../bhu-reading-20260823/sources/pourhassan_2025_npb1020_117160_scoap3.pdf` (sha256
 `2d11feddb342…`, 11 pp, title verified on page 1). **BYLINE CORRECTION, caught on pinning: the
 paper is SINGLE-AUTHOR — Behnam Pourhassan (Damghan / Khazar / CRI) — the record's
-"B. Pourhassan et al." was wrong.** NOT YET READ — census read queued.
+"B. Pourhassan et al." was wrong.** *(The "NOT YET READ" state that stood here was superseded
+the same day by the b48 full read below — CGATE_B48's record-integrity correction, the third
+stale-state catch today.)*
 DOI 10.1016/j.nuclphysb.2025.117160 — VERIFIED (Crossref: NPB, v1020, 117160, 2025-11).
 Claim: entropy/information accounting for black-hole-nucleated baby universes, with stated
 observational prospects in primordial-black-hole populations and gravitational-wave echoes.
 Testability: **PROSPECT** — prospects for other instruments, no sky-statistics target —
 **CONFIRMED BY THE FULL READ 2026-08-30 (b48, census rule): all 11 VoR pages.** NOT an
-obstruction — a conjecture-stack PROPOSAL: supercritical bubbles (M > M_cr, the threshold
-INHERITED from Garriga–Vilenkin–Zhang, its ref. [18], not re-derived — eqs. (1)–(7) review the
-junction relation and define super/subcritical causally) become baby universes behind
+obstruction — a conjecture-stack PROPOSAL: supercritical bubbles (M > M_cr — the thin-wall
+FRAMEWORK inherited from Garriga–Vilenkin–Zhang, its ref. [18], with a LOCAL heuristic
+reconstruction of the threshold in eqs. (1), (6), (7) — CGATE_B48's wording; not an independent
+first-principles theorem, not mere citation either) become baby universes behind
 non-traversable wormholes; persistent parent–baby ENTANGLEMENT is conjectured ("We conjecture",
 "We posit" — the paper's own verbs); S_total = S_BH + S_ent with S_ent ~ α log N from landscape
-counting (N ~ 10^500 cut by a CDL accessibility factor to S_ent^eff ≳ 330); a "multiversal
+counting (N ~ 10^500 cut by a CDL accessibility factor to S_ent^eff ≳ 330 — and CGATE_B48 caught an
+internal arithmetic flaw: eq. (19)'s "log dim ≳ 10^5" does not follow from its own inputs,
+log N + S_i ≈ 1.25×10^3–1.12×10^4; the conservative eq. (25) is consistent — the estimates are
+proposal-level, not predictions); a "multiversal
 second law" (eq. 26) and a multiversal Page bound (eq. 33) are proposed. §5/Table 1 name
 channels — GW echoes off wormhole throats, a PBH mass-function feature near M_cr, entropy-bound
 deviations — with NO thresholds, numbers, or datasets ("may hint", "could serve"): exactly the

@@ -14,7 +14,11 @@ can satisfy a specified conjunction of conditions -- refutable by counterexample
 measurement?
 
 VERDICT (mine, to the gate): NOT AN OBSTRUCTION -- a conjecture-stack PROPOSAL; triage's
-PROSPECT tier is CONFIRMED by the source, not changed. Inventory:
+PROSPECT tier is CONFIRMED by the source, not changed. GATED 2026-08-30: AGATE_B48
+ENTRY16_CONFIRMED_PROSPECT / CGATE_B48 ENTRY16_NARROWED (four repairs applied: the et-al
+heading, the stale NOT-YET-READ state -- the THIRD stale-state catch today -- the
+inherited-vs-locally-reconstructed threshold wording, and the paper's own eq-(19) arithmetic
+flaw recorded). Inventory:
   Sec. 2  reviews Garriga-Vilenkin-Zhang bubble dynamics (its ref [18]): the junction relation
           (eq 1), effective potential (eqs 2-5), M_cr (eqs 6-7) -- INHERITED threshold, the
           paper says "Following [18]" and derives nothing new here; super/subcritical defined
@@ -65,12 +69,14 @@ chk("PROSPECT LANDMARKS: the channels are named without calibration -- Table 1, 
     "mass function; and the hedging verbs are present",
     "Gravitational Wave Echoes" in S and "Primordial Black Hole Mass Function" in S
     and "may hint" in S)
-chk("CROSS-LINK LANDMARKS: entries 50, 14, 15's papers and the Sato programme are in the "
-    "reference list",
+chk("CROSS-LINK LANDMARKS: all five relational links -- entries 50, 14, 15's papers, the Sato "
+    "programme, and the Afshordi echo paper (CGATE_B48: ref [36] was omitted; the pointless "
+    "self-replace removed)",
     "Is it possible to create a universe in the laboratory by quantum tunneling?" in S
     and "Black holes as possible sources of closed and semiclosed worlds" in S
-    and "Universe generation from black hole interiors" in S.replace("Universe generation from black hole interiors", "Universe generation from black hole interiors")
-    and "Creation of wormholes by" in S)
+    and "Universe generation from black hole interiors" in S
+    and "Creation of wormholes by" in S
+    and "Echoes from the abyss" in S)
 B = open(BIB).read()
 cut = B.find("## Ranked:")
 st = [(m.start(), int(m.group(1))) for m in re.finditer(r"^\*\*(\d{1,2})\. ", B[:cut], re.M)]
@@ -80,7 +86,11 @@ chk("RECORD: entry 16 carries the VoR pin, the byline correction, the read confi
     "inherited-threshold note, and the cross-links",
     "2d11feddb342" in b16 and "SINGLE-AUTHOR" in b16
     and "CONFIRMED BY THE FULL READ 2026-08-30 (b48" in b16
-    and "INHERITED from Garriga" in b16 and "ref. [19] = entry 50" in b16)
+    and "LOCAL heuristic" in b16 and "ref. [19] = entry 50" in b16
+    # CGATE_B48's four repairs, asserted in their repaired state:
+    and "heading corrected from" in b16
+    and "superseded" in b16
+    and "internal arithmetic flaw" in b16)
 m = re.search(r"Testability: \*\*([A-Z-]+)\*\*", blocks[16])
 chk("TIER UNCHANGED: entry 16 remains PROSPECT (triage label now source-confirmed)",
     m is not None and m.group(1) == "PROSPECT")
