@@ -124,7 +124,7 @@ def check(text: str):
     # prose semantics beyond them are the referee round's job, which is this lint's stated limit,
     # not a gap it pretends to close.
     ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|"
-                            r"governs|mandatory|shall apply|takes effect|is live|will be|will apply|becomes|to be used|remains operative|expected to apply|should control|continues to|required|authoritative", re.I)
+                            r"governs|mandatory|shall apply|takes effect|is live|will be|will apply|becomes|to be used|remains operative|expected to apply|should control|continues to|required|authoritative|controls |will be used", re.I)
     pinned, illegal = set(), []
     for line in text.splitlines():
         # GPT56-V73 F4 / CODEX-V73 F6: one retirement word exempted every token ON THE LINE, so
@@ -186,7 +186,7 @@ def check(text: str):
         # a later contradiction must not coexist with the phrase that makes R03 pass (GPT56-V70 F4)
         # - under the rebuilt principle the contradiction is an affirmative CONTENT-DERIVED allowance
         for line in text.splitlines():
-            if re.search(r"may (?:carry|describe|encode)[^.]*content-derived", line, re.I) and \
+            if re.search(r"may (?:carry|describe|encode)[^.]*content-derived|may describe the object(?!['’]s storage)", line, re.I) and \
                not re.search(r"\bnever\b|\bnot\b|forbid|refuses", line, re.I):
                 fail("R03", f"affirmative contradiction: {line.strip()[:60]!r}")
                 break
@@ -300,6 +300,10 @@ CONTROLS = (
      lambda: _fixture() + "Active refusal member: REFUSED-EVADE.\n", "R01"),
     ("a later contradiction coexists with the principle",
      lambda: _fixture() + "A refusal reason may carry content-derived values.\n", "R03"),
+    ("a blanket object-permission contradicts the rebuilt principle",
+     lambda: _fixture() + "A refusal reason may describe the object.\n", "R03"),
+    ("it-controls reactivation is caught",
+     lambda: _fixture() + "REFUSED-CEREMONY-CONSUMED was retired; it controls requests at P7.\n", "R01"),
     ("the post-opening gates are unnamed", lambda: _fixture(guard="nogates"), "R08"),
     ("a negated mechanism fails the mechanism",
      lambda: _fixture() + "The enumeration verifier is not consulted at BS-L issuance.\n", "R08"),

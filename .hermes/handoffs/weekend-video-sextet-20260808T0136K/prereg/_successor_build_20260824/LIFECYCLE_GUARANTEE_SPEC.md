@@ -106,7 +106,7 @@ aborts within its own BS-2k commit bound — transactional semantics make abort 
 and the aborted request then receives the deadline refusal. A stalled commit resolves to
 abort-then-refusal, never to a wait — **within what the platform serves: where the STORAGE ITSELF
 never returns (GPT56/CODEX-V83 F5: an fsync that hangs forever), no domain can conjure liveness,
-and that terminal case is the platform failing, N2's sibling — the run ends by operator
+and that terminal case is the platform failing — the same shape as the RETIRED N2's old residue, kept as a comparison only — the run ends by operator
 observation, not by lifecycle rule, and the lifecycle is TOTAL over the states the platform
 serves, which is the honest quantifier.**
 

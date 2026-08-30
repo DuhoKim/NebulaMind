@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V85_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V86_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -165,7 +165,7 @@
 | `sig.freeze` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.opening` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
-| `baseline_verdict` | closed-vocab | §11 BS-3g | HELD | FAILED | PER-DRAW; informational |
+| `baseline_verdict` | closed-vocab | §11 BS-3g | a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |
 | `calibration_sha256` | digest-ref | §11 BS-3g |  |
 | `canonical_shape_pass` | closed-vocab | §6.1 projection | predicate bit |
@@ -174,16 +174,16 @@
 | `class_key` | closed-vocab | §6.1 entry | (row, operation), both closed |
 | `counterfactual_path_sha256` | digest-ref | §11 BS-3g | compiled from verified buffer |
 | `delta_gamma_max` | bounded-encoding | §11 BS-3g | finite positive double = frozen class-P |
-| `disposition` | closed-vocab | §6.1 entry | NAMED-AS-DEFECT | EXPLAINED |
+| `disposition` | closed-vocab | §6.1 entry | NAMED-AS-DEFECT · EXPLAINED |
 | `draw_generator_id` | closed-vocab | §11 BS-3g | set currently EMPTY - blocker |
 | `draw_master_seed` | bounded-encoding | §11 BS-3g | decimal int [0,2^64-1]; frozen UNSET |
 | `draw_verdict_digest` | digest-ref | §11 BS-3g | row-major serialization stated |
 | `estimator_sha256` | digest-ref | §11 BS-3g |  |
 | `event_digest` | digest-ref | §6.1 entry |  |
 | `explanation_ref` | digest-ref | §6.1 entry | sha256 of the canonical explanation body |
-| `gamma_bound` | bounded-encoding | §11 BS-3g | recomputed |gamma_hat|+k*sigma, never accepted |
+| `gamma_bound` | bounded-encoding | §11 BS-3g | recomputed ·gamma_hat·+k*sigma, never accepted |
 | `gamma_hat` | bounded-encoding | §11 BS-3g | finite IEEE-754 double, decimal |
-| `invariance_outcome` | closed-vocab | §11 BS-3g | HELD | FAILED |
+| `invariance_outcome` | closed-vocab | §11 BS-3g | HELD · FAILED |
 | `kernel_sha256` | digest-ref | §11 BS-3g |  |
 | `mapping_id` | closed-vocab | §11 BS-3g | sole member MAPPING-NOT-PREREGISTERED until ruled |
 | `mask_sha256` | digest-ref | §11 BS-3g | must equal BS-2f's pinned mask_digest |

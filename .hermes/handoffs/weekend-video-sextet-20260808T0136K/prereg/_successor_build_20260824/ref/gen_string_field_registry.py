@@ -22,7 +22,9 @@ B = Path(__file__).resolve().parent.parent
 V9 = Path(__file__).resolve().parent / "successor_ref_v9.py"
 DRAFTS = sorted(B.glob("PREREG_SUCCESSOR_DRAFT_V*.md"),
                 key=lambda p: int(re.search(r"_V(\d+)_", p.name).group(1)))
-DRAFT = DRAFTS[-1]
+# CODEX-V84 F3: newest-by-default made older drafts unregeneratable once a successor existed;
+# an explicit path argument selects the draft, newest is only the default.
+DRAFT = Path(sys.argv[1]) if len(sys.argv) > 1 else DRAFTS[-1]
 
 # v9's operative SLOT_SCHEMA (CODEX-V73 F1, GPT56-V73 F2: the registry claimed every non-chi
 # artifact and enumerated only the draft-declared schemas, omitting all fields of the EXISTING slot
@@ -203,7 +205,7 @@ CONSTRAINTS = {
     "draw_generator_id": ("closed-vocab", "§11 BS-3g", "set currently EMPTY - blocker"),
     "draw_master_seed": ("bounded-encoding", "§11 BS-3g", "decimal int [0,2^64-1]; frozen UNSET"),
     "draw_verdict_digest": ("digest-ref", "§11 BS-3g", "row-major serialization stated"),
-    "baseline_verdict": ("closed-vocab", "§11 BS-3g", "HELD | FAILED | PER-DRAW; informational"),
+    "baseline_verdict": ("closed-vocab", "§11 BS-3g", "a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts"),
     "delta_gamma_max": ("bounded-encoding", "§11 BS-3g", "finite positive double = frozen class-P"),
     # access-log event (§6.1 (ii))
     "timestamp": ("bounded-encoding", "§6.1 event schema", "ISO-8601 UTC YYYY-MM-DDThh:mm:ss.sssZ, exactly 24 bytes (GPT56-V77 F4: labelled bounded with no bound)"),
@@ -303,6 +305,27 @@ def crosscheck_declared(text):
                 problems.append(f"lockbody: '{probe}' not found in clause 3(b)")
     else:
         problems.append("clause 3(b) sentence not found for lockbody cross-check")
+    # freeze-body crosscheck (GPT56-V84 F3: the freeze body had no check, so a deletion was silent)
+    fb = _re.search(r"canonical freeze-signature body\*\* is the concatenation, in this order, of: ([^\n]+)", text)
+    if fb:
+        low = fb.group(1).lower()
+        for probe in ("code digest", "pinned_parent_sha256", "pinned_selection_bricks",
+                      "class counts", "own sha"):
+            if probe not in low.replace("`", ""):
+                problems.append(f"freezebody: {probe!r} not found in the freeze-body sentence")
+    else:
+        problems.append("freeze-body sentence not found for crosscheck")
+    # stranger detection for Clause 6 (CODEX-V84 F4: ADDED normative fields were invisible - the
+    # check only probed declared members; every comma-segment must now map to a known member)
+    if c6:
+        known = ("bs-l digest", "store identities", "destination", "ceremony identifier",
+                 "phase p7", "signer identity", "schema/version", "schema")
+        for seg in c6.group(1).split(","):
+            s = seg.strip().lower()
+            s = s[4:] if s.startswith("and ") else s
+            s = s.strip("* ")
+            if s and not any(k.split()[0] in s or k.split()[-1] in s for k in known):
+                problems.append(f"openauth STRANGER segment in Clause 6: {s[:50]!r}")
     return problems
 CANONICAL = {f"canonical.{n}" for n in (
     "freeze_signature_body", "lock_body", "opening_authorization", "entry_body",
@@ -333,7 +356,7 @@ def main():
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
             c, w, note = V9_CONSTRAINTS[sf]
-            rows.append(f"| `{sf}` | {c} | {w} | {note} |")
+            rows.append(f"| `{sf}` | {c} | {w} | {note.replace(chr(124), chr(183))} |")
         else:
             missing.append(sf)
             rows.append(f"| `{sf}` | **FORBIDDEN-BY-DEFAULT — no registry row** | v9 | classify or remove |")
@@ -341,7 +364,7 @@ def main():
     for f in sorted(found):
         if f in CONSTRAINTS:
             c, w, note = CONSTRAINTS[f]
-            rows.append(f"| `{f}` | {c} | {w} | {note} |")
+            rows.append(f"| `{f}` | {c} | {w} | {note.replace(chr(124), chr(183))} |")
         else:
             missing.append(f)
             rows.append(f"| `{f}` | **FORBIDDEN-BY-DEFAULT — no registry row** | ? | classify or remove |")
