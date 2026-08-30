@@ -150,7 +150,17 @@ Claim: a closed uniform-density universe sits inside a black hole and may oscill
 provided its radius exceeds the Schwarzschild radius; it cannot expand without limit.
 Testability: **CONSISTENCY-ONLY** — radius condition and bounded expansion, no distinguishing
 observational statistic in the accessible abstract; the paywalled body remains [VERIFY].
-Record: characterized in the Phase 1 packet §1.1. Audit-worthiness: **low-medium** — historically
+Record: characterized in the Phase 1 packet §1.1.
+**READ (abstract-level) 2026-08-31 (overnight research) — CONSISTENCY-ONLY CONFIRMED, tier
+unchanged.** The full Nature 1972 body is paywalled and not freely obtainable (not on arXiv/INSPIRE;
+ADS unreachable from the agent context), but the Nature abstract is pinned and git-tracked —
+`../reviews/bhu-citation-custody-evidence-20260811/pathria-nature.txt` — and independently audited
+(`../reviews/TORI_PATHRIA_LANA_ABSTRACT_DEPTH_AUDIT_20260811.md`). It asserts a **closed** universe
+that "may also be a black hole, confined to a localized region of space which cannot expand" — a
+bounded closed-universe-inside-a-BH CONSTRUCTION: no no-go, no distinguishing observational
+statistic. CONSISTENCY-ONLY holds. **CAVEAT: abstract-level, not a full-text read** — the paywalled
+body would need the browser/ILL; the tier does not depend on it.
+Audit-worthiness: **low-medium** — historically
 foundational, but a strict night needs the full text first (still unobtained).
 
 **2. I. J. Good (1972). "Chinese universes." Physics Today 25(7), 15.**
