@@ -57,7 +57,10 @@ def bibliography():
         if line.startswith("## "):          # "Ranked:" / "Appendix" end the entries
             section = None
             continue
-        m = re.match(r"^\*\*(\d+)\. (.+?)\*\*\s*$", line)
+        # Match the first bold **N. …** even when trailing text follows on the line.
+        # The old $-anchored form dropped entry 16 (**…117160.** *(note)*) and the seven
+        # support papers (**29. The CNS test pair** (…)) — Duho: "fold them into the table".
+        m = re.match(r"^\*\*(\d+)\. (.+?)\*\*", line)
         if m and section:
             cur = {"n": int(m.group(1)), "cite": m.group(2), "section": section,
                    "doi": "", "cls": "", "worth": ""}
