@@ -85,6 +85,13 @@ the closures below is **declined and struck**; the rulings are final as written.
 free — 48, 14, 50 (KEK scans), 32 (ADS scan), 33's pair (arXiv) — and everything landed is
 read and gated. What remains, precisely:
 
+**SKIPPED FOR NOW — Duho's instruction, 2026-08-30 (~16:4x KST): "skip the papers that you
+couldn't obtain for now."** Everything below stays listed for whenever he reopens it; nothing
+is waiting on it and no agent will chase it further. State at skip time: the PLB 690 pair
+(entry 51's version-of-record + its 2013 erratum) was saved by Duho but landed somewhere no
+agent can read — the drag never happened, and that is fine; the arXiv text of entry 51 remains
+the working pin. The ILL/registration holdouts below are unchanged.
+
 **1. THE CHROME CLICK (unlocks four papers + three version-of-record checks in one go).**
 There is no specific web page to click — the click is connecting your Chrome to me:
 open Chrome (any machine with the Claude extension), say anything to me, and when the
