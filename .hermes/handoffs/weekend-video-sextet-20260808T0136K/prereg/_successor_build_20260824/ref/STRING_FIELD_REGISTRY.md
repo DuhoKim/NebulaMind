@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V95_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V96_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -178,6 +178,11 @@
 | `param.lease_id_digest` | digest-ref | v9 SLOT_SCHEMA | 64 lowercase hex |
 | `param.signal_number` | bounded-encoding | v9 SLOT_SCHEMA | decimal int [1, 64] |
 | `param.store_errno` | bounded-encoding | v9 SLOT_SCHEMA | decimal int [0, 2^15) |
+| `passrec.gate` | closed-vocab | spec 3b - gate pass record (anchor) | the five-gate set |
+| `passrec.head_digest` | digest-ref | spec 3b - gate pass record |  |
+| `passrec.head_position` | bounded-encoding | spec 3b - gate pass record | decimal chain position |
+| `passrec.signature` | bounded-encoding | spec 3b - gate pass record | detached deterministic signature, 64 bytes, enumerator keypair - anchors chain by predecessor verification (GPT56-V95 F2) |
+| `passrec.verifier_digest` | digest-ref | spec 3b - gate pass record |  |
 | `roots_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
 | `roots_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
 | `sig.bsl_lock` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |

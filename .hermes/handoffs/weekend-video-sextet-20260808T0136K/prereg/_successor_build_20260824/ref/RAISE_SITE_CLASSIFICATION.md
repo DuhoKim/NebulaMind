@@ -17,6 +17,8 @@
 
 **Total 113 failure sites — 112 `raise` nodes and 1 production `assert` (v9:1622, INTEGRITY: a post-statistic calibration-path change is state corruption on the verdict path; enumerated since GPT56-V94 F9).** The two sites once marked *soft* (L1462, L1468) were resolved to CALLER at V89 under the boundary as written — each tests a supplied argument's admissibility before the function computes anything (GPT56-V88 F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 made earlier on the identical argument. Sites marked *moved* were reclassified by ruling, not by reading; *resolved* marks the two boundary applications — encoded in this generator at V90 after V89 edited only the output (CODEX-V89 F4: a checked-in artifact that can drift from its generator will).
 
+**ADDENDUM — known IMPLICIT exception paths, hand-enumerated as found (GPT56-V95 F5, CODEX-V95 F7; the per-site claim is scoped to explicit sites and this list is append-only):** L1493 dict subscript on a verdict-token key — KeyError if the closed set is violated upstream, INTEGRITY by boundary; L1609 float cast of a config field — ValueError routed to the entry guard, CALLER; L1647–1649 date-string slicing in `resolve_branch` — TypeError/ValueError on non-string input, CALLER (argument admissibility).**
+
 | line | function | exception | class | | message |
 |---|---|---|---|---|---|
 | 64 | `require_environment` | `RuntimeError` | **INTEGRITY** |  | FROZEN ENVIRONMENT MISMATCH: {}={} want {} |
