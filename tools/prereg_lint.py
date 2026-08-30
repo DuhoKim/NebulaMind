@@ -574,7 +574,8 @@ def main():
             import sys as _s
             _s.path.insert(0, str(Path(__file__).resolve().parent))
             from lifecycle_derivation_check import check as _lc_check
-        for code, msg in _lc_check(text, spec.read_text(), spec.read_bytes()):
+        for code, msg in _lc_check(text, spec.read_text(), spec.read_bytes(),
+                                    spec_path=spec):
             out.append((f"lifecycle-derivation-{code}", msg))
     check_slots_exist(text, rows, out)
     check_class_agreement(text, rows, out)

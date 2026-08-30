@@ -41,6 +41,19 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V105", "GPT56"): {
+        1: ("REPAIRED", "V106 authority-not-chronology principle"),
+        2: ("REPAIRED", "V106 terminal-by-listing composes the rule and the list"),
+        3: ("REPAIRED", "V106 T3 synced + (ii-f) restatement deleted, single surface"),
+        4: ("REPAIRED", "V106 the debt number quoted from the ledger (334), hand-355 owned"),
+    },
+    ("V105", "CODEX"): {
+        1: ("REPAIRED", "V106 authority-not-chronology"),
+        2: ("REPAIRED", "V106 terminal-by-listing"),
+        3: ("REPAIRED", "V106 T3 failed_members synced, second copy deleted"),
+        4: ("REPAIRED", "V106 lint passes spec_path - L09 live"),
+        5: ("REPAIRED", "V106 n_perturbations positive at both sites"),
+    },
     ("V104", "GPT56"): {
         1: ("REPAIRED", "V105 ledger strict (round,seat,finding) key + decoy controls"),
         2: ("REPAIRED", "V105 L08 v4: four seeded controls shown first; L09 rename fingerprint"),

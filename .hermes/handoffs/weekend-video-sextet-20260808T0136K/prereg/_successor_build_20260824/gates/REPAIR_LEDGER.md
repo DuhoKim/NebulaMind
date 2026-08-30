@@ -361,6 +361,15 @@
 - V104/CODEX F3: REPAIRED — V105 L08 v4 (name-set groups, constraint layer, L09)
 - V104/CODEX F4: REPAIRED — V105 comment stripping battery-wide; commented-decoy control
 - V104/CODEX F5: REPAIRED — V105 strict key; the seven under-qualified mappings cured in the citation addendum
+- V105/GPT56 F1: REPAIRED — V106 authority-not-chronology principle
+- V105/GPT56 F2: REPAIRED — V106 terminal-by-listing composes the rule and the list
+- V105/GPT56 F3: REPAIRED — V106 T3 synced + (ii-f) restatement deleted, single surface
+- V105/GPT56 F4: REPAIRED — V106 the debt number quoted from the ledger (334), hand-355 owned
+- V105/CODEX F1: REPAIRED — V106 authority-not-chronology
+- V105/CODEX F2: REPAIRED — V106 terminal-by-listing
+- V105/CODEX F3: REPAIRED — V106 T3 failed_members synced, second copy deleted
+- V105/CODEX F4: REPAIRED — V106 lint passes spec_path - L09 live
+- V105/CODEX F5: REPAIRED — V106 n_perturbations positive at both sites
 
 **LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 
