@@ -175,8 +175,16 @@ pedagogical AJP nature: it demonstrates a Friedmann DUST universe embeds inside 
 black hole — a worldline of constant Schwarzschild radial coordinate is instantaneously null at
 R_n = 2GM/c², with a proper-mass/age-of-universe relation. A consistency/embedding CONSTRUCTION: no
 no-go proof, no distinguishing observational statistic. **CAVEAT: this is an ABSTRACT-level
-confirmation, NOT a full-text read** — a free RG author-copy exists behind login; the exact primary
-needs the browser or ILL. Flagged to Duho. Audit-worthiness: **low** as a
+confirmation, NOT a full-text read** — a free RG author-copy exists but is inaccessible to automation.
+**BROWSER TRIED 2026-08-30 (Duho: "use the browser for entry 3"): ResearchGate blocked it with a
+bot-detection wall ("Access is temporarily restricted" — NOT circumvented, per the CAPTCHA/bot-
+detection rule), and NASA ADS lists ONLY the paywalled AIP publisher (no free scan; not on
+arXiv/INSPIRE).** So the free full-text primary is genuinely gated to automation. Corroborating
+detail from the RG citation graph (visible before the block): the literature describes Stuckey 1994
+as "an exact GR solution for expansion inside a BH, but it still had singularities" — an exact
+embedding CONSTRUCTION (with singularities), not a regular-BH result and not a no-go, consistent
+with CONSISTENCY-ONLY. Exact bytes would need Duho's own logged-in browser or ILL; the tier does
+not depend on them. Audit-worthiness: **low** as a
 target, **useful** as the cleanest pedagogical baseline for any strict interior-matching rebuild.
 
 **4. H. Knutsen (2009). "The idea of the universe as a black hole revisited." Grav. Cosmol. 15, 273–277.**
