@@ -1188,7 +1188,13 @@ role, for the other limb.
 **35. The accretion budget** (added 2026-08-22): T.M. Tauris et al., "Formation of double neutron
 star systems," ApJ **846**, 170 (2017), DOI 10.3847/1538-4357/aa7e89 — VERIFIED. The DNS-formation
 authority whose per-phase budget (ΔM_NS ≈ 0.0134 M⊙ total) supersedes the He-giant proviso by 7–15×
-and restores the ~21σ margin (Track B). Pinned:
+and restores the ~21σ margin (Track B). **Content-bound 2026-08-30 (b51 support sweep): Tauris
+supplies the FORMATION FRAMEWORK and per-phase accretion physics (Case BB, recycling,
+hypercritical/Eddington accretion — all present in the pinned source). The ΔM_NS ≈ 0.0134 M⊙
+TOTAL is NOT a verbatim Tauris number — it is the auditor's per-phase SUM, DERIVED and
+DOUBLE-GATED in Phase 3 Track B (`GATE_B_VERDICT.md` + `XGATE_B_VERDICT.md`; receipt in
+`TRACK_B_INTERIM_FINDING.md`). Recorded as derived, per the describe-vs-compute discipline; no
+discrepancy — Tauris backs the framework, the number is the gated derivation FROM it.** Pinned:
 `../bhu-theory-phase3-cns-20260821/sources/ar5iv_1706.09438.html` (sha256 `09c86153…`).
 
 **58. The axis-prediction measurement** (added 2026-08-23): M. J. Longo, "Detection of a dipole in
