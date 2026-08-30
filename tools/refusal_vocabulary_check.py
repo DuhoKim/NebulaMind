@@ -184,9 +184,10 @@ def check(text: str):
         fail("R03")
     else:
         # a later contradiction must not coexist with the phrase that makes R03 pass (GPT56-V70 F4)
+        # - under the rebuilt principle the contradiction is an affirmative CONTENT-DERIVED allowance
         for line in text.splitlines():
-            if re.search(r"may describe the\s+\*{0,2}object", line, re.I) and \
-               not re.search(r"\bnever\b|\bnot\b|refuses", line, re.I):
+            if re.search(r"may (?:carry|describe|encode)[^.]*content-derived", line, re.I) and \
+               not re.search(r"\bnever\b|\bnot\b|forbid|refuses", line, re.I):
                 fail("R03", f"affirmative contradiction: {line.strip()[:60]!r}")
                 break
     if not re.search(r"no free text", text, re.I):
@@ -298,7 +299,7 @@ CONTROLS = (
     ("a bare twelfth member evades the backtick parse",
      lambda: _fixture() + "Active refusal member: REFUSED-EVADE.\n", "R01"),
     ("a later contradiction coexists with the principle",
-     lambda: _fixture() + "A refusal reason may describe the OBJECT.\n", "R03"),
+     lambda: _fixture() + "A refusal reason may carry content-derived values.\n", "R03"),
     ("the post-opening gates are unnamed", lambda: _fixture(guard="nogates"), "R08"),
     ("a negated mechanism fails the mechanism",
      lambda: _fixture() + "The enumeration verifier is not consulted at BS-L issuance.\n", "R08"),

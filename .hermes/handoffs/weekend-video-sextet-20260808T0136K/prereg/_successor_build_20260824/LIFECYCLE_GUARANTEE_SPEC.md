@@ -67,7 +67,7 @@ preceding arrival is refused by the verifier as malformed history.
 | # | non-guarantee | why it cannot be otherwise |
 |---|---|---|
 | N1 | **Delivery is outside the custody claim** — the event records the store effect, never the requester's receipt or the human's perception | the requester and the human are external to any commit domain; three orderings failed trying to include them |
-| N2-RETIRED | **RETIRED BY RULING (2026-08-30 10:46): the WRITE-AHEAD ARRIVAL RECEIPT makes every real request durably visible** — arrival is logged BEFORE any processing, as a second event class the principal explicitly authorised, so no request can vanish and the lifecycle promise becomes true instead of narrowed. Kept in the table as the record of what was a non-guarantee for eleven revisions | making it visible needs a second event class, which changes what the log records — not authorised, REFERRED |
+| N2 | **RETIRED BY RULING (2026-08-30 10:46): the WRITE-AHEAD ARRIVAL RECEIPT makes every real request durably visible** — arrival is logged BEFORE any processing, as a second event class the principal explicitly authorised, so no request can vanish and the lifecycle promise becomes true instead of narrowed. Kept in the table as the record of what was a non-guarantee for eleven revisions | making it visible needs a second event class, which changes what the log records — not authorised, REFERRED |
 | N3 | **The log can over-report delivery, never under-report a touch** | the safe direction for a custody log, consequence of G1 + N1 |
 
 ## 3. The invariant table — crash window × reader

@@ -1,10 +1,10 @@
-**STATUS: DECISION PENDING — with the principal. Two decisions: Row F's read surface, and the
-strata, which must be decided before freeze. The investigation behind them is complete.** Asked 22:46 KST: do §6.3's "V3-pred's nine HC strata"
-mean HC-1H's machine-committee state × |χ| tertile IN THIS DRAFT?**
-**THE ANSWER IS THE THIRD ONE: THE DRAFT IS SILENT, and it cannot be determined from the text.** It
-neither redefines the strata nor restates them. **Three things I could establish are below, and one of
-them is a defect that does not depend on the strata question at all.**
-
+**STATUS: RULED — strata option (A), 2026-08-30 10:46. χ-derived strata ACCEPTED. Row D2 (stratum-
+index producer, MAY READ χ) builds the index as a sealed, pinned, independently verified artifact —
+slot BS-SI, class P, UNFILLED — Row F's widened surface consumes it and Row F's void clause is
+amended to its real inputs. Nine strata stay; no v9 unfreeze. The typed/capability barrier applies:
+the artifact reaches the allocation constructor only, and the positions-only boundary recomputation
+refuses stratum contamination. CLASS COUNT MOVED 16/8 → 17/8, reported as required. Applied in
+V85.**
 # Row F, the nine HC strata, and what the text actually says
 
 ## 1. Bin construction is provably χ-free — Row F is NOT contradictory on the part its void clause names

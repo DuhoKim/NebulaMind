@@ -1,8 +1,6 @@
-**STATUS: DECISION PENDING — with the principal, COUPLED to the strata decision in
-`FINDING_ROW_F_STRATA.md`. Neither is buildable without the other: what the producer computes depends
-on what the strata are ruled to be, and whether the strata are viable depends on someone being able to
-produce them.**
-
+**STATUS: RULED — option A's producer exists, 2026-08-30 10:46: Row D2 with slot BS-SI (class P,
+UNFILLED), coupled ruling with the strata decision in `FINDING_ROW_F_STRATA.md`. Applied in V85;
+count move 16/8 → 17/8 reported.**
 # OPEN QUESTION — no covenant row produces the per-object HC stratum index
 
 **Raised 2026-08-30 00:0x KST by Hwao, on converging findings (GPT56-V67 F6, CODEX-V67 F7, both

@@ -1,6 +1,7 @@
-**STATUS: DECISION PENDING — with the principal. Two of his own rulings collide, and neither can give
-way without him.** Raised 2026-08-30 09:5x KST by Hwao on CODEX-V81 F6.
-
+**STATUS: RULED — option (a), 2026-08-30 10:46. A post-χ recurring catch-all class TERMINATES THE
+RUN as its own named ending — `TERMINATED-UNNAMEABLE-REFUSAL-CLASS`, neither VOID nor INCONCLUSIVE,
+because forcing it into either family recreates the two-claimants defect. Both laws stand untouched;
+the naming is owed to the successor preregistration. Applied in V85.**
 # OPEN QUESTION — naming a recurring catch-all class requires changing a rule the void law freezes
 
 ## The collision, exactly
