@@ -83,6 +83,23 @@ def bibliography():
     if not entries:
         return []
 
+    # The support papers carry a role-title in bold ("The CNS test pair") with the
+    # real citation in the body; pull the citation(s) out so the table reads like the
+    # other rows (Duho, 2026-08-31: "pull the citations for the support rows"). Each
+    # paper's reference precedes its ", DOI … — VERIFIED" trailer; pairs join with ";".
+    span = text[:text.find("## Ranked:")] if "## Ranked:" in text else text
+    _p = [(m.start(), int(m.group(1))) for m in re.finditer(r"^\*\*(\d+)\. ", span, re.M)]
+    _blk = {n: " ".join(span[p:(_p[i + 1][0] if i + 1 < len(_p) else len(span))].split())
+            for i, (p, n) in enumerate(_p)}
+    for e in entries:
+        if not re.search(r"\((?:19|20)\d\d\)", e["cite"]):   # no (year) in the bold => a role-title
+            b = _blk.get(e["n"], "")
+            j = b.find("): ")                                 # drop the "**N. title** (meta): " prefix
+            papers = re.findall(r"([^;]+?),?\s+DOI\s+\S+[^;]*?VERIFIED", b[j + 3:]) if j >= 0 else []
+            if papers:
+                e["cite"] = "; ".join(re.sub(r"^(?:and\s+)?", "", p.strip()).strip(" ,")
+                                      for p in papers).replace("**", "")
+
     # Keep the branches in the order their sections first appear, but sort papers
     # by entry number WITHIN each branch (Duho, 2026-08-31: "the paper number is
     # not ordered" — the Gaztañaga branch had 56 before 54 in file order).
