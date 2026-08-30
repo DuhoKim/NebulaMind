@@ -838,8 +838,18 @@ the polarization result not robust at ~0.5σ to likelihood modelling (CamSpec: �
 **So this is a live dispute and the record carried one side of it**; the paper takes the closed
 side and cites Di Valentino et al. 2020 for it (not pinned here). `CGATE_B14_VERDICT.md` adds, from
 a phase-6 citation audit, that the ACT paper's own summary runs contrary to our "same-direction"
-gloss and the cited DESI analysis *assumes* Ω_K = 0 — **that is a seat's testimony, not verified
-here.** Tier UNCHANGED; the weekly Ω_k sign watcher is unaffected and was checked, not assumed. NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
+gloss and the cited DESI analysis *assumes* Ω_K = 0 — that was a seat's testimony. **B59-VERIFIED
+2026-08-30 (agy + codex both `SOURCE_OVERSTATES_ACT_DESI_TIER_UNCHANGED`; `AGATE_B59_VERDICT.md` +
+`CGATE_B59_VERDICT.md`, primary abstracts pinned):** the testimony holds against the sources. **ACT
+DR6** (arXiv 2503.14452, pinned) states "no departure from spatial flatness"; **DESI 2024 VI**
+(2404.03002, pinned) is "consistent with flat ΛCDM"; **DESI DR2** (2503.14738) explicitly fits an
+Ω_K extension and finds "no significant preference for a non-flat ΛCDM model" — its central Ω_k sits
+on the OPEN side (10³Ω_k = 25±41 alone, 2.3±1.1 with CMB, the paper's convention). So the source's
+"same-direction ACT/DESI positive-curvature trend" gloss OVERSTATES — for DESI, reverses the sign
+of — the cited constraints. Only **Di Valentino et al. 2020** (1911.02087, pinned) genuinely argues
+closed (>99% CL from Planck) and is cited accurately. codex narrows the CGATE_B14 wording: DESI does
+not merely *assume* flatness, it fits Ω_k and finds no preference. **This is a citation-accuracy
+clarification, NOT a tier change — both seats concur.** Tier UNCHANGED; the weekly Ω_k sign watcher is unaffected and was checked, not assumed. NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
 Record: triage pick #27; the newest published bounce mechanism in the family.
 
 ## 7. Holographic interior cosmology
