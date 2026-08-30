@@ -13,6 +13,18 @@ through and none reverted — entry 44's warrant, the warrant column, entry 51's
 entries 52/53, and entry 5's move each stand. Every "revert if you meant explain-it" offer in
 the closures below is **declined and struck**; the rulings are final as written.
 
+## STANDING DEPENDENCY — not a question, kept listed on Duho's instruction
+
+**Twelve papers need his institutional login** (the only thing in this lane no agent can do):
+entries **1, 2, 3, 4, 13, 14, 16, 18, 42, 47, 48, 50**. The three that settle open threads:
+- **entry 48, Farhi & Guth, PLB 183, 149** — the proof-owner of the laboratory-creation no-go
+  that entry 49 reports (and Dymnikova 2019 independently attributes);
+- **Silk, Science 277, 644** — entry 31's last unread critic (Smolin's citation prints vol 227;
+  1997 is vol 277);
+- **Popławski, PLB 690, 73–77** — version-of-record for the unreproduced mass floor.
+Entry 32 (Brown & Bethe, ApJ 423, 1994) is separate: not login-gated, pre-arXiv; an ADS-scan
+browser acquisition is the open route if wanted.
+
 ## PREVIOUSLY CLOSED — all four earlier questions
 
 > **Numbering note, 2026-08-29.** These read **2, 3, 1** and the new one was numbered **3**,
