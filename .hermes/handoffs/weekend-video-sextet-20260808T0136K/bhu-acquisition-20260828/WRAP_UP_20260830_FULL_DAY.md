@@ -3,6 +3,37 @@
 Written for a session with zero recollection. The files ARE the memory — this one plus the
 bibliography, the register, and OPEN_QUESTIONS are the whole state.
 
+## OVERNIGHT 2026-08-30→31 — FOUNDATION RECEIPTS (newest; for the 07:00 handover)
+
+Quiet-hold was lifted for the night (Duho via Blanc, 22:08 KST: "flip Tori too"). The relay named
+two items — the **Farhi & Guth full read** and the **PLB 690 pair disposition** — but BOTH were
+already done earlier today (entry 48: `b45` 8/8, `AGATE_B45`+`CGATE_B45`, tier obstruction under
+Q8; PLB 690 pair: `b49` 11/11, `CGATE_B49` ring-holds). No new source had landed — the "entry 48
+source in the sources folder" is the 12:55 KEK scan already read. Same recurring stale
+reading-plan pointer; the source-side annotation for it is in OPEN_QUESTIONS §5.
+
+With the named queue already closed, worked the next genuine free-access category — **converting
+the corpus's foundations from seat testimony into pinned, self-computing receipts** (no seat gate;
+all in the battery, which went **69 → 72**):
+- **`b56`** — entry 22's PUBLICATION fact (PRD 114, 044077) was "a seat's APS lookup, not a
+  document"; now bound to a pinned Crossref record (`crossref_10.1103_qs86-npwk_entry22.json`).
+- **`b57`** (5/5) — **corpus-wide publication audit**: before tonight NO entry had a pinned
+  Crossref document. Fetched all 58 DOIs; **58/58 resolve to a published journal-article** with the
+  claimed venue and volume (zero preprints-as-published, zero transcription errors). Receipt:
+  `crossref_publication_audit.jsonl`. This is the "published journal papers only" base-layer rule,
+  now receipted instead of asserted.
+- **`b58`** (2/2) — **pin hash custody**: b44 proved cited pin *filenames* exist+tracked but never
+  checked *content*; b58 confirms all 21 cited sha256 prefixes hash-match real file bytes (111
+  pinned files), including the drift-prone Elsevier PDFs. Zero corruption.
+
+**After these, the clean free-access queue is exhausted.** The one remaining free-access item is
+**entry 54's Ω_K testimony** (record: "the cited DESI analysis *assumes* Ω_K = 0 — a seat's
+testimony, not verified here; Tier UNCHANGED"). It is **seat-gated, not a solo receipt**: resolving
+"assumes vs. constrains" needs a seat's read of the DESI/ACT papers entry 54 cites, and it is
+falsifier-adjacent (the family's curvature prediction), so per Duho's overnight protocol it is left
+for a seat/the tick rather than adjudicated solo. Tier-neutral, low priority. Everything else is
+institutional-parked (holdouts 42/47, Silk registration, pre-2010 VoRs).
+
 ## What this lane is
 
 An adversarial audit of the **black-hole-universe (BHU) published bibliography** — 58 numbered
