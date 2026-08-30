@@ -1,0 +1,15 @@
+{
+  "purpose": "Standing tripwire data for entry 54's curvature falsifier. Entry 54 (bounce paper 2505.23877) predicts a CLOSED universe, Omega_k < 0, and refutes on 'a confirmed Omega_k > 0' (an OPEN universe). This ledger holds the current-best spatial-curvature constraints; b63_standing_curvature_tripwire.py recomputes the verdict from it on every battery run. B61 (2026-08-30, agy+codex) established these values and the NOT-FIRED verdict.",
+  "convention": "Omega_K > 0 = OPEN = ADVERSE to entry 54's closed prediction; Omega_K < 0 = CLOSED = the prediction. Verified in B61 from the paper's own Eq.27 and DESI's sinh distance branch.",
+  "open_side_sigma_regate_threshold": 3.0,
+  "threshold_rationale": "Below 3 sigma = a hint (current state). At >= 3 sigma open-side, the tension crosses from 'hint' to 'significant preference' and the tripwire FAILS the battery to force a re-gate (a fresh two-seat B-gate) that decides whether it meets entry 54's 'confirmed' bar (~5 sigma = a detection). The tripwire does NOT itself fire the falsifier or change any tier -- it halts and demands adjudication, which is a Duho decision.",
+  "closed_limb_note": "A secondary, CONDITIONAL refutation exists: Omega_k <= -0.09 confirmed refutes only under the authors' own chi_* identification. Tracked but currently far off (nearest closed value is Planck's -0.0106).",
+  "how_to_update": "When a new DESI/Planck/ACT curvature result lands, add its {source, dataset, omega_k, sigma} here and re-run the battery. If the tripwire FAILS, run a fresh two-seat gate and bring the result to Duho -- do not silently edit the threshold or delete a constraint to make it pass.",
+  "constraints": [
+    {"source": "2503.14738", "dataset": "DESI DR2 + CMB", "omega_k": 0.0023, "sigma": 0.0011, "collaboration_calls_flat_consistent": true, "note": "DESI: 'no significant preference for a non-flat LCDM model'. Table 5, LCDM+Omega_K block. Tightest open-side result."},
+    {"source": "2503.14738", "dataset": "DESI DR2 alone", "omega_k": 0.025, "sigma": 0.041, "collaboration_calls_flat_consistent": true, "note": "Table 5."},
+    {"source": "1807.06209", "dataset": "Planck TT,TE,EE+lowE+lensing", "omega_k": -0.0106, "sigma": 0.0065, "collaboration_calls_flat_consistent": true, "note": "closed-side displacement, ~1.6 sigma."},
+    {"source": "1807.06209", "dataset": "Planck +lensing+BAO", "omega_k": 0.0007, "sigma": 0.0019, "collaboration_calls_flat_consistent": true, "note": "0.37 sigma open, fully consistent with zero."},
+    {"source": "2503.14452", "dataset": "ACT DR6", "omega_k": null, "sigma": null, "collaboration_calls_flat_consistent": true, "note": "'no departure from spatial flatness'; no numeric extracted -- flat, non-adverse."}
+  ]
+}
