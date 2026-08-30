@@ -32,6 +32,7 @@ DECLARED = {
     "wire-frame": "framed unit", "verdict-record": "verdict record",
     "terminal-review": "TERMINAL-REVIEW BODY", "drain-start": "DRAIN-START record",
     "terminal-checkpoint": "TERMINAL CHECKPOINT",
+    "receipt-note": "RECEIPT-NOTE record",
 }
 # field-name regex -> coverage. Order matters; first match wins.
 PREIMAGE_OF = [
@@ -41,11 +42,15 @@ PREIMAGE_OF = [
     (r"^passrec\.(head_digest)$", ("FROZEN", "chain running digest at the head")),
     (r"^passrec\.predecessor_record_digest$", ("TAGGED", "passrec")),
     (r"^passrec\.verifier_digest$", ("RAW", "verifier file bytes")),
-    (r"^(drainst|termcp)\.receipt_digest$", ("TAGGED", "termrec")),
+    (r"^(drainst|termcp|rnote)\.receipt_digest$", ("TAGGED", "termrec")),
     (r"^termcp\.chain_head_digest$", ("FROZEN", "chain running digest")),
     (r"^(termrec|haltrec)\.freeze_signature_digest$", ("TAGGED", "freeze-body")),
     (r"^(termrec|haltrec)\.first_opening_digest$", ("FROZEN",
      "the opening record digest - clock-family, chain-side")),
+    (r"^revbody\.terminal_checkpoint_digest$", ("TAGGED", "terminal-checkpoint")),
+    (r"^revbody\.recomputed_head$", ("FROZEN", "chain running digest, recomputed")),
+    (r"^revbody\.(verifier_digest|transcript_digest)$", ("RAW",
+     "verifier binary / ceremony transcript bytes")),
     (r"^lockcp\.chain_head_digest$", ("FROZEN", "chain running digest")),
     (r"^lockcp\.sealed_entry_set_digest$", ("TAGGED", "sealed-entry-set")),
     (r"^lockcp\.sealed_bindmap_digest$", ("TAGGED", "sealed-bindmap")),

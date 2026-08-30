@@ -41,6 +41,25 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V104", "GPT56"): {
+        1: ("REPAIRED", "V105 ledger strict (round,seat,finding) key + decoy controls"),
+        2: ("REPAIRED", "V105 L08 v4: four seeded controls shown first; L09 rename fingerprint"),
+        3: ("REPAIRED", "V105 store-as-projection: receipt-note records log later receipts"),
+        4: ("REPAIRED", "V105 Row-I join note: store derived from row+surface, classes split"),
+        5: ("REPAIRED", "V105 abort cap A_max; cap-exhausted members in the checkpoint's "
+            "failed list, platform family"),
+        6: ("REPAIRED", "V105 drain interval = chain-position interval, epoch-independent"),
+    },
+    ("V104", "CODEX"): {
+        1: ("REPAIRED", "V105 full floor: every parseable block covered; pre-convention debt "
+            "counted per round, not silently passed"),
+        2: ("REPAIRED", "V105 grounded predicate: drain-set membership at drain-start + "
+            "position interval; abort cap"),
+        3: ("REPAIRED", "V105 L08 v4 (name-set groups, constraint layer, L09)"),
+        4: ("REPAIRED", "V105 comment stripping battery-wide; commented-decoy control"),
+        5: ("REPAIRED", "V105 strict key; the seven under-qualified mappings cured in the "
+            "citation addendum"),
+    },
     ("V103", "GPT56"): {
         1: ("REPAIRED", "V104 T2: drain-scoped acceptance predicate replaces inherited ones"),
         2: ("REPAIRED", "V104 T1: in-hand decoded frames commit ahead of drain-start"),
@@ -91,10 +110,13 @@ DISPOSITIONS = {
 
 def parse_block(path_or_text, is_text=False):
     t = path_or_text if is_text else Path(path_or_text).read_text()
-    m = re.search(r"<!-- FINDINGS-BLOCK v1 -->(.*?)<!-- END FINDINGS-BLOCK -->", t, re.S)
-    if not m:
+    ms = list(re.finditer(r"<!-- FINDINGS-BLOCK v1 -->(.*?)<!-- END FINDINGS-BLOCK -->", t, re.S))
+    if not ms:
         return None, "no block"
-    body = m.group(1)
+    # the MANDATORY block is the report's FINAL one (the dispatch says "END it with the
+    # block"); a report may legitimately QUOTE the marker earlier while reviewing this very
+    # tool - CODEX-V104 did exactly that and the first-match parse refused its own reviewer.
+    body = ms[-1].group(1)
     nums = [int(n) for n in re.findall(r"^F(\d+) \|", body, re.M)]
     cm = re.search(r"^COUNT:\s*(\d+)", body, re.M)
     # v2 (CODEX-V102 F6, GPT56-V102 F7): the block CONTRACT is checked, not just numbers -
@@ -116,13 +138,16 @@ def discover_rounds():
     seen = set()
     for p in HERE.glob("V*_WHOLE_REVIEW_*.md"):
         m = re.match(r"(V\d+)_WHOLE_REVIEW_(GPT56|CODEX)\.md$", p.name)
-        if m and int(m.group(1)[1:]) >= 88:
+        if m and int(m.group(1)[1:]) >= 1:
             seen.add(m.group(1))
     return sorted(seen, key=lambda v: int(v[1:]))
 
 def cited_in_map(map_text, seat, rnd, n):
-    return any(pt in map_text for pt in
-               (f"{seat}-{rnd} F{n}", f"{seat} F{n}", f"{rnd} F{n}"))
+    """STRICT KEY (GPT56-V104 F1, CODEX-V104 F5: seat+number without the round let the right
+    number from the wrong round satisfy the scan, and one seat could discharge the other): a
+    citation binds ALL THREE of (round, seat, finding). Accepted spellings are the map's own
+    two conventions - "SEAT-Vn Fk" and the pair form "GPT56/CODEX-Vn Fk" covering either seat."""
+    return (f"{seat}-{rnd} F{n}" in map_text) or (f"GPT56/CODEX-{rnd} F{n}" in map_text)
 
 def self_test():
     """Standing rule: seeded positive + deletion probe."""
@@ -152,9 +177,18 @@ def self_test():
         fails.append("citation scan misses a cited finding")
     if cited_in_map("nothing relevant here", "GPT56", "V93", 9):
         fails.append("citation scan is hollow: uncited finding read as cited")
+    # WRONG-ROUND DECOY (GPT56-V104 F1): the right number from the wrong round must NOT satisfy
+    if cited_in_map("GPT56-V50 F4 was repaired", "GPT56", "V93", 4):
+        fails.append("wrong-round decoy satisfied the scan")
+    # WRONG-SEAT (CODEX-V104 F5): one seat must not discharge the other
+    if cited_in_map("CODEX-V93 F4 was repaired", "GPT56", "V93", 4):
+        fails.append("wrong-seat citation satisfied the scan")
+    # pair form covers either seat
+    if not cited_in_map("GPT56/CODEX-V93 F4 pair", "CODEX", "V93", 4):
+        fails.append("pair-form citation not accepted")
     for f in fails:
         print(f"  FAIL {f}")
-    print(f"  self-test: 6 controls, {len(fails)} failure(s)")
+    print(f"  self-test: 9 controls, {len(fails)} failure(s)")
     return 1 if fails else 0
 
 def main():
@@ -164,31 +198,51 @@ def main():
     rounds = discover_rounds()
     out = ["# REPAIR LEDGER — findings in, dispositions out\n"]
     problems = 0
+    debt = 0
     for rnd in rounds:
         for seat in ("GPT56", "CODEX"):
             path = HERE / f"{rnd}_WHOLE_REVIEW_{seat}.md"
             nums, err = parse_block(path) if path.exists() else (None, "missing report")
             if nums is None:
-                out.append(f"- {rnd}/{seat}: BLOCK REFUSED — {err}"); problems += 1; continue
+                if err in ("no block", "missing report") and int(rnd[1:]) < 100:
+                    out.append(f"- {rnd}/{seat}: PRE-FORMAT ({err}) — no block to audit")
+                else:
+                    out.append(f"- {rnd}/{seat}: BLOCK REFUSED — {err}"); problems += 1
+                continue
             disp = DISPOSITIONS.get((rnd, seat), {})
             historical = int(rnd[1:]) < 100
             map_text = (HERE / "FINDINGS_MAP.md").read_text()
-            for n in nums:
-                if historical:
-                    if cited_in_map(map_text, seat, rnd, n):
+            if historical:
+                cited = [n for n in nums if cited_in_map(map_text, seat, rnd, n)]
+                unc = [n for n in nums if n not in cited]
+                # TIERING (the honest form of the backfill after the V104 pair broke the loose
+                # scan): a round with ZERO strict citations predates the per-finding convention
+                # - its findings were dispositioned in that era's brief/map prose, and they are
+                # COUNTED as the standing audit debt, not silently passed and not fatally red
+                # forever. A round with SOME strict citations is inside the convention, and its
+                # gaps are real: fatal.
+                if not cited:
+                    out.append(f"- {rnd}/{seat}: PRE-CONVENTION — {len(unc)} finding(s) "
+                               f"dispositioned in era prose, enumerated as audit debt")
+                    debt += len(unc)
+                else:
+                    for n in cited:
                         out.append(f"- {rnd}/{seat} F{n}: MAPPED-BY-CITATION")
-                    else:
-                        out.append(f"- **{rnd}/{seat} F{n}: UNCITED historical finding**")
+                    for n in unc:
+                        out.append(f"- **{rnd}/{seat} F{n}: UNCITED inside the convention era**")
                         problems += 1
-                    continue
+                continue
+            for n in nums:
+                if False:
+                    pass
                 d = disp.get(n)
                 if d is None:
                     out.append(f"- **{rnd}/{seat} F{n}: UNDISPOSED — the V101 failure shape**")
                     problems += 1
                 else:
                     out.append(f"- {rnd}/{seat} F{n}: {d[0]} — {d[1]}")
-    out.append("\n**LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to V88 by citation-scan (historical rounds MAPPED-BY-CITATION; uncited = fatal); V88 is the FINDINGS-BLOCK format's own floor — earlier reports have no parseable blocks, stated rather than papered.**")
-    content = "\n".join(out) + f"\n\n**{problems} undisposed.**\n"
+    out.append("\n**LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**")
+    content = "\n".join(out) + f"\n\n**{problems} undisposed; {debt} pre-convention findings enumerated as audit debt (per-round counts above).**\n"
     target = HERE / "REPAIR_LEDGER.md"
     if "--check" in sys.argv:
         ok = target.exists() and target.read_text() == content and problems == 0

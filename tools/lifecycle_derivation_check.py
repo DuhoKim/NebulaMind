@@ -41,9 +41,11 @@ ERRORS = {
            "the quote must be the row's FULL body (GPT56-V73 F3, CODEX-V73 F2)",
     "L07": "the draft carries more than one lifecycle-spec pin — a second pin is a second source "
            "for one fact",
-    "L08": "a shared closed-schema tuple diverges between draft and spec — the V98 "
-           "partition_cut_position field landed draft-side only and the invariant-bound "
-           "checker missed it for two rounds (GPT56-V100 F2)",
+    "L08": "one schema, divergent occurrences — same field/constraint content in a "
+           "different order, across or within files (strike three's rebuild: the four seeded "
+           "controls are the spec, this sentence is the summary)",
+    "L09": "a schema tuple carries a field the registry does not know — a rename's "
+           "fingerprint (GPT56-V104 F2: a one-file rename left the intersection and passed)",
 }
 
 TAG = re.compile(r"lifecycle-spec:\s*sha256\s*`?([0-9a-f]{64})`?")
@@ -57,7 +59,8 @@ def norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().rstrip(".")
 
 
-def check(draft_text: str, spec_text: str, spec_bytes: bytes):
+def check(draft_text: str, spec_text: str, spec_bytes: bytes, spec_path=None,
+          cmap=None, cmap_draft=None, cmap_spec=None):
     out = []
     pins = TAG.findall(draft_text)
     if not pins:
@@ -84,37 +87,58 @@ def check(draft_text: str, spec_text: str, spec_bytes: bytes):
     for tag in spec_rows:
         if tag not in quoted:
             out.append(("L04", ERRORS["L04"] + f" — {tag}"))
-    # L08 v3 — REBUILT AGAINST A SPEC after two strikes (one-tuple special case at V101,
-    # reorderable prefix heuristic at V103 — GPT56-V103 F5, CODEX-V103 F4; the coordinator:
-    # write the spec, rebuild against it, before strike three).
-    # THE SPEC: a schema's IDENTITY is its CANONICAL SCHEMA DIGEST — sha256 over the
-    # NFC-normalized, bytewise-sorted FIELD SET (order-insensitive, one field per line,
-    # count-prefixed) — never a prefix, never a field count. Two tuples with one identity are
-    # ONE schema: their ORDERED forms must be byte-equal wherever both files carry them, and an
-    # ordered mismatch under a shared identity is the divergence L08 exists to catch (a reorder
-    # cannot change identity, so reordering no longer evades). Two schemas that legitimately
-    # share an exact field set collide by construction and would be reported as one — stated as
-    # the residual; the round judges identity beyond the field set, and this text says so
-    # instead of wearing an invariant's name over a heuristic.
+    # L08 v4 — strike three's rebuild (GPT56-V104 F2, CODEX-V104 F3; the coordinator:
+    # CONTROLS BEFORE CODE — four seeded controls were run against v3 and their colors
+    # recorded before this body existed: rename BLIND, type-change BLIND, reorder caught,
+    # collapsed-duplicate red-for-the-wrong-reason. The controls are the spec):
+    #   identity = digest over the ORDERED canonical serialization of (field, constraint)
+    #   pairs, computed at EVERY occurrence in both files; constraints come from the string
+    #   registry (single-sourced live; injectable for controls).
+    #   L09: an unregistered field in any tuple — the rename fingerprint.
+    #   L08: within one loose group (same sorted field-name set, same constraints), ordered
+    #   forms differ — a reorder or a drifted occurrence, across or within files.
+    #   Distinct schemas sharing a field-name set but differing in constraints are DISTINCT
+    #   and unflagged — the v3 collapse is gone.
     import hashlib as _hl
     import re as _re
     import unicodedata as _ud
     _normsig = lambda x: x.replace("signature-enveloped", "signature")
-    def schema_ident(tup):
-        fields = sorted(_ud.normalize("NFC", f.strip()) for f in tup.split(","))
-        body = str(len(fields)) + "\n" + "\n".join(fields)
-        return _hl.sha256(body.encode()).hexdigest()
-    def tuples(s):
-        d = {}
-        for m in _re.finditer(r"`\(([a-z_]+(?:,\s+[a-z_][a-z_ -]*)+)\)`", s):
-            tup = _normsig(m.group(1))
-            d.setdefault(schema_ident(tup), set()).add(tup)
-        return d
-    dt, st = tuples(draft_text), tuples(spec_text)
-    for ident in sorted(set(dt) & set(st)):
-        if dt[ident] != st[ident]:
-            out.append(("L08", ERRORS["L08"] + f" — one schema identity, divergent ordered "
-                        f"forms: draft {sorted(dt[ident])} vs spec {sorted(st[ident])}"))
+    if cmap is None:
+        cmap = {}
+        try:
+            reg = (spec_path.parent / "ref" / "STRING_FIELD_REGISTRY.md").read_text()
+            for m in _re.finditer(r"^\| `([a-z0-9_.-]+)` \| ([a-zA-Z-]+) \|", reg, _re.M):
+                cmap[m.group(1).split(".")[-1]] = m.group(2)
+        except Exception:
+            pass
+    def occs(s, mp):
+        found = []
+        # 3+ char fields: `(i, j)` is matrix notation, not a schema (live-run catch)
+        for m in _re.finditer(r"`\(([a-z_]{3,}(?:,\s+[a-z_][a-z_ ]{2,})+)\)`", s):
+            fields = [_ud.normalize("NFC", f.strip()) for f in _normsig(m.group(1)).split(",")]
+            pairs = [(f, mp.get(f, mp.get(f.replace(" ", "_"), "UNREGISTERED"))) for f in fields]
+            strict = _hl.sha256(("\n".join(f"{a}|{b}" for a, b in pairs)).encode()).hexdigest()
+            loose = tuple(sorted(a for a, b in pairs))
+            found.append((fields, pairs, strict, loose, m.group(1)))
+        return found
+    NOT_SCHEMAS = {("brickid", "objid")}   # data-column join keys quoted in prose, not
+    # record schemas; listed rather than heuristically sized (live-run catch)
+    all_occ = [o for o in occs(draft_text, cmap_draft or cmap)
+               + occs(spec_text, cmap_spec or cmap)
+               if tuple(o[0]) not in NOT_SCHEMAS]
+    groups = {}
+    for fields, pairs, strict, loose, raw in all_occ:
+        unreg = [a for a, b in pairs if b == "UNREGISTERED"]
+        if unreg and cmap:
+            out.append(("L09", ERRORS["L09"] + f" — {unreg} in `({raw})`"))
+        groups.setdefault(loose, set()).add(strict)
+    for loose, stricts in groups.items():
+        if len(stricts) > 1:
+            # one field-NAME set, divergent (order|constraint) forms: a reorder, a type change,
+            # or two schemas colliding on a name set — the last is the stated residual (no live
+            # pair collides today; if one appears, this flag forces an explicit rename, which
+            # is the hygiene the register wants anyway) and the round adjudicates.
+            out.append(("L08", ERRORS["L08"] + f" — field set {list(loose)}"))
     return out
 
 
@@ -142,12 +166,16 @@ def self_test():
         ("a truncated quote", good.replace("G1 — no bytes move without a committed event",
                                            "G1 — no bytes move"), {"L06"}),
         ("two pins", good + f"lifecycle-spec: sha256 `{pin}`\n", {"L07"}),
-        ("a reordered tuple under one schema identity",
+        ("SEEDED reorder (one schema, two orders)",
          good + "`(chain_head, kind)`\n", {"L08"}),
+        ("SEEDED rename (unregistered field)",
+         good.replace("**G2 — events tell the truth**\n", "")
+         + "**G2 — events tell the truth**\n`(kind, chain_hed)`\n", {"L09"}),
     ]
     fails = []
     for name, draft, want in cases:
-        got = {c for c, _ in check(draft, spec, spec_b)}
+        got = {c for c, _ in check(draft, spec, spec_b,
+                                   cmap={'kind': 'x', 'chain_head': 'x'})}
         if got != want:
             fails.append(f"{name}: expected {sorted(want) or 'clean'}, got {sorted(got) or 'clean'}")
     for f in fails:
@@ -164,7 +192,8 @@ def main():
         print("usage: lifecycle_derivation_check.py DRAFT.md SPEC.md | --self-test")
         return 2
     draft, spec = Path(args[0]), Path(args[1])
-    problems = check(draft.read_text(), spec.read_text(), spec.read_bytes())
+    problems = check(draft.read_text(), spec.read_text(), spec.read_bytes(),
+                     spec_path=spec)
     for c, msg in problems:
         print(f"  [{c}] {msg}")
     print(f"  lifecycle derivation: {len(problems)} problem(s)")

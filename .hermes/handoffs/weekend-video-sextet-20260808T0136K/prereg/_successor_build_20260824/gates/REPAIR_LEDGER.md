@@ -1,5 +1,141 @@
 # REPAIR LEDGER — findings in, dispositions out
 
+- V16/GPT56: PRE-FORMAT (no block) — no block to audit
+- V16/CODEX: PRE-FORMAT (no block) — no block to audit
+- V17/GPT56: PRE-FORMAT (no block) — no block to audit
+- V17/CODEX: PRE-FORMAT (no block) — no block to audit
+- V18/GPT56: PRE-FORMAT (no block) — no block to audit
+- V18/CODEX: PRE-FORMAT (no block) — no block to audit
+- V19/GPT56: PRE-FORMAT (no block) — no block to audit
+- V19/CODEX: PRE-FORMAT (no block) — no block to audit
+- V20/GPT56: PRE-FORMAT (no block) — no block to audit
+- V20/CODEX: PRE-FORMAT (no block) — no block to audit
+- V21/GPT56: PRE-FORMAT (no block) — no block to audit
+- V21/CODEX: PRE-FORMAT (no block) — no block to audit
+- V22/GPT56: PRE-FORMAT (no block) — no block to audit
+- V22/CODEX: PRE-FORMAT (no block) — no block to audit
+- V23/GPT56: PRE-FORMAT (no block) — no block to audit
+- V23/CODEX: PRE-FORMAT (no block) — no block to audit
+- V24/GPT56: PRE-FORMAT (no block) — no block to audit
+- V24/CODEX: PRE-FORMAT (no block) — no block to audit
+- V25/GPT56: PRE-FORMAT (no block) — no block to audit
+- V25/CODEX: PRE-FORMAT (no block) — no block to audit
+- V26/GPT56: PRE-FORMAT (no block) — no block to audit
+- V26/CODEX: PRE-FORMAT (no block) — no block to audit
+- V27/GPT56: PRE-FORMAT (no block) — no block to audit
+- V27/CODEX: PRE-FORMAT (no block) — no block to audit
+- V28/GPT56: PRE-FORMAT (no block) — no block to audit
+- V28/CODEX: PRE-FORMAT (no block) — no block to audit
+- V29/GPT56: PRE-FORMAT (no block) — no block to audit
+- V29/CODEX: PRE-FORMAT (no block) — no block to audit
+- V30/GPT56: PRE-FORMAT (no block) — no block to audit
+- V30/CODEX: PRE-FORMAT (no block) — no block to audit
+- V31/GPT56: PRE-FORMAT (no block) — no block to audit
+- V31/CODEX: PRE-FORMAT (no block) — no block to audit
+- V32/GPT56: PRE-FORMAT (no block) — no block to audit
+- V32/CODEX: PRE-FORMAT (no block) — no block to audit
+- V33/GPT56: PRE-FORMAT (no block) — no block to audit
+- V33/CODEX: PRE-FORMAT (no block) — no block to audit
+- V34/GPT56: PRE-FORMAT (no block) — no block to audit
+- V34/CODEX: PRE-FORMAT (no block) — no block to audit
+- V35/GPT56: PRE-FORMAT (no block) — no block to audit
+- V35/CODEX: PRE-FORMAT (no block) — no block to audit
+- V36/GPT56: PRE-FORMAT (no block) — no block to audit
+- V36/CODEX: PRE-FORMAT (no block) — no block to audit
+- V38/GPT56: PRE-CONVENTION — 1 finding(s) dispositioned in era prose, enumerated as audit debt
+- V38/CODEX: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V40/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V40/CODEX: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V43/GPT56: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V43/CODEX: PRE-CONVENTION — 2 finding(s) dispositioned in era prose, enumerated as audit debt
+- V44/GPT56: PRE-CONVENTION — 2 finding(s) dispositioned in era prose, enumerated as audit debt
+- V44/CODEX: PRE-CONVENTION — 2 finding(s) dispositioned in era prose, enumerated as audit debt
+- V46/GPT56: PRE-CONVENTION — 2 finding(s) dispositioned in era prose, enumerated as audit debt
+- V46/CODEX: PRE-CONVENTION — 2 finding(s) dispositioned in era prose, enumerated as audit debt
+- V49/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V49/CODEX: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V52/GPT56: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V52/CODEX: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V53/GPT56: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V53/CODEX: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V54/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V54/CODEX: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V56/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V56/CODEX: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V59/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V59/CODEX: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V63/GPT56: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V63/CODEX: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V64/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V64/CODEX: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V66/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V66/CODEX: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V67/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V67/CODEX: PRE-CONVENTION — 8 finding(s) dispositioned in era prose, enumerated as audit debt
+- V68/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V68/CODEX: PRE-CONVENTION — 8 finding(s) dispositioned in era prose, enumerated as audit debt
+- V69/GPT56 F1: MAPPED-BY-CITATION
+- V69/GPT56 F2: MAPPED-BY-CITATION
+- V69/GPT56 F3: MAPPED-BY-CITATION
+- V69/GPT56 F4: MAPPED-BY-CITATION
+- V69/GPT56 F5: MAPPED-BY-CITATION
+- V69/GPT56 F6: MAPPED-BY-CITATION
+- V69/CODEX: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V70/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V70/CODEX: PRE-CONVENTION — 8 finding(s) dispositioned in era prose, enumerated as audit debt
+- V71/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V71/CODEX: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V72/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V72/CODEX: PRE-CONVENTION — 8 finding(s) dispositioned in era prose, enumerated as audit debt
+- V73/GPT56: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V73/CODEX: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V74/GPT56: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V74/CODEX: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V75/GPT56: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V75/CODEX: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V76/GPT56: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V76/CODEX: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V77/GPT56: PRE-CONVENTION — 11 finding(s) dispositioned in era prose, enumerated as audit debt
+- V77/CODEX: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V78/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V78/CODEX: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V79/GPT56: PRE-CONVENTION — 4 finding(s) dispositioned in era prose, enumerated as audit debt
+- V79/CODEX: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V80/GPT56: PRE-CONVENTION — 5 finding(s) dispositioned in era prose, enumerated as audit debt
+- V80/CODEX: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V81/GPT56: PRE-CONVENTION — 8 finding(s) dispositioned in era prose, enumerated as audit debt
+- V81/CODEX: PRE-CONVENTION — 8 finding(s) dispositioned in era prose, enumerated as audit debt
+- V82/GPT56: PRE-CONVENTION — 3 finding(s) dispositioned in era prose, enumerated as audit debt
+- V82/CODEX: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V83/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V83/CODEX: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, enumerated as audit debt
+- V84/GPT56 F1: MAPPED-BY-CITATION
+- V84/GPT56 F2: MAPPED-BY-CITATION
+- V84/GPT56 F3: MAPPED-BY-CITATION
+- V84/GPT56 F4: MAPPED-BY-CITATION
+- V84/GPT56 F5: MAPPED-BY-CITATION
+- V84/CODEX F1: MAPPED-BY-CITATION
+- V84/CODEX F2: MAPPED-BY-CITATION
+- V84/CODEX F3: MAPPED-BY-CITATION
+- V84/CODEX F4: MAPPED-BY-CITATION
+- V84/CODEX F5: MAPPED-BY-CITATION
+- V84/CODEX F6: MAPPED-BY-CITATION
+- V84/CODEX F7: MAPPED-BY-CITATION
+- V86/GPT56: PRE-CONVENTION — 6 finding(s) dispositioned in era prose, enumerated as audit debt
+- V86/CODEX: PRE-CONVENTION — 10 finding(s) dispositioned in era prose, enumerated as audit debt
+- V87/GPT56 F1: MAPPED-BY-CITATION
+- V87/GPT56 F2: MAPPED-BY-CITATION
+- V87/GPT56 F3: MAPPED-BY-CITATION
+- V87/GPT56 F4: MAPPED-BY-CITATION
+- V87/GPT56 F5: MAPPED-BY-CITATION
+- V87/GPT56 F6: MAPPED-BY-CITATION
+- V87/GPT56 F7: MAPPED-BY-CITATION
+- V87/CODEX F1: MAPPED-BY-CITATION
+- V87/CODEX F2: MAPPED-BY-CITATION
+- V87/CODEX F3: MAPPED-BY-CITATION
+- V87/CODEX F4: MAPPED-BY-CITATION
+- V87/CODEX F5: MAPPED-BY-CITATION
+- V87/CODEX F6: MAPPED-BY-CITATION
 - V88/GPT56 F1: MAPPED-BY-CITATION
 - V88/GPT56 F2: MAPPED-BY-CITATION
 - V88/GPT56 F3: MAPPED-BY-CITATION
@@ -214,7 +350,18 @@
 - V103/CODEX F3: REPAIRED — V104 T1: receipt durable first; recovery appends missing drain-start
 - V103/CODEX F4: REPAIRED — V104 L08 v3 spec: identity = schema digest, reorder cannot evade
 - V103/CODEX F5: REPAIRED — V104 ledger v3: V88-V99's 161 findings under the citation-scan control
+- V104/GPT56 F1: REPAIRED — V105 ledger strict (round,seat,finding) key + decoy controls
+- V104/GPT56 F2: REPAIRED — V105 L08 v4: four seeded controls shown first; L09 rename fingerprint
+- V104/GPT56 F3: REPAIRED — V105 store-as-projection: receipt-note records log later receipts
+- V104/GPT56 F4: REPAIRED — V105 Row-I join note: store derived from row+surface, classes split
+- V104/GPT56 F5: REPAIRED — V105 abort cap A_max; cap-exhausted members in the checkpoint's failed list, platform family
+- V104/GPT56 F6: REPAIRED — V105 drain interval = chain-position interval, epoch-independent
+- V104/CODEX F1: REPAIRED — V105 full floor: every parseable block covered; pre-convention debt counted per round, not silently passed
+- V104/CODEX F2: REPAIRED — V105 grounded predicate: drain-set membership at drain-start + position interval; abort cap
+- V104/CODEX F3: REPAIRED — V105 L08 v4 (name-set groups, constraint layer, L09)
+- V104/CODEX F4: REPAIRED — V105 comment stripping battery-wide; commented-decoy control
+- V104/CODEX F5: REPAIRED — V105 strict key; the seven under-qualified mappings cured in the citation addendum
 
-**LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to V88 by citation-scan (historical rounds MAPPED-BY-CITATION; uncited = fatal); V88 is the FINDINGS-BLOCK format's own floor — earlier reports have no parseable blocks, stated rather than papered.**
+**LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to EVERY report with a parseable FINDINGS-BLOCK — the asserted V88 floor was FALSE (CODEX-V104 F1: 68 earlier reports, 365 findings, sat outside); rounds before V100 are MAPPED-BY-CITATION under the strict (round, seat, finding) key, uncited fatal. Reports with no block at all are listed as such, not silently skipped.**
 
-**0 undisposed.**
+**0 undisposed; 334 pre-convention findings enumerated as audit debt (per-round counts above).**

@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V104_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V105_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -197,6 +197,16 @@
 | `passrec.predecessor_record_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
 | `passrec.signature` | bounded-encoding | spec 3b - gate pass record | detached deterministic signature, 64 bytes, enumerator keypair - anchors chain by predecessor verification (GPT56-V95 F2) |
 | `passrec.verifier_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
+| `revbody.drain_start_position` | bounded-encoding | spec 3b - terminal-review body | decimal chain position |
+| `revbody.kind` | closed-vocab | spec 3b - terminal-review body (L09 caught these fields unregistered) | the literal terminal-review kind |
+| `revbody.recomputed_head` | digest-ref | spec 3b - terminal-review body |  |
+| `revbody.terminal_checkpoint_digest` | digest-ref | spec 3b - terminal-review body |  |
+| `revbody.transcript_digest` | digest-ref | spec 3b - terminal-review body |  |
+| `revbody.verifier_digest` | digest-ref | spec 3b - terminal-review body |  |
+| `rnote.boot_epoch` | bounded-encoding | spec 3c T1 - receipt-note record | the clock pair |
+| `rnote.kind` | closed-vocab | spec 3c T1 - receipt-note record (GPT56-V104 F3) | the receipt-note literal |
+| `rnote.monotonic_reading` | bounded-encoding | spec 3c T1 - receipt-note record | the clock pair |
+| `rnote.receipt_digest` | digest-ref | spec 3c T1 - receipt-note record |  |
 | `roots_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
 | `roots_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
 | `sig.bsl_lock` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
@@ -208,6 +218,7 @@
 | `termcp.chain_head_digest` | digest-ref | spec 3c - termination records |  |
 | `termcp.chain_head_position` | bounded-encoding | spec 3c - termination records | decimal chain positions |
 | `termcp.drain_start_position` | bounded-encoding | spec 3c - termination records | decimal chain positions |
+| `termcp.failed_members` | bounded-encoding | spec 3c - termination records | ascending drain-set positions whose refusals exhausted A_max aborts (GPT56-V104 F5) |
 | `termcp.kind` | closed-vocab | spec 3c - termination records (GPT56-V102 F6) | the record-kind literals (section 3c T3) |
 | `termcp.monotonic_reading` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
 | `termcp.receipt_digest` | digest-ref | spec 3c - termination records |  |

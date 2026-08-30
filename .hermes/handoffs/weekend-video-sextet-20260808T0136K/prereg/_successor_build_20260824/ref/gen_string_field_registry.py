@@ -188,6 +188,13 @@ _c("termrec.freeze_signature_digest haltrec.freeze_signature_digest", "digest-re
 _c("termrec.first_opening_digest haltrec.first_opening_digest", "digest-ref",
    "CHAIN identity - one freeze can govern a resumed run, the first opening cannot "
    "(GPT56-V98 F5, CODEX-V98 F2)", source="terminated-family canonical bodies")
+_c("revbody.kind", "closed-vocab", "the literal terminal-review kind",
+   source="spec 3b - terminal-review body (L09 caught these fields unregistered)")
+_c("revbody.terminal_checkpoint_digest revbody.recomputed_head revbody.verifier_digest "
+   "revbody.transcript_digest", "digest-ref", "",
+   source="spec 3b - terminal-review body")
+_c("revbody.drain_start_position", "bounded-encoding", "decimal chain position",
+   source="spec 3b - terminal-review body")
 _c("drainst.kind termcp.kind", "closed-vocab", "the record-kind literals (section 3c T3)",
    source="spec 3c - termination records (GPT56-V102 F6)")
 _c("drainst.receipt_digest termcp.receipt_digest termcp.chain_head_digest", "digest-ref",
@@ -198,6 +205,14 @@ _c("drainst.boot_epoch drainst.monotonic_reading termcp.boot_epoch "
    source="spec 3c - termination records")
 _c("termcp.drain_start_position termcp.chain_head_position", "bounded-encoding",
    "decimal chain positions", source="spec 3c - termination records")
+_c("termcp.failed_members", "bounded-encoding",
+   "ascending drain-set positions whose refusals exhausted A_max aborts (GPT56-V104 F5)",
+   source="spec 3c - termination records")
+_c("rnote.kind", "closed-vocab", "the receipt-note literal",
+   source="spec 3c T1 - receipt-note record (GPT56-V104 F3)")
+_c("rnote.receipt_digest", "digest-ref", "", source="spec 3c T1 - receipt-note record")
+_c("rnote.boot_epoch rnote.monotonic_reading", "bounded-encoding",
+   "the clock pair", source="spec 3c T1 - receipt-note record")
 _c("lockcp.chain_head_position", "bounded-encoding", "decimal chain position",
    source="draft 3(b) - lock checkpoint receipt, schema closed at V99 (GPT56-V98 F2)")
 _c("lockcp.chain_head_digest lockcp.sealed_entry_set_digest lockcp.sealed_bindmap_digest",
@@ -391,9 +406,14 @@ HALTREC = {"haltrec.kind", "haltrec.chain_head", "haltrec.freeze_signature_diges
            "haltrec.first_opening_digest", "haltrec.signature"}
 DRAINST = {"drainst.kind", "drainst.receipt_digest", "drainst.boot_epoch",
            "drainst.monotonic_reading"}
+REVBODY = {"revbody.kind", "revbody.terminal_checkpoint_digest",
+           "revbody.drain_start_position", "revbody.recomputed_head",
+           "revbody.verifier_digest", "revbody.transcript_digest"}
 TERMCP = {"termcp.kind", "termcp.drain_start_position", "termcp.receipt_digest",
           "termcp.chain_head_position", "termcp.chain_head_digest",
-          "termcp.boot_epoch", "termcp.monotonic_reading"}
+          "termcp.boot_epoch", "termcp.monotonic_reading", "termcp.failed_members"}
+RNOTE = {"rnote.kind", "rnote.receipt_digest", "rnote.boot_epoch",
+         "rnote.monotonic_reading"}
 LOCKCP = {"lockcp.chain_head_position", "lockcp.chain_head_digest", "lockcp.clock_record",
           "lockcp.sealed_entry_set_digest", "lockcp.sealed_bindmap_digest"}
 # the gate PASS RECORD (spec 3b anchors, built at V96 - GPT56-V95 F2, CODEX-V95 F4)
@@ -545,7 +565,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | DRAINST | TERMCP | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | PASSREC | TERMREC | LOCKCP | DRAINST | TERMCP | RNOTE | REVBODY | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

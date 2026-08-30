@@ -108,6 +108,13 @@ def row_fingerprint(text: str) -> str:
 
 def check(text: str):
     out = []
+    # CODEX-V104 F4 (the R01 comment fix left every OTHER check comment-blind, and a
+    # commented-out five-gate decoy satisfied R08): comments are stripped ONCE, battery-wide.
+    # `text` (active) feeds every positive-mechanism check below; `raw_text` exists solely for
+    # the tombstone/illegal scan, which must stay decoration- and comment-independent so
+    # commented reactivations still trip it (GPT56-V70 F4's direction).
+    raw_text = text
+    text = re.sub(r"<!--.*?-->", "", text, flags=re.S)
 
     def fail(code, extra=""):
         out.append((code, ERRORS[code] + (f" — {extra}" if extra else "")))
@@ -129,7 +136,7 @@ def check(text: str):
     ACTIVATION = re.compile(r"reinstat|restored|reactivat|is active|in force|hereby|applies again|henceforth|hereafter|rejected under|failing .{0,40}under that token|"
                             r"governs|mandatory|shall apply|takes effect|is live|will be|will apply|becomes|to be used|remains operative|expected to apply|should control|continues to|required|authoritative|controls |will be used", re.I)
     pinned, illegal = set(), []
-    for line in text.splitlines():
+    for line in raw_text.splitlines():
         # GPT56-V73 F4 / CODEX-V73 F6: one retirement word exempted every token ON THE LINE, so
         # "REFUSED-OLD was deleted; REFUSED-NEW is in force." activated NEW under OLD's retirement.
         # The exemption is now per-SENTENCE-FRAGMENT: a token is exempt only if a retirement word
@@ -196,8 +203,7 @@ def check(text: str):
         # (GPT56-V70 F4: that direction must catch evasive spellings, not require them).
         # CODEX-V101 F8: a canonical token inside an HTML comment still counted as
         # operative. Comments are stripped for MEMBERSHIP; the tombstone scan keeps them.
-        _blk = re.sub(r"<!--.*?-->", "", text[b0:b1], flags=re.S)
-        for frag in re.split(r"[.;:]", _blk):
+        for frag in re.split(r"[.;:]", text[b0:b1]):
             for tk in re.findall(r"`(REFUSED-[A-Z][A-Z0-9-]+)`", frag):
                 if tk in CODES and not RETIREMENT.search(frag):
                     block_pinned.add(tk)
@@ -353,6 +359,11 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("a commented-out five-gate decoy beside a gutted live clause (CODEX-V104 F4)",
+     lambda: _fixture().replace("Fresh passes run at BS-7f, BS-V and disclosure.",
+                                "Fresh passes run at BS-7f and disclosure.\n"
+                                "<!-- Fresh passes run at BS-7f, BS-V and disclosure. -->"),
+     "R08"),
     ("BS-V deleted from the clause but mentioned elsewhere (GPT56-V103 F6 shape)",
      lambda: _fixture().replace("Fresh passes run at BS-7f, BS-V and disclosure.",
                                 "Fresh passes run at BS-7f and disclosure.")

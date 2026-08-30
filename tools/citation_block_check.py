@@ -60,12 +60,17 @@ def parse_block(text):
     A malformed block is a REFUSAL, not an empty finding set. Returning an empty set for a block the
     parser could not read is precisely how the previous check manufactured absence.
     """
-    opens = text.count(OPEN)
-    if opens == 0:
+    # markers count ONLY at column 0 — the dispatch mandates the mandatory block's marker
+    # there, and a report may legitimately QUOTE the marker mid-prose while reviewing the
+    # tooling (CODEX-V104 did; the count-anywhere rule refused its reviewer as ambiguous).
+    import re as _re
+    opens_at_col0 = [m.start() for m in _re.finditer(
+        "^" + _re.escape(OPEN), text, _re.M)]
+    if not opens_at_col0:
         return None, "NO_BLOCK"
-    if opens > 1:
+    if len(opens_at_col0) > 1:
         return None, "C05: more than one FINDINGS-BLOCK in the report"
-    start = text.index(OPEN) + len(OPEN)
+    start = opens_at_col0[0] + len(OPEN)
     if CLOSE not in text[start:]:
         return None, "unterminated FINDINGS-BLOCK"
     body = text[start:start + text[start:].index(CLOSE)]
@@ -151,6 +156,9 @@ CONTROLS = (
     ("block is for a different seat", ("CODEX", "V38", 1, _blk()), "UNVERIFIABLE"),
     ("block is for a different version", ("GPT56", "V37", 1, _blk()), "UNVERIFIABLE"),
     ("two blocks in one report", ("GPT56", "V38", 1, _blk() + _blk()), "UNVERIFIABLE"),
+    ("a QUOTED marker mid-prose beside the real block",
+     ("GPT56", "V38", 1, "reviewing the tool: `  " + OPEN + "` is the marker\n" + _blk()),
+     "VERIFIED"),
     ("unterminated block", ("GPT56", "V38", 1, "x\n" + OPEN + "\nSEAT: GPT56\n"), "UNVERIFIABLE"),
 )
 

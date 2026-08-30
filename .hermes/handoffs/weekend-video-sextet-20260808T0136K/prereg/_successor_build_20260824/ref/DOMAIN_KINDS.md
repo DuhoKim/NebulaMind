@@ -1,6 +1,6 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**17 kinds; 61 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**18 kinds; 66 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
 - `bindmap-entry`
@@ -13,6 +13,7 @@
 - `lockcp`
 - `opening-auth`
 - `passrec`
+- `receipt-note`
 - `sealed-bindmap`
 - `sealed-entry-set`
 - `terminal-checkpoint`
@@ -66,6 +67,11 @@
 - `passrec.head_digest` — FROZEN: chain running digest at the head
 - `passrec.predecessor_record_digest` — TAGGED: passrec
 - `passrec.verifier_digest` — RAW: verifier file bytes
+- `revbody.recomputed_head` — FROZEN: chain running digest, recomputed
+- `revbody.terminal_checkpoint_digest` — TAGGED: terminal-checkpoint
+- `revbody.transcript_digest` — RAW: verifier binary / ceremony transcript bytes
+- `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes
+- `rnote.receipt_digest` — TAGGED: termrec
 - `roots_entry.digest` — RAW: loaded-object file bytes
 - `termcp.chain_head_digest` — FROZEN: chain running digest
 - `termcp.receipt_digest` — TAGGED: termrec
