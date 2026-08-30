@@ -2,6 +2,22 @@
 """B41 -- coverage proof for the census, ordered by Duho's 2026-08-30 directive (via Blanc):
 "read the unflagged remainder".
 
+V5, AFTER CGATE_B41V4 (B41V4_REFUTED_B37_REFRESHER_BINDINGS). AGATE_B41V4 confirmed v4 --
+including calling the A5/B17 bindings "correct" when they were existence-only (`("f.md","")`
+rows skip the substring test via `if frag`); CGATE caught that, plus that entries 23 and 54 had
+NO bound prior artifact at all. The one-seat-does-the-work pattern, recorded again. V5's
+repairs, from CGATE_B41V4's required list:
+  16. Four explicit refresher chains for B37's refreshed entries, each binding: the entry's own
+      refresher line in CGATE_B37 (the reread declaration), the actual prior artifact, its
+      token, and a content fragment proving that artifact engages the right source. The
+      strengths are printed, not implied: none of the four prior artifacts contains a scoped
+      "read in full" sentence of its own -- the full-source testimony for 26/44 lives in
+      CGATE_B37's words ("my full-source A5/B17 adjudication"); entry 23's prior (CGATE_A10)
+      rules on its cutoff claim; entry 54's prior (AGATE_B15) is SUBJECT-matched only -- it
+      audits the curvature claim against Planck 1807.06209 and never names entry 54.
+  17. Flag 6 binds the notes' read phrase ("read at last"), not just the reclassification
+      headline.
+
 V4, AFTER CGATE_B41V3 (B41V3_REFUTED_RECEIPT_BINDINGS). The substantive numbers survived that
 gate -- 39/39, paper-tier miss rate 1 of 2, precision 1 of 3, claim-level unmeasured -- but the
 closer itself was refuted because green predicates validated loosely combined strings where
@@ -106,10 +122,12 @@ print(f"      entry 5 counterfactual: pool-external file scanned separately -> c
 chk("ENTRY 5 DOUBLE MISS: its text was never in the screen's pool, AND the criterion scores it "
     "(0,0,0) -- it hides from the vocabulary even in-pool",
     os.path.exists(E5) and "Pathria" in t5 and c5 == (0, 0, 0) and not is_obstruction(t5))
-chk("FLAG 6 RECEIPTED, per-fact: the notes' batch-9 section carries the read AND the "
+_notes = open(NOTES).read()
+chk("FLAG 6 RECEIPTED, per-fact: the notes' batch-9 section carries the read phrase AND the "
     "reclassification headline; date 2026-08-23 predates the b28 rule -- disclosed",
-    "# Batch 9 — entry 6" in open(NOTES).read()
-    and "reclassed QUALITATIVE-DIRECTIONAL" in open(NOTES).read())
+    "# Batch 9 — entry 6" in _notes
+    and "reclassed QUALITATIVE-DIRECTIONAL" in _notes
+    and "read at last" in _notes)
 chk("FLAG 22 RECEIPTED: CGATE_B24 read the complete pinned source; the gated true positive",
     "I read the complete pinned source" in txt("CGATE_B24_VERDICT.md")
     and token("CGATE_B24_VERDICT.md") == "SCOPE_NARROWED_COUNT_AND_CELL")
@@ -158,10 +176,23 @@ ROWS = {
         [("b37_census_final.py", "[9,23,26,41,44,45,52,53,54]"),
          ("CGATE_B37_VERDICT.md", "I read these five required sources in full for this gate"),
          ("CGATE_B37_VERDICT.md", "For the permitted refresher set, I re-read the decisive sections"),
-         ("CGATE_B37_VERDICT.md", "my full-source A5 adjudication"),
+         # entry 23's chain: refresher line + prior artifact ruling on 23's claim, with token
+         ("CGATE_B37_VERDICT.md", "current source abstract, derivation, and Discussion/Conclusions"),
+         ("CGATE_A10_VERDICT.md", "Do not promote entry 23"),
+         # entry 26's chain: B37's full-source testimony + the A5 gate on entry 26
+         ("CGATE_B37_VERDICT.md", "plus my full-source A5 adjudication"),
+         ("CGATE_A5_VERDICT.md", "Gaztanaga, entry 26"),
+         # entry 44's chain: B37's full-source testimony + B17's source-engaged content
          ("CGATE_B37_VERDICT.md", "my full-source B17 adjudication"),
-         ("CGATE_A5_VERDICT.md", ""), ("CGATE_B17_VERDICT.md", "")],
-        [("CGATE_B37_VERDICT.md", "CENSUS_REFUTED_ENTRIES52_AND53")], None),
+         ("CGATE_B17_VERDICT.md", "(5.1) imports an observational DGP constraint"),
+         # entry 54's chain: refresher line + subject-matched prior (does NOT name entry 54)
+         ("CGATE_B37_VERDICT.md", "the full-source B15 curvature adjudication"),
+         ("AGATE_B15_VERDICT.md", "Planck 2018 VI (1807.06209)")],
+        [("CGATE_B37_VERDICT.md", "CENSUS_REFUTED_ENTRIES52_AND53"),
+         ("CGATE_A10_VERDICT.md", "HOLD_UNCALIBRATED_CUTOFF"),
+         ("CGATE_A5_VERDICT.md", "AUDIT_CONFIRMED_TIER_ONLY"),
+         ("CGATE_B17_VERDICT.md", "AUDIT_REFUTED_MISSED_EQ5_1_AND_TIER"),
+         ("AGATE_B15_VERDICT.md", "CONTRAST_REFUTED_NAIVE_STATISTICS")], None),
     "b38 acquisitions": ({15, 17, 20, 28}, "CGATE_B38_VERDICT.md",
         [("b38_acquisitions_batch.py", "entries 15, 17, 20, 28"),
          ("CGATE_B38_VERDICT.md", "I read all four pinned texts in full")],
@@ -193,9 +224,17 @@ for name, (s, receipt_doc, reqs, toks, alt_id) in ROWS.items():
     if not (row_ok and ids_ok):
         print(f"      BINDING FAILED: {name}  (reqs={row_ok}, ids={ids_ok})")
     all_ok = all_ok and row_ok and ids_ok
+print("      B37 refresher strengths, printed not implied: 23 -> CGATE_A10 rules on its cutoff")
+print("      claim; 26 -> CGATE_A5 is its own gate ('Gaztanaga, entry 26'); 44 -> CGATE_B17")
+print("      engages the source's equations; 54 -> AGATE_B15 is SUBJECT-matched only (audits")
+print("      the curvature claim against Planck, never names entry 54). None of the four prior")
+print("      artifacts contains its own 'read in full' sentence; the full-source testimony for")
+print("      26/44 is CGATE_B37's, and B37's decisive-section rereads are the read declaration")
+print("      for all four.")
 chk("RECEIPTS, per-entry: every row's requirements hold AND every member is named in its "
-    "receipt document ('entry N', or the stated identity fragment for b39) AND every verdict "
-    "token matches -- B37's refreshed four and B29's eleven are no longer free riders",
+    "receipt document ('entry N', per-entry table rows for b29, or the stated identity "
+    "fragment for b39) AND every verdict token matches -- B37's four refresher chains are "
+    "individually bound with strengths printed above",
     all_ok)
 batch_union = set().union(*(s for s, *_ in ROWS.values()))
 
