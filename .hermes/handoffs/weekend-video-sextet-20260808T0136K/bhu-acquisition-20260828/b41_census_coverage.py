@@ -2,48 +2,44 @@
 """B41 -- coverage proof for the census, ordered by Duho's 2026-08-30 directive (via Blanc):
 "read the unflagged remainder".
 
-V2, REPAIRED AFTER CGATE_B41 (COVERAGE_REFUTED_ENTRY38_UNRECEIPTED). V1's defect: it bound
-{38,57} to b33's retrospective sentence "38 and 57 were done in b32's" -- circular testimony,
-not a receipt. The B32 record is asymmetric: both seats read entry 57 in full ("all 39 PDF
-pages"); neither recorded a full read of entry 38. V1's demonstrated coverage was therefore
-38/39. The repairs, all from CGATE_B41's required list:
-  1. entry 38 read in full under the b28 rule (b43, 2026-08-30) -- its own batch row here;
-  2. {57} bound to CGATE_B32's explicit full-read statement, not b33's comment;
-  3. every batch bound to its OWN gate verdict (first-line token + full-read phrase), not just
-     the batch script's self-description;
-  4. flags 6/22/25 bound to their actual adjudication artifacts, not just declared FROZEN;
-  5. live_flags == FROZEN_FLAGS equality, not subset;
-  6. the miss rate labelled PAPER-TIER, with claim-level sensitivity stated as NOT MEASURED.
+V4, AFTER CGATE_B41V3 (B41V3_REFUTED_RECEIPT_BINDINGS). The substantive numbers survived that
+gate -- 39/39, paper-tier miss rate 1 of 2, precision 1 of 3, claim-level unmeasured -- but the
+closer itself was refuted because green predicates validated loosely combined strings where
+their labels claimed bound facts. V4's repairs, all from that verdict's required list:
+  9.  B37's four refreshed prior receipts (23, 26, 44, 54) are now individually bound to the
+      verdict's refresher lines and to the earlier full-source gate artifacts it names
+      (CGATE_A5, CGATE_B17); the five fresh reads are bound per-entry, not by a floating
+      "in full".
+  10. B43's row binds CGATE_B43 (token + "in full and sequentially") AND AGATE_B43 (token +
+      "full sequential read") -- both landed; "lands separately" is no longer an excuse.
+  11. The eleven-paper sample is receipt-bound to CGATE_B29's sentence "I re-read all eleven
+      sampled papers from their pinned full texts" + token, not just re-drawn.
+  12. Every batch row requires each member's "entry N" to appear in its bound receipt document
+      (B39's verdict names the paper, not the number -- bound via "Dymnikova" + the capture
+      sentence, stated here).
+  13. Flag 6 binds the notes' reclassification headline; flag 25 binds CGATE_B25's entry-25
+      ruling sentences, not just first-line tokens.
+  14. The COVERAGE check's label now separates the RECORD-level conclusion (the artifacts
+      support 39/39) from the SCRIPT-level one (these predicates bind those artifacts; they
+      still cannot certify human reading, only the signed record of it).
+  15. The two claim-level lists in the metrics prose are labelled as two distinct observations.
 
-V3, AFTER AGATE_B41 (COVERAGE_REFUTED_MULTIPLE_HOLES, filed against v1). Its two surviving
-holes, both applied here:
-  7. THE LIVE RECOMPUTE NEVER SCANNED ENTRY 5. The screen's deployment pool is the mapped
-     *_clean.txt files in bhu-reading sources; entry 5's text lives under reviews/ and was
-     never in that pool -- in deployment OR in the recompute. V3 scans entry 5's actual file
-     separately and reports the counterfactual: the criterion scores it (0,0,0) -- it would
-     NOT have flagged even in-pool. The miss decomposes into BOTH failure modes: never
-     scanned, and invisible to the vocabulary.
-  8. ENTRY 6'S ADJUDICATION PREDATES THE RULE. Its full read (batch 9, 2026-08-23) reclassified
-     it QUALITATIVE-DIRECTIONAL -- a paper-level tier adjudication that answers the obstruction
-     question by exclusivity -- and B25's gates ruled it a paper-level false positive under the
-     stated convention. That is artifact-backed but it is NOT the b28 unflagged protocol; the
-     coverage claim below says "receipted read + obstruction adjudication", not "uniform
-     procedure", and this line is the disclosure.
-SEAT SPLIT, RESOLVED BY EVENTS: AGATE confirmed v1's {38,57} binding; CGATE refuted it with
-quoted receipts. b43's full read of entry 38 satisfies both readings -- the census no longer
-depends on who was right about B32's scope.
+V3's repairs (kept): entry-5 double miss computed live (pool-external file scanned, criterion
+(0,0,0), would not flag even in-pool); entry 6's pre-rule basis disclosed; pool boundary
+printed; live==frozen equality. V2's repairs (kept): b43 receipt for entry 38; {57} bound to
+CGATE_B32's own words. V1's sin: binding {38,57} to b33's retrospective comment.
+SEAT SPLITS, both resolved: on {38,57} (AGATE blessed, CGATE refuted) -- b43 receipts entry 38
+either way; on the miss-rate presentation (AGATE would print a claim-level 1-of-6, CGATE
+refuses a metric without a frozen denominator) -- this file follows CGATE's rule and prints
+both seats' observations, labelled, below.
 
-WHAT THIS PROVES AND WHAT IT DOESN'T. The union arithmetic and bindings prove every readable
-BHU paper has a receipted read and obstruction adjudication (flags via their own artifacts,
-everything else under the b28 rule). The obstruction ground truth is parsed from the
-bibliography's CURRENT Testability labels -- the output of the gated census plus Duho's
-rulings -- so the miss rate is measured against the corpus's adjudicated record, not against
-independent re-derivation. The 12-paper not-located list is bound to the wrap-up's record;
-"all paywalled" is that round's testimony, not re-checked here. On the miss-rate PRESENTATION
-the seats split: AGATE would print a claim-level "1 of 6" (caught 22; missed 5, 37, 51, 52,
-53); CGATE refuses any claim-level metric without a frozen denominator and a
-multiple-claims-per-paper rule. This file follows CGATE's rule and prints AGATE's fact as a
-fact, below.
+WHAT THIS PROVES AND WHAT IT DOESN'T. The union arithmetic plus per-entry receipt bindings
+prove: the committed record contains, for every readable BHU paper, a read-and-adjudication
+receipt (unflagged papers under the b28 rule; flags via their own artifacts; entry 6's
+predates the rule -- disclosed). Phrase bindings certify the RECORD, not the reading act.
+The obstruction ground truth is the bibliography's CURRENT Testability labels -- the gated
+census's output plus Duho's rulings -- not independent re-derivation. The 12-paper not-located
+list is bound to the wrap-up's record; "all paywalled" is that round's testimony.
 """
 import re, os, random
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -61,7 +57,7 @@ def chk(n, p, d=""):
 def txt(name): return open(os.path.join(_HERE, name)).read()
 def token(name): return txt(name).splitlines()[0].strip()
 
-print("=" * 98); print("B41 v2 -- census coverage: computed, receipted, both directions"); print("=" * 98)
+print("=" * 98); print("B41 v4 -- census coverage: per-entry receipt bindings"); print("=" * 98)
 
 # --- the corpus partition ------------------------------------------------------------------------
 SUPPORT = {29, 30, 32, 33, 34, 35, 58}
@@ -73,7 +69,7 @@ READABLE = BHU - NOT_LOCATED
 chk("PARTITION: 51 BHU papers = 39 readable + 12 not-located, disjoint",
     len(BHU) == 51 and len(READABLE) == 39 and not (READABLE & NOT_LOCATED))
 
-# --- the screen's flags: recomputed live, EQUALITY, each bound to its adjudication artifact ------
+# --- the screen's flags: recomputed live over ITS OWN POOL, equality ----------------------------
 IMPOSSIBILITY = r"cannot be both|cannot be\b|can not be\b|does not yield|no .{0,30}(?:can|exists?)\b|impossible|obstruct\w*|must give up|prevents?\b"
 DOMAIN        = r"[Cc]onsider a .{0,80}(?:spacetime|metric|parent|class|solution)|[Aa]ssume that|under the (?:same )?assumptions?|hypothes[ei]s"
 REFUTABLE     = r"escape|evasion|requires? an? (?:additional|extra)|must give up at least one|unless"
@@ -98,36 +94,34 @@ for f in sorted(os.listdir(SRC)):
     if stem in f2e and is_obstruction(" ".join(open(SRC + f, errors="ignore").read().split())):
         live_flags.add(int(f2e[stem]))
 FROZEN_FLAGS = {22, 25, 6}
-chk("FLAGS RECOMPUTED, EQUALITY: the live screen over ITS OWN POOL (the mapped bhu-reading "
-    "*_clean.txt files -- the pool boundary is part of the finding) flags exactly b28's frozen "
-    "set -- a new flag or a lost flag goes red here",
+chk("FLAGS RECOMPUTED, EQUALITY over the stated pool (mapped bhu-reading *_clean.txt -- the "
+    "boundary is part of the finding): exactly b28's frozen set",
     live_flags == FROZEN_FLAGS and "FLAGGED={22,25,6}" in txt("b28_missrate_draw.py"),
     f"live: {sorted(live_flags)}")
-# AGATE_B41 hole 7: entry 5 was never in that pool. Scan its actual file and print both facts.
 E5 = os.path.join(ROOT, "reviews/bhu-citation-custody-evidence-20260811/arxiv-1412.0105v1.txt")
 t5 = " ".join(open(E5, errors="ignore").read().split())
 c5 = (len(re.findall(IMPOSSIBILITY, t5)), len(re.findall(DOMAIN, t5)), len(re.findall(REFUTABLE, t5)))
 print(f"      entry 5 counterfactual: pool-external file scanned separately -> counts {c5} "
       f"vs threshold (5,2,2) -> would NOT have flagged")
-chk("ENTRY 5 DOUBLE MISS (AGATE_B41): its text was never in the screen's pool, AND the "
-    "criterion scores it (0,0,0) -- it hides from the vocabulary even in-pool; 'missed by the "
-    "screen' means BOTH",
+chk("ENTRY 5 DOUBLE MISS: its text was never in the screen's pool, AND the criterion scores it "
+    "(0,0,0) -- it hides from the vocabulary even in-pool",
     os.path.exists(E5) and "Pathria" in t5 and c5 == (0, 0, 0) and not is_obstruction(t5))
-chk("FLAG 6 RECEIPTED WITH ITS DATE: full read in the reading notes (batch 9, 2026-08-23 -- "
-    "predating the b28 rule, disclosed in the docstring) reclassified it "
-    "QUALITATIVE-DIRECTIONAL; b25's gated convention dispute ruled the flag a paper-level "
-    "false positive",
+chk("FLAG 6 RECEIPTED, per-fact: the notes' batch-9 section carries the read AND the "
+    "reclassification headline; date 2026-08-23 predates the b28 rule -- disclosed",
     "# Batch 9 — entry 6" in open(NOTES).read()
-    and os.path.exists(os.path.join(_HERE, "AGATE_B25_VERDICT.md")))
-chk("FLAG 22 RECEIPTED: CGATE_B24 read the complete pinned source; entry 22 is the gated "
-    "true positive",
+    and "reclassed QUALITATIVE-DIRECTIONAL" in open(NOTES).read())
+chk("FLAG 22 RECEIPTED: CGATE_B24 read the complete pinned source; the gated true positive",
     "I read the complete pinned source" in txt("CGATE_B24_VERDICT.md")
     and token("CGATE_B24_VERDICT.md") == "SCOPE_NARROWED_COUNT_AND_CELL")
-chk("FLAG 25 RECEIPTED: b25 re-runs the criterion and both B25 gates ruled on it",
-    token("AGATE_B25_VERDICT.md") == "PRECISION_REFUTED_ARTEFACT_AND_HONESTY"
+chk("FLAG 25 RECEIPTED, per-fact: CGATE_B25 rules on entry 25 itself -- the arguable local "
+    "no-go acknowledged, the flag rejected under the paper-level convention",
+    "arguable local no-go inside entry 25" in txt("CGATE_B25_VERDICT.md")
+    and "does not make B1's flag correct under the current primary-paper classification"
+        in txt("CGATE_B25_VERDICT.md")
+    and token("AGATE_B25_VERDICT.md") == "PRECISION_REFUTED_ARTEFACT_AND_HONESTY"
     and token("CGATE_B25_VERDICT.md") == "PRECISION_NARROWED_CURRENT_SUBSET_ONLY")
 
-# --- the preregistered sample: re-drawn from the committed seed ----------------------------------
+# --- the preregistered sample: re-drawn AND receipt-bound ---------------------------------------
 SEED = "5d5a2454e54b7638401428bfc58d3a4cdd87a8ad"
 B28_READABLE = [5,7,8,9,10,11,12,21,22,23,24,25,26,27,31,36,37,38,39,40,41,43,44,45,46,49,51,52,53,54,55,56,57,6]
 chk("BOUND: b28's frame list occurs verbatim in b28's committed text",
@@ -137,55 +131,90 @@ SAMPLE = set(sorted(random.Random(int(SEED[:15], 16)).sample(sorted(set(B28_READ
 chk("RE-DRAWN: the committed seed reproduces the 11-paper sample",
     SAMPLE == {5, 7, 10, 24, 27, 36, 37, 40, 46, 49, 56})
 
-# --- the census batches: each bound to its script AND its own gate verdict -----------------------
-# (set, batch artifact, fragment in it, verdict artifact, expected first-line token, read phrase)
-BATCHES = {
-    "b32 gate-read":  ({57}, "CGATE_B32_VERDICT.md", "all 39 PDF pages",
-                       "CGATE_B32_VERDICT.md", "CANDIDATE_NARROWED_ENTRY57_NOT_PROOF_OWNER", "all 39 PDF pages"),
-    "b33 batch 2":    ({8, 43, 55}, "b33_census_batch2.py", "entries 8, 43, 55",
-                       "CGATE_B33_VERDICT.md", "BATCH2_CONFIRMED", "in full"),
-    "b34 batch 3":    ({51, 31, 12}, "b34_census_batch3.py", "entries 51, 31, 12",
-                       "CGATE_B34_VERDICT.md", "BATCH3_REFUTED_ENTRY51_TIER_AND_DRAW", "in full"),
-    "b36 batch 4":    ({39, 21, 11}, "b36_census_batch4.py", "entries 39, 21, 11",
-                       "CGATE_B36_VERDICT.md", "BATCH4_NARROWED_DRAW_PROVEN_NOT_BLINDNESS", "in full"),
-    "b37 closer":     ({9, 23, 26, 41, 44, 45, 52, 53, 54}, "b37_census_final.py", "[9,23,26,41,44,45,52,53,54]",
-                       "CGATE_B37_VERDICT.md", "CENSUS_REFUTED_ENTRIES52_AND53", "in full"),
-    "b38 acquisitions": ({15, 17, 20, 28}, "b38_acquisitions_batch.py", "entries 15, 17, 20, 28",
-                       "CGATE_B38_VERDICT.md", "ACQ_NARROWED_entry20_identity_and_owned_subresults", "in full"),
-    "b39 entry 19":   ({19}, "b39_entry19.py", "entry 19 acquired",
-                       "CGATE_B39_VERDICT.md", "E19_NARROWED_DERIVED_SUBCASE_AND_ABRIDGED_CAPTURE", "in full"),
-    "b43 entry 38":   ({38}, "b43_entry38_fullread.py", "all 3262 lines sequentially",
-                       "b43_entry38_fullread.py", None, "read IN FULL under the census rule"),
+# --- receipt engine: every row = (set, requirements ALL-of, token checks) -----------------------
+# a requirement is (file, fragment); every member's "entry N" must appear in the row's receipt
+# document unless the row names an explicit alternative identity fragment (B39: "Dymnikova").
+ROWS = {
+    "b29 sample": (SAMPLE, "CGATE_B29_VERDICT.md",
+        [("CGATE_B29_VERDICT.md", "I re-read all eleven sampled papers from their pinned full texts"),
+         ("CGATE_B29_VERDICT.md", "| entry | independent verdict | source-level reason |")],
+        [("CGATE_B29_VERDICT.md", "MISSRATE_REFUTED_THREE_MISSES_IN_SAMPLE")], "TABLE"),
+    "b32 gate-read": ({57}, "CGATE_B32_VERDICT.md",
+        [("CGATE_B32_VERDICT.md", "all 39 PDF pages")],
+        [("CGATE_B32_VERDICT.md", "CANDIDATE_NARROWED_ENTRY57_NOT_PROOF_OWNER")], None),
+    "b33 batch 2": ({8, 43, 55}, "CGATE_B33_VERDICT.md",
+        [("b33_census_batch2.py", "entries 8, 43, 55"),
+         ("CGATE_B33_VERDICT.md", "all three papers in full")],
+        [("CGATE_B33_VERDICT.md", "BATCH2_CONFIRMED")], None),
+    "b34 batch 3": ({51, 31, 12}, "CGATE_B34_VERDICT.md",
+        [("b34_census_batch3.py", "entries 51, 31, 12"),
+         ("CGATE_B34_VERDICT.md", "I read all three pinned papers in full")],
+        [("CGATE_B34_VERDICT.md", "BATCH3_REFUTED_ENTRY51_TIER_AND_DRAW")], None),
+    "b36 batch 4": ({39, 21, 11}, "CGATE_B36_VERDICT.md",
+        [("b36_census_batch4.py", "entries 39, 21, 11"),
+         ("CGATE_B36_VERDICT.md", "I read all three pinned papers in full")],
+        [("CGATE_B36_VERDICT.md", "BATCH4_NARROWED_DRAW_PROVEN_NOT_BLINDNESS")], None),
+    "b37 closer (5 fresh + 4 refreshed)": ({9, 23, 26, 41, 44, 45, 52, 53, 54}, "CGATE_B37_VERDICT.md",
+        [("b37_census_final.py", "[9,23,26,41,44,45,52,53,54]"),
+         ("CGATE_B37_VERDICT.md", "I read these five required sources in full for this gate"),
+         ("CGATE_B37_VERDICT.md", "For the permitted refresher set, I re-read the decisive sections"),
+         ("CGATE_B37_VERDICT.md", "my full-source A5 adjudication"),
+         ("CGATE_B37_VERDICT.md", "my full-source B17 adjudication"),
+         ("CGATE_A5_VERDICT.md", ""), ("CGATE_B17_VERDICT.md", "")],
+        [("CGATE_B37_VERDICT.md", "CENSUS_REFUTED_ENTRIES52_AND53")], None),
+    "b38 acquisitions": ({15, 17, 20, 28}, "CGATE_B38_VERDICT.md",
+        [("b38_acquisitions_batch.py", "entries 15, 17, 20, 28"),
+         ("CGATE_B38_VERDICT.md", "I read all four pinned texts in full")],
+        [("CGATE_B38_VERDICT.md", "ACQ_NARROWED_entry20_identity_and_owned_subresults")], None),
+    "b39 entry 19": ({19}, "CGATE_B39_VERDICT.md",
+        [("b39_entry19.py", "entry 19 acquired"),
+         ("CGATE_B39_VERDICT.md", "pinned capture in full")],
+        [("CGATE_B39_VERDICT.md", "E19_NARROWED_DERIVED_SUBCASE_AND_ABRIDGED_CAPTURE")],
+        "Dymnikova"),
+    "b43 entry 38 (both gates landed)": ({38}, "CGATE_B43_VERDICT.md",
+        [("b43_entry38_fullread.py", "all 3262 lines sequentially"),
+         ("CGATE_B43_VERDICT.md", "in full and sequentially"),
+         ("AGATE_B43_VERDICT.md", "full sequential read")],
+        [("CGATE_B43_VERDICT.md", "ENTRY38_NARROWED_THEOREM8_STATEMENT_AND_SCOPE"),
+         ("AGATE_B43_VERDICT.md", "ENTRY38_CONFIRMED_NOT_OBSTRUCTION")], None),
 }
-ok = True
-for name, (s, art, frag, vart, vtok, vphrase) in BATCHES.items():
-    t = txt(art); v = txt(vart)
-    row = frag in t and vphrase in v and (vtok is None or token(vart) == vtok)
-    if not row: print(f"      BINDING FAILED: {name}")
-    ok = ok and row
-chk("BOUND: every batch's set is bound to its committed artifact AND its own gate verdict "
-    "(token + read phrase); entry 38 to b43, entry 57 to CGATE_B32's own words -- b33's "
-    "retrospective comment is no longer load-bearing", ok,
-    "b43's gate verdicts land separately; its READ is the receipt bound here")
-batch_union = set().union(*(s for s, *_ in BATCHES.values()))
+all_ok = True
+for name, (s, receipt_doc, reqs, toks, alt_id) in ROWS.items():
+    row_ok = all(frag in txt(f) for f, frag in reqs if frag) \
+         and all(os.path.exists(os.path.join(_HERE, f)) for f, _ in reqs) \
+         and all(token(f) == t for f, t in toks)
+    rd = txt(receipt_doc)
+    if alt_id is None:
+        ids_ok = all(f"entry {n}" in rd for n in s)
+    elif alt_id == "TABLE":   # per-entry verdict table rows: "| N | **verdict** | reason |"
+        ids_ok = all(f"| {n} |" in rd for n in s)
+    else:
+        ids_ok = alt_id in rd
+    if not (row_ok and ids_ok):
+        print(f"      BINDING FAILED: {name}  (reqs={row_ok}, ids={ids_ok})")
+    all_ok = all_ok and row_ok and ids_ok
+chk("RECEIPTS, per-entry: every row's requirements hold AND every member is named in its "
+    "receipt document ('entry N', or the stated identity fragment for b39) AND every verdict "
+    "token matches -- B37's refreshed four and B29's eleven are no longer free riders",
+    all_ok)
+batch_union = set().union(*(s for s, *_ in ROWS.values()))
 
 # --- the coverage claim, both directions ---------------------------------------------------------
-covered = FROZEN_FLAGS | SAMPLE | batch_union
+covered = FROZEN_FLAGS | batch_union          # SAMPLE rides inside ROWS now, receipt-bound
 missing = sorted(READABLE - covered)
 extra   = sorted(covered - READABLE)
 print(f"\n  readable corpus      : {len(READABLE)}")
 print(f"  flags hand-checked   : {sorted(FROZEN_FLAGS)}   (receipted above)")
-print(f"  preregistered sample : {sorted(SAMPLE)}")
-print(f"  census batches       : {len(batch_union)} papers in {len(BATCHES)} receipted rows")
+print(f"  receipted rows       : {len(batch_union)} papers in {len(ROWS)} rows (sample + batches)")
 print(f"  UNION                : {len(covered)}   missing: {missing}   outside corpus: {extra}")
-chk("COVERAGE: every readable BHU paper has a receipted read and obstruction adjudication -- "
-    "unflagged papers under the b28 rule, flags via their own artifacts (entry 6's predates "
-    "the rule, disclosed); nothing adjudicated is outside the corpus",
-    missing == [] and extra == [],
-    "v1 could not say this -- entry 38's receipt did not exist; b43 is it")
+chk("COVERAGE -- record-level: the bound artifacts contain a read-and-adjudication receipt for "
+    "every readable BHU paper. Script-level: these predicates bind those artifacts' sentences "
+    "and tokens; they certify the RECORD of reading, not the act",
+    missing == [] and extra == [])
 remainder = READABLE - FROZEN_FLAGS - SAMPLE
-chk("REMAINDER: the unflagged-unsampled remainder is exactly the batch union, 25 papers",
-    remainder == batch_union and len(remainder) == 25)
+chk("REMAINDER: the unflagged-unsampled remainder is exactly the batch rows minus the sample, "
+    "25 papers",
+    remainder == (batch_union - SAMPLE) and len(remainder) == 25)
 
 # --- how many belonged: parsed from the bibliography's current adjudicated labels ----------------
 T = open(BIB).read(); cut = T.find("## Ranked:")
@@ -199,7 +228,7 @@ print(f"\n  paper-level THEORETICAL-OBSTRUCTION entries (current adjudicated lab
 chk("PARSED: the readable corpus holds exactly two paper-level obstructions, 22 and 5",
     obs == {22, 5} and obs <= READABLE)
 
-# --- the measured number, honestly labelled ------------------------------------------------------
+# --- the measured numbers, honestly labelled -----------------------------------------------------
 hits = sorted(obs & FROZEN_FLAGS); missed = sorted(obs - FROZEN_FLAGS)
 print(f"\n  PAPER-TIER miss rate on the receipted census : {len(missed)} of {len(obs)} "
       f"(hit {hits}, missed {missed})")
@@ -207,9 +236,12 @@ print(f"  PAPER-TIER precision                          : {len(hits)} of {len(FR
 print(f"  entry 5's miss is a DOUBLE miss               : never in the pool, and (0,0,0) on the")
 print(f"  vocabulary -- see the counterfactual above.")
 print("  CLAIM-LEVEL sensitivity                       : NOT MEASURED as a metric (CGATE's rule:")
-print("  no denominator without a frozen claim table). AGATE's fact, stated as a fact: among the")
-print("  papers whose records carry derived claim-level exclusions (25, 37, 38, 51, 52, 53, 57),")
-print("  the screen flagged only 25 -- AGATE would print 'caught 22; missed 5, 37, 51, 52, 53'.")
+print("  no denominator without a frozen claim table). Two DISTINCT observations, labelled:")
+print("    (i) records observation: entries 25, 37, 38, 51, 52, 53, 57 carry derived claim-level")
+print("        exclusions in their prose; the screen flagged only 25 of those seven;")
+print("    (ii) AGATE_B41's proposed paper list: 'caught 22; missed 5, 37, 51, 52, 53' -- a")
+print("        different set (paper-level truth plus four claim-level carriers), kept as its")
+print("        seat's stated position, not adopted as a denominator.")
 chk("MEASURED (paper-tier only): miss rate 1 of 2 -- the screen missed entry 5, found only by "
     "full read; precision 1 of 3 flags",
     hits == [22] and missed == [5] and len(FROZEN_FLAGS) == 3,
