@@ -1135,7 +1135,12 @@ universe's signature (the bubble vanishing from radar) may be unverifiable.
 pair): Demorest et al. (2010), Nature 467, 1081–1083, DOI 10.1038/nature09466 — VERIFIED; Fonseca
 et al. (2021), ApJL 915, L12, DOI 10.3847/2041-8213/ac03b8 — VERIFIED. These are the published
 measurements that operate entry 7's falsifier; they are not BHU papers and are listed only so the
-base layer contains its own adjudication instruments.
+base layer contains its own adjudication instruments. **Content-bound 2026-08-30 (b52 support
+sweep): each measurement now bound to its pinned full text, not byline-only — Demorest's PSR
+J1614-2230 = 1.97 ± 0.04 M⊙ is verbatim in the arXiv LaTeX source (1010.5788),
+`../demorest-src/1614-nature-letter.tex`; Fonseca's PSR J0740+6620 = 2.08 M⊙ (Shapiro-delay
+refinement) is verbatim in `../bhu-reading-20260823/sources/2104.00880_clean.txt`. Both are the
+confirmed ~2 M⊙ neutron stars that operate entry 7's CNS falsifier; no over-attribution.**
 
 **30. The mechanism review the falsifier imports** (added 2026-08-22, Duho's instruction): Brown,
 Lee & Rho, "Recent developments on kaon condensation and its astrophysical implications," Phys.
