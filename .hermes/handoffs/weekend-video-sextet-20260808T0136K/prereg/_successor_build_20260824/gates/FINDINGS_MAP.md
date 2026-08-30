@@ -324,6 +324,39 @@ and the appendix mini-round (the ruling's one adversarial read) receives this di
   testimony-plus-fixture; only the consequence bounded.
 - **GPT56 F3 + CODEX F3:** the form echo is KIND-QUALIFIED — kind literal required in the
   home corpus plus a co-located (kind, tuple) pair within 400 bytes as the authoritative
-  declaration; rename and duplicate-shadow controls run through the shipped logic.
+  declaration; rename and duplicate-shadow controls run through the shipped logic. **CORRECTION (V118, GPT56-V117A F5): this entry first said a 400-byte window; the shipped window is and was 900 bytes — the map, not the code, was wrong.**
 
 V116 → V117: the un-refereed fold — count-oracle harness named/required with release binding, the T1 mirror sentence derived, form-echo kind-qualified; the appendix mini-round reviews this diff and the appendix itself.
+
+## V117 → V118 (2026-08-31 night — THE APPENDIX MINI-ROUND'S REPAIRS; both verdicts were DEFECTIVE and both were right)
+
+**Mini-round verdicts on (appendix + V117 fold): DEFECTIVE ×2 (GPT56 6, CODEX 3).** The
+ledger's scope is WHOLE-REVIEW rounds, so these nine are dispositioned HERE:
+
+- **GPT56 F1 + CODEX F1 (HIGH — the hidden populations):** appendix v2 derives from the
+  LEDGER FILE itself: 177 REPAIRED + 192 MAPPED-BY-CITATION + **334 pre-convention
+  findings quoted as LIVE AUDIT DEBT** (all 63 enumeration lines reproduced verbatim),
+  the ledger's final line quoted, and the rounds arithmetic said correctly. The v1
+  generator read only the post-V100 dict — the exact hidden-all-clear its own control
+  was built to prevent, on a population its control never covered.
+- **GPT56 F2 (quote fidelity):** the six eligibility arguments are now FULL VERBATIM
+  paragraphs, byte-faithful including punctuation and case.
+- **GPT56 F3 (omitted acknowledged limitations):** the four the draft itself
+  acknowledges join §3 with their draft line-cites: the pre-unblinding numerical-route
+  question (§5), the caller-pair-only authorization guard (§5), the count-only sample
+  guard (§5), and the dual-valued Stage-P contract (§2.6).
+- **GPT56 F4 / CODEX (echo honesty both directions):** the form echo's source now states
+  its NON-CLAIMS (no unique authoritative site), and the appendix's residue line
+  describes each echo's actual contract instead of a blanket demotion.
+- **GPT56 F5 / CODEX F3 (the window + depth):** the map's 400-byte figure is corrected
+  in place (the code was 900 throughout); the echo gains the DECOY GUARD — every
+  kind-adjacent tuple-shaped string must byte-equal the mapped form — with controls
+  through the shipped logic for all four forms: rename, adjacent-corruption-with-
+  distant-decoy, cross-form substitution.
+- **GPT56 F6 + CODEX F2 (the history mutation + the false inventory claim):** the
+  V99→V100 §10 row's V117 mutation is REVERTED byte-for-byte; the harness is REGISTERED
+  in the real §11 inventory beside the replay-harness discipline
+  (`count_oracle_harness_sha256`, REQUIRED-DOES-NOT-EXIST, class-P); §2.3's inventory
+  sentence is now true and cites the finding.
+
+V117 → V118: the mini-round's nine repairs — full-ledger appendix with the 334 surfaced, verbatim quotes, the four omitted limitations, echo decoy guard with honest non-claims, the history mutation reverted, the harness registered in the real inventory.

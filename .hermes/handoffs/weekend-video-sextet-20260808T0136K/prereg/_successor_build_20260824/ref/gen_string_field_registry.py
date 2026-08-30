@@ -568,28 +568,50 @@ def _domain_echo_selftest():
         return probs
     # FORM-ECHO controls (GPT56/CODEX-V116 F3): rename, deletion, swap, shadow -
     # exercised through the SHIPPED co-location logic on synthetic corpora.
-    def _form_probs(corpus):
+    def _form_probs(corpus, forms=None):
         import re as _re3
         probs = []
-        for _kind, _fields, _home in FORM_SCHEMAS[:1]:
+        for _kind, _fields, _home in (forms or FORM_SCHEMAS):
             _tup = "`(" + ", ".join(_fields) + ")`"
-            if _kind not in corpus:
-                probs.append("kind absent"); continue
-            pair = any(_kind in corpus[max(0, m.start() - 900):m.end() + 900]
+            _kp = _re3.escape(_kind) + r"(?!-)"
+            if not _re3.search(_kp, corpus):
+                probs.append(f"kind absent:{_kind}"); continue
+            pair = any(_re3.search(_kp, corpus[max(0, m.start() - 900):m.end() + 900])
                        for m in _re3.finditer(_re3.escape(_tup), corpus))
             if not pair:
-                probs.append("no co-located pair")
+                probs.append(f"no co-located pair:{_kind}")
+            _first = _fields[1]
+            for _km in _re3.finditer(_kp, corpus):
+                _win = corpus[max(0, _km.start() - 900):_km.end() + 900]
+                for _tm in _re3.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
+                    _cand = _tm.group(0)
+                    if (sum(1 for f in _fields[1:] if f in _cand) >= 2
+                            and _cand != _tup and _first in _cand):
+                        probs.append(f"kind-adjacent divergent tuple:{_kind}")
         return probs
+    # ALL FOUR forms exercised (CODEX-V117A F3: controls covered only FORM_SCHEMAS[:1])
+    _clean = " ".join(f"the {k} body `(" + ", ".join(fs) + ")` here"
+                      for k, fs, _ in FORM_SCHEMAS)
+    if _form_probs(_clean):
+        fails.append("form-echo clean corpus not green")
+    for _k0, _f0, _ in FORM_SCHEMAS:
+        if f"kind absent:{_k0}" not in _form_probs(_clean.replace(_k0, "renamed-thing", 1)):
+            fails.append(f"form-echo rename not caught ({_k0})")
+            break
     _k0, _f0, _ = FORM_SCHEMAS[0]
     _t0 = "`(" + ", ".join(_f0) + ")`"
-    good_corpus = f"the {_k0} body {_t0} here"
-    if _form_probs(good_corpus):
-        fails.append("form-echo clean corpus not green")
-    if "kind absent" not in _form_probs(good_corpus.replace(_k0, "renamed-thing")):
-        fails.append("form-echo kind rename not caught")
-    if "no co-located pair" not in _form_probs(
-            f"the {_k0} body (corrupted) here " + " x" * 600 + " stray " + _t0):
-        fails.append("form-echo duplicate-shadow not caught")
+    _corrupt = _t0.replace(_f0[1], _f0[1] + "_x", 1)
+    decoy = (f"the {_k0} body {_corrupt} here " + " x" * 600 + " stray " + _t0)
+    _dp = _form_probs(decoy, forms=FORM_SCHEMAS[:1])
+    if not any("divergent tuple" in p or "no co-located pair" in p for p in _dp):
+        fails.append("form-echo adjacent-corruption-with-distant-decoy not caught")
+    # cross-form substitution: form0's kind beside form1's tuple only
+    _k1, _f1, _ = FORM_SCHEMAS[1]
+    _t1 = "`(" + ", ".join(_f1) + ")`"
+    _swap = f"the {_k0} body {_t1} here"
+    _sp = _form_probs(_swap, forms=FORM_SCHEMAS[:1])
+    if not any("no co-located pair" in p or "divergent tuple" in p for p in _sp):
+        fails.append("form-echo cross-form substitution not caught")
     ok_v = "ABORTED - EXPIRED - ABORTED-BY-RESTART"
     ok_a = "ABORTED - ABORTED-BY-RESTART"
     if _run(ok_v, ok_a):
@@ -787,24 +809,43 @@ def crosscheck_declared(text):
     for _kind, _fields, _home in FORM_SCHEMAS:
         _tup = "`(" + ", ".join(_fields) + ")`"
         _corpus = text if _home == "draft" else spec_txt
-        # KIND-QUALIFIED (GPT56/CODEX-V116 F3: tuple-presence alone accepted a renamed
-        # kind and a duplicate-shadowed corruption): the kind literal must exist in the
-        # home corpus AND at least one tuple occurrence must sit within 900 bytes of a
-        # kind mention - the co-located pair is the authoritative declaration.
-        if _kind not in _corpus:
+        # KIND-QUALIFIED, WITH THE DECOY GUARD (GPT56/CODEX-V116 F3; hardened for
+        # CODEX-V117A F3): kind literal present; >=1 exact tuple within 900 bytes of a
+        # kind mention; and EVERY tuple-shaped string adjacent to a kind mention must
+        # byte-equal the mapped tuple, so corrupting the co-located declaration cannot
+        # hide behind a distant clean decoy. NON-CLAIMS, stated (GPT56-V117A F4: an
+        # appendix line called this a demoted tripwire while this text claimed
+        # authority): the echo does NOT establish a unique authoritative site - the
+        # corpus legitimately repeats these tuples - and semantic drift outside the
+        # kind-adjacent windows stays referee/successor territory.
+        _kpat = _re.escape(_kind) + r"(?!-)"
+        if not _re.search(_kpat, _corpus):
             problems.append(f"form-schema echo: kind literal '{_kind}' absent from the "
                             f"{_home} (GPT56/CODEX-V116 F3)")
             continue
         _pair = False
         for _m in _re.finditer(_re.escape(_tup), _corpus):
             _w0 = max(0, _m.start() - 900)
-            if _kind in _corpus[_w0:_m.end() + 900]:
+            if _re.search(_kpat, _corpus[_w0:_m.end() + 900]):
                 _pair = True
                 break
         if not _pair:
             problems.append(f"form-schema echo: no co-located (kind, tuple) pair for "
                             f"'{_kind}' in the {_home} - the tuple exists only away from "
                             f"its kind (GPT56/CODEX-V116 F3 duplicate-shadow)")
+        # decoy guard: every tuple-shaped `(kind, ...)` string within 900 bytes of a
+        # kind mention that shares >=2 of this form's fields must equal the exact tuple
+        _first = _fields[1]
+        for _km in _re.finditer(_kpat, _corpus):
+            _win = _corpus[max(0, _km.start() - 900):_km.end() + 900]
+            for _tm in _re.finditer(r"`\(kind, [^)]{10,400}\)`", _win):
+                _cand = _tm.group(0)
+                _shared = sum(1 for f in _fields[1:] if f in _cand)
+                if _shared >= 2 and _cand != _tup and _first in _cand:
+                    problems.append(f"form-schema echo: a kind-adjacent tuple for "
+                                    f"'{_kind}' differs from the mapped form "
+                                    f"(CODEX-V117A F3 decoy/corruption guard): "
+                                    f"{_cand[:60]}...")
     # CLOSE-CLASS DOMAIN ECHO (GPT56-V114 F1, CODEX-V114 F5: one exhaustive item gave
     # close_class two incompatible domains; the domains must be QUALIFIED and EXPIRED
     # must live in exactly the verification-close domain).

@@ -257,6 +257,13 @@ def _block_index(gates):
         # call a real citation fabricated.
         if not any(line == cbc.OPEN for line in body.split("\n")):
             continue
+        # APPENDIX mini-round reports (VERSION: Vn-APPENDIX) are a distinct artifact
+        # class under the option-2 stopping rule: scoped four-field blocks whose
+        # dispositions live in FINDINGS_MAP, not the repair ledger. They are excluded
+        # from the whole-review citation index BY VERSION TOKEN, not by filename, so a
+        # whole-review report cannot dodge parsing by renaming itself.
+        if re.search(r"^VERSION: V\d+-APPENDIX$", body, re.M):
+            continue
         blk, why = cbc.parse_block(body)
         if blk is None:
             malformed.append((f.name, why))

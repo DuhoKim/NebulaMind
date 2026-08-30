@@ -1,83 +1,106 @@
 #!/usr/bin/env python3
-"""gen_known_debt - THE KNOWN-DEBT APPENDIX, generated.
+"""gen_known_debt v2 - THE KNOWN-DEBT APPENDIX, generated from the FULL ledger file.
 
-The principal's option-2 ruling (STOPPING_RULE_RULING_20260830.md): the text-referee loop
-is capped; after the last round the remaining findings and acknowledged limitations become
-an enumerated, GENERATED appendix - quoted, never restated - frozen and signed with the
-document. This generator derives the finding inventory from gates/gen_repair_ledger.py's
-DISPOSITIONS (the same source the ledger prints), quotes the final round's
-debt-eligibility arguments verbatim from the seats' own reports, and enumerates the named
-residues with their sources. Seeded control: a disposition flipped to DEFERRED in memory
-must surface as live debt - the appendix reflects the ledger, never a hardcoded all-clear.
+v1 read only gen_repair_ledger.DISPOSITIONS (V100+) and reported an all-REPAIRED world
+while the generated ledger itself carried 334 pre-convention findings "enumerated as
+audit debt" and 192 MAPPED-BY-CITATION findings - the exact hidden-all-clear this
+generator exists to prevent, found by both mini-round seats (GPT56-V117A F1, CODEX-V117A
+F1). v2 parses gates/REPAIR_LEDGER.md itself: every population surfaced, the
+pre-convention enumeration reproduced verbatim as LIVE AUDIT DEBT, the ledger's final
+line quoted. Controls: a synthetic ledger's planted audit-debt line must surface; a
+ledger missing its final line must refuse; population arithmetic must reconcile.
 """
-import sys, importlib.util
+import sys, re
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 
-def _ledger():
-    spec = importlib.util.spec_from_file_location("gen_repair_ledger",
-                                                  HERE / "gen_repair_ledger.py")
-    m = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(m)
-    return m.DISPOSITIONS
-
-# The final round's eligibility arguments, VERBATIM from the seats' reports (quoted, never
-# restated; sources: gates/V116_WHOLE_REVIEW_{GPT56,CODEX}.md).
+# The final round's eligibility arguments - FULL VERBATIM PARAGRAPHS
+# (GPT56-V117A F2: v1 excerpted and altered punctuation). Sources:
+# gates/V116_WHOLE_REVIEW_{GPT56,CODEX}.md.
 V116_ELIGIBILITY = (
-    ("GPT56 F1 (HIGH, count-oracle harness)", "DEBT-INELIGIBLE",
-     "\"Freezing that contract would permit a self-consistent but incomplete count oracle "
+    ("GPT56 F1 (HIGH — count-oracle harness)",
+     "**Debt eligibility: DEBT-INELIGIBLE.** This is not unfinished implementation "
+     "already fenced by a correctly declared DESIGN slot. The text presently classifies "
+     "BS-2c as fillable while its only claimed closure lives in unnamed, absent code. "
+     "Freezing that contract would permit a self-consistent but incomplete count oracle "
      "to determine BS-2o, BS-5p, BS-2s, and the selected sample. It poisons selection "
-     "integrity and therefore the freeze itself.\""),
-    ("GPT56 F2 (HIGH, release binding)", "DEBT-INELIGIBLE",
-     "\"A wrong but self-consistent universe can change the chosen footprint while every "
-     "currently named count check passes. That is direct selection/freeze poisoning, not "
-     "bounded known debt.\""),
-    ("GPT56 F3 (MEDIUM, form-echo kind binding)", "appendix-SAFE (GPT56) / DEBT-INELIGIBLE (CODEX)",
-     "GPT56: \"the defect is that the checker cannot preserve that fact across a future "
-     "edit, not that the signed V116 bytes leave any current form's fields undecidable.\" "
-     "CODEX: \"a control that can silently detach kind from body cannot support a signed "
-     "freeze.\""),
-    ("CODEX F1 (HIGH, T1 mirror sentence)", "DEBT-INELIGIBLE",
-     "\"An appendix can disclose the contradiction but cannot choose which live contract "
-     "the implementation must obey.\""),
-    ("CODEX F2 (HIGH, count-oracle complex)", "DEBT-INELIGIBLE",
-     "\"A stale, null, or receipt/plan-substituted proof set can change the selected "
-     "footprint and every downstream statistic while leaving a canonical BS-2c envelope.\""),
-    ("CODEX F3 (MEDIUM, form-echo)", "DEBT-INELIGIBLE",
-     "\"These forms are the successor export and terminal-review bodies used by the "
-     "completed/terminated closing ceremonies.\""),
+     "integrity and therefore the freeze itself; an appendix cannot turn a missing "
+     "class-P prerequisite into an enforceable prerequisite."),
+    ("GPT56 F2 (HIGH — release binding)",
+     "**Debt eligibility: DEBT-INELIGIBLE.** The entire count oracle, traversal order, "
+     "power planning, selection, and later manifest closure are conditional on the "
+     "universe identities. A wrong but self-consistent universe can change the chosen "
+     "footprint while every currently named count check passes. That is direct "
+     "selection/freeze poisoning, not bounded known debt."),
+    ("GPT56 F3 (MEDIUM — form-echo kind binding)",
+     "**Debt eligibility: appendix-SAFE.** I manually verified the four present mappings "
+     "against the pinned draft/spec bytes: both successor-export tuples and both "
+     "terminal-review tuples currently match their intended forms. The defect is that "
+     "the checker cannot preserve that fact across a future edit, not that the signed "
+     "V116 bytes leave any current form's fields undecidable. The freeze survives if the "
+     "appendix records that this echo is not a kind-binding control and requires manual "
+     "pair verification for any later generator revision."),
+    ("CODEX F1 (HIGH — T1 mirror sentence)",
+     "**Debt eligibility: DEBT-INELIGIBLE.** T1 controls termination ordering and "
+     "pass-entry legality. Freezing contradictory normative and implementation semantics "
+     "would leave the gate unable to say whether the named boundary/termination "
+     "execution conforms. An appendix can disclose the contradiction but cannot choose "
+     "which live contract the implementation must obey."),
+    ("CODEX F2 (HIGH — count-oracle complex)",
+     "**Debt eligibility: DEBT-INELIGIBLE.** This is the selection chain's completeness "
+     "root. A stale, null, or receipt/plan-substituted proof set can change the selected "
+     "footprint and every downstream statistic while leaving a canonical BS-2c envelope. "
+     "The freeze cannot survive that ambiguity merely by listing it as known debt."),
+    ("CODEX F3 (MEDIUM — form-echo)",
+     "**Debt eligibility: DEBT-INELIGIBLE.** These forms are the successor export and "
+     "terminal-review bodies used by the completed/terminated closing ceremonies. A "
+     "control that can silently detach kind from body cannot support a signed freeze or "
+     "generated known-debt appendix. This is a control on an existing generator and is "
+     "admissible under the scope freeze; it should be repaired rather than carried."),
 )
 
-# Named residues and honest limits, each with its source of record. Curated, append-only.
 RESIDUES = (
-    ("The V116→V117 fold is UN-REFEREED BY FULL ROUND",
-     "the option-2 cap ended full rounds; the appendix mini-round reviewed the V117 diff "
-     "and this appendix; sources: STOPPING_RULE_RULING_20260830.md, FINDINGS_MAP V116→V117"),
+    ("The V116→V117→V118 folds are UN-REFEREED BY FULL ROUND",
+     "the option-2 cap ended full rounds; the appendix mini-round (DEFECTIVE ×2, then "
+     "repaired here) reviewed the V117 diff and this appendix's v1; sources: "
+     "STOPPING_RULE_RULING_20260830.md, FINDINGS_MAP V116→V117 and V117→V118, "
+     "gates/V117_APPENDIX_REVIEW_{GPT56,CODEX}.md"),
+    ("Acknowledged draft limitations, enumerated by the mini-round",
+     "GPT56-V117A F3 lists the draft's own acknowledged-open items that v1 omitted: the "
+     "unresolved pre-unblinding numerical-route question (draft §5, ~line 535), the "
+     "caller-pair-only authorization guard (§5, ~lines 559–569), the count-only rather "
+     "than partition-complete sample guard (§5, ~lines 570–579), and the still "
+     "dual-valued Stage-P contract (§2.6, ~lines 275–295) — each acknowledged in place "
+     "in the draft's own words at those sites"),
     ("Writer obligations are testimony-plus-fixture by design",
      "chain-undetectable Row-B obligations, each SAID so in place: pass-entry "
      "precondition & decoding pause, reading-at-commit-start, the indivisible "
      "receipt/termination units, T1's decoded-frame priority (violation = W0 residue, "
      "bounded); spec §3d, §3c T1, §3b"),
-    ("The echo controls are tripwires, not semantics",
-     "preimage echo (tuple-and-phrase), close-class echo (domain-segment token sets), "
-     "form echo (kind co-location within 900 bytes), R02 (sentence-scoped literal list), "
-     "retired-token activation list — each demoted in its own text; semantic paraphrase "
-     "is assigned to referee review, which has now ended: the successor's freeze review "
-     "inherits that duty; sources: the generators' docstrings and "
-     "tools/refusal_vocabulary_check.py lines 129-135"),
+    ("The echo controls' exact contracts (per-echo, no blanket demotion)",
+     "PREIMAGE echo: tuple-and-phrase tripwire, demoted in its own text; CLOSE-CLASS "
+     "echo: exact token-set comparison over the note's domain segment; FORM echo: kind "
+     "presence + ≥1 exact tuple within 900 bytes of a kind mention + every kind-adjacent "
+     "tuple-shaped string byte-equal to the mapped form — its stated NON-CLAIM: no "
+     "unique authoritative site (the corpus legitimately repeats tuples); R02: "
+     "sentence-scoped literal-shape list; retired-token activation list: finite, "
+     "demoted; semantic paraphrase beyond these contracts passes to the successor's "
+     "freeze review; sources: each tool's own docstring "
+     "(GPT56-V117A F4 killed v1's blanket-demotion wording)"),
     ("Inter-anchor rollback window",
      "no-vanish, deadline and key-uniqueness claims hold AS OF THE EXTERNAL ANCHORS; a "
-     "rollback inside a window is platform-level custody failure by operator observation; "
-     "spec §3b, named since V95"),
+     "rollback inside a window is platform-level custody failure by operator "
+     "observation; spec §3b, named since V95"),
     ("Per-raise vs per-call-site classification unit",
      "the raise-site ledger classifies raise STATEMENTS; a shared raise reached from "
      "call sites of different classes is classified once; parked since ~V83, re-referred "
-     "every round since, never re-scored; source: ref/RAISE_SITE_CLASSIFICATION.md notes"),
+     "every round, never re-scored; source: ref/RAISE_SITE_CLASSIFICATION.md notes"),
     ("§10 historical section/count cells are as-written",
      "digests and row presence are tool-verified; 29 cells differ from the current "
-     "generator's rendering and are labelled historical; GPT56-V114 F3, header repaired "
-     "V115"),
+     "generator's rendering and are labelled historical (GPT56-V114 F3); the V117 fold "
+     "briefly mutated the V99→V100 row and V118 REVERTED it byte-for-byte "
+     "(GPT56-V117A F6, CODEX-V117A F2)"),
     ("97 legacy lint advisories",
      "pre-blocking-era citation advisories, non-blocking by declaration; "
      "tools/prereg_lint.py output, every round"),
@@ -90,62 +113,86 @@ RESIDUES = (
      "§1c, §3 crash windows"),
 )
 
-# Open BUILD inventory - not text debt, listed so the appendix cannot be read as
-# claiming the build is done (sources: §11 inventory, DECISIONS file).
 BUILD_OPEN = (
-    "gates/count_oracle_harness.py (V117; class P)",
+    "gates/count_oracle_harness.py (V118 — registered in §11's inventory; class P)",
     "gates/replay_harness.py (class P)",
     "gates/enumeration_verifier.py",
     "gates/canonical_decoder.py",
     "gates/terminal_review_verifier.py + the ceremony script",
     "the executable mapping module (mapping A - ruled, unbuilt; blocks BS-6)",
     "BS-SI schema; the reviewer roster values; BS-2k constants "
-    "(D, Q, budgets, g, R_max, A_max, M_max is committed, GATE_PASS_BUDGET, "
-    "PASS_RETRY_MAX); the BS-1 release resolution (rule date 2026-09-05)",
+    "(D, Q, budgets, g, R_max, A_max, GATE_PASS_BUDGET, PASS_RETRY_MAX; M_max committed); "
+    "the BS-1 release resolution (rule date 2026-09-05)",
 )
 
-def emit(dispositions):
-    rounds = sorted(dispositions.keys(), key=lambda k: (int(k[0][1:]), k[1]))
-    total = sum(len(v) for v in dispositions.values())
-    live = [(rk, seat, n, st, note)
-            for (rk, seat), v in dispositions.items()
-            for n, (st, note) in sorted(v.items()) if st != "REPAIRED"]
+def parse_ledger(ledger_text):
+    """Every population, from the ledger's own lines."""
+    repaired = len(re.findall(r"^- V\d+/[A-Z0-9]+ F\d+: REPAIRED —", ledger_text, re.M))
+    mapped = len(re.findall(r"^- V\d+/[A-Z0-9]+ F\d+: MAPPED-BY-CITATION", ledger_text, re.M))
+    pre_lines = re.findall(r"^- V\d+/[A-Z0-9]+: PRE-CONVENTION — \d+ finding\(s\).*$",
+                           ledger_text, re.M)
+    pre_total = sum(int(re.search(r"— (\d+) finding", ln).group(1)) for ln in pre_lines)
+    fm = re.search(r"^\*\*0 undisposed;.*$", ledger_text, re.M)
+    rounds = sorted({m.group(1) for m in
+                     re.finditer(r"^- (V\d+)/", ledger_text, re.M)},
+                    key=lambda v: int(v[1:]))
+    return {"repaired": repaired, "mapped": mapped, "pre_lines": pre_lines,
+            "pre_total": pre_total, "final_line": fm.group(0) if fm else None,
+            "rounds": rounds}
+
+def emit(led):
+    if led["final_line"] is None:
+        raise SystemExit("REFUSED: the ledger carries no final population line - "
+                         "cannot certify a summary of a ledger that does not state its own totals")
+    total = led["repaired"] + led["mapped"] + led["pre_total"]
     lines = [
-        "# KNOWN-DEBT APPENDIX — generated by gates/gen_known_debt.py",
+        "# KNOWN-DEBT APPENDIX — generated by gates/gen_known_debt.py (v2)",
         "",
         "**Standing:** the principal's option-2 ruling capped the text-referee loop at "
-        "V116; this appendix freezes and is signed WITH the preregistration. It is "
-        "derived from `gates/gen_repair_ledger.py`'s dispositions, quotes the final "
-        "round's debt-eligibility arguments verbatim, and enumerates the named residues. "
-        "Quoted, never restated.",
+        "V116; this appendix freezes and is signed WITH the preregistration. v2 derives "
+        "every population from `gates/REPAIR_LEDGER.md` itself after the appendix "
+        "mini-round found v1 summarizing only the post-V100 disposition dictionary while "
+        "334 older findings stood in the ledger as audit debt (GPT56-V117A F1, "
+        "CODEX-V117A F1 — both verdicts DEFECTIVE, both right). Quoted, never restated.",
         "",
-        f"## 1. The finding ledger, summarized from its generator",
+        "## 1. The finding populations, from the ledger's own lines",
         "",
-        f"- rounds with dispositions: {len(rounds)} (V88–V116 era entries present: "
-        f"{', '.join(sorted(set(k[0] for k in dispositions), key=lambda x: int(x[1:])))})",
-        f"- findings dispositioned: {total}",
-        f"- NON-REPAIRED at generation: {len(live)}",
+        f"- referee rounds represented: {len(led['rounds'])} "
+        f"({led['rounds'][0]}–{led['rounds'][-1]}), two seats each",
+        f"- findings represented in total: {total}",
+        f"- REPAIRED under the strict per-finding convention (V100+): {led['repaired']}",
+        f"- MAPPED-BY-CITATION (pre-V100 rounds inside the citation convention — "
+        f"resolved by map citation, not per-finding dispositions): {led['mapped']}",
+        f"- **PRE-CONVENTION AUDIT DEBT — STANDING: {led['pre_total']} findings.** These "
+        "were dispositioned in era prose only; the ledger enumerates them as audit debt "
+        "and this appendix carries them as LIVE:",
+        "",
     ]
-    if live:
-        lines.append("")
-        lines.append("**LIVE DEBT (non-repaired dispositions):**")
-        for rk, seat, n, st, note in live:
-            lines.append(f"- {seat}-{rk} F{n} — {st}: {note}")
-    else:
-        lines.append("- every dispositioned finding reads REPAIRED; the ledger's own "
-                     "--check is the byte evidence")
+    lines += [f"  {ln}" for ln in led["pre_lines"]]
     lines += [
         "",
-        "## 2. The final round's eligibility arguments, verbatim",
+        "The ledger's own closing line, verbatim:",
         "",
-        "All six V116 findings were folded in V117 (an UN-REFEREED fold under the cap — "
-        "the appendix mini-round reviewed the diff). The seats' own debt judgments, "
-        "quoted for the principal's signature:",
+        f"> {led['final_line']}",
+        "",
+        "**What this debt means at signing:** the pre-convention findings were addressed "
+        "in their era's briefs and map prose and every one predates V100's stricter "
+        "custody layer, but NO per-finding disposition record exists for them. The "
+        "successor's freeze review inherits them by name via the ledger.",
+        "",
+        "## 2. The final round's eligibility arguments, verbatim and in full",
+        "",
+        "All six V116 findings were folded in V117/V118 (un-refereed folds under the "
+        "cap; the mini-round reviewed the V117 diff and this appendix). The seats' own "
+        "debt judgments, complete paragraphs:",
         "",
     ]
-    for name, verdict, quote in V116_ELIGIBILITY:
-        lines.append(f"- **{name}** — {verdict}: {quote}")
-    lines += ["", "## 3. Named residues and honest limits", ""]
+    for name, quote in V116_ELIGIBILITY:
+        lines.append(f"**{name}**")
+        lines.append("")
+        lines.append(f"> {quote}")
+        lines.append("")
+    lines += ["## 3. Named residues and honest limits", ""]
     for name, desc in RESIDUES:
         lines.append(f"- **{name}.** {desc}")
     lines += ["", "## 4. Open build inventory (not text debt; freeze-gating where marked)", ""]
@@ -158,22 +205,32 @@ def emit(dispositions):
 
 def selftest():
     fails = []
-    d = {("V99", "GPT56"): {1: ("REPAIRED", "x")}}
-    if "every dispositioned finding reads REPAIRED" not in emit(d):
-        fails.append("clean ledger not reported clean")
-    d2 = {("V99", "GPT56"): {1: ("DEFERRED", "left open")}}
-    out = emit(d2)
-    if "LIVE DEBT" not in out or "DEFERRED: left open" not in out:
-        fails.append("flipped disposition did not surface as live debt")
+    synth = ("- V40/GPT56: PRE-CONVENTION — 7 finding(s) dispositioned in era prose, "
+             "enumerated as audit debt\n"
+             "- V100/GPT56 F1: REPAIRED — x\n"
+             "- V99/CODEX F2: MAPPED-BY-CITATION\n"
+             "**0 undisposed; 7 pre-convention findings enumerated as audit debt "
+             "(per-round counts above).**\n")
+    led = parse_ledger(synth)
+    out = emit(led)
+    if "STANDING: 7 findings" not in out or "V40/GPT56: PRE-CONVENTION — 7" not in out:
+        fails.append("planted audit-debt line did not surface as live debt")
+    if "MAPPED-BY-CITATION (pre-V100" not in out or ": 1" not in out.split("MAPPED-BY-CITATION")[1][:200]:
+        fails.append("mapped population not surfaced")
+    try:
+        emit(parse_ledger("- V100/GPT56 F1: REPAIRED — x\n"))
+        fails.append("missing final line did not refuse")
+    except SystemExit:
+        pass
     return fails
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
         f = selftest()
         for x in f: print("SELFTEST FAIL:", x)
-        print(f"selftest: {2 - len(f)}/2 controls fired correctly")
+        print(f"selftest: {3 - len(f)}/3 controls fired correctly")
         sys.exit(1 if f else 0)
-    body = emit(_ledger())
+    body = emit(parse_ledger((HERE / "REPAIR_LEDGER.md").read_text()))
     target = HERE / "KNOWN_DEBT_APPENDIX.md"
     if "--check" in sys.argv:
         ok = target.exists() and target.read_text() == body
