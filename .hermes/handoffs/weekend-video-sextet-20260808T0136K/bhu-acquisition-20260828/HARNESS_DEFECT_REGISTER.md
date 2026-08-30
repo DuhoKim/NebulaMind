@@ -917,6 +917,30 @@ that exists on disk must be git-tracked, both sweep routes plus the known prose-
 
 ---
 
+### 1ai — I APPEND THE NEW STATE AND LEAVE THE OLD STATE STANDING. THREE TIMES IN ONE DAY.
+
+**2026-08-30, caught by CGATE three times in three consecutive read rounds.** The shape: an
+entry's record says "NOT YET READ / unread / not verified"; I do the work, append the read
+adjudication BELOW, and never sweep the block for sentences asserting the state I just ended.
+The record then simultaneously claims both states:
+- entry 48: "remains paywalled and unread, and its proof is NOT thereby verified" left standing
+  under the full-read record (CGATE_B45);
+- entry 50: "NOT YET READ — census read queued" left standing above READ IN FULL (CGATE_B47);
+- entry 16: the same NOT-YET-READ sentence AND the "et al." heading left standing above the
+  single-author correction (CGATE_B48).
+
+Why it recurs: my edits are APPENDS anchored at the insertion point; nothing in the workflow
+looks BACKWARD from the new text. The verify-the-edit-landed guard checks the NEW content
+exists — it cannot see that the OLD content still does.
+
+**Fix, mechanical:** on any state-changing edit, grep the SAME BLOCK for the superseded state's
+key phrases (unread / not yet read / not located / paywalled / pending / et al.) before
+committing, and either delete or mark them superseded-with-date. Where a battery check binds
+the block, assert the ABSENCE of the superseded phrase outside its own supersession note
+(b47/b48 now do this).
+
+---
+
 ### 1ae — MY OWN VERIFICATION GREP, DEFEATED BY A LINE BREAK. THREE TIMES.
 
 **Third occurrence 2026-08-29, and the failure rule says register rather than fix again.**
