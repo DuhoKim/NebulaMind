@@ -116,3 +116,33 @@ pile") discharged into the coverage proof and its gate chain:
 
 Front commits: d551b99e4 (44's pin repair) → 1e65c6073 (v1) → d7a3291cd (b42) → a88527d26
 (b43+v2) → d3a1e7ab3 (v3+narrowings) → b9ee9d3b8 (v4) → 2860644f0 (v5) → this one.
+
+## 2026-08-30 afternoon — the second free frontier, and the obstruction/escape web completed
+
+Duho's login did not cover the backfiles; Blanc relayed the five-route free-frontier directive
+(12:54 KST). Results, per paper in `ACQUISITION_ROUTES_20260830.md`:
+
+- **Five acquisitions landed free** (all pinned+hashed+force-added): entry 48 (KEK scan of
+  MIT-CTP-1400), entry 14 (KEK scan of ICTP IC/88/91), entry 50 (KEK scan of MIT-CTP-1690),
+  entry 32 (ADS full article scan, morning), entry 33's pair (arXiv, morning). ScienceDirect
+  answers scripts with a robot-check (gated-by-form; one Chrome click from Duho unlocks the
+  route for 13/42/47 + entry 51's PLB 690 VoR); Science registration is his; entries
+  1/2/3/4/13/18/42/47 (+16 until embargo) are the interlibrary short list.
+- **Four census reads, all double-gated**: entry 48 READ (both seats; tier = QUESTION 8, held
+  for Duho — the obstruction-shaped call); entry 14 (CONSISTENCY-ONLY confirmed; the
+  limiting-curvature escape, names entry 48's theorem and violates its NEC hypothesis by
+  design); entry 50 (UNREAD→CONSISTENCY-ONLY via the routine pattern; the quantum escape
+  executed — pseudomanifold conjecture, probability ~10^(−10¹¹) at GUT scale; §II locally
+  demonstrates the M_S Penrose threshold, CGATE's credit correction); entry 32's byline
+  (visual, complete-article scan).
+- **The web**: classical no-go (48) ↔ limiting-curvature escape (13/14) ↔ quantum-tunneling
+  escape (50), every link now source-owned in the records, with entry 48's theorem STRONGER
+  than our testimony had it (null EC, not WEC).
+- Gate-chain honesty: every read narrowed at least once by the deep seat (sheet counts, the
+  M_S credit, stale states I left standing) — each correction applied and bound into the
+  artifact's predicates. Front commits: c9d842be9 → d4019b6bd → 1c7ae8593 → 015bbb504 →
+  33d27baff → 51a66c649 → 65fd3fba7 → 01ee8e943.
+
+OPEN WITH DUHO: **question 8** (entry 48's tier — recommendation A, THEORETICAL-OBSTRUCTION
+with the preprint caveat printed). Blocked-on-Duho: the Chrome click, the Science registration,
+the ILL list. Nothing else is solo-actionable.
