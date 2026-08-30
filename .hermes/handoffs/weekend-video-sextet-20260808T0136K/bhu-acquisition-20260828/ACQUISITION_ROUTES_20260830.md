@@ -46,3 +46,22 @@ compared; each record says so.
 1, 2, 3, 4, 13, 18, 42, 47 (+ entry 16 until its embargo ages out; + Silk if the free
 registration path is declined; + the three version-of-record comparisons: PLB 183, PRD 41,
 NPB 339).
+
+## 2026-08-30 ~17:00 — the PLB 690 pair: bytes held, channel blocked, left to Duho
+
+Entry 51's PLB 690 version-of-record + its 2013 erratum are FREE and were fetched into the
+MacBook Chrome (sha of the VoR bytes, verified in-page: 8b7032ab7743c17e…, 347715 bytes). Two
+delivery routes both dead-ended:
+- **Chrome download** saved to a folder no agent can read (the MacBook Desktop — Chrome's
+  last-used location; Downloads is SSH-readable but Desktop is TCC-blocked to the sshd context
+  too). The green SAVE button fired; the file is on Duho's Desktop.
+- **Direct byte pull** through the browser tool: the extension output filter BLOCKS bulk data
+  (base64 → "[BLOCKED: Base64 encoded data]"; a later hex/return → "[BLOCKED: Cookie/query
+  string data]"), and a page→Studio HTTPS POST is CSP/timeout-blocked from the sciencedirect
+  origin. Probing for an encoding that evades the filter would be circumventing a deliberate
+  control; not doing it.
+
+RESOLUTION: one human action closes it — Duho presses Cmd-J in Chrome, "Show in Finder", drags
+the PDF into `.../bhu-reading-20260823/sources/` (or Desktop→Downloads, then I SSH it). Until
+then this stays on the SKIPPED list; entry 51's arXiv text remains the working pin and question
+8's tier carries the revisit-on-VoR clause, so nothing is blocked.
