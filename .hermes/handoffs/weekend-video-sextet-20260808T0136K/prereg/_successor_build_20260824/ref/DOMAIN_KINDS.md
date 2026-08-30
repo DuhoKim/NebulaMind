@@ -42,19 +42,19 @@
 - `freezebody.parent_sha256` — RAW: raw file/artifact bytes - code pins, weights, fixtures
 - `haltrec.first_opening_digest` — FROZEN: the opening record digest - clock-family, chain-side
 - `haltrec.freeze_signature_digest` — TAGGED: freeze-body
-- `lockbody.accepted_mask_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
-- `lockbody.archive_seal_state` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
-- `lockbody.calibration_record_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
-- `lockbody.chain_segment` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
-- `lockbody.classp_receipt_manifest` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
-- `lockbody.decision_input_digests` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
-- `lockbody.environment_record` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
+- `lockbody.accepted_mask_digest` — FROZEN: sealed-mask receipts under the frozen v9 envelope discipline (V103 called these RAW - a canonical body is not raw bytes, GPT56-V103 F4)
+- `lockbody.archive_seal_state` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
+- `lockbody.calibration_record_digest` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
+- `lockbody.chain_segment` — FROZEN: chain running-digest span
+- `lockbody.classp_receipt_manifest` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
+- `lockbody.decision_input_digests` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
+- `lockbody.environment_record` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
 - `lockbody.freeze_signature` — TAGGED: freeze-body
-- `lockbody.gate_reports` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
-- `lockbody.lock_checkpoint` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
-- `lockbody.roster_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
-- `lockbody.signer_identity` — MIXED: clause 3(b) constituents - slot receipts and artifacts under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint constituent is TAGGED lockcp; signer identity is roster data, not a preimage
-- `lockbody.stagec_receipt_digest` — MIXED: clause 3(b) constituent digests - slot receipts (RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)
+- `lockbody.gate_reports` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
+- `lockbody.lock_checkpoint` — TAGGED: lockcp
+- `lockbody.roster_digest` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
+- `lockbody.signer_identity` — RAW: roster-bound identity, not a preimage
+- `lockbody.stagec_receipt_digest` — FROZEN: clause 3(b) constituent receipts and records under the frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag
 - `lockcp.chain_head_digest` — FROZEN: chain running digest
 - `lockcp.sealed_bindmap_digest` — TAGGED: sealed-bindmap
 - `lockcp.sealed_entry_set_digest` — TAGGED: sealed-entry-set

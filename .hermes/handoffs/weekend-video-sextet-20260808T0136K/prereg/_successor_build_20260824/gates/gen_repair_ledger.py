@@ -41,6 +41,23 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V103", "GPT56"): {
+        1: ("REPAIRED", "V104 T2: drain-scoped acceptance predicate replaces inherited ones"),
+        2: ("REPAIRED", "V104 T1: in-hand decoded frames commit ahead of drain-start"),
+        3: ("REPAIRED", "V104 T1: at most one drain-start; later receipts store-only"),
+        4: ("REPAIRED", "V104 kinds: closed category set, MIXED split - control shown failing "
+            "first per the strict sequence, and it caught the incomplete first repair too"),
+        5: ("REPAIRED", "V104 L08 v3: canonical schema digest over normalized field set"),
+        6: ("REPAIRED", "V104 R08 scoped to the clause - shown hollow on shaped text first"),
+        7: ("REPAIRED", "V104 ledger v3: backward to V88 by citation scan, uncited fatal"),
+    },
+    ("V103", "CODEX"): {
+        1: ("REPAIRED", "V104 T2: the drain set is total - expired members get forced terminals"),
+        2: ("REPAIRED", "V104 kinds: categories closed and validated; blankets audited"),
+        3: ("REPAIRED", "V104 T1: receipt durable first; recovery appends missing drain-start"),
+        4: ("REPAIRED", "V104 L08 v3 spec: identity = schema digest, reorder cannot evade"),
+        5: ("REPAIRED", "V104 ledger v3: V88-V99's 161 findings under the citation-scan control"),
+    },
     ("V102", "GPT56"): {
         1: ("REPAIRED", "V103 ceremony: pinned build item, acquisition path, check-not-read"),
         2: ("REPAIRED", "V103 T2: DRAIN-OPEN chain state, draining epochs lawful"),
@@ -90,15 +107,22 @@ def parse_block(path_or_text, is_text=False):
     return nums, None
 
 def discover_rounds():
-    """Rounds come from the DIRECTORY, not the disposition table (CODEX-V102 F6: a table that
-    discovers its own coverage cannot notice a round it forgot). Coverage floor: V100, where
-    the ledger begins; earlier rounds predate it and are named as out of scope."""
+    """Rounds come from the DIRECTORY, not the disposition table (CODEX-V102 F6). Coverage now
+    extends BACK TO V88 (GPT56-V103 F7, CODEX-V103 F5: twelve parseable rounds — 161 findings —
+    sat outside the only completeness control; the coordinator: the blocks exist, the control
+    just started too late). Rounds < V100 are dispositioned BY CITATION — every finding must be
+    literally cited in FINDINGS_MAP.md ("SEAT-Vn Fk", "SEAT Fk" or "Vn Fk"), verified
+    mechanically; an uncited historical finding is as fatal as an undisposed modern one."""
     seen = set()
     for p in HERE.glob("V*_WHOLE_REVIEW_*.md"):
         m = re.match(r"(V\d+)_WHOLE_REVIEW_(GPT56|CODEX)\.md$", p.name)
-        if m and int(m.group(1)[1:]) >= 100:
+        if m and int(m.group(1)[1:]) >= 88:
             seen.add(m.group(1))
     return sorted(seen, key=lambda v: int(v[1:]))
+
+def cited_in_map(map_text, seat, rnd, n):
+    return any(pt in map_text for pt in
+               (f"{seat}-{rnd} F{n}", f"{seat} F{n}", f"{rnd} F{n}"))
 
 def self_test():
     """Standing rule: seeded positive + deletion probe."""
@@ -123,9 +147,14 @@ def self_test():
     nums3, err3 = parse_block(gap, is_text=True)
     if nums3 is not None:
         fails.append("non-contiguous block accepted")
+    # SEEDED: an uncited historical finding must be caught by the citation scan
+    if cited_in_map("GPT56-V93 F4 was repaired", "GPT56", "V93", 4) is not True:
+        fails.append("citation scan misses a cited finding")
+    if cited_in_map("nothing relevant here", "GPT56", "V93", 9):
+        fails.append("citation scan is hollow: uncited finding read as cited")
     for f in fails:
         print(f"  FAIL {f}")
-    print(f"  self-test: 4 controls, {len(fails)} failure(s)")
+    print(f"  self-test: 6 controls, {len(fails)} failure(s)")
     return 1 if fails else 0
 
 def main():
@@ -142,14 +171,23 @@ def main():
             if nums is None:
                 out.append(f"- {rnd}/{seat}: BLOCK REFUSED — {err}"); problems += 1; continue
             disp = DISPOSITIONS.get((rnd, seat), {})
+            historical = int(rnd[1:]) < 100
+            map_text = (HERE / "FINDINGS_MAP.md").read_text()
             for n in nums:
+                if historical:
+                    if cited_in_map(map_text, seat, rnd, n):
+                        out.append(f"- {rnd}/{seat} F{n}: MAPPED-BY-CITATION")
+                    else:
+                        out.append(f"- **{rnd}/{seat} F{n}: UNCITED historical finding**")
+                        problems += 1
+                    continue
                 d = disp.get(n)
                 if d is None:
                     out.append(f"- **{rnd}/{seat} F{n}: UNDISPOSED — the V101 failure shape**")
                     problems += 1
                 else:
                     out.append(f"- {rnd}/{seat} F{n}: {d[0]} — {d[1]}")
-    out.append("\n**LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage floor V100; earlier rounds predate the ledger.**")
+    out.append("\n**LIMIT, on the ledger's own face (GPT56-V102 F7): this instrument checks disposition PRESENCE and block CONTRACTS, never repair ADEQUACY - whether a disposition's cited repair actually answers the finding is the referee round's to judge, and always was. Coverage extends to V88 by citation-scan (historical rounds MAPPED-BY-CITATION; uncited = fatal); V88 is the FINDINGS-BLOCK format's own floor — earlier reports have no parseable blocks, stated rather than papered.**")
     content = "\n".join(out) + f"\n\n**{problems} undisposed.**\n"
     target = HERE / "REPAIR_LEDGER.md"
     if "--check" in sys.argv:

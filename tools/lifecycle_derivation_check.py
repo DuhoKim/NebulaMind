@@ -84,27 +84,37 @@ def check(draft_text: str, spec_text: str, spec_bytes: bytes):
     for tag in spec_rows:
         if tag not in quoted:
             out.append(("L04", ERRORS["L04"] + f" — {tag}"))
-    # L08 (GPT56-V100 F2; GENERALIZED at V102 after GPT56-V101 F6 / CODEX-V101 F7 showed the
-    # first cut hard-coded to (gate, ...) while advertising a shared-schema invariant - a
-    # name wider than its predicate): ALL backticked field tuples present in both files,
-    # keyed by first field, must match.
+    # L08 v3 — REBUILT AGAINST A SPEC after two strikes (one-tuple special case at V101,
+    # reorderable prefix heuristic at V103 — GPT56-V103 F5, CODEX-V103 F4; the coordinator:
+    # write the spec, rebuild against it, before strike three).
+    # THE SPEC: a schema's IDENTITY is its CANONICAL SCHEMA DIGEST — sha256 over the
+    # NFC-normalized, bytewise-sorted FIELD SET (order-insensitive, one field per line,
+    # count-prefixed) — never a prefix, never a field count. Two tuples with one identity are
+    # ONE schema: their ORDERED forms must be byte-equal wherever both files carry them, and an
+    # ordered mismatch under a shared identity is the divergence L08 exists to catch (a reorder
+    # cannot change identity, so reordering no longer evades). Two schemas that legitimately
+    # share an exact field set collide by construction and would be reported as one — stated as
+    # the residual; the round judges identity beyond the field set, and this text says so
+    # instead of wearing an invariant's name over a heuristic.
+    import hashlib as _hl
     import re as _re
+    import unicodedata as _ud
     _normsig = lambda x: x.replace("signature-enveloped", "signature")
+    def schema_ident(tup):
+        fields = sorted(_ud.normalize("NFC", f.strip()) for f in tup.split(","))
+        body = str(len(fields)) + "\n" + "\n".join(fields)
+        return _hl.sha256(body.encode()).hexdigest()
     def tuples(s):
         d = {}
         for m in _re.finditer(r"`\(([a-z_]+(?:,\s+[a-z_][a-z_ -]*)+)\)`", s):
             tup = _normsig(m.group(1))
-            parts = [p.strip() for p in tup.split(",")]
-            # key = first TWO fields: every record family opens with kind/gate, so a
-            # one-field key lumped haltrec, termrec and terminal-review into one set and
-            # flagged legitimate single-file tuples (found on V102's own battery)
-            d.setdefault(tuple(parts[:2]), set()).add(tup)
+            d.setdefault(schema_ident(tup), set()).add(tup)
         return d
     dt, st = tuples(draft_text), tuples(spec_text)
-    for key in sorted(set(dt) & set(st)):
-        if dt[key] != st[key]:
-            out.append(("L08", ERRORS["L08"] + f" — key {key!r}: draft {sorted(dt[key])} "
-                        f"vs spec {sorted(st[key])}"))
+    for ident in sorted(set(dt) & set(st)):
+        if dt[ident] != st[ident]:
+            out.append(("L08", ERRORS["L08"] + f" — one schema identity, divergent ordered "
+                        f"forms: draft {sorted(dt[ident])} vs spec {sorted(st[ident])}"))
     return out
 
 
@@ -132,8 +142,8 @@ def self_test():
         ("a truncated quote", good.replace("G1 — no bytes move without a committed event",
                                            "G1 — no bytes move"), {"L06"}),
         ("two pins", good + f"lifecycle-spec: sha256 `{pin}`\n", {"L07"}),
-        ("a shared non-gate schema tuple diverges",
-         good + "`(kind, chain_head, extra_field)`\n", {"L08"}),
+        ("a reordered tuple under one schema identity",
+         good + "`(chain_head, kind)`\n", {"L08"}),
     ]
     fails = []
     for name, draft, want in cases:

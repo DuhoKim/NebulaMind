@@ -267,10 +267,14 @@ def check(text: str):
         twice = re.search(r"consulted (twice|at both)", text, re.I) or (
             re.search(r"at the opening of the lock", text, re.I) and
             re.search(r"at \*{0,2}`?BS-L`? issuance", text, re.I))
-        # CODEX-V102 F7: BS-V was named in prose and never required here, so deleting the
-        # mandatory BS-V pass stayed green. All three post-opening gates are now required.
-        gates5 = re.search(r"BS-7f", text) and re.search(r"BS-V", text) and \
-                 re.search(r"disclosure", text, re.I) and re.search(r"fresh", text, re.I)
+        # CODEX-V102 F7, then GPT56-V103 F6: the V103 fix required BS-V ANYWHERE in the
+        # text, and the draft mentions BS-V dozens of times, so deleting it from the
+        # fresh-pass CLAUSE stayed green - shown hollow on draft-shaped text before this
+        # repair (the coordinator's seeded-control sequence). All three gates must now
+        # appear inside ONE fresh-pass clause, within a sentence-scale window.
+        gates5 = re.search(r"[Ff]resh[^.\n]{0,200}BS-7f[^.\n]{0,120}BS-V[^.\n]{0,120}"
+                           r"disclosure|BS-7f[^.\n]{0,120}BS-V[^.\n]{0,120}disclosure"
+                           r"[^.\n]{0,160}[Ff]resh", text)
         # CODEX-V82 F6: these checks were polarity-blind - "the verifier is NOT consulted" passed
         # because the words appeared. A negated mechanism line now fails the mechanism.
         # Negated-FORM patterns, not word proximity: two proximity attempts false-fired on "not"
@@ -349,6 +353,10 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("BS-V deleted from the clause but mentioned elsewhere (GPT56-V103 F6 shape)",
+     lambda: _fixture().replace("Fresh passes run at BS-7f, BS-V and disclosure.",
+                                "Fresh passes run at BS-7f and disclosure.")
+     + "Unrelated mention: the BS-V receipt exists.\n", "R08"),
     ("the BS-V pass deleted from the gate list",
      lambda: _fixture().replace("Fresh passes run at BS-7f, BS-V and disclosure.",
                                 "Fresh passes run at BS-7f and disclosure."), "R08"),

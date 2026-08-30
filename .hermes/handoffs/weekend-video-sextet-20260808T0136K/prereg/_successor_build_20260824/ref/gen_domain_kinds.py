@@ -50,12 +50,11 @@ PREIMAGE_OF = [
     (r"^lockcp\.sealed_entry_set_digest$", ("TAGGED", "sealed-entry-set")),
     (r"^lockcp\.sealed_bindmap_digest$", ("TAGGED", "sealed-bindmap")),
     (r"^openauth\.bsl_digest$", ("TAGGED", "lock-body")),
-    (r"^lockbody\..*digest.*$", ("MIXED", "clause 3(b) constituent digests - slot receipts "
-     "(RAW envelope discipline, frozen v9) and checkpoint (TAGGED lockcp)")),
     (r"^lockbody\.freeze_signature$", ("TAGGED", "freeze-body")),
     (r".*_sha256$", ("RAW", "raw file/artifact bytes - code pins, weights, fixtures")),
-    (r".*mask_digest$", ("RAW", "the sealed mask artifact bytes (frozen envelope discipline)")),
-    (r".*(payload|anchor|config|manifest|perm_payload)_digest$", ("RAW", "artifact bytes")),
+    (r".*mask_digest$", ("FROZEN", "sealed-mask receipts under the frozen v9 envelope discipline (V103 called these RAW - a canonical body is not raw bytes, GPT56-V103 F4)")),
+    (r".*perm_payload_digest$", ("FROZEN", "canon_f8 serialization - v9's own canonical discipline")),
+    (r".*(payload|anchor|config|manifest)_digest$", ("RAW", "artifact bytes with no canonical structure")),
     (r"^event\.running_chain_digest$|^arrival\.running_chain_digest$",
      ("FROZEN", "the chain digest itself")),
     (r"^nonslot\..*$", ("RAW", "non-slot artifact bytes or pending schemas, per their rows")),
@@ -65,9 +64,15 @@ PREIMAGE_OF = [
      ("RAW", "manifest document bytes (roots/DLM files)")),
     (r"^envelope\.environment$", ("FROZEN", "environment record under the frozen v9 envelope")),
     (r"^freezebody\.code_digest$", ("RAW", "pinned code bytes")),
-    (r"^lockbody\..*$", ("MIXED", "clause 3(b) constituents - slot receipts and artifacts "
-     "under the frozen envelope discipline (RAW/FROZEN per constituent); the checkpoint "
-     "constituent is TAGGED lockcp; signer identity is roster data, not a preimage")),
+    # the MIXED blanket certified an undeclared category and hid taggable constituents
+    # (GPT56-V103 F4, CODEX-V103 F2; the coordinator's strict sequence: the seeded category
+    # control was SHOWN failing on this exact rule before this split repaired it):
+    (r"^lockbody\.lock_checkpoint$", ("TAGGED", "lockcp")),
+    (r"^lockbody\.freeze_signature$", ("TAGGED", "freeze-body")),
+    (r"^lockbody\.chain_segment$", ("FROZEN", "chain running-digest span")),
+    (r"^lockbody\.signer_identity$", ("RAW", "roster-bound identity, not a preimage")),
+    (r"^lockbody\..*$", ("FROZEN", "clause 3(b) constituent receipts and records under the "
+     "frozen v9 envelope discipline - canonical by v9's own constructor, not by NMPR1 tag")),
     (r"^openauth\.(ceremony_id|signer_identity)$", ("RAW",
      "opaque one-use identifier / roster-bound identity - identifiers, not canonical-body "
      "preimages")),
@@ -109,15 +114,26 @@ def run(registry_text, corpus):
     orphan_kinds = sorted(k for k in tagged_kinds if k not in declared)
     return sites, rows, unmapped, strangers, unment, orphan_kinds
 
+CATEGORIES = {"TAGGED", "FROZEN", "RAW"}   # the closed set the docstring declares
+
 def self_test():
+    global PREIMAGE_OF
     fails = []
+    # STEP (a) of the coordinator's strict sequence (V103: the tool certified an undeclared
+    # fourth category): every LIVE mapping's category must be in the closed set...
+    live_bad = sorted({v[0] for p, v in PREIMAGE_OF if v[0] is not None} - CATEGORIES)
+    if live_bad:
+        fails.append(f"UNDECLARED CATEGORY in live mappings: {live_bad}")
+    # ...and a PLANTED unknown category must trip the same check (the seeded positive).
+    planted = sorted(({v[0] for p, v in PREIMAGE_OF if v[0] is not None} | {"WOMBAT"}) - CATEGORIES)
+    if "WOMBAT" not in planted:
+        fails.append("seeded category control is hollow: planted WOMBAT not caught")
     # SEEDED POSITIVE: a planted unknown digest-ref site MUST surface as unmapped
     seeded = "| `wombat.mystery_digest` | digest-ref | x | y |\n"
     _, _, unmapped, *_ = run(seeded, "")
     if unmapped != ["wombat.mystery_digest"]:
         fails.append(f"seeded site not caught: {unmapped}")
     # DELETION PROBE: dropping a mapping entry must turn a real site unmapped
-    global PREIMAGE_OF
     keep = PREIMAGE_OF
     PREIMAGE_OF = [p for p in PREIMAGE_OF if "sealed_entry_set" not in p[0]]
     try:
