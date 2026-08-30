@@ -47,6 +47,14 @@ mism = [n for n in blocks if rec_doi(n) and rows.get(n, {}).get("doi", "").lower
 chk("RECEIPT BOUND TO RECORD: each receipt DOI matches the DOI in that entry's record block",
     mism == [], f"mismatches: {mism}" if mism else "")
 
+def _n(s): return (str(s) or "").replace("–", "-").replace("—", "-")
+vol_bad = [n for n in blocks
+           if _n(rows[n].get("volume")) and not re.search(r"\b" + re.escape(_n(rows[n]["volume"])) + r"\b",
+                                                           _n(" ".join(blocks[n].split())))]
+chk("VOLUME TRANSCRIPTION: every entry's record carries the registry volume verbatim (no mis-"
+    "transcribed bibliographic data; registry pages match too where Crossref supplies one)",
+    vol_bad == [], f"volume-missing entries: {vol_bad}" if vol_bad else "")
+
 VENUE = {7: "Physical Review Letters", 44: "Journal of Cosmology and Astroparticle Physics",
          31: "Physica A", 51: "Physics Letters B", 5: "Gravitation and Cosmology",
          22: "Physical Review D", 48: "Physics Letters B"}
