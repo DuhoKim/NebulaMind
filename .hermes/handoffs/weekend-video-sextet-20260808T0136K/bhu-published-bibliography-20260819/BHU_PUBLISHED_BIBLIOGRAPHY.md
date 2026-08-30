@@ -1182,6 +1182,13 @@ hep-ph/0010207, `../bhu-theory-phase3-cns-20260821/sources/ar5iv_0010207.html` (
 abstract-page receipt `../bhu-theory-phase3-cns-20260821/sources/arxiv_0302103_abs.html` (sha256
 `9af0ff09d012…` — ar5iv refuses the 233-page full text with "503 Response object too large", so
 the pin is the arXiv abs page carrying title, bylines and the Phys.Rept.381 journal-ref).
+**Content-bound 2026-08-30 (b53 support sweep): the CLAIM is now bound to the PRL source body, not
+title/bylines-only. The pinned `ar5iv_0010207.html` states the vector manifestation (VM) and, in
+the body, "gauge coupling approaching to zero" toward the chiral-restoration critical point (the
+"bare HLS gauge coupling" g(Λ) → 0) — i.e. the source DOES contain the gauge-coupling-vanishes
+prediction the falsifier's link (1) imports. This moves that link from ASSUMED-FROM-CITATION (the
+Phase-3 Track-A B-2 designation) to source-verified for entry 33's support record. No discrepancy;
+the Phase-3 falsifier tier is unchanged (this binds the citation, it does not re-adjudicate).**
 
 **34. The limb-2 measurement** (added 2026-08-22): R.D. Ferdman et al., "Asymmetric mass ratios for
 bright double neutron-star mergers," Nature **583**, 211–214 (2020), DOI 10.1038/s41586-020-2439-x —
