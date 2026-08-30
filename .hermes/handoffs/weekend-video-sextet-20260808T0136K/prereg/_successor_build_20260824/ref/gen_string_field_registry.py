@@ -167,6 +167,11 @@ _c("arrival.boot_epoch arrival.monotonic_reading", "bounded-encoding",
    "bounds stated); overdue is computed from these bytes under spec-3b's chain-order "
    "monotonicity invariants, never from a clock read at verification",
    source="draft 6.1 item (ii-b) - ARRIVAL event schema")
+_c("haltrec.kind", "closed-vocab", "the literal TERMINATED-BY-LABEL-EXHAUSTION",
+   source="spec 5 - exhaustion halt receipt (CODEX-V94 F4)")
+_c("haltrec.chain_head", "bounded-encoding",
+   "position + running digest at halt; identities are SEALED committee-side, not here "
+   "(GPT56-V94 F7)", source="spec 5 - exhaustion halt receipt")
 _c("bindmap.request_key bindmap.decision_chain_position", "bounded-encoding",
    "chain positions, bounded decimal - the join is (request_key <-> decision position)",
    source="draft 6.1 item (iv-c) - binding-to-key map")
@@ -330,6 +335,8 @@ CKCLOCK = {"ckclock.boot_epoch", "ckclock.monotonic_reading",
            "ckclock.predecessor_epoch", "ckclock.gap_declaration"}
 # the binding-to-key map, declared at draft (iv-c) (CODEX-V90 F2: the pre-opening verifier
 # consumes it; an unlisted artifact is chi-bearing by default)
+HALTREC = {"haltrec.kind", "haltrec.chain_head"}   # the exhaustion halt receipt's non-chi
+# face (CODEX-V94 F4); identities live SEALED in the committee store (GPT56-V94 F7)
 BINDMAP = {"bindmap.request_key", "bindmap.decision_chain_position",
            "bindmap.decision_event_digest", "bindmap.decision_boot_epoch",
            "bindmap.decision_monotonic_reading", "bindmap.signature"}
@@ -468,7 +475,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | CKCLOCK | BINDMAP | HALTREC | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:

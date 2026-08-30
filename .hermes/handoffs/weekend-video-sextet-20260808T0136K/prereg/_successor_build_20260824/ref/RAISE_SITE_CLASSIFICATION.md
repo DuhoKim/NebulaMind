@@ -9,13 +9,13 @@
 **Planning failures are not run outcomes** (principal ruling, 2026-08-29). Of the `local_pass` sites that fire during plan construction, **L963 and L973 are CALLER** (setup errors against a supplied l_plan) and **L986 is PLANNING-INTERNAL**, all marked *moved* below — this header said all three were CALLER for two revisions after L986 moved (CODEX-V69 F7), the header/table drift one paragraph above the table it drifted from. They were briefly given their own class while this corpus was being classified; a failure that fires before a run exists cannot be a run outcome, because nothing has started that could be voided or declared inconclusive. They are moved rather than deleted: L963 and L973 are setup errors against a caller-supplied `l_plan`; L986 is NOT - it fails against an internal frozen constant (CODEX-V72 F8 caught this paragraph still saying 'each' three clauses after L986 stopped being one) - and all three still need a disposition. **L986 is PLANNING-INTERNAL** - a disposition, not an outcome class, carrying no terminal consequence - because MOVE_CAP is an internal cap against a frozen constant that fires after a feasible prefix exists, so it is not an error in any supplied argument. `RAISE_CALLSITE_LEDGER.md` finds no path to them through `run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is *no run-time path found*, not *no run-time path exists*.
 
 - **CALLER** — 30
-- **INTEGRITY** — 57
+- **INTEGRITY** — 58
 - **NUMERICAL** — 18
 - **PLANNING-INTERNAL** — 3
 - **TYPED-OUTCOME** — 1
 - **WRAPPER** — 3
 
-**Total 112 raise nodes.** The two sites once marked *soft* (L1462, L1468) were resolved to CALLER at V89 under the boundary as written — each tests a supplied argument's admissibility before the function computes anything (GPT56-V88 F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 made earlier on the identical argument. Sites marked *moved* were reclassified by ruling, not by reading; *resolved* marks the two boundary applications — encoded in this generator at V90 after V89 edited only the output (CODEX-V89 F4: a checked-in artifact that can drift from its generator will).
+**Total 113 failure sites — 112 `raise` nodes and 1 production `assert` (v9:1622, INTEGRITY: a post-statistic calibration-path change is state corruption on the verdict path; enumerated since GPT56-V94 F9).** The two sites once marked *soft* (L1462, L1468) were resolved to CALLER at V89 under the boundary as written — each tests a supplied argument's admissibility before the function computes anything (GPT56-V88 F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 made earlier on the identical argument. Sites marked *moved* were reclassified by ruling, not by reading; *resolved* marks the two boundary applications — encoded in this generator at V90 after V89 edited only the output (CODEX-V89 F4: a checked-in artifact that can drift from its generator will).
 
 | line | function | exception | class | | message |
 |---|---|---|---|---|---|
@@ -124,6 +124,7 @@
 | 1603 | `run_production_verdict` | `RuntimeError` | **CALLER** |  | BS-5f must be a canonical receipt() envelope, not a bare dict — FAIL |
 | 1605 | `run_production_verdict` | `RuntimeError` | **INTEGRITY** |  | Stage-C receipt does not bind THIS mask — FAIL |
 | 1620 | `run_production_verdict` | `RuntimeError` | **WRAPPER** |  | production permutation record failed: {} |
+| 1622 | `run_production_verdict` | `AssertionError` | **INTEGRITY** | assert | calibration path changed after the statistic — FAIL |
 | 1641 | `require_authorization` | `RuntimeError` | **INTEGRITY** |  | authorization unreadable: {} |
 | 1643 | `require_authorization` | `RuntimeError` | **INTEGRITY** |  | authorization digest mismatch: {} |
 | 1649 | `require_complete_sample` | `RuntimeError` | **CALLER** |  | INCOMPLETE SAMPLE: {} of {} — refusing |

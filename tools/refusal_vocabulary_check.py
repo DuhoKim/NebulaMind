@@ -176,6 +176,15 @@ def check(text: str):
     if b0 < 0 or b1 < 0:
         fail("R01", "the operative vocabulary block (Authorisation (5): … THE GUARD) was not found")
     else:
+        # CODEX-V94 F7: one exact decoy plus a reworded real header validates the decoy.
+        # The block must carry the operative STRUCTURE - all four class headers - which a
+        # decoy must then replicate wholesale; beyond that, WHICH block is normative is the
+        # round's judgement, stated as this check's limit rather than papered over.
+        blk = text[b0:b1]
+        for hdr in ("Availability and mediator behaviour (4):", "Write conformance (1):",
+                    "Catch-all (1):"):
+            if hdr not in blk:
+                fail("R01", f"operative block lacks its structure: {hdr!r} missing")
         block_pinned = set()
         for frag in re.split(r"[.;:]", text[b0:b1]):
             for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+(?![a-z0-9_])", frag):
@@ -309,6 +318,9 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
         if guard != "nogates":
             txt += "Fresh passes run at BS-7f, BS-V and disclosure.\n"
     txt += ("Authorisation (5): the operative set.\n"
+            "Availability and mediator behaviour (4): as ruled.\n"
+            "Write conformance (1): as ruled.\n"
+            "Catch-all (1): as ruled.\n"
             + "".join(f"- `{c}`\n" for c in codes)
             + "THE GUARD, and it is the operative part.\n")
     if fingerprint:

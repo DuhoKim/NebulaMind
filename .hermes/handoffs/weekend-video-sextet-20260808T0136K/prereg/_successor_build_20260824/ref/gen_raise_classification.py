@@ -49,6 +49,14 @@ CALLER = CALLER | {1649} | RESOLVED | {1677, 1681}
 
 rows=[]
 for n in ast.walk(tree):
+    # GPT56-V94 F9: the corpus holds ONE production assert (1622) the Raise-only walk
+    # missed - AssertionError is a failure path like any raise, so ast.Assert joins the
+    # enumeration with its own exception type label.
+    if isinstance(n, ast.Assert):
+        msg = n.msg.value if isinstance(n.msg, ast.Constant) else ""
+        rows.append((n.lineno, owner.get(n.lineno, "?"), "AssertionError",
+                     "INTEGRITY", "assert", str(msg)[:70]))
+        continue
     if not isinstance(n, ast.Raise): continue
     e=n.exc
     et = e.func.id if isinstance(e,ast.Call) and isinstance(e.func,ast.Name) else (e.id if isinstance(e,ast.Name) else "bare")
@@ -101,7 +109,7 @@ out.append("**Planning failures are not run outcomes** (principal ruling, 2026-0
            "`run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is "
            "*no run-time path found*, not *no run-time path exists*.\n")
 for k,v in sorted(c.items()): out.append(f"- **{k}** — {v}")
-out.append(f"\n**Total {len(rows)} raise nodes.** The two sites once marked *soft* (L1462, "
+out.append(f"\n**Total {len(rows)} failure sites — 112 `raise` nodes and 1 production `assert` (v9:1622, INTEGRITY: a post-statistic calibration-path change is state corruption on the verdict path; enumerated since GPT56-V94 F9).** The two sites once marked *soft* (L1462, "
            "L1468) were resolved to CALLER at V89 under the boundary as written — each tests a "
            "supplied argument's admissibility before the function computes anything (GPT56-V88 "
            "F8), the 20 → 18 drop the *soft* marking itself predicted, and the same move L1464 "
