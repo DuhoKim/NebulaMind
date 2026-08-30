@@ -588,6 +588,12 @@ Testability: **CONSISTENCY-ONLY**
 **ADJUDICATED 2026-08-30** (`b38`, both seats, full reads): NOT an obstruction — constructive; its inside-horizon coordinate-role remark is a limitation of setting, not a class exclusion.. Record: packet §1.6. Audit-worthiness: **medium**.
 
 **16. B. Pourhassan et al. (2025). "Multiversal entropy and information conservation in black hole nucleated baby universes." Nucl. Phys. B 1020, 117160.**
+**ACQUIRED 2026-08-30, the VERSION OF RECORD itself — SCOAP3 gold OA (CC-BY), fetched through
+Duho's connected Chrome (ScienceDirect serves it free; only scripts are robot-walled):**
+`../bhu-reading-20260823/sources/pourhassan_2025_npb1020_117160_scoap3.pdf` (sha256
+`2d11feddb342…`, 11 pp, title verified on page 1). **BYLINE CORRECTION, caught on pinning: the
+paper is SINGLE-AUTHOR — Behnam Pourhassan (Damghan / Khazar / CRI) — the record's
+"B. Pourhassan et al." was wrong.** NOT YET READ — census read queued.
 DOI 10.1016/j.nuclphysb.2025.117160 — VERIFIED (Crossref: NPB, v1020, 117160, 2025-11).
 Claim: entropy/information accounting for black-hole-nucleated baby universes, with stated
 observational prospects in primordial-black-hole populations and gravitational-wave echoes.
