@@ -41,6 +41,22 @@ DISPOSITIONS = {
         5: ("REPAIRED", "V102 bounds valued as productions"),
         6: ("REPAIRED", "V102 L08 generalized, keyed by first field, control added"),
     },
+    ("V114", "GPT56"): {
+        1: ("REPAIRED", "V115 close_class domains qualified once each; EXPIRED echo control"),
+        2: ("REPAIRED", "V115 entry precondition demoted to testimony-plus-fixture; "
+            "never-a-request derivation closes the corner chain-side"),
+        3: ("REPAIRED", "V115 the trace header stops claiming what --check does not "
+            "compare; historical cells named as-written"),
+    },
+    ("V114", "CODEX"): {
+        1: ("REPAIRED", "V115 the boundary carries its gate; equality law + fixtures"),
+        2: ("REPAIRED", "V115 verification-close DECLARED; record-kind closure + control"),
+        3: ("REPAIRED", "V115 same as GPT56 F2 - receipt-transition scoping, "
+            "testimony said, fixture named"),
+        4: ("REPAIRED", "V115 completed review body binds successor_export_digest; the "
+            "ceremony is the completed export's closing verifier"),
+        5: ("REPAIRED", "V115 same as GPT56 F1 - qualified domains"),
+    },
     ("V113", "GPT56"): {
         1: ("REPAIRED", "V114 pass-entry precondition + decoding pause; T1 corner vacuous"),
         2: ("REPAIRED", "V114 VERIFICATION-CLOSE pairs; derived consecutive count"),

@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V114_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V115_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -216,6 +216,7 @@
 | `revbody.drain_start_position` | bounded-encoding | spec 3b - terminal-review body | decimal chain position |
 | `revbody.kind` | closed-vocab | spec 3b - terminal-review body (L09 caught these fields unregistered) | TWO literals: terminal-review-terminated - terminal-review-completed (GPT56-V112 F7) |
 | `revbody.recomputed_head` | digest-ref | spec 3b - terminal-review body |  |
+| `revbody.successor_export_digest` | digest-ref | spec 3b - terminal review, completed form | COMPLETED form: the exact export the ceremony regenerates and compares - inside the signed body (CODEX-V114 F4) |
 | `revbody.terminal_checkpoint_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.transcript_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.verifier_digest` | digest-ref | spec 3b - terminal-review body |  |
@@ -266,6 +267,7 @@
 | `termrec.kind` | closed-vocab | draft 6.1 - terminated-verdict record (GPT56-V96 F6) | the literal TERMINATED-UNNAMEABLE-REFUSAL-CLASS |
 | `termrec.signature` | bounded-encoding | terminated-family envelopes | detached deterministic signature, 64 bytes (GPT56-V97 F5: absent from this registry) |
 | `vbound.boot_epoch` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
+| `vbound.gate` | closed-vocab | draft 6.1 item (ii-g) - verification records | the five-gate set, as passrec.gate (CODEX-V114 F1: a gate-less boundary let closes reassign failures across counters) |
 | `vbound.kind` | closed-vocab | spec 3c + draft Row V, V111 | verification-read / verification-boundary / attempt-start literals - checkpoint-family records (Row V surface + the attempt-order fix) |
 | `vbound.monotonic_reading` | bounded-encoding | spec 3c + draft Row V, V111 | the clock pair |
 | `vclose.boot_epoch` | bounded-encoding | draft 6.1 item (ii-g) - verification-close | the clock pair |

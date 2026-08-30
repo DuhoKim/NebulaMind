@@ -1,6 +1,6 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**27 kinds; 76 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**28 kinds; 77 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
 - `attempt-close`
@@ -29,6 +29,7 @@
 - `termrec`
 - `verdict-record`
 - `verification-boundary`
+- `verification-close`
 - `verification-read`
 
 ## Sites
@@ -79,6 +80,7 @@
 - `passrec.verifier_digest` — RAW: verifier file bytes
 - `revbody.disclosure_record_digest` — TAGGED: passrec
 - `revbody.recomputed_head` — FROZEN: chain running digest, recomputed
+- `revbody.successor_export_digest` — TAGGED: successor-export
 - `revbody.terminal_checkpoint_digest` — TAGGED: terminal-checkpoint
 - `revbody.transcript_digest` — RAW: verifier binary / ceremony transcript bytes
 - `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes

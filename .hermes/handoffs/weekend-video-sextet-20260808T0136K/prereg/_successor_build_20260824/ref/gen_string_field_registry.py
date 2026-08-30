@@ -265,6 +265,9 @@ _c("attclose.close_class", "closed-vocab",
    "ABORTED - ABORTED-BY-RESTART (a successful attempt's close is the decision event "
    "itself; spec 3c T2 alternation law - GPT56-V111 F8, CODEX-V111 F4)",
    source="draft 6.1 item (ii-g) - attempt records")
+_c("vbound.gate", "closed-vocab", "the five-gate set, as passrec.gate (CODEX-V114 F1: "
+   "a gate-less boundary let closes reassign failures across counters)",
+   source="draft 6.1 item (ii-g) - verification records")
 _c("vclose.kind", "closed-vocab", "the VERIFICATION-CLOSE literal",
    source="draft 6.1 item (ii-g) - verification-close (GPT56/CODEX-V113 F2)")
 _c("vclose.gate", "closed-vocab", "the five-gate set, as passrec.gate",
@@ -295,6 +298,9 @@ _c("roster.roster_entries", "bounded-encoding",
    "count-prefixed, identity-sorted (reviewer_identity, reviewer_pubkey) pairs; "
    "committed within the P0-frozen BS-2k materials",
    source="draft 6.1 - reviewer roster (CODEX-V112 F6)")
+_c("revbody.successor_export_digest", "digest-ref",
+   "COMPLETED form: the exact export the ceremony regenerates and compares - inside "
+   "the signed body (CODEX-V114 F4)", source="spec 3b - terminal review, completed form")
 _c("revbody.disclosure_record_digest", "digest-ref",
    "COMPLETED form: the disclosure pass record that is the terminal head "
    "(GPT56-V112 F7)", source="spec 3b - terminal review, completed form")
@@ -560,7 +566,7 @@ DRAINST = {"drainst.kind", "drainst.receipt_digest", "drainst.boot_epoch",
 REVBODY = {"revbody.kind", "revbody.terminal_checkpoint_digest",
            "revbody.drain_start_position", "revbody.recomputed_head",
            "revbody.verifier_digest", "revbody.transcript_digest",
-           "revbody.disclosure_record_digest"}
+           "revbody.disclosure_record_digest", "revbody.successor_export_digest"}
 ROSTER = {"roster.kind", "roster.roster_entries", "roster.reviewer_pubkey"}
 TERMCP = {"termcp.kind", "termcp.drain_start_position", "termcp.receipt_digest",
           "termcp.chain_head_position", "termcp.chain_head_digest",
@@ -573,7 +579,7 @@ REVREC = {"revrec.kind", "revrec.reviewer_identity", "revrec.review_timestamp",
           "revrec.reviewed_class_key", "revrec.first_opening_digest"}
 VERIF = {"vread.kind", "vread.request_key", "vread.touch_position",
          "vread.boot_epoch", "vread.monotonic_reading",
-         "vbound.kind", "vbound.boot_epoch", "vbound.monotonic_reading",
+         "vbound.kind", "vbound.gate", "vbound.boot_epoch", "vbound.monotonic_reading",
          "attstart.kind", "attstart.member_position", "attstart.boot_epoch",
          "attstart.monotonic_reading",
          "attclose.kind", "attclose.member_position", "attclose.close_class",
@@ -699,6 +705,22 @@ def crosscheck_declared(text):
         problems.append("unbackticked schema declaration at offset %d - written outside "
                         "the backticked grammar every extractor reads (GPT56-V113 F4)"
                         % _m.start())
+    # CLOSE-CLASS DOMAIN ECHO (GPT56-V114 F1, CODEX-V114 F5: one exhaustive item gave
+    # close_class two incompatible domains; the domains must be QUALIFIED and EXPIRED
+    # must live in exactly the verification-close domain).
+    _vc = (V9_CONSTRAINTS.get("vclose.close_class") or CONSTRAINTS.get("vclose.close_class")
+           or ("", "", ""))[2]
+    _ac = (V9_CONSTRAINTS.get("attclose.close_class") or
+           CONSTRAINTS.get("attclose.close_class") or ("", "", ""))[2]
+    if "EXPIRED" not in _vc:
+        problems.append("close-class echo: vclose domain lost EXPIRED - the expiry close "
+                        "would be unnameable (GPT56-V114 F1)")
+    if "EXPIRED" in _ac:
+        problems.append("close-class echo: attclose domain gained EXPIRED - the two-token "
+                        "set widened silently (GPT56-V114 F1)")
+    if "VERIFICATION-CLOSE.close_class" not in text or "ATTEMPT-CLOSE.close_class" not in text:
+        problems.append("close-class echo: the draft no longer QUALIFIES both close_class "
+                        "domains by record (CODEX-V114 F5)")
     # PREIMAGE-CLASS ECHO (GPT56/CODEX-V112 F1; the coordinator's generator-input rule):
     # the spec's identity-envelope definition and THIS SOURCE's request_digest note must
     # agree on the preimage class - the superseded full-frame phrase in either is fatal.

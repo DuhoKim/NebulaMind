@@ -41,6 +41,7 @@ DECLARED = {
     "verification-boundary": "VERIFICATION-BOUNDARY record",
     "attempt-start": "ATTEMPT-START record",
     "attempt-close": "ATTEMPT-CLOSE record",
+    "verification-close": "VERIFICATION-CLOSE record",
     "review-record": "REVIEW RECORD",
     "identity-envelope": "IDENTITY ENVELOPE",
 }
@@ -63,6 +64,7 @@ PREIMAGE_OF = [
      "(position, digest) pair (CODEX-V112 F6)")),
     (r"^succexp\.terminal_enumeration_digest$", ("TAGGED", "terminal-enumeration-set")),
     (r"^revbody\.disclosure_record_digest$", ("TAGGED", "passrec")),
+    (r"^revbody\.successor_export_digest$", ("TAGGED", "successor-export")),
     (r"^arrival\.request_digest$", ("TAGGED", "identity-envelope")),
     (r"^revrec\.reviewed_event_digest$", ("FROZEN",
      "the adjudicated emission's committed event bytes (V112 - GPT56/CODEX-V111 F5)")),
@@ -142,6 +144,19 @@ def run(registry_text, corpus):
     orphan_kinds = sorted(k for k in tagged_kinds if k not in declared)
     return sites, rows, unmapped, strangers, unment, orphan_kinds
 
+# record-kind closure (CODEX-V114 F2: verification-close was admitted, claimed
+# domain-tagged, and absent from DECLARED while --check stayed green - a non-digest
+# record kind was invisible to both directions). The checkpoint-family record prefixes
+# and their kind literals; a prefix here without its DECLARED member is fatal.
+REC_KINDS = {"vread": "verification-read", "vbound": "verification-boundary",
+             "attstart": "attempt-start", "attclose": "attempt-close",
+             "vclose": "verification-close"}
+
+def record_kind_closure():
+    return sorted(f"record-kind closure: prefix '{p}' has schema fields but kind "
+                  f"'{k}' is not DECLARED (CODEX-V114 F2)"
+                  for p, k in REC_KINDS.items() if k not in DECLARED)
+
 CATEGORIES = {"TAGGED", "FROZEN", "RAW"}   # the closed set the docstring declares
 
 def self_test():
@@ -161,6 +176,15 @@ def self_test():
     _, _, unmapped, *_ = run(seeded, "")
     if unmapped != ["wombat.mystery_digest"]:
         fails.append(f"seeded site not caught: {unmapped}")
+    # RECORD-KIND CLOSURE control (CODEX-V114 F2): removing verification-close from
+    # DECLARED while its schema stays admitted must go red.
+    _saved = DECLARED.pop("verification-close", None)
+    try:
+        if not any("verification-close" in x for x in record_kind_closure()):
+            fails.append("record-kind closure control is hollow: dropped kind not caught")
+    finally:
+        if _saved is not None:
+            DECLARED["verification-close"] = _saved
     # DELETION PROBE: dropping a mapping entry must turn a real site unmapped
     keep = PREIMAGE_OF
     PREIMAGE_OF = [p for p in PREIMAGE_OF if "sealed_entry_set" not in p[0]]
@@ -206,7 +230,10 @@ def main():
             out.append(f"\n**{name}: {bad} — FATAL**")
     content = "\n".join(out) + "\n"
     target = HERE / "DOMAIN_KINDS.md"
-    fatal = bool(unmapped or strangers or unment or orphans)
+    rkc = record_kind_closure()
+    for _p in rkc:
+        out.append(f"\n**{_p} — FATAL**")
+    fatal = bool(unmapped or strangers or unment or orphans or rkc)
     if "--check" in sys.argv:
         ok = target.exists() and target.read_text() == content and not fatal
         print("domain kinds --check:", "byte-equal, all sites covered" if ok else "DRIFT or FATAL")

@@ -66,7 +66,7 @@ SURFACE = [
      "(ii-g) **the VERIFICATION-READ record `(kind, request_key, touch_position, "
      "boot_epoch, monotonic_reading)`", True),
     ("vbound",   "VERIF", "DRAFT",
-     "the VERIFICATION-BOUNDARY record `(kind, boot_epoch, monotonic_reading)`",
+     "the VERIFICATION-BOUNDARY record `(kind, gate, boot_epoch, monotonic_reading)`",
      True),
     ("attstart", "VERIF", "DRAFT",
      "the ATTEMPT-START record `(kind, member_position, boot_epoch, "
@@ -196,7 +196,7 @@ def selftest():
         fails.append("succexp tuple drift not caught")
     # control 5 (CODEX-V112 F3): vbound tuple drift - the V112 blind spot, now a probe miss
     vdrift = ok_draft.replace(
-        "the VERIFICATION-BOUNDARY record `(kind, boot_epoch, monotonic_reading)`",
+        "the VERIFICATION-BOUNDARY record `(kind, gate, boot_epoch, monotonic_reading)`",
         "the VERIFICATION-BOUNDARY record `(kind, timestamp)`", 1)
     if not any("kind 'vbound'" in p for p in check(vdrift, ok_spec)):
         fails.append("vbound tuple drift not caught")
