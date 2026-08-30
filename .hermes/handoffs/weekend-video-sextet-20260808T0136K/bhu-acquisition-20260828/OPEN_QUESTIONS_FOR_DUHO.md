@@ -26,13 +26,19 @@ double-gated (AGATE confirmed outright; CGATE narrowed-confirmed with both repai
 
 **The caveat that travels with the tier:** what we hold is the MIT preprint scan, not the
 Physics Letters B version of record. The entry says so in bold, and the tier is REVISITED if
-the version-of-record comparison ever shows a material difference. Cost of being wrong: one
-tier edit back, plus this closure's correction — small, and bounded by the revisit clause.
+the version-of-record comparison ever shows a material difference. Cost of being wrong
+(corrected per CGATE_Q8 — my first estimate undercounted): the tier edit back, the class-tally
+recomputation, the four battery scripts' obstruction-set/frame assertions restored, and this
+closure's correction — still small and bounded by the revisit clause, but four consistency
+edits, not one.
 
 **What changed:** entry 48's Testability line; the class tally (now 3 obstructions — 22, 5,
-48 — and 2 UNREAD left: 42, 47); five battery scripts whose obstruction-set assertions moved
-in the same change (b41 frame-scoped so the closed census's 1-of-2 miss rate is untouched —
-entry 48 was never in that frame or the screen's pool). Implementation gated (b48 round).
+48 — and 2 UNREAD left: 42, 47); FOUR battery scripts whose obstruction-set assertions moved
+in the same change — b41 (frame-scoped so the closed census's 1-of-2 miss rate is untouched;
+entry 48 was never in that frame or the screen's pool), b45, b46, b47. (b43 needed nothing —
+CGATE_Q8 corrected my "five", which had counted it.) Implementation gated (Q8 round); CGATE
+also caught b41 printing the corpus-wide denominator while its predicate asserted the frame's
+— repaired and bound.
 
 ## ARCHIVED — question 8 as originally filed (closed above)
 

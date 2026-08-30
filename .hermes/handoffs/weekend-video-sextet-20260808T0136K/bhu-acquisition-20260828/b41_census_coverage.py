@@ -275,7 +275,7 @@ obs_frame = obs & READABLE      # the closed census frame; entry 48 was tiered P
 hits = sorted(obs_frame & FROZEN_FLAGS); missed = sorted(obs_frame - FROZEN_FLAGS)
 print(f"\n  (entry 48, tiered 2026-08-30 at question 8, sits OUTSIDE this closed frame and")
 print(f"  outside the screen's pool -- it is not a screen hit or miss; the frame metrics stand.)")
-print(f"\n  PAPER-TIER miss rate on the receipted census : {len(missed)} of {len(obs)} "
+print(f"\n  PAPER-TIER miss rate, CLOSED READABLE-39 FRAME : {len(missed)} of {len(obs_frame)} "
       f"(hit {hits}, missed {missed})")
 print(f"  PAPER-TIER precision                          : {len(hits)} of {len(FROZEN_FLAGS)} flags")
 print(f"  entry 5's miss is a DOUBLE miss               : never in the pool, and (0,0,0) on the")
@@ -287,9 +287,10 @@ print("        exclusions in their prose; the screen flagged only 25 of those se
 print("    (ii) AGATE_B41's proposed paper list: 'caught 22; missed 5, 37, 51, 52, 53' -- a")
 print("        different set (paper-level truth plus four claim-level carriers), kept as its")
 print("        seat's stated position, not adopted as a denominator.")
-chk("MEASURED (paper-tier only): miss rate 1 of 2 -- the screen missed entry 5, found only by "
-    "full read; precision 1 of 3 flags",
-    hits == [22] and missed == [5] and len(FROZEN_FLAGS) == 3,
+chk("MEASURED (paper-tier, closed readable-39 frame): miss rate 1 of 2 -- the screen missed "
+    "entry 5, found only by full read; precision 1 of 3 flags. The printed denominator is now "
+    "BOUND (CGATE_Q8's catch: the output printed len(obs)=3 while this predicate said 2)",
+    hits == [22] and missed == [5] and len(FROZEN_FLAGS) == 3 and len(obs_frame) == 2,
     "the number question 1's record says nobody had measured -- now measured over a census "
     "receipted paper-by-paper")
 
