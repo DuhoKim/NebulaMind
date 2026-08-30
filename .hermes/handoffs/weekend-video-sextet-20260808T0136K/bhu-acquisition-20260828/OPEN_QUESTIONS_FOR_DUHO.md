@@ -6,7 +6,13 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — 1: the browser route for the last three paywalled papers. Question 8 is closed below.
+## OPEN — none. The browser-route question below was answered; question 8 is closed below.
+
+### ✅ RESOLVED 2026-08-31 02:16 KST (Duho via Blanc: "leave them gated, keep ticking quietly").
+Option (b): entries 2, 42, 47 stay gated — no browser route. The corpus rests at 55 read + entries
+1 and 3 abstract-confirmed + these 3 paywalled holdouts, and the record says so honestly. If you
+ever want them, drop the PDFs in ~/Downloads (option c) and I'll pin, read, and prepare the tiers.
+Original question, for the record:
 
 ### Should I chase entries 2, 42, 47 through the browser overnight, or leave them?
 
