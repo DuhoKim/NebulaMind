@@ -14,7 +14,9 @@ RESOLUTION HONESTY. Three resolution classes, printed per entry:
   SCAN      -- an image-only page scan (32, Brown & Bethe ApJ 423, 1994; REPAIRED 2026-08-30).
                The original NONE state (arXiv API found nothing -- pre-1995, never posted) was
                closed by fetching the NASA ADS classic scan (articles.adsabs.harvard.edu, direct,
-               no verification wall on that route). The scan has NO text layer, so surname
+               no verification wall on that route). The scan is the COMPLETE six-page article
+               (659-664) with no article-content or OCR text layer -- only a 20-character
+               ADS-bibcode overlay is extractable (CGATE_B42V2's narrowing) -- so surname
                containment cannot machine-check it; page 1 was rendered and read VISUALLY
                (2026-08-30, Tori): journal header "423:659-664, 1994 March 10", full title, and
                the byline "G. E. Brown and H. A. Bethe". The check below asserts the pin's
@@ -97,8 +99,8 @@ for n, (sn, arts) in sorted(E.items()):
             raw = open(path, "rb").read()
             scan_ok = (raw[:4] == b"%PDF"
                        and hashlib.sha256(raw).hexdigest().startswith("4b1cbae677de"))
-            print(f"  {n:>3}  {res:<9} {os.path.basename(a):<38} image-only; byline VISUAL "
-                  f"per record (no text layer -- containment impossible, disclosed)")
+            print(f"  {n:>3}  {res:<9} {os.path.basename(a):<38} complete-article image scan; "
+                  f"byline VISUAL per record (no article-content text layer -- disclosed)")
             continue
         body = deacc(open(path, errors="ignore").read())
         if anchor and anchor not in body[:4000]:
@@ -121,12 +123,14 @@ chk("MEASURED: all 10 recorded surnames of the 6 TEXT-artifact-backed support en
     "identity-anchored or record-named -- one-way containment, per-entry across pairs",
     flags == [] and checked == 8 and none_entries == [],
     f"text artifacts checked: {checked}; flags: {flags if flags else 'none'}")
-B2 = open(BIB).read()
+B2 = " ".join(open(BIB).read().split())     # 1ae: line wraps must not defeat the fragment
 chk("SCAN RECEIPT (entry 32, repaired 2026-08-30): the ADS page scan is pinned (PDF magic + "
-    "sha256 4b1cbae677de...), and the record discloses that its byline verification is VISUAL "
-    "-- machine containment is impossible on an image and this check does not pretend otherwise",
+    "sha256 4b1cbae677de...), and the record discloses the complete-article scan and that its "
+    "byline verification is VISUAL -- machine containment is impossible on an image and this "
+    "check does not pretend otherwise",
     scan_ok and "ads_1994ApJ_423_659_brown_bethe.pdf" in B2
-    and "byline checks are VISUAL" in B2)
+    and "byline checks are VISUAL" in B2
+    and "COMPLETE article, pages 659–664" in B2)
 
 print()
 fails = [x for x, p, _ in checks if not p]

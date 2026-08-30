@@ -957,14 +957,17 @@ document its own audits actually re-derive from.
 for a large number of low-mass black holes in the galaxy," ApJ **423**, 659 (1994), DOI
 10.1086/173844 — VERIFIED (Crossref: ApJ, v423, p659, 1994-03). **Pinned 2026-08-30: the NASA
 ADS page scan**, `../bhu-theory-phase3-cns-20260821/sources/ads_1994ApJ_423_659_brown_bethe.pdf`
-(sha256 `4b1cbae677de…`, 6 pp, image-only — no text layer, so byline checks are VISUAL, not
-machine-greppable: page 1 verified 2026-08-30 (Tori) showing "The Astrophysical Journal,
+(sha256 `4b1cbae677de…`, 6 pp — the COMPLETE article, pages 659–664, held as an image scan;
+no article-content or OCR text layer (only an ADS-bibcode overlay is extractable), so byline
+checks are VISUAL, not machine-greppable: page 1 verified 2026-08-30 (Tori) showing "The Astrophysical Journal,
 423:659–664, 1994 March 10", the full title, and the byline "G. E. Brown and H. A. Bethe". The
 page-1 abstract carries the cited numbers in print: M_max ≃ 1.5 M⊙ for compact cores,
 stabilization up to ~1.84 M⊙, and M_cutoff = 25 ± 5 M⊙.) The actual home of M_max ≈ 1.5 M⊙ —
 the number every limb-1 test is aimed at; the Phase 3 Track A audit found the falsifier paper
-imports it from here without derivation (B-5, NOT-DERIVED-HERE). **Full text not held** — cited and
-Crossref-verified only.
+imports it from here without derivation (B-5, NOT-DERIVED-HERE). **Full article held as a six-page image scan
+(2026-08-30); no extractable article-content/OCR text layer, so title, byline, and abstract
+checks are visual** (CGATE_B42V2's corrected wording — the older "full text not held" line was
+stale and false once the complete scan was pinned).
 
 **33. The vector-manifestation pair** (added 2026-08-22): M. Harada & K. Yamawaki, PRL **86**, 757
 (2001), DOI 10.1103/PhysRevLett.86.757 — VERIFIED; and Phys. Rept. **381**, 1–233 (2003), DOI
