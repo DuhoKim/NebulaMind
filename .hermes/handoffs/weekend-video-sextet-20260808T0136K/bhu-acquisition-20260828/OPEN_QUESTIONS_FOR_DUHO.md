@@ -8,6 +8,11 @@ mine. The old version of this file read as a status report and buried a decision
 
 ## OPEN — none. All seven delegated questions are closed.
 
+**SETTLED 2026-08-30, Duho's review via Blanc (10:59 KST):** all seven closures were walked
+through and none reverted — entry 44's warrant, the warrant column, entry 51's convention,
+entries 52/53, and entry 5's move each stand. Every "revert if you meant explain-it" offer in
+the closures below is **declined and struck**; the rulings are final as written.
+
 ## PREVIOUSLY CLOSED — all four earlier questions
 
 > **Numbering note, 2026-08-29.** These read **2, 3, 1** and the new one was numbered **3**,
@@ -30,8 +35,8 @@ mine. The old version of this file read as a status report and buried a decision
 ## CLOSED 2026-08-29 — question 3
 
 **Duho's instruction, verbatim: "answer question 3".** I read that as returning the decision to me
-rather than answering it, and I acted on it. **If you meant "explain it to me", say so and I will
-revert — it is four edits.**
+rather than answering it, and I acted on it. ~~Revert offer struck~~ — reviewed and upheld
+2026-08-30.
 
 **My answer: Reviewer B's option — and it needed no scheme change, because the scheme already
 existed.** I went to check whether the collection really had a two-part form before building one,
@@ -114,7 +119,7 @@ paper's current label is untouched.
 ## CLOSED 2026-08-29 — question 4
 
 **Duho's instruction, verbatim: "answer question 4".** Read, as with question 3, as returning the
-decision to me. **If you meant "explain it", say so — it is one table edit to revert.**
+decision to me. ~~Revert offer struck~~ — reviewed and upheld 2026-08-30.
 
 **My answer: option 3, the third column — and my costing of it was wrong in your favour.**
 
