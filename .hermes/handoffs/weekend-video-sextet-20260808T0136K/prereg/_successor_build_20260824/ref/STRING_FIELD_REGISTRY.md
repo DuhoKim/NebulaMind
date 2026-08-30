@@ -212,8 +212,9 @@
 | `passrec.predecessor_record_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
 | `passrec.signature` | bounded-encoding | spec 3b - gate pass record | detached deterministic signature, 64 bytes, enumerator keypair - anchors chain by predecessor verification (GPT56-V95 F2) |
 | `passrec.verifier_digest` | digest-ref | spec 3b - gate pass record | predecessor INSIDE the signed body - the anchors chain by construction (GPT56-V96 F2, CODEX-V96 F2) |
+| `revbody.disclosure_record_digest` | digest-ref | spec 3b - terminal review, completed form | COMPLETED form: the disclosure pass record that is the terminal head (GPT56-V112 F7) |
 | `revbody.drain_start_position` | bounded-encoding | spec 3b - terminal-review body | decimal chain position |
-| `revbody.kind` | closed-vocab | spec 3b - terminal-review body (L09 caught these fields unregistered) | the literal terminal-review kind |
+| `revbody.kind` | closed-vocab | spec 3b - terminal-review body (L09 caught these fields unregistered) | TWO literals: terminal-review-terminated - terminal-review-completed (GPT56-V112 F7) |
 | `revbody.recomputed_head` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.terminal_checkpoint_digest` | digest-ref | spec 3b - terminal-review body |  |
 | `revbody.transcript_digest` | digest-ref | spec 3b - terminal-review body |  |
@@ -233,6 +234,9 @@
 | `rnote.receipt_digest` | digest-ref | spec 3c T1 - receipt-note record |  |
 | `roots_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
 | `roots_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
+| `roster.kind` | closed-vocab | draft 6.1 - reviewer roster (CODEX-V112 F6) | the reviewer-roster literal |
+| `roster.reviewer_pubkey` | bounded-encoding | draft 6.1 - reviewer roster | roster entry inner field - 32-byte public key, lowercase hex; never a provisioned machine key (CODEX-V112 F6) |
+| `roster.roster_entries` | bounded-encoding | draft 6.1 - reviewer roster (CODEX-V112 F6) | count-prefixed, identity-sorted (reviewer_identity, reviewer_pubkey) pairs; committed within the P0-frozen BS-2k materials |
 | `sig.bsl_lock` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.checkpoint` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
 | `sig.explanation` | bounded-encoding | v9 SLOT_SCHEMA | detached deterministic signature over the named canonical body, 64 bytes |
@@ -242,8 +246,9 @@
 | `succexp.continuation_segment_digest` | digest-ref | draft 11 - successor export |  |
 | `succexp.flagged_keys` | bounded-encoding | draft 11 - successor export | the recurrence-flagged mismatch class_keys the successor must adjudicate (CODEX-V109 F4); CANONICAL SET: count-prefixed, lexicographically sorted, duplicate-refusing, empty = count 0 (CODEX-V111 F7) |
 | `succexp.freeze_signature_digest` | digest-ref | draft 11 - successor export |  |
-| `succexp.kind` | closed-vocab | draft 11 - successor export (GPT56/CODEX-V108 F4) | the successor-export literal |
+| `succexp.kind` | closed-vocab | draft 11 - successor export (GPT56/CODEX-V108 F4) | TWO literals: successor-export - successor-export-prelock (GPT56-V112 F9) |
 | `succexp.sealed_enumeration_digest` | digest-ref | draft 11 - successor export |  |
+| `succexp.terminal_enumeration_digest` | digest-ref | spec 3c T3 - pre-lock export | PRE-LOCK form only: entry bodies as of the drain cut, count-prefixed, chain-position-sorted (GPT56-V112 F9) |
 | `succexp.terminal_head` | bounded-encoding | draft 11 - successor export | position + running digest; the digest half is the chain running digest, frozen discipline (CODEX-V109 F3) |
 | `termcp.boot_epoch` | bounded-encoding | spec 3c - termination records | the clock pair, same bounds and quantization as every clock-bearing record |
 | `termcp.chain_head_digest` | digest-ref | spec 3c - termination records |  |

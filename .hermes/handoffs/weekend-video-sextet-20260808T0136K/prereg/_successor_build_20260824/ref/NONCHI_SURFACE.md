@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | arrival | ARRIVAL* | boot_epoch frame_sequence kind monotonic_reading object_identity operation request_digest request_key row running_chain_digest timestamp | DRAFT | quote-bound/no |
 | ckclock | CKCLOCK | boot_epoch gap_declaration monotonic_reading predecessor_epoch | DRAFT | yes |
-| succexp | SUCCEXP | continuation_segment_digest flagged_keys freeze_signature_digest kind sealed_enumeration_digest terminal_head | DRAFT | yes |
+| succexp | SUCCEXP | continuation_segment_digest flagged_keys freeze_signature_digest kind sealed_enumeration_digest terminal_enumeration_digest terminal_head | DRAFT | yes |
 | haltrec | HALTREC | chain_head first_opening_digest freeze_signature_digest kind signature | DRAFT | yes |
 | termrec | TERMREC | chain_head class_key first_opening_digest freeze_signature_digest gate kind signature | DRAFT | yes |
 | passrec | PASSREC | gate head_digest head_position partition_cut_position predecessor_record_digest signature verifier_digest | DRAFT | yes |
@@ -22,7 +22,8 @@
 | vbound | VERIF | boot_epoch kind monotonic_reading | DRAFT | yes |
 | attstart | VERIF | boot_epoch kind member_position monotonic_reading | DRAFT | yes |
 | attclose | VERIF | boot_epoch close_class kind member_position monotonic_reading | DRAFT | yes |
+| roster | ROSTER | kind reviewer_pubkey roster_entries | DRAFT | yes |
 | revrec | REVREC | evidence_ref first_opening_digest kind review_disposition review_timestamp reviewed_chain_position reviewed_class_key reviewed_event_digest reviewer_identity | DRAFT | yes |
-| revbody | REVBODY | drain_start_position kind recomputed_head terminal_checkpoint_digest transcript_digest verifier_digest | SPEC | yes |
+| revbody | REVBODY | disclosure_record_digest drain_start_position kind recomputed_head terminal_checkpoint_digest transcript_digest verifier_digest | SPEC | yes |
 
-rows: 18 · problems at generation: 0
+rows: 19 · problems at generation: 0

@@ -1,6 +1,6 @@
 # DOMAIN KINDS — kinds bound to enumerated preimage sites
 
-**25 kinds; 74 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
+**27 kinds; 76 digest-preimage sites enumerated from the registry's digest-ref rows; every site covered TAGGED/FROZEN/RAW or the build fails.** Controls: seeded positive + deletion probe in --self-test (the standing rule after V102's hollow first version).
 
 ## Kinds
 - `attempt-close`
@@ -22,7 +22,9 @@
 - `sealed-bindmap`
 - `sealed-entry-set`
 - `successor-export`
+- `successor-export-prelock`
 - `terminal-checkpoint`
+- `terminal-enumeration-set`
 - `terminal-review`
 - `termrec`
 - `verdict-record`
@@ -75,11 +77,12 @@
 - `passrec.head_digest` — FROZEN: chain running digest at the head
 - `passrec.predecessor_record_digest` — TAGGED: passrec
 - `passrec.verifier_digest` — RAW: verifier file bytes
+- `revbody.disclosure_record_digest` — TAGGED: passrec
 - `revbody.recomputed_head` — FROZEN: chain running digest, recomputed
 - `revbody.terminal_checkpoint_digest` — TAGGED: terminal-checkpoint
 - `revbody.transcript_digest` — RAW: verifier binary / ceremony transcript bytes
 - `revbody.verifier_digest` — RAW: verifier binary / ceremony transcript bytes
-- `revrec.evidence_ref` — RAW: evidence artifact bytes
+- `revrec.evidence_ref` — RAW: evidence artifact whose canonical body begins with the adjudicated (position, digest) pair (CODEX-V112 F6)
 - `revrec.first_opening_digest` — FROZEN: the first opening record - run binding (V98 precedent)
 - `revrec.reviewed_event_digest` — FROZEN: the adjudicated emission's committed event bytes (V112 - GPT56/CODEX-V111 F5)
 - `rnote.receipt_digest` — TAGGED: termrec
@@ -87,6 +90,7 @@
 - `succexp.continuation_segment_digest` — TAGGED: continuation-segment
 - `succexp.freeze_signature_digest` — TAGGED: freeze-body
 - `succexp.sealed_enumeration_digest` — TAGGED: sealed-entry-set
+- `succexp.terminal_enumeration_digest` — TAGGED: terminal-enumeration-set
 - `termcp.chain_head_digest` — FROZEN: chain running digest
 - `termcp.receipt_digest` — TAGGED: termrec
 - `termrec.first_opening_digest` — FROZEN: the opening record digest - clock-family, chain-side

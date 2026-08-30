@@ -47,24 +47,22 @@ DISPOSITIONS = {
         3: ("REPAIRED", "V113 machine-parseable sidecar lines; trace --check joins the battery"),
         4: ("REPAIRED", "V113 full-tuple probes; negation tripwire; 6/6 controls"),
         5: ("REPAIRED", "V113 hold exception covers drain-start AND receipt-note; fixtured"),
-        6: ("DEFERRED", "hold-budget enforcement law - designed (boundary-reading release "
-            "inequality, Row B the watchdog, contaminated-interval refusal), lands in the "
-            "morning fold before dispatch"),
-        7: ("DEFERRED", "completed-run terminal-review body - two domain-separated bodies "
-            "designed, lands in the morning fold"),
+        6: ("REPAIRED", "V113 spec 3d: release-by-inequality, GATE_PASS_BUDGET + "
+            "PASS_RETRY_MAX, contaminated-interval refusal, envelope named"),
+        7: ("REPAIRED", "V113 two domain-separated review bodies; completed form binds "
+            "the disclosure record; no sentinels"),
         8: ("REPAIRED", "V113 short-escape rule (RFC-8785) + collision fixture"),
-        9: ("DEFERRED", "pre-BS-L export body - terminal-time enumeration set at the drain "
-            "cut designed, lands in the morning fold"),
+        9: ("REPAIRED", "V113 pre-lock export form; terminal enumeration set at the "
+            "drain cut; absent-by-form, never sentinel"),
     },
     ("V112", "CODEX"): {
         1: ("REPAIRED", "V113 registry SOURCE fixed + preimage-class echo (same as GPT56 F1)"),
         2: ("REPAIRED", "V113 attclose.kind closed-vocab; attempt-close a declared kind"),
         3: ("REPAIRED", "V113 vbound full-tuple probe restate=True; drift + negation controls"),
-        4: ("DEFERRED", "admission-hold executable bound - same design as GPT56 F6, lands in "
-            "the morning fold"),
+        4: ("REPAIRED", "V113 spec 3d release-by-inequality (same law as GPT56 F6)"),
         5: ("REPAIRED", "V113 sig.review registered detached leaf on the surface"),
-        6: ("DEFERRED", "evidence_ref both-direction bind + roster authority chain "
-            "(P0-frozen BS-2k materials) designed, lands in the morning fold"),
+        6: ("REPAIRED", "V113 evidence preimage begins with the adjudicated pair; roster "
+            "closed schema inside the P0-frozen materials"),
         7: ("REPAIRED", "V113 blocker inventory restored; ratification record corrected by "
             "dated addendum"),
         8: ("REPAIRED", "V113 HELD conditional; the three dead guard sentences swept"),
