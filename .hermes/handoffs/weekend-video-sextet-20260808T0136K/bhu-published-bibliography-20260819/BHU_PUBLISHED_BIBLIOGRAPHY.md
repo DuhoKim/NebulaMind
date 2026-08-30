@@ -849,7 +849,18 @@ on the OPEN side (10³Ω_k = 25±41 alone, 2.3±1.1 with CMB, the paper's conven
 of — the cited constraints. Only **Di Valentino et al. 2020** (1911.02087, pinned) genuinely argues
 closed (>99% CL from Planck) and is cited accurately. codex narrows the CGATE_B14 wording: DESI does
 not merely *assume* flatness, it fits Ω_k and finds no preference. **This is a citation-accuracy
-clarification, NOT a tier change — both seats concur.** Tier UNCHANGED; the weekly Ω_k sign watcher is unaffected and was checked, not assumed. NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
+clarification, NOT a tier change — both seats concur.** Tier UNCHANGED; the weekly Ω_k sign watcher is unaffected and was checked, not assumed.
+**B61-VERIFIED 2026-08-30 (Duho: "point a gate at the curvature falsifier implication"; agy + codex
+both `CURVATURE_FALSIFIER_NOT_FIRED_*`, `AGATE_B61_VERDICT.md` + `CGATE_B61_VERDICT.md`):** the
+refutation condition above ("a confirmed Ω_k > 0 refutes") is NOT met — the falsifier is LIVE but
+UNFIRED. Both seats re-extracted the pinned sources and verified the sign convention (Ω_k < 0 =
+closed, the paper's own Eq. 27; DESI's sinh distance branch confirms Ω_K > 0 = open): **DESI DR2 +
+CMB Ω_K = +0.0023 ± 0.0011 (~2.1σ OPEN)** is a hint, not a confirmed detection — DESI itself finds
+"no significant preference for a non-flat ΛCDM model"; DESI alone = +0.025 ± 0.041 (<1σ); **Planck**
+combined = −0.0106 ± 0.0065 (~1.6σ closed); **ACT DR6** "no departure from spatial flatness".
+**Tension note (for the weekly watcher): the tightest current constraint, DESI+CMB, leans OPEN —
+contrary to the model's CLOSED prediction — at ~2.1σ; adverse to entry 54 but NOT refuting. Tier
+UNCHANGED (both seats); the watcher keeps tracking for a confirmed Ω_k > 0.** NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
 Record: triage pick #27; the newest published bounce mechanism in the family.
 
 ## 7. Holographic interior cosmology
