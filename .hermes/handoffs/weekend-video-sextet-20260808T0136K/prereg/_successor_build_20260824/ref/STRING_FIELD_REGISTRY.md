@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V78_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V79_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; the extraction is mechanical so the enumeration cannot silently omit a declared field, and the CLASSIFICATION is human, exactly as the raise-site ledger splits the same labour.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -102,6 +102,8 @@
 | `canonical.lock_body` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
 | `canonical.opening_authorization` | digest-ref | v9 SLOT_SCHEMA | field-order encoding WRITTEN in this draft; detached signatures bind these digests |
 | `canonical.provenance_record` | SCHEMA-PENDING | v9 SLOT_SCHEMA | V77 force-added this as digest-ref with no written encoding (GPT56-V77 F3, CODEX-V77 F1) - the SCHEMA-PENDING defect wearing a canonical name; pending until its encoding is written |
+| `dlm_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
+| `dlm_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
 | `entry.signature` | bounded-encoding | v9 SLOT_SCHEMA | deterministic scheme mandated at BS-2k - no nonce channel |
 | `envelope.body_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
 | `envelope.envelope_sha256` | digest-ref | v9 SLOT_SCHEMA |  |
@@ -124,6 +126,13 @@
 | `nonslot.lock_checkpoint_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `nonslot.stage_completion_artifact` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
 | `nonslot.unblinding_receipt` | SCHEMA-PENDING | v9 SLOT_SCHEMA | fields unenumerable until the defining slot fills; producer blocked by the same slot - a stub saying so, not a constraint it does not have |
+| `param.attempt_count` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
+| `param.duration_ms` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
+| `param.lease_id_digest` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
+| `param.signal_number` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
+| `param.store_errno` | bounded-encoding | v9 SLOT_SCHEMA | per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) - DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared |
+| `roots_entry.digest` | digest-ref | v9 SLOT_SCHEMA |  |
+| `roots_entry.path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the interpreter path; the containers enumerate exactly these entries |
 | `actor` | closed-vocab | §6.1 event schema | row identifiers |
 | `baseline_verdict` | closed-vocab | §11 BS-3g | HELD | FAILED | PER-DRAW; informational |
 | `byte_integrity_pass` | closed-vocab | §6.1 projection | predicate bit |

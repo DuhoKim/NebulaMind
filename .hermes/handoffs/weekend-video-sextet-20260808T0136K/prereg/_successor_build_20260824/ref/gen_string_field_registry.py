@@ -85,6 +85,19 @@ _c("bs7p_env.interpreter_path", "bounded-encoding",
    "absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments")
 _c("bs7p_env.interpreter_sha256 bs7p_env.dependency_roots bs7p_env.dynamic_load_manifest",
    "digest-ref", "roots and linker-resolution manifest as ordered (path, digest) pairs")
+# CODEX-V78 F2: the CONTAINERS were digest-refs while their per-entry path strings had no bound and
+# no registry presence - unbounded leaves hiding behind a bounded wrapper. The entry fields:
+_c("roots_entry.path dlm_entry.path", "bounded-encoding",
+   "absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments - same bound as the "
+   "interpreter path; the containers enumerate exactly these entries")
+_c("roots_entry.digest dlm_entry.digest", "digest-ref")
+# GPT56-V78 F2: explanation parameter NAMES and arity were free strings - the string rule's own
+# surface, one level down. Each cause declares its exact parameters; nothing else is admissible.
+_c("param.duration_ms param.attempt_count param.signal_number param.lease_id_digest "
+   "param.store_errno", "bounded-encoding",
+   "per-cause closed parameter schema: VERIFIER-TIMEOUT(duration_ms) - WORKER-CRASH(signal_number) "
+   "- DEADLOCK(duration_ms, attempt_count) - LEASE-LOST(lease_id_digest) - "
+   "STORE-UNAVAILABLE(store_errno); names from THIS set only, arity exactly as declared")
 _c("BS-6.producer_checksum_list", "digest-ref")
 # The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
 # in envelope fields, and environment_record() emits its own - all string-bearing, none previously
@@ -192,7 +205,11 @@ def extract(text):
     if re.search(r"`cause` token from the declared set", text):
         fields.add("cause")
     fields |= set(re.findall(r"`(parent_attempt_present|byte_integrity_pass|canonical_shape_pass)`", text))
-    return {f for f in fields if f and not f.isdigit()}
+    # a draft-side token that is already a canonical.* row is the same surface mentioned in
+    # prose, not a new field - the entry-block span widened over the one-encoding paragraph
+    # at V79 and harvested 'provenance_record' from a sentence about its pending schema
+    return {f for f in fields if f and not f.isdigit()
+            and f"canonical.{f}" not in V9_CONSTRAINTS}
 
 def envelope_fields():
     """The receipt envelope's own field names, extracted from v9's receipt() constructor."""
@@ -205,6 +222,9 @@ def envelope_fields():
 
 BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
+ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
+PARAMS = {f"param.{n}" for n in (
+    "duration_ms", "attempt_count", "signal_number", "lease_id_digest", "store_errno")}
 CANONICAL = {f"canonical.{n}" for n in (
     "freeze_signature_body", "lock_body", "opening_authorization", "entry_body",
     "explanation_body", "provenance_record")}
@@ -224,7 +244,7 @@ def environment_leaves():
 def main():
     text = DRAFT.read_text()
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
