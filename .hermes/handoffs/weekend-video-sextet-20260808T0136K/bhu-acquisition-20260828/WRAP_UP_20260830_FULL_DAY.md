@@ -118,9 +118,25 @@ version-of-record nicety.
 - Front commit at wrap time: see `git log -1`. The day ran ~98 commits; the last content commit
   before this wrap was `35866c415` (erratum gate closure) → `62113908f` (evening wrap section).
 
-## WHAT THE NEXT SESSION PICKS UP FIRST
+## NEW FRONTIER identified 2026-08-30 evening — SUPPORT-LAYER CONTENT VERIFICATION
 
-Nothing is solo-actionable and no question is open. On the next tick:
+Reconciling Blanc's 18:35 pickup list found all three items already done (PLB 690 pair
+dispositioned; entries 48/14/50 read+gated). The real remaining unexamined content is the
+**7 support entries (29, 30, 32, 33, 34, 35, 58)**: they were BYLINE-verified (b42) and pinned,
+but their CONTENT — the specific measurement/mechanism each SUPPLIES to a falsifier — was never
+read/adjudicated. They carry NO tier (they are imported measurements, not BHU-claim papers), so
+the b28 obstruction rule does NOT apply; the value is narrower and real: **verify each support
+paper actually establishes the load-bearing claim its falsifier imports** (e.g. entry 30 = the
+kaon-condensation mechanism entry 7's CNS chain imports; 32 = Brown-Bethe M_max≈1.5; 34 =
+Ferdman limb-2 masses; 35 = Tauris accretion budget). A DISCREPANCY between a support paper and
+what its falsifier claims it supplies is a STOP-for-Duho item (it could undermine a calibrated
+falsifier). Started this session with b50 (entry 30). Most have readable text (ar5iv/abs pins);
+entry 32 is image-only and its headline (M_max≈1.5, ~1.84, M_cutoff 25±5) was already read
+visually.
+
+## AFTER THE SUPPORT SWEEP / IF IT STALLS
+
+Nothing else is solo-actionable and no question is open. On the next tick:
 1. **Quiet-hold check** — `git fetch` for incoming commits; `ssh duhokim@100.75.47.116 'find
    ~/Downloads -name "*.pdf" -mmin -30'` for a new drop. If both empty → one-line "staying
    stopped", nothing else.
