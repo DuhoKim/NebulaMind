@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V87_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V88_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -92,6 +92,13 @@
 | `BS-V.path` | closed-vocab | v9 SLOT_SCHEMA |  |
 | `BS-V.sigma_comb` | bounded-encoding | v9 SLOT_SCHEMA |  |
 | `BS-V.verdict` | closed-vocab | v9 SLOT_SCHEMA |  |
+| `arrival.kind` | closed-vocab | v9 SLOT_SCHEMA | the literal ARRIVAL |
+| `arrival.object_identity` | bounded-encoding | v9 SLOT_SCHEMA | brickid/objid keys |
+| `arrival.operation` | closed-vocab | v9 SLOT_SCHEMA | the event schema's own closed sets |
+| `arrival.request_key` | bounded-encoding | v9 SLOT_SCHEMA | the arrival's own chain position, decimal - unique by construction, restart-safe; the enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal naming it, every terminal exactly one prior arrival |
+| `arrival.row` | closed-vocab | v9 SLOT_SCHEMA | the event schema's own closed sets |
+| `arrival.running_chain_digest` | digest-ref | v9 SLOT_SCHEMA |  |
+| `arrival.timestamp` | bounded-encoding | v9 SLOT_SCHEMA | ISO-8601 UTC, 24 bytes |
 | `bs7p_env.dependency_roots` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
 | `bs7p_env.dynamic_load_manifest` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
 | `bs7p_env.interpreter_path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments |
@@ -175,19 +182,19 @@
 | `counterfactual_path_sha256` | digest-ref | §11 BS-3g | compiled from verified buffer |
 | `delta_gamma_max` | bounded-encoding | §11 BS-3g | finite positive double = frozen class-P |
 | `disposition` | closed-vocab | §6.1 entry | NAMED-AS-DEFECT · EXPLAINED |
-| `draw_generator_id` | closed-vocab | §11 BS-3g | set currently EMPTY - blocker |
-| `draw_master_seed` | bounded-encoding | §11 BS-3g | decimal int [0,2^64-1]; frozen UNSET |
+| `draw_generator_id` | closed-vocab | §11 BS-3g | one member, committed blind: numpy-1.26.4-PCG64-default_rng |
+| `draw_master_seed` | bounded-encoding | §11 BS-3g | decimal int; COMMITTED blind = 20260830 |
 | `draw_verdict_digest` | digest-ref | §11 BS-3g | row-major serialization stated |
 | `estimator_sha256` | digest-ref | §11 BS-3g |  |
 | `event_digest` | digest-ref | §6.1 entry |  |
 | `explanation_ref` | digest-ref | §6.1 entry | sha256 of the canonical explanation body |
-| `gamma_bound` | bounded-encoding | §11 BS-3g | recomputed ·gamma_hat·+k*sigma, never accepted |
+| `gamma_bound` | bounded-encoding | §11 BS-3g | RULED a-priori (2026-08-30): equals the ratified frozen endpoint; k-gamma moot; the old recomputed-formula note encoded the superseded shape (SWEEP: GPT56/CODEX-V87 F6) |
 | `gamma_hat` | bounded-encoding | §11 BS-3g | finite IEEE-754 double, decimal |
 | `invariance_outcome` | closed-vocab | §11 BS-3g | HELD · FAILED |
 | `kernel_sha256` | digest-ref | §11 BS-3g |  |
 | `mapping_id` | closed-vocab | §11 BS-3g | sole member MAPPING-NOT-PREREGISTERED until ruled |
 | `mask_sha256` | digest-ref | §11 BS-3g | must equal BS-2f's pinned mask_digest |
-| `n_draws` | bounded-encoding | §11 BS-3g | decimal int [1,10^6]; frozen value UNSET |
+| `n_draws` | bounded-encoding | §11 BS-3g | decimal int; RULED = 99 (2026-08-30 sitting) |
 | `n_perturbations` | bounded-encoding | §11 BS-3g | decimal int [1,10^6] |
 | `object identity` | bounded-encoding | §6.1 event schema | brickid/objid keys |
 | `operation` | closed-vocab | §6.1 event schema | BS-2k closed operation set, STORE-QUALIFIED: (row, operation) determines the store (GPT56-V81 F4, CODEX-V81 F5 - Row I touches multiple stores, so unqualified operations made the presence-audit join non-derivable) |

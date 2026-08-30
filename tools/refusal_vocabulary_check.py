@@ -75,8 +75,8 @@ ERRORS = {
     "R01": "the draft pins a refusal vocabulary that is not the ruled eleven-code set",
     "R02": "the draft pins a derivation fingerprint or claims closure — non-closure was ruled "
            "established on 2026-08-29, so there is no closure claim for a control to protect",
-    "R03": "the draft does not state the principle the vocabulary rests on (request/authorisation "
-           "state, never the object)",
+    "R03": "the draft does not state the REBUILT principle (storage state may be described; "
+           "anything content-derived never; safe only under a precommitted chi-blind read schedule)",
     "R04": "the draft does not forbid free text in the refusal-reason field",
     "R05": "the draft does not state the CATCH-ALL GUARD — that every REFUSED-UNCLASSIFIED emission "
            "is a defect to be enumerated, never a routine outcome",
@@ -179,9 +179,18 @@ def check(text: str):
                 fail("R02", f"a closure claim about the vocabulary: {line.strip()[:70]!r}")
                 break
 
-    if not re.search(r"never describe the\s+\*{0,2}OBJECT|never the\s+\*{0,2}OBJECT|"
-                     r"may\s+\*{0,2}never\*{0,2}\s+describe the\s+\*{0,2}object", text, re.I):
-        fail("R03")
+    # REBUILT (principal ruling 2026-08-30 10:46). The old body required the PRE-ruling sentence
+    # ("never the OBJECT") and stayed green off a dead draft tail until the V88 supersession sweep
+    # killed the tail and this control surfaced as the eighth stale site — a control encoding the
+    # old regime is part of the regime. Three prongs, each required, failure names the missing one.
+    _prongs = (
+        ("storage-state permission", r"storage\s+state"),
+        ("content-derived ban", r"never\s+carr(?:y|ies)\s+anything\s+content-derived"),
+        ("chi-blind-schedule dependency", r"precommitted\s+and\s+(?:χ|chi)-blind"),
+    )
+    _missing = [n for n, p in _prongs if not re.search(p, text, re.I)]
+    if _missing:
+        fail("R03", f"missing prong(s): {', '.join(_missing)}")
     else:
         # a later contradiction must not coexist with the phrase that makes R03 pass (GPT56-V70 F4)
         # - under the rebuilt principle the contradiction is an affirmative CONTENT-DERIVED allowance
@@ -247,7 +256,9 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
              closed=False):
     txt = "| B | Store mediator | conduit | Any | BS-2k | log | unlogged refusal |\n"
     if principle:
-        txt += "The reason may describe the request and the authorisation state, never the OBJECT.\n"
+        txt += ("The reason may describe the request, the authorisation state, and the object's "
+                "STORAGE STATE; it may never carry anything CONTENT-DERIVED, and storage-state "
+                "codes are safe only because the read schedule is precommitted and chi-blind.\n")
     if freetext:
         txt += "The field carries exactly one code: no free text.\n"
     if guard == "freeze":

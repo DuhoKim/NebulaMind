@@ -137,6 +137,18 @@ _c("BS-6.producer_checksum_list", "digest-ref")
 # The runtime receipt ENVELOPE and ENVIRONMENT (CODEX-V74 F1: v9's receipt() wraps every slot body
 # in envelope fields, and environment_record() emits its own - all string-bearing, none previously
 # enumerated), extracted below from the envelope constructor rather than hand-listed.
+# The ARRIVAL event class (SWEEP: GPT56/CODEX-V87 F2 - the ruled second event class escaped the
+# exhaustive registry). request_key = the arrival event's own CHAIN POSITION: bounded decimal,
+# unique by chain construction, restart-safe because there is one chain - no new randomness.
+_c("arrival.kind", "closed-vocab", "the literal ARRIVAL")
+_c("arrival.timestamp", "bounded-encoding", "ISO-8601 UTC, 24 bytes")
+_c("arrival.row arrival.operation", "closed-vocab", "the event schema's own closed sets")
+_c("arrival.object_identity", "bounded-encoding", "brickid/objid keys")
+_c("arrival.request_key", "bounded-encoding",
+   "the arrival's own chain position, decimal - unique by construction, restart-safe; the "
+   "enumeration verifier checks the join BIDIRECTIONALLY: every arrival at most one terminal "
+   "naming it, every terminal exactly one prior arrival")
+_c("arrival.running_chain_digest", "digest-ref")
 _c("envelope.slot", "closed-vocab", "SLOT_SCHEMA keys")
 _c("envelope.schema", "closed-vocab", "the literal successor_ref_v3/1")
 # The environment's SIX LEAF FIELDS, extracted from environment_record() itself rather than
@@ -198,12 +210,12 @@ CONSTRAINTS = {
     "mapping_id": ("closed-vocab", "§11 BS-3g", "sole member MAPPING-NOT-PREREGISTERED until ruled"),
     "gamma_hat": ("bounded-encoding", "§11 BS-3g", "finite IEEE-754 double, decimal"),
     "sigma_gamma": ("bounded-encoding", "§11 BS-3g", "finite IEEE-754 double, decimal"),
-    "gamma_bound": ("bounded-encoding", "§11 BS-3g", "recomputed |gamma_hat|+k*sigma, never accepted"),
+    "gamma_bound": ("bounded-encoding", "§11 BS-3g", "RULED a-priori (2026-08-30): equals the ratified frozen endpoint; k-gamma moot; the old recomputed-formula note encoded the superseded shape (SWEEP: GPT56/CODEX-V87 F6)"),
     "invariance_outcome": ("closed-vocab", "§11 BS-3g", "HELD | FAILED"),
     "n_perturbations": ("bounded-encoding", "§11 BS-3g", "decimal int [1,10^6]"),
-    "n_draws": ("bounded-encoding", "§11 BS-3g", "decimal int [1,10^6]; frozen value UNSET"),
-    "draw_generator_id": ("closed-vocab", "§11 BS-3g", "set currently EMPTY - blocker"),
-    "draw_master_seed": ("bounded-encoding", "§11 BS-3g", "decimal int [0,2^64-1]; frozen UNSET"),
+    "n_draws": ("bounded-encoding", "§11 BS-3g", "decimal int; RULED = 99 (2026-08-30 sitting)"),
+    "draw_generator_id": ("closed-vocab", "§11 BS-3g", "one member, committed blind: numpy-1.26.4-PCG64-default_rng"),
+    "draw_master_seed": ("bounded-encoding", "§11 BS-3g", "decimal int; COMMITTED blind = 20260830"),
     "draw_verdict_digest": ("digest-ref", "§11 BS-3g", "row-major serialization stated"),
     "baseline_verdict": ("closed-vocab", "§11 BS-3g", "a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts"),
     "delta_gamma_max": ("bounded-encoding", "§11 BS-3g", "finite positive double = frozen class-P"),
@@ -264,6 +276,8 @@ BS7P_ENV = {f"bs7p_env.{n}" for n in (
     "interpreter_path", "interpreter_sha256", "dependency_roots", "dynamic_load_manifest")}
 ENTRIES = {"roots_entry.path", "roots_entry.digest", "dlm_entry.path", "dlm_entry.digest"}
 SIGS = {f"sig.{n}" for n in ("freeze", "bsl_lock", "opening", "explanation", "checkpoint")}
+ARRIVAL = {f"arrival.{n}" for n in ("kind", "timestamp", "row", "operation", "object_identity",
+    "request_key", "running_chain_digest")}
 OPENAUTH = {f"openauth.{n}" for n in ("bsl_digest", "store_identity_main", "store_identity_committee",
     "destination", "ceremony_id", "phase", "signer_identity", "schema_version")}
 FREEZE = {f"freezebody.{n}" for n in ("code_digest", "parent_sha256", "selection_bricks",
@@ -351,7 +365,7 @@ def main():
             print("CROSS-CHECK FAIL:", x)
         return 1
     found = extract(text)
-    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
+    v9f = v9_slot_fields() | envelope_fields() | NONSLOT | CANONICAL | BS7P_ENV | ENTRIES | ARRIVAL | OPENAUTH | FREEZE | SIGS | LOCKBODY | PARAMS | environment_leaves() | {"entry.signature"}
     rows, missing = [], []
     for sf in sorted(v9f):
         if sf in V9_CONSTRAINTS:
