@@ -10,6 +10,15 @@ mine. The old version of this file read as a status report and buried a decision
 
 ## GATED WORK — for a seat / the tick, NOT a Duho decision (logged per the overnight protocol)
 
+- **✅ RESOLVED 2026-08-30 (B59, both seats).** Duho said "point both seats and keep work with those
+  papers"; I did. agy + codex INDEPENDENTLY ruled `SOURCE_OVERSTATES_ACT_DESI_TIER_UNCHANGED`
+  (`AGATE_B59_VERDICT.md` + `CGATE_B59_VERDICT.md`). The cited primary abstracts are pinned and the
+  finding is bound into entry 54's record: ACT DR6 says "no departure from spatial flatness", DESI
+  2024 VI is consistent with flat ΛCDM, DESI DR2's Ω_k extension finds no significant non-flat
+  preference (central Ω_k open-side) — so the source overstates/sign-reverses its ACT/DESI support;
+  Di Valentino 2020 alone argues closed and is cited accurately. **Tier UNCHANGED** (both seats).
+  Guarded by `b60`. Nothing outstanding. Original item, for the record:
+
 - **Entry 54 — the Ω_K citation testimony.** The bounce paper (PRD 111, 103537) cites "same-
   direction ACT/DESI trends" for its closed-curvature (Ω_k < 0) prediction. `CGATE_B14`'s phase-6
   citation audit testified that the cited **DESI analysis actually *assumes* Ω_K = 0** (so it can't
