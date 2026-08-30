@@ -35,7 +35,7 @@ BASE = HERE.parent
 
 DEAD = re.compile(
     r"SWEEP|sweep|RETIRED|retired|superseded|pre-arrival|pre-ruling|predecessor|previously|"
-    r"WITHDRAWN|HISTORY|dissolved|form said|sentence said|wording said|clause said|line said|line listed|clause recomputed|refusal pinned|this paragraph declared|cell carried")
+    r"WITHDRAWN|HISTORY|dissolved|DELETED|deleted|died with|form said|sentence said|wording said|clause said|line said|line listed|clause recomputed|refusal pinned|this paragraph declared|cell carried|cell said|cell spoke|summary said|row said|serialization concept")
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
@@ -85,6 +85,14 @@ SWEEPS = [
      "the verifier recomputing from an independently committed spacing (GPT56-V90 F6)"),
     ("GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2)", "frozen class-P value", ("draft",),
      "the schema pinning a frozen spacing after the derivation (GPT56-V90 F6)"),
+    ("DECIMAL GRAMMAR UNIFIED (V92)", "shortest round-trip", ("draft",),
+     "binary-float serialization language in the exact-decimal grid (GPT56-V91 F4, CODEX-V91 F2)"),
+    ("NOT-EVALUATED DELETED (CODEX-V72 F7)", "NOT-EVALUATED", ("draft",),
+     "the dead outcome token; live use found in the BS-3g row at V91 (GPT56-V91 F5)"),
+    ("ARRIVAL CLASS (2026-08-30 10:46)", "five crash windows", ("draft",),
+     "the pre-W0/W1 window count (GPT56-V91 F6)"),
+    ("COUNT MOVE (GPT56-V88 F7)", "stay 16/8", ("draft",),
+     "the unqualified stale class count (CODEX-V91 F6)"),
 ]
 
 

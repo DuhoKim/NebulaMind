@@ -1,6 +1,6 @@
 # STRING-FIELD REGISTRY — every string-bearing field in every non-χ artifact
 
-**Generated from `PREREG_SUCCESSOR_DRAFT_V91_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
+**Generated from `PREREG_SUCCESSOR_DRAFT_V92_20260830.md`'s schema blocks by `ref/gen_string_field_registry.py`; TWO provenances, said plainly (CODEX-V81 F8: the header claimed generated-from-schemas while several sets are hand-declared): draft schema blocks, v9's SLOT_SCHEMA, the envelope constructor and environment_record are EXTRACTED mechanically; the openauth, freeze, canonical, non-slot, signature and parameter sets are DECLARED here as classification law, versioned with this generator. Extraction cannot silently omit; declaration is auditable in one screen.** A field with no row is **forbidden by default** and the generator exits nonzero. Constraints: `closed-vocab` (a declared member set) · `bounded-encoding` (digest/decimal-in-range) · `digest-ref` (sha256 of a canonical body).
 
 **The honest limit:** bounded numerics still carry bits; the registry bounds capacity and cannot zero it. What it removes is free prose.
 
@@ -104,7 +104,7 @@
 | `bindmap.decision_chain_position` | bounded-encoding | draft 6.1 item (iv-c) - binding-to-key map | chain positions, bounded decimal - the join is (request_key <-> decision position) |
 | `bindmap.decision_event_digest` | digest-ref | draft 6.1 item (iv-c) - binding-to-key map |  |
 | `bindmap.request_key` | bounded-encoding | draft 6.1 item (iv-c) - binding-to-key map | chain positions, bounded decimal - the join is (request_key <-> decision position) |
-| `bindmap.signature` | sig-envelope | draft 6.1 item (iv-c) - binding-to-key map | provisioned-keypair detached signature, same discipline as enumeration entries |
+| `bindmap.signature` | bounded-encoding | draft 6.1 item (iv-c) - binding-to-key map | detached deterministic signature over the canonical entry body, 64 bytes - Row B's provisioned keypair, signer roster-bound, no envelope leaves (CODEX-V91 F3: sig-envelope was off-enum and invited undeclared leaves) |
 | `bs7p_env.dependency_roots` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
 | `bs7p_env.dynamic_load_manifest` | digest-ref | v9 SLOT_SCHEMA | roots and linker-resolution manifest as ordered (path, digest) pairs |
 | `bs7p_env.interpreter_path` | bounded-encoding | v9 SLOT_SCHEMA | absolute POSIX path, printable ASCII <= 256 bytes, no traversal segments |
@@ -188,7 +188,7 @@
 | `chain_position` | bounded-encoding | §6.1 entry | index into the chain |
 | `class_key` | closed-vocab | §6.1 entry | (row, operation), both closed |
 | `counterfactual_path_sha256` | digest-ref | §11 BS-3g | compiled from verified buffer |
-| `delta_gamma_max` | bounded-encoding | §11 BS-3g | finite positive double = frozen class-P |
+| `delta_gamma_max` | bounded-encoding | §11 BS-3g | canonical decimal string per the one §11 grammar (no exponent, no trailing zeros, canonical zero 0) - DERIVED = 2*Gamma/n_steps under AMENDMENT 2 (GPT56-V91 F4: this row said finite positive double after the grid went exact-decimal) |
 | `disposition` | closed-vocab | §6.1 entry | NAMED-AS-DEFECT · EXPLAINED |
 | `draw_generator_id` | closed-vocab | §11 BS-3g | one member, committed blind: numpy-1.26.4-PCG64-default_rng |
 | `draw_master_seed` | bounded-encoding | §11 BS-3g | decimal int; COMMITTED blind = 20260830 |

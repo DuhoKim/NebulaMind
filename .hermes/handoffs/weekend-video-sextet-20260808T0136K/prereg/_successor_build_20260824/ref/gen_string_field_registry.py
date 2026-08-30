@@ -172,8 +172,10 @@ _c("bindmap.request_key bindmap.decision_chain_position", "bounded-encoding",
    source="draft 6.1 item (iv-c) - binding-to-key map")
 _c("bindmap.decision_event_digest", "digest-ref", "",
    source="draft 6.1 item (iv-c) - binding-to-key map")
-_c("bindmap.signature", "sig-envelope",
-   "provisioned-keypair detached signature, same discipline as enumeration entries",
+_c("bindmap.signature", "bounded-encoding",
+   "detached deterministic signature over the canonical entry body, 64 bytes - Row B's "
+   "provisioned keypair, signer roster-bound, no envelope leaves (CODEX-V91 F3: sig-envelope "
+   "was off-enum and invited undeclared leaves)",
    source="draft 6.1 item (iv-c) - binding-to-key map")
 _c("ckclock.boot_epoch ckclock.monotonic_reading", "bounded-encoding",
    "the checkpoint CLOCK RECORD of its own production - same bounds as the arrival pair "
@@ -249,7 +251,10 @@ CONSTRAINTS = {
     "draw_master_seed": ("bounded-encoding", "§11 BS-3g", "decimal int; COMMITTED blind = 20260830"),
     "draw_verdict_digest": ("digest-ref", "§11 BS-3g", "row-major serialization stated"),
     "baseline_verdict": ("closed-vocab", "§11 BS-3g", "a PRODUCTION verdict token - REPRODUCED-LONGO / REJECTED-AT-LONGO-AMPLITUDE / INCONCLUSIVE - or PER-DRAW; V84 wrongly closed it to the invariance tokens (GPT56-V84 F4, CODEX-V84 F5): cells carry run verdicts"),
-    "delta_gamma_max": ("bounded-encoding", "§11 BS-3g", "finite positive double = frozen class-P"),
+    "delta_gamma_max": ("bounded-encoding", "§11 BS-3g", "canonical decimal string per the "
+        "one §11 grammar (no exponent, no trailing zeros, canonical zero 0) - DERIVED = "
+        "2*Gamma/n_steps under AMENDMENT 2 (GPT56-V91 F4: this row said finite positive "
+        "double after the grid went exact-decimal)"),
     # access-log event (§6.1 (ii))
     "timestamp": ("bounded-encoding", "§6.1 event schema", "ISO-8601 UTC YYYY-MM-DDThh:mm:ss.sssZ, exactly 24 bytes (GPT56-V77 F4: labelled bounded with no bound)"),
     "actor": ("closed-vocab", "§6.1 event schema", "row identifiers"),
@@ -330,9 +335,38 @@ def crosscheck_declared(text):
     """F7 (both seats): declared sets could silently omit. The three richest are now CHECKED
     declarations - the generator extracts the clause text's own noun phrases and fails if a
     declared set misses one or carries a stranger.
-    OPENAUTH vs Clause 6; LOCKBODY vs clause 3(b); FREEZE vs the freeze-body sentence."""
+    OPENAUTH vs Clause 6; LOCKBODY vs clause 3(b); FREEZE vs the freeze-body sentence;
+    and since V92, ARRIVAL vs the (ii-b) tuple and BINDMAP vs the (iv-c) tuple - the
+    hand-declared sets that CODEX-V91 F4 showed could drift silently from the draft."""
     import re as _re
     problems = []
+    # (ii-b): extract the arrival tuple from the draft bytes and compare field-for-field
+    m = _re.search(r"kind=ARRIVAL, ([^)]+)\)", text)
+    if not m:
+        problems.append("(ii-b) arrival tuple not found in the draft - extraction dead")
+    else:
+        norm = {"timestamp": "timestamp", "boot_epoch": "boot_epoch",
+                "monotonic_reading": "monotonic_reading", "row": "row",
+                "operation": "operation", "object identity": "object_identity",
+                "request_key": "request_key",
+                "running chain digest": "running_chain_digest"}
+        got = {"arrival.kind"}
+        for part in m.group(1).split(","):
+            part = part.strip()
+            if part in norm:
+                got.add("arrival." + norm[part])
+            else:
+                problems.append(f"(ii-b) tuple carries a field this extractor cannot map: {part!r}")
+        if got != ARRIVAL:
+            problems.append(f"ARRIVAL declaration drifted from (ii-b): declared-only "
+                            f"{sorted(ARRIVAL - got)}, draft-only {sorted(got - ARRIVAL)}")
+    # (iv-c): the bindmap tuple
+    m = _re.search(r"closed schema `\(request_key, decision chain_position, decision "
+                   r"event_digest, signature\)`", text)
+    if not m:
+        problems.append("(iv-c) bindmap tuple not found in the draft or its shape changed - "
+                        "re-derive the BINDMAP declaration against the draft bytes")
+
     c6 = _re.search(r"Opening authorization\.\*\* The canonical opening-authorization body[^.]*binds exactly: ([^.]+)\.", text)
     if c6:
         want = {"bsl_digest": "BS-L digest", "store_identity_main": "store identities",

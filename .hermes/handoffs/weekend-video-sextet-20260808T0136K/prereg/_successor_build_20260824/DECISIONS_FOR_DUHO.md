@@ -42,3 +42,8 @@ the next rounds return.
 BS-3g emission: γ endpoints (ratification) · `gates/replay_harness.py` digest (set when built) ·
 BS-SI schema (written when filled). BS-6 and the first image byte remain blocked; γ̂ unmeasured;
 **v9 frozen at `6a9abbbd` throughout — nothing in the seven rulings touched it.**
+
+## Flagged, not blocking (V92, 2026-08-30)
+
+**Hand-check re-views are now SINGLE-PASS, forward-only** — the sealed interface delivers each allocated object's render exactly once per member, because an unrestricted re-view count was a content-driven multiplicity exported into the non-χ access log (GPT56-V91 F3), colliding with the ruled χ-blind traversal. **Cost: a checker cannot revisit an earlier cutout — a labeling-ergonomics change to the hand-check protocol.** Taken as the least-invasive engineering fix; **reversible by ruling any time before BS-2k fills**. If second looks matter to the protocol, the alternatives are fixed-K padding (every object rendered exactly K times) or accepting a named multiplicity leak — both costlier.
+

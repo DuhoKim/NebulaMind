@@ -1,10 +1,6 @@
 **STATUS: RULED — strata option (A), 2026-08-30 10:46. χ-derived strata ACCEPTED. Row D2 (stratum-
 index producer, MAY READ χ) builds the index as a sealed, pinned, independently verified artifact —
-slot BS-SI, class P, UNFILLED — Row F's widened surface consumes it and Row F's void clause is
-amended to its real inputs. Nine strata stay; no v9 unfreeze. The typed/capability barrier applies:
-the artifact reaches the allocation constructor only, and the positions-only boundary recomputation
-refuses stratum contamination. CLASS COUNT MOVED 16/8 → 17/8, reported as required. Applied in
-V85.**
+slot BS-SI, CLASS E (the V85 class-P label violated §0 and was corrected at V87; generated move "class-P rows 17 → 16; class-E rows 8 → 9" — this header carried the erroneous intermediate for six revisions, GPT56-V91 F9), UNFILLED — Row F's widened surface consumes it and Row F's void clause is amended to its real inputs. Nine strata stay; no v9 unfreeze. The typed/capability barrier applies: the artifact reaches the allocation constructor only, and the positions-only boundary recomputation refuses stratum contamination. Applied in V85.**
 # Row F, the nine HC strata, and what the text actually says
 
 ## 1. Bin construction is provably χ-free — Row F is NOT contradictory on the part its void clause names

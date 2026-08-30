@@ -8,8 +8,8 @@
 
 **Planning failures are not run outcomes** (principal ruling, 2026-08-29). Of the `local_pass` sites that fire during plan construction, **L963 and L973 are CALLER** (setup errors against a supplied l_plan) and **L986 is PLANNING-INTERNAL**, all marked *moved* below — this header said all three were CALLER for two revisions after L986 moved (CODEX-V69 F7), the header/table drift one paragraph above the table it drifted from. They were briefly given their own class while this corpus was being classified; a failure that fires before a run exists cannot be a run outcome, because nothing has started that could be voided or declared inconclusive. They are moved rather than deleted: L963 and L973 are setup errors against a caller-supplied `l_plan`; L986 is NOT - it fails against an internal frozen constant (CODEX-V72 F8 caught this paragraph still saying 'each' three clauses after L986 stopped being one) - and all three still need a disposition. **L986 is PLANNING-INTERNAL** - a disposition, not an outcome class, carrying no terminal consequence - because MOVE_CAP is an internal cap against a frozen constant that fires after a feasible prefix exists, so it is not an error in any supplied argument. `RAISE_CALLSITE_LEDGER.md` finds no path to them through `run_production_verdict`; that ledger's graph is name-based and a lower bound, so this is *no run-time path found*, not *no run-time path exists*.
 
-- **CALLER** — 28
-- **INTEGRITY** — 59
+- **CALLER** — 30
+- **INTEGRITY** — 57
 - **NUMERICAL** — 18
 - **PLANNING-INTERNAL** — 3
 - **TYPED-OUTCOME** — 1
@@ -128,6 +128,6 @@
 | 1643 | `require_authorization` | `RuntimeError` | **INTEGRITY** |  | authorization digest mismatch: {} |
 | 1649 | `require_complete_sample` | `RuntimeError` | **CALLER** |  | INCOMPLETE SAMPLE: {} of {} — refusing |
 | 1675 | `resolve_branch` | `RuntimeError` | **CALLER** |  | resolution_date must be YYYY-MM-DD, got {} |
-| 1677 | `resolve_branch` | `RuntimeError` | **INTEGRITY** |  | the choice-point cannot close for Branch B before {}: DR11 photo-z may |
-| 1681 | `resolve_branch` | `RuntimeError` | **INTEGRITY** |  | after {} the choice-point is closed on Branch B; selecting A requires  |
+| 1677 | `resolve_branch` | `RuntimeError` | **CALLER** |  | the choice-point cannot close for Branch B before {}: DR11 photo-z may (tests the supplied choice-point pair pre-run; no VOID antecedent owns it — moved CALLER, GPT56-V91 F8) |
+| 1681 | `resolve_branch` | `RuntimeError` | **CALLER** |  | after {} the choice-point is closed on Branch B; selecting A requires  (tests the supplied choice-point pair pre-run; no VOID antecedent owns it — moved CALLER, GPT56-V91 F8) |
 | 1687 | `resolve_branch` | `RuntimeError` | **INTEGRITY** |  | branch config field set differs between branches — FAIL |

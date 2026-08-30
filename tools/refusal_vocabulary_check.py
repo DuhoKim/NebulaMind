@@ -161,10 +161,23 @@ def check(text: str):
                     illegal.append(tok)
     if illegal:
         fail("R01", f"non-member REFUSED-* token(s) outside a retirement line: {sorted(set(illegal))}")
-    if pinned and pinned != set(CODES):
-        fail("R01", f"missing {sorted(set(CODES) - pinned)}")
-    elif not pinned:
-        fail("R01", "no REFUSED-* codes found")
+    # COMPLETENESS IS BLOCK-SCOPED (CODEX-V91 F5): pinned-anywhere let a member deleted from the
+    # OPERATIVE vocabulary pass on a stray mention elsewhere in the draft. The eleven codes must
+    # each appear inside the operative block — from the "Authorisation (5):" header to "THE GUARD"
+    # — outside any retiring fragment; mentions elsewhere count for the tombstone scan above but
+    # not for membership. A draft with no such block cannot demonstrate its vocabulary at all.
+    b0 = text.find("Authorisation (5):")
+    b1 = text.find("THE GUARD", b0) if b0 >= 0 else -1
+    if b0 < 0 or b1 < 0:
+        fail("R01", "the operative vocabulary block (Authorisation (5): … THE GUARD) was not found")
+    else:
+        block_pinned = set()
+        for frag in re.split(r"[.;:]", text[b0:b1]):
+            for tk in re.findall(r"(?<![A-Z0-9-])REFUSED-[A-Z][A-Z-]+(?![a-z0-9_])", frag):
+                if tk.rstrip("-") in CODES and not RETIREMENT.search(frag):
+                    block_pinned.add(tk.rstrip("-"))
+        if block_pinned != set(CODES):
+            fail("R01", f"missing from the operative block: {sorted(set(CODES) - block_pinned)}")
 
     if re.search(r"refusal-vocabulary-derivation:\s*`[0-9a-f]{64}`", text):
         fail("R02", "a 64-hex fingerprint is pinned")
@@ -283,7 +296,9 @@ def _fixture(codes=CODES, principle=True, freetext=True, guard=True, fingerprint
             txt += "Two emissions share a class iff their class_key values are equal.\n"
         if guard != "nogates":
             txt += "Fresh passes run at BS-7f, BS-V and disclosure.\n"
-    txt += "".join(f"- `{c}`\n" for c in codes)
+    txt += ("Authorisation (5): the operative set.\n"
+            + "".join(f"- `{c}`\n" for c in codes)
+            + "THE GUARD, and it is the operative part.\n")
     if fingerprint:
         txt += f"refusal-vocabulary-derivation: `{'a' * 64}`\n"
     if closed:
@@ -297,6 +312,9 @@ CONTROLS = (
     ("a retired code is revived", lambda: _fixture(CODES + ("REFUSED-LOCK-NOT-OPEN",)), "R01"),
     ("a derivation fingerprint is pinned", lambda: _fixture(fingerprint=True), "R02"),
     ("the set is called closed", lambda: _fixture(closed=True), "R02"),
+    ("a member listed only outside the operative block",
+     lambda: _fixture(codes=[c for c in CODES if c != "REFUSED-OBJECT-ABSENT"])
+     + "Stray mention elsewhere: `REFUSED-OBJECT-ABSENT`.\n", "R01"),
     ("the principle is absent", lambda: _fixture(principle=False), "R03"),
     ("free text is not forbidden", lambda: _fixture(freetext=False), "R04"),
     ("the catch-all guard is absent", lambda: _fixture(guard=False), "R05"),
