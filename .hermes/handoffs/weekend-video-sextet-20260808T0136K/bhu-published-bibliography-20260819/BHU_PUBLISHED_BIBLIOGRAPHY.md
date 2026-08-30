@@ -757,7 +757,13 @@ happened — Miru is a retired seat. Resolved instead at the A7 gate: **Phys. Re
 published 24 August 2026** (received 25 June, accepted 31 July), DOI `10.1103/qs86-npwk`, verified
 from APS by the codex seat. Note the date correction: **2026-07-31 was the ACCEPTANCE date**, not
 publication. Still testimony rather than a pinned receipt — a seat's lookup, not a document in
-this corpus.
+this corpus. **RECEIPT PINNED 2026-08-30 (b56) — no longer testimony:** the Crossref DOI-registry
+record for `10.1103/qs86-npwk` is now saved as a document in the corpus,
+`../bhu-reading-20260823/sources/crossref_10.1103_qs86-npwk_entry22.json` (sha256 `54269cc6f8e6…`),
+and it carries the full bibliographic data that was anonymized when this entry was first written:
+container *Physical Review D*, **volume 114, article 044077**, published-online **2026-08-24**,
+author **Damien A. Easson** (sole), type journal-article, publisher APS. The publication fact is
+bound to a pinned authoritative registry document, not a seat's lookup.
 
 Record: baseline corpus entry, now the sole member of a new tier. Audit-worthiness: **high** —
 see ranked target 5.
