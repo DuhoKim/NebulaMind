@@ -951,7 +951,13 @@ Crossref-verified only.
 (2001), DOI 10.1103/PhysRevLett.86.757 — VERIFIED; and Phys. Rept. **381**, 1–233 (2003), DOI
 10.1016/S0370-1573(03)00139-X — VERIFIED. Link (1) of the falsifier chain (B-2,
 ASSUMED-FROM-CITATION) lives here: the hidden-local-symmetry prediction that the gauge coupling
-vanishes near chiral restoration. **Full text not held** — cited and Crossref-verified only.
+vanishes near chiral restoration. **Both now pinned (2026-08-30, located by journal-ref match in
+the arXiv API — au:Harada+au:Yamawaki, refs from this record, no ids from memory):** PRL 86, 757 =
+hep-ph/0010207, `../bhu-theory-phase3-cns-20260821/sources/ar5iv_0010207.html` (sha256
+`3e2cd6cf75c3…`, title and both bylines verified in the body); Phys. Rept. 381 = hep-ph/0302103,
+abstract-page receipt `../bhu-theory-phase3-cns-20260821/sources/arxiv_0302103_abs.html` (sha256
+`9af0ff09d012…` — ar5iv refuses the 233-page full text with "503 Response object too large", so
+the pin is the arXiv abs page carrying title, bylines and the Phys.Rept.381 journal-ref).
 
 **34. The limb-2 measurement** (added 2026-08-22): R.D. Ferdman et al., "Asymmetric mass ratios for
 bright double neutron-star mergers," Nature **583**, 211–214 (2020), DOI 10.1038/s41586-020-2439-x —
