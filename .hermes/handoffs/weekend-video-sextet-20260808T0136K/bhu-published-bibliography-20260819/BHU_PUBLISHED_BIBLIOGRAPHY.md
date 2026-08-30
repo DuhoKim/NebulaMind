@@ -925,7 +925,9 @@ spacetime satisfies all of (a) an asymptotically flat parent with a well-defined
 development, (b) T_μν k^μ k^ν ≥ 0 for all null k^μ — the paper's own coinage "very weak energy
 condition", i.e. the NULL energy condition, expressly WEAKER than the WEC our entry-49 testimony
 attributed (the theorem is stronger than we recorded), (c) a spherically symmetric false-vacuum
-region (part of de Sitter by the Birkhoff analogue) extending to some r > 1/χ, χ² = (8π/3)Gρ_f,
+region — the PARENT need not be spherical, provided the region's spherical symmetry is not
+perturbed; the Birkhoff analogue then makes the region a de Sitter patch (CGATE_B45's proviso,
+load-bearing for eqs. (4)–(6)) — extending to some r > 1/χ, χ² = (8π/3)Gρ_f,
 and (d) nonsingular initial data. Proof owned in-text: anti-trapped 2-spheres computed explicitly
 (θ_in = −(1/r)(1−r²χ²), θ_out = 2/r, both diverging for r > 1/χ) feeding Penrose's 1965 theorem
 [7 = PRL 14, 57] in time-reversed anti-trapped form, each hypothesis verified for the laboratory
@@ -945,7 +947,9 @@ singularity "cannot arise by well-behaved Cauchy development from smooth initial
 delegates the proof here; this paper contains the derivation. Refs also confirm the web: [1] is
 the Sato–Sasaki–Kodama–Maeda chain (incl. PLB 108B = entry 47), [4] is Blau–Guendelman–Guth
 "submitted to PRD" (= entry 49).
-**SECONDARY TESTIMONY PINNED 2026-08-30** (`b39`): Dymnikova 2019 (entry 19's paper) states verbatim that *"Farhi and Guth concluded that the initial singularity would be an unavoidable obstacle to the creation of a universe in the laboratory"*, citing PLB 183, 149 — this entry. Corroborates the entry-49→48 ownership chain. **Testimony only: entry 48 remains paywalled and unread, and its proof is NOT thereby verified.** — text unexamined here.
+**SECONDARY TESTIMONY PINNED 2026-08-30** (`b39`): Dymnikova 2019 (entry 19's paper) states verbatim that *"Farhi and Guth concluded that the initial singularity would be an unavoidable obstacle to the creation of a universe in the laboratory"*, citing PLB 183, 149 — this entry. Corroborates the entry-49→48 ownership chain. **Update 2026-08-30 (CGATE_B45's correction): Dymnikova is secondary corroboration only — the
+proof is now independently verified in the fully read MIT-CTP-1400 preprint scan above. What
+remains unheld and un-compared is the PLB version of record.**
 Record: kimi recall R1; the no-go analysis for manufacturing a child universe. (Kimi remembered p149-153; Crossref says 149-155 — verified pages used.)
 
 **49. S. K. Blau, E. I. Guendelman & A. H. Guth (1987). "Dynamics of false-vacuum bubbles." Phys. Rev. D 35, 1747–1766.**

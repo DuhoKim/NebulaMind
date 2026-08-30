@@ -98,8 +98,11 @@ chk("RECORD: entry 48 carries the read, the pin+sha, the preprint-not-VoR caveat
     "with the null-EC precision correction, and all four author-stated delimitations",
     "573ff9751cec" in b48 and "PREPRINT, not the PLB version of record" in b48
     and "very weak energy condition" in b48 and "WEAKER than the WEC" in b48
-    and "NOT decided" in b48.replace("NOT decided", "NOT decided") and "white" in b48.lower()
-    and "question 8" in b48)
+    and "NOT decided" in b48 and "white" in b48.lower()
+    and "question 8" in b48
+    # CGATE_B45's two repairs, asserted in their repaired state:
+    and "secondary corroboration only" in b48
+    and "PARENT need not be spherical" in b48)
 m = re.search(r"Testability: \*\*([A-Z-]+)", blocks[48])
 chk("TIER UNASSIGNED: the Testability marker reads READ (pending Duho) -- no tier class was "
     "set by this artifact; the obstruction set parsed by b41 is untouched",
