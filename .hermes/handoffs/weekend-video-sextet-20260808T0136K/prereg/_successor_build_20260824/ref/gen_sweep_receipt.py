@@ -35,7 +35,7 @@ BASE = HERE.parent
 
 DEAD = re.compile(
     r"SWEEP|sweep|RETIRED|retired|superseded|pre-arrival|pre-ruling|predecessor|previously|"
-    r"WITHDRAWN|HISTORY|dissolved|DELETED|deleted|died with|form said|sentence said|wording said|clause said|line said|line listed|clause recomputed|refusal pinned|this paragraph declared|cell carried|cell said|cell spoke|summary said|row said|serialization concept|broke|SUPERSEDED|quoted dead")
+    r"WITHDRAWN|HISTORY|dissolved|DELETED|deleted|deletion|died with|form said|sentence said|wording said|clause said|line said|line listed|clause recomputed|refusal pinned|this paragraph declared|cell carried|cell said|cell spoke|summary said|row said|serialization concept|broke|SUPERSEDED|quoted dead")
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
