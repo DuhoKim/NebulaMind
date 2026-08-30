@@ -454,7 +454,25 @@ Testability: **CONSISTENCY-ONLY** **[BLIND-FLAGGED 2026-08-28, NOT ADJUDICATED �
 Record: harvest #11; parentage construction beyond isotropy.
 
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
-DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010). Added 2026-08-23, hunt round 2
+DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010).
+**VERSION OF RECORD PINNED 2026-08-30** (fetched through Duho's connected Chrome; ScienceDirect
+serves this ~2010 PLB backfile free): `../bhu-reading-20260823/sources/poplawski_plb690_73_2010_vor.pdf`
+(sha256 `747bce6d54d4…` — Elsevier stamps a per-download timestamp so the hash drifts between
+fetches; content-stable), 7 pp, clean text companion `poplawski_plb690_vor_clean.txt`.
+**VoR-vs-preprint comparison (the thread this closes and the one it does not):** the published
+text is WORD-FOR-WORD identical to the arXiv preprint `0910.1181` on every load-bearing number —
+Cartan density ∼10⁵¹ kg m⁻³, minimum black-hole mass ∼10¹⁶ kg, energy ∼10⁴³ GeV, "39 orders of
+magnitude larger than the maximum beam energy currently available at the LHC", LHC ∼10⁴ GeV.
+**SETTLED: there is no preprint-vs-published discrepancy — the numbers our record cites ARE the
+published numbers, so the open "is 10¹⁶ kg an arithmetic error introduced somewhere" question is
+NOT a transcription/version artifact; it is the same figure in both.** **NOT settled by the VoR:
+whether that floor is independently reproducible — it remains the author's order-of-magnitude
+estimate ρ_Ce ∼ m_e/r_Ce³ (VoR line "We expect that the Cartan density for an electron ... ∼10⁵¹
+kg m⁻³ approximately gives the order of the maximum density"), not a rigorous derivation; the
+"unreproduced floor" status of the record stands.** No tier change: entry 51 remains
+CALIBRATED-FALSIFIER / LIVE. **STILL OUTSTANDING: the 2013 erratum (PLB 690 (2013) — Duho has it
+free in the same Chrome, one download-arrow click away); it may bear on the arithmetic-error
+question and should be compared when it lands.** Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALITATIVE-DIRECTIONAL by a blind re-classification, upheld by two independent gates (`bhu-theory-phase6-curvature-20260827/`: CGATE_ENTRY51_VERDICT.md, codex gpt-5.5; AGATE2_ENTRY51_VERDICT.md, hermes gpt-5.6-sol). READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular — **proven domain made precise 2026-08-30** (`b34`, both
 seats read the paper in full and AGREE the Papapetrou argument is a rigorous derivation, not an
