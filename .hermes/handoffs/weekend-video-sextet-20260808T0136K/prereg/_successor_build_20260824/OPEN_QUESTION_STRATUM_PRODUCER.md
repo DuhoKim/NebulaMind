@@ -1,6 +1,4 @@
-**STATUS: RULED — option A's producer exists, 2026-08-30 10:46: Row D2 with slot BS-SI (class P,
-UNFILLED), coupled ruling with the strata decision in `FINDING_ROW_F_STRATA.md`. Applied in V85;
-count move 16/8 → 17/8 reported.**
+**STATUS: RULED — option A's producer exists, 2026-08-30 10:46: Row D2 with slot BS-SI (CLASS E — the V85 class-P label violated §0 and was corrected at V87, generated move "class-P rows 17 → 16; class-E rows 8 → 9"), coupled ruling with the strata decision in `FINDING_ROW_F_STRATA.md`. Applied in V85; this header carried the erroneous intermediate class and count for five revisions (GPT56-V90 F1's neighbourhood).**
 # OPEN QUESTION — no covenant row produces the per-object HC stratum index
 
 **Raised 2026-08-30 00:0x KST by Hwao, on converging findings (GPT56-V67 F6, CODEX-V67 F7, both

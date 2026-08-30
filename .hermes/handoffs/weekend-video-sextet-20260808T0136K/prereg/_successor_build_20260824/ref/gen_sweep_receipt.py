@@ -35,7 +35,7 @@ BASE = HERE.parent
 
 DEAD = re.compile(
     r"SWEEP|sweep|RETIRED|retired|superseded|pre-arrival|pre-ruling|predecessor|previously|"
-    r"WITHDRAWN|HISTORY|dissolved|form said|sentence said|wording said|clause said|cell carried")
+    r"WITHDRAWN|HISTORY|dissolved|form said|sentence said|wording said|clause said|line said|line listed|clause recomputed|refusal pinned|this paragraph declared|cell carried")
 
 # (ruling, token, scope keys, note) — scope keys resolve to files below. Append-only.
 SWEEPS = [
@@ -77,6 +77,14 @@ SWEEPS = [
      "the common-vs-independent choice was RULED common (CODEX-V89 F3)"),
     ("GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2)", "(i, 0)", ("draft",),
      "the baseline address outside the matrix domain (GPT56-V89 F3); compare to (i, j0)"),
+    ("STRATA OPTION A (2026-08-30 10:46)", "the strata question", ("draft",),
+     "the ruled question still listed undecided (GPT56-V90 F1)"),
+    ("STRATA OPTION A (2026-08-30 10:46)", "NO COVENANT ROW PRODUCES THE INDEX", ("draft",),
+     "Row D2 is the producer since the sitting (GPT56-V90 F1)"),
+    ("GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2)", "committed Δγ", ("draft",),
+     "the verifier recomputing from an independently committed spacing (GPT56-V90 F6)"),
+    ("GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2)", "frozen class-P value", ("draft",),
+     "the schema pinning a frozen spacing after the derivation (GPT56-V90 F6)"),
 ]
 
 
@@ -126,7 +134,7 @@ def main():
     if cf:
         return 1
 
-    fmap = files_for(sys.argv[1])
+    fmap = files_for(args[0])
     texts = {k: p.read_text() for k, p in fmap.items()}
     rows, live_total, dead_total = [], 0, 0
     for ruling, token, scope, note in SWEEPS:

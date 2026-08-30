@@ -58,3 +58,5 @@ while γ=0 is an interior manifest entry.
 **What is untouched:** `n_draws = 99`, `draw_master_seed = 20260830`, the committed generator, the
 zero-based draw indexing of Amendment 1, and COMMON RANDOM variates. **What died:** the independent
 Δγ commitment, the one-based `j` domain, and the out-of-domain `(i, 0)` baseline address.
+
+**Clarification (V91, GPT56-V90 F7):** grid values are canonical DECIMAL STRINGS built by exact decimal arithmetic — Δγ = Γ·4/100 (a digit shift), each γ_j by exact decimal addition — and "γ_{j₀} = 0 exactly" means STRING EQUALITY with the canonical zero `0`. No IEEE-754 comparison is involved anywhere in the grid or its verifier. Values untouched.

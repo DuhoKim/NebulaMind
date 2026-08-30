@@ -1,44 +1,50 @@
 # SUPERSESSION SWEEP RECEIPT — computed, not claimed
 
-**Subject files:** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md`, `LIFECYCLE_GUARANTEE_SPEC.md`, `gen_string_field_registry.py`, `refusal_vocabulary_check.py` — `gates/FINDINGS_MAP.md` is out of scope (testimony quotes dead regimes legitimately).
+**Subject files:** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md`, `LIFECYCLE_GUARANTEE_SPEC.md`, `gen_string_field_registry.py`, `refusal_vocabulary_check.py` — `gates/FINDINGS_MAP.md` is out of scope (testimony quotes dead regimes legitimately).
 
 **Rule:** every hit line is printed with a verdict; a LIVE hit under a swept token is a FAILING control (exit 1), not a note. Tokens are literal and the list is append-only; paraphrase is the round's to catch, and this header says so. **Scopes are DECLARED PER TOKEN in the table — this is not a cross-product sweep: a file absent from a token's row is UNSWEPT for that token** (CODEX-V89 F3: the two draw tokens were scoped to the registry while the live paraphrase sat in the draft — the scope was the blind spot, and it is now printed instead of implied).
 
 | ruling | superseded token | file | hits | live | disposition |
 |---|---|---|---|---|---|
-| ARRIVAL CLASS (2026-08-30 10:46) | `one request never yields two events` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 0 | 0 | VERIFIED-CLEAN — G4's pre-arrival form; swept V88 |
+| ARRIVAL CLASS (2026-08-30 10:46) | `one request never yields two events` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — G4's pre-arrival form; swept V88 |
 | ARRIVAL CLASS (2026-08-30 10:46) | `one request never yields two events` | `LIFECYCLE_GUARANTEE_SPEC.md` | 0 | 0 | VERIFIED-CLEAN — G4's pre-arrival form; swept V88 |
-| ARRIVAL CLASS (2026-08-30 10:46) | `no event is neither` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — G3's two-way partition; re-derived three-way at V89 (GPT56-V88 F1) |
+| ARRIVAL CLASS (2026-08-30 10:46) | `no event is neither` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — G3's two-way partition; re-derived three-way at V89 (GPT56-V88 F1) |
 | ARRIVAL CLASS (2026-08-30 10:46) | `no event is neither` | `LIFECYCLE_GUARANTEE_SPEC.md` | 1 | 0 | DEAD-QUOTED — G3's two-way partition; re-derived three-way at V89 (GPT56-V88 F1) |
-| ARRIVAL CLASS (2026-08-30 10:46) | `not written to the access log` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — the pre-arrival identifier rule (GPT56-V88 F3) |
-| ARRIVAL CLASS (2026-08-30 10:46) | `with no binding never happened` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the pre-arrival recovery rule (GPT56-V88 F3, CODEX-V88 F2) |
-| ARRIVAL CLASS (2026-08-30 10:46) | `indistinguishable from a request that never arrived` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the pre-arrival residue (GPT56-V88 F3) |
-| ARRIVAL CLASS (2026-08-30 10:46) | `nothing above changes what the access log records` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — the pre-arrival not-authorised ledger (GPT56-V88 F3, CODEX-V88 F2) |
+| ARRIVAL CLASS (2026-08-30 10:46) | `not written to the access log` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — the pre-arrival identifier rule (GPT56-V88 F3) |
+| ARRIVAL CLASS (2026-08-30 10:46) | `with no binding never happened` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the pre-arrival recovery rule (GPT56-V88 F3, CODEX-V88 F2) |
+| ARRIVAL CLASS (2026-08-30 10:46) | `indistinguishable from a request that never arrived` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the pre-arrival residue (GPT56-V88 F3) |
+| ARRIVAL CLASS (2026-08-30 10:46) | `nothing above changes what the access log records` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — the pre-arrival not-authorised ledger (GPT56-V88 F3, CODEX-V88 F2) |
 | ARRIVAL CLASS (2026-08-30 10:46) | `not authorised, REFERRED` | `LIFECYCLE_GUARANTEE_SPEC.md` | 0 | 0 | VERIFIED-CLEAN — N2's why-cell, still refusing after the body retired (GPT56-V88 F3) |
 | ARRIVAL CLASS (2026-08-30 10:46) | `safe to re-process` | `LIFECYCLE_GUARANTEE_SPEC.md` | 0 | 0 | VERIFIED-CLEAN — W1's recovery cell, pre-one-decision wording |
-| REBUILT PRINCIPLE (2026-08-30 10:46) | `may never describe the object` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the old principle sentence; swept V88 |
+| REBUILT PRINCIPLE (2026-08-30 10:46) | `may never describe the object` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the old principle sentence; swept V88 |
 | REBUILT PRINCIPLE (2026-08-30 10:46) | `never the OBJECT` | `refusal_vocabulary_check.py` | 1 | 0 | DEAD-QUOTED — the stale R03 control body; rebuilt V88 — the eighth site |
 | DRAW DISCIPLINE (2026-08-30 10:46) | `frozen value UNSET` | `gen_string_field_registry.py` | 0 | 0 | VERIFIED-CLEAN — pre-commitment draw notes; swept V88 |
 | DRAW DISCIPLINE (2026-08-30 10:46) | `currently EMPTY` | `gen_string_field_registry.py` | 0 | 0 | VERIFIED-CLEAN — pre-commitment draw notes; swept V88 |
-| FREEZE-TIME ENUMERATION IMPOSSIBLE (GPT56-V87 F7) | `enumerated at freeze` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the guard's impossible anchor; re-anchored V88 |
+| FREEZE-TIME ENUMERATION IMPOSSIBLE (GPT56-V87 F7) | `enumerated at freeze` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the guard's impossible anchor; re-anchored V88 |
 | FREEZE-TIME ENUMERATION IMPOSSIBLE (GPT56-V87 F7) | `enumerated at freeze` | `LIFECYCLE_GUARANTEE_SPEC.md` | 0 | 0 | VERIFIED-CLEAN — the guard's impossible anchor; re-anchored V88 |
-| ISSUANCE CUT (V89, GPT56-V88 F6 / CODEX-V88 F4) | `extends through issuance completion` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the circular half of the V88 cut; two cuts named at V89 |
-| COUNT MOVE (GPT56-V88 F7) | `16/8 → 16/9` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — the false predecessor count; quoted-as-history at V89 |
-| DRAW MECHANICS COMMITTED (2026-08-30 sitting) | `CURRENTLY UNSET` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 2 | 0 | DEAD-QUOTED — live pre-sitting draw prose the literal sweep missed (GPT56-V89 F4, CODEX-V89 F3) |
-| DRAW MECHANICS COMMITTED (2026-08-30 sitting) | `empty generator set` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — same paragraph; the generator has one committed member (GPT56-V89 F4) |
-| DRAW MECHANICS COMMITTED (2026-08-30 sitting) | `CLASS-P, UNSET` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — the common-vs-independent choice was RULED common (CODEX-V89 F3) |
-| GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2) | `(i, 0)` | `PREREG_SUCCESSOR_DRAFT_V90_20260830.md` | 1 | 0 | DEAD-QUOTED — the baseline address outside the matrix domain (GPT56-V89 F3); compare to (i, j0) |
+| ISSUANCE CUT (V89, GPT56-V88 F6 / CODEX-V88 F4) | `extends through issuance completion` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the circular half of the V88 cut; two cuts named at V89 |
+| COUNT MOVE (GPT56-V88 F7) | `16/8 → 16/9` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — the false predecessor count; quoted-as-history at V89 |
+| DRAW MECHANICS COMMITTED (2026-08-30 sitting) | `CURRENTLY UNSET` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 2 | 0 | DEAD-QUOTED — live pre-sitting draw prose the literal sweep missed (GPT56-V89 F4, CODEX-V89 F3) |
+| DRAW MECHANICS COMMITTED (2026-08-30 sitting) | `empty generator set` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — same paragraph; the generator has one committed member (GPT56-V89 F4) |
+| DRAW MECHANICS COMMITTED (2026-08-30 sitting) | `CLASS-P, UNSET` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — the common-vs-independent choice was RULED common (CODEX-V89 F3) |
+| GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2) | `(i, 0)` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — the baseline address outside the matrix domain (GPT56-V89 F3); compare to (i, j0) |
+| STRATA OPTION A (2026-08-30 10:46) | `the strata question` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the ruled question still listed undecided (GPT56-V90 F1) |
+| STRATA OPTION A (2026-08-30 10:46) | `NO COVENANT ROW PRODUCES THE INDEX` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — Row D2 is the producer since the sitting (GPT56-V90 F1) |
+| GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2) | `committed Δγ` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 1 | 0 | DEAD-QUOTED — the verifier recomputing from an independently committed spacing (GPT56-V90 F6) |
+| GRID RE-EXPRESSED AS STEP COUNT (AMENDMENT 2) | `frozen class-P value` | `PREREG_SUCCESSOR_DRAFT_V91_20260830.md` | 0 | 0 | VERIFIED-CLEAN — the schema pinning a frozen spacing after the derivation (GPT56-V90 F6) |
 
 ## Every hit, for re-judging
 
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:631` token `no event is neither` — **G3 — **One TOUCH event per touch** — and **the event classes PARTITION: every committed event is exactly one of an ARRIVAL event (§1c), one touch's event, or 
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:631` token `no event is neither` — **G3 — **One TOUCH event per touch** — and **the event classes PARTITION: every committed event is exactly one of an ARRIVAL event (§1c), one touch's event, or 
 - **DEAD** `LIFECYCLE_GUARANTEE_SPEC.md:36` token `no event is neither` — · G3 · **One TOUCH event per touch** — and **the event classes PARTITION: every committed event is exactly one of an ARRIVAL event (§1c), one touch's event, or 
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:647` token `not written to the access log` — **WHAT A REQUEST IS, because "never re-decided" is unenforceable without it (CODEX-V66 F2, HIGH — re-derived over the arrival class, GPT56-V88 F3: the pre-arriv
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:652` token `nothing above changes what the access log records` — **What the log records changed exactly twice, each by ruling, and this sentence is the ledger of that (GPT56-V88 F3, CODEX-V88 F2: its predecessor said "nothing
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:647` token `not written to the access log` — **WHAT A REQUEST IS, because "never re-decided" is unenforceable without it (CODEX-V66 F2, HIGH — re-derived over the arrival class, GPT56-V88 F3: the pre-arriv
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:652` token `nothing above changes what the access log records` — **What the log records changed exactly twice, each by ruling, and this sentence is the ledger of that (GPT56-V88 F3, CODEX-V88 F2: its predecessor said "nothing
 - **DEAD** `refusal_vocabulary_check.py:183` token `never the OBJECT` — # ("never the OBJECT") and stayed green off a dead draft tail until the V88 supersession sweep
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:935` token `16/8 → 16/9` — · BS-SI **CLASS E — design obligations pre-freeze, artifact fills at P2–P3 (CODEX-V86 F2: the V85 class-P label violated §0's own definition — a class-P slot mu
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:1269` token `CURRENTLY UNSET` — **The resolution is preregistered, not chosen afterwards.** The manifest is a grid committed as a STEP COUNT — **`n_steps = 50`, even** (`ref/DRAW_MECHANICS_COM
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:1450` token `CURRENTLY UNSET` — **`n_draws` and `draw_master_seed` are SET (this sentence said CURRENTLY UNSET for one revision
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:1269` token `empty generator set` — **The resolution is preregistered, not chosen afterwards.** The manifest is a grid committed as a STEP COUNT — **`n_steps = 50`, even** (`ref/DRAW_MECHANICS_COM
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:1325` token `CLASS-P, UNSET` — `ref/DRAW_MECHANICS_COMMIT_20260830.md`). (This clause said "CLASS-P, UNSET, a further
-- **DEAD** `PREREG_SUCCESSOR_DRAFT_V90_20260830.md:1464` token `(i, 0)` — draw `i ∈ [0, n_draws−1]` (amended in the commit artifact — CODEX-V86 F10 caught one-based indexing addressing `spawn(99)[99]`, out of range) × perturbation `j 
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:926` token `16/8 → 16/9` — · BS-SI **CLASS E — design obligations pre-freeze, artifact fills at P2–P3 (CODEX-V86 F2: the V85 class-P label violated §0's own definition — a class-P slot mu
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:1259` token `CURRENTLY UNSET` — **The resolution is preregistered, not chosen afterwards.** The manifest is a grid committed as a STEP COUNT — **`n_steps = 50`, even** (`ref/DRAW_MECHANICS_COM
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:1438` token `CURRENTLY UNSET` — **`n_draws` and `draw_master_seed` are SET (this sentence said CURRENTLY UNSET for one revision
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:1259` token `empty generator set` — **The resolution is preregistered, not chosen afterwards.** The manifest is a grid committed as a STEP COUNT — **`n_steps = 50`, even** (`ref/DRAW_MECHANICS_COM
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:1315` token `CLASS-P, UNSET` — `ref/DRAW_MECHANICS_COMMIT_20260830.md`). (This clause said "CLASS-P, UNSET, a further
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:1452` token `(i, 0)` — draw `i ∈ [0, n_draws−1]` (amended in the commit artifact — CODEX-V86 F10 caught one-based indexing addressing `spawn(99)[99]`, out of range) × perturbation `j 
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:803` token `NO COVENANT ROW PRODUCES THE INDEX` — **AND THE WIDENING DID ITS JOB IMMEDIATELY — then the RULING CLOSED WHAT IT SURFACED (GPT56-V67 F6, CODEX-V67 F7 found that NO COVENANT ROW PRODUCES THE INDEX; 
+- **DEAD** `PREREG_SUCCESSOR_DRAFT_V91_20260830.md:1244` token `committed Δγ` — manifest is EXACTLY the grid `γ_j = −Γ + j·(2Γ/n_steps)` from the ratified symmetric endpoint Γ at the COMMITTED STEP COUNT `n_steps = 50` — Δγ is DERIVED under
