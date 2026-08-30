@@ -1,4 +1,4 @@
-**STATUS: NO DECISION PENDING — the γ range is RATIFIED (20:19 KST, Γ = 0.25) and the TERMINAL SIGNATURE is APPROVED (20:22 KST — Duho performs the recomputation ceremony at run end; `TERMINAL_SIGNATURE_RULING_20260830.md`). Open flagged items: map widening · exhaustion-halt softening. (γ record:
+**STATUS: NO DECISION PENDING — the γ range is RATIFIED (20:19 KST, Γ = 0.25) and the TERMINAL SIGNATURE is APPROVED (20:22 KST — Duho performs the recomputation ceremony at run end; `TERMINAL_SIGNATURE_RULING_20260830.md`). Open flagged item: exhaustion-halt softening (the last one). (γ record:
 `GAMMA_RATIFICATION_20260830.md`, verbatim words recorded). Everything else from the seven-item
 sitting of 2026-08-30 10:46 is RULED AND BEING APPLIED (V85). This is a plain-language index, not a
 source; if it and an underlying file disagree, the file is right.**
@@ -50,7 +50,7 @@ BS-SI schema (written when filled). BS-6 and the first image byte remain blocked
 
 **UPDATE (V93):** the single-pass rule above is SUPERSEDED — both seats broke it against the spec's own occlude-and-restore requirement (an interrupted member had no route to a terminal label). The rule is now CONSTANT MULTIPLICITY BY PADDING: exactly `R_max` renders per object per member (BS-2k constant ≥ 2), interruptions consume replays, unconsumed replays issued as padding commits. Cost now: bounded replays instead of none, plus log inflation. Still reversible until BS-2k fills.
 
-**FILED (V93, per the coordinator's standing instruction on the binding map):** the (iv-c) map schema is WIDENED by two fields — the decision's `(boot_epoch, monotonic_reading)` — because the decide-within-D law needs per-decision clock evidence and widening the RULED access-log schema is not authorised; the map carries it instead. Non-χ by construction (bounded decimals), reversible, awaiting confirmation.
+**CONFIRMED 2026-08-30 20:45 KST — Duho, verbatim: *"map widening confirmed as filed"* (`MAP_WIDENING_CONFIRMATION_20260830.md`). The original filing (V93, per the coordinator's standing instruction on the binding map):** the (iv-c) map schema is WIDENED by two fields — the decision's `(boot_epoch, monotonic_reading)` — because the decide-within-D law needs per-decision clock evidence and widening the RULED access-log schema is not authorised; the map carries it instead. Non-χ by construction (bounded decimals). Was reversible-awaiting-confirmation; reversal is now a new ruling, not a lapse.
 
 **UPDATE (V94):** padding is now PER-OBJECT AND PRE-LABEL (end-clustered timing leaked the count; session-set end was undefined) — every object shows the identical R_max-renders-then-label pattern. **And exhaustion has a named terminal: the run HALTS pre-BS-8f** (the absent-label path the earlier flag assumed did not exist). Softening the halt — an ABSTAIN label, or member replacement — would change the labeling protocol and is YOURS to rule; R_max ≥ 2 makes the halt the rare storm case.
 
