@@ -470,9 +470,24 @@ whether that floor is independently reproducible — it remains the author's ord
 estimate ρ_Ce ∼ m_e/r_Ce³ (VoR line "We expect that the Cartan density for an electron ... ∼10⁵¹
 kg m⁻³ approximately gives the order of the maximum density"), not a rigorous derivation; the
 "unreproduced floor" status of the record stands.** No tier change: entry 51 remains
-CALIBRATED-FALSIFIER / LIVE. **STILL OUTSTANDING: the 2013 erratum (PLB 690 (2013) — Duho has it
-free in the same Chrome, one download-arrow click away); it may bear on the arithmetic-error
-question and should be compared when it lands.** Added 2026-08-23, hunt round 2
+CALIBRATED-FALSIFIER / LIVE. **ERRATUM PINNED 2026-08-30** (PLB 727 (2013) 575, DOI 10.1016/j.physletb.2013.11.005;
+fetched through Duho's Chrome, `../bhu-reading-20260823/sources/poplawski_plb690_erratum_2013.pdf`,
+sha256 `dafedba1ce9e…`, 1 p, text `poplawski_plb690_erratum_clean.txt`). **What it corrects:
+FOUR items, all in the Papapetrou spin-density section (Eqs. 21–29) — the second sentence below
+Eq. (21) ("For this configuration located at the origin, Θik is proportional to δ(r)"), the
+sentence below Eq. (26) ("For a point particle located at the origin"), the coordinate line
+above Eq. (29) ((x1=r, x2=φ, x3=z)), and Eq. (29) itself, corrected to
+Mαij ∝ ∫ δxα vij δ(r−a)δ(z) r dr dφ dz.** **What it does NOT touch: the Cartan density, the
+∼10¹⁶ kg mass floor, the ∼10⁴³ GeV / LHC route, or any of the calibrated-falsifier arithmetic —
+so the erratum does NOT bear on the open "is 10¹⁶ kg an arithmetic error" question after all
+(that section is untouched).** **What it DOES bear on: the erratum corrects the ring-moment
+equation (29) that is the machinery of the OBSTRUCTION content CGATE_B34 read — the derivation
+that a symmetric Dirac–Kerr–Newman singular ring is excluded (support δ(r−a)δ(z)). The
+corrected (29) is a fix to the moment's measure/support, published as a correction, not a
+retraction; the author's conclusion stands in the corrected text.** A gate re-check of whether
+the corrected Eq. (29) still yields the vanishing axial component behind the ring exclusion is
+AVAILABLE (dispatched 2026-08-30) but not tier-affecting on its face. No tier change: entry 51
+remains CALIBRATED-FALSIFIER / LIVE. Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
 Testability: **CALIBRATED-FALSIFIER / LIVE** — re-tiered 2026-08-28 from QUALITATIVE-DIRECTIONAL by a blind re-classification, upheld by two independent gates (`bhu-theory-phase6-curvature-20260827/`: CGATE_ENTRY51_VERDICT.md, codex gpt-5.5; AGATE2_ENTRY51_VERDICT.md, hermes gpt-5.6-sol). READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular — **proven domain made precise 2026-08-30** (`b34`, both
 seats read the paper in full and AGREE the Papapetrou argument is a rigorous derivation, not an

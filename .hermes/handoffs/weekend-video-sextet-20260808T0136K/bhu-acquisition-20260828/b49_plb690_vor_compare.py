@@ -19,7 +19,14 @@ WHAT THIS SETTLES AND WHAT IT DOES NOT (the mass-floor thread):
   stands, and whether the arithmetic rho_Ce -> 10^16 kg is internally right (the agy-vs-codex
   split) is untouched by having the VoR.
 NO TIER CHANGE: entry 51 stays CALIBRATED-FALSIFIER / LIVE.
-STILL OUTSTANDING: the 2013 erratum, free in the same Chrome, not yet downloaded.
+
+ERRATUM (added 2026-08-30, PLB 727 (2013) 575): pinned and read. It corrects FOUR items, ALL in
+the Papapetrou spin-density section (Eqs. 21-29): the sentences below Eqs. (21) and (26), the
+coordinate line above Eq. (29), and Eq. (29) itself (the ring moment Mαij, support δ(r-a)δ(z)).
+It does NOT touch the Cartan density / 10^16 kg floor / LHC arithmetic -- so it does NOT bear on
+the mass-floor arithmetic-error question. It DOES correct the ring-moment machinery of the
+OBSTRUCTION content (CGATE_B34's symmetric-ring exclusion); published as a correction, not a
+retraction. A gate re-check of the corrected Eq. (29) vs the ring conclusion is dispatched.
 """
 import re, os, hashlib
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -78,6 +85,22 @@ chk("RECORD: entry 51 carries the VoR pin, the identical-numbers finding, and th
     "VERSION OF RECORD PINNED 2026-08-30" in b51 and "WORD-FOR-WORD identical" in b51
     and "unreproduced floor" in b51.lower().replace("”", "").replace('"', "")
     or "unreproduced floor" in b51)
+ERR = os.path.join(ROOT, "bhu-reading-20260823/sources/poplawski_plb690_erratum_2013.pdf")
+ETX = os.path.join(ROOT, "bhu-reading-20260823/sources/poplawski_plb690_erratum_clean.txt")
+eraw = open(ERR, "rb").read()
+E = " ".join(open(ETX, errors="ignore").read().split())
+chk("ERRATUM PIN: present, PDF, and is the PLB 727 (2013) 575 erratum to the PLB 690 paper",
+    eraw[:4] == b"%PDF" and hashlib.sha256(eraw).hexdigest().startswith("dafedba1ce9e")
+    and "Physics Letters B 727 (2013) 575" in E and "Erratum" in E
+    and "690 (1) (2010) 73" in E)
+chk("ERRATUM SCOPE (recorded finding): it corrects the Papapetrou section (Eqs 21/26/29), NOT "
+    "the mass floor -- neither the Cartan density nor 10^16 kg appears in the erratum text",
+    "Eq. (29)" in E and ("(21)" in E and "(26)" in E)
+    and "10" in E and "Cartan" not in E and "black-hole masses" not in E)
+chk("RECORD carries the erratum pin, its Papapetrou-not-massfloor scope, and the no-retraction "
+    "note",
+    "ERRATUM PINNED 2026-08-30" in b51 and "Papapetrou spin-density section" in b51
+    and "does NOT bear on the open" in b51)
 m = re.search(r"Testability: \*\*([^*]+)\*\*", blocks[51])
 chk("TIER UNCHANGED: entry 51 remains CALIBRATED-FALSIFIER / LIVE",
     m is not None and m.group(1).strip() == "CALIBRATED-FALSIFIER / LIVE")
