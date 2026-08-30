@@ -18,7 +18,7 @@ Raw blocks first as always: `gates/V113_WHOLE_REVIEW_{GPT56,CODEX}.md`.
    terminal event's sequence, verifier takes newest, older named superseded (GPT56 F5);
    preimage-echo words-not-semantics honesty line (CODEX F4); two LOW housekeeping
    (ninth-code wording, stale dispatch counts).
-6. Dispatch V114 **under the SCOPE FREEZE** (adopted 21:40 KST after the kimi gate: no new
+6. Dispatch V114 **under the SCOPE FREEZE — ROUND 1 OF THE CAPPED THREE** (the principal ruled "option 2" at 21:54: cap at V116, then freeze with a generated known-debt appendix; `STOPPING_RULE_RULING_20260830.md`) (adopted 21:40 KST after the kimi gate: no new
    record kinds/generators/controls except on existing generators; repairs only), then
    **pivot to build-out** (decoder, ceremony verifier, mapping module, harness).
 
