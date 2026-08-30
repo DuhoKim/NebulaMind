@@ -426,3 +426,14 @@ candidate's opening backtick and the candidate is READ WHOLE from the full corpu
 opening-adjacency/whole-read rule explicitly.
 
 V121 → V122: read 5's one — whole-candidate reading with opening-measured adjacency, the window truncation dead.
+
+## V122 → V123 (2026-08-31 small hours — READ 6: one finding each, both on the adjacency predicate)
+
+- **GPT56-V122A F1:** `[^)]*` could not cross an interior right parenthesis, so a
+  nested-paren corruption was never enumerated — the scan now reads to the nearest
+  close-paren-backtick across interior parentheses; the attack ships as a control.
+- **CODEX-V122A F1:** the distance ran in characters from the kind's START — now UTF-8
+  BYTES to the mention SPAN's nearest edge; the 896-bytes-past-the-end catch and the
+  beyond-900-multibyte negative both ship as per-form controls.
+
+V122 → V123: read 6's pair — span-edge byte adjacency and interior-paren spanning, with both seats' exact shapes as controls.
