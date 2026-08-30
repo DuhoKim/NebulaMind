@@ -68,7 +68,10 @@ def bibliography():
         d = re.search(r"\b(10\.\d{4,5}/[^\s)`,]+)", line)
         if d and not cur["doi"]:
             cur["doi"] = d.group(1).rstrip(".,")
-        c = re.search(r"Testability: \*\*([A-Z-]+)\*\*", line)
+        # Capture the FULL tier value, including a "/ FIRED" or "/ LIVE" standing
+        # suffix (e.g. "CALIBRATED-FALSIFIER / LIVE"). The old [A-Z-]+ stopped at the
+        # space before "/" and silently dropped all four calibrated falsifiers to "—".
+        c = re.search(r"Testability: \*\*([A-Z][A-Z /-]*[A-Z])\*\*", line)
         if c and not cur["cls"]:
             cur["cls"] = c.group(1)
         a = re.search(r"Audit-worthiness: \*\*([a-z-]+)\*\*", line)
@@ -85,9 +88,13 @@ def bibliography():
         sec_order.setdefault(e["section"], len(sec_order))
     entries.sort(key=lambda e: (sec_order[e["section"]], e["n"]))
 
+    def base_tier(cls):
+        # "CALIBRATED-FALSIFIER / FIRED" -> "CALIBRATED-FALSIFIER" for colour + tally,
+        # while the full value (with the standing) is what gets displayed in the cell.
+        return cls.split("/")[0].strip() or "unclassified"
     tally = {}
     for e in entries:
-        tally[e["cls"] or "unclassified"] = tally.get(e["cls"] or "unclassified", 0) + 1
+        tally[base_tier(e["cls"])] = tally.get(base_tier(e["cls"]), 0) + 1
     n_aud = sum(1 for e in entries if e["doi"].lower() in done)
 
     out = ["<h2>The published literature</h2>",
@@ -108,8 +115,9 @@ def bibliography():
                        f'<b>{html.escape(last)}</b></td></tr>')
         mark = ' <span class=y>&#10003; audited</span>' if e["doi"].lower() in done else ""
         cls = e["cls"].lower().replace("-", " ") or "&mdash;"
-        klass = "y" if e["cls"] == "CALIBRATED-FALSIFIER" else (
-                "n" if e["cls"] == "CONSISTENCY-ONLY" else "m")
+        bt = base_tier(e["cls"])
+        klass = "y" if bt == "CALIBRATED-FALSIFIER" else (
+                "n" if bt == "CONSISTENCY-ONLY" else "m")
         out.append(f'<tr><td class=m>{e["n"]}</td><td>{html.escape(e["cite"])}{mark}</td>'
                    f'<td class={klass}>{cls}</td><td class=m>{html.escape(e["worth"] or "—")}</td></tr>')
     out.append("</table>")
