@@ -525,3 +525,17 @@ carrying three obligations the slot text now implements (exact-bytes sha
 obligations; byte-change-voids-pin stated in the entry).
 
 V128 → V129: the enumeration-verifier pin — AGY-ENV-V1 F1–F6, AGY-ENV-V2 F1–F2, AGY-ENV-V3 F1–F2 all repaired with seeded controls; AGY-ENV-V4 SOUND; the gate's carried obligations discharged in the slot.
+
+## V129 → V130 (2026-08-31 midday — the sixth pin: the P9 terminal-review machinery)
+
+`gates/terminal_review_verifier.py` + `gates/terminal_ceremony.py` PINNED
+at the SPEC's own stated site (the P9 paragraph that said "digest set AND
+printed here when built") after four adversarial rounds converging 2 → 3
+→ 1 → 0: trailing-garbage authorization closed (nothing follows the ending
+outside its own commit), fictional commit members refused, unmoored chains
+unsignable, every ceremony refusal exits 2 on the record, and a digested
+transcript is append-never-rewrite. KGATE_TERMINAL ruled on the pair; the
+draft side of this transition is the title and the computed V128→V129 row
+only — the pin text lives in the spec, which the derivation checker binds.
+
+V129 → V130: the terminal-machinery pin — AGY-TRV-V1 F1–F2, AGY-TRV-V2 F1–F3, AGY-TRV-V3 F1 all repaired with seeded controls; AGY-TRV-V4 SOUND; the spec's no-printed-digest sentence retired by the digest's arrival.

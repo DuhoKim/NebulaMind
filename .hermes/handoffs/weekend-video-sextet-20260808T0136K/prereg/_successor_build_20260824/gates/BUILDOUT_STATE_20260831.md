@@ -106,3 +106,24 @@
 - QUEUE after TRV-V2: kimi gate (terminal pair) → V130 spec-side pin; agy batch
   on stratum pair + bs2f + bs2v → kimi gates → BS-SI pin (draft §11 slot, the
   LAST unbuilt-marked item). Then the build phase is done pending Duho.
+
+## Update 12:35 KST — terminal ladder closed; batch4 in; narrow round out
+- TERMINAL LADDER: TRV-V2 DEFECTIVE 3 → v3 → TRV-V3 DEFECTIVE 1 (non-iterable
+  commit_set crash) → v4 → TRV-V4 SOUND (2→3→1→0). Then KGATE_TERMINAL: HOLD —
+  kimi found the UNLADDERED __main__: the documented --transcript PATH form
+  could never run and =-form silently wrote the default path (transcript
+  misdirection at P9). Repaired per the exact condition: both forms honored,
+  unknown options refuse, selftest drives all forms via subprocess (10/10),
+  INPUT-UNREADABLE hardening; VERIFIER FILE UNTOUCHED (its ladder-final bytes
+  stand). Per the hold's own terms: targeted seat pass over the diff → pin at
+  V130 (no fresh kimi round needed; _tmp_v130_pin.py recomputes the ceremony
+  sha at run time).
+- BATCH4 (one agy sitting over four tools): SIP-V1 SOUND (the _seal_bytes
+  attribute access ruled an in-scope ADMISSION under process isolation);
+  SIV-V1 SOUND 0; B2F-V1 SOUND 0 with a NaN pass-through note → hardened
+  (POSITIONS-NOT-FINITE, 15/15); B2V-V1 DEFECTIVE 1 — the gate trusted the
+  receipt's classification field → now recomputes VOID-ness from the registry
+  text with the exact spoof fixtured (13/13). Commits through 30e70f601+.
+- IN FLIGHT: agy NARROW3 (CER-V2 / B2V-V2 / B2F-V2 over the three small diffs,
+  dispatched ~12:35, waiter armed). On SOUND: run _tmp_v130_pin.py + battery →
+  V130; then ONE kimi batch gate over the four small tools → BS-SI pin (V131).
