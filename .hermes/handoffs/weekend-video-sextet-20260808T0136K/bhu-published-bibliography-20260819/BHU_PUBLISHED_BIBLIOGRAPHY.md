@@ -754,6 +754,16 @@ Testability: **PROSPECT**
 amplitude or threshold; whether the body derives one is exactly the strict-night question.
 Record: baseline corpus entry (2203.13295), publication newly verified here.
 Audit-worthiness: **high** — see ranked target 4.
+**RQ-A RESOLVED 2026-08-31 (BHU Lane 2, blind-double codex+agy; Duho ruling q1 = annotate, keep tier).**
+The strict-night question above is answered: the deferred QNM excitation amplitude was derived on
+BOTH seats independently and they CONVERGED — the distinctive interior mode's damping time is
+10⁸–10¹⁰ yr, so it radiates far too slowly for a detectable strain; it is below LISA even at absurdly
+optimistic excitation, and Roupas supplies no excitation factor or event population, so no guaranteed
+amplitude exists. **Entry 21 is PROSPECT-without-a-number by derivation — tier PROSPECT UNCHANGED.**
+Also recorded: a 2π unit error in the paper — its "63 Hz" is the *angular* frequency ω_R; the physical
+cyclic frequency is f = ω_R/2π ≈ 10 Hz (the distinctive-mode frequencies are a factor 2π below the
+paper's "Hz" labels; still in-band for large M). Workings: `RQ_A_RECONCILIATION_20260831.md` +
+`RQ_A_{codex,agy}_RESULT.md`.
 
 **22. D. A. Easson (2026). "Obstructions to Minimal Regular Black Hole Cosmologies." Phys. Rev. D, published online 2026-07-31.**
 DOI 10.1103/qs86-npwk — VERIFIED with a stated caveat: the Crossref record confirms an APS

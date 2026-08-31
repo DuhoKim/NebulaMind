@@ -6,7 +6,9 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — 2 questions (q1 · RQ-A entry-21 record · q2 · RQ-D Gaztañaga KILLS-vs-RESTRICTS)
+## OPEN — 1 question (q2 · RQ-D Gaztañaga KILLS-vs-RESTRICTS — third read in flight)
+
+### ✅ q1 RESOLVED 2026-08-31 — Duho ruled option (a): annotate, keep tier PROSPECT. Entry 21's record now carries the RQ-A result (undetectable amplitude / long damping / PROSPECT-without-a-number) + the 2π unit error; tier unchanged. Original question below.
 
 ### q1 · RQ-A verdict is in — how to record it in entry 21?
 
