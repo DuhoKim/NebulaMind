@@ -32,7 +32,12 @@ THE OBLIGATIONS, from the draft's own words, each with its fixture:
     frozen loaders; the frozen planner file joins the manifest before any real
     sweep; symlinked invocation was attacked and REFUTED (Path.resolve()); the
     environment is pinned via the frozen module's own require_environment; the
-    replay process is single-threaded by checked obligation.
+    replay process is single-threaded by checked obligation; and PRE-HOOK STARTUP
+    PAYLOADS (sitecustomize/usercustomize/.pth files, dyld insertion) execute before
+    this journal exists and are OUTSIDE this artifact's reach — the gate that approved
+    the pin named this residue (KGATE_REPLAY_20260831.md), and it is discharged by the
+    BS-2k run procedure's interpreter-launch discipline (a clean -S/-E launch recorded
+    in the ceremony transcript), not silently.
 """
 import hashlib
 import sys

@@ -1,0 +1,34 @@
+You are the KIMI GATE SEAT — outside auditor. One artifact, one verdict.
+
+ARTIFACT: gates/replay_harness.py (sha16 7f1052852456d82e), the replay harness whose sha256 is the
+class-P expected value for replay_harness_sha256 in the frozen preregistration. Contract
+(draft §11): no-caller-objects (the executable manifest is pinned in the source; the
+mapping's entry sits PENDING-CONFIRMATION and the real sweep refuses until the principal
+confirms — flipping the flag re-pins the file); compile-from-verified-buffer at
+optimize=0 into fresh namespaces with v9 pre-bound so the counterfactual path's import
+touches no disk; type-exact mask acceptance (type(m) IS the loaded class, never
+isinstance); an AUDIT-HOOK import/dlopen journal census over the computation window
+(scrub-proof: a module loaded then deleted from sys.modules is still on the record);
+on-disk root re-verification before the receipt; environment pinned via the frozen
+module's own require_environment; single-threadedness a checked entry obligation.
+Verified: fixtures 6/6 through the shipped functions — an end-to-end machinery proof
+running a real v9 permutation verdict under the census, a tampered root driven through
+the verifier and refused, assert survival under the exact compile form, the
+scrubbed-import journal catch, the isinstance-subclass refusal, the pending-mapping
+refusal. An adversarial seat pass found 6 defects: four repaired in v2 (scrub-evadable
+census -> audit journal; tautological re-verification -> disk re-read; two vacuous
+fixtures -> driven through the shipped paths), one REFUTED with evidence (symlink attack
+— the path is already resolve()d), one scoped and stated (disk reads by verified v9 are
+digest-checked by v9's own frozen loaders; the planner file joins the manifest before
+any real sweep; the native image list beyond dlopen events is a stated v1 limit).
+
+QUESTIONS:
+1. PIN-READY or HOLD — may replay_harness_sha256 be set in the draft now? The real
+   sweep entry refuses by design until the mapping confirms and calibration artifacts
+   exist; judge whether pin-now-with-refusing-sweep is the honest state or premature.
+2. The sharpest remaining risk the battery does not cover.
+3. One sentence: is the audit-hook census an acceptable discharge of the "actually-
+   loaded objects" obligation given the stated dlopen-only native coverage?
+
+OUTPUT: Line 1 "KGATE_REPLAY VERDICT: <PIN-READY|HOLD>", then at most 4 numbered
+reasons, then "RISK:" one line, then "CENSUS:" one line. Nothing else.

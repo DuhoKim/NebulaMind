@@ -472,3 +472,16 @@ built"); no text-loop question reopened.**
 
 V123 → V124: the ruled revert — read-7 void, the V123 hardening reverted, the frozen checker is the round-6-reviewed state with its limitations quoted.
 V124 → V125: the first two build-out pins — the count-oracle harness pinned after tier-2 on real data; the mapping module digest-recorded with its identity, the id transition held for the convention pass.
+
+## V125 → V126 (2026-08-31 morning — the third pin: the replay harness)
+
+`gates/replay_harness.py` PINNED after its ladder: build → 6/6 fixtures → agy pass (six
+findings: the scrub-evadable census became an audit-hook journal, the tautological
+re-verification a disk re-read, two vacuous fixtures now drive shipped paths; the symlink
+attack REFUTED in code; the verified-v9-reads residue scoped) → kimi PIN-READY (it re-ran
+the fixtures itself; its startup-payload residue is stated in the artifact and routed to
+the BS-2k launch discipline). The mapping manifest entry stays PENDING-CONFIRMATION; the
+real sweep refuses until the principal's convention confirm, whose flag-flip re-pins the
+file by design.
+
+V125 → V126: the replay-harness pin — built, adversarially passed, gated, its residues stated in its own header.
