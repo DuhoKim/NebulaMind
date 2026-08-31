@@ -49,12 +49,24 @@ def run_ceremony(chain_path, indep_path, stores_path, transcript_path):
         lines.append(f"CHECK {label}: {value}")
         print(f"CHECK {label}: {value}")
 
+    transcript_written = [False]
+
     def _refuse(msg):
-        # EVERY refusal exits 2 with its line IN the transcript (AGY TRV-V1 F2:
-        # an unhandled ReviewRefusal crashed with exit 1 and abandoned the
-        # transcript without a refusal line — a crash is not a refusal)
-        lines.append(f"REFUSED: {msg}")
-        Path(transcript_path).write_text("\n".join(lines) + "\n")
+        # EVERY refusal exits 2 with its line on the record (AGY TRV-V1 F2: a
+        # crash is not a refusal). A transcript whose digest was already
+        # printed is APPEND-NEVER-REWRITE (AGY TRV-V2 F3: rewriting it broke
+        # the printed sha) — a late refusal lands in a sidecar instead and the
+        # digested bytes stay true.
+        if not transcript_written[0]:
+            lines.append(f"REFUSED: {msg}")
+            Path(transcript_path).write_text("\n".join(lines) + "\n")
+        else:
+            Path(str(transcript_path) + ".REFUSED").write_text(
+                f"REFUSED after transcript digest: {msg}\n"
+                f"The digested transcript at {transcript_path} is unchanged "
+                "and its printed sha256 remains true.\n")
+            print(f"REFUSAL RECORD: {transcript_path}.REFUSED "
+                  "(the digested transcript is unchanged)")
         print(f"REFUSED: {msg}")
         print("The ceremony stops; nothing is signed.")
         return 2
@@ -92,6 +104,7 @@ def run_ceremony(chain_path, indep_path, stores_path, transcript_path):
         # it, so the signing bytes cannot be inside the transcript
         transcript = "\n".join(lines) + "\n"
         Path(transcript_path).write_text(transcript)
+        transcript_written[0] = True
         t_digest = hashlib.sha256(transcript.encode()).hexdigest()
         print(f"TRANSCRIPT written: {transcript_path}")
         print(f"TRANSCRIPT sha256: {t_digest}")
@@ -145,8 +158,10 @@ def selftest():
     t = (tmp / "transcript.md").read_text()
     if "REFUSED" in t:
         fails.append("clean transcript carries a refusal")
-    # a ReviewRefusal path exits 2 with its line IN the transcript, never a
-    # crash (AGY TRV-V1 F2): empty receipt store → RECEIPT-NOT-IN-STORE
+    # a ReviewRefusal path exits 2, never a crash (AGY TRV-V1 F2) — and a LATE
+    # refusal (after the transcript digest printed) leaves the digested
+    # transcript UNTOUCHED and lands in the sidecar (AGY TRV-V2 F3): empty
+    # receipt store → RECEIPT-NOT-IN-STORE fires inside build_review_body
     (tmp / "stores_empty.json").write_text(json.dumps(dict(
         stores, receipt_store=[])))
     try:
@@ -156,12 +171,24 @@ def selftest():
         rc3 = f"CRASH {type(e).__name__}"
     t3 = (tmp / "transcript3.md").read_text() \
         if (tmp / "transcript3.md").exists() else ""
-    if rc3 != 2 or "REFUSED: RECEIPT-NOT-IN-STORE" not in t3:
-        fails.append(f"refusal path broke: rc={rc3}, transcript carries "
-                     f"refusal={('REFUSED' in t3)}")
+    side = tmp / "transcript3.md.REFUSED"
+    if rc3 != 2 or "REFUSED" in t3 or not side.exists() \
+            or "RECEIPT-NOT-IN-STORE" not in side.read_text():
+        fails.append(f"late-refusal path broke: rc={rc3}, transcript "
+                     f"rewritten={('REFUSED' in t3)}, sidecar={side.exists()}")
+    # an EARLY refusal (before any transcript write) still lands its line in
+    # the transcript itself: unmoored chain refuses inside recompute/derive
+    unmoored = ev.mkchain([chain[2]])
+    (tmp / "chain_u.json").write_text(json.dumps(unmoored))
+    rc4 = run_ceremony(tmp / "chain_u.json", tmp / "chain_u.json",
+                       tmp / "stores.json", tmp / "transcript4.md")
+    t4 = (tmp / "transcript4.md").read_text() \
+        if (tmp / "transcript4.md").exists() else ""
+    if rc4 != 2 or "REFUSED: CHAIN-UNMOORED" not in t4:
+        fails.append(f"early-refusal path broke: rc={rc4}")
     for x in fails:
         print("SELFTEST FAIL:", x)
-    print(f"terminal ceremony selftest: {4 - len(fails)}/4 green")
+    print(f"terminal ceremony selftest: {5 - len(fails)}/5 green")
     return 1 if fails else 0
 
 

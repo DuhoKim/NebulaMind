@@ -35,7 +35,16 @@ drain-start (Row B's ordering obligation makes the drain-start the receipt's nex
 chain append — a second one is malformed history, DUPLICATE-DRAIN-START, which
 also closes the earliest-fake-wins selection agy noted). The ceremony script's
 refusal path is repaired in its own v2: every refusal exits 2 with the refusal
-line in the transcript, never an unhandled crash."""
+line in the transcript, never an unhandled crash.
+
+v3 after AGY TRV-V2 (DEFECTIVE, 3, all in the v2-changed regions): the ending's
+commit_set must name REAL chain positions — a fictional member no longer lets a
+partial commit pass (ENDING-COMMIT-MALFORMED); the chain must OPEN with an epoch
+opening (CHAIN-UNMOORED — clock lawfulness stays the gates' job, but the ceremony
+will not sign a rootless history); and the ceremony's late-refusal path no longer
+rewrites a transcript whose digest was already printed — a digested artifact is
+append-never-rewrite, so the refusal lands in a sidecar and the printed digest
+stays true (repaired in the ceremony's v3)."""
 import hashlib
 import re
 import sys
@@ -97,12 +106,25 @@ def derive_ending(chain):
         ending = ("COMPLETED", disclosed[0][0])
     else:
         _r("NO-ENDING", "the run has not ended; there is nothing to sign")
+    # THE CHAIN OPENS WITH ITS EPOCH OPENING (AGY TRV-V2 F2): a chain whose
+    # first record is not an opening is unmoored — clock lawfulness belongs to
+    # the five gates, but the ceremony will not sign a history with no root
+    if chain[0]["k"] != "epoch-opening":
+        _r("CHAIN-UNMOORED",
+           "the chain does not open with an epoch opening; the principal does "
+           "not sign an unmoored history")
     # THE ENDING IS TERMINAL IN POSITION (AGY TRV-V1 F1): the head the principal
     # signs covers every chain byte, so nothing may follow the ending except the
     # ending's own atomic commit — trailing garbage would be signed into
-    # authorization otherwise
+    # authorization otherwise. The commit_set itself must name REAL positions
+    # (AGY TRV-V2 F1: fictional members made a partial commit pass silently)
     pos = ending[1]
-    commit = set(chain[pos].get("commit_set", ()))
+    raw_commit = chain[pos].get("commit_set", ())
+    for p in raw_commit:
+        if type(p) is not int or p < 0 or p >= len(chain):
+            _r("ENDING-COMMIT-MALFORMED",
+               f"commit_set member {p!r} is not an existing chain position")
+    commit = set(raw_commit)
     for p in range(pos + 1, len(chain)):
         if p not in commit:
             _r("TRAILING-RECORDS",
@@ -359,7 +381,12 @@ def fixtures():
     # completed path: the ceremony as the export's closing verifier
     def completed_chain(with_export=True, in_commit=True, body_override=None,
                         extra_export=False):
-        commit = [2, 3] if extra_export else ([2] if in_commit else [9])
+        if not with_export:
+            commit = []
+        elif extra_export:
+            commit = [2, 3]
+        else:
+            commit = [2] if in_commit else []
         base = [o1, {"k": "passrec", "gate": "DISCLOSURE",
                      "predecessor": "b" * 64, "epoch": 1, "reading": 10,
                      "commit_set": commit}]
@@ -403,10 +430,28 @@ def fixtures():
         {"k": "successor-export",
          "body": {"kind": "successor-export"}},
         {"k": "passrec", "gate": "DISCLOSURE", "predecessor": "b" * 64,
-         "epoch": 1, "reading": 10, "commit_set": [9]},
+         "epoch": 1, "reading": 10, "commit_set": []},
     ])
     expect("EXPORT-OUTSIDE-COMMIT",
            lambda: build_review_body(pre_export, stores_c, V64, T64))
+    # the ending's commit_set must name real positions (AGY TRV-V2 F1)
+    expect("ENDING-COMMIT-MALFORMED",
+           lambda: build_review_body(ev.mkchain([
+               o1,
+               {"k": "drain-start", "receipt_digest": D64, "epoch": 1,
+                "reading": 10},
+               {"k": "terminal-checkpoint", "status": "TERMINATED",
+                "receipt_digest": D64, "commit_set": [99],
+                "failed_members": [], "epoch": 1, "reading": 15},
+           ]), stores_t, V64, T64))
+    # the chain opens with its epoch opening or the ceremony signs nothing
+    # (AGY TRV-V2 F2: the unmoored single-checkpoint chain was signable)
+    expect("CHAIN-UNMOORED",
+           lambda: build_review_body(ev.mkchain([
+               {"k": "terminal-checkpoint", "status": "TERMINATED",
+                "receipt_digest": D64, "commit_set": [], "failed_members": [],
+                "epoch": 1, "reading": 15},
+           ]), stores_t, V64, T64))
     expect("EXPORT-MISMATCH",
            lambda: build_review_body(
                completed_chain(body_override=lambda b: dict(
