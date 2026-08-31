@@ -88,3 +88,21 @@
   pre-freeze tool.
 - Duho-blocked, unchanged: four-value mapping confirm, BS-2k constants sheet,
   rosters, Sep-5 BS-1 rule, P0 signature.
+
+## Update 12:15 KST — fifth pin landed, terminal ladder mid-flight
+- ENUM: PINNED at V129 (sha d31eacc51e87681c…, KGATE_ENUM PIN-READY with three
+  carried obligations ALL discharged in the slot text; battery 15/15; commit
+  eb3b93901). Five of the six original tools pinned.
+- TERMINAL PAIR: agy TRV-V1 DEFECTIVE 2 (trailing-garbage authorization into the
+  signed head; unhandled ReviewRefusal crashing the ceremony) → v2 repaired
+  (TRAILING-RECORDS: nothing follows the ending outside its own commit;
+  DUPLICATE-DRAIN-START; every ceremony refusal exits 2 with its transcript line)
+  24/24 + 4/4 (commit 377bd4a91) → agy TRV-V2 re-verify IN FLIGHT (dispatched
+  12:11; output AGY_TRV2_VERIFY_20260831.md). PIN SITE DISCOVERED: the verifier's
+  digest is "set AND printed" in LIFECYCLE_GUARANTEE_SPEC.md line ~112 (the P9
+  paragraph), NOT the draft — the pin will be a spec-side fill riding V130.
+- DECISION BOARD updated: the mapping four-value confirm surfaced as the one item
+  waiting on Duho, plain words + both choices (commit b660c8802).
+- QUEUE after TRV-V2: kimi gate (terminal pair) → V130 spec-side pin; agy batch
+  on stratum pair + bs2f + bs2v → kimi gates → BS-SI pin (draft §11 slot, the
+  LAST unbuilt-marked item). Then the build phase is done pending Duho.
