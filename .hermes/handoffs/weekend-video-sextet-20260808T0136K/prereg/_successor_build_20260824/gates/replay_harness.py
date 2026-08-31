@@ -5,10 +5,11 @@ one executable outside the receipt; its sha256 is the class-P expected value for
 
 THE OBLIGATIONS, from the draft's own words, each with its fixture:
   NO-CALLER-OBJECTS — no module, path, or callback crosses the call boundary; the
-    executable inputs are THE MANIFEST below, pinned in this source. When the mapping is
-    preregistered it enters as a manifest entry, not an argument; until the principal
-    confirms the mapping convention, its entry is PENDING and the harness refuses to use
-    it (flipping the flag changes this file's sha — a re-pin, as designed).
+    executable inputs are THE MANIFEST below, pinned in this source. The mapping enters
+    as a manifest entry, not an argument; its entry was PENDING until the principal
+    confirmed the mapping convention — RULED 2026-08-31, verbatim option label
+    "Confirmed as committed (Recommended)" (MAPPING_CONFIRMATION_RULING_20260831.md) —
+    and the flip changed this file's sha: the visible re-pin, exactly as designed.
   COMPILE-FROM-VERIFIED-BUFFER WITH PRE-BINDING — each manifest module is read ONCE into
     memory, THOSE bytes are hashed against the pin, and compile(buffer, optimize=0) is
     executed into a fresh namespace IN ORDER: v9 first, registered as
@@ -54,8 +55,11 @@ MANIFEST = (
     ("gain_counterfactual_path", REF / "gain_counterfactual_path.py",
      "92cbbdf89bd2a494c9cfb9f19fb12a46cf59a16731246cea2e74c56d2454a9b7", "ACTIVE"),
     ("gain_mapping_a", REF / "gain_mapping_a.py",
-     None, "PENDING-CONFIRMATION"),  # digest set + flag flipped ONLY on the principal's
-                                     # convention confirmation; using it before refuses
+     "8bc693ffae7009e0967a0b433b9bc7787494da8742457ad381443d4b210b4aa1",
+     "ACTIVE"),  # flipped on the principal's confirmation, 2026-08-31 —
+                 # "Confirmed as committed (Recommended)";
+                 # MAPPING_CONFIRMATION_RULING_20260831.md — the digest is the
+                 # AGY-MAPA-V2-verified bytes, convention commitment bound inside
 )
 
 
@@ -179,9 +183,14 @@ def replay_machinery_proof(stage=1, prefix=1, trial=1, n_perm=200):
 
 
 def replay_sweep(*a, **k):
+    # the mapping is CONFIRMED (2026-08-31, "Confirmed as committed (Recommended)")
+    # and its manifest entry is ACTIVE; what still refuses is the RUN-TIME input —
+    # the calibration artifacts do not exist before the run measures them, and a
+    # sweep without them would be a different experiment
     raise ReplayRefusal(
-        "the real sweep requires the calibration artifacts (unmeasured) and a CONFIRMED "
-        "mapping manifest entry (PENDING-CONFIRMATION) — refused, per the manifest")
+        "the real sweep requires the run-time calibration artifacts (unmeasured; "
+        "the mapping manifest entry is ACTIVE and confirmed) — refused until the "
+        "run provides them")
 
 
 # ------------------------------------------------------------------ fixtures
@@ -243,12 +252,35 @@ def fixtures():
             sys.modules["successor_ref_v9"] = saved
         else:
             sys.modules.pop("successor_ref_v9", None)
-    # R6: the pending mapping entry refuses
+    # R6: the sweep still refuses — the ground is now the absent RUN-TIME
+    # calibration artifacts, not the mapping (confirmed 2026-08-31)
     try:
         replay_sweep()
-        fails.append("R6: real sweep did not refuse while mapping unconfirmed")
+        fails.append("R6: real sweep did not refuse without calibration artifacts")
+    except ReplayRefusal as e:
+        if "calibration" not in str(e) or "ACTIVE" not in str(e):
+            fails.append(f"R6: refusal names the wrong ground: {e}")
+    # R7: the ACTIVE mapping entry read-and-verifies at its pinned digest, and a
+    # tampered mapping refuses exactly like every other root (the flip armed the
+    # verification, which is what the re-pin was FOR)
+    bufs = _read_and_verify()
+    if "gain_mapping_a" not in bufs:
+        fails.append("R7: ACTIVE mapping entry not read by root verification")
+    elif bufs["gain_mapping_a"][2] != MANIFEST[2][2]:
+        fails.append("R7: mapping buffer hash does not equal the manifest pin")
+    tmpd2 = HERE / "_tmp_replay_fixture_probe"
+    tmpd2.mkdir(exist_ok=True)
+    badm = tmpd2 / "gain_mapping_a.py"
+    md = bytearray((REF / "gain_mapping_a.py").read_bytes())
+    md[50] ^= 1
+    badm.write_bytes(bytes(md))
+    try:
+        _read_and_verify(manifest=(("gain_mapping_a", badm, MANIFEST[2][2],
+                                    "ACTIVE"),))
+        fails.append("R7: tampered mapping PASSED root verification")
     except ReplayRefusal:
         pass
+    badm.unlink(); tmpd2.rmdir()
     return fails
 
 
@@ -256,5 +288,5 @@ if __name__ == "__main__":
     f = fixtures()
     for x in f:
         print("FIXTURE FAIL:", x)
-    print(f"replay harness fixtures: {6 - len(f)}/6 green")
+    print(f"replay harness fixtures: {7 - len(f)}/7 green")
     sys.exit(1 if f else 0)
