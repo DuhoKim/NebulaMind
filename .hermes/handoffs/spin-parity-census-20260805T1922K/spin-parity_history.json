@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "successor prereg \u2014 BS-2k constants + rosters proposal"
+    "topic": "successor prereg \u2014 BS-2k constants + rosters ruled"
   },
   "humanFeedback": {
     "captured": true
@@ -210,6 +210,18 @@
       "feedbackText": "Hwao, propose the constants sheet and rosters",
       "changed": {
         "summary": "Drafting the BS-2k decision packet: the constants sheet (one recommended value per remaining constant - D, Q, head budget, commit bound, g, R_max, A_max, GATE_PASS_BUDGET, PASS_RETRY_MAX and any others the sweep surfaces; M_max=3 already committed - each with a one-paragraph reason derived from the frozen text's own inequalities, blind-commit discipline where applicable) plus the reviewer roster (human principals only, name+pubkey pairs, machine keys excluded) and the custody/escrow holder roster with realistic composition options including the minimal one. Proposal only - nothing commits until his signature; Sep-5 BS-1 and P0 untouched."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "constants and rosters approved as proposed",
+      "changed": {
+        "summary": "The BS-2k decision packet RULED WHOLE per its own signature block: C1-C11 as recommended (g=1ms, commit_bound=1s, budget=5s, Q=16, detection=2s, D=120s, enforcement_lag=30s, GATE_PASS_BUDGET=10s, PASS_RETRY_MAX=3, R_max=2, A_max=3; M_max=3 already committed), R1=Option A (reviewer roster: Duho alone, pubkey at provisioning), R2=Option A (custody holder: Duho alone, honest single-holder note on record), X1=3 (conveyance retries), X2=extraction discipline for the closed operation set. Committed in ref/BS2K_CONSTANTS_COMMIT_20260831.md binding the exact packet bytes; recorded in the draft at V133 so the P0 freeze signature covers the values. Sep-5 BS-1 and P0 remain separate and untouched."
       }
     }
   ]

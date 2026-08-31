@@ -570,3 +570,15 @@ sha and identity digest updated to the commitment-bound MAPA-V2 bytes
 with the byte-change disclosed.
 
 V131 → V132: the confirmation transition — the principal's ruling applied; AGY-RPH-FLIP on the manifest diff; the V125 hold released by the completed chain (convention pass → blind commitment → architecture ruling → MAPA-V2 SOUND → confirmation).
+
+## V132 → V133 (2026-08-31 evening — the constants-and-rosters commitment)
+
+The principal ruled the BS-2k decision packet whole (verbatim:
+"constants and rosters approved as proposed"; human direction #18).
+The commitment file (ref/BS2K_CONSTANTS_COMMIT_20260831.md) carries the
+eleven constants plus X1/X2 and both minimal rosters, re-checks every
+frozen inequality at the committed values, and binds the exact packet
+bytes; the BS-2k covenant row now pins the commitment's digest so the
+P0 freeze signature covers the values. Slot-value fill only.
+
+V132 → V133: the constants-and-rosters commitment — the principal's ruling applied; the packet's derivations bound by digest; no code changed, no new obligations.
