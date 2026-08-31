@@ -55,3 +55,36 @@
   (contract: §11 terminal-review obligations + TERMINAL_SIGNATURE_RULING P0-P9;
   completed form binds successor_export_digest; ceremony = closing verifier on the
   completed path). Then BS-SI schema. BS-2k constants + rosters still need Duho.
+
+## Update 12:10 KST — the build sprint's midday state
+- DECODER: PINNED at V127 (sha 742cacac…, KGATE PIN-READY no condition; battery 15/15;
+  commit b664322c1). Four of six original tools now pinned.
+- V128 (commit cf936efe3): pin-coherence fills — three stale DOES-NOT-EXIST/UNSET
+  mirrors of pinned tools flipped (harness tail, decoder provenance mention, replay
+  bullet's lifted BS-3g block). LESSONS PAID: citing a pre-convention finding ID in
+  FINDINGS_MAP drags its whole round into the citation regime (6 phantom undisposed —
+  describe old lessons without the key pattern); a pipe masked the ledger check's
+  exit AGAIN (the standing tee/pipes lesson).
+- ENUMERATION VERIFIER ladder (the deepest yet): ENV-V1 DEFECTIVE 6 → v2 → ENV-V2
+  DEFECTIVE 2 (both in my repairs) → v3 → ENV-V3 DEFECTIVE 2 + 2 admissions RATIFIED
+  (joined arrival pass-own; post-checkpoint TOUCH unconstrained) → v4 127/127
+  (commit 264f5a1d9) → agy ENV-V4 IN FLIGHT (dispatched 11:59; output
+  AGY_ENUM_V4_VERIFY_20260831.md). Then kimi gate → pin.
+- TERMINAL REVIEW pair BUILT (commit 66ad165f8): terminal_review_verifier.py 21/21
+  (two forms mirror FORM_SCHEMAS; completed path = export closing verifier) +
+  terminal_ceremony.py selftest 3/3 (check-not-read flow, no key handling, refuses
+  before emitting signing bytes). Ladder: agy → kimi → pin, queued behind enum.
+- BS-SI pair BUILT: stratum_index_producer.py 22/22 (commit c2911b246; committee
+  state × |χ| tertile, unshoppable conventions, SCHEMA-PENDING structural refusal,
+  Row-B-only emission, allocate_handcheck-only consumer barrier, positions-only
+  guard) + stratum_index_verifier.py 12/12 (commit cf936efe3; deliberately
+  independent recomputation — the one place a twin IS the design). Ladder queued.
+- BS-2F boundary verifier BUILT: bs2f_boundary_verifier.py 13/13 (commit d1c6de780;
+  frozen-v9 recomputation via the replay harness's verified loader, exact byte
+  equality, degenerate-crash→refusal, artifact-bound receipt). Ladder queued.
+- REMAINING §11 buildables: BS-2v VOID converter (canonical closed antecedent
+  registry + receipt schema; pre-BS-6 dependency) — scoping next. Atomic-touch
+  commit domain is a BS-2k DESIGN requirement (Duho-side provisioning), not a
+  pre-freeze tool.
+- Duho-blocked, unchanged: four-value mapping confirm, BS-2k constants sheet,
+  rosters, Sep-5 BS-1 rule, P0 signature.
