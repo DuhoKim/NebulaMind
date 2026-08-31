@@ -127,3 +127,23 @@
 - IN FLIGHT: agy NARROW3 (CER-V2 / B2V-V2 / B2F-V2 over the three small diffs,
   dispatched ~12:35, waiter armed). On SOUND: run _tmp_v130_pin.py + battery →
   V130; then ONE kimi batch gate over the four small tools → BS-SI pin (V131).
+
+## Update 12:50 KST — THE BUILD PHASE IS COMPLETE
+- NARROW3: SOUND ×3 (CER-V2/B2V-V2/B2F-V2, zero findings). V130 landed: the P9
+  terminal machinery pinned at the spec's own site (TRV sha 22599359c7178d3b…,
+  ceremony c6b15a5af276598f…), the L02 check caught the stale spec-digest cell
+  in the draft and it was re-pinned — the design working. Battery 15/15.
+- KIMI BATCH GATE: SIP PIN-READY + SIV PIN-READY (kimi re-ran fixtures and
+  re-hashed both files itself; shas match the pin byte-for-byte), B2F + B2V
+  RECORD-CLEAN. V131 landed: the BS-SI pair pinned, the LAST DO-NOT-EXIST item
+  in §11 flipped to BUILT. Battery 15/15.
+- SEVEN PINS TOTAL: harness V125 · replay V126 · decoder V127 · coherence V128
+  · enumeration verifier V129 · P9 terminal machinery V130 (spec site) · BS-SI
+  pair V131. Gate records: KGATE_BUILDOUT, KGATE_REPLAY, KGATE_DECODER,
+  KGATE_ENUM, KGATE_TERMINAL (HOLD→discharged), KGATE_BATCH4. Every §11
+  required tool is BUILT, adversarially laddered, gated, and pinned.
+- REMAINING (all Duho-side): the mapping four-value confirm (unblocks the sweep
+  machinery + flips the replay manifest flag), BS-2k constants sheet, rosters,
+  Sep-5 BS-1 release rule (daily DR11 check continues), P0 signature. The
+  frozen text package (V124 + final KNOWN_DEBT_APPENDIX) + seven pins = the
+  complete freeze candidate.
