@@ -554,3 +554,19 @@ process isolation); the kimi batch gate ruled on the pair with the
 record filed beside this map.
 
 V130 → V131: the BS-SI pin — GPT56-V100 F3's build item discharged; AGY-SIP-V1/AGY-SIV-V1 SOUND; the batch gate record in KGATE_BATCH4_RAW.txt.
+
+## V131 → V132 (2026-08-31 afternoon — the confirmation transition)
+
+The principal's mapping four-value confirmation (verbatim option label
+"Confirmed as committed (Recommended)"; MAPPING_CONFIRMATION_RULING_
+20260831.md; human direction #16): mapping_id transitions to
+MAPPING-A-CRN-PCG64-20260830-v1; the replay manifest entry flips to
+ACTIVE and the harness re-pins at its flipped bytes — the visible re-pin
+KGATE_REPLAY designed, verified by the narrow AGY-RPH-FLIP round; every
+pre-confirmation regime clause (the receipt-field admissibility, the
+no-callable clause, the closed set) flips to the confirmed state with
+the literal retained as the named non-discharging sentinel; the module
+sha and identity digest updated to the commitment-bound MAPA-V2 bytes
+with the byte-change disclosed.
+
+V131 → V132: the confirmation transition — the principal's ruling applied; AGY-RPH-FLIP on the manifest diff; the V125 hold released by the completed chain (convention pass → blind commitment → architecture ruling → MAPA-V2 SOUND → confirmation).
