@@ -31,6 +31,7 @@ import shutil
 import stat
 import subprocess
 import sys
+import tempfile
 import time
 import re
 from pathlib import Path
@@ -54,6 +55,7 @@ REFUSAL_CORRUPT_SHARE = "REFUSED-CORRUPT-SHARE"
 REFUSAL_SCHEMA = "REFUSED-SCHEMA-NONCONFORMING"
 REFUSAL_DRIFT = "REFUSED-STAGED-DRIFT"
 REFUSAL_DIRECT = "REFUSED-RAW-STORE-PATH"
+REFUSAL_TRAVERSAL = "REFUSED-STORE-PATH-TRAVERSAL"
 
 
 class Refusal(RuntimeError):
@@ -107,6 +109,9 @@ def x2_encoding(tokens: tuple[str, ...]) -> bytes:
 
 def v9_literal(name: str) -> str | None:
     tree = ast.parse(V9_REFERENCE.read_bytes(), filename=str(V9_REFERENCE))
+    found: str | None = None
+    # The v9 constants are module-top-level by inspection. Nested scopes and
+    # assignments inside compound statements are intentionally out of scope.
     for node in tree.body:
         if (isinstance(node, (ast.Assign, ast.AnnAssign)) and
                 ((isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == name
@@ -116,8 +121,8 @@ def v9_literal(name: str) -> str | None:
             value = ast.literal_eval(node.value)
             if not isinstance(value, str):
                 raise Refusal(REFUSAL_SCHEMA)
-            return value
-    return None
+            found = value
+    return found
 
 
 def x2_material() -> tuple[tuple[str, ...], bytes, str, str]:
@@ -203,22 +208,32 @@ def archive_identity() -> dict[str, Any]:
     raw = receipt.read_bytes()  # metadata only; archive contents are never read
     live_digest = sha(raw)
     pinned_digest = v9_literal("PINNED_PARENT_RECEIPTS_SHA256")
-    if pinned_digest is not None and live_digest != pinned_digest:
+    if pinned_digest is None:
+        raise Refusal(REFUSAL_SCHEMA)
+    if live_digest != pinned_digest:
         raise Refusal(REFUSAL_DRIFT)
     body = json.loads(raw)
     identity = {"pinned_parent_receipts_rel": receipt_rel,
                 "live_parent_receipts_sha256": live_digest,
                 "receipt_output_sha256": body.get("output_sha256")}
-    if pinned_digest is not None:
-        identity["v9_pinned_parent_receipts_sha256"] = pinned_digest
+    identity["v9_pinned_parent_receipts_sha256"] = pinned_digest
     return identity
 
 
 def mediator_read(root: Path, relative: str = ".boundary-probe") -> bytes:
     allowed = {p.resolve() for p in store_roots()}
-    if root.resolve() not in allowed or Path(relative).is_absolute() or ".." in Path(relative).parts:
+    resolved_root = root.resolve()
+    if resolved_root not in allowed:
         raise Refusal(REFUSAL_DIRECT)
-    return (root / relative).read_bytes()
+    requested = Path(relative)
+    if requested.is_absolute() or ".." in requested.parts:
+        raise Refusal(REFUSAL_TRAVERSAL)
+    resolved_target = (resolved_root / requested).resolve()
+    try:
+        resolved_target.relative_to(resolved_root)
+    except ValueError:
+        raise Refusal(REFUSAL_TRAVERSAL)
+    return resolved_target.read_bytes()
 
 
 def store_roots() -> tuple[Path, ...]:
@@ -231,6 +246,12 @@ def staged_paths() -> tuple[Path, ...]:
             PROV / "mediator" / "mediator.json", PROV / "STAGED_seal_state.json",
             PROV / "STAGED_RowA_receipt.json",
             CHAIN / "STAGED_epoch1_opening.json")
+
+
+def manifest_materials() -> dict[str, Path]:
+    materials = {str(path.relative_to(PROV)): path for path in staged_paths()}
+    materials["../OPERATION_SET_COMMIT_20260831.md"] = X2_COMMIT
+    return materials
 
 
 def stage() -> dict[str, str]:
@@ -307,7 +328,7 @@ def stage() -> dict[str, str]:
                "predecessor_epoch": 0, "gap_declaration": ""}
     validate_exact(opening, OPENING_FIELDS)
     atomic_write(CHAIN / "STAGED_epoch1_opening.json", canonical_json(opening))
-    digests = {str(path.relative_to(PROV)): sha(path.read_bytes()) for path in staged_paths()}
+    digests = {name: sha(path.read_bytes()) for name, path in manifest_materials().items()}
     atomic_write(MANIFEST, canonical_json({"artifacts": digests}))
     return digests
 
@@ -317,7 +338,7 @@ def verify_staged() -> dict[str, str]:
         expected = json.loads(MANIFEST.read_bytes())["artifacts"]
     except (OSError, KeyError, json.JSONDecodeError):
         raise Refusal(REFUSAL_DRIFT)
-    actual = {str(path.relative_to(PROV)): sha(path.read_bytes()) for path in staged_paths()}
+    actual = {name: sha(path.read_bytes()) for name, path in manifest_materials().items()}
     if actual != expected:
         raise Refusal(REFUSAL_DRIFT)
     validate_exact(json.loads((PROV / "STAGED_seal_state.json").read_bytes()), SEAL_FIELDS)
@@ -365,9 +386,24 @@ def fixtures() -> tuple[int, int]:
         fn(); checks.append(True)
     check(lambda: all(mediator_read(root) == b"mediator-boundary-green\n" for root in store_roots()))
     check(lambda: all(stat.S_IMODE(root.stat().st_mode) == 0o700 for root in store_roots()))
-    check(lambda: all((expect_refusal(REFUSAL_DIRECT,
+    check(lambda: all((expect_refusal(REFUSAL_TRAVERSAL,
                                      lambda r=root: mediator_read(r, "../.boundary-probe")) or True)
                       for root in store_roots()))
+    check(lambda: expect_refusal(REFUSAL_DIRECT,
+                                 lambda: mediator_read(PROV.parent / "unallowed-sibling")))
+    def symlink_escape():
+        root = store_roots()[0]
+        with tempfile.TemporaryDirectory(dir=HERE) as outside:
+            target = Path(outside) / "outside"
+            target.write_bytes(b"must-not-be-readable")
+            link = root / ".boundary-symlink"
+            try:
+                link.symlink_to(target)
+                expect_refusal(REFUSAL_TRAVERSAL,
+                               lambda: mediator_read(root, link.name))
+            finally:
+                link.unlink(missing_ok=True)
+    check(symlink_escape)
     check(lambda: all((root / ".boundary-probe").read_bytes() ==
                       b"mediator-boundary-green\n" for root in store_roots()))
     check(lambda: all(recombine_private(name).startswith(b"-----BEGIN OPENSSH PRIVATE KEY-----")
@@ -393,6 +429,32 @@ def fixtures() -> tuple[int, int]:
     check(lambda: sha(canonical_roster("holder-roster", [("a", "k1")])) !=
                   sha(canonical_roster("holder-roster", [("a", "k2")])) )
     check(lambda: sha(x2_material()[1]) == x2_material()[2])
+    def missing_v9_pin():
+        global V9_REFERENCE
+        original = V9_REFERENCE
+        with tempfile.TemporaryDirectory(dir=HERE) as tmp:
+            copy = Path(tmp) / "v9.py"
+            source = re.sub(r"^PINNED_PARENT_RECEIPTS_SHA256\s*=.*\n", "",
+                            original.read_text(), flags=re.MULTILINE)
+            copy.write_text(source)
+            try:
+                V9_REFERENCE = copy
+                expect_refusal(REFUSAL_SCHEMA, archive_identity)
+            finally:
+                V9_REFERENCE = original
+    check(missing_v9_pin)
+    def last_v9_assignment():
+        global V9_REFERENCE
+        original = V9_REFERENCE
+        with tempfile.TemporaryDirectory(dir=HERE) as tmp:
+            copy = Path(tmp) / "v9.py"
+            copy.write_text('VALUE = "first"\nVALUE = "second"\n')
+            try:
+                V9_REFERENCE = copy
+                assert v9_literal("VALUE") == "second"
+            finally:
+                V9_REFERENCE = original
+    check(last_v9_assignment)
     def drift():
         target = PROV / "constants.json"; original = target.read_bytes()
         try:
@@ -401,7 +463,15 @@ def fixtures() -> tuple[int, int]:
         finally:
             target.write_bytes(original)
     check(drift)
-    return len(checks), 12
+    def commitment_drift():
+        original = X2_COMMIT.read_bytes()
+        try:
+            X2_COMMIT.write_bytes(original + b"\n")
+            expect_refusal(REFUSAL_DRIFT, verify_staged)
+        finally:
+            X2_COMMIT.write_bytes(original)
+    check(commitment_drift)
+    return len(checks), 17
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -423,7 +493,8 @@ def main(argv: list[str] | None = None) -> int:
     except Refusal as exc:
         print(exc.code, file=sys.stderr)
         return {REFUSAL_CORRUPT_SHARE: 21, REFUSAL_SCHEMA: 22,
-                REFUSAL_DRIFT: 23, REFUSAL_DIRECT: 24}.get(exc.code, 20)
+                REFUSAL_DRIFT: 23, REFUSAL_DIRECT: 24,
+                REFUSAL_TRAVERSAL: 25}.get(exc.code, 20)
 
 
 if __name__ == "__main__":
