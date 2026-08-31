@@ -49,46 +49,57 @@ def run_ceremony(chain_path, indep_path, stores_path, transcript_path):
         lines.append(f"CHECK {label}: {value}")
         print(f"CHECK {label}: {value}")
 
-    self_sha = sha_file(HERE / "terminal_ceremony.py")
-    verifier_sha = sha_file(HERE / "terminal_review_verifier.py")
-    ev_sha = sha_file(HERE / "enumeration_verifier.py")
-    check("ceremony-script sha256 (compare to the printed pin yourself)", self_sha)
-    check("terminal_review_verifier sha256 (compare to the printed pin)",
-          verifier_sha)
-    check("enumeration_verifier sha256 (compare to the printed pin)", ev_sha)
-
-    chain = json.loads(Path(chain_path).read_text())
-    indep = json.loads(Path(indep_path).read_text())
-    stores = json.loads(Path(stores_path).read_text())
-    stores.setdefault("sealed_bindings", [])
-    check("chain file sha256", sha_file(chain_path))
-    check("independent chain file sha256", sha_file(indep_path))
-    check("stores file sha256", sha_file(stores_path))
-
-    head = trv.recompute_terminal_head(chain)
-    head_indep = trv.recompute_terminal_head(indep)
-    check("recomputed head (enumerator copy)", head)
-    check("recomputed head (independent copy)", head_indep)
-    if head != head_indep:
-        lines.append("REFUSED: HEAD-COPIES-DIVERGE")
+    def _refuse(msg):
+        # EVERY refusal exits 2 with its line IN the transcript (AGY TRV-V1 F2:
+        # an unhandled ReviewRefusal crashed with exit 1 and abandoned the
+        # transcript without a refusal line — a crash is not a refusal)
+        lines.append(f"REFUSED: {msg}")
         Path(transcript_path).write_text("\n".join(lines) + "\n")
-        print("REFUSED: the two chain copies do not recompute to one head — "
-              "the ceremony stops, nothing is signed")
+        print(f"REFUSED: {msg}")
+        print("The ceremony stops; nothing is signed.")
         return 2
 
-    ending, pos = trv.derive_ending(chain)
-    check("chain-derived ending", f"{ending} at position {pos}")
+    try:
+        self_sha = sha_file(HERE / "terminal_ceremony.py")
+        verifier_sha = sha_file(HERE / "terminal_review_verifier.py")
+        ev_sha = sha_file(HERE / "enumeration_verifier.py")
+        check("ceremony-script sha256 (compare to the printed pin yourself)",
+              self_sha)
+        check("terminal_review_verifier sha256 (compare to the printed pin)",
+              verifier_sha)
+        check("enumeration_verifier sha256 (compare to the printed pin)", ev_sha)
 
-    # transcript digest binds everything checked so far; the body carries it, so
-    # the signing bytes cannot be inside the transcript (no self-reference)
-    transcript = "\n".join(lines) + "\n"
-    Path(transcript_path).write_text(transcript)
-    t_digest = hashlib.sha256(transcript.encode()).hexdigest()
-    print(f"TRANSCRIPT written: {transcript_path}")
-    print(f"TRANSCRIPT sha256: {t_digest}")
+        chain = json.loads(Path(chain_path).read_text())
+        indep = json.loads(Path(indep_path).read_text())
+        stores = json.loads(Path(stores_path).read_text())
+        stores.setdefault("sealed_bindings", [])
+        check("chain file sha256", sha_file(chain_path))
+        check("independent chain file sha256", sha_file(indep_path))
+        check("stores file sha256", sha_file(stores_path))
 
-    body = trv.build_review_body(chain, stores, verifier_sha, t_digest)
-    sb = trv.signing_bytes(body)
+        head = trv.recompute_terminal_head(chain)
+        head_indep = trv.recompute_terminal_head(indep)
+        check("recomputed head (enumerator copy)", head)
+        check("recomputed head (independent copy)", head_indep)
+        if head != head_indep:
+            return _refuse("HEAD-COPIES-DIVERGE: the two chain copies do not "
+                           "recompute to one head")
+
+        ending, pos = trv.derive_ending(chain)
+        check("chain-derived ending", f"{ending} at position {pos}")
+
+        # transcript digest binds everything checked so far; the body carries
+        # it, so the signing bytes cannot be inside the transcript
+        transcript = "\n".join(lines) + "\n"
+        Path(transcript_path).write_text(transcript)
+        t_digest = hashlib.sha256(transcript.encode()).hexdigest()
+        print(f"TRANSCRIPT written: {transcript_path}")
+        print(f"TRANSCRIPT sha256: {t_digest}")
+
+        body = trv.build_review_body(chain, stores, verifier_sha, t_digest)
+        sb = trv.signing_bytes(body)
+    except (trv.ReviewRefusal, ev.Refusal) as e:
+        return _refuse(str(e))
     print("REVIEW BODY:", ev._canon(body))
     print("SIGNING BYTES (hex):", sb.hex())
     print("SIGNING BYTES sha256:", hashlib.sha256(sb).hexdigest())
@@ -134,9 +145,23 @@ def selftest():
     t = (tmp / "transcript.md").read_text()
     if "REFUSED" in t:
         fails.append("clean transcript carries a refusal")
+    # a ReviewRefusal path exits 2 with its line IN the transcript, never a
+    # crash (AGY TRV-V1 F2): empty receipt store → RECEIPT-NOT-IN-STORE
+    (tmp / "stores_empty.json").write_text(json.dumps(dict(
+        stores, receipt_store=[])))
+    try:
+        rc3 = run_ceremony(tmp / "chain.json", tmp / "indep.json",
+                           tmp / "stores_empty.json", tmp / "transcript3.md")
+    except Exception as e:
+        rc3 = f"CRASH {type(e).__name__}"
+    t3 = (tmp / "transcript3.md").read_text() \
+        if (tmp / "transcript3.md").exists() else ""
+    if rc3 != 2 or "REFUSED: RECEIPT-NOT-IN-STORE" not in t3:
+        fails.append(f"refusal path broke: rc={rc3}, transcript carries "
+                     f"refusal={('REFUSED' in t3)}")
     for x in fails:
         print("SELFTEST FAIL:", x)
-    print(f"terminal ceremony selftest: {3 - len(fails)}/3 green")
+    print(f"terminal ceremony selftest: {4 - len(fails)}/4 green")
     return 1 if fails else 0
 
 

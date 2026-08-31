@@ -25,7 +25,17 @@ receipt store (the ceremony's receipt-vs-store check, per the ruling).
 The record model is enumeration_verifier's (imported, not twinned — a second
 digest/prefix implementation would be the divergent-copy defect); both files are
 separately pinned and the ceremony script prints both digests for the principal's
-own OS-tool comparison against the printed pins."""
+own OS-tool comparison against the printed pins.
+
+v2 after AGY TRV-V1 (DEFECTIVE, 2): the ENDING IS TERMINAL IN POSITION — after
+the ending record, only members of the ending's own atomic commit may follow, so
+an enumerator cannot append post-termination garbage and have the principal sign
+a head that authorizes it (TRAILING-RECORDS); and a receipt has EXACTLY ONE
+drain-start (Row B's ordering obligation makes the drain-start the receipt's next
+chain append — a second one is malformed history, DUPLICATE-DRAIN-START, which
+also closes the earliest-fake-wins selection agy noted). The ceremony script's
+refusal path is repaired in its own v2: every refusal exits 2 with the refusal
+line in the transcript, never an unhandled crash."""
 import hashlib
 import re
 import sys
@@ -82,10 +92,23 @@ def derive_ending(chain):
     if len(disclosed) > 1:
         _r("AMBIGUOUS-ENDING", "two disclosure pass records in one history")
     if terminated:
-        return "TERMINATED", terminated[0][0]
-    if disclosed:
-        return "COMPLETED", disclosed[0][0]
-    _r("NO-ENDING", "the run has not ended; there is nothing to sign")
+        ending = ("TERMINATED", terminated[0][0])
+    elif disclosed:
+        ending = ("COMPLETED", disclosed[0][0])
+    else:
+        _r("NO-ENDING", "the run has not ended; there is nothing to sign")
+    # THE ENDING IS TERMINAL IN POSITION (AGY TRV-V1 F1): the head the principal
+    # signs covers every chain byte, so nothing may follow the ending except the
+    # ending's own atomic commit — trailing garbage would be signed into
+    # authorization otherwise
+    pos = ending[1]
+    commit = set(chain[pos].get("commit_set", ()))
+    for p in range(pos + 1, len(chain)):
+        if p not in commit:
+            _r("TRAILING-RECORDS",
+               f"pos {p}: a record follows the ending outside its atomic "
+               "commit — the run ended, history does not continue")
+    return ending
 
 
 def validate_review_body(body):
@@ -126,6 +149,11 @@ def build_review_body(chain, stores, verifier_digest, transcript_digest):
         if not drains:
             _r("DRAIN-START-MISSING",
                "no drain-start on the chain binds the checkpoint's receipt")
+        if len(drains) > 1:
+            _r("DUPLICATE-DRAIN-START",
+               f"positions {drains}: Row B's ordering obligation makes the "
+               "drain-start the receipt's next chain append — a second one is "
+               "malformed history (AGY TRV-V1: the earliest-fake-wins risk)")
         values = {
             "kind": "terminal-review-terminated",
             "terminal_checkpoint_digest": tc["body_digest"],
@@ -303,12 +331,38 @@ def fixtures():
     ])
     expect("AMBIGUOUS-ENDING", lambda: derive_ending(twotc))
 
+    # the ending is terminal in position (AGY TRV-V1 F1): trailing garbage after
+    # the checkpoint, outside its commit, refuses before anything gets signed
+    expect("TRAILING-RECORDS",
+           lambda: build_review_body(ev.mkchain([
+               o1,
+               {"k": "drain-start", "receipt_digest": D64, "epoch": 1,
+                "reading": 10},
+               {"k": "terminal-checkpoint", "status": "TERMINATED",
+                "receipt_digest": D64, "commit_set": [], "failed_members": [],
+                "epoch": 1, "reading": 15},
+               {"k": "bindmap-entry", "request_key": 1, "binding": "x"},
+           ]), stores_t, V64, T64))
+    # exactly one drain-start per receipt (Row B's ordering obligation)
+    expect("DUPLICATE-DRAIN-START",
+           lambda: build_review_body(ev.mkchain([
+               o1,
+               {"k": "drain-start", "receipt_digest": D64, "epoch": 1,
+                "reading": 10},
+               {"k": "drain-start", "receipt_digest": D64, "epoch": 1,
+                "reading": 15},
+               {"k": "terminal-checkpoint", "status": "TERMINATED",
+                "receipt_digest": D64, "commit_set": [], "failed_members": [],
+                "epoch": 1, "reading": 20},
+           ]), stores_t, V64, T64))
+
     # completed path: the ceremony as the export's closing verifier
     def completed_chain(with_export=True, in_commit=True, body_override=None,
                         extra_export=False):
+        commit = [2, 3] if extra_export else ([2] if in_commit else [9])
         base = [o1, {"k": "passrec", "gate": "DISCLOSURE",
                      "predecessor": "b" * 64, "epoch": 1, "reading": 10,
-                     "commit_set": [2] if in_commit else [9]}]
+                     "commit_set": commit}]
         pre = ev.mkchain(base)
         regen = ev.regenerate_export("successor-export", pre, [], [],
                                      "9" * 64, [], 1)
@@ -338,9 +392,21 @@ def fixtures():
     expect("DUPLICATE-EXPORT",
            lambda: build_review_body(completed_chain(extra_export=True),
                                      stores_c, V64, T64))
-    expect("EXPORT-OUTSIDE-COMMIT",
+    # an export placed AFTER the ending but outside its commit is trailing
+    # history under the new rule; the displaced-export code remains reachable
+    # for an export BEFORE the disclosure record, probed separately
+    expect("TRAILING-RECORDS",
            lambda: build_review_body(completed_chain(in_commit=False),
                                      stores_c, V64, T64))
+    pre_export = ev.mkchain([
+        o1,
+        {"k": "successor-export",
+         "body": {"kind": "successor-export"}},
+        {"k": "passrec", "gate": "DISCLOSURE", "predecessor": "b" * 64,
+         "epoch": 1, "reading": 10, "commit_set": [9]},
+    ])
+    expect("EXPORT-OUTSIDE-COMMIT",
+           lambda: build_review_body(pre_export, stores_c, V64, T64))
     expect("EXPORT-MISMATCH",
            lambda: build_review_body(
                completed_chain(body_override=lambda b: dict(
