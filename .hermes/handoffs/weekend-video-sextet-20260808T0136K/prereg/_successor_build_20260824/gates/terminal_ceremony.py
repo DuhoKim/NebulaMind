@@ -81,9 +81,17 @@ def run_ceremony(chain_path, indep_path, stores_path, transcript_path):
               verifier_sha)
         check("enumeration_verifier sha256 (compare to the printed pin)", ev_sha)
 
-        chain = json.loads(Path(chain_path).read_text())
-        indep = json.loads(Path(indep_path).read_text())
-        stores = json.loads(Path(stores_path).read_text())
+        try:
+            chain = json.loads(Path(chain_path).read_text())
+            indep = json.loads(Path(indep_path).read_text())
+            stores = json.loads(Path(stores_path).read_text())
+        except (OSError, json.JSONDecodeError) as e:
+            # unreadable input refuses, never a traceback (KGATE-TERMINAL's
+            # sanctioned hardening; deeper record-model shape errors remain
+            # fail-safe crashes under residue (b)'s provisioning binding)
+            return _refuse(f"INPUT-UNREADABLE: {e}")
+        if type(stores) is not dict:
+            return _refuse("INPUT-UNREADABLE: stores file is not an object")
         stores.setdefault("sealed_bindings", [])
         check("chain file sha256", sha_file(chain_path))
         check("independent chain file sha256", sha_file(indep_path))
@@ -186,20 +194,77 @@ def selftest():
         if (tmp / "transcript4.md").exists() else ""
     if rc4 != 2 or "REFUSED: CHAIN-UNMOORED" not in t4:
         fails.append(f"early-refusal path broke: rc={rc4}")
+    # THE DOCUMENTED CLI, driven through the REAL __main__ (KGATE-TERMINAL F1:
+    # the selftest called run_ceremony() directly, so no round ever exercised
+    # the interface the principal actually types) — both flag forms and the
+    # bare 3-arg default, each asserting rc=0 AND the transcript at its path
+    import subprocess
+    base_args = [sys.executable, str(HERE / "terminal_ceremony.py"),
+                 str(tmp / "chain.json"), str(tmp / "indep.json"),
+                 str(tmp / "stores.json")]
+    r5 = subprocess.run(base_args + ["--transcript", str(tmp / "cli1.md")],
+                        capture_output=True, text=True)
+    if r5.returncode != 0 or not (tmp / "cli1.md").exists():
+        fails.append(f"CLI --transcript PATH form broke: rc={r5.returncode}")
+    r6 = subprocess.run(base_args + ["--transcript=" + str(tmp / "cli2.md")],
+                        capture_output=True, text=True)
+    if r6.returncode != 0 or not (tmp / "cli2.md").exists():
+        fails.append(f"CLI --transcript= form broke: rc={r6.returncode}")
+    r7 = subprocess.run(base_args, capture_output=True, text=True,
+                        cwd=str(tmp))
+    if r7.returncode != 0 or not (tmp / "CEREMONY_TRANSCRIPT.md").exists():
+        fails.append(f"CLI bare 3-arg default broke: rc={r7.returncode}")
+    r8 = subprocess.run(base_args + ["--bogus"], capture_output=True, text=True)
+    if r8.returncode != 2:
+        fails.append(f"unknown option not refused: rc={r8.returncode}")
+    # unreadable input refuses, never a traceback
+    rc9 = run_ceremony(tmp / "nonexistent.json", tmp / "indep.json",
+                       tmp / "stores.json", tmp / "transcript9.md")
+    t9 = (tmp / "transcript9.md").read_text() \
+        if (tmp / "transcript9.md").exists() else ""
+    if rc9 != 2 or "INPUT-UNREADABLE" not in t9:
+        fails.append(f"unreadable-input path broke: rc={rc9}")
     for x in fails:
         print("SELFTEST FAIL:", x)
-    print(f"terminal ceremony selftest: {5 - len(fails)}/5 green")
+    print(f"terminal ceremony selftest: {10 - len(fails)}/10 green")
     return 1 if fails else 0
 
 
 if __name__ == "__main__":
+    # KGATE-TERMINAL F1: the old filter dropped `--transcript` but kept its
+    # VALUE (4 positionals → docstring + exit 2, the documented invocation was
+    # dead), and the `=`-form silently wrote the DEFAULT path — transcript
+    # misdirection at the exact human waypoint. Both forms now honored; an
+    # unknown option refuses loudly, never a silent default.
     if "--selftest" in sys.argv:
         sys.exit(selftest())
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    argv = sys.argv[1:]
+    tpath = "CEREMONY_TRANSCRIPT.md"
+    args = []
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a == "--transcript":
+            if i + 1 >= len(argv):
+                print("--transcript requires a path")
+                sys.exit(2)
+            tpath = argv[i + 1]
+            i += 2
+            continue
+        if a.startswith("--transcript="):
+            tpath = a.split("=", 1)[1]
+            if not tpath:
+                print("--transcript= requires a non-empty path")
+                sys.exit(2)
+            i += 1
+            continue
+        if a.startswith("--"):
+            print(f"unknown option {a}")
+            print(__doc__)
+            sys.exit(2)
+        args.append(a)
+        i += 1
     if len(args) != 3:
         print(__doc__)
         sys.exit(2)
-    tpath = "CEREMONY_TRANSCRIPT.md"
-    if "--transcript" in sys.argv:
-        tpath = sys.argv[sys.argv.index("--transcript") + 1]
     sys.exit(run_ceremony(args[0], args[1], args[2], tpath))
