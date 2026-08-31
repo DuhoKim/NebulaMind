@@ -140,9 +140,15 @@ def gate(body, receipt_sha, draft_text):
                 "failure_effect": reg[i][3]}
         if body["per_id"].get(i) != want:
             _r("PER-ID-ROW-DRIFT", f"{i}: receipt row differs from §7.1")
-        if body["classifications"].get(i) != "VOID":
+        # the gate RECOMPUTES the VOID-ness from the registry text itself — a
+        # receipt's classification field is attacker-writable and proves
+        # nothing (AGY B2V-V1 F1: a non-VOID text row with a hand-set "VOID"
+        # classification rode through; the gate trusted the converter's
+        # refusal instead of recomputing it)
+        if reg[i][3] != "VOID" or body["classifications"].get(i) != "VOID":
             _r("NON-VOID-CONVERSION",
-               f"{i} classified {body['classifications'].get(i)!r}")
+               f"{i}: registry effect {reg[i][3]!r}, classified "
+               f"{body['classifications'].get(i)!r} — both must be VOID")
     return True
 
 
@@ -208,6 +214,22 @@ def fixtures():
     cls = dict(body["classifications"])
     cls[first] = "HALT"
     expect("NON-VOID-CONVERSION", lambda: gate(*mut(classifications=cls), text))
+    # AGY B2V-V1 F1's exact attack: a registry TEXT row with a non-VOID effect
+    # plus a hand-set "VOID" classification — the gate must recompute VOID-ness
+    # from the text, never trust the receipt's field
+    line = next(l for l in text.splitlines()
+                if vr.ID_RE.match(l) and first in l)
+    head, sep, tail = line.rpartition("VOID")
+    text2 = text.replace(line, head + "HALT" + tail, 1)
+    rows2 = vr.extract(text2)
+    assert rows2[0][3] == "HALT", "text mutation did not land on the effect cell"
+    body2 = json.loads(json.dumps(body))
+    body2["registry_digest"] = vr.digest(rows2)
+    body2["per_id"][first]["failure_effect"] = "HALT"
+    body2["classifications"][first] = "VOID"  # the spoof
+    seal2 = b"NMPR1:" + RECEIPT_TAG.encode() + b":" + _canon(body2).encode()
+    sha2 = hashlib.sha256(seal2).hexdigest()
+    expect("NON-VOID-CONVERSION", lambda: gate(body2, sha2, text2))
     return f, total
 
 

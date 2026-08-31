@@ -81,6 +81,13 @@ def verify_boundaries(sealed_boundaries, c_positions, rows=None):
     if len(c_positions) < 3:
         _r("POSITIONS-EMPTY",
            f"{len(c_positions)} positions cannot span three calibration bins")
+    if not np.isfinite(c_positions).all():
+        # reject-by-default at this door too: a NaN rides np.sort to the tail
+        # and can surface as a NaN boundary that byte-matches its own seal —
+        # a certified not-a-number boundary (hardening after AGY B2F-V1's
+        # pass-through note)
+        _r("POSITIONS-NOT-FINITE",
+           "the sealed accepted-partition positions contain a non-finite value")
     if rows is not None:
         try:
             sip.positions_only_guard(rows)
@@ -174,6 +181,12 @@ def fixtures():
            lambda: verify_boundaries(sealed, np.zeros(2, dtype="<f8")))
     expect("DEGENERATE-BINS",
            lambda: verify_boundaries(sealed, np.full(9, 0.5, dtype="<f8")))
+    nanc = c.copy()
+    nanc[3] = np.nan
+    expect("POSITIONS-NOT-FINITE", lambda: verify_boundaries(sealed, nanc))
+    infc = c.copy()
+    infc[3] = np.inf
+    expect("POSITIONS-NOT-FINITE", lambda: verify_boundaries(sealed, infc))
     expect("STRATUM-CONTAMINATION",
            lambda: verify_boundaries(sealed, c,
                                      rows=[{"object_id": "a", "position": 1,
