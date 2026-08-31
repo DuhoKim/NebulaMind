@@ -81,8 +81,11 @@ def atomic_write(path: Path, data: bytes, mode: int = 0o600) -> None:
     os.replace(tmp, path)
 
 
-def monotonic_ms() -> int:
-    return time.monotonic_ns() // 1_000_000
+def monotonic_reading_ns() -> int:
+    # the frozen spec's field is a decimal NANOSECOND count quantized to g
+    # (g = 1,000,000 ns committed): floor to the quantum, record in ns
+    # (go-live attempt 1 recorded milliseconds and was voided for it)
+    return time.monotonic_ns() // 1_000_000 * 1_000_000
 
 
 def validate_exact(obj: dict[str, Any], fields: frozenset[str]) -> None:
@@ -195,8 +198,25 @@ def provision_key(name: str) -> str:
         secure_remove(unsplit)
     elif unsplit.exists():
         secure_remove(unsplit)
-    recombine_private(name)
-    return public.read_text().strip()
+    # Shares plus their hash-bearing metadata are the sole key source.  Never
+    # trust a previously generated public half: derive and replace it on every
+    # staging run so material bound downstream cannot diverge from escrow.
+    private = recombine_private(name)
+    temp_key = ESCROW / f".{name}.recombined"
+    atomic_write(temp_key, private)
+    try:
+        derived = subprocess.run(
+            ["ssh-keygen", "-y", "-f", str(temp_key)], check=True,
+            capture_output=True).stdout
+        if not derived.startswith(b"ssh-ed25519 "):
+            raise Refusal(REFUSAL_CORRUPT_SHARE)
+        derived = derived.rstrip(b"\r\n") + b"\n"
+        atomic_write(public, derived, mode=0o644)
+    except (OSError, subprocess.CalledProcessError):
+        raise Refusal(REFUSAL_CORRUPT_SHARE)
+    finally:
+        secure_remove(temp_key)
+    return derived.decode().rstrip("\r\n")
 
 
 def archive_identity() -> dict[str, Any]:
@@ -314,7 +334,7 @@ def stage() -> dict[str, str]:
         "seal_identifier_version": {"identifier": "nmpr-bs2k-seal-state", "version": 1},
         "holder_roster_digest": roster_digests["holder-roster"],
         "checkpoint_predecessor_digest": P0_DIGEST,
-        "monotonic_event_epoch_data": {"boot_epoch": 1, "monotonic_reading": monotonic_ms(),
+        "monotonic_event_epoch_data": {"boot_epoch": 1, "monotonic_reading": monotonic_reading_ns(),
                                        "provisioning_materials": materials},
     }
     validate_exact(seal, SEAL_FIELDS)
@@ -324,7 +344,7 @@ def stage() -> dict[str, str]:
                     "signature_namespace": "nmpr-rowa",
                     "authentication_state": "STAGED-NOT-SIGNED"}
     atomic_write(PROV / "STAGED_RowA_receipt.json", canonical_json(rowa_receipt))
-    opening = {"boot_epoch": 1, "monotonic_reading": monotonic_ms(),
+    opening = {"boot_epoch": 1, "monotonic_reading": monotonic_reading_ns(),
                "predecessor_epoch": 0, "gap_declaration": ""}
     validate_exact(opening, OPENING_FIELDS)
     atomic_write(CHAIN / "STAGED_epoch1_opening.json", canonical_json(opening))
@@ -348,7 +368,7 @@ def verify_staged() -> dict[str, str]:
 
 def go_live() -> None:
     verify_staged()  # mandatory drift check before any live write
-    opening = {"boot_epoch": 1, "monotonic_reading": monotonic_ms(),
+    opening = {"boot_epoch": 1, "monotonic_reading": monotonic_reading_ns(),
                "predecessor_epoch": 0, "gap_declaration": ""}
     atomic_write(CHAIN / "epoch1_opening.json", canonical_json(opening))
     seal_bytes = (PROV / "STAGED_seal_state.json").read_bytes()
@@ -408,6 +428,32 @@ def fixtures() -> tuple[int, int]:
                       b"mediator-boundary-green\n" for root in store_roots()))
     check(lambda: all(recombine_private(name).startswith(b"-----BEGIN OPENSSH PRIVATE KEY-----")
                       for name in ("enumerator", "sealed_interface")))
+    def pub_coherence():
+        mediator = json.loads((PROV / "mediator" / "mediator.json").read_bytes())
+        for name in ("enumerator", "sealed_interface"):
+            private = recombine_private(name)
+            temp_key = ESCROW / f".{name}.fixture-recombined"
+            atomic_write(temp_key, private)
+            try:
+                derived = subprocess.run(
+                    ["ssh-keygen", "-y", "-f", str(temp_key)], check=True,
+                    capture_output=True).stdout.decode().rstrip("\r\n")
+            finally:
+                secure_remove(temp_key)
+            on_disk = (ESCROW / f"{name}_ed25519.pub").read_text().rstrip("\r\n")
+            bound = mediator["machine_signers"][name]["public_key"]
+            assert derived == on_disk == bound
+    check(pub_coherence)
+    def corrupt_pub_is_healed():
+        public = ESCROW / "enumerator_ed25519.pub"
+        atomic_write(public, b"junk\n", mode=0o644)
+        stage()
+        mediator = json.loads((PROV / "mediator" / "mediator.json").read_bytes())
+        healed = public.read_text().rstrip("\r\n")
+        assert healed != "junk"
+        assert healed == mediator["machine_signers"]["enumerator"]["public_key"]
+        pub_coherence()
+    check(corrupt_pub_is_healed)
     def corrupt():
         name = "enumerator"; meta = json.loads((ESCROW / f"{name}_shares.json").read_bytes())
         path = ESCROW / meta["shares"][0]; original = path.read_bytes()
@@ -471,7 +517,7 @@ def fixtures() -> tuple[int, int]:
         finally:
             X2_COMMIT.write_bytes(original)
     check(commitment_drift)
-    return len(checks), 17
+    return len(checks), 19
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -482,10 +528,13 @@ def main(argv: list[str] | None = None) -> int:
         if args.go_live:
             go_live()
             return 0
-        digests = stage()
+        stage()
         green, total = fixtures()
         if green != total:
             raise AssertionError((green, total))
+        # A fixture deliberately restages after corrupting a public half; print
+        # the final coherent manifest rather than the pre-fixture generation.
+        digests = verify_staged()
         for name, digest in sorted(digests.items()):
             print(f"{name} sha256 {digest}")
         print(f"staging-v2 fixtures: {green}/{total} green")
