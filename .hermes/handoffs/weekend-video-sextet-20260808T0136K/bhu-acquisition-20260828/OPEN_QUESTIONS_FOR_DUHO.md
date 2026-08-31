@@ -6,7 +6,16 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — 1 question (q2 · RQ-D Gaztañaga KILLS-vs-RESTRICTS — third read in flight)
+## OPEN — none blocking. q2 crux RESOLVED (RESTRICTS); one small confirm awaits you (corpus annotation, no tier change)
+
+### ✅ q2 RESOLVED 2026-08-31 — third read settled it: RESTRICTS.
+The independent third seat (kimi/Moonshot, outside the codex/agy split) judged the crux
+**CRUX_HEURISTIC → RESTRICTS**: Part II's bounce is a plausibility claim, not a proven complete
+solution, so Easson does not KILL it. Tally: **codex RESTRICTS, kimi RESTRICTS, agy KILLS (outlier).**
+**Map settled: 0 KILLS / 3 RESTRICTS (18, 25, 26) / 4 SPARES (11, 19, 20, 21).** Receipt:
+`RQ_D_kimi_CRUX_RESULT.md`. **Your one remaining confirm** (per "tier moves remain his"): may I add the
+one-line "Easson-Theorem-1-restricted (future complete version only)" annotation to entries 25/26 and
+the Prop-1 note to 18? **No tier changes** — 25/26 stay QUALITATIVE-DIRECTIONAL. Original question below.
 
 ### ✅ q1 RESOLVED 2026-08-31 — Duho ruled option (a): annotate, keep tier PROSPECT. Entry 21's record now carries the RQ-A result (undetectable amplitude / long damping / PROSPECT-without-a-number) + the 2π unit error; tier unchanged. Original question below.
 

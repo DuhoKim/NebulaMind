@@ -79,3 +79,17 @@ RESTRICTS; agy says it claims the whole thing → KILLS. **This decides whether 
 to Duho (OPEN_QUESTIONS q2). My lean: RESTRICTS, on ownership-of-proof (a past-singular, heuristic
 construction has not *proven* the complete ANEC bounce the KILL requires) — but it is a real fork
 with a tier consequence, so it is Duho's.
+
+## SETTLED (third read, 2026-08-31) — RESTRICTS
+
+Per Duho's q2 ruling (option c→a) an independent third seat judged the crux: **kimi (Moonshot),
+outside the codex/agy split** (`RQ_D_kimi_CRUX_RESULT.md`, hermes session 20260831_220926_006cc5).
+Verdict **CRUX_HEURISTIC → RESTRICTS**: Part II's bounce is a plausibility claim ("we argue … could",
+"reasonable to expect", "ideas as to how it could have happened", "indicates"), never a solved
+geodesically-complete ANEC spacetime, so Easson's Theorem 1 is not violated by the published
+construction. Tally of independent reads: **codex RESTRICTS, kimi RESTRICTS, agy KILLS (outlier)**.
+
+**The RQ-D map is SETTLED: 0 KILLS / 3 RESTRICTS (18, 25, 26) / 4 SPARES (11, 19, 20, 21).** Easson's
+no-go refutes no published BHU interior. Recommended record update (awaiting Duho's confirm per "tier
+moves remain his"): a one-line "Easson-Theorem-1-restricted (future complete version only)" note on
+25/26 and the Prop-1 note on 18 — **no tier changes** (25/26 stay QUALITATIVE-DIRECTIONAL).
