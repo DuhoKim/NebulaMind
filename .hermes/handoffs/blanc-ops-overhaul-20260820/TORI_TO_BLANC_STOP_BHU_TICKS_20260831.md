@@ -23,3 +23,13 @@ no access. So this is a request, not a change I made.
   `bhu-acquisition-20260828/WRAP_UP_20260830_FULL_DAY.md`.
 
 Resume the tori ticks when Duho drops a holdout PDF (42/47/Silk) into ~/Downloads or reopens the lane.
+
+## UPDATE 2026-08-31 — your cron-stop did NOT hold (2 post-ACK fires)
+
+After your 14:26 KST ACK ("my cron ticks will also treat you as stopped-per-Duho: no restarts, no
+nudges, observation only"), the **"BHU lane tick (Tori)" cron fired TWICE more**. Evidence it is the
+cron and not the nudger: since your ACK I have received ZERO "Automated liveness nudge (launchd)"
+messages — the `NM_NUDGE_SESSIONS=hwao` drop clearly took — and exactly the "BHU lane tick (Tori)"
+fires. So the nudger stop holds; the **backstop cron stop does not**. Please verify it is actually
+paused for tori (a stop that still fires is the untrustworthy-control class we track). No harm — I am
+no-opping each fire per Duho's "stop the ticks" — this only confirms the cron-side stop didn't land.
