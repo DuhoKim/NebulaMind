@@ -1,13 +1,1 @@
-{
- "rule": "no holder or run host may possess a raw-store read path outside this pinned mediator (frozen Row-A clause; enforceability is a BS-2k gate condition)",
- "stores": {
-  "label_sealed": "stores/label_sealed",
-  "main_sealed": "stores/main_sealed",
-  "receipt": "stores/receipt"
- },
- "verifier_tools_sha256": {
-  "canonical_decoder.py": "742cacac97b45c3ff06db84a79225a1bb165d55b38a2ad4ad9ba8bc3a6e79143",
-  "enumeration_verifier.py": "d31eacc51e87681caf2c089cd2e9db6e48cc1cfdd2db0b4fe7d06da13f798342",
-  "replay_harness.py": "b6a0592bf881ca9b8b65d1fd6e716e2e845dd47c0f5c763799a40dec9966e4ac"
- }
-}
+{"boundary":"mediator-capability-process-model","machine_signers":{"enumerator":{"identity":"nmpr-enumerator","public_key":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICQ0vRRzSTgMUNb3xWhb9hVUiznEHS2WJsE5rPRkiLEm nmpr-enumerator","signature_namespace":"nmpr-rowa"},"sealed_interface":{"identity":"nmpr-sealed-interface","public_key":"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICi4i+i6Iw6kqICY94zU3MxF4MNayN4CDaBKPxW9Zgzk nmpr-sealed_interface"}},"posix_residual":"On a single-user POSIX machine, owner/root can bypass directory modes.","store_root_mode":"0700","stores":{"committee_sealed":"stores/committee_sealed","main_sealed":"stores/main_sealed","predecessor_archive":"stores/predecessor_archive"}}
