@@ -22,6 +22,7 @@ namespace nmpr-rowa, only at the explicit --go-live transition.
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import json
 import os
@@ -31,6 +32,7 @@ import stat
 import subprocess
 import sys
 import time
+import re
 from pathlib import Path
 from typing import Any
 
@@ -41,13 +43,8 @@ ESCROW = PROV / "escrow"
 CHAIN = PROV / "chain"
 MANIFEST = PROV / "STAGED_manifest.json"
 P0_DIGEST = "d1be4a3b61975c79f75d6bfafa75e117f69ae86e00dc81ea139a4884f62dc72a"
-PARENT_RECEIPT_REL = "_successor_build_20260824/acquire/positions_receipts.json"
-PARENT_RECEIPT_SHA256 = "41716d47ee0b91bd36233ab33e7045ba6bddf0fc48d7ad745965637d6db55701"
-PARENT_PAYLOAD_SHA256 = "425a42c3ea2a6004a08b52c27201dbf59546e88fef4f3d3ba6d2ffb5a3f70831"
-X2_TOKENS = tuple(sorted((
-    "ARCHIVE-METADATA-READ", "COMMITTEE-READ", "COMMITTEE-WRITE",
-    "MAIN-READ", "MAIN-RENDER-TO-SEALED-INTERFACE", "MAIN-WRITE",
-)))
+V9_REFERENCE = BASE / "ref" / "successor_ref_v9.py"
+X2_COMMIT = HERE / "OPERATION_SET_COMMIT_20260831.md"
 SEAL_FIELDS = frozenset(("archive_identity", "seal_identifier_version",
                          "holder_roster_digest", "checkpoint_predecessor_digest",
                          "monotonic_event_epoch_data"))
@@ -102,10 +99,42 @@ def canonical_roster(kind: str, entries: list[tuple[str, str]]) -> bytes:
         field(identity) + field(pubkey) for identity, pubkey in ordered)
 
 
-def x2_encoding(tokens: tuple[str, ...] = X2_TOKENS) -> bytes:
+def x2_encoding(tokens: tuple[str, ...]) -> bytes:
     if tuple(sorted(tokens)) != tokens or len(set(tokens)) != len(tokens):
         raise Refusal(REFUSAL_SCHEMA)
     return f"{len(tokens)}:{','.join(tokens)}".encode()
+
+
+def v9_literal(name: str) -> str | None:
+    tree = ast.parse(V9_REFERENCE.read_bytes(), filename=str(V9_REFERENCE))
+    for node in tree.body:
+        if (isinstance(node, (ast.Assign, ast.AnnAssign)) and
+                ((isinstance(node, ast.Assign) and any(isinstance(t, ast.Name) and t.id == name
+                                                       for t in node.targets)) or
+                 (isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name)
+                  and node.target.id == name))):
+            value = ast.literal_eval(node.value)
+            if not isinstance(value, str):
+                raise Refusal(REFUSAL_SCHEMA)
+            return value
+    return None
+
+
+def x2_material() -> tuple[tuple[str, ...], bytes, str, str]:
+    raw = X2_COMMIT.read_bytes()
+    text = raw.decode("utf-8")
+    blocks = re.findall(r"```[^\n]*\n(.*?)```", text, flags=re.DOTALL)
+    candidates = [tuple(line.strip() for line in block.splitlines() if line.strip())
+                  for block in blocks]
+    candidates = [tokens for tokens in candidates if len(tokens) == 6]
+    if len(candidates) != 1:
+        raise Refusal(REFUSAL_SCHEMA)
+    tokens = candidates[0]
+    canonical = x2_encoding(tokens)
+    match = re.search(r"\*\*Set digest[^\n]*:\*\*\s*`([0-9a-f]{64})`", text)
+    if match is None or sha(canonical) != match.group(1):
+        raise Refusal(REFUSAL_DRIFT)
+    return tokens, canonical, match.group(1), sha(raw)
 
 
 def xor_bytes(left: bytes, right: bytes) -> bytes:
@@ -166,23 +195,23 @@ def provision_key(name: str) -> str:
 
 
 def archive_identity() -> dict[str, Any]:
-    # v9 resolves prereg-root / PINNED_PARENT_RECEIPTS_REL; BASE is the
-    # _successor_build_20260824 component of that frozen relative path.
-    receipt = BASE / "acquire" / "positions_receipts.json"
+    receipt_rel = v9_literal("PINNED_PARENT_RECEIPTS_REL")
+    if receipt_rel is None:
+        raise Refusal(REFUSAL_SCHEMA)
+    # v9's path is relative to the prereg lane, one level above BASE.
+    receipt = BASE.parent / receipt_rel
     raw = receipt.read_bytes()  # metadata only; archive contents are never read
-    if sha(raw) != PARENT_RECEIPT_SHA256:
+    live_digest = sha(raw)
+    pinned_digest = v9_literal("PINNED_PARENT_RECEIPTS_SHA256")
+    if pinned_digest is not None and live_digest != pinned_digest:
         raise Refusal(REFUSAL_DRIFT)
     body = json.loads(raw)
-    if body.get("output_sha256") != PARENT_PAYLOAD_SHA256:
-        raise Refusal(REFUSAL_DRIFT)
-    return {"pinned_parent_receipts_rel": PARENT_RECEIPT_REL,
-            "pinned_parent_receipts_sha256": PARENT_RECEIPT_SHA256,
-            "pinned_parent_payload_sha256": PARENT_PAYLOAD_SHA256}
-
-
-def direct_store_read(_: Path) -> bytes:
-    """The non-mediator process model has no raw capability, even for metadata."""
-    raise Refusal(REFUSAL_DIRECT)
+    identity = {"pinned_parent_receipts_rel": receipt_rel,
+                "live_parent_receipts_sha256": live_digest,
+                "receipt_output_sha256": body.get("output_sha256")}
+    if pinned_digest is not None:
+        identity["v9_pinned_parent_receipts_sha256"] = pinned_digest
+    return identity
 
 
 def mediator_read(root: Path, relative: str = ".boundary-probe") -> bytes:
@@ -225,8 +254,7 @@ def stage() -> dict[str, str]:
                         "canonical_encoding": canonical.decode(), "sha256": sha(canonical)})
     atomic_write(PROV / "rosters.json", canonical_json(rosters))
 
-    x2_commit = HERE / "OPERATION_SET_COMMIT_20260831.md"
-    x2_canonical = x2_encoding()
+    x2_tokens, x2_canonical, x2_digest, x2_commit_digest = x2_material()
     constants_commit = BASE / "ref" / "BS2K_CONSTANTS_COMMIT_20260831.md"
     constants = {"g": 1_000_000, "commit_bound": 1_000_000_000,
                  "budget": 5_000_000_000, "Q": 16,
@@ -257,8 +285,8 @@ def stage() -> dict[str, str]:
         "reviewer_roster_sha256": roster_digests["reviewer-roster"],
         "machine_signers": mediator["machine_signers"],
         "machine_public_keys_sha256": sha(canonical_json(mediator["machine_signers"])),
-        "x2": {"tokens": list(X2_TOKENS), "canonical_encoding": x2_canonical.decode(),
-               "set_sha256": sha(x2_canonical), "commit_file_sha256": sha(x2_commit.read_bytes())},
+        "x2": {"tokens": list(x2_tokens), "canonical_encoding": x2_canonical.decode(),
+               "set_sha256": x2_digest, "commit_file_sha256": x2_commit_digest},
     }
     seal = {
         "archive_identity": archive_identity(),
@@ -336,8 +364,12 @@ def fixtures() -> tuple[int, int]:
     def check(fn):
         fn(); checks.append(True)
     check(lambda: all(mediator_read(root) == b"mediator-boundary-green\n" for root in store_roots()))
-    check(lambda: all((expect_refusal(REFUSAL_DIRECT, lambda r=root: direct_store_read(r)) or True)
+    check(lambda: all(stat.S_IMODE(root.stat().st_mode) == 0o700 for root in store_roots()))
+    check(lambda: all((expect_refusal(REFUSAL_DIRECT,
+                                     lambda r=root: mediator_read(r, "../.boundary-probe")) or True)
                       for root in store_roots()))
+    check(lambda: all((root / ".boundary-probe").read_bytes() ==
+                      b"mediator-boundary-green\n" for root in store_roots()))
     check(lambda: all(recombine_private(name).startswith(b"-----BEGIN OPENSSH PRIVATE KEY-----")
                       for name in ("enumerator", "sealed_interface")))
     def corrupt():
@@ -360,7 +392,7 @@ def fixtures() -> tuple[int, int]:
                   canonical_roster("holder-roster", [("a", "k1"), ("b", "k2")]))
     check(lambda: sha(canonical_roster("holder-roster", [("a", "k1")])) !=
                   sha(canonical_roster("holder-roster", [("a", "k2")])) )
-    check(lambda: sha(x2_encoding()) == "c520596b6233d2d68ceb40bb86800d7b693cdafd82d99aff33eb3569a0c8db8b")
+    check(lambda: sha(x2_material()[1]) == x2_material()[2])
     def drift():
         target = PROV / "constants.json"; original = target.read_bytes()
         try:
@@ -369,7 +401,7 @@ def fixtures() -> tuple[int, int]:
         finally:
             target.write_bytes(original)
     check(drift)
-    return len(checks), 10
+    return len(checks), 12
 
 
 def main(argv: list[str] | None = None) -> int:
