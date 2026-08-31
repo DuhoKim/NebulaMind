@@ -59,7 +59,17 @@ runs AFTER the termination check — a termination unit carrying a join claim st
 aborts the pass, and a joined foreign kind is foreign; and a refusal event placed
 AFTER the checkpoint inside its own commit_set refuses outright
 (COMMIT-EVENT-AFTER-CHECKPOINT) instead of being silently dropped by the p<pos
-filter from both the contiguity and the listing cross-check."""
+filter from both the contiguity and the listing cross-check.
+
+v4 after AGY ENV-V3 (DEFECTIVE, 2, both in the v3-changed lines): a joined termrec
+must be a TOUCH — a REFUSAL riding a join is foreign (the draft's "joined
+arrival/touch events" admits touches, not refusals); and the checkpoint block now
+REFUSES malformed input instead of crashing over it (COMMIT-SET-MALFORMED for
+non-integer commit/failed-member positions and for an in-commit decision event
+carrying no outcome — a crash halts verification, a refusal blocks the gate, and
+only one of those is a verifier). ENV-V3 also RATIFIED two admissions as design:
+a joined ARRIVAL is pass-own per the draft's own words, and a TOUCH after the
+checkpoint in its commit is unconstrained by the refusal-events clause."""
 import hashlib
 import json
 import sys
@@ -364,11 +374,15 @@ def boundary_pass(chain, gate, constants):
                f"pos {pos}: termination's indivisible unit landed mid-pass; the "
                "pass must re-boundary after it, its gate action refuses")
         if rec.get("joined_read") in read_positions \
-                and rec["k"] in ("arrival", "termrec"):
+                and (rec["k"] == "arrival"
+                     or (rec["k"] == "termrec"
+                         and rec.get("outcome") == "TOUCH")):
             # the pass's own records, excluded through their TYPED joins — the
             # draft names "verification-reads and their joined arrival/touch
-            # events", so ONLY those kinds may ride a join (CODEX-V111 F1: never
-            # a bare by-type wave; AGY ENV-V2 F1: never an any-kind wave either)
+            # events": arrivals and TOUCH decisions only (CODEX-V111 F1: never a
+            # bare by-type wave; AGY ENV-V2 F1: never an any-kind wave; AGY
+            # ENV-V3 F3: never a REFUSAL riding a join — a refusal is not a
+            # touch event and falls through to the foreign-record refusal)
             continue
         if rec["k"] == "arrival":
             if rec["epoch"] != b["epoch"]:
@@ -472,8 +486,24 @@ def join_pass(chain, gate, constants):
     for pos, rec in enumerate(chain):
         if rec["k"] != "terminal-checkpoint":
             continue
+        # a verifier REFUSES malformed input, it never crashes over it (AGY
+        # ENV-V3 F4: a string commit position raised TypeError, a termrec with
+        # no outcome raised KeyError — an unhandled crash halts verification
+        # instead of blocking the gate)
+        for label, seq in (("commit_set", rec["commit_set"]),
+                           ("failed_members", rec["failed_members"])):
+            for p in seq:
+                if type(p) is not int or p < 0:
+                    _r("COMMIT-SET-MALFORMED",
+                       f"checkpoint {pos}: {label} entry {p!r} is not a "
+                       "non-negative integer position")
         commit = set(rec["commit_set"])
-        for p in commit:
+        for p in sorted(commit):
+            if p < len(chain) and chain[p]["k"] == "termrec" \
+                    and "outcome" not in chain[p]:
+                _r("COMMIT-SET-MALFORMED",
+                   f"checkpoint {pos}: the decision event at {p} carries no "
+                   "outcome — malformed input to the one-decision check")
             if p > pos and p < len(chain) and chain[p]["k"] == "termrec" \
                     and chain[p]["outcome"] == "REFUSAL":
                 _r("COMMIT-EVENT-AFTER-CHECKPOINT",
@@ -1010,6 +1040,18 @@ def fixtures():
                         {"k": "verification-read", "target": 0,
                          "boundary_position": 0},
                         {"k": "signed-cut", "joined_read": 1}]), "BS-L", C))
+    # a REFUSAL is not a touch event: it may not ride a join past the hold
+    # (AGY ENV-V3 F3 — the draft names joined arrival/TOUCH events only)
+    expect("FOREIGN-RECORD-IN-HOLD",
+           lambda: boundary_pass(
+               mkchain([_bnd("BS-L"),
+                        {"k": "verification-read", "target": 0,
+                         "boundary_position": 0},
+                        {"k": "termrec", "joined_read": 1, "request_key": 0,
+                         "row": "A", "operation": "read",
+                         "object_identity": "o1", "outcome": "REFUSAL",
+                         "epoch": 1, "reading": 25, "map_reading": 25,
+                         "binding": "b-A-1"}]), "BS-L", C))
     expect("BOUNDARY-EPOCH-CHANGED",
            lambda: boundary_pass(
                mkchain([_bnd("BS-L"), _opening(2, 0, bo1)]), "BS-L", C))
@@ -1189,6 +1231,21 @@ def fixtures():
                                "epoch": 1, "reading": 25},
                               _term(2, "B", outcome="REFUSAL", reading=30,
                                     map_reading=30, binding="b-B-1")])))
+    # malformed checkpoint input REFUSES, never crashes (AGY ENV-V3 F4)
+    expect("COMMIT-SET-MALFORMED",
+           lambda: J(mkchain([o1, _arr("A", 1),
+                              _term(1, "A", outcome="REFUSAL"),
+                              tc(["foo"], [1])])))
+    expect("COMMIT-SET-MALFORMED",
+           lambda: J(mkchain([o1, _arr("A", 1),
+                              _term(1, "A", outcome="REFUSAL"),
+                              tc([2], ["bar"])])))
+    no_outcome = {"k": "termrec", "request_key": 1, "row": "A",
+                  "operation": "read", "object_identity": "o1", "epoch": 1,
+                  "reading": 20, "map_reading": 20, "binding": "b-A-1"}
+    expect("COMMIT-SET-MALFORMED",
+           lambda: J(mkchain([o1, _arr("A", 1), dict(no_outcome),
+                              tc([2], [])])))
     ok("adjacent two-member refusal block",
        lambda: J(mkchain([o1, _arr("A", 1), _arr("B", 1, reading=15),
                           _term(1, "A", outcome="REFUSAL"),
