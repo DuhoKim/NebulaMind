@@ -186,3 +186,14 @@ Nothing else is solo-actionable and no question is open. On the next tick:
 
 Do NOT re-attempt the blocked bulk-byte-pull channel (failure rule; written up). Do NOT chase the
 Desktop-saved files (TCC-blocked). Do NOT manufacture work — idling beats it.
+
+## TICK NOTE 2026-08-31 — Downloads drop-check host is unreachable (failure-rule write-up)
+
+`ssh duhokim@100.75.47.116 'ls ~/Downloads/*.pdf'` timed out on TWO consecutive ticks
+(`Operation timed out`, port 22): the drop-host (Duho's laptop) is asleep or off-tailnet. Per the
+failure rule I am NOT SSH-retrying it a third time on following ticks — the drop-check is suspended
+until a positive signal the host is back (a Duho message, or the host answering again). Transient
+environment, not a lane defect: a holdout PDF (42/47/Silk) dropped now is simply invisible until the
+laptop rejoins the tailnet, at which point a later tick's check picks it up. Everything else is
+unchanged this tick: branch in sync with origin (0 0), `/lab/bhu` live (pin 117a5273b), corpus
+complete + gated, OPEN_QUESTIONS empty.
