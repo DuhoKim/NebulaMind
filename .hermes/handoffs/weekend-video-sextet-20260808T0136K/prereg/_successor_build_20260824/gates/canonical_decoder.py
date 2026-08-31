@@ -11,8 +11,21 @@ envelope ≤ 2^24; ndarray via frombuffer+reshape only, C-contiguous, dtype ∈ 
 int64, bool}, ndim ≤ 2, ≤ 10^7 elements, object dtype refused; bool bytes exactly 0x00
 or 0x01 (CODEX-V102 F8). Every node the decoder emits is constructed BY the decoder —
 plain dict/str/int/float/ndarray of its own making — so no foreign object exists at any
-depth (GPT56-V98 F4, CODEX-V98 F5). Fixtures corroborate; the grammar defines."""
+depth (GPT56-V98 F4, CODEX-V98 F5). Fixtures corroborate; the grammar defines.
+
+v2 after AGY DEC-V1 (DEFECTIVE, 3): F1 — json.loads accepted NaN/Infinity/-Infinity and
+dumps round-tripped them through the canon check; now parse_constant refuses the three
+tokens, the guard refuses any non-finite float node (closes the 1e999 overflow path
+too), and the canonicalizer runs allow_nan=False so it can never emit a non-JSON token.
+F2 — the depth guard tested `depth > 8` only on ENTRY, so an EMPTY container at the 9th
+nesting level was accepted; depth is now defined as CONTAINER NESTING LEVEL (scalars add
+none) and a container is refused the moment its own level would exceed 8, empty or not.
+F3 — the subclass fixture was vacuous (a native `type(EvilDict()) is dict` evaluation
+that never touched decoder code); the controls now feed foreign nodes through the one
+shipped _json_guard (top-level and nested) and walk a real decode_json output asserting
+every emitted node's exact type. Each repair carries its seeded control below."""
 import json
+import math
 import re
 import sys
 import unicodedata
@@ -117,9 +130,15 @@ def decode_string(payload):
 
 
 def _json_guard(obj, depth=0):
-    if depth > MAX_JSON_DEPTH:
-        _r("JSON depth exceeds 8")
+    """depth = CONTAINER NESTING LEVEL: a container entered with `depth` enclosing
+    containers is itself level depth+1 and is refused the moment that level exceeds
+    MAX_JSON_DEPTH — empty or not (AGY DEC-V1 F2: the entry-only `depth > MAX` test
+    let an empty 9th-level container through because it had no children to recurse
+    into). Scalars add no level. Non-finite floats are refused here so the emitted
+    tree is always canonicalizable (AGY DEC-V1 F1, incl. the 1e999 overflow path)."""
     if type(obj) is dict:
+        if depth + 1 > MAX_JSON_DEPTH:
+            _r("JSON depth exceeds 8")
         if len(obj) > MAX_JSON_KEYS:
             _r("JSON object exceeds 256 keys")
         for k, v in obj.items():
@@ -127,22 +146,34 @@ def _json_guard(obj, depth=0):
                 _r("non-string JSON key")
             _json_guard(v, depth + 1)
     elif type(obj) is list:
+        if depth + 1 > MAX_JSON_DEPTH:
+            _r("JSON depth exceeds 8")
         for v in obj:
             _json_guard(v, depth + 1)
-    elif type(obj) not in (str, int, float, bool, type(None)):
+    elif type(obj) is float:
+        if not math.isfinite(obj):
+            _r("non-finite JSON number")
+    elif type(obj) not in (str, int, bool, type(None)):
         _r(f"foreign JSON node type {type(obj).__name__}")
 
 
 def decode_json(payload):
     s = decode_string(payload)
     try:
-        obj = json.loads(s)
+        # parse_constant fires on the exact tokens NaN / Infinity / -Infinity, which
+        # json.loads otherwise accepts beyond the JSON grammar (AGY DEC-V1 F1)
+        obj = json.loads(s, parse_constant=lambda c: _r(f"non-JSON constant {c}"))
+    except DecodeRefusal:
+        raise
     except Exception as e:
         _r(f"JSON parse: {e}")
     _json_guard(obj)
     # CANONICALITY: one logical value, one byte string (sorted keys, compact, NFC,
-    # short escapes via ensure_ascii=False round-trip equality)
-    canon = json.dumps(obj, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
+    # short escapes via ensure_ascii=False round-trip equality). allow_nan=False:
+    # the canonicalizer itself can never emit a non-JSON token — the guard already
+    # refused non-finite nodes, so this line is an invariant, not a reachable branch.
+    canon = json.dumps(obj, sort_keys=True, separators=(",", ":"),
+                       ensure_ascii=False, allow_nan=False)
     if canon != s:
         _r("JSON not in canonical byte form")
     return obj
@@ -177,10 +208,12 @@ def decode_ndarray(payload, dtype_name, shape):
 # ------------------------------------------------------------------ fixtures
 def fixtures():
     f = []
+    total = 0
     v9field = lambda name, payload: (len(name.encode()).to_bytes(4, "little")
                                      + name.encode()
                                      + len(payload).to_bytes(8, "little") + payload)
     ok = v9field("alpha", b"1") + v9field("beta", b"2")
+    total += 1
     try:
         d = decode_envelope(ok, {"alpha", "beta"})
         if type(d) is not dict:
@@ -194,6 +227,7 @@ def fixtures():
         ("bad name grammar", v9field("Alpha", b"1"), {"Alpha"}),
         ("duplicate field", v9field("alpha", b"1") + v9field("alpha", b"2"), {"alpha"}),
     ):
+        total += 1
         try:
             decode_envelope(buf, names)
             f.append(f"{label} accepted")
@@ -204,28 +238,84 @@ def fixtures():
         ("leading-zero int", decode_int, b"01"),
         ("negative zero decimal", decode_decimal, b"-0"),
         ("trailing-zero decimal", decode_decimal, b"1.50"),
-        ("non-NFC string", decode_string, "é".encode()),
+        # decomposed e + U+0301 spelled as escapes so no editor can NFC-normalize
+        # the probe itself out of existence
+        ("non-NFC string", decode_string, "e\u0301".encode()),
         ("non-canonical JSON", decode_json, b'{"b":1,"a":2}'),
-        ("deep JSON", decode_json, json.dumps(
+        ("deep JSON (9 dict levels, scalar leaf)", decode_json, json.dumps(
             eval("{'k':" * 9 + "1" + "}" * 9)).encode()),
+        # AGY DEC-V1 F2 seeded control: the EXACT counterexample — an EMPTY container
+        # at the 9th nesting level has no children, so an entry-only depth test at the
+        # parent never fires; the level-of-self rule must refuse it
+        ("deep JSON (9 list levels, EMPTY leaf)", decode_json, b"[" * 9 + b"]" * 9),
+        # AGY DEC-V1 F1 seeded controls: the three non-JSON constants json.loads
+        # accepts by default, plus the 1e999 overflow that bypasses parse_constant
+        ("NaN constant", decode_json, b"NaN"),
+        ("Infinity constant", decode_json, b"Infinity"),
+        ("-Infinity constant", decode_json, b"-Infinity"),
+        ("1e999 overflow to inf", decode_json, b"[1e999]"),
     ):
+        total += 1
         try:
             fn(arg)
             f.append(f"{label} accepted")
         except DecodeRefusal:
             pass
+    total += 1  # boundary ACCEPT: exactly 8 container levels is inside the grammar
+    try:
+        v = decode_json(b"[" * 8 + b"]" * 8)
+        if v != [[[[[[[[]]]]]]]]:
+            f.append("8-level JSON decoded to the wrong value")
+    except DecodeRefusal as e:
+        f.append(f"8-level JSON (inside the bound) refused: {e}")
+    total += 1
     try:
         decode_ndarray(b"\x00\x01\x02", "bool", (3,))
         f.append("bool byte 0x02 accepted")
     except DecodeRefusal:
         pass
+    total += 1
     a = decode_ndarray(np.arange(4, dtype="<i8").tobytes(), "int64", (2, 2))
     if type(a) is not np.ndarray or not a.flags["C_CONTIGUOUS"] or not a.flags["OWNDATA"]:
         f.append("ndarray not decoder-owned C-contiguous")
+
+    # AGY DEC-V1 F3 seeded controls: the old fixture evaluated `type(EvilDict()) is
+    # dict` natively and never touched decoder code. The guard IS the shipped
+    # enforcement that no foreign object survives at any depth — feed it foreign
+    # nodes top-level and nested and require the refusal
     class EvilDict(dict):
         pass
-    if type(EvilDict()) is dict:
-        f.append("subclass type-identity confused")
+    for label, evil in (
+        ("top-level dict subclass", EvilDict(a=1)),
+        ("nested dict subclass", {"a": [EvilDict()]}),
+    ):
+        total += 1
+        try:
+            _json_guard(evil)
+            f.append(f"{label} passed the shipped guard")
+        except DecodeRefusal:
+            pass
+    # positive counterpart: walk a REAL decode_json output and assert every emitted
+    # node is an exact plain type — the decoder's own construction, nothing foreign
+    total += 1
+    try:
+        obj = decode_json(b'{"a":[1,2.5,true,null,"x"],"b":{"c":[]}}')
+
+        def _walk(o):
+            yield o
+            if type(o) is dict:
+                for k, v in o.items():
+                    yield k
+                    yield from _walk(v)
+            elif type(o) is list:
+                for v in o:
+                    yield from _walk(v)
+        if not all(type(x) in (dict, list, str, int, float, bool, type(None))
+                   for x in _walk(obj)):
+            f.append("decode_json emitted a foreign node type")
+    except DecodeRefusal as e:
+        f.append(f"plain canonical JSON refused: {e}")
+    total += 1
     try:
         decode_json(b'{"a":{"__array__":1}}')
         # a dict KEY named __array__ is legal JSON; the guard's job is that no node is a
@@ -234,12 +324,12 @@ def fixtures():
         _json_guard(obj)
     except DecodeRefusal:
         f.append("plain-JSON __array__ NAME wrongly refused (names are data; objects are the threat)")
-    return f
+    return f, total
 
 
 if __name__ == "__main__":
-    fails = fixtures()
+    fails, total = fixtures()
     for x in fails:
         print("FIXTURE FAIL:", x)
-    print(f"canonical decoder fixtures: {16 - len(fails)}/16 green")
+    print(f"canonical decoder fixtures: {total - len(fails)}/{total} green")
     sys.exit(1 if fails else 0)
