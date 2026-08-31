@@ -32,7 +32,26 @@ identity-envelope preimage is the draft's: sha256 over NMPR1:identity-envelope: 
 canonical JSON of (origin_row, frame_sequence, operation, object_identity), and
 origin_row is REQUIRED EQUAL to the arrival's own row. Constants arrive ONLY through
 ProvisionedConstants, every field required non-None (the V115 lesson: a None-armed
-call must be impossible, so absence refuses at construction, not at use)."""
+call must be impossible, so absence refuses at construction, not at use).
+
+REFUSAL SEMANTICS, stated (AGY ENV-V1 F6): every pass refuses at the FIRST failed
+check in its documented order — this is a GATE, where one refusal blocks, not a
+linter enumerating defects. A composite-defect input therefore reports the earliest
+code its defects reach (quantization before regression in the clock pass; row-alias
+before digest recomputation in the join), and the fixtures assert that order.
+
+v2 after AGY ENV-V1 (DEFECTIVE, 6): the reset fixture rebuilt so the derived count
+does real work (2 closes + pass record + 2 closes accepts ONLY because the record
+resets; 4 unreset closes would exhaust the cap); the NAMED-second-occurrence positive
+control added; the MISSED 'immediately preceding' obligation implemented — a
+checkpoint's in-commit refusal events must form a contiguous block ending at the
+checkpoint's own position (COMMIT-EVENTS-NOT-ADJACENT) — with both fixtures; the
+in-hold cross-epoch arrival branch kept as defense-in-depth WITH the fixture that
+reaches it (a clock-malformed chain boundary_pass alone must still refuse); hold
+verification-reads now bind to THE PASS'S OWN boundary via boundary_position (a
+stuffed foreign read no longer launders arbitrary joined records past the hold);
+FORM_SCHEMAS mirrored to the authoritative registry (prelock carries
+terminal_enumeration_digest)."""
 import hashlib
 import json
 import sys
@@ -47,13 +66,15 @@ FRAME_RESIDUES = ("partial-header", "truncated-body", "malformed-length",
 CLOSE_CLASSES = ("ABORTED", "EXPIRED", "ABORTED-BY-RESTART")
 
 # per-kind exact ordered field sets — the producer and this verifier both SELECT BY
-# KIND (GPT56-V115 F1: a flat union schema conforms to nothing)
+# KIND (GPT56-V115 F1: a flat union schema conforms to nothing). These tuples MIRROR
+# ref/gen_string_field_registry.py's FORM_SCHEMAS, the authoritative registry the
+# draft's form echo checks — a divergent twin here would be the relabelling defect
 FORM_SCHEMAS = {
     "successor-export": ("kind", "sealed_enumeration_digest",
                          "continuation_segment_digest", "terminal_head",
                          "freeze_signature_digest", "flagged_keys"),
-    "successor-export-prelock": ("kind", "sealed_enumeration_digest",
-                                 "continuation_segment_digest", "terminal_head",
+    "successor-export-prelock": ("kind", "terminal_enumeration_digest",
+                                 "terminal_head", "freeze_signature_digest",
                                  "flagged_keys"),
 }
 
@@ -318,6 +339,13 @@ def boundary_pass(chain, gate, constants):
     for pos in range(open_boundary + 1, len(chain)):
         rec = chain[pos]
         if rec["k"] == "verification-read":
+            # THE PASS'S OWN reads only: a read must name this pass's boundary, or
+            # a foreign writer could stuff reads and launder arbitrary "joined"
+            # records past the hold (AGY ENV-V1 F5)
+            if rec.get("boundary_position") != open_boundary:
+                _r("FOREIGN-RECORD-IN-HOLD",
+                   f"pos {pos}: a verification-read not bound to this pass's "
+                   "boundary")
             read_positions.add(pos)
             continue
         if rec.get("joined_read") in read_positions:
@@ -328,6 +356,10 @@ def boundary_pass(chain, gate, constants):
                "pass must re-boundary after it, its gate action refuses")
         if rec["k"] == "arrival":
             if rec["epoch"] != b["epoch"]:
+                # defense-in-depth, NOT dead code (AGY ENV-V1 F4): reachable when
+                # the chain is clock-malformed (a later record regressing to the
+                # boundary's epoch slips the cur[-1] pre-check) and boundary_pass
+                # runs standalone — the fixture constructs exactly that chain
                 _r("BOUNDARY-EPOCH-CHANGED",
                    f"pos {pos}: cross-epoch arrival inside a hold")
             if rec["reading"] > b["reading"] + constants.gate_pass_budget:
@@ -417,14 +449,24 @@ def join_pass(chain, gate, constants):
                 _r("CONTINUATION-ENTRY-MISSING",
                    f"pos {pos}: a post-signed-cut decision without its continuation "
                    "map entry")
-    # one-decision-event: failed_members is a PROJECTION cross-checked both ways
+    # one-decision-event: failed_members is a PROJECTION cross-checked both ways,
+    # and the refusal events ride the commit IMMEDIATELY PRECEDING the checkpoint
+    # record — a contiguous block ending at the checkpoint's own position (the
+    # obligation AGY ENV-V1 F3 found unimplemented)
     for pos, rec in enumerate(chain):
         if rec["k"] != "terminal-checkpoint":
             continue
         commit = set(rec["commit_set"])
-        in_commit_refusals = {chain[p]["request_key"] for p in commit
-                             if p < pos and chain[p]["k"] == "termrec"
-                             and chain[p]["outcome"] == "REFUSAL"}
+        ref_positions = sorted(p for p in commit
+                               if p < pos and chain[p]["k"] == "termrec"
+                               and chain[p]["outcome"] == "REFUSAL")
+        if ref_positions and \
+                ref_positions != list(range(pos - len(ref_positions), pos)):
+            _r("COMMIT-EVENTS-NOT-ADJACENT",
+               f"checkpoint {pos}: in-commit refusal events at {ref_positions} do "
+               "not form the contiguous block immediately preceding the "
+               "checkpoint record")
+        in_commit_refusals = {chain[p]["request_key"] for p in ref_positions}
         listed = set(rec["failed_members"])
         for m in listed - in_commit_refusals:
             _r("LISTED-WITHOUT-EVENT",
@@ -626,11 +668,15 @@ def regenerate_export(kind, chain, sealed_enumeration, continuation_segment,
                       freeze_signature_digest, flagged_keys, terminal_pos):
     if kind not in FORM_SCHEMAS:
         _r("EXPORT-KIND-UNKNOWN", kind)
+    enum_digest = hashlib.sha256(
+        _canon(sorted(sealed_enumeration,
+                      key=lambda e: e["emission_pos"])).encode()).hexdigest()
     values = {
         "kind": kind,
-        "sealed_enumeration_digest": hashlib.sha256(
-            _canon(sorted(sealed_enumeration,
-                          key=lambda e: e["emission_pos"])).encode()).hexdigest(),
+        "sealed_enumeration_digest": enum_digest,
+        # the prelock form joins the TERMINAL enumeration; its producer passes that
+        # set as the enumeration argument — same derivation, its own field name
+        "terminal_enumeration_digest": enum_digest,
         "continuation_segment_digest":
             continuation_segment_digest(continuation_segment),
         "terminal_head": chain[terminal_pos]["running"],
@@ -859,12 +905,24 @@ def fixtures():
                      _cls("BS-L", 4, "ABORTED-BY-RESTART", reading=45),
                      _bnd("BS-L", reading=50)])
     expect("PASS-RETRY-EXHAUSTED", lambda: boundary_pass(ch_ex, "BS-L", C))
-    ch_rst = mkchain([_bnd("BS-L", reading=20), _prec("BS-L", BS2F, reading=25),
-                      _bnd("BS-L", reading=30), _cls("BS-L", 2, "ABORTED", reading=35),
-                      _bnd("BS-L", reading=40), _cls("BS-L", 4, "EXPIRED", reading=45),
-                      _bnd("BS-L", reading=50)])
-    assert ok("pass record resets the derived count",
-              lambda: boundary_pass(ch_rst, "BS-L", C)) == 6
+    # the reset control does REAL work (AGY ENV-V1 F1): two closes precede the pass
+    # record and two follow — 4 unreset closes would exceed the cap of 3, so this
+    # chain is accepted ONLY because the pass record resets the derived count
+    ch_rst = mkchain([_bnd("BS-L", reading=20), _cls("BS-L", 0, "ABORTED", reading=25),
+                      _bnd("BS-L", reading=30), _cls("BS-L", 2, "EXPIRED", reading=35),
+                      _bnd("BS-L", reading=40), _prec("BS-L", BS2F, reading=45),
+                      _bnd("BS-L", reading=50), _cls("BS-L", 6, "ABORTED", reading=55),
+                      _bnd("BS-L", reading=60),
+                      _cls("BS-L", 8, "ABORTED-BY-RESTART", reading=65),
+                      _bnd("BS-L", reading=70)])
+    assert ok("pass record resets the derived count (4 closes total, 2 since reset)",
+              lambda: boundary_pass(ch_rst, "BS-L", C)) == 10
+    # and one more close past the reset reaches the cap again — the count is the
+    # POST-RESET closes, not zero forever
+    ch_rst2 = mkchain(ch_rst[:10] + [
+        _bnd("BS-L", reading=70), _cls("BS-L", 10, "EXPIRED", reading=75),
+        _bnd("BS-L", reading=80)])
+    expect("PASS-RETRY-EXHAUSTED", lambda: boundary_pass(ch_rst2, "BS-L", C))
     expect("CLOSE-GATE-MISMATCH",
            lambda: boundary_pass(
                mkchain([_bnd("BS-L"), _cls("BS-7F", 0, "ABORTED", reading=25)]),
@@ -896,16 +954,33 @@ def fixtures():
                                        "receipt_digest": "d" * 64,
                                        "epoch": 1, "reading": 25}]), "BS-L", C))
     ch_reads = mkchain([_bnd("BS-L"),
-                        {"k": "verification-read", "target": 0},
+                        {"k": "verification-read", "target": 0,
+                         "boundary_position": 0},
                         {"k": "termrec", "joined_read": 1, "request_key": 0,
                          "row": "A", "operation": "read", "object_identity": "o1",
                          "outcome": "TOUCH", "epoch": 1, "reading": 25,
                          "map_reading": 25, "binding": "b-A-1"}])
     assert ok("pass-own reads excluded via typed joins",
               lambda: boundary_pass(ch_reads, "BS-L", C)) == 0
+    # a stuffed read NOT bound to this pass's boundary is foreign — it must not
+    # open a laundering channel for joined records (AGY ENV-V1 F5)
+    expect("FOREIGN-RECORD-IN-HOLD",
+           lambda: boundary_pass(
+               mkchain([_bnd("BS-L"),
+                        {"k": "verification-read", "target": 0,
+                         "boundary_position": 99}]), "BS-L", C))
     expect("BOUNDARY-EPOCH-CHANGED",
            lambda: boundary_pass(
                mkchain([_bnd("BS-L"), _opening(2, 0, bo1)]), "BS-L", C))
+    # the in-hold cross-epoch arrival branch is REACHABLE (AGY ENV-V1 F4): a
+    # clock-malformed chain whose LAST clock-bearing record regresses to the
+    # boundary's epoch slips the pre-loop check; standalone boundary_pass must
+    # still refuse at the arrival itself
+    expect("BOUNDARY-EPOCH-CHANGED",
+           lambda: boundary_pass(
+               mkchain([_bnd("BS-L"), _arr("A", 1, epoch=2, reading=25),
+                        {"k": "drain-start", "receipt_digest": "d" * 64,
+                         "epoch": 1, "reading": 30}]), "BS-L", C))
     expect("FOREIGN-RECORD-IN-HOLD",
            lambda: boundary_pass(
                mkchain([_bnd("BS-L"), {"k": "signed-cut"}]), "BS-L", C))
@@ -968,6 +1043,15 @@ def fixtures():
                                              map_reading=15)]), C))
     expect("UNQUANTIZED-READING",
            lambda: clock_pass(mkchain([o1, _arr("A", 1, reading=12)]), C))
+    # composite-defect ordering is DOCUMENTED first-refusal semantics (AGY ENV-V1
+    # F6): an unquantized regression reports quantization; alias + bad digest
+    # reports the alias — the gate blocks either way, and the order is asserted
+    expect("UNQUANTIZED-READING",
+           lambda: clock_pass(mkchain([o1, _arr("A", 1, reading=15),
+                                       _bnd("BS-L", reading=12)]), C))
+    expect("ROW-ALIAS",
+           lambda: join_pass(mkchain([o1, _arr("A", 1, origin="B",
+                                               digest="1" * 64)]), "BS-L", C))
     expect("GAP-EPOCH-NOT-EMPTY",
            lambda: clock_pass(mkchain([o1, _opening(4, 5, bo1, gap=[2, 3]),
                                        {"k": "termrec", "request_key": 0,
@@ -1044,6 +1128,23 @@ def fixtures():
     expect("EVENT-UNLISTED",
            lambda: J(mkchain([o1, _arr("A", 1),
                               _term(1, "A", outcome="REFUSAL"), tc([2], [])])))
+    # the refusal events ride the commit IMMEDIATELY PRECEDING the checkpoint —
+    # an in-commit refusal separated from the checkpoint by another record is
+    # refused (AGY ENV-V1 F3: the obligation the first build missed)
+    expect("COMMIT-EVENTS-NOT-ADJACENT",
+           lambda: J(mkchain([o1, _arr("A", 1),
+                              _term(1, "A", outcome="REFUSAL"),
+                              {"k": "bindmap-entry", "request_key": 1,
+                               "binding": "b-A-1"},
+                              tc([2], [1])])))
+    ok("adjacent two-member refusal block",
+       lambda: J(mkchain([o1, _arr("A", 1), _arr("B", 1, reading=15),
+                          _term(1, "A", outcome="REFUSAL"),
+                          _term(2, "B", outcome="REFUSAL", reading=25,
+                                map_reading=25, binding="b-B-1"),
+                          {"k": "terminal-checkpoint", "status": "RUNNING",
+                           "commit_set": [3, 4], "failed_members": [1, 2],
+                           "epoch": 1, "reading": 30}])))
     ok("issuance bindings live as continuation entries",
        lambda: seam_pass(mkchain([{"k": "bindmap-entry", "request_key": 1,
                                    "binding": "x", "issuance": True}]), set()))
@@ -1081,6 +1182,16 @@ def fixtures():
            lambda: CA([E(explanation_ref="x1"),
                        E(pos=4, explanation_ref="x1")], chain=ch2,
                       explanations={"x1": b"art"}))
+    # the accepted recurrence path (AGY ENV-V1 F2's missing positive control): the
+    # second occurrence takes NAMED-AS-DEFECT with a proper re-derivation and the
+    # pass ACCEPTS — proving SECOND-EXPLAINED refuses the disposition, not recurrence
+    ok("second occurrence NAMED-AS-DEFECT admissible",
+       lambda: CA([E(explanation_ref="x1"),
+                   E(pos=4, disp="NAMED-AS-DEFECT", revision_digest="r2",
+                     prior_revision_digest="r1")], chain=ch2,
+                  explanations={"x1": b"art"},
+                  revisions={"r2": "TOKEN: t1 := the (A,read) overrun family\n"
+                                   "NAMES-CLASS: (A,read) AS t1"}))
     expect("REVISION-ABSENT",
            lambda: CA([E(disp="NAMED-AS-DEFECT", revision_digest="r9")]))
     expect("REVISION-UNCHANGED",
