@@ -84,7 +84,7 @@ the directional curvature watch.
 |---|---|---|---|
 | **7** Brown–Lee–Rho CNS | **FIRED** (scope: the *instrument*, not CNS) | neutron star M ≳ 2 M☉ "would … falsify" the Brown–Bethe/kaon-condensation chain (PRL 101, 091101; ≳ pinned by Note 119901) | heavy pulsars ≳ 2 M☉ observed; **fires the M_max≈1.5 instrument chain, not CNS** — the source gives CNS only "serious doubt." No pinned challenge in this corpus. |
 | **44** Pourhasan et al. white-hole | **FIRED** (the Sec. 4 model, not the framework) | the 5D thermal field theory predicts exact scale invariance, **n_s = 1** (JCAP 04(2014)005 §4) | Planck 2018 VI eq (19): **n_s = 0.9649 ± 0.0042, 8σ from 1** (9σ with BAO); authors concede >5σ. Successor is an uncomputed ~4% correction (pattern 3). |
-| **31** Smolin CNS | **LIVE, 1.36σ short** | a neutron star above **2.5 M☉** refutes CNS (Smolin §4, Physica A 340) | heaviest well-measured NS **2.35 ± 0.11 M☉**; 8.6% posterior mass above the bar and **moving away from firing as the error tightens.** Disputed (Rothman–Ellis 1993, Harrison 1995, both pinned); Silk 1997 unread (paywalled). |
+| **31** Smolin CNS | **LIVE, 1.36σ short** | a neutron star above **2.5 M☉** refutes CNS (Smolin §4, Physica A 340) | heaviest well-measured NS **2.35 ± 0.11 M☉**; 8.6% posterior mass above the bar and **moving away from firing as the error tightens.** Disputed (Rothman–Ellis 1993, Harrison 1995, Silk 1997 -- all three now read + pinned; every published critic attacks the reasoning, none the 2.5 Msun number. |
 | **51** Popławski torsion | **LIVE, unfired** | a minimum black-hole mass floor **~10¹⁶ kg** (PLB 690, 73; VoR pinned, word-for-word identical to preprint on the floor) | **unreproduced from the stated inputs** — six routes from ρ_Ce tested, none reaches 10¹⁶ kg; connecting step omitted; enumeration non-exhaustive. The number stands in print but is not derivable from what the paper gives. |
 | **54** Gaztañaga bounce (curvature) | directional, **LIVE but NOT FIRED** | predicts **closed** curvature, Ω_k < 0; refutes on a *confirmed* Ω_k > 0 (open); PRD 111, 103537 §VI, Eq. 27 | DESI DR2+CMB **Ω_k = +0.0023 ± 0.0011 (~2.1σ open)** — adverse (opposite sign) but not a detection; ACT "no departure from flatness"; Planck combined ~1.6σ closed. Guarded by the **b63 battery tripwire** (re-fires at ≥3σ open). Both seats: B61. |
 
@@ -159,6 +159,5 @@ These are testable edges the primary papers gesture at without committing to a n
 
 Every figure above traces to a pinned primary or a two-seat gate verdict in the lane; the index is
 `BHU_PUBLISHED_BIBLIOGRAPHY.md` §0 + entries, and the receipts are the `b*` battery checks and the
-`AGATE_/CGATE_*` verdict files. The one dependency on unread text is Silk 1997 (entry 31's third
-critic, paywalled) — flagged, not assumed. This memo is a note on the corpus, **not** a study of
+`AGATE_/CGATE_*` verdict files. All sources are now read: Silk 1997 (entry 31 third critic) was the sole unread dependency at memo time; read + pinned 2026-08-31, tier-neutral -- it attacks the black-hole-abundance reasoning, not the 2.5 Msun falsifier. This memo is a note on the corpus, **not** a study of
 the cosmology; it belongs as the closing synthesis of the BHU line.
