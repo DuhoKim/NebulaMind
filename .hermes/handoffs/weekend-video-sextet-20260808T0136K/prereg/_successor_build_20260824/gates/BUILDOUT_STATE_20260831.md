@@ -183,3 +183,17 @@
   daily DR11 photo-z check each morning; (2) Duho's P0 freeze signature over
   the package (V124 text + final appendix + pins V125–V131 + transitions
   V132–V133 + the commitments). Nothing else exists to do.
+
+## FINAL — 19:4x KST: P0 SIGNED, THE FREEZE IS IN FORCE
+- 2026-08-31 19:33 KST: Duho performed the ceremony at his own keyboard —
+  shasum 30/30 OK reproduced, digest d1be4a3b… printed exactly, receipts read,
+  ed25519 keypair generated, digest signed under namespace nmpr-p0
+  (P0_FREEZE_SIGNATURE_20260831.md). Verified independently by Blanc AND by me
+  (ssh-keygen -Y verify: Good "nmpr-p0" signature for duhokim, key
+  SHA256:SzqPljZoWns6Rh+Ab2Z1FVQJQdSo1YyCGEHnlzZO7g0; message = the bare hex
+  digest). His pubkey fills both rosters (Option A) per his ruling.
+- Human direction #20; the board reads FREEZE IN FORCE; the draft is FROZEN at
+  V134 — no further Vn edits outside the amendment machinery.
+- THE PREREGISTRATION PHASE IS COMPLETE. Everything after this is run-side
+  under the frozen machinery (BS-1 receipt on Branch B, BS-2k provisioning at
+  the committed constants, P1+). This ledger CLOSES here.
