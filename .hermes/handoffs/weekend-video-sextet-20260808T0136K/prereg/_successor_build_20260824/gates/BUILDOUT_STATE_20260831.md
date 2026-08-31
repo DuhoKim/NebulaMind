@@ -27,3 +27,9 @@
 - Morning report delivered 07:01 + audio; Duho pinged. Five rulings total on the board
   history; DECISIONS_FOR_DUHO.md current.
 - Waiter/round machinery idle (no referee rounds — text loop closed by ruling).
+
+## Update 10:35 KST
+- gates/canonical_decoder.py BUILT, 16/16 fixtures (commit 9517f4c06) — agy pass + kimi
+  gate + draft pin still to do. NEXT BUILDS: enumeration_verifier, terminal_review
+  verifier + ceremony script.
+- agy mapping RE-verify still running (dispatched 10:20).
