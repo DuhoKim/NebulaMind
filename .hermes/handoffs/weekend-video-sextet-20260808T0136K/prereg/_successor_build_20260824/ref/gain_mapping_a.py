@@ -13,6 +13,11 @@ THE COMMITTED DRAW MECHANICS (ref/DRAW_MECHANICS_COMMIT_20260830.md, incl. Amend
   one uniform stream per draw across every gamma, so a flip is the gradient's doing · the
   grid is the caller's ratified 51-point manifest (gamma_25 = 0 exactly).
 
+THE FREE CONVENTIONS (a0, c_bar, the clamp, the cal' transform) are NOT ruled - the
+ruling fixed the shape (CODEX MAPCONV-V1 found exactly this) - they are COMMITTED
+BLIND in ref/MAPPING_CONVENTION_COMMIT_20260831.md with rationales, bound into
+identity_record(), and FILED for the principal's confirmation.
+
 WHAT THIS MODULE FIXES BY CONSTRUCTION, stated so the referee attacks the right things:
   * a0 = float(cal["a_hat"]) — the measured accuracy is the intercept; c_bar = mean(mask.c).
   * The per-draw uniforms are materialized ONCE per (draw, n) in production CONSUMPTION
@@ -68,6 +73,8 @@ def identity_record():
         "v9_sha256": hashlib.sha256((HERE / "successor_ref_v9.py").read_bytes()).hexdigest(),
         "numpy_version": numpy.__version__,
         "generator": "numpy-PCG64-default_rng-SeedSequence-spawn-zero-based",
+        "convention_commit_sha256": hashlib.sha256(
+            (HERE / "MAPPING_CONVENTION_COMMIT_20260831.md").read_bytes()).hexdigest(),
     }
     import json
     canonical = json.dumps(rec, sort_keys=True, separators=(",", ":")).encode()
