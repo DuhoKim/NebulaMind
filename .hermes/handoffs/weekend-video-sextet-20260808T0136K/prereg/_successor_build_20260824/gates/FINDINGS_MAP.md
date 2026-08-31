@@ -501,3 +501,15 @@ verified bytes). The NFC probe literal became an ASCII escape after a Write
 normalization erased the decomposed form and the fixture caught it.
 
 V126 → V127: GPT56-V99 F8 (the decoder build item, slot-value filled); AGY-DEC-V1 F1–F3 (repaired and re-verified SOUND).
+
+## V127 → V128 (2026-08-31 midday — pin-coherence fills)
+
+Three mirrors of already-pinned tools still carried registration-era
+DOES-NOT-EXIST / UNSET language: the harness inventory tail (§11), the
+decoder mention in §6.1's provenance clause, and the replay bullet whose
+"UNSET until then, blocking BS-3g" asserted a block the V126 pin lifted.
+Live-false self-description is the one-revision-lag class the V71 era named;
+each clause now states the pin that stands. The finding citations that
+recorded WHY each item was registered are untouched.
+
+V127 → V128: the one-revision-lag class applied to the V125/V126/V127 pins' own mirrors — stale DOES-NOT-EXIST/UNSET clauses flipped to the standing pins (slot-coherence, no new obligations).
