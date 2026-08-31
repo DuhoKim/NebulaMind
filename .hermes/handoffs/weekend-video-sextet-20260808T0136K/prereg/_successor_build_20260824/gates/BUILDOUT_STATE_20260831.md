@@ -168,3 +168,18 @@
   rosters, P0 freeze signature. Intake of any of those follows the same ladder
   discipline (build/edit → fixtures → agy → kimi → pin, battery always, lint
   last, never commit over a red check line).
+
+## Coda 18:05 KST — the constants and rosters RULED (supersedes "FINAL" above)
+- 17:29: on Duho's direction ("Hwao, propose the constants sheet and rosters",
+  direction #17) the decision packet shipped: BS2K_CONSTANTS_AND_ROSTERS_
+  PROPOSAL_20260831.md (C1–C11 derived from the frozen inequalities, R1/R2
+  minimal-honest options, X1/X2), audio delivered.
+- 18:03: RULED WHOLE — Duho verbatim "constants and rosters approved as
+  proposed" (direction #18). Committed: ref/BS2K_CONSTANTS_COMMIT_20260831.md
+  (sha ccaf9f347550f8bd…, binding the packet bytes f9c64345…); V133 pins the
+  commitment digest on the BS-2k covenant row so P0 covers the values
+  (V133 sha16 04bc0800526eda47, battery 15/15, pushed).
+- THE LANE'S ENTIRE REMAINING SURFACE: (1) Sep-5 BS-1 rule — self-resolving,
+  daily DR11 photo-z check each morning; (2) Duho's P0 freeze signature over
+  the package (V124 text + final appendix + pins V125–V131 + transitions
+  V132–V133 + the commitments). Nothing else exists to do.
