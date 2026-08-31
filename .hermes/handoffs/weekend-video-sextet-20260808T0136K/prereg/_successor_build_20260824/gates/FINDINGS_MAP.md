@@ -513,3 +513,15 @@ each clause now states the pin that stands. The finding citations that
 recorded WHY each item was registered are untouched.
 
 V127 → V128: the one-revision-lag class applied to the V125/V126/V127 pins' own mirrors — stale DOES-NOT-EXIST/UNSET clauses flipped to the standing pins (slot-coherence, no new obligations).
+
+## V128 → V129 (2026-08-31 midday — the fifth pin: the enumeration verifier)
+
+`gates/enumeration_verifier.py` PINNED after the deepest ladder of the
+build-out: 127 exact-code fixtures; four agy rounds converging 6 → 2 → 2
+→ 0 (AGY-ENV-V1 through AGY-ENV-V4 SOUND), with two admissions ratified
+against the draft's own words rather than waived; KGATE_ENUM PIN-READY
+carrying three obligations the slot text now implements (exact-bytes sha
++ SOUND-report citation; residues beside the slot as binding
+obligations; byte-change-voids-pin stated in the entry).
+
+V128 → V129: the enumeration-verifier pin — AGY-ENV-V1 F1–F6, AGY-ENV-V2 F1–F2, AGY-ENV-V3 F1–F2 all repaired with seeded controls; AGY-ENV-V4 SOUND; the gate's carried obligations discharged in the slot.
