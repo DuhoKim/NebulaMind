@@ -6,7 +6,39 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — none. (q1 + q2 both fully closed; RQ-C now standing up per Duho's steer.)
+## OPEN — 1 question (q3 · RQ-C: how to record the predicted CMB-cutoff candidate on 25/26)
+
+### q3 · RQ-C is in — the Gaztañaga cutoff is a *predicted* CMB scale. How to record it on 25/26?
+
+**What happened.** RQ-C (Lane 2 task 3) tested whether Gaztañaga's causal-horizon power-spectrum
+cutoff is a genuine prediction or a fit. Both seats (blind-double, codex + agy) agree: the cutoff
+**scale** (ℓ ≈ 3, θ ≈ 60°) is **PREDICTED from first principles** — fixed by the background H₀/Ω_Λ
+(r_S = 2GM), with **no free parameter, and published *before* the CMB analysis** (so it is
+out-of-sample with respect to the low-ℓ deficit it is compared to). And **Planck is consistent**: the
+anomalously low quadrupole and the >60° large-angle-correlation deficit sit exactly at the predicted
+scale. This is the **strongest positive result in Lane 2** (vs. RQ-A undetectable, RQ-D 0-kills) — the
+only corpus claim whose scale is fixed a priori and lands on a real, documented CMB feature. **But**
+the papers give no cutoff amplitude / C_ℓ threshold, so it is a *scale-level* candidate, not a
+calibrated (number + threshold) falsifier. (Workings: `RQ_C_RECONCILIATION_20260831.md`.)
+
+**Your call, with costs:**
+- **(a) Annotate 25/26, keep tier — recommended.** Record: RQ-C found the cutoff is a predicted,
+  out-of-sample, Planck-consistent *scale-level* CMB falsifier candidate (ℓ ≈ 3), missing only the C_ℓ
+  amplitude/threshold that would make it calibrated. Keep tier QUALITATIVE-DIRECTIONAL. **Cost:** one
+  annotation, no tier change, no re-tally. Honest: a real prediction awaiting the amplitude.
+- **(b) Upgrade the tier (toward CALIBRATED-FALSIFIER, or PROSPECT).** Reflect that this is a genuine
+  tested prediction. **Cost:** a tier change + re-tally + b67 update — and a CALIBRATED upgrade would
+  *overclaim*: a calibrated falsifier needs the number+threshold the papers lack (the model owns that
+  missing proof). I do **not** recommend a CALIBRATED upgrade; "candidate" is the honest line.
+- **(c) Leave 25/26 as-is; RQ-C in the lane files only.** **Cost:** the corpus record doesn't reflect
+  the strongest Lane-2 finding.
+
+**My recommendation: (a).** Records the real prediction without overclaiming a calibrated falsifier.
+Nothing waits — RQ-C is filed + reconciled; 25/26 keep their tier until you rule.
+
+---
+
+### ✅ q1 + q2 CLOSED (RQ-A → entry 21 annotated; RQ-D → 18/25/26 annotated, 0/3/4). RQ-C stand-up done.
 
 ### ✅ q2 FULLY CLOSED 2026-08-31 — RESTRICTS, and Duho confirmed the annotations (now applied to 18/25/26, no tier changes). Third read settled it: RESTRICTS.
 The independent third seat (kimi/Moonshot, outside the codex/agy split) judged the crux

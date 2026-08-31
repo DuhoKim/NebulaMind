@@ -1,0 +1,1342 @@
+                                               MNRAS 000, 1–26 (2020)                              Preprint 28 April 2021             Compiled using MNRAS LATEX style file v3.0
+
+
+
+
+                                               Explaining Cosmological Anisotropy:
+                                               Evidence for Causal Horizons from CMB data
+                                                   Pablo Fosalba1,2? and Enrique Gaztañaga,1,2
+                                               1 Institute of Space Sciences (ICE, CSIC), Campus UAB, Carrer de Can Magrans, s/n, 08193 Barcelona, Spain
+                                               2 Institut d’Estudis Espacials de Catalunya (IEEC), Carrer Gran Capità 2-4, 08193 Barcelona, Spain
+
+
+
+
+arXiv:2011.00910v4 [astro-ph.CO] 27 Apr 2021
+                                               Accepted XXX. Received YYY; in original form ZZZ
+
+
+
+                                               ABSTRACT
+                                               The origin of power asymmetry and other measures of statistical anisotropy on the largest scales of the universe, as
+                                               manifested in Cosmic Microwave Background (CMB) and large-scale structure data, is a long-standing open question
+                                               in cosmology. In this paper we analyze the Planck Legacy temperature anisotropy data and find strong evidence
+                                               for a violation of the Cosmological principle of isotropy, with a probability of being a statistical fluctuation of order
+                                               ∼ 10−9 . The detected anisotropy is related to large-scale directional ΛCDM cosmological parameter variations across
+                                               the CMB sky, that are sourced by three distinct patches in the maps with circularly-averaged sizes between 40 to 70
+                                               degrees in radius. We discuss the robustness of our findings to different foreground separation methods and analysis
+                                               choices, and find consistent results from WMAP data when limiting the analysis to the same scales. We argue that
+                                               these well-defined regions within the cosmological parameter maps may reflect finite and casually disjoint horizons
+                                               across the observable universe. In particular we show that the observed relation between horizon size and mean dark
+                                               energy density within a given horizon is in good agreement with expectations from a recently proposed model of the
+                                               universe that explains cosmic acceleration and cosmological parameter tensions between the high and low redshift
+                                               universe from the existence of casual horizons within our universe.
+                                               Key words: cosmic background radiation – dark energy – large-scale structure of Universe
+
+
+
+                                               1 INTRODUCTION                                                      and references therein), and evidence has been reported that
+                                                                                                                   this could source deviations from isotropy on cosmological
+                                               The standard cosmological model stands on the shoulders of
+                                                                                                                   scales (Hansen et al. 2009). However, a more recent analy-
+                                               a fundamental assumption: that the universe is statistically
+                                                                                                                   sis based on Planck data finds no evidence for such power
+                                               homogeneous and isotropic on the largest scales. This as-
+                                                                                                                   asymmetry when all scales are taken into account (Quartin
+                                               sumption has been thoroughly tested over the last years both
+                                                                                                                   & Notari 2015). This is in qualitative agreement with the
+                                               with Cosmic Microwave Background (CMB) and Large-scale
+                                                                                                                   latest results from the Planck Collaboration analysis (Planck
+                                               structure data. In particular, the analysis of CMB data, most
+                                                                                                                   Collaboration et al. 2020d) where they conclude that the ob-
+                                               notably from the WMAP (Bennett et al. 2013) and Planck
+                                                                                                                   served power asymmetry is not robust to foreground con-
+                                               (Planck Collaboration et al. 2020a) experiments, has not yet
+                                                                                                                   tamination or systematic residuals. It is important to note
+                                               provided conclusive evidence for the hypothesis of Cosmolog-
+                                                                                                                   that previous analysis have concentrated on quantifying po-
+                                               ical Isotropy (Eriksen et al. 2004; Hajian et al. 2005; Eriksen
+                                                                                                                   tential deviations from statistical isotropy using a statisti-
+                                               et al. 2007; Land & Magueijo 2007; Hansen et al. 2009; Samal
+                                                                                                                   cal prior. First analyses using WMAP data looked for the
+                                               et al. 2009; see also Planck Collaboration et al. 2020d and
+                                                                                                                   direction of maximal asymmetry in the sky, thus quantify-
+                                               references therein). Moreover, Galactic foreground contami-
+                                                                                                                   ing anisotropy for a given preferred direction (Hansen et al.
+                                               nation or known systematic effects in the data alone can not
+                                                                                                                   2009). In turn this led to proposing a particular angular dis-
+                                               explain the observed CMB ”anomalies”, i.e, large-scale devi-
+                                                                                                                   tribution of power in the sky to simply capture the observed
+                                               ations from the concordance ΛCDM model (see e.g, Rassat
+                                                                                                                   anisotropy, such as the so-called ”dipole anisotropy” modu-
+                                               et al. 2014; see Planck Collaboration et al. 2020d for a re-
+                                                                                                                   lation (Prunet et al. 2005; Gordon 2007). This same model
+                                               cent overview). Power asymmetry from CMB data has also
+                                                                                                                   has been further constrained with Planck data (Planck Col-
+                                               been a matter of intense debate and scrutiny (Gaztañaga
+                                                                                                                   laboration et al. 2014, 2016b; Aiola et al. 2015; Mukherjee
+                                               et al. 1998; Eriksen et al. 2007; Lew 2008; Hoftuft et al.
+                                                                                                                   et al. 2016; Planck Collaboration et al. 2020d). Alternatively,
+                                               2009; Paci et al. 2010; Axelsson et al. 2013; Shaikh et al.
+                                                                                                                   a recent analysis (Ho & Chiang 2018) focuses on quantify-
+                                               2019, see also Dai et al. 2013 for a comprehensive discussion
+                                                                                                                   ing possible CMB peak shifts across the sky, finding signifi-
+                                                                                                                   cant variations, but they attribute this behaviour to possible
+                                                                                                                   systematic effects or the solar dipole. Complementary evi-
+                                               ?   e-mail:fosalba@ice.csic.es
+
+                                               © 2020 The Authors
+2     Fosalba & Gaztañaga
+dence for cosmological anisotropy has been investigated us-         rameters as a function of position in the sky, we proceed as
+ing probes of the low redshift universe (see Colin et al. 2011;     follows:
+Secrest et al. 2020 and references therein).
+                                                                       • Step 1: Data. For our main analysis, we make use of
+   In this paper we re-assess Cosmological Isotropy using the
+                                                                    the Planck 2018 ”Odd-Even” ring half-mission temperature
+latest Planck and WMAP datasets from a different angle, as
+                                                                    anisotropy maps (OE maps) obtained with the SMICA fore-
+we do not use any prior in our approach. In particular, we
+                                                                    ground separation method, along with the Galactic mask
+focus on looking at possible variations of the best-fit cos-
+                                                                    given by the so-called ”common mask” in combination with
+mological parameters across the sky, and test the robust-
+                                                                    the half-mission Odd-Even missing pixels (i.e, missing rings
+ness of our findings to our analysis choices, data-cuts and
+                                                                    of data), which leaves about 76% of the sky available for
+foreground contamination. As we shall discuss below, our
+                                                                    the cosmological analysis. All the data used in the analysis
+analysis shows compelling statistical evidence for large-scale
+                                                                    has been downloaded from the Planck Legacy Archive1 . Fig.1
+anisotropies (Gaussian isotropic hypothesis has a probability
+                                                                    shows one of the two half-mission Odd-Even (OE) tempera-
+of ∼ 10−9 ), sourced by large-scale directional variations in all
+                                                                    ture anisotropy maps used in our main analysis, smoothed
+the basic ΛCDM parameters. We argue that a possible source
+                                                                    with a 1 deg. FWHM Gaussian beam for better visualiza-
+for such anisotropies is the existence of primordial causal hori-
+                                                                    tion, with the Galactic mask overlaid
+zons within our observable universe. Such horizons can result
+                                                                       • Step 2: Survey sub-samples. We set the size of the disc
+from inflation and explain the observed late time cosmic ac-
+                                                                    where we perform the cosmological analysis. We choose to use
+celeration (Gaztañaga 2020, 2021b). As discussed below, the
+                                                                    a circular shape as it is a simple symmetric mask which also
+measured correlation between horizon size and mean dark-
+                                                                    minimizes mask de-convolution effects on the resulting map
+energy density within the detected horizons turns out to be
+                                                                    angular power spectrum. For convenience, the location of the
+in good agreement with expectations from this model.
+                                                                    disc centers are chosen as the coordinates of the pixel cen-
+   Previous analyses looking for directional dependence of the
+                                                                    ters in a (low-resolution) HEALPixix map. We then project
+cosmological parameters involved WMAP (Axelsson et al.
+                                                                    a given disc onto the Planck footprint, defining the survey
+2013) and, more recently, Planck data (Mukherjee & Wandelt
+                                                                    patch as those pixels of the disc which do not overlap with
+2018). Axelsson et al. (2013) focused on the power asymme-
+                                                                    the Planck galactic foreground emission and resolved point
+try and thus, their approach is different with respect to ours
+                                                                    source mask
+(i.e, theirs is prior dependent). They did find a 3.4σ evidence
+                                                                       • Step 3: Power spectrum estimation. We measure the an-
+of power asymmetry but only a hint of directional parameter
+                                                                    gular power spectrum C` ’s of the Planck temperature map in
+dependence in some of the basic ΛCDM parameters, although
+                                                                    the survey patch (i.e disc). We use the multipole range from
+this non-detection could be due to the lower signal to noise
+                                                                    `min = 32 to `max = 2000, to minimize foreground residuals
+of the WMAP data with respect to Planck and, in particular,
+                                                                    present in Planck data at low and high multipoles, and make
+the limited range of scales used, ` < 600. On the other hand,
+                                                                    the Gaussian assumption an accurate approximation to the
+Mukherjee & Wandelt (2018) follow a closer methodology to
+                                                                    true likelihood (for ` > `min ). Following the official Planck
+ours, but they use an approximation (first order Taylor ex-
+                                                                    analysis papers, we compute C` ’s band-powers with ∆` = 30,
+pansion) to relate power spectra to the underlying cosmolog-
+                                                                    so that off-diagonal elements of the covariance matrix are kept
+ical parameters. Besides, they divide the footprint in a very
+                                                                    at the ∼ 10% level for the full Planck footprint (and some-
+limited number of patches to sample the sky and do not in-
+                                                                    what larger for smaller patches), but ignoring them do not
+clude any residual foreground parameter that affect the high
+                                                                    bias cosmological parameters within 1-σ statistical errorbars
+multipoles (` > 900) of the power spectra, as we do, what
+                                                                    (see e.g, Table 1)
+can explain that they do not find conclusive evidence for a
+                                                                       • Step 4: Error estimation. Diagonal C` ’s errors are es-
+directional parameter dependence from their analysis. In fact,
+                                                                    timated by re-scaling those from the official Planck power
+they only detect some significant anisotropic signal for those
+                                                                    spectrum by the effective        area of the patch used, i.e,
+patches of the sky that have very small area after removing                                 q
+the overlap with the Galactic mask, which is at variance with       ∆C`D /∆C P lanck =         P lanck
+                                                                                              fsky       D
+                                                                                                       /fsky         P lanck
+                                                                                                             , with fsky     = 0.57
+what we find, as we shall discuss in detail below.                  which is a good estimate of the ”mean” effective area from the
+   The paper is organized as follows: Section §2 describes our      masks of the HFI frequency channels (100,143 and 217 GHz)
+data analysis pipeline, its validation and the analysis choices     included in the Planck likelihood. In our fiducial analysis case
+taken. In Section §3 we present our main results, including         (sub-areas of 60 degrees in diameter), this corresponds to a
+the evidence for spatially coherent cosmological parameter          mean fraction of the sky available for the cosmological analy-
+                                                                                                                           D
+variations across the sky, and the associated evidence for what     sis (i.e, not overlapping with the Galactic mask), fsky  ≃ 0.05,
+we dub as ”horizons” (see text for details) and analyze its         although there are variations from disc to disc across the sky,
+robustness against foreground contamination. We conclude in         which we take into account
+Section §4 with a summary of our main results, a discussion            • Step 5: Cosmological parameter estimation. Finally, we
+of their implications and point out possible future directions.     find the best-fit base ΛCDM cosmological parameters (plus
+                                                                    one nuisance foreground residual parameter, see below for
+                                                                    details) to the measured C` ’s and errors for each disc. We
+                                                                    repeat this operation for all discs that sample the full Planck
+2 METHODOLOGY AND DATA ANALYSIS PIPELINE                            footprint
+
+2.1 Analysis Pipeline                                                   In Section §2.2 below, we describe in detail the particular
+
+In order to analyze the Planck temperature maps and in-
+vestigate possible variations of the best-fit cosmological pa-      1   https://pla.esac.esa.int/
+
+MNRAS 000, 1–26 (2020)
+                                                                                 Explaining Cosmological Anisotropy                         3
+                                                                       sis (see e.g, Fosalba & Szapudi 2004; Huang et al. 2018).
+                                                                       PolSpice is a an approximate pseudo-Cl method that is un-
+                                                                       biased, and allows for the fast and accurate estimation of the
+                                                                       2-point correlation functions of pixelated maps, correcting for
+                                                                       complicated angular masks of finite sky experiments.
+                                                                          Finally, best-fit cosmological parameters are inferred from
+                                                                       the measured C` ’s in each disc with iMinuit 2 , a code for
+                                                                       maximum-likelihood fits of statistical models to data that
+                                                                       also provides model parameter errors from likelihood profile
+                                                                       estimation. iMinuit assumes a Gaussian distribution of the
+                                                                       model parameters, which is a very good approximation in
+                                                                       our case, given the analysis choices we make (we use a suffi-
+                                                                       ciently large low multipole cut in the analysis, `min = 32, see
+                                                                       §2). iMinuit has been widely used for CMB in general and
+                                                                       for Planck data analysis in particular in recent years (Henrot-
+                                                                       Versillé et al. 2016; Planck Collaboration et al. 2016a), where
+Figure 1. Planck 2018 half-mission Odd-Even (OE) SMICA temper-
+                                                                       its validation with respect to traditional MCMC methods has
+ature anisotropy map, smoothed with 1 degree FWHM Gaussian
+                                                                       been thoroughly discussed 3 . The advantage of iMinuit over
+beam, shown in orthographic projection. In this projection, the left
+hemisphere is centered at the Galactic center, whereras the right      MCMC methods lies in its speed, typically orders of magni-
+hemisphere is around the anti-Galactic center. The Galactic mask       tude faster than traditional Bayesian methods but with com-
+used is overlaid (in grey color).                                      parable accuracy, provided the parameters are Gaussian dis-
+                                                                       tributed. The gain in speed is key in our analysis since a full
+                                                                       MCMC approach would be prohibitive given the large num-
+choices we make for the main analysis as well as the codes             ber of pixels for which we have to get cosmological parameter
+used for the power spectrum and likelihood estimation.                 fits.
+                                                                          As a proof of method, in this paper we concentrate
+                                                                       on the basic flat-space ΛCDM cosmological parameters
+2.2 Analysis Choices                                                   (Ωc h2 , Ωb h2 , H0 , ns , As ), and setting the optical depth to
+In what follows we shall use the SMICA CMB map, as it is               reionization, τ , fixed. We note that this choice does not limit
+the foreground cleaning method of choice (ie, reference CMB            the generality of our results in practice, since when analyzing
+map) in the Planck cosmology papers (Planck Collaboration              the temperature data alone, the optical depth is tightly corre-
+et al. 2020c,a). However, we shall show below that our results         lated to the primordial amplitude parameter, AS , which we do
+are robust to the choice of foreground separation algorithm            leave free in our analysis. We fix all parametersP that are not
+used. As for the data cuts, we choose to use the ”odd-even”            sampled to the following values: τ = 0.0522,        mν = 0.06 eV,
+ring half mission maps (OE maps), where frequency maps are             Neff = 3.04 and r = 0 (i.e, no tensors). Additionally, we in-
+built using every other pointing period or ring, restricting to        clude an ”effective foreground residual” parameter (APS  eff ), that
+either the odd- or the even-numbered rings. The OE maps                accounts for the combined contamination from the Cosmic In-
+thus have noise which is largely uncorrelated and free of the          frared Background (CIB) and un-resolved extragalactic point
+scanning-dependent systematics. This is important to avoid             sources (Planck Collaboration et al. 2020b), the two main
+possible biases in the inferred cosmological parameters from           sources of contamination in Planck HFI data at large multi-
+the small scales in the maps, ie. high multipoles in the C`            poles (ie., small angular scales) 4 . These combined residual
+(Karim Benabed, private communication; see also Figure A2              foregrounds effectively behave as a single ”shot-noise” con-
+in appendix of Planck Collaboration et al. 2020b).                     tribution, APS eff at the power spectrum level if one limits the
+   The fiducial analysis value of the disc size is set to 60 de-       analysis to ` < 2000 (Planck Collaboration et al. 2016a). In
+grees in diameter, which yields on average ∼ 2100 sq.deg. of           what follows, we shall denote this nuisance parameter simply
+CMB sky outside the galactic and point-source mask. This               as APS for the ease of notation.
+mask size turns out to be optimal in terms of signal-to-noise,            As for the multipole range used, we do not consider the
+as we will argue below, but we have checked that our main              lowest multipoles and set `min = 32. This makes our analy-
+results are robust to changes in disc area by a factor of 5            sis closest to the so-called Planck high-` likelihood (Planck
+(ie. disc sizes from 40 to 90 degrees in diameter). As for the         Collaboration et al. 2020b), and it has a two-fold advantage:
+resolution of the map pixels used as centers of the set of disc-
+masks, in our main analysis we choose to work at HEALPixix
+                                                                       2
+resolution Nside = 4 (i.e, 192 pixels across the sky) since this         https://iminuit.readthedocs.io/en/latest/
+                                                                       3 see      the    CAMEL         project    wiki  page    for   details:
+already captures all the significant variations of cosmological
+parameters across the sky (ie. ` < 12), as it will be shown.           http://camel.in2p3.fr/wiki/pmwiki.php
+                                                                       4 We note the ”abuse” of language in our notation as our nui-
+However, when estimating the size of such ”horizons” in the
+                                                                       sance parameter, APS   eff , effectively combines, in the Planck data
+parameter maps we shall use finer resolutions (Nside = 16
+                                                                       release papers notation, the following set of nuisance parame-
+and 32, what results in 3072 and 12888 discs across the sky,           ters: the extragalactic Poisson point source contribution from
+respectively), to have better statistics (see §3.2).                   the different HFI frequency channel pairs 100, 143, 217 GHz
+   The angular power spectrum in each disc is computed us-             (APS       PS    PS          PS
+                                                                          100 , A143 , A143x217 , A217 ), and the CIB amplitude at 217 GHz
+ing the PolSpice code (Szapudi et al. 2001; Chon et al. 2004)          (ACIB
+                                                                          217  ), as described   in Planck Collaboration et al. 2020b, Table
+which has been extensively used in previous CMB analy-                 16
+
+                                                                                                                  MNRAS 000, 1–26 (2020)
+4     Fosalba & Gaztañaga
+first it removes scales which are in principle more sensitive to   Table 1. Best-fit cosmological parameters: comparison between the
+residual foreground contamination from an imperfect mod-           official Planck results for TT+LowE (Planck Collaboration et al.
+eling of diffuse galactic emission (e.g, dust) and secondly, it    2020c, see first column of Table 2), results from our pipeline using
+makes the assumed Gaussian likelihood of the power spec-           the full Planck footprint and our analysis choices (see text for
+trum a good approximation. At the high multipole end, we           details), and same as the latter but for the average over circular
+cut at `max = 2000, since this makes the treatment of fore-        sub-areas of 60 degrees in diameter.
+ground residuals simpler in terms of effectively one single         Parameter      Planck2018 Results      Full footprint    Discs
+parameter, as mentioned above, without losing any signifi-          Ωc h2             0.121 ± 0.002            0.119         0.119
+cant cosmological constraining power with respect to the full       Ωb h2           0.0221 ± 0.0002            0.022         0.022
+Planck data resolution, ie. `max = 2500. We note that in cut-       H0                  66.9 ± 0.9              67.5          67.3
+ting at `max = 2000 we can also safely neglect the clustered        ns                0.963 ± 0.006            0.960         0.958
+CIB component which deviates from the purely shot-noise             As · 109           2.09 ± 0.03              2.07         2.07
+behaviour (it scales as a power law) assumed in our analysis        APS                      -                  69.7         69.7
+(see Section §3.3.1 in Planck Collaboration et al. 2020b, see
+also Figure 15 below).
+
+
+2.3 Pipeline Validation
+We next validate our pipeline by comparing results using
+our power spectrum (with PolSpice) and likelihood estima-
+tion (iMinuit) agree with the official results published by
+the Planck collaboration for the fiducial ΛCDM parameters,
+when restricted to temperature data (and low-multipole po-
+larization, ie., TT+LowE in the notation used in the Planck
+data release). In addition we provide an estimate of the cor-
+responding high-multipole residual foreground contamination
+amplitude, APS , which depends on the particular `max = 2000
+choice we use, and therefore not directly comparable to the
+Planck official results.
+   Figure 2 shows the angular power spectrum for the Planck
+SMICA temperature map as measured with our pipeline (red
+symbols), compared to the published results by the Planck          Figure 2. Upper panel: angular power spectrum of the Planck
+Collaboration (green symbols). Errorbars for both cases are        SMICA CMB temperature map (red symbols with errors), and
+                                                                   its corresponding best-fit to a ΛCDM cosmology (blue solid line).
+the ones provided by the Planck Collaboration. The very
+                                                                   Published results from the Planck collaboration are also shown
+good agreement between our C` ’s and the official Planck re-       (green symbols, slightly shifted to the right for clarity). For refer-
+sults validates our pipeline. Moreover the slight discrepancy      ence, we also show the input (solid magenta) and the correspond-
+at very high multipoles (` > 1500) does not impact our re-         ing best-fit to the FFP10 simulations (dashed magenta; see Section
+sults, as we shall discuss in Section §3.3. Figure 3 shows the     §3.7 for details). Lower panel: relative deviations with respect to
+corresponding average C` ’s over the disc sub-areas of 60 de-      the best-fit model
+gree diameter, < D60 >, used in our main analysis, along
+with the best-fit ΛCDM model.
+   Table 1 summarizes the best-fit cosmological parameters
+for the different estimates of the power spectrum discussed
+above. In particular, it shows that our results for the full
+Planck footprint (2nd column) agree with the best-fit param-
+eters obtained by the Planck collaboration within the 1-σ
+errors (first column; see also Table 2 in Planck Collaboration
+et al. 2020c). In turn these values are consistent with the fit
+obtained from the average power spectra, < D60 >, over the
+3072 discs of 60 degree diameter (see 3rd column), with which
+we homogeneously sample the sky to assess anisotropies or
+angular variations in the cosmological parameter fits. More-
+over, the fact that the discs we use for the analysis recover
+cosmological parameters consistent with the full footprint in-
+dicates that the cosmological information encoded in the sub-
+areas is unbiased within the Planck accuracy.
+
+
+                                                                   Figure 3. Same as Figure 2 for the mean power spectrum over discs
+3 RESULTS                                                          of 60 degree diameter across the sky
+
+We apply the methodology described in Section §2 to the
+SMICA CMB temperature map, and obtained a set of power
+
+MNRAS 000, 1–26 (2020)
+                                                                                Explaining Cosmological Anisotropy                5
+spectra for the set of circular patches of a given diameter          Table 2. Location of Horizons in Planck Temperature map (in
+size, D hereafter, that sample the entire Planck footprint.          Galactic coordinates)
+The set of power spectra obtained from the suite of masks
+is the input for the cosmological parameter estimation with           Horizon    Longitude (deg)    Latitude (deg)
+                                                                      H1               345                15
+which we shall assess possible coherent variations of best-fit
+                                                                      H2               240                −5
+parameters across the sky.
+                                                                      H3               150               −40
+
+
+3.1 Cosmological parameter maps                                        • we vary the horizon scale θ until we find a minimum of
+                                                                     the ”peak height variation” estimator:
+Figure 4 displays the basic ΛCDM parameter variations
+across the sky. For visualization purposes, we use a ”high-          ∆P = {< dP >δθ − < dP >all−sky }/σPδθ ,                    (1)
+resolution” sampling of the sphere using discs centered at the       where < dP >δθ is the mean value of the parameter values
+12288 pixels of a HEALPix N side = 32 map, for which angu-           within the ring pixels, < dP >alls ky is the corresponding mean
+lar power spectra and cosmological parameters are estimated.         over the entire sky, and σPδθ is the rms scatter over the ring
+Parameter ranges shown are symmetrized and chosen to be              pixel values.
+illustrative of dynamic range and size of what we describe as
+”horizons” for the physical implications that we shall describe         We then test the robustness of the horizon size estimates
+below. These ”horizons” correspond to coherent patches with          across ΛCDM parameters and disc size D used to build the
+distinct parameter values above or below the mean over the           anisotropy maps. In particular, we vary the area of the discs
+full sky.                                                            by a factor of 5, from 40 to 90 degree in diameter. Figures
+   It is clear from these maps that there are common fea-            5,6 and 7 show the result of using the procedure outlined
+tures or angular patterns in them. In particular, all cosmo-         above yields rather consistent results across cosmological pa-
+logical parameters exhibit similar variations across the sky,        rameters, and disc sizes. The estimated horizon size varies
+although these anisotropic patterns are at least a factor of two     for the three different horizons. We estimate the sizes to be
+larger for the acoustic oscillation related parameters (ωc h2 ,      D(H1 ) ≈ 60 ± 20, D(H2 ) ≈ 70 ± 10, and D(H3 ) ≈ 40 ± 10 de-
+Ωb h2 ) than those describing the primordial spectrum of fluc-       grees in radius, where the errors depict the variation across
+tuations (AS , ns ). On the other hand, a rather different (and      the different ΛCDM parameters (for a given disc size used)
+much larger) spatial pattern of fluctuations is observed for the     and scatter across disc sizes (for a given cosmological param-
+foreground-residual amplitude, (APS ), which suggests that           eter). In Figures 8 and 9 we show the three horizons found,
+the observed ”horizons” in the cosmological parameter maps           estimated according to Eq.(1), overlaid on the H0 and ΩΛ (de-
+have a different cause than the corresponding features in the        rived) parameter variation maps, respectively. Similar maps
+foreground parameter map.                                            are obtained for other basic ΛCDM parameters.
+                                                                        Our analysis shows that the main results of this paper
+                                                                     do not depend on the particular choice of the disc D size
+3.2 Horizon size estimation                                          used. We have chosen 60 degree diameter disc as the fiducial
+                                                                     case. This is a compromise between sample variance (which is
+Once we have found evidence for the existence of ”horizons”          larger for smaller discs), and over-smoothing (which is larger
+or coherent patches for the parameter fluctuations around            for bigger discs).
+the mean across the sky, we shall estimate the size of such
+horizons. For this purpose we shall assume that horizon cen-
+ters are those pixels in the map which maximize the differ-          3.3 Robustness to scale cuts
+ences with respect to the mean, ie., they are well-defined
+peaks (global maxima/minima) in the parameter fluctuation            Here we discuss to what extent our results and, in particular,
+map. Therefore we start by finding the peaks in the maps             the main features of the cosmological parameters variation
+and ranked them according to their height. The largest three         maps, are robust to the choice of scales included in the anal-
+peak-heights thus define the center of the corresponding hori-       ysis. Figure 10 shows the case when we leave out the first
+zons that we found to be statistically significant. The location     acoustic peak from the analysis, `min = 450. Even though we
+of these peaks or center of the horizons are given in Table 2        leave out the highest signal-to-noise contribution to the angu-
+5
+  .                                                                  lar power spectrum, the same pattern of parameter variations
+                                                                     identified in the fiducial case, shown in Figure 4, remain in
+    Our method to estimate the size of such horizons is as
+                                                                     the maps. This points to the fact that these main features are
+follows:
+                                                                     contributed by all the multipoles of the power spectrum, and
+   • first we draw rings of width δθ defined by the common           thus is not a signal coming from the largest scales alone. In
+pixels of two concentric discs of radius θ and θ + δθ respec-        turn, when we cut out signal-dominated scales the rms fluc-
+tively, around the horizon locations given in Table 2                tuation of the parameter maps, σ, increases, as the relative
+                                                                     contribution of noise is higher, and thus parameter fluctu-
+                                                                     ations are artificially boosted for the same dynamic range
+5  In order to determine the horizon center or peak locations in
+                                                                     (-4 σ, 4 σ) as can be appreciated by comparing the dynamic
+the parameter maps we first smooth the maps with a 10◦ FHWM          range of Figure 10 to the fiducal case, Figure 4.
+Gaussian beam to remove small-scale noise. This smoothing scale         A similar qualitative behaviour is observed for the case
+is chosen as modes with θ < 10 deg do not contribute significantly   when we cut out multipoles beyond `max = 1500 (see Figure
+to the parameter map, as we shall show in Section §3.8               11). The slightly larger contribution from noise introduces
+
+                                                                                                           MNRAS 000, 1–26 (2020)
+6     Fosalba & Gaztañaga
+
+
+
+
+Figure 4. ΛCDM and residual foreground nuisance parameter (AP S ) variations across the sky (in Galactic coordinates). In each panel the
+color-code displays (%) fluctuations with respect to mean over all-sky within the range ±4σ. The same dynamic range is used for all the
+parameter maps shown in this paper. This map, which uses 12288 discs across the sky centered at the pixels of a HEALPix Nside = 32
+resolution map, is the baseline for the main results of the paper, and it is based on the input SMICA temperature map. Results obtained
+using maps from other foreground separation methods are consistent with those from SMICA, as discussed in Section §3.4.
+
+
+some additional fluctuations in the parameter maps, although          circles in the sky crossing at the ecliptic poles) which, if not
+to a level that is significantly smaller than in the case with        taken into account properly, could potentially bias our re-
+`min = 450, what does not alter the main parameter vari-              sults. However, the robustness of our parameter maps to this
+ation features across the sky. It is interesting to note that         high-` range shows that such inhomogeneities do not con-
+the range of scales ` > 1500 in the power spectrum is the             tribute significantly to these maps. On the other hand, the
+most sensitive to noise inhomogenities due to the particular          residual foreground parameter, APS , is only contributing to
+scanning strategy of the Planck satellite (i.e, sweeping great        the power spectrum at high multipoles (` > 900, see Fig-
+
+
+MNRAS 000, 1–26 (2020)
+                                                                              Explaining Cosmological Anisotropy                7
+
+
+
+
+Figure 5. Estimated size of the cosmological Horizons for the 5 ΛCDM parameters used, when the input power spectra are computed in
+discs of 40 degrees in diameter.
+
+
+
+
+                             Figure 6. Same as Figure 5 but when using discs of 60 degrees in diameter.
+
+
+
+
+                             Figure 7. Same as Figure 5 but when using discs of 90 degrees in dimaeter.
+
+
+
+
+                                                                                                          MNRAS 000, 1–26 (2020)
+8     Fosalba & Gaztañaga
+                                                                       ciated parameter map shows arbitrary large variations across
+                                                                       the sky (see bottom right panel of Figure 12).
+
+
+                                                                       3.4 Robustness to foregrounds
+                                                                       Since horizons happen to be close to the Galactic plane, it
+                                                                       is natural to wonder whether these are affected or even pro-
+                                                                       duced by residual Galactic contamination. In order to address
+                                                                       this question we have applied the same map-making pipeline
+                                                                       for the 4 different component separation maps produced by
+                                                                       the Planck collaboration (Planck Collaboration et al. 2020a):
+                                                                       SMICA, Commander, SEVEM and NILC. These methods
+                                                                       cover very efficient and completely independent approaches
+                                                                       to foreground subtraction. In Figure 13, we show the the case
+                                                                       for the Commander maps, but similar maps are obtained
+Figure 8. The three horizons (denoted by H1 , H2 and H3 ) identified   for SEVEM and NILC. In particular, it is clear from this
+across the Hubble parameter variation map. The circular bound-         analysis that the cosmological parameter fluctuations across
+ary of each horizon is set when the parameter variation vanishes,      the sky are robust to component separation methods as the
+i.e, when it is equal to the all-sky mean (in light yellow for the
+                                                                       features in those are largely invariant across methods. On
+color scale used). Note that the horizons partially overlap between
+                                                                       the other hand, the residual foreground component, APS ex-
+them. Very similar horizons are obtained for the other ΛCDM pa-
+rameters.                                                              hibits large amplitude (ie., dynamic range) and spatial fluc-
+                                                                       tuations across methods, suggesting that indeed the only im-
+                                                                       pact of foregrounds on our analysis is through the ”effective”
+                                                                       residual point-source-like component, APS . This is explicitly
+                                                                       shown in Fig.14, where we illustrate, in the top and mid-
+                                                                       dle panels, how the CDM density, Ωc h2 and Hubble param-
+                                                                       eter, H0 , display the same features in the half-sum maps,
+                                                                       (SMICA + SEVEM/2), whereas the half-difference, (SMICA-
+                                                                       SEVEM)/2, is consistent with no signal (note the dynamic
+                                                                       range of color scale for the latter is half of that used in the
+                                                                       half-sum, to emphasize residuals). This is in contrast with
+                                                                       the case for the residual foreground parameter, APS , where
+                                                                       notable differences are seen from both component separation
+                                                                       methods (bottom panel).
+                                                                          As a further test, we have investigated whether our assump-
+                                                                       tions about the foreground model template may impact our
+                                                                       results. In particular, we have extended our single nuisance
+                                                                       parameter in our fiducial analysis, APS , that is only important
+                                                                       at large multipoles of the CMB temperature power spectrum,
+Figure 9. Same as Figure 8 but for the Dark-Energy density pa-         to include an additional component, related to dust, at low
+rameter.                                                               multipoles. In order to implement this, we have derived the
+                                                                       power spectrum of the ”CMB-subtracted” SMICA foreground
+                                                                       component separation map for the 143 GHz channel 6 , since
+                                                                       this represents a good balance between the different HFI fre-
+ure 15), so the scale cut `max = 1500 strongly affects this
+                                                                       quency channels contributing to the CMB maps. Figure 15
+parameter map, as shown in the lower right panel of Figure
+                                                                       shows the power spectrum measured from the template com-
+11.
+                                                                       pared to an analytic fit that accurately reproduces the qual-
+   Alternatively, as shown in Fig.12, when only the first three
+                                                                       itative behavior of the template at low and high multipoles
+acoustic peaks are included in the analysis, `max = 900,
+                                                                       (Planck Collaboration et al. 2016a)):
+the main features of the parameter maps remain largely un-
+changed, although we start seeing some differences with re-            C` = ADust (`/`p )αDust + AP S                               (2)
+spect to the full analysis (see Fig.4) that includes up to
+six peaks for `max = 2000). This is to be expected, as the             where `p = 3000 is a pivot or reference multipole, ADust
+signal-to-noise in the angular power spectrum is well spread           and αDust describe the Galactic dust emission amplitude and
+throughout the full dynamic range spanning from `min = 32              spectral index, respectively, and the shot-noise-like ampli-
+to `max = 2000, and cutting out scales beyond `max = 900               tude APS effectively encodes the CIB and extragalactic point-
+leaves only about half of the total signal-to-noise available          source contamination. We note that, in this extended fore-
+to the Planck temperature anisotropy maps and, therefore,              ground parametrization, we do not expect APS to have the
+its associated constraining power in terms of cosmological
+parameters is also reduced by a similar amount (see Planck
+Collaboration et al. 2020c). In turn, the residual foregrounds         6 Maps are available at          the   Planck   Legacy   Archive
+are not well constrained in this multipole range, so the asso-         http://pla.esac.esa.int
+
+MNRAS 000, 1–26 (2020)
+                                                                                    Explaining Cosmological Anisotropy                      9
+
+
+
+
+Figure 10. Same as Fig.4, but for the multipole range (`min , `max ) = (450, 2000), instead of the baseline, (`min , `max ) = (32, 2000). Note
+also that in these parameter maps, as for all the robustness tests, we use a factor of 4 coarser sampling of the sphere, i.e., 3072 discs
+(instead of the 12288 used in the baseline analysis), as this does not change our results.
+
+
+
+same value than in the simpler parametrization (ie., when we             parametrization in our CMB map best-fits to see if that
+set ADust = 0).                                                          makes any difference in our main results. In particular,
+  Using this parametrization we find the following best-fit              we have first performance a likelihood estimation on an 8-
+parameters over the full Planck footprint (ie., same mask                dimensional parameter space, including the same 5 ΛCDM
+than for the SMICA temperature CMB map), ADust = 26.5,                   parameters, Ωc h2 , Ωb h2 , H0 , ns , As and the 3 nuisance param-
+αDust = −2.6 and APS = 430. This is in good agreement                    eters, ADust , αDust , and APS . When fitting this model to the
+with the template values found by the Planck collaboration               Planck CMB temperature map over the full footprint, we find
+(Planck Collaboration et al. 2016a).                                     a vanishing dust amplitude, ADust = 0, what shows that our
+                                                                         single nuisance quantity is enough to capture foreground con-
+  We have used this extended nuisance or foreground
+
+                                                                                                                   MNRAS 000, 1–26 (2020)
+10     Fosalba & Gaztañaga
+
+
+
+
+                          Figure 11. Same as Fig.4, but for the multipole range (`min , `max ) = (32, 1500).
+
+
+
+tamination on the scale of the full footprint. Next we have          mated spatial variations of the nuisance parameter APS . The
+performed the same test but over the average power spec-             rather large and very noisy variations observed for the addi-
+tra for disc-shaped patches of 60 degrees in diameter, D60 ,         tional foreground-related parameters (ADust and αDust ) sug-
+we used to estimate parameter variations across the sky (see         gest these are purely Gaussian sample variance fluctuations
+§3), finding again no evidence for dust in the parameter fits        of otherwise vanishing mean quantities over the sky. There-
+either. As a final test, we studied whether this parametriza-        fore this analysis suggests that dust emission does not seem
+tion changes the evidence for horizons in the parameter vari-        to have any significant effect on the main anisotropies of the
+ation maps. Figure 16 shows that the features of the cosmo-          cosmological parameter maps.
+logical parameter maps, as well as the corresponding hori-
+                                                                       Moreover, we can statistically quantify the possible im-
+zon locations and amplitudes are largely unaffected by this
+                                                                     pact of foregrounds (mainly dust, CIB, and extragalactic
+potential dust component, the only change being the esti-
+                                                                     point sources) on the features that we observe in the cos-
+
+MNRAS 000, 1–26 (2020)
+                                                                              Explaining Cosmological Anisotropy                   11
+
+
+
+
+                           Figure 12. Same as Fig.4, but for the multipole range (`min , `max ) = (32, 900).
+
+
+
+mological parameter maps. For this purpose, we have studied           of the parameter maps, which are encoded in such dipole and
+the possible dependence of the C` ’s of the parameter maps            quadrupole moments, are not significantly affected by fore-
+on the different available versions of the foreground cleaned         ground emission.
+temperature anisotropy maps. Accordingly, we have replaced
+the SMICA map with the other component separation maps
+provided by the Planck collaboration, ie. the Commander,              3.5 Comparison to WMAP
+SEVEM and NILC maps. Figure 17 shows that our results
+                                                                      If the ΛCDM best-fit parameter variations across the CMB
+are robust to different foreground cleaning methods. In par-
+                                                                      sky are truely cosmological in origin, one should we able to
+ticular, only few % variations in the dipole and quadrupole
+                                                                      detect them using any CMB dataset, provided it has enough
+amplitudes are observed, but largely keeping the sum of them
+                                                                      signal to noise. In turn this provides an important test for sur-
+unchanged. Thus we conclude that the ”horizon”-like features
+                                                                      vey specific systematics as a possible source for the detected
+
+                                                                                                               MNRAS 000, 1–26 (2020)
+12     Fosalba & Gaztañaga
+
+
+
+
+                 Figure 13. ΛCDM cosmological parameter variations across the Commander CMB temperature map.
+
+
+anisotropic signal. As a cross-check of our main results, based   the final (9-year) temperature data maps from the LAMBDA
+on the Planck temperature data maps, we shall perform an          website7 for the 6 channels within the V and W frequency
+equivalent analysis on the WMAP 9-year data (Bennett et al.       bands (V1,V2,W1,W2,W3,W4). We note that we use the
+2013), which has a lower angular resolution and higher noise      maps with the asymmetric component of the beam ”decon-
+per power spectrum multipole beyond the first acoustic peak       volved”, so as to avoid introducing spurious anisotropic sig-
+with respect to Planck. However, we expect to find evidence       nals from CMB maps in our results (see Hanson et al. 2010).
+for consistent patterns of angular variations of the best-fit     As for the Galactic mask, we use the ”Extended Temperature
+cosmological parameters across the sky for WMAP, although         Analysis Mask” (KQ75y9) that leaves about 69% of the sky
+at lower statistical significance.
+  Our WMAP data analysis pipeline is described below:
+  • Step 1: Data. Following Bennett et al. (2013), we use         7   https://lambda.gsfc.nasa.gov
+
+MNRAS 000, 1–26 (2020)
+                                                                             Explaining Cosmological Anisotropy                   13
+
+
+
+
+Figure 14. Half-sum (left) and half-difference (right) maps for parameter variations obtained from the SMICA vs. SEVEM CMB maps.
+Top and middle panels show two examples of cosmological parameters, while the bottom panels show the case for the nuisance or residual
+foreground parameter.
+
+
+available for the analysis. Fig.18 shows an example map (W-          sulting C` ’s with the (symmetrized) beam transfer functions
+band frequency channel) smoothed with a 1 degree Gaussian            as provided in the LAMBDA website. We then subtract an
+beam (for better visualization) along with the mask used             estimate of the frequency-dependent bias due to unresolved
+                                                                     radio point sources (see Section §6.2 in Bennett et al. 2013)
+  • Step 2: Power spectrum estimation per channel. We com-
+                                                                       • Step 3: Final Power Spectrum. The final power spec-
+pute angular power spectra for each pair, with an inverse
+                                                                     trum is obtained by combining the cross-spectra from the
+variance (inhomogeneous) noise weighting given by w =
+√                                                                    15 channel
+                                                                              q pairs using an inverse noise weighting given by
+  Nobs /σ0 , where Nobs is the number of observations per pixel
+and σ0 is the noise per observation for a given channel (as          wi,j = 1/ σ0i σ0j , where the indexes i, j run over all the chan-
+given in Table 5 of Bennett et al. 2013), and deconvolve the re-     nel pairs and σ0i is the noise per observation for the i channel
+
+                                                                                                            MNRAS 000, 1–26 (2020)
+14      Fosalba & Gaztañaga
+                                                                        3.6 Horizons as the source of power asymmetry
+                                                                        The basic features of acoustic peaks in the CMB power spec-
+                                                                        tra can be entirely determined from three fundamental scales
+                                                                        or multipoles that depend on the cosmological parameters
+                                                                        (Hu et al. 2001): the matter-radiation equality (`EQ ), the
+                                                                        acoustic (`A ), and the damping scale (`D ). From the set
+                                                                        of 3072 discs of 60 degree in diameter, D60 , we estimate
+                                                                        `EQ = 148 ± 7, `A = 304.0 ± 0.6, and `D = 2018 ± 38. Further-
+                                                                        more we can thus use the cosmological parameter variation
+                                                                        maps measured in section §3.1 to derive the corresponding
+                                                                        variations of these scales across the sky. In particular, we
+                                                                        use the following expressions for a flat ΛCDM model (see
+                                                                        Eqs.(A15)-(A17) in Hu et al. (2001)):
+                                                                        ∆`EQ         ∆h        ∆ωb        ∆ωm
+                                                                             ≈ −0.48    + 0.07     − 0.15     ,                      (3)
+                                                                        `EQ           h         ωb         ωm
+
+Figure 15. SMICA ”CMB-subtracted” foreground template map               ∆`A   ∆h        ∆ωm
+power spectrum (red line) compared to an analytic fit (blue line) in-
+                                                                            ≈    + 0.59     ,                                        (4)
+                                                                         `A    h        ωm
+cluding a dominant diffuse dust emission at low multipoles (green)
+and an effective point-source component at high multipoles (ma-
+                                                                        and,
+genta).                                                                 ∆`D        ∆h        ∆ωb        ∆ωm
+                                                                            ≈ 0.42    + 0.20     − 0.12     ,                        (5)
+                                                                         `D        h          ωb         ωm
+                                                                        being ωm = ωc + ωb , with ωc = Ωc h2 , ωb = Ωb h2 , and
+                                                                        h = H0 /100.
+  • Step 4: Multipole range for likelihood estimation. In order            Figure 21 shows that the relative spatial variations of these
+to avoid potential foreground contamination, we set a lower             fundamental scales exhibit the same features observed for the
+multipole `min = 32 as we did for Planck, and a maximum                 basic ΛCDM parameter maps, displaying in particular the
+multipole `max = 900 to avoid beam suppresion effects and               three coherent ”horizon” shapes described above. This in turn
+residual high multipole foregrounds in the analysis. This in            emphasizes the universal nature of the features attributed to
+turn means that we only need to fit the 5 Λ CDM cosmo-                  the cosmological horizons.
+logical parameters to the final power spectra as the residual              On the other hand, a long-standing and puzzling anomaly
+foreground amplitude APS is negligible on these scales (unlike          in CMB analyses is the significant hemispherical power asym-
+the reference analysis we presented above for Planck)                   metry first found in WMAP data analyses (Eriksen et al.
+                                                                        2004, 2007; Lew 2008; Hansen et al. 2009; Hoftuft et al. 2009;
+   As a validation of the above analysis pipeline, Figure 19            Paci et al. 2010; Axelsson et al. 2013; Dai et al. 2013) and
+shows the resulting angular power spectrum (and derived                 more recently confirmed using Planck data (Planck Collab-
+best-fit ΛCDM parameters), when we use the full available               oration et al. 2014; Akrami et al. 2014; Aiola et al. 2015;
+area from the WMAP mask, compared to the WMAP team                      Planck Collaboration et al. 2016b; Mukherjee et al. 2016;
+results (Bennett et al. 2013), showing very good agreement,             Planck Collaboration et al. 2020d). In particular, Akrami
+given the errors.                                                       et al. (2014) claimed a detection at the 3.3σ level, arguing
+   We then repeat this analysis but for each of the 3072 discs          that their measurement is robust to systematic effects and
+of 60 degree diameter distributed across the sky. The re-               foregrounds, what points to a (yet unknown) physical origin
+sulting best-fit parameters for each disc are shown in the              for the source of this anisotropy.
+left panels of Figure 20, whereas the corresponding results                We shall provide below a simple explanation for the ori-
+for Planck, using the same scale cuts (i.e, `min = 32 and               gin of this power asymmetry in terms of the cosmological
+`max = 900) are displayed in the right panels. Although the             horizons, i.e, physically disconnected regions of our universe.
+WMAP signal-to-noise with the used scale cuts is 3 times                In particular, if these horizons do exist, as our analysis sug-
+lower than the full Planck analysis (i.e, with `max = 2000) we          gest (see Section §3.8 below for their significance), the fea-
+still expect to see some hints of the same anisotropic signals          tures they imprint on the maps of ΛCDM parameters or
+across WMAP maps. Remarkably, for the parameters Ωb h2 ,                fundamental scales could be responsible for the observed
+H0 and ns , we do observe the same large scale anisotropic              CMB power asymmetry. In previous analyses, Hansen et al.
+patterns (i.e, horizons) than in Planck, whereas for Ωc h2 and          (2009) found maximal asymmetry in WMAP data for a ref-
+AS , we find some differences, specially in the left hemisphere         erence direction (center of one of the hemispheres) pointing
+(i.e, the one around the galactic center). in fact, some dif-           to (l, b) = (226◦ , −17◦ ), which is consistent with more re-
+ferences are to be expected since, as we mentioned, WMAP                cent estimates by Akrami et al. (2014), who estimate a pre-
+data has larger noise (and lower resolution) than Planck. In            ferred direction towards (l, b) = (212◦ , −13◦ ) using Planck
+fact, for WMAP we expect the noise to contribute to a sim-              data. These directions are broadly consistent (within their
+ilar (although somewhat lower) level than the signal to the             estimated errors, see Fig.3 in Akrami et al. 2014) with the
+parameter maps, what seems to be in agreement with the fact             center of the H2 horizon, located at (l, b) = (240◦ , −5◦ ), (see
+that larger parameter variations are observed in the WMAP               Table 2).
+maps, as compared to Planck.                                               To illustrate how this particular test of cosmological
+
+MNRAS 000, 1–26 (2020)
+                                                                                Explaining Cosmological Anisotropy                     15
+
+
+
+
+Figure 16. Parameter variation maps for the extended foreground model. Note that the maps for the ΛCDM parameters do not significantly
+change with respect to the single nuisance parameter case used in the fiducial analysis. The mean amplitude of the dust emission foreground
+parameters (Adust ) across the sky is consistent with zero, what induces large angular fluctuations of the extended foreground parameters
+(see text for details).
+
+
+anisotropy also seems to originate from the existence of such           ing towards H2 , we find a 15% higher matter density and 5%
+horizons, in Figure 22 we show the (3D) distribution of val-            lower expansion rate, that is correlated with a 2% smaller
+ues for the matter density Ωm and Hubble parameter H0 as a              spectral index, as compared to the values found in the oppo-
+function of the spectral index ns in discs distributed across the       site (O2 ) hemisphere. Similar albeit somewhat smaller param-
+sky. In particular, non-negligible shifts in estimated best-fit         eter differences are found when defining hemispheres point-
+parameters are inferred from the hemisphere centered at the             ing to the H1 and H3 horizons. However we must emphasize
+H2 horizon with respect to the opposite direction (denoted by           that the cosmological parameter hemispherical asymmetries
+O2 in Figure 22). In particular, inside the hemisphere point-
+
+
+                                                                                                                 MNRAS 000, 1–26 (2020)
+16     Fosalba & Gaztañaga
+
+
+
+
+Figure 17. Power spectra of the parameter variation maps: anisotropy features in the map are encoded in lowest multipoles (` < 10).
+Colors show different choices for the foreground component separation algorithms used to obtain the CMB temperature map, whereas
+the symbols with errorbars display the corresponding measurements from Gaussian isotropic simulations (see section §3.8 for the related
+discussion of the significance of the power spectrum monopole and dipole of the parameter maps that use as input the fiducial (SMICA)
+foreground cleaned map.
+
+
+
+
+Figure 18. WMAP temperature anisotropy map for the W fre-
+quency band, smoothed with 1 degree FWHM Gaussian beam.
+                                                                      Figure 19. Estimate of the angular power spectrum of the WMAP
+The Galactic mask used is overlaid.
+                                                                      temperature map (red symbols), compared to the published results
+                                                                      from the WMAP team (green symbols, slightly shifted to the right
+                                                                      for clarity). The spectrum for the best-fit parameters is shown by
+                                                                      the solid blue line. Lower panel shows residuals of the estimated
+                                                                      spectrum with respect to the best-fit.
+
+hinted above are not found to be statistically significant given
+the estimated errors (i.e, scatter across discs measurements).
+
+MNRAS 000, 1–26 (2020)
+                                                                           Explaining Cosmological Anisotropy                  17
+
+
+
+
+Figure 20. ΛCDM parameter maps for WMAP (left) and Planck (right). Both datasets use the same scale cuts, as detailed in the text.
+
+
+
+
+                                                                                                          MNRAS 000, 1–26 (2020)
+18      Fosalba & Gaztañaga
+
+
+
+
+                                                                       Figure 22. Power asymmetry from cosmological horizons: differ-
+                                                                       ences in Ωm , H0 and ns for the hemispheres pointing towards the
+                                                                       center of the H2 horizon (purple symbol with errors) and its op-
+                                                                       posite direction on the sky O2 (green). The mean value across the
+                                                                       sky is shown for reference (black dot).
+
+
+
+
+                                                                       Planck Collaboration et al. (2020b)), we need to combine an-
+                                                                       gular power spectra from the 100, 143 and 217 GHz frequency
+                                                                       channels. This amounts to a total of 900 CMB simulated
+                                                                       maps.
+Figure 21. Maps of spatial variations of the fundamental scales of        On the other hand, as mentioned above, for each frequency
+the CMB power spectrum: top panel shows changes in the equality        channel, we have also used the 300 available realizations of
+scale, middle panel shows the corresponding map for the acoustic       the (anisotropic) noise and instrumental effect residual maps.
+scale and the bottom panel the damping scale (see text for details).   We select the version corresponding to the ”Odd” and ”Even”
+These maps show the same features than in the cosmological pa-         (OE) stable pointing periods to model the corresponding OE
+rameter maps (see e.g. Figure 4).
+                                                                       data cuts used in our analysis. Again, we need to combine
+                                                                       noise maps from the three relevant HFI frequency channels
+3.7 Simulations                                                        in order to properly model the Planck likelihood estimation,
+                                                                       what amounts to a total of 900 noise realizations (× 2 data
+In order to quantify the significance of the measured angular          cuts). Finally we can combine each CMB and noise realization
+features in the cosmological parameter maps we have ana-               (for each frequency channel and OE data cut) to produce a
+lyzed two sets of simulations. First, we have used a set of            set of ”realistic” simulations of the Planck temperature maps.
+300 ”Full Focal Plane” (FFP10) lensed CMB maps8 , which                   In order to validate the CMB plus noise realizations, we
+are convolved with the FEBeCoP effective beams. We note                make use of our validated cosmological parameter estimation
+that we limit our analysis to 300 CMB realizations per fre-            pipeline described in Section §2.3, involving the computation
+quency channel (out of the 1000 available in the Planck                of cross power-spectra C` ’s using the same Galactic mask that
+Legacy Archive) so as to match the number of correspond-               is applied to the analysis of the real data (see Section §2) .
+ing FFP10 noise realizations available in the Planck Legacy            This involves computing 1500 cross power-spectra involving
+Archive. CMB maps are provided for the full-mission only               OE1×OE2 rings maps for the 5 frequency pair combinations
+and, in order to follow the Planck likelihood estimation (see          (100 × 100, 100 × 143, 143 × 217, 217 × 143 and 217 × 217 GHz)
+                                                                       for each of the 300 realizations per frequency channel.
+8 Planck simulations are available from the Planck                        As a first validation, we estimated the cosmological best-fit
+Legacy     Archive     webpage,    http://pla.esac.esa.int             parameters from the average of the 300 simulated map power
+and they are described in the Planck Legacy Archive                    spectra using the full Planck mask (instead of the set of discs)
+wiki,http://wiki.cosmos.esa.int/planck-legacy-                         to see if we recover the input flat-space ΛCDM cosmological
+archive/index.php/Simulation_data                                      parameters given in the Planck Legacy Archive Simulations
+
+MNRAS 000, 1–26 (2020)
+                                                                               Explaining Cosmological Anisotropy                        19
+
+
+
+
+                                                                       Figure 25. Planck 2018 Odd-Even rings half-mission half-difference
+                                                                       (OEHD) SMICA temperature map, smoothed with 10 degree
+Figure 23. Mean power spectrum for a set of 300 Planck tem-
+                                                                       FWHM Gaussian beam, shown in orthographic projection. This
+perature FFP10 CMB+noise realizations compared to its best-
+                                                                       map represents an estimate of the anisotropic noise and residual
+fit model, i.e, basic ΛCDM cosmology plus an additional nui-
+                                                                       systematics from the data.
+sance (residual foreground) parameter (see text for details). Lower
+panel depicts differences between simulation measurements (sym-
+bols with errorbars) and the best-fit model (solid blue line).
+                                                                       As shown in the figure, the best-fit cosmology is consistent
+                                                                       with a scalar spectral index ns = 1.00 (see dashed line in
+                                                                       Figure 2 what is clearly at variance with the claimed input
+                                                                       cosmology, with ns = 0.964 , for the FFP10 CMB realiza-
+                                                                       tions ( see solid magenta line in Figure 2) according to the
+                                                                       Planck Legacy Archive Simulations wiki. We have also veri-
+                                                                       fied that using CMB realizations alone (i.e, without adding
+                                                                       noise) we consistently recover the same best-fit spectral in-
+                                                                       dex. Moreover, the recovered value of ns is more than 6 σ
+                                                                       away from the Planck best-fit value (see Figure 2, and Table
+                                                                       1), what makes the cosmology simulated rather unrealistic.
+                                                                       Therefore it is clear that something is wrong with this set
+                                                                       of simulations and we have not been able to clarify exactly
+                                                                       what. In view of this, we decided not to use the FFP10 CMB
+                                                                       simulations for our analysis, since we could not validate them
+                                                                       with the same pipeline we used for the data and with which
+                                                                       we could recover the best-fit values obtained by the Planck
+                                                                       Collaboration within 1-σ errors (see Table 1).
+                                                                          As for the FFP10 anisotropic noise realizations, that incor-
+Figure 24. Impact of the anisotropic noise: the mean power spec-       porate the Planck scanning strategy, Figure 24 shows that the
+trum for a set of 300 FFP10 noise realizations (blue symbols) com-     amplitude of the noise for the OE data cuts used (which in
+pared to the mean Planck temperature power spectrum measure-           turn is in good agreement with a simple noise and residual
+ments (green line) and associated errors (thick red line) in discs     systematics estimate from the half-mission half-difference OE
+across the sky. Lower panel shows that the average anisotropic
+                                                                       maps, specially at thigh multipoles), is negligibly small, of or-
+noise amplitude (which is comparable to the simple noise estimate
+from the half-mission half difference maps, magenta line) is of or-
+                                                                       der 1% at most, compared to the 1-σ errors of the estimated
+der 1% of the amplitude of the 1-σ errors in the power spectra         mean power spectrum in the disc-like patches that we use
+used to derive the cosmological parameter maps.                        to derive the cosmological parameter maps. In addition, in
+                                                                       Figure 25 we show the spatial distribution of the estimated
+                                                                       noise from the data (i.e, half-mission half-difference OE maps,
+wiki (Ωc h2 = 0.120, Ωb h2 = 0.0222, H0 = 67 Km/s/Mpc,                 smoothed with a 10 degree FWHM Gaussian beam for clar-
+ns = 0.964, As · 109 = 2.120)9 .                                       ity), is spatially uncorrelated with the ”horizons” in the cos-
+  Figure 23 shows the resulting mean power spectrum esti-              mological parameter maps (see e.g, Figures 8,9). We can thus
+mated from the 300 FFP10 CMB plus noise realizations10 .
+
+9 Although we have also fixed the optical depth                        power estimates depicted at multipoles ` = 800, 1190, most visible
+                                                  P to reionization,
+τ = 0.060, and the sum of the neutrino masses, mν = 0.060 eV,          in the lower panel of Figure 23, reflect the slightly step-like change
+to the values given in the Planck wiki, we have checked that setting   in the weights applied when combining the power spectra from
+them to the Planck best-fit values (see Table 1) does not change       different frequency pairs, approximately following the scheme used
+the outcome of our validation                                          in the Planck likelihood estimation (see Planck Collaboration et al.
+10 We note that the small discontinuities or jumps in the band         (2020b))
+
+                                                                                                                 MNRAS 000, 1–26 (2020)
+20       Fosalba & Gaztañaga
+safely conclude that the anisotropic noise does not have any                                                                                        (6)
+impact on our main results.
+                                                                             where    C`i  and     C`data with ` = 1, 2 refer to the
+   As an alternative, we produced a suite of 300 Gaussian
+                                                                             dipole/quadrupole multipoles of the i-th simulation and the
+simulations, including the lensed CMB temperature plus a
+                                                                             data, respectively, and Cov −1 (`, `0 ) is the inverse of the co-
+residual foreground sky, making use of the SYNFAST HEALPix
+                                                                             variance matrix for the dipole and quadrupole estimated from
+routine with best-fit parameters to Planck temperature and
+                                                                             the set of Nsim = 300 simulations.
+low multipoles of the polarization data (see Table 2 in Planck
+                                                                                Our results are summarized in Figure 26. By definition,
+Collaboration et al. 2020c; see also Table 1 above), and added
+                                                                             if the data is consistent with a Gaussian realization drawn
+one Poisson-like ”residual foreground” amplitude that effec-
+                                                                             from this set of simulations, the mean value of this ∆χ2
+tively accounts for the combination of CIB and extragalactic
+                                                                             distribution is equal to the number of degrees of freedom,
+point sources contributions from different frequency chan-
+                                                                             i.e, 2 (shown as a vertical line in the figure). However the
+nels, as explained above (see Section §2). This input fore-
+                                                                             dipole and quadrupole in the data show ∆χ2 distributions
+ground amplitude is determined from a joint fit of the basic
+                                                                             significantly away from the Gaussian expectations, yielding a
+ΛCDM cosmology and this ”effective nuisance” parameter to
+                                                                             ∼ 2.5% probability of being consistent with a Gaussian fluc-
+the Planck temperature map over the full footprint (i.e, we
+                                                                             tuation for Ωc h2 and Ωb h2 , whereas this probability drops to
+use the ”common” mask for half-mission maps and the ”miss-
+                                                                             0.4% for H0 , 0.06% for ns and 0.0004% for AS . Although the
+ing pixel” mask for the ”Odd-Even” data cuts, which leaves
+                                                                             quoted significances are derived from the SMICA map, we
+about 76 % of the sky unmasked). Using this set-up we es-
+                                                                             have checked that these values do not significantly change if
+timate an amplitude of APS ≃ 70, from the SMICA version
+                                                                             we use a different component separation map. On the other
+of the CMB map, as shown in Table 1. To the resulting suite
+                                                                             hand, It is interesting to note that a relatively low probability
+of simulated maps, we apply the same methodology for the
+                                                                             3.5% is also found for the extragalactic residual foreground
+power spectra estimation in discs across the sky and corre-
+                                                                             parameter, AP S . However the all-sky mean value (and thus its
+sponding cosmological best-fit parameter estimation than we
+                                                                             angular variations) is not robust to the choice of foreground
+did for the data maps, as described in section §2.
+                                                                             cleaned map used.
+   Figure 17 shows the the power spectra of the parameter
+                                                                                We can then estimate a total significance for the cosmolog-
+variation maps from the set of discs is largely dominated by
+                                                                             ical parameter horizons generalizing Eq.(6) by combining the
+the very lowest multipoles (dipole and quadrupole in par-
+                                                                             5 cosmological parameter contributions, and including their
+ticular) and higher multipoles are quickly suppressed i.e, we
+                                                                             covariance,
+can use a course sampling of the sky with discs to accurately
+estimate the observed variations of the parameter maps. In                             X i
+                                                                             ∆χ2T ot =                data
+                                                                                           (C`,α − C`,α    ) · Cov −1 (`, `0 , α, β)(C`i0 ,β − C`data
+                                                                                                                                                  0 ,β )
+practice, we use discs located at the center of the Healpix
+                                                                                         α,β
+pixels of a map with Nside = 4 (i.e, 192 discs across the
+sky) to measure power spectra of the parameter maps up                                                                                              (7)
+to `max = 12. In turn this means that we have estimated                                                2       2
+                                                                             where {α, β} = {Ωc h , Ωb h , H0 , ns , As }, and we have omit-
+a total of 192 discs/realization × 300 realizations = 57, 600                ted the sum over multipoles and simulation index for ease of
+6-dimensional (ΛCDM+nuisance) parameter fits. Using this                     notation. The result is shown in Figure 27. Taking the aver-
+procedure, we see that the measured amplitudes for the dipole                age over the ∆χ2T ot distribution one thus obtain a value of
+and quadrupole in the data are clearly in excess of what is                  60.4 which for the 10 degrees of freedom (5 ΛCDM parame-
+found in the Gaussian simulations.                                           ters × 2 multipoles) gives a Gaussian probability of 3 × 10−9 .
+                                                                             It is interesting to note that the covariance between parame-
+                                                                             ters (for a given multipole) is found to have negligible impact
+3.8 Significance of Casual Horizons                                          (within 2 %) on the computation of the significance, what
+                                                                             means that the features of one best-fit cosmological parame-
+The appearance of horizons in the angular fluctuations across
+                                                                             ter map are not statistically correlated with the correspond-
+the sky of the cosmological best-fit values seem quite promi-
+                                                                             ing features in a another parameter map, what means that
+nent and their angular size are robust to the mask area used.
+                                                                             the quoted cosmological anisotropy is signficantly contributed
+We note however that the amplitude of the parameter vari-
+                                                                             by all the sampled ΛCDM parameters11 . On the other hand
+ations depends somewhat on the patch size used, as sample
+                                                                             neglecting the off-diagonal elements of the full covariance, i.e,
+variance modulates them. Ultimately, for the main results of
+                                                                             excluding the covariance between multipoles and among pa-
+the paper, we have chosen disc size of 60 degree diameter as
+                                                                             rameters, changes the probability by an order of magnitude
+the fiducial case which is, as noted in Section §3.2, a compro-
+                                                                             (drops from 3 × 10−9 to 4 × 10−10 ). This is the main result of
+mise between sample variance (larger for smaller discs), and
+over-smoothing (larger for bigger discs).
+  The significance of the dipole and quadrupole amplitudes                   11  Note that for the covariance estimation we make use of Gaus-
+of the data parameter map is assessed by estimating how                      sian isotropic simulations. This makes the amplitude of the power
+many Gaussian simulations display an amplitude of these two                  spectrum multipoles of the best-fit cosmological parameter maps
+multipoles as large as those measured in the data. In order                  from simulations to be systematically lower than the data, as
+to quantify this significance, for each parameter α, we define               shown in Figure 17. However for a given high multipole (` > 32),
+a ∆χ2 statistic as follows,                                                  we expect the Gaussian covariance between cosmological parame-
+                                                                             ter maps to be a reasonably accurate estimate of the covariance in
+          X      Nsim
+                  X                                                          the data (see Muir et al. 2018 for the impact of non-Gaussianity,
+∆χ2α =                     i
+                         (C`,α   data
+                               −C`,α  )·Cov −1 (`, `0 )(C`i0 ,α −C`data
+                                                                    0 ,α )   as induced by survey artifacts and foregrounds, in the covariance
+         `,`0 =1,2 i=1                                                       estimation of CMB ”anomalies” at low multipoles).
+
+MNRAS 000, 1–26 (2020)
+                                                                                 Explaining Cosmological Anisotropy                      21
+
+
+
+
+Figure 26. Significance of features in data parameter maps: histogram shows the ∆χ2 distribution of the dipole and quadrupole amplitudes
+in data vs. Gaussian isotropic simulations. Mean values of the distribution in excess from ∆χ2 = 1 (vertical dashed line) quantify deviations
+from Gaussian isotropy (dashed line), with a probability of being a statistical fluctuation as quoted in the panel labels.
+
+
+
+                                                                         data vs. lower redshift probes, such as SN Ia (see Planck Col-
+                                                                         laboration et al. 2020c; Riess 2019 and references therein).
+                                                                         Here we provide an alternative angle to this ”tensions” by an-
+                                                                         alyzing the differences one can find already from statistically
+                                                                         significant fluctuations across the CMB temperature maps,
+                                                                         ie, apparent ”tensions” from measurements of the universe at
+                                                                         redshift z ≈ 1100. Because the horizons cover roughly circu-
+                                                                         lar patches of ≃ 60 degree radius in the CMB sky, the corre-
+                                                                         sponding comoving transverse extent is similar to the comov-
+                                                                         ing radial separation between us and the CMB last scattering
+                                                                         surface. Thus if we interpret the measured CMB horizons as
+                                                                         causally disconnected regions, we should also expect simi-
+                                                                         lar variation in cosmological parameters between z = 0 and
+                                                                         z ≃ 1100. Figure 4 in Gaztañaga (2021b) shows the observ-
+                                                                         able angular size of the horizons as a function of z. At z < 2
+Figure 27. Same as Figure 26 but for the total significance for the
+                                                                         this angle is larger than 180 degrees (i.e, the largest accessi-
+combined ΛCDM parameters. Solid line displays the significance           ble separations in the sky), so we do not expect to observe
+from the Planck measurement, whereas the dashed line depicts the         angular variations within the local universe.
+reference Gaussian isotropic expectation.                                  Figure 28 shows the correlations among cosmological pa-
+                                                                         rameters for discs whose pixel at the center is within one
+                                                                         well-defined horizon, ie, H1 , H2 and H3 . The first interesting
+this paper, and shows that, for a flat ΛCDM model, there is a            thing to note is that the probability distributions of the pa-
+directional dependence of the cosmological parameters across             rameters hardly overlap for the 2 most significant horizons
+the sky that is inconsistent with the Cosmological principle             (H1 , H2 ), with differences significantly away given the errors
+of isotropy to a very high degree of confidence, i.e, a prob-            (rms scatter across patches overlapping each horizon).
+ability of ∼ 10−9 . In turn this anisotropy is related to the
+existence of three well-defined coherent regions, dubbed hori-              Even if statistically significant, one may wonder whether
+zons, where the CMB temperature data prefer significantly                the horizons we detect are sourced by some unknown sys-
+different best-fit values.                                               tematics instead of a true cosmological signal. In Figure 29
+                                                                         we display the scatter plots between the χ2 /dof for each disc
+                                                                         measurement across the sky against the ΛCDM parameters
+                                                                         and the nuisance (residual foreground) parameter, for the
+3.9 ”Tensions” between best-fit parameters from different
+                                                                         three horizons detected. Scatter plots are colored according
+    Horizons
+                                                                         to density, so that lighter colors depict higher density of mea-
+Recent claims in the literature point to significant tensions in         surements. Two main features arise from these plots. First,
+cosmological parameter constraints, the most notable being               the fact that most of the discs exhibit low χ2 /dof values (typ-
+the determination of the Hubble parameter from the CMB                   ically ≃ 1). This means that the BAO features (which cap-
+
+                                                                                                                  MNRAS 000, 1–26 (2020)
+22      Fosalba & Gaztañaga
+
+
+
+
+Figure 28. 2D parameter correlation plots for measurements within the three horizons identified in the SMICA temperature map, H1 , H2 ,
+and H3 (scatter plots with colors), and the mean values over the entire footprint (all-sky). For reference, summary statistics include both
+the mean and scatter for the 12288 disc measurements across the sky.
+
+
+ture most of the information content in the power spectrum              support to the cosmological origin of the observed large-scale
+in the multipole range considered, 32 < ` < 2000) are well              parameter anisotropies.
+fitted by the same flat-space ΛCDM model that the average
+measurements over the full Planck footprint, but with slightly             Therefore, if cosmological parameters show significant vari-
+different best-fit values. Secondly, if a non-cosmological sig-         ations between experiments carried out separately over those
+nal was driving the observed anisotropies, one would expect             particular horizons, one would expect to find statistical ”ten-
+the largest fluctuations in the cosmological parameter maps             sions” in the corresponding best-fit parameters. In fact, as
+would be strongly correlated with high χ2 values, which is              pointed out in Section §3.1, parameter differences between
+not what we observe. The above two arguments lend further               the two most significant horizons are up to ∼ 30%, e.g, for the
+                                                                        Hubble parameter. If these differences are typical of causally
+
+MNRAS 000, 1–26 (2020)
+                                                                                Explaining Cosmological Anisotropy                     23
+
+
+
+
+Figure 29. Correlation between the χ2 per degree of freedom with the best-fit ΛCDM and residual foreground parameters within the H1 ,
+H2 , and H3 (from top to bottom rows, respectively). Plots are colored according to density, so that lightest colors correspond to the most
+highly populated regions in the 2D space (i.e, larger number of disc measurements). The rightmost panels show the distribution of the χ2
+values inside a given horizon, whereas the vertical dashed line displays the mean value.
+
+
+disjoint horizons in the universe, not only at the last scatter-        of being consistent with a Gaussian fluctuation is < 3% for
+ing surface, as we find here, but also in the local universe,           each of the cosmological parameters explored (see Figure 26),
+it may provide a simple explanation for the observed cosmo-             which is in qualitative agreement with the quoted significance
+logical parameter ”tensions” between low and high redshift              from previous analysis on CMB anomalies. Moreover, when
+datasets (see e.g, Riess et al. 2019; Wong et al. 2019; Mar-            all parameters are combined, the resulting probability drops
+tinelli & Tutusaus 2019; Planck Collaboration et al. 2020c;             to ∼ 10−9 (see Figure 27), which is a very strong evidence
+Park & Rozo 2020 and references therein).                               for Cosmological anisotropy on the largest accessible scales.
+                                                                           We shall stress that the anisotropy we find is correlated
+                                                                        with the dominant dipole-modulation found in other analyses
+                                                                        (such as the power asymmetry analyses), but it is uncorre-
+4 DISCUSSION                                                            lated (directionally) with the residual Doppler signal present
+The so-called ”anomalies” in CMB data have posed a chal-                in the Planck maps. In fact, as shown in Planck Collaboration
+lenge to the standard model since the release of WMAP data,             et al. (2016b) (see their Figures 34 & 35), the Doppler resid-
+almost two decades ago (Bennett et al. 2003). Although the              ual only affects high multipoles through the so-called ”aber-
+significance of such anomalies depends on the estimator and             ration” effect, which points to the direction (l,b) ∼ (260, 40)
+specific data set used, some of the statistical tensions with           degrees, clearly away from our three horizon centers. More-
+the ΛCDM model have been recently confirmed using the un-               over, as mentioned in Planck Collaboration et al. (2020d) (see
+precedented quality of the Planck Legacy data (Planck Col-              section 6.2), the asymmetry induced by the Doppler residual
+laboration et al. 2020a).                                               modulation has smaller amplitude than the dominant dipole-
+   In this paper we address one of the most notable anomalies,          modulation pattern and thus it has even lower significance.
+the CMB power asymmetry, from a new angle. By analyz-                   Similarly, since our simulations include the lensing signal of
+ing the Planck temperature anisotropy maps in small finite              the CMB temperature, lensing can not produce the cosmo-
+patches, we find that the best-fit cosmological parameters for          logical anisotropy pattern we detect.
+a simple ΛCDM model do show evidence for coherent varia-                   We have tested the robustness of our main results with
+tions across the sky, that we dub ”horizons”. Although the es-          respect to foreground separation methods. In particular, we
+timated significance of these horizons varies among the basic           found that only the spatial-variation map of the nuisance
+set of cosmological parameters, we found that the probability           parameter that encodes residual small-scale foreground con-
+
+                                                                                                                 MNRAS 000, 1–26 (2020)
+24      Fosalba & Gaztañaga
+tamination changes as a function of the method, unlike the
+cosmological parameter maps. As a further test, we have also
+shown that the evidence for horizons in Planck temperature
+maps is also robust to other possible contributions to the fore-
+ground template used, such as dust emission on large scales
+(see discussion in Section §3.4, and Figures 13-16). A quan-
+titative assessment of the impact of foregrounds on the an-
+gular power spectrum of the cosmological parameter maps is
+summarized in Figure 17 showing the robustness of our re-
+sults to the choice of component separation algorithm. More-
+over, a comparison between Planck and WMAP results (see
+Section §3.5) showed reasonable good agreement, albeit with
+some differences, as expected from the lower signal to noise in
+WMAP. This in turn points to the robustness of the detected
+anisotropy patterns for experiments with different frequency
+coverage, analysis pipelines, systematics and foreground sep-
+aration methods.
+   The estimated size of of these horizons range from ∼ 40 to           Figure 30. Angular 2-point correlation function of the Planck tem-
+70 degrees in diameter, i.e, comparable to the largest scales           perature map (red solid line). For reference we also show the theory
+where non-zero correlations are measured from CMB data                  prediction for the Planck best-fit ΛCDM cosmology (blue dashed
+(see e.g, Planck Collaboration et al. 2020c). In particular,            line). Shaded areas display the 68 % Gaussian confidence intervals
+Figure 30 shows the measurement of the angular 2-point cor-             (see text for details).
+relation function from the Planck SMICA temperature map
+over the ”common” mask that we have used in the main anal-
+ysis of this paper, which leaves about 76% of the sky for
+cosmological analysis. Although angular scales are strongly
+correlated, our analysis shows that the signal is consistent
+with zero for angular separations larger than ∼ 65 degrees, in
+agreement with previous analyses using WMAP and Planck
+data (Bennett et al. 2003; Gaztañaga et al. 2003; Copi et al.
+2015; Schwarz et al. 2016). This lack of large-angle corre-
+lations is at variance, given the statistical errors, with the
+best-fit ΛCDM model to Planck data12 .
+   From our analysis of the Planck temperature map, we find
+ΩΛ ≃ 0.8 on average for H1 and H3 , which have estimated
+sizes of θ(H1 ) ≃ 60 deg. and θ(H3 ) ≃ 40 deg. respectively,
+and we find ΩΛ ≃ 0.6 on average for H2 , which has an esti-
+mated size of θ(H2 ) ≃ 70 deg. Right panel of Figure 31 shows
+the measurements for θ (in degrees) as a function of ΩΛ . We
+also estimate the individual comoving scale χ for each hori-
+zon as χ = θdA , where dA is the angular diameter distance
+estimated with the cosmological parameters in each horizon
+(see Fig.28). Results are shown in the left panel of Figure 31
+                                                                        Figure 31. Left panel shows the Λ (χΛ , blue lines) and causal (
+in units of c/H0 , with H0 = 67 Km/s/Mpc. Note that the
+                                                                        χ§ , black lines) comoving horizons (in units of c/H0 , with H0 =
+estimates for χ are independent from the ones for θ because                                                              −1/2
+the latter are independent of H0 .                                      67km/s/Mpc) compared to the Hubble horizon ΩΛ       (dotted line)
+                                                                        and the angular diameter distance dA (dashed red line). As we
+   A ΛCDM universe is dynamically trapped inside the Hub-                                              −1/2
+                        −1/2 c                                          increase ΩΛ , χ transits from ΩΛ    to dA , which increases with
+ble horizon c/H = ΩΛ        H0
+                               . In comoving coordinates this
+                                                                        ΩΛ . The right panel shows the corresponding angles θ = χ/dA .
+results in a maximum scale χΛ and angle θΛ :
+                                                                        Points with errors show the measurements in the CMB.
+       Z ∞                                   Z 1
+             d ln a              χΛ                d ln a
+χΛ ≡                  ⇒ θΛ ≡         ; dA ≡                  (8)
+        0    aH(a)               dA           a   aH(a)
+                                                                        to the observable universe today. So in transverse distances,
+For a flat ΩΛ ≃ 0.7 we have χΛ ≃ 4.4c/H0 . This is close                this is a natural scale above which we could expect some
+                                                                        anomalies in the CMB sky: θΛ ≡ χΛ /dA ≃ 79 degrees, where
+12
+                                                                        dA is the comoving angular diameter distance to the CMB
+    We estimate the statistical errorbars from the diagonal of the      last scattering surface a ≃ 10−3 . The values of χΛ and θΛ
+analytic Gaussian covariance matrix (see e.g. Eq.(16) in Cabré
+                                                                        (blue lines in Figure 31) are close, but above, our horizon
+et al. 2007). In particular, these theory errors use as input the
+C` ’s which are then Legendre transformed to get the corresponding
+                                                                        measurements.
+errors in configuration space. Therefore, for consistency, we use the     Gaztañaga (2020, 2021b,a) has interpreted cosmic accel-
+C` ’s measured from the data for the ”Planck” case, and the theory      eration as the result of causally disjoint cosmological hori-
+ones according to the Planck best-fit cosmology for the ”ΛCDM”          zons or Black Hole Universes (BHU) of size comparable to
+case (see Table 1)                                                      χΛ . Such BHU model could simply explain why dark-energy
+
+MNRAS 000, 1–26 (2020)
+                                                                           Explaining Cosmological Anisotropy                   25
+density is comparable to the dark-matter density today (the        rameter tensions reported in recent analyses that combined
+”why now” issue) and address apparent cosmological param-          low and high redshift probes, without the need to invoke new
+eter tensions (as H0 estimate from low versus high redshift        physics beyond our standard model.
+data) as a consequence of the difference in parameter values
+in disjoint BHU horizons. In particular, as discussed in Gaz-
+tañaga (2020, 2021b), the causal boundary χ§ corresponding        ACKNOWLEDGEMENTS
+to a given ΩΛ is slightly smaller than the Λ trapped surface
+in Eq.8.This results from the zero action principle, which re-     This work is dedicated to the memory of my father, Marcelo.
+lates ΩΛ with the average of matter and radiation within the       PF is specially grateful to K.Benabed and O.Doré for useful
+light-cone. The relation between ΩΛ and the size of the BHU        comments on the draft, I.Tutusaus for advice with iMinuit,
+is a key prediction of the model that we can test with the         and J.Guerrero for help with the Hidra computing clus-
+measured CMB horizons.                                             ter at ICE. Hidra is funded by CSIC project EQC2019-
+   Black lines in Figure 31 show the prediction for χ§ and θ§      005664-P, with european FEDER funds. The development of
+as a function of ΩΛ from Eq.31 in Gaztañaga 2021b. There is       this project required 800, 000+ CPU hours at Hidra. Some
+a very good agreement with the CMB measurements. We also           of the results in this paper have been derived using the
+show the ”all-sky” measurement of the Planck 2-point angular       healpy (Zonca et al. 2019), HEALPix (Górski et al. 2005) and
+correlation function (black symbols labeled as ”2-pt”). This       CAMB (Lewis et al. 2000) packages. We acknowledge support
+”all-sky” measurement yields vanishing correlations for scales     from MINECO through grants ESP2017-89838-C3-1-R and
+above θ ≃ 65 degrees for a best-fit value of ΩΛ ≈ 0.7 (see         PGC2019-102021-B-100, the H2020 European Union grants
+Table 1), which is also consistent with the predictions from       LACEGAL 734374 and EWC 776247 with ERDF funds, and
+Gaztañaga (2020, 2021b). Note that there is no free param-        Generalitat de Catalunya through CERCA to grant 2017-
+eter in these predictions which where published (Gaztañaga        SGR-885 and funding to IEEC.
+2020) before the CMB analysis presented here was done.
+   The good agreement with the BHU predictions, in both an-
+gular size and comoving scale, supports the idea of a physical     DATA AVAILABILITY STATEMENT
+origin for the anisotropies that we found in the cosmologi-
+                                                                   The data underlying this article will be shared on reasonable
+cal parameter maps. The fact that we find a good fit to the
+                                                                   request to the corresponding author.
+same physical model of BAO (but with different parameters
+in different regions of the sky, see Figure 29) makes it hard
+to explain these anisotropies from systematics or any other
+non-cosmological signals. It also indicates that the same un-      REFERENCES
+derlying physical laws apply to different BHU horizons.            Aghanim N., Desert F. X., Puget J. L., Gispert R., 1996, A&A,
+   In this paper we have not included polarization data, which         311, 1
+could provide another handle on the evidence for anisotropy        Aiola S., Wang B., Kosowsky A., Kahniashvili T., Firouzjahi H.,
+in cosmological parameter estimation (see e.g Paci et al. 2010;        2015, Phys. Rev. D, 92, 063008
+Mukherjee 2015; Mukherjee & Souradeep 2016), and con-              Akrami Y., Fantaye Y., Shafieloo A., Eriksen H. K., Hansen F. K.,
+                                                                       Banday A. J., Górski K. M., 2014, ApJ, 784, L42
+strain the impact of the optical depth to reionization, τ , i.e,
+                                                                   Axelsson M., Fantaye Y., Hansen F. K., Band ay A. J., Eriksen
+possible ”patchy” reionization (Aghanim et al. 1996; Haiman            H. K., Gorski K. M., 2013, ApJ, 773, L3
+& Loeb 1998; Gruzinov & Hu 1998; Haiman & Knox 1999)               Bennett C. L., et al., 2003, ApJS, 148, 1
+on our results (Fosalba et al. in prep). However we anticipate     Bennett C. L., et al., 2013, ApJS, 208, 20
+that since τ is strongly correlated with the primordial power      Cabré A., Fosalba P., Gaztañaga E., Manera M., 2007, MNRAS,
+spectrum amplitude parameter, AS , that we have included in            381, 1347
+our temperature analysis, a priori we do not expect this ad-       Chon G., Challinor A., Prunet S., Hivon E., Szapudi I., 2004, MN-
+ditional parameter to have a significant impact. In addition,          RAS, 350, 914
+the scale-cuts used (` > 32) should limit the main expected        Colin J., Mohayaee R., Sarkar S., Shafieloo A., 2011, MNRAS, 414,
+contribution from the reionization signal.                             264
+                                                                   Copi C. J., Huterer D., Schwarz D. J., Starkman G. D., 2015,
+   In summary, we have found strong evidence for a violation
+                                                                       MNRAS, 451, 2978
+of the cosmological principle of isotropy from the analysis of     Dai L., Jeong D., Kamionkowski M., Chluba J., 2013, Phys.
+the Planck 2018 temperature map. Our analysis points to sig-           Rev. D, 87, 123005
+nificant deviations from statistical isotropy on cosmological      Eriksen H. K., Hansen F. K., Banday A. J., Górski K. M., Lilje
+scales, with a probability ∼ 10−9 of being a Gaussian fluc-            P. B., 2004, ApJ, 605, 14
+tuation. This is the largest reported evidence for a violation     Eriksen H. K., Banday A. J., Górski K. M., Hansen F. K., Lilje
+of the Cosmological principle to our knowledge. These pa-              P. B., 2007, ApJ, 660, L81
+rameter variations are consistent with the existence of three      Fosalba P., Szapudi I., 2004, ApJ, 617, L95
+distinct patches or horizons with significantly different values   Gaztañaga E., 2020, MNRAS, 494, 2766
+                                                                   Gaztañaga E., 2021a, hal-03106344, darkcosmos.com
+with respect to the the mean over the CMB sky. If the exis-
+                                                                   Gaztañaga E., 2021b, MNRAS, 502, 436
+tence of such horizons is confirmed in future analyses (e.g.,
+                                                                   Gaztañaga E., Fosalba P., Elizalde E., 1998, MNRAS, 295, L35
+in high-quality polarization data) this could lend further sup-    Gaztañaga E., Wagg J., Multamäki T., Montaña A., Hughes D. H.,
+port to models that predict the existence of those horizons,           2003, MNRAS, 346, 47
+such as the Gaztañaga (2020, 2021b,a) model. This in turn         Gordon C., 2007, ApJ, 656, 636
+would open the door to unveil the nature of dark-energy and        Górski K. M., Hivon E., Banday A. J., Wand elt B. D., Hansen
+cosmic acceleration, and resolve apparent cosmological pa-             F. K., Reinecke M., Bartelmann M., 2005, ApJ, 622, 759
+
+                                                                                                          MNRAS 000, 1–26 (2020)
+26      Fosalba & Gaztañaga
+Gruzinov A., Hu W., 1998, ApJ, 508, 435
+Haiman Z., Knox L., 1999, in de Oliveira-Costa A., Tegmark
+   M., eds, Astronomical Society of the Pacific Conference Se-
+   ries Vol. 181, Microwave Foregrounds. p. 227 (arXiv:astro-
+   ph/9902311)
+Haiman Z., Loeb A., 1998, ApJ, 503, 505
+Hajian A., Souradeep T., Cornish N., 2005, ApJ, 618, L63
+Hansen F. K., Banday A. J., Górski K. M., Eriksen H. K., Lilje
+   P. B., 2009, ApJ, 704, 1448
+Hanson D., Lewis A., Challinor A., 2010, Phys. Rev. D, 81, 103003
+Henrot-Versillé S., Perdereau O., Plaszczynski S., Rouillé d’Orfeuil
+   B., Spinelli M., Tristram M., 2016, arXiv e-prints, p.
+   arXiv:1607.02964
+Ho M.-F., Chiang L.-Y., 2018, arXiv e-prints, p. arXiv:1812.08980
+Hoftuft J., Eriksen H. K., Banday A. J., Górski K. M., Hansen
+   F. K., Lilje P. B., 2009, ApJ, 699, 985
+Hu W., Fukugita M., Zaldarriaga M., Tegmark M., 2001, ApJ, 549,
+   669
+Huang Y., Addison G. E., Weiland J. L., Bennett C. L., 2018, ApJ,
+   869, 38
+Land K., Magueijo J., 2007, MNRAS, 378, 153
+Lew B., 2008, J. Cosmology Astropart. Phys., 2008, 023
+Lewis A., Challinor A., Lasenby A., 2000, ApJ, 538, 473
+Martinelli M., Tutusaus I., 2019, arXiv e-prints, p.
+   arXiv:1906.09189
+Muir J., Adhikari S., Huterer D., 2018, Phys. Rev. D, 98, 023521
+Mukherjee S., 2015, Phys. Rev. D, 91, 062002
+Mukherjee S., Souradeep T., 2016, Phys. Rev. Lett., 116, 221301
+Mukherjee S., Wandelt B. D., 2018, J. Cosmology Astropart. Phys.,
+   2018, 042
+Mukherjee S., Aluri P. K., Das S., Shaikh S., Souradeep T., 2016,
+   J. Cosmology Astropart. Phys., 2016, 042
+Paci F., Gruppuso A., Finelli F., Cabella P., de Rosa A., Mandolesi
+   N., Natoli P., 2010, MNRAS, 407, 399
+Park Y., Rozo E., 2020, MNRAS,
+Planck Collaboration et al., 2014, A&A, 571, A23
+Planck Collaboration et al., 2016a, A&A, 594, A11
+Planck Collaboration et al., 2016b, A&A, 594, A16
+Planck Collaboration et al., 2020a, A&A, 641, A1
+Planck Collaboration et al., 2020b, A&A, 641, A5
+Planck Collaboration et al., 2020c, A&A, 641, A6
+Planck Collaboration et al., 2020d, A&A, 641, A7
+Prunet S., Uzan J.-P., Bernardeau F., Brunier T., 2005, Phys.
+   Rev. D, 71, 083508
+Quartin M., Notari A., 2015, J. Cosmology Astropart. Phys., 2015,
+   008
+Rassat A., Starck J. L., Paykari P., Sureau F., Bobin J., 2014,
+   J. Cosmology Astropart. Phys., 2014, 006
+Riess A. G., 2019, Nature Reviews Physics, 2, 10
+Riess A. G., Casertano S., Yuan W., Macri L. M., Scolnic D., 2019,
+   ApJ, 876, 85
+Samal P. K., Saha R., Jain P., Ralston J. P., 2009, MNRAS, 396,
+   511
+Schwarz D. J., Copi C. J., Huterer D., Starkman G. D., 2016,
+   Classical and Quantum Gravity, 33, 184001
+Secrest N., von Hausegger S., Rameez M., Mohayaee R., Sarkar S.,
+   Colin J., 2020, arXiv e-prints, p. arXiv:2009.14826
+Shaikh S., Mukherjee S., Das S., Wand elt B. D., Souradeep T.,
+   2019, J. Cosmology Astropart. Phys., 2019, 007
+Szapudi I., Prunet S., Pogosyan D., Szalay A. S., Bond J. R., 2001,
+   ApJ, 548, L115
+Wong K. C., et al., 2019, MNRAS, 498, 1420
+Zonca A., Singer L., Lenz D., Reinecke M., Rosset C., Hivon E.,
+   Gorski K., 2019, Journal of Open Source Software, 4, 1298
+
+
+This paper has been typeset from a TEX/LATEX file prepared by
+the author.
+
+
+MNRAS 000, 1–26 (2020)
+
