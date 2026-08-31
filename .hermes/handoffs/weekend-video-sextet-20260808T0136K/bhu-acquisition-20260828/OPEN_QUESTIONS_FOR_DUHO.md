@@ -6,7 +6,39 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — none. The browser-route question below was answered; question 8 is closed below.
+## OPEN — 1: RQ-A verdict is in — how to record it in entry 21?
+
+**What happened.** Lane 2 task 1 (RQ-A) computed the gravitational-wave amplitude that Roupas 2022
+(entry 21) explicitly deferred. Both review seats derived it independently (blind-double) and
+**converged**: the paper's distinctive interior quasi-normal mode has an *astronomically long
+damping time* (100 million to 10 billion years), so it radiates its energy far too slowly to make a
+detectable strain. Even granting an absurdly generous excitation, it sits below LISA's floor at
+realistic distances; the paper supplies no excitation factor and no event population, so no
+guaranteed amplitude exists. **Verdict: entry 21 is NOT a 5th calibrated falsifier — it is
+"PROSPECT-without-a-number" by derivation.** (Full workings: `RQ_A_RECONCILIATION_20260831.md` +
+the two seat results.) Bonus: one seat found a genuine 2π unit error in the paper — its "63 Hz" is
+angular frequency; the physical value is ~10 Hz.
+
+**Your call (the record change is tier-adjacent, so it's yours):**
+- **(a) Annotate entry 21 — recommended.** Keep tier = PROSPECT, add a line: *RQ-A (2026-08-31,
+  blind-double) derived the deferred QNM amplitude → undetectable at realistic distances (long
+  damping time) → PROSPECT-without-a-number; + the 2π unit error.* **Cost:** one record edit, no
+  tier change, no re-tallies. It's the honest outcome of the computation.
+- **(b) Leave entry 21 untouched; keep RQ-A only in the lane files.** **Cost:** the corpus record
+  doesn't reflect the finding, and a future reader re-opens "is it detectable?". **Gain:** zero churn.
+- **(c) Downgrade the tier (PROSPECT → consistency-only).** **Cost:** a real tier change + re-tally +
+  b67 update; and it's arguable — the *frequency* is distinctive and in-band; only the *amplitude*
+  fails. I do **not** recommend this; "PROSPECT-without-a-number" is the precise status.
+
+**My recommendation: (a).** Records what the derivation found without overclaiming a tier move.
+Nothing waits on it — RQ-A is filed and reconciled, entry 21's label is untouched until you rule.
+RQ-D (Easson map) is queued; RQ-E (Smolin-bar watcher) I'll stand up next regardless of this call.
+
+---
+
+## RESOLVED / CLOSED below
+
+### ✅ RESOLVED 2026-08-31 — browser-route (2/42/47 stay gated). Question 8 closed. All 8 delegated Qs closed.
 
 ### ✅ RESOLVED 2026-08-31 02:16 KST (Duho via Blanc: "leave them gated, keep ticking quietly").
 Option (b): entries 2, 42, 47 stay gated — no browser route. The corpus rests at 55 read + entries
