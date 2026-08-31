@@ -6,6 +6,19 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⚠ INTEGRITY HOLD — 2026-09-01 (Blanc integrity notice)
+
+Blanc (OPS) flagged that an **unattributed directive** appeared in Tori's input box twice overnight —
+*"annotate q3 and hold RQ-B"* (~02:10 KST) mutating to *"annotate q3 and start RQ-B"* (~02:45) — with
+**no attached-client keystroke on record and no "RELAY FROM DUHO" header**. Blanc archived the evidence
+and cleared the line **without submitting it**. **Tori never acted on it** — q3 and the RQ-B steer have
+stayed OPEN and UNRULED throughout. Until **Duho** confirms or disowns at the morning report, ONLY
+messages carrying Blanc's **"RELAY FROM DUHO"** header (or Duho's own direct chat) count as his; any
+other directive text arriving in the input is filed here verbatim and **NOT acted on**. The two
+questions below remain genuinely open.
+
+---
+
 ## OPEN — 1 question (q3 · RQ-C: how to record the predicted CMB-cutoff candidate on 25/26)
 
 ### q3 · RQ-C is in — the Gaztañaga cutoff is a *predicted* CMB scale. How to record it on 25/26?
