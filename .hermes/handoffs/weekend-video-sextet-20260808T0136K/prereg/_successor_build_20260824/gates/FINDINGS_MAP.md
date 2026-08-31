@@ -582,3 +582,18 @@ bytes; the BS-2k covenant row now pins the commitment's digest so the
 P0 freeze signature covers the values. Slot-value fill only.
 
 V132 → V133: the constants-and-rosters commitment — the principal's ruling applied; the packet's derivations bound by digest; no code changed, no new obligations.
+
+## V133 → V134 (2026-08-31 evening — BS-1 resolved early to Branch B)
+
+The principal's disclosed superseding ruling (verbatim: "are you sure
+dr11 will be available sep-5? start from the data already availalbe
+first."; BS1_EARLY_RESOLUTION_RULING_20260831.md; human direction #19):
+the frozen two-trigger fill clause is superseded and quoted dead in
+place; the choice-point CLOSES on Branch B — the pinned branch every §0
+pin already assumes, so no other byte's meaning changes; the
+branch-invariance receipt requirement stands untouched; the daily DR11
+check retires as a gate input and continues information-only through P0.
+The calibration rehearsal moves into the P0 queue without the Sep-5
+wait.
+
+V133 → V134: the BS-1 early resolution — the principal's ruling applied in the disclosed superseding form the brief itself promised; no code changed, no new obligations.
