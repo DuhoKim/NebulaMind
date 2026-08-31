@@ -485,3 +485,19 @@ real sweep refuses until the principal's convention confirm, whose flag-flip re-
 file by design.
 
 V125 → V126: the replay-harness pin — built, adversarially passed, gated, its residues stated in its own header.
+
+## V126 → V127 (2026-08-31 midday — the fourth pin: the canonical decoder)
+
+`gates/canonical_decoder.py` PINNED after its ladder: build → 25/25 fixtures →
+agy DEC-V1 (DEFECTIVE ×3: json.loads accepted NaN/Infinity/-Infinity and dumps
+round-tripped them through the canon check; the entry-only depth test let an
+EMPTY 9th-level container through; the EvilDict fixture evaluated a native type
+identity and never touched decoder code) → v2 repairs each with its seeded
+control (parse_constant + non-finite guard + allow_nan=False; level-of-self
+depth with the 8-level boundary accepted; foreign nodes fed through the ONE
+shipped _json_guard plus a type-exact output walk) → agy DEC-V2 SOUND 0 →
+KGATE_DECODER PIN-READY (no unblocking condition; the pin binds the exact
+verified bytes). The NFC probe literal became an ASCII escape after a Write
+normalization erased the decomposed form and the fixture caught it.
+
+V126 → V127: GPT56-V99 F8 (the decoder build item, slot-value filled); AGY-DEC-V1 F1–F3 (repaired and re-verified SOUND).

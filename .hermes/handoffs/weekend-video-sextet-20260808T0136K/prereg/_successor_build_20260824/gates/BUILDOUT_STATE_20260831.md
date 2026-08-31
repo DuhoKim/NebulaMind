@@ -33,3 +33,25 @@
   gate + draft pin still to do. NEXT BUILDS: enumeration_verifier, terminal_review
   verifier + ceremony script.
 - agy mapping RE-verify still running (dispatched 10:20).
+
+## Update 11:30 KST (post-compaction)
+- MAPPING: agy re-verify SOUND 0 (AGY_MAPPING_REVERIFY_20260831.md, committed
+  748f8c635). Ladder green end to end; ONLY Duho's four-value confirm outstanding.
+- DECODER: agy DEC-V1 DEFECTIVE 3 (NaN/Inf via parse round-trip; depth>8 entry-only
+  off-by-one at empty 9th level; vacuous EvilDict fixture) → v2 repaired with seeded
+  controls, 25/25 (commit 72a510b1d; NFC probe now an ASCII escape after Write
+  normalized the literal — fixture caught it) → agy DEC-V2 SOUND 0 (committed
+  8e507b02b) → kimi gate RUNNING in background (task bwjrad6b0, output at
+  scratchpad tasks/bwjrad6b0.output) → pin next (V127 slot-value fill: §11 "THE
+  CANONICAL DECODER … digest set when built" + §10 row + map sidecar + battery).
+- ENUMERATION VERIFIER: BUILT, 112/112 (commit 8e507b02b). The largest item: five
+  gates, catch-all recomputation + NAMES-CLASS template parse, arrival↔terminal join
+  (recomputed identity-envelope digests, FIFO, decide-within-D, cascade), boundary/
+  hold discipline (release-by-inequality, derived retry count), clock pass, store↔log,
+  passrec chain rule, terminated-path export closing verifier (per-kind FORM_SCHEMAS).
+  Record model normative in its docstring. agy verify DISPATCHED 11:26 (output:
+  AGY_ENUM_VERIFY_20260831.md, log runner_agy_enum.log) → then kimi gate → pin.
+- NEXT BUILD while seats run: gates/terminal_review_verifier.py + ceremony script
+  (contract: §11 terminal-review obligations + TERMINAL_SIGNATURE_RULING P0-P9;
+  completed form binds successor_export_digest; ceremony = closing verifier on the
+  completed path). Then BS-SI schema. BS-2k constants + rosters still need Duho.
