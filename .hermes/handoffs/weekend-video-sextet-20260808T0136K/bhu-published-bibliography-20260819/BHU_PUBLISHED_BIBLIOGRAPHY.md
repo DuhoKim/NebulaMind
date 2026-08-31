@@ -88,7 +88,7 @@ falsifier).
 | entry | tier | standing | warrant | what it fires |
 |---|---|---|---|---|
 | 7 | CALIBRATED-FALSIFIER | **FIRED** | **no pinned challenge in this corpus** — a statement about what is filed here, **not a finding that the derivation is sound**; neither seat could verify the literature. This record already scopes what it fired: an instrument chain, not CNS — scope adjudication, not validation. | the Brown–Bethe / VM-HLS / kaon-condensation instrument chain at M ≳ 2 M☉. NOT CNS — the source gives CNS only "serious doubt" / "a serious obstacle". |
-| 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | **DISPUTED, and the challenge is pinned** — Rothman & Ellis 1993 argue the selection argument needs every parameter change to reduce black holes while α and M_LC plausibly do the opposite; Harrison 1995 argues a recollapsing closed universe yields at most one offspring, removing differential reproduction. Smolin answers neither on those parameters. Read and gated 2026-08-29 (`b20`, `b21`, `b23`). **Silk 1997 still unread (paywalled).** | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
+| 31 | CALIBRATED-FALSIFIER | **LIVE**, 1.36σ short | **DISPUTED, and the challenge is pinned** — Rothman & Ellis 1993 argue the selection argument needs every parameter change to reduce black holes while α and M_LC plausibly do the opposite; Harrison 1995 argues a recollapsing closed universe yields at most one offspring, removing differential reproduction. Smolin answers neither on those parameters. Read and gated 2026-08-29 (`b20`, `b21`, `b23`). **Silk 1997 now READ 2026-08-31** (Duho purchased the 24h PPV; pinned `silk_1997_holistic_cosmology_science277_644.pdf`, sha256 `1d98d968`): a *Science* book review of Smolin's *The Life of the Cosmos* arguing CNS "fails at almost every encounter with astronomical reality" — the universe sits ~10⁴× BELOW optimal black-hole loading; small parameter changes (tilt the spectral index blueward ~10%, or seed one-in-10⁹–10¹² primordial black holes) would *increase* holes, not leave them near a maximum; and the astrophysical premises are wrong/unknown (carbon is NOT required for stars — first/halo stars are ~carbon-free, H cools nearly as well; the sign of supernova feedback is undetermined). Silk attacks the black-hole-*abundance* reasoning + astrophysics, **not** the neutron-star mass prediction — the review never mentions neutron stars, the 2.5 M☉ bar, or the strange-quark-mass route. So all three published critics hit the *reasoning*; none touches the calibrated number. Read, **NOT seat-gated**. **Tier UNCHANGED.** | CNS, at Smolin's own 2.5 M☉ bar. Heaviest well-measured neutron star 2.35 ± 0.11 M☉; 8.6% posterior mass above the bar, and *moving away* from firing as the error tightens. |
 | 51 | CALIBRATED-FALSIFIER | **LIVE**, unfired | **UNREPRODUCED FROM THE STATED INPUTS** — none of *six tested* routes from its ρ_Ce reaches the printed 10¹⁶ kg floor, the paper omits the connecting step, and the enumeration is **non-exhaustive**. **The text we hold
 is an ar5iv rendering of arXiv:0910.1181** which *carries* the *Phys. Lett. B* 690(1) 73–77 line in
 its own front matter — **it is NOT Elsevier's version of record**, and a 2026-08-29 claim here that
@@ -400,8 +400,7 @@ whose Ω_k < 0 is closed geometry *with* a bounce. *(A proposed cross-entry tens
 survives, recorded so nobody rediscovers the "tension" and files it.)*
 **[14] Ellis 1993 READ 2026-08-29** (`b22`, both seats read it in full): it is a review of five
 cosmological paradigms, **not a critique** — its only substantive mention of Smolin, p. 328, is
-*favourable*, and it delegates criticism in one clause to Rothman & Ellis. **[31] Silk 1997
-paywalled and unread.** Three of four read, and none is primarily "contradicted by present observation" — but **no conclusion is drawn** about Smolin's
+*favourable*, and it delegates criticism in one clause to Rothman & Ellis. **[31] Silk 1997 READ 2026-08-31** (pinned; tier-neutral critique -- see entry 31 row). All four now read, and none is primarily "contradicted by present observation" — but **no conclusion is drawn** about Smolin's
 collective characterisation until all four are.. Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
 conjecture ("one can conjecture that the present value of Λ maximizes the formation of black
 holes"), not a result.
@@ -1365,7 +1364,7 @@ anthropic principle" charge is precisely what entry 31's §4 falsifier was built
 notes: `bhu-reading-20260823/READING_NOTES_01.md` batch 7.
 
 **A0b (pending verification / ruled context, 2026-08-23, hunt round 2).** Kimi recalls not seated:
-J. Silk, "Holistic cosmology" (Science 277, 1997) — published CNS critique, verify before seating
+J. Silk, "Holistic cosmology" (Science 277, 1997) — published CNS critique, READ 2026-08-31 (see entry 31; tier-neutral) -- was: verify before seating
 beside A0; L. Smolin, "The status of cosmological natural selection" (book chapter, Carr ed. 2007;
 = hep-th/0612185) — book, context by standing rule; T. X. Zhang black-hole-universe series —
 memory-uncertain, recalled venue is fringe (*Progress in Physics*); H. Culetu comment line —
