@@ -52,3 +52,30 @@ trapped slicing is not exact FRW"), not tier moves. I'll bring the final settled
 recommendation once 25/26 resolves. Every classification cites source lines in both Easson and the
 interior (see the two seat results); codex declined to use external completeness papers to enlarge
 the theorem (honest — keeps 25/26 at RESTRICTS not KILLS).
+
+## RE-CHECK OUTCOME (25/26) — source issue resolved, a REAL disagreement remains
+
+agy re-mapped 25/26 on the correct 2022 Symmetry sources (`RQ_D_agy_2526_RECHECK.md`). The
+source-attribution mismatch is **resolved**: agy now agrees with codex on the geometry — the
+Gaztañaga interior is **flat (k=0), comoving, no-shell**. So it is NOT spared by the shell or
+non-comoving escapes, and it sits squarely in **Theorem 1's flat/open limb** (not Prop 2's closed
+class).
+
+**But a genuine substance disagreement now stands, on the correct sources:**
+- **codex → RESTRICTS.** Part I explicitly states "The FLRW* solution has a past singularity"
+  (`sym14091849`), so it already **lacks** curvature-regularity/completeness; Part II's bounce is
+  heuristic ("reasonable to expect", "indicates"), not a solved globally-complete spacetime. Under
+  the corpus **ownership-of-proof** rule, a KILL needs the interior to *meet every hypothesis* —
+  this one doesn't establish the complete-regular-ANEC conjunction, so it is constrained, not killed.
+- **agy → KILLS.** Part II claims a bounce driven by *standard* neutron-degeneracy matter (ANEC-
+  obeying), "Quantum Gravity or Inflation are not needed", avoiding the singularity → an
+  ANEC-consistent, curvature-regular, complete flat (k=0) bounce → *exactly* what Theorem 1 forbids.
+
+**The crux:** does Gaztañaga's *published* construction ASSERT the full conjunction Theorem 1 forbids
+(non-static + k=0 + curvature-regular + regular affine ends + null-complete + ANEC), or does it stop
+short (Part I's admitted past singularity + a heuristic, unproven bounce)? codex says short →
+RESTRICTS; agy says it claims the whole thing → KILLS. **This decides whether the map's headline is
+0 KILLS or 2 KILLS — i.e., whether Easson's no-go REFUTES the Gaztañaga black-hole-universe.** Taken
+to Duho (OPEN_QUESTIONS q2). My lean: RESTRICTS, on ownership-of-proof (a past-singular, heuristic
+construction has not *proven* the complete ANEC bounce the KILL requires) — but it is a real fork
+with a tier consequence, so it is Duho's.

@@ -6,7 +6,9 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — 1: RQ-A verdict is in — how to record it in entry 21?
+## OPEN — 2 questions (q1 · RQ-A entry-21 record · q2 · RQ-D Gaztañaga KILLS-vs-RESTRICTS)
+
+### q1 · RQ-A verdict is in — how to record it in entry 21?
 
 **What happened.** Lane 2 task 1 (RQ-A) computed the gravitational-wave amplitude that Roupas 2022
 (entry 21) explicitly deferred. Both review seats derived it independently (blind-double) and
@@ -33,6 +35,47 @@ angular frequency; the physical value is ~10 Hz.
 **My recommendation: (a).** Records what the derivation found without overclaiming a tier move.
 Nothing waits on it — RQ-A is filed and reconciled, entry 21's label is untouched until you rule.
 RQ-D (Easson map) is queued; RQ-E (Smolin-bar watcher) I'll stand up next regardless of this call.
+
+---
+
+### q2 · Does Easson's no-go KILL the Gaztañaga black-hole-universe (entries 25/26), or only restrict it?
+
+**What happened.** RQ-D (Lane 2 task 2) mapped Easson's 2026 no-go (entry 22) onto the seven BHU
+interiors. Six are settled and agreed — nothing killed there (spared via torsion / quantum
+nucleation / non-FRW geometry / a shell; Dymnikova '92 merely restricted). Entries 25/26 (Gaztañaga's
+"Black Hole Universe" Part I/II) are the hinge. After a re-check on the correct 2022 sources the two
+seats **agree on the geometry** (flat, comoving, no-shell — so it is *in scope* of Easson's flat/open
+theorem, not spared) but **split on the ruling**:
+- **codex → RESTRICTS.** Part I openly admits a *past singularity*, and Part II's bounce is heuristic
+  ("reasonable to expect"), so the published construction has not *proven* the regular + complete +
+  energy-condition package the theorem forbids. Under our own ownership-of-proof rule (a KILL needs
+  every hypothesis actually met), it is bounded, not killed.
+- **agy → KILLS.** Part II claims the singularity is avoided by a bounce using *ordinary* matter
+  (which obeys the energy condition) — "Quantum Gravity or Inflation are not needed" — i.e. a
+  complete, regular, energy-condition-respecting flat bounce, which is exactly what Easson proves
+  impossible.
+
+**The stake.** This is the *only* place in the whole corpus where Easson's no-go might actually
+**refute** a published black-hole-universe rather than just bound it. It decides whether RQ-D's
+headline is **0 kills** (Easson draws a boundary, refutes nothing) or **2 kills** (Easson refutes the
+Gaztañaga programme).
+
+**Your call, with costs:**
+- **(a) RESTRICTS (my lean).** Annotate 25/26 as Theorem-1-restricted (a future *complete* version
+  would be killed; the published past-singular/heuristic one is only bounded). Cost: no tier change,
+  one annotation. Risk: if Gaztañaga really does claim a proven complete bounce, we under-called it.
+- **(b) KILLS.** Record that Easson refutes the Gaztañaga BHU as published → a real downgrade of
+  25/26 (tier change + re-tally + b67 update). Cost: a strong public claim that one published paper
+  refutes another, resting on reading Part II's bounce as a *proven* complete solution — which codex
+  argues it is not.
+- **(c) One more read on the single crux.** Have a third seat judge just this: is Part II's bounce a
+  *proven* complete regular energy-condition-obeying spacetime, or a heuristic? Cost: one seat pass.
+  Gain: the whole KILL-vs-RESTRICT turns on exactly that, and it is checkable in the source.
+
+**My recommendation: (c), then (a) by default.** The split reduces to one checkable question about
+Part II's rigour — settle that first; absent it, ownership-of-proof favours RESTRICTS. Nothing waits:
+RQ-D's five settled rows + the reconciliation are filed, and 25/26 keep their current tier (PROSPECT/
+consistency, unchanged) until you rule. Full workings: `RQ_D_RECONCILIATION_20260831.md`.
 
 ---
 
