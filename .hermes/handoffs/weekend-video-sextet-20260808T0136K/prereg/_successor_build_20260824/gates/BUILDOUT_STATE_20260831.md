@@ -147,3 +147,24 @@
   Sep-5 BS-1 release rule (daily DR11 check continues), P0 signature. The
   frozen text package (V124 + final KNOWN_DEBT_APPENDIX) + seven pins = the
   complete freeze candidate.
+
+## Update 13:35 KST — the confirmation transition (FINAL state of this ledger)
+- Duho RULED the mapping four-value confirmation: verbatim option label
+  "Confirmed as committed (Recommended)" (MAPPING_CONFIRMATION_RULING_20260831.md;
+  human direction #16 in the spin-parity history).
+- APPLIED at V132 (sha16 cea052a20fa004b7, battery 15/15, commit pushed 13:32):
+  mapping_id = MAPPING-A-CRN-PCG64-20260830-v1; replay manifest gain_mapping_a
+  ACTIVE at digest 8bc693ffae7009e0…; replay_harness re-pinned at
+  b6a0592bf881ca9b… in both draft sites (fixtures 7/7 incl. the new R7 control;
+  narrow AGY-RPH-FLIP round SOUND 0); the three pre-confirmation regime clauses
+  flipped with MAPPING-NOT-PREREGISTERED retained as the non-discharging
+  sentinel; module sha/identity updated to the commitment-bound bytes
+  (identity 450c6a6ed43fc090…, convention commit ff7b2cdb0441702a… bound).
+- replay_sweep refuses ONLY on run-time calibration artifacts now — design, not
+  debt. BS-6 and the first image byte stay blocked until the run; γ̂ unmeasured;
+  v9 frozen at 6a9abbbd throughout.
+- LANE POSTURE: quiet. Daily DR11 photo-z check each morning (BS-1 resolves by
+  rule 2026-09-05). Awaiting Duho on his own schedule: BS-2k constants sheet,
+  rosters, P0 freeze signature. Intake of any of those follows the same ladder
+  discipline (build/edit → fixtures → agy → kimi → pin, battery always, lint
+  last, never commit over a red check line).
