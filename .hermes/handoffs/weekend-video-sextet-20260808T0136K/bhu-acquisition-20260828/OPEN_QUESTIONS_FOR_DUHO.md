@@ -6,9 +6,9 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## OPEN — none blocking. q2 crux RESOLVED (RESTRICTS); one small confirm awaits you (corpus annotation, no tier change)
+## OPEN — none. (q1 + q2 both fully closed; RQ-C now standing up per Duho's steer.)
 
-### ✅ q2 RESOLVED 2026-08-31 — third read settled it: RESTRICTS.
+### ✅ q2 FULLY CLOSED 2026-08-31 — RESTRICTS, and Duho confirmed the annotations (now applied to 18/25/26, no tier changes). Third read settled it: RESTRICTS.
 The independent third seat (kimi/Moonshot, outside the codex/agy split) judged the crux
 **CRUX_HEURISTIC → RESTRICTS**: Part II's bounce is a plausibility claim, not a proven complete
 solution, so Easson does not KILL it. Tally: **codex RESTRICTS, kimi RESTRICTS, agy KILLS (outlier).**

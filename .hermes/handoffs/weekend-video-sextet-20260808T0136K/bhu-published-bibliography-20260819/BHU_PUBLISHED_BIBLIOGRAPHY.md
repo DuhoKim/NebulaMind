@@ -713,6 +713,7 @@ Record: harvest #6; direct collapse-to-baby-universe construction in modified gr
 ## 5. Regular-black-hole interiors (Dymnikova line)
 
 **18. I. Dymnikova (1992). "Vacuum nonsingular black hole." Gen. Rel. Grav. 24, 235–242.**
+**Easson map (RQ-D 2026-08-31, no tier change):** RESTRICTED by Prop 1 of Easson 2026 (entry 22) -- its trapped slicing cannot be identified with exact FRW; the published static regular-BH / de-Sitter-core solution stands (NOT killed). See `RQ_D_RECONCILIATION_20260831.md`.
 DOI 10.1007/BF00760226 — VERIFIED (Crossref: GRG, v24, p235-242, 1992-03).
 Claim: regular black hole with a de Sitter core — the vacuum-bubble interior mechanism.
 Testability: **CONSISTENCY-ONLY**. Record: packet §1.6 names the class.
@@ -844,6 +845,7 @@ Testability: **QUALITATIVE-DIRECTIONAL** (same cutoff-class claims). Record: bas
 (2104.00521), publication newly verified. Audit-worthiness: **medium** — subsumed by 23/25/26.
 
 **25. E. Gaztañaga (2022). "The Black Hole Universe, Part I." Symmetry 14, 1849.**
+**Easson map (RQ-D 2026-08-31, no tier change):** RESTRICTED (not killed) by Easson 2026 (entry 22) Theorem 1's flat/open limb -- it constrains a hypothetical future *complete* version of this flat (k=0) comoving no-shell FLRW cloud; the published construction (which admits a past singularity) is not refuted. Independent third read (kimi, Moonshot) confirmed RESTRICTS over KILLS. See `RQ_D_RECONCILIATION_20260831.md` + `RQ_D_kimi_CRUX_RESULT.md`.
 DOI 10.3390/sym14091849 — VERIFIED (Crossref: Symmetry, v14, 1849, 2022-09-05).
 Claim: the bounded Friedmann–Lemaître sphere inside empty space reproduces FLRW observations for
 interior observers and explains cosmic acceleration without dark energy via Λ = 3/r_S² (the
@@ -854,6 +856,7 @@ between the dark-energy scale and the causal-horizon cutoff of entry 23.
 Record: **new to us as a verified item** (Phase 0 named the series). Audit-worthiness: **high**.
 
 **26. E. Gaztañaga (2022). "The Black Hole Universe, Part II." Symmetry 14, 1984.**
+**Easson map (RQ-D 2026-08-31, no tier change):** RESTRICTED (not killed) by Easson 2026 (entry 22) Theorem 1 -- its Part II bounce is heuristic ("reasonable to expect"), not a proven complete ANEC solution, so the theorem constrains only a hypothetical future complete version. Third read (kimi) confirmed. See `RQ_D_RECONCILIATION_20260831.md` + `RQ_D_kimi_CRUX_RESULT.md`.
 DOI 10.3390/sym14101984 — VERIFIED (Crossref: Symmetry, v14, 1984, 2022-09-22).
 Claim: Part II of the same construction (formation from an FLRW cloud).
 Testability: **QUALITATIVE-DIRECTIONAL** (with Part I). Record: new to us. Audit-worthiness:
