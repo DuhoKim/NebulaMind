@@ -25,8 +25,14 @@ THE OBLIGATIONS, from the draft's own words, each with its fixture:
     computation that is outside the manifest refuses the harness's own result. STATED LIMIT: this is the
     Python-level census; the native loader image list is not enumerated by v1 and that
     gap is for the referee and the appendix, not hidden.
-  ROOT RE-VERIFICATION — the manifest digests are verified at entry AND re-verified
-    against the retained buffers before the receipt is assembled.
+  ROOT RE-VERIFICATION — verified at entry; before the receipt is assembled the
+    ON-DISK roots are re-read and compared to what ran (AGY-RPH F6 killed the
+    retained-buffer tautology).
+  RESIDUES, stated: disk reads BY the verified v9 are digest-checked by v9's own
+    frozen loaders; the frozen planner file joins the manifest before any real
+    sweep; symlinked invocation was attacked and REFUTED (Path.resolve()); the
+    environment is pinned via the frozen module's own require_environment; the
+    replay process is single-threaded by checked obligation.
 """
 import hashlib
 import sys
@@ -52,10 +58,10 @@ class ReplayRefusal(RuntimeError):
     pass
 
 
-def _read_and_verify():
+def _read_and_verify(manifest=MANIFEST):
     """Read each ACTIVE manifest file ONCE; hash THOSE buffers; refuse any mismatch."""
     buffers = {}
-    for name, path, want, status in MANIFEST:
+    for name, path, want, status in manifest:
         if status != "ACTIVE":
             continue
         buf = path.read_bytes()
@@ -90,12 +96,28 @@ def _compile_in_order(buffers):
     return mods, saved
 
 
-def _census(before_keys, manifest_names):
-    added = set(sys.modules.keys()) - before_keys
-    stray = sorted(m for m in added
-                   if m.split(".")[0] not in manifest_names
-                   and not m.startswith("_"))
-    return stray
+class _ImportJournal:
+    """Audit-hook census (AGY-RPH F2: a set-difference census was scrub-evadable — load
+    a module mid-window, del sys.modules[...] before the check, undetected; the audit
+    hook fires AT import/dlopen time and cannot be scrubbed afterwards)."""
+    def __init__(self):
+        self.events = []
+        self.active = False
+    def hook(self, name, args):
+        if self.active and name in ("import", "ctypes.dlopen"):
+            self.events.append((name, str(args[0]) if args else ""))
+
+_JOURNAL = _ImportJournal()
+sys.addaudithook(_JOURNAL.hook)
+
+
+def _census(journal_events, manifest_names):
+    stray = sorted({mod.split(".")[0] for kind, mod in journal_events
+                    if kind == "import" and mod
+                    and mod.split(".")[0] not in manifest_names
+                    and not mod.startswith("_")})
+    native = sorted({mod for kind, mod in journal_events if kind == "ctypes.dlopen"})
+    return stray, native
 
 
 def replay_machinery_proof(stage=1, prefix=1, trial=1, n_perm=200):
@@ -104,13 +126,18 @@ def replay_machinery_proof(stage=1, prefix=1, trial=1, n_perm=200):
     census -> root re-verification -> receipt skeleton. The REAL sweep entry
     (replay_sweep) refuses until the calibration artifacts and the confirmed mapping
     exist — stated, not hidden."""
+    import threading
+    if threading.active_count() != 1:
+        raise ReplayRefusal(f"{threading.active_count()} threads active — the replay "
+                            "process is single-threaded by obligation (AGY-RPH F1b)")
     buffers = _read_and_verify()
     mods, saved = _compile_in_order(buffers)
-    # THE CENSUS WINDOW opens HERE — when the verified load completes — and closes at
-    # result acceptance. The load phase's own imports arise from executing verified
-    # buffers and are within custody; anything FIRST loaded during the verdict
-    # computation must be in the manifest or the result refuses itself.
-    before = set(sys.modules.keys())
+    # env pins via the frozen module's own gate (AGY-RPH F4b)
+    mods["successor_ref_v9"].require_environment()
+    # THE CENSUS WINDOW opens HERE — an AUDIT-HOOK JOURNAL, so a module loaded and then
+    # scrubbed from sys.modules is still on the record.
+    _JOURNAL.events.clear()
+    _JOURNAL.active = True
     try:
         gcp = mods["gain_counterfactual_path"]
         v9 = mods["successor_ref_v9"]
@@ -120,20 +147,26 @@ def replay_machinery_proof(stage=1, prefix=1, trial=1, n_perm=200):
                                 "namespace's exact FixtureMask")
         beta, _null, p, sigma_beta = v9.perm_record(mask, stage, prefix, trial,
                                                     n_perm=n_perm)
-        stray = _census(before, {n for n, *_ in [(m[0],) for m in MANIFEST]}
-                        | {"successor_ref_v9", "gain_counterfactual_path"})
+        _JOURNAL.active = False
+        stray, native = _census(_JOURNAL.events,
+                                {m[0] for m in MANIFEST}
+                                | {"successor_ref_v9", "gain_counterfactual_path"})
         if stray:
-            raise ReplayRefusal(f"loaded-object census refusal: {stray[:5]} loaded "
+            raise ReplayRefusal(f"loaded-object census refusal: {stray[:5]} imported "
                                 "during the computation outside the manifest")
-        # root RE-verification against the retained buffers
+        if native:
+            raise ReplayRefusal(f"native-load census refusal: dlopen of {native[:3]}")
+        # root RE-verification: RE-READ FROM DISK (AGY-RPH F6: hashing the retained
+        # immutable bytes was a tautology; the receipt forward-references the DISK)
         for name, (buf, path, got) in buffers.items():
-            if hashlib.sha256(buf).hexdigest() != got:
-                raise ReplayRefusal(f"retained buffer for {name} changed mid-run")
+            if hashlib.sha256(path.read_bytes()).hexdigest() != got:
+                raise ReplayRefusal(f"on-disk root for {name} changed mid-run")
         return {"beta": float(beta), "p": float(p),
                 "harness_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                 "counterfactual_path_sha256": buffers["gain_counterfactual_path"][2],
                 "census_added_ok": True}
     finally:
+        _JOURNAL.active = False
         if saved is not None:
             sys.modules["successor_ref_v9"] = saved
         else:
@@ -163,10 +196,12 @@ def fixtures():
     data = bytearray((REF / "successor_ref_v9.py").read_bytes())
     data[100] ^= 1
     bad.write_bytes(bytes(data))
-    got = hashlib.sha256(bad.read_bytes()).hexdigest()
+    try:
+        _read_and_verify(manifest=(("successor_ref_v9", bad, MANIFEST[0][2], "ACTIVE"),))
+        fails.append("R2: tampered file PASSED root verification (AGY-RPH F5a)")
+    except ReplayRefusal:
+        pass
     bad.unlink(); tmpd.rmdir()
-    if got == MANIFEST[0][2]:
-        fails.append("R2: tampered copy digest unchanged??")
     # R3: optimize=0 keeps asserts — compile an assert under our exact call form
     ns = {}
     code = compile(b"assert False, 'kept'", "probe", "exec", dont_inherit=True, optimize=0)
@@ -175,13 +210,15 @@ def fixtures():
         fails.append("R3: assert stripped under optimize=0 call form")
     except AssertionError:
         pass
-    # R4: census control — a module imported mid-computation is caught
-    before = set(sys.modules.keys())
-    import colorsys  # stdlib, almost certainly not yet loaded
-    stray = _census(before, {"successor_ref_v9", "gain_counterfactual_path"})
+    # R4: a module imported mid-window and SCRUBBED from sys.modules must still be on
+    # the journal (AGY-RPH F2/F5b: set-difference was scrub-evadable; the hook is not)
+    _JOURNAL.events.clear(); _JOURNAL.active = True
+    import colorsys  # noqa
+    sys.modules.pop("colorsys", None)  # the scrub
+    _JOURNAL.active = False
+    stray, _nat = _census(_JOURNAL.events, {"successor_ref_v9", "gain_counterfactual_path"})
     if "colorsys" not in stray:
-        fails.append("R4: census missed a mid-run import")
-    sys.modules.pop("colorsys", None)
+        fails.append("R4: scrubbed import evaded the journal census")
     # R5: type-exact — an isinstance-passing subclass is refused
     buffers = _read_and_verify()
     mods, saved = _compile_in_order(buffers)
