@@ -539,3 +539,18 @@ draft side of this transition is the title and the computed V128→V129 row
 only — the pin text lives in the spec, which the derivation checker binds.
 
 V129 → V130: the terminal-machinery pin — AGY-TRV-V1 F1–F2, AGY-TRV-V2 F1–F3, AGY-TRV-V3 F1 all repaired with seeded controls; AGY-TRV-V4 SOUND; the spec's no-printed-digest sentence retired by the digest's arrival.
+
+## V130 → V131 (2026-08-31 afternoon — the seventh and final build pin: the BS-SI pair)
+
+`gates/stratum_index_producer.py` + `gates/stratum_index_verifier.py`
+PINNED — the last DO-NOT-EXIST item in §11's inventory flips to BUILT.
+The producer carries the class-E discipline in code (SCHEMA-PENDING: no
+artifact before the P2–P3 slot-fill), the unshoppable tie/remainder
+conventions, Row-B-only emission, and the allocate_handcheck-only
+consumer barrier; the verifier is the deliberately independent
+recomputation whose divergence surfaces as refusal. agy ruled both SOUND
+(the attribute-access question settled as an in-scope admission under
+process isolation); the kimi batch gate ruled on the pair with the
+record filed beside this map.
+
+V130 → V131: the BS-SI pin — GPT56-V100 F3's build item discharged; AGY-SIP-V1/AGY-SIV-V1 SOUND; the batch gate record in KGATE_BATCH4_RAW.txt.

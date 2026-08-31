@@ -1,0 +1,17 @@
+KGATE_SIP: PIN-READY — sha256 4e8ee1f3512f154382c81cd505ff07abfbbabf9b19543c34bd42cd94fe5f3a22
+KGATE_SIV: PIN-READY — sha256 3b397b1b26c3ea196fb3747c35388c94b193bee8a164c4290d3a7ef4e92a67b0
+KGATE_B2F: RECORD-CLEAN
+KGATE_B2V: RECORD-CLEAN
+
+1) SIP (22/22 re-run green this sitting). Barrier is real, not documentary: CONSUMER="allocate_handcheck" and consume() refuses "calibration_bins" by fixture; positions_only_guard ships in-file. Conventions frozen in the docstring (stable (chi,id) tie, lowest-first remainder, T1/T2/T3). The agy ADMISSION on _seal_bytes attribute access is correctly scoped — behavioral barrier, process-isolation boundary; I accept SIP-V1 SOUND under that architecture. The SCHEMA-PENDING refusal is the right class-E blocker: the artifact cannot exist before P2-P3 slot-fill, so it blocks BS-2f allocation and BS-8p by construction, not by promise.
+
+2) SIV (12/12 re-run green). Twin independence holds: the only reference to stratum_index_producer is line 126, "test-artifact generation ONLY" inside the fixture block — the verification path recomputes, never imports the producer's logic. Divergence surfaces as INDEX-MISMATCH, which is exactly where a twin pays off. agy SIV-V1 SOUND 0 across tie-heavy sets, unusual ids, non-UTF8 bodies, tag-colon confusion — no parse hole found, none found here either.
+
+3) B2F (15/15 re-run green). Frozen-bytes-as-certifying-math via the verified v9 loader with sys.modules restored on every path; byte equality on two-float64 boundaries; degenerate-crash → refusal. The NaN pass-through note was the one live risk; POSITIONS-NOT-FINITE (line 84-89) now fires before v9 sees the array, fixtured on both NaN and inf, and agy B2F-V2 SOUND 0 (AGY_NARROW3 line 50-52) closes it. Record-gated per the brief — no draft slot exists for it; gate record suffices.
+
+4) B2V (13/13 re-run green). The V1 defect was structural (trusting the receipt's own classification field); the repair recomputes VOID-ness from the registry text itself with both text-effect AND classification required VOID, spoof fixtured via mutated registry row; single registry source via tools/void_registry (extract/digest), no duplication. agy B2V-V2 SOUND 0 (AGY_NARROW3 line 33-35). RECORD-CLEAN.
+
+5) Pin mechanics confirmed live: draft is at V130; _tmp_v131_pin.py targets exactly the SS11 BS-SI head ("Separately pinned, digests set when built" → "BUILT AT V131" with the two shas above). Both shas quoted here match the on-disk bytes I re-hashed this sitting — pin may proceed at V131.
+
+Ruling scope: four artifacts only. CER-V2 / NARROW3 siblings verified for record context but are outside this sitting's question.
+kimi exit=0
