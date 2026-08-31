@@ -120,6 +120,11 @@ def derive_ending(chain):
     # (AGY TRV-V2 F1: fictional members made a partial commit pass silently)
     pos = ending[1]
     raw_commit = chain[pos].get("commit_set", ())
+    if type(raw_commit) not in (list, tuple):
+        # a non-iterable commit_set refuses instead of crashing the iteration
+        # (AGY TRV-V3 F1 — the crash-vs-refuse law, again, in my own v3 line)
+        _r("ENDING-COMMIT-MALFORMED",
+           f"commit_set is {type(raw_commit).__name__}, not a position list")
     for p in raw_commit:
         if type(p) is not int or p < 0 or p >= len(chain):
             _r("ENDING-COMMIT-MALFORMED",
@@ -434,16 +439,18 @@ def fixtures():
     ])
     expect("EXPORT-OUTSIDE-COMMIT",
            lambda: build_review_body(pre_export, stores_c, V64, T64))
-    # the ending's commit_set must name real positions (AGY TRV-V2 F1)
-    expect("ENDING-COMMIT-MALFORMED",
-           lambda: build_review_body(ev.mkchain([
-               o1,
-               {"k": "drain-start", "receipt_digest": D64, "epoch": 1,
-                "reading": 10},
-               {"k": "terminal-checkpoint", "status": "TERMINATED",
-                "receipt_digest": D64, "commit_set": [99],
-                "failed_members": [], "epoch": 1, "reading": 15},
-           ]), stores_t, V64, T64))
+    # the ending's commit_set must name real positions (AGY TRV-V2 F1) and be
+    # a position LIST at all — non-iterables refuse, never crash (TRV-V3 F1)
+    for bad_commit in ([99], True, None, 123):
+        expect("ENDING-COMMIT-MALFORMED",
+               lambda bc=bad_commit: build_review_body(ev.mkchain([
+                   o1,
+                   {"k": "drain-start", "receipt_digest": D64, "epoch": 1,
+                    "reading": 10},
+                   {"k": "terminal-checkpoint", "status": "TERMINATED",
+                    "receipt_digest": D64, "commit_set": bc,
+                    "failed_members": [], "epoch": 1, "reading": 15},
+               ]), stores_t, V64, T64))
     # the chain opens with its epoch opening or the ceremony signs nothing
     # (AGY TRV-V2 F2: the unmoored single-checkpoint chain was signable)
     expect("CHAIN-UNMOORED",
