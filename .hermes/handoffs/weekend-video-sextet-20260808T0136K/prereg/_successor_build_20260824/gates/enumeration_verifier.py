@@ -51,7 +51,15 @@ reaches it (a clock-malformed chain boundary_pass alone must still refuse); hold
 verification-reads now bind to THE PASS'S OWN boundary via boundary_position (a
 stuffed foreign read no longer launders arbitrary joined records past the hold);
 FORM_SCHEMAS mirrored to the authoritative registry (prelock carries
-terminal_enumeration_digest)."""
+terminal_enumeration_digest).
+
+v3 after AGY ENV-V2 (DEFECTIVE, 2, both in the v2 repairs): the joined_read
+exclusion now admits ONLY the draft's named kinds (joined arrival/touch events) and
+runs AFTER the termination check — a termination unit carrying a join claim still
+aborts the pass, and a joined foreign kind is foreign; and a refusal event placed
+AFTER the checkpoint inside its own commit_set refuses outright
+(COMMIT-EVENT-AFTER-CHECKPOINT) instead of being silently dropped by the p<pos
+filter from both the contiguity and the listing cross-check."""
 import hashlib
 import json
 import sys
@@ -348,12 +356,20 @@ def boundary_pass(chain, gate, constants):
                    "boundary")
             read_positions.add(pos)
             continue
-        if rec.get("joined_read") in read_positions:
-            continue  # the pass's own records, excluded through their typed joins
         if rec["k"] in ("drain-start", "terminal-checkpoint", "receipt-note"):
+            # termination OUTRANKS verification: its indivisible unit is never a
+            # pass-own record, so no join claim can launder it (AGY ENV-V2 F1 —
+            # the joined_read exclusion ran first and skipped this check)
             _r("PASS-ABORTED-BY-TERMINATION",
                f"pos {pos}: termination's indivisible unit landed mid-pass; the "
                "pass must re-boundary after it, its gate action refuses")
+        if rec.get("joined_read") in read_positions \
+                and rec["k"] in ("arrival", "termrec"):
+            # the pass's own records, excluded through their TYPED joins — the
+            # draft names "verification-reads and their joined arrival/touch
+            # events", so ONLY those kinds may ride a join (CODEX-V111 F1: never
+            # a bare by-type wave; AGY ENV-V2 F1: never an any-kind wave either)
+            continue
         if rec["k"] == "arrival":
             if rec["epoch"] != b["epoch"]:
                 # defense-in-depth, NOT dead code (AGY ENV-V1 F4): reachable when
@@ -457,6 +473,14 @@ def join_pass(chain, gate, constants):
         if rec["k"] != "terminal-checkpoint":
             continue
         commit = set(rec["commit_set"])
+        for p in commit:
+            if p > pos and p < len(chain) and chain[p]["k"] == "termrec" \
+                    and chain[p]["outcome"] == "REFUSAL":
+                _r("COMMIT-EVENT-AFTER-CHECKPOINT",
+                   f"checkpoint {pos}: a refusal event at {p} follows the "
+                   "checkpoint inside its own commit — the checkpoint closes "
+                   "the commit and refusal events precede it (AGY ENV-V2 F2: "
+                   "the p<pos filter silently hid exactly this)")
         ref_positions = sorted(p for p in commit
                                if p < pos and chain[p]["k"] == "termrec"
                                and chain[p]["outcome"] == "REFUSAL")
@@ -969,6 +993,23 @@ def fixtures():
                mkchain([_bnd("BS-L"),
                         {"k": "verification-read", "target": 0,
                          "boundary_position": 99}]), "BS-L", C))
+    # and a join claim launders NOTHING outside the named kinds: a termination
+    # unit carrying joined_read still aborts the pass (AGY ENV-V2 F1), and a
+    # joined signed-cut is foreign
+    expect("PASS-ABORTED-BY-TERMINATION",
+           lambda: boundary_pass(
+               mkchain([_bnd("BS-L"),
+                        {"k": "verification-read", "target": 0,
+                         "boundary_position": 0},
+                        {"k": "drain-start", "receipt_digest": "d" * 64,
+                         "joined_read": 1, "epoch": 1, "reading": 25}]),
+               "BS-L", C))
+    expect("FOREIGN-RECORD-IN-HOLD",
+           lambda: boundary_pass(
+               mkchain([_bnd("BS-L"),
+                        {"k": "verification-read", "target": 0,
+                         "boundary_position": 0},
+                        {"k": "signed-cut", "joined_read": 1}]), "BS-L", C))
     expect("BOUNDARY-EPOCH-CHANGED",
            lambda: boundary_pass(
                mkchain([_bnd("BS-L"), _opening(2, 0, bo1)]), "BS-L", C))
@@ -1137,6 +1178,17 @@ def fixtures():
                               {"k": "bindmap-entry", "request_key": 1,
                                "binding": "b-A-1"},
                               tc([2], [1])])))
+    # a refusal event AFTER the checkpoint inside its own commit_set is refused
+    # outright — the p<pos filter used to hide it from both the contiguity and
+    # the listing cross-check (AGY ENV-V2 F2)
+    expect("COMMIT-EVENT-AFTER-CHECKPOINT",
+           lambda: J(mkchain([o1, _arr("A", 1), _arr("B", 1, reading=15),
+                              _term(1, "A", outcome="REFUSAL"),
+                              {"k": "terminal-checkpoint", "status": "RUNNING",
+                               "commit_set": [3, 5], "failed_members": [1],
+                               "epoch": 1, "reading": 25},
+                              _term(2, "B", outcome="REFUSAL", reading=30,
+                                    map_reading=30, binding="b-B-1")])))
     ok("adjacent two-member refusal block",
        lambda: J(mkchain([o1, _arr("A", 1), _arr("B", 1, reading=15),
                           _term(1, "A", outcome="REFUSAL"),
