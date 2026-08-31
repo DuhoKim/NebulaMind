@@ -70,6 +70,12 @@ export default function PipelinePage() {
         </section>
 
         <DesktopCompanion />
+
+        <footer className="lab-foot">
+          Aside, kept separate from the research programme:{" "}
+          <a href="/lab/bhu">the black-hole-universe literature, audited</a> &mdash; a personal reading
+          project (58 papers tiered and double-gated). Not a NebulaMind study.
+        </footer>
       </div>
     </main>
   );
