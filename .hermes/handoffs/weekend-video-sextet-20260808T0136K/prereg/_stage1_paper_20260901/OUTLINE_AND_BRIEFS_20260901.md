@@ -36,11 +36,12 @@ CUT it):
 | retained mask | 49,211 | `acquire/positions_selected_cut.csv`, run receipts |
 | bricks (selection) | 6,104 / 6,446 — **two different counts, reconcile** | selected_brickids_cut.txt vs BS-2s candidate_detail |
 | Var(cos θ), **universe** | 0.445201 | frozen text — count-weighted universe |
-| Var(cos θ), **selection** | 0.754664 | frozen text — **this is the leverage number** |
+| Var(cos θ), **selection (pre-cut)** | 0.754664 | frozen text |
+| Var(cos θ), **post-cut (the 49,211 mask)** | 0.7517 | frozen text line 487 — **this is the leverage number to quote, since it describes the sample actually used** |
 | all-sky reference | 1/3 | analytic; state as such |
 | N_eq (frozen selection line) | 120,002.9 at 53,005 retained | frozen text |
 | N_eq (realized, 3·L_ret) | 120,016.65 | `run/stagep_plan_20260901.json` |
-| **N_eq = 110,983** | **NOT FOUND — do not use** | commission figure, untraceable |
+| **N_eq = 110,983** (post-cut) | **TRACEABLE — USE THIS ONE** | `acquire/quality_cut_receipt.json` field `n_eq = 110982.5`; frozen text line 487. **My earlier 'not found' was wrong — I had not searched acquire/. This is the figure for the ACTUAL 49,211 mask, so it is the paper's N_eq; the 120,002.9 / 120,016.65 values describe the pre-cut selection stage.** |
 | retained 53,005 vs mask 49,211 | **reconcile explicitly** | quality cut ran after selection |
 | Stage-P prefix | 984/1000 | `run/stagep_checkpoints/prefix_05024.json` |
 | Stage-P re-pass | 996/1000 | `run/stagep_checkpoints/final_repass.json` |
