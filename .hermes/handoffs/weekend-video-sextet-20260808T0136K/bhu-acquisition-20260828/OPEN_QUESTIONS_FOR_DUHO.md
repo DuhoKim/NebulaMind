@@ -6,6 +6,33 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## OPEN — entries 42 & 47 read; proposed first tiers for your sign-off (2026-09-01)
+
+You fetched the last two UNREAD papers; I pinned and read them (blind-double codex+agy + kimi tie-break).
+Both came out 2–1; both are new tiers, so yours. Detail: `ENTRY_4247_RECONCILIATION_20260901.md`.
+
+### Entry 42 — González-Díaz (1991), "Baby universe metric equivalent to an interior black-hole metric"
+**Proposed: CONSISTENCY-ONLY** (agy + kimi vs codex's DIRECTIONAL). A conformal-equivalence construction
+reinterpreting black-hole evaporation as baby-universe branching; its one observable-looking result ("a real
+observer sees positive Hawking flux, the ideal observer sees zero") is standard Hawking radiation restated
+plus a claim needing a global view of the causally-disconnected baby universe — neither a novel test about
+our universe (the same bar that kept entry 45 at consistency-only).
+- **(a) CONSISTENCY-ONLY — recommended** (2-seat majority). Cost: consistency 31→32.
+- **(b) QUALITATIVE-DIRECTIONAL** (codex). Cost: directional +1; risks over-claiming a restated result.
+
+### Entry 47 — Sato, Kodama, Sasaki & Maeda (1982), "Multi-production of universes by first-order phase transition"
+**Proposed: PROSPECT** (codex + kimi vs agy's CONSISTENCY-ONLY). Most of it (~10⁷⁷ child universes, present
+radius > Hubble) is other-universe consistency material — but the authors themselves flag that evaporation
+entropy "may lower the baryon-to-entropy ratio too far," a possible observational conflict of their own model,
+with no number and a call for more study. A genuine testable prospect without an amplitude.
+- **(a) PROSPECT — recommended** (2-seat majority). Cost: prospect 3→4.
+- **(b) CONSISTENCY-ONLY** (agy). Cost: the record wouldn't flag the baryon-to-entropy handle.
+
+**If you approve both (a):** consistency 31→32, prospect 3→4, **UNREAD 2→0 — the BHU corpus becomes fully
+read: every paper read and tiered.** I'd apply the tiers, re-tally, and update the tally-bound checks.
+
+---
+
 ## ✅ ATTRIBUTION QUERY RE-OPENED, THEN RESOLVED BY RATIFICATION — 2026-09-01 ~13:10 KST
 
 **This supersedes the 09:11 "hold relaxed" note (preserved below — it was wrong on the mechanism).**
