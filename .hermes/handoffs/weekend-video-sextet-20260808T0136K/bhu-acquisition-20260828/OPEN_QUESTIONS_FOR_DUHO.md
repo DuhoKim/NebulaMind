@@ -6,6 +6,22 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ✅ DONE 2026-09-01 — live-falsifier freshness check (paper-independent): BARS_UNMOVED, both hold
+
+Re-checked the corpus's two LIVE calibrated-falsifiers against current (2026) data (codex web scan;
+`FALSIFIER_FRESHNESS_codex_20260901.md`). **Neither fired; no tier change.**
+- **Entry 31 (Smolin):** heaviest SECURE neutron star still 2.35±0.11 (Romani 2025); no 2026 secure ≥2.5.
+  PSR J1748−2021B (~2.74) has an undetected companion → unconstrained (not a crossing); GW190814 still
+  NS/BH-ambiguous. Margin 1.36σ below the 2.5 M☉ bar, still drifting away as errors tighten.
+- **Entry 51 (Popławski floor ~10¹⁶ kg):** new 2026 CMS (JHEP 08(2026)098) + ATLAS (arXiv:2604.19495) micro-BH
+  null searches strengthen the live status but sit ~39 decades below the floor; a 2026 PBH review
+  (arXiv:2601.06024) confirms the asteroid-mass window (contains 10¹⁶ kg) is still the only unconstrained
+  PBH region — no below-floor detection.
+**Optional receipt-hardening:** the new 2026 sources (ATLAS 2604.19495, PBH review 2601.06024 — both free arXiv)
+could be pinned to entry 51 to freshen its receipts; say "pin the 2026 falsifier receipts" if you want that.
+
+---
+
 ## ⏳ IN PROGRESS 2026-09-01 — source-limited acquisition (Duho chose (a)): 2 of 7 acquired (19, 5); 5 remain (paywalled → Duho)
 
 **Entry 19 (Dymnikova 2019, MDPI gold OA) fetched + pinned + blind-double re-confirmed CONSISTENCY-ONLY** (full
