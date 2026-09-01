@@ -1393,3 +1393,53 @@ component individually and compared against the file. *One class it would miss:*
 because the edit genuinely did **not** land, which looks identical from the exit code alone. *What
 was done about it:* in every one of the four cases I checked the file content directly before
 concluding the probe was at fault, and in all four the content was present and correct.
+
+### 1as — THE SEATS NEVER FAILED. I READ THEIR OUTPUT TOO EARLY AND DECLARED THEM DEAD.
+
+**2026-09-02, found by a routine "is anything uncommitted?" check.** This is the **fourth and final**
+revision of the seat diagnosis, and it retires §1am, §1am-CORRECTION, §1aq and part of
+§1aq-CORRECTION. **Every one of those entries was wrong, and the truth is worse for me than any of
+them.**
+
+**The four dispatches I recorded as silent failures had all written complete verdicts.** They were
+sitting untracked in the lane the whole time:
+
+| file | bytes | verdict |
+|---|---|---|
+| `AGATE_PROGRAM_A_STEP2_codex.md` | 6,952 | **`READING_C`** |
+| `KGATE_PROGRAM_A_STEP2_kimi.md` | 15,707 | **`READING_C`** (line 158) |
+| `TOPIC_AMENDMENT_B_codex_VERDICT.md` | 11,269 | **`AMENDMENT_B_REFUTED`** |
+| `TOPIC_AMENDMENT_B_kimi_VERDICT.md` | 29,357 | **`AMENDMENT_B_REFUTED`** (line 263) |
+
+**What actually happened:** the backgrounded seats kept working *after* the harness reported the
+wrapper "completed". I checked for output within seconds of that notification, saw an absent or
+byte-count-zero file, and **declared failure**. The verdicts landed later. My `ls` results were
+truthful *at that instant* and worthless as evidence of failure — I had measured a race, not an
+outcome, and then built three explanatory theories on top of it (huge file → file reading → total
+outage), each more confident than the last.
+
+**The cost is not the wasted dispatches. It is this:** kimi's step-2 verdict — which I never read
+because I had declared it empty — closes with
+
+> "Do not emit a number from either reading alone; **do not let the tractability of A masquerade as
+> a prediction of the paper.**"
+
+**That is precisely the error I then went on to make.** I built C1 and C2 on Reading A because it was
+the tractable one, presented its number, and had both claims refuted by later gates for exactly that
+reason. **The warning that would have prevented two days' worth of refuted work was sitting in a
+file I had pronounced dead.**
+
+**The compensating find:** my conclusions were more strongly gated than I reported to Duho —
+**READING_C is 4-seat unanimous** (Claude-textual, Claude-physics, codex, kimi) and **amendment B's
+refutation is 3-seat unanimous** (Claude, codex, kimi). Both were reported to him as single- or
+double-seat.
+
+**The rules, and they are cheap:**
+1. **An empty output file after a completion signal is not evidence of failure.** Re-check on a
+   delay before concluding anything; a seat that is still writing looks exactly like a dead one.
+2. **Before declaring a seat dead, `ls` the whole lane directory** — not just the expected filename.
+   Every one of these was visible to a plain directory listing for hours.
+3. **Never build an explanatory theory on a single negative observation of an asynchronous process.**
+   I built three, and iterating them made me more confident while the evidence never improved.
+4. **Untracked files are unread files.** `git status` showed these the entire time and I filtered
+   them out of every check as noise. **Read the noise once before concluding something is missing.**
