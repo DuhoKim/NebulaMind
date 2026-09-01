@@ -33,16 +33,17 @@ def emit(name, obj):
 
 def bs2v():
     conv = load("bs2v_void_converter", "gates/bs2v_void_converter.py")
+    strict = load("receipt_strict", "run/receipt_strict.py")
     text = (ROOT / "PREREG_SUCCESSOR_DRAFT_V134_20260831.md").read_text()
     body, seal = conv.build_receipt(text)
+    # First validate the converter's canonical authenticated body on its own
+    # terms, then construct the required successor-layer SLOT RECEIPT.  Frozen
+    # v9 is intentionally not used: BS-2v is absent from its SLOT_SCHEMA.
     assert conv.gate(body, seal, text)
-    emit("BS-2v", {
-        "slot": "BS-2v",
-        "schema": "canonical authenticated receipt schema: (registry_digest, converter_sha256, normative_ids ordered, exercised_ids, per_id rows, result classifications)",
-        "body": body,
-        "receipt_sha256": seal,
-        "gate_verdict": "PASS",
-    })
+    candidate = strict.receipt_strict("BS-2v", body)
+    assert candidate == strict.receipt_strict("BS-2v", dict(reversed(list(body.items()))))
+    assert conv.gate(candidate["body"], seal, text)
+    emit("BS-2v", candidate)
 
 
 def bs1b():

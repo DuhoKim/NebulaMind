@@ -16,6 +16,13 @@ import hashlib
 import json
 
 SLOT_SCHEMA_SUCCESSOR = {
+    # Frozen V134 §7/§11 requires the BS-2v canonical authenticated receipt to
+    # bind exactly these converter-produced fields.  Closure is recomputed by
+    # gates/bs2v_void_converter.py rather than accepted as producer testimony.
+    "BS-2v": (
+        "registry_digest", "converter_sha256", "normative_ids",
+        "exercised_ids", "per_id", "classifications",
+    ),
     "BS-3g": (
         "mask_sha256", "calibration_sha256", "perturbation_manifest_sha256",
         "kernel_sha256", "estimator_sha256", "verifier_sha256", "mapping_id",
@@ -61,7 +68,8 @@ def receipt_strict(slot, fields):
         raise ReceiptRefusal("RS04", repr(extra))
     body = {k: fields[k] for k in SLOT_SCHEMA_SUCCESSOR[slot]}
     body_sha = hashlib.sha256(_canonical(body)).hexdigest()
-    core = {"slot": slot, "schema": "BS3G-V1", "body": body,
+    core = {"slot": slot, "schema": {"BS-2v": "BS2V-V1",
+                                      "BS-3g": "BS3G-V1"}[slot], "body": body,
             "body_sha256": body_sha}
     return {**core, "envelope_sha256": hashlib.sha256(_canonical(core)).hexdigest()}
 
@@ -88,6 +96,9 @@ def fixtures():
             assert e.code == code, (code, e.code)
         passed += 1
     assert receipt_strict("BS-3g", f) == receipt_strict("BS-3g", dict(reversed(list(f.items()))))
+    passed += 1
+    v = {k: (i + 1) for i, k in enumerate(SLOT_SCHEMA_SUCCESSOR["BS-2v"])}
+    assert receipt_strict("BS-2v", v)["schema"] == "BS2V-V1"
     passed += 1
     return passed
 

@@ -1,0 +1,498 @@
+{
+  "body": {
+    "classifications": {
+      "VOID-2.7-THRESHOLD-CHOSEN-OR-MOVED": "VOID",
+      "VOID-5-DEGENERATE": "VOID",
+      "VOID-5-DIGEST-DEVIATION": "VOID",
+      "VOID-5-FORBIDDEN-ACT": "VOID",
+      "VOID-5-NONFINITE": "VOID",
+      "VOID-5-PROTOCOL-DEVIATION": "VOID",
+      "VOID-6.1A-ARCHIVE-READ": "VOID",
+      "VOID-6.1A-KEY-RETAINED": "VOID",
+      "VOID-6.1A-MEDIATION-FAIL": "VOID",
+      "VOID-6.1A-STORE-OUTSIDE": "VOID",
+      "VOID-6.1B-BYTE-OUTSIDE": "VOID",
+      "VOID-6.1B-D-BEFORE-C2": "VOID",
+      "VOID-6.1B-UNLOGGED-REFUSAL": "VOID",
+      "VOID-6.1B-UNLOGGED-TOUCH": "VOID",
+      "VOID-6.1C-CUTOUT-OUTSIDE": "VOID",
+      "VOID-6.1C-HUMAN-VIEW": "VOID",
+      "VOID-6.1C2-CLASSIFIER": "VOID",
+      "VOID-6.1C2-FIELD-OUTSIDE": "VOID",
+      "VOID-6.1D-CHI-EMITTED": "VOID",
+      "VOID-6.1D2-LATE-WRITE": "VOID",
+      "VOID-6.1D2-OUTSIDE-STORE": "VOID",
+      "VOID-6.1D2-REACHES-BINS": "VOID",
+      "VOID-6.1E-FIELD-OUTSIDE": "VOID",
+      "VOID-6.1F-CHI-INPUT": "VOID",
+      "VOID-6.1G-EXPORT-OUTSIDE": "VOID",
+      "VOID-6.1G-OTHER-ROLE": "VOID",
+      "VOID-6.1G-UNLOGGED-VIEW": "VOID",
+      "VOID-6.1G-VIEW-OUTSIDE": "VOID",
+      "VOID-6.1H-EXPORT-DIGEST": "VOID",
+      "VOID-6.1H-FIELD-BEYOND": "VOID",
+      "VOID-6.1H-INTERMEDIATE-PERSISTENCE": "VOID",
+      "VOID-6.1H-WRITE-OUTSIDE": "VOID",
+      "VOID-6.1I-FAIL-ABORT": "VOID",
+      "VOID-6.1I-FIELD-BEYOND": "VOID",
+      "VOID-6.1I-LEAVING-STORE": "VOID",
+      "VOID-6.1J-CONTINUE-FAIL": "VOID",
+      "VOID-6.1J-DEVIATION": "VOID",
+      "VOID-6.1J-READ-CHI": "VOID",
+      "VOID-6.1K-PRE-UNBLINDING-READ": "VOID",
+      "VOID-6.1L-EARLY-OPEN": "VOID",
+      "VOID-6.1L-PRE-UNBLINDING-ACCESS": "VOID",
+      "VOID-6.1L-WRONG-SIGNATURE": "VOID",
+      "VOID-6.1M-PRE-UNBLINDING-ACCESS": "VOID",
+      "VOID-6.1N-MISSING-FIELD": "VOID",
+      "VOID-6.1N-NO-LOG": "VOID",
+      "VOID-6.1N-WRONG-SIGNATURE": "VOID",
+      "VOID-6.1O-DECRYPT-OUTSIDE": "VOID",
+      "VOID-6.1O-EARLY-INVOCATION": "VOID",
+      "VOID-6.1O-REPLAY": "VOID",
+      "VOID-6.1P-EARLY-EXECUTION": "VOID",
+      "VOID-6.1P-RETRY": "VOID",
+      "VOID-6.1P-SILENT-LOSS": "VOID",
+      "VOID-6.1P-VERDICT-OUTSIDE": "VOID",
+      "VOID-6.1Q-READ-ARCHIVE": "VOID",
+      "VOID-6.1R-PRE-UNBLINDING-ACCESS": "VOID",
+      "VOID-6.1S-EARLY-EXPORT": "VOID",
+      "VOID-6.1V-CHI-READ": "VOID",
+      "VOID-6.1V-READ-OUTSIDE-PASS": "VOID",
+      "VOID-6.1V-WRITE-OUTSIDE-EMISSIONS": "VOID",
+      "VOID-6.3-BINDING-CHANGE": "VOID"
+    },
+    "converter_sha256": "001cd94456449851a9d2f4cf0b7c857683c92129715bff5661ad5fd2a31338a4",
+    "exercised_ids": [
+      "VOID-5-FORBIDDEN-ACT",
+      "VOID-5-PROTOCOL-DEVIATION",
+      "VOID-5-DIGEST-DEVIATION",
+      "VOID-5-NONFINITE",
+      "VOID-5-DEGENERATE",
+      "VOID-2.7-THRESHOLD-CHOSEN-OR-MOVED",
+      "VOID-6.3-BINDING-CHANGE",
+      "VOID-6.1A-ARCHIVE-READ",
+      "VOID-6.1A-KEY-RETAINED",
+      "VOID-6.1A-STORE-OUTSIDE",
+      "VOID-6.1A-MEDIATION-FAIL",
+      "VOID-6.1B-BYTE-OUTSIDE",
+      "VOID-6.1B-UNLOGGED-TOUCH",
+      "VOID-6.1B-UNLOGGED-REFUSAL",
+      "VOID-6.1B-D-BEFORE-C2",
+      "VOID-6.1C-CUTOUT-OUTSIDE",
+      "VOID-6.1C-HUMAN-VIEW",
+      "VOID-6.1C2-CLASSIFIER",
+      "VOID-6.1C2-FIELD-OUTSIDE",
+      "VOID-6.1D-CHI-EMITTED",
+      "VOID-6.1E-FIELD-OUTSIDE",
+      "VOID-6.1F-CHI-INPUT",
+      "VOID-6.1G-OTHER-ROLE",
+      "VOID-6.1G-EXPORT-OUTSIDE",
+      "VOID-6.1G-VIEW-OUTSIDE",
+      "VOID-6.1G-UNLOGGED-VIEW",
+      "VOID-6.1H-WRITE-OUTSIDE",
+      "VOID-6.1H-INTERMEDIATE-PERSISTENCE",
+      "VOID-6.1H-FIELD-BEYOND",
+      "VOID-6.1H-EXPORT-DIGEST",
+      "VOID-6.1I-LEAVING-STORE",
+      "VOID-6.1I-FIELD-BEYOND",
+      "VOID-6.1I-FAIL-ABORT",
+      "VOID-6.1J-READ-CHI",
+      "VOID-6.1J-CONTINUE-FAIL",
+      "VOID-6.1J-DEVIATION",
+      "VOID-6.1K-PRE-UNBLINDING-READ",
+      "VOID-6.1L-PRE-UNBLINDING-ACCESS",
+      "VOID-6.1L-EARLY-OPEN",
+      "VOID-6.1V-WRITE-OUTSIDE-EMISSIONS",
+      "VOID-6.1V-CHI-READ",
+      "VOID-6.1V-READ-OUTSIDE-PASS",
+      "VOID-6.1D2-OUTSIDE-STORE",
+      "VOID-6.1D2-LATE-WRITE",
+      "VOID-6.1D2-REACHES-BINS",
+      "VOID-6.1L-WRONG-SIGNATURE",
+      "VOID-6.1M-PRE-UNBLINDING-ACCESS",
+      "VOID-6.1N-MISSING-FIELD",
+      "VOID-6.1N-NO-LOG",
+      "VOID-6.1N-WRONG-SIGNATURE",
+      "VOID-6.1O-EARLY-INVOCATION",
+      "VOID-6.1O-REPLAY",
+      "VOID-6.1O-DECRYPT-OUTSIDE",
+      "VOID-6.1P-EARLY-EXECUTION",
+      "VOID-6.1P-VERDICT-OUTSIDE",
+      "VOID-6.1P-SILENT-LOSS",
+      "VOID-6.1P-RETRY",
+      "VOID-6.1Q-READ-ARCHIVE",
+      "VOID-6.1R-PRE-UNBLINDING-ACCESS",
+      "VOID-6.1S-EARLY-EXPORT"
+    ],
+    "normative_ids": [
+      "VOID-5-FORBIDDEN-ACT",
+      "VOID-5-PROTOCOL-DEVIATION",
+      "VOID-5-DIGEST-DEVIATION",
+      "VOID-5-NONFINITE",
+      "VOID-5-DEGENERATE",
+      "VOID-2.7-THRESHOLD-CHOSEN-OR-MOVED",
+      "VOID-6.3-BINDING-CHANGE",
+      "VOID-6.1A-ARCHIVE-READ",
+      "VOID-6.1A-KEY-RETAINED",
+      "VOID-6.1A-STORE-OUTSIDE",
+      "VOID-6.1A-MEDIATION-FAIL",
+      "VOID-6.1B-BYTE-OUTSIDE",
+      "VOID-6.1B-UNLOGGED-TOUCH",
+      "VOID-6.1B-UNLOGGED-REFUSAL",
+      "VOID-6.1B-D-BEFORE-C2",
+      "VOID-6.1C-CUTOUT-OUTSIDE",
+      "VOID-6.1C-HUMAN-VIEW",
+      "VOID-6.1C2-CLASSIFIER",
+      "VOID-6.1C2-FIELD-OUTSIDE",
+      "VOID-6.1D-CHI-EMITTED",
+      "VOID-6.1E-FIELD-OUTSIDE",
+      "VOID-6.1F-CHI-INPUT",
+      "VOID-6.1G-OTHER-ROLE",
+      "VOID-6.1G-EXPORT-OUTSIDE",
+      "VOID-6.1G-VIEW-OUTSIDE",
+      "VOID-6.1G-UNLOGGED-VIEW",
+      "VOID-6.1H-WRITE-OUTSIDE",
+      "VOID-6.1H-INTERMEDIATE-PERSISTENCE",
+      "VOID-6.1H-FIELD-BEYOND",
+      "VOID-6.1H-EXPORT-DIGEST",
+      "VOID-6.1I-LEAVING-STORE",
+      "VOID-6.1I-FIELD-BEYOND",
+      "VOID-6.1I-FAIL-ABORT",
+      "VOID-6.1J-READ-CHI",
+      "VOID-6.1J-CONTINUE-FAIL",
+      "VOID-6.1J-DEVIATION",
+      "VOID-6.1K-PRE-UNBLINDING-READ",
+      "VOID-6.1L-PRE-UNBLINDING-ACCESS",
+      "VOID-6.1L-EARLY-OPEN",
+      "VOID-6.1V-WRITE-OUTSIDE-EMISSIONS",
+      "VOID-6.1V-CHI-READ",
+      "VOID-6.1V-READ-OUTSIDE-PASS",
+      "VOID-6.1D2-OUTSIDE-STORE",
+      "VOID-6.1D2-LATE-WRITE",
+      "VOID-6.1D2-REACHES-BINS",
+      "VOID-6.1L-WRONG-SIGNATURE",
+      "VOID-6.1M-PRE-UNBLINDING-ACCESS",
+      "VOID-6.1N-MISSING-FIELD",
+      "VOID-6.1N-NO-LOG",
+      "VOID-6.1N-WRONG-SIGNATURE",
+      "VOID-6.1O-EARLY-INVOCATION",
+      "VOID-6.1O-REPLAY",
+      "VOID-6.1O-DECRYPT-OUTSIDE",
+      "VOID-6.1P-EARLY-EXECUTION",
+      "VOID-6.1P-VERDICT-OUTSIDE",
+      "VOID-6.1P-SILENT-LOSS",
+      "VOID-6.1P-RETRY",
+      "VOID-6.1Q-READ-ARCHIVE",
+      "VOID-6.1R-PRE-UNBLINDING-ACCESS",
+      "VOID-6.1S-EARLY-EXPORT"
+    ],
+    "per_id": {
+      "VOID-2.7-THRESHOLD-CHOSEN-OR-MOVED": {
+        "failure_effect": "VOID",
+        "phase": "Post-first-real-χ",
+        "source": "§2.7"
+      },
+      "VOID-5-DEGENERATE": {
+        "failure_effect": "VOID",
+        "phase": "Post-unblinding",
+        "source": "§5"
+      },
+      "VOID-5-DIGEST-DEVIATION": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§5"
+      },
+      "VOID-5-FORBIDDEN-ACT": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§5"
+      },
+      "VOID-5-NONFINITE": {
+        "failure_effect": "VOID",
+        "phase": "Post-unblinding",
+        "source": "§5"
+      },
+      "VOID-5-PROTOCOL-DEVIATION": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§5"
+      },
+      "VOID-6.1A-ARCHIVE-READ": {
+        "failure_effect": "VOID",
+        "phase": "Pre-unblinding",
+        "source": "§6.1 Row A"
+      },
+      "VOID-6.1A-KEY-RETAINED": {
+        "failure_effect": "VOID",
+        "phase": "P0",
+        "source": "§6.1 Row A"
+      },
+      "VOID-6.1A-MEDIATION-FAIL": {
+        "failure_effect": "VOID",
+        "phase": "P0",
+        "source": "§6.1 Row A"
+      },
+      "VOID-6.1A-STORE-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "P0",
+        "source": "§6.1 Row A"
+      },
+      "VOID-6.1B-BYTE-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row B"
+      },
+      "VOID-6.1B-D-BEFORE-C2": {
+        "failure_effect": "VOID",
+        "phase": "P2",
+        "source": "§6.1 Row B"
+      },
+      "VOID-6.1B-UNLOGGED-REFUSAL": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row B"
+      },
+      "VOID-6.1B-UNLOGGED-TOUCH": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row B"
+      },
+      "VOID-6.1C-CUTOUT-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "P1–P2",
+        "source": "§6.1 Row C"
+      },
+      "VOID-6.1C-HUMAN-VIEW": {
+        "failure_effect": "VOID",
+        "phase": "P1–P2",
+        "source": "§6.1 Row C"
+      },
+      "VOID-6.1C2-CLASSIFIER": {
+        "failure_effect": "VOID",
+        "phase": "P2",
+        "source": "§6.1 Row C2"
+      },
+      "VOID-6.1C2-FIELD-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "P2",
+        "source": "§6.1 Row C2"
+      },
+      "VOID-6.1D-CHI-EMITTED": {
+        "failure_effect": "VOID",
+        "phase": "P2",
+        "source": "§6.1 Row D"
+      },
+      "VOID-6.1D2-LATE-WRITE": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row D2"
+      },
+      "VOID-6.1D2-OUTSIDE-STORE": {
+        "failure_effect": "VOID",
+        "phase": "P2–P3",
+        "source": "§6.1 Row D2"
+      },
+      "VOID-6.1D2-REACHES-BINS": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row D2"
+      },
+      "VOID-6.1E-FIELD-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "P2–P3",
+        "source": "§6.1 Row E"
+      },
+      "VOID-6.1F-CHI-INPUT": {
+        "failure_effect": "VOID",
+        "phase": "P3",
+        "source": "§6.1 Row F"
+      },
+      "VOID-6.1G-EXPORT-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "After BS-8p",
+        "source": "§6.1 Row G"
+      },
+      "VOID-6.1G-OTHER-ROLE": {
+        "failure_effect": "VOID",
+        "phase": "After BS-8p",
+        "source": "§6.1 Row G"
+      },
+      "VOID-6.1G-UNLOGGED-VIEW": {
+        "failure_effect": "VOID",
+        "phase": "After BS-8p",
+        "source": "§6.1 Row G"
+      },
+      "VOID-6.1G-VIEW-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "After BS-8p",
+        "source": "§6.1 Row G"
+      },
+      "VOID-6.1H-EXPORT-DIGEST": {
+        "failure_effect": "VOID",
+        "phase": "Before BS-8f",
+        "source": "§6.1 Row H"
+      },
+      "VOID-6.1H-FIELD-BEYOND": {
+        "failure_effect": "VOID",
+        "phase": "Before BS-8f",
+        "source": "§6.1 Row H"
+      },
+      "VOID-6.1H-INTERMEDIATE-PERSISTENCE": {
+        "failure_effect": "VOID",
+        "phase": "Before BS-8f",
+        "source": "§6.1 Row H"
+      },
+      "VOID-6.1H-WRITE-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "Before BS-8f",
+        "source": "§6.1 Row H"
+      },
+      "VOID-6.1I-FAIL-ABORT": {
+        "failure_effect": "VOID",
+        "phase": "P4",
+        "source": "§6.1 Row I"
+      },
+      "VOID-6.1I-FIELD-BEYOND": {
+        "failure_effect": "VOID",
+        "phase": "P4",
+        "source": "§6.1 Row I"
+      },
+      "VOID-6.1I-LEAVING-STORE": {
+        "failure_effect": "VOID",
+        "phase": "P4",
+        "source": "§6.1 Row I"
+      },
+      "VOID-6.1J-CONTINUE-FAIL": {
+        "failure_effect": "VOID",
+        "phase": "P5",
+        "source": "§6.1 Row J"
+      },
+      "VOID-6.1J-DEVIATION": {
+        "failure_effect": "VOID",
+        "phase": "P5",
+        "source": "§6.1 Row J"
+      },
+      "VOID-6.1J-READ-CHI": {
+        "failure_effect": "VOID",
+        "phase": "P5",
+        "source": "§6.1 Row J"
+      },
+      "VOID-6.1K-PRE-UNBLINDING-READ": {
+        "failure_effect": "VOID",
+        "phase": "Pre-unblinding",
+        "source": "§6.1 Row K"
+      },
+      "VOID-6.1L-EARLY-OPEN": {
+        "failure_effect": "VOID",
+        "phase": "P7",
+        "source": "§6.1 Row L"
+      },
+      "VOID-6.1L-PRE-UNBLINDING-ACCESS": {
+        "failure_effect": "VOID",
+        "phase": "Pre-unblinding",
+        "source": "§6.1 Row L"
+      },
+      "VOID-6.1L-WRONG-SIGNATURE": {
+        "failure_effect": "VOID",
+        "phase": "P0, P6, P7",
+        "source": "§6.1 Row L"
+      },
+      "VOID-6.1M-PRE-UNBLINDING-ACCESS": {
+        "failure_effect": "VOID",
+        "phase": "Pre-unblinding",
+        "source": "§6.1 Row M"
+      },
+      "VOID-6.1N-MISSING-FIELD": {
+        "failure_effect": "VOID",
+        "phase": "P6",
+        "source": "§6.1 Row N"
+      },
+      "VOID-6.1N-NO-LOG": {
+        "failure_effect": "VOID",
+        "phase": "P6",
+        "source": "§6.1 Row N"
+      },
+      "VOID-6.1N-WRONG-SIGNATURE": {
+        "failure_effect": "VOID",
+        "phase": "P6",
+        "source": "§6.1 Row N"
+      },
+      "VOID-6.1O-DECRYPT-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "P7",
+        "source": "§6.1 Row O"
+      },
+      "VOID-6.1O-EARLY-INVOCATION": {
+        "failure_effect": "VOID",
+        "phase": "P7",
+        "source": "§6.1 Row O"
+      },
+      "VOID-6.1O-REPLAY": {
+        "failure_effect": "VOID",
+        "phase": "P7",
+        "source": "§6.1 Row O"
+      },
+      "VOID-6.1P-EARLY-EXECUTION": {
+        "failure_effect": "VOID",
+        "phase": "P8",
+        "source": "§6.1 Row P"
+      },
+      "VOID-6.1P-RETRY": {
+        "failure_effect": "VOID",
+        "phase": "P8",
+        "source": "§6.1 Row P"
+      },
+      "VOID-6.1P-SILENT-LOSS": {
+        "failure_effect": "VOID",
+        "phase": "P8",
+        "source": "§6.1 Row P"
+      },
+      "VOID-6.1P-VERDICT-OUTSIDE": {
+        "failure_effect": "VOID",
+        "phase": "P8",
+        "source": "§6.1 Row P"
+      },
+      "VOID-6.1Q-READ-ARCHIVE": {
+        "failure_effect": "VOID",
+        "phase": "P3, P6",
+        "source": "§6.1 Row Q"
+      },
+      "VOID-6.1R-PRE-UNBLINDING-ACCESS": {
+        "failure_effect": "VOID",
+        "phase": "Pre-unblinding",
+        "source": "§6.1 Row R"
+      },
+      "VOID-6.1S-EARLY-EXPORT": {
+        "failure_effect": "VOID",
+        "phase": "P9",
+        "source": "§6.1 Row S"
+      },
+      "VOID-6.1V-CHI-READ": {
+        "failure_effect": "VOID",
+        "phase": "Pre-unblinding",
+        "source": "§6.1 Row V"
+      },
+      "VOID-6.1V-READ-OUTSIDE-PASS": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row V"
+      },
+      "VOID-6.1V-WRITE-OUTSIDE-EMISSIONS": {
+        "failure_effect": "VOID",
+        "phase": "Any",
+        "source": "§6.1 Row V"
+      },
+      "VOID-6.3-BINDING-CHANGE": {
+        "failure_effect": "VOID",
+        "phase": "Post-first-real-χ",
+        "source": "§6.3"
+      }
+    },
+    "registry_digest": "315ef0195d047bf22ff3164b98f7ec036d04f18869f8ab67b349fdede5ed9053"
+  },
+  "body_sha256": "bf4d8371a9b6eb3d7d23ee050c0831cb83f14673da1cbcfba5a1612af5d6c98f",
+  "envelope_sha256": "92fe7a2192dfa7a152e9d87e9d05de0618ba86f9fe2f629216173257e17c8462",
+  "schema": "BS2V-V1",
+  "slot": "BS-2v"
+}

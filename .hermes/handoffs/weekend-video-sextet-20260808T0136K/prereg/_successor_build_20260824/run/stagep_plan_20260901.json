@@ -12,25 +12,55 @@
     "success_rule": "x >= 962"
   },
   "cost_estimate": {
-    "hours_per_1000_trial_battery": 0.3309932141111111,
+    "hours_per_1000_trial_battery": 0.337508388888889,
     "note": "full cost is batteries tested until first pass, plus final-set re-pass",
-    "seconds_per_1000_trial_battery": 1191.5755708
+    "seconds_per_1000_trial_battery": 1215.0302000000004
   },
   "mask_rows": 49211,
   "mode": "plan",
-  "plan_status": "L_min_plan requires both the missing raw planning input and the full exact battery; not inferred from 10 trials",
+  "plan_status": "STOP-AND-BLOCKED: local_pass closure fixture mismatch",
   "planning": {
-    "exact_missing_artifact": "authenticated raw pre-retention planning table whose frozen local_pass output is selected_brickids_cut.txt",
-    "max_post_retention_N_eq": 88757.02688259192,
-    "reason": "no traversal prefix reaches N_eq minimum",
+    "L_min_plan": 33336.25526173975,
+    "L_plan": 40003.5063140877,
+    "agreement_proofs": {
+      "greedy": 40,
+      "reduction": 30
+    },
+    "closure_test": {
+      "actual_count": 6446,
+      "actual_sha256": "9f8f3cddd2e24f81ed475e51ed40da34afeee1efae3ae21d4ec0554e6a57b23c",
+      "expected_count": 6104,
+      "expected_sha256": "939b4ef2d2e00fb974892e835e51e512a5511bbe04a74780be15e38eb3879fd5",
+      "extra_count": 342,
+      "first_extra": [
+        5231,
+        6586,
+        6899,
+        7783,
+        8417,
+        8418,
+        8744,
+        9417,
+        9418,
+        9419
+      ],
+      "first_missing": [],
+      "missing_count": 0,
+      "status": "FAIL"
+    },
+    "first_neq_eligible_prefix": 5024,
+    "local_pass_L_ret": 40005.550078633496,
+    "local_pass_moves": 1,
+    "raw_positive_rows": 270577,
+    "raw_total": 832393,
     "status": "BLOCKED"
   },
-  "positive_bricks": 6104,
+  "positive_bricks": 270577,
   "selected_bricks": 6104,
   "smoke": {
     "prefix": 0,
-    "seconds": 11.915755707999999,
-    "seconds_per_trial_wall": 1.1915755708,
+    "seconds": 12.150302000000003,
+    "seconds_per_trial_wall": 1.2150302000000004,
     "successes": 10,
     "trials": 10
   }
