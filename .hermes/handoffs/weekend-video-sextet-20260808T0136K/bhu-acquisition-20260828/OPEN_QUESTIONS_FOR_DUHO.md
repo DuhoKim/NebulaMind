@@ -6,6 +6,19 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ✅ DONE 2026-09-01 — cutoff THEORY pursued → IRREDUCIBLE_AMBIGUITY (cannot calibrate even from the causal axiom)
+
+Duho RELAY "pursue the cutoff theory (clamp overridden)." Derived from the model's causal boundary condition
+Φ(χ>χ_§)=0 (blind codex + agy). Result: the condition fixes the cutoff SCALE (60°, via Eq. 17) but imposes NO
+perturbation-covariance constraint, so the large-angle S₁/₂ amplitude is genuinely free (representative
+completions span ~6,200–22,300 μK⁴, all ≫ Planck's ~1,150). Verified against the source: the paper's Φ is a
+FLUX integral (Eq. 16), not a field — agy's "CALIBRATED & falsified" (S₁/₂=43,786) rested on misreading Φ as a
+Dirichlet field BC, and was refuted. **Tier UNCHANGED — 23/24/25/26/27 stay QUALITATIVE-DIRECTIONAL.** A real
+calibration needs new physics beyond the papers (a full stochastic / initial-condition completion). Detail:
+`CUTOFF_THEORY_RESULT_20260901.md`. No decision required — reported.
+
+---
+
 ## ✅ DONE 2026-09-01 — Gaztañaga cutoff calibration attempted → UNDETERMINED (cannot calibrate from the model)
 
 Duho RELAY "calibrate the Gaztañaga cutoff (clamp overridden)." Two independent CAMB derivations (codex + agy)
