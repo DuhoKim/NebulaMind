@@ -62,3 +62,14 @@ tier-neutral).
 
 Third read (kimi, outside the codex/agy split) dispatched on the crux. Both seat results + the four
 corrected pins committed. Outcome → Duho q4 once the crux settles.
+
+## SETTLED (third read, 2026-09-01) — UNDETERMINED
+
+kimi (Moonshot, outside the split; `RQ_B_kimi_CRUX_RESULT.md`, session 20260901_094304_79f778) judged
+the crux **CRUX_CLOSURE_UNDERDETERMINED**: a spin/number isocurvature mode is allowed by the same
+background and gives δp_nad ≠ 0, so ζ is NOT forced to be conserved; "p_eff fixed by n_f alone hence
+adiabatic" confuses a background barotropic fit with a derived sound speed. Tally: **codex + kimi
+UNDETERMINED, agy NEW_FALSIFIER (outlier)**. **RQ-B settles as UNDETERMINED** — the transfer function
+is not derivable from the published Popławski literature (no perturbation action; the author's own
+fluctuation calculation is unfinished). Neither a new falsifier nor consistency-only-by-derivation;
+the falsifier question is genuinely OPEN, needing original ECSK perturbation theory. → Duho q4.

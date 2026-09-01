@@ -24,7 +24,47 @@ questions below remain genuinely open.
 
 ---
 
-## OPEN — RQ-B steer only (q3 CLOSED; the last Lane-2 task — start Popławski transfer function, or hold with 3 of 4 done)
+## OPEN — 1 question (q4 · RQ-B outcome). LANE 2 COMPLETE — all four computed + the watcher live.
+
+### q4 · RQ-B is in — the Popławski transfer function is UNDETERMINED. How to record it on entries 8–12?
+
+**What happened.** RQ-B (Lane 2's last and heaviest task) tried to derive the transfer function of the
+Popławski torsion bounce — does any finite parent signal survive to the daughter interior? Both seats
+agree on the field equations and that the torsion expansion is only **~23 e-folds**. But they split on
+the transfer, so an independent third seat (kimi) judged the crux and — with codex — concluded
+**UNDETERMINED.** The mechanism (the corpus's *only* one with field equations) has equations for the
+homogeneous **background** bounce but **not for perturbations**: the closure isn't fixed (a
+spin-isocurvature mode is allowed), the bounce is a cusp with undetermined matching, and the
+particle-production constant β is free. Decisively, **Popławski himself says the density-fluctuation
+calculation "remains to be done."** So the falsifier question cannot be answered from the published
+literature — it needs original theory (a linearized Einstein–Cartan perturbation action) that does not
+exist yet. (Workings: `RQ_B_RECONCILIATION_20260901.md` + `RQ_B_kimi_CRUX_RESULT.md`.) agy's "new
+falsifier" claim assumed the very closure it needed to derive; kimi showed that confuses a background
+barotropic fit with a derived sound speed.
+
+**Your call, with costs:**
+- **(a) Annotate 8–12, keep tiers — recommended.** Record: RQ-B found the interior transfer function
+  UNDETERMINED by the published literature (background bounce yes, perturbation action no; the author's
+  own fluctuation calc unfinished); the branch's falsifier question is genuinely OPEN, not closed by
+  omission. **Cost:** annotation, no tier change. Honest: upgrades the record from "consistency-only by
+  omission" to "the key calculation is acknowledged unfinished — open."
+- **(b) Leave 8–12; RQ-B in lane files only.** **Cost:** the record won't reflect that the falsifier
+  question is genuinely open (not merely unaddressed).
+- **(c) Commission the missing calculation** — the linearized ECSK perturbation action — as new theory
+  work. **Cost:** substantial; this is original research, not a corpus audit. Flagged for the record;
+  I would not start it without an explicit go.
+
+**My recommendation: (a).** Records the honest finding — the one mechanism with field equations still
+can't answer the falsifier question, and the author agrees it's unfinished — without overclaiming.
+*(Bonus: codex caught that my brief mis-mapped entry 10's source — it's arXiv 1111.4595, not 1111.1017;
+the correct Popławski papers are now pinned; the bibliography itself was clean, nothing to fix there.)*
+
+**Lane 2 is complete:** A undetectable · D 0-kills · **C predicted CMB candidate (the hit)** · B
+undetermined · E watcher live. Nothing waits on this ruling; entries 8–12 keep their tiers until you say.
+
+---
+
+### ✅ RQ-B steer CLOSED 2026-09-01 — Duho ruled "start RQ-B"; run complete (UNDETERMINED, see q4 above).
 
 ### ✅ q3 RESOLVED 2026-09-01 — Duho ruled "annotate q3, keep tier". Entries 25/26 now carry the RQ-C result (predicted, Planck-consistent, scale-level CMB falsifier candidate; tier UNCHANGED, QUALITATIVE-DIRECTIONAL). Same shape as q1. Original question below.
 
