@@ -1181,3 +1181,85 @@ the quotes inline plus an explicit instruction to use targeted `grep -n … | cu
 **The rule:** when gating anything against that preregistration, hand the seat the quotes inline and
 forbid the whole-file read. Do not treat an exit-0-with-no-artifact as a soundness signal — a seat
 that dies silently is indistinguishable from one that found nothing, which is the §1u shape again.
+
+### 1am-CORRECTION — THE "HUGE FILE" CAUSE WAS WRONG
+
+**Same day.** §1am recorded the probable cause of the codex/kimi double failure as context
+exhaustion on a 1,607-line file with thousand-character lines. **That hypothesis is refuted:** both
+seats were later dispatched on `_PROGRAM_A_STEP2_GATE_BRIEF.md`, a **~5 KB self-contained brief with
+every quote inline and an explicit instruction not to open large files**, and both failed *exactly
+as before* — codex exit 0 with no artifact, kimi returning only the echoed query. So the cause is
+not the file. It is something about the seats' invocation in this environment, and it is **still
+undiagnosed**. What survives from §1am is only the operational rule, which did work: **a Claude seat
+with quotes inline returns complete verdicts where codex/kimi return nothing.** The probable-cause
+sentence is struck; do not repeat it as an explanation.
+
+### 1an — A PRE-REGISTERED DECISION RULE THAT COMPARED A POINT PREDICTION TO A RANDOM VARIABLE
+
+**2026-09-01, Program (A).** I pre-registered the rule *"if the model's minimum `S₁/₂` exceeds the
+observed ~1,150 μK⁴, the model cannot produce the observation and is refuted"* — and wrote it down
+in advance precisely so it could not be chosen afterwards. **Writing it in advance did not make it
+valid.** `S₁/₂` is *quadratic* in `C_ℓ`, so its sampling distribution under cosmic variance is
+violently skewed: the ΛCDM sampling mean is 62,069 μK⁴ against a mean-spectrum value of 34,926, and
+direct Monte Carlo over 200,000 skies gives **`P(Ŝ ≤ 1150) = 0.125%` — ΛCDM itself produces the
+observed value.** Applied to ΛCDM, my rule would have refuted ΛCDM.
+
+**The class:** a decision rule that compares a **theory point value** against a **single realization
+of a random variable**, with no sampling distribution in between. It is not a statistics slip about
+error bars — the rule was *structurally* incapable of the outcome it advertised, because "the model's
+mean exceeds the datum" and "the model cannot produce the datum" are different propositions and only
+the second is a refutation.
+
+**Why pre-registration hid it.** Pre-registration defends against choosing the rule *after* seeing
+the data. It offers **no defence at all** against a rule that was wrong when written. I had treated
+"declared in advance" as if it implied "sound", and presented the rule to Duho on that basis.
+
+**The rule this yields.** Before pre-registering any threshold, run the **reductio control**: apply
+the rule to a model already known to be viable (here ΛCDM). *If the rule refutes it, the rule is
+broken.* This is cheap, mechanical, and would have caught this in one Monte Carlo. Pair it with the
+dimensional question — is the quantity being compared a parameter, an estimator, or a realization?
+
+### 1ao — AN ADMISSIBLE CLASS THAT CONTAINED ITS OWN DEGENERATE SOLUTION
+
+**Same episode, found by the physics gate seat.** The optimization's admissible class was:
+(i) support cut at `k_§`, (ii) `P(k) ≥ 0`, (iii) `P = P_ΛCDM` above `k_norm`. **Constraint (ii)
+permits `P = 0`,** so the class *contains* the completion "delete all power in the free band" — i.e.
+"cut at `k_norm`" — and `k_norm` was **never pinned by the charter**. Measured: zeroing multipoles
+below `ℓ_keep` gives `S₁/₂` = 34,926 → 1,786 → 835 → 185 → 12.9 for `ℓ_keep` = 2 → 5 → 6 → 10 → 30.
+So the minimum would have reported **where I happened to put `k_norm`**, not anything about the
+causal model, and the refutation branch could never fire while the accommodation branch fired
+trivially.
+
+**The class:** a constraint set whose *inequality* constraints admit a degenerate member that
+optimizes the objective **for reasons unrelated to the physics under test**. The optimum then
+measures a modelling convention. It is the optimization-theoretic cousin of §1x (a predicate that
+cannot fail): here it is an *objective* that cannot discriminate.
+
+**The rule.** For any optimization over a model class, **exhibit the argmin before trusting the
+min** and ask what it *is*. If the minimizer is a degenerate object (all-zero, boundary, trivial),
+the number is about the parameterization, not the theory. Equivalently: check whether every free
+parameter of the class is pinned by something in the source — `k_§` was; `k_norm` was not, and that
+asymmetry was the whole defect.
+
+### 1ap — AN ADVERSE FLAG THAT WAS ARITHMETICALLY RIGHT AND BUILT ON A PREMISE THE SOURCE DOES NOT HOLD
+
+**Same day, and it runs the other way — this one was a gate seat's error, caught by me.** The
+physics seat flagged that the paper's own chain gives **22°, not 60°**, which would have destroyed
+the corpus's one a-priori prediction. I carried it as an unverified flag rather than a result, then
+checked it. **It is refuted as stated.** The seat took `χ_§ = √(3/Λ)`, the de Sitter radius; the
+paper never does — it solves Eq. 22 numerically and reports **Eq. 23, `χ_§ = (3.149 ± 0.006) c/H₀`**,
+with `θ_§(z) = χ_§/χ(z)` (L349), giving **57.4°**. Substituting the de Sitter radius reproduces the
+flag's 21.9° and its "≈2.6×" remark exactly — so its *arithmetic was correct* and its *premise was
+imported*, not read.
+
+**The class:** an adverse finding whose computation is sound but whose input was **supplied by the
+critic rather than taken from the source**. It is the exact mirror of §1ak — there I quoted the
+source correctly and stopped a sentence too early; here a seat computed correctly from a definition
+the source never uses. Both produce confident, checkable-looking claims that are false about the
+paper.
+
+**The rule, and it is the one worth keeping from today.** *Verify adverse findings with the same
+rigour as favourable ones.* A refutation that flatters the current direction — here, a negative
+result about a model we had been failing to rescue — is exactly when the check gets skipped. Ask of
+any flag: **which numbers came from the source and which did the critic choose?** Every quantity in
+a critical claim needs the same provenance discipline as one in a supportive claim.
