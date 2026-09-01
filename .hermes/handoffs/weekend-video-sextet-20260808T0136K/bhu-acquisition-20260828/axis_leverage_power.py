@@ -26,6 +26,7 @@ VAR_COS_LONGO = 0.7517
 N_EQ_FROZEN = 110_983
 A_LONGO = 0.0408
 A_FLOOR = 0.85
+POWER_FLOOR = 100_000        # frozen N_eq gate (§4); FAIL -> INCONCLUSIVE-BY-POWER
 BATTERY_POS_AHAT = 0.04243   # measured on the positive-control fixture (§4)
 BATTERY_POS_P = 2.2e-21
 
@@ -38,12 +39,25 @@ def n_eq(var_cos, n=N):
 def sigma_A(n_eq_value, a=A_FLOOR):
     """Std error on the DEBIASED amplitude A.
 
-    sigma_beta = 1/sqrt(N_eq) in this convention; dividing by the dilution
-    (2a-1) to reach A inflates it. Detection (beta != 0) does NOT need a;
-    only the amplitude scale does.
+    CORRECTED 2026-09-01 after adversarial refutation (AMENDMENT_B_REFUTED).
+
+    THE ERROR: this used sigma_beta = 1/sqrt(N_eq), treating N_eq as an inverse
+    variance. It is not -- N_eq = 3*N*Var(cos) is a GATE THRESHOLD. The frozen
+    text (V134 §3) defines the variance itself:
+        Var(beta_hat) = Var_pop(s)/((N-1)*Var_pop(c))
+    so with Var_pop(s) ~ 1 for s = +/-1,
+        sigma_beta = 1/sqrt(N*Var(c)) = sqrt(3)/sqrt(N_eq).
+    The old form was optimistic by exactly sqrt(3) = 1.732 at every axis.
+
+    Consequence: the "model validation" this script originally reported was a
+    coincidence produced BY the error. Under the correct variance no admissible
+    a reproduces the receipt's ~9.5 sigma (5.71 at a=0.85, 8.16 even at a=1.0),
+    so the Gaussian model does not in fact reproduce BATTERY-POS and must not be
+    cited as if it did.
     """
     dilution = 2.0 * a - 1.0
-    return 1.0 / (dilution * math.sqrt(n_eq_value))
+    n_var_c = n_eq_value / 3.0          # N*Var(c), the real inverse variance
+    return 1.0 / (dilution * math.sqrt(n_var_c))
 
 
 def var_cos_at_angle(psi_deg, var_cos_ref=VAR_COS_LONGO):
@@ -75,16 +89,20 @@ def main():
     print("=" * 72)
 
     print("\n[1] MODEL CHECK against the frozen positive control (BATTERY-POS)")
+    print("    *** THIS CHECK FAILS UNDER THE CORRECTED VARIANCE. Reported as a")
+    print("    *** failure, not repaired away: the earlier PASS was produced by")
+    print("    *** the sqrt(3) error it was supposed to catch.")
     sig, snr, p = check_model_against_frozen_receipt()
     print(f"    sigma_A at N_eq={N_EQ_FROZEN:,}, a={A_FLOOR}  : {sig:.5f}")
     print(f"    frozen BATTERY-POS A_hat                    : {BATTERY_POS_AHAT}")
-    print(f"    implied significance                        : {snr:.1f} sigma")
+    print(f"    implied significance                        : {snr:.2f} sigma")
     print(f"    implied two-sided p                         : {p:.2e}")
-    print(f"    frozen receipt p                            : {BATTERY_POS_P:.2e}")
-    ok = 5.0 < snr < 20.0
-    print(f"    -> model reproduces the receipt order-of-magnitude: {ok}")
-    print("       (receipt p is from a permutation null, not this Gaussian;")
-    print("        agreement to ~1 order of magnitude is the intended check)")
+    print(f"    frozen receipt p                            : {BATTERY_POS_P:.2e} (~9.5 sigma)")
+    snr_best = BATTERY_POS_AHAT / sigma_A(N_EQ_FROZEN, a=1.0)
+    print(f"    best case a=1.0 (perfect classifier)        : {snr_best:.2f} sigma")
+    print("    -> NO admissible a reproduces the receipt's ~9.5 sigma.")
+    print("       The Gaussian model does NOT reproduce BATTERY-POS and cannot")
+    print("       be cited as validation of the table below.")
 
     print("\n[2] DETECTION FLOOR ON LONGO'S OWN AXIS (what the frozen footprint buys)")
     for a in (0.85, 0.90, 0.95, 1.00):
@@ -94,15 +112,31 @@ def main():
 
     print("\n[3] LEVERAGE LOSS WHEN THE AXIS MOVES OFF LONGO'S")
     print("    psi = angle between the new (CMB) axis and the selection axis")
+    print("    GATE = the frozen power floor N_eq >= 100,000 (§4). The original")
+    print("    version of this script never applied it. It is decisive.")
     print(f"    {'psi':>5} {'Var(cos)':>9} {'N_eq':>10} {'loss':>7} "
-          f"{'sigma_A':>9} {'3sig floor':>11}")
-    for psi in (0, 15, 30, 45, 60, 75, 90):
+          f"{'sigma_A':>9} {'3sig floor':>11} {'GATE':>6}")
+    for psi in (0, 15, 20, 30, 45, 50, 60, 75, 90):
         v = var_cos_at_angle(psi)
         ne = n_eq(v)
         s = sigma_A(ne, a=A_FLOOR)
         loss = N_EQ_FROZEN / ne
+        gate = "PASS" if ne >= POWER_FLOOR else "FAIL"
         print(f"    {psi:>4}d {v:>9.4f} {ne:>10,.0f} {loss:>6.2f}x "
-              f"{s:>9.5f} {3*s*100:>9.2f}%")
+              f"{s:>9.5f} {3*s*100:>9.2f}% {gate:>6}")
+
+    # where does the frozen gate stop admitting an axis?
+    psi_max = None
+    for tenth in range(0, 901):
+        if n_eq(var_cos_at_angle(tenth / 10.0)) < POWER_FLOOR:
+            psi_max = (tenth - 1) / 10.0
+            break
+    print(f"\n    -> the frozen N_eq floor admits ONLY psi <= {psi_max:.1f} degrees.")
+    print("    Candidate CMB axes reported by the adversarial review sit at")
+    print("    psi ~ 48-61 deg (hemispherical asymmetry 53.6, low-l alignment 49.9,")
+    print("    kinematic dipole 61.1) -- NOT independently verified here, but all")
+    print(f"    far beyond {psi_max:.1f} deg, so every one of them FAILS the frozen gate")
+    print("    and the run would return INCONCLUSIVE-BY-POWER before any statistic.")
 
     print("\n[4] WHAT THIS MEANS FOR THE CONTESTED AMPLITUDE RANGE")
     print(f"    Longo's claimed amplitude   : {A_LONGO*100:.2f}%")

@@ -1,9 +1,62 @@
 # PROPOSAL — the axis-substituted handedness test ("option B")
 
-**Status: DRAFT FOR DUHO'S RULING. Nothing is amended. No frozen byte is touched. No tier, no
-gate, no signature is changed by this file.** Written by Tori (BHU lane) at Duho's instruction
-("draft the amendment proposal for B"), 2026-09-01. The study it concerns belongs to **Hwao's
-lane**, and Hwao's judgement on feasibility outranks mine on everything operational.
+> # ⛔ REFUTED — DO NOT ACT ON THIS PROPOSAL
+>
+> **`AMENDMENT_B_REFUTED`, 2026-09-01, by adversarial review (`TOPIC_AMENDMENT_B_claude_VERDICT.md`),
+> and I have VERIFIED every decisive point against the frozen text myself.** All four load-bearing
+> claims fail. The proposal below is kept unedited as the record of what was proposed and why it was
+> wrong; **its recommendation ("(a), develop to precondition 1") is WITHDRAWN.** Summary of the kill:
+>
+> 1. **Claim 1 (calibration-free detection) is FALSE OF THIS TEXT.** I quoted §3's estimand and
+>    stopped one sentence short of the sentence that refutes me. **Line 423:** "Decision bands
+>    evaluate at â / {â_b}; **the detection floor evaluates at a_LB / {a_LB_b}**" — the detection
+>    floor is calibration-evaluated (§5 fixes it as `3.09 · σ_ours(a_LB)`). Worse, **line 477** is a
+>    hard gate: "If any bin's `a_LB_b < 0.85`, it emits an immediate pre-unblinding
+>    `INCONCLUSIVE-BY-CALIBRATION` and the run halts. **Only if all bins satisfy `a_LB_b >= 0.85`
+>    may Stage C run.**" Without `â` the run halts **before any statistic is formed** — `β̂_obs`
+>    (BS-7f) sits four gates downstream of BS-8f. The design already anticipated a missing
+>    calibration and specified that it stops. There is no calibration-free path to rescue.
+> 2. **Claim 2 (axis substitution is minimal) is FORECLOSED BY THE FROZEN TEXT.** **Line 132:**
+>    "This tests that published amplitude at that published axis. It does not test A ≈ 0.02,
+>    Shamir, **BHU**, or whether the sky is isotropic. **Fixed-axis.**" The signed text explicitly
+>    disclaims — *by name* — the exact use I proposed for it. `AXIS` is a constant of a frozen
+>    pinned reference and §0 makes code beat prose, so it is unexecutable as well as disclaimed.
+> 3. **Claim 3 (it removes the stage-two blocker) is CIRCULAR.** Its own precondition (bound γ via
+>    BS-3g) needs the run-time calibration artifacts stage two closed for; BS-3g blocks BS-6, which
+>    blocks the first image byte. It does not even unblock the 148 GB now downloading.
+> 4. **Claim 4 (power) was WRONG BY √3, AND MY "VALIDATION" WAS THE ERROR VALIDATING ITSELF.** I
+>    used `σ_β = 1/√N_eq`, treating the gate threshold `N_eq = 3·N·Var(cos θ)` as an inverse
+>    variance. Frozen §3 defines `Var(β̂) = Var_pop(s)/((N−1)·Var_pop(c))`, so
+>    `σ_β = √3/√N_eq`. Corrected: **σ_A = 0.00743, not 0.00429** — I overstated precision by 73%.
+>    The BATTERY-POS "model check" I offered as grounds to trust the table only passed *because* of
+>    the error: corrected, it gives 5.71σ (8.16σ even at a perfect classifier) against the receipt's
+>    ~9.5σ, so **no admissible `a` reproduces the control and the check FAILS.** Re-run
+>    `axis_leverage_power.py` — it now prints the failure instead of hiding it.
+> 5. **The conclusion inverts, and the frozen gate ends it anyway.** Corrected, the ψ=90° 3σ floor
+>    is **5.48%**, *above* Longo's 4.08% — so "Longo-scale survives at any axis" is false. And the
+>    frozen power floor (`N_eq ≥ 100,000`) admits **only ψ ≤ 20.1°**, while the candidate CMB axes
+>    sit at ψ ≈ 48–61° (review's numbers, not independently verified here) → every one returns
+>    **`INCONCLUSIVE-BY-POWER`** before any statistic. My table never applied the frozen gate at all.
+> 6. **The systematic is measured, not hypothetical, and my proposal deleted its only defence.**
+>    §2.7 measures `corr(psfsize_r, cos θ) = +0.4188` in the retained sample and says outright
+>    "**Outcome-blind is not the same as systematics-neutral, and this cut is not neutral.**" The
+>    amplitude band — which my "detection-class" reframing *removes* — was what forced a fake slope
+>    to land near a pre-specified amplitude and sign. I proposed keeping the quantity the systematic
+>    manufactures while dropping the constraint on it. My mirror-involution fallback is pre-refuted
+>    by §1: that receipt "does not measure sky-position dependence."
+> 7. **On integrity (A4), the review's answer is post-hoc pivot.** CMB-independence guards against
+>    data-dependent choice of *test*, not outcome-dependent respecification of *claim* — and the
+>    trigger here was learning the signed claim was unobtainable. Aggravated by my own precondition
+>    4, which proposed re-deriving the power floor *after* the new axis misses it.
+>
+> **No repair set is offered, and I do not offer one:** repairs would produce a different study, not
+> a modified amendment B. **Of the three options this file put to Duho, the answer is (c) — drop it.**
+
+**Status: DRAFT FOR DUHO'S RULING — now REFUTED (see above). Nothing was amended. No frozen byte
+was touched. No tier, no gate, no signature was changed by this file.** Written by Tori (BHU lane)
+at Duho's instruction ("draft the amendment proposal for B"), 2026-09-01. The study it concerns
+belongs to **Hwao's lane**, and Hwao's judgement on feasibility outranks mine on everything
+operational.
 
 ---
 
