@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "stage two \u2014 panel option after no independent checker"
+    "topic": "stage two \u2014 costing the floor-loosening path"
   },
   "humanFeedback": {
     "captured": true
@@ -474,6 +474,30 @@
       "feedbackText": "no independent checker available, explore the panel option",
       "changed": {
         "summary": "CONSTRAINT: no independent human checker is available to do the 850-presentation volume, so Option 1 (one independent checker + Duho auditing 30-50) is OUT. Exploring Option 4, the distributed expert panel: several checkers each seeing a randomized subset under a prospectively fixed overlap graph and aggregation rule, nobody exceeding ~50 decisions including Duho. codex tasked to design it concretely - how many people at what per-person load to clear the frozen floors (>=270 real labels, 10/cell, 30/stratum over 9 strata) plus the mandatory synthetic controls; the aggregation rule and its estimand; how epsilon is calibrated for an AGGREGATE call rather than an individual; the covariance/dependence model; and what new code replaces accuracy_from_handcheck() with a full re-gate. Told to state plainly if the panel ALSO fails for want of people - the arithmetic of 'how many humans, how many decisions each' is the load-bearing output, since recruiting is the actual bottleneck."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "check if galaxy zoo has usable labels",
+      "changed": {
+        "summary": "Path 1 investigation ordered after the panel came back INFEASIBLE (38 people minimum): does Galaxy Zoo (or a comparable published human-classified catalogue) provide spiral-handedness labels usable as the external calibration source for 'a'? codex tasked read-only with the DISQUALIFYING conditions named up front: (i) coverage/overlap with our 49,211 DR10.1 south objects, (ii) whether the labels give SPIRAL DIRECTION (clockwise/anticlockwise or S/Z winding) rather than just spiral/elliptical morphology, (iii) the parity/sign convention and whether it can be independently anchored to ours - a convention mismatch would silently flip the result, (iv) independence: the labels must not have been produced using or selected by our instrument, (v) whether the labeling process's own error rate can be bounded (their own repeat/expert-comparison data), and (vi) sampling/transport validity - do the labeled objects form a probability sample of our accepted population or support a defensible weighting. Told to answer USABLE / CONDITIONALLY USABLE / NOT USABLE with the blocking reason, and never to overstate a maybe."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "cost the loosening option",
+      "changed": {
+        "summary": "Costing the floor-loosening path after all cost-free routes failed (panel INFEASIBLE at 38 people; Galaxy Zoo NOT-USABLE - modern releases publish winding TIGHTNESS not direction, GZ1 lacks coverage/known-answer controls/anchorable sign). codex tasked to cost it FROM DUHO'S CAPACITY BACKWARD: at 30, 50, 80, 120 personally-doable decisions (including the mandatory known-answer controls, which are a fraction of the total, not extra), what actually survives - how many strata/bins stay live, what sigma_a results, whether a_LB_b >= 0.85 can still be cleared, what verdict power remains, and what the study can then honestly CLAIM. Told to state the point where the answer stops being worth publishing, and to distinguish loosening the FLOORS (10/cell, 30/stratum) from reducing the LABEL BUDGET - they fail differently. Honest verdict required: is there a defensible small-N design, or is this dressing up a study that cannot support its claim."
       }
     }
   ]
