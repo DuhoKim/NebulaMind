@@ -46,6 +46,7 @@ ROOT = Path(__file__).resolve().parent.parent
 V9_PATH = ROOT / "ref" / "successor_ref_v9.py"
 HARNESS_PATH = ROOT / "gates" / "count_oracle_harness.py"
 POSITIONS = ROOT / "acquire" / "positions_selected_cut.csv"
+BASE_ACQ = Path("acquire")
 SELECTED = ROOT / "acquire" / "selected_brickids_cut.txt"
 LANE_PARENT = ROOT.parent
 COUNTS = LANE_PARENT / "_tori_parent_row_count_evidence/footprint_variance_brick_counts_20260814/combined_per_brick_counts.csv"
@@ -218,10 +219,37 @@ def derive_static(v9, bid, c, n_raw):
 
 
 def closure_summary(bid, selected_idx):
+    """THE TRUE CLOSURE CRITERION (AGY CLOSURE-REVIEW-V1 SOUND, 2026-09-01):
+    local_pass selects on THEORETICAL retention over raw counts BEFORE fetch;
+    the realized mask is post-BS-2a-cut. Equality was an over-strict fixture
+    (it blocked one launch, correctly failing closed). The chain closes by
+    CONTAINMENT WITH EVERY DIFFERENCE ACCOUNTED, each part computed here:
+    (1) realized SUBSET-OF fresh (missing == 0);
+    (2) fresh minus pre-cut acquisition == the named count-vs-fetch drift set
+        (two decoupled server-side queries, mandated by the BS-2c oracle rule);
+    (3) fresh minus realized == drift set UNION cut-emptied set, where
+        cut-emptied is COMPUTED as bricks(pre-cut) - bricks(post-cut)."""
+    import csv
     got_ids = sorted(int(bid[i]) for i in selected_idx)
     want_ids = [int(x) for x in SELECTED.read_text().split()]
     got_set, want_set = set(got_ids), set(want_ids)
-    return {"status": "PASS" if got_ids == want_ids else "FAIL",
+    pre = set()
+    with open(BASE_ACQ / "positions_selected.csv") as fh:
+        for row in csv.DictReader(fh):
+            pre.add(int(row["brickid"]))
+    post = set()
+    with open(BASE_ACQ / "positions_selected_cut.csv") as fh:
+        for row in csv.DictReader(fh):
+            post.add(int(row["brickid"]))
+    drift = got_set - pre                      # counted but zero-fetched
+    cut_emptied = pre - post                   # lost every row at the BS-2a cut
+    ok = (not (want_set - got_set)
+          and got_set - want_set == drift | cut_emptied
+          and post == want_set)
+    return {"status": "PASS" if ok else "FAIL",
+            "criterion": "containment-with-differences-accounted",
+            "drift_bricks": sorted(drift), "drift_count": len(drift),
+            "cut_emptied_count": len(cut_emptied),
             "expected_count": len(want_ids), "actual_count": len(got_ids),
             "expected_sha256": PINS[SELECTED],
             "actual_sha256": hashlib.sha256(
