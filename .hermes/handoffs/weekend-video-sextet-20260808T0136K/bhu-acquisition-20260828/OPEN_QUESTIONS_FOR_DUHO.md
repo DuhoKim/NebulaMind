@@ -6,6 +6,22 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ⏳ IN PROGRESS 2026-09-01 — source-limited acquisition (Duho chose (a)): 1 of 7 acquired, 6 remain
+
+**Entry 19 (Dymnikova 2019, MDPI gold OA) fetched + pinned + blind-double re-confirmed CONSISTENCY-ONLY** (full
+source supersedes the abridged capture). Source-limited now **6**. **Correction to my earlier note:** the corpus
+DOIs for entries 4 and 5 are CORRECT (`…030128`, `…020131`, both Crossref-verified in the record) — the
+non-resolving DOIs were a transcription typo in *my fetch brief*, NOT a corpus error. Nothing to reconcile.
+
+**Still need YOUR fetch (paywalled → `~/Downloads`, I pin+sweep):** 1 Pathria (Nature, `10.1038/240298a0`),
+2 Good (Phys Today, `10.1063/1.3070923`), 3 Stuckey (AJP, `10.1119/1.17460`), 4 Knutsen (Grav Cosmol,
+`10.1134/S0202289309030128`), 6 Frolov–Markov–Mukhanov (PLB 216, `10.1016/0370-2693(89)91114-3` — ScienceDirect,
+easiest). **Entry 5 (Khakshournia):** free arXiv `1412.0105` has the exact title+author but a 2014-vs-2010 date
+oddity leaves its identity unconfirmed — grab the journal version (Grav Cosmol 16, 178) to reconcile, or say
+"pin the arXiv 5" and I'll take the preprint on the title+author match.
+
+---
+
 ## ✅ DONE 2026-09-01 — new-physics program → STILL_AMBIGUOUS (cutoff robustly NOT calibratable; IR amplitude irreducibly free)
 
 Duho RELAY "start the new-physics program (clamp overridden)." Two principled completions (codex max-entropy,

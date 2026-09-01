@@ -1,0 +1,4 @@
+TIER_CONFIRMED
+CONSISTENCY-ONLY is appropriate: the paper gives a model-dependent Wheeler–DeWitt/WKB consistency argument for baby-universe nucleation inside a regular de Sitter-core black hole, not an unconditional geometric derivation.
+Under ruling A(a), the closed/positive-curvature case is not directional evidence: (k=1) is selected as a case in the minisuperspace model; the paper’s derived comparison instead favors the flat (k=0) case given an assumed negative-deficit-angle string admixture.
+Receipts: source lines 825–827 (curvature parameter and minisuperspace quantization), 857–878 (closed case specified by (k=1) and its barrier), 893–958 (assumed matter extension and derived barrier for (k=0,-1)), 1118–1145 (three selected-(k) cases and flat-case preference), 1175–1181 (qualified conclusion/speculation).
