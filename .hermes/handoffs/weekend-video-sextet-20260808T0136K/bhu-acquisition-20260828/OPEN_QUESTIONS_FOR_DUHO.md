@@ -6,7 +6,12 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⚠ INTEGRITY HOLD — 2026-09-01 (Blanc integrity notice)
+## ✅ INTEGRITY HOLD RELAXED — 2026-09-01 09:11 KST
+
+**Resolved:** Duho typed from the same path, keystroke-verified present this morning; the overnight
+input-box lines are now attributed to him with high confidence, and **q3 was ruled by his verified
+relay (annotate — applied)**. Going forward, pane lines from Duho are valid **when Blanc confirms
+presence and relays them**. Original notice, for the record:
 
 Blanc (OPS) flagged that an **unattributed directive** appeared in Tori's input box twice overnight —
 *"annotate q3 and hold RQ-B"* (~02:10 KST) mutating to *"annotate q3 and start RQ-B"* (~02:45) — with
@@ -19,7 +24,9 @@ questions below remain genuinely open.
 
 ---
 
-## OPEN — 1 question (q3 · RQ-C: how to record the predicted CMB-cutoff candidate on 25/26)
+## OPEN — RQ-B steer only (q3 CLOSED; the last Lane-2 task — start Popławski transfer function, or hold with 3 of 4 done)
+
+### ✅ q3 RESOLVED 2026-09-01 — Duho ruled "annotate q3, keep tier". Entries 25/26 now carry the RQ-C result (predicted, Planck-consistent, scale-level CMB falsifier candidate; tier UNCHANGED, QUALITATIVE-DIRECTIONAL). Same shape as q1. Original question below.
 
 ### q3 · RQ-C is in — the Gaztañaga cutoff is a *predicted* CMB scale. How to record it on 25/26?
 

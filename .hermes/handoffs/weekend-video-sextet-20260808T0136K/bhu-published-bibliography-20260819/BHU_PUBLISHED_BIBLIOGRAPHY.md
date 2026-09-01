@@ -845,6 +845,7 @@ Testability: **QUALITATIVE-DIRECTIONAL** (same cutoff-class claims). Record: bas
 (2104.00521), publication newly verified. Audit-worthiness: **medium** — subsumed by 23/25/26.
 
 **25. E. Gaztañaga (2022). "The Black Hole Universe, Part I." Symmetry 14, 1849.**
+**RQ-C map (BHU Lane 2, 2026-08-31; Duho ruling q3 = annotate, keep tier):** The causal-horizon power-spectrum cutoff is a PREDICTED (out-of-sample), Planck-consistent, **scale-level CMB falsifier CANDIDATE** -- l_cut = 3 / theta = 60 deg, fixed from background H0/Omega_Lambda (r_S=2GM), no free parameter, published BEFORE the CMB analysis; consistent with Planck's low quadrupole + the >60 deg S_1/2 large-angle deficit (both seats agree). NOT yet calibrated: the papers supply no cutoff amplitude / C_l threshold (the model owns that missing proof). **Tier UNCHANGED (QUALITATIVE-DIRECTIONAL).** See `RQ_C_RECONCILIATION_20260831.md`.
 **Easson map (RQ-D 2026-08-31, no tier change):** RESTRICTED (not killed) by Easson 2026 (entry 22) Theorem 1's flat/open limb -- it constrains a hypothetical future *complete* version of this flat (k=0) comoving no-shell FLRW cloud; the published construction (which admits a past singularity) is not refuted. Independent third read (kimi, Moonshot) confirmed RESTRICTS over KILLS. See `RQ_D_RECONCILIATION_20260831.md` + `RQ_D_kimi_CRUX_RESULT.md`.
 DOI 10.3390/sym14091849 — VERIFIED (Crossref: Symmetry, v14, 1849, 2022-09-05).
 Claim: the bounded Friedmann–Lemaître sphere inside empty space reproduces FLRW observations for
@@ -856,6 +857,7 @@ between the dark-energy scale and the causal-horizon cutoff of entry 23.
 Record: **new to us as a verified item** (Phase 0 named the series). Audit-worthiness: **high**.
 
 **26. E. Gaztañaga (2022). "The Black Hole Universe, Part II." Symmetry 14, 1984.**
+**RQ-C map (BHU Lane 2, 2026-08-31; Duho ruling q3 = annotate, keep tier):** The causal-horizon power-spectrum cutoff is a PREDICTED (out-of-sample), Planck-consistent, **scale-level CMB falsifier CANDIDATE** -- l_cut = 3 / theta = 60 deg, fixed from background H0/Omega_Lambda (r_S=2GM), no free parameter, published BEFORE the CMB analysis; consistent with Planck's low quadrupole + the >60 deg S_1/2 large-angle deficit (both seats agree). NOT yet calibrated: the papers supply no cutoff amplitude / C_l threshold (the model owns that missing proof). **Tier UNCHANGED (QUALITATIVE-DIRECTIONAL).** See `RQ_C_RECONCILIATION_20260831.md`.
 **Easson map (RQ-D 2026-08-31, no tier change):** RESTRICTED (not killed) by Easson 2026 (entry 22) Theorem 1 -- its Part II bounce is heuristic ("reasonable to expect"), not a proven complete ANEC solution, so the theorem constrains only a hypothetical future complete version. Third read (kimi) confirmed. See `RQ_D_RECONCILIATION_20260831.md` + `RQ_D_kimi_CRUX_RESULT.md`.
 DOI 10.3390/sym14101984 — VERIFIED (Crossref: Symmetry, v14, 1984, 2022-09-22).
 Claim: Part II of the same construction (formation from an FLRW cloud).
