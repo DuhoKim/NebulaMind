@@ -2,7 +2,7 @@
   "model": "n/a (human-directed)",
   "lineage": {
     "topicSource": null,
-    "topic": "stage one paper \u2014 number verification against receipts"
+    "topic": "stage one paper \u2014 sole author + AI methods disclosure"
   },
   "humanFeedback": {
     "captured": true
@@ -546,6 +546,42 @@
       "feedbackText": "[Hwao's verification note against the commission, not Duho's words]",
       "changed": {
         "summary": "TWO NUMBERS IN THE COMMISSION DO NOT MATCH THE RECEIPTS - flagged before drafting, per the standing anchor-block rule. (1) Var(cos theta): the commission says '0.75 vs 1/3 all-sky'. The frozen text has TWO distinct variances - the count-weighted UNIVERSE value Var = 0.445201 (independently reproducing the frozen 0.4452) and the SELECTION's Var = 0.754664. The leverage argument is the SELECTION's 0.7547 against the all-sky 1/3, and the paper must say which is which rather than quoting 0.75 unattributed. (2) N_eq = 110,983: NOT FOUND in any receipt. The frozen text's selection line gives N_eq = 120,002.9 at 53,005 retained; the run's own plan file gives L_ret = 40,005.55 hence N_eq = 3 x L_ret = 120,016.65 for the realized selection. Also: the frozen selection line says 53,005 retained where the executed mask is 49,211 (the quality cut ran after) - the paper must reconcile these explicitly rather than blending them. Per the discipline 'if a number cannot be traced, cut it', 110,983 will not appear unless a receipt is produced for it; the traceable figures will be used with their sources named."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Blind Re-Test design + calibration limit (Recommended)",
+      "changed": {
+        "summary": "TITLE RULED: 'A Preregistered, Blind-Validated Design for Re-Testing the Longo Spiral-Handedness Dipole - and the Human-Calibration Limit It Reveals'. Both halves carried deliberately: the design/instrument contribution AND the terminal finding, with no overclaim - the title promises a DESIGN and a LIMIT, never a measurement."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "RASTI \u2014 RAS Techniques & Instruments (Recommended)",
+      "changed": {
+        "summary": "VENUE RULED: RASTI (RAS Techniques & Instruments) - methods/instruments/techniques scope, which fits a design+instrument+limit paper exactly. Conforming the outline to RASTI's CURRENT author guide read from the publisher's own page (not memory), per the standing anchor-block rule."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "Duho",
+      "feedbackKind": {
+        "verdict": "DIRECTION",
+        "categories": []
+      },
+      "feedbackText": "Sole author + methods disclosure (Recommended)",
+      "changed": {
+        "summary": "AUTHORSHIP RULED: Duho Kim, sole author (Department of Astronomy and Space Science, Chungnam National University), PLUS an explicit methods/acknowledgement disclosure of the AI-agent execution and adversarial multi-seat review. The disclosure is to be written HONESTLY and SPECIFICALLY: what the agents did (drafting, adversarial refereeing, gate verification, tool building), what the human did (every ruling, the P0 ed25519 signature, the design decisions, the declined-design call), and that no AI system is an author. The process is part of the contribution - neither hidden nor inflated. Blanc concurs the filed pacing stands: number table first, parallel drafting, agy referee pass, Fable final-voice integration AFTER the Friday reset."
       }
     }
   ]

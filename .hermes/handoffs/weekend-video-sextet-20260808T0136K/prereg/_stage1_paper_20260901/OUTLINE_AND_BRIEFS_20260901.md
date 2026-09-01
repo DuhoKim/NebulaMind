@@ -149,3 +149,51 @@ Fable is at 98%, resetting Friday 2026-09-05.
    integration and prose judgment is where Fable earns its cost, and doing it
    at 2% would degrade exactly the thing worth spending it on.
 **Ratify items for the principal:** title, target venue, author list.
+
+## 5. RULED: TITLE, VENUE, AUTHORSHIP — and RASTI conformance
+
+**Title (ruled, direction #46):**
+> A Preregistered, Blind-Validated Design for Re-Testing the Longo
+> Spiral-Handedness Dipole — and the Human-Calibration Limit It Reveals
+
+Both halves carried deliberately: the title promises a DESIGN and a LIMIT,
+never a measurement.
+
+**Venue (ruled, direction #47): RASTI — RAS Techniques & Instruments.**
+Conformance checked against the publisher's own current author instructions
+(academic.oup.com/rasti/pages/general-instructions), not from memory:
+
+| RASTI requirement | our conformance |
+|---|---|
+| Abstract **≤ 250 words**, single paragraph, stating goals/methods/new results | draft v1's abstract is ~330 words → **must be cut to ≤250 and made one paragraph** |
+| Numbered sections, **Introduction first, Conclusions last** | our §8 (Data/code) currently sits last → **renumber: Conclusions becomes the final numbered section**, with Acknowledgements / Data Availability / Conflict of Interest / References unnumbered after it |
+| Unnumbered **Acknowledgements, Data Availability, Conflict of Interest, References** | add all four explicitly |
+| 3–6 keywords | add (e.g. methods: statistical · methods: data analysis · techniques: image processing · galaxies: spiral · surveys) |
+| **No strict length limit**; shorter technical papers welcome | our ~4,000-word target is comfortably in scope |
+| Scope explicitly includes **software/data-processing methods without new observational results** | this paper is squarely in scope — say so in the cover letter |
+| **AI use must be disclosed in the Methods or Acknowledgements** | the ruled disclosure satisfies this exactly |
+| **AI tools cannot be authors** ("cannot take responsibility") | matches the ruled sole-authorship |
+
+**Authorship (ruled, direction #48):** Duho Kim, sole author, Department of
+Astronomy and Space Science, Chungnam National University — plus an explicit
+**AI methods disclosure**, which RASTI independently requires.
+
+### §9 (new, unnumbered block) — THE AI METHODS DISCLOSURE
+Write it honestly and specifically; it is part of the contribution, so neither
+hide it nor inflate it. It must state:
+- **What the agents did:** drafted preregistration text and paper sections;
+  refereed adversarially across 84 seat-rounds producing 703 findings; built
+  and verified the pinned tools; executed the gate ladder and verification
+  passes; performed the costed searches that produced the terminal finding.
+- **What the human did:** every ruling (γ range, terminal signature, stopping
+  rule, mapping conventions, BS-2k constants, BS-1 early resolution, the BS-6
+  cycle, the pre-image halt, this paper's scope); the **P0 ed25519 signature**
+  under which the package is frozen; the design decisions; and **the call to
+  decline the larger predecessor design before unblinding**.
+- **That no AI system is an author**, per RASTI policy and because
+  responsibility for the work is not delegable.
+- The disclosure text itself is a **ratify item** for the principal.
+
+**Conclusions section (new §7 or §8 per renumbering):** required by RASTI and
+absent from draft v1 — must state the two results (validated pre-image design;
+quantified human-calibration limit) without drifting into a physics claim.
