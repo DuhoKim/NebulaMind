@@ -223,3 +223,34 @@ its convention from the source rather than choosing it.
 
 **No tier moves. Program (A)'s direction remains Duho's call**, now with the honest information that
 its constructive output so far is zero.
+
+---
+
+## The seat disagreement, now adjudicated by computation instead of by my say-so
+
+I told Duho "codex is right" about the ISW sign on the strength of an argument, not a receipt. In a
+lane whose standing rule is that self-computing checks beat self-describing prose, that was the
+wrong currency. `cutoffA_isw_signcheck.py`, run to completion:
+
+- **My stated reason CONFIRMED:** `M` has **5,170 negative off-diagonal entries** (of 10,100), most
+  negative −7.00e-01.
+- **The decisive test:** `S(C+x) = (C+x)ᵀM(C+x)` has gradient `2MC` at `x=0`, so a negative component
+  of `MC` means adding a *little non-negative power there lowers* `S₁/₂`. **49 of 99 multipoles have
+  `(MC)_ℓ < 0`** — not a marginal edge case, roughly half of them.
+- **Explicit counterexample, constructed rather than argued:** adding strictly positive power at
+  ℓ=4 only — a physically admissible `C_ℓ^extra ≥ 0` — takes `S₁/₂` from **34,926 → 34,856** (+1%
+  bump) and down to **32,880** (+50% bump).
+
+**So "adding ISW power strictly increases S₁/₂" is false, codex is right, agy's claim is refuted, and
+my adjudication to Duho stands — now computed.**
+
+**A bug in my own check, reported because it is the interesting part.** The first run picked ℓ=1 as
+its counterexample. But ℓ=0,1 carry `C_ℓ = 0` by construction here (monopole and dipole removed), so
+"add 50% of C₁" added exactly nothing and the test measured nothing. **The check reported that as a
+failure — "my adjudication is NOT supported by this test and must be revisited" — rather than
+silently passing.** That is the inverse of §1x (a predicate that cannot fail): a test that could not
+have succeeded announced it. It was written that way on purpose and it earned its keep on first use.
+
+**Still open, and explicitly not settled by this:** whether the *actual* late-ISW spectrum raises or
+lowers `S₁/₂` for this model. That needs the real ISW `C_ℓ` and is a separate question. Only the word
+"strictly" was adjudicated.
