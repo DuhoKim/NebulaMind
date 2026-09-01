@@ -168,3 +168,58 @@ and retract C1 (done here).
 
 **Standing status:** C2 is the surviving claim and it is now gated, with the caveat that repair 3
 could still change what it means. No tier moves. Still Duho's call.
+
+---
+
+## SECOND GATE: `C2_REFUTED` too. Nothing I constructed in Program (A) survives.
+
+`CGATE_PROGRAM_A_PVALUE_codex.md`, codex, run independently (explicitly barred from reading agy's
+verdict). **Both seats now refute; C1 was already retracted, and C2 falls here.**
+
+**The central refutation, which both seats reached independently:** a hard `P(k)=0` cut below `k_§`
+is *not* equivalent to `C(θ)=0` above 60°. A spectral step is non-local in real space and produces
+ringing and long-range tails, so **the non-zero 6,897 may be guaranteed by my implementation rather
+than by the model.** In codex's words, the result establishes "that a hard infrared cutoff does not
+reproduce a vanishing angular correlation — **not** that the source paper's correctly formulated
+causal-boundary model cannot do so."
+
+**The sentence I should have written**, and codex supplies it exactly: not "the paper's model leaves
+6,897" but "**this particular Fourier-cut implementation has full-sky ensemble value 6,897**."
+
+**Codex adds a point neither I nor agy made:** `S₁/₂ = 0` requires `C(θ) = 0` across the whole
+60°–180° range — an infinite family of constraints — and tuning one cutoff scale in an otherwise
+standard spectrum cannot generally satisfy them. So the target C2 tests against was never reachable
+by this kind of model at all.
+
+### The seats disagree on one substantive point, and codex is right
+
+- **agy:** ISW/lensing "**strictly increase** the expected value of S₁/₂", so omitting them flatters
+  the model and C2 is *conservative*. I recorded that last section.
+- **codex:** since `S₁/₂ = ∫(C_prim + C_ISW)² dμ`, **the cross term can be negative**, so "ISW adds
+  correlations" does not mathematically guarantee S₁/₂ rises.
+
+**Codex has the mathematics.** S₁/₂ is a quadratic form `CᵀMC` whose matrix `M` has negative
+off-diagonal entries (`∫P_ℓP_ℓ'` over a partial interval is not sign-definite), so raising every
+`C_ℓ` need not raise S₁/₂. **My "the gate says C2 is conservative" line from the previous section is
+therefore withdrawn** — it rested on agy's claim, and the claim is false as stated. Recorded per the
+MUST-STOP rule as a seat disagreement on substance, though it does not change the outcome: **both
+seats refute C2 regardless.**
+
+### Where Program (A) actually stands
+
+| finding | status |
+|---|---|
+| the 60° **scale** prediction is sound and non-circular | **holds** (verified by me from the source) |
+| the cutoff **cannot be calibrated**; no initial-conditions model exists, author's own words | **holds** (textual, verified) |
+| a gate's "22°, not 60°" charge against the paper | **refuted by me** |
+| C1 — "moves the anomaly to at most ~3%" | **retracted** (my own table contradicted it) |
+| C2 — "the cut leaves 6× the observed correlation" | **refuted by both seats** |
+
+**Every constructive claim I built in Program (A) has now been refuted.** What survives is two
+verification findings, both negative or defensive, and a much clearer statement of what a real
+attempt would require: build the causal condition in **real space**, apply the **actual mask and
+estimator** to every simulation, separate **primordial/ISW/cross** terms, and **derive** `k_§` and
+its convention from the source rather than choosing it.
+
+**No tier moves. Program (A)'s direction remains Duho's call**, now with the honest information that
+its constructive output so far is zero.
