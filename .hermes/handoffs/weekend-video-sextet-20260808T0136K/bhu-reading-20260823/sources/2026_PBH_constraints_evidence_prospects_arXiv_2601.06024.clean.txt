@@ -1,0 +1,2163 @@
+               Primordial black holes: constraints, potential evidence and prospects
+
+              Bernard Carr,1, ∗Antonio J. Iovino,2, † Gabriele Perna,3, ‡ Ville Vaskonen,3, 4, 5, § and Hardi Veerm¨ae3, ¶
+                       1Astronomy Unit, Queen Mary University of London, Mile End Road, London E1 4NS, UK
+                                          2Center for Astrophysics and Space Science (CASS),
+                           New York University Abu Dhabi, PO Box 129188, Abu Dhabi, UAE
+                              3Keemilise ja bioloogilise f¨u¨usika instituut, R¨avala pst.  10, 10143 Tallinn, Estonia
+                 4Dipartimento di Fisica e Astronomia, Universit`a degli Studi di Padova, Via Marzolo 8, 35131 Padova, Italy
+                            5Istituto Nazionale di Fisica Nucleare, Sezione di Padova, Via Marzolo 8, 35131 Padova, Italy
+
+                         Primordial black holes (PBHs) may have formed in the early Universe and may account for all or
+                       part of the dark matter. In this review, we summarize the current observational constraints on PBHs
+                        across the full mass range, highlight potential evidence for their existence, and outline the prospects
+                           for future searches, particularly with gravitational-wave observatories. We also discuss different
+               PBH formation scenarios, identify the corresponding mass functions, and present the observational
+                         constraints in each case.2026
+Apr                                CONTENTS
+1
+                  I. Introduction                                                                                     2
+
+                II. Formation and mass functions                                                                     2
+              A. Critical collapse                                                                               3
+              B. Other mechanisms                                                                             7
+
+              III. Evaporation                                                                                     9
+              A. Dark matter                                                                                  9
+              B. Gravitational waves and dark radiation                                                         10[astro-ph.CO]
+           IV. Constraints and potential evidence                                                                10
+              A. Evaporation                                                                                 10
+              B. Lensing                                                                                     11
+              C. Gravitational waves                                                                          12
+             D. Dynamics                                                                                   13
+               E. Accretion                                                                                   13
+
+           V. Asteroid-mass window                                                                           14
+
+           VI. Constraints for extended mass functions                                                            14
+
+           VII. Gravitational wave prospects                                                                     17
+              A. Scalar-induced gravitational waves                                                              17
+              B. Gravitational waves from binaries                                                              19arXiv:2601.06024v2         C. Lensing of gravitational waves                                                                 20
+
+          VIII. Summary and outlook                                                                           20
+
+               References                                                                                      21
+
+
+
+
+           ∗b.j.carr@qmul.ac.uk
+             † a.iovino@nyu.edu
+             ‡ gabriele.perna@kbfi.ee
+             § ville.vaskonen@pd.infn.it
+         ¶ hardi.veermae@cern.ch
+
+                                                                                                     2
+
+
+                                                   I INTRODUCTION
+
+P rimordialicance. Theyblackhave holesbeen proposed(PBHs) [1–5]as candidateshave beenforwidelydark studiedmatter (DM)because[6,of7]their(for apotentialreview ofcosmologicalDM see Ref.signif-[8]),
+contributors to observed gravitational wave (GW) events [9], and plausible progenitors of supermassive black holes
+(SMBHs) occupying most galactic nuclei [10]. If PBHs possess an extended mass function, as many of their formation
+models predict, they could simultaneously account for several or even all of these phenomena. Indications for PBHs
+also arise from various other contexts, including microlensing [11] and γ-ray bursts [12].
+  In contrast, numerous constraints on the abundance of PBH have been established on different mass scales, and
+these have dominated PBH studies so far. The constraints are associated with a wide range of astrophysical processes:
+quantum evaporation, dynamical effects, lensing, accretion, structure formation, and GW emission. These limits are
+usually derived under the assumption of a monochromatic mass function. This is, however, unrealistic, since PBHs
+in most scenarios are expected to have an extended mass distribution. This problem was addressed in [13]. For the
+resulting constraints, this is a double-edged sword. On the one hand, by spreading the distribution over many decades
+of mass, one can reduce the density required at any particular mass, thereby avoiding some constraints. On the other
+hand, PBHs capable of explaining an observation at a particular mass may still contravene the limits at some larger
+or smaller mass if the mass function is extended.
+  In recent years, there have been several developments. First, the constraints themselves have been updated, with
+some becoming stronger and others weaker. Second, PBH formation mechanisms and viable mass functions have been
+explored in greater detail. Third, as already indicated, in addition to constraints, we now have claims for positive
+evidence. Regarding DM, the research is mostly focused on asteroid and stellar mass PBHs. In the stellar-mass range,
+one expects PBHs to form more easily due to QCD effects; however, this range is already subject to several stringent
+constraints that ostensibly limit PBHs to a small fraction of DM, and avoiding such constraints becomes increasingly
+difficult. In contrast, the asteroid-mass window is currently free from constraints, but finding positive indications for
+PBHs there is also more challenging. Nevertheless, current and near-future GW observations offer opportunities to
+probe both mass ranges.
+  In this review, we compile the most up-to-date constraints and provide them in digitized tables accompanied by a
+Mathematica notebook, available at GitHub: PBHconstraints, to evaluate these limits for extended mass functions.
+Rather than reiterating previous comprehensive in-depth reviews of PBH constraints (see e.g., [14, 15]), we will
+concentrate on potential positive indications for PBHs (but see also [16, 17]) and on prospects for probing PBHs with
+forthcoming experiments. We will work with units c = MPl = ℏ= kB = 1.
+
+
+
+                                   II FORMATION AND MASS FUNCTIONS
+
+
+  For a general population of PBHs, with a range of masses, the abundance and distribution of masses can be
+characterized by the PBH mass function
+
+                                                   1   dΩPBH
+                                ψ(MPBH) ≡ ΩDM d ln MPBH ,                                          (1)
+where ΩDM ≈0.12h−1 denotes the DM density parameter. Then the fraction of DM in PBHs fPBH and the mean
+PBH mass ⟨MPBH⟩are given by
+                                       Z
+                          fPBH      =   d ln MPBH ψ(MPBH) ,                       ≡ΩPBHΩDM
+                                                                     −1                                (2)
+                                        Z            −1
+                      ⟨MPBH⟩= fPBH   d ln MPBH M PBHψ(MPBH)      .
+
+A generic extended mass function, frequently used as a benchmark case, is the log-normal distribution
+
+                                             1          (MPBH/Mc)
+                                                                                                                               ,                                 (3)                            ψln(MPBH) ∝ √ 2πσ exp −ln2   2σ2
+characterised by its width σ and mode mass Mc, the latter being related to the mean mass by ⟨MPBH⟩= Mce−σ2/2.In the following, we outline the different scenarios for PBH formation and identify the corresponding mass functions
+appropriate to each case.
+  Before considering specific cases, a few more generalities can be established about PBH formation. PBHs form
+in the early universe, which we take to be any moment before recombination. An important quantity relating to
+
+                                                                                                     3
+
+the PBH abundance at the time of their formation is the fraction βk of energy density that will be converted into
+PBHs when the comoving scale k enters the horizon. Given that a PBH with mass MPBH forms in a horizon-sized
+volume with probability dPk(MPBH|θ)/d ln MPBH, provided that the conditions parametrised by the vector1   θ holdwith probability P(θ), the differential collapse fraction per logarithmic mass interval can be expressed as
+
+                                      Z                           βk(MPBH) =   dθ P(θ)MPBH dPk(MPBH|θ) ,                                 (4)
+                                      Mk   d ln MPBH
+
+where
+
+                                                −16             −2                                                 g4∗s/g3∗          k
+                       Mk = 12M⊙                                                                   (5)
+                                                106.75       106 Mpc−1
+
+is the horizon mass at the moment when the mode with wavenumber k re-enters the Hubble horizon, while g∗and
+g∗s are, respectively, the energy and entropy relativistic degrees of freedom [18] evaluated at the temperature
+
+                                                      g∗   −16      k
+                                Tk = 58 MeV                                            .                                   (6)
+                                                  106.75     106Mpc−1
+
+Eq. (4) is derived under the assumption that only a single PBH forms within each horizon volume and must be revised
+if multiple PBHs can be produced per horizon. However, this assumption is justified, since the initial PBH abundance
+in the early radiation-dominated Universe must be small to avoid PBH overproduction.
+  Given the collapse fraction (4), the mass function is then obtained as
+
+                                                                                       1/2
+                                         1  Z                Meq
+                        ψ(MPBH) =       d ln Mk βk(MPBH)                   ,                              (7)
+                             ΩDM               Mk
+Meq ≈2.8 × 1017M⊙is the horizon mass at matter–radiation equality. Eq. (7) relies on the assumption that PBHmasses are constant after formation. Consequently, in scenarios featuring substantial accretion, an extremely high
+merger rate, or remnants from evaporating sub-asteroid–mass PBHs, Eq. (7) must be revised (see, e.g., Eq. (24)).
+
+
+
+                          A  Critical collapse
+
+
+  When large-amplitude curvature perturbations re-enter the horizon, regions with sufficient overdensity can grav-
+itationally collapse to form an apparent horizon [1, 5, 19]. In the standard picture, a PBH forms once the density
+contrast δ exceeds some threshold δth. Near this threshold, the collapse exhibits critical behaviour. This universal
+phenomenon was first identified in numerical studies of general relativistic collapse [20]. The resulting PBH mass
+follows a critical scaling relation of the form [21, 22]
+                                      m(δ) = KMk (δ −δth)γ  ,                                            (8)
+where the parameters K and γ and the threshold δth depend on the shape of the curvature power spectrum [23–26].The fraction of energy density collapsing into PBHs (4) of mass MPBH then takes the form
+
+                                      Z                MPBH                           βk(MPBH) =    dδ Pk(δ)MPBH δD ln             ,                                 (9)
+                                                                δth       Mk       m(δ)
+
+where Pk(δ) denotes the probability that a BH will form in the Hubble patch and δD is the Dirac delta function,
+selecting patches in which the resulting PBH mass is MPBH. Eq. (9) is fully general provided the PBH mass is fixed
+solely by the density contrast δ via Eq. (8).  In particular, it applies in the presence of non-Gaussianity and for
+computations based on peaks theory or threshold statistics (see, e.g, [27]). However, if additional variables influence
+the PBH mass, the dimension of the integration domain must be enlarged accordingly, following Eq. (4).
+  The critical collapse scenario relies on the presence of large super-horizon curvature perturbations, which can
+naturally arise during any inflationary epoch.  Producing an appreciable PBH abundance requires a substantial
+
+
+
+1 This equation assumes that the PBH forms at k = 1/aH. For instance, in critical collapse scenarios, the formation of PBHs takes place
+  after the density perturbation of size k enters the horizon. The delay between the horizon entry of the density perturbation and the
+  formation of the PBH is then accounted for in Pk(MPBH|θ).
+
+                                                                                                     4
+
+enhancement of the curvature perturbation power spectrum, namely Pζ(k) ∼O(10−3−10−2), on the scales relevantfor PBH formation. While the amplitude and shape of the scalar power spectrum are tightly constrained on the largest
+cosmological scales by direct CMB observations [28, 29], limits on CMB spectral distortions [30–34] and Lyman-α forest
+observations [35], much smaller scales remain essentially unconstrained. Consequently, many primordial mechanisms
+have been proposed that generate a significant enhancement of the scalar spectrum at these scales (e.g., [36–46]).
+Most models capable of generating such an enhancement lead to a power spectrum that can be approximated by one
+of the following representative ans¨atze:
+
+                                        A (α + β)χ
+                       broken power-law:    Pζ(k) = h                                                ,                      (10)                                              β (k/k∗)−α/χ + α (k/k∗)β/χiχ
+
+                                   A
+                                                                                                                                    ,                            (11)                                log-normal:    Pζ(k) = √ 2π∆exp −ln2(k/k⋆)2∆2
+                                    broad:    Pζ(k) = A Θ(k −kmin) Θ(kmax −k) ,                           (12)
+where Θ denotes the Heaviside step function. In the broken power-law case, typical of single field models [47–49],
+α, β > 0 describe, respectively, the growth and decay of the spectrum around the peak, while the parameter χ
+characterises the flatness of the peak. The log-normal form is typically adopted for a spectrum with a narrow peak
+arising from spectator field or hybrid models [50–52], characterised by a well-defined wavenumber k⋆. In contrast,
+in the broad case [53, 54], the power spectrum does not exhibit a sharp peak but instead extends over a wide range
+between kmin and kmax ≫kmin. This is the most idealised case, since in realistic scenarios, the transition at theedges of the enhanced region is never sharp. Their spectra could be approximated by a three–power-law template
+with two breaks, with the middle segment having an almost scale-invariant spectral index. However, as these tails
+do not significantly impact PBH phenomenology, we will neglect them here in order to limit the number of template
+parameters.
+  For relatively narrow power-spectra, the critical scaling law (8) determines the shape of the PBH mass function.
+This is well approximated by a power-law tail at low masses and an exponential cutoff at high masses [55]:
+
+
+                                                1+1/γ
+                                      PBH                          ψcc(MPBH) ∝M                                               exp [−c1(MPBH/⟨MPBH⟩)c2] ,                            (13)
+where γ is a universal exponent associated with the critical collapse and the mean mass is approximately given by the
+horizon mass when the largest perturbations re-enter the horizon, ⟨MPBH⟩≃Mk∗. The coefficient c1 is determined
+by the condition that ⟨MPBH⟩represents the average PBH mass and the coefficient c2 ∼1 depends on the amplitudeand shape of the curvature power spectrum.  This ansatz fails to capture the mass functions arising from broad
+scale-invariant spectra [54, 56–59]. In such cases, a broken power law provides a more accurate description:
+
+                                   "         −α            β#−1                                  MPBH        MPBH
+                          ψcc(MPBH) ∝  β   Mb    + α   Mb               ,                            (14)
+
+with typical choices α = 1 + 1/γ and β = 0.5, while Mb is a free parameter that determines the location of the
+maximum of the distribution. We note that β = 0.5 assumes a radiation-dominated expansion history.  In non-
+standard expansion histories, where the equation of state of the dominant fluid is ρ = wP, the power law in the
+UV is β = −2w/(1 + w) [4], so that a non-inflationary universe w ∈(−1/3, 1] corresponds to β ∈[−1, 1) and
+radiation-domination corresponds to β = −1/2 .  When numerically computing the PBH mass functions from a given power spectrum, we adopt the prescription
+based on the threshold statistics of the compaction function [60–63]. An alternative approach uses peak statistics [64–
+66]. In the absence of strong primordial non-Gaussianity (NG), the two methods differ only by a mild rescaling of
+the power spectrum amplitude [27, 67, 68], leading to negligible modifications of the resulting mass functions. This
+justifies our adoption of a single formalism for the analysis presented in this work.
+
+
+
+                                     1  Impact of the QCD phase transition
+
+
+  The dynamics of PBH formation is governed by the competition between self-gravity and pressure forces. Within
+this framework, the equation of state (EoS) of the cosmic fluid plays a pivotal role: PBH formation is enhanced
+whenever the EoS softens.  Prior to big-bang nucleosynthesis, the universe may have experienced exotic phases,
+which may alter the equation of state [69]. In particular, an early matter-dominated epoch can greatly boost PBH
+
+                                                                                                     5
+
+
+                  ∝m3.8 ψ(m)                          ∝m-0.5                              ψ(m)
+
+
+
+
+
+                  m [M⊙]                               m [M⊙]
+
+
+FIG. 1. Left panel: Broad mass functions obtained from critical collapse, including the effect of the QCD phase transition. The
+solid line is given by the ansatz in Eq. 15, while the dashed line is computed assuming a broad power spectrum as in Eq. 12.
+Right panel: Narrow mass functions obtained from critical collapse with the QCD phase transition included (bright lines) and
+omitted (faded lines). The solid lines are given by Eq. 15 while dashed lines are numerically computed assuming a log-normal
+power spectrum with width ∆= 0.3 centered at k∗= 6 · 106 Mpc−1 (blue) and k∗= 2 × 106 Mpc−1 (red). In both panels, the
+mass functions are normalized by R d ln MPBH ψ(MPBH) = 1.
+
+
+formation [70–75]. Such an epoch can occur during reheating, when a heavy oscillating inflaton induces a temporary
+matter-dominated era [76–79].
+  Within the standard cosmological model, after reheating, the Universe is dominated by relativistic species. As the
+temperature decreases as a result of cosmic expansion, the thermal plasma undergoes a sequence of transitions where
+the EoS softens appreciably. Notable examples include the electroweak phase transition at T ∼100 GeV, epochs of
+quark annihilation, the QCD phase transition at T ∼200 MeV, and the stages of electron–positron annihilation and
+neutrino decoupling around T ∼1 MeV.  Variations in the EoS affect the critical threshold δth for PBH formation, a quantity that generally depends on
+the shape of the primordial power spectrum [24, 80, 81]. As a consequence, multiple cosmological transitions can
+generate multimodal PBH mass distributions, often characterised by a dominant peak accompanied by secondary
+features.  For concreteness, we focus here on the dominant peak, associated with the QCD phase transition, and
+attempt to parametrise its impact on the PBH mass function2. In particular, when the power spectrum is not nearly
+scale-invariant, the QCD transition has a significant effect only if the mass function is centred around O(0.1−10) M⊙as illustrated in Fig. 1. We fit the resulting feature with the log-normal mass function (3). Typically, the characteristic
+mass scale is Mc = O(1) M⊙and the width is σ ∼[0.2, 0.5], with exact values depending on the shape of the powerspectrum and the level of primordial NG [62, 91]. For example, for very broad mass spectra without primordial NG,
+typical values are Mc = 1.7 M⊙, and σ = 0.5. For narrow spectra, these parameters depend sensitively on the location
+of the main peak. Including the effect of the QCD phase transition, the PBH mass function arising from the critical
+collapse can be approximated as
+
+                           ψ(MPBH) = Aψcc(MPBH) + Bψln(MPBH) ,                                 (15)
+
+where the coefficients A and B characterise the relative contributions arising from the main peak and the QCD part.
+  In order to numerically determine the impact of the EoS on the thresholds, we follow Ref. [25], in which detailed
+numerical simulations are presented. Examples of narrow and broad mass functions modified due to QCD phase
+transitions are shown in Fig. 1. As evident from the right panel, in addition to slightly distorting the overall shape,
+the QCD phase transition can also shift the average PBH mass ⟨m⟩.
+
+
+                                       2  Importance of non-Gaussianity
+
+
+  In recent years, it has become increasingly clear that restricting the analysis to the approximation that the proba-
+bility distribution function (PDF) of density fluctuations Pk(δ) is Gaussian is not accurate [62–64, 68, 92–108]. NG of
+
+
+
+
+2 For additional works studying the effect on the threshold from QCD or other phase transitions see Refs. [16, 82–90].
+
+                                                                                                     6
+
+
+
+
+  ψ(m)                                                                                                                                                                                  ψSolar
+
+
+
+
+
+                  m [M⊙]                                                                                                      rdec
+
+
+
+FIG. 2.   Left panel: Broad (solid) and narrow (dashed) mass functions resulting respectively from a broad power spectrum
+(with kmin = 106 Mpc−1 and kmax = 1014.5 Mpc−1) and a log-normal power spectrum (with ∆= 0.5 and k∗= 6×1012 Mpc−1)
+with different realisations of the NG in the curvaton model, i.e.  different rdec (see Ref. [54] for more details of the model).
+The amplitude of the power spectrum has been re-scaled for each rdec such that PBHs comprise the totality of DM. Right
+panel: Height of the peak at the QCD scale for different rdec. We choose the benchmark points kmin = 106 Mpc−1 (red) and
+kmin = 105 Mpc−1 (blue) respectively. The plot shows a decreasing trend of ψSolar ≡ψ(1M⊙) when rdec increases, resulting
+from the effect of NG reducing the abundance of high masses. The dashed lines represent the height of the peak at the QCD
+scale, computed by taking into account only non-linearities. The mass functions are normalized in order to get the main peak
+at m ≃5 × 10−14M⊙. In both panels, the mass functions are normalized by R d ln MPBH ψ(MPBH) = 1.
+
+
+the primordial curvature perturbation is not a marginal technicality but a central element that controls the mapping
+between an inflationary power spectrum and the resulting PBH mass function. As PBH formation is controlled by the
+extreme tail of the PDF of the density contrast, even modest deviations from Gaussian statistics produce exponen-
+tially large effects on abundances and on the relative weight of different mass ranges, and therefore must be treated
+explicitly rather than absorbed implicitly into a single rescaling of the power-spectrum amplitude. In practice, NG
+enters through two conceptually distinct channels that often act together:
+
+   1. The non-linear relation between curvature perturbations ζ and the density contrast field δ induces NG even if
+      ζ is exactly Gaussian [60, 61, 109]. This NG is referred to as non-linearity (NL).
+
+   2. In many scenarios that produce large primordial perturbations, including curvaton [54, 110, 111] or ultra-slow-
+       roll (USR) [112–114] scenarios, the primordial curvature perturbations are already non-Gaussian. This NG is
+      referred to as primordial NG.
+
+When the closed form is unknown, the usual approach is to parametrise the primordial NG with a local expansion
+
+                                        ζ = ζG + 35fNLζ2G + 25gNLζ39    G + . . . ,                                    (16)
+
+where ζG obeys Gaussian statistics, and fNL and gNL encode deviations from the Gaussian limit. We stress that,
+as shown in Ref. [62], this expansion does not capture the correct results for cases with closed relations, as in the
+curvaton or USR cases. For narrow (peaked) power spectra, the perturbative expansion can converge rapidly, so a
+truncated series (with convergence checks) may provide reliable estimates of the mass fraction; by contrast, for broad
+spectra, the perturbative approach typically fails because the region of ζG that dominates the tail lies outside the
+radius of convergence of the series, and only a non-perturbative treatment of the full function F(ζG) captures the
+correct result. This practical dichotomy has immediate consequences for mass functions: in the narrow case, NG
+mostly rescales and slightly shapes an otherwise localised mass peak, while in the broad case, NG can break naive
+scale-invariance and introduce an explicit dependence of the PBH fraction β(m, Mk) on the horizon mass Mk, creating
+broad redistribution of mass and even secondary features (for example, modifying the prominence of the QCD-related
+secondary peak). This effect is shown in Fig. 2.
+  The impact of NG on the abundance of PBHs 3 strongly depends on the precise relation between the fully non-
+Gaussian curvature field ζ and its Gaussian counterpart ζG. Examples of these effects are shown in Fig. 3, where we
+
+
+
+
+3 Large negative NG also affects the collapse threshold (see Refs. [106, 115]).
+
+                                                                                                     7
+
+                                                                 rdec
+                                                       rdec.                           Not physical
+
+
+                                                                          Curvaton
+                                                                           Quadratic     A
+
+                                                                      USR-like
+                                                                            a
+                                                                                                 rdec
+                                                               fNL
+
+FIG. 3.  Left panel: Amplitudes for a broken power-law curvature spectrum (Eq. (10)) required to have fPBH = 1 for the
+curvaton model (red solid line) and the USR-like model (blue solid line), using the full NG relation, while the dashed line shows
+the results using the quadratic approximation. We assume α = 4, β = 3, γ = 1, k∗= 107 Mpc−1 and δth = 0.55.
+
+
+compare the required amplitude of a given power spectrum shape to achieve fPBH = 1 for two cases: quadratic NG,
+i.e., the first two terms of Eq. 16 (left panel) and the curvaton model (right panel).
+  From Fig. 3, an important observation can be made. One may ask whether the leading-order expansion in fNL can
+accurately capture the PBH abundance compared to the full curvaton or USR-like cases. For the curvaton, the NG
+is controlled by the curvaton decay parameter rdec ∈(0, 1), and the fNL parameter of the curvaton is given by [110]
+                                            5    3
+                                    fNL =                                     ,                                       (17)                                            3   4rdec −1 −rdec2
+so fNL > −5/4, as illustrated in the upper x-axis of Fig. 3. The USR-like case can be expressed as4
+                                         6fNL  −1
+                                         ζ = −    5       ln 1 −6fNL5  ζG   ,                                    (18)
+
+so that the expansion (16) agrees with it at the quadratic order.  Such a relation is responsible for generating
+exponential tails in the distribution of perturbations of ζ. Although Eq. (18) was initially derived in the context of
+inflection point models with a USR to constant-roll transition [113, 117], in which case fNL is positive [118], it has also
+been observed in the context of first order phase transitions but with a negative fNL [119]. Thus, we will label (18)
+as USR-like and consider it as another generic example of non-Gaussian fluctuations without reference to a specific
+scenario.
+  As seen in Fig. 3, for most of the parameter space scanned in both scenarios, the quadratic approximation (dashed
+line) does not capture the correct abundance when compared to the full NG relation (solid lines). The quadratic
+approximation overestimates the PBH abundance for the curvaton model and underestimates it for the USR-like
+models. In the limit, rdec →1, the NG relation of the curvaton will take the USR-like form (18) and, expectedly,both estimates match at that point.
+  Moreover, one might naively expect that making fNL more negative would monotonically increase the required
+amplitude of the power spectrum, corresponding to fPBH ≃1. However, as shown in Fig. 3, the amplitude reaches a
+maximum around fNL ≃−1.5, with the precise value depending on the model under consideration. The emergence ofthis peak and the subsequent decrease of A for smaller fNL can be traced back to the fact that the PDF of the density
+contrast field δ, the fundamental quantity for computing the PBH abundance by Eq. (9), is not linearly related to that
+of the curvature perturbation ζ. Consequently, suppressing the PDF of ζ does not necessarily imply a suppression of
+the PDF of δ  [120].
+
+
+
+                           B  Other mechanisms
+
+
+  In addition to inflationary mechanisms that amplify density perturbations on small scales, PBHs can be produced
+in several non-inflationary scenarios [121]. These alternative channels exploit processes in the early Universe such as
+
+
+4 The absolute value follows from Ref. [114] and mostly serves to guarantee numerical stability for 5fNLζG/6 > 1.  Recent lattice
+  simulations indicate a different continuation beyond that limit [116]. As fluctuations remain perturbative in the examples considered
+  here, the effect of this choice is not significant.
+
+                                                                                                     8
+
+
+phase transitions or collapse of topological defects, or particle dynamics beyond the Standard Model.
+
+
+
+                                             1  Phase transitions
+
+
+  Cosmological first-order phase transitions can lead to formation of PBHs in bubble collisions [122, 123] or from
+collapsing false vacuum regions [124–127].  Collapsing false vacuum regions can also arise from vacuum bubbles
+nucleated during inflation [128–131]. While the PBH mass function arising from the collapse of false-vacuum regions
+during a first-order phase transition is typically very narrow [127], the collapse of vacuum bubbles nucleated during
+inflation can yield a much broader distribution.  In this case, the spectrum can take the form of a cut piecewise
+power-law,
+                        ((MPBH/Mb)α ,  Mmin      < Mb                         ψpl(MPBH)                ≤MPBH            .                          (19)                        ∝  (MPBH/Mb)β ,  Mb                                       ≤MPBH ≤Mmax
+The bubble nucleation scenarios of Refs. [129, 130] predict {α, β} = {0, −1/2} and {−1/2, 1/2}, respectively, with thelatter also allowing for Mb = Mmin.
+  Recent attention has focused on slow and strongly supercooled first-order phase transitions, including a period of
+thermal inflation during which the Universe remains trapped in a metastable vacuum until well below the critical
+temperature [119, 132–138]. In such transitions, the formation of only a few large bubbles per Hubble volume gives
+rise to considerable stochastic density fluctuations and the PBH formation is based on critical collapse. A subsequent
+work [137] found that, once the coupling between density perturbations and metric perturbations is properly accounted
+for, PBH formation is highly suppressed. However, accounting for the gradient energy of the bubble walls may change
+this result [139].
+  Large density perturbations may also emerge in strongly supercooled transitions that are not of first order [140].
+Including both thermal and quantum fluctuations, Ref. [141] found that the induced curvature perturbations are,
+however, insufficient to source PBHs. Furthermore, to enhance PBH formation from collapsing false vacuum regions,
+it has been proposed that particles that are heavy in the true vacuum become trapped inside the false vacuum regions,
+where they are subsequently compressed into PBHs during collapse [142, 143]. However, once the backreaction of
+these particles on the bubble wall dynamics is taken into account, PBH formation through this mechanism is strongly
+suppressed [144] unless the trapped particles possess sufficiently strong attractive self-interactions [145].
+
+
+
+                                             2  Topological defects
+
+
+  The possibility that topological defects, such as cosmic strings, monopoles, and domain walls [146], could seed
+PBHs has long been recognized [147]. A cosmic string network rapidly settles into a scaling regime in which loops
+of sub-Hubble size are continuously generated through string intercommutations. These loops contract under their
+own tension and can collapse to form PBHs [147–153]. Ref. [153] found the resulting PBH mass function to have the
+power-law form,
+                                           α     ,  Mmin < MPBH < Mmax                              (20)                                        PBH                            ψpl(MPBH) ∝M
+with α = −1/2 in a radiation-dominated era. The locations of the mass cutoffs and the abundance of PBHs dependon the properties of the string network, most notably the string tension.
+  In the case of domain walls, a small bias between vacua is required to prevent the domain walls from dominating
+the energy-density of the Universe. Although the network eventually annihilates due to this bias, rare higher-energy
+domains can persist long enough for their collapse to produce PBHs [154–160]. The PBH mass function in this case
+is expected to be nearly monochromatic [158].
+
+
+
+                                      3  Other non-inflationary scenarios
+
+
+  Beyond phase transitions and topological defects, several other non-inflationary mechanisms can generate PBHs.
+Among them are scenarios including a period dominated by Q-balls, with PBHs forming from the gravitational collapse
+of regions where the number of Q-balls fluctuates above average due to Poisson statistics [161, 162]. Alternatively, in
+confining gauge theories, PBHs can form because the large amount of energy stored in the color flux tubes connecting
+quark pairs can induce gravitational collapse [163]. PBHs can also form from large baryon-number fluctuations
+generated by an inhomogeneous Affleck–Dine mechanism, which later convert into density perturbations at the QCD
+epoch and collapse gravitationally [164].
+
+                                                                                                     9
+
+
+                                                III EVAPORATION
+
+
+  BHs lose mass by emitting Hawking radiation [19, 165] with an approximately black-body spectrum with temper-
+ature
+
+                                                                −1
+                                              1        MPBH
+                         TBH(MPBH) =                    GeV .                             (21)                                  8πMPBH ≈104   109g
+
+The evaporation process decreases both the mass and the angular momentum of the BH. In terms of the dimensionless
+spin parameter, a∗≤1, the mass and spin loss rates are [166, 167]
+                                              da∗      dMPBH
+          = X αj(MPBH, a∗)M PBH−2   ,                                =  X (βj(MPBH, a∗)              a∗)) MPBH−3   ,     (22)           dt   −                             dt   −a∗              −2αj(MPBH,
+                               j                                                     j
+
+where the sums are over all particle species that are lighter than the BH temperature, mj < TBH, and the coefficients
+αj, βj depend on the particle species j. They are tabulated in Refs. [167, 168]. For non-spinning BHs, assuming the
+Standard Model particle content (including gravitons) and MPBH ≪1011 g, which corresponds to TBH ≫100 GeV,
+we have Pj αj ≈4.4 × 10−3, and the BHs evaporate entirely on a timescale
+                                      MPBH  3
+                                                τ = 0.4 s                   .                                           (23)
+                                                       109 g
+
+A non-spinning PBH with an initial mass MPBH ≈5×1014 g, formed at 10−23 s and having the size of a proton, wouldbe completing its evaporation in the present era, while less massive ones would have vanished earlier. For those lighter
+than 2 × 1014 g, the temperature exceeds the QCD confinement scale, resulting in the emission of quark and gluonjets that subsequently fragment into stable particles. Therefore, the overall radiation comprises both these primary
+emissions and their secondary products [169–171].
+  While in typical formation scenarios the PBHs have vanishing spins (see e.g. [172]), those formed during a matter-
+dominated period can have nearly extremal spins [73]. The evaporation timescale of such BHs is about half that
+of a non-spinning one (see, e.g. [173]). Moreover, in scenarios where a population of light PBHs is formed with an
+extended initial mass function, evaporation reshapes the mass distribution [174].
+
+
+
+                           A  Dark matter
+
+
+  Even when PBHs evaporate, they can contribute to the DM abundance either by partially evaporating into a dark
+sector or by leaving behind a stable remnant [175–184].  If the DM mass created per PBH is MR(mBH), then the
+contribution to the present DM is given by a slightly modified version of Eqs. (7) and (9):
+
+
+                                                                  1/2
+                                  1  Z        Meq    Z                     fDM =       d ln Mk             dδ Pk(δ)MR(m(δ)) .                         (24)
+                        ΩDM        Mk             Mk
+
+The semiclassical picture of Hawking radiation may break down as the Hawking temperature approaches the Planck
+scale. The consequent evolution of the BHs is uncertain, as we do not have a complete quantum theory of gravity.
+It has been suggested that the evaporation ends, leaving a stable Planck mass relic [185]. Furthermore, it has been
+suggested that the evaporation may slow down or even stop much earlier due to the memory burden effect, based on
+black hole information theory [186–190].
+  For stable evaporation remnants, the mass produced per PBH is given by the mass of the remnant, MR(MBH) =
+Mrem when MBH ≥Mrem. These remnants can overclose the universe [185] and thus, in addition to being a potentialDM candidate, they constrain the initial curvature perturbation.  Inflationary models that predict DM in PBH
+remnants consistent with current CMB observations require an initial PBH mass MPBH < 106g [180].
+   If PBH remnants do not make up DM, a new stable particle, which we will denote by χ, is needed to explain
+the DM. Evaporating PBH will inevitably produce such particles as their temperature increases.  If χ is chemically
+decoupled from the radiation bath, their comoving number density will be conserved. In this case, given that these
+particles are cold today, the mass per PBH is MR(MPBH) = mχNχ(MPBH), where Nχ is the number of χ particles
+produced per PBH. Nχ can be considered constant when the initial temperature of the PBH is higher than mχ and
+will decrease when the initial PBHs are lighter [181].
+
+                                                                                                    10
+
+
+                    B  Gravitational waves and dark radiation
+
+
+   If produced abundantly, light PBHs can dominate the energy budget of the early Universe before evaporating. Such
+a period of PBH dominance results in a broad GW background.  First, Hawking evaporation itself generates high-
+frequency gravitons, contributing to the stochastic GW background, whose spectral shape is sensitive to the PBH
+mass spectrum and the spin distribution [191–195].  Second, PBHs form binaries throughout the PBH-dominated
+period and these binaries then emit GWs [191, 192, 196, 197]. Third, the inhomogeneous PBH distribution generates
+curvature fluctuations that will induce a GW background [198–203]. The transition of the background from matter
+to radiation domination via evaporation alters the transfer functions connecting primordial curvature perturbations
+to induced GWs. This affects the locations and magnitudes of the peaks in the GW spectrum when compared to
+radiation-dominated scenarios.
+  Finally, because evaporations also inject relativistic degrees of freedom (affecting Neff) and can produce non-thermal
+particle populations, joint constraints from BBN, CMB and GW observations become particularly powerful probes of
+both the initial mass function and its subsequent evaporation history [201, 203].
+
+
+
+                     IV CONSTRAINTS AND POTENTIAL EVIDENCE
+
+
+  Until recently, most PBH research has focused on obtaining observational limits on the PBH number density for
+a monochromatic mass function. The limits span an enormous mass range, from 10−24M⊙to 1020M⊙and can be
+expressed as upper limits on fPBH(MPBH), the fraction of the DM in PBHs with mass MPBH, or β(MPBH), the fraction
+of the Universe going into such PBHs at formation. We show a compilation of them in Fig. 4. The digitized tables
+of these constraints and a Mathematica notebook to plot them are publicly available at GitHub: PBHconstraints. In
+this section, we briefly list these constraints and provide the relevant references. In addition, we discuss observations
+accumulated in recent years, which have been claimed as evidence for PBHs. This corresponds to what is termed a
+“positivist” approach to the subject [17].
+
+
+
+                           A  Evaporation
+
+
+                                                1  Constraints
+
+  The evaporation of PBHs leads to strong constraints in the mass range 109 −1017 g [204]. Eq. (23) implies thatnon-spinning PBHs lighter than about 109 g evaporate before BBN5, while the observations of the abundances of light
+elements generated during the BBN constrain β(MPBH) and fPBH(MPBH) in the mass range 109 −1013 g [14, 207](for recent similar works see also Refs [208–211]). The abundance of PBHs heavier than 1013 g is constrained by CMB
+observations, as they would evaporate during recombination and inject energetic charged particles that damp the CMB
+temperature anisotropies [212]. For PBHs that evaporate in the local (low redshift) universe, constraints stronger
+than those from CMB observations arise from observations of the extragalactic photon background (EGB) [207] and
+observations of the electron-positron spectra with Voyager [213]. These constraints extend to PBH masses m ∼1017 g(see also Refs. [213–226]).
+ PBH evaporation constraints can be altered in models with large extra dimensions, in which the Planck mass
+can be substantially lowered [227, 228]. The evaporation bounds can be further modified by the memory burden
+effect [187, 190] or if the collapse ends up in some exotic ultracompact object rather than a BH [229].
+
+
+
+                                             2  Potential evidence
+
+
+  There are some observations that can be interpreted as signatures of PBH evaporation. In particular, in their final
+explosive phase, evaporating PBHs produce short-duration γ-ray bursts with a universal luminosity and spectrum [230,
+231]. The resulting γ-ray bursts would be detectable within a few parsecs [232]. Studies of the γ-ray burst catalogues
+have identified events that could be associated with PBHs [12, 233] and, intriguingly, by estimating the distances of γ-
+ray bursts using an interplanetary network of detectors, Ref. [234] identified several nearby events within (1−100) AU.
+
+
+5 Smaller masses, i.e. M <∼109 g, can be constrained assuming that PBHs leave stable Planck mass relics [185] but with large theoretical
+  uncertainties [205, 206]
+
+                                                                                                    11
+
+
+       1
+                                                      EROS
+     10-2                             SNe  HSC       OGLE                                                   OGLE   LVK                        LSS
+                                                  OGLEhc           LVK           BBN                            VOYAGER                                                  XB
+     10-4                                                DG     DE         PLANCK
+ fPBH                  EGB                                               CMBa     10-6
+     10-8                  CMB
+
+
+    10-10
+
+       10-24 10-22 10-20 10-18 10-16 10-14 10-12 10-10  10-8  10-6  10-4  10-2   1    102   104   106   108   1010  1012  1014  1016  1018  1020
+                                                        MPBH/M⊙
+
+
+FIG. 4.  Compilation of constraints for monochromatic PBH mass functions (bold) and some relevant potential evidence
+(dashed) (SNE [242], OGLE [11], LVK [91]). Only the dominant constraint in each mass range is labelled. The vertical dashed
+line on the left indicates the PBH mass that would complete its evaporation today, while the vertical dashed line on the right
+corresponds to the horizon mass at the time of CMB formation.
+
+
+  Moreover, the anticipated clustering of evaporating PBHs within our halo should produce a Galactic γ-ray back-
+ground, distinguishable from the uniform extragalactic background. Ref. [235] claimed that a galactic background
+had been detected in EGRET observations and attributed this to PBHs. Later analysis of EGRET data, assuming
+a variety of PBH distributions, reassessed this limit by including a realistic model for the PBH mass spectrum and
+a more precise relationship between the initial and current PBH mass, leading to constraints on the PBH popula-
+tion [236, 237].
+  Another observable signature of PBH explosions is the production of extremely energetic particles.  Recently,
+the KM3NeT collaboration reported the detection of the most energetic neutrino to date, with an energy of about
+100 PeV [238]. One possible interpretation of this event is that it originated from the explosion of a PBH [239–241].
+
+
+
+                              B  Lensing
+
+
+                                                1  Constraints
+
+
+  PBHs can be sought in the present universe through their lensing effects. The most prominent of these is mi-
+crolensing (ML), which manifests as a temporary brightening of background stars when compact objects traverse
+their line of sight [243]. Since the 1990s, several observational campaigns have monitored the brightness of stars in the
+Magellanic Clouds, the Galactic bulge, and M31. Currently, the constraints arising from MACHO [244], EROS [245],
+Kepler [246], Subaru/HSC [247] and OGLE [248–250] ML surveys6 cover a broad mass range and it has been claimed
+that this excludes PBHs with 10−10 −103 M⊙making up more than 1% of the DM halo mass. The low-mass endof this range is associated with wave-optics and finite-source-size effects that suppress the amplification, while the
+high-mass end is associated with the long duration of the ML events. These constraints have been extended to higher
+masses by using lensing of supernovae [253] and GW events observed by LVK [254]. The former relies on estimates
+of the supernova luminosities, while the latter is based on the frequency dependence of the lensing effect.
+  The ML constraints can change if the PBHs are initially clustered [255, 256]. However, the amount of clustering
+required to have a significant effect on lensing will affect structure formation and is in conflict with Lyman-α con-
+straints [257].  Consequently, ML constraints remain largely unchanged in models with phenomenologically viable
+initial clustering.
+ ML constraints depend sensitively on the assumed DM density profile and velocity dispersion in the Milky Way [258,
+259].  It has been claimed that these constraints may be relaxed by up to two orders of magnitude [260], although
+Ref. [250] argues that the profiles used here are inconsistent with observations of the Milky Way rotation curve.
+
+
+
+
+6 The validity of the recent analysis by the OGLE collaboration has been challenged and is discussed in Refs. [251, 252].
+
+                                                                                                    12
+
+
+                                             2  Potential evidence
+
+
+  Several excess ML events have been observed and might be attributed to a population of PBHs. In particular, the
+MACHO collaboration detected 13 −17 events, which is significantly more than the 2 −4 that could be attributed toknown stellar populations [261]. Moreover, using data from the five-year OGLE survey of microlensing events in the
+Galactic bulge, Ref. [11] identified 6 ultra-short events that can be attributed to planetary-mass objects in the range
+10−6−10−4M⊙, which is more than expected for free-floating planets. The same group also carried out an observationof Andromeda with the Subaru Hyper Suprime-Camera (HSC) and reported a single ML event by a compact body
+with mass in the range 10−11 −10−5M⊙[262]. ML events have also been searched for in the light curves of multiply-lensed quasars. In particular, photometric
+monitoring of Q0957+561 showed that small variations in brightness in one image were repeated in the second image
+a year later, which confirmed its identification as a gravitational lens [263]. Although the ML of quasars might be
+attributed to ordinary stars, in some cases, the line of sight is too far from the galaxy for this to be viable, and it has
+been argued in [264] that stellar mass PBHs are the most plausible candidates for these events. Moreover, based on
+a large sample of quasar light curves, Ref. [265] claims that the observed distribution of their amplitudes implies that
+stellar mass compact objects constitute an appreciable fraction of the DM.
+
+
+
+                          C  Gravitational waves
+
+
+                                                1  Constraints
+
+
+  PBHs naturally form binary systems in the early Universe, constituting the first gravitationally bound structures to
+emerge [266]. The formation mechanism relies on the gravitational decoupling of a PBH pair from cosmic expansion
+in regions of locally enhanced PBH density (for a review, see [267]). When fPBH ≪1, a significant fraction of binarieswith coalescence times comparable to the age of the Universe survive until the present [268–270] and thus contribute
+to the observed merger rate. When fPBH = O(1), nearly all these binaries are expected to be perturbed [269–271].However, because binary formation is much more efficient, and the binaries merging presently are mostly formed via
+3-body processes in the early universe [267, 270], the fPBH = O(1) case results in a much less eccentric PBH binary
+population than fPBH ≪1 scenarios. Such a population retains its characteristics, including the merger rates, evenif the binaries are frequently disrupted [270, 272].
+  The LIGO-Virgo-KAGRA (LVK) collaboration has detected hundreds of binary BH mergers to date [273–276].
+However, it has been argued that the observed merger rate is inconsistent with scenarios in which stellar-mass PBHs
+comprise even 0.1% of the DM. Therefore, the LVK observations place a strong constraint on PBHs [66, 91, 277–282].
+The constraint shown in Fig. 4 is based on Ref. [91], which incorporates data up to the third LVK observing run. In
+addition to measurements of the merger rate, unresolved PBH binaries will also induce a stochastic GW background,
+which implies fPBH ≲O(10−2) for stellar-mass PBHs [280, 283]. However, this is currently weaker than the constraintobtained from resolvable PBH binary mergers.
+  Further GW constraints can be obtained from the link between PBH formation and scalar-induced GW (SIGW)
+production. We do not report those in Fig. 4 since they assume PBH formation from critical collapse and depend on
+the shape of the curvature power spectrum, which are discussed in detail in Sec. VII A.
+
+
+
+                                             2  Potential evidence
+
+
+  The BH population observed by LVK exhibits a mass distribution with two or more peaks [284, 285]. While this
+could arise from multiple astrophysical binary formation channels, it remains possible that some of the LVK events
+originate from PBH mergers [91, 280, 281]. In particular, LVK has detected events in mass gaps [284, 285] that are
+difficult to explain with stellar progenitors. In the upper mass gap between 60 −120 M⊙, progenitor stars are notexpected to form BHs, as pair-instability supernovae would completely disrupt them [286, 287]. In the lower mass gap
+between 2 −5 M⊙, compact remnants are disfavoured due to the maximum mass of neutron stars and the minimummass required for BH formation via stellar collapse [288, 289]. Although there are astrophysical processes that may
+fill both mass gaps (see, e.g., [285] and references therein), the mass gap events could also point to the existence of a
+PBH population [290, 291]. In addition, a candidate subsolar-mass event with a false alarm rate of 1 in 5 years was
+identified during O3 by GstLAL [292], whose potential primordial origin was considered in Ref. [293].
+  Additionally, the existence of very heavy PBHs, with MPBH ≥1014M⊙, can be tested through a possible detectionof the ringdown phase associated with their formation [294, 295], using future proposed CMB experiments looking for
+B-modes, such as PIXIE [296], Super Pixie [297], and Voyage2050 [298].
+
+                                                                                                    13
+
+
+                           D  Dynamics
+
+
+                                                1  Constraints
+
+
+  There are numerous ways to probe PBHs through their dynamical effects on astrophysical structures. For PBHs
+larger than a stellar mass, these are associated with dynamical friction effects, heating of galactic discs, galactic tidal
+distortions [299], effects on stellar systems in dwarf galaxies [300, 301], disruption of wide binary star systems [302],
+and the CMB dipole anisotropy [303]. Moreover, the Poisson fluctuations associated with PBH formation influence
+cosmic structure formation by enhancing the small-scale matter power spectrum. In particular, the Lyman-α forest
+and the UV luminosity function constrain such an enhancement [304–308]. There have also been attempts to constrain
+the asteroid-mass range from the effects of PBHs on white dwarfs and neutron stars; we discuss this in Sec. V.
+
+
+
+
+                                             2  Potential evidence
+
+
+  The main potential dynamical evidence for PBHs is the triggering of explosions of stars.  In particular, some
+recently observed supernovæ, the so-called “calcium-rich transients”, do not trace the stellar density but are located
+off-centre from their host galaxies and appear to originate from white dwarfs with masses of around 0.6M⊙. Ref. [242]
+argues that these events could have been triggered by collisions with PBHs in the mass range 10−12 −10−10M⊙with
+10−3 < fPBH < 0.1. The wider mass range of 10−14 −10−8M⊙has been invoked to explain how some r-processelements (i.e. those generated by fast nuclear reactions) can be produced by the interaction of PBHs with neutron
+stars and this may also explain the large luminosities and millisecond durations of fast radio bursts (FRBs) [309, 310].
+Estimates of the rates of such collisions indicate that PBHs can account for the observed FRBs only if the PBH
+density profile is sufficiently spiky in galactic centers [311, 312].
+  Other possible dynamical effects include the heating of stars in the Galactic disk [313] and the heating of the
+cold DM through PBH infall and two-body processes in a scenario where PBHs provide a subdominant DM compo-
+nent [314].  Interestingly, the latter may lead to the formation of the observed cores in dwarf galaxies. The recent
+JWST observations have triggered interest in the possible role of PBHs in structure formation [315–324], for ”little
+red dots” [325–328] and the SMBHs in galactic nuclei [329–332].
+
+
+
+
+                                E  Accretion
+
+
+                                                1  Constraints
+
+
+  PBHs        with            mass
+process        could                alter                   the          m >∼10M⊙canUniverse’s recombinationaccrete significanthistoryamounts[303], generateof surroundinganisotropiesgas. andThespectralradiationdistortionsemitted inin thisthe
+CMB [333, 334], increase the population of X-ray sources [335] and modify the 21-cm signal [220, 336–338]. These
+limits rely on uncertain astrophysical inputs, including the accretion mode (disk vs.  spherical), and often assume
+Bondi accretion [338–340]. Moreover, efficient accretion changes the PBH mass function and can substantially weaken
+the constraints
+corresponding               constraints               at m >∼10M⊙[341].[342].    On the other hand, PBH clustering enhances accretion and can strengthen the
+
+
+
+
+                                             2  Potential evidence
+
+
+  Compelling evidence for stellar-mass PBHs may come from the source-subtracted cosmic infrared and X-ray back-
+grounds [343]. The level of the infrared background suggests an overabundance of high-redshift halos that could be
+explained by the PBH Poisson effect if a significant fraction of the CDM comprises stellar-mass PBHs. In these halos,
+a few stars form and emit infrared radiation, with this naturally explaining both the amplitude and angular spectrum
+of the source-subtracted infrared anisotropies. The spatial coherence with the source-subtracted X-ray background
+may be explained if the X-rays are generated by black hole accretion in these structures [344]. Although these would
+not necessarily be primordial, they could be.
+
+                                                                                                    14
+
+
+                      V  ASTEROID-MASS WINDOW
+
+  The asteroid-mass window - spanning approximately 10−17 M⊙to 10−10 M⊙- lies between the evaporation and
+ML constraints and remains the only unconstrained region in the PBH mass spectrum. These PBHs are too heavy
+to evaporate, and the optical ML searches are insensitive due to wave-optics and finite-source-size effects.
+  Potential signatures in the asteroid mass range arise from the destruction of stars by PBHs that are swallowed
+by them.  There are two mechanisms by which a PBH can be swallowed. The first is dynamical capture [345],
+which occurs when a PBH passes through or near a star and loses sufficient kinetic energy through gravitational
+interactions, allowing it to become gravitationally bound. The orbit of the PBH gradually contracts as it loses energy
+during subsequent passages. Eventually, the orbit lies entirely within the star, and the PBH settles into the stellar core.
+The probability for this process is significantly reduced by perturbers affecting the PBH orbit [346–348]. The second
+mechanism operates during star formation, where the gradual contraction of baryonic matter can adiabatically draw
+PBHs into the forming star [349]. This process effectively captures the PBHs without requiring close encounters. Both
+processes have potentially catastrophic consequences for the star as the PBH gradually consumes it. The observational
+consequences of this are a reduction in the stellar population and potential observable transients, such as supernovae.
+  Several works have placed constraints on the allowed abundance of PBHs in the asteroid-mass window by analysing
+the survival of neutron stars in globular clusters [345, 348–350].  However, these constraints are sensitive to the
+density of DM in globular clusters, which remains highly uncertain. An alternative approach considers the potential
+destruction of main-sequence stars in dwarf galaxies, which are known to be DM dominated [351–354]. However,
+although realistic accretion modelling yields consumption times comparable to the simple Bondi time for compact
+stars [355], recent work indicates that the lifetimes of main-sequence stars are much longer than the Bondi time and
+remain largely unaffected by asteroid-mass PBHs embedded in their cores [356].
+  Similarly, Ref. [357] proposed that a PBH traversing a carbon–oxygen white dwarf (WD) could ignite runaway
+carbon fusion and thus trigger a thermonuclear explosion by locally heating a narrow cylindrical region through
+dynamical friction. From the observed survival of WDs, it was inferred that PBHs with masses 1019–1020 g cannot
+make up the bulk of the local DM. Ref. [346] subsequently revisited this scenario, using hydrodynamic simulations of
+PBH passages through WDs. The results show that, under realistic conditions, PBHs in the relevant mass range fail
+to produce self-sustaining ignition. Even for very massive WDs and under optimistic assumptions, the heated region
+cools or mixes before runaway carbon fusion can develop. This eliminates the constraints proposed in Ref. [357].
+  Another attempt to constrain the asteroid-mass range was based on femtolensing searches of γ-ray bursts [358].
+However, closer scrutiny [359] showed that this constraint does not hold because the sizes of most γ-ray burst sources
+are too large for femtolensing.
+  The asteroid-mass window currently lacks robust observational constraints, making it an interesting target for future
+searches. X-ray ML has recently emerged as one of the most promising probes of PBHs in this mass range [360–
+362].  Compact X-ray pulsars overcome the limitations of finite-source-size and wave-optics effects by providing
+emission regions only tens of kilometres across and photons with sufficiently short wavelengths. As a result, transient-
+brightening events induced by PBHs passing near the line of sight can be detected with current instruments such as
+NICER and, more effectively, with next-generation X-ray observatories such as STROBE-X, AstroSat, Athena/Lynx,
+and eXTP. Depending on instrument sensitivity and exposure time, these searches may decisively test whether PBHs
+lighter than about 10−13 M⊙can explain DM. A complementary approach exploits the exquisite precision of Solar
+System ephemerides to search for transient perturbations in planetary orbits induced by PBH flybys [363]. Indeed, If
+PBHs in the asteroid-mass range provide all the DM, several such events are expected per decade, giving detectable
+signatures in the Earth–Mars or Earth–Venus distance residuals.
+
+
+
+                  VI CONSTRAINTS FOR EXTENDED MASS FUNCTIONS
+
+
+  The PBH constraints are typically given in the literature by assuming a monochromatic mass function. The issue of
+translating constraints obtained for monochromatic mass functions to extended mass functions was examined in [13].
+Importantly, the constraints on fPBH depend on the assumed mass function. In Fig. 4, for example, MPBH and fPBH
+represent the two parameters of the monochromatic mass function, and the constraint is imposed on the total fPBH, not
+the PBH fraction in a particular mass range. As a result, one cannot simply compare ψ(MPBH) ≡dfPBH/d ln MPBHwith the constraints on fPBH in Fig. 4 as they represent different quantities.  Instead, one must specify the mass
+function for each scenario at the outset and then constrain whatever parameters describe it.
+  To extend the constraints to broad mass functions, we will follow the approach of Ref. [13]. For this, one must
+consider the observable A that imposes the constraint and then examine how the observable is affected by the PBH
+mass function.  In general, any observable must be describable by some functional A[ψ(MPBH)] of the PBH mass
+
+                                                                                                    15
+
+distribution ψ(MPBH) (defined in Eq. (7)) and a bound on that observable can thus be expressed as
+
+                                      A[ψ(MPBH)] ≤Aexp .                                           (25)
+where Aexp is the observational upper limit on A. If each PBH contributes independently to the observables that are
+constrained, the functional must be linear
+
+                                         Z
+                        A[ψ(MPBH)] = A0 +  d ln MPBH A1(MPBH)ψ(MPBH) ,                          (26)
+
+where A0 is the contribution in the absence of PBHs and A1(MPBH) is an integration kernel that depends on the
+physics underlying the observable and the details of the experiment. Many observables fall into this pattern. The
+shape kernel can be explicitly inferred for the lensing and survival of stars [364], for evaporation [6] and neutron star
+capture and accretion [365].
+  From Eqs. (25) and (26), a constraint for a monochromatic mass function ψ(MPBH) ∝δ(MPBH −Mc) centredaround Mc can thus be expressed as
+
+                                                                                                                         .                                   (27)                               fPBH(Mc)                                 ≤AexpA1(MPBH)−A0 ≡fmax(Mc)
+
+where fmax(Mc) represents the constraint on the PBH abundance from the observable A.  In this way, the kernel
+A1(MPBH) can be effectively extracted from the monochromatic constraint. Eq. (26) now implies that
+
+                                 Z          ψ(MPBH)
+                                    d ln MPBH                                             fmax(MPBH) ≤1 ,                                      (28)
+
+which gives the upper bound on the total dark matter fraction fPBH for an extended mass function from constraint
+A.  Constraints from multiple observables Aj, which give an upper bound on the abundance fmax,j(MPBH) for a
+monochromatic mass function, can be combined using quadrature (for details see [13]). The combined constraint for
+extended PBH mass functions from multiple measurements can then be evaluated as
+
+                                                                               2
+                                  Z           ψ(MPBH)
+            X   d ln MPBH                                                 fmax,j(MPBH)  ≤1 .                                  (29)                                                    j
+
+ We now discuss some limitations associated with the use of Eq. (29).  First, it is derived under the assumption
+that each PBHs contributes independently to the constrained observable (26), which means that it does not fully
+capture constraints that depend on phenomena involving the collective effect of multiple PBHs, given that the effect
+is sensitive to the PBH mass. An example is the constraint from their mergers, as binary formation involves at least
+two PBHs and binary disruption (see Eq. (33)). It is additionally affected by the Poisson clustering of PBHs, which
+receive corrections from the width of the mass distribution, especially when fPBH = O(1). In general, any constraintthat depends on how PBHs cluster and modify structure formation can violate Eq. (26) to some extent. Examples
+of this are Ly-α constraints, dynamical constraints, and to a lesser extent lensing and accretion constraints. Related
+to that are the effects of mass segregation inside cosmic structures, which cause lighter PBHs to migrate outwards
+while heavier ones concentrate in the central regions. Such effects introduce corrections to phenomena that depend
+on assumptions about the environment of PBHs. In particular, this affects constraints from stellar evolution in dwarf
+galaxies [300, 301].
+   It is also important to consider the possibility that the mass function evolves due to PBH accretion [341, 366]. This
+issue can be addressed by interpreting the mass functions introduced in this work not as initial mass functions but
+rather as effective mass functions that already incorporate these types of corrections. In principle, all the constraints
+discussed above and those presented in our figures apply to these effective mass functions, which may differ from one
+constraint to another. However, estimating how these effects modify the initial mass functions would require detailed
+numerical simulations, which are beyond the scope of the present work.
+  The constraints for extended mass functions are summarised in Figs. 5 and 6. The left panel of Fig. 5 shows the
+critical-collapse mass function (13) with γ = 0.36 and c2 = 1. Because this mass function is relatively narrow, the
+change in the constraints compared to the monochromatic case is mild. The right panel of Fig. 5 shows the constraints
+for log-normal mass functions (3) with different widths σ and mean masses ⟨MPBH⟩. The colour-coding indicates the
+maximal fraction of DM allowed for a given combination of ⟨MPBH⟩and σ.  In the white region, this fraction isfPBH < 10−5, while in the black region, PBHs can constitute all DM. We see that the constraints become stronger
+for   broader          mass functions,                       and the                                   asteroid-mass window closes for σ >∼2.5. In the same way, Fig. 6 shows the caseof  the      cut power-law                  mass function                                      (20).
+
+                                                                                                    16
+
+                                       critical collapse                                             log-normal, σ=1
+            10                                                            10
+             1                                                             1
+              0.1                              microlensing                         0.1                              microlensing
+            10-2                                                                 10-2
+            10-3                                                                                 10-3                               evaporation                                                                      evaporation
+            10-4                                                                 10-4                                                                                                                                                       binaries                                                                  binaries                                                                                                                              fPBH  10-5           fPBH  10-5
+            10-6                                                                 10-6
+            10-7                                                                 10-7            10-8                                                    accretion              10-8                                                     accretion
+            10-9                                                                 10-9
+           10-10                                                                   10-10
+                                                                                     10-11           10-11                                                                                               10-20     10-15     10-10     10-5      1                      10-20     10-15     10-10     10-5      1
+                                〈MPBH〉/M⊙                                                    〈MPBH〉/M⊙
+
+                              cut power-law, α= -1                                             cut power-law, α=1
+            10                                                            10
+
+             1                                                             1
+              0.1                              microlensing                         0.1                              microlensing
+
+            10-2                                                                 10-2            10-3                               evaporation                                                   10-3                               evaporation
+            10-4                                                                 10-4                                                                     binaries                                                                           binaries            fPBH  10-5                                                                                                    fPBH  10-5
+            10-6                                                                 10-6
+            10-7                                                                 10-7            10-8                                                      accretion             10-8                                                      accretion
+            10-9                                                                 10-9
+           10-10                                                                   10-10
+           10-11                                                                    10-11
+                      10-20     10-15     10-10     10-5      1                             10-20     10-15     10-10     10-5      1
+                                  Mmin/M⊙                                                   Mmax/M⊙
+
+
+FIG. 5. The solid curves show the constraints for critical-collapse mass functions (13) (upper left), log-normal mass function (3)
+with σ = 1 (upper rigtht), and truncated power-law mass function ψ ∝MPBHα   with α = −1 (lower left) and α = 1 (lower right).
+The dashed curves show the constraints for monochromatic mass functions.
+
+
+
+                   log-normal                                  cut power-law, α<0                             cut power-law, α>0
+    7                                              2                                              2
+                                           log10fPBH        3/2                                                   3/2
+    6                                         0
+                                        -1          1                                              1
+    5                                   -2
+                                        -3          2/3                                                   2/3
+    4                                   -4
+                                                          1/2                                   log10fPBH  α 1/2   log10fPBH σ                                     -5      -α
+                                                                                                    0                      0
+    3
+                                                          1/3                                  -1          1/3       -1
+                                                          1/4                                  -2          1/4       -2    2
+                                                                                      -3                  -3
+                                                          1/6                                  -4          1/6       -4
+    1
+                                                                                      -5                  -5
+                                                          1/8                                                   1/8
+
+    0
+           10-15      10-10      10-5       1                   10-15      10-10      10-5       1                   10-15      10-10      10-5       1
+                     〈MPBH〉/M⊙                                      Mmin/M⊙                                     Mmax/M⊙
+
+
+FIG. 6. Maximal allowed fPBH for a log-normal PBH mass function (3) with width σ and mean ⟨MPBH⟩(left panel), a truncated
+power-law PBH mass function, ψ ∝MPBHα   with α < 0 (middle panel) and α > 0 (right panel). The truncated power-law case
+assumes the separation between the low- and high-mass cut-offs is large, Mmin ≪Mmax.
+
+                                                                                                    17
+
+
+                          VII  GRAVITATIONAL WAVE PROSPECTS
+
+
+                     A  Scalar-induced gravitational waves
+
+
+  In the critical-collapse scenario, the same curvature perturbations that lead to PBH formation also generate scalar-
+induced gravitational waves (SIGWs). More generally, SIGWs are produced whenever curvature perturbations re-enter
+the horizon, even if their amplitude falls below the threshold required for PBH formation. The shape of the resulting
+GW spectrum is determined by the properties and statistics of the underlying scalar perturbations [367–376]. On
+CMB scales, the scalar spectrum is tightly constrained, and SIGWs have undetectably small amplitudes. However,
+PBH production requires a boost in the power spectrum at smaller scales, and this would inevitably enhance the
+SIGW signal. In this section, we focus on the interplay between SIGWs and PBHs, exploiting their common origin
+and relating current and future GW data to PBH production (see also [377–383]).
+
+
+
+                                                 1  Spectrum
+
+
+  SIGWs were first theorized in [367–370], where it was noticed that scalar perturbations could generate GWs at
+second order in perturbation theory, and this possibility was fully analysed in [374, 375]. At first order in perturbation
+theory, tensors, vectors and scalars are independent, but at second order a coupling between scalars and tensors arises.
+Neglecting first-order tensor and vector perturbations (for more details on tensor-induced GWs see [384, 385]) and
+anisotropic stress, the Einstein equations give [371, 372, 374, 375]
+
+
+
+                                                                                                          ij                                                                     Slm(x, η) ,                          (30)                                      h′′ij(x, η) + 2Hh′ij(x, η) −∇2hij(x, η) = −4ˆTlm
+where ˆTlmij   is the projector in the transverse-traceless (TT) gauge, needed to extract the propagating degrees of
+freedom, and η is the conformal time. The source term Sij(x, η) is given by
+                             2(1 + 3w)              4
+              Sij ≡4Φ∂i∂jΦ + 3(1 + w) ∂iΦ∂jΦ − 3(1 +       [∂iΦ′∂jΦ′ + H∂iΦ∂jΦ′ + H∂iΦ′∂jΦ] ,           (31)                                          w)H2
+where Φ is the first-order gravitational potential and the dependence on x and η is implicit. The last equation shows
+explicitly that second-order tensors are sourced by scalars (see [386] for a recent physical explanation of the origin of
+SIGW). In Fourier space, Φ(k, η) = TΦ(k, η)ζ(k) where TΦ(k, η) denotes the transfer function and ζ(k) the comoving
+curvature perturbation, so the equation of motion can be solved with the Green’s method, leading to the following
+SIGW spectrum [375, 376, 387, 388]:
+
+                        g∗(η)      g0∗s    4/3    k     πk3
+  ΩSIGW,0(k) = Ωrad,0
+                                      g0∗      g∗s(η)      H(η)  (2π)6                                                   (32)
+         Z  d3q1 d3q2  X
+   ×       (2π)3 (2π)3 Qλ(k, q1)Qλ(−k, q2)I(|k −q1|, q1, η)I(| −k −q2|, q2, η)Tζ(q1, k −q1, q2, −k −q2) ,
+        λ
+
+where Ωrad,0 is the current radiation density parameter [28]. The kernel I(|k −q1|, q1, η) contains all the informationabout the evolution of scalar and tensor perturbations at any epoch. The Qλ(k, q1) functions project the internal
+momenta to the GW ones by using the corresponding polarization tensors; their explicit form can be found in [376, 388–
+391]. Finally, Tζ is the trispectrum of scalar perturbations, which we will briefly discuss in the next section.
+
+
+                                        2  Imprints of non-Gaussianity
+
+
+ A noteworthy aspect is that SIGWs are not only sensitive to the expansion history of the Universe, but also to
+primordial NG, as is evident from Eq. (32), where the tensor spectrum is dependent on the trispectrum of scalar
+perturbations [392–401]. We argued in Sec. II A 2 that NG can have an enormous impact on the PBH abundances.
+By contrast, the impact of NG on the SIGW is not fully understood [114]. Regardless of how one includes NG in
+the computation, it is expected to modify the GW spectrum, not only enhancing or suppressing it but also leaving
+specific spectral features. Explicitly, this can be understood by decomposing the trispectrum into a connected and
+a disconnected component T (k1, k2, k3, k4) = T (k1, k2, k3, k4)|c + T (k1, k2, k3, k4)|d.  In the absence of NG, theconnected contribution vanishes and only the disconnected contribution survives, resulting in a term proportional to
+
+                                                                                                    18
+
+             10−1                                                          100
+
+                                                                         10−5
+
+                                                                            10−10
+     A 10−2                                                                       fPBH
+                                                                            10−15
+
+                               fNL = −2                                     10−20
+                               fNL = 0
+             10−3                                                      10−25
+                10−10      10−9      10−8      10−7                   10−2         100         102         104
+                                   f⋆[Hz]                                 ⟨MPBH⟩[M⊙]
+
+FIG. 7.  Left panel:  Constraints on the amplitude of the scalar power spectrum, obtained using the latest NANOGrav re-
+sults [406], for a log-normal curvature power spectrum with ∆= 0.5. The Gaussian case is shown in black, while the green
+curves show a benchmark non-Gaussian case with |fNL| = 2. The dot-dashed lines correspond to fPBH = 1. In the non-Gaussian
+case we show the line corresponding to fNL = −2, which gives the most stringent estimate. Right panel: Corresponding con-
+straints on the PBH abundance. The shaded region on the bottom of the plot excludes regions with less than a single PBH in
+the current Hubble volume.
+
+products of curvature power spectra Pζ(k1)Pζ(k2). A simple way to model primordial NG is to adopt the local ansatzof Eq. (16). As in the PBH case, the use of this ansatz has many limitations [114], but it nevertheless reveals the
+effects of NG on the GW spectrum [389, 390, 402–404]. We stress that this affects the GW spectrum quite differently
+from the PBH abundance. In the latter case, it substantially changes the tail of the distribution, inducing a variation
+in the abundance of many orders of magnitude. For SIGWs, the main effect is the presence of additional features in
+the GW spectrum with a relatively small variation in the amplitude.
+
+
+
+                                     3  Interplay between SIGW and PBHs
+
+
+  SIGWs are a guaranteed background that is potentially observable by future and current GW detectors [390, 391,
+405]. Here we explore their interconnection with PBHs. The detection of a SIGW background can be mapped into
+constraints on the amplitude of the scalar curvature power spectrum, A, at the corresponding pivot frequency f⋆(or
+k⋆= 2πf⋆). The implications for the PBH abundance are straightforward since the pair (A, k⋆) will, in turn, imply
+some abundance and mean mass of PBHs (fPBH, ⟨MPBH⟩) (see Sec. II). So bounds on the amplitude of scalar-curvatureperturbations will also constrain the PBH abundance in critical-collapse scenarios.
+  The most interesting mass ranges are in the otherwise unconstrained asteroid-mass window (see Sec. V), where
+DM may consist entirely of PBHs, and the solar/sub-solar mass ranges (see Sec. IV C), in which the observed BH
+binary mergers have generated substantial interest in PBHs. In addition, recent PTA measurements [406–409] pro-
+vide evidence of a stochastic GW background in the nano-Hz band, while the Laser Interferometer Space Antenna
+(LISA) [410], expected to operate within the next decade, will survey the milli-Hz region. Coincidentally, those ranges
+correspond exactly to the formation of solar/subsolar and asteroid-mass PBHs. Either a detection or non-detection
+of a SIGW background in these experiments would thus have decisive consequences for PBHs.
+  In the following, we will discuss what existing NANOGrav and prospective LISA observations can say about PBHs
+and discuss the impact of NG. Fig. 7 shows the constraints on fPBH in the solar-mass range [27] implied by PTA
+observations [406]. The left panel shows the constraints on the amplitude of the scalar power spectrum for fNL = −2and fNL = 0 if one has a log-normal scalar power spectrum (11) with ∆= 0.5. The amplitude corresponding to
+fPBH = 1 is indicated by the dot-dashed lines. In the right panel, the implied constraints on the abundance of PBHs
+are shown. In the Gaussian (fNL = 0) case, current GW data can exclude PBHs in the 10–100 M⊙range and place
+stronger constraints in the surrounding mass range than those indicated in Fig. 4. The presence of NG can significantly
+alter the constraints. While the SIGW deviations are not remarkable7 the PBH abundance is strongly affected, with
+differences of many orders of magnitude with respect to the Gaussian case. For fNL = −2, the formation of PBHs in
+the 1–100 M⊙range is entirely excluded, while their abundance is strongly suppressed, down to fPBH ∼10−15, for
+⟨MPBH⟩∼0.1 M⊙. As illustrated by Fig. 3, the strongest non-Gaussian suppression of PBH formation, and thus the
+
+
+7 In this case, the NG correction is proportional to f NL,2   so it does not distinguish between positive and negative fNL.
+
+                                                                                                    19
+
+             10−1                                                          100
+                                                          fNL = −2             10−5
+                                                          fNL = 0
+                                                          fNL = 50              10−10
+             10−2                                                      10−15
+     A                                                            10−20                                                                                                     fPBH
+                                                                            10−25             10−3
+                                                                            10−30
+                                                                            10−35
+             10−4                                                      10−40
+                    10−4    10−3    10−2    10−1                        10−16 10−14 10−12 10−10  10−8  10−6
+                                   f⋆[Hz]                                 ⟨MPBH⟩[M⊙]
+
+FIG. 8. Left panel: Constraints on the amplitude of the scalar power spectrum, assuming a null-detection by LISA [410], for a
+log-normal curvature power spectrum with ∆= 0.5. The Gaussian case is shown in black, while the red and orange curves show
+a benchmark non-Gaussian case with |fNL| = 2 and |fNL| = 50, respectively. The dot-dashed lines correspond to fPBH = 1. In
+the non-Gaussian case we show the line corresponding to fNL = −2, which returns the most stringent estimate, and fNL = 50.
+Right panel: Corresponding constraints on the PBH abundance. The shaded region at the bottom of the plot excludes regions
+with less than a single PBH in the current Hubble volume.
+
+largest amplitudes permitting fPBH = 1, are obtained when fNL ≈−2 8. As a result, the fNL = −2 case gives the
+weakest (i.e., most conservative) constraint, indicating that PTA data excludes fPBH = 1 in the range 0.1 −100M⊙in critical-collapse scenarios.
+  In a similar way, LISA can probe PBHs in the asteroid mass range [411, 412].  Fig. 8 shows the sensitivity to
+fPBH, including the impact of NG in the range fNL ∈[−2, 50] [412]. As seen in the left panel, SIGWs can probe
+the amplitude of the power spectrum down to O(10−4). The right panel shows that LISA could, in principle, probeany conceivable PBH abundance in the asteroid mass range, except in the case of strong NG (fNL = 50). As the
+amplitude required to produce fPBH = 1 is O(10−3) and therefore much smaller than in the Gaussian case, such largeNG can still be in the perturbative regime (see [412] for more details). We add that since weaker signals lead to larger
+uncertainties in estimating fNL, distinguishing whether SIGWs arise from Gaussian or non-Gaussian fluctuations
+becomes challenging, thereby limiting LISA’s ability to probe PBHs. Therefore, the low-mass corner of the asteroid
+mass window may be left untested by LISA, motivating GW detectors such as AEDGE [413] that cover the frequency
+range between LISA and ET.
+
+
+
+                      B  Gravitational waves from binaries
+
+
+  The PBH merger rate is dominated by binaries formed through the early two-body channel. The merger rate is
+given by [269, 270]
+
+                                              −3437       −3237                                                                  ψ(m1)ψ(m2)              dRPBH                                      −2137   t    M                =                                                                                                                                                          ,              (33)                                                          η−3437 S[ψ(MPBH), t]                               1.6 × 106 fPBH             dm1dm2   Gpc3yr1         t0    M⊙                   m1m2
+where M ≡m1 + m2, η ≡m1m2/M 2, and S is a suppression factor that accounts for the disruption of binaries
+after their formation. Neglecting the mild z-dependence in S, this merger rate grows as RPBH ∝(1 + z)51/37 in amatter-dominated background. As shown in the left panel of Fig. 9, this strongly contrasts with the merger rate
+of astrophysical              BHs, which                            decreases                                      at z
+redshift       would provide                     compelling                                evidence                                               for>∼3PBHs[414].[415].Therefore,Such observationsobserving awillsubstantialbe possiblepopulationwith the next-generationof BHs at high
+GW observatories (e.g. ET [405], AION/AEDGE [413, 416], LISA [410]). Another strong indicator of PBHs would
+come from GW detections of subsolar mass binaries, since such systems are not expected to form through astrophysical
+channels. The middle panel of Fig. 9 indicates the parameter ranges accessible to upcoming GW observatories. The
+solid curves denote the sensitivity to extragalactic binaries, while the dashed curves show the reach for galactic sources.
+The latter extend the prospects for detecting PBH binaries down to masses of order 10−5 M⊙. A comparable mass
+range can also be accessed through searches for the stochastic GW background from PBH binaries [417].
+
+
+
+
+8 The Figure holds for a broken power law power spectrum, but similar results are obtained for a log-normal.
+
+                                                                                                    20
+
+
+
+                                                                                                1
+
+                                                                                                                    LV O3
+
+
+                                                                                                                 0.1      Microlensing
+                                                                  -                                                             LIGO O5
+
+
+ )
+ (                                                                                                                                   Merger rate
+
+  )/                                                                  -                  ★                                    fPBH 10-2                   LVO3
+
+ (
+                                                                                                        ET                Accretion
+                                                                  -
+                                                                                                                                                               (   )=                                   10-3
+                                                                  -                     (   )=
+                                                                                                                                                                  (   )=
+
+                                                                                                                                                              (   )=
+                                                                                                        10-4                                                                  -                                                                                                               10-2   0.1    1    10    102   103                                                                          -       -
+                 +                                                                                 / ⊙                                     mPBH / M⊙
+
+FIG. 9. Left panel: The redshift dependence of the PBH merger rate (black) and the merger rate of astrophysical BHs (gray)
+(from [280]). Middle panel: The sensitivities of future observatories to the DM fraction in PBHs through GW observations of
+individual binaries (from [417]). Right panel: The sensitivities of future observatories on the DM fraction in PBHs through
+observations of lensing effects in GW signals (from [254]).
+
+
+
+                       C  Lensing of gravitational waves
+
+
+  In the solar-mass range, optical ML searches lose sensitivity because the potential events become longer than the
+monitoring time. However, for GW signals, the coherent nature of the waveform allows the detection of lensing effects
+even when the lens motion is negligible. In this regime, lensing produces a frequency-dependent magnification that
+imprints a characteristic frequency dependence on the signal’s amplitude [418]. In fact, the event GW231123 [419]
+has been recently claimed to be a potential candidate for the first lensed GW event [420–423].
+ A lower cutoff on the lens mass to which GW lensing searches are sensitive is set by the onset of the wave-optics
+regime, where diffraction suppresses the observable modulations. With the current LVK sensitivity, this restricts the
+constraining power to PBH masses above 100, M⊙[254, 424–428], as shown by the red shaded region in the right
+panel of Fig. 9. As shown by the green curve, the next generation GW detectors, such as ET, are expected to reach
+sensitivities which probe PBH abundances as low as fPBH ∼10−4 and masses down to MPBH ∼10−2 M⊙throughGW lensing [254, 426, 427, 429, 430]. The sensitivity range is further enhanced for fPBH < 1 when a particle DM
+minihalo surrounding the PBHs is taken into account [254], as indicated by the dashed curves.
+
+
+
+                                VIII SUMMARY AND OUTLOOK
+
+
+  Over the past decades, PBHs have been extensively studied as potential DM candidates. In this work, we have re-
+viewed the main formation mechanisms, including those associated with inflationary perturbations, phase transitions,
+and topological defects, and discussed the mass functions predicted in these scenarios. We have also summarised the
+key observational constraints, from quantum evaporation, dynamical effects, lensing, accretion, and GW emission,
+highlighting the mass windows where PBHs could still constitute a significant fraction of DM. The digitised tables of
+the constraints, together with a Mathematica notebook that displays them for extended mass functions, are publicly
+available at GitHub: PBHconstraints. In addition to constraints, we have reviewed the hints for PBHs from various
+observations, such as ML and GW events.
+ We have also discussed the prospects for future searches. In particular, GW observations offer a powerful avenue
+to probe PBHs. Current and upcoming detectors can potentially observe mergers across a wide range of masses and
+redshifts, including the sub-solar and high-redshift regimes, where astrophysical black holes are not expected.  In
+addition, PBHs can be associated to a stochastic background of SIGWs sourced by primordial scalar perturbations.
+The detection of such a background would provide a complementary and independent probe of PBHs, especially in
+the asteroid-mass range, which is hard to access with other observations.
+  PBHs remain one of the most intriguing DM candidates. Theoretical work continues to refine our understanding
+of their formation and is exploring how different formation mechanisms influence their mass and abundance. At the
+same time, ongoing and upcoming observational programs, ranging from GW detectors to high-precision ML surveys
+and X-ray observations, will probe both the asteroid and solar mass ranges, testing scenarios that were previously
+inaccessible and searching for direct or indirect signatures of PBH dark matter.
+
+                                                                                                    21
+
+
+Acknowledgments –This work was supported by the Estonian Research Council grants PSG869, TARISTU24-TK3,
+TARISTU24-TK10, KOHTO34 and the Center of Excellence program TK202. The work of V.V. was partially funded
+by the European Union’s Horizon Europe program under the Marie Sk lodowska-Curie grant agreement No. 101065736.
+
+
+
+
+
+   [1] Y. B. Zel’dovich and I. D. Novikov, The Hypothesis of Cores Retarded during Expansion and the Hot Cosmological
+     Model, Sov. Astron. 10, 602 (1967).
+   [2] S. Hawking, Gravitationally collapsed objects of very low mass, Mon. Not. Roy. Astron. Soc. 152, 75 (1971).
+   [3] B. J. Carr and S. W. Hawking, Black holes in the early Universe, Mon. Not. Roy. Astron. Soc. 168, 399 (1974).
+   [4] B. J. Carr, The Primordial black hole mass spectrum, Astrophys. J. 201, 1 (1975).
+   [5] G. F. Chapline, Cosmological effects of primordial black holes, Nature 253, 251 (1975).
+   [6] B. Carr, F. Kuhnel, and M. Sandstad, Primordial Black Holes as Dark Matter, Phys. Rev. D 94, 083504 (2016),
+     arXiv:1607.06077 [astro-ph.CO].
+   [7] B. Carr and F. Kuhnel, Primordial Black Holes as Dark Matter: Recent Developments, Ann. Rev. Nucl. Part. Sci. 70,
+     355 (2020), arXiv:2006.02838 [astro-ph.CO].
+   [8] M. Cirelli, A. Strumia, and J. Zupan, Dark Matter,  (2024), arXiv:2406.01705 [hep-ph].
+   [9] S. Bird, I. Cholis, J. B. Mu˜noz, Y. Ali-Ha¨ımoud, M. Kamionkowski, E. D. Kovetz, A. Raccanelli, and A. G. Riess, Did
+    LIGO detect dark matter?, Phys. Rev. Lett. 116, 201301 (2016), arXiv:1603.00464 [astro-ph.CO].
+ [10] B. Carr and J. Silk, Primordial Black Holes as Generators of Cosmic Structures, Mon. Not. Roy. Astron. Soc. 478, 3756
+      (2018), arXiv:1801.00672 [astro-ph.CO].
+ [11] H. Niikura, M. Takada, S. Yokoyama, T. Sumi, and S. Masaki, Constraints on Earth-mass primordial black holes from
+   OGLE 5-year microlensing events, Phys. Rev. D 99, 083503 (2019), arXiv:1901.07120 [astro-ph.CO].
+ [12] D. B. Cline, D. A. Sanders, and W. Hong, Further evidence for gamma-ray bursts consistent with primordial black hole
+      evaporation, Astrophys. J. 486, 169 (1997).
+ [13] B. Carr, M. Raidal, T. Tenkanen, V. Vaskonen, and H. Veerm¨ae, Primordial black hole constraints for extended mass
+      functions, Phys. Rev. D 96, 023514 (2017), arXiv:1705.05567 [astro-ph.CO].
+ [14] B. Carr, K. Kohri, Y. Sendouda, and J. Yokoyama, Constraints on primordial black holes, Rept. Prog. Phys. 84, 116902
+      (2021), arXiv:2002.12778 [astro-ph.CO].
+ [15] C. Byrnes, G. Franciolini, T. Harada, P. Pani, and M. Sasaki, eds., Primordial Black Holes, Springer Series in Astrophysics
+     and Cosmology (Springer, 2025).
+ [16] B. Carr, S. Clesse, J. Garc´ıa-Bellido, and F. K¨uhnel, Cosmic conundra explained by thermal history and primordial black
+      holes, Phys. Dark Univ. 31, 100755 (2021), arXiv:1906.08217 [astro-ph.CO].
+ [17] B. Carr, S. Clesse, J. Garcia-Bellido, M. Hawkins, and F. Kuhnel, Observational evidence for primordial black holes: A
+      positivist perspective, Phys. Rept. 1054, 1 (2024), arXiv:2306.03903 [astro-ph.CO].
+ [18] S. Borsanyi et al., Calculation of the axion mass based on high-temperature lattice quantum chromodynamics, Nature
+     539, 69 (2016), arXiv:1606.07494 [hep-lat].
+ [19] S. W. Hawking, Black hole explosions, Nature 248, 30 (1974).
+ [20] M. W. Choptuik, Universality and scaling in gravitational collapse of a massless scalar field, Phys. Rev. Lett. 70, 9 (1993).
+ [21] J. C. Niemeyer and K. Jedamzik, Near-critical gravitational collapse and the initial mass function of primordial black
+      holes, Phys. Rev. Lett. 80, 5481 (1998), arXiv:astro-ph/9709072.
+ [22] J. C. Niemeyer and K. Jedamzik, Dynamics of primordial black hole formation, Phys. Rev. D 59, 124013 (1999),
+     arXiv:astro-ph/9901292.
+ [23] I. Musco, J. C. Miller, and A. G. Polnarev, Primordial black hole formation in the radiative era: Investigation of the
+       critical nature of the collapse, Class. Quant. Grav. 26, 235001 (2009), arXiv:0811.1452 [gr-qc].
+ [24] I. Musco, V. De Luca, G. Franciolini, and A. Riotto, Threshold for primordial black holes. II. A simple analytic prescrip-
+      tion, Phys. Rev. D 103, 063538 (2021), arXiv:2011.03014 [astro-ph.CO].
+ [25] I. Musco, K. Jedamzik, and S. Young, Primordial black hole formation during the QCD phase transition: Threshold,
+     mass distribution, and abundance, Phys. Rev. D 109, 083506 (2024), arXiv:2303.07980 [astro-ph.CO].
+ [26] A. Ianniccari, A. J. Iovino, A. Kehagias, D. Perrone, and A. Riotto, The Black Hole Formation – Null Geodesic Corre-
+     spondence, Phys. Rev. Lett. 133, 081401 (2024), arXiv:2404.02801 [astro-ph.CO].
+ [27] A. J. Iovino, G. Perna, A. Riotto, and H. Veerm¨ae, Curbing PBHs with PTAs, JCAP 10, 050, arXiv:2406.20089 [astro-
+     ph.CO].
+ [28] N. Aghanim et al. (Planck), Planck 2018 results. VI. Cosmological parameters, Astron. Astrophys. 641, A6 (2020),
+     [Erratum: Astron.Astrophys. 652, C4 (2021)], arXiv:1807.06209 [astro-ph.CO].
+ [29] E. Calabrese et al. (Atacama Cosmology Telescope), The Atacama Cosmology Telescope: DR6 constraints on extended
+     cosmological models, JCAP 11, 063, arXiv:2503.14454 [astro-ph.CO].
+ [30] J. Chluba, A. L. Erickcek, and I. Ben-Dayan, Probing the inflaton: Small-scale power spectrum constraints from mea-
+     surements of the CMB energy spectrum, Astrophys. J. 758, 76 (2012), arXiv:1203.2681 [astro-ph.CO].
+ [31] J. Chluba and D. Grin, CMB spectral distortions from small-scale isocurvature fluctuations, Mon. Not. Roy. Astron. Soc.
+     434, 1619 (2013), arXiv:1304.4596 [astro-ph.CO].
+ [32] D. Sharma, J. Lesgourgues, and C. T. Byrnes, Spectral distortions from acoustic dissipation with non-Gaussian (or not)
+
+                                                                                                   22
+
+
+    perturbations, JCAP 07, 090, arXiv:2404.18474 [astro-ph.CO].
+[33] C. T. Byrnes, J. Lesgourgues, and D. Sharma, Robust µ-distortion constraints on primordial supermassive black holes
+    from non-Gaussian perturbations, JCAP 09, 012, arXiv:2404.18475 [astro-ph.CO].
+[34] X. Pritchard, C. T. Byrnes, J. Lesgourgues, and D. Sharma, Robust µ-distortion constraints on primordial supermassive
+    black holes from cubic (gNL) non-Gaussian perturbations, JCAP 07, 079, arXiv:2505.08442 [astro-ph.CO].
+[35] S. Bird, H. V. Peiris, M. Viel, and L. Verde, Minimally Parametric Power Spectrum Reconstruction from the Lyman-alpha
+     Forest, Mon. Not. Roy. Astron. Soc. 413, 1717 (2011), arXiv:1010.1519 [astro-ph.CO].
+[36] P. Ivanov, P. Naselsky, and I. Novikov, Inflation and primordial black holes as dark matter, Phys. Rev. D 50, 7173 (1994).
+[37] W. H. Kinney, A Hamilton-Jacobi approach to nonslow roll inflation, Phys. Rev. D 56, 2002 (1997), arXiv:hep-ph/9702427.
+[38] S. Inoue and J. Yokoyama, Curvature perturbation at the local extremum of the inflaton’s potential, Phys. Lett. B 524,
+    15 (2002), arXiv:hep-ph/0104083.
+[39] W. H. Kinney, Horizon crossing and inflation with large eta, Phys. Rev. D 72, 023515 (2005), arXiv:gr-qc/0503017.
+[40] J. Martin, H. Motohashi, and T. Suyama, Ultra Slow-Roll Inflation and the non-Gaussianity Consistency Relation, Phys.
+    Rev. D 87, 023514 (2013), arXiv:1211.0083 [astro-ph.CO].
+[41] H. Motohashi and W. Hu, Primordial Black Holes and Slow-Roll Violation, Phys. Rev. D 96, 063503 (2017),
+    arXiv:1706.06784 [astro-ph.CO].
+[42] D. H. Lyth and D. Wands, Generating the curvature perturbation without an inflaton, Phys. Lett. B 524, 5 (2002),
+    arXiv:hep-ph/0110002.
+[43] N. Barnaby and M. Peloso, Large Nongaussianity in Axion Inflation, Phys. Rev. Lett. 106, 181301 (2011), arXiv:1011.1500
+     [hep-ph].
+[44] L. Sorbo, Parity  violation  in the Cosmic Microwave Background from a pseudoscalar  inflaton, JCAP 06, 003,
+    arXiv:1101.1525 [astro-ph.CO].
+[45] S. Pi, Y.-l. Zhang, Q.-G. Huang, and M. Sasaki, Scalaron from R2-gravity as a heavy field, JCAP 05, 042, arXiv:1712.09896
+    [astro-ph.CO].
+[46] X. Wang, M. Sasaki, and Y.-l. Zhang, The Dual Primordial Black Hole Formation Scenario,  (2025), arXiv:2505.09337
+    [astro-ph.CO].
+[47] C. T. Byrnes, P. S. Cole, and S. P. Patil, Steepest growth of the power spectrum and primordial black holes, JCAP 06,
+    028, arXiv:1811.11158 [astro-ph.CO].
+[48] L. Frosina and A. Urbano, Inflationary interpretation of the nHz gravitational-wave background, Phys. Rev. D 108,
+    103544 (2023), arXiv:2308.06915 [astro-ph.CO].
+[49] A. Karam, N. Koivunen, E. Tomberg, V. Vaskonen, and H. Veerm¨ae, Anatomy of single-field inflationary models for
+    primordial black holes, JCAP 03, 013, arXiv:2205.13540 [astro-ph.CO].
+[50] K. Kohri, C.-M. Lin, and T. Matsuda, Primordial black holes from the inflating curvaton, Phys. Rev. D 87, 103527 (2013),
+    arXiv:1211.2371 [hep-ph].
+[51] M. Kawasaki, N. Kitajima, and T. T. Yanagida, Primordial black hole formation from an axionlike curvaton model, Phys.
+    Rev. D 87, 063519 (2013), arXiv:1207.2550 [hep-ph].
+[52] J. Garcia-Bellido, A. D. Linde, and D. Wands, Density perturbations and black hole formation in hybrid inflation, Phys.
+    Rev. D 54, 6040 (1996), arXiv:astro-ph/9605094.
+[53] G. Franciolini and A. Urbano, Primordial black hole dark matter from inflation: The reverse engineering approach, Phys.
+    Rev. D 106, 123519 (2022), arXiv:2207.10056 [astro-ph.CO].
+[54] G. Ferrante, G. Franciolini, A. Iovino, Junior., and A. Urbano, Primordial black holes in the curvaton model: possible
+    connections to pulsar timing arrays and dark matter, JCAP 06, 057, arXiv:2305.13382 [astro-ph.CO].
+[55] V. Vaskonen and H. Veerm¨ae, Did NANOGrav see a signal from primordial black hole formation?, Phys. Rev. Lett. 126,
+    051303 (2021), arXiv:2009.07832 [astro-ph.CO].
+[56] S. Sugiyama, V. Takhistov, E. Vitagliano, A. Kusenko, M. Sasaki, and M. Takada, Testing Stochastic Gravitational
+   Wave Signals from Primordial Black Holes with Optical Telescopes, Phys. Lett. B 814, 136097 (2021), arXiv:2010.02189
+    [astro-ph.CO].
+[57] V. De Luca, G. Franciolini, and A. Riotto, NANOGrav Data Hints at Primordial Black Holes as Dark Matter, Phys. Rev.
+     Lett. 126, 041303 (2021), arXiv:2009.08268 [astro-ph.CO].
+[58] V. De Luca, G. Franciolini, and A. Riotto, On the primordial black hole mass function for broad spectra, Phys. Lett. B
+    807, 135550 (2020), arXiv:2001.04371 [astro-ph.CO].
+[59] F. Crescimbeni, V. Desjacques, G. Franciolini, A. Ianniccari, A. J. Iovino, G. Perna, D. Perrone, A. Riotto, and
+    H. Veerm¨ae, The irrelevance of primordial black hole clustering in the LVK mass range, JCAP 05, 001, arXiv:2502.01617
+    [astro-ph.CO].
+[60] S. Young, I. Musco, and C. T. Byrnes, Primordial black hole formation and abundance: contribution from the non-linear
+     relation between the density and curvature perturbation, JCAP 11, 012, arXiv:1904.00984 [astro-ph.CO].
+[61] V. De Luca, G. Franciolini, A. Kehagias, M. Peloso, A. Riotto, and C. ¨Unal, The Ineludible non-Gaussianity of the
+    Primordial Black Hole Abundance, JCAP 07, 048, arXiv:1904.00970 [astro-ph.CO].
+[62] G. Ferrante, G. Franciolini, A. Iovino, Junior., and A. Urbano, Primordial non-Gaussianity up to all orders: Theoretical
+    aspects and implications for primordial black hole models, Phys. Rev. D 107, 043520 (2023), arXiv:2211.01728 [astro-
+    ph.CO].
+[63] A. D. Gow, H. Assadullahi, J. H. P. Jackson, K. Koyama, V. Vennin, and D. Wands, Non-perturbative non-Gaussianity
+    and primordial black holes, EPL 142, 49001 (2023), arXiv:2211.08348 [astro-ph.CO].
+
+                                                                                                   23
+
+
+[64] C.-M. Yoo, T. Harada, J. Garriga, and K. Kohri, Primordial black hole abundance from random Gaussian curva-
+    ture perturbations and a local density threshold, PTEP 2018, 123E01 (2018), [Erratum: PTEP 2024, 049202 (2024)],
+    arXiv:1805.03946 [astro-ph.CO].
+[65] C.-M. Yoo, J.-O. Gong, and S. Yokoyama, Abundance of primordial black holes with local non-Gaussianity in peak theory,
+   JCAP 09, 033, arXiv:1906.06790 [astro-ph.CO].
+[66] G. Franciolini, I. Musco, P. Pani, and A. Urbano, From inflation to black hole mergers and back again: Gravitational-wave
+    data-driven constraints on inflationary scenarios with a first-principle model of primordial black holes across the QCD
+    epoch, Phys. Rev. D 106, 123526 (2022), arXiv:2209.05959 [astro-ph.CO].
+[67] A. M. Green, A. R. Liddle, K. A. Malik, and M. Sasaki, A New calculation of the mass fraction of primordial black holes,
+    Phys. Rev. D 70, 041502 (2004), arXiv:astro-ph/0403181.
+[68] S. Young, C. T. Byrnes, and M. Sasaki, Calculating the mass fraction of primordial black holes, JCAP 07, 045,
+    arXiv:1405.7023 [gr-qc].
+[69] R. Allahverdi et al., The First Three Seconds: a Review of Possible Expansion Histories of the Early Universe, Open J.
+    Astrophys. 4, astro.2006.16182 (2021), arXiv:2006.16182 [astro-ph.CO].
+[70] M. Y. Khlopov and A. G. Polnarev, PRIMORDIAL BLACK HOLES AS A COSMOLOGICAL TEST OF GRAND
+   UNIFICATION, Phys. Lett. B 97, 383 (1980).
+[71] A. G. Polnarev and M. Y. Khlopov, COSMOLOGY, PRIMORDIAL BLACK HOLES, AND SUPERMASSIVE PARTI-
+   CLES, Sov. Phys. Usp. 28, 213 (1985).
+[72] T. Harada, C.-M. Yoo, K. Kohri, K.-i. Nakao, and S. Jhingan, Primordial black hole formation in the matter-dominated
+    phase of the Universe, Astrophys. J. 833, 61 (2016), arXiv:1609.01588 [astro-ph.CO].
+[73] T. Harada, C.-M. Yoo, K. Kohri, and K.-I. Nakao, Spins of primordial black holes formed in the matter-dominated phase
+     of the Universe, Phys. Rev. D 96, 083517 (2017), [Erratum: Phys.Rev.D 99, 069904 (2019)], arXiv:1707.03595 [gr-qc].
+[74] T. Kokubu, K. Kyutoku, K. Kohri, and T. Harada, Effect of Inhomogeneity on Primordial Black Hole Formation in the
+    Matter Dominated Era, Phys. Rev. D 98, 123024 (2018), arXiv:1810.03490 [astro-ph.CO].
+[75] B. Carr, T. Tenkanen, and V. Vaskonen, Primordial black holes from inflaton and spectator field perturbations in a
+    matter-dominated era, Phys. Rev. D 96, 063507 (2017), arXiv:1706.03746 [astro-ph.CO].
+[76] A. M. Green and K. A. Malik, Primordial black hole production due to preheating, Phys. Rev. D 64, 021301 (2001),
+    arXiv:hep-ph/0008113.
+[77] D. H. Lyth, K. A. Malik, M. Sasaki, and I. Zaballa, Forming sub-horizon black holes at the end of inflation, JCAP 01,
+    011, arXiv:astro-ph/0510647.
+[78] L. E. Padilla, J. C. Hidalgo, and K. A. Malik, New mechanism for primordial black hole formation during reheating,
+    Phys. Rev. D 106, 023519 (2022), arXiv:2110.14584 [astro-ph.CO].
+[79] L. E. Padilla, J. C. Hidalgo, T. D. Gomez-Aguilar, K. A. Malik, and G. German, Primordial black hole formation during
+     slow-reheating: a review, Front. Astron. Space Sci. 11, 1361399 (2024), arXiv:2402.03542 [astro-ph.CO].
+[80] I. Musco, Threshold for primordial black holes: Dependence on the shape of the cosmological perturbations, Phys. Rev.
+   D 100, 123524 (2019), arXiv:1809.02127 [gr-qc].
+[81] C. Germani and I. Musco, Abundance of Primordial Black Holes Depends on the Shape of the Inflationary Power Spectrum,
+    Phys. Rev. Lett. 122, 141302 (2019), arXiv:1805.04087 [astro-ph.CO].
+[82] K. Jedamzik, Primordial black hole formation during the QCD epoch, Phys. Rev. D 55, 5871 (1997), arXiv:astro-
+    ph/9605152.
+[83] K. Jedamzik and J. C. Niemeyer, Primordial black hole formation during first order phase transitions, Phys. Rev. D 59,
+    124014 (1999), arXiv:astro-ph/9901293.
+[84] C. T. Byrnes, M. Hindmarsh, S. Young, and M. R. S. Hawkins, Primordial black holes with an accurate QCD equation
+     of state, JCAP 08, 041, arXiv:1801.06138 [astro-ph.CO].
+[85] J. L. G. Sobrinho and P. Augusto, Stellar mass Primordial Black Holes as Cold Dark Matter, Mon. Not. Roy. Astron.
+    Soc. 496, 60 (2020), arXiv:2005.10037 [astro-ph.CO].
+[86] A. Escriv`a, E. Bagui, and S. Clesse, Simulations of PBH formation at the QCD epoch and comparison with the GWTC-3
+     catalog, JCAP 05, 004, arXiv:2209.06196 [astro-ph.CO].
+[87] A. Escriv`a, C. Germani, and R. K. Sheth, Analytical thresholds for black hole formation in general cosmological back-
+    grounds, JCAP 01, 030, arXiv:2007.05564 [gr-qc].
+[88] X. Pritchard and C. T. Byrnes, Constraining the impact of standard model phase transitions on primordial black holes,
+   JCAP 01, 076, arXiv:2407.16563 [astro-ph.CO].
+[89] X. Pritchard, M. Starbuck, and W. Leung, Beyond Standard Model equation of state and primordial black holes, (2025),
+    arXiv:2510.19629 [astro-ph.CO].
+[90] D. Blas, J. W. Foster, Y. Gouttenoire, A. J. Iovino, I. Musco, S. Trifinopoulos, and M. Vanvlasselaer, The Dark Side of
+    the Moon: Listening to Scalar-Induced Gravitational Waves,  (2026), arXiv:2602.12252 [astro-ph.CO].
+[91] M. Andr´es-Carcasona, A. J. Iovino, V. Vaskonen, H. Veerm¨ae, M. Mart´ınez, O. Pujol`as, and L. M. Mir, Constraints
+    on primordial black holes from LIGO-Virgo-KAGRA O3 events, Phys. Rev. D 110, 023040 (2024), arXiv:2405.05732
+    [astro-ph.CO].
+[92] S. Young and C. T. Byrnes, Primordial black holes in non-Gaussian regimes, JCAP 08, 052, arXiv:1307.4995 [astro-
+    ph.CO].
+[93] E. V. Bugaev and P. A. Klimai, Primordial black hole constraints for curvaton models with predicted large non-
+    Gaussianity, Int. J. Mod. Phys. D 22, 1350034 (2013), arXiv:1303.3146 [astro-ph.CO].
+[94] T. Nakama, J. Silk, and M. Kamionkowski, Stochastic gravitational waves associated with the formation of primordial
+
+                                                                                                    24
+
+
+     black holes, Phys. Rev. D 95, 043511 (2017), arXiv:1612.06264 [astro-ph.CO].
+ [95] C. T. Byrnes, E. J. Copeland, and A. M. Green, Primordial black holes as a tool for constraining non-Gaussianity, Phys.
+     Rev. D 86, 043512 (2012), arXiv:1206.4188 [astro-ph.CO].
+ [96] G. Franciolini, A. Kehagias, S. Matarrese, and A. Riotto, Primordial Black Holes from Inflation and non-Gaussianity,
+    JCAP 03, 016, arXiv:1801.09415 [astro-ph.CO].
+ [97] M. Kawasaki and H. Nakatsuka, Effect of nonlinearity between density and curvature perturbations on the primordial
+     black hole formation, Phys. Rev. D 99, 123501 (2019), arXiv:1903.02994 [astro-ph.CO].
+ [98] D. G. Figueroa, S. Raatikainen, S. Rasanen, and E. Tomberg, Non-Gaussian Tail of the Curvature Perturbation in
+      Stochastic Ultraslow-Roll Inflation: Implications for Primordial Black Hole Production, Phys. Rev. Lett. 127, 101302
+      (2021), arXiv:2012.06551 [astro-ph.CO].
+ [99] F. Riccardi, M. Taoso, and A. Urbano, Solving peak theory in the presence of local non-gaussianities, JCAP 08, 060,
+     arXiv:2102.04084 [astro-ph.CO].
+[100] M. Taoso and A. Urbano, Non-gaussianities for primordial black hole formation, JCAP 08, 016, arXiv:2102.03610 [astro-
+     ph.CO].
+[101] M. Biagetti, V. De Luca, G. Franciolini, A. Kehagias, and A. Riotto, The formation probability of primordial black holes,
+     Phys. Lett. B 820, 136602 (2021), arXiv:2105.07810 [astro-ph.CO].
+[102] N. Kitajima, Y. Tada, S. Yokoyama, and C.-M. Yoo, Primordial black holes in peak theory with a non-Gaussian tail,
+    JCAP 10, 053, arXiv:2109.00791 [astro-ph.CO].
+[103] S. Hooshangi, M. H. Namjoo, and M. Noorbala, Rare events are nonperturbative: Primordial black holes from heavy-tailed
+      distributions, Phys. Lett. B 834, 137400 (2022), arXiv:2112.04520 [astro-ph.CO].
+[104] D.-S. Meng, C. Yuan, and Q.-g. Huang, One-loop correction to the enhanced curvature perturbation with local-type
+     non-Gaussianity for the formation of primordial black holes, Phys. Rev. D 106, 063508 (2022), arXiv:2207.07668 [astro-
+     ph.CO].
+[105] S. Young, Peaks and primordial black holes: the effect of non-Gaussianity, JCAP 05 (05), 037, arXiv:2201.13345 [astro-
+     ph.CO].
+[106] A. Escriv`a, Y. Tada, S. Yokoyama, and C.-M. Yoo, Simulation of primordial black holes with large negative non-
+      Gaussianity, JCAP 05 (05), 012, arXiv:2202.01028 [astro-ph.CO].
+[107] S. Hooshangi, M. H. Namjoo, and M. Noorbala, Tail diversity from inflation, JCAP 09, 023, arXiv:2305.19257 [astro-
+     ph.CO].
+[108] A. Ianniccari, A. J. Iovino, A. Kehagias, D. Perrone, and A. Riotto, Primordial black hole abundance: The importance
+      of broadness, Phys. Rev. D 109, 123549 (2024), arXiv:2402.11033 [astro-ph.CO].
+[109] C. Germani and R. K. Sheth, Nonlinear statistics of primordial black holes from Gaussian curvature perturbations, Phys.
+     Rev. D 101, 063520 (2020), arXiv:1912.07072 [astro-ph.CO].
+[110] M. Sasaki, J. Valiviita, and D. Wands, Non-Gaussianity of the primordial perturbation in the curvaton model, Phys. Rev.
+   D 74, 103003 (2006), arXiv:astro-ph/0607627.
+[111] S. Pi and M. Sasaki, Logarithmic Duality of the Curvature Perturbation, Phys. Rev. Lett. 131, 011002 (2023),
+     arXiv:2211.13932 [astro-ph.CO].
+[112] V. Atal, J. Garriga, and A. Marcos-Caballero, Primordial black hole formation with non-Gaussian curvature perturbations,
+    JCAP 09, 073, arXiv:1905.13202 [astro-ph.CO].
+[113] E. Tomberg,  Stochastic  constant-roll  inflation and  primordial  black  holes, Phys. Rev. D 108, 043502  (2023),
+     arXiv:2304.10903 [astro-ph.CO].
+[114] A. J. Iovino, S. Matarrese, G. Perna, A. Ricciardone, and A. Riotto, How well do we know the scalar-induced gravitational
+     waves?, Phys. Lett. B 872, 140039 (2026), arXiv:2412.06764 [astro-ph.CO].
+[115] A. Kehagias, I. Musco, and A. Riotto, Non-Gaussian Formation of Primordial Black Holes: Effects on the Threshold,
+    JCAP 12, 029, arXiv:1906.07135 [astro-ph.CO].
+[116] A. Caravano, G. Franciolini, and S. Renaux-Petel, Ultraslow-roll inflation on the lattice. II. Nonperturbative curvature
+      perturbation, Phys. Rev. D 112, 083508 (2025), arXiv:2506.11795 [astro-ph.CO].
+[117] V. Atal and C. Germani, The role of non-gaussianities in Primordial Black Hole formation, Phys. Dark Univ. 24, 100275
+      (2019), arXiv:1811.07857 [astro-ph.CO].
+[118] H. Firouzjahi and A. Riotto, Sign of non-Gaussianity and the primordial black holes abundance, Phys. Rev. D 108,
+     123504 (2023), arXiv:2309.10536 [astro-ph.CO].
+[119] M. Lewicki, P. Toczek, and V. Vaskonen, Black Holes and Gravitational Waves from Slow First-Order Phase Transitions,
+     Phys. Rev. Lett. 133, 221003 (2024), arXiv:2402.04158 [astro-ph.CO].
+[120] G. Franciolini, A. Iovino, Junior., V. Vaskonen, and H. Veermae, Recent Gravitational Wave Observation by Pulsar
+     Timing Arrays and Primordial Black Holes: The Importance of Non-Gaussianities, Phys. Rev. Lett. 131, 201401 (2023),
+     arXiv:2306.17149 [astro-ph.CO].
+[121] M. M. Flores and A. Kusenko, New Ideas on the Formation and Astrophysical Detection of Primordial Black Holes (2025)
+     arXiv:2404.05430 [astro-ph.CO].
+[122] S. W. Hawking, I. G. Moss, and J. M. Stewart, Bubble Collisions in the Very Early Universe, Phys. Rev. D 26, 2681
+      (1982).
+[123] T. H. Jung and T. Okui, Primordial black holes from bubble collisions during a first-order phase transition, Phys. Rev.
+   D 110, 115014 (2024), arXiv:2110.04271 [hep-ph].
+[124] K. Sato, H. Kodama, M. Sasaki, and K.-i. Maeda, Multiproduction of Universes by First Order Phase Transition of a
+     Vacuum, Phys. Lett. B 108, 103 (1982).
+
+                                                                                                    25
+
+
+[125] H. Kodama, M. Sasaki, and K. Sato, Abundance of Primordial Holes Produced by Cosmological First Order Phase
+      Transition, Prog. Theor. Phys. 68, 1979 (1982).
+[126] C. Gross, G. Landini, A. Strumia, and D. Teresi, Dark Matter as dark dwarfs and other macroscopic objects: multiverse
+       relics?, JHEP 09, 033, arXiv:2105.02840 [hep-ph].
+[127] M. Lewicki, P. Toczek, and V. Vaskonen, Primordial black holes from strong first-order phase transitions, JHEP 09, 092,
+     arXiv:2305.04924 [astro-ph.CO].
+[128] H. Deng and A. Vilenkin, Primordial black hole formation by vacuum bubbles, JCAP 12, 044, arXiv:1710.02865 [gr-qc].
+[129] A. Kusenko, M. Sasaki, S. Sugiyama, M. Takada, V. Takhistov, and E. Vitagliano, Exploring Primordial Black Holes
+     from the Multiverse with Optical Telescopes, Phys. Rev. Lett. 125, 181304 (2020), arXiv:2001.09160 [astro-ph.CO].
+[130] D. N. Maeso, L. Marzola, M. Raidal, V. Vaskonen, and H. Veerm¨ae, Primordial black holes from spectator field bubbles,
+    JCAP 02 (02), 017, arXiv:2112.01505 [astro-ph.CO].
+[131] H. Wang, Y.-l. Zhang, and T. Suyama, Nearly Monochromatic Primordial Black Holes as total Dark Matter from Bubble
+      Collapse,  (2025), arXiv:2510.19233 [astro-ph.CO].
+[132] J. Liu, L. Bian, R.-G. Cai, Z.-K. Guo, and S.-J. Wang, Primordial black hole production during first-order phase transi-
+      tions, Phys. Rev. D 105, L021303 (2022), arXiv:2106.05637 [astro-ph.CO].
+[133] K. Kawana, T. Kim, and P. Lu, PBH formation from overdensities in delayed vacuum transitions, Phys. Rev. D 108,
+     103531 (2023), arXiv:2212.14037 [astro-ph.CO].
+[134] Y. Gouttenoire and T. Volansky, Primordial black holes from supercooled phase transitions, Phys. Rev. D 110, 043514
+      (2024), arXiv:2305.04942 [hep-ph].
+[135] I. Baldes and M. O. Olea-Romacho, Primordial black holes as dark matter: interferometric tests of phase transition origin,
+    JHEP 01, 133, arXiv:2307.11639 [hep-ph].
+[136] M. Lewicki, P. Toczek, and V. Vaskonen, Black holes and gravitational waves from phase transitions in realistic models,
+     Phys. Dark Univ. 50, 102075 (2025), arXiv:2412.10366 [astro-ph.CO].
+[137] G. Franciolini, Y. Gouttenoire, and R. Jinno, Curvature Perturbations from First-Order Phase Transitions: Implications
+      to Black Holes and Gravitational Waves,  (2025), arXiv:2503.01962 [hep-ph].
+[138] M. Kierkla, N. Ramberg, P. Schicho, and D. Schmitt, Theoretical uncertainties for primordial black holes from cosmological
+     phase transitions,  (2025), arXiv:2506.15496 [hep-ph].
+[139] Y. Gouttenoire, M. Lewicki, P. Toczek, and V. Vaskonen, Resurrecting PBH formation in first-order phase transitions,
+      (2026), to appear.
+[140] K. Dimopoulos, T. Markkanen, A. Racioppi, and V. Vaskonen, Primordial Black Holes from Thermal Inflation, JCAP
+     07, 046, arXiv:1903.09598 [astro-ph.CO].
+[141] M. Bastero-Gil, J. M. Gomes, and J. G. Rosa, Thermal curvature perturbations in thermal inflation, JCAP 06, 060,
+     arXiv:2301.11666 [hep-ph].
+[142] N. Kitajima and F. Takahashi, Primordial Black Holes from QCD Axion Bubbles, JCAP 11, 060, arXiv:2006.13137
+      [hep-ph].
+[143] M. J. Baker, M. Breitbach, J. Kopp, and L. Mittnacht, Primordial black holes from first-order cosmological phase tran-
+      sitions, Phys. Lett. B 868, 139625 (2025), arXiv:2105.07481 [astro-ph.CO].
+[144] M. Lewicki, K. M¨u¨ursepp, J. Pata, M. Vasar, V. Vaskonen, and H. Veerm¨ae, Dynamics of false vacuum bubbles with
+     trapped particles, Phys. Rev. D 108, 036023 (2023), arXiv:2305.07702 [hep-ph].
+[145] K. Kawana and K.-P. Xie, Primordial black holes from a cosmic phase transition: The collapse of Fermi-balls, Phys. Lett.
+    B 824, 136791 (2022), arXiv:2106.00111 [astro-ph.CO].
+[146] A. Vilenkin and E. P. S. Shellard, Cosmic Strings and Other Topological Defects (Cambridge University Press, 2000).
+[147] S. W. Hawking, Black Holes From Cosmic Strings, Phys. Lett. B 231, 237 (1989).
+[148] A. Polnarev and R. Zembowicz, Formation of Primordial Black Holes by Cosmic Strings, Phys. Rev. D 43, 1106 (1991).
+[149] R. R. Caldwell and P. Casper, Formation of black holes from collapsed cosmic string loops, Phys. Rev. D 53, 3002 (1996),
+     arXiv:gr-qc/9509012.
+[150] J. H. MacGibbon, R. H. Brandenberger, and U. F. Wichoski, Limits on black hole formation from cosmic string loops,
+     Phys. Rev. D 57, 2158 (1998), arXiv:astro-ph/9707146.
+[151] R. N. Hansen, M. Christensen, and A. L. Larsen, Comment on ‘Formation of primordial black holes by cosmic strings’,
+     Phys. Rev. D 61, 108701 (2000), arXiv:gr-qc/0005041.
+[152] T. Helfer, J. C. Aurrekoetxea, and E. A. Lim, Cosmic String Loop Collapse in Full General Relativity, Phys. Rev. D 99,
+     104028 (2019), arXiv:1808.06678 [gr-qc].
+[153] C. James-Turner, D. P. B. Weil, A. M. Green, and E. J. Copeland, Constraints on the cosmic string loop collapse fraction
+     from primordial black holes, Phys. Rev. D 101, 123526 (2020), arXiv:1911.12658 [astro-ph.CO].
+[154] S. G. Rubin, M. Y. Khlopov, and A. S. Sakharov, Primordial black holes from nonequilibrium second order phase
+      transition, Grav. Cosmol. 6, 51 (2000), arXiv:hep-ph/0005271.
+[155] F. Ferrer, E. Masso, G. Panico, O. Pujolas, and F. Rompineve, Primordial Black Holes from the QCD axion, Phys. Rev.
+      Lett. 122, 101301 (2019), arXiv:1807.01707 [hep-ph].
+[156] G. B. Gelmini, J. Hyman, A. Simpson, and E. Vitagliano, Primordial black hole dark matter from catastrogenesis with
+     unstable pseudo-Goldstone bosons, JCAP 06, 055, arXiv:2303.14107 [hep-ph].
+[157] Y. Gouttenoire and E. Vitagliano, Domain wall interpretation of the PTA signal confronting black hole overproduction,
+     Phys. Rev. D 110, L061306 (2024), arXiv:2306.17841 [gr-qc].
+[158] Y. Gouttenoire and E. Vitagliano, Primordial black holes and wormholes from domain wall networks, Phys. Rev. D 109,
+     123507 (2024), arXiv:2311.07670 [hep-ph].
+
+                                                                                                    26
+
+
+[159] R. Z. Ferreira, A. Notari, O. Pujol`as, and F. Rompineve, Collapsing domain wall networks: impact on pulsar timing
+      arrays and primordial black holes, JCAP 06, 020, arXiv:2401.14331 [astro-ph.CO].
+[160] D. I. Dunsky and M. Kongsore, Primordial black holes from axion domain wall collapse, JHEP 06, 198, arXiv:2402.03426
+      [hep-ph].
+[161] E. Cotner and A. Kusenko, Primordial black holes from supersymmetry in the early universe, Phys. Rev. Lett. 119,
+     031103 (2017), arXiv:1612.02529 [astro-ph.CO].
+[162] E. Cotner and A. Kusenko, Primordial black holes from scalar field evolution in the early universe, Phys. Rev. D 96,
+     103002 (2017), arXiv:1706.09003 [astro-ph.CO].
+[163] G. Dvali, F. K¨uhnel, and M. Zantedeschi, Primordial black holes from confinement, Phys. Rev. D 104, 123507 (2021),
+     arXiv:2108.09471 [hep-ph].
+[164] A. Dolgov and J. Silk, Baryon isocurvature fluctuations at small scales and baryonic dark matter, Phys. Rev. D 47, 4244
+      (1993).
+[165] S. W. Hawking, Particle Creation by Black Holes, Commun. Math. Phys. 43, 199 (1975), [Erratum: Commun.Math.Phys.
+      46, 206 (1976)].
+[166] D. N. Page, Particle Emission Rates from a Black Hole: Massless Particles from an Uncharged, Nonrotating Hole, Phys.
+     Rev. D 13, 198 (1976).
+[167] D. N. Page, Particle Emission Rates from a Black Hole. 2. Massless Particles from a Rotating Hole, Phys. Rev. D 14,
+     3260 (1976).
+[168] B. E. Taylor, C. M. Chambers, and W. A. Hiscock, Evaporation of a Kerr black hole by emission of scalar and higher
+      spin particles, Phys. Rev. D 58, 044012 (1998), arXiv:gr-qc/9801044.
+[169] J. H. MacGibbon and B. J. Carr, Cosmic rays from primordial black holes, Astrophys. J. 371, 447 (1991).
+[170] J. H. MacGibbon and B. R. Webber, Quark and gluon jet emission from primordial black holes: The instantaneous
+      spectra, Phys. Rev. D 41, 3052 (1990).
+[171] A. F. Heckler, Calculation of the emergent spectrum and observation of primordial black holes, Phys. Rev. Lett. 78, 3430
+      (1997), arXiv:astro-ph/9702027.
+[172] V. De Luca, V. Desjacques, G. Franciolini, A. Malhotra, and A. Riotto, The initial spin probability distribution of
+     primordial black holes, JCAP 05, 018, arXiv:1903.01179 [astro-ph.CO].
+[173] A. Arbey, J. Auffinger, and J. Silk, Evolution of primordial black hole spin due to Hawking radiation, Mon. Not. Roy.
+     Astron. Soc. 494, 1257 (2020), arXiv:1906.04196 [astro-ph.CO].
+[174] A. Cheek, L. Heurtier, Y. F. Perez-Gonzalez, and J. Turner, Evaporation of primordial black holes in the early Universe:
+     Mass and spin distributions, Phys. Rev. D 108, 015005 (2023), arXiv:2212.03878 [hep-ph].
+[175] N. F. Bell and R. R. Volkas, Mirror matter and primordial black holes, Phys. Rev. D 59, 107301 (1999), arXiv:astro-
+     ph/9812301.
+[176] M. Y. Khlopov, A. Barrau, and J. Grain, Gravitino production by primordial black hole evaporation and constraints on
+     the inhomogeneity of the early universe, Class. Quant. Grav. 23, 1875 (2006), arXiv:astro-ph/0406621.
+[177] T. Fujita, M. Kawasaki, K. Harigaya, and R. Matsuda, Baryon asymmetry, dark matter, and density perturbation from
+     primordial black holes, Phys. Rev. D 89, 103501 (2014), arXiv:1401.1909 [astro-ph.CO].
+[178] R. Allahverdi, J. Dent, and J. Osinski, Nonthermal production of dark matter from primordial black holes, Phys. Rev. D
+     97, 055013 (2018), arXiv:1711.10511 [astro-ph.CO].
+[179] O. Lennon, J. March-Russell, R. Petrossian-Byrne, and H. Tillim, Black Hole Genesis of Dark Matter, JCAP 04, 009,
+     arXiv:1712.07664 [hep-ph].
+[180] S. Rasanen and E. Tomberg, Planck scale black hole dark matter from Higgs inflation, JCAP 01, 038, arXiv:1810.12608
+      [astro-ph.CO].
+[181] L. Morrison, S. Profumo, and Y. Yu, Melanopogenesis: Dark Matter of (almost) any Mass and Baryonic Matter from the
+     Evaporation of Primordial Black Holes weighing a Ton (or less), JCAP 05, 005, arXiv:1812.10606 [astro-ph.CO].
+[182] A. Salvio and H. Veerm¨ae, Horizonless ultracompact objects and dark matter in quadratic gravity, JCAP 02, 018,
+     arXiv:1912.13333 [gr-qc].
+[183] I. Masina, Dark matter and dark radiation from evaporating primordial black holes, Eur. Phys. J. Plus 135, 552 (2020),
+     arXiv:2004.04740 [hep-ph].
+[184] I. Baldes, Q. Decant, D. C. Hooper, and L. Lopez-Honorez, Non-Cold Dark Matter from Primordial Black Hole Evapo-
+      ration, JCAP 08, 045, arXiv:2004.14773 [astro-ph.CO].
+[185] J. H. MacGibbon, Can Planck-mass relics of evaporating black holes close the universe?, Nature 329, 308 (1987).
+[186] G. Dvali, L. Eisemann, M. Michel, and S. Zell, Black hole metamorphosis and stabilization by memory burden, Phys.
+     Rev. D 102, 103523 (2020), arXiv:2006.00011 [hep-th].
+[187] V. Thoss, A. Burkert, and K. Kohri, Breakdown of hawking evaporation opens new mass window for primordial black
+      holes as dark matter candidate, Mon. Not. Roy. Astron. Soc. 532, 451 (2024), arXiv:2402.17823 [astro-ph.CO].
+[188] G. Dvali, J. S. Valbuena-Berm´udez, and M. Zantedeschi, Memory burden effect in black holes and solitons: Implications
+      for PBH, Phys. Rev. D 110, 056029 (2024), arXiv:2405.13117 [hep-th].
+[189] G. Dvali, M. Zantedeschi, and S. Zell, Transitioning to Memory Burden: Detectable Small Primordial Black Holes as
+     Dark Matter,  (2025), arXiv:2503.21740 [hep-ph].
+[190] A. Dondarini, G. Marino, P. Panci, and M. Zantedeschi, The fast, the slow and the merging: probes of evaporating
+    memory burdened PBHs, JCAP 11, 006, arXiv:2506.13861 [hep-ph].
+[191] R. Anantua, R. Easther, and J. T. Giblin, GUT-Scale Primordial Black Holes: Consequences and Constraints, Phys. Rev.
+      Lett. 103, 111303 (2009), arXiv:0812.0825 [astro-ph].
+
+                                                                                                    27
+
+
+[192] A. D. Dolgov and D. Ejlli, Relic gravitational waves from light primordial black holes, Phys. Rev. D 84, 024028 (2011),
+     arXiv:1105.2303 [astro-ph.CO].
+[193] R. Dong, W. H. Kinney, and D. Stojkovic, Gravitational wave production by Hawking radiation from rotating primordial
+     black holes, JCAP 10, 034, arXiv:1511.05642 [astro-ph.CO].
+[194] A. Ireland, S. Profumo, and J. Scharnhorst, Primordial gravitational waves from black hole evaporation in standard and
+     nonstandard cosmologies, Phys. Rev. D 107, 104021 (2023), arXiv:2302.10188 [gr-qc].
+[195] T. C. Gehrman, B. Shams Es Haghi, K. Sinha, and T. Xu, The primordial black holes that disappeared: connections to
+     dark matter and MHz-GHz gravitational Waves, JCAP 10, 001, arXiv:2304.09194 [hep-ph].
+[196] J. L. Zagorac, R. Easther, and N. Padmanabhan, GUT-Scale Primordial Black Holes: Mergers and Gravitational Waves,
+    JCAP 06, 052, arXiv:1903.05053 [astro-ph.CO].
+[197] D. Hooper, G. Krnjaic, J. March-Russell, S. D. McDermott, and R. Petrossian-Byrne, Hot Gravitons and Gravitational
+     Waves From Kerr Black Holes in the Early Universe,  (2020), arXiv:2004.00618 [astro-ph.CO].
+[198] K. Inomata, M. Kawasaki, K. Mukaida, T. Terada, and T. T. Yanagida, Gravitational Wave Production right after a
+     Primordial Black Hole Evaporation, Phys. Rev. D 101, 123533 (2020), arXiv:2003.10455 [astro-ph.CO].
+[199] T. Papanikolaou, V. Vennin, and D. Langlois, Gravitational waves from a universe filled with primordial black holes,
+    JCAP 03, 053, arXiv:2010.11573 [astro-ph.CO].
+[200] G. Dom`enech, C. Lin, and M. Sasaki, Gravitational wave constraints on the primordial black hole dominated early
+      universe, JCAP 04, 062, [Erratum: JCAP 11, E01 (2021)], arXiv:2012.08151 [gr-qc].
+[201] G. Dom`enech, V. Takhistov, and M. Sasaki, Exploring evaporating primordial black holes with gravitational waves, Phys.
+      Lett. B 823, 136722 (2021), arXiv:2105.06816 [astro-ph.CO].
+[202] T. Papanikolaou, Gravitational waves induced from primordial black hole fluctuations: the effect of an extended mass
+      function, JCAP 10, 089, arXiv:2207.11041 [astro-ph.CO].
+[203] N. Bhaumik, A. Ghoshal, and M. Lewicki, Doubly peaked induced stochastic gravitational wave background:  testing
+     baryogenesis from primordial black holes, JHEP 07, 130, arXiv:2205.06260 [astro-ph.CO].
+[204] J. Auffinger, Primordial black hole constraints with Hawking radiation—A review, Prog. Part. Nucl. Phys. 131, 104040
+      (2023), arXiv:2206.02672 [astro-ph.CO].
+[205] B. V. Lehmann, C. Johnson, S. Profumo, and T. Schwemberger, Direct detection of primordial black hole relics as dark
+     matter, JCAP 10, 046, arXiv:1906.06348 [hep-ph].
+[206] Y. Bai and N. Orlofsky, Primordial Extremal Black Holes as Dark Matter, Phys. Rev. D 101, 055006 (2020),
+     arXiv:1906.04858 [hep-ph].
+[207] B. J. Carr, K. Kohri, Y. Sendouda, and J. Yokoyama, New cosmological constraints on primordial black holes, Phys. Rev.
+   D 81, 104019 (2010), arXiv:0912.5297 [astro-ph.CO].
+[208] C. Keith, D. Hooper, N. Blinov, and S. D. McDermott, Constraints on Primordial Black Holes From Big Bang Nucle-
+      osynthesis Revisited, Phys. Rev. D 102, 103512 (2020), arXiv:2006.03608 [astro-ph.CO].
+[209] K. Kohri and J. Yokoyama, Primordial black holes and primordial nucleosynthesis. 1. Effects of hadron injection from
+     low mass holes, Phys. Rev. D 61, 023501 (2000), arXiv:astro-ph/9908160.
+[210] A. Boccia, F. Iocco, and L. Visinelli, Constraining the primordial black hole abundance through big-bang nucleosynthesis,
+     Phys. Rev. D 111, 063508 (2025), arXiv:2405.18493 [astro-ph.CO].
+[211] Q.-f. Wu and X.-J. Xu, Primordial Black Holes Evaporating before Big Bang Nucleosynthesis, (2025), arXiv:2509.05618
+      [astro-ph.CO].
+[212] S. K. Acharya and R. Khatri, CMB and BBN constraints on evaporating primordial black holes revisited, JCAP 06, 018,
+     arXiv:2002.00898 [astro-ph.CO].
+[213] M. Boudaud and M. Cirelli, Voyager 1 e± Further Constrain Primordial Black Holes as Dark Matter, Phys. Rev. Lett.
+     122, 041104 (2019), arXiv:1807.03075 [astro-ph.HE].
+[214] S. Clark, B. Dutta, Y. Gao, L. E. Strigari, and S. Watson, Planck Constraint on Relic Primordial Black Holes, Phys. Rev.
+   D 95, 083006 (2017), arXiv:1612.07738 [astro-ph.CO].
+[215] W. DeRocco and P. W. Graham, Constraining Primordial Black Hole Abundance with the Galactic 511 keV Line, Phys.
+     Rev. Lett. 123, 251102 (2019), arXiv:1906.07740 [astro-ph.CO].
+[216] B. Dasgupta, R. Laha, and A. Ray, Neutrino and positron constraints on spinning primordial black hole dark matter,
+     Phys. Rev. Lett. 125, 101101 (2020), arXiv:1912.01014 [hep-ph].
+[217] R. Laha, Primordial Black Holes as a Dark Matter Candidate Are Severely Constrained by the Galactic Center 511 keV
+     γ -Ray Line, Phys. Rev. Lett. 123, 251101 (2019), arXiv:1906.09994 [astro-ph.HE].
+[218] R. Laha, J. B. Mu˜noz, and T. R. Slatyer, INTEGRAL constraints on primordial black holes and particle dark matter,
+     Phys. Rev. D 101, 123514 (2020), arXiv:2004.00627 [astro-ph.CO].
+[219] A. K. Saha and R. Laha, Sensitivities on nonspinning and spinning primordial black hole dark matter with global 21-cm
+      troughs, Phys. Rev. D 105, 103026 (2022), arXiv:2112.10794 [astro-ph.CO].
+[220] S. Mittal, A. Ray, G. Kulkarni, and B. Dasgupta, Constraining primordial black holes as dark matter using the global
+     21-cm signal with X-ray heating and excess radio background, JCAP 03, 030, arXiv:2107.02190 [astro-ph.CO].
+[221] M. Calz`a, J. March-Russell, and J. G. Rosa, Evaporating Primordial Black Holes, the String Axiverse, and Hot Dark
+     Radiation, Phys. Rev. Lett. 133, 261003 (2024), arXiv:2110.13602 [astro-ph.CO].
+[222] J. Berteaud, F. Calore, J. Iguaz, P. D. Serpico, and T. Siegert, Strong constraints on primordial black hole dark matter
+     from 16 years of INTEGRAL/SPI observations, Phys. Rev. D 106, 023030 (2022), arXiv:2202.07483 [astro-ph.HE].
+[223] P. De la Torre Luque, J. Koechler, and S. Balaji, Refining Galactic primordial black hole evaporation constraints, Phys.
+     Rev. D 110, 123022 (2024), arXiv:2406.11949 [astro-ph.HE].
+
+                                                                                                    28
+
+
+[224] A. K. Saha, A. Singh, P. Parashari, and R. Laha, Hunting primordial black hole dark matter in the Lyman-α forest, Eur.
+     Phys. J. C 85, 1117 (2025), arXiv:2409.10617 [astro-ph.CO].
+[225] B.-Y. Su, X. Pan, G.-S. Wang, L. Zu, Y. Yang, and L. Feng, Constraining primordial black holes as dark matter using
+    AMS-02 data, Eur. Phys. J. C 84, 606 (2024), [Erratum: Eur.Phys.J.C 84, 768 (2024)], arXiv:2403.04988 [astro-ph.HE].
+[226] N. K. Khan, A. Ray, G. Kulkarni, and B. Dasgupta, Stronger Constraints on Primordial Black Holes as Dark Mat-
+      ter Derived from the Thermal Evolution of the Intergalactic Medium over the Last Twelve Billion Years,  (2025),
+     arXiv:2503.15595 [astro-ph.CO].
+[227] S. Dimopoulos and G. L. Landsberg, Black holes at the LHC, Phys. Rev. Lett. 87, 161602 (2001), arXiv:hep-ph/0106295.
+[228] S. B. Giddings and S. D. Thomas, High-energy colliders as black hole factories: The End of short distance physics, Phys.
+     Rev. D 65, 056010 (2002), arXiv:hep-ph/0106219.
+[229] M. Raidal, S. Solodukhin, V. Vaskonen, and H. Veerm¨ae, Light Primordial Exotic Compact Objects as All Dark Matter,
+     Phys. Rev. D 97, 123520 (2018), arXiv:1802.07728 [astro-ph.CO].
+[230] X. Boluna, S. Profumo, J. Bl´e, and D. Hennings, Searching for Exploding black holes, JCAP 04, 024, arXiv:2307.06467
+      [astro-ph.HE].
+[231] M. J. Baker, J. Iguaz Juan, A. Symons, and A. Thamm, Could We Observe an Exploding Black Hole in the Near Future?,
+     Phys. Rev. Lett. 135, 111002 (2025), arXiv:2503.10755 [hep-ph].
+[232] T. N. Ukwatta, J. H. MacGibbon, W. C. Parke, K. S. Dhuga, S. Rhodes, A. Eskandarian, N. Gehrels, L. Maximon,
+     and D. C. Morris, Sensitivity of the FERMI Detectors to Gamma-Ray Bursts from Evaporating Primordial Black Holes
+     (PBHs), in 12th Marcel Grossmann Meeting on General Relativity (2010) pp. 1588–1590, arXiv:1003.4515 [astro-ph.HE].
+[233] D. B. Cline, The Search for GRB from primordial black hole evaporation, Astrophys. Space Sci. 231, 393 (1995).
+[234] T. N. Ukwatta et al., Investigation of Primordial Black Hole Bursts using Interplanetary Network Gamma-ray Bursts,
+     Astrophys. J. 826, 98 (2016), arXiv:1512.01264 [astro-ph.HE].
+[235] E. L. Wright, On the density of pbh’s in the galactic halo, Astrophys. J. 459, 487 (1996), arXiv:astro-ph/9509074.
+[236] R. Lehoucq, M. Casse, J. M. Casandjian, and I. Grenier, New constraints on the primordial black hole number density
+     from Galactic gamma-ray astronomy, Astron. Astrophys. 502, 37 (2009), arXiv:0906.1648 [astro-ph.HE].
+[237] B. J. Carr, K. Kohri, Y. Sendouda, and J. Yokoyama, Constraints on primordial black holes from the Galactic gamma-ray
+     background, Phys. Rev. D 94, 044029 (2016), arXiv:1604.05349 [astro-ph.CO].
+[238] O. Adriani et al. (KM3NeT), Ultrahigh-Energy Event KM3-230213A within the Global Neutrino Landscape, Phys. Rev.
+   X 15, 031016 (2025), arXiv:2502.08173 [astro-ph.HE].
+[239] A. Boccia and F. Iocco, Could the KM3–230213A event be caused by an evaporating primordial black hole?, Phys. Rev.
+   D 112, 063045 (2025), arXiv:2502.19245 [astro-ph.HE].
+[240] M. J. Baker, J. Iguaz Juan, A. Symons, and A. Thamm, Explaining the PeV Neutrino Fluxes at KM3NeT and IceCube
+     with Quasi-Extremal Primordial Black Holes,  (2025), arXiv:2505.22722 [hep-ph].
+[241] I. Aldecoa-Tamayo, C. T. Byrnes, and D. Seery, Primordial black holes in Randall-Sundrum: Cosmological signatures,
+      (2025), arXiv:2509.13409 [astro-ph.CO].
+[242] J. Smirnov, A. Goobar, T. Linden, and E. M¨ortsell, White Dwarfs in Dwarf Spheroidal Galaxies: A New Class of
+     Compact-Dark-Matter Detectors, Phys. Rev. Lett. 132, 151401 (2024), arXiv:2211.00013 [astro-ph.CO].
+[243] B. Paczynski, Gravitational microlensing by the galactic halo, Astrophys. J. 304, 1 (1986).
+[244] R. A. Allsman et al. (Macho), MACHO project limits on black hole dark matter in the 1-30 solar mass range, Astrophys.
+      J. Lett. 550, L169 (2001), arXiv:astro-ph/0011506.
+[245] P. Tisserand et al. (EROS-2), Limits on the Macho Content of the Galactic Halo from the EROS-2 Survey of the Magellanic
+     Clouds, Astron. Astrophys. 469, 387 (2007), arXiv:astro-ph/0607207.
+[246] K. Griest, A. M. Cieplak, and M. J. Lehner, Experimental Limits on Primordial Black Hole Dark Matter from the First
+     2 yr of Kepler Data, Astrophys. J. 786, 158 (2014), arXiv:1307.5798 [astro-ph.CO].
+[247] N. Smyth, S. Profumo, S. English, T. Jeltema, K. McKinnon, and P. Guhathakurta, Updated Constraints on Asteroid-
+     Mass Primordial Black Holes as Dark Matter, Phys. Rev. D 101, 063005 (2020), arXiv:1910.01285 [astro-ph.CO].
+[248] P. Mr´oz et al., No massive black holes in the Milky Way halo, Nature 632, 749 (2024), arXiv:2403.02386 [astro-ph.GA].
+[249] P. Mr´oz et al., Limits on Planetary-mass Primordial Black Holes from the OGLE High-cadence Survey of the Magellanic
+     Clouds, Astrophys. J. Lett. 976, L19 (2024), arXiv:2410.06251 [astro-ph.CO].
+[250] P. Mr´oz et al., Microlensing Optical Depth, Event Rate, and Limits on Compact Objects in Dark Matter Based on 20 Yr of
+   OGLE Observations of the Small Magellanic Cloud, Astrophys. J. Suppl. 280, 49 (2025), arXiv:2507.13794 [astro-ph.GA].
+[251] M. R. S. Hawkins and J. Garc´ıa-Bellido, A critical analysis of the recent OGLE limits on stellar mass primordial black
+      holes in the halo of the Milky Way,  (2025), arXiv:2509.05400 [astro-ph.GA].
+[252] P. Mr´oz et al., Eppur non si trovano: Comments on the Primordial Black Hole Limits in the Galactic Halo,  (2025),
+     arXiv:2510.20005 [astro-ph.CO].
+[253] M. Zumalacarregui and U. Seljak, Limits on stellar-mass compact objects as dark matter from gravitational lensing of
+     type Ia supernovae, Phys. Rev. Lett. 121, 141101 (2018), arXiv:1712.02240 [astro-ph.CO].
+[254] J. Urrutia, V. Vaskonen, and H. Veerm¨ae, Gravitational wave microlensing by dressed primordial black holes, Phys. Rev.
+   D 108, 023507 (2023), arXiv:2303.17601 [astro-ph.CO].
+[255] M. Petaˇc, J. Lavalle, and K. Jedamzik, Microlensing constraints on clustered primordial black holes, Phys. Rev. D 105,
+     083520 (2022), arXiv:2201.02521 [astro-ph.CO].
+[256] M. Gorton and A. M. Green, Effect of clustering on primordial black hole microlensing constraints, JCAP 08 (08), 035,
+     arXiv:2203.04209 [astro-ph.CO].
+[257] V. De Luca, G. Franciolini, A. Riotto, and H. Veerm¨ae, Ruling Out Initially Clustered Primordial Black Holes as Dark
+
+                                                                                                    29
+
+
+     Matter, Phys. Rev. Lett. 129, 191302 (2022), arXiv:2208.01683 [astro-ph.CO].
+[258] A. M. Green, Astrophysical uncertainties on stellar microlensing constraints on multi-Solar mass primordial black hole
+     dark matter, Phys. Rev. D 96, 043020 (2017), arXiv:1705.10818 [astro-ph.CO].
+[259] A. M. Green, Primordial black hole stellar microlensing constraints: understanding their dependence on the density and
+      velocity distributions, JCAP 04, 023, arXiv:2501.02610 [astro-ph.GA].
+[260] B. Li, C.-Y. Tang, Z.-R. Huang, and L.-H. Liu, Microlensing of dark matter models in the Milky Way, JCAP 12, 008,
+     arXiv:2507.00770 [astro-ph.GA].
+[261] C. Alcock et al. (MACHO), The MACHO project: Microlensing results from 5.7 years of LMC observations, Astrophys.
+      J. 542, 281 (2000), arXiv:astro-ph/0001272.
+[262] H. Niikura et al., Microlensing constraints on primordial black holes with Subaru/HSC Andromeda observations, Nature
+     Astron. 3, 524 (2019), arXiv:1701.02151 [astro-ph.CO].
+[263] R. E. Schild and R. C. Smith, Microlensing in the Q0957+561 Gravitational Mirage, 101, 813 (1991).
+[264] M. R. S. Hawkins, The signature of primordial black holes in the dark matter halos of galaxies, Astron. Astrophys. 633,
+    A107 (2020), arXiv:2001.07633 [astro-ph.GA].
+[265] M. R. S. Hawkins, New evidence for a cosmological distribution of stellar mass primordial black holes, Mon. Not. Roy.
+     Astron. Soc. 512, 5706 (2022), arXiv:2204.09143 [astro-ph.CO].
+[266] T. Nakamura, M. Sasaki, T. Tanaka, and K. S. Thorne, Gravitational waves from coalescing black hole MACHO binaries,
+     Astrophys. J. Lett. 487, L139 (1997), arXiv:astro-ph/9708060.
+[267] M. Raidal, V. Vaskonen, and H. Veerm¨ae, Formation of Primordial Black Hole Binaries and Their Merger Rates, in
+     Primordial Black Holes, edited by C. Byrnes, G. Franciolini, T. Harada, P. Pani, and M. Sasaki (2025) arXiv:2404.08416
+      [astro-ph.CO].
+[268] Y. Ali-Ha¨ımoud, E. D. Kovetz, and M. Kamionkowski, Merger rate of primordial black-hole binaries, Phys. Rev. D 96,
+     123523 (2017), arXiv:1709.06576 [astro-ph.CO].
+[269] M. Raidal, C. Spethmann, V. Vaskonen, and H. Veerm¨ae, Formation and Evolution of Primordial Black Hole Binaries in
+     the Early Universe, JCAP 02, 018, arXiv:1812.01930 [astro-ph.CO].
+[270] V. Vaskonen and H. Veerm¨ae, Lower bound on the primordial black hole merger rate, Phys. Rev. D 101, 043015 (2020),
+     arXiv:1908.09752 [astro-ph.CO].
+[271] M. S. Delos, A. Rantala, S. Young, and F. Schmidt, Structure formation with primordial black holes: collisional dynamics,
+      binaries, and gravitational waves, JCAP 12, 005, arXiv:2410.01876 [astro-ph.CO].
+[272] G. Franciolini, K. Kritos, E. Berti, and J. Silk, Primordial black hole mergers from three-body interactions, Phys. Rev.
+   D 106, 083529 (2022), arXiv:2205.15340 [astro-ph.CO].
+[273] B. P. Abbott et al. (LIGO Scientific, Virgo), GWTC-1: A Gravitational-Wave Transient Catalog of Compact Binary
+     Mergers Observed by LIGO and Virgo during the First and Second Observing Runs, Phys. Rev. X 9, 031040 (2019),
+     arXiv:1811.12907 [astro-ph.HE].
+[274] R. Abbott et al. (LIGO Scientific, Virgo), GWTC-2: Compact Binary Coalescences Observed by LIGO and Virgo During
+     the First Half of the Third Observing Run, Phys. Rev. X 11, 021053 (2021), arXiv:2010.14527 [gr-qc].
+[275] R. Abbott et al. (KAGRA, VIRGO, LIGO Scientific), GWTC-3: Compact Binary Coalescences Observed by LIGO and
+     Virgo during the Second Part of the Third Observing Run, Phys. Rev. X 13, 041039 (2023), arXiv:2111.03606 [gr-qc].
+[276] A. G. Abac et al. (LIGO Scientific, VIRGO, KAGRA), GWTC-4.0: Updating the Gravitational-Wave Transient Catalog
+     with Observations from the First Part of the Fourth LIGO-Virgo-KAGRA Observing Run,  (2025), arXiv:2508.18082
+       [gr-qc].
+[277] B. P. Abbott et al. (LIGO Scientific, Virgo), Search for Subsolar Mass Ultracompact Binaries in Advanced LIGO’s Second
+     Observing Run, Phys. Rev. Lett. 123, 161102 (2019), arXiv:1904.08976 [astro-ph.CO].
+[278] B. J. Kavanagh, D. Gaggero, and G. Bertone, Merger rate of a subdominant population of primordial black holes, Phys.
+     Rev. D 98, 023536 (2018), arXiv:1805.09034 [astro-ph.CO].
+[279] K. W. K. Wong, G. Franciolini, V. De Luca, V. Baibhav, E. Berti, P. Pani, and A. Riotto, Constraining the primordial
+     black hole scenario with Bayesian inference and machine learning: the GWTC-2 gravitational wave catalog, Phys. Rev.
+   D 103, 023026 (2021), arXiv:2011.01865 [gr-qc].
+[280] G. H¨utsi, M. Raidal, V. Vaskonen, and H. Veerm¨ae, Two populations of LIGO-Virgo black holes, JCAP 03, 068,
+     arXiv:2012.02786 [astro-ph.CO].
+[281] V. De Luca, G. Franciolini, P. Pani, and A. Riotto, Bayesian Evidence for Both Astrophysical and Primordial Black
+      Holes: Mapping the GWTC-2 Catalog to Third-Generation Detectors, JCAP 05, 003, arXiv:2102.03809 [astro-ph.CO].
+[282] S. Gasparotto, G. Franciolini, and V. Domcke, Gravitational wave memory of primordial black hole mergers, Phys. Rev.
+   D 112, 103021 (2025), arXiv:2505.01356 [astro-ph.CO].
+[283] T. Boybeyi, S. Clesse, S. Kuroyanagi, and M. Sakellariadou, Search for a gravitational wave background from primordial
+     black hole binaries using data from the first three LIGO-Virgo-KAGRA observing runs, Phys. Rev. D 112, 023551 (2025),
+     arXiv:2412.18318 [astro-ph.CO].
+[284] R. Abbott et al. (KAGRA, VIRGO, LIGO Scientific), Population of Merging Compact Binaries Inferred Using Gravita-
+      tional Waves through GWTC-3, Phys. Rev. X 13, 011048 (2023), arXiv:2111.03634 [astro-ph.HE].
+[285] A. G. Abac et al. (LIGO Scientific, VIRGO, KAGRA), GWTC-4.0: Population Properties of Merging Compact Binaries,
+      (2025), arXiv:2508.18083 [astro-ph.HE].
+[286] W. A. Fowler and F. Hoyle, Neutrino Processes and Pair Formation in Massive Stars and Supernovae., ApJS 9, 201
+      (1964).
+[287] S. E. Woosley, Pulsational Pair-Instability Supernovae, Astrophys. J. 836, 244 (2017), arXiv:1608.08939 [astro-ph.HE].
+
+                                                                                                    30
+
+
+[288] C. D. Bailyn, R. K. Jain, P. Coppi, and J. A. Orosz, The Mass distribution of stellar black holes, Astrophys. J. 499, 367
+      (1998), arXiv:astro-ph/9708032.
+[289] W. M. Farr, N. Sravan, A. Cantrell, L. Kreidberg, C. D. Bailyn, I. Mandel, and V. Kalogera, The Mass Distribution of
+      Stellar-Mass Black Holes, Astrophys. J. 741, 103 (2011), arXiv:1011.1459 [astro-ph.GA].
+[290] C. Yuan, Z.-C. Chen, and L. Liu, GW231123 mass gap event and the primordial black hole scenario, Phys. Rev. D 112,
+     L081306 (2025), arXiv:2507.15701 [astro-ph.CO].
+[291] V. De Luca, G. Franciolini, and A. Riotto, GW231123: a Possible Primordial Black Hole Origin, (2025), arXiv:2508.09965
+      [astro-ph.CO].
+[292] K. Cannon et al., GstLAL: A software framework for gravitational wave discovery, (2020), arXiv:2010.05082 [astro-ph.IM].
+[293] M. Prunier, G. Morr´as, J. F. N. Siles, S. Clesse, J. Garc´ıa-Bellido, and E. Ruiz Morales, Analysis of the subsolar-mass
+     black hole candidate SSM200308 from the second part of the third observing run of Advanced LIGO-Virgo, Phys. Dark
+     Univ. 46, 101582 (2024), arXiv:2311.16085 [gr-qc].
+[294] V. De Luca, A. J. Iovino, and A. Riotto, Primordial Black Hole Ringdown: the Irreducible Stochastic Gravitational Wave
+     Background,  (2025), arXiv:2507.04083 [gr-qc].
+[295] C. Yuan, Z. Zhong, and Q.-G. Huang, Whispers from the Early Universe: The Ringdown of Primordial Black Holes,
+      (2025), arXiv:2507.07665 [astro-ph.CO].
+[296] A. Kogut et al., The Primordial Inflation Explorer (PIXIE): A Nulling Polarimeter for Cosmic Microwave Background
+     Observations, JCAP 07, 025, arXiv:1105.2044 [astro-ph.CO].
+[297] A. Kogut, M. H. Abitbol, J. Chluba, J. Delabrouille, D. Fixsen, J. C. Hill, S. P. Patil, and A. Rotti, CMB Spectral
+      Distortions: Status and Prospects, Bull. Am. Astron. Soc. 51, 113 (2019), arXiv:1907.13195 [astro-ph.CO].
+[298] J. Chluba et al., New horizons in cosmology with spectral distortions of the cosmic microwave background, Exper. Astron.
+     51, 1515 (2021), arXiv:1909.01593 [astro-ph.CO].
+[299] B. J. Carr and M. Sakellariadou, Dynamical constraints on dark compact objects, Astrophys. J. 516, 195 (1999).
+[300] T. D. Brandt, Constraints on MACHO Dark Matter from Compact Stellar Systems in Ultra-Faint Dwarf Galaxies,
+     Astrophys. J. Lett. 824, L31 (2016), arXiv:1605.03665 [astro-ph.GA].
+[301] S. M. Koushiappas and A. Loeb, Dynamics of Dwarf Galaxies Disfavor Stellar-Mass Black Holes as Dark Matter, Phys.
+     Rev. Lett. 119, 041102 (2017), arXiv:1704.01668 [astro-ph.GA].
+[302] M. A. Monroy-Rodr´ıguez and C. Allen, The end of the MACHO era- revisited: new limits on MACHO masses from halo
+     wide binaries, Astrophys. J. 790, 159 (2014), arXiv:1406.5169 [astro-ph.GA].
+[303] B. Carr, F. Kuhnel, and L. Visinelli, Constraints on Stupendously Large Black Holes, Mon. Not. Roy. Astron. Soc. 501,
+     2029 (2021), arXiv:2008.08077 [astro-ph.CO].
+[304] R. Murgia, G. Scelfo, M. Viel, and A. Raccanelli, Lyman-α Forest Constraints on Primordial Black Holes as Dark Matter,
+     Phys. Rev. Lett. 123, 071102 (2019), arXiv:1903.10509 [astro-ph.CO].
+[305] Y. Gouttenoire, S. Trifinopoulos, G. Valogiannis, and M. Vanvlasselaer, Scrutinizing the primordial black hole inter-
+      pretation of PTA gravitational waves and JWST early galaxies, Phys. Rev. D 109, 123002 (2024), arXiv:2307.01457
+      [astro-ph.CO].
+[306] J. Ellis, M. Fairbairn, J. Urrutia, and V. Vaskonen, Starlight from JWST: Implications for star formation and dark matter
+     models,  (2025), arXiv:2504.20043 [astro-ph.CO].
+[307] M. M. Ivanov and S. Trifinopoulos, Effective Field Theory Constraints on Primordial Black Holes from the High-Redshift
+    Lyman-α Forest,  (2025), arXiv:2508.04767 [astro-ph.CO].
+[308] C. Gerlach, Y. Gouttenoire, A. J. Iovino, and N. Leister, Closing the Mass Window for Stupendously Large Black Holes,
+      (2025), arXiv:2508.08238 [astro-ph.CO].
+[309] G. M. Fuller, A. Kusenko, and V. Takhistov, Primordial Black Holes and r-Process Nucleosynthesis, Phys. Rev. Lett.
+     119, 061101 (2017), arXiv:1704.01129 [astro-ph.HE].
+[310] M. A. Abramowicz, M. Bejger, and M. Wielgus, Collisions of neutron stars with primordial black holes as fast radio bursts
+      engines, Astrophys. J. 868, 17 (2018), arXiv:1704.05931 [astro-ph.HE].
+[311] K. Kainulainen, S. Nurmi, E. D. Schiappacasse, and T. T. Yanagida, Can primordial black holes as all dark matter explain
+      fast radio bursts?, Phys. Rev. D 104, 123033 (2021), arXiv:2108.08717 [astro-ph.HE].
+[312] D. W. P. Amaral and E. D. Schiappacasse, Rescuing the primordial black holes all-dark matter hypothesis from the fast
+      radio bursts tension, Phys. Rev. D 110, 083532 (2024), arXiv:2312.09285 [hep-ph].
+[313] J. Cang, Y.-Z. Ma, and Y. Gao, Implications for Primordial Black Holes from Cosmological Constraints on Scalar-induced
+      Gravitational Waves, Astrophys. J. 949, 64 (2023), arXiv:2210.03476 [astro-ph.CO].
+[314] P. Boldrini, Y. Miki, A. Y. Wagner, R. Mohayaee, J. Silk, and A. Arbey, Cusp-to-core transition in low-mass dwarf
+      galaxies induced by dynamical heating of cold dark matter by primordial black holes, Mon. Not. Roy. Astron. Soc. 492,
+     5218 (2020), arXiv:1909.07395 [astro-ph.CO].
+[315] N. Cappelluti, G. Hasinger, and P. Natarajan, Exploring the High-redshift PBH-ΛCDM Universe: Early Black Hole
+      Seeding, the First Stars and Cosmic Radiation Backgrounds, Astrophys. J. 926, 205 (2022), arXiv:2109.08701 [astro-
+     ph.CO].
+[316] G. H¨utsi, M. Raidal, J. Urrutia, V. Vaskonen, and H. Veerm¨ae, Did JWST observe imprints of axion miniclusters or
+     primordial black holes?, Phys. Rev. D 107, 043502 (2023), arXiv:2211.02651 [astro-ph.CO].
+[317] P. E. Colazo, F. Stasyszyn, and N. Padilla, Structure formation with primordial black holes to alleviate early star formation
+      tension revealed by JWST, Astron. Astrophys. 685, L8 (2024), arXiv:2404.13110 [astro-ph.CO].
+[318] S. Zhang, V. Bromm, and B. Liu, How Do Primordial Black Holes Change the Halo Mass Function and Structure?,
+     Astrophys. J. 975, 139 (2024), arXiv:2405.11381 [astro-ph.CO].
+
+                                                                                                    31
+
+
+[319] P. Dayal, Exploring a primordial solution for early black holes detected with JWST, Astron. Astrophys. 690, A182 (2024),
+     arXiv:2407.07162 [astro-ph.GA].
+[320] P. Dayal and R. maiolino, The properties of primordially-seeded black holes and their hosts in the first billion years:
+      implications for JWST,  (2025), arXiv:2506.08116 [astro-ph.GA].
+[321] L. R. Prole, J. A. Regan, D. Mehta, P. Coles, and P. Dayal, Primordial black holes in cosmological simulations: growth
+     prospects for supermassive black holes 10.33232/001c.143643 (2025), arXiv:2506.11233 [astro-ph.GA].
+[322] S. Zhang, B. Liu, V. Bromm, J. Jeon, M. Boylan-Kolchin, and F. Kuhnel, How do Massive Primordial Black Holes Impact
+     the Formation of the First Stars and Galaxies?,  (2025), arXiv:2503.17585 [astro-ph.GA].
+[323] A. Matteri, A. Pallottini, and A. Ferrara, Can primordial black holes explain the overabundance of bright super-early
+      galaxies?, Astron. Astrophys. 697, A65 (2025), arXiv:2503.01968 [astro-ph.GA].
+[324] S. Zhang, B. Liu, V. Bromm, and F. K¨uhnel, Primordial Black Holes as Seeds for Extremely Overmassive AGN Observed
+     by JWST,  (2025), arXiv:2512.14066 [astro-ph.GA].
+[325] R. Maiolino et al., A black hole in a near-pristine galaxy 700 million years after the Big Bang, (2025), arXiv:2505.22567
+      [astro-ph.GA].
+[326] H.-L. Huang, J.-Q. Jiang, J. He, Y.-T. Wang, and Y.-S. Piao, Sub-Eddington accreting supermassive primordial black
+      holes explain Little Red Dots,  (2024), arXiv:2410.20663 [astro-ph.GA].
+[327] B. Zhang, W.-X. Feng, and H. An, Little Red Dots from Small-Scale Primordial Black Hole Clustering,  (2025),
+     arXiv:2507.07171 [astro-ph.CO].
+[328] V. De Luca, L. Del Grosso, G. Franciolini, K. Kritos, E. Berti, D. D’Orazio, and J. Silk, A cosmologist’s take on Little
+    Red Dots,  (2025), arXiv:2512.19666 [astro-ph.CO].
+[329] B. Liu and V. Bromm, Accelerating Early Massive Galaxy Formation with Primordial Black Holes, Astrophys. J. Lett.
+     937, L30 (2022), arXiv:2208.13178 [astro-ph.CO].
+[330] F. Ziparo, S. Gallerani, and A. Ferrara, Primordial black holes as supermassive black hole seeds, JCAP 04, 040,
+     arXiv:2411.03448 [astro-ph.CO].
+[331] H.-L. Huang, Y.-T. Wang, and Y.-S. Piao, Supermassive primordial black holes for the GHZ9 and UHZ1 observed by the
+    JWST,  (2024), arXiv:2410.05891 [astro-ph.GA].
+[332] S. Zhang, B. Liu, and V. Bromm, A Novel Formation Channel for Supermassive Black Hole Binaries in the Early Universe
+      via Primordial Black Holes, Astrophys. J. 992, 136 (2025), arXiv:2508.00774 [astro-ph.GA].
+[333] M. Ricotti, J. P. Ostriker, and K. J. Mack, Effect of Primordial Black Holes on the Cosmic Microwave Background and
+     Cosmological Parameter Estimates, Astrophys. J. 680, 829 (2008), arXiv:0709.0524 [astro-ph].
+[334] P. D. Serpico, V. Poulin, D. Inman, and K. Kohri, Cosmic microwave background bounds on primordial black holes
+      including dark matter halo accretion, Phys. Rev. Res. 2, 023204 (2020), arXiv:2002.10771 [astro-ph.CO].
+[335] Y. Inoue and A. Kusenko, New X-ray bound on density of primordial black holes, JCAP 10, 034, arXiv:1705.00791
+      [astro-ph.CO].
+[336] A. Hektor, G. H¨utsi, L. Marzola, M. Raidal, V. Vaskonen, and H. Veerm¨ae, Constraining Primordial Black Holes with
+     the EDGES 21-cm Absorption Signal, Phys. Rev. D 98, 023503 (2018), arXiv:1803.09697 [astro-ph.CO].
+[337] J. Cang, Y. Gao, and Y.-Z. Ma, 21-cm constraints on spinning primordial black holes, JCAP 03 (03), 012, arXiv:2108.13256
+      [astro-ph.CO].
+[338] D. Agius, R. Essig, D. Gaggero, S. Palomares-Ruiz, G. Suczewski, and M. Valli, Astrophysical uncertainties challenge
+     21-cm forecasts: A primordial black hole case study,  (2025), arXiv:2510.14877 [astro-ph.CO].
+[339] D. Agius, R. Essig, D. Gaggero, F. Scarcella, G. Suczewski, and M. Valli, Feedback in the dark: a critical examination of
+   CMB bounds on primordial black holes, JCAP 07, 003, arXiv:2403.18895 [hep-ph].
+[340] G. Facchinetti, M. Lucca, and S. Clesse, Relaxing CMB bounds on primordial black holes: The role of ionization fronts,
+     Phys. Rev. D 107, 043537 (2023), arXiv:2212.07969 [astro-ph.CO].
+[341] V. De Luca, G. Franciolini, P. Pani, and A. Riotto, Constraints on Primordial Black Holes: the Importance of Accretion,
+     Phys. Rev. D 102, 043505 (2020), arXiv:2003.12589 [astro-ph.CO].
+[342] G. H¨utsi, M. Raidal, and H. Veerm¨ae, Small-scale structure of primordial black hole dark matter and its implications for
+      accretion, Phys. Rev. D 100, 083016 (2019), arXiv:1907.06533 [astro-ph.CO].
+[343] A. Kashlinsky, LIGO gravitational wave detection, primordial black holes and the near-IR cosmic infrared background
+      anisotropies, Astrophys. J. Lett. 823, L25 (2016), arXiv:1605.04023 [astro-ph.CO].
+[344] A. Kashlinsky, R. G. Arendt, F. Atrio-Barandela, N. Cappelluti, A. Ferrara, and G. Hasinger, Looking at cosmic near-
+      infrared background radiation anisotropies, Rev. Mod. Phys. 90, 025006 (2018), arXiv:1802.07774 [astro-ph.CO].
+[345] F. Capela, M. Pshirkov, and P. Tinyakov, Constraints on primordial black holes as dark matter candidates from capture
+     by neutron stars, Phys. Rev. D 87, 123524 (2013), arXiv:1301.4984 [astro-ph.CO].
+[346] P. Montero-Camacho, X. Fang, G. Vasquez, M. Silva, and C. M. Hirata, Revisiting constraints on asteroid-mass primordial
+     black holes as dark matter candidates, JCAP 08, 031, arXiv:1906.05950 [astro-ph.CO].
+[347] R. Caiozzo, G. Bertone, and F. K¨uhnel, Revisiting primordial black hole capture by neutron stars, JCAP 07, 091,
+     arXiv:2404.08057 [astro-ph.HE].
+[348] I. Holst, Y. G´enolini, and P. D. Serpico, Tidal effects on primordial black hole capture in neutron stars, JCAP 09, 050,
+     arXiv:2505.04709 [astro-ph.HE].
+[349] F. Capela, M. Pshirkov, and P. Tinyakov, Constraints on Primordial Black Holes as Dark Matter Candidates from Star
+     Formation, Phys. Rev. D 87, 023507 (2013), arXiv:1209.6021 [astro-ph.CO].
+[350] F. Capela, M. Pshirkov, and P. Tinyakov, Adiabatic contraction revisited: implications for primordial black holes, Phys.
+     Rev. D 90, 083507 (2014), arXiv:1403.7098 [astro-ph.CO].
+
+                                                                                                    32
+
+
+[351] M. Oncins, J. Miralda-Escud´e, J. L. Guti´errez, and P. Gil-Pons, Primordial black holes capture by stars and induced
+      collapse to low-mass stellar black holes, Mon. Not. Roy. Astron. Soc. 517, 28 (2022), arXiv:2205.13003 [astro-ph.GA].
+[352] N. Esser and P. Tinyakov, Constraints on primordial black holes from observation of stars in dwarf galaxies, Phys. Rev.
+   D 107, 103052 (2023), arXiv:2207.07412 [astro-ph.HE].
+[353] N. Esser, S. De Rijcke, and P. Tinyakov, The impact of primordial black holes on the stellar mass function of ultra-faint
+     dwarf galaxies, Mon. Not. Roy. Astron. Soc. 529, 32 (2024), arXiv:2311.12658 [astro-ph.GA].
+[354] N. Esser, C. Filion, S. De Rijcke, N. Kallivayalil, H. Richstein, P. Tinyakov, and R. F. G. Wyse, Constraints on asteroid-
+     mass primordial black holes in dwarf galaxies using Hubble Space Telescope photometry, Astron. Astrophys. 698, A290
+      (2025), arXiv:2503.03352 [astro-ph.GA].
+[355] T. W. Baumgarte and S. L. Shapiro, Neutron Stars Harboring a Primordial Black Hole: Maximum Survival Time, Phys.
+     Rev. D 103, L081303 (2021), arXiv:2101.12220 [astro-ph.HE].
+[356] E. P. Bellinger, M. E. Caplan, T. Ryu, D. Bollimpalli, W. H. Ball, F. K¨uhnel, R. Farmer, S. E. de Mink, and J. Christensen-
+     Dalsgaard, Solar Evolution Models with a Central Black Hole, Astrophys. J. 959, 113 (2023), arXiv:2312.06782 [astro-
+     ph.SR].
+[357] P. W. Graham, S. Rajendran, and J. Varela, Dark Matter Triggers of Supernovae, Phys. Rev. D 92, 063007 (2015),
+     arXiv:1505.04444 [hep-ph].
+[358] A. Barnacka, J. F. Glicenstein, and R. Moderski, New constraints on primordial black holes abundance from femtolensing
+      of gamma-ray bursts, Phys. Rev. D 86, 043001 (2012), arXiv:1204.2056 [astro-ph.CO].
+[359] A. Katz, J. Kopp, S. Sibiryakov, and W. Xue, Femtolensing by Dark Matter Revisited, JCAP 12, 005, arXiv:1807.11495
+      [astro-ph.CO].
+[360] Y. Bai and N. Orlofsky, Microlensing of X-ray Pulsars: a Method to Detect Primordial Black Hole Dark Matter, Phys.
+     Rev. D 99, 123019 (2019), arXiv:1812.01427 [astro-ph.HE].
+[361] M. Tamta, N. Raj, and P. Sharma, Entering the window of primordial black hole dark matter with x-ray microlensing,
+     Phys. Rev. D 111, 043043 (2025), arXiv:2405.20365 [astro-ph.HE].
+[362] L. A. Anchordoqui, I. Antoniadis, D. Lust, and K. P. n. Castillo, Through the looking glass into the dark dimension:
+     Searching for bulk black hole dark matter with microlensing of X-ray pulsars, Phys. Dark Univ. 46, 101681 (2024),
+     arXiv:2409.12904 [hep-ph].
+[363] T. X. Tran, S. R. Geller, B. V. Lehmann, and D. I. Kaiser, Close encounters of the primordial kind: A new observable
+      for primordial black holes as dark matter, Phys. Rev. D 110, 063533 (2024), arXiv:2312.17217 [astro-ph.CO].
+[364] K. M. Belotsky, A. D. Dmitriev, E. A. Esipova, V. A. Gani, A. V. Grobov, M. Y. Khlopov, A. A. Kirillov, S. G.
+     Rubin, and I. V. Svadkovsky, Signatures of primordial black hole dark matter, Mod. Phys. Lett. A 29, 1440005 (2014),
+     arXiv:1410.0203 [astro-ph.CO].
+[365] F. K¨uhnel and K. Freese, Constraints on Primordial Black Holes with Extended Mass Functions, Phys. Rev. D 95, 083508
+      (2017), arXiv:1701.07223 [astro-ph.CO].
+[366] V. De Luca, G. Franciolini, A. Kehagias, P. Pani, and A. Riotto, Primordial black holes in matter-dominated eras: The
+      role of accretion, Phys. Lett. B 832, 137265 (2022), arXiv:2112.02534 [astro-ph.CO].
+[367] K. Tomita, Evolution of Irregularities in a Chaotic Early Universe, Prog. Theor. Phys. 54, 730 (1975).
+[368] S. Matarrese, O. Pantano, and D. Saez, A General relativistic approach to the nonlinear evolution of collisionless matter,
+     Phys. Rev. D 47, 1311 (1993).
+[369] S. Matarrese, O. Pantano, and D. Saez, General relativistic dynamics of irrotational dust: Cosmological implications,
+     Phys. Rev. Lett. 72, 320 (1994), arXiv:astro-ph/9310036.
+[370] S. Matarrese, S. Mollerach, and M. Bruni, Second order perturbations of the Einstein-de Sitter universe, Phys. Rev. D
+     58, 043504 (1998), arXiv:astro-ph/9707278.
+[371] V. Acquaviva, N. Bartolo, S. Matarrese, and A. Riotto, Second order cosmological perturbations from inflation, Nucl.
+     Phys. B 667, 119 (2003), arXiv:astro-ph/0209156.
+[372] S. Mollerach, D. Harari, and S. Matarrese, CMB polarization from secondary vector and tensor modes, Phys. Rev. D 69,
+     063002 (2004), arXiv:astro-ph/0310711.
+[373] C. Carbone and S. Matarrese, A Unified treatment of cosmological perturbations from super-horizon to small scales, Phys.
+     Rev. D 71, 043508 (2005), arXiv:astro-ph/0407611.
+[374] K. N. Ananda, C. Clarkson, and D. Wands, The Cosmological gravitational wave background from primordial density
+      perturbations, Phys. Rev. D 75, 123518 (2007), arXiv:gr-qc/0612013.
+[375] D. Baumann, P. J. Steinhardt, K. Takahashi, and K. Ichiki, Gravitational Wave Spectrum Induced by Primordial Scalar
+      Perturbations, Phys. Rev. D 76, 084019 (2007), arXiv:hep-th/0703290.
+[376] G. Dom`enech, Scalar Induced Gravitational Waves Review, Universe 7, 398 (2021), arXiv:2109.01398 [gr-qc].
+[377] R. Saito and J. Yokoyama, Gravitational wave background as a probe of the primordial black hole abundance, Phys. Rev.
+      Lett. 102, 161101 (2009), [Erratum: Phys.Rev.Lett. 107, 069901 (2011)], arXiv:0812.4339 [astro-ph].
+[378] R. Zheng, J. Shi, and T. Qiu, On primordial black holes and secondary gravitational waves generated from inflation with
+     solo/multi-bumpy potential *, Chin. Phys. C 46, 045103 (2022), arXiv:2106.04303 [astro-ph.CO].
+[379] F. Zhang, J. Lin, and Y. Lu, Double-peaked inflation model: Scalar induced gravitational waves and primordial-black-
+      hole suppression from primordial non-Gaussianity, Phys. Rev. D 104, 063515 (2021), [Erratum: Phys.Rev.D 104, 129902
+      (2021)], arXiv:2106.10792 [gr-qc].
+[380] C. Yuan and Q.-G. Huang, A topic review on probing primordial black hole dark matter with scalar induced gravitational
+     waves, iScience 24, 102860 (2021), arXiv:2103.04739 [astro-ph.GA].
+[381] Z. Yi and Q. Fei, Constraints on primordial curvature spectrum from primordial black holes and scalar-induced gravita-
+
+                                                                                                    33
+
+
+      tional waves, Eur. Phys. J. C 83, 82 (2023), arXiv:2210.03641 [astro-ph.CO].
+[382] J.-X. Zhao, X.-H. Liu, and N. Li, Primordial black holes and scalar-induced gravitational waves from the perturbations
+     on the inflaton potential in peak theory, Phys. Rev. D 107, 043515 (2023), arXiv:2302.06886 [astro-ph.CO].
+[383] Y. Gouttenoire, S. Trifinopoulos, and M. Vanvlasselaer, Implications for Pulsar Timing Arrays of Sub-solar Black Hole
+      Detections: From LVK to Einstein Telescope and Cosmic Explorer,  (2025), arXiv:2508.19328 [astro-ph.CO].
+[384] P. Bari, N. Bartolo, G. Dom`enech, and S. Matarrese, Gravitational waves induced by scalar-tensor mixing, Phys. Rev. D
+     109, 023509 (2024), arXiv:2307.05404 [astro-ph.CO].
+[385] R. Picard and K. A. Malik, Induced gravitational waves: the effect of first order tensor perturbations, JCAP 10, 010,
+     arXiv:2311.14513 [astro-ph.CO].
+[386] A. J. Iovino, G. Perna, D. Perrone, D. Racco, and A. Riotto, Understanding the Nature of Scalar-Induced Gravitational
+     Waves,  (2025), arXiv:2509.24774 [gr-qc].
+[387] J. R. Espinosa, D. Racco, and A. Riotto, A Cosmological Signature of the SM Higgs Instability: Gravitational Waves,
+    JCAP 09, 012, arXiv:1804.07732 [hep-ph].
+[388] K. Kohri and T. Terada, Semianalytic calculation of gravitational wave spectrum nonlinearly induced from primordial
+     curvature perturbations, Phys. Rev. D 97, 123532 (2018), arXiv:1804.08577 [gr-qc].
+[389] P. Adshead, K. D. Lozanov, and Z. J. Weiner, Non-Gaussianity and the induced gravitational wave background, JCAP
+     10, 080, arXiv:2105.01659 [astro-ph.CO].
+[390] G. Perna, C. Testini, A. Ricciardone, and S. Matarrese, Fully non-Gaussian Scalar-Induced Gravitational Waves, JCAP
+     05, 086, arXiv:2403.06962 [astro-ph.CO].
+[391] J. E. Gammal et al. (LISA Cosmology Working Group), Reconstructing primordial curvature perturbations via scalar-
+     induced gravitational waves with LISA, JCAP 05, 062, arXiv:2501.11320 [astro-ph.CO].
+[392] A. Gangui, F. Lucchin, S. Matarrese, and S. Mollerach, The Three point correlation function of the cosmic microwave
+     background in inflationary models, Astrophys. J. 430, 447 (1994), arXiv:astro-ph/9312033.
+[393] S. Matarrese, L. Verde, and R. Jimenez, The Abundance of high-redshift objects as a probe of non-Gaussian initial
+      conditions, Astrophys. J. 541, 10 (2000), arXiv:astro-ph/0001366.
+[394] N. Bartolo, S. Matarrese, and A. Riotto, Nongaussianity from inflation, Phys. Rev. D 65, 103505 (2002), arXiv:hep-
+     ph/0112261.
+[395] J. M. Maldacena, Non-Gaussian features of primordial fluctuations in single field inflationary models, JHEP 05, 013,
+     arXiv:astro-ph/0210603.
+[396] N. Bartolo, E. Komatsu, S. Matarrese, and A. Riotto, Non-Gaussianity from inflation: Theory and observations, Phys.
+     Rept. 402, 103 (2004), arXiv:astro-ph/0406398.
+[397] X. Chen, Primordial Non-Gaussianities from Inflation Models, Adv. Astron. 2010, 638979 (2010), arXiv:1002.1416 [astro-
+     ph.CO].
+[398] C. T. Byrnes and K.-Y. Choi, Review of local non-Gaussianity from multi-field inflation, Adv. Astron. 2010, 724525
+      (2010), arXiv:1002.3110 [astro-ph.CO].
+[399] D. Wands, Local non-Gaussianity from inflation, Class. Quant. Grav. 27, 124002 (2010), arXiv:1004.0818 [astro-ph.CO].
+[400] S. Renaux-Petel, Primordial non-Gaussianities after Planck 2015: an introductory review, Comptes Rendus Physique 16,
+     969 (2015), arXiv:1508.06740 [astro-ph.CO].
+[401] A. Ach´ucarro et al., Inflation: Theory and Observations,  (2022), arXiv:2203.08128 [astro-ph.CO].
+[402] R.-g. Cai, S. Pi, and M. Sasaki, Gravitational Waves Induced by non-Gaussian Scalar Perturbations, Phys. Rev. Lett.
+     122, 201101 (2019), arXiv:1810.11000 [astro-ph.CO].
+[403] C. Unal, Imprints of Primordial Non-Gaussianity on Gravitational Wave Spectrum, Phys. Rev. D 99, 041301 (2019),
+     arXiv:1811.09151 [astro-ph.CO].
+[404] S. Garcia-Saenz, L. Pinol, S. Renaux-Petel, and D. Werth, No-go theorem for scalar-trispectrum-induced gravitational
+     waves, JCAP 03, 057, arXiv:2207.14267 [astro-ph.CO].
+[405] A. Abac et al. (ET), The Science of the Einstein Telescope,  (2025), arXiv:2503.12263 [gr-qc].
+[406] G. Agazie et al. (NANOGrav), The NANOGrav 15 yr Data Set: Evidence for a Gravitational-wave Background, Astrophys.
+      J. Lett. 951, L8 (2023), arXiv:2306.16213 [astro-ph.HE].
+[407] J. Antoniadis et al. (EPTA, InPTA:), The second data release from the European Pulsar Timing Array - III. Search for
+      gravitational wave signals, Astron. Astrophys. 678, A50 (2023), arXiv:2306.16214 [astro-ph.HE].
+[408] D. J. Reardon et al., Search for an Isotropic Gravitational-wave Background with the Parkes Pulsar Timing Array,
+     Astrophys. J. Lett. 951, L6 (2023), arXiv:2306.16215 [astro-ph.HE].
+[409] H. Xu et al., Searching for the Nano-Hertz Stochastic Gravitational Wave Background with the Chinese Pulsar Timing
+     Array Data Release I, Res. Astron. Astrophys. 23, 075024 (2023), arXiv:2306.16216 [astro-ph.HE].
+[410] P. Amaro-Seoane et al. (LISA), Laser Interferometer Space Antenna,  (2017), arXiv:1702.00786 [astro-ph.IM].
+[411] N. Bartolo, V. De Luca, G. Franciolini, A. Lewis, M. Peloso, and A. Riotto, Primordial Black Hole Dark Matter: LISA
+      Serendipity, Phys. Rev. Lett. 122, 211301 (2019), arXiv:1810.12218 [astro-ph.CO].
+[412] A. Iovino, Junior., G. Perna, and H. Veerm¨ae, The impact of non-Gaussianity when searching for Primordial Black Holes
+     with LISA,  (2025), arXiv:2512.13648 [astro-ph.CO].
+[413] Y. A. El-Neaj et al. (AEDGE), AEDGE: Atomic Experiment for Dark Matter and Gravity Exploration in Space, EPJ
+     Quant. Technol. 7, 6 (2020), arXiv:1908.00802 [gr-qc].
+[414] P. Madau and T. Fragos, Radiation Backgrounds at Cosmic Dawn: X-Rays from Compact Binaries, Astrophys. J. 840,
+     39 (2017), arXiv:1606.07887 [astro-ph.GA].
+[415] K. K. Y. Ng, G. Franciolini, E. Berti, P. Pani, A. Riotto, and S. Vitale, Constraining High-redshift Stellar-mass Primordial
+
+                                                                                                    34
+
+
+     Black Holes with Next-generation Ground-based Gravitational-wave Detectors, Astrophys. J. Lett. 933, L41 (2022),
+     arXiv:2204.11864 [astro-ph.CO].
+[416] L. Badurina et al., AION: An Atom Interferometer Observatory and Network, JCAP 05, 011, arXiv:1911.11755 [astro-
+     ph.CO].
+[417] O. Pujolas, V. Vaskonen, and H. Veerm¨ae, Prospects for probing gravitational waves from primordial black hole binaries,
+     Phys. Rev. D 104, 083521 (2021), arXiv:2107.03379 [astro-ph.CO].
+[418] R. Takahashi and T. Nakamura, Wave effects in gravitational lensing of gravitational waves from chirping binaries,
+     Astrophys. J. 595, 1039 (2003), arXiv:astro-ph/0305055.
+[419] A. G. Abac et al. (LIGO Scientific, VIRGO, KAGRA), GW231123: A Binary Black Hole Merger with Total Mass of
+     190–265 solar masses, Astrophys. J. Lett. 993, L25 (2025), arXiv:2507.08219 [astro-ph.HE].
+[420] GWTC-4.0: Searches for Gravitational-Wave Lensing Signatures,  (2025), arXiv:2512.16347 [gr-qc].
+[421] J. C. L. Chan, J. M. Ezquiaga, R. K. L. Lo, J. Bowman, L. Maga˜na Zertuche, and L. Vujeva, Discovering gravitational
+     waveform distortions from lensing: a deep dive into GW231123,  (2025), arXiv:2512.16916 [astro-ph.CO].
+[422] S. Goyal, H. Villarrubia-Rojo, and M. Zumalacarregui, Across the Universe: GW231123 as a magnified and diffracted
+     black hole merger,  (2025), arXiv:2512.17631 [astro-ph.GA].
+[423] A. Chakraborty and S. Mukherjee, The First Model-Independent Upper Bound on Micro-lensing Signature of the Highest
+     Mass Binary Black Hole Event GW231123,  (2025), arXiv:2512.19077 [gr-qc].
+[424] S. Jung and C. S. Shin, Gravitational-Wave Fringes at LIGO: Detecting Compact Dark Matter by Gravitational Lensing,
+     Phys. Rev. Lett. 122, 041103 (2019), arXiv:1712.01396 [astro-ph.CO].
+[425] J. M. Diego, Constraining the abundance of primordial black holes with gravitational lensing of gravitational waves at
+    LIGO frequencies, Phys. Rev. D 101, 123512 (2020), arXiv:1911.05736 [astro-ph.CO].
+[426] K. Liao, S. Tian, and X. Ding, Probing compact dark matter with gravitational wave fringes detected by the Einstein
+      Telescope, Mon. Not. Roy. Astron. Soc. 495, 2002 (2020), arXiv:2001.07891 [astro-ph.CO].
+[427] J. Urrutia and V. Vaskonen, Lensing of gravitational waves as a probe of compact dark matter, Mon. Not. Roy. Astron.
+      Soc. 509, 1358 (2021), arXiv:2109.03213 [astro-ph.CO].
+[428] S. Basak, A. Ganguly, K. Haris, S. Kapadia, A. K. Mehta, and P. Ajith, Constraints on Compact Dark Matter from
+      Gravitational Wave Microlensing, Astrophys. J. 926, L28 (2022), arXiv:2109.06456 [gr-qc].
+[429] M. Zumalac´arregui, Lens Stochastic Diffraction: A Signature of Compact Structures in Gravitational-Wave Data, (2024),
+     arXiv:2404.17405 [gr-qc].
+[430] S. Kim, H. Gil Choi, and S. Jung, Probing small-scale power spectrum with gravitational-wave diffractive lensing, JHEP
+     07, 006, arXiv:2501.14904 [hep-ph].
