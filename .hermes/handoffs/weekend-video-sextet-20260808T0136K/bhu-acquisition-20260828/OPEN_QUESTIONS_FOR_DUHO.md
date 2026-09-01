@@ -6,7 +6,7 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ IN PROGRESS 2026-09-01 — source-limited acquisition (Duho chose (a)): 1 of 7 acquired, 6 remain
+## ⏳ IN PROGRESS 2026-09-01 — source-limited acquisition (Duho chose (a)): 2 of 7 acquired (19, 5); 5 remain (paywalled → Duho)
 
 **Entry 19 (Dymnikova 2019, MDPI gold OA) fetched + pinned + blind-double re-confirmed CONSISTENCY-ONLY** (full
 source supersedes the abridged capture). Source-limited now **6**. **Correction to my earlier note:** the corpus
@@ -16,9 +16,9 @@ non-resolving DOIs were a transcription typo in *my fetch brief*, NOT a corpus e
 **Still need YOUR fetch (paywalled → `~/Downloads`, I pin+sweep):** 1 Pathria (Nature, `10.1038/240298a0`),
 2 Good (Phys Today, `10.1063/1.3070923`), 3 Stuckey (AJP, `10.1119/1.17460`), 4 Knutsen (Grav Cosmol,
 `10.1134/S0202289309030128`), 6 Frolov–Markov–Mukhanov (PLB 216, `10.1016/0370-2693(89)91114-3` — ScienceDirect,
-easiest). **Entry 5 (Khakshournia):** free arXiv `1412.0105` has the exact title+author but a 2014-vs-2010 date
-oddity leaves its identity unconfirmed — grab the journal version (Grav Cosmol 16, 178) to reconcile, or say
-"pin the arXiv 5" and I'll take the preprint on the title+author match.
+easiest). **Entry 5 (Khakshournia): DONE** — arXiv `1412.0105` pinned (Duho ruling "pin the arXiv 5"; the record already
+identifies it as this note's posting, so identity is fine) + blind-double + kimi re-confirmed
+THEORETICAL-OBSTRUCTION (2–1 over agy), scoped to the owned matching no-go. Tier unchanged.
 
 ---
 

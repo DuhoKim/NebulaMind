@@ -1,0 +1,2 @@
+TIER_TOO_STRONG_THEORETICAL-CRITIQUE
+The paper does not perform an in-text impossibility or no-go proof of Pathria's model. Instead, it mathematically derives that the matching between the spacetimes is not smooth and requires a null shell with surface pressure (Eq. 17). While it cites Knutsen (2009) as calling the model "untenable," under the ownership-of-proof rule, relying on another author's obstruction does not qualify this paper for the THEORETICAL-OBSTRUCTION tier.

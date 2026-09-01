@@ -207,6 +207,7 @@ target #1; cheap due-diligence read before any Pathria-line audit.
 **5. S. Khakshournia (2010). "A note on Pathria's model of the universe as a black hole." Grav. Cosmol. 16, 178–180.**
 DOI 10.1134/S0202289310020131 — VERIFIED (Crossref: Gravitation and Cosmology, v16, p178-180, 2010-04).
 (arXiv:1412.0105 is the posting of this published note.)
+**Full source pinned + tier re-confirmed 2026-09-01 (Duho ruling "pin the arXiv 5"):** arXiv 1412.0105 pinned (`khakshournia_2010_note_pathria_arxiv1412.0105{.pdf,_clean.txt}`, sha256 `a5253489`) — the record already identifies it as this note's posting, so the pin-time identity caveat is resolved. Blind-double on the full text (codex + agy) + kimi tie-break **re-confirm THEORETICAL-OBSTRUCTION, 2–1**: the paper OWNS the scoped no-go (Eqs 13–16 → [K_uu]≠0, Eq 17 the required pressure-bearing null shell; smooth shell-free matching proven impossible for the stated setup — a negative existential, same shape as 37/55). agy dissented (reads it as a matching result, and notes the "untenable" verdict is borrowed from Knutsen); kimi's ruling incorporates that — the tier rests ONLY on the owned scoped matching no-go (as the CGATE_Q5 domain below already states), NOT on Knutsen's "untenable". Tier UNCHANGED.
 Claim: the Pathria identification holds only for certain Λ values and the horizon/maximal-expansion
 matching is not smooth (null shell with surface pressure).
 Testability: **THEORETICAL-OBSTRUCTION** — **re-tiered 2026-08-30 from CONSISTENCY-ONLY on Duho's
