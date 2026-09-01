@@ -1,0 +1,1 @@
+REJECTED by AGY-UNBUILT-VERIFY-V1: BS-2v is absent from v9 SLOT_SCHEMA, and the frozen rule bars any receipt for an absent slot until it has a SLOT_SCHEMA entry. The fix is a SUCCESSOR-LAYER schema entry (as receipt_strict.py did for BS-3g), then emit through that - NOT v9.receipt() nor the converter's ad-hoc schema. Buildable; not structurally dead. Kept for audit.
