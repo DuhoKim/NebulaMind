@@ -6,7 +6,69 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
-## ⏳ YOUR CALL 2026-09-01 — pick the BHU research topic (team of three has reported)
+## ⏳ YOUR CALL 2026-09-02 — (A) WAS RUN. It produced nothing constructive. What now?
+
+**This supersedes the topic menu below, which is now stale in one important way: it presents (A) as
+an untried recommendation. You chose (A), I ran it, and every constructive claim I built inside it
+was refuted.** Read this block, not the recommendation at the bottom of the next one.
+
+**What (A) actually produced, after a full day:**
+
+| | status |
+|---|---|
+| the 60° **scale** prediction is sound and non-circular | **holds** — verified by me from the source |
+| the cutoff **cannot be calibrated**; no initial-conditions model exists, in the author's own words | **holds** — textual, verified |
+| a gate's charge that the paper's own numbers give 22°, not 60° | **refuted by me** — it substituted a different quantity for the causal scale |
+| my optimisation method (admissible class + decision rule) | **refuted by both seats**, confirmed by me |
+| C1 — "the cutoff moves the anomaly to at most ~3%" | **retracted** — my own printed table contradicted it |
+| C2 — "the cut leaves 6× the observed correlation" | **refuted by both seats** |
+
+**Both gates converged on why C2 fell**, and it is worth understanding before you choose: a sharp cut
+in *Fourier* space is not the condition "no correlation beyond 60°" in *real* space — it produces
+ringing and long tails by construction — so the leftover correlation I measured is plausibly an
+artifact of my implementation rather than a fact about the model. Codex added that `S₁/₂ = 0` demands
+the correlation vanish across the whole 60°–180° range, an infinite family of constraints that
+tuning one cutoff scale cannot satisfy. **The target was never reachable by the kind of model I
+built.**
+
+**Your options:**
+
+- **(1) Do the repairs both gates specified** — build the causal condition in **real space**
+  (ξ(r>χ_§)=0, the construction step 2 proved is *incompatible* with the Fourier one), apply the
+  **actual sky mask and estimator** to every simulation, separate primordial/ISW/cross terms, and
+  **derive** `k_§` and its convention from the source instead of choosing it. *Cost:* this is the
+  expensive half — the mask and estimator work is real, and a day already went in. *Gain:* it would
+  be the first properly-posed test of the paper's actual claim, and the gates have already told us
+  exactly what it must satisfy.
+- **(2) Write (A) up as the documented no-go it already is** — the theory contains no
+  initial-conditions model, by the author's own sentence, so no calibration is possible; the
+  Paley–Wiener incompatibility and the textual analysis are the supporting record. *Cost:* a negative
+  result about a small literature, largely confirming what three earlier attempts found. *Gain:*
+  finished, honest, cheap, and the receipts already exist.
+- **(3) Stop (A).** *Cost:* the validated `S₁/₂` machinery and the incompatibility proof go unused.
+  *Gain:* nothing further spent on a corpus whose central prediction is scale-only.
+
+**My recommendation: (2), with (1) only if you want a paper rather than a record.** I am recommending
+the cheaper option against my own earlier advice, because the day's evidence is that my constructive
+judgement in this area has been wrong six times out of six and the gates have been right.
+
+**One thing you should weigh in deciding how much to trust me here:** everything above was caught by
+gating before it left the lane, which is the system working — but the yield was zero, and I was
+confident each time.
+
+### Recorded per the MUST-STOP rule — the seats disagreed on substance
+
+On whether including late ISW/lensing would *strictly* worsen the model's fit: **agy said yes**
+(making C2 conservative), **codex said not necessarily**, because `S₁/₂ = ∫(C_prim + C_ISW)²` carries
+a cross term that can be negative. **Codex is right** — `S₁/₂` is a quadratic form whose matrix has
+negative off-diagonal entries, so raising every `C_ℓ` need not raise it. I had repeated agy's version
+in an earlier writeup and have withdrawn it. **This does not change any outcome** (both seats refute
+C2 either way), so it needs no ruling from you — it is logged because the rule says a substantive
+disagreement gets written down, not because it is open.
+
+---
+
+## ⏳ SUPERSEDED 2026-09-01 — pick the BHU research topic (team of three has reported)
 
 You said "assemble a team for finding a BHU research topic." Three seats worked the corpus audit
 independently from different angles (codex = theory, agy = observations, kimi = frontier/contested).
