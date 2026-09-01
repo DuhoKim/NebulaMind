@@ -4,6 +4,15 @@
 > (closed at the full readable corpus), the miss-rate reversal, questions 5–7, four
 > acquisitions, and `check.py` all post-date this file. Read this file for the day, that one
 > for the night.
+>
+> **[2026-09-01 UPDATE — newest cold-read state is now `WRAP_UP_20260830_FULL_DAY.md`**, which
+> supersedes both `WRAP_UP_20260830_OVERNIGHT.md` and this file. **This file's closing
+> "Open" / "Not blocked, not done" tail is STALE and must not be acted on:** since it was written
+> the corpus was read to completion — **0 UNREAD, 51 BHU papers** (bibliography §0, line 35) — so
+> the sweep is DONE, not "parked"; **entry 44 is already `CALIBRATED-FALSIFIER / FIRED` and filed**
+> (the tail's "standing next target / one sentence ever read" line contradicts this file's own
+> body at the top); and all four of the day's questions are closed (line 68). Trust the
+> bibliography §0 tally and `WRAP_UP_20260830_FULL_DAY.md` over this file's tail.]
 
 **Read cold, this file first.** It supersedes `WRAP_UP_20260829.md`, which covers only the
 overnight half and knows nothing after 08:30. Two artifacts stand behind it and both are written

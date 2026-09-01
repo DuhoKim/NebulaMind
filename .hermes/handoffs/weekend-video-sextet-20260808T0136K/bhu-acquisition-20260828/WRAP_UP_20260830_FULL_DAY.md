@@ -34,6 +34,18 @@ falsifier-adjacent (the family's curvature prediction), so per Duho's overnight 
 for a seat/the tick rather than adjudicated solo. Tier-neutral, low priority. Everything else is
 institutional-parked (holdouts 42/47, Silk registration, pre-2010 VoRs).
 
+> **[2026-09-01 UPDATE — this "one remaining free-access item" is now CLOSED; do NOT re-dispatch
+> it.]** Entry 54's Ω_K testimony was resolved the same day it was written: **B59-VERIFIED
+> 2026-08-30** (agy + codex both `SOURCE_OVERSTATES_ACT_DESI_TIER_UNCHANGED`; ACT DR6 / DESI 2024-VI
+> / DESI DR2 / Di Valentino 2020 abstracts pinned) — the "assumes vs. constrains" question is
+> settled (DESI *fits* Ω_k and finds no preference, doesn't merely assume; the source's
+> "same-direction trend" gloss overstates and for DESI reverses the sign), and **B61-VERIFIED**
+> (curvature falsifier LIVE-but-UNFIRED, both seats). Bibliography §0 entry-54 block, lines
+> ~904–919; **tier UNCHANGED. No open free-access audit item remains.** Also since read+tiered:
+> holdouts 42 → CONSISTENCY-ONLY, 47 → PROSPECT (Duho 42a/47a, 2026-09-01); Silk 1997
+> purchased + pinned 2026-08-31. The only parked acquisitions are the **5 pre-2010 paywalled
+> versions-of-record on Duho's fetch** (Pathria, Good, Stuckey, Knutsen, Frolov–Markov–Mukhanov).
+
 ## What this lane is
 
 An adversarial audit of the **black-hole-universe (BHU) published bibliography** — 58 numbered
