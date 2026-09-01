@@ -6,6 +6,21 @@ mine. The old version of this file read as a status report and buried a decision
 
 ---
 
+## ✅ DONE 2026-09-01 — sub-27 sweep ("sweep the rest below 27", RELAY): 9/9 sourced entries blind-double-CONFIRMED, no tier changes
+
+codex + kimi confirmed all 9 sub-27 entries that have a full source (6, 9, 10, 12, 14, 16, 18, 23, 24) at
+their current tier. agy was erratic this round (7/9 disagreements on misidentified bases + malformed
+tokens) and was outvoted; codex+kimi are the reliable blind-double. Detail: `ENTRY_SUB27_RECONCILIATION_20260901.md`.
+
+**Standing offer (no decision forced):** 7 sub-27 entries are SOURCE-LIMITED — no full text pinned, so they
+can't be blind-double-confirmed and their tiers stand *un-reconfirmed*: **1** Pathria (Nature 1972), **2**
+Good (Physics Today 1972), **3** Stuckey (AmJPhys 1994), **4** Knutsen (Grav.Cosmol. 2009), **5**
+Khakshournia (Grav.Cosmol. 2010), **13** Frolov–Markov–Mukhanov (PLB 216, 1989 — ScienceDirect-walled),
+**19** Dymnikova (Universe 2019 — pinned copy is an abridged capture). Want any confirmed? Fetch the full
+text (school network / purchase, same as 42/47) → `~/Downloads`. Otherwise their existing tiers stand.
+
+---
+
 ## ✅ RESOLVED 2026-09-01 — Duho ruled 42(a)=CONSISTENCY-ONLY, 47(a)=PROSPECT (RELAY); applied + re-tallied (consistency 31→32, prospect 3→4, UNREAD 2→0), b66/b67 + plan/memo propagated, battery 80/80. **The BHU corpus is now FULLY READ — 0 UNREAD; all 51 papers read and tiered.** Original proposal below.
 
 You fetched the last two UNREAD papers; I pinned and read them (blind-double codex+agy + kimi tie-break).
