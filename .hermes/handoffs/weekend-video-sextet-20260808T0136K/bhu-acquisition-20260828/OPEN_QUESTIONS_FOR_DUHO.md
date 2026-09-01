@@ -42,7 +42,54 @@ questions below remain genuinely open.
 
 ---
 
-## OPEN — none. Lane 2 COMPLETE; all four RQ verdicts recorded + Duho-ratified; close-out written (`LANE_2_CLOSE_OUT_20260901.md`, committed `00b7c4b92`).
+## OPEN — BHU sweep batch 1: one criterion call (blocks the sweep) + three tier-adjacent entries (2026-09-01)
+
+Sweep resumed on your "run the whole sweep" (RELAY ~16:12). Batch 1 = 12 entries, blind-double codex+agy.
+**3 confirmed, tier holds (36, 46, 49).** The items below need you. Detail:
+`ENTRY_SWEEP_BATCH1_RECONCILIATION_20260901.md`. **The sweep is PAUSED on question A** — it governs
+several entries and how the rest of the corpus is tiered. Operational: the 12-entry batch overloaded agy
+(it hallucinated paper identities on the last 3), so I've capped future batches smaller; 4 entries
+(53, 55, 56, 57) await a reliable second read, deferred until A is ruled.
+
+### A · Blocks the sweep — does "our universe is CLOSED (positive curvature, Ω_k<0)" count as a prediction?
+
+**Stake.** Many BHU papers say the interior is a *closed, positive-curvature* universe. The two seats
+split the same way on three papers (40, 41, 52):
+- **codex:** closure is *assumed* (a closed-FLRW k=+1 ansatz), not mapped to a measurement → CONSISTENCY-ONLY.
+- **agy:** a closed universe *is* a signed testable prediction (Ω_k<0 is what Planck/DESI measure) → QUALITATIVE-DIRECTIONAL.
+Both have a point — and we ALREADY tier **entry 54 as QUALITATIVE-DIRECTIONAL** for predicting Ω_k<0 (the
+DESI curvature watch tracks exactly this). So the corpus is currently inconsistent, and your call decides
+40/41/52 now plus every closure-claiming paper in the rest of the sweep.
+
+**Your call, with costs:**
+- **(a) Directional only when the paper DERIVES closure as an output (not just assumes k=+1) — recommended.**
+  Matches how entry 54 was tiered. Cost: each of 40/41/52 gets a quick derive-vs-assume check on the seats.
+- **(b) Closure alone is never directional (needs a further mapped observable).** 40/41/52 stay
+  CONSISTENCY-ONLY. Cost: simplest, but under-tiers genuine Ω_k<0 predictions and is inconsistent with entry 54.
+- **(c) Closure always counts as directional.** 40/41/52 → directional + re-tier every closure-claimer.
+  Cost: many tier changes + re-tally; over-broad (most BHU papers assume closure).
+
+**Why it's yours:** a tiering criterion with corpus-wide reach that also touches the curvature-watch framing.
+
+### B · Entry 27 — same Gaztañaga CMB cutoff as 25/26; match their tier?
+
+Both seats say 27's CONSISTENCY-ONLY is too weak. Entry 27 is the SAME causal-horizon CMB cutoff (θ≈60°,
+measured 66±9°) you ruled QUALITATIVE-DIRECTIONAL for 25/26 in q3.
+- **(a) Annotate 27 → QUALITATIVE-DIRECTIONAL, matching 25/26 — recommended** (consistent with q3; one tier change + re-tally).
+- **(b) Keep CONSISTENCY-ONLY** (record tiers the same cutoff two ways).
+- **(c) Calibrated (agy)** — not recommended; no C_ℓ amplitude, exactly as RQ-C found.
+
+### C · Entry 45 — one genuine split, cheap to break
+
+codex: the white-hole horizon mode-matching predicts an exterior Hawking-flux departure (observation-facing
+→ directional). agy: the paper concedes it "may not be directly relevant to observable Universe" → consistency-only.
+- **(a) Third read (kimi) to break it — recommended** (one seat pass, off Fable). **(b) Directional (codex). (c) Consistency-only (agy).**
+
+Nothing is tiered until you rule; batch-1's three confirmed keep their tiers unchanged.
+
+---
+
+## Lane 2 COMPLETE (earlier) — all four RQ verdicts recorded + Duho-ratified; close-out `LANE_2_CLOSE_OUT_20260901.md` (`00b7c4b92`).
 
 ### ✅ q4 RESOLVED 2026-09-01 — Duho ruled "annotate q4, keep tier". Entries 8–12 now carry the RQ-B UNDETERMINED verdict (transfer function not derivable from the literature; falsifier question open), tiers unchanged. Original question below.
 
